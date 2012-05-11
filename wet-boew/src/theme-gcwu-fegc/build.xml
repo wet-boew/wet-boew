@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="theme-gcwu-fegc" default="build" basedir=".">
+	<description>WET-BOEW GC Web Usability Theme</description>
+
+	<property file="build.properties"/>
+	<import file="build-tasks.xml"/>
+
+	<target name="build" description="" depends="-init, -minify" />
+
+	<target name="-init" depends=""> <!-- Future depends: -can-nodejs-lessc -->
+		<mkdir dir="${build.dir}"/>
+	</target>
+
+	<target name="-minify" depends="build-css">
+		<move todir="${build.dir}/css/premin">
+			<fileset dir="${build.dir}/css"/>
+		</move>
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/css/premin" toDir="${build.dir}/css">
+			<include name="*.*" />
+		</yui-compressor>
+		<delete dir="${build.dir}/css/premin"/>
+	</target>
+
+	<target name="build-css" depends="-base64-encode" />
+
+	<!--Build CSS Tasks -->
+	<target name="-base64-encode" depends="-merge-css">
+		<copy file="${build.dir}/css/core.css" tofile="${build.dir}/css/core-ie.css"/>
+		<copy file="${build.dir}/css/core-sppe.css" tofile="${build.dir}/css/core-sppe-ie.css"/>
+		<copy file="${build.dir}/css/core-serv.css" tofile="${build.dir}/css/core-serv-ie.css"/>
+		<copy file="${build.dir}/css/mobile.css" tofile="${build.dir}/css/mobile-ie.css"/>
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/images"/>
+		</copy>
+		<copy todir="${build.dir}/encode/images">
+			<fileset dir="${src.dir}/images"/>
+		</copy>
+		<copy todir="${build.dir}/encode/css">
+			<fileset dir="${build.dir}/css">
+				<include name="core.css"/>
+				<include name="core-sppe.css"/>
+				<include name="core-serv.css"/>
+				<include name="mobile.css"/>
+			</fileset>
+		</copy>
+		<cssurlembed skipMissing="true">
+			<fileset dir="${build.dir}/encode/css/">
+				<include name="core.css"/>
+				<include name="core-sppe.css"/>
+				<include name="core-serv.css"/>
+				<include name="mobile.css"/>
+			</fileset>
+		</cssurlembed>
+		<copy todir="${build.dir}/css">
+			<fileset dir="${build.dir}/encode/css"/>
+		</copy>
+		<copy todir="${build.dir}/images">
+			<fileset dir="${build.dir}/images"/>
+		</copy>
+		<delete dir="${build.dir}/encode"/>
+	</target>
+	
+	<target name="-merge-css">
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}">
+				<exclude name="build*"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/../css">
+			<fileset dir="${src.dir}/../css"/>
+		</copy>
+		<filelist id="corefiles" dir="${build.dir}">
+			<file name="css/core.css"/>
+			<file name="css/core-sppe.css"/>
+			<file name="css/core-serv.css"/>
+			<file name="css/mobile.css"/>
+		</filelist>
+		<for param="css-file">
+			<path>
+				<filelist refid="corefiles"/>
+			</path>
+			<sequential>
+				<antcall target="-resolve-css-imports" inheritAll="false">
+					<param name="file" value="@{css-file}"/>
+					<param name="topfile" value="true"/>
+				</antcall>
+			</sequential>
+		</for>
+
+		<delete>
+			<fileset dir="${build.dir}/css">
+				<exclude name="core.css"/>
+				<exclude name="core-sppe.css"/>
+				<exclude name="core-serv.css"/>
+				<exclude name="mobile.css"/>
+			</fileset>
+		</delete>
+		<delete dir="${build.dir}/../css"/>
+	</target>
+
+	<target name="-resolve-css-imports">
+		<antcall target="-recurse" inheritAll="false">
+			<param name="file.recurse" value="${file}"/>
+			<param name="topfile" value="${topfile}"/>
+		</antcall>
+	</target>
+
+	<target name="-recurse">
+        <property name="charset_regexp" value="@charset\s*?['&quot;]utf-8['&quot;]\s*?;" />
+        <property name="url_regexp" value="url\(\s*?['&quot;]\s*?(.*)?['&quot;]\s*?\s*?\)" />
+        <property name="import_regexp" value="@import\s*?${url_regexp}\s*?;?" />
+		<fixcrlf file="${file.recurse}"/>
+		<!-- Removes the charset directive if not in a core file -->
+		<if>
+			<not>
+				<equals arg1="${topfile}" arg2="true"/>
+			</not>
+			<then>
+                <replaceregexp file="${file.recurse}" match="${charset_regexp}" replace=""/>
+			</then>
+		</if>
+
+		<loadfile property="src" srcfile="${file.recurse}" encoding="utf8"/>
+        <!--Merge imported stylesheets-->
+        <for delimiter="${line.separator}" param="currline" list="${src}">
+			<sequential>
+                <propertyregex regexp="${import_regexp}" property="import" select="\0" input="@{currline}" global="true" casesensitive="true" override="true"/>
+				<if>
+					<isset property="import"/>
+					<then>
+                        <propertyregex regexp="${import_regexp}" property="import.file.name" select="\1" input="${import}" casesensitive="true" override="true"/>
+						<dirname property="import.file.root" file="${file.recurse}"/>
+						<property name="import.file" value="${import.file.root}/${import.file.name}"/>
+						<antcall target="-resolve-css-imports" inheritAll="false">
+							<param name="file" value="${import.file}"/>
+							<param name="topfile" value="false"/>
+						</antcall>
+						<loadfile property="imported" srcfile="${import.file}"/>
+						<replace file="${file.recurse}" token="${import}" value="${imported}"/>
+						<var name="import.file.root" unset="true"/>
+                        <var name="import.file.name" unset="true"/>
+						<var name="import.file" unset="true"/>
+						<var name="imported" unset="true"/>
+                        <var name="import" unset="true"/>
+					</then>
+				</if>
+			</sequential>
+		</for>
+		<var name="src" unset="true"/>
+        <var name="file.recurse" unset="true"/>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+</project>

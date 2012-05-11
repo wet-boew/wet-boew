@@ -1,0 +1,63 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+*/
+.wet-boew-zebra li.list-odd{
+    background-color:#ddd!important;
+    border:1px solid #ccc;
+}
+
+.wet-boew-zebra li.list-even{
+    background-color:#eee!important;
+    border:1px solid #ccc;
+}
+
+ol.wet-boew-zebra li,ol.wet-boew-zebra li li{
+    list-style-type:none;
+}
+
+ol.wet-boew-zebra li{
+    margin-bottom:2px;
+    margin-right:0;
+    min-height:39px;
+    padding:10px;
+}
+
+table.wet-boew-zebra,table.wet-boew-zebra table{
+    background-color:#fff;
+    border:1px solid #ccc;
+    border-collapse:collapse;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+table.wet-boew-zebra th{
+    background-color:#eee;
+    border:1px solid #ccc;
+    color:#333;
+    text-align:center;
+    padding:8px;
+}
+
+table.wet-boew-zebra td{
+    border:1px solid #ccc;
+    vertical-align:top;
+    padding:5px 10px;
+}
+
+.wet-boew-zebra tr.table-odd td,.wet-boew-zebra tr.table-even tr.table-odd td{
+    background-color:#f0fcff;
+}
+
+.wet-boew-zebra tr.table-even td,.wet-boew-zebra tr.table-odd tr.table-even td{
+    background-color:transparent;
+}
+
+.wet-boew-zebra li.list-hover{
+    background-color:#f0fcff!important;
+}
+
+.wet-boew-zebra tr.table-hover td{
+    background-color:#eee!important;
+}

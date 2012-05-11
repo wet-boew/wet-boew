@@ -1,0 +1,116 @@
+/*!
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+/*
+----- Dictionary (il8n) ---
+ */
+/*global jQuery: false, pe: false */
+(function ($) {
+	var _pe = window.pe || {
+		fn: {}
+	};
+	_pe.dic = {
+		get: function (key, state, mixin) {
+			var truthiness = (typeof key === "string" && key !== "") | // eg. 000 or 001 ie. 0 or 1
+				(typeof state === "string" && state !== "") << 1 | // eg. 000 or 010 ie. 0 or 2
+				(typeof mixin === "string" && mixin !== "") << 2; // eg. 000 or 100 ie. 0 or 4
+			switch (truthiness) {
+			case 1:
+				return this.ind[key]; // only key was provided.
+			case 3:
+				return this.ind[key][state]; // key and state were provided.
+			case 7:
+				return this.ind[key][state].replace('[MIXIN]', mixin); // key, state, and mixin were provided.
+			default:
+				return "";
+			}
+		},
+/*
+ @dictionary function : pe.dic.ago()
+ @returns: a human readable time difference text
+ */
+		ago: function (time_value) {
+			var delta, parsed_date, r, relative_to;
+			parsed_date = pe.date.convert(time_value);
+			relative_to = (arguments.length > 1 ? arguments[1] : new Date());
+			delta = parseInt((relative_to.getTime() - parsed_date) / 1000, 10);
+			delta = delta + (relative_to.getTimezoneOffset() * 60);
+			r = "";
+			if (delta < 60) {
+				r = this.get("%minute-ago");
+			} else if (delta < 120) {
+				r = this.get("%couple-of-minutes");
+			} else if (delta < (45 * 60)) {
+				r = this.get("%minutes-ago", "mixin", (parseInt(delta / 60, 10)).toString());
+			} else if (delta < (90 * 60)) {
+				r = this.get("%hour-ago");
+			} else if (delta < (24 * 60 * 60)) {
+				r = this.get("%hours-ago", "mixin", (parseInt(delta / 3600, 10)).toString());
+			} else if (delta < (48 * 60 * 60)) {
+				r = this.get("%yesterday");
+			} else {
+				r = this.get("%days-ago", "mixin", (parseInt(delta / 86400, 10)).toString());
+			}
+			return r;
+		},
+		ind: {
+			"%top-of-page": "Haut de la page",
+			"%you-are-in": "Vous êtes dans :",
+			"%welcome-to": "Bienvenue à : " + $('#cn-site-title').text(),
+			"%archived-page": "Cette page Web a été archivée dans le Web.",
+			"%sub-menu-help": "(ouvrir le sous-menu avec la touche de la fleche descendante)",
+			"%tab-rotation": {
+				"disable": "Arrêter la rotation d'onglets",
+				"enable": "Lancer la rotation d'onglets"
+			},
+			"%search": "Recherche",
+			"%search-for-terms" : "Recherche de terme(s) :",
+			"%no-match-found" : "Aucune correspondance trouvée",
+			"%matches-found" : {
+				"mixin": "[MIXIN] correspondance(s) trouvées"
+			},
+			"%menu": "Menu",
+			"%play": "Jouer",
+			"%stop": "Pause",
+			"%close": "Fermer",
+			"%rewind": "Reculer ",
+			"%next" : "Prochaine",
+			"%previous" : "Précedent",
+			"%fast-forward": "Avancer ",
+			"%mute": {
+				"enable": "Activer le mode muet",
+				"disable": "Désactiver le mode muet"
+			},
+			"%closed-caption": {
+				"disable": "Masquer le sous-titrage",
+				"enable": "Afficher le sous-titrage"
+			},
+			"%audio-description": {
+				"enable": "Activer l'audiodescription",
+				"disable": "Désactiver l'audiodescription"
+			},
+			"%progress-bar": "utilisez les touches GAUCHE ou DROITE pour avancer ou reculer le progrès des médias",
+			"%no-video": "Votre navigateur ne semble pas avoir les capacité nécessaires pour lire cette vidéo, s'il vous plaît télécharger la vidéo ci-dessous",
+			"%position": "Position actuelle&#160;: ",
+			"%duration": "Temps total&#160;: ",
+			"%buffered": "Mis en mémoire-tampon&#160;: ",
+			"%minute-ago": "il ya une minute",
+			"%couple-of-minutes": "il ya quelques minutes",
+			"%minutes-ago": {
+				"mixin": "il ya [MIXIN] minutes"
+			},
+			"%hour-ago": "il ya une heure",
+			"%hours-ago": {
+				"mixin": "il ya [MIXIN] heures"
+			},
+			"%days-ago": {
+				"mixin": "il ya [MIXIN] jours"
+			},
+			"%yesterday": "hier"
+		}
+	};
+	window.pe = _pe;
+	_pe.dance();
+	return _pe;
+}(jQuery));

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jquery.core" default="build" basedir=".">
+	<description>Web Experience Toolkit jQuery Integration project</description>
+
+	<property file="build.properties"/>
+	<import file="build-tasks.xml"/>
+
+	<target name="build" description="" depends="-init, -minify" />
+
+	<target name="-init" depends=""> <!-- Future depends: -can-nodejs-coffeescript, -can-nodejs-lessc -->
+		<mkdir dir="${build.dir}"/>
+	</target>
+
+	<target name = "-minify" depends="build-js, build-css">
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/premin" toDir="${build.dir}">
+			<include name="*.*" />
+			<include name="i18n/*.*" />
+			<include name="css/*.*" />
+		</yui-compressor>
+		<delete dir="${build.dir}/premin"/>
+	</target>
+
+	<target name="build-js" depends="-build-pe">
+		<copy todir="${build.dir}">  
+			<resources>
+				<fileset dir="${src.dir}">
+					<include name="images/**"/>
+					<include name="dependencies/**"/> 
+					<include name="polyfills/**"/>
+					<include name="jquery.mobile/**"/>
+					<include name="*.js"/>
+					<exclude name="pe-ap.js"/> 
+				</fileset>
+			</resources>  
+		</copy>
+		<copy todir="${build.dir}/premin">  
+			<resources>
+				<fileset dir="${src.dir}">
+					<include name="i18n/**"/>
+				</fileset>
+			</resources>  
+		</copy>
+	</target>
+
+	<target name="build-css" depends="-base64-encode" />
+
+	<!-- Build JS Tasks -->
+	<target name="-build-pe" depends="-merge-workers">
+		<concat dest="${build.dir}/premin/pe-ap.js" fixlastline="yes">
+			<file file="${src.dir}/pe-ap.js"/>
+			<file file="${build.dir}/workers.js"/>
+		</concat>
+		<delete file="${build.dir}/workers.js"/>
+		<delete file="${build.dir}/dependencies.js"/>
+	</target>
+
+	<target name="-merge-workers">
+		<concat dest="${build.dir}/workers.js" fixlastline="yes">
+			<fileset dir="${src.dir}/workers" includes="**/**.js" />
+		</concat>
+		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf8" />
+	</target>
+
+	<!--Build CSS Tasks -->
+	<target name="-base64-encode" depends="-merge-css">
+		<copy file="${build.dir}/premin/css/pe-ap.css" tofile="${build.dir}/premin/css/pe-ap-ie.css"/>
+		<copy todir="${build.dir}/premin/images">
+			<fileset dir="${src.dir}/images"/>
+		</copy>
+		<cssurlembed skipMissing="true">
+			<fileset dir="${build.dir}/premin/css/">
+				<include name="pe-ap.css"/>
+			</fileset>
+		</cssurlembed>
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/images"/>
+		</copy>
+	</target>
+
+	<target name="-merge-css">
+		<copy todir="${build.dir}/premin/css">
+			<fileset dir="${src.dir}/css"/>
+		</copy>
+		<replace dir="${build.dir}/premin/css" token="@charset &quot;utf-8&quot;;" value=" "/>
+		<concat dest="${build.dir}/premin/css/pe-ap.css" fixlastline="yes">
+			<header>@charset &quot;utf-8&quot;;</header> 
+			<fileset dir="${build.dir}/premin/css">
+				<include name="*.css"/>
+				<exclude name="pe-ap*.css"/>
+			</fileset>
+		</concat>
+		<delete>
+			<fileset dir="${build.dir}/premin/css">
+				<exclude name="pe-ap*.css"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+</project>
+
+<!-- Future targets 
+
+<target name="-can-nodejs-coffeescript">
+		<property environment="env" />
+		<condition property="nodecoffee.present">
+			<available file="coffee" type="file">
+				<filepath>
+					<pathelement path="${env.PATH}" />
+				</filepath>
+			</available>
+		</condition>
+		<if>
+			<not>
+				<isset property="nodecoffee.present" />
+			</not>
+			<then>
+				<echo message="CoffeeScript for Node.js not found, using jCoffeeScript/Rhino (slower) instead" />
+			</then>
+		</if>
+	</target>
+	
+	<target name="-can-nodejs-lessc">
+		<property environment="env" />
+		<condition property="nodelessc.present">
+			<available file="lessc" type="file">
+				<filepath>
+					<pathelement path="${env.PATH}" />
+				</filepath>
+			</available>
+		</condition>
+		<if>
+			<not>
+				<isset property="nodelessc.present" />
+			</not>
+			<then>
+				<echo message="Lessc (Less Compiler) for Node.js not found, using LESS for Rhino (slower) instead" />
+			</then>
+		</if>
+	</target>
+	
+	<target name="-build-pe-nodejs" if="nodecoffee.present">
+		<exec executable="coffee" dir="." input="${build.dir}/pe-ap.pre.coffee" output="${build.dir}/pe-ap.pre.js">
+			<arg line="${nodecoffeescript.command}" />
+		</exec>
+	</target>
+	
+	<target name="-build-pe-rhino" unless="nodecoffee.present">
+		<exec executable="java" dir="." input="${build.dir}/pe-ap.pre.coffee" output="${build.dir}/pe-ap.pre.js">
+			<arg line="${jcoffeescript.command}" />
+		</exec>
+	</target>
+	
+	<target name="-merge-pe-core">
+		<concat dest="${build.dir}/pe-ap.pre.coffee" fixlastline="yes">
+				<filelist dir="${src.dir}/loader">
+						<file name="loader.coffee" />
+				</filelist>
+		</concat>
+	</target>
+	
+	<target name="-build-pe-modules" depends="-merge-pe-modules,-build-pe-module-nodejs,-build-pe-module-rhino"/>
+	
+	<target name="-build-pe-module-nodejs" if="nodecoffee.present">
+		<exec executable="coffee" dir="." input="${build.dir}/pe.worker.coffee" output="${build.dir}/pe.worker.js">
+			<arg line="${nodecoffeescript.command}" />
+		</exec>
+	</target>
+	
+	<target name="-build-pe-module-rhino" unless="nodecoffee.present">
+		<exec executable="java" dir="." input="${build.dir}/pe.worker.coffee" output="${build.dir}/pe.worker.js">
+			<arg line="${jcoffeescript.command}" />
+		</exec>
+	</target>
+	
+	<target name="-build-less" depends="-build-less-nodejs,-build-less-rhino" />
+	
+	<target name="-build-less-nodejs" if="nodelessc.present">
+		<exec executable="lessc" dir="." input="${src.dir}/test.less" output="${build.dir}/test.css">
+		</exec>
+	</target>
+	
+	<target name="-build-less-rhino" unless="nodelessc.present">
+		<exec executable="java" dir="." input="${src.dir}/test.less" output="${build.dir}/test.css">
+			<arg line="${jless.command}" />
+		</exec>
+	</target>
+-->

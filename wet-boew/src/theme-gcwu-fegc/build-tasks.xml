@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="default" basedir=".">
+	<!-- ant contribs task definition  -->
+	<path id="antcontrib.classpath">
+		<pathelement location="${antcontribs.jar}" />
+	</path>
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath refid="antcontrib.classpath" />
+	</taskdef>
+	<!-- yui-compressor task definition  -->
+	<path id="yui.classpath">
+		<pathelement location="${yui-compressor.jar}" />
+		<pathelement location="${yui-compressor-ant-task.jar}" />
+	</path>
+	<taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
+		<classpath refid="yui.classpath" />
+	</taskdef>
+	<!-- css embed Base64Encode images task definition -->
+	<path id="cssurlembed.classpath">
+		<pathelement location="${cssurlembed.jar}" />
+	</path>
+	<taskdef name="cssurlembed" classname="net.nczonline.web.cssembed.CSSEmbedTask">
+		<classpath refid="cssurlembed.classpath" />
+	</taskdef>
+</project>

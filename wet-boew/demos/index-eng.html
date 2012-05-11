@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+<title>Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../build/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="dcterms.description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities." />
+<meta name="description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities." />
+<meta name="keywords" content="Web, reusable components, toolkit, accessibility, usability, open source software" />
+<meta name="dcterms.creator" content="Government of Canada, Treasury Board of Canada Secretariat, Chief Information Officer Branch, IT Project Review and Oversight, Web Standards Office" />
+<meta name="dcterms.title" content="Web Experience Toolkit (WET)" />
+<meta name="dcterms.issued" title="W3CDTF" content="2012-05-11" />
+<meta name="dcterms.modified" title="W3CDTF" content="2012-05-11" />
+<meta name="dcterms.subject" title="gccore" content="Internet;Standards;Design" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../build/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../build/grids/css/util-min.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="../build/theme-gcwu-fegc/css/core-ie-min.css" /><![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../build/theme-gcwu-fegc/css/core-min.css" media="print and (min-width:768px), screen and (min-width:768px)" />
+<link rel="stylesheet" href="../build/theme-gcwu-fegc/css/mobile-min.css" media="screen and (max-width:767px)" />
+<link rel="stylesheet" href="../build/js/jquery.mobile/jquery.mobile.min.css" media="screen and (max-width:767px)" />
+<!--<![endif]-->
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="cn-body-inner-1col" data-role="page">
+<div id="cn-skip-head">
+<ul id="cn-tphp">
+<li id="cn-sh-link-1"><a href="#cn-cont">Skip to main content</a></li>
+<li id="cn-sh-link-2"><a href="#cn-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="cn-head"><div id="cn-head-inner"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="cn-gcnb"><h2>Government of Canada navigation bar</h2><div id="cn-gcnb-inner"><div id="fip-pcim-gcnb">
+<div id="cn-sig"><div id="cn-sig-inner"><div id="fip-pcim-sig-eng" title="Government of Canada"><img src="../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<ul>
+<li id="cn-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
+<li id="cn-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="cn-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
+<li id="cn-gcnb-lang"><a href="index-fra.html" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="cn-banner" role="banner"><div id="cn-banner-inner">
+<div id="cn-wmms"><div id="cn-wmms-inner"><div id="fip-pcim-wmms" title="Symbol of the Government of Canada"><img src="../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="cn-site-title"><p id="cn-site-title-inner"><a href="../docs/index-eng.html">Web Experience Toolkit (WET)</a></p></div>
+
+<section role="search"><div id="cn-search-box"><h2>Search</h2>
+<form action="#" method="post"><div id="cn-search-box-inner">
+<label for="cn-search">Search website</label><input id="cn-search" name="cn-search" type="search" value="" size="27" maxlength="150" />
+<input id="cn-search-submit" name="cn-search-submit" type="submit" value="Search" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="cn-psnb"><h2><span>Site</span> menu</h2><div id="cn-psnb-inner"><div class="wet-boew-menubar mb-megamenu"><div>
+<ul class="mb-menu" data-role="navbar">
+<li><section><h3><a href="#">Section 1</a></h3><div class="mb-sm">
+<div class="span-2">
+<ul>
+<li><a href="#">Item 1.1</a></li>
+<li><a href="#">Item 1.2</a></li>
+<li><a href="#">Item 1.3</a></li>
+<li><a href="#">Item 1.4</a></li>
+<li><a href="#">Item 1.5</a></li>
+<li><a href="#">Item 1.6</a></li>
+<li><a href="#">Item 1.7</a></li>
+<li><a href="#">Item 1.8</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><section><h3><a href="section2-eng.html">Section 2</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Section 2.1</a></h4>
+<ul>
+<li><a href="#">Item 2.1.1</a></li>
+<li><a href="#">Item 2.1.2</a></li>
+<li><a href="#">Item 2.1.3</a></li>
+<li><a href="#">Item 2.1.4</a></li>
+<li><a href="#">Item 2.1.5</a></li>
+<li><a href="#">Item 2.1.6</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 2.2</a></h4>
+<ul>
+<li><a href="#">Item 2.2.1</a></li>
+<li><a href="#">Item 2.2.2</a></li>
+<li><a href="#">Item 2.2.3</a></li>
+<li><a href="#">Item 2.2.4</a></li>
+<li><a href="#">Item 2.2.5</a></li>
+<li><a href="#">Item 2.2.6</a></li>
+<li><a href="#">Item 2.2.7</a></li>
+<li><a href="#">Item 2.2.8</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><section><h3><a href="#">Section 3</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Section 3.1</a></h4>
+<ul>
+<li><a href="#">Item 3.1.1</a></li>
+<li><a href="#">Item 3.1.2</a></li>
+<li><a href="#">Item 3.1.3</a></li>
+<li><a href="#">Item 3.1.4</a></li>
+<li><a href="#">Item 3.1.5</a></li>
+<li><a href="#">Item 3.1.6</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 3.2</a></h4>
+<ul>
+<li><a href="#">Item 3.2.1</a></li>
+<li><a href="#">Item 3.2.2</a></li>
+<li><a href="#">Item 3.2.3</a></li>
+<li><a href="#">Item 3.2.4</a></li>
+<li><a href="#">Item 3.2.5</a></li>
+<li><a href="#">Item 3.2.6</a></li>
+<li><a href="#">Item 3.2.7</a></li>
+<li><a href="#">Item 3.2.8</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 3.3</a></h4>
+<ul>
+<li><a href="#">Item 3.3.1</a></li>
+<li><a href="#">Item 3.3.2</a></li>
+<li><a href="#">Item 3.3.3</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><section><h3><a href="#">Section 4</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Section 4.1</a></h4>
+<ul>
+<li><a href="#">Item 4.1.1</a></li>
+<li><a href="#">Item 4.1.2</a></li>
+<li><a href="#">Item 4.1.3</a></li>
+</ul>
+</section>
+<section><h4><a href="#">Section 4.2</a></h4>
+<ul>
+<li><a href="#">Item 4.2.1</a></li>
+<li><a href="#">Item 4.2.2</a></li>
+<li><a href="#">Item 4.2.3</a></li>
+<li><a href="#">Item 4.2.4</a></li>
+</ul>
+</section>
+<section><h4><a href="#">Section 4.3</a></h4>
+<ul>
+<li><a href="#">Item 4.3.1</a></li>
+<li><a href="#">Item 4.3.2</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 4.4</a></h4>
+<ul>
+<li><a href="#">Item 4.4.1</a></li>
+<li><a href="#">Item 4.4.2</a></li>
+<li><a href="#">Item 4.4.3</a></li>
+<li><a href="#">Item 4.4.4</a></li>
+</ul>
+</section>
+<section><h4><a href="#">Section 4.5</a></h4>
+<ul>
+<li><a href="#">Item 4.5.1</a></li>
+<li><a href="#">Item 4.5.2</a></li>
+<li><a href="#">Item 4.5.3</a></li>
+<li><a href="#">Item 4.5.4</a></li>
+<li><a href="#">Item 4.5.5</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><section><h3><a href="#">Section 6</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Section 6.1</a></h4>
+<ul>
+<li><a href="#">Item 6.1.1</a></li>
+<li><a href="#">Item 6.1.2</a></li>
+<li><a href="#">Item 6.1.3</a></li>
+<li><a href="#">Item 6.1.4</a></li>
+<li><a href="#">Item 6.1.5</a></li>
+<li><a href="#">Item 6.1.6</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 6.2</a></h4>
+<ul>
+<li><a href="#">Item 6.2.1</a></li>
+<li><a href="#">Item 6.2.2</a></li>
+<li><a href="#">Item 6.2.3</a></li>
+<li><a href="#">Item 6.2.4</a></li>
+<li><a href="#">Item 6.2.5</a></li>
+<li><a href="#">Item 6.2.6</a></li>
+<li><a href="#">Item 6.2.7</a></li>
+<li><a href="#">Item 6.2.8</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 6.3</a></h4>
+<ul>
+<li><a href="#">Item 6.3.1</a></li>
+<li><a href="#">Item 6.3.2</a></li>
+<li><a href="#">Item 6.3.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 6.4</a></h4>
+<ul>
+<li><a href="#">Item 6.4.1</a></li>
+<li><a href="#">Item 6.4.2</a></li>
+<li><a href="#">Item 6.4.3</a></li>
+<li><a href="#">Item 6.4.4</a></li>
+<li><a href="#">Item 6.4.5</a></li>
+<li><a href="#">Item 6.4.6</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><section><h3><a href="#">Section 7</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Section 7.1</a></h4>
+<ul>
+<li><a href="#">Item 7.1.1</a></li>
+<li><a href="#">Item 7.1.2</a></li>
+<li><a href="#">Item 7.1.3</a></li>
+<li><a href="#">Item 7.1.4</a></li>
+<li><a href="#">Item 7.1.5</a></li>
+<li><a href="#">Item 7.1.6</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 7.2</a></h4>
+<ul>
+<li><a href="#">Item 7.2.1</a></li>
+<li><a href="#">Item 7.2.2</a></li>
+<li><a href="#">Item 7.2.3</a></li>
+<li><a href="#">Item 7.2.4</a></li>
+<li><a href="#">Item 7.2.5</a></li>
+<li><a href="#">Item 7.2.6</a></li>
+<li><a href="#">Item 7.2.7</a></li>
+<li><a href="#">Item 7.2.8</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 7.3</a></h4>
+<ul>
+<li><a href="#">Item 7.3.1</a></li>
+<li><a href="#">Item 7.3.2</a></li>
+<li><a href="#">Item 7.3.3</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+</ul>
+</div></div></div></div>
+
+<div id="cn-bc"><h2>Breadcrumb trail</h2><div id="cn-bc-inner">
+<ol>
+<li><a href="../docs/index-eng.html">Home</a></li>
+<li>Working examples - Web Experience Toolkit (WET)</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="cn-cols"><div id="cn-cols-inner" class="equalize">
+<div id="cn-centre-col" role="main"><div id="cn-centre-col-inner">
+<!-- MainContentStart -->
+<h1 id="cn-cont">Working examples - Web Experience Toolkit (WET)</h1>
+
+<div class="span-4">
+<section><h2 id="arch">Archived Web page template</h2>
+<ul>
+<li><a href="archived/archived-eng.html">English example<span class="cn-invisible"> - Archived Web page template</span></a></li>
+<li><a href="archived/archived-fra.html">French example<span class="cn-invisible"> - Archived Web page template</span></a></li>
+</ul>
+</section>
+
+<section><h2 id="grids">CSS Grid System</h2>
+<ul>
+<li><a href="grids/1col-grid-utilities-eng.html">1-column layout example - English<span class="cn-invisible"> - CSS Grid System</span></a></li>
+<li><a href="grids/2col-grid-utilities-eng.html">2-column layout example - English<span class="cn-invisible"> - CSS Grid System</span></a></li>
+</ul>
+</section>
+
+<section><h2 id="menubar">Menu bar</h2>
+<ul>
+<li><a href="theme-gcwu-fegc/1col-megamenu-theme-gcwu-fegc-eng.html">English mega menu example<span class="cn-invisible"> - Menu bar - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+<li><a href="theme-gcwu-fegc/1col-megamenu-theme-gcwu-fegc-fra.html">French mega menu example<span class="cn-invisible"> - Menu bar - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+<li><a href="theme-gcwu-fegc/1col-hsitenavbar-theme-gcwu-fegc-eng.html">English horizontal site menu example<span class="cn-invisible"> - Menu bar - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+<li><a href="theme-gcwu-fegc/1col-hsitenavbar-theme-gcwu-fegc-fra.html">French horizontal site menu example<span class="cn-invisible"> - Menu bar - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+</ul>
+</section>
+
+<section><h2 id="tabs">Tabbed interface</h2>
+<ul>
+<li><a href="tabs/tabs-eng.html">English examples<span class="cn-invisible"> - Tabbed interface</span></a></li>
+</ul>
+</section>
+
+<section><h2 id="feeds">Web feeds widget</h2>
+<ul>
+<li><a href="webfeeds/webfeeds-eng.html">English examples<span class="cn-invisible"> - Web feeds widget</span></a></li>
+<li><a href="webfeeds/webfeeds-fra.html">French examples<span class="cn-invisible"> - Web feeds widget</span></a></li>
+</ul>
+</section>
+
+<section><h2 id="zebra">Zebra striping</h2>
+<ul>
+<li><a href="zebra/zebra-eng.html">English examples<span class="cn-invisible"> - Zebra striping</span></a></li>
+<li><a href="zebra/zebra-fra.html">French examples<span class="cn-invisible"> - Zebra striping</span></a></li>
+</ul>
+</section>
+</div>
+
+<div class="span-4">
+<section><h2 id="gcwu"><abbr title="Government of Canada">GC</abbr> Web Usability theme</h2>
+	<section><h3>Home pages</h3>
+	<ul>
+	<li><a href="theme-gcwu-fegc/home-accueil-megamenu-theme-gcwu-fegc-eng.html">English mega menu example<span class="cn-invisible"> - Home pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/home-accueil-megamenu-theme-gcwu-fegc-fra.html">French mega menu example<span class="cn-invisible"> - Home pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/home-accueil-hsitenavbar-theme-gcwu-fegc-eng.html">English horizontal site menu example<span class="cn-invisible"> - Home pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/home-accueil-hsitenavbar-theme-gcwu-fegc-fra.html">French horizontal site menu example<span class="cn-invisible"> - Home pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	</ul>
+	</section>
+
+	<section><h3>Content pages - 1 column layout</h3>
+	<ul>
+	<li><a href="theme-gcwu-fegc/1col-megamenu-theme-gcwu-fegc-eng.html">English mega menu example<span class="cn-invisible"> - 1 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/1col-megamenu-theme-gcwu-fegc-fra.html">French mega menu example<span class="cn-invisible"> - 1 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/1col-hsitenavbar-theme-gcwu-fegc-eng.html">English horizontal site menu example<span class="cn-invisible"> - 1 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/1col-hsitenavbar-theme-gcwu-fegc-fra.html">French horizontal site menu example<span class="cn-invisible"> - 1 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	</ul>
+	</section>
+
+	<section><h3>Content pages - 2 column layout</h3>
+	<ul>
+	<li><a href="theme-gcwu-fegc/2col-megamenu-theme-gcwu-fegc-eng.html">English mega menu example<span class="cn-invisible"> - Content pages - 2 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/2col-megamenu-theme-gcwu-fegc-fra.html">French mega menu example<span class="cn-invisible"> - Content pages - 2 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/2col-hsitenavbar-theme-gcwu-fegc-eng.html">English horizontal site menu example<span class="cn-invisible"> - Content pages - 2 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/2col-hsitenavbar-theme-gcwu-fegc-fra.html">French horizontal site menu example<span class="cn-invisible"> - Content pages - 2 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/2col-altnav-megamenu-theme-gcwu-fegc-eng.html">English mega menu example - Alternate side navigation<span class="cn-invisible"> - Content pages - 2 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/2col-altnav-megamenu-theme-gcwu-fegc-fra.html">French mega menu example - Alternate side navigation<span class="cn-invisible"> - Content pages - 2 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/2col-altnav-hsitenavbar-theme-gcwu-fegc-eng.html">English horizontal site menu example - Alternate side navigation<span class="cn-invisible"> - Content pages - 2 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/2col-altnav-hsitenavbar-theme-gcwu-fegc-fra.html">French horizontal site menu example - Alternate side navigation<span class="cn-invisible"> - Content pages - 2 column layout - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	</ul>
+	</section>
+
+	<section><h3>Splash pages</h3>
+	<ul>
+	<li><a href="theme-gcwu-fegc/sp-pe-theme-gcwu-fegc-eng-fra.html">English/French example<span class="cn-invisible"> - Splash pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/sp-pe-theme-gcwu-fegc-fra-eng.html">French/English example<span class="cn-invisible"> - Splash pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/sp-pe-mult-theme-gcwu-fegc-eng-fra.html">English/French multilingual example<span class="cn-invisible"> - Splash pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/sp-pe-mult-theme-gcwu-fegc-fra-eng.html">French/English multilingual example<span class="cn-invisible"> - Splash pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	</ul>
+	</section>
+
+	<section><h3>Server message pages</h3>
+	<ul>
+	<li><a href="theme-gcwu-fegc/serv-theme-gcwu-fegc-eng.html">English example<span class="cn-invisible"> - Server message pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/serv-theme-gcwu-fegc-fra.html">French example<span class="cn-invisible"> - Server message pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/serv-theme-gcwu-fegc-eng-fra.html">English/French example<span class="cn-invisible"> - Server message pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/serv-theme-gcwu-fegc-fra-eng.html">French/English example<span class="cn-invisible"> - Server message pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/serv-mult-theme-gcwu-fegc-eng-fra.html">English/French multilingual example<span class="cn-invisible"> - Server message pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	<li><a href="theme-gcwu-fegc/serv-mult-theme-gcwu-fegc-fra-eng.html">French/English multilingual example<span class="cn-invisible"> - Server message pages - <abbr title="Government of Canada">GC</abbr> Web Usability theme</span></a></li>
+	</ul>
+	</section>
+</section>
+</div>
+
+<dl id="cn-doc-dates" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2012-05-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="cn-foot"><div id="cn-foot-inner"><footer><h2 id="cn-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="cn-sft"><h3>Site footer</h3><div id="cn-sft-inner">
+<div id="cn-ft-tctr">
+<ul>
+<li class="terms"><a href="http://www.tbs.gc.ca/ws-nw/wet-boew/terms" rel="license">Terms and conditions</a></li>
+<li class="trans"><a href="http://www.tbs-sct.gc.ca/pd-dp/gr-rg/index-eng.asp">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">The Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="cn-gcft"><h3>Government of Canada footer</h3><div id="cn-gcft-inner"><div id="fip-pcim-gcft">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="cn-ft-ca"><div><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../build/js/settings.js"></script>
+<script src="../build/js/pe-ap-min.js" id="progressive"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>
