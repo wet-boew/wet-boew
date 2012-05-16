@@ -692,15 +692,15 @@
 				(document));
 			// localstorage
 			if (!window.localStorage) {
-				pe.add._load(lib + 'polyfills/localstorage.js');
+				pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js');
 			}
 			// process
 			if (typeof document.createElement('progress').position === "undefined") {
-				pe.add._load(lib + 'polyfills/progress.js');
+				pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
 			}
 			// detail + summary
 			if (!detail) {
-				pe.add._load(lib + 'polyfills/detailsummary.js');
+				pe.add._load(lib + 'polyfills/detailsummary' + pe.suffix + '.js');
 			}
 		},
 		/**
@@ -812,7 +812,7 @@
 				depends: function (d) {
 					var lib = pe.add.liblocation,
 						c_d = $.map(d, function (a) {
-							return (/^http(s)?/i.test(a)) ? a : lib + 'dependencies/' + a + '.js';
+							return (/^http(s)?/i.test(a)) ? a : lib + 'dependencies/' + a + pe.suffix + '.js';
 						});
 					return c_d;
 				},

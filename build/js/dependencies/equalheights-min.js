@@ -1,4 +1,4 @@
-/*-------------------------------------------------------------------- 
+/*!-------------------------------------------------------------------- 
  * JQuery Plugin: "EqualHeights"
  * by:    Scott Jehl, Todd Parker, Maggie Costello Wachs (http://www.filamentgroup.com)
  *
@@ -14,19 +14,4 @@
 		Optional: to set min-height in px, pass a true argument: $(element).equalHeights(true);
  * Version: 2.0, 08.01.2008
 --------------------------------------------------------------------*/
-
-(function ($) {
-	$.fn.equalHeights = function (px) {
-		$(this).each(function () {
-			var currentTallest = 0;
-			$(this).children().each(function () {
-				if ($(this).height() > currentTallest) { currentTallest = $(this).height(); }
-			});
-			if (!px && typeof Number.prototype.pxToEm !== 'undefined') { currentTallest = currentTallest.pxToEm(); } //use ems unless px is specified
-			// for ie6, set height since min-height isn't supported
-			if ($.browser.msie && $.browser.version === '6.0') { $(this).children().css({'height': currentTallest}); }
-			$(this).children().css({'min-height': currentTallest});
-		});
-		return this;
-	};
-}(jQuery));
+(function(a){a.fn.equalHeights=function(b){a(this).each(function(){var c=0;a(this).children().each(function(){if(a(this).height()>c){c=a(this).height()}});if(!b&&typeof Number.prototype.pxToEm!=="undefined"){c=c.pxToEm()}if(a.browser.msie&&a.browser.version==="6.0"){a(this).children().css({height:c})}a(this).children().css({"min-height":c})});return this}}(jQuery));

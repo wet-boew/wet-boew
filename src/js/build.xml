@@ -15,6 +15,8 @@
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/premin" toDir="${build.dir}">
 			<include name="*.*" />
 			<include name="i18n/*.*" />
+			<include name="dependencies/*.*"/>
+			<include name="polyfills/*.*"/>
 			<include name="css/*.*" />
 		</yui-compressor>
 		<delete dir="${build.dir}/premin"/>
@@ -25,9 +27,8 @@
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="images/**"/>
-					<include name="dependencies/**"/> 
-					<include name="polyfills/**"/>
-					<include name="jquery.mobile/**"/>
+					<include name="jquery.mobile/*.min.*"/>
+					<include name="jquery.mobile/images/**"/>
 					<include name="*.js"/>
 					<exclude name="pe-ap.js"/> 
 				</fileset>
@@ -40,6 +41,29 @@
 				</fileset>
 			</resources>  
 		</copy>
+		<copy todir="${build.dir}/premin">
+			<resources>
+				<fileset dir="${src.dir}">
+					<include name="dependencies/**"/>
+					<include name="polyfills/**"/>
+					<contains text="/*!" casesensitive="no"/>
+				</fileset>
+			</resources> 
+		</copy> 
+		<copy todir="${build.dir}/premin">
+			<filterchain>
+				<replaceregex byline="false" pattern="\/\*" replace="\/\*!"/>
+			</filterchain>
+			<resources>
+				<fileset dir="${src.dir}">
+					<include name="dependencies/**"/>
+					<include name="polyfills/**"/>
+					<not>
+						<contains text="/*!" casesensitive="no"/>
+					</not>
+				</fileset>
+			</resources> 
+		</copy> 
 	</target>
 
 	<target name="build-css" depends="-base64-encode" />
