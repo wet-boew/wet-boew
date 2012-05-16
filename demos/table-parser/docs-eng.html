@@ -1,0 +1,3171 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+<title>Usable Table (Table Parser) - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="dcterms.description" content="English description/Description en anglais" />
+<meta name="description" content="English description/Description en anglais" />
+<meta name="keywords" content="English keywords/Mots-clés en anglais" />
+<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title/Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../build/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/core-ie-min.css" /><![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/core-min.css" media="print and (min-width:768px), screen and (min-width:768px)" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/mobile-min.css" media="screen and (max-width:767px)" />
+<link rel="stylesheet" href="../../build/js/jquery.mobile/jquery.mobile.min.css" media="screen and (max-width:767px)" />
+<!--<![endif]-->
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="cn-body-inner-1col" data-role="page">
+<div id="cn-skip-head">
+<ul id="cn-tphp">
+<li id="cn-sh-link-1"><a href="#cn-cont">Skip to main content</a></li>
+<li id="cn-sh-link-2"><a href="#cn-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="cn-head"><div id="cn-head-inner"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="cn-gcnb"><h2>Government of Canada navigation bar</h2><div id="cn-gcnb-inner"><div id="fip-pcim-gcnb">
+<div id="cn-sig"><div id="cn-sig-inner"><div id="fip-pcim-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<ul>
+<li id="cn-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
+<li id="cn-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="cn-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
+<li id="cn-gcnb-lang"><a href="zebra-fra.html" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="cn-banner" role="banner"><div id="cn-banner-inner">
+<div id="cn-wmms"><div id="cn-wmms-inner"><div id="fip-pcim-wmms" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="cn-site-title"><p id="cn-site-title-inner"><a href="../theme-gcwy-fegc/home-accueil-megamenu-theme-gcwu-fegc-eng.html">Site title</a></p></div>
+
+<section role="search"><div id="cn-search-box"><h2>Search</h2>
+<form action="#" method="post"><div id="cn-search-box-inner">
+<label for="cn-search">Search website</label><input id="cn-search" name="cn-search" type="search" value="" size="27" maxlength="150" />
+<input id="cn-search-submit" name="cn-search-submit" type="submit" value="Search" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="cn-psnb"><h2><span>Site</span> menu</h2><div id="cn-psnb-inner"><div class="wet-boew-menubar mb-megamenu"><div>
+<ul class="mb-menu" data-role="navbar">
+<li><section><h3><a href="#">Section 1</a></h3><div class="mb-sm"><div class="span-2">
+<ul>
+<li><a href="#">Item 1.1</a></li>
+<li><a href="#">Item 1.2</a></li>
+<li><a href="#">Item 1.3</a></li>
+<li><a href="#">Item 1.4</a></li>
+<li><a href="#">Item 1.5</a></li>
+<li><a href="#">Item 1.6</a></li>
+<li><a href="#">Item 1.7</a></li>
+<li><a href="#">Item 1.8</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><section><h3><a href="section2-eng.html">Section 2</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Section 2.1</a></h4>
+<ul>
+<li><a href="#">Item 2.1.1</a></li>
+<li><a href="#">Item 2.1.2</a></li>
+<li><a href="#">Item 2.1.3</a></li>
+<li><a href="#">Item 2.1.4</a></li>
+<li><a href="#">Item 2.1.5</a></li>
+<li><a href="#">Item 2.1.6</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 2.2</a></h4>
+<ul>
+<li><a href="#">Item 2.2.1</a></li>
+<li><a href="#">Item 2.2.2</a></li>
+<li><a href="#">Item 2.2.3</a></li>
+<li><a href="#">Item 2.2.4</a></li>
+<li><a href="#">Item 2.2.5</a></li>
+<li><a href="#">Item 2.2.6</a></li>
+<li><a href="#">Item 2.2.7</a></li>
+<li><a href="#">Item 2.2.8</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><section><h3><a href="#">Section 3</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Section 3.1</a></h4>
+<ul>
+<li><a href="#">Item 3.1.1</a></li>
+<li><a href="#">Item 3.1.2</a></li>
+<li><a href="#">Item 3.1.3</a></li>
+<li><a href="#">Item 3.1.4</a></li>
+<li><a href="#">Item 3.1.5</a></li>
+<li><a href="#">Item 3.1.6</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 3.2</a></h4>
+<ul>
+<li><a href="#">Item 3.2.1</a></li>
+<li><a href="#">Item 3.2.2</a></li>
+<li><a href="#">Item 3.2.3</a></li>
+<li><a href="#">Item 3.2.4</a></li>
+<li><a href="#">Item 3.2.5</a></li>
+<li><a href="#">Item 3.2.6</a></li>
+<li><a href="#">Item 3.2.7</a></li>
+<li><a href="#">Item 3.2.8</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 3.3</a></h4>
+<ul>
+<li><a href="#">Item 3.3.1</a></li>
+<li><a href="#">Item 3.3.2</a></li>
+<li><a href="#">Item 3.3.3</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><section><h3><a href="#">Section 4</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Section 4.1</a></h4>
+<ul>
+<li><a href="#">Item 4.1.1</a></li>
+<li><a href="#">Item 4.1.2</a></li>
+<li><a href="#">Item 4.1.3</a></li>
+</ul>
+</section>
+<section><h4><a href="#">Section 4.2</a></h4>
+<ul>
+<li><a href="#">Item 4.2.1</a></li>
+<li><a href="#">Item 4.2.2</a></li>
+<li><a href="#">Item 4.2.3</a></li>
+<li><a href="#">Item 4.2.4</a></li>
+</ul>
+</section>
+<section><h4><a href="#">Section 4.3</a></h4>
+<ul>
+<li><a href="#">Item 4.3.1</a></li>
+<li><a href="#">Item 4.3.2</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 4.4</a></h4>
+<ul>
+<li><a href="#">Item 4.4.1</a></li>
+<li><a href="#">Item 4.4.2</a></li>
+<li><a href="#">Item 4.4.3</a></li>
+<li><a href="#">Item 4.4.4</a></li>
+</ul>
+</section>
+<section><h4><a href="#">Section 4.5</a></h4>
+<ul>
+<li><a href="#">Item 4.5.1</a></li>
+<li><a href="#">Item 4.5.2</a></li>
+<li><a href="#">Item 4.5.3</a></li>
+<li><a href="#">Item 4.5.4</a></li>
+<li><a href="#">Item 4.5.5</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><section><h3><a href="#">Section 6</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Section 6.1</a></h4>
+<ul>
+<li><a href="#">Item 6.1.1</a></li>
+<li><a href="#">Item 6.1.2</a></li>
+<li><a href="#">Item 6.1.3</a></li>
+<li><a href="#">Item 6.1.4</a></li>
+<li><a href="#">Item 6.1.5</a></li>
+<li><a href="#">Item 6.1.6</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 6.2</a></h4>
+<ul>
+<li><a href="#">Item 6.2.1</a></li>
+<li><a href="#">Item 6.2.2</a></li>
+<li><a href="#">Item 6.2.3</a></li>
+<li><a href="#">Item 6.2.4</a></li>
+<li><a href="#">Item 6.2.5</a></li>
+<li><a href="#">Item 6.2.6</a></li>
+<li><a href="#">Item 6.2.7</a></li>
+<li><a href="#">Item 6.2.8</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 6.3</a></h4>
+<ul>
+<li><a href="#">Item 6.3.1</a></li>
+<li><a href="#">Item 6.3.2</a></li>
+<li><a href="#">Item 6.3.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 6.4</a></h4>
+<ul>
+<li><a href="#">Item 6.4.1</a></li>
+<li><a href="#">Item 6.4.2</a></li>
+<li><a href="#">Item 6.4.3</a></li>
+<li><a href="#">Item 6.4.4</a></li>
+<li><a href="#">Item 6.4.5</a></li>
+<li><a href="#">Item 6.4.6</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><section><h3><a href="#">Section 7</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Section 7.1</a></h4>
+<ul>
+<li><a href="#">Item 7.1.1</a></li>
+<li><a href="#">Item 7.1.2</a></li>
+<li><a href="#">Item 7.1.3</a></li>
+<li><a href="#">Item 7.1.4</a></li>
+<li><a href="#">Item 7.1.5</a></li>
+<li><a href="#">Item 7.1.6</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 7.2</a></h4>
+<ul>
+<li><a href="#">Item 7.2.1</a></li>
+<li><a href="#">Item 7.2.2</a></li>
+<li><a href="#">Item 7.2.3</a></li>
+<li><a href="#">Item 7.2.4</a></li>
+<li><a href="#">Item 7.2.5</a></li>
+<li><a href="#">Item 7.2.6</a></li>
+<li><a href="#">Item 7.2.7</a></li>
+<li><a href="#">Item 7.2.8</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Section 7.3</a></h4>
+<ul>
+<li><a href="#">Item 7.3.1</a></li>
+<li><a href="#">Item 7.3.2</a></li>
+<li><a href="#">Item 7.3.3</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+</ul>
+</div></div></div></div>
+
+<div id="cn-bc"><h2>Breadcrumb trail</h2><div id="cn-bc-inner">
+<ol>
+<li><a href="../theme-gcwu-fegc/home-accueil-megamenu-theme-gcwu-fegc-eng.html">Home</a></li>
+<li><a href="section2-eng.html">Section 2</a></li>
+<li>Usable Table - Web Experience Toolkit (WET)</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="cn-cols"><div id="cn-cols-inner" class="equalize">
+<div id="cn-centre-col" role="main"><div id="cn-centre-col-inner">
+<!-- MainContentStart -->
+<h1 id="cn-cont">Usable Table (Table Parser) - Web Experience Toolkit (WET)</h1>
+
+
+
+<h2>General Table Layout</h2>
+
+<h3>This is a correct layout</h3>
+
+
+
+<table>
+	<caption>Row group header (Level 0)</caption>
+  
+	<tr>
+		<td>Colgroup</td>
+		<td colspan="5">Colgroup</td>
+	</tr>
+  
+	<tr>
+		<th>Layout Cell</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+	</tr>
+	
+	<tr>
+		<th colspan="6">Row group header (Level 1)</th>
+    </tr>
+    
+    <tr>
+		<th colspan="6">Row group header (Level 2)</th>
+    </tr>
+    
+    <tr>
+		<th>Row header (Level 3)</th>
+		<td>66</td>
+		<td>64</td>
+		<td>20</td>
+		<td>87%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>34</td>
+		<td>31</td>
+		<td>20</td>
+		<td>84%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>36</td>
+		<td>36</td>
+		<td>42</td>
+		<td>92%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>19</td>
+		<td>23</td>
+		<td>66</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+	
+	
+	<tr>
+		<th colspan="6">Row Group header (Level 2)</th>
+    </tr>
+    
+    
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>297</td>
+		<td>297</td>
+		<td>66</td>
+		<td>84%</td>
+		<td>1</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>396</td>
+		<td>381</td>
+		<td>67</td>
+		<td>88%</td>
+		<td>3</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>422</td>
+		<td>437</td>
+		<td>111</td>
+		<td>93%</td>
+		<td>1</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>626</td>
+		<td>654</td>
+		<td>99</td>
+		<td>99%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th colspan="6">Row Group header (Level 1)</th>
+    </tr>
+    
+    
+	<tr>
+		<th colspan="6">Row Group header (Level 2)</th>
+    </tr>
+    
+    <tr>
+		<th>Row header (Level 3)</th>
+		<td>12</td>
+		<td>11</td>
+		<td>11</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>0</td>
+		<td>0</td>
+		<td>n/a</td>
+		<td>n/a</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>3</td>
+		<td>4</td>
+		<td>17</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>8</td>
+		<td>8</td>
+		<td>33</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th colspan="6">Row Group header (Level 2)</th>
+    </tr>
+    
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>89</td>
+		<td>99</td>
+		<td>50</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>1</td>
+		<td>2</td>
+		<td>46</td>
+		<td>50%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>107</td>
+		<td>104</td>
+		<td>64</td>
+		<td>97%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>527</td>
+		<td>599</td>
+		<td>66</td>
+		<td>98%</td>
+		<td>0</td>
+	</tr>
+	
+</table>
+
+<h3>But this one not</h3>
+<p>The recommandation would be at the second section to move it to a new table or swap the first row group with the second row group at level 1. (See the row group level identifier) </p>
+
+<p>A Data table need to be consistant, Also the first row group header set would establish the subsequent structure. Alway have the most general information at the top of the table and go to more specific when you go down in the table.</p>
+
+
+<table>
+	<caption>Row group header (Level 0)</caption>
+  
+	<tr>
+		<td>Colgroup</td>
+		<td colspan="5">Colgroup</td>
+	</tr>
+  
+	<tr>
+		<th>Layout Cell</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+	</tr>
+	
+	<tr>
+		<th colspan="6">Row group header (Level 1)</th>
+    </tr>
+    
+    <tr>
+		<th colspan="6">Row group header (Level 2)</th>
+    </tr>
+    
+    <tr>
+		<th>Row header (Level 3)</th>
+		<td>66</td>
+		<td>64</td>
+		<td>20</td>
+		<td>87%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>34</td>
+		<td>31</td>
+		<td>20</td>
+		<td>84%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>36</td>
+		<td>36</td>
+		<td>42</td>
+		<td>92%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>19</td>
+		<td>23</td>
+		<td>66</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+	
+	
+	<tr>
+		<th colspan="6">Row Group header (Level 2)</th>
+    </tr>
+    
+    
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>297</td>
+		<td>297</td>
+		<td>66</td>
+		<td>84%</td>
+		<td>1</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>396</td>
+		<td>381</td>
+		<td>67</td>
+		<td>88%</td>
+		<td>3</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>422</td>
+		<td>437</td>
+		<td>111</td>
+		<td>93%</td>
+		<td>1</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>626</td>
+		<td>654</td>
+		<td>99</td>
+		<td>99%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th colspan="6">Row Group header (Level 1)</th>
+    </tr>
+    
+   
+    <tr>
+		<th>Row header (Level 2)</th>
+		<td>12</td>
+		<td>11</td>
+		<td>11</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>0</td>
+		<td>0</td>
+		<td>n/a</td>
+		<td>n/a</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>3</td>
+		<td>4</td>
+		<td>17</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>8</td>
+		<td>8</td>
+		<td>33</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>89</td>
+		<td>99</td>
+		<td>50</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>1</td>
+		<td>2</td>
+		<td>46</td>
+		<td>50%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>107</td>
+		<td>104</td>
+		<td>64</td>
+		<td>97%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>527</td>
+		<td>599</td>
+		<td>66</td>
+		<td>98%</td>
+		<td>0</td>
+	</tr>
+	
+</table>
+
+
+<h4>Recommanded</h4>
+
+
+
+
+<table>
+	<caption>Row group header (Level 0)</caption>
+  
+	<tr>
+		<td>Colgroup</td>
+		<td colspan="5">Colgroup</td>
+	</tr>
+  
+	<tr>
+		<th>Layout Cell</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+	</tr>
+	
+
+	<tr>
+		<th colspan="6">Row Group header (Level 1)</th>
+    </tr>
+    
+   
+    <tr>
+		<th>Row header (Level 2)</th>
+		<td>12</td>
+		<td>11</td>
+		<td>11</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>0</td>
+		<td>0</td>
+		<td>n/a</td>
+		<td>n/a</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>3</td>
+		<td>4</td>
+		<td>17</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>8</td>
+		<td>8</td>
+		<td>33</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>89</td>
+		<td>99</td>
+		<td>50</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>1</td>
+		<td>2</td>
+		<td>46</td>
+		<td>50%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>107</td>
+		<td>104</td>
+		<td>64</td>
+		<td>97%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>527</td>
+		<td>599</td>
+		<td>66</td>
+		<td>98%</td>
+		<td>0</td>
+	</tr>	
+	
+	<tr>
+		<th colspan="6">Row group header (Level 1)</th>
+    </tr>
+    
+    <tr>
+		<th colspan="6">Row group header (Level 2)</th>
+    </tr>
+    
+    <tr>
+		<th>Row header (Level 3)</th>
+		<td>66</td>
+		<td>64</td>
+		<td>20</td>
+		<td>87%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>34</td>
+		<td>31</td>
+		<td>20</td>
+		<td>84%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>36</td>
+		<td>36</td>
+		<td>42</td>
+		<td>92%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>19</td>
+		<td>23</td>
+		<td>66</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+	
+	
+	<tr>
+		<th colspan="6">Row Group header (Level 2)</th>
+    </tr>
+    
+    
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>297</td>
+		<td>297</td>
+		<td>66</td>
+		<td>84%</td>
+		<td>1</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>396</td>
+		<td>381</td>
+		<td>67</td>
+		<td>88%</td>
+		<td>3</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>422</td>
+		<td>437</td>
+		<td>111</td>
+		<td>93%</td>
+		<td>1</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>626</td>
+		<td>654</td>
+		<td>99</td>
+		<td>99%</td>
+		<td>0</td>
+	</tr>
+	
+	
+</table>
+
+<p>OR</p>
+
+
+
+
+<table>
+	<caption>Row group header (Level 0)</caption>
+  
+	<tr>
+		<td>Colgroup</td>
+		<td colspan="5">Colgroup</td>
+	</tr>
+  
+	<tr>
+		<th>Layout Cell</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+	</tr>
+	
+	<tr>
+		<th colspan="6">Row group header (Level 1)</th>
+    </tr>
+    
+    <tr>
+		<th colspan="6">Row group header (Level 2)</th>
+    </tr>
+    
+    <tr>
+		<th>Row header (Level 3)</th>
+		<td>66</td>
+		<td>64</td>
+		<td>20</td>
+		<td>87%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>34</td>
+		<td>31</td>
+		<td>20</td>
+		<td>84%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>36</td>
+		<td>36</td>
+		<td>42</td>
+		<td>92%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>19</td>
+		<td>23</td>
+		<td>66</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+	
+	
+	<tr>
+		<th colspan="6">Row Group header (Level 2)</th>
+    </tr>
+    
+    
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>297</td>
+		<td>297</td>
+		<td>66</td>
+		<td>84%</td>
+		<td>1</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>396</td>
+		<td>381</td>
+		<td>67</td>
+		<td>88%</td>
+		<td>3</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>422</td>
+		<td>437</td>
+		<td>111</td>
+		<td>93%</td>
+		<td>1</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 3)</th>
+		<td>626</td>
+		<td>654</td>
+		<td>99</td>
+		<td>99%</td>
+		<td>0</td>
+	</tr>
+</table>
+
+
+<table>
+	<caption>Row group header (Level 0)</caption>
+  
+	<tr>
+		<td>Colgroup</td>
+		<td colspan="5">Colgroup</td>
+	</tr>
+  
+	<tr>
+		<th>Layout Cell</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+	</tr>
+
+	<tr>
+		<th colspan="6">Row Group header (Level 1)</th>
+    </tr>
+    
+   
+    <tr>
+		<th>Row header (Level 2)</th>
+		<td>12</td>
+		<td>11</td>
+		<td>11</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>0</td>
+		<td>0</td>
+		<td>n/a</td>
+		<td>n/a</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>3</td>
+		<td>4</td>
+		<td>17</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>8</td>
+		<td>8</td>
+		<td>33</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>89</td>
+		<td>99</td>
+		<td>50</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>1</td>
+		<td>2</td>
+		<td>46</td>
+		<td>50%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>107</td>
+		<td>104</td>
+		<td>64</td>
+		<td>97%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level 2)</th>
+		<td>527</td>
+		<td>599</td>
+		<td>66</td>
+		<td>98%</td>
+		<td>0</td>
+	</tr>
+	
+</table>
+
+<p>OR</p>
+
+
+<table>
+	<caption>Row group header (Level 0)</caption>
+  
+	<tr>
+		<td colspan="2">Colgroup</td>
+		<td colspan="5">Colgroup</td>
+	</tr>
+  
+	<tr>
+		<th colspan="2">Layout Cell</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+		<th>Column header</th>
+	</tr>
+	
+	<tr>
+		<th colspan="7">Row group header (Level 1)</th>
+    </tr>
+    
+    
+    <tr>
+		<th rowspan="4">Row group header (Level&nbsp;2)</th>
+		<th>Row header (Level&nbsp;3)</th>
+		<td>66</td>
+		<td>64</td>
+		<td>20</td>
+		<td>87%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level&nbsp;3)</th>
+		<td>34</td>
+		<td>31</td>
+		<td>20</td>
+		<td>84%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level&nbsp;3)</th>
+		<td>36</td>
+		<td>36</td>
+		<td>42</td>
+		<td>92%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level&nbsp;3)</th>
+		<td>19</td>
+		<td>23</td>
+		<td>66</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+	
+	
+   
+	<tr>
+		<th rowspan="4">Row Group header (Level&nbsp;2)</th>
+		<th>Row header (Level&nbsp;3)</th>
+		<td>297</td>
+		<td>297</td>
+		<td>66</td>
+		<td>84%</td>
+		<td>1</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level&nbsp;3)</th>
+		<td>396</td>
+		<td>381</td>
+		<td>67</td>
+		<td>88%</td>
+		<td>3</td>
+	</tr>
+	
+	<tr>
+		<th>Row header (Level&nbsp;3)</th>
+		<td>422</td>
+		<td>437</td>
+		<td>111</td>
+		<td>93%</td>
+		<td>1</td>
+	</tr>
+  
+	<tr>
+		<th>Row header (Level&nbsp;3)</th>
+		<td>626</td>
+		<td>654</td>
+		<td>99</td>
+		<td>99%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th colspan="7">Row Group header (Level 1)</th>
+    </tr>
+    
+   
+    <tr>
+		<th colspan="2">Row header (Level 2)</th>
+		<td>12</td>
+		<td>11</td>
+		<td>11</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th colspan="2">Row header (Level 2)</th>
+		<td>0</td>
+		<td>0</td>
+		<td>n/a</td>
+		<td>n/a</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th colspan="2">Row header (Level 2)</th>
+		<td>3</td>
+		<td>4</td>
+		<td>17</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th colspan="2">Row header (Level 2)</th>
+		<td>8</td>
+		<td>8</td>
+		<td>33</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th colspan="2">Row header (Level 2)</th>
+		<td>89</td>
+		<td>99</td>
+		<td>50</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th colspan="2">Row header (Level 2)</th>
+		<td>1</td>
+		<td>2</td>
+		<td>46</td>
+		<td>50%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th colspan="2">Row header (Level 2)</th>
+		<td>107</td>
+		<td>104</td>
+		<td>64</td>
+		<td>97%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th colspan="2">Row header (Level 2)</th>
+		<td>527</td>
+		<td>599</td>
+		<td>66</td>
+		<td>98%</td>
+		<td>0</td>
+	</tr>
+	
+</table>
+
+
+
+<h2>Use data cell for layout</h2>
+
+<p>Inside a data table, a cell can not be used for layout purpose. The only exception are the <strong>Top Left cell</strong> that is set in the table.</h2>
+
+<p><em>The following data table example was token from the HTML 5 draft (<a href="http://dev.w3.org/html5/spec/the-th-element.html">4.9.10 The th element</a>)</em></p>
+
+
+<h3>Bad example (with layout data cell)</h3>
+
+	<p>There is an HTML comment after each layout data cell.</p>
+
+	<table>
+		<thead>	
+			<tr>
+				<th>ID</th>
+				<th>Measurement</th>
+				<th>Average</th>
+				<th>Maximum</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+				<td></td> <!-- Layout data cell -->
+				<th scope="rowgroup">Cats</th>
+				<td></td> <!-- Layout data cell -->
+				<td></td> <!-- Layout data cell -->
+			</tr>
+			
+			<tr>
+				<td>93</td>
+				<th>Legs</th>
+				<td>3.5</td>
+				<td>4</td>
+			</tr>
+			
+			<tr>
+				<td>10</td>
+				<th>Tails</th>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			
+			<tr>
+				<td></td> <!-- Layout data cell -->
+				<th scope="rowgroup">English speakers</th>
+				<td></td> <!-- Layout data cell -->
+				<td></td> <!-- Layout data cell -->
+			</tr>
+			
+			<tr>
+				<td>32</td>
+				<th>Legs</th>
+				<td>2.67</td>
+				<td>4</td>
+			</tr>
+			
+			<tr>
+				<td>35</td>
+				<th>Tails</th>
+				<td>0.33</td>
+				<td>1</td>
+			</tr>
+		</tbody>
+	</table>  
+
+
+<details>
+
+<summary>Source Code</summary>
+
+<pre>
+<code>
+	
+&lt;table&gt;
+	&lt;thead&gt;	
+		&lt;tr&gt;
+			&lt;th&gt;ID&lt;/th&gt;
+			&lt;th&gt;Measurement&lt;/th&gt;
+			&lt;th&gt;Average&lt;/th&gt;
+			&lt;th&gt;Maximum&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;/td&gt; &lt;!-- Layout data cell --&gt;
+			&lt;th scope=&quot;rowgroup&quot;&gt;Cats&lt;/th&gt;
+			&lt;td&gt;&lt;/td&gt; &lt;!-- Layout data cell --&gt;
+			&lt;td&gt;&lt;/td&gt; &lt;!-- Layout data cell --&gt;
+		&lt;/tr&gt;
+		
+		&lt;tr&gt;
+			&lt;td&gt;93&lt;/td&gt;
+			&lt;th&gt;Legs&lt;/th&gt;
+			&lt;td&gt;3.5&lt;/td&gt;
+			&lt;td&gt;4&lt;/td&gt;
+		&lt;/tr&gt;
+		
+		&lt;tr&gt;
+			&lt;td&gt;10&lt;/td&gt;
+			&lt;th&gt;Tails&lt;/th&gt;
+			&lt;td&gt;1&lt;/td&gt;
+			&lt;td&gt;1&lt;/td&gt;
+		&lt;/tr&gt;
+		
+		&lt;tr&gt;
+			&lt;td&gt;&lt;/td&gt; &lt;!-- Layout data cell --&gt;
+			&lt;th scope=&quot;rowgroup&quot;&gt;English speakers&lt;/th&gt;
+			&lt;td&gt;&lt;/td&gt; &lt;!-- Layout data cell --&gt;
+			&lt;td&gt;&lt;/td&gt; &lt;!-- Layout data cell --&gt;
+		&lt;/tr&gt;
+		
+		&lt;tr&gt;
+			&lt;td&gt;32&lt;/td&gt;
+			&lt;th&gt;Legs&lt;/th&gt;
+			&lt;td&gt;2.67&lt;/td&gt;
+			&lt;td&gt;4&lt;/td&gt;
+		&lt;/tr&gt;
+		
+		&lt;tr&gt;
+			&lt;td&gt;35&lt;/td&gt;
+			&lt;th&gt;Tails&lt;/th&gt;
+			&lt;td&gt;0.33&lt;/td&gt;
+			&lt;td&gt;1&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;  	
+	
+</code>
+</pre>
+	</details>
+	
+	<h3>Good design (without a layout data cell)</h3>
+
+
+	<table class="lined">
+		<thead>	
+			<tr>
+				<th>ID</th>
+				<th>Measurement</th>
+				<th>Average</th>
+				<th>Maximum</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+				<th colspan="4">Cats</th>
+			</tr>
+			
+			<tr>
+				<td>93</td>
+				<th>Legs</th>
+				<td>3.5</td>
+				<td>4</td>
+			</tr>
+			
+			<tr>
+				<td>10</td>
+				<th>Tails</th>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			
+			<tr>
+				<th colspan="4">English speakers</th>
+			</tr>
+			
+			<tr>
+				<td>32</td>
+				<th>Legs</th>
+				<td>2.67</td>
+				<td>4</td>
+			</tr>
+			
+			<tr>
+				<td>35</td>
+				<th>Tails</th>
+				<td>0.33</td>
+				<td>1</td>
+			</tr>
+		</tbody>
+	</table>  
+
+
+<details>
+
+<summary>Source Code</summary>
+
+<pre>
+<code>
+&lt;table class=&quot;lined&quot;&gt;
+		&lt;thead&gt;	
+			&lt;tr&gt;
+				&lt;th&gt;ID&lt;/th&gt;
+				&lt;th&gt;Measurement&lt;/th&gt;
+				&lt;th&gt;Average&lt;/th&gt;
+				&lt;th&gt;Maximum&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;th colspan=&quot;4&quot;&gt;Cats&lt;/th&gt;
+			&lt;/tr&gt;
+			
+			&lt;tr&gt;
+				&lt;td&gt;93&lt;/td&gt;
+				&lt;th&gt;Legs&lt;/th&gt;
+				&lt;td&gt;3.5&lt;/td&gt;
+				&lt;td&gt;4&lt;/td&gt;
+			&lt;/tr&gt;
+			
+			&lt;tr&gt;
+				&lt;td&gt;10&lt;/td&gt;
+				&lt;th&gt;Tails&lt;/th&gt;
+				&lt;td&gt;1&lt;/td&gt;
+				&lt;td&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+			
+			&lt;tr&gt;
+				&lt;th colspan=&quot;4&quot;&gt;English speakers&lt;/th&gt;
+			&lt;/tr&gt;
+			
+			&lt;tr&gt;
+				&lt;td&gt;32&lt;/td&gt;
+				&lt;th&gt;Legs&lt;/th&gt;
+				&lt;td&gt;2.67&lt;/td&gt;
+				&lt;td&gt;4&lt;/td&gt;
+			&lt;/tr&gt;
+			
+			&lt;tr&gt;
+				&lt;td&gt;35&lt;/td&gt;
+				&lt;th&gt;Tails&lt;/th&gt;
+				&lt;td&gt;0.33&lt;/td&gt;
+				&lt;td&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;  
+
+</code>
+</pre>
+</details>
+
+<hr />
+
+
+<h2>Row Type</h2>
+
+<p>There are 2 types of row that can be found inside a data table.</p>
+
+<ul>
+	<li>Row Header</li>
+	<li>Data row</li>
+</ul>
+
+<h3>Row header</h3>
+
+<p>A row header are identified by it's last cell. The last cell must be an cell header (th). There are 2 kind of row header that are acceptable in a data table. The most usable one are an row header only composed of cell header (th). That include any spanned cell that would cross the row header. The second type of row header, only allowed in a data table, is only applicable to the first row "table tr:first" starting at the first column in a data table. It's allowed to define a data cell (td) at the position. That cell will be considerated to be a layout cell for the purpose to annonce where, not limited to, the data row heading will be located into the data table. The same effect can be done by defining an empty cell header (&lt;th&gt;&lt;/th&gt;) at the same position (top left corner in the table).</p>
+
+
+<h4>Valid Example</h4>
+
+<h5>Perfect row header</h5>
+
+<table>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+<details>
+
+<summary>Source Code</summary>
+
+<pre>
+<code>
+	
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code>
+</pre>
+
+</details>
+
+
+
+<table>
+	<tr>
+		<th rowspan="2">Cell Header</th>
+		<th colspan="4">Cell Header</th>
+	</tr>
+	
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+<details>
+<summary>Source Code</summary>
+
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th colspan=&quot;4&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code></pre>
+
+</details>
+
+
+<table>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+	<tr>
+		<th colspan="4">Cell Header</th>
+	</tr>
+</table>
+
+
+<details><summary>Source Code</summary>
+
+<pre><code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th colspan=&quot;4&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code></pre>
+</details>
+
+
+
+<table>
+	<tr>
+		<th rowspan="2">Cell Header</th>
+		<th colspan="2">Cell Header</th>
+		<th rowspan="2">Cell Header</th>
+	</tr>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+
+<details><summary>Source Code</summary>
+
+<pre><code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th colspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code></pre>
+</details>
+
+
+
+
+
+
+
+
+
+<h5>Row header with a layout cell</h5>
+<p>Note: This case are only applicable to the <strong>top left cell</strong> in the table scope.</p>
+
+
+
+<table>
+	<tr>
+		<td></td>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+<details>
+
+<summary>Source Code</summary>
+
+<pre>
+<code>
+	
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code>
+</pre>
+
+</details>
+
+
+<table>
+	<tr>
+		<th></th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+<details>
+
+<summary>Source Code</summary>
+
+<pre>
+<code>
+	
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code>
+</pre>
+
+</details>
+
+
+
+
+<table>
+	<tr>
+		<td rowspan="2"></td>
+		<th colspan="4">Cell Header</th>
+	</tr>
+	
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+<details>
+<summary>Source Code</summary>
+
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td rowspan=&quot;2&quot;&gt;&lt;/td&gt;
+		&lt;th colspan=&quot;4&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code></pre>
+
+</details>
+
+
+
+<table>
+	<tr>
+		<th rowspan="2"></th>
+		<th colspan="4">Cell Header</th>
+	</tr>
+	
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+<details>
+<summary>Source Code</summary>
+
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;&lt;/th&gt;
+		&lt;th colspan=&quot;4&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code></pre>
+
+</details>
+
+
+<table>
+	<tr>
+		<td></td>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+	<tr>
+		<th colspan="4">Cell Header</th>
+	</tr>
+</table>
+
+
+<details><summary>Source Code</summary>
+
+<pre><code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th colspan=&quot;4&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code></pre>
+</details>
+
+
+
+<table>
+	<tr>
+		<th></th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+	<tr>
+		<th colspan="4">Cell Header</th>
+	</tr>
+</table>
+
+
+<details><summary>Source Code</summary>
+
+<pre><code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th colspan=&quot;4&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code></pre>
+</details>
+
+
+<table>
+	<tr>
+		<td rowspan="2"></td>
+		<th colspan="2">Cell Header</th>
+		<th rowspan="2">Cell Header</th>
+	</tr>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+
+<details><summary>Source Code</summary>
+
+<pre><code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td rowspan=&quot;2&quot;&gt;&lt;/td&gt;
+		&lt;th colspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code></pre>
+</details>
+
+
+
+
+<table>
+	<tr>
+		<th rowspan="2"></th>
+		<th colspan="2">Cell Header</th>
+		<th rowspan="2">Cell Header</th>
+	</tr>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+
+<details><summary>Source Code</summary>
+
+<pre><code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;&lt;/th&gt;
+		&lt;th colspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code></pre>
+</details>
+
+
+
+
+
+<h4>Not a valid row headers</h4>
+
+<p>Invalid because the second row finish with a cell heading</p>
+<table>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+<details>
+	<summary>Source Code</summary>
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Cell Header&lt;/td&gt;
+		&lt;td&gt;Cell Header&lt;/td&gt;
+		&lt;td&gt;Cell Header&lt;/td&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code>
+</pre>
+</details>
+
+
+<p>Invalid because there are a data row between 2 headers</p>
+
+<table>
+	<tr>
+		<th>Cell Header</th>
+		<td>Data Cell</td>
+		<th>Cell Header</th>
+		<td>Data Cell</td>
+	</tr>
+</table>
+
+<details><summary>Source Code</summary>
+
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code>
+</pre>
+</details>
+
+<p>Invalid because there are a data row between 2 headers and the row end with a cell header</p>
+
+<table>
+	<tr>
+		<th>Cell Header</th>
+		<td>Data Cell</td>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+<details><summary>Source Code</summary>
+
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code>
+</pre>
+</details>
+
+
+<p>Invalid because the second row have an layout cell in it's first column</p>
+
+
+<table>
+	<tr>
+		<td></td>
+		<th colspan="3">Cell Header</th>
+	</tr>	
+	<tr>
+		<td></td>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+	
+	<tr>
+		<th>Cell Header</th>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+</table>
+
+<details><summary>Source Code</summary>
+
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code>
+</pre>
+</details>
+
+
+
+<h2>Don't use the first table row for the caption</h2>
+
+<p>If the first row of the table are spanned into the full width of an table. That won't represent an group heading but will be more a table caption. If that sequence are repeated in the table, it recommanded to split your table in 2 or more table.</p>
+
+<h3>Bad Example</h3>
+
+<table>
+	<caption>Here is an table caption</caption>
+	<tr>
+		<th colspan="4">Cell Header</th>
+	</tr>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+</table>
+
+<details>
+<summary>Source Code</summary>
+
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;caption&gt;Here is an table caption&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th colspan=&quot;4&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code>
+</pre>
+
+</details>
+
+<h4>Recommended</h4>
+
+
+
+<p>Here is an table caption</p>
+
+<table>
+	<caption>Cell Header</caption>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+</table>
+
+<details>
+<summary>Source Code</summary>
+
+<pre>
+<code>
+
+&lt;p&gt;Here is an table caption&lt;/p&gt;
+
+&lt;table&gt;
+	&lt;caption&gt;Cell Header&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code>
+</pre>
+
+</details>
+
+
+<h2>Having a second column heading set</h2>
+<p>If in your table, after one data row was followed the table column set, you should not have a second column heading set. Having a row header are after any data row are allowed but they need to be spanned by the table width. If you have set a second column heading set, you can move that block into a second table or remove it if the purpose is to repeat the first column heading. If your think the column heading are needed for very long table, that would be the job for a plugin not the job of the table structure.</p>
+
+<h3>Invalid</h3>
+<table>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+
+
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+
+</table>
+
+
+
+<details>
+<summary>Source Code</summary>
+
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+
+
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+
+&lt;/table&gt;
+
+
+
+</code></pre>
+</details>
+
+<h4>Recommanded</h4>
+
+<table>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+
+</table>
+
+<details>
+<summary>Source Code</summary>
+
+<pre>
+<code>
+
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+
+&lt;/table&gt;
+
+</code>
+</pre>
+
+</details>
+
+<p>OR</p>
+
+
+<table>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+
+	<tr>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+
+</table>
+
+
+<details>
+<summary>Source Code</summary>
+
+<pre>
+<code>
+
+
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell&lt;/td&gt;
+	&lt;/tr&gt;
+
+&lt;/table&gt;
+
+</code>
+
+</pre>
+
+</details>
+
+
+<h2>Column heading structure</h2>
+
+<p>The column heading, when they are build from serveral row, need to be in the general column definition to the specific one by progressing between row.</p>
+
+<h3>Example</h3>
+
+
+<table>
+	<tr>
+		<th rowspan="2">Cell Header</th>
+		<th colspan="2">Cell Header</th>
+		<th rowspan="2">Cell Header</th>
+	</tr>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+<details><summary>Source Code</summary>
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th colspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code>
+</pre>
+</details>
+
+
+<table>
+	<tr>
+		<th rowspan="3">Cell Header</th>
+		<th colspan="3">Cell Header</th>
+	</tr>
+	<tr>
+		<th rowspan="2">Cell Header</th>
+		<th colspan="2">Cell Header</th>
+	</tr>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+<details><summary>Source Code</summary>
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;3&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th colspan=&quot;3&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th colspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code>
+</pre>
+</details>
+
+
+<table>
+	<tr>
+		<th rowspan="3">Cell Header</th>
+		<th colspan="3">Cell Header</th>
+	</tr>
+	<tr>
+		<th colspan="2">Cell Header</th>
+		<th rowspan="2">Cell Header</th>
+	</tr>
+	<tr>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+</table>
+
+<details><summary>Source Code</summary>
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;3&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th colspan=&quot;3&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th colspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code>
+</pre>
+</details>
+
+
+
+
+<table>
+	<tr>
+		<th rowspan="2">Cell Header</th>
+		<th colspan="3">Cell Header</th>
+	</tr>
+	<tr>
+		<th colspan="2">Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+	<tr>
+		<th>Data Row</th>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+		<td>Data Cell</td>
+	</tr>
+</table>
+
+<details><summary>Source Code</summary>
+<pre>
+<code>
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th colspan=&quot;3&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th colspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code>
+</pre>
+</details>
+
+
+
+
+<h3>Bad Example</h3>
+
+
+<table>
+	<tr>
+		<th rowspan="2">Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+	<tr>
+		<th colspan="2">Cell Header</th>
+	</tr>
+</table>
+
+<details><summary>Source Code</summary>
+<pre>
+<code>
+
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th colspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code>
+</pre>
+</details>
+
+
+<table>
+	<tr>
+		<th rowspan="3">Cell Header</th>
+		<th colspan="3">Cell Header</th>
+	</tr>
+	<tr>
+		<th rowspan="2">Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+	<tr>
+		<th colspan="2">Cell Header</th>
+	</tr>
+</table>
+
+<details><summary>Source Code</summary>
+<pre>
+<code>
+
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;3&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th colspan=&quot;3&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th colspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code>
+</pre>
+</details>
+
+<table>
+	<tr>
+		<th rowspan="3">Cell Header</th>
+		<th rowspan="2">Cell Header</th>
+		<th>Cell Header</th>
+		<th>Cell Header</th>
+	</tr>
+	<tr>
+		<th colspan="2">Cell Header</th>
+	</tr>
+	<tr>
+		<th colspan="3">Cell Header</th>
+	</tr>
+</table>
+
+<details><summary>Source Code</summary>
+<pre>
+<code>
+
+
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;3&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th colspan=&quot;2&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th colspan=&quot;3&quot;&gt;Cell Header&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code>
+</pre>
+</details>
+
+
+
+
+
+
+<h2>Paralel column/row header are not allowed</h2>
+
+<p>When a paralel column/row header are found, that cause an hiarchical issue. In the case of a column, may be that information can be moved at the top of it's parent cells, or merged if they already have one, or that information need to be more structured to fit in the current table context. The last issue can be resolved by moving the content into an another table.</p>
+
+
+<h2>Delimiting the column heading with a row group heading</h2>
+
+<p>After the column heading, a row group header can be specified. That row header will be spanned in the full table width.</p>
+
+
+<h2>Cell overflow between data group</h2>
+<p>A cell can not overflow between row group. But they can overflow between column group. (HTML 5 specification). See &quot;Have a proportional table&quot; for more details.</p>
+
+
+
+<h2>Data row</h2>
+
+
+<h2>Data row group sequence (If any)</h2>
+
+<p>Each data row group need to be delimited by the tbody markup. There exist 4 kind of data row group. The first are the data set associated directly to the table level. The second are a sub-group of the table level and they need to have a rowgroup header specified. The third are the sub-group data row group summary. And the fourth data row group are the table data row group summary. Even the table parser allow you to have an infinite sub row group by desiging you row in a hiearchical way, it's imposible for the parser, when we are into an hiearchical sub row group, to know the difference between if a data row belong to the summary, or if the data row belong to the data set. There are only two way that relation can be showed. By using nested table or by using two differents data row structure.</p>
+
+
+<h2>Simplify your cell data</h2>
+<p>I recommand to design your cell data in the most basic form. Like if possible, having only the value or only the combinaison value and measure. If you use measure in your cell, be consistant across all the cell in the same column.</p>
+
+<p>You have a data row with the following heading like this:</p>
+<table>
+	<tr>
+		<th>Service</th>
+		<th>Commitment</th>
+	    <th>Expectation</th>
+	</tr>
+	<tr>
+		<th>Issue filing date</th>
+		<td>within 4 weeks upon receipt of application that meets filing requirements including fees</td>
+		<td>90%</td>
+	</tr>
+</table>
+
+<details>
+	<summary>Souce Code</summary>
+	
+	<pre><code>
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Service&lt;/th&gt;
+		&lt;th&gt;Commitment&lt;/th&gt;
+	    &lt;th&gt;Expectation&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Issue filing date&lt;/th&gt;
+
+		&lt;!-- This is the problematic cell --&gt;
+		&lt;td&gt;within 4 weeks upon receipt of application that meets filing requirements including fees&lt;/td&gt;
+
+		&lt;td&gt;90%&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+
+</code></pre>
+</details>
+
+
+<p>Here a fix you can made (with details/summary in the cell header)</p>
+
+<table>
+	<tr>
+		<th>Service</th>
+		<th>Commitment</th>
+	    <th>Expectation</th>
+	</tr>
+	<tr>
+		<th>
+			<details>
+				<summary>Issue filing date</summary>
+				<p>within [time] upon receipt of application that meets filing requirements including fees</p>
+			</details>
+		</th>
+		<td>4 weeks</td>
+		<td>90%</td>
+	</tr>
+</table>
+
+<details>
+	<summary>Souce Code</summary>
+	
+	<pre><code>
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Service&lt;/th&gt;
+		&lt;th&gt;Commitment&lt;/th&gt;
+	    &lt;th&gt;Expectation&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;
+			&lt;details&gt;
+				&lt;summary&gt;Issue filing date&lt;/summary&gt;
+				&lt;p&gt;within [time] upon receipt of application that meets filing requirements including fees&lt;/p&gt;
+			&lt;/details&gt;
+		&lt;/th&gt;
+
+		&lt;!-- See, the content was simplified --&gt;
+		&lt;td&gt;4 weeks&lt;/td&gt;
+
+		&lt;td&gt;90%&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code></pre>
+</details>
+
+<p>Here an another way to do it (with footnote)</p>
+<table>
+	<tr>
+		<th>Service</th>
+		<th>Commitment</th>
+	    <th>Expectation</th>
+	</tr>
+	<tr>
+		<th>Issue filing date</th>
+		<td>4 weeks<sup><a href="#">1</a></sup></td>
+		<td>90%</td>
+	</tr>
+</table>
+<p><sup>1</sup> within [time] upon receipt of application that meets filing requirements including fees</p>
+
+
+<details>
+	<summary>Souce Code</summary>
+	
+	<pre><code>
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Service&lt;/th&gt;
+		&lt;th&gt;Commitment&lt;/th&gt;
+	    &lt;th&gt;Expectation&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;
+			&lt;details&gt;
+				&lt;summary&gt;Issue filing date&lt;/summary&gt;
+				&lt;p&gt;&lt;/p&gt;
+			&lt;/details&gt;
+		&lt;/th&gt;
+
+		&lt;!-- See, the content was simplified --&gt;
+		&lt;td&gt;4 weeks&lt;sup&gt;&lt;a href="#"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/td&gt;
+
+		&lt;td&gt;90%&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; within [time] upon receipt of application that meets filing requirements including fees&lt;/p&gt;
+
+
+</code></pre>
+</details>
+
+<h2>How to add a cell description in a table</h2>
+
+<p>Use the same method of the &quot;Simplify your cell data&quot;</p>
+
+<h2>Have a proportional table</h2>
+
+<p>It's simple but fondamental for the parsing. For each row and col, the cell length (span or/and number of &quot;th&quot;/&quot;th&quot;) must be equal. When the rowgroup are used, it's not allowed for a cell to be spanned outside his rowgroup, but a cell can be spanned outside of it's colgroup. <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#processing-model-0">HTML5 requirement - 4.9.12 Processing model ( paragraph nine and ten)</a></p>
+
+<h2>How to use &quot;colgroup&quot; and &quot;col&quot; element</h2>
+
+<p>The colgroup is realy similar of a rowgroup but in the column perpective. If present, the &quot;col&quot; element definition will be used to identify the lower row header in the rowgroup heading (&quot;thead&quot; if defined). A colgroup can represent a heading set defined in a data row, represent only a set of data cell. A colgroup can also contain heading cell and data cell.</p>
+
+
+<hr />
+<h2>Documentation/Idea to work on</h2>
+
+<ul>
+	<li>When a data cell (td) are spanned into 2 or more row and/or col, that require to have an associated  cell heading at that column and/or row with the same spanned value. If that condition are not sastified, that would anonce the data table are in reality an layout table and a layout table must be transparent.</li>
+	
+	<li>The first header row cell can not be spanned in the full table with, if so that is a table caption and not a row</li>
+	
+	<li>If an empty cell header "th" or a data cell "td" are used in the top left, all the column under that cell, need to be an cell heading for each subsequent row.</li>
+	
+	<li>A data row always have a data cell (td) in his last column.</li>
+	
+	<li>A row header and a data row can not overlap together</li>
+	
+	<li>Only 2 data row structure (pattern) can be used in a data table.</li>
+	
+	<li>The header for a rowgroup can take or not the full width of a table.</li>
+	
+	<li>The header for a rowgroup are the first heading cell (th) in his group, if at least one cell header (th) is defined in that group.</li>
+	
+	<li>The table can only contain one table head (thead).</li>
+	
+	<li>How to do Nested tables in a data cell spanned in the full table width with a preceding cell heading spanned in the full table width....[tree grid]  ;-)</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<dl id="cn-doc-dates" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2011-10-31</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="cn-foot"><div id="cn-foot-inner"><footer><h2 id="cn-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="cn-sft"><h3>Site footer</h3><div id="cn-sft-inner">
+<div id="cn-ft-tctr">
+<ul>
+<li class="terms"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="trans"><a href="#">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">Our Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="cn-gcft"><h3>Government of Canada footer</h3><div id="cn-gcft-inner"><div id="fip-pcim-gcft">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="cn-ft-ca"><div><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../build/js/settings.js"></script>
+<script src="../../build/js/pe-ap-min.js" id="progressive"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>
