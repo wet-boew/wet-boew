@@ -26,7 +26,7 @@
     }
 
     #cn-gcnb h2,#cn-search-box label,
-    #cn-aside h2,.cn-minister h2,.cn-minister h3,#cn-sft h3,#cn-bc h2,#cn-gcft h3,#cn-foot h2,#cn-skip-head{
+    #cn-aside h2,.cn-minister h2,.cn-minister h3,#cn-sft h3,#cn-bc h2,#cn-gcft h3,#cn-foot h2,#cn-skip-head,#cn-head #cn-wmms{
         clip:rect(1px, 1px, 1px, 1px);
         height:0 !important;
         overflow:hidden !important;
