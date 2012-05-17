@@ -65,7 +65,7 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var mb_dialogue, mb_header, bcrumb, sub, search_elm, s_dialogue, _list, links, footer1, ul, pefile, $lch3;
+			var mb_dialogue, mb_header, bcrumb, sub, search_elm, s_dialogue, _list, links, footer1, ul, pefile, lang_links, lang_nav, $lch3;
 			// determine if this file is minified
 			pefile = pe.url(document.getElementById('progressive').src).file;
 			pe.suffix = pefile.substr(pefile.length - 7) === "-min.js" ? "-min" : "";
@@ -175,6 +175,18 @@
 					_list = $('<ul></ul>').hide().append('<li><a data-rel="dialog" data-theme="b" data-icon="search" href="' + search_elm.find(':header a').attr('href') + '">' + search_elm.find(':header a').text() + "</a></li>").append('<li><a data-rel="dialog" data-theme="b"  data-icon="grid" href="' + mb_header.find('a').attr('href') + '">' + mb_header.find('a').text() + "</a></li>");
 					pe.header.find('#cn-site-title').after($('<div data-role="navbar" data-iconpos="right"></div>').append(_list));
 					search_elm.parent().remove();
+				}
+
+				lang_links = $('#cn-lang-links');
+				if (lang_links.length > 0) {
+					links = lang_links.find('a').attr("data-theme", "a");
+					lang_nav = $('<div data-role="navbar"><ul></ul></div>');
+					ul = lang_nav.children();
+					links.each(function () {
+						ul.append($('<li/>').append(this));
+					});
+					lang_links.find('#cn-ef-lang-links').replaceWith(lang_nav.children().end());
+					lang_links.find('#cn-other-lang-links').remove();
 				}
 
 				if (pe.footer.find('#cn-sft').length > 0) {
