@@ -5,7 +5,7 @@
  */
 
 /* -----Build Include Section Start----- */
-@import url('base.css');
+@import url('base-core.css');
 @import url('base-ie7.css');
 @import url('base-ie8.css');
 /* -----Build Include Section End----- */

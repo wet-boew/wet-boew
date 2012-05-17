@@ -29,6 +29,10 @@
 		 */
 		language: ($("html").attr("lang") ? ($("html").attr("lang").indexOf("en") === 0 ? "eng" : "fra") : $("meta[name='dc.language'], meta[name='dcterms.language']").attr("content")),
 		suffix: "",
+		header: $('#cn-head'),
+		menubar: $('.wet-boew-menubar'),
+		leftcol: $('#cn-left-col'),
+		footer: $('#cn-foot'),
 		/**
 		 * Detects the doctype of the document (loosely)
 		 * @function
@@ -61,7 +65,7 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var mb_dialogue, sub, search_elm, s_dialogue, _list, links, footer1, footer2, ul, pefile, exclude, $lch3;
+			var mb_dialogue, mb_header, bcrumb, sub, search_elm, s_dialogue, _list, links, footer1, ul, pefile, $lch3;
 			// determine if this file is minified
 			pefile = pe.url(document.getElementById('progressive').src).file;
 			pe.suffix = pefile.substr(pefile.length - 7) === "-min.js" ? "-min" : "";
@@ -72,119 +76,141 @@
 			// mobile test
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
-				// lets init some variables for use in various transformations
-				// raw variable running on the dom
-				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
-				// lets transform the menu to a dialog box
-				mb_dialogue = '<div data-role="page" id="jqmobile-wet-boew-menubar"><div data-role="header">';
-				mb_dialogue += "<h2>" + $('#cn-psnb > :header').html() + '</h2></div>';
-				//mb_dialogue.append($('<div data-role="header"></div>').append($('#cn-psnb > :header').clone()));
-				mb_dialogue += '<div data-role="content" data-inset="true">';
-				mb_dialogue += '<p id="jqm-mb-location-text"></p>';
+				if (pe.menubar.length > 0) {
+					// lets init some variables for use in various transformations
+					// raw variable running on the dom
+					// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
+					// lets transform the menu to a dialog box
+					mb_dialogue = '<div data-role="page" id="jqmobile-wet-boew-menubar"><div data-role="header">';
+					mb_header = pe.header.find('#cn-psnb > :header');
+					mb_dialogue += "<h1>" + mb_header.html() + '</h1></div>';
+					//mb_dialogue.append($('<div data-role="header"></div>').append(mb_header.clone()));
+					mb_dialogue += '<div data-role="content" data-inset="true"><nav role="navigation">';
 
-				if ($('#cn-left-col').length > 0) {
-					// we have a submenu
-					sub = '<h2>' + $('#cn-left-col').find(':header').eq(0).html() + '</h2>';
-					sub += '<div data-role="collapsible-set">';
-					sub += $('#cn-left-col .cn-left-col-default').html().replace(/<section>/gi, "<div data-role=\"collapsible\">").replace(/<\/section>/gi, "</div>");
-				
-					// lets work on the menu shift
-					/** sub = sub.replace(/<ul\b[^>]*"sub-nav"[^>]*>([\s\S]*?)<\/ul>/gmi, function(m, child){
-					var _internal = child;
-					_internal = _internal.replace(/<li.*?>/gmi,"").replace(/<\/li>/gmi,'').replace(/<a/gi,"<a class=\"ui-link\"  data-icon=\"arrow-r\"");
-					return "<div data-role=\"navbar\">" + _internal + "</div>";
+					bcrumb = pe.header.find('#cn-bc');
+					if (bcrumb.length > 0) {
+						mb_dialogue += '<div id="jqm-mb-location-text">' + bcrumb.html() + '</div>';
+						bcrumb.remove();
+					} else {
+						mb_dialogue += '<div id="jqm-mb-location-text"></div>';
+					}
+
+					if (pe.leftcol.length > 0) {
+						// we have a submenu
+						sub = '<h2>' + pe.leftcol.find(':header').eq(0).html() + '</h2>';
+						sub += '<div data-role="collapsible-set">';
+						sub += pe.leftcol.find('.cn-left-col-default').html().replace(/<section>/gi, "<div data-role=\"collapsible\">").replace(/<\/section>/gi, "</div>");
+
+						// lets work on the menu shift
+						/** sub = sub.replace(/<ul\b[^>]*"sub-nav"[^>]*>([\s\S]*?)<\/ul>/gmi, function(m, child){
+						var _internal = child;
+						_internal = _internal.replace(/<li.*?>/gmi,"").replace(/<\/li>/gmi,'').replace(/<a/gi,"<a class=\"ui-link\"  data-icon=\"arrow-r\"");
+						return "<div data-role=\"navbar\">" + _internal + "</div>";
+						});
+						 **/
+						sub = sub.replace(/<h(.*?)>\s*<a/gmi, "<h$1><a class=\"ui-link\" data-icon=\"arrow-r\" data-theme=\"b\"");
+						sub = sub.replace(/<ul(.*?)>/gi, "<ul data-role=\"listview\"$1>").replace(/<\/ul>/gi, "</ul>");
+						sub = sub.replace(/<div class=\"top-level\"/gmi, "<div data-role=\"button\" data-icon=\"arrow-r\" class=\"top-level\"");
+
+						//sub = sub.replace(/<\/a>\s+<ul(.*?)>(.*?)<\/ul>/gmi, "</a><div data-role=\"navbar\">$2</div>");
+						//console.log(sub);
+						sub += '</div>';
+						mb_dialogue += sub;
+						pe.leftcol.remove();
+					}
+
+					mb_dialogue += '<h2>' + mb_header.html() + '</h2>';
+					//mb_dialogue += '<ul data-role="listview" data-inset="true" data-theme=\"a\">';
+					mb_dialogue += '<div data-role=\"collapsible-set\">';
+
+					pe.menubar.find('ul.mb-menu').clone().each(function () {
+						$(this).find('div[class^=span]').each(function () {
+							$(this).replaceWith($(this).html());
+						});
+						$(this).find('.mb-sm').each(function () {
+							$(this).html('<div data-role=\"collapsible-set\">' + $(this).html() + '</div)');
+						});
+						$(this).children().children('div:first-child,h2,h3,h4,section').each(function () {
+							var $this = $(this);
+							if ($this.is('section')) {
+								$this = $this.children('h2,h3,h4').eq(0);
+							}
+							$this.html($this.text());
+							if ($this.is('div')) {
+								mb_dialogue += "<div data-role=\"button\" data-icon=\"arrow-r\" data-corners=\"false\" class=\"top-level" + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))) + "\" data-theme=\"a\">" + $(this).html() + "</div>";
+							} else {
+								$this.parent().find("ul").attr("data-role", "listview");
+								$this.parent().find(".mb-sm div > a,.mb-sm h2,.mb-sm h3,.mb-sm h4").each(function () {
+									var $this_sub = $(this), $this_sub_parent = $this_sub.parent();
+									if ($this_sub_parent.is('div')) {
+										$this_sub_parent.html($this_sub_parent.text());
+										$this_sub_parent.attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))));
+									} else if ($this_sub_parent.is('section')) {
+										$this_sub.html($this_sub.text());
+										$this_sub_parent.wrap("<div data-role=\"collapsible\" data-theme=\"a\">");
+										$this_sub_parent.parent().html($this_sub_parent.html());
+									}
+								});
+								mb_dialogue += "<div data-role=\"collapsible\" data-theme=\"a\">" + $this.parent().html() + "</div>";
+							}
+						});
 					});
-					 **/
-					sub = sub.replace(/<h(.*?)>\s*<a/gmi, "<h$1><a class=\"ui-link\" data-icon=\"arrow-r\" data-theme=\"b\"");
-					sub = sub.replace(/<ul(.*?)>/gi, "<ul data-role=\"listview\"$1>").replace(/<\/ul>/gi, "</ul>");
-					sub = sub.replace(/<div class=\"top-level\"/gmi, "<div data-role=\"button\" data-icon=\"arrow-r\" class=\"top-level\"");
+					mb_dialogue += '</nav></div>';
+					//mb_dialogue += '</ul>';
 
-					//sub = sub.replace(/<\/a>\s+<ul(.*?)>(.*?)<\/ul>/gmi, "</a><div data-role=\"navbar\">$2</div>");
-					//console.log(sub);
-					sub += '</div>';
-					mb_dialogue += sub;
+					mb_dialogue += '</div></div>';
+					pe.pagecontainer().append(mb_dialogue);
+					pe.header.find('#cn-psnb').parent().remove();
+					mb_header.wrapInner('<a href="#jqmobile-wet-boew-menubar" data-rel="dialog"></a>');
 				}
 
-				mb_dialogue += '<h2>' + $('#cn-psnb').find(':header').eq(0).html() + '</h2>';
-				//mb_dialogue += '<ul data-role="listview" data-inset="true" data-theme=\"a\">';
-				mb_dialogue += '<div data-role=\"collapsible-set\">';
+				search_elm = pe.header.find('#cn-search-box');
+				if (search_elm.length > 0) {
+					// :: Search box transform lets transform the search box to a dialogue box
+					s_dialogue = $('<div data-role="page" id="jqmobile-wet-boew-search"></div>');
+					s_dialogue.append($('<div data-role="header"><h1>' + search_elm.find(':header').text() + '</h1></div>')).append($('<div data-role="content"></div>').append(search_elm.find('form').clone()));
+					pe.pagecontainer().append(s_dialogue);
+					search_elm.find(':header').wrapInner('<a href="#jqmobile-wet-boew-search" data-rel="dialog"></a>');
+					// lets see if we can change these to navbars
+					_list = $('<ul></ul>').hide().append('<li><a data-rel="dialog" data-theme="b" data-icon="search" href="' + search_elm.find(':header a').attr('href') + '">' + search_elm.find(':header a').text() + "</a></li>").append('<li><a data-rel="dialog" data-theme="b"  data-icon="grid" href="' + mb_header.find('a').attr('href') + '">' + mb_header.find('a').text() + "</a></li>");
+					pe.header.find('#cn-site-title').after($('<div data-role="navbar" data-iconpos="right"></div>').append(_list));
+					search_elm.parent().remove();
+				}
 
-				$('#cn-psnb ul.mb-menu').clone().each(function () {
-					$(this).find('div[class^=span]').each(function () {
-						$(this).replaceWith($(this).html());
-					});
-					$(this).find('.mb-sm').each(function () {
-						$(this).html('<div data-role=\"collapsible-set\">' + $(this).html() + '</div)');
-					});
-					$(this).children().children('div:first-child,h2,h3,h4,section').each(function () {
-						var $this = $(this);
-						if ($this.is('section')) {
-							$this = $this.children('h2,h3,h4').eq(0);
-						}
-						$this.html($this.text());
-						if ($this.is('div')) {
-							mb_dialogue += "<div data-role=\"button\" data-icon=\"arrow-r\" data-corners=\"false\" class=\"top-level" + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))) + "\" data-theme=\"a\">" + $(this).html() + "</div>";
-						} else {
-							$this.parent().find("ul").attr("data-role", "listview");
-							$this.parent().find(".mb-sm div > a,.mb-sm h2,.mb-sm h3,.mb-sm h4").each(function () {
-								var $this_sub = $(this), $this_sub_parent = $this_sub.parent();
-								if ($this_sub_parent.is('div')) {
-									$this_sub_parent.html($this_sub_parent.text());
-									$this_sub_parent.attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))));
-								} else if ($this_sub_parent.is('section')) {
-									$this_sub.html($this_sub.text());
-									$this_sub_parent.wrap("<div data-role=\"collapsible\" data-theme=\"a\">");
-									$this_sub_parent.parent().html($this_sub_parent.html());
-								}
-							});
-							mb_dialogue += "<div data-role=\"collapsible\" data-theme=\"a\">" + $this.parent().html() + "</div>";
-						}
-					});
-				});
-				mb_dialogue += '</div>';
-				//mb_dialogue += '</ul>';
-
-				mb_dialogue += '</div></div>';
-				pe.pagecontainer().append(mb_dialogue);
-				$('#cn-psnb-inner').remove();
-				$('#cn-psnb :header').wrapInner('<a href="#jqmobile-wet-boew-menubar" data-rel="dialog"></a>');
-				// :: Search box transform lets transform the search box to a dialogue box
-				search_elm = $('#cn-search-box');
-				s_dialogue = $('<div data-role="page" id="jqmobile-wet-boew-search"></div>');
-				s_dialogue.append($('<div data-role="header"></div>').append(search_elm.find(':header').clone())).append($('<div data-role="content"></div>').append(search_elm.find('form').clone()));
-				pe.pagecontainer().append(s_dialogue);
-				search_elm.find('form').remove();
-				search_elm.find(':header').wrapInner('<a href="#jqmobile-wet-boew-search" data-rel="dialog"></a>');
-				// lets see if we can change these to navbars
-				_list = $('<ul></ul>').hide().append('<li><a data-rel="dialog" data-theme="b" data-icon="search" href="' + search_elm.find(':header a').attr('href') + '">' + search_elm.find(':header a').text() + "</a></li>").append('<li><a data-rel="dialog" data-theme="b"  data-icon="grid" href="' + $('#cn-psnb > :header').find('a').attr('href') + '">' + $('#cn-psnb > :header').find('a').text() + "</a></li>");
-				$('#cn-site-title').after($('<div data-role="navbar" data-iconpos="right"></div>').append(_list));
-				// transform the footer into mobile nav bar
-				links = $('#cn-sft-inner #cn-ft-tctr a, #cn-sft-inner .col-head a').attr("data-theme", "b");
-				footer1 = $('<div data-role="navbar"><ul></ul></div>');
-				ul = footer1.children();
-				links.each(function () {
-					ul.append($('<li/>').append(this));
-				});
-				links = $('#cn-gcft-inner a').attr("data-theme", "c");
-				footer2 = $('<div data-role="navbar"><ul></ul></div>');
-				ul = footer2.children();
-				links.each(function () {
-					if ($(this).parents('#cn-ft-ca').length) {
-						ul.append($('<li id="cn-ft-ca"/>').append(this));
-					} else {
+				if (pe.footer.find('#cn-sft').length > 0) {
+					// transform the footer into mobile nav bar
+					links = pe.footer.find('#cn-sft-inner #cn-ft-tctr a, #cn-sft-inner .col-head a').attr("data-theme", "b");
+					footer1 = $('<div data-role="navbar"><ul></ul></div>');
+					ul = footer1.children();
+					links.each(function () {
 						ul.append($('<li/>').append(this));
-					}
-				});
-				//$('#cn-foot').replaceWith(footer1.children().after(footer2).end());
-				$('#cn-foot').replaceWith(footer1.children().end());
+					});
+					pe.footer.find('#cn-sft-inner').replaceWith(footer1.children().end());
+					pe.footer.find('#cn-gcft').parent().remove();
+				} else if (pe.footer.find('#cn-tc').length > 0) {
+					// transform the footer into mobile nav bar
+					links = pe.footer.find('#cn-tc a').attr("data-theme", "b");
+					footer1 = $('<div data-role="navbar"><ul></ul></div>');
+					ul = footer1.children();
+					links.each(function () {
+						ul.append($('<li/>').append(this));
+					});
+					pe.footer.find('#cn-tc').replaceWith(footer1.children().end());
+				}
+				pe.footer.find('footer').append($('#cn-wmms').detach());
+
 				// jquery mobile has loaded
 				$(document).on("mobileinit", function () {
 					//$.mobile.loadingMessage = false;
 					$.mobile.ajaxEnabled = false;
 					$.mobile.pushStateEnabled = false;
-					search_elm.remove();
-					$('#cn-psnb :header').remove();
-					_list.show();
+					if (pe.menubar.length > 0) {
+						pe.header.find('#cn-psnb :header').remove();
+					}
+					if (search_elm.length > 0) {
+						search_elm.remove();
+						_list.show();
+					}
 				});
 				// preprocessing before mobile page is enhanced
 				$(document).on("pageinit", function () {
@@ -889,11 +915,6 @@
 			// global plugins
 			var i,
 				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false;
-			// page specific plugins
-			if (pe.mobile) {
-				//$('#jqm-mb-location-text').text(($('#cn-bc ol li a[href]').length > 0) ? pe.dic.get('%you-are-in') + $('#cn-bc ol li').last().prev('li').text() : pe.dic.get('%welcome-to'));
-				$('#jqm-mb-location-text').html($('#cn-bc').html());
-			}
 			$('[class^="wet-boew-"]').each(function () {
 				var _fcall,
 					_node;

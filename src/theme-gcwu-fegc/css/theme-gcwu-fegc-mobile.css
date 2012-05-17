@@ -42,7 +42,7 @@
     #cn-site-title{
         min-height:40px;
         font-weight:700;
-        background:#146094 url(../fip-pcim/images/background-waves.jpg);
+        background:#146094 url(../images/background-waves.jpg);
         padding:2px 10px;
     }
 
@@ -53,13 +53,16 @@
         text-decoration:none;
     }
 
-    #cn-foot{
-        background:url(../fip-pcim/images/wmms.gif) #fff center bottom no-repeat;
+    /*#cn-foot{
+        background:url(../images/wmms.gif) #fff center bottom no-repeat;
         margin-bottom:10px;
         padding:5px 0 36px;
-    }
+    }*/
+	#cn-foot #cn-wmms img{
+		margin: 5px auto;
+	}
 
-    #cn-sft-inner #cn-ft-tctr{
+    .no-js #cn-sft-inner #cn-ft-tctr{
         width:auto;
         float:none;
     }
@@ -127,7 +130,7 @@
         padding:2px;
     }
 
-    h1{
+    #cn-centre-col-inner h1{
         position:static !important;
         font-size:1.1em;
         width:auto !important;
@@ -144,11 +147,11 @@
         padding:10px;
     }
 
-    .no-js h1{
+    .no-js #cn-centre-col-inner h1{
         margin:5px -10px 0;
     }
 
-    .ui-mobile h1{
+    .ui-mobile #cn-centre-col-inner h1{
         margin-bottom:0 !important;
     }
 
@@ -173,7 +176,7 @@
         border:none;
     }
 
-    #cn-sft{
+    .no-js #cn-sft{
         background:#eee;
         border-top:1px solid #ccc;
         border-bottom:1px solid #ccc;
@@ -193,12 +196,12 @@
         display:inline;
     }
 
-    #cn-foot a{
+    .no-js #cn-foot a{
         font-weight:400;
         text-decoration:none;
     }
 
-    #cn-foot ul{
+    .no-js #cn-foot ul{
         list-style-type:none;
         margin:0;
         padding:0;
@@ -345,11 +348,11 @@
         z-index:1;
     }
 
-    #cn-banner,#cn-cols,#cn-sft-inner section:nth-child(3n-1),#cn-sft-inner div:nth-child(3n-1){
+    #cn-banner,#cn-cols,.no-js #cn-sft-inner section:nth-child(3n-1),.no-js #cn-sft-inner div:nth-child(3n-1){
         clear:both;
     }
 
-    #cn-sft-inner div{
+    .no-js #cn-sft-inner div{
         width:50%;
         float:left;
     }
@@ -364,7 +367,7 @@
         border-top:none;
     }
 
-    #cn-gc-priorities ul:after,#cn-doc-dates:after,#cn-sft:after,#cn-gcft ul:after,#cn-head:after{
+    #cn-gc-priorities ul:after,#cn-doc-dates:after,.no-js #cn-sft:after,#cn-gcft ul:after,#cn-head:after{
         content:".";
         display:block;
         height:0;
@@ -376,7 +379,7 @@
         padding:0 15px;
     }
 
-    #cn-sft a,#cn-sft .link,.wet-boew-menubar .mb-sm a:hover,.wet-boew-menubar .mb-sm a:focus,.wet-boew-menubar .mb-sm a:visited{
+    .no-js #cn-sft a,.no-js #cn-sft .link,.no-js .wet-boew-menubar .mb-sm a:hover,.no-js .wet-boew-menubar .mb-sm a:focus,.no-js .wet-boew-menubar .mb-sm a:visited{
         color:#222;
     }
 
@@ -388,7 +391,7 @@
         padding:0;
     }
 
-    .wet-boew-menubar li .mb-sm,#cn-wmms,#cn-bc,#cn-psnb #cn-psnb-inner,#cn-search-box form,.wet-boew-menubar li .mb-sm *{
+    .wet-boew-menubar li .mb-sm,#cn-bc,.no-js #cn-wmms,#cn-psnb #cn-psnb-inner,#cn-search-box form,.wet-boew-menubar li .mb-sm *{
         display:none;
     }
 
@@ -490,19 +493,7 @@
         padding:0;
     }
 
-    .cn-invisible{
-        position: absolute  !important;
-        clip: rect(1px, 1px, 1px, 1px)  !important;
-        height: 1px !important;
-        width: 1px !important;
-        overflow: hidden !important;
-        margin: 0 !important;
-        padding:0 !important;
-        margin:0 !important;
-    }
-
-
-    #jqmobile-wet-boew-search h2,#jqmobile-wet-boew-menubar h2,#jqmobile-wet-boew-menubar h3, #jqmobile-wet-boew-menubar h4,#jqmobile-wet-boew-menubar .top-level{
+    #jqmobile-wet-boew-search h1,#jqmobile-wet-boew-menubar h1, #jqmobile-wet-boew-search h2,#jqmobile-wet-boew-menubar h2,#jqmobile-wet-boew-menubar h3, #jqmobile-wet-boew-menubar h4,#jqmobile-wet-boew-menubar .top-level{
         border:none;
     }
 
@@ -553,11 +544,13 @@
         border-bottom-width:1px;
     }
 
-    #jqmobile-wet-boew-menubar div + h2,#jqmobile-wet-boew-menubar ul + h2{
-        border-top:3px groove #fff;
-        padding-top:8px;
-        margin-top:23px;
-        color:#555;
+    #jqmobile-wet-boew-menubar h2{
+		color:#555;
+    }
+	#jqmobile-wet-boew-menubar div.ui-collapsible-set + h2{
+		border-top:3px groove #fff;
+		padding-top:8px;
+		margin-top:23px;
     }
 
     #jqmobile-wet-boew-menubar .ui-content h2 + ul.ui-listview{

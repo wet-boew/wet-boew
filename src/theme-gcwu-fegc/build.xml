@@ -28,7 +28,6 @@
 		<copy file="${build.dir}/css/core.css" tofile="${build.dir}/css/core-ie.css"/>
 		<copy file="${build.dir}/css/core-sppe.css" tofile="${build.dir}/css/core-sppe-ie.css"/>
 		<copy file="${build.dir}/css/core-serv.css" tofile="${build.dir}/css/core-serv-ie.css"/>
-		<copy file="${build.dir}/css/mobile.css" tofile="${build.dir}/css/mobile-ie.css"/>
 		<copy todir="${build.dir}/images">
 			<fileset dir="${src.dir}/images"/>
 		</copy>
@@ -41,6 +40,8 @@
 				<include name="core-sppe.css"/>
 				<include name="core-serv.css"/>
 				<include name="mobile.css"/>
+				<include name="core-sppe-mobile.css"/>
+				<include name="core-serv-mobile.css"/>
 			</fileset>
 		</copy>
 		<cssurlembed skipMissing="true">
@@ -49,6 +50,8 @@
 				<include name="core-sppe.css"/>
 				<include name="core-serv.css"/>
 				<include name="mobile.css"/>
+				<include name="core-sppe-mobile.css"/>
+				<include name="core-serv-mobile.css"/>
 			</fileset>
 		</cssurlembed>
 		<copy todir="${build.dir}/css">
@@ -74,6 +77,8 @@
 			<file name="css/core-sppe.css"/>
 			<file name="css/core-serv.css"/>
 			<file name="css/mobile.css"/>
+			<file name="css/core-sppe-mobile.css"/>
+			<file name="css/core-serv-mobile.css"/>
 		</filelist>
 		<for param="css-file">
 			<path>
@@ -93,6 +98,8 @@
 				<exclude name="core-sppe.css"/>
 				<exclude name="core-serv.css"/>
 				<exclude name="mobile.css"/>
+				<exclude name="core-sppe-mobile.css"/>
+				<exclude name="core-serv-mobile.css"/>
 			</fileset>
 		</delete>
 		<delete dir="${build.dir}/../css"/>
