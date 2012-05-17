@@ -1268,6 +1268,124 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 
+<h2>Having a sumary rowgroup</h2>
+
+<p>That is about having a &quot;Total&quot; and/or &quot;Subtotal&quot; row. It's called &quot;rowgroup summary&quot;. Rowgroup because it can contain more than one row and Summary because that information is directly related to the previous rowgroup.</p>
+
+<p>Example:</p>
+
+
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th></th>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+  </tr>
+</tbody>
+<tfoot> <!-- OR <tbody> -->
+  <tr>
+    <th>Total</th>
+    <td>4477</td>
+    <td>1980</td>
+  </tr>
+</tfoot> <!-- OR </tbody> -->
+</table>
+
+<p>In the previous exemple, It can make sense to group the &quot;Total&quot; row inside a &quot;tfoot&quot; rowgroup element because &quot;tfoot&quot; element it's defined as column summary.</p>
+
+<p>The biggest question about tfoot will be: <strong>How do you define column summary?</strong></p>
+
+<ul>
+	<li>Is &quot;column summary&quot; means &quot;table footnote for additional information regarding some table cell&quot; ?
+		<p>Use the technique to add a description to a cell discussed in a topic bellow.</p>
+	</li>
+	<li>Is &quot;column summary&quot; means &quot;additional column information (like a description)&quot; ?
+		<p>Use the technique to add a description to a cell discussed in a topic bellow.</p>
+	</li>
+	<li>Is &quot;column summary&quot; means &quot;data column summary&quot; ?
+		<p>Seem fine, but came unrelevant when there are more than one data rowgroup if each of them have a sub rowgroup summary (like a sub-total row).</p>
+	</li>
+	<li>Is &quot;column summary&quot; means &quot;data rowgroup summary&quot; ?
+		<p>For me, that are the best definition. This will allow to use data rowgroup (tbody) to illustrate the summary data. When tfoot rowgroup are used with this definition, that would say the summary data are applicable for every data rowgroup in the table.</p>
+	</li>
+</ul>
+
+
+
+
+<p>When data are added in the tfoot rowgroup, they are applying to every row in on or more tbody rowgroup.</p>
+
+<p>Please note that the &quot;tfoot&quot; rowgroup can be or we would like to be rendered in three possible way</p>
+<ol>
+	<li>Rendered as other tbody rowgroup but with an visual representation (line a larger border at the top of it's first row)<li>
+	<li>Rendered to support scrolling of body sections. (see <a href="http://www.w3.org/TR/1999/REC-html401-19991224/struct/tables.html#h-11.1">HTML4 - 11.1 Introduction to tables - 3<sup>rd</sup> Paragraph</a>)</li>
+	<li>Rendered to be printed on each pages at the bottom of an table (see <a href="http://www.w3.org/TR/1999/REC-html401-19991224/struct/tables.html#h-11.1">HTML4 - 11.1 Introduction to tables - 3<sup>rd</sup> Paragraph</a>)</li>
+</ol>
+
+<p>Be careful before to use it. Ask you the question if all those three possible way to rendered it, would be the <strong>behaviour</strong> you would like to have. If your answer is &quot;No&quot;, I would recommand to to use an unique/separated &quot;tbody&quot; to represent your data row summary.</p>
+
+
 <h2>Use data cell for layout</h2>
 
 <p>Inside a data table, a cell can not be used for layout purpose. The only exception are the <strong>Top Left cell</strong> that is set in the table.</h2>
