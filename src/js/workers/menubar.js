@@ -111,147 +111,162 @@
 				$menu.find("li:first a:first").removeAttr("tabindex");
 			}
 			pe.resize(correctheight);
-			/* bind all custom events and triggers to menu
+			/* Handles opening and closing a submenu on a touch device
 			 */
-			$scope.on("focusoutside", function () {
-				return hideallsubmenus();
-			});
-			$(document).on("click", function () {
-				$scope.trigger("focusoutside");
-			});
-			$scope.on("keydown focus section-next section-previous item-next item-previous close", "li", function (e) {
-				var next,
-					_elm,
-					_id,
-					level;
-				_elm = $(e.target);
-				_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
-					return parseInt(n, 10);
+			if (pe.touchdevice) {
+				$scope.find('.mb-sm').parent().find('> :header a').on("click", function (event) {
+					event.preventDefault();
+					event.stopPropagation();
+					if ($(this).closest("li").hasClass("mb-active")) {
+						hidesubmenu(this);
+					} else {
+						showsubmenu(this);
+					}
 				});
-				if (e.type === "keydown") {
-					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-						switch (e.keyCode) {
-						case 27: // escape key
-							_elm.trigger('close');
-							e.preventDefault();
-							return false;
-						case 37: // left arrow
-							_elm.trigger('section-previous');
-							e.preventDefault();
-							return false;
-						case 38: // up arrow
-							_elm.trigger('item-previous');
-							e.preventDefault();
-							return false;
-						case 39: // right arrow
-							_elm.trigger('section-next');
-							e.preventDefault();
-							return false;
-						case 40: // down arrow
-							_elm.trigger('item-next');
-							e.preventDefault();
-							return false;
+			} else {
+				/* bind all custom events and triggers to menu
+				 */
+				$scope.on("keydown focus section-next section-previous item-next item-previous close", "li", function (e) {
+					var next,
+						_elm,
+						_id,
+						level;
+					_elm = $(e.target);
+					_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
+						return parseInt(n, 10);
+					});
+					if (e.type === "keydown") {
+						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
+							switch (e.keyCode) {
+							case 27: // escape key
+								_elm.trigger('close');
+								e.preventDefault();
+								return false;
+							case 37: // left arrow
+								_elm.trigger('section-previous');
+								e.preventDefault();
+								return false;
+							case 38: // up arrow
+								_elm.trigger('item-previous');
+								e.preventDefault();
+								return false;
+							case 39: // right arrow
+								_elm.trigger('section-next');
+								e.preventDefault();
+								return false;
+							case 40: // down arrow
+								_elm.trigger('item-next');
+								e.preventDefault();
+								return false;
+							}
 						}
 					}
-				}
-				if (e.type === "close") {
-					pe.focus($scope.find(".knav-" + _id[1] + "-0-0"));
-					//if (!_id[2] && !_id[3]) {
-					setTimeout(function () {
-						return hideallsubmenus();
-					}, 5);
-					//}
-				}
-				if (e.type === "section-previous") {
-					level = !!_id[2] << 1 | !!_id[3];
-					switch (level) {
-					case 0: // top-level menu link has focus
-					case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
-						next = $scope.find(".knav-" + (_id[1] - 1) + "-0-0");
-						if (next.length > 0) {
-							pe.focus(next);
-						} else {
-							pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
-						}
-						break;
-					case 2: // sub-section link has focus
-					case 3: // 3rd level link (child of a sub-section) has focus
-						next = $scope.find(".knav-" + (_id[1]) + "-" + (_id[2] - 1) + "-0");
-						if (next.length > 0 && _id[2] > 1) {
-							pe.focus(next);
-						} else {
-							next = $scope.find(".knav-" + (_id[1] - 1) + "-0-0"); // wrap around at the sub-section level
+					if (e.type === "close") {
+						pe.focus($scope.find(".knav-" + _id[1] + "-0-0"));
+						//if (!_id[2] && !_id[3]) {
+						setTimeout(function () {
+							return hideallsubmenus();
+						}, 5);
+						//}
+					}
+					if (e.type === "section-previous") {
+						level = !!_id[2] << 1 | !!_id[3];
+						switch (level) {
+						case 0: // top-level menu link has focus
+						case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
+							next = $scope.find(".knav-" + (_id[1] - 1) + "-0-0");
 							if (next.length > 0) {
 								pe.focus(next);
 							} else {
 								pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
 							}
+							break;
+						case 2: // sub-section link has focus
+						case 3: // 3rd level link (child of a sub-section) has focus
+							next = $scope.find(".knav-" + (_id[1]) + "-" + (_id[2] - 1) + "-0");
+							if (next.length > 0 && _id[2] > 1) {
+								pe.focus(next);
+							} else {
+								next = $scope.find(".knav-" + (_id[1] - 1) + "-0-0"); // wrap around at the sub-section level
+								if (next.length > 0) {
+									pe.focus(next);
+								} else {
+									pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
+								}
+							}
+							break;
 						}
-						break;
 					}
-				}
-				if (e.type === "section-next") {
-					level = !!_id[2] << 1 | !!_id[3];
-					switch (level) {
-					case 0: // top-level menu link has focus
-					case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
-						next = $scope.find(".knav-" + (_id[1] + 1) + "-0-0");
-						if (next.length > 0) {
-							pe.focus(next);
-						} else {
-							pe.focus($scope.find(".knav-0-0-0")); // wrap around at the top level
-						}
-						break;
-					case 2: // sub-section link has focus
-					case 3: // 3rd level link (child of a sub-section) has focus
-						next = $scope.find(".knav-" + (_id[1]) + "-" + (_id[2] + 1) + "-0");
-						if (next.length > 0) {
-							pe.focus(next);
-						} else {
-							next = $scope.find(".knav-" + (_id[1] + 1) + "-0-0"); // wrap around at the sub-section level
+					if (e.type === "section-next") {
+						level = !!_id[2] << 1 | !!_id[3];
+						switch (level) {
+						case 0: // top-level menu link has focus
+						case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
+							next = $scope.find(".knav-" + (_id[1] + 1) + "-0-0");
 							if (next.length > 0) {
 								pe.focus(next);
 							} else {
 								pe.focus($scope.find(".knav-0-0-0")); // wrap around at the top level
 							}
+							break;
+						case 2: // sub-section link has focus
+						case 3: // 3rd level link (child of a sub-section) has focus
+							next = $scope.find(".knav-" + (_id[1]) + "-" + (_id[2] + 1) + "-0");
+							if (next.length > 0) {
+								pe.focus(next);
+							} else {
+								next = $scope.find(".knav-" + (_id[1] + 1) + "-0-0"); // wrap around at the sub-section level
+								if (next.length > 0) {
+									pe.focus(next);
+								} else {
+									pe.focus($scope.find(".knav-0-0-0")); // wrap around at the top level
+								}
+							}
+							break;
 						}
-						break;
 					}
-				}
-				if (e.type === "item-next") {
-					next = $scope.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] + 1)); // move to 3rd level
-					if (next.length > 0) {
-						pe.focus(next);
-					} else {
-						next = $scope.find(".knav-" + _id[1] + "-" + (_id[2] + 1) + "-0"); // move to 2nd level
+					if (e.type === "item-next") {
+						next = $scope.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] + 1)); // move to 3rd level
 						if (next.length > 0) {
 							pe.focus(next);
 						} else {
-							pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
+							next = $scope.find(".knav-" + _id[1] + "-" + (_id[2] + 1) + "-0"); // move to 2nd level
+							if (next.length > 0) {
+								pe.focus(next);
+							} else {
+								pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
+							}
 						}
 					}
-				}
-				if (e.type === "item-previous") {
-					next = $scope.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] - 1)); // move to 3rd level
-					if (next.length > 0) {
-						pe.focus(next);
-					} else {
-						next = $scope.find(".knav-" + _id[1] + "-" + (_id[2] - 1) + "-0"); // move to 2nd level
+					if (e.type === "item-previous") {
+						next = $scope.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] - 1)); // move to 3rd level
 						if (next.length > 0) {
 							pe.focus(next);
 						} else {
-							pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
+							next = $scope.find(".knav-" + _id[1] + "-" + (_id[2] - 1) + "-0"); // move to 2nd level
+							if (next.length > 0) {
+								pe.focus(next);
+							} else {
+								pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
+							}
 						}
 					}
-				}
-				if (e.type === "focusin" && _id[2] === 0 && _id[3] === 0) {
-					hideallsubmenus();
-					if (_elm.find('.expandicon').length > 0) {
-						showsubmenu(e.target);
+					if (e.type === "focusin" && _id[2] === 0 && _id[3] === 0) {
+						hideallsubmenus();
+						if (_elm.find('.expandicon').length > 0) {
+							showsubmenu(e.target);
+						}
+						return;
 					}
-					return;
-				}
+				});
+			}
+			$(document).on("click", function () {
+				$scope.trigger("focusoutside");
 			});
+			$scope.on("focusoutside", function () {
+				return hideallsubmenus();
+			});
+
 			/* [Main] parse mega menu and establish all ARIA and Navigation classes
 			 */
 			$scope.find('ul.mb-menu > li').find('a:eq(0)').each(function (index, value) {
