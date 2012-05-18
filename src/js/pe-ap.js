@@ -28,6 +28,8 @@
 		 * @type {string} Page language, defaults to fra if not available
 		 */
 		language: ($("html").attr("lang") ? ($("html").attr("lang").indexOf("en") === 0 ? "eng" : "fra") : $("meta[name='dc.language'], meta[name='dcterms.language']").attr("content")),
+		touch_device: 'ontouchstart' in document.documentElement,
+		theme: 'gcwu', // Figure out way to detect this
 		suffix: "",
 		header: $('#cn-head'),
 		menubar: $('.wet-boew-menubar'),
@@ -66,6 +68,10 @@
 		 */
 		_init: function () {
 			var mb_dialogue, mb_header, bcrumb, sub, search_elm, s_dialogue, _list, links, footer1, ul, pefile, lang_links, lang_nav, $lch3;
+
+			// Identify the theme and whether or not it is a touch device
+			$('html').removeClass('no-js').addClass(pe.theme + (touch-device) ? 'touch-device' : '');
+
 			// determine if this file is minified
 			pefile = pe.url(document.getElementById('progressive').src).file;
 			pe.suffix = pefile.substr(pefile.length - 7) === "-min.js" ? "-min" : "";
@@ -944,7 +950,6 @@
 					pe._execute(pe.fn[settings.globals[i]], document);
 				}
 			}
-			$('html').removeClass('no-js').addClass('gcwu');
 			if (pe.mobile) {
 				pe.add._load([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.js']);
 			}
