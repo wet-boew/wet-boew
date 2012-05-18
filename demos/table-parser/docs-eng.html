@@ -1268,7 +1268,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 
-<h2>Having a sumary rowgroup</h2>
+<h2>Having a summary group</h2>
+
+<h3>Rowgroup summary</h3>
 
 <p>That is about having a &quot;Total&quot; and/or &quot;Subtotal&quot; row. It's called &quot;rowgroup summary&quot;. Rowgroup because it can contain more than one row and Summary because that information is directly related to the previous rowgroup.</p>
 
@@ -1374,16 +1376,1522 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 
-<p>When data are added in the tfoot rowgroup, they are applying to every row in on or more tbody rowgroup.</p>
+<p>When data are added in the tfoot rowgroup, that will represent either the summary of each data rowgroup or the summary of each summary rowgroup but not both.</p>
 
-<p>Please note that the &quot;tfoot&quot; rowgroup can be or we would like to be rendered in three possible way</p>
+<p>Please note that the &quot;tfoot&quot; rowgroup can be rendered in three possible way. Those render method are given to the user agent.</p>
 <ol>
-	<li>Rendered as other tbody rowgroup but with an visual representation (line a larger border at the top of it's first row)<li>
+	<li>Rendered as other tbody rowgroup but with an visual representation (line a larger border at the top of it's first row set in CSS)<li>
 	<li>Rendered to support scrolling of body sections. (see <a href="http://www.w3.org/TR/1999/REC-html401-19991224/struct/tables.html#h-11.1">HTML4 - 11.1 Introduction to tables - 3<sup>rd</sup> Paragraph</a>)</li>
 	<li>Rendered to be printed on each pages at the bottom of an table (see <a href="http://www.w3.org/TR/1999/REC-html401-19991224/struct/tables.html#h-11.1">HTML4 - 11.1 Introduction to tables - 3<sup>rd</sup> Paragraph</a>)</li>
 </ol>
 
-<p>Be careful before to use it. Ask you the question if all those three possible way to rendered it, would be the <strong>behaviour</strong> you would like to have. If your answer is &quot;No&quot;, I would recommand to to use an unique/separated &quot;tbody&quot; to represent your data row summary.</p>
+<p>Be careful before to use it. Ask you the question if you would like to have your summary data row in the tfoot rowgroup be rendered in <strong>all</strong> those three possible way. If your answer is &quot;No&quot;, I would recommand to to use an unique/separated &quot;tbody&quot; to represent your data row summary.</p>
+
+
+<h4>Sub Rowgroup summary</h4>
+
+<p>In the next table, you will see a table with one data rowgroup, one sub rowgroup summary and one total. Please note, this is only possible when the sub rowgroup summary have 2 or more data row.</p>
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th></th>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Sub Total</th>
+    <td>4477</td>
+    <td>1980</td>
+  </tr>
+  <tr>
+    <th>Foreign Countries</th>
+    <td>30841</td>
+    <td>17798</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Total</th>
+    <td>35318</td>
+    <td>19779</td>
+  </tr>
+</tbody>
+
+</table>
+
+
+<p>In the next table, you have two set of data rowgroup, two set of data rowgroup summary of one row each and a big total at the end</p>
+
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th></th>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Sub Total</th>
+    <td>4477</td>
+    <td>1980</td>
+  </tr>
+</tbody>
+<tbody>
+	<tr>
+		<th colspan="3">Foreign Countries</th>
+	</tr>
+  <tr>
+    <th>Danish</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>German</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Japan</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>Korean</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Finland</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Spanish</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>United States</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>United Kingdom</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Sub Total</th>
+    <td>4477</td>
+    <td>1980</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Total</th>
+    <td>35318</td>
+    <td>19779</td>
+  </tr>
+</tbody>
+
+</table>
+
+<p>FYI - in the previous table, the "Foreign Countries" rowgroup will be considerated as a sub rowgroup of the one with all the province.</p>
+
+<p>Next example are with 2 paralel data rowgroup</p>
+
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th></th>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th colspan="3">Canada</th>
+	</tr>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Sub Total</th>
+    <td>4477</td>
+    <td>1980</td>
+  </tr>
+</tbody>
+<tbody>
+	<tr>
+		<th colspan="3">Foreign Countries</th>
+	</tr>
+  <tr>
+    <th>Danish</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>German</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Japan</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>Korean</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Finland</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Spanish</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>United States</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>United Kingdom</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Sub Total</th>
+    <td>4477</td>
+    <td>1980</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Total</th>
+    <td>35318</td>
+    <td>19779</td>
+  </tr>
+</tbody>
+
+</table>
+
+
+<h3>Colgroup summary</h3>
+
+<p>A Side Note: <em>A colgroup can be defined to only include the row heading cell (th) similar to the thead tag. Whatever a colgroup can have in his scope row header mixed with data cell. The final decision regarding this will be the designer / editor depending of it's needs or his internal guideline. The consequence is when a colgroup contains data cell mixed with row header would be simply imposible to swap the row with the column and can be resulted finally into serveral smaller usable table.</em></p>
+
+<p>A colgroup summary can be cleary defined visually when there are two or more rows assigned in the column header in the row group section (thead). That wont required you to have set the colgroup tag previously but still recommended to have. The other way to define is the colgroup tag. That are very useful when there are only one row in the column header in the row group section (thead).</p>
+
+<h4>Colgroup summary with one row of column heading</h4>
+
+<p>&lt;colgroup /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt;</p>
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th></th>
+    <th>Filed</th>
+    <th>Granted</th>
+    <th>Total</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+    <td>1147</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+    <td>658</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+    <td>150</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+    <td>74</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+    <td>3025</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+    <td>1279</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+    <td>182</td>
+  </tr>
+</tbody>
+</table>
+
+
+<p>With a sub column group containing two row or more</p> 
+
+<p>&lt;colgroup /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt;</p>
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th></th>
+    <th>Filed</th>
+    <th>Granted</th>
+    <th>Sub Total</th>
+    <th>Examined</th>
+    <th>Total</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+    <td>1147</td>
+    <td>400</td>
+    <td>1147</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+    <td>658</td>
+    <td>144</td>
+    <td>658</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+    <td>150</td>
+    <td>42</td>
+    <td>150</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+    <td>30</td>
+    <td>13</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+    <td>20</td>
+    <td>48</td>
+    <td>68</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>6</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+    <td>74</td>
+    <td>21</td>
+    <td>74</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+    <td>3025</td>
+    <td>884</td>
+    <td>3025</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+    <td>7</td>
+    <td>10</td>
+    <td>17</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+<tbody>
+	<tr>
+		<th colspan="3">Canada</th>
+	</tr>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Sub Total</th>
+    <td>4477</td>
+    <td>1980</td>
+  </tr>
+</tbody>
+<tbody>
+	<tr>
+		<th colspan="3">Foreign Countries</th>
+	</tr>
+  <tr>
+    <th>Danish</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>German</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Japan</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>Korean</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Finland</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Spanish</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>United States</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>United Kingdom</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Sub Total</th>
+    <td>4477</td>
+    <td>1980</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Total</th>
+    <td>35318</td>
+    <td>19779</td>
+  </tr>
+</tbody>
+
+</table>
+
+    <td>871</td>
+    <td>408</td>
+    <td>1279</td>
+    <td>408</td>
+    <td>1279</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+    <td>182</td>
+    <td>62</td>
+    <td>182</td>
+  </tr>
+</tbody>
+</table>
+
+
+
+
+<h4>Colgroup summary with two row of column heading</h4>
+
+<p>[recommend but optional] &lt;colgroup /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt;</p>
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th rowspan="2"></th>
+    <th colspan="2">Application</th>
+    <th rowspan="2">Total</th>
+  </tr>
+
+  <tr>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+    <td>1147</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+    <td>658</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+    <td>150</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+    <td>74</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+    <td>3025</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+    <td>1279</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+    <td>182</td>
+  </tr>
+</tbody>
+</table>
+
+
+<p>With a sub column group containing tow row or more</p> 
+
+<p>[required] &lt;colgroup /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt;</p>
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th rowspan="2"></th>
+    <th colspan="2">Application</th>
+    <th rowspan="2">Sub Total</th>
+    <th rowspan="2">Examined</th>
+    <th rowspan="2">Total</th>
+  </tr>
+
+
+  <tr>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+    <td>1147</td>
+    <td>400</td>
+    <td>1147</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+    <td>658</td>
+    <td>144</td>
+    <td>658</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+    <td>150</td>
+    <td>42</td>
+    <td>150</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+    <td>30</td>
+    <td>13</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+    <td>20</td>
+    <td>48</td>
+    <td>68</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>6</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+    <td>74</td>
+    <td>21</td>
+    <td>74</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+    <td>3025</td>
+    <td>884</td>
+    <td>3025</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+    <td>7</td>
+    <td>10</td>
+    <td>17</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+    <td>1279</td>
+    <td>408</td>
+    <td>1279</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+    <td>182</td>
+    <td>62</td>
+    <td>182</td>
+  </tr>
+</tbody>
+</table>
+
+
+<p>Two sub column group containing two row or more.</p> 
+
+
+<p>[required] &lt;colgroup /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt;</p>
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th rowspan="2"></th>
+    <th rowspan="2">Filed</th>
+    <th rowspan="2">Granted</th>
+    <th rowspan="2">Sub Total</th>
+    <th colspan="3">Operational Application</th>
+    <th rowspan="2">Total</th>
+  </tr>
+
+
+  <tr>
+    <th>Searched</th>
+    <th>Examined</th>
+    <th>Sub Total</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+    <td>1147</td>
+    <td>400</td>
+    <td>1147</td>
+    <td>400</td>
+    <td>1147</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+    <td>658</td>
+    <td>144</td>
+    <td>658</td>
+    <td>144</td>
+    <td>658</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+    <td>150</td>
+    <td>42</td>
+    <td>150</td>
+    <td>42</td>
+    <td>150</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+    <td>30</td>
+    <td>13</td>
+    <td>30</td>
+    <td>13</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+    <td>20</td>
+    <td>48</td>
+    <td>68</td>
+    <td>48</td>
+    <td>68</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>6</td>
+    <td>20</td>
+    <td>6</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+    <td>74</td>
+    <td>21</td>
+    <td>74</td>
+    <td>21</td>
+    <td>74</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+    <td>3025</td>
+    <td>884</td>
+    <td>3025</td>
+    <td>884</td>
+    <td>3025</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+    <td>7</td>
+    <td>10</td>
+    <td>17</td>
+    <td>10</td>
+    <td>17</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+    <td>1279</td>
+    <td>408</td>
+    <td>1279</td>
+    <td>408</td>
+    <td>1279</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+    <td>182</td>
+    <td>62</td>
+    <td>182</td>
+    <td>62</td>
+    <td>182</td>
+  </tr>
+</tbody>
+</table>
+<p>FYI - in the previous table, the "Operational Application" column group will be considerated as a sub column group of the second colgroup defined (see they are spanned in two row).</p>
+
+<p>Two paralel column group containing each a column group summary.</p> 
+
+<p>[required] &lt;colgroup /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt;</p>
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th rowspan="2"></th>
+    <th colspan="3">In/Out Office Application</th>
+    <th colspan="3">Operational Application</th>
+    <th rowspan="2">Total</th>
+  </tr>
+
+
+  <tr>
+    <th>Filed</th>
+    <th>Granted</th>
+    <th>Sub Total</th>
+    <th>Searched</th>
+    <th>Examined</th>
+    <th>Sub Total</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+    <td>1147</td>
+    <td>400</td>
+    <td>1147</td>
+    <td>400</td>
+    <td>1147</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+    <td>658</td>
+    <td>144</td>
+    <td>658</td>
+    <td>144</td>
+    <td>658</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+    <td>150</td>
+    <td>42</td>
+    <td>150</td>
+    <td>42</td>
+    <td>150</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+    <td>30</td>
+    <td>13</td>
+    <td>30</td>
+    <td>13</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+    <td>20</td>
+    <td>48</td>
+    <td>68</td>
+    <td>48</td>
+    <td>68</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>6</td>
+    <td>20</td>
+    <td>6</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+    <td>74</td>
+    <td>21</td>
+    <td>74</td>
+    <td>21</td>
+    <td>74</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+    <td>3025</td>
+    <td>884</td>
+    <td>3025</td>
+    <td>884</td>
+    <td>3025</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+    <td>7</td>
+    <td>10</td>
+    <td>17</td>
+    <td>10</td>
+    <td>17</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+    <td>1279</td>
+    <td>408</td>
+    <td>1279</td>
+    <td>408</td>
+    <td>1279</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+    <td>182</td>
+    <td>62</td>
+    <td>182</td>
+    <td>62</td>
+    <td>182</td>
+  </tr>
+</tbody>
+</table>
+
+
+<h3>Rowgroup summary with an colgroup summary</h3>
+
+<p>Since I create HTML table I never had to design a table like this. But we never know, may be someone somewhere need or will need to design a table with column group summary and row group summary togheter. You will see here how to do it and what happen with the cell at the coordinate of each group summary.</p>
+
+<p>The particularity here is about the coordinate cell at the intersection between the column group summary and the row group summary. They can be layout cell (empty td element) or the summary of the summary (td element with data). But it's not acceptable for that intersection to be set as a cell header (th element)</p>
+
+<p>In the next example, the intersection of group summary are layout cell and they are empty. Also the data at intersection between the summary colgroup and the global table summary (named here row and column Total) can be a data cell or a cell used for layout. They are layout cell in the example.</p>
+
+
+<p>[required] &lt;colgroup /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt;</p>
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th rowspan="2"></th>
+    <th colspan="3">In/Out Office Application</th>
+    <th colspan="3">Operational Application</th>
+    <th rowspan="2">Total</th>
+  </tr>
+
+
+  <tr>
+    <th>Filed</th>
+    <th>Granted</th>
+    <th>Sub Total</th>
+    <th>Searched</th>
+    <th>Examined</th>
+    <th>Sub Total</th>
+  </tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th colspan="8">Canada</th>
+	</tr>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+    <td>1147</td>
+    <td>400</td>
+    <td>1147</td>
+    <td>400</td>
+    <td>1147</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+    <td>658</td>
+    <td>144</td>
+    <td>658</td>
+    <td>144</td>
+    <td>658</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+    <td>150</td>
+    <td>42</td>
+    <td>150</td>
+    <td>42</td>
+    <td>150</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+    <td>30</td>
+    <td>13</td>
+    <td>30</td>
+    <td>13</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+    <td>20</td>
+    <td>48</td>
+    <td>68</td>
+    <td>48</td>
+    <td>68</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>6</td>
+    <td>20</td>
+    <td>6</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+    <td>74</td>
+    <td>21</td>
+    <td>74</td>
+    <td>21</td>
+    <td>74</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+    <td>3025</td>
+    <td>884</td>
+    <td>3025</td>
+    <td>884</td>
+    <td>3025</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+    <td>7</td>
+    <td>10</td>
+    <td>17</td>
+    <td>10</td>
+    <td>17</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+    <td>1279</td>
+    <td>408</td>
+    <td>1279</td>
+    <td>408</td>
+    <td>1279</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+    <td>182</td>
+    <td>62</td>
+    <td>182</td>
+    <td>62</td>
+    <td>182</td>
+  </tr>
+</tbody>
+
+
+<tbody>
+  <tr>
+    <th>Sub Total</th>
+    <td>4477</td>
+    <td>1980</td>
+	<td></td>
+    <td>4477</td>
+    <td>1980</td>
+	<td></td>
+    <td></td>
+  </tr>
+</tbody>
+<tbody>
+	<tr>
+		<th colspan="8">Foreign Countries</th>
+	</tr>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+    <td>1147</td>
+    <td>400</td>
+    <td>1147</td>
+    <td>400</td>
+    <td>1147</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+    <td>658</td>
+    <td>144</td>
+    <td>658</td>
+    <td>144</td>
+    <td>658</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+    <td>150</td>
+    <td>42</td>
+    <td>150</td>
+    <td>42</td>
+    <td>150</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+    <td>30</td>
+    <td>13</td>
+    <td>30</td>
+    <td>13</td>
+    <td>30</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+    <td>20</td>
+    <td>48</td>
+    <td>68</td>
+    <td>48</td>
+    <td>68</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>6</td>
+    <td>20</td>
+    <td>6</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+    <td>74</td>
+    <td>21</td>
+    <td>74</td>
+    <td>21</td>
+    <td>74</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+    <td>3025</td>
+    <td>884</td>
+    <td>3025</td>
+    <td>884</td>
+    <td>3025</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+    <td>7</td>
+    <td>10</td>
+    <td>17</td>
+    <td>10</td>
+    <td>17</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+    <td>1279</td>
+    <td>408</td>
+    <td>1279</td>
+    <td>408</td>
+    <td>1279</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+    <td>182</td>
+    <td>62</td>
+    <td>182</td>
+    <td>62</td>
+    <td>182</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Sub Total</th>
+    <td>4477</td>
+    <td>1980</td>
+	<td></td>
+    <td>4477</td>
+    <td>1980</td>
+	<td></td>
+    <td>25687</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Total</th>
+    <td>35318</td>
+    <td>19779</td>
+    <td></td>
+    <td>35318</td>
+    <td>19779</td>
+    <td></td>
+    <td></td>
+  </tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
 
 
 <h2>Use data cell for layout</h2>
