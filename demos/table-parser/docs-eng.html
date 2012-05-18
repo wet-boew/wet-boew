@@ -306,6 +306,36 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 
+<h2>Table related element</h2>
+<p>I classify all the table related element into two category:</p>
+
+<ol>
+	<li>Structural element:
+		<ul>
+			<li>table</li>
+			<li>colgroup</li>
+			<li>col</li>
+			<li>thead</li>
+			<li>tbody</li>
+			<li>tfoot</li>
+			<li>tr</li>
+		</ul>
+	</li>
+	<li>Informatif element:
+		<ul>
+			<li>caption</li>
+			<li>td</li>
+			<li>th</li>
+		</ul>
+	</li>
+</ol>
+
+<p>The usable table are defined by it's informatif element and supported/extended by it's structural element. Also, this document define a table to be an unique rowgroup with a caption element as it's cell header. The objective are not to talk about the accessibility WCAG 2.0 related to table. All the above concept are ignoring any attribute like &quot;scope&quot; and &quot;id/headers&quot; because they are there for accessibility purpose and may can not represent the visual perceptible strucutre of the table.</p>
+
+<p>Why the attribute like &quot;scope&quot; and &quot;id/headers&quot; are ignored ? Simply because in a upcomming time, I would build a plugin able to detect all the cell relationship and set, when appropriate, the value for &quot;scope&quot; and &quot;id/headers&quot; attribute. That will only work if this guide about how to design an usable table are followed.</p>
+<!-- @author:  Pierre Dubois -->
+
+
 <h2>General Table Layout</h2>
 
 <h3>This is a correct layout</h3>
@@ -3231,9 +3261,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2>Use data cell for layout</h2>
 
-<p>Inside a data table, a cell can not be used for layout purpose. The only exception are the <strong>Top Left cell</strong> that is set in the table.</h2>
-
-<p><em>The following data table example was token from the HTML 5 draft (<a href="http://dev.w3.org/html5/spec/the-th-element.html">4.9.10 The th element</a>)</em></p>
+<p>Inside a data table, a cell can not be used for layout purpose. The exception are the <strong>summary/header group intersection</strong> if they are empty cell. Also in general a layout cell will be represented by td element but the top left cell can be a th element. The intersection between data group, data row and data col will be a data cell. In some case a data cell will be empty or contain something like &quot;N/A&quot;. The meaning of that particular cell will be an absence of data and not a layout cell.</h2>
 
 
 <h3>Bad example (with layout data cell)</h3>
@@ -4089,21 +4117,21 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <h3>Bad Example</h3>
 
 <table>
-	<caption>Here is an table caption</caption>
+	<caption>Here is an table caption [1]</caption>
 	<tr>
-		<th colspan="4">Cell Header</th>
+		<th colspan="4">Cell Header [2]</th>
 	</tr>
 	<tr>
-		<th>Cell Header</th>
-		<th>Cell Header</th>
-		<th>Cell Header</th>
-		<th>Cell Header</th>
+		<th>Cell Header [3]</th>
+		<th>Cell Header [4]</th>
+		<th>Cell Header [5]</th>
+		<th>Cell Header [6]</th>
 	</tr>
 	<tr>
-		<td>Data Cell</td>
-		<td>Data Cell</td>
-		<td>Data Cell</td>
-		<td>Data Cell</td>
+		<td>Data Cell [7]</td>
+		<td>Data Cell [8]</td>
+		<td>Data Cell [9]</td>
+		<td>Data Cell [10]</td>
 	</tr>
 </table>
 
@@ -4114,21 +4142,21 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <code>
 
 &lt;table&gt;
-	&lt;caption&gt;Here is an table caption&lt;/caption&gt;
+	&lt;caption&gt;Here is an table caption [1]&lt;/caption&gt;
 	&lt;tr&gt;
-		&lt;th colspan=&quot;4&quot;&gt;Cell Header&lt;/th&gt;
+		&lt;th colspan=&quot;4&quot;&gt;Cell Header [2]&lt;/th&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
-		&lt;th&gt;Cell Header&lt;/th&gt;
-		&lt;th&gt;Cell Header&lt;/th&gt;
-		&lt;th&gt;Cell Header&lt;/th&gt;
-		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header [3]&lt;/th&gt;
+		&lt;th&gt;Cell Header [4]&lt;/th&gt;
+		&lt;th&gt;Cell Header [5]&lt;/th&gt;
+		&lt;th&gt;Cell Header [6]&lt;/th&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
-		&lt;td&gt;Data Cell&lt;/td&gt;
-		&lt;td&gt;Data Cell&lt;/td&gt;
-		&lt;td&gt;Data Cell&lt;/td&gt;
-		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell [7]&lt;/td&gt;
+		&lt;td&gt;Data Cell [8]&lt;/td&gt;
+		&lt;td&gt;Data Cell [9]&lt;/td&gt;
+		&lt;td&gt;Data Cell [10]&lt;/td&gt;
 	&lt;/tr&gt;
 &lt;/table&gt;
 
@@ -4142,21 +4170,21 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 
-<p>Here is an table caption</p>
+<p>Here is an table caption [1]</p>
 
 <table>
-	<caption>Cell Header</caption>
+	<caption>Cell Header [2]</caption>
 	<tr>
-		<th>Cell Header</th>
-		<th>Cell Header</th>
-		<th>Cell Header</th>
-		<th>Cell Header</th>
+		<th>Cell Header [3]</th>
+		<th>Cell Header [4]</th>
+		<th>Cell Header [5]</th>
+		<th>Cell Header [6]</th>
 	</tr>
 	<tr>
-		<td>Data Cell</td>
-		<td>Data Cell</td>
-		<td>Data Cell</td>
-		<td>Data Cell</td>
+		<td>Data Cell [7]</td>
+		<td>Data Cell [8]</td>
+		<td>Data Cell [9]</td>
+		<td>Data Cell [10]</td>
 	</tr>
 </table>
 
@@ -4166,21 +4194,21 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <pre>
 <code>
 
-&lt;p&gt;Here is an table caption&lt;/p&gt;
+&lt;p&gt;Here is an table caption [1]&lt;/p&gt;
 
 &lt;table&gt;
-	&lt;caption&gt;Cell Header&lt;/caption&gt;
+	&lt;caption&gt;Cell Header [2]&lt;/caption&gt;
 	&lt;tr&gt;
-		&lt;th&gt;Cell Header&lt;/th&gt;
-		&lt;th&gt;Cell Header&lt;/th&gt;
-		&lt;th&gt;Cell Header&lt;/th&gt;
-		&lt;th&gt;Cell Header&lt;/th&gt;
+		&lt;th&gt;Cell Header [3]&lt;/th&gt;
+		&lt;th&gt;Cell Header [4]&lt;/th&gt;
+		&lt;th&gt;Cell Header [5]&lt;/th&gt;
+		&lt;th&gt;Cell Header [6]&lt;/th&gt;
 	&lt;/tr&gt;
 	&lt;tr&gt;
-		&lt;td&gt;Data Cell&lt;/td&gt;
-		&lt;td&gt;Data Cell&lt;/td&gt;
-		&lt;td&gt;Data Cell&lt;/td&gt;
-		&lt;td&gt;Data Cell&lt;/td&gt;
+		&lt;td&gt;Data Cell [7]&lt;/td&gt;
+		&lt;td&gt;Data Cell [8]&lt;/td&gt;
+		&lt;td&gt;Data Cell [9]&lt;/td&gt;
+		&lt;td&gt;Data Cell [10]&lt;/td&gt;
 	&lt;/tr&gt;
 &lt;/table&gt;
 
@@ -4192,7 +4220,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 <h2>Having a second column heading set</h2>
-<p>If in your table, after one data row was followed the table column set, you should not have a second column heading set. Having a row header are after any data row are allowed but they need to be spanned by the table width. If you have set a second column heading set, you can move that block into a second table or remove it if the purpose is to repeat the first column heading. If your think the column heading are needed for very long table, that would be the job for a plugin not the job of the table structure.</p>
+<p>If in your table, after one data row was followed the table column set, you should not have a second column heading set. Having a full width row header after any data row are allowed. If you have set a second column heading set, this is represented by having paralel cell header, you can move that block into a second table or remove it if the purpose is to repeat the first column heading.</p>
 
 <h3>Invalid</h3>
 <table>
@@ -4577,7 +4605,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2>Column heading structure</h2>
 
-<p>The column heading, when they are build from serveral row, need to be in the general column definition to the specific one by progressing between row.</p>
+<p>The column heading, when they are build from serveral row, need to be general to the specific in the vertical.</p>
 
 <h3>Example</h3>
 
@@ -4853,13 +4881,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 
-<h2>Paralel column/row header are not allowed</h2>
+<h2>Paralel column/row header are not allowed except for group header</h2>
 
-<p>When a paralel column/row header are found, that cause an hiarchical issue. In the case of a column, may be that information can be moved at the top of it's parent cells, or merged if they already have one, or that information need to be more structured to fit in the current table context. The last issue can be resolved by moving the content into an another table.</p>
+<p>When a paralel column/row header are found, that cause an hiarchical issue. In the case of a column, may be that information can be moved at the top of it's parent cells, or merged if they already have one, or that information need to be more structured to fit in the current table context. This can be resolved often by moving the content into an another table. See the section about &quot;Having a second column heading set&quot;</p>
+
+
 
 
 <h2>Delimiting the column heading with a row group heading</h2>
-
 <p>After the column heading, a row group header can be specified. That row header will be spanned in the full table width.</p>
 
 
@@ -4870,13 +4899,89 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2>Data row</h2>
 
+<p>A data row is a table row that it's last cell are a data cell (&quo;td&quot; element). A data row can have a data cell between of two different level of row header cell</p>
 
-<h2>Data row group sequence (If any)</h2>
+<h2>Group</h2>
 
-<p>Each data row group need to be delimited by the tbody markup. There exist 4 kind of data row group. The first are the data set associated directly to the table level. The second are a sub-group of the table level and they need to have a rowgroup header specified. The third are the sub-group data row group summary. And the fourth data row group are the table data row group summary. Even the table parser allow you to have an infinite sub row group by desiging you row in a hiearchical way, it's imposible for the parser, when we are into an hiearchical sub row group, to know the difference between if a data row belong to the summary, or if the data row belong to the data set. There are only two way that relation can be showed. By using nested table or by using two differents data row structure.</p>
+<p>A group are a set of row or column. When the group are a set of row, this is an row group. And when the group are a set of column, this is a column group. They exist three type of group</a>
+
+<ul>
+	<li>Header group</li>
+	<li>Data group</li>
+	<li>Summary group</li>
+</ul>
+
+<h3>Header group<h3>
+
+<h4>Header row group</h4>
+<p>The header row group is delimited by a &quot;thead&quot; element. It's composed only of cell heading (th), optionally they can only contain one layout cell located at it's first column group. The header row group are always at the top of the table. The end can be marked by a rowgroup header spanned by the full table width or just the row before a data cell are found.</p>
+
+<h4>Header column group</h4>
+<p>The header column group are be delimited by a &quot;colgroup&quot; element. It's composed only of cell heading (th). Optionally, the first header column group if it is the first colgroup also can contain one layout cell in his first row. Differently of header row group, a table can have more than one header column group.</p>
+
+<p>&lt;colgroup id=&quot;a&quot; /&gt;&lt;colgroup id=&quot;b&quot; /&gt;&lt;colgroup id=&quot;c&quot; /&gt;&lt;colgroup  id=&quot;d&quot; span=&quot;2&quot; /&gt;&lt;colgroup id=&quot;d&quot; /&gt;</p>
+
+<table>
+	<caption>A table with more than one header column group [0]</caption>
+	
+	<thead>
+		<tr>
+			<th>Cell Header [1]</th>
+			<th>Cell Header [2]</th>
+			<th>Cell Header [3]</th>
+			<th>Cell Header [4]</th>
+			<th>Cell Header [5]</th>
+			<th>Cell Header [6]</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<th rowspan="3">Cell Header [7]</th>
+			<td rowspan="3">Data cell [8]</td>
+			<th>Cell Header [9]</th>
+			<td>Data cell [10]</td>
+			<td>Data cell [11]</td>
+			<td>Data cell [12]</td>
+		</tr>
+		
+		<tr>
+			<th>Cell Header [13]</th>
+			<td>Data cell [14]</td>
+			<td>Data cell [15]</td>
+			<td>Data cell [16]</td>
+		</tr>
+		<tr>
+			<th>Cell Header [17]</th>
+			<td>Data cell [18]</td>
+			<td>Data cell [19]</td>
+			<td>Data cell [20]</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>If you take a look closer of the colgroup defined in the previous table, you will be noticed that the last column are a summary column group. The column group type are defined are the following:</p>
+
+<ol>
+	<li>colgroup id=&quot;a&quot; : header column group</li>
+	<li>colgroup id=&quot;b&quot; : data column group</li>
+	<li>colgroup id=&quot;c&quot; : header column group</li>
+	<li>colgroup id=&quot;d&quot; : data column group</li>
+	<li>colgroup id=&quot;d&quot; : summary column group</li>
+</ol>
+
+<p>The summary column group are only applying to the preceding data column group (id=&quot;d&quot;)</p>
 
 
-<h2>Simplify your cell data</h2>
+<p>There exist 4 kind of data row group. The first are the data set associated directly to the table level. The second are a summary group of the table level and they need to have a rowgroup header specified. The third are the sub-group data row group summary. And the fourth data row group are the table data row group summary. Even the table parser allow you to have an infinite sub row group by desiging you row in a hiearchical way, it's imposible for the parser, when we are into an hiearchical sub row group, to know the difference between if a data row belong to the summary, or if the data row belong to the data set. There are only two way that relation can be showed. By using nested table or by using two differents data row structure.</p>
+
+
+<h2>Data cell</h2>
+
+<p>A data cell are the result of the intersection of two data groups. That can not be an intersection of two header group and can or can not be an intersection of two summary group.</p>
+
+
+<h2>Simplify your data cell</h2>
 <p>I recommand to design your cell data in the most basic form. Like if possible, having only the value or only the combinaison value and measure. If you use measure in your cell, be consistant across all the cell in the same column.</p>
 
 <p>You have a data row with the following heading like this:</p>
@@ -5019,7 +5124,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2>Have a proportional table</h2>
 
-<p>It's simple but fondamental for the parsing. For each row and col, the cell length (span or/and number of &quot;th&quot;/&quot;th&quot;) must be equal. When the rowgroup are used, it's not allowed for a cell to be spanned outside his rowgroup, but a cell can be spanned outside of it's colgroup. <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#processing-model-0">HTML5 requirement - 4.9.12 Processing model ( paragraph nine and ten)</a></p>
+<p>It's simple but fondamental for the parsing. For each row and col, the cell length (span or/and number of &quot;th&quot;/&quot;th&quot;) must be equal. When the rowgroup are used, it's not allowed for a cell to be spanned outside his rowgroup, but a cell can be spanned outside of it's colgroup in specific case. <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#processing-model-0">HTML5 requirement - 4.9.12 Processing model ( paragraph nine and ten)</a></p>
 
 <h2>How to use &quot;colgroup&quot; and &quot;col&quot; element</h2>
 
