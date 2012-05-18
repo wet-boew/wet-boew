@@ -28,7 +28,7 @@
 		 * @type {string} Page language, defaults to fra if not available
 		 */
 		language: ($("html").attr("lang") ? ($("html").attr("lang").indexOf("en") === 0 ? "eng" : "fra") : $("meta[name='dc.language'], meta[name='dcterms.language']").attr("content")),
-		touchdevice: 'ontouchstart' in document.documentElement,
+		touchscreen: 'ontouchstart' in document.documentElement,
 		theme: 'gcwu', // Figure out way to detect this
 		suffix: "",
 		header: $('#cn-head'),
@@ -69,8 +69,8 @@
 		_init: function () {
 			var mb_dialogue, mb_header, bcrumb, sub, search_elm, s_dialogue, _list, links, footer1, ul, pefile, lang_links, lang_nav, $lch3;
 
-			// Identify the theme and whether or not it is a touch device
-			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchdevice) ? ' touch-device' : ''));
+			// Identify the theme and whether or not the device has a touchscreen
+			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
 			// determine if this file is minified
 			pefile = pe.url(document.getElementById('progressive').src).file;
 			pe.suffix = pefile.substr(pefile.length - 7) === "-min.js" ? "-min" : "";
