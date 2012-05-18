@@ -70,7 +70,7 @@
 			var mb_dialogue, mb_header, bcrumb, sub, search_elm, s_dialogue, _list, links, footer1, ul, pefile, lang_links, lang_nav, $lch3;
 
 			// Identify the theme and whether or not it is a touch device
-			$('html').removeClass('no-js').addClass(pe.theme + (pe.touch_device) ? 'touch-device' : '');
+			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touch_device) ? ' touch-device' : ' touch-device'));
 			// determine if this file is minified
 			pefile = pe.url(document.getElementById('progressive').src).file;
 			pe.suffix = pefile.substr(pefile.length - 7) === "-min.js" ? "-min" : "";
