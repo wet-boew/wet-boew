@@ -111,9 +111,9 @@
 				$menu.find("li:first a:first").removeAttr("tabindex");
 			}
 			pe.resize(correctheight);
-			/* Handles opening and closing a submenu on a touch device
+			/* Handles opening and closing a submenu through a touchscreen
 			 */
-			if (pe.touchdevice) {
+			if (pe.touchscreen) {
 				$scope.find('.mb-sm').parent().find('> :header a').on("click", function (event) {
 					event.preventDefault();
 					event.stopPropagation();
