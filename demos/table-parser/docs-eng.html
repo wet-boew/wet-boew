@@ -2889,9 +2889,344 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 
+<h2>Indented row header</h2>
+
+<p>Sometime I already see a table that the rowgroup header are combined with the summary column. Something like the following table.</p>
+
+<style>
+.paddingLeft-larger {
+	padding-left:40px;
+}
+</style>
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th></th>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th class="align-left">Canada</th>
+		<td>4477</td>
+		<td>1980</td>
+  <tr>
+    <th class="paddingLeft-larger align-left">Alberta</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th class="paddingLeft-larger align-left">British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th class="paddingLeft-larger align-left">Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th class="paddingLeft-larger align-left">New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th class="paddingLeft-larger align-left">Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th class="paddingLeft-larger align-left">Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th class="paddingLeft-larger align-left">Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th class="paddingLeft-larger align-left">Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+  <tr>
+    <th class="paddingLeft-larger align-left">Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th class="paddingLeft-larger align-left">Quebec</th>
+    <td>871</td>
+    <td>408</td>
+  </tr>
+  <tr>
+    <th class="paddingLeft-larger align-left">Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+  </tr>
+</tbody>
+</table>
+
+<p>The visual relation between the &quot;Canada&quot; header and the following &quot;Provincial&quot; header is perceptible for a visual person and perceptible for a screen reader if the &quot;Canada&quot; header have a scope attribute set to &quot;rowgroup&quot;. But what is for somebody that are using a custom style sheet or if no style sheet are used at all ? You can get something like the following table.</p>
+
+<style>
+.tbl-nostyling th {
+	background-color:white;
+	text-align: left;
+	
+}
+</style>
+<table class="tbl-nostyling">
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th></th>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>Canada</th>
+		<td>4477</td>
+		<td>1980</td>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+  </tr>
+</tbody>
+</table>
+
+<p>Now the relation between the &quot;Canada&quot; header and the &quot;Province&quot; header are not visible. But if you have set the attribute scope to rowgroup, the screen reader will now have advantage over the graphical user agent. I can imagine somebody saying, yeah but that would be perceptible for an graphical user agent without style sheet if we transform that table by adding a layout cell before each &quot;Province&quot;. As the following example:</p>
 
 
+<table class="tbl-nostyling">
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
 
+  <tr>
+    <th colspan="2"></th>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th colspan="2">Canada</th>
+		<td>4477</td>
+		<td>1980</td>
+  <tr>
+	<td></td>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+	<td></td>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+	<td></td>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+	<td></td>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+	<td></td>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+	<td></td>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+	<td></td>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+	<td></td>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+  <tr>
+	<td></td>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+  </tr>
+  <tr>
+	<td></td>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+  </tr>
+  <tr>
+	<td></td>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+  </tr>
+</tbody>
+</table>
+
+<p>That is true, if there are layout cell before each &quot;Province&quot; now everybody can see the relation. <strong>But in a data table</strong> my recommandation is to avoid the use of layout cell for padding purpose. For me the only layout cell that can be authorized in a data table is a cell at a dead spot. I define the dead spot by the intersection of a column and a row where there relation are not reliable for the user. For exemple the intersection between the colgroup header and the rowgroup header (absolute top left cell), a cell in the intersection of a colgroup summary and a rowgroup summary as explained before.</p>
+
+<p>Decorative cell should be avoided at anytime. Here you have the same data structure but the data cell assigned to the rowgroup was moved into a rowgroup summary with a row named Total.</p>
+
+
+<table>
+  <caption>Applications filed and granted to residents of Canada</caption>
+ <thead> 
+
+  <tr>
+    <th></th>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th colspan="3">Canada</th>
+	</tr>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Total</th>
+    <td>4477</td>
+    <td>1980</td>
+  </tr>
+</tbody>
+</table>
 
 
 <h2>Use data cell for layout</h2>
