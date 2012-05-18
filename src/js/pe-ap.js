@@ -70,8 +70,8 @@
 			var mb_dialogue, mb_header, bcrumb, sub, search_elm, s_dialogue, _list, links, footer1, ul, pefile, lang_links, lang_nav, $lch3;
 
 			// Identify the theme and whether or not it is a touch device
-			$('html').removeClass('no-js').addClass(pe.theme + (touch_device) ? 'touch-device' : '');
-if (touch_device) {
+			$('html').removeClass('no-js').addClass(pe.theme + (pe.touch_device) ? 'touch-device' : '');
+if (pe.touch_device) {
 	alert("Touch device");
 }
 			// determine if this file is minified
