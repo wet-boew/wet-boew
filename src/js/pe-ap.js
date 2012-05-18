@@ -71,9 +71,6 @@
 
 			// Identify the theme and whether or not it is a touch device
 			$('html').removeClass('no-js').addClass(pe.theme + (pe.touch_device) ? 'touch-device' : '');
-if (pe.touch_device) {
-	alert("Touch device");
-}
 			// determine if this file is minified
 			pefile = pe.url(document.getElementById('progressive').src).file;
 			pe.suffix = pefile.substr(pefile.length - 7) === "-min.js" ? "-min" : "";
