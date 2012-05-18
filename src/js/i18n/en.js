@@ -63,7 +63,7 @@
 			"%welcome-to" : "Welcome to: " + $('#cn-site-title').text(),
 			"%loading" : "loading...",
 			"%archived-page" : "This Web page has been archived on the Web.",
-			"%sub-menu-help" : "(open the submenu with the down arrow key)",
+			"%sub-menu-help" : "(open the submenu with the down arrow key and close with the escape key)",
 			"%tab-rotation" : {
 				"disable" : "Stop tab rotation",
 				"enable" : "Start tab rotation"
