@@ -13,50 +13,11 @@
 	_pe.fn.searchtermhighlight = {
 		type: 'plugin',
 		_exec: function (elm) {
-			var terms, target, form, $this = $(elm), settings = {
-				termlength : pe.parameter('minlength', $this) || 3,
+			var terms, settings = {
 				passed: pe.url(document.location).param || ""
 			};
-			//console.log('minlength :: ' + pe.parameter('minlength',$this));
-			// console.log('limit :: ' + pe.parameter('limit',$this));
-			//  console.log('unknown :: ' + pe.parameter('unknown',$this));
-			//var dictionary = {
-			//    label: (PE.language == "eng") ? 'Search for term(s):' : 'Recherche de terme(s):',
-			//    noMatch: (PE.language == "eng") ? 'No match found' : 'Aucune correspondance trouvée',
-			//    oneMatch: (PE.language == "eng") ? '1 match found' : '1 correspondance trouvée',
-			//    multiMatch: (PE.language == "eng") ? ' matches found' : ' correspondances trouvées'
-			//}
 			terms = (typeof settings.passed === "string") ? settings.passed : settings.passed.terms;
-			form = $('<form class="wet-boew-termSearch"><label for="term">' + pe.dic.get('%search-for-terms') + '</label> <input type="text" id="term" name="term" value="' + terms + '" role="textbox" aria-multiline="false" />&#160;<span class="matches-found" role="status" aria-live="polite" aria-relevant="additions text"></span></form>');
-			$this.before(form);
-			// Event handling
-			form.on("change keypress click", "input", function (event) {
-				setTimeout(function () {
-					terms = $(event.delegateTarget).find("input[type=text]").attr("value");
-					target = $(event.delegateTarget).next();
-					if (terms.length >= settings.minLength) {
-						clearHighlightedTerms(target);
-						highlightTerms(terms, target, settings);
-					} else {
-						clearHighlightedTerms(target);
-					}
-				}, 50);
-			});
-			//Prevents the form from submitting
-			form.submit(function () {
-				return false;
-			});
-			$this.bind("searchComplete", function (event, matchesCount) {
-				var message;
-				if (matchesCount < 1) {
-					message = dictionary.noMatch;
-				} else if (matchesCount === 1) {
-					message = dictionary.oneMatch;
-				} else {
-					message = matchesCount + dictionary.multiMatch;
-				}
-				$(event.target).prev().find(".matches-found").text(message);
-			});
+
 			//Initialize with query parameter
 			if (terms.length >= settings.minLength) {
 				highlightTerms(terms, $(this), settings);
@@ -96,7 +57,7 @@
 				// --------------------------------------------------------------------------------------------
 				newText = target.html().replace(new RegExp(searchTerms, "gi"), function (match, grp1, grp2, grp3) {
 					matches += 1;
-					return grp2 + '<span class="wet-boew-highlight-term">' + grp3 + '</span>';
+					return grp2 + '<span class="wet-boew-highlight-term"><mark>' + grp3 + '</mark></span>';
 				});
 				target.trigger("searchComplete", [matches]);
 				target.html(newText);
@@ -117,7 +78,6 @@
 					var text = $(this).text();
 					$(this).replaceWith(text);
 				});
-				target.prev().find(".matches-found").text("");
 			} // end of clearHighlightedTerms
 			return this;
 		} // end of exec

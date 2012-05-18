@@ -29,8 +29,8 @@
             return hasMathML;
         }()),
         _exec: function (elm) {
-            if (pe.mobile || pe.fn.mathlib.support) {
-				return; // we do not want this on mobile devices or Mathml capable browsers
+            if (pe.fn.mathlib.support) {
+				return; // we do not want this on Mathml capable browsers
 			}
             pe.add._load('http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML');
         } // end of exec
