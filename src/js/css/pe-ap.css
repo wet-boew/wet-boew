@@ -4,14 +4,15 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
  
- /* -----Build Include Section Start----- */
- @import url('core.css');
- @import url('toolbar.css');
- @import url('tabbedinterface.css');
- @import url('webwidget.css');
- @import url('zebra.css');
- @import url('share.css');
- @import url('archived.css');
- @import url('progress.css');
- @import url('details.css');
- /* -----Build Include Section End----- */
+/* -----Build Include Section Start----- */
+@import url('core.css');
+@import url('menubar.css');
+@import url('toolbar.css');
+@import url('tabbedinterface.css');
+@import url('webwidget.css');
+@import url('zebra.css');
+@import url('share.css');
+@import url('archived.css');
+@import url('progress.css');
+@import url('details.css');
+/* -----Build Include Section End----- */

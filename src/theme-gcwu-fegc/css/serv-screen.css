@@ -1,0 +1,115 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+html {
+	overflow-y: scroll;
+}
+
+body {
+	width:100%;
+	margin:0;
+	padding:0;
+}
+
+h1 {
+	margin: 0;
+}
+
+#cn-head-inner, #cn-cols-inner, #cn-foot-inner  {
+	margin: auto;
+}
+
+#centre-col {
+	z-index: 1;
+	display: inline;
+}
+
+#fip-title,#cn-tc {
+	display:block;
+	float:none;
+	margin:auto;
+}
+
+#cn-head, #cn-head-inner, #cn-foot, #cn-foot-inner  {
+	overflow: hidden;
+}
+
+#cn-foot-inner, #cn-cols-inner {
+	background: #fff;
+}
+
+#cn-cols-inner {
+	overflow: visible !important;
+}
+
+#cn-cols-inner:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+#cn-centre-col-inner {
+	position: relative;
+	padding-top:1px;
+	padding-bottom:1px;
+}
+
+#cn-body-inner-1col #cn-centre-col {
+	float:left;
+}
+
+#cn-banner {
+	width: 100%;
+}
+
+#cn-site-title {
+	width: auto;
+}
+
+#cn-sig-inner {
+	width: 214px;
+	height: 20px;
+}
+
+#cn-site-title-right, .cn-alt-site-title-right {
+	text-align: right;
+}
+
+#cn-cols-inner div #cn-decoration-bar {
+	height: 10px;
+	background: #fff url(../images/background-waves.jpg) -100px center repeat-x;
+	margin-bottom: 12px;
+	padding-bottom: 0;
+}
+
+.cn-tc-left {
+	text-align: left;
+}
+
+.cn-tc-right {
+	text-align: right;
+}
+
+#cn-tc ul {
+	list-style:none;
+	margin: 0;
+	padding: 0;
+}
+
+#cn-tc li {
+	float: left;
+	margin-bottom: 4px;
+}
+
+#cn-tc li a {
+	text-decoration: none;
+	font-size: 0.9em;
+}
+
+#cn-tc li a:hover, #cn-tc li a:focus, #cn-tc li a:active {
+	text-decoration: underline;
+}

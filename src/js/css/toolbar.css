@@ -77,11 +77,3 @@
 .wet-boew-toolbar a.active,.wet-boew-toolbar a:focus,.wet-boew-toolbar a:hover{
     background-color:#fff
 }
-
-.ie7 .wet-boew-toolbar{
-    width:140px
-}
-
-.ie7 .wet-boew-toolbar .toolbar-top-page a{
-    width:110px
-}

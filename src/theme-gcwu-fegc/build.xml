@@ -25,9 +25,6 @@
 
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode" depends="-merge-css">
-		<copy file="${build.dir}/css/core.css" tofile="${build.dir}/css/core-ie.css"/>
-		<copy file="${build.dir}/css/core-sppe.css" tofile="${build.dir}/css/core-sppe-ie.css"/>
-		<copy file="${build.dir}/css/core-serv.css" tofile="${build.dir}/css/core-serv-ie.css"/>
 		<copy todir="${build.dir}/images">
 			<fileset dir="${src.dir}/images"/>
 		</copy>
@@ -36,22 +33,16 @@
 		</copy>
 		<copy todir="${build.dir}/encode/css">
 			<fileset dir="${build.dir}/css">
-				<include name="core.css"/>
-				<include name="core-sppe.css"/>
-				<include name="core-serv.css"/>
-				<include name="mobile.css"/>
-				<include name="core-sppe-mobile.css"/>
-				<include name="core-serv-mobile.css"/>
+				<include name="theme-gcwu-fegc.css"/>
+				<include name="theme-gcwu-fegc-sp-pe.css"/>
+				<include name="theme-gcwu-fegc-serv.css"/>
 			</fileset>
 		</copy>
 		<cssurlembed skipMissing="true">
 			<fileset dir="${build.dir}/encode/css/">
-				<include name="core.css"/>
-				<include name="core-sppe.css"/>
-				<include name="core-serv.css"/>
-				<include name="mobile.css"/>
-				<include name="core-sppe-mobile.css"/>
-				<include name="core-serv-mobile.css"/>
+				<include name="theme-gcwu-fegc.css"/>
+				<include name="theme-gcwu-fegc-sp-pe.css"/>
+				<include name="theme-gcwu-fegc-serv.css"/>
 			</fileset>
 		</cssurlembed>
 		<copy todir="${build.dir}/css">
@@ -73,12 +64,12 @@
 			<fileset dir="${src.dir}/../css"/>
 		</copy>
 		<filelist id="corefiles" dir="${build.dir}">
-			<file name="css/core.css"/>
-			<file name="css/core-sppe.css"/>
-			<file name="css/core-serv.css"/>
-			<file name="css/mobile.css"/>
-			<file name="css/core-sppe-mobile.css"/>
-			<file name="css/core-serv-mobile.css"/>
+			<file name="css/theme-gcwu-fegc.css"/>
+			<file name="css/theme-gcwu-fegc-ie.css"/>
+			<file name="css/theme-gcwu-fegc-sp-pe.css"/>
+			<file name="css/theme-gcwu-fegc-sp-pe-ie.css"/>
+			<file name="css/theme-gcwu-fegc-serv.css"/>
+			<file name="css/theme-gcwu-fegc-serv-ie.css"/>
 		</filelist>
 		<for param="css-file">
 			<path>
@@ -94,12 +85,12 @@
 
 		<delete>
 			<fileset dir="${build.dir}/css">
-				<exclude name="core.css"/>
-				<exclude name="core-sppe.css"/>
-				<exclude name="core-serv.css"/>
-				<exclude name="mobile.css"/>
-				<exclude name="core-sppe-mobile.css"/>
-				<exclude name="core-serv-mobile.css"/>
+				<exclude name="theme-gcwu-fegc.css"/>
+				<exclude name="theme-gcwu-fegc-ie.css"/>
+				<exclude name="theme-gcwu-fegc-sp-pe.css"/>
+				<exclude name="theme-gcwu-fegc-sp-pe-ie.css"/>
+				<exclude name="theme-gcwu-fegc-serv.css"/>
+				<exclude name="theme-gcwu-fegc-serv-ie.css"/>
 			</fileset>
 		</delete>
 		<delete dir="${build.dir}/../css"/>
