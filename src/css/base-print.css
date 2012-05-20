@@ -7,10 +7,10 @@ body{
 	background:#FFF;
 }
 
-#cn-skip-head,a.cn-linkdesc span span{
+#wb-skip,a.wb-linkdesc span span{
 	display:none;
 }
 
-#cn-centre-col,#cn-left-col,#cn-right-col{
+#wb-main,#wb-sec,#wb-sup{
 	min-height:0 !important;
 }

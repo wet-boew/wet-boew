@@ -57,7 +57,7 @@
 		ind: {
 			"%top-of-page": "Haut de la page",
 			"%you-are-in": "Vous êtes dans :",
-			"%welcome-to": "Bienvenue à : " + $('#cn-site-title').text(),
+			"%welcome-to": "Bienvenue à : " + $('#gcwu-title').text(),
 			"%archived-page": "Cette page Web a été archivée dans le Web.",
 			"%sub-menu-help": "(ouvrir le sous-menu avec la touche de la flèche descendante et le fermer avec la touche d'échappement)",
 			"%tab-rotation": {

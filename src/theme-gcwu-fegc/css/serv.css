@@ -12,16 +12,16 @@ h1 {
 	margin: 0 !important;
 }
 
-#cn-skip-head {
+#wb-skip {
 	display:none;
 	visibility:hidden;
 }
 
-#cn-body-inner-1col{
+#wb-body{
 	background:#fff;
 }
 
-#cn-cols-inner,#cn-head-inner{
+#wb-core-in,#wb-head-in{
 	background: #fff;
 }
 /*
@@ -33,48 +33,48 @@ a:visited {
 	color:#5a306b;
 }*/
 
-#cn-sig {
+#gcwu-sig {
 	margin-top: 20px;
 	margin-bottom: 11px;
 }
 
-#cn-wmms {
+#gcwu-wmms {
 	text-align: right;
 	margin-top: 10px;
 	margin-bottom: 11px;
 }
 
-#cn-site-title a,#cn-site-title a:visited,#cn-site-title a:hover,#cn-site-title a:focus{
+#gcwu-title a,#gcwu-title a:visited,#gcwu-title a:hover,#gcwu-title a:focus{
 	color:#295376;
 	text-decoration:none;
 }
 
-#cn-site-title a:hover,#cn-site-title a:focus{
+#gcwu-title a:hover,#gcwu-title a:focus{
 	text-decoration:underline;
 }
 
-#cn-site-title-left, #cn-site-title-right, .cn-alt-site-title-left, .cn-alt-site-title-right {
+#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
 	padding: 0;
 	color: #000;
 	font-size: 1.5em;
 	font-weight: bold;
 }
 
-.cn-alt-site-title-left, .cn-alt-site-title-right {
+.gcwu-alt-title-left, .gcwu-alt-title-right {
 	padding: 0;
 	color: #000;
 	font-size: 1.2em;
 	font-weight: bold;
 }
 
-#cn-cols-inner  h2, #cn-cols-inner  p {
+#wb-core-in  h2, #wb-core-in  p {
 	margin-left: 0;
 }
 
-#cn-cols-inner  li a {
+#wb-core-in  li a {
 	text-decoration: none;
 }
 
-#cn-cols-inner  li a:hover, #cn-cols-inner  li a:focus, #cn-cols-inner  li a:active {
+#wb-core-in  li a:hover, #wb-core-in  li a:focus, #wb-core-in  li a:active {
 	text-decoration: underline;
 }

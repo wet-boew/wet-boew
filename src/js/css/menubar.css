@@ -108,7 +108,7 @@
 	background:url("../images/menu-dropdown.gif") no-repeat right center;
 }
 
-.mb-megamenu .mb-sm-open{
+.mb-mega .mb-sm-open{
 	background-color:#CCC;
 	border-bottom:4px solid #242;
 	padding-top:5px;
@@ -117,18 +117,18 @@
 	-webkit-border-radius:0 0 3px 3px;
 }
 
-.mb-megamenu .mb-sm-open h2,.mb-megamenu .mb-sm-open h3,.mb-megamenu .mb-sm-open h4{
+.mb-mega .mb-sm-open h2,.mb-mega .mb-sm-open h3,.mb-mega .mb-sm-open h4{
 	font-size:1.2em;
 	font-weight:700;
 	margin:0;
 }
 
-.mb-megamenu .mb-sm-open ul{
+.mb-mega .mb-sm-open ul{
 	margin:0 0 0 1.2em;
 	padding:0 0 1em;
 }
 
-.mb-megamenu .mb-sm-open .menu-col{
+.mb-mega .mb-sm-open .menu-col{
 	float:left;
 	min-width:190px;
 }

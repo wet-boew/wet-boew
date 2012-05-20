@@ -37,7 +37,7 @@
         min-height:1px;
     }
 
-    #cn-centre-col-inner .span-1,#cn-centre-col-inner .span-2,#cn-centre-col-inner .span-3,#cn-centre-col-inner .span-4,#cn-centre-col-inner .span-5,#cn-centre-col-inner .span-6,#cn-centre-col-inner .span-7,#cn-centre-col-inner .span-8,#cn-centre-col-inner .span-9,#cn-centre-col-inner .span-10,#cn-centre-col-inner .span-11,#cn-centre-col-inner .span-12{
+    #wb-main-in .span-1,#wb-main-in .span-2,#wb-main-in .span-3,#wb-main-in .span-4,#wb-main-in .span-5,#wb-main-in .span-6,#wb-main-in .span-7,#wb-main-in .span-8,#wb-main-in .span-9,#wb-main-in .span-10,#wb-main-in .span-11,#wb-main-in .span-12{
         margin-bottom:20px;
     }
 
@@ -69,12 +69,12 @@
         border-bottom:1px solid #ccc !important;
     }
 
-    img.image-actual,#cn-aside .cn-minister-image img {
+    img.image-actual,#gcwu-aside .gcwu-minister-img img {
         width:auto !important;
         height:auto;
     }
 
-    .span-1 img,.span-2 img,.span-3 img,.span-4 img,.span-5 img,.span-6 img,.span-7 img,.span-8 img,.span-9 img,.span-10 img,.span-11 img,.span-12 img,#cn-aside img{
+    .span-1 img,.span-2 img,.span-3 img,.span-4 img,.span-5 img,.span-6 img,.span-7 img,.span-8 img,.span-9 img,.span-10 img,.span-11 img,.span-12 img,#gcwu-aside img{
         width:100%;
         height:auto;
         -ms-interpolation-mode:bicubic;
@@ -95,7 +95,7 @@
 
     /*** 960px ***/
     /* ---- Dimensions ---- */
-    #cn-body-inner-2col #cn-cols .grid-12 .span-1{
+    #wb-body-sec #wb-core .grid-12 .span-1{
         width:40px;
     }
 
@@ -103,7 +103,7 @@
         width:60px;
     }
 
-    .span-1,#cn-body-inner-2col #cn-cols .grid-12 .span-2{
+    .span-1,#wb-body-sec #wb-core .grid-12 .span-2{
         width:100px;
     }
 
@@ -111,15 +111,15 @@
         width:140px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-3{
+    #wb-body-sec #wb-core .grid-12 .span-3{
         width:160px;
     }
 
-    .span-2,#cn-body-inner-2col #cn-cols .grid-12 .span-4,.grid-12 .span-3{
+    .span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3{
         width:220px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-5{
+    #wb-body-sec #wb-core .grid-12 .span-5{
         width:280px;
     }
 
@@ -127,7 +127,7 @@
         width:300px;
     }
 
-    .span-3,#cn-body-inner-2col #cn-cols .grid-12 .span-6{
+    .span-3,#wb-body-sec #wb-core .grid-12 .span-6{
         width:340px;
     }
 
@@ -135,15 +135,15 @@
         width:380px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-7{
+    #wb-body-sec #wb-core .grid-12 .span-7{
         width:400px;
     }
 
-    .span-4,#cn-body-inner-2col #cn-cols .grid-12 .span-8,.grid-12 .span-6{
+    .span-4,#wb-body-sec #wb-core .grid-12 .span-8,.grid-12 .span-6{
         width:460px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-9{
+    #wb-body-sec #wb-core .grid-12 .span-9{
         width:520px;
     }
 
@@ -151,7 +151,7 @@
         width:540px;
     }
 
-    .span-5,#cn-body-inner-2col #cn-cols .grid-12 .span-10{
+    .span-5,#wb-body-sec #wb-core .grid-12 .span-10{
         width:580px;
     }
 
@@ -159,11 +159,11 @@
         width:620px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-11{
+    #wb-body-sec #wb-core .grid-12 .span-11{
         width:640px;
     }
 
-    .span-6,#cn-body-inner-2col #cn-cols .grid-12 .span-12,.grid-12 .span-9{
+    .span-6,#wb-body-sec #wb-core .grid-12 .span-12,.grid-12 .span-9{
         width:700px;
     }
 
@@ -185,7 +185,7 @@
 
 
     /* ---- Borders ---- */
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-1{
+    #wb-body-sec #wb-core .grid-12 .border-span-1{
         background-image:url(../../grids/images/border-40px.gif);
     }
 
@@ -193,7 +193,7 @@
         background-image:url(../../grids/images/border-60px.gif);
     }
 
-    .border-span-1,#cn-body-inner-2col #cn-cols .grid-12 .border-span-2,.module-versatile{
+    .border-span-1,#wb-body-sec #wb-core .grid-12 .border-span-2,.module-versatile{
         background-image:url(../../grids/images/border-100px.gif);
     }
 
@@ -201,15 +201,15 @@
         background-image:url(../../grids/images/border-140px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-3{
+    #wb-body-sec #wb-core .grid-12 .border-span-3{
         background-image:url(../../grids/images/border-160px.gif);
     }
 
-    .border-span-2,.module-versatile,#cn-body-inner-2col #cn-cols .grid-12 .border-span-4,.grid-12 .border-span-3{
+    .border-span-2,.module-versatile,#wb-body-sec #wb-core .grid-12 .border-span-4,.grid-12 .border-span-3{
         background-image:url(../../grids/images/border-220px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-5{
+    #wb-body-sec #wb-core .grid-12 .border-span-5{
         background-image:url(../../grids/images/border-280px.gif);
     }
 
@@ -217,7 +217,7 @@
         background-image:url(../../grids/images/border-300px.gif);
     }
 
-    .border-span-3,#cn-body-inner-2col #cn-cols .grid-12 .border-span-6{
+    .border-span-3,#wb-body-sec #wb-core .grid-12 .border-span-6{
         background-image:url(../../grids/images/border-340px.gif);
     }
 
@@ -225,15 +225,15 @@
         background-image:url(../../grids/images/border-380px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-7{
+    #wb-body-sec #wb-core .grid-12 .border-span-7{
         background-image:url(../../grids/images/border-400px.gif);
     }
 
-    .border-span-4,.module-table-contents,.module-welcomepage,#cn-body-inner-2col #cn-cols .grid-12 .border-span-8,.grid-12 .border-span-6{
+    .border-span-4,.module-table-contents,.module-welcomepage,#wb-body-sec #wb-core .grid-12 .border-span-8,.grid-12 .border-span-6{
         background-image:url(../../grids/images/border-460px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-9{
+    #wb-body-sec #wb-core .grid-12 .border-span-9{
         background-image:url(../../grids/images/border-520px.gif);
     }
 
@@ -241,7 +241,7 @@
         background-image:url(../../grids/images/border-540px.gif);
     }
 
-    .border-span-5,#cn-body-inner-2col #cn-cols .grid-12 .border-span-10{
+    .border-span-5,#wb-body-sec #wb-core .grid-12 .border-span-10{
         background-image:url(../../grids/images/border-580px.gif);
     }
 
@@ -249,11 +249,11 @@
         background-image:url(../../grids/images/border-620px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-11{
+    #wb-body-sec #wb-core .grid-12 .border-span-11{
         background-image:url(../../grids/images/border-640px.gif);
     }
 
-    .border-span-6,#cn-body-inner-2col #cn-cols .grid-12 .border-span-12,.grid-12 .border-span-9{
+    .border-span-6,#wb-body-sec #wb-core .grid-12 .border-span-12,.grid-12 .border-span-9{
         background-image:url(../../grids/images/border-700px.gif);
     }
 
@@ -281,7 +281,7 @@
         padding:2px 3px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-4 .calendar-month td,#cn-body-inner-2col #cn-cols .grid-12 .span-4 .calendar-month th{
+    #wb-body-sec #wb-core .grid-12 .span-4 .calendar-month td,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month th{
         width:30px;
         height:32px;
         padding:2px 3px;
@@ -304,7 +304,7 @@
 
     /*** CSS Grid System begins / Début du Système de grille CSS ***/
     /* ---- Dimensions ---- */
-    #cn-body-inner-2col #cn-cols .grid-12 .span-1{
+    #wb-body-sec #wb-core .grid-12 .span-1{
         width:55px;
     }
 
@@ -312,7 +312,7 @@
         width:80px;
     }
 
-    .span-1,#cn-body-inner-2col #cn-cols .grid-12 .span-2{
+    .span-1,#wb-body-sec #wb-core .grid-12 .span-2{
         width:130px;
     }
 
@@ -320,15 +320,15 @@
         width:180px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-3{
+    #wb-body-sec #wb-core .grid-12 .span-3{
         width:205px;
     }
 
-    .span-2,#cn-body-inner-2col #cn-cols .grid-12 .span-4,.grid-12 .span-3{
+    .span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3{
         width:280px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-5{
+    #wb-body-sec #wb-core .grid-12 .span-5{
         width:355px;
     }
 
@@ -336,7 +336,7 @@
         width:380px;
     }
 
-    .span-3,#cn-body-inner-2col #cn-cols .grid-12 .span-6{
+    .span-3,#wb-body-sec #wb-core .grid-12 .span-6{
         width:430px;
     }
 
@@ -344,15 +344,15 @@
         width:480px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-7{
+    #wb-body-sec #wb-core .grid-12 .span-7{
         width:505px;
     }
 
-    .span-4,#cn-body-inner-2col #cn-cols .grid-12 .span-8,.grid-12 .span-6{
+    .span-4,#wb-body-sec #wb-core .grid-12 .span-8,.grid-12 .span-6{
         width:580px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-9{
+    #wb-body-sec #wb-core .grid-12 .span-9{
         width:655px;
     }
 
@@ -360,7 +360,7 @@
         width:680px;
     }
 
-    .span-5,#cn-body-inner-2col #cn-cols .grid-12 .span-10{
+    .span-5,#wb-body-sec #wb-core .grid-12 .span-10{
         width:730px;
     }
 
@@ -368,11 +368,11 @@
         width:780px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-11{
+    #wb-body-sec #wb-core .grid-12 .span-11{
         width:805px;
     }
 
-    .span-6,#cn-body-inner-2col #cn-cols .grid-12 .span-12,.grid-12 .span-9{
+    .span-6,#wb-body-sec #wb-core .grid-12 .span-12,.grid-12 .span-9{
         width:880px;
     }
 
@@ -394,7 +394,7 @@
 
 
     /* ---- Borders ---- */
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-1{
+    #wb-body-sec #wb-core .grid-12 .border-span-1{
         background-image:url(../../grids/images/border-55px.gif);
     }
 
@@ -402,7 +402,7 @@
         background-image:url(../../grids/images/border-80px.gif);
     }
 
-    .border-span-1,#cn-body-inner-2col #cn-cols .grid-12 .border-span-2,.module-versatile{
+    .border-span-1,#wb-body-sec #wb-core .grid-12 .border-span-2,.module-versatile{
         background-image:url(../../grids/images/border-130px.gif);
     }
 
@@ -410,15 +410,15 @@
         background-image:url(../../grids/images/border-180px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-3{
+    #wb-body-sec #wb-core .grid-12 .border-span-3{
         background-image:url(../../grids/images/border-205px.gif);
     }
 
-    .border-span-2,.module-versatile,#cn-body-inner-2col #cn-cols .grid-12 .border-span-4,.grid-12 .border-span-3{
+    .border-span-2,.module-versatile,#wb-body-sec #wb-core .grid-12 .border-span-4,.grid-12 .border-span-3{
         background-image:url(../../grids/images/border-280px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-5{
+    #wb-body-sec #wb-core .grid-12 .border-span-5{
         background-image:url(../../grids/images/border-355px.gif);
     }
 
@@ -426,7 +426,7 @@
         background-image:url(../../grids/images/border-380px.gif);
     }
 
-    .border-span-3,#cn-body-inner-2col #cn-cols .grid-12 .border-span-6{
+    .border-span-3,#wb-body-sec #wb-core .grid-12 .border-span-6{
         background-image:url(../../grids/images/border-430px.gif);
     }
 
@@ -434,15 +434,15 @@
         background-image:url(../../grids/images/border-480px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-7{
+    #wb-body-sec #wb-core .grid-12 .border-span-7{
         background-image:url(../../grids/images/border-505px.gif);
     }
 
-    .border-span-4,.module-table-contents,.module-welcomepage,#cn-body-inner-2col #cn-cols .grid-12 .border-span-8,.grid-12 .border-span-6{
+    .border-span-4,.module-table-contents,.module-welcomepage,#wb-body-sec #wb-core .grid-12 .border-span-8,.grid-12 .border-span-6{
         background-image:url(../../grids/images/border-580px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-9{
+    #wb-body-sec #wb-core .grid-12 .border-span-9{
         background-image:url(../../grids/images/border-655px.gif);
     }
 
@@ -450,7 +450,7 @@
         background-image:url(../../grids/images/border-680px.gif);
     }
 
-    .border-span-5,#cn-body-inner-2col #cn-cols .grid-12 .border-span-10{
+    .border-span-5,#wb-body-sec #wb-core .grid-12 .border-span-10{
         background-image:url(../../grids/images/border-730px.gif);
     }
 
@@ -458,11 +458,11 @@
         background-image:url(../../grids/images/border-780px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-11{
+    #wb-body-sec #wb-core .grid-12 .border-span-11{
         background-image:url(../../grids/images/border-805px.gif);
     }
 
-    .border-span-6,#cn-body-inner-2col #cn-cols .grid-12 .border-span-12,.grid-12 .border-span-9{
+    .border-span-6,#wb-body-sec #wb-core .grid-12 .border-span-12,.grid-12 .border-span-9{
         background-image:url(../../grids/images/border-880px.gif);
     }
 
@@ -490,7 +490,7 @@
         padding:2px 3px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-4 .calendar-month td,#cn-body-inner-2col #cn-cols .grid-12 .span-4 .calendar-month th{
+    #wb-body-sec #wb-core .grid-12 .span-4 .calendar-month td,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month th{
         width:34px;
         height:32px;
         padding:2px 3px;
@@ -512,7 +512,7 @@
 
     /*** CSS Grid System begins / Début du Système de grille CSS ***/
     /* ---- Dimensions ---- */
-    #cn-body-inner-2col #cn-cols .grid-12 .span-1{
+    #wb-body-sec #wb-core .grid-12 .span-1{
         width:28px;
     }
 
@@ -520,7 +520,7 @@
         width:44px;
     }
 
-    .span-1,#cn-body-inner-2col #cn-cols .grid-12 .span-2{
+    .span-1,#wb-body-sec #wb-core .grid-12 .span-2{
         width:76px;
     }
 
@@ -528,15 +528,15 @@
         width:108px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-3{
+    #wb-body-sec #wb-core .grid-12 .span-3{
         width:124px;
     }
 
-    .span-2,#cn-body-inner-2col #cn-cols .grid-12 .span-4,.grid-12 .span-3{
+    .span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3{
         width:172px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-5{
+    #wb-body-sec #wb-core .grid-12 .span-5{
         width:220px;
     }
 
@@ -544,7 +544,7 @@
         width:236px;
     }
 
-    .span-3,#cn-body-inner-2col #cn-cols .grid-12 .span-6{
+    .span-3,#wb-body-sec #wb-core .grid-12 .span-6{
         width:268px;
     }
 
@@ -552,15 +552,15 @@
         width:300px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-7{
+    #wb-body-sec #wb-core .grid-12 .span-7{
         width:316px;
     }
 
-    .span-4,#cn-body-inner-2col #cn-cols .grid-12 .span-8,.grid-12 .span-6{
+    .span-4,#wb-body-sec #wb-core .grid-12 .span-8,.grid-12 .span-6{
         width:364px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-9{
+    #wb-body-sec #wb-core .grid-12 .span-9{
         width:412px;
     }
 
@@ -568,7 +568,7 @@
         width:428px;
     }
 
-    .span-5,#cn-body-inner-2col #cn-cols .grid-12 .span-10{
+    .span-5,#wb-body-sec #wb-core .grid-12 .span-10{
         width:460px;
     }
 
@@ -576,11 +576,11 @@
         width:492px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-11{
+    #wb-body-sec #wb-core .grid-12 .span-11{
         width:508px;
     }
 
-    .span-6,#cn-body-inner-2col #cn-cols .grid-12 .span-12,.grid-12 .span-9{
+    .span-6,#wb-body-sec #wb-core .grid-12 .span-12,.grid-12 .span-9{
         width:556px;
     }
 
@@ -602,7 +602,7 @@
 
 
     /* ---- Borders ----*/
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-1{
+    #wb-body-sec #wb-core .grid-12 .border-span-1{
         background-image:url(../../grids/images/border-28px.gif);
     }
 
@@ -610,7 +610,7 @@
         background-image:url(../../grids/images/border-44px.gif);
     }
 
-    .border-span-1,#cn-body-inner-2col #cn-cols .grid-12 .border-span-2,.module-versatile{
+    .border-span-1,#wb-body-sec #wb-core .grid-12 .border-span-2,.module-versatile{
         background-image:url(../../grids/images/border-76px.gif);
     }
 
@@ -618,15 +618,15 @@
         background-image:url(../../grids/images/border-108px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-3{
+    #wb-body-sec #wb-core .grid-12 .border-span-3{
         background-image:url(../../grids/images/border-124px.gif);
     }
 
-    .border-span-2,.module-versatile,#cn-body-inner-2col #cn-cols .grid-12 .border-span-4,.grid-12 .border-span-3{
+    .border-span-2,.module-versatile,#wb-body-sec #wb-core .grid-12 .border-span-4,.grid-12 .border-span-3{
         background-image:url(../../grids/images/border-172px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-5{
+    #wb-body-sec #wb-core .grid-12 .border-span-5{
         background-image:url(../../grids/images/border-220px.gif);
     }
 
@@ -634,7 +634,7 @@
         background-image:url(../../grids/images/border-236px.gif);
     }
 
-    .border-span-3,#cn-body-inner-2col #cn-cols .grid-12 .border-span-6{
+    .border-span-3,#wb-body-sec #wb-core .grid-12 .border-span-6{
         background-image:url(../../grids/images/border-268px.gif);
     }
 
@@ -642,15 +642,15 @@
         background-image:url(../../grids/images/border-300px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-7{
+    #wb-body-sec #wb-core .grid-12 .border-span-7{
         background-image:url(../../grids/images/border-316px.gif);
     }
 
-    .border-span-4,.module-table-contents,.module-welcomepage,#cn-body-inner-2col #cn-cols .grid-12 .border-span-8,.grid-12 .border-span-6{
+    .border-span-4,.module-table-contents,.module-welcomepage,#wb-body-sec #wb-core .grid-12 .border-span-8,.grid-12 .border-span-6{
         background-image:url(../../grids/images/border-364px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-9{
+    #wb-body-sec #wb-core .grid-12 .border-span-9{
         background-image:url(../../grids/images/border-412px.gif);
     }
 
@@ -658,7 +658,7 @@
         background-image:url(../../grids/images/border-428px.gif);
     }
 
-    .border-span-5,#cn-body-inner-2col #cn-cols .grid-12 .border-span-10{
+    .border-span-5,#wb-body-sec #wb-core .grid-12 .border-span-10{
         background-image:url(../../grids/images/border-460px.gif);
     }
 
@@ -666,11 +666,11 @@
         background-image:url(../../grids/images/border-492px.gif);
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .border-span-11{
+    #wb-body-sec #wb-core .grid-12 .border-span-11{
         background-image:url(../../grids/images/border-508px.gif);
     }
 
-    .border-span-6,#cn-body-inner-2col #cn-cols .grid-12 .border-span-12,.grid-12 .border-span-9{
+    .border-span-6,#wb-body-sec #wb-core .grid-12 .border-span-12,.grid-12 .border-span-9{
         background-image:url(../../grids/images/border-556px.gif);
     }
 
@@ -698,7 +698,7 @@
         padding:2px 3px;
     }
 
-    #cn-body-inner-2col #cn-cols .grid-12 .span-4 .calendar-month td,#cn-body-inner-2col #cn-cols .grid-12 .span-4 .calendar-month th{
+    #wb-body-sec #wb-core .grid-12 .span-4 .calendar-month td,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month th{
         width:26px;
         height:32px;
         padding:2px 3px;

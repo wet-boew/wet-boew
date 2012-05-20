@@ -31,10 +31,10 @@
 		touchscreen: 'ontouchstart' in document.documentElement,
 		theme: 'gcwu', // Figure out way to detect this
 		suffix: "",
-		header: $('#cn-head'),
+		header: $('#wb-head'),
 		menubar: $('.wet-boew-menubar'),
-		leftcol: $('#cn-left-col'),
-		footer: $('#cn-foot'),
+		leftcol: $('#wb-sec'),
+		footer: $('#wb-foot'),
 		/**
 		 * Detects the doctype of the document (loosely)
 		 * @function
@@ -87,12 +87,12 @@
 					// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 					// lets transform the menu to a dialog box
 					mb_dialogue = '<div data-role="page" id="jqmobile-wet-boew-menubar"><div data-role="header">';
-					mb_header = pe.header.find('#cn-psnb > :header');
+					mb_header = pe.header.find('#gcwu-psnb > :header');
 					mb_dialogue += "<h1>" + mb_header.html() + '</h1></div>';
 					//mb_dialogue.append($('<div data-role="header"></div>').append(mb_header.clone()));
 					mb_dialogue += '<div data-role="content" data-inset="true"><nav role="navigation">';
 
-					bcrumb = pe.header.find('#cn-bc');
+					bcrumb = pe.header.find('#gcwu-bc');
 					if (bcrumb.length > 0) {
 						mb_dialogue += '<div id="jqm-mb-location-text">' + bcrumb.html() + '</div>';
 						bcrumb.remove();
@@ -104,7 +104,7 @@
 						// we have a submenu
 						sub = '<h2>' + pe.leftcol.find(':header').eq(0).html() + '</h2>';
 						sub += '<div data-role="collapsible-set">';
-						sub += pe.leftcol.find('.cn-left-col-default').html().replace(/<section>/gi, "<div data-role=\"collapsible\">").replace(/<\/section>/gi, "</div>");
+						sub += pe.leftcol.find('.wb-sec-def').html().replace(/<section>/gi, "<div data-role=\"collapsible\">").replace(/<\/section>/gi, "</div>");
 
 						// lets work on the menu shift
 						/** sub = sub.replace(/<ul\b[^>]*"sub-nav"[^>]*>([\s\S]*?)<\/ul>/gmi, function(m, child){
@@ -165,11 +165,11 @@
 
 					mb_dialogue += '</div></div>';
 					pe.pagecontainer().append(mb_dialogue);
-					pe.header.find('#cn-psnb').parent().remove();
+					pe.header.find('#gcwu-psnb').parent().remove();
 					mb_header.wrapInner('<a href="#jqmobile-wet-boew-menubar" data-rel="dialog"></a>');
 				}
 
-				search_elm = pe.header.find('#cn-search-box');
+				search_elm = pe.header.find('#gcwu-srchbx');
 				if (search_elm.length > 0) {
 					// :: Search box transform lets transform the search box to a dialogue box
 					s_dialogue = $('<div data-role="page" id="jqmobile-wet-boew-search"></div>');
@@ -178,11 +178,11 @@
 					search_elm.find(':header').wrapInner('<a href="#jqmobile-wet-boew-search" data-rel="dialog"></a>');
 					// lets see if we can change these to navbars
 					_list = $('<ul></ul>').hide().append('<li><a data-rel="dialog" data-theme="b"  data-icon="grid" href="' + mb_header.find('a').attr('href') + '">' + mb_header.find('a').text() + "</a></li>").append('<li><a data-rel="dialog" data-theme="b" data-icon="search" href="' + search_elm.find(':header a').attr('href') + '">' + search_elm.find(':header a').text() + "</a></li>");
-					pe.header.find('#cn-site-title').after($('<div data-role="navbar" data-iconpos="right"></div>').append(_list));
+					pe.header.find('#gcwu-title').after($('<div data-role="navbar" data-iconpos="right"></div>').append(_list));
 					search_elm.parent().remove();
 				}
 
-				lang_links = $('#cn-lang-links');
+				lang_links = $('#gcwu-lang');
 				if (lang_links.length > 0) {
 					links = lang_links.find('a').attr("data-theme", "a");
 					lang_nav = $('<div data-role="navbar"><ul></ul></div>');
@@ -190,31 +190,31 @@
 					links.each(function () {
 						ul.append($('<li/>').append(this));
 					});
-					lang_links.find('#cn-ef-lang-links').replaceWith(lang_nav.children().end());
-					lang_links.find('#cn-other-lang-links').remove();
+					lang_links.find('#gcwu-ef-lang').replaceWith(lang_nav.children().end());
+					lang_links.find('#gcwu-other-lang').remove();
 				}
 
-				if (pe.footer.find('#cn-sft').length > 0) {
+				if (pe.footer.find('#gcwu-sft').length > 0) {
 					// transform the footer into mobile nav bar
-					links = pe.footer.find('#cn-sft-inner #cn-ft-tctr a, #cn-sft-inner .col-head a').attr("data-theme", "b");
+					links = pe.footer.find('#gcwu-sft-in #gcwu-tctr a, #gcwu-sft-in .gcwu-col-head a').attr("data-theme", "b");
 					footer1 = $('<div data-role="navbar"><ul></ul></div>');
 					ul = footer1.children();
 					links.each(function () {
 						ul.append($('<li/>').append(this));
 					});
-					pe.footer.find('#cn-sft-inner').replaceWith(footer1.children().end());
-					pe.footer.find('#cn-gcft').parent().remove();
-				} else if (pe.footer.find('#cn-tc').length > 0) {
+					pe.footer.find('#gcwu-sft-in').replaceWith(footer1.children().end());
+					pe.footer.find('#gcwu-gcft').parent().remove();
+				} else if (pe.footer.find('#gcwu-tc').length > 0) {
 					// transform the footer into mobile nav bar
-					links = pe.footer.find('#cn-tc a').attr("data-theme", "b");
+					links = pe.footer.find('#gcwu-tc a').attr("data-theme", "b");
 					footer1 = $('<div data-role="navbar"><ul></ul></div>');
 					ul = footer1.children();
 					links.each(function () {
 						ul.append($('<li/>').append(this));
 					});
-					pe.footer.find('#cn-tc').replaceWith(footer1.children().end());
+					pe.footer.find('#gcwu-tc').replaceWith(footer1.children().end());
 				}
-				pe.footer.find('footer').append($('#cn-wmms').detach());
+				pe.footer.find('footer').append($('#gcwu-wmms').detach());
 
 				// jquery mobile has loaded
 				$(document).on("mobileinit", function () {
@@ -222,7 +222,7 @@
 					$.mobile.ajaxEnabled = false;
 					$.mobile.pushStateEnabled = false;
 					if (pe.menubar.length > 0) {
-						pe.header.find('#cn-psnb :header').remove();
+						pe.header.find('#gcwu-psnb :header').remove();
 					}
 					if (search_elm.length > 0) {
 						search_elm.remove();
@@ -232,7 +232,7 @@
 				// preprocessing before mobile page is enhanced
 				$(document).on("pageinit", function () {
 					// add some language
-					/**  $('.ui-page #cn-cols a[href*="#"]').each(function () {
+					/**  $('.ui-page #wb-core a[href*="#"]').each(function () {
 					var _elm = $(this);
 					if (_elm.attr('href').indexOf('#') > 0) {
 					// this is a external anchor
@@ -254,8 +254,6 @@
 					}); **/
 				});
 			}
-			// add the css
-			pe.add.css(pe.add.liblocation + 'css/pe-ap' + (pe.ie < 9 && pe.ie > 0 ? "-ie" : "") + pe.suffix + '.css');
 		},
 		/**
 		 * @namespace pe.depends
@@ -320,7 +318,7 @@
 		 * @return {jQuery object}
 		 */
 		pagecontainer: function () {
-			return $('#cn-body-inner-3col,#cn-body-inner-2col,#cn-body-inner-1col').add('body').eq(0);
+			return $('#wb-body-sec-sup,#wb-body-sec,#wb-body').add('body').eq(0);
 		},
 		/**
 		 * Internal function that discovers parameters for the element against which a plugin will run.
@@ -440,8 +438,8 @@
 				 * @memberof pe.url
 				 * @type {string}
 				 * @example
-				 *    pe.url('http://www.canada.ca#cn-centre-col-inner').hash
-				 *       returns "cn-centre-col-inner"
+				 *    pe.url('http://www.canada.ca#wb-main-in').hash
+				 *       returns "wb-main-in"
 				 */
 				hash: a.hash.replace('#', ''),
 				/**
@@ -477,9 +475,9 @@
 				 * @type {string}
 				 * @function
 				 * @example
-				 *    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#cn-centre-col-inner').removehash()
+				 *    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash()
 				 *       returns "http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html"
-				 *    pe.url( pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#cn-centre-col-inner').removehash() ).relative
+				 *    pe.url( pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash() ).relative
 				 *       returns "/aboutcanada-ausujetcanada/hist/menu-eng.html"
 				 */
 				removehash: function () {

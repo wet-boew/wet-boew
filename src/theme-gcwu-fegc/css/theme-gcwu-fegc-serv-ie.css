@@ -20,11 +20,11 @@
 @import url('../../css/base-desktop-screen.css');
 @import url('../../css/base-screen-ie7.css');
 @import url('../../css/base-screen-ie8.css');
+@import url('theme-responsive.css');
 @import url('serv-screen.css');
 @import url('serv-desktop.css');
 @import url('serv-screen-ie7.css');
 @import url('serv-screen-ie8.css');
-@import url('theme-responsive.css');
 /* -----Build Include Section End----- */
 }
 

@@ -8,13 +8,6 @@
 @import url('sp-pe.css');
 /* -----Build Include Section End----- */
 
-@media screen{
-/* -----Build Include Section Start----- */
-@import url('../../css/base-screen.css');
-@import url('sp-pe-screen.css');
-/* -----Build Include Section End----- */
-}
-
 /* Desktop view */
 @media (min-width:768px) {
 /* -----Build Include Section Start----- */
@@ -37,6 +30,13 @@
 @media screen and (min-width:1200px){
 /* -----Build Include Section Start----- */
 @import url('theme-responsive-1200.css');
+/* -----Build Include Section End----- */
+}
+
+@media screen{
+/* -----Build Include Section Start----- */
+@import url('../../css/base-screen.css');
+@import url('sp-pe-screen.css');
 /* -----Build Include Section End----- */
 }
 

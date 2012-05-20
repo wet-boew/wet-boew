@@ -3,7 +3,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
 */
-#cn-psnb h2,#cn-search-box h2{
+#gcwu-psnb h2,#gcwu-srchbx h2{
 	position:absolute;
 	clip:rect(1px, 1px, 1px, 1px);
 	height:0 !important;
@@ -12,14 +12,14 @@
 	margin:0 !important;
 }
 
-#cn-bc ol{
+#gcwu-bc ol{
 	line-height:1.57em;
 	list-style-type:none;
 	margin:2px 10px 0;
 	padding:0;
 }
 
-#cn-bc ol:after{
+#gcwu-bc ol:after{
 	content:".";
 	display:block;
 	height:0;
@@ -27,7 +27,7 @@
 	visibility:hidden;
 }
 
-#cn-bc li{
+#gcwu-bc li{
 	display:inline;
 	float:left;
 	white-space:nowrap;
@@ -36,38 +36,30 @@
 	padding:0 0 0 11px;
 }
 
-#cn-bc{
+#gcwu-bc{
 	font-size:85%;
 	color:#555;
 }
 
-#cn-bc a{
+#gcwu-bc a{
 	color:#295376;
 	text-decoration:none;
 }
 
-#cn-bc li:first-child{
+#gcwu-bc li:first-child{
 	background-image:none;
 	padding-left:0;
 }
 
-#cn-bc a:hover,#cn-bc a:focus,#cn-bc a:hover,#cn-bc a:active{
+#gcwu-bc a:hover,#gcwu-bc a:focus,#gcwu-bc a:hover,#gcwu-bc a:active{
 	color:#295376;
 	text-decoration:underline;
 }
 
-#cn-doc-dates{
+#gcwu-date-mod{
 	margin:0;
 }
 
-#cn-doc-dates dt,#cn-doc-dates dd{
-	float:left;
-}
-
-#cn-doc-dates dd{
-	margin:0 0 0 10px;
-}
-
-#cn-banner .ui-navbar,#jqmobile-wet-boew-menubar,#jqmobile-wet-boew-search,.ui-loader{
+#gcwu-bnr .ui-navbar,#jqmobile-wet-boew-menubar,#jqmobile-wet-boew-search,.ui-loader{
 	display:none !important;
 }

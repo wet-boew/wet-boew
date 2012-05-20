@@ -3,9 +3,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
-.ie8 .cn-show-onhover{
+.ie8 .wb-show-onhover{
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)";
 }
-.ie8 .cn-show-onhover:hover,.ie8 .cn-show-onhover:focus,.ie8 .cn-show-onhover:active{
+.ie8 .wb-show-onhover:hover,.ie8 .wb-show-onhover:focus,.ie8 .wb-show-onhover:active{
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=100)";
 }

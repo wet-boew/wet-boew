@@ -3,43 +3,53 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
-#cn-sig-inner {
+#gcwu-sig-in {
 	width: 214px;
 	height: 20px;
 }
 
-#cn-foot, #cn-foot-inner, #cn-head-inner {
+#wb-foot, #wb-foot-in, #wb-head-in {
 	background: #FFF;
 }
 
-#cn-foot #cn-wmms img{
+#wb-foot #gcwu-wmms img{
 	display: block;
 	margin: 5px auto;
 }
 
-#cn-body-inner-1col{
+#wb-body{
 	background:#fff;
 }
 
-#cn-site-title a,#cn-site-title a:visited,#cn-site-title a:hover,#cn-site-title a:focus{
+#gcwu-title a,#gcwu-title a:visited,#gcwu-title a:hover,#gcwu-title a:focus{
 	color:#295376;
 	text-decoration:none;
 }
 
-#cn-site-title a:hover,#cn-site-title a:focus{
+#gcwu-title a:hover,#gcwu-title a:focus{
 	text-decoration:underline;
 }
 
-#cn-site-title-left, #cn-site-title-right, .cn-alt-site-title-left, .cn-alt-site-title-right {
+#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
 	padding: 0;
 	color: #000;
 	font-size: 1.5em;
 	font-weight: bold;
+	width: 50%;
+	float: left;
 }
 
-.cn-alt-site-title-left, .cn-alt-site-title-right {
+#gcwu-title-left, .gcwu-alt-title-left{
+	clear: left;
+}
+
+.gcwu-alt-title-left, .gcwu-alt-title-right {
 	padding: 0;
 	color: #000;
 	font-size: 1.2em;
 	font-weight: bold;
+}
+
+.gcwu-bar {
+	display: none;
 }

@@ -8,24 +8,9 @@
 @import url('serv.css');
 /* -----Build Include Section End----- */
 
-@media screen{
-/* -----Build Include Section Start----- */
-@import url('../../css/base-screen.css');
-@import url('serv-screen.css');
-/* -----Build Include Section End----- */
-}
-
 /* Desktop view */
-@media (min-width:768px) {
-/* -----Build Include Section Start----- */
-@import url('../../css/base-desktop.css');
-@import url('serv-desktop.css');
-/* -----Build Include Section End----- */
-}
 @media screen and (min-width:768px) {
 /* -----Build Include Section Start----- */
-@import url('../../css/base-desktop-screen.css');
-@import url('serv-desktop-screen.css');
 @import url('theme-responsive.css');
 /* -----Build Include Section End----- */
 }
@@ -37,6 +22,25 @@
 @media screen and (min-width:1200px){
 /* -----Build Include Section Start----- */
 @import url('theme-responsive-1200.css');
+/* -----Build Include Section End----- */
+}
+@media (min-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('../../css/base-desktop.css');
+@import url('serv-desktop.css');
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('../../css/base-desktop-screen.css');
+@import url('serv-desktop-screen.css');
+/* -----Build Include Section End----- */
+}
+
+@media screen{
+/* -----Build Include Section Start----- */
+@import url('../../css/base-screen.css');
+@import url('serv-screen.css');
 /* -----Build Include Section End----- */
 }
 

@@ -3,15 +3,28 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
 */
-#cn-foot {
+#wb-foot {
 	background: #FFF;
 }
 
-#cn-foot #cn-wmms img{
+#wb-foot #gcwu-wmms img{
 	display: block;
 	margin: 5px auto;
 }
 
-#cn-banner {
+#gcwu-bnr {
 	width: 100%;
+}
+
+#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
+	width: 50%;
+	float: left;
+}
+
+#gcwu-title-left, .gcwu-alt-title-left{
+	clear: left;
+}
+
+#gcwu-lang a[href]:hover,#gcwu-lang a[href]:active,#gcwu-lang a[href]:focus{
+	color: #FFF;
 }

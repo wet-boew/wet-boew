@@ -11,61 +11,61 @@ abbr,acronym{
 	cursor:help;
 }
 
-#cn-skip-head{
+#wb-skip{
 	height:0;
 	float:left;
 }
 
-#cn-skip-head ul{
+#wb-skip ul{
 	list-style-type:none;
 	margin-top:-1.8em;
 }
 
-#cn-skip-head li{
+#wb-skip li{
 	position:absolute;
 	top:0;
 	width:auto;
 	z-index:3;
 }
 
-#cn-skip-head #cn-sh-link-1{
+#wb-skip #wb-skip1{
 	right:50%;
 }
 
-#cn-skip-head #cn-sh-link-2{
+#wb-skip #wb-skip2{
 	left:50%;
 }
 
-#cn-skip-head a{
+#wb-skip a{
 	display:inline-block;
 	width:100%;
 	padding:5px;
 }
 
-#cn-skip-head a,#cn-skip-head a:link,#cn-skip-head a:visited{
+#wb-skip a,#wb-skip a:link,#wb-skip a:visited{
 	color:#FFF;
 	background-color:transparent;
 	font-weight:700;
 }
 
-#cn-skip-head a:hover,#cn-skip-head a:focus,#cn-skip-head a:active{
+#wb-skip a:hover,#wb-skip a:focus,#wb-skip a:active{
 	background-color:#000;
 	text-decoration:none;
 	color:#FFF;
 }
 
-a.cn-linkdesc{
+a.wb-linkdesc{
 	position:relative;
 	z-index:24;
 }
 
-a.cn-linkdesc:hover,a.cn-linkdesc:focus,a.cn-linkdesc:active{
+a.wb-linkdesc:hover,a.wb-linkdesc:focus,a.wb-linkdesc:active{
 	z-index:25;
 	outline:0;
 	text-decoration:none;
 }
 
-a.cn-linkdesc span span{
+a.wb-linkdesc span span{
 	position:absolute;
 	clip:rect(1px, 1px, 1px, 1px);
 	height:1px !important;
@@ -73,7 +73,7 @@ a.cn-linkdesc span span{
 	overflow:hidden !important;
 }
 
-a.cn-linkdesc:hover span span,a.cn-linkdesc:focus span span,a.cn-linkdesc:active span span{
+a.wb-linkdesc:hover span span,a.wb-linkdesc:focus span span,a.wb-linkdesc:active span span{
 	clip:auto;
 	height:auto !important;
 	width:auto !important;

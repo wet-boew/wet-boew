@@ -19,11 +19,11 @@ h1 {
 	margin: 0;
 }
 
-#cn-head-inner, #cn-cols-inner, #cn-foot-inner  {
+#wb-head-in, #wb-core-in, #wb-foot-in  {
 	margin: auto;
 }
 
-#cn-head, #cn-head-inner, #cn-foot, #cn-foot-inner  {
+#wb-head, #wb-head-in, #wb-foot, #wb-foot-in  {
 	overflow: hidden;
 }
 
@@ -32,23 +32,23 @@ h1 {
 	display: inline;
 }
 
-#cn-sig,#cn-tc {
+#gcwu-sig,#gcwu-tc {
 	display:block;
 	float:none;
 	margin:auto;
 }
 
-#cn-sig {
+#gcwu-sig {
 	margin-top: 20px;
 	margin-bottom: 7px;
 }
 
-#cn-cols-inner {
+#wb-core-in {
 	overflow: visible !important;
 	background: #fff url(../images/splashpage-background.jpg) top center repeat-x;
 }
 
-#cn-cols-inner:after {
+#wb-core-in:after {
 	content: ".";
 	display: block;
 	height: 0;
@@ -56,24 +56,24 @@ h1 {
 	visibility: hidden;
 }
 
-#cn-centre-col-inner {
+#wb-main-in {
 	position: relative;
 	padding-top:1px;
 	padding-bottom:1px;
 }
 
-#cn-banner {
+#gcwu-bnr {
 	width: 100%;
 }
 
-#cn-site-title {
+#gcwu-title {
 	width: auto;
 }
 
-#cn-site-title-right, .cn-alt-site-title-right {
+#gcwu-title-right, .gcwu-alt-title-right {
 	text-align: right;
 }
 
-#cn-lang-links {
+#gcwu-lang {
 	margin-top: 50px;
 }

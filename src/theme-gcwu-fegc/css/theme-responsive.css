@@ -7,45 +7,45 @@ body{
 	min-width:960px;
 }
 
-#cn-head,#cn-cols,#cn-foot,#cn-head-inner,#cn-gcnb,#cn-banner,#cn-psnb,#cn-bc,#cn-foot-inner,#cn-gcft,#cn-sft{
+#wb-head,#wb-core,#wb-foot,#wb-head-in,#gcwu-gcnb,#gcwu-bnr,#gcwu-psnb,#gcwu-bc,#wb-foot-in,#gcwu-gcft,#gcwu-sft{
 	width:100%;
 }
 
-#cn-site-title{
+#gcwu-title{
 	width:360px;
 }
 
-#cn-cols-inner,#cn-bc-inner{
+#wb-core-in,#gcwu-bc-in{
 	background-image:url(../images/content-deco.gif);
 }
 
-#cn-body-inner-3col #cn-centre-col{
+#wb-body-sec-sup #wb-main{
 	width:480px;
 	right:240px;
 }
 
-#cn-left-col{
+#wb-sec{
 	width:240px;
 }
 
-#cn-right-col{
+#wb-sup{
 	width:240px;
 	left:480px;
 }
 
-#cn-sft-inner{
+#gcwu-sft-in{
 	background-image:url(../images/footer-deco.gif);
 }
 
-#cn-gcft li{
+#gcwu-gcft li{
 	margin:12px 0 13px 44px;
 }
 
-#cn-gcft li:first-child{
+#gcwu-gcft li:first-child{
 	margin-left:10px;
 }
 
-li#cn-ft-ca a{
+li#gcwu-gcft-ca a{
 	padding-left:44px;
 }
 
@@ -70,7 +70,7 @@ h1,h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
 	min-height:1px;
 }
 
-#cn-centre-col-inner .span-1,#cn-centre-col-inner .span-2,#cn-centre-col-inner .span-3,#cn-centre-col-inner .span-4,#cn-centre-col-inner .span-5,#cn-centre-col-inner .span-6,#cn-centre-col-inner .span-7,#cn-centre-col-inner .span-8,#cn-centre-col-inner .span-9,#cn-centre-col-inner .span-10,#cn-centre-col-inner .span-11,#cn-centre-col-inner .span-12{
+#wb-main-in .span-1,#wb-main-in .span-2,#wb-main-in .span-3,#wb-main-in .span-4,#wb-main-in .span-5,#wb-main-in .span-6,#wb-main-in .span-7,#wb-main-in .span-8,#wb-main-in .span-9,#wb-main-in .span-10,#wb-main-in .span-11,#wb-main-in .span-12{
 	margin-bottom:20px;
 }
 
@@ -98,12 +98,12 @@ h1,h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
 	border-bottom:1px solid #ccc !important;
 }
 
-img.image-actual,#cn-aside .cn-minister-image img{
+img.image-actual,#gcwu-aside .gcwu-minister-img img{
 	width:auto !important;
 	height:auto;
 }
 
-.span-1 img,.span-2 img,.span-3 img,.span-4 img,.span-5 img,.span-6 img,.span-7 img,.span-8 img,.span-9 img,.span-10 img,.span-11 img,.span-12 img,#cn-aside img{
+.span-1 img,.span-2 img,.span-3 img,.span-4 img,.span-5 img,.span-6 img,.span-7 img,.span-8 img,.span-9 img,.span-10 img,.span-11 img,.span-12 img,#gcwu-aside img{
 	width:100%;
 	height:auto;
 	-ms-interpolation-mode:bicubic;
@@ -117,7 +117,7 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	margin-bottom:20px !important;
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .span-1{
+#wb-body-sec #wb-core .grid-12 .span-1{
 	width:40px;
 }
 
@@ -125,7 +125,7 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	width:60px;
 }
 
-.span-1,#cn-body-inner-2col #cn-cols .grid-12 .span-2{
+.span-1,#wb-body-sec #wb-core .grid-12 .span-2{
 	width:100px;
 }
 
@@ -133,11 +133,11 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	width:140px;
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .span-3{
+#wb-body-sec #wb-core .grid-12 .span-3{
 	width:160px;
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .span-5{
+#wb-body-sec #wb-core .grid-12 .span-5{
 	width:280px;
 }
 
@@ -145,7 +145,7 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	width:300px;
 }
 
-.span-3,#cn-body-inner-2col #cn-cols .grid-12 .span-6{
+.span-3,#wb-body-sec #wb-core .grid-12 .span-6{
 	width:340px;
 }
 
@@ -153,15 +153,15 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	width:380px;
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .span-7{
+#wb-body-sec #wb-core .grid-12 .span-7{
 	width:400px;
 }
 
-.span-4,#cn-body-inner-2col #cn-cols .grid-12 .span-8,.grid-12 .span-6{
+.span-4,#wb-body-sec #wb-core .grid-12 .span-8,.grid-12 .span-6{
 	width:460px;
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .span-9{
+#wb-body-sec #wb-core .grid-12 .span-9{
 	width:520px;
 }
 
@@ -169,7 +169,7 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	width:540px;
 }
 
-.span-5,#cn-body-inner-2col #cn-cols .grid-12 .span-10{
+.span-5,#wb-body-sec #wb-core .grid-12 .span-10{
 	width:580px;
 }
 
@@ -177,11 +177,11 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	width:620px;
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .span-11{
+#wb-body-sec #wb-core .grid-12 .span-11{
 	width:640px;
 }
 
-.span-6,#cn-body-inner-2col #cn-cols .grid-12 .span-12,.grid-12 .span-9{
+.span-6,#wb-body-sec #wb-core .grid-12 .span-12,.grid-12 .span-9{
 	width:700px;
 }
 
@@ -201,7 +201,7 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	width:940px;
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .border-span-1{
+#wb-body-sec #wb-core .grid-12 .border-span-1{
 	background-image:url(../../grids/images/border-40px.gif);
 }
 
@@ -209,7 +209,7 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	background-image:url(../../grids/images/border-60px.gif);
 }
 
-.border-span-1,#cn-body-inner-2col #cn-cols .grid-12 .border-span-2,.module-versatile{
+.border-span-1,#wb-body-sec #wb-core .grid-12 .border-span-2,.module-versatile{
 	background-image:url(../../grids/images/border-100px.gif);
 }
 
@@ -217,15 +217,15 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	background-image:url(../../grids/images/border-140px.gif);
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .border-span-3{
+#wb-body-sec #wb-core .grid-12 .border-span-3{
 	background-image:url(../../grids/images/border-160px.gif);
 }
 
-.border-span-2,.module-versatile,#cn-body-inner-2col #cn-cols .grid-12 .border-span-4,.grid-12 .border-span-3{
+.border-span-2,.module-versatile,#wb-body-sec #wb-core .grid-12 .border-span-4,.grid-12 .border-span-3{
 	background-image:url(../../grids/images/border-220px.gif);
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .border-span-5{
+#wb-body-sec #wb-core .grid-12 .border-span-5{
 	background-image:url(../../grids/images/border-280px.gif);
 }
 
@@ -233,7 +233,7 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	background-image:url(../../grids/images/border-300px.gif);
 }
 
-.border-span-3,#cn-body-inner-2col #cn-cols .grid-12 .border-span-6{
+.border-span-3,#wb-body-sec #wb-core .grid-12 .border-span-6{
 	background-image:url(../../grids/images/border-340px.gif);
 }
 
@@ -241,15 +241,15 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	background-image:url(../../grids/images/border-380px.gif);
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .border-span-7{
+#wb-body-sec #wb-core .grid-12 .border-span-7{
 	background-image:url(../../grids/images/border-400px.gif);
 }
 
-.border-span-4,.module-table-contents,.module-welcomepage,#cn-body-inner-2col #cn-cols .grid-12 .border-span-8,.grid-12 .border-span-6{
+.border-span-4,.module-table-contents,.module-welcomepage,#wb-body-sec #wb-core .grid-12 .border-span-8,.grid-12 .border-span-6{
 	background-image:url(../../grids/images/border-460px.gif);
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .border-span-9{
+#wb-body-sec #wb-core .grid-12 .border-span-9{
 	background-image:url(../../grids/images/border-520px.gif);
 }
 
@@ -257,7 +257,7 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	background-image:url(../../grids/images/border-540px.gif);
 }
 
-.border-span-5,#cn-body-inner-2col #cn-cols .grid-12 .border-span-10{
+.border-span-5,#wb-body-sec #wb-core .grid-12 .border-span-10{
 	background-image:url(../../grids/images/border-580px.gif);
 }
 
@@ -265,11 +265,11 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	background-image:url(../../grids/images/border-620px.gif);
 }
 
-#cn-body-inner-2col #cn-cols .grid-12 .border-span-11{
+#wb-body-sec #wb-core .grid-12 .border-span-11{
 	background-image:url(../../grids/images/border-640px.gif);
 }
 
-.border-span-6,#cn-body-inner-2col #cn-cols .grid-12 .border-span-12,.grid-12 .border-span-9{
+.border-span-6,#wb-body-sec #wb-core .grid-12 .border-span-12,.grid-12 .border-span-9{
 	background-image:url(../../grids/images/border-700px.gif);
 }
 
@@ -289,27 +289,27 @@ img.image-actual,#cn-aside .cn-minister-image img{
 	background-image:url(../../grids/images/border-940px.gif);
 }
 
-#cn-cols-inner,#cn-gcnb-inner,#cn-banner-inner,#cn-psnb-inner,#cn-bc-inner,#cn-gcft-inner,#cn-sft-inner,#cn-banner-inner,#cn-psnb .mb-menu,#cn-psnb .mb-hsubmenu .showcase-visible ul,#cn-body-inner-1col #cn-centre-col{
+#wb-core-in,#gcwu-gcnb-in,#gcwu-bnr-in,#gcwu-psnb-in,#gcwu-bc-in,#gcwu-gcft-in,#gcwu-sft-in,#gcwu-bnr-in,#gcwu-psnb .mb-menu,#gcwu-psnb .mb-hsubmenu .showcase-visible ul,#wb-body #wb-main{
 	width:960px;
 }
 
-#cn-body-inner-2col #cn-centre-col,#cn-body-inner-2col-right #cn-centre-col,#cn-body-inner-2col #cn-centre-col-inner,#cn-body-inner-2col-right #cn-centre-col-inner,#cn-body-inner-1col #cn-content{
+#wb-body-sec #wb-main,#wb-body-secr #wb-main,#wb-body-sec #wb-main-in,#wb-body-secr #wb-main-in,#wb-body #gcwu-content{
 	width:720px;
 }
 
-#cn-body-inner-3col #cn-centre-col-inner,#cn-body-inner-2col #cn-content{
+#wb-body-sec-sup #wb-main-in,#wb-body-sec #gcwu-content{
 	width:480px;
 }
 
-#cn-aside,#cn-gc-priorities,.span-2,#cn-body-inner-2col #cn-cols .grid-12 .span-4,.grid-12 .span-3{
+#gcwu-aside,#gcwu-priorities,.span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3{
 	width:220px;
 }
 
-li#cn-ft-ca,.row-start{
+li#gcwu-gcft-ca,.row-start{
 	margin-left:0 !important;
 }
 
-.span-2 .calendar-month td,.span-2 .calendar-month th,#cn-body-inner-2col #cn-cols .grid-12 .span-4 .calendar-month td,#cn-body-inner-2col #cn-cols .grid-12 .span-4 .calendar-month th,.grid-12 .span-3 .calendar-month td,.grid-12 .span-3 .calendar-month th{
+.span-2 .calendar-month td,.span-2 .calendar-month th,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month td,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month th,.grid-12 .span-3 .calendar-month td,.grid-12 .span-3 .calendar-month th{
 	width:30px;
 	height:32px;
 	padding:2px 3px;

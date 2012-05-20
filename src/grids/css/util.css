@@ -27,7 +27,7 @@
         word-wrap:break-word;
     }
 
-    #cn-centre-col a[href^='mailto:']{
+    #wb-main a[href^='mailto:']{
         background:transparent url(../images/icon-email.gif) no-repeat 0 2px;
         padding-left:19px;
     }
@@ -41,7 +41,7 @@
         margin-right:0;
     }
 
-    #cn-centre-col a[href$='.psd'],#cn-centre-col a[href$='.zip'],#cn-centre-col a[href$='.doc'],#cn-centre-col a[href$='.pdf'],#cn-centre-col a[href$='.xls'],#cn-centre-col a[href$='.xlt'],#cn-centre-col a[href$='.rtf'],#cn-centre-col a[href$='.txt']{
+    #wb-main a[href$='.psd'],#wb-main a[href$='.zip'],#wb-main a[href$='.doc'],#wb-main a[href$='.pdf'],#wb-main a[href$='.xls'],#wb-main a[href$='.xlt'],#wb-main a[href$='.rtf'],#wb-main a[href$='.txt']{
         background:transparent url(../images/icon-download.gif) no-repeat 0 0;
         padding-left:15px;
     }
@@ -210,12 +210,12 @@
         padding:0;
     }
 
-    #cn-centre-col ul ul,#cn-centre-col dl dl,#cn-centre-col ol ol,ul ul,dl dl,ol ol{
+    #wb-main ul ul,#wb-main dl dl,#wb-main ol ol,ul ul,dl dl,ol ol{
         margin-bottom:4px;
         margin-left:30px;
     }
 
-    #cn-centre-col ul ul,#cn-centre-col ol ul,#cn-centre-col ul ol,#cn-centre-col ul ul,#cn-centre-col ol ul,#cn-centre-col ul ol,#cn-centre-col ul ul,#cn-centre-col ol ul,#cn-centre-col ul ol{
+    #wb-main ul ul,#wb-main ol ul,#wb-main ul ol,#wb-main ul ul,#wb-main ol ul,#wb-main ul ol,#wb-main ul ul,#wb-main ol ul,#wb-main ul ol{
         margin-bottom:0 !important;
         padding-top:0 !important;
     }
@@ -773,8 +773,8 @@
         background-position:left 0;
     }
 
-    #cn-psnb .border-top,#cn-psnb .border-right,#cn-psnb .border-bottom,#cn-psnb .border-left{
-        background-image:url(../images/cn-psnb-border.gif);
+    #gcwu-psnb .border-top,#gcwu-psnb .border-right,#gcwu-psnb .border-bottom,#gcwu-psnb .border-left{
+        background-image:url(../images/gcwu-psnb-border.gif);
         margin-bottom:5px;
     }
 
@@ -1476,7 +1476,7 @@
         background-image:url(../images/thermometer-120.gif);
     }
 
-    .ie7 #cn-centre-col a[href^='mailto:'],.ie7 #cn-centre-col a[href$='.psd'],.ie7 #cn-centre-col a[href$='.zip'],.ie7 #cn-centre-col a[href$='.doc'],.ie7 #cn-centre-col a[href$='.pdf'],.ie7 #cn-centre-col a[href$='.xls'],.ie7 #cn-centre-col a[href$='.xlt'],.ie7 #cn-centre-col a[href$='.rtf'],.ie7 #cn-centre-col a[href$='.txt']{
+    .ie7 #wb-main a[href^='mailto:'],.ie7 #wb-main a[href$='.psd'],.ie7 #wb-main a[href$='.zip'],.ie7 #wb-main a[href$='.doc'],.ie7 #wb-main a[href$='.pdf'],.ie7 #wb-main a[href$='.xls'],.ie7 #wb-main a[href$='.xlt'],.ie7 #wb-main a[href$='.rtf'],.ie7 #wb-main a[href$='.txt']{
         background:none;
         padding-left:0;
     }
@@ -1493,12 +1493,12 @@
         margin-right:0;
     }
 
-    #cn-centre-col a[href*='rss'],#cn-centre-col a[href*='Rss']{
+    #wb-main a[href*='rss'],#wb-main a[href*='Rss']{
         background:none;
         padding:0;
     }
 
-    .embedded-nav p,#cn-left-col li,table img,.module-news .module-news-article p a{
+    .embedded-nav p,#wb-sec li,table img,.module-news .module-news-article p a{
         margin:0;
     }
 
@@ -1526,7 +1526,7 @@
         margin-top:5px;
     }
 
-    .module-form-fluid p input,.module-form-fluid p textarea,.module-related ul,.module-billboard,.module-contact,#cn-centre-col-inner .module-welcomepage .span-1,#cn-centre-col-inner .module-welcomepage .span-2,#cn-centre-col-inner .module-welcomepage .span-3,#cn-centre-col-inner .module-welcomepage .span-4,#cn-centre-col-inner .module-welcomepage .span-5,#cn-centre-col-inner .module-welcomepage .span-6,#cn-centre-col-inner .module-welcomepage .span-7,#cn-centre-col-inner .module-welcomepage .span-8,#cn-centre-col-inner .module-welcomepage .span-9,#cn-centre-col-inner .module-welcomepage .span-10,#cn-centre-col-inner .module-welcomepage .span-11,#cn-centre-col-inner .module-welcomepage .span-12,#cn-centre-col-inner .module-table-contents .span-1,#cn-centre-col-inner .module-table-contents .span-2,#cn-centre-col-inner .module-table-contents .span-3,#cn-centre-col-inner .module-table-contents .span-4,#cn-centre-col-inner .module-table-contents .span-5,#cn-centre-col-inner .module-table-contents .span-6,#cn-centre-col-inner .module-table-contents .span-7,#cn-centre-col-inner .module-table-contents .span-8,#cn-centre-col-inner .module-table-contents .span-9,#cn-centre-col-inner .module-table-contents .span-10,#cn-centre-col-inner .module-table-contents .span-11,#cn-centre-col-inner .module-table-contents .span-12,#cn-centre-col-inner .module-contact .span-1,#cn-centre-col-inner .module-contact .span-2,#cn-centre-col-inner .module-contact .span-3,#cn-centre-col-inner .module-contact .span-4,#cn-centre-col-inner .module-contact .span-5,#cn-centre-col-inner .module-contact .span-6,#cn-centre-col-inner .module-contact .span-7,#cn-centre-col-inner .module-contact .span-8,#cn-centre-col-inner .module-contact .span-9,#cn-centre-col-inner .module-contact .span-10,#cn-centre-col-inner .module-contact .span-11,#cn-centre-col-inner .module-contact .span-12{
+    .module-form-fluid p input,.module-form-fluid p textarea,.module-related ul,.module-billboard,.module-contact,#wb-main-in .module-welcomepage .span-1,#wb-main-in .module-welcomepage .span-2,#wb-main-in .module-welcomepage .span-3,#wb-main-in .module-welcomepage .span-4,#wb-main-in .module-welcomepage .span-5,#wb-main-in .module-welcomepage .span-6,#wb-main-in .module-welcomepage .span-7,#wb-main-in .module-welcomepage .span-8,#wb-main-in .module-welcomepage .span-9,#wb-main-in .module-welcomepage .span-10,#wb-main-in .module-welcomepage .span-11,#wb-main-in .module-welcomepage .span-12,#wb-main-in .module-table-contents .span-1,#wb-main-in .module-table-contents .span-2,#wb-main-in .module-table-contents .span-3,#wb-main-in .module-table-contents .span-4,#wb-main-in .module-table-contents .span-5,#wb-main-in .module-table-contents .span-6,#wb-main-in .module-table-contents .span-7,#wb-main-in .module-table-contents .span-8,#wb-main-in .module-table-contents .span-9,#wb-main-in .module-table-contents .span-10,#wb-main-in .module-table-contents .span-11,#wb-main-in .module-table-contents .span-12,#wb-main-in .module-contact .span-1,#wb-main-in .module-contact .span-2,#wb-main-in .module-contact .span-3,#wb-main-in .module-contact .span-4,#wb-main-in .module-contact .span-5,#wb-main-in .module-contact .span-6,#wb-main-in .module-contact .span-7,#wb-main-in .module-contact .span-8,#wb-main-in .module-contact .span-9,#wb-main-in .module-contact .span-10,#wb-main-in .module-contact .span-11,#wb-main-in .module-contact .span-12{
         margin-bottom:0;
     }
 

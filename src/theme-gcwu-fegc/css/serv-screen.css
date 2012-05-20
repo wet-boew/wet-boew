@@ -17,7 +17,7 @@ h1 {
 	margin: 0;
 }
 
-#cn-head-inner, #cn-cols-inner, #cn-foot-inner  {
+#wb-head-in, #wb-core-in, #wb-foot-in  {
 	margin: auto;
 }
 
@@ -26,25 +26,25 @@ h1 {
 	display: inline;
 }
 
-#fip-title,#cn-tc {
+#fip-title,#gcwu-tc {
 	display:block;
 	float:none;
 	margin:auto;
 }
 
-#cn-head, #cn-head-inner, #cn-foot, #cn-foot-inner  {
+#wb-head, #wb-head-in, #wb-foot, #wb-foot-in  {
 	overflow: hidden;
 }
 
-#cn-foot-inner, #cn-cols-inner {
+#wb-foot-in, #wb-core-in {
 	background: #fff;
 }
 
-#cn-cols-inner {
+#wb-core-in {
 	overflow: visible !important;
 }
 
-#cn-cols-inner:after {
+#wb-core-in:after {
 	content: ".";
 	display: block;
 	height: 0;
@@ -52,64 +52,64 @@ h1 {
 	visibility: hidden;
 }
 
-#cn-centre-col-inner {
+#wb-main-in {
 	position: relative;
 	padding-top:1px;
 	padding-bottom:1px;
 }
 
-#cn-body-inner-1col #cn-centre-col {
+#wb-body #wb-main {
 	float:left;
 }
 
-#cn-banner {
+#gcwu-bnr {
 	width: 100%;
 }
 
-#cn-site-title {
+#gcwu-title {
 	width: auto;
 }
 
-#cn-sig-inner {
+#gcwu-sig-in {
 	width: 214px;
 	height: 20px;
 }
 
-#cn-site-title-right, .cn-alt-site-title-right {
+#gcwu-title-right, .gcwu-alt-title-right {
 	text-align: right;
 }
 
-#cn-cols-inner div #cn-decoration-bar {
+#wb-core-in div #gcwu-bar {
 	height: 10px;
 	background: #fff url(../images/background-waves.jpg) -100px center repeat-x;
 	margin-bottom: 12px;
 	padding-bottom: 0;
 }
 
-.cn-tc-left {
+.gcwu-tc-left {
 	text-align: left;
 }
 
-.cn-tc-right {
+.gcwu-tc-right {
 	text-align: right;
 }
 
-#cn-tc ul {
+#gcwu-tc ul {
 	list-style:none;
 	margin: 0;
 	padding: 0;
 }
 
-#cn-tc li {
+#gcwu-tc li {
 	float: left;
 	margin-bottom: 4px;
 }
 
-#cn-tc li a {
+#gcwu-tc li a {
 	text-decoration: none;
 	font-size: 0.9em;
 }
 
-#cn-tc li a:hover, #cn-tc li a:focus, #cn-tc li a:active {
+#gcwu-tc li a:hover, #gcwu-tc li a:focus, #gcwu-tc li a:active {
 	text-decoration: underline;
 }

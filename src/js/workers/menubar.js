@@ -277,7 +277,7 @@
 				if ($childmenu.size() > 0) {
 					$elm.attr("aria-haspopup", "true").addClass("mb-has-sm").wrapInner("<span class=\"expandicon\"><span class=\"sublink\"></span></span>");
 					$childmenu.attr("role", "menu").attr("aria-expanded", "false").attr("aria-hidden", "true").find(":has(:header) ul").attr("role", "menu");
-					$elm.append("<span class=\"cn-invisible\">" + (pe.dic.get('%sub-menu-help')) + "</span>");
+					$elm.append("<span class=\"wb-invisible\">" + (pe.dic.get('%sub-menu-help')) + "</span>");
 					$elm.closest("li").hoverIntent(function () {
 						return showsubmenu(this);
 					}, function () {
@@ -303,7 +303,7 @@
 			/*
 			Breadcrumb indexer
 			 */
-			$vbrumbs = $("#cn-bc, #cn-bcrumb");
+			$vbrumbs = $("#gcwu-bc, #cn-bcrumb");
 			if ($vbrumbs.size() > 0 && !$scope.hasClass("page-match-off")) {
 				$results = $menu.children("li").find("a[href=\"" + window.location.pathname + "\"]");
 				if ($results.size() > 0) {

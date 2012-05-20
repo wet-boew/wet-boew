@@ -182,7 +182,7 @@ margin:0;
 padding:0;
 }
 
-.cn-right-col-default .style-tabs-4,.cn-right-col-default .style-tabs-5{
+.wb-sup-def .style-tabs-4,.wb-sup-def .style-tabs-5{
 padding:0;
 }
 
@@ -554,29 +554,29 @@ background-position:-1px 0!important;
 .tabs-style-4 .tabs li.tabs-toggle a.tabs-prev,.tabs-style-4 .tabs li.tabs-toggle a.tabs-next{
     background-position:center 3px}
 
-.cn-right-col-default .tabs-style-4{
+.wb-sup-def .tabs-style-4{
     padding:0;
 }
 
-.cn-right-col-default .tabs-style-4 .tabs{
+.wb-sup-def .tabs-style-4 .tabs{
     margin-left:-1px;
     padding:0;
 }
 
-.cn-right-col-default .tabs-style-4 .tabs li{
+.wb-sup-def .tabs-style-4 .tabs li{
     padding-left:0;
     margin-left:0;
 }
 
-.cn-right-col-default .tabs-style-4 li a:visited{
+.wb-sup-def .tabs-style-4 li a:visited{
     color:#FFF;
 }
 
-.cn-right-col-default .tabs-style-4 .tabs a.active,.cn-right-col-default .tabs-style-4 li a.active:hover{
+.wb-sup-def .tabs-style-4 .tabs a.active,.wb-sup-def .tabs-style-4 li a.active:hover{
     color:#000!important;
 }
 
-.cn-right-col-default .tabs-style-4 .tabs-toggle{
+.wb-sup-def .tabs-style-4 .tabs-toggle{
     margin-left:2px!important;
 }
 
@@ -632,15 +632,15 @@ background-position:-1px 0!important;
     right:auto!important;
 }
 
-.cn-right-col-default .tabs-style-5{
+.wb-sup-def .tabs-style-5{
     padding:0;
 }
 
-.cn-right-col-default .tabs-style-5 .tabs{
+.wb-sup-def .tabs-style-5 .tabs{
     margin-bottom:1px;
 }
 
-.cn-right-col-default .tabs-style-5 .tabs-toggle{
+.wb-sup-def .tabs-style-5 .tabs-toggle{
     margin-left:9px!important;
 }
 

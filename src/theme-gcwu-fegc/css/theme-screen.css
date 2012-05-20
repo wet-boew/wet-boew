@@ -7,19 +7,11 @@ body{
 	margin:0;
 }
 
-#cn-gcnb h2,#cn-search-box label,#cn-aside h2,.cn-minister h2,.cn-minister h3,#cn-sft h3,#cn-bc h2,#cn-gcft h3{
+#gcwu-gcnb h2,#gcwu-srchbx label,#gcwu-aside h2,.gcwu-minister h2,.gcwu-minister h3,#gcwu-sft h3,#gcwu-bc h2,#gcwu-gcft h3{
 	clip:rect(1px, 1px, 1px, 1px);
 	height:0 !important;
 	overflow:hidden !important;
 	position:absolute;
 	width:0 !important;
 	margin:0 !important;
-}
-
-#cn-doc-dates dt,#cn-doc-dates dd{
-	float:left;
-}
-
-#cn-doc-dates dd{
-	margin:0 0 0 10px;
 }
