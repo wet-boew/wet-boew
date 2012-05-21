@@ -107,9 +107,7 @@
 			/* if CSS is enabled we want to ensure a correct tabbing response
 			 */
 			if (pe.cssenabled) {
-				$menu.find("a").attr("tabindex", "-1").attr("role", "menuitem");
-				$menu.children("li").find("a:first").removeAttr("tabindex");
-				//$menu.find("li:first a:first").removeAttr("tabindex");
+				$menu.find(".mb-sm a").attr("tabindex", "-1").attr("role", "menuitem");
 			}
 			pe.resize(correctheight);
 			/* Handles opening and closing a submenu through a touchscreen
