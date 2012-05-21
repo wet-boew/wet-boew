@@ -130,6 +130,11 @@
 				var next,
 					_elm,
 					_id,
+					keychar,
+					sublink,
+					elmtext,
+					matches,
+					match,
 					level;
 				_elm = $(e.target);
 				_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
@@ -138,36 +143,68 @@
 				if (e.type === "keydown") {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 						switch (e.keyCode) {
+						case 13: // enter key
+							if (_id[2] === 0 && _id[3] === 0) {
+								_elm.trigger('item-next');
+								return false;
+							}
+							break;
 						case 27: // escape key
 							_elm.trigger('close');
-							e.preventDefault();
+							return false;
+						case 32: // spacebar
+							if (_id[2] === 0 && _id[3] === 0) {
+								_elm.trigger('item-next');
+							} else {
+								window.location = _elm.attr('href');
+							}
 							return false;
 						case 37: // left arrow
 							_elm.trigger('section-previous');
-							e.preventDefault();
 							return false;
 						case 38: // up arrow
 							_elm.trigger('item-previous');
-							e.preventDefault();
 							return false;
 						case 39: // right arrow
 							_elm.trigger('section-next');
-							e.preventDefault();
 							return false;
 						case 40: // down arrow
 							_elm.trigger('item-next');
-							e.preventDefault();
 							return false;
+						default:
+							// 0 - 9 and a - z keys
+							if ((e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91)) {
+								keychar = String.fromCharCode(e.keyCode).toLowerCase();
+								sublink = (_id[2] !== 0 || _id[3] !== 0);
+								elmtext = _elm.text();
+								matches = $menu.find('.mb-sm-open a').filter(function (index) {
+									return ($(this).text().substring(0, 1).toLowerCase() === keychar || (sublink && $(this).text() === elmtext));
+								});
+								if (matches.length > 0) {
+									if (sublink) {
+										matches.each(function (index) {
+											if ($(this).text() === elmtext) {
+												match = index;
+												return false;
+											}
+										});
+										if (match < (matches.length - 1)) {
+											matches.eq(match + 1).focus();
+											return false;
+										}
+									}
+									matches.eq(0).focus();
+								}
+								return false;
+							}
 						}
 					}
-				}
-				if (e.type === "close") {
+				} else if (e.type === "close") {
 					pe.focus($scope.find(".knav-" + _id[1] + "-0-0"));
 					setTimeout(function () {
 						return hideallsubmenus();
 					}, 5);
-				}
-				if (e.type === "section-previous") {
+				} else if (e.type === "section-previous") {
 					level = !!_id[2] << 1 | !!_id[3];
 					switch (level) {
 					case 0: // top-level menu link has focus
@@ -194,8 +231,7 @@
 						}
 						break;
 					}
-				}
-				if (e.type === "section-next") {
+				} else if (e.type === "section-next") {
 					level = !!_id[2] << 1 | !!_id[3];
 					switch (level) {
 					case 0: // top-level menu link has focus
@@ -222,8 +258,7 @@
 						}
 						break;
 					}
-				}
-				if (e.type === "item-next") {
+				} else if (e.type === "item-next") {
 					next = $scope.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] + 1)); // move to 3rd level
 					if (next.length > 0) {
 						pe.focus(next);
@@ -235,8 +270,7 @@
 							pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
 						}
 					}
-				}
-				if (e.type === "item-previous") {
+				} else if (e.type === "item-previous") {
 					next = $scope.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] - 1)); // move to 3rd level
 					if (next.length > 0) {
 						pe.focus(next);
@@ -248,8 +282,7 @@
 							pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
 						}
 					}
-				}
-				if (e.type === "focusin" && _id[2] === 0 && _id[3] === 0) {
+				} else if (e.type === "focusin" && _id[2] === 0 && _id[3] === 0) {
 					hideallsubmenus();
 					if (_elm.find('.expandicon').length > 0) {
 						showsubmenu(e.target);
