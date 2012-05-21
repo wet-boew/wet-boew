@@ -5131,11 +5131,20 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p>The colgroup is realy similar of a rowgroup but in the column perpective. If present, the &quot;col&quot; element definition will be used to identify the lower row header in the rowgroup heading (&quot;thead&quot; if defined). A colgroup can represent a heading set defined in a data row, represent only a set of data cell. A colgroup can also contain heading cell and data cell.</p>
 
 
+<h2>Spanned Cells</h2>
+
+<p>In general when a cells are span in multiple row and column, they need to have a corresponding group to get associated to. The HTML5 specification said that a cell not be spanned in two row group, but they can be spanned in serveral colgroup.</p>
+
+<p>Why a cell can be spanned in more than one column group ? It's simple, as this usability guide define a data table to be equal to a rowgroup make easy to explain why. If we took the caption of an table for a row group cell header, this cell is spanned in serveral columns group, equivalent to the table width. When a cell are span in two or more column group, that cell needs to be equivalent to the table width, if not that would be a mistake. Those special cell is used here to represent sub row group. And after a sub row group like that, the following data cell if is colspan attribute are equivalent to his heading are used to indicate the possibility of a nested table.</p>
+
+<p>Can I have a cell spanned without having an group header associated ? Yes it's possible. We can take for example a schedule like Outlook or we can think about a online TV guide. With those exemple, the relation between a data cell and his header are different. The headers will act more as a property of the data instead of identifying them. The question that would need to be answered is: Is those kind of table are valid data table ? If yes, is there a method to recognize them ? That will be leaved for the future.</p>
+
+
+
 <hr />
 <h2>Documentation/Idea to work on</h2>
 
 <ul>
-	<li>When a data cell (td) are spanned into 2 or more row and/or col, that require to have an associated  cell heading at that column and/or row with the same spanned value. If that condition are not sastified, that would anonce the data table are in reality an layout table and a layout table must be transparent.</li>
 	
 	<li>The first header row cell can not be spanned in the full table with, if so that is a table caption and not a row</li>
 	
@@ -5159,7 +5168,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 
-
+<p>TODO: set a usability limit about the number of row inside the header row group and a limit regarding the number of consecutive rowgroup header we can have in a table. I think regarding the number of row group cell header spanned into the full with, a maximum of 2 are resonable starting from the most generic to the most specific. 
 
 
 
