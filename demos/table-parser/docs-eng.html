@@ -4901,6 +4901,62 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <p>A data row is a table row that it's last cell are a data cell (&quo;td&quot; element). A data row can have a data cell between of two different level of row header cell</p>
 
+<p>Here a data row</p>
+<table>
+	<tr>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<th>Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td>Data</td>
+		<th>Header</th>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td>Data</td>
+		<td>Data</td>
+		<th>Header</th>
+		<td>Data</td>
+	</tr>
+</table>
+
+
+<p>This are not a valid data row, because it's last cell are a cell header. The only row can finish with a cell heading is the row used in the rowgroup header (thead) and/or a row group header inside the data table (tbody)</p>
+<table>
+	<tr>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<th>Header</th>
+	</tr>
+</table>
+
+<p>This is true even if data cell are between headers, a data need to finish with a &quot;td&quot;</p>
+<table>
+	<tr>
+		<th>Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<th>Header</th>
+	</tr>
+</table>
+
+
 <h2>Group</h2>
 
 <p>A group are a set of row or column. When the group are a set of row, this is an row group. And when the group are a set of column, this is a column group. They exist three type of group</a>
@@ -4919,7 +4975,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <h4>Header column group</h4>
 <p>The header column group are be delimited by a &quot;colgroup&quot; element. It's composed only of cell heading (th). Optionally, the first header column group if it is the first colgroup also can contain one layout cell in his first row. Differently of header row group, a table can have more than one header column group.</p>
 
-<p>&lt;colgroup id=&quot;a&quot; /&gt;&lt;colgroup id=&quot;b&quot; /&gt;&lt;colgroup id=&quot;c&quot; /&gt;&lt;colgroup  id=&quot;d&quot; span=&quot;2&quot; /&gt;&lt;colgroup id=&quot;d&quot; /&gt;</p>
+<p>&lt;colgroup id=&quot;a&quot; /&gt;&lt;colgroup id=&quot;b&quot; /&gt;&lt;colgroup id=&quot;c&quot; /&gt;&lt;colgroup  id=&quot;d&quot; span=&quot;2&quot; /&gt;&lt;colgroup id=&quot;e&quot; /&gt;</p>
 
 <table>
 	<caption>A table with more than one header column group [0]</caption>
@@ -4967,13 +5023,123 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<li>colgroup id=&quot;b&quot; : data column group</li>
 	<li>colgroup id=&quot;c&quot; : header column group</li>
 	<li>colgroup id=&quot;d&quot; : data column group</li>
-	<li>colgroup id=&quot;d&quot; : summary column group</li>
+	<li>colgroup id=&quot;e&quot; : summary column group</li>
 </ol>
+
+<p>Cell associated to the...</p>
+<ul>
+	<li>header column group &quot;a&quot;: 7</li>
+	<li>data column group &quot;b&quot;: 8</li>
+	<li>header column group &quot;c&quot;: 9, 13, 17</li>
+	<li>data column group &quot;d&quot;: 10, 11, 14, 15, 18, 19</li>
+	<li>summary column group &quot;e&quot;: 12, 16, 20</li>
+</ul>
+
 
 <p>The summary column group are only applying to the preceding data column group (id=&quot;d&quot;)</p>
 
+<p>If you would like to have more than one summary column group, would would need to define two row or more in your header row group.</p>
+table>
+<p>&lt;colgroup id=&quot;a&quot; /&gt;&lt;colgroup id=&quot;b&quot; /&gt;&lt;colgroup id=&quot;c&quot; /&gt;&lt;colgroup  id=&quot;d&quot; span=&quot;2&quot; /&gt;&lt;colgroup id=&quot;e&quot; /&gt;&lt;colgroup  id=&quot;f&quot; span=&quot;2&quot; /&gt;&lt;colgroup id=&quot;g&quot; /&gt;</p>
+<table>
+	<caption>A table with more than one header column group [0]</caption>
+	
+	<thead>
+		<tr>
+			<th rowspan="2">Cell Header [1]</th>
+			<th rowspan="2">Cell Header [2]</th>
+			<th rowspan="2">Cell Header [3]</th>
+			<th colspan="3">Cell Header [4]</th>
+			<th colspan="3">Cell Header [5]</th>
+		</tr>
+		<tr>
+			<th>Cell Header [6]</th>
+			<th>Cell Header [7]</th>
+			<th>Cell Header [8]</th>
+			<th>Cell Header [9]</th>
+			<th>Cell Header [10]</th>
+			<th>Cell Header [11]</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<th rowspan="3">Cell Header [12]</th>
+			<td rowspan="3">Data cell [13]</td>
+			<th>Cell Header [14]</th>
+			<td>Data cell [15]</td>
+			<td>Data cell [16]</td>
+			<td>Data cell [17]</td>
+			<td>Data cell [18]</td>
+			<td>Data cell [19]</td>
+			<td>Data cell [20]</td>
+		</tr>
+		
+		<tr>
+			<th>Cell Header [21]</th>
+			<td>Data cell [22]</td>
+			<td>Data cell [23]</td>
+			<td>Data cell [24]</td>
+			<td>Data cell [25]</td>
+			<td>Data cell [26]</td>
+			<td>Data cell [27]</td>
+		</tr>
+		<tr>
+			<th>Cell Header [29]</th>
+			<td>Data cell [30]</td>
+			<td>Data cell [31]</td>
+			<td>Data cell [32]</td>
+			<td>Data cell [33]</td>
+			<td>Data cell [34]</td>
+			<td>Data cell [35]</td>
+		</tr>
+	</tbody>
+</table>
+
+<ol>
+	<li>colgroup id=&quot;a&quot; : header column group</li>
+	<li>colgroup id=&quot;b&quot; : data column group</li>
+	<li>colgroup id=&quot;c&quot; : header column group</li>
+	<li>colgroup id=&quot;d&quot; : data column group</li>
+	<li>colgroup id=&quot;e&quot; : summary column group</li>
+	<li>colgroup id=&quot;f&quot; : data column group</li>
+	<li>colgroup id=&quot;g&quot; : summary column group</li>
+</ol>
+
+<p>Cell associated to the...</p>
+<ul>
+	<li>header column group &quot;a&quot;: 12</li>
+	<li>data column group &quot;b&quot;: 13</li>
+	<li>header column group &quot;c&quot;: 14, 21, 29</li>
+	<li>data column group &quot;d&quot;: 15, 16, 22, 23, 30, 31 (Identified by the cell header group 4)</li>
+	<li>summary column group &quot;e&quot;: 17, 24, 32 (Identified by the cell header group 4)</li>
+	<li>data column group &quot;f&quot;: 18, 19, 25, 26, 33, 34 (Identified by the cell header group 5)</li>
+	<li>summary column group &quot;g&quot;: 20, 27, 35 (Identified by the cell header group 5)</li>
+</ul>
+
+<p>Column group are identified by...</p>
+<ul>
+	<li>header column group &quot;a&quot;: Cell Header 1</li>
+	<li>data column group &quot;b&quot;: Cell Header 2</li>
+	<li>header column group &quot;c&quot;: Cell Header 3</li>
+	<li>data column group &quot;d&quot;: Cell Header 4</li>
+	<li>summary column group &quot;e&quot;: Cell Header 4</li>
+	<li>data column group &quot;f&quot;: Cell Header 5</li>
+	<li>summary column group &quot;g&quot;: Cell Header 5</li>
+</ul>
+
+<h4>Data group</h4>
+
+<h4>Data column group</h4>
+
+<h4>Data row group</h4>
 
 <p>There exist 4 kind of data row group. The first are the data set associated directly to the table level. The second are a summary group of the table level and they need to have a rowgroup header specified. The third are the sub-group data row group summary. And the fourth data row group are the table data row group summary. Even the table parser allow you to have an infinite sub row group by desiging you row in a hiearchical way, it's imposible for the parser, when we are into an hiearchical sub row group, to know the difference between if a data row belong to the summary, or if the data row belong to the data set. There are only two way that relation can be showed. By using nested table or by using two differents data row structure.</p>
+
+
+<h3>Summary group</h3>
+
+<p>Their use are defined with the header column group and the data row group. Important to know about summary group is that row group can be used to replace their associated data group for a quick data interpretation.</p>
 
 
 <h2>Data cell</h2>
@@ -5146,21 +5312,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <ul>
 	
-	<li>The first header row cell can not be spanned in the full table with, if so that is a table caption and not a row</li>
-	
-	<li>If an empty cell header "th" or a data cell "td" are used in the top left, all the column under that cell, need to be an cell heading for each subsequent row.</li>
-	
-	<li>A data row always have a data cell (td) in his last column.</li>
-	
-	<li>A row header and a data row can not overlap together</li>
-	
 	<li>Only 2 data row structure (pattern) can be used in a data table.</li>
 	
-	<li>The header for a rowgroup can take or not the full width of a table.</li>
-	
 	<li>The header for a rowgroup are the first heading cell (th) in his group, if at least one cell header (th) is defined in that group.</li>
-	
-	<li>The table can only contain one table head (thead).</li>
 	
 	<li>How to do Nested tables in a data cell spanned in the full table width with a preceding cell heading spanned in the full table width....[tree grid]  ;-)</li>
 	
