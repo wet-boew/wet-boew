@@ -38,6 +38,16 @@
 				match,
 				showsubmenu;
 			$scope = $(elm);
+                        
+                        //replace the menu with the menu with submenus (allows for caching and async loading of the submenu)
+                        var submenus = pe.parameter("submenus", $scope);
+                        if (submenus !== undefined){
+                            $.get(submenus, function(data){
+                                $scope.empty();
+                                $scope.append($(data));
+                            }, "html");
+                        }
+                        
 			/* functions that would be nessecary for helpers
 			 */
 			showsubmenu = function (toplink) {
