@@ -76,6 +76,12 @@
 			pe.suffix = pefile.substr(pefile.length - 7) === "-min.js" ? "-min" : "";
 			// get the localization files
 			pe.add.language(pe.language);
+                        $(document).bind("languageloaded", function(){
+                            $(window).bind("ajaxloaded", function(){
+                                
+                            });
+                            pe.dance();
+                        });
 			// add polyfills if nessecary;
 			pe.polyfills();
 			// mobile test
