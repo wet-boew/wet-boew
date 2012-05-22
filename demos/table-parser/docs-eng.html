@@ -1980,135 +1980,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
   </tr>
   <tr>
     <th>Quebec</th>
-<tbody>
-	<tr>
-		<th colspan="3">Canada</th>
-	</tr>
-  <tr>
-    <th>Alberta</th>
-    <td>746</td>
-    <td>400</td>
-  </tr>
-  <tr>
-    <th>British Columbia</th>
-    <td>409</td>
-    <td>144</td>
-  </tr>
-  <tr>
-    <th>Manitoba</th>
-    <td>106</td>
-    <td>42</td>
-  </tr>
-  <tr>
-    <th>New Brunswick</th>
-    <td>26</td>
-    <td>13</td>
-  </tr>
-  <tr>
-    <th>Newfoundland and Labrador</th>
-    <td>16</td>
-    <td>6</td>
-  </tr>
-  <tr>
-    <th>Northwest territories</th>
-    <td>1</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <th>Nova Scotia</th>
-    <td>53</td>
-    <td>21</td>
-  </tr>
-  <tr>
-    <th>Ontario</th>
-    <td>2122</td>
-    <td>884</td>
-  </tr>
-  <tr>
-    <th>Prince Edward Island</th>
-    <td>7</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <th>Quebec</th>
-    <td>871</td>
-    <td>408</td>
-  </tr>
-  <tr>
-    <th>Saskatchewan</th>
-    <td>120</td>
-    <td>62</td>
-  </tr>
-</tbody>
-<tbody>
-  <tr>
-    <th>Sub Total</th>
-    <td>4477</td>
-    <td>1980</td>
-  </tr>
-</tbody>
-<tbody>
-	<tr>
-		<th colspan="3">Foreign Countries</th>
-	</tr>
-  <tr>
-    <th>Danish</th>
-    <td>746</td>
-    <td>400</td>
-  </tr>
-  <tr>
-    <th>German</th>
-    <td>409</td>
-    <td>144</td>
-  </tr>
-  <tr>
-    <th>Japan</th>
-    <td>106</td>
-    <td>42</td>
-  </tr>
-  <tr>
-    <th>Korean</th>
-    <td>26</td>
-    <td>13</td>
-  </tr>
-  <tr>
-    <th>Finland</th>
-    <td>16</td>
-    <td>6</td>
-  </tr>
-  <tr>
-    <th>Spanish</th>
-    <td>1</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <th>United States</th>
-    <td>53</td>
-    <td>21</td>
-  </tr>
-  <tr>
-    <th>United Kingdom</th>
-    <td>2122</td>
-    <td>884</td>
-  </tr>
-</tbody>
-<tbody>
-  <tr>
-    <th>Sub Total</th>
-    <td>4477</td>
-    <td>1980</td>
-  </tr>
-</tbody>
-<tbody>
-  <tr>
-    <th>Total</th>
-    <td>35318</td>
-    <td>19779</td>
-  </tr>
-</tbody>
-
-</table>
-
     <td>871</td>
     <td>408</td>
     <td>1279</td>
@@ -5130,6 +5001,8 @@ table>
 
 <h4>Data group</h4>
 
+<p>A data group is a set of one or more column or row consecutive that contains majority of data cell.</p>
+
 <h4>Data column group</h4>
 
 <h4>Data row group</h4>
@@ -5139,12 +5012,16 @@ table>
 
 <h3>Summary group</h3>
 
-<p>Their use are defined with the header column group and the data row group. Important to know about summary group is that row group can be used to replace their associated data group for a quick data interpretation.</p>
+<p>Their use are defined with the header column group and the data row group. Important to know about summary group is that row group can be used to replace their associated data group for a quick data interpretation. Also to be able to have a valid summary group, it's required to have at least to data cell.</p>
 
 
 <h2>Data cell</h2>
 
 <p>A data cell are the result of the intersection of two data groups. That can not be an intersection of two header group and can or can not be an intersection of two summary group.</p>
+
+<h2>Data row partern</h2>
+
+<p>In general there are only one data partern for each data row. But when there are a second data parten, this are often interpretated as a summary row group.</p>
 
 
 <h2>Simplify your data cell</h2>
@@ -5307,15 +5184,169 @@ table>
 
 
 
+<h2>Nested tables</h2>
+
+<p>A complex data tables can have nested tables. It's recommended to avoid this, but in a case of a tree grid this will be useful to do. The sub-tables can not be integrated everywhere, they need to be under a row group header inside the next data cell.</p>
+
+
+
+<table>
+	<caption>Application filed and granted</caption>
+	
+<tbody>
+  <tr>
+    <th></th>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+
+	<tr>
+		<th colspan="3">Canada</th>
+	</tr>
+  <tr>
+    <th>Alberta</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Northwest territories</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>871</td>
+    <td>408</td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>120</td>
+    <td>62</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Sub Total</th>
+    <td>4477</td>
+    <td>1980</td>
+  </tr>
+</tbody>
+<tbody>
+	<tr>
+		<th colspan="3">Foreign Countries<br /> <em>(The following are a nested table)</em></th>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<table>
+			<caption>Foreign Countries</caption>
+  <tr>
+    <th></th>
+    <th>Filed</th>
+    <th>Granted</th>
+  </tr>
+
+  <tr>
+    <th>Danish</th>
+    <td>746</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <th>German</th>
+    <td>409</td>
+    <td>144</td>
+  </tr>
+  <tr>
+    <th>Japan</th>
+    <td>106</td>
+    <td>42</td>
+  </tr>
+  <tr>
+    <th>Korean</th>
+    <td>26</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <th>Finland</th>
+    <td>16</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <th>Spanish</th>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <th>United States</th>
+    <td>53</td>
+    <td>21</td>
+  </tr>
+  <tr>
+    <th>United Kingdom</th>
+    <td>2122</td>
+    <td>884</td>
+  </tr>
+</tbody>
+<tbody>
+  <tr>
+    <th>Sub Total</th>
+    <td>4477</td>
+    <td>1980</td>
+  </tr>
+</tbody>
+	</table>
+	</td>
+</tr>
+<tbody>
+  <tr>
+    <th>Total</th>
+    <td>35318</td>
+    <td>19779</td>
+  </tr>
+</tbody>
+
+</table>
+
+
+
 <hr />
 <h2>Documentation/Idea to work on</h2>
 
 <ul>
-	
-	<li>Only 2 data row structure (pattern) can be used in a data table.</li>
-	
-	<li>The header for a rowgroup are the first heading cell (th) in his group, if at least one cell header (th) is defined in that group.</li>
-	
 	<li>How to do Nested tables in a data cell spanned in the full table width with a preceding cell heading spanned in the full table width....[tree grid]  ;-)</li>
 	
 </ul>
