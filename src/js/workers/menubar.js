@@ -95,19 +95,20 @@
                 return $scope.css("min-height", newouterheight);
             };
             /*
-			/// End of Functions ///
-			 */
+            /// End of Functions ///
+            */
                         
             var submenus = pe.parameter("submenus", $scope);
             if (submenus !== undefined){
                 $.get(submenus, function(data){
-                    //replace the menu with the menu with submenus (allows for caching and async loading of the submenu)
-                    $scope.empty();
-                    $scope.append($(data));
-                            
                     /* establish boundaries
 			 */
                     $menuBoundary = $scope.children("div");
+                    
+                    //replace the menu with the menu with submenus (allows for caching and async loading of the submenu)
+                    $menuBoundary.empty();
+                    $menuBoundary.append($(data));
+                    
                     $menu = $menuBoundary.children("ul");
                     /* ARIA additions
 			 */
