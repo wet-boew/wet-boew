@@ -33,16 +33,16 @@
 		</copy>
 		<copy todir="${build.dir}/encode/css">
 			<fileset dir="${build.dir}/css">
-				<include name="theme-gcwu-fegc.css"/>
-				<include name="theme-gcwu-fegc-sp-pe.css"/>
-				<include name="theme-gcwu-fegc-serv.css"/>
+				<include name="theme.css"/>
+				<include name="theme-sp-pe.css"/>
+				<include name="theme-serv.css"/>
 			</fileset>
 		</copy>
 		<cssurlembed skipMissing="true">
 			<fileset dir="${build.dir}/encode/css/">
-				<include name="theme-gcwu-fegc.css"/>
-				<include name="theme-gcwu-fegc-sp-pe.css"/>
-				<include name="theme-gcwu-fegc-serv.css"/>
+				<include name="theme.css"/>
+				<include name="theme-sp-pe.css"/>
+				<include name="theme-serv.css"/>
 			</fileset>
 		</cssurlembed>
 		<copy todir="${build.dir}/css">
@@ -64,12 +64,12 @@
 			<fileset dir="${src.dir}/../css"/>
 		</copy>
 		<filelist id="corefiles" dir="${build.dir}">
-			<file name="css/theme-gcwu-fegc.css"/>
-			<file name="css/theme-gcwu-fegc-ie.css"/>
-			<file name="css/theme-gcwu-fegc-sp-pe.css"/>
-			<file name="css/theme-gcwu-fegc-sp-pe-ie.css"/>
-			<file name="css/theme-gcwu-fegc-serv.css"/>
-			<file name="css/theme-gcwu-fegc-serv-ie.css"/>
+			<file name="css/theme.css"/>
+			<file name="css/theme-ie.css"/>
+			<file name="css/theme-sp-pe.css"/>
+			<file name="css/theme-sp-pe-ie.css"/>
+			<file name="css/theme-serv.css"/>
+			<file name="css/theme-serv-ie.css"/>
 		</filelist>
 		<for param="css-file">
 			<path>
@@ -85,12 +85,12 @@
 
 		<delete>
 			<fileset dir="${build.dir}/css">
-				<exclude name="theme-gcwu-fegc.css"/>
-				<exclude name="theme-gcwu-fegc-ie.css"/>
-				<exclude name="theme-gcwu-fegc-sp-pe.css"/>
-				<exclude name="theme-gcwu-fegc-sp-pe-ie.css"/>
-				<exclude name="theme-gcwu-fegc-serv.css"/>
-				<exclude name="theme-gcwu-fegc-serv-ie.css"/>
+				<exclude name="theme.css"/>
+				<exclude name="theme-ie.css"/>
+				<exclude name="theme-sp-pe.css"/>
+				<exclude name="theme-sp-pe-ie.css"/>
+				<exclude name="theme-serv.css"/>
+				<exclude name="theme-serv-ie.css"/>
 			</fileset>
 		</delete>
 		<delete dir="${build.dir}/../css"/>

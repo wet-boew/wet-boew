@@ -309,7 +309,7 @@
 		 */
 		mobile: false,
 		mobilecheck: function () {
-			return (document.documentElement.clientWidth < 767 && !($.browser.msie && $.browser.version < 9)) ? true : false;
+			return (window.innerWidth < 768 && !(pe.ie > 0 && pe.ie < 9));
 		},
 		/**
 		 * The pe aware page query to append items to
@@ -797,12 +797,11 @@
 							}
 							scriptElem.onload = scriptElem.onreadystatechange = null;
 							scriptdone = true;
-							// now add to dependency lis
+							// now add to dependency list
 							pe.depends.put(js);
 							$(document).trigger({type: 'wet-boew-dependency-loaded', js: js});
 						};
 						scriptElem.src = js;
-						//head.insertBefore(scriptElem, head.firstChild);
 						if (pe.ie > 0 && pe.ie < 9) {
 							$(scriptElem).appendTo($(head));
 						} else {
@@ -836,7 +835,7 @@
 					var head = pe.add.head,
 						styleElement = document.createElement('link');
 					pe.add.set(styleElement, 'rel', 'stylesheet').set(styleElement, 'href', css);
-					if (pe.ie > 0 && pe.ie < 9) {
+					if (pe.ie > 0 && pe.ie < 10) {
 						$(styleElement).appendTo($(head)).attr("href", css);
 					} else {
 						head.insertBefore(styleElement, head.firstChild);
@@ -948,6 +947,7 @@
 				}
 			}
 			if (pe.mobile) {
+				pe.add.css([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.css']);
 				pe.add._load([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.js']);
 			}
 			window.onresize = function () { // TODO: find a better way to switch back and forth between mobile and desktop modes.

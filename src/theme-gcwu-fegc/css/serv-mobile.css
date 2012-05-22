@@ -50,6 +50,23 @@
 	font-weight: bold;
 }
 
-.gcwu-bar {
+#gcwu-bar, #wb-foot {
 	display: none;
+}
+
+.no-js #gcwu-bar, .ui-mobile #wb-foot, .no-js #wb-foot{
+	display: block;
+}
+
+.no-js #wb-head a[href]:hover,.no-js #wb-head a[href]:active,.no-js #wb-head a[href]:focus, .no-js #wb-foot a[href]:hover,.no-js#wb-foot a[href]:active,.no-js #wb-foot a[href]:focus{
+	color: #C00;
+}
+
+.no-js #gcwu-sig, .no-js #gcwu-wmms, .no-js .gcwu-tc-left, .no-js .gcwu-tc-right{
+	width: 50%;
+	float: left;
+}
+
+.no-js .gcwu-tc-right{
+	text-align: right;
 }

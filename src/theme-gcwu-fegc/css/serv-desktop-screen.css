@@ -6,3 +6,7 @@
 #wb-head a[href]:hover,#wb-head a[href]:active,#wb-head a[href]:focus,#wb-foot a[href]:hover,#wb-foot a[href]:active,#wb-foot a[href]:focus{
 	color: #C00;
 }
+
+.ui-mobile  #wb-foot{
+	display: none;
+}

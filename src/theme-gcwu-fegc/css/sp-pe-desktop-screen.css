@@ -23,3 +23,7 @@
 #wb-foot a[href]:hover,#wb-foot a[href]:active,#wb-foot a[href]:focus{
 	color: #C00;
 }
+
+.ui-mobile #gcwu-lang, .ui-mobile  #wb-foot{
+	display: none;
+}

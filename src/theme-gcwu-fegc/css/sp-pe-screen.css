@@ -68,6 +68,7 @@ h1 {
 
 #gcwu-title {
 	width: auto;
+	min-height: 115px;
 }
 
 #gcwu-title-right, .gcwu-alt-title-right {
@@ -75,5 +76,9 @@ h1 {
 }
 
 #gcwu-lang {
-	margin-top: 50px;
+	margin-top: 20px;
+}
+
+#gcwu-lang ul {
+	margin: 0;
 }
