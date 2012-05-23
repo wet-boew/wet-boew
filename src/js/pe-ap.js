@@ -803,7 +803,7 @@
 						};
 						scriptElem.src = js;
 						//if (pe.ie > 0 && pe.ie < 9) {
-						if ((pe.ie > 0 && pe.ie < 9) || !head.insertBefore) {
+						if ((pe.ie > 0 && pe.ie < 9)) {
 							$(scriptElem).appendTo($(head));
 						} else {
 							head.insertBefore(scriptElem, head.firstChild);
@@ -840,7 +840,7 @@
 						styleElement = document.createElement('link');
 					pe.add.set(styleElement, 'rel', 'stylesheet').set(styleElement, 'href', css);
 					//if (pe.ie > 0 && pe.ie < 10) {
-					if ((pe.ie > 0 && pe.ie < 10) || !head.insertBefore) {
+					if ((pe.ie > 0 && pe.ie < 10)) {
 						$(styleElement).appendTo($(head)).attr("href", css);
 					} else {
 						head.insertBefore(styleElement, head.firstChild);
