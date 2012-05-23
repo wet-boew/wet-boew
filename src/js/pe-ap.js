@@ -802,15 +802,11 @@
 							$(document).trigger({type: 'wet-boew-dependency-loaded', js: js});
 						};
 						scriptElem.src = js;
-						//if (pe.ie > 0 && pe.ie < 9) {
-						if ((pe.ie > 0 && pe.ie < 9)) {
+						if ((pe.ie > 0 && pe.ie < 9) || !head.insertBefore) {
 							$(scriptElem).appendTo($(head));
 						} else {
 							head.insertBefore(scriptElem, head.firstChild);
 						}
-						//} else {
-						//	head.insertBefore(scriptElem, head.firstChild);
-						//} // bug in IE7 and IE8 head append http://www.fraggednation.com/blog/IE7-IE8-Strikes-again-JQuery-append-workaround-494
 					}, 0);
 					this.staged[this.staged.length] = js;
 					return this;
@@ -839,15 +835,11 @@
 					var head = pe.add.head,
 						styleElement = document.createElement('link');
 					pe.add.set(styleElement, 'rel', 'stylesheet').set(styleElement, 'href', css);
-					//if (pe.ie > 0 && pe.ie < 10) {
-					if ((pe.ie > 0 && pe.ie < 10)) {
+					if ((pe.ie > 0 && pe.ie < 10) || !head.insertBefore) {
 						$(styleElement).appendTo($(head)).attr("href", css);
 					} else {
 						head.insertBefore(styleElement, head.firstChild);
 					}
-					//} else {
-						//head.insertBefore(styleElement, head.firstChild);
-					//}
 					return this;
 				},
 				/**
