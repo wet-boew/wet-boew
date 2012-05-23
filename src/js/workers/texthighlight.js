@@ -14,9 +14,7 @@
 		type: 'plugin',
 		_exec: function (elm) {
 			var searchCriteria, queryParams = pe.url(document.location).params || "";
-			if (queryParams['texthighlight'] != null) {
-				addHighlight(queryParams['texthighlight'], elm);
-			}
+
 /*
 * addHighlight
 *
@@ -29,7 +27,6 @@
 * @return (nothing) Just updates the content directly
 *
 */
-
 			function addHighlight(searchCriteria, target) {
 				var arrSearchCriteria, newText, i, matches = 0;
 				searchCriteria = searchCriteria.replace(/^\s+|\s+$/g, '');
@@ -54,22 +51,10 @@
 				target.html(newText);
 				return null;
 			} // end of addHighlight
-/*
- * clearHighlight
- *
- * This function will clear out any text that is not supposed to be highlighted anymore
- *
- * @param target Object The DOM object to clear
- * @return (nothing) Just updates the content directly
- *
- */
 
-		function clearHighlight(target) {
-				target.find('span.texthighlight').each(function () {
-					var text = $(this).text();
-					$(this).replaceWith(text);
-				});
-			} // end of clearHighlight
+			if (queryParams.texthighlight !== null) {
+				addHighlight(queryParams.texthighlight, elm);
+			}
 			return this;
 		} // end of exec
 	};
