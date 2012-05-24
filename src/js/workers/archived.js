@@ -12,9 +12,6 @@
 	_pe.fn.archived = {
 		type: 'plugin',
 		_exec: function (elm) {
-			if (pe.mobile) {
-				return; // we do not want this on mobile devices
-			}
 			// create the toolbar
 			var notice = $('<div class="archived" role="toolbar"><a class="archived-top-page" href="#archived" role="link">' + pe.dic.get('%archived-page') + '</a></div>');
 			// lets bind the scrolls
