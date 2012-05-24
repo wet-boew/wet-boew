@@ -74,14 +74,32 @@
 			// determine if this file is minified
 			pefile = pe.url(document.getElementById('progressive').src).file;
 			pe.suffix = pefile.substr(pefile.length - 7) === "-min.js" ? "-min" : "";
-			// get the localization files
-			pe.add.language(pe.language);
-                        $(document).bind("languageloaded", function(){
-                            $(window).bind("ajaxloaded", function(){
-                                
+			//Wait for localisation and ajax content to load plugins
+                        $(document).bind("ajaxloaded", function(){
+                            $(document).bind("languageloaded", function(){
+                                pe.dance();
                             });
-                            pe.dance();
+                            pe.add.language(pe.language);
                         });
+    
+                        //Load ajax content
+                        $.when.apply(
+                            $.map($("*[data-ajax-replace], *[data-ajax-append]"),function(o){
+                                $o = $(o);
+                                var replace = false, url;
+                                if ($o.attr("data-ajax-replace") !== undefined){
+                                    replace = true;
+                                    url = $o.attr("data-ajax-replace");
+                                }else if ($o.attr("data-ajax-append") !== undefined){
+                                    url = $o.attr("data-ajax-append");
+                                }
+                                return $.get(url, function(data){
+                                    if (replace){$o.empty();}
+                                    $o.append($(data));
+                                }, "html")
+                            })
+                        ).done(function(){$(document).trigger("ajaxloaded");});
+                        
 			// add polyfills if nessecary;
 			pe.polyfills();
 			// mobile test
