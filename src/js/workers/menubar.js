@@ -38,19 +38,19 @@
 				match,
 				showsubmenu;
 			$scope = $(elm);
-			/* functions that would be nessecary for helpers
+			/* functions that would be necessary for helpers
 			 */
 			showsubmenu = function (toplink) {
 				var _node,
 					_sm;
 				_node = $(toplink).closest("li");
-				_node.addClass("mb-active");
 				hideallsubmenus();
 				_sm = _node.find(".mb-sm");
 				_sm.attr("aria-expanded", "true").attr("aria-hidden", "false").toggleClass("mb-sm mb-sm-open");
 				if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
 					_sm.css("right", "0px");
 				}
+				_node.addClass("mb-active");
 				return;
 			};
 			/* action function to go to menu
@@ -69,9 +69,10 @@
 			hidesubmenu = function (toplink) {
 				var _node,
 					_sm;
-				_node = $(toplink);
-				_sm = _node.closest("li").removeClass("mb-active").find(".mb-sm-open");
+				_node = $(toplink).closest("li");
+				_sm = _node.find(".mb-sm-open");
 				_sm.attr("aria-expanded", "false").attr("aria-hidden", "true").toggleClass("mb-sm mb-sm-open").css("right", "auto");
+				_node.removeClass("mb-active");
 				return;
 			};
 			/* hide all the submenus
@@ -104,26 +105,17 @@
 			 */
 			$scope.attr("role", "application");
 			$menu.attr("role", "menubar");
-			/* if CSS is enabled we want to ensure a correct tabbing response
-			 */
-			if (pe.cssenabled) {
-				$menu.find("a").attr("role", "menuitem");
-				$menu.find(".mb-sm a").attr("tabindex", "-1");
-			}
 			pe.resize(correctheight);
-			/* Handles opening and closing a submenu through a touchscreen
+			/* Handles opening and closing a submenu on click
 			 */
-			if (pe.touchscreen) {
-				$scope.find('.mb-sm').parent().find('> :header a').on("click", function (event) {
-					event.preventDefault();
-					event.stopPropagation();
-					if ($(this).closest("li").hasClass("mb-active")) {
-						hidesubmenu(this);
-					} else {
-						showsubmenu(this);
-					}
-				});
-			}
+			$scope.find('.mb-sm').parent().find('> :header a').on("click", function (event) {
+				if ($(this).closest("li").hasClass("mb-active")) {
+					hidesubmenu(this);
+				} else {
+					showsubmenu(this);
+				}
+				return false;
+			});
 
 			/* bind all custom events and triggers to menu
 			 */
@@ -332,6 +324,14 @@
 					});
 				}
 			});
+
+			/* if CSS is enabled we want to ensure a correct tabbing response
+			 */
+			if (pe.cssenabled) {
+				$menu.find("a").attr("role", "menuitem").attr("tabindex", "-1");
+				$menu.find(".knav-0-0-0").attr("tabindex", "0");
+			}
+
 			/*
 			Breadcrumb indexer
 			 */

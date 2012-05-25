@@ -81,6 +81,7 @@
 			// mobile test
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
+				$('body > div').attr('data-role','page');
 				if (pe.menubar.length > 0) {
 					// lets init some variables for use in various transformations
 					// raw variable running on the dom

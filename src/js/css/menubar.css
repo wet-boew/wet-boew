@@ -55,6 +55,10 @@
 	text-decoration:underline;
 }
 
+.mb-menu .mb-has-sm{
+	text-decoration:none !important;
+}
+
 .mb-menu .nav-current{
 	background:#242;
 	color:#fff;
