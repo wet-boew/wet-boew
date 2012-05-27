@@ -2,9 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
- /*
-  * Menu bar plugin
-  */
+/*
+ * Menu bar plugin
+ */
 /*global jQuery: false, pe:false */
 (function ($) {
 	var _pe = window.pe || {
@@ -21,9 +21,8 @@
 			- close : this will close open menu
 			- reset : this will clear all the menu's to closed state
 			- open : this will open the child menu item
-			 */
-			/* bind plugin scope element
-			 */
+			*/
+			/* bind plugin scope element */
 			var $bcLinks,
 				$menu,
 				$menuBoundary,
@@ -38,8 +37,7 @@
 				match,
 				showsubmenu;
 			$scope = $(elm);
-			/* functions that would be necessary for helpers
-			 */
+			/* functions that would be necessary for helpers */
 			showsubmenu = function (toplink) {
 				var _node,
 					_sm;
@@ -53,19 +51,16 @@
 				_node.addClass("mb-active");
 				return;
 			};
-			/* action function to go to menu
-			 */
+			/* action function to go to menu */
 			gotosubmenu = function (toplink) {
-				var _node,
-					_submenu;
+				var _node, _submenu;
 				showsubmenu(toplink);
 				_node = $(toplink);
 				_submenu = _node.closest("li").find(".mb-sm-open");
 				pe.focus(_submenu.find("a[href]:first"));
 				return;
 			};
-			/* hidemenu worker function
-			 */
+			/* hidemenu worker function */
 			hidesubmenu = function (toplink) {
 				var _node,
 					_sm;
@@ -75,8 +70,7 @@
 				_node.removeClass("mb-active");
 				return;
 			};
-			/* hide all the submenus
-			 */
+			/* hide all the submenus */
 			hideallsubmenus = function () {
 				$menu.find(".mb-sm-open").each(function () {
 					var _menu;
@@ -85,29 +79,25 @@
 				});
 				return;
 			};
-			/* function to correct the hieght of the menu on resize
-			 */
+			/* function to correct the hieght of the menu on resize */
 			correctheight = function () {
-				var newouterheight,
-					_lastmenuli;
+				var newouterheight, _lastmenuli;
 				_lastmenuli = $menu.children("li:last");
 				newouterheight = (_lastmenuli.offset().top + _lastmenuli.outerHeight()) - $scope.offset().top;
 				return $scope.css("min-height", newouterheight);
 			};
 			/*
 			/// End of Functions ///
-			 */
-			/* establish bounderies
-			 */
+			*/
+
+			/* establish boundaries */
 			$menuBoundary = $scope.children("div");
 			$menu = $menuBoundary.children("ul");
-			/* ARIA additions
-			 */
+			/* ARIA additions */
 			$scope.attr("role", "application");
 			$menu.attr("role", "menubar");
 			pe.resize(correctheight);
-			/* Handles opening and closing a submenu on click
-			 */
+			/* Handles opening and closing a submenu on click */
 			$scope.find('.mb-sm').parent().find('> :header a').on("click", function (event) {
 				if ($(this).closest("li").hasClass("mb-active")) {
 					hidesubmenu(this);
@@ -117,8 +107,7 @@
 				return false;
 			});
 
-			/* bind all custom events and triggers to menu
-			 */
+			/* bind all custom events and triggers to menu */
 			$scope.on("keydown focus section-next section-previous item-next item-previous close", "li", function (e) {
 				var next,
 					_elm,
@@ -290,11 +279,9 @@
 				return hideallsubmenus();
 			});
 
-			/* [Main] parse mega menu and establish all ARIA and Navigation classes
-			 */
+			/* [Main] parse mega menu and establish all ARIA and Navigation classes */
 			$scope.find('ul.mb-menu > li').find('a:eq(0)').each(function (index, value) {
-				var $childmenu,
-					$elm;
+				var $childmenu, $elm;
 				$elm = $(value);
 				$elm.addClass("knav-" + index + "-0-0");
 				$childmenu = $elm.closest("li").find(".mb-sm");
@@ -307,8 +294,7 @@
 					}, function () {
 						return hidesubmenu(this);
 					});
-					/* now recurse all focusable to be able to navigate
-					 */
+					/* now recurse all focusable to be able to navigate */
 					$childmenu.find("h4 a").each(function (i) {
 						$(this).addClass("knav-" + index + "-" + (i + 1) + "-0");
 						$(this).parent().next("ul").find("a").each(function (j) {
@@ -325,16 +311,13 @@
 				}
 			});
 
-			/* if CSS is enabled we want to ensure a correct tabbing response
-			 */
+			/* if CSS is enabled we want to ensure a correct tabbing response */
 			if (pe.cssenabled) {
 				$menu.find("a").attr("role", "menuitem").attr("tabindex", "-1");
 				$menu.find(".knav-0-0-0").attr("tabindex", "0");
 			}
 
-			/*
-			Breadcrumb indexer
-			 */
+			/* Breadcrumb indexer */
 			$vbrumbs = $("#gcwu-bc, #cn-bcrumb");
 			if ($vbrumbs.size() > 0 && !$scope.hasClass("page-match-off")) {
 				$results = $menu.children("li").find("a[href=\"" + window.location.pathname + "\"]");

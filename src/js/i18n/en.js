@@ -114,7 +114,7 @@
 			"%yesterday" : "yesterday"
 		}
 	};
+        $(document).trigger("languageloaded");
 	window.pe = _pe;
-	_pe.dance();
 	return _pe;
 }(jQuery));
