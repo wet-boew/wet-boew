@@ -250,23 +250,6 @@ img{
 	display:none;
 }
 
-#gcwu-psnb:hover #gcwu-psnb-in,#gcwu-psnb:focus #gcwu-psnb-in,#gcwu-srchbx:hover form,#gcwu-srchbx:active form{
-	display:block;
-	position:absolute;
-	right:0;
-	left:0;
-	width:100%;
-	margin-bottom:50px;
-	z-index:100;
-}
-
-#gcwu-srchbx:hover form,#gcwu-srchbx:focus form{
-	border-bottom:1px solid #999;
-	text-align:center;
-	background:#ccc;
-	padding:10px 0;
-}
-
 .wet-boew-menubar a{
 	border-top:1px solid #ccc;
 	border-bottom:1px solid #ccc;
@@ -543,6 +526,32 @@ a:active{
 	padding:3px 0;
 }
 
+.no-js  #gcwu-psnb:hover #gcwu-psnb-in,.no-js #gcwu-srchbx:hover form{
+	display:block;
+	position:absolute;
+	right:0;
+	left:0;
+	width:100%;
+	margin-bottom:50px;
+	z-index:100;
+}
+
+.no-js #gcwu-psnb li{
+	border: 1px solid #222;
+}
+
+.no-js #gcwu-psnb a{
+	color:#222;
+	padding: 0.45em 0.79em;
+}
+
+.no-js #gcwu-srchbx:hover form{
+	border-bottom:1px solid #999;
+	text-align:center;
+	background:#ccc;
+	padding:10px 0;
+}
+
 .no-js #gcwu-sft-in section:nth-child(3n-1),.no-js #gcwu-sft-in div:nth-child(3n-1){
 	clear:both;
 }
@@ -564,7 +573,7 @@ a:active{
 	padding:0 15px;
 }
 
-.no-js #gcwu-sft a,.no-js #gcwu-sft .link,.no-js .wet-boew-menubar .mb-sm a:hover,.no-js .wet-boew-menubar .mb-sm a:focus,.no-js .wet-boew-menubar .mb-sm a:visited{
+.no-js #gcwu-sft a,.no-js #gcwu-sft .link{
 	color:#222;
 }
 
