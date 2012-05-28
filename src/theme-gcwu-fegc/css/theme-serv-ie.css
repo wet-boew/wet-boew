@@ -8,10 +8,10 @@
 @import url('../../css/base-desktop.css');
 @import url('../../css/base-ie7.css');
 @import url('../../css/base-ie8.css');
-@import url('serv.css');
-@import url('serv-desktop-screen.css');
-@import url('serv-ie7.css');
-@import url('serv-ie8.css');
+@import url('includes/serv.css');
+@import url('includes/serv-desktop-screen.css');
+@import url('includes/serv-ie7.css');
+@import url('includes/serv-ie8.css');
 /* -----Build Include Section End----- */
 
 @media screen{
@@ -20,11 +20,11 @@
 @import url('../../css/base-desktop-screen.css');
 @import url('../../css/base-screen-ie7.css');
 @import url('../../css/base-screen-ie8.css');
-@import url('default-responsive.css');
-@import url('serv-screen.css');
-@import url('serv-desktop.css');
-@import url('serv-screen-ie7.css');
-@import url('serv-screen-ie8.css');
+@import url('includes/default-responsive.css');
+@import url('includes/serv-screen.css');
+@import url('includes/serv-desktop.css');
+@import url('includes/serv-screen-ie7.css');
+@import url('includes/serv-screen-ie8.css');
 /* -----Build Include Section End----- */
 }
 
@@ -33,8 +33,8 @@
 @import url('../../css/base-print.css');
 @import url('../../css/base-print-ie7.css');
 @import url('../../css/base-print-ie8.css');
-@import url('serv-print.css');
-@import url('serv-print-ie7.css');
-@import url('serv-print-ie8.css');
+@import url('includes/serv-print.css');
+@import url('includes/serv-print-ie7.css');
+@import url('includes/serv-print-ie8.css');
 /* -----Build Include Section End----- */
 }

@@ -5,42 +5,42 @@
  */
 /* -----Build Include Section Start----- */
 @import url('../../css/base.css');
-@import url('default.css');
+@import url('includes/default.css');
 /* -----Build Include Section End----- */
 
 @media screen{
 /* -----Build Include Section Start----- */
 @import url('../../css/base-screen.css');
-@import url('default-screen.css');
+@import url('includes/default-screen.css');
 /* -----Build Include Section End----- */
 }
 
 /* Desktop view */
 @media screen and (min-width:768px) {
 /* -----Build Include Section Start----- */
-@import url('default-responsive.css');
+@import url('includes/default-responsive.css');
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:768px) and (max-width:959px){
 /* -----Build Include Section Start----- */
-@import url('default-responsive-768.css');
+@import url('includes/default-responsive-768.css');
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:1200px){
 /* -----Build Include Section Start----- */
-@import url('default-responsive-1200.css');
+@import url('includes/default-responsive-1200.css');
 /* -----Build Include Section End----- */
 }
 @media (min-width:768px) {
 /* -----Build Include Section Start----- */
 @import url('../../css/base-desktop.css');
-@import url('default-desktop.css');
+@import url('includes/default-desktop.css');
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:768px) {
 /* -----Build Include Section Start----- */
 @import url('../../css/base-desktop-screen.css');
-@import url('default-desktop-screen.css');
+@import url('includes/default-desktop-screen.css');
 /* -----Build Include Section End----- */
 }
 
@@ -48,13 +48,13 @@
 @media (max-width:767px) {
 /* -----Build Include Section Start----- */
 @import url('../../css/base-mobile.css');
-@import url('default-mobile.css');
+@import url('includes/default-mobile.css');
 /* -----Build Include Section End----- */
 }
 
 @media print{
 /* -----Build Include Section Start----- */
 @import url('../../css/base-print.css');
-@import url('default-print.css');
+@import url('includes/default-print.css');
 /* -----Build Include Section End----- */
 }
