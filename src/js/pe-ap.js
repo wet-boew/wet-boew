@@ -110,7 +110,6 @@
 						mb_dialogue = '<div data-role="page" id="jqmobile-wet-boew-menubar"><div data-role="header">';
 						mb_header = pe.header.find('#gcwu-psnb > :header');
 						mb_dialogue += "<h1>" + mb_header.html() + '</h1></div>';
-						//mb_dialogue.append($('<div data-role="header"></div>').append(mb_header.clone()));
 						mb_dialogue += '<div data-role="content" data-inset="true"><nav role="navigation">';
 
 						bcrumb = pe.header.find('#gcwu-bc');
@@ -128,25 +127,15 @@
 							sub += pe.leftcol.find('.wb-sec-def').html().replace(/<section>/gi, "<div data-role=\"collapsible\">").replace(/<\/section>/gi, "</div>");
 
 							// lets work on the menu shift
-							/** sub = sub.replace(/<ul\b[^>]*"sub-nav"[^>]*>([\s\S]*?)<\/ul>/gmi, function(m, child){
-												var _internal = child;
-												_internal = _internal.replace(/<li.*?>/gmi,"").replace(/<\/li>/gmi,'').replace(/<a/gi,"<a class=\"ui-link\"  data-icon=\"arrow-r\"");
-												return "<div data-role=\"navbar\">" + _internal + "</div>";
-												});
-												**/
 							sub = sub.replace(/<h(.*?)>\s*<a/gmi, "<h$1><a class=\"ui-link\" data-icon=\"arrow-r\" data-theme=\"b\"");
 							sub = sub.replace(/<ul(.*?)>/gi, "<ul data-role=\"listview\"$1>").replace(/<\/ul>/gi, "</ul>");
 							sub = sub.replace(/<div class=\"top-level\"/gmi, "<div data-role=\"button\" data-icon=\"arrow-r\" class=\"top-level\"");
-
-							//sub = sub.replace(/<\/a>\s+<ul(.*?)>(.*?)<\/ul>/gmi, "</a><div data-role=\"navbar\">$2</div>");
-							//console.log(sub);
 							sub += '</div>';
 							mb_dialogue += sub;
 							pe.leftcol.remove();
 						}
 
 						mb_dialogue += '<h2>' + mb_header.html() + '</h2>';
-						//mb_dialogue += '<ul data-role="listview" data-inset="true" data-theme=\"a\">';
 						mb_dialogue += '<div data-role=\"collapsible-set\">';
 
 						pe.menubar.find('ul.mb-menu').clone().each(function () {
@@ -182,11 +171,9 @@
 							});
 						});
 						mb_dialogue += '</nav></div>';
-						//mb_dialogue += '</ul>';
 
 						mb_dialogue += '</div></div>';
 						pe.pagecontainer().append(mb_dialogue);
-						pe.header.find('#gcwu-psnb').parent().remove();
 						mb_header.wrapInner('<a href="#jqmobile-wet-boew-menubar" data-rel="dialog"></a>');
 					}
 
@@ -200,7 +187,6 @@
 						// lets see if we can change these to navbars
 						_list = $('<ul></ul>').hide().append('<li><a data-rel="dialog" data-theme="b"  data-icon="grid" href="' + mb_header.find('a').attr('href') + '">' + mb_header.find('a').text() + "</a></li>").append('<li><a data-rel="dialog" data-theme="b" data-icon="search" href="' + search_elm.find(':header a').attr('href') + '">' + search_elm.find(':header a').text() + "</a></li>");
 						pe.header.find('#gcwu-title').after($('<div data-role="navbar" data-iconpos="right"></div>').append(_list));
-						search_elm.parent().remove();
 					}
 
 					lang_links = $('#gcwu-lang');
@@ -243,10 +229,10 @@
 						$.mobile.ajaxEnabled = false;
 						$.mobile.pushStateEnabled = false;
 						if (pe.menubar.length > 0) {
-							pe.header.find('#gcwu-psnb :header').remove();
+							pe.header.find('#gcwu-psnb').parent().remove();
 						}
 						if (search_elm.length > 0) {
-							search_elm.remove();
+							search_elm.parent().remove();
 							_list.show();
 						}
 					});
