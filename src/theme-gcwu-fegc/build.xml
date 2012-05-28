@@ -58,6 +58,8 @@
 		<copy todir="${build.dir}">
 			<fileset dir="${src.dir}">
 				<exclude name="build*"/>
+        <exclude name="config*"/>
+        <exclude name="sass/**"/>
 			</fileset>
 		</copy>
 		<copy todir="${build.dir}/../css">
