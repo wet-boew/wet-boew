@@ -952,7 +952,7 @@
 		 */
 		dance: function () {
 			// global plugins
-			var i,
+			var i, exclude = ":not(a[href], input, button, textarea)",
 				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false;
 			$('[class^="wet-boew-"]').each(function () {
 				var _fcall,
@@ -972,8 +972,17 @@
 				}
 			}
 			if (pe.mobile) {
+				// Move the focus to the anchored element for same page content area links
+				$("#wb-main a[href^='#']").click(function () {
+					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
+				});
 				pe.add.css([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.css']);
 				pe.add._load([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.js']);
+			} else {
+				// Move the focus to the anchored element for skip nav links
+				$("#wb-skip a").click(function () {
+					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
+				});
 			}
 			window.onresize = function () { // TODO: find a better way to switch back and forth between mobile and desktop modes.
 				if (pe.mobile !== pe.mobilecheck()) {
