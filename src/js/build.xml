@@ -87,7 +87,6 @@
 
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode" depends="-merge-css">
-		<copy file="${build.dir}/premin/css/pe-ap.css" tofile="${build.dir}/premin/css/pe-ap-ie.css"/>
 		<copy todir="${build.dir}/premin/images">
 			<fileset dir="${src.dir}/images"/>
 		</copy>
