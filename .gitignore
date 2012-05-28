@@ -1,1 +1,4 @@
 nbproject/*
+.sass-cache/
+.DS_Store
+jruby.jar
