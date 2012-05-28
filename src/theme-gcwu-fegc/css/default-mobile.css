@@ -496,7 +496,7 @@ img{
 	margin:0 -15px 10px;
 }
 
-.mobile-hide,.no-js .mobile-pe{
+.mobile-hide{
 	display:none !important;
 }
 
