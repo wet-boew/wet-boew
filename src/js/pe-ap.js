@@ -75,6 +75,11 @@
 			pefile = pe.url(document.getElementById('progressive').src).file;
 			pe.suffix = pefile.substr(pefile.length - 7) === "-min.js" ? "-min" : "";
 
+			if (pe.mobilecheck()) {
+			    pe.mobile = true;
+			    $('body > div').attr('data-role', 'page');
+			}
+			
 			//Load ajax content
 			$.when.apply($, $.map($("*[data-ajax-replace], *[data-ajax-append]"), function (o) {
 				$o = $(o);
@@ -99,9 +104,7 @@
 				pe.add.language(pe.language);
 
 				//Load the mobile view
-				if (pe.mobilecheck()) {
-					pe.mobile = true;
-					$('body > div').attr('data-role', 'page');
+				if (pe.mobile == true) {
 					if (pe.menubar.length > 0) {
 						// lets init some variables for use in various transformations
 						// raw variable running on the dom
