@@ -1,6 +1,6 @@
 # SASS/SCSS for Web Experience Toolkit (WET)
 
-This folder and all subdirectories are under SASS control!
+The various subdirectories in this folder are under SASS control!
 
 
 ABOUT SASS AND COMPASS
@@ -58,23 +58,12 @@ file into your sub-theme's css directory:
   
   a) root directory
 
-  ant
-  ant sass
-  ant clean-css
+  $ ant (will perform overall build out)
 
-  b) src directory
+  b) subdirectories (base, grids, js, theme-gcwu-fegc, theme-gcwu-intranet)
 
-  ant compile-css.sass
-  ant compile-gcwu.sass
-  ant compile-grids.sass
-  ant compile-intranet.sass
-  ant compile-js.sass
-
-  ant watch-css.sass
-  ant watch-gcwu.sass
-  ant watch-grids.sass
-  ant watch-intranet.sass
-  ant watch-js.sass
+  subdirectory $ ant compile.sass (will compile scss files relative to dir)
+  subdirectory $ ant watch.sass (will poll scss files relative to dir)
 
 
 DEVELOPING WITH SASS AND COMPASS
@@ -87,16 +76,15 @@ file into your sub-theme's css directory:
 
   src $ command
 
-  compass compile .
+  compass compile base
   compass compile grids
   compass compile js
-  compass compile theme-gc-intranet
   compass compile theme-gcwu-fegc
+  compass compile theme-gcwu-intranet
 
-  compass watch .
+  compass watch base
   compass watch grids
   compass watch js
-  compass watch theme-gc-intranet
   compass watch theme-gcwu-fegc
 
   If you are already in the root of your sass controlled directory, you can simply

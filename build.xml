@@ -3,11 +3,15 @@
   <description>Web Experience Toolkit</description>
   <property file="build.properties"/>
 
-  <target name="build" depends="sass">
+  <target name="build" depends="">
       <echo level="info">
 ---Building jQuery Integration project---
       </echo>
       <ant dir="${src.dir}/js" antfile="build.xml" inheritAll="false"/>
+      <echo level="info">
+---Building CSS Base System project---
+      </echo>
+      <ant dir="${src.dir}/base" antfile="build.xml" inheritAll="false"/>
       <echo level="info">
 ---Building CSS Grid System project---
       </echo>
@@ -16,22 +20,19 @@
 ---Building GCWU Theme---
       </echo>
       <ant dir="${src.dir}/theme-gcwu-fegc" antfile="build.xml" inheritAll="false"/>
+      <echo level="info">
+---Building GCWU Theme Intranet---
+      </echo>
+      <ant dir="${src.dir}/theme-gcwu-intranet" antfile="build.xml" inheritAll="false"/>
       <antcall target="clean-css"/>
   </target>
 
-  <target name="sass">
-      <echo level="info">
----Building SCSS Files into CSS equivalents---
-      </echo>
-      <ant dir="${src.dir}" antfile="build.xml" inheritAll="false"/>
-  </target>
-
   <target name="clean-css">
-    <delete dir="${src.dir}/css" />
-    <delete dir="${src.dir}/grids/css" />
-    <delete dir="${src.dir}/js/css" />
-    <delete dir="${src.dir}/theme-gc-intranet/css" />
-    <delete dir="${src.dir}/theme-gcwu-fegc/css" />
+    <ant dir="${src.dir}/base" target="clean-css" antfile="build.xml" inheritAll="false"/>
+    <ant dir="${src.dir}/grids" target="clean-css" antfile="build.xml" inheritAll="false"/>
+    <ant dir="${src.dir}/js" target="clean-css" antfile="build.xml" inheritAll="false"/>
+    <ant dir="${src.dir}/theme-gcwu-intranet" target="clean-css" antfile="build.xml" inheritAll="false"/>
+    <ant dir="${src.dir}/theme-gcwu-fegc" target="clean-css" antfile="build.xml" inheritAll="false"/>
   </target>
   
   <target name="clean">
