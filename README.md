@@ -1,6 +1,6 @@
 # Web Experience Toolkit (WET)
 
-[![Build Status](https://secure.travis-ci.org/sylus/wet-boew.png?branch=master)](http://travis-ci.org/sylus/wet-boew)
+[![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.png?branch=master)](http://travis-ci.org/wet-boew/wet-boew)
 
 Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities.  
 
