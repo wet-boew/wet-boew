@@ -152,6 +152,13 @@
 				<exclude name="pe-ap*.css"/>
 			</fileset>
 		</concat>
+		<concat dest="${build.dir}/premin/css/pe-ap-ie.css" fixlastline="yes">
+			<header>@charset &quot;utf-8&quot;;</header> 
+			<fileset dir="${build.dir}/premin/css">
+				<include name="*.css"/>
+				<exclude name="pe-ap*.css"/>
+			</fileset>
+		</concat>
 		<delete>
 			<fileset dir="${build.dir}/premin/css">
 				<exclude name="pe-ap*.css"/>
