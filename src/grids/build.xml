@@ -10,7 +10,7 @@
   <!-- Include jruby + gems (compass + sass + zengrids) -->
   <target name="build-jar" depends="jar.check" unless="jar.exists">
     <mkdir dir="${lib.dir}/jruby-compiled" />
-    <get src="http://jruby.org.s3.amazonaws.com/downloads/1.6.7.2/jruby-complete-1.6.7.2.jar" dest="${lib.dir}/jruby.jar"/>
+    <get src="http://jruby.org.s3.amazonaws.com/downloads/1.7.0.preview1/jruby-complete-1.7.0.preview1.jar" dest="${lib.dir}/jruby.jar"/>
     <get src="http://production.cf.rubygems.org/gems/compass-0.12.1.gem" dest="${lib.dir}/jruby-compiled/compass.gem"/>  
     <get src="http://production.cf.rubygems.org/gems/sass-3.1.19.gem" dest="${lib.dir}/jruby-compiled/sass.gem"/>  
     <get src="http://production.cf.rubygems.org/gems/zen-grids-1.2.gem" dest="${lib.dir}/jruby-compiled/zen-grids.gem"/> 
@@ -21,7 +21,6 @@
       <arg line="-uf jruby.jar -C vendors ." />
     </exec>
     <delete dir="${lib.dir}/jruby-compiled" />
-    <delete dir="${lib.dir}/vendors" />
   </target>
   <target name="jar.check">
     <condition property="jar.exists">
@@ -56,7 +55,7 @@
   <!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
   <target name="watch.sass">
     <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="${src.dir}/compile.rb ${lib.dir}/gems/ watch ${src.dir}"/>
+        <arg line="${src.dir}/compile.rb ${lib.dir}/vendors/gems/ watch ${src.dir}"/>
     </java>
     <echo level="info">
 ---Watching for SCSS Changes in Grids Directory---
