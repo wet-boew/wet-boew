@@ -5,9 +5,31 @@
 	<property file="build.properties"/>
 	<import file="build-tasks.xml"/>
 
-	<target name="build" description="" depends="-init, -minify" />
-
-	<target name="-init" depends=""> <!-- Future depends: -can-nodejs-lessc -->
+	<target name="build" description="" depends="build-jar, -init, -minify" />
+  
+  <!-- Include jruby + gems (compass + sass + zengrids) -->
+  <target name="build-jar" depends="jar.check" unless="jar.exists">
+    <mkdir dir="${lib.dir}/jruby-compiled" />
+    <get src="http://jruby.org.s3.amazonaws.com/downloads/1.6.7.2/jruby-complete-1.6.7.2.jar" dest="${lib.dir}/jruby.jar"/>
+    <get src="http://production.cf.rubygems.org/gems/compass-0.12.1.gem" dest="${lib.dir}/jruby-compiled/compass.gem"/>  
+    <get src="http://production.cf.rubygems.org/gems/sass-3.1.19.gem" dest="${lib.dir}/jruby-compiled/sass.gem"/>  
+    <get src="http://production.cf.rubygems.org/gems/zen-grids-1.2.gem" dest="${lib.dir}/jruby-compiled/zen-grids.gem"/> 
+    <java jar="${lib.dir}/jruby.jar" fork="true">
+        <arg line="-S gem install -i ${lib.dir}/vendors ${lib.dir}/jruby-compiled/compass.gem ${lib.dir}/jruby-compiled/sass.gem ${lib.dir}/jruby-compiled/zen-grids.gem"/>
+    </java>
+    <exec executable="jar" dir="${lib.dir}/">
+      <arg line="-uf jruby.jar -C vendors ." />
+    </exec>
+    <delete dir="${lib.dir}/jruby-compiled" />
+    <delete dir="${lib.dir}/vendors" />
+  </target>
+  <target name="jar.check">
+    <condition property="jar.exists">
+      <available file="${lib.dir}/jruby.jar" type="file"/>
+    </condition>
+  </target>
+  
+	<target name="-init" depends="compile.sass">
 		<mkdir dir="${build.dir}"/>
 	</target>
 
@@ -23,6 +45,25 @@
 
 	<target name="build-css" depends="-base64-encode" />
 
+  <!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
+  <target name="compile.sass">
+    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+        <arg line="${src.dir}/compile.rb ${lib.dir}/gems/ compile ${src.dir}"/>
+    </java>
+    <echo level="info">
+---Converted GCWU SCSS Files into CSS---
+    </echo>
+  </target>
+  <!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
+  <target name="watch.sass">
+    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+        <arg line="${src.dir}/compile.rb ${lib.dir}/gems/ watch ${src.dir}"/>
+    </java>
+    <echo level="info">
+---Watching for SCSS Changes in GCWU Directory---
+    </echo>
+  </target>
+  
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode" depends="-merge-css">
 		<copy todir="${build.dir}/images">
@@ -59,11 +100,12 @@
 			<fileset dir="${src.dir}">
 				<exclude name="build*"/>
         <exclude name="config*"/>
+        <exclude name="compile*"/>
         <exclude name="sass/**"/>
 			</fileset>
 		</copy>
 		<copy todir="${build.dir}/../css">
-			<fileset dir="${src.dir}/../css"/>
+			<fileset dir="${src.dir}/../base/css"/>
 		</copy>
 		<filelist id="corefiles" dir="${build.dir}">
 			<file name="css/theme.css"/>
@@ -150,6 +192,10 @@
         <var name="file.recurse" unset="true"/>
 	</target>
 
+  <target name="clean-css">
+		<delete dir="${src.dir}/css" />
+	</target>
+  
 	<target name="clean">
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
