@@ -40,7 +40,7 @@
   <!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
   <target name="watch.sass">
     <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="${src.dir}/compile.rb ${lib.dir}/jruby.jar/gems/ watch ${src.dir}"/>
+        <arg line="${src.dir}/compile.rb ${lib.dir}/vendors/gems/ watch ${src.dir}"/>
     </java>
     <echo level="info">
 ---Watching for SCSS Changes in CSS Directory---
