@@ -1,7 +1,4 @@
 language: java
 
-install: 
-  - ant deps
-
 script:
   - ant
