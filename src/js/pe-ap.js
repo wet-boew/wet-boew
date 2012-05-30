@@ -96,7 +96,7 @@
 					}
 					$o.append($(data));
 				}, "html");
-			})).done(function () {
+			})).always(function () {
 				//Wait for localisation and ajax content to load plugins
 				$(document).bind("languageloaded", function () {
 					pe.dance();
