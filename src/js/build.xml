@@ -5,9 +5,30 @@
 	<property file="build.properties"/>
 	<import file="build-tasks.xml"/>
 
-	<target name="build" description="" depends="-init, -minify" />
+	<target name="build" description="" depends="build-jar, -init, -minify" />
 
-	<target name="-init" depends=""> <!-- Future depends: -can-nodejs-coffeescript, -can-nodejs-lessc -->
+  <!-- Include jruby + gems (compass + sass + zengrids) -->
+  <target name="build-jar" depends="jar.check" unless="jar.exists">
+    <mkdir dir="${lib.dir}/jruby-compiled" />
+    <get src="http://jruby.org.s3.amazonaws.com/downloads/1.6.7.2/jruby-complete-1.6.7.2.jar" dest="${lib.dir}/jruby.jar"/>
+    <get src="http://production.cf.rubygems.org/gems/compass-0.12.1.gem" dest="${lib.dir}/jruby-compiled/compass.gem"/>  
+    <get src="http://production.cf.rubygems.org/gems/sass-3.1.19.gem" dest="${lib.dir}/jruby-compiled/sass.gem"/>  
+    <get src="http://production.cf.rubygems.org/gems/zen-grids-1.2.gem" dest="${lib.dir}/jruby-compiled/zen-grids.gem"/> 
+    <java jar="${lib.dir}/jruby.jar" fork="true">
+        <arg line="-S gem install -i ${lib.dir}/vendors ${lib.dir}/jruby-compiled/compass.gem ${lib.dir}/jruby-compiled/sass.gem ${lib.dir}/jruby-compiled/zen-grids.gem"/>
+    </java>
+    <exec executable="jar" dir="${lib.dir}/">
+      <arg line="-uf jruby.jar -C vendors ." />
+    </exec>
+    <delete dir="${lib.dir}/jruby-compiled" />
+  </target>
+  <target name="jar.check">
+    <condition property="jar.exists">
+      <available file="${lib.dir}/jruby.jar" type="file"/>
+    </condition>
+  </target>
+  
+	<target name="-init" depends="compile.sass"> <!-- Future depends: -can-nodejs-coffeescript -->
 		<mkdir dir="${build.dir}"/>
 	</target>
 
@@ -15,19 +36,39 @@
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/premin" toDir="${build.dir}">
 			<include name="*.*" />
 			<include name="i18n/*.*" />
+			<include name="dependencies/*.*"/>
+			<include name="polyfills/*.*"/>
 			<include name="css/*.*" />
 		</yui-compressor>
 		<delete dir="${build.dir}/premin"/>
 	</target>
+  
+  <!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
+  <target name="compile.sass">
+    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+        <arg line="${src.dir}/compile.rb ${lib.dir}/vendors/gems/ compile ${src.dir}"/>
+    </java>
+    <echo level="info">
+---Converted JS SCSS Files into CSS---
+    </echo>
+  </target>
+  <!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
+  <target name="watch.sass">
+    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+        <arg line="${src.dir}/compile.rb ${lib.dir}/vendors/gems/ watch ${src.dir}"/>
+    </java>
+    <echo level="info">
+---Watching for SCSS Changes in JS Directory---
+    </echo>
+  </target>
 
 	<target name="build-js" depends="-build-pe">
 		<copy todir="${build.dir}">  
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="images/**"/>
-					<include name="dependencies/**"/> 
-					<include name="polyfills/**"/>
-					<include name="jquery.mobile/**"/>
+					<include name="jquery.mobile/*.min.*"/>
+					<include name="jquery.mobile/images/**"/>
 					<include name="*.js"/>
 					<exclude name="pe-ap.js"/> 
 				</fileset>
@@ -40,6 +81,29 @@
 				</fileset>
 			</resources>  
 		</copy>
+		<copy todir="${build.dir}/premin">
+			<resources>
+				<fileset dir="${src.dir}">
+					<include name="dependencies/**"/>
+					<include name="polyfills/**"/>
+					<contains text="/*!" casesensitive="no"/>
+				</fileset>
+			</resources> 
+		</copy> 
+		<copy todir="${build.dir}/premin">
+			<filterchain>
+				<replaceregex byline="false" pattern="\/\*" replace="\/\*!"/>
+			</filterchain>
+			<resources>
+				<fileset dir="${src.dir}">
+					<include name="dependencies/**"/>
+					<include name="polyfills/**"/>
+					<not>
+						<contains text="/*!" casesensitive="no"/>
+					</not>
+				</fileset>
+			</resources> 
+		</copy> 
 	</target>
 
 	<target name="build-css" depends="-base64-encode" />
@@ -63,7 +127,6 @@
 
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode" depends="-merge-css">
-		<copy file="${build.dir}/premin/css/pe-ap.css" tofile="${build.dir}/premin/css/pe-ap-ie.css"/>
 		<copy todir="${build.dir}/premin/images">
 			<fileset dir="${src.dir}/images"/>
 		</copy>
@@ -89,6 +152,13 @@
 				<exclude name="pe-ap*.css"/>
 			</fileset>
 		</concat>
+		<concat dest="${build.dir}/premin/css/pe-ap-ie.css" fixlastline="yes">
+			<header>@charset &quot;utf-8&quot;;</header> 
+			<fileset dir="${build.dir}/premin/css">
+				<include name="*.css"/>
+				<exclude name="pe-ap*.css"/>
+			</fileset>
+		</concat>
 		<delete>
 			<fileset dir="${build.dir}/premin/css">
 				<exclude name="pe-ap*.css"/>
@@ -96,6 +166,10 @@
 		</delete>
 	</target>
 
+  <target name="clean-css">
+		<delete dir="${src.dir}/css" />
+	</target>
+  
 	<target name="clean">
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />

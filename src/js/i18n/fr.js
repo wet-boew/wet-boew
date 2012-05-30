@@ -57,9 +57,9 @@
 		ind: {
 			"%top-of-page": "Haut de la page",
 			"%you-are-in": "Vous êtes dans :",
-			"%welcome-to": "Bienvenue à : " + $('#cn-site-title').text(),
+			"%welcome-to": "Bienvenue à : " + $('#gcwu-title').text(),
 			"%archived-page": "Cette page Web a été archivée dans le Web.",
-			"%sub-menu-help": "(ouvrir le sous-menu avec la touche de la fleche descendante)",
+			"%sub-menu-help": "(ouvrir le sous-menu avec la touche de la flèche descendante et le fermer avec la touche d'échappement)",
 			"%tab-rotation": {
 				"disable": "Arrêter la rotation d'onglets",
 				"enable": "Lancer la rotation d'onglets"
@@ -110,7 +110,7 @@
 			"%yesterday": "hier"
 		}
 	};
+        $(document).trigger("languageloaded");
 	window.pe = _pe;
-	_pe.dance();
 	return _pe;
 }(jQuery));

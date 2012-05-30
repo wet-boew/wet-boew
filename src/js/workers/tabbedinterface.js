@@ -184,8 +184,8 @@
 				if ($toggleRow.data("state") === "stopped") {
 					selectNext($tabs, $panels, opts, true);
 					cycle($tabs, $panels, opts);
-					$toggleButton.removeClass(start["class"]).addClass(stop["class"]).html(stop.text + "<span class='cn-invisible'>" + stop["hidden-text"] + "</span>").attr("aria-pressed", true);
-					return $(".cn-invisible", $toggleButton).text(stop["hidden-text"]);
+					$toggleButton.removeClass(start["class"]).addClass(stop["class"]).html(stop.text + "<span class='wb-invisible'>" + stop["hidden-text"] + "</span>").attr("aria-pressed", true);
+					return $(".wb-invisible", $toggleButton).text(stop["hidden-text"]);
 				}
 				if ($toggleRow.data("state") === "started") {
 					return stopCycle();
@@ -221,8 +221,8 @@
 					clearTimeout(elm.data("interval"));
 					elm.find(".tabs-roller").width(0).hide().stop();
 					elm.find(".tabs-toggle").data("state", "stopped");
-					$toggleButton.removeClass(stop["class"]).addClass(start["class"]).html(start.text + "<span class='cn-invisible'>" + start["hidden-text"] + "</span>").attr("aria-pressed", false);
-					return $(".cn-invisible", $toggleButton).text(start["hidden-text"]);
+					$toggleButton.removeClass(stop["class"]).addClass(start["class"]).html(start.text + "<span class='wb-invisible'>" + start["hidden-text"] + "</span>").attr("aria-pressed", false);
+					return $(".wb-invisible", $toggleButton).text(start["hidden-text"]);
 				};
 				//
 				// creates a play/pause, prev/next buttons, and lets the user toggle the stateact as PREV button MB
@@ -232,7 +232,7 @@
 					"text" : '&nbsp;&nbsp;&nbsp;',
 					"hidden-text" : pe.dic.get('%previous')
 				};
-				$toggleButtonPrev = $("<a class='" + prev["class"] + "' href='javascript:;' role='button' aria-pressed='true'>" + prev.text + "<span class='cn-invisible'>" + prev["hidden-text"] + "</span></a>");
+				$toggleButtonPrev = $("<a class='" + prev["class"] + "' href='javascript:;' role='button' aria-pressed='true'>" + prev.text + "<span class='wb-invisible'>" + prev["hidden-text"] + "</span></a>");
 				$nav.append($toggleRowPrev.append($toggleButtonPrev));
 				// lets the user jump to the previous tab by clicking on the PREV button
 				$toggleButtonPrev.click(function () {
@@ -248,7 +248,7 @@
 					"text" : '&nbsp;&nbsp;&nbsp;',
 					"hidden-text" : pe.dic.get('%next')
 				};
-				$toggleButtonNext = $("<a class='" + next["class"] + "' href='javascript:;' role='button' aria-pressed='true'>" + next.text + "<span class='cn-invisible'>" + next["hidden-text"] + "</span></a>");
+				$toggleButtonNext = $("<a class='" + next["class"] + "' href='javascript:;' role='button' aria-pressed='true'>" + next.text + "<span class='wb-invisible'>" + next["hidden-text"] + "</span></a>");
 				$nav.append($toggleRowNext.append($toggleButtonNext));
 				// lets the user jump to the next tab by clicking on the NEXT button
 				$toggleButtonNext.click(function () {
@@ -269,7 +269,7 @@
 					text : pe.dic.get('%play'),
 					"hidden-text" : pe.dic.get('%tab-rotation', 'enable')
 				};
-				$toggleButton = $("<a class='" + stop["class"] + "' href='javascript:;' role='button' aria-pressed='true'>" + stop.text + "<span class='cn-invisible'>" + stop["hidden-text"] + "</span></a>");
+				$toggleButton = $("<a class='" + stop["class"] + "' href='javascript:;' role='button' aria-pressed='true'>" + stop.text + "<span class='wb-invisible'>" + stop["hidden-text"] + "</span></a>");
 				$nav.append($toggleRow.append($toggleButton));
 				$toggleRow.click(toggleCycle).bind("keydown", function (e) {
 					if (e.keyCode === 32) {

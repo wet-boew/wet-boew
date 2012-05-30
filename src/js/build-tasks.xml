@@ -29,4 +29,10 @@
 		<pathelement location="${snvkit.cli.jar}" />
 		<pathelement location="${sequencelib.jar}" />
 	</path>
+  <!-- Include the compiled jruby.jar file -->
+  <path id="jruby.classpath">
+    <fileset dir="${lib.dir}">
+      <include name="jruby*.jar"/>
+    </fileset>
+  </path>
 </project>

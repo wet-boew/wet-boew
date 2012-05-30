@@ -60,10 +60,10 @@
 		ind : {
 			"%top-of-page" : "Top of Page",
 			"%you-are-in" : "You are in: ",
-			"%welcome-to" : "Welcome to: " + $('#cn-site-title').text(),
+			"%welcome-to" : "Welcome to: " + $('#gcwu-title').text(),
 			"%loading" : "loading...",
 			"%archived-page" : "This Web page has been archived on the Web.",
-			"%sub-menu-help" : "(open the submenu with the down arrow key)",
+			"%sub-menu-help" : "(open the submenu with the down arrow key and close with the escape key)",
 			"%tab-rotation" : {
 				"disable" : "Stop tab rotation",
 				"enable" : "Start tab rotation"
@@ -114,7 +114,7 @@
 			"%yesterday" : "yesterday"
 		}
 	};
+        $(document).trigger("languageloaded");
 	window.pe = _pe;
-	_pe.dance();
 	return _pe;
 }(jQuery));

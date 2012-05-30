@@ -5,9 +5,30 @@
 	<property file="build.properties"/>
 	<import file="build-tasks.xml"/>
 
-	<target name="build" description="" depends="-init, -minify" />
-
-	<target name="-init" depends=""> <!-- Future depends: -can-nodejs-lessc -->
+	<target name="build" description="" depends="build-jar, -init, -minify" />
+  
+  <!-- Include jruby + gems (compass + sass + zengrids) -->
+  <target name="build-jar" depends="jar.check" unless="jar.exists">
+    <mkdir dir="${lib.dir}/jruby-compiled" />
+    <get src="http://jruby.org.s3.amazonaws.com/downloads/1.6.7.2/jruby-complete-1.6.7.2.jar" dest="${lib.dir}/jruby.jar"/>
+    <get src="http://production.cf.rubygems.org/gems/compass-0.12.1.gem" dest="${lib.dir}/jruby-compiled/compass.gem"/>  
+    <get src="http://production.cf.rubygems.org/gems/sass-3.1.19.gem" dest="${lib.dir}/jruby-compiled/sass.gem"/>  
+    <get src="http://production.cf.rubygems.org/gems/zen-grids-1.2.gem" dest="${lib.dir}/jruby-compiled/zen-grids.gem"/> 
+    <java jar="${lib.dir}/jruby.jar" fork="true">
+        <arg line="-S gem install -i ${lib.dir}/vendors ${lib.dir}/jruby-compiled/compass.gem ${lib.dir}/jruby-compiled/sass.gem ${lib.dir}/jruby-compiled/zen-grids.gem"/>
+    </java>
+    <exec executable="jar" dir="${lib.dir}/">
+      <arg line="-uf jruby.jar -C vendors ." />
+    </exec>
+    <delete dir="${lib.dir}/jruby-compiled" />
+  </target>
+  <target name="jar.check">
+    <condition property="jar.exists">
+      <available file="${lib.dir}/jruby.jar" type="file"/>
+    </condition>
+  </target>
+  
+	<target name="-init" depends="compile.sass">
 		<mkdir dir="${build.dir}"/>
 	</target>
 
@@ -23,12 +44,27 @@
 
 	<target name="build-css" depends="-base64-encode" />
 
+  <!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
+  <target name="compile.sass">
+    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+        <arg line="${src.dir}/compile.rb ${lib.dir}/vendors/gems/ compile ${src.dir}"/>
+    </java>
+    <echo level="info">
+---Converted GCWU SCSS Files into CSS---
+    </echo>
+  </target>
+  <!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
+  <target name="watch.sass">
+    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+        <arg line="${src.dir}/compile.rb ${lib.dir}/vendors/gems/ watch ${src.dir}"/>
+    </java>
+    <echo level="info">
+---Watching for SCSS Changes in GCWU Directory---
+    </echo>
+  </target>
+  
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode" depends="-merge-css">
-		<copy file="${build.dir}/css/core.css" tofile="${build.dir}/css/core-ie.css"/>
-		<copy file="${build.dir}/css/core-sppe.css" tofile="${build.dir}/css/core-sppe-ie.css"/>
-		<copy file="${build.dir}/css/core-serv.css" tofile="${build.dir}/css/core-serv-ie.css"/>
-		<copy file="${build.dir}/css/mobile.css" tofile="${build.dir}/css/mobile-ie.css"/>
 		<copy todir="${build.dir}/images">
 			<fileset dir="${src.dir}/images"/>
 		</copy>
@@ -37,18 +73,16 @@
 		</copy>
 		<copy todir="${build.dir}/encode/css">
 			<fileset dir="${build.dir}/css">
-				<include name="core.css"/>
-				<include name="core-sppe.css"/>
-				<include name="core-serv.css"/>
-				<include name="mobile.css"/>
+				<include name="theme.css"/>
+				<include name="theme-sp-pe.css"/>
+				<include name="theme-serv.css"/>
 			</fileset>
 		</copy>
 		<cssurlembed skipMissing="true">
 			<fileset dir="${build.dir}/encode/css/">
-				<include name="core.css"/>
-				<include name="core-sppe.css"/>
-				<include name="core-serv.css"/>
-				<include name="mobile.css"/>
+				<include name="theme.css"/>
+				<include name="theme-sp-pe.css"/>
+				<include name="theme-serv.css"/>
 			</fileset>
 		</cssurlembed>
 		<copy todir="${build.dir}/css">
@@ -64,16 +98,21 @@
 		<copy todir="${build.dir}">
 			<fileset dir="${src.dir}">
 				<exclude name="build*"/>
+        <exclude name="config*"/>
+        <exclude name="compile*"/>
+        <exclude name="sass/**"/>
 			</fileset>
 		</copy>
 		<copy todir="${build.dir}/../css">
-			<fileset dir="${src.dir}/../css"/>
+			<fileset dir="${src.dir}/../base/css"/>
 		</copy>
 		<filelist id="corefiles" dir="${build.dir}">
-			<file name="css/core.css"/>
-			<file name="css/core-sppe.css"/>
-			<file name="css/core-serv.css"/>
-			<file name="css/mobile.css"/>
+			<file name="css/theme.css"/>
+			<file name="css/theme-ie.css"/>
+			<file name="css/theme-sp-pe.css"/>
+			<file name="css/theme-sp-pe-ie.css"/>
+			<file name="css/theme-serv.css"/>
+			<file name="css/theme-serv-ie.css"/>
 		</filelist>
 		<for param="css-file">
 			<path>
@@ -89,10 +128,12 @@
 
 		<delete>
 			<fileset dir="${build.dir}/css">
-				<exclude name="core.css"/>
-				<exclude name="core-sppe.css"/>
-				<exclude name="core-serv.css"/>
-				<exclude name="mobile.css"/>
+				<exclude name="theme.css"/>
+				<exclude name="theme-ie.css"/>
+				<exclude name="theme-sp-pe.css"/>
+				<exclude name="theme-sp-pe-ie.css"/>
+				<exclude name="theme-serv.css"/>
+				<exclude name="theme-serv-ie.css"/>
 			</fileset>
 		</delete>
 		<delete dir="${build.dir}/../css"/>
@@ -150,6 +191,10 @@
         <var name="file.recurse" unset="true"/>
 	</target>
 
+  <target name="clean-css">
+		<delete dir="${src.dir}/css" />
+	</target>
+  
 	<target name="clean">
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />

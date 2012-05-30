@@ -1,0 +1,81 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+.ie7 #wb-core{
+	margin-bottom:-20px;
+}
+	
+.ie7 .gcwu-minister ul{
+	padding-bottom:17px;
+}
+	
+.ie7 #deocrative-banner-full {
+	display: inline-block !important; 
+	float: left; 
+	margin: 0; 
+	padding: 0 10px 0 10px; 
+	width: 700px;
+}
+
+.ie7 #wb-body,.ie7 #wb-body-sec,.ie7 #wb-body-secr,.ie7 #wb-body-sec-sup,.ie7 #wb-head-in{
+	background-position:center 3.1em;
+}
+
+.ie7 #gcwu-srch-submit{
+	padding:1px 0;
+}
+
+.ie7 #gcwu-title{
+	position:relative;
+}
+
+.ie7 #gcwu-title-in{
+	position:absolute;
+	top:50%;
+}
+
+.ie7 #gcwu-title a{
+	position:relative;
+	top:-50%;
+}
+
+.ie7 #gcwu-title,.ie7 #gcwu-title a{
+	filter:Shadow(Color=#333333, Direction=125,Strength=1);
+}
+
+.ie7 #gcwu-psnb .mb-mega .mb-sm-open{
+	background:url(../images/gradiant.jpg) repeat-x 0 0 #eee;
+}
+
+.ie7 #gcwu-psnb .mb-hsubmenu .mb-sm-open ul{
+	width:960px;
+}
+
+.ie7 #gcwu-date-mod{
+	position:relative;
+	float:right;
+	margin-bottom:-15px;
+	top:10px;
+}
+
+.ie7 #gcwu-tctr{
+	padding:7px 0 6px;
+}
+
+.ie7 #gcwu-tctr li.gcwu-tc{
+	padding:0 10px;
+}
+
+.ie7 #gcwu-tctr li.gcwu-tr{
+	padding-left:10px;
+}
+
+.ie7 #gcwu-gcft li{
+	margin:13px 35px 14px 9px;
+}
+
+.ie7 #gcwu-bnr,.ie7 #gcwu-tctr li{
+	float:left;
+}

@@ -2,9 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
- /*
-  * Menu bar plugin
-  */
+/*
+ * Menu bar plugin
+ */
 /*global jQuery: false, pe:false */
 (function ($) {
 	var _pe = window.pe || {
@@ -21,9 +21,8 @@
 			- close : this will close open menu
 			- reset : this will clear all the menu's to closed state
 			- open : this will open the child menu item
-			 */
-			/* bind plugin scope element
-			 */
+			*/
+			/* bind plugin scope element */
 			var $bcLinks,
 				$menu,
 				$menuBoundary,
@@ -38,44 +37,40 @@
 				match,
 				showsubmenu;
 			$scope = $(elm);
-			/* functions that would be nessecary for helpers
-			 */
+			/* functions that would be necessary for helpers */
 			showsubmenu = function (toplink) {
 				var _node,
 					_sm;
 				_node = $(toplink).closest("li");
-				_node.addClass("mb-active");
 				hideallsubmenus();
 				_sm = _node.find(".mb-sm");
 				_sm.attr("aria-expanded", "true").attr("aria-hidden", "false").toggleClass("mb-sm mb-sm-open");
 				if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
 					_sm.css("right", "0px");
 				}
+				_node.addClass("mb-active");
 				return;
 			};
-			/* action function to go to menu
-			 */
+			/* action function to go to menu */
 			gotosubmenu = function (toplink) {
-				var _node,
-					_submenu;
+				var _node, _submenu;
 				showsubmenu(toplink);
 				_node = $(toplink);
 				_submenu = _node.closest("li").find(".mb-sm-open");
 				pe.focus(_submenu.find("a[href]:first"));
 				return;
 			};
-			/* hidemenu worker function
-			 */
+			/* hidemenu worker function */
 			hidesubmenu = function (toplink) {
 				var _node,
 					_sm;
-				_node = $(toplink);
-				_sm = _node.closest("li").removeClass("mb-active").find(".mb-sm-open");
+				_node = $(toplink).closest("li");
+				_sm = _node.find(".mb-sm-open");
 				_sm.attr("aria-expanded", "false").attr("aria-hidden", "true").toggleClass("mb-sm mb-sm-open").css("right", "auto");
+				_node.removeClass("mb-active");
 				return;
 			};
-			/* hide all the submenus
-			 */
+			/* hide all the submenus */
 			hideallsubmenus = function () {
 				$menu.find(".mb-sm-open").each(function () {
 					var _menu;
@@ -84,45 +79,44 @@
 				});
 				return;
 			};
-			/* function to correct the hieght of the menu on resize
-			 */
+			/* function to correct the hieght of the menu on resize */
 			correctheight = function () {
-				var newouterheight,
-					_lastmenuli;
+				var newouterheight, _lastmenuli;
 				_lastmenuli = $menu.children("li:last");
 				newouterheight = (_lastmenuli.offset().top + _lastmenuli.outerHeight()) - $scope.offset().top;
 				return $scope.css("min-height", newouterheight);
 			};
 			/*
 			/// End of Functions ///
-			 */
-			/* establish bounderies
-			 */
+			*/
+
+			/* establish boundaries */
 			$menuBoundary = $scope.children("div");
 			$menu = $menuBoundary.children("ul");
-			/* ARIA additions
-			 */
+			/* ARIA additions */
 			$scope.attr("role", "application");
 			$menu.attr("role", "menubar");
-			/* if CSS is enabled we want to ensure a correct tabbing response
-			 */
-			if (pe.cssenabled) {
-				$menu.find("a").attr("tabindex", "-1").attr("role", "menuitem");
-				$menu.find("li:first a:first").removeAttr("tabindex");
-			}
 			pe.resize(correctheight);
-			/* bind all custom events and triggers to menu
-			 */
-			$scope.on("focusoutside", function () {
-				return hideallsubmenus();
+			/* Handles opening and closing a submenu on click */
+			$scope.find('.mb-sm').parent().find('> :header a').on("click", function (event) {
+				if ($(this).closest("li").hasClass("mb-active")) {
+					hidesubmenu(this);
+				} else {
+					showsubmenu(this);
+				}
+				return false;
 			});
-			$(document).on("click", function () {
-				$scope.trigger("focusoutside");
-			});
+
+			/* bind all custom events and triggers to menu */
 			$scope.on("keydown focus section-next section-previous item-next item-previous close", "li", function (e) {
 				var next,
 					_elm,
 					_id,
+					keychar,
+					sublink,
+					elmtext,
+					matches,
+					match,
 					level;
 				_elm = $(e.target);
 				_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
@@ -131,38 +125,68 @@
 				if (e.type === "keydown") {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 						switch (e.keyCode) {
+						case 13: // enter key
+							if (_id[2] === 0 && _id[3] === 0) {
+								_elm.trigger('item-next');
+								return false;
+							}
+							break;
 						case 27: // escape key
 							_elm.trigger('close');
-							e.preventDefault();
+							return false;
+						case 32: // spacebar
+							if (_id[2] === 0 && _id[3] === 0) {
+								_elm.trigger('item-next');
+							} else {
+								window.location = _elm.attr('href');
+							}
 							return false;
 						case 37: // left arrow
 							_elm.trigger('section-previous');
-							e.preventDefault();
 							return false;
 						case 38: // up arrow
 							_elm.trigger('item-previous');
-							e.preventDefault();
 							return false;
 						case 39: // right arrow
 							_elm.trigger('section-next');
-							e.preventDefault();
 							return false;
 						case 40: // down arrow
 							_elm.trigger('item-next');
-							e.preventDefault();
 							return false;
+						default:
+							// 0 - 9 and a - z keys
+							if ((e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91)) {
+								keychar = String.fromCharCode(e.keyCode).toLowerCase();
+								sublink = (_id[2] !== 0 || _id[3] !== 0);
+								elmtext = _elm.text();
+								matches = $menu.find('.mb-sm-open a').filter(function (index) {
+									return ($(this).text().substring(0, 1).toLowerCase() === keychar || (sublink && $(this).text() === elmtext));
+								});
+								if (matches.length > 0) {
+									if (sublink) {
+										matches.each(function (index) {
+											if ($(this).text() === elmtext) {
+												match = index;
+												return false;
+											}
+										});
+										if (match < (matches.length - 1)) {
+											matches.eq(match + 1).focus();
+											return false;
+										}
+									}
+									matches.eq(0).focus();
+								}
+								return false;
+							}
 						}
 					}
-				}
-				if (e.type === "close") {
+				} else if (e.type === "close") {
 					pe.focus($scope.find(".knav-" + _id[1] + "-0-0"));
-					//if (!_id[2] && !_id[3]) {
 					setTimeout(function () {
 						return hideallsubmenus();
 					}, 5);
-					//}
-				}
-				if (e.type === "section-previous") {
+				} else if (e.type === "section-previous") {
 					level = !!_id[2] << 1 | !!_id[3];
 					switch (level) {
 					case 0: // top-level menu link has focus
@@ -189,8 +213,7 @@
 						}
 						break;
 					}
-				}
-				if (e.type === "section-next") {
+				} else if (e.type === "section-next") {
 					level = !!_id[2] << 1 | !!_id[3];
 					switch (level) {
 					case 0: // top-level menu link has focus
@@ -217,8 +240,7 @@
 						}
 						break;
 					}
-				}
-				if (e.type === "item-next") {
+				} else if (e.type === "item-next") {
 					next = $scope.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] + 1)); // move to 3rd level
 					if (next.length > 0) {
 						pe.focus(next);
@@ -230,8 +252,7 @@
 							pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
 						}
 					}
-				}
-				if (e.type === "item-previous") {
+				} else if (e.type === "item-previous") {
 					next = $scope.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] - 1)); // move to 3rd level
 					if (next.length > 0) {
 						pe.focus(next);
@@ -243,8 +264,7 @@
 							pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
 						}
 					}
-				}
-				if (e.type === "focusin" && _id[2] === 0 && _id[3] === 0) {
+				} else if (e.type === "focusin" && _id[2] === 0 && _id[3] === 0) {
 					hideallsubmenus();
 					if (_elm.find('.expandicon').length > 0) {
 						showsubmenu(e.target);
@@ -252,25 +272,29 @@
 					return;
 				}
 			});
-			/* [Main] parse mega menu and establish all ARIA and Navigation classes
-			 */
+			$(document).on("click", function () {
+				$scope.trigger("focusoutside");
+			});
+			$scope.on("focusoutside", function () {
+				return hideallsubmenus();
+			});
+
+			/* [Main] parse mega menu and establish all ARIA and Navigation classes */
 			$scope.find('ul.mb-menu > li').find('a:eq(0)').each(function (index, value) {
-				var $childmenu,
-					$elm;
+				var $childmenu, $elm;
 				$elm = $(value);
 				$elm.addClass("knav-" + index + "-0-0");
 				$childmenu = $elm.closest("li").find(".mb-sm");
 				if ($childmenu.size() > 0) {
 					$elm.attr("aria-haspopup", "true").addClass("mb-has-sm").wrapInner("<span class=\"expandicon\"><span class=\"sublink\"></span></span>");
 					$childmenu.attr("role", "menu").attr("aria-expanded", "false").attr("aria-hidden", "true").find(":has(:header) ul").attr("role", "menu");
-					$elm.append("<span class=\"cn-invisible\">" + (pe.dic.get('%sub-menu-help')) + "</span>");
+					$elm.append("<span class=\"wb-invisible\">" + (pe.dic.get('%sub-menu-help')) + "</span>");
 					$elm.closest("li").hoverIntent(function () {
 						return showsubmenu(this);
 					}, function () {
 						return hidesubmenu(this);
 					});
-					/* now recurse all focusable to be able to navigate
-					 */
+					/* now recurse all focusable to be able to navigate */
 					$childmenu.find("h4 a").each(function (i) {
 						$(this).addClass("knav-" + index + "-" + (i + 1) + "-0");
 						$(this).parent().next("ul").find("a").each(function (j) {
@@ -286,10 +310,15 @@
 					});
 				}
 			});
-			/*
-			Breadcrumb indexer
-			 */
-			$vbrumbs = $("#cn-bc, #cn-bcrumb");
+
+			/* if CSS is enabled we want to ensure a correct tabbing response */
+			if (pe.cssenabled) {
+				$menu.find("a").attr("role", "menuitem").attr("tabindex", "-1");
+				$menu.find(".knav-0-0-0").attr("tabindex", "0");
+			}
+
+			/* Breadcrumb indexer */
+			$vbrumbs = $("#gcwu-bc, #cn-bcrumb");
 			if ($vbrumbs.size() > 0 && !$scope.hasClass("page-match-off")) {
 				$results = $menu.children("li").find("a[href=\"" + window.location.pathname + "\"]");
 				if ($results.size() > 0) {
@@ -324,4 +353,4 @@
 	window.pe = _pe;
 	return _pe;
 }
-	(jQuery));
+(jQuery));

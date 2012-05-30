@@ -1,0 +1,56 @@
+@charset "utf-8";
+/*!
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+/* -----Build Include Section Start----- */
+@import url('../../css/base.css');
+@import url('includes/sp-pe.css');
+/* -----Build Include Section End----- */
+
+/* Desktop view */
+@media (min-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('../../css/base-desktop.css');
+@import url('includes/sp-pe-desktop.css');
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('../../css/base-desktop-screen.css');
+@import url('includes/sp-pe-desktop-screen.css');
+@import url('includes/default-responsive.css');
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width:768px) and (max-width:959px){
+/* -----Build Include Section Start----- */
+@import url('includes/default-responsive-768.css');
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width:1200px){
+/* -----Build Include Section Start----- */
+@import url('includes/default-responsive-1200.css');
+/* -----Build Include Section End----- */
+}
+
+@media screen{
+/* -----Build Include Section Start----- */
+@import url('../../css/base-screen.css');
+@import url('includes/sp-pe-screen.css');
+/* -----Build Include Section End----- */
+}
+
+/* Mobile view */
+@media (max-width:767px) {
+/* -----Build Include Section Start----- */
+@import url('../../css/base-mobile.css');
+@import url('includes/sp-pe-mobile.css');
+/* -----Build Include Section End----- */
+}
+
+@media print{
+/* -----Build Include Section Start----- */
+@import url('../../css/base-print.css');
+@import url('includes/sp-pe-print.css');
+/* -----Build Include Section End----- */
+}
