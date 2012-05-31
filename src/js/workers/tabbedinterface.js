@@ -103,7 +103,7 @@
 				$panels.stop(true, true);
 				$(this).click();
 			});
-			$nav.find("li a").keyup(function (e) {
+			$nav.find("li a").keydown(function (e) {
 				if (e.keyCode === 13 || e.keyCode === 32) {
 					var $current = $panels.filter(function () {
 							return $(this).is("." + opts.tabActiveClass);
@@ -119,12 +119,12 @@
 					}, 0);
 				}
 			});
-			elm.keyup(function (e) {
-				if (e.which === 37) { // left
-					selectPrev($tabs, $panels, opts, true);
+			elm.keydown(function (e) {
+				if (e.which === 37 || e.which === 38) { // left or up
+					selectPrev($tabs, $panels, opts, false);
 					e.preventDefault();
-				} else if (e.which === 39) { // right
-					selectNext($tabs, $panels, opts, true);
+				} else if (e.which === 39 || e.which === 40) { // right or down
+					selectNext($tabs, $panels, opts, false);
 					e.preventDefault();
 				}
 			});
