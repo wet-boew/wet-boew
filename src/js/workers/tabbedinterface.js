@@ -191,7 +191,7 @@
 					return stopCycle();
 				}
 			};
-			if (opts.autoHeight) {
+			if (opts.autoHeight && !elm.hasClass("tabs-style-4") && !elm.hasClass("tabs-style-5")) {
 				$panels.show();
 				$(".tabs-panel", elm).equalHeights(true);
 			}
