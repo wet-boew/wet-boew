@@ -15,7 +15,7 @@
 		type : 'plugin',
 		depends : ['bookmark'],
 		_exec : function (elm) {
-			var $scope = $(elm), opts, $popup;
+			var $scope = $(elm), opts, $popup, $popupText;
 			opts = { // See bookmark.js for details
 				url: $scope.attr('data-url') ? $scope.attr('data-url') : '',
 				sourceTag: $scope.attr('data-source-tag') ? $scope.attr('data-source-tag') : '',
@@ -43,19 +43,48 @@
 				analyticsName: $scope.attr('data-analytics-name') ? $scope.attr('data-analytics-name') : '/share/{r}/{s}'
 			};
 			$scope.bookmark(opts);
-			$scope.find('.bookmark_popup_text').attr('role', 'button').attr('aria-controls', 'bookmark_popup').attr('aria-pressed', 'false').on("click keydown focusout", function (e) {
-				$popup = $scope.find('.bookmark_popup');
-				if (e.type === "click" && $(e.target).attr('aria-pressed') === 'false') {
-					$(e.target).text(opts.hideText + opts.popupText).attr('aria-pressed', 'true');
+			$popup = $scope.find('.bookmark_popup').append($scope.find('.bookmark_popup_text').clone().css('float', 'right').css('margin', '5px')).attr('id', 'bookmark_popup').attr('aria-hidden', 'true').prepend('<p class="popup_title">' + pe.dic.get('%share-statement') + '</p>');
+			$popupText = $scope.find('.bookmark_popup_text').off('click');
+			$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').attr('aria-pressed', 'false').on("click keydown", function (e) {
+				if (e.type === "click" || (e.type === "keydown" && !(e.ctrlKey || e.altKey || e.metaKey) && (e.keyCode === 13 || e.keyCode === 32))) {
+					if ($(e.target).attr('aria-pressed') === 'false') {
+						$popup.trigger("open");
+					} else {
+						$popup.trigger("close");
+					}
+					return false;
+				}
+			});
+			$popup.on("keydown open close", function (e) {
+				if (e.type === "keydown") {
+					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
+						switch (e.keyCode) {
+						case 27: // escape key
+							$popup.trigger("close");
+							return false;
+						/*case 37: // left arrow
+							_elm.trigger('section-previous');
+							return false;
+						case 38: // up arrow
+							_elm.trigger('item-previous');
+							return false;
+						case 39: // right arrow
+							_elm.trigger('section-next');
+							return false;
+						case 40: // down arrow
+							_elm.trigger('item-next');
+							return false;*/
+						}
+					}
+				} else if (e.type === "open") {
+					$popupText.text(opts.hideText + opts.popupText).attr('aria-pressed', 'true');
 					$popup.show().attr('aria-hidden', 'false');
-				} else if (e.type === "click" || (e.type === "keydown" && e.keyCode === 27) || e.type === "focusout") {
-					$(e.target).text(opts.popupText).attr('aria-pressed', 'false');
+				} else if (e.type === "close") {
+					pe.focus($popupText.text(opts.popupText).attr('aria-pressed', 'false').eq(0));
 					$popup.hide().attr('aria-hidden', 'true');
 				}
 				//$popup.css('center', $scope.offset().left).css('middle', $scope.offset().top + $scope.outerHeight()).toggle();
-				return false;
 			});
-			$scope.find('bookmark_popup').attr('id', 'bookmark_popup').attr('aria-hidden', 'true').append('<p class="popup_title">' + pe.dic.get('%share-statement') + '</p>');
 			return $scope;
 		} // end of exec
 	};
