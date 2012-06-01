@@ -7,5 +7,9 @@ WET-BOEW-Settings
  */
 var wet_boew_properties = {
 	/** global plugins are called via a array of dependency names **/
-	globals : [/*'toolbar'*/]
+	globals : [/*'toolbar'*/],
 };
+
+var wet_boew_share = {
+	sites : ['del.icio.us', 'digg', 'facebook', 'google', 'linkedin', 'reddit', 'stumbleupon', 'twitter', 'yahoobuzz']
+}

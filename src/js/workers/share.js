@@ -5,7 +5,7 @@
 /*
  * Share widget plugin
  */
-/*global jQuery: false, pe:false */
+/*global jQuery: false, pe:false, wet_boew_share:false, data:false */
 (function ($) {
 	var _pe = window.pe || {
 		fn : {}
@@ -13,69 +13,67 @@
 	/* local reference */
 	_pe.fn.share = {
 		type : 'plugin',
-		depends : ['bookmark'],
+		depends : ['bookmark', 'metadata'],
 		_exec : function (elm) {
 			var $scope = $(elm), opts, $popup, $popupText;
+			
 			opts = { // See bookmark.js for details
-				url: $scope.attr('data-url') ? $scope.attr('data-url') : '',
-				sourceTag: $scope.attr('data-source-tag') ? $scope.attr('data-source-tag') : '',
-				title: $scope.attr('data-title') ? $scope.attr('data-title') : '',
-				description: $scope.attr('data-description') ? $scope.attr('data-description') : '',
-				sites: [], /* Populate through data-* or something similar */
-				iconsStyle: $scope.hasClass("icons-none") ? '' : 'bookmark_icons',
-				icons: $scope.hasClass("icons-none") ? '' : 'bookmarks.png', // How should this image be handled/reference?
-				compact : $scope.hasClass("compact"),
-				hint : pe.dic.get('%share-hint'),
-				popup : !$scope.hasClass("popup-none"),
-				popupText : pe.dic.get('%share-text'),
-				hideText : (pe.dic.get('%hide') + " - "),
-				addFavorite : $scope.hasClass("favourite"),
-				favoriteText : pe.dic.get('%favourite'),
-				addEmail : $scope.hasClass("email"),
-				emailText : pe.dic.get('%email'),
-				emailSubject : pe.dic.get('%share-email-subject'),
-				emailBody : pe.dic.get('%share-email-body'),
-				manualBookmark : pe.dic.get('%share-manual'),
-				addShowAll: $scope.hasClass("showall"),
-				showAllText: 'Show all ({n})',
-				showAllTitle: 'All bookmarking sites',
-				addAnalytics : $scope.hasClass('analytics'),
-				analyticsName: $scope.attr('data-analytics-name') ? $scope.attr('data-analytics-name') : '/share/{r}/{s}'
+				url: '',  // The URL to bookmark, leave blank for the current page
+				sourceTag: '', // Extra tag to add to URL to indicate source when it returns
+				title: '',  // The title to bookmark, leave blank for the current one
+				description: '',  // A longer description of the site
+				sites: [],  // List of site IDs or language selectors (lang:xx) or
+					// category selectors (category:xx) to use, empty for all
+				compact: $scope.hasClass("compact"),  // True if a compact presentation should be used, false for full
+				hint: pe.dic.get('%share-hint'),  // Popup hint for links, {s} is replaced by display name
+				popup: !$scope.hasClass("popup-none"), // True to have it popup on demand, false to show always
+				popupText: pe.dic.get('%share-text'), // Text for the popup trigger
+				hideText: (pe.dic.get('%hide') + " - "), // Text to prepend to the popup trigger when popup is open
+				addFavorite: $scope.hasClass("favourite"),  // True to add a 'add to favourites' link, false for none
+				favoriteText: pe.dic.get('%favourite'),  // Display name for the favourites link
+				addEmail: $scope.hasClass("email"),  // True to add a 'e-mail a friend' link, false for none
+				emailText: pe.dic.get('%email'),  // Display name for the e-mail link
+				emailSubject: pe.dic.get('%share-email-subject'),  // The subject for the e-mail
+				emailBody: pe.dic.get('%share-email-body'), // The body of the e-mail,
+					// use '{t}' for the position of the page title, '{u}' for the page URL,
+					// '{d}' for the description, and '\n' for new lines
+				manualBookmark: pe.dic.get('%share-manual'), // Instructions for manually bookmarking the page
+				addShowAll: $scope.hasClass("showall"), // True to show listed sites first, then all on demand
+				showAllText: pe.dic.get('%share-showall'), // Display name for show all link, use '{n}' for the number of sites
+				showAllTitle: pe.dic.get('%share-showall-title'), // Title for show all popup
+				addAnalytics: $scope.hasClass('analytics'), // True to include Google Analytics for links
+				analyticsName: '/share/{r}/{s}' // The "URL" that is passed to the Google Analytics,
+					// use '{s}' for the site code, '{n}' for the site name,
+					// '{u}' for the current full URL, '{r}' for the current relative URL,
+					// or '{t}' for the current title
 			};
+			
+			// Extend the defaults with settings passed through settings.js (wet_boew_share) and the data attribute
+			$.metadata.setType("attr", "data")
+			if (typeof wet_boew_share !== 'undefined' && wet_boew_share !== null) {
+				$.extend(opts, wet_boew_share, $scope.metadata());
+			} else {
+				$.extend(opts, $scope.metadata());
+			}
+			
 			$scope.bookmark(opts);
-			$popup = $scope.find('.bookmark_popup').append($scope.find('.bookmark_popup_text').clone().css('float', 'right').css('margin', '5px')).attr('id', 'bookmark_popup').attr('aria-hidden', 'true').prepend('<p class="popup_title">' + pe.dic.get('%share-statement') + '</p>');
+			$popup = $scope.find('.bookmark_popup').append($scope.find('.bookmark_popup_text').clone().addClass('alt')).attr('id', 'bookmark_popup').attr('aria-hidden', 'true').prepend('<p class="popup_title">' + pe.dic.get('%share-statement') + '</p>');
 			$popupText = $scope.find('.bookmark_popup_text').off('click');
 			$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').attr('aria-pressed', 'false').on("click keydown", function (e) {
-				if (e.type === "click" || (e.type === "keydown" && !(e.ctrlKey || e.altKey || e.metaKey) && (e.keyCode === 13 || e.keyCode === 32))) {
+				if (e.type === "click" || (e.type === "keydown" && !(e.ctrlKey || e.altKey || e.metaKey) && ((e.keyCode === 9 && $(e.target).hasClass('alt')) || e.keyCode === 13 || e.keyCode === 32))) {
 					if ($(e.target).attr('aria-pressed') === 'false') {
 						$popup.trigger("open");
 					} else {
 						$popup.trigger("close");
 					}
-					return false;
+					if (e.keyCode !== 9) {
+						return false;
+					}
 				}
 			});
 			$popup.on("keydown open close", function (e) {
-				if (e.type === "keydown") {
-					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-						switch (e.keyCode) {
-						case 27: // escape key
-							$popup.trigger("close");
-							return false;
-						/*case 37: // left arrow
-							_elm.trigger('section-previous');
-							return false;
-						case 38: // up arrow
-							_elm.trigger('item-previous');
-							return false;
-						case 39: // right arrow
-							_elm.trigger('section-next');
-							return false;
-						case 40: // down arrow
-							_elm.trigger('item-next');
-							return false;*/
-						}
-					}
+				if (e.type === "keydown" && e.keyCode === 27) {
+					$popup.trigger("close");
 				} else if (e.type === "open") {
 					$popupText.text(opts.hideText + opts.popupText).attr('aria-pressed', 'true');
 					$popup.show().attr('aria-hidden', 'false');
@@ -83,10 +81,11 @@
 					pe.focus($popupText.text(opts.popupText).attr('aria-pressed', 'false').eq(0));
 					$popup.hide().attr('aria-hidden', 'true');
 				}
-				//$popup.css('center', $scope.offset().left).css('middle', $scope.offset().top + $scope.outerHeight()).toggle();
 			});
 			$(document).on("click", function (e) {
-				$popup.trigger("close");
+				if ($popup.attr('aria-hidden') === 'false') {
+					$popup.trigger("close");
+				}
 			});
 			return $scope;
 		} // end of exec

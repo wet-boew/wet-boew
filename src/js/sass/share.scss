@@ -3,14 +3,29 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
 */
-.wet-boew-share a.bookmark_popup_text{
+div.wet-boew-share {
+	position:absolute;
+	right:0;
+	text-align:right;
+}
+
+.ui-mobile div.wet-boew-share{
+	width:100%;
+	max-width:39em;
+}
+
+.wet-boew-share .bookmark_popup_text{
     background:url(../images/share/icons-share.gif) left 3px no-repeat;
     color:#3c6783;
     cursor:pointer;
     font-family:Tahoma,Verdana,Helvetica,sans-serif;
     letter-spacing:-.0004em;
-    display:block;
+    display:inline-block;
     padding:0 0 2px 18px;
+}
+
+.wet-boew-share .bookmark_popup_text.alt{
+    margin:5px;
 }
 
 .wet-boew-share .bookmark_popup_text img{
@@ -23,8 +38,8 @@
     position:absolute;
     z-index:99;
     background:#fff;
-    width:320px;
     border:1px solid #000;
+	text-align:left;
 }
 
 .wet-boew-share .bookmark_popup p{
@@ -35,7 +50,7 @@
 .wet-boew-share .bookmark_popup .popup_title{
     font-size:.95em;
     font-weight:700;
-    background-color:#363;
+    background:#23447E;
     color:#FFF;
     margin:0;
     padding:5px;
@@ -54,7 +69,7 @@ html:first-child .bookmark_list{
 
 .wet-boew-share .bookmark_list li{
     float:left;
-    width:49%;
+	width:10em;
     font-size:.85em;
     margin:0;
     padding:0 0 5px;
@@ -89,13 +104,6 @@ html:first-child .bookmark_list{
     padding:0;
 }
 
-.wet-boew-share .bookmark_list a:hover{
-    background:0;
-    color:red;
-    margin:0;
-    padding:0;
-}
-
 .wet-boew-share .bookmark_list span{
     display:inline-block;
     width:16px;
@@ -103,5 +111,9 @@ html:first-child .bookmark_list{
 }
 
 .wet-boew-share .bookmark_list span.bookmark_icons{
-    background:url(../images/share/bookmarks.gif) no-repeat center;
+    background:url(../images/share/bookmarks.png) no-repeat center;
+}
+
+.wet-boew-share .no-icons .bookmark_list span.bookmark_icons{
+	display: none;
 }
