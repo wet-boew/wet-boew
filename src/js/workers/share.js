@@ -85,6 +85,9 @@
 				}
 				//$popup.css('center', $scope.offset().left).css('middle', $scope.offset().top + $scope.outerHeight()).toggle();
 			});
+			$(document).on("click", function (e) {
+				$popup.trigger("close");
+			});
 			return $scope;
 		} // end of exec
 	};
