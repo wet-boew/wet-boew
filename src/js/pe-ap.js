@@ -266,9 +266,8 @@
 				}
 			});
 
-			// add polyfills if nessecary;
+			// add polyfills if necessary;
 			pe.polyfills();
-		// mobile test
 		},
 		/**
 		 * @namespace pe.depends
