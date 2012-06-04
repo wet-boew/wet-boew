@@ -171,11 +171,11 @@
 											}
 										});
 										if (match < (matches.length - 1)) {
-											matches.eq(match + 1).focus();
+											pe.focus(matches.eq(match + 1));
 											return false;
 										}
 									}
-									matches.eq(0).focus();
+									pe.focus(matches.eq(0));
 								}
 								return false;
 							}
@@ -313,8 +313,7 @@
 
 			/* if CSS is enabled we want to ensure a correct tabbing response */
 			if (pe.cssenabled) {
-				$menu.find("a").attr("role", "menuitem").attr("tabindex", "-1");
-				$menu.find(".knav-0-0-0").attr("tabindex", "0");
+				$menu.find("a").attr("role", "menuitem").attr("tabindex", "-1").filter('.knav-0-0-0').attr("tabindex", "0");
 			}
 
 			/* Breadcrumb indexer */
