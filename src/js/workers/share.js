@@ -15,7 +15,7 @@
 		type : 'plugin',
 		depends : ['metadata', 'bookmark'],
 		_exec : function (elm) {
-			var opts, overrides, $popup, $popupText, target, leftoffset, navbykey;
+			var opts, overrides, $popup, $popupText, $popupLinks, target, leftoffset, navbykey;
 
 			// Defaults
 			opts = {
@@ -69,7 +69,7 @@
 
 			navbykey = function (e, links) {
 				var keychar = String.fromCharCode(e.keyCode).toLowerCase(), elmtext = $(e.target).text(), matches, match;
-				matches = links.find('li a').filter(function (index) {
+				matches = links.filter(function (index) {
 					return ($(this).text().substring(1, 2).toLowerCase() === keychar || $(this).text() === elmtext);
 				});
 				if (matches.length > 0) {
@@ -96,7 +96,7 @@
 			if (opts.popup && pe.cssenabled) {
 				elm.attr('role', 'application');
 				$popup = elm.find('.bookmark_popup').attr('id', 'bookmark_popup').attr('aria-hidden', 'true').attr('role', 'menu').prepend('<p class="popup_title">' + opts.popupText + '</p>');
-				$popup.find('li').attr('role', 'presentation').find('a').attr('role', 'menuitem').attr('tabindex', '-1');
+				$popupLinks = $popup.find('li').attr('role', 'presentation').find('a').attr('role', 'menuitem').attr('tabindex', '-1');
 				$popupText = elm.find('.bookmark_popup_text').off('click');
 				$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').attr('aria-pressed', 'false').on("click keydown", function (e) {
 					if (e.type === "keydown" && (!(e.ctrlKey || e.altKey || e.metaKey))) {
@@ -135,7 +135,7 @@
 							default:
 								// 0 - 9 and a - z keys
 								if ((e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91)) {
-									return navbykey(e, $popup);
+									return navbykey(e, $popupLinks);
 								}
 							}
 						}
@@ -161,7 +161,7 @@
 							case 37: // left arrow
 								target = $(e.target).closest('li').prev().find('a');
 								if (target.length === 0) {
-									target = $popup.find('li a');
+									target = $popupLinks;
 								}
 								pe.focus(target.last());
 								return false;
@@ -173,24 +173,28 @@
 								if (target.length > 0) {
 									pe.focus(target.first());
 								} else {
-									target = $(e.target).closest('li').prev().find('a');
+									target = $popupLinks.filter(function (index) {
+										return ($(this).offset().left < leftoffset);
+									});
 									if (target.length > 0) {
-										leftoffset = target.offset().left;
-										target = target.closest('li').nextAll().find('a').filter(function (index) {
-											return ($(this).offset().left === leftoffset);
+										pe.focus(target.last());
+									} else {
+										leftoffset = $popupLinks.last().offset().left;
+										target = $popupLinks.filter(function (index) {
+											return ($(this).offset().left > leftoffset);
 										});
 										if (target.length > 0) {
 											pe.focus(target.last());
-											return false;
+										} else {
+											pe.focus($popupLinks.last());
 										}
 									}
-									pe.focus($popup.find('li a').last());
 								}
 								return false;
 							case 39: // right arrow
 								target = $(e.target).closest('li').next().find('a');
 								if (target.length === 0) {
-									target = $popup.find('li a');
+									target = $popupLinks;
 								}
 								pe.focus(target.first());
 								return false;
@@ -202,24 +206,20 @@
 								if (target.length > 0) {
 									pe.focus(target.first());
 								} else {
-									target = $(e.target).closest('li').next().find('a');
+									target = $popupLinks.filter(function (index) {
+										return ($(this).offset().left > leftoffset);
+									});
 									if (target.length > 0) {
-										leftoffset = target.offset().left;
-										target = target.closest('li').prevAll().find('a').filter(function (index) {
-											return ($(this).offset().left === leftoffset);
-										});
-										if (target.length > 0) {
-											pe.focus(target.last());
-											return false;
-										}
+										pe.focus(target.first());
+									} else {
+										pe.focus($popupLinks.first());
 									}
-									pe.focus($popup.find('li a').first());
 								}
 								return false;
 							default:
 								// 0 - 9 and a - z keys
 								if ((e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91)) {
-									return navbykey(e, $popup);
+									return navbykey(e, $popupLinks);
 								}
 							}
 						}
