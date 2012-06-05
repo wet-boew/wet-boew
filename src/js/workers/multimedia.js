@@ -58,11 +58,11 @@
 				$fbObject.addClass("video");
 				$fbObject.attr("width", media.width()).attr("height", media.height());
 				$fbObject.append("<param value=\"always\" name=\"allowScriptAccess\"><param value=\"#000000\" name=\"bgcolor\"><param value=\"opaque\" name=\"wmode\">");
-				$fbVars.attr("value", $fbVars.attr("value") + "&height=" + media.height() + "&width=" + media.width() + "&posterimg=" + escape(_pe.url(media.attr("poster")).relative) + "&media=" + _pe.url(media.find("source[type=\"" + fbVideoType + "\"]").attr("src")).relative);
+				$fbVars.attr("value", $fbVars.attr("value") + "&height=" + media.height() + "&width=" + media.width() + "&posterimg=" + escape(_pe.url(media.attr("poster")).source) + "&media=" + _pe.url(media.find("source[type=\"" + fbVideoType + "\"]").attr("src")).source);
 				canFB = true;
 			    }else if (flash && media.is("audio") && media.find("source[type=\"" + fbAudioType + "\"]")){
 				$fbObject.addClass("audio");
-				$fbVars.attr("value", $fbVars.attr("value") + "&media=" + _pe.url(media.find("source[type=\"" + fbAudioType + "\"]").attr("src")).relative);
+				$fbVars.attr("value", $fbVars.attr("value") + "&media=" + _pe.url(media.find("source[type=\"" + fbAudioType + "\"]").attr("src")).source);
 				$fbObject.append($fbVars);
 				canFB = true;
 			    }else{
