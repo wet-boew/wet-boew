@@ -379,7 +379,7 @@
 				 * @memberof pe.url
 				 * @type {string}
 				 */
-				source: uri,
+				source: a.href,
 				/**
 				 * The protocol of the URL. eg. http or https
 				 * @memberof pe.url
