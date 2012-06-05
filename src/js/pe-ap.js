@@ -29,7 +29,7 @@
 		 */
 		language: ($("html").attr("lang") ? ($("html").attr("lang").indexOf("en") === 0 ? "eng" : "fra") : $("meta[name='dc.language'], meta[name='dcterms.language']").attr("content")),
 		touchscreen: 'ontouchstart' in document.documentElement,
-		theme: 'gcwu', // Figure out way to detect this
+		theme: 'theme-gcwu-fegc', // Figure out way to detect this
 		suffix: "",
 		header: $('#wb-head'),
 		menubar: $('.wet-boew-menubar'),
@@ -778,6 +778,10 @@
 					var url = document.getElementById('progressive').src;
 					return url.substr(0, url.lastIndexOf("/") + 1);
 				}()),
+				themecsslocation: (function () {
+					var url = document.getElementById('wb-theme').href;
+					return url.substr(0, url.lastIndexOf("/") + 1);
+				}()),
 				staged: [],
 				/**
 				 * A loading algorthim borrowed from labjs. Thank you!
@@ -964,7 +968,7 @@
 				$("#wb-main a[href^='#']").click(function () {
 					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
 				});
-				pe.add.css([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.css']);
+				pe.add.css([pe.add.themecsslocation + 'jquery.mobile-min.css']);
 				pe.add._load([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.js']);
 			} else {
 				// Move the focus to the anchored element for skip nav links

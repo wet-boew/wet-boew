@@ -71,11 +71,15 @@
 		<copy todir="${build.dir}/encode/images">
 			<fileset dir="${src.dir}/images"/>
 		</copy>
+		<copy todir="${build.dir}/encode/css/images">
+			<fileset dir="${src.dir}/jquery.mobile/images"/>
+		</copy>
 		<copy todir="${build.dir}/encode/css">
 			<fileset dir="${build.dir}/css">
 				<include name="theme.css"/>
 				<include name="theme-sp-pe.css"/>
 				<include name="theme-serv.css"/>
+				<include name="jquery.mobile.css"/>
 			</fileset>
 		</copy>
 		<cssurlembed skipMissing="true">
@@ -83,24 +87,49 @@
 				<include name="theme.css"/>
 				<include name="theme-sp-pe.css"/>
 				<include name="theme-serv.css"/>
+				<include name="jquery.mobile.css"/>
 			</fileset>
 		</cssurlembed>
 		<copy todir="${build.dir}/css">
-			<fileset dir="${build.dir}/encode/css"/>
-		</copy>
-		<copy todir="${build.dir}/images">
-			<fileset dir="${build.dir}/images"/>
+			<fileset dir="${build.dir}/encode/css">
+				<include name="*.css"/>
+			</fileset>
 		</copy>
 		<delete dir="${build.dir}/encode"/>
 	</target>
 	
 	<target name="-merge-css">
+		<copy todir="${build.dir}/premin/jquery.mobile">
+			<fileset dir="${src.dir}/jquery.mobile">
+				<include name="*.css"/>
+				<exclude name="*.min.css"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/premin/jquery.mobile">
+			<fileset dir="${src.dir}/../js/jquery.mobile">
+				<include name="*.css"/>
+				<exclude name="*.min.css"/>
+			</fileset>
+		</copy>
+		<loadfile srcfile="${src.dir}/../js/jquery.mobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
+			<filterchain>
+				<headfilter lines="1"/>
+			</filterchain>
+		</loadfile>
+		<concat dest="${build.dir}/css/jquery.mobile.css">
+			<header>${jquery.mobile.license}</header> 
+			<fileset dir="${build.dir}/premin/jquery.mobile">
+				<include name="*theme.css"/>
+				<include name="*structure.css"/>
+			</fileset>
+		</concat>
 		<copy todir="${build.dir}">
 			<fileset dir="${src.dir}">
 				<exclude name="build*"/>
-        <exclude name="config*"/>
-        <exclude name="compile*"/>
-        <exclude name="sass/**"/>
+				<exclude name="config*"/>
+				<exclude name="compile*"/>
+				<exclude name="sass/**"/>
+				<exclude name="jquery.mobile/**"/>
 			</fileset>
 		</copy>
 		<copy todir="${build.dir}/../css">
@@ -125,7 +154,6 @@
 				</antcall>
 			</sequential>
 		</for>
-
 		<delete>
 			<fileset dir="${build.dir}/css">
 				<exclude name="theme.css"/>
@@ -134,9 +162,11 @@
 				<exclude name="theme-sp-pe-ie.css"/>
 				<exclude name="theme-serv.css"/>
 				<exclude name="theme-serv-ie.css"/>
+				<exclude name="jquery.mobile.css"/>
 			</fileset>
 		</delete>
 		<delete dir="${build.dir}/../css"/>
+		<delete dir="${build.dir}/premin"/>
 	</target>
 
 	<target name="-resolve-css-imports">

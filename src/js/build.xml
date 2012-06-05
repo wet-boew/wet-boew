@@ -67,8 +67,7 @@
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="images/**"/>
-					<include name="jquery.mobile/*.min.*"/>
-					<include name="jquery.mobile/images/**"/>
+					<include name="jquery.mobile/*.min.js"/>
 					<include name="*.js"/>
 					<exclude name="pe-ap.js"/> 
 				</fileset>
