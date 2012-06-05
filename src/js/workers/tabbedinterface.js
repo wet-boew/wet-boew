@@ -90,7 +90,7 @@
 			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_tabbedinterface), class-based overrides and the data attribute
-			$.metadata.setType("attr", "data");
+			$.metadata.setType("attr", "data-wet-boew");
 			if (typeof wet_boew_tabbedinterface !== 'undefined' && wet_boew_tabbedinterface !== null) {
 				$.extend(opts, wet_boew_tabbedinterface, overrides, elm.metadata());
 			} else {

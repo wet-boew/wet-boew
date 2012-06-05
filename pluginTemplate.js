@@ -58,9 +58,9 @@
 				animationSpeed : (elm.hasClass("animate-slow") ? "slow" : (elm.hasClass("animate-fast") ? "fast" : undefined))
 			};
 
-			// Extend the defaults with settings passed through settings.js (wet_boew_pluginName), class-based overrides and the data attribute
+			// Extend the defaults with settings passed through settings.js (wet_boew_pluginName), class-based overrides and the data-wet-boew attribute
 			// Only needed if there are configurable options (has 'metadata' dependency)
-			$.metadata.setType("attr", "data");
+			$.metadata.setType("attr", "data-wet-boew");
 			if (typeof wet_boew_pluginName !== 'undefined' && wet_boew_pluginName !== null) {
 				$.extend(opts, wet_boew_pluginName, overrides, elm.metadata());
 			} else {

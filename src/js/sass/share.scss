@@ -4,8 +4,7 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
 */
 div.wet-boew-share {
-	position:absolute;
-	right:0;
+	float:right;
 	text-align:right;
 }
 
@@ -70,7 +69,7 @@ html:first-child .bookmark_list{
 
 .wet-boew-share .bookmark_list li{
     float:left;
-	width:10em;
+	width:12em;
     font-size:.85em;
     margin:0;
     padding:0 0 5px;
