@@ -9,8 +9,8 @@ body{
 	padding:0;
 }
 
-#wb-main a[href]:hover,#wb-main a[href]:active,#wb-main a[href]:focus{
-	color: #C00;
+a:hover,a:active,a:focus{
+	text-decoration: underline;
 }
 
 img,a img{

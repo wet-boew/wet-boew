@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>1 colonne - Mégamenu - Thème de la facilité d'emploi Web GC - HTML5 - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Gadget de partage - Sites filtrés - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="dcterms.description" content="French description / Description en français" />
@@ -53,7 +53,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/accueil.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-fra.html">Ministères</a></li>
-<li id="gcwu-gcnb-lang"><a href="1col-megamenu-theme-gcwu-fegc-eng.html" lang="en">English</a></li>
+<li id="gcwu-gcnb-lang"><a href="share-filtered-eng.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -86,7 +86,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <ol>
 <li><a href="home-accueil-megamenu-theme-gcwu-fegc-fra.html">Accueil</a></li>
 <li><a href="section2-fra.html">Section 2</a></li>
-<li>1 colonne - Mégamenu - Thème de la facilité d'emploi Web GC</li>
+<li>Gadget de partage - Sites filtrés - Boîte à outils de l'expérience Web (BOEW)</li>
 </ol></div></div>
 </nav>
 <!-- HeaderEnd -->
@@ -95,7 +95,22 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">1 colonne - Mégamenu - Thème de la facilité d'emploi Web GC</h1>
+<h1 id="wb-cont">Gadget de partage - Sites filtrés - Boîte à outils de l'expérience Web (BOEW)</h1>
+
+<div class="wet-boew-share span-4 margin-bottom-none" data-wet-boew="{title:'Surclassement du titre de la page',url:'http://www.urlsurclassement.gc.ca'}"></div>
+<div class="clear"></div>
+
+<div class="span-8 module-note">
+<p>Les sites pour partager cette page Web sont filtrés avec le code suivant dans <span lang="en">settings.js</span>&#160;:</p>
+<p><code lang="en">
+var wet_boew_share = {<br />
+&#160;&#160;&#160;sites : ['del.icio.us', 'digg', 'facebook', 'google', 'linkedin', 'reddit', 'stumbleupon', 'twitter', 'yahoobuzz']<br />
+};
+</code></p>
+
+<p>Les sites pourraient être filtrés aussi de page en page en utilisant l'attribut <code>data-wet-boew</code>&#160;:</p>
+<p><code lang="en">&lt;div class="wet-boew-share" data-wet-boew="{sites:['digg','facebook','twitter']}"&gt;&lt;/div&gt;</code>
+</div>
 
 <section><h2>En-tête 2 (<code>h2</code>) - apparence par défaut</h2>
 	<section><h3>En-tête 3 (<code>h3</code>) - apparence par défaut</h3>

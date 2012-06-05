@@ -107,7 +107,17 @@
 			"%days-ago": {
 				"mixin": "il ya [MIXIN] jours"
 			},
-			"%yesterday": "hier"
+			"%yesterday": "hier",
+			"%hide" : "Masquer",
+			"%favourite" : "Lien préféré",
+			"%email" : "Courriel",
+			"%share-text" : "Partagez cette page",
+			"%share-hint" : " avec {s} (Ouvre dans une nouvelle fenêtre)",
+			"%share-email-subject" : "Page qui est intéressante",
+			"%share-email-body" : "J'espère que cette page vous intéresse :\n{t} ({u})",
+			"%share-manual" : "S'il vous pla&#238;t fermer ce dialogue et\nappuyer sure Ctrl-D pour ajouter cette page à vos signets.",
+			"%share-showall" : "Tous montrer ({n})",
+			"%share-showall-title" : "Tout les sites de mise en signet"
 		}
 	};
         $(document).trigger("languageloaded");

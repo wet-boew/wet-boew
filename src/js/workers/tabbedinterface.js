@@ -5,7 +5,7 @@
 /*
  * Tabbed interface plugin
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false, pe: false, wet_boew_tabbedinterface: false*/
 (function ($) {
 	var _pe = window.pe || {
 		fn : {}
@@ -13,7 +13,7 @@
 	/* local reference */
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
-		depends : ['easytabs', 'equalheights'],
+		depends : ['metadata', 'easytabs', 'equalheights'],
 		mobile : function (elm) {
 			var $tabs,
 				$panels,
@@ -50,6 +50,7 @@
 				$toggleRow,
 				cycle,
 				opts,
+				overrides,
 				selectNext,
 				selectPrev,
 				start,
@@ -62,18 +63,40 @@
 				$toggleButtonNext,
 				prev,
 				next;
+
+			// Defaults
 			opts = {
 				panelActiveClass : "active",
 				tabActiveClass : "active",
-				defaultTab : ((elm.find(".default").length) ? ".default" : "li:first-child"),
-				autoHeight : (elm.hasClass("auto-height-none") ? false : true),
-				cycle : (elm.hasClass("cycle-slow") ? 8000 : (elm.hasClass("cycle-fast") ? 2000 : (elm.hasClass("cycle") ? 6000 : false))),
-				carousel : (/style-carousel/i.test(elm.attr('class'))) ? true : false,
-				autoPlay : (elm.hasClass("auto-play") ? true : false),
-				animate : (elm.hasClass("animate") || elm.hasClass("animate-slow") || elm.hasClass("animate-fast") ? true : false),
-				animationSpeed : (elm.hasClass("animate-slow") ? "slow" : (elm.hasClass("animate-fast") ? "fast" : "normal")),
+				defaultTab : "li:first-child",
+				autoHeight : true,
+				cycle : false,
+				carousel : false,
+				autoPlay : false,
+				animate : false,
+				animationSpeed : "normal",
 				updateHash : false
 			};
+
+			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
+			overrides = {
+				defaultTab : ((elm.find(".default").length) ? ".default" : undefined),
+				autoHeight : elm.hasClass("auto-height-none") ? false : undefined,
+				cycle : (elm.hasClass("cycle-slow") ? 8000 : (elm.hasClass("cycle-fast") ? 2000 : (elm.hasClass("cycle") ? 6000 : undefined))),
+				carousel : elm.hasClass("style-carousel") ? true : undefined,
+				autoPlay : elm.hasClass("auto-play") ? true : undefined,
+				animate : (elm.hasClass("animate") || elm.hasClass("animate-slow") || elm.hasClass("animate-fast")) ? true : undefined,
+				animationSpeed : (elm.hasClass("animate-slow") ? "slow" : (elm.hasClass("animate-fast") ? "fast" : undefined))
+			};
+
+			// Extend the defaults with settings passed through settings.js (wet_boew_tabbedinterface), class-based overrides and the data attribute
+			$.metadata.setType("attr", "data-wet-boew");
+			if (typeof wet_boew_tabbedinterface !== 'undefined' && wet_boew_tabbedinterface !== null) {
+				$.extend(opts, wet_boew_tabbedinterface, overrides, elm.metadata());
+			} else {
+				$.extend(opts, overrides, elm.metadata());
+			}
+
 			$nav = elm.find(".tabs");
 			$tabs = $nav.find("li > a");
 			$panels = elm.find(".tabs-panel").children();
@@ -103,7 +126,7 @@
 				$panels.stop(true, true);
 				$(this).click();
 			});
-			$nav.find("li a").keyup(function (e) {
+			$nav.find("li a").keydown(function (e) {
 				if (e.keyCode === 13 || e.keyCode === 32) {
 					var $current = $panels.filter(function () {
 							return $(this).is("." + opts.tabActiveClass);
@@ -119,12 +142,12 @@
 					}, 0);
 				}
 			});
-			elm.keyup(function (e) {
-				if (e.which === 37) { // left
-					selectPrev($tabs, $panels, opts, true);
+			elm.keydown(function (e) {
+				if (e.which === 37 || e.which === 38) { // left or up
+					selectPrev($tabs, $panels, opts, false);
 					e.preventDefault();
-				} else if (e.which === 39) { // right
-					selectNext($tabs, $panels, opts, true);
+				} else if (e.which === 39 || e.which === 40) { // right or down
+					selectNext($tabs, $panels, opts, false);
 					e.preventDefault();
 				}
 			});
@@ -191,7 +214,7 @@
 					return stopCycle();
 				}
 			};
-			if (opts.autoHeight) {
+			if (opts.autoHeight && !elm.hasClass("tabs-style-4") && !elm.hasClass("tabs-style-5")) {
 				$panels.show();
 				$(".tabs-panel", elm).equalHeights(true);
 			}

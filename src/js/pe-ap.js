@@ -29,7 +29,7 @@
 		 */
 		language: ($("html").attr("lang") ? ($("html").attr("lang").indexOf("en") === 0 ? "eng" : "fra") : $("meta[name='dc.language'], meta[name='dcterms.language']").attr("content")),
 		touchscreen: 'ontouchstart' in document.documentElement,
-		theme: 'gcwu', // Figure out way to detect this
+		theme: 'theme-gcwu-fegc', // Figure out way to detect this
 		suffix: "",
 		header: $('#wb-head'),
 		menubar: $('.wet-boew-menubar'),
@@ -79,7 +79,7 @@
 			    pe.mobile = true;
 			    $('body > div').attr('data-role', 'page');
 			}
-			
+
 			//Load ajax content
 			$.when.apply($, $.map($("*[data-ajax-replace], *[data-ajax-append]"), function (o) {
 				$o = $(o);
@@ -104,7 +104,7 @@
 				pe.add.language(pe.language);
 
 				//Load the mobile view
-				if (pe.mobile == true) {
+				if (pe.mobile === true) {
 					if (pe.menubar.length > 0) {
 						// lets init some variables for use in various transformations
 						// raw variable running on the dom
@@ -266,9 +266,8 @@
 				}
 			});
 
-			// add polyfills if nessecary;
+			// add polyfills if necessary;
 			pe.polyfills();
-		// mobile test
 		},
 		/**
 		 * @namespace pe.depends
@@ -779,6 +778,10 @@
 					var url = document.getElementById('progressive').src;
 					return url.substr(0, url.lastIndexOf("/") + 1);
 				}()),
+				themecsslocation: (function () {
+					var url = document.getElementById('wb-theme').href;
+					return url.substr(0, url.lastIndexOf("/") + 1);
+				}()),
 				staged: [],
 				/**
 				 * A loading algorthim borrowed from labjs. Thank you!
@@ -965,7 +968,7 @@
 				$("#wb-main a[href^='#']").click(function () {
 					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
 				});
-				pe.add.css([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.css']);
+				pe.add.css([pe.add.themecsslocation + 'jquery.mobile-min.css']);
 				pe.add._load([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.js']);
 			} else {
 				// Move the focus to the anchored element for skip nav links

@@ -537,7 +537,7 @@ background-position:-1px 0!important;
     display:block;
 }
 
-.tabs-style-4  .tabs li.tabs-toggle a{
+.tabs-style-4 .tabs li.tabs-toggle a{
     width:auto!important;
     background-repeat:no-repeat!important;
     background-position:0 -2px;
@@ -624,7 +624,6 @@ background-position:-1px 0!important;
     width:auto!important;
     background-repeat:no-repeat!important;
     background-position:0 -2px;
-    color:#000!important;
     position:relative!important;
     top:1px!important;
     bottom:auto!important;
@@ -662,7 +661,7 @@ background-position:-1px 0!important;
 
 .tabs li.tabs-toggle a:hover,.tabs li.tabs-toggle a:focus,.tabs li.tabs-toggle a:active{
     text-decoration:underline;
-    color:#c00;
+    color:#000;
 }
 
 .tabs-toggle a{
@@ -682,20 +681,24 @@ background-position:-1px 0!important;
 .tabs-toggle a.tabs-prev{
     background-image:url(../images/tabs/prev.gif)!important;
     background-repeat:no-repeat!important;
-    background-position:center 5px}
+    background-position:center 5px
+}
 
 .tabs-toggle a.tabs-next{
     background-image:url(../images/tabs/next.gif)!important;
     background-repeat:no-repeat!important;
-    background-position:center 5px}
+    background-position:center 5px
+}
 
 .tabs-toggle a.tabs-stop{
     background-image:url(../images/tabs/pause.png)!important;
-    background-repeat:no-repeat!important}
+    background-repeat:no-repeat!important
+}
 
 .tabs-toggle a.tabs-start{
     background-image:url(../images/tabs/play.png)!important;
-    background-repeat:no-repeat!important}
+    background-repeat:no-repeat!important
+}
 
 .tabs li.tabs-toggle a:hover{
     background-repeat:no-repeat;
