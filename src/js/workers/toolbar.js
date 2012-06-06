@@ -14,9 +14,9 @@
         scope: 'plugin',
         _exec: function (elm) {
             // cache a variable pointer for performance benefits since we are binding to a window event
-            var tb = $('<div class="wet-boew-toolbar" role="toolbar"><ul><li class="toolbar-top-page"> <a href="#cn-tphp" role="link">' + pe.dic.get('%top-of-page') + '</a> </li></ul></div>');
+            var tb = $('<div class="wet-boew-toolbar" role="toolbar"><ul><li class="toolbar-top-page"> <a href="#wb-tphp" role="link">' + pe.dic.get('%top-of-page') + '</a> </li></ul></div>');
             // discover which element we need, with a fallback to body tag
-            $('#cn-body-inner-3col, #cn-body-inner-2col, #cn-body-inner-1col').add('body').first().append(tb);
+            $('#wb-body-sec-sup, #wb-body-sec, #wb-body').add('body').first().append(tb);
             tb.hide();
             // bind methods to the window
             $(window).bind('scroll', function () {

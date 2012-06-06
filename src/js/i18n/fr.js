@@ -57,9 +57,9 @@
 		ind: {
 			"%top-of-page": "Haut de la page",
 			"%you-are-in": "Vous êtes dans :",
-			"%welcome-to": "Bienvenue à : " + $('#cn-site-title').text(),
+			"%welcome-to": "Bienvenue à : " + $('#gcwu-title').text(),
 			"%archived-page": "Cette page Web a été archivée dans le Web.",
-			"%sub-menu-help": "(ouvrir le sous-menu avec la touche de la fleche descendante)",
+			"%sub-menu-help": "(ouvrir le sous-menu avec la touche de la flèche descendante et le fermer avec la touche d'échappement)",
 			"%tab-rotation": {
 				"disable": "Arrêter la rotation d'onglets",
 				"enable": "Lancer la rotation d'onglets"
@@ -74,7 +74,7 @@
 			"%play": "Jouer",
 			"%stop": "Pause",
 			"%close": "Fermer",
-			"%rewind": "Reculer ",
+			"%rewind": "Reculer",
 			"%next" : "Prochaine",
 			"%previous" : "Précedent",
 			"%fast-forward": "Avancer ",
@@ -107,10 +107,20 @@
 			"%days-ago": {
 				"mixin": "il ya [MIXIN] jours"
 			},
-			"%yesterday": "hier"
+			"%yesterday": "hier",
+			"%hide" : "Masquer",
+			"%favourite" : "Lien préféré",
+			"%email" : "Courriel",
+			"%share-text" : "Partagez cette page",
+			"%share-hint" : " avec {s} (Ouvre dans une nouvelle fenêtre)",
+			"%share-email-subject" : "Page qui est intéressante",
+			"%share-email-body" : "J'espère que cette page vous intéresse :\n{t} ({u})",
+			"%share-manual" : "S'il vous pla&#238;t fermer ce dialogue et\nappuyer sure Ctrl-D pour ajouter cette page à vos signets.",
+			"%share-showall" : "Tous montrer ({n})",
+			"%share-showall-title" : "Tout les sites de mise en signet"
 		}
 	};
+        $(document).trigger("languageloaded");
 	window.pe = _pe;
-	_pe.dance();
 	return _pe;
 }(jQuery));

@@ -22,4 +22,10 @@
 	<taskdef name="cssurlembed" classname="net.nczonline.web.cssembed.CSSEmbedTask">
 		<classpath refid="cssurlembed.classpath" />
 	</taskdef>
+  <!-- Include the compiled jruby.jar file -->
+  <path id="jruby.classpath">
+    <fileset dir="${lib.dir}">
+      <include name="jruby*.jar"/>
+    </fileset>
+  </path>
 </project>

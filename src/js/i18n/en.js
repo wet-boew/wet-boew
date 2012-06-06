@@ -60,10 +60,10 @@
 		ind : {
 			"%top-of-page" : "Top of Page",
 			"%you-are-in" : "You are in: ",
-			"%welcome-to" : "Welcome to: " + $('#cn-site-title').text(),
+			"%welcome-to" : "Welcome to: " + $('#gcwu-title').text(),
 			"%loading" : "loading...",
 			"%archived-page" : "This Web page has been archived on the Web.",
-			"%sub-menu-help" : "(open the submenu with the down arrow key)",
+			"%sub-menu-help" : "(open the submenu with the down arrow key and close with the escape key)",
 			"%tab-rotation" : {
 				"disable" : "Stop tab rotation",
 				"enable" : "Start tab rotation"
@@ -78,7 +78,7 @@
 			"%play" : "Play",
 			"%stop" : "Pause",
 			"%close" : "Close",
-			"%rewind" : "Rewind ",
+			"%rewind" : "Rewind",
 			"%next" : "Next",
 			"%previous" : "Previous",
 			"%fast-forward" : "Fast forward ",
@@ -111,10 +111,20 @@
 			"%days-ago" : {
 				"mixin" : "[MIXIN] days ago"
 			},
-			"%yesterday" : "yesterday"
+			"%yesterday" : "yesterday",
+			"%hide" : "Hide",
+			"%favourite" : "Favourite",
+			"%email" : "Email",
+			"%share-text" : "Share this page",
+			"%share-hint" : " with {s} (Opens in a new window)",
+			"%share-email-subject" : "Interesting page",
+			"%share-email-body" : "I thought you might find this page interesting:\n{t} ({u})",
+			"%share-manual" : "Please close this dialog and\npress Ctrl-D to bookmark this page.",
+			"%share-showall" : "Show all ({n})",
+			"%share-showall-title" : "All bookmarking sites"
 		}
 	};
+        $(document).trigger("languageloaded");
 	window.pe = _pe;
-	_pe.dance();
 	return _pe;
 }(jQuery));
