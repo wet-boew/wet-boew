@@ -78,7 +78,7 @@
 			"%play" : "Play",
 			"%stop" : "Pause",
 			"%close" : "Close",
-			"%rewind" : "Rewind ",
+			"%rewind" : "Rewind",
 			"%next" : "Next",
 			"%previous" : "Previous",
 			"%fast-forward" : "Fast forward ",

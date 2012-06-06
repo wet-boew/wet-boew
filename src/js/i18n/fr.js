@@ -74,7 +74,7 @@
 			"%play": "Jouer",
 			"%stop": "Pause",
 			"%close": "Fermer",
-			"%rewind": "Reculer ",
+			"%rewind": "Reculer",
 			"%next" : "Prochaine",
 			"%previous" : "Précedent",
 			"%fast-forward": "Avancer ",
