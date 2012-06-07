@@ -29,8 +29,8 @@
 		 */
 		language: ($("html").attr("lang") ? ($("html").attr("lang").indexOf("en") === 0 ? "eng" : "fra") : $("meta[name='dc.language'], meta[name='dcterms.language']").attr("content")),
 		touchscreen: 'ontouchstart' in document.documentElement,
-		theme: 'theme-gcwu-fegc', // Figure out way to detect this
-		suffix: "",
+		theme: '',
+		suffix: $('body script[src$="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
 		menubar: $('.wet-boew-menubar'),
 		leftcol: $('#wb-sec'),
@@ -67,13 +67,15 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var mb_dialogue, mb_header, bcrumb, sub, search_elm, s_dialogue, _list, links, footer1, ul, pefile, lang_links, lang_nav, $lch3, $o;
+			var mb_dialogue, mb_header, bcrumb, sub, search_elm, s_dialogue, _list, links, themefile, urlsegs, footer1, ul, lang_links, lang_nav, $lch3, $o;
 
 			// Identify the theme and whether or not the device has a touchscreen
+			themefile =  $('head link[href$="theme' + ((pe.ie > 0 && pe.ie < 9) ? "-ie" : "") + pe.suffix + '.css"]');
+			if (themefile.length > 0) {
+				urlsegs = pe.url(themefile.attr('href')).segments;
+				pe.theme = urlsegs[urlsegs.length - 3];
+			}
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
-			// determine if this file is minified
-			pefile = pe.url(document.getElementById('progressive').src).file;
-			pe.suffix = pefile.substr(pefile.length - 7) === "-min.js" ? "-min" : "";
 
 			if (pe.mobilecheck()) {
 			    pe.mobile = true;
@@ -775,12 +777,12 @@
 				 * @type {string}
 				 */
 				liblocation: (function () {
-					var url = document.getElementById('progressive').src;
-					return url.substr(0, url.lastIndexOf("/") + 1);
+					var pefile = $('body script[src*="/pe-ap"]').attr('src');
+					return pefile.substr(0, pefile.lastIndexOf("/") + 1);
 				}()),
 				themecsslocation: (function () {
-					var url = document.getElementById('wb-theme').href;
-					return url.substr(0, url.lastIndexOf("/") + 1);
+					var iesuffix = ((pe.ie > 0 && pe.ie < 9) ? "-ie" : ""), themecss = $('head link[href$="theme' + iesuffix + '-min.css"], head link[href$="theme' + iesuffix + '.css"]');
+					return themecss.length > 0 ? themecss.attr('href').substr(0, themecss.attr('href').lastIndexOf("/") + 1) : "theme-not-found/";
 				}()),
 				staged: [],
 				/**
