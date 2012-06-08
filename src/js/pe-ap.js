@@ -30,7 +30,7 @@
 		language: ($("html").attr("lang") ? ($("html").attr("lang").indexOf("fr") === 0 ? "fra" : "eng") : $("meta[name='dc.language'], meta[name='dcterms.language']").attr("content")),
 		touchscreen: 'ontouchstart' in document.documentElement,
 		theme: '',
-		suffix: $('body script[src$="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
+		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
 		menubar: $('.wet-boew-menubar'),
 		secnav: $('#wb-sec'),
