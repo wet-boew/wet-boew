@@ -36,10 +36,17 @@
 		<move todir="${build.dir}/css/premin">
 			<fileset dir="${build.dir}/css"/>
 		</move>
+		<copy todir="${build.dir}/js/premin">
+			<fileset dir="${src.dir}/js"/>
+		</copy>
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/css/premin" toDir="${build.dir}/css">
 			<include name="*.*" />
 		</yui-compressor>
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/js/premin" toDir="${build.dir}/js">
+			<include name="*.*" />
+		</yui-compressor>
 		<delete dir="${build.dir}/css/premin"/>
+		<delete dir="${build.dir}/js/premin"/>
 	</target>
 
 	<target name="build-css" depends="-base64-encode" />
@@ -130,6 +137,7 @@
 				<exclude name="compile*"/>
 				<exclude name="sass/**"/>
 				<exclude name="jquery.mobile/**"/>
+				<exclude name="js/**"/>
 			</fileset>
 		</copy>
 		<copy todir="${build.dir}/../css">
@@ -221,7 +229,7 @@
         <var name="file.recurse" unset="true"/>
 	</target>
 
-  <target name="clean-css">
+	<target name="clean-css">
 		<delete dir="${src.dir}/css" />
 	</target>
   
