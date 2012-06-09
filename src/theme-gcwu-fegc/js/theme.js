@@ -83,23 +83,24 @@
 						if ($this.is('section')) {
 							$this = $this.children('h2,h3,h4').eq(0);
 						}
-						$this.html($this.text());
 						if ($this.is('div')) {
-							mb_dialogue += "<div data-role=\"button\" data-icon=\"arrow-r\" data-corners=\"false\" class=\"top-level" + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))) + "\" data-theme=\"a\">" + $(this).html() + "</div>";
+							mb_dialogue += "<div data-role=\"button\" data-icon=\"arrow-r\" data-corners=\"false\" class=\"top-level" + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))) + "\" data-theme=\"a\">" + $this.text() + "</div>";
 						} else {
-							hlink = $this.children('a');
-							$this.parent().find("ul").attr("data-role", "listview").prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+							$this.parent().find("ul").attr("data-role", "listview");
 							$this.parent().find(".mb-sm div > a,.mb-sm h2,.mb-sm h3,.mb-sm h4").each(function () {
-								var $this_sub = $(this), $this_sub_parent = $this_sub.parent();
+								var $this_sub = $(this), $this_sub_parent = $this_sub.parent(), hlink;
 								if ($this_sub_parent.is('div')) {
 									$this_sub_parent.html($this_sub_parent.text());
 									$this_sub_parent.attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))));
 								} else if ($this_sub_parent.is('section')) {
-									$this_sub.html($this_sub.text());
+									hlink = $this_sub.children('a');
+									$this_sub_parent.find('ul').prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
 									$this_sub_parent.wrap("<div data-role=\"collapsible\" data-theme=\"a\">");
+									$this_sub.html($this_sub.text());
 									$this_sub_parent.parent().html($this_sub_parent.html());
 								}
 							});
+							$this.html($this.text());
 							mb_dialogue += "<div data-role=\"collapsible\" data-theme=\"a\">" + $this.parent().html() + "</div>";
 						}
 					});
