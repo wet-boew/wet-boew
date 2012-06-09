@@ -17,26 +17,38 @@
 		fn: {}
 	};
 	_wet_boew_theme = {
+		theme: 'theme-gcwu-fegc',
+		psnb: $('#wb-head #gcwu-psnb'),
+		search: $('#wb-head #gcwu-srchbx'),
+		bcrumb: $('#wb-head #gcwu-bc'),
+		title: $('#wb-head #gcwu-title'),
+		sft: $('#wb-foot #gcwu-sft'),
+		footer: $('#wb-foot footer'),
+		gcft: $('#wb-foot #gcwu-gcft'),
+		wmms: $('#gcwu-wmms'),
 		init: function () {
-			pe.theme = 'theme-gcwu-fegc';
-			$('html').addClass(pe.theme);
+			pe.theme = wet_boew_theme.theme;
+			$('html').addClass(wet_boew_theme.theme);
+			if (wet_boew_theme.psnb.length > 0 && wet_boew_theme.search.length === 0) {
+				wet_boew_theme.psnb.css('width', '100%');
+			}
+		},
+		themename: function () {
+			return wet_boew_theme.theme;
 		},
 		mobileview: function () {
-			var mb_dialogue, mb_header, bcrumb, sub, search_elm, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav;
+			var mb_dialogue, mb_header, sub, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav;
 			if (pe.menubar.length > 0) {
-				// lets init some variables for use in various transformations
-				// raw variable running on the dom
 				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 				// lets transform the menu to a dialog box
 				mb_dialogue = '<div data-role="page" id="jqmobile-wet-boew-menubar"><div data-role="header">';
-				mb_header = pe.header.find('#gcwu-psnb > :header');
+				mb_header = wet_boew_theme.psnb.children(':header');
 				mb_dialogue += "<h1>" + mb_header.html() + '</h1></div>';
 				mb_dialogue += '<div data-role="content" data-inset="true"><nav role="navigation">';
 
-				bcrumb = pe.header.find('#gcwu-bc');
-				if (bcrumb.length > 0) {
-					mb_dialogue += '<div id="jqm-mb-location-text">' + bcrumb.html() + '</div>';
-					bcrumb.remove();
+				if (wet_boew_theme.bcrumb.length > 0) {
+					mb_dialogue += '<div id="jqm-mb-location-text">' + wet_boew_theme.bcrumb.html() + '</div>';
+					wet_boew_theme.bcrumb.remove();
 				} else {
 					mb_dialogue += '<div id="jqm-mb-location-text"></div>';
 				}
@@ -96,21 +108,21 @@
 				mb_dialogue += '</div></div>';
 				pe.pagecontainer().append(mb_dialogue);
 				mb_header.wrapInner('<a href="#jqmobile-wet-boew-menubar" data-rel="dialog"></a>');
+				_list = $('<ul></ul>').hide().append('<li><a data-rel="dialog" data-theme="b"  data-icon="grid" href="' + mb_header.find('a').attr('href') + '">' + mb_header.find('a').text() + "</a></li>");
+
+				if (wet_boew_theme.search.length > 0) {
+					// :: Search box transform lets transform the search box to a dialogue box
+					s_dialogue = $('<div data-role="page" id="jqmobile-wet-boew-search"></div>');
+					s_dialogue.append($('<div data-role="header"><h1>' + wet_boew_theme.search.find(':header').text() + '</h1></div>')).append($('<div data-role="content"></div>').append(wet_boew_theme.search.find('form').clone()));
+					pe.pagecontainer().append(s_dialogue);
+					wet_boew_theme.search.find(':header').wrapInner('<a href="#jqmobile-wet-boew-search" data-rel="dialog"></a>');
+					_list.append('<li><a data-rel="dialog" data-theme="b" data-icon="search" href="' + wet_boew_theme.search.find(':header a').attr('href') + '">' + wet_boew_theme.search.find(':header a').text() + "</a></li>");
+				}
+
+				wet_boew_theme.title.after($('<div data-role="navbar" data-iconpos="right"></div>').append(_list));
 			}
 
-			search_elm = pe.header.find('#gcwu-srchbx');
-			if (search_elm.length > 0) {
-				// :: Search box transform lets transform the search box to a dialogue box
-				s_dialogue = $('<div data-role="page" id="jqmobile-wet-boew-search"></div>');
-				s_dialogue.append($('<div data-role="header"><h1>' + search_elm.find(':header').text() + '</h1></div>')).append($('<div data-role="content"></div>').append(search_elm.find('form').clone()));
-				pe.pagecontainer().append(s_dialogue);
-				search_elm.find(':header').wrapInner('<a href="#jqmobile-wet-boew-search" data-rel="dialog"></a>');
-				// lets see if we can change these to navbars
-				_list = $('<ul></ul>').hide().append('<li><a data-rel="dialog" data-theme="b"  data-icon="grid" href="' + mb_header.find('a').attr('href') + '">' + mb_header.find('a').text() + "</a></li>").append('<li><a data-rel="dialog" data-theme="b" data-icon="search" href="' + search_elm.find(':header a').attr('href') + '">' + search_elm.find(':header a').text() + "</a></li>");
-				pe.header.find('#gcwu-title').after($('<div data-role="navbar" data-iconpos="right"></div>').append(_list));
-			}
-
-			lang_links = $('#gcwu-lang');
+			lang_links = $('body #gcwu-lang');
 			if (lang_links.length > 0) {
 				links = lang_links.find('a').attr("data-theme", "a");
 				lang_nav = $('<div data-role="navbar"><ul></ul></div>');
@@ -122,16 +134,16 @@
 				lang_links.find('#gcwu-other-lang').remove();
 			}
 
-			if (pe.footer.find('#gcwu-sft').length > 0) {
+			if (wet_boew_theme.sft.length > 0) {
 				// transform the footer into mobile nav bar
-				links = pe.footer.find('#gcwu-sft-in #gcwu-tctr a, #gcwu-sft-in .gcwu-col-head a').attr("data-theme", "b");
+				links = wet_boew_theme.sft.find('#gcwu-sft-in #gcwu-tctr a, #gcwu-sft-in .gcwu-col-head a').attr("data-theme", "b");
 				footer1 = $('<div data-role="navbar"><ul></ul></div>');
 				ul = footer1.children();
 				links.each(function () {
 					ul.append($('<li/>').append(this));
 				});
-				pe.footer.find('#gcwu-sft-in').replaceWith(footer1.children().end());
-				pe.footer.find('#gcwu-gcft').parent().remove();
+				wet_boew_theme.sft.children('#gcwu-sft-in').replaceWith(footer1.children().end());
+				wet_boew_theme.gcft.parent().remove();
 			} else if (pe.footer.find('#gcwu-tc').length > 0) {
 				// transform the footer into mobile nav bar
 				links = pe.footer.find('#gcwu-tc a').attr("data-theme", "b");
@@ -142,15 +154,15 @@
 				});
 				pe.footer.find('#gcwu-tc').replaceWith(footer1.children().end());
 			}
-			pe.footer.find('footer').append($('#gcwu-wmms').detach());
+			wet_boew_theme.footer.append(wet_boew_theme.wmms.detach());
 
 			// jquery mobile has loaded
 			$(document).on("mobileinit", function () {
 				if (pe.menubar.length > 0) {
-					pe.header.find('#gcwu-psnb').parent().remove();
-				}
-				if (search_elm.length > 0) {
-					search_elm.parent().remove();
+					wet_boew_theme.psnb.parent().remove();
+					if (wet_boew_theme.search.length > 0) {
+						wet_boew_theme.search.parent().remove();
+					}
 					_list.show();
 				}
 			});

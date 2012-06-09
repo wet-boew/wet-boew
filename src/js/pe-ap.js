@@ -654,7 +654,7 @@
 					return pefile.substr(0, pefile.lastIndexOf("/") + 1);
 				}()),
 				themecsslocation: (function () {
-					var iesuffix = ((pe.ie > 0 && pe.ie < 9) ? "-ie" : ""), themecss = $('head link[href$="theme' + iesuffix + '-min.css"], head link[href$="theme' + iesuffix + '.css"]');
+					var themecss = $('head link[rel="stylesheet"][href*="' + wet_boew_theme.themename() + '"]');
 					return themecss.length > 0 ? themecss.attr('href').substr(0, themecss.attr('href').lastIndexOf("/") + 1) : "theme-not-found/";
 				}()),
 				staged: [],
