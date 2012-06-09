@@ -58,6 +58,7 @@
 			return r;
 		},
 		ind : {
+			"%home" : "Home",
 			"%top-of-page" : "Top of Page",
 			"%you-are-in" : "You are in: ",
 			"%welcome-to" : "Welcome to: " + $('#gcwu-title').text(),

@@ -99,46 +99,45 @@
 				}, "html");
 			})).always(function () {
 				//Wait for localisation and ajax content to load plugins
-				$(document).bind("languageloaded", function () {
-					pe.dance();
+				$(document).bind("languageloaded", function () {				
+					//Load the mobile view
+					if (pe.mobile === true) {
+						if (wet_boew_theme !== null) {
+							wet_boew_theme.mobileview();
+						}
+						$(document).on("mobileinit", function () {
+							//$.mobile.loadingMessage = false;
+							$.mobile.ajaxEnabled = false;
+							$.mobile.pushStateEnabled = false;
+						});
+						// preprocessing before mobile page is enhanced
+						$(document).on("pageinit", function () {
+							// add some language
+							/**  $('.ui-page #wb-core a[href*="#"]').each(function () {
+									var _elm = $(this);
+									if (_elm.attr('href').indexOf('#') > 0) {
+									// this is a external anchor
+									_elm.unbind('click').unbind('vclick').on('click vclick', function (e) {
+									e.stopPropagation();
+									e.preventDefault();
+									$.mobile.changePage(pe.url(_elm.attr('href')).removehash());
+									});
+									// _elm.attr('href', pe.url(_elm.attr('href')).hashtoparam());
+									} else {
+									// this is inpage anchor
+									_elm.unbind('click').unbind('vclick').on('click vclick', function (e) {
+									e.stopPropagation();
+									e.preventDefault();
+									var $target = $(this).parents('.ui-page').find($(this).attr('href')).eq(0);
+									if ($target.length == 1) $.mobile.silentScroll($target.offset().top);
+									});
+									}
+									}); **/
+						});
+						pe.dance();
+					}
 				});
 				pe.add.language(pe.language);
-
-				//Load the mobile view
-				if (pe.mobile === true) {
-					if (wet_boew_theme !== null) {
-						wet_boew_theme.mobileview();
-					}
-					$(document).on("mobileinit", function () {
-						//$.mobile.loadingMessage = false;
-						$.mobile.ajaxEnabled = false;
-						$.mobile.pushStateEnabled = false;
-					});
-					// preprocessing before mobile page is enhanced
-					$(document).on("pageinit", function () {
-						// add some language
-						/**  $('.ui-page #wb-core a[href*="#"]').each(function () {
-								var _elm = $(this);
-								if (_elm.attr('href').indexOf('#') > 0) {
-								// this is a external anchor
-								_elm.unbind('click').unbind('vclick').on('click vclick', function (e) {
-								e.stopPropagation();
-								e.preventDefault();
-								$.mobile.changePage(pe.url(_elm.attr('href')).removehash());
-								});
-								// _elm.attr('href', pe.url(_elm.attr('href')).hashtoparam());
-								} else {
-								// this is inpage anchor
-								_elm.unbind('click').unbind('vclick').on('click vclick', function (e) {
-								e.stopPropagation();
-								e.preventDefault();
-								var $target = $(this).parents('.ui-page').find($(this).attr('href')).eq(0);
-								if ($target.length == 1) $.mobile.silentScroll($target.offset().top);
-								});
-								}
-								}); **/
-					});
-				}
 			});
 
 			// add polyfills if necessary;

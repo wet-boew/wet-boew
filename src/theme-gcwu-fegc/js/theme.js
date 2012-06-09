@@ -37,7 +37,7 @@
 			return wet_boew_theme.theme;
 		},
 		mobileview: function () {
-			var mb_dialogue, mb_header, sub, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav;
+			var mb_dialogue, mb_header, sub, s_dialogue, _list, hlink, links, footer1, ul, lang_links, lang_nav;
 			if (pe.menubar.length > 0) {
 				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 				// lets transform the menu to a dialog box
@@ -87,7 +87,8 @@
 						if ($this.is('div')) {
 							mb_dialogue += "<div data-role=\"button\" data-icon=\"arrow-r\" data-corners=\"false\" class=\"top-level" + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))) + "\" data-theme=\"a\">" + $(this).html() + "</div>";
 						} else {
-							$this.parent().find("ul").attr("data-role", "listview");
+							hlink = $this.children('a');
+							$this.parent().find("ul").attr("data-role", "listview").prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
 							$this.parent().find(".mb-sm div > a,.mb-sm h2,.mb-sm h3,.mb-sm h4").each(function () {
 								var $this_sub = $(this), $this_sub_parent = $this_sub.parent();
 								if ($this_sub_parent.is('div')) {
