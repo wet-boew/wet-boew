@@ -57,6 +57,11 @@
 					// we have a submenu
 					sub = '<h2>' + pe.secnav.find(':header').eq(0).html() + '</h2>';
 					sub += '<div data-role="collapsible-set">';
+					pe.secnav.find('.wb-sec-def h2, .wb-sec-def h3, .wb-sec-def h4, .wb-sec-def h5').each(function () {
+						var $this_sub = $(this), hlink;
+						hlink = $this_sub.children('a');
+						$this_sub.next('ul').prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+					});
 					sub += pe.secnav.find('.wb-sec-def').html().replace(/<section>/gi, "<div data-role=\"collapsible\">").replace(/<\/section>/gi, "</div>");
 
 					// lets work on the menu shift
@@ -64,6 +69,7 @@
 					sub = sub.replace(/<ul(.*?)>/gi, "<ul data-role=\"listview\"$1>").replace(/<\/ul>/gi, "</ul>");
 					sub = sub.replace(/<div class=\"top-level\"/gmi, "<div data-role=\"button\" data-icon=\"arrow-r\" class=\"top-level\"");
 					sub += '</div>';
+
 					mb_dialogue += sub;
 					pe.secnav.remove();
 				}
@@ -94,7 +100,7 @@
 									$this_sub_parent.attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))));
 								} else if ($this_sub_parent.is('section')) {
 									hlink = $this_sub.children('a');
-									$this_sub_parent.find('ul').prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+									$this_sub.next('ul').prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
 									$this_sub_parent.wrap("<div data-role=\"collapsible\" data-theme=\"a\">");
 									$this_sub.html($this_sub.text());
 									$this_sub_parent.parent().html($this_sub_parent.html());
