@@ -359,14 +359,11 @@ img{
 	padding:0.6em 33px 0.7em 10px;
 }
 
-#jqmobile-wet-boew-menubar h3 .ui-icon-arrow-r,#jqmobile-wet-boew-menubar h4 .ui-icon-arrow-r,#jqmobile-wet-boew-menubar .top-level .ui-icon-arrow-r{
-	left:auto;
-	right:10px;
-	top:50%;
-	margin-top:-9px;
+#jqmobile-wet-boew-menubar .ui-btn-icon-right .ui-btn-inner {
+	padding-left: 40px;
 }
 
-#jqmobile-wet-boew-menubar h3 .ui-btn,#jqmobile-wet-boew-menubar h4 .ui-btn,#jqmobile-wet-boew-menubar .top-level{
+#jqmobile-wet-boew-menubar .ui-btn{
 	margin:0;
 	text-align:left;
 }

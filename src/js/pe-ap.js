@@ -681,7 +681,7 @@
 						}
 						var scriptElem = document.createElement("script"),
 							scriptdone = false;
-						pe.add.set(scriptElem, 'async', true);
+						pe.add.set(scriptElem, 'async', 'async');
 						scriptElem.onload = scriptElem.onreadystatechange = function () {
 							if ((scriptElem.readyState && scriptElem.readyState !== "complete" && scriptElem.readyState !== "loaded") || scriptdone) {
 								return false;

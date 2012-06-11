@@ -36,8 +36,36 @@
 		themename: function () {
 			return wet_boew_theme.theme;
 		},
+		buildmenu: function (section, hlevel, theme) {
+			var menu = $('<div data-role="controlgroup"></div>'), menuitems, next, subsection, hlink;
+			menuitems = section.find('> div, > ul, h' + hlevel);
+			if (menuitems.first().is('ul')) {
+				menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
+			} else {
+				menuitems.each(function (index) {
+					if ($(this).is('h' + hlevel)) {
+						subsection = $('<div data-role="collapsible"><h' + hlevel + '>' + $(this).text() + '</h' + hlevel + '></div>');
+						next = $(this).next();
+						hlink = $(this).children('a');
+						if (next.is('ul')) {
+							next.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+							subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
+							subsection.find('ul').wrap('<div data-role="controlgroup"></div>');
+						} else {
+							subsection.append(wet_boew_theme.buildmenu($(this).parent(), hlevel + 1, theme));
+							subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($(this).children('a').attr('href', hlink.attr('href')).html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+						}
+						menu.append(subsection);
+					} else if ($(this).is('div')) {
+						menu.append($(this).children('a').attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+					}
+				});
+				menu.children().wrapAll('<div data-role="collapsible-set" data-theme="' + theme + '"></div>');
+			}
+			return menu;
+		},
 		mobileview: function () {
-			var mb_dialogue, mb_header, sub, s_dialogue, _list, hlink, links, footer1, ul, lang_links, lang_nav;
+			var mb_dialogue, mb_header, sub, s_dialogue, _list, hlink, nextul, links, footer1, ul, lang_links, lang_nav, collapsible;
 			if (pe.menubar.length > 0) {
 				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 				// lets transform the menu to a dialog box
@@ -54,6 +82,8 @@
 				}
 
 				if (pe.secnav.length > 0) {
+					sub = $('<div><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></div>').append(wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c"));
+				/*
 					// we have a submenu
 					sub = '<h2>' + pe.secnav.find(':header').eq(0).html() + '</h2>';
 					sub += '<div data-role="collapsible-set">';
@@ -69,20 +99,20 @@
 					sub = sub.replace(/<ul(.*?)>/gi, "<ul data-role=\"listview\"$1>").replace(/<\/ul>/gi, "</ul>");
 					sub = sub.replace(/<div class=\"top-level\"/gmi, "<div data-role=\"button\" data-icon=\"arrow-r\" class=\"top-level\"");
 					sub += '</div>';
-
-					mb_dialogue += sub;
+*/
+					mb_dialogue += sub.html();
 					pe.secnav.remove();
 				}
 
 				mb_dialogue += '<h2>' + mb_header.html() + '</h2>';
-				mb_dialogue += '<div data-role=\"collapsible-set\">';
+				mb_dialogue += '<div data-role=\"collapsible-set\" data-theme=\"a\">';
 
 				pe.menubar.find('ul.mb-menu').clone().each(function () {
 					$(this).find('div[class^=span]').each(function () {
 						$(this).replaceWith($(this).html());
 					});
 					$(this).find('.mb-sm').each(function () {
-						$(this).html('<div data-role=\"collapsible-set\">' + $(this).html() + '</div)');
+						$(this).html('<div data-role=\"collapsible-set\" data-theme=\"a\">' + $(this).html() + '</div)');
 					});
 					$(this).children().children('div:first-child,h2,h3,h4,section').each(function () {
 						var $this = $(this);
@@ -90,24 +120,24 @@
 							$this = $this.children('h2,h3,h4').eq(0);
 						}
 						if ($this.is('div')) {
-							mb_dialogue += "<div data-role=\"button\" data-icon=\"arrow-r\" data-corners=\"false\" class=\"top-level" + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))) + "\" data-theme=\"a\">" + $this.text() + "</div>";
+							mb_dialogue += "<div data-role=\"button\" data-icon=\"arrow-r\" data-iconpos=\"right\" data-corners=\"false\" data-theme=\"a\" class=\"top-level" + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))) + "\">" + $this.text() + "</div>";
 						} else {
 							$this.parent().find("ul").attr("data-role", "listview");
 							$this.parent().find(".mb-sm div > a,.mb-sm h2,.mb-sm h3,.mb-sm h4").each(function () {
 								var $this_sub = $(this), $this_sub_parent = $this_sub.parent(), hlink;
 								if ($this_sub_parent.is('div')) {
 									$this_sub_parent.html($this_sub_parent.text());
-									$this_sub_parent.attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))));
+									$this_sub_parent.attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-iconpos', 'right').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))));
 								} else if ($this_sub_parent.is('section')) {
 									hlink = $this_sub.children('a');
 									$this_sub.next('ul').prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
-									$this_sub_parent.wrap("<div data-role=\"collapsible\" data-theme=\"a\">");
+									$this_sub_parent.wrap("<div data-role=\"collapsible\">");
 									$this_sub.html($this_sub.text());
 									$this_sub_parent.parent().html($this_sub_parent.html());
 								}
 							});
 							$this.html($this.text());
-							mb_dialogue += "<div data-role=\"collapsible\" data-theme=\"a\">" + $this.parent().html() + "</div>";
+							mb_dialogue += "<div data-role=\"collapsible\">" + $this.parent().html() + "</div>";
 						}
 					});
 				});
@@ -176,6 +206,13 @@
 			});
 			// preprocessing before mobile page is enhanced
 			$(document).on("pageinit", function () {
+				collapsible = $('#jqmobile-wet-boew-menubar .ui-collapsible');
+				collapsible.filter(function () {
+					return $(this).prev().length > 0;
+				}).find('a').removeClass('ui-corner-top');
+				collapsible.filter(function () {
+					return $(this).next().length > 0;
+				}).find('a').removeClass('ui-corner-bottom');
 			});
 			return;
 		}
