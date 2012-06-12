@@ -3,3 +3,5 @@ nbproject/*
 .DS_Store
 jruby.jar
 build/lib/vendors
+Thumbs.db
+_notes/
