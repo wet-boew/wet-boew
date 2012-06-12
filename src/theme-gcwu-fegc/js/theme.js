@@ -76,7 +76,7 @@
 			return menu;
 		},
 		mobileview: function () {
-			var mb_dialogue, mb_header, s_dialogue, _list, hlink, links, footer1, ul, lang_links, lang_nav, collapsible;
+			var mb_dialogue, mb_header, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav, collapsible;
 			if (pe.menubar.length > 0) {
 				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 				// lets transform the menu to a dialog box
@@ -86,18 +86,18 @@
 				mb_dialogue += '<div data-role="content" data-inset="true"><nav role="navigation">';
 
 				if (wet_boew_theme.bcrumb.length > 0) {
-					mb_dialogue += '<div id="jqm-mb-location-text">' + wet_boew_theme.bcrumb.html() + '</div>';
+					mb_dialogue += '<section><div id="jqm-mb-location-text">' + wet_boew_theme.bcrumb.html() + '</div></section>';
 					wet_boew_theme.bcrumb.remove();
 				} else {
 					mb_dialogue += '<div id="jqm-mb-location-text"></div>';
 				}
 
 				if (pe.secnav.length > 0) {
-					mb_dialogue += $('<div><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></div>').append(wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c")).html();
+					mb_dialogue += $('<section><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></section>').append(wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c")).html();
 					pe.secnav.remove();
 				}
 
-				mb_dialogue += '<h2>' + mb_header.html() + '</h2>';
+				mb_dialogue += '<section><h2>' + mb_header.html() + '</h2>';
 				mb_dialogue += '<div data-role=\"collapsible-set\" data-theme=\"a\">';
 
 				pe.menubar.find('ul.mb-menu').clone().each(function () {
@@ -113,14 +113,13 @@
 							$this = $this.children('h2,h3,h4').eq(0);
 						}
 						if ($this.is('div')) {
-							mb_dialogue += "<div data-role=\"button\" data-icon=\"arrow-r\" data-iconpos=\"right\" data-corners=\"false\" data-theme=\"a\" class=\"top-level" + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))) + "\">" + $this.text() + "</div>";
+							mb_dialogue += $this.children('a').attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-iconpos', 'right').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : "")))).parent().html();
 						} else {
 							$this.parent().find("ul").attr("data-role", "listview");
 							$this.parent().find(".mb-sm div > a,.mb-sm h2,.mb-sm h3,.mb-sm h4").each(function () {
 								var $this_sub = $(this), $this_sub_parent = $this_sub.parent(), hlink;
 								if ($this_sub_parent.is('div')) {
-									$this_sub_parent.html($this_sub_parent.text());
-									$this_sub_parent.attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-iconpos', 'right').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))));
+									$this_sub.attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-iconpos', 'right').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))));
 								} else if ($this_sub_parent.is('section')) {
 									hlink = $this_sub.children('a');
 									$this_sub.next('ul').prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
@@ -134,7 +133,7 @@
 						}
 					});
 				});
-				mb_dialogue += '</nav></div>';
+				mb_dialogue += '</section></nav></div>';
 
 				mb_dialogue += '</div></div>';
 				pe.pagecontainer().append(mb_dialogue);
