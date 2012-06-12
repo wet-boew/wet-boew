@@ -32,7 +32,7 @@
             if (pe.fn.mathlib.support) {
 				return; // we do not want this on Mathml capable browsers
 			}
-            pe.add._load('http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML');
+            pe.add._load('http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML');
         } // end of exec
     };
     window.pe = _pe;
