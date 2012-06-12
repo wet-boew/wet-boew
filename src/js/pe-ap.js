@@ -134,8 +134,8 @@
 									}
 									}); **/
 						});
-						pe.dance();
 					}
+					pe.dance();
 				});
 				pe.add.language(pe.language);
 			});
