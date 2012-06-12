@@ -43,20 +43,31 @@
 				menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
 			} else {
 				menuitems.each(function (index) {
+					// If the menu item is a heading
 					if ($(this).is('h' + hlevel)) {
 						subsection = $('<div data-role="collapsible"><h' + hlevel + '>' + $(this).text() + '</h' + hlevel + '></div>');
 						next = $(this).next();
 						hlink = $(this).children('a');
 						if (next.is('ul')) {
 							next.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+							// If a nested list is detected
+							next.find('li ul').each(function (index) {
+								hlink = $(this).prev('a');
+								// Make the nested list into a collapsible section
+								$(this).attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
+								$(this).parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
+								$(this).prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+								hlink.remove();
+							});
 							subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
 							subsection.find('ul').wrap('<div data-role="controlgroup"></div>');
 						} else {
+							// If the section contains sub-sections
 							subsection.append(wet_boew_theme.buildmenu($(this).parent(), hlevel + 1, theme));
 							subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($(this).children('a').attr('href', hlink.attr('href')).html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
 						}
 						menu.append(subsection);
-					} else if ($(this).is('div')) {
+					} else if ($(this).is('div')) { // If the menu item is a div
 						menu.append($(this).children('a').attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
 					}
 				});
@@ -65,7 +76,7 @@
 			return menu;
 		},
 		mobileview: function () {
-			var mb_dialogue, mb_header, sub, s_dialogue, _list, hlink, nextul, links, footer1, ul, lang_links, lang_nav, collapsible;
+			var mb_dialogue, mb_header, s_dialogue, _list, hlink, links, footer1, ul, lang_links, lang_nav, collapsible;
 			if (pe.menubar.length > 0) {
 				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 				// lets transform the menu to a dialog box
@@ -82,25 +93,7 @@
 				}
 
 				if (pe.secnav.length > 0) {
-					sub = $('<div><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></div>').append(wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c"));
-				/*
-					// we have a submenu
-					sub = '<h2>' + pe.secnav.find(':header').eq(0).html() + '</h2>';
-					sub += '<div data-role="collapsible-set">';
-					pe.secnav.find('.wb-sec-def h2, .wb-sec-def h3, .wb-sec-def h4, .wb-sec-def h5').each(function () {
-						var $this_sub = $(this), hlink;
-						hlink = $this_sub.children('a');
-						$this_sub.next('ul').prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
-					});
-					sub += pe.secnav.find('.wb-sec-def').html().replace(/<section>/gi, "<div data-role=\"collapsible\">").replace(/<\/section>/gi, "</div>");
-
-					// lets work on the menu shift
-					sub = sub.replace(/<h(.*?)>\s*<a/gmi, "<h$1><a class=\"ui-link\" data-icon=\"arrow-r\" data-theme=\"b\"");
-					sub = sub.replace(/<ul(.*?)>/gi, "<ul data-role=\"listview\"$1>").replace(/<\/ul>/gi, "</ul>");
-					sub = sub.replace(/<div class=\"top-level\"/gmi, "<div data-role=\"button\" data-icon=\"arrow-r\" class=\"top-level\"");
-					sub += '</div>';
-*/
-					mb_dialogue += sub.html();
+					mb_dialogue += $('<div><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></div>').append(wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c")).html();
 					pe.secnav.remove();
 				}
 

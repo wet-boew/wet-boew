@@ -336,12 +336,13 @@ img{
 	border:none;
 }
 
-#jqmobile-wet-boew-menubar h3, #jqmobile-wet-boew-menubar h4, #jqmobile-wet-boew-menubar .top-level{
+#jqmobile-wet-boew-menubar h3, #jqmobile-wet-boew-menubar h4, #jqmobile-wet-boew-menubar h5, #jqmobile-wet-boew-menubar .top-level, #jqmobile-wet-boew-menubar .ui-li-static{
 	font-size:1em;
 }
 
-#jqmobile-wet-boew-menubar h3 a:link, #jqmobile-wet-boew-menubar h4 a:link, #jqmobile-wet-boew-menubar .top-level a:link{
-	text-decoration: none}
+#jqmobile-wet-boew-menubar h3 a:link, #jqmobile-wet-boew-menubar h4 a:link, #jqmobile-wet-boew-menubar h5 a:link, #jqmobile-wet-boew-menubar .top-level a:link{
+	text-decoration: none
+}
 
 #jqmobile-wet-boew-menubar h3.top-section{
 	font-size:1.2em;
@@ -351,16 +352,20 @@ img{
 	margin:0;
 }
 
-#jqmobile-wet-boew-menubar h3 .ui-btn-inner,#jqmobile-wet-boew-menubar h4 .ui-btn-inner,#jqmobile-wet-boew-menubar .top-level .ui-btn-inner{
+#jqmobile-wet-boew-menubar h3 .ui-btn-inner,#jqmobile-wet-boew-menubar h4 .ui-btn-inner,#jqmobile-wet-boew-menubar h5 .ui-btn-inner,#jqmobile-wet-boew-menubar .top-level .ui-btn-inner{
 	white-space:normal;
 }
 
-#jqmobile-wet-boew-menubar h3 .ui-btn-icon-top .ui-btn-inner,#jqmobile-wet-boew-menubar h4 .ui-btn-icon-top .ui-btn-inner,#jqmobile-wet-boew-menubar .top-level .ui-btn-icon-top .ui-btn-inner{
+#jqmobile-wet-boew-menubar h3 .ui-btn-icon-top .ui-btn-inner,#jqmobile-wet-boew-menubar h4 .ui-btn-icon-top .ui-btn-inner,#jqmobile-wet-boew-menubar h5 .ui-btn-icon-top .ui-btn-inner,#jqmobile-wet-boew-menubar .top-level .ui-btn-icon-top .ui-btn-inner{
 	padding:0.6em 33px 0.7em 10px;
 }
 
-#jqmobile-wet-boew-menubar .ui-btn-icon-right .ui-btn-inner {
+#jqmobile-wet-boew-menubar .ui-collapsible-set > a.ui-btn-icon-right .ui-btn-inner, #jqmobile-wet-boew-menubar li.ui-btn a {
 	padding-left: 40px;
+}
+
+#jqmobile-wet-boew-menubar .ui-li-static {
+	border-left: none; border-right: none;
 }
 
 #jqmobile-wet-boew-menubar .ui-btn{
@@ -369,6 +374,7 @@ img{
 }
 
 #jqmobile-wet-boew-menubar .ui-li{
+	padding: 0;
 	border-width:1px 1px 0 1px;
 }
 
@@ -602,7 +608,7 @@ a:active{
 	background:#0f315b;
 }
 
-.no-js .wb-sec-def h3,.no-js .wb-sec-def h4,.no-js .wb-sec-def .top-level{
+.no-js .wb-sec-def h3,.no-js .wb-sec-def h4,.no-js .wb-sec-def h5,.no-js .wb-sec-def .top-level{
 	font-size:100%;
 	border-bottom:none;
 	border-radius:2px;
@@ -611,13 +617,13 @@ a:active{
 	margin:0 0 3px;
 }
 
-.no-js .wb-sec-def h3 a,.no-js .wb-sec-def h4 a,.no-js .wb-sec-def .top-level a{
+.no-js .wb-sec-def h3 a,.no-js .wb-sec-def h4 a,.no-js .wb-sec-def h5 a,.no-js .wb-sec-def .top-level a{
 	font-weight:700;
 	background:#DDD;
 	padding:2px 4px;
 }
 
-.no-js .wb-sec-def h3 a.nav-current,.no-js .wb-sec-def h4 a.nav-current.no-js,.wb-sec-def .top-level a.nav-current{
+.no-js .wb-sec-def h3 a.nav-current,.no-js .wb-sec-def h4 a.nav-current.no-js,.no-js .wb-sec-def h5 a.nav-current.no-js,.wb-sec-def .top-level a.nav-current{
 	color:#0F315B;
 	padding:1px 3px;
 }
@@ -638,13 +644,13 @@ a:active{
 	-webkit-border-radius:2px;
 }
 
-.no-js .wb-sec-def h3 a,.no-js .wb-sec-def h4 a,.no-js .wb-sec-def .top-level a,.no-js .wb-sec-def li a{
+.no-js .wb-sec-def h3 a,.no-js .wb-sec-def h4 a,.no-js .wb-sec-def h5 a,.no-js .wb-sec-def .top-level a,.no-js .wb-sec-def li a{
 	display:block;
 	color:#333;
 	text-decoration:none;
 }
 
-.no-js .wb-sec-def h3 a:hover,.no-js .wb-sec-def h3 a:focus,.no-js .wb-sec-def h3 a:active,.no-js .wb-sec-def h4 a:hover,.no-js .wb-sec-def h4 a:focus,.no-js .wb-sec-def h4 a:active,.no-js .wb-sec-def .top-level a:hover,.no-js .wb-sec-def .top-level a:focus,.no-js .wb-sec-def .top-level a:active,.no-js .wb-sec-def li a:hover,.no-js .wb-sec-def li a:focus,.no-js .wb-sec-def li a:active{
+.no-js .wb-sec-def h3 a:hover,.no-js .wb-sec-def h3 a:focus,.no-js .wb-sec-def h3 a:active,.no-js .wb-sec-def h4 a:hover,.no-js .wb-sec-def h4 a:focus,.no-js .wb-sec-def h4 a:active,.no-js .wb-sec-def h5 a:hover,.no-js .wb-sec-def h5 a:focus,.no-js .wb-sec-def h5 a:active,.no-js .wb-sec-def .top-level a:hover,.no-js .wb-sec-def .top-level a:focus,.no-js .wb-sec-def .top-level a:active,.no-js .wb-sec-def li a:hover,.no-js .wb-sec-def li a:focus,.no-js .wb-sec-def li a:active{
 	color:#333;
 	text-decoration:underline;
 }
