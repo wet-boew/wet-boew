@@ -36,41 +36,55 @@
 		themename: function () {
 			return wet_boew_theme.theme;
 		},
-		buildmenu: function (section, hlevel, theme) {
-			var menu = $('<div data-role="controlgroup"></div>'), menuitems, next, subsection, hlink;
+		buildmenu: function (section, hlevel, theme, menubar) {
+			var menu = $('<div data-role="controlgroup"></div>'), menuitems, next, subsection, hlink, nested;
 			menuitems = section.find('> div, > ul, h' + hlevel);
 			if (menuitems.first().is('ul')) {
 				menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
 			} else {
 				menuitems.each(function (index) {
-					var nested;
+					var $this = $(this);
 					// If the menu item is a heading
-					if ($(this).is('h' + hlevel)) {
-						subsection = $('<div data-role="collapsible"><h' + hlevel + '>' + $(this).text() + '</h' + hlevel + '></div>');
-						next = $(this).next();
-						hlink = $(this).children('a');
+					if ($this.is('h' + hlevel)) {
+						hlink = $this.children('a');
+						subsection = $('<div data-role="collapsible"><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
+						// If the original menu item was in a menu bar
+						if (menubar) {
+							$this = $this.parent().find('a').eq(1).closest('ul, div, h' + hlevel + 1).first();
+							next = $this;
+						} else {
+							next = $this.next();
+						}
+
 						if (next.is('ul')) {
-							next.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+							// The original menu item was not in a menu bar
+							if (!menubar) {
+								next.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+							}
 							nested = next.find('li ul');
 							// If a nested list is detected
 							nested.each(function (index) {
-								hlink = $(this).prev('a');
+								var $this = $(this);
+								hlink = $this.prev('a');
 								// Make the nested list into a collapsible section
-								$(this).attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
-								$(this).parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
-								$(this).prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+								$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
+								$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
+								$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
 								hlink.remove();
 							});
 							subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
 							subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? "<div data-role=\"collapsible-set\" data-theme=\"" + theme + "\"></div>" : "") + '</div>');
 						} else {
 							// If the section contains sub-sections
-							subsection.append(wet_boew_theme.buildmenu($(this).parent(), hlevel + 1, theme));
-							subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($(this).children('a').attr('href', hlink.attr('href')).html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+							subsection.append(wet_boew_theme.buildmenu($this.parent(), hlevel + 1, theme, false));
+							// If the original menu item was not in a menu bar
+							if (!menubar) {
+								subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($this.children('a').attr('href', hlink.attr('href')).html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+							}
 						}
 						menu.append(subsection);
-					} else if ($(this).is('div')) { // If the menu item is a div
-						menu.append($(this).children('a').attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+					} else if ($this.is('div')) { // If the menu item is a div
+						menu.append($this.children('a').attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
 					}
 				});
 				menu.children().wrapAll('<div data-role="collapsible-set" data-theme="' + theme + '"></div>');
@@ -95,11 +109,11 @@
 				}
 
 				if (pe.secnav.length > 0) {
-					mb_dialogue += $('<section><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></section>').append(wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c")).html();
+					mb_dialogue += $('<section><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></section>').append(wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c", false)).html();
 					pe.secnav.remove();
 				}
 
-				mb_dialogue += $('<section><h2>' + mb_header.html() + '</h2></section>').append(wet_boew_theme.buildmenu(pe.menubar.find('ul.mb-menu li'), 3, "a")).html();
+				mb_dialogue += $('<section><h2>' + mb_header.html() + '</h2></section>').append(wet_boew_theme.buildmenu(pe.menubar.find('ul.mb-menu li'), 3, "a", true)).html();
 				mb_dialogue += '</nav></div></div></div>';
 				pe.pagecontainer().append(mb_dialogue);
 				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="dialog"></a>');
