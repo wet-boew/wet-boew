@@ -112,27 +112,6 @@
 						});
 						// preprocessing before mobile page is enhanced
 						$(document).on("pageinit", function () {
-							// add some language
-							/**  $('.ui-page #wb-core a[href*="#"]').each(function () {
-									var _elm = $(this);
-									if (_elm.attr('href').indexOf('#') > 0) {
-									// this is a external anchor
-									_elm.unbind('click').unbind('vclick').on('click vclick', function (e) {
-									e.stopPropagation();
-									e.preventDefault();
-									$.mobile.changePage(pe.url(_elm.attr('href')).removehash());
-									});
-									// _elm.attr('href', pe.url(_elm.attr('href')).hashtoparam());
-									} else {
-									// this is inpage anchor
-									_elm.unbind('click').unbind('vclick').on('click vclick', function (e) {
-									e.stopPropagation();
-									e.preventDefault();
-									var $target = $(this).parents('.ui-page').find($(this).attr('href')).eq(0);
-									if ($target.length == 1) $.mobile.silentScroll($target.offset().top);
-									});
-									}
-									}); **/
 						});
 					}
 					pe.dance();
@@ -843,7 +822,7 @@
 					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
 				});
 				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
-				pe.add._load([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.js']);
+				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
 			} else {
 				// Move the focus to the anchored element for skip nav links
 				$("#wb-skip a").click(function () {
