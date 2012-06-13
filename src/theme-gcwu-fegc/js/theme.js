@@ -47,7 +47,7 @@
 					// If the menu item is a heading
 					if ($this.is('h' + hlevel)) {
 						hlink = $this.children('a');
-						subsection = $('<div data-role="collapsible"><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
+						subsection = $('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? "data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
 						// If the original menu item was in a menu bar
 						if (menubar) {
 							$this = $this.parent().find('a').eq(1).closest('ul, div, h' + hlevel + 1).first();
@@ -67,7 +67,7 @@
 								var $this = $(this);
 								hlink = $this.prev('a');
 								// Make the nested list into a collapsible section
-								$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
+								$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? "data-collapsed=\"false\"" : "") + '></div>');
 								$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
 								$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
 								hlink.remove();
@@ -92,16 +92,44 @@
 			return menu;
 		},
 		mobileview: function () {
-			var mb_dialogue, mb_header, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav;
+			var mb_dialogue, mb_header, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav, mb_li, $results, $bcLinks, match, i;
 			if (pe.menubar.length > 0) {
 				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 				// lets transform the menu to a dialog box
+				mb_li = pe.menubar.find('ul.mb-menu li');
 				mb_dialogue = '<div data-role="page" id="jqm-wb-mb"><div data-role="header">';
 				mb_header = wet_boew_theme.psnb.children(':header');
 				mb_dialogue += "<h1>" + mb_header.html() + '</h1></div>';
 				mb_dialogue += '<div data-role="content" data-inset="true"><nav role="navigation">';
 
 				if (wet_boew_theme.bcrumb.length > 0) {
+					// Find the active link in the menu bar
+					$results = mb_li.find('a[href="' + window.location.pathname + '"]');
+					if ($results.size() > 0) {
+						$results.eq(0).addClass("nav-current");
+					} else {
+						match = false;
+						$bcLinks = wet_boew_theme.bcrumb.find("li a:not([href^=\"#\"])");
+						if ($bcLinks.size() > 0) {
+							i = 0;
+							while (i <= $bcLinks.size()) {
+								$results = mb_li.find("a[href=\"" + $bcLinks.eq(i).attr("href") + "\"]");
+								if ($results.size() > 0) {
+									$results.eq(0).addClass("nav-current");
+									match = true;
+									break;
+								}
+								i += 1;
+							}
+						}
+						if (!match) {
+							$results = mb_li.find("a:contains(\"" + wet_boew_theme.bcrumb.find("li:last-child").text() + "\")");
+							if ($results.size() > 0) {
+								$results.eq(0).addClass("nav-current");
+							}
+						}
+					}
+
 					mb_dialogue += '<section><div id="jqm-mb-location-text">' + wet_boew_theme.bcrumb.html() + '</div></section>';
 					wet_boew_theme.bcrumb.remove();
 				} else {
@@ -113,7 +141,7 @@
 					pe.secnav.remove();
 				}
 
-				mb_dialogue += $('<section><h2>' + mb_header.html() + '</h2></section>').append(wet_boew_theme.buildmenu(pe.menubar.find('ul.mb-menu li'), 3, "a", true)).html();
+				mb_dialogue += $('<section><h2>' + mb_header.html() + '</h2></section>').append(wet_boew_theme.buildmenu(mb_li, 3, "a", true)).html();
 				mb_dialogue += '</nav></div></div></div>';
 				pe.pagecontainer().append(mb_dialogue);
 				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="dialog"></a>');
