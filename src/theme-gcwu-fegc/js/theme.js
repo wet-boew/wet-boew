@@ -43,6 +43,7 @@
 				menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
 			} else {
 				menuitems.each(function (index) {
+					var nested;
 					// If the menu item is a heading
 					if ($(this).is('h' + hlevel)) {
 						subsection = $('<div data-role="collapsible"><h' + hlevel + '>' + $(this).text() + '</h' + hlevel + '></div>');
@@ -50,8 +51,9 @@
 						hlink = $(this).children('a');
 						if (next.is('ul')) {
 							next.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+							nested = next.find('li ul');
 							// If a nested list is detected
-							next.find('li ul').each(function (index) {
+							nested.each(function (index) {
 								hlink = $(this).prev('a');
 								// Make the nested list into a collapsible section
 								$(this).attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
@@ -60,7 +62,7 @@
 								hlink.remove();
 							});
 							subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
-							subsection.find('ul').wrap('<div data-role="controlgroup"></div>');
+							subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? "<div data-role=\"collapsible-set\" data-theme=\"" + theme + "\"></div>" : "") + '</div>');
 						} else {
 							// If the section contains sub-sections
 							subsection.append(wet_boew_theme.buildmenu($(this).parent(), hlevel + 1, theme));
@@ -76,7 +78,7 @@
 			return menu;
 		},
 		mobileview: function () {
-			var mb_dialogue, mb_header, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav, collapsible;
+			var mb_dialogue, mb_header, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav;
 			if (pe.menubar.length > 0) {
 				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 				// lets transform the menu to a dialog box
@@ -97,51 +99,14 @@
 					pe.secnav.remove();
 				}
 
-				mb_dialogue += '<section><h2>' + mb_header.html() + '</h2>';
-				mb_dialogue += '<div data-role=\"collapsible-set\" data-theme=\"a\">';
-
-				pe.menubar.find('ul.mb-menu').clone().each(function () {
-					$(this).find('div[class^=span]').each(function () {
-						$(this).replaceWith($(this).html());
-					});
-					$(this).find('.mb-sm').each(function () {
-						$(this).html('<div data-role=\"collapsible-set\" data-theme=\"a\">' + $(this).html() + '</div)');
-					});
-					$(this).children().children('div:first-child,h2,h3,h4,section').each(function () {
-						var $this = $(this);
-						if ($this.is('section')) {
-							$this = $this.children('h2,h3,h4').eq(0);
-						}
-						if ($this.is('div')) {
-							mb_dialogue += $this.children('a').attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-iconpos', 'right').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : "")))).parent().html();
-						} else {
-							$this.parent().find("ul").attr("data-role", "listview");
-							$this.parent().find(".mb-sm div > a,.mb-sm h2,.mb-sm h3,.mb-sm h4").each(function () {
-								var $this_sub = $(this), $this_sub_parent = $this_sub.parent(), hlink;
-								if ($this_sub_parent.is('div')) {
-									$this_sub.attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-iconpos', 'right').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))));
-								} else if ($this_sub_parent.is('section')) {
-									hlink = $this_sub.children('a');
-									$this_sub.next('ul').prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
-									$this_sub_parent.wrap("<div data-role=\"collapsible\">");
-									$this_sub.html($this_sub.text());
-									$this_sub_parent.parent().html($this_sub_parent.html());
-								}
-							});
-							$this.html($this.text());
-							mb_dialogue += "<div data-role=\"collapsible\">" + $this.parent().html() + "</div>";
-						}
-					});
-				});
-				mb_dialogue += '</section></nav></div>';
-
-				mb_dialogue += '</div></div>';
+				mb_dialogue += $('<section><h2>' + mb_header.html() + '</h2></section>').append(wet_boew_theme.buildmenu(pe.menubar.find('ul.mb-menu li'), 3, "a")).html();
+				mb_dialogue += '</nav></div></div></div>';
 				pe.pagecontainer().append(mb_dialogue);
 				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="dialog"></a>');
 				_list = $('<ul></ul>').hide().append('<li><a data-rel="dialog" data-theme="b"  data-icon="grid" href="' + mb_header.find('a').attr('href') + '">' + mb_header.find('a').text() + "</a></li>");
 
 				if (wet_boew_theme.search.length > 0) {
-					// :: Search box transform lets transform the search box to a dialogue box
+					// :: Search box transform lets transform the search box to a dialog box
 					s_dialogue = $('<div data-role="page" id="jqm-wb-search"></div>');
 					s_dialogue.append($('<div data-role="header"><h1>' + wet_boew_theme.search.find(':header').text() + '</h1></div>')).append($('<div data-role="content"></div>').append(wet_boew_theme.search.find('form').clone()));
 					pe.pagecontainer().append(s_dialogue);
@@ -198,13 +163,22 @@
 			});
 			// preprocessing before mobile page is enhanced
 			$(document).on("pageinit", function () {
-				collapsible = $('#jqm-wb-mb .ui-collapsible');
-				collapsible.filter(function () {
-					return $(this).prev().length > 0;
-				}).find('a').removeClass('ui-corner-top');
-				collapsible.filter(function () {
-					return $(this).next().length > 0;
-				}).find('a').removeClass('ui-corner-bottom');
+				// Correct the corners for each of the site menu/secondary menu sections and sub-sections
+				$('#jqm-wb-mb').find('.ui-collapsible-set').each(function () {
+					var $this = $(this);
+					if ($this.find('> ul .ui-collapsible').length > 0) {
+						$this = $this.children('ul');
+					}
+					$this.children().each(function () {
+						var $this = $(this), target = $this.is('a') ? $this : $this.find('a').first();
+						if ($this.prev().length > 0) {
+							target.removeClass('ui-corner-top');
+						}
+						if ($this.next().length > 0) {
+							target.removeClass('ui-corner-bottom');
+						}
+					});
+				});
 			});
 			return;
 		}
