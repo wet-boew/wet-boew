@@ -54,7 +54,7 @@
     display:none;
 }
 
-.tabs-panel > div.active{
+.tabs-panel > div.active, .no-js .tabs-panel > div{
     display:block;
 }
 
