@@ -80,7 +80,7 @@
 			if (pe.menubar.length > 0) {
 				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 				// lets transform the menu to a dialog box
-				mb_dialogue = '<div data-role="page" id="jqmobile-wet-boew-menubar"><div data-role="header">';
+				mb_dialogue = '<div data-role="page" id="jqm-wb-mb"><div data-role="header">';
 				mb_header = wet_boew_theme.psnb.children(':header');
 				mb_dialogue += "<h1>" + mb_header.html() + '</h1></div>';
 				mb_dialogue += '<div data-role="content" data-inset="true"><nav role="navigation">';
@@ -137,15 +137,15 @@
 
 				mb_dialogue += '</div></div>';
 				pe.pagecontainer().append(mb_dialogue);
-				mb_header.wrapInner('<a href="#jqmobile-wet-boew-menubar" data-rel="dialog"></a>');
+				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="dialog"></a>');
 				_list = $('<ul></ul>').hide().append('<li><a data-rel="dialog" data-theme="b"  data-icon="grid" href="' + mb_header.find('a').attr('href') + '">' + mb_header.find('a').text() + "</a></li>");
 
 				if (wet_boew_theme.search.length > 0) {
 					// :: Search box transform lets transform the search box to a dialogue box
-					s_dialogue = $('<div data-role="page" id="jqmobile-wet-boew-search"></div>');
+					s_dialogue = $('<div data-role="page" id="jqm-wb-search"></div>');
 					s_dialogue.append($('<div data-role="header"><h1>' + wet_boew_theme.search.find(':header').text() + '</h1></div>')).append($('<div data-role="content"></div>').append(wet_boew_theme.search.find('form').clone()));
 					pe.pagecontainer().append(s_dialogue);
-					wet_boew_theme.search.find(':header').wrapInner('<a href="#jqmobile-wet-boew-search" data-rel="dialog"></a>');
+					wet_boew_theme.search.find(':header').wrapInner('<a href="#jqm-wb-search" data-rel="dialog"></a>');
 					_list.append('<li><a data-rel="dialog" data-theme="b" data-icon="search" href="' + wet_boew_theme.search.find(':header a').attr('href') + '">' + wet_boew_theme.search.find(':header a').text() + "</a></li>");
 				}
 
@@ -198,7 +198,7 @@
 			});
 			// preprocessing before mobile page is enhanced
 			$(document).on("pageinit", function () {
-				collapsible = $('#jqmobile-wet-boew-menubar .ui-collapsible');
+				collapsible = $('#jqm-wb-mb .ui-collapsible');
 				collapsible.filter(function () {
 					return $(this).prev().length > 0;
 				}).find('a').removeClass('ui-corner-top');
