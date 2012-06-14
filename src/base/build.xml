@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="base" default="build" basedir=".">
+<project name="base" default="default" basedir=".">
 	<description>WET-BOEW Base CSS</description>
 	
   <property file="build.properties"/>
   <import file="build-tasks.xml"/>
+
+  <target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
 	
   <target name="build" description="" depends="build-jar, compile.sass" />
   
