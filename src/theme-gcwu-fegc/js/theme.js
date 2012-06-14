@@ -66,11 +66,15 @@
 							nested.each(function (index) {
 								var $this = $(this);
 								hlink = $this.prev('a');
-								// Make the nested list into a collapsible section
-								$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? "data-collapsed=\"false\"" : "") + '></div>');
-								$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
-								$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
-								hlink.remove();
+								if ((hlevel + 1 + index) < 7) {
+									// Make the nested list into a collapsible section
+									$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? "data-collapsed=\"false\"" : "") + '></div>');
+									$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
+									$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+									hlink.remove();
+								} else {
+									$this.attr('data-role', 'listview').attr('data-theme', theme);
+								}
 							});
 							subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
 							subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? "<div data-role=\"collapsible-set\" data-theme=\"" + theme + "\"></div>" : "") + '</div>');
