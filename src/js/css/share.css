@@ -1,0 +1,119 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+*/
+div.wet-boew-share {
+  float: right;
+  text-align: right;
+}
+
+.ui-mobile div.wet-boew-share {
+  width: 100%;
+  max-width: 39em;
+}
+
+.wet-boew-share .bookmark_popup_text {
+  background: url(../images/share/icons-share.gif) left 3px no-repeat;
+  color: #3c6783;
+  cursor: pointer;
+  font-family: Tahoma,Verdana,Helvetica,sans-serif;
+  letter-spacing: 0.0em;
+  display: inline-block;
+  padding: 0 0 2px 18px;
+}
+
+.wet-boew-share .bookmark_popup_text.alt {
+  margin: 5px;
+}
+
+.wet-boew-share .bookmark_popup_text img {
+  border: 0;
+  vertical-align: bottom;
+}
+
+.wet-boew-share .bookmark_popup {
+  display: none;
+  position: absolute;
+  z-index: 99;
+  background: #fff;
+  border: 1px solid #000;
+}
+
+.wet-boew-share .bookmark_popup p {
+  font-size: .85em;
+  margin: 10px 0;
+}
+
+.wet-boew-share .bookmark_popup .popup_title {
+  font-size: .95em;
+  font-weight: 700;
+  background: #23447E;
+  color: #FFF;
+  margin: 0;
+  padding: 5px;
+  text-align: left;
+}
+
+.wet-boew-share .bookmark_list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 5px;
+  text-align: left;
+}
+
+html:first-child .bookmark_list {
+  font-size: 80%;
+}
+
+.wet-boew-share .bookmark_list li {
+  float: left;
+  width: 12em;
+  font-size: .85em;
+  margin: 0;
+  padding: 0 0 5px;
+}
+
+.wet-boew-share .bookmark_compact {
+  background-color: #eee;
+  border: 1px outset;
+}
+
+.wet-boew-share .bookmark_popup .bookmark_compact {
+  border: 0;
+  margin-bottom: -3px;
+}
+
+.wet-boew-share .bookmark_compact li {
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 2px;
+}
+
+.wet-boew-share .bookmark_list a {
+  width: 100%;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1em;
+  color: #036;
+  margin: 0;
+  padding: 0;
+}
+
+.wet-boew-share .bookmark_list span {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+
+.wet-boew-share .bookmark_list span.bookmark_icons {
+  background: url(../images/share/bookmarks.png) no-repeat center;
+}
+
+.wet-boew-share .no-icons .bookmark_list span.bookmark_icons {
+  display: none;
+}
