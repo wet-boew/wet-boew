@@ -9,23 +9,23 @@
       <echo level="info">
 ---Building jQuery Integration project---
       </echo>
-      <ant dir="${src.dir}/js" antfile="build.xml" inheritAll="false"/>
+      <ant dir="${src.dir}/js" antfile="build.xml" target="build" inheritAll="false"/>
       <echo level="info">
 ---Building CSS Base System project---
       </echo>
-      <ant dir="${src.dir}/base" antfile="build.xml" inheritAll="false"/>
+      <ant dir="${src.dir}/base" antfile="build.xml" target="build" inheritAll="false"/>
       <echo level="info">
 ---Building CSS Grid System project---
       </echo>
-      <ant dir="${src.dir}/grids" antfile="build.xml" inheritAll="false"/>
+      <ant dir="${src.dir}/grids" antfile="build.xml" target="build" inheritAll="false"/>
       <echo level="info">
 ---Building GCWU Theme---
       </echo>
-      <ant dir="${src.dir}/theme-gcwu-fegc" antfile="build.xml" inheritAll="false"/>
+      <ant dir="${src.dir}/theme-gcwu-fegc" antfile="build.xml" target="build" inheritAll="false"/>
       <echo level="info">
 ---Building GCWU Theme Intranet---
       </echo>
-      <ant dir="${src.dir}/theme-gcwu-intranet" antfile="build.xml" inheritAll="false"/>
+      <ant dir="${src.dir}/theme-gcwu-intranet" antfile="build.xml" target="build" inheritAll="false"/>
       <antcall target="clean-css"/>
   </target>
 

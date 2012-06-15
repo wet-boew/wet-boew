@@ -54,5 +54,7 @@
   <target name="clean-css">
 		<delete dir="${src.dir}/css" />
 	</target>
+
+	<target name="clean"></target>
   
 </project>

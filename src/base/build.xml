@@ -50,6 +50,9 @@
 ---Watching for SCSS Changes in CSS Directory---
     </echo>
   </target>
+
+
+  <target name="clean"></target>
   
   <target name="clean-css">
 		<delete dir="${src.dir}/css" />
