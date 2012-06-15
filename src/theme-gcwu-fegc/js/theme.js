@@ -47,7 +47,7 @@
 					// If the menu item is a heading
 					if ($this.is('h' + hlevel)) {
 						hlink = $this.children('a');
-						subsection = $('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? "data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
+						subsection = $('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
 						// If the original menu item was in a menu bar
 						if (menubar) {
 							$this = $this.parent().find('a').eq(1).closest('ul, div, h' + hlevel + 1).first();
@@ -59,7 +59,7 @@
 						if (next.is('ul')) {
 							// The original menu item was not in a menu bar
 							if (!menubar) {
-								next.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+								next.prepend($('<li></li>').append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home'))));
 							}
 							nested = next.find('li ul');
 							// If a nested list is detected
@@ -68,7 +68,7 @@
 								hlink = $this.prev('a');
 								if ((hlevel + 1 + index) < 7) {
 									// Make the nested list into a collapsible section
-									$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? "data-collapsed=\"false\"" : "") + '></div>');
+									$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
 									$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
 									$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
 									hlink.remove();
@@ -83,7 +83,7 @@
 							subsection.append(wet_boew_theme.buildmenu($this.parent(), hlevel + 1, theme, false));
 							// If the original menu item was not in a menu bar
 							if (!menubar) {
-								subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($this.children('a').attr('href', hlink.attr('href')).html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+								subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
 							}
 						}
 						menu.append(subsection);
@@ -96,7 +96,7 @@
 			return menu;
 		},
 		mobileview: function () {
-			var mb_dialogue, mb_header, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav, mb_li, $results, $bcLinks, match, i;
+			var mb_dialogue, mb_header, nav, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav, mb_li, $results, $bcLinks, match, i;
 			if (pe.menubar.length > 0) {
 				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 				// lets transform the menu to a dialog box
@@ -141,11 +141,15 @@
 				}
 
 				if (pe.secnav.length > 0) {
-					mb_dialogue += $('<section><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></section>').append(wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c", false)).html();
+					nav = wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c", false);
+					nav.find('.nav-current').parents('div[data-role="collapsible"]').attr('data-collapsed', 'false');
+					mb_dialogue += $('<section><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></section>').append(nav).html();
 					pe.secnav.remove();
 				}
 
-				mb_dialogue += $('<section><h2>' + mb_header.html() + '</h2></section>').append(wet_boew_theme.buildmenu(mb_li, 3, "a", true)).html();
+				nav = wet_boew_theme.buildmenu(mb_li, 3, "a", true);
+				nav.find('.nav-current').parents('div[data-role="collapsible"]').attr('data-collapsed', 'false');
+				mb_dialogue += $('<section><h2>' + mb_header.html() + '</h2></section>').append(nav).html();
 				mb_dialogue += '</nav></div></div></div>';
 				pe.pagecontainer().append(mb_dialogue);
 				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="dialog"></a>');
