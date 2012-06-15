@@ -694,7 +694,7 @@
 						};
 						scriptElem.src = js;
 						if ((pe.ie > 0 && pe.ie < 9) || !head.insertBefore) {
-							$(scriptElem).appendTo($(head));
+							$(scriptElem).appendTo($(head)).delay(100);
 						} else {
 							head.insertBefore(scriptElem, head.firstChild);
 						}
