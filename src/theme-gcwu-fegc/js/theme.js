@@ -36,39 +36,59 @@
 		themename: function () {
 			return wet_boew_theme.theme;
 		},
-		buildmenu: function (section, hlevel, theme) {
-			var menu = $('<div data-role="controlgroup"></div>'), menuitems, next, subsection, hlink;
+		buildmenu: function (section, hlevel, theme, menubar) {
+			var menu = $('<div data-role="controlgroup"></div>'), menuitems, next, subsection, hlink, nested;
 			menuitems = section.find('> div, > ul, h' + hlevel);
 			if (menuitems.first().is('ul')) {
 				menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
 			} else {
 				menuitems.each(function (index) {
+					var $this = $(this);
 					// If the menu item is a heading
-					if ($(this).is('h' + hlevel)) {
-						subsection = $('<div data-role="collapsible"><h' + hlevel + '>' + $(this).text() + '</h' + hlevel + '></div>');
-						next = $(this).next();
-						hlink = $(this).children('a');
+					if ($this.is('h' + hlevel)) {
+						hlink = $this.children('a');
+						subsection = $('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
+						// If the original menu item was in a menu bar
+						if (menubar) {
+							$this = $this.parent().find('a').eq(1).closest('ul, div, h' + hlevel + 1).first();
+							next = $this;
+						} else {
+							next = $this.next();
+						}
+
 						if (next.is('ul')) {
-							next.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+							// The original menu item was not in a menu bar
+							if (!menubar) {
+								next.prepend($('<li></li>').append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home'))));
+							}
+							nested = next.find('li ul');
 							// If a nested list is detected
-							next.find('li ul').each(function (index) {
-								hlink = $(this).prev('a');
-								// Make the nested list into a collapsible section
-								$(this).attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
-								$(this).parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
-								$(this).prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
-								hlink.remove();
+							nested.each(function (index) {
+								var $this = $(this);
+								hlink = $this.prev('a');
+								if ((hlevel + 1 + index) < 7) {
+									// Make the nested list into a collapsible section
+									$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
+									$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
+									$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+									hlink.remove();
+								} else {
+									$this.attr('data-role', 'listview').attr('data-theme', theme);
+								}
 							});
 							subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
-							subsection.find('ul').wrap('<div data-role="controlgroup"></div>');
+							subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? "<div data-role=\"collapsible-set\" data-theme=\"" + theme + "\"></div>" : "") + '</div>');
 						} else {
 							// If the section contains sub-sections
-							subsection.append(wet_boew_theme.buildmenu($(this).parent(), hlevel + 1, theme));
-							subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($(this).children('a').attr('href', hlink.attr('href')).html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+							subsection.append(wet_boew_theme.buildmenu($this.parent(), hlevel + 1, theme, false));
+							// If the original menu item was not in a menu bar
+							if (!menubar) {
+								subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+							}
 						}
 						menu.append(subsection);
-					} else if ($(this).is('div')) { // If the menu item is a div
-						menu.append($(this).children('a').attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+					} else if ($this.is('div')) { // If the menu item is a div
+						menu.append($this.children('a').attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
 					}
 				});
 				menu.children().wrapAll('<div data-role="collapsible-set" data-theme="' + theme + '"></div>');
@@ -76,16 +96,44 @@
 			return menu;
 		},
 		mobileview: function () {
-			var mb_dialogue, mb_header, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav, collapsible;
+			var mb_dialogue, mb_header, nav, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav, mb_li, $results, $bcLinks, match, i;
 			if (pe.menubar.length > 0) {
 				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 				// lets transform the menu to a dialog box
-				mb_dialogue = '<div data-role="page" id="jqmobile-wet-boew-menubar"><div data-role="header">';
+				mb_li = pe.menubar.find('ul.mb-menu li');
+				mb_dialogue = '<div data-role="page" id="jqm-wb-mb"><div data-role="header">';
 				mb_header = wet_boew_theme.psnb.children(':header');
 				mb_dialogue += "<h1>" + mb_header.html() + '</h1></div>';
 				mb_dialogue += '<div data-role="content" data-inset="true"><nav role="navigation">';
 
 				if (wet_boew_theme.bcrumb.length > 0) {
+					// Find the active link in the menu bar
+					$results = mb_li.find('a[href="' + window.location.pathname + '"]');
+					if ($results.size() > 0) {
+						$results.eq(0).addClass("nav-current");
+					} else {
+						match = false;
+						$bcLinks = wet_boew_theme.bcrumb.find("li a:not([href^=\"#\"])");
+						if ($bcLinks.size() > 0) {
+							i = 0;
+							while (i <= $bcLinks.size()) {
+								$results = mb_li.find("a[href=\"" + $bcLinks.eq(i).attr("href") + "\"]");
+								if ($results.size() > 0) {
+									$results.eq(0).addClass("nav-current");
+									match = true;
+									break;
+								}
+								i += 1;
+							}
+						}
+						if (!match) {
+							$results = mb_li.find("a:contains(\"" + wet_boew_theme.bcrumb.find("li:last-child").text() + "\")");
+							if ($results.size() > 0) {
+								$results.eq(0).addClass("nav-current");
+							}
+						}
+					}
+
 					mb_dialogue += '<section><div id="jqm-mb-location-text">' + wet_boew_theme.bcrumb.html() + '</div></section>';
 					wet_boew_theme.bcrumb.remove();
 				} else {
@@ -93,59 +141,26 @@
 				}
 
 				if (pe.secnav.length > 0) {
-					mb_dialogue += $('<section><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></section>').append(wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c")).html();
+					nav = wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c", false);
+					nav.find('.nav-current').parents('div[data-role="collapsible"]').attr('data-collapsed', 'false');
+					mb_dialogue += $('<section><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></section>').append(nav).html();
 					pe.secnav.remove();
 				}
 
-				mb_dialogue += '<section><h2>' + mb_header.html() + '</h2>';
-				mb_dialogue += '<div data-role=\"collapsible-set\" data-theme=\"a\">';
-
-				pe.menubar.find('ul.mb-menu').clone().each(function () {
-					$(this).find('div[class^=span]').each(function () {
-						$(this).replaceWith($(this).html());
-					});
-					$(this).find('.mb-sm').each(function () {
-						$(this).html('<div data-role=\"collapsible-set\" data-theme=\"a\">' + $(this).html() + '</div)');
-					});
-					$(this).children().children('div:first-child,h2,h3,h4,section').each(function () {
-						var $this = $(this);
-						if ($this.is('section')) {
-							$this = $this.children('h2,h3,h4').eq(0);
-						}
-						if ($this.is('div')) {
-							mb_dialogue += $this.children('a').attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-iconpos', 'right').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : "")))).parent().html();
-						} else {
-							$this.parent().find("ul").attr("data-role", "listview");
-							$this.parent().find(".mb-sm div > a,.mb-sm h2,.mb-sm h3,.mb-sm h4").each(function () {
-								var $this_sub = $(this), $this_sub_parent = $this_sub.parent(), hlink;
-								if ($this_sub_parent.is('div')) {
-									$this_sub.attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-iconpos', 'right').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))));
-								} else if ($this_sub_parent.is('section')) {
-									hlink = $this_sub.children('a');
-									$this_sub.next('ul').prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
-									$this_sub_parent.wrap("<div data-role=\"collapsible\">");
-									$this_sub.html($this_sub.text());
-									$this_sub_parent.parent().html($this_sub_parent.html());
-								}
-							});
-							$this.html($this.text());
-							mb_dialogue += "<div data-role=\"collapsible\">" + $this.parent().html() + "</div>";
-						}
-					});
-				});
-				mb_dialogue += '</section></nav></div>';
-
-				mb_dialogue += '</div></div>';
+				nav = wet_boew_theme.buildmenu(mb_li, 3, "a", true);
+				nav.find('.nav-current').parents('div[data-role="collapsible"]').attr('data-collapsed', 'false');
+				mb_dialogue += $('<section><h2>' + mb_header.html() + '</h2></section>').append(nav).html();
+				mb_dialogue += '</nav></div></div></div>';
 				pe.pagecontainer().append(mb_dialogue);
-				mb_header.wrapInner('<a href="#jqmobile-wet-boew-menubar" data-rel="dialog"></a>');
+				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="dialog"></a>');
 				_list = $('<ul></ul>').hide().append('<li><a data-rel="dialog" data-theme="b"  data-icon="grid" href="' + mb_header.find('a').attr('href') + '">' + mb_header.find('a').text() + "</a></li>");
 
 				if (wet_boew_theme.search.length > 0) {
-					// :: Search box transform lets transform the search box to a dialogue box
-					s_dialogue = $('<div data-role="page" id="jqmobile-wet-boew-search"></div>');
+					// :: Search box transform lets transform the search box to a dialog box
+					s_dialogue = $('<div data-role="page" id="jqm-wb-search"></div>');
 					s_dialogue.append($('<div data-role="header"><h1>' + wet_boew_theme.search.find(':header').text() + '</h1></div>')).append($('<div data-role="content"></div>').append(wet_boew_theme.search.find('form').clone()));
 					pe.pagecontainer().append(s_dialogue);
-					wet_boew_theme.search.find(':header').wrapInner('<a href="#jqmobile-wet-boew-search" data-rel="dialog"></a>');
+					wet_boew_theme.search.find(':header').wrapInner('<a href="#jqm-wb-search" data-rel="dialog"></a>');
 					_list.append('<li><a data-rel="dialog" data-theme="b" data-icon="search" href="' + wet_boew_theme.search.find(':header a').attr('href') + '">' + wet_boew_theme.search.find(':header a').text() + "</a></li>");
 				}
 
@@ -198,13 +213,22 @@
 			});
 			// preprocessing before mobile page is enhanced
 			$(document).on("pageinit", function () {
-				collapsible = $('#jqmobile-wet-boew-menubar .ui-collapsible');
-				collapsible.filter(function () {
-					return $(this).prev().length > 0;
-				}).find('a').removeClass('ui-corner-top');
-				collapsible.filter(function () {
-					return $(this).next().length > 0;
-				}).find('a').removeClass('ui-corner-bottom');
+				// Correct the corners for each of the site menu/secondary menu sections and sub-sections
+				$('#jqm-wb-mb').find('.ui-collapsible-set').each(function () {
+					var $this = $(this);
+					if ($this.find('> ul .ui-collapsible').length > 0) {
+						$this = $this.children('ul');
+					}
+					$this.children().each(function () {
+						var $this = $(this), target = $this.is('a') ? $this : $this.find('a').first();
+						if ($this.prev().length > 0) {
+							target.removeClass('ui-corner-top');
+						}
+						if ($this.next().length > 0) {
+							target.removeClass('ui-corner-bottom');
+						}
+					});
+				});
 			});
 			return;
 		}
