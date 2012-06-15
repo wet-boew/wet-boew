@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="wet" default="build" basedir=".">
+<project name="wet" default="default" basedir=".">
   <description>Web Experience Toolkit</description>
   <property file="build.properties"/>
+
+  <target name="default" depends="clean,build" description="Performs a Cleand and Build when calling ant without any target"></target>
 
   <target name="build" depends="">
       <echo level="info">
