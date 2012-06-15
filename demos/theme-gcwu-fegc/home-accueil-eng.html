@@ -8,17 +8,17 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>1 column - Horizontal site navigation bar - GC Web Usability theme - HTML5 - Web Experience Toolkit (WET)</title>
+<title>Home page - GC Web Usability theme - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="English description/Description en anglais" />
-<meta name="description" content="English description/Description en anglais" />
-<meta name="keywords" content="English keywords/Mots-clés en anglais" />
-<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
-<meta name="dcterms.title" content="English title/Titre en anglais" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="dcterms.description" content="English description / Description en anglais" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="keywords" content="English keywords / Mots-clés en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -34,6 +34,13 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
+<style>
+.gcwu-minister-in{background:#eee url(images/bg-minister-bottom.gif) no-repeat right bottom;}
+.gcwu-minister p{background:#fff url(images/bg-minister-top.gif) no-repeat right top;}
+#gcwu-video .mediaplayer{line-height:0;}
+#gcwu-video ul.mp-downloadable{position:absolute;clip:rect(1px, 1px, 1px, 1px);height:1px;width:1px;overflow:hidden;}
+#gcwu-video div.background-dark{background:#eee !important;color:#000;padding-bottom:10px;}
+</style>
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -53,13 +60,13 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="1col-hsitenavbar-theme-gcwu-fegc-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="home-accueil-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
-<div id="gcwu-title"><p id="gcwu-title-in"><a href="home-accueil-hsitenavbar-theme-gcwu-fegc-eng.html">Site title</a></p></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="home-accueil-eng.html">Site title</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
@@ -70,22 +77,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar"><div>
-<ul class="mb-menu">
+<div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.html">
 <li><div><a href="#">Section 1</a></div></li>
 <li><div><a href="section2-eng.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
 <li><div><a href="#">Section 4</a></div></li>
 <li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
 </ul>
 </div></div></div></div>
-
-<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
-<ol>
-<li><a href="home-accueil-hsitenavbar-theme-gcwu-fegc-eng.html">Home</a></li>
-<li><a href="section2-eng.html">Section 2</a></li>
-<li>1 column - Horizontal site navigation bar - GC Web Usability theme</li>
-</ol></div></div>
 </nav>
 <!-- HeaderEnd -->
 </header></div></div>
@@ -93,92 +95,64 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">1 column - Horizontal site navigation bar - GC Web Usability theme</h1>
+<h1 id="wb-cont">Home page - GC Web Usability theme</h1>
 
-<section><h2>Heading 2 (<code>h2</code>) default appearance</h2>
-	<section><h3>Heading 3 (<code>h3</code>) default appearance</h3>
-		<section><h4>Heading 4 (<code>h4</code>) default appearance</h4>
-			<section><h5>Heading 5 (<code>h5</code>) default appearance</h5>
-				<section><h6>Heading 6 (<code>h6</code>) default appearance</h6>
-					<p>Paragraph  default appearance</p>
-				</section>
-			</section>
-		</section>
-	</section>
-</section>
-
-<p><a href="#">Link  default appearance</a></p>
-<p><a href="mailto:"><code>mailto:</code> link default appearance</a></p>
-<p><a href="http://www.">Third party <code>http://www.</code> link default appearance</a></p>
-<p><a href=".doc">Link to file downloads based on file type <code>.doc</code>, <code>.psd</code>, <code>.zip</code>, <code>.pdf</code>, <code>.xls</code>, <code>.xlt</code>, <code>.rtf</code> and <code>.txt</code> default appearance</a></p>
-<p>Abbreviation default appearance: <abbr title="Treasury Board">TBS</abbr>.</p>
-
-<ul>
-<li>unordered list (<code>ul</code>) first level default appearance
-	<ul>
-	<li>unordered list (<code>ul</code>) second level default appearance
-		<ul>
-		<li>unordered list (<code>ul</code>) third level default appearance</li>
-		</ul>
-	</li>
-	</ul>
-</li>
+<div id="gcwu-content">
+<div id="gcwu-headlines" class="span-3"><section><h2>Headlines</h2>
+<ul class="wet-boew-zebra">
+<li><section><h3><a href="#">Headline 1</a></h3>
+<p>Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. <a href="#">Read&#160;more<span class="wb-invisible"> - Headline 1</span></a></p>
+</section></li>
+<li><section><h3><a href="#">Headline 2</a></h3>
+<p>Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. <a href="#">Read&#160;more<span class="wb-invisible"> - Headline 2</span></a></p>
+</section></li>
+<li><section><h3><a href="#">Headline 3</a></h3>
+<p>Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. Sample text. <a href="#">Read&#160;more<span class="wb-invisible"> - Headline 3</span></a></p>
+</section></li>
 </ul>
+</section></div>
 
-<ol>
-<li>ordered list (<code>ol</code>)  first level default appearance</li>
-<li>ordered list (<code>ol</code>)   first level default appearance
-	<ol>
-	<li>ordered list (<code>ol</code>) second level default appearance</li>
-	<li>ordered list (<code>ol</code>)  second level default appearance
-		<ol>
-		<li>ordered list (<code>ol</code>) third level default appearance</li>
-		<li>ordered list (<code>ol</code>) third level default appearance</li>
-		</ol>
-	</li>
-	</ol>
-</li>
-</ol>
+<div id="gcwu-video" class="span-3"><section><h2>Videos</h2>
+<div id="gcwu-bg-dark">
+<img class="posterimg" src="images/video.jpg" alt="Sample video player" title="Sample video player" />
+<p><strong>Video title</strong></p>
+<p>Short description of the current video.</p>
+</div>
+<ul>
+<li><a href="#">Multimedia Help</a></li>
+<li><a href="#">Transcripts and Alternative Formats</a></li>
+</ul>
+</section></div>
 
-<table>
-<caption>Table caption default appearance</caption>
-<thead>
-<tr>
-<th scope="col">Table header (<code>th</code>) default appearance</th>
-<th scope="col">Table header (<code>th</code>) default appearance</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Table data (<code>td</code>)  default appearance</td>
-<td>Table data (<code>td</code>) default appearance</td>
-</tr>
-</tbody>
-</table>
+<div id="gcwu-connect" class="span-6"><section><h2>Stay connected</h2>
+<ul>
+<li><a href="#"><img class="image-actual" src="../../build/theme-gcwu-fegc/images/sl_twitter.png" alt="Twitter" title="Twitter" /></a></li>
+<li><a href="#"><img class="image-actual" src="../../build/theme-gcwu-fegc/images/sl_youtube.png" alt="YouTube" title="YouTube" /></a></li>
+<li><a href="#"><img class="image-actual" src="../../build/theme-gcwu-fegc/images/sl_feeds.png" alt="Feeds" title="Feeds" /></a></li>
+</ul>
+</section></div></div>
 
-<form action="#" method="post">
-<div><label for="data1">Form input default appearance:</label> <input name="data1" type="text" id="data1" /></div>
-<div><label for="data2">Form text area default appearance:</label> <textarea name="data2" cols="15" rows="3" id="data2"></textarea></div>
-<div><label for="data4">Form <code>select</code> default appearance:</label> 
-<select id="data4" name="data4">
-<option value="Option 1">Option 1</option>
-<option value="Option 2">Option 2</option>
-<option value="Option 3">Option 3</option>
-<option value="Option 4">Option 4</option>
-</select></div>
-<fieldset><legend>Form <code>legend</code>, <code>fieldset</code> and <code>checkbox</code> default appearance</legend>
-<div><label for="data5">Option 1</label>&#160;<input name="checkbox" type="checkbox" id="data5" value="checkbox" />&#160;&#160;
-<label for="data6">Option 2</label>&#160;<input name="checkbox" type="checkbox" id="data6" value="checkbox" />&#160;&#160;
-<label for="data7">Option 3</label>&#160;<input name="checkbox" type="checkbox" id="data7" value="checkbox" />&#160;&#160;
-<label for="data8">Option 4</label>&#160;<input name="checkbox" type="checkbox" id="data8" value="checkbox" /></div>
-</fieldset>
-<div><input name="submit" type="submit" id="submit" value="Submit default appearance" />
-<input name="reset" type="reset" id="reset" value="Reset default appearance" /></div>
-</form>
+<aside role="complementary"><div id="gcwu-aside"><h2>Supplemental content</h2>
+<section><div id="gcwu-priorities"><h3>Priorities</h3><div id="gcwu-priorities-inner">
+<ul>
+<li><img src="images/prio1-eng.png" width="220" height="70" alt="Priority 1" title="Priority 1" /></li>
+<li><img src="images/prio2-eng.png" width="220" height="70" alt="Priority 2" title="Priority 2" /></li>
+<li><img src="images/prio3-eng.png" width="220" height="70" alt="Priority 3" title="Priority 3" /></li>
+</ul>
+</div></div></section>
 
-<blockquote>
-<p>&quot;Blockquote default appearance&quot;.</p>
-</blockquote>
+<section><div class="gcwu-minister"><h3>Meet the Minister</h3><div class="gcwu-minister-in">
+<div class="gcwu-minister-img"><img src="images/minister.JPG" width="99" height="149" alt="The&#160;Honourable minister name" /></div>
+<div class="gcwu-minister-info">
+<p>The&#160;Honourable<br /><strong>minister name</strong></p>
+<ul>
+<li><a href="#">About the minister</a></li>
+<li><a href="#">His portfolio</a></li>
+</ul>
+</div>
+</div></div></section>
+</div></aside>
+<div class="clear"></div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2011-10-31</time></span></dd>
