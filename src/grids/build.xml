@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="grids" default="build" basedir=".">
+<project name="grids" default="default" basedir=".">
 	<description>CSS Grid System project</description>
 
 	<property file="build.properties"/>
 	<import file="build-tasks.xml"/>
+
+	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
 
 	<target name="build" description="" depends="build-jar, -init, -minify" />
 
