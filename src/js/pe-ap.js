@@ -29,7 +29,7 @@
 		 */
 		language: ($("html").attr("lang") ? ($("html").attr("lang").indexOf("fr") === 0 ? "fra" : "eng") : $("meta[name='dc.language'], meta[name='dcterms.language']").attr("content")),
 		touchscreen: 'ontouchstart' in document.documentElement,
-		theme: '',
+		theme: "",
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
 		menubar: $('.wet-boew-menubar'),
@@ -69,16 +69,13 @@
 		_init: function () {
 			var $lch3, $o;
 
-			if (wet_boew_theme !== null) {
-				wet_boew_theme.init();
-			}
-
-			// Identify whether or not the device has a touchscreen
+			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
 
+			// Is this a mobile device?
 			if (pe.mobilecheck()) {
-			    pe.mobile = true;
-			    $('body > div').attr('data-role', 'page');
+				pe.mobile = true;
+				$('body > div').attr('data-role', 'page');
 			}
 
 			//Load ajax content
@@ -99,41 +96,25 @@
 				}, "html");
 			})).always(function () {
 				//Wait for localisation and ajax content to load plugins
-				$(document).bind("languageloaded", function () {				
-					//Load the mobile view
-					if (pe.mobile === true) {
-						if (wet_boew_theme !== null) {
-							wet_boew_theme.mobileview();
+				$(document).bind("languageloaded", function () {
+					if (wet_boew_theme !== null) {
+						// Initialize the theme
+						wet_boew_theme.init();
+
+						//Load the mobile view
+						if (pe.mobile === true) {
+							if (wet_boew_theme !== null) {
+								wet_boew_theme.mobileview();
+							}
+							$(document).on("mobileinit", function () {
+								//$.mobile.loadingMessage = false;
+								$.mobile.ajaxEnabled = false;
+								$.mobile.pushStateEnabled = false;
+							});
+							// preprocessing before mobile page is enhanced
+							$(document).on("pageinit", function () {
+							});
 						}
-						$(document).on("mobileinit", function () {
-							//$.mobile.loadingMessage = false;
-							$.mobile.ajaxEnabled = false;
-							$.mobile.pushStateEnabled = false;
-						});
-						// preprocessing before mobile page is enhanced
-						$(document).on("pageinit", function () {
-							// add some language
-							/**  $('.ui-page #wb-core a[href*="#"]').each(function () {
-									var _elm = $(this);
-									if (_elm.attr('href').indexOf('#') > 0) {
-									// this is a external anchor
-									_elm.unbind('click').unbind('vclick').on('click vclick', function (e) {
-									e.stopPropagation();
-									e.preventDefault();
-									$.mobile.changePage(pe.url(_elm.attr('href')).removehash());
-									});
-									// _elm.attr('href', pe.url(_elm.attr('href')).hashtoparam());
-									} else {
-									// this is inpage anchor
-									_elm.unbind('click').unbind('vclick').on('click vclick', function (e) {
-									e.stopPropagation();
-									e.preventDefault();
-									var $target = $(this).parents('.ui-page').find($(this).attr('href')).eq(0);
-									if ($target.length == 1) $.mobile.silentScroll($target.offset().top);
-									});
-									}
-									}); **/
-						});
 					}
 					pe.dance();
 				});
@@ -584,9 +565,46 @@
 			}
 		},
 		/**
+		 * Applies a specific class to the current link/section in a navigation block based on the current URL or the links in a breadcrumb trail.
+		 * @memberof pe
+		 * @param {jQuery object | DOM object} navblock Navigation block
+		 * @param {jQuery object | DOM object} bcrumb Breadcrumb trail
+		 * @param {string} navclass Class to apply
+		 * @function
+		 * @return {jQuery object} Link where match found
+		 */
+		navcurrent: function (navblock, bcrumb, navclass) {
+			var bc = (typeof bcrumb.jquery !== "undefined" ? bcrumb : $(bcrumb)),
+				nav = (typeof navblock.jquery !== "undefined" ? navblock : $(navblock)),
+				navlink,
+				match,
+				url = window.location.pathname,
+				urlquery = window.location.pathname + window.location.search;
+
+			$(nav.find('a').get().reverse()).each(function () {
+				navlink = $(this);
+				match = (navlink.attr('href') === url || navlink.attr('href') === urlquery);
+				if (!match) {
+					$(bc.find('a').get().reverse()).each(function () {
+						if ($(this).attr('href') !== "#" && ($(this).attr('href') === navlink.attr('href') || $(this).text() === navlink.text())) {
+							match = true;
+							return false;
+						}
+					});
+				}
+				if (match) {
+					navlink.addClass(navclass);
+					return false;
+				}
+			});
+			return (match ? navlink : $());
+		},
+		/**
 		 * A function to load required polyfills, @TODO: set up a single loader method to streamline
 		 * @memberof pe
 		 * @function
+		 * @param {ate | number[] | number | string | object} d
+		 * @param {boolean} timepresent Optional. Whether to include the time in the result, or just the date. False if blank.
 		 * @return {void}
 		 */
 		polyfills: function () {
