@@ -11,7 +11,7 @@
 	/**
 	* wet_boew_theme object
 	* @namespace wet_boew_theme
-	* @version 1.3
+	* @version 3.0
 	*/
 	wet_boew_theme = (typeof window.wet_boew_theme !== "undefined" && window.wet_boew_theme !== null) ? window.wet_boew_theme : {
 		fn: {}
@@ -23,12 +23,12 @@
 		bcrumb: $('#wb-head #gcwu-bc'),
 		title: $('#wb-head #gcwu-title'),
 		sft: $('#wb-foot #gcwu-sft'),
-		footer: $('#wb-foot footer'),
 		gcft: $('#wb-foot #gcwu-gcft'),
 		wmms: $('#gcwu-wmms'),
 		init: function () {
-			var current = pe.navcurrent(pe.menubar, wet_boew_theme.bcrumb, "nav-current"),
+			var current = pe.menu.navcurrent(pe.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm');
+			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length > 0) {
 				submenu.prev().children('a').addClass('nav-current');
 				current.removeClass('nav-current');
@@ -36,73 +36,16 @@
 			pe.theme = wet_boew_theme.theme;
 			$('html').addClass(wet_boew_theme.theme);
 			if (pe.secnav.length > 0) {
-				pe.navcurrent(pe.secnav, wet_boew_theme.bcrumb, "nav-current");
+				pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
 			}
+
+			// If no search is provided, then make the site menu link 100% wide
 			if (wet_boew_theme.psnb.length > 0 && wet_boew_theme.search.length === 0) {
 				wet_boew_theme.psnb.css('width', '100%');
 			}
 		},
 		themename: function () {
 			return wet_boew_theme.theme;
-		},
-		buildmenu: function (section, hlevel, theme, menubar) {
-			var menu = $('<div data-role="controlgroup"></div>'), menuitems, next, subsection, hlink, nested;
-			menuitems = section.find('> div, > ul, h' + hlevel);
-			if (menuitems.first().is('ul')) {
-				menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
-			} else {
-				menuitems.each(function (index) {
-					var $this = $(this);
-					// If the menu item is a heading
-					if ($this.is('h' + hlevel)) {
-						hlink = $this.children('a');
-						subsection = $('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
-						// If the original menu item was in a menu bar
-						if (menubar) {
-							$this = $this.parent().find('a').eq(1).closest('ul, div, h' + hlevel + 1).first();
-							next = $this;
-						} else {
-							next = $this.next();
-						}
-
-						if (next.is('ul')) {
-							// The original menu item was not in a menu bar
-							if (!menubar) {
-								next.prepend($('<li></li>').append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home'))));
-							}
-							nested = next.find('li ul');
-							// If a nested list is detected
-							nested.each(function (index) {
-								var $this = $(this);
-								hlink = $this.prev('a');
-								if ((hlevel + 1 + index) < 7) {
-									// Make the nested list into a collapsible section
-									$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
-									$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
-									$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
-									hlink.remove();
-								} else {
-									$this.attr('data-role', 'listview').attr('data-theme', theme);
-								}
-							});
-							subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
-							subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? "<div data-role=\"collapsible-set\" data-theme=\"" + theme + "\"></div>" : "") + '</div>');
-						} else {
-							// If the section contains sub-sections
-							subsection.append(wet_boew_theme.buildmenu($this.parent(), hlevel + 1, theme, false));
-							// If the original menu item was not in a menu bar
-							if (!menubar) {
-								subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
-							}
-						}
-						menu.append(subsection);
-					} else if ($this.is('div')) { // If the menu item is a div
-						menu.append($this.children('a').attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
-					}
-				});
-				menu.children().wrapAll('<div data-role="collapsible-set" data-theme="' + theme + '"></div>');
-			}
-			return menu;
 		},
 		mobileview: function () {
 			var mb_dialogue, mb_header, nav, s_dialogue, _list, links, footer1, ul, lang_links, lang_nav, mb_li;
@@ -123,14 +66,14 @@
 				}
 
 				if (pe.secnav.length > 0) {
-					nav = wet_boew_theme.buildmenu(pe.secnav.find('.wb-sec-def'), 3, "c", false);
-					nav.find('.nav-current').parents('div[data-role="collapsible"]').attr('data-collapsed', 'false');
+					nav = pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, "c", false);
+					pe.menu.expandmobile(nav);
 					mb_dialogue += $('<section><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></section>').append(nav).html();
 					pe.secnav.remove();
 				}
 
-				nav = wet_boew_theme.buildmenu(mb_li, 3, "a", true);
-				nav.find('.nav-current').parents('div[data-role="collapsible"]').attr('data-collapsed', 'false');
+				nav = pe.menu.buildmobile(mb_li, 3, "a", true);
+				pe.menu.expandmobile(nav);
 				mb_dialogue += $('<section><h2>' + mb_header.html() + '</h2></section>').append(nav).html();
 				mb_dialogue += '</nav></div></div></div>';
 				pe.pagecontainer().append(mb_dialogue);
@@ -181,7 +124,7 @@
 				});
 				pe.footer.find('#gcwu-tc').replaceWith(footer1.children().end());
 			}
-			wet_boew_theme.footer.append(wet_boew_theme.wmms.detach());
+			pe.footer.find('footer').append(wet_boew_theme.wmms.detach());
 
 			// jquery mobile has loaded
 			$(document).on("mobileinit", function () {
@@ -196,21 +139,7 @@
 			// preprocessing before mobile page is enhanced
 			$(document).on("pageinit", function () {
 				// Correct the corners for each of the site menu/secondary menu sections and sub-sections
-				$('#jqm-wb-mb').find('.ui-collapsible-set').each(function () {
-					var $this = $(this);
-					if ($this.find('> ul .ui-collapsible').length > 0) {
-						$this = $this.children('ul');
-					}
-					$this.children().each(function () {
-						var $this = $(this), target = $this.is('a') ? $this : $this.find('a').first();
-						if ($this.prev().length > 0) {
-							target.removeClass('ui-corner-top');
-						}
-						if ($this.next().length > 0) {
-							target.removeClass('ui-corner-bottom');
-						}
-					});
-				});
+				pe.menu.correctmobile($('#jqm-wb-mb'));
 			});
 			return;
 		}

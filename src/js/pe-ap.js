@@ -16,7 +16,7 @@
 	/**
 	* pe object
 	* @namespace pe
-	* @version 1.3
+	* @version 3.0
 	*/
 	pe = (typeof window.pe !== "undefined" && window.pe !== null) ? window.pe : {
 		fn: {}
@@ -565,46 +565,159 @@
 			}
 		},
 		/**
-		 * Applies a specific class to the current link/section in a navigation block based on the current URL or the links in a breadcrumb trail.
-		 * @memberof pe
-		 * @param {jQuery object | DOM object} navblock Navigation block
-		 * @param {jQuery object | DOM object} bcrumb Breadcrumb trail
-		 * @param {string} navclass Class to apply
-		 * @function
-		 * @return {jQuery object} Link where match found
+		 * A suite of menu related functions for easier handling of menus
+		 * @namespace pe.menu
 		 */
-		navcurrent: function (navblock, bcrumb, navclass) {
-			var bc = (typeof bcrumb.jquery !== "undefined" ? bcrumb : $(bcrumb)),
-				nav = (typeof navblock.jquery !== "undefined" ? navblock : $(navblock)),
-				navlink,
-				match,
-				url = window.location.pathname,
-				urlquery = window.location.pathname + window.location.search;
+		menu: {
+			/**
+			 * Applies a specific class to the current link/section in a menu based on the current URL or the links in a breadcrumb trail.
+			 * @memberof pe.menu
+			 * @param {jQuery object | DOM object} menusrc Menu to apply the class to
+			 * @param {jQuery object | DOM object} bc Breadcrumb trail
+			 * @param {string} navclass Optional. Class to apply. Defaults to "nav-current".
+			 * @function
+			 * @return {jQuery object} Link where match found
+			 */
+			navcurrent: function (menusrc, bcsrc, navclass) {
+				var navlink,
+					match,
+					url = window.location.pathname,
+					urlquery = window.location.pathname + window.location.search;
+				menusrc = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc));
+				bcsrc = (typeof bcsrc.jquery !== "undefined" ? bcsrc : $(bcsrc));
+				navclass = (typeof navclass === "undefined") ? 'nav-current' : navclass;
 
-			$(nav.find('a').get().reverse()).each(function () {
-				navlink = $(this);
-				match = (navlink.attr('href') === url || navlink.attr('href') === urlquery);
-				if (!match) {
-					$(bc.find('a').get().reverse()).each(function () {
-						if ($(this).attr('href') !== "#" && ($(this).attr('href') === navlink.attr('href') || $(this).text() === navlink.text())) {
-							match = true;
-							return false;
+				$(menusrc.find('a').get().reverse()).each(function () {
+					navlink = $(this);
+					match = (navlink.attr('href') === url || navlink.attr('href') === urlquery);
+					if (!match) {
+						$(bcsrc.find('a').get().reverse()).each(function () {
+							if ($(this).attr('href') !== "#" && ($(this).attr('href') === navlink.attr('href') || $(this).text() === navlink.text())) {
+								match = true;
+								return false;
+							}
+						});
+					}
+					if (match) {
+						navlink.addClass(navclass);
+						return false;
+					}
+				});
+				return (match ? navlink : $());
+			},
+			/**
+			 * Builds jQuery Mobile nested accordion menus from an existing menu
+			 * @memberof pe.menu
+			 * @param {jQuery object | DOM object} menusrc Existing menu to process
+			 * @param {number} hlevel Heading level to process (e.g., h3 = 3)
+			 * @param {string} theme Letter representing the jQuery Mobile theme
+			 * @param {boolean} menubar Is the heading level to process in a menu bar?
+			 * @function
+			 * @return {jQuery object} Mobile menu
+			 */
+			buildmobile: function (menusrc, hlevel, theme, menubar) {
+				var menu = $('<div data-role="controlgroup"></div>'),
+					menuitems = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc)).find('> div, > ul, h' + hlevel),
+					next,
+					subsection,
+					hlink,
+					nested;
+				if (menuitems.first().is('ul')) {
+					menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
+				} else {
+					menuitems.each(function (index) {
+						var $this = $(this);
+						// If the menu item is a heading
+						if ($this.is('h' + hlevel)) {
+							hlink = $this.children('a');
+							subsection = $('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
+							// If the original menu item was in a menu bar
+							if (menubar) {
+								$this = $this.parent().find('a').eq(1).closest('ul, div, h' + hlevel + 1).first();
+								next = $this;
+							} else {
+								next = $this.next();
+							}
+
+							if (next.is('ul')) {
+								// The original menu item was not in a menu bar
+								if (!menubar) {
+									next.prepend($('<li></li>').append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home'))));
+								}
+								nested = next.find('li ul');
+								// If a nested list is detected
+								nested.each(function (index) {
+									var $this = $(this);
+									hlink = $this.prev('a');
+									if ((hlevel + 1 + index) < 7) {
+										// Make the nested list into a collapsible section
+										$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
+										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
+										$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+										hlink.remove();
+									} else {
+										$this.attr('data-role', 'listview').attr('data-theme', theme);
+									}
+								});
+								subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
+								subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? "<div data-role=\"collapsible-set\" data-theme=\"" + theme + "\"></div>" : "") + '</div>');
+							} else {
+								// If the section contains sub-sections
+								subsection.append(pe.buildmenu($this.parent(), hlevel + 1, theme, false));
+								// If the original menu item was not in a menu bar
+								if (!menubar) {
+									subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+								}
+							}
+							menu.append(subsection);
+						} else if ($this.is('div')) { // If the menu item is a div
+							menu.append($this.children('a').attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
 						}
 					});
+					menu.children().wrapAll('<div data-role="collapsible-set" data-theme="' + theme + '"></div>');
 				}
-				if (match) {
-					navlink.addClass(navclass);
-					return false;
-				}
-			});
-			return (match ? navlink : $());
+				return menu;
+			},
+			/**
+			 * Expands collapsible menus built by pe.menu.mobile that have a descendant link matching the selector
+			 * @memberof pe.menu
+			 * @param {jQuery object | DOM object} menusrc Mobile menu to correct
+			 * @param {string} selector Optional. Selector for the link(s) to expand. Defaults to '.nav-current'.
+			 * @function
+			 * @return {void} Mobile menu
+			 */
+			expandmobile: function (menusrc, selector) {
+				$((typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc))).find((typeof selector === "undefined") ? '.nav-current' : selector).parents('div[data-role="collapsible"]').attr('data-collapsed', 'false');
+			},
+			/**
+			 * Correct the corners for each sections and sub-section in the menu build by pe.menu.buildmobile
+			 * @memberof pe.menu
+			 * @param {jQuery object | DOM object} menusrc Mobile menu to correct
+			 * @function
+			 * @return {void}
+			 */
+			correctmobile: function (menusrc) {
+				$((typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc))).find('.ui-collapsible-set').each(function () {
+					var $this = $(this);
+					if ($this.find('> ul .ui-collapsible').length > 0) {
+						$this = $this.children('ul');
+					}
+					$this.children().each(function () {
+						var $this = $(this), target = $this.is('a') ? $this : $this.find('a').first();
+						if ($this.prev().length > 0) {
+							target.removeClass('ui-corner-top');
+						}
+						if ($this.next().length > 0) {
+							target.removeClass('ui-corner-bottom');
+						}
+					});
+				});
+			}
 		},
 		/**
 		 * A function to load required polyfills, @TODO: set up a single loader method to streamline
 		 * @memberof pe
 		 * @function
-		 * @param {ate | number[] | number | string | object} d
-		 * @param {boolean} timepresent Optional. Whether to include the time in the result, or just the date. False if blank.
 		 * @return {void}
 		 */
 		polyfills: function () {
