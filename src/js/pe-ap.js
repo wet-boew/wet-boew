@@ -580,23 +580,32 @@
 			 */
 			navcurrent: function (menusrc, bcsrc, navclass) {
 				var navlink,
-					match,
-					url = window.location.pathname,
-					urlquery = window.location.pathname + window.location.search;
+					navurl,
+					navtext,
+					i,
+					pageurl = pe.url(window.location.href).removehash(),
+					bcurl = [],
+					bctext = [],
+					match;
 				menusrc = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc));
-				bcsrc = (typeof bcsrc.jquery !== "undefined" ? bcsrc : $(bcsrc));
+				bcsrc = $((typeof bcsrc.jquery !== "undefined" ? bcsrc : $(bcsrc)).find('a').get().reverse());
 				navclass = (typeof navclass === "undefined") ? 'nav-current' : navclass;
+				// Retrieve the path and link text for each breacrumb link
+				bcsrc.each(function (index) {
+					bcurl[index] = $(this).attr('href');
+					bctext[index] = $(this).text();
+				});
 
 				$(menusrc.find('a').get().reverse()).each(function () {
 					navlink = $(this);
-					match = (navlink.attr('href') === url || navlink.attr('href') === urlquery);
-					if (!match) {
-						$(bcsrc.find('a').get().reverse()).each(function () {
-							if ($(this).attr('href') !== "#" && ($(this).attr('href') === navlink.attr('href') || $(this).text() === navlink.text())) {
-								match = true;
-								return false;
-							}
-						});
+					navurl = navlink.attr('href');
+					navtext = navlink.text();
+					match = (navurl === pageurl);
+					for (i = 0; !match && i < bcurl.length; i += 1) {
+						if (bcurl[i] !== "#" && (bcurl[i] === navurl || bctext[i] === navtext)) {
+							match = true;
+							break;
+						}
 					}
 					if (match) {
 						navlink.addClass(navclass);
