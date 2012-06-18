@@ -611,7 +611,7 @@
 			 * @param {jQuery object | DOM object} menusrc Existing menu to process
 			 * @param {number} hlevel Heading level to process (e.g., h3 = 3)
 			 * @param {string} theme Letter representing the jQuery Mobile theme
-			 * @param {boolean} menubar Is the heading level to process in a menu bar?
+			 * @param {boolean} menubar Optional. Is the heading level to process in a menu bar? Defaults to false.
 			 * @function
 			 * @return {jQuery object} Mobile menu
 			 */
@@ -663,7 +663,7 @@
 								subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? "<div data-role=\"collapsible-set\" data-theme=\"" + theme + "\"></div>" : "") + '</div>');
 							} else {
 								// If the section contains sub-sections
-								subsection.append(pe.buildmenu($this.parent(), hlevel + 1, theme, false));
+								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme));
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
 									subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));

@@ -66,7 +66,7 @@
 				}
 
 				if (pe.secnav.length > 0) {
-					nav = pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, "c", false);
+					nav = pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, "c");
 					pe.menu.expandmobile(nav);
 					mb_dialogue += $('<section><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></section>').append(nav).html();
 					pe.secnav.remove();
