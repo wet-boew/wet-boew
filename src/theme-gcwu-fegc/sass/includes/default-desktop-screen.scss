@@ -447,6 +447,10 @@ a:visited{
 	background:#0f315b url(../images/menu-border.gif) repeat-x scroll 0 0;
 }
 
+#gcwu-psnb .mb-sm-open .nav-current{
+	background:none;
+}
+
 #gcwu-psnb .mb-menu li:first-child.mb-active{
 	border-left:1px solid #CCC;
 }

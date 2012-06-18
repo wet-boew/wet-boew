@@ -31,7 +31,6 @@
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length > 0) {
 				submenu.prev().children('a').addClass('nav-current');
-				current.removeClass('nav-current');
 			}
 			pe.theme = wet_boew_theme.theme;
 			$('html').addClass(wet_boew_theme.theme);
