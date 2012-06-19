@@ -55,15 +55,10 @@
 			return r;
 		},
 		ind: {
+			"%home" : "Accueil",
 			"%top-of-page": "Haut de la page",
 			"%you-are-in": "Vous êtes dans :",
-			"%welcome-to": "Bienvenue à : " + $('#cn-site-title').text(),
-			"%archived-page": "Cette page Web a été archivée dans le Web.",
-			"%sub-menu-help": "(ouvrir le sous-menu avec la touche de la fleche descendante)",
-			"%tab-rotation": {
-				"disable": "Arrêter la rotation d'onglets",
-				"enable": "Lancer la rotation d'onglets"
-			},
+			"%welcome-to": "Bienvenue à : " + $('#gcwu-title').text(),
 			"%search": "Recherche",
 			"%search-for-terms" : "Recherche de terme(s) :",
 			"%no-match-found" : "Aucune correspondance trouvée",
@@ -71,6 +66,32 @@
 				"mixin": "[MIXIN] correspondance(s) trouvées"
 			},
 			"%menu": "Menu",
+			"%hide" : "Masquer",
+			"%error" : "Erreur",
+			"%colon" : "&#160;:",
+			"%minute-ago": "il ya une minute",
+			"%couple-of-minutes": "il ya quelques minutes",
+			"%minutes-ago": {
+				"mixin": "il ya [MIXIN] minutes"
+			},
+			"%hour-ago": "il ya une heure",
+			"%hours-ago": {
+				"mixin": "il ya [MIXIN] heures"
+			},
+			"%days-ago": {
+				"mixin": "il ya [MIXIN] jours"
+			},
+			"%yesterday": "hier",
+			/* Archived Web page template */
+			"%archived-page": "Cette page Web a été archivée dans le Web.",
+			/* Menu bar */
+			"%sub-menu-help": "(ouvrir le sous-menu avec la touche de la flèche descendante et le fermer avec la touche d'échappement)",
+			/* Tabbed interface */
+			"%tab-rotation": {
+				"disable": "Arrêter la rotation d'onglets",
+				"enable": "Lancer la rotation d'onglets"
+			},
+			/* Multimedia player */
 			"%play": "Jouer",
 			"%stop": "Pause",
 			"%close": "Fermer",
@@ -95,22 +116,23 @@
 			"%position": "Position actuelle&#160;: ",
 			"%duration": "Temps total&#160;: ",
 			"%buffered": "Mis en mémoire-tampon&#160;: ",
-			"%minute-ago": "il ya une minute",
-			"%couple-of-minutes": "il ya quelques minutes",
-			"%minutes-ago": {
-				"mixin": "il ya [MIXIN] minutes"
-			},
-			"%hour-ago": "il ya une heure",
-			"%hours-ago": {
-				"mixin": "il ya [MIXIN] heures"
-			},
-			"%days-ago": {
-				"mixin": "il ya [MIXIN] jours"
-			},
-			"%yesterday": "hier"
+			/* Share widget */
+			"%favourite" : "Lien préféré",
+			"%email" : "Courriel",
+			"%share-text" : "Partagez cette page",
+			"%share-hint" : " avec {s} (Ouvre dans une nouvelle fenêtre)",
+			"%share-email-subject" : "Page qui est intéressante",
+			"%share-email-body" : "J'espère que cette page vous intéresse :\n{t} ({u})",
+			"%share-manual" : "S'il vous pla&#238;t fermer ce dialogue et\nappuyer sure Ctrl-D pour ajouter cette page à vos signets.",
+			"%share-showall" : "Tous montrer ({n})",
+			"%share-showall-title" : "Tout les sites de mise en signet",
+			/* Form validation */
+			"%form-not-submitted" : "Le formulaire n'a pu être soumis car ",
+			"%errors-found" : " erreurs ont été trouvées.",
+			"%error-found" : " erreur a été trouvée."
 		}
 	};
+        $(document).trigger("languageloaded");
 	window.pe = _pe;
-	_pe.dance();
 	return _pe;
 }(jQuery));

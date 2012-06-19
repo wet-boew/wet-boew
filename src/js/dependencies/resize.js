@@ -37,7 +37,7 @@ var ResizeEvents = {
 	initialised         : false,
 	intervalReference   : null,
 	textSizeTestElement : null,
-	eventElement        : $(document),
+	eventElement        : jQuery(document),
 	conf                : {
 		textResizeEvent          : 'x-text-resize',
 		windowResizeEvent        : 'x-window-resize',

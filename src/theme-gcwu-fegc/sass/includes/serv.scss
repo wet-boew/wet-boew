@@ -1,0 +1,80 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+h1 {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 0px !important;
+	width: 0px !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+}
+
+#wb-skip {
+	display:none;
+	visibility:hidden;
+}
+
+#wb-body{
+	background:#fff;
+}
+
+#wb-core-in,#wb-head-in{
+	background: #fff;
+}
+/*
+a:link {
+	color:#295376;
+}
+
+a:visited {
+	color:#5a306b;
+}*/
+
+#gcwu-sig {
+	margin-top: 20px;
+	margin-bottom: 11px;
+}
+
+#gcwu-wmms {
+	text-align: right;
+	margin-top: 10px;
+	margin-bottom: 11px;
+}
+
+#gcwu-title a,#gcwu-title a:visited,#gcwu-title a:hover,#gcwu-title a:focus{
+	color:#295376;
+	text-decoration:none;
+}
+
+#gcwu-title a:hover,#gcwu-title a:focus{
+	text-decoration:underline;
+}
+
+#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
+	padding: 0;
+	color: #000;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.gcwu-alt-title-left, .gcwu-alt-title-right {
+	padding: 0;
+	color: #000;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+#wb-core-in  h2, #wb-core-in  p {
+	margin-left: 0;
+}
+
+#wb-core-in  li a {
+	text-decoration: none;
+}
+
+#wb-core-in  li a:hover, #wb-core-in  li a:focus, #wb-core-in  li a:active {
+	text-decoration: underline;
+}
