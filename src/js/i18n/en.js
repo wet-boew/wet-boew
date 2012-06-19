@@ -63,12 +63,6 @@
 			"%you-are-in" : "You are in: ",
 			"%welcome-to" : "Welcome to: " + $('#gcwu-title').text(),
 			"%loading" : "loading...",
-			"%archived-page" : "This Web page has been archived on the Web.",
-			"%sub-menu-help" : "(open the submenu with the down arrow key and close with the escape key)",
-			"%tab-rotation" : {
-				"disable" : "Stop tab rotation",
-				"enable" : "Start tab rotation"
-			},
 			"%search" : "Search",
 			"%search-for-terms" : "Search for term(s):",
 			"%no-match-found" : "No match found",
@@ -76,6 +70,32 @@
 				"mixin" : "[MIXIN] match(es) found"
 			},
 			"%menu" : "Menu",
+			"%hide" : "Hide",
+			"%error" : "Error",
+			"%colon" : ":",
+			"%minute-ago" : "a minute ago",
+			"%couple-of-minutes" : "couple of minutes ago",
+			"%minutes-ago" : {
+				"mixin" : "[MIXIN] minutes ago"
+			},
+			"%hour-ago" : "an hour ago",
+			"%hours-ago" : {
+				"mixin" : "[MIXIN] hours ago"
+			},
+			"%days-ago" : {
+				"mixin" : "[MIXIN] days ago"
+			},
+			"%yesterday" : "yesterday",
+			/* Archived Web page template */
+			"%archived-page" : "This Web page has been archived on the Web.",
+			/* Menu bar */
+			"%sub-menu-help" : "(open the submenu with the down arrow key and close with the escape key)",
+			/* Tabbed interface */
+			"%tab-rotation" : {
+				"disable" : "Stop tab rotation",
+				"enable" : "Start tab rotation"
+			},
+			/* Multimedia player */
 			"%play" : "Play",
 			"%stop" : "Pause",
 			"%close" : "Close",
@@ -100,20 +120,7 @@
 			"%position" : "Current Position: ",
 			"%duration" : "Total Time: ",
 			"%buffered" : "Buffered: ",
-			"%minute-ago" : "a minute ago",
-			"%couple-of-minutes" : "couple of minutes ago",
-			"%minutes-ago" : {
-				"mixin" : "[MIXIN] minutes ago"
-			},
-			"%hour-ago" : "an hour ago",
-			"%hours-ago" : {
-				"mixin" : "[MIXIN] hours ago"
-			},
-			"%days-ago" : {
-				"mixin" : "[MIXIN] days ago"
-			},
-			"%yesterday" : "yesterday",
-			"%hide" : "Hide",
+			/* Share widget */
 			"%favourite" : "Favourite",
 			"%email" : "Email",
 			"%share-text" : "Share this page",
@@ -122,7 +129,13 @@
 			"%share-email-body" : "I thought you might find this page interesting:\n{t} ({u})",
 			"%share-manual" : "Please close this dialog and\npress Ctrl-D to bookmark this page.",
 			"%share-showall" : "Show all ({n})",
-			"%share-showall-title" : "All bookmarking sites"
+			"%share-showall-title" : "All bookmarking sites",
+			/* Form validation */
+			"%form-not-submitted" : "The form could not be submitted because ",
+			"%errors-found" : " errors were found.",
+			"%error-found" : " error was found.",
+			"%error" : "Error",
+			"%colon" : ":"
 		}
 	};
         $(document).trigger("languageloaded");

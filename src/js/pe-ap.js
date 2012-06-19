@@ -25,9 +25,9 @@
 		/** Global object init properties */
 		/**
 		 * @memberof pe
-		 * @type {string} Page language, defaults to eng if not available
+		 * @type {string} Page language, defaults to "en" if not available
 		 */
-		language: ($("html").attr("lang") ? ($("html").attr("lang").indexOf("fr") === 0 ? "fra" : "eng") : $("meta[name='dc.language'], meta[name='dcterms.language']").attr("content")),
+		language: ($("html").attr("lang").length > 0 ? $("html").attr("lang") : "en"),
 		touchscreen: 'ontouchstart' in document.documentElement,
 		theme: "",
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
@@ -895,7 +895,7 @@
 				 * @return {void}
 				 */
 				language: function (lang) {
-					var url = pe.add.liblocation + "i18n/" + lang.substring(0, 2) + pe.suffix + ".js";
+					var url = pe.add.liblocation + "i18n/" + lang + pe.suffix + ".js";
 					pe.add._load(url);
 				},
 				/**
@@ -979,15 +979,15 @@
 			}
 			if (pe.mobile) {
 				// Move the focus to the anchored element for same page content area links
-				$("#wb-main a[href^='#']").click(function () {
+				$("#wb-main a[href^='#']").on("click", function () {
 					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
 				});
 				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
-				pe.add._load([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.js']);
+				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
 			} else {
 				// Move the focus to the anchored element for skip nav links
-				$("#wb-skip a").click(function () {
-					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
+				$("#wb-skip a").on("click", function () {
+					pe.focus($($(this).attr("href") + exclude).attr("tabindex", "-1"));
 				});
 			}
 			window.onresize = function () { // TODO: find a better way to switch back and forth between mobile and desktop modes.

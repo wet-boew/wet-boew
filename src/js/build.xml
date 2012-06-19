@@ -40,6 +40,7 @@
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/premin" toDir="${build.dir}">
 			<include name="*.*" />
 			<include name="i18n/*.*" />
+			<include name="i18n/formvalid/*.*" />
 			<include name="dependencies/*.*"/>
 			<include name="polyfills/*.*"/>
 			<include name="css/*.*" />
