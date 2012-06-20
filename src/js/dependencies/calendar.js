@@ -4,21 +4,6 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 var calendar = {
-	// Used to store localized strings for your plugin.
-	dictionary : { 
-		weekDayNames : (pe.language == "en") ? ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] : ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
-		monthNames : (pe.language == "en") ? ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] : ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
-		currentDay : (pe.language == "en") ? " (Current Day)" : " (Jour courrant)",
-		goToLink :  (pe.language == "en") ? "Go To<span class=\"cn-invisible\"> Month of Year</span>" : "Aller au <span class=\"cn-invisible\"> mois de l'année</span>",
-		goToTitle :  (pe.language == "en") ? "Go To Month of Year" : "Aller au mois de l'année",
-		goToMonth : (pe.language == "en") ? "Month:" : "Mois : ",
-		goToYear : (pe.language == "en") ? "Year:" : "Année : ",
-		goToButton : (pe.language == "en") ? "Go" : "Aller",
-		cancelButton : (pe.language == "en") ? "Cancel" : "Annuler",
-		previousMonth : (pe.language == "en") ? "Previous Month: " : "Mois précédent : ",
-		nextMonth : (pe.language == "en") ? "Next Month: " : "Mois suivant : "
-	},
-	
 	create: function (containerid, year, month, shownav, mindate, maxdate){
 		var objCalendar;
 		var container = $('#' + containerid);
@@ -64,7 +49,7 @@ var calendar = {
 			calHeader = $("<div class=\"cal-header\"></div>");
 		}
 		
-		calHeader.prepend("<div class=\"cal-month\">" + this.dictionary.monthNames[month] + " " + year + "</div>" );
+		calHeader.prepend("<div class=\"cal-month\">" + pe.dic.get('%calendar-monthNames')[month] + " " + year + "</div>" );
 		
 		if(shownav){
 			//Create the month navigation
@@ -115,7 +100,7 @@ var calendar = {
 			switch(n){
 				case 0:
 					suffix = "prevmonth";
-					titleSuffix = this.dictionary.previousMonth;
+					titleSuffix = pe.dic.get('%calendar-previousMonth');
 					if (month > 0){
 						newMonth = month-1;
 						newYear = year;
@@ -130,7 +115,7 @@ var calendar = {
 					break;
 				case 1:
 					suffix = "nextmonth";
-					titleSuffix = this.dictionary.nextMonth;
+					titleSuffix = pe.dic.get('%calendar-nextMonth');
 					if (month<11){
 						newMonth = month + 1
 						newYear = year;
@@ -149,7 +134,7 @@ var calendar = {
 				btnCtn = monthNav.children(".cal-" + suffix);
 			}
 			if (showButton){
-				var alt = titleSuffix + this.dictionary.monthNames[newMonth] + " " + newYear;
+				var alt = titleSuffix + pe.dic.get('%calendar-monthNames')[newMonth] + " " + newYear;
                 
 				if (btnCtn){
 					btn = btnCtn.children("a")
@@ -200,18 +185,18 @@ var calendar = {
         }
         
         for(var i=minMonth; i<=maxMonth; i++){ // TODO: make sure minMonth < maxMonth
-			monthField.append("<option value=\"" + i + "\"" + ((i == month)? " selected=\"selected\"" : "") + ">" + calendar.dictionary.monthNames[i] + "</option>");
+			monthField.append("<option value=\"" + i + "\"" + ((i == month)? " selected=\"selected\"" : "") + ">" + pe.dic.get('%calendar-monthNames')[i] + "</option>");
 		}
     },
     
 	createGoToForm : function (calendarid, year, month, minDate, maxDate){
 		var goToForm = $("<div class=\"cal-goto\"></div>");
-		var form = $("<form id=\"cal-" + calendarid + "-goto\" role=\"form\" style=\"display:none;\" action=\"\"><fieldset><legend>" + this.dictionary.goToTitle + "</legend></fieldset></form>");
+		var form = $("<form id=\"cal-" + calendarid + "-goto\" role=\"form\" style=\"display:none;\" action=\"\"><fieldset><legend>" + pe.dic.get('%calendar-goToTitle') + "</legend></fieldset></form>");
 		form.submit(function(){calendar.onGoTo(calendarid, minDate, maxDate); return false});
 		var fieldset = form.children("fieldset");
 
 		//Create the year field
-		var yearContainer = $("<div class=\"cal-goto-year\"><label for=\"cal-" + calendarid + "-goto-year\" class=\"cn-invisible\">" + this.dictionary.goToYear + "</label></div>")
+		var yearContainer = $("<div class=\"cal-goto-year\"><label for=\"cal-" + calendarid + "-goto-year\" class=\"cn-invisible\">" + pe.dic.get('%calendar-goToYear') + "</label></div>")
 		var yearField = $("<select id=\"cal-" + calendarid + "-goto-year\"></select>");
 		for(var y=minDate.getFullYear();y<=maxDate.getFullYear();y++){
 			yearField.append($('<option value="' + y + '"' + (y == year? ' selected="selected"' : '') + '>' + y+ '</option>'));
@@ -221,7 +206,7 @@ var calendar = {
 		fieldset.append(yearContainer);
 
 		//Create the list of month field
-		var monthContainer = $("<div class=\"cal-goto-month\"><label for=\"cal-" + calendarid + "-goto-month\" class=\"cn-invisible\">" + this.dictionary.goToMonth + "</label></div>");
+		var monthContainer = $("<div class=\"cal-goto-month\"><label for=\"cal-" + calendarid + "-goto-month\" class=\"cn-invisible\">" + pe.dic.get('%calendar-goToMonth') + "</label></div>");
 		var monthField = $("<select id=\"cal-" + calendarid + "-goto-month\"></select>");
 
 		monthContainer.append(monthField);
@@ -229,7 +214,7 @@ var calendar = {
 
         // FIXME: Handle month filtering for IE6
         if(jQuery.browser.msie && jQuery.browser.version == '6.0') {
-            $(this.dictionary.monthNames).each(function(index, value){
+            $(pe.dic.get('%calendar-monthNames')).each(function(index, value){
                 monthField.append("<option value=\"" + index + "\"" + ((index == month)? " selected=\"selected\"" : "") + ">" + value + "</option>");
             });
         }
@@ -240,18 +225,18 @@ var calendar = {
         }
         
 		var buttonContainer = $("<div class=\"cal-goto-button\"></div>");
-		var button = $("<input type=\"submit\" value=\"" + this.dictionary.goToButton + "\" />")
+		var button = $("<input type=\"submit\" value=\"" + pe.dic.get('%calendar-goToButton') + "\" />")
 		buttonContainer.append(button);
 		fieldset.append(buttonContainer);
 		
 		var buttonCancelContainer = $("<div class=\"cal-goto-button\"></div>");
-		var buttonCancel = $("<input type=\"button\" value=\"" + this.dictionary.cancelButton + "\" />");
+		var buttonCancel = $("<input type=\"button\" value=\"" + pe.dic.get('%calendar-cancelButton') + "\" />");
 		buttonCancel.click(function(){calendar.hideGoToForm(calendarid)});
 		buttonCancelContainer.append(buttonCancel);
 		fieldset.append(buttonCancelContainer);
 		
 		var goToLinkContainer = $("<p class=\"cal-goto-link\" id=\"cal-" + calendarid + "-goto-link\"></p>");
-		var goToLink = $("<a href=\"javascript:;\" role=\"button\" aria-controls=\"cal-" + calendarid + "-goto\" aria-expanded=\"false\">" + this.dictionary.goToLink + "</a>");
+		var goToLink = $("<a href=\"javascript:;\" role=\"button\" aria-controls=\"cal-" + calendarid + "-goto\" aria-expanded=\"false\">" + pe.dic.get('%calendar-goToLink') + "</a>");
 		goToLink.click(function(){calendar.showGoToForm(calendarid);})
 		goToLinkContainer.append(goToLink);
 		
@@ -265,7 +250,7 @@ var calendar = {
 		var weekdays = $("<ol id=\"cal-" + calendarid +"-weekdays\" class=\"cal-weekdays\" role=\"presentation\"></ol>")
 		for (var wd=0;wd<7;wd++)
 		{
-			var txt = this.dictionary.weekDayNames[wd]
+			var txt = pe.dic.get('%calendar-weekDayNames')[wd];
 			var wday = $("<li id=\"cal-" + calendarid +"-wd" + (wd + 1) + "\" class=\"cal-wd" + (wd + 1) + "\"><abbr title=\"" + txt + "\">" + txt.substr(0,1) + "</abbr></li>")
 			if(wd == 0 || wd == 6){
 				wday.addClass = "we";
@@ -334,9 +319,9 @@ var calendar = {
 									suffix="th";
 							}
 						}
-						child.append("<span class=\"cn-invisible\">" + this.dictionary.weekDayNames[day] + " " + this.dictionary.monthNames[month] + " </span>" + daycount + "<span class=\"cn-invisible\">" + suffix + " " + year + ((isCurrentDate)? this.dictionary.currentDay : "") + "</span>");
+						child.append("<span class=\"cn-invisible\">" + pe.dic.get('%calendar-weekDayNames')[day] + " " + pe.dic.get('%calendar-monthNames')[month] + " </span>" + daycount + "<span class=\"cn-invisible\">" + suffix + " " + year + ((isCurrentDate)? pe.dic.get('%calendar-currentDay') : "") + "</span>");
 					}else if (pe.language == 'fr'){
-						child.append("<span class=\"cn-invisible\">" + this.dictionary.weekDayNames[day]  + " </span>" + daycount + "<span class=\"cn-invisible\"> " + this.dictionary.monthNames[month].toLowerCase() +  " " + year + ((isCurrentDate)? this.dictionary.currentDay : "") + "</span>");
+						child.append("<span class=\"cn-invisible\">" + pe.dic.get('%calendar-weekDayNames')[day] + " </span>" + daycount + "<span class=\"cn-invisible\"> " + pe.dic.get('%calendar-monthNames')[month].toLowerCase() +  " " + year + ((isCurrentDate)? pe.dic.get('%calendar-currentDay') : "") + "</span>");
 					}
 					element.append(child);
 					elementParent = days;

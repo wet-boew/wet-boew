@@ -19,15 +19,9 @@
             month = date.getMonth();
             defaultFormat = "YYYY-MM-DD";
 
-            dictionary = { 
-                hideText : (pe.language == "en") ? "Hide Calendar" : "Masquer le calendrier",
-                showText : (pe.language == "en") ?  "Pick a date from a calendar for field: " : "Sélectionner une date à partir d'un calendrier pour le champ : ",
-                selectedText : (pe.language == "en") ?  "Selected" : "Sélectionné"
-            };
-
             createToggleIcon = function(fieldid, containerid){
                 var fieldLabel = $("label[for='" + fieldid + "']").text()
-                objToggle = $('<a id="' + containerid +'-toggle" class="picker-toggle-hidden" href="javascript:;"><img src="' + pe.add.liblocation + 'images/datepicker/icon.png" alt="' + dictionary.showText + fieldLabel +'"/></a>');
+                objToggle = $('<a id="' + containerid +'-toggle" class="picker-toggle-hidden" href="javascript:;"><img src="' + pe.add.liblocation + 'images/datepicker/icon.png" alt="' + pe.dic.get('%datepicker-show') + fieldLabel +'"/></a>');
                 objToggle.click(function(){pe.fn.datepicker.toggle(fieldid, containerid);})
                 var field = $('#' + fieldid);
                 field.after(objToggle);
@@ -93,7 +87,7 @@
                 createToggleIcon(id, containerid);
 
                 // 'Hide' link at the bottom of calendar to close the popup without selecting a date
-                /* $('<a class="picker-close" href="javascript:;">' + dictionary.hideText + '</a>').appendTo(container)
+                /* $('<a class="picker-close" href="javascript:;">' + pe.dic.get('%datepicker-hide') + '</a>').appendTo(container)
                     .click(function(){
                         pe.fn.datepicker.toggle(id, containerid);
                     }); */
@@ -155,7 +149,7 @@
                     var cpntDate =  $.parseJSON(date.replace(regex, '{"year":"${c}", "month":"${b}", "day":"${a}"}'));
                     if (cpntDate.year == year && cpntDate.month== month+1){
                         $(days[cpntDate.day - 1]).addClass("datepicker-selected");
-                        $(days[cpntDate.day - 1]).children("a").append("<span class=\"cn-invisible datepicker-selected-text\"> [" + dictionary.selectedText + "]</span>");
+                        $(days[cpntDate.day - 1]).children("a").append("<span class=\"cn-invisible datepicker-selected-text\"> [" + pe.dic.get('%datepicker-selected') + "]</span>");
                     }
                 }
             }catch(e){
@@ -181,7 +175,7 @@
                 container.find("a").attr("tabindex", 0);
                 container.slideDown('fast', function(){pe.fn.datepicker.ieFix($(this))});
                 container.attr("aria-hidden","false");
-                toggle.children("a").children("span").text(dictionary.hideText);
+                toggle.children("a").children("span").text(pe.dic.get('%datepicker-hide'));
 
                 $('.cal-prevmonth a').focus();
             }else{
@@ -190,7 +184,7 @@
                 container.slideUp('fast', function(){pe.fn.datepicker.ieFix($(this))});
                 calendar.hideGoToForm(containerid);
                 var fieldLabel = $("label[for='" + fieldid + "']").text()
-                toggle.children("a").children("span").text(dictionary.showText + fieldLabel);
+                toggle.children("a").children("span").text(pe.dic.get('%datepicker-show') + fieldLabel);
                 container.attr("aria-hidden","true");
                 
                 $("#" + fieldid).focus();
@@ -210,7 +204,7 @@
                     container.attr("aria-hidden","true");
                     calendar.hideGoToForm(containerid);
                     var fieldLabel = $("label[for='" + fieldid + "']").text()
-                    toggle.children("a").children("span").text(dictionary.showText + fieldLabel);
+                    toggle.children("a").children("span").text(pe.dic.get('%datepicker-show') + fieldLabel);
                     toggle.removeClass("picker-toggle-visible");
                     toggle.addClass("picker-toggle-hidden");
                 }

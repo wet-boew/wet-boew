@@ -20,7 +20,7 @@
             if ($('.year', elm) && $('.month', elm)) {
                 year = $('.year', elm).text(); // we are going to assume this is always a number
                 if ($('.month', elm).hasClass('textformat')) {
-                    var digit = $.inArray($('.month', elm).text(), calendar.dictionary.monthNames);
+                    var digit = $.inArray($('.month', elm).text(), pe.dic.get('%calendar-monthNames'));
                     month = digit;
                 } else {
                     month = $('.month', elm).text() - 1;
