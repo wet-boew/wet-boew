@@ -1006,7 +1006,7 @@
 			
 			
 			// Adjust if required, the lastHeadingColPos if colgroup are present, that would be the first colgroup
-			if(colgroupFrame[0] && !(colgroupFrame[0].end == lastHeadingColPos)){
+			if(colgroupFrame[0] && lastHeadingColPos && !(colgroupFrame[0].end == lastHeadingColPos)){
 				if(colgroupFrame[0].end == (lastHeadingColPos + 1)){
 					lastHeadingColPos ++;
 				} else {
