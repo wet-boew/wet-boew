@@ -138,7 +138,7 @@
 			"%calendar-weekDayNames" : ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
 			"%calendar-monthNames" : ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
 			"%calendar-currentDay" : " (Jour courrant)",
-			"%calendar-goToLink" : "Aller au <span class=\"cn-invisible\"> mois de l'année</span>",
+			"%calendar-goToLink" : "Aller au <span class=\"wb-invisible\"> mois de l'année</span>",
 			"%calendar-goToTitle" : "Aller au mois de l'année",
 			"%calendar-goToMonth" : "Mois : ",
 			"%calendar-goToYear" : "Année : ",

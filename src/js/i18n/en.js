@@ -144,7 +144,7 @@
 			"%calendar-weekDayNames" : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 			"%calendar-monthNames" : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
 			"%calendar-currentDay" : " (Current Day)",
-			"%calendar-goToLink" : "Go To<span class=\"cn-invisible\"> Month of Year</span>",
+			"%calendar-goToLink" : "Go To<span class=\"wb-invisible\"> Month of Year</span>",
 			"%calendar-goToTitle" : "Go To Month of Year",
 			"%calendar-goToMonth" : "Month:",
 			"%calendar-goToYear" : "Year:",

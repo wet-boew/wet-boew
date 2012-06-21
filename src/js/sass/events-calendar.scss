@@ -1,9 +1,7 @@
 @charset "utf-8";
-/*!
- * Calendar interface v1.1 / Interface du calendrier v1.1
+/*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * Terms and conditions of use: http://tbs-sct.ircan.gc.ca/projects/gcwwwtemplates/wiki/Terms
- * Conditions régissant l'utilisation : http://tbs-sct.ircan.gc.ca/projects/gcwwwtemplates/wiki/Conditions
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 div.cal-days a.calEvent{
     color:#FFF;
@@ -25,12 +23,10 @@ ul.ev-details, ul.ev-details a{
     background-color:#FFF;
 }
 
-
 div.cal-days ol.cal-day-list ul.ev-details li{
     border:0;
     width:100%;
-    list-style-type:none;
-    
+    list-style-type:none;   
 }
 
 div.cal-days ol.cal-day-list ul.ev-details li a, div.cal-days ol.cal-day-list ul.ev-details li a:link{
@@ -41,4 +37,4 @@ div.cal-days ol.cal-day-list ul.ev-details li a:hover, div.cal-days ol.cal-day-l
     color:#FFF;
 }
 
-/* #cn-centre-col {position:relative;z-index:1000;} */
+/* #wb-main {position:relative;z-index:1000;} */
