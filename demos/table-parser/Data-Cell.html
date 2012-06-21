@@ -33,6 +33,21 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		$('input.tryit').click(function(){
 			eval($(this).prev().val());
 		});
+		
+		$('table:eq(0):data').hover(
+			function(){
+				// $(this).filter(':row').css('backgroun-color', '#F0FAFA');
+				$(this).row().filter(":cell").filter(":data").css('background-color', '#F0FAFA');
+				
+				// $('table:eq(0):data:row:eq(2)').css('backgroun-color', '#F0FAFA');
+				// $(this).filter(':row:cell:data').data().zebraPrevBgColor = $(':row:cell:data',this).css('backgroun-color');
+				// $('td :row:cell:data', this).css('backgroun-color', '#F0FAFA');
+			},
+			function(){
+				// $(':row:cell:data',this).css('backgroun-color', $(':row:cell:data',this).data().zebraPrevBgColor);
+				// delete $(':row:cell:data',this).data().zebraPrevBgColor;
+			}
+		);
 	});
 	//]]>
 </script>
@@ -139,15 +154,20 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<caption>Example Table: Number of PPH requests</caption>
 
 	
+	<colgroup />
+  
+	<colgroup>
+		<col />
+		<col />
+	</colgroup>
+
 	<colgroup>
 		<col>
 	</colgroup>
 	
-  
-	<colgroup span="2" />
-
-	<colgroup  />
-	<colgroup  />
+	<colgroup>
+		<col>
+	</colgroup>
 
 
 	<thead>

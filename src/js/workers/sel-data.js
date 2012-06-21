@@ -51,6 +51,7 @@ $.extend($.expr[":"], {data:function(elem, i, match, array){
 	switch(elem.nodeName.toLowerCase()){
 	
 	case "table": // Matrix
+		
 		if($(elem).data().tblparser.row){
 			for(i=0; i<$(elem).data().tblparser.row.length; i++){
 				for(j=0; j<$(elem).data().tblparser.row[i].cell.length; j++){
@@ -63,27 +64,120 @@ $.extend($.expr[":"], {data:function(elem, i, match, array){
 		}
 		break;
 	case "caption": // Cell
+		// TODO: Return all the data cell
 		break;
 	case "colgroup": // Group
+		if($(elem).data().tblparser.type == 2){
+			return true;
+		}
 		break;
 	case "col": // Vector
+		if($(elem).data().tblparser.type == 2){
+			return true;
+		}
+		//if($(elem).data().tblparser.cell){
+		//	for(i=0; i<$(elem).data().tblparser.cell.length; i++){
+		//		if($(elem).data().tblparser.cell[i].type == 2){
+		//			array.push($(elem).data().tblparser.cell[i].elem);
+		//		}
+		//	}
+		//}
 		break;
 	case "thead": // Group
-		break;
+		// There are no data cell in the thead, if they are that is an table design layout issue
+		return false;
 	case "tbody": // Group
 		break;
 	case "tfoot": // Group
-		break;
+		// There are no data cell in the tfoot, if there are that is an table design layout issue
+		return false;
 	case "tr": // Vector
+		if($(elem).data().tblparser.type == 2){
+			return true;
+		}
 		break;
 	case "th": // Cell
+		if($(elem).data().tblparser.type != 1){
+			return false;
+		}
+		
+		return false;
+		
+		// If there are no TD in the stack, we would fill the stack
+		for(i=0; i< array.length; i++){
+			if(array[i].nodeName.toLowerCase() == "td"){
+				console.log('No td added from th');
+				return false;
+			}
+		};
+		
+		// Check for the th scope if is column or row, Invalid for layout th
+		if($(elem).data().tblparser.scope == "row"){
+			
+			if($(elem).data().tblparser.height == 1){
+				// Only one row, go strait forward
+				for(i=0; i< $(elem).data().tblparser.row.cell.length; i++){
+					if($(elem).data().tblparser.row.cell[i].type == 2){
+						array.push($(elem).data().tblparser.row.cell[i].elem);
+					}
+				}
+				return false;
+			}
+			
+			
+			for(i=0; i< $(elem).data().tblparser.groupZero.row.length; i++){
+				if($(elem).data().tblparser.groupZero.row[i].rowpos > ($(elem).data().tblparser.rowpos + $(elem).data().tblparser.height -1)){
+					break;
+				}				
+				if($(elem).data().tblparser.groupZero.row[i].rowpos >= $(elem).data().tblparser.rowpos &&
+					$(elem).data().tblparser.groupZero.row[i].rowpos <= ($(elem).data().tblparser.rowpos + $(elem).data().tblparser.height -1)){
+					
+					for(j=0; j<$(elem).data().tblparser.groupZero.row[i].cell.length; j++){
+						if($(elem).data().tblparser.groupZero.row[i].cell[j].type == 2){
+							array.push($(elem).data().tblparser.groupZero.row[i].cell[j].elem);
+						}
+					}
+					
+				}
+			}
+			
+			
+		}
+		
+		// Column scope
+		if($(elem).data().tblparser.scope == "col"){
+			
+			
+			for(i=0; i< $(elem).data().tblparser.groupZero.col.length; i++){
+				if($(elem).data().tblparser.groupZero.col[i].end > ($(elem).data().tblparser.colpos + $(elem).data().tblparser.width -1)){
+					break;
+				}				
+				if($(elem).data().tblparser.groupZero.col[i].start >= $(elem).data().tblparser.colpos &&
+					$(elem).data().tblparser.groupZero.col[i].end <= ($(elem).data().tblparser.colpos + $(elem).data().tblparser.width -1)){
+					
+					for(j=0; j<$(elem).data().tblparser.groupZero.col[i].cell.length; j++){
+						if($(elem).data().tblparser.groupZero.col[i].cell[j].type == 2){
+							array.push($(elem).data().tblparser.groupZero.col[i].cell[j].elem);
+						}
+					}
+					
+				}
+			}
+			
+			
+		}
 		break;
 		
 	case "td": // Cell
 
 		if($(elem).data().tblparser.type == 2){
+			console.log('dataCellFound');
 			return true;
 		}
+		console.log($(elem));
+		console.log(array);
+		console.log('dataCellNOTFound');
+		return false;
 		break;
 	
 	}

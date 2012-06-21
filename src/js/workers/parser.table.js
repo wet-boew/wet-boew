@@ -190,8 +190,7 @@
 				var col = {
 					elem: {},
 					start: 0,
-					end: 0,
-					parent: colgroup //{}
+					end: 0
 				}
 
 				col.uid = uidElem;
@@ -222,10 +221,8 @@
 				// Create virtual column 
 				for(i= colgroup.start; i< (colgroup.start + colgroupspan); i++){
 					var col = {
-						elem: {},
 						start: 0,
 						end: 0,
-						parent: colgroup,
 						groupZero: groupZero
 					}
 					col.uid = uidElem;
@@ -287,10 +284,8 @@
 					// Create virtual column 
 					for(i= 1; i<= colgroupHeaderColEnd; i++){
 						var col = {
-							elem: {},
 							start: 0,
-							end: 0,
-							parent: colgroup //{}
+							end: 0
 						}
 						col.uid = uidElem;
 						uidElem++;
@@ -323,7 +318,7 @@
 				}
 				
 				for(j=0; j<theadRowStack[i].cell.length; j++){
-					
+					theadRowStack[i].cell[j].scope = "col";
 										
 					// var currentCell = theadRowStack[i].cell[j];
 					
@@ -709,9 +704,38 @@
 						curColgroupFrame.repheader = 'caption';
 					}
 					
-					
+
 					// TODO: Build a collection with all the column based on the column position, each of them will have as a structure element "col" if available, otherwise nothing. Also they will have the headerset ref and header ref and if applicable, description.
+					if(!groupZero.col){
+						groupZero.col = [];
+					}
 					
+					$.each(curColgroupFrame.col, function(){
+						
+						var column = this;
+						
+						groupZero.col.push(column);
+						
+						// TODO: column.parent = curColgroupFrame; // ?? Use the parent level header ??
+						
+						column.type = curColgroupFrame.type;
+						column.level = curColgroupFrame.level;
+						
+						// Find the lowest header that would represent this column
+						for(i =(curColgroupFrame.start -1); i< curColgroupFrame.end; i++){
+							for(j= (theadRowStack.length -1); j >= (curColgroupFrame.level -1); j-- ){
+								if(theadRowStack[j].cell[i].colpos == column.start && 
+								(theadRowStack[j].cell[i].colpos + theadRowStack[j].cell[i].width -1) == column.end){
+									// This are the header that would represent this column
+									column.header = theadRowStack[j].cell[i];
+									break;
+								}
+							}
+							if(column.header){
+								break;
+							}
+						}
+					});
 					
 				});
 				
@@ -1024,6 +1048,8 @@
 			
 			if(lastCellType == 'th'){
 				// Digest the row header
+				row.type = 1;
+				
 				//console.log('This is a header row');
 				
 				
@@ -1102,6 +1128,7 @@
 				
 			} else {
 				// Digest the data row
+				row.type = 2;
 				//console.log('this is a data row');
 				
 				
@@ -1173,6 +1200,7 @@
 						// Set for the most appropriate header that can represent this row
 						if(row.cell[i].elem.nodeName.toLowerCase() == "th"){
 							row.cell[i].type = 1; // Mark the cell to be an header cell
+							row.cell[i].scope = "row";
 							if(rowheader && rowheader.uid != row.cell[i].uid){
 								if(rowheader.height > row.cell[i].height){
 									
@@ -1481,6 +1509,25 @@
 				}
 				
 				
+				
+				
+				// Add the cell in his appropriate column
+				
+				for(i=0; i<groupZero.col.length; i++){
+					
+					for(j=(groupZero.col[i].start -1); j<groupZero.col[i].end; j++){
+						
+						if(!groupZero.col[i].cell){
+							groupZero.col[i].cell = [];
+						}
+						// Be sure to do not include twice the same cell for a column spanned in 2 or more column
+						if(!(j>(groupZero.col[i].start -1) && groupZero.col[i].cell[groupZero.col[i].cell.length -1].uid ==  row.cell[j].uid)){
+							groupZero.col[i].cell.push(row.cell[j]);
+							row.cell[j].col = groupZero.col[i];
+						}
+					}
+										
+				}
 				
 				
 				
