@@ -27,13 +27,16 @@
 			}
 			
 			// Add WAI-ARIA roles
-			form.find('input:text, input:password').attr('role', 'textbox').attr('aria-multiline', 'false');
 			if (pe.ie > 0 && pe.ie < 8) {
 				form.find('.required').attr('aria-required', 'true').attr('required', 'required');
 			} else {
 				form.find('.required').attr('aria-required', 'true');
 			}
-			form.find('input:submit').attr('role', 'button');
+
+			// Special handling for mobile
+			if (pe.mobile) {
+				form.find('input:checkbox').closest('fieldset').attr('data-role', 'controlgroup');
+			}
 
 			// The jQuery validation plug-in in action
 			form.validate({

@@ -961,12 +961,16 @@
 			var i, exclude = ":not(a[href], input, button, textarea)",
 				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false;
 			$('[class^="wet-boew-"]').each(function () {
-				var _fcall,
-					_node;
-				_node = $(this);
-				_fcall = _node.attr("class").replace(/^wet-boew-(\S*).*/i, "$1".toLowerCase());
-				if (typeof pe.fn[_fcall] !== "undefined") {
-					pe._execute(pe.fn[_fcall], _node);
+				var _node = $(this),
+					_fcall = _node.attr("class").split(" "),
+					i;
+				for (i = 0; i < _fcall.length; i += 1) {
+					if (_fcall[i].indexOf('wet-boew-') === 0) {
+						_fcall[i] = _fcall[i].substr(9).toLowerCase();
+						if (typeof pe.fn[_fcall[i]] !== "undefined") {
+							pe._execute(pe.fn[_fcall[i]], _node);
+						}
+					}
 				}
 			// lets safeguard the execution to only functions we have
 			});
