@@ -129,7 +129,23 @@
 			/* Form validation */
 			"%form-not-submitted" : "Le formulaire n'a pu être soumis car ",
 			"%errors-found" : " erreurs ont été trouvées.",
-			"%error-found" : " erreur a été trouvée."
+			"%error-found" : " erreur a été trouvée.",
+			/* Date picker */
+			"%datepicker-hide" : "Masquer le calendrier",
+			"%datepicker-show" : "Sélectionner une date à partir d'un calendrier pour le champ: ",
+			"%datepicker-selected" : "Sélectionné",
+ 			/* Calendar */
+			"%calendar-weekDayNames" : ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+			"%calendar-monthNames" : ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+			"%calendar-currentDay" : " (Jour courrant)",
+			"%calendar-goToLink" : "Aller au <span class=\"cn-invisible\"> mois de l'année</span>",
+			"%calendar-goToTitle" : "Aller au mois de l'année",
+			"%calendar-goToMonth" : "Mois : ",
+			"%calendar-goToYear" : "Année : ",
+			"%calendar-goToButton" : "Aller",
+			"%calendar-cancelButton" : "Annuler",
+			"%calendar-previousMonth" : "Mois précédent : ",
+			"%calendar-nextMonth" : "Mois suivant : "
 		}
 	};
         $(document).trigger("languageloaded");

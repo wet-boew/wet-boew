@@ -135,7 +135,23 @@
 			"%errors-found" : " errors were found.",
 			"%error-found" : " error was found.",
 			"%error" : "Error",
-			"%colon" : ":"
+			"%colon" : ":",
+			/* Date picker */
+			"%datepicker-hide" : "Hide Calendar",
+			"%datepicker-show" : "Pick a date from a calendar for field: ",
+			"%datepicker-selected" : "Selected",
+			/* Calendar */
+			"%calendar-weekDayNames" : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+			"%calendar-monthNames" : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+			"%calendar-currentDay" : " (Current Day)",
+			"%calendar-goToLink" : "Go To<span class=\"cn-invisible\"> Month of Year</span>",
+			"%calendar-goToTitle" : "Go To Month of Year",
+			"%calendar-goToMonth" : "Month:",
+			"%calendar-goToYear" : "Year:",
+			"%calendar-goToButton" : "Go",
+			"%calendar-cancelButton" : "Cancel",
+			"%calendar-previousMonth" : "Previous Month: ",
+			"%calendar-nextMonth" : "Next Month: "
 		}
 	};
         $(document).trigger("languageloaded");
