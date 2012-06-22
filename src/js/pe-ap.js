@@ -958,7 +958,7 @@
 		 */
 		dance: function () {
 			// global plugins
-			var i, exclude = ":not(a[href], input, button, textarea)",
+			var i, exclude = ":not(a[href], ul.tabs a, input, button, textarea)",
 				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false;
 			$('[class^="wet-boew-"]').each(function () {
 				var _node = $(this),
@@ -984,7 +984,7 @@
 			if (pe.mobile) {
 				// Move the focus to the anchored element for same page content area links
 				$("#wb-main a[href^='#']").on("click", function () {
-					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
+					pe.focus($($(this).attr("href") + exclude).attr("tabindex", "-1"));
 				});
 				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
 				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
