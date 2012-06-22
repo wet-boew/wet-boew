@@ -34,16 +34,51 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			eval($(this).prev().val());
 		});
 		
-		$('table:eq(0):data').hover(
+		$('table:eq(8):data').hover(
 			function(){
-				// $(this).filter(':row').css('backgroun-color', '#F0FAFA');
-				$(this).row().filter(":cell").filter(":data").css('background-color', '#F0FAFA');
+				$.each($(this).row().cell().filter("td:data"), function(){
+					$(this).data().zebraPrevBgColor = $(this).css('backgroun-color');
+					$(this).css('background-color', '#F0FAFA');
+				});
 				
-				// $('table:eq(0):data:row:eq(2)').css('backgroun-color', '#F0FAFA');
-				// $(this).filter(':row:cell:data').data().zebraPrevBgColor = $(':row:cell:data',this).css('backgroun-color');
-				// $('td :row:cell:data', this).css('backgroun-color', '#F0FAFA');
+				//$(this).col().css('background-color', 'red');
+				
+				
+				$.each($(this).col().cell().filter("td:data"), function(){
+					$(this).data().zebraPrevBgColor = $(this).css('backgroun-color');
+					$(this).css('background-color', '#F0FAFA');
+				});
+				
+				$(this).css('background-color', 'white');
+				
+				// Highlight the header
+				// console.log($(this).row().tblheader());
+				$(this).row().tblheader().data().zebraPrevBgColor = $(this).row().tblheader().css('background-color');
+				$(this).row().tblheader().css('background-color', 'lightgray');
+
+				$(this).col().tblheader().data().zebraPrevBgColor = $(this).col().tblheader().css('background-color');
+				$(this).col().tblheader().css('background-color', 'lightgray');
+				
+				// $(this).row().cell().filter("td:data").css('background-color', '#F0FAFA');
 			},
 			function(){
+				$.each($(this).row().cell().filter("td:data"), function(){
+					$(this).css('background-color',  $(this).data().zebraPrevBgColor);
+					delete $(this).data().zebraPrevBgColor;
+				});
+
+				$.each($(this).col().cell().filter("td:data"), function(){
+					$(this).css('background-color',  $(this).data().zebraPrevBgColor);
+					delete $(this).data().zebraPrevBgColor;
+				});
+				
+				
+				$(this).row().tblheader().css('background-color', $(this).row().tblheader().data().zebraPrevBgColor);
+				delete $(this).row().tblheader().data().zebraPrevBgColor;
+
+				$(this).col().tblheader().css('background-color', $(this).col().tblheader().data().zebraPrevBgColor);
+				delete $(this).col().tblheader().data().zebraPrevBgColor;
+				
 				// $(':row:cell:data',this).css('backgroun-color', $(':row:cell:data',this).data().zebraPrevBgColor);
 				// delete $(':row:cell:data',this).data().zebraPrevBgColor;
 			}
@@ -1377,13 +1412,37 @@ Caption
 <table>
 	<caption>Caption</caption>
 	
-	<colgroup span="3" />
-	<colgroup span="3" />
-	<colgroup span="3" />
-	<colgroup />
-	<colgroup />
-	<colgroup />
-	<colgroup />
+	<colgroup>
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+		<col />
+	</colgroup>
+		
+	<colgroup>
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+	</colgroup>
+
+	<colgroup>
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+	</colgroup>
 
 	<thead>
 		<tr>
@@ -1422,22 +1481,7 @@ Caption
 	
 	<tbody>
 		<tr>
-			<td>D - L1</td>
-			<td>D - L1</td>
-			<td>D - L1</td>
-			<td>D - L2</td>
-			<td>D - L2</td>
-			<td>D - L2</td>
-			<td>D - L3</td>
-			<td>D - L3</td>
-			<td>D - L3</td>
-			<td>D - L4</td>
-			<td>S - L4</td>
-			<td>S - L2</td>
-			<td>S - L1</td>
-		</tr>
-		<tr>
-			<td>D - L1</td>
+			<th>D - L1</th>
 			<td>D - L1</td>
 			<td>D - L1</td>
 			<td>D - L2</td>
@@ -1452,22 +1496,7 @@ Caption
 			<td>S - L1</td>
 		</tr>
 		<tr>
-			<td>D - L1</td>
-			<td>D - L1</td>
-			<td>D - L1</td>
-			<td>D - L2</td>
-			<td>D - L2</td>
-			<td>D - L2</td>
-			<td>D - L3</td>
-			<td>D - L3</td>
-			<td>D - L3</td>
-			<td>D - L4</td>
-			<td>S - L4</td>
-			<td>S - L2</td>
-			<td>S - L1</td>
-		</tr>
-		<tr>
-			<td>D - L1</td>
+			<th>D - L1</th>
 			<td>D - L1</td>
 			<td>D - L1</td>
 			<td>D - L2</td>
@@ -1482,22 +1511,7 @@ Caption
 			<td>S - L1</td>
 		</tr>
 		<tr>
-			<td>D - L1</td>
-			<td>D - L1</td>
-			<td>D - L1</td>
-			<td>D - L2</td>
-			<td>D - L2</td>
-			<td>D - L2</td>
-			<td>D - L3</td>
-			<td>D - L3</td>
-			<td>D - L3</td>
-			<td>D - L4</td>
-			<td>S - L4</td>
-			<td>S - L2</td>
-			<td>S - L1</td>
-		</tr>
-		<tr>
-			<td>D - L1</td>
+			<th>D - L1</th>
 			<td>D - L1</td>
 			<td>D - L1</td>
 			<td>D - L2</td>
@@ -1512,22 +1526,7 @@ Caption
 			<td>S - L1</td>
 		</tr>
 		<tr>
-			<td>D - L1</td>
-			<td>D - L1</td>
-			<td>D - L1</td>
-			<td>D - L2</td>
-			<td>D - L2</td>
-			<td>D - L2</td>
-			<td>D - L3</td>
-			<td>D - L3</td>
-			<td>D - L3</td>
-			<td>D - L4</td>
-			<td>S - L4</td>
-			<td>S - L2</td>
-			<td>S - L1</td>
-		</tr>
-		<tr>
-			<td>D - L1</td>
+			<th>D - L1</th>
 			<td>D - L1</td>
 			<td>D - L1</td>
 			<td>D - L2</td>
@@ -1542,7 +1541,7 @@ Caption
 			<td>S - L1</td>
 		</tr>
 		<tr>
-			<td>D - L1</td>
+			<th>D - L1</th>
 			<td>D - L1</td>
 			<td>D - L1</td>
 			<td>D - L2</td>
@@ -1557,7 +1556,67 @@ Caption
 			<td>S - L1</td>
 		</tr>
 		<tr>
+			<th>D - L1</th>
 			<td>D - L1</td>
+			<td>D - L1</td>
+			<td>D - L2</td>
+			<td>D - L2</td>
+			<td>D - L2</td>
+			<td>D - L3</td>
+			<td>D - L3</td>
+			<td>D - L3</td>
+			<td>D - L4</td>
+			<td>S - L4</td>
+			<td>S - L2</td>
+			<td>S - L1</td>
+		</tr>
+		<tr>
+			<th>D - L1</th>
+			<td>D - L1</td>
+			<td>D - L1</td>
+			<td>D - L2</td>
+			<td>D - L2</td>
+			<td>D - L2</td>
+			<td>D - L3</td>
+			<td>D - L3</td>
+			<td>D - L3</td>
+			<td>D - L4</td>
+			<td>S - L4</td>
+			<td>S - L2</td>
+			<td>S - L1</td>
+		</tr>
+		<tr>
+			<th>D - L1</th>
+			<td>D - L1</td>
+			<td>D - L1</td>
+			<td>D - L2</td>
+			<td>D - L2</td>
+			<td>D - L2</td>
+			<td>D - L3</td>
+			<td>D - L3</td>
+			<td>D - L3</td>
+			<td>D - L4</td>
+			<td>S - L4</td>
+			<td>S - L2</td>
+			<td>S - L1</td>
+		</tr>
+		<tr>
+			<th>D - L1</th>
+			<td>D - L1</td>
+			<td>D - L1</td>
+			<td>D - L2</td>
+			<td>D - L2</td>
+			<td>D - L2</td>
+			<td>D - L3</td>
+			<td>D - L3</td>
+			<td>D - L3</td>
+			<td>D - L4</td>
+			<td>S - L4</td>
+			<td>S - L2</td>
+			<td>S - L1</td>
+		</tr>
+		<tr>
+			<th>D - L1</th>
 			<td>D - L1</td>
 			<td>D - L1</td>
 			<td>D - L2</td>

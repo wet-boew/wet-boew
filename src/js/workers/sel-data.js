@@ -98,15 +98,15 @@ $.extend($.expr[":"], {data:function(elem, i, match, array){
 		break;
 	case "th": // Cell
 		if($(elem).data().tblparser.type != 1){
-			return false;
+			return false; // To Exclude any layout cell
 		}
 		
-		return false;
+		// return false;
 		
 		// If there are no TD in the stack, we would fill the stack
 		for(i=0; i< array.length; i++){
 			if(array[i].nodeName.toLowerCase() == "td"){
-				console.log('No td added from th');
+				// console.log('No td added from th');
 				return false;
 			}
 		};
@@ -171,13 +171,13 @@ $.extend($.expr[":"], {data:function(elem, i, match, array){
 	case "td": // Cell
 
 		if($(elem).data().tblparser.type == 2){
-			console.log('dataCellFound');
+			// console.log('dataCellFound');
 			return true;
 		}
-		console.log($(elem));
-		console.log(array);
-		console.log('dataCellNOTFound');
-		return false;
+		// console.log($(elem));
+		// console.log(array);
+		// console.log('dataCellNOTFound');
+		// return false;
 		break;
 	
 	}

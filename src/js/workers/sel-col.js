@@ -1,9 +1,9 @@
 /*!
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * Web Experience Toolkit (WET) / BoÃ®te Ã  outils de l'expÃ©rience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 /**
- * row Selector - Table usability - Core plugin
+ * col Selector - Table usability - Core plugin
  *
  * @author: Pierre Dubois
  *
@@ -14,7 +14,7 @@ var _pe = window.pe || {
 		fn : {}
 	};
 
-$.extend($.expr[":"], {cell:function(elem, i, match, array){  
+$.extend($.expr[":"], {col:function(elem, i, match, array){  
 
 	// query Example: $('table:eq(4):keycell').css('background-color', 'yellow');
 
@@ -56,6 +56,7 @@ $.extend($.expr[":"], {cell:function(elem, i, match, array){
 	case "colgroup": // Group
 		break;
 	case "col": // Vector
+		return true;
 		break;
 	case "thead": // Group
 		break;
@@ -64,22 +65,29 @@ $.extend($.expr[":"], {cell:function(elem, i, match, array){
 	case "tfoot": // Group
 		break;
 	case "tr": // Vector
-		for(i=0; i< $(elem).data().tblparser.cell.length; i++){
-			array.push($(elem).data().tblparser.cell[i].elem);
-		}
-		return false;
+		break;
 	case "th": // Cell
-		// console.log('Cell selector called for th');
-		return true;
+		if($(elem).data().tblparser.type != 1){
+			return false;
+		}
+		if($(elem).data().tblparser.scope == "col"){
+			return true;
+		}
+		break;
 	case "td": // Cell
-		// console.log('Cell selector called for td');
-		return true;
+		
+		if($(elem).data().tblparser.col.elem){
+			array.push($(elem).data().tblparser.col.elem);
+		}
+		
+		return false;
 	}
 
 	 return false;
 }});
 
-$.fn.cell = function(elem){
+
+$.fn.col = function(elem){
 
 	var obj = (elem?$(elem):this);
 	var objDOM = (elem?$(elem):this).get(0);
@@ -127,11 +135,7 @@ $.fn.cell = function(elem){
 		case "colgroup": // Group
 			break;
 		case "col": // Vector
-			var stack = [];
-			for(i=0; i<$(obj).data().tblparser.cell.length; i++){
-				stack.push($(obj).data().tblparser.cell[i].elem);
-			}
-			return $(stack);
+			return elem;
 			break;
 		case "thead": // Group
 			break;
@@ -140,16 +144,33 @@ $.fn.cell = function(elem){
 		case "tfoot": // Group
 			break;
 		case "tr": // Vector
-			var stack = [];
-			for(i=0; i<$(obj).data().tblparser.cell.length; i++){
-				stack.push($(obj).data().tblparser.cell[i].elem);
-			}
-			return $(stack);
-
+			break;
 		case "th": // Cell
-			return obj;
+			
+			if($(obj).data().tblparser.type != 1){
+				return $();
+			}
+			if($(obj).data().tblparser.scope == "col"){
+				return obj;
+			}
+			break;
+			
 		case "td": // Cell
-			return obj;
+			
+			if($(obj).data().tblparser.col.elem){
+				var stack = [];
+				stack.push($(obj).data().tblparser.col.elem);
+				return $(stack);
+			}
+			break;
+			// array.push($(elem).data().tblparser.row.elem);
+			
+			// var ret = $($(obj).data().tblparser.row.elem);
+			// ret.prevObject = obj;
+			// return this.pushStack(ret, "row", "");
+			
+			// Return true if this are a key cell otherwise false
+	
 	}
 	return $();
 }

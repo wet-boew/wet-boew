@@ -126,14 +126,7 @@ $.fn.row = function(elem){
 	switch(objDOM.nodeName.toLowerCase()){
 	
 		case "table": // Matrix
-			if($(obj).data().tblparser.keycell){
-				var stack = [];
-				for(i=0; i<$(obj).data().tblparser.keycell.length; i++){
-					stack.push($(obj).data().tblparser.keycell[i].elem);
-				}
-				return $(stack);
-			}
-			return $();
+			break;
 		case "caption": // Cell
 			// A Caption can not have any key cell
 			return $();

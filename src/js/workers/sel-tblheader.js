@@ -1,5 +1,5 @@
 /*!
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * Web Experience Toolkit (WET) / BoÃ®te Ã  outils de l'expÃ©rience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 /**
@@ -14,7 +14,7 @@ var _pe = window.pe || {
 		fn : {}
 	};
 
-$.extend($.expr[":"], {cell:function(elem, i, match, array){  
+$.extend($.expr[":"], {tblheader:function(elem, i, match, array){  
 
 	// query Example: $('table:eq(4):keycell').css('background-color', 'yellow');
 
@@ -64,25 +64,31 @@ $.extend($.expr[":"], {cell:function(elem, i, match, array){
 	case "tfoot": // Group
 		break;
 	case "tr": // Vector
-		for(i=0; i< $(elem).data().tblparser.cell.length; i++){
-			array.push($(elem).data().tblparser.cell[i].elem);
-		}
+		
+		array.push($(elem).data().tblparser.header.elem);
+		
 		return false;
 	case "th": // Cell
-		// console.log('Cell selector called for th');
+		if($(elem).data().tblparser.type != 1){
+			return false;
+		}
 		return true;
 	case "td": // Cell
-		// console.log('Cell selector called for td');
-		return true;
+		return false;
 	}
 
 	 return false;
 }});
 
-$.fn.cell = function(elem){
 
-	var obj = (elem?$(elem):this);
-	var objDOM = (elem?$(elem):this).get(0);
+$.fn.tblheader = function(scope){
+
+	var obj = this;
+	var objDOM = $(this).get(0);
+	
+	if(!scope || !(scope == "row" | scope == "col")){
+		scope = "row";
+	}
 
 	if(!$(obj).data().tblparser){
 
@@ -127,11 +133,15 @@ $.fn.cell = function(elem){
 		case "colgroup": // Group
 			break;
 		case "col": // Vector
-			var stack = [];
-			for(i=0; i<$(obj).data().tblparser.cell.length; i++){
-				stack.push($(obj).data().tblparser.cell[i].elem);
+			
+			if(!$(obj).data().tblparser && !$(obj).data().tblparser.header){
+				return $(); // A col object is required
 			}
+			
+			var stack = [];
+			stack.push($(obj).data().tblparser.header.elem);
 			return $(stack);
+
 			break;
 		case "thead": // Group
 			break;
@@ -140,16 +150,33 @@ $.fn.cell = function(elem){
 		case "tfoot": // Group
 			break;
 		case "tr": // Vector
-			var stack = [];
-			for(i=0; i<$(obj).data().tblparser.cell.length; i++){
-				stack.push($(obj).data().tblparser.cell[i].elem);
+
+			if(!$(obj).data().tblparser && !$(obj).data().tblparser.header){
+				return $(); // A col object is required
 			}
+
+			var stack = [];
+			stack.push($(obj).data().tblparser.header.elem);
 			return $(stack);
 
 		case "th": // Cell
-			return obj;
+			return true;
 		case "td": // Cell
-			return obj;
+			
+			return $();
+			
+			var stack = [];
+			stack.push($(obj).data().tblparser.row.elem);
+			return $(stack);
+			
+			// array.push($(elem).data().tblparser.row.elem);
+			
+			// var ret = $($(obj).data().tblparser.row.elem);
+			// ret.prevObject = obj;
+			// return this.pushStack(ret, "row", "");
+			
+			// Return true if this are a key cell otherwise false
+	
 	}
 	return $();
 }
