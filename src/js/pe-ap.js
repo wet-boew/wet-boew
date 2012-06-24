@@ -111,6 +111,8 @@
 								$.mobile.ajaxEnabled = false;
 								$.mobile.pushStateEnabled = false;
 							});
+							pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
+							pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
 							// preprocessing before mobile page is enhanced
 							$(document).on("pageinit", function () {
 							});
@@ -986,8 +988,6 @@
 				$("#wb-main a[href^='#']").on("click", function () {
 					pe.focus($($(this).attr("href") + exclude).attr("tabindex", "-1"));
 				});
-				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
-				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
 			} else {
 				// Move the focus to the anchored element for skip nav links
 				$("#wb-skip a").on("click", function () {
