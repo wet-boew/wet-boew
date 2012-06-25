@@ -23,6 +23,11 @@
 @import url('includes/default-responsive-1200.css');
 /* -----Build Include Section End----- */
 }
+@media screen and (min-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('includes/default-desktop.css');
+/* -----Build Include Section End----- */
+}
 
 /* Mobile view */
 @media (max-width:767px) {

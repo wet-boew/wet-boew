@@ -4,18 +4,18 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 .ie6 #wb-head{margin-top:3px;}
-.ie6 #gcwu-gcnb-fip, * html #gcwu-gcnb{height:82px !important;}
+.ie6 #gcwu-gcnb-fip, .ie6 #gcwu-gcnb{height:82px !important;}
 .ie6 #gcwu-bnr-in{height:52px !important;overflow:visible;}
-.ie6 #gcwu-intranetnb, * html #gcwu-intranetnb-in, * html #gcwu-psnb .wet-boew-menubar, * html .mb-menu li{height:32px !important;}
+.ie6 #gcwu-intranetnb, .ie6 #gcwu-intranetnb-in, .ie6 #gcwu-psnb .wet-boew-menubar, .ie6 .mb-menu li{height:32px !important;}
 .ie6 #gcwu-sig{margin:0;}
 .ie6 #gcwu-wmms{top:44px;}
 .ie6 #gcwu-gcnb  ul li{padding:8px 0 10px 5px !important;}
 .ie6 #gcwu-title{position:static !important;}
 .ie6 #gcwu-title-in{position:static !important;top:auto !important;}
 .ie6 #gcwu-title a{position:relative !important;top:auto !important;}
-.ie6 #gcwu-sig img,* html #gcwu-wmms img{height: auto !important; width: auto !important;}
+.ie6 #gcwu-sig img,.ie6 #gcwu-wmms img{height: auto !important; width: auto !important;}
 .ie6 #gcwu-gcnb  ul li{padding:8px 0 10px 5px !important;}
-.ie6 #gcwu-psnb .mb-menu .expandicon{background-image:url(images/menu-drop-down.gif);}
+.ie6 #gcwu-psnb .mb-menu .expandicon{background-image:url(../images/menu-drop-down.gif);}
 .ie6 #gcwu-bc ol{padding-bottom:10px;}
 .ie6 #gcwu-psnb .wet-boew-menu .showcase-visible{width:960px;}
 .ie6 #gcwu-subsite a{font-size:expression(this.previousSibling == null ? '100%' : '-' )}
