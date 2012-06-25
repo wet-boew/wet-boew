@@ -141,7 +141,7 @@
 			pe.footer.find('footer').append(wet_boew_theme.wmms.detach());
 
 			// jquery mobile has loaded
-			$(document).on("mobileinit", function () {
+			$(document).on("pagecreate", function () {
 				if (pe.menubar.length > 0) {
 					wet_boew_theme.psnb.parent().remove();
 				}

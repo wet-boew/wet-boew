@@ -76,6 +76,15 @@
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page');
+				$(document).on("mobileinit", function () {
+					$.extend($.mobile, {
+						ajaxEnabled: false,
+						pushStateEnabled: false,
+						autoInitializePage: false
+					});
+				});
+				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
+				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
 			}
 
 			//Load ajax content
@@ -106,16 +115,10 @@
 							if (wet_boew_theme !== null) {
 								wet_boew_theme.mobileview();
 							}
-							$(document).on("mobileinit", function () {
-								//$.mobile.loadingMessage = false;
-								$.mobile.ajaxEnabled = false;
-								$.mobile.pushStateEnabled = false;
-							});
-							pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
-							pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
 							// preprocessing before mobile page is enhanced
 							$(document).on("pageinit", function () {
 							});
+							$.mobile.initializePage();
 						}
 					}
 					pe.dance();
