@@ -575,6 +575,11 @@
         padding:2px 6px;
     }
 
+	// Margin-top must be 0px in mobile view for these buttons to ensure they work correctly when enhanced by jQuery Mobile
+	.ui-mobile input[type="submit"],.ui-mobile input[type="reset"],.ui-mobile input[type="button"]{
+		margin-top:0px;
+	}
+
     input:focus[type="submit"],input:hover[type="submit"],input:focus[type="button"],input:hover[type="button"],input:focus[type="reset"],input:hover[type="reset"]{
         background:#ddd url(../images/button-focus.gif) 0 0 repeat-x;
         text-shadow:0 1px 0 #ddd;
