@@ -989,10 +989,10 @@
 			if (pe.mobile) {
 				// Move the focus to the anchored element for same page content area links
 				$("#wb-main a[href^='#']").on("click", function () {
-					$($(this).attr("href") + exclude).each(function () {
-						pe.focus($(this).attr("tabindex", "-1"));
-						$.mobile.silentScroll($(this).offset().top);
-					});
+					var $this = $($(this).attr("href") + exclude);
+					if ($this.length > 0) {
+						$.mobile.silentScroll(pe.focus($this.attr("tabindex", "-1")).offset().top);
+					}
 				});
 			} else {
 				// Move the focus to the anchored element for skip nav links
