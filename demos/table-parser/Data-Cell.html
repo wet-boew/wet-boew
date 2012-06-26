@@ -29,61 +29,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- The following script are for the try it button -->
 <script>
 	//<![CDATA[
+	
 	$(document).ready(function(){
 		$('input.tryit').click(function(){
 			eval($(this).prev().val());
 		});
 		
-		$('table:eq(8):data').hover(
-			function(){
-				$.each($(this).row().cell().filter("td:data"), function(){
-					$(this).data().zebraPrevBgColor = $(this).css('backgroun-color');
-					$(this).css('background-color', '#F0FAFA');
-				});
-				
-				//$(this).col().css('background-color', 'red');
-				
-				
-				$.each($(this).col().cell().filter("td:data"), function(){
-					$(this).data().zebraPrevBgColor = $(this).css('backgroun-color');
-					$(this).css('background-color', '#F0FAFA');
-				});
-				
-				$(this).css('background-color', 'white');
-				
-				// Highlight the header
-				// console.log($(this).row().tblheader());
-				$(this).row().tblheader().data().zebraPrevBgColor = $(this).row().tblheader().css('background-color');
-				$(this).row().tblheader().css('background-color', 'lightgray');
-
-				$(this).col().tblheader().data().zebraPrevBgColor = $(this).col().tblheader().css('background-color');
-				$(this).col().tblheader().css('background-color', 'lightgray');
-				
-				// $(this).row().cell().filter("td:data").css('background-color', '#F0FAFA');
-			},
-			function(){
-				$.each($(this).row().cell().filter("td:data"), function(){
-					$(this).css('background-color',  $(this).data().zebraPrevBgColor);
-					delete $(this).data().zebraPrevBgColor;
-				});
-
-				$.each($(this).col().cell().filter("td:data"), function(){
-					$(this).css('background-color',  $(this).data().zebraPrevBgColor);
-					delete $(this).data().zebraPrevBgColor;
-				});
-				
-				
-				$(this).row().tblheader().css('background-color', $(this).row().tblheader().data().zebraPrevBgColor);
-				delete $(this).row().tblheader().data().zebraPrevBgColor;
-
-				$(this).col().tblheader().css('background-color', $(this).col().tblheader().data().zebraPrevBgColor);
-				delete $(this).col().tblheader().data().zebraPrevBgColor;
-				
-				// $(':row:cell:data',this).css('backgroun-color', $(':row:cell:data',this).data().zebraPrevBgColor);
-				// delete $(':row:cell:data',this).data().zebraPrevBgColor;
-			}
-		);
 	});
+	
 	//]]>
 </script>
 <!-- END of Try it button -->
@@ -189,8 +142,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<caption>Example Table: Number of PPH requests</caption>
 
 	
+	<colgroup>
+		<col>
+	</colgroup>
+
+	
+	<colgroup span="2" />
 	<colgroup />
-  
+	<colgroup />
+  <!--
 	<colgroup>
 		<col />
 		<col />
@@ -203,7 +163,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<colgroup>
 		<col>
 	</colgroup>
-
+-->
 
 	<thead>
 		<tr>
@@ -1425,8 +1385,11 @@ Caption
 		<col />
 		<col />
 	</colgroup>
+
 	<colgroup>
 		<col />
+	</colgroup>
+	<colgroup>
 		<col />
 		<col />
 	</colgroup>
