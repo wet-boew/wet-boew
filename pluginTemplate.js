@@ -23,7 +23,7 @@
 		_exec: function (elm) {
 			// Don't include this if statement if your plugin shouldn't run in mobile mode.
 			if (pe.mobile) {
-				return _pe.fn.pluginName.mobile(elm);
+				return _pe.fn.pluginName.mobile(elm).trigger('create');
 			}
 			var opts,
 				overrides,

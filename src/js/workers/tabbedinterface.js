@@ -18,29 +18,34 @@
 			var $tabs,
 				$panels,
 				$accordion,
-				i,
-				$collapsible;
+				$collapsible
+				
 			// Convert html elements and attributes into the format the jQuery mobile accordian plugin expects.
 			// Get the content out of the html structure tabbedinterface usually expects.
-			$tabs = elm.find(".tabs li > a");
 			$panels = elm.find(".tabs-panel").children();
 			// Create the accordion structure to move the content to.
 			$accordion = $('<div data-role="collapsible-set" data-content-theme="b" data-theme="b"/>');
-			for (i = 0; i < $tabs.length; i += 1) {
+			if ($panels.filter(".default").length < 1){
+				$panels.filter(":first").addClass("default");
+			}
+			elm.find(".tabs").remove();
+			$panels.each(function(){
+				var $p = $(this);
 				$collapsible = $('<div data-role="collapsible"/>');
-				$collapsible.append('<h2>' + $tabs.eq(i).text() + '</h2>');
-				$collapsible.append($panels.eq(i).html());
-				if ($tabs.eq(i).parent().hasClass('default')) {
+				$collapsible.append($p.find(":header:first").parent().html());
+				if ($p.hasClass('default')) {
 					$collapsible.attr('data-collapsed', 'false');
 				}
 				$accordion.append($collapsible);
-			}
-			elm.replaceWith($accordion);
+			});
+			elm.empty().append($accordion);
 			return elm;
 		},
 		_exec : function (elm) {
 			if (pe.mobile) {
-				return _pe.fn.tabbedinterface.mobile(elm);
+				if (! elm.hasClass("tabs-style-4") && !elm.hasClass("tabs-style-5")){
+					return _pe.fn.tabbedinterface.mobile(elm).trigger('create');
+				}
 			}
 			var $default_tab,
 				$nav,

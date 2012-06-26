@@ -115,6 +115,10 @@
     .span-1 h3,.span-2 h3,.span-3 h3,.span-4 h3,.span-5 h3,.span-6 h3,.span-7 h3,.span-8 h3,.span-9 h3,.span-10 h3,.span-11 h3,.span-12 h3,.span-1 h4,.span-2 h4,.span-3 h4,.span-4 h4,.span-5 h4,.span-6 h4,.span-7 h4,.span-8 h4,.span-9 h4,.span-10 h4,.span-11 h4,.span-12 h4,.span-1 h5,.span-2 h5,.span-3 h5,.span-4 h5,.span-5 h5,.span-6 h5,.span-7 h5,.span-8 h5,.span-9 h5,.span-10 h5,.span-11 h5,.span-12 h5,.span-1 h6,.span-2 h6,.span-3 h6,.span-4 h6,.span-5 h6,.span-6 h6,.span-7 h6,.span-8 h6,.span-9 h6,.span-10 h6,.span-11 h6,.span-12 h6{
         margin:20px 0 5px;
     }
+    
+    .ui-mobile .ui-collapsible-heading {
+	margin:0!important;
+    }
 
     .border-none{
         border:none;
