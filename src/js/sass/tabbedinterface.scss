@@ -54,16 +54,11 @@
     display:none;
 }
 
-.tabs-panel > div.active{
+.tabs-panel > div.active, .no-js .tabs-panel > div{
     display:block;
 }
 
-.tabs-panel a:hover,.tabs-panel a:focus,.tabs-panel a:active{
-    background:#fff!important;
-    color:#c00!important;
-}
-
-.wet-boew-tabbedinterface.tabs-panel h2,.tabs-panel h3,.tabs-panel h4,.tabs-panel h5,.tabs-panel h6{
+.tabs-panel h2,.tabs-panel h3,.tabs-panel h4,.tabs-panel h5,.tabs-panel h6{
     border:none;
 }
 

@@ -10,13 +10,13 @@
 /*
  * pe, a progressive javascript library agnostic framework
  */
-/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, file: false*/
+/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, file: false, wet_boew_theme: false*/
 (function ($) {
 	var pe, _pe;
 	/**
 	* pe object
 	* @namespace pe
-	* @version 1.3
+	* @version 3.0
 	*/
 	pe = (typeof window.pe !== "undefined" && window.pe !== null) ? window.pe : {
 		fn: {}
@@ -25,15 +25,15 @@
 		/** Global object init properties */
 		/**
 		 * @memberof pe
-		 * @type {string} Page language, defaults to fra if not available
+		 * @type {string} Page language, defaults to "en" if not available
 		 */
-		language: ($("html").attr("lang") ? ($("html").attr("lang").indexOf("en") === 0 ? "eng" : "fra") : $("meta[name='dc.language'], meta[name='dcterms.language']").attr("content")),
+		language: ($("html").attr("lang").length > 0 ? $("html").attr("lang") : "en"),
 		touchscreen: 'ontouchstart' in document.documentElement,
-		theme: 'theme-gcwu-fegc', // Figure out way to detect this
-		suffix: "",
+		theme: "",
+		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
 		menubar: $('.wet-boew-menubar'),
-		leftcol: $('#wb-sec'),
+		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
 		/**
 		 * Detects the doctype of the document (loosely)
@@ -67,17 +67,39 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var mb_dialogue, mb_header, bcrumb, sub, search_elm, s_dialogue, _list, links, footer1, ul, pefile, lang_links, lang_nav, $lch3, $o;
+			var $lch3, $o;
 
-			// Identify the theme and whether or not the device has a touchscreen
+			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
-			// determine if this file is minified
-			pefile = pe.url(document.getElementById('progressive').src).file;
-			pe.suffix = pefile.substr(pefile.length - 7) === "-min.js" ? "-min" : "";
 
+			// Is this a mobile device?
 			if (pe.mobilecheck()) {
-			    pe.mobile = true;
-			    $('body > div').attr('data-role', 'page');
+				pe.mobile = true;
+				$('body > div').attr('data-role', 'page');
+
+				// Move the focus to the anchored element for same page content area links
+				$("#wb-main a[href^='#']").on("click", function () {
+					var $this = $($(this).attr("href") + ":not(a[href], ul.tabs a, input, button, textarea)");
+					if ($this.length > 0) {
+						$.mobile.silentScroll($this.offset().top);
+						//pe.focus($this.attr("tabindex", "-1"));
+					}
+				});
+
+				$(document).on("mobileinit", function () {
+					$.extend($.mobile, {
+						ajaxEnabled: false,
+						pushStateEnabled: false,
+						autoInitializePage: false
+					});
+				});
+				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
+				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
+			} else {
+				// Move the focus to the anchored element for skip nav links
+				$("#wb-skip a").on("click", function () {
+					pe.focus($($(this).attr("href")).attr("tabindex", "-1"));
+				});
 			}
 
 			//Load ajax content
@@ -99,171 +121,24 @@
 			})).always(function () {
 				//Wait for localisation and ajax content to load plugins
 				$(document).bind("languageloaded", function () {
+					if (wet_boew_theme !== null) {
+						// Initialize the theme
+						wet_boew_theme.init();
+
+						//Load the mobile view
+						if (pe.mobile === true) {
+							if (wet_boew_theme !== null) {
+								wet_boew_theme.mobileview();
+							}
+							// preprocessing before mobile page is enhanced
+							$(document).on("pageinit", function () {
+							});
+							$.mobile.initializePage();
+						}
+					}
 					pe.dance();
 				});
 				pe.add.language(pe.language);
-
-				//Load the mobile view
-				if (pe.mobile === true) {
-					if (pe.menubar.length > 0) {
-						// lets init some variables for use in various transformations
-						// raw variable running on the dom
-						// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
-						// lets transform the menu to a dialog box
-						mb_dialogue = '<div data-role="page" id="jqmobile-wet-boew-menubar"><div data-role="header">';
-						mb_header = pe.header.find('#gcwu-psnb > :header');
-						mb_dialogue += "<h1>" + mb_header.html() + '</h1></div>';
-						mb_dialogue += '<div data-role="content" data-inset="true"><nav role="navigation">';
-
-						bcrumb = pe.header.find('#gcwu-bc');
-						if (bcrumb.length > 0) {
-							mb_dialogue += '<div id="jqm-mb-location-text">' + bcrumb.html() + '</div>';
-							bcrumb.remove();
-						} else {
-							mb_dialogue += '<div id="jqm-mb-location-text"></div>';
-						}
-
-						if (pe.leftcol.length > 0) {
-							// we have a submenu
-							sub = '<h2>' + pe.leftcol.find(':header').eq(0).html() + '</h2>';
-							sub += '<div data-role="collapsible-set">';
-							sub += pe.leftcol.find('.wb-sec-def').html().replace(/<section>/gi, "<div data-role=\"collapsible\">").replace(/<\/section>/gi, "</div>");
-
-							// lets work on the menu shift
-							sub = sub.replace(/<h(.*?)>\s*<a/gmi, "<h$1><a class=\"ui-link\" data-icon=\"arrow-r\" data-theme=\"b\"");
-							sub = sub.replace(/<ul(.*?)>/gi, "<ul data-role=\"listview\"$1>").replace(/<\/ul>/gi, "</ul>");
-							sub = sub.replace(/<div class=\"top-level\"/gmi, "<div data-role=\"button\" data-icon=\"arrow-r\" class=\"top-level\"");
-							sub += '</div>';
-							mb_dialogue += sub;
-							pe.leftcol.remove();
-						}
-
-						mb_dialogue += '<h2>' + mb_header.html() + '</h2>';
-						mb_dialogue += '<div data-role=\"collapsible-set\">';
-
-						pe.menubar.find('ul.mb-menu').clone().each(function () {
-							$(this).find('div[class^=span]').each(function () {
-								$(this).replaceWith($(this).html());
-							});
-							$(this).find('.mb-sm').each(function () {
-								$(this).html('<div data-role=\"collapsible-set\">' + $(this).html() + '</div)');
-							});
-							$(this).children().children('div:first-child,h2,h3,h4,section').each(function () {
-								var $this = $(this);
-								if ($this.is('section')) {
-									$this = $this.children('h2,h3,h4').eq(0);
-								}
-								$this.html($this.text());
-								if ($this.is('div')) {
-									mb_dialogue += "<div data-role=\"button\" data-icon=\"arrow-r\" data-corners=\"false\" class=\"top-level" + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))) + "\" data-theme=\"a\">" + $(this).html() + "</div>";
-								} else {
-									$this.parent().find("ul").attr("data-role", "listview");
-									$this.parent().find(".mb-sm div > a,.mb-sm h2,.mb-sm h3,.mb-sm h4").each(function () {
-										var $this_sub = $(this), $this_sub_parent = $this_sub.parent();
-										if ($this_sub_parent.is('div')) {
-											$this_sub_parent.html($this_sub_parent.text());
-											$this_sub_parent.attr('data-role', 'button').attr('data-icon', 'arrow-r').attr('data-corners', 'false').attr('data-theme', 'a').addClass('top-level' + ($this.parent().is("li:first-child") ? " ui-corner-top" : (($this.parent().is("li:last-child") ? " ui-corner-bottom" : ""))));
-										} else if ($this_sub_parent.is('section')) {
-											$this_sub.html($this_sub.text());
-											$this_sub_parent.wrap("<div data-role=\"collapsible\" data-theme=\"a\">");
-											$this_sub_parent.parent().html($this_sub_parent.html());
-										}
-									});
-									mb_dialogue += "<div data-role=\"collapsible\" data-theme=\"a\">" + $this.parent().html() + "</div>";
-								}
-							});
-						});
-						mb_dialogue += '</nav></div>';
-
-						mb_dialogue += '</div></div>';
-						pe.pagecontainer().append(mb_dialogue);
-						mb_header.wrapInner('<a href="#jqmobile-wet-boew-menubar" data-rel="dialog"></a>');
-					}
-
-					search_elm = pe.header.find('#gcwu-srchbx');
-					if (search_elm.length > 0) {
-						// :: Search box transform lets transform the search box to a dialogue box
-						s_dialogue = $('<div data-role="page" id="jqmobile-wet-boew-search"></div>');
-						s_dialogue.append($('<div data-role="header"><h1>' + search_elm.find(':header').text() + '</h1></div>')).append($('<div data-role="content"></div>').append(search_elm.find('form').clone()));
-						pe.pagecontainer().append(s_dialogue);
-						search_elm.find(':header').wrapInner('<a href="#jqmobile-wet-boew-search" data-rel="dialog"></a>');
-						// lets see if we can change these to navbars
-						_list = $('<ul></ul>').hide().append('<li><a data-rel="dialog" data-theme="b"  data-icon="grid" href="' + mb_header.find('a').attr('href') + '">' + mb_header.find('a').text() + "</a></li>").append('<li><a data-rel="dialog" data-theme="b" data-icon="search" href="' + search_elm.find(':header a').attr('href') + '">' + search_elm.find(':header a').text() + "</a></li>");
-						pe.header.find('#gcwu-title').after($('<div data-role="navbar" data-iconpos="right"></div>').append(_list));
-					}
-
-					lang_links = $('#gcwu-lang');
-					if (lang_links.length > 0) {
-						links = lang_links.find('a').attr("data-theme", "a");
-						lang_nav = $('<div data-role="navbar"><ul></ul></div>');
-						ul = lang_nav.children();
-						links.each(function () {
-							ul.append($('<li/>').append(this));
-						});
-						lang_links.find('#gcwu-ef-lang').replaceWith(lang_nav.children().end());
-						lang_links.find('#gcwu-other-lang').remove();
-					}
-
-					if (pe.footer.find('#gcwu-sft').length > 0) {
-						// transform the footer into mobile nav bar
-						links = pe.footer.find('#gcwu-sft-in #gcwu-tctr a, #gcwu-sft-in .gcwu-col-head a').attr("data-theme", "b");
-						footer1 = $('<div data-role="navbar"><ul></ul></div>');
-						ul = footer1.children();
-						links.each(function () {
-							ul.append($('<li/>').append(this));
-						});
-						pe.footer.find('#gcwu-sft-in').replaceWith(footer1.children().end());
-						pe.footer.find('#gcwu-gcft').parent().remove();
-					} else if (pe.footer.find('#gcwu-tc').length > 0) {
-						// transform the footer into mobile nav bar
-						links = pe.footer.find('#gcwu-tc a').attr("data-theme", "b");
-						footer1 = $('<div data-role="navbar"><ul></ul></div>');
-						ul = footer1.children();
-						links.each(function () {
-							ul.append($('<li/>').append(this));
-						});
-						pe.footer.find('#gcwu-tc').replaceWith(footer1.children().end());
-					}
-					pe.footer.find('footer').append($('#gcwu-wmms').detach());
-
-					// jquery mobile has loaded
-					$(document).on("mobileinit", function () {
-						//$.mobile.loadingMessage = false;
-						$.mobile.ajaxEnabled = false;
-						$.mobile.pushStateEnabled = false;
-						if (pe.menubar.length > 0) {
-							pe.header.find('#gcwu-psnb').parent().remove();
-						}
-						if (search_elm.length > 0) {
-							search_elm.parent().remove();
-							_list.show();
-						}
-					});
-					// preprocessing before mobile page is enhanced
-					$(document).on("pageinit", function () {
-						// add some language
-						/**  $('.ui-page #wb-core a[href*="#"]').each(function () {
-								var _elm = $(this);
-								if (_elm.attr('href').indexOf('#') > 0) {
-								// this is a external anchor
-								_elm.unbind('click').unbind('vclick').on('click vclick', function (e) {
-								e.stopPropagation();
-								e.preventDefault();
-								$.mobile.changePage(pe.url(_elm.attr('href')).removehash());
-								});
-								// _elm.attr('href', pe.url(_elm.attr('href')).hashtoparam());
-								} else {
-								// this is inpage anchor
-								_elm.unbind('click').unbind('vclick').on('click vclick', function (e) {
-								e.stopPropagation();
-								e.preventDefault();
-								var $target = $(this).parents('.ui-page').find($(this).attr('href')).eq(0);
-								if ($target.length == 1) $.mobile.silentScroll($target.offset().top);
-								});
-								}
-								}); **/
-					});
-				}
 			});
 
 			// add polyfills if necessary;
@@ -710,6 +585,165 @@
 			}
 		},
 		/**
+		 * A suite of menu related functions for easier handling of menus
+		 * @namespace pe.menu
+		 */
+		menu: {
+			/**
+			 * Applies a specific class to the current link/section in a menu based on the current URL or the links in a breadcrumb trail.
+			 * @memberof pe.menu
+			 * @param {jQuery object | DOM object} menusrc Menu to apply the class to
+			 * @param {jQuery object | DOM object} bc Breadcrumb trail
+			 * @param {string} navclass Optional. Class to apply. Defaults to "nav-current".
+			 * @function
+			 * @return {jQuery object} Link where match found
+			 */
+			navcurrent: function (menusrc, bcsrc, navclass) {
+				var navlink,
+					navurl,
+					navtext,
+					i,
+					pageurl = pe.url(window.location.href).removehash(),
+					bcurl = [],
+					bctext = [],
+					match;
+				menusrc = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc));
+				bcsrc = $((typeof bcsrc.jquery !== "undefined" ? bcsrc : $(bcsrc)).find('a').get().reverse());
+				navclass = (typeof navclass === "undefined") ? 'nav-current' : navclass;
+				// Retrieve the path and link text for each breacrumb link
+				bcsrc.each(function (index) {
+					bcurl[index] = $(this).attr('href');
+					bctext[index] = $(this).text();
+				});
+
+				$(menusrc.find('a').get().reverse()).each(function () {
+					navlink = $(this);
+					navurl = navlink.attr('href');
+					navtext = navlink.text();
+					match = (navurl === pageurl);
+					for (i = 0; !match && i < bcurl.length; i += 1) {
+						if (bcurl[i] !== "#" && (bcurl[i] === navurl || bctext[i] === navtext)) {
+							match = true;
+							break;
+						}
+					}
+					if (match) {
+						navlink.addClass(navclass);
+						return false;
+					}
+				});
+				return (match ? navlink : $());
+			},
+			/**
+			 * Builds jQuery Mobile nested accordion menus from an existing menu
+			 * @memberof pe.menu
+			 * @param {jQuery object | DOM object} menusrc Existing menu to process
+			 * @param {number} hlevel Heading level to process (e.g., h3 = 3)
+			 * @param {string} theme Letter representing the jQuery Mobile theme
+			 * @param {boolean} menubar Optional. Is the heading level to process in a menu bar? Defaults to false.
+			 * @function
+			 * @return {jQuery object} Mobile menu
+			 */
+			buildmobile: function (menusrc, hlevel, theme, menubar) {
+				var menu = $('<div data-role="controlgroup"></div>'),
+					menuitems = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc)).find('> div, > ul, h' + hlevel),
+					next,
+					subsection,
+					hlink,
+					nested;
+				if (menuitems.first().is('ul')) {
+					menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
+				} else {
+					menuitems.each(function (index) {
+						var $this = $(this);
+						// If the menu item is a heading
+						if ($this.is('h' + hlevel)) {
+							hlink = $this.children('a');
+							subsection = $('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
+							// If the original menu item was in a menu bar
+							if (menubar) {
+								$this = $this.parent().find('a').eq(1).closest('ul, div, h' + hlevel + 1).first();
+								next = $this;
+							} else {
+								next = $this.next();
+							}
+
+							if (next.is('ul')) {
+								// The original menu item was not in a menu bar
+								if (!menubar) {
+									next.prepend($('<li></li>').append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home'))));
+								}
+								nested = next.find('li ul');
+								// If a nested list is detected
+								nested.each(function (index) {
+									var $this = $(this);
+									hlink = $this.prev('a');
+									if ((hlevel + 1 + index) < 7) {
+										// Make the nested list into a collapsible section
+										$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
+										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
+										$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+										hlink.remove();
+									} else {
+										$this.attr('data-role', 'listview').attr('data-theme', theme);
+									}
+								});
+								subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
+								subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? "<div data-role=\"collapsible-set\" data-theme=\"" + theme + "\"></div>" : "") + '</div>');
+							} else {
+								// If the section contains sub-sections
+								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme));
+								// If the original menu item was not in a menu bar
+								if (!menubar) {
+									subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+								}
+							}
+							menu.append(subsection);
+						} else if ($this.is('div')) { // If the menu item is a div
+							menu.append($this.children('a').attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+						}
+					});
+					menu.children().wrapAll('<div data-role="collapsible-set" data-theme="' + theme + '"></div>');
+				}
+				return menu;
+			},
+			/**
+			 * Expands collapsible menus built by pe.menu.mobile that have a descendant link matching the selector
+			 * @memberof pe.menu
+			 * @param {jQuery object | DOM object} menusrc Mobile menu to correct
+			 * @param {string} selector Optional. Selector for the link(s) to expand. Defaults to '.nav-current'.
+			 * @function
+			 * @return {void} Mobile menu
+			 */
+			expandmobile: function (menusrc, selector) {
+				$((typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc))).find((typeof selector === "undefined") ? '.nav-current' : selector).parents('div[data-role="collapsible"]').attr('data-collapsed', 'false');
+			},
+			/**
+			 * Correct the corners for each sections and sub-section in the menu build by pe.menu.buildmobile
+			 * @memberof pe.menu
+			 * @param {jQuery object | DOM object} menusrc Mobile menu to correct
+			 * @function
+			 * @return {void}
+			 */
+			correctmobile: function (menusrc) {
+				$((typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc))).find('.ui-collapsible-set').each(function () {
+					var $this = $(this);
+					if ($this.find('> ul .ui-collapsible').length > 0) {
+						$this = $this.children('ul');
+					}
+					$this.children().each(function () {
+						var $this = $(this), target = $this.is('a') ? $this : $this.find('a').first();
+						if ($this.prev().length > 0) {
+							target.removeClass('ui-corner-top');
+						}
+						if ($this.next().length > 0) {
+							target.removeClass('ui-corner-bottom');
+						}
+					});
+				});
+			}
+		},
+		/**
 		 * A function to load required polyfills, @TODO: set up a single loader method to streamline
 		 * @memberof pe
 		 * @function
@@ -775,12 +809,12 @@
 				 * @type {string}
 				 */
 				liblocation: (function () {
-					var url = document.getElementById('progressive').src;
-					return url.substr(0, url.lastIndexOf("/") + 1);
+					var pefile = $('body script[src*="/pe-ap"]').attr('src');
+					return pefile.substr(0, pefile.lastIndexOf("/") + 1);
 				}()),
 				themecsslocation: (function () {
-					var url = document.getElementById('wb-theme').href;
-					return url.substr(0, url.lastIndexOf("/") + 1);
+					var themecss = $('head link[rel="stylesheet"][href*="' + wet_boew_theme.themename() + '"]');
+					return themecss.length > 0 ? themecss.attr('href').substr(0, themecss.attr('href').lastIndexOf("/") + 1) : "theme-not-found/";
 				}()),
 				staged: [],
 				/**
@@ -807,7 +841,7 @@
 						}
 						var scriptElem = document.createElement("script"),
 							scriptdone = false;
-						pe.add.set(scriptElem, 'async', true);
+						pe.add.set(scriptElem, 'async', 'async');
 						scriptElem.onload = scriptElem.onreadystatechange = function () {
 							if ((scriptElem.readyState && scriptElem.readyState !== "complete" && scriptElem.readyState !== "loaded") || scriptdone) {
 								return false;
@@ -820,7 +854,7 @@
 						};
 						scriptElem.src = js;
 						if ((pe.ie > 0 && pe.ie < 9) || !head.insertBefore) {
-							$(scriptElem).appendTo($(head));
+							$(scriptElem).appendTo($(head)).delay(100);
 						} else {
 							head.insertBefore(scriptElem, head.firstChild);
 						}
@@ -881,7 +915,7 @@
 				 * @return {void}
 				 */
 				language: function (lang) {
-					var url = pe.add.liblocation + "i18n/" + lang.substring(0, 2) + pe.suffix + ".js";
+					var url = pe.add.liblocation + "i18n/" + lang + pe.suffix + ".js";
 					pe.add._load(url);
 				},
 				/**
@@ -944,15 +978,18 @@
 		 */
 		dance: function () {
 			// global plugins
-			var i, exclude = ":not(a[href], input, button, textarea)",
-				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false;
+			var i,	settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false;
 			$('[class^="wet-boew-"]').each(function () {
-				var _fcall,
-					_node;
-				_node = $(this);
-				_fcall = _node.attr("class").replace(/^wet-boew-(\S*).*/i, "$1".toLowerCase());
-				if (typeof pe.fn[_fcall] !== "undefined") {
-					pe._execute(pe.fn[_fcall], _node);
+				var _node = $(this),
+					_fcall = _node.attr("class").split(" "),
+					i;
+				for (i = 0; i < _fcall.length; i += 1) {
+					if (_fcall[i].indexOf('wet-boew-') === 0) {
+						_fcall[i] = _fcall[i].substr(9).toLowerCase();
+						if (typeof pe.fn[_fcall[i]] !== "undefined") {
+							pe._execute(pe.fn[_fcall[i]], _node);
+						}
+					}
 				}
 			// lets safeguard the execution to only functions we have
 			});
@@ -962,19 +999,6 @@
 				for (i = 0; i < settings.globals.length; i += 1) {
 					pe._execute(pe.fn[settings.globals[i]], document);
 				}
-			}
-			if (pe.mobile) {
-				// Move the focus to the anchored element for same page content area links
-				$("#wb-main a[href^='#']").click(function () {
-					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
-				});
-				pe.add.css([pe.add.themecsslocation + 'jquery.mobile-min.css']);
-				pe.add._load([pe.add.liblocation + '../js/jquery.mobile/jquery.mobile.min.js']);
-			} else {
-				// Move the focus to the anchored element for skip nav links
-				$("#wb-skip a").click(function () {
-					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
-				});
 			}
 			window.onresize = function () { // TODO: find a better way to switch back and forth between mobile and desktop modes.
 				if (pe.mobile !== pe.mobilecheck()) {

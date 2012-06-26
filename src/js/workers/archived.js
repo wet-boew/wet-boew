@@ -1,10 +1,10 @@
 /*!
-* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-* www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
 /*
-* Web archived top page banner
-*/
+ * Web archived top page banner
+ */
 /*global jQuery: false, pe: false*/
 (function ($) {
 	var _pe = window.pe || {fn: {} };
