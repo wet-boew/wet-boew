@@ -284,10 +284,14 @@
 					$elm.attr("aria-haspopup", "true").addClass("mb-has-sm").wrapInner("<span class=\"expandicon\"><span class=\"sublink\"></span></span>");
 					$childmenu.attr("role", "menu").attr("aria-expanded", "false").attr("aria-hidden", "true").find(":has(:header) ul").attr("role", "menu");
 					$elm.append("<span class=\"wb-invisible\">" + (pe.dic.get('%sub-menu-help')) + "</span>");
-					$elm.closest("li").hoverIntent(function () {
-						return showsubmenu(this);
-					}, function () {
-						return hidesubmenu(this);
+					$elm.closest("li").hoverIntent({
+						over:function () {
+							return showsubmenu(this);
+						}, 
+						out: function () {
+							return hidesubmenu(this);
+						},
+						timeout:500
 					});
 					/* now recurse all focusable to be able to navigate */
 					$childmenu.find("h4 a").each(function (i) {
