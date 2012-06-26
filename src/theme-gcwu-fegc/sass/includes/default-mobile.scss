@@ -328,83 +328,82 @@ img{
 	min-height: 22px;
 }
 
-.mobile-hide{
-	display:none !important;
+.ui-content .ui-listview {
+    margin: 0 -15px;
 }
 
-#jqmobile-wet-boew-search h1,#jqmobile-wet-boew-menubar h1, #jqmobile-wet-boew-search h2,#jqmobile-wet-boew-menubar h2,#jqmobile-wet-boew-menubar h3, #jqmobile-wet-boew-menubar h4,#jqmobile-wet-boew-menubar .top-level{
-	border:none;
-}
-
-#jqmobile-wet-boew-menubar h3, #jqmobile-wet-boew-menubar h4, #jqmobile-wet-boew-menubar .top-level{
+.ui-collapsible-heading, .ui-li-static {
 	font-size:1em;
 }
 
-#jqmobile-wet-boew-menubar h3 a:link, #jqmobile-wet-boew-menubar h4 a:link, #jqmobile-wet-boew-menubar .top-level a:link{
-	text-decoration: none}
+#jqm-wb-mb a:link{
+	text-decoration: none
+}
 
-#jqmobile-wet-boew-menubar h3.top-section{
+#jqm-wb-mb h3.top-section{
 	font-size:1.2em;
 }
 
-#jqmobile-wet-boew-menubar .ui-content .ui-listview {
+#jqm-wb-mb .ui-content .ui-listview{
 	margin:0;
 }
 
-#jqmobile-wet-boew-menubar h3 .ui-btn-inner,#jqmobile-wet-boew-menubar h4 .ui-btn-inner,#jqmobile-wet-boew-menubar .top-level .ui-btn-inner{
+#jqm-wb-mb .ui-btn-inner{
 	white-space:normal;
 }
 
-#jqmobile-wet-boew-menubar h3 .ui-btn-icon-top .ui-btn-inner,#jqmobile-wet-boew-menubar h4 .ui-btn-icon-top .ui-btn-inner,#jqmobile-wet-boew-menubar .top-level .ui-btn-icon-top .ui-btn-inner{
+#jqm-wb-mb .ui-btn-icon-top .ui-btn-inner{
 	padding:0.6em 33px 0.7em 10px;
 }
 
-#jqmobile-wet-boew-menubar h3 .ui-icon-arrow-r,#jqmobile-wet-boew-menubar h4 .ui-icon-arrow-r,#jqmobile-wet-boew-menubar .top-level .ui-icon-arrow-r{
-	left:auto;
-	right:10px;
-	top:50%;
-	margin-top:-9px;
+#jqm-wb-mb .ui-collapsible-set > a.ui-btn-icon-right .ui-btn-inner, #jqm-wb-mb .ui-btn a {
+	padding-left: 40px;
 }
 
-#jqmobile-wet-boew-menubar h3 .ui-btn,#jqmobile-wet-boew-menubar h4 .ui-btn,#jqmobile-wet-boew-menubar .top-level{
+#jqm-wb-mb .ui-li-static {
+	border-left: none; border-right: none;
+}
+
+#jqm-wb-mb .ui-btn{
 	margin:0;
 	text-align:left;
 }
 
-#jqmobile-wet-boew-menubar .ui-li{
+#jqm-wb-mb .ui-li{
+	padding: 0;
 	border-width:1px 1px 0 1px;
 }
 
-#jqmobile-wet-boew-menubar .ui-corner-bottom {
+#jqm-wb-mb .ui-corner-bottom {
 	border-bottom-width:1px;
 }
 
-#jqmobile-wet-boew-menubar h2{
+#jqm-wb-mb h1{
+	border-bottom:none;
+}
+
+#jqm-wb-mb h2{
 	color:#555;
 }
 
-#jqmobile-wet-boew-menubar div.ui-collapsible-set + h2{
+#jqm-wb-mb div.ui-collapsible-set + h2{
 	border-top:3px groove #fff;
 	padding-top:8px;
 	margin-top:23px;
 }
 
-#jqmobile-wet-boew-menubar .ui-content h2 + ul.ui-listview{
+#jqm-wb-mb .ui-content h2 + ul.ui-listview{
 	margin-bottom:1em;
 }
 
-#jqmobile-wet-boew-menubar .top-section a{
+#jqm-wb-mb .top-section a{
 	margin:0 0 5px;
 	border-radius:0;
 	-moz-border-radius:0;
 	-webkit-border-radius:0;
 }
 
-#jqmobile-wet-boew-menubar .ui-collapsible-heading {
-	margin:0;
-}
-
-#jqmobile-wet-boew-menubar .top-level.ui-btn-corner-all {
+#jqm-wb-mb .top-level.ui-btn-corner-all {
 	border-radius:0.6em;
 }
 
@@ -414,7 +413,7 @@ img{
 	background:-webkit-linear-gradient(#5383B7, #225C96) repeat scroll 0 0 #4E7EB7;
 }
 
-#jqmobile-wet-boew-menubar #gcwu-bc-in a {
+#jqm-wb-mb #gcwu-bc-in a {
 	color: #326CA6;
 	text-decoration: none;
 	border-radius:0;
@@ -422,16 +421,16 @@ img{
 	-webkit-border-radius:0;
 }
 
-#jqmobile-wet-boew-menubar #gcwu-bc-in a:hover,#jqmobile-wet-boew-menubar #gcwu-bc-in a:active{
+#jqm-wb-mb #gcwu-bc-in a:hover,#jqm-wb-mb #gcwu-bc-in a:active{
 	text-decoration:underline;
 }
 
-#jqmobile-wet-boew-menubar #gcwu-bc-in li:last-child {
+#jqm-wb-mb #gcwu-bc-in li:last-child {
 	background-image: none;
 	padding-left:5px;
 }
 
-#jqmobile-wet-boew-menubar #gcwu-bc-in li {
+#jqm-wb-mb #gcwu-bc-in li {
 	background: url(../images/breadcrumb-mobile.png) no-repeat right center;
 	display: inline;
 	float: left;
@@ -442,7 +441,7 @@ img{
 	-webkit-border-radius:0;
 }
 
-#jqmobile-wet-boew-menubar #gcwu-bc-in  ol:after {
+#jqm-wb-mb #gcwu-bc-in ol:after {
 	clear: both;
 	content: ".";
 	display: block;
@@ -450,7 +449,7 @@ img{
 	visibility: hidden;
 }
 
-#jqmobile-wet-boew-menubar #gcwu-bc-in  ol {
+#jqm-wb-mb #gcwu-bc-in  ol {
 	line-height: 1.57em;
 	list-style-type: none;
 	margin: 0;
@@ -458,7 +457,7 @@ img{
 	font-size:90%;
 }
 
-#jqmobile-wet-boew-menubar #gcwu-bc-in{
+#jqm-wb-mb #gcwu-bc-in{
 	background:#DFDFDD;
 	background:-webkit-linear-gradient(#F0EFEF, #DFDFDD) #DFDFDD;
 	background:-moz-linear-gradient(#F0EFEF, #DFDFDD) #DFDFDD;
