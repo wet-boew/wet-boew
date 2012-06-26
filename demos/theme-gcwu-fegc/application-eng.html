@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>Application Template - GC Web Usability theme - HTML5 - Web Experience Toolkit (WET)</title>
+<title>Application Template - GC Web Usability theme - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="dcterms.description" content="English description / Description en anglais" />
@@ -30,7 +30,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <![endif]-->
 <!--[if gt IE 8]><!-->
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
-<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" id="wb-theme" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
@@ -47,7 +47,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
-<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<nav role="navigation"><div id="gcwu-gcnb"><h2><span>Site</span> menu</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a  target="_blank" rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
@@ -59,7 +59,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
 <div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbol of the Government of Canada" /></div></div></div>
-<div id="gcwu-title"><p id="gcwu-title-in"><a target="_blank" href="home-accueil-megamenu-theme-gcwu-fegc-eng.html">Site title</a></p></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a target="_blank" href="../../docs/index-eng.html">Web Experience Toolkit (WET)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
@@ -70,10 +70,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2>Site navigation bar</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar"><div>
+<div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar"><div>
 <ul class="mb-menu">
 <li><div><a target="_blank" class="first" href="#">Section 1</a></div></li>
-<li><div><a target="_blank" href="section2-eng.html">Section 2</a></div></li>
+<li><div><a target="_blank" href="section2/index-eng.html">Section 2</a></div></li>
 <li><div><a target="_blank" href="#">Section 3</a></div></li>
 <li><div><a target="_blank" href="#">Section 4</a></div></li>
 <li><div><a target="_blank" href="#">Section 5</a></div></li>
@@ -82,9 +82,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
 <ol>
-<li><a target="_blank" href="home-accueil-megamenu-theme-gcwu-fegc-eng.html">Home</a></li>
-<li><a target="_blank" href="section2-eng.html">Section 2</a></li>
-<li>Application Template - GC Web Usability theme</li>
+<li><a target="_blank" href="../../docs/index-eng.html">Home</a></li>
+<li><a target="_blank" href="../index-eng.html">Working examples</a></li>
+<li><a href="index-eng.html">GC Web Usability theme</a></li>
+<li>Application Template</li>
 </ol>
 </div></div>
 </nav>
@@ -158,23 +159,23 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </table>
 
 <form action="#" method="post">
-<p><label for="data1">Form input default appearance:</label> <input name="data1" type="text" id="data1" /></p>
-<p><label for="data2">Form text area default appearance:</label> <textarea name="data2" cols="15" rows="3" id="data2"></textarea></p>
-<p><label for="data4">Form <code>select</code> default appearance:</label> 
+<div><label for="data1">Form input default appearance:</label> <input name="data1" type="text" id="data1" /></div>
+<div><label for="data2">Form text area default appearance:</label> <textarea name="data2" cols="15" rows="3" id="data2"></textarea></div>
+<div><label for="data4">Form <code>select</code> default appearance:</label> 
 <select id="data4" name="data4">
 <option value="Option 1">Option 1</option>
 <option value="Option 2">Option 2</option>
 <option value="Option 3">Option 3</option>
 <option value="Option 4">Option 4</option>
-</select></p>
+</select></div>
 <fieldset><legend>Form <code>legend</code>, <code>fieldset</code> and <code>checkbox</code> default appearance</legend>
-<p><label for="data5">Option 1</label>&#160;<input name="checkbox" type="checkbox" id="data5" value="checkbox" />&#160;&#160;
+<div><label for="data5">Option 1</label>&#160;<input name="checkbox" type="checkbox" id="data5" value="checkbox" />&#160;&#160;
 <label for="data6">Option 2</label>&#160;<input name="checkbox" type="checkbox" id="data6" value="checkbox" />&#160;&#160;
 <label for="data7">Option 3</label>&#160;<input name="checkbox" type="checkbox" id="data7" value="checkbox" />&#160;&#160;
-<label for="data8">Option 4</label>&#160;<input name="checkbox" type="checkbox" id="data8" value="checkbox" /></p>
+<label for="data8">Option 4</label>&#160;<input name="checkbox" type="checkbox" id="data8" value="checkbox" /></div>
 </fieldset>
-<p><input name="submit" type="submit" id="submit" value="Submit default appearance" />
-<input name="reset" type="reset" id="reset" value="Reset default appearance" /></p>
+<div><input name="submit" type="submit" id="submit" value="Submit default appearance" />
+<input name="reset" type="reset" id="reset" value="Reset default appearance" /></div>
 </form>
 
 <blockquote>
@@ -220,8 +221,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div></div></div>
 
 <!-- ScriptsStart -->
+<script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../build/js/settings.js"></script>
-<script src="../../build/js/pe-ap-min.js" id="progressive"></script>
+<script src="../../build/js/pe-ap-min.js"></script>
 <!-- ScriptsEnd -->
 </body>
 </html>

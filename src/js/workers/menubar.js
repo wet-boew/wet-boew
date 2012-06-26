@@ -23,18 +23,13 @@
 			- open : this will open the child menu item
 			*/
 			/* bind plugin scope element */
-			var $bcLinks,
-				$menu,
+			var $menu,
 				$menuBoundary,
-				$results,
 				$scope,
-				$vbrumbs,
 				correctheight,
 				gotosubmenu,
 				hideallsubmenus,
 				hidesubmenu,
-				i,
-				match,
 				showsubmenu;
 			$scope = $(elm);
 			/* functions that would be necessary for helpers */
@@ -314,36 +309,6 @@
 			/* if CSS is enabled we want to ensure a correct tabbing response */
 			if (pe.cssenabled) {
 				$menu.find("a").attr("role", "menuitem").attr("tabindex", "-1").filter('.knav-0-0-0').attr("tabindex", "0");
-			}
-
-			/* Breadcrumb indexer */
-			$vbrumbs = $("#gcwu-bc, #cn-bcrumb");
-			if ($vbrumbs.size() > 0 && !$scope.hasClass("page-match-off")) {
-				$results = $menu.children("li").find("a[href=\"" + window.location.pathname + "\"]");
-				if ($results.size() > 0) {
-					$results.eq(0).addClass("nav-current");
-				} else {
-					match = false;
-					$bcLinks = $vbrumbs.find("li a:not([href^=\"#\"])");
-					if ($bcLinks.size() > 0) {
-						i = 0;
-						while (i <= $bcLinks.size()) {
-							$results = $menu.children("li").find("a[href=\"" + $bcLinks.eq(i).attr("href") + "\"]");
-							if ($results.size() > 0) {
-								$results.eq(0).addClass("nav-current");
-								match = true;
-								break;
-							}
-							i += 1;
-						}
-					}
-					if (!match) {
-						$results = $menu.children("li").find("a:contains(\"" + $vbrumbs.find("li:last-child").text() + "\")");
-						if ($results.size() > 0) {
-							$results.eq(0).addClass("nav-current");
-						}
-					}
-				}
 			}
 			correctheight();
 			return $scope;
