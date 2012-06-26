@@ -30,9 +30,15 @@
 			// Event handler for issue error found durring the table parsing process
 			var errorTrigger = function(err, obj){
 				$(obj).trigger('parser.table.error', err, obj);
-				// console.log("Trigger ERROR: " + err);
+				console.log("Trigger ERROR: " + err);
 			}
 
+			// Check if this table was already parsed, if yes we exit by throwing an error
+			if($(obj).tblparser){
+				errorTrigger("The table was already parsed, Why you want to parse it a second time ?", obj);
+				return;
+			}
+			
 
 		
 		/*
@@ -486,6 +492,7 @@
 					var curColgroupFrame = this;
 				
 					
+					
 					colFrmId++;
 					
 					if(bigTotalColgroupFound || groupZero.colgrp[0]){
@@ -512,7 +519,6 @@
 							}
 						}
 					}
-					
 					
 					
 					
@@ -622,8 +628,6 @@
 					}
 					curColgroupFrame.parentHeader = parentHeader;
 					
-					
-					
 					// Check to set if this group are a data group
 					if(currColgroupStructure.length < groupLevel){
 						// This colgroup are a data colgroup
@@ -674,7 +678,7 @@
 					
 					}
 					
-					
+
 					
 					// Catch the second and the third possible grouping at level 1
 					if(groupLevel == 1 && groupZero.colgrp[1] && groupZero.colgrp[1].length > 1){
@@ -721,18 +725,47 @@
 						column.type = curColgroupFrame.type;
 						column.level = curColgroupFrame.level;
 						
+						
+						// TODO: Change the block of code above for All the header starting at the level 
+						//       and the cells bellow but within the column scope
+						//for(i=curColgroupFrame.level -1; i< theadRowStack.length; i++){
+						//	if(i<0){i=0;}
+							
+						//}
+						
+						column.header = [];
 						// Find the lowest header that would represent this column
-						for(i =(curColgroupFrame.start -1); i< curColgroupFrame.end; i++){
-							for(j= (theadRowStack.length -1); j >= (curColgroupFrame.level -1); j-- ){
-								if(theadRowStack[j].cell[i].colpos == column.start && 
-								(theadRowStack[j].cell[i].colpos + theadRowStack[j].cell[i].width -1) == column.end){
-									// This are the header that would represent this column
-									column.header = theadRowStack[j].cell[i];
-									break;
+						// for(j= (theadRowStack.length -1); j >= (curColgroupFrame.level -1); j-- ){
+						for(j= (theadRowStack.length -1); j >= (groupLevel -1); j-- ){
+							
+							for(i =(curColgroupFrame.start -1); i< curColgroupFrame.end; i++){
+							
+								
+								
+			// column.start -------- column.end
+								
+								
+						//		if(theadRowStack[j].cell[i].colpos <= column.start && 
+						//			column.end <= theadRowStack[j].cell[i].colpos){
+								
+								
+							
+								if(theadRowStack[j].cell[i].colpos >= column.start && 
+									theadRowStack[j].cell[i].colpos <= column.end || 
+									
+									theadRowStack[j].cell[i].colpos <= column.start &&
+									(theadRowStack[j].cell[i].colpos + theadRowStack[j].cell[i].width -1) >= column.end ||
+									
+									(theadRowStack[j].cell[i].colpos + theadRowStack[j].cell[i].width -1) <= column.start && 
+									(theadRowStack[j].cell[i].colpos + theadRowStack[j].cell[i].width -1) >= column.end ){
+										
+									if(column.header.length == 0 || 
+										column.header.length > 0 && column.header[column.header.length - 1].uid != theadRowStack[j].cell[i].uid){
+										// This are the header that would represent this column
+										column.header.push(theadRowStack[j].cell[i]);
+										theadRowStack[j].cell[i].level = curColgroupFrame.level;
+									}
 								}
-							}
-							if(column.header){
-								break;
 							}
 						}
 					});
@@ -1029,6 +1062,8 @@
 			row.patern = rowPattern;
 			
 			
+			
+			
 			// Adjust if required, the lastHeadingColPos if colgroup are present, that would be the first colgroup
 			if(colgroupFrame[0] && lastHeadingColPos && !(colgroupFrame[0].end == lastHeadingColPos)){
 				if(colgroupFrame[0].end == (lastHeadingColPos + 1)){
@@ -1304,9 +1339,6 @@
 					lastHeadingColPos = colgroupFrame[0].end; // colgroupFrame must be defined here
 				}
 				
-
-
-
 
 
 

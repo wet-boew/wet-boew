@@ -139,9 +139,11 @@ $.fn.tblheader = function(scope){
 			}
 			
 			var stack = [];
-			stack.push($(obj).data().tblparser.header.elem);
+			
+			for(i=0; i<$(obj).data().tblparser.header.length; i++){
+				stack.push($(obj).data().tblparser.header[i].elem);
+			}
 			return $(stack);
-
 			break;
 		case "thead": // Group
 			break;
@@ -163,6 +165,19 @@ $.fn.tblheader = function(scope){
 			return true;
 		case "td": // Cell
 			
+			var stack = [];
+			if(scope == "row"){
+
+				stack.push($(obj).data().tblparser.row.header.elem);
+				return $(stack);
+				
+			} else {
+				
+				for(i=0; i<$(obj).data().tblparser.col.header.length; i++){
+					stack.push($(obj).data().tblparser.col.header[i].elem);
+				}
+				return $(stack);
+			}
 			return $();
 			
 			var stack = [];

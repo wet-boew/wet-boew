@@ -187,6 +187,93 @@ $.extend($.expr[":"], {data:function(elem, i, match, array){
 	 return false;
 }});
 
+
+
+
+
+
+$.fn.tbldata = function(level){
+	
+	
+	var obj = this;
+	var objDOM = $(this).get(0);
+	
+
+	if(!$(obj).data().tblparser){
+
+		// Get the table element
+		var tblElem = obj;
+		
+		while(true){
+			var ElemNodeName = tblElem.nodeName.toLowerCase();
+			if(ElemNodeName != "table" && ElemNodeName != "caption" &&
+				ElemNodeName != "colgroup" && ElemNodeName != "col" && 
+				ElemNodeName != "thead" && ElemNodeName != "tbody" && 
+				ElemNodeName != "tfoot" && ElemNodeName != "tr" && 
+				ElemNodeName != "th" && ElemNodeName != "td"){
+			
+				return false; // elem are not valid
+			}
+			
+			if(ElemNodeName == "table"){
+				break; // Horay we have found the table, now we can do the parsing
+			}
+			
+			// Get the parent
+			tblElem = $(tblElem).parent().get(0);
+			
+		}
+		
+		// Call the table parser before to filter the result
+		_pe.fn.parsertable._exec($(tblElem));
+	}
+
+
+	
+
+	// Check what is "this"
+	switch(objDOM.nodeName.toLowerCase()){
+	
+		case "table": // Matrix
+			break;
+		case "caption": // Cell
+			// A Caption can not have any key cell
+			return $();
+		case "colgroup": // Group
+			break;
+		case "col": // Vector
+			break;
+		case "thead": // Group
+			break;
+		case "tbody": // Group
+			break;
+		case "tfoot": // Group
+			break;
+		case "tr": // Vector
+			break;
+		case "th": // Cell
+			break;
+		case "td": // Cell
+			
+			
+			if($(obj).data().tblparser.type == 2 &&(!level?true: $(obj).data().tblparser.collevel == level)){
+				var stack = [];
+				stack.push($(obj).data().tblparser.elem);
+				return $(stack);
+			}
+			break;
+			// array.push($(elem).data().tblparser.row.elem);
+			
+			// var ret = $($(obj).data().tblparser.row.elem);
+			// ret.prevObject = obj;
+			// return this.pushStack(ret, "row", "");
+			
+			// Return true if this are a key cell otherwise false
+	
+	}
+	return $();
+}
+
 	window.pe = _pe;
 	return _pe;
 }(jQuery));

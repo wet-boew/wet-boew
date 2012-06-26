@@ -54,6 +54,12 @@ $.extend($.expr[":"], {col:function(elem, i, match, array){
 	case "caption": // Cell
 		break;
 	case "colgroup": // Group
+		
+		for(i=0; i<$(elem).data().tblparser.col.length; i++){
+			array.push($(elem).data().tblparser.col[i].elem);
+		}
+		
+		
 		break;
 	case "col": // Vector
 		return true;
@@ -133,7 +139,12 @@ $.fn.col = function(elem){
 			// A Caption can not have any key cell
 			return $();
 		case "colgroup": // Group
-			break;
+			
+			var stack = [];
+			for(i=0; i<$(obj).data().tblparser.col.length; i++){
+				stack.push($(obj).data().tblparser.col[i].elem);
+			}
+			return $(stack);
 		case "col": // Vector
 			return elem;
 			break;

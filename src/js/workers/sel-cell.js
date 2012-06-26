@@ -54,9 +54,19 @@ $.extend($.expr[":"], {cell:function(elem, i, match, array){
 	case "caption": // Cell
 		break;
 	case "colgroup": // Group
-		break;
+		
+		for(i=0; i<$(elem).data().tblparser.col.length; i++){
+			for(j=0; j< $(elem).data().tblparser.col[i].cell.length; j++){
+				array.push($(elem).data().tblparser.col[i].cell[j].elem);
+			}
+		}
+		
+		return false;
 	case "col": // Vector
-		break;
+		for(i=0; i< $(elem).data().tblparser.cell.length; i++){
+			array.push($(elem).data().tblparser.cell[i].elem);
+		}
+		return false;
 	case "thead": // Group
 		break;
 	case "tbody": // Group
@@ -125,6 +135,11 @@ $.fn.cell = function(elem){
 			// A Caption can not have any key cell
 			return $();
 		case "colgroup": // Group
+			for(i=0; i<$(obj).data().tblparser.col.length; i++){
+				for(j=0; j< $(obj).data().tblparser.col[i].cell.length; j++){
+					array.push($(obj).data().tblparser.col[i].cell[j].elem);
+				}
+			}
 			break;
 		case "col": // Vector
 			var stack = [];
