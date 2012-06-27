@@ -86,10 +86,9 @@
 				mainlinks.filter("[href^='#']").on("tap click", function () {
 					var $this = $($(this).attr("href") + ":not(a[href], ul.tabs a, input, button, textarea)");
 					if ($this.length > 0) {
-						$(this).attr('href', 'javascript:;');
 						$.mobile.silentScroll(pe.focus($this.attr("tabindex", "-1")).offset().top + 20);
 					}
-				});
+				}).attr('href', 'javascript:;');
 
 				$(document).on("mobileinit", function () {
 					$.extend($.mobile, {

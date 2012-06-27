@@ -203,7 +203,7 @@
 						$popup.hide().attr('aria-hidden', 'true');
 					}
 				});
-				$(document).on("click", function (e) { // Close the popup menu on any click away from the links
+				$(document).on("click touchstart", function (e) { // Close the popup menu on any click away from the links
 					if ($popup.attr('aria-hidden') === 'false') {
 						$popup.trigger("close");
 					}
