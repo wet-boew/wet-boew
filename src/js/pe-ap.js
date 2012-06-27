@@ -88,7 +88,8 @@
 					if ($this.length > 0) {
 						$(this).attr('href', 'javascript:;');
 						//$.mobile.silentScroll(pe.focus($this.attr("tabindex", "-1")).offset().top + 20);
-						$this.attr("tabindex", "-1").focus();
+						//$this.attr("tabindex", "-1").focus();
+						$.mobile.silentScroll($this.attr("tabindex", "-1").offset().top + 20);
 					}
 				});
 
