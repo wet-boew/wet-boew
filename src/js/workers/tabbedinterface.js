@@ -341,7 +341,6 @@
 				if (hash.length > 1) {
 					anchor = $(hash, $panels);
 					if (anchor.length) {
-						//console.log("anchor found:", anchor, ", for link:", $(this));
 						return $(this).click(function (e) {
 							var panel,
 								panelId;
