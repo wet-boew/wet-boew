@@ -270,7 +270,7 @@
 					return;
 				}
 			});
-			$(document).on("click", function () {
+			$(document).on("click touchstart", function () {
 				$scope.trigger("focusoutside");
 			});
 			$scope.on("focusoutside", function () {

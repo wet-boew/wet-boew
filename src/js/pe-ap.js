@@ -87,9 +87,7 @@
 					var $this = $($(this).attr("href") + ":not(a[href], ul.tabs a, input, button, textarea)");
 					if ($this.length > 0) {
 						$(this).attr('href', 'javascript:;');
-						//$.mobile.silentScroll(pe.focus($this.attr("tabindex", "-1")).offset().top + 20);
-						//$this.attr("tabindex", "-1").focus();
-						$.mobile.silentScroll($this.attr("tabindex", "-1").offset().top + 20);
+						$.mobile.silentScroll(pe.focus($this.attr("tabindex", "-1")).offset().top + 20);
 					}
 				});
 
