@@ -81,8 +81,9 @@
 				$("#wb-main a[href^='#']").on("click", function () {
 					var $this = $($(this).attr("href") + ":not(a[href], ul.tabs a, input, button, textarea)");
 					if ($this.length > 0) {
-						$.mobile.silentScroll($this.offset().top);
-						//pe.focus($this.attr("tabindex", "-1"));
+						$(this).attr('href', 'javascript:;');
+						//$.mobile.silentScroll($this.offset().top);
+						$.mobile.silentScroll(pe.focus($this.attr("tabindex", "-1")).offset().top);
 					}
 				});
 
