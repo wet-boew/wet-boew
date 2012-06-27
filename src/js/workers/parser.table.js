@@ -143,6 +143,26 @@
 		var rowgroupHeaderRowStack = [];
 		var headerRowGroupCompleted = false;
 		var summaryRowGroupEligible = false;
+		var rowgroupLevel = 1; // Default RowGroupLevel
+		var currentRowHeader = {
+			groupZero: groupZero,
+			header: [],
+			rows: []
+		};
+		
+		currentRowHeader.uid = uidElem;
+		uidElem++;
+		groupZero.allParserObj.push(currentRowHeader);
+
+		if(!groupZero.rowgroup){
+			groupZero.rowgroup = [];
+		}
+		
+		if(!groupZero.allrowgroup){
+			groupZero.allrowgroup = [];
+		}
+		groupZero.allrowgroup.push(currentRowHeader);
+		
 		
 		var theadRowStack = [];
 		var stackRowHeader = false;
@@ -1182,8 +1202,34 @@
 					// Set the number of level for this group, also this group will be a data rowgroup
 					
 					
+					// We have a new data row group
+					/*currentRowHeader.type = 2;
+					
+					// Check if we have a new row group or if is the same
+					if(rowgroupHeaderRowStack.length
+					
+					
+					currentRowHeader.uid = uidElem;
+					uidElem++;
+					groupZero.allParserObj.push(currentRowHeader);
+					
+					currentRowHeader.type = 1; // Type Header
+
+					if(!groupZero.rowgroup[0]){
+						groupZero.rowgroup[0] = [];
+					}
+
+*/
+					//if(rowgroupHeaderRowStack.length
+					
+					//rowgroupLevel = rowgroupHeaderRowStack.length;
+					
+					
 					// If the rowgroupHeaderRowStack == 0 and they exist at least one data rowgroup, so this rowgroup can be qualify for a rowgroup summary.
 				}
+				
+				
+				
 				
 				
 				
@@ -1611,6 +1657,7 @@ delete row.patern;
 						errorTrigger('You can not define any row before the thead group', this);
 					}
 					
+					$(this).data("tblparser", groupZero);
 					
 					stackRowHeader = true;
 					
@@ -1634,6 +1681,8 @@ delete row.patern;
 					
 					break;
 				case 'tbody':
+					
+					$(this).data("tblparser", currentRowHeader);
 					
 					// New row group
 					
@@ -1660,6 +1709,9 @@ delete row.patern;
 					spannedRow = []; // Cleanup of any spanned row
 					
 					rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
+					
+					
+					// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
 					
 					
 					break;
