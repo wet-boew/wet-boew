@@ -144,15 +144,7 @@
 		var headerRowGroupCompleted = false;
 		var summaryRowGroupEligible = false;
 		var rowgroupLevel = 1; // Default RowGroupLevel
-		var currentRowHeader = {
-			groupZero: groupZero,
-			header: [],
-			rows: []
-		};
-		
-		currentRowHeader.uid = uidElem;
-		uidElem++;
-		groupZero.allParserObj.push(currentRowHeader);
+		var currentRowHeader = [];
 
 		if(!groupZero.rowgroup){
 			groupZero.rowgroup = [];
@@ -161,6 +153,10 @@
 		if(!groupZero.lstrowgroup){
 			groupZero.lstrowgroup = [];
 		}
+		
+		var currentTbodyID = undefined;
+		var pastTbodyID = undefined;
+		
 		
 		
 		var theadRowStack = [];
@@ -1080,19 +1076,7 @@
 			
 			row.patern = rowPattern;
 			
-			
-			
-			
-			// Adjust if required, the lastHeadingColPos if colgroup are present, that would be the first colgroup
-			if(colgroupFrame[0] && lastHeadingColPos && !(colgroupFrame[0].end == lastHeadingColPos)){
-				if(colgroupFrame[0].end == (lastHeadingColPos + 1)){
-					lastHeadingColPos ++;
-				} else {
-					// The colgroup are not representating the table structure
-					errorTrigger('The first colgroup need to be used as an header colgroup', colgroupFrame[0].elem);
-				}
-			}
-			row.lastHeadingColPos = lastHeadingColPos;
+
 			
 			
 			
@@ -1196,66 +1180,94 @@
 				// TODO: Process any row used to defined the rowgroup label
 				//
 				//
-				if(rowgroupHeaderRowStack.length > 0){
+				
+				if(rowgroupHeaderRowStack.length > 0 && currentRowHeader.length == 0){
 					// TODO: check if the current stack of the current rowgroup need to have 0 datarow inside
 					// Set the number of level for this group, also this group will be a data rowgroup
 					
-					if(groupZero.lstrowgroup.length == 0){
-						// we start at the level 1 for the first heading
+
+					// we start at the level 1 for the first heading
+					
+					// Calculate the starting row level by using preceding row level
+					
+					var iniRowGroupLevel = (groupZero.lstrowgroup.length > 1? (rowgroupHeaderRowStack.length - groupZero.lstrowgroup[groupZero.lstrowgroup -1].level): 1) -1;
+
+				
+					// Create virtual rowgroup
+					for(i=iniRowGroupLevel; i<(rowgroupHeaderRowStack.length-1); i++){
 						
-						// Calculate the starting row level by using preceding row level
-												
-						// Create virtual rowgroup
-						for(i=0;i<rowgroupHeaderRowStack.length-1; i++){
-							
-							// Include this virtual row group in the current one
-						}
-						// Set the level for the current rowgroup
-						// rowgroupHeaderRowStack.length-1
+						var grpRowHeader = {
+							groupZero: groupZero,
+							header: [],
+							level: (i+1)
+						};
+						
+						grpRowHeader.uid = uidElem;
+						uidElem++;
+						groupZero.allParserObj.push(grpRowHeader);	
+						
+						//rowgroupHeaderRowStack[i].row.cell[0]
+						
+						grpRowHeader.elem = rowgroupHeaderRowStack[i].row.cell[0].elem;
+						grpRowHeader.struct = rowgroupHeaderRowStack[i].row.elem;
+						
+						rowgroupHeaderRowStack[i].row.cell[0].scope = "row";
+						rowgroupHeaderRowStack[i].row.cell[0].level = (i+1);
+						
+						
+						rowgroupHeaderRowStack[i].row.type = 1;
+						
+						currentRowHeader.push(grpRowHeader);
+						
+						// Include this virtual row group in the current one
 					}
 					
-					
-					/*
-						//	groupZero.lstrowgroup.push(currentRowHeader);
+					// Set the level for the current rowgroup
 
+					rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].cell[0].scope = "row";
+					rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].cell[0].level = rowgroupHeaderRowStack.length;
+					// rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].cell[0].rowgroup = currentRowHeader;
+					// rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].rowgroup = currentRowHeader;
+					rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].type = 1;
 					
-					// We have a new data row group
-					
-					if(groupZero.lstrowgroup.length > 0 && 
-						groupZero.lstrowgroup[groupZero.lstrowgroup -1].level > rowgroupHeaderRowStack.length){
-						
-						currentRowHeader.level = 
-						
-					}
-					
-					currentRowHeader.type = 2;
-					
-					// Check if we have a new row group or if is the same
-					if(rowgroupHeaderRowStack.length
-					
-					
-					currentRowHeader.uid = uidElem;
-					uidElem++;
-					groupZero.allParserObj.push(currentRowHeader);
-					
-					currentRowHeader.type = 1; // Type Header
+					currentRowHeader.push(rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].cell[0]);		
 
-					if(!groupZero.rowgroup[0]){
-						groupZero.rowgroup[0] = [];
-					}
-
-					//if(rowgroupHeaderRowStack.length
-					
-					//rowgroupLevel = rowgroupHeaderRowStack.length;
-					
-					
-					// If the rowgroupHeaderRowStack == 0 and they exist at least one data rowgroup, so this rowgroup can be qualify for a rowgroup summary.
-					*/
+					pastTbodyID	= currentTbodyID;
 				}
 				
 				
+				if(currentTbodyID != pastTbodyID){
+					row.type = 3;
+					
+					currentRowHeader = groupZero.row[groupZero.row.length-1].levelheader;
+					
+					//pastTbodyID	= currentTbodyID;
+					/*					
+					// Retreive the previous currentRowHeader
+					for(i=groupZero.row.length-1; i>0; i++){
+						if(groupZero.row[i].type == 2){
+							// We got our summary level
+						}
+					}*/
+				}
+					// We have a summary row group
+					
+				row.levelheader = currentRowHeader;
+				row.level = (currentRowHeader.length > 0?currentRowHeader[currentRowHeader.length -1].level:0);
 				
 				
+				
+				
+				// Adjust if required, the lastHeadingColPos if colgroup are present, that would be the first colgroup
+				if(colgroupFrame[0] && lastHeadingColPos && !(colgroupFrame[0].end == lastHeadingColPos)){
+					if(colgroupFrame[0].end == (lastHeadingColPos + 1)){
+						lastHeadingColPos ++;
+					} else {
+						// The colgroup are not representating the table structure
+						errorTrigger('The first colgroup need to be used as an header colgroup', colgroupFrame[0].elem);
+					}
+				}
+				row.lastHeadingColPos = lastHeadingColPos;
 				
 				
 				// Build the initial colgroup structure
@@ -1436,7 +1448,16 @@
 					for(j=(lastHeadingColPos == 0 ? 0 : 1); j<colgroupFrame.length; j++){ // If colgroup, the first are always header colgroup
 						if(colgroupFrame[j].start <= row.cell[i].colpos && row.cell[i].colpos <= colgroupFrame[j].end){
 						
-							row.cell[i].type = colgroupFrame[j].type;
+							if(row.type == 3 || colgroupFrame[j].type == 3){
+								row.cell[i].type = 3; // Summary Cell
+							} else {
+								row.cell[i].type = 2;
+							}
+							
+							if(row.type == 3 && colgroupFrame[j].type == 3){
+								// TODO: Test if this cell are a layout cell
+							}
+							
 							row.cell[i].collevel = colgroupFrame[j].level;
 							row.datacell.push(row.cell[i]);
 							
@@ -1523,7 +1544,9 @@
 				// Associate the row with the cell and Colgroup/Col association
 				for(i=0; i<row.cell.length; i++){
 					row.cell[i].row = row;
-
+					
+					row.cell[i].rowlevel = row.level;
+					row.cell[i].rowlevelheader = currentRowHeader;
 					
 					// Insert The cells in the appropriate column and colgroup
 					if(createGenericColgroup){
@@ -1655,7 +1678,7 @@ groupZero.colgroupFrame = colgroupFrame;
 
 
 delete row.colgroup;
-delete row.lastHeadingColPos;
+//delete row.lastHeadingColPos;
 delete row.patern;
 			//console.log(row);
 
@@ -1722,7 +1745,7 @@ delete row.patern;
 					* 
 					* 
 					*/
-					$(this).data("tblparser", currentRowHeader);
+					// $(this).data("tblparser", currentRowHeader);
 					
 					// New row group
 					
@@ -1750,9 +1773,11 @@ delete row.patern;
 					
 					rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
 					
+					currentRowHeader = [];
 					
 					// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
 					
+					currentTbodyID ++;
 					
 					break;
 				case 'tfoot':
@@ -1934,6 +1959,7 @@ delete row.patern;
 			
 		} // end of exec
 	};
+	
 	
 	window.pe = _pe;
 	return _pe;
