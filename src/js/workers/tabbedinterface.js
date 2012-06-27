@@ -13,7 +13,7 @@
 	/* local reference */
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
-		depends : ['metadata', 'easytabs', 'equalheights'],
+		depends : (pe.mobile ? [] : ['metadata', 'easytabs', 'equalheights']),
 		mobile : function (elm) {
 			var $tabs = elm.find(".tabs > li"),
 				$panels = elm.find(".tabs-panel > div"),

@@ -32,7 +32,7 @@
 		theme: "",
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
-		menubar: $('.wet-boew-menubar'),
+		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
 		/**
@@ -77,7 +77,7 @@
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page');
 
-				mainlinks = $("#wb-main a[href*='#']");
+				mainlinks = pe.main.find("a[href*='#']");
 				// Remove the hash for links to other pages
 				mainlinks.filter(":not([href^='#'])").each(function () {
 					$(this).attr('href', pe.url($(this).attr('href')).removehash());

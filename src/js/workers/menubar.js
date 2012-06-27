@@ -13,7 +13,7 @@
 	/* local reference */
 	_pe.fn.menubar = {
 		type : 'plugin',
-		depends : ['resize', 'equalheights', 'hoverintent', 'outside'],
+		depends : (pe.mobile ? [] : ['resize', 'equalheights', 'hoverintent', 'outside']),
 		_exec : function (elm) {
 			/*
 			@notes: the mega menu will use custom events to better manage its events.
@@ -23,6 +23,9 @@
 			- open : this will open the child menu item
 			*/
 			/* bind plugin scope element */
+			if (pe.mobile) {
+				return;
+			}
 			var $menu,
 				$menuBoundary,
 				$scope,
@@ -285,13 +288,13 @@
 					$childmenu.attr("role", "menu").attr("aria-expanded", "false").attr("aria-hidden", "true").find(":has(:header) ul").attr("role", "menu");
 					$elm.append("<span class=\"wb-invisible\">" + (pe.dic.get('%sub-menu-help')) + "</span>");
 					$elm.closest("li").hoverIntent({
-						over:function () {
+						over: function () {
 							return showsubmenu(this);
-						}, 
+						},
 						out: function () {
 							return hidesubmenu(this);
 						},
-						timeout:500
+						timeout: 500
 					});
 					/* now recurse all focusable to be able to navigate */
 					$childmenu.find("h4 a").each(function (i) {

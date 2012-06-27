@@ -13,7 +13,7 @@
 	/* local reference */
 	_pe.fn.equalize = {
 		type : 'plugin',
-		depends : ['equalheights', 'resize'],
+		depends : (pe.mobile ? [] : ['equalheights', 'resize']),
 		_exec : function (elm) {
 			if (pe.mobile) {
 				return;
