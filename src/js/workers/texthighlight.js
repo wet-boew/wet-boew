@@ -5,7 +5,7 @@
 /*
  * Text highlighting functionality 
  */
-/*global jQuery: false, pe: false, dictionary: false*/
+/*global jQuery: false, pe: false*/
 (function ($) {
 	var _pe = window.pe || {
 		fn: {}
