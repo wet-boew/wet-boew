@@ -158,10 +158,9 @@
 			groupZero.rowgroup = [];
 		}
 		
-		if(!groupZero.allrowgroup){
-			groupZero.allrowgroup = [];
+		if(!groupZero.lstrowgroup){
+			groupZero.lstrowgroup = [];
 		}
-		groupZero.allrowgroup.push(currentRowHeader);
 		
 		
 		var theadRowStack = [];
@@ -1201,9 +1200,35 @@
 					// TODO: check if the current stack of the current rowgroup need to have 0 datarow inside
 					// Set the number of level for this group, also this group will be a data rowgroup
 					
+					if(groupZero.lstrowgroup.length == 0){
+						// we start at the level 1 for the first heading
+						
+						// Calculate the starting row level by using preceding row level
+												
+						// Create virtual rowgroup
+						for(i=0;i<rowgroupHeaderRowStack.length-1; i++){
+							
+							// Include this virtual row group in the current one
+						}
+						// Set the level for the current rowgroup
+						// rowgroupHeaderRowStack.length-1
+					}
+					
+					
+					/*
+						//	groupZero.lstrowgroup.push(currentRowHeader);
+
 					
 					// We have a new data row group
-					/*currentRowHeader.type = 2;
+					
+					if(groupZero.lstrowgroup.length > 0 && 
+						groupZero.lstrowgroup[groupZero.lstrowgroup -1].level > rowgroupHeaderRowStack.length){
+						
+						currentRowHeader.level = 
+						
+					}
+					
+					currentRowHeader.type = 2;
 					
 					// Check if we have a new row group or if is the same
 					if(rowgroupHeaderRowStack.length
@@ -1219,13 +1244,13 @@
 						groupZero.rowgroup[0] = [];
 					}
 
-*/
 					//if(rowgroupHeaderRowStack.length
 					
 					//rowgroupLevel = rowgroupHeaderRowStack.length;
 					
 					
 					// If the rowgroupHeaderRowStack == 0 and they exist at least one data rowgroup, so this rowgroup can be qualify for a rowgroup summary.
+					*/
 				}
 				
 				
@@ -1682,6 +1707,21 @@ delete row.patern;
 					break;
 				case 'tbody':
 					
+					/*
+					*
+					*
+					*
+					* First tbody = data
+					* All tbody with header == data
+					* Subsequent tbody without header == summary
+					* 
+					*
+					
+					
+					* 
+					* 
+					* 
+					*/
 					$(this).data("tblparser", currentRowHeader);
 					
 					// New row group
