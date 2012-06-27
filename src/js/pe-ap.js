@@ -67,7 +67,7 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o;
+			var $lch3, $o, mainlinks;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
@@ -77,13 +77,17 @@
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page');
 
+				mainlinks = $("#wb-main a[href*='#']");
+				// Remove the hash for links to other pages
+				mainlinks.filter(":not([href^='#'])").each(function () {
+					$(this).attr('href', pe.url($(this).attr('href')).removehash());
+				});
 				// Move the focus to the anchored element for same page content area links
-				$("#wb-main a[href^='#']").on("click", function () {
+				mainlinks.filter("[href^='#']").on("click", function () {
 					var $this = $($(this).attr("href") + ":not(a[href], ul.tabs a, input, button, textarea)");
 					if ($this.length > 0) {
 						$(this).attr('href', 'javascript:;');
-						//$.mobile.silentScroll($this.offset().top);
-						$.mobile.silentScroll(pe.focus($this.attr("tabindex", "-1")).offset().top);
+						$.mobile.silentScroll(pe.focus($this.attr("tabindex", "-1")).offset().top + 20);
 					}
 				});
 
