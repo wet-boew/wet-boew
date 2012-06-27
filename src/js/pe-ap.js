@@ -83,7 +83,7 @@
 					$(this).attr('href', pe.url($(this).attr('href')).removehash());
 				});
 				// Move the focus to the anchored element for same page content area links
-				mainlinks.filter("[href^='#']").on("click", function () {
+				mainlinks.filter("[href^='#']").on("tap click", function () {
 					var $this = $($(this).attr("href") + ":not(a[href], ul.tabs a, input, button, textarea)");
 					if ($this.length > 0) {
 						$(this).attr('href', 'javascript:;');
