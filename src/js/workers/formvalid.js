@@ -92,8 +92,11 @@
 						// Move the focus to the associated input when error message link is triggered
 						// a simple href anchor link doesnt seem to place focus inside the input
 						if (pe.ie === 0 || pe.ie > 7) {
-							form.find(".errorContainer a").on("click", function () {
-								pe.focus($($(this).attr("href")).focus());
+							form.find(".errorContainer a").on("click vclick", function () {
+								var errorfields = pe.focus($($(this).attr("href")));
+								if (pe.mobile) {
+									$.mobile.silentScroll(errorfields.offset().top);
+								}
 							});
 						}
 
