@@ -128,7 +128,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p>Defined by a data cell element (td), a <em>key cell</em> can by compared to a primary key in a table inside a relational database. A <em>key cell</em> are always associated to a row cell header (th). Only one key cell can be associated to a header but two key cell can co-exist in the same table row. A key cell is always at the left of his cell header.</p>
 
 
-<table class="lined">
+<table>
 	<caption>Basic &quot;Key Cell&quot; Example</caption>
     
 
@@ -202,7 +202,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<summary>Source code</summary>
 	
 <pre><code>
-&lt;table class=&quot;lined&quot;&gt;
+&lt;table&gt;
 	&lt;caption&gt;Basic &amp;quot;Key Cell&amp;quot; Example&lt;/caption&gt;
     
     &lt;thead&gt;
@@ -273,7 +273,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <p>As you can see in the previous table, the first table column are used to associate a product ID information to the product name. Whatever, it would not be clear to everybody, that doesn't know/search for a specific product, to use the product ID. It's most usable to use the product name. Keep in mind, when a entreprise market a product, he would use the product name and not the product key. The product key would be most useful for somebody that already know about it.</p>
 
-<table class="lined">
+<table>
 	<caption>Another &quot;Key Cell&quot; Example - Android (Operating system) Release date</caption>
     
     <thead>
@@ -322,14 +322,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 	</tbody>
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(1):keycell').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
+<p><label for="tryit1">Try it:</label> <input id="tryit1" type="text" style="width:450px;" value="$('table:eq(1):keycell').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 
 <details>
 	<summary>Source Code</summary>
 
 <pre><code>
 
-&lt;table class=&quot;lined&quot;&gt;
+&lt;table&gt;
 	&lt;caption&gt;Another &amp;quot;Key Cell&amp;quot; Example - Android (Operating system) Release date&lt;/caption&gt;
     
     &lt;thead&gt;
@@ -386,19 +386,21 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <p>If you check the similar table in <a href="http://en.wikipedia.org/wiki/Android_%28operating_system%29">wikipedia on the Adroid webpage</a>, you will see the same relationship but displayed in an implicit way. They use emphasis in the first column to distinguish the key cell versus the row title.</p>
 
-<img src="img-keycell.jpg" />
+<img src="img-keycell.jpg" alt="For the example see http://en.wikipedia.org/wiki/Android_%28operating_system%29" />
 
 <h3>Complex Key Cell Structure</h3>
 <p>Imagine you have serveral products and you want them to be classified by sector. You have an ID for each sector and an ID for each product. You would have a table like this:</p>
 
-<table class="lined">
+<table>
 	<caption>Product Listing</caption>
     
     <thead>
-    	<th colspan="2">Sector</th>
-        <th colspan="2">Product Name</th>
-        <th>Customer Price</th>
-        <th>Distributor Price</th>
+		<tr>
+			<th colspan="2">Sector</th>
+			<th colspan="2">Product Name</th>
+			<th>Customer Price</th>
+			<th>Distributor Price</th>
+		</tr>
     </thead>
 
     <tbody>
@@ -452,21 +454,23 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
         </tr>
 	</tbody>
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(2):keycell').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
+<p><label for="tryit2">Try it:</label> <input id="tryit2" type="text" style="width:450px;" value="$('table:eq(2):keycell').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 
 <details>
 	<summary>Source Code</summary>
 
 <pre><code>
 
-&lt;table class=&quot;lined&quot;&gt;
+&lt;table&gt;
 	&lt;caption&gt;Product Listing&lt;/caption&gt;
     
     &lt;thead&gt;
-    	&lt;th colspan=&quot;2&quot;&gt;Sector&lt;/th&gt;
-        &lt;th colspan=&quot;2&quot;&gt;Product Name&lt;/th&gt;
-        &lt;th&gt;Customer Price&lt;/th&gt;
-        &lt;th&gt;Distributor Price&lt;/th&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;2&quot;&gt;Sector&lt;/th&gt;
+			&lt;th colspan=&quot;2&quot;&gt;Product Name&lt;/th&gt;
+			&lt;th&gt;Customer Price&lt;/th&gt;
+			&lt;th&gt;Distributor Price&lt;/th&gt;
+		&lt;/tr&gt;
     &lt;/thead&gt;
 
     &lt;tbody&gt;
@@ -533,7 +537,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p>There exist other technique on how to add descriptive cell to a cell header. One of those technique is to add in superscript a footnote. An other technique is to use the &quot;details/summary&quot; HTML 5 element in a cell header. Those two technique can be applied to any data cell in a table. When we look at the cell header (th), a thrid technique can be used. That technique is to add a data cell directly in the next column of (right of) the cell heading. A cell header can only have one descriptive data cell associated to.</p>
 
 
-<table class="lined">
+<table>
 	<caption>&quot;Description Cell&quot; example</caption>
     
     <thead>
@@ -629,14 +633,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
     </tbody>
 </table>
 
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(3):description').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
+<p><label for="tryit3">Try it:</label> <input id="tryit3" type="text" style="width:450px;" value="$('table:eq(3):description').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 
 <details>
 	<summary>Source Code</summary>
 <pre><code>
 
 
-&lt;table class=&quot;lined&quot;&gt;
+&lt;table&gt;
 	&lt;caption&gt;&amp;quot;Description Cell&amp;quot; example&lt;/caption&gt;
     
     &lt;thead&gt;
@@ -736,6 +740,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </details>
 
 
+
+
 <p>The previous description cell are explicited defined when it is located between two cell header. Sometime they exist descrive cell but without any hiarchical cell. It is in that case the column grouping (colgroup element) are useful.</p>
 
 <h3>Column Group Header</h3>
@@ -747,10 +753,11 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <pre><code>&lt;colgroup span=&quot;2&quot; /&gt;&lt;colgroup span=&quot;3&quot; /&gt;</code></pre>
 
 
-<table class="lined">
+<table>
 	<caption>&quot;Description Cell&quot; example - with one header per row</caption>
     
-    <colgroup span="2" /><colgroup span="3" />
+    <colgroup span="2" />
+	<colgroup span="3" />
     
     <thead>
     	<tr>
@@ -808,13 +815,13 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
     </tbody>
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(4):description').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
+<p><label for="tryit4">Try it:</label> <input id="tryit4" type="text" style="width:450px;" value="$('table:eq(4):description').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 
 <details>
 	<summary>Source Code</summary>
 <pre><code>
 
-&lt;table class=&quot;lined&quot;&gt;
+&lt;table&gt;
 	&lt;caption&gt;&amp;quot;Description Cell&amp;quot; example - with one header per row&lt;/caption&gt;
     
     &lt;colgroup span=&quot;2&quot; /&gt;&lt;colgroup span=&quot;3&quot; /&gt;
