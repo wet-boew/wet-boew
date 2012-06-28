@@ -73,35 +73,14 @@
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
 
+			hlinks = pe.main.find("a[href*='#']");
+			hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes
+			hlinks_same = hlinks.filter("[href^='#']"); // Same page links with hashes
+
 			// Is this a mobile device?
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page');
-
-				hlinks = pe.main.find("a[href*='#']");
-				hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes
-				hlinks_same = hlinks.filter("[href^='#']"); // Same page links with hashes
-
-				// Remove the hash for links to other pages
-				hlinks_other.each(function () {
-					$(this).attr('href', pe.url($(this).attr('href')).removehash());
-				});
-
-				// Move the focus to the anchored element for same page content area links
-				//hlinks_same.on("click vclick", function () {
-					/* Option 1 - Doesn't really work on iOS or BB */
-					/*var $this = $($(this).attr("href") + ":not(a[href], ul.tabs a, input, button, textarea)");
-					if ($this.length > 0) {
-						$.mobile.silentScroll(pe.focus($this.attr("tabindex", "-1")).offset().top);
-					}*/
-					/* */
-					/* Option 2 - Leaves hash in URL so problematic on refresh */
-			        //location.hash = $(this).attr('href');
-					/* */
-					/*
-					return false;
-				});*/
-				/* Option 3 - Use .off("click") after pagecreate or pageinit then add on click vclick */
 
 				$(document).on("mobileinit", function () {
 					$.extend($.mobile, {
@@ -111,11 +90,18 @@
 					});
 				});
 				$(document).on("pageinit", function () {
-					hlinks_same.off("click vclick");
-					hlinks_same.on("click vclick", function () {
-						var $this = $($(this).attr("href") + ":not(a[href], ul.tabs a, button)");
+					// Remove the hash for links to other pages
+					hlinks_other.each(function () {
+						$(this).attr('href', pe.url($(this).attr('href')).removehash());
+					});
+
+					// Handles same page links
+					hlinks_same.off("click vclick").on("click vclick", function () {
+						var $this = $($(this).attr("href"));
+						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if ($this.length > 0) {
 							$.mobile.silentScroll(pe.focus($this).offset().top);
+							//location.hash = $(this).attr('href');
 						}
 					});
 				});
@@ -123,8 +109,15 @@
 				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
 			} else {
 				// Move the focus to the anchored element for skip nav links
-				$("#wb-skip a").on("click", function () {
+				/*$("#wb-skip a").on("click", function () {
 					pe.focus($($(this).attr("href")).attr("tabindex", "-1"));
+				});*/
+				hlinks_same.on("click vclick", function () {
+					var $this = $($(this).attr("href"));
+					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					if ($this.length > 0) {
+						pe.focus($this).offset().top;
+					}
 				});
 			}
 
