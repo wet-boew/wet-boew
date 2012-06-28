@@ -35,6 +35,7 @@
 		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
+		
 		/**
 		 * Detects the doctype of the document (loosely)
 		 * @function
@@ -67,7 +68,7 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o, mainlinks;
+			var $lch3, $o, hlinks, hlinks_same, hlinks_other;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
@@ -77,24 +78,45 @@
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page');
 
-				mainlinks = pe.main.find("a[href*='#']");
+				hlinks = pe.main.find("a[href*='#']");
+				hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes
+				hlinks_same = hlinks.filter("[href^='#']"); // Same page links with hashes
+
 				// Remove the hash for links to other pages
-				mainlinks.filter(":not([href^='#'])").each(function () {
+				hlinks_other.each(function () {
 					$(this).attr('href', pe.url($(this).attr('href')).removehash());
 				});
+
 				// Move the focus to the anchored element for same page content area links
-				mainlinks.filter("[href^='#']").on("click", function () {
-					var $this = $($(this).attr("href") + ":not(a[href], ul.tabs a, input, button, textarea)");
+				//hlinks_same.on("click vclick", function () {
+					/* Option 1 - Doesn't really work on iOS or BB */
+					/*var $this = $($(this).attr("href") + ":not(a[href], ul.tabs a, input, button, textarea)");
 					if ($this.length > 0) {
 						$.mobile.silentScroll(pe.focus($this.attr("tabindex", "-1")).offset().top);
-					}
-				});
+					}*/
+					/* */
+					/* Option 2 - Leaves hash in URL so problematic on refresh */
+			        //location.hash = $(this).attr('href');
+					/* */
+					/*
+					return false;
+				});*/
+				/* Option 3 - Use .off("click") after pagecreate or pageinit then add on click vclick */
 
 				$(document).on("mobileinit", function () {
 					$.extend($.mobile, {
 						ajaxEnabled: false,
 						pushStateEnabled: false,
 						autoInitializePage: false
+					});
+				});
+				$(document).on("pageinit", function () {
+					hlinks_same.off("click vclick");
+					hlinks_same.on("click vclick", function () {
+						var $this = $($(this).attr("href") + ":not(a[href], ul.tabs a, button)");
+						if ($this.length > 0) {
+							$.mobile.silentScroll(pe.focus($this).offset().top);
+						}
 					});
 				});
 				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
@@ -134,9 +156,6 @@
 							if (wet_boew_theme !== null) {
 								wet_boew_theme.mobileview();
 							}
-							// preprocessing before mobile page is enhanced
-							$(document).on("pageinit", function () {
-							});
 							$.mobile.initializePage();
 						}
 					}
