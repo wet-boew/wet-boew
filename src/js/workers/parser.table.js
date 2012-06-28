@@ -1639,6 +1639,10 @@
 				
 				// Add the cell in his appropriate column
 				
+				if(!groupZero.col){
+					groupZero.col = [];
+				}
+				
 				for(i=0; i<groupZero.col.length; i++){
 					
 					for(j=(groupZero.col[i].start -1); j<groupZero.col[i].end; j++){
