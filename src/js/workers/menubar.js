@@ -13,7 +13,7 @@
 	/* local reference */
 	_pe.fn.menubar = {
 		type : 'plugin',
-		depends : (pe.mobile ? [] : ['resize', 'equalheights', 'hoverintent', 'outside']),
+		depends : (_pe.mobile ? [] : ['resize', 'equalheights', 'hoverintent', 'outside']),
 		_exec : function (elm) {
 			/*
 			@notes: the mega menu will use custom events to better manage its events.
