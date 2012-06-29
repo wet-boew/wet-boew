@@ -137,7 +137,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p>Here an example of data cell compared to summary cell</p>
 
 
-<pre><code> &lt;colgroup&gt;&lt;col /&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt;</code></pre>
+<pre><code> 
+&lt;colgroup&gt;&lt;col /&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
+&lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
+</code></pre>
 <table>
 	<caption>Example Table: Number of PPH requests</caption>
 
@@ -147,9 +150,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	</colgroup>
 
 	
-	<colgroup span="2" />
-	<colgroup />
-	<colgroup />
+	<colgroup span="2"></colgroup>
+	<colgroup></colgroup>
+	<colgroup></colgroup>
   <!--
 	<colgroup>
 		<col />
@@ -257,11 +260,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		&lt;col&gt;
 	&lt;/colgroup&gt;
 	
-  
-	&lt;colgroup span=&quot;2&quot; /&gt;
 
-	&lt;colgroup  /&gt;
-	&lt;colgroup  /&gt;
+	&lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
+	&lt;colgroup&gt;&lt;/colgroup&gt; 
+	&lt;colgroup&gt;&lt;/colgroup&gt;
 
 
 	&lt;thead&gt;
@@ -378,15 +380,18 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <p>The following table only have one row for the column definition. The first colgroup are a header column group. The second colgroup, spanned on 2 column, represent the data colgroup (Level 1). The third colgroup represent the summary of the previous data colgroup  (Level 1). The last colgroup represent the summary of the table row summaries  (Level 0).</p>
 
-<pre><code> &lt;colgroup /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt;</code></pre>
+<pre><code> 
+&lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
+&lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
+</code></pre>
 <table>
 	<caption>Example Table: Number of PPH requests</caption>
 
 	
-	<colgroup />
-	<colgroup span="2" />
-	<colgroup  />
-	<colgroup  />
+	<colgroup></colgroup>
+	<colgroup span="2"></colgroup>
+	<colgroup></colgroup>
+	<colgroup></colgroup>
 
 
 	<thead>
@@ -465,10 +470,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	&lt;caption&gt;Example Table: Number of PPH requests&lt;/caption&gt;
 
 	
-	&lt;colgroup /&gt;
-	&lt;colgroup span=&quot;2&quot; /&gt;
-	&lt;colgroup  /&gt;
-	&lt;colgroup  /&gt;
+	&lt;colgroup&gt;&lt;/colgroup&gt; 
+	&lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
+	&lt;colgroup&gt;&lt;/colgroup&gt; 
+	&lt;colgroup&gt;&lt;/colgroup&gt;
 
 
 	&lt;thead&gt;
@@ -550,18 +555,22 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p>&quot;L&quot; in the following table are a short hand for Data Column Level</p>
 
 
-<pre><code> &lt;colgroup /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt;</code></pre>
+<pre><code> 
+&lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
+&lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
+&lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
+</code></pre>
 <table>
 	<caption>
 Caption
 	</caption>
     
-    <colgroup />
-    <colgroup />
-    <colgroup />
-    <colgroup />
-    <colgroup />
-    <colgroup />
+    <colgroup></colgroup>
+    <colgroup></colgroup>
+    <colgroup></colgroup>
+    <colgroup></colgroup>
+    <colgroup></colgroup>
+    <colgroup></colgroup>
     
     <thead>
     	<tr>
@@ -625,12 +634,12 @@ Caption
 Caption
 	&lt;/caption&gt;
     
-    &lt;colgroup /&gt;
-    &lt;colgroup /&gt;
-    &lt;colgroup /&gt;
-    &lt;colgroup /&gt;
-    &lt;colgroup /&gt;
-    &lt;colgroup /&gt;
+	&lt;colgroup&gt;&lt;/colgroup&gt; 
+	&lt;colgroup&gt;&lt;/colgroup&gt;
+	&lt;colgroup&gt;&lt;/colgroup&gt; 
+	&lt;colgroup&gt;&lt;/colgroup&gt;
+	&lt;colgroup&gt;&lt;/colgroup&gt; 
+	&lt;colgroup&gt;&lt;/colgroup&gt;
     
     &lt;thead&gt;
     	&lt;tr&gt;
@@ -692,13 +701,13 @@ Caption
 <p>Now if we play with the column group element.</p>
 
 
-<pre><code> &lt;colgroup span=&quot;6&quot; /&gt; </code></pre>
+<pre><code> &lt;colgroup span=&quot;6&quot;&gt;&lt;/colgroup&gt; </code></pre>
 <table>
 	<caption>
 Caption
 	</caption>
     
-    <colgroup span="6" />
+    <colgroup span="6"></colgroup>
     
     <thead>
     	<tr>
@@ -762,7 +771,7 @@ Caption
 Caption
 	&lt;/caption&gt;
     
-    &lt;colgroup span=&quot;6&quot; /&gt;
+    &lt;colgroup span=&quot;6&quot;&gt;&lt;/colgroup&gt;
     
     &lt;thead&gt;
     	&lt;tr&gt;
@@ -822,14 +831,14 @@ Caption
 </details>
 
 
-<pre><code> &lt;colgroup span=&quot;4&quot; /&gt; &lt;colgroup span=&quot;2&quot; /&gt;</code></pre>
+<pre><code> &lt;colgroup span=&quot;4&quot;&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;</code></pre>
 <table>
 	<caption>
 Caption
 	</caption>
     
-    <colgroup span="4" />
-    <colgroup span="2" />
+    <colgroup span="4"></colgroup>
+    <colgroup span="2"></colgroup>
     
     <thead>
     	<tr>
@@ -893,8 +902,8 @@ Caption
 Caption
 	&lt;/caption&gt;
     
-    &lt;colgroup span=&quot;4&quot; /&gt;
-    &lt;colgroup span=&quot;2&quot; /&gt;
+    &lt;colgroup span=&quot;4&quot;&gt;&lt;/colgroup&gt;
+    &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
     
     &lt;thead&gt;
     	&lt;tr&gt;
@@ -954,15 +963,15 @@ Caption
 </details>
 
 
-<pre><code> &lt;colgroup span=&quot;4&quot; /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt;</code></pre>
+<pre><code> &lt;colgroup span=&quot;4&quot;&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;</code></pre>
 <table>
 	<caption>
 Caption
 	</caption>
     
-    <colgroup span="4" />
-    <colgroup />
-    <colgroup />
+    <colgroup span="4"></colgroup>
+    <colgroup></colgroup>
+    <colgroup></colgroup>
     
     <thead>
     	<tr>
@@ -1027,9 +1036,9 @@ Caption
 Caption
 	&lt;/caption&gt;
     
-    &lt;colgroup span=&quot;4&quot; /&gt;
-    &lt;colgroup /&gt;
-    &lt;colgroup /&gt;
+    &lt;colgroup span=&quot;4&quot;&gt;&lt;/colgroup&gt;
+    &lt;colgroup&gt;&lt;/colgroup&gt;
+    &lt;colgroup&gt;&lt;/colgroup&gt;
     
     &lt;thead&gt;
     	&lt;tr&gt;
@@ -1090,15 +1099,18 @@ Caption
 
 
 
-<pre><code> &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup span=&quot;2&quot; /&gt;</code></pre>
+<pre><code> 
+&lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt; 
+&lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
+</code></pre>
 <table>
 	<caption>
 Caption
 	</caption>
     
-    <colgroup span="2" />
-    <colgroup span="2" />
-    <colgroup span="2" />
+    <colgroup span="2"></colgroup>
+    <colgroup span="2"></colgroup>
+    <colgroup span="2"></colgroup>
     
     <thead>
     	<tr>
@@ -1161,9 +1173,9 @@ Caption
 Caption
 	&lt;/caption&gt;
     
-    &lt;colgroup span=&quot;2&quot; /&gt;
-    &lt;colgroup span=&quot;2&quot; /&gt;
-    &lt;colgroup span=&quot;2&quot; /&gt;
+    &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
+    &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
+    &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
     
     &lt;thead&gt;
     	&lt;tr&gt;
@@ -1223,14 +1235,14 @@ Caption
 
 
 
-<pre><code> &lt;colgroup span=&quot;2&quot; /&gt; &lt;colgroup span=&quot;4&quot; /&gt;</code></pre>
+<pre><code> &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;4&quot;&gt;&lt;/colgroup&gt;</code></pre>
 <table>
 	<caption>
 Caption
 	</caption>
     
-    <colgroup span="2" />
-    <colgroup span="4" />
+    <colgroup span="2"></colgroup>
+    <colgroup span="4"></colgroup>
     
     <thead>
     	<tr>
@@ -1293,8 +1305,8 @@ Caption
 Caption
 	&lt;/caption&gt;
     
-    &lt;colgroup span=&quot;2&quot; /&gt;
-    &lt;colgroup span=&quot;4&quot; /&gt;
+    &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
+    &lt;colgroup span=&quot;4&quot;&gt;&lt;/colgroup&gt;
     
     &lt;thead&gt;
     	&lt;tr&gt;
@@ -1368,7 +1380,11 @@ Caption
 
 
 
-<pre><code> &lt;colgroup span=&quot;3&quot; /&gt; &lt;colgroup span=&quot;3&quot; /&gt; &lt;colgroup span=&quot;3&quot; /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt; &lt;colgroup /&gt;</code></pre>
+<pre><code> 
+&lt;colgroup span=&quot;3&quot;&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;3&quot;&gt;&lt;/colgroup&gt;
+&lt;colgroup span=&quot;3&quot;&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
+&lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
+</code></pre>
 <table>
 	<caption>Caption</caption>
 	
@@ -1606,13 +1622,13 @@ Caption
 &lt;table&gt;
 	&lt;caption&gt;Caption&lt;/caption&gt;
 	
-	&lt;colgroup span=&quot;3&quot; /&gt;
-	&lt;colgroup span=&quot;3&quot; /&gt;
-	&lt;colgroup span=&quot;3&quot; /&gt;
-	&lt;colgroup /&gt;
-	&lt;colgroup /&gt;
-	&lt;colgroup /&gt;
-	&lt;colgroup /&gt;
+	&lt;colgroup span=&quot;3&quot;&gt;&lt;/colgroup&gt; 
+	&lt;colgroup span=&quot;3&quot;&gt;&lt;/colgroup&gt;
+	&lt;colgroup span=&quot;3&quot;&gt;&lt;/colgroup&gt; 
+	&lt;colgroup&gt;&lt;/colgroup&gt;
+	&lt;colgroup&gt;&lt;/colgroup&gt; 
+	&lt;colgroup&gt;&lt;/colgroup&gt; 
+	&lt;colgroup&gt;&lt;/colgroup&gt;
 
 	&lt;thead&gt;
 		&lt;tr&gt;
