@@ -172,15 +172,7 @@
 				pe.add.language(pe.language);
 			});
 
-			// add polyfills if necessary; load html5shiv first if < IE 9
-			if (pe.ie > 0 && pe.ie < 9) {
-				pe.add._load(pe.add.liblocation + 'polyfills/html5shiv' + pe.suffix + '.js', "html5shiv-loaded");
-				$(document).on("html5shiv-loaded", function () {
-					pe.polyfills();
-				});
-			} else {
-				pe.polyfills();
-			}
+			pe.polyfills();
 		},
 		/**
 		 * @namespace pe.depends
