@@ -35,7 +35,7 @@
 		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
-		
+		urlquery: "",
 		/**
 		 * Detects the doctype of the document (loosely)
 		 * @function
@@ -73,6 +73,9 @@
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
 
+			// Get the query parameters from the URL
+			pe.urlquery = pe.url(document.location).params;
+
 			hlinks = pe.main.find("a[href*='#']");
 			hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes
 			hlinks_same = hlinks.filter("[href^='#']"); // Same page links with hashes
@@ -89,34 +92,46 @@
 						autoInitializePage: false
 					});
 				});
-				$(document).on("pageinit", function () {
-					// Remove the hash for links to other pages
-					hlinks_other.each(function () {
-						$(this).attr('href', pe.url($(this).attr('href')).removehash());
-					});
 
-					// Handles same page links
+				// Replace hash with ?hashtarget = move hash from links to other pages
+				hlinks_other.each(function () {
+					var $this = $(this),
+						url = pe.url($this.attr('href'));
+					if (url.hash.length > 0 && window.location.hostname === url.host) {
+						$this.attr('href', url.removehash() + (url.params.length > 0 ? "&amp;" : "?") + 'hashtarget=' + url.hash);
+					}
+				});
+
+				$(document).on("pageinit", function () {
+					// On click, puts focus on and scrolls to the target of same page links
 					hlinks_same.off("click vclick").on("click vclick", function () {
 						var $this = $($(this).attr("href"));
 						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if ($this.length > 0) {
 							$.mobile.silentScroll(pe.focus($this).offset().top);
-							//location.hash = $(this).attr('href');
 						}
 					});
+
+					// If hashtarget is in the query string then put focus on and scroll to the target
+					if (pe.urlquery.hashtarget !== undefined) {
+						var target = pe.main.find('#' + pe.urlquery.hashtarget);
+						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+						if (target.length > 0) {
+							setTimeout(function () {
+								$.mobile.silentScroll(pe.focus(target).offset().top);
+							}, 0);
+						}
+					}
 				});
 				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
 				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
 			} else {
-				// Move the focus to the anchored element for skip nav links
-				/*$("#wb-skip a").on("click", function () {
-					pe.focus($($(this).attr("href")).attr("tabindex", "-1"));
-				});*/
+				// On click, puts focus on the target of same page links
 				hlinks_same.on("click vclick", function () {
 					var $this = $($(this).attr("href"));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
-						pe.focus($this).offset().top;
+						pe.focus($this);
 					}
 				});
 			}
@@ -687,7 +702,7 @@
 							if (next.is('ul')) {
 								// The original menu item was not in a menu bar
 								if (!menubar) {
-									next.prepend($('<li></li>').append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home'))));
+									next.append($('<li></li>').append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home'))));
 								}
 								nested = next.find('li ul');
 								// If a nested list is detected
@@ -698,7 +713,7 @@
 										// Make the nested list into a collapsible section
 										$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
 										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
-										$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+										$this.append('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
 										hlink.remove();
 									} else {
 										$this.attr('data-role', 'listview').attr('data-theme', theme);
@@ -711,7 +726,7 @@
 								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme));
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
-									subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
 								}
 							}
 							menu.append(subsection);
