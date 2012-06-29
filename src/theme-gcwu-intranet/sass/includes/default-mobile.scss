@@ -2,13 +2,13 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ */
 .intranet #gcwu-subsite{
 	border-top:1px solid #CCC;
 	clear:both;
 	font-size:130%;
 	text-shadow:1px 1px 1px #333;
-	background:url("../images/gcwu-subsite-1.gif") repeat-x scroll 0 top #618000;
+	background:url(../images/gcwu-subsite-1.gif) repeat-x scroll 0 top #618000;
 }
 
 .intranet #wb-head-in{
@@ -27,22 +27,6 @@
 .intranet #gcwu-subsite p{
 	margin:0;
 	padding:5px 10px;
-}
-
-#gcwu-subsite a:first-child{
-	border-left:medium none;
-	font-size:80%;
-	padding-left:0;
-}
-
-#gcwu-subsite a{
-	border-left:1px solid #CCC;
-	color:#FFF;
-	font-size:80%;
-	text-decoration:none;
-	text-shadow:1px 1px 1px #333;
-	white-space:nowrap;
-	padding:0 5px 0 10px;
 }
 
 .ui-mobile #gcwu-subsite a{
@@ -65,6 +49,16 @@
 .intranet #gcwu-tctr{
 	padding-top:20px;
 	clear:both;
+}
+
+#gcwu-intranetnb li{
+	display:none;
+	padding-bottom:5px;
+}
+
+#gcwu-intranetnb #gcwu-gcnb-lang{
+	display:inline;
+	float:right;
 }
 
 #gcwu-intranetnb-inner {
@@ -105,4 +99,9 @@
 	font-weight: 400;
 	padding: 3px;
 	text-decoration: none;
+}
+
+#gcwu-subsite p {
+	margin-top:0px;
+	margin-bottom:0px;
 }

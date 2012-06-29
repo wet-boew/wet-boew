@@ -13,7 +13,7 @@
 	/* local reference */
 	_pe.fn.menubar = {
 		type : 'plugin',
-		depends : ['resize', 'equalheights', 'hoverintent', 'outside'],
+		depends : (_pe.mobile ? [] : ['resize', 'equalheights', 'hoverintent', 'outside']),
 		_exec : function (elm) {
 			/*
 			@notes: the mega menu will use custom events to better manage its events.
@@ -23,6 +23,9 @@
 			- open : this will open the child menu item
 			*/
 			/* bind plugin scope element */
+			if (pe.mobile) {
+				return;
+			}
 			var $menu,
 				$menuBoundary,
 				$scope,
@@ -92,8 +95,15 @@
 			$scope.attr("role", "application");
 			$menu.attr("role", "menubar");
 			pe.resize(correctheight);
-			/* Handles opening and closing a submenu on click */
-			$scope.find('.mb-sm').parent().find('> :header a').on("click", function (event) {
+			/* Handles opening and closing of a submenu on click of a menu bar item
+			   but prevents any changes on click of the empty area in the submenu */
+			$scope.find('.mb-sm').on("click vclick", function (event) { 
+				if (event.stopPropagation) {
+					event.stopPropagation();
+				} else {
+					event.cancelBubble = true;
+				}
+			}).parent().find('> :header a').on("click vclick", function (event) {
 				if ($(this).closest("li").hasClass("mb-active")) {
 					hidesubmenu(this);
 				} else {
@@ -267,7 +277,7 @@
 					return;
 				}
 			});
-			$(document).on("click", function () {
+			$(document).on("click touchstart", function () {
 				$scope.trigger("focusoutside");
 			});
 			$scope.on("focusoutside", function () {
@@ -284,10 +294,14 @@
 					$elm.attr("aria-haspopup", "true").addClass("mb-has-sm").wrapInner("<span class=\"expandicon\"><span class=\"sublink\"></span></span>");
 					$childmenu.attr("role", "menu").attr("aria-expanded", "false").attr("aria-hidden", "true").find(":has(:header) ul").attr("role", "menu");
 					$elm.append("<span class=\"wb-invisible\">" + (pe.dic.get('%sub-menu-help')) + "</span>");
-					$elm.closest("li").hoverIntent(function () {
-						return showsubmenu(this);
-					}, function () {
-						return hidesubmenu(this);
+					$elm.closest("li").hoverIntent({
+						over: function () {
+							return showsubmenu(this);
+						},
+						out: function () {
+							return hidesubmenu(this);
+						},
+						timeout: 500
 					});
 					/* now recurse all focusable to be able to navigate */
 					$childmenu.find("h4 a").each(function (i) {

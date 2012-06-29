@@ -32,9 +32,10 @@
 		theme: "",
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
-		menubar: $('.wet-boew-menubar'),
+		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
+		urlquery: "",
 		/**
 		 * Detects the doctype of the document (loosely)
 		 * @function
@@ -67,15 +68,72 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o;
+			var $lch3, $o, hlinks, hlinks_same, hlinks_other;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
+
+			// Get the query parameters from the URL
+			pe.urlquery = pe.url(document.location).params;
+
+			hlinks = pe.main.find("a[href*='#']");
+			hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes
+			hlinks_same = hlinks.filter("[href^='#']"); // Same page links with hashes
 
 			// Is this a mobile device?
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page');
+
+				$(document).on("mobileinit", function () {
+					$.extend($.mobile, {
+						ajaxEnabled: false,
+						pushStateEnabled: false,
+						autoInitializePage: false
+					});
+				});
+
+				// Replace hash with ?hashtarget = move hash from links to other pages
+				hlinks_other.each(function () {
+					var $this = $(this),
+						url = pe.url($this.attr('href'));
+					if (url.hash.length > 0 && window.location.hostname === url.host) {
+						$this.attr('href', url.removehash() + (url.params.length > 0 ? "&amp;" : "?") + 'hashtarget=' + url.hash);
+					}
+				});
+
+				$(document).on("pageinit", function () {
+					// On click, puts focus on and scrolls to the target of same page links
+					hlinks_same.off("click vclick").on("click vclick", function () {
+						var $this = $($(this).attr("href"));
+						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+						if ($this.length > 0) {
+							$.mobile.silentScroll(pe.focus($this).offset().top);
+						}
+					});
+
+					// If hashtarget is in the query string then put focus on and scroll to the target
+					if (pe.urlquery.hashtarget !== undefined) {
+						var target = pe.main.find('#' + pe.urlquery.hashtarget);
+						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+						if (target.length > 0) {
+							setTimeout(function () {
+								$.mobile.silentScroll(pe.focus(target).offset().top);
+							}, 0);
+						}
+					}
+				});
+				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
+				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
+			} else {
+				// On click, puts focus on the target of same page links
+				hlinks_same.on("click vclick", function () {
+					var $this = $($(this).attr("href"));
+					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					if ($this.length > 0) {
+						pe.focus($this);
+					}
+				});
 			}
 
 			//Load ajax content
@@ -106,14 +164,7 @@
 							if (wet_boew_theme !== null) {
 								wet_boew_theme.mobileview();
 							}
-							$(document).on("mobileinit", function () {
-								//$.mobile.loadingMessage = false;
-								$.mobile.ajaxEnabled = false;
-								$.mobile.pushStateEnabled = false;
-							});
-							// preprocessing before mobile page is enhanced
-							$(document).on("pageinit", function () {
-							});
+							$.mobile.initializePage();
 						}
 					}
 					pe.dance();
@@ -651,7 +702,7 @@
 							if (next.is('ul')) {
 								// The original menu item was not in a menu bar
 								if (!menubar) {
-									next.prepend($('<li></li>').append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home'))));
+									next.append($('<li></li>').append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home'))));
 								}
 								nested = next.find('li ul');
 								// If a nested list is detected
@@ -662,7 +713,7 @@
 										// Make the nested list into a collapsible section
 										$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
 										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
-										$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+										$this.append('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
 										hlink.remove();
 									} else {
 										$this.attr('data-role', 'listview').attr('data-theme', theme);
@@ -675,7 +726,7 @@
 								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme));
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
-									subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
 								}
 							}
 							menu.append(subsection);
@@ -768,6 +819,7 @@
 			}
 			// detail + summary
 			if (!detail) {
+				pe.add._load(lib + 'polyfills/html5shiv' + pe.suffix + '.js');
 				pe.add._load(lib + 'polyfills/detailsummary' + pe.suffix + '.js');
 			}
 		},
@@ -958,15 +1010,18 @@
 		 */
 		dance: function () {
 			// global plugins
-			var i, exclude = ":not(a[href], input, button, textarea)",
-				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false;
+			var i,	settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false;
 			$('[class^="wet-boew-"]').each(function () {
-				var _fcall,
-					_node;
-				_node = $(this);
-				_fcall = _node.attr("class").replace(/^wet-boew-(\S*).*/i, "$1".toLowerCase());
-				if (typeof pe.fn[_fcall] !== "undefined") {
-					pe._execute(pe.fn[_fcall], _node);
+				var _node = $(this),
+					_fcall = _node.attr("class").split(" "),
+					i;
+				for (i = 0; i < _fcall.length; i += 1) {
+					if (_fcall[i].indexOf('wet-boew-') === 0) {
+						_fcall[i] = _fcall[i].substr(9).toLowerCase();
+						if (typeof pe.fn[_fcall[i]] !== "undefined") {
+							pe._execute(pe.fn[_fcall[i]], _node);
+						}
+					}
 				}
 			// lets safeguard the execution to only functions we have
 			});
@@ -976,19 +1031,6 @@
 				for (i = 0; i < settings.globals.length; i += 1) {
 					pe._execute(pe.fn[settings.globals[i]], document);
 				}
-			}
-			if (pe.mobile) {
-				// Move the focus to the anchored element for same page content area links
-				$("#wb-main a[href^='#']").on("click", function () {
-					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
-				});
-				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
-				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
-			} else {
-				// Move the focus to the anchored element for skip nav links
-				$("#wb-skip a").on("click", function () {
-					pe.focus($($(this).attr("href") + exclude).attr("tabindex", "-1"));
-				});
 			}
 			window.onresize = function () { // TODO: find a better way to switch back and forth between mobile and desktop modes.
 				if (pe.mobile !== pe.mobilecheck()) {
