@@ -58,6 +58,7 @@
 			return r;
 		},
 		ind : {
+			"%all" : "All",
 			"%home" : "Home",
 			"%top-of-page" : "Top of Page",
 			"%you-are-in" : "You are in: ",
