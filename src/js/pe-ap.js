@@ -819,6 +819,7 @@
 			}
 			// detail + summary
 			if (!detail) {
+				pe.add._load(lib + 'polyfills/html5shiv' + pe.suffix + '.js');
 				pe.add._load(lib + 'polyfills/detailsummary' + pe.suffix + '.js');
 			}
 		},
