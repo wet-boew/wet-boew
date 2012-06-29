@@ -95,8 +95,15 @@
 			$scope.attr("role", "application");
 			$menu.attr("role", "menubar");
 			pe.resize(correctheight);
-			/* Handles opening and closing a submenu on click */
-			$scope.find('.mb-sm').parent().find('> :header a').on("click", function (event) {
+			/* Handles opening and closing of a submenu on click of a menu bar item
+			   but prevents any changes on click of the empty area in the submenu */
+			$scope.find('.mb-sm').on("click vclick", function (event) { 
+				if (event.stopPropagation) {
+					event.stopPropagation();
+				} else {
+					event.cancelBubble = true;
+				}
+			}).parent().find('> :header a').on("click vclick", function (event) {
 				if ($(this).closest("li").hasClass("mb-active")) {
 					hidesubmenu(this);
 				} else {
@@ -270,7 +277,7 @@
 					return;
 				}
 			});
-			$(document).on("click", function () {
+			$(document).on("click touchstart", function () {
 				$scope.trigger("focusoutside");
 			});
 			$scope.on("focusoutside", function () {

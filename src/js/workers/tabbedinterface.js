@@ -113,18 +113,18 @@
 
 			$nav = elm.find(".tabs");
 			$tabs = $nav.find("li > a");
-			$panels = elm.find(".tabs-panel").children();
+			$panels = elm.find(".tabs-panel").children().attr('tabindex', '-1');
 			$default_tab = ($nav.find(".default").length > 0 ? $nav.find(".default") : $nav.find("li:first-child"));
 			$nav.attr("role", "tablist");
 			$nav.find("li").each(function () {
 				$(this).attr("role", "presentation");
 				return $(this).children("a").each(function () {
-					return $(this).attr("role", "tab").attr("aria-selected", "false").attr("id", $(this).attr("href").substring(1) + "-link").bind("click", function () {
+					return $(this).attr("role", "tab").attr("aria-selected", "false").attr('tabindex', '-1').attr("id", $(this).attr("href").substring(1) + "-link").on("click", function () {
 						$(this).parent().parent().children("." + opts.tabActiveClass).children("a").each(function () {
-							$(this).attr("aria-selected", "false");
+							$(this).attr("aria-selected", "false").attr('tabindex', '-1');
 							return $("#" + $(this).attr("href").substring(1)).attr("aria-hidden", "true");
 						});
-						$(this).attr("aria-selected", "true");
+						$(this).attr("aria-selected", "true").attr('tabindex', '0');
 						return $("#" + $(this).attr("href").substring(1)).attr("aria-hidden", "false");
 					});
 				});
@@ -133,34 +133,31 @@
 				return $(this).attr("role", "tabpanel").attr("aria-hidden", "true").attr("aria-labelledby", $('a[href*="#' + $(this).attr("id") + '"]').attr("id"));
 			});
 			$default_tab.children("a").each(function () {
-				$(this).attr("aria-selected", "true");
+				$(this).attr("aria-selected", "true").attr('tabindex', '0');
 				return $("#" + $(this).attr("href").substring(1)).attr("aria-hidden", "false");
 			});
-			$nav.find("li a").bind("focus", function () {
+			$nav.find("li a").on("focus", function () {
 				$panels.stop(true, true);
-				$(this).click();
 			});
-			$nav.find("li a").keydown(function (e) {
+			$nav.find("li a").on("keydown", function (e) {
 				if (e.keyCode === 13 || e.keyCode === 32) {
-					var $current = $panels.filter(function () {
-							return $(this).is("." + opts.tabActiveClass);
-						});
-					$current.attr("tabindex", "0");
+					var $current = $panels.filter($(this).attr('href'));//function () {
+							//return $(this).is("." + opts.tabActiveClass);
+							//return $(this).
+						//});
 					if (e.stopPropagation) {
 						e.stopImmediatePropagation();
 					} else {
 						e.cancelBubble = true;
 					}
-					return setTimeout(function () {
-						return $current.focus();
-					}, 0);
+					return pe.focus($current);
 				}
 			});
-			elm.keydown(function (e) {
+			elm.on("keydown", function (e) {
 				if (e.which === 37 || e.which === 38) { // left or up
 					selectPrev($tabs, $panels, opts, false);
 					e.preventDefault();
-				} else if (e.which === 39 || e.which === 40) { // right or down
+				} else if (e.which === 39 || e.which === 40) { // tab, right or down
 					selectNext($tabs, $panels, opts, false);
 					e.preventDefault();
 				}
@@ -184,11 +181,11 @@
 					$panels.removeClass(opts.panelActiveClass).attr("aria-hidden", "true").hide();
 					$panels.filter("#" + $prev.attr("href").substr(1)).show().addClass(opts.panelActiveClass).attr("aria-hidden", "false");
 				}
-				$tabs.parent().removeClass(opts.tabActiveClass).children().removeClass(opts.tabActiveClass).filter("a").attr("aria-selected", "false");
-				$prev.parent().addClass(opts.tabActiveClass).children().addClass(opts.tabActiveClass).filter("a").attr("aria-selected", "true");
+				$tabs.parent().removeClass(opts.tabActiveClass).children().removeClass(opts.tabActiveClass).filter("a").attr("aria-selected", "false").attr('tabindex', '-1');
+				$prev.parent().addClass(opts.tabActiveClass).children().addClass(opts.tabActiveClass).filter("a").attr("aria-selected", "true").attr('tabindex', '0');
 				cycleButton = $current.parent().siblings(".tabs-toggle");
 				if (!keepFocus && (cycleButton.length === 0 || cycleButton.data("state") === "stopped")) {
-					return $prev.focus();
+					return pe.focus($prev);
 				}
 			};
 			selectNext = function ($tabs, $panels, opts, keepFocus) {
@@ -210,11 +207,11 @@
 					$panels.removeClass(opts.panelActiveClass).attr("aria-hidden", "true").hide();
 					$panels.filter("#" + $next.attr("href").substr(1)).show().addClass(opts.panelActiveClass).attr("aria-hidden", "false");
 				}
-				$tabs.parent().removeClass(opts.tabActiveClass).children().removeClass(opts.tabActiveClass).filter("a").attr("aria-selected", "false");
-				$next.parent().addClass(opts.tabActiveClass).children().addClass(opts.tabActiveClass).filter("a").attr("aria-selected", "true");
+				$tabs.parent().removeClass(opts.tabActiveClass).children().removeClass(opts.tabActiveClass).filter("a").attr("aria-selected", "false").attr('tabindex', '-1');
+				$next.parent().addClass(opts.tabActiveClass).children().addClass(opts.tabActiveClass).filter("a").attr("aria-selected", "true").attr('tabindex', '0');
 				cycleButton = $current.parent().siblings(".tabs-toggle");
 				if (!keepFocus && (cycleButton.length === 0 || cycleButton.data("state") === "stopped")) {
-					return $next.focus();
+					return pe.focus($next);
 				}
 			};
 			toggleCycle = function () {
@@ -341,7 +338,6 @@
 				if (hash.length > 1) {
 					anchor = $(hash, $panels);
 					if (anchor.length) {
-						//console.log("anchor found:", anchor, ", for link:", $(this));
 						return $(this).click(function (e) {
 							var panel,
 								panelId;
