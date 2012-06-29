@@ -174,8 +174,8 @@
 
 			// add polyfills if necessary; load html5shiv first if < IE 9
 			if (pe.ie > 0 && pe.ie < 9) {
-				pe.add._load(pe.add.liblocation + 'polyfills/html5shiv' + pe.suffix + '.js');
-				$(document).on("wet-boew-dependency-loaded", function () {
+				pe.add._load(pe.add.liblocation + 'polyfills/html5shiv' + pe.suffix + '.js', "html5shiv-loaded");
+				$(document).on("html5shiv-loaded", function () {
 					pe.polyfills();
 				});
 			} else {
@@ -862,8 +862,9 @@
 				 * @param {string} js Path and filename of the javascript file to asynchronously load.
 				 * @return {object} A reference to pe.add
 				 */
-				_load: function (js) {
-					var head = pe.add.head;
+				_load: function (js, message) {
+					var head = pe.add.head,
+						msg = (message !== undefined ? message : 'wet-boew-dependency-loaded');
 					// - lets prevent double loading of dependencies
 					if ($.inArray(js, this.staged) > -1) {
 						return this;
@@ -888,7 +889,7 @@
 							scriptdone = true;
 							// now add to dependency list
 							pe.depends.put(js);
-							$(document).trigger({type: 'wet-boew-dependency-loaded', js: js});
+							$(document).trigger({type: msg, js: js});
 						};
 						scriptElem.src = js;
 						if ((pe.ie > 0 && pe.ie < 9) || !head.insertBefore) {
