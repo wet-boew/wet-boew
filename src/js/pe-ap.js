@@ -154,7 +154,7 @@
 				}, "html");
 			})).always(function () {
 				//Wait for localisation and ajax content to load plugins
-				$(document).bind("languageloaded", function () {
+				$(document).on("languageloaded", function () {
 					if (wet_boew_theme !== null) {
 						// Initialize the theme
 						wet_boew_theme.init();
@@ -172,8 +172,15 @@
 				pe.add.language(pe.language);
 			});
 
-			// add polyfills if necessary;
-			pe.polyfills();
+			// add polyfills if necessary; load html5shiv first if < IE 9
+			if (pe.ie > 0 && pe.ie < 9) {
+				pe.add._load(pe.add.liblocation + 'polyfills/html5shiv' + pe.suffix + '.js');
+				$(document).on("wet-boew-dependency-loaded", function () {
+					pe.polyfills();
+				});
+			} else {
+				pe.polyfills();
+			}
 		},
 		/**
 		 * @namespace pe.depends
@@ -819,7 +826,6 @@
 			}
 			// detail + summary
 			if (!detail) {
-				pe.add._load(lib + 'polyfills/html5shiv' + pe.suffix + '.js');
 				pe.add._load(lib + 'polyfills/detailsummary' + pe.suffix + '.js');
 			}
 		},
