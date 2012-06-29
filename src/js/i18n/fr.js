@@ -55,6 +55,7 @@
 			return r;
 		},
 		ind: {
+			"%all" : "Tous",
 			"%home" : "Accueil",
 			"%top-of-page": "Haut de la page",
 			"%you-are-in": "Vous êtes dans :",

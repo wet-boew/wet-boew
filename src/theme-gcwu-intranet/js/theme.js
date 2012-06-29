@@ -36,6 +36,7 @@
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm');
+
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length > 0) {
 				submenu.prev().children('a').addClass('nav-current');

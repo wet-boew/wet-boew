@@ -702,7 +702,7 @@
 							if (next.is('ul')) {
 								// The original menu item was not in a menu bar
 								if (!menubar) {
-									next.append($('<li></li>').append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home'))));
+									next.append($('<li></li>').append($this.children('a').html(pe.dic.get('%all') + ' - ' + hlink.html())));
 								}
 								nested = next.find('li ul');
 								// If a nested list is detected
@@ -713,7 +713,7 @@
 										// Make the nested list into a collapsible section
 										$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
 										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
-										$this.append('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+										$this.append('<li><a href="' + hlink.attr('href') + '">' + pe.dic.get('%all') + ' - ' + hlink.html() + '</a></li>');
 										hlink.remove();
 									} else {
 										$this.attr('data-role', 'listview').attr('data-theme', theme);
@@ -726,7 +726,7 @@
 								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme));
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
-									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(pe.dic.get('%all') + ' - ' + hlink.html()).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
 								}
 							}
 							menu.append(subsection);
