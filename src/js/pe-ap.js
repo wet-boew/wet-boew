@@ -93,11 +93,11 @@
 					});
 				});
 
-				// Replace hash with ?hashtarget = move hash from links to other pages
+				// Replace hash with ?hashtarget= for links to other pages
 				hlinks_other.each(function () {
 					var $this = $(this),
 						url = pe.url($this.attr('href'));
-					if (url.hash.length > 0 && window.location.hostname === url.host) {
+					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
 						$this.attr('href', url.removehash() + (url.params.length > 0 ? "&amp;" : "?") + 'hashtarget=' + url.hash);
 					}
 				});
