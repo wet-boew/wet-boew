@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- DataAjaxFragmentStart -->
 <li><section><h3><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></h3><div class="mb-sm">
 <div class="span-2">
