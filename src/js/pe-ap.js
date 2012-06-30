@@ -68,7 +68,7 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o, hlinks, hlinks_same, hlinks_other;
+			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, target;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
@@ -95,8 +95,8 @@
 
 				// Replace hash with ?hashtarget= for links to other pages
 				hlinks_other.each(function () {
-					var $this = $(this),
-						url = pe.url($this.attr('href'));
+					var url = pe.url($this.attr('href'));
+					$this = $(this);
 					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
 						$this.attr('href', url.removehash() + (url.params.length > 0 ? "&amp;" : "?") + 'hashtarget=' + url.hash);
 					}
@@ -105,7 +105,7 @@
 				$(document).on("pageinit", function () {
 					// On click, puts focus on and scrolls to the target of same page links
 					hlinks_same.off("click vclick").on("click vclick", function () {
-						var $this = $($(this).attr("href"));
+						$this = $($(this).attr("href"));
 						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if ($this.length > 0) {
 							$.mobile.silentScroll(pe.focus($this).offset().top);
@@ -114,7 +114,7 @@
 
 					// If hashtarget is in the query string then put focus on and scroll to the target
 					if (pe.urlquery.hashtarget !== undefined) {
-						var target = pe.main.find('#' + pe.urlquery.hashtarget);
+						target = pe.main.find('#' + pe.urlquery.hashtarget);
 						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if (target.length > 0) {
 							setTimeout(function () {
@@ -126,14 +126,23 @@
 				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
 				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
 			} else {
-				// On click, puts focus on the target of same page links
+				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
 				hlinks_same.on("click vclick", function () {
-					var $this = $($(this).attr("href"));
+					$this = $($(this).attr("href"));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
 					}
 				});
+
+				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
+				if (window.location.hash.length > 0) {
+					$this = $(window.location.hash);
+					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					if ($this.length > 0) {
+						pe.focus($this);
+					}
+				}
 			}
 
 			//Load ajax content
