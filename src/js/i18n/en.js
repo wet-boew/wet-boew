@@ -136,7 +136,12 @@
 			"%errors-found" : " errors were found.",
 			"%error-found" : " error was found.",
 			"%error" : "Error",
-			"%colon" : ":"
+			"%colon" : ":",
+			/* Slideout */
+			"%show-toc" : "Show",
+			"%show-image" : "show.png",
+			"%hide-image" : "hide.png",
+			"%table-contents" : " table of contents"
 		}
 	};
         $(document).trigger("languageloaded");
