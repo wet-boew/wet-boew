@@ -21,10 +21,6 @@ summary:hover, summary:focus {
 /* However, we’re still gonna use CSS as well to prevent FOUC in browsers that understand these selectors. */
 /* Remember: by default (and probably most of the time), the contents of the <details> element are hidden. */
 
-/* Hide all direct descendants of every <details> element */
-details > * { 
-    display: none; 
-}
 
 /* Make sure summary remains visible */
 details summary { 

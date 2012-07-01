@@ -25,6 +25,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <script src="../../build/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
@@ -413,16 +414,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				Current employees
 				<div class="align-right margin-bottom-small">
 					<div class="toggle-content collapse">
-						<details>
-							<summary class="toggle-link-text">Description</summary>
-							<p class="align-left">
+						<details class="align-left">
+							<summary class="toggle-link-text align-right">Description</summary>
 							This table outlines the current employees 
 							in the organization.  The  first column 
 							indicates the employee's full name, the 
 							second column indicates their title, and 
 							the third column indicates their salary.  
 							The final row is the total of all of the 
-							employee salaries.</p>
+							employee salaries.
 						</details>
 					</div>
 				</div>
