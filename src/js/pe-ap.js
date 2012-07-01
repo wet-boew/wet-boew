@@ -791,7 +791,7 @@
 		polyfills: function () {
 			var lib = pe.add.liblocation,
 				// modernizer test for detailsummary support
-				detail = (function (doc) {
+				details = (function (doc) {
 					var el = doc.createElement('details'),
 						fake,
 						root,
@@ -824,10 +824,12 @@
 			// process
 			if (typeof document.createElement('progress').position === "undefined") {
 				pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
+				$("progress").addClass("polyfill");
 			}
-			// detail + summary
-			if (!detail) {
-				pe.add._load(lib + 'polyfills/detailsummary' + pe.suffix + '.js');
+			// details + summary
+			if (!details) {
+				pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
+				$("details").addClass("polyfill");
 			}
 		},
 		/**
