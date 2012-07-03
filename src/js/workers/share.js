@@ -204,16 +204,8 @@
 					}
 				});
 
-				// Close the popup menu on any click away from the links
-				elm.on("click vclick", function (event) {
-					if (event.stopPropagation) {
-						event.stopPropagation();
-					} else {
-						event.cancelBubble = true;
-					}
-				});
 				$(document).on("click touchstart", function (e) {
-					if ($popup.attr('aria-hidden') === 'false') {
+					if ($popup.attr('aria-hidden') === 'false' && !$(e.target).is($popup) && $(e.target).closest($popup).length === 0) {
 						$popup.trigger("close");
 					}
 				});
