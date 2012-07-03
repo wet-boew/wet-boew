@@ -90,6 +90,11 @@
 							return false;
 						}
 					} else if (e.type === "click" || e.type === "vclick") {
+						if (e.stopPropagation) {
+							e.stopImmediatePropagation();
+						} else {
+							e.cancelBubble = true;
+						}
 						if ($popup.attr('aria-hidden') === 'true') {
 							$popup.trigger("open");
 						} else {
