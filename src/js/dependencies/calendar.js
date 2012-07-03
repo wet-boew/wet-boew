@@ -3,8 +3,10 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 /*global jQuery: false, pe: false*/
-//(function ($) {
-	var calendar = {
+(function ($) {
+	var _pe = window.pe || {fn: {} };
+	/* local reference */
+	_pe.fn.calendar = {
 		create: function (containerid, year, month, shownav, mindate, maxdate) {
 			var objCalendar,
 				container = $('#' + containerid),
@@ -19,12 +21,12 @@
 			container.removeClass("cal-container-extended");
 
 			//Converts min and max date from string to date objects
-			minDate = calendar.getDateFromISOString(mindate);
+			minDate = this.getDateFromISOString(mindate);
 			if (minDate === null) {
 				minDate = new Date();
 				minDate.setFullYear(year - 1, month, 1);
 			}
-			maxDate = calendar.getDateFromISOString(maxdate);
+			maxDate = this.getDateFromISOString(maxdate);
 			if (maxDate === null) {
 				maxDate = new Date();
 				maxDate.setFullYear(year + 1, month, 1);
@@ -148,10 +150,7 @@
 						btnCtn.append(btn);
 						monthNav.append(btnCtn);
 					}
-					btn.bind('click', {year: newYear, month : newMonth, mindate: calendar.getISOStringFromDate(minDate), maxdate: calendar.getISOStringFromDate(maxDate)}, function (event) {
-						calendar.create(calendarid, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
-						pe.focus($(this));
-					});
+					btn.bind('click', {calID: calendarid, year: newYear, month : newMonth, mindate: this.getISOStringFromDate(minDate), maxdate: this.getISOStringFromDate(maxDate)}, this.buttonClick);
 				} else {
 					if (btnCtn) {
 						btnCtn.remove();
@@ -160,7 +159,10 @@
 			}
 			return monthNav;
 		},
-
+		buttonClick : function (event) {
+			this.create(event.data.calendarid, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
+			pe.focus($(this));
+		},
 		yearChanged : function (event) {
 			var year = $(this).val(),
 				minDate = event.data.minDate,
@@ -207,7 +209,7 @@
 				goToLinkContainer,
 				goToLink;
 			form.submit(function () {
-				calendar.onGoTo(calendarid, minDate, maxDate);
+				this.onGoTo(calendarid, minDate, maxDate);
 				return false;
 			});
 			fieldset = form.children("fieldset");
@@ -248,7 +250,7 @@
 			buttonCancelContainer = $('<div class="cal-goto-button"></div>');
 			buttonCancel = $('<input type="button" value="' + pe.dic.get("%calendar-cancelButton") + '" />');
 			buttonCancel.click(function () {
-				calendar.hideGoToForm(calendarid);
+				this.hideGoToForm(calendarid);
 			});
 			buttonCancelContainer.append(buttonCancel);
 			fieldset.append(buttonCancelContainer);
@@ -256,7 +258,7 @@
 			goToLinkContainer = $('<p class="cal-goto-link" id="cal-' + calendarid + '-goto-link"></p>');
 			goToLink = $('<a href="javascript:;" role="button" aria-controls="cal-' + calendarid + '-goto" aria-expanded="false">' + pe.dic.get("%calendar-goToLink") + '</a>');
 			goToLink.on('click', function () {
-				calendar.showGoToForm(calendarid);
+				this.showGoToForm(calendarid);
 			});
 			goToLinkContainer.append(goToLink);
 
@@ -410,8 +412,8 @@
 				year = parseInt(fieldset.find(".cal-goto-year select").attr("value"), 10);
 
 			if (!(month < minDate.getMonth() && year <= minDate.getFullYear()) && !(month > maxDate.getMonth() && year >= maxDate.getFullYear())) {
-				calendar.create(calendarid, year, month, true, calendar.getISOStringFromDate(minDate), calendar.getISOStringFromDate(maxDate));
-				calendar.hideGoToForm(calendarid);
+				this.create(calendarid, year, month, true, this.getISOStringFromDate(minDate), this.getISOStringFromDate(maxDate));
+				this.hideGoToForm(calendarid);
 
 				//Go to the first day to avoid having to tab opver the navigation again.
 				pe.focus($("#cal-" + calendarid + "-days").find("a:eq(0)"));
@@ -443,12 +445,14 @@
 				o = s + o;
 			}
 			return o;
-		}
-	},
-		dates = {
+//		}
+		},
+//	},
+//		dates = {
+		dates: {
 			/** dates
-			 *  a date function to help with the data comparison
-			 */
+			*  a date function to help with the data comparison
+			*/
 			convert : function (d) {
 				// Converts the date in d to a date-object. The input can be:
 				//   a date object: returned without modification
@@ -517,5 +521,8 @@
 				diff = Math.abs(date2.getTime() - date1.getTime()) - DSTAdjust;
 				return Math.ceil(diff / oneDay);
 			}
-		};
-//}(jQuery));
+		}
+	};
+	window.pe = _pe;
+	return _pe;
+}(jQuery));

@@ -14,6 +14,7 @@
 		depends: ['calendar', 'xregexp'],
 		_exec: function (elm) {
 			var addLinksToCalendar,
+				calendar = _pe.fn.calendar,
 				createToggleIcon,
 				date = new Date(),
 				defaultFormat = "YYYY-MM-DD",
@@ -239,6 +240,7 @@
 						}, 1000);
 					});
 				});
+
 				calendar.create(containerid, year, month, true, minDate, maxDate);
 				createToggleIcon(id, containerid);
 
