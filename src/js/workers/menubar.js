@@ -253,7 +253,7 @@
 						if (next.length > 0) {
 							pe.focus(next);
 						} else {
-							pe.focus($scope.find("a").first()); // move to 1st level
+							pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
 						}
 					}
 				} else if (e.type === "item-previous") {
