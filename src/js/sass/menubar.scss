@@ -78,11 +78,6 @@
 	visibility:hidden;
 }
 
-.mb-menu .mb-sm-open{
-	position:absolute;
-	z-index:499;
-	background: #ccc !important}
-
 .mb-menu .mb-sm-open a{
 	white-space:normal;
 	padding:0.28em 0.79em;
@@ -114,6 +109,8 @@
 }
 
 .mb-mega .mb-sm-open{
+	position:absolute;
+	z-index:499;
 	background-color:#CCC;
 	border-bottom:4px solid #242;
 	padding-top:5px;
