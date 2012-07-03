@@ -73,7 +73,7 @@
 				$popup = elm.find('.bookmark_popup').attr('id', 'bookmark_popup').attr('aria-hidden', 'true').attr('role', 'menu').prepend('<p class="popup_title">' + opts.popupText + '</p>');
 				$popupLinks = $popup.find('li').attr('role', 'presentation').find('a').attr('role', 'menuitem').attr('tabindex', '-1');
 				$popupText = elm.find('.bookmark_popup_text').off('click');
-				$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').attr('aria-pressed', 'false').on("click keydown", function (e) {
+				$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').attr('aria-pressed', 'false').on("click vclick keydown", function (e) {
 					if (e.type === "keydown" && (!(e.ctrlKey || e.altKey || e.metaKey))) {
 						switch (e.keyCode) {
 						case 13: // enter key
@@ -89,7 +89,7 @@
 							$popup.trigger("open");
 							return false;
 						}
-					} else if (e.type === "click") {
+					} else if (e.type === "click" || e.type === "vclick") {
 						if ($(e.target).attr('aria-pressed') === 'false') {
 							$popup.trigger("open");
 						} else {

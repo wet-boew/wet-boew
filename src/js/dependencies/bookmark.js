@@ -548,7 +548,7 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 				top : ($(window).height() - all.height()) / 2
 			}).show();
 			$(document).bind('click.bookmark', function (event) {
-				if ($(event.target).closest(elem).length === 0 && $(event.target).closest('#bookmark_all').length === 0) {
+				if ($(event.target).closest(elem).length === 0 && $(event.target).closest('#bookmark_all').length === 0) { // WET-BOEW Change
 					$('#bookmark_all').remove();
 					$(document).unbind('click.bookmark');
 				}
