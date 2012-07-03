@@ -53,7 +53,7 @@
 
 				if (!opened) {
 					var position = wrapper.position();
-					if (!jQuery.browser.msie || document.documentMode !== undefined) {
+					if (pe.ie === 0 || document.documentMode !== undefined) {
 						wrapper.removeClass('slideoutWrapper')
 							.addClass('slideoutWrapperRel')
 							.css({"top": position.top - $('#wb-main-in').offset().top, "right": borderWidth - 10});
@@ -70,14 +70,14 @@
 						elm.hide(); // Hide the widget content if the widget was just closed
 						wrapper.find('#slideoutInnerWrapper').css('width', imgHide.width);
 
-						if (!jQuery.browser.msie || document.documentMode !== undefined) {
+						if (pe.ie === 0 || document.documentMode !== undefined) {
 							wrapper.addClass('slideoutWrapper');
 							wrapper.removeClass('slideoutWrapperRel');
 							wrapper.css('width', (imgShow.width + focusOutlineAllowance) + 'px').css('top', $('#wb-main-in').offset().top);
 							reposition();
 						}
 					} else { // Slideout just opened
-						if (jQuery.browser.msie && jQuery.browser.version === '7.0' && document.documentMode === undefined) { // Just true IE7
+						if (pe.ie === 7 && document.documentMode === undefined) { // Just true IE7
 							elm.find('ul').html(elm.find('ul').html()); // Ugly fix for #4312 (post #11)
 						}
 					}
@@ -137,16 +137,14 @@
 
 			// IE6 and lower don't support position: fixed.
 			// IE7's zoom messes up document dimensions (IE8 compat. view isn't affected)
-			if (jQuery.browser.msie && document.documentMode === undefined) { // IE7 and lower (not including IE8 compat. view)
+			if (pe.ie > 0 && pe.ie < 8 && document.documentMode === undefined) { // IE7 and lower (not including IE8 compat. view)
 				scroll = false;
 			}
 
 			if (scroll) {
 				wrapper.addClass('slideoutWrapper');
 				// Handle window resize and zoom in/out events
-				ResizeEvents.eventElement.bind('x-initial-sizes x-text-resize x-zoom-resize x-window-resize', function () {
-					reposition();
-				});
+				pe.resize(reposition);
 				reposition();
 			} else {
 				wrapper.addClass('so-ie6');
@@ -159,7 +157,7 @@
 			elm.find('#slideoutClose').on('click', toggle);
 
 			// Fix scrolling issue in some versions of IE (#4051)
-			if (jQuery.browser.msie && jQuery.browser.version === '7.0') { $('html').css('overflowY', 'auto'); }
+			if (pe.ie === 7) { $('html').css('overflowY', 'auto'); }
 
 		} // end of exec
 	};
