@@ -130,7 +130,12 @@
 			/* Form validation */
 			"%form-not-submitted" : "Le formulaire n'a pu être soumis car ",
 			"%errors-found" : " erreurs ont été trouvées.",
-			"%error-found" : " erreur a été trouvée."
+			"%error-found" : " erreur a été trouvée.",
+			/* Slideout */
+			"%show-toc" : "Afficher",
+			"%show-image" : "afficher.png",
+			"%hide-image" : "cacher.png",
+			"%table-contents" : " la table des mati&#232;res"
 		}
 	};
         $(document).trigger("languageloaded");
