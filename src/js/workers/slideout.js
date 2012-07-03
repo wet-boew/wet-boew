@@ -63,11 +63,7 @@
 			};
 
 			toggle = function (e) {
-				if (e.stopPropagation) {
-					e.stopImmediatePropagation();
-				} else {
-					e.cancelBubble = true;
-				}
+				e.stopImmediatePropagation();
 				toggleLink.off('click vclick');
 				slideoutClose.off('click vclick');
 
