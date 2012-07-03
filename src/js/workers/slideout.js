@@ -28,11 +28,23 @@
 				slideoutClose,
 				ttlHeight = 0,
 				wrapper,
-				keyhandler;
+				keyhandler,
+				tocLinks;
 
 			// Add the wrappers
-			wrapper = elm.wrap('<div id="slideoutWrapper" />').parent(); // This is used for overflow: hidden.
+			wrapper = elm.wrap('<div id="slideoutWrapper" role="application" />').parent(); // This is used for overflow: hidden.
 			elm.wrap('<div id="slideoutInnerWrapper" />'); // This is used for "animate".
+
+			// Add WAI-ARIA
+			elm.attr('role', 'menu').find('li').attr('role', 'presentation');
+
+			// Remove the link off the page we're on if we're asked to
+			if (rmCurrLink) {
+				elm.find('a[href="' + window.location.href + '"]').replaceWith('<span class="so-active">' + $(this).text() + '</span>');
+			}
+
+			// Find all the TOC links
+			tocLinks = elm.find('a').attr('role', 'menuitem');
 
 			// Recalculate the slideout's position
 			reposition = function () {
@@ -62,6 +74,7 @@
 							.css({"top": position.top - $('#wb-main-in').offset().top, "right": borderWidth - 10});
 					}
 					elm.show(); // Show the widget content if it is about to be opened
+					pe.focus(tocLinks.eq(0));
 				}
 
 				opened = !opened;
@@ -108,9 +121,32 @@
 
 			// Handles specialized keyboard input
 			keyhandler = function (e) {
-				var target = $(e.target);
+				var target = $(e.target),
+					menuitem = target.is('[role="menuitem"]'),
+					tocLink,
+					keychar,
+					elmtext,
+					match,
+					matches;
+
+				if (menuitem) {
+					tocLinks.each(function (i) {
+						if ($(this).is(target)) {
+							tocLink = i;
+							return false;
+						}
+					});
+				}
+
 				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 					switch (e.keyCode) {
+					case 9: // tab key
+						if ((e.shiftKey && target.is(toggleLink)) || (!e.shiftKey && target.is(slideoutClose))) {
+							toggleLink.trigger("click");
+							pe.focus(toggleLink);
+							return false;
+						}
+						break;
 					case 13: // enter key
 						target.trigger("click");
 						if (target.is(slideoutClose)) {
@@ -130,15 +166,45 @@
 							pe.focus(toggleLink);
 						}
 						return false;
+					case 38: // up arrow
+						if (!menuitem) {
+							if (opened) {
+								pe.focus(tocLinks.eq(tocLinks.length - 1));
+							} else {
+								toggleLink.trigger("click");
+							}
+						} else {
+							if (tocLink === 0) {
+								pe.focus(tocLinks.eq(tocLinks.length - 1));
+							} else {
+								pe.focus(tocLinks.eq(tocLink - 1));
+							}
+						}
+						return false;
+					case 40: // down arrow
+						if (!menuitem) {
+							if (opened) {
+								pe.focus(tocLinks.eq(0));
+							} else {
+								toggleLink.trigger("click");
+							}
+						} else {
+							if (tocLink === tocLinks.length - 1) {
+								pe.focus(tocLinks.eq(0));
+							} else {
+								pe.focus(tocLinks.eq(tocLink + 1));
+							}
+						}
+						return false;
 					default:
 						// 0 - 9 and a - z keys
 						if ((e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91)) {
-							var keychar = String.fromCharCode(e.keyCode).toLowerCase(),
-								elmtext = $(e.target).text(),
-								match,
-								matches = elm.find('a').filter(function () {
-									return ($(this).text().substring(0, 1).toLowerCase() === keychar || $(this).text() === elmtext);
-								});
+							keychar = String.fromCharCode(e.keyCode).toLowerCase();
+							elmtext = $(e.target).text();
+							matches = elm.find('a').filter(function () {
+								return ($(this).text().substring(0, 1).toLowerCase() === keychar || $(this).text() === elmtext);
+							});
+
 							if (matches.length > 0) {
 								matches.each(function (index) {
 									if ($(this).text() === elmtext) {
@@ -155,20 +221,16 @@
 							return false;
 						}
 					}
+				} else if (e.metaKey && e.keycode === 9) { // Shift + Tab
+					if (target.is(toggleLink)) {
+						toggleLink.trigger("click");
+						return false;
+					}
 				}
 			};
 
-			// Remove the link off the page we're on if we're asked to
-			if (rmCurrLink) {
-				elm.find('li a').each(function () {
-					if ($(this).get()[0].href === window.location.href) {
-						$(this).replaceWith('<span class="so-active">' + $(this).text() + '</span>');
-					}
-				});
-			}
-
 			// Close slideout after clicking on a link
-			elm.find('li a').on('click vclick', function () { 
+			tocLinks.on('click vclick', function () {
 				toggle(elm);
 			});
 
@@ -218,7 +280,7 @@
 				pe.resize(reposition);
 				reposition();
 			} else {
-				wrapper.addClass('so-ie6');
+				wrapper.addClass('so-ie7');
 				wrapper.addClass('slideoutWrapperRel')
 					.css({'right': borderWidth - 10, 'top': '0'});
 			}
