@@ -238,8 +238,12 @@
 			elm.on("keydown", keyhandler);
 
 			// Close slideout if clicking outside of the slideout area
-			elm.on("click touchstart", function (e) {
-				return false;
+			elm.on("click vclick", function (event) {
+				if (event.stopPropagation) {
+					event.stopPropagation();
+				} else {
+					event.cancelBubble = true;
+				}
 			});
 			$(document).on("click touchstart", function () {
 				if (opened) {
