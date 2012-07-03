@@ -15,7 +15,7 @@
 		opened: false,
 		_exec: function (elm) {
 			var borderWidth = 10,
-				closeLink = pe.dic.get('%hide') + '<span class="cn-invisible">' + pe.dic.get('%table-contents') + '</span>',
+				closeLink = pe.dic.get('%hide') + '<span class="wb-invisible">' + pe.dic.get('%table-contents') + '</span>',
 				focusOutlineAllowance = 2,
 				imgShow = { path: pe.add.liblocation + 'images/slideout/' + pe.dic.get('%show-image'), height: 147, width: 30, alt: pe.dic.get('%show-toc') + pe.dic.get('%table-contents') },
 				imgHide = { path: pe.add.liblocation + 'images/slideout/' + pe.dic.get('%hide-image'), height: 147, width: 30, alt: pe.dic.get('%hide') + pe.dic.get('%table-contents') },
@@ -48,8 +48,8 @@
 			};
 
 			toggle = function (e) {
-				wrapper.find('#toggleLink').off('click');
-				elm.find('#slideoutClose').off('click');
+				wrapper.find('#toggleLink').off('click vclick');
+				elm.find('#slideoutClose').off('click vclick');
 
 				if (!opened) {
 					var position = wrapper.position();
@@ -81,8 +81,8 @@
 							elm.find('ul').html(elm.find('ul').html()); // Ugly fix for #4312 (post #11)
 						}
 					}
-					wrapper.find('#toggleLink').on('click', toggle);
-					elm.find('#slideoutClose').on('click', toggle);
+					wrapper.find('#toggleLink').on('click vclick', toggle);
+					elm.find('#slideoutClose').on('click vclick', toggle);
 				});
 
 				if (opened) {
@@ -99,6 +99,8 @@
 					wrapper.find('#slideoutToggle a').attr('aria-pressed', 'false');
 					elm.attr('aria-hidden', 'true');
 				}
+
+				return false;
 			};
 
 			// Remove the link off the page we're on if we're asked to
@@ -112,7 +114,17 @@
 
 			// Close slideout after clicking on a link
 			elm.find('li a').each(function () {
-				$(this).on('click', function () { toggle(elm); $($(this).attr('href')).attr("tabindex", -1).focus(); });
+				$(this).on('click vclick', function () { toggle(elm); pe.focus($($(this).attr('href'))); });
+			});
+
+			// Close slideout if clicking outside of the slideout area
+			elm.on("click touchstart", function () {
+				return false;
+			});
+			$(document).on("click touchstart", function () {
+				if (opened) {
+					toggle();
+				}
 			});
 
 			// Add the "Hide" link
@@ -131,8 +143,7 @@
 			wrapper.css('width', (imgShow.width + focusOutlineAllowance) + 'px').css('top', $('#wb-main-in').offset().top);
 
 			// Hide widget content so we don't tab through the links when the slideout is closed
-			elm.hide()
-				.attr('aria-hidden', 'true');
+			elm.hide().attr('aria-hidden', 'true');
 			wrapper.find('#slideoutInnerWrapper').css('width', imgHide.width);
 
 			// IE6 and lower don't support position: fixed.
@@ -163,4 +174,5 @@
 	};
 	window.pe = _pe;
 	return _pe;
-}(jQuery));
+}
+(jQuery));
