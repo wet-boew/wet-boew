@@ -122,7 +122,7 @@
 			
 			level: 0, // Zero for the groupZero
 			nblevel: 0 // Number of existing sub level based on this group*/
-			, nbDescriptionRow: 0,
+			, nbDescriptionRow: 0
 			
 		};
 		
@@ -162,18 +162,44 @@
 		var theadRowStack = [];
 		var stackRowHeader = false;
 		
-		function processCaption(elem){
-			groupZero.elem = elem;
-			groupZero.struct = obj[0];
-			
-			groupZero.uid = uidElem;
-			uidElem++;
-			groupZero.allParserObj.push(groupZero);
+		groupZero.elem = obj;
+		groupZero.uid = uidElem; uidElem++; // Set the uid for the groupZero
+		
+		groupZero.colcaption = {}; // Group Cell Header at level 0, scope=col
+		groupZero.colcaption.uid = uidElem; uidElem++;
+		groupZero.colcaption.elem = undefined;
+		groupZero.colcaption.type = 1;
+		groupZero.colcaption.dataset = [];
+		groupZero.colcaption.summaryset = [];
 
-			$('details:eq(0)', elem).each(function(){
-				groupZero.value = $('summary', this)[0];
-				groupZero.desc = this;
-			});
+		groupZero.rowcaption = {}; // Group Cell Header at level 0, scope=row
+		groupZero.rowcaption.uid = uidElem; uidElem++;
+		groupZero.rowcaption.elem = undefined;
+		groupZero.rowcaption.type = 1;
+		groupZero.rowcaption.dataset = [];
+		groupZero.rowcaption.summaryset = [];
+
+		
+		
+		
+		function processCaption(elem){
+			// groupZero.elem = elem;
+			// groupZero.struct = obj[0];
+			
+			groupZero.colcaption.elem = elem;
+			groupZero.rowcaption.elem = elem;
+			
+			var groupheadercell = {
+				colcaption: groupZero.colcaption,
+				rowcaption: groupZero.rowcaption,
+				elem: elem
+			};
+			groupheadercell.groupZero = groupZero;
+			groupheadercell.type = 1;
+			
+			
+			$(elem).data().tblparser = groupheadercell;
+			
 		}
 		
 		function processColgroup(elem){
@@ -183,7 +209,6 @@
 				start: 0,
 				end: 0,
 				col: [],
-				row: [],
 				groupZero: groupZero
 			}
 			colgroup.elem = elem;
@@ -211,8 +236,9 @@
 				var col = {
 					elem: {},
 					start: 0,
-					end: 0
-				}
+					end: 0,
+					groupZero: groupZero
+				};
 
 				col.uid = uidElem;
 				uidElem++;
@@ -244,8 +270,9 @@
 					var col = {
 						start: 0,
 						end: 0,
-						groupZero: groupZero
-					}
+						groupZero: groupZero,
+						elem: undefined
+					};
 					col.uid = uidElem;
 					uidElem++;
 					groupZero.allParserObj.push(col);
@@ -285,7 +312,7 @@
 					colgroupFrame = [];
 				} 
 				
-				
+				/*
 				if(colgroupFrame.length == 0){
 					// Create the colgroup Header
 					var colgroup = {
@@ -320,10 +347,7 @@
 						
 					}
 				}
-				
-				// Associate the colgroup Header in the group Zero
-				groupZero.colgrouphead = colgroupFrame[0];
-				groupZero.colgrouphead.type = 1; // Set the first colgroup type :-)
+				*/
 				
 			} else {
 				colgroupHeaderColEnd = 0; // This mean that are no colgroup designated to be a colgroup header
@@ -424,21 +448,26 @@
 				}
 				
 			}
-			theadRowStack = tmpStack;
+			// theadRowStack = tmpStack;
 			
 			
 			groupZero.colgrp = []; // Array based on level as indexes for columns and group headers
 			
 			
 			// Parser any cell in the colgroup header
+			// console.log('colgroupFrame.length: ' + colgroupFrame.length);
 			if(colgroupHeaderColEnd >0 && colgroupFrame.length == 1 || colgroupFrame.length == 0){
 				// There are no colgroup element defined, All the cell will be considerated to be a data cell
 				
+				// Data Colgroup
+				var dataColgroup = {};
+				var dataColumns = [];
 				var colgroup = {
-					start: (colgroupFrame.length == 0 ? 1 : colgroupFrame[0].end +1),
+					start: (colgroupHeaderColEnd +1),
 					end: tableCellWidth,
 					col: [],
-					row: [],
+					groupZero: groupZero,
+					elem: undefined,
 					type: 2 // Set colgroup data type
 				}
 				colgroup.uid = uidElem;
@@ -449,7 +478,8 @@
 					errorTrigger('You need at least one data colgroup, review your table structure');
 				}
 				
-				colgroupFrame.push(colgroup);
+				dataColgroup = colgroup;
+
 				
 				// Create the column
 				// Create virtual column 
@@ -457,19 +487,102 @@
 					var col = {
 						start: 0,
 						end: 0,
-						parent: colgroup //{}
+						groupZero: groupZero,
+						elem: undefined
 					}
 					col.uid = uidElem;
 					uidElem++;
 					groupZero.allParserObj.push(col);
 					
+					if(!groupZero.col){
+						groupZero.col = [];
+					}
+					dataColumns.push(col);
+					
 					col.start = i;
 					col.end = i;
+					col.groupstruct = colgroup;
 					
 					colgroup.col.push(col);
-					columnFrame.push(col);
+					columnFrame.push(col); // Check to remove "columnFrame"
 					
 				}
+				
+				// Default Level => 1
+				
+				groupZero.colgrp[1] = [];
+				groupZero.colgrp[1].push(groupZero.colcaption);
+				
+				
+				// Header Colgroup
+				if(colgroupHeaderColEnd >0){
+					var hcolgroup = {
+						start: 1,
+						elem: undefined,
+						end: colgroupHeaderColEnd,
+						col: [],
+						groupZero: groupZero,
+						type: 1 // Set colgroup data type
+					}
+					hcolgroup.uid = uidElem;
+					uidElem++;
+					groupZero.allParserObj.push(hcolgroup);
+					
+					colgroupFrame.push(hcolgroup);
+					colgroupFrame.push(dataColgroup);
+					groupZero.colcaption.dataset = dataColgroup.col;
+					
+					// Create the column
+					// Create virtual column 
+					for(i= hcolgroup.start; i<= hcolgroup.end; i++){
+						var col = {
+							start: 0,
+							end: 0,
+							groupZero: groupZero,
+							elem: undefined
+						}
+						col.uid = uidElem;
+						uidElem++;
+						groupZero.allParserObj.push(col);
+						
+						if(!groupZero.col){
+							groupZero.col = [];
+						}
+						groupZero.col.push(col);
+						
+						
+						col.start = i;
+						col.end = i;
+						col.groupstruct = hcolgroup;
+						
+						hcolgroup.col.push(col);
+						columnFrame.push(col);
+						
+					}
+					
+					for(i=0; i< dataColumns.length; i++){
+						groupZero.col.push(dataColumns[i]);
+					}
+
+					
+				}
+				
+				if(colgroupFrame.length == 0){
+					colgroupFrame.push(dataColgroup);
+					groupZero.colcaption.dataset = dataColgroup.col;
+				}
+				
+				// Set the header for each column
+				for(i=0; i<groupZero.col.length; i++){
+					groupZero.col[i].header = [];
+					for(j=0; j<tmpStack.length; j++){
+						for(m=groupZero.col[i].start; m<= groupZero.col[i].end; m++){
+							groupZero.col[i].header.push(tmpStack[j].cell[m]);
+						}
+					}
+				}
+				
+				
 			} else {
 				// They exist colgroup element, 
 				
@@ -515,10 +628,23 @@
 						return;
 					}
 					
+					
+					$.each(curColgroupFrame.col, function(){
+						var column = this;
+						if(!groupZero.col){
+							groupZero.col = [];
+						}
+						groupZero.col.push(column);
+					
+						column.type = 1;
+						column.groupstruct = curColgroupFrame;
+					});
+					
 					if(curColgroupFrame.start < currColPos){
 						if(colgroupHeaderColEnd != curColgroupFrame.end){
 							errorTrigger("The initial colgroup should group all the header, there are no place for any data cell", curColgroupFrame);
 						}
+						
 						// Skip this colgroup, this should happend only once and should represent the header colgroup
 						return;
 					}
@@ -526,9 +652,9 @@
 					var groupLevel = undefined;
 					
 					// Get the colgroup level
-					for(i =0; i<theadRowStack.length; i++){
+					for(i =0; i<tmpStack.length; i++){
 						
-						if((theadRowStack[i].cell[curColgroupFrame.end -1].colpos + theadRowStack[i].cell[curColgroupFrame.end -1].width- 1) == curColgroupFrame.end && (theadRowStack[i].cell[curColgroupFrame.end -1].colpos >= curColgroupFrame.start )){
+						if((tmpStack[i].cell[curColgroupFrame.end -1].colpos + tmpStack[i].cell[curColgroupFrame.end -1].width- 1) == curColgroupFrame.end && (tmpStack[i].cell[curColgroupFrame.end -1].colpos >= curColgroupFrame.start )){
 							if(!groupLevel || groupLevel > (i+1)){
 								groupLevel =  (i+1) // would equal at the current data cell level. The lowest row level win
 							}
@@ -543,14 +669,14 @@
 					
 					
 					// All the cells at higher level (Bellow the group level found) of witch one found, need to be inside the colgroup
-					for(i =(groupLevel-1); i<theadRowStack.length; i++){
+					for(i =(groupLevel-1); i<tmpStack.length; i++){
 					
 						// Test each cell in that group
 						for(j = curColgroupFrame.start -1; j < curColgroupFrame.end; j++){
 							
-							if(theadRowStack[i].cell[j].colpos < 
+							if(tmpStack[i].cell[j].colpos < 
 								curColgroupFrame.start || 
-								(theadRowStack[i].cell[j].colpos + theadRowStack[i].cell[j].width -1) > 
+								(tmpStack[i].cell[j].colpos + tmpStack[i].cell[j].width -1) > 
 								curColgroupFrame.end){
 								
 								errorTrigger("Error in you header row group, there are cell that are crossing more than one colgroup under the level:" + groupLevel);
@@ -566,16 +692,16 @@
 					for(i = currColgroupStructure.length; i < (groupLevel-1); i++){
 						
 						// Use the top cell at level minus 1, that cell must be larger 
-						if(theadRowStack[i].cell[curColgroupFrame.start-1].uid != theadRowStack[i].cell[curColgroupFrame.end-1].uid || 
-							theadRowStack[i].cell[curColgroupFrame.start-1].colpos > curColgroupFrame.start || 
-							theadRowStack[i].cell[curColgroupFrame.start-1].colpos + theadRowStack[i].cell[curColgroupFrame.start-1].width -1 < curColgroupFrame.end){
+						if(tmpStack[i].cell[curColgroupFrame.start-1].uid != tmpStack[i].cell[curColgroupFrame.end-1].uid || 
+							tmpStack[i].cell[curColgroupFrame.start-1].colpos > curColgroupFrame.start || 
+							tmpStack[i].cell[curColgroupFrame.start-1].colpos + tmpStack[i].cell[curColgroupFrame.start-1].width -1 < curColgroupFrame.end){
 							//console.log(' i:' + i +
-							//			' colpos: ' + theadRowStack[i].cell[curColgroupFrame.start-1].colpos +
+							//			' colpos: ' + tmpStack[i].cell[curColgroupFrame.start-1].colpos +
 							//			' start: ' + curColgroupFrame.start + 
-							//			' width: ' + theadRowStack[i].cell[curColgroupFrame.start-1].width +
+							//			' width: ' + tmpStack[i].cell[curColgroupFrame.start-1].width +
 							//			' end: ' + curColgroupFrame.end);
-							//console.log(theadRowStack[i].cell[curColgroupFrame.start-1]);
-							//console.log(theadRowStack[i].cell[curColgroupFrame.end-1]);
+							//console.log(tmpStack[i].cell[curColgroupFrame.start-1]);
+							//console.log(tmpStack[i].cell[curColgroupFrame.end-1]);
 							
 							errorTrigger("The cell used to represent the data at level :" + (groupLevel -1) + " must encapsulate his group and be the same");
 							return;
@@ -587,21 +713,22 @@
 							level: (i+1)
 						}
 						
-						cgrp.start = theadRowStack[i].cell[curColgroupFrame.start-1].colpos;
-						cgrp.end = theadRowStack[i].cell[curColgroupFrame.start-1].colpos + theadRowStack[i].cell[curColgroupFrame.start-1].width -1;
+						cgrp.start = tmpStack[i].cell[curColgroupFrame.start-1].colpos;
+						cgrp.end = tmpStack[i].cell[curColgroupFrame.start-1].colpos + tmpStack[i].cell[curColgroupFrame.start-1].width -1;
 						cgrp.header =[];
-						cgrp.header.push(theadRowStack[i].cell[curColgroupFrame.start-1]);
-						cgrp.repheader = theadRowStack[i].cell[curColgroupFrame.start-1]; // Header representative of this group
-						theadRowStack[i].cell[curColgroupFrame.start-1].colgroup = cgrp;
+						cgrp.header.push(tmpStack[i].cell[curColgroupFrame.start-1]);
+						cgrp.repheader = tmpStack[i].cell[curColgroupFrame.start-1]; // Header representative of this group
+						tmpStack[i].cell[curColgroupFrame.start-1].colgroup = cgrp;
 						
 						cgrp.type = 2; // A combinaison of Data group with a summary group always result in a data group
 						
 						
-						cgrp.parentHeader = [];
-						for(i=0; i<currColgroupStructure.length; i++){
-							cgrp.parentHeader.push(currColgroupStructure[i]);
-						}
-
+						/*cgrp.parentHeader = []; // To Remove
+						for(j=0; j<currColgroupStructure.length; j++){ // To Remove
+							cgrp.parentHeader.push(currColgroupStructure[j]);  // To Remove
+						}  // To Remove
+						*/
+						
 						
 						currColgroupStructure.push(cgrp);
 						
@@ -621,17 +748,17 @@
 					
 					// Set the header list for the current group
 					curColgroupFrame.header = [];
-					for(i = groupLevel- (groupLevel >=2? 2:1); i<theadRowStack.length; i++){
+					for(i = groupLevel- (groupLevel >=2? 2:1); i<tmpStack.length; i++){
 						
 						for(j=curColgroupFrame.start; j<=curColgroupFrame.end; j++){
 							
-							if(theadRowStack[i].cell[j-1].rowpos == i+1){
+							if(tmpStack[i].cell[j-1].rowpos == i+1){
 								
-								curColgroupFrame.header.push(theadRowStack[i].cell[j-1]);
+								curColgroupFrame.header.push(tmpStack[i].cell[j-1]);
 								// Attach the current colgroup to this header
-								theadRowStack[i].cell[j-1].colgroup = curColgroupFrame;
+								tmpStack[i].cell[j-1].colgroup = curColgroupFrame;
 							}
-							j += theadRowStack[i].cell[j-1].width -1;
+							j += tmpStack[i].cell[j-1].width -1;
 						}
 						
 					}
@@ -733,25 +860,26 @@
 						
 						var column = this;
 						
-						groupZero.col.push(column);
+						// groupZero.col.push(column);
 						
 						// TODO: column.parent = curColgroupFrame; // ?? Use the parent level header ??
 						
 						column.type = curColgroupFrame.type;
 						column.level = curColgroupFrame.level;
+						column.groupstruct = curColgroupFrame;
 						
 						
 						// TODO: Change the block of code above for All the header starting at the level 
 						//       and the cells bellow but within the column scope
-						//for(i=curColgroupFrame.level -1; i< theadRowStack.length; i++){
+						//for(i=curColgroupFrame.level -1; i< tmpStack.length; i++){
 						//	if(i<0){i=0;}
 							
 						//}
 						
 						column.header = [];
 						// Find the lowest header that would represent this column
-						// for(j= (theadRowStack.length -1); j >= (curColgroupFrame.level -1); j-- ){
-						for(j= (theadRowStack.length -1); j >= (groupLevel -1); j-- ){
+						// for(j= (tmpStack.length -1); j >= (curColgroupFrame.level -1); j-- ){
+						for(j= (tmpStack.length -1); j >= (groupLevel -1); j-- ){
 							
 							for(i =(curColgroupFrame.start -1); i< curColgroupFrame.end; i++){
 							
@@ -760,25 +888,25 @@
 			// column.start -------- column.end
 								
 								
-						//		if(theadRowStack[j].cell[i].colpos <= column.start && 
-						//			column.end <= theadRowStack[j].cell[i].colpos){
+						//		if(tmpStack[j].cell[i].colpos <= column.start && 
+						//			column.end <= tmpStack[j].cell[i].colpos){
 								
 								
 							
-								if(theadRowStack[j].cell[i].colpos >= column.start && 
-									theadRowStack[j].cell[i].colpos <= column.end || 
+								if(tmpStack[j].cell[i].colpos >= column.start && 
+									tmpStack[j].cell[i].colpos <= column.end || 
 									
-									theadRowStack[j].cell[i].colpos <= column.start &&
-									(theadRowStack[j].cell[i].colpos + theadRowStack[j].cell[i].width -1) >= column.end ||
+									tmpStack[j].cell[i].colpos <= column.start &&
+									(tmpStack[j].cell[i].colpos + tmpStack[j].cell[i].width -1) >= column.end ||
 									
-									(theadRowStack[j].cell[i].colpos + theadRowStack[j].cell[i].width -1) <= column.start && 
-									(theadRowStack[j].cell[i].colpos + theadRowStack[j].cell[i].width -1) >= column.end ){
+									(tmpStack[j].cell[i].colpos + tmpStack[j].cell[i].width -1) <= column.start && 
+									(tmpStack[j].cell[i].colpos + tmpStack[j].cell[i].width -1) >= column.end ){
 										
 									if(column.header.length == 0 || 
-										column.header.length > 0 && column.header[column.header.length - 1].uid != theadRowStack[j].cell[i].uid){
+										column.header.length > 0 && column.header[column.header.length - 1].uid != tmpStack[j].cell[i].uid){
 										// This are the header that would represent this column
-										column.header.push(theadRowStack[j].cell[i]);
-										theadRowStack[j].cell[i].level = curColgroupFrame.level;
+										column.header.push(tmpStack[j].cell[i]);
+										tmpStack[j].cell[i].level = curColgroupFrame.level;
 									}
 								}
 							}
@@ -787,8 +915,31 @@
 					
 				});
 				
+				if(!groupZero.virtualColgroup){
+					groupZero.virtualColgroup = [];
+				}
+				// Set the Virtual Group Header Cell, if any
+				$.each(groupZero.virtualColgroup, function(){
+					var vGroupHeaderCell = this;
+					
+						// Set the headerLevel at the appropriate column
+						for(i=(vGroupHeaderCell.start-1); i< vGroupHeaderCell.end; i++){
+							if(!groupZero.col[i].headerLevel){
+								groupZero.col[i].headerLevel = [];
+							}
+							groupZero.col[i].headerLevel.push(vGroupHeaderCell);
+						}
+				});
+				
 				
 			}
+			
+			// Associate the colgroup Header in the group Zero
+			if(colgroupFrame.length > 0 && colgroupHeaderColEnd > 0){
+				groupZero.colgrouphead = colgroupFrame[0];
+				groupZero.colgrouphead.type = 1; // Set the first colgroup type :-)
+			}
+
 			
 		}
 		
@@ -1539,7 +1690,11 @@
 				}
 				
 				var createGenericColgroup = (colgroupFrame.length == 0?true:false);
-				
+				if(colgroupFrame.length == 0){
+					
+					// processRowgroupHeader(lastHeadingColPos);
+					createGenericColgroup = false;
+				}
 				
 				// Associate the row with the cell and Colgroup/Col association
 				for(i=0; i<row.cell.length; i++){
@@ -1549,7 +1704,7 @@
 					row.cell[i].rowlevelheader = currentRowHeader;
 					
 					// Insert The cells in the appropriate column and colgroup
-					if(createGenericColgroup){
+					/*if(createGenericColgroup){
 						
 						if(colgroupFrame.length == 0 ||( 
 							(colgroupFrame[colgroupFrame.length -1]) &&  colgroupFrame[colgroupFrame.length -1].type != row.cell[i].type))
@@ -1592,7 +1747,7 @@
 							}
 
 						}
-					}
+					}*/
 					
 					
 					
@@ -1673,7 +1828,7 @@
 			}
 			groupZero.row.push(row);
 			
-groupZero.colgroupFrame = colgroupFrame;
+// groupZero.colgroupFrame = colgroupFrame;
 
 
 
@@ -1808,6 +1963,9 @@ delete row.patern;
 		groupZero.theadRowStack = theadRowStack;
 		
 		
+		delete groupZero.colgroupFrame;
+		groupZero.colgrouplevel = groupZero.colgrp;
+		delete groupZero.colgrp;
 		
 		
 		// Do a test, highlight summary data cell at level 0;
@@ -1960,7 +2118,9 @@ delete row.patern;
 			
 			
 			
-			
+		
+		
+		
 		} // end of exec
 	};
 	
