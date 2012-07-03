@@ -68,7 +68,7 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, target;
+			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, url, target;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
@@ -95,8 +95,8 @@
 
 				// Replace hash with ?hashtarget= for links to other pages
 				hlinks_other.each(function () {
-					var url = pe.url($this.attr('href'));
 					$this = $(this);
+					url = pe.url($this.attr('href'));					
 					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
 						$this.attr('href', url.removehash() + (url.params.length > 0 ? "&amp;" : "?") + 'hashtarget=' + url.hash);
 					}
