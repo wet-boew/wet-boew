@@ -253,7 +253,7 @@
 						if (next.length > 0) {
 							pe.focus(next);
 						} else {
-							pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
+							pe.focus($scope.find("a").first()); // move to 1st level
 						}
 					}
 				} else if (e.type === "item-previous") {
@@ -311,9 +311,12 @@
 						});
 						return;
 					});
-					$childmenu.find("ul").not(function () {
+					/*$childmenu.find("ul").not(function () {
 						return ($(this).prev("h3, h4").length === 0 || $(this).parent('li').length === 0);
 					}).find("a").each(function (i) {
+						$(this).addClass("knav-" + index + "-0-" + (i + 1));
+					});*/
+					$childmenu.find("> ul a, > div > ul a").each(function (i) {
 						$(this).addClass("knav-" + index + "-0-" + (i + 1));
 					});
 				}

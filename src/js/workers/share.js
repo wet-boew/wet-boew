@@ -89,8 +89,7 @@
 							$popup.trigger("open");
 							return false;
 						}
-					} else if (e.type === "click" || e.type === "vclick") {
-						e.stopImmediatePropagation();
+					} else {
 						if ($popup.attr('aria-hidden') === 'true') {
 							$popup.trigger("open");
 						} else {

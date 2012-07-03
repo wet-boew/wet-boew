@@ -63,7 +63,6 @@
 			};
 
 			toggle = function (e) {
-				e.stopImmediatePropagation();
 				toggleLink.off('click vclick');
 				slideoutClose.off('click vclick');
 
