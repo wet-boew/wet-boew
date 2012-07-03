@@ -303,7 +303,7 @@
 						timeout: 500
 					});
 					/* now recurse all focusable to be able to navigate */
-					$childmenu.find("h4 a").each(function (i) {
+					$childmenu.find("h3 a, h4 a").each(function (i) {
 						$(this).addClass("knav-" + index + "-" + (i + 1) + "-0");
 						$(this).parent().next("ul").find("a").each(function (j) {
 							$(this).addClass("knav-" + index + "-" + (i + 1) + "-" + (j + 1));
@@ -312,7 +312,7 @@
 						return;
 					});
 					$childmenu.find("ul").not(function () {
-						return ($(this).prev("h4").length === 0 || $(this).parent('li').length === 0);
+						return ($(this).prev("h3, h4").length === 0 || $(this).parent('li').length === 0);
 					}).find("a").each(function (i) {
 						$(this).addClass("knav-" + index + "-0-" + (i + 1));
 					});
