@@ -141,7 +141,7 @@
 				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 					switch (e.keyCode) {
 					case 9: // tab key
-						if ((e.shiftKey && target.is(toggleLink)) || (!e.shiftKey && target.is(slideoutClose))) {
+						if (opened && ((e.shiftKey && target.is(toggleLink)) || (!e.shiftKey && target.is(slideoutClose)))) {
 							toggleLink.trigger("click");
 							pe.focus(toggleLink);
 							return false;
