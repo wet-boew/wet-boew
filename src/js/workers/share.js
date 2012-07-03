@@ -196,11 +196,13 @@
 							}
 						}
 					} else if (e.type === "open") { // Open the popup menu an put the focus on the first link
-						$popupText.text(opts.hideText + opts.popupText).attr('aria-pressed', 'true');
-						pe.focus($popup.show().attr('aria-hidden', 'false').find('li a').first());
+						$popupText.attr('aria-pressed', 'true').text(opts.hideText + opts.popupText);
+						$popup.attr('aria-hidden', 'false').show();
+						pe.focus($popup.show().find('li a').first());
 					} else if (e.type === "close") { // Close the popup menu and put the focus on the popup link
-						pe.focus($popupText.text(opts.popupText).attr('aria-pressed', 'false').first());
-						$popup.hide().attr('aria-hidden', 'true');
+						$popupText.attr('aria-pressed', 'false').text(opts.popupText);
+						$popup.attr('aria-hidden', 'true').hide();
+						pe.focus($popupText.first());
 					}
 				});
 
