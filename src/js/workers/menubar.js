@@ -115,7 +115,7 @@
 			/* bind all custom events and triggers to menu */
 			$scope.on("keydown focus section-next section-previous item-next item-previous close", "li", function (e) {
 				var next,
-					_elm,
+					_elm = $(e.target),
 					_id,
 					keychar,
 					sublink,
@@ -123,7 +123,6 @@
 					matches,
 					match,
 					level;
-				_elm = $(e.target);
 				_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
 					return parseInt(n, 10);
 				});
@@ -313,7 +312,7 @@
 						return;
 					});
 					$childmenu.find("ul").not(function () {
-						return ($(this).prev("h4").length ? true : false);
+						return ($(this).prev("h4").length === 0 || $(this).parent('li').length === 0);
 					}).find("a").each(function (i) {
 						$(this).addClass("knav-" + index + "-0-" + (i + 1));
 					});
