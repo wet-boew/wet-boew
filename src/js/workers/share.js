@@ -90,7 +90,7 @@
 							return false;
 						}
 					} else if (e.type === "click" || e.type === "vclick") {
-						if ($(e.target).attr('aria-pressed') === 'false') {
+						if ($popup.attr('aria-hidden') === 'true') {
 							$popup.trigger("open");
 						} else {
 							$popup.trigger("close");
