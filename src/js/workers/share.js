@@ -203,7 +203,12 @@
 						$popup.hide().attr('aria-hidden', 'true');
 					}
 				});
-				$(document).on("click touchstart", function (e) { // Close the popup menu on any click away from the links
+
+				// Close the popup menu on any click away from the links
+				elm.on("click touchstart", function (e) {
+					return false;
+				});
+				$(document).on("click touchstart", function (e) {
 					if ($popup.attr('aria-hidden') === 'false') {
 						$popup.trigger("close");
 					}

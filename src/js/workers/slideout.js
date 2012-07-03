@@ -24,8 +24,11 @@
 				rmCurrLink = true,
 				scroll = true,
 				toggle,
+				toggleLink,
+				slideoutClose,
 				ttlHeight = 0,
-				wrapper;
+				wrapper,
+				keyhandler;
 
 			// Add the wrappers
 			wrapper = elm.wrap('<div id="slideoutWrapper" />').parent(); // This is used for overflow: hidden.
@@ -48,8 +51,8 @@
 			};
 
 			toggle = function (e) {
-				wrapper.find('#toggleLink').off('click vclick');
-				elm.find('#slideoutClose').off('click vclick');
+				toggleLink.off('click vclick');
+				slideoutClose.off('click vclick');
 
 				if (!opened) {
 					var position = wrapper.position();
@@ -81,8 +84,8 @@
 							elm.find('ul').html(elm.find('ul').html()); // Ugly fix for #4312 (post #11)
 						}
 					}
-					wrapper.find('#toggleLink').on('click vclick', toggle);
-					elm.find('#slideoutClose').on('click vclick', toggle);
+					toggleLink.on('click vclick', toggle);
+					slideoutClose.on('click vclick', toggle);
 				});
 
 				if (opened) {
@@ -103,6 +106,58 @@
 				return false;
 			};
 
+			// Handles specialized keyboard input
+			keyhandler = function (e) {
+				var target = $(e.target);
+				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
+					switch (e.keyCode) {
+					case 13: // enter key
+						target.trigger("click");
+						if (target.is(slideoutClose)) {
+							pe.focus(toggleLink);
+						}
+						return false;
+					case 27: // escape key
+						if (opened) {
+							toggle();
+							pe.focus(toggleLink);
+							return false;
+						}
+						break;
+					case 32: // spacebar
+						target.trigger("click");
+						if (target.is(slideoutClose)) {
+							pe.focus(toggleLink);
+						}
+						return false;
+					default:
+						// 0 - 9 and a - z keys
+						if ((e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91)) {
+							var keychar = String.fromCharCode(e.keyCode).toLowerCase(),
+								elmtext = $(e.target).text(),
+								match,
+								matches = elm.find('a').filter(function () {
+									return ($(this).text().substring(0, 1).toLowerCase() === keychar || $(this).text() === elmtext);
+								});
+							if (matches.length > 0) {
+								matches.each(function (index) {
+									if ($(this).text() === elmtext) {
+										match = index;
+										return false;
+									}
+								});
+								if (match < (matches.length - 1)) {
+									pe.focus(matches.eq(match + 1));
+									return false;
+								}
+								pe.focus(matches.eq(0));
+							}
+							return false;
+						}
+					}
+				}
+			};
+
 			// Remove the link off the page we're on if we're asked to
 			if (rmCurrLink) {
 				elm.find('li a').each(function () {
@@ -113,12 +168,15 @@
 			}
 
 			// Close slideout after clicking on a link
-			elm.find('li a').each(function () {
-				$(this).on('click vclick', function () { toggle(elm); pe.focus($($(this).attr('href'))); });
+			elm.find('li a').on('click vclick', function () { 
+				toggle(elm);
 			});
 
+			wrapper.on("keydown", keyhandler);
+			elm.on("keydown", keyhandler);
+
 			// Close slideout if clicking outside of the slideout area
-			elm.on("click touchstart", function () {
+			elm.on("click touchstart", function (e) {
 				return false;
 			});
 			$(document).on("click touchstart", function () {
@@ -128,10 +186,12 @@
 			});
 
 			// Add the "Hide" link
-			elm.append('<a href="#" id="slideoutClose" onclick="$(\'#toggleLink\').focus(); return false;">' + closeLink + '</a>');
+			elm.append('<a href="#" id="slideoutClose">' + closeLink + '</a>');
+			slideoutClose = elm.find('#slideoutClose');
 
 			// Add the slideout toggle
 			wrapper.find('#slideoutInnerWrapper').css('padding', (focusOutlineAllowance / 2) + 'px').prepend('<div id="slideoutToggle" class="slideoutToggle"><a id="toggleLink" role="button" aria-pressed="false" aria-controls="slideout" href="#" onclick="return false;"><img width="' + imgShow.width + 'px' + '" height="' + imgShow.height + 'px' + '" src="' + imgShow.path + '" alt="' + imgShow.alt + '" title="' + imgShow.alt + '" /></a></div>');
+			toggleLink = wrapper.find('#toggleLink');
 			wrapper.find('#slideoutToggle').css({'width' : imgShow.width, 'height' : imgShow.height}); // Resize the toggle to correct dimensions
 
 			// Apply the CSS
@@ -164,8 +224,8 @@
 			}
 
 			// Toggle slideout
-			wrapper.find('#toggleLink').on('click', toggle);
-			elm.find('#slideoutClose').on('click', toggle);
+			toggleLink.on('click vclick', toggle);
+			slideoutClose.on('click vclick', toggle);
 
 			// Fix scrolling issue in some versions of IE (#4051)
 			if (pe.ie === 7) { $('html').css('overflowY', 'auto'); }
