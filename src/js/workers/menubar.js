@@ -164,7 +164,7 @@
 								keychar = String.fromCharCode(e.keyCode).toLowerCase();
 								sublink = (_id[2] !== 0 || _id[3] !== 0);
 								elmtext = _elm.text();
-								matches = _activemenu.find('.mb-sm-open a').filter(function (index) {
+								matches = _activemenu.find('.mb-sm-open a').filter(function () {
 									return ($(this).text().substring(0, 1).toLowerCase() === keychar || (sublink && $(this).text() === elmtext));
 								});
 								if (matches.length > 0) {
@@ -312,11 +312,6 @@
 						});
 						return;
 					});
-					/*$childmenu.find("ul").not(function () {
-						return ($(this).prev("h3, h4").length === 0 || $(this).parent('li').length === 0);
-					}).find("a").each(function (i) {
-						$(this).addClass("knav-" + index + "-0-" + (i + 1));
-					});*/
 					$childmenu.find("> ul a, > div > ul a").each(function (i) {
 						$(this).addClass("knav-" + index + "-0-" + (i + 1));
 					});
