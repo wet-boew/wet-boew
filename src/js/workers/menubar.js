@@ -254,11 +254,7 @@
 						if (next.length > 0) {
 							pe.focus(next);
 						} else {
-<<<<<<< HEAD
-							pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
-=======
 							pe.focus(_activemenu.find(".knav-" + _id[1] + "-1-0, .knav-" + _id[1] + "-0-1,")); // move to first item in the submenu
->>>>>>> 765c4c087b1c4cea2c0c48063bbfeb6cda2c3c26
 						}
 					}
 				} else if (e.type === "item-previous") {
