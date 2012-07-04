@@ -72,7 +72,7 @@
 				elm.attr('role', 'application');
 				$popup = elm.find('.bookmark_popup').attr('id', 'bookmark_popup').attr('aria-hidden', 'true').attr('role', 'menu').prepend('<p class="popup_title">' + opts.popupText + '</p>');
 				$popupLinks = $popup.find('li').attr('role', 'presentation').find('a').attr('role', 'menuitem').attr('tabindex', '-1');
-				$popupText = elm.find('.bookmark_popup_text').off('click');
+				$popupText = elm.find('.bookmark_popup_text').off('click vclick keydown');
 				$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').attr('aria-pressed', 'false').on("click vclick keydown", function (e) {
 					if (e.type === "keydown" && (!(e.ctrlKey || e.altKey || e.metaKey))) {
 						switch (e.keyCode) {
@@ -117,20 +117,20 @@
 								return false;
 							case 38: // up arrow (go one link up, or to the bottom-most link in the previous column, or to the bottom-most link of the last column)
 								leftoffset = $(e.target).offset().left;
-								target = $(e.target).closest('li').prevAll().find('a').filter(function (index) {
+								target = $(e.target).closest('li').prevAll().find('a').filter(function () {
 									return ($(this).offset().left === leftoffset);
 								});
 								if (target.length > 0) {
 									pe.focus(target.first());
 								} else {
-									target = $popupLinks.filter(function (index) {
+									target = $popupLinks.filter(function () {
 										return ($(this).offset().left < leftoffset);
 									});
 									if (target.length > 0) {
 										pe.focus(target.last());
 									} else {
 										leftoffset = $popupLinks.last().offset().left;
-										target = $popupLinks.filter(function (index) {
+										target = $popupLinks.filter(function () {
 											return ($(this).offset().left > leftoffset);
 										});
 										if (target.length > 0) {
@@ -150,13 +150,13 @@
 								return false;
 							case 40: // down arrow (go one link down, or to the top-most link in the next column, or to the top-most link of the first column)
 								leftoffset = $(e.target).offset().left;
-								target = $(e.target).closest('li').nextAll().find('a').filter(function (index) {
+								target = $(e.target).closest('li').nextAll().find('a').filter(function () {
 									return ($(this).offset().left === leftoffset);
 								});
 								if (target.length > 0) {
 									pe.focus(target.first());
 								} else {
-									target = $popupLinks.filter(function (index) {
+									target = $popupLinks.filter(function () {
 										return ($(this).offset().left > leftoffset);
 									});
 									if (target.length > 0) {
@@ -171,7 +171,7 @@
 								if ((e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91)) {
 									keychar = String.fromCharCode(e.keyCode).toLowerCase();
 									elmtext = $(e.target).text();
-									matches = $popupLinks.filter(function (index) {
+									matches = $popupLinks.filter(function () {
 										return ($(this).text().substring(1, 2).toLowerCase() === keychar || $(this).text() === elmtext);
 									});
 									if (matches.length > 0) {
@@ -207,7 +207,7 @@
 				});
 
 				$(document).on("click touchstart", function (e) {
-					if ($popup.attr('aria-hidden') === 'false' && !$(e.target).is($popup) && $(e.target).closest($popup).length === 0) {
+					if ($popup.attr('aria-hidden') === 'false' && !$(e.target).is($popup) && !$(e.target).is($popupText) && $(e.target).closest($popup).length === 0) {
 						$popup.trigger("close");
 					}
 				});

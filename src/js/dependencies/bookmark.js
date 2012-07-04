@@ -413,7 +413,7 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 				});
 				$(document).click(function (event) { // Close on external click
 					var $popup = target.find('.bookmark_popup');
-					if (!$(event.target).is($popup) && $(event.target).closest($popup).length === 0) {
+					if (!$(event.target).is($popup) && $(event.target).closest($popup).length === 0) { // WET-BOEW Change
 						target.find($popup).hide();
 					}
 				});
@@ -548,7 +548,7 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 				top : ($(window).height() - all.height()) / 2
 			}).show();
 			$(document).bind('click.bookmark', function (event) {
-				if ($(event.target).closest(elem).length === 0 && $(event.target).closest('#bookmark_all').length === 0) { // WET-BOEW Change
+				if ($(event.target).closest(elem).length === 0 && $(event.target).closest('#bookmark_all').length === 0) {
 					$('#bookmark_all').remove();
 					$(document).unbind('click.bookmark');
 				}
