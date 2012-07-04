@@ -97,7 +97,7 @@
 			pe.resize(correctheight);
 			/* Handles opening and closing of a submenu on click of a menu bar item
 			   but prevents any changes on click of the empty area in the submenu */
-			$scope.find('.mb-sm').on("click vclick", function (event) { 
+			$scope.find('.mb-sm').on("click vclick", function (event) {
 				if (event.stopPropagation) {
 					event.stopPropagation();
 				} else {
@@ -116,6 +116,7 @@
 			$scope.on("keydown focus section-next section-previous item-next item-previous close", "li", function (e) {
 				var next,
 					_elm = $(e.target),
+					_activemenu = $scope.find('.mb-active'),
 					_id,
 					keychar,
 					sublink,
@@ -163,7 +164,7 @@
 								keychar = String.fromCharCode(e.keyCode).toLowerCase();
 								sublink = (_id[2] !== 0 || _id[3] !== 0);
 								elmtext = _elm.text();
-								matches = $menu.find('.mb-sm-open a').filter(function (index) {
+								matches = _activemenu.find('.mb-sm-open a').filter(function (index) {
 									return ($(this).text().substring(0, 1).toLowerCase() === keychar || (sublink && $(this).text() === elmtext));
 								});
 								if (matches.length > 0) {
@@ -186,7 +187,7 @@
 						}
 					}
 				} else if (e.type === "close") {
-					pe.focus($scope.find(".knav-" + _id[1] + "-0-0"));
+					pe.focus(_activemenu.find(".knav-" + _id[1] + "-0-0"));
 					setTimeout(function () {
 						return hideallsubmenus();
 					}, 5);
@@ -204,7 +205,7 @@
 						break;
 					case 2: // sub-section link has focus
 					case 3: // 3rd level link (child of a sub-section) has focus
-						next = $scope.find(".knav-" + (_id[1]) + "-" + (_id[2] - 1) + "-0");
+						next = _activemenu.find(".knav-" + (_id[1]) + "-" + (_id[2] - 1) + "-0");
 						if (next.length > 0 && _id[2] > 1) {
 							pe.focus(next);
 						} else {
@@ -231,7 +232,7 @@
 						break;
 					case 2: // sub-section link has focus
 					case 3: // 3rd level link (child of a sub-section) has focus
-						next = $scope.find(".knav-" + (_id[1]) + "-" + (_id[2] + 1) + "-0");
+						next = _activemenu.find(".knav-" + (_id[1]) + "-" + (_id[2] + 1) + "-0");
 						if (next.length > 0) {
 							pe.focus(next);
 						} else {
@@ -245,27 +246,27 @@
 						break;
 					}
 				} else if (e.type === "item-next") {
-					next = $scope.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] + 1)); // move to 3rd level
+					next = _activemenu.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] + 1)); // move to next item
 					if (next.length > 0) {
 						pe.focus(next);
 					} else {
-						next = $scope.find(".knav-" + _id[1] + "-" + (_id[2] + 1) + "-0"); // move to 2nd level
+						next = _activemenu.find(".knav-" + _id[1] + "-" + (_id[2] + 1) + "-0"); // move to next section
 						if (next.length > 0) {
 							pe.focus(next);
 						} else {
-							pe.focus($scope.find("a").first()); // move to 1st level
+							pe.focus(_activemenu.find(".knav-" + _id[1] + "-1-0, .knav-" + _id[1] + "-0-1,")); // move to first item in the submenu
 						}
 					}
 				} else if (e.type === "item-previous") {
-					next = $scope.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] - 1)); // move to 3rd level
-					if (next.length > 0) {
+					next = ((_id[2] > 0 || _id[3] > 1) ? _activemenu.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] - 1)) : ''); // move to previous item
+					if ((_id[2] > 0 || _id[3] > 1) && next.length > 0) {
 						pe.focus(next);
 					} else {
-						next = $scope.find(".knav-" + _id[1] + "-" + (_id[2] - 1) + "-0"); // move to 2nd level
-						if (next.length > 0) {
+						next = ((_id[2] > 1 || _id[3] > 0) ? _activemenu.find("[class*='knav-" + _id[1] + "-" + (_id[2] - 1) + "-']").last() : ''); // move to last item of the previous section
+						if ((_id[2] > 1 || _id[3] > 0) && next.length > 0) {
 							pe.focus(next);
 						} else {
-							pe.focus($scope.find(".knav-" + _id[1] + "-0-0")); // move to 1st level
+							pe.focus(_activemenu.find("[class*='knav-']").last()); // move to last item in the submenu
 						}
 					}
 				} else if (e.type === "focusin" && _id[2] === 0 && _id[3] === 0) {
