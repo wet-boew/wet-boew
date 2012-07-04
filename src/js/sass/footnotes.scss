@@ -1,0 +1,38 @@
+@charset "utf-8";
+/*!
+ * Accessible Footnotes v1.01 / Notes de bas de page accessibles v1.01
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+
+/** Screen and print CSS **/
+@media screen,print {
+	a.footnote-link, div.footnote-container dl dd p.float-left a {background-color: #EEE; border: 1px solid #CCC; padding: 0 4px 1px; display: inline-block;}
+	a.footnote-link:hover, sup a.footnote-link:active, sup a.footnote-link:focus, div.footnote-container dl dd p.float-left a:hover, div.footnote-container dl dd p.float-left a:active, div.footnote-container dl dd p.float-left a:focus {border-color: #666;}
+	div.footnote-container {margin: 30px 10px 0 10px; padding-top: 5px; border-width: 1px 0 1px 0; border-style: solid; border-color: #CCC;}
+	div.footnote-container dl {display: inline-block; margin: 0 0 -9px 0;}
+	div.footnote-container dl dt {clear: both; clip: rect(1px, 1px, 1px, 1px); height: 1px; width: 1px; overflow: hidden;}
+	div.footnote-container dl dd {float: left; padding: 0; margin: 0;}
+	div.footnote-container dl dd p {float: right; margin: 0 0 18px 3em;}
+	div.footnote-container dl dd div {float: right; margin-left: 3em; margin-bottom: 10px;}
+	div.footnote-container dl dd div p {float: none; margin-left: 0; margin-bottom: 8px;}
+	div.footnote-container dl dd p.float-left {float: left; width: 3em; margin: 0 -3em 0 0; padding-bottom: 18px;}
+	div.footnote-container dl dd p.float-left a {margin-bottom: 1px;}
+	div.footnote-container h2.cn-invisible, div.footnote-container h3.cn-invisible, div.footnote-container h4.cn-invisible, div.footnote-container h5.cn-invisible, div.footnote-container h6.cn-invisible {position: relative;}
+	
+	/*temporary background colours for debugging:
+	div.footnote-container dl dd p {background-color: #66FFFF;}
+	div.footnote-container dl dd p.float-left {background-color: #FF9900;}
+	div.footnote-container dl dd {background-color: #3366CC;}
+	div.footnote-container dl dd div {background-color: #66FF00;}*/
+}
+
+/** Print-only CSS **/
+@media print {
+	a.footnote-link, div.footnote-container dl dd p.float-left a {background-color: transparent; border: 0; padding: 0;}
+	div.footnote-container {margin-left: 0; margin-right: 0; /*border-color: #F00;*/}
+	div.footnote-container dl {display: inline;}
+	div.footnote-container dl dd {float: none; width: 100%; overflow: auto;}
+	div.footnote-container dl dd p, div.footnote-container dl dd div {width: 94.5%;}
+	div.footnote-container dl dd div p {width: 100%;}
+}

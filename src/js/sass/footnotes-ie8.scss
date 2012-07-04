@@ -1,0 +1,18 @@
+@charset "utf-8";
+/*!
+ * Accessible Footnotes v1.01 / Notes de bas de page accessibles v1.01
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+
+/** Screen and print CSS **/
+@media screen,print {
+	div.footnote-container {padding-top: 4px;}
+	div.footnote-container a {display: inline-block;}
+	div.footnote-container dl {margin-bottom: -12px;}
+}
+
+/** Print-only CSS **/
+@media print {
+	div.footnote-container dl dd {display: inline-block;}
+}
