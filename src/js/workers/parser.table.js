@@ -14,7 +14,6 @@
 	};
 	
 	
-	//if(!_pe.fn.parser){_pe.fn.parser = {};}
 	_pe.fn.parsertable = {
 		type : 'plugin',
 		_exec : function (elm) {
@@ -30,7 +29,7 @@
 			// Event handler for issue error found durring the table parsing process
 			var errorTrigger = function(err, obj){
 				$(obj).trigger('parser.table.error', err, obj);
-				console.log("Trigger ERROR: " + err);
+				console.log("Trigger ERROR: " + err); // Debug Mode
 			}
 
 			// Check if this table was already parsed, if yes we exit by throwing an error
@@ -63,96 +62,17 @@
 			 
 
 		*/
-		/*
-		//
-		// JQuery Data set for an array of Element - testing
-		//
-		
-		// For all td, set a shared data
-		
-		$('td', obj).data('table.col', '45');
-		
-		console.log('data : "table.col" was set for all td cells');
-		
-		// Retreive the data for the 3 and 7 data cell
-		
-		console.log('data "table.col" : for the 4th td cell');
-		console.log($('td:eq(3)').data('table.col'));
-		
-		console.log('data "table.col" : for the 7th td cell');
-		console.log($('td:eq(7)').data('table.col'));
-		
-		console.log('make a change only to the 5th cell');
-		$('td:eq(4)').data('table.col', '99');
-		
-		console.log('data "table.col" : for the 4th td cell');
-		console.log($('td:eq(3)').data('table.col'));
-		
-		console.log('data "table.col" : for the 7th td cell');
-		console.log($('td:eq(7)').data('table.col'));
-
-		console.log('data "table.col" : for the 5th td cell');
-		console.log($('td:eq(4)').data('table.col'));
-		
-		
-		return;
-		*/
-		
 		
 		var groupZero = {
-			/*layoutCell: [], // List of layout cell
-			data: {  // List of sub data cell 
-				row: [],
-				col: [] 
-			},
-			header: {  // List of sub header cell
-				row: [],
-				col: []
-			},
-			dataset: { // eg. tr and col element
-				row: [],
-				col: []
-			},
-			headergroup: { // eg. thead or colgroup
-				row: [],
-				col: []
-			},
-			datagroup: { // eg. tbody or colgroup
-				row: [],
-				col: []
-			},
-			summarygroup: { // eg. tfoot or colgroup
-				row: [],
-				col: []
-			},
-			*/
-			allParserObj: []/*,
-			
-			nestedHeader: {
-				row: [],
-				col: []
-			},
-			
-			// Direct Property
-			elem: {}, // eg. caption element for the groupZero
-			struct: {}, //eg. table element for the groupZero
-			value: {}, // Content inside the summary tag, otherwise the same as the elem property
-			desc: {}, // Content of the details tag, otherwise empty
-			
-			colpos: 0, // Zero for the groupZero
-			rowpos: 0, // Zero for the groupZero
-			
-			level: 0, // Zero for the groupZero
-			nblevel: 0 // Number of existing sub level based on this group*/
-			, nbDescriptionRow: 0
-			
+			allParserObj: [], 
+			nbDescriptionRow: 0 // To remove ??
 		};
 		
 		$(obj).data().tblparser = groupZero;
 		
 		
-		var colgroupFrame = []; // Temporary used before to get the colgroup type
-		var columnFrame = []; // Temporary used before to be at the data row group parsing
+		var colgroupFrame = []; 
+		var columnFrame = [];
 		groupZero.colgroup = colgroupFrame;
 		
 		var uidElem = 0;
@@ -205,8 +125,6 @@
 		
 		
 		function processCaption(elem){
-			// groupZero.elem = elem;
-			// groupZero.struct = obj[0];
 			
 			groupZero.colcaption.elem = elem;
 			groupZero.rowcaption.elem = elem;
@@ -274,8 +192,6 @@
 				
 				$(this).data().tblparser = col;
 				
-				
-				// var colCopy = jQuery.extend(true, {}, col);
 				colgroup.col.push(col);
 				columnFrame.push(col);
 				
@@ -308,11 +224,6 @@
 				}
 			}
 			
-			// Set the parent colgroup for each column
-			// $(colgroup.cols).each(function(){
-			//	elem.parent = colgroup;
-			// });
-			
 			
 			colgroup.end = colgroup.start + colgroupspan - 1;
 	
@@ -320,9 +231,6 @@
 		}
 		
 		function processRowgroupHeader(colgroupHeaderColEnd){ // thead row group processing
-			
-			// TODO: AVOID to go in that function more than once
-			
 			
 			
 			if(colgroupHeaderColEnd && colgroupHeaderColEnd > 0){
@@ -334,42 +242,6 @@
 					colgroupFrame = [];
 				} 
 				
-				/*
-				if(colgroupFrame.length == 0){
-					// Create the colgroup Header
-					var colgroup = {
-						start: 1,
-						end: colgroupHeaderColEnd,
-						col: [],
-						row: [],
-						type: 1 // Set colgroup heading type
-					}
-					colgroup.uid = uidElem;
-					uidElem++;
-					
-					colgroupFrame.push(colgroup);
-					groupZero.allParserObj.push(colgroup);
-					
-					// Create the column
-					// Create virtual column 
-					for(i= 1; i<= colgroupHeaderColEnd; i++){
-						var col = {
-							start: 0,
-							end: 0
-						}
-						col.uid = uidElem;
-						uidElem++;
-						groupZero.allParserObj.push(col);
-						
-						col.start = i;
-						col.end = i;
-						
-						colgroup.col.push(col);
-						columnFrame.push(col);
-						
-					}
-				}
-				*/
 				
 			} else {
 				colgroupHeaderColEnd = 0; // This mean that are no colgroup designated to be a colgroup header
@@ -378,8 +250,6 @@
 			// Associate any descriptive cell to his top header
 			for(i=0; i<theadRowStack.length; i++){
 				
-				// var currentRow = theadRowStack[i];
-				
 				if(!theadRowStack[i].type){
 					theadRowStack[i].type = 1;
 				}
@@ -387,8 +257,6 @@
 				for(j=0; j<theadRowStack[i].cell.length; j++){
 					theadRowStack[i].cell[j].scope = "col";
 										
-					// var currentCell = theadRowStack[i].cell[j];
-					
 					// check if we have a layout cell at the top, left
 					if(i==0 && j==0 && $(theadRowStack[i].cell[j].elem).html().length == 0){
 						// That is a layout cell
@@ -470,14 +338,12 @@
 				}
 				
 			}
-			// theadRowStack = tmpStack;
 			
 			
 			groupZero.colgrp = []; // Array based on level as indexes for columns and group headers
 			
 			
 			// Parser any cell in the colgroup header
-			// console.log('colgroupFrame.length: ' + colgroupFrame.length);
 			if(colgroupHeaderColEnd >0 && colgroupFrame.length == 1 || colgroupFrame.length == 0){
 				// There are no colgroup element defined, All the cell will be considerated to be a data cell
 				
@@ -616,6 +482,8 @@
 				//
 				// Suggestion: In the future, may be allow the use of a HTML5 data or CSS Option to force a colgroup to be a data group instead of a summary group
 				//
+				// -----------------------------------------------------
+				//
 				
 				
 				
@@ -717,13 +585,6 @@
 						if(tmpStack[i].cell[curColgroupFrame.start-1].uid != tmpStack[i].cell[curColgroupFrame.end-1].uid || 
 							tmpStack[i].cell[curColgroupFrame.start-1].colpos > curColgroupFrame.start || 
 							tmpStack[i].cell[curColgroupFrame.start-1].colpos + tmpStack[i].cell[curColgroupFrame.start-1].width -1 < curColgroupFrame.end){
-							//console.log(' i:' + i +
-							//			' colpos: ' + tmpStack[i].cell[curColgroupFrame.start-1].colpos +
-							//			' start: ' + curColgroupFrame.start + 
-							//			' width: ' + tmpStack[i].cell[curColgroupFrame.start-1].width +
-							//			' end: ' + curColgroupFrame.end);
-							//console.log(tmpStack[i].cell[curColgroupFrame.start-1]);
-							//console.log(tmpStack[i].cell[curColgroupFrame.end-1]);
 							
 							errorTrigger("The cell used to represent the data at level :" + (groupLevel -1) + " must encapsulate his group and be the same");
 							return;
@@ -741,21 +602,8 @@
 						cgrp.start = cgrp.colpos;
 						cgrp.end = cgrp.colpos + cgrp.width -1;
 						
-						// cgrp.header =[];
-						// cgrp.header.push(tmpStack[i].cell[curColgroupFrame.start-1]);
-						// cgrp.repheader = tmpStack[i].cell[curColgroupFrame.start-1]; // Header representative of this group
-						// tmpStack[i].cell[curColgroupFrame.start-1].colgroup = cgrp;
 						
 						cgrp.type = 7; // Group Header Cell
-						
-						
-						
-						/*cgrp.parentHeader = []; // To Remove
-						for(j=0; j<currColgroupStructure.length; j++){ // To Remove
-							cgrp.parentHeader.push(currColgroupStructure[j]);  // To Remove
-						}  // To Remove
-						*/
-						
 						
 						currColgroupStructure.push(cgrp);
 						
@@ -887,38 +735,18 @@
 						
 						var column = this;
 						
-						// groupZero.col.push(column);
-						
-						// TODO: column.parent = curColgroupFrame; // ?? Use the parent level header ??
-						
 						column.type = curColgroupFrame.type;
 						column.level = curColgroupFrame.level;
 						column.groupstruct = curColgroupFrame;
 						
 						
-						// TODO: Change the block of code above for All the header starting at the level 
-						//       and the cells bellow but within the column scope
-						//for(i=curColgroupFrame.level -1; i< tmpStack.length; i++){
-						//	if(i<0){i=0;}
-							
-						//}
 						
 						column.header = [];
 						// Find the lowest header that would represent this column
-						// for(j= (tmpStack.length -1); j >= (curColgroupFrame.level -1); j-- ){
 						for(j= (tmpStack.length -1); j >= (groupLevel -1); j-- ){
 							
 							for(i =(curColgroupFrame.start -1); i< curColgroupFrame.end; i++){
 							
-								
-								
-			// column.start -------- column.end
-								
-								
-						//		if(tmpStack[j].cell[i].colpos <= column.start && 
-						//			column.end <= tmpStack[j].cell[i].colpos){
-								
-								
 							
 								if(tmpStack[j].cell[i].colpos >= column.start && 
 									tmpStack[j].cell[i].colpos <= column.end || 
@@ -976,22 +804,9 @@
 			var columnPos = 1;
 			var lastCellType = "";
 			var lastHeadingColPos = false;
-			var rowPattern = "";
 		
 			var cells = $(elem).children();
 
-			/*
-			if(tableWidth != 0 && tableWidth != cells.length){
-				errorTrigger('Each row must have the same width', this);
-				currentRowPos --;
-				return;
-			}
-			if(tableWidth != 0){
-				// Let the first row to be the tablewidth
-				tableWidth = cells.length;
-			}
-			*/
-			
 			var row = {
 				colgroup: [], // == Build from colgroup object ==
 
@@ -999,7 +814,6 @@
 
 				elem: elem, // Row Structure jQuery element
 				
-				patern: "",
 				rowpos: currentRowPos
 			};
 			
@@ -1012,7 +826,7 @@
 			var colgroup = {
 				cell: [],
 				cgsummary: undefined, // ?? Not sure because this will be better in the data colgroup object ?? Summary Colgroup Associated
-				type: false // 1 == header, 2 == data, 3 == summary, 4 == key, 5 == description
+				type: false // 1 == header, 2 == data, 3 == summary, 4 == key, 5 == description, 6 == layout, 7 == group header
 			}
 
 			colgroup.uid = uidElem;
@@ -1042,16 +856,6 @@
 				colgroup.cell.push(headerCell);
 				
 				lastHeadingColPos = headerCell.colpos + headerCell.width - 1;
-				/*
-				// Check for datacell at the left side of the heading, they can be key cell or description cell
-				if(row.colgroup.length > 1 && row.colgroup[row.colgroup.length-1].type == 2){
-
-					$.each(row.colgroup[row.colgroup.length-1].cell, function(){
-						
-					});
-					
-				}
-				*/
 				
 			}
 			
@@ -1083,19 +887,6 @@
 			var fnParseSpannedRowCell = function(){
 				// Check for spanned row
 				$.each(spannedRow, function(){
-					// console.log('width:' + this.width +
-					//			' colpos:' + this.colpos +
-					//			' columnPos:' + columnPos +
-					//			' spanHeight:' + this.spanHeight
-					//			);
-					//if(this.uid == 28){
-						// console.log(this);
-						// console.log('columnPos: ' + columnPos + ' currentRowPos: ' + currentRowPos);
-					// }
-						// OLD if
-						//(this.width + this.colpos - 1) <= columnPos && 
-						//columnPos >= this.colpos  && this.spanHeight > 0 && 
-						//(this.height + this.rowpos - this.spanHeight == currentRowPos)){
 
 					if(this.colpos == columnPos && this.spanHeight > 0 && (this.height + this.rowpos - this.spanHeight == currentRowPos)){
 
@@ -1122,10 +913,7 @@
 						
 						
 						lastCellType = this.elem.nodeName.toLowerCase();
-						rowPattern = rowPattern + this.elem.nodeName.toLowerCase() + '(' + this.width + ',' + this.height + ')';
 						
-						//TODO: Change the next line of code
-						this.parent = colgroup; // May be not good, I think that should rely on the master colgroup as is parent.
 						
 					}
 				});
@@ -1223,9 +1011,7 @@
 				}
 				
 				lastCellType = this.nodeName.toLowerCase();
-				rowPattern = rowPattern + this.nodeName.toLowerCase() + '(' + width + ',' + height + ')';
 				
-				// columnPos ++;
 			});
 			
 			// Check for any spanned cell
@@ -1238,7 +1024,6 @@
 			}
 			if(tableCellWidth != row.cell.length){
 				row.spannedRow = spannedRow;
-				//console.log(row);
 				errorTrigger('The row do not have a good width', row.elem);
 			}
 			
@@ -1252,9 +1037,6 @@
 			// Add the last colgroup
 			row.colgroup.push(colgroup);
 			
-			row.patern = rowPattern;
-			
-
 			
 			
 			
@@ -1265,8 +1047,6 @@
 			if(lastCellType == 'th'){
 				// Digest the row header
 				row.type = 1;
-				
-				//console.log('This is a header row');
 				
 				
 				//
@@ -1345,7 +1125,6 @@
 			} else {
 				// Digest the data row
 				row.type = 2;
-				//console.log('this is a data row');
 				
 				
 				
@@ -1384,8 +1163,6 @@
 						uidElem++;
 						groupZero.allParserObj.push(grpRowHeader);	
 						
-						//rowgroupHeaderRowStack[i].row.cell[0]
-						
 						grpRowHeader.elem = rowgroupHeaderRowStack[i].row.cell[0].elem;
 						grpRowHeader.struct = rowgroupHeaderRowStack[i].row.elem;
 						
@@ -1404,8 +1181,6 @@
 
 					rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].cell[0].scope = "row";
 					rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].cell[0].level = rowgroupHeaderRowStack.length;
-					// rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].cell[0].rowgroup = currentRowHeader;
-					// rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].rowgroup = currentRowHeader;
 					rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].type = 1;
 					
 					currentRowHeader.push(rowgroupHeaderRowStack[rowgroupHeaderRowStack.length-1].cell[0]);		
@@ -1419,16 +1194,8 @@
 					
 					currentRowHeader = groupZero.row[groupZero.row.length-1].levelheader;
 					
-					//pastTbodyID	= currentTbodyID;
-					/*					
-					// Retreive the previous currentRowHeader
-					for(i=groupZero.row.length-1; i>0; i++){
-						if(groupZero.row[i].type == 2){
-							// We got our summary level
-						}
-					}*/
 				}
-					// We have a summary row group
+				// We have a summary row group
 					
 				row.levelheader = currentRowHeader;
 				row.level = (currentRowHeader.length > 0?currentRowHeader[currentRowHeader.length -1].level:0);
@@ -1591,7 +1358,7 @@
 					
 					// If the table have a table rowgroup heading section, let that to be transformed into colgroup
 					
-						// The number of colgroup level are directly related to the number of row heading included in the thead or tbody.
+					// The number of colgroup level are directly related to the number of row heading included in the thead or tbody.
 					
 					// If the table don't have a heading section, let run the code, the colgroup would be created later
 				}
@@ -1618,8 +1385,6 @@
 				}
 				for(i=lastHeadingColPos; i<row.cell.length; i++){
 					
-					// console.log("Process Cell Nb:" + i);
-					// console.log("Colgroup Start ID:" + (lastHeadingColPos == 0 ? 0 : 1));
 					var isDataCell = true;
 					var IsDataColgroupType = true; // TODO: Remove this variable
 					
@@ -1639,70 +1404,7 @@
 							row.cell[i].collevel = colgroupFrame[j].level;
 							row.datacell.push(row.cell[i]);
 							
-							// Here the column group type must be defined before
-							// because the colgroup will define the type of cell
-						/*
-							// row.cell[i].colgroup = colgroupFrame[j];
-							if(IsDataColgroupType || lastHeadingColPos == 0){
-								if(!colgroupFrame[j].type){
-									colgroupFrame[j].type = 2;
-								}
-								// May be just add the cell in the colgroup, after expand the cell own in the colgroup if needed.
-								if(!row.cell[i].type){
-									// if(!colgroupFrame[j].cell){
-									//	colgroupFrame[j].cell = [];
-									//}
-									//colgroupFrame[j].cell.push(row.cell[i]);
-								}
-								
-								
-								row.cell[i].type = 2;
-								row.datacell.push(row.cell[i]);
-								if(colgroupFrame[j].type != 2){
-									errorTrigger("Something weird with your colgroup versus your data row [NOT DATA COLGROUP]");
-								}
-								
-								
-								/*
-								// if(!colgroupFrame[j].row[row.rowpos]){
-								// 	colgroupFrame[j].row[row.rowpos] = [];
-								// }
-								// if(!colgroupFrame[j].row[row.rowpos][row.cell[i].colpos]){
-								//	colgroupFrame[j].row[row.rowpos][row.cell[i].colpos] = {};
-								// }
-								// colgroupFrame[j].row[row.rowpos][row.cell[i].colpos] = row.cell[i];
-								
-								
-							} else {
-								if(!colgroupFrame[j].type){
-									colgroupFrame[j].type = 3;
-								}
-								if(!row.cell[i].type){
-									// May be just add the cell in the colgroup, after expand the cell own in the colgroup if needed.
-									// if(!colgroupFrame[j].cell){
-									// 	colgroupFrame[j].cell = [];
-									// }
-									// colgroupFrame[j].cell.push(row.cell[i]);
-								}
-								
-								row.cell[i].type = 3;
-								if(!row.summarycell){row.summarycell = [];}
-								row.summarycell.push(row.cell[i]);
-								if(colgroupFrame[j].type != 3){
-									errorTrigger("Something weird with your colgroup versus your data row [NOT Summary COLGROUP]");
-								}
-								
-								
-								
-								// if(!colgroupFrame[j].row[row.rowpos]){
-								// 	colgroupFrame[j].row[row.rowpos] = [];
-								// }
-								// if(!colgroupFrame[j].row[row.rowpos][row.cell[i].colpos]){
-								//	colgroupFrame[j].row[row.rowpos][row.cell[i].colpos] = {};
-								// }
-								// colgroupFrame[j].row[row.rowpos][row.cell[i].colpos] = row.cell[i];
-								
-							}*/
+
 						}
 						
 						IsDataColgroupType = !IsDataColgroupType;
@@ -1730,89 +1432,6 @@
 					row.cell[i].rowlevel = row.level;
 					row.cell[i].rowlevelheader = currentRowHeader;
 					
-					// Insert The cells in the appropriate column and colgroup
-					/*if(createGenericColgroup){
-						
-						if(colgroupFrame.length == 0 ||( 
-							(colgroupFrame[colgroupFrame.length -1]) &&  colgroupFrame[colgroupFrame.length -1].type != row.cell[i].type))
-						{
-							
-							var skipColgroupCreation = false;
-							
-							if(row.cell[i].type == 4 || row.cell[i].type == 5 || row.cell[i].type == 1){
-								
-								if(colgroupFrame.length > 0){
-									
-									if(colgroupFrame[colgroupFrame.length -1].type == 1){
-										// Do Not Create a new group
-										skipColgroupCreation = true;
-									}
-								}
-							}
-						
-							if(!skipColgroupCreation){
-								// Create a new colgroup
-						
-								var colgroup = {
-									start: row.cell[i].colpos,
-									end: row.cell[i].colpos + row.cell[i].width -1,
-									col: [],
-									row: [],
-									cell: []
-								}
-							
-								colgroup.uid = uidElem;
-								uidElem++;
-							
-								colgroupFrame.push(colgroup);
-								
-								if(row.cell[i].type == 4 || row.cell[i].type == 5 || row.cell[i].type == 1){
-									colgroup.type = 1;
-								} else {
-									colgroup.type = 2;
-								}
-							}
-
-						}
-					}*/
-					
-					
-					
-					// Associate the row cell in the appropriate colgroup.....
-					/*
-					var currColgroupID = 0;
-					
-					if(createGenericColgroup && colgroupFrame[colgroupFrame.length - 1].end < (row.cell[i].colpos + row.cell[i].width - 1)){
-						// currColgroupID = colgroupFrame.length - 1;
-						colgroupFrame[colgroupFrame.length - 1].end = row.cell[i].colpos + row.cell[i].width -1;
-					} 
-					
-					
-					// Find the correct colgroup Frame
-					for(j=0; j<colgroupFrame.length; j++){
-						if(colgroupFrame[j].start <= row.cell[i].colpos && colgroupFrame[j].end >= (row.cell[i].colpos + row.cell[i].width - 1)){
-							currColgroupID = j;
-							break;
-						}
-					}
-
-					
-					row.cell[i].colgroup = colgroupFrame[currColgroupID];
-				
-
-					if(!(row.cell[i].spanHeight && row.cell[i].spanHeight +1 != row.cell[i].Height)){
-						if(!(colgroupFrame[currColgroupID].cell.length > 0 &&
-				colgroupFrame[currColgroupID].cell[colgroupFrame[currColgroupID].cell.length -1].uid == row.cell[i].uid)){
-							colgroupFrame[currColgroupID].cell.push(row.cell[i]);
-						}
-					}
-					// colgroupFrame[colgroupFrame.length - 1].row[row.cell[i].rowpos] = [];
-					
-					
-					// for(j=row.cell[i].colpos; j< (row.cell[i].colpos + row.cell[i].width); j++){
-					//	colgroupFrame[j].row[row.rowpos][row.cell[i].colpos] = row.cell[i];
-					// }
-					*/
 
 				}
 				
@@ -1855,7 +1474,6 @@
 			}
 			groupZero.row.push(row);
 			
-// groupZero.colgroupFrame = colgroupFrame;
 
 
 
@@ -1864,14 +1482,16 @@
 
 
 delete row.colgroup;
-//delete row.lastHeadingColPos;
-delete row.patern;
-			//console.log(row);
+
 
 
 
 		} // End processRow function
 		
+		
+		//
+		// Main Entry For The Table Parsing
+		//
 		
 		
 		$(obj).children().each(function(){
@@ -1923,12 +1543,6 @@ delete row.patern;
 					* First tbody = data
 					* All tbody with header == data
 					* Subsequent tbody without header == summary
-					* 
-					*
-					
-					
-					* 
-					* 
 					* 
 					*/
 					// $(this).data("tblparser", currentRowHeader);
@@ -1993,159 +1607,6 @@ delete row.patern;
 		delete groupZero.colgroupFrame;
 		groupZero.colgrouplevel = groupZero.colgrp;
 		delete groupZero.colgrp;
-		
-		
-		// Do a test, highlight summary data cell at level 0;
-		/*
-		for(i = 0; i< groupZero.row.length; i++){
-			
-			for(j = 0; j<groupZero.row[i].cell.length; j++){
-
-				if(groupZero.row[i].cell[j].type == 3 && groupZero.row[i].cell[j].collevel == 0){
-					$(groupZero.row[i].cell[j].elem).css('background-color', 'black');
-					$(groupZero.row[i].cell[j].elem).css('color', 'white');
-					
-				}
-
-				
-				if(groupZero.row[i].cell[j].type == 3 && groupZero.row[i].cell[j].collevel == 1){
-					$(groupZero.row[i].cell[j].elem).css('background-color', 'pink');
-					
-				}
-				if(groupZero.row[i].cell[j].type == 2 && groupZero.row[i].cell[j].collevel == 1){
-					$(groupZero.row[i].cell[j].elem).css('background-color', 'red');
-					$(groupZero.row[i].cell[j].elem).css('color', 'white');
-				}
-
-				
-				if(groupZero.row[i].cell[j].type == 3 && groupZero.row[i].cell[j].collevel == 2){
-					$(groupZero.row[i].cell[j].elem).css('background-color', 'cyan');
-					
-				}
-				if(groupZero.row[i].cell[j].type == 2 && groupZero.row[i].cell[j].collevel == 2){
-					$(groupZero.row[i].cell[j].elem).css('background-color', 'blue');
-					$(groupZero.row[i].cell[j].elem).css('color', 'white');
-					
-					
-				}
-				
-				if(groupZero.row[i].cell[j].type == 3 && groupZero.row[i].cell[j].collevel == 3){
-					$(groupZero.row[i].cell[j].elem).css('background-color', 'lightgreen');
-					
-					
-				}
-				if(groupZero.row[i].cell[j].type == 2 && groupZero.row[i].cell[j].collevel == 3){
-					$(groupZero.row[i].cell[j].elem).css('background-color', 'green');
-					$(groupZero.row[i].cell[j].elem).css('color', 'white');
-					
-					
-				}
-				
-				if(groupZero.row[i].cell[j].type == 3 && groupZero.row[i].cell[j].collevel == 4){
-					$(groupZero.row[i].cell[j].elem).css('background-color', 'lightgray');
-					
-					
-				}
-				if(groupZero.row[i].cell[j].type == 2 && groupZero.row[i].cell[j].collevel == 4){
-					$(groupZero.row[i].cell[j].elem).css('background-color', 'gray');
-					$(groupZero.row[i].cell[j].elem).css('color', 'white');
-					
-					
-				}
-
-				
-				$(groupZero.row[i].cell[j].elem).hover(
-					function() {
-						
-						// Save the current cell color
-						$(this).data().zebraPrevBgColor = $(this).css('background-color');
-						$(this).data().zebraPrevColor = $(this).css('color');
-						
-						// Default hover cell color
-						$(this).css('background-color', 'white');
-						$(this).css('color', 'black');
-						
-						var relRowPos = ($(this).data()['tblparser'].rowpos - groupZero.theadRowStack.length - 1 - groupZero.nbDescriptionRow);
-						
-						// Highligh the column
-						for(m = 0; m<groupZero.row.length; m ++){
-							if(m != relRowPos){
-								
-								// Save Previous Color
-								$(groupZero.row[m].cell[$(this).data()['tblparser'].colpos - 1].elem).data().zebraPrevBgColor = $(groupZero.row[m].cell[$(this).data()['tblparser'].colpos - 1].elem).css('background-color');
-								$(groupZero.row[m].cell[$(this).data()['tblparser'].colpos - 1].elem).data().zebraPrevColor = $(groupZero.row[m].cell[$(this).data()['tblparser'].colpos - 1].elem).css('color');
-								
-								// Set Highlight
-								$(groupZero.row[m].cell[$(this).data()['tblparser'].colpos - 1].elem).css('background-color', '#F0FAFA');
-								$(groupZero.row[m].cell[$(this).data()['tblparser'].colpos - 1].elem).css('color', 'black');
-							}
-						}
-						
-						// Highlight the row
-						for(m=0; m<groupZero.row[relRowPos].cell.length; m++){
-							if(m != $(this).data()['tblparser'].colpos - 1){
-								// Save Previous Color
-								$(groupZero.row[relRowPos].cell[m].elem).data().zebraPrevBgColor = $(groupZero.row[relRowPos].cell[m].elem).css('background-color');
-								$(groupZero.row[relRowPos].cell[m].elem).data().zebraPrevColor = $(groupZero.row[relRowPos].cell[m].elem).css('color');
-								
-								// Set Highlight
-								$(groupZero.row[relRowPos].cell[m].elem).css('background-color', '#F0FAFA');
-								$(groupZero.row[relRowPos].cell[m].elem).css('color', 'black');
-							}
-						}
-						
-					}, 
-					function(){
-
-						// Column Restore previous color
-						for(m = 0; m<groupZero.row.length; m ++){
-							
-							$(groupZero.row[m].cell[$(this).data()['tblparser'].colpos - 1].elem).css('background-color', $(groupZero.row[m].cell[$(this).data()['tblparser'].colpos - 1].elem).data().zebraPrevBgColor);
-							$(groupZero.row[m].cell[$(this).data()['tblparser'].colpos - 1].elem).css('color', $(groupZero.row[m].cell[$(this).data()['tblparser'].colpos - 1].elem).data().zebraPrevColor);
-					
-						}
-						
-						
-						// Row Restore previous color
-						var relRowPos = ($(this).data()['tblparser'].rowpos - groupZero.theadRowStack.length - 1 - groupZero.nbDescriptionRow);
-						for(m=0; m<groupZero.row[relRowPos].cell.length; m++){
-							$(groupZero.row[relRowPos].cell[m].elem).css('background-color', $(groupZero.row[relRowPos].cell[m].elem).data().zebraPrevBgColor);
-							$(groupZero.row[relRowPos].cell[m].elem).css('color', $(groupZero.row[relRowPos].cell[m].elem).data().zebraPrevColor);
-						}
-					}
-					
-				);
-				
-			}
-			
-		}*/
-		
-		
-		// Logging : GroupZero
-		// console.log('GroupZero');
-		// console.log(groupZero);
-		// console.log('END');
-		
-		// Logging : Colgroup, col
-		//console.log('Colgroup, Col');
-		//console.log(colgroupFrame);
-		//console.log(columnFrame);
-		// console.log('END');	
-		
-		
-	
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		
 		
 		
 		} // end of exec
