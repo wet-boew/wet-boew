@@ -38,9 +38,31 @@
 				errorTrigger("The table was already parsed, Why you want to parse it a second time ?", obj);
 				return;
 			}
-			
-
 		
+		
+		/*
+			FYI - Here the value and signification of each type
+			
+			
+			| Type | Signification | Technicality
+			+------+---------------+----------------------  
+			|  1   | Header        | TH element only
+			+------+---------------+----------------------
+			|  2   | Data          | TD element only
+			+------+---------------+----------------------
+			|  3   | Summary       | TD element and TD of type 2 exist
+			+------+---------------+----------------------
+			|  4   | Key           | TD element applicable to right TH, Only available on row
+			+------+---------------+----------------------
+			|  5   | Description   | TD element applicable to left or top TH
+			+------+---------------+----------------------
+			|  6   | Layout        | Can be only: Top Left cell or/and Summmary group intersection
+			+------+---------------+----------------------
+			|  7   | Header Group  | TH element only, visual heading grouping
+			+------+---------------+----------------------
+			 
+
+		*/
 		/*
 		//
 		// JQuery Data set for an array of Element - testing
@@ -168,14 +190,14 @@
 		groupZero.colcaption = {}; // Group Cell Header at level 0, scope=col
 		groupZero.colcaption.uid = uidElem; uidElem++;
 		groupZero.colcaption.elem = undefined;
-		groupZero.colcaption.type = 1;
+		groupZero.colcaption.type = 7;
 		groupZero.colcaption.dataset = [];
 		groupZero.colcaption.summaryset = [];
 
 		groupZero.rowcaption = {}; // Group Cell Header at level 0, scope=row
 		groupZero.rowcaption.uid = uidElem; uidElem++;
 		groupZero.rowcaption.elem = undefined;
-		groupZero.rowcaption.type = 1;
+		groupZero.rowcaption.type = 7;
 		groupZero.rowcaption.dataset = [];
 		groupZero.rowcaption.summaryset = [];
 
@@ -709,18 +731,23 @@
 					
 
 						
-						var cgrp = {
-							level: (i+1)
-						}
+						// Convert the header in a group header cell
 						
-						cgrp.start = tmpStack[i].cell[curColgroupFrame.start-1].colpos;
-						cgrp.end = tmpStack[i].cell[curColgroupFrame.start-1].colpos + tmpStack[i].cell[curColgroupFrame.start-1].width -1;
-						cgrp.header =[];
-						cgrp.header.push(tmpStack[i].cell[curColgroupFrame.start-1]);
-						cgrp.repheader = tmpStack[i].cell[curColgroupFrame.start-1]; // Header representative of this group
-						tmpStack[i].cell[curColgroupFrame.start-1].colgroup = cgrp;
 						
-						cgrp.type = 2; // A combinaison of Data group with a summary group always result in a data group
+						var cgrp = tmpStack[i].cell[curColgroupFrame.start-1]
+						
+						cgrp.level = (i+1);
+						
+						cgrp.start = cgrp.colpos;
+						cgrp.end = cgrp.colpos + cgrp.width -1;
+						
+						// cgrp.header =[];
+						// cgrp.header.push(tmpStack[i].cell[curColgroupFrame.start-1]);
+						// cgrp.repheader = tmpStack[i].cell[curColgroupFrame.start-1]; // Header representative of this group
+						// tmpStack[i].cell[curColgroupFrame.start-1].colgroup = cgrp;
+						
+						cgrp.type = 7; // Group Header Cell
+						
 						
 						
 						/*cgrp.parentHeader = []; // To Remove
