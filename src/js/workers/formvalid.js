@@ -29,9 +29,9 @@
 
 			// Add WAI-ARIA roles
 			if (pe.ie > 0 && pe.ie < 8) {
-				form.find('.required').attr('aria-required', 'true').attr('required', 'required');
-			} else {
 				form.find('.required').attr('aria-required', 'true');
+			} else {
+				form.find('.required').attr('aria-required', 'true').attr('required', 'required');
 			}
 
 			// Special handling for mobile
