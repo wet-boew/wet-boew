@@ -55,7 +55,6 @@
 
 				// Create our error summary that will appear before the form
 				showErrors: function (errorMap, errorList) {
-
 					this.defaultShowErrors();
 					var errors = form.find("strong.error:not(:hidden)"),
 						$errorFormId = 'errors-' + form.attr('id'),
@@ -63,7 +62,6 @@
 						summary;
 
 					if (errors.length > 0) {
-						alert("hi");
 						// Create our container if one doesn't already exist
 						if (summaryContainer.length === 0) {
 							summaryContainer = $('<div id="' + $errorFormId + '" class="errorContainer" role="alert" tabindex="-1"/>').prependTo(form);
@@ -115,7 +113,7 @@
 				},
 				onkeyup: function (element, event) {
 					// Only change the error message when there is a keypress that will change the actual field value (versus navigating there)
-					if ((event.keyCode < 9 || event.keyCode > 45)/* && !event.shiftKey && (element.name in this.submitted || element === this.lastElement)*/) {
+					if ((event.keyCode < 9 || event.keyCode > 45) && !event.shiftKey && (element.name in this.submitted || element === this.lastElement)) {
 						this.element(element);
 					}
 				}
