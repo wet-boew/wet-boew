@@ -172,7 +172,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		
 	}
 	
-	newzebra('table:eq(0)', false);
+	// newzebra('table:eq(0)', false);
 	
 	});
 	//]]>
@@ -257,73 +257,237 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 
+<h2>Overview</h2>
+<p>Tranform a Nutrition Facts table into a HTML table can not be done straight forward. Why ? simply the relationship between the data and the header are not cleary defined and when the need to be WCAG Level AA compliant become harder.</p>
 
-<h2>Context</h2>
-<p>Your client have made a request to publish online a document where you have the following table to be 
-integrated. To accomplish that, you have been required to follow the Accessibility guideline (WCAG Level AA). 
-[Talk about having an usable table]</p>
+<div class="span-8 module-alert">
+<p>This case study require you to have read the documentation <a href="">about the table usability concept</a></p>
+</div>
+
+<div class="span-8 module-note">
+<p>This case study is not about how you make a HTML table WCAG Level AA compliant but on <strong>how to apply the table usability concept</strong>.</p>
+</div>
+
+<div class="span-3">
+<h4>Original Data Source</h4>
+<img src="images/ValeurNutritive-original.jpg" alt="Nutrition Facts" />
+</div>
+
+<div class="span-3">
+<h4>The result</h4>
+<table>
+	<caption>
+		<details open="open">
+			<summary>Nutrition Facts</summary>
+			<p>Per 2 crisps (25 g)</p>
+		</details>
+	</caption>
+	
+	<colgroup><col /></colgroup>
+	<colgroup><col /><col /></colgroup>
+	
+	<thead>
+		<tr>
+			<th>Amount of</th>
+			<th>Weight</th>
+			<th>% Daily Value</th>
+		</tr>
+	</thead>
+
+
+	<tbody>
+		<tr>
+			<th colspan="3">Minerals and Vitamins</th>
+		</tr>
+		<tr>
+			<th>Vitamin A</th>
+			<td></td>
+			<td>0 %</td>
+		</tr>
+		<tr>
+			<th>Vitamin C</th>
+			<td></td>
+			<td>0 %</td>
+		</tr>
+		<tr>
+			<th>Calcium</th>
+			<td></td>
+			<td>2 %</td>
+		</tr>
+		<tr>
+			<th>Iron</th>
+			<td></td>
+			<td>4 %</td>
+		</tr>
+		<tr>
+			<th>Thiamine</th>
+			<td></td>
+			<td>6 %</td>
+		</tr>
+		<tr>
+			<th>Folate</th>
+			<td></td>
+			<td>8 %</td>
+		</tr>
+	</tbody>
+	
+	<tbody>
+		<tr>
+			<th colspan="3">Nutrients elements</th>
+		</tr>
+		<tr>
+			<th colspan="3">Others</th>
+		</tr>
+		<tr>
+			<th>Cholesterol</th>
+			<td>0 mg</td>
+			<td>0 %</td>
+		</tr>
+		<tr>
+			<th>Sodium</th>
+			<td>80 mg</td>
+			<td>3 %</td>
+		</tr>
+		<tr>
+			<th>Potassium</th>
+			<td>20 mg</td>
+			<td>1 %</td>
+		</tr>
+		<tr>
+			<th>Protein</th>
+			<td>1 g</td>
+			<td></td>
+		</tr>
+	</tbody>
+	
+	<tbody>
+		<tr>
+			<th colspan="3">Fat</th>
+		</tr>
+		<tr>
+			<th>Saturated</th>
+			<td>1 g</td>
+			<td rowspan="2">5%</td>
+		</tr>
+		<tr>
+			<th>+ Trans</th>
+			<td>0 g</th>
+		</tr>
+	</tbody>
+	
+	<tbody>
+		<tr>
+			<th>Total Fat</th>
+			<td>2 g</td>
+			<td>3 %</td>
+		</tr>
+	</tbody>
+	
+	<tbody>
+		<tr>
+			<th colspan="3">Carbohydrate</th>
+		</tr>
+		
+		<tr>
+			<th>Fibre</th>
+			<td>0 g</td>
+			<td></td>
+		</tr>
+		<tr>
+			<th>Sugars</th>
+			<td>7 g</td>
+			<td></td>
+		</tr>		<tr>
+			<th>Starch</th>
+			<td>13 g</td>
+			<td></td>
+		</tr>
+	</tbody>
+	
+	<tbody>
+		<tr>
+			<th>Total Carbohydrate</th>
+			<td>20 g</td>
+			<td>7 %</td>
+		</tr>
+	</tbody>
+	
+	<tfoot>
+		<tr>
+			<th>Calories</th>
+			<td colspan="2">100</td>
+		</tr>
+	</tfoot>
+</table>
+
+</div>
 
 
 
-<img src="images/ValeurNutritive-original.jpg" />
+<div class="clear"></div>
 
 
-<h2>Understand the cell type</h2>
-
-<p>It's important to understand and identifying each kind of data that can be found in the table</p>
 
 
-<h2>Find the table caption</h2>
-<p>As per the usable table guideline, the table caption is the lowest header row group level (Level 0).</p>
 
+
+
+
+
+<h2>The Table Analysing</h2>
+
+<h3>Before...</h3>
+
+<p>Before to start the table analysing, it's important to understand all the information included in the table.</p>
+
+
+<h3>Caption</h3>
+<p>Almost always there, the table caption is often the first information provided. The table caption is considerated to be a group header cell at level 1.</p>
 <img src="images/ValeurNutritive-TableCaption.jpg" />
 
-<h2>Find the table description / table summary</h2>
+
+<h3>Table Description / Table Summary</h3>
 <p>There is a difference between a table summary and a group summary. The table summary is a table description. 
 The group summary is often represented by a row named &quot;Total&quot; after a data group.</p>
-
 <img src="images/ValeurNutritive-TableDescription.jpg" />
 
-<h2>Find the table row group heading section</h2>
 
-<p>A table can only contain one row group heading. His location are always before any data row group. 
-The row group heading always contain the table column and column group definition. If a table have two or 
-more row group heading, each section should be divided in multiple table. However, it's possible for a table 
+<h3>Row group heading section</h3>
+
+<p>A table can only contain one row group heading. His location is always before any data row group. The row group heading always contain the table header column with his cells description if any. If a table have two or more row group heading, do a merge or split the table. It possible for a table 
 to do not have a row group heading.</p>
-
 <img src="images/ValeurNutritive-RowGroupHeading.jpg" />
-<p><strong>Note:</strong> The columns defined in the row group heading need to have a good structure 
-representation of each cell in all subsequent row group.</p>
 
+<div class="span-8 module-note">
+<p> The columns defined in the row group heading need to have a good structure representation of each cell in all subsequent row group.</p>
+</div>
 
-<h2>Find each data and summary row group</h2>
-<p>Here we look at data and summary row group that have a direct relation with the table caption</p>
-
+<h3>Row Group</h3>
+<p>Find all the data and summary row group that have a direct relation to the table caption. Ofter each group a separated by a line</p>
 <img src="images/ValeurNutritive-DataSummaryRowGroup.jpg" />
 
-<h2>Separate the data row group with the summary row group</h2>
-<p>The summary row group are ofter smaller size (number of row) than a data row group. 
-A summary row group need to be associated at least to one data row group. Sometime, the summary row group 
-have a different header/data cell patern for a row compared to a row in the data row group.</p>
 
-<h3>Data row group</h3>
+<h3>Identify and Apply a Category to Each Row Group</h3>
+<p>The summary row group are ofter smaller size (number of row) than a data row group. A summary row group need to be associated at least to one data row group. Sometime, the summary row group have a different header/data cell patern for a row compared to a row in the data row group. Sometime, the summary row group are combined/merged with the group header cell.</p>
+
+<h4>Data row group</h4>
 
 <p>The first row group is identified with the letter A and the second with the letter B.</p>
 <img src="images/ValeurNutritive-DataRowGroup.jpg" />
 
-<h3>Summary row group</h3>
+<h4>Summary row group</h4>
 
 <img src="images/ValeurNutritive-SummaryRowGroup.jpg" />
 
 
 
 
-<h2>Indentify and target the level relationship of any sub row group</h2>
+<h3>Indentify and find the data level of any sub row group</h3>
 
-<p>This is an important step because the data row and the data row group sequence in the table will be influenced to illustrate the data level.</p>
+<p>This is an important step because the data row and the data row group sequence in the table will be influenced to illustrate the data level. Also the presence of summary data inside a sub row group would change the table design.</p>
 
-<h3>Row Group &quot;A&quot;</h3>
-<p>There are two sub row group. the first sub row group is identified with the Letter AA and the second with the letter AB</p>
+<h4>Row Group &quot;A&quot;</h4>
+<p>There are two sub row group. the first sub row group is identified with the Letter AA and the second with the letter AB. Both are at the level 2.</p>
 
 <img src="images/ValeurNutritive-SubRowGroup.jpg" />
 
@@ -331,74 +495,89 @@ have a different header/data cell patern for a row compared to a row in the data
 <p>Each sub row group have a summary row group.<p>
 <img src="images/ValeurNutritive-SubRowGroupSummary.jpg" />
 
-<p>Those sub row group (AA and AB) will be qualify to be at the table level 2.</p>
 
-<p>Regarding the other row in the row group A, there relationship belong to the row group A  level 1 directly.</p>
+
+<p>Regarding the other row in the row group A, his relationship belong to the row group A to the level 1.</p>
 
 <img src="images/ValeurNutritive-DataRowGroupARelationship.jpg" />
 
 
-<h3>Row Group &quot;B&quot;</h3>
+<h4>Row Group &quot;B&quot;</h4>
 
-<p>The row group &quot;B&quot; don't contain any sub row group. That row group table level is 1.</p>
+<p>The row group &quot;B&quot;, at level 1, don't contain any sub row group.</p>
 
 
-<h2>Find what kind of data cell you have</h2>
+<h3>Analysing the Data Cell Type</h3>
 
-<p>A data cell can be identified by one or more header cell. A data cell is often qualified by a unit measure. 
-Sometime a data cell can be hidden in a cell header or in another data cell.</em></p>
+<p>Here we look at what is the data cell type. This would help to define and validate the header row group.</p> 
 
-<p>This process will help to find whitch column heading you need for the table.</p>
+<div class="span-8 module-note">
+<p>A data cell can be identified by one or more header cell. A data cell is often qualified by a unit measure. Sometime a data cell can be hidden in a cell header or in another data cell.</p>
+</div>
 
-<p>In our example, there are three kind of data cell.</p>
 
-<ol>
-	<li>Data cell measured in &quot;unit&quot; assigned to the summary row group level 0.<br />
-		<img src="images/ValeurNutritive-SummaryDataCell.jpg" />
-	</li>
-	<li>Data cell measured in &quot;g/mg&quot; assigned to serveral data row.<br />
-		<img src="images/ValeurNutritive-g-mg-DataCell.jpg" />
-	</li>
-	</li>Data cell measured in &quot;%&quot; assigned also to serveral data row.<br />
-		<img src="images/ValeurNutritive-percent-DataCell.jpg" />
-	</li>
+<ol class="cn-Space">
+	<li class="margin-bottom-medium">Data cell measured in <strong>&quot;unit&quot;</strong><br />
+		<img src="images/ValeurNutritive-SummaryDataCell.jpg" /></li>
+	<li class="margin-bottom-medium">Data cell measured in <strong>&quot;g/mg&quot;</strong><br />
+		<img src="images/ValeurNutritive-g-mg-DataCell.jpg" /></li>
+	<li>Data cell measured in <strong>&quot;%&quot;</strong><br />
+		<img src="images/ValeurNutritive-percent-DataCell.jpg" /></li>
 </ol>
 
-<h2>Defining the real row group header</h2>
+<h2>Complete your table information<h2>
 
-<p>The real row group header need to support the data cell defined in each data row group.	
-The support to the summary data cell can be omited.</p>
 
-<p>Here a list of column heading<p>
+
+<h3>Column heading</h3>
+
+<p>In our example the data cell measured in unit associated to the header &quot;Calories&quot; is considerated to be a summary group for the all the data inside the table</p>
+
+<p>With the data cell identification we have:</p>
 
 <ul>
-	<li>&quot;Amount/Teneur&quot; : Column heading for the row header.</li>
-	<li>&quot;Weight/Poids&quot; : New column heading issued from hidden data cell.</li>
-	<li>&quot;% Daily Value/% valeur quotidienne&quot; : Already know column heading</li>
+	<li>&quot;Amount of&quot; : Column heading for the row header, already provided. For clarity and easier table read the word &quot;of&quot; is added.</li>
+	<li>&quot;Weight&quot; : New column heading issued from the second data cell type.</li>
+	<li>&quot;% Daily Value&quot; : Already know column heading and represent the third data cell type</li>
 </ul>
 
-<h2>Indetifying the column group</h2>
-<p>In our case, there are only two column group. The first group are used to represent the row cell header. And the second group are used to group togheter the two data column.</p>
-
-<p>If you have a table that contain for example a total column after the data column, that will be need to be represented inside a new column group.</p>
 
 
-<h2>Designing the Usable Table</h2>
+<h3>Row Group Header</h3>
 
-<p>We did an deep analyse of the table to be converted. Now we need to verify if each data group have at least one representative header.</p>
-
-<p>In our example, we don't have a unique data row group header for the row group &quot;A&quot; and &quot;B&quot;. The common solution will be to ask the content provider to provide them. In our case, we will use the heading &quot;Minerals and Vitamins / Min&eacute;raux et vitamines&quot; for the data row group &quot;B&quot; and &quot;Nutrients elements / &eacute;l&eacute;ments nutritifs&quot; for the data row group &quot;A&quot;.<p>
+<p>In this example, we have found two data row group at level 1 and both are missing a group header cell. The summary row group is excluded here because it share a common group header cell. A search about the <em>Nutrition Facts Table</em> was revealed this following name for each row group: &quot;Minerals and Vitamins&quot; for the row group B and &quot;Nutrients elements&quot; for the row group A.</p>
 
 
-<h3>Code the table</h3>
-<p>Now we are ready to start the coding for the usable table. <em>The french content was removed for the clarity.</em></p>
-
-<p>A summary row group are always after a data row group. The order for the data row group level need to be the lower level to the highest level.</p>
 
 
-<p>The HTML5 details and summary element was used to add the table caption description.</p>
 
-<div class="span-3">
+
+
+
+
+
+<h2>Create the HTML Table</h2>
+
+<p>With the table analysis and the table information we are able now to code with HTML the table. <em>The french content was removed for the clarity.</em></p>
+
+<div class="span-8 module-note">
+<p>A summary row group is always after a data row group. The order for the data row group level need to be the lowest level to the highest level.</p>
+</div>
+
+<p>The HTML5 details and summary element is used to add the table caption description. It's opened by default</p>
+
+<div class="span-8 module-note">
+<p>Here the empty cell is not a layout cell because they represent the absence of data.</p>
+</div>
+
+
+
+<div class="span-3 float-right">
+<h4>Before</h4>
+<img src="images/ValeurNutritive-original.jpg" />
+</div>
+
+
 <h4>Now</h4>
 <table>
 	<caption>
@@ -703,18 +882,12 @@ The support to the summary data cell can be omited.</p>
 </pre>
 
 </details>
-</div>
 
-<div class="span-3">
-<h4>Before</h4>
-<img src="images/ValeurNutritive-original.jpg" />
-</div>
 
 <div class="clear"></div>
 
-<h4>About the data level</h4>
-<p>Same table but the text of each cell header was replaced by the data table level</p>
-
+<h4>Quick view about the data level represented with the cell header</h4>
+<p>Same table but the text of each cell header was replaced by the data level</p>
 
 <table>
 	<caption>Level 0</caption>
@@ -813,7 +986,7 @@ The support to the summary data cell can be omited.</p>
 	
 	<tbody>
 		<tr>
-			<th>Summary Group [preceding Level 2]</th>
+			<th>Summary Group [Level 2]</th>
 			<td>2 g</td>
 			<td>3 %</td>
 		</tr>
@@ -842,7 +1015,7 @@ The support to the summary data cell can be omited.</p>
 	
 	<tbody>
 		<tr>
-			<th>Summary Group [preceding Level 2]</th>
+			<th>Summary Group [Level 2]</th>
 			<td>20 g</td>
 			<td>7 %</td>
 		</tr>
@@ -850,7 +1023,7 @@ The support to the summary data cell can be omited.</p>
 	
 	<tfoot>
 		<tr>
-			<th>Summary Group [preceding Level 0] <br />because of the &quot;tfoot&quot; row group tag used, <br />otherwise this summary group will be set to preceding level 1]</th>
+			<th>Summary Group [Level 0] <br />because of the &quot;tfoot&quot; row group tag used, <br />otherwise if it was in a tbody row group<br /> this summary group will be set to level 1]</th>
 			<td colspan="2">100</td>
 		</tr>
 	</tfoot>
