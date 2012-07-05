@@ -28,13 +28,13 @@
 			}
 			var $menu,
 				$menuBoundary,
-				$scope,
+				$scope = elm,
 				correctheight,
 				gotosubmenu,
 				hideallsubmenus,
 				hidesubmenu,
 				showsubmenu;
-			$scope = $(elm);
+
 			/* functions that would be necessary for helpers */
 			showsubmenu = function (toplink) {
 				var _node,
@@ -113,7 +113,7 @@
 			});
 
 			/* bind all custom events and triggers to menu */
-			$scope.on("keydown focus section-next section-previous item-next item-previous close", "li", function (e) {
+			$scope.on("keydown focusin section-next section-previous item-next item-previous close", "li", function (e) {
 				var next,
 					_elm = $(e.target),
 					_activemenu = $scope.find('.mb-active'),
@@ -130,6 +130,9 @@
 				if (e.type === "keydown") {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 						switch (e.keyCode) {
+						case 9: // tab key
+							$scope.trigger('focusoutside');
+							break;
 						case 13: // enter key
 							if (_id[2] === 0 && _id[3] === 0) {
 								_elm.trigger('item-next');
@@ -274,7 +277,6 @@
 					if (_elm.find('.expandicon').length > 0) {
 						showsubmenu(e.target);
 					}
-					return;
 				}
 			});
 			$(document).on("click touchstart", function () {
