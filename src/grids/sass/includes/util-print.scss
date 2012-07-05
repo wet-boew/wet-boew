@@ -1,0 +1,164 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+table{
+	border:1px solid #ccc;
+	border-collapse:collapse;
+}
+
+caption{
+	text-align:left;
+}
+
+th{
+	background-color:#eee;
+	border:1px solid #ccc;
+	color:#555;
+	text-align:center;
+	padding:8px;
+}
+
+td{
+	border:1px solid #ccc;
+	vertical-align:top;
+	padding:5px 10px;
+}
+
+ol ol li{
+	list-style-type:lower-alpha;
+}
+
+ol ol ol li{
+	list-style-type:lower-roman;
+}
+
+.list-lower-alpha{
+	list-style-type:lower-alpha !important;
+}
+
+.list-lower-roman{
+	list-style-type:lower-roman !important;
+}
+
+.list-bullet-none{
+	list-style-type:none !important;
+}
+
+ol.list-numeric li{
+	list-style-type:decimal !important;
+}
+
+.list-upper-alpha{
+	list-style-type:upper-alpha !important;
+}
+
+.list-upper-roman{
+	list-style-type:upper-roman !important;
+}
+
+.margin-bottom-none{
+	margin-bottom:0 !important;
+}
+
+.margin-bottom-small{
+	margin-bottom:2px !important;
+}
+
+.margin-bottom-medium{
+	margin-bottom:10px !important;
+}
+
+.margin-bottom-large{
+	margin-bottom:20px !important;
+}
+
+.margin-bottom-xlarge{
+	margin-bottom:57px !important;
+}
+
+.margin-top-none{
+	margin-top:0 !important;
+}
+
+.margin-top-small{
+	margin-top:2px !important;
+}
+
+.margin-top-medium{
+	margin-top:10px !important;
+}
+
+.margin-top-large{
+	margin-top:20px !important;
+}
+
+.margin-top-xlarge{
+	margin-top:57px !important;
+}
+
+.font-xsmall{
+	font-size:70% !important;
+}
+
+.font-small{
+	font-size:85% !important;
+}
+
+.font-medium{
+	font-size:100% !important;
+}
+
+.font-large{
+	font-size:120% !important;
+}
+
+.font-xlarge{
+	font-size:130% !important;
+}
+
+table.calendar-month{
+	border:1px solid #ccc;
+	margin:3px 0 2px;
+}
+
+table.calendar-month caption{
+	background:#eee;
+	border:1px solid #ccc;
+	font-weight:700;
+	color:#555;
+	padding:2px 5px;
+}
+
+.calendar-month td,.calendar-month th{
+	text-align:center;
+	vertical-align:middle;
+	background:#fff;
+	color:#555;
+	margin-bottom:0;
+}
+
+th.calendar-weekend,td.calendar-weekend{
+	background:#eee;
+}
+
+td.calendar-item{
+	background:#000;
+	font-weight:700;
+	padding:0;
+}
+
+td.calendar-today{
+	border:2px solid #00556b;
+}
+
+td.calendar-item a,td.calendar-item a:visited{
+	display:block;
+	color:#fff !important;
+	text-decoration:none;
+}
+
+td.calendar-item:hover{
+	background:#555;
+}
