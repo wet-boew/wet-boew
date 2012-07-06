@@ -65,12 +65,16 @@
 		<copy todir="${build.dir}/encode/css">
 			<fileset dir="${build.dir}/css">
 				<include name="theme.css"/>
+				<include name="theme-sp-pe.css"/>
+				<include name="theme-serv.css"/>
 				<include name="jquery.mobile.css"/>
 			</fileset>
 		</copy>
 		<cssurlembed skipMissing="true">
 			<fileset dir="${build.dir}/encode/css/">
 				<include name="theme.css"/>
+				<include name="theme-sp-pe.css"/>
+				<include name="theme-serv.css"/>
 				<include name="jquery.mobile.css"/>
 			</fileset>
 		</cssurlembed>

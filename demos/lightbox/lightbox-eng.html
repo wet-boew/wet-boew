@@ -38,68 +38,16 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- CustomScriptsCSSStart -->
 <!--[if !IE]> -->
 <style>
-pre {
-	border: 1px solid #aaa;
-	background: #eee;
-	border-radius: 1em;
-	padding: 0 1em;
-}
-
-pre code {
-	background: #eee;
-	counter-reset: line;
-}
-
-pre code .line:before {
-	content: counter(line);
-	display: inline-block;
-	text-align: right;
-	width: 1.25em;
-	padding-right: .5em;
-	margin-right: .75em;
-	margin-left: -1.1em;
-	padding-left: .5em;
-	background: #aaa;
-	border-right: 1px solid #333;
-	border-left: 1px solid #aaa;
-	opacity: .7;
-}
-
-pre code .line:first-child:before {
-	border-top-left-radius: 1em;
-	border-top: 1px solid #aaa;
-	padding-top: 1em;
-}
-
-pre code .line:last-child:before {
-	border-bottom-left-radius: 1em;
-	border-bottom: 1px solid #aaa;
-	padding-bottom: 1em;
-}
-
-pre code .line {
-	counter-increment: line;
-	white-space: pre-wrap;
-}
-
-pre code .attr {
-	color: #b22;
-}
-
-pre code .str {
-	color: #464;
-	font-weight: bold;
-}
-
-pre code .sym {
-	color: #44f;
-	font-weight: bold;
-}
-
-pre code .req {
-	border: 1px dashed #b22;
-	background: #ffe;
-}
+	pre{border:1px solid #aaa;background:#eee;border-radius:1em;padding:0 1em;}
+	pre code{background:#eee;counter-reset:line;}
+	pre code .line:before{content:counter(line);display:inline-block;text-align:right;width:1.25em;padding-right:.5em;margin-right:.75em;margin-left:-1.1em;padding-left:.5em;background:#aaa;border-right:1px solid #333;border-left:1px solid #aaa;opacity:.7;}
+	pre code .line:first-child:before{border-top-left-radius:1em;border-top:1px solid #aaa;padding-top:1em;}
+	pre code .line:last-child:before{border-bottom-left-radius:1em;border-bottom:1px solid #aaa;padding-bottom:1em;}
+	pre code .line{counter-increment:line;white-space:pre-wrap;}
+	pre code .attr{color:#b22;}
+	pre code .str{color:#464;font-weight:bold;}
+	pre code .sym{color:#44f;font-weight:bold;}
+	pre code .req{border:1px dashed #b22;background:#ffe;}
 </style>
 <!-- <![endif]-->
 <!-- CustomScriptsCSSEnd -->
@@ -200,7 +148,7 @@ pre code .req {
 
 <div class="span-4">
 	<section>
-		<h2 id="cssclasses">Css Classes</h2>
+		<h2 id="cssclasses">CSS Classes</h2>
 		<p>This plug-in uses the following CSS Classes.</p>
 		<h3>For single pictures</h3>
 		<ul>
@@ -231,29 +179,26 @@ pre code .req {
 		<div class="wet-boew-lightbox">
 			<div class="lightbox">
 				<p>
-					<a class="lightbox-item" href="images/1_b.jpg"
-						title="Lorem ipsum dolor sit amet"><img
-						src="images/1_s.jpg" alt="Lorem ipsum dolor sit amet" class="image-actual" /></a> <a
-						class="lightbox-item" href="images/2_b.jpg"
-						title="Etiam quis mi eu elit temp"><img
-						src="images/2_s.jpg" alt="Etiam quis mi eu elit temp" class="image-actual" /></a> <a
-						class="lightbox-item" href="images/3_b.jpg"
-						title="Cras neque mi, semper leon"><img
-						src="images/3_s.jpg" alt="Cras neque mi, semper leon" class="image-actual" /></a> <a
-						class="lightbox-item" href="images/4_b.jpg"
-						title="Sed vel sapien vel sem uno"><img
-						src="images/4_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a> <a
-						class="lightbox-item" href="images/5_b.jpg"
-						title="Sed vel sapien vel sem uno"><img
-						src="images/5_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a>
+					<a class="lightbox-item" href="images/1_b.jpg" title="Photo 1">
+						<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
+					</a>
+					<a class="lightbox-item" href="images/2_b.jpg" title="Photo 2">
+						<img src="images/2_s.jpg" alt="Photo 2" class="image-actual" />
+					</a>
+					<a class="lightbox-item" href="images/3_b.jpg" title="Photo 3">
+						<img src="images/3_s.jpg" alt="Photo 3" class="image-actual" />
+					</a>
+					<a class="lightbox-item" href="images/4_b.jpg" title="Photo 4">
+						<img src="images/4_s.jpg" alt="Photo 4" class="image-actual" />
+					</a>
+					<a class="lightbox-item" href="images/5_b.jpg" title="Photo 5">
+						<img src="images/5_s.jpg" alt="Photo 5" class="image-actual" />
+					</a>
 				</p>
 			</div>
-			<!-- end of .grid-12 -->
 		</div>
 	</section>
-	<!-- end of .wet-boew-lightbox -->
 </div>
-<!-- end of .span-4 -->
 
 <div class="span-4">
 	<section>
@@ -275,27 +220,26 @@ pre code .req {
 
 <h3 id="examples2">Picture Albums</h3>
 <div class="span-4">
-	<h4 class="background-dark margin-bottom-medium">Photo
-		Gallery</h4>
+	<h4 class="background-dark margin-bottom-medium">Photo Gallery</h4>
 	<section>
 		<div class="wet-boew-lightbox">
 			<div class="lightbox-group" title="Group 1">
 				<p>
-					<a class="lightbox-item" rel="gallery" href="images/1_b.jpg"
-						title="Lorem ipsum dolor sit amet"><img
-						src="images/1_s.jpg" alt="Lorem ipsum dolor sit amet" class="image-actual" /></a> <a
-						class="lightbox-item" rel="gallery" href="images/2_b.jpg"
-						title="Etiam quis mi eu elit temp"><img
-						src="images/2_s.jpg" alt="Etiam quis mi eu elit temp" class="image-actual" /></a> <a
-						class="lightbox-item" rel="gallery" href="images/3_b.jpg"
-						title="Cras neque mi, semper leon"><img
-						src="images/3_s.jpg" alt="Cras neque mi, semper leon" class="image-actual" /></a> <a
-						class="lightbox-item" rel="gallery" href="images/4_b.jpg"
-						title="Sed vel sapien vel sem uno"><img
-						src="images/4_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a> <a
-						class="lightbox-item" rel="gallery" href="images/5_b.jpg"
-						title="Sed vel sapien vel sem uno"><img
-						src="images/5_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a>
+					<a class="lightbox-item" rel="gallery" href="images/1_b.jpg" title="Photo 1">
+						<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
+					</a>
+					<a class="lightbox-item" rel="gallery" href="images/2_b.jpg" title="Photo 2">
+						<img src="images/2_s.jpg" alt="Photo 2" class="image-actual" />
+					</a>
+					<a class="lightbox-item" rel="gallery" href="images/3_b.jpg" title="Photo 3">
+						<img src="images/3_s.jpg" alt="Photo 3" class="image-actual" />
+					</a>
+					<a class="lightbox-item" rel="gallery" href="images/4_b.jpg" title="Photo 4">
+						<img src="images/4_s.jpg" alt="Photo 4" class="image-actual" />
+					</a>
+					<a class="lightbox-item" rel="gallery" href="images/5_b.jpg" title="Photo 5">
+						<img src="images/5_s.jpg" alt="Photo 5" class="image-actual" />
+					</a>
 				</p>
 			</div>
 		</div>
@@ -322,29 +266,29 @@ pre code .req {
 
 <h3 id="examples3">Hidden Picture Albums</h3>
 <div class="span-4">
-	<h4 class="background-dark margin-bottom-medium">Hidden
-		Photo Gallery</h4>
+	<h4 class="background-dark margin-bottom-medium">Hidden Photo Gallery</h4>
 	<section>
 		<div class="wet-boew-lightbox">
 			<div class="lightbox-group" title="Group 2">
 				<p>
-					<a class="lightbox-item" href="images/1_b.jpg"
-						rel="hidden-gallery" title="Lorem ipsum dolor sit amet"><img
-						src="images/1_s.jpg" alt="Lorem ipsum dolor sit amet" class="image-actual" /></a>
+					<a class="lightbox-item" href="images/1_b.jpg" rel="hidden-gallery" title="Photo 1">
+						<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
+					</a>
+				</p>
 				<div class="hidden">
 					<p>
-						<a class="lightbox-item" rel="hidden-gallery"
-							href="images/2_b.jpg" title="Etiam quis mi eu elit temp"><img
-							src="images/2_s.jpg" alt="Etiam quis mi eu elit temp" class="image-actual" /></a> <a
-							class="lightbox-item" rel="hidden-gallery"
-							href="images/3_b.jpg" title="Cras neque mi, semper leon"><img
-							src="images/3_s.jpg" alt="Cras neque mi, semper leon" class="image-actual" /></a> <a
-							class="lightbox-item" rel="hidden-gallery"
-							href="images/4_b.jpg" title="Sed vel sapien vel sem uno"><img
-							src="images/4_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a> <a
-							class="lightbox-item" rel="hidden-gallery"
-							href="images/5_b.jpg" title="Sed vel sapien vel sem uno"><img
-							src="images/5_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a>
+						<a class="lightbox-item" rel="hidden-gallery" href="images/2_b.jpg" title="Photo 2">
+							<img src="images/2_s.jpg" alt="Photo 2" class="image-actual" />
+						</a>
+						<a class="lightbox-item" rel="hidden-gallery" href="images/3_b.jpg" title="Photo 3">
+							<img src="images/3_s.jpg" alt="Photo 3" class="image-actual" />
+						</a>
+						<a class="lightbox-item" rel="hidden-gallery" href="images/4_b.jpg" title="Photo 4">
+							<img src="images/4_s.jpg" alt="Photo 4" class="image-actual" />
+						</a>
+						<a class="lightbox-item" rel="hidden-gallery" href="images/5_b.jpg" title="Photo 5">
+							<img src="images/5_s.jpg" alt="Photo 5" class="image-actual" />
+						</a>
 					</p>
 				</div>
 			</div>
