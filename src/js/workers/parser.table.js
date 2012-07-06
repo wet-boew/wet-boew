@@ -40,25 +40,26 @@
 		
 		
 		/*
-			FYI - Here the value and signification of each type
-			
-			
+		
+			+-----------------------------------------------------+
+			| FYI - Here the value and signification of each type |
+			+------+---------------+------------------------------+
 			| Type | Signification | Technicality
-			+------+---------------+----------------------  
+			+------+---------------+-------------------------------
 			|  1   | Header        | TH element only
-			+------+---------------+----------------------
+			+------+---------------+-------------------------------
 			|  2   | Data          | TD element only
-			+------+---------------+----------------------
+			+------+---------------+-------------------------------
 			|  3   | Summary       | TD element and TD of type 2 exist
-			+------+---------------+----------------------
+			+------+---------------+-------------------------------
 			|  4   | Key           | TD element applicable to right TH, Only available on row
-			+------+---------------+----------------------
+			+------+---------------+-------------------------------
 			|  5   | Description   | TD element applicable to left or top TH
-			+------+---------------+----------------------
+			+------+---------------+-------------------------------
 			|  6   | Layout        | Can be only: Top Left cell or/and Summmary group intersection
-			+------+---------------+----------------------
-			|  7   | Header Group  | TH element only, visual heading grouping
-			+------+---------------+----------------------
+			+------+---------------+-------------------------------
+			|  7   | Header Group  | TH element only, visual heading grouping, this type are an extension of the type 1
+			+------+---------------+-------------------------------
 			 
 
 		*/
@@ -82,7 +83,6 @@
 		var spannedRow = [];
 		var tableCellWidth = 0;
 		
-		var rowgroupHeaderRowStack = [];
 		var headerRowGroupCompleted = false;
 		var summaryRowGroupEligible = false;
 		var rowgroupLevel = 1; // Default RowGroupLevel
@@ -122,6 +122,11 @@
 		groupZero.rowcaption.summaryset = [];
 
 		
+		// Row Group Variable
+		var rowgroupHeaderRowStack = [];
+		var currentRowGroup = undefined;
+		var currentRowGroupElement = undefined;
+		var lstRowGroup = [];
 		
 		
 		function processCaption(elem){
@@ -798,8 +803,50 @@
 			
 		}
 		
-		function processRow(elem){
 		
+
+		function finalizeRowGroup(){
+			
+			// If the current row group are a data group, check each row if we can found a pattern about to increment the data level for this row group
+			// Update, if needed, each row and cell to take in consideration the new row group level
+			// Add the row group in the groupZero Collection
+			
+			currentRowGroupElement
+		}
+		
+		function initiateRowGroup(){
+			// Finalisation of any exisiting row group
+			// Initialisation of the a new row group 
+			
+			currentRowGroup = {
+				elem: currentRowGroupElement,
+				row: [],
+				headerlevel: [],
+				type: 2 // (1 if elem is a thead or if detected in the table, 2 default, 3 if summary data) 
+			};
+		}
+		
+		function rowgroupSetup(){
+			// check if there any cell in the rowgroupHeaderRowStack Array
+			
+			// if more than 0 cell in the stack, mark this row group as a data row group and create the new row group (can be only virtual)
+			
+			// if no cell in the stack but first row group, mark this row group as a data row group
+			
+			// if no cell in the stack and not the first row group, this are a summary group
+			
+			// Calculate the appropriate row group level based on the previous rowgroup 
+			//	* a Summary Group decrease the row group level
+			//	* a Data Group increase the row group level based of his number of row group header and the previous row group level
+		
+		}
+		
+		
+		function processRow(elem){
+			
+			// TODO: Remove the possible confusion about the colgroup name used in the row processing but keep his functionality because that fix the grouping if no header cell are present.
+			
+			
 			currentRowPos ++;
 			var columnPos = 1;
 			var lastCellType = "";
@@ -1506,6 +1553,8 @@ delete row.colgroup;
 					
 				case 'thead':
 					
+					currentRowGroupElement = this;
+					
 					// The table should not have any row at this point
 					if(theadRowStack.length != 0 || groupZero.row && groupZero.row.length > 0){
 						errorTrigger('You can not define any row before the thead group', this);
@@ -1535,6 +1584,8 @@ delete row.colgroup;
 					
 					break;
 				case 'tbody':
+					
+					currentRowGroupElement = this;
 					
 					/*
 					*
@@ -1581,6 +1632,8 @@ delete row.colgroup;
 					
 					break;
 				case 'tfoot':
+					
+					currentRowGroupElement = this;
 					
 					// The rowpos are not incremented here because this is a summary rowgroup for the GroupZero
 					
