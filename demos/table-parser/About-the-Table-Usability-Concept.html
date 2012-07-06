@@ -105,7 +105,36 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div class="span-8 module-alert">
 
-<p>A knowledge about how to design a table in a HTML format would help to understand the table usability concept. The Table Usability Concept assume that you already know the definition from the W3C about table related element used in the HTML 5 markup (<a href="http://dev.w3.org/html5/spec/the-table-element.html#the-table-element">table</a>, <a href="http://dev.w3.org/html5/spec/the-caption-element.html#the-caption-element">caption</a>, <a href="http://dev.w3.org/html5/spec/the-colgroup-element.html#the-colgroup-element">colgroup</a>, <a href="http://dev.w3.org/html5/spec/the-col-element.html#the-col-element">col</a>, <a href="http://dev.w3.org/html5/spec/the-thead-element.html#the-thead-element">thead</a>, <a href="http://dev.w3.org/html5/spec/the-tbody-element.html#the-tbody-element">tbody</a>, <a href="http://dev.w3.org/html5/spec/the-tfoot-element.html#the-tfoot-element">tfoot</a>, <a href="http://dev.w3.org/html5/spec/the-tr-element.html#the-tr-element">tr</a>, <a href="http://dev.w3.org/html5/spec/the-th-element.html#the-th-element">th</a> and <a href="http://dev.w3.org/html5/spec/the-td-element.html#the-td-element">td</a>) definition.</p>
+<p><strong>A knowledge about how to design a table in a HTML format</strong> would help to understand the table usability concept. The Table Usability Concept assume that you already know the definition from the W3C about table related element defined in the <a href="http://dev.w3.org/html5/spec/index.html">HTML 5 specification</a>.</p>
+
+<p>Here a quick view about the definition of each table related element:</p>
+<ul>
+	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-table-element.html#the-table-element">table</a>:</strong> The table element represents data with more than one dimension, in the form of a table. [...] Tables have rows, columns, and cells given by their descendants. The rows and columns form a grid; a table's cells must completely cover that grid without overlap. [...] Authors are encouraged to provide information describing how to interpret complex tables.</li>
+	
+	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-caption-element.html#the-caption-element">caption</a>:</strong> The caption element represents the title of the table that is its parent, if it has a parent and that is a table element. [..] A caption can introduce context for a table, making it significantly easier to understand.</li>
+	
+	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-colgroup-element.html#the-colgroup-element">colgroup</a>:</strong> The colgroup element represents a group of one or more columns in the table that is its parent, if it has a parent and that is a table element.</li>
+	
+	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-col-element.html#the-col-element">col</a>:</strong> If a col element has a parent and that is a colgroup element that itself has a parent that is a table element, then the col element represents one or more columns in the column group represented by that colgroup.</li>
+	
+	
+	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-thead-element.html#the-thead-element">thead</a>:</strong> The thead element represents the block of rows that consist of the column labels (headers) for the parent table element, if the thead element has a parent and it is a table. [...] Notice the use of both th and td elements in the thead element: the first row is the headers, and the second row is an explanation of how to fill in the table.</li>
+	
+	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-tbody-element.html#the-tbody-element">tbody</a>:</strong> The tbody element represents a block of rows that consist of a body of data for the parent table element, if the tbody element has a parent and it is a table.</li>
+	
+	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-tfoot-element.html#the-tfoot-element">tfoot</a>:</strong> The tfoot element represents the block of rows that consist of the column summaries (footers) for the parent table element, if the tfoot element has a parent and it is a table.</li>
+	
+	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-tr-element.html#the-tr-element">tr</a>:</strong> The tr element represents a row of cells in a table.</li>
+	
+	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-th-element.html#the-th-element">th</a>:</strong> The th element represents a header cell in a table.</li>
+	
+	<li><strong><a href="http://dev.w3.org/html5/spec/the-td-element.html#the-td-element">td</a>:</strong> The td element represents a data cell in a table.</li>
+</ul>
+
+<p>A basic knowledge about the <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#processing-model-0">HTML table processing model</a> help on how to use the colspan and rowspan attribute on a cell in regards of the group element. This concept would not interfer with the specification to <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#header-and-data-cell-semantics">forming relationships between data cells and header cells</a> if the <a href="http://www.w3.org/TR/WCAG20-TECHS/H43.html">H43: Using id and headers attributes to associate data cells with header cells in data tables</a> is used.</p>
+
+<p><em>Information was taken from the HTML 5 specification, Editor's Draft 26 June 2012, Revision 1.5697</em></p>
+
 </div>
 
 
