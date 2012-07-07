@@ -56,7 +56,11 @@
 
 	<target name="-merge-css">
 		<copy todir="${build.dir}/premerge/css">
-			<fileset dir="${src.dir}/css"/>
+			<fileset dir="${src.dir}/css">
+				<include name="util*.css"/>
+				<include name="includes/*.css"/>
+				<exclude name="responsive*.css"/>
+			</fileset>
 		</copy>
 		<replace dir="${build.dir}/premerge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
 		<copy todir="${build.dir}/images">
@@ -78,11 +82,10 @@
 			</sequential>
 		</for>
 		<copy todir="${build.dir}/premin/css">
-			<fileset dir="${build.dir}/premerge/css">
-				<include name="util.css"/>
-				<include name="util-ie.css"/>
-				<include name="responsive*.css"/>
-			</fileset>
+			<filelist dir="${build.dir}/premerge/css">
+				<file name="util.css"/>
+				<file name="util-ie.css"/>
+			</filelist>
 			<filterchain>
 				<concatfilter prepend="${src.dir}/../css-head.txt"/>
 			</filterchain>
