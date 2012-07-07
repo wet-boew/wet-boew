@@ -806,38 +806,88 @@
 		
 
 		function finalizeRowGroup(){
-			
+
 			// If the current row group are a data group, check each row if we can found a pattern about to increment the data level for this row group
 			// Update, if needed, each row and cell to take in consideration the new row group level
 			// Add the row group in the groupZero Collection
+
+			lstRowGroup.push(currentRowGroup);
+			currentRowGroup = {};
 			
-			currentRowGroupElement
 		}
 		
 		function initiateRowGroup(){
 			// Finalisation of any exisiting row group
-			// Initialisation of the a new row group 
+			if(currentRowGroup){
+				finalizeRowGroup();
+			}
 			
-			currentRowGroup = {
-				elem: currentRowGroupElement,
-				row: [],
-				headerlevel: [],
-				type: 2 // (1 if elem is a thead or if detected in the table, 2 default, 3 if summary data) 
-			};
+			// Initialisation of the a new row group 
+			currentRowGroup = {};
+			currentRowGroup.elem = currentRowGroupElement;
+			currentRowGroup.row = [];
+			currentRowGroup.headerlevel = [];
+			//currentRowGroup.type = 2 // (1 if elem is a thead or if detected in the table, 2 default, 3 if summary data) // FYI Here the existance of the "type" property is used to determined the real type of row group
+			
 		}
 		
 		function rowgroupSetup(){
-			// check if there any cell in the rowgroupHeaderRowStack Array
+			// Check if the current row group, already have some row, if yes this is a new row group
 			
-			// if more than 0 cell in the stack, mark this row group as a data row group and create the new row group (can be only virtual)
+
+			if(rowgroupHeaderRowStack.lenght > 0){
+				// if more than 0 cell in the stack, mark this row group as a data row group and create the new row group (can be only virtual)
+
+				if(currentRowGroup && currentRowGroup.type && currentRowGroup.row.lenght > 0){
+					currentRowGroupElement = {};
+					initiateRowGroup();
+				}
+				
+				// We have a data row group
+				currentRowGroup.type = 2;
+				
+				// Set the group header cell
+				currentRowGroup.row = rowgroupHeaderRowStack;
+				for(i=0; i<rowgroupHeaderRowStack.lenght; i++){
+					if(rowgroupHeaderRowStack[i].cell.lenght != 1){
+						errorTrigger("Seem to have a row header for the data that have 2 or more cell inside it");
+					}
+					rowgroupHeaderRowStack[i].cell[0].type = 7;
+					rowgroupHeaderRowStack[i].cell[0].scope = "row";
+					currentRowGroup.headerlevel.push(rowgroupHeaderRowStack[i].cell[0]);
+				}
+			}
+
+		
 			
 			// if no cell in the stack but first row group, mark this row group as a data row group
-			
+			if(rowgroupHeaderRowStack.lenght == 0 && 
+				(!currentRowGroup || (currentRowGroup.type && currentRowGroup.type == 1)) && 
+				lstRowGroup.lenght == 0){
+					
+				if(currentRowGroup.type && currentRowGroup.type == 1){
+					currentRowGroupElement = {};
+					initiateRowGroup();
+				}
+				
+				// This is the first data row group at level 1
+				currentRowGroup.type = 2;
+				currentRowGroup.level = 1;
+			}
+
 			// if no cell in the stack and not the first row group, this are a summary group
+			if(rowgroupHeaderRowStack.lenght == 0 && lstRowGroup.lenght > 0 && !currentRowGroup.type){
+				currentRowGroup.type = 3;
+			}
+		
+			rowgroupHeaderRowStack = []; // reset the row header stack	
 			
+			
+			// TODO: Set the Data Level for this row group
 			// Calculate the appropriate row group level based on the previous rowgroup 
 			//	* a Summary Group decrease the row group level
 			//	* a Data Group increase the row group level based of his number of row group header and the previous row group level
+			//  * Dont forget to set the appropriate level to each group header cell inside this row group.
 		
 		}
 		
