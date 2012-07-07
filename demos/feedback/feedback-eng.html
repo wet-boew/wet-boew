@@ -106,7 +106,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div><input type="hidden" name="language" value="eng" /></div>
 <div id="type">
 <p><label for="feedback"><span class="field-name">Reason for contacting us</span> <strong>(required)</strong></label>
-<select name="feedback" id="feedback" class="{validate:{required:true}}">
+<select name="feedback" id="feedback" required="required" class="{validate:{required:true}}">
 <option value=""></option>
 <option value="web">Critical problem with the website</option>
 <option value="improvement">Suggested improvement for the website</option>
@@ -116,7 +116,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <option value="other">Other</option>
 </select></p>
 <p><label for="subject"><span class="field-name">Subject</span></label><input type="text" id="subject" name="subject" size="45" maxlength="60" /></p>
-<p><label for="message"><span class="field-name">Message</span> <strong>(required)</strong></label><textarea id="message" name="message" rows="5" cols="45" class="{validate:{required:true}}"></textarea></p>
+<p><label for="message"><span class="field-name">Message</span> <strong>(required)</strong></label><textarea id="message" name="message" rows="5" cols="45" required="required" class="{validate:{required:true}}"></textarea></p>
 </div>
 
 <section><div id="web"><h2>Website Issues</h2>
@@ -178,7 +178,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="info"><section><h3>Contact Information</h3>
 <fieldset><legend>Please provide information that we could use to contact you</legend>
 <p><label for="name"><span class="field-name">Name</span></label><input type="text" id="name" name="name" size="45" maxlength="45" /></p>
-<p><label for="email"><span class="field-name">E-mail address</span> <strong>(required)</strong></label><input type="email" id="email" name="email" size="45" maxlength="60" class="{validate:{required:true}}" /></p>
+<p><label for="email"><span class="field-name">E-mail address</span> <strong>(required)</strong></label><input type="email" id="email" name="email" size="45" maxlength="60" required="required" class="{validate:{required:true}}" /></p>
 <p><label for="hphone"><span class="field-name">Home phone number</span> including area code (for example, 999-999-9999)</label><input type="tel" id="hphone" name="hphone" size="12" maxlength="12" class="{validate:{phoneUS:true}}" /></p>
 <p><label for="wphone"><span class="field-name">Work phone number</span> including area code (for example, 999-999-9999)</label><input type="tel" id="wphone" name="wphone" size="12" maxlength="12" class="{validate:{phoneUS:true}}" /></p>
 <p><label for="wphonext"><span class="field-name">Work phone number extension</span></label><input type="text" id="wphonext" name="wphonext" size="8" maxlength="8" /></p>

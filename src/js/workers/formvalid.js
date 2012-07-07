@@ -17,6 +17,7 @@
 		_exec: function (elm) {
 			var form = elm.find('form'),
 				submitted = false,
+				required = form.find('[required]').attr('aria-required', 'true'),
 				validator;
 
 			// Load different language strings if page is not in English
@@ -28,10 +29,11 @@
 			}
 
 			// Add WAI-ARIA roles
-			if (pe.ie > 0 && pe.ie < 8) {
-				form.find('.required').attr('aria-required', 'true');
-			} else {
-				form.find('.required').attr('aria-required', 'true').attr('required', 'required');
+			required.attr('aria-required', 'true');
+
+			// Change form attributes and values that inteferes with validation in IE7/8
+			if (pe.ie > 0 && pe.ie < 9) {
+				required.removeAttr('required');
 			}
 
 			// Special handling for mobile
