@@ -34,12 +34,15 @@
 
 			function addValidation(target, key, value) {
 				var targetclass = target.attr('class'),
-					index = (targetclass !== undefined ? targetclass.indexOf('validate:{') : -1);
-				if (index > -1) {
-					if (targetclass.indexOf(key + ':', index) === -1) {
-						target.attr('class', targetclass.replace('{validate:{', '{validate:{' + key + ':' + value + ', '));
+					index1 = (targetclass !== undefined ? targetclass.search(/validate\s?:\s?\{/) : -1),
+					valstring;
+				if (index1 > -1) { // validate:{ already exists
+					//if (targetclass.indexOf(key + ':', index1) === -1) {
+					if (targetclass.search("/" + key + "\s?:/") === -1) {
+						valstring = targetclass.substring(index1, targetclass.indexOf('{', index1) + 1);
+						target.attr('class', targetclass.replace(valstring, valstring + key + ':' + value + ', '));
 					}
-				} else {
+				} else { // validate:{ doesn't exist
 					target.addClass('{validate:{' + key + ':' + value + '}}');
 				}
 				return;
