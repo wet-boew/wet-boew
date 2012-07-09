@@ -32,9 +32,31 @@
 			// Add WAI-ARIA roles
 			required.attr('aria-required', 'true');
 
+			function addValidation(target, key, value) {
+				var targetclass = target.attr('class'),
+					index = targetclass.indexOf('validate:{');
+				if (index > -1) {
+					if (targetclass.indexOf(key + ':', index) === -1) {
+						target.attr('class', targetclass.replace('{validate:{', '{validate:{' + key + ':' + value + ', '));
+						//target.attr('class', targetclass.substring(0, index + 11) + key + ':' + value + ' ' + targetclass.substring(index + 11));
+					}
+				} else {
+					target.addClass('{validate:{' + key + ':' + value + '}}');
+				}
+				return;
+			}
+
 			// Change form attributes and values that inteferes with validation in IE7/8
 			if (pe.ie > 0 && pe.ie < 9) {
-				required.removeAttr('required');
+				addValidation(required.removeAttr('required'), 'required', 'true');
+				form.find('input[type="date"]').each(function () {
+					var $this = $(this),
+						parent = $this.wrap('<div/>').parent(),
+						newelm = $(parent.html().replace('type=' + $this.attr('type'), 'type=text'));
+					/*if ($this.attr('type') === 'date') {
+					}*/
+					parent.replaceWith(newelm);
+				});
 			}
 
 			// Special handling for mobile
@@ -112,13 +134,13 @@
 				}, //end of showErrors()
 				invalidHandler: function (form, validator) {
 					submitted = true;
-				},
-				onkeyup: function (element, event) {
+				}
+				/*onkeyup: function (element, event) {
 					// Only change the error message when there is a keypress that will change the actual field value (versus navigating there)
 					if ((event.keyCode < 9 || event.keyCode > 45) && !event.shiftKey && (element.name in this.submitted || element === this.lastElement)) {
 						this.element(element);
 					}
-				}
+				}*/
 			}); //end of validate()
 
 			// Clear the form and remove error messages on reset
