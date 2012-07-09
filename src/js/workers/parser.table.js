@@ -807,6 +807,8 @@
 
 		function finalizeRowGroup(){
 
+			// console.log('Row Group Finalization');
+			
 			// If the current row group are a data group, check each row if we can found a pattern about to increment the data level for this row group
 			// Update, if needed, each row and cell to take in consideration the new row group level
 			// Add the row group in the groupZero Collection
@@ -817,8 +819,9 @@
 		}
 		
 		function initiateRowGroup(){
+			// console.log('Row Group Initialization');
 			// Finalisation of any exisiting row group
-			if(currentRowGroup){
+			if(currentRowGroup && currentRowGroup.type){
 				finalizeRowGroup();
 			}
 			
@@ -832,13 +835,16 @@
 		}
 		
 		function rowgroupSetup(){
+			// console.log('Row Group Setup');
 			// Check if the current row group, already have some row, if yes this is a new row group
 			
 
-			if(rowgroupHeaderRowStack.lenght > 0){
+			if(rowgroupHeaderRowStack.length > 0){
 				// if more than 0 cell in the stack, mark this row group as a data row group and create the new row group (can be only virtual)
 
-				if(currentRowGroup && currentRowGroup.type && currentRowGroup.row.lenght > 0){
+				
+				
+				if(currentRowGroup && currentRowGroup.type && currentRowGroup.row.length > 0){
 					currentRowGroupElement = {};
 					initiateRowGroup();
 				}
@@ -846,24 +852,26 @@
 				// We have a data row group
 				currentRowGroup.type = 2;
 				
+				
 				// Set the group header cell
 				currentRowGroup.row = rowgroupHeaderRowStack;
-				for(i=0; i<rowgroupHeaderRowStack.lenght; i++){
-					if(rowgroupHeaderRowStack[i].cell.lenght != 1){
-						errorTrigger("Seem to have a row header for the data that have 2 or more cell inside it");
-					}
+				for(i=0; i<rowgroupHeaderRowStack.length; i++){
+					// if(rowgroupHeaderRowStack[i].cell.length != 1){
+					// 	errorTrigger("Seem to have a row header for the data that have 2 or more cell inside it");
+					// }
 					rowgroupHeaderRowStack[i].cell[0].type = 7;
 					rowgroupHeaderRowStack[i].cell[0].scope = "row";
+					rowgroupHeaderRowStack[i].cell[0].row = rowgroupHeaderRowStack[i];
 					currentRowGroup.headerlevel.push(rowgroupHeaderRowStack[i].cell[0]);
 				}
 			}
 
-		
+
 			
 			// if no cell in the stack but first row group, mark this row group as a data row group
-			if(rowgroupHeaderRowStack.lenght == 0 && 
+			if(rowgroupHeaderRowStack.length == 0 && 
 				(!currentRowGroup || (currentRowGroup.type && currentRowGroup.type == 1)) && 
-				lstRowGroup.lenght == 0){
+				lstRowGroup.length == 0){
 					
 				if(currentRowGroup.type && currentRowGroup.type == 1){
 					currentRowGroupElement = {};
@@ -872,14 +880,18 @@
 				
 				// This is the first data row group at level 1
 				currentRowGroup.type = 2;
-				currentRowGroup.level = 1;
+				currentRowGroup.level = 1; // Default Row Group Level
 			}
 
 			// if no cell in the stack and not the first row group, this are a summary group
-			if(rowgroupHeaderRowStack.lenght == 0 && lstRowGroup.lenght > 0 && !currentRowGroup.type){
+			if(rowgroupHeaderRowStack.length == 0 && lstRowGroup.length > 0 && !currentRowGroup.type){
 				currentRowGroup.type = 3;
 			}
 		
+
+			// console.log(rowgroupHeaderRowStack);
+			// console.log(currentRowGroup);
+			
 			rowgroupHeaderRowStack = []; // reset the row header stack	
 			
 			
@@ -888,6 +900,77 @@
 			//	* a Summary Group decrease the row group level
 			//	* a Data Group increase the row group level based of his number of row group header and the previous row group level
 			//  * Dont forget to set the appropriate level to each group header cell inside this row group.
+			
+			if(!currentRowGroup.level){
+				
+				// Get the level of the previous group
+				if(lstRowGroup.length > 0){
+					
+					var previousRowGroup = lstRowGroup[lstRowGroup.length -1];
+					
+					if(currentRowGroup.type == 2){
+						// Data Group
+						
+						if(currentRowGroup.headerlevel.length == previousRowGroup.headerlevel.length){
+							// Same Level as the previous one
+							currentRowGroup.level = previousRowGroup.level;
+						} else if(currentRowGroup.headerlevel.length < previousRowGroup.headerlevel.length){
+							// add the missing group heading cell 
+							var tmpHeaderLevel = currentRowGroup.headerlevel;
+							currentRowGroup.headerlevel = [];
+							
+							for(i=0; i<(previousRowGroup.headerlevel.length - currentRowGroup.headerlevel.length); i++){
+								currentRowGroup.headerlevel.push(previousRowGroup.headerlevel[i]);
+							}
+							for(i=0; i<tmpHeaderLevel.length; i++){
+								currentRowGroup.headerlevel.push(tmpHeaderLevel[i]);
+							}
+							currentRowGroup.level = previousRowGroup.level;
+						} else if(currentRowGroup.headerlevel.length > previousRowGroup.headerlevel.length){
+							// This are a new set of heading, the level equal the number of group header cell found
+							currentRowGroup.level = currentRowGroup.headerlevel.length + 1;
+						}
+						
+						// Set the level for each group header cell
+						for(i=0; i<currentRowGroup.headerlevel.length; i++){
+							if(!currentRowGroup.headerlevel[i].level){
+								currentRowGroup.headerlevel[i].level = i+1;
+								currentRowGroup.headerlevel[i].rowlevel = currentRowGroup.headerlevel[i].level;
+							}
+						}
+						
+					} else if(currentRowGroup.type == 3){
+						// Summary Group
+						if(previousRowGroup.type == 3){
+							currentRowGroup.level = previousRowGroup.level - 1;
+						} else {
+							currentRowGroup.level = previousRowGroup.level;
+						}
+						if(currentRowGroup.level < 0){
+							// This is an error, Last summary row group was already found.
+							errorTrigger("Last summary row group already found");
+						}
+						
+						
+						
+						// Set the header level with the previous row group
+						for(i=0; i<previousRowGroup.headerlevel.length; i++){
+							if(previousRowGroup.headerlevel[i].level <= currentRowGroup.level){
+								currentRowGroup.headerlevel.push(previousRowGroup.headerlevel[i]);
+							}
+						}
+						
+					} else {
+						// Error ????
+						currentRowGroup.level = "Error, not calculated";
+						errorTrigger("Error, Row group not calculated");
+					}
+					
+				} else {
+					currentRowGroup.level = 2;
+				}
+				
+			}
 		
 		}
 		
@@ -1220,7 +1303,7 @@
 				//
 				
 			} else {
-				// Digest the data row
+				// Digest the data row or summary row
 				row.type = 2;
 				
 				
@@ -1234,7 +1317,11 @@
 				// TODO: Process any row used to defined the rowgroup label
 				//
 				//
-				
+				if(rowgroupHeaderRowStack.length > 0 || !currentRowGroup.type){
+					rowgroupSetup();
+				}
+				row.type = currentRowGroup.type;
+				/*
 				if(rowgroupHeaderRowStack.length > 0 && currentRowHeader.length == 0){
 					// TODO: check if the current stack of the current rowgroup need to have 0 datarow inside
 					// Set the number of level for this group, also this group will be a data rowgroup
@@ -1260,8 +1347,11 @@
 						uidElem++;
 						groupZero.allParserObj.push(grpRowHeader);	
 						
+						console.log(rowgroupHeaderRowStack);
+						console.log(iniRowGroupLevel);
+						
 						grpRowHeader.elem = rowgroupHeaderRowStack[i].row.cell[0].elem;
-						grpRowHeader.struct = rowgroupHeaderRowStack[i].row.elem;
+						// grpRowHeader.struct = rowgroupHeaderRowStack[i].row.elem;
 						
 						rowgroupHeaderRowStack[i].row.cell[0].scope = "row";
 						rowgroupHeaderRowStack[i].row.cell[0].level = (i+1);
@@ -1296,7 +1386,7 @@
 					
 				row.levelheader = currentRowHeader;
 				row.level = (currentRowHeader.length > 0?currentRowHeader[currentRowHeader.length -1].level:0);
-				
+				*/
 				
 				
 				
@@ -1494,8 +1584,9 @@
 								row.cell[i].type = 2;
 							}
 							
-							if(row.type == 3 && colgroupFrame[j].type == 3){
-								// TODO: Test if this cell are a layout cell
+							// Test if this cell is a layout cell
+							if(row.type == 3 && colgroupFrame[j].type == 3 && ($(row.cell[i].elem).html().length == 0)){
+								row.cell[i].type = 6;
 							}
 							
 							row.cell[i].collevel = colgroupFrame[j].level;
@@ -1526,8 +1617,12 @@
 				for(i=0; i<row.cell.length; i++){
 					row.cell[i].row = row;
 					
-					row.cell[i].rowlevel = row.level;
-					row.cell[i].rowlevelheader = currentRowHeader;
+					
+					
+					
+					row.cell[i].rowlevel = currentRowGroup.level;
+					row.cell[i].rowlevelheader = currentRowGroup.headerlevel;
+					row.cell[i].rowgroup = currentRowGroup;
 					
 
 				}
@@ -1637,6 +1732,11 @@ delete row.colgroup;
 					
 					currentRowGroupElement = this;
 					
+					initiateRowGroup();
+					
+					
+					$(this).data().tblparser = currentRowGroup;
+					
 					/*
 					*
 					*
@@ -1679,6 +1779,7 @@ delete row.colgroup;
 					// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
 					
 					currentTbodyID ++;
+					finalizeRowGroup();
 					
 					break;
 				case 'tfoot':
