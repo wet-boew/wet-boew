@@ -23,13 +23,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
 <script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -113,101 +114,93 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h1 id="wb-cont">Light Box</h1>
 
-						<div class="wet-boew-share span-5 margin-bottom-none"
-							data-wet-boew="{title:'Page title override',url:'http://www.urloverride.gc.ca',sites:[]}"></div>
-						<div class="clear"></div>
-						<div class="clear"></div>
+<section>
+	<div class="span-4 module-table-contents">
+		<h2>Table des mati&egrave;res</h2>
+		<ul>
+			<li><a href="#features">Caract&eacute;ristiques</a></li>
+			<li><a href="#cssclasses">Classes CSS</a></li>
+			<li><a href="#examples1">Exemples de photos seules</a></li>
+			<li><a href="#examples2">Exemples d'album photos simple</a></li>
+			<li><a href="#examples3">Exemples d'album photos caché</a></li>
+		</ul>
+	</div>
+</section>
+<div class="clear"></div>
+<!-- end of .module-table-contents -->
 
-						<section>
-							<div class="span-4 module-table-contents">
-								<h2>Table des mati&egrave;res</h2>
-								<ul>
-									<li><a href="#features">Caract&eacute;ristiques</a></li>
-									<li><a href="#cssclasses">Classes CSS</a></li>
-									<li><a href="#examples1">Exemples de photos seules</a></li>
-									<li><a href="#examples2">Exemples d'album photos simple</a></li>
-									<li><a href="#examples3">Exemples d'album photos caché</a></li>
-								</ul>
-							</div>
-						</section>
-						<div class="clear"></div>
-						<!-- end of .module-table-contents -->
+<div class="span-4">
+	<section>
+		<h2 id="features">Caract&eacute;ristiques</h2>
+			
+		<ul>
+			<li>Affiche les photos dans l'outil <a href="http://fancybox.net">Fancybox</a></li>
+			<li>Des classes CSS facile &#192; utiliser pour ajouter le Lightbox &#192; votre page.</li>
+			<li>Utilisation du clavier pour une navigation facile.</li>
+		</ul>
+	</section>
+</div>
 
-						<div class="span-4">
-							<section>
-								<h2 id="features">Caract&eacute;ristiques</h2>
-									
-								<ul>
-									<li>Affiche les photos dans l'outil <a href="http://fancybox.net">Fancybox</a></li>
-									<li>Des classes CSS facile &agrave; utiliser pour ajouter le Lightbox &agrave; votre page.</li>
-									<li>Utilisation du clavier pour une navigation facile.</li>
-								</ul>
-							</section>
-						</div>
+<div class="span-4">
+	<section>
+		<h2 id="cssclasses">Classes CSS</h2>
+		<p>Cette outil utilise les classes CSS suivantes :</p>
+	
+		<h3>Pour les Photos seules</h3>
+		<ul>
+			<li>lightbox</li>
+			<li>lightbox-item</li>
+		</ul>
+		<h3>Pour un album de photos</h3>
+		<ul>
+			<li>Lightbox-group</li>
+			<li>lightbox-group-item</li>
+		</ul>
+		<h3>Pour un album de photos cachés</h3>
+		<ul>
+			<li>lightbox-group</li>
+			<li>lightbox-group-item-hidden</li>
+			<li>hidden</li>
+		</ul>
+	</section>
+</div>
 
-						<div class="span-4">
-							<section>
-								<h2 id="cssclasses">Classes CSS</h2>
-								<p>Cette outil utilise les classes CSS suivantes :</p>
-							
-								<h3>Pour les Photos seules</h3>
-								<ul>
-									<li>lightbox</li>
-									<li>lightbox-item</li>
-								</ul>
-								<h3>Pour un album de photos</h3>
-								<ul>
-									<li>Lightbox-group</li>
-									<li>lightbox-group-item</li>
-								</ul>
-								<h3>Pour un album de photos cachés</h3>
-								<ul>
-									<li>lightbox-group</li>
-									<li>lightbox-group-item-hidden</li>
-									<li>hidden</li>
-								</ul>
-							</section>
-						</div>
+<div class="clear"></div>
 
-						<div class="clear"></div>
+<h2>Examples</h2>
+<h3 id="examples1">Photos seules (sans album)</h3>
+<div class="span-4">
+	<h4 class="background-dark margin-bottom-medium">Photos</h4>
+	<section>
+		<div class="wet-boew-lightbox">
+			<div class="lightbox">
+				<p>
+					<a class="lightbox-item" href="images/1_b.jpg" title="Photo 1">
+						<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
+					</a>
+					<a class="lightbox-item" href="images/2_b.jpg" title="Photo 2">
+						<img src="images/2_s.jpg" alt="Photo 2" class="image-actual" />
+					</a>
+					<a class="lightbox-item" href="images/3_b.jpg" title="Photo 3">
+						<img src="images/3_s.jpg" alt="Photo 3" class="image-actual" />
+					</a>
+					<a class="lightbox-item" href="images/4_b.jpg" title="Photo 4">
+						<img src="images/4_s.jpg" alt="Photo 4" class="image-actual" />
+					</a>
+					<a class="lightbox-item" href="images/5_b.jpg" title="Photo 5">
+						<img src="images/5_s.jpg" alt="Photo 5" class="image-actual" />
+					</a>
+				</p>
+			</div>
+		</div>
+	</section>
+</div>
 
-						<h2>Examples</h2>
-						<h3 id="examples1">Photos seules (sans album)</h3>
-						<div class="span-4">
-							<h4 class="background-dark margin-bottom-medium">Photos</h4>
-							<section>
-								<div class="wet-boew-lightbox">
-									<div class="lightbox">
-										<p>
-											<a class="lightbox-item" href="images/1_b.jpg"
-												title="Lorem ipsum dolor sit amet"><img
-												src="images/1_s.jpg" alt="Lorem ipsum dolor sit amet" class="image-actual" /></a> <a
-												class="lightbox-item" href="images/2_b.jpg"
-												title="Etiam quis mi eu elit temp"><img
-												src="images/2_s.jpg" alt="Etiam quis mi eu elit temp" class="image-actual" /></a> <a
-												class="lightbox-item" href="images/3_b.jpg"
-												title="Cras neque mi, semper leon"><img
-												src="images/3_s.jpg" alt="Cras neque mi, semper leon" class="image-actual" /></a> <a
-												class="lightbox-item" href="images/4_b.jpg"
-												title="Sed vel sapien vel sem uno"><img
-												src="images/4_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a> <a
-												class="lightbox-item" href="images/5_b.jpg"
-												title="Sed vel sapien vel sem uno"><img
-												src="images/5_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a>
-										</p>
-									</div>
-									<!-- end of .grid-12 -->
-								</div>
-							</section>
-							<!-- end of .wet-boew-lightbox -->
-						</div>
-						<!-- end of .span-4 -->
-
-						<div class="span-4">
-							<section>
-								<h4 class="background-dark margin-bottom-medium" id="coding1">Codage</h4>
-								<pre>
-									<code>
+<div class="span-4">
+	<section>
+		<h4 class="background-dark margin-bottom-medium" id="coding1">Codage</h4>
+		<pre>
+			<code>
 &lt;div class=&quot;wet-boew-lightbox&quot;&gt;
   &lt;div class=&quot;lightbox&quot;&gt;
     &lt;p&gt;&lt;a class=&quot;lightbox-item&quot; href=&quot;images/your_image.jpg&quot; title=&quot;Title Image&quot;&gt;
@@ -216,45 +209,45 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
     ...	
   &lt;/div&gt;
 &lt;/div&gt;</code>
-								</pre>
-							</section>
-						</div>
+		</pre>
+	</section>
+</div>
 
-						<div class="clear"></div>
+<div class="clear"></div>
 
-						<h3 id="examples2">Album de photo simple</h3>
-						<div class="span-4">
-							<h4 class="background-dark margin-bottom-medium">Album photos</h4>
-							<section>
-								<div class="wet-boew-lightbox">
-									<div class="lightbox-group" title="Exemple d'une album de photos simple">
-										<p>
-											<a class="lightbox-item" rel="gallery" href="images/1_b.jpg"
-												title="Lorem ipsum dolor sit amet"><img
-												src="images/1_s.jpg" alt="Lorem ipsum dolor sit amet" class="image-actual" /></a> <a
-												class="lightbox-item" rel="gallery" href="images/2_b.jpg"
-												title="Etiam quis mi eu elit temp"><img
-												src="images/2_s.jpg" alt="Etiam quis mi eu elit temp" class="image-actual" /></a> <a
-												class="lightbox-item" rel="gallery" href="images/3_b.jpg"
-												title="Cras neque mi, semper leon"><img
-												src="images/3_s.jpg" alt="Cras neque mi, semper leon" class="image-actual" /></a> <a
-												class="lightbox-item" rel="gallery" href="images/4_b.jpg"
-												title="Sed vel sapien vel sem uno"><img
-												src="images/4_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a> <a
-												class="lightbox-item" rel="gallery" href="images/5_b.jpg"
-												title="Sed vel sapien vel sem uno"><img
-												src="images/5_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a>
-										</p>
-									</div>
-								</div>
-							</section>
-						</div>
+<h3 id="examples2">Album de photo simple</h3>
+<div class="span-4">
+	<h4 class="background-dark margin-bottom-medium">Album photos</h4>
+	<section>
+		<div class="wet-boew-lightbox">
+			<div class="lightbox-group" title="Group 1">
+				<p>
+					<a class="lightbox-item" rel="gallery" href="images/1_b.jpg" title="Photo 1">
+						<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
+					</a>
+					<a class="lightbox-item" rel="gallery" href="images/2_b.jpg" title="Photo 2">
+						<img src="images/2_s.jpg" alt="Photo 2" class="image-actual" />
+					</a>
+					<a class="lightbox-item" rel="gallery" href="images/3_b.jpg" title="Photo 3">
+						<img src="images/3_s.jpg" alt="Photo 3" class="image-actual" />
+					</a>
+					<a class="lightbox-item" rel="gallery" href="images/4_b.jpg" title="Photo 4">
+						<img src="images/4_s.jpg" alt="Photo 4" class="image-actual" />
+					</a>
+					<a class="lightbox-item" rel="gallery" href="images/5_b.jpg" title="Photo 5">
+						<img src="images/5_s.jpg" alt="Photo 5" class="image-actual" />
+					</a>
+				</p>
+			</div>
+		</div>
+	</section>
+</div>
 
-						<div class="span-4">
-							<section>
-								<h4 class="background-dark margin-bottom-medium" id="coding2">Codage</h4>
-								<pre>
-									<code>
+<div class="span-4">
+	<section>
+		<h4 class="background-dark margin-bottom-medium" id="coding2">Codage</h4>
+		<pre>
+			<code>
 &lt;div class=&quot;wet-boew-lightbox&quot;&gt;
   &lt;div class=&quot;lightbox-group&quot; title=&quot;Exemple d'une album de photos simple&quot;&gt;
     &lt;p&gt;&lt;a class=&quot;lightbox-item&quot; href=&quot;images/your_image.jpg&quot; title=&quot;Title Image&quot;&gt;
@@ -263,48 +256,49 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
     ...	
   &lt;/div&gt;
 &lt;/div&gt;</code>
-								</pre>
-							</section>
-						</div>
+		</pre>
+	</section>
+</div>
 
-						<div class="clear"></div>
+<div class="clear"></div>
 
-						<h3 id="examples3">Album de photos cachés</h3>
-						<div class="span-4">
-							<h4 class="background-dark margin-bottom-medium">Album photos</h4>
-							<section>
-								<div class="wet-boew-lightbox">
-									<div class="lightbox-group" title="Exemple d'une album de photos cachés">
-										<p>
-											<a class="lightbox-item" href="images/1_b.jpg"
-												rel="hidden-gallery" title="Lorem ipsum dolor sit amet"><img
-												src="images/1_s.jpg" alt="Lorem ipsum dolor sit amet" class="image-actual" /></a>
-										<div class="hidden">
-											<p>
-												<a class="lightbox-item" rel="hidden-gallery"
-													href="images/2_b.jpg" title="Etiam quis mi eu elit temp"><img
-													src="images/2_s.jpg" alt="Etiam quis mi eu elit temp" class="image-actual" /></a> <a
-													class="lightbox-item" rel="hidden-gallery"
-													href="images/3_b.jpg" title="Cras neque mi, semper leon"><img
-													src="images/3_s.jpg" alt="Cras neque mi, semper leon" class="image-actual" /></a> <a
-													class="lightbox-item" rel="hidden-gallery"
-													href="images/4_b.jpg" title="Sed vel sapien vel sem uno"><img
-													src="images/4_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a> <a
-													class="lightbox-item" rel="hidden-gallery"
-													href="images/5_b.jpg" title="Sed vel sapien vel sem uno"><img
-													src="images/5_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a>
-											</p>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
+<h3 id="examples3">Album de photos cachés</h3>
+<div class="span-4">
+	<h4 class="background-dark margin-bottom-medium">Album photos</h4>
+	<section>
+		<div class="wet-boew-lightbox">
+			<div class="lightbox-group" title="Group 2">
+				<p>
+					<a class="lightbox-item" href="images/1_b.jpg" rel="hidden-gallery" title="Photo 1">
+						<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
+					</a>
+				</p>
+				<div class="lightbox-hidden">
+					<p>
+						<a class="lightbox-item" rel="hidden-gallery" href="images/2_b.jpg" title="Photo 2">
+							<img src="images/2_s.jpg" alt="Photo 2" class="image-actual" />
+						</a>
+						<a class="lightbox-item" rel="hidden-gallery" href="images/3_b.jpg" title="Photo 3">
+							<img src="images/3_s.jpg" alt="Photo 3" class="image-actual" />
+						</a>
+						<a class="lightbox-item" rel="hidden-gallery" href="images/4_b.jpg" title="Photo 4">
+							<img src="images/4_s.jpg" alt="Photo 4" class="image-actual" />
+						</a>
+						<a class="lightbox-item" rel="hidden-gallery" href="images/5_b.jpg" title="Photo 5">
+							<img src="images/5_s.jpg" alt="Photo 5" class="image-actual" />
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
 
-						<div class="span-4">
-							<section>
-								<h4 class="background-dark margin-bottom-medium" id="coding3">Codage</h4>
-								<pre>
-									<code>
+<div class="span-4">
+	<section>
+		<h4 class="background-dark margin-bottom-medium" id="coding3">Codage</h4>
+		<pre>
+			<code>
 &lt;div class=&quot;wet-boew-lightbox&quot;&gt;
   &lt;div class=&quot;lightbox-group&quot; title=&quot;Exemple d'une album de photos cachés&quot;&gt;
     &lt;p&gt;&lt;a class=&quot;lightbox-item&quot; href=&quot;images/your_image.jpg&quot; title=&quot;Title Image&quot;&gt;
@@ -319,11 +313,11 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code>
-								</pre>
-							</section>
-						</div>
+		</pre>
+	</section>
+</div>
 
-						<div class="clear"></div>
+<div class="clear"></div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date de modification&#160;:</dt><dd><span><time>2011-10-31</time></span></dd>

@@ -141,10 +141,12 @@
 			"%show-toc" : "Show",
 			"%show-image" : "show.png",
 			"%hide-image" : "hide.png",
-			"%table-contents" : " table of contents"
+			"%table-contents" : " table of contents",
+			/* Lightbox */
+			"%lightbox-error" : "The requested content cannot be loaded.<br />Please try again later."
 		}
 	};
-        $(document).trigger("languageloaded");
+	$(document).trigger("languageloaded");
 	window.pe = _pe;
 	return _pe;
 }(jQuery));

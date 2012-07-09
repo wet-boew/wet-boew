@@ -124,7 +124,7 @@
 			"%share-hint" : " avec {s} (Ouvre dans une nouvelle fenêtre)",
 			"%share-email-subject" : "Page qui est intéressante",
 			"%share-email-body" : "J'espère que cette page vous intéresse :\n{t} ({u})",
-			"%share-manual" : "S'il vous pla&#238;t fermer ce dialogue et\nappuyer sure Ctrl-D pour ajouter cette page à vos signets.",
+			"%share-manual" : "S'il vous plaît fermer ce dialogue et\nappuyer sur Ctrl-D pour ajouter cette page à vos signets.",
 			"%share-showall" : "Tous montrer ({n})",
 			"%share-showall-title" : "Tout les sites de mise en signet",
 			/* Form validation */
@@ -135,10 +135,12 @@
 			"%show-toc" : "Afficher",
 			"%show-image" : "afficher.png",
 			"%hide-image" : "cacher.png",
-			"%table-contents" : " la table des mati&#232;res"
+			"%table-contents" : " la table des matières",
+			/* Lightbox */
+			"%lightbox-error" : "Le contenu demandé ne peut pas être chargé.<br />S'il vous plaît essayer encore plus tard."
 		}
 	};
-        $(document).trigger("languageloaded");
+	$(document).trigger("languageloaded");
 	window.pe = _pe;
 	return _pe;
 }(jQuery));
