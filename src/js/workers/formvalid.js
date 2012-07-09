@@ -38,7 +38,7 @@
 					valstring;
 				if (index1 > -1) { // validate:{ already exists
 					//if (targetclass.indexOf(key + ':', index1) === -1) {
-					if (targetclass.search("/" + key + "\s?:/") === -1) {
+					if (targetclass.search("/" + key + "\\s?:/") === -1) {
 						valstring = targetclass.substring(index1, targetclass.indexOf('{', index1) + 1);
 						target.attr('class', targetclass.replace(valstring, valstring + key + ':' + value + ', '));
 					}
@@ -47,6 +47,9 @@
 				}
 				return;
 			}
+
+			// Remove the pattern attribute until it is safe to use with jQuery Validation
+			form.find('input[pattern]').removeAttr('pattern');
 
 			// Change form attributes and values that intefere with validation in IE7/8
 			if (pe.ie > 0 && pe.ie < 9) {
@@ -59,7 +62,6 @@
 						newelm = $(parent.html().replace('type=' + $this.attr('type'), 'type=text'));
 					parent.replaceWith(newelm);
 				});
-				form.find('input[pattern]').removeAttr('pattern');
 			}
 
 			// Special handling for mobile
