@@ -48,19 +48,18 @@
 				return;
 			}
 
-			// Change form attributes and values that inteferes with validation in IE7/8
+			// Change form attributes and values that intefere with validation in IE7/8
 			if (pe.ie > 0 && pe.ie < 9) {
 				required.removeAttr('required').each(function () {
-					addValidation($(this), 'required', 'true');
+					addValidation($(this), 'required', 'true'); // Adds required:true to validation:{}
 				});
 				form.find('input[type="date"]').each(function () {
 					var $this = $(this),
 						parent = $this.wrap('<div/>').parent(),
 						newelm = $(parent.html().replace('type=' + $this.attr('type'), 'type=text'));
-					/*if ($this.attr('type') === 'date') {
-					}*/
 					parent.replaceWith(newelm);
 				});
+				form.find('input[pattern]').removeAttr('pattern');
 			}
 
 			// Special handling for mobile
@@ -139,12 +138,6 @@
 				invalidHandler: function (form, validator) {
 					submitted = true;
 				}
-				/*onkeyup: function (element, event) {
-					// Only change the error message when there is a keypress that will change the actual field value (versus navigating there)
-					if ((event.keyCode < 9 || event.keyCode > 45) && !event.shiftKey && (element.name in this.submitted || element === this.lastElement)) {
-						this.element(element);
-					}
-				}*/
 			}); //end of validate()
 
 			// Clear the form and remove error messages on reset
