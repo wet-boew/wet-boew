@@ -101,7 +101,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <h1 id="wb-cont">Form validation</h1>
 
 <div class="wet-boew-formvalid">
-<form action="#" method="get">
+<form action="#" method="get" id="validation-example">
 <fieldset><legend>Contact information</legend>
 <div><label for="title1"><span class="field-name">Title</span> <strong>(required)</strong></label>
 <select id="title1" name="title1" class="{validate:{required:true}}">
@@ -111,8 +111,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <option value="mr">Mr.</option>
 <option value="ms">Ms.</option>
 </select></div>
-<div><label for="fname1"><span class="field-name">First Name</span> <strong>(required)</strong></label><input id="fname1" name="fname1" type="text" required="required" pattern="{3,}" class="{validate:{required:true,minlength:3}}" /></div>
-<div><label for="lname1"><span class="field-name">Last Name</span> <strong>(required)</strong></label><input id="lname1" name="lname1" type="text" required="required" pattern="{3,}" class="{validate:{required:true,minlength:3}}" /></div>
+<div><label for="fname1"><span class="field-name">First Name</span> <strong>(required)</strong></label><input id="fname1" name="fname1" type="text" required="required" pattern="{2,}" class="{validate:{required:true,minlength:2}}" /></div>
+<div><label for="lname1"><span class="field-name">Last Name</span> <strong>(required)</strong></label><input id="lname1" name="lname1" type="text" required="required" pattern="{2,}" class="{validate:{required:true,minlength:2}}" /></div>
 <div><label for="tel1"><span class="field-name">Telephone Number</span> (999-999-9999) <strong>(required)</strong></label><input id="tel1" name="tel1" type="tel" required="required" class="{validate:{required:true,phoneUS:true}}" /></div>
 <div><label for="email1"><span class="field-name">Email Address</span></label><input id="email1" name="email1" type="email" /></div>
 <div><label for="url1"><span class="field-name">Website URL (http://www.url.com)</span></label><input id="url1" name="url1" type="url" /></div>

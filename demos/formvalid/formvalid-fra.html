@@ -100,7 +100,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <h1 id="wb-cont">Validation des formulaires</h1>
 
 <div class="wet-boew-formvalid">
-<form action="#" method="get">
+<form action="#" method="get" id="validation-example">
 <fieldset><legend>Coordonnées</legend>
 <div><label for="title1"><span class="field-name">Titre</span> <strong>(obligatoire)</strong></label>
 <select id="title1" name="title1" class="{validate:{required:true}}">
@@ -111,8 +111,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <option value="ms">Madame</option>
 </select>
 </div>
-<div><label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" required="required" pattern="{3,}" class="{validate:{required:true,minlength:3}}" /></div>
-<div><label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" required="required" pattern="{3,}" class="{validate:{required:true,minlength:3}}" /></div>
+<div><label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" required="required" pattern="{2,}" class="{validate:{required:true,minlength:2}}" /></div>
+<div><label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" required="required" pattern="{2,}" class="{validate:{required:true,minlength:2}}" /></div>
 <div><label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label><input id="tel" name="tel" type="tel" required="required" class="{validate:{required:true,phoneUS:true}}" /></div>
 <div><label for="email1"><span class="field-name">Adresse électronique</span></label><input id="email1" name="email1" type="email" /></div>
 <div><label for="url1"><span class="field-name">URL du site Web (http://www.url.com)</span></label><input id="url1" name="url1" type="url" class="{validate:{url:true}}" /></div>
