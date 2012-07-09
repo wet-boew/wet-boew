@@ -34,11 +34,10 @@
 
 			function addValidation(target, key, value) {
 				var targetclass = target.attr('class'),
-					index = targetclass.indexOf('validate:{');
+					index = (targetclass !== undefined ? targetclass.indexOf('validate:{') : -1);
 				if (index > -1) {
 					if (targetclass.indexOf(key + ':', index) === -1) {
 						target.attr('class', targetclass.replace('{validate:{', '{validate:{' + key + ':' + value + ', '));
-						//target.attr('class', targetclass.substring(0, index + 11) + key + ':' + value + ' ' + targetclass.substring(index + 11));
 					}
 				} else {
 					target.addClass('{validate:{' + key + ':' + value + '}}');
@@ -48,7 +47,9 @@
 
 			// Change form attributes and values that inteferes with validation in IE7/8
 			if (pe.ie > 0 && pe.ie < 9) {
-				addValidation(required.removeAttr('required'), 'required', 'true');
+				required.removeAttr('required').each(function () {
+					addValidation($(this), 'required', 'true');
+				});
 				form.find('input[type="date"]').each(function () {
 					var $this = $(this),
 						parent = $this.wrap('<div/>').parent(),
