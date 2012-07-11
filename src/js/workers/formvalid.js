@@ -32,6 +32,12 @@
 			// Add WAI-ARIA roles
 			required.attr('aria-required', 'true');
 
+			// Add space to the end of the labels (so separation between label and error when CSS turned off)
+			form.find("label").each(function () {
+				var $this = $(this);
+				$this.html($this.html() + " ");
+			});
+
 			function addValidation(target, key, value) {
 				var targetclass = target.attr('class'),
 					index1 = (targetclass !== undefined ? targetclass.search(/validate\s?:\s?\{/) : -1),
@@ -87,6 +93,7 @@
 				showErrors: function (errorMap, errorList) {
 					this.defaultShowErrors();
 					var errors = form.find("strong.error:not(:hidden)"),
+						errorfields = form.find("input.error, select.error, textarea.error"),
 						summaryContainer = form.find('#' + $errorFormId),
 						summary;
 
@@ -101,11 +108,12 @@
 
 						// Post process
 						summary = $('<ul></ul>');
+						errorfields.attr("aria-invalid", "true");
 						errors.each(function (index) {
 							var $this = $(this),
 								prefix = '<span class="prefix">' + pe.dic.get("%error") + '&#160;' + (index + 1) + pe.dic.get("%colon") + ' </span>',
 								label = $this.closest("label");
-							$this.attr("aria-invalid", "true").find("span.prefix").detach();
+							$this.find("span.prefix").detach();
 							summary.append('<li><a href="#' + label.attr("for") + '">' + prefix + label.find('.field-name').html() + ' - ' + $this.html() + '</a></li>');
 							$this.prepend('<span class="prefix">' + pe.dic.get("%error") + '&#160;' + (index + 1) + pe.dic.get("%colon") + ' </span>');
 						});
