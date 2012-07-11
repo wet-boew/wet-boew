@@ -90,6 +90,7 @@
 						summaryContainer = form.find('#' + $errorFormId),
 						summary;
 
+					form.find('[aria-invalid="true"]').removeAttr("aria-invalid");
 					if (errors.length > 0) {
 						// Create our container if one doesn't already exist
 						if (summaryContainer.length === 0) {
@@ -104,9 +105,9 @@
 							var $this = $(this),
 								prefix = '<span class="prefix">' + pe.dic.get("%error") + '&#160;' + (index + 1) + pe.dic.get("%colon") + ' </span>',
 								label = $this.closest("label");
-							$this.find("span.prefix").detach();
+							$this.attr("aria-invalid", "true").find("span.prefix").detach();
 							summary.append('<li><a href="#' + label.attr("for") + '">' + prefix + label.find('.field-name').html() + ' - ' + $this.html() + '</a></li>');
-							$this.attr("role", "alert").prepend('<span class="prefix">' + pe.dic.get("%error") + '&#160;' + (index + 1) + pe.dic.get("%colon") + ' </span>');
+							$this.prepend('<span class="prefix">' + pe.dic.get("%error") + '&#160;' + (index + 1) + pe.dic.get("%colon") + ' </span>');
 						});
 
 						// Output our error summary and place it in the error container
@@ -145,6 +146,11 @@
 			// Clear the form and remove error messages on reset
 			form.find('input[type=reset]').on('click', function () {
 				validator.resetForm();
+				var summaryContainer = form.find('#' + $errorFormId);
+				if (summaryContainer.length > 0) {
+					summaryContainer.empty();
+				}
+				form.find('[aria-invalid="true"]').removeAttr("aria-invalid");
 				form.find('#' + $errorFormId);
 			});
 
