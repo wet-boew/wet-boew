@@ -166,6 +166,7 @@
 				// Correct the corners for each of the site menu/secondary menu sections and sub-sections
 				pe.menu.correctmobile($('#jqm-wb-mb'));
 			});
+			$(document).trigger("mobileviewloaded");
 			return;
 		}
 	};

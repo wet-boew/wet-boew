@@ -68,7 +68,7 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, url, target;
+			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
@@ -83,13 +83,13 @@
 			// Is this a mobile device?
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
-				$('body > div').attr('data-role', 'page');
+				$('body > div').attr('data-role', 'page').addClass('ui-page-active');
 
 				$(document).on("mobileinit", function () {
 					$.extend($.mobile, {
 						ajaxEnabled: false,
 						pushStateEnabled: false,
-						autoInitializePage: false
+						autoInitializePage: (init_on_mobileinit ? true : false)
 					});
 				});
 
@@ -170,10 +170,20 @@
 
 						//Load the mobile view
 						if (pe.mobile === true) {
-							if (wet_boew_theme !== null) {
-								wet_boew_theme.mobileview();
-							}
+							$(document).on("mobileviewloaded", function () {
+								if ($.mobile !== undefined) {
+									$.mobile.initializePage();
+								} else {
+									init_on_mobileinit = true;
+								}
+							});
+							wet_boew_theme.mobileview();
+						}
+					} else if (pe.mobile === true) {
+						if ($.mobile !== undefined) {
 							$.mobile.initializePage();
+						} else {
+							init_on_mobileinit = true;
 						}
 					}
 					pe.dance();
