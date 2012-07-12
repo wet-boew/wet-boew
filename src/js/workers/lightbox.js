@@ -15,7 +15,7 @@
 		type : 'plugin',
 		// This is an example from tabbed interface, to show how to call
 		// required libraries
-		depends : ['fancybox', 'metadata'],
+		depends : ['colorbox', 'metadata'],
 		// Don't include a mobile function if your plugin shouldn't run in
 		// mobile mode.
 
@@ -28,14 +28,7 @@
 			opts = {
 				modal : false,
 				cyclic : false,
-				autoScale : true,
-				tpl: {
-					error: '<p class="fancybox-error">' + pe.dic.get('%lightbox-error') + '</p>',
-					image: '<img class="fancybox-image" src="{href}" alt="" aria-labelledby="gallery_img" />',
-					closeBtn: '<div title="' + pe.dic.get('%close') + '" class="fancybox-item fancybox-close" tabindex="-1"></div>',
-					next: '<a tabindex="0" title="' + pe.dic.get('%next') + '" class="fancybox-nav fancybox-next"><span></span></a>',
-					prev: '<a tabindex="0" title="' +  pe.dic.get('%previous') + '" class="fancybox-nav fancybox-prev"><span></span></a>'
-				}
+				autoScale : true
 			};
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
@@ -53,25 +46,15 @@
 				$.extend(opts, overrides, elm.metadata());
 			}
 
-			$fb_wrap = elm.find('.fancybox-wrap');
+			//$fb_wrap = elm.find('.fancybox-wrap');
 
 			$lb_single = elm.find('.lightbox');
 
-			$lb_group = elm.find('.lightbox-group');
+			//$lb_group = elm.find('.lightbox-group');
 
-			$lb_item = elm.find('.lightbox-item').fancybox(opts).each(function () {
-				$(this).attr('role', 'button').on("click", function () {
-					$fb_wrap.attr('tabindex', '0');
-					return $fb_wrap;
-				});
+			$lb_item = elm.find('.lightbox-item').colorbox().each(function () {
 				return $(this);
 			});
-
-			// Fancybox dependencies modifications
-			/* $fb_wrap = elm.find('.fancybox-wrap').each(function () {
-				$(this).attr('tabindex','0');
-				return $(this);
-			});*/
 
 			// return elm;
 		} // end of exec
