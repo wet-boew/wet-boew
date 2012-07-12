@@ -1,3 +1,9 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+
 /*
     ColorBox Core Style:
     The following CSS is consistent between example themes and should not be altered.
@@ -45,42 +51,4 @@
         #cboxClose{position:absolute; bottom:0; right:0; background:url(../images/lightbox/controls.png) no-repeat -25px 0; width:25px; height:25px; text-indent:-9999px;}
         #cboxClose:hover{background-position:-25px -25px;}
 
-/*
-  The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
-  when an alpha filter (opacity change) is set on the element or ancestor element.  This style is not applied to or needed in IE9.
-  See: http://jacklmoore.com/notes/ie-transparency-problems/
-*/
-.cboxIE #cboxTopLeft,
-.cboxIE #cboxTopCenter,
-.cboxIE #cboxTopRight,
-.cboxIE #cboxBottomLeft,
-.cboxIE #cboxBottomCenter,
-.cboxIE #cboxBottomRight,
-.cboxIE #cboxMiddleLeft,
-.cboxIE #cboxMiddleRight {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
-}
-
-/*
-  The following provides PNG transparency support for IE6
-  Feel free to remove this and the /ie6/ directory if you have dropped IE6 support.
-*/
-.cboxIE6 #cboxTopLeft{background:url(../images/lightbox/ie6/borderTopLeft.png);}
-.cboxIE6 #cboxTopCenter{background:url(../images/lightbox/ie6/borderTopCenter.png);}
-.cboxIE6 #cboxTopRight{background:url(../images/lightbox/ie6/borderTopRight.png);}
-.cboxIE6 #cboxBottomLeft{background:url(../images/lightbox/ie6/borderBottomLeft.png);}
-.cboxIE6 #cboxBottomCenter{background:url(../images/lightbox/ie6/borderBottomCenter.png);}
-.cboxIE6 #cboxBottomRight{background:url(../images/lightbox/ie6/borderBottomRight.png);}
-.cboxIE6 #cboxMiddleLeft{background:url(../images/lightbox/ie6/borderMiddleLeft.png);}
-.cboxIE6 #cboxMiddleRight{background:url(../images/lightbox/ie6/borderMiddleRight.png);}
-
-.cboxIE6 #cboxTopLeft,
-.cboxIE6 #cboxTopCenter,
-.cboxIE6 #cboxTopRight,
-.cboxIE6 #cboxBottomLeft,
-.cboxIE6 #cboxBottomCenter,
-.cboxIE6 #cboxBottomRight,
-.cboxIE6 #cboxMiddleLeft,
-.cboxIE6 #cboxMiddleRight {
-    _behavior: expression(this.src = this.src ? this.src : this.currentStyle.backgroundImage.split('"')[1], this.style.background = "none", this.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=" + this.src + ", sizingMethod='scale')");
-}
+.lightbox-hidden{display:none;visibility:hidden;}

@@ -70,6 +70,8 @@
 			"%hide" : "Masquer",
 			"%error" : "Erreur",
 			"%colon" : "&#160;:",
+			"%start" : "Lancer",
+			"%stop" : "SArrêter",
 			"%minute-ago": "il ya une minute",
 			"%couple-of-minutes": "il ya quelques minutes",
 			"%minutes-ago": {
@@ -94,7 +96,7 @@
 			},
 			/* Multimedia player */
 			"%play": "Jouer",
-			"%stop": "Pause",
+			"%pause": "Pause",
 			"%close": "Fermer",
 			"%rewind": "Reculer ",
 			"%next" : "Prochaine",
@@ -137,7 +139,10 @@
 			"%hide-image" : "cacher.png",
 			"%table-contents" : " la table des matières",
 			/* Lightbox */
-			"%lightbox-error" : "Le contenu demandé ne peut pas être chargé.<br />S'il vous plaît essayer encore plus tard."
+			"%lightbox-current" : "Image {current} de {total}",
+			"%lightbox-xhr-error" : "Le chargement de ce contenu a échoué.",
+			"%lightbox-img-error" : "Le chargement de cette image a échoué.",
+			"%lightbox-slideshow" : "la diaporama"
 		}
 	};
 	$(document).trigger("languageloaded");

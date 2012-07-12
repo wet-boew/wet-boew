@@ -26,16 +26,26 @@
 
 			// Defaults
 			opts = {
-				modal : false,
-				cyclic : false,
-				autoScale : true
+				transition : "elastic",
+				loop : true,
+				current : pe.dic.get("%lightbox-current"),
+				previous : pe.dic.get("%previous"),
+				next : pe.dic.get("%next"),
+				close : pe.dic.get("%close"),
+				xhrError : pe.dic.get("%lightbox-xhr-error"),
+				imgError : pe.dic.get("%lightbox-img-error"),
+				slideshowStart : pe.dic.get("%start") + " " + pe.dic.get("%lightbox-slideshow"),
+				slideshowStop : pe.dic.get("%stop") + " " + pe.dic.get("%lightbox-slideshow"),
+				slideshow : false,
+				slideshowAuto : false
 			};
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
 			overrides = {
-				modal : elm.hasClass("modal") ? true : undefined,
-				cyclic : elm.hasClass("cyclic") ? true : undefined,
-				autoScale : elm.hasClass("no-auto-scale") ? false : undefined
+				transition : (elm.hasClass("transition-fade") ? "fade" : (elm.hasClass("transition-none") ? "none" : undefined)),
+				loop : elm.hasClass("loop-none") ? false : undefined,
+				slideshow : elm.hasClass("slideshow") ? true : undefined,
+				slideshowAuto : elm.hasClass("slideshow-auto") ? true : undefined
 			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data attribute
@@ -52,7 +62,7 @@
 
 			//$lb_group = elm.find('.lightbox-group');
 
-			$lb_item = elm.find('.lightbox-item').colorbox().each(function () {
+			$lb_item = elm.find('.lightbox-item').colorbox(opts).each(function () {
 				return $(this);
 			});
 

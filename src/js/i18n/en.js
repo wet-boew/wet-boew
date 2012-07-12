@@ -74,6 +74,8 @@
 			"%hide" : "Hide",
 			"%error" : "Error",
 			"%colon" : ":",
+			"%start" : "Start",
+			"%stop" : "Stop",
 			"%minute-ago" : "a minute ago",
 			"%couple-of-minutes" : "couple of minutes ago",
 			"%minutes-ago" : {
@@ -98,7 +100,7 @@
 			},
 			/* Multimedia player */
 			"%play" : "Play",
-			"%stop" : "Pause",
+			"%pause" : "Pause",
 			"%close" : "Close",
 			"%rewind" : "Rewind ",
 			"%next" : "Next",
@@ -143,7 +145,10 @@
 			"%hide-image" : "hide.png",
 			"%table-contents" : " table of contents",
 			/* Lightbox */
-			"%lightbox-error" : "The requested content cannot be loaded.<br />Please try again later."
+			"%lightbox-current" : "Image {current} of {total}",
+			"%lightbox-xhr-error" : "This content failed to load.",
+			"%lightbox-img-error" : "This image failed to load.",
+			"%lightbox-slideshow" : "slideshow"
 		}
 	};
 	$(document).trigger("languageloaded");
