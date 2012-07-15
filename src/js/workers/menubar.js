@@ -51,11 +51,13 @@
 			};
 			/* action function to go to menu */
 			gotosubmenu = function (toplink) {
-				var _node, _submenu;
-				showsubmenu(toplink);
+				var _node, _sm;
 				_node = $(toplink);
-				_submenu = _node.closest("li").find(".mb-sm-open");
-				pe.focus(_submenu.find("a[href]:first"));
+				_sm = _node.closest("li").find(".mb-sm-open");
+				if (pe.cssenabled) {
+					_sm.find("a").attr("tabindex", "0");
+				}
+				_node.trigger("item-next");
 				return;
 			};
 			/* hidemenu worker function */
@@ -65,6 +67,9 @@
 				_node = $(toplink).closest("li");
 				_sm = _node.find(".mb-sm-open");
 				_sm.attr("aria-expanded", "false").attr("aria-hidden", "true").toggleClass("mb-sm mb-sm-open").css("right", "auto");
+				if (pe.cssenabled) {
+					_sm.find("a").attr("tabindex", "-1");
+				}
 				_node.removeClass("mb-active");
 				return;
 			};
@@ -93,7 +98,7 @@
 			$menu = $menuBoundary.children("ul");
 			/* ARIA additions */
 			$scope.attr("role", "application");
-			$menu.attr("role", "menubar");
+			$menu.attr("role", "menubar").find("a").attr("role", "menuitem");
 			pe.resize(correctheight);
 			/* Handles opening and closing of a submenu on click of a menu bar item
 			   but prevents any changes on click of the empty area in the submenu */
@@ -130,12 +135,9 @@
 				if (e.type === "keydown") {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 						switch (e.keyCode) {
-						case 9: // tab key
-							$scope.trigger('focusoutside');
-							break;
 						case 13: // enter key
 							if (_id[2] === 0 && _id[3] === 0) {
-								_elm.trigger('item-next');
+								gotosubmenu(e.target);
 								return false;
 							}
 							break;
@@ -144,7 +146,7 @@
 							return false;
 						case 32: // spacebar
 							if (_id[2] === 0 && _id[3] === 0) {
-								_elm.trigger('item-next');
+								gotosubmenu(e.target);
 							} else {
 								window.location = _elm.attr('href');
 							}
@@ -153,13 +155,21 @@
 							_elm.trigger('section-previous');
 							return false;
 						case 38: // up arrow
-							_elm.trigger('item-previous');
+							if (_id[2] === 0 && _id[3] === 0) {
+								gotosubmenu(e.target);
+							} else {
+								_elm.trigger('item-previous');
+							}
 							return false;
 						case 39: // right arrow
 							_elm.trigger('section-next');
 							return false;
 						case 40: // down arrow
-							_elm.trigger('item-next');
+							if (_id[2] === 0 && _id[3] === 0) {
+								gotosubmenu(e.target);
+							} else {
+								_elm.trigger('item-next');
+							}
 							return false;
 						default:
 							// 0 - 9 and a - z keys
@@ -322,7 +332,7 @@
 
 			/* if CSS is enabled we want to ensure a correct tabbing response */
 			if (pe.cssenabled) {
-				$menu.find("a").attr("role", "menuitem").attr("tabindex", "-1").filter('.knav-0-0-0').attr("tabindex", "0");
+				$scope.find(".mb-sm a").attr("tabindex", "-1");
 			}
 			correctheight();
 			return $scope;
