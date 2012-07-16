@@ -158,7 +158,7 @@
 					switch (e.type){
 						case "play":
 							$w.find(".playpause img").attr({
-									alt: _pe.dic.get("%stop"),
+									alt: _pe.dic.get("%pause"),
 									src: "" //player.icons.pause
 							});
 							break;
