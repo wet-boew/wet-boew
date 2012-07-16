@@ -40,7 +40,7 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
   * **Assume browser:** true
 * Formatting recommendations:
   * Indent with tabs using the [K&R indenting style](http://en.wikipedia.org/wiki/Indent_style#K.26R_style)
-  * Use single quotes for string in JavaScript (so unescaped double quotes can be used for attributes in HTML output)
+  * Use single quotes for strings in JavaScript (so unescaped double quotes can be used for attributes in HTML output)
 * Supported browsers (should be tested against): 
   * [Browser test baseline - YUI Graded Browser Support](http://yuilibrary.com/yui/docs/tutorials/gbs/) (excluding IE6)
 
