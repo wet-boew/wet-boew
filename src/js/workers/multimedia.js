@@ -337,7 +337,7 @@
 			},
 
 			setCurrentTime: function(t){
-				this.object.pause !== undefined ? this.object.currentTime = t : this.object.setCurrentTime(t);
+				this.object.currentTime !== undefined ? this.object.currentTime = t : this.object.setCurrentTime(t);
 			},
 
 			getCaptionsVisible: function(){
