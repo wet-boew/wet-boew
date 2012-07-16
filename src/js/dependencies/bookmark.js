@@ -412,7 +412,10 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 					return false;
 				});
 				$(document).click(function (event) { // Close on external click
-					target.find('.bookmark_popup').hide();
+					var $popup = target.find('.bookmark_popup');
+					if (!$(event.target).is($popup) && $(event.target).closest($popup).length === 0) { // WET-BOEW Change
+						target.find($popup).hide();
+					}
 				});
 			}
 		},

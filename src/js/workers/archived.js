@@ -26,6 +26,14 @@
 				}
 			});
 
+			// Ensure that the archived notice does not overlap a link that gains focus
+			$(document).on('focusin', function (e) {
+				var target = $(e.target);
+				if (notice.attr('aria-hidden') === 'false' && (target.offset().top + target.outerHeight()) <= (notice.offset().top + notice.outerHeight())) {
+					$(window).scrollTop($(window).scrollTop() - notice.outerHeight());
+				}
+			});
+
 			// now test to ensure that we have this correctly placed
 			if ($(window).scrollTop() < 10 || $(window).scrollTop() === 'undefined') {
 				notice.fadeOut("normal").attr('aria-hidden', 'true');

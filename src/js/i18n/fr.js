@@ -55,6 +55,7 @@
 			return r;
 		},
 		ind: {
+			"%all" : "Tous",
 			"%home" : "Accueil",
 			"%top-of-page": "Haut de la page",
 			"%you-are-in": "Vous êtes dans :",
@@ -69,6 +70,8 @@
 			"%hide" : "Masquer",
 			"%error" : "Erreur",
 			"%colon" : "&#160;:",
+			"%start" : "Lancer",
+			"%stop" : "SArrêter",
 			"%minute-ago": "il ya une minute",
 			"%couple-of-minutes": "il ya quelques minutes",
 			"%minutes-ago": {
@@ -93,7 +96,7 @@
 			},
 			/* Multimedia player */
 			"%play": "Jouer",
-			"%stop": "Pause",
+			"%pause": "Pause",
 			"%close": "Fermer",
 			"%rewind": "Reculer",
 			"%next" : "Prochaine",
@@ -123,16 +126,26 @@
 			"%share-hint" : " avec {s} (Ouvre dans une nouvelle fenêtre)",
 			"%share-email-subject" : "Page qui est intéressante",
 			"%share-email-body" : "J'espère que cette page vous intéresse :\n{t} ({u})",
-			"%share-manual" : "S'il vous pla&#238;t fermer ce dialogue et\nappuyer sure Ctrl-D pour ajouter cette page à vos signets.",
+			"%share-manual" : "S'il vous plaît fermer ce dialogue et\nappuyer sur Ctrl-D pour ajouter cette page à vos signets.",
 			"%share-showall" : "Tous montrer ({n})",
 			"%share-showall-title" : "Tout les sites de mise en signet",
 			/* Form validation */
 			"%form-not-submitted" : "Le formulaire n'a pu être soumis car ",
 			"%errors-found" : " erreurs ont été trouvées.",
-			"%error-found" : " erreur a été trouvée."
+			"%error-found" : " erreur a été trouvée.",
+			/* Slideout */
+			"%show-toc" : "Afficher",
+			"%show-image" : "afficher.png",
+			"%hide-image" : "cacher.png",
+			"%table-contents" : " la table des matières",
+			/* Lightbox */
+			"%lightbox-current" : "Image {current} de {total}",
+			"%lightbox-xhr-error" : "Le chargement de ce contenu a échoué.",
+			"%lightbox-img-error" : "Le chargement de cette image a échoué.",
+			"%lightbox-slideshow" : "la diaporama"
 		}
 	};
-        $(document).trigger("languageloaded");
+	$(document).trigger("languageloaded");
 	window.pe = _pe;
 	return _pe;
 }(jQuery));

@@ -18,16 +18,25 @@
 	};
 	_wet_boew_theme = {
 		theme: 'theme-gcwu-intranet',
-		psnb: $('#wb-head #gcwu-psnb'),
-		search: $('#wb-head #gcwu-srchbx'),
-		bcrumb: $('#wb-head #gcwu-bc'),
-		title: $('#wb-head #gcwu-title'),
-		sft: $('#wb-foot #gcwu-sft'),
-		gcft: $('#wb-foot #gcwu-gcft'),
+		psnb: null,
+		search: null,
+		bcrumb: null,
+		title: null,
+		sft: null,
+		gcft: null,
 		wmms: $('#gcwu-wmms'),
 		init: function () {
-			var current = pe.menu.navcurrent(pe.menubar, wet_boew_theme.bcrumb),
+			wet_boew_theme.psnb = pe.header.find('#gcwu-psnb');
+			wet_boew_theme.menubar = wet_boew_theme.psnb.find('.wet-boew-menubar');
+			wet_boew_theme.search = pe.header.find('#gcwu-srchbx');
+			wet_boew_theme.bcrumb = pe.header.find('#gcwu-bc');
+			wet_boew_theme.title = pe.header.find('#gcwu-title');
+			wet_boew_theme.sft = pe.footer.find('#gcwu-sft');
+			wet_boew_theme.gcft = pe.footer.find('#gcwu-gcft');
+
+			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm');
+
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length > 0) {
 				submenu.prev().children('a').addClass('nav-current');
@@ -61,12 +70,12 @@
 				lang_nav,
 				mb_li;
 
-			if (pe.menubar.length > 0 || pe.secnav.length > 0 || wet_boew_theme.search.length > 0) {
+			if (wet_boew_theme.menubar.length > 0 || pe.secnav.length > 0 || wet_boew_theme.search.length > 0) {
 				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
 				// lets transform the menu to a dialog box
-				mb_li = pe.menubar.find('ul.mb-menu li');
+				mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
 				mb_dialogue = '<div data-role="page" id="jqm-wb-mb"><div data-role="header">';
-				mb_header = (pe.menubar.length > 0 ? wet_boew_theme.psnb.children(':header') : (pe.secnav.length > 0 ? pe.secnav.find('h2').eq(0) : wet_boew_theme.bcrumb.children(':header')));
+				mb_header = (wet_boew_theme.menubar.length > 0 ? wet_boew_theme.psnb.children(':header') : (pe.secnav.length > 0 ? pe.secnav.find('h2').eq(0) : wet_boew_theme.bcrumb.children(':header')));
 				mb_dialogue += "<h1>" + mb_header.html() + '</h1></div>';
 				mb_dialogue += '<div data-role="content" data-inset="true"><nav role="navigation">';
 
@@ -84,7 +93,7 @@
 					pe.secnav.remove();
 				}
 
-				if (pe.menubar.length > 0) {
+				if (wet_boew_theme.menubar.length > 0) {
 					nav = pe.menu.buildmobile(mb_li, 3, "a", true);
 					pe.menu.expandmobile(nav);
 					mb_dialogue += $('<section><h2>' + mb_header.html() + '</h2></section>').append(nav).html();
@@ -142,7 +151,7 @@
 
 			// jquery mobile has loaded
 			$(document).on("pagecreate", function () {
-				if (pe.menubar.length > 0) {
+				if (wet_boew_theme.menubar.length > 0) {
 					wet_boew_theme.psnb.parent().remove();
 				}
 				if (wet_boew_theme.search.length > 0) {
@@ -157,6 +166,7 @@
 				// Correct the corners for each of the site menu/secondary menu sections and sub-sections
 				pe.menu.correctmobile($('#jqm-wb-mb'));
 			});
+			$(document).trigger("mobileviewloaded");
 			return;
 		}
 	};

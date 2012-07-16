@@ -19,16 +19,19 @@
 /* -----Build Include Section Start----- */
 @import url('../../css/base-desktop-screen.css');
 @import url('includes/sp-pe-desktop-screen.css');
+@import url('../../grids/css/responsive.css');
 @import url('includes/default-responsive.css');
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:768px) and (max-width:959px){
 /* -----Build Include Section Start----- */
+@import url('../../grids/css/responsive-768.css');
 @import url('includes/default-responsive-768.css');
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:1200px){
 /* -----Build Include Section Start----- */
+@import url('../../grids/css/responsive-1200.css');
 @import url('includes/default-responsive-1200.css');
 /* -----Build Include Section End----- */
 }

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- DataAjaxFragmentStart -->
 <li><section><h3><a href="http://wet-boew.github.com/wet-boew/docs/index-fra.html">Projet de la BOEW</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Page principale du projet</a></li>
-<li><a href="http://www.sct.gc.ca/ws-nw/wet-boew/conditions">Conditions r�gissant l'utilisation</a></li>
+<li><a href="http://www.sct.gc.ca/ws-nw/wet-boew/conditions">Conditions régissant l'utilisation</a></li>
 <li><a href="http://wet-boew.github.com/wet-boew/demos/index-fra.html">Exemples pratiques</a></li>
 </ul>
 </div>
@@ -28,7 +30,13 @@
 <section><h4><a href="section2/section22/index-fra.html">Section 2.2</a></h4>
 <ul>
 <li><a href="#">Article 2.2.1</a></li>
-<li><a href="#">Article 2.2.2</a></li>
+<li><a href="#">Article 2.2.2</a>
+	<ul>
+	<li><a href="#">Article 2.2.2.1</a></li>
+	<li><a href="#">Article 2.2.2.2</a></li>
+	<li><a href="#">Article 2.2.2.3</a></li>
+	</ul>
+</li>
 <li><a href="#">Article 2.2.3</a></li>
 <li><a href="#">Article 2.2.4</a></li>
 <li><a href="#">Article 2.2.5</a></li>
