@@ -22,6 +22,28 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 * [Terms and conditions](http://www.tbs.gc.ca/ws-nw/wet-boew/terms)
 * [Working examples](http://wet-boew.github.com/wet-boew/demos/index-eng.html)
 
+## Contributor guidelines
+
+* Pull requests are welcome. Please make sure your changes are to the latest code and limit the commit range to just the files you intended to change (to avoid conflicts).
+* New components should be added in a feature-* branch (e.g., feature-lightbox). 
+** Licensing for all new components and supporting code must be compatible with the MIT license used by WET.
+** New plugins should use pluginTemplate.js as the basis for the JavaScript code.
+** Include the WET terms and conditions comment block in all text-based source files that fall under Crown Copyright.
+* [Validate your HTML markup](http://validator.w3.org/nu/). Markup should be well-formed HTML5. 
+** To test for well-formed markup, validate with an XHTML5 preset and a checkmark next to "Be lax about HTTP Content-Type". 
+* [Validate your CSS](http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options) with the following changes to the default settings:
+** **Profile:** CSS level 3
+** **Vendor extensions:** Warnings
+* [JSLint your JavaScript code](http://www.jslint.com) with the following changes to the default settings:
+** **Tolerate dangling _ in identifiers:** true
+** **Tolerate missing 'use strict' pragma:** true
+** **Assume browser:** true
+* Formatting recommendations:
+** Indent with tabs using the [K&R indenting style](http://en.wikipedia.org/wiki/Indent_style#K.26R_style)
+** Use single quotes for string in JavaScript (so unescaped double quotes can be used for attributes in HTML output)
+* Supported browsers (should be tested against): [Browser test baseline - YUI Graded Browser Support](http://yuilibrary.com/yui/docs/tutorials/gbs/) (excluding IE6)
+
+
 -------------------------------------------------------------------
 
 # Boîte à outils de l’expérience Web (BOEW)
