@@ -13,8 +13,8 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 * Reduces costs by consolidating Web tools and solutions.
 * Open source software that is free to use by departments and external Web communities.
 * Uses advanced technologies to push the envelope for Web site functionality:
-** [HTML5](http://www.w3.org/TR/html5/), [CSS3](http://www.w3.org/Style/CSS/current-work), [jQuery](http://jquery.com/) (JavaScript framework);
-** Ever-growing list of open source plugins and widgets.
+  * [HTML5](http://www.w3.org/TR/html5/), [CSS3](http://www.w3.org/Style/CSS/current-work), [jQuery](http://jquery.com/) (JavaScript framework);
+  * Ever-growing list of open source plugins and widgets.
 * Supports a wide range of layouts and designs for internal and external Web sites (including applications).
 
 ## Key resources
@@ -26,21 +26,21 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 * Pull requests are welcome. Please make sure your changes are to the latest code and limit the commit range to just the files you intended to change (to avoid conflicts).
 * New components should be added in a feature-* branch (e.g., feature-lightbox). 
-** Licensing for all new components and supporting code must be compatible with the MIT license used by WET.
-** New plugins should use pluginTemplate.js as the basis for the JavaScript code.
-** Include the WET terms and conditions comment block in all text-based source files that fall under Crown Copyright.
+  * Licensing for all new components and supporting code must be compatible with the MIT license used by WET.
+  * New plugins should use pluginTemplate.js as the basis for the JavaScript code.
+  * Include the WET terms and conditions comment block in all text-based source files that fall under Crown Copyright.
 * [Validate your HTML markup](http://validator.w3.org/nu/). Markup should be well-formed HTML5. 
-** To test for well-formed markup, validate with an XHTML5 preset and a checkmark next to "Be lax about HTTP Content-Type". 
+  * To test for well-formed markup, validate with an XHTML5 preset and a checkmark next to "Be lax about HTTP Content-Type". 
 * [Validate your CSS](http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options) with the following changes to the default settings:
-** **Profile:** CSS level 3
-** **Vendor extensions:** Warnings
+  * **Profile:** CSS level 3
+  * **Vendor extensions:** Warnings
 * [JSLint your JavaScript code](http://www.jslint.com) with the following changes to the default settings:
-** **Tolerate dangling _ in identifiers:** true
-** **Tolerate missing 'use strict' pragma:** true
-** **Assume browser:** true
+  * **Tolerate dangling _ in identifiers:** true
+  * **Tolerate missing 'use strict' pragma:** true
+  * **Assume browser:** true
 * Formatting recommendations:
-** Indent with tabs using the [K&R indenting style](http://en.wikipedia.org/wiki/Indent_style#K.26R_style)
-** Use single quotes for string in JavaScript (so unescaped double quotes can be used for attributes in HTML output)
+  * Indent with tabs using the [K&R indenting style](http://en.wikipedia.org/wiki/Indent_style#K.26R_style)
+  * Use single quotes for string in JavaScript (so unescaped double quotes can be used for attributes in HTML output)
 * Supported browsers (should be tested against): [Browser test baseline - YUI Graded Browser Support](http://yuilibrary.com/yui/docs/tutorials/gbs/) (excluding IE6)
 
 
@@ -61,8 +61,8 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sotes Web 
 * Réduit les coûts par consolider les outils et solutions axés sur le Web. 
 * Sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.
 * Fait appel à des technologies nouvelles et novatrices pour rendre les sites plus novateurs et interactifs :
-** [HTML5](http://www.w3.org/TR/html5/), [CSS3](http://www.w3.org/Style/CSS/current-work#CSS3) et [jQuery](http://jquery.com/) (cadre JavaScript); 
-** liste croissante de plugiciels et gadgets de source ouverte.
+  * [HTML5](http://www.w3.org/TR/html5/), [CSS3](http://www.w3.org/Style/CSS/current-work#CSS3) et [jQuery](http://jquery.com/) (cadre JavaScript); 
+  * liste croissante de plugiciels et gadgets de source ouverte.
 * Permet d’avoir accès à une grande diversité de mises en page et de conceptions pour les sites Web internes et externes (y compris les applications). 
 
 ## Resources clés
