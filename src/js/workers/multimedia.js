@@ -162,7 +162,7 @@
 									src: "" //player.icons.pause
 							});
 							break;
-						case "pause":
+						case "pause": case "ended":
 							$w.find(".playpause img").attr({
 								alt:_pe.dic.get("%play"),
 								src: "" //player.icons.play
@@ -337,7 +337,7 @@
 			},
 
 			setCurrentTime: function(t){
-				this.object.currentTime !== undefined ? this.object.currentTime = t : this.object.setCurrentTime(t);
+				this.object.currentTime !== "function" ? this.object.currentTime = t : this.object.setCurrentTime(t);
 			},
 
 			getCaptionsVisible: function(){
@@ -359,7 +359,7 @@
 			},
 
 			setMuted : function(m){
-				this.object.muted !== undefined ? this.object.muted = m : this.object.setMuted(m);
+				this.object.muted !== "function" ? this.object.muted = m : this.object.setMuted(m);
 			},
 
 			getVolume : function(){
@@ -367,7 +367,7 @@
 			},
 
 			setVolume : function(v){
-				this.object.volume !== undefined ?  this.object.volume = v : this.object.setVolume(v);
+				this.object.volume !== "function" ?  this.object.volume = v : this.object.setVolume(v);
 			}
 		}
 	};
