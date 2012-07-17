@@ -13,11 +13,7 @@
 		<mkdir dir="${build.dir}"/>
 	</target>
 
-	<target name="-minify" depends="compile.sass">
-		<copy file="${src.dir}/css/util.css" tofile="${build.dir}/premin/css/util.css"/>
-		<copy todir="${build.dir}/images">
-			<fileset dir="${src.dir}/images" />
-		</copy>
+	<target name="-minify" depends="compile.sass, build-css">
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/premin" toDir="${build.dir}">
 			<include name="css/*.*" />
 		</yui-compressor>
@@ -44,13 +40,10 @@
   </target>
   
 	<!--Build CSS Tasks -->
+	<target name="build-css" depends="-merge-css" />
 <!--
 	<target name="-base64-encode">
-		<copy file="${build.dir}/premin/css/util.css" tofile="${build.dir}/premin/css/util-ie.css"/>
 		<copy todir="${build.dir}/premin/images">
-			<fileset dir="${src.dir}/images"/>
-		</copy>
-		<copy todir="${build.dir}/images">
 			<fileset dir="${src.dir}/images"/>
 		</copy>
 		<cssurlembed skipMissing="true">
@@ -60,7 +53,99 @@
 		</cssurlembed>
 	</target>
 -->
-  <target name="clean-css">
+
+	<target name="-merge-css">
+		<copy todir="${build.dir}/premerge/css">
+			<fileset dir="${src.dir}/css">
+				<include name="util*.css"/>
+				<include name="includes/*.css"/>
+				<exclude name="responsive*.css"/>
+			</fileset>
+		</copy>
+		<replace dir="${build.dir}/premerge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/images" />
+		</copy>
+		<filelist id="corefiles" dir="${build.dir}/premerge/css">
+			<file name="util.css"/>
+			<file name="util-ie.css"/>
+		</filelist>
+		<for param="css-file">
+			<path>
+				<filelist refid="corefiles"/>
+			</path>
+			<sequential>
+				<antcall target="-resolve-css-imports" inheritAll="false">
+					<param name="file" value="@{css-file}"/>
+					<param name="topfile" value="true"/>
+				</antcall>
+			</sequential>
+		</for>
+		<copy todir="${build.dir}/premin/css">
+			<filelist dir="${build.dir}/premerge/css">
+				<file name="util.css"/>
+				<file name="util-ie.css"/>
+			</filelist>
+			<filterchain>
+				<concatfilter prepend="${src.dir}/../css-head.txt"/>
+			</filterchain>
+		</copy>
+		<delete dir="${build.dir}/premerge"/>
+	</target>
+
+	<target name="-resolve-css-imports">
+		<antcall target="-recurse" inheritAll="false">
+			<param name="file.recurse" value="${file}"/>
+			<param name="topfile" value="${topfile}"/>
+		</antcall>
+	</target>
+
+	<target name="-recurse">
+        <property name="charset_regexp" value="@charset\s*?['&quot;]utf-8['&quot;]\s*?;" />
+        <property name="url_regexp" value="url\(\s*?['&quot;]\s*?(.*)?['&quot;]\s*?\s*?\)" />
+        <property name="import_regexp" value="@import\s*?${url_regexp}\s*?;?" />
+		<fixcrlf file="${file.recurse}"/>
+		<!-- Removes the charset directive if not in a core file -->
+		<if>
+			<not>
+				<equals arg1="${topfile}" arg2="true"/>
+			</not>
+			<then>
+                <replaceregexp file="${file.recurse}" match="${charset_regexp}" replace=""/>
+			</then>
+		</if>
+
+		<loadfile property="src" srcfile="${file.recurse}" encoding="utf8"/>
+        <!--Merge imported stylesheets-->
+        <for delimiter="${line.separator}" param="currline" list="${src}">
+			<sequential>
+                <propertyregex regexp="${import_regexp}" property="import" select="\0" input="@{currline}" global="true" casesensitive="true" override="true"/>
+				<if>
+					<isset property="import"/>
+					<then>
+                        <propertyregex regexp="${import_regexp}" property="import.file.name" select="\1" input="${import}" casesensitive="true" override="true"/>
+						<dirname property="import.file.root" file="${file.recurse}"/>
+						<property name="import.file" value="${import.file.root}/${import.file.name}"/>
+						<antcall target="-resolve-css-imports" inheritAll="false">
+							<param name="file" value="${import.file}"/>
+							<param name="topfile" value="false"/>
+						</antcall>
+						<loadfile property="imported" srcfile="${import.file}"/>
+						<replace file="${file.recurse}" token="${import}" value="${imported}"/>
+						<var name="import.file.root" unset="true"/>
+                        <var name="import.file.name" unset="true"/>
+						<var name="import.file" unset="true"/>
+						<var name="imported" unset="true"/>
+                        <var name="import" unset="true"/>
+					</then>
+				</if>
+			</sequential>
+		</for>
+		<var name="src" unset="true"/>
+        <var name="file.recurse" unset="true"/>
+	</target>
+
+	<target name="clean-css">
 		<delete dir="${src.dir}/css" />
 	</target>
   

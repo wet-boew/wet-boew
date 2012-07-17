@@ -2,11 +2,7 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
-/*** Theme begins / Début du thème ***/
-
-/*** Theme ends / Fin du thème ***/
-
+ */
 #wb-body-sec #wb-core .grid-12 .span-1{
 	width:55px;
 }
@@ -96,106 +92,94 @@
 }
 
 #wb-body-sec #wb-core .grid-12 .border-span-1{
-	background-image:url(../images/border-55px.gif);
+	background-image:url(../../grids/images/border-55px.gif);
 }
 
 .grid-12 .border-span-1{
-	background-image:url(../images/border-80px.gif);
+	background-image:url(../../grids/images/border-80px.gif);
 }
 
 .border-span-1,#wb-body-sec #wb-core .grid-12 .border-span-2,.module-versatile{
-	background-image:url(../images/border-130px.gif);
+	background-image:url(../../grids/images/border-130px.gif);
 }
 
 .grid-12 .border-span-2,.module-versatile{
-	background-image:url(../images/border-180px.gif);
+	background-image:url(../../grids/images/border-180px.gif);
 }
 
 #wb-body-sec #wb-core .grid-12 .border-span-3{
-	background-image:url(../images/border-205px.gif);
+	background-image:url(../../grids/images/border-205px.gif);
 }
 
 .border-span-2,.module-versatile,#wb-body-sec #wb-core .grid-12 .border-span-4,.grid-12 .border-span-3{
-	background-image:url(../images/border-280px.gif);
+	background-image:url(../../grids/images/border-280px.gif);
 }
 
 #wb-body-sec #wb-core .grid-12 .border-span-5{
-	background-image:url(../images/border-355px.gif);
+	background-image:url(../../grids/images/border-355px.gif);
 }
 
 .grid-12 .border-span-4{
-	background-image:url(../images/border-380px.gif);
+	background-image:url(../../grids/images/border-380px.gif);
 }
 
 .border-span-3,#wb-body-sec #wb-core .grid-12 .border-span-6{
-	background-image:url(../images/border-430px.gif);
+	background-image:url(../../grids/images/border-430px.gif);
 }
 
 .grid-12 .border-span-5{
-	background-image:url(../images/border-480px.gif);
+	background-image:url(../../grids/images/border-480px.gif);
 }
 
 #wb-body-sec #wb-core .grid-12 .border-span-7{
-	background-image:url(../images/border-505px.gif);
+	background-image:url(../../grids/images/border-505px.gif);
 }
 
 .border-span-4,.module-table-contents,.module-welcomepage,#wb-body-sec #wb-core .grid-12 .border-span-8,.grid-12 .border-span-6{
-	background-image:url(../images/border-580px.gif);
+	background-image:url(../../grids/images/border-580px.gif);
 }
 
 #wb-body-sec #wb-core .grid-12 .border-span-9{
-	background-image:url(../images/border-655px.gif);
+	background-image:url(../../grids/images/border-655px.gif);
 }
 
 .grid-12 .border-span-7{
-	background-image:url(../images/border-680px.gif);
+	background-image:url(../../grids/images/border-680px.gif);
 }
 
 .border-span-5,#wb-body-sec #wb-core .grid-12 .border-span-10{
-	background-image:url(../images/border-730px.gif);
+	background-image:url(../../grids/images/border-730px.gif);
 }
 
 .grid-12 .border-span-8{
-	background-image:url(../images/border-780px.gif);
+	background-image:url(../../grids/images/border-780px.gif);
 }
 
 #wb-body-sec #wb-core .grid-12 .border-span-11{
-	background-image:url(../images/border-805px.gif);
+	background-image:url(../../grids/images/border-805px.gif);
 }
 
 .border-span-6,#wb-body-sec #wb-core .grid-12 .border-span-12,.grid-12 .border-span-9{
-	background-image:url(../images/border-880px.gif);
+	background-image:url(../../grids/images/border-880px.gif);
 }
 
 .grid-12 .border-span-10{
-	background-image:url(../images/border-980px.gif);
+	background-image:url(../../grids/images/border-980px.gif);
 }
 
 .border-span-7{
-	background-image:url(../images/border-1030px.gif);
+	background-image:url(../../grids/images/border-1030px.gif);
 }
 
 .grid-12 .border-span-11{
-	background-image:url(../images/border-1080px.gif);
+	background-image:url(../../grids/images/border-1080px.gif);
 }
 
 .border-span-8,.grid-12 .border-span-12{
-	background-image:url(../images/border-1180px.gif);
+	background-image:url(../../grids/images/border-1180px.gif);
 }
 
-.span-2 .calendar-month td,.span-2 .calendar-month th{
-	width:34px;
-	height:32px;
-	padding:2px 3px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month td,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month th{
-	width:34px;
-	height:32px;
-	padding:2px 3px;
-}
-
-.grid-12 .span-3 .calendar-month td,.grid-12 .span-3 .calendar-month th{
+.span-2 .calendar-month td,.span-2 .calendar-month th,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month td,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month th,.grid-12 .span-3 .calendar-month td,.grid-12 .span-3 .calendar-month th{
 	width:34px;
 	height:32px;
 	padding:2px 3px;

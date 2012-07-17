@@ -23,13 +23,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-intranet/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-intranet/css/theme-min.css" />
@@ -67,7 +69,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>

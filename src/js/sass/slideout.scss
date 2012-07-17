@@ -1,0 +1,84 @@
+﻿@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+.wet-boew-slideout {
+	display:none;
+}
+
+.no-js .wet-boew-slideout {
+	display:block;
+}
+ 
+#slideoutInnerWrapper {
+	overflow: hidden;
+	position: relative;
+	width: 295px;
+}
+
+.slideoutWrapper { /* Follows on scrolling */
+	overflow: hidden;
+	position: fixed;
+    z-index: 1;
+}
+
+.slideoutWrapperRel { /* Does not follow on scrolling */
+    float: right;
+    right: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.so-ie7 {
+   position: relative;
+}
+
+.slideoutToggle {
+	float: left;
+	position: relative; /* Needed for animation */
+}
+
+.tabbedSlideout #slideoutClose {
+	float: right;
+}
+
+#toggleLink {
+	cursor: pointer;
+}
+
+#toggleLink img {
+    margin: 0;
+}
+
+.tabbedSlideout {
+	background-color: #FFF;
+	border: 1px solid #CCC;
+	border-right: none; 
+	float: left;
+	padding: 8px;
+	position: relative; 
+	margin: auto;
+	width: 245px;
+}
+
+div.tabbedSlideout h2 {
+	margin: 0px;
+	padding: 0px 5px 5px 5px;
+	text-align: left;
+}
+
+div.tabbedSlideout ul, div.tabbedSlideout ol {
+    margin: 0;
+    list-style-type: none;
+	padding: 0 5px;
+}
+
+div.tabbedSlideout li ul, div.tabbedSlideout li ol {
+    margin-left: 20px;
+}
+
+div.tabbedSlideout li {
+    margin: 6px 0;
+}

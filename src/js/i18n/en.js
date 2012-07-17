@@ -58,6 +58,7 @@
 			return r;
 		},
 		ind : {
+			"%all" : "All",
 			"%home" : "Home",
 			"%top-of-page" : "Top of Page",
 			"%you-are-in" : "You are in: ",
@@ -73,6 +74,8 @@
 			"%hide" : "Hide",
 			"%error" : "Error",
 			"%colon" : ":",
+			"%start" : "Start",
+			"%stop" : "Stop",
 			"%minute-ago" : "a minute ago",
 			"%couple-of-minutes" : "couple of minutes ago",
 			"%minutes-ago" : {
@@ -97,7 +100,7 @@
 			},
 			/* Multimedia player */
 			"%play" : "Play",
-			"%stop" : "Pause",
+			"%pause" : "Pause",
 			"%close" : "Close",
 			"%rewind" : "Rewind",
 			"%next" : "Next",
@@ -135,10 +138,20 @@
 			"%errors-found" : " errors were found.",
 			"%error-found" : " error was found.",
 			"%error" : "Error",
-			"%colon" : ":"
+			"%colon" : ":",
+			/* Slideout */
+			"%show-toc" : "Show",
+			"%show-image" : "show.png",
+			"%hide-image" : "hide.png",
+			"%table-contents" : " table of contents",
+			/* Lightbox */
+			"%lightbox-current" : "Image {current} of {total}",
+			"%lightbox-xhr-error" : "This content failed to load.",
+			"%lightbox-img-error" : "This image failed to load.",
+			"%lightbox-slideshow" : "slideshow"
 		}
 	};
-        $(document).trigger("languageloaded");
+	$(document).trigger("languageloaded");
 	window.pe = _pe;
 	return _pe;
 }(jQuery));

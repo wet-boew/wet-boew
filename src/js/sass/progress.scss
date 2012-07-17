@@ -2,14 +2,14 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ */
 progress[role] {
     display: inline-block;
     position: relative;
     width: 10em;
     height: 1em;
     vertical-align: -.2em;
-    background-image: url(images/progress/progress.gif);
+    background-image: url(../images/progress/progress.gif);
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }

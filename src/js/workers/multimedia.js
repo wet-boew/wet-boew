@@ -158,18 +158,18 @@
 					switch (e.type){
 						case "play":
 							$w.find(".playpause img").attr({
-									alt: _pe.dic.get("%stop"),
+									alt: _pe.dic.get("%pause"),
 									src: "" //player.icons.pause
 							});
 							break;
-						case "pause":
+						case "pause": case "ended":
 							$w.find(".playpause img").attr({
 								alt:_pe.dic.get("%play"),
 								src: "" //player.icons.play
 							});
 							break;
 						case "volumechange":
-							if (this.getMuted() || this.getVolume() === 0){
+							if (this.getMuted()){
 								$w.find(".mute img").attr({
 									alt: _pe.dic.get("%mute", "disable"),
 									src: "" //player.icons.mute_on
@@ -337,7 +337,7 @@
 			},
 
 			setCurrentTime: function(t){
-				this.object.pause !== undefined ? this.object.currentTime = t : this.object.setCurrentTime(t);
+				typeof(this.object.currentTime) !== "function" ? this.object.currentTime = t : this.object.setCurrentTime(t);
 			},
 
 			getCaptionsVisible: function(){
@@ -359,7 +359,7 @@
 			},
 
 			setMuted : function(m){
-				this.object.muted !== undefined ? this.object.muted = m : this.object.setMuted(m);
+				typeof(this.object.muted) !== "function" ? this.object.muted = m : this.object.setMuted(m);
 			},
 
 			getVolume : function(){
@@ -367,7 +367,7 @@
 			},
 
 			setVolume : function(v){
-				this.object.volume !== undefined ?  this.object.volume = v : this.object.setVolume(v);
+				typeof(this.object.volume) !== "function" ?  this.object.volume = v : this.object.setVolume(v);
 			}
 		}
 	};
