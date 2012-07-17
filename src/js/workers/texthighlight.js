@@ -5,7 +5,7 @@
 /*
  * Text highlighting functionality 
  */
-/*global jQuery: false, pe: false, dictionary: false*/
+/*global jQuery: false, pe: false*/
 (function ($) {
 	var _pe = window.pe || {
 		fn: {}
@@ -13,7 +13,7 @@
 	_pe.fn.texthighlight = {
 		type: 'plugin',
 		_exec: function (elm) {
-			var searchCriteria, queryParams = pe.url(document.location).params || "";
+			var searchCriteria;
 
 /*
 * addHighlight
@@ -52,8 +52,8 @@
 				return null;
 			} // end of addHighlight
 
-			if (queryParams.texthighlight !== null) {
-				addHighlight(queryParams.texthighlight, elm);
+			if (pe.urlquery.texthighlight !== undefined) {
+				addHighlight(pe.urlquery.texthighlight, elm);
 			}
 			return this;
 		} // end of exec

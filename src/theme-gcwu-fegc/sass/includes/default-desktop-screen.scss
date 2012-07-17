@@ -2,7 +2,7 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ */
 html{
 	overflow-y:scroll;
 }
@@ -476,7 +476,7 @@ a:visited{
 
 #gcwu-psnb .mb-mega .mb-sm-open{
 	border-bottom:4px solid #0F315B;
-	background:0;
+	background: linear-gradient(bottom, #EEE 0%, #CCC 100%);background: -o-linear-gradient(bottom, #EEE 0%, #CCC 100%);background: -moz-linear-gradient(bottom, #EEE 0%, #CCC 100%);background: -moz-linear-gradient(bottom, #EEE 0%, #CCC 100%);background: -webkit-linear-gradient(bottom, #EEE 0%, #CCC 100%);background: -ms-linear-gradient(bottom, #EEE 0%, #CCC 100%);
 }
 
 #wb-foot h4,#wb-foot .gcwu-col-head{

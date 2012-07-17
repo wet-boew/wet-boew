@@ -13,39 +13,48 @@
 	/* local reference */
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
-		depends : ['metadata', 'easytabs', 'equalheights'],
+		depends : (pe.mobile ? [] : ['metadata', 'easytabs', 'equalheights']),
 		mobile : function (elm) {
-			var $tabs,
-				$panels,
-				$accordion,
-				$collapsible
-				
+			var $tabs = elm.find(".tabs > li"),
+				$panels = elm.find(".tabs-panel > div"),
+				$accordion = $('<div data-role="collapsible-set" data-content-theme="b" data-theme="b"/>'),
+				$collapsible,
+				needh = (elm.hasClass('tabs-style-4') || elm.hasClass('tabs-style-5')),
+				prevh,
+				hlevel,
+				defaulttab = false;
+
 			// Convert html elements and attributes into the format the jQuery mobile accordian plugin expects.
 			// Get the content out of the html structure tabbedinterface usually expects.
-			$panels = elm.find(".tabs-panel").children();
 			// Create the accordion structure to move the content to.
-			$accordion = $('<div data-role="collapsible-set" data-content-theme="b" data-theme="b"/>');
-			if ($panels.filter(".default").length < 1){
-				$panels.filter(":first").addClass("default");
+			elm.removeClass();
+			if (needh) {
+				prevh = elm.closest('section').find(':header:first');
+				hlevel = (prevh.length > 0 ? (parseInt(prevh.prop('tagName').substr(1), 10) + 1) : 3);
 			}
-			elm.find(".tabs").remove();
-			$panels.each(function(){
-				var $p = $(this);
+			$panels.each(function (index) {
 				$collapsible = $('<div data-role="collapsible"/>');
-				$collapsible.append($p.find(":header:first").parent().html());
-				if ($p.hasClass('default')) {
+				if (needh) {
+					$collapsible.append('<h' + hlevel + '>' + $tabs.eq(index).children('a').html() + '</h' + hlevel + '>' + $(this).html());
+				} else {
+					$collapsible.append($(this).find(":header:first").parent().html());
+				}
+				if ($tabs.eq(index).hasClass('default')) {
 					$collapsible.attr('data-collapsed', 'false');
+					defaulttab = true;
 				}
 				$accordion.append($collapsible);
 			});
+			if (!defaulttab) {
+				$accordion.children().eq(0).attr('data-collapsed', 'false');
+			}
+			$tabs.remove();
 			elm.empty().append($accordion);
 			return elm;
 		},
 		_exec : function (elm) {
 			if (pe.mobile) {
-				if (! elm.hasClass("tabs-style-4") && !elm.hasClass("tabs-style-5")){
-					return _pe.fn.tabbedinterface.mobile(elm).trigger('create');
-				}
+				return _pe.fn.tabbedinterface.mobile(elm).trigger('create');
 			}
 			var $default_tab,
 				$nav,
@@ -104,13 +113,13 @@
 
 			$nav = elm.find(".tabs");
 			$tabs = $nav.find("li > a");
-			$panels = elm.find(".tabs-panel").children();
+			$panels = elm.find(".tabs-panel").children().attr('tabindex', '-1');
 			$default_tab = ($nav.find(".default").length > 0 ? $nav.find(".default") : $nav.find("li:first-child"));
 			$nav.attr("role", "tablist");
 			$nav.find("li").each(function () {
 				$(this).attr("role", "presentation");
 				return $(this).children("a").each(function () {
-					return $(this).attr("role", "tab").attr("aria-selected", "false").attr("id", $(this).attr("href").substring(1) + "-link").bind("click", function () {
+					return $(this).attr("role", "tab").attr("aria-selected", "false").attr("id", $(this).attr("href").substring(1) + "-link").on("click", function () {
 						$(this).parent().parent().children("." + opts.tabActiveClass).children("a").each(function () {
 							$(this).attr("aria-selected", "false");
 							return $("#" + $(this).attr("href").substring(1)).attr("aria-hidden", "true");
@@ -121,37 +130,34 @@
 				});
 			});
 			$panels.each(function () {
-				return $(this).attr("role", "tabpanel").attr("aria-hidden", "true").attr("aria-labelledby", $("a[href*=\"#" + $(this).attr("id") + "\"]").attr("id"));
+				return $(this).attr("role", "tabpanel").attr("aria-hidden", "true").attr("aria-labelledby", $('a[href*="#' + $(this).attr("id") + '"]').attr("id"));
 			});
 			$default_tab.children("a").each(function () {
 				$(this).attr("aria-selected", "true");
 				return $("#" + $(this).attr("href").substring(1)).attr("aria-hidden", "false");
 			});
-			$nav.find("li a").bind("focus", function () {
+			$nav.find("li a").on("focus", function () {
 				$panels.stop(true, true);
-				$(this).click();
 			});
-			$nav.find("li a").keydown(function (e) {
+			$nav.find("li a").on("keydown", function (e) {
 				if (e.keyCode === 13 || e.keyCode === 32) {
-					var $current = $panels.filter(function () {
-							return $(this).is("." + opts.tabActiveClass);
-						});
-					$current.attr("tabindex", "0");
+					var $current = $panels.filter($(this).attr('href'));//function () {
+							//return $(this).is("." + opts.tabActiveClass);
+							//return $(this).
+						//});
 					if (e.stopPropagation) {
 						e.stopImmediatePropagation();
 					} else {
 						e.cancelBubble = true;
 					}
-					return setTimeout(function () {
-						return $current.focus();
-					}, 0);
+					return pe.focus($current);
 				}
 			});
-			elm.keydown(function (e) {
+			elm.on("keydown", function (e) {
 				if (e.which === 37 || e.which === 38) { // left or up
 					selectPrev($tabs, $panels, opts, false);
 					e.preventDefault();
-				} else if (e.which === 39 || e.which === 40) { // right or down
+				} else if (e.which === 39 || e.which === 40) { // tab, right or down
 					selectNext($tabs, $panels, opts, false);
 					e.preventDefault();
 				}
@@ -179,7 +185,7 @@
 				$prev.parent().addClass(opts.tabActiveClass).children().addClass(opts.tabActiveClass).filter("a").attr("aria-selected", "true");
 				cycleButton = $current.parent().siblings(".tabs-toggle");
 				if (!keepFocus && (cycleButton.length === 0 || cycleButton.data("state") === "stopped")) {
-					return $prev.focus();
+					return pe.focus($prev);
 				}
 			};
 			selectNext = function ($tabs, $panels, opts, keepFocus) {
@@ -205,14 +211,14 @@
 				$next.parent().addClass(opts.tabActiveClass).children().addClass(opts.tabActiveClass).filter("a").attr("aria-selected", "true");
 				cycleButton = $current.parent().siblings(".tabs-toggle");
 				if (!keepFocus && (cycleButton.length === 0 || cycleButton.data("state") === "stopped")) {
-					return $next.focus();
+					return pe.focus($next);
 				}
 			};
 			toggleCycle = function () {
 				if ($toggleRow.data("state") === "stopped") {
 					selectNext($tabs, $panels, opts, true);
 					cycle($tabs, $panels, opts);
-					$toggleButton.removeClass(start["class"]).addClass(stop["class"]).html(stop.text + "<span class='wb-invisible'>" + stop["hidden-text"] + "</span>").attr("aria-pressed", true);
+					$toggleButton.removeClass(start["class"]).addClass(stop["class"]).html(stop.text + '<span class="wb-invisible">' + stop["hidden-text"] + '</span>').attr("aria-pressed", true);
 					return $(".wb-invisible", $toggleButton).text(stop["hidden-text"]);
 				}
 				if ($toggleRow.data("state") === "started") {
@@ -249,18 +255,18 @@
 					clearTimeout(elm.data("interval"));
 					elm.find(".tabs-roller").width(0).hide().stop();
 					elm.find(".tabs-toggle").data("state", "stopped");
-					$toggleButton.removeClass(stop["class"]).addClass(start["class"]).html(start.text + "<span class='wb-invisible'>" + start["hidden-text"] + "</span>").attr("aria-pressed", false);
+					$toggleButton.removeClass(stop["class"]).addClass(start["class"]).html(start.text + '<span class="wb-invisible">' + start["hidden-text"] + '</span>').attr("aria-pressed", false);
 					return $(".wb-invisible", $toggleButton).text(start["hidden-text"]);
 				};
 				//
 				// creates a play/pause, prev/next buttons, and lets the user toggle the stateact as PREV button MB
-				$toggleRowPrev = $("<li class='tabs-toggle'>");
+				$toggleRowPrev = $('<li class="tabs-toggle">');
 				prev = {
 					"class" : "tabs-prev",
 					"text" : '&nbsp;&nbsp;&nbsp;',
 					"hidden-text" : pe.dic.get('%previous')
 				};
-				$toggleButtonPrev = $("<a class='" + prev["class"] + "' href='javascript:;' role='button' aria-pressed='true'>" + prev.text + "<span class='wb-invisible'>" + prev["hidden-text"] + "</span></a>");
+				$toggleButtonPrev = $('<a class="' + prev["class"] + '" href="javascript:;" role="button" aria-pressed="true">' + prev.text + '<span class="wb-invisible">' + prev["hidden-text"] + '</span></a>');
 				$nav.append($toggleRowPrev.append($toggleButtonPrev));
 				// lets the user jump to the previous tab by clicking on the PREV button
 				$toggleButtonPrev.click(function () {
@@ -276,7 +282,7 @@
 					"text" : '&nbsp;&nbsp;&nbsp;',
 					"hidden-text" : pe.dic.get('%next')
 				};
-				$toggleButtonNext = $("<a class='" + next["class"] + "' href='javascript:;' role='button' aria-pressed='true'>" + next.text + "<span class='wb-invisible'>" + next["hidden-text"] + "</span></a>");
+				$toggleButtonNext = $('<a class="' + next["class"] + '" href="javascript:;" role="button" aria-pressed="true">' + next.text + '<span class="wb-invisible">' + next["hidden-text"] + '</span></a>');
 				$nav.append($toggleRowNext.append($toggleButtonNext));
 				// lets the user jump to the next tab by clicking on the NEXT button
 				$toggleButtonNext.click(function () {
@@ -286,7 +292,7 @@
 				//
 				//End NEXT button
 				//
-				$toggleRow = $("<li class='tabs-toggle'>");
+				$toggleRow = $('<li class="tabs-toggle">');
 				stop = {
 					"class" : "tabs-stop",
 					text : pe.dic.get('%stop'),
@@ -297,7 +303,7 @@
 					text : pe.dic.get('%play'),
 					"hidden-text" : pe.dic.get('%tab-rotation', 'enable')
 				};
-				$toggleButton = $("<a class='" + stop["class"] + "' href='javascript:;' role='button' aria-pressed='true'>" + stop.text + "<span class='wb-invisible'>" + stop["hidden-text"] + "</span></a>");
+				$toggleButton = $('<a class="' + stop["class"] + '" href="javascript:;" role="button" aria-pressed="true">' + stop.text + '<span class="wb-invisible">' + stop["hidden-text"] + '</span></a>');
 				$nav.append($toggleRow.append($toggleButton));
 				$toggleRow.click(toggleCycle).bind("keydown", function (e) {
 					if (e.keyCode === 32) {
@@ -310,12 +316,12 @@
 				});
 				$tabs.each(function () {
 					var $pbar;
-					$pbar = $("<div class=\"tabs-roller\">").hide().click(function () {
+					$pbar = $('<div class="tabs-roller">').hide().click(function () {
 						return $(this).siblings("a").click();
 					}).hover(function () {
 						return $(this).css("cursor", "text");
 					});
-					if ($.browser.msie && $.browser.version < 8) {
+					if (pe.ie > 0 && pe.ie < 8) {
 						$(".tabs-style-2 .tabs, .tabs-style-2 .tabs li").css("filter", "");
 					}
 					return $(this).parent().append($pbar);
@@ -325,22 +331,21 @@
 					stopCycle();
 				}
 			}
-			elm.find("a[href^=\"#\"]").each(function () {
+			elm.find('a[href^="#"]').each(function () {
 				var anchor,
 					hash;
 				hash = $(this).attr("href");
 				if (hash.length > 1) {
 					anchor = $(hash, $panels);
 					if (anchor.length) {
-						//console.log("anchor found:", anchor, ", for link:", $(this));
 						return $(this).click(function (e) {
 							var panel,
 								panelId;
-							panel = anchor.parents("[role=\"tabpanel\"]:hidden");
+							panel = anchor.parents('[role="tabpanel"]:hidden');
 							if (panel) {
 								e.preventDefault();
 								panelId = panel.attr("id");
-								panel.parent().siblings(".tabs").find("a[href=\"#" + panelId + "\"]").click();
+								panel.parent().siblings(".tabs").find('a[href="#' + panelId + '"]').trigger('click');
 								return anchor.get(0).scrollIntoView(true);
 							}
 						});

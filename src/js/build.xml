@@ -49,6 +49,7 @@
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="images/**"/>
+					<include name="bin/**"/>
 					<include name="jquery.mobile/*.min.js"/>
 					<include name="*.js"/>
 					<exclude name="pe-ap.js"/> 
@@ -122,29 +123,34 @@
 	</target>
 
 	<target name="-merge-css">
-		<copy todir="${build.dir}/premin/css">
+		<copy todir="${build.dir}/premerge/css">
 			<fileset dir="${src.dir}/css"/>
 		</copy>
-		<replace dir="${build.dir}/premin/css" token="@charset &quot;utf-8&quot;;" value=" "/>
-		<concat dest="${build.dir}/premin/css/pe-ap.css" fixlastline="yes">
-			<header>@charset &quot;utf-8&quot;;</header> 
-			<fileset dir="${build.dir}/premin/css">
+		<replace dir="${build.dir}/premerge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
+		<concat destfile="${build.dir}/premerge/css/pe-ap.css" fixlastline="yes" append="true">
+			<fileset dir="${build.dir}/premerge/css">
+				<include name="*.css"/>
+				<exclude name="*-ie7.css"/>
+				<exclude name="*-ie8.css"/>
+				<exclude name="pe-ap*.css"/>
+			</fileset>
+		</concat>
+		<concat destfile="${build.dir}/premerge/css/pe-ap-ie.css" fixlastline="yes" append="true">
+			<fileset dir="${build.dir}/premerge/css">
 				<include name="*.css"/>
 				<exclude name="pe-ap*.css"/>
 			</fileset>
 		</concat>
-		<concat dest="${build.dir}/premin/css/pe-ap-ie.css" fixlastline="yes">
-			<header>@charset &quot;utf-8&quot;;</header> 
-			<fileset dir="${build.dir}/premin/css">
-				<include name="*.css"/>
-				<exclude name="pe-ap*.css"/>
-			</fileset>
-		</concat>
-		<delete>
-			<fileset dir="${build.dir}/premin/css">
-				<exclude name="pe-ap*.css"/>
-			</fileset>
-		</delete>
+		<copy todir="${build.dir}/premin/css">
+			<filelist dir="${build.dir}/premerge/css">
+				<file name="pe-ap.css"/>
+				<file name="pe-ap-ie.css"/>
+			</filelist>
+			<filterchain>
+				<concatfilter prepend="${src.dir}/../css-head.txt"/>
+			</filterchain>
+		</copy>
+		<delete dir="${build.dir}/premerge"/>
 	</target>
 
 	<target name="clean-css">

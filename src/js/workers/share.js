@@ -13,7 +13,7 @@
 	/* local reference */
 	_pe.fn.share = {
 		type : 'plugin',
-		depends : ['metadata', 'bookmark'],
+		depends : ['metadata', 'bookmark', 'outside'],
 		_exec : function (elm) {
 			var opts, overrides, $popup, $popupText, $popupLinks, target, leftoffset, keychar, elmtext, matches, match;
 
@@ -71,9 +71,9 @@
 			if (opts.popup && pe.cssenabled) {
 				elm.attr('role', 'application');
 				$popup = elm.find('.bookmark_popup').attr('id', 'bookmark_popup').attr('aria-hidden', 'true').attr('role', 'menu').prepend('<p class="popup_title">' + opts.popupText + '</p>');
-				$popupLinks = $popup.find('li').attr('role', 'presentation').find('a').attr('role', 'menuitem').attr('tabindex', '-1');
-				$popupText = elm.find('.bookmark_popup_text').off('click');
-				$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').attr('aria-pressed', 'false').on("click keydown", function (e) {
+				$popupLinks = $popup.find('li').attr('role', 'presentation').find('a').attr('role', 'menuitem');
+				$popupText = elm.find('.bookmark_popup_text').off('click vclick keydown');
+				$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').attr('aria-pressed', 'false').on("click vclick keydown", function (e) {
 					if (e.type === "keydown" && (!(e.ctrlKey || e.altKey || e.metaKey))) {
 						switch (e.keyCode) {
 						case 13: // enter key
@@ -89,8 +89,8 @@
 							$popup.trigger("open");
 							return false;
 						}
-					} else if (e.type === "click") {
-						if ($(e.target).attr('aria-pressed') === 'false') {
+					} else {
+						if ($popup.attr('aria-hidden') === 'true') {
 							$popup.trigger("open");
 						} else {
 							$popup.trigger("close");
@@ -98,13 +98,10 @@
 						return false;
 					}
 				});
-				$popup.on("keydown open close", function (e) {
+				$popup.on("keydown focusoutside open close closenofocus", function (e) {
 					if (e.type === "keydown") {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 							switch (e.keyCode) {
-							case 9: // tab key (close the popup)
-								$popup.trigger("close");
-								return false;
 							case 27: // escape key (close the popup)
 								$popup.trigger("close");
 								return false;
@@ -117,20 +114,20 @@
 								return false;
 							case 38: // up arrow (go one link up, or to the bottom-most link in the previous column, or to the bottom-most link of the last column)
 								leftoffset = $(e.target).offset().left;
-								target = $(e.target).closest('li').prevAll().find('a').filter(function (index) {
+								target = $(e.target).closest('li').prevAll().find('a').filter(function () {
 									return ($(this).offset().left === leftoffset);
 								});
 								if (target.length > 0) {
 									pe.focus(target.first());
 								} else {
-									target = $popupLinks.filter(function (index) {
+									target = $popupLinks.filter(function () {
 										return ($(this).offset().left < leftoffset);
 									});
 									if (target.length > 0) {
 										pe.focus(target.last());
 									} else {
 										leftoffset = $popupLinks.last().offset().left;
-										target = $popupLinks.filter(function (index) {
+										target = $popupLinks.filter(function () {
 											return ($(this).offset().left > leftoffset);
 										});
 										if (target.length > 0) {
@@ -150,13 +147,13 @@
 								return false;
 							case 40: // down arrow (go one link down, or to the top-most link in the next column, or to the top-most link of the first column)
 								leftoffset = $(e.target).offset().left;
-								target = $(e.target).closest('li').nextAll().find('a').filter(function (index) {
+								target = $(e.target).closest('li').nextAll().find('a').filter(function () {
 									return ($(this).offset().left === leftoffset);
 								});
 								if (target.length > 0) {
 									pe.focus(target.first());
 								} else {
-									target = $popupLinks.filter(function (index) {
+									target = $popupLinks.filter(function () {
 										return ($(this).offset().left > leftoffset);
 									});
 									if (target.length > 0) {
@@ -171,7 +168,7 @@
 								if ((e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91)) {
 									keychar = String.fromCharCode(e.keyCode).toLowerCase();
 									elmtext = $(e.target).text();
-									matches = $popupLinks.filter(function (index) {
+									matches = $popupLinks.filter(function () {
 										return ($(this).text().substring(1, 2).toLowerCase() === keychar || $(this).text() === elmtext);
 									});
 									if (matches.length > 0) {
@@ -195,16 +192,23 @@
 								}
 							}
 						}
+					} else if (e.type === "focusoutside") { // Close the popup menu if focus goes outside
+						$popup.trigger("closenofocus");
 					} else if (e.type === "open") { // Open the popup menu an put the focus on the first link
-						$popupText.text(opts.hideText + opts.popupText).attr('aria-pressed', 'true');
-						pe.focus($popup.show().attr('aria-hidden', 'false').find('li a').first());
-					} else if (e.type === "close") { // Close the popup menu and put the focus on the popup link
-						pe.focus($popupText.text(opts.popupText).attr('aria-pressed', 'false').first());
-						$popup.hide().attr('aria-hidden', 'true');
+						$popupText.attr('aria-pressed', 'true').text(opts.hideText + opts.popupText);
+						$popup.attr('aria-hidden', 'false').show();
+						pe.focus($popup.show().find('li a').first());
+					} else if (e.type === "close" || e.type === "closenofocus") { // Close the popup menu
+						$popupText.attr('aria-pressed', 'false').text(opts.popupText);
+						$popup.attr('aria-hidden', 'true').hide();
+						if (e.type === "close") {
+							pe.focus($popupText.first());
+						}
 					}
 				});
-				$(document).on("click", function (e) { // Close the popup menu on any click away from the links
-					if ($popup.attr('aria-hidden') === 'false') {
+
+				$(document).on("click touchstart", function (e) {
+					if ($popup.attr('aria-hidden') === 'false' && !$(e.target).is($popup) && !$(e.target).is($popupText) && $(e.target).closest($popup).length === 0) {
 						$popup.trigger("close");
 					}
 				});

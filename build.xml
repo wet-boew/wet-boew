@@ -33,14 +33,16 @@
 		<ant dir="${src.dir}/base" target="clean-css" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/grids" target="clean-css" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/js" target="clean-css" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean-css" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean-css" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean-css" antfile="build.xml" inheritAll="false"/>
 	</target>
 
 	<target name="clean">
+		<ant dir="${src.dir}/base" target="clean" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/grids" target="clean" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/js" target="clean" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean" antfile="build.xml" inheritAll="false"/>
 		<delete dir="${dist.dir}" />
 	</target>
 </project>
