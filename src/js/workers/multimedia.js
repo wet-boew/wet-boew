@@ -169,7 +169,7 @@
 							});
 							break;
 						case "volumechange":
-							if (this.getMuted() || this.getVolume() === 0){
+							if (this.getMuted()){
 								$w.find(".mute img").attr({
 									alt: _pe.dic.get("%mute", "disable"),
 									src: "" //player.icons.mute_on
