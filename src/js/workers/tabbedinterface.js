@@ -119,31 +119,27 @@
 			});
 			$panels = elm.find(".tabs-panel").children().attr('tabindex', '-1');
 			$default_tab = ($nav.find(".default").length > 0 ? $nav.find(".default") : $nav.find("li:first-child"));
-			$tabs.on("keydown focus", function (e) {
-				var $target = $(e.target),
-					$current;
-				if (e.type === "keydown") {
-					if (e.keyCode === 13 || e.keyCode === 32) {
-						$current = $panels.filter($(this).attr('href'));
-						if (e.stopPropagation) {
-							e.stopImmediatePropagation();
-						} else {
-							e.cancelBubble = true;
-						}
-						pe.focus($current);
-					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
-						selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
-						e.preventDefault();
-					} else if (e.keyCode === 39 || e.keyCode === 40) { // right or down
-						selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
-						e.preventDefault();
+			$tabs.on("keydown", function (e) {
+				var $target = $(e.target);
+				if (e.keyCode === 13 || e.keyCode === 32) {
+					if (e.stopPropagation) {
+						e.stopImmediatePropagation();
+					} else {
+						e.cancelBubble = true;
 					}
-				} else if (e.type === "focus") {
+					e.preventDefault();
 					if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
 						selectTab($target, $tabs, $panels, opts, false);
+					} else {
+						pe.focus($panels.filter($target.attr('href')));
 					}
-					return false;
-				} 
+				} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
+					selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
+					e.preventDefault();
+				} else if (e.keyCode === 39 || e.keyCode === 40) { // right or down
+					selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
+					e.preventDefault();
+				}
 			});
 			$panels.each(function () {
 				return $(this).attr("role", "tabpanel").attr("aria-hidden", "true").attr("aria-labelledby", $('a[href*="#' + $(this).attr("id") + '"]').attr("id"));
@@ -232,7 +228,7 @@
 					"text" : '&nbsp;&nbsp;&nbsp;',
 					"hidden-text" : pe.dic.get('%previous')
 				};
-				$toggleButtonPrev = $('<a class="' + prev["class"] + '" href="javascript:;" role="button" aria-pressed="true">' + prev.text + '<span class="wb-invisible">' + prev["hidden-text"] + '</span></a>');
+				$toggleButtonPrev = $('<a class="' + prev["class"] + '" href="javascript:;" role="button">' + prev.text + '<span class="wb-invisible">' + prev["hidden-text"] + '</span></a>');
 				$nav.append($toggleRowPrev.append($toggleButtonPrev));
 				// lets the user jump to the previous tab by clicking on the PREV button
 				$toggleButtonPrev.on("click", function () {
@@ -248,7 +244,7 @@
 					"text" : '&nbsp;&nbsp;&nbsp;',
 					"hidden-text" : pe.dic.get('%next')
 				};
-				$toggleButtonNext = $('<a class="' + next["class"] + '" href="javascript:;" role="button" aria-pressed="true">' + next.text + '<span class="wb-invisible">' + next["hidden-text"] + '</span></a>');
+				$toggleButtonNext = $('<a class="' + next["class"] + '" href="javascript:;" role="button">' + next.text + '<span class="wb-invisible">' + next["hidden-text"] + '</span></a>');
 				$nav.append($toggleRowNext.append($toggleButtonNext));
 				// lets the user jump to the next tab by clicking on the NEXT button
 				$toggleButtonNext.on("click", function () {
