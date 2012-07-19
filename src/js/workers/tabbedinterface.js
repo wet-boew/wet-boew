@@ -65,8 +65,9 @@
 				cycle,
 				opts,
 				overrides,
-				selectNext,
-				selectPrev,
+				getNextTab,
+				getPrevTab,
+				selectTab,
 				start,
 				stop,
 				stopCycle,
@@ -111,23 +112,38 @@
 				$.extend(opts, overrides, elm.metadata());
 			}
 
-			$nav = elm.find(".tabs");
-			$tabs = $nav.find("li > a");
+			$nav = elm.find(".tabs").attr("role", "tablist");
+			$tabs = $nav.children("li").attr("role", "presentation").children('a:not(.tabs-toggle)').attr("role", "tab").attr("aria-selected", "false").each(function () {
+				var $this = $(this);
+				$this.attr("id", $this.attr("href").substring(1) + "-link");
+			});
 			$panels = elm.find(".tabs-panel").children().attr('tabindex', '-1');
 			$default_tab = ($nav.find(".default").length > 0 ? $nav.find(".default") : $nav.find("li:first-child"));
-			$nav.attr("role", "tablist");
-			$nav.find("li").each(function () {
-				$(this).attr("role", "presentation");
-				return $(this).children("a").each(function () {
-					return $(this).attr("role", "tab").attr("aria-selected", "false").attr("id", $(this).attr("href").substring(1) + "-link").on("click", function () {
-						$(this).parent().parent().children("." + opts.tabActiveClass).children("a").each(function () {
-							$(this).attr("aria-selected", "false");
-							return $("#" + $(this).attr("href").substring(1)).attr("aria-hidden", "true");
-						});
-						$(this).attr("aria-selected", "true");
-						return $("#" + $(this).attr("href").substring(1)).attr("aria-hidden", "false");
-					});
-				});
+			$tabs.on("keydown focus", function (e) {
+				var $target = $(e.target),
+					$current;
+				if (e.type === "keydown") {
+					if (e.keyCode === 13 || e.keyCode === 32) {
+						$current = $panels.filter($(this).attr('href'));
+						if (e.stopPropagation) {
+							e.stopImmediatePropagation();
+						} else {
+							e.cancelBubble = true;
+						}
+						pe.focus($current);
+					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
+						selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
+						e.preventDefault();
+					} else if (e.keyCode === 39 || e.keyCode === 40) { // right or down
+						selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
+						e.preventDefault();
+					}
+				} else if (e.type === "focus") {
+					if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
+						selectTab($target, $tabs, $panels, opts, false);
+					}
+					return false;
+				} 
 			});
 			$panels.each(function () {
 				return $(this).attr("role", "tabpanel").attr("aria-hidden", "true").attr("aria-labelledby", $('a[href*="#' + $(this).attr("id") + '"]').attr("id"));
@@ -136,87 +152,37 @@
 				$(this).attr("aria-selected", "true");
 				return $("#" + $(this).attr("href").substring(1)).attr("aria-hidden", "false");
 			});
-			$nav.find("li a").on("focus", function () {
-				$panels.stop(true, true);
-			});
-			$nav.find("li a").on("keydown", function (e) {
-				if (e.keyCode === 13 || e.keyCode === 32) {
-					var $current = $panels.filter($(this).attr('href'));//function () {
-							//return $(this).is("." + opts.tabActiveClass);
-							//return $(this).
-						//});
-					if (e.stopPropagation) {
-						e.stopImmediatePropagation();
-					} else {
-						e.cancelBubble = true;
-					}
-					return pe.focus($current);
-				}
-			});
-			elm.on("keydown", function (e) {
-				if (e.which === 37 || e.which === 38) { // left or up
-					selectPrev($tabs, $panels, opts, false);
-					e.preventDefault();
-				} else if (e.which === 39 || e.which === 40) { // tab, right or down
-					selectNext($tabs, $panels, opts, false);
-					e.preventDefault();
-				}
-			});
-			selectPrev = function ($tabs, $panels, opts, keepFocus) {
-				var $current,
-					$prev,
-					cycleButton;
-				$panels.stop(true, true);
-				$current = $tabs.filter(function () {
-					return $(this).is("." + opts.tabActiveClass);
-				});
-				$prev = $tabs.eq(($tabs.index($current) - 1) + $tabs.size() % $tabs.size());
-				if (opts.animate) {
-					$panels.filter("." + opts.panelActiveClass).removeClass(opts.panelActiveClass).attr("aria-hidden", "true").fadeOut(opts.animationSpeed, function () {
-						return $panels.filter("#" + $prev.attr("href").substr(1)).fadeIn(opts.animationSpeed, function () {
-							return $(this).addClass(opts.panelActiveClass).attr("aria-hidden", "false");
-						});
-					});
-				} else {
-					$panels.removeClass(opts.panelActiveClass).attr("aria-hidden", "true").hide();
-					$panels.filter("#" + $prev.attr("href").substr(1)).show().addClass(opts.panelActiveClass).attr("aria-hidden", "false");
-				}
-				$tabs.parent().removeClass(opts.tabActiveClass).children().removeClass(opts.tabActiveClass).filter("a").attr("aria-selected", "false");
-				$prev.parent().addClass(opts.tabActiveClass).children().addClass(opts.tabActiveClass).filter("a").attr("aria-selected", "true");
-				cycleButton = $current.parent().siblings(".tabs-toggle");
-				if (!keepFocus && (cycleButton.length === 0 || cycleButton.data("state") === "stopped")) {
-					return pe.focus($prev);
-				}
+			getNextTab = function ($tabs) {
+				var $next = $tabs.filter('.' + opts.tabActiveClass).parent().next(':not(.tabs-toggle)');
+				return ($next.length === 0 ? $tabs.first() : $next.children());
 			};
-			selectNext = function ($tabs, $panels, opts, keepFocus) {
-				var $current,
-					$next,
-					cycleButton;
+			getPrevTab = function ($tabs) {
+				var $prev = $tabs.filter('.' + opts.tabActiveClass).parent().prev();
+				return ($prev.length === 0 ? $tabs.last() : $prev.children());
+			};
+			selectTab = function ($selection, $tabs, $panels, opts, keepFocus) {
+				var cycleButton;
 				$panels.stop(true, true);
-				$current = $tabs.filter(function () {
-					return $(this).is("." + opts.tabActiveClass);
-				});
-				$next = $tabs.eq(($tabs.index($current) + 1) % $tabs.size());
 				if (opts.animate) {
 					$panels.filter("." + opts.panelActiveClass).removeClass(opts.panelActiveClass).attr("aria-hidden", "true").fadeOut(opts.animationSpeed, function () {
-						return $panels.filter("#" + $next.attr("href").substr(1)).fadeIn(opts.animationSpeed, function () {
+						return $panels.filter("#" + $selection.attr("href").substr(1)).fadeIn(opts.animationSpeed, function () {
 							return $(this).addClass(opts.panelActiveClass).attr("aria-hidden", "false");
 						});
 					});
 				} else {
 					$panels.removeClass(opts.panelActiveClass).attr("aria-hidden", "true").hide();
-					$panels.filter("#" + $next.attr("href").substr(1)).show().addClass(opts.panelActiveClass).attr("aria-hidden", "false");
+					$panels.filter("#" + $selection.attr("href").substr(1)).show().addClass(opts.panelActiveClass).attr("aria-hidden", "false");
 				}
 				$tabs.parent().removeClass(opts.tabActiveClass).children().removeClass(opts.tabActiveClass).filter("a").attr("aria-selected", "false");
-				$next.parent().addClass(opts.tabActiveClass).children().addClass(opts.tabActiveClass).filter("a").attr("aria-selected", "true");
-				cycleButton = $current.parent().siblings(".tabs-toggle");
+				$selection.parent().addClass(opts.tabActiveClass).children().addClass(opts.tabActiveClass).filter("a").attr("aria-selected", "true");
+				cycleButton = $selection.parent().siblings(".tabs-toggle");
 				if (!keepFocus && (cycleButton.length === 0 || cycleButton.data("state") === "stopped")) {
-					return pe.focus($next);
+					return pe.focus($selection);
 				}
 			};
 			toggleCycle = function () {
 				if ($toggleRow.data("state") === "stopped") {
-					selectNext($tabs, $panels, opts, true);
+					selectTab(getNextTab($tabs), $tabs, $panels, opts, true);
 					cycle($tabs, $panels, opts);
 					$toggleButton.removeClass(start["class"]).addClass(stop["class"]).html(stop.text + '<span class="wb-invisible">' + stop["hidden-text"] + '</span>').attr("aria-pressed", true);
 					return $(".wb-invisible", $toggleButton).text(stop["hidden-text"]);
@@ -245,7 +211,7 @@
 						width : $current.parent().width()
 					}, opts.cycle - 200, "linear", function () {
 						$(this).width(0).hide();
-						selectNext($tabs, $panels, opts, true);
+						selectTab(getNextTab($tabs), $tabs, $panels, opts, true);
 						return elm.data("interval", setTimeout(function () {
 							return cycle($tabs, $panels, opts);
 						}, 0));
@@ -269,8 +235,8 @@
 				$toggleButtonPrev = $('<a class="' + prev["class"] + '" href="javascript:;" role="button" aria-pressed="true">' + prev.text + '<span class="wb-invisible">' + prev["hidden-text"] + '</span></a>');
 				$nav.append($toggleRowPrev.append($toggleButtonPrev));
 				// lets the user jump to the previous tab by clicking on the PREV button
-				$toggleButtonPrev.click(function () {
-					selectPrev($tabs, $panels, opts, true);
+				$toggleButtonPrev.on("click", function () {
+					selectTab(getPrevTab($tabs), $tabs, $panels, opts, true);
 				});
 				//
 				//End PREV button
@@ -285,8 +251,8 @@
 				$toggleButtonNext = $('<a class="' + next["class"] + '" href="javascript:;" role="button" aria-pressed="true">' + next.text + '<span class="wb-invisible">' + next["hidden-text"] + '</span></a>');
 				$nav.append($toggleRowNext.append($toggleButtonNext));
 				// lets the user jump to the next tab by clicking on the NEXT button
-				$toggleButtonNext.click(function () {
-					selectNext($tabs, $panels, opts, true);
+				$toggleButtonNext.on("click", function () {
+					selectTab(getNextTab($tabs), $tabs, $panels, opts, true);
 				});
 				//End animation
 				//
@@ -305,7 +271,7 @@
 				};
 				$toggleButton = $('<a class="' + stop["class"] + '" href="javascript:;" role="button" aria-pressed="true">' + stop.text + '<span class="wb-invisible">' + stop["hidden-text"] + '</span></a>');
 				$nav.append($toggleRow.append($toggleButton));
-				$toggleRow.click(toggleCycle).bind("keydown", function (e) {
+				$toggleRow.click(toggleCycle).on("keydown", function (e) {
 					if (e.keyCode === 32) {
 						toggleCycle();
 						return e.preventDefault();
