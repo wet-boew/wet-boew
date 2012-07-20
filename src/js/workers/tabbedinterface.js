@@ -57,9 +57,10 @@
 				return _pe.fn.tabbedinterface.mobile(elm).trigger('create');
 			}
 			var $default_tab,
-				$nav,
-				$panels,
-				$tabs,
+				$nav = elm.find(".tabs"),
+				$tabs = $nav.find('a:not(.tabs-toggle)'),
+				$tabsPanel = elm.find('.tabs-panel'),
+				$panels = $tabsPanel.children(),
 				$toggleButton,
 				$toggleRow,
 				cycle,
@@ -113,14 +114,18 @@
 				$.extend(opts, overrides, elm.metadata());
 			}
 
-			$nav = elm.find(".tabs").attr("role", "tablist");
-			$tabs = $nav.children("li").attr("role", "presentation").children('a:not(.tabs-toggle)').attr("role", "tab").attr("aria-selected", "false").each(function () {
-				var $this = $(this);
-				$this.attr('id', $this.attr('href').substring(1) + tabSuffix);
+			$nav.attr("role", "tablist").children("li").attr("role", "presentation");
+			$tabs.attr("role", "tab").attr("aria-selected", "false").each(function () {
+				var $this = $(this),
+					href = $this.attr('href').substring(1);
+				$this.attr('aria-controls', href).attr('id', href + tabSuffix);
 			});
-			$panels = elm.find('.tabs-panel').children().attr('tabindex', '-1').each(function () {
+			$tabsPanel.attr('id', $panels.eq(0).attr('id') + '-parent');
+			$panels.attr('tabindex', '-1').attr("role", "tabpanel").attr("aria-hidden", "true").each(function () {
 				var $this = $(this);
-				$this.attr('aria-labelledby', $this.attr('id') + tabSuffix);
+				if (pe.ie > 0) {
+					$this.attr('aria-labelledby', $this.attr('id') + tabSuffix);
+				}
 			});
 			$default_tab = ($nav.find(".default").length > 0 ? $nav.find(".default") : $nav.find("li:first-child"));
 			$tabs.on("keydown", function (e) {
@@ -144,9 +149,6 @@
 					selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
 					e.preventDefault();
 				}
-			});
-			$panels.each(function () {
-				return $(this).attr("role", "tabpanel").attr("aria-hidden", "true").attr("aria-labelledby", $('a[href*="#' + $(this).attr("id") + '"]').attr("id"));
 			});
 			$default_tab.children("a").each(function () {
 				$(this).attr("aria-selected", "true");
@@ -205,6 +207,7 @@
 					$current = $tabs.filter(function () {
 						return $(this).is("." + opts.tabActiveClass);
 					});
+					$tabsPanel.attr('aria-live', 'polite');
 					$pbar = $current.siblings(".tabs-roller");
 					elm.find(".tabs-toggle").data("state", "started");
 					return $pbar.show().animate({
@@ -219,6 +222,7 @@
 				};
 				stopCycle = function () {
 					clearTimeout(elm.data("interval"));
+					$tabsPanel.attr('aria-live', 'off');
 					elm.find(".tabs-roller").width(0).hide().stop();
 					elm.find(".tabs-toggle").data("state", "stopped");
 					$toggleButton.removeClass(stop["class"]).addClass(start["class"]).html(start.text + '<span class="wb-invisible">' + start["hidden-text"] + '</span>').attr("aria-pressed", false);
@@ -226,13 +230,14 @@
 				};
 				//
 				// creates a play/pause, prev/next buttons, and lets the user toggle the stateact as PREV button MB
+				$tabsPanel.attr('role', 'marquee').attr('aria-live', 'off');
 				$toggleRowPrev = $('<li class="tabs-toggle">');
 				prev = {
 					"class" : "tabs-prev",
 					"text" : '&nbsp;&nbsp;&nbsp;',
 					"hidden-text" : pe.dic.get('%previous')
 				};
-				$toggleButtonPrev = $('<a class="' + prev["class"] + '" href="javascript:;" role="button">' + prev.text + '<span class="wb-invisible">' + prev["hidden-text"] + '</span></a>');
+				$toggleButtonPrev = $('<a class="' + prev["class"] + '" href="javascript:;" role="button" aria-controls="' + $tabsPanel.attr('id') + '">' + prev.text + '<span class="wb-invisible">' + prev["hidden-text"] + '</span></a>');
 				$nav.append($toggleRowPrev.append($toggleButtonPrev));
 				// lets the user jump to the previous tab by clicking on the PREV button
 				$toggleButtonPrev.on("click", function () {
@@ -248,7 +253,7 @@
 					"text" : '&nbsp;&nbsp;&nbsp;',
 					"hidden-text" : pe.dic.get('%next')
 				};
-				$toggleButtonNext = $('<a class="' + next["class"] + '" href="javascript:;" role="button">' + next.text + '<span class="wb-invisible">' + next["hidden-text"] + '</span></a>');
+				$toggleButtonNext = $('<a class="' + next["class"] + '" href="javascript:;" role="button" aria-controls="' + $tabsPanel.attr('id') + '">' + next.text + '<span class="wb-invisible">' + next["hidden-text"] + '</span></a>');
 				$nav.append($toggleRowNext.append($toggleButtonNext));
 				// lets the user jump to the next tab by clicking on the NEXT button
 				$toggleButtonNext.on("click", function () {
@@ -269,7 +274,7 @@
 					text : pe.dic.get('%play'),
 					"hidden-text" : pe.dic.get('%tab-rotation', 'enable')
 				};
-				$toggleButton = $('<a class="' + stop["class"] + '" href="javascript:;" role="button" aria-pressed="true">' + stop.text + '<span class="wb-invisible">' + stop["hidden-text"] + '</span></a>');
+				$toggleButton = $('<a class="' + stop["class"] + '" href="javascript:;" role="button" aria-pressed="true" aria-controls="' + $tabsPanel.attr('id') + '">' + stop.text + '<span class="wb-invisible">' + stop["hidden-text"] + '</span></a>');
 				$nav.append($toggleRow.append($toggleButton));
 				$toggleRow.click(toggleCycle).on("keydown", function (e) {
 					if (e.keyCode === 32) {
