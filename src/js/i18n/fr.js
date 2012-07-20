@@ -71,7 +71,7 @@
 			"%error" : "Erreur",
 			"%colon" : "&#160;:",
 			"%start" : "Lancer",
-			"%stop" : "SArrêter",
+			"%stop" : "Arrêter",
 			"%minute-ago": "il ya une minute",
 			"%couple-of-minutes": "il ya quelques minutes",
 			"%minutes-ago": {

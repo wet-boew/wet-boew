@@ -261,7 +261,7 @@
 				$toggleRow = $('<li class="tabs-toggle">');
 				stop = {
 					"class" : "tabs-stop",
-					text : pe.dic.get('%stop'),
+					text : pe.dic.get('%pause'),
 					"hidden-text" : pe.dic.get('%tab-rotation', 'disable')
 				};
 				start = {
