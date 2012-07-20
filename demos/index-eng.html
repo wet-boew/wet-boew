@@ -169,16 +169,16 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a href="langselect/lang-js-fra.html"><span class="wb-invisible">Language selector - </span>French example - JavaScript + PHP</a></li>
 </ul>
 </section>
-</div>
 
-<div class="span-4">
 <section><h2 id="lightbox">Lightbox (Alpha)</h2>
 <ul>
 <li><a href="lightbox/lightbox-eng.html"><span class="wb-invisible">Lightbox - </span>English examples</a></li>
 <li><a href="lightbox/lightbox-fra.html"><span class="wb-invisible">Lightbox - </span>French examples</a></li>
 </ul>
 </section>
+</div>
 
+<div class="span-4">
 <section><h2 id="math">Mathematical/scientific formula display (Alpha)</h2>
 <ul>
 <li><a href="mathlib/mathlib-eng.html"><span class="wb-invisible">Mathematical/scientific formula display - </span>English examples</a></li>
@@ -198,6 +198,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <section><h2 id="opt-cont">Optimal content examples</h2>
 <ul>
 <li><a href="opt-cont/index-eng.html"><span class="wb-invisible">Optimal content examples - </span>English examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="rde">Responsive design emulator</h2>
+<ul>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-eng.html"><span class="wb-invisible">Responsive design emulator - </span>Content page - English - GC Web Usability theme</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-fra.html"><span class="wb-invisible">Responsive design emulator - </span>Content page - French - GC Web Usability theme</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav1-eng.html"><span class="wb-invisible">Responsive design emulator - </span>Content page + Secondary menu 1 - English - GC Web Usability theme</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav1-fra.html"><span class="wb-invisible">Responsive design emulator - </span>Content page + Secondary menu 1 - French - GC Web Usability theme</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-eng.html"><span class="wb-invisible">Responsive design emulator - </span>Content page + Secondary menu 2 - English - GC Web Usability theme</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-fra.html"><span class="wb-invisible">Responsive design emulator - </span>Content page + Secondary menu 2 - French - GC Web Usability theme</a></li>
 </ul>
 </section>
 
@@ -313,5 +324,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <script src="../build/js/settings.js"></script>
 <script src="../build/js/pe-ap-min.js"></script>
 <!-- ScriptsEnd -->
+
+<script>
+/* <![CDATA[ */
+(function ($) {
+	$('#wb-main-in #rde + ul a').each(function () {
+		var $this = $(this),
+			url = window.location.href;
+		$this.attr('href', $this.attr('href') + '?' + url.substring(0, url.lastIndexOf('/') + 1) + $this.attr('data-url'));
+	});
+}(jQuery));
+/* ]]> */
+</script>
 </body>
 </html>

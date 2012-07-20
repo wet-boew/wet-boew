@@ -121,6 +121,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </ul>
 </section>
 
+<section><h2 id="rde">Émulateur de conception réactive</h2>
+<ul>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-eng.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu - Anglais - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-fra.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu - Français - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav1-eng.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 1 - Anglais - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav1-fra.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 1 - Français - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-eng.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 2 - Anglais - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-fra.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 2 - Français - Thème de la facilité d'emploi Web GC</a></li>
+</ul>
+</section>
+
 <section><h2 id="opt-cont">Exemples optimaux de contenu</h2>
 <ul>
 <li><a href="opt-cont/index-eng.html"><span class="wb-invisible">Exemples optimaux de contenu - </span>Exemples en anglais</a></li>
@@ -163,16 +174,16 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a href="lightbox/lightbox-fra.html"><span class="wb-invisible">Lightbox - </span>Exemples en français</a></li>
 </ul>
 </section>
+</div>
 
+<div class="span-4">
 <section><h2 id="texthighlight">Mise en surbrillance de texte</h2>
 <ul>
 <li><a href="texthighlight/texthighlight-eng.html?texthighlight=avian%20influenza+world+cook+flu-like%20symptoms+Don't%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people."><span class="wb-invisible">Mise en surbrillance de texte - </span>Exemples en anglais</a></li>
 <li><a href="texthighlight/texthighlight-fra.html?texthighlight=influenza%20aviaire+monde+suffis+sympt&#244;mes%20semblables%20à%20ceux%20de%20l'influenza+À%20titre%20de%20rappel...+&#192;%20de%20rares%20occasions,%20des%20humains%20ont%20été%20infectés%20par%20ce%20virus."><span class="wb-invisible">Mise en surbrillance de texte - </span>Exemples en français</a></li>
 </ul>
 </section>
-</div>
 
-<div class="span-4">
 <section><h2 id="arch">Modèle de page Web archivée</h2>
 <ul>
 <li><a href="archived/archived-eng.html"><span class="wb-invisible">Modèle de page Web archivée - </span>Exemple en anglais</a></li>
@@ -312,5 +323,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <script src="../build/js/settings.js"></script>
 <script src="../build/js/pe-ap-min.js"></script>
 <!-- ScriptsEnd -->
+
+<script>
+/* <![CDATA[ */
+(function ($) {
+	$('#wb-main-in #rde + ul a').each(function () {
+		var $this = $(this),
+			url = window.location.href;
+		$this.attr('href', $this.attr('href') + '?' + url.substring(0, url.lastIndexOf('/') + 1) + $this.attr('data-url'));
+	});
+}(jQuery));
+/* ]]> */
+</script>
 </body>
 </html>
