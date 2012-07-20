@@ -77,7 +77,8 @@
 				$toggleButtonPrev,
 				$toggleButtonNext,
 				prev,
-				next;
+				next,
+				tabSuffix = "-link";
 
 			// Defaults
 			opts = {
@@ -115,9 +116,12 @@
 			$nav = elm.find(".tabs").attr("role", "tablist");
 			$tabs = $nav.children("li").attr("role", "presentation").children('a:not(.tabs-toggle)').attr("role", "tab").attr("aria-selected", "false").each(function () {
 				var $this = $(this);
-				$this.attr("id", $this.attr("href").substring(1) + "-link");
+				$this.attr('id', $this.attr('href').substring(1) + tabSuffix);
 			});
-			$panels = elm.find(".tabs-panel").children().attr('tabindex', '-1');
+			$panels = elm.find('.tabs-panel').children().attr('tabindex', '-1').each(function () {
+				var $this = $(this);
+				$this.attr('aria-labelledby', $this.attr('id') + tabSuffix);
+			});
 			$default_tab = ($nav.find(".default").length > 0 ? $nav.find(".default") : $nav.find("li:first-child"));
 			$tabs.on("keydown", function (e) {
 				var $target = $(e.target);
