@@ -10,6 +10,11 @@ body{
 	color:#333;
 }
 
+/* Override jQuery Mobile hiding of content on mobile loading to eliminate white flicker */
+.ui-mobile-rendering > * {
+	visibility: visible !important;
+}
+
 #wb-skip {
 	display:none;
 	visibility:hidden;
