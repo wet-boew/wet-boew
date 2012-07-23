@@ -46,6 +46,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	pre code .str{color:#464;font-weight:bold;}
 	pre code .sym{color:#44f;font-weight:bold;}
 	pre code .req{border:1px dashed #b22;background:#ffe;}
+	.wet-boew-lightbox ul {margin-left:0;}
+	.wet-boew-lightbox ul li {list-style-type:none;display:inline;}
+	.wet-boew-lightbox ul li a {text-decoration: none;}
 </style>
 <!-- <![endif]-->
 <!-- CustomScriptsCSSEnd -->
@@ -122,6 +125,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			<li><a href="#examples2">Exemples d'album photos simple</a></li>
 			<li><a href="#examples3">Exemples d'album photos caché</a></li>
 		</ul>
+		<ul>
+			<li><a href="#features">Caractéristiques</a></li>
+			<li><a href="#cssclasses">Classes CSS</a></li>
+			<li><a href="#examples">Exemples</a>
+				<ul>
+					<li><a href="#examples1">Photos seules</a></li>
+					<li><a href="#examples2">Galeries de photos</a></li>
+					<li><a href="#examples3">Galeries de photos cachées</a></li>
+				</ul>
+			</li>
+		</ul>
 	</div>
 </section>
 <div class="clear"></div>
@@ -143,178 +157,193 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<section>
 		<h2 id="cssclasses">Classes CSS</h2>
 		<p>Cet outil utilise les classes CSS suivantes&#160;:</p>
-	
-		<h3>Pour les photos seules</h3>
-		<ul>
-			<li>lightbox</li>
-			<li>lightbox-item</li>
-		</ul>
-		<h3>Pour un album de photos</h3>
-		<ul>
-			<li>Lightbox-group</li>
-			<li>lightbox-group-item</li>
-		</ul>
-		<h3>Pour un album de photos caché</h3>
-		<ul>
-			<li>lightbox-group</li>
-			<li>lightbox-group-item-hidden</li>
-			<li>hidden</li>
-		</ul>
+		<section>
+			<h3>Photos seules</h3>
+			<ul>
+				<li lang="en">lb-single</li>
+				<li lang="en">lb-item</li>
+			</ul>
+		</section>
+		<section>
+			<h3>Galeries de photos</h3>
+			<ul>
+				<li lang="en">lb-gallery</li>
+				<li lang="en">lb-item</li>
+			</ul>
+		</section>
+		<section>
+			<h3>Galeries de photos cachées</h3>
+			<ul>
+				<li lang="en">lb-hidden-gallery</li>
+				<li lang="en">lb-item</li>
+			</ul>
+		</section>
 	</section>
 </div>
-
 <div class="clear"></div>
 
-<h2>Exemples</h2>
-<h3 id="examples1">Photos seules (sans album)</h3>
-<div class="span-4">
-	<h4 class="background-dark margin-bottom-medium">Photos</h4>
+<section>
+	<h2 id="examples">Exemples</h2>
 	<section>
-		<div class="wet-boew-lightbox">
-			<div class="lightbox">
-				<p>
-					<a class="lightbox-item" href="images/1_b.jpg" title="Photo 1">
-						<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
-					</a>
-					<a class="lightbox-item" href="images/2_b.jpg" title="Photo 2">
-						<img src="images/2_s.jpg" alt="Photo 2" class="image-actual" />
-					</a>
-					<a class="lightbox-item" href="images/3_b.jpg" title="Photo 3">
-						<img src="images/3_s.jpg" alt="Photo 3" class="image-actual" />
-					</a>
-					<a class="lightbox-item" href="images/4_b.jpg" title="Photo 4">
-						<img src="images/4_s.jpg" alt="Photo 4" class="image-actual" />
-					</a>
-					<a class="lightbox-item" href="images/5_b.jpg" title="Photo 5">
-						<img src="images/5_s.jpg" alt="Photo 5" class="image-actual" />
-					</a>
-				</p>
-			</div>
+		<h3 id="examples1">Photos seules</h3>
+		<div class="span-4">
+			<h4 class="background-dark margin-bottom-medium">Exemple</h4>
+			<section>
+				<div class="wet-boew-lightbox">
+					<ul class="lb-single">
+						<li>
+							<a class="lb-item" href="images/1_b.jpg" title="Photo 1">
+								<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
+							</a>
+						</li>
+						<li>
+							<a class="lb-item" href="images/2_b.jpg" title="Photo 2">
+								<img src="images/2_s.jpg" alt="Photo 2" class="image-actual" />
+							</a>
+						</li>
+						<li>
+							<a class="lb-item" href="images/3_b.jpg" title="Photo 3">
+								<img src="images/3_s.jpg" alt="Photo 3" class="image-actual" />
+							</a>
+						</li>
+						<li>
+							<a class="lb-item" href="images/4_b.jpg" title="Photo 4">
+								<img src="images/4_s.jpg" alt="Photo 4" class="image-actual" />
+							</a>
+						</li>
+						<li>
+							<a class="lb-item" href="images/5_b.jpg" title="Photo 5">
+								<img src="images/5_s.jpg" alt="Photo 5" class="image-actual" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</section>
 		</div>
 	</section>
-</div>
-
-<div class="span-4">
-	<section>
-		<h4 class="background-dark margin-bottom-medium" id="coding1">Codage</h4>
-		<pre>
-			<code>
-&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
-  &lt;div class=&quot;lightbox&quot;&gt;
-    &lt;p&gt;&lt;a class=&quot;lightbox-item&quot; href=&quot;images/your_image.jpg&quot; title=&quot;Title de l'image&quot;&gt;
-      &lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Texte alternatif pour les photos&quot; class=&quot;image-actual&quot; /&gt;
-    &lt;/a&gt;&lt;/p&gt;
+	<div class="span-4">
+		<section>
+			<h4 class="background-dark margin-bottom-medium" id="coding1">Codage</h4>
+			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
+  &lt;ul class=&quot;lb-single&quot;&gt;
+    &lt;li&gt;
+      &lt;a class=&quot;lb-item&quot; href=&quot;images/photo_source.jpg&quot; title=&quot;Texte alternatif pour la photo&quot;&gt;
+        &lt;img src=&quot;images/photo_source.jpg&quot; alt=&quot;Texte alternatif pour la photo&quot; class=&quot;image-actual&quot; /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
     ...	
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-		</pre>
-	</section>
-</div>
-
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+		</section>
+	</div>
+</section>
 <div class="clear"></div>
 
-<h3 id="examples2">Album de photos simple</h3>
-<div class="span-4">
-	<h4 class="background-dark margin-bottom-medium">Album photos</h4>
-	<section>
-		<div class="wet-boew-lightbox">
-			<div class="lightbox-group" title="Group 1">
-				<p>
-					<a class="lightbox-item" rel="gallery" href="images/1_b.jpg" title="Photo 1">
-						<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
-					</a>
-					<a class="lightbox-item" rel="gallery" href="images/2_b.jpg" title="Photo 2">
-						<img src="images/2_s.jpg" alt="Photo 2" class="image-actual" />
-					</a>
-					<a class="lightbox-item" rel="gallery" href="images/3_b.jpg" title="Photo 3">
-						<img src="images/3_s.jpg" alt="Photo 3" class="image-actual" />
-					</a>
-					<a class="lightbox-item" rel="gallery" href="images/4_b.jpg" title="Photo 4">
-						<img src="images/4_s.jpg" alt="Photo 4" class="image-actual" />
-					</a>
-					<a class="lightbox-item" rel="gallery" href="images/5_b.jpg" title="Photo 5">
-						<img src="images/5_s.jpg" alt="Photo 5" class="image-actual" />
-					</a>
-				</p>
-			</div>
-		</div>
-	</section>
-</div>
-
-<div class="span-4">
-	<section>
-		<h4 class="background-dark margin-bottom-medium" id="coding2">Codage</h4>
-		<pre>
-			<code>
-&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
-  &lt;div class=&quot;lightbox-group&quot; title=&quot;Exemple d'un album de photos simple&quot;&gt;
-    &lt;p&gt;&lt;a class=&quot;lightbox-item&quot; href=&quot;images/your_image.jpg&quot; title=&quot;Title Image&quot;&gt;
-      &lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Texte alternatif pour les photos&quot; class=&quot;image-actual&quot; /&gt;
-    &lt;/a&gt;&lt;/p&gt;	
-    ...	
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-		</pre>
-	</section>
-</div>
-
-<div class="clear"></div>
-
-<h3 id="examples3">Album de photos caché</h3>
-<div class="span-4">
-	<h4 class="background-dark margin-bottom-medium">Album photos</h4>
-	<section>
-		<div class="wet-boew-lightbox">
-			<div class="lightbox-group" title="Group 2">
-				<p>
-					<a class="lightbox-item" href="images/1_b.jpg" rel="hidden-gallery" title="Photo 1">
-						<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
-					</a>
-				</p>
-				<div class="lightbox-hidden">
-					<p>
-						<a class="lightbox-item" rel="hidden-gallery" href="images/2_b.jpg" title="Photo 2">
+<section>
+	<h3 id="examples2">Galeries de photos</h3>
+	<div class="span-4">
+		<h4 class="background-dark margin-bottom-medium">Exemple</h4>
+		<section>
+			<div class="wet-boew-lightbox">
+				<ul class="lb-gallery">
+					<li>
+						<a class="lb-item" href="images/1_b.jpg" title="Photo 1">
+							<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
+						</a>
+					</li>
+					<li>
+						<a class="lb-item" href="images/2_b.jpg" title="Photo 2">
 							<img src="images/2_s.jpg" alt="Photo 2" class="image-actual" />
 						</a>
-						<a class="lightbox-item" rel="hidden-gallery" href="images/3_b.jpg" title="Photo 3">
+					</li>
+					<li>
+						<a class="lb-item" href="images/3_b.jpg" title="Photo 3">
 							<img src="images/3_s.jpg" alt="Photo 3" class="image-actual" />
 						</a>
-						<a class="lightbox-item" rel="hidden-gallery" href="images/4_b.jpg" title="Photo 4">
+					</li>
+					<li>
+						<a class="lb-item" href="images/4_b.jpg" title="Photo 4">
 							<img src="images/4_s.jpg" alt="Photo 4" class="image-actual" />
 						</a>
-						<a class="lightbox-item" rel="hidden-gallery" href="images/5_b.jpg" title="Photo 5">
+					<li>
+						<a class="lb-item" href="images/5_b.jpg" title="Photo 5">
 							<img src="images/5_s.jpg" alt="Photo 5" class="image-actual" />
 						</a>
-					</p>
-				</div>
+					</li>
+				</ul>
 			</div>
-		</div>
-	</section>
-</div>
+		</section>
+	</div>
+	<div class="span-4">
+		<section>
+			<h4 class="background-dark margin-bottom-medium" id="coding2">Codage</h4>
+			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
+  &lt;ul class=&quot;lb-gallery&quot;&gt;
+    &lt;li&gt;
+      &lt;a class=&quot;lb-item&quot; href=&quot;images/photo_source.jpg&quot; title=&quot;Texte alternatif pour la photo&quot;&gt;
+        &lt;img src=&quot;images/photo_source.jpg&quot; alt=&quot;Texte alternatif pour la photo&quot; class=&quot;image-actual&quot; /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    ...
+  &lt;/ul&gt;	
+&lt;/div&gt;</code></pre>
+		</section>
+	</div>
+</section>
+<div class="clear"></div>
 
-<div class="span-4">
-	<section>
-		<h4 class="background-dark margin-bottom-medium" id="coding3">Codage</h4>
-		<pre>
-			<code>
-&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
-  &lt;div class=&quot;lightbox-group&quot; title=&quot;Exemple d'un album de photos cachés&quot;&gt;
-    &lt;p&gt;&lt;a class=&quot;lightbox-item&quot; href=&quot;images/your_image.jpg&quot; title=&quot;Title Image&quot;&gt;
-      &lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Texte alternatif pour les photos&quot; class=&quot;image-actual&quot; /&gt;
-    &lt;/a&gt;&lt;/p&gt;
-		
-    &lt;div class=&quot;hidden&quot;&gt;
-      &lt;p&gt;&lt;a class=&quot;lightbox-item&quot; href=&quot;images/your_image.jpg&quot; title=&quot;Title Image&quot;&gt;
-        &lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Texte alternatif pour les photos&quot; class=&quot;image-actual&quot; /&gt;
-      &lt;/a&gt;&lt;/p&gt;
-      ...
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-		</pre>
-	</section>
-</div>
-
+<section>
+	<h3 id="examples3">Galeries de photos cachées</h3>
+	<div class="span-4">
+		<h4 class="background-dark margin-bottom-medium">Exemple</h4>
+		<section>
+			<div class="wet-boew-lightbox">
+				<ul class="lb-hidden-gallery">
+					<li>
+						<a class="lb-item" href="images/1_b.jpg" title="Photo 1">
+							<img src="images/1_s.jpg" alt="Photo 1" class="image-actual" />
+						</a>
+					</li>
+					<li>
+						<a class="lb-item" href="images/2_b.jpg" title="Photo 2">
+							<img src="images/2_s.jpg" alt="Photo 2" class="image-actual" />
+						</a>
+					</li>
+					<li>
+						<a class="lb-item" href="images/3_b.jpg" title="Photo 3">
+							<img src="images/3_s.jpg" alt="Photo 3" class="image-actual" />
+						</a>
+					</li>
+					<li>
+						<a class="lb-item" href="images/4_b.jpg" title="Photo 4">
+							<img src="images/4_s.jpg" alt="Photo 4" class="image-actual" />
+						</a>
+					</li>
+					<li>
+						<a class="lb-item" href="images/5_b.jpg" title="Photo 5">
+							<img src="images/5_s.jpg" alt="Photo 5" class="image-actual" />
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+	<div class="span-4">
+		<section>
+			<h4 class="background-dark margin-bottom-medium" id="coding3">Codage</h4>
+			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
+  &lt;ul class=&quot;lb-gallery-hidden&quot;&gt;
+    &lt;li&gt;
+      &lt;a class=&quot;lb-item&quot; href=&quot;images/photo_source.jpg&quot; title=&quot;Texte alternatif pour la photo&quot;&gt;
+        &lt;img src=&quot;images/photo_source.jpg&quot; alt=&quot;Texte alternatif pour la photo&quot; class=&quot;image-actual&quot; /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    ...
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+		</section>
+	</div>
+</section>
 <div class="clear"></div>
 
 <dl id="gcwu-date-mod" role="contentinfo">

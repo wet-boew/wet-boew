@@ -16,13 +16,15 @@
 		// This is an example from tabbed interface, to show how to call
 		// required libraries
 		depends : ['colorbox', 'metadata'],
+		groupindex : 0,
+
 		// Don't include a mobile function if your plugin shouldn't run in
 		// mobile mode.
 
 		_exec : function (elm) {
 
 			// Variables
-			var $lb_group, $lb_single, $lb_item, $fb_wrap, opts, overrides;
+			var opts, overrides;
 
 			// Defaults
 			opts = {
@@ -56,17 +58,14 @@
 				$.extend(opts, overrides, elm.metadata());
 			}
 
-			//$fb_wrap = elm.find('.fancybox-wrap');
+			// Build single items
+			elm.find('.lb-single .lb-item').colorbox(opts);
 
-			$lb_single = elm.find('.lightbox');
-
-			//$lb_group = elm.find('.lightbox-group');
-
-			$lb_item = elm.find('.lightbox-item').colorbox(opts).each(function () {
-				return $(this);
+			// Build galleries
+			elm.find('.lb-gallery, .lb-hidden-gallery').each(function () {
+				$.extend(opts, {rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
+				$(this).find('.lb-item').colorbox(opts);
 			});
-
-			// return elm;
 		} // end of exec
     };
     window.pe = _pe;
