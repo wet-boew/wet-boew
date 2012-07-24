@@ -248,16 +248,24 @@ img{
 	background-image:linear-gradient(#5383BC,#225C96);
 	color:#fff;
 	text-align:center;
-	font-size:0.9em;
+	font-size:1em;
 	text-transform:xxxcapitalize;
 	position:relative;
 	font-weight:700;
 	margin:0;
-	padding:0.9em 33px 0.9em 2px;
+	padding:0.7em 18px 0.8em 0;
 	border-top:1px solid #8fb9d6;
 	border-bottom:1px solid #044062;
 	border-left:1px solid #124B79;
 	border-right:none;
+}
+
+#gcwu-srchbx h2{
+	padding-right:20px;
+}
+
+#gcwu-bnr-in .ui-mini .ui-btn-inner {
+	font-size:1em;
 }
 
 .ui-mobile #wb-sec{
@@ -308,10 +316,6 @@ img{
 	width:50%;
 	float:right;
 	border-top:1px solid #044062;
-}
-
-.ui-mobile #gcwu-psnb,.ui-mobile #gcwu-srchbx{
-	border-top:none;
 }
 
 #gcwu-priorities ul:after,#gcwu-date-mod:after,#gcwu-gcft ul:after,#wb-head:after{
@@ -475,7 +479,7 @@ img{
 	visibility: hidden;
 }
 
-#jqm-wb-mb #gcwu-bc-in  ol {
+#jqm-wb-mb #gcwu-bc-in ol {
 	line-height: 1.57em;
 	list-style-type: none;
 	margin: 0;
