@@ -11,9 +11,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Interface à onglets - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="French description / Description en français" />
 <meta name="description" content="French description / Description en français" />
-<meta name="keywords" content="French keywords / Mots-clés en français" />
 <meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
 <meta name="dcterms.title" content="French title / Titre en français" />
 <meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
@@ -131,7 +129,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li>Possibilité de choisir l'onglet par défaut (<code lang="en">&lt;li class="default"&gt;</code>).</li>
 <li>Possibilité de choisir si le passage automatique d’un onglet à l’autre est activé; le délai est réglable (rapide&#160;: <code lang="en">class="cycle-fast"</code>, lent&#160;: <code lang="en">class="cycle-slow"</code>, normal&#160;: <code lang="en">class="cycle"</code>).</li>
 <li>Insertion de l'option Pause/Jouer si le passage automatique d’un onglet à l’autre est activé. Insertion du français pour les pages en français.</li>
-<li>Seule, l'option Pause/JouerLancer n'est pas disponible puisque ces commandes ne sont pas descriptives («&#160;Pause&#160;» quoi?), et le code inséré dit en réalité&#160;: <code lang="en"><span lang="fr">Pause</span>&lt;span class="wb-invisible"&gt;<span lang="fr">&#160;: Arrêter la rotation d'onglets</span>&lt;/span&gt;</code> et <code lang="en"><span lang="fr">Jouer</span>&lt;span class="wb-invisible"><span lang="fr">&#160;: Lancer la rotation d'onglets</span>&lt;/span&gt;</code>.</li>
+<li>Seule, l'option Pause/Jouer n'est pas disponible puisque ces commandes ne sont pas significatives («&#160;Pause&#160;» quoi?), et le code inséré dit en réalité&#160;: <code lang="en"><span lang="fr">Pause</span>&lt;span class="wb-invisible"&gt;<span lang="fr">&#160;: Arrêter la rotation des onglets</span>&lt;/span&gt;</code> et <code lang="en"><span lang="fr">Jouer</span>&lt;span class="wb-invisible"><span lang="fr">&#160;: Lancer la rotation des onglets</span>&lt;/span&gt;</code>.</li>
 <li>Possibilité d’imposer la même hauteur à tous les onglets (celle du plus long). Cette caractéristique est utile lorsque le passage automatique d’un onglet à l’autre est activé&#160;: la page ne saute pas quand on passe d’un panneau à l’autre.</li>
 </ul>
 </section></div>
@@ -223,7 +221,7 @@ jQuery("pre code").html(function(index,html){return html.replace(/(\s+)([\w\-]+=
 		</div>
 	</div></section>
 
-	<section><div class="span-4"><h3 class="background-dark margin-bottom-medium">Mmise en forme&#160;: <code lang="en">tabs-style-1</code></h3>
+	<section><div class="span-4"><h3 class="background-dark margin-bottom-medium">Mise en forme&#160;: <code lang="en">tabs-style-1</code></h3>
 		<p><strong>La démo comprend&#160;:</strong> L’onglet <code lang="en">default</code> est celui du milieu.</p>
 		<div class="wet-boew-tabbedinterface tabs-style-1">
 			<ul class="tabs">
@@ -367,7 +365,7 @@ jQuery("pre code").html(function(index,html){return html.replace(/(\s+)([\w\-]+=
 
 <section><h3 id="complex">Exemples complexes</h3>
 	<section><h4>Exemple n° 1</h4>
-		<p>Lorsque vous créez des tableaux parents - enfants, vous devez utilisez les éléments <code lang="en">row-start</code> et <code lang="en">row-end</code>, sauf dans de rares cas où ça n'est pas souhaitable. Par exemple, si vous employez des widgets glisser-déplacer, toutes les cellules du tableau doivent avoir la même taille, car l'ajout de l'élément <code lang="en">row-start</code> ou <code lang="en">row-end</code> dans certaines d'entre elles peut causer quelques problèmes de mise en page lorsque vous déplacez une case d'une colonne à une autre. Dans cette situation, utilisez plutôt la classe <code lang="en">embedded-grid</code>. Cette feuille de style CSS agit comme un conteneur pour les onglets; vous n'avez donc pas à les placer dans une cellule du tableau. De plus, elle fait disparaître les bordures afin que l'espace soit disponible dans toute sa largeur.</p>
+		<p>Lorsque vous créez des tableaux parents - enfants, vous devez utiliser les éléments <code lang="en">row-start</code> et <code lang="en">row-end</code>, sauf dans de rares cas où ça n'est pas souhaitable. Par exemple, si vous utilisez des widgets glisser-déplacer, toutes les cellules du tableau doivent avoir la même taille, car l'ajout de l'élément <code lang="en">row-start</code> ou <code lang="en">row-end</code> dans certaines d'entre elles peut causer quelques problèmes de mise en page lorsque vous déplacez une case d'une colonne à une autre. Dans cette situation, utilisez plutôt la classe <code lang="en">embedded-grid</code>. Cette feuille de style CSS agit comme un conteneur pour les onglets; vous n'avez donc pas à les placer dans une cellule du tableau. De plus, elle fait disparaître les bordures afin que l'espace soit disponible dans toute sa largeur.</p>
 		<div class="wet-boew-tabbedinterface embedded-grid">
 			<ul class="tabs">
 				<li><a href="#tab30">Événements nationaux</a></li>

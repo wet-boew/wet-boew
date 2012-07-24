@@ -12,10 +12,10 @@
 	);
 }
 
-.ie7 details summary .details-closed, .ie7 details.open summary .details-open {
+.ie7 details > summary .details-closed, .ie7 details.open > summary .details-open {
 	display: inline;
 }
 
-.ie7 details.open summary .details-closed, .ie7 details summary .details-open {
+.ie7 details.open > summary .details-closed, .ie7 details > summary .details-open {
 	display: none;
 }
