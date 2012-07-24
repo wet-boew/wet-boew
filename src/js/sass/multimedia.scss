@@ -6,3 +6,49 @@
 video {
 	background-color: #000;
 }
+.wet-boew-multimedia-controls, .wet-boew-multimedia-controls button{
+	background:#DADADA url(../images/multimedia/background-toolbar.png) repeat-x 0 0;
+	padding:0;
+}
+
+.wet-boew-multimedia-controls button, .wet-boew-multimedia-timeline {
+	border:1px solid #CCC;	
+}
+
+.wet-boew-multimedia-controls-start {
+	float:left;
+}
+
+.wet-boew-multimedia-timeline {
+	margin-left:82px;
+	margin-right:55px;
+	padding:3px;
+}
+
+.wet-boew-multimedia-controls-end {
+	float:right;
+}
+
+.wet-boew-multimedia button img, .wet-boew-multimedia button svg{
+	margin:0;
+	display:block;
+}
+
+$progress-color: #000;
+
+progress {
+	border:1px solid #999;
+	color:$progress-color;
+	width:100%;
+	&::-moz-progress-bar {
+		background:$progress-color;
+	}
+	
+	&::-webkit-progress-value {
+		background:$progress-color;
+	}
+	
+	&[aria-valuenow]:before  {
+		background:$progress-color;
+	}
+}
