@@ -446,14 +446,17 @@ charts.circleGraph = {
 				// console.log(charts.circleGraph.series);
 				
 				
-				var chartsLabels = []; 
+				
 				
 				var legendGenerated = false;
 				
 				
-				var lastPathObj; // This represent the last created item in the pie chart, it's used to ordered the text label on mouse over and to do overlap with each pie quarter
+				
 				
 				$.each(charts.circleGraph.series.series, function(){
+
+					var chartsLabels = []; 
+					var lastPathObj; // This represent the last created item in the pie chart, it's used to ordered the text label on mouse over and to do overlap with each pie quarter					
 					
 					legendGenerated = false;
 					
@@ -3446,6 +3449,10 @@ charts.graph2dAxis = {
 		parser.parse();
 		
 		
+		// TODO: Instead of parsing the table, use the new parser and adapt the data found in the old model.
+		
+		
+		
 		// var graphTableParsedTime = new Date().getTime();
 		// console.log('Table Parsed exec time ' + graphTableParsedTime);
 		// console.log('Elapsed : ' + (graphTableParsedTime - graphStartExecTime));
@@ -3475,6 +3482,8 @@ charts.graph2dAxis = {
 			GraphTypeTableDefault = o.type;
 		}
 		
+		
+		console.log(parser);
 				
 		// For each tbody (Graphic Zone)
 		$.each(parser.tBodySeries.series, function(){
@@ -3939,6 +3948,7 @@ charts.graph2dAxis = {
 		
 		
 		// designer.init();
+		
 		
 		
 		
