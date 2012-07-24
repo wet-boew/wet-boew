@@ -24,7 +24,13 @@
 		_exec : function (elm) {
 
 			// Variables
-			var opts, opts2, overrides, $inline;
+			var opts,
+				opts2,
+				overrides,
+				$lb,
+				$inline,
+				$lbContent,
+				open = false;
 
 			// Defaults
 			opts = {
@@ -41,7 +47,14 @@
 				slideshowStart : pe.dic.get("%start") + " " + pe.dic.get("%lb-slideshow"),
 				slideshowStop : pe.dic.get("%stop") + " " + pe.dic.get("%lb-slideshow"),
 				slideshow : false,
-				slideshowAuto : false
+				slideshowAuto : false,
+				onComplete : function () {
+					open = true;
+					pe.focus($(this).find('#cboxContent'));
+				},
+				onClosed : function () {
+					open = false;
+				}
 			};
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
@@ -60,11 +73,16 @@
 				$.extend(opts, overrides, elm.metadata());
 			}
 
+			$lb = elm.find('.lb-image, .lb-ajax, .lb-gallery, .lb-hidden-gallery, .lb-gallery-inline, .lb-hidden-gallery-inline').on('vclick', function () {
+				$.colorbox.launch(this);
+			});
+
 			// Build single images and AJAXed content
-			elm.find('.lb-image, .lb-ajax').colorbox(opts);
+			//elm.find('.lb-image, .lb-ajax').colorbox(opts);
+			$lb.filter('.lb-image, .lb-ajax').colorbox(opts);
 
 			// Build inline content
-			$inline = elm.find('.lb-inline');
+			$inline = $lb.filter('.lb-inline'); //elm.find('.lb-inline');
 			if ($inline.length > 0) {
 				opts2 = opts;
 				$.extend(opts2, {inline: "true"});
@@ -73,16 +91,26 @@
 
 			// Build galleries
 			opts2 = opts;
-			elm.find('.lb-gallery, .lb-hidden-gallery').each(function () {
+			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () { //elm.find('.lb-gallery, .lb-hidden-gallery').each(function () {
 				$.extend(opts2, {rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
 				$(this).find('a').colorbox(opts2);
 			});
 
 			// Build inline galleries
 			opts2 = opts;
-			elm.find('.lb-gallery-inline, .lb-hidden-gallery-inline').each(function () {
+			$lb.filter('.lb-gallery-inline, .lb-hidden-gallery-inline').each(function () {//elm.find('.lb-gallery-inline, .lb-hidden-gallery-inline').each(function () {
 				$.extend(opts2, {inline: 'true', rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
 				$(this).find('a').colorbox(opts2);
+			});
+
+			$lbContent = $('body').find('#colorbox #cboxContent').attr('tabindex', '-1');
+			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr('tabindex', '0');
+
+			$(document).on('keydown', function (e) {
+				if (open && e.keyCode === 9) {
+					/*$.colorbox.close();
+					return false;*/
+				}
 			});
 		} // end of exec
     };

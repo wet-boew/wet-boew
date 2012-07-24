@@ -38,7 +38,7 @@
         #cboxPrevious{position:absolute; top:50%; left:5px; margin-top:-32px; background:url(../images/lightbox/controls.png) no-repeat bottom left; width:28px; height:65px; text-indent:-9999px;}
         #cboxPrevious:hover{background-position:top left;}
         #cboxNext{position:absolute; top:50%; right:5px; margin-top:-32px; background:url(../images/lightbox/controls.png) no-repeat bottom right; width:28px; height:65px; text-indent:-9999px;}
-        #cboxNext:hover{background-position:top right;}
+        #cboxNext:hover,#cboxNext:focus,#cboxNext:active{background-position:top right;}
         #cboxLoadingOverlay{background:#000;}
         #cboxLoadingGraphic{background:url(../images/lightbox/loading.gif) no-repeat center center;}
         #cboxClose{position:absolute; top:5px; right:5px; display:block; background:url(../images/lightbox/controls.png) no-repeat bottom center; width:38px; height:19px; text-indent:-9999px;}
