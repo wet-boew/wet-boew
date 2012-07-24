@@ -49,8 +49,10 @@
 				slideshow : false,
 				slideshowAuto : false,
 				onComplete : function () {
-					open = true;
-					pe.focus($(this).find('#cboxContent'));
+					if (!open) {
+						open = true;
+						pe.focus($lbContent);
+					}
 				},
 				onClosed : function () {
 					open = false;
@@ -103,13 +105,29 @@
 				$(this).find('a').colorbox(opts2);
 			});
 
-			$lbContent = $('body').find('#colorbox #cboxContent').attr('tabindex', '-1');
+			$lbContent = $('body').find('#colorbox #cboxContent').attr('tabindex', '0');
 			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr('tabindex', '0');
 
-			$(document).on('keydown', function (e) {
-				if (open && e.keyCode === 9) {
-					/*$.colorbox.close();
-					return false;*/
+			$lbContent.on('keydown', function (e) {
+				var target = $(e.target);
+				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
+					if (e.keyCode === 9) {
+						if ((e.shiftKey && target.attr("id") === "cboxContent") || (!e.shiftKey && target.attr("id") === "cboxClose")) {
+							$.colorbox.close();
+							return false;
+						}
+					} else if (e.keyCode === 13 || e.keyCode === 32) {
+						if (target.attr("id") === "cboxContent" || target.attr("id") === "cboxNext") {
+							$.colorbox.next();
+							return false;
+						} else if (target.attr("id") === "cboxPrevious") {
+							$.colorbox.prev();
+							return false;
+						} else if (target.attr("id") === "cboxClose") {
+							$.colorbox.close();
+							return false;
+						}
+					}
 				}
 			});
 		} // end of exec
