@@ -29,8 +29,17 @@
 				ttlHeight = 0,
 				wrapper,
 				keyhandler,
-				tocLinks;
+				tocLinks,
+                cssTest;
 
+            // Don't do anything if CSS is disabled
+            // Couldn't get _pe.cssenabled() to work
+            var cssTest = $('<div style="display: none;">').appendTo('body');
+            if(cssTest.css('display') != 'none') {
+                return;
+            }
+            cssTest.remove();
+            
 			// Add the wrappers
 			wrapper = elm.wrap('<div id="slideoutWrapper" role="application" />').parent(); // This is used for overflow: hidden.
 			elm.wrap('<div id="slideoutInnerWrapper" />'); // This is used for "animate".
@@ -49,14 +58,14 @@
 			// Recalculate the slideout's position
 			reposition = function () {
 				if (!opened) { // Only when slideout is closed
-					var newPosition = $('#wb-main-in').offset().left;
+					var newPosition = $('#wb-core-in').offset().left;
 
 					if (newPosition <= borderWidth) {
 						newPosition = 0;
 					}
 
 					// Vertical
-					wrapper.css('top', $('#wb-main-in').offset().top);
+					wrapper.css('top', $('#wb-core-in').offset().top);
 					// Horizontal
 					wrapper.css('right', newPosition);
 				}
@@ -71,7 +80,7 @@
 					if (pe.ie === 0 || document.documentMode !== undefined) {
 						wrapper.removeClass('slideoutWrapper')
 							.addClass('slideoutWrapperRel')
-							.css({"top": position.top - $('#wb-main-in').offset().top, "right": borderWidth - 10});
+							.css({"top": position.top - $('#wb-core-in').offset().top, "right": borderWidth - 10});
 					}
 					elm.show(); // Show the widget content if it is about to be opened
 					pe.focus(tocLinks.eq(0));
@@ -89,7 +98,7 @@
 						if (pe.ie === 0 || document.documentMode !== undefined) {
 							wrapper.addClass('slideoutWrapper');
 							wrapper.removeClass('slideoutWrapperRel');
-							wrapper.css('width', (imgShow.width + focusOutlineAllowance) + 'px').css('top', $('#wb-main-in').offset().top);
+							wrapper.css('width', (imgShow.width + focusOutlineAllowance) + 'px').css('top', $('#wb-core-in').offset().top);
 							reposition();
 						}
 					} else { // Slideout just opened
@@ -259,7 +268,7 @@
 			ttlHeight = elm.outerHeight();
 
 			// Set vertical position and hide the slideout on load -- we don't want it to animate so we can't call slideout.toggle()
-			wrapper.css('width', (imgShow.width + focusOutlineAllowance) + 'px').css('top', $('#wb-main-in').offset().top);
+			wrapper.css('width', (imgShow.width + focusOutlineAllowance) + 'px').css('top', $('#wb-core-in').offset().top);
 
 			// Hide widget content so we don't tab through the links when the slideout is closed
 			elm.hide().attr('aria-hidden', 'true');
