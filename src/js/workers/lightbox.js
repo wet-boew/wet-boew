@@ -24,22 +24,22 @@
 		_exec : function (elm) {
 
 			// Variables
-			var opts, overrides;
+			var opts, opts2, overrides, $inline;
 
 			// Defaults
 			opts = {
 				transition : "elastic",
 				loop : true,
-				current : pe.dic.get("%lightbox-current"),
-				previous : pe.dic.get("%previous"),
-				next : pe.dic.get("%next"),
+				current : pe.dic.get("%lb-current"),
+				previous : pe.dic.get("%lb-prev"),
+				next : pe.dic.get("%lb-next"),
 				close : pe.dic.get("%close"),
-				xhrError : pe.dic.get("%lightbox-xhr-error"),
-				imgError : pe.dic.get("%lightbox-img-error"),
+				xhrError : pe.dic.get("%lb-xhr-error"),
+				imgError : pe.dic.get("%lb-img-error"),
 				maxWidth : "100%",
 				maxHeight : "100%",
-				slideshowStart : pe.dic.get("%start") + " " + pe.dic.get("%lightbox-slideshow"),
-				slideshowStop : pe.dic.get("%stop") + " " + pe.dic.get("%lightbox-slideshow"),
+				slideshowStart : pe.dic.get("%start") + " " + pe.dic.get("%lb-slideshow"),
+				slideshowStop : pe.dic.get("%stop") + " " + pe.dic.get("%lb-slideshow"),
 				slideshow : false,
 				slideshowAuto : false
 			};
@@ -60,13 +60,29 @@
 				$.extend(opts, overrides, elm.metadata());
 			}
 
-			// Build single items
-			elm.find('.lb-single .lb-item').colorbox(opts);
+			// Build single images and AJAXed content
+			elm.find('.lb-image, .lb-ajax').colorbox(opts);
+
+			// Build inline content
+			$inline = elm.find('.lb-inline');
+			if ($inline.length > 0) {
+				opts2 = opts;
+				$.extend(opts2, {inline: "true"});
+				$inline.colorbox(opts2);
+			}
 
 			// Build galleries
+			opts2 = opts;
 			elm.find('.lb-gallery, .lb-hidden-gallery').each(function () {
-				$.extend(opts, {rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
-				$(this).find('.lb-item').colorbox(opts);
+				$.extend(opts2, {rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
+				$(this).find('a').colorbox(opts2);
+			});
+
+			// Build inline galleries
+			opts2 = opts;
+			elm.find('.lb-gallery-inline, .lb-hidden-gallery-inline').each(function () {
+				$.extend(opts2, {inline: 'true', rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
+				$(this).find('a').colorbox(opts2);
 			});
 		} // end of exec
     };

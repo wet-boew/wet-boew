@@ -139,10 +139,12 @@
 			"%hide-image" : "cacher.png",
 			"%table-contents" : " la table des matières",
 			/* Lightbox */
-			"%lightbox-current" : "Image {current} de {total}",
-			"%lightbox-xhr-error" : "Le chargement de ce contenu a échoué.",
-			"%lightbox-img-error" : "Le chargement de cette image a échoué.",
-			"%lightbox-slideshow" : "la diaporama"
+			"%lb-current" : "Article {current} de {total}",
+			"%lb-next" : "Article suivant",
+			"%lb-prev" : "Article précédent",
+			"%lb-xhr-error" : "Le chargement de ce contenu a échoué.",
+			"%lb-img-error" : "Le chargement de cette image a échoué.",
+			"%lb-slideshow" : "la diaporama"
 		}
 	};
 	$(document).trigger("languageloaded");
