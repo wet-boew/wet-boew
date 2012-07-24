@@ -73,16 +73,16 @@
 				$.extend(opts, overrides, elm.metadata());
 			}
 
+			// Add touchscreen support for launching the lightbox
 			$lb = elm.find('.lb-image, .lb-ajax, .lb-gallery, .lb-hidden-gallery, .lb-gallery-inline, .lb-hidden-gallery-inline').on('vclick', function () {
 				$.colorbox.launch(this);
 			});
 
 			// Build single images and AJAXed content
-			//elm.find('.lb-image, .lb-ajax').colorbox(opts);
 			$lb.filter('.lb-image, .lb-ajax').colorbox(opts);
 
 			// Build inline content
-			$inline = $lb.filter('.lb-inline'); //elm.find('.lb-inline');
+			$inline = $lb.filter('.lb-inline');
 			if ($inline.length > 0) {
 				opts2 = opts;
 				$.extend(opts2, {inline: "true"});
@@ -91,14 +91,14 @@
 
 			// Build galleries
 			opts2 = opts;
-			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () { //elm.find('.lb-gallery, .lb-hidden-gallery').each(function () {
+			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () {
 				$.extend(opts2, {rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
 				$(this).find('a').colorbox(opts2);
 			});
 
 			// Build inline galleries
 			opts2 = opts;
-			$lb.filter('.lb-gallery-inline, .lb-hidden-gallery-inline').each(function () {//elm.find('.lb-gallery-inline, .lb-hidden-gallery-inline').each(function () {
+			$lb.filter('.lb-gallery-inline, .lb-hidden-gallery-inline').each(function () {
 				$.extend(opts2, {inline: 'true', rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
 				$(this).find('a').colorbox(opts2);
 			});
