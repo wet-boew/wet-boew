@@ -71,7 +71,7 @@
 			"%error" : "Erreur",
 			"%colon" : "&#160;:",
 			"%start" : "Lancer",
-			"%stop" : "SArrêter",
+			"%stop" : "Arrêter",
 			"%minute-ago": "il ya une minute",
 			"%couple-of-minutes": "il ya quelques minutes",
 			"%minutes-ago": {
@@ -88,7 +88,7 @@
 			/* Archived Web page template */
 			"%archived-page": "Cette page Web a été archivée dans le Web.",
 			/* Menu bar */
-			"%sub-menu-help": "(ouvrir le sous-menu avec la touche de la flèche descendante et le fermer avec la touche d'échappement)",
+			"%sub-menu-help": "(ouvrir le sous-menu avec la touche d'entrée et le fermer avec la touche d'échappement)",
 			/* Tabbed interface */
 			"%tab-rotation": {
 				"disable": "Arrêter la rotation d'onglets",
@@ -139,10 +139,12 @@
 			"%hide-image" : "cacher.png",
 			"%table-contents" : " la table des matières",
 			/* Lightbox */
-			"%lightbox-current" : "Image {current} de {total}",
-			"%lightbox-xhr-error" : "Le chargement de ce contenu a échoué.",
-			"%lightbox-img-error" : "Le chargement de cette image a échoué.",
-			"%lightbox-slideshow" : "la diaporama"
+			"%lb-current" : "Article {current} de {total}",
+			"%lb-next" : "Article suivant",
+			"%lb-prev" : "Article précédent",
+			"%lb-xhr-error" : "Le chargement de ce contenu a échoué.",
+			"%lb-img-error" : "Le chargement de cette image a échoué.",
+			"%lb-slideshow" : "la diaporama"
 		}
 	};
 	$(document).trigger("languageloaded");

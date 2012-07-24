@@ -793,9 +793,13 @@
 						var $this = $(this), target = $this.is('a') ? $this : $this.find('a').first();
 						if ($this.prev().length > 0) {
 							target.removeClass('ui-corner-top');
+						} else {
+							target.addClass('ui-corner-top');
 						}
 						if ($this.next().length > 0) {
 							target.removeClass('ui-corner-bottom');
+						} else {
+							target.addClass('ui-corner-bottom');
 						}
 					});
 				});

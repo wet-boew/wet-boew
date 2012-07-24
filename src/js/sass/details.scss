@@ -19,12 +19,12 @@ summary:hover, summary:focus, summary:active {
 /* The following styles will only get applied if JavaScript is enabled and <details> is not natively supported */
 
 /* Add the close pointer */
-details.polyfill summary:before {
+details.polyfill > summary:before {
 	content: "\25BA\a0";
 }
 
 /* Add the open pointer */
-details.polyfill.open summary:before {
+details.polyfill.open > summary:before {
 	content: "\25BC\a0";
 }
 

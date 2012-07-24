@@ -25,30 +25,30 @@
     Change the following styles to modify the appearance of ColorBox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
 */
-#cboxOverlay{background:url(../images/lightbox/overlay.png) repeat 0 0;}
+#colorbox, #cboxOverlay, #cboxWrapper{overflow:visible;}
+#cboxOverlay{background:#000;}
 #colorbox{}
-    #cboxTopLeft{width:21px; height:21px; background:url(../images/lightbox/controls.png) no-repeat -101px 0;}
-    #cboxTopRight{width:21px; height:21px; background:url(../images/lightbox/controls.png) no-repeat -130px 0;}
-    #cboxBottomLeft{width:21px; height:21px; background:url(../images/lightbox/controls.png) no-repeat -101px -29px;}
-    #cboxBottomRight{width:21px; height:21px; background:url(../images/lightbox/controls.png) no-repeat -130px -29px;}
-    #cboxMiddleLeft{width:21px; background:url(../images/lightbox/controls.png) left top repeat-y;}
-    #cboxMiddleRight{width:21px; background:url(../images/lightbox/controls.png) right top repeat-y;}
-    #cboxTopCenter{height:21px; background:url(../images/lightbox/border.png) 0 0 repeat-x;}
-    #cboxBottomCenter{height:21px; background:url(../images/lightbox/border.png) 0 -29px repeat-x;}
-    #cboxContent{background:#fff; overflow:hidden;}
+    #cboxContent{margin-bottom:1.5em;}
         .cboxIframe{background:#fff;}
         #cboxError{padding:50px; border:1px solid #ccc;}
-        #cboxLoadedContent{margin-bottom:28px;}
-        #cboxTitle{position:absolute; bottom:4px; left:0; text-align:center; width:100%; color:#949494;}
-        #cboxCurrent{position:absolute; bottom:4px; left:58px; color:#949494;}
-        #cboxSlideshow{position:absolute; bottom:4px; right:30px; color:#0092ef;}
-        #cboxPrevious{position:absolute; bottom:0; left:0; background:url(../images/lightbox/controls.png) no-repeat -75px 0; width:25px; height:25px; text-indent:-9999px;}
-        #cboxPrevious:hover{background-position:-75px -25px;}
-        #cboxNext{position:absolute; bottom:0; left:27px; background:url(../images/lightbox/controls.png) no-repeat -50px 0; width:25px; height:25px; text-indent:-9999px;}
-        #cboxNext:hover{background-position:-50px -25px;}
-        #cboxLoadingOverlay{background:url(../images/lightbox/loading_background.png) no-repeat center center;}
+        #cboxLoadedContent{border:5px solid #000; background:#fff;}
+		#cboxTitle{position:absolute; bottom:-1.5em; left:4px; color:#ccc; width:75%;}
+		#cboxCurrent{position:absolute; bottom:-1.5em; right:4px; color:#ccc; width:25%; text-align: right; white-space: nowrap;}
+        #cboxSlideshow{position:absolute; top:-20px; right:90px; color:#fff;}
+        #cboxPrevious{position:absolute; top:50%; left:5px; margin-top:-32px; background:url(../images/lightbox/controls.png) no-repeat bottom left; width:28px; height:65px; text-indent:-9999px;}
+        #cboxPrevious:hover{background-position:top left;}
+        #cboxNext{position:absolute; top:50%; right:5px; margin-top:-32px; background:url(../images/lightbox/controls.png) no-repeat bottom right; width:28px; height:65px; text-indent:-9999px;}
+        #cboxNext:hover{background-position:top right;}
+        #cboxLoadingOverlay{background:#000;}
         #cboxLoadingGraphic{background:url(../images/lightbox/loading.gif) no-repeat center center;}
-        #cboxClose{position:absolute; bottom:0; right:0; background:url(../images/lightbox/controls.png) no-repeat -25px 0; width:25px; height:25px; text-indent:-9999px;}
-        #cboxClose:hover{background-position:-25px -25px;}
+        #cboxClose{position:absolute; top:5px; right:5px; display:block; background:url(../images/lightbox/controls.png) no-repeat bottom center; width:38px; height:19px; text-indent:-9999px;}
+        #cboxClose:hover{background-position:top center;}
 
-.lightbox-hidden{display:none;visibility:hidden;}
+.lb-hidden-gallery a {
+	display: none;
+	visibility: hidden;
+}
+.lb-hidden-gallery li:first-child a {
+	display: inline;
+	visibility: visible;
+}
