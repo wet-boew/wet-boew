@@ -56,6 +56,9 @@
 			return (res) ? false : true;
 		}
 		()),
+
+		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
+
 		/**
 		 * @memberof pe
 		 * @type {number} - IE major number if browser is IE, 0 otherwise
@@ -432,15 +435,17 @@
 		 * @return {void}
 		 */
 		_execute : function (fn_obj, elm) {
-			var exec = (typeof fn_obj._exec !== "undefined") ? fn_obj._exec : fn_obj.exec;
-			if (typeof fn_obj.depends !== "undefined") {
-				pe.add.js(fn_obj.depends, function () {
+			if (fn_obj !== undefined) {
+				var exec = (typeof fn_obj._exec !== "undefined") ? fn_obj._exec : fn_obj.exec;
+				if (typeof fn_obj.depends !== "undefined") {
+					pe.add.js(fn_obj.depends, function () {
+						exec(elm);
+					});
+				//delete fn_obj.depends;
+				} else {
+					// execute function since it has no depends and we can safely execute
 					exec(elm);
-				});
-			//delete fn_obj.depends;
-			} else {
-				// execute function since it has no depends and we can safely execute
-				exec(elm);
+				}
 			}
 			return;
 		},
