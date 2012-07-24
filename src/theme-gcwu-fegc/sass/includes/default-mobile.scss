@@ -134,6 +134,15 @@ li#gcwu-gcft-ca a{
 	padding:10px;
 }
 
+#wb-main-in a {
+	color: #326CA6;
+	font-weight:bold;
+}
+
+#wb-main-in a:hover, #wb-main-in a:hover, #wb-main-in a:hover {
+	color: #124C86;
+}
+
 .ui-mobile #wb-main-in h1{
 	margin-bottom:0 !important;
 }
@@ -517,10 +526,6 @@ a:active{
     border:0;
 }
 
-.no-js h1#wb-cont{
-	margin:5px -10px 0;
-}
-
 .no-js #gcwu-sft{
 	background:#eee;
 	border-top:1px solid #ccc;
@@ -585,10 +590,6 @@ a:active{
 	visibility:hidden;
 }
 
-.no-js #wb-main{
-	padding:0 15px;
-}
-
 .no-js #gcwu-sft a,.no-js #gcwu-sft .link{
 	color:#222;
 }
@@ -606,7 +607,7 @@ a:active{
 }
 
 .no-js #wb-sec{
-	padding:0 15px;
+	padding:0 5px;
 }
 
 .no-js .wb-sec-def h3.top-section a:hover,.no-js .wb-sec-def h3.top-section a:focus,.no-js .wb-sec-def h3.top-section a:active{
