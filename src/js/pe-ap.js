@@ -56,6 +56,9 @@
 			return (res) ? false : true;
 		}
 		()),
+
+		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
+
 		/**
 		 * @memberof pe
 		 * @type {number} - IE major number if browser is IE, 0 otherwise
