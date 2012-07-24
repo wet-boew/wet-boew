@@ -312,6 +312,12 @@ img{
 	clear:both;
 }
 
+#gcwu-bnr{
+	background:#4E7EB7;
+	background: -moz-linear-gradient(#5383B7, #225C96) repeat scroll 0 0 #4E7EB7;
+	background:-webkit-linear-gradient(#5383B7, #225C96) repeat scroll 0 0 #4E7EB7;
+}
+
 #gcwu-psnb,#gcwu-srchbx{
 	width:50%;
 	float:right;
@@ -344,6 +350,10 @@ img{
 
 #gcwu-srch-submit{
 	min-height: 22px;
+}
+
+#gcwu-sft .ui-navbar .ui-btn-text {
+	white-space: nowrap;
 }
 
 .ui-content .ui-listview {
@@ -435,12 +445,6 @@ img{
 
 #jqm-wb-mb .top-level.ui-btn-corner-all {
 	border-radius:0.6em;
-}
-
-#gcwu-bnr{
-	background:#4E7EB7;
-	background: -moz-linear-gradient(#5383B7, #225C96) repeat scroll 0 0 #4E7EB7;
-	background:-webkit-linear-gradient(#5383B7, #225C96) repeat scroll 0 0 #4E7EB7;
 }
 
 #jqm-wb-mb #gcwu-bc-in a {
