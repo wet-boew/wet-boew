@@ -353,7 +353,7 @@ img{
 }
 
 #gcwu-sft .ui-navbar .ui-btn-text {
-	white-space: nowrap;
+	/*white-space: nowrap;*/
 }
 
 .ui-content .ui-listview {
@@ -522,10 +522,6 @@ img{
 
 a:active{
 	text-decoration:underline !important;
-}
-
-.ui-btn-inner,.ui-li .ui-btn-text a.ui-link-inherit {
-    white-space:normal !important;
 }
 
 .ui-loader-default h1{

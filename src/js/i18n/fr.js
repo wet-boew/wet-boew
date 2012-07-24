@@ -88,7 +88,7 @@
 			/* Archived Web page template */
 			"%archived-page": "Cette page Web a été archivée dans le Web.",
 			/* Menu bar */
-			"%sub-menu-help": "(ouvrir le sous-menu avec la touche de la flèche descendante et le fermer avec la touche d'échappement)",
+			"%sub-menu-help": "(ouvrir le sous-menu avec la touche d'entrée et le fermer avec la touche d'échappement)",
 			/* Tabbed interface */
 			"%tab-rotation": {
 				"disable": "Arrêter la rotation d'onglets",

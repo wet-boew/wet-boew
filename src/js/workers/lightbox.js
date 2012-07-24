@@ -36,6 +36,8 @@
 				close : pe.dic.get("%close"),
 				xhrError : pe.dic.get("%lightbox-xhr-error"),
 				imgError : pe.dic.get("%lightbox-img-error"),
+				maxWidth : "100%",
+				maxHeight : "100%",
 				slideshowStart : pe.dic.get("%start") + " " + pe.dic.get("%lightbox-slideshow"),
 				slideshowStop : pe.dic.get("%stop") + " " + pe.dic.get("%lightbox-slideshow"),
 				slideshow : false,

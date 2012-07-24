@@ -92,7 +92,7 @@
 			/* Archived Web page template */
 			"%archived-page" : "This Web page has been archived on the Web.",
 			/* Menu bar */
-			"%sub-menu-help" : "(open the submenu with the down arrow key and close with the escape key)",
+			"%sub-menu-help" : "(open the submenu with the enter key and close with the escape key)",
 			/* Tabbed interface */
 			"%tab-rotation" : {
 				"disable" : "Stop tab rotation",
