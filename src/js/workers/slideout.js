@@ -30,16 +30,16 @@
 				wrapper,
 				keyhandler,
 				tocLinks,
-                cssTest;
+				cssTest;
 
-            // Don't do anything if CSS is disabled
-            // Couldn't get _pe.cssenabled() to work
-            var cssTest = $('<div style="display: none;">').appendTo('body');
-            if(cssTest.css('display') != 'none') {
-                return;
-            }
-            cssTest.remove();
-            
+			// Don't do anything if CSS is disabled
+			// Couldn't get _pe.cssenabled() to work
+			cssTest = $('<div style="display: none;">').appendTo('body');
+			if (cssTest.css('display') !== 'none') {
+				return;
+			}
+			cssTest.remove();
+
 			// Add the wrappers
 			wrapper = elm.wrap('<div id="slideoutWrapper" role="application" />').parent(); // This is used for overflow: hidden.
 			elm.wrap('<div id="slideoutInnerWrapper" />'); // This is used for "animate".
