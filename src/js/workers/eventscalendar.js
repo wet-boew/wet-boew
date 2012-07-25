@@ -260,7 +260,7 @@
 			containerid = $(elm).attr('class').split(' ').slice(-1);
 
 			if ($("#wb-main-in").css("padding-left") === "0px") {
-				elm.find("#" + containerid).css("margin-left", "10px");
+				$("#" + containerid).css("margin-left", "10px");
 			}
 
 			$("#" + containerid).bind("calendarDisplayed", function (e, year, month, days) {

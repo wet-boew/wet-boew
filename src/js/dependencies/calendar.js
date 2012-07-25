@@ -21,12 +21,12 @@
 			container.removeClass("cal-container-extended");
 
 			//Converts min and max date from string to date objects
-			minDate = this.getDateFromISOString(mindate);
+			minDate = _pe.fn.calendar.getDateFromISOString(mindate);
 			if (minDate === null) {
 				minDate = new Date();
 				minDate.setFullYear(year - 1, month, 1);
 			}
-			maxDate = this.getDateFromISOString(maxdate);
+			maxDate = _pe.fn.calendar.getDateFromISOString(maxdate);
 			if (maxDate === null) {
 				maxDate = new Date();
 				maxDate.setFullYear(year + 1, month, 1);
@@ -61,14 +61,14 @@
 
 			if (shownav) {
 				//Create the month navigation
-				monthNav = this.createMonthNav(containerid, year, month, minDate, maxDate);
+				monthNav = _pe.fn.calendar.createMonthNav(containerid, year, month, minDate, maxDate);
 				if ($("#cal-" + containerid + "-monthnav").length < 1) {
 					calHeader.append(monthNav);
 				}
 
 				if (container.children("div#cal-" + containerid + "-cnt").children(".cal-header").children(".cal-goto").length < 1) {
 					//Create the go to form
-					calHeader.append(this.createGoToForm(containerid, year, month, minDate, maxDate));
+					calHeader.append(_pe.fn.calendar.createGoToForm(containerid, year, month, minDate, maxDate));
 				}
 			}
 			objCalendar.append(calHeader);
@@ -76,10 +76,10 @@
 			//Create the calendar body
 
 			//Creates weekdays | Cree les jours de la semaines
-			objCalendar.append(this.createWeekdays(containerid));
+			objCalendar.append(_pe.fn.calendar.createWeekdays(containerid));
 
 			//Creates the rest of the calendar | Cree le reste du calendrier
-			days = this.createDays(containerid, year, month);
+			days = _pe.fn.calendar.createDays(containerid, year, month);
 			daysList = days.children("ol.cal-day-list").children("li");
 			objCalendar.append(days);
 
@@ -150,7 +150,7 @@
 						btnCtn.append(btn);
 						monthNav.append(btnCtn);
 					}
-					btn.bind('click', {calID: calendarid, year: newYear, month : newMonth, mindate: this.getISOStringFromDate(minDate), maxdate: this.getISOStringFromDate(maxDate)}, this.buttonClick);
+					btn.bind('click', {calID: calendarid, year: newYear, month : newMonth, mindate: _pe.fn.calendar.getISOStringFromDate(minDate), maxdate: _pe.fn.calendar.getISOStringFromDate(maxDate)}, _pe.fn.calendar.buttonClick);
 				} else {
 					if (btnCtn) {
 						btnCtn.remove();
@@ -160,7 +160,7 @@
 			return monthNav;
 		},
 		buttonClick : function (event) {
-			this.create(event.data.calendarid, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
+			_pe.fn.calendar.create(event.data.calID, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
 			pe.focus($(this));
 		},
 		yearChanged : function (event) {
@@ -188,7 +188,7 @@
 				monthField.get(0).remove(0);
 			}
 
-			for (i = minMonth; i <= maxMonth; i += 1) { // TODO: make sure minMonth < maxMonth
+			for (i = minMonth; i <= maxMonth; i += 1) {
 				monthField.append('<option value="' + i + '"' + ((i === month) ? ' selected="selected"' : "") + '>' + pe.dic.get('%calendar-monthNames')[i] + '</option>');
 			}
 		},
@@ -209,7 +209,7 @@
 				goToLinkContainer,
 				goToLink;
 			form.submit(function () {
-				this.onGoTo(calendarid, minDate, maxDate);
+				_pe.fn.calendar.onGoTo(calendarid, minDate, maxDate);
 				return false;
 			});
 			fieldset = form.children("fieldset");
@@ -238,7 +238,7 @@
 				});
 			} else {
 				// Update the list of available months when changing the year
-				yearField.bind('change', {minDate: minDate, maxDate: maxDate, monthField: monthField}, this.yearChanged);
+				yearField.bind('change', {minDate: minDate, maxDate: maxDate, monthField: monthField}, _pe.fn.calendar.yearChanged);
 				yearField.change(); // Populate initial month list        
 			}
 
@@ -250,7 +250,7 @@
 			buttonCancelContainer = $('<div class="cal-goto-button"></div>');
 			buttonCancel = $('<input type="button" value="' + pe.dic.get("%calendar-cancelButton") + '" />');
 			buttonCancel.click(function () {
-				this.hideGoToForm(calendarid);
+				_pe.fn.calendar.hideGoToForm(calendarid);
 			});
 			buttonCancelContainer.append(buttonCancel);
 			fieldset.append(buttonCancelContainer);
@@ -258,7 +258,7 @@
 			goToLinkContainer = $('<p class="cal-goto-link" id="cal-' + calendarid + '-goto-link"></p>');
 			goToLink = $('<a href="javascript:;" role="button" aria-controls="cal-' + calendarid + '-goto" aria-expanded="false">' + pe.dic.get("%calendar-goToLink") + '</a>');
 			goToLink.on('click', function () {
-				this.showGoToForm(calendarid);
+				_pe.fn.calendar.showGoToForm(calendarid);
 			});
 			goToLinkContainer.append(goToLink);
 
@@ -412,8 +412,8 @@
 				year = parseInt(fieldset.find(".cal-goto-year select").attr("value"), 10);
 
 			if (!(month < minDate.getMonth() && year <= minDate.getFullYear()) && !(month > maxDate.getMonth() && year >= maxDate.getFullYear())) {
-				this.create(calendarid, year, month, true, this.getISOStringFromDate(minDate), this.getISOStringFromDate(maxDate));
-				this.hideGoToForm(calendarid);
+				_pe.fn.calendar.create(calendarid, year, month, true, _pe.fn.calendar.getISOStringFromDate(minDate), _pe.fn.calendar.getISOStringFromDate(maxDate));
+				_pe.fn.calendar.hideGoToForm(calendarid);
 
 				//Go to the first day to avoid having to tab opver the navigation again.
 				pe.focus($("#cal-" + calendarid + "-days").find("a:eq(0)"));
@@ -433,7 +433,7 @@
 		},
 
 		getISOStringFromDate : function (date) {
-			return date.getFullYear() + '-' + this.strPad(date.getMonth() + 1, 2, '0') + '-' + this.strPad(date.getDate() + 1, 2, '0');
+			return date.getFullYear() + '-' + _pe.fn.calendar.strPad(date.getMonth() + 1, 2, '0') + '-' + _pe.fn.calendar.strPad(date.getDate() + 1, 2, '0');
 		},
 
 		strPad : function (i, l, s) {
@@ -479,7 +479,7 @@
 				// NaN : if a or b is an illegal date
 				// NOTE: The code inside isFinite does an assignment (=).
 				return (
-					isFinite(a = this.convert(a).valueOf()) && isFinite(b = this.convert(b).valueOf()) ? (a > b) - (a < b) : NaN
+					isFinite(a = _pe.fn.calendar.dates.convert(a).valueOf()) && isFinite(b = _pe.fn.calendar.dates.convert(b).valueOf()) ? (a > b) - (a < b) : NaN
 				);
 			},
 			inRange : function (d, start, end) {
@@ -490,7 +490,7 @@
 				//    NaN   : if one or more of the dates is illegal.
 				// NOTE: The code inside isFinite does an assignment (=).
 				return (
-					isFinite(d = this.convert(d).valueOf()) && isFinite(start = this.convert(start).valueOf()) && isFinite(end = this.convert(end).valueOf()) ? start <= d && d <= end : NaN
+					isFinite(d = _pe.fn.calendar.dates.convert(d).valueOf()) && isFinite(start = _pe.fn.calendar.dates.convert(start).valueOf()) && isFinite(end = _pe.fn.calendar.dates.convert(end).valueOf()) ? start <= d && d <= end : NaN
 				);
 			},
 			daysInMonth: function (iYear, iMonth) {
@@ -499,8 +499,8 @@
 			},
 			daysBetween: function (datelow, datehigh) {
 				// simplified conversion to date object
-				var date1 = this.convert(datelow),
-					date2 = this.convert(datehigh),
+				var date1 = _pe.fn.calendar.dates.convert(datelow),
+					date2 = _pe.fn.calendar.dates.convert(datehigh),
 					DSTAdjust = 0,
 					oneMinute = 1000 * 60,
 					oneDay = oneMinute * 60 * 24,
