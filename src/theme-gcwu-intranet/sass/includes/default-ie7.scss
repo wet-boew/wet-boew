@@ -1,0 +1,17 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+.ie7 #gcwu-bc ol{
+	padding-bottom:10px;
+}
+.ie7 #gcwu-subsite a{
+	font-size:expression(this.previousSibling == null ? '100%' : '-' )
+}
+.ie7 #gcwu-subsite a{
+	padding-left:expression(this.previousSibling == null ? '0' : '-' )
+}
+.ie7 #gcwu-subsite a{
+	border-left:expression(this.previousSibling == null ? 'none' : '-' )
+}

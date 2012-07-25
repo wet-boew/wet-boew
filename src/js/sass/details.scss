@@ -4,27 +4,31 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 
-/* detail polyfill */
+/* details polyfill */
+
 /* <details> and <summary> are block level elements */
 details, summary { 
-    display: block; 
+    display: block;
+}
+
+/* Add focus styles (for keyboard accessibility) */
+summary:hover, summary:focus, summary:active { 
+    background: #ddd; 
 }
 
 /* The following styles will only get applied if JavaScript is enabled and <details> is not natively supported */
 
-/* Add focus styles (for keyboard accessibility) */
-summary:hover, summary:focus { 
-    background: #ddd; 
+/* Add the close pointer */
+details.polyfill > summary:before {
+	content: "\25BA\a0";
+}
+
+/* Add the open pointer */
+details.polyfill.open > summary:before {
+	content: "\25BC\a0";
 }
 
 /* The following styles are not really needed, since the jQuery script takes care of hiding/displaying the elements. */
-/* However, we’re still gonna use CSS as well to prevent FOUC in browsers that understand these selectors. */
-/* Remember: by default (and probably most of the time), the contents of the <details> element are hidden. */
-
-/* Hide all direct descendants of every <details> element */
-details > * { 
-    display: none; 
-}
 
 /* Make sure summary remains visible */
 details summary { 

@@ -11,9 +11,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Grilles et utilitaires de grille – Menu à gauche - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="French description / Description en français" />
 <meta name="description" content="French description / Description en français" />
-<meta name="keywords" content="French keywords / Mots-clés en français" />
 <meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
 <meta name="dcterms.title" content="French title / Titre en français" />
 <meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
@@ -23,12 +21,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -50,9 +50,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation de la gouvernement de Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../build/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/accueil.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-fra.html">Ministères</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
 <li id="gcwu-gcnb-lang"><a href="grid-utilities-leftmenu-eng.html" lang="en">English</a></li>
 </ul></div></div></div></nav>
 
@@ -62,7 +62,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
 </div></form>
 </div></section>
@@ -70,7 +70,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Menu</span> du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/menu-fra.html">
+<ul class="mb-menu" data-ajax-replace="../includes/menu-fra.inc">
 <li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-fra.html">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -347,7 +347,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/960_12_10_10.html">Dimensions facultatives d’une grille-12 dans une présentation à une colonne&#160;: <strong>1&#160;024&#160;x&#160;768</strong> (lien externe, anglais seulement)</a></li>
 		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/1200_12_10_10.html">Dimensions facultatives d’une grille-12 dans une présentation à une colonne&#160;: <strong>1280&#160;x&#160;720+</strong> (lien externe, anglais seulement)</a></li>
 		</ul>
-	<p>Les colonnes se partagent le même espace horizontal que le menu gauche et ne se trouvent que dans une aire de contenu à deux colonnes.<img src="images/grid12-leftmenu.gif" width="340" height="57" alt="Grille-12 à c&ocirc;té d'un menu gauche" /></p>
+	<p>Les colonnes se partagent le même espace horizontal que le menu gauche et ne se trouvent que dans une aire de contenu à deux colonnes.<img src="images/grid12-leftmenu.gif" width="340" height="57" alt="Grille-12 à c&#244;té d'un menu gauche" /></p>
 	<ul>
 		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/576_12_10_10.html">Dimensions facultatives d’une grille-12 dans une présentation à deux colonnes&#160;: <strong>800&#160;x&#160;600</strong> (lien externe, anglais seulement)</a></li>
 		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/720_12_10_10.html">Dimensions facultatives d’une grille-12 dans une présentation à deux colonnes&#160;: <strong>1024&#160;x&#160;768</strong> (lien externe, anglais seulement)</a></li>
@@ -4035,7 +4035,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Menu secondaire</h2>
 <div class="wb-sec-def">
-<!-- SideNavLeftStart -->
+<!-- SecNavStart -->
 <section><h3><a href="#">Section 2.1</a></h3>
 <ul>
 <li><a href="#">Article 2.1a</a></li>
@@ -4072,7 +4072,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </section>
 <div class="top-level"><a href="#">Lien supérieur 1</a></div>
 <div class="top-level"><a href="#">Lien supérieur 2</a></div>
-<!-- SideNavLeftEnd -->
+<!-- SecNavEnd -->
 </div>
 </nav></div></div>
 </div></div>
@@ -4124,7 +4124,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
 <li><a rel="external" href="http://plandaction.gc.ca/fra/index.asp"><span>Économie</span><br />plandaction.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/accueil.html">Canada.gc.ca</a></div></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->

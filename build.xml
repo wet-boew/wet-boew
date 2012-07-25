@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="wet" default="default" basedir=".">
-  <description>Web Experience Toolkit</description>
-  <property file="build.properties"/>
+	<description>Web Experience Toolkit</description>
+	<property file="build.properties"/>
 
-  <target name="default" depends="clean,build" description="Performs a Cleand and Build when calling ant without any target"></target>
+	<target name="default" depends="clean,build" description="Performs a Cleand and Build when calling ant without any target"></target>
 
-  <target name="build" depends="">
-      <echo level="info">
----Building jQuery Integration project---
-      </echo>
-      <ant dir="${src.dir}/js" antfile="build.xml" target="build" inheritAll="false"/>
-      <echo level="info">
----Building CSS Base System project---
-      </echo>
-      <ant dir="${src.dir}/base" antfile="build.xml" target="build" inheritAll="false"/>
-      <echo level="info">
----Building CSS Grid System project---
-      </echo>
-      <ant dir="${src.dir}/grids" antfile="build.xml" target="build" inheritAll="false"/>
-      <echo level="info">
+	<target name="build" depends="">
+		<echo level="info">
+---Building WET Core Framework---
+		</echo>
+		<ant dir="${src.dir}/js" antfile="build.xml" target="build" inheritAll="false"/>
+		<echo level="info">
+---Building Base CSS---
+		</echo>
+		<ant dir="${src.dir}/base" antfile="build.xml" target="build" inheritAll="false"/>
+		<echo level="info">
+---Building CSS Grid System---
+		</echo>
+		<ant dir="${src.dir}/grids" antfile="build.xml" target="build" inheritAll="false"/>
+		<echo level="info">
 ---Building GCWU Theme---
-      </echo>
-      <ant dir="${src.dir}/theme-gcwu-fegc" antfile="build.xml" target="build" inheritAll="false"/>
-      <echo level="info">
----Building GCWU Theme Intranet---
-      </echo>
-      <ant dir="${src.dir}/theme-gcwu-intranet" antfile="build.xml" target="build" inheritAll="false"/>
-      <antcall target="clean-css"/>
-  </target>
+		</echo>
+		<ant dir="${src.dir}/theme-gcwu-fegc" antfile="build.xml" target="build" inheritAll="false"/>
+		<echo level="info">
+---Building GCWU Intranet Theme---
+		</echo>
+		<ant dir="${src.dir}/theme-gcwu-intranet" antfile="build.xml" target="build" inheritAll="false"/>
+		<antcall target="clean-css"/>
+	</target>
 
-  <target name="clean-css">
-    <ant dir="${src.dir}/base" target="clean-css" antfile="build.xml" inheritAll="false"/>
-    <ant dir="${src.dir}/grids" target="clean-css" antfile="build.xml" inheritAll="false"/>
-    <ant dir="${src.dir}/js" target="clean-css" antfile="build.xml" inheritAll="false"/>
-    <ant dir="${src.dir}/theme-gcwu-intranet" target="clean-css" antfile="build.xml" inheritAll="false"/>
-    <ant dir="${src.dir}/theme-gcwu-fegc" target="clean-css" antfile="build.xml" inheritAll="false"/>
-  </target>
-  
-  <target name="clean">
-    <ant dir="${src.dir}/grids" target="clean" antfile="build.xml" inheritAll="false"/>
-    <ant dir="${src.dir}/js" target="clean" antfile="build.xml" inheritAll="false"/>
-    <ant dir="${src.dir}/theme-gcwu-fegc" target="clean" antfile="build.xml" inheritAll="false"/>
-    <delete dir="${dist.dir}" />
-  </target>
-  
+	<target name="clean-css">
+		<ant dir="${src.dir}/base" target="clean-css" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/grids" target="clean-css" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/js" target="clean-css" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean-css" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean-css" antfile="build.xml" inheritAll="false"/>
+	</target>
+
+	<target name="clean">
+		<ant dir="${src.dir}/base" target="clean" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/grids" target="clean" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/js" target="clean" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean" antfile="build.xml" inheritAll="false"/>
+		<delete dir="${dist.dir}" />
+	</target>
 </project>

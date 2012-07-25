@@ -58,6 +58,7 @@
 			return r;
 		},
 		ind : {
+			"%all" : "All",
 			"%home" : "Home",
 			"%top-of-page" : "Top of Page",
 			"%you-are-in" : "You are in: ",
@@ -73,6 +74,8 @@
 			"%hide" : "Hide",
 			"%error" : "Error",
 			"%colon" : ":",
+			"%start" : "Start",
+			"%stop" : "Stop",
 			"%minute-ago" : "a minute ago",
 			"%couple-of-minutes" : "couple of minutes ago",
 			"%minutes-ago" : {
@@ -89,7 +92,7 @@
 			/* Archived Web page template */
 			"%archived-page" : "This Web page has been archived on the Web.",
 			/* Menu bar */
-			"%sub-menu-help" : "(open the submenu with the down arrow key and close with the escape key)",
+			"%sub-menu-help" : "(open the submenu with the enter key and close with the escape key)",
 			/* Tabbed interface */
 			"%tab-rotation" : {
 				"disable" : "Stop tab rotation",
@@ -97,7 +100,7 @@
 			},
 			/* Multimedia player */
 			"%play" : "Play",
-			"%stop" : "Pause",
+			"%pause" : "Pause",
 			"%close" : "Close",
 			"%rewind" : "Rewind ",
 			"%next" : "Next",
@@ -151,10 +154,22 @@
 			"%calendar-goToButton" : "Go",
 			"%calendar-cancelButton" : "Cancel",
 			"%calendar-previousMonth" : "Previous Month: ",
-			"%calendar-nextMonth" : "Next Month: "
+			"%calendar-nextMonth" : "Next Month: ",
+			/* Slideout */
+			"%show-toc" : "Show",
+			"%show-image" : "show.png",
+			"%hide-image" : "hide.png",
+			"%table-contents" : " table of contents",
+			/* Lightbox */
+			"%lb-current" : "Item {current} of {total}",
+			"%lb-next" : "Next item",
+			"%lb-prev" : "Previous item",
+			"%lb-xhr-error" : "This content failed to load.",
+			"%lb-img-error" : "This image failed to load.",
+			"%lb-slideshow" : "slideshow"
 		}
 	};
-        $(document).trigger("languageloaded");
+	$(document).trigger("languageloaded");
 	window.pe = _pe;
 	return _pe;
 }(jQuery));

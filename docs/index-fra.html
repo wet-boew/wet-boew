@@ -11,9 +11,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Boîte à outils de l’expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes." />
 <meta name="description" content="La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes." />
-<meta name="keywords" content="Web, composants réutilisables, boîte à outils, accessibilité, facilité d'emploi, logiciel libre" />
 <meta name="dcterms.creator" content="Gouvernement du Canada, Secrétariat du Conseil du Trésor du Canada, Direction du dirigeant principal de l'information, Division de l'examen et de la supervision de projets de TI, Bureau des normes Web" />
 <meta name="dcterms.title" content="Boîte à outils de l’expérience Web (BOEW)" />
 <meta name="dcterms.issued" title="W3CDTF" content="2012-05-11" />
@@ -25,6 +23,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <script src="../build/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
+<script src="../build/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
@@ -50,9 +49,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation de la gouvernement de Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../build/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/accueil.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-fra.html">Ministères</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
 <li id="gcwu-gcnb-lang"><a href="index-eng.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
@@ -63,7 +62,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
 </div></form>
 </div></section>
@@ -71,7 +70,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Menu</span> du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../demos/includes/menu-fra.html">
+<ul class="mb-menu" data-ajax-replace="../demos/includes/menu-fra.inc">
 <li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-fra.html">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -97,14 +96,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section><h2>Avantages</h2>
 <ul>
-<li>Fournit composants réutilisables pour la conception et la mise à jour de sites Web innovateurs.</li>
+<li>Fournit des composants réutilisables pour la conception et la mise à jour de sites Web innovateurs.</li>
 <li>Respecte l'accessibilité (<a href="http://www.w3.org/Translations/WCAG20-fr">WCAG 2.0</a> AA et <a href="http://www.w3.org/TR/wai-aria/">WAI-ARIA</a>), la facilité d’emploi et l'interoperabilité.</li>
-<li>Réduit les coûts par consolider les outils et solutions axés sur le Web.</li>
+<li>Réduit les coûts en consolidant les outils et les solutions axés sur le Web.</li>
 <li>Sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.</li>
-<li>Fait appel à des technologies nouvelles et novatrices pour rendre les sites plus novateurs et interactifs&#160;:
+<li>Fait appel à des technologies nouvelles et innovatrices pour rendre les sites plus innovateurs et interactifs&#160;:
 	<ul>
 	<li><a href="http://www.w3.org/TR/html5/">HTML5</a>, <a href="http://www.w3.org/Style/CSS/current-work#CSS3">CSS3</a> et <a href="http://jquery.com/">jQuery</a> (cadre JavaScript);</li>
-	<li>liste croissante de plugiciels et gadgets de source ouverte.</li>
+	<li>liste croissante de plugiciels et gadgets libres.</li>
 	</ul>
 </li>
 <li>Permet d’avoir accès à une grande diversité de mises en page et de conceptions pour les sites Web internes et externes (y compris les applications).</li>
@@ -115,6 +114,43 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <ul>
 <li><a href="http://www.sct.gc.ca/ws-nw/wet-boew/conditions">Conditions régissant l'utilisation</a></li>
 <li><a href="../demos/index-fra.html">Exemples pratiques</a></li>
+</ul>
+</section>
+
+<section><h2>Contributor guidelines</h2>
+<ul>
+<li>Pull requests are welcome. Please make sure your changes are to the latest code and limit the commit range to just the files you intended to change (to avoid conflicts).</li>
+<li>New components should be added in a feature-* branch (e.g., feature-lightbox).
+	<ul>
+	<li>Licensing for all new components and supporting code must be compatible with the MIT license used by WET.</li>
+	<li>New plugins should use pluginTemplate.js as the basis for the JavaScript code.</li>
+	<li>Include the WET terms and conditions comment block in all text-based source files that fall under Crown Copyright.</li>
+	<li><a href="http://validator.w3.org/nu/">Validate your HTML markup</a>. Markup should be well-formed HTML5.</li>
+	<li>To test for well-formed markup, validate with an XHTML5 preset and a checkmark next to "Be lax about HTTP Content-Type".</li>
+	</ul>
+</li>
+<li><a href="http://jigsaw.w3.org/css-validator/validator.html.fr#validate_by_uri+with_options">Valider votre CSS</a> avec les changements suivants aux paramètres&#160;:
+	<ul>
+	<li><strong>Profil&#160;:</strong> CSS niveau 3</li>
+	<li><strong>Extensions Proprétaires&#160;:</strong> Avertissements</li>
+	</ul>
+</li>
+<li><a href="http://www.jslint.com">Valider votre code JavaScript</a> avec les changements suivants aux paramètres&#160;;:
+	<ul lang="en">
+	<li><strong>Tolerate dangling _ in identifiers&#160;:</strong> true</li>
+	<li><strong>Tolerate missing 'use strict' pragma&#160;:</strong> true</li>
+	<li><strong>Assume browser&#160;:</strong> true</li>
+	</ul>
+<li>Formatting recommendations:
+	<ul>
+	<li>Indent with tabs using the <a href="http://fr.wikipedia.org/wiki/Style_d%27indentation#Style_K.26R">Style K&amp;R</a></li>
+	<li>Use single quotes for strings in JavaScript (so unescaped double quotes can be used for attributes in HTML output)</li>
+	</ul>
+<li>Supported browsers (should be tested against):
+	<ul>
+	<li><a href="http://yuilibrary.com/yui/docs/tutorials/gbs/">Browser test baseline - YUI Graded Browser Support</a> (excluding IE6)</li>
+	</ul>
+</li>
 </ul>
 </section>
 
@@ -173,7 +209,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
 <li><a rel="external" href="http://plandaction.gc.ca/fra/index.asp"><span>Économie</span><br />plandaction.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/accueil.html">Canada.gc.ca</a></div></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->

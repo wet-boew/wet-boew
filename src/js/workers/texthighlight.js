@@ -5,7 +5,7 @@
 /*
  * Text highlighting functionality 
  */
-/*global jQuery: false, pe: false, dictionary: false*/
+/*global jQuery: false, pe: false*/
 (function ($) {
 	var _pe = window.pe || {
 		fn: {}
@@ -13,7 +13,6 @@
 	_pe.fn.texthighlight = {
 		type: 'plugin',
 		_exec: function (elm) {
-			var searchCriteria, queryParams = pe.url(document.location).params || "";
 
 /*
 * addHighlight
@@ -28,7 +27,7 @@
 *
 */
 			function addHighlight(searchCriteria, target) {
-				var arrSearchCriteria, newText, i, matches = 0;
+				var arrSearchCriteria, newText, i;
 				searchCriteria = searchCriteria.replace(/^\s+|\s+$/g, '');
 				searchCriteria = searchCriteria.replace(/\|+/g, ''); // don't let them use the | symbol
 				// --------------------------------------------------------------------------------------------
@@ -46,14 +45,14 @@
 				searchCriteria = "(?=([^>]*<))([\\s'])?(" + searchCriteria + ")(?!>)"; // Make sure that we're not checking for text within a tag; only the text outside of tags.
 				// --------------------------------------------------------------------------------------------
 				newText = target.html().replace(new RegExp(searchCriteria, "gi"), function (match, grp1, grp2, grp3) {
-					return grp2 + '<span class="texthighlight"><mark>' + grp3 + '</mark></span>';
+					return (typeof grp2 === 'undefined' ? '' : grp2) + '<span class="texthighlight"><mark>' + grp3 + '</mark></span>';
 				});
 				target.html(newText);
 				return null;
 			} // end of addHighlight
 
-			if (queryParams.texthighlight !== null) {
-				addHighlight(queryParams.texthighlight, elm);
+			if (pe.urlquery.texthighlight !== undefined) {
+				addHighlight(pe.urlquery.texthighlight, elm);
 			}
 			return this;
 		} // end of exec

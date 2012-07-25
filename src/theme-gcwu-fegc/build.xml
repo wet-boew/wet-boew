@@ -32,24 +32,24 @@
 
 	<target name="build-css" depends="-base64-encode" />
 
-  <!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
-  <target name="compile.sass">
-    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; compile &quot;${src.dir}&quot;"/>
-    </java>
-    <echo level="info">
+	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
+	<target name="compile.sass">
+		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; compile &quot;${src.dir}&quot;"/>
+		</java>
+		<echo level="info">
 ---Converted GCWU SCSS Files into CSS---
-    </echo>
-  </target>
-  <!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
-  <target name="watch.sass">
-    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; watch &quot;${src.dir}&quot;"/>
-    </java>
-    <echo level="info">
+		</echo>
+	</target>
+	<!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
+	<target name="watch.sass">
+		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; watch &quot;${src.dir}&quot;"/>
+		</java>
+		<echo level="info">
 ---Watching for SCSS Changes in GCWU Directory---
-    </echo>
-  </target>
+		</echo>
+	</target>
   
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode" depends="-merge-css">
@@ -87,13 +87,13 @@
 	</target>
 	
 	<target name="-merge-css">
-		<copy todir="${build.dir}/premin/jquery.mobile">
+		<copy todir="${build.dir}/pre/merge/jquery.mobile">
 			<fileset dir="${src.dir}/jquery.mobile">
 				<include name="*.css"/>
 				<exclude name="*.min.css"/>
 			</fileset>
 		</copy>
-		<copy todir="${build.dir}/premin/jquery.mobile">
+		<copy todir="${build.dir}/pre/merge/jquery.mobile">
 			<fileset dir="${src.dir}/../js/jquery.mobile">
 				<include name="*.css"/>
 				<exclude name="*.min.css"/>
@@ -104,33 +104,34 @@
 				<headfilter lines="1"/>
 			</filterchain>
 		</loadfile>
-		<concat dest="${build.dir}/css/jquery.mobile.css">
+		<concat dest="${build.dir}/pre/merge/css/jquery.mobile.css">
 			<header>${jquery.mobile.license}</header> 
-			<fileset dir="${build.dir}/premin/jquery.mobile">
+			<fileset dir="${build.dir}/pre/merge/jquery.mobile">
 				<include name="*theme.css"/>
 				<include name="*structure.css"/>
 			</fileset>
 		</concat>
-		<copy todir="${build.dir}">
-			<fileset dir="${src.dir}">
-				<exclude name="build*"/>
-				<exclude name="config*"/>
-				<exclude name="compile*"/>
-				<exclude name="sass/**"/>
-				<exclude name="jquery.mobile/**"/>
-				<exclude name="js/**"/>
-			</fileset>
+		<copy todir="${build.dir}/pre/merge/css">
+			<fileset dir="${src.dir}/css"/>
 		</copy>
-		<copy todir="${build.dir}/../css">
+		<replace dir="${build.dir}/pre/merge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/images" />
+		</copy>
+		<copy todir="${build.dir}/pre/merge/../css">
 			<fileset dir="${src.dir}/../base/css"/>
 		</copy>
-		<filelist id="corefiles" dir="${build.dir}">
-			<file name="css/theme.css"/>
-			<file name="css/theme-ie.css"/>
-			<file name="css/theme-sp-pe.css"/>
-			<file name="css/theme-sp-pe-ie.css"/>
-			<file name="css/theme-serv.css"/>
-			<file name="css/theme-serv-ie.css"/>
+		<copy todir="${build.dir}/pre/merge/../grids/css">
+			<fileset dir="${src.dir}/../grids/css"/>
+		</copy>
+		<replace dir="${build.dir}/pre/merge/../css" token="@charset &quot;utf-8&quot;;" value=" "/>
+		<filelist id="corefiles" dir="${build.dir}/pre/merge/css">
+			<file name="theme.css"/>
+			<file name="theme-ie.css"/>
+			<file name="theme-sp-pe.css"/>
+			<file name="theme-sp-pe-ie.css"/>
+			<file name="theme-serv.css"/>
+			<file name="theme-serv-ie.css"/>
 		</filelist>
 		<for param="css-file">
 			<path>
@@ -143,19 +144,25 @@
 				</antcall>
 			</sequential>
 		</for>
-		<delete>
-			<fileset dir="${build.dir}/css">
-				<exclude name="theme.css"/>
-				<exclude name="theme-ie.css"/>
-				<exclude name="theme-sp-pe.css"/>
-				<exclude name="theme-sp-pe-ie.css"/>
-				<exclude name="theme-serv.css"/>
-				<exclude name="theme-serv-ie.css"/>
-				<exclude name="jquery.mobile.css"/>
-			</fileset>
-		</delete>
-		<delete dir="${build.dir}/../css"/>
-		<delete dir="${build.dir}/premin"/>
+		<copy todir="${build.dir}/css">
+			<filelist dir="${build.dir}/pre/merge/css">
+				<file name="theme.css"/>
+				<file name="theme-ie.css"/>
+				<file name="theme-sp-pe.css"/>
+				<file name="theme-sp-pe-ie.css"/>
+				<file name="theme-serv.css"/>
+				<file name="theme-serv-ie.css"/>
+			</filelist>
+			<filterchain>
+				<concatfilter prepend="${src.dir}/../css-head.txt"/>
+			</filterchain>
+		</copy>
+		<copy todir="${build.dir}/css">
+			<filelist dir="${build.dir}/pre/merge/css">
+				<file name="jquery.mobile.css"/>
+			</filelist>
+		</copy>
+		<delete dir="${build.dir}/pre"/>
 	</target>
 
 	<target name="-resolve-css-imports">

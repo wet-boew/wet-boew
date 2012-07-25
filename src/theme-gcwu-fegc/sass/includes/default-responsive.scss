@@ -2,7 +2,7 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ */
 body{
 	min-width:960px;
 }
@@ -49,251 +49,11 @@ li#gcwu-gcft-ca a{
 	padding-left:44px;
 }
 
-h1,h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
-	margin-left:10px;
-	margin-right:10px;
-}
-
-.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
-	display:inline;
-	position:relative;
-	float:left;
-	min-height:1px;
-	margin-left:10px;
-	margin-right:10px;
-}
-
-.border-top,.border-right,.border-bottom,.border-left{
-	display:inline;
-	position:relative;
-	float:left;
-	min-height:1px;
-}
-
-#wb-main-in .span-1,#wb-main-in .span-2,#wb-main-in .span-3,#wb-main-in .span-4,#wb-main-in .span-5,#wb-main-in .span-6,#wb-main-in .span-7,#wb-main-in .span-8,#wb-main-in .span-9,#wb-main-in .span-10,#wb-main-in .span-11,#wb-main-in .span-12{
-	margin-bottom:20px;
-}
-
-.row-end{
-	margin-right:0 !important;
-}
-
-.clear{
-	clear:both;
-	display:block;
-	height:0;
-	overflow:hidden;
-	visibility:hidden;
-	width:0;
-	margin:0;
-}
-
-.span-1 .span-1,.span-2 .span-2,.span-3 .span-3,.span-4 .span-4,.span-5 .span-5,.span-6 .span-6,.span-7 .span-7,.span-8 .span-8,.span-9 .span-9,.span-10 .span-10,.span-11 .span-11,.span-12 .span-12{
-	margin-left:0 !important;
-	margin-right:0 !important;
-}
-
-.border-span-1,.border-span-2,.border-span-3,.border-span-4,.border-span-5,.border-span-6,.border-span-7,.border-span-8,.border-span-9,.border-span-10,.border-span-11,.border-span-12{
-	background-repeat:no-repeat;
-	border-bottom:1px solid #ccc !important;
-}
-
-img.image-actual,#gcwu-aside .gcwu-minister-img img{
-	width:auto !important;
-	height:auto;
-}
-
-.span-1 img,.span-2 img,.span-3 img,.span-4 img,.span-5 img,.span-6 img,.span-7 img,.span-8 img,.span-9 img,.span-10 img,.span-11 img,.span-12 img,#gcwu-aside img{
-	width:100%;
-	height:auto;
-	-ms-interpolation-mode:bicubic;
-}
-
-.equalize{
-	margin-bottom:0 !important;
-}
-
-.ie7 .equalize{
-	margin-bottom:20px !important;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-1{
-	width:40px;
-}
-
-.grid-12 .span-1{
-	width:60px;
-}
-
-.span-1,#wb-body-sec #wb-core .grid-12 .span-2{
-	width:100px;
-}
-
-.grid-12 .span-2{
-	width:140px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-3{
-	width:160px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-5{
-	width:280px;
-}
-
-.grid-12 .span-4{
-	width:300px;
-}
-
-.span-3,#wb-body-sec #wb-core .grid-12 .span-6{
-	width:340px;
-}
-
-.grid-12 .span-5{
-	width:380px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-7{
-	width:400px;
-}
-
-.span-4,#wb-body-sec #wb-core .grid-12 .span-8,.grid-12 .span-6{
-	width:460px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-9{
-	width:520px;
-}
-
-.grid-12 .span-7{
-	width:540px;
-}
-
-.span-5,#wb-body-sec #wb-core .grid-12 .span-10{
-	width:580px;
-}
-
-.grid-12 .span-8{
-	width:620px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-11{
-	width:640px;
-}
-
-.span-6,#wb-body-sec #wb-core .grid-12 .span-12,.grid-12 .span-9{
-	width:700px;
-}
-
-.grid-12 .span-10{
-	width:780px;
-}
-
-.span-7{
-	width:820px;
-}
-
-.grid-12 .span-11{
-	width:860px;
-}
-
-.span-8,.grid-12 .span-12{
-	width:940px;
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-1{
-	background-image:url(../../grids/images/border-40px.gif);
-}
-
-.grid-12 .border-span-1{
-	background-image:url(../../grids/images/border-60px.gif);
-}
-
-.border-span-1,#wb-body-sec #wb-core .grid-12 .border-span-2,.module-versatile{
-	background-image:url(../../grids/images/border-100px.gif);
-}
-
-.grid-12 .border-span-2,.module-versatile{
-	background-image:url(../../grids/images/border-140px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-3{
-	background-image:url(../../grids/images/border-160px.gif);
-}
-
-.border-span-2,.module-versatile,#wb-body-sec #wb-core .grid-12 .border-span-4,.grid-12 .border-span-3{
-	background-image:url(../../grids/images/border-220px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-5{
-	background-image:url(../../grids/images/border-280px.gif);
-}
-
-.grid-12 .border-span-4{
-	background-image:url(../../grids/images/border-300px.gif);
-}
-
-.border-span-3,#wb-body-sec #wb-core .grid-12 .border-span-6{
-	background-image:url(../../grids/images/border-340px.gif);
-}
-
-.grid-12 .border-span-5{
-	background-image:url(../../grids/images/border-380px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-7{
-	background-image:url(../../grids/images/border-400px.gif);
-}
-
-.border-span-4,.module-table-contents,.module-welcomepage,#wb-body-sec #wb-core .grid-12 .border-span-8,.grid-12 .border-span-6{
-	background-image:url(../../grids/images/border-460px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-9{
-	background-image:url(../../grids/images/border-520px.gif);
-}
-
-.grid-12 .border-span-7{
-	background-image:url(../../grids/images/border-540px.gif);
-}
-
-.border-span-5,#wb-body-sec #wb-core .grid-12 .border-span-10{
-	background-image:url(../../grids/images/border-580px.gif);
-}
-
-.grid-12 .border-span-8{
-	background-image:url(../../grids/images/border-620px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-11{
-	background-image:url(../../grids/images/border-640px.gif);
-}
-
-.border-span-6,#wb-body-sec #wb-core .grid-12 .border-span-12,.grid-12 .border-span-9{
-	background-image:url(../../grids/images/border-700px.gif);
-}
-
-.grid-12 .border-span-10{
-	background-image:url(../../grids/images/border-780px.gif);
-}
-
-.border-span-7{
-	background-image:url(../../grids/images/border-820px.gif);
-}
-
-.grid-12 .border-span-11{
-	background-image:url(../../grids/images/border-860px.gif);
-}
-
-.border-span-8,.grid-12 .border-span-12{
-	background-image:url(../../grids/images/border-940px.gif);
-}
-
 #wb-core-in,#gcwu-gcnb-in,#gcwu-bnr-in,#gcwu-psnb-in,#gcwu-bc-in,#gcwu-gcft-in,#gcwu-sft-in,#gcwu-bnr-in,#gcwu-psnb .mb-menu,#gcwu-psnb .mb-hsubmenu .showcase-visible ul,#wb-body #wb-main{
 	width:960px;
 }
 
-#wb-body-sec #wb-main,#wb-body-secr #wb-main,#wb-body-sec #wb-main-in,#wb-body-secr #wb-main-in,#wb-body #gcwu-content{
+#wb-body-sec #wb-main,#wb-body-sec-sup #wb-main,#wb-body-sec #wb-main-in,#wb-body-sec-sup #wb-main-in,#wb-body #gcwu-content{
 	width:720px;
 }
 
@@ -301,16 +61,10 @@ img.image-actual,#gcwu-aside .gcwu-minister-img img{
 	width:480px;
 }
 
-#gcwu-aside,#gcwu-priorities,.span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3{
+#gcwu-aside,#gcwu-priorities{
 	width:220px;
 }
 
-li#gcwu-gcft-ca,.row-start{
+li#gcwu-gcft-ca{
 	margin-left:0 !important;
-}
-
-.span-2 .calendar-month td,.span-2 .calendar-month th,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month td,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month th,.grid-12 .span-3 .calendar-month td,.grid-12 .span-3 .calendar-month th{
-	width:30px;
-	height:32px;
-	padding:2px 3px;
 }

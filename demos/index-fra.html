@@ -11,9 +11,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Exemples pratiques - Boîte à outils de l’expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="Exemple pratiques de la Boîte à outils de l’expérience Web (BOEW)." />
 <meta name="description" content="Exemple pratiques de la Boîte à outils de l’expérience Web (BOEW)." />
-<meta name="keywords" content="exemples pratiques, Web, composants réutilisables, boîte à outils, accessibilité, facilité d'emploi, logiciel libre" />
 <meta name="dcterms.creator" content="Gouvernement du Canada, Secrétariat du Conseil du Trésor du Canada, Direction du dirigeant principal de l'information, Division de l'examen et de la supervision de projets de TI, Bureau des normes Web" />
 <meta name="dcterms.title" content="Exemples pratiques - Boîte à outils de l’expérience Web (BOEW)" />
 <meta name="dcterms.issued" title="W3CDTF" content="2012-05-11" />
@@ -23,12 +21,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
+<script src="../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -50,9 +50,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation de la gouvernement de Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../build/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/accueil.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-fra.html">Ministères</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
 <li id="gcwu-gcnb-lang"><a href="index-eng.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
@@ -63,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
 </div></form>
 </div></section>
@@ -71,7 +71,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Menu</span> du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="includes/menu-fra.html">
+<ul class="mb-menu" data-ajax-replace="includes/menu-fra.inc">
 <li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-fra.html">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -98,7 +98,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div class="span-4">
 
-<section><h2 id="math">Affichage des formules mathématiques ou scientifiques</h2>
+<section><h2 id="math">Affichage des formules mathématiques ou scientifiques (Alpha)</h2>
 <ul>
 <li><a href="mathlib/mathlib-eng.html"><span class="wb-invisible">Affichage des formules mathématiques ou scientifiques - </span>Exemples en anglais</a></li>
 <li><a href="mathlib/mathlib-fra.html"><span class="wb-invisible">Affichage des formules mathématiques ou scientifiques - </span>Exemples en français</a></li>
@@ -114,9 +114,34 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </ul>
 </section>
 
+<section><h2 id="details">Contenu en arborescence affichable/masquable (correctif pour <span lang="en">details/summary</span>)</h2>
+<ul>
+<li><a href="details/details-eng.html"><span class="wb-invisible">Contenu en arborescence affichable/masquable (correctif pour <span lang="en">details/summary</span>) - </span>Exemple en anglais</a></li>
+<li><a href="details/details-fra.html"><span class="wb-invisible">Contenu en arborescence affichable/masquable (correctif pour <span lang="en">details/summary</span>)- </span>Exemple en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="rde">Émulateur de conception réactive</h2>
+<ul>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-eng.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu - Anglais - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-fra.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu - Français - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav1-eng.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 1 - Anglais - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav1-fra.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 1 - Français - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-eng.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 2 - Anglais - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-fra.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 2 - Français - Thème de la facilité d'emploi Web GC</a></li>
+</ul>
+</section>
+
 <section><h2 id="opt-cont">Exemples optimaux de contenu</h2>
 <ul>
 <li><a href="opt-cont/index-eng.html"><span class="wb-invisible">Exemples optimaux de contenu - </span>Exemples en anglais</a></li>
+</ul>
+</section>
+
+<section><h2 id="feedback">Feuille de réponse</h2>
+<ul>
+<li><a href="feedback/feedback-eng.html"><span class="wb-invisible">Feuille de réponse - </span>Exemple en anglais</a></li>
+<li><a href="feedback/feedback-fra.html"><span class="wb-invisible">Feuille de réponse - </span>Exemple en français</a></li>
 </ul>
 </section>
 
@@ -143,10 +168,19 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </ul>
 </section>
 
+<section><h2 id="lightbox">Lightbox (Alpha)</h2>
+<ul>
+<li><a href="lightbox/lightbox-eng.html"><span class="wb-invisible">Lightbox - </span>Exemples en anglais</a></li>
+<li><a href="lightbox/lightbox-fra.html"><span class="wb-invisible">Lightbox - </span>Exemples en français</a></li>
+</ul>
+</section>
+</div>
+
+<div class="span-4">
 <section><h2 id="texthighlight">Mise en surbrillance de texte</h2>
 <ul>
 <li><a href="texthighlight/texthighlight-eng.html?texthighlight=avian%20influenza+world+cook+flu-like%20symptoms+Don't%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people."><span class="wb-invisible">Mise en surbrillance de texte - </span>Exemples en anglais</a></li>
-<li><a href="texthighlight/texthighlight-fra.html?texthighlight=influenza%20aviaire+monde+suffis+sympt&ocirc;mes%20semblables%20à%20ceux%20de%20l'influenza+À%20titre%20de%20rappel...+&Agrave;%20de%20rares%20occasions,%20des%20humains%20ont%20été%20infectés%20par%20ce%20virus."><span class="wb-invisible">Mise en surbrillance de texte - </span>Exemples en français</a></li>
+<li><a href="texthighlight/texthighlight-fra.html?texthighlight=influenza%20aviaire+monde+suffis+sympt&#244;mes%20semblables%20à%20ceux%20de%20l'influenza+À%20titre%20de%20rappel...+&#192;%20de%20rares%20occasions,%20des%20humains%20ont%20été%20infectés%20par%20ce%20virus."><span class="wb-invisible">Mise en surbrillance de texte - </span>Exemples en français</a></li>
 </ul>
 </section>
 
@@ -154,6 +188,13 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <ul>
 <li><a href="archived/archived-eng.html"><span class="wb-invisible">Modèle de page Web archivée - </span>Exemple en anglais</a></li>
 <li><a href="archived/archived-fra.html"><span class="wb-invisible">Modèle de page Web archivée - </span>Exemple en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="slideout">Onglet coulissant</h2>
+<ul>
+<li><a href="slideout/slideout-eng.html"><span class="wb-invisible">Onglet coulissant - </span>Exemple en anglais</a></li>
+<li><a href="slideout/slideout-fra.html"><span class="wb-invisible">Onglet coulissant - </span>Exemple en français</a></li>
 </ul>
 </section>
 
@@ -173,6 +214,13 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </ul>
 </section>
 
+<section><h2 id="langselect">Sélecteur de langue</h2>
+<ul>
+<li><a href="langselect/lang-js-eng.html"><span class="wb-invisible">Sélecteur de langue - </span>Exemple en anglais - JavaScript + PHP</a></li>
+<li><a href="langselect/lang-js-fra.html"><span class="wb-invisible">Sélecteur de langue - </span>Exemple en français - JavaScript + PHP</a></li>
+</ul>
+</section>
+
 <section><h2 id="grids">Système de grille de CSS</h2>
 <ul>
 <li><a href="grids/grid-utilities-eng.html"><span class="wb-invisible">Système de grille de CSS - </span>Exemple en anglais</a></li>
@@ -182,62 +230,29 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </ul>
 </section>
 
+<section><h2 id="gcwu">Thème de la facilité d'emploi Web GC</h2>
+<ul>
+<li><a href="theme-gcwu-fegc/index-fra.html#accueil"><span class="wb-invisible">Thème de la facilité d'emploi Web GC - </span>Pages d'accueil</a></li>
+<li><a href="theme-gcwu-fegc/index-fra.html#contenu"><span class="wb-invisible">Thème de la facilité d'emploi Web GC - </span>Pages de contenu</a></li>
+<li><a href="theme-gcwu-fegc/index-fra.html#appweb"><span class="wb-invisible">Thème de la facilité d'emploi Web GC - </span>Pages de contenu - Modèle de page d'application Web</a></li>
+<li><a href="theme-gcwu-fegc/index-fra.html#entre"><span class="wb-invisible">Thème de la facilité d'emploi Web GC - </span>Pages d'entrée</a></li>
+<li><a href="theme-gcwu-fegc/index-fra.html#serv"><span class="wb-invisible">Thème de la facilité d'emploi Web GC - </span>Pages de messages du serveur</a></li>
+</ul>
+</section>
+
+<section><h2 id="gcwuintranet">Thème d'intranet de la facilité d'emploi Web GC</h2>
+<ul>
+<li><a href="theme-gcwu-intranet/index-fra.html#contenu"><span class="wb-invisible">Thème d'intranet de la facilité d'emploi Web GC - </span>Pages de contenu</a></li>
+<li><a href="theme-gcwu-intranet/index-fra.html#entre"><span class="wb-invisible">Thème d'intranet de la facilité d'emploi Web GC - </span>Pages d'entrée</a></li>
+<li><a href="theme-gcwu-intranet/index-fra.html#serv"><span class="wb-invisible">Thème d'intranet de la facilité d'emploi Web GC - </span>Pages de messages du serveur</a></li>
+</ul>
+</section>
+
 <section><h2 id="formvalid">Validation des formulaires</h2>
 <ul>
 <li><a href="formvalid/formvalid-eng.html"><span class="wb-invisible">Validation des formulaires - </span>Exemples en anglais</a></li>
 <li><a href="formvalid/formvalid-fra.html"><span class="wb-invisible">Validation des formulaires - </span>Exemples en français</a></li>
 </ul>
-</section>
-</div>
-
-<div class="span-4">
-<section><h2 id="gcwu">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr></h2>
-	<section><h3>Pages d'accueil</h3>
-	<ul>
-	<li><a href="theme-gcwu-fegc/home-accueil-eng.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages d'accueil - </span>Exemple en anglais</a></li>
-	<li><a href="theme-gcwu-fegc/home-accueil-fra.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages d'accueil - </span>Exemple en français</a></li>
-	</ul>
-	</section>
-
-	<section><h3>Pages de contenu</h3>
-	<ul>
-	<li><a href="theme-gcwu-fegc/cont-eng.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de contenu - </span>Exemple en anglais</a></li>
-	<li><a href="theme-gcwu-fegc/cont-fra.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de contenu - </span>Exemple en français</a></li>
-	<li><a href="theme-gcwu-fegc/cont-secnav1-eng.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de contenu - </span>Exemple en anglais - Menu secondaire 1</a></li>
-	<li><a href="theme-gcwu-fegc/cont-secnav1-fra.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de contenu - </span>Exemple en français - Menu secondaire 1</a></li>
-	<li><a href="theme-gcwu-fegc/cont-secnav2-eng.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de contenu - </span>Exemple en anglais - Menu secondaire 2</a></li>
-	<li><a href="theme-gcwu-fegc/cont-secnav2-fra.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de contenu - </span>Exemple en français - Menu secondaire 2</a></li>
-	</ul>
-	</section>
-
-	<section><h3>Pages de contenu - Modèle de page d'application Web</h3>
-	<ul>
-	<li><a href="theme-gcwu-fegc/application-eng.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de contenu - Modèle de page d'application Web - </span>Exemple en anglais</a></li>
-	<li><a href="theme-gcwu-fegc/application-fra.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de contenu - Modèle de page d'application Web - </span>Exemple en français</a></li>
-	<li><a href="theme-gcwu-fegc/application-nosearchlang-eng.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de contenu - Modèle de page d'application Web - </span>Exemple en anglais - Sans recherche ou lien de sélection de la langue</a></li>
-	<li><a href="theme-gcwu-fegc/application-nosearchlang-fra.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de contenu - Modèle de page d'application Web - </span>Exemple en français - Sans recherche ou lien de sélection de la langue</a></li>
-	</ul>
-	</section>
-
-	<section><h3>Pages d'entrée</h3>
-	<ul>
-	<li><a href="theme-gcwu-fegc/sp-pe-eng-fra.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages d'entrée - </span>Exemple en anglais/français</a></li>
-	<li><a href="theme-gcwu-fegc/sp-pe-fra-eng.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages d'entrée - </span>Exemple en français/anglais</a></li>
-	<li><a href="theme-gcwu-fegc/sp-pe-mult-eng-fra.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages d'entrée - </span>Exemple en anglais/français - Multilingue</a></li>
-	<li><a href="theme-gcwu-fegc/sp-pe-mult-fra-eng.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages d'entrée - </span>Exemple en français/anglais - Multilingue</a></li>
-	</ul>
-	</section>
-
-	<section><h3>Pages de messages du serveur</h3>
-	<ul>
-	<li><a href="theme-gcwu-fegc/serv-eng.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de messages du serveur - </span>Exemple en anglais</a></li>
-	<li><a href="theme-gcwu-fegc/serv-fra.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de messages du serveur - </span>Exemple en français</a></li>
-	<li><a href="theme-gcwu-fegc/serv-eng-fra.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de messages du serveur - </span>Exemple en anglais/français</a></li>
-	<li><a href="theme-gcwu-fegc/serv-fra-eng.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de messages du serveur - </span>Exemple en français/anglais</a></li>
-	<li><a href="theme-gcwu-fegc/serv-mult-eng-fra.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de messages du serveur - </span>Exemple en anglais/français - Multilingue</a></li>
-	<li><a href="theme-gcwu-fegc/serv-mult-fra-eng.html"><span class="wb-invisible">Thème de la facilité d'emploi Web <abbr title="Gouvernement du Canada">GC</abbr> - Pages de messages du serveur - </span>Exemple en français/anglais - Multilingue</a></li>
-	</ul>
-	</section>
 </section>
 </div>
 
@@ -296,7 +311,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
 <li><a rel="external" href="http://plandaction.gc.ca/fra/index.asp"><span>Économie</span><br />plandaction.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/accueil.html">Canada.gc.ca</a></div></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->
@@ -308,5 +323,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <script src="../build/js/settings.js"></script>
 <script src="../build/js/pe-ap-min.js"></script>
 <!-- ScriptsEnd -->
+
+<script>
+/* <![CDATA[ */
+(function ($) {
+	$('#wb-main-in #rde + ul a').each(function () {
+		var $this = $(this),
+			url = window.location.href;
+		$this.attr('href', $this.attr('href') + '?' + url.substring(0, url.lastIndexOf('/') + 1) + $this.attr('data-url'));
+	});
+}(jQuery));
+/* ]]> */
+</script>
 </body>
 </html>

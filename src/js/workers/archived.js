@@ -1,10 +1,10 @@
 /*!
-* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-* www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
 /*
-* Web archived top page banner
-*/
+ * Web archived top page banner
+ */
 /*global jQuery: false, pe: false*/
 (function ($) {
 	var _pe = window.pe || {fn: {} };
@@ -23,6 +23,14 @@
 					notice.fadeIn("normal").attr('aria-hidden', 'false');
 				} else {
 					notice.fadeOut("normal").attr('aria-hidden', 'true');
+				}
+			});
+
+			// Ensure that the archived notice does not overlap a link that gains focus
+			$(document).on('focusin', function (e) {
+				var target = $(e.target);
+				if (notice.attr('aria-hidden') === 'false' && (target.offset().top + target.outerHeight()) <= (notice.offset().top + notice.outerHeight())) {
+					$(window).scrollTop($(window).scrollTop() - notice.outerHeight());
 				}
 			});
 

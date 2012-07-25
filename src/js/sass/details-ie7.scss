@@ -1,0 +1,21 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+ 
+/* Add the pointers */
+.ie7 details summary {
+	*zoom: expression(
+		this.runtimeStyle.zoom="1",
+		this.innerHTML = '<span class="details-closed">\25BA\a0</span><span class="details-open">\25BC\a0</span>'+this.innerHTML
+	);
+}
+
+.ie7 details > summary .details-closed, .ie7 details.open > summary .details-open {
+	display: inline;
+}
+
+.ie7 details.open > summary .details-closed, .ie7 details > summary .details-open {
+	display: none;
+}

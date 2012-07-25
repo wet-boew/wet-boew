@@ -11,24 +11,24 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Forms - Optimal Content Examples - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="English description/Description en anglais" />
-<meta name="description" content="English description/Description en anglais" />
-<meta name="keywords" content="English keywords/Mots-clés en anglais" />
-<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
 <meta name="dcterms.title" content="Forms" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -50,9 +50,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
 <li id="gcwu-gcnb-lang"><a href="cont-secnav2-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
@@ -63,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -71,7 +71,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.html">
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.inc">
 <li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -227,14 +227,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div class="span-6 border-span-6">
 	<h3 class="background-light">1. Form Field Examples</h3>
-	<div class="indent-medium">
+	<ol>
+	<li>
 		<label for="homeaddress">Home Address:</label> <input type="text" name="homeaddress" id="homeaddress" size="60" />
-	</div>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;label for=&quot;homeaddress&quot;&gt;Home Address:&lt;/label&gt; <br>&lt;input type=&quot;text&quot; name=&quot;homeaddress&quot; id=&quot;homeaddress&quot; size=&quot;60&quot; /&gt;</code></pre>
-	</div>
-	<div class="indent-medium margin-top-large">
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;label for=&quot;homeaddress&quot;&gt;Home Address:&lt;/label&gt; <br />&lt;input type=&quot;text&quot; name=&quot;homeaddress&quot; id=&quot;homeaddress&quot; size=&quot;60&quot; /&gt;</code></pre>
+		</details>
+	</li>
+	<li class="margin-top-large">
 		<label for="homeprovince">Home Province:</label>
 		<select id="homeprovince" name="homeprovince" size="1">
 			<option value="nl">Newfoundland</option>
@@ -251,12 +252,12 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			<option value="nt">North West Territories</option>
 			<option value="yk">Yukon</option>
 		</select>
-	</div>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;label for=&quot;homeprovince&quot;&gt;Home Province:&lt;/label&gt;<br>&lt;select id=&quot;homeprovince&quot; name=&quot;homeprovince&quot; size=&quot;1&quot;&gt;<br>	&lt;option value=&quot;nl&quot;&gt;Newfoundland&lt;/option&gt;<br>	&lt;option value=&quot;ns&quot;&gt;Nova Scotia&lt;/option&gt;<br>	&lt;option value=&quot;pe&quot;&gt;Prince Edward Island&lt;/option&gt;<br>	&lt;option value=&quot;nb&quot;&gt;New Brunswick&lt;/option&gt;<br>	&lt;option value=&quot;qc&quot;&gt;Quebec&lt;/option&gt;<br>	&lt;option value=&quot;on&quot;&gt;Ontario&lt;/option&gt;<br>	&lt;option value=&quot;mb&quot;&gt;Manitoba&lt;/option&gt;<br>	&lt;option value=&quot;sk&quot;&gt;Saskatchewan&lt;/option&gt;<br>	&lt;option value=&quot;ab&quot;&gt;Alberta&lt;/option&gt;<br>	&lt;option value=&quot;bc&quot;&gt;British Columbia&lt;/option&gt;<br>	&lt;option value=&quot;nu&quot;&gt;Nunavut&lt;/option&gt;<br>	&lt;option value=&quot;nt&quot;&gt;North West Territories&lt;/option&gt;<br>	&lt;option value=&quot;yk&quot;&gt;Yukon&lt;/option&gt;<br>&lt;/select&gt;</code></pre>
-	</div>
-	<div class="indent-medium margin-top-large">
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;label for=&quot;homeprovince&quot;&gt;Home Province:&lt;/label&gt;<br />&lt;select id=&quot;homeprovince&quot; name=&quot;homeprovince&quot; size=&quot;1&quot;&gt;<br />	&lt;option value=&quot;nl&quot;&gt;Newfoundland&lt;/option&gt;<br />	&lt;option value=&quot;ns&quot;&gt;Nova Scotia&lt;/option&gt;<br />	&lt;option value=&quot;pe&quot;&gt;Prince Edward Island&lt;/option&gt;<br />	&lt;option value=&quot;nb&quot;&gt;New Brunswick&lt;/option&gt;<br />	&lt;option value=&quot;qc&quot;&gt;Quebec&lt;/option&gt;<br />	&lt;option value=&quot;on&quot;&gt;Ontario&lt;/option&gt;<br />	&lt;option value=&quot;mb&quot;&gt;Manitoba&lt;/option&gt;<br />	&lt;option value=&quot;sk&quot;&gt;Saskatchewan&lt;/option&gt;<br />	&lt;option value=&quot;ab&quot;&gt;Alberta&lt;/option&gt;<br />	&lt;option value=&quot;bc&quot;&gt;British Columbia&lt;/option&gt;<br />	&lt;option value=&quot;nu&quot;&gt;Nunavut&lt;/option&gt;<br />	&lt;option value=&quot;nt&quot;&gt;North West Territories&lt;/option&gt;<br />	&lt;option value=&quot;yk&quot;&gt;Yukon&lt;/option&gt;<br />&lt;/select&gt;</code></pre>
+		</details>
+	</li>
+	<li class="margin-top-large">
 		<fieldset>
 			<legend>Provinces Lived:</legend>
 			<input type="checkbox" name="livedprovince" id="pl_n1" value="pl_nl" /> <label for="pl_n1">Newfoundland</label><br />
@@ -273,46 +274,47 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			<input type="checkbox" name="livedprovince" id="pl_nt" value="pl_nt" /> <label for="pl_nt">North West Territories</label><br />
 			<input type="checkbox" name="livedprovince" id="pl_yk" value="pl_yk" /> <label for="pl_yk">Yukon</label><br />
 		</fieldset>
-	</div>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;fieldset&gt;<br>	&lt;legend&gt;Provinces Lived:&lt;/legend&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_n1&quot; value=&quot;pl_nl&quot; /&gt;<br>	&lt;label for=&quot;pl_n1&quot;&gt;Newfoundland&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_ns&quot; value=&quot;pl_ns&quot; /&gt;
-	&lt;label for=&quot;pl_ns&quot;&gt;Nova Scotia&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_pe&quot; value=&quot;pl_pe&quot; /&gt;
-	&lt;label for=&quot;pl_pe&quot;&gt;Prince Edward Island&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_nb&quot; value=&quot;pl_nb&quot; /&gt;
-	&lt;label for=&quot;pl_nb&quot;&gt;New Brunswick&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_qc&quot; value=&quot;pl_qc&quot; /&gt;
-	&lt;label for=&quot;pl_qc&quot;&gt;Quebec&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_on&quot; value=&quot;pl_on&quot; /&gt;
-	&lt;label for=&quot;pl_on&quot;&gt;Ontario&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_mb&quot; value=&quot;pl_mb&quot; /&gt;
-	&lt;label for=&quot;pl_mb&quot;&gt;Manitoba&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_sk&quot; value=&quot;pl_sk&quot; /&gt;
-	&lt;label for=&quot;pl_sk&quot;&gt;Saskatchewan&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_ab&quot; value=&quot;pl_ab&quot; /&gt;
-	&lt;label for=&quot;pl_ab&quot;&gt;Alberta&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_bc&quot; value=&quot;pl_bc&quot; /&gt;
-	&lt;label for=&quot;pl_bc&quot;&gt;British Columbia&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_nu&quot; value=&quot;pl_nu&quot; /&gt;
-	&lt;label for=&quot;pl_nu&quot;&gt;Nunavut&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_nt&quot; value=&quot;pl_nt&quot; /&gt;
-	&lt;label for=&quot;pl_nt&quot;&gt;North West Territories&lt;/label&gt;&lt;br /&gt;<br>	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_yk&quot; value=&quot;pl_yk&quot; /&gt;
-	&lt;label for=&quot;pl_yk&quot;&gt;Yukon&lt;/label&gt;&lt;br /&gt;<br>&lt;/fieldset&gt;</code></pre>
-	</div>
-	<div class="indent-medium margin-top-large">
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;fieldset&gt;<br />	&lt;legend&gt;Provinces Lived:&lt;/legend&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_n1&quot; value=&quot;pl_nl&quot; /&gt;<br />	&lt;label for=&quot;pl_n1&quot;&gt;Newfoundland&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_ns&quot; value=&quot;pl_ns&quot; /&gt;
+		&lt;label for=&quot;pl_ns&quot;&gt;Nova Scotia&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_pe&quot; value=&quot;pl_pe&quot; /&gt;
+		&lt;label for=&quot;pl_pe&quot;&gt;Prince Edward Island&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_nb&quot; value=&quot;pl_nb&quot; /&gt;
+		&lt;label for=&quot;pl_nb&quot;&gt;New Brunswick&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_qc&quot; value=&quot;pl_qc&quot; /&gt;
+		&lt;label for=&quot;pl_qc&quot;&gt;Quebec&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_on&quot; value=&quot;pl_on&quot; /&gt;
+		&lt;label for=&quot;pl_on&quot;&gt;Ontario&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_mb&quot; value=&quot;pl_mb&quot; /&gt;
+		&lt;label for=&quot;pl_mb&quot;&gt;Manitoba&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_sk&quot; value=&quot;pl_sk&quot; /&gt;
+		&lt;label for=&quot;pl_sk&quot;&gt;Saskatchewan&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_ab&quot; value=&quot;pl_ab&quot; /&gt;
+		&lt;label for=&quot;pl_ab&quot;&gt;Alberta&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_bc&quot; value=&quot;pl_bc&quot; /&gt;
+		&lt;label for=&quot;pl_bc&quot;&gt;British Columbia&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_nu&quot; value=&quot;pl_nu&quot; /&gt;
+		&lt;label for=&quot;pl_nu&quot;&gt;Nunavut&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_nt&quot; value=&quot;pl_nt&quot; /&gt;
+		&lt;label for=&quot;pl_nt&quot;&gt;North West Territories&lt;/label&gt;&lt;br /&gt;<br />	&lt;input type=&quot;checkbox&quot; name=&quot;livedprovince&quot; id=&quot;pl_yk&quot; value=&quot;pl_yk&quot; /&gt;
+		&lt;label for=&quot;pl_yk&quot;&gt;Yukon&lt;/label&gt;&lt;br /&gt;<br />&lt;/fieldset&gt;</code></pre>
+		</details>
+	</li>
+	<li class="margin-top-large">
 		<fieldset>
 			<legend>Home Phone Number:</legend>
 			(<input type="text" size="3" maxlength="3" name="homephone_areacode" id="homephone_areacode" title="Area Code" />) <input type="text" size="3" maxlength="3" name="homephone_exchange" id="homephone_exchange" title="First three digits of phone number" />-<input type="text" size="4" maxlength="4" name="homephone_number" id="homephone_number" title="Last four digits of phone number" />
 		</fieldset>
-	</div>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>(&lt;input type=&quot;text&quot; size=&quot;3&quot; maxlength=&quot;3&quot; name=&quot;homephone_areacode&quot; id=&quot;homephone_areacode&quot; <br>title=&quot;Area Code&quot; /&gt;) &lt;input type=&quot;text&quot; size=&quot;3&quot; maxlength=&quot;3&quot; name=&quot;homephone_exchange&quot; <br>id=&quot;homephone_exchange&quot; title=&quot;First three digits of phone number&quot; /&gt;-&lt;input type=&quot;text&quot; size=&quot;4&quot; <br>maxlength=&quot;4&quot; name=&quot;homephone_number&quot; id=&quot;homephone_number&quot; <br>title=&quot;Last four digits of phone number&quot; /&gt;</code></pre>
-	</div>
-	<div class="indent-medium margin-top-large">
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>(&lt;input type=&quot;text&quot; size=&quot;3&quot; maxlength=&quot;3&quot; name=&quot;homephone_areacode&quot; id=&quot;homephone_areacode&quot; <br />title=&quot;Area Code&quot; /&gt;) &lt;input type=&quot;text&quot; size=&quot;3&quot; maxlength=&quot;3&quot; name=&quot;homephone_exchange&quot; <br />id=&quot;homephone_exchange&quot; title=&quot;First three digits of phone number&quot; /&gt;-&lt;input type=&quot;text&quot; size=&quot;4&quot; <br />maxlength=&quot;4&quot; name=&quot;homephone_number&quot; id=&quot;homephone_number&quot; <br />title=&quot;Last four digits of phone number&quot; /&gt;</code></pre>
+		</details>
+	</li>
+	<li class="margin-top-large">
+	
 		<fieldset>
 			<legend>Postal Code:</legend>
 			<input type="text" size="3" maxlength="3" name="postalcode_first3" id="postalcode_first3" title="Fires three characters of postal code" />-<input type="text" size="3" maxlength="3" name="postalcode_last3" id="postalcode_last3" title="Last three digits of phone number" />
 		</fieldset>
-	</div>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;fieldset&gt;<br>	&lt;legend&gt;Postal Code:&lt;/legend&gt;<br>	&lt;input type=&quot;text&quot; size=&quot;3&quot; maxlength=&quot;3&quot; name=&quot;postalcode_first3&quot; id=&quot;postalcode_first3&quot; 
-	title=&quot;Fires three characters of postal code&quot; /&gt;-&lt;input type=&quot;text&quot; size=&quot;3&quot; maxlength=&quot;3&quot; 
-	name=&quot;postalcode_last3&quot; id=&quot;postalcode_last3&quot; title=&quot;Last three digits of phone number&quot; /&gt;<br>&lt;/fieldset&gt;</code></pre>
-	</div>
-	<div class="indent-medium margin-top-large">
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;fieldset&gt;<br />	&lt;legend&gt;Postal Code:&lt;/legend&gt;<br />	&lt;input type=&quot;text&quot; size=&quot;3&quot; maxlength=&quot;3&quot; name=&quot;postalcode_first3&quot; id=&quot;postalcode_first3&quot; 
+		title=&quot;Fires three characters of postal code&quot; /&gt;-&lt;input type=&quot;text&quot; size=&quot;3&quot; maxlength=&quot;3&quot; 
+		name=&quot;postalcode_last3&quot; id=&quot;postalcode_last3&quot; title=&quot;Last three digits of phone number&quot; /&gt;<br />&lt;/fieldset&gt;</code></pre>
+		</details>
+	</li>
+	<li class="margin-top-large">
 		<label for="searchTerm">Search for:</label>
 		<input id="searchTerm" type="text" size="30" value="" name="searchTerm">
 		<select title="Search in" id="scope">
@@ -320,23 +322,24 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			<option value="music">Music</option>
 			<option value="software">Software</option>
 		</select>
-	</div>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;label for=&quot;searchTerm&quot;&gt;Search for:&lt;/label&gt;<br>&lt;input id=&quot;searchTerm&quot; type=&quot;text&quot; size=&quot;30&quot; value=&quot;&quot; name=&quot;searchTerm&quot;&gt;<br>&lt;select title=&quot;Search in&quot; id=&quot;scope&quot;&gt;<br>	&lt;option value=&quot;books&quot;&gt;Books&lt;/option&gt;<br>	&lt;option value=&quot;music&quot;&gt;Music&lt;/option&gt;<br>	&lt;option value=&quot;software&quot;&gt;Software&lt;/option&gt;<br>&lt;/select&gt;</code></pre>
-	</div>
-	<div class="indent-medium margin-top-large">
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;label for=&quot;searchTerm&quot;&gt;Search for:&lt;/label&gt;<br />&lt;input id=&quot;searchTerm&quot; type=&quot;text&quot; size=&quot;30&quot; value=&quot;&quot; name=&quot;searchTerm&quot;&gt;<br />&lt;select title=&quot;Search in&quot; id=&quot;scope&quot;&gt;<br />	&lt;option value=&quot;books&quot;&gt;Books&lt;/option&gt;<br />	&lt;option value=&quot;music&quot;&gt;Music&lt;/option&gt;<br />	&lt;option value=&quot;software&quot;&gt;Software&lt;/option&gt;<br />&lt;/select&gt;</code></pre>
+		</details>
+	</li>
+	<li class="margin-top-large">
 		<label for="comments">Comments:</label> <textarea name="comments" cols="65" rows="3" id="comments"></textarea>
-	</div>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;label for=&quot;comments&quot;&gt;Comments:&lt;/label&gt; <br>&lt;textarea name=&quot;comments&quot; cols=&quot;65&quot; rows=&quot;3&quot; id=&quot;comments&quot;&gt;&lt;/textarea&gt;<br></code></pre>
-	</div>	
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;label for=&quot;comments&quot;&gt;Comments:&lt;/label&gt; <br />&lt;textarea name=&quot;comments&quot; cols=&quot;65&quot; rows=&quot;3&quot; id=&quot;comments&quot;&gt;&lt;/textarea&gt;<br /></code></pre>
+		</details>
+	</li>
+	</ol>
 </div>
 
 <div class="span-6 border-span-6">
 	<h3 class="background-light">2. Required Data, Format, and Values</h3>
-	<div class="indent-medium margin-bottom-large">
+	<div class="indent-large">
 		<p class="color-attention"><strong>Error 1: Full Name - This field is mandatory.</strong></p>
 		<p class="color-attention"><strong>Error 2: Date - Please enter a valid date (ISO).</strong></p>
 		<p class="color-attention"><strong>Error 3: Integer - Please enter a number between 5 and 40.</strong></p>
@@ -346,22 +349,22 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		<label for="date" class="color-attention"><strong>Date (YYYY-MM-DD):</strong></label> <input id="date" name="date" /><br />
 		<label for="address">Address:</label> <input id="address" name="address" /><br />
 		<label for="int" class="color-attention"><strong>Integer (between 5 and 40):</strong></label> <input id="int" name="int" />
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;p class=&quot;color-attention&quot;&gt;&lt;strong&gt;Error 1: Full Name - This field is mandatory.&lt;/strong&gt;&lt;/p&gt;<br />&lt;p class=&quot;color-attention&quot;&gt;&lt;strong&gt;Error 2: Date - Please enter a valid date (ISO).&lt;/strong&gt;&lt;/p&gt;<br />&lt;p class=&quot;color-attention&quot;&gt;&lt;strong&gt;Error 3: Integer - Please enter a number between 5 and 40.<br />&lt;/strong&gt;&lt;/p&gt;<br />&lt;p&gt;&lt;strong&gt;All fields indicated with an asterisk (*) are required fields.&lt;/strong&gt;&lt;/p&gt;<br />&lt;label for=&quot;prefix&quot;&gt;Prefix:&lt;/label&gt; &lt;input id=&quot;prefix&quot; name=&quot;prefix&quot; /&gt;&lt;br /&gt;<br />&lt;label for=&quot;fullname&quot;&gt;&lt;strong class=&quot;color-attention&quot;&gt;Full Name *:&lt;/strong&gt;&lt;/label&gt; <br />&lt;input id=&quot;fullname&quot; name=&quot;fullname&quot; /&gt;&lt;br /&gt;<br />&lt;label for=&quot;date&quot; class=&quot;color-attention&quot;&gt;&lt;strong&gt;Date (YYYY-MM-DD):&lt;/strong&gt;&lt;/label&gt; <br />&lt;input id=&quot;date&quot; name=&quot;date&quot; /&gt;&lt;br /&gt;<br />&lt;label for=&quot;address&quot;&gt;Address:&lt;/label&gt; &lt;input id=&quot;address&quot; name=&quot;address&quot; /&gt;&lt;br /&gt;<br />&lt;label for=&quot;int&quot; class=&quot;color-attention&quot;&gt;&lt;strong&gt;Integer (between 5 and 40):&lt;/strong&gt;&lt;/label&gt; <br />&lt;input id=&quot;int&quot; name=&quot;int&quot; /&gt;</code></pre>
+		</details>
 	</div>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;p class=&quot;color-attention&quot;&gt;&lt;strong&gt;Error 1: Full Name - This field is mandatory.&lt;/strong&gt;&lt;/p&gt;<br>&lt;p class=&quot;color-attention&quot;&gt;&lt;strong&gt;Error 2: Date - Please enter a valid date (ISO).&lt;/strong&gt;&lt;/p&gt;<br>&lt;p class=&quot;color-attention&quot;&gt;&lt;strong&gt;Error 3: Integer - Please enter a number between 5 and 40.<br>&lt;/strong&gt;&lt;/p&gt;<br>&lt;p&gt;&lt;strong&gt;All fields indicated with an asterisk (*) are required fields.&lt;/strong&gt;&lt;/p&gt;<br>&lt;label for=&quot;prefix&quot;&gt;Prefix:&lt;/label&gt; &lt;input id=&quot;prefix&quot; name=&quot;prefix&quot; /&gt;&lt;br /&gt;<br>&lt;label for=&quot;fullname&quot;&gt;&lt;strong class=&quot;color-attention&quot;&gt;Full Name *:&lt;/strong&gt;&lt;/label&gt; <br>&lt;input id=&quot;fullname&quot; name=&quot;fullname&quot; /&gt;&lt;br /&gt;<br>&lt;label for=&quot;date&quot; class=&quot;color-attention&quot;&gt;&lt;strong&gt;Date (YYYY-MM-DD):&lt;/strong&gt;&lt;/label&gt; <br>&lt;input id=&quot;date&quot; name=&quot;date&quot; /&gt;&lt;br /&gt;<br>&lt;label for=&quot;address&quot;&gt;Address:&lt;/label&gt; &lt;input id=&quot;address&quot; name=&quot;address&quot; /&gt;&lt;br /&gt;<br>&lt;label for=&quot;int&quot; class=&quot;color-attention&quot;&gt;&lt;strong&gt;Integer (between 5 and 40):&lt;/strong&gt;&lt;/label&gt; <br>&lt;input id=&quot;int&quot; name=&quot;int&quot; /&gt;</code></pre>
-	</div>	
 </div>
 
 <div class="span-6 border-span-6">
 	<h3 class="background-light">3. Search Box</h3>
-	<div class="indent-medium margin-bottom-large">
-		<input type="text" title="Type search term here" /> <input type="submit" value="Search"/>
+	<div class="indent-large">
+		<label for="search" class="wb-invisible">Search</label><input type="text" id="search" /> <input type="submit" value="Search" />
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;label for="search" class="wb-invisible"&gt;Search&lt;/label&gt;&lt;input type="text" id="search" /&gt; &lt;input type="submit" value="Search" /&gt;</code></pre>
+		</details>
 	</div>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;input type=&quot;text&quot; title=&quot;Type search term here&quot; /&gt; &lt;input type=&quot;submit&quot; value=&quot;Search&quot;/&gt;</code></pre>
-	</div>	
 </div>
 
 
@@ -437,30 +440,29 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
 <div class="wb-sec-def">
-<!-- SideNavLeftStart -->
-<h3><a href="index-eng.html">Optimal Content Examples</a></h3>
+<!-- SecNavStart -->
+<section><h3 class="top-section"><a href="index-eng.html">Optimal Content Examples</a></h3>
+<section><h4>Content Types</h4>
 <ul>
-	<li><p>Content Types</p>
-		<ul>
-			<li><a href="smm-eng.html">Summary Of Coding Requirements</a></li>
-			<li><a href="clr-eng.html">Colour</a></li>
-			<li><a href="frm-eng.html">Forms</a></li>
-			<li><a href="hdg-eng.html">Headings and Titles</a></li>
-			<li><a href="img-eng.html">Images</a></li>
-			<li><a href="kb-cv-eng.html">Keyboard and User Controls</a></li>
-			<li><a href="lin-eng.html">Links</a></li>
-			<li><a href="qlg-eng.html">Quotations and Language</a></li>
-			<li><a href="tbl-eng.html">Tables</a></li>
-		</ul>
-	</li>
-	<li><p><a href="wcag-eng.html">Web Content Accessibility Guidelines (WCAG) 2.0</a></p>
-		<ul>
-			<li><a href="app-eng.html">Success Criteria Applicability</a></li>
-		</ul>
-	</li>
-	<li><a href="dk-sv-eng.html">Did You Know?</a></li>
+	<li><a href="smm-eng.html">Summary Of Coding Requirements</a></li>
+	<li><a href="clr-eng.html">Colour</a></li>
+	<li><a href="frm-eng.html">Forms</a></li>
+	<li><a href="hdg-eng.html">Headings and Titles</a></li>
+	<li><a href="img-eng.html">Images</a></li>
+	<li><a href="kb-cv-eng.html">Keyboard and User Controls</a></li>
+	<li><a href="lin-eng.html">Links</a></li>
+	<li><a href="qlg-eng.html">Quotations and Language</a></li>
+	<li><a href="tbl-eng.html">Tables</a></li>
 </ul>
-<!-- SideNavLeftEnd -->
+</section>
+<section><h4><a href="wcag-eng.html">Web Content Accessibility Guidelines (WCAG) 2.0</a></h4>
+<ul>
+	<li><a href="app-eng.html">WCAG 2.0 Success Criteria Applicability</a></li>
+</ul>
+</section>
+<div class="top-level"><a href="dk-sv-eng.html">Did You Know?</a></div>
+</section>
+<!-- SecNavEnd -->
 </div>
 </nav></div></div>
 </div></div>
@@ -512,7 +514,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
 <li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></div></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->

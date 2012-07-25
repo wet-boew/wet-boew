@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="jquery.core" default="default" basedir=".">
-	<description>Web Experience Toolkit jQuery Integration project</description>
+	<description>Web Experience Toolkit Core Framework</description>
 
 	<property file="build.properties"/>
 	<import file="../../build-tasks.xml"/>
@@ -24,25 +24,25 @@
 		</yui-compressor>
 		<delete dir="${build.dir}/premin"/>
 	</target>
-  
-  <!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
-  <target name="compile.sass">
-    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems&quot; compile &quot;${src.dir}&quot;"/>
-    </java>
-    <echo level="info">
+
+	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
+	<target name="compile.sass">
+		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems&quot; compile &quot;${src.dir}&quot;"/>
+		</java>
+		<echo level="info">
 ---Converted JS SCSS Files into CSS---
-    </echo>
-  </target>
-  <!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
-  <target name="watch.sass">
-    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems&quot; watch &quot;${src.dir}&quot;"/>
-    </java>
-    <echo level="info">
+		</echo>
+	</target>
+	<!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
+	<target name="watch.sass">
+		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems&quot; watch &quot;${src.dir}&quot;"/>
+		</java>
+		<echo level="info">
 ---Watching for SCSS Changes in JS Directory---
-    </echo>
-  </target>
+		</echo>
+	</target>
 
 	<target name="build-js" depends="-build-pe">
 		<copy todir="${build.dir}">  
@@ -122,35 +122,40 @@
 	</target>
 
 	<target name="-merge-css">
-		<copy todir="${build.dir}/premin/css">
+		<copy todir="${build.dir}/premerge/css">
 			<fileset dir="${src.dir}/css"/>
 		</copy>
-		<replace dir="${build.dir}/premin/css" token="@charset &quot;utf-8&quot;;" value=" "/>
-		<concat dest="${build.dir}/premin/css/pe-ap.css" fixlastline="yes">
-			<header>@charset &quot;utf-8&quot;;</header> 
-			<fileset dir="${build.dir}/premin/css">
+		<replace dir="${build.dir}/premerge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
+		<concat destfile="${build.dir}/premerge/css/pe-ap.css" fixlastline="yes" append="true">
+			<fileset dir="${build.dir}/premerge/css">
+				<include name="*.css"/>
+				<exclude name="*-ie7.css"/>
+				<exclude name="*-ie8.css"/>
+				<exclude name="pe-ap*.css"/>
+			</fileset>
+		</concat>
+		<concat destfile="${build.dir}/premerge/css/pe-ap-ie.css" fixlastline="yes" append="true">
+			<fileset dir="${build.dir}/premerge/css">
 				<include name="*.css"/>
 				<exclude name="pe-ap*.css"/>
 			</fileset>
 		</concat>
-		<concat dest="${build.dir}/premin/css/pe-ap-ie.css" fixlastline="yes">
-			<header>@charset &quot;utf-8&quot;;</header> 
-			<fileset dir="${build.dir}/premin/css">
-				<include name="*.css"/>
-				<exclude name="pe-ap*.css"/>
-			</fileset>
-		</concat>
-		<delete>
-			<fileset dir="${build.dir}/premin/css">
-				<exclude name="pe-ap*.css"/>
-			</fileset>
-		</delete>
+		<copy todir="${build.dir}/premin/css">
+			<filelist dir="${build.dir}/premerge/css">
+				<file name="pe-ap.css"/>
+				<file name="pe-ap-ie.css"/>
+			</filelist>
+			<filterchain>
+				<concatfilter prepend="${src.dir}/../css-head.txt"/>
+			</filterchain>
+		</copy>
+		<delete dir="${build.dir}/premerge"/>
 	</target>
 
-  <target name="clean-css">
+	<target name="clean-css">
 		<delete dir="${src.dir}/css" />
 	</target>
-  
+
 	<target name="clean">
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />

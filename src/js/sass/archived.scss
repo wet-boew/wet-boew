@@ -1,5 +1,5 @@
 @charset "utf-8";
-/*!
+/*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
@@ -63,12 +63,12 @@
 
 .archived a {
   color:#333333;
-  height:22px;
   padding-bottom:2px;
   padding-left:0;
   padding-right:0;
   padding-top:0;
   position:relative;
+  text-shadow:none;
 }
 
 .archived a[href]:hover, .archived a[href]:link, .archived a[href]:active, .archived a[href]:focus {

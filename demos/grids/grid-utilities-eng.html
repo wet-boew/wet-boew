@@ -11,24 +11,24 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Grids and grid utilities - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="English description/Description en anglais" />
-<meta name="description" content="English description/Description en anglais" />
-<meta name="keywords" content="English keywords/Mots-clés en anglais" />
-<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
-<meta name="dcterms.title" content="English title/Titre en anglais" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -50,9 +50,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
 <li id="gcwu-gcnb-lang"><a href="grid-utilities-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
@@ -63,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -71,7 +71,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.html">
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.inc">
 <li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -393,1429 +393,1541 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 &lt;/div&gt; 
 &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
 </code></pre>
-			<div class="clear"></div>
-		</div>
 <div class="clear"></div>
+</div>
+<div class="clear"></div>
+
 <div class="span-6 background-light align-center border-span-6">
-			<p><code>span-6</code></p>
-		</div>
+<p><code>span-6</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-2</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-5 background-light align-center border-span-5">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-4 background-light align-center border-span-4">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center border-span-3">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-5 background-light align-center">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center border-span-2">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-2</code></p>
+</div>
 <div class="span-6 background-light align-center">
-			<p><code>span-6</code></p>
-		</div>
+<p><code>span-6</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center border-span-1">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-7 background-light align-center">
-			<p><code>span-7</code></p>
-		</div>
+<p><code>span-7</code></p>
+</div>
 <div class="clear"></div>
+
+
 <div class="span-8 margin-top-large margin-bottom-small">
-			<h3 class="background-light">Three column layouts </h3>
-		</div>
+<h3 class="background-light">Three column layouts </h3>
+</div>
 <div class="clear"></div>
+
 <div class="span-6 background-light align-center">
-			<p><code>span-6</code></p>
-		</div>
+<p><code>span-6</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-5 background-light align-center">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-5 background-light align-center">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-5 background-light align-center">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="clear"></div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-5 background-light align-center">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-6 background-light align-center">
-			<p><code>span-6</code></p>
-		</div>
+<p><code>span-6</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-5 background-light align-center">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-5 background-light align-center">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-6 background-light align-center">
-			<p><code>span-6</code></p>
-		</div>
+<p><code>span-6</code></p>
+</div>
 <div class="clear"></div>
+
+
 <div class="span-8 margin-top-large margin-bottom-small">
-			<h3 class="background-light">Four column layouts </h3>
-		</div>
+<h3 class="background-light">Four column layouts </h3>
+</div>
 <div class="clear"></div>
+
 <div class="span-5 background-light align-center">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-5 background-light align-center">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-5 background-light align-center">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-5 background-light align-center">
-			<p><code>span-5</code></p>
-		</div>
+<p><code>span-5</code></p>
+</div>
 <div class="clear"></div>
+
+
 <div class="span-8 margin-top-large margin-bottom-small">
-			<h3 class="background-light">Five column layouts </h3>
-		</div>
+<h3 class="background-light">Five column layouts </h3>
+</div>
 <div class="clear"></div>
+
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-4 background-light align-center">
-			<p><code>span-4</code></p>
-		</div>
+<p><code>span-4</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
+
 <div class="span-8 margin-top-large margin-bottom-small">
-			<h3 class="background-light">Six column layouts </h3>
-		</div>
+<h3 class="background-light">Six column layouts </h3>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-3 background-light align-center">
-			<p><code>span-3</code></p>
-		</div>
+<p><code>span-3</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
+
 <div class="span-8 margin-top-large margin-bottom-small">
-			<h3 class="background-light">Seven column layouts </h3>
-		</div>
+<h3 class="background-light">Seven column layouts </h3>
+</div>
 <div class="clear"></div>
+
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-2 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
+
 <div class="span-8 margin-top-large margin-bottom-small">
-			<h3 class="background-light">Eight column layouts </h3>
-		</div>
+<h3 class="background-light">Eight column layouts </h3>
+</div>
 <div class="clear"></div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="span-1 background-light align-center">
-			<p><code>span-1</code></p>
-		</div>
+<p><code>span-1</code></p>
+</div>
 <div class="clear"></div>
+
+
 <h3>Optional grid 12 within the content area</h3>
 <p>For complex or alternate layouts, you can call in a grid 12 within the content area. Although the default grid system will likely meet the majority of your needs, this alternate grid version is available and can be easily activated. The grid 12 can be called in anywhere on the page by opening a <code>&lt;div class=&quot;grid-12&quot;&gt;</code> container:</p>
 <pre><code>
@@ -1848,7 +1960,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<p><code>span-10</code></p>
 	</div>
 	<div class="span-2 background-light align-center">
-	<p><code>span-1</code></p>
+	<p><code>span-2</code></p>
 	</div>
 	<div class="clear"></div>
 	<div class="span-9 background-light border-span-9 align-center">
@@ -1901,7 +2013,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	</div>
 	<div class="clear"></div>
 	<div class="span-2 background-light border-span-2 align-center">
-	<p><code>span-1</code></p>
+	<p><code>span-2</code></p>
 	</div>
 	<div class="span-10 background-light align-center">
 	<p><code>span-10</code></p>
@@ -5420,7 +5532,7 @@ Forgot paragraph tag (not ideal)
 <li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
 <li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></div></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->

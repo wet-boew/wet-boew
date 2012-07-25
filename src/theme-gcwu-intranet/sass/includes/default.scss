@@ -1,0 +1,98 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+
+/** From branding.css **/
+h2{
+	border-bottom:1px solid #28507a;
+}
+h3{
+	border-bottom:1px solid #ccc;
+}
+#gcwu-bnr{
+	background-color:#28507a;
+}
+.gcwu-subsite-1{
+	background:#618000 url(../images/gcwu-subsite-1.gif) repeat-x 0 top;
+}
+.gcwu-subsite-1 a{
+	color:#fff !important;
+	text-shadow:1px 1px 1px #333 !important;
+}
+
+/* Overrides from util.css */
+.embedded-nav a,.embedded-nav a:visited,.embedded-nav a:link{
+	background:#276cb9;
+	border-color:#276cb9;
+}
+.embedded-nav .embedded-link-active{
+	color:#276cb9;
+}
+.embedded-nav a:hover,.embedded-nav a:focus{
+	border-color:#276cb9;
+}
+.table-accent{
+	border-color:#276cb9;
+}
+.table-accent th{
+	background-color:#276cb9 !important;
+}
+.table-accent td{
+	border-color:#276cb9;
+}
+.background-accent{
+	background-color:#276cb9 !important;
+}
+td.calendar-today{
+	border-color:#276cb9;
+}
+h2.background-accent,h3.background-accent,h4.background-accent,h5.background-accent,h6.background-accent{
+	background-color:#b84000 !important;
+	background-image:url(../images/bg-accent.gif) !important;
+}
+.module-welcomepage h2{
+	background:#276cb9;
+}
+.module-billboard li{
+	background-color:#276cb9;
+}
+.module-news h2 a,.module-news h3 a{
+	color:#276cb9;
+}
+.module-news .module-news-article a{
+	background:#276cb9;
+}
+.module-news .module-news-article span a{
+	color:#276cb9;
+}
+.module-spotlight li span a{
+	color:#276cb9;
+}
+.teaser-1{
+	background-color:#2e5b86;
+	background-image:url(../images/teaser-1.gif);
+}
+
+/** From default.css **/
+#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-head-in,#gcwu-sig-eng,#gcwu-sig-fra,#gcwu-wmms-fip {
+	background:none;
+}
+#gcwu-subsite a{
+	color:#fff;
+	text-decoration:none;
+	padding:0 5px 0 10px;
+}
+#gcwu-bnr-in{
+	background:transparent url(../images/gcwu-bnr-in.png) no-repeat center 0;
+	min-height:52px;
+}
+#gcwu-bnr{
+	background-image:url(../images/gcwu-bnr.png);
+	background-repeat:repeat-x;
+	background-position:0 0;
+	border-top:1px solid #eee;
+	clear:both;
+	position:static;
+}

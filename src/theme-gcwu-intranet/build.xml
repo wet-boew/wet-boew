@@ -1,41 +1,221 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="theme-gcwu-intranet" default="default" basedir=".">
-	<description>WET-BOEW GC Web Usability Theme Intranet</description>
-  
-  <property file="build.properties"/>
-  <import file="../../build-tasks.xml"/>
+	<description>WET-BOEW GC Web Usability Intranet Theme</description>
 
-  <target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
+	<property file="build.properties"/>
+	<import file="../../build-tasks.xml"/>
 
-	<target name="build" description="" depends="-init, compile.sass" />
-	
+	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
+
+	<target name="build" description="" depends="-init, -minify" />
+
 	<target name="-init" depends="-build-jruby">
 		<mkdir dir="${build.dir}"/>
 	</target>
 
-  <!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
-  <target name="compile.sass">
-    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; compile &quot;${src.dir}&quot;"/>
-    </java>
-    <echo level="info">
----Converted Intranet SCSS Files into CSS---
-    </echo>
-  </target>
-  <!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
-  <target name="watch.sass">
-    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; watch &quot;${src.dir}&quot;"/>
-    </java>
-    <echo level="info">
----Watching for SCSS Changes in Intranet Directory---
-    </echo>
-  </target>
-  
-  <target name="clean-css">
-		<delete dir="${src.dir}/css" />
+	<target name="-minify" depends="compile.sass, build-css">
+		<move todir="${build.dir}/css/premin">
+			<fileset dir="${build.dir}/css"/>
+		</move>
+		<copy todir="${build.dir}/js/premin">
+			<fileset dir="${src.dir}/js"/>
+		</copy>
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/css/premin" toDir="${build.dir}/css">
+			<include name="*.*" />
+		</yui-compressor>
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/js/premin" toDir="${build.dir}/js">
+			<include name="*.*" />
+		</yui-compressor>
+		<delete dir="${build.dir}/css/premin"/>
+		<delete dir="${build.dir}/js/premin"/>
 	</target>
 
-	<target name="clean"></target>
+	<target name="build-css" depends="-base64-encode" />
+
+	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
+	<target name="compile.sass">
+		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; compile &quot;${src.dir}&quot;"/>
+		</java>
+		<echo level="info">
+---Converted GCWU Intranet SCSS Files into CSS---
+		</echo>
+	</target>
+	<!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
+	<target name="watch.sass">
+		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; watch &quot;${src.dir}&quot;"/>
+		</java>
+		<echo level="info">
+---Watching for SCSS Changes in GCWU Intranet Directory---
+		</echo>
+	</target>
   
+	<!--Build CSS Tasks -->
+	<target name="-base64-encode" depends="-merge-css">
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/images"/>
+		</copy>
+		<copy todir="${build.dir}/encode/images">
+			<fileset dir="${src.dir}/images"/>
+		</copy>
+		<copy todir="${build.dir}/encode/css/images">
+			<fileset dir="${src.dir}/jquery.mobile/images"/>
+		</copy>
+		<copy todir="${build.dir}/encode/css">
+			<fileset dir="${build.dir}/css">
+				<include name="theme.css"/>
+				<include name="theme-sp-pe.css"/>
+				<include name="theme-serv.css"/>
+				<include name="jquery.mobile.css"/>
+			</fileset>
+		</copy>
+		<cssurlembed skipMissing="true">
+			<fileset dir="${build.dir}/encode/css/">
+				<include name="theme.css"/>
+				<include name="theme-sp-pe.css"/>
+				<include name="theme-serv.css"/>
+				<include name="jquery.mobile.css"/>
+			</fileset>
+		</cssurlembed>
+		<copy todir="${build.dir}/css">
+			<fileset dir="${build.dir}/encode/css">
+				<include name="*.css"/>
+			</fileset>
+		</copy>
+		<delete dir="${build.dir}/encode"/>
+	</target>
+	
+	<target name="-merge-css">
+		<copy todir="${build.dir}/pre/merge/jquery.mobile">
+			<fileset dir="${src.dir}/jquery.mobile">
+				<include name="*.css"/>
+				<exclude name="*.min.css"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/pre/merge/jquery.mobile">
+			<fileset dir="${src.dir}/../js/jquery.mobile">
+				<include name="*.css"/>
+				<exclude name="*.min.css"/>
+			</fileset>
+		</copy>
+		<loadfile srcfile="${src.dir}/../js/jquery.mobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
+			<filterchain>
+				<headfilter lines="1"/>
+			</filterchain>
+		</loadfile>
+		<concat dest="${build.dir}/pre/merge/css/jquery.mobile.css">
+			<header>${jquery.mobile.license}</header> 
+			<fileset dir="${build.dir}/pre/merge/jquery.mobile">
+				<include name="*theme.css"/>
+				<include name="*structure.css"/>
+			</fileset>
+		</concat>
+		<copy todir="${build.dir}/pre/merge/css">
+			<fileset dir="${src.dir}/css"/>
+		</copy>
+		<replace dir="${build.dir}/pre/merge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/images" />
+		</copy>
+		<filelist id="corefiles" dir="${build.dir}/pre/merge/css">
+			<file name="theme.css"/>
+			<file name="theme-ie.css"/>
+			<file name="theme-sp-pe.css"/>
+			<file name="theme-sp-pe-ie.css"/>
+			<file name="theme-serv.css"/>
+			<file name="theme-serv-ie.css"/>
+		</filelist>
+		<for param="css-file">
+			<path>
+				<filelist refid="corefiles"/>
+			</path>
+			<sequential>
+				<antcall target="-resolve-css-imports" inheritAll="false">
+					<param name="file" value="@{css-file}"/>
+					<param name="topfile" value="true"/>
+				</antcall>
+			</sequential>
+		</for>
+		<copy todir="${build.dir}/css">
+			<filelist dir="${build.dir}/pre/merge/css">
+				<file name="theme.css"/>
+				<file name="theme-ie.css"/>
+				<file name="theme-sp-pe.css"/>
+				<file name="theme-sp-pe-ie.css"/>
+				<file name="theme-serv.css"/>
+				<file name="theme-serv-ie.css"/>
+			</filelist>
+			<filterchain>
+				<concatfilter prepend="${src.dir}/../css-head.txt"/>
+			</filterchain>
+		</copy>
+		<copy todir="${build.dir}/css">
+			<filelist dir="${build.dir}/pre/merge/css">
+				<file name="jquery.mobile.css"/>
+			</filelist>
+		</copy>
+		<delete dir="${build.dir}/pre"/>
+	</target>
+
+	<target name="-resolve-css-imports">
+		<antcall target="-recurse" inheritAll="false">
+			<param name="file.recurse" value="${file}"/>
+			<param name="topfile" value="${topfile}"/>
+		</antcall>
+	</target>
+
+	<target name="-recurse">
+        <property name="charset_regexp" value="@charset\s*?['&quot;]utf-8['&quot;]\s*?;" />
+        <property name="url_regexp" value="url\(\s*?['&quot;]\s*?(.*)?['&quot;]\s*?\s*?\)" />
+        <property name="import_regexp" value="@import\s*?${url_regexp}\s*?;?" />
+		<fixcrlf file="${file.recurse}"/>
+		<!-- Removes the charset directive if not in a core file -->
+		<if>
+			<not>
+				<equals arg1="${topfile}" arg2="true"/>
+			</not>
+			<then>
+                <replaceregexp file="${file.recurse}" match="${charset_regexp}" replace=""/>
+			</then>
+		</if>
+
+		<loadfile property="src" srcfile="${file.recurse}" encoding="utf8"/>
+        <!--Merge imported stylesheets-->
+        <for delimiter="${line.separator}" param="currline" list="${src}">
+			<sequential>
+                <propertyregex regexp="${import_regexp}" property="import" select="\0" input="@{currline}" global="true" casesensitive="true" override="true"/>
+				<if>
+					<isset property="import"/>
+					<then>
+                        <propertyregex regexp="${import_regexp}" property="import.file.name" select="\1" input="${import}" casesensitive="true" override="true"/>
+						<dirname property="import.file.root" file="${file.recurse}"/>
+						<property name="import.file" value="${import.file.root}/${import.file.name}"/>
+						<antcall target="-resolve-css-imports" inheritAll="false">
+							<param name="file" value="${import.file}"/>
+							<param name="topfile" value="false"/>
+						</antcall>
+						<loadfile property="imported" srcfile="${import.file}"/>
+						<replace file="${file.recurse}" token="${import}" value="${imported}"/>
+						<var name="import.file.root" unset="true"/>
+                        <var name="import.file.name" unset="true"/>
+						<var name="import.file" unset="true"/>
+						<var name="imported" unset="true"/>
+                        <var name="import" unset="true"/>
+					</then>
+				</if>
+			</sequential>
+		</for>
+		<var name="src" unset="true"/>
+        <var name="file.recurse" unset="true"/>
+	</target>
+
+	<target name="clean-css">
+		<delete dir="${src.dir}/css" />
+	</target>
+  
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
 </project>

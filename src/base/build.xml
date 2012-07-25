@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="base" default="default" basedir=".">
 	<description>WET-BOEW Base CSS</description>
-	
-  <property file="build.properties"/>
-  <import file="../../build-tasks.xml"/>
 
-  <target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
-	
-  <target name="build" description="" depends="-init, compile.sass" />
+	<property file="build.properties"/>
+	<import file="../../build-tasks.xml"/>
+
+	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
+
+	<target name="build" description="" depends="-init, compile.sass" />
   
-  <target name="-init" depends="-build-jruby">
+	<target name="-init" depends="-build-jruby">
 		<mkdir dir="${build.dir}"/>
 	</target>
   
-  <!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
-  <target name="compile.sass">
-    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; compile &quot;${src.dir}&quot;"/>
-    </java>
-    <echo level="info">
+	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
+	<target name="compile.sass">
+		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; compile &quot;${src.dir}&quot;"/>
+		</java>
+		<echo level="info">
 ---Converted CSS SCSS Files into CSS---
-    </echo>
-  </target>
-  <!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
-  <target name="watch.sass">
-    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; watch &quot;${src.dir}&quot;"/>
-    </java>
-    <echo level="info">
+		</echo>
+	</target>
+	<!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
+	<target name="watch.sass">
+		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; watch &quot;${src.dir}&quot;"/>
+		</java>
+		<echo level="info">
 ---Watching for SCSS Changes in CSS Directory---
-    </echo>
-  </target>
+		</echo>
+	</target>
 
+	<target name="clean"></target>
 
-  <target name="clean"></target>
-  
-  <target name="clean-css">
+	<target name="clean-css">
 		<delete dir="${src.dir}/css" />
 	</target>
- 
 </project>

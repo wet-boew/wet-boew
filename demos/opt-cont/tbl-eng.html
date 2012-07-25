@@ -11,24 +11,24 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Tables - Optimal Content Examples - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="English description/Description en anglais" />
-<meta name="description" content="English description/Description en anglais" />
-<meta name="keywords" content="English keywords/Mots-clés en anglais" />
-<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
 <meta name="dcterms.title" content="Tables" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -50,9 +50,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
 <li id="gcwu-gcnb-lang"><a href="cont-secnav2-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
@@ -63,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -71,7 +71,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.html">
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.inc">
 <li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -176,7 +176,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<p>For all other tables (known as complex tables), it is strongly recommended that they be converted to one or more simple tables.</p>
 </div>
 <div class="span-3 border-span-3">
-	<h5 class="background-light">Simple Table Example</h5>
+	<h4 class="background-light">Simple Table Example</h4>
 	<table class="indent-medium">
 		<tr>
 			<td></td>
@@ -263,10 +263,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				<td>$3846.01</td>
 			</tr>
 		</table>
-	</div>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;table&gt;<br>	&lt;caption&gt;Current employees&lt;/caption&gt;<br>	&lt;tr&gt;<br>		&lt;th&gt;Name&lt;/th&gt;<br>		&lt;th&gt;Title&lt;/th&gt;<br>		&lt;th&gt;Salary&lt;/th&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Doe, Jane&lt;/td&gt;<br>		&lt;td&gt;Manager&lt;/td&gt;<br>		&lt;td&gt;$1296.41&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Doe, John&lt;/td&gt;<br>		&lt;td&gt;Director&lt;/td&gt;<br>		&lt;td&gt;$1584.50&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Smith, John&lt;/td&gt;<br>		&lt;td&gt;Programmer Analyst&lt;/td&gt;<br>		&lt;td&gt;$965.10&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;th colspan=&quot;2&quot; scope=&quot;row&quot;&gt;Total&lt;/th&gt;<br>		&lt;td&gt;$3846.01&lt;/td&gt;<br>	&lt;/tr&gt;<br>&lt;/table&gt;</code></pre>
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;table&gt;<br />	&lt;caption&gt;Current employees&lt;/caption&gt;<br />	&lt;tr&gt;<br />		&lt;th&gt;Name&lt;/th&gt;<br />		&lt;th&gt;Title&lt;/th&gt;<br />		&lt;th&gt;Salary&lt;/th&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Doe, Jane&lt;/td&gt;<br />		&lt;td&gt;Manager&lt;/td&gt;<br />		&lt;td&gt;$1296.41&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Doe, John&lt;/td&gt;<br />		&lt;td&gt;Director&lt;/td&gt;<br />		&lt;td&gt;$1584.50&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Smith, John&lt;/td&gt;<br />		&lt;td&gt;Programmer Analyst&lt;/td&gt;<br />		&lt;td&gt;$965.10&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;th colspan=&quot;2&quot; scope=&quot;row&quot;&gt;Total&lt;/th&gt;<br />		&lt;td&gt;$3846.01&lt;/td&gt;<br />	&lt;/tr&gt;<br />&lt;/table&gt;</code></pre>
+		</details>
 	</div>
 </div>
 
@@ -396,11 +396,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				<td><strong>$10,943,865</strong></td>
 			</tr>
 		</table>
-	</div>
-	
-	<div class="toggle-content collapse module module-code margin-top-medium">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;h4&gt;Statement of Financial Position (Unaudited) as of March 31, 2011 <br>(in dollars and percentage)&lt;/h4&gt;<br>&lt;table class=&quot;width-90 align-right&quot;&gt;<br>	&lt;caption&gt;Expenses&lt;/caption&gt;<br>	&lt;colgroup&gt;<br>		&lt;col class=&quot;width-30&quot; /&gt;<br>		&lt;col /&gt;<br>		&lt;col /&gt;<br>		&lt;col /&gt;<br>		&lt;col /&gt;<br>	&lt;/colgroup&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;&lt;/td&gt;<br>		&lt;th&gt;Dollars (2009)&lt;/th&gt;<br>		&lt;th&gt;Percentage (2009)&lt;/th&gt;<br>		&lt;th&gt;Dollars (2008)&lt;/th&gt;<br>		&lt;th&gt;Percentage (2008)&lt;/th&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Human Resources&lt;/td&gt;<br>		&lt;td&gt;$1,442,421&lt;/td&gt;<br>		&lt;td&gt;14.89%&lt;/td&gt;<br>		&lt;td&gt;$1,524,241&lt;/td&gt;<br>		&lt;td&gt;12.99%&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Communications&lt;/td&gt;<br>		&lt;td&gt;$677,325&lt;/td&gt;<br>		&lt;td&gt;6.99%&lt;/td&gt;<br>		&lt;td&gt;$786,533&lt;/td&gt;<br>		&lt;td&gt;6.70%&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Compensation&lt;/td&gt;<br>		&lt;td&gt;$1,532,523&lt;/td&gt;<br>		&lt;td&gt;15.82%&lt;/td&gt;<br>		&lt;td&gt;$1,678,235&lt;/td&gt;<br>		&lt;td&gt;14.30%&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Information Technology&lt;/td&gt;<br>		&lt;td&gt;$5,361,325&lt;/td&gt;<br>		&lt;td&gt;55.36%&lt;/td&gt;<br>		&lt;td&gt;$6,836,643&lt;/td&gt;<br>		&lt;td&gt;58.27%&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Administration&lt;/td&gt;<br>		&lt;td&gt;$437,634&lt;/td&gt;<br>		&lt;td&gt;4.52%&lt;/td&gt;<br>		&lt;td&gt;$563,235&lt;/td&gt;<br>		&lt;td&gt;4.80%&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Other&lt;/td&gt;<br>		&lt;td&gt;$233,353&lt;/td&gt;<br>		&lt;td&gt;2.41%&lt;/td&gt;<br>		&lt;td&gt;$344,455&lt;/td&gt;<br>		&lt;td&gt;2.94%&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;<br>		&lt;td&gt;&lt;strong&gt;$9,684,581&lt;/strong&gt;&lt;/td&gt;<br>		&lt;td&gt;&lt;strong&gt;100.00%&lt;/strong&gt;&lt;/td&gt;<br>		&lt;td&gt;&lt;strong&gt;$11,733,342&lt;/strong&gt;&lt;/td&gt;<br>		&lt;td&gt;&lt;strong&gt;100.00%&lt;/strong&gt;&lt;/td&gt;<br>	&lt;/tr&gt;<br>&lt;/table&gt;<br>&lt;table class=&quot;width-90 align-right&quot;&gt;<br>	&lt;caption&gt;Revenues&lt;/caption&gt;<br>	&lt;colgroup&gt;<br>		&lt;col class=&quot;width-30&quot; /&gt;<br>		&lt;col /&gt;<br>		&lt;col /&gt;<br>		&lt;col /&gt;<br>		&lt;col /&gt;<br>	&lt;/colgroup&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;&lt;/td&gt;<br>		&lt;th&gt;Dollars (2009)&lt;/th&gt;<br>		&lt;th&gt;Percentage (2009)&lt;/th&gt;<br>		&lt;th&gt;Dollars (2008)&lt;/th&gt;<br>		&lt;th&gt;Percentage (2008)&lt;/th&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Administration&lt;/td&gt;<br>		&lt;td&gt;$553,253&lt;/td&gt;<br>		&lt;td&gt;94.15%&lt;/td&gt;<br>		&lt;td&gt;$735,235&lt;/td&gt;<br>		&lt;td&gt;93.13%&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Other&lt;/td&gt;<br>		&lt;td&gt;$34,352&lt;/td&gt;<br>		&lt;td&gt;5.85%&lt;/td&gt;<br>		&lt;td&gt;$54,242&lt;/td&gt;<br>		&lt;td&gt;6.87%&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;<br>		&lt;td&gt;&lt;strong&gt;$587,605&lt;/strong&gt;&lt;/td&gt;<br>		&lt;td&gt;&lt;strong&gt;100.00%&lt;/strong&gt;&lt;/td&gt;<br>		&lt;td&gt;&lt;strong&gt;$789,477&lt;/strong&gt;&lt;/td&gt;<br>		&lt;td&gt;&lt;strong&gt;100.00%&lt;/strong&gt;&lt;/td&gt;<br>	&lt;/tr&gt;<br>&lt;/table&gt;<br>&lt;table class=&quot;width-90 align-right&quot;&gt;<br>	&lt;caption&gt;Totals&lt;/caption&gt;<br>	&lt;colgroup&gt;<br>		&lt;col class=&quot;width-30&quot; /&gt;<br>		&lt;col /&gt;<br>		&lt;col /&gt;<br>	&lt;/colgroup&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;&lt;/td&gt;<br>		&lt;th&gt;2009&lt;/th&gt;<br>		&lt;th&gt;2008&lt;/th&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;th&gt;Net Cost of Operations&lt;/th&gt;<br>		&lt;td&gt;&lt;strong&gt;$9,096,976&lt;/strong&gt;&lt;/td&gt;<br>		&lt;td&gt;&lt;strong&gt;$10,943,865&lt;/strong&gt;&lt;/td&gt;<br>	&lt;/tr&gt;<br>&lt;/table&gt;</code></pre>
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;h4&gt;Statement of Financial Position (Unaudited) as of March 31, 2011 <br />(in dollars and percentage)&lt;/h4&gt;<br />&lt;table class=&quot;width-90 align-right&quot;&gt;<br />	&lt;caption&gt;Expenses&lt;/caption&gt;<br />	&lt;colgroup&gt;<br />		&lt;col class=&quot;width-30&quot; /&gt;<br />		&lt;col /&gt;<br />		&lt;col /&gt;<br />		&lt;col /&gt;<br />		&lt;col /&gt;<br />	&lt;/colgroup&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;&lt;/td&gt;<br />		&lt;th&gt;Dollars (2009)&lt;/th&gt;<br />		&lt;th&gt;Percentage (2009)&lt;/th&gt;<br />		&lt;th&gt;Dollars (2008)&lt;/th&gt;<br />		&lt;th&gt;Percentage (2008)&lt;/th&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Human Resources&lt;/td&gt;<br />		&lt;td&gt;$1,442,421&lt;/td&gt;<br />		&lt;td&gt;14.89%&lt;/td&gt;<br />		&lt;td&gt;$1,524,241&lt;/td&gt;<br />		&lt;td&gt;12.99%&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Communications&lt;/td&gt;<br />		&lt;td&gt;$677,325&lt;/td&gt;<br />		&lt;td&gt;6.99%&lt;/td&gt;<br />		&lt;td&gt;$786,533&lt;/td&gt;<br />		&lt;td&gt;6.70%&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Compensation&lt;/td&gt;<br />		&lt;td&gt;$1,532,523&lt;/td&gt;<br />		&lt;td&gt;15.82%&lt;/td&gt;<br />		&lt;td&gt;$1,678,235&lt;/td&gt;<br />		&lt;td&gt;14.30%&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Information Technology&lt;/td&gt;<br />		&lt;td&gt;$5,361,325&lt;/td&gt;<br />		&lt;td&gt;55.36%&lt;/td&gt;<br />		&lt;td&gt;$6,836,643&lt;/td&gt;<br />		&lt;td&gt;58.27%&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Administration&lt;/td&gt;<br />		&lt;td&gt;$437,634&lt;/td&gt;<br />		&lt;td&gt;4.52%&lt;/td&gt;<br />		&lt;td&gt;$563,235&lt;/td&gt;<br />		&lt;td&gt;4.80%&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Other&lt;/td&gt;<br />		&lt;td&gt;$233,353&lt;/td&gt;<br />		&lt;td&gt;2.41%&lt;/td&gt;<br />		&lt;td&gt;$344,455&lt;/td&gt;<br />		&lt;td&gt;2.94%&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;<br />		&lt;td&gt;&lt;strong&gt;$9,684,581&lt;/strong&gt;&lt;/td&gt;<br />		&lt;td&gt;&lt;strong&gt;100.00%&lt;/strong&gt;&lt;/td&gt;<br />		&lt;td&gt;&lt;strong&gt;$11,733,342&lt;/strong&gt;&lt;/td&gt;<br />		&lt;td&gt;&lt;strong&gt;100.00%&lt;/strong&gt;&lt;/td&gt;<br />	&lt;/tr&gt;<br />&lt;/table&gt;<br />&lt;table class=&quot;width-90 align-right&quot;&gt;<br />	&lt;caption&gt;Revenues&lt;/caption&gt;<br />	&lt;colgroup&gt;<br />		&lt;col class=&quot;width-30&quot; /&gt;<br />		&lt;col /&gt;<br />		&lt;col /&gt;<br />		&lt;col /&gt;<br />		&lt;col /&gt;<br />	&lt;/colgroup&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;&lt;/td&gt;<br />		&lt;th&gt;Dollars (2009)&lt;/th&gt;<br />		&lt;th&gt;Percentage (2009)&lt;/th&gt;<br />		&lt;th&gt;Dollars (2008)&lt;/th&gt;<br />		&lt;th&gt;Percentage (2008)&lt;/th&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Administration&lt;/td&gt;<br />		&lt;td&gt;$553,253&lt;/td&gt;<br />		&lt;td&gt;94.15%&lt;/td&gt;<br />		&lt;td&gt;$735,235&lt;/td&gt;<br />		&lt;td&gt;93.13%&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Other&lt;/td&gt;<br />		&lt;td&gt;$34,352&lt;/td&gt;<br />		&lt;td&gt;5.85%&lt;/td&gt;<br />		&lt;td&gt;$54,242&lt;/td&gt;<br />		&lt;td&gt;6.87%&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;<br />		&lt;td&gt;&lt;strong&gt;$587,605&lt;/strong&gt;&lt;/td&gt;<br />		&lt;td&gt;&lt;strong&gt;100.00%&lt;/strong&gt;&lt;/td&gt;<br />		&lt;td&gt;&lt;strong&gt;$789,477&lt;/strong&gt;&lt;/td&gt;<br />		&lt;td&gt;&lt;strong&gt;100.00%&lt;/strong&gt;&lt;/td&gt;<br />	&lt;/tr&gt;<br />&lt;/table&gt;<br />&lt;table class=&quot;width-90 align-right&quot;&gt;<br />	&lt;caption&gt;Totals&lt;/caption&gt;<br />	&lt;colgroup&gt;<br />		&lt;col class=&quot;width-30&quot; /&gt;<br />		&lt;col /&gt;<br />		&lt;col /&gt;<br />	&lt;/colgroup&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;&lt;/td&gt;<br />		&lt;th&gt;2009&lt;/th&gt;<br />		&lt;th&gt;2008&lt;/th&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;th&gt;Net Cost of Operations&lt;/th&gt;<br />		&lt;td&gt;&lt;strong&gt;$9,096,976&lt;/strong&gt;&lt;/td&gt;<br />		&lt;td&gt;&lt;strong&gt;$10,943,865&lt;/strong&gt;&lt;/td&gt;<br />	&lt;/tr&gt;<br />&lt;/table&gt;</code></pre>
+		</details>
 	</div>
 </div>
 
@@ -412,19 +411,16 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			<caption>
 				Current employees
 				<div class="align-right margin-bottom-small">
-					<div class="toggle-content collapse">
-						<details>
-							<summary class="toggle-link-text">Description</summary>
-							<p class="align-left">
-							This table outlines the current employees 
-							in the organization.  The  first column 
-							indicates the employee's full name, the 
-							second column indicates their title, and 
-							the third column indicates their salary.  
-							The final row is the total of all of the 
-							employee salaries.</p>
-						</details>
-					</div>
+					<details class="align-left">
+						<summary class="align-right">Description</summary>
+						This table outlines the current employees 
+						in the organization.  The  first column 
+						indicates the employee's full name, the 
+						second column indicates their title, and 
+						the third column indicates their salary.  
+						The final row is the total of all of the 
+						employee salaries.
+					</details>
 				</div>
 			</caption>
 			<tr>
@@ -452,10 +448,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				<td>$3846.01</td>
 			</tr>
 		</table>
-	</div>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;table&gt;<br>	&lt;caption&gt;<br>		Current employees<br>		&lt;div class=&quot;align-right margin-bottom-small&quot;&gt;<br>			&lt;div class=&quot;toggle-content collapse&quot;&gt;<br>				&lt;details&gt;<br>					&lt;summary class=&quot;toggle-link-text&quot;&gt;Description&lt;/summary&gt;<br>					&lt;p class=&quot;align-left&quot;&gt;<br>					This table outlines the current employees <br>					in the organization.  The  first column <br>					indicates the employee's full name, the <br>					second column indicates their title, and <br>					the third column indicates their salary.  <br>					The final row is the total of all of the <br>					employee salaries.&lt;/p&gt;<br>				&lt;/details&gt;<br>			&lt;/div&gt;<br>		&lt;/div&gt;<br>	&lt;/caption&gt;<br>	&lt;tr&gt;<br>		&lt;th scope=&quot;col&quot;&gt;Name&lt;/th&gt;<br>		&lt;th scope=&quot;col&quot;&gt;Title&lt;/th&gt;<br>		&lt;th scope=&quot;col&quot;&gt;Salary&lt;/th&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Doe, Jane&lt;/td&gt;<br>		&lt;td&gt;Manager&lt;/td&gt;<br>		&lt;td&gt;$1296.41&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Doe, John&lt;/td&gt;<br>		&lt;td&gt;Director&lt;/td&gt;<br>		&lt;td&gt;$1584.50&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;Smith, John&lt;/td&gt;<br>		&lt;td&gt;Programmer Analyst&lt;/td&gt;<br>		&lt;td&gt;$965.10&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;th colspan=&quot;2&quot; scope=&quot;row&quot;&gt;Total&lt;/th&gt;<br>		&lt;td&gt;$3846.01&lt;/td&gt;<br>	&lt;/tr&gt;<br>&lt;/table&gt;</code></pre>
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;table&gt;<br />	&lt;caption&gt;<br />		Current employees<br />		&lt;div class=&quot;align-right margin-bottom-small&quot;&gt;<br />			&lt;details class=&quot;align-left&quot;&gt;<br />				&lt;summary class=&quot;align-right&quot;&gt;Description&lt;/summary&gt;<br />				This table outlines the current employees <br />				in the organization.  The first column <br />				indicates the employee's full name, the <br />				second column indicates their title, and <br />				the third column indicates their salary.  <br />				The final row is the total of all of the <br />				employee salaries.&lt;/p&gt;<br />			&lt;/details&gt;<br />		&lt;/div&gt;<br />	&lt;/caption&gt;<br />	&lt;tr&gt;<br />		&lt;th scope=&quot;col&quot;&gt;Name&lt;/th&gt;<br />		&lt;th scope=&quot;col&quot;&gt;Title&lt;/th&gt;<br />		&lt;th scope=&quot;col&quot;&gt;Salary&lt;/th&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Doe, Jane&lt;/td&gt;<br />		&lt;td&gt;Manager&lt;/td&gt;<br />		&lt;td&gt;$1296.41&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Doe, John&lt;/td&gt;<br />		&lt;td&gt;Director&lt;/td&gt;<br />		&lt;td&gt;$1584.50&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;td&gt;Smith, John&lt;/td&gt;<br />		&lt;td&gt;Programmer Analyst&lt;/td&gt;<br />		&lt;td&gt;$965.10&lt;/td&gt;<br />	&lt;/tr&gt;<br />	&lt;tr&gt;<br />		&lt;th colspan=&quot;2&quot; scope=&quot;row&quot;&gt;Total&lt;/th&gt;<br />		&lt;td&gt;$3846.01&lt;/td&gt;<br />	&lt;/tr&gt;<br />&lt;/table&gt;</code></pre>
+		</details>
 	</div>
 </div>
 
@@ -501,30 +497,29 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
 <div class="wb-sec-def">
-<!-- SideNavLeftStart -->
-<h3><a href="index-eng.html">Optimal Content Examples</a></h3>
+<!-- SecNavStart -->
+<section><h3 class="top-section"><a href="index-eng.html">Optimal Content Examples</a></h3>
+<section><h4>Content Types</h4>
 <ul>
-	<li><p>Content Types</p>
-		<ul>
-			<li><a href="smm-eng.html">Summary Of Coding Requirements</a></li>
-			<li><a href="clr-eng.html">Colour</a></li>
-			<li><a href="frm-eng.html">Forms</a></li>
-			<li><a href="hdg-eng.html">Headings and Titles</a></li>
-			<li><a href="img-eng.html">Images</a></li>
-			<li><a href="kb-cv-eng.html">Keyboard and User Controls</a></li>
-			<li><a href="lin-eng.html">Links</a></li>
-			<li><a href="qlg-eng.html">Quotations and Language</a></li>
-			<li><a href="tbl-eng.html">Tables</a></li>
-		</ul>
-	</li>
-	<li><p><a href="wcag-eng.html">Web Content Accessibility Guidelines (WCAG) 2.0</a></p>
-		<ul>
-			<li><a href="app-eng.html">Success Criteria Applicability</a></li>
-		</ul>
-	</li>
-	<li><a href="dk-sv-eng.html">Did You Know?</a></li>
+	<li><a href="smm-eng.html">Summary Of Coding Requirements</a></li>
+	<li><a href="clr-eng.html">Colour</a></li>
+	<li><a href="frm-eng.html">Forms</a></li>
+	<li><a href="hdg-eng.html">Headings and Titles</a></li>
+	<li><a href="img-eng.html">Images</a></li>
+	<li><a href="kb-cv-eng.html">Keyboard and User Controls</a></li>
+	<li><a href="lin-eng.html">Links</a></li>
+	<li><a href="qlg-eng.html">Quotations and Language</a></li>
+	<li><a href="tbl-eng.html">Tables</a></li>
 </ul>
-<!-- SideNavLeftEnd -->
+</section>
+<section><h4><a href="wcag-eng.html">Web Content Accessibility Guidelines (WCAG) 2.0</a></h4>
+<ul>
+	<li><a href="app-eng.html">WCAG 2.0 Success Criteria Applicability</a></li>
+</ul>
+</section>
+<div class="top-level"><a href="dk-sv-eng.html">Did You Know?</a></div>
+</section>
+<!-- SecNavEnd -->
 </div>
 </nav></div></div>
 </div></div>
@@ -576,7 +571,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
 <li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></div></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->

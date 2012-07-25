@@ -4,9 +4,12 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 .ui-mobile .wet-boew-formvalid fieldset {margin-top: 1em;}
-.wet-boew-formvalid fieldset div {margin-bottom: 0.5em;}
-.wet-boew-formvalid fieldset label {display: block;}
+.wet-boew-formvalid label, .ui-mobile .wet-boew-formvalid input[type=checkbox] + label {display: block;}
 .wet-boew-formvalid label .error {display: block;font-weight: bold;color: #c00;}
+.wet-boew-formvalid input[type=checkbox] + label {display: inline; margin-top: 0;}
+.ui-mobile .wet-boew-formvalid label {margin-top: 1em;}
+.ui-mobile .wet-boew-formvalid legend {margin-bottom: -1em;}
+.ui-mobile .wet-boew-formvalid .buttons {margin-top:2em;}
 div.errorContainer h2 {color: #8a1f11;}	
 div.errorContainer p {font-weight: bold;}
 .errorContainer ul li {margin-bottom: 5px;}

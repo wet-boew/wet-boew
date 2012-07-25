@@ -1,0 +1,40 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+#gcwu-bc + #gcwu-psnb #gcwu-psnb-in{
+	background-image:url(../../theme-gcwu-fegc/images/content-deco-small.gif);
+}
+#gcwu-subsite p{
+	width:768px;
+	margin:0 auto;
+}
+#gcwu-intranetnb ul{
+	padding:0 5px !important;
+	background:none;
+}
+#gcwu-intranetnb ul li{
+	padding-bottom:8px;
+	background:none !important;
+}
+#gcwu-gcnb{
+	background-image:none !important;
+}
+#gcwu-intranetnb-in{
+	background-image:none !important;
+	background-color:#333 !important;
+	-moz-border-radius:0 0 5px 5px;
+	-webkit-border-radius:0 0 5px 5px;
+	border-radius:0 0 5px 5px;
+	box-shadow:inset 0 0 2px 2px #222;
+	-moz-box-shadow:inset 0 0 2px 2px #222;
+	-webkit-box-shadow:inset 0 0 2px 2px #222;
+}
+#gcwu-psnb .wet-boew-menu .expandicon{
+	margin-right:5px;
+	padding-right:10px;
+}
+#gcwu-title{
+	width:430px;
+}

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+<title>Lightbox - Working examples - Web Experience Toolkit(WET)</title>
+
+<link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../build/js/jquery.min.js"></script>
+<!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+
+<!-- CustomScriptsCSSStart -->
+<!--[if !IE]> -->
+<style>
+	pre code{background:#eee;counter-reset:line;}
+	pre code .line:before{content:counter(line);display:inline-block;text-align:right;width:1.25em;padding-right:.5em;margin-right:.75em;margin-left:-1.1em;padding-left:.5em;background:#aaa;border-right:1px solid #333;border-left:1px solid #aaa;opacity:.7;}
+	pre code .line:first-child:before{border-top-left-radius:1em;border-top:1px solid #aaa;padding-top:1em;}
+	pre code .line:last-child:before{border-bottom-left-radius:1em;border-bottom:1px solid #aaa;padding-bottom:1em;}
+	pre code .line{counter-increment:line;white-space:pre-wrap;}
+	pre code .attr{color:#b22;}
+	pre code .str{color:#464;font-weight:bold;}
+	pre code .sym{color:#44f;font-weight:bold;}
+	pre code .req{border:1px dashed #b22;background:#ffe;}
+</style>
+<!-- <![endif]-->
+<style>
+	pre{border:1px solid #aaa;background:#eee;border-radius:1em;padding:0 1em;}
+	.wet-boew-lightbox ul {margin-left:0;}
+	.wet-boew-lightbox ul li {list-style-type:none;float:left;margin: 0 5px 5px 0;}
+	.wet-boew-lightbox ul li a {text-decoration: none;}
+	.box a, .lb-hidden-gallery li:first-child.box a, .lb-hidden-gallery-inline li:first-child.box a {display: block; width: 148px; height: 148px; border: 1px solid #000; text-align: center; line-height: 148px; background: #EEE;}
+	.box a:hover, .box a:focus, .box a:active {text-decoration: underline; background: #FFF;}
+	.lb-hidden-gallery .box a, .lb-hidden-gallery-inline .box a {display: none;}
+	.wrapper {width: 85%; margin: auto;}
+</style>
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="lightbox-fra.html" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../docs/index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.inc">
+<li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
+<li><div><a href="section2/index-eng.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../docs/index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li>Lightbox</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Light Box</h1>
+
+<section>
+	<div class="span-4 module-table-contents">
+		<h2>Table of contents</h2>
+		<ul>
+			<li><a href="#features">Features</a></li>
+			<li><a href="#examples">Examples</a>
+				<ul>
+					<li><a href="#examples1">Single items</a></li>
+					<li><a href="#examples2">Item gallery</a></li>
+					<li><a href="#examples3">Inline item gallery</a></li>
+					<li><a href="#examples4">Hidden item gallery</a></li>
+					<li><a href="#examples5">Hidden inline item gallery</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</section>
+<div class="clear"></div>
+<!-- end of .module-table-contents -->
+
+<div class="span-8">
+	<section>
+		<h2 id="features">Features</h2>
+		<ul>
+			<li>Displays images and other content using the <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> plugin.</li>
+			<li>Easy navigation in image galleries using mouse, touchscreen or keyboard.</li>
+		</ul>
+	</section>
+</div>
+<div class="clear"></div>
+
+<section>
+	<h2 id="examples">Examples</h2>
+	<section>
+		<h3 id="examples1">Single items</h3>
+		<div class="span-4">
+			<h4 class="background-dark margin-bottom-medium">Example</h4>
+			<section>
+				<div class="wet-boew-lightbox">
+					<ul>
+						<li>
+							<a class="lb-image" href="images/1_b.jpg" title="Image 1">
+								<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
+							</a>
+						</li>
+						<li>
+							<a class="lb-image" href="images/2_b.jpg" title="Image 2">
+								<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
+							</a>
+						</li>
+						<li class="box">
+							<a class="lb-ajax" href="ajax/ajax1-eng.html">AJAX content 1</a>
+						</li>
+						<li class="box">
+							<a class="lb-inline" href="#inline_content1">Inline content 1</a>
+						</li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</section>
+		</div>
+	</section>
+	<div class="span-4">
+		<section>
+			<h4 class="background-dark margin-bottom-medium">Coding</h4>
+			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;a class=&quot;lb-image&quot; href=&quot;images/image_source.jpg&quot; title=&quot;Alt text for the image&quot;&gt;
+        &lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Alt text for the image&quot; class=&quot;image-actual&quot; /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    ...	
+    &lt;li&gt;
+      &lt;a class=&quot;lb-ajax&quot; href=&quot;ajax/ajax1-eng.html&quot;&gt;AJAX content 1&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a class=&quot;lb-inline&quot; href=&quot;#inline_content1&quot;&gt;Inline content 1&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+		</section>
+	</div>
+</section>
+<div class="clear"></div>
+
+<section>
+	<h3 id="examples2">Item gallery</h3>
+	<div class="span-4">
+		<h4 class="background-dark margin-bottom-medium">Example</h4>
+		<section>
+			<div class="wet-boew-lightbox">
+				<ul class="lb-gallery">
+					<li>
+						<a href="images/1_b.jpg" title="Image 1">
+							<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
+						</a>
+					</li>
+					<li>
+						<a href="images/2_b.jpg" title="Image 2">
+							<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
+						</a>
+					</li>
+					<li class="box">
+						<a href="ajax/ajax1-eng.html">AJAX content 1</a>
+					</li>
+					<li class="box">
+						<a href="ajax/ajax2-eng.html">AJAX content 2</a>
+					</li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</section>
+	</div>
+	<div class="span-4">
+		<section>
+			<h4 class="background-dark margin-bottom-medium">Coding</h4>
+			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
+  &lt;ul class=&quot;lb-gallery&quot;&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;images/image_source.jpg&quot; title=&quot;Alt text for the image&quot;&gt;
+        &lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Alt text for the image&quot; class=&quot;image-actual&quot; /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    ...
+    &lt;li&gt;
+      &lt;a href=&quot;ajax/ajax1-eng.html&quot;&gt;AJAX content 1&lt;/a&gt;
+    &lt;/li&gt;
+	...
+  &lt;/ul&gt;	
+&lt;/div&gt;</code></pre>
+		</section>
+	</div>
+</section>
+<div class="clear"></div>
+
+<section>
+	<h3 id="examples3">Inline item gallery</h3>
+	<div class="span-4">
+		<h4 class="background-dark margin-bottom-medium">Example</h4>
+		<section>
+			<div class="wet-boew-lightbox">
+				<ul class="lb-gallery-inline">
+					<li class="box">
+						<a href="#inline_content1">Inline content 1</a>
+					</li>
+					<li class="box">
+						<a href="#inline_content2">Inline content 2</a>
+					</li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</section>
+	</div>
+	<div class="span-4">
+		<section>
+			<h4 class="background-dark margin-bottom-medium">Coding</h4>
+			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
+  &lt;ul class=&quot;lb-gallery-inline&quot;&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;#inline_content1&quot;&gt;Inline content 1&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;#inline_content2&quot;&gt;Inline content 2&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;	
+&lt;/div&gt;</code></pre>
+		</section>
+	</div>
+</section>
+<div class="clear"></div>
+
+<section>
+	<h3 id="examples4">Hidden item gallery</h3>
+	<div class="span-4">
+		<h4 class="background-dark margin-bottom-medium">Example</h4>
+		<section>
+			<div class="wet-boew-lightbox">
+				<ul class="lb-hidden-gallery">
+					<li>
+						<a href="images/1_b.jpg" title="Image 1">
+							<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
+						</a>
+					</li>
+					<li>
+						<a href="images/2_b.jpg" title="Image 2">
+							<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
+						</a>
+					</li>
+					<li class="box">
+						<a href="ajax/ajax1-eng.html">AJAX content 1</a>
+					</li>
+					<li class="box">
+						<a href="ajax/ajax2-eng.html">AJAX content 2</a>
+					</li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</section>
+	</div>
+	<div class="span-4">
+		<section>
+			<h4 class="background-dark margin-bottom-medium">Coding</h4>
+			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
+  &lt;ul class=&quot;lb-gallery-hidden&quot;&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;images/image_source.jpg&quot; title=&quot;Alt text for the image&quot;&gt;
+        &lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Alt text for the image&quot; class=&quot;image-actual&quot; /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    ...
+    &lt;li&gt;
+      &lt;a href=&quot;ajax/ajax1-eng.html&quot;&gt;AJAX content 1&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;	
+&lt;/div&gt;</code></pre>
+		</section>
+	</div>
+</section>
+<div class="clear"></div>
+
+<section>
+	<h3 id="examples5">Hidden inline item gallery</h3>
+	<div class="span-4">
+		<h4 class="background-dark margin-bottom-medium">Example</h4>
+		<section>
+			<div class="wet-boew-lightbox">
+				<ul class="lb-hidden-gallery-inline">
+					<li class="box">
+						<a href="#inline_content1">Inline content 1</a>
+					</li>
+					<li class="box">
+						<a href="#inline_content2">Inline content 2</a>
+					</li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</section>
+	</div>
+	<div class="span-4">
+		<section>
+			<h4 class="background-dark margin-bottom-medium">Coding</h4>
+			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
+  &lt;ul class=&quot;lb-hidden-gallery-inline&quot;&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;#inline_content1&quot;&gt;Inline content 1&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;#inline_content2&quot;&gt;Inline content 2&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;	
+&lt;/div&gt;</code></pre>
+		</section>
+	</div>
+</section>
+<div class="clear"></div>
+
+<div style="display:none;">
+	<div id="inline_content1">
+		<div class="wrapper">
+			<p>Example 1 of inline content.</p>
+			<table>
+				<caption>Table caption default appearance</caption>
+				<thead>
+					<tr>
+					<th scope="col">Table header (<code>th</code>) default appearance</th>
+					<th scope="col">Table header (<code>th</code>) default appearance</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+					<td>Table data (<code>td</code>) default appearance</td>
+					<td>Table data (<code>td</code>) default appearance</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div id="inline_content2">
+		<div class="wrapper">
+			<p>Example 2 of inline content.</p>
+			<ol>
+			<li>ordered list (<code>ol</code>) first level default appearance</li>
+			<li>ordered list (<code>ol</code>) first level default appearance
+				<ol>
+				<li>ordered list (<code>ol</code>) second level default appearance</li>
+				<li>ordered list (<code>ol</code>) second level default appearance
+					<ol>
+					<li>ordered list (<code>ol</code>) third level default appearance</li>
+					<li>ordered list (<code>ol</code>) third level default appearance</li>
+					</ol>
+				</li>
+				</ol>
+			</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<div class="clear"></div>
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2011-10-31</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">The Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../build/js/settings.js"></script>
+<script src="../../build/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>
