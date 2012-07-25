@@ -14,6 +14,7 @@
 		depends: ['calendar', 'xregexp'],
 		_exec: function (elm) {
 			var addLinksToCalendar,
+				calendar = _pe.fn.calendar,
 				createToggleIcon,
 				date = new Date(),
 				defaultFormat = "YYYY-MM-DD",
@@ -31,16 +32,19 @@
 				format,
 				field,
 				containerid,
-				container;
+				container,
+				wrapper;
 
 			createToggleIcon = function (fieldid, containerid) {
-				var fieldLabel = elm.find("label[for='" + fieldid + "']").text(),
+				var fieldLabel = wrapper.find("label[for='" + fieldid + "']").text(),
 					objToggle = $('<a id="' + containerid + '-toggle" class="picker-toggle-hidden" href="javascript:;"><img src="' + pe.add.liblocation + 'images/datepicker/icon.png" alt="' + pe.dic.get('%datepicker-show') + fieldLabel + '"/></a>');
+
 				objToggle.on('click', function () {
 					toggle(fieldid, containerid);
 				});
-				field = elm.find('#' + fieldid).after(objToggle);
-				container = elm.find('#' + containerid).slideUp(0);
+
+				elm.after(objToggle);
+				container.slideUp(0);
 			};
 			addLinksToCalendar = function (fieldid, year, month, days, minDate, maxDate, format) {
 				minDate = calendar.getDateFromISOString(minDate);
@@ -98,11 +102,10 @@
 				}
 			};
 			addSelectedDateToField = function (fieldid, year, month, day, format) {
-				elm.find("#" + fieldid).attr("value", this.formatDate(year, month, day, format));
+				wrapper.find("#" + fieldid).attr("value", formatDate(year, month, day, format));
 			};
 			toggle = function (fieldid, containerid) {
-				var toggle = elm.find("#" + containerid + "-toggle"),
-					container = elm.find('#' + containerid),
+				var toggle = wrapper.find("#" + containerid + "-toggle"),
 					fieldLabel;
 				toggle.toggleClass("picker-toggle-hidden picker-toggle-visible");
 
@@ -129,11 +132,11 @@
 						ieFix($(this));
 					});
 					calendar.hideGoToForm(containerid);
-					fieldLabel = elm.find("label[for='" + fieldid + "']").text();
+					fieldLabel = wrapper.find("label[for='" + fieldid + "']").text();
 					toggle.children("a").children("span").text(pe.dic.get('%datepicker-show') + fieldLabel);
 					container.attr("aria-hidden", "true");
 
-					pe.focus(elm.find("#" + fieldid));
+					pe.focus(wrapper.find("#" + fieldid));
 				}
 			};
 			hideAll = function (exception) {
@@ -142,8 +145,7 @@
 					if ($(this).attr("id") !== exception) {
 						fieldid = $(this).attr("id");
 						containerid = fieldid + '-picker';
-						container = elm.find("#" + containerid);
-						toggle = elm.find("#" + containerid + "-toggle");
+						toggle = wrapper.find("#" + containerid + "-toggle");
 
 						//Disable the tabbing of all the links when calendar is hidden
 						container.find("a").attr("tabindex", "-1");
@@ -211,6 +213,7 @@
 
 				id = elm.attr("id");
 				field = elm;
+				wrapper = elm.parent();
 				containerid = id + '-picker';
 				container = $('<div id="' + containerid + '" class="picker-overlay" role="dialog" aria-controls="' + id + '" aria-labelledby="' + containerid + '-toggle"></div>');
 
@@ -218,7 +221,7 @@
 				container.on('keyup', function (e) {
 					if (e.keyCode === 27) {
 						hideAll();
-						pe.focus(elm.find('#' + id + '-picker-toggle'));
+						pe.focus(elm.parent().find('#' + id + '-picker-toggle'));
 					}
 				});
 
@@ -237,6 +240,7 @@
 						}, 1000);
 					});
 				});
+
 				calendar.create(containerid, year, month, true, minDate, maxDate);
 				createToggleIcon(id, containerid);
 

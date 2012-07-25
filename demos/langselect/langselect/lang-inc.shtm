@@ -1,0 +1,13 @@
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+<!--#if expr="${REQUEST_URI} = /^(.*)-eng.([A-Za-z]*)$/"-->
+<!--#set var="pg-altlangurl" value="${1}-fra.${2}"-->
+<!--#elif expr="${REQUEST_URI} = /^(.*)_e.([A-Za-z]*)$/"-->
+<!--#set var="pg-altlangurl" value="${1}_f.${2}"-->
+<!--#elif expr="${REQUEST_URI} = /^(.*)-fra.([A-Za-z]*)$/"-->
+<!--#set var="pg-altlangurl" value="${1}-eng.${2}"-->
+<!--#elif expr="${REQUEST_URI} = /^(.*)_f.([A-Za-z]*)$/"-->
+<!--#set var="pg-altlangurl" value="${1}_e.${2}"-->
+<!--#else-->
+<!--#set var="pg-altlangurl" value="#"-->
+<!--#endif-->

@@ -2,7 +2,7 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ */
 html{
 	overflow-y:scroll;
 }
@@ -197,7 +197,7 @@ h1{
 	visibility:hidden;
 }
 
-#wb-body #wb-main,#wb-body-secr #wb-main,#wb-sec{
+#wb-body #wb-main,#wb-body-sec-sup #wb-main,#wb-sec{
 	float:left;
 }
 
@@ -214,7 +214,7 @@ a:visited{
 	color:#5a306b;
 }
 
-#wb-body,#wb-body-sec,#wb-body-secr,#wb-body-sec-sup,#wb-head-in{
+#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in{
 	background:url(../images/background-withglow-andleaf.jpg) repeat-x center 3.08em #fff;
 }
 
@@ -476,7 +476,7 @@ a:visited{
 
 #gcwu-psnb .mb-mega .mb-sm-open{
 	border-bottom:4px solid #0F315B;
-	background:0;
+	background: linear-gradient(bottom, #EEE 0%, #CCC 100%);background: -o-linear-gradient(bottom, #EEE 0%, #CCC 100%);background: -moz-linear-gradient(bottom, #EEE 0%, #CCC 100%);background: -moz-linear-gradient(bottom, #EEE 0%, #CCC 100%);background: -webkit-linear-gradient(bottom, #EEE 0%, #CCC 100%);background: -ms-linear-gradient(bottom, #EEE 0%, #CCC 100%);
 }
 
 #wb-foot h4,#wb-foot .gcwu-col-head{

@@ -11,24 +11,24 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Optimal Content Examples - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="English description/Description en anglais" />
-<meta name="description" content="English description/Description en anglais" />
-<meta name="keywords" content="English keywords/Mots-clés en anglais" />
-<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
 <meta name="dcterms.title" content="Optimal Content Examples" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -50,9 +50,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
 <li id="gcwu-gcnb-lang"><a href="cont-secnav2-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
@@ -63,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -71,7 +71,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.html">
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.inc">
 <li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -130,30 +130,29 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
 <div class="wb-sec-def">
-<!-- SideNavLeftStart -->
-<h3><a href="index-eng.html">Optimal Content Examples</a></h3>
+<!-- SecNavStart -->
+<section><h3 class="top-section"><a href="index-eng.html">Optimal Content Examples</a></h3>
+<section><h4>Content Types</h4>
 <ul>
-	<li><p>Content Types</p>
-		<ul>
-			<li><a href="smm-eng.html">Summary Of Coding Requirements</a></li>
-			<li><a href="clr-eng.html">Colour</a></li>
-			<li><a href="frm-eng.html">Forms</a></li>
-			<li><a href="hdg-eng.html">Headings and Titles</a></li>
-			<li><a href="img-eng.html">Images</a></li>
-			<li><a href="kb-cv-eng.html">Keyboard and User Controls</a></li>
-			<li><a href="lin-eng.html">Links</a></li>
-			<li><a href="qlg-eng.html">Quotations and Language</a></li>
-			<li><a href="tbl-eng.html">Tables</a></li>
-		</ul>
-	</li>
-	<li><p><a href="wcag-eng.html">Web Content Accessibility Guidelines (WCAG) 2.0</a></p>
-		<ul>
-			<li><a href="app-eng.html">Success Criteria Applicability</a></li>
-		</ul>
-	</li>
-	<li><a href="dk-sv-eng.html">Did You Know?</a></li>
+	<li><a href="smm-eng.html">Summary Of Coding Requirements</a></li>
+	<li><a href="clr-eng.html">Colour</a></li>
+	<li><a href="frm-eng.html">Forms</a></li>
+	<li><a href="hdg-eng.html">Headings and Titles</a></li>
+	<li><a href="img-eng.html">Images</a></li>
+	<li><a href="kb-cv-eng.html">Keyboard and User Controls</a></li>
+	<li><a href="lin-eng.html">Links</a></li>
+	<li><a href="qlg-eng.html">Quotations and Language</a></li>
+	<li><a href="tbl-eng.html">Tables</a></li>
 </ul>
-<!-- SideNavLeftEnd -->
+</section>
+<section><h4><a href="wcag-eng.html">Web Content Accessibility Guidelines (WCAG) 2.0</a></h4>
+<ul>
+	<li><a href="app-eng.html">WCAG 2.0 Success Criteria Applicability</a></li>
+</ul>
+</section>
+<div class="top-level"><a href="dk-sv-eng.html">Did You Know?</a></div>
+</section>
+<!-- SecNavEnd -->
 </div>
 </nav></div></div>
 </div></div>
@@ -205,7 +204,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
 <li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></div></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->

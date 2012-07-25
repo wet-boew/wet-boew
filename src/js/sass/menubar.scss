@@ -2,7 +2,7 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ */
 .wet-boew-menubar{
 	background-color:#1A3D6C;
 	border-bottom:4px solid #999;
@@ -55,8 +55,8 @@
 	text-decoration:underline;
 }
 
-.mb-menu .mb-has-sm{
-	text-decoration:none !important;
+.mb-sm-open li h3 a:link, .mb-sm-open li h3 a:visited, .mb-sm-open li h4 a:link, .mb-sm-open li h4 a:visited {
+	text-decoration: underline;
 }
 
 .mb-menu .nav-current{
@@ -77,11 +77,6 @@
 	display:none;
 	visibility:hidden;
 }
-
-.mb-menu .mb-sm-open{
-	position:absolute;
-	z-index:499;
-	background: #ccc !important}
 
 .mb-menu .mb-sm-open a{
 	white-space:normal;
@@ -114,6 +109,8 @@
 }
 
 .mb-mega .mb-sm-open{
+	position:absolute;
+	z-index:499;
 	background-color:#CCC;
 	border-bottom:4px solid #242;
 	padding-top:5px;
@@ -131,6 +128,10 @@
 .mb-mega .mb-sm-open ul{
 	margin:0 0 0 1.2em;
 	padding:0 0 1.15em;
+}
+
+.mb-mega .mb-sm-open ul ul{
+	padding:0;
 }
 
 .mb-mega .mb-sm-open .menu-col{

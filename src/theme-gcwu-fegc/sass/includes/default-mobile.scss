@@ -2,12 +2,17 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ */
 body{
 	-webkit-text-size-adjust:none;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:80%;
 	color:#333;
+}
+
+/* Override jQuery Mobile hiding of content on mobile loading to eliminate white flicker */
+.ui-mobile-rendering > * {
+	visibility: visible !important;
 }
 
 #wb-skip {
@@ -129,6 +134,15 @@ li#gcwu-gcft-ca a{
 	padding:10px;
 }
 
+#wb-main-in a {
+	color: #326CA6;
+	font-weight:bold;
+}
+
+#wb-main-in a:hover, #wb-main-in a:hover, #wb-main-in a:hover {
+	color: #124C86;
+}
+
 .ui-mobile #wb-main-in h1{
 	margin-bottom:0 !important;
 }
@@ -234,16 +248,24 @@ img{
 	background-image:linear-gradient(#5383BC,#225C96);
 	color:#fff;
 	text-align:center;
-	font-size:0.9em;
+	font-size:1em;
 	text-transform:xxxcapitalize;
 	position:relative;
 	font-weight:700;
 	margin:0;
-	padding:0.6em 33px 0.6em 2px;
+	padding:0.7em 18px 0.8em 0;
 	border-top:1px solid #8fb9d6;
 	border-bottom:1px solid #044062;
 	border-left:1px solid #124B79;
 	border-right:none;
+}
+
+#gcwu-srchbx h2{
+	padding-right:20px;
+}
+
+#gcwu-bnr-in .ui-mini .ui-btn-inner {
+	font-size:1em;
 }
 
 .ui-mobile #wb-sec{
@@ -290,14 +312,16 @@ img{
 	clear:both;
 }
 
+#gcwu-bnr{
+	background:#4E7EB7;
+	background: -moz-linear-gradient(#5383B7, #225C96) repeat scroll 0 0 #4E7EB7;
+	background:-webkit-linear-gradient(#5383B7, #225C96) repeat scroll 0 0 #4E7EB7;
+}
+
 #gcwu-psnb,#gcwu-srchbx{
 	width:50%;
 	float:right;
 	border-top:1px solid #044062;
-}
-
-.ui-mobile #gcwu-psnb,.ui-mobile #gcwu-srchbx{
-	border-top:none;
 }
 
 #gcwu-priorities ul:after,#gcwu-date-mod:after,#gcwu-gcft ul:after,#wb-head:after{
@@ -328,16 +352,20 @@ img{
 	min-height: 22px;
 }
 
+#gcwu-sft .ui-navbar .ui-btn-text {
+	/*white-space: nowrap;*/
+}
+
 .ui-content .ui-listview {
     margin: 0 -15px;
 }
 
-.ui-collapsible-heading {
-	margin:0;
-}
-
 .ui-collapsible-heading, .ui-li-static {
 	font-size:1em;
+}
+
+.ui-dialog h1 {
+	border-bottom: none;
 }
 
 #jqm-wb-mb a:link{
@@ -362,6 +390,14 @@ img{
 
 #jqm-wb-mb .ui-collapsible-set > a.ui-btn-icon-right .ui-btn-inner, #jqm-wb-mb .ui-btn a {
 	padding-left: 40px;
+}
+
+#jqm-wb-mb .ui-body-a {
+	background: #FFF;
+}
+
+#jqm-wb-mb .ui-collapsible .ui-collapsible .ui-collapsible-content {
+	padding-bottom: 0;
 }
 
 #jqm-wb-mb .ui-li-static {
@@ -411,12 +447,6 @@ img{
 	border-radius:0.6em;
 }
 
-#gcwu-bnr{
-	background:#4E7EB7;
-	background: -moz-linear-gradient(#5383B7, #225C96) repeat scroll 0 0 #4E7EB7;
-	background:-webkit-linear-gradient(#5383B7, #225C96) repeat scroll 0 0 #4E7EB7;
-}
-
 #jqm-wb-mb #gcwu-bc-in a {
 	color: #326CA6;
 	text-decoration: none;
@@ -453,7 +483,7 @@ img{
 	visibility: hidden;
 }
 
-#jqm-wb-mb #gcwu-bc-in  ol {
+#jqm-wb-mb #gcwu-bc-in ol {
 	line-height: 1.57em;
 	list-style-type: none;
 	margin: 0;
@@ -494,18 +524,10 @@ a:active{
 	text-decoration:underline !important;
 }
 
-.ui-btn-inner,.ui-li .ui-btn-text a.ui-link-inherit {
-    white-space:normal !important;
-}
-
 .ui-loader-default h1{
     margin:0;
     padding:0;
     border:0;
-}
-
-.no-js h1#wb-cont{
-	margin:5px -10px 0;
 }
 
 .no-js #gcwu-sft{
@@ -572,10 +594,6 @@ a:active{
 	visibility:hidden;
 }
 
-.no-js #wb-main{
-	padding:0 15px;
-}
-
 .no-js #gcwu-sft a,.no-js #gcwu-sft .link{
 	color:#222;
 }
@@ -593,7 +611,7 @@ a:active{
 }
 
 .no-js #wb-sec{
-	padding:0 15px;
+	padding:0 5px;
 }
 
 .no-js .wb-sec-def h3.top-section a:hover,.no-js .wb-sec-def h3.top-section a:focus,.no-js .wb-sec-def h3.top-section a:active{

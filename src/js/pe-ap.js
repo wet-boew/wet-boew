@@ -32,9 +32,10 @@
 		theme: "",
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
-		menubar: $('.wet-boew-menubar'),
+		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
+		urlquery: "",
 		/**
 		 * Detects the doctype of the document (loosely)
 		 * @function
@@ -55,6 +56,9 @@
 			return (res) ? false : true;
 		}
 		()),
+
+		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
+
 		/**
 		 * @memberof pe
 		 * @type {number} - IE major number if browser is IE, 0 otherwise
@@ -67,15 +71,81 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o;
+			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
 
+			// Get the query parameters from the URL
+			pe.urlquery = pe.url(document.location).params;
+
+			hlinks = pe.main.find("a[href*='#']");
+			hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes
+			hlinks_same = hlinks.filter("[href^='#']"); // Same page links with hashes
+
 			// Is this a mobile device?
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
-				$('body > div').attr('data-role', 'page');
+				$('body > div').attr('data-role', 'page').addClass('ui-page-active');
+
+				$(document).on("mobileinit", function () {
+					$.extend($.mobile, {
+						ajaxEnabled: false,
+						pushStateEnabled: false,
+						autoInitializePage: (init_on_mobileinit ? true : false)
+					});
+				});
+
+				// Replace hash with ?hashtarget= for links to other pages
+				hlinks_other.each(function () {
+					$this = $(this);
+					url = pe.url($this.attr('href'));
+					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
+						$this.attr('href', url.removehash() + (url.params.length > 0 ? "&amp;" : "?") + 'hashtarget=' + url.hash);
+					}
+				});
+
+				$(document).on("pageinit", function () {
+					// On click, puts focus on and scrolls to the target of same page links
+					hlinks_same.off("click vclick").on("click vclick", function () {
+						$this = $($(this).attr("href"));
+						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+						if ($this.length > 0) {
+							$.mobile.silentScroll(pe.focus($this).offset().top);
+						}
+					});
+
+					// If hashtarget is in the query string then put focus on and scroll to the target
+					if (pe.urlquery.hashtarget !== undefined) {
+						target = pe.main.find('#' + pe.urlquery.hashtarget);
+						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+						if (target.length > 0) {
+							setTimeout(function () {
+								$.mobile.silentScroll(pe.focus(target).offset().top);
+							}, 0);
+						}
+					}
+				});
+				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
+				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
+			} else {
+				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
+				hlinks_same.on("click vclick", function () {
+					$this = $($(this).attr("href"));
+					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					if ($this.length > 0) {
+						pe.focus($this);
+					}
+				});
+
+				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
+				if (window.location.hash.length > 0) {
+					$this = $(window.location.hash);
+					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					if ($this.length > 0) {
+						pe.focus($this);
+					}
+				}
 			}
 
 			//Load ajax content
@@ -96,24 +166,27 @@
 				}, "html");
 			})).always(function () {
 				//Wait for localisation and ajax content to load plugins
-				$(document).bind("languageloaded", function () {
+				$(document).on("languageloaded", function () {
 					if (wet_boew_theme !== null) {
 						// Initialize the theme
 						wet_boew_theme.init();
 
 						//Load the mobile view
 						if (pe.mobile === true) {
-							if (wet_boew_theme !== null) {
-								wet_boew_theme.mobileview();
-							}
-							$(document).on("mobileinit", function () {
-								//$.mobile.loadingMessage = false;
-								$.mobile.ajaxEnabled = false;
-								$.mobile.pushStateEnabled = false;
+							$(document).on("mobileviewloaded", function () {
+								if ($.mobile !== undefined) {
+									$.mobile.initializePage();
+								} else {
+									init_on_mobileinit = true;
+								}
 							});
-							// preprocessing before mobile page is enhanced
-							$(document).on("pageinit", function () {
-							});
+							wet_boew_theme.mobileview();
+						}
+					} else if (pe.mobile === true) {
+						if ($.mobile !== undefined) {
+							$.mobile.initializePage();
+						} else {
+							init_on_mobileinit = true;
 						}
 					}
 					pe.dance();
@@ -121,7 +194,6 @@
 				pe.add.language(pe.language);
 			});
 
-			// add polyfills if necessary;
 			pe.polyfills();
 		},
 		/**
@@ -363,15 +435,17 @@
 		 * @return {void}
 		 */
 		_execute : function (fn_obj, elm) {
-			var exec = (typeof fn_obj._exec !== "undefined") ? fn_obj._exec : fn_obj.exec;
-			if (typeof fn_obj.depends !== "undefined") {
-				pe.add.js(fn_obj.depends, function () {
+			if (fn_obj !== undefined) {
+				var exec = (typeof fn_obj._exec !== "undefined") ? fn_obj._exec : fn_obj.exec;
+				if (typeof fn_obj.depends !== "undefined") {
+					pe.add.js(fn_obj.depends, function () {
+						exec(elm);
+					});
+				//delete fn_obj.depends;
+				} else {
+					// execute function since it has no depends and we can safely execute
 					exec(elm);
-				});
-			//delete fn_obj.depends;
-			} else {
-				// execute function since it has no depends and we can safely execute
-				exec(elm);
+				}
 			}
 			return;
 		},
@@ -624,13 +698,15 @@
 			 * @function
 			 * @return {jQuery object} Mobile menu
 			 */
-			buildmobile: function (menusrc, hlevel, theme, menubar) {
+			buildmobile: function (menusrc, hlevel, theme, mbar, expandall) {
 				var menu = $('<div data-role="controlgroup"></div>'),
 					menuitems = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc)).find('> div, > ul, h' + hlevel),
 					next,
 					subsection,
 					hlink,
-					nested;
+					nested,
+					menubar = (mbar !== undefined ? mbar : false),
+					expand = (expandall !== undefined ? expandall : false);
 				if (menuitems.first().is('ul')) {
 					menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
 				} else {
@@ -639,7 +715,7 @@
 						// If the menu item is a heading
 						if ($this.is('h' + hlevel)) {
 							hlink = $this.children('a');
-							subsection = $('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
+							subsection = $('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
 							// If the original menu item was in a menu bar
 							if (menubar) {
 								$this = $this.parent().find('a').eq(1).closest('ul, div, h' + hlevel + 1).first();
@@ -651,7 +727,7 @@
 							if (next.is('ul')) {
 								// The original menu item was not in a menu bar
 								if (!menubar) {
-									next.prepend($('<li></li>').append($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home'))));
+									next.append($('<li></li>').append($this.children('a').html(pe.dic.get('%all') + ' - ' + hlink.html())));
 								}
 								nested = next.find('li ul');
 								// If a nested list is detected
@@ -660,9 +736,9 @@
 									hlink = $this.prev('a');
 									if ((hlevel + 1 + index) < 7) {
 										// Make the nested list into a collapsible section
-										$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
+										$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '></div>');
 										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
-										$this.prepend('<li><a href="' + hlink.attr('href') + '">' + hlink.html() + ' - ' + pe.dic.get('%home') + '</a></li>');
+										$this.append('<li><a href="' + hlink.attr('href') + '">' + pe.dic.get('%all') + ' - ' + hlink.html() + '</a></li>');
 										hlink.remove();
 									} else {
 										$this.attr('data-role', 'listview').attr('data-theme', theme);
@@ -672,10 +748,10 @@
 								subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? "<div data-role=\"collapsible-set\" data-theme=\"" + theme + "\"></div>" : "") + '</div>');
 							} else {
 								// If the section contains sub-sections
-								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme));
+								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme, false, expand));
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
-									subsection.find('div[data-role="collapsible-set"]').eq(0).prepend($this.children('a').html(hlink.html() + ' - ' + pe.dic.get('%home')).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(pe.dic.get('%all') + ' - ' + hlink.html()).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
 								}
 							}
 							menu.append(subsection);
@@ -688,15 +764,22 @@
 				return menu;
 			},
 			/**
-			 * Expands collapsible menus built by pe.menu.mobile that have a descendant link matching the selector
+			 * Closes collapsible menus built by pe.menu.mobile that have a descendant matching the selector
 			 * @memberof pe.menu
 			 * @param {jQuery object | DOM object} menusrc Mobile menu to correct
-			 * @param {string} selector Optional. Selector for the link(s) to expand. Defaults to '.nav-current'.
+			 * @param {string} selector Selector for the link(s) to expand/collapse.
+			 * @param {boolean} expand Expand (true) or collapse (false) the selected collapsible menus.
+			 * @param {boolean} allparents Expand/collapse all ancestor collapsible menus (true) or just the nearest parent (false).
 			 * @function
 			 * @return {void} Mobile menu
 			 */
-			expandmobile: function (menusrc, selector) {
-				$((typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc))).find((typeof selector === "undefined") ? '.nav-current' : selector).parents('div[data-role="collapsible"]').attr('data-collapsed', 'false');
+			expandcollapsemobile: function (menusrc, selector, expand, allparents) {
+				var elm = $((typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc))).find(selector);
+				if (allparents) {
+					elm.parents('div[data-role="collapsible"]').attr('data-collapsed', expand);
+				} else {
+					elm.closest('div[data-role="collapsible"]').attr('data-collapsed', expand);
+				}
 			},
 			/**
 			 * Correct the corners for each sections and sub-section in the menu build by pe.menu.buildmobile
@@ -715,9 +798,13 @@
 						var $this = $(this), target = $this.is('a') ? $this : $this.find('a').first();
 						if ($this.prev().length > 0) {
 							target.removeClass('ui-corner-top');
+						} else {
+							target.addClass('ui-corner-top');
 						}
 						if ($this.next().length > 0) {
 							target.removeClass('ui-corner-bottom');
+						} else {
+							target.addClass('ui-corner-bottom');
 						}
 					});
 				});
@@ -732,7 +819,7 @@
 		polyfills: function () {
 			var lib = pe.add.liblocation,
 				// modernizer test for detailsummary support
-				detail = (function (doc) {
+				details = (function (doc) {
 					var el = doc.createElement('details'),
 						fake,
 						root,
@@ -765,10 +852,12 @@
 			// process
 			if (typeof document.createElement('progress').position === "undefined") {
 				pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
+				$("progress").addClass("polyfill");
 			}
-			// detail + summary
-			if (!detail) {
-				pe.add._load(lib + 'polyfills/detailsummary' + pe.suffix + '.js');
+			// details + summary
+			if (!details) {
+				pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
+				$("details").addClass("polyfill");
 			}
 		},
 		/**
@@ -804,8 +893,9 @@
 				 * @param {string} js Path and filename of the javascript file to asynchronously load.
 				 * @return {object} A reference to pe.add
 				 */
-				_load: function (js) {
-					var head = pe.add.head;
+				_load: function (js, message) {
+					var head = pe.add.head,
+						msg = (message !== undefined ? message : 'wet-boew-dependency-loaded');
 					// - lets prevent double loading of dependencies
 					if ($.inArray(js, this.staged) > -1) {
 						return this;
@@ -830,7 +920,7 @@
 							scriptdone = true;
 							// now add to dependency list
 							pe.depends.put(js);
-							$(document).trigger({type: 'wet-boew-dependency-loaded', js: js});
+							$(document).trigger({type: msg, js: js});
 						};
 						scriptElem.src = js;
 						if ((pe.ie > 0 && pe.ie < 9) || !head.insertBefore) {
@@ -958,15 +1048,18 @@
 		 */
 		dance: function () {
 			// global plugins
-			var i, exclude = ":not(a[href], input, button, textarea)",
-				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false;
+			var i,	settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false;
 			$('[class^="wet-boew-"]').each(function () {
-				var _fcall,
-					_node;
-				_node = $(this);
-				_fcall = _node.attr("class").replace(/^wet-boew-(\S*).*/i, "$1".toLowerCase());
-				if (typeof pe.fn[_fcall] !== "undefined") {
-					pe._execute(pe.fn[_fcall], _node);
+				var _node = $(this),
+					_fcall = _node.attr("class").split(" "),
+					i;
+				for (i = 0; i < _fcall.length; i += 1) {
+					if (_fcall[i].indexOf('wet-boew-') === 0) {
+						_fcall[i] = _fcall[i].substr(9).toLowerCase();
+						if (typeof pe.fn[_fcall[i]] !== "undefined") {
+							pe._execute(pe.fn[_fcall[i]], _node);
+						}
+					}
 				}
 			// lets safeguard the execution to only functions we have
 			});
@@ -976,19 +1069,6 @@
 				for (i = 0; i < settings.globals.length; i += 1) {
 					pe._execute(pe.fn[settings.globals[i]], document);
 				}
-			}
-			if (pe.mobile) {
-				// Move the focus to the anchored element for same page content area links
-				$("#wb-main a[href^='#']").on("click", function () {
-					$("#" + $(this).attr("href").slice(1) + exclude).attr("tabindex", "-1").focus();
-				});
-				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
-				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
-			} else {
-				// Move the focus to the anchored element for skip nav links
-				$("#wb-skip a").on("click", function () {
-					pe.focus($($(this).attr("href") + exclude).attr("tabindex", "-1"));
-				});
 			}
 			window.onresize = function () { // TODO: find a better way to switch back and forth between mobile and desktop modes.
 				if (pe.mobile !== pe.mobilecheck()) {

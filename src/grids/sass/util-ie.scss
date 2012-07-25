@@ -1,0 +1,21 @@
+@charset "utf-8";
+/*!
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+/*!
+ * Icons by Yusuke Kamiyamane (http://p.yusukekamiyamane.com/) - Creative Commons Attribution 3.0 License (http://creativecommons.org/licenses/by/3.0/)
+ */
+@media screen{
+/* -----Build Include Section Start----- */
+@import url('includes/util-screen.css');
+@import url('includes/util-screen-ie7.css');
+@import url('includes/util-screen-ie8.css');
+/* -----Build Include Section End----- */
+}
+
+@media print{
+/* -----Build Include Section Start----- */
+@import url('includes/util-print.css');
+/* -----Build Include Section End----- */
+}

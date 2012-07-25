@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="fr" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="fr" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+<title>Onglet coulissant - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="French description / Description en français" />
+<meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
+<meta name="dcterms.title" content="French title / Titre en français" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="French subject terms / Termes de sujet en français" />
+<meta name="dcterms.language" title="ISO639-2" content="fra" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../build/js/jquery.min.js"></script>
+<!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation de la gouvernement de Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../build/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
+<li id="gcwu-gcnb-lang"><a href="slideout-eng.html" lang="en">English</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../docs/index-fra.html">Boîte à outils de l'expérience Web&#160;(BOEW)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2><span>Menu</span> du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-fra.inc">
+<li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-fra.html">Projet de la BOEW</a></div></li>
+<li><div><a href="section2/index-fra.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Fil d'Ariane</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../docs/index-fra.html">Accueil</a></li>
+<li><a href="../index-fra.html">Exemples pratiques</a></li>
+<li>Onglet coulissant</li>
+</ol></div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Onglet coulissant</h1>
+
+<div class="wet-boew-slideout">
+	<h2>Table des matières</h2>
+	<ul>
+	 <li><a href="#cn_ed2">Date d'entrée en vigueur</a></li>
+	 <li><a href="#cn_app2">Application</a></li>
+	 <li><a href="#cn_cont2">Contexte</a></li>
+	 <li><a href="#cn_acc2">Responsabilité</a></li>
+
+	 <li><a href="#cn_req2">Exigences</a>
+	 <ul>
+	 <li><a href="#cn_1_cww">1.&#160;Conformité aux critères de
+	 la Priorité 1 et de la Priorité 2 du <abbr lang="en" title="World Wide Web Consortium"><span lang="fr">W3C </span></abbr></a></li>
+	 <li><a href="#cn_2_bt">2. Technologies de base</a></li>
+	 <li><a href="#cn_3_aaf">3. Formats de rechange accessibles pour les documents
+	 publiés sur les sites Web</a></li>
+	 <li><a href="#cn_4_oii">4.&#160;Présentation de l'information
+	 dans plusieurs formats</a></li>
+
+	 <li><a href="#cn_5_con">5. Contraste</a></li>
+	 <li><a href="#cn_6_aai">6.&#160;Évaluation de l'accessibilité,
+	 de l'interopérabilité et de la facilité d'emploi</a></li>
+	 </ul>
+	 </li>
+	</ul>
+</div>
+
+<h2 id="cn_ed2">Date d'entrée en vigueur</h2>
+<p>La présente norme entre en vigueur le 1er janvier 2007; elle remplace
+ les <em>Normes et lignes
+ directrices sur la normalisation des sites Internet</em>&#160;du Conseil
+ du Trésor suivantes :</p>
+
+<ul>
+ <li>Norme 1.1 - Critères du <abbr lang="en" title="World Wide Web Consortium"><span lang="fr">W3C</span></abbr>;</li>
+ <li>Norme 1.2 - Technologies du <abbr lang="en" title="World Wide Web Consortium"><span lang="fr">W3C </span></abbr> pour
+ les documents;</li>
+ <li>Norme 1.3 - Formats de rechange;</li>
+ <li>Norme 1.4 - Équivalents textuels;</li>
+
+ <li>Norme 6.8 - Outils de validation;</li>
+ <li>Ligne directrice 1.1 - Le langage HTML 4.0; et</li>
+ <li>Ligne directrice 6.1 - Les feuilles de style en cascade.</li>
+</ul>
+
+<h2 id="cn_app2">Application</h2>
+<p>La présente norme s'applique à toutes les institutions énumérées
+ aux annexes I, I.1 et II de la <em>Loi
+ sur la gestion des finances publiques</em>.</p>
+
+<h3>Politiques connexes</h3>
+<p>Les institutions concernées sont également tenues de se conformer
+ aux instruments de politique suivants&#160;:</p>
+<ul>
+ <li><em>Normes sur la normalisation des sites
+ Internet, partie 1&#160;: Norme sur les adresses Web;</em></li>
+ <li><em>Normes sur la normalisation des sites
+ Internet, partie 3&#160;: Norme sur la présentation commune des
+ pages Web</em>;</li>
+
+ <li><em>Normes sur la normalisation des sites Internet,
+ partie 4&#160;: Norme sur le courriel.</em></li>
+</ul>
+<p>Les institutions doivent en outre respecter les obligations relatives aux
+ langues officielles énoncées dans la <em>Directive
+ sur l'utilisation des langues officielles sur les sites Web</em>.</p>
+
+<h2 id="cn_cont2">Contexte</h2>
+<p>Tous les Canadiennes et Canadiens ont le droit d'obtenir l'information
+ et les services dont ils ont besoin à partir des sites Web du gouvernement
+ du Canada, quels que soient les outils technologiques qu'ils utilisent.
+ La clé de la mise en oeuvre efficace d'une accessibilité universelle
+ repose sur la conception de sites accessibles au plus vaste auditoire possible
+ et compatibles avec la gamme la plus vaste possible de plateformes logicielles
+ et matérielles, des appareils et accessoires d'aide jusqu'aux technologies
+ naissantes.</p>
+
+<p>Pour bien des gens, l'accès au contenu Web se révèle
+ plus compliqué que de cliquer à l'aide d'une souris
+ et de taper sur un clavier. Certaines personnes comptent sur des technologies
+ d'adaptation, comme des utilitaires de lecture d'écran ou
+ de fichiers sonores et des systèmes activés par la voix, pour
+ surmonter les obstacles posés par les technologies Internet courantes.
+ D'autres peuvent être limités par la technologie même
+ qu'ils utilisent.</p>
+<p>Dans le cadre de son initiative d'accessibilité aux contenus
+ Web (<abbr title="Initiative pour l'Accessibilité du Web">WAI</abbr>),
+ le <span lang="en">World Wide Web Consortium </span> (W3C)
+ a mis au point des lignes directrices concernant l'accessibilité universelle.
+ Grâce à ces lignes directrices, et conformément à l'approche
+ axée sur le citoyen de l'initiative de Normalisation des sites
+ Internet, la présente norme vise à garantir un accès équitable à tout
+ le contenu des sites Web du gouvernement du Canada.</p>
+<p>De toute évidence, cette norme permet à toute institution de
+ fournir de l'information dans divers formats.</p>
+
+<h2 id="cn_acc2">Responsabilité</h2>
+<p>Les administrateurs généraux sont responsables
+ de la mise en oeuvre de la présente norme au sein de leur institution.</p>
+
+<h2 id="cn_req2">Exigences</h2>
+<div class="cn-toppage"><a href="#cn-tphp" title="Retourner au haut de la page">Haut de la page</a></div>
+
+<h3 id="cn_1_cww"><em>1.&#160;Conformité aux critères
+ de la Priorité 1 et de la Priorité 2 du <abbr lang="en" title="World Wide Web Consortium"><span lang="fr">W3C </span></abbr></em></h3>
+<p>Pour respecter les lignes directrices concernant l'accessibilité universelle énoncées
+ dans l'initiative d'accessibilité aux contenus Web du <abbr lang="en" title="World Wide Web Consortium"><span lang="fr">W3C </span></abbr>,
+ l'institution doit veiller à ce que ses sites Web satisfassent
+ aux critères des Priorités 1 et 2 des lignes
+ directrices sur l'accessibilité des contenus Web, version 1.0
+ (<abbr title="Lignes directrices sur l'accessibilité des contenus Web">WCAG</abbr>) (en
+ anglais), à l'exception du critère suivant&#160;:</p>
+
+<ul>
+ <li>Le critère 3.4 des <abbr title="Lignes directrices sur l'accessibilité des contenus Web">WCAG</abbr> est
+ remplacé par l'exigence numéro 2 des <em>Normes sur la
+ normalisation des sites Internet, partie 3&#160;: Norme sur la présentation
+ commune de pages Web</em>.</li>
+</ul>
+<p>Chacune des quatorze lignes directrices du <abbr title="Lignes directrices sur l'accessibilité des contenus Web">WCAG</abbr> est
+ accompagnée d'une ou de plusieurs mesures à prendre pour
+ s'assurer que la page répond aux exigences. Ces mesures s'appellent
+ des &#171;&#160;critères&#160;&#187;.</p>
+
+<p>Les institutions doivent consulter la <em>Directive
+ sur l'utilisation des langues officielles sur les sites Web</em> pour
+ savoir comment respecter les exigences relatives aux langues officielles
+ dans les équivalents textuels et les autres éléments
+ non textuels.</p>
+
+<h3 id="cn_2_bt"><em>2. Technologies de base</em></h3>
+<p>Pour s'assurer que tous les visiteurs d'un site pourront avoir
+ accès au contenu quelle que soit la configuration technique du système
+ ou des appareils qu'ils utilisent, l'institution doit adopter le
+ langage XHTML 1.0 <span lang="en">Strict</span> et
+ les feuilles de style en cascade 1.0 (CSS1) comme technologies
+ de base pour le balisage, la présentation et la conception de pages
+ Web.</p>
+
+<h3 id="cn_3_aaf"><em>3. Formats de rechange accessibles pour les documents
+ publiés sur les sites Web</em></h3>
+<p>Pour garantir l'accessibilité à ses produits, l'institution
+ doit mettre en oeuvre des méthodes normalisées, en appliquant
+ les langages décrits dans les recommandations formulées par le <span lang="en">World
+ Wide Web Consortium</span> (W3C). Toutefois, il ne suffit
+ pas d'avoir recours à ces langages pour le balisage ou la conception
+ pour qu'un produit soit naturellement accessible.</p>
+<p>Lorsque, en dépit des mesures prises, il n'est pas possible de
+ rendre le contenu ou l'application accessible, c'est&#8209;à&#8209;dire
+ lorsqu'un document ne peut pas être présenté en langage XHTML 1.0
+ Strict ou dans un langage décrit dans les recommandations formulées
+ par le <abbr lang="en" title="World Wide Web Consortium"><span lang="fr">W3C</span></abbr>,
+ l'institution doit&#160;:</p>
+<ul >
+ <li>insérer un avis concernant l'accessibilité dans
+ la page, immédiatement avant l'élément inaccessible,
+ pour informer les visiteurs de la marche à suivre pour obtenir une
+ version accessible imprimée, en braille ou audio;</li>
+
+ <li>insérer un avis concernant l'accessibilité dans
+ la ou les pages d'aide du site Web.</li>
+</ul>
+<p>La publication de versions accessibles dans un format autre que le format XHTML recommandé ne
+ doit se faire qu'en dernier recours. Il ne s'agit pas d'un
+ moyen pratique d'éviter les interventions minimales nécessaires
+ pour rendre accessibles les pages et les applications Web.</p>
+
+<h3 id="cn_4_oii"><em>4.&#160;Présentation de l'information
+ dans plusieurs formats</em></h3>
+<p>Pour respecter les lignes directrices concernant l'accessibilité universelle,
+ l'institution doit s'assurer que les pages Web présentant
+ de l'information dans différents formats comprennent des indications
+ textuelles sur le format, le type et la taille des fichiers pour chaque lien
+ pointant vers un fichier qui n'est pas en format XHMTL. Pour chaque format
+ nécessitant un logiciel spécialisé, un lien hypertexte
+ vers un site où le navigateur ou le module d'extension peut être
+ téléchargé doit être fourni. Si l'accessibilité à une
+ version d'un module d'extension est aussi connue, une note ou un
+ lien menant à ce produit devrait également figurer.</p>
+
+<p>La présente norme et les lignes directrices sur l'accessibilité des
+ contenus Web du <abbr lang="en" title="World Wide Web Consortium"><span lang="fr">W3C</span></abbr> ne
+ sous&#8209;entendent pas qu'il soit interdit à un fournisseur
+ de contenu d'offrir l'information en de divers formats. La seule
+ exigence formulée est que le premier format chargé par un visiteur
+ soit celui de la version la plus accessible.</p>
+<p>Des exemples de la façon de traiter les documents
+ offerts dans différents formats et les fichiers
+ multimédia en divers formats sont fournis dans la boîte à outils
+ de la <abbr title="Normalisation des sites Internet">NSI</abbr>.</p>
+
+<div class="cn-toppage"><a href="#cn-tphp" title="Retourner au haut de la page">Haut de la page</a></div>
+
+<h3 id="cn_5_con"><em>5.&#160;Contraste</em></h3>
+<p>L'institution doit s'assurer qu'il existe un contraste évident
+ entre les éléments textuels et les couleurs ou les images d'arrière-plan,
+ lorsque la page en question est visualisée par une personne daltonienne
+ ou sur un écran noir et blanc.</p>
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2011-10-31</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Pied de page du site</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Avis</a></li>
+<li class="gcwu-tr"><a href="#">Transparence</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">À propos de nous</a></h4>
+<ul>
+<li><a href="#">Notre mandat</a></li>
+<li><a href="#">Le ministre</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Nouvelles</a></h4>
+<ul>
+<li><a href="#">Communiqués</a></li>
+<li><a href="#">Avix aux médias</a></li>
+<li><a href="#">Multimédia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contactez-nous</a></h4>
+<address>
+<ul>
+<li><a href="#">Numéros de téléphone</a></li>
+<li><a href="#">Nos bureaux</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Restez branchés</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Flux</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Pied de page du gouvernement du Canada</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://canadiensensante.gc.ca/index-fra.php"><span>Santé</span><br />canadiensensante.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-fra.asp"><span>Voyage</span><br />voyage.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
+<li><a rel="external" href="http://plandaction.gc.ca/fra/index.asp"><span>Économie</span><br />plandaction.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../build/js/settings.js"></script>
+<script src="../../build/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>

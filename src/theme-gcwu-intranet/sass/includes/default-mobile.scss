@@ -1,0 +1,107 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+.intranet #gcwu-subsite{
+	border-top:1px solid #CCC;
+	clear:both;
+	font-size:130%;
+	text-shadow:1px 1px 1px #333;
+	background:url(../images/gcwu-subsite-1.gif) repeat-x scroll 0 top #618000;
+}
+
+.intranet #wb-head-in{
+	position:relative;
+}
+
+.intranet #gcwu-psnb{
+	position:absolute;
+	margin-top:-64px;
+}
+
+.intranet #gcwu-psnb,.intranet #gcwu-srchbx {
+	min-height:32px;
+}
+
+.intranet #gcwu-subsite p{
+	margin:0;
+	padding:5px 10px;
+}
+
+.ui-mobile #gcwu-subsite a{
+	white-space:normal;
+}
+
+#gcwu-subsite{
+	font-size:130%;
+	text-shadow:1px 1px 1px #333;
+}
+
+.intranet #gcwu-sft-in section:nth-child(3n-1),.intranet #gcwu-sft-in div:nth-child(3n-1){
+	clear:none;
+}
+
+.intranet #gcwu-sft-in section:nth-child(3n),.intranet #gcwu-sft-in div:nth-child(3n){
+	clear:both;
+}
+
+.intranet #gcwu-tctr{
+	padding-top:20px;
+	clear:both;
+}
+
+#gcwu-intranetnb li{
+	display:none;
+	padding-bottom:5px;
+}
+
+#gcwu-intranetnb #gcwu-gcnb-lang{
+	display:inline;
+	float:right;
+}
+
+#gcwu-intranetnb-inner {
+	padding:0 5px;
+	background:#fafafa;
+	margin-bottom:5px;
+	border-bottom:1px solid #eee;
+	-moz-box-shadow:inset 1px 1px 2px #999;
+	-webkit-box-shadow: inset 1px 1px 2px #999;
+	box-shadow: inset 1px 1px 2px #999;
+}
+
+#gcwu-intranetnb-inner ul{
+	margin:0;
+	float:right;
+}
+
+#gcwu-intranetnb-inner:after{
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}
+
+#gcwu-intranetnb-inner li{
+	display:inline;
+	float:left;
+	padding:5px 0 5px 5px;
+}
+
+#gcwu-intranetnb-inner a{
+	background: none repeat scroll 0 0 #eee;
+	border: 1px solid #ddd;
+	border-radius: 2px 2px 2px 2px;
+	color: #222;
+	float: right;
+	font-weight: 400;
+	padding: 3px;
+	text-decoration: none;
+}
+
+#gcwu-subsite p {
+	margin-top:0px;
+	margin-bottom:0px;
+}

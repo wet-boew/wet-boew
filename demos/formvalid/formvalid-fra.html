@@ -11,9 +11,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Validation des formulaires - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="French description / Description en français" />
 <meta name="description" content="French description / Description en français" />
-<meta name="keywords" content="French keywords / Mots-clés en français" />
 <meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
 <meta name="dcterms.title" content="French title / Titre en français" />
 <meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
@@ -23,12 +21,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -50,9 +50,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation de la gouvernement de Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../build/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/accueil.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-fra.html">Ministères</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
 <li id="gcwu-gcnb-lang"><a href="formvalid-eng.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
@@ -63,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
 </div></form>
 </div></section>
@@ -71,7 +71,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Menu</span> du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/menu-fra.html">
+<ul class="mb-menu" data-ajax-replace="../includes/menu-fra.inc">
 <li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-fra.html">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -98,10 +98,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <h1 id="wb-cont">Validation des formulaires</h1>
 
 <div class="wet-boew-formvalid">
-<form action="#" method="post">
+<form action="#" method="get" id="validation-example">
 <fieldset><legend>Coordonnées</legend>
 <div><label for="title1"><span class="field-name">Titre</span> <strong>(obligatoire)</strong></label>
-<select id="title1" name="title1" class="required">
+<select id="title1" name="title1" required="required">
 <option></option>
 <option value="dr">D. Ph.</option>
 <option value="esq">Me</option>
@@ -109,25 +109,24 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <option value="ms">Madame</option>
 </select>
 </div>
-<div><label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" class="required" data-validate="{minlength:3}" /></div>
-<div><label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" class="required" data-validate="{minlength:3}" /></div>
-<div><label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label><input id="tel" name="tel" type="text" class="required phoneUS" /></div>
-<div><label for="email1"><span class="field-name">Adresse électronique</span></label><input id="email1" name="email1" type="text" class="email" /></div>
-<div><label for="url1"><span class="field-name">URL du site Web</span></label><input id="url1" name="url1" type="text" class="url" /></div>
+<div><label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" required="required" pattern="{2,}" class="{validate:{minlength:2}}" /></div>
+<div><label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" required="required" pattern="{2,}" class="{validate:{minlength:2}}" /></div>
+<div><label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label><input id="tel" name="tel" type="tel" required="required" class="{validate:{phoneUS:true}}" /></div>
+<div><label for="email1"><span class="field-name">Adresse électronique</span></label><input id="email1" name="email1" type="email" /></div>
+<div><label for="url1"><span class="field-name">URL du site Web (http://www.url.com)</span></label><input id="url1" name="url1" type="url" class="{validate:{url:true}}" /></div>
 </fieldset>
 
 <fieldset><legend>Autres exemples</legend>
-<div><label for="date1"><span class="field-name">Date</span> (AAAA-MM-JJ)</label><input id="date1" name="date1" type="text" class="dateISO" /></div>
-<div><label for="time1"><span class="field-name">Heure</span> (hh:mm)</label><input id="time1" name="time1" type="text" class="time" /></div>
-<div><label for="an1"><span class="field-name">Alphanumérique</span> (4 caractères minimum)</label><input id="an1" name="an1" type="text" class="alphanumeric" data-validate="{minlength:4}" /></div>
-<div><label for="email"><span class="field-name">Chiffres seulement</span></label><input id="email" name="email" type="text" class="digits" /></div>
-<div><label for="integer1"><span class="field-name">Intègre</span> (entre 5 et 40)</label><input id="integer1" name="integer1" type="text" class="integer" size="2" maxlength="2" data-validate="{range:[5,40]}" /></div>
-<div><label for="letters1"><span class="field-name">Lettres seulement</span> (5 caractères maximum)</label><input id="letters1" name="letters1" type="text" class="lettersonly" size="5" maxlength="5" data-validate="{maxlength:5}" /></div>
-<div><label for="text1"><span class="field-name">Lettres et des signes de ponctuation seulement</span></label><input id="text1" name="text1" type="text" class="letterswithbasicpunc" /></div>
-<div><label for="text2"><span class="field-name">Lettres seulement, sans des blancs</span></label><input id="text2" name="text2" type="text" class="lettersonly nowhitespace" /></div>
-<div><label for="password1"><span class="field-name">Mot de passe</span> (entre 5 et 10 characters)</label><input id="password1" name="password1" type="password" maxlength="10" size="10" data-validate="{rangelength:[5,10]}" /></div>
+<div><label for="date1"><span class="field-name">Date</span> (AAAA-MM-JJ)</label><input id="date1" name="date1" type="date" class="{validate:{dateISO:true}}" /></div>
+<div><label for="time1"><span class="field-name">Heure</span> (hh:mm)</label><input id="time1" name="time1" type="time" /></div>
+<div><label for="an1"><span class="field-name">Alphanumérique</span> (4 caractères minimum)</label><input id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" class="{validate:{alphanumeric:true,minlength:4}}" /></div>
+<div><label for="digits1"><span class="field-name">Chiffres seulement</span></label><input id="digits1" name="digits1" type="number" /></div>
+<div><label for="integer1"><span class="field-name">Intègre</span> (entre 5 et 40)</label><input id="integer1" name="integer1" type="number" min="5" max="40" /></div>
+<div><label for="letters1"><span class="field-name">Lettres seulement</span> (5 caractères maximum)</label><input id="letters1" name="letters1" type="text" size="5" maxlength="5" pattern="[A-Za-z\s]" class="{validate:{lettersonly:true}}" /></div>
+<div><label for="text1"><span class="field-name">Lettres et des signes de ponctuation seulement</span> (ponctuation qui est permis&#160;: [. , ( ) "])</label><input id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&quot;\s]" class="{validate:{letterswithbasicpunc:true}}" /></div>
+<div><label for="password1"><span class="field-name">Mot de passe</span> (entre 5 et 10 characters)</label><input id="password1" name="password1" type="password" maxlength="10" size="10" pattern="{5,10}" class="{validate:{rangelength:[5,10]}}" /></div>
 </fieldset>
-<div><input type="submit" value="Soumettre" /></div>
+<div class="buttons"><input type="submit" value="Soumettre" /> <input type="reset" value="Réinitialiser" /></div>
 </form>
 </div>
 <noscript>
@@ -194,7 +193,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
 <li><a rel="external" href="http://plandaction.gc.ca/fra/index.asp"><span>Économie</span><br />plandaction.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/accueil.html">Canada.gc.ca</a></div></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->

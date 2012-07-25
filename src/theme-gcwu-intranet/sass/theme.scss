@@ -1,0 +1,37 @@
+@charset "utf-8";
+/*!
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+/* -----Build Include Section Start----- */
+@import url('includes/default.css');
+/* -----Build Include Section End----- */
+
+/* Desktop view */
+@media screen and (min-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('includes/default-responsive.css');
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width:768px) and (max-width:959px){
+/* -----Build Include Section Start----- */
+@import url('includes/default-responsive-768.css');
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width:1200px){
+/* -----Build Include Section Start----- */
+@import url('includes/default-responsive-1200.css');
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('includes/default-desktop.css');
+/* -----Build Include Section End----- */
+}
+
+/* Mobile view */
+@media (max-width:767px) {
+/* -----Build Include Section Start----- */
+@import url('includes/default-mobile.css');
+/* -----Build Include Section End----- */
+}

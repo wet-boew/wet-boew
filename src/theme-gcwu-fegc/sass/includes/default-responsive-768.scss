@@ -2,7 +2,7 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ */
 body{
 	min-width:768px;
 }
@@ -65,192 +65,14 @@ li#gcwu-gcft-ca{
 	margin-left:0 !important;
 }
 
-#wb-body-sec #wb-core .grid-12 .span-1{
-	width:28px;
-}
-
-.grid-12 .span-1{
-	width:44px;
-}
-
-.span-1,#wb-body-sec #wb-core .grid-12 .span-2{
-	width:76px;
-}
-
-.grid-12 .span-2{
-	width:108px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-3{
-	width:124px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-5{
-	width:220px;
-}
-
-.grid-12 .span-4{
-	width:236px;
-}
-
-.span-3,#wb-body-sec #wb-core .grid-12 .span-6{
-	width:268px;
-}
-
-.grid-12 .span-5{
-	width:300px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-7{
-	width:316px;
-}
-
-.span-4,#wb-body-sec #wb-core .grid-12 .span-8,.grid-12 .span-6{
-	width:364px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-9{
-	width:412px;
-}
-
-.grid-12 .span-7{
-	width:428px;
-}
-
-.span-5,#wb-body-sec #wb-core .grid-12 .span-10{
-	width:460px;
-}
-
-.grid-12 .span-8{
-	width:492px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-11{
-	width:508px;
-}
-
-.span-6,#wb-body-sec #wb-core .grid-12 .span-12,.grid-12 .span-9{
-	width:556px;
-}
-
-.grid-12 .span-10{
-	width:620px;
-}
-
-.span-7{
-	width:652px;
-}
-
-.grid-12 .span-11{
-	width:684px;
-}
-
-.span-8,.grid-12 .span-12{
-	width:748px;
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-1{
-	background-image:url(../../grids/images/border-28px.gif);
-}
-
-.grid-12 .border-span-1{
-	background-image:url(../../grids/images/border-44px.gif);
-}
-
-.border-span-1,#wb-body-sec #wb-core .grid-12 .border-span-2,.module-versatile{
-	background-image:url(../../grids/images/border-76px.gif);
-}
-
-.grid-12 .border-span-2,.module-versatile{
-	background-image:url(../../grids/images/border-108px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-3{
-	background-image:url(../../grids/images/border-124px.gif);
-}
-
-.border-span-2,.module-versatile,#wb-body-sec #wb-core .grid-12 .border-span-4,.grid-12 .border-span-3{
-	background-image:url(../../grids/images/border-172px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-5{
-	background-image:url(../../grids/images/border-220px.gif);
-}
-
-.grid-12 .border-span-4{
-	background-image:url(../../grids/images/border-236px.gif);
-}
-
-.border-span-3,#wb-body-sec #wb-core .grid-12 .border-span-6{
-	background-image:url(../../grids/images/border-268px.gif);
-}
-
-.grid-12 .border-span-5{
-	background-image:url(../../grids/images/border-300px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-7{
-	background-image:url(../../grids/images/border-316px.gif);
-}
-
-.border-span-4,.module-table-contents,.module-welcomepage,#wb-body-sec #wb-core .grid-12 .border-span-8,.grid-12 .border-span-6{
-	background-image:url(../../grids/images/border-364px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-9{
-	background-image:url(../../grids/images/border-412px.gif);
-}
-
-.grid-12 .border-span-7{
-	background-image:url(../../grids/images/border-428px.gif);
-}
-
-.border-span-5,#wb-body-sec #wb-core .grid-12 .border-span-10{
-	background-image:url(../../grids/images/border-460px.gif);
-}
-
-.grid-12 .border-span-8{
-	background-image:url(../../grids/images/border-492px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-11{
-	background-image:url(../../grids/images/border-508px.gif);
-}
-
-.border-span-6,#wb-body-sec #wb-core .grid-12 .border-span-12,.grid-12 .border-span-9{
-	background-image:url(../../grids/images/border-556px.gif);
-}
-
-.grid-12 .border-span-10{
-	background-image:url(../../grids/images/border-620px.gif);
-}
-
-.border-span-7{
-	background-image:url(../../grids/images/border-652px.gif);
-}
-
-.grid-12 .border-span-11{
-	background-image:url(../../grids/images/border-684px.gif);
-}
-
-.border-span-8,.grid-12 .border-span-12{
-	background-image:url(../../grids/images/border-748px.gif);
-}
-
 #wb-core-in,#gcwu-gcnb-in,#gcwu-bnr-in,#gcwu-psnb-in,#gcwu-bc-in,#gcwu-gcft-in,#gcwu-sft-in,#gcwu-bnr-in,#gcwu-psnb .mb-menu,#gcwu-psnb .mb-hsubmenu .showcase-visible ul,#wb-body #wb-main{
 	width:768px;
 }
 
-#wb-body-sec #wb-main,#wb-body-secr #wb-main,#wb-body-sec #wb-main-in,#wb-body-secr #wb-main-in,#wb-body #gcwu-content{
+#wb-body-sec #wb-main,#wb-body-sec-sup #wb-main,#wb-body-sec #wb-main-in,#wb-body-sec-sup #wb-main-in,#wb-body #gcwu-content{
 	width:576px;
 }
 
-#gcwu-aside,#gcwu-priorities,.span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3{
+#gcwu-aside,#gcwu-priorities{
 	width:172px;
-}
-
-.span-2 .calendar-month td,.span-2 .calendar-month th,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month td,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month th,.grid-12 .span-3 .calendar-month td,.grid-12 .span-3 .calendar-month th{
-	width:26px;
-	height:32px;
-	padding:2px 3px;
 }

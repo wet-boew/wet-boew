@@ -13,8 +13,8 @@
 	/* local reference */
 	_pe.fn.pluginName = {
 		type: 'plugin',
-		// This is an example from tabbed interface, to show how to call required libraries
-		depends: ['metadata', 'easytabs', 'equalheights'],
+		// This is an example from tabbed interface, to show how to call required libraries when they are needed
+		depends: (pe.mobile ? [] : ['metadata', 'easytabs', 'equalheights']),
 		// Don't include a mobile function if your plugin shouldn't run in mobile mode.
 		mobile: function (elm) {
 			// If applicaple, convert html elements and attributes into the format that jQuery mobile expects.
@@ -23,7 +23,7 @@
 		_exec: function (elm) {
 			// Don't include this if statement if your plugin shouldn't run in mobile mode.
 			if (pe.mobile) {
-				return _pe.fn.pluginName.mobile(elm);
+				return _pe.fn.pluginName.mobile(elm).trigger('create');
 			}
 			var opts,
 				overrides,

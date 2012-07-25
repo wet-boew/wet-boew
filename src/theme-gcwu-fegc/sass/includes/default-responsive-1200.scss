@@ -2,7 +2,7 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ */
 body{
 	min-width:1200px;
 }
@@ -49,192 +49,18 @@ li#gcwu-gcft-ca{
 	margin-left:0 !important;
 }
 
-#wb-body-sec #wb-core .grid-12 .span-1{
-	width:55px;
-}
-
-.grid-12 .span-1{
-	width:80px;
-}
-
-.span-1,#wb-body-sec #wb-core .grid-12 .span-2{
-	width:130px;
-}
-
-.grid-12 .span-2{
-	width:180px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-3{
-	width:205px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-5{
-	width:355px;
-}
-
-.grid-12 .span-4{
-	width:380px;
-}
-
-.span-3,#wb-body-sec #wb-core .grid-12 .span-6{
-	width:430px;
-}
-
-.grid-12 .span-5{
-	width:480px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-7{
-	width:505px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-9{
-	width:655px;
-}
-
-.grid-12 .span-7{
-	width:680px;
-}
-
-.span-5,#wb-body-sec #wb-core .grid-12 .span-10{
-	width:730px;
-}
-
-.grid-12 .span-8{
-	width:780px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-11{
-	width:805px;
-}
-
-.span-6,#wb-body-sec #wb-core .grid-12 .span-12,.grid-12 .span-9{
-	width:880px;
-}
-
-.grid-12 .span-10{
-	width:980px;
-}
-
-.span-7{
-	width:1030px;
-}
-
-.grid-12 .span-11{
-	width:1080px;
-}
-
-.span-8,.grid-12 .span-12{
-	width:1180px;
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-1{
-	background-image:url(../../grids/images/border-55px.gif);
-}
-
-.grid-12 .border-span-1{
-	background-image:url(../../grids/images/border-80px.gif);
-}
-
-.border-span-1,#wb-body-sec #wb-core .grid-12 .border-span-2,.module-versatile{
-	background-image:url(../../grids/images/border-130px.gif);
-}
-
-.grid-12 .border-span-2,.module-versatile{
-	background-image:url(../../grids/images/border-180px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-3{
-	background-image:url(../../grids/images/border-205px.gif);
-}
-
-.border-span-2,.module-versatile,#wb-body-sec #wb-core .grid-12 .border-span-4,.grid-12 .border-span-3{
-	background-image:url(../../grids/images/border-280px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-5{
-	background-image:url(../../grids/images/border-355px.gif);
-}
-
-.grid-12 .border-span-4{
-	background-image:url(../../grids/images/border-380px.gif);
-}
-
-.border-span-3,#wb-body-sec #wb-core .grid-12 .border-span-6{
-	background-image:url(../../grids/images/border-430px.gif);
-}
-
-.grid-12 .border-span-5{
-	background-image:url(../../grids/images/border-480px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-7{
-	background-image:url(../../grids/images/border-505px.gif);
-}
-
-.border-span-4,.module-table-contents,.module-welcomepage,#wb-body-sec #wb-core .grid-12 .border-span-8,.grid-12 .border-span-6{
-	background-image:url(../../grids/images/border-580px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-9{
-	background-image:url(../../grids/images/border-655px.gif);
-}
-
-.grid-12 .border-span-7{
-	background-image:url(../../grids/images/border-680px.gif);
-}
-
-.border-span-5,#wb-body-sec #wb-core .grid-12 .border-span-10{
-	background-image:url(../../grids/images/border-730px.gif);
-}
-
-.grid-12 .border-span-8{
-	background-image:url(../../grids/images/border-780px.gif);
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-11{
-	background-image:url(../../grids/images/border-805px.gif);
-}
-
-.border-span-6,#wb-body-sec #wb-core .grid-12 .border-span-12,.grid-12 .border-span-9{
-	background-image:url(../../grids/images/border-880px.gif);
-}
-
-.grid-12 .border-span-10{
-	background-image:url(../../grids/images/border-980px.gif);
-}
-
-.border-span-7{
-	background-image:url(../../grids/images/border-1030px.gif);
-}
-
-.grid-12 .border-span-11{
-	background-image:url(../../grids/images/border-1080px.gif);
-}
-
-.border-span-8,.grid-12 .border-span-12{
-	background-image:url(../../grids/images/border-1180px.gif);
-}
-
 #wb-core-in,#gcwu-gcnb-in,#gcwu-bnr-in,#gcwu-psnb-in,#gcwu-bc-in,#gcwu-gcft-in,#gcwu-sft-in,#gcwu-bnr-in,#gcwu-psnb .mb-menu,#gcwu-psnb .mb-hsubmenu .showcase-visible ul,#wb-body #wb-main{
 	width:1200px;
 }
 
-#wb-body-sec #wb-main,#wb-body-secr #wb-main,#wb-body-sec #wb-main-in,#wb-body-secr #wb-main-in,#wb-body #gcwu-content{
+#wb-body-sec #wb-main,#wb-body-sec-sup #wb-main,#wb-body-sec #wb-main-in,#wb-body-sec-sup #wb-main-in,#wb-body #gcwu-content{
 	width:900px;
 }
 
-#wb-body-sec #gcwu-content,.span-4,#wb-body-sec #wb-core .grid-12 .span-8,.grid-12 .span-6{
+#wb-body-sec #gcwu-content{
 	width:580px;
 }
 
-#gcwu-aside,#gcwu-priorities,.span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3{
+#gcwu-aside,#gcwu-priorities{
 	width:280px;
-}
-
-.span-2 .calendar-month td,.span-2 .calendar-month th,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month td,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month th,.grid-12 .span-3 .calendar-month td,.grid-12 .span-3 .calendar-month th{
-	width:34px;
-	height:32px;
-	padding:2px 3px;
 }
