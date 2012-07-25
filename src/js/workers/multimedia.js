@@ -68,13 +68,13 @@
 				//No nativly supported format provided, trying Flash fallback
 				//TODO:Add Flash detection
 				fbVars = "id=" + elm.attr("id");
-				if (flash && media.is("video") && media.find("source[type=\"" + fbVideoType + "\"]")) {
+				if (flash && media.is("video") && media.find("source[type=\"" + fbVideoType + "\"]").length > 0) {
 					fbClass = "video";
 					fbWidth = media.width() > 0 ? media.width() : media.attr("width");
 					fbHeight = media.height() > 0 ? media.height() : media.attr("height");
-					fbVars +=  "&height=" + media.height() + "&width=" + media.width() + "&posterimg=" + escape(_pe.url(media.attr("poster")).source) + "&media=" + _pe.url(media.find("source[type=\"" + fbVideoType + "\"]").attr("src")).source;
+					fbVars +=  "&height=" + media.height() + "&width=" + media.width() + "&posterimg=" + escape(_pe.url(media.attr("poster")).source) + "&media=" + escape(_pe.url(media.find("source[type=\"" + fbVideoType + "\"]").attr("src")).source);
 					canPlay = true;
-				} else if (flash && media.is("audio") && media.find("source[type=\"" + fbAudioType + "\"]")) {
+				} else if (flash && media.is("audio") && media.find("source[type=\"" + fbAudioType + "\"]").length > 0) {
 					fbClass = "audio";
 					fbWidth = 0;
 					fbHeight = 0;
@@ -86,10 +86,13 @@
 				}
 				//Can play using a fallback
 				if (canPlay) {
-					$fbObject = $("<object id=\"" + media_id + "\" width=\"" + fbWidth + "\" height=\"" + fbHeight + "\" class=\"" + fbClass + "\" type=\"application/x-shockwave-flash\" data=\"" + fbBin + "\" tabindex=\"-1\"><param name=\"movie\" value=\"" + fbBin + "\"/><param name=\"flashvars\" value=\"" + fbVars + "\"/><param name=\"allowScriptAccess\" value=\"always\"/><param name=\"bgcolor\" value=\"#000000\"/><param name=\"wmode\" value=\"opaque\"/>");
+					$fbObject = $("<object play=\"\" id=\"" + media_id + "\" width=\"" + fbWidth + "\" height=\"" + fbHeight + "\" class=\"" + fbClass + "\" type=\"application/x-shockwave-flash\" data=\"" + fbBin + "\" tabindex=\"-1\"><param name=\"movie\" value=\"" + fbBin + "\"/><param name=\"flashvars\" value=\"" + fbVars + "\"/><param name=\"allowScriptAccess\" value=\"always\"/><param name=\"bgcolor\" value=\"#000000\"/><param name=\"wmode\" value=\"opaque\"/>");
 					media.before($fbObject);
 					media.remove();
 					media = $fbObject;
+				} else {
+					media.before("<img src=\"" + media.attr("poster") + "\" width=\"" + fbWidth + "\" height=\"" + fbHeight + "\" alt=\"" + media.attr("title") + "\"/>");
+					media.remove();
 				}
 			}
 
