@@ -1,0 +1,13 @@
+/* ---- IE fixes ---- */
+* html .width-100{width:98.5% !important;}
+* html legend{margin-left:-10px;}
+* html td.calendar-item{padding:2px 5px;}
+*:first-child+html #cn-centre-col a[href^='http://www']{background:none;padding-right:0;}
+*:first-child+html #cn-centre-col a[href^='mailto:'],*:first-child+html #cn-centre-col a[href$='.psd'],*:first-child+html #cn-centre-col a[href$='.zip'],*:first-child+html #cn-centre-col a[href$='.doc'],*:first-child+html #cn-centre-col a[href$='.pdf'],*:first-child+html #cn-centre-col a[href$='.xls'],*:first-child+html #cn-centre-col a[href$='.xlt'],*:first-child+html #cn-centre-col a[href$='.rtf'],*:first-child+html #cn-centre-col a[href$='.txt']{background:none;padding-left:0;}
+* html .border-top, * html .border-bottom{height:1px;} 
+
+.ie8 {
+	.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
+		border: none;
+	}
+}
