@@ -71,7 +71,7 @@
 				}
 			};
 
-			toggle = function (e) {
+			toggle = function () {
 				toggleLink.off('click vclick');
 				slideoutClose.off('click vclick');
 
