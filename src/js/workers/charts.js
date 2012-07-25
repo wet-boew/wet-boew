@@ -3483,7 +3483,7 @@ charts.graph2dAxis = {
 		}
 		
 		
-		console.log(parser);
+		// console.log(parser);
 				
 		// For each tbody (Graphic Zone)
 		$.each(parser.tBodySeries.series, function(){
