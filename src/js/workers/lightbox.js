@@ -81,10 +81,10 @@
 			});
 
 			// Build single images and AJAXed content
-			$lb.filter('.lb-image, .lb-ajax').colorbox(opts);
+			$lb.filter('.lb-image, .lb-ajax').attr('aria-haspopup', 'true').colorbox(opts);
 
 			// Build inline content
-			$inline = $lb.filter('.lb-inline');
+			$inline = $lb.filter('.lb-inline').attr('aria-haspopup', 'true');
 			if ($inline.length > 0) {
 				opts2 = opts;
 				$.extend(opts2, {inline: "true"});
@@ -95,19 +95,21 @@
 			opts2 = opts;
 			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () {
 				$.extend(opts2, {rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
-				$(this).find('a').colorbox(opts2);
+				$(this).find('a').attr('aria-haspopup', 'true').colorbox(opts2);
 			});
 
 			// Build inline galleries
 			opts2 = opts;
 			$lb.filter('.lb-gallery-inline, .lb-hidden-gallery-inline').each(function () {
 				$.extend(opts2, {inline: 'true', rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
-				$(this).find('a').colorbox(opts2);
+				$(this).find('a').attr('aria-haspopup', 'true').colorbox(opts2);
 			});
 
-			$lbContent = $('body').find('#colorbox #cboxContent').attr('tabindex', '0');
-			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr('tabindex', '0');
+			// Add WAI-ARIA
+			$lbContent = $('body').find('#colorbox #cboxContent').attr('tabindex', '0').attr('role', 'dialog').attr('aria-labelledby', 'cboxTitle cboxCurrent');
+			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr('tabindex', '0').attr('role', 'button').attr('aria-controls', '#cboxContent');
 
+			// Add extra keyboard support (handling for tab, enter and space)
 			$lbContent.on('keydown', function (e) {
 				var target = $(e.target);
 				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
