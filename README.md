@@ -34,7 +34,7 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 * [Validate your CSS](http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options) with the following changes to the default settings:
   * **Profile:** CSS level 3
   * **Vendor extensions:** Warnings
-* [JSLint your JavaScript code](http://www.jslint.com) with the following changes to the default settings:
+* [Validate your JavaScript code](http://www.jslint.com) with the following changes to the default settings:
   * **Tolerate dangling _ in identifiers:** true
   * **Tolerate missing 'use strict' pragma:** true
   * **Assume browser:** true
@@ -70,3 +70,25 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sotes Web 
 
 * [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
 * [Conditions régissant l'utilisation](http://www.sct.gc.ca/ws-nw/wet-boew/conditions)
+
+## Contributor guidelines
+
+* Pull requests are welcome. Please make sure your changes are to the latest code and limit the commit range to just the files you intended to change (to avoid conflicts).
+* New components should be added in a feature-* branch (e.g., feature-lightbox). 
+  * Licensing for all new components and supporting code must be compatible with the MIT license used by WET.
+  * New plugins should use pluginTemplate.js as the basis for the JavaScript code.
+  * Include the WET terms and conditions comment block in all text-based source files that fall under Crown Copyright.
+* [Validate your HTML markup](http://validator.w3.org/nu/). Markup should be well-formed HTML5. 
+  * To test for well-formed markup, validate with an XHTML5 preset and a checkmark next to "Be lax about HTTP Content-Type". 
+* [Valider votre CSS](http://jigsaw.w3.org/css-validator/validator.html.fr#validate_by_uri+with_options) avec les changements suivants aux paramètres&#160;:
+  * **Profil&#160;:** CSS niveau 3
+  * **Extensions Proprétaires&#160;:** Avertissements
+* [Valider votre code JavaScript](http://www.jslint.com) avec les changements suivants aux paramètres&#160;:
+  * **Tolerate dangling _ in identifiers&#160;:** true
+  * **Tolerate missing 'use strict' pragma&#160;:** true
+  * **Assume browser&#160;:** true
+* Formatting recommendations:
+  * Indent with tabs using the [Style K&R](http://fr.wikipedia.org/wiki/Style_d%27indentation#Style_K.26R)
+  * Use single quotes for strings in JavaScript (so unescaped double quotes can be used for attributes in HTML output)
+* Supported browsers (should be tested against): 
+  * [Browser test baseline - YUI Graded Browser Support](http://yuilibrary.com/yui/docs/tutorials/gbs/) (excluding IE6)

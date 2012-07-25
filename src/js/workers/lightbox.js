@@ -24,7 +24,13 @@
 		_exec : function (elm) {
 
 			// Variables
-			var opts, opts2, overrides, $inline;
+			var opts,
+				opts2,
+				overrides,
+				$lb,
+				$inline,
+				$lbContent,
+				open = false;
 
 			// Defaults
 			opts = {
@@ -41,7 +47,16 @@
 				slideshowStart : pe.dic.get("%start") + " " + pe.dic.get("%lb-slideshow"),
 				slideshowStop : pe.dic.get("%stop") + " " + pe.dic.get("%lb-slideshow"),
 				slideshow : false,
-				slideshowAuto : false
+				slideshowAuto : false,
+				onComplete : function () {
+					if (!open) {
+						open = true;
+						pe.focus($lbContent);
+					}
+				},
+				onClosed : function () {
+					open = false;
+				}
 			};
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
@@ -60,11 +75,16 @@
 				$.extend(opts, overrides, elm.metadata());
 			}
 
+			// Add touchscreen support for launching the lightbox
+			$lb = elm.find('.lb-image, .lb-ajax, .lb-gallery, .lb-hidden-gallery, .lb-gallery-inline, .lb-hidden-gallery-inline').on('vclick', function () {
+				$.colorbox.launch(this);
+			});
+
 			// Build single images and AJAXed content
-			elm.find('.lb-image, .lb-ajax').colorbox(opts);
+			$lb.filter('.lb-image, .lb-ajax').attr('aria-haspopup', 'true').colorbox(opts);
 
 			// Build inline content
-			$inline = elm.find('.lb-inline');
+			$inline = $lb.filter('.lb-inline').attr('aria-haspopup', 'true');
 			if ($inline.length > 0) {
 				opts2 = opts;
 				$.extend(opts2, {inline: "true"});
@@ -73,16 +93,44 @@
 
 			// Build galleries
 			opts2 = opts;
-			elm.find('.lb-gallery, .lb-hidden-gallery').each(function () {
+			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () {
 				$.extend(opts2, {rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
-				$(this).find('a').colorbox(opts2);
+				$(this).find('a').attr('aria-haspopup', 'true').colorbox(opts2);
 			});
 
 			// Build inline galleries
 			opts2 = opts;
-			elm.find('.lb-gallery-inline, .lb-hidden-gallery-inline').each(function () {
+			$lb.filter('.lb-gallery-inline, .lb-hidden-gallery-inline').each(function () {
 				$.extend(opts2, {inline: 'true', rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
-				$(this).find('a').colorbox(opts2);
+				$(this).find('a').attr('aria-haspopup', 'true').colorbox(opts2);
+			});
+
+			// Add WAI-ARIA
+			$lbContent = $('body').find('#colorbox #cboxContent').attr('tabindex', '0').attr('role', 'dialog').attr('aria-labelledby', 'cboxTitle cboxCurrent');
+			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr('tabindex', '0').attr('role', 'button').attr('aria-controls', '#cboxContent');
+
+			// Add extra keyboard support (handling for tab, enter and space)
+			$lbContent.on('keydown', function (e) {
+				var target = $(e.target);
+				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
+					if (e.keyCode === 9) {
+						if ((e.shiftKey && target.attr("id") === "cboxContent") || (!e.shiftKey && target.attr("id") === "cboxClose")) {
+							$.colorbox.close();
+							return false;
+						}
+					} else if (e.keyCode === 13 || e.keyCode === 32) {
+						if (target.attr("id") === "cboxContent" || target.attr("id") === "cboxNext") {
+							$.colorbox.next();
+							return false;
+						} else if (target.attr("id") === "cboxPrevious") {
+							$.colorbox.prev();
+							return false;
+						} else if (target.attr("id") === "cboxClose") {
+							$.colorbox.close();
+							return false;
+						}
+					}
+				}
 			});
 		} // end of exec
     };

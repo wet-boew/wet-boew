@@ -38,23 +38,15 @@
 				media = elm.children("audio, video").eq(0),
 				media_id,
 				flash = true,
-				fbVideoType = "video/mp4",
-				fbAudioType = "audio/mpeg",
 				$fbObject,
-				$fbVars,
-				evtmgr; //MP3
-
-			/*opts = {
-				// This is an example from tabbedinterface, to show how to pass configuration parameters from the html element to the plugin.
-				// There are some simple examples here, along with some more complicated ones.
-				defaultElm: ((elm.find(".default").length) ? ".default" : "li:first-child"),
-				autoHeight: (elm.hasClass("auto-height-none") ? false : true),
-				cycle: (elm.hasClass("cycle-slow") ? 8000 : (elm.hasClass("cycle-fast") ? 2000 : (elm.hasClass("cycle") ? 6000 : false))),
-				carousel: (/style-carousel/i.test(elm.attr('class'))) ? true : false,
-				autoPlay: (elm.hasClass("auto-play") ? true : false),
-				animate: (elm.hasClass("animate") || elm.hasClass("animate-slow") || elm.hasClass("animate-fast") ? true : false),
-				animationSpeed: (elm.hasClass("animate-slow") ? "slow" : (elm.hasClass("animate-fast") ? "fast" : "normal"))
-			};*/
+				fbVideoType = "video/mp4",
+				fbAudioType = "audio/mpeg", //MP3
+				fbBin = _pe.add.liblocation + "bin/multimedia.swf",
+				fbClass,
+				fbWidth,
+				fbHeight,
+				fbVars,
+				evtmgr;
 
 			//Add an id if an id is missing
 			if (elm.attr("id") !== undefined) {
@@ -75,20 +67,18 @@
 			} else {
 				//No nativly supported format provided, trying Flash fallback
 				//TODO:Add Flash detection
-				$fbObject = $("<object id=\"" + media_id + "\" type=\"application/x-shockwave-flash\" data=\"" + _pe.add.liblocation + "bin/multimedia.swf\" tabindex=\"-1\"></object>");
-				$fbVars = $("<param name=\"flashvars\" value=\"id=" + elm.attr("id") + "\"/>");
-
-				$fbObject.append($fbVars);
+				fbVars = "id=" + elm.attr("id");
 				if (flash && media.is("video") && media.find("source[type=\"" + fbVideoType + "\"]")) {
-					$fbObject.addClass("video");
-					$fbObject.attr("width", media.width()).attr("height", media.height());
-					$fbObject.append("<param value=\"always\" name=\"allowScriptAccess\"><param value=\"#000000\" name=\"bgcolor\"><param value=\"opaque\" name=\"wmode\">");
-					$fbVars.attr("value", $fbVars.attr("value") + "&height=" + media.height() + "&width=" + media.width() + "&posterimg=" + escape(_pe.url(media.attr("poster")).source) + "&media=" + _pe.url(media.find("source[type=\"" + fbVideoType + "\"]").attr("src")).source);
+					fbClass = "video";
+					fbWidth = media.width() > 0 ? media.width() : media.attr("width");
+					fbHeight = media.height() > 0 ? media.height() : media.attr("height");
+					fbVars +=  "&height=" + media.height() + "&width=" + media.width() + "&posterimg=" + escape(_pe.url(media.attr("poster")).source) + "&media=" + _pe.url(media.find("source[type=\"" + fbVideoType + "\"]").attr("src")).source;
 					canPlay = true;
 				} else if (flash && media.is("audio") && media.find("source[type=\"" + fbAudioType + "\"]")) {
-					$fbObject.addClass("audio");
-					$fbVars.attr("value", $fbVars.attr("value") + "&media=" + _pe.url(media.find("source[type=\"" + fbAudioType + "\"]").attr("src")).source);
-					$fbObject.append($fbVars);
+					fbClass = "audio";
+					fbWidth = 0;
+					fbHeight = 0;
+					fbVars += "&media=" + _pe.url(media.find("source[type=\"" + fbAudioType + "\"]").attr("src")).source;
 					canPlay = true;
 				} else {
 					//TODO: Display when no HTML5 video or Flash
@@ -96,6 +86,7 @@
 				}
 				//Can play using a fallback
 				if (canPlay) {
+					$fbObject = $("<object id=\"" + media_id + "\" width=\"" + fbWidth + "\" height=\"" + fbHeight + "\" class=\"" + fbClass + "\" type=\"application/x-shockwave-flash\" data=\"" + fbBin + "\" tabindex=\"-1\"><param name=\"movie\" value=\"" + fbBin + "\"/><param name=\"flashvars\" value=\"" + fbVars + "\"/><param name=\"allowScriptAccess\" value=\"always\"/><param name=\"bgcolor\" value=\"#000000\"/><param name=\"wmode\" value=\"opaque\"/>");
 					media.before($fbObject);
 					media.remove();
 					media = $fbObject;
