@@ -52,9 +52,16 @@
 				slideshowStop : pe.dic.get("%stop") + " " + pe.dic.get("%lb-slideshow"),
 				slideshow : false,
 				slideshowAuto : false,
+				onLoad : function () {
+					var $lbTitle = $lbContent.find('#cboxTitle'),
+						$lbCurrent = $lbTitle.next();
+					$lbTitle.hide();
+					$lbCurrent.hide();
+				},
 				onComplete : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
 						$lbCurrent = $lbTitle.next();
+						
 					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr('tabindex', '0');
 					$lbLoadedContent.attr('aria-label', $lbTitle.text() + ' ' + $lbCurrent.text());
 					if ($lbLoadedContent.children('.cboxPhoto').length === 0) {
@@ -62,6 +69,8 @@
 					} else {
 						$lbLoadedContent.children().attr('alt', $lbTitle.text());
 					}
+					$lbTitle.show();
+					$lbCurrent.show();
 					pe.focus($lbLoadedContent);
 					open = true;
 				},

@@ -1,0 +1,95 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+#archived h2 {
+  background-color: #CC0000;
+  color: #FFFFFF;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 0;
+  padding-top: 2px;
+}
+
+#archived {
+  background-color: #FFFFCC;
+  border-bottom-color: #CC0000;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-image: initial;
+  border-left-color: #CC0000;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: #CC0000;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-top-color: #CC0000;
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+
+#archived p {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+
+.archived {
+  background-color: #CC0000;
+  border-bottom-color: #000000;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-image: initial;
+  border-left-color: #000000;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: #000000;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-top-color: #000000;
+  border-top-style: solid;
+  border-top-width: 1px;
+  clear: both;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+}
+
+.archived a {
+  color: #333333;
+  padding-bottom: 2px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  position: relative;
+  text-shadow: none;
+}
+
+.archived a[href]:hover, .archived a[href]:link, .archived a[href]:active, .archived a[href]:focus {
+  color: #FFFFFF;
+}
+
+.archived .archived-top-page {
+  background-color: transparent;
+  border-left-color: #999999;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: initial;
+  border-right-style: none;
+  border-right-width: medium;
+  color: #FFFFFF;
+  display: block;
+  font-size: 1.4em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.archived {
+  display: none;
+}
