@@ -105,7 +105,7 @@
 				var group = {rel: 'group' + (pe.fn.lightbox.groupindex += 1)};
 				$.extend(opts, group);
 				$.extend(opts2, group);
-				$(this).find('a').attr('aria-haspopup', 'true').each(function () {
+				$(this).find('.lb-item-gal').attr('aria-haspopup', 'true').each(function () {
 					var $this = $(this);
 					$this.colorbox($this.attr('href').substring(0, 1) !== '#' ? opts : opts2);
 				});

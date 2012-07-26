@@ -55,7 +55,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	.box a, .lb-hidden-gallery li:first-child.box a, .lb-hidden-gallery-inline li:first-child.box a {display: block; width: 148px; height: 148px; border: 1px solid #000; text-align: center; line-height: 148px; background: #EEE;}
 	.box a:hover, .box a:focus, .box a:active {text-decoration: underline; background: #FFF;}
 	.lb-hidden-gallery .box a, .lb-hidden-gallery-inline .box a {display: none;}
-	.wrapper {width: 85%; margin: auto;}
 </style>
 <!-- CustomScriptsCSSEnd -->
 </head>
@@ -170,28 +169,27 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 							</a>
 						</li>
 						<li class="box">
-							<a class="lb-item" href="ajax/ajax-fra.html">Contenu AJAX</a>
+							<a class="lb-item" title="Exemple de contenu AJAX" href="ajax/ajax-fra.html">Contenu AJAX</a>
 						</li>
 						<li class="box">
-							<a class="lb-item" href="#inline_content1">Contenu incorporé</a>
+							<a class="lb-item" title="Exemple de contenu incorporé" href="#inline_content1">Contenu incorporé</a>
 							<div class="lb-inline">
 								<div id="inline_content1">
-									<div class="wrapper">
+									<ol>
+									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
 										<ol>
-										<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
-										<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
 											<ol>
-											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
-											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
-												<ol>
-												<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-												<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-												</ol>
-											</li>
+											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
 											</ol>
 										</li>
 										</ol>
-									</div>
+									</li>
+									</ol>
+									<p><a href="#">Lien - apparence par défaut</a></p>
 								</div>
 							</div>
 						</li>
@@ -212,10 +210,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
     &lt;/li&gt;
     ...	
     &lt;li&gt;
-      &lt;a class="lb-itemquot; href="ajax/ajax-fra.html"&gt;Contenu AJAX&lt;/a&gt;
+      &lt;a class="lb-itemquot; title="Exemple de contenu AJAX" href="ajax/ajax-fra.html"&gt;Contenu AJAX&lt;/a&gt;
     &lt;/li&gt;
     &lt;li&gt;
-      &lt;a class="lb-item" href="#inline_content1"&gt;Contenu incorporé&lt;/a&gt;
+      &lt;a class="lb-item" title="Exemple de contenu incorporé" href="#inline_content1"&gt;Contenu incorporé&lt;/a&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
@@ -242,28 +240,27 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 							</a>
 						</li>
 						<li class="box">
-							<a class="lb-item-gal" href="ajax/ajax-fra.html">Contenu AJAX</a>
+							<a class="lb-item-gal" title="Exemple de contenu AJAX" href="ajax/ajax-fra.html">Contenu AJAX</a>
 						</li>
 						<li class="box">
-							<a class="lb-item-gal" href="#inline_content2">Contenu incorporé</a>
+							<a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content2">Contenu incorporé</a>
 							<div class="lb-inline">
 								<div id="inline_content2">
-									<div class="wrapper">
+									<ol>
+									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
 										<ol>
-										<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
-										<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
 											<ol>
-											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
-											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
-												<ol>
-												<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-												<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-												</ol>
-											</li>
+											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
 											</ol>
 										</li>
 										</ol>
-									</div>
+									</li>
+									</ol>
+									<p><a href="#">Lien - apparence par défaut</a></p>
 								</div>
 							</div>
 						</li>
@@ -284,10 +281,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	&lt;/li&gt;
 	...
 	&lt;li&gt;
-	  &lt;a class="lb-item-gal" href="ajax/ajax-fra.html"&gt;Contenu AJAX&lt;/a&gt;
+	  &lt;a class="lb-item-gal" title="Exemple de contenu AJAX" href="ajax/ajax-fra.html"&gt;Contenu AJAX&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-	  &lt;a class="lb-item-gal" href="#inline_content2"&gt;Contenu incorporé&lt;/a&gt;
+	  &lt;a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content2"&gt;Contenu incorporé&lt;/a&gt;
 	&lt;/li&gt;
   &lt;/ul&gt;	
 &lt;/div&gt;</code></pre>
@@ -314,28 +311,27 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 							</a>
 						</li>
 						<li class="box">
-							<a class="lb-item-gal" href="ajax/ajax-fra.html">Contenu AJAX</a>
+							<a class="lb-item-gal" title="Exemple de contenu AJAX" href="ajax/ajax-fra.html">Contenu AJAX</a>
 						</li>
 						<li class="box">
-							<a class="lb-item-gal" href="#inline_content3">Contenu incorporé</a>
+							<a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content3">Contenu incorporé</a>
 							<div class="lb-inline">
 								<div id="inline_content3">
-									<div class="wrapper">
+									<ol>
+									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
 										<ol>
-										<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
-										<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
 											<ol>
-											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
-											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
-												<ol>
-												<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-												<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-												</ol>
-											</li>
+											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
 											</ol>
 										</li>
 										</ol>
-									</div>
+									</li>
+									</ol>
+									<p><a href="#">Lien - apparence par défaut</a></p>
 								</div>
 							</div>
 						</li>
@@ -356,10 +352,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	&lt;/li&gt;
 	...
 	&lt;li&gt;
-	  &lt;a class="lb-item-gal" href="ajax/ajax-fra.html"&gt;Contenu AJAX&lt;/a&gt;
+	  &lt;a class="lb-item-gal" title="Exemple de contenu AJAX" href="ajax/ajax-fra.html"&gt;Contenu AJAX&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-	  &lt;a class="lb-item-gal" href="#inline_content3"&gt;Contenu incorporé&lt;/a&gt;
+	  &lt;a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content3"&gt;Contenu incorporé&lt;/a&gt;
 	&lt;/li&gt;
   &lt;/ul&gt;	
 &lt;/div&gt;</code></pre>
