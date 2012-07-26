@@ -130,9 +130,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				<ul>
 					<li><a href="#examples1">Single items</a></li>
 					<li><a href="#examples2">Item gallery</a></li>
-					<li><a href="#examples3">Inline item gallery</a></li>
-					<li><a href="#examples4">Hidden item gallery</a></li>
-					<li><a href="#examples5">Hidden inline item gallery</a></li>
+					<li><a href="#examples3">Hidden item gallery</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -162,20 +160,41 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				<div class="wet-boew-lightbox">
 					<ul>
 						<li>
-							<a class="lb-image" href="images/1_b.jpg" title="Image 1">
+							<a class="lb-item" href="images/1_b.jpg" title="Image 1">
 								<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
 							</a>
 						</li>
 						<li>
-							<a class="lb-image" href="images/2_b.jpg" title="Image 2">
+							<a class="lb-item" href="images/2_b.jpg" title="Image 2">
 								<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
 							</a>
 						</li>
 						<li class="box">
-							<a class="lb-ajax" href="ajax/ajax1-eng.html">AJAX content 1</a>
+							<a class="lb-item" href="ajax/ajax-eng.html">AJAX content</a>
 						</li>
 						<li class="box">
-							<a class="lb-inline" href="#inline_content1">Inline content 1</a>
+							<a class="lb-item" href="#inline_content1">Inline content</a>
+							<div style="display:none;">
+								<div id="inline_content1">
+									<div class="wrapper">
+										<p>Example of inline content.</p>
+										<ol>
+										<li>ordered list (<code>ol</code>) first level default appearance</li>
+										<li>ordered list (<code>ol</code>) first level default appearance
+											<ol>
+											<li>ordered list (<code>ol</code>) second level default appearance</li>
+											<li>ordered list (<code>ol</code>) second level default appearance
+												<ol>
+												<li>ordered list (<code>ol</code>) third level default appearance</li>
+												<li>ordered list (<code>ol</code>) third level default appearance</li>
+												</ol>
+											</li>
+											</ol>
+										</li>
+										</ol>
+									</div>
+								</div>
+							</div>
 						</li>
 					</ul>
 				</div>
@@ -186,19 +205,19 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<div class="span-4">
 		<section>
 			<h4 class="background-dark margin-bottom-medium">Coding</h4>
-			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
+			<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul&gt;
     &lt;li&gt;
-      &lt;a class=&quot;lb-image&quot; href=&quot;images/image_source.jpg&quot; title=&quot;Alt text for the image&quot;&gt;
-        &lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Alt text for the image&quot; class=&quot;image-actual&quot; /&gt;
+      &lt;a class="lb-item" href="images/image_source.jpg" title="Alt text for the image"&gt;
+        &lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
       &lt;/a&gt;
     &lt;/li&gt;
     ...	
     &lt;li&gt;
-      &lt;a class=&quot;lb-ajax&quot; href=&quot;ajax/ajax1-eng.html&quot;&gt;AJAX content 1&lt;/a&gt;
+      &lt;a class="lb-item" href="ajax/ajax-eng.html"&gt;AJAX content&lt;/a&gt;
     &lt;/li&gt;
     &lt;li&gt;
-      &lt;a class=&quot;lb-inline&quot; href=&quot;#inline_content1&quot;&gt;Inline content 1&lt;/a&gt;
+      &lt;a class="lb-item" href="#inline_content1"&gt;Inline content&lt;/a&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
@@ -215,20 +234,41 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			<div class="wet-boew-lightbox">
 				<ul class="lb-gallery">
 					<li>
-						<a href="images/1_b.jpg" title="Image 1">
+						<a class="lb-item-gal" href="images/1_b.jpg" title="Image 1">
 							<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
 						</a>
 					</li>
 					<li>
-						<a href="images/2_b.jpg" title="Image 2">
+						<a class="lb-item-gal" href="images/2_b.jpg" title="Image 2">
 							<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
 						</a>
 					</li>
 					<li class="box">
-						<a href="ajax/ajax1-eng.html">AJAX content 1</a>
+						<a class="lb-item-gal" href="ajax/ajax-eng.html">AJAX content</a>
 					</li>
 					<li class="box">
-						<a href="ajax/ajax2-eng.html">AJAX content 2</a>
+						<a class="lb-item-gal" href="#inline_content2">Inline content</a>
+						<div style="display:none;">
+							<div id="inline_content2">
+								<div class="wrapper">
+									<p>Example of inline content.</p>
+									<ol>
+									<li>ordered list (<code>ol</code>) first level default appearance</li>
+									<li>ordered list (<code>ol</code>) first level default appearance
+										<ol>
+										<li>ordered list (<code>ol</code>) second level default appearance</li>
+										<li>ordered list (<code>ol</code>) second level default appearance
+											<ol>
+											<li>ordered list (<code>ol</code>) third level default appearance</li>
+											<li>ordered list (<code>ol</code>) third level default appearance</li>
+											</ol>
+										</li>
+										</ol>
+									</li>
+									</ol>
+								</div>
+							</div>
+						</div>
 					</li>
 				</ul>
 				<div class="clear"></div>
@@ -238,53 +278,19 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<div class="span-4">
 		<section>
 			<h4 class="background-dark margin-bottom-medium">Coding</h4>
-			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
-  &lt;ul class=&quot;lb-gallery&quot;&gt;
+			<pre><code>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;ul class="lb-gallery"&gt;
     &lt;li&gt;
-      &lt;a href=&quot;images/image_source.jpg&quot; title=&quot;Alt text for the image&quot;&gt;
-        &lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Alt text for the image&quot; class=&quot;image-actual&quot; /&gt;
+      &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image"&gt;
+        &lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
       &lt;/a&gt;
     &lt;/li&gt;
     ...
     &lt;li&gt;
-      &lt;a href=&quot;ajax/ajax1-eng.html&quot;&gt;AJAX content 1&lt;/a&gt;
-    &lt;/li&gt;
-	...
-  &lt;/ul&gt;	
-&lt;/div&gt;</code></pre>
-		</section>
-	</div>
-</section>
-<div class="clear"></div>
-
-<section>
-	<h3 id="examples3">Inline item gallery</h3>
-	<div class="span-4">
-		<h4 class="background-dark margin-bottom-medium">Example</h4>
-		<section>
-			<div class="wet-boew-lightbox">
-				<ul class="lb-gallery-inline">
-					<li class="box">
-						<a href="#inline_content1">Inline content 1</a>
-					</li>
-					<li class="box">
-						<a href="#inline_content2">Inline content 2</a>
-					</li>
-				</ul>
-				<div class="clear"></div>
-			</div>
-		</section>
-	</div>
-	<div class="span-4">
-		<section>
-			<h4 class="background-dark margin-bottom-medium">Coding</h4>
-			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
-  &lt;ul class=&quot;lb-gallery-inline&quot;&gt;
-    &lt;li&gt;
-      &lt;a href=&quot;#inline_content1&quot;&gt;Inline content 1&lt;/a&gt;
+      &lt;a class="lb-item-gal" href="ajax/ajax-eng.html"&gt;AJAX content&lt;/a&gt;
     &lt;/li&gt;
     &lt;li&gt;
-      &lt;a href=&quot;#inline_content2&quot;&gt;Inline content 2&lt;/a&gt;
+      &lt;a class="lb-item-gal" href="#inline_content2"&gt;Inline content&lt;/a&gt;
     &lt;/li&gt;
   &lt;/ul&gt;	
 &lt;/div&gt;</code></pre>
@@ -294,27 +300,48 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="clear"></div>
 
 <section>
-	<h3 id="examples4">Hidden item gallery</h3>
+	<h3 id="examples3">Hidden item gallery</h3>
 	<div class="span-4">
 		<h4 class="background-dark margin-bottom-medium">Example</h4>
 		<section>
 			<div class="wet-boew-lightbox">
 				<ul class="lb-hidden-gallery">
 					<li>
-						<a href="images/1_b.jpg" title="Image 1">
+						<a class="lb-item-gal" href="images/1_b.jpg" title="Image 1">
 							<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
 						</a>
 					</li>
 					<li>
-						<a href="images/2_b.jpg" title="Image 2">
+						<a class="lb-item-gal" href="images/2_b.jpg" title="Image 2">
 							<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
 						</a>
 					</li>
 					<li class="box">
-						<a href="ajax/ajax1-eng.html">AJAX content 1</a>
+						<a class="lb-item-gal" href="ajax/ajax-eng.html">AJAX content</a>
 					</li>
 					<li class="box">
-						<a href="ajax/ajax2-eng.html">AJAX content 2</a>
+						<a class="lb-item-gal" href="#inline_content3">Inline content</a>
+						<div style="display:none;">
+							<div id="inline_content3">
+								<div class="wrapper">
+									<p>Example of inline content.</p>
+									<ol>
+									<li>ordered list (<code>ol</code>) first level default appearance</li>
+									<li>ordered list (<code>ol</code>) first level default appearance
+										<ol>
+										<li>ordered list (<code>ol</code>) second level default appearance</li>
+										<li>ordered list (<code>ol</code>) second level default appearance
+											<ol>
+											<li>ordered list (<code>ol</code>) third level default appearance</li>
+											<li>ordered list (<code>ol</code>) third level default appearance</li>
+											</ol>
+										</li>
+										</ol>
+									</li>
+									</ol>
+								</div>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -324,16 +351,19 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<div class="span-4">
 		<section>
 			<h4 class="background-dark margin-bottom-medium">Coding</h4>
-			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
-  &lt;ul class=&quot;lb-gallery-hidden&quot;&gt;
+			<pre><code>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;ul class="lb-gallery-hidden"&gt;
     &lt;li&gt;
-      &lt;a href=&quot;images/image_source.jpg&quot; title=&quot;Alt text for the image&quot;&gt;
-        &lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Alt text for the image&quot; class=&quot;image-actual&quot; /&gt;
+      &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image"&gt;
+        &lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
       &lt;/a&gt;
     &lt;/li&gt;
     ...
     &lt;li&gt;
-      &lt;a href=&quot;ajax/ajax1-eng.html&quot;&gt;AJAX content 1&lt;/a&gt;
+      &lt;a class="lb-item-gal" href="ajax/ajax-eng.html"&gt;AJAX content&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a class="lb-item-gal" href="#inline_content2"&gt;Inline content&lt;/a&gt;
     &lt;/li&gt;
   &lt;/ul&gt;	
 &lt;/div&gt;</code></pre>
@@ -342,85 +372,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </section>
 <div class="clear"></div>
 
-<section>
-	<h3 id="examples5">Hidden inline item gallery</h3>
-	<div class="span-4">
-		<h4 class="background-dark margin-bottom-medium">Example</h4>
-		<section>
-			<div class="wet-boew-lightbox">
-				<ul class="lb-hidden-gallery-inline">
-					<li class="box">
-						<a href="#inline_content1">Inline content 1</a>
-					</li>
-					<li class="box">
-						<a href="#inline_content2">Inline content 2</a>
-					</li>
-				</ul>
-				<div class="clear"></div>
-			</div>
-		</section>
-	</div>
-	<div class="span-4">
-		<section>
-			<h4 class="background-dark margin-bottom-medium">Coding</h4>
-			<pre><code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
-  &lt;ul class=&quot;lb-hidden-gallery-inline&quot;&gt;
-    &lt;li&gt;
-      &lt;a href=&quot;#inline_content1&quot;&gt;Inline content 1&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-      &lt;a href=&quot;#inline_content2&quot;&gt;Inline content 2&lt;/a&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;	
-&lt;/div&gt;</code></pre>
-		</section>
-	</div>
-</section>
-<div class="clear"></div>
-
-<div style="display:none;">
-	<div id="inline_content1">
-		<div class="wrapper">
-			<p>Example 1 of inline content.</p>
-			<table>
-				<caption>Table caption default appearance</caption>
-				<thead>
-					<tr>
-					<th scope="col">Table header (<code>th</code>) default appearance</th>
-					<th scope="col">Table header (<code>th</code>) default appearance</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-					<td>Table data (<code>td</code>) default appearance</td>
-					<td>Table data (<code>td</code>) default appearance</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div id="inline_content2">
-		<div class="wrapper">
-			<p>Example 2 of inline content.</p>
-			<ol>
-			<li>ordered list (<code>ol</code>) first level default appearance</li>
-			<li>ordered list (<code>ol</code>) first level default appearance
-				<ol>
-				<li>ordered list (<code>ol</code>) second level default appearance</li>
-				<li>ordered list (<code>ol</code>) second level default appearance
-					<ol>
-					<li>ordered list (<code>ol</code>) third level default appearance</li>
-					<li>ordered list (<code>ol</code>) third level default appearance</li>
-					</ol>
-				</li>
-				</ol>
-			</li>
-			</ol>
-		</div>
-	</div>
-</div>
-
-<div class="clear"></div>
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2011-10-31</time></span></dd>
 </dl>

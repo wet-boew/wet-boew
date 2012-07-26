@@ -25,11 +25,15 @@
 
 			// Variables
 			var opts,
-				opts2,
+				opts2 = {},
 				overrides,
 				$lb,
 				$inline,
 				$lbContent,
+				$lbLoadedContent,
+				$lbNext,
+				$lbPrev,
+				$lbClose,
 				open = false;
 
 			// Defaults
@@ -49,10 +53,17 @@
 				slideshow : false,
 				slideshowAuto : false,
 				onComplete : function () {
-					if (!open) {
-						open = true;
-						pe.focus($lbContent);
+					var $lbTitle = $lbContent.find('#cboxTitle'),
+						$lbCurrent = $lbTitle.next();
+					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr('tabindex', '0');
+					$lbLoadedContent.attr('aria-label', $lbTitle.text() + ' ' + $lbCurrent.text());
+					if ($lbLoadedContent.children('.cboxPhoto').length === 0) {
+						$lbLoadedContent.attr('role', 'document');
+					} else {
+						$lbLoadedContent.children().attr('alt', $lbTitle.text());
 					}
+					pe.focus($lbLoadedContent);
+					open = true;
 				},
 				onClosed : function () {
 					open = false;
@@ -76,58 +87,59 @@
 			}
 
 			// Add touchscreen support for launching the lightbox
-			$lb = elm.find('.lb-image, .lb-ajax, .lb-gallery, .lb-hidden-gallery, .lb-gallery-inline, .lb-hidden-gallery-inline').on('vclick', function () {
+			$lb = elm.find('.lb-item, .lb-gallery, .lb-hidden-gallery').on('vclick', function () {
 				$.colorbox.launch(this);
 			});
 
-			// Build single images and AJAXed content
-			$lb.filter('.lb-image, .lb-ajax').attr('aria-haspopup', 'true').colorbox(opts);
+			// Create options object for inline content
+			$.extend(opts2, opts, {inline: "true"});
 
-			// Build inline content
-			$inline = $lb.filter('.lb-inline').attr('aria-haspopup', 'true');
-			if ($inline.length > 0) {
-				opts2 = opts;
-				$.extend(opts2, {inline: "true"});
-				$inline.colorbox(opts2);
-			}
-
-			// Build galleries
-			opts2 = opts;
-			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () {
-				$.extend(opts2, {rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
-				$(this).find('a').attr('aria-haspopup', 'true').colorbox(opts2);
+			// Build single images, inline content and AJAXed content
+			$lb.filter('.lb-item').attr('aria-haspopup', 'true').each(function () {
+				var $this = $(this);
+				$this.colorbox($this.attr('href').substring(0, 1) !== '#' ? opts : opts2);
 			});
 
-			// Build inline galleries
-			opts2 = opts;
-			$lb.filter('.lb-gallery-inline, .lb-hidden-gallery-inline').each(function () {
-				$.extend(opts2, {inline: 'true', rel: 'group' + (pe.fn.lightbox.groupindex += 1)});
-				$(this).find('a').attr('aria-haspopup', 'true').colorbox(opts2);
+			// Build galleries
+			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () {
+				var group = {rel: 'group' + (pe.fn.lightbox.groupindex += 1)};
+				$.extend(opts, group);
+				$.extend(opts2, group);
+				$(this).find('a').attr('aria-haspopup', 'true').each(function () {
+					var $this = $(this);
+					$this.colorbox($this.attr('href').substring(0, 1) !== '#' ? opts : opts2);
+				});
 			});
 
 			// Add WAI-ARIA
-			$lbContent = $('body').find('#colorbox #cboxContent').attr('tabindex', '0').attr('role', 'dialog').attr('aria-labelledby', 'cboxTitle cboxCurrent');
-			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr('tabindex', '0').attr('role', 'button').attr('aria-controls', '#cboxContent');
+			$lbContent = $('body').find('#colorbox #cboxContent').attr('role', 'dialog');//.attr('aria-labelledby', 'cboxTitle cboxCurrent');
+			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr('tabindex', '0').attr('role', 'button').attr('aria-controls', 'cboxLoadedContent');
+			$lbNext = $lbContent.find('#cboxNext');
+			$lbPrev = $lbContent.find('#cboxPrevious');
+			$lbClose = $lbContent.find('#cboxClose');
 
 			// Add extra keyboard support (handling for tab, enter and space)
 			$lbContent.on('keydown', function (e) {
 				var target = $(e.target);
 				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 					if (e.keyCode === 9) {
-						if ((e.shiftKey && target.attr("id") === "cboxContent") || (!e.shiftKey && target.attr("id") === "cboxClose")) {
-							$.colorbox.close();
-							return false;
+						if (e.shiftKey && target.attr("id") === "cboxLoadedContent") {
+							pe.focus($lbClose);
+							e.preventDefault();
+						} else if (!e.shiftKey && target.attr("id") === "cboxClose") {
+							pe.focus($lbLoadedContent);
+							e.preventDefault();
 						}
 					} else if (e.keyCode === 13 || e.keyCode === 32) {
-						if (target.attr("id") === "cboxContent" || target.attr("id") === "cboxNext") {
+						if (target.attr("id") === "cboxLoadedContent" || target.attr("id") === "cboxNext") {
 							$.colorbox.next();
-							return false;
+							e.preventDefault();
 						} else if (target.attr("id") === "cboxPrevious") {
 							$.colorbox.prev();
-							return false;
+							e.preventDefault();
 						} else if (target.attr("id") === "cboxClose") {
 							$.colorbox.close();
-							return false;
+							e.preventDefault();
 						}
 					}
 				}
