@@ -30,6 +30,7 @@
 				wrapper,
 				keyhandler,
 				tocLinks,
+                documentToggle,
 				cssTest;
 
 			// Don't do anything if CSS is disabled
@@ -72,8 +73,12 @@
 			};
 
 			toggle = function () {
-				toggleLink.off('click vclick');
-				slideoutClose.off('click vclick');
+				toggleLink.off('click vclick', toggle);
+                tocLinks.off('click vclick', toggle);
+				slideoutClose.off('click vclick', toggle);
+                wrapper.off("keydown", keyhandler);
+                elm.off("keydown", keyhandler);
+                $(document).off("click touchstart", documentToggle);
 
 				if (!opened) {
 					var position = wrapper.position();
@@ -106,8 +111,12 @@
 							elm.find('ul').html(elm.find('ul').html()); // Ugly fix for #4312 (post #11)
 						}
 					}
-					toggleLink.on('click vclick', toggle);
-					slideoutClose.on('click vclick', toggle);
+                    toggleLink.on('click vclick', toggle);
+                    tocLinks.on('click vclick', toggle);
+                    slideoutClose.on('click vclick', toggle);
+                    wrapper.on("keydown", keyhandler);
+                    elm.on("keydown", keyhandler);
+                    $(document).on("click touchstart", documentToggle);
 				});
 
 				if (opened) {
@@ -239,19 +248,17 @@
 			};
 
 			// Close slideout after clicking on a link
-			tocLinks.on('click vclick', function () {
-				toggle(elm);
-			});
-
-			wrapper.on("keydown", keyhandler);
-			elm.on("keydown", keyhandler);
+            tocLinks.on('click vclick', toggle);
+            wrapper.on("keydown", keyhandler);
+            elm.on("keydown", keyhandler);
 
 			// Close slideout if clicking outside of the slideout area
-			$(document).on("click touchstart", function (e) {
-				if (opened && !$(e.target).is(elm) && !$(e.target).is(wrapper) && $(e.target).closest(elm).length === 0) {
-					toggle();
-				}
-			});
+            documentToggle = function (e) {
+                if (opened && !$(e.target).is(elm) && !$(e.target).is(wrapper) && $(e.target).closest(elm).length === 0) {
+                    toggle();
+                }
+            };
+            $(document).on("click touchstart", documentToggle);
 
 			// Add the "Hide" link
 			elm.append('<a href="#" id="slideoutClose">' + closeLink + '</a>');
