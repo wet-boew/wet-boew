@@ -294,9 +294,12 @@
 		 * @param {string} uri A relative or absolute URL to manipulate.
 		 */
 		url: function (uri) {
-			var a;
+			var a, i;
 			a = document.createElement('a');
 			a.href = uri;
+			//Needed for IE because a doesn't translate to absolute(strangly)
+			i = document.createElement('img');
+			i.src = uri;
 			return {
 				/**
 				 * @namespace pe.url
@@ -306,7 +309,7 @@
 				 * @memberof pe.url
 				 * @type {string}
 				 */
-				source: a.href,
+				source: i.src,
 				/**
 				 * The protocol of the URL. eg. http or https
 				 * @memberof pe.url

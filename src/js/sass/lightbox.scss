@@ -45,7 +45,7 @@
         #cboxClose:hover,#cboxClose:focus,#cboxClose:active{background-position:top center;}
 		#cboxNext:focus,#cboxNext:active,#cboxPrevious:focus,#cboxPrevious:active,#cboxClose:focus,#cboxClose:active{outline:0;border:1px dotted #000;}
 
-.lb-hidden-gallery a {
+.lb-inline, .lb-hidden-gallery a {
 	display: none;
 	visibility: hidden;
 }
