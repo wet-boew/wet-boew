@@ -50,9 +50,12 @@ address{
 }
 
 h1,h2,h3,h4,h5,h6{
-	font-family:sans-serif;
 	font-weight:700;
 	margin:1em 0;
+}
+
+#wb-main h1, #wb-main h2, #wb-main h3, #wb-main h4, #wb-main h5, #wb-main h6 {
+	font-family:sans-serif;
 }
 
 h1{
