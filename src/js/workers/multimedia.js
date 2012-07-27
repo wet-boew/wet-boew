@@ -14,22 +14,17 @@
 	_pe.fn.multimedia = {
 		type: 'plugin',
 
-		/*images: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined ?
-		{
-			play: $('<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="m17.023165,10.250381l-11.447638,-7.424991l0.115218,14.349777l11.33242,-6.924786z" fill="#000000"/></svg>'),
-			pause: $('<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><g><rect y="2" x="4" width="5" height="15" style="fill:#000;" /><rect y="2" x="12" width="5" height="15" style="fill:#000;" /></g></svg>'),
-			ff: $('<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><g><path transform="translate(-3,0)" d="m17.023165,10.250381l-11.447638,-7.424991l0.115218,14.349777l11.33242,-6.924786z" fill="#000000"/><path transform="translate(4,0)" d="m17.023165,10.250381l-11.447638,-7.424991l0.115218,14.349777l11.33242,-6.924786z" fill="#000000"/></g></svg>'),
-			cc: $('<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><g><text font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="14" id="svg_1" y="14.079744" x="10.214848" stroke-width="0" fill="#000000">cc</text></g></svg>')
-		}	
-		:	
-		{
-			play:'images/multimedia/play-control.png',
-			pause:'images/multimedia/pause-control.png'
-		}
-		),*/
+		icons: $('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="20" height="20"><g id="play"><path d="M 14.299775,10.18788 5.7002247,4.610169 5.7867772,15.389831 14.299775,10.18788 z" /></g><g id="pause" style="display:inline"><path d="M 5.3405667,4.610169 5.3405667,15.389831 8.9169966,15.389831 8.9169966,4.610169 5.3405667,4.610169 z M 11.083003,4.610169 11.083003,15.389831 14.659433,15.389831 14.659433,4.610169 11.083003,4.610169 z" /></g><g id="rewind" transform="matrix(-1,0,0,-1,20,20)"><path d="M 8.4182018,15.389831 16.924761,10.187472 8.3244655,4.610169 8.3478995,8.03154 3.0752388,4.610169 3.168975,15.389831 8.3947677,12.202801 8.4182018,15.389831 z" /></g><g id="ff"><path  d="M 16.929004,10.187879 8.3294498,4.610169 8.4160023,15.389831 16.929004,10.187879 z M 11.67055,10.187879 3.0709963,4.610169 3.157549,15.389831 11.67055,10.187879 z" /></g><g id="mute_off"><path d="M 12.476712,4.599486 9.3409347,7.735268 5.5431537,7.735268 5.5431537,12.22989 9.3235137,12.22989 12.476712,15.400514 12.476712,4.599486 z"/></g><g id="mute_on"><path  d="M 12.466782,4.5994858 9.3309993,7.7352682 5.5332183,7.7352682 5.5332183,12.22989 9.3135782,12.22989 12.466782,15.400514 12.466782,4.5994858 z" /><path d="M 10,1.75 C 5.454363,1.75 1.78125,5.4543629 1.78125,10 1.78125,14.545637 5.454363,18.25 10,18.25 14.545637,18.25 18.25,14.545637 18.25,10 18.25,5.4543629 14.545637,1.75 10,1.75 z M 10,3.25 C 11.602784,3.25 13.062493,3.7896774 14.21875,4.71875 L 4.71875,14.21875 C 3.8057703,13.065541 3.28125,11.593619 3.28125,10 3.28125,6.2650231 6.2650232,3.25 10,3.25 z M 15.25,5.8125 C 16.169282,6.9656383 16.75,8.4065929 16.75,10 16.75,13.734977 13.734977,16.75 10,16.75 8.4063811,16.75 6.9279359,16.200753 5.78125,15.28125 L 15.25,5.8125 z"/></g><g id="cc"><path d="M 9.2241211,6.4042969 9.2241211,8.4003906 C 8.8914318,8.1725317 8.5564712,8.0039121 8.2192383,7.8945312 7.88655,7.7851623 7.5401961,7.7304748 7.1801758,7.7304687 6.4965774,7.7304748 5.9633748,7.9309955 5.5805664,8.3320313 5.2023079,8.7285207 5.0131804,9.2845097 5.0131836,10 5.0131804,10.715498 5.2023079,11.273766 5.5805664,11.674805 5.9633748,12.071291 6.4965774,12.269533 7.1801758,12.269531 7.5629826,12.269533 7.9252869,12.212567 8.2670898,12.098633 8.6134373,11.984702 8.9324474,11.816083 9.2241211,11.592773 L 9.2241211,13.595703 C 8.8413016,13.736979 8.4516536,13.841797 8.0551758,13.910156 7.6632429,13.983073 7.2690376,14.019531 6.8725586,14.019531 5.4916956,14.019531 4.4116185,13.666341 3.6323242,12.959961 2.8530264,12.249025 2.4633783,11.262372 2.4633789,10 2.4633783,8.7376353 2.8530264,7.7532613 3.6323242,7.046875 4.4116185,6.335945 5.4916956,5.9804766 6.8725586,5.9804687 7.2735948,5.9804766 7.6678002,6.0169349 8.0551758,6.0898437 8.4470963,6.1582108 8.8367443,6.2630284 9.2241211,6.4042969" /><path d="M 17.536621,6.4042969 17.536621,8.4003906 C 17.203932,8.1725317 16.868971,8.0039121 16.531738,7.8945312 16.19905,7.7851623 15.852696,7.7304748 15.492676,7.7304687 14.809077,7.7304748 14.275875,7.9309955 13.893066,8.3320313 13.514808,8.7285207 13.32568,9.2845097 13.325684,10 13.32568,10.715498 13.514808,11.273766 13.893066,11.674805 14.275875,12.071291 14.809077,12.269533 15.492676,12.269531 15.875483,12.269533 16.237787,12.212567 16.57959,12.098633 16.925937,11.984702 17.244947,11.816083 17.536621,11.592773 L 17.536621,13.595703 C 17.153802,13.736979 16.764154,13.841797 16.367676,13.910156 15.975743,13.983073 15.581538,14.019531 15.185059,14.019531 13.804196,14.019531 12.724119,13.666341 11.944824,12.959961 11.165526,12.249025 10.775878,11.262372 10.775879,10 10.775878,8.7376353 11.165526,7.7532613 11.944824,7.046875 12.724119,6.335945 13.804196,5.9804766 15.185059,5.9804687 15.586095,5.9804766 15.9803,6.0169349 16.367676,6.0898437 16.759596,6.1582108 17.149244,6.2630284 17.536621,6.4042969" /></g></svg>'),
 
-		get_image: function () {
-			return false;
+		get_image: function (id, alt) {
+			var icon;
+			if (pe.svg) {
+				icon = _pe.fn.multimedia.icons.clone();
+				icon.children(':not(g[id="' + id + '"])').remove();
+				return icon;
+			}
+
+			return $('<img src="' + _pe.add.liblocation + 'images/multimedia/' + id + '.png" alt="' + alt + '" height="20" width="20" />');
 		},
 
 		_exec: function (elm) {
@@ -72,7 +67,7 @@
 					fbClass = "video";
 					fbWidth = media.width() > 0 ? media.width() : media.attr("width");
 					fbHeight = media.height() > 0 ? media.height() : media.attr("height");
-					fbVars +=  "&height=" + media.height() + "&width=" + media.width() + "&posterimg=" + escape(_pe.url(media.attr("poster")).source) + "&media=" + _pe.url(media.find("source[type=\"" + fbVideoType + "\"]").attr("src")).source;
+					fbVars +=  "&height=" + media.height() + "&width=" + media.width() + "&posterimg=" + escape(_pe.url(media.attr("poster")).source) + "&media=" + escape(_pe.url(media.find("source[type=\"" + fbVideoType + "\"]").attr("src")).source);
 					canPlay = true;
 				} else if (flash && media.is("audio") && media.find("source[type=\"" + fbAudioType + "\"]").length > 0) {
 					fbClass = "audio";
@@ -86,7 +81,7 @@
 				}
 				//Can play using a fallback
 				if (canPlay) {
-					$fbObject = $("<object id=\"" + media_id + "\" width=\"" + fbWidth + "\" height=\"" + fbHeight + "\" class=\"" + fbClass + "\" type=\"application/x-shockwave-flash\" data=\"" + fbBin + "\" tabindex=\"-1\"><param name=\"movie\" value=\"" + fbBin + "\"/><param name=\"flashvars\" value=\"" + fbVars + "\"/><param name=\"allowScriptAccess\" value=\"always\"/><param name=\"bgcolor\" value=\"#000000\"/><param name=\"wmode\" value=\"opaque\"/>");
+					$fbObject = $("<object play=\"\" id=\"" + media_id + "\" width=\"" + fbWidth + "\" height=\"" + fbHeight + "\" class=\"" + fbClass + "\" type=\"application/x-shockwave-flash\" data=\"" + fbBin + "\" tabindex=\"-1\"><param name=\"movie\" value=\"" + fbBin + "\"/><param name=\"flashvars\" value=\"" + fbVars + "\"/><param name=\"allowScriptAccess\" value=\"always\"/><param name=\"bgcolor\" value=\"#000000\"/><param name=\"wmode\" value=\"opaque\"/>");
 					media.before($fbObject);
 					media.remove();
 					media = $fbObject;
@@ -185,29 +180,17 @@
 						timeline;
 					switch (e.type) {
 					case "play":
-						$w.find(".playpause img").attr({
-							alt: _pe.dic.get("%pause"),
-							src: "" //player.icons.pause
-						});
+						$w.find(".playpause").empty().append(_pe.fn.multimedia.get_image("pause", _pe.dic.get("%pause")));
 						break;
 					case "pause":
 					case "ended":
-						$w.find(".playpause img").attr({
-							alt: _pe.dic.get("%play"),
-							src: _pe.fn.multimedia.images.play
-						});
+						$w.find(".playpause").empty().append(_pe.fn.multimedia.get_image("play", _pe.dic.get("%play")));
 						break;
 					case "volumechange":
 						if (this.getMuted()) {
-							$w.find(".mute img").attr({
-								alt: _pe.dic.get("%mute", "disable"),
-								src: "" //player.icons.mute_on
-							});
+							$w.find(".mute").empty().append(_pe.fn.multimedia.get_image("mute_on", _pe.dic.get("%mute", "disable")));
 						} else {
-							$w.find(".mute img").attr({
-								alt: _pe.dic.get("%mute", "enable"),
-								src: "" //player.icons.mute_off
-							});
+							$w.find(".mute").empty().append(_pe.fn.multimedia.get_image("mute_off", _pe.dic.get("%mute", "enable")));
 						}
 						break;
 					case "captionsvisiblechange":
@@ -260,13 +243,7 @@
 					type: "button",
 					"class": "rewind",
 					"aria-controls": id
-				}).append(
-					/*$("<img>").attr({
-							src: '',
-							alt: _pe.dic.get("%rewind")
-						})*/
-					'<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(-180 10 10)"><path transform="translate(-4,0)" d="m17.023165,10.250381l-11.447638,-7.424991l0.115218,14.349777l11.33242,-6.924786z" fill="#000000"/><path transform="translate(3,0)" d="m17.023165,10.250381l-11.447638,-7.424991l0.115218,14.349777l11.33242,-6.924786z" fill="#000000"/></g></svg>'
-				)
+				}).append(_pe.fn.multimedia.get_image("rewind", _pe.dic.get("%rewind")))
 			);
 
 			ui_start.append(
@@ -274,13 +251,7 @@
 					type: "button",
 					"class": "playpause",
 					"aria-controls": id
-				}).append(
-					/*$("<img>").attr({
-							src: _pe.fn.multimedia.images.play,
-							alt: _pe.dic.get("%play")
-						})*/
-					'<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><g><path d="m17.023165,10.250381l-11.447638,-7.424991l0.115218,14.349777l11.33242,-6.924786z" fill="#000000"/></g></svg>'
-				)
+				}).append(_pe.fn.multimedia.get_image("play", _pe.dic.get("%play")))
 			);
 
 			ui_start.append(
@@ -288,13 +259,7 @@
 					type: "button",
 					"class": "fastforward",
 					"aria-controls": id
-				}).append(
-					/*$("<img>").attr({
-							src: "",
-							alt: _pe.dic.get("%fast-forward")
-						})*/
-					'<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><g><path transform="translate(-4,0)" d="m17.023165,10.250381l-11.447638,-7.424991l0.115218,14.349777l11.33242,-6.924786z" fill="#000000"/><path transform="translate(3,0)" d="m17.023165,10.250381l-11.447638,-7.424991l0.115218,14.349777l11.33242,-6.924786z" fill="#000000"/></g></svg>'
-				)
+				}).append(_pe.fn.multimedia.get_image("ff", _pe.dic.get("%fast-forward")))
 			);
 
 			ui_end.append(
@@ -302,13 +267,7 @@
 					type: "button",
 					"class": "cc",
 					"aria-controls": id
-				}).append(
-					/*$("<img>").attr({
-						src: "",
-						alt: _pe.dic.get("%closed-caption", "enable")
-					})*/
-					'<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><g><text font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="Sans-serif" font-size="14" id="svg_1" y="14.079744" x="10.214848" stroke-width="0" fill="#000000">cc</text></g></svg>'
-				)
+				}).append(_pe.fn.multimedia.get_image("cc", _pe.dic.get("%closed-caption", "enable")))
 			);
 
 			ui_end.append(
@@ -316,13 +275,7 @@
 					type: "button",
 					"class": "mute",
 					"aria-controls": id
-				}).append(
-					/*$("<img>").attr({
-						src: "",
-						alt: _pe.dic.get("%mute", "enable")
-					})*/
-					'<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><g><rect height="8.070175" width="12.440169" y="5.998068" x="3.776589" fill="#000000"/><path transform="rotate(-180, 13.3815, 16.8807)" d="m10.539844,19.720558l0,-5.679615l5.679601,5.679615l-5.679601,0z" fill="#000000"/><path transform="rotate(-90, 13.3805, 3.20703)" d="m10.540461,6.047394l0,-5.679615l5.679605,5.679615l-5.679605,0z" fill="#000000"/></g></svg>'
-				)
+				}).append(_pe.fn.multimedia.get_image("mute_off", _pe.dic.get("%mute", "enable")))
 			);
 
 			ui.append(ui_start).append(ui_end).append(ui_timeline);
