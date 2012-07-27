@@ -30,15 +30,16 @@
 				wrapper,
 				keyhandler,
 				tocLinks,
-                cssTest;
+				documentToggle,
+				cssTest;
 
-            // Don't do anything if CSS is disabled
-            // Couldn't get _pe.cssenabled() to work
-            cssTest = $('<div style="display: none;">').appendTo('body');
-            if (cssTest.css('display') !== 'none') {
-                return;
-            }
-            cssTest.remove();
+			// Don't do anything if CSS is disabled
+			// Couldn't get _pe.cssenabled() to work
+			cssTest = $('<div style="display: none;">').appendTo('body');
+			if (cssTest.css('display') !== 'none') {
+				return;
+			}
+			cssTest.remove();
 
 			// Add the wrappers
 			wrapper = elm.wrap('<div id="slideoutWrapper" role="application" />').parent(); // This is used for overflow: hidden.
@@ -72,8 +73,12 @@
 			};
 
 			toggle = function () {
-				toggleLink.off('click vclick');
-				slideoutClose.off('click vclick');
+				toggleLink.off('click vclick', toggle);
+				tocLinks.off('click vclick', toggle);
+				slideoutClose.off('click vclick', toggle);
+				wrapper.off("keydown", keyhandler);
+				elm.off("keydown", keyhandler);
+				$(document).off("click touchstart", documentToggle);
 
 				if (!opened) {
 					var position = wrapper.position();
@@ -107,7 +112,11 @@
 						}
 					}
 					toggleLink.on('click vclick', toggle);
+					tocLinks.on('click vclick', toggle);
 					slideoutClose.on('click vclick', toggle);
+					wrapper.on("keydown", keyhandler);
+					elm.on("keydown", keyhandler);
+					$(document).on("click touchstart", documentToggle);
 				});
 
 				if (opened) {
@@ -239,19 +248,17 @@
 			};
 
 			// Close slideout after clicking on a link
-			tocLinks.on('click vclick', function () {
-				toggle(elm);
-			});
-
+			tocLinks.on('click vclick', toggle);
 			wrapper.on("keydown", keyhandler);
 			elm.on("keydown", keyhandler);
 
 			// Close slideout if clicking outside of the slideout area
-			$(document).on("click touchstart", function (e) {
+			documentToggle = function (e) {
 				if (opened && !$(e.target).is(elm) && !$(e.target).is(wrapper) && $(e.target).closest(elm).length === 0) {
 					toggle();
 				}
-			});
+			};
+			$(document).on("click touchstart", documentToggle);
 
 			// Add the "Hide" link
 			elm.append('<a href="#" id="slideoutClose">' + closeLink + '</a>');
