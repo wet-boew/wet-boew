@@ -63,7 +63,7 @@
 		 * @memberof pe
 		 * @type {number} - IE major number if browser is IE, 0 otherwise
 		 */
-		ie: $.browser.msie ? $.browser.version : 0,
+		ie: (/(MSIE) ([\w.]+)/.exec(navigator.userAgent) || [])[2] || "0",
 		/**
 		 * A private function for initializing for pe.
 		 * @function
