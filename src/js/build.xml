@@ -19,6 +19,7 @@
 			<include name="i18n/*.*" />
 			<include name="i18n/formvalid/*.*" />
 			<include name="dependencies/*.*"/>
+			<include name="dependencies/prettify/*.*"/>
 			<include name="polyfills/*.*"/>
 			<include name="css/*.*" />
 		</yui-compressor>
