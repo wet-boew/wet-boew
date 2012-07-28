@@ -103,7 +103,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div>
 <div class="clear"></div>
 
-<div class="span-8 module-table-contents border-span-8"><h2>Table des matières</h2>
+<div class="span-8 module-table-contents border-span-8"><h2 class="wet-boew-prettify all-pre linenums">Table des matières</h2>
 <div class="span-4 row-start">
 <ul>
 	<li>Grilles
@@ -226,20 +226,18 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="clear"></div>
 <h3>Rangées de grilles en <abbr title="feuille de style en cascade">CSS</abbr> </h3>
 <p>Vous pouvez combiner huit cellules de grille (colonnes) à l’intérieur d’une rangée de contenu. Pour préserver l’intégrité de chaque rangée, vous devez ajouter le code <code lang="en">&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code> à la fin de chacune d’elles. Les cellules de grille doivent en effet avoir une propriété <code lang="en">float:left</code>. La propriété <code lang="en">clear</code> évite que la rangée de cellules suivante ne flotte vers le haut et ne comble les écarts de la rangée précédente.</p>
-<div class="span-1"></div>
-<div class="span-5">
-	<p class="color-attention margin-top-large">Code source&#160;: Rangée de grille avec <code lang="en">&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></p>
-	<pre><code lang="en">
-&lt;div class=&quot;span-5&quot;&gt;
-&lt;p&gt;<span lang="fr">Texte ici</span>&lt;/p&gt;
 
+<div class="span-7">
+	<h4>Code source</h4>
+	<p>Rangée de grille avec <code lang="en">&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></p>
+	<pre><code lang="en">&lt;div class=&quot;span-5&quot;&gt;
+	&lt;p&gt;<span lang="fr">Texte ici</span>&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;span-1&quot;&gt;
-&lt;p&gt;<span lang="fr">Texte ici</span>&lt;/p&gt;
+	&lt;p&gt;<span lang="fr">Texte ici</span>&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
-</code></pre>
-		</div>
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></pre>
+</div>
 <div class="clear"></div>
 <h3 id="buildingblocks">Blocs constitutifs d’une grille</h3>
 <p>De la même façon que la résolution d’un navigateur standard est réglée à 1&#160;024&#160;x&#160;768 (et non de 1&#160;025&#160;x&#160;775), les dimensions ci dessous ne présentent pas toujours des valeurs pratiques. Elles utilisent en effet la valeur exacte dont le système a besoin pour fonctionner. C’est ainsi qu’une cellule de grille élémentaire présente une dimension <code lang="en">margin-left</code> et <code lang="en">margin-right</code> de 10px. C’est ce que l’on appelle une «&#160;lézarde&#160;».</p>
@@ -382,6 +380,12 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			<p class="color-attention margin-top-large">Code source&#160;: Configuration à deux colonnes</p>
 			<pre><code lang="en">
 
+
+
+
+
+
+
 &lt;div class=&quot;span-7&quot;&gt;
 &lt;p&gt;<span lang="fr">Texte ici</span>&lt;/p&gt;
 &lt;/div&gt; 
@@ -441,6 +445,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p><code lang="en">span-7</code></p>
 </div>
 <div class="clear"></div>
+
 
 
 <div class="span-8 margin-top-large margin-bottom-small">
@@ -2128,6 +2133,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		</div>
 		<div class="clear"></div>
 		<pre><code class="en">
+
+
 	&lt;div class=&quot;span-3 background-light&quot;&gt;
 	&lt;p&gt;<span lang="fr">Arrière-plan clair</span>&lt;/p&gt;
 	&lt;/div&gt;</code></pre>
@@ -2140,6 +2147,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		</div>
 		<div class="clear"></div>
 		<pre><code lang="en">
+
 
 	&lt;div class=&quot;span-3 background-dark&quot;&gt;
 	&lt;p&gt;<span lang="fr">Arrière-plan foncé</span>&lt;/p&gt;
@@ -2339,6 +2347,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		<div class="clear"></div>
 		<pre><code lang="en">
 
+
+
+
+
 	&lt;div class=&quot;span-3 background-light border-span-3&quot;&gt;
 	&lt;p&gt;<span lang="fr">Bordure + arrière-plan clair</span>&lt;/p&gt;
 	&lt;/div&gt;</code></pre>
@@ -2424,6 +2436,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	&lt;h2 class=&quot;background-accent&quot;&gt;<span lang="fr">En tête</span>&lt;/h2&gt;
 	&lt;p&gt;<span lang="fr">(contenu)</span>&lt;/p&gt;
 	&lt;/div&gt;
+
+
 
 	&lt;/div&gt;</code></pre>
 		<div class="border-left margin-top-large margin-bottom-none">
@@ -2596,6 +2610,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<pre><code lang="en">
 	&lt;div class=&quot;span-2 background-light&quot;&gt;
 		&lt;p&gt;<span lang="fr">Avec balises de paragraphe</span>&lt;/p&gt;
+
 
 	&lt;/div&gt;</code></pre>
 </div>

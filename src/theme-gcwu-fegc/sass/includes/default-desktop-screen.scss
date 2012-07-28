@@ -310,11 +310,12 @@ a:visited{
 	border-left:1px solid #15527D;
 	border-right:1px solid #15527D;
 	z-index:100;
-	padding:12px 10px 5px 12px;
+	padding:11px 10px 6px 12px;
 }
 
 #gcwu-srchbx input{
 	margin:0 0 2px;
+	min-height: 0;
 }
 
 #gcwu-srch-submit{

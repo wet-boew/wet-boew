@@ -104,9 +104,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div>
 <div class="clear"></div>
 
-<div class="span-8 module-table-contents border-span-8"><h2>Table of contents</h2>
-<div class="span-4 row-start">
-<ul>
+<div class="span-8 module-table-contents">
+<h2 class="wet-boew-prettify all-pre linenums">Table of contents</h2>
+<ul class="column-two">
 	<li>Grids
 	<ul>
 		<li><a href="#overview">Grid overview </a></li>
@@ -190,8 +190,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </ul>
 </div>
 <div class="clear"></div>
-</div>
-<div class="clear"></div>
 
 <h2 id="overview">Grid overview</h2>
 <p>Grids have been around for a long time in print publishing, and have now moved to the Web. A grid is an invisible <abbr title="Cascading Style Sheet">CSS</abbr> wire frame that you can use to achieve visual cohesion. It is like a lattice that divides the space into sections where you can place content such as headings, text, lists, images and so on.</p>
@@ -211,7 +209,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="span-3"> <img src="images/grids-8-12.gif" alt="Comparison of grid 8 and grid 12" /> </div>
 <div class="clear"></div>
 <h2 id="cells">Grid structure <abbr title="Cascading Style Sheet">CSS</abbr></h2>
-<div class="span-2 module-versatile float-right">
+<div class="span-2 module float-right">
 	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
 	<ul>
 	<li><code>span-1</code></li>
@@ -229,20 +227,18 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="clear"></div>
 <h3>Grid rows <abbr title="Cascading Style Sheet">CSS</abbr> </h3>
 <p>There are eight grid cells (columns) that you can combine within a row of content. To maintain the integrity of each row, you must place a <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code> at the end of each row. This is because grid cells have a <code>float:left</code> property. The <code>clear</code> prevents the next row of grid cells from trying to float up and fill any gaps in the previous row.</p>
-<div class="span-1"></div>
-<div class="span-5">
-	<p class="color-attention margin-top-large">Source code: grid row with <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></p>
-	<pre><code>
-&lt;div class=&quot;span-5&quot;&gt;
-&lt;p&gt;Text here&lt;/p&gt;
 
+<div class="span-7">
+	<h4>Sample Code</h4>
+	<p>Grid row with <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></p>
+	<pre><code>&lt;div class=&quot;span-5&quot;&gt;
+   &lt;p&gt;Text here&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;span-1&quot;&gt;
-&lt;p&gt;Text here&lt;/p&gt;
+   &lt;p&gt;Text here&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
-</code></pre>
-		</div>
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></pre>
+</div>
 <div class="clear"></div>
 <h3 id="buildingblocks">Grid building blocks </h3>
 <p>In the same way that a typical browser setting is 1024x768 (not 1025x775), the dimensions below do not always use convenient values as they use the exact value needed for the system to work. A single grid cell has a <code>margin-left</code> and <code>margin-right</code> of 10px. This is known as the gutter.</p>
@@ -267,7 +263,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="clear"></div>
 <div class="grid-12">
 	<h4>Optional grid 12 dimensions</h4>
-	<div class="span-3 module-versatile float-right">
+	<div class="span-3 module float-right">
 	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
 	<ul>
 		<li><code>span-9</code></li>
@@ -361,324 +357,186 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p>There are ~92 base layout options, ranging from a single full width (<code>span-8</code>) to an eight column layout (eight <code>span-1</code>'s). Below are the layout options:</p>
 <div class="span-8 module-note"><p><strong>Note:</strong> Grids cells are invisible by default, as they are only structural in nature. For display purposes, we applied a border and a background-colour to them.</p></div>
 <div class="clear"></div>
-<div class="span-8 margin-top-large margin-bottom-small"><h3 class="background-light">One column layout</h3></div>
-<div class="clear"></div>
-<div class="span-8 background-light border-span-8 align-center"><p><code>span-8</code></p></div>
-<div class="clear"></div>
-<div class="span-6"><p class="color-attention margin-top-large">Source code: One column layout, <code>span-6</code></p>
-			<pre><code>
 
-&lt;div class=&quot;span-8&quot;&gt;
-&lt;p&gt;Text here&lt;/p&gt;
+<div class="span-8 margin-top-large margin-bottom-small"><h3>One column layout</h3></div>
+<div class="clear"></div>
+
+<div class="span-8 background-light align-center"><p><code>span-8</code></p></div>
+<div class="clear"></div>
+
+<div class="span-5">
+	
+	<h4>Sample Code</h4>
+	<p>One column layout, <code>span-8</code></p>
+
+<pre><code>&lt;div class=&quot;span-8&quot;&gt;
+   &lt;p&gt;Text here&lt;/p&gt;
 &lt;/div&gt; 
-&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
-</code></pre>
-<div class="clear"></div>
-</div>
-<div class="clear"></div>
-<div class="span-8 margin-top-large margin-bottom-small"><h3 class="background-light">Two column layouts </h3></div>
-<div class="clear"></div>
-<div class="span-7 background-light align-center border-span-7"><p><code>span-7</code></p></div>
-<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
-<div class="clear"></div>
-<div class="span-6">
-			<p class="color-attention margin-top-large">Source code: Two column layout</p>
-			<pre><code>
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></pre>
 
-&lt;div class=&quot;span-7&quot;&gt;
-&lt;p&gt;Text here&lt;/p&gt;
+</div>
+
+<div class="clear"></div>
+<div class="span-8">
+	<h3>Two column layouts</h3>
+	
+	<div class="span-7 row-start background-light align-center"><p><code>span-7</code></p></div>
+	<div class="span-1 row-end background-light align-center"><p><code>span-1</code></p></div>
+	<div class="clear"></div>
+
+
+	<h4>Sample Code</h4>
+	<p>One column layout, <code>span-7</code></p>
+	
+	<div class="span-5 row-start">
+
+<pre><code>&lt;div class=&quot;span-7&quot;&gt;
+   &lt;p&gt;Text here&lt;/p&gt;
 &lt;/div&gt; 
 &lt;div class=&quot;span-1&quot;&gt;
-&lt;p&gt;Text here&lt;/p&gt;
+   &lt;p&gt;Text here&lt;/p&gt;
 &lt;/div&gt; 
-&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
-</code></pre>
-<div class="clear"></div>
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></pre>
+
+
+
+	</div>
 </div>
 <div class="clear"></div>
 
-<div class="span-6 background-light align-center border-span-6">
-<p><code>span-6</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-2</code></p>
-</div>
+<div class="span-6 background-light align-center"><p><code>span-6</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
 <div class="clear"></div>
 
-<div class="span-5 background-light align-center border-span-5">
-<p><code>span-5</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-4 background-light align-center border-span-4">
-<p><code>span-4</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center border-span-3">
-<p><code>span-3</code></p>
-</div>
-<div class="span-5 background-light align-center">
-<p><code>span-5</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center border-span-2">
-<p><code>span-2</code></p>
-</div>
-<div class="span-6 background-light align-center">
-<p><code>span-6</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+<div class="span-6 background-light align-center"><p><code>span-6</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center border-span-1">
-<p><code>span-1</code></p>
-</div>
-<div class="span-7 background-light align-center">
-<p><code>span-7</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-7 background-light align-center"><p><code>span-7</code></p></div>
 <div class="clear"></div>
 
 
 <div class="span-8 margin-top-large margin-bottom-small">
-<h3 class="background-light">Three column layouts </h3>
+	<h3>Three column layouts</h3>
 </div>
 <div class="clear"></div>
 
-<div class="span-6 background-light align-center">
-<p><code>span-6</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-6 background-light align-center"><p><code>span-6</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-5 background-light align-center">
-<p><code>span-5</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-5 background-light align-center">
-<p><code>span-5</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-5 background-light align-center">
-<p><code>span-5</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="clear"></div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-5 background-light align-center">
-<p><code>span-5</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-6 background-light align-center">
-<p><code>span-6</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-5 background-light align-center">
-<p><code>span-5</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-6 background-light align-center"><p><code>span-6</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-5 background-light align-center">
-<p><code>span-5</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-6 background-light align-center">
-<p><code>span-6</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+<div class="clear"></div>
+
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-6 background-light align-center"><p><code>span-6</code></p></div>
 <div class="clear"></div>
 
 
@@ -687,438 +545,190 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div>
 <div class="clear"></div>
 
-<div class="span-5 background-light align-center">
-<p><code>span-5</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-5 background-light align-center">
-<p><code>span-5</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-5 background-light align-center">
-<p><code>span-5</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-5 background-light align-center">
-<p><code>span-5</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
 <div class="clear"></div>
 
 
@@ -1127,969 +737,432 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div>
 <div class="clear"></div>
 
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-4 background-light align-center">
-<p><code>span-4</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
 
 <div class="span-8 margin-top-large margin-bottom-small">
-<h3 class="background-light">Six column layouts </h3>
+<h3>Six column layouts </h3>
 </div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-3 background-light align-center">
-<p><code>span-3</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
 
 <div class="span-8 margin-top-large margin-bottom-small">
-<h3 class="background-light">Seven column layouts </h3>
+<h3>Seven column layouts </h3>
 </div>
 <div class="clear"></div>
 
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-2 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-2 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
-
 
 <div class="span-8 margin-top-large margin-bottom-small">
-<h3 class="background-light">Eight column layouts </h3>
+<h3>Eight column layouts </h3>
 </div>
 <div class="clear"></div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
-<div class="span-1 background-light align-center">
-<p><code>span-1</code></p>
-</div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
+<div class="span-1 background-light align-center"><p><code>span-1</code></p></div>
 <div class="clear"></div>
 
 
 <h3>Optional grid 12 within the content area</h3>
 <p>For complex or alternate layouts, you can call in a grid 12 within the content area. Although the default grid system will likely meet the majority of your needs, this alternate grid version is available and can be easily activated. The grid 12 can be called in anywhere on the page by opening a <code>&lt;div class=&quot;grid-12&quot;&gt;</code> container:</p>
+<div class="span-5">
 <pre><code>
 &lt;div class=&quot;grid-12&quot;&gt;	 
-&lt;div class=&quot;span-6&quot;&gt;
+   &lt;div class=&quot;span-6&quot;&gt;
+      &lt;p&gt;Text here&lt;/p&gt;
+   &lt;/div&gt;
+   &lt;div class=&quot;span-6&quot;&gt;
+      &lt;p&gt;Text here&lt;/p&gt;
+   &lt;/div&gt;
+   &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="clear"></div>
 
-&lt;p&gt;Text here&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;span-6&quot;&gt;
-&lt;p&gt;Text here&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
 <p>The width of the grid cells are smaller within the <code>&lt;div class=&quot;grid-12&quot;&gt;</code> container. A <code>&lt;div class=&quot;span-1&quot;&gt;</code> in the grid 12 is much smaller than in the default grid system. This resizing happens automatically when cells are inside the <code>&lt;div class=&quot;grid-12&quot;&gt;</code> container.</p>
 <div class="grid-12">
-	<div class="span-12 background-light border-span-12 align-center">
-	<p><code>span-12</code></p>
-	</div>
+	<div class="span-12 background-light align-center"><p><code>span-12</code></p></div>
 	<div class="clear"></div>
-	<div class="span-11 background-light border-span-11 align-center">
-	<p><code>span-11</code></p>
-	</div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-11 background-light align-center"><p><code>span-11</code></p></div>
+	<div class="span-1 background-light align-center font-xsmall"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
-	<div class="span-10 background-light border-span-10 align-center">
-	<p><code>span-10</code></p>
-	</div>
-	<div class="span-2 background-light align-center">
-	<p><code>span-2</code></p>
-	</div>
+	<div class="span-10 background-light align-center"><p><code>span-10</code></p></div>
+	<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
 	<div class="clear"></div>
-	<div class="span-9 background-light border-span-9 align-center">
-	<p><code>span-9</code></p>
-	</div>
-	<div class="span-3 background-light align-center">
-	<p><code>span-3</code></p>
-	</div>
+	<div class="span-9 background-light align-center"><p><code>span-9</code></p></div>
+	<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
 	<div class="clear"></div>
-	<div class="span-8 background-light border-span-8 align-center">
-	<p><code>span-8</code></p>
-	</div>
-	<div class="span-4 background-light align-center">
-	<p><code>span-4</code></p>
-	</div>
+	<div class="span-8 background-light align-center"><p><code>span-8</code></p></div>
+	<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
 	<div class="clear"></div>
-	<div class="span-7 background-light border-span-7 align-center">
-	<p><code>span-7</code></p>
-	</div>
-	<div class="span-5 background-light align-center">
-	<p><code>span-5</code></p>
-	</div>
+	<div class="span-7 background-light align-center"><p><code>span-7</code></p></div>
+	<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
 	<div class="clear"></div>
-	<div class="span-6 background-light border-span-6 align-center">
-	<p><code>span-6</code></p>
-	</div>
-	<div class="span-6 background-light align-center">
-	<p><code>span-6</code></p>
-	</div>
+	<div class="span-6 background-light align-center"><p><code>span-6</code></p></div>
+	<div class="span-6 background-light align-center"><p><code>span-6</code></p></div>
 	<div class="clear"></div>
-	<div class="span-5 background-light border-span-5 align-center">
-	<p><code>span-5</code></p>
-	</div>
-	<div class="span-7 background-light align-center">
-	<p><code>span-7</code></p>
-	</div>
+	<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+	<div class="span-7 background-light align-center"><p><code>span-7</code></p></div>
 	<div class="clear"></div>
-	<div class="span-4 background-light border-span-4 align-center">
-	<p><code>span-4</code></p>
-	</div>
-	<div class="span-8 background-light align-center">
-	<p><code>span-8</code></p>
-	</div>
+	<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+	<div class="span-8 background-light align-center"><p><code>span-8</code></p></div>
 	<div class="clear"></div>
-	<div class="span-3 background-light border-span-3 align-center">
-	<p><code>span-3</code></p>
-	</div>
-	<div class="span-9 background-light align-center">
-	<p><code>span-9</code></p>
-	</div>
+	<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+	<div class="span-9 background-light align-center"><p><code>span-9</code></p></div>
 	<div class="clear"></div>
-	<div class="span-2 background-light border-span-2 align-center">
-	<p><code>span-2</code></p>
-	</div>
-	<div class="span-10 background-light align-center">
-	<p><code>span-10</code></p>
-	</div>
+	<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+	<div class="span-10 background-light align-center"><p><code>span-10</code></p></div>
 	<div class="clear"></div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
-	<div class="span-11 background-light align-center">
-	<p><code>span-11</code></p>
-	</div>
+	<div class="span-1 background-light align-center font-xsmall"><p class="indent-none"><code>span-1</code></p></div>
+	<div class="span-11 background-light align-center"><p><code>span-11</code></p></div>
 	<div class="clear"></div>
-	<div class="span-12 background-light align-center">
-	<p><code>span-12</code></p>
-	</div>
+	<div class="span-12 background-light align-center"><p><code>span-12</code></p></div>
 	<div class="clear"></div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-1"> </div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-2"> </div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-3"> </div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-4"> </div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-5"> </div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-6"> </div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-7"> </div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-8"> </div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-9"> </div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-10"> </div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-11"> </div>
-	<div class="span-1 background-light border-span-1 align-center font-xsmall">
-	<p class="indent-none"><code>span-1</code></p>
-	</div>
+	<div class="span-1 background-light align-center"><p class="indent-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
 </div>
+
 <div class="span-8 module-summary margin-top-large">
 	<h3>Recap: Grid structure and layout options </h3>
 	<ul>
@@ -2104,8 +1177,12 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	</ul>
 </div>
 <div class="clear"></div>
+
+
+
+
 <h2 id="bg">Background colour <abbr title="Cascading Style Sheet">CSS</abbr> and grids</h2>
-<div class="span-2 module-versatile float-right">
+<div class="span-2 module float-right">
 	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
 	<ul>
 	<li><code>background-light</code></li>
@@ -2114,53 +1191,56 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	</ul>
 </div>
 <p>Use background colours to highlight content and &#47; or create information blocks that focus the user's attention. You can apply these background colours to a grid cell or to an HTML element for example, a heading. Do not overuse background colours, or they become less effective.</p>
-<table>
-<caption>
-Table background colours
-</caption>
-<tr>
-<th scope="col">Class</th>
-<th scope="col">Example</th>
-</tr>
-<tr>
-<td><code>background-light</code></td>
-<td><div class="span-3 background-light">
-<p>Background light</p>
-</div>
-<div class="clear"></div>
-			<pre><code>
-&lt;div class=&quot;span-3 background-light&quot;&gt;
-&lt;p&gt;Background light&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-</td>
-</tr>
-<tr>
-<td><code>background-dark</code></td>
-<td><div class="span-3 background-dark">
-	<p>Background dark</p>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-
-&lt;div class=&quot;span-3 background-dark&quot;&gt;
-&lt;p&gt;Background dark&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-</td>
-</tr>
-<tr>
-<td><code>background-accent</code></td>
-<td><div class="span-3 background-accent">
-	<p>Background accent</p>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-&lt;div class=&quot;span-3 background-accent&quot;&gt;
-&lt;p&gt;Background dark&lt;/p&gt;
-
-&lt;/div&gt;</code></pre>
-	</td>
+<table class="span-8 table-simplify">
+	<caption>Table background colours</caption>
+	<thead>
+		<tr>
+			<th scope="col">Class</th>
+			<th scope="col">Heading</th>
+			<th scope="col">Paragraph</th>
+			<th scope="col">Span</th>
+			<th scope="col">Div</th>
+		</tr>
+	</thead>
+	<tr>
+		<td><code>background-light</code></td>
+		<td><h3 class="background-light">Lorem ipsum</h3></td>
+		<td><p class="background-light margin-top-none margin-bottom-none">Lorem ipsum</p></td>
+		<td><span class="background-light">Lorem ipsum</span></td>
+		<td><div class="background-light">Lorem ipsum</div></td>
+	</tr>
+	<tr>
+		<td><code>background-medium</code></td>
+		<td><h3 class="background-medium">Lorem ipsum</h3></td>
+		<td><p class="background-medium margin-top-none margin-bottom-none">Lorem ipsum</p></td>
+		<td><span class="background-medium">Lorem ipsum</span></td>
+		<td><div class="background-medium">Lorem ipsum</div></td>
+	</tr>
+	<tr>
+		<td><code>background-dark</code></td>
+		<td><h3 class="background-dark">Lorem ipsum</h3></td>
+		<td><p class="background-dark margin-top-none margin-bottom-none">Lorem ipsum</p></td>
+		<td><span class="background-dark">Lorem ipsum</span></td>
+		<td><div class="background-dark">Lorem ipsum</div></td>
+	</tr>
+	<tr>
+		<td><code>background-accent</code></td>
+		<td><h3 class="background-accent">Lorem ipsum</h3></td>
+		<td><p class="background-accent margin-top-none margin-bottom-none">Lorem ipsum</p></td>
+		<td><span class="background-accent">Lorem ipsum</span></td>
+		<td><div class="background-accent">Lorem ipsum</div></td>
 	</tr>
 </table>
+<div class="clear"></div>
+
+
+
+<h3>Sample Code</h3>
+<pre class="span-5"><code>&lt;div class=&quot;span-3 background-dark&quot;&gt;
+   &lt;p&gt;Background dark&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+	
+
 <div class="span-8 module-summary">
 	<h3>Recap: Background fill options</h3>
 	<ul>
@@ -2168,106 +1248,35 @@ Table background colours
 	</ul>
 </div>
 <div class="clear"></div>
+
+
 <h2 id="heading">Heading <abbr title="Cascading Style Sheet">CSS</abbr> and grids</h2>
 <p>Headings are an important part of the document structure. You can restyle them to compliment the grid layout. Do not overuse headings, or they become less effective.</p>
-<table>
-<caption>
-Headings and class names
-</caption>
-<tr>
-<th scope="col">Class</th>
-<th scope="col">Example</th>
-</tr>
-<tr>
-<td>Default style</td>
-<td><h2>H2's display like this</h2>
-	<h3>H3's display like this</h3>
-	<h4>H4's display like this</h4>
-	<h5>H5's display like this</h5>
-	<h6>H6's display like this</h6></td>
-</tr>
-<tr>
-<td>Alternate style (applies globally)
-	<div class="module-note">
-	<p><strong>Note:</strong> In the grid <code>util.css</code> file, there is an option to activate a bottom border on a headings 2 and 3. <strong>If</strong> this feature is enabled, all heading 2 and 3 will have a border-bottom. It is a Department decision and the setting are global.</p>
-	</div></td>
-<td><div class="heading-demo">
-	<h2>H2's display like this</h2>
-	<h3>H3's display like this</h3>
-	<h4>H4's display like this</h4>
-	<h5>H5's display like this</h5>
-	<h6>H6's display like this</h6>
-	</div></td>
-</tr>
-<tr>
-<td><ul>
-	<li><code>h2.border-none</code></li>
-	<li><code>h3.border-none</code></li>
-	</ul>
-	<div class="module-note">
-	<p><strong>Note:</strong> Only needed if you enable the above borders</p>
-	</div></td>
-<td><h2 class="border-none">H2's display like this</h2>
-	<pre><code>
-	&lt;div class=&quot;span-3&quot;&gt;
-	&lt;h(2-3) class=&quot;border-none&quot;&gt;Heading&lt;/h(2-3)&gt;
-	&lt;/div&gt;</code></pre>
-	<h3 class="border-none">H3's display like this</h3></td>
-</tr>
-<tr>
-<td><ul>
-	<li><code>h2.background-light</code></li>
-	<li><code>h3.background-light</code></li>
-	<li><code>h4.background-light</code></li>
-	<li><code>h5.background-light</code></li>
-	</ul></td>
-<td><div class="span-3">
-	<h2 class="background-light">H(2-5) in grid cell with light background</h2>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-	&lt;div class=&quot;span-3&quot;&gt;
-	&lt;h(2-5) class=&quot;background-light&quot;&gt;Heading&lt;/h(2-5)&gt;
-
-	&lt;/div&gt;</code></pre>
-</td>
-</tr>
-<tr>
-<td><ul>
-	<li><code>h2.background-dark</code></li>
-	<li><code>h3.background-dark</code></li>
-	<li><code>h4.background-dark</code></li>
-	<li><code>h5.background-dark</code></li>
-	</ul></td>
-<td><div class="span-3">
-	<h2 class="background-dark">H(2-5) in grid cell with dark background</h2>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-
-	&lt;div class=&quot;span-3&quot;&gt;
-	&lt;h(2-5) class=&quot;background-dark&quot;&gt;Heading&lt;/h(2-5)&gt;
-	&lt;/div&gt;</code></pre>
-</td>
-</tr>
-<tr>
-<td><ul>
-	<li><code>h2.background-accent</code></li>
-	<li><code>h3.background-accent</code></li>
-	<li><code>h4.background-accent</code></li>
-	<li><code>h5.background-accent</code></li>
-	</ul></td>
-<td><div class="span-3">
-	<h2 class="background-accent">H(2-5) in grid cell with 'accent' background</h2>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-	&lt;div class=&quot;span-3&quot;&gt;
-	&lt;h(2-5) class=&quot;background-accent&quot;&gt;Heading&lt;/h(2-5)&gt;
-	&lt;/div&gt;</code></pre>
-	</td>
+<table class="table-simplify span-8">
+	<caption>Headings and class names</caption>
+	<thead>
+		<tr>
+			<th scope="col">Class</th>
+			<th scope="col">Example</th>
+		</tr>
+	</thead>
+	<tr>
+		<td>Default style</td>
+		<td><h2>H2's display like this</h2>
+			<h3>H3's display like this</h3>
+			<h4>H4's display like this</h4>
+			<h5>H5's display like this</h5>
+			<h6>H6's display like this</h6></td>
+	</tr>
+	<tr>
+		<td>Add colour</td>
+		<td><h2 class="background-light">H2 with <code>background-light</code></h2>
+			<h2 class="background-medium">H2 with <code>background-medium</code></h2>
+			<h2 class="background-dark">H2 with <code>background-dark</code></h2>
+			<h2 class="background-accent">H2 with <code>background-accent</code></h2></td>
 	</tr>
 </table>
+
 <div class="span-8 module-summary">
 	<h3>Recap: Heading options</h3>
 	<ul>
@@ -2277,248 +1286,16 @@ Headings and class names
 	</ul>
 </div>
 <div class="clear"></div>
-<h2 id="border">Border <abbr title="Cascading Style Sheet">CSS</abbr> and grids</h2>
-<div class="span-2 module-versatile float-right">
-	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
-	<ul>
-	<li><code>border-span-1</code></li>
-	<li><code>border-span-2</code></li>
-	<li><code>border-span-3</code></li>
-	<li><code>border-span-4</code></li>
-	<li><code>border-span-5</code></li>
-	<li><code>border-span-6</code></li>
-	<li><code>border-span-7</code></li>
-	<li><code>border-span-8</code></li>
-	</ul>
-</div>
-<p>Rather than generating a border with the <code>border</code> attribute, the <abbr title="Cascading Style Sheet">CSS</abbr> calls in a background image of a border. Since a grid cell is a fixed width, the <code>border</code> attribute causes problems. This attribute increases the size of the grid cell width by 2px (1px each for the left and right borders). A background image does not affect the grid width, and it ensures the grid system dimensions are maintained.</p>
-<p>Each grid cell size has a different background image. Therefore, you must match the <code>gridX</code> style with the <code>borderX</code> style. For example, use <code>span-1</code> with <code>border-span-1</code>, <code>span-2</code> with <code>border-span-2</code>, and so on.</p>
-<div class="clear"></div>
-<table>
-<caption>
-Borders and grids
-</caption>
-<tr>
-<th scope="col">Class</th>
-<th scope="col">Example</th>
-</tr>
-<tr>
-<td><ul>
-	<li><code>span-1 border-span-1</code></li>
-	<li><code>span-2 border-span-2</code></li>
-	<li><code>span-3 border-span-3</code></li>
-	<li><code>span-4 border-span-4</code></li>
-	<li><code>span-5 border-span-5</code></li>
-	<li><code>span-6 border-span-6</code></li>
-	<li><code>span-7 border-span-7</code></li>
-	<li><code>span-8 border-span-8</code></li>
-	</ul></td>
-<td><div class="span-3 border-span-3">
-	<p>Basic border</p>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-&lt;div class=&quot;span-3 border-span-3&quot;&gt;
-&lt;p&gt;Basic border&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-</td>
-</tr>
-<tr>
-<td><ul>
-	<li><code>span-1 background-light border-span-1</code></li>
-	<li><code>span-2 background-light border-span-2</code></li>
-	<li><code>span-3 background-light border-span-3</code></li>
-	<li><code>span-4 background-light border-span-4</code></li>
-	<li><code>span-5 background-light border-span-5</code></li>
-	<li><code>span-6 background-light border-span-6</code></li>
-	<li><code>span-7 background-light border-span-7</code></li>
-	<li><code>span-8 background-light border-span-8</code></li>
-	</ul></td>
-<td><div class="span-3 background-light border-span-3">
-	<p>Border + Background light</p>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
 
-&lt;div class=&quot;span-3 background-light border-span-3&quot;&gt;
-&lt;p&gt;Border + Background light&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-</td>
-</tr>
-<tr>
-<td>Headings plus borders</td>
-<td><div class="span-3 border-span-3 margin-bottom-large">
-	<h2 class="background-light">H(2-5) in grid cell with dark background</h2>
-	<p>Default background</p>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-&lt;div class=&quot;span-3 border-span-3&quot;&gt;
 
-&lt;h2 class=&quot;background-light&quot;&gt;Heading&lt;/h2&gt;
-&lt;p&gt;Default background&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-	<div class="span-3 border-span-3 margin-bottom-large margin-top-xlarge">
-	<h2 class="background-dark">H(2-5) in grid cell with dark background</h2>
-	<p>Default background</p>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-&lt;div class=&quot;span-3 border-span-3&quot;&gt;
-&lt;h2 class=&quot;background-dark&quot;&gt;Heading&lt;/h2&gt;
-&lt;p&gt;Default background&lt;/p&gt;
 
-&lt;/div&gt;</code></pre>
-	<div class="span-3 border-span-3 background-light margin-bottom-large margin-top-xlarge">
-	<h2 class="background-dark">H(2-5) in grid cell with light background</h2>
-	<p>Background light</p>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-&lt;div class=&quot;span-3 border-span-3 background-light&quot;&gt;
 
-&lt;h2 class=&quot;background-dark&quot;&gt;Heading&lt;/h2&gt;
-&lt;p&gt;Default background&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-	<div class="span-3 border-span-3 margin-bottom-large margin-top-xlarge">
-	<h2 class="background-accent">H(2-5) in grid cell with accent background</h2>
-	<p>Default background</p>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-&lt;div class=&quot;span-3 border-span-3&quot;&gt;
-&lt;h2 class=&quot;background-accent&quot;&gt;Heading&lt;/h2&gt;
-&lt;p&gt;Default background&lt;/p&gt;
 
-&lt;/div&gt;</code></pre>
-	<div class="span-3 border-span-3 background-light margin-bottom-large margin-top-xlarge">
-	<h2 class="background-accent">H(2-5) in grid cell with accent background</h2>
-	<p>Background light</p>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-&lt;div class=&quot;span-3 border-span-3 background-light&quot;&gt;
 
-&lt;h2 class=&quot;background-accent&quot;&gt;Heading&lt;/h2&gt;
-&lt;p&gt;Background light&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-</td>
-</tr>
-<tr>
-<td><p>Borders in between grids, in the <strong class="color-attention">white space</strong></p>
-	<ul>
-	<li><code>border-right</code></li>
-	<li><code>border-left</code></li>
-	<li><code>border-top</code></li>
-	<li><code>border-bottom</code></li>
-	</ul></td>
-<td><div class="border-right">
-	<div class="span-3 margin-bottom-none background-light">
-		<p>Border is to the right.</p>
-	</div>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
 
-&lt;div class=&quot;border-right&quot;&gt;
-&lt;div class=&quot;span-3 background-light&quot;&gt;
-&lt;h2 class=&quot;background-accent&quot;&gt;Heading&lt;/h2&gt;
-&lt;p&gt;(content)&lt;/p&gt;
-&lt;/div&gt;
 
-&lt;/div&gt;</code></pre>
-	<div class="border-left margin-top-large margin-bottom-none">
-	<div class="span-3 margin-bottom-none background-light">
-		<p>Border is to the left.</p>
-	</div>
-	</div>
-	<div class="clear"></div>
-	<div class="border-left margin-top-large">
-	<div class="border-right">
-		<div class="span-3 margin-bottom-none background-light">
-		<p>Border is to the left and right.</p>
-		</div>
-	</div>
-	</div>
-	<div class="clear"></div>
-	<div class="border-top margin-top-large">
-	<div class="span-3 margin-bottom-none margin-top-medium background-light">
-		<p>Border is on the top.</p>
-	</div>
-	</div>
-	<div class="clear"></div>
-	<div class="border-bottom margin-top-large">
-	<div class="span-3 margin-bottom-medium background-light">
-		<p>Border is on the bottom.</p>
-	</div>
-	<div class="clear"></div>
-	</div>
-	<div class="clear"></div>
-	<div class="border-top margin-top-large">
-	<div class="border-bottom margin-top-medium">
-		<div class="span-3 margin-bottom-medium background-light">
-		<p>Border is on the top and bottom.</p>
-		</div>
-		<div class="clear"></div>
-	</div>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-&lt;div class=&quot;border-top&quot;&gt;
-&lt;div class=&quot;border-bottom&quot;&gt;
-
-&lt;div class=&quot;span-3 background-light&quot;&gt;
-&lt;h2 class=&quot;background-accent&quot;&gt;Heading&lt;/h2&gt;
-&lt;p&gt;(content)&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-</code></pre>
-	<div class="clear"></div>
-	<div class="border-top margin-top-medium">
-	<div class="border-right">
-		<div class="border-left">
-		<div class="border-bottom">
-			<div class="span-3 margin-bottom-medium margin-top-medium background-light">
-			<p>Border fully surrounding the grid cell.</p>
-			</div>
-			<div class="clear"></div>
-		</div>
-		</div>
-	</div>
-	</div>
-	<div class="clear"></div>
-	<pre><code>
-&lt;div class=&quot;border-top&quot;&gt;
-
-&lt;div class=&quot;border-right&quot;&gt;
-&lt;div class=&quot;border-left&quot;&gt;
-&lt;div class=&quot;border-bottom&quot;&gt;
-&lt;div class=&quot;span-3 background-light&quot;&gt;
-&lt;h2 class=&quot;background-accent&quot;&gt;Heading&lt;/h2&gt;
-
-&lt;p&gt;Default background&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-		<div class="clear"></div></td>
-	</tr>
-</table>
-<div class="span-8 module-summary">
-	<h3>Recap: Border options</h3>
-	<ul>
-	<li>You can use borders to create information blocks.</li>
-	<li>The grid class must match the border class for example <code>span-2</code> goes with <code>border-span-2</code>.</li>
-	<li>Borders can also have a background colour.</li>
-	</ul>
-</div>
-<div class="clear"></div>
 <h2 id="images">Image <abbr title="Cascading Style Sheet">CSS</abbr> and grids</h2>
-<div class="span-2 module-versatile float-right">
+<div class="span-2 module float-right">
 	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> class:</strong></p>
 	<ul>
 	<li><code>image-actual</code></li>
@@ -2528,36 +1305,62 @@ Borders and grids
 <h3>Flexible images</h3>
 <p>All three images below use the <strong>same single source file</strong> which is <strong>224 pixels wide, just like the <code>span-2</code> cell</strong>. The smallest <code>span-1</code> version pinches the image at the corners; the largest <code>span-3</code> version stretches, and blurs it. Therefore, the best grid to view the below sunflower image is within in a <code>span-2</code> at 1024x768 resolution, as it is a perfect fit (optimal size for its placement).</p>
 <p>Even though you can use any image to fit any grid cell, it's best to size your image to fit the intended cell. If you recall from the above topic <a href="#buildingblocks">Grid building blocks</a>, a <code>span-2</code> cell for example, ranges from 194 pixels to 224 pixels wide, depending on the user's resolution. To reduce visual distortion, ensure you size the image to match the grid cell's larger 1024x768 width, not the 800x600 width.</p>
-<div class="clear"></div>
+
 <div class="span-1"></div>
-<div class="span-2">
-	<div class="span-1 row-start"></div>
-	<div class="span-1 row-end"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 1" width="224" height="168" /></div>
-	<div class="span-2"><img src="images/a7.jpg" alt="Example of same fluid sunflower image, grid 2" width="224" height="168" /></div>
-</div>
-<div class="span-3"><img src="images/a7.jpg" alt="Example of same fluid sunflower image, grid 3" width="224" height="168" /></div>
+<div class="span-1"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 1" width="224" height="168" /></div>
+<div class="span-2"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 2" width="224" height="168" /></div>
+<div class="span-3"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 3" width="224" height="168" /></div>
 <div class="clear"></div>
+
+
+
+
+
+
+<h4>Sample Code</h4>
+<pre class="span-5"><code>&lt;div class=&quot;span-1&quot;&gt;
+   &lt;img src=&quot;images/a7.jpg&quot; alt=&quot;&quot; width=&quot;224&quot; height=&quot;168&quot; /&gt;
+&lt;/div&gt;</code></pre>
+<div class="clear"></div>
+
+
+
+
+
+
+
 <h3>Fixed width images</h3>
 <p>If you <strong>do not want an image to stretch to 100% of the cell width</strong>, you can apply the <code>image-actual</code> class to the image. For example, if you view the 20x20 pixel check-mark image at 100% of a grid cell, it appears pixilated. The <code>image-actual</code> class ensures the image retains its width and height properties, and never visually distorts.</p>
-<div class="span-1"><img src="images/tick.gif" alt="Example of large distorted check mark" width="20" height="20" /><img src="images/x.gif" alt="Example of large distorted X" width="20" height="20" /></div>
-<p class="color-attention margin-top-large">Source code: Fluid image (100% of grid cell width)</p>
-<pre><code>
-&lt;div class=&quot;span-1&quot;&gt;
-&lt;img src=&quot;tick.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
 
-&lt;img src=&quot;x.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+<div class="span-1"><img src="images/tick.gif" alt="Example of large distorted check mark" width="20" height="20" /></div>
+<div class="span-1"><img src="images/x.gif" alt="Example of large distorted X" width="20" height="20" /></div>
+<div class="span-6">
+<h4>Source Code <small class="font-xsmall color-medium">Flexible image size</small></h4>
+<pre><code>&lt;div class=&quot;span-1&quot;&gt;
+   &lt;img src=&quot;tick.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+   &lt;img src=&quot;x.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
 &lt;/div&gt;</code></pre>
+</div>
 <div class="clear"></div>
-<div class="span-1"><img src="images/tick.gif" alt="Example of small, non-distorted check mark" width="20" height="20" class="image-actual"/><img src="images/x.gif" alt="Example of small, non-distorted X" width="20" height="20" class="image-actual"/> </div>
-<p class="color-attention margin-top-large">Source code: Fixed image size</p>
-<pre><code>
-&lt;div class=&quot;span-1&quot;&gt;
-&lt;img class=&quot;image-actual&quot; src=&quot;tick.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
 
-&lt;img class=&quot;image-actual&quot; src=&quot;x.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
-
+<div class="span-1"><img class="image-actual" src="images/tick.gif" alt="Example of large distorted check mark" width="20" height="20" /></div>
+<div class="span-1"><img class="image-actual" src="images/x.gif" alt="Example of large distorted X" width="20" height="20" /></div>
+<div class="span-6">
+<h4>Source Code <small class="font-xsmall color-medium">Fixed image size</small></h4>
+<pre><code>&lt;div class=&quot;span-1&quot;&gt;
+   &lt;img class=&quot;image-actual&quot; src=&quot;tick.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+   &lt;img class=&quot;image-actual&quot; src=&quot;x.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
 &lt;/div&gt;</code></pre>
+</div>
 <div class="clear"></div>
+
+
+
+
+
+
+
+
 <div class="span-8 module-summary">
 	<h3>Recap: Images and grids</h3>
 	<ul>
@@ -2567,8 +1370,18 @@ Borders and grids
 	</ul>
 </div>
 <div class="clear"></div>
+
+
+
+
+
+
+
+
+
+
 <h2 id="proximity">Proximity <abbr title="Cascading Style Sheet">CSS</abbr> (margins, padding, gutters) and grids</h2>
-<div class="span-2 module-versatile float-right">
+<div class="span-2 module float-right">
 <p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
 <ul>
 <li><code>margin-bottom-none</code></li>
@@ -2586,28 +1399,25 @@ Borders and grids
 <p>White space is an important feature of the grid system &mdash; which automatically generates by default. You can overwrite some white space with additional <abbr title="Cascading Style Sheet">CSS</abbr> in order to increase or decrease the default settings.</p>
 <p>Within a grid system, you can only change the white space above and below a grid cell. You can never change the <strong>gutters</strong> (white space to the left and right of a grid cell). This is because the grid system design fits perfectly in the content area, and is tied to the user's browser setting. There is no room for extra pixels. Reducing pixels causes the cells to behave in unexpected ways due to their <code>float: left</code> property.</p>
 <div class="clear"></div>
+
 <h3>Padding</h3>
 <p>Paragraphs, lists, and headings come with padding; grid cells do not have inside padding. The <strong>most common mistake is to place text inside a grid cell, but forget to wrap it in something like a <code>&lt;p&gt;</code> tag</strong>.</p>
+
+
 <div class="span-1 align-right"> </div>
 <div class="span-2 background-light"><p>With a paragraph tag &mdash; text is easier to read with the padding.</p></div>
-<div class="span-3">
-			<pre><code>
-&lt;div class=&quot;span-2 background-light&quot;&gt;
-&lt;p&gt;With paragraph tag&lt;/p&gt;
-
+<pre class="span-3"><code>&lt;div class=&quot;span-2 background-light&quot;&gt;
+   &lt;p&gt;With paragraph tag&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-		</div>
 <div class="clear"></div>
+
 <div class="span-1 align-right"> </div>
 <div class="span-2 background-light"> No paragraph tag (not ideal) </div>
-<div class="span-3">
-			<pre><code>
-
-&lt;div class=&quot;span-2 background-light&quot;&gt;
+<pre class="span-3"><code>&lt;div class=&quot;span-2 background-light&quot;&gt;
 Forgot paragraph tag (not ideal)
 &lt;/div&gt;</code></pre>
-		</div>
 <div class="clear"></div>
+
 <h3 id="margut">Margins and gutters</h3>
 <p>The white space to the left and right of a grid cell is called a <strong>gutter</strong> (although it is just a margin-right in the <abbr title="Cascading Style Sheet">CSS</abbr>). The default settings of a grid cell are:</p>
 <ul>
@@ -2617,9 +1427,9 @@ Forgot paragraph tag (not ideal)
 	<li>Default <strong>margin-left</strong> is set to zero.</li>
 </ul>
 <p>You can only increase or decrease vertical proximity of content (move up or down). There are a variety of reasons to modify vertical proximity, such as visually connecting related components. In which case, you may need to increase or decrease white space between menu items, or move content closer to or farther from a heading tag. The classes you can use are as follows:</p>
-<div class="span-1"></div>
-<div class="span-4 border-span-4">
-	<h3 class="background-dark">Bottom proximity <abbr title="Cascading Style Sheet">CSS</abbr></h3>
+
+<div class="span-4 module-related">
+	<h3 class="background-accent">Bottom proximity <abbr title="Cascading Style Sheet">CSS</abbr></h3>
 	<ul>
 	<li>0px <code>margin-bottom</code> = class <code>margin-bottom-none</code></li>
 	<li>2px <code>margin-bottom</code> = class <code>margin-bottom-small</code></li>
@@ -2628,12 +1438,8 @@ Forgot paragraph tag (not ideal)
 	<li>50px <code>margin-bottom</code> = class <code>margin-bottom-xlarge</code></li>
 	</ul>
 </div>
-<div class="span-1"></div>
-<div class="clear"></div>
-
-<div class="span-1"></div>
-<div class="span-4 border-span-4">
-	<h3 class="background-dark">Top proximity <abbr title="Cascading Style Sheet">CSS</abbr></h3>
+<div class="span-4 module-related">
+	<h3 class="background-accent">Top proximity <abbr title="Cascading Style Sheet">CSS</abbr></h3>
 	<ul>
 	<li>0px <code>margin-top</code> = class <code>margin-top-none</code></li>
 	<li>2px <code>margin-top</code> = class <code>margin-top-small</code></li>
@@ -2642,8 +1448,8 @@ Forgot paragraph tag (not ideal)
 	<li>50px <code>margin-top</code> = class <code>margin-top-xlarge</code></li>
 	</ul>
 </div>
-<div class="span-1"></div>
 <div class="clear"></div>
+
 <p>If you need to modify the vertical proximity of grid cells, you can apply the <code>margin-bottom-(x)</code> class to the upper cell. This overrides the <code>margin-bottom</code> from the default of 20px with your new value, and moves the content in the lower cell up or down (depending on the class you apply).</p>
 <p>You can also apply the <code>margin-top-(x)</code> class to the lower cell. Each situation dictates whether you need to apply the <code>margin-bottom-(x)</code> or <code>margin-top-(x)</code> class to the content. Refer to the examples below:</p>
 <div class="clear"></div>
@@ -2670,11 +1476,9 @@ Forgot paragraph tag (not ideal)
 </div>
 <div class="span-1"></div>
 <div class="clear"></div>
-<div class="span-1"></div>
-<div class="span-5">
-	<p class="color-attention margin-top-large">Source code: Grid cell with <code>margin-bottom-small</code></p>
-	<pre><code>
-&lt;div class=&quot;span-2&quot;&gt; 
+<h3>Source Code</h3>
+<p>Grid cell with <code>margin-bottom-small</code></p>
+<pre class="span-5"><code>&lt;div class=&quot;span-2&quot;&gt; 
 &lt;h2 class=&quot;background-dark&quot;&gt;Example&lt;/h2&gt;
 
 &lt;div class=&quot;span-2 background-light margin-bottom-small&quot;&gt;
@@ -2703,7 +1507,7 @@ Forgot paragraph tag (not ideal)
 </div>
 <div class="clear"></div>
 <h2 id="parents">Grid parents and children <abbr title="Cascading Style Sheet">CSS</abbr></h2>
-<div class="span-2 module-versatile float-right">
+<div class="span-2 module float-right">
 	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
 	<ul>
 	<li><code>row-start</code></li>
@@ -2736,83 +1540,45 @@ Forgot paragraph tag (not ideal)
 <h3><code>row-start</code> and <code>row-end</code> <abbr title="Cascading Style Sheet">CSS</abbr></h3>
 <p>In each row, you need to remove the left hand gutter from the first child and the right hand gutter from the last grid child so it fits into the available space (the <code>margin-right</code> is either 5px or 10px, depending on the user's resolution). Apply the <code>row-start</code> to the first child in the row and then <code>row-end</code> <abbr title="Cascading Style Sheet">CSS</abbr> to the last child in a given row to achieve this. Refer to the example below.</p>
 <div class="clear"></div>
-<h4>Example 1: Parent / child grids</h4>
+
+<h4>Example 1: Parent / Child Grids</h4>
 <p>You can horizontally align smaller children within a parent cell.</p>
 <h5>Correct use of <code>row-end</code>&hellip;</h5>
 <p>The <code>row-start</code> sets the <code>margin-left</code> to zero and the <code>row-end</code> class sets the <code>margin-right</code> to zero to ensure a pixel-perfect fit.</p>
-<div class="span-3">
-	<div class="span-3 border-span-3 background-light">
+
+<div class="span-4 align-center background-light">
 	<h3 class="margin-bottom-medium border-none">(Parent)</h3>
-	<div class="span-1 border-span-1 row-start">
-		<p>(child 1a)</p>
+	<div class="span-1 row-start background-dark">
+		<p>row-start</p>
 	</div>
-	<div class="span-1 border-span-1">
-		<p>(child 1b)</p>
+	<div class="span-2 background-accent">
+		<p>span-1</p>
 	</div>
-	<div class="span-1 border-span-1 row-end">
-		<p>(child 1c)</p>
+	<div class="span-1 row-end background-dark">
+		<p>row-end</p>
 	</div>
-	<div class="clear"></div>
-	<div class="span-1 border-span-1 row-start">
-		<p>(child 1d)</p>
-	</div>
-	<div class="span-1 border-span-1">
-		<p>(child 1e)</p>
-	</div>
-	<div class="span-1 border-span-1 row-end">
-		<p>(child 1f)</p>
-	</div>
-	</div>
-	<div class="span-3 margin-bottom-none">
-	<div class="span-1 row-start"><img src="images/a1.jpg" alt="Man on phone" width="102" height="77"/>
-		<p>Text here</p>
-	</div>
-	<div class="span-1"><img src="images/a2.jpg" alt="Woman and man at work" width="102" height="77" />
-		<p>Text here</p>
-	</div>
-	<div class="span-1 row-end"><img src="images/a3.jpg" alt="Woman at work" width="102" height="77" />
-		<p>Text here</p>
-	</div>
-	<div class="clear"></div>
-	<div class="span-1 margin-bottom-none row-start"><img src="images/a4.jpg" alt="People at a meeting" width="102" height="77" />
-		<p>Text here</p>
-	</div>
-	<div class="span-1 margin-bottom-none"> <img src="images/a5.jpg" alt="Blond woman smiling" width="102" height="77" />
-		<p>Text here</p>
-	</div>
-	<div class="span-1 margin-bottom-none row-end"><img src="images/a6.jpg" alt="Family photo" width="102" height="77" />
-		<p>Text here</p>
-	</div>
-	<div class="clear"></div>
-	</div>
-	<div class="clear"></div>
 </div>
 <div class="clear"></div>
-<p class="color-attention margin-top-large">Source code: <code>span-3</code> with <code>row-end</code> and <code>row-end</code></p>
-<pre><code>
-&lt;div class=&quot;span-3&quot;&gt;
+
+
+
+
+<h4>Source Code</h4>
+<p><code>span-3</code> with <code>row-end</code> and <code>row-end</code></p>
+<pre class="span-5"><code>&lt;div class=&quot;span-3&quot;&gt;
 &lt;h3 class=&quot;background-dark&quot;&gt;Example&lt;/h3&gt;
 &lt;div class=&quot;span-1 row-start&quot;&gt;
-	&lt;img src=&quot;a1.jpg&quot; alt=&quot;___&quot; width=&quot;102&quot; height=&quot;77&quot; /&gt;
-
 	&lt;p&gt;Text here&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;span-1&quot;&gt;
-	&lt;img src=&quot;a2.jpg&quot; alt=&quot;___&quot; width=&quot;102&quot; height=&quot;77&quot; /&gt;
-
 	&lt;p&gt;Text here&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;span-1 row-end&quot;&gt;
-	&lt;img src=&quot;a3.jpg&quot; alt=&quot;___&quot; width=&quot;102&quot; height=&quot;77&quot; /&gt;
-
 	&lt;p&gt;Text here&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;span-1 row-start&quot;&gt;
-
-	&lt;img src=&quot;a4.jpg&quot; alt=&quot;___&quot; width=&quot;102&quot; height=&quot;77&quot; /&gt;
 	&lt;p&gt;Text here&lt;/p&gt;
-
 &lt;/div&gt;
 &lt;div class=&quot;span-1&quot;&gt;
 	&lt;img src=&quot;a5.jpg&quot; alt=&quot;___&quot; width=&quot;102&quot; height=&quot;77&quot; /&gt;
@@ -2825,65 +1591,29 @@ Forgot paragraph tag (not ideal)
 	&lt;p&gt;Text here&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+&lt;/div&gt;</code></pre>
+<div class="clear"></div>
 <h5>If you forget to use the <code>row-start</code> and <code>row-end</code> class&hellip;</h5>
 <p>If you allow the first and last child per row to retain their margins, they can't fit into the available space. Therefore, the final cells gets bumped and floats to the next available space below.</p>
-<div class="span-3">
-	<div class="span-3 border-span-3 background-light">
+<div class="span-4 align-center background-light">
 	<h3 class="margin-bottom-medium border-none">(Parent)</h3>
-	<div class="span-1 border-span-1">
-		<p>(child 1a)</p>
+	<div class="span-1 background-accent">
+		<p>span-1</p>
 	</div>
-	<div class="span-1 border-span-1">
-		<p>(child 1b)</p>
+	<div class="span-2 background-accent">
+		<p>span-2</p>
 	</div>
-	<div class="span-1 border-span-1">
-		<p>(child 1c)</p>
+	<div class="span-1 background-accent">
+		<p>span-1</p>
 	</div>
-	<div class="clear"></div>
-	<div class="span-1 border-span-1">
-		<p>(child 1d)</p>
-	</div>
-	<div class="span-1 border-span-1">
-		<p>(child 1e)</p>
-	</div>
-	<div class="span-1 border-span-1">
-		<p>(child 1f)</p>
-	</div>
-	</div>
-	<div class="clear"></div>
-	<div class="span-3 margin-bottom-none">
-	<div class="span-1"><img src="images/a1.jpg" alt="Man on phone" width="102" height="77" />
-		<p>Text here</p>
-	</div>
-	<div class="span-1"><img src="images/a2.jpg" alt="Woman and man at work" width="102" height="77" />
-		<p>Text here</p>
-	</div>
-	<div class="span-1"><img src="images/a3.jpg" alt="Woman at work" width="102" height="77" />
-		<p>Text here</p>
-	</div>
-	<div class="clear"></div>
-	<div class="span-1 margin-bottom-none"><img src="images/a4.jpg" alt="People at a meeting" width="102" height="77" />
-		<p>Text here</p>
-	</div>
-	<div class="span-1 margin-bottom-none"><img src="images/a5.jpg" alt="Blond woman smiling" width="102" height="77" />
-		<p>Text here</p>
-	</div>
-	<div class="span-1 margin-bottom-none"><img src="images/a6.jpg" alt="Family photo" width="102" height="77" />
-		<p>Text here</p>
-	</div>
-	<div class="clear"></div>
-	</div>
-	<div class="clear"></div>
 </div>
 <div class="clear"></div>
-<h4 id="ex2Par">Example 2: Parent &#47; child grids</h4>
+<h4 id="ex2Par">Example 2: Parent &#47; Child grids</h4>
 <p>You can have children with the <strong class="color-accent">same width</strong> as the parent cell. If a child cell is as wide as the parent cell, then you do <strong>not</strong> need to apply the <code>row-start</code> and <code>row-end</code> classes, as the <abbr title="Cascading Style Sheet">CSS</abbr> automatically removes the margin left and right from the child.</p>
 <div class="span-1"></div>
 <div class="span-2">
 	<h2 class="background-accent">Example (<code>span-2</code>)</h2>
-	<div class="span-2 background-light margin-bottom-small border-span-2">
+	<div class="span-2 background-light margin-bottom-small">
 	<p>Text here</p>
 	</div>
 	<div class="span-2 background-dark margin-bottom-small">
@@ -2892,19 +1622,19 @@ Forgot paragraph tag (not ideal)
 </div>
 <div class="clear"></div>
 <p class="color-attention">Source code:</p>
-<pre><code>
-&lt;div class=&quot;span-2&quot;&gt; 
+<pre class="span-5"><code>&lt;div class=&quot;span-2&quot;&gt; 
 &lt;h2 class=&quot;background-accent&quot;&gt;Example&lt;/h2&gt;
 
-&lt;div class=&quot;span-2 background-light margin-bottom-small border-span-2&quot;&gt;
+&lt;div class=&quot;span-2 background-light margin-bottom-small&quot;&gt;
 	&lt;p&gt;Text here&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;span-2 background-dark margin-bottom-small&quot;&gt;
 	&lt;p&gt;Text and &lt;a href=&quot;#&quot;&gt;fake link&lt;/a&gt;.&lt;/p&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+&lt;/div&gt;</code></pre>
+<div class="clear"></div>
+
 <h2 id="equalheights">Equal height columns</h2>
 <p>Historically, you used tables for layout, and it was easy to create columns of equal height. In every row, the table data cells always assumed the height of the tallest cell in that row. <abbr title="Cascading Style Sheet">CSS</abbr> grid cells create similar rows of content, but because they are not associated with each other, they do not apply borders and background colour fills in the same way. Without JavaScript, there is no way for the browser to know what the tallest grid cell per row cell is. Therefore, a <abbr title="Cascading Style Sheet">CSS</abbr> &#47; JavaScript solution is necessary to achieve this same effect.</p>
 <div class="span-2 float-right margin-bottom-medium"><img src="images/equalHeights.gif" alt="Equal height diagram" width="224" height="62" /></div>
@@ -2914,12 +1644,12 @@ Forgot paragraph tag (not ideal)
 <div class="span-3 background-light">
 	<p>This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.</p>
 </div>
-<div class="span-2 border-span-2">
+<div class="span-2">
 	<p>This is placeholder text.</p>
 </div>
 <div class="clear"></div>
 <div class="span-1"></div>
-<div class="span-1 border-span-1">
+<div class="span-1">
 	<p>This is placeholder text.</p>
 </div>
 <div class="span-2 background-dark">
@@ -2935,14 +1665,14 @@ Forgot paragraph tag (not ideal)
 	<div class="span-3 background-light">
 	<p>This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.</p>
 	</div>
-	<div class="span-2 border-span-2 row-end">
+	<div class="span-2 row-end">
 	<p>This is placeholder text.</p>
 	</div>
 </div>
 <div class="clear"></div>
 <div class="span-6 equalize">
 	<div class="span-1 row-start"></div>
-	<div class="span-1 border-span-1">
+	<div class="span-1">
 	<p>This is placeholder text.</p>
 	</div>
 	<div class="span-2 background-dark">
@@ -2956,15 +1686,13 @@ Forgot paragraph tag (not ideal)
 <div class="span-1"></div>
 <div class="span-5">
 	<p class="color-attention margin-top-large">Source code: <code>span-6</code> rows with <code>margin-bottom-none</code> and <code>equalize</code></p>
-	<pre><code>
-
-&lt;div class=&quot;span-6 equalize&quot;&gt;
+	<pre><code>&lt;div class=&quot;span-6 equalize&quot;&gt;
 &lt;div class=&quot;span-1 row-start&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;span-3 background-light&quot;&gt;
 	&lt;p&gt;This is placeholder text.&lt;/p&gt;
 
 &lt;/div&gt;
-&lt;div class=&quot;span-2 border-span-2 row-end&quot;&gt;
+&lt;div class=&quot;span-2 row-end&quot;&gt;
 	&lt;p&gt;This is placeholder text.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2972,7 +1700,7 @@ Forgot paragraph tag (not ideal)
 &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;span-6 equalize&quot;&gt;
 &lt;div class=&quot;span-1 row-start&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;span-1 border-span-1&quot;&gt;
+&lt;div class=&quot;span-1&quot;&gt;
 	&lt;p&gt;This is placeholder text.&lt;/p&gt;
 
 &lt;/div&gt;
@@ -2984,8 +1712,7 @@ Forgot paragraph tag (not ideal)
 	&lt;p&gt;This is placeholder text.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
-</code></pre>
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></pre>
 		</div>
 <div class="clear"></div>
 <h2>Positioning grids</h2>
@@ -3022,8 +1749,7 @@ Forgot paragraph tag (not ideal)
 	</div>
 </div>
 <div class="clear"></div>
-<pre><code>
-&lt;div class=&quot;span-6&quot;&gt;
+<pre><code>&lt;div class=&quot;span-6&quot;&gt;
 &lt;img height=&quot;190&quot; width=&quot;700&quot; alt=&quot;&quot; src=&quot;1.png&quot;/&gt;
 
 &lt;div class=&quot;span-3 position-top position-right&quot;&gt;
@@ -3053,8 +1779,7 @@ Forgot paragraph tag (not ideal)
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
-</code></pre>
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></pre>
 <div class="span-3">
 <table class="width-100">
 <tr>
@@ -3181,7 +1906,7 @@ Forgot paragraph tag (not ideal)
 </div>
 <div class="clear"></div>
 <h2 id="positioning">Indent, float and align <abbr title="Cascading Style Sheet">CSS</abbr> and grids</h2>
-<div class="span-2 border-span-2 float-right">
+<div class="span-2 float-right">
 	<p class="background-light"><strong>Borrowing default <abbr title="Cascading Style Sheet">CSS</abbr>:</strong></p>
 	<ul>
 	<li><code>float-right</code></li>
@@ -3201,15 +1926,11 @@ Forgot paragraph tag (not ideal)
 <div class="span-1"></div>
 <div class="span-5">
 	<p class="color-attention">Source code: Empty<code>span-1</code>with a <code>span-5</code></p>
-	<pre><code>
-
-&lt;div class=&quot;span-1&quot;&gt;&lt;/div&gt;
+	<pre><code>&lt;div class=&quot;span-1&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;span-5&quot;&gt;
 &lt;p&gt;(content goes here)&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
-
-</code></pre>
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></pre>
 		</div>
 <div class="clear"></div>
 <h3>Float versus align</h3>
@@ -3226,15 +1947,14 @@ Forgot paragraph tag (not ideal)
 	<li>Do <strong>not</strong> put the rest of the content in a grid cell, like a <code>span-4</code>. Instead, treat it like regular body text. The result is <strong>non-restricted content that fills the available space.</strong></li>
 </ol>
 <h4 class="margin-top-large">Example 1: Regular text flows under the grid cell</h4>
-<div class="span-2 border-span-2 float-right">
+<div class="span-2 float-right">
 	<h3 class="background-light">Box on the right</h3>
 	<p>(content goes here)</p>
 </div>
 <p>This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.</p>
 <div class="clear"></div>
 <p class="color-attention">Source code: Regular text flows under <code>span-2</code> content</p>
-<pre><code>
-&lt;div class=&quot;span-2 border-span-2 float-right&quot;&gt;
+<pre><code>&lt;div class=&quot;span-2 float-right&quot;&gt;
 	&lt;h3 class=&quot;background-light&quot;&gt;Box on the right&lt;/h3&gt;
 	&lt;p&gt;(content goes here)&lt;/p&gt;
 &lt;/div&gt;
@@ -3249,8 +1969,7 @@ Forgot paragraph tag (not ideal)
 <p>This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.</p>
 <div class="clear"></div>
 <p class="color-attention">Source code: Regular text flows under a <code>span-2</code> (to the left side) and <code>span-1</code> content cell (to the right side).</p>
-<pre><code>
-&lt;p&gt;This is placeholder text.&lt;/p&gt;
+<pre><code>&lt;p&gt;This is placeholder text.&lt;/p&gt;
 &lt;div class=&quot;span-2 margin-bottom-medium indent-large&quot;&gt;
 &lt;img src=&quot;a7.jpg&quot; alt=&quot;___&quot; width=&quot;224&quot; height=&quot;168&quot; /&gt; 
 
@@ -3266,7 +1985,7 @@ Forgot paragraph tag (not ideal)
 <p>If you apply an align class to a grid cell, you affect all content within that cell.</p>
 <h4>Example 1: Apply alignment to specific elements</h4>
 <div class="span-1"></div>
-<div class="span-5 border-span-5">
+<div class="span-5">
 			<p>This <code>p</code> tag has no class applied to it, as the default is to align left.</p>
 			<p class="align-right">This <code>p</code> tag has an <code>align-right</code> class applied to it!</p>
 		</div>
@@ -3274,20 +1993,20 @@ Forgot paragraph tag (not ideal)
 <div class="span-1"></div>
 <div class="span-5 margin-bottom-xlarge">
 	<p class="color-attention">Source code: Paragraph text with <code>align-right</code></p>
-	<pre><code>
-&lt;div class=&quot;span-5 border-span-5&quot;&gt;
+	<pre><code>&lt;div class=&quot;span-5&quot;&gt;
+
+
+
 
 &lt;p&gt;Regular paragraph of text.&lt;/p&gt;
 &lt;p class=&quot;align-right&quot;&gt;Right aligned text&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
-
-</code></pre>
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></pre>
 		</div>
 <div class="clear"></div>
 <h4>Example 2: Apply alignment to entire grid cell</h4>
 <div class="span-1"></div>
-<div class="span-5 border-span-5 align-center">
+<div class="span-5 align-center">
 	<p>This <code>&lt;p&gt;</code> is centred because the grid has the <code>align-center</code> applied to it.</p>
 	<table>
 	<caption>
@@ -3311,9 +2030,7 @@ Forgot paragraph tag (not ideal)
 <div class="span-1"></div>
 <div class="span-5 margin-bottom-xlarge">
 	<p class="color-attention">Source code: A grid cell with <code>align-center</code></p>
-	<pre><code>
-
-&lt;div class=&quot;span-5 border-span-5 align-center&quot;&gt;
+	<pre><code>&lt;div class=&quot;span-5 align-center&quot;&gt;
 &lt;p&gt;Regular paragraph of text.&lt;/p&gt;
 &lt;p class=&quot;align-right&quot;&gt;Right aligned text&lt;/p&gt;
 &lt;/div&gt;
@@ -3336,8 +2053,7 @@ Forgot paragraph tag (not ideal)
 
 &lt;/tr&gt;
 &lt;/table&gt;
-&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
-</code></pre>
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code></pre>
 		</div>
 <div class="clear"></div>
 <div class="span-8 module-summary">
@@ -3409,7 +2125,7 @@ Forgot paragraph tag (not ideal)
 		<li>module-summary</li>
 		<li>module-table-contents</li>
 		<li>module-tool</li>
-		<li>module-versatile</li>
+		<li>module</li>
 		<li>module-welcomepage</li>
 		<li>print-span-1</li>
 		<li>print-span-2</li>
@@ -3946,7 +2662,7 @@ Forgot paragraph tag (not ideal)
 	</tr>
 </table>
 <h3 id="lh">Line height <abbr title="Cascading Style Sheet">CSS</abbr></h3>
-<div class="span-2 module-versatile float-right">
+<div class="span-2 module float-right">
 	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
 	<ul>
 	<li><code>line-height-xsmall</code></li>
@@ -4397,7 +3113,7 @@ Forgot paragraph tag (not ideal)
 <h3 id="wrap"><code>wrap-none</code> class</h3>
 <p>This class prevents content from splitting over multiple lines. Use it mainly when writing something such as a date, phone number or mathematical equation, as this ensures they are easy to read. For example: <code class="wrap-none">&lt;span class="wrap-none"&gt;January 1, 2010&lt;/span&gt;</code></p>
 <h3 id="calendar">Calendar <abbr title="Cascading Style Sheet">CSS</abbr> </h3>
-<div class="span-2 module-versatile float-right">
+<div class="span-2 module float-right">
 	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
 	<ul>
 	<li><code>calendar-month</code></li>
@@ -4502,11 +3218,11 @@ Forgot paragraph tag (not ideal)
 <p class="thermometer-0">Donations to date are $0, which is 0% of the target.</p>
 <p>(Uses <code>thermometer-0</code>)</p>
 </div>
-<div class="span-2 margin-bottom-none border-span-2">
+<div class="span-2 margin-bottom-none">
 <p class="thermometer-40">Donations to date are $46,500, which is 38% of the target.</p>
 <p>(Uses <code>thermometer-40</code>)</p>
 </div>
-<div class="span-2 margin-bottom-none border-span-2 background-light">
+<div class="span-2 margin-bottom-none background-light">
 <p class="thermometer-120">Donations to date are $190,512, which is 150% of the target.</p>
 <p>(Uses <code>thermometer-120</code>)</p>
 </div>
@@ -4526,13 +3242,13 @@ Forgot paragraph tag (not ideal)
 	</div>
 </div>
 <div class="clear"></div>
-<h3 id="versatile"><code>module-versatile</code> style</h3>
+<h3 id="versatile"><code>module</code> style</h3>
 <div class="span-6">
-	<p>Use the <code>module-versatile</code> class for <strong>any type of content</strong>. This module is typically located on the right but can be used anywhere. It only works with a <code>span-2</code>.</p>
+	<p>Use the <code>module</code> class for <strong>any type of content</strong>. This module is typically located on the right but can be used anywhere. It only works with a <code>span-2</code>.</p>
 </div>
 <div class="span-2">
 	<p class="color-attention">Example below:</p>
-	<div class="span-2 module-versatile">
+	<div class="span-2 module">
 	<h2>(heading name)</h2>
 	<p>Paragraph of text</p>
 	<p>Image inside a <code>&lt;p&gt;</code> tag <img src="images/a7.jpg" alt="Sunflower image" /></p>
@@ -4713,7 +3429,7 @@ Forgot paragraph tag (not ideal)
 	</div>
 </div>
 <div class="clear"></div>
-<div class="span-6 module-table-contents border-span-6">
+<div class="span-6 module-table-contents">
 	<h2>Table of contents</h2>
 	<ul>
 	<li><a href="#toc">Fake link</a></li>
@@ -4724,7 +3440,7 @@ Forgot paragraph tag (not ideal)
 	</ul>
 </div>
 <div class="clear"></div>
-<div class="span-6 module-table-contents border-span-6">
+<div class="span-6 module-table-contents">
 	<h2>Table of contents</h2>
 	<div class="span-3 row-start">
 	<ul>
@@ -4744,7 +3460,7 @@ Forgot paragraph tag (not ideal)
 	</div>
 </div>
 <div class="clear"></div>
-<div class="span-6 module-table-contents border-span-6">
+<div class="span-6 module-table-contents">
 	<h2>Table of contents</h2>
 	<div class="span-2 row-start">
 	<ul>
@@ -5419,7 +4135,7 @@ Forgot paragraph tag (not ideal)
 		<p class="module-highlight-details">Vancouver, BC &mdash; Wednesday, 23 April 2008</p>
 		<p><img src="images/photo.jpg" width="60" height="60" alt="photo" class="image-actual" />This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. <a href="#">Visit site.</a></p>
 	</div>
-	<div class="span-6 border-span-6 margin-bottom-none module-highlight">
+	<div class="span-6 margin-bottom-none module-highlight">
 		<h2><a href="#">Article Heading</a></h2>
 		<p class="module-highlight-details">Vancouver, BC &mdash; Wednesday, 23 April 2008</p>
 		<p><img src="images/photo.jpg" width="62" height="62" alt="photo" class="image-actual" />This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. <a href="#">Visit site.</a></p>
@@ -5438,7 +4154,7 @@ Forgot paragraph tag (not ideal)
 	<p class="module-highlight-details">Vancouver, BC &mdash; Wednesday, 23 April 2008</p>
 	<p><img src="images/photo.jpg" width="62" height="62" alt="photo" class="image-actual" />This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. <a href="#">Visit site.</a></p>
 	</div>
-	<div class="span-3 border-span-3 module-highlight">
+	<div class="span-3 module-highlight">
 	<h2><a href="#">Article Heading</a></h2>
 	<p class="module-highlight-details">Vancouver, BC &mdash; Wednesday, 23 April 2008</p>
 	<p><img src="images/photo.jpg" width="62" height="62" alt="photo" class="image-actual" />This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. <a href="#">Visit site.</a></p>
@@ -5467,10 +4183,7 @@ Forgot paragraph tag (not ideal)
 	<li><code>print-span-7</code></li>
 	<li><code>print-span-8</code></li>
 </ul>
-<pre><code>
-&lt;div class=&quot;span-5 border-span-5 print-span-5&quot;&gt;
-
-</code></pre>
+<pre><code>&lt;div class=&quot;span-5 print-span-5&quot;&gt;</code></pre>
 <p>Adding these classes have no affect on the Web page itself, but will <strong>roughly</strong> keep the grid layout when the page is printed. There is rarely a need for this, but may be handy for directives or policy documents.</p>
 <div class="span-8 module-note">
 	<p><strong>Note:</strong> These classes will not work on grid parent/child relationships. They are for simple grid designs.</p>

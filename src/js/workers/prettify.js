@@ -38,7 +38,7 @@
 
 				// Class-based overrides - use undefined where no override of defaults or settings.js should occur
 				overrides = {
-					linenums : elm.hasClass("linenum") ? true : undefined,
+					linenums : elm.hasClass("linenums") ? true : undefined,
 					allpre : elm.hasClass("all-pre") ? true : undefined
 				};
 
