@@ -106,7 +106,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<ol>
 	<li>Apply <code>class="wet-boew-prettify"</code> to an element on the page to load the component (once per page).</li>
 	<li>Apply <code>class="prettyprint"</code> to a <code>pre</code> or <code>code</code> element to apply syntax highlighting. Alternatively use <code>class="wet-boew-prettify all-pre"</code> to apply syntax highlighting to all <code>pre</code> elements on the page.</li>
-	<li>Apply <code>class="linenums"</code> to a <code>pre</code> or <code>code</code> element to add lign numbers. Alternatively use <code>class="wet-boew-prettify linenums"</code> to all applicable <code>pre</code> elements. Specify the starting number using <code>class="linenums:#"</code>.</li>
+	<li>Apply <code>class="linenums"</code> to a <code>pre</code> or <code>code</code> element to add lign numbers. Alternatively use <code>class="wet-boew-prettify linenums"</code> to all applicable <code>pre</code> elements. Specify the starting number by adding <code>linenums:#</code> before <code>linenums</code>.</li>
 	<li>Add extra language support by using <code>class="wet-boew-prettify lang-*"</code> (e.g., <code>class="wet-boew-prettify lang-css"</code>) and applying <code>class="lang-*"</code> to each applicable <code>pre</code> or <code>code</code> element.</li> 
 	</ol>
 </section>
@@ -149,8 +149,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 &lt;/form&gt;</code></pre>
 	</section>
 	<section>
-		<h3>CSS (uses linenums:15)</h3>
-		<pre class="prettyprint lang-css linenums:15"><code>#gcwu-date-mod dt,#gcwu-date-mod dd{
+		<h3>CSS (uses linenums)</h3>
+		<pre class="prettyprint lang-css linenums"><code>#gcwu-date-mod dt,#gcwu-date-mod dd{
 	float:left;
 }
 
@@ -176,8 +176,8 @@ div#gcwu-headlines ul li,div#gcwu-headlines ul{
 }</code></pre>
 	</section>
 	<section>
-		<h3>JavaScript</h3>
-		<pre class="prettyprint"><code>_pe.fn.prettify = {
+		<h3>JavaScript (uses linenums:15 and linenums)</h3>
+		<pre class="prettyprint linenums:15 linenums"><code>_pe.fn.prettify = {
 	type: 'plugin',
 	depends : ['prettify'],
 	executed : false,
