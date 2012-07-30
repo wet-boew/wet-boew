@@ -214,7 +214,7 @@
 						if (this.getSeeking()) {
 							timeline.attr("value", p);
 						} else {
-							timeline.animate({"value": p}, 150, "linear");
+							timeline.animate({"value": p}, 200, "swing");
 						}
 						break;
 					case "progress":
