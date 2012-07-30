@@ -57,30 +57,25 @@ h6{
 #gcwu-bc{
 	min-height:inherit;
 	height:auto;
-}
-
-#gcwu-bc ol{
-	width:100%;
-	margin:0;
-	padding:0;
-}
-
-#gcwu-bc li{
-	background:none;
-	padding:0;
-}
-
-#gcwu-bc a{
-	padding-left:0;
-	background:none;
-}
-
-#gcwu-bc li:before{
-	content:" > ";
-}
-
-#gcwu-bc li:first-child:before{
-	content:"";
+	ol{
+		width:100%;
+		margin:0;
+		padding:0;
+	}
+	li{
+		background:none;
+		padding:0;
+	}
+	li:before{
+		content:" > ";
+	}
+	li:first-child:before{
+		content:"";
+	}
+	a{
+		padding-left:0;
+		background:none;
+	}
 }
 
 #wb-sec,#wb-sup,#gcwu-gcnb ul,#gcwu-srchbx,#gcwu-psnb,#wb-foot{

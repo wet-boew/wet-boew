@@ -21,7 +21,8 @@
 			if (pe.svg) {
 				icon = _pe.fn.multimedia.icons.clone();
 				icon.children(':not(g[id="' + id + '"])').remove();
-				return icon;
+				icon.prepend("<title>" + alt + "</title>");
+				return icon.attr({"role" : "img", "aria-label" : alt});
 			}
 
 			return $('<img src="' + _pe.add.liblocation + 'images/multimedia/' + id + '.png" alt="' + alt + '" height="20" width="20" />');
@@ -32,14 +33,15 @@
 				canPlay = false,
 				media = elm.children("audio, video").eq(0),
 				media_id,
+				width = media.is("video") ? media.attr("width") : "0",
+				height = media.is("video") ? media.attr("height") : "0",
+				captions,
 				flash = true,
 				$fbObject,
 				fbVideoType = "video/mp4",
 				fbAudioType = "audio/mpeg", //MP3
 				fbBin = _pe.add.liblocation + "bin/multimedia.swf",
 				fbClass,
-				fbWidth,
-				fbHeight,
 				fbVars,
 				evtmgr;
 
@@ -57,6 +59,11 @@
 				media.attr("id", media_id);
 			}
 
+			//Extract the captions file
+			if (media.children('track[kind="captions"]')) {
+				captions = media.children('track[kind="captions"]').attr("src");
+			}
+
 			if (media.get(0).currentSrc !== "" && media.get(0).currentSrc !== undefined) {
 				canPlay = true;
 			} else {
@@ -65,42 +72,43 @@
 				fbVars = "id=" + elm.attr("id");
 				if (flash && media.is("video") && media.find("source[type=\"" + fbVideoType + "\"]").length > 0) {
 					fbClass = "video";
-					fbWidth = media.width() > 0 ? media.width() : media.attr("width");
-					fbHeight = media.height() > 0 ? media.height() : media.attr("height");
 					fbVars +=  "&height=" + media.height() + "&width=" + media.width() + "&posterimg=" + escape(_pe.url(media.attr("poster")).source) + "&media=" + escape(_pe.url(media.find("source[type=\"" + fbVideoType + "\"]").attr("src")).source);
 					canPlay = true;
 				} else if (flash && media.is("audio") && media.find("source[type=\"" + fbAudioType + "\"]").length > 0) {
 					fbClass = "audio";
-					fbWidth = 0;
-					fbHeight = 0;
 					fbVars += "&media=" + _pe.url(media.find("source[type=\"" + fbAudioType + "\"]").attr("src")).source;
 					canPlay = true;
 				} else {
-					//TODO: Display when no HTML5 video or Flash
 					canPlay = false;
 				}
 				//Can play using a fallback
 				if (canPlay) {
-					$fbObject = $("<object play=\"\" id=\"" + media_id + "\" width=\"" + fbWidth + "\" height=\"" + fbHeight + "\" class=\"" + fbClass + "\" type=\"application/x-shockwave-flash\" data=\"" + fbBin + "\" tabindex=\"-1\"><param name=\"movie\" value=\"" + fbBin + "\"/><param name=\"flashvars\" value=\"" + fbVars + "\"/><param name=\"allowScriptAccess\" value=\"always\"/><param name=\"bgcolor\" value=\"#000000\"/><param name=\"wmode\" value=\"opaque\"/>");
+					$fbObject = $("<object play=\"\" id=\"" + media_id + "\" width=\"" + width + "\" height=\"" + height + "\" class=\"" + fbClass + "\" type=\"application/x-shockwave-flash\" data=\"" + fbBin + "\" tabindex=\"-1\"><param name=\"movie\" value=\"" + fbBin + "\"/><param name=\"flashvars\" value=\"" + fbVars + "\"/><param name=\"allowScriptAccess\" value=\"always\"/><param name=\"bgcolor\" value=\"#000000\"/><param name=\"wmode\" value=\"opaque\"/>");
 					media.before($fbObject);
 					media.remove();
 					media = $fbObject;
 				} else {
-					media.before("<img src=\"" + media.attr("poster") + "\" width=\"" + fbWidth + "\" height=\"" + fbHeight + "\" alt=\"" + media.attr("title") + "\"/>");
+					media.before("<img src=\"" + media.attr("poster") + "\" width=\"" + width + "\" height=\"" + height + "\" alt=\"" + media.attr("title") + "\"/>");
 					media.remove();
 				}
 			}
 
 			if (canPlay) {
+				evtmgr = media.is("object") ? media.children(":first-child") : media;
+
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0)}, _pe.fn.multimedia._intf);
 
-				media.after(_pe.fn.multimedia._get_ui(media_id).width((media.width() > 0 ? media.width() : media.attr("width"))));
-
+				media.after(_pe.fn.multimedia._get_ui(media_id));
 				//Scale the UI when the video scales
-				$(window).bind("resize", function () {
-					media.next().width(media.width());
+				$(window).on("resize", {"media" : media, width : width, height : height}, function (e) {
+					if (e.data.media.width() > 0) {
+						e.data.media.height(e.data.media.width() * e.data.height / e.data.width);
+					} else {
+						e.data.media.attr("height", e.data.media.parent().width() * e.data.height / e.data.width);
+					}
 				});
+				$(window).trigger("resize");
 
 				//Map UI mouse events
 				elm.on("click", function (e) {
@@ -173,7 +181,6 @@
 				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
-				evtmgr = media.is("object") ? media.children(":first-child") : media;
 				evtmgr.on("loadeddata progress timeupdate seeked canplay play volumechange pause ended captionsloaded captionsloadfailed captionsshown captionshidden", $.proxy(function (e) {
 					var $w = $(this),
 						p,
@@ -213,21 +220,32 @@
 						if (this.getSeeking()) {
 							timeline.attr("value", p);
 						} else {
-							timeline.animate({"value": p}, 150, "linear");
+							timeline.animate({"value": p}, 200, "swing");
+						}
+						//Update captions
+						if ($.data(e.target, "captions") !== undefined) {
+							_pe.fn.multimedia._update_captions($w.find(".wet-boew-multimedia-captionsarea"), this.getCurrentTime(), $.data(e.target, "captions"));
 						}
 						break;
 					case "progress":
 						/*if (this.getBuffered() > 1){console.log(Math.round(this.getBuffered()/ this.getDuration() * 1000)/10);}*/
 						break;
 					case "captionsloaded":
-						$(e.target).captions($w.find(".wet-boew-multimedia-captionsarea"), e.captions);
+						//Store the captions
+						$.data(e.target, "captions", e.captions);
 						break;
 					case "captionsloadfailed":
-						$w.find(".wet-boew-mediaplayer-captionsarea").empty().append("<p>" + _pe.dict.captionserror + "</p>");
+						$w.find(".wet-boew-mediaplayer-captionsarea").empty().append("<p>" + _pe.dict.get("%captionserror") + "</p>");
 						break;
 					}
 				}, elm.get(0)));
+
+				if (captions !== undefined) {
+					media.after($("<div class=\"wet-boew-multimedia-captionsarea\"/>").hide());
+					_pe.fn.multimedia._load_captions(media, evtmgr, captions);
+				}
 			}
+
 
 			return elm;
 		}, // end of exec
@@ -327,15 +345,15 @@
 			},
 
 			getCaptionsVisible: function () {
-				return $(this).parent().find(".wet-boew-mediaplayer-captionsarea").is(":visible");
+				return $(this).find(".wet-boew-multimedia-captionsarea").is(":visible");
 			},
 
 			setCaptionsVisible : function (v) {
 				if (v) {
-					$(this).parent().find(".wet-boew-mediaplayer-captionsarea").show();
+					$(this).find(".wet-boew-multimedia-captionsarea").show();
 					$(this.object).trigger("captionsshown");
 				} else {
-					$(this).parent().find(".wet-boew-mediaplayer-captionsarea").hide();
+					$(this).find(".wet-boew-multimedia-captionsarea").hide();
 					$(this.object).trigger("captionshidden");
 				}
 			},
@@ -354,6 +372,177 @@
 
 			setVolume : function (v) {
 				if (typeof this.object.volume !== "function") { this.object.volume = v; } else { this.object.setVolume(v); }
+			}
+		},
+
+		_load_captions : function (media, evtmgr, src) {
+			var parse_time,
+				parse_html,
+				parse_xml,
+				load_captions_internal,
+				load_captions_external,
+				curUrl,
+				srcUrl,
+				c;
+
+			/*-------------------------------------------*/
+			/* Caption parsing, can be moved to a web service */
+			parse_time = function (string) {
+				var parts,
+					s = 0,
+					p,
+					v;
+
+				if (string !== undefined) {
+					if (string.substring(string.length - 1) === "s") {
+						//offset-time
+						return parseFloat(string.substring(0, string.length - 1));
+					} else {
+						//clock time
+						parts = string.split(":").reverse();
+						for (p = 0; p < parts.length; p += 1) {
+							v = (p === 0) ? parseFloat(parts[p]) : parseInt(parts[p], 10);
+							s += v * Math.pow(60, p);
+						}
+						return s;
+					}
+				}
+				return -1;
+			};
+
+			parse_html = function (content) {
+				var s = ".wet-boew-tt",
+					te = content.find(s),
+					captions = [];
+
+				te.each(function () {
+					var e = $(this).clone(),
+						begin = -1,
+						end = -1,
+						c,
+						json;
+					e.find(s).detach();
+
+					if (e.attr("data-begin") !== undefined) {
+						//HTML5 captions (seperate attributes)
+						begin = parse_time(e.attr("data-begin"));
+						end = e.attr("data-end") !== undefined ? parse_time(e.attr("data-end")) : parse_time(e.attr("data-dur")) + begin;
+					} else {
+						if (e.attr("data")) {
+							//HTML5 captions JSON in data attribute
+							json = e.attr("data");
+						} else {
+							//XHTML cations (inside the class attribute)
+							c = e.attr("class");
+							json = c.substring(c.indexOf("{"));
+						}
+
+						//Sanitze the JSON
+						json = json.replace(/(begin|dur|end)/gi, "\"$1\"").replace(/'/g, "\"");
+						json = $.parseJSON(json);
+
+						begin = parse_time(json.begin);
+						end = json.end !== undefined ? parse_time(json.end) : parse_time(json.dur) + begin;
+
+					}
+					captions[captions.length] = {
+						text : e.html(),
+						begin : begin,
+						end : end
+					};
+				});
+				return captions;
+			};
+
+			parse_xml = function (content) {
+				var s = "[begin]",
+					te = content.find(s),
+					captions = [];
+
+				te.each(function () {
+					var e = $(this).clone(),
+						begin = -1,
+						end = -1;
+
+					e.find(s).detach();
+					begin = parse_time(e.attr("begin"));
+					end = e.attr("end") !== undefined ? parse_time(e.attr("end")) : parse_time(e.attr("dur")) + begin;
+					captions[captions.length] = {
+						text : e.html(),
+						begin : begin,
+						end : end
+					};
+				});
+				return captions;
+			};
+			/*-------------------------------------------*/
+
+			load_captions_internal = function (obj) {
+				var eventObj = {
+					type : "captionsloaded",
+					captions : parse_html(obj)
+				};
+				evtmgr.trigger(eventObj);
+			};
+
+			load_captions_external = function (url) {
+				$.ajax({
+					url : url,
+					context : evtmgr,
+					crossDomain : true,
+					dataType : "html",
+					success : function (data, status, response) {
+						var eventObj = {type: "captionsloaded"};
+						if (data.indexOf("<html") > -1) {
+							eventObj.captions = parse_html($(data));
+						} else {
+							eventObj.captions = parse_xml($(data));
+						}
+						$(this).trigger(eventObj);
+					},
+					error : function (reponse, textStatus, errorThrown) {
+						$(this).trigger({type: "captionsloadfailed", error: errorThrown});
+					}
+				});
+			};
+
+			if (src !== undefined) {
+				curUrl = _pe.url(window.location);
+				srcUrl = _pe.url(src);
+
+				if (srcUrl.removehash() === curUrl.source) {
+					//Same page HTML captions
+					c = $("#" + srcUrl.hash);
+					if (c.length > 0) {
+						load_captions_internal(c);
+						return;
+					}
+
+					evtmgr.trigger({
+						type: "captionsloadfailed",
+						error: new Error("Object with id '" + srcUrl.anchor + "' not found")
+					});
+					return;
+				} else {
+					//External HTML or XML captions
+					load_captions_external(srcUrl.source);
+					return;
+				}
+			}
+			evtmgr.trigger({
+				type: "captionsloadfailed",
+				error: new Error("Caption source is missing")
+			});
+		},
+
+		_update_captions : function (area, seconds, captions) {
+			var c, caption;
+			area.empty();
+			for (c = 0; c < captions.length; c += 1) {
+				caption = captions[c];
+				if (seconds >= caption.begin && seconds <= caption.end) {
+					area.append($('<div>' + caption.text + '</div>'));
+				}
 			}
 		}
 	};

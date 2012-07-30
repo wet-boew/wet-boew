@@ -15,13 +15,14 @@ body{
 	background-image:url(../images/content-deco-large.gif);
 }
 
-#wb-body-sec-sup #wb-main{
-	width:600px;
-	left:300px;
-}
-
-#wb-body-sec-sup #wb-main-in{
-	width:600px;
+#wb-body-sec-sup {
+	#wb-main{
+		width:600px;
+		left:300px;
+	}
+	#wb-main-in{
+		width:600px;
+	}
 }
 
 #wb-sec{
@@ -37,12 +38,13 @@ body{
 	background-image:url(../images/footer-deco-large.gif);
 }
 
-#gcwu-gcft li{
-	margin:12px 0 13px 88px;
-}
-
-#gcwu-gcft li:first-child{
-	margin-left:10px;
+#gcwu-gcft {
+	li{
+		margin:12px 0 13px 88px;
+	}
+	li:first-child{
+		margin-left:10px;
+	}
 }
 
 li#gcwu-gcft-ca{

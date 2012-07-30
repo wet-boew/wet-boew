@@ -10,16 +10,18 @@
 	width:768px;
 	margin:0 auto;
 }
-#gcwu-intranetnb ul{
-	padding:0 5px !important;
-	background:none;
-}
-#gcwu-intranetnb ul li{
-	padding-bottom:8px;
-	background:none !important;
-}
 #gcwu-gcnb{
 	background-image:none !important;
+}
+#gcwu-intranetnb {
+	ul{
+		padding:0 5px !important;
+		background:none;
+	}
+	li{
+		padding-bottom:8px;
+		background:none !important;
+	}
 }
 #gcwu-intranetnb-in{
 	background-image:none !important;
