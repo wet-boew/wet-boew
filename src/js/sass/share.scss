@@ -14,6 +14,16 @@ div.wet-boew-share {
 	float:right;
 }
 
+#wb-main {
+	.wet-boew-share {
+		h2, h3 {
+			font-size: 1em;
+			margin: 0;
+			font-weight: normal;
+		}
+	}
+}
+
 .wet-boew-share {
 	text-align:right;
 	.bookmark_popup_text{

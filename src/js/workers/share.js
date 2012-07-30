@@ -28,6 +28,7 @@
 				compact: false, // True if a compact presentation should be used, false for full
 				hint: pe.dic.get('%share-text') + pe.dic.get('%share-hint'), // Popup hint for links, {s} is replaced by display name
 				popup: true, // True to have it popup on demand, false to show always
+				popupTag: 'h2', // Parent tag for the popup link (should be either h2 or h3)
 				popupText: pe.dic.get('%share-text'), // Text for the popup trigger
 				hideText: (pe.dic.get('%hide') + " - "), // Text to prepend to the popup trigger when popup is open
 				addFavorite: false,  // True to add a 'add to favourites' link, false for none
@@ -70,8 +71,19 @@
 			elm.bookmark(opts);
 			if (opts.popup && pe.cssenabled) {
 				elm.attr('role', 'application');
+				if (opts.popupTag.substring(0, 1) === 'h') { // If a heading element is used for the popup tag, then wrap the contents in a section element
+					elm.wrapInner('<section />');
+				}
 				$popup = elm.find('.bookmark_popup').attr('id', 'bookmark_popup').attr('aria-hidden', 'true').attr('role', 'menu').prepend('<p class="popup_title">' + opts.popupText + '</p>');
-				$popupLinks = $popup.find('li').attr('role', 'presentation').find('a').attr('role', 'menuitem');
+				$popupLinks = $popup.find('li').attr('role', 'presentation').find('a').attr('role', 'menuitem').each(function () {
+					// TODO: Should work with authot to fix in bookmark.js rather than maintain this workaround (fix needed otherwise some screen readers read the link twice)
+					var $this = $(this),
+						$span = $this.children('span');
+					if ($span.length > 0) {
+						$this.attr('title', $span.attr('title'));
+						$span.removeAttr('title');
+					}
+				});
 
 				$popup.on("click vclick", function (e) {
 					if (e.stopPropagation) {
@@ -80,22 +92,21 @@
 						e.cancelBubble = true;
 					}
 				});
-				$popupText = elm.find('.bookmark_popup_text').off('click vclick keydown');
+				$popupText = elm.find('.bookmark_popup_text').off('click vclick keydown').wrap('<' + opts.popupTag + ' />');
 				$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').attr('aria-pressed', 'false').on("click vclick keydown", function (e) {
-					if (e.type === "keydown" && (!(e.ctrlKey || e.altKey || e.metaKey))) {
-						switch (e.keyCode) {
-						case 13: // enter key
-							$popup.trigger("open");
-							return false;
-						case 32: // spacebar
-							$popup.trigger("open");
-							return false;
-						case 38: // up arrow
-							$popup.trigger("open");
-							return false;
-						case 40: // down arrow
-							$popup.trigger("open");
-							return false;
+					if (e.type === "keydown") {
+						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
+							if (e.keyCode === 13 || e.keyCode === 32) { // enter or space
+								e.preventDefault();
+								if ($popup.attr('aria-hidden') === 'true') {
+									$popup.trigger("open");
+								} else {
+									$popup.trigger("close");
+								}
+							} else if (e.keyCode === 38 || e.keyCode === 40) { // up or down arrow
+								e.preventDefault();
+								$popup.trigger("open");
+							}
 						}
 					} else {
 						if ($popup.attr('aria-hidden') === 'true') {
@@ -218,7 +229,6 @@
 				});
 
 				$(document).on("click vclick touchstart", function (e) {
-					var target = $(e.target);
 					if ($popup.attr('aria-hidden') === 'false') {
 						$popup.trigger("close");
 					}
