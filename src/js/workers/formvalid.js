@@ -72,7 +72,7 @@
 
 			// Special handling for mobile
 			if (pe.mobile) {
-				form.attr('data-ajax', 'false').find('input:checkbox').closest('fieldset').attr('data-role', 'controlgroup');
+				form.attr('data-ajax', 'false').find('input[type="checkbox"]').closest('fieldset').attr('data-role', 'controlgroup');
 			}
 
 			// The jQuery validation plug-in in action

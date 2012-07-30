@@ -110,6 +110,7 @@
 				"disable": "Masquer le sous-titrage",
 				"enable": "Afficher le sous-titrage"
 			},
+			"%captionserror" : "Erreur dans le chargement des sous-titres",
 			"%audio-description": {
 				"enable": "Activer l'audiodescription",
 				"disable": "Désactiver l'audiodescription"
@@ -137,7 +138,7 @@
 			"%datepicker-hide" : "Masquer le calendrier",
 			"%datepicker-show" : "Sélectionner une date à partir d'un calendrier pour le champ: ",
 			"%datepicker-selected" : "Sélectionné",
- 			/* Calendar */
+			/* Calendar */
 			"%calendar-weekDayNames" : ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
 			"%calendar-monthNames" : ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
 			"%calendar-currentDay" : " (Jour courrant)",

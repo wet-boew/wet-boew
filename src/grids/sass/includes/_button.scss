@@ -1,0 +1,148 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+@mixin buttons {
+
+	//.button, button, #cn-search-submit, 
+	//input[type="button"], button[type="button"],
+	//input[type="reset"], button[type="reset"],
+	//input[type="submit"], button[type="submit"]
+	.button, #cn-search-submit
+	{
+		@include button($light);
+		
+		&:hover {
+			background-position: 0 -15px;
+			text-decoration: none;
+			@include single-transition(background-position, 0.1s, linear);
+		}
+		
+		&:disabled, &.button-disabled {
+			background: none;
+			box-shadow: none;
+			cursor: default;
+			font-style: italic;
+			text-shadow: none;
+		}
+	}
+	
+	/* added for Firefox, Chrome, Safari to default submit buttons to blue */
+	input[type="button"] { @include color-button($accent); } 
+	
+	/* without line 29 the buttons would not be coloured in IE, move to fixes? */
+	input, button, a {
+		&.button-accent { @include color-button($accent); }
+		&.button-dark { @include color-button($dark); }
+		&.button-info { @include color-button($info); }
+		&.button-confirm { @include color-button($summary); }
+		&.button-alert { @include color-button($alert); }
+		&.button-attention { @include color-button($attention); }
+		&.button-none {
+			&, &:hover {
+				background: none;
+				border-color: transparent !important;
+				box-shadow: none;
+				outline-color: transparent;
+				text-decoration: underline;
+				text-shadow: none;
+			}
+			&:hover {
+				color: $attention !important;
+			}
+			
+			&:disabled, &.button-disabled {
+				text-decoration: none !important;
+				&:hover {
+					color: $dark !important;
+				}
+			}
+		}
+	}
+	
+	.button-small { @include button-size(2px 6px, 80%, 14px); }
+	.button-large { @include button-size(7px 12px, 105%, 16px); }
+	.button-xlarge { @include button-size(9px 14px, 120%, 18px); }
+
+	.button-group {
+		position: relative;
+		*zoom: 1;
+		
+		&:before, &:after {
+			display: table;
+			content: "";
+		}
+		&:after { clear: both; }
+		
+		> .button {
+			position: relative;
+			float: left;
+			margin-left: -1px;
+			@include border-radius(0);
+			
+			&:first-child { @include border-left-radius(4px); }
+			&:last-child { @include border-right-radius(4px); }
+			&:hover, &:focus, &:active, &.active { z-index: 2; }
+		}
+	}
+	
+	.button-toolbar {
+		
+		margin-bottom: $spacing-medium;
+		margin-top: $spacing-medium;
+	
+		.button-group {
+			display: inline-block;
+			*display: inline;
+			*zoom: 1;
+		}
+	}
+	
+}
+ 
+@mixin button($color) {
+	background-repeat: repeat-x;
+	border-width: 1px;
+	border-style: solid;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+	cursor: pointer;
+	font-family: $sans-serif;
+	line-height: 16px;
+	padding: 4px 10px;
+	text-align: center;
+	text-decoration: none;
+	@include border-radius;
+	@include inline-block;
+	@include color-button($color);
+}
+
+@mixin color-button($color) {
+	
+	background-color: $color;
+	border-color: darken($color, 15%) darken($color, 15%) darken($color, 20%);
+	
+	$text: contrast-color($color, $dark, $white, 55%);
+	color: $text !important;
+	text-shadow: contrast-color($text, $dark, $white, 50%) 0 1px 1px;
+	
+	@include background-image(
+		linear-gradient(
+			$color,
+			darken($color, 10%)
+		)
+	);
+	&:hover, &:focus { 
+		background-color: darken($color, 10%);
+	}
+	&:disabled, &.button-disabled {
+		background-color: $color;
+		border-color: darken($color, 5%);
+	}
+}
+
+@mixin button-size($padding, $size, $height) {
+	font-size: $size;
+	line-height: $height;
+	padding: $padding;
+}

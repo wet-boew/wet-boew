@@ -63,7 +63,7 @@
 		 * @memberof pe
 		 * @type {number} - IE major number if browser is IE, 0 otherwise
 		 */
-		ie: $.browser.msie ? $.browser.version : 0,
+		ie: (/(MSIE) ([\w.]+)/.exec(navigator.userAgent) || [])[2] || "0",
 		/**
 		 * A private function for initializing for pe.
 		 * @function
@@ -71,13 +71,20 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false;
-
-			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
+			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false, disable;
 
 			// Get the query parameters from the URL
 			pe.urlquery = pe.url(document.location).params;
+
+			// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string
+			disable = pe.urlquery.pedisable;
+			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
+				$('html').addClass('pe-disable');
+				return false;
+			}
+
+			// Identify whether or not the device supports JavaScript and has a touchscreen
+			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
 
 			hlinks = pe.main.find("a[href*='#']");
 			hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes

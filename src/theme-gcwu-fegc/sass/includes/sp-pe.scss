@@ -57,35 +57,36 @@ h2 {
 	min-width: 8em;
 }
 
-#gcwu-ef-lang li a, #gcwu-other-lang li a{
-	-webkit-appearance: none;
-	background: #ccc url(../images/sp-pe-button.gif) 0 0 repeat-x;
-	border-bottom:1px solid #999;
-	border-right: 1px solid #999;
-	border-top: 1px solid #fff;
-	border-left: 1px solid #fff;
-	color: #333;
-	padding: 10px 0;
-	border-radius:2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius:2px;
-	text-shadow: 0 1px 0 #eee;
-	font-weight:700;
-	box-shadow:none;
-	-moz-box-shadow:none;
-	-webkit-box-shadow:none;
-	display:block;
-	font-size: 120%;
-	text-decoration: none;
-}
-
-#gcwu-ef-lang li a:hover, #gcwu-other-lang li a:hover,#gcwu-ef-lang li a:focus, #gcwu-other-lang li a:focus{
-	background: #ddd url(../images/sp-pe-button-focus.gif) 0 0 repeat-x;
-	text-shadow: 0 1px 0 #ddd;
-	box-shadow:none;
-	-moz-box-shadow:none;
-	-webkit-box-shadow:none;
-	border: 1px solid #999;
+#gcwu-ef-lang li, #gcwu-other-lang li {
+	a{
+		-webkit-appearance: none;
+		background: #ccc url(../images/sp-pe-button.gif) 0 0 repeat-x;
+		border-bottom:1px solid #999;
+		border-right: 1px solid #999;
+		border-top: 1px solid #fff;
+		border-left: 1px solid #fff;
+		color: #333;
+		padding: 10px 0;
+		border-radius:2px;
+		-moz-border-radius: 2px;
+		-webkit-border-radius:2px;
+		text-shadow: 0 1px 0 #eee;
+		font-weight:700;
+		box-shadow:none;
+		-moz-box-shadow:none;
+		-webkit-box-shadow:none;
+		display:block;
+		font-size: 120%;
+		text-decoration: none;
+	}
+	a:hover, a:focus, a:active{
+		background: #ddd url(../images/sp-pe-button-focus.gif) 0 0 repeat-x;
+		text-shadow: 0 1px 0 #ddd;
+		box-shadow:none;
+		-moz-box-shadow:none;
+		-webkit-box-shadow:none;
+		border: 1px solid #999;
+	}
 }
 
 #gcwu-ef-lang li a:active{
@@ -108,23 +109,19 @@ h2 {
 	margin: 0;
 	padding-top: 4px;
 	padding-left: 0;
-}
-
-#gcwu-ef-tc li, #gcwu-other-tc li {
-	float: left;
-	padding: 0;
-}
-
-#gcwu-ef-tc div, #gcwu-other-tc div {
-	min-width: 8em;
-}
-
-#gcwu-ef-tc li a, #gcwu-other-tc li a {
-	display: block;
-	text-decoration: none;
-	font-size: 0.9em;
-}
-
-#gcwu-ef-tc li a:hover, #gcwu-ef-tc li a:focus, #gcwu-ef-tc li a:active, #gcwu-other-tc li a:hover, #gcwu-other-tc li a:focus, #gcwu-other-tc li a:active {
-	text-decoration: underline;
+	li {
+		float: left;
+		padding: 0;
+		a {
+			display: block;
+			text-decoration: none;
+			font-size: 0.9em;
+		}
+		a:hover, a:focus, a:active {
+			text-decoration: underline;
+		}
+	}
+	div {
+		min-width: 8em;
+	}
 }

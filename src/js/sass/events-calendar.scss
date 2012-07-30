@@ -23,18 +23,20 @@ ul.ev-details, ul.ev-details a{
     background-color:#FFF;
 }
 
-div.cal-days ol.cal-day-list ul.ev-details li{
-    border:0;
-    width:100%;
-    list-style-type:none;   
-}
-
-div.cal-days ol.cal-day-list ul.ev-details li a, div.cal-days ol.cal-day-list ul.ev-details li a:link{
-    color:#000;
-}
-
-div.cal-days ol.cal-day-list ul.ev-details li a:hover, div.cal-days ol.cal-day-list ul.ev-details li a:focus, div.cal-days ol.cal-day-list ul.ev-details li a:active{
-    color:#FFF;
+div.cal-days {
+	ol.cal-day-list ul.ev-details li{
+		border:0;
+		width:100%;
+		list-style-type:none;   
+	}
+	ol.cal-day-list ul.ev-details li {
+		a, a:link{
+			color:#000;
+		}
+		a:hover, a:focus, a:active{
+			color:#FFF;
+		}
+	}
 }
 
 /* #wb-main {position:relative;z-index:1000;} */

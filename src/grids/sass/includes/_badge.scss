@@ -1,0 +1,53 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+@mixin badges {
+
+	.badge-new, .badge-update, .badge-intro {
+		padding: ($spacing-small - 2) $spacing-small + 1;
+		@include badge;
+	}
+	
+	.badge-new, .badge-update { font-size: $font-small; }
+	
+	.badge-new {
+		@include colorize-base($attention);
+		@include colorize($attention, false, $border:"border");
+	}
+	
+	.badge-update {
+		@include colorize-base($light);
+		@include colorize($light, false, $border:"border");
+	}
+	
+	.badge-intro {
+		display: inline-block;
+		margin-right: $margin-medium / 2;
+		margin-top: -($margin-medium / 2);
+		padding: ($margin-medium / 2) $margin-medium;
+		position: relative;
+
+		@include colorize-base($medium);
+		@include colorize($medium);
+		
+		a & {
+			float: left;
+			text-decoration: underline;
+		}
+	}
+
+	#{headings(all)} {
+		.badge-intro { font-size: $font-small; line-height: 1em; }
+	}
+
+}
+
+@mixin badge {
+
+	font-size: 100%;
+	@include border-radius(100px);
+
+}
+ 
