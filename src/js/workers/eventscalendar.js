@@ -87,7 +87,7 @@
 						*   - since there maybe some dates that are capable of spanning over months we need to identify them
 						*     the process is see how many time nodes are in the event. 2 nodes will trigger a span
 						*/
-						if (tCollection.size() > 1) {
+						if (tCollection.length > 1) {
 							// this is a spanning event
 							strDate1 = ($(tCollection[0]).get(0).nodeName.toLowerCase() === 'time') ? $(tCollection[0]).attr("datetime").substr(0, 10).split("-") :  $(tCollection[0]).attr("class").match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[1].substr(0, 10).split("-");
 							strDate2 = ($(tCollection[1]).get(0).nodeName.toLowerCase() === 'time') ? $(tCollection[1]).attr("datetime").substr(0, 10).split("-") :  $(tCollection[1]).attr("class").match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[1].substr(0, 10).split("-");
@@ -112,7 +112,7 @@
 								events.iCount += 1;
 							}
 
-						} else if (tCollection.size() === 1) {
+						} else if (tCollection.length === 1) {
 							// this is a single day event
 							strDate = ($(tCollection[0]).get(0).nodeName.toLowerCase() === 'time') ? $(tCollection[0]).attr("datetime").substr(0, 10).split("-") : $(tCollection[0]).attr("class").match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[1].substr(0, 10).split("-");
 
@@ -182,7 +182,7 @@
 						content = day.children("div").html();
 
 						// lets see if the cell is empty is so lets create the cell
-						if (day.children("a").size() < 1) {
+						if (day.children("a").length < 1) {
 							day.empty();
 							link = $('<a href="#ev-' + day.attr("id") + '" class="calEvent">' + content + '</a>');
 							day.append(link);

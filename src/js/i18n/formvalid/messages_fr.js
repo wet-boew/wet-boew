@@ -1,5 +1,5 @@
 /*
- * Translated default and additional messages for the jQuery validation plugin.
+ * Translated default messages for the jQuery validation plugin.
  * Locale: FR
  */
 jQuery.extend(jQuery.validator.messages, {

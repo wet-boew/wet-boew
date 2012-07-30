@@ -138,8 +138,6 @@
 			"%form-not-submitted" : "The form could not be submitted because ",
 			"%errors-found" : " errors were found.",
 			"%error-found" : " error was found.",
-			"%error" : "Error",
-			"%colon" : ":",
 			/* Date picker */
 			"%datepicker-hide" : "Hide Calendar",
 			"%datepicker-show" : "Pick a date from a calendar for field: ",

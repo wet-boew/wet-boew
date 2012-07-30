@@ -138,7 +138,7 @@
 			"%datepicker-hide" : "Masquer le calendrier",
 			"%datepicker-show" : "Sélectionner une date à partir d'un calendrier pour le champ: ",
 			"%datepicker-selected" : "Sélectionné",
- 			/* Calendar */
+			/* Calendar */
 			"%calendar-weekDayNames" : ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
 			"%calendar-monthNames" : ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
 			"%calendar-currentDay" : " (Jour courrant)",

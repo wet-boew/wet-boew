@@ -302,7 +302,7 @@
 				$elm = $(value);
 				$elm.addClass("knav-" + index + "-0-0");
 				$childmenu = $elm.closest("li").find(".mb-sm");
-				if ($childmenu.size() > 0) {
+				if ($childmenu.length > 0) {
 					$elm.attr("aria-haspopup", "true").addClass("mb-has-sm").wrapInner("<span class=\"expandicon\"><span class=\"sublink\"></span></span>");
 					$childmenu.attr("role", "menu").attr("aria-expanded", "false").attr("aria-hidden", "true").find(":has(:header) ul").attr("role", "menu");
 					$elm.append("<span class=\"wb-invisible\">" + (pe.dic.get('%sub-menu-help')) + "</span>");

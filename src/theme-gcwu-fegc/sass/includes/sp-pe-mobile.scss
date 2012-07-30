@@ -25,8 +25,10 @@
 	clear: left;
 }
 
-#gcwu-lang a[href]:hover,#gcwu-lang a[href]:active,#gcwu-lang a[href]:focus{
-	color: #FFF;
+#gcwu-lang {
+	a[href]:hover, a[href]:active, a[href]:focus{
+		color: #FFF;
+	}
 }
 
 #gcwu-lang, #wb-foot{
@@ -37,10 +39,12 @@
 	display: block;
 }
 
-.no-js  #gcwu-lang li, .no-js  #wb-foot li {
-	margin-bottom: 5px;
-	margin-right: 20px;
-	width: 108px;
+.no-js  {
+	#gcwu-lang li, #wb-foot li {
+		margin-bottom: 5px;
+		margin-right: 20px;
+		width: 108px;
+	}
 }
 
 .no-js  #gcwu-lang a:hover, .no-js  #gcwu-lang a:focus, .no-js  #gcwu-lang a:active {
