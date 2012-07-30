@@ -1,0 +1,614 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+.tabs {
+  border-bottom: solid 1px #ccc;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  /*pause and play effect*/
+}
+.tabs li {
+  display: inline-block;
+  border: solid 1px #ccc;
+  border-bottom: none;
+  -moz-border-radius: 2px 2px 0 0;
+  -webkit-border-radius: 2px 2px 0 0;
+  border-radius: 2px 2px 0 0;
+}
+.tabs li a {
+  background: url(../images/tabs/gradient.png) repeat-x 0 0 #c7c7c7;
+  display: block;
+  text-decoration: none;
+  color: #333;
+  font-weight: 400;
+  padding: 4px;
+  position: relative;
+}
+.tabs li.active {
+  background: #fff;
+  position: relative;
+  top: 1px;
+  border: solid 1px #ccc;
+  border-bottom: none;
+}
+.tabs li a.active, .tabs .tabs li a.active:hover, .tabs .tabs li a.active:focus {
+  color: #333;
+  padding-top: 5px;
+  background: #fff;
+  cursor: text;
+}
+.tabs a {
+  line-height: normal;
+}
+.tabs .tabs-toggle {
+  border: none;
+  background: none;
+}
+.tabs li.tabs-toggle a:hover {
+  background-repeat: no-repeat;
+}
+.tabs li.tabs-toggle a:hover, .tabs li.tabs-toggle a:focus, .tabs li.tabs-toggle a:active {
+  text-decoration: underline;
+  color: #000;
+}
+.tabs li.tabs-toggle a.tabs-next, .tabs li.tabs-toggle a.tabs-prev {
+  padding: 2px 5px;
+  cursor: pointer;
+}
+.tabs li.tabs-toggle a.tabs-start, .tabs li.tabs-toggle a.tabs-stop {
+  padding: 2px 5px 2px 24px;
+  cursor: pointer;
+}
+
+.tabs-toggle a {
+  background-position: -1px 0;
+  background-repeat: no-repeat;
+  padding-left: 24px;
+  background-color: #fff!important;
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  border: 1px solid #999;
+}
+.tabs-toggle a.tabs-prev {
+  background-image: url(../images/tabs/prev.gif) !important;
+  background-repeat: no-repeat!important;
+  background-position: center 5px;
+}
+.tabs-toggle a.tabs-next {
+  background-image: url(../images/tabs/next.gif) !important;
+  background-repeat: no-repeat!important;
+  background-position: center 5px;
+}
+.tabs-toggle a.tabs-stop {
+  background-image: url(../images/tabs/pause.png) !important;
+  background-repeat: no-repeat !important;
+}
+.tabs-toggle a.tabs-start {
+  background-image: url(../images/tabs/play.png) !important;
+  background-repeat: no-repeat !important;
+}
+
+.tabs-panel > div.active, .no-js .tabs-panel > div {
+  display: block;
+}
+
+.tabs-panel {
+  border: solid 1px #ccc;
+  border-top: none;
+  padding: 10px;
+}
+.tabs-panel > div {
+  display: none;
+}
+.tabs-panel h2, .tabs-panel h3, .tabs-panel h4, .tabs-panel h5, .tabs-panel h6 {
+  border: none;
+}
+.tabs-panel .float-right {
+  margin-left: 10px;
+}
+.tabs-panel .float-left {
+  margin-right: 10px;
+}
+
+.clear {
+  clear: both;
+  display: block;
+  height: 0 !important;
+  margin: 0;
+  min-height: 0 !important;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+}
+
+.tabs-roller {
+  height: 100%;
+  width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: text;
+  background-color: #000;
+  opacity: 0.1;
+  filter: alpha(opacity=10);
+}
+
+/*with grids*/
+.embedded-grid, .embedded-grid .tabs-panel {
+  border: none;
+  padding: 0;
+}
+
+.embedded-grid .tabs {
+  margin: 0 10px 10px;
+}
+
+.span-1 .tabs, .span-2 .tabs, .span-3 .tabs, .span-4 .tabs, .span-5 .tabs, .span-6 .tabs, .span-7 .tabs, .span-8 .tabs, .span-9 .tabs, .span-10 .tabs, .span-11 .tabs, .span-12 .tabs {
+  margin: 0;
+}
+
+/* style 1 */
+.tabs-style-1 {
+  border: solid 1px #ccc;
+  padding: 2px;
+}
+.tabs-style-1 .tabs {
+  background: url(../images/tabs/gradient.png) repeat-x 0 0;
+  border: 1px solid silver;
+  color: #222;
+  font-weight: 700;
+  padding: 2px 2px 0;
+}
+.tabs-style-1 .tabs li a {
+  background: #555555 url(../images/tabs/gradient2.png) repeat-x 0 bottom;
+  border-top: none;
+  color: #fff;
+  padding: 3px 4px 4px;
+}
+.tabs-style-1 .tabs li a:hover, .tabs-style-1 .tabs li a:focus, .tabs-style-1 .tabs li a:active {
+  background: #eeeeee url(../images/tabs/gradient.png);
+  color: #000;
+  border-top: 1px solid #fff;
+  padding-top: 1px;
+}
+.tabs-style-1 .tabs li a.active, .tabs-style-1 .tabs li .a.active:hover {
+  color: #000;
+  background: #fff;
+  border-top: none;
+  padding: 4px;
+}
+.tabs-style-1 .tabs li a.tabs-start, .tabs-style-1 .tabs li a.tabs-stop {
+  color: #000;
+}
+.tabs-style-1 .tabs li.tabs-toggle a {
+  background-repeat: no-repeat;
+  background-position: -1px 0;
+  color: #000;
+  border: 1px solid #999;
+}
+.tabs-style-1 .tabs li.tabs-toggle a.tabs-prev, .tabs-style-1 .tabs li.tabs-toggle a.tabs-next {
+  background-position: center 5px;
+}
+.tabs-style-1 .tabs .tabs-toggle a:active, .tabs-style-1 .tabs .tabs-toggle a:hover, .tabs-style-1 .tabs .tabs-toggle a:active {
+  background-repeat: no-repeat;
+  background-position: -1px 0;
+  color: #c00;
+  border: 1px solid #999;
+}
+.tabs-style-1 .tabs-panel {
+  border: none;
+}
+
+/* style 2 */
+.tabs-style-2 {
+  border: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+.tabs-style-2 .tabs {
+  border: none;
+  background: #eee;
+  opacity: 0.95;
+  min-height: 24px;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  padding-top: 2px;
+  margin-top: 0;
+  bottom: 0;
+  left: 0;
+}
+.tabs-style-2 .tabs li {
+  border: none;
+  margin-right: 2px;
+  background: #00556b;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  width: auto;
+  float: left;
+}
+.tabs-style-2 .tabs li a {
+  border: 1px solid #999;
+  padding: 2px 5px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.tabs-style-2 .tabs li a.active, .tabs-style-2 .tabs li a:hover, .tabs-style-2 .tabs li a:focus, .tabs-style-2 .tabs li a:active {
+  border-bottom-width: 0;
+  background: #333;
+  color: #fff;
+  padding-top: 2px;
+}
+.tabs-style-2 .tabs li.active {
+  border: none;
+  top: auto;
+  color: #fff;
+}
+.tabs-style-2 .tabs-panel {
+  border: none;
+  min-height: 220px;
+  background: url(../images/tabs/gradient3.png) repeat-x 0 bottom #555555;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+.tabs-style-2 .tabs-panel a, .tabs-style-2 .tabs-panel a:visited, .tabs-style-2 .tabs-panel h2, .tabs-style-2 .tabs-panel h3, .tabs-style-2 .tabs-panel h4, .tabs-style-2 .tabs-panel h5, .tabs-style-2 .tabs-panel h6 {
+  color: #fff;
+}
+.tabs-style-2 li.tabs-toggle a {
+  position: static;
+  background-color: #eee!important;
+  padding: 2px 5px;
+}
+.tabs-style-2 li.tabs-toggle a:hover, .tabs-style-2 li.tabs-toggle a:focus, .tabs-style-2 li.tabs-toggle a:active {
+  border-bottom-width: 1px;
+  text-decoration: underline !important;
+  color: #c00;
+}
+.tabs-style-2 li.tabs-toggle a.tabs-stop, .tabs-style-2 li.tabs-toggle a.tabs-start {
+  padding: 2px 5px 2px 25px;
+}
+.tabs-style-2 .tabs-toggle a.tabs-prev:hover, .tabs-style-2 .tabs-toggle a.tabs-prev:focus a.tabs-prev:active, .tabs-style-2 .tabs-toggle a.tabs-next:hover, .tabs-style-2 .tabs-toggle a.tabs-next:focus, .tabs-style-2 .tabs-toggle a.tabs-next:active {
+  background-position: center 5px;
+}
+.tabs-style-2 .tabs-content-pad {
+  padding: 10px 10px 36px;
+}
+.tabs-style-2 .tabs-roller {
+  background-color: #fff;
+  opacity: 0.25;
+  filter: alpha(opacity=25);
+}
+
+/* style 3 */
+.tabs-style-3 {
+  position: relative;
+  z-index: 1;
+  border: 1px solid #ccc;
+  margin: 0;
+  min-height: 220px;
+  padding: 10px 0 10px 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.tabs-style-3 .tabs {
+  width: 35%;
+  position: absolute;
+  z-index: 3;
+  border: none;
+  margin: 20px 0 0;
+  right: 0;
+}
+.tabs-style-3 .tabs li {
+  border: none;
+  margin: 0;
+  width: 100%;
+}
+.tabs-style-3 .tabs li a {
+  display: block;
+  border: none;
+  text-decoration: none;
+  background: transparent;
+  padding: 5px 5px 5px 25px;
+}
+.tabs-style-3 .tabs li a.active, .tabs-style-3 .tabs li a:hover, .tabs-style-3 .tabs li a:focus, .tabs-style-3 .tabs li a:active {
+  background: #000;
+  color: #fff;
+  margin-right: 0;
+  padding: 5px 5px 5px 25px;
+  opacity: 0.75;
+  filter: alpha(opacity=75);
+  -moz-border-radius: 3px 0 0 3px;
+  -webkit-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+  text-decoration: none;
+}
+.tabs-style-3 .tabs li.active {
+  border: none;
+  color: #fff;
+}
+.tabs-style-3 .tabs li.tabs-toggle a {
+  float: right;
+  position: static;
+  margin-right: 2px;
+  margin-top: 10px;
+  border: 1px solid #999;
+  background-repeat: no-repeat;
+  background-position: -1px 0;
+  border: 1px solid #ccc;
+  padding: 2px 5px;
+}
+.tabs-style-3 .tabs li.tabs-toggle a.tabs-prev, .tabs-style-3 .tabs li.tabs-toggle a.tabs-next {
+  background-position: center 5px;
+}
+.tabs-style-3 .tabs li.tabs-toggle a.tabs-stop, .tabs-style-3 .tabs li.tabs-toggle a.tabs-start {
+  padding: 2px 5px 2px 25px;
+}
+.tabs-style-3 .tabs-panel {
+  width: 66%;
+  z-index: 1;
+  border: none;
+  background: #eeeeee url(../images/tabs/gradient.png) repeat-x 0 bottom;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  min-height: 220px;
+  z-index: 2;
+  border: 1px solid #ccc;
+}
+.tabs-style-3 li.tabs-toggle {
+  width: auto;
+}
+.tabs-style-3 li.tabs-toggle a:hover, .tabs-style-3 li.tabs-toggle a:focus, .tabs-style-3 li.tabs-toggle a:active {
+  margin-right: 2px;
+  padding: 2px 5px 2px 24px;
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.tabs-style-3 .tabs-content-pad {
+  padding: 10px;
+}
+.tabs-style-3 .tabs-roller {
+  background-color: white;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  -moz-border-radius: 3px 0 0 3px;
+  -webkit-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+}
+
+/* style 4 */
+.tabs-style-4 {
+  padding: 0;
+}
+.tabs-style-4 .tabs {
+  font-weight: 700;
+  margin-bottom: 2px;
+  padding: 0 0 1px 0;
+  height: auto!important;
+  border: none;
+}
+.tabs-style-4 .tabs li {
+  display: block;
+}
+.tabs-style-4 .tabs li a {
+  background: url(../images/tabs/gradient2-style4.png) repeat-x scroll 50% 50% black;
+  border-top: 1px solid #000000;
+  color: #FFF;
+  font-size: 80%;
+  margin: 0;
+  padding: 2px;
+}
+.tabs-style-4 .tabs li a:hover, .tabs-style-4 .tabs li a:focus, .tabs-style-4 .tabs li a:active {
+  background: url(../images/tabs/gradient.png) repeat scroll 0 0 #eeeeee;
+  color: #000;
+}
+.tabs-style-4 .tabs li a.active, .tabs-style-4 .tabs li a.active:hover {
+  background: none repeat scroll 0 0 #FFF;
+  border: none;
+  color: #000 !important;
+  padding-top: 2px;
+}
+.tabs-style-4 .tabs li.tabs-toggle {
+  display: inline-block;
+}
+.tabs-style-4 .tabs li.tabs-toggle a {
+  width: auto!important;
+  background-repeat: no-repeat!important;
+  background-position: 0 -2px;
+  color: #000!important;
+  position: relative!important;
+  top: 1px!important;
+  bottom: auto!important;
+  left: 0!important;
+  right: auto!important;
+  border-top: 1px solid #999!important;
+  padding: 2px 5px;
+}
+.tabs-style-4 .tabs li.tabs-toggle a.tabs-prev, .tabs-style-4 .tabs li.tabs-toggle a.tabs-next {
+  background-position: center 3px;
+}
+.tabs-style-4 .tabs-panel {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.tabs-style-4 .tabs-panel img {
+  display: block;
+}
+
+.wb-sup-def .tabs-style-4 {
+  padding: 0;
+}
+.wb-sup-def .tabs {
+  margin-left: -1px;
+  padding: 0;
+}
+.wb-sup-def .tabs li {
+  padding-left: 0;
+  margin-left: 0;
+}
+.wb-sup-def .tabs li a:visited {
+  color: #FFF;
+}
+.wb-sup-def .tabs a.active, .wb-sup-def .tabs a.active:hover {
+  color: #000!important;
+}
+.wb-sup-def .tabs-toggle {
+  margin-left: 2px!important;
+}
+
+/* style 5 */
+.tabs-style-5 {
+  padding: 0;
+}
+.tabs-style-5 .tabs {
+  border: none;
+}
+.tabs-style-5 .tabs li {
+  display: none!important;
+}
+.tabs-style-5 .tabs li a {
+  display: none!important;
+}
+.tabs-style-5 .tabs li.tabs-toggle {
+  display: inline-block!important;
+}
+.tabs-style-5 .tabs li.tabs-toggle a {
+  display: block!important;
+  font-size: 80%;
+  margin-bottom: 1px;
+  width: auto!important;
+  background-repeat: no-repeat!important;
+  background-position: 0 -2px;
+  position: relative!important;
+  top: 1px!important;
+  bottom: auto!important;
+  left: 0!important;
+  right: auto!important;
+}
+.tabs-style-5 .tabs li.tabs-toggle a.tabs-prev, .tabs-style-5 .tabs li.tabs-toggle a.tabs-next {
+  background-position: center 3px;
+}
+.tabs-style-5 .tabs-panel {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.tabs-style-5 .tabs-panel img {
+  display: block;
+}
+
+.wb-sup-def .tabs-style-5 {
+  padding: 0;
+}
+.wb-sup-def .tabs-style-5 .tabs {
+  margin-bottom: 1px;
+}
+.wb-sup-def .tabs-style-5 .tabs-toggle {
+  margin-left: 9px!important;
+}
+
+/* style 6 */
+.tabs-style-6 {
+  border: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+.tabs-style-6 .tabs {
+  border: none;
+  background: #eee;
+  opacity: 0.95;
+  float: left;
+  width: 100%;
+  padding-top: 2px;
+  margin-top: 0;
+}
+.tabs-style-6 .tabs li {
+  border: none;
+  margin-right: 2px;
+  background: #00556b;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  width: auto;
+  float: left;
+}
+.tabs-style-6 .tabs li a {
+  border: 1px solid #999;
+  padding: 2px 5px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.tabs-style-6 .tabs li a.active, .tabs-style-6 .tabs li a:hover, .tabs-style-6 .tabs li a:focus, .tabs-style-6 .tabs li a:active {
+  border-bottom-width: 0;
+  background: #333;
+  color: #fff;
+  padding-top: 2px;
+}
+.tabs-style-6 .tabs li img {
+  margin: 0;
+}
+.tabs-style-6 .tabs li.active {
+  border: none;
+  top: auto;
+  color: #fff;
+}
+.tabs-style-6 .tabs-panel {
+  border: none;
+  background: url(../images/tabs/gradient3.png) repeat-x 0 bottom #555555;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  margin-top: 50px;
+  min-height: 450px;
+}
+.tabs-style-6 .tabs-panel a, .tabs-style-6 .tabs-panel a:visited, .tabs-style-6 .tabs-panel h2, .tabs-style-6 .tabs-panel h3, .tabs-style-6 .tabs-panel h4, .tabs-style-6 .tabs-panel h5, .tabs-style-6 .tabs-panel h6 {
+  color: #fff;
+}
+.tabs-style-6 .tabs-panel > div {
+  position: absolute;
+}
+.tabs-style-6 li.tabs-toggle a {
+  position: static;
+  background-color: #eee!important;
+  padding: 2px 5px;
+}
+.tabs-style-6 li.tabs-toggle a:hover, .tabs-style-6 li.tabs-toggle a:focus, .tabs-style-6 li.tabs-toggle a:active {
+  border-bottom-width: 1px;
+  text-decoration: underline !important;
+  color: #c00;
+}
+.tabs-style-6 li.tabs-toggle a.tabs-stop, .tabs-style-6 li.tabs-toggle a.tabs-start {
+  padding: 2px 5px 2px 25px;
+}
+.tabs-style-6 .tabs-toggle a.tabs-prev:hover, .tabs-style-6 .tabs-toggle a.tabs-prev:focus a.tabs-prev:active, .tabs-style-6 .tabs-toggle a.tabs-next:hover, .tabs-style-6 .tabs-toggle a.tabs-next:focus, .tabs-style-6 .tabs-toggle a.tabs-next:active {
+  background-position: center 5px;
+}
+.tabs-style-6 .tabs-content-pad {
+  padding: 10px 10px 36px;
+}
+.tabs-style-6 .tabs-roller {
+  background-color: #fff;
+  opacity: 0.25;
+  filter: alpha(opacity=25);
+}
