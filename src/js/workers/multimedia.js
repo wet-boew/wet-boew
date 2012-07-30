@@ -21,7 +21,8 @@
 			if (pe.svg) {
 				icon = _pe.fn.multimedia.icons.clone();
 				icon.children(':not(g[id="' + id + '"])').remove();
-				return icon;
+				icon.prepend("<title>" + alt + "</title>");
+				return icon.attr({"role" : "img", "aria-label" : alt});
 			}
 
 			return $('<img src="' + _pe.add.liblocation + 'images/multimedia/' + id + '.png" alt="' + alt + '" height="20" width="20" />');
