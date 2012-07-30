@@ -3,7 +3,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
 */
-video {
+video, object.video {
+	width:100%;
 	background-color: #000;
 }
 
@@ -20,6 +21,7 @@ video {
 }
 
 .wet-boew-multimedia-controls{
+	width:100%;
 	background:#DADADA url('../images/multimedia/background-toolbar.png') repeat-x 0 0;
 	padding:0;
 

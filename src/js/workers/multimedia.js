@@ -39,8 +39,8 @@
 				fbAudioType = "audio/mpeg", //MP3
 				fbBin = _pe.add.liblocation + "bin/multimedia.swf",
 				fbClass,
-				fbWidth,
-				fbHeight,
+				width = media.is("video") ? media.attr("width") : "0",
+				height = media.is("video") ? media.attr("height") : "0",
 				fbVars,
 				evtmgr;
 
@@ -66,14 +66,10 @@
 				fbVars = "id=" + elm.attr("id");
 				if (flash && media.is("video") && media.find("source[type=\"" + fbVideoType + "\"]").length > 0) {
 					fbClass = "video";
-					fbWidth = media.width() > 0 ? media.width() : media.attr("width");
-					fbHeight = media.height() > 0 ? media.height() : media.attr("height");
 					fbVars +=  "&height=" + media.height() + "&width=" + media.width() + "&posterimg=" + escape(_pe.url(media.attr("poster")).source) + "&media=" + escape(_pe.url(media.find("source[type=\"" + fbVideoType + "\"]").attr("src")).source);
 					canPlay = true;
 				} else if (flash && media.is("audio") && media.find("source[type=\"" + fbAudioType + "\"]").length > 0) {
 					fbClass = "audio";
-					fbWidth = 0;
-					fbHeight = 0;
 					fbVars += "&media=" + _pe.url(media.find("source[type=\"" + fbAudioType + "\"]").attr("src")).source;
 					canPlay = true;
 				} else {
@@ -82,12 +78,12 @@
 				}
 				//Can play using a fallback
 				if (canPlay) {
-					$fbObject = $("<object play=\"\" id=\"" + media_id + "\" width=\"" + fbWidth + "\" height=\"" + fbHeight + "\" class=\"" + fbClass + "\" type=\"application/x-shockwave-flash\" data=\"" + fbBin + "\" tabindex=\"-1\"><param name=\"movie\" value=\"" + fbBin + "\"/><param name=\"flashvars\" value=\"" + fbVars + "\"/><param name=\"allowScriptAccess\" value=\"always\"/><param name=\"bgcolor\" value=\"#000000\"/><param name=\"wmode\" value=\"opaque\"/>");
+					$fbObject = $("<object play=\"\" id=\"" + media_id + "\" width=\"" + width + "\" height=\"" + height + "\" class=\"" + fbClass + "\" type=\"application/x-shockwave-flash\" data=\"" + fbBin + "\" tabindex=\"-1\"><param name=\"movie\" value=\"" + fbBin + "\"/><param name=\"flashvars\" value=\"" + fbVars + "\"/><param name=\"allowScriptAccess\" value=\"always\"/><param name=\"bgcolor\" value=\"#000000\"/><param name=\"wmode\" value=\"opaque\"/>");
 					media.before($fbObject);
 					media.remove();
 					media = $fbObject;
 				} else {
-					media.before("<img src=\"" + media.attr("poster") + "\" width=\"" + fbWidth + "\" height=\"" + fbHeight + "\" alt=\"" + media.attr("title") + "\"/>");
+					media.before("<img src=\"" + media.attr("poster") + "\" width=\"" + width + "\" height=\"" + height + "\" alt=\"" + media.attr("title") + "\"/>");
 					media.remove();
 				}
 			}
@@ -96,12 +92,16 @@
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0)}, _pe.fn.multimedia._intf);
 
-				media.after(_pe.fn.multimedia._get_ui(media_id).width((media.width() > 0 ? media.width() : media.attr("width"))));
-
+				media.after(_pe.fn.multimedia._get_ui(media_id));
 				//Scale the UI when the video scales
-				$(window).bind("resize", function () {
-					media.next().width(media.width());
+				$(window).on("resize", {"media" : media, width : width, height : height}, function (e) {
+					if (e.data.media.width() > 0) {
+						e.data.media.height(e.data.media.width() * e.data.height / e.data.width);
+					} else {
+						e.data.media.attr("height", e.data.media.parent().width() * e.data.height / e.data.width);
+					}
 				});
+				$(window).trigger("resize");
 
 				//Map UI mouse events
 				elm.on("click", function (e) {
