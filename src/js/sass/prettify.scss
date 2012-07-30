@@ -51,10 +51,10 @@ pre.prettyprint.linenums {
 }
 ol.linenums {
 	margin: 0 0 0 32px !important;
-}
-ol.linenums li {
-	padding-left: 10px;
-	text-shadow: 0 1px 0 #fff;
+	li {
+		padding-left: 10px;
+		text-shadow: 0 1px 0 #fff;
+	}
 }
 /*li.L0,
 li.L1,

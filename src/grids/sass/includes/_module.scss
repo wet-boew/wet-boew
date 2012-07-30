@@ -183,10 +183,7 @@
 	}
 	
 	.module-poster img { margin-bottom: 0; }
-	
-	/*
-	these modules are not included in the RCMP release
-	
+
 	.module-news {
 	
 		#{headers(2,6)} {
@@ -236,7 +233,7 @@
 			
 			li {
 				margin-bottom: $margin-medium;
-				padding: $margin-medium $margin-medium $margin-medium ($margin-xlarge - $margin-medium);
+				padding: $margin-medium $margin-medium $margin-medium ($margin-xlarge - $margin-medium) !important;
 				
 				@include fugue-icon("user-silhouette.png", $line-height: 40px, $padding: 40px);
 				@include border-radius;
@@ -244,7 +241,6 @@
 			}
 		}
 	}
-	*/
 	
 	div {
 

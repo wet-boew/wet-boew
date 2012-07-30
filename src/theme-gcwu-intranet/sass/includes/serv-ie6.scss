@@ -15,13 +15,13 @@
 	}
 	#gcwu-title{
 		position:static !important;
+		a{
+			position:relative !important;
+			top:auto !important;
+		}
 	}
 	#gcwu-title-in{
 		position:static !important;
-		top:auto !important;
-	}
-	#gcwu-title a{
-		position:relative !important;
 		top:auto !important;
 	}
 	#gcwu-sig img,#gcwu-wmms img{

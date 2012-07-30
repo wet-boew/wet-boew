@@ -24,25 +24,25 @@
 	}
 	
 	p, div, span {
-		[class*="icon-"] {
+		[class*="wb-icon-"] {
 			padding-left: 30px;
 		}
 	}
 
-	ul.icon-document li, ul.list-icon li.icon-word, .icon-word { @include fugue-icon("document-list.png"); }
-	ul.icon-pdf li, ul.list-icon li.icon-pdf, .icon-pdf { @include fugue-icon("document-pdf.png"); }
-	ul.icon-book li, ul.list-icon li.icon-book, .icon-book { @include fugue-icon("book.png"); }
-	ul.icon-calendar li, ul.list-icon li.icon-calendar, .icon-calendar { @include fugue-icon("calendar-list.png"); }
-	ul.icon-image li, ul.list-icon li.icon-image, .icon-image { @include fugue-icon("image.png"); }
-	ul.icon-film li, ul.list-icon li.icon-film, .icon-film { @include fugue-icon("film.png"); }
-	ul.icon-mail li, ul.list-icon li.icon-mail, .icon-mail { @include fugue-icon("mail.png"); }
-	ul.icon-download li, ul.list-icon li.icon-download, .icon-download { @include fugue-icon("drive-download.png"); }
-	ul.icon-feed li, ul.list-icon li.icon-feed, .icon-feed { @include fugue-icon("feed.png"); }
-	ul.icon-folder li, ul.list-icon li.icon-folder, .icon-folder { @include fugue-icon("folder-horizontal.png"); }
-	ul.icon-marker li, ul.list-icon li.icon-marker, .icon-marker { @include fugue-icon("marker.png"); }
-	ul.icon-user li, ul.list-icon li.icon-user, .icon-user { @include fugue-icon("user-silhouette.png"); }
-	ul.icon-news li, ul.list-icon li.icon-news, .icon-news { @include fugue-icon("newspaper.png"); }
-	//&.icon- li, li.icon- { @include fugue-icon(".png"); }
+	ul.icon-document li, ul.list-icon li.wb-icon-word, .wb-icon-word { @include fugue-icon("document-list.png"); }
+	ul.wb-icon-pdf li, ul.list-icon li.wb-icon-pdf, .wb-icon-pdf { @include fugue-icon("document-pdf.png"); }
+	ul.wb-icon-book li, ul.list-icon li.wb-icon-book, .wb-icon-book { @include fugue-icon("book.png"); }
+	ul.wb-icon-calendar li, ul.list-icon li.wb-icon-calendar, .wb-icon-calendar { @include fugue-icon("calendar-list.png"); }
+	ul.wb-icon-image li, ul.list-icon li.wb-icon-image, .wb-icon-image { @include fugue-icon("image.png"); }
+	ul.wb-icon-film li, ul.list-icon li.wb-icon-film, .wb-icon-film { @include fugue-icon("film.png"); }
+	ul.wb-icon-mail li, ul.list-icon li.wb-icon-mail, .wb-icon-mail { @include fugue-icon("mail.png"); }
+	ul.wb-icon-download li, ul.list-icon li.wb-icon-download, .wb-icon-download { @include fugue-icon("drive-download.png"); }
+	ul.wb-icon-feed li, ul.list-icon li.wb-icon-feed, .wb-icon-feed { @include fugue-icon("feed.png"); }
+	ul.wb-icon-folder li, ul.list-icon li.wb-icon-folder, .wb-icon-folder { @include fugue-icon("folder-horizontal.png"); }
+	ul.wb-icon-marker li, ul.list-icon li.wb-icon-marker, .wb-icon-marker { @include fugue-icon("marker.png"); }
+	ul.wb-icon-user li, ul.list-icon li.wb-icon-user, .wb-icon-user { @include fugue-icon("user-silhouette.png"); }
+	ul.wb-icon-news li, ul.list-icon li.wb-icon-news, .wb-icon-news { @include fugue-icon("newspaper.png"); }
+	//&.wb-icon- li, li.wb-icon- { @include fugue-icon(".png"); }
 	
 	/*
 	ul.list-block { 
@@ -107,5 +107,5 @@ $fugue-line-height: 18px;
 $fugue-padding: 30px;
 
 @mixin fugue-icon($bullet-icon, $width: $fugue-width, $height: $fugue-height, $line-height: $fugue-line-height, $padding: $fugue-padding) {
-	background: image-url($bullet-icon) no-repeat ($padding - $width) / 2 ($line-height - $height) / 2;
+	background: url("../images/" + $bullet-icon) no-repeat ($padding - $width) / 2 ($line-height - $height) / 2;
 }

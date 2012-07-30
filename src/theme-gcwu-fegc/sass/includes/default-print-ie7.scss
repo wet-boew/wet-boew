@@ -11,17 +11,17 @@
 	}
 	#gcwu-bc{
 		padding:5px 0;
-	}
-	#gcwu-bc ol{
-		line-height:normal;
-	}
-	#gcwu-bc li{
-		border-left:1px solid #000;
-		margin:0;
-		padding:0 10px;
-	}
-	#gcwu-bc li:first-child{
-		border-left:none;
-		padding-left:0;
+		ol{
+			line-height:normal;
+		}
+		li{
+			border-left:1px solid #000;
+			margin:0;
+			padding:0 10px;
+		}
+		li:first-child{
+			border-left:none;
+			padding-left:0;
+		}
 	}
 }

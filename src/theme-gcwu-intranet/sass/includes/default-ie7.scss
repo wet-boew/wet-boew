@@ -8,12 +8,8 @@
 		padding-bottom:10px;
 	}
 	#gcwu-subsite a{
-		font-size:expression(this.previousSibling == null ? '100%' : '-' )
-	}
-	#gcwu-subsite a{
-		padding-left:expression(this.previousSibling == null ? '0' : '-' )
-	}
-	#gcwu-subsite a{
-		border-left:expression(this.previousSibling == null ? 'none' : '-' )
+		font-size:expression(this.previousSibling == null ? '100%' : '-' );
+		padding-left:expression(this.previousSibling == null ? '0' : '-' );
+		border-left:expression(this.previousSibling == null ? 'none' : '-' );
 	}
 }

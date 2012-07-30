@@ -6,9 +6,9 @@
 .ie7 {
 	#wb-skip{
 		float:none;
-	}
-	#wb-skip ul{
-		float:left;
+		ul{
+			float:left;
+		}
 	}
 	a.wb-linkdesc span span{
 		top:-9000em;

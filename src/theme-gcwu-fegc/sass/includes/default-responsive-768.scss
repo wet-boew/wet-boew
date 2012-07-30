@@ -41,28 +41,26 @@ body{
 	background-image:url(../images/footer-deco-small.gif);
 }
 
-#gcwu-gcft li{
-	margin:12px 0 13px 20px;
-}
-
-li#gcwu-gcft-ca a{
-	padding-left:20px;
-}
-
-#gcwu-gcft li:lang(fr){
-	margin:12px 0 13px 13px;
-}
-
-li#gcwu-gcft-ca a:lang(fr){
-	padding-left:13px;
-}
-
-#gcwu-gcft li:first-child{
-	margin-left:10px;
+#gcwu-gcft {
+	li{
+		margin:12px 0 13px 20px;
+	}
+	li:lang(fr){
+		margin:12px 0 13px 13px;
+	}
+	li:first-child{
+		margin-left:10px;
+	}
 }
 
 li#gcwu-gcft-ca{
 	margin-left:0 !important;
+	a{
+		padding-left:20px;
+	}
+	a:lang(fr){
+		padding-left:13px;
+	}
 }
 
 #wb-core-in,#gcwu-gcnb-in,#gcwu-bnr-in,#gcwu-psnb-in,#gcwu-bc-in,#gcwu-gcft-in,#gcwu-sft-in,#gcwu-bnr-in,#gcwu-psnb .mb-menu,#gcwu-psnb .mb-hsubmenu .showcase-visible ul,#wb-body #wb-main{
