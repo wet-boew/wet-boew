@@ -235,7 +235,7 @@
 						$.data(e.target, "captions", e.captions);
 						break;
 					case "captionsloadfailed":
-						$w.find(".wet-boew-mediaplayer-captionsarea").empty().append("<p>" + _pe.dict.captionserror + "</p>");
+						$w.find(".wet-boew-mediaplayer-captionsarea").empty().append("<p>" + _pe.dict.get("%captionserror") + "</p>");
 						break;
 					}
 				}, elm.get(0)));

@@ -110,6 +110,7 @@
 				"disable": "Masquer le sous-titrage",
 				"enable": "Afficher le sous-titrage"
 			},
+			"%captionserror" : "Erreur dans le chargement des sous-titres",
 			"%audio-description": {
 				"enable": "Activer l'audiodescription",
 				"disable": "Désactiver l'audiodescription"

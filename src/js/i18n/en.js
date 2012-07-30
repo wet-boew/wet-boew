@@ -114,6 +114,7 @@
 				"disable" : "Hide Closed captioning",
 				"enable" : "Show Closed captioning"
 			},
+			"%captionserror" : "Error loading closed captions",
 			"%audio-description" : {
 				"enable" : "Enable Audio Description",
 				"disable" : "Disable Audio Description"
