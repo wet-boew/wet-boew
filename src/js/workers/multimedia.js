@@ -108,12 +108,6 @@
 						e.data.media.attr("height", e.data.media.parent().width() * e.data.height / e.data.width);
 					}
 				});
-
-				if (captions !== undefined) {
-					media.after($("<div class=\"wet-boew-multimedia-captionsarea\"/>").hide());
-					_pe.fn.multimedia._load_captions(media, evtmgr, captions);
-				}
-
 				$(window).trigger("resize");
 
 				//Map UI mouse events
@@ -245,7 +239,13 @@
 						break;
 					}
 				}, elm.get(0)));
+
+				if (captions !== undefined) {
+					media.after($("<div class=\"wet-boew-multimedia-captionsarea\"/>").hide());
+					_pe.fn.multimedia._load_captions(media, evtmgr, captions);
+				}
 			}
+
 
 			return elm;
 		}, // end of exec
@@ -507,12 +507,12 @@
 			};
 
 			if (src !== undefined) {
-				curUrl = _pe.url();
+				curUrl = _pe.url(window.location);
 				srcUrl = _pe.url(src);
 
-				if (srcUrl.source === curUrl.source) {
+				if (srcUrl.removehash() === curUrl.source) {
 					//Same page HTML captions
-					c = $("#" + srcUrl.anchor);
+					c = $("#" + srcUrl.hash);
 					if (c.length > 0) {
 						load_captions_internal(c);
 						return;
@@ -525,7 +525,7 @@
 					return;
 				} else {
 					//External HTML or XML captions
-					load_captions_external(srcUrl.absolute);
+					load_captions_external(srcUrl.source);
 					return;
 				}
 			}
