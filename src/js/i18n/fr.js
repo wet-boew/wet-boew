@@ -162,6 +162,37 @@
 			"%lb-xhr-error" : "Le chargement de ce contenu a échoué.",
 			"%lb-img-error" : "Le chargement de cette image a échoué.",
 			"%lb-slideshow" : "la diaporama"
+		},
+		/*
+		jQuery Mobile internationalization
+		*/
+		mobile : {
+			collapsible : {
+				options : {
+					expandCueText : " cliquer pour afficher le contenu",
+					collapseCueText : " cliquer pour masquer le contenu"
+				}
+			},
+			dialog : {
+				options : {
+					closeBtnText : "Fermer"
+				}
+			},
+			page : {
+				options: {
+					backBtnText : "Précédent"
+				}
+			},
+			textinput : {
+				options : {
+					clearSearchButtonText : "effacer le texte"
+				}
+			},
+			selectmenu : {
+				options : {
+					closeText : "Fermer"
+				}
+			}
 		}
 	};
 	$(document).trigger("languageloaded");

@@ -99,7 +99,7 @@
 					$.extend($.mobile, {
 						ajaxEnabled: false,
 						pushStateEnabled: false,
-						autoInitializePage: (init_on_mobileinit ? true : false)
+						autoInitializePage: (init_on_mobileinit ? true : false),
 					});
 				});
 
@@ -180,6 +180,14 @@
 
 						//Load the mobile view
 						if (pe.mobile === true) {
+							// Apply internationalization to jQuery Mobile
+							// TODO: Find more efficient way of overriding these strings
+							$.extend($.mobile.collapsible.prototype.options, pe.dic.mobile.collapsible.options);
+							$.extend($.mobile.collapsible.prototype.dialog, pe.dic.mobile.dialog.options);
+							$.extend($.mobile.collapsible.prototype.page, pe.dic.mobile.page.options);
+							$.extend($.mobile.collapsible.prototype.textinput, pe.dic.mobile.textinput.options);
+							$.extend($.mobile.collapsible.prototype.selectmenu, pe.dic.mobile.selectmenu.options);
+						
 							$(document).on("mobileviewloaded", function () {
 								if ($.mobile !== undefined) {
 									$.mobile.initializePage();
