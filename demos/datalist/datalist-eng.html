@@ -8,53 +8,36 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>Expandable/collapsible content (details/summary polyfill) - Working examples - Web Experience Toolkit (WET)</title>
+<title>Auto-complete for text input fields (datalist polyfill) - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="description" content="English description / Description en anglais" />
-<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
-<meta name="dcterms.title" content="English title / Titre en anglais" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.description" content="English description/Description en anglais" />
+<meta name="description" content="English description/Description en anglais" />
+<meta name="keywords" content="English keywords/Mots-clés en anglais" />
+<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title/Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
 <script src="../../build/js/polyfills/html5shiv-min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
-<style>
-.example2 {
-	background-color: #DDA;
-}
-.example2 summary {
-	padding: 5px;
-}
-.example2 div {
-	padding: 10px;
-}
-.example2 table {
-	background: #FFF;
-}
-.example3 summary {
-	padding: 5px;
-	text-align: right;
-}
-.example3 summary:hover, .example3 summary:focus, .example3 summary:active {
-	background: #3A6D9C !important;
-}
-</style>
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -74,7 +57,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="details-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="datalist-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -84,7 +67,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -107,7 +90,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <ol>
 <li><a href="../../docs/index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li>Expandable/collapsible content (details/summary polyfill)</li>
+<li>Auto-complete for text input fields (datalist polyfill)</li>
 </ol>
 </div></div>
 </nav>
@@ -117,110 +100,68 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Expandable/collapsible content (details/summary polyfill)</h1>
+<h1 id="wb-cont">Auto-complete for text input fields (datalist polyfill)</h1>
 
-<p>The HTML5 <code>details</code> and <code>summary</code> elements are used to provide expandable/collapsible content. This component adds support for these elements in browsers that do not already have native support.</p>
+<p>The <code>datalist</code> tag specifies a list of pre-defined options for an <code>input</code> element.</p>
 
-<section><h2>Examples</h2>
-
-<details class="span-8">
-	<summary>Example 1 (default)</summary>
-	<p>Example content that provides more details.</p>
-	<table>
-		<caption>Cups of coffee consumed by each delegate</caption>
-		<thead>
-		<tr>
-			<th scope="col">Name</th>
-			<th scope="col">Cups</th>
-			<th scope="col">Type of Coffee</th>
-			<th scope="col">Sugar?</th>
-		</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>T. Sexton</td>
-				<td>10</td>
-				<td>Espresso</td>
-				<td>No</td>
-			</tr>
-			<tr>
-				<td>J. Dinnen</td>
-				<td>5</td>
-				<td>Decaf</td>
-				<td>Yes</td>
-			</tr>
-		</tbody>
-	</table>
-</details>
-<div class="clear"></div>
-<details class="span-4 example2">
-	<summary>Example 2</summary>
-	<div>
-		<p>Example content that provides more details.</p>
-		<table>
-			<caption>Cups of coffee consumed by each delegate</caption>
-			<thead>
-			<tr>
-				<th scope="col">Name</th>
-				<th scope="col">Cups</th>
-				<th scope="col">Type of Coffee</th>
-				<th scope="col">Sugar?</th>
-			</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>T. Sexton</td>
-					<td>10</td>
-					<td>Espresso</td>
-					<td>No</td>
-				</tr>
-				<tr>
-					<td>J. Dinnen</td>
-					<td>5</td>
-					<td>Decaf</td>
-					<td>Yes</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</details>
-<details class="span-4 example3">
-	<summary class="background-accent">Example 3</summary>
-	<p>Example content that provides more details.</p>
-	<table>
-		<caption>Cups of coffee consumed by each delegate</caption>
-		<thead>
-		<tr>
-			<th scope="col">Name</th>
-			<th scope="col">Cups</th>
-			<th scope="col">Type of Coffee</th>
-			<th scope="col">Sugar?</th>
-		</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>T. Sexton</td>
-				<td>10</td>
-				<td>Espresso</td>
-				<td>No</td>
-			</tr>
-			<tr>
-				<td>J. Dinnen</td>
-				<td>5</td>
-				<td>Decaf</td>
-				<td>Yes</td>
-			</tr>
-		</tbody>
-	</table>
-</details>
-<div class="clear"></div>
-</section>
-
-<a href="javascript:;" onclick="javascript:newelm()">Test</a>
+<!-- Start of Datalist content -->
+<div class="wet-boew-prettify span-4">
+	<section>
+		<h2 class="background-dark margin-bottom-medium">Usage</h2>
+		<pre class="prettyprint linenums"><code>&lt;label for="city"&gt;City&lt;/label&gt;
+&lt;input id="city" name="city" list="suggestions" /&gt;
+&lt;datalist id=&quot;suggestions&quot;&gt;
+  &lt;!--[if !IE]&gt;&lt;!--&gt;
+  &lt;select&gt;&lt;!--&lt;![endif]--&gt;
+    &lt;option label="Calgary" /&gt;
+    &lt;option label="Edmonton" /&gt;
+    &lt;option label="Iqualuit" /&gt;
+    &lt;option label="Ottawa" /&gt;
+    &lt;option label="Montreal" /&gt;
+    &lt;option label="St. John" /&gt;
+    &lt;option label="St. John's" /&gt;
+    &lt;option label="Toronto" /&gt;
+    &lt;option label="Vancouver" /&gt;
+    &lt;option label="Whitehorse" /&gt;
+    &lt;option label="Winnipeg" /&gt;
+    &lt;option label="Yellowknife" /&gt;
+  &lt;!--[if !IE]&gt;&lt;!--&gt;
+  &lt;/select&gt;&lt;!--&lt;![endif]--&gt;
+&lt;/datalist&gt;</code></pre>
+	</section>
+</div>
+<div class="span-4">
+	<section>
+		<h2 class="background-dark margin-bottom-medium">Examples</h2>
+		<form action="#" method="get">
+			<label for="city">City</label>
+    		<input id="city" name="city" list="suggestions" />
+    		<datalist id="suggestions">
+     			<!--[if !IE]><!--><select><!--<![endif]-->
+        		<option label="Calgary" />
+        		<option label="Edmonton" />
+        		<option label="Iqualuit" />
+        		<option label="Ottawa" />
+				<option label="Montreal" />
+				<option label="St. John" />
+				<option label="St. John's" />
+				<option label="Toronto" />
+				<option label="Vancouver" />
+				<option label="Whitehorse" />
+				<option label="Winnipeg" />
+				<option label="Yellowknife" />
+      			<!--[if !IE]><!--></select><!--<![endif]-->
+    		</datalist>
+		</form>
+	</section>
+</div>
+<!-- End of Datalist content -->
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2011-10-31</time></span></dd>
 </dl>
+
+
 <div class="clear"></div>
 <!-- MainContentEnd -->
 </div></div>
@@ -284,12 +225,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../build/js/settings.js"></script>
 <script src="../../build/js/pe-ap-min.js"></script>
-<script>
-function newelm() {
-var elm2 = $('<details class="span-4 example3"><summary class="background-accent">Example 4</summary><p>Example content that provides more details.</p><table><caption>Cups of coffee consumed by each delegate</caption><thead><tr><th scope="col">Name</th><th scope="col">Cups</th><th scope="col">Type of Coffee</th><th scope="col">Sugar?</th></tr></thead><tbody><tr><td>T. Sexton</td><td>10</td><td>Espresso</td><td>No</td></tr><tr><td>J. Dinnen</td><td>5</td><td>Decaf</td><td>Yes</td></tr></tbody></table></details>').addClass('polyfill');
-$('#gcwu-date-mod').before(elm2);
-}
-</script>
 <!-- ScriptsEnd -->
 </body>
 </html>

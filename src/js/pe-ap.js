@@ -828,6 +828,7 @@
 		 */
 		polyfills: function () {
 			var lib = pe.add.liblocation,
+				elms,
 				// modernizer test for detailsummary support
 				details = (function (doc) {
 					var el = doc.createElement('details'),
@@ -859,15 +860,30 @@
 			if (!window.localStorage) {
 				pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js');
 			}
-			// process
+			// progress
 			if (typeof document.createElement('progress').position === "undefined") {
-				pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
-				$("progress").addClass("polyfill");
+				elms = $('progress');
+				if (elms.length > 0) {
+					pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
+					elms.addClass('polyfill');
+				}
 			}
 			// details + summary
 			if (!details) {
-				pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
-				$("details").addClass("polyfill");
+				elms = $('details');
+				if (elms.length > 0) {
+					pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
+					elms.addClass('polyfill');
+				}
+			}
+
+			// datalist
+			if (typeof document.createElement('datalist').position === "undefined") {
+				elms = $('input[list]');
+				if (elms.length > 0) {
+					pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
+					elms.addClass('polyfill');
+				}
 			}
 		},
 		/**
