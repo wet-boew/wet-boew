@@ -1,0 +1,55 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+#archived {
+  background-color: #FFFFCC;
+  border: 1px solid #C00;
+}
+#archived h2 {
+  background-color: #CC0000;
+  color: #FFFFFF;
+  margin: 0;
+  padding: 2px 0 2px 10px;
+}
+#archived p {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+
+.archived {
+  display: none;
+  background-color: #C00;
+  border: 1px solid #000;
+  border-image: initial;
+  clear: both;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+  line-height: normal;
+}
+.archived a {
+  color: #333333;
+  padding-bottom: 2px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  position: relative;
+  text-shadow: none;
+}
+.archived a[href]:hover, .archived a[href]:link, .archived a[href]:active, .archived a[href]:focus {
+  color: #FFFFFF;
+}
+.archived .archived-top-page {
+  background-color: transparent;
+  border-left: 1px solid #999;
+  border-right-color: medium none initial;
+  color: #FFFFFF;
+  display: block;
+  font-size: 1.4em;
+  font-weight: bold;
+  text-align: center;
+}

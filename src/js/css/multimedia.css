@@ -1,0 +1,67 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+*/
+video, object.video {
+  width: 100%;
+  background-color: #000;
+}
+
+.wet-boew-multimedia-captionsarea {
+  background-color: #000;
+  color: #FFF;
+  text-align: center;
+  padding: 0.5em;
+  min-height: 1.5em;
+}
+
+.wet-boew-multimedia-controls-start {
+  float: left;
+}
+
+.wet-boew-multimedia-controls-end {
+  float: right;
+}
+
+.wet-boew-multimedia-controls {
+  width: 100%;
+  background: #dadada url("../images/multimedia/background-toolbar.png") repeat-x 0 0;
+  padding: 0;
+}
+.wet-boew-multimedia-controls button {
+  border: 1px solid #BBB;
+  background: transparent;
+  padding: 0;
+}
+.wet-boew-multimedia-controls button svg {
+  margin: 0;
+  display: block;
+}
+.wet-boew-multimedia-controls button img {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+}
+.wet-boew-multimedia-controls .wet-boew-multimedia-timeline {
+  border: 1px solid #BBB;
+  margin-left: 82px;
+  margin-right: 55px;
+  padding: 1px 6px;
+}
+
+progress {
+  border: 1px solid #BBB;
+  color: black;
+  width: 100%;
+}
+progress::-moz-progress-bar {
+  background: black;
+}
+progress::-webkit-progress-value {
+  background: black;
+}
+progress[aria-valuenow]:before {
+  background: black;
+}

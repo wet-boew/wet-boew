@@ -168,26 +168,11 @@
 				if (opts.animate) {
 					activePanel = $panels.filter("." + opts.panelActiveClass).removeClass(opts.panelActiveClass).attr("aria-hidden", "true");
 					nextPanel = $panels.filter("#" + $selection.attr("href").substr(1));
-					if (!elm.hasClass("tabs-style-6")) {
-						activePanel.fadeOut(opts.animationSpeed, function () {
-							return nextPanel.fadeIn(opts.animationSpeed, function () {
-								return $(this).addClass(opts.panelActiveClass).attr("aria-hidden", "false");
-							});
+					activePanel.fadeOut(opts.animationSpeed, function () {
+						return nextPanel.fadeIn(opts.animationSpeed, function () {
+							return $(this).addClass(opts.panelActiveClass).attr("aria-hidden", "false");
 						});
-					}/* else {
-												
-						activePanel.animate({
-							marginLeft: parseInt(activePanel.css('marginLeft'), 10) === 0 ? activePanel.outerWidth() : 0
-						});
-						activePanel.fadeOut(opts.animationSpeed, function () {
-							return nextPanel.fadeIn(opts.animationSpeed, function () {
-								return $(this).addClass(opts.panelActiveClass).attr("aria-hidden", "false");
-							});
-						});
-						nextPanel.animate({
-							marginLeft: parseInt(nextPanel.css('marginLeft'), 10) === 0 ? nextPanel.outerWidth() : 0
-						});
-					}*/
+					});
 				} else {
 					$panels.removeClass(opts.panelActiveClass).attr("aria-hidden", "true").hide();
 					$panels.filter("#" + $selection.attr("href").substr(1)).show().addClass(opts.panelActiveClass).attr("aria-hidden", "false");
