@@ -887,7 +887,7 @@
 			}
 
 			// datalist
-			if (typeof document.createElement('datalist').position === "undefined") {
+			if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
 				elms = $('input[list]');
 				if (elms.length > 0) {
 					pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');

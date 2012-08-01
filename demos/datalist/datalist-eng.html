@@ -109,24 +109,22 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<section>
 		<h2 class="background-dark margin-bottom-medium">Usage</h2>
 		<pre class="wet-boew-prettify prettyprint linenums"><code>&lt;label for="city"&gt;City&lt;/label&gt;
-&lt;input id="city" name="city" list="suggestions" /&gt;
-&lt;datalist id=&quot;suggestions&quot;&gt;
-  &lt;!--[if !IE]&gt;&lt;!--&gt;
-  &lt;select&gt;&lt;!--&lt;![endif]--&gt;
-    &lt;option label="Calgary" /&gt;
-    &lt;option label="Edmonton" /&gt;
-    &lt;option label="Iqualuit" /&gt;
-    &lt;option label="Ottawa" /&gt;
-    &lt;option label="Montreal" /&gt;
-    &lt;option label="St. John" /&gt;
-    &lt;option label="St. John's" /&gt;
-    &lt;option label="Toronto" /&gt;
-    &lt;option label="Vancouver" /&gt;
-    &lt;option label="Whitehorse" /&gt;
-    &lt;option label="Winnipeg" /&gt;
-    &lt;option label="Yellowknife" /&gt;
-  &lt;!--[if !IE]&gt;&lt;!--&gt;
-  &lt;/select&gt;&lt;!--&lt;![endif]--&gt;
+&lt;input type="text" id="city" name="city" list="suggestions" /&gt;
+&lt;datalist id="suggestions"&gt;
+	&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
+	&lt;option label="" value="Calgary"&gt;&lt;/option&gt;
+	&lt;option label="" value="Edmonton"&gt;&lt;/option&gt;
+	&lt;option label="" value="Iqualuit"&gt;&lt;/option&gt;
+	&lt;option label="" value="Ottawa"&gt;&lt;/option&gt;
+	&lt;option label="" value="Montreal"&gt;&lt;/option&gt;
+	&lt;option label="" value="St. John"&gt;&lt;/option&gt;
+	&lt;option label="" value="St. John's"&gt;&lt;/option&gt;
+	&lt;option label="" value="Toronto"&gt;&lt;/option&gt;
+	&lt;option label="" value="Vancouver"&gt;&lt;/option&gt;
+	&lt;option label="" value="Whitehorse"&gt;&lt;/option&gt;
+	&lt;option label="" value="Winnipeg"&gt;&lt;/option&gt;
+	&lt;option label="" value="Yellowknife"&gt;&lt;/option&gt;
+	&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
 &lt;/datalist&gt;</code></pre>
 	</section>
 </div>
@@ -137,21 +135,22 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			<label for="city">City</label>
     		<input type="text" id="city" name="city" list="suggestions" />
     		<datalist id="suggestions">
-				<!--[if lte IE 9]><select><!--<![endif]-->
-        		<option>Calgary</option>
-        		<option>Edmonton</option>
-        		<option>Iqualuit</option>
-        		<option>Ottawa</option>
-				<option>Montreal</option>
-				<option>St. John</option>
-				<option>St. John's</option>
-				<option>Toronto</option>
-				<option>Vancouver</option>
-				<option>Whitehorse</option>
-				<option>Winnipeg</option>
-				<option>Yellowknife</option>
-				<!--[if lte IE 9]></select><!--<![endif]-->
+				<!--[if lte IE 9]><select><![endif]-->
+        		<option label="" value="Calgary"></option>
+        		<option label="" value="Edmonton"></option>
+        		<option label="" value="Iqualuit"></option>
+        		<option label="" value="Ottawa"></option>
+				<option label="" value="Montreal"></option>
+				<option label="" value="St. John"></option>
+				<option label="" value="St. John's"></option>
+				<option label="" value="Toronto"></option>
+				<option label="" value="Vancouver"></option>
+				<option label="" value="Whitehorse"></option>
+				<option label="" value="Winnipeg"></option>
+				<option label="" value="Yellowknife"></option>
+				<!--[if lte IE 9]></select><![endif]-->
     		</datalist>
+			
 		</form>
 	</section>
 </div>
