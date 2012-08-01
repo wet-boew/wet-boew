@@ -9,15 +9,6 @@
 	min-height:28px;
 }
 
-.mb-menu{
-	position:absolute;
-	background-color:#1A3D6C;
-	width:100%;
-	z-index:500;
-	float:left;
-	padding:4em;
-}
-
 .mb-menu,.mb-menu li{
 	list-style:none;
 	min-height:2.2em;
@@ -25,145 +16,116 @@
 	padding:0;
 }
 
-.mb-menu li{
-	background-color:#1A3D6C;
-	border-left:1px solid #353;
-	border-right:1px solid #575;
-	float:left;
-}
-
-.mb-menu li h3{
-	font-size:100%;
-	margin:0;
-	padding:0;
-}
-
-.mb-menu a{
-	font-weight:700;
-	text-align:left;
-	white-space:nowrap;
-	display:block;
-	padding:0.45em 0.79em;
-}
-
-.mb-menu a:link,.mb-menu a:visited{
-	text-decoration:none;
-	color:#fff;
-}
-
-.mb-menu a:hover,.mb-menu a:focus,.mb-menu a:active{
-	text-decoration:underline;
-}
-
-.mb-menu li h3 a:link, .mb-menu li h3 a:visited, .mb-menu li h4 a:link, .mb-menu li h4 a:visited {
-	text-decoration: underline;
-}
-
-.mb-menu .mb-has-sm{
-	text-decoration:none !important;
-}
-
-.mb-menu .nav-current{
-	background:#242;
-	color:#fff;
-}
-
-.mb-menu li:first-child.mb-active{
-	border-left:1px solid #CCC;
-}
-
-.mb-active a:hover.mb-has-sm,.mb-active a:link.mb-has-sm,.mb-active a:visited.mb-has-sm{
-	background-color:#CCC;
-	color:#000;
-}
-
-.mb-menu li div.mb-sm{
-	display:none;
-	visibility:hidden;
-}
-
-.mb-menu .mb-sm-open a{
-	white-space:normal;
-	padding:0.28em 0.79em;
-}
-
-.mb-menu .mb-sm-open ul{
-	list-style-type:none;
-}
-
-.mb-menu .mb-sm-open li,.mb-menu .mb-sm-open li div{
-	display:block;
-	float:none;
-	background:none;
-	border:none;
-	min-height:0;
-}
-
-.mb-menu .mb-sm-open li a{
-	font-weight:400;
-}
-
-.mb-menu .mb-sm-open a,.mb-menu .mb-sm-open a:link,.mb-menu .mb-sm-open a:visited{
-	color:#000;
-}
-
-.mb-menu .expandicon{
-	padding-right:12px;
-	background:url("../images/menu-dropdown.gif") no-repeat right center;
-}
-
-.mb-mega .mb-sm-open{
+.mb-menu{
 	position:absolute;
-	z-index:499;
-	background-color:#CCC;
-	border-bottom:4px solid #242;
-	padding-top:5px;
-	border-radius:0 0 3px 3px;
-	-moz-border-radius:0 0 3px 3px;
-	-webkit-border-radius:0 0 3px 3px;
-}
-
-.mb-mega .mb-sm-open h2,.mb-mega .mb-sm-open h3,.mb-mega .mb-sm-open h4{
-	font-size:1.2em;
-	font-weight:700;
-	margin:0;
-}
-
-.mb-mega .mb-sm-open ul{
-	margin:0 0 0 1.2em;
-	padding:0 0 1.15em;
-}
-
-.mb-mega .mb-sm-open ul ul{
-	padding:0;
-}
-
-.mb-mega .mb-sm-open .menu-col{
-	float:left;
-	min-width:190px;
-}
-
-.mb-hsubmenu .mb-sm-open{
-	left:0;
+	background-color:#1A3D6C;
 	width:100%;
-	background:#CCC;
-}
-
-.mb-hsubmenu .mb-sm-open a{
-	padding:0.15em 0.79em 0.25em;
-}
-
-.mb-hsubmenu .mb-sm-open ul{
-	width:100%;
-	padding-left:0;
-	background:#CCC;
-	margin:auto;
-}
-
-.mb-hsubmenu .mb-sm-open li{
-	border-left:1px solid #BBB;
-	border-right:1px solid #DDD;
+	z-index:500;
 	float:left;
+	li{
+		background-color:#1A3D6C;
+		border-left:1px solid #353;
+		border-right:1px solid #575;
+		float:left;
+		h3{
+			font-size:100%;
+			margin:0;
+			padding:0;
+		}
+	}
+	a{
+		font-weight:700;
+		text-align:left;
+		white-space:nowrap;
+		display:block;
+		padding:0.45em 0.79em;
+	}
+	a:link,a:visited{
+		text-decoration:none;
+		color:#fff;
+	}
+	a:hover,a:focus,a:active{
+		text-decoration:underline;
+	}
+	.nav-current{
+		background:#242;
+		color:#fff;
+	}
+	li:first-child.mb-active{
+		border-left:1px solid #CCC;
+	}
+	li div.mb-sm{
+		display:none;
+		visibility:hidden;
+	}
+	.mb-sm-open {
+		a{
+			white-space:normal;
+			padding:0.28em 0.79em;
+		}
+		a,a:link,a:visited{
+			color:#000;
+		}
+		ul{
+			list-style-type:none;
+		}
+		li {
+			h3 a:link, h3 a:visited, h4 a:link, h4 a:visited {
+				text-decoration: underline;
+			}
+		}
+		li,li div{
+			display:block;
+			float:none;
+			background:none;
+			border:none;
+			min-height:0;
+		}
+		li a{
+			font-weight:400;
+		}
+		
+	}
+	.expandicon{
+		padding-right:12px;
+		background:url("../images/menu-dropdown.gif") no-repeat right center;
+	}
+}
+
+.mb-active {
+	a:hover.mb-has-sm,a:link.mb-has-sm,a:visited.mb-has-sm{
+		background-color:#CCC;
+		color:#000;
+	}
+}
+
+.mb-mega {
+	.mb-sm-open{
+		position:absolute;
+		z-index:499;
+		background-color:#CCC;
+		border-bottom:4px solid #242;
+		padding-top:5px;
+		border-radius:0 0 3px 3px;
+		-moz-border-radius:0 0 3px 3px;
+		-webkit-border-radius:0 0 3px 3px;
+		h2,h3,h4{
+			font-size:1.2em;
+			font-weight:700;
+			margin:0;
+		}
+		ul{
+			margin:0 0 0 1.2em;
+			padding:0 0 1.15em;
+			ul{
+				padding:0;
+			}
+		}
+		.menu-col{
+			float:left;
+			min-width:190px;
+		}
+	}
 }
 
 .mb-container{

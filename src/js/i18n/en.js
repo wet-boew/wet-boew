@@ -74,6 +74,9 @@
 			"%hide" : "Hide",
 			"%error" : "Error",
 			"%colon" : ":",
+			"%start" : "Start",
+			"%stop" : "Stop",
+			"%back" : "Back",
 			"%minute-ago" : "a minute ago",
 			"%couple-of-minutes" : "couple of minutes ago",
 			"%minutes-ago" : {
@@ -90,7 +93,7 @@
 			/* Archived Web page template */
 			"%archived-page" : "This Web page has been archived on the Web.",
 			/* Menu bar */
-			"%sub-menu-help" : "(open the submenu with the down arrow key and close with the escape key)",
+			"%sub-menu-help" : "(open the submenu with the enter key and close with the escape key)",
 			/* Tabbed interface */
 			"%tab-rotation" : {
 				"disable" : "Stop tab rotation",
@@ -98,9 +101,9 @@
 			},
 			/* Multimedia player */
 			"%play" : "Play",
-			"%stop" : "Pause",
+			"%pause" : "Pause",
 			"%close" : "Close",
-			"%rewind" : "Rewind ",
+			"%rewind" : "Rewind",
 			"%next" : "Next",
 			"%previous" : "Previous",
 			"%fast-forward" : "Fast forward ",
@@ -112,6 +115,7 @@
 				"disable" : "Hide Closed captioning",
 				"enable" : "Show Closed captioning"
 			},
+			"%captionserror" : "Error loading closed captions",
 			"%audio-description" : {
 				"enable" : "Enable Audio Description",
 				"disable" : "Disable Audio Description"
@@ -135,15 +139,39 @@
 			"%form-not-submitted" : "The form could not be submitted because ",
 			"%errors-found" : " errors were found.",
 			"%error-found" : " error was found.",
-			"%error" : "Error",
-			"%colon" : ":",
+			/* Date picker */
+			"%datepicker-hide" : "Hide Calendar",
+			"%datepicker-show" : "Pick a date from a calendar for field: ",
+			"%datepicker-selected" : "Selected",
+			/* Calendar */
+			"%calendar-weekDayNames" : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+			"%calendar-monthNames" : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+			"%calendar-currentDay" : " (Current Day)",
+			"%calendar-goToLink" : "Go To<span class=\"wb-invisible\"> Month of Year</span>",
+			"%calendar-goToTitle" : "Go To Month of Year",
+			"%calendar-goToMonth" : "Month:",
+			"%calendar-goToYear" : "Year:",
+			"%calendar-goToButton" : "Go",
+			"%calendar-cancelButton" : "Cancel",
+			"%calendar-previousMonth" : "Previous Month: ",
+			"%calendar-nextMonth" : "Next Month: ",
 			/* Slideout */
 			"%show-toc" : "Show",
 			"%show-image" : "show.png",
 			"%hide-image" : "hide.png",
 			"%table-contents" : " table of contents",
 			/* Lightbox */
-			"%lightbox-error" : "The requested content cannot be loaded.<br />Please try again later."
+			"%lb-current" : "Item {current} of {total}",
+			"%lb-next" : "Next item",
+			"%lb-prev" : "Previous item",
+			"%lb-xhr-error" : "This content failed to load.",
+			"%lb-img-error" : "This image failed to load.",
+			"%lb-slideshow" : "slideshow",
+			/* jQuery Mobile */
+			"%jqm-expand" : " click to expand contents",
+			"%jqm-collapse" : " click to collapse contents",
+			"%jqm-clear-search" : "clear search",
+			"%jqm-filter" : "Filter items..."
 		}
 	};
 	$(document).trigger("languageloaded");

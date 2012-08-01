@@ -16,32 +16,36 @@ h3{
 }
 .gcwu-subsite-1{
 	background:#618000 url(../images/gcwu-subsite-1.gif) repeat-x 0 top;
-}
-.gcwu-subsite-1 a{
-	color:#fff !important;
-	text-shadow:1px 1px 1px #333 !important;
+	a{
+		color:#fff !important;
+		text-shadow:1px 1px 1px #333 !important;
+	}
 }
 
 /* Overrides from util.css */
-.embedded-nav a,.embedded-nav a:visited,.embedded-nav a:link{
-	background:#276cb9;
-	border-color:#276cb9;
+.embedded-nav {
+	a, a:visited, a:link{
+		background:#276cb9;
+		border-color:#276cb9;
+	}
+	a:hover, a:focus, a:active{
+		border-color:#276cb9;
+	}
+	.embedded-link-active{
+		color:#276cb9;
+	}
 }
-.embedded-nav .embedded-link-active{
-	color:#276cb9;
-}
-.embedded-nav a:hover,.embedded-nav a:focus{
-	border-color:#276cb9;
-}
+
 .table-accent{
 	border-color:#276cb9;
+	th{
+		background-color:#276cb9 !important;
+	}
+	td{
+		border-color:#276cb9;
+	}
 }
-.table-accent th{
-	background-color:#276cb9 !important;
-}
-.table-accent td{
-	border-color:#276cb9;
-}
+
 .background-accent{
 	background-color:#276cb9 !important;
 }
@@ -58,15 +62,20 @@ h2.background-accent,h3.background-accent,h4.background-accent,h5.background-acc
 .module-billboard li{
 	background-color:#276cb9;
 }
-.module-news h2 a,.module-news h3 a{
-	color:#276cb9;
+.module-news {
+	h2 a, h3 a{
+		color:#276cb9;
+	}
+	.module-news-article {
+		a{
+			background:#276cb9;
+		}
+		span a{
+			color:#276cb9;
+		}
+	}
 }
-.module-news .module-news-article a{
-	background:#276cb9;
-}
-.module-news .module-news-article span a{
-	color:#276cb9;
-}
+
 .module-spotlight li span a{
 	color:#276cb9;
 }

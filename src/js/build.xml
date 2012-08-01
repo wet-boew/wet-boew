@@ -19,6 +19,7 @@
 			<include name="i18n/*.*" />
 			<include name="i18n/formvalid/*.*" />
 			<include name="dependencies/*.*"/>
+			<include name="dependencies/prettify/*.*"/>
 			<include name="polyfills/*.*"/>
 			<include name="css/*.*" />
 		</yui-compressor>
@@ -49,6 +50,7 @@
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="images/**"/>
+					<include name="bin/**"/>
 					<include name="jquery.mobile/*.min.js"/>
 					<include name="*.js"/>
 					<exclude name="pe-ap.js"/> 

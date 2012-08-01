@@ -11,18 +11,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Tabbed interface - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="English description/Description en anglais" />
-<meta name="description" content="English description/Description en anglais" />
-<meta name="keywords" content="English keywords/Mots-clés en anglais" />
-<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
-<meta name="dcterms.title" content="English title/Titre en anglais" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="../../build/js/dependencies/prettify-min.js"></script> -->
 <!--[if lte IE 8]>
 <script src="../../build/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
@@ -36,20 +35,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
-<!--[if !IE]> -->
-<style>
-	pre{border:1px solid #aaa;background:#eee;border-radius:1em;padding:0 1em;}
-	pre code{background:#eee;counter-reset:line;}
-	pre code .line:before{content:counter(line);display:inline-block;text-align:right;width:1.25em;padding-right:.5em;margin-right:.75em;margin-left:-1.1em;padding-left:.5em;background:#aaa;border-right:1px solid #333;border-left:1px solid #aaa;opacity:.7;}
-	pre code .line:first-child:before{border-top-left-radius:1em;border-top:1px solid #aaa;padding-top:1em;}
-	pre code .line:last-child:before{border-bottom-left-radius:1em;border-bottom:1px solid #aaa;padding-bottom:1em;}
-	pre code .line{counter-increment:line;white-space:pre-wrap;}
-	pre code .attr{color:#b22;}
-	pre code .str{color:#464;font-weight:bold;}
-	pre code .sym{color:#44f;font-weight:bold;}
-	pre code .req{border:1px dashed #b22;background:#ffe;}
-</style>
-<!-- <![endif]-->
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -79,7 +64,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -142,7 +127,7 @@ and
 <div class="clear"></div>
 
 <div class="span-5"><section><h2 id="coding">Coding</h2>
-<pre><code>&lt;div class=&quot;wet-boew-tabbedinterface tabs-style-2&quot;&gt;
+<pre class="wet-boew-prettify prettyprint linenums"><code>&lt;div class=&quot;wet-boew-tabbedinterface tabs-style-2&quot;&gt;
 	&lt;ul class=&quot;tabs&quot;&gt;
 		&lt;li&gt;&lt;a href=&quot;#tabs1_1&quot;&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
 		&lt;li class=&quot;default&quot;&gt;&lt;a href=&quot;#tabs1_2&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
@@ -160,11 +145,6 @@ and
 		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
-<!--[if !IE]> -->
-<script type="text/javascript">
-jQuery("pre code").html(function(index,html){return html.replace(/(\s+)([\w\-]+=)/g,"$1<span class=\"attr\">$2</span>").replace(/(=\<\/span\>)(\"[\w\s\-#]*\")/g,"$1<span class=\"str\">$2</span>").replace(/(&lt;\/\w+|&gt;|&lt;\w+)/g,"<span class=\"sym\">$1</span>").replace(/(\")(wet-boew-tabbedinterface|tabs-panel|tabs)(\"|\s)/g,"$1<span class=\"req\" title=\"Required class\">$2</span>$3").replace(/^(.*)$/mg,"<span class=\"line\">$1</span>");});
-</script>
-<!-- <![endif]-->
 </section></div>
 
 <div class="span-3"><section><h2 id="cssnames">CSS names</h2>

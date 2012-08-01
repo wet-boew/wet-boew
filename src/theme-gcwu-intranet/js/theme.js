@@ -87,15 +87,17 @@
 				}
 
 				if (pe.secnav.length > 0) {
-					nav = pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, "c");
-					pe.menu.expandmobile(nav);
+					nav = pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, "c", false, true);
+					pe.menu.expandcollapsemobile(nav, (pe.secnav.find('h3.top-section').length > 0 ? "h4" : "h3"), true, false);
+					pe.menu.expandcollapsemobile(nav, ".nav-current", false, true);
 					mb_dialogue += $('<section><h2>' + pe.secnav.find('h2').eq(0).html() + '</h2></section>').append(nav).html();
 					pe.secnav.remove();
 				}
 
 				if (wet_boew_theme.menubar.length > 0) {
-					nav = pe.menu.buildmobile(mb_li, 3, "a", true);
-					pe.menu.expandmobile(nav);
+					nav = pe.menu.buildmobile(mb_li, 3, "a", true, true);
+					pe.menu.expandcollapsemobile(nav, "h3", true, false);
+					pe.menu.expandcollapsemobile(nav, ".nav-current", false, true);
 					mb_dialogue += $('<section><h2>' + mb_header.html() + '</h2></section>').append(nav).html();
 				}
 				mb_dialogue += '</nav></div></div></div>';
@@ -166,6 +168,7 @@
 				// Correct the corners for each of the site menu/secondary menu sections and sub-sections
 				pe.menu.correctmobile($('#jqm-wb-mb'));
 			});
+			$(document).trigger("mobileviewloaded");
 			return;
 		}
 	};

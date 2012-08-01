@@ -11,9 +11,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Feuille de réponse - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="French description / Description en français" />
 <meta name="description" content="French description / Description en français" />
-<meta name="keywords" content="French keywords / Mots-clés en français" />
 <meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
 <meta name="dcterms.title" content="French title / Titre en français" />
 <meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
@@ -65,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
 </div></form>
 </div></section>
@@ -101,12 +99,12 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div class="wet-boew-formvalid wet-boew-feedback">
 <p>Si vous avez des problèmes avec le formulaire suivant, vous pouvez utiliser une des <a href="#osc-avs">autres voies de service</a> pour communiquer avec nous. S'il vous plaît lire l'<a href="#pics-ecrp">énoncé de collecte de renseignements personnels</a> avant de compléter ce formulaire.</p>
-<form action="#" method="get"><div>
+<form action="#" method="get" id="feeback-form"><div>
 <div><input type="hidden" name="language" value="fra" />&#160;</div>
 
 <div id="type">
 <p><label for="feedback"><span class="field-name">Raison pour communiquer avec nous</span> <strong>(obligatoire)</strong></label>
-<select name="feedback" id="feedback" required="required" class="{validate:{required:true}}">
+<select name="feedback" id="feedback" required="required">
 <option value=""></option>
 <option value="web">Problème critique avec le site Web</option>
 <option value="improvement">Suggestion pour améliorer le site Web</option>
@@ -116,7 +114,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <option value="other">Autre</option>
 </select></p>
 <p><label for="subject"><span class="field-name">Objet</span></label><input type="text" id="subject" name="subject" size="45" maxlength="60" /></p>
-<p><label for="message"><span class="field-name">Message</span> <strong>(obligatoire)</strong></label><textarea id="message" name="message" rows="5" cols="45" required="required" class="{validate:{required:true}}"></textarea></p>
+<p><label for="message"><span class="field-name">Message</span> <strong>(obligatoire)</strong></label><textarea id="message" name="message" rows="5" cols="45" required="required"></textarea></p>
 </div>
 
 <section><div id="web"><h2>Problèmes avec le site Web</h2>
@@ -177,8 +175,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="info"><section><h3>Coordonnées</h3>
 <fieldset><legend>Veuillez fournir des renseignements qui pourraient servir à vous joindre</legend>
-<p><label for="name"><span class="field-name">Nom</span></label><input type="text" id="name" name="name" size="45" maxlength="45" /></p>
-<p><label for="email"><span class="field-name">Adresse de courriel</span> <strong>(obligatoire)</strong></label><input type="email" id="email" name="email" size="45" maxlength="60" required="required" class="{validate:{required:true}}" /></p>
+<p><label for="name"><span class="field-name">Nom</span></label><input type="text" id="name" name="name" size="45" maxlength="45" pattern="{2,}" class="{validate:{minlength:2}}" /></p>
+<p><label for="email"><span class="field-name">Adresse de courriel</span> <strong>(obligatoire)</strong></label><input type="email" id="email" name="email" size="45" maxlength="60" required="required" /></p>
 <p><label for="hphone"><span class="field-name">Numéro de téléphone à domicile</span>, y compris l'indicatif régional (<abbr title="par example">p. ex.</abbr>&#160;: 123-456-7890)</label><input type="tel" id="hphone" name="hphone" size="12" maxlength="12" class="{validate:{phoneUS:true}}" /></p>
 <p><label for="wphone"><span class="field-name">Numéro de téléphone au travail</span>, y compris l'indicatif régional (<abbr title="par example">p. ex.</abbr>&#160;: 123-456-7890)</label><input type="tel" id="wphone" name="wphone" size="12" maxlength="12" class="{validate:{phoneUS:true}}" /></p>
 <p><label for="wphonext"><span class="field-name">Numéro du poste au travail</span></label><input type="text" id="wphonext" name="wphonext" size="8" maxlength="8" /></p>
@@ -186,7 +184,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </section></div>
 </div></section>
 
-<div class="buttons"><input type="submit" name="submit" id="submit" value="Soumettre rétroaction" class="button" /> <input type="reset" value="Réinitialiser" class="button" /></div>
+<div class="buttons"><input type="submit" name="submit" id="submit" value="Soumettre la rétroaction" class="button" /> <input type="reset" value="Réinitialiser" class="button" /></div>
 </div>
 </form>
 

@@ -37,12 +37,13 @@ body{
 	background-image:url(../images/footer-deco.gif);
 }
 
-#gcwu-gcft li{
-	margin:12px 0 13px 44px;
-}
-
-#gcwu-gcft li:first-child{
-	margin-left:10px;
+#gcwu-gcft {
+	li{
+		margin:12px 0 13px 44px;
+	}
+	li:first-child{
+		margin-left:10px;
+	}
 }
 
 li#gcwu-gcft-ca a{

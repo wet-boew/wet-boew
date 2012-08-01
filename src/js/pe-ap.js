@@ -56,11 +56,14 @@
 			return (res) ? false : true;
 		}
 		()),
+
+		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
+
 		/**
 		 * @memberof pe
 		 * @type {number} - IE major number if browser is IE, 0 otherwise
 		 */
-		ie: $.browser.msie ? $.browser.version : 0,
+		ie: (/(MSIE) ([\w.]+)/.exec(navigator.userAgent) || [])[2] || "0",
 		/**
 		 * A private function for initializing for pe.
 		 * @function
@@ -68,13 +71,20 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, url, target;
-
-			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
+			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false, disable;
 
 			// Get the query parameters from the URL
 			pe.urlquery = pe.url(document.location).params;
+
+			// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string
+			disable = pe.urlquery.pedisable;
+			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
+				$('html').addClass('pe-disable');
+				return false;
+			}
+
+			// Identify whether or not the device supports JavaScript and has a touchscreen
+			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
 
 			hlinks = pe.main.find("a[href*='#']");
 			hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes
@@ -83,13 +93,13 @@
 			// Is this a mobile device?
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
-				$('body > div').attr('data-role', 'page');
+				$('body > div').attr('data-role', 'page').addClass('ui-page-active');
 
 				$(document).on("mobileinit", function () {
 					$.extend($.mobile, {
 						ajaxEnabled: false,
 						pushStateEnabled: false,
-						autoInitializePage: false
+						autoInitializePage: (init_on_mobileinit ? true : false),
 					});
 				});
 
@@ -170,10 +180,29 @@
 
 						//Load the mobile view
 						if (pe.mobile === true) {
-							if (wet_boew_theme !== null) {
-								wet_boew_theme.mobileview();
-							}
+							// Apply internationalization to jQuery Mobile
+							$.mobile.collapsible.prototype.options.expandCueText = pe.dic.get('%jqm-expand');
+							$.mobile.collapsible.prototype.options.collapseCueText = pe.dic.get('%jqm-collapse');
+							$.mobile.dialog.prototype.options.closeBtnText = pe.dic.get('%close');
+							$.mobile.page.prototype.options.backBtnText = pe.dic.get('%back');
+							$.mobile.textinput.prototype.options.clearSearchButtonText = pe.dic.get('%jqm-clear-search');
+							$.mobile.selectmenu.prototype.options.closeText = pe.dic.get('%close');
+							$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
+
+							$(document).on("mobileviewloaded", function () {
+								if ($.mobile !== undefined) {
+									$.mobile.initializePage();
+								} else {
+									init_on_mobileinit = true;
+								}
+							});
+							wet_boew_theme.mobileview();
+						}
+					} else if (pe.mobile === true) {
+						if ($.mobile !== undefined) {
 							$.mobile.initializePage();
+						} else {
+							init_on_mobileinit = true;
 						}
 					}
 					pe.dance();
@@ -281,9 +310,12 @@
 		 * @param {string} uri A relative or absolute URL to manipulate.
 		 */
 		url: function (uri) {
-			var a;
+			var a, i;
 			a = document.createElement('a');
 			a.href = uri;
+			//Needed for IE because a doesn't translate to absolute(strangly)
+			i = document.createElement('img');
+			i.src = uri;
 			return {
 				/**
 				 * @namespace pe.url
@@ -293,7 +325,7 @@
 				 * @memberof pe.url
 				 * @type {string}
 				 */
-				source: a.href,
+				source: i.src,
 				/**
 				 * The protocol of the URL. eg. http or https
 				 * @memberof pe.url
@@ -422,15 +454,17 @@
 		 * @return {void}
 		 */
 		_execute : function (fn_obj, elm) {
-			var exec = (typeof fn_obj._exec !== "undefined") ? fn_obj._exec : fn_obj.exec;
-			if (typeof fn_obj.depends !== "undefined") {
-				pe.add.js(fn_obj.depends, function () {
+			if (fn_obj !== undefined) {
+				var exec = (typeof fn_obj._exec !== "undefined") ? fn_obj._exec : fn_obj.exec;
+				if (typeof fn_obj.depends !== "undefined") {
+					pe.add.js(fn_obj.depends, function () {
+						exec(elm);
+					});
+				//delete fn_obj.depends;
+				} else {
+					// execute function since it has no depends and we can safely execute
 					exec(elm);
-				});
-			//delete fn_obj.depends;
-			} else {
-				// execute function since it has no depends and we can safely execute
-				exec(elm);
+				}
 			}
 			return;
 		},
@@ -783,9 +817,13 @@
 						var $this = $(this), target = $this.is('a') ? $this : $this.find('a').first();
 						if ($this.prev().length > 0) {
 							target.removeClass('ui-corner-top');
+						} else {
+							target.addClass('ui-corner-top');
 						}
 						if ($this.next().length > 0) {
 							target.removeClass('ui-corner-bottom');
+						} else {
+							target.addClass('ui-corner-bottom');
 						}
 					});
 				});
@@ -799,6 +837,7 @@
 		 */
 		polyfills: function () {
 			var lib = pe.add.liblocation,
+				elms,
 				// modernizer test for detailsummary support
 				details = (function (doc) {
 					var el = doc.createElement('details'),
@@ -830,15 +869,30 @@
 			if (!window.localStorage) {
 				pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js');
 			}
-			// process
+			// progress
 			if (typeof document.createElement('progress').position === "undefined") {
-				pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
-				$("progress").addClass("polyfill");
+				elms = $('progress');
+				if (elms.length > 0) {
+					pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
+					elms.addClass('polyfill');
+				}
 			}
 			// details + summary
 			if (!details) {
-				pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
-				$("details").addClass("polyfill");
+				elms = $('details');
+				if (elms.length > 0) {
+					pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
+					elms.addClass('polyfill');
+				}
+			}
+
+			// datalist
+			if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
+				elms = $('input[list]');
+				if (elms.length > 0) {
+					pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
+					elms.addClass('polyfill');
+				}
 			}
 		},
 		/**

@@ -24,7 +24,7 @@
                 mfrac.appendChild(document.createElementNS(ns, "mi")).appendChild(document.createTextNode("yy"));
                 document.body.appendChild(div);
                 hasMathML = div.offsetHeight > div.offsetWidth;
-                div.style.display = "none";
+                div.parentNode.removeChild(div);
             }
             return hasMathML;
         }()),

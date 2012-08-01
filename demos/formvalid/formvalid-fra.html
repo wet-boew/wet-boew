@@ -11,9 +11,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Validation des formulaires - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="French description / Description en français" />
 <meta name="description" content="French description / Description en français" />
-<meta name="keywords" content="French keywords / Mots-clés en français" />
 <meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
 <meta name="dcterms.title" content="French title / Titre en français" />
 <meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
@@ -65,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
 </div></form>
 </div></section>
@@ -100,10 +98,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <h1 id="wb-cont">Validation des formulaires</h1>
 
 <div class="wet-boew-formvalid">
-<form action="#" method="get">
+<form action="#" method="get" id="validation-example">
 <fieldset><legend>Coordonnées</legend>
 <div><label for="title1"><span class="field-name">Titre</span> <strong>(obligatoire)</strong></label>
-<select id="title1" name="title1" class="{validate:{required:true}}">
+<select id="title1" name="title1" required="required">
 <option></option>
 <option value="dr">D. Ph.</option>
 <option value="esq">Me</option>
@@ -111,22 +109,21 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <option value="ms">Madame</option>
 </select>
 </div>
-<div><label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" required="required" pattern="{3,}" class="{validate:{required:true,minlength:3}}" /></div>
-<div><label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" required="required" pattern="{3,}" class="{validate:{required:true,minlength:3}}" /></div>
-<div><label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label><input id="tel" name="tel" type="tel" required="required" class="{validate:{required:true,phoneUS:true}}" /></div>
+<div><label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" required="required" pattern="{2,}" class="{validate:{minlength:2}}" /></div>
+<div><label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" required="required" pattern="{2,}" class="{validate:{minlength:2}}" /></div>
+<div><label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label><input id="tel" name="tel" type="tel" required="required" class="{validate:{phoneUS:true}}" /></div>
 <div><label for="email1"><span class="field-name">Adresse électronique</span></label><input id="email1" name="email1" type="email" /></div>
 <div><label for="url1"><span class="field-name">URL du site Web (http://www.url.com)</span></label><input id="url1" name="url1" type="url" class="{validate:{url:true}}" /></div>
 </fieldset>
 
 <fieldset><legend>Autres exemples</legend>
-<div><label for="date1"><span class="field-name">Date</span> (AAAA-MM-JJ)</label><input id="date1" name="date1" type="date" /></div>
+<div><label for="date1"><span class="field-name">Date</span> (AAAA-MM-JJ)</label><input id="date1" name="date1" type="date" class="{validate:{dateISO:true}}" /></div>
 <div><label for="time1"><span class="field-name">Heure</span> (hh:mm)</label><input id="time1" name="time1" type="time" /></div>
 <div><label for="an1"><span class="field-name">Alphanumérique</span> (4 caractères minimum)</label><input id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" class="{validate:{alphanumeric:true,minlength:4}}" /></div>
 <div><label for="digits1"><span class="field-name">Chiffres seulement</span></label><input id="digits1" name="digits1" type="number" /></div>
 <div><label for="integer1"><span class="field-name">Intègre</span> (entre 5 et 40)</label><input id="integer1" name="integer1" type="number" min="5" max="40" /></div>
 <div><label for="letters1"><span class="field-name">Lettres seulement</span> (5 caractères maximum)</label><input id="letters1" name="letters1" type="text" size="5" maxlength="5" pattern="[A-Za-z\s]" class="{validate:{lettersonly:true}}" /></div>
-<div><label for="text1"><span class="field-name">Lettres et des signes de ponctuation seulement</span></label><input id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&quot;\s]" class="{validate:{letterswithbasicpunc:true}}" /></div>
-<div><label for="text2"><span class="field-name">Lettres seulement, sans des blancs</span></label><input id="text2" name="text2" type="text" pattern="[A-Za-z]" class="{validate:{lettersonly:true,nowhitespace:true}}" /></div>
+<div><label for="text1"><span class="field-name">Lettres et des signes de ponctuation seulement</span> (ponctuation qui est permis&#160;: [. , ( ) "])</label><input id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&quot;\s]" class="{validate:{letterswithbasicpunc:true}}" /></div>
 <div><label for="password1"><span class="field-name">Mot de passe</span> (entre 5 et 10 characters)</label><input id="password1" name="password1" type="password" maxlength="10" size="10" pattern="{5,10}" class="{validate:{rangelength:[5,10]}}" /></div>
 </fieldset>
 <div class="buttons"><input type="submit" value="Soumettre" /> <input type="reset" value="Réinitialiser" /></div>

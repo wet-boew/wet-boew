@@ -7,8 +7,10 @@
 	display:none;
 }
 
-.no-js .wet-boew-slideout {
-	display:block;
+.no-js {
+	.wet-boew-slideout {
+		display:block;
+	}
 }
  
 #slideoutInnerWrapper {
@@ -31,10 +33,6 @@
     z-index: 1;
 }
 
-.so-ie7 {
-   position: relative;
-}
-
 .slideoutToggle {
 	float: left;
 	position: relative; /* Needed for animation */
@@ -46,10 +44,9 @@
 
 #toggleLink {
 	cursor: pointer;
-}
-
-#toggleLink img {
-    margin: 0;
+	img {
+		margin: 0;
+	}
 }
 
 .tabbedSlideout {
@@ -63,22 +60,21 @@
 	width: 245px;
 }
 
-div.tabbedSlideout h2 {
-	margin: 0px;
-	padding: 0px 5px 5px 5px;
-	text-align: left;
-}
-
-div.tabbedSlideout ul, div.tabbedSlideout ol {
-    margin: 0;
-    list-style-type: none;
-	padding: 0 5px;
-}
-
-div.tabbedSlideout li ul, div.tabbedSlideout li ol {
-    margin-left: 20px;
-}
-
-div.tabbedSlideout li {
-    margin: 6px 0;
+div.tabbedSlideout {
+	h2 {
+		margin: 0px;
+		padding: 0px 5px 5px 5px;
+		text-align: left;
+	}
+	ul, ol {
+		margin: 0;
+		list-style-type: none;
+		padding: 0 5px;
+	}
+	li {
+		margin: 6px 0;
+		ul, ol {
+			margin-left: 20px;
+		}
+	}
 }
