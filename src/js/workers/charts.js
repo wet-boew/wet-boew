@@ -2298,7 +2298,7 @@ charts.graph2dAxis = {
 				// The following variable is used for auto add ids/headers to the table
 				var columnIds = []; // The array lenght must equal of parser.seriesHeadingLenght and each item are ids separated by space
 				
-				/* 	// Parse the Table Heading
+				/*	 	// Parse the Table Heading
 				$('thead', self).each(function(){
 					
 					var ColumnHeading = [];
@@ -2474,10 +2474,10 @@ charts.graph2dAxis = {
 				});
 				
 				
-				
-				
-				
 				*/
+				
+				
+				
 			
 				
 				
@@ -3573,6 +3573,9 @@ charts.graph2dAxis = {
 				
 				currLevel ++;
 			});
+			
+			
+			// **** Still miss something to be set as when the old parser was parsing the table header ****
 			
 			parser.tBodySeries.nbColLevel = tblParserData.theadRowStack.length;
 			parser.rowPos = tblParserData.theadRowStack.length - 1 ;
