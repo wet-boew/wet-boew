@@ -244,6 +244,55 @@
 		
 		var graphStartExecTime = new Date().getTime(); // This variable is used to autogenerate ids for the given tables.
 		
+		//
+		// Performance Strategy
+		//
+		
+		// Do the first graphic without stacking
+		// Add somewhere in the PE Object that the first graphic is done
+		// If the first graphic are done or near to be fully processed, we would stack the other table for 1500 milisecond later
+		
+		if(_pe.fn.charts.graphprocessed && !_pe.fn.charts.graphdelayed){
+			// There is alreay a graphic that is ongoing, we would stack this one
+		
+			if(!_pe.fn.charts.graphstacked)_pe.fn.charts.graphstacked = [];
+			_pe.fn.charts.graphstacked.push(elm);
+			
+			
+			// Check if the delay was already set
+			if(!_pe.fn.charts.graphdelayedset){
+				
+				_pe.fn.charts.graphdelayedset = true;
+				
+				// Fix the delayed processing
+				var tick;
+				var iteration = 0;
+				(function ticker() {
+					if(iteration > 0){
+						_pe.fn.charts.graphdelayed = true;
+					}
+					
+					// Clear the timer if all the object is processed
+					if(_pe.fn.charts.graphstacked.length == 0){
+						clearTimeout(tick);
+						return;
+					}
+					
+					_pe.fn.charts._exec(_pe.fn.charts.graphstacked.shift());
+					
+					iteration ++;
+					tick = setTimeout(ticker, 200);
+					
+                })();
+				
+				// settimeout(, 1500);
+			}
+			
+			return;
+		}
+		_pe.fn.charts.graphprocessed = true;
+		
+		
 		// console.log('graph start exec time ' + graphStartExecTime);
 		
 		var charts = {};
