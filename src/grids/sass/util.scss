@@ -598,6 +598,22 @@
         box-shadow:inset 0 0 5px 2px #999;
         border:1px solid #999;
     }
+	input.signin[type="submit"], input.signin[type="reset"], input.signin[type="button"] {
+    	background: url("../images/button-signin.gif") repeat-x scroll 0 0 #23447E;
+		border-color: #FFFFFF #999999 #999999 #FFFFFF;
+		min-height:24px;
+		border-radius: 2px 2px 2px 2px;border-style: solid;
+		border-width: 1px;box-shadow: none;
+		color: #fff;
+		font-weight: 700;
+		margin-top: 20px;
+		min-height: 24px;
+		padding: 2px 6px;
+		text-shadow: 0 1px 0 #EEEEEE;
+	}
+	input.signin:focus[type="submit"],input.signin:hover[type="submit"], input.signin:focus[type="reset"],input.signin:hover[type="reset"], 	input.signin:focus[type="button"], input.signin:hover[type="button"] {
+		background: url("../images/button-signin-focus.gif") repeat-x scroll 0 0 #0F315B;
+	}
 
     .module-form-fluid fieldset{
         background:#eee;
