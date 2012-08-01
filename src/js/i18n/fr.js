@@ -72,6 +72,7 @@
 			"%colon" : "&#160;:",
 			"%start" : "Lancer",
 			"%stop" : "Arrêter",
+			"%back" : "Précédent",
 			"%minute-ago": "il ya une minute",
 			"%couple-of-minutes": "il ya quelques minutes",
 			"%minutes-ago": {
@@ -161,38 +162,12 @@
 			"%lb-prev" : "Article précédent",
 			"%lb-xhr-error" : "Le chargement de ce contenu a échoué.",
 			"%lb-img-error" : "Le chargement de cette image a échoué.",
-			"%lb-slideshow" : "la diaporama"
-		},
-		/*
-		jQuery Mobile internationalization
-		*/
-		mobile : {
-			collapsible : {
-				options : {
-					expandCueText : " cliquer pour afficher le contenu",
-					collapseCueText : " cliquer pour masquer le contenu"
-				}
-			},
-			dialog : {
-				options : {
-					closeBtnText : "Fermer"
-				}
-			},
-			page : {
-				options: {
-					backBtnText : "Précédent"
-				}
-			},
-			textinput : {
-				options : {
-					clearSearchButtonText : "effacer le texte"
-				}
-			},
-			selectmenu : {
-				options : {
-					closeText : "Fermer"
-				}
-			}
+			"%lb-slideshow" : "la diaporama",
+			/* jQuery Mobile */
+			"%jqm-expand" : " cliquer pour afficher le contenu",
+			"%jqm-collapse" : " cliquer pour masquer le contenu",
+			"%jqm-clear-search" : "effacer le texte",
+			"%jqm-filter" : "Filtrer des articles..."
 		}
 	};
 	$(document).trigger("languageloaded");

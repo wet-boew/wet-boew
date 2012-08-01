@@ -76,6 +76,7 @@
 			"%colon" : ":",
 			"%start" : "Start",
 			"%stop" : "Stop",
+			"%back" : "Back",
 			"%minute-ago" : "a minute ago",
 			"%couple-of-minutes" : "couple of minutes ago",
 			"%minutes-ago" : {
@@ -165,38 +166,12 @@
 			"%lb-prev" : "Previous item",
 			"%lb-xhr-error" : "This content failed to load.",
 			"%lb-img-error" : "This image failed to load.",
-			"%lb-slideshow" : "slideshow"
-		},
-		/*
-		jQuery Mobile internationalization
-		*/
-		mobile : {
-			collapsible : {
-				options : {
-					expandCueText : " click to expand contents",
-					collapseCueText : " click to collapse contents"
-				}
-			},
-			dialog : {
-				options : {
-					closeBtnText : "Close"
-				}
-			},
-			page : {
-				options : {
-					backBtnText : "Back"
-				}
-			},
-			textinput : {
-				options : {
-					clearSearchButtonText : "clear text"
-				}
-			},
-			selectmenu : {
-				options : {
-					closeText : "Close"
-				}
-			}
+			"%lb-slideshow" : "slideshow",
+			/* jQuery Mobile */
+			"%jqm-expand" : " click to expand contents",
+			"%jqm-collapse" : " click to collapse contents",
+			"%jqm-clear-search" : "clear search",
+			"%jqm-filter" : "Filter items..."
 		}
 	};
 	$(document).trigger("languageloaded");

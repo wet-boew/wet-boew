@@ -181,13 +181,14 @@
 						//Load the mobile view
 						if (pe.mobile === true) {
 							// Apply internationalization to jQuery Mobile
-							// TODO: Find more efficient way of overriding these strings
-							$.extend($.mobile.collapsible.prototype.options, pe.dic.mobile.collapsible.options);
-							$.extend($.mobile.collapsible.prototype.dialog, pe.dic.mobile.dialog.options);
-							$.extend($.mobile.collapsible.prototype.page, pe.dic.mobile.page.options);
-							$.extend($.mobile.collapsible.prototype.textinput, pe.dic.mobile.textinput.options);
-							$.extend($.mobile.collapsible.prototype.selectmenu, pe.dic.mobile.selectmenu.options);
-						
+							$.mobile.collapsible.prototype.options.expandCueText = pe.dic.get('%jqm-expand');
+							$.mobile.collapsible.prototype.options.collapseCueText = pe.dic.get('%jqm-collapse');
+							$.mobile.dialog.prototype.options.closeBtnText = pe.dic.get('%close');
+							$.mobile.page.prototype.options.backBtnText = pe.dic.get('%back');
+							$.mobile.textinput.prototype.options.clearSearchButtonText = pe.dic.get('%jqm-clear-search');
+							$.mobile.selectmenu.prototype.options.closeText = pe.dic.get('%close');
+							$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
+
 							$(document).on("mobileviewloaded", function () {
 								if ($.mobile !== undefined) {
 									$.mobile.initializePage();
