@@ -41,7 +41,7 @@
 			"graphclass-overwrite-array-mode": true,
 			"graphclass-typeof": "string",
 			
-			"hide-autocreate": true,
+			"noenhancement-autocreate": true,
 
 			
 			// Force the Top and Bottom Value for a graph
@@ -128,7 +128,7 @@
 				"overcolor-autocreate": true,
 				"default-namespace": "wb-graph",
 				"dasharray-autocreate": true,
-				"hide-autocreate": true,
+				"noenhancement-autocreate": true,
 				"fillopacity-autocreate": true,
 				"fillopacity-typeof": "number"
 			},
@@ -3970,6 +3970,22 @@ charts.graph2dAxis = {
 
 				// Make the graph Accessible
 				setAccessiblity();
+				
+				if(!parser.param.noenhancement){
+					var tblSrcContainer = $('<details />').appendTo(paperContainer);
+					var tblSrcContainerSummary = $('<summary />');
+					$(tblSrcContainerSummary).text('View Source') // Go in the pe dictionnary
+							.appendTo(tblSrcContainer)
+							.after(self); 
+					
+					// Make this new details elements working
+					if (typeof tblSrcContainer.open === "undefined") {
+						// We need to run the pollyfill for this new details elements
+						$(tblSrcContainer).details();
+					}
+				}
+				
+				
 			} else {
 				// Destroy the paper container
 				$(paperContainer).remove();
@@ -4008,9 +4024,9 @@ charts.graph2dAxis = {
 	// console.log(parser);
 	
 	// The graphic are draw, hide if requested the source table
-	if(parser.param.hide){
+	/*if(parser.param.hide){
 		parser.sourceTblSelf.hide();
-	}
+	}*/
         } // end of exec
     };
     window.pe = _pe;
