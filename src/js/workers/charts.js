@@ -2298,9 +2298,7 @@ charts.graph2dAxis = {
 				// The following variable is used for auto add ids/headers to the table
 				var columnIds = []; // The array lenght must equal of parser.seriesHeadingLenght and each item are ids separated by space
 				
-				
-				
-				// Parse the Table Heading
+				/* 	// Parse the Table Heading
 				$('thead', self).each(function(){
 					
 					var ColumnHeading = [];
@@ -2474,6 +2472,24 @@ charts.graph2dAxis = {
 					parser.tBodySeries.ColHeading = ColumnHeading;
 					
 				});
+				
+				
+				
+				
+				
+				*/
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				// console.log(columnIds);
 				
@@ -2757,7 +2773,10 @@ charts.graph2dAxis = {
 			
 				// TODO: Parse the Table Foot (Check if an option set it at cumulative data or just suplementary data
 				
-				parser.compute(); // Compute the parsed data
+				// var stringParser = JSON.stringify(parser);
+				// $('<p />').insertAfter($(self)).text(stringParser);
+				
+				//console.log();
 			},
 
 			seriesHeadingLenght: 0,
@@ -3500,10 +3519,86 @@ charts.graph2dAxis = {
 		// TODO: for IE compatibility, translate color name to the appropriate hex code
 		
 
+		//
+		// Old parser
+		//
+		
 		parser.parse();
 		
+		// 
+		// New Parser
+		//
+		
+		// 1. Parse the table with the new parser
+		_pe.fn.parsertable._exec($(self));
+		
+		// 2. Build the ColHeading
+		//$(self).
+		var fnNewParser = function(){
+			
+			
+			//parser.tBodySeries.oldColHeading = jQuery.extend(true, {}, parser.tBodySeries.ColHeading);
+			//parser.tBodySeries.ColHeading = [];
+		
+			var tblParserData = $(self).data()['tblparser'];
+			
+			var currLevel = 0;
+			var lastId = -1;
+			$.each(tblParserData.theadRowStack, function(){
+				
+				$.each(this.cell, function(){
+					if(this.uid > lastId){
+						
+						lastId = this.uid;
+					
+						var colheadingCell = {
+							
+							uniqueID: this.uid,
+							level: currLevel,
+							width: this.width,
+							height: this.height,
+							header: $(this.elem).text(),
+							groupId:0,
+							isGroup: (this.width > 1?true:false),
+							colPos: this.colpos -1,
+							param: parser.classToJson($(this.elem))
+						};
+						
+						if(!parser.tBodySeries.ColHeading)parser.tBodySeries.ColHeading=[];
+						
+						parser.tBodySeries.ColHeading.push(colheadingCell);
+					}
+				
+				});
+				
+				currLevel ++;
+			});
+			
+			parser.tBodySeries.nbColLevel = tblParserData.theadRowStack.length;
+			parser.rowPos = tblParserData.theadRowStack.length - 1 ;
+		
+		};
+		fnNewParser();
+		//$(self).data().ColHeading = parser.tBodySeries.ColHeading;
+		//$(self).data().oldColHeading = parser.tBodySeries.oldColHeading;
 		
 		// TODO: Instead of parsing the table, use the new parser and adapt the data found in the old model.
+				
+		parser.compute(); // Compute the parsed data	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
