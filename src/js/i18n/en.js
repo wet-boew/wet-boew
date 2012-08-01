@@ -136,7 +136,9 @@
 			"%errors-found" : " errors were found.",
 			"%error-found" : " error was found.",
 			"%error" : "Error",
-			"%colon" : ":"
+			"%colon" : ":",
+			/* Charts widget */
+			"%table-source": "View Data Source"
 		}
 	};
         $(document).trigger("languageloaded");

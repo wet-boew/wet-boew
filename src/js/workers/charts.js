@@ -239,6 +239,11 @@
 			// // //
 		},options);
 
+		if (typeof wet_boew_charts !== 'undefined' && wet_boew_charts !== null) {
+			o = $.extend(true, o, wet_boew_charts);
+		} 
+		
+		
 		
 		var self = $(elm);
 		
@@ -3974,7 +3979,7 @@ charts.graph2dAxis = {
 				if(!parser.param.noenhancement){
 					var tblSrcContainer = $('<details />').appendTo(paperContainer);
 					var tblSrcContainerSummary = $('<summary />');
-					$(tblSrcContainerSummary).text('View Source') // Go in the pe dictionnary
+					$(tblSrcContainerSummary).text(pe.dic.get('%table-source')) // Text for the ability to show the table as a data source
 							.appendTo(tblSrcContainer)
 							.after(self); 
 					
