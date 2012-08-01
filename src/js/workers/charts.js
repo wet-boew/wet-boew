@@ -76,6 +76,10 @@
 			"decimal-autocreate": true,
 			"decimal-typeof": "number",
 			
+			// This is to set the delayed execution timer
+			"execdelay-autocreate": true,
+			"execdelay-typeof": "number",
+			
 			
 			/*
 			general: {
@@ -126,7 +130,7 @@
 				"type-autocreate": true,
 				"color-autocreate": true,
 				"overcolor-autocreate": true,
-				"default-namespace": "wb-graph",
+				"default-namespace": "wb-charts",
 				"dasharray-autocreate": true,
 				"noenhancement-autocreate": true,
 				"fillopacity-autocreate": true,
@@ -146,7 +150,7 @@
 			"width-typeof": "number",
 			height: $(elm).height(), // height of canvas - defaults to table height
 			"height-typeof": "number",
-			maxwidth: '590',// '590',
+			maxwidth: '9999',// '590',
 			// "maxwidth-typeof": "locked", //Remove the lock, that will allow zomming feature in the canvas to fit it in the webpage
 			"maxwidth-typeof": "number", 
 			
@@ -249,53 +253,6 @@
 		
 		var graphStartExecTime = new Date().getTime(); // This variable is used to autogenerate ids for the given tables.
 		
-		//
-		// Performance Strategy
-		//
-		
-		// Do the first graphic without stacking
-		// Add somewhere in the PE Object that the first graphic is done
-		// If the first graphic are done or near to be fully processed, we would stack the other table for 1500 milisecond later
-		
-		if(_pe.fn.charts.graphprocessed && !_pe.fn.charts.graphdelayed){
-			// There is alreay a graphic that is ongoing, we would stack this one
-		
-			if(!_pe.fn.charts.graphstacked)_pe.fn.charts.graphstacked = [];
-			_pe.fn.charts.graphstacked.push(elm);
-			
-			
-			// Check if the delay was already set
-			if(!_pe.fn.charts.graphdelayedset){
-				
-				_pe.fn.charts.graphdelayedset = true;
-				
-				// Fix the delayed processing
-				var tick;
-				var iteration = 0;
-				(function ticker() {
-					if(iteration > 0){
-						_pe.fn.charts.graphdelayed = true;
-					}
-					
-					// Clear the timer if all the object is processed
-					if(_pe.fn.charts.graphstacked.length == 0){
-						clearTimeout(tick);
-						return;
-					}
-					
-					_pe.fn.charts._exec(_pe.fn.charts.graphstacked.shift());
-					
-					iteration ++;
-					tick = setTimeout(ticker, 200);
-					
-                })();
-				
-				// settimeout(, 1500);
-			}
-			
-			return;
-		}
-		_pe.fn.charts.graphprocessed = true;
 		
 		
 		// console.log('graph start exec time ' + graphStartExecTime);
@@ -1159,7 +1116,7 @@ charts.circleGraph = {
 		
 		
 /**
- * Chart plugin v2.0.2 a;pha
+ * Chart plugin v2.0.2
  * 
  * @author: Pierre Dubois
  */
@@ -2298,7 +2255,17 @@ charts.graph2dAxis = {
 				// The following variable is used for auto add ids/headers to the table
 				var columnIds = []; // The array lenght must equal of parser.seriesHeadingLenght and each item are ids separated by space
 				
-				/*	 	// Parse the Table Heading
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				/* // Parse the Table Heading
 				$('thead', self).each(function(){
 					
 					var ColumnHeading = [];
@@ -2472,9 +2439,9 @@ charts.graph2dAxis = {
 					parser.tBodySeries.ColHeading = ColumnHeading;
 					
 				});
-				
-				
 				*/
+				
+				
 				
 				
 				
@@ -3500,6 +3467,64 @@ charts.graph2dAxis = {
 
 		parser.param = o;
 
+
+		//
+		// Performance Strategy
+		//
+		
+		// Do the first graphic without stacking
+		// Add somewhere in the PE Object that the first graphic is done
+		// If the first graphic are done or near to be fully processed, we would stack the other table for 1500 milisecond later
+		
+		if(_pe.fn.charts.graphprocessed && !_pe.fn.charts.graphdelayed){
+			// There is alreay a graphic that is ongoing, we would stack this one
+		
+			if(!_pe.fn.charts.graphstacked)_pe.fn.charts.graphstacked = [];
+			_pe.fn.charts.graphstacked.push(elm);
+			
+			
+			// Check if the delay was already set
+			if(!_pe.fn.charts.graphdelayedset){
+				
+				_pe.fn.charts.graphdelayedset = true;
+				
+				// Fix the delayed processing
+				var tick;
+				var iteration = 0;
+				(function ticker() {
+					if(iteration > 0){
+						_pe.fn.charts.graphdelayed = true;
+					}
+					
+					// Clear the timer if all the object is processed
+					if(_pe.fn.charts.graphstacked.length == 0){
+						clearTimeout(tick);
+						return;
+					}
+					
+					_pe.fn.charts._exec(_pe.fn.charts.graphstacked.shift());
+					
+					iteration ++;
+					var delayedExecTime = 200;
+					if(o.execdelay){
+						delayedExecTime = o.execdelay;
+					}
+					tick = setTimeout(ticker, delayedExecTime);
+					
+                })();
+				
+				// settimeout(, 1500);
+			}
+			
+			return;
+		}
+		_pe.fn.charts.graphprocessed = true;
+		
+		//
+		// END of Performance Strategy
+		//
+		
+		
 		
 		//
 		// Type of serie and graph in general
@@ -3537,8 +3562,8 @@ charts.graph2dAxis = {
 		var fnNewParser = function(){
 			
 			
-			//parser.tBodySeries.oldColHeading = jQuery.extend(true, {}, parser.tBodySeries.ColHeading);
-			//parser.tBodySeries.ColHeading = [];
+			// parser.tBodySeries.oldColHeading = jQuery.extend(true, {}, parser.tBodySeries.ColHeading);
+			// parser.tBodySeries.ColHeading = [];
 		
 			var tblParserData = $(self).data()['tblparser'];
 			
@@ -3552,7 +3577,7 @@ charts.graph2dAxis = {
 						lastId = this.uid;
 					
 						var colheadingCell = {
-							
+							id: this.uid,
 							uniqueID: this.uid,
 							level: currLevel,
 							width: this.width,
@@ -3574,16 +3599,13 @@ charts.graph2dAxis = {
 				currLevel ++;
 			});
 			
-			
-			// **** Still miss something to be set as when the old parser was parsing the table header ****
-			
 			parser.tBodySeries.nbColLevel = tblParserData.theadRowStack.length;
 			parser.rowPos = tblParserData.theadRowStack.length - 1 ;
 		
 		};
 		fnNewParser();
-		//$(self).data().ColHeading = parser.tBodySeries.ColHeading;
-		//$(self).data().oldColHeading = parser.tBodySeries.oldColHeading;
+		// $(self).data().ColHeading = parser.tBodySeries.ColHeading;
+		// $(self).data().oldColHeading = parser.tBodySeries.oldColHeading;
 		
 		// TODO: Instead of parsing the table, use the new parser and adapt the data found in the old model.
 				
@@ -4077,12 +4099,15 @@ charts.graph2dAxis = {
 				if(!parser.param.noenhancement){
 					var tblSrcContainer = $('<details />').appendTo(paperContainer);
 					var tblSrcContainerSummary = $('<summary />');
-					$(tblSrcContainerSummary).text(pe.dic.get('%table-source')) // Text for the ability to show the table as a data source
+					$(tblSrcContainerSummary).text(_pe.dic.get('%table-source')) // Text for the ability to show the table as a data source
 							.appendTo(tblSrcContainer)
 							.after(self); 
+
+					
 					
 					// Make this new details elements working
-					if (typeof tblSrcContainer.open === "undefined") {
+					
+					if($.fn.details) {
 						// We need to run the pollyfill for this new details elements
 						$(tblSrcContainer).details();
 					}
@@ -4119,7 +4144,7 @@ charts.graph2dAxis = {
 		
 		
 		
-		
+		$(self).data().tBodySeries = parser.tBodySeries;
 		
 
 
