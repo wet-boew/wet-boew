@@ -157,8 +157,9 @@
 
 			//Load ajax content
 			$.when.apply($, $.map($("*[data-ajax-replace], *[data-ajax-append]"), function (o) {
-				$o = $(o);
-				var replace = false, url;
+				var $o = $(o),
+					replace = false,
+					url;
 				if ($o.attr("data-ajax-replace") !== undefined) {
 					replace = true;
 					url = $o.attr("data-ajax-replace");
