@@ -2569,7 +2569,8 @@ charts.graph2dAxis = {
 								cellRowHeaders = rowsIds[parser.rowPos];
 							}
 							
-							$(this).attr('headers', cellColHeaders + (cellColHeaders != "" && cellRowHeaders != ""? ' ': '') + cellRowHeaders);
+							// Commented to because this will be moved in a new widget based on the table parser
+							// $(this).attr('headers', cellColHeaders + (cellColHeaders != "" && cellRowHeaders != ""? ' ': '') + cellRowHeaders);
 							
 							
 							// cellUnit will be use as global for the entire row group
@@ -3575,7 +3576,7 @@ charts.graph2dAxis = {
 					if(this.uid > lastId){
 						
 						lastId = this.uid;
-					
+
 						var colheadingCell = {
 							id: this.uid,
 							uniqueID: this.uid,
@@ -3589,6 +3590,19 @@ charts.graph2dAxis = {
 							param: parser.classToJson($(this.elem))
 						};
 						
+						/*
+						// Get the Id is exist, otherwise create a new one if is an header
+						var	cellHeaderId = "chartcheidcol" + (this.colpos -1); // Generate a new unique ID
+
+						if (!('id' in this.elem) || this.elem['id'] == "") {
+							$(this.elem).attr('id', cellHeaderId); // Add the new ID to the table
+						} else {
+							cellHeaderId = this.elem['id'];
+						}	
+						
+						colheadingCell.uniqueID = cellHeaderId;
+						*/
+					
 						if(!parser.tBodySeries.ColHeading)parser.tBodySeries.ColHeading=[];
 						
 						parser.tBodySeries.ColHeading.push(colheadingCell);
