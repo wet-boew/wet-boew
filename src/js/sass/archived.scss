@@ -13,8 +13,8 @@
 		padding:2px 0 2px 10px;
 	}
 	p {
-	margin-left:10px !important;
-	margin-right:10px !important;
+		margin-left:10px !important;
+		margin-right:10px !important;
 	}
 }
 
@@ -38,9 +38,11 @@
 		padding-top:0;
 		position:relative;
 		text-shadow:none;
-	}
-	a[href]:hover,a[href]:link,a[href]:active,a[href]:focus {
-		color:#FFFFFF;
+		&[href] {
+			&:link,&:hover,&:focus,&:active {
+				color:#FFFFFF;
+			}
+		}
 	}
 	.archived-top-page {
 		background-color:transparent;

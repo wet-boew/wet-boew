@@ -1,5 +1,4 @@
 @charset "utf-8";
-@charset "utf-8";
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
@@ -18,12 +17,12 @@
 }
 .picker-toggle-visible, .picker-toggle-hidden{
 	margin-left:1em;
-}
-.picker-toggle-visible img, .picker-toggle-hidden img{
-	width: auto;
-}
-.picker-toggle-visible a, .picker-toggle-hidden a{
-	margin-left:0.5em;
+	img{
+		width: auto;
+	}
+	a{
+		margin-left:0.5em;
+	}
 }
 div.cal-days {
 	a{

@@ -4,10 +4,8 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 @mixin lists {
-
 	@include list-base;
 	@include list-icon;
-
 }
 
 
@@ -92,12 +90,19 @@
 	}
 	
 /*ul,dl,ol{margin:0 10px 10px 40px;padding:0;}
-#cn-left-col li{margin:0;}
-#cn-centre-col ul ul,#cn-centre-col dl dl,#cn-centre-col ol ol,ul ul,dl dl,ol ol{margin-bottom:4px;margin-left:30px;}
-#cn-centre-col ul ul,#cn-centre-col ol ul,#cn-centre-col ul ol,#cn-centre-col ul ul,#cn-centre-col ol ul,#cn-centre-col ul ol,#cn-centre-col ul ul,#cn-centre-col ol ul,#cn-centre-col ul ol{margin-bottom:0 !important;padding-top:0 !important;}*/
-ul#cn-pd-ul{padding:0;}
-ul ul{margin-top:0 !important;}
-	
+#wb-sec-nav li{margin:0;}
+#wb-core ul ul,#wb-core dl dl,#wb-core ol ol,ul ul,dl dl,ol ol{margin-bottom:4px;margin-left:30px;}
+#wb-core{
+	ul ul,ol ul,ul ol,ul ul,ol ul,ul ol,ul ul,ol ul,ul ol{margin-bottom:0 !important;padding-top:0 !important;}
+}*/
+	ul{
+		&#cn-pd-ul{
+			padding:0;
+		}
+		ul{
+			margin-top:0 !important;
+		}
+	}
 }
 
 

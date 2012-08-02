@@ -34,13 +34,13 @@ div.wet-boew-share {
 		letter-spacing:-.0004em;
 		display:inline-block;
 		padding:0 0 2px 18px;
-	}
-	.bookmark_popup_text.alt{
-		margin:5px;
-	}
-	.bookmark_popup_text img{
-		border:0;
-		vertical-align:bottom;
+		&.alt{
+			margin:5px;
+		}
+		img{
+			border:0;
+			vertical-align:bottom;
+		}
 	}
 	.bookmark_popup{
 		display:none;
@@ -92,9 +92,9 @@ div.wet-boew-share {
 			display:inline-block;
 			width:16px;
 			height:16px;
-		}
-		span.bookmark_icons{
-			background:url(../images/share/bookmarks.png) no-repeat center;
+			&.bookmark_icons{
+				background:url(../images/share/bookmarks.png) no-repeat center;
+			}
 		}
 	}
 	.no-icons .bookmark_list span.bookmark_icons{

@@ -54,8 +54,10 @@ h1,h2,h3,h4,h5,h6{
 	margin:1em 0;
 }
 
-#wb-main h1, #wb-main h2, #wb-main h3, #wb-main h4, #wb-main h5, #wb-main h6 {
-	font-family:sans-serif;
+#wb-main {
+	h1,h2,h3,h4,h5,h6 {
+		font-family:sans-serif;
+	}
 }
 
 h1{
@@ -91,19 +93,20 @@ h6{
 	margin:0 !important;
 }
 
-.wb-show-onfocus:focus,.wb-show-onfocus:active,#wb-skip a:focus,#wb-skip a:active{
-	position:static;
-	clip:auto;
-	height:inherit !important;
-	width:inherit !important;
-	overflow:inherit !important;
-	margin:inherit !important;
+.wb-show-onfocus,#wb-skip a{
+	&:focus,&:active{
+		position:static;
+		clip:auto;
+		height:inherit !important;
+		width:inherit !important;
+		overflow:inherit !important;
+		margin:inherit !important;
+	}
 }
 
 .wb-show-onhover{
 	opacity:0;
-}
-
-.wb-show-onhover:hover,.wb-show-onhover:focus,.wb-show-onhover:active{
-	opacity:1;
+	&:hover,&:focus,&:active{
+		opacity:1;
+	}
 }

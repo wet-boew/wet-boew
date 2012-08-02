@@ -49,12 +49,11 @@ div.cal-cnt{
 	}
 }
 
-div.cal-nextmonth , div.cal-prevmonth {
-		margin-bottom:-13px; 
-}
-
-div.cal-nextmonth img, div.cal-prevmonth img{
+div.cal-nextmonth, div.cal-prevmonth {
+	margin-bottom:-13px; 
+	img{
 		vertical-align: sub;
+	}
 }
 
 div.cal-prevmonth {
@@ -73,18 +72,19 @@ div.cal-days ol.cal-day-list, div.cal-cnt ol.cal-weekdays{
 	list-style-type:none; 
 	margin:0;
 	padding:0;
-}
-
-div.cal-days ol.cal-day-list li, div.cal-cnt ol.cal-weekdays li{
-	margin:0;
+	li {
+		margin:0;
+	}
 }
 
 div.cal-days span.cal-empty, div.cal-days ol.cal-day-list li, ol.cal-weekdays li{
 	position:relative;
 	float:left;
-	border-width:0;
-	border-left-width:1px;
-	border-bottom-width:1px;
+	border:{
+		width:0;
+		left-width:1px;
+		bottom-width:1px;
+	}
 	width:13%;
 	text-align: center;
 }
@@ -94,16 +94,17 @@ ol.cal-weekdays li.cal-wd7, div.cal-days ol.cal-day-list .cal-w1d7, div.cal-days
 	clear:right;
 }
 
-div.cal-days a, div.cal-days div{
-	height:100%;
-	width:100%;
+div.cal-days{
+	a, div {
+		height:100%;
+		width:100%;
+	}
+	.cal-currentday{
+		font-weight:bolder;
+	}
 }
 
 span.cal-empty, ol.cal-weekdays li, div.cal-days a, div.cal-days div{
 	display:block;
 	padding:0.5em 0;
-}
-
-div.cal-days .cal-currentday{
-	font-weight:bolder;
 }

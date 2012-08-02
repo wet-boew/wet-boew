@@ -21,11 +21,6 @@ h1 {
 	margin: auto;
 }
 
-#centre-col {
-	z-index: 1;
-	display: inline;
-}
-
 #fip-title,#gcwu-tc {
 	display:block;
 	float:none;
@@ -42,14 +37,19 @@ h1 {
 
 #wb-core-in {
 	overflow: visible !important;
-}
-
-#wb-core-in:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	div #gcwu-bar {
+		height: 10px;
+		background: #fff url(../images/background-waves.jpg) -100px center repeat-x;
+		margin-bottom: 12px;
+		padding-bottom: 0;
+	}
 }
 
 #wb-main-in {
@@ -79,13 +79,6 @@ h1 {
 	text-align: right;
 }
 
-#wb-core-in div #gcwu-bar {
-	height: 10px;
-	background: #fff url(../images/background-waves.jpg) -100px center repeat-x;
-	margin-bottom: 12px;
-	padding-bottom: 0;
-}
-
 .gcwu-tc-left {
 	text-align: left;
 }
@@ -103,8 +96,6 @@ h1 {
 	li {
 		float: left;
 		margin-bottom: 4px;
-	}
-	li {
 		a {
 			text-decoration: none;
 			font-size: 0.9em;

@@ -21,11 +21,24 @@
 
 
 /* ---- Links ---- */
-/*#cn-centre-col a[href^='http://www']{background:transparent url(../images/icon-external.gif) no-repeat right;padding-right:17px;}*/
-#cn-centre-col a[href*='rss']{background:none; padding:0;}
-#cn-centre-col a[href*='Rss']{background:none; padding:0;}
-#cn-centre-col a[href^='mailto:']{background:transparent url(../images/icon-email.gif) no-repeat 0 2px;padding-left:19px;}
-#cn-centre-col a[href$='.docx'], #cn-centre-col a[href$='.dotx'], #cn-centre-col a[href$='.xlsx'], #cn-centre-col a[href$='.xltx'], #cn-centre-col a[href$='.pptx'], #cn-centre-col a[href$='.potx'], #cn-centre-col a[href$='.psd'],#cn-centre-col a[href$='.zip'],#cn-centre-col a[href$='.doc'],#cn-centre-col a[href$='.pdf'],#cn-centre-col a[href$='.xls'],#cn-centre-col a[href$='.xlt'],#cn-centre-col a[href$='.rtf'], #cn-centre-col a[href$='.txt']{background:transparent url(../images/wb-icon-download.gif) no-repeat 0 0;padding-left:15px;}
+#wb-core{
+	/*a[href^='http://www']{
+		background:transparent url(../images/icon-external.gif) no-repeat right;
+		padding-right:17px;
+	}*/
+	a[href*='rss'], a[href*='Rss']{
+		background:none;
+		padding:0;
+	}
+	a[href^='mailto:']{
+		background:transparent url(../images/icon-email.gif) no-repeat 0 2px;
+		padding-left:19px;
+	}
+	a[href$='.docx'], a[href$='.dotx'], a[href$='.xlsx'], a[href$='.xltx'], a[href$='.pptx'], a[href$='.potx'], a[href$='.psd'], a[href$='.zip'], a[href$='.doc'], a[href$='.pdf'], a[href$='.xls'], a[href$='.xlt'], a[href$='.rtf'], a[href$='.txt']{
+		background:transparent url(../images/wb-icon-download.gif) no-repeat 0 0;
+		padding-left:15px;
+	}
+}
 
 /* ---- Headings ---- */
 #wb-main {
@@ -54,7 +67,7 @@ h4 {
 	font-size: 155%;
 }
 h5 {
-	color: lighten($dark, 20%);;
+	color: lighten($dark, 20%);
 	font-size: 140%;
 }
 h6 {
@@ -88,39 +101,51 @@ h5, h6 {
 .font-xlarge	{ font-size: $font-xlarge !important; }
 .font-xxlarge { font-size: $font-xxlarge !important; }
 
-blockquote, blockquote.float-left, blockquote.float-right {
-	border-left-width: 8px !important;
-	border-left-color: $accent !important;
-	font-family: $serif;
-	font-size: 110%;
-	font-style: italic;
-	line-height: 1.6em;
-	padding: $spacing-medium $spacing-large; 
+blockquote {
+	&, &.float-left, &.float-right {
+		border-left:{
+			width: 8px !important;
+			color: $accent !important;
+		}
+		font:{
+			family: $serif;
+			size: 110%;
+			style: italic;
+		}
+		line-height: 1.6em;
+		padding: $spacing-medium $spacing-large; 
 
-	@include colorize-base(lighten($light, 3%));
-	@include colorize-border(lighten($light, 3%));
-} 
-blockquote.float-left { 
-	float: left; 
-	margin-right: $spacing-medium; 
-	width: 30%; 
-}
-blockquote.float-right { 
-	float: right; 
-	margin-left: $spacing-medium; 
-	width: 30%; 
-}
-blockquote.float-right, blockquote.float-left { 
-	font-family: $serif;
-	font-style: normal; 
-	border-left: none; 
-	border-right: none; 
-	padding: 0 10px; 
+		@include colorize-base(lighten($light, 3%));
+		@include colorize-border(lighten($light, 3%));
+	}
+	&.float-left { 
+		float: left; 
+		margin-right: $spacing-medium; 
+		width: 30%; 
+	}
+	&.float-right { 
+		float: right; 
+		margin-left: $spacing-medium; 
+		width: 30%; 
+	}
+	&.float-right, &.float-left { 
+		font:{
+			family: $serif;
+			style: normal;
+		}
+		border:{
+			left: none; 
+			right: none;
+		}
+		padding: 0 10px; 
+	}
 }
 
 code { 
-	font-size: 90%;
-	font-weight: $font-weight-normal;
+	font:{
+		size: 90%;
+		weight: $font-weight-normal;
+	}
 	padding:0 2px !important;
 	text-shadow: none; 
 	
@@ -235,14 +260,31 @@ img.float-left { margin-right: $margin-medium; }
 .position-bottom-xlarge{bottom:100px !important;}
 
 /* ---- Keyboard keys ---- */
-kbd{background:#eee none repeat scroll 0 0;border-color:#ccc #999 #777 #999;border-style:solid;border-width:1px 3px 3px 2px;
-font-family:Arial,Helvetica,sans-serif;font-size:80%;padding:0 3px;white-space:nowrap;border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px;}
+kbd{
+	background:#eee none repeat scroll 0 0;
+	border:{
+		color:#ccc #999 #777 #999;
+		style:solid;
+		width:1px 3px 3px 2px;
+	}
+	font:{
+		family:Arial,Helvetica,sans-serif;
+		size:80%;
+	}
+	padding:0 3px;
+	white-space:nowrap;
+	border-radius:2px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+}
 
 /*	 progress effects	 *
 [class*="thermometer"] {
 	padding-bottom: 230px !important;
-	background-repeat: no-repeat;
-	background-position: center bottom;
+	background:{
+		repeat: no-repeat;
+		position: center bottom;
+	}
 }
 .thermometer-0{background-image:url(../images/thermometer-0.gif);}
 .thermometer-10{background-image:url(../images/thermometer-10.gif);}
@@ -260,50 +302,72 @@ font-family:Arial,Helvetica,sans-serif;font-size:80%;padding:0 3px;white-space:n
 */
 
 /*	 calendar	 */
-table.calendar-month{
-	border: 1px solid darken($light, 10%);
-	margin:3px 0 2px;
-}
-table.calendar-month caption {
-	background: $light;
-	border: 1px solid darken($light, 10%);
-	border-bottom-width:0;
-	font-weight: $font-weight-bold;
-	color:#555;
-	padding:5px;
-	margin:0;
+table{
+	&.calendar-month{
+		border: 1px solid darken($light, 10%);
+		margin:3px 0 2px;
+		caption {
+			background: $light;
+			border: 1px solid darken($light, 10%);
+			border-bottom-width:0;
+			font-weight: $font-weight-bold;
+			color:#555;
+			padding:5px;
+			margin:0;
+		}
+	}
+	&.span-1,&.span-2,&.span-3,&.span-4,&.span-5,&.span-6,&.span-7,&.span-8,&.span-9,&.span-10,&.span-11,&.span-12{
+		display:table;
+	}
 }
 
-.calendar-month td,.calendar-month th{
-	text-align: center;
-	vertical-align: middle;
-	background: $white;
-	color: $medium;
-	margin-bottom:0;
+.calendar-month{
+	td, th{
+		text-align: center;
+		vertical-align: middle;
+		background: $white;
+		color: $medium;
+		margin-bottom:0;
+	}
 }
-th.calendar-weekend,td.calendar-weekend{ background: lighten($light, 3%); }
-td.calendar-item { 
-	background: $dark;
-	font-weight: $font-weight-bold;
-	padding: 0;
+th,td{
+	&.calendar-weekend{
+		background: lighten($light, 3%);
+	}
 }
-td.calendar-today{ border:2px solid $accent; }
-td.calendar-item a,td.calendar-item a:visited{
-	display: block;
-	color: $white !important;
-	text-decoration:none;
+td{
+	&.calendar-today{
+		border:2px solid $accent;
+	}
+	&.calendar-item{
+		background: $dark;
+		font-weight: $font-weight-bold;
+		padding: 0;
+		a,a:visited{
+			display: block;
+			color: $white !important;
+			text-decoration:none;
+		}
+		&:hover, &:focus, &:active{
+			background: lighten($dark, 15%);
+		}
+	}
 }
-td.calendar-item:hover{ background: lighten($dark, 15%); }
-table.span-1,table.span-2,table.span-3,table.span-4,table.span-5,table.span-6,table.span-7,table.span-8,table.span-9,table.span-10,table.span-11,table.span-12{display:table;}
-.span-2 .calendar-month td,.span-2 .calendar-month th{width:30px;height:32px;padding:2px 3px;}
+.span-2 .calendar-month {
+	td,th{
+		width:30px;
+		height:32px;
+		padding:2px 3px;
+	}
+}
 
 /*
 .date {
-		height: 94px;
-		float: left;
+	height: 94px;
+	float: left;
 	margin-right: $margin-medium;
-		min-width: 80px;
-		position: relative;
+	min-width: 80px;
+	position: relative;
 }
 .date-month {
 	width: 100%;
@@ -313,8 +377,7 @@ table.span-1,table.span-2,table.span-3,table.span-4,table.span-5,table.span-6,ta
 	@include border-top-radius;
 	@include colorize-base($accent);
 	@include colorize($accent, $border:false);
-}
-.date-month p {
+	p {
 		text-align: center;
 		color: #fff;
 		font-size: 85%;
@@ -322,27 +385,28 @@ table.span-1,table.span-2,table.span-3,table.span-4,table.span-5,table.span-6,ta
 		margin: 5px 0 0 0;
 		margin: 3px 8px 0 8px;
 		padding: 0 0 1px 0;
+	}
 }
 .date-day {
-
 	background: $white;
 	border: 1px solid $silver;
 	height: 55px;
-		width: 100%;
-		
+	width: 100%;	
 	@include background(top, rgba(255, 255, 255, 1) 0%, rgba(247, 247, 247, 1) 100%);
 	@include border-bottom-radius($default-border-radius);
-		@include box-shadow(0px 1px 0px 0px $light, 0px 2px 0px 0px $silver,0px 3px 0px 0px $light, 0px 4px 0px 0px $silver);
-}
-.date-day p {
+	@include box-shadow(0px 1px 0px 0px $light, 0px 2px 0px 0px $silver,0px 3px 0px 0px $light, 0px 4px 0px 0px $silver);
+	p {
 		text-align: center;
-		font-size: 275%;
-		font-weight: $font-weight-bold;
+		font:{
+			size: 275%;
+			weight: $font-weight-bold;
+		}
 		color: $dark;
-	letter-spacing: -0.1em;
-	line-height: 55px;
+		letter-spacing: -0.1em;
+		line-height: 55px;
 		text-shadow: 1px 1px 0px $white;
 		margin: 0 !important;
-	width: 100%;
+		width: 100%;
+	}
 }
 */

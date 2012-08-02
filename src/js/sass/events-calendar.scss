@@ -3,11 +3,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
-div.cal-days a.calEvent{
-    color:#FFF;
-    background:#36C;
-}
-
 ul.ev-details{
     position:absolute;
     z-index:5;
@@ -17,19 +12,20 @@ ul.ev-details{
     margin:0;
     margin-top:-0.5em;
     font-weight:normal;
-}
-
-ul.ev-details, ul.ev-details a{
-    background-color:#FFF;
+	&, a{
+		background-color:#FFF;
+	}
 }
 
 div.cal-days {
+	a.calEvent{
+		color:#FFF;
+		background:#36C;
+	}
 	ol.cal-day-list ul.ev-details li{
 		border:0;
 		width:100%;
 		list-style-type:none;   
-	}
-	ol.cal-day-list ul.ev-details li {
 		a, a:link{
 			color:#000;
 		}
