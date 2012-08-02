@@ -4097,7 +4097,8 @@ charts.graph2dAxis = {
 				setAccessiblity();
 				
 				if(!parser.param.noenhancement){
-					var tblSrcContainer = $('<details />').appendTo(paperContainer);
+					var tblSrcContainer = $('<details />');
+					$(tblSrcContainer).appendTo(paperContainer);
 					var tblSrcContainerSummary = $('<summary />');
 					$(tblSrcContainerSummary).text(_pe.dic.get('%table-source')) // Text for the ability to show the table as a data source
 							.appendTo(tblSrcContainer)
@@ -4107,10 +4108,10 @@ charts.graph2dAxis = {
 					
 					// Make this new details elements working
 					
-					if($.fn.details) {
+					//if($.fn.details && !$.fn.details.support) {
 						// We need to run the pollyfill for this new details elements
-						$(tblSrcContainer).details();
-					}
+						// $(tblSrcContainer).details();
+					//}
 				}
 				
 				
@@ -4144,7 +4145,7 @@ charts.graph2dAxis = {
 		
 		
 		
-		$(self).data().tBodySeries = parser.tBodySeries;
+		// $(self).data().tBodySeries = parser.tBodySeries;
 		
 
 
