@@ -4104,7 +4104,20 @@ charts.graph2dAxis = {
 							.appendTo(tblSrcContainer)
 							.after(self); 
 
+
+					// The pe.add._load has already a mecanism to prevent to load the same library
+					pe.add._load(pe.add.liblocation + 'polyfills/detailssummary' + pe.suffix + '.js');
 					
+					
+					
+					
+					$(tblSrcContainer).addClass('polyfill');
+					
+					if(typeof $(tblSrcContainer).details == "function"){
+						// This means that the default call form when the lib are loaded was happed in the past
+						$(tblSrcContainer).details();
+					}
+					//$(tblSrcContainer).addClass('polyfill');
 					
 					// Make this new details elements working
 					
