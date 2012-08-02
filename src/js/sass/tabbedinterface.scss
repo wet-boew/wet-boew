@@ -3,6 +3,12 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
+ 
+/* Gradient (avoid encoding duplication) */
+.tabs li a, .tabs-style-1 .tabs, .tabs-style-1 .tabs li a:hover, .tabs-style-1 .tabs li a:focus, .tabs-style-1 .tabs li a:active, .tabs-style-2 .tabs li.tabs-toggle, .tabs-style-3 .tabs-panel, .tabs-style-4 .tabs li a:hover,  .tabs-style-4 .tabs li a:focus,  .tabs-style-4 .tabs li a:active {
+	background:url(../images/tabs/gradient.png) repeat-x 0 0 #eee;
+}
+ 
 .tabs{
     border-bottom:solid 1px #ccc;
     margin:0;
@@ -16,7 +22,6 @@
 		-webkit-border-radius:2px 2px 0 0;
 		border-radius:2px 2px 0 0;
 		a{
-			background:url(../images/tabs/gradient.png) repeat-x 0 0 #C7C7C7;
 			display:block;
 			text-decoration:none;
 			color:#333;
@@ -24,6 +29,7 @@
 			padding:4px;
 			position:relative;
 			top:1px;
+			margin-top:-1px;
 			&.active {
 				&,&:hover,&:focus,&:active{
 					color:#333;
@@ -121,7 +127,6 @@
     cursor:text;
     background-color:#000;
     opacity:0.1;
-    filter:alpha(opacity=10);
 }
 
 /*with grids*/
@@ -145,7 +150,6 @@
     border:solid 1px #ccc;
     padding:2px;
 	.tabs{
-		background:url(../images/tabs/gradient.png) repeat-x 0 0;
 		border:1px solid silver;
 		color:#222;
 		font-weight:700;
@@ -157,7 +161,6 @@
 				color:#fff;
 				padding:3px 4px 4px;
 				&:hover, &:focus, &:active{
-					background:#eee url(../images/tabs/gradient.png);
 					color:#000;
 					border-top:1px solid #fff;
 					padding-top:1px;
@@ -220,7 +223,6 @@
 		li{
 			border:none;
 			margin-right:2px;
-			filter:alpha(opacity=100);
 			-moz-border-radius: 2px;
 			-webkit-border-radius: 2px;
 			border-radius:2px;
@@ -245,7 +247,7 @@
 			}
 			&.tabs-toggle {
 				a{
-					background-color: #eee !important;
+					background-color: transparent !important;
 					&:hover, &:focus, &:active{
 						color:#000;
 					}
@@ -270,7 +272,6 @@
 	.tabs-roller{
 		background-color:#fff;
 		opacity:0.25;
-		filter:alpha(opacity=25);
 	}
 }
 
@@ -309,7 +310,6 @@
 					margin-right:0;
 					padding:5px 5px 5px 25px;
 					opacity:0.75;
-					filter:alpha(opacity=75);
 					-moz-border-radius: 3px 0 0 3px;
 					-webkit-border-radius: 3px 0 0 3px;
 					border-radius: 3px 0 0 3px;
@@ -327,7 +327,6 @@
 					border:1px solid #ccc;
 					&:hover, &:focus, &:active{
 						opacity:1;
-						filter:alpha(opacity=100);
 						color:#000;
 						margin-right:2px;
 					}
@@ -339,7 +338,7 @@
 		width:66%;
 		z-index:1;
 		border:none;
-		background:#eee url(../images/tabs/gradient.png) repeat-x 0 bottom;
+		background-position: 0 bottom;
 		color:#333;
 		margin:0;
 		padding:0;
@@ -353,7 +352,6 @@
 	.tabs-roller{
 		background-color:white;
 		opacity:0.2;
-		filter:alpha(opacity=20);
 		-moz-border-radius: 3px 0 0 3px;
 		-webkit-border-radius: 3px 0 0 3px;
 		border-radius: 3px 0 0 3px;
@@ -380,7 +378,6 @@
 				margin:0;
 				padding:2px;
 				&:hover, &:focus, &:active {
-					background:url(../images/tabs/gradient.png) repeat scroll 0 0 #EEE;
 					color:#000;
 				}
 				&.active, &.active:hover {
@@ -409,6 +406,7 @@
 		padding:0;
 		img{
 			display:block;
+			margin-bottom:0;
 		}
 	}
 }
@@ -442,7 +440,7 @@
     padding:0;
 	.tabs{
 		border:none;
-		top:-8px;
+		top:3px;
 		li{
 			display:none!important;
 			a{
@@ -463,6 +461,7 @@
 		padding:0;
 		img{
 			display:block;
+			margin-bottom:0;
 		}
 	}
 }
