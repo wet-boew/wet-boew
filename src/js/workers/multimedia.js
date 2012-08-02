@@ -148,20 +148,20 @@
 				});
 
 				//Map UI keyboard events
-				elm.on("keypress", function (e) {
+				elm.on("keypress", function (e) {console.log(e);
 					var $w = $(this),
 						v = 0;
 
 					if ((e.which === 32 || e.which === 13) && e.target === this.object) {
-						$w.find(".wet-boew-button.playpause").click();
+						$w.find(".wet-boew-multimedia-controls .playpause").click();
 						return false;
 					}
 					if (e.keyCode === 37) {
-						$w.find(".wet-boew-button.rewind").click();
+						$w.find(".wet-boew-multimedia-controls .rewind").click();
 						return false;
 					}
 					if (e.keyCode === 39) {
-						$w.find(".wet-boew-button.fastforward").click();
+						$w.find(".wet-boew-multimedia-controls .fastforward").click();
 						return false;
 					}
 					if (e.keyCode === 38) {
