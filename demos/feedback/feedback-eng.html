@@ -11,25 +11,24 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Feedback form - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="English description/Description en anglais" />
-<meta name="description" content="English description/Description en anglais" />
-<meta name="keywords" content="English keywords/Mots-clés en anglais" />
-<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
-<meta name="dcterms.title" content="English title/Titre en anglais" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
 <script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -64,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -101,11 +100,11 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div class="wet-boew-formvalid wet-boew-feedback">
 <p>If you have difficulty with the following form, you can use any of our <a href="#osc-avs">other service channels</a> to contact us. Please read the <a href="#pics-ecrp">Personal Information Collection Statement</a> before completing this form.</p>
-<form action="#" method="post"><div>
+<form action="#" method="get" id="feeback-form"><div>
 <div><input type="hidden" name="language" value="eng" /></div>
 <div id="type">
 <p><label for="feedback"><span class="field-name">Reason for contacting us</span> <strong>(required)</strong></label>
-<select name="feedback" id="feedback" class="required">
+<select name="feedback" id="feedback" required="required">
 <option value=""></option>
 <option value="web">Critical problem with the website</option>
 <option value="improvement">Suggested improvement for the website</option>
@@ -115,7 +114,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <option value="other">Other</option>
 </select></p>
 <p><label for="subject"><span class="field-name">Subject</span></label><input type="text" id="subject" name="subject" size="45" maxlength="60" /></p>
-<p><label for="message"><span class="field-name">Message</span> <strong>(required)</strong></label><textarea id="message" name="message" rows="5" cols="45" class="required"></textarea></p>
+<p><label for="message"><span class="field-name">Message</span> <strong>(required)</strong></label><textarea id="message" name="message" rows="5" cols="45" required="required"></textarea></p>
 </div>
 
 <section><div id="web"><h2>Website Issues</h2>
@@ -176,10 +175,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="info"><section><h3>Contact Information</h3>
 <fieldset><legend>Please provide information that we could use to contact you</legend>
-<p><label for="name"><span class="field-name">Name</span></label><input type="text" id="name" name="name" size="45" maxlength="45" /></p>
-<p><label for="email"><span class="field-name">E-mail address</span> <strong>(required)</strong></label><input type="text" id="email" name="email" size="45" maxlength="60" class="required email" /></p>
-<p><label for="hphone"><span class="field-name">Home phone number</span> including area code (for example, 999-999-9999)</label><input type="text" id="hphone" name="hphone" size="12" maxlength="12" class="phoneUS" /></p>
-<p><label for="wphone"><span class="field-name">Work phone number</span> including area code (for example, 999-999-9999)</label><input type="text" id="wphone" name="wphone" size="12" maxlength="12" class="phoneUS" /></p>
+<p><label for="name"><span class="field-name">Name</span></label><input type="text" id="name" name="name" size="45" maxlength="45" pattern="{2,}" class="{validate:{minlength:2}}" /></p>
+<p><label for="email"><span class="field-name">E-mail address</span> <strong>(required)</strong></label><input type="email" id="email" name="email" size="45" maxlength="60" required="required" /></p>
+<p><label for="hphone"><span class="field-name">Home phone number</span> including area code (for example, 999-999-9999)</label><input type="tel" id="hphone" name="hphone" size="12" maxlength="12" class="{validate:{phoneUS:true}}" /></p>
+<p><label for="wphone"><span class="field-name">Work phone number</span> including area code (for example, 999-999-9999)</label><input type="tel" id="wphone" name="wphone" size="12" maxlength="12" class="{validate:{phoneUS:true}}" /></p>
 <p><label for="wphonext"><span class="field-name">Work phone number extension</span></label><input type="text" id="wphonext" name="wphonext" size="8" maxlength="8" /></p>
 </fieldset>
 </section></div>

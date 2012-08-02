@@ -11,13 +11,11 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Boîte à outils de l’expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes." />
 <meta name="description" content="La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes." />
-<meta name="keywords" content="Web, composants réutilisables, boîte à outils, accessibilité, facilité d'emploi, logiciel libre" />
 <meta name="dcterms.creator" content="Gouvernement du Canada, Secrétariat du Conseil du Trésor du Canada, Direction du dirigeant principal de l'information, Division de l'examen et de la supervision de projets de TI, Bureau des normes Web" />
 <meta name="dcterms.title" content="Boîte à outils de l’expérience Web (BOEW)" />
 <meta name="dcterms.issued" title="W3CDTF" content="2012-05-11" />
-<meta name="dcterms.modified" title="W3CDTF" content="2012-05-11" />
+<meta name="dcterms.modified" title="W3CDTF" content="2012-07-25" />
 <meta name="dcterms.subject" title="scheme" content="Internet;Normes;Conception" />
 <meta name="dcterms.language" title="ISO639-2" content="fra" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -64,7 +62,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
 </div></form>
 </div></section>
@@ -93,19 +91,19 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section><h2>Vue d'ensemble</h2>
 <p>La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.</p>
-<p>La Boîte à outils est conforme à la Norme sur l'accessibilité des sotes Web et la Norme sur la facilité des sites Web et sera conforme à la Norme sur l’interopérabilité du Web. Il est fortement recommandé d’utiliser la BOEW pour tous les sites Web du gouvernement du Canada.</p>
+<p>La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web et la Norme sur la facilité des sites Web et sera conforme à la Norme sur l’interopérabilité du Web. Il est fortement recommandé d’utiliser la BOEW pour tous les sites Web du gouvernement du Canada.</p>
 </section>
 
 <section><h2>Avantages</h2>
 <ul>
-<li>Fournit composants réutilisables pour la conception et la mise à jour de sites Web innovateurs.</li>
+<li>Fournit des composants réutilisables pour la conception et la mise à jour de sites Web innovateurs.</li>
 <li>Respecte l'accessibilité (<a href="http://www.w3.org/Translations/WCAG20-fr">WCAG 2.0</a> AA et <a href="http://www.w3.org/TR/wai-aria/">WAI-ARIA</a>), la facilité d’emploi et l'interoperabilité.</li>
-<li>Réduit les coûts par consolider les outils et solutions axés sur le Web.</li>
+<li>Réduit les coûts en consolidant les outils et les solutions axés sur le Web.</li>
 <li>Sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.</li>
-<li>Fait appel à des technologies nouvelles et novatrices pour rendre les sites plus novateurs et interactifs&#160;:
+<li>Fait appel à des technologies nouvelles et innovatrices pour rendre les sites plus innovateurs et interactifs&#160;:
 	<ul>
 	<li><a href="http://www.w3.org/TR/html5/">HTML5</a>, <a href="http://www.w3.org/Style/CSS/current-work#CSS3">CSS3</a> et <a href="http://jquery.com/">jQuery</a> (cadre JavaScript);</li>
-	<li>liste croissante de plugiciels et gadgets de source ouverte.</li>
+	<li>liste croissante de plugiciels et gadgets libres.</li>
 	</ul>
 </li>
 <li>Permet d’avoir accès à une grande diversité de mises en page et de conceptions pour les sites Web internes et externes (y compris les applications).</li>
@@ -119,8 +117,50 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </ul>
 </section>
 
+<section><h2>Lignes directrices pour les contributeurs</h2>
+<ul>
+<li>Les demandes de retrait sont les bienvenues. Assurez-vous d'apporter les changements dans la dernière version du code et de limiter le champ de validation (commit range) seulement aux fichiers que vous aviez l’intention de modifier (pour éviter les conflits).</li>
+<li>Les nouvelles composantes devraient être ajoutées dans un branchement de type <span lang="en">feature</span>-* (p. ex., <span lang="en">feature-lightbox</span>).
+	<ul>
+	<li>Les licences de toutes les nouvelles composantes et du code afférent doivent être compatibles avec la licence MIT utilisée par la Boîte à outils de l’expérience Web (BOEW).</li>
+	<li>Les nouveaux modules d’extension devraient se servir de pluginTemplate.js comme base pour le code JavaScript.</li>
+	<li>Inclure le bloc de texte sur les conditions d’utilisation de la BOEW dans tous les fichiers sources textuels soumis aux droits d’auteur de la Couronne.</li>
+	</ul>
+</li>
+<li><a href="http://validator.w3.org/nu/">Valider votre balisage HTML</a>. Le balisage devrait être en HTML5 bien formé.
+	<ul>
+	<li>Pour vérifier si le balisage est bien formé, valider à l’aide d’un préréglage XHTML5 et cocher la case «&#160;<span lang="en">Be lax about HTTP Content-Type</span>&#160;».</li>
+	</ul>
+</li>
+<li><a href="http://jigsaw.w3.org/css-validator/validator.html.fr#validate_by_uri+with_options">Valider votre CSS</a> en apportant les changements suivants aux paramètres par défaut&#160;:
+	<ul>
+	<li><strong>Profil&#160;:</strong> CSS niveau 3</li>
+	<li><strong>Extensions Proprétaires&#160;:</strong> Avertissements</li>
+	</ul>
+</li>
+<li><a href="http://www.jslint.com">Valider votre code JavaScript</a> en apportant les changements suivants aux paramètres par défaut&#160;:
+	<ul lang="en">
+	<li><strong>Tolerate dangling _ in identifiers&#160;:</strong> true</li>
+	<li><strong>Tolerate missing 'use strict' pragma&#160;:</strong> true</li>
+	<li><strong>Assume browser&#160;:</strong> true</li>
+	</ul>
+</li>
+<li>Recommandations quant au formatage&#160;:
+	<ul>
+	<li>Ajouter les tabulations en utilisant le <a href="http://fr.wikipedia.org/wiki/Style_d%27indentation#Style_K.26R">style d'indentation K&amp;R</a></li>
+	<li>Utiliser les guillemets simples pour les chaînes en JavaScript (de façon à ce que les guillemets doubles non échappés (<span lang="en">unescaped</span>) puissent être utilisés pour les attributs dans les données de sortie HTML)</li>
+	</ul>
+</li>
+<li>Fureteurs supportés (cet élément devrait faire l’objet d’une vérification)&#160;:
+	<ul>
+	<li><a href="http://yuilibrary.com/yui/docs/tutorials/gbs/" lang="en">Browser test baseline - YUI Graded Browser Support</a> (sauf Internet Explorer 6)</li>
+	</ul>
+</li>
+</ul>
+</section>
+
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date de modification&#160;:</dt><dd><span><time>2012-05-11</time></span></dd>
+<dt>Date de modification&#160;:</dt><dd><span><time>2012-07-25</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

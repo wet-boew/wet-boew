@@ -1,0 +1,11 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+/* ---- IE8 fixes ---- */
+.ie8 {
+	.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
+		border: none;
+	}
+}

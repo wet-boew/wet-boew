@@ -56,11 +56,14 @@
 			return (res) ? false : true;
 		}
 		()),
+
+		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
+
 		/**
 		 * @memberof pe
 		 * @type {number} - IE major number if browser is IE, 0 otherwise
 		 */
-		ie: $.browser.msie ? $.browser.version : 0,
+		ie: (/(MSIE) ([\w.]+)/.exec(navigator.userAgent) || [])[2] || "0",
 		/**
 		 * A private function for initializing for pe.
 		 * @function
@@ -68,13 +71,20 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, target;
-
-			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
+			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false, disable;
 
 			// Get the query parameters from the URL
 			pe.urlquery = pe.url(document.location).params;
+
+			// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string
+			disable = pe.urlquery.pedisable;
+			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
+				$('html').addClass('pe-disable');
+				return false;
+			}
+
+			// Identify whether or not the device supports JavaScript and has a touchscreen
+			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
 
 			hlinks = pe.main.find("a[href*='#']");
 			hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes
@@ -83,20 +93,20 @@
 			// Is this a mobile device?
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
-				$('body > div').attr('data-role', 'page');
+				$('body > div').attr('data-role', 'page').addClass('ui-page-active');
 
 				$(document).on("mobileinit", function () {
 					$.extend($.mobile, {
 						ajaxEnabled: false,
 						pushStateEnabled: false,
-						autoInitializePage: false
+						autoInitializePage: (init_on_mobileinit ? true : false),
 					});
 				});
 
 				// Replace hash with ?hashtarget= for links to other pages
 				hlinks_other.each(function () {
-					var url = pe.url($this.attr('href'));
 					$this = $(this);
+					url = pe.url($this.attr('href'));
 					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
 						$this.attr('href', url.removehash() + (url.params.length > 0 ? "&amp;" : "?") + 'hashtarget=' + url.hash);
 					}
@@ -170,10 +180,29 @@
 
 						//Load the mobile view
 						if (pe.mobile === true) {
-							if (wet_boew_theme !== null) {
-								wet_boew_theme.mobileview();
-							}
+							// Apply internationalization to jQuery Mobile
+							$.mobile.collapsible.prototype.options.expandCueText = pe.dic.get('%jqm-expand');
+							$.mobile.collapsible.prototype.options.collapseCueText = pe.dic.get('%jqm-collapse');
+							$.mobile.dialog.prototype.options.closeBtnText = pe.dic.get('%close');
+							$.mobile.page.prototype.options.backBtnText = pe.dic.get('%back');
+							$.mobile.textinput.prototype.options.clearSearchButtonText = pe.dic.get('%jqm-clear-search');
+							$.mobile.selectmenu.prototype.options.closeText = pe.dic.get('%close');
+							$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
+
+							$(document).on("mobileviewloaded", function () {
+								if ($.mobile !== undefined) {
+									$.mobile.initializePage();
+								} else {
+									init_on_mobileinit = true;
+								}
+							});
+							wet_boew_theme.mobileview();
+						}
+					} else if (pe.mobile === true) {
+						if ($.mobile !== undefined) {
 							$.mobile.initializePage();
+						} else {
+							init_on_mobileinit = true;
 						}
 					}
 					pe.dance();
@@ -281,9 +310,12 @@
 		 * @param {string} uri A relative or absolute URL to manipulate.
 		 */
 		url: function (uri) {
-			var a;
+			var a, i;
 			a = document.createElement('a');
 			a.href = uri;
+			//Needed for IE because a doesn't translate to absolute(strangly)
+			i = document.createElement('img');
+			i.src = uri;
 			return {
 				/**
 				 * @namespace pe.url
@@ -293,7 +325,7 @@
 				 * @memberof pe.url
 				 * @type {string}
 				 */
-				source: a.href,
+				source: i.src,
 				/**
 				 * The protocol of the URL. eg. http or https
 				 * @memberof pe.url
@@ -422,15 +454,17 @@
 		 * @return {void}
 		 */
 		_execute : function (fn_obj, elm) {
-			var exec = (typeof fn_obj._exec !== "undefined") ? fn_obj._exec : fn_obj.exec;
-			if (typeof fn_obj.depends !== "undefined") {
-				pe.add.js(fn_obj.depends, function () {
+			if (fn_obj !== undefined) {
+				var exec = (typeof fn_obj._exec !== "undefined") ? fn_obj._exec : fn_obj.exec;
+				if (typeof fn_obj.depends !== "undefined") {
+					pe.add.js(fn_obj.depends, function () {
+						exec(elm);
+					});
+				//delete fn_obj.depends;
+				} else {
+					// execute function since it has no depends and we can safely execute
 					exec(elm);
-				});
-			//delete fn_obj.depends;
-			} else {
-				// execute function since it has no depends and we can safely execute
-				exec(elm);
+				}
 			}
 			return;
 		},
@@ -683,13 +717,15 @@
 			 * @function
 			 * @return {jQuery object} Mobile menu
 			 */
-			buildmobile: function (menusrc, hlevel, theme, menubar) {
+			buildmobile: function (menusrc, hlevel, theme, mbar, expandall) {
 				var menu = $('<div data-role="controlgroup"></div>'),
 					menuitems = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc)).find('> div, > ul, h' + hlevel),
 					next,
 					subsection,
 					hlink,
-					nested;
+					nested,
+					menubar = (mbar !== undefined ? mbar : false),
+					expand = (expandall !== undefined ? expandall : false);
 				if (menuitems.first().is('ul')) {
 					menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
 				} else {
@@ -698,7 +734,7 @@
 						// If the menu item is a heading
 						if ($this.is('h' + hlevel)) {
 							hlink = $this.children('a');
-							subsection = $('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
+							subsection = $('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
 							// If the original menu item was in a menu bar
 							if (menubar) {
 								$this = $this.parent().find('a').eq(1).closest('ul, div, h' + hlevel + 1).first();
@@ -719,7 +755,7 @@
 									hlink = $this.prev('a');
 									if ((hlevel + 1 + index) < 7) {
 										// Make the nested list into a collapsible section
-										$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"></div>');
+										$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '></div>');
 										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
 										$this.append('<li><a href="' + hlink.attr('href') + '">' + pe.dic.get('%all') + ' - ' + hlink.html() + '</a></li>');
 										hlink.remove();
@@ -731,7 +767,7 @@
 								subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? "<div data-role=\"collapsible-set\" data-theme=\"" + theme + "\"></div>" : "") + '</div>');
 							} else {
 								// If the section contains sub-sections
-								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme));
+								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme, false, expand));
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
 									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(pe.dic.get('%all') + ' - ' + hlink.html()).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
@@ -747,15 +783,22 @@
 				return menu;
 			},
 			/**
-			 * Expands collapsible menus built by pe.menu.mobile that have a descendant link matching the selector
+			 * Closes collapsible menus built by pe.menu.mobile that have a descendant matching the selector
 			 * @memberof pe.menu
 			 * @param {jQuery object | DOM object} menusrc Mobile menu to correct
-			 * @param {string} selector Optional. Selector for the link(s) to expand. Defaults to '.nav-current'.
+			 * @param {string} selector Selector for the link(s) to expand/collapse.
+			 * @param {boolean} expand Expand (true) or collapse (false) the selected collapsible menus.
+			 * @param {boolean} allparents Expand/collapse all ancestor collapsible menus (true) or just the nearest parent (false).
 			 * @function
 			 * @return {void} Mobile menu
 			 */
-			expandmobile: function (menusrc, selector) {
-				$((typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc))).find((typeof selector === "undefined") ? '.nav-current' : selector).parents('div[data-role="collapsible"]').attr('data-collapsed', 'false');
+			expandcollapsemobile: function (menusrc, selector, expand, allparents) {
+				var elm = $((typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc))).find(selector);
+				if (allparents) {
+					elm.parents('div[data-role="collapsible"]').attr('data-collapsed', expand);
+				} else {
+					elm.closest('div[data-role="collapsible"]').attr('data-collapsed', expand);
+				}
 			},
 			/**
 			 * Correct the corners for each sections and sub-section in the menu build by pe.menu.buildmobile
@@ -774,9 +817,13 @@
 						var $this = $(this), target = $this.is('a') ? $this : $this.find('a').first();
 						if ($this.prev().length > 0) {
 							target.removeClass('ui-corner-top');
+						} else {
+							target.addClass('ui-corner-top');
 						}
 						if ($this.next().length > 0) {
 							target.removeClass('ui-corner-bottom');
+						} else {
+							target.addClass('ui-corner-bottom');
 						}
 					});
 				});
@@ -790,8 +837,9 @@
 		 */
 		polyfills: function () {
 			var lib = pe.add.liblocation,
+				elms,
 				// modernizer test for detailsummary support
-				detail = (function (doc) {
+				details = (function (doc) {
 					var el = doc.createElement('details'),
 						fake,
 						root,
@@ -821,13 +869,30 @@
 			if (!window.localStorage) {
 				pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js');
 			}
-			// process
+			// progress
 			if (typeof document.createElement('progress').position === "undefined") {
-				pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
+				elms = $('progress');
+				if (elms.length > 0) {
+					pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
+					elms.addClass('polyfill');
+				}
 			}
-			// detail + summary
-			if (!detail) {
-				pe.add._load(lib + 'polyfills/detailsummary' + pe.suffix + '.js');
+			// details + summary
+			if (!details) {
+				elms = $('details');
+				if (elms.length > 0) {
+					pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
+					elms.addClass('polyfill');
+				}
+			}
+
+			// datalist
+			if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
+				elms = $('input[list]');
+				if (elms.length > 0) {
+					pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
+					elms.addClass('polyfill');
+				}
 			}
 		},
 		/**

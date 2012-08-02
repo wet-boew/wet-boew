@@ -11,13 +11,11 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities." />
 <meta name="description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities." />
-<meta name="keywords" content="Web, reusable components, toolkit, accessibility, usability, open source software" />
 <meta name="dcterms.creator" content="Government of Canada, Treasury Board of Canada Secretariat, Chief Information Officer Branch, IT Project Review and Oversight, Web Standards Office" />
 <meta name="dcterms.title" content="Web Experience Toolkit (WET)" />
 <meta name="dcterms.issued" title="W3CDTF" content="2012-05-11" />
-<meta name="dcterms.modified" title="W3CDTF" content="2012-05-11" />
+<meta name="dcterms.modified" title="W3CDTF" content="2012-07-25" />
 <meta name="dcterms.subject" title="gccore" content="Internet;Standards;Design" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -64,7 +62,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -117,8 +115,50 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </ul>
 </section>
 
+<section><h2>Contributor guidelines</h2>
+<ul>
+<li>Pull requests are welcome. Please make sure your changes are to the latest code and limit the commit range to just the files you intended to change (to avoid conflicts).</li>
+<li>New components should be added in a feature-* branch (e.g., feature-lightbox).
+	<ul>
+	<li>Licensing for all new components and supporting code must be compatible with the MIT license used by WET.</li>
+	<li>New plugins should use pluginTemplate.js as the basis for the JavaScript code.</li>
+	<li>Include the WET terms and conditions comment block in all text-based source files that fall under Crown Copyright.</li>
+	</ul>
+</li>
+<li><a href="http://validator.w3.org/nu/">Validate your HTML markup</a>. Markup should be well-formed HTML5.
+	<ul>
+	<li>To test for well-formed markup, validate with an XHTML5 preset and a checkmark next to "Be lax about HTTP Content-Type".</li>
+	</ul>
+</li>
+<li><a href="http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options">Validate your CSS</a> with the following changes to the default settings:
+	<ul>
+	<li><strong>Profile:</strong> CSS level 3</li>
+	<li><strong>Vendor extensions:</strong> Warnings</li>
+	</ul>
+</li>
+<li><a href="http://www.jslint.com">Validate your JavaScript code</a> with the following changes to the default settings:
+	<ul>
+	<li><strong>Tolerate dangling _ in identifiers:</strong> true</li>
+	<li><strong>Tolerate missing 'use strict' pragma:</strong> true</li>
+	<li><strong>Assume browser:</strong> true</li>
+	</ul>
+</li>
+<li>Formatting recommendations:
+	<ul>
+	<li>Indent with tabs using the <a href="http://en.wikipedia.org/wiki/Indent_style#K.26R_style">K&amp;R indenting style</a></li>
+	<li>Use single quotes for strings in JavaScript (so unescaped double quotes can be used for attributes in HTML output)</li>
+	</ul>
+</li>
+<li>Supported browsers (should be tested against):
+	<ul>
+	<li><a href="http://yuilibrary.com/yui/docs/tutorials/gbs/">Browser test baseline - YUI Graded Browser Support</a> (excluding IE6)</li>
+	</ul>
+</li>
+</ul>
+</section>
+
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-05-11</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-07-25</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

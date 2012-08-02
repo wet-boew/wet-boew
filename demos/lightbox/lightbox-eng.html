@@ -11,25 +11,24 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Lightbox - Working examples - Web Experience Toolkit(WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities." />
-<meta name="description" content="Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities." />
-<meta name="keywords" content="Web, reusable components, toolkit, accessibility, usability, open source software" />
-<meta name="dcterms.creator" content="Government of Canada, Treasury Board of Canada Secretariat, Chief Information Officer Branch, IT Project Review and Oversight, Web Standards Office" />
-<meta name="dcterms.title" content="Web Experience Toolkit (WET)" />
-<meta name="dcterms.issued" title="W3CDTF" content="2012-05-11" />
-<meta name="dcterms.modified" title="W3CDTF" content="2012-05-11" />
-<meta name="dcterms.subject" title="gccore" content="Internet;Standards;Design" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
 <script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -37,70 +36,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- CustomScriptsCSSStart -->
 <!--[if !IE]> -->
 <style>
-pre {
-	border: 1px solid #aaa;
-	background: #eee;
-	border-radius: 1em;
-	padding: 0 1em;
-}
-
-pre code {
-	background: #eee;
-	counter-reset: line;
-}
-
-pre code .line:before {
-	content: counter(line);
-	display: inline-block;
-	text-align: right;
-	width: 1.25em;
-	padding-right: .5em;
-	margin-right: .75em;
-	margin-left: -1.1em;
-	padding-left: .5em;
-	background: #aaa;
-	border-right: 1px solid #333;
-	border-left: 1px solid #aaa;
-	opacity: .7;
-}
-
-pre code .line:first-child:before {
-	border-top-left-radius: 1em;
-	border-top: 1px solid #aaa;
-	padding-top: 1em;
-}
-
-pre code .line:last-child:before {
-	border-bottom-left-radius: 1em;
-	border-bottom: 1px solid #aaa;
-	padding-bottom: 1em;
-}
-
-pre code .line {
-	counter-increment: line;
-	white-space: pre-wrap;
-}
-
-pre code .attr {
-	color: #b22;
-}
-
-pre code .str {
-	color: #464;
-	font-weight: bold;
-}
-
-pre code .sym {
-	color: #44f;
-	font-weight: bold;
-}
-
-pre code .req {
-	border: 1px dashed #b22;
-	background: #ffe;
-}
+	.wet-boew-lightbox ul {margin-left:0;}
+	.wet-boew-lightbox ul li {list-style-type:none;float:left;margin: 0 5px 0 0;}
+	.wet-boew-lightbox ul li.box {margin-bottom: 0.4em;}
+	.wet-boew-lightbox li img {margin-bottom:0;}
+	.wet-boew-lightbox ul li a {text-decoration: none;}
+	.box a, .lb-hidden-gallery li:first-child.box a {display: block; width: 148px; height: 148px; border: 1px solid #000; text-align: center; line-height: 148px; background: #EEE;}
+	.box a:hover, .box a:focus, .box a:active {text-decoration: underline; background: #FFF;}
+	.lb-hidden-gallery .box a {display: none;}
 </style>
-<!-- <![endif]-->
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -130,7 +74,7 @@ pre code .req {
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -165,214 +109,251 @@ pre code .req {
 <!-- MainContentStart -->
 <h1 id="wb-cont">Light Box</h1>
 
-<div class="wet-boew-share span-5 margin-bottom-none"
-	data-wet-boew="{title:'Page title override',url:'http://www.urloverride.gc.ca',sites:[]}"></div>
-<div class="clear"></div>
-<div class="clear"></div>
-
 <section>
 	<div class="span-4 module-table-contents">
 		<h2>Table of contents</h2>
 		<ul>
 			<li><a href="#features">Features</a></li>
-			<li><a href="#cssclasses">CSS Classes</a></li>
-			<li><a href="#examples1">Examples of Single Pictures</a></li>
-			<li><a href="#examples2">Examples of Picture Albums</a></li>
-			<li><a href="#examples3">Examples of Hidden Picture Albums</a></li>
+			<li><a href="#examples">Examples</a>
+				<ul>
+					<li><a href="#examples1">Single items</a></li>
+					<li><a href="#examples2">Item gallery</a></li>
+					<li><a href="#examples3">Hidden item gallery</a></li>
+				</ul>
+			</li>
 		</ul>
 	</div>
 </section>
 <div class="clear"></div>
-<!-- end of .module-table-contents -->
 
-<div class="span-4">
+<div class="span-8">
 	<section>
 		<h2 id="features">Features</h2>
-			
 		<ul>
-			<li>Display images in <a href="http://fancybox.net">Fancybox</a> plug-in.</li>
-			<li>Easy to use CSS classes to implement the Lightbox in your page.</li>
-			<li>Easy navigation in photo galleries using keyboard.</li>
+			<li>Displays images and other content using the <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> plugin.</li>
+			<li>Easy navigation in image galleries using mouse, touchscreen or keyboard.</li>
 		</ul>
 	</section>
 </div>
-
-<div class="span-4">
-	<section>
-		<h2 id="cssclasses">Css Classes</h2>
-		<p>This plug-in uses the following CSS Classes.</p>
-		<h3>For single pictures</h3>
-		<ul>
-			<li>lightbox</li>
-			<li>lightbox-item</li>
-		</ul>
-		<h3>For Picture Albums</h3>
-		<ul>
-			<li>Lightbox-group</li>
-			<li>lightbox-group-item</li>
-		</ul>
-		<h3>For Hidden Picture Albums</h3>
-		<ul>
-			<li>lightbox-group</li>
-			<li>lightbox-group-item-hidden</li>
-			<li>hidden</li>
-		</ul>
-	</section>
-</div>
-
 <div class="clear"></div>
 
-<h2>Examples</h2>
-<h3 id="examples1">Single Pictures</h3>
-<div class="span-4">
-	<h4 class="background-dark margin-bottom-medium">Pictures</h4>
+<div class="wet-boew-prettify all-pre">
+<section>
+	<h2 id="examples">Examples</h2>
 	<section>
-		<div class="wet-boew-lightbox">
-			<div class="lightbox">
-				<p>
-					<a class="lightbox-item" href="images/1_b.jpg"
-						title="Lorem ipsum dolor sit amet"><img
-						src="images/1_s.jpg" alt="Lorem ipsum dolor sit amet" class="image-actual" /></a> <a
-						class="lightbox-item" href="images/2_b.jpg"
-						title="Etiam quis mi eu elit temp"><img
-						src="images/2_s.jpg" alt="Etiam quis mi eu elit temp" class="image-actual" /></a> <a
-						class="lightbox-item" href="images/3_b.jpg"
-						title="Cras neque mi, semper leon"><img
-						src="images/3_s.jpg" alt="Cras neque mi, semper leon" class="image-actual" /></a> <a
-						class="lightbox-item" href="images/4_b.jpg"
-						title="Sed vel sapien vel sem uno"><img
-						src="images/4_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a> <a
-						class="lightbox-item" href="images/5_b.jpg"
-						title="Sed vel sapien vel sem uno"><img
-						src="images/5_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a>
-				</p>
-			</div>
-			<!-- end of .grid-12 -->
-		</div>
-	</section>
-	<!-- end of .wet-boew-lightbox -->
-</div>
-<!-- end of .span-4 -->
-
-<div class="span-4">
-	<section>
-		<h4 class="background-dark margin-bottom-medium" id="coding1">Coding</h4>
-		<pre>
-			<code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
-&lt;div class=&quot;lightbox&quot;&gt;
-&lt;p&gt;&lt;a class=&quot;lightbox-item&quot; href=&quot;images/your_image.jpg&quot; title=&quot;Title Image&quot;&gt;
-&lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Alternative text for the pictures&quot; class=&quot;image-actual&quot; /&gt;
-&lt;/a&gt;&lt;/p&gt;
-...	
-&lt;/div&gt;
-&lt;/div&gt;</code>
-		</pre>
-	</section>
-</div>
-
-<div class="clear"></div>
-
-<h3 id="examples2">Picture Albums</h3>
-<div class="span-4">
-	<h4 class="background-dark margin-bottom-medium">Photo
-		Gallery</h4>
-	<section>
-		<div class="wet-boew-lightbox">
-			<div class="lightbox-group" title="Group 1">
-				<p>
-					<a class="lightbox-item" rel="gallery" href="images/1_b.jpg"
-						title="Lorem ipsum dolor sit amet"><img
-						src="images/1_s.jpg" alt="Lorem ipsum dolor sit amet" class="image-actual" /></a> <a
-						class="lightbox-item" rel="gallery" href="images/2_b.jpg"
-						title="Etiam quis mi eu elit temp"><img
-						src="images/2_s.jpg" alt="Etiam quis mi eu elit temp" class="image-actual" /></a> <a
-						class="lightbox-item" rel="gallery" href="images/3_b.jpg"
-						title="Cras neque mi, semper leon"><img
-						src="images/3_s.jpg" alt="Cras neque mi, semper leon" class="image-actual" /></a> <a
-						class="lightbox-item" rel="gallery" href="images/4_b.jpg"
-						title="Sed vel sapien vel sem uno"><img
-						src="images/4_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a> <a
-						class="lightbox-item" rel="gallery" href="images/5_b.jpg"
-						title="Sed vel sapien vel sem uno"><img
-						src="images/5_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a>
-				</p>
-			</div>
-		</div>
-	</section>
-</div>
-
-<div class="span-4">
-	<section>
-		<h4 class="background-dark margin-bottom-medium" id="coding2">Coding</h4>
-		<pre>
-			<code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
-&lt;div class=&quot;lightbox-group&quot; title=&quot;Photo Gallery&quot;&gt;
-&lt;p&gt;&lt;a class=&quot;lightbox-item&quot; href=&quot;images/your_image.jpg&quot; title=&quot;Title Image&quot;&gt;
-&lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Alternative text for the pictures&quot; class=&quot;image-actual&quot; /&gt;
-&lt;/a&gt;&lt;/p&gt;	
-...	
-&lt;/div&gt;
-&lt;/div&gt;</code>
-		</pre>
-	</section>
-</div>
-
-<div class="clear"></div>
-
-<h3 id="examples3">Hidden Picture Albums</h3>
-<div class="span-4">
-	<h4 class="background-dark margin-bottom-medium">Hidden
-		Photo Gallery</h4>
-	<section>
-		<div class="wet-boew-lightbox">
-			<div class="lightbox-group" title="Group 2">
-				<p>
-					<a class="lightbox-item" href="images/1_b.jpg"
-						rel="hidden-gallery" title="Lorem ipsum dolor sit amet"><img
-						src="images/1_s.jpg" alt="Lorem ipsum dolor sit amet" class="image-actual" /></a>
-				<div class="hidden">
-					<p>
-						<a class="lightbox-item" rel="hidden-gallery"
-							href="images/2_b.jpg" title="Etiam quis mi eu elit temp"><img
-							src="images/2_s.jpg" alt="Etiam quis mi eu elit temp" class="image-actual" /></a> <a
-							class="lightbox-item" rel="hidden-gallery"
-							href="images/3_b.jpg" title="Cras neque mi, semper leon"><img
-							src="images/3_s.jpg" alt="Cras neque mi, semper leon" class="image-actual" /></a> <a
-							class="lightbox-item" rel="hidden-gallery"
-							href="images/4_b.jpg" title="Sed vel sapien vel sem uno"><img
-							src="images/4_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a> <a
-							class="lightbox-item" rel="hidden-gallery"
-							href="images/5_b.jpg" title="Sed vel sapien vel sem uno"><img
-							src="images/5_s.jpg" alt="Sed vel sapien vel sem uno" class="image-actual" /></a>
-					</p>
+		<h3 id="examples1">Single items</h3>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Example</h4>
+				<div class="wet-boew-lightbox">
+					<ul>
+						<li>
+							<a class="lb-item" href="images/1_b.jpg" title="Image 1">
+								<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
+							</a>
+						</li>
+						<li>
+							<a class="lb-item" href="images/2_b.jpg" title="Image 2">
+								<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
+							</a>
+						</li>
+						<li class="box">
+							<a class="lb-item" title="Example of AJAX content" href="ajax/ajax-eng.html">AJAX content</a>
+						</li>
+						<li class="box">
+							<a class="lb-item" title="Example of inline content" href="#inline_content1">Inline content</a>
+							<div class="lb-inline">
+								<div id="inline_content1">
+									<ol>
+									<li>ordered list (<code>ol</code>) first level default appearance</li>
+									<li>ordered list (<code>ol</code>) first level default appearance
+										<ol>
+										<li>ordered list (<code>ol</code>) second level default appearance</li>
+										<li>ordered list (<code>ol</code>) second level default appearance
+											<ol>
+											<li>ordered list (<code>ol</code>) third level default appearance</li>
+											<li>ordered list (<code>ol</code>) third level default appearance</li>
+											</ol>
+										</li>
+										</ol>
+									</li>
+									</ol>
+									<p><a href="#">Link default appearance</a></p>
+								</div>
+							</div>
+						</li>
+					</ul>
 				</div>
-			</div>
+				<div class="clear"></div>
+			</section>
+		</div>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Coding</h4>
+				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;a class="lb-item" href="images/image_source.jpg" title="Alt text for the image"&gt;
+        &lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    ...	
+    &lt;li&gt;
+      &lt;a class="lb-item" title="Example of AJAX content" href="ajax/ajax-eng.html"&gt;AJAX content&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a class="lb-item" title="Example of inline content" href="#inline_content1"&gt;Inline content&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+			</section>
 		</div>
 	</section>
-</div>
+	<div class="clear"></div>
 
-<div class="span-4">
 	<section>
-		<h4 class="background-dark margin-bottom-medium" id="coding3">Coding</h4>
-		<pre>
-			<code>&lt;div class=&quot;wet-boew-lightbox&quot;&gt;
-&lt;div class=&quot;lightbox-group&quot; title=&quot;Hidden Photo Gallery&quot;&gt;
-&lt;p&gt;&lt;a class=&quot;lightbox-item&quot; href=&quot;images/your_image.jpg&quot; title=&quot;Title Image&quot;&gt;
-&lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Alternative text for the pictures&quot; class=&quot;image-actual&quot; /&gt;
-&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;hidden&quot;&gt;
-&lt;p&gt;&lt;a class=&quot;lightbox-item&quot; href=&quot;images/your_image.jpg&quot; title=&quot;Title Image&quot;&gt;
-&lt;img src=&quot;images/image_source.jpg&quot; alt=&quot;Alternative text for the pictures&quot; class=&quot;image-actual&quot; /&gt;
-&lt;/a&gt;&lt;/p&gt;
-...
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</code>
-		</pre>
+		<h3 id="examples2">Item gallery</h3>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Example</h4>
+				<div class="wet-boew-lightbox">
+					<ul class="lb-gallery">
+						<li>
+							<a class="lb-item-gal" href="images/1_b.jpg" title="Image 1">
+								<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
+							</a>
+						</li>
+						<li>
+							<a class="lb-item-gal" href="images/2_b.jpg" title="Image 2">
+								<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
+							</a>
+						</li>
+						<li class="box">
+							<a class="lb-item-gal" title="Example of AJAX content" href="ajax/ajax-eng.html">AJAX content</a>
+						</li>
+						<li class="box">
+							<a class="lb-item-gal" title="Example of inline content" href="#inline_content2">Inline content</a>
+							<div class="lb-inline">
+								<div id="inline_content2">
+									<ol>
+									<li>ordered list (<code>ol</code>) first level default appearance</li>
+									<li>ordered list (<code>ol</code>) first level default appearance
+										<ol>
+										<li>ordered list (<code>ol</code>) second level default appearance</li>
+										<li>ordered list (<code>ol</code>) second level default appearance
+											<ol>
+											<li>ordered list (<code>ol</code>) third level default appearance</li>
+											<li>ordered list (<code>ol</code>) third level default appearance</li>
+											</ol>
+										</li>
+										</ol>
+									</li>
+									</ol>
+									<p><a href="#">Link default appearance</a></p>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</section>
+		</div>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Coding</h4>
+				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;ul class="lb-gallery"&gt;
+    &lt;li&gt;
+	  &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image"&gt;
+		&lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
+    ...
+    &lt;li&gt;
+	  &lt;a class="lb-item-gal" title="Example of AJAX content" href="ajax/ajax-eng.html"&gt;AJAX content&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+	  &lt;a class="lb-item-gal" title="Example of inline content" href="#inline_content2"&gt;Inline content&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;	
+&lt;/div&gt;</code></pre>
+			</section>
+		</div>
 	</section>
+	<div class="clear"></div>
+
+	<section>
+		<h3 id="examples3">Hidden item gallery</h3>
+		<div class="span-4">
+			<h4 class="background-dark margin-bottom-medium">Example</h4>
+			<section>
+				<div class="wet-boew-lightbox">
+					<ul class="lb-hidden-gallery">
+						<li>
+							<a class="lb-item-gal" href="images/1_b.jpg" title="Image 1">
+								<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
+							</a>
+						</li>
+						<li>
+							<a class="lb-item-gal" href="images/2_b.jpg" title="Image 2">
+								<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
+							</a>
+						</li>
+						<li class="box">
+							<a class="lb-item-gal" title="Example of AJAX content" href="ajax/ajax-eng.html">AJAX content</a>
+						</li>
+						<li class="box">
+							<a class="lb-item-gal" title="Example of inline content" href="#inline_content3">Inline content</a>
+							<div class="lb-inline">
+								<div id="inline_content3">
+									<ol>
+									<li>ordered list (<code>ol</code>) first level default appearance</li>
+									<li>ordered list (<code>ol</code>) first level default appearance
+										<ol>
+										<li>ordered list (<code>ol</code>) second level default appearance</li>
+										<li>ordered list (<code>ol</code>) second level default appearance
+											<ol>
+											<li>ordered list (<code>ol</code>) third level default appearance</li>
+											<li>ordered list (<code>ol</code>) third level default appearance</li>
+											</ol>
+										</li>
+										</ol>
+									</li>
+									</ol>
+									<p><a href="#">Link default appearance</a></p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</section>
+		</div>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Coding</h4>
+				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;ul class="lb-gallery-hidden"&gt;
+    &lt;li&gt;
+      &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image"&gt;
+        &lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    ...
+    &lt;li&gt;
+      &lt;a class="lb-item-gal" title="Example of AJAX content" href="ajax/ajax-eng.html"&gt;AJAX content&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a class="lb-item-gal" title="Example of inline content" href="#inline_content2"&gt;Inline content&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;	
+&lt;/div&gt;</code></pre>
+			</section>
+		</div>
+	</section>
+	<div class="clear"></div>
+</section>
 </div>
-<div class="clear"></div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2011-10-31</time></span></dd>

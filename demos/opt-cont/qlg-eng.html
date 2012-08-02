@@ -11,25 +11,24 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Quotations and Language - Optimal Content Examples - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="English description/Description en anglais" />
-<meta name="description" content="English description/Description en anglais" />
-<meta name="keywords" content="English keywords/Mots-clés en anglais" />
-<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
 <meta name="dcterms.title" content="Quotations and Language" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
 <script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -64,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -120,7 +119,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p class="margin-top-none">A quotation is a strict repetition of an expression typically re-produced in the natural human language it was originally delivered.</p>
 <p>Every web page is assigned a primary natural human language such English or French.  The natural human language is used by screen readers to adjust the pronunciation of words.  Occasionally, a quotation's natural human language may be different than the web page's natural human language.</p>
 
-<h2 id="req">Coding Requirements</h2>
+<h2 id="req" class="wet-boew-prettify all-pre">Coding Requirements</h2>
 <p>The following summarizes selected techniques from the <a href="http://www.w3.org/TR/WCAG20/">Web Content Accessibility Guidelines (WCAG) 2.0</a> for satisfying the most common applicable success criterion related to this topic.  Additional WCAG 2.0 success criterions, techniques, and failures not listed here may also be applicable depending on the content.</p>
 
 <h3 id="q">1. Quotations</h3>
@@ -159,23 +158,29 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="span-6 border-span-6">
 	<h3 class="background-light">1. Quotations, Same Natural Human Language</h3>
 	<p><strong>Short Quotation (Inline):</strong> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed elementum, &quot;<q>nisl et aliquam volutpat, orci metus egestas leo, pulvinar varius justo tellus at quam.</q>&quot; Aliquam erat volutpat. Duis feugiat est tempor diam.</p>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;p&gt;&lt;strong&gt;Short Quotation (Inline):&lt;/strong&gt; Lorem ipsum dolor sit amet, consectetuer adipiscing <br>elit. Sed elementum, &amp;quot;&lt;q&gt;nisl et aliquam volutpat, orci metus egestas leo, pulvinar varius <br>justo tellus at quam.&lt;/q&gt;&amp;quot; Aliquam erat volutpat. Duis feugiat est tempor diam.&lt;/p&gt;</code></pre>
+	<div class="indent-medium">
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;p&gt;&lt;strong&gt;Short Quotation (Inline):&lt;/strong&gt; Lorem ipsum dolor sit amet, consectetuer adipiscing <br />elit. Sed elementum, &amp;quot;&lt;q&gt;nisl et aliquam volutpat, orci metus egestas leo, pulvinar varius <br />justo tellus at quam.&lt;/q&gt;&amp;quot; Aliquam erat volutpat. Duis feugiat est tempor diam.&lt;/p&gt;</code></pre>
+		</details>
 	</div>
 	<blockquote class="indent-medium margin-right-medium"><strong>Long Quotation (Block):</strong> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed elementum, nisl et aliquam volutpat, orci metus egestas leo, pulvinar varius justo tellus at quam.</blockquote>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;blockquote class=&quot;indent-medium margin-right-medium&quot;&gt;&lt;strong&gt;Long Quotation (Block):&lt;/strong&gt; <br>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed elementum, nisl et aliquam volutpat, <br>orci metus egestas leo, pulvinar varius justo tellus at quam.&lt;/blockquote&gt;</code></pre>
+	<div class="indent-medium">
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;blockquote class=&quot;indent-medium margin-right-medium&quot;&gt;&lt;strong&gt;Long Quotation (Block):&lt;/strong&gt; <br />Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed elementum, nisl et aliquam volutpat, <br />orci metus egestas leo, pulvinar varius justo tellus at quam.&lt;/blockquote&gt;</code></pre>
+		</details>
 	</div>
 </div>
 
 <div class="span-6 border-span-6">
 	<h3 class="background-light">2. Quotations, Different Natural Human Language</h3>
 	<p>The RCMP crest contains the words &quot;<q><span lang="fr">Maintiens le droit</span></q>&quot;.</p>
-	<div class="toggle-content collapse">
-		<h3 class="toggle-link-text background-blue module-header-fix">Source Code</h3>
-		<pre><code>&lt;p&gt;The RCMP crest contains the words &amp;quot;&lt;q&gt;&lt;span lang=&quot;fr&quot;&gt;Maintiens le droit&lt;/span&gt;&lt;/q&gt;&amp;quot;.&lt;/p&gt;</code></pre>
+	<div class="indent-medium">
+		<details>
+			<summary>Source Code</summary>
+			<pre><code>&lt;p&gt;The RCMP crest contains the words &amp;quot;&lt;q&gt;&lt;span lang=&quot;fr&quot;&gt;Maintiens le droit&lt;/span&gt;&lt;/q&gt;&amp;quot;.&lt;/p&gt;</code></pre>
+		</details>
 	</div>
 </div>
 

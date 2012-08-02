@@ -11,9 +11,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>Interface à onglets - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="French description / Description en français" />
 <meta name="description" content="French description / Description en français" />
-<meta name="keywords" content="French keywords / Mots-clés en français" />
 <meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
 <meta name="dcterms.title" content="French title / Titre en français" />
 <meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
@@ -23,32 +21,19 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
 <script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
-<!--[if !IE]> -->
-<style>
-	pre{border:1px solid #aaa;background:#eee;border-radius:1em;padding:0 1em;}
-	pre code{background:#eee;counter-reset:line;}
-	pre code .line:before{content:counter(line);display:inline-block;text-align:right;width:1.25em;padding-right:.5em;margin-right:.75em;margin-left:-1.1em;padding-left:.5em;background:#aaa;border-right:1px solid #333;border-left:1px solid #aaa;opacity:.7;}
-	pre code .line:first-child:before{border-top-left-radius:1em;border-top:1px solid #aaa;padding-top:1em;}
-	pre code .line:last-child:before{border-bottom-left-radius:1em;border-bottom:1px solid #aaa;padding-bottom:1em;}
-	pre code .line{counter-increment:line;white-space:pre-wrap;}
-	pre code .attr{color:#b22;}
-	pre code .str{color:#464;font-weight:bold;}
-	pre code .sym{color:#44f;font-weight:bold;}
-	pre code .req{border:1px dashed #b22;background:#ffe;}
-</style>
-<!-- <![endif]-->
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -78,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
 </div></form>
 </div></section>
@@ -130,14 +115,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li>Possibilité de choisir l'onglet par défaut (<code lang="en">&lt;li class="default"&gt;</code>).</li>
 <li>Possibilité de choisir si le passage automatique d’un onglet à l’autre est activé; le délai est réglable (rapide&#160;: <code lang="en">class="cycle-fast"</code>, lent&#160;: <code lang="en">class="cycle-slow"</code>, normal&#160;: <code lang="en">class="cycle"</code>).</li>
 <li>Insertion de l'option Pause/Jouer si le passage automatique d’un onglet à l’autre est activé. Insertion du français pour les pages en français.</li>
-<li>Seule, l'option Pause/JouerLancer n'est pas disponible puisque ces commandes ne sont pas descriptives («&#160;Pause&#160;» quoi?), et le code inséré dit en réalité&#160;: <code lang="en"><span lang="fr">Pause</span>&lt;span class="wb-invisible"&gt;<span lang="fr">&#160;: Arrêter la rotation d'onglets</span>&lt;/span&gt;</code> et <code lang="en"><span lang="fr">Jouer</span>&lt;span class="wb-invisible"><span lang="fr">&#160;: Lancer la rotation d'onglets</span>&lt;/span&gt;</code>.</li>
+<li>Seule, l'option Pause/Jouer n'est pas disponible puisque ces commandes ne sont pas significatives («&#160;Pause&#160;» quoi?), et le code inséré dit en réalité&#160;: <code lang="en"><span lang="fr">Pause</span>&lt;span class="wb-invisible"&gt;<span lang="fr">&#160;: Arrêter la rotation des onglets</span>&lt;/span&gt;</code> et <code lang="en"><span lang="fr">Jouer</span>&lt;span class="wb-invisible"><span lang="fr">&#160;: Lancer la rotation des onglets</span>&lt;/span&gt;</code>.</li>
 <li>Possibilité d’imposer la même hauteur à tous les onglets (celle du plus long). Cette caractéristique est utile lorsque le passage automatique d’un onglet à l’autre est activé&#160;: la page ne saute pas quand on passe d’un panneau à l’autre.</li>
 </ul>
 </section></div>
 <div class="clear"></div>
 
 <div class="span-5"><section><h2 id="code">Code</h2>
-<pre><code lang="en">&lt;div class=&quot;wet-boew-tabbedinterface tabs-style-2&quot;&gt;
+<pre class="wet-boew-prettify prettyprint linenums"><code lang="en">&lt;div class=&quot;wet-boew-tabbedinterface tabs-style-2&quot;&gt;
 	&lt;ul class=&quot;tabs&quot;&gt;
 		&lt;li&gt;&lt;a href=&quot;#tabs1_1&quot;&gt;<span lang="fr">Onglet 1</span>&lt;/a&gt;&lt;/li&gt;
 		&lt;li class=&quot;default&quot;&gt;&lt;a href=&quot;#tabs1_2&quot;&gt;<span lang="fr">Onglet 2</span>&lt;/a&gt;&lt;/li&gt;
@@ -155,11 +140,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
-<!--[if !IE]> -->
-<script type="text/javascript">
-jQuery("pre code").html(function(index,html){return html.replace(/(\s+)([\w\-]+=)/g,"$1<span class=\"attr\">$2</span>").replace(/(=\<\/span\>)(\"[\w\s\-#]*\")/g,"$1<span class=\"str\">$2</span>").replace(/(&lt;\/\w+|&gt;|&lt;\w+)/g,"<span class=\"sym\">$1</span>").replace(/(\")(wet-boew-tabbedinterface|tabs-panel|tabs)(\"|\s)/g,"$1<span class=\"req\" title=\"Required class\">$2</span>$3").replace(/^(.*)$/mg,"<span class=\"line\">$1</span>");});
-</script>
-<!-- <![endif]-->
 </section></div>
 
 <div class="span-3"><section><h2 id="nomscss">Noms de feuilles de style CSS</h2>
@@ -222,7 +202,7 @@ jQuery("pre code").html(function(index,html){return html.replace(/(\s+)([\w\-]+=
 		</div>
 	</div></section>
 
-	<section><div class="span-4"><h3 class="background-dark margin-bottom-medium">Mmise en forme&#160;: <code lang="en">tabs-style-1</code></h3>
+	<section><div class="span-4"><h3 class="background-dark margin-bottom-medium">Mise en forme&#160;: <code lang="en">tabs-style-1</code></h3>
 		<p><strong>La démo comprend&#160;:</strong> L’onglet <code lang="en">default</code> est celui du milieu.</p>
 		<div class="wet-boew-tabbedinterface tabs-style-1">
 			<ul class="tabs">
@@ -366,7 +346,7 @@ jQuery("pre code").html(function(index,html){return html.replace(/(\s+)([\w\-]+=
 
 <section><h3 id="complex">Exemples complexes</h3>
 	<section><h4>Exemple n° 1</h4>
-		<p>Lorsque vous créez des tableaux parents - enfants, vous devez utilisez les éléments <code lang="en">row-start</code> et <code lang="en">row-end</code>, sauf dans de rares cas où ça n'est pas souhaitable. Par exemple, si vous employez des widgets glisser-déplacer, toutes les cellules du tableau doivent avoir la même taille, car l'ajout de l'élément <code lang="en">row-start</code> ou <code lang="en">row-end</code> dans certaines d'entre elles peut causer quelques problèmes de mise en page lorsque vous déplacez une case d'une colonne à une autre. Dans cette situation, utilisez plutôt la classe <code lang="en">embedded-grid</code>. Cette feuille de style CSS agit comme un conteneur pour les onglets; vous n'avez donc pas à les placer dans une cellule du tableau. De plus, elle fait disparaître les bordures afin que l'espace soit disponible dans toute sa largeur.</p>
+		<p>Lorsque vous créez des tableaux parents - enfants, vous devez utiliser les éléments <code lang="en">row-start</code> et <code lang="en">row-end</code>, sauf dans de rares cas où ça n'est pas souhaitable. Par exemple, si vous utilisez des widgets glisser-déplacer, toutes les cellules du tableau doivent avoir la même taille, car l'ajout de l'élément <code lang="en">row-start</code> ou <code lang="en">row-end</code> dans certaines d'entre elles peut causer quelques problèmes de mise en page lorsque vous déplacez une case d'une colonne à une autre. Dans cette situation, utilisez plutôt la classe <code lang="en">embedded-grid</code>. Cette feuille de style CSS agit comme un conteneur pour les onglets; vous n'avez donc pas à les placer dans une cellule du tableau. De plus, elle fait disparaître les bordures afin que l'espace soit disponible dans toute sa largeur.</p>
 		<div class="wet-boew-tabbedinterface embedded-grid">
 			<ul class="tabs">
 				<li><a href="#tab30">Événements nationaux</a></li>

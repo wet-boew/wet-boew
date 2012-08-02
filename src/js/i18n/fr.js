@@ -70,6 +70,9 @@
 			"%hide" : "Masquer",
 			"%error" : "Erreur",
 			"%colon" : "&#160;:",
+			"%start" : "Lancer",
+			"%stop" : "Arrêter",
+			"%back" : "Précédent",
 			"%minute-ago": "il ya une minute",
 			"%couple-of-minutes": "il ya quelques minutes",
 			"%minutes-ago": {
@@ -86,7 +89,7 @@
 			/* Archived Web page template */
 			"%archived-page": "Cette page Web a été archivée dans le Web.",
 			/* Menu bar */
-			"%sub-menu-help": "(ouvrir le sous-menu avec la touche de la flèche descendante et le fermer avec la touche d'échappement)",
+			"%sub-menu-help": "(ouvrir le sous-menu avec la touche d'entrée et le fermer avec la touche d'échappement)",
 			/* Tabbed interface */
 			"%tab-rotation": {
 				"disable": "Arrêter la rotation d'onglets",
@@ -94,9 +97,9 @@
 			},
 			/* Multimedia player */
 			"%play": "Jouer",
-			"%stop": "Pause",
+			"%pause": "Pause",
 			"%close": "Fermer",
-			"%rewind": "Reculer ",
+			"%rewind": "Reculer",
 			"%next" : "Prochaine",
 			"%previous" : "Précedent",
 			"%fast-forward": "Avancer ",
@@ -108,6 +111,7 @@
 				"disable": "Masquer le sous-titrage",
 				"enable": "Afficher le sous-titrage"
 			},
+			"%captionserror" : "Erreur dans le chargement des sous-titres",
 			"%audio-description": {
 				"enable": "Activer l'audiodescription",
 				"disable": "Désactiver l'audiodescription"
@@ -124,18 +128,49 @@
 			"%share-hint" : " avec {s} (Ouvre dans une nouvelle fenêtre)",
 			"%share-email-subject" : "Page qui est intéressante",
 			"%share-email-body" : "J'espère que cette page vous intéresse :\n{t} ({u})",
-			"%share-manual" : "S'il vous pla&#238;t fermer ce dialogue et\nappuyer sure Ctrl-D pour ajouter cette page à vos signets.",
+			"%share-manual" : "S'il vous plaît fermer ce dialogue et\nappuyer sur Ctrl-D pour ajouter cette page à vos signets.",
 			"%share-showall" : "Tous montrer ({n})",
 			"%share-showall-title" : "Tout les sites de mise en signet",
 			/* Form validation */
 			"%form-not-submitted" : "Le formulaire n'a pu être soumis car ",
 			"%errors-found" : " erreurs ont été trouvées.",
 			"%error-found" : " erreur a été trouvée.",
-			/* Charts widget */
-			"%table-source": "Voir le tableaux de donnée"
+			/* Date picker */
+			"%datepicker-hide" : "Masquer le calendrier",
+			"%datepicker-show" : "Sélectionner une date à partir d'un calendrier pour le champ: ",
+			"%datepicker-selected" : "Sélectionné",
+			/* Calendar */
+			"%calendar-weekDayNames" : ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+			"%calendar-monthNames" : ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+			"%calendar-currentDay" : " (Jour courrant)",
+			"%calendar-goToLink" : "Aller au <span class=\"wb-invisible\"> mois de l'année</span>",
+			"%calendar-goToTitle" : "Aller au mois de l'année",
+			"%calendar-goToMonth" : "Mois : ",
+			"%calendar-goToYear" : "Année : ",
+			"%calendar-goToButton" : "Aller",
+			"%calendar-cancelButton" : "Annuler",
+			"%calendar-previousMonth" : "Mois précédent : ",
+			"%calendar-nextMonth" : "Mois suivant : ",
+			/* Slideout */
+			"%show-toc" : "Afficher",
+			"%show-image" : "afficher.png",
+			"%hide-image" : "cacher.png",
+			"%table-contents" : " la table des matières",
+			/* Lightbox */
+			"%lb-current" : "Article {current} de {total}",
+			"%lb-next" : "Article suivant",
+			"%lb-prev" : "Article précédent",
+			"%lb-xhr-error" : "Le chargement de ce contenu a échoué.",
+			"%lb-img-error" : "Le chargement de cette image a échoué.",
+			"%lb-slideshow" : "la diaporama",
+			/* jQuery Mobile */
+			"%jqm-expand" : " cliquer pour afficher le contenu",
+			"%jqm-collapse" : " cliquer pour masquer le contenu",
+			"%jqm-clear-search" : "effacer le texte",
+			"%jqm-filter" : "Filtrer des articles..."
 		}
 	};
-        $(document).trigger("languageloaded");
+	$(document).trigger("languageloaded");
 	window.pe = _pe;
 	return _pe;
 }(jQuery));
