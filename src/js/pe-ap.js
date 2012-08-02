@@ -99,7 +99,7 @@
 					$.extend($.mobile, {
 						ajaxEnabled: false,
 						pushStateEnabled: false,
-						autoInitializePage: (init_on_mobileinit ? true : false),
+						autoInitializePage: (init_on_mobileinit ? true : false)
 					});
 				});
 
@@ -885,7 +885,6 @@
 					elms.addClass('polyfill');
 				}
 			}
-
 			// datalist
 			if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
 				elms = $('input[list]');
