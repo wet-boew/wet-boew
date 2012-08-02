@@ -100,7 +100,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <h1 id="cn-cont">Accessible footnotes</h1>
 
 <section><h2>Overview</h2>
-<p>The purpose of the Accessible Footnotes sub-project is to implement a consistent, accessible way of handling footnotes across Government of Canada web sites. The main concept behind this solution is to place footnotes in a definition list, within a dedicated section. An example of this can be found in the <a href="#fnb">Footnotes</a> section. Supporting CSS is used to lay out the footnotes and hide navigational aids<sup id="fnb1-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup>.</p>
+<p>The purpose of the Accessible Footnotes sub-project is to implement a consistent, accessible way of handling footnotes across Government of Canada web sites<sup id="fnb1a-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup>. The main concept behind this solution is to place footnotes in a definition list, within a dedicated section. An example of this can be found in the <a href="#fnb">Footnotes</a> section. Supporting CSS is used to lay out the footnotes and hide navigational aids<sup id="fnb1b-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup>.</p>
 </section>
 <section><h2>Benefits</h2>
 <ul>
@@ -121,8 +121,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <dl>
 	<dt id="fnb1">Footnote 1</dt>
 	<dd>
-		<p>Example of a standard footnote.</p>
-		<p class="footnote-return"><a href="#fnb1-ref"><span class="wb-invisible">Return to footnote </span>1<span class="wb-invisible"> referrer</span></a></p>
+		<p>Example of a footnote being referenced by multiple pieces of content.</p>
+		<p class="footnote-return"><a href="#fnb1a-ref"><span class="wb-invisible">Return to <span>first</span> footnote </span>1<span class="wb-invisible"> referrer</span></a></p>
 	</dd>
 	<dt id="fnb2">Footnote 2</dt>
 	<dd>
@@ -207,7 +207,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <script src="../../build/js/pe-ap-min.js"></script>
 <!-- ScriptsEnd -->
 <!-- TestStart -->
-<script src="footnotes.js"></script>
+<script src="../../src/js/workers/footnotes.js"></script>
 <!-- TestEnd -->
 </body>
 </html>

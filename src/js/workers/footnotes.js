@@ -15,33 +15,70 @@
         /*if (pe.mobile) {
           return; //we do not want this on mobile devices
         }*/
-        var _ctn = $("#wb-main-in"); //reference to the content area (which needs to be scanned for footnote references)
-        var _elm = $(elm); //reference to the footnotes block
+        var _ctn = $("#wb-main-in").not(".wet-boew-footnotes"), //reference to the content area (which needs to be scanned for footnote references)
+            _elm = $(elm), //reference to the contents of the footnotes block
+		    _rtnLink = _rtnLinkDestDflt = _rtnLinkDestCurr = null; //persistent details about the current footnote's return link
         
-        //remove "first/premier/etc"-style text from certain footnote return links (via the child spans that hold those bits of text)
+		
+		
+		//remove "first/premier/etc"-style text from certain footnote return links (via the child spans that hold those bits of text)
         _elm.find("p.footnote-return a span span").remove();
-        
-        //captures certain linking details when a footnote reference link is clicked
-        _ctn.find("sup a.footnote-link").click(function(){
-          var _originRefId = "#" + $(this).parent().attr("id"),
-              _footnoteId = $(this).attr("href"),
-              _footnoteRtnLink = _elm.find(_footnoteId + " + dd p.footnote-return a"),
-              _defaultRefId = _footnoteRtnLink.attr("href");
-          
-          //link management actions; only proceeds if the ID of the clicked link's parent sup doesn't match the destination of the associated footnote's return link
-          if (_originRefId !== _defaultRefId) {
-            
-            //changes the return link destination to the ID of the origin reference
-            _footnoteRtnLink.attr("href", _originRefId);
-            
-            //reverts the return link to its original destination after it gets clicked and loses focus
-            _footnoteRtnLink.click(function(){
-              $(this).focusout(function(){
-                $(this).attr("href", _defaultRefId);
-              });
-            });
-          }
-        });
+		
+		
+		
+		//listen for footnote reference links that get clicked
+		_ctn.find("sup a.footnote-link").click(function(){
+		  
+		  //captures certain information about the clicked link
+		  var _refLinkDest = $(this).attr("href"),
+			  _refLinkId = "#" + $(this).parent().attr("id");
+		  
+		  //proceeds as long as the user isn't clicking the same link over and over
+		  if (_refLinkId !== _rtnLinkDestCurr)
+		  {
+			//resets the destination footnote's return link before moving on...
+			ResetRtnLink();
+			
+			//captures certain information about the destination footnote's return link
+			_rtnLink = _elm.find(_refLinkDest + " + dd p.footnote-return a");
+			_rtnLinkDestCurr = _refLinkDest;
+			_rtnLinkDestDflt = _rtnLink.attr("href");
+			
+			//if needed, changes the href of the destination footnote's return link to the ID of the clicked link
+			if (_rtnLinkDestCurr !== _rtnLinkDestDflt)
+			{
+			  _rtnLink.attr("href", _refLinkId);
+			}
+			
+		  }
+		  
+		});
+		
+		
+		
+		//listen for footnote return links that get clicked
+		_elm.find("dd p.footnote-return a").click(function(){
+		  
+		  //resets the return link *after* the user has been brought back to the proper footnote reference
+		  $(this).focusout(function(){
+		    ResetRtnLink();
+		  });
+		  
+		});
+		
+		
+		
+		//resets the stored footnote return link to its default destination
+        function ResetRtnLink(){
+		  
+		  //only proceeds if there's actually a need to reset a link
+		  if (_rtnLinkDestCurr !== _rtnLinkDestDflt)
+		  {
+			_rtnLink.attr("href", _rtnLinkDestDflt);
+		    _rtnLinkDestCurr = _rtnLinkDestDflt;
+		  }
+		  
+		}
       } // end of exec
     };
     window.pe = _pe;
