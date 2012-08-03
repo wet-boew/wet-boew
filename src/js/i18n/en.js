@@ -171,7 +171,9 @@
 			"%jqm-expand" : " click to expand contents",
 			"%jqm-collapse" : " click to collapse contents",
 			"%jqm-clear-search" : "clear search",
-			"%jqm-filter" : "Filter items..."
+			"%jqm-filter" : "Filter items...",
+			/* Charts widget */
+			"%table-source": "View Data Source"
 		}
 	};
 	$(document).trigger("languageloaded");

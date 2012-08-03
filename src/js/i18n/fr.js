@@ -167,7 +167,9 @@
 			"%jqm-expand" : " cliquer pour afficher le contenu",
 			"%jqm-collapse" : " cliquer pour masquer le contenu",
 			"%jqm-clear-search" : "effacer le texte",
-			"%jqm-filter" : "Filtrer des articles..."
+			"%jqm-filter" : "Filtrer des articles...",
+			/* Charts widget */
+			"%table-source": "Voir le tableaux de donnée"
 		}
 	};
 	$(document).trigger("languageloaded");
