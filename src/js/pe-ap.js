@@ -191,7 +191,7 @@
 							$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
 
 							$(document).on("mobileviewloaded", function () {
-								if ($.mobile !== undefined) {
+								if (typeof $.mobile !== "undefined") {
 									$.mobile.initializePage();
 								} else {
 									init_on_mobileinit = true;
@@ -200,7 +200,7 @@
 							wet_boew_theme.mobileview();
 						}
 					} else if (pe.mobile === true) {
-						if ($.mobile !== undefined) {
+						if (typeof $.mobile !== "undefined") {
 							$.mobile.initializePage();
 						} else {
 							init_on_mobileinit = true;
