@@ -71,7 +71,7 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false, disable;
+			var hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false, disable;
 
 			// Get the query parameters from the URL
 			pe.urlquery = pe.url(document.location).params;
@@ -101,6 +101,9 @@
 						pushStateEnabled: false,
 						autoInitializePage: (init_on_mobileinit ? true : false)
 					});
+					if (init_on_mobileinit) {
+						pe.mobilelang();
+					}
 				});
 
 				// Replace hash with ?hashtarget= for links to other pages
@@ -181,17 +184,9 @@
 
 						//Load the mobile view
 						if (pe.mobile === true) {
-							// Apply internationalization to jQuery Mobile
-							$.mobile.collapsible.prototype.options.expandCueText = pe.dic.get('%jqm-expand');
-							$.mobile.collapsible.prototype.options.collapseCueText = pe.dic.get('%jqm-collapse');
-							$.mobile.dialog.prototype.options.closeBtnText = pe.dic.get('%close');
-							$.mobile.page.prototype.options.backBtnText = pe.dic.get('%back');
-							$.mobile.textinput.prototype.options.clearSearchButtonText = pe.dic.get('%jqm-clear-search');
-							$.mobile.selectmenu.prototype.options.closeText = pe.dic.get('%close');
-							$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
-
 							$(document).on("mobileviewloaded", function () {
 								if (typeof $.mobile !== "undefined") {
+									pe.mobilelang();
 									$.mobile.initializePage();
 								} else {
 									init_on_mobileinit = true;
@@ -201,6 +196,7 @@
 						}
 					} else if (pe.mobile === true) {
 						if (typeof $.mobile !== "undefined") {
+							pe.mobilelang();
 							$.mobile.initializePage();
 						} else {
 							init_on_mobileinit = true;
@@ -268,6 +264,16 @@
 		mobile: false,
 		mobilecheck: function () {
 			return (window.innerWidth < 768 && !(pe.ie > 0 && pe.ie < 9));
+		},
+		mobilelang: function () {
+			// Apply internationalization to jQuery Mobile
+			$.mobile.collapsible.prototype.options.expandCueText = pe.dic.get('%jqm-expand');
+			$.mobile.collapsible.prototype.options.collapseCueText = pe.dic.get('%jqm-collapse');
+			$.mobile.dialog.prototype.options.closeBtnText = pe.dic.get('%close');
+			$.mobile.page.prototype.options.backBtnText = pe.dic.get('%back');
+			$.mobile.textinput.prototype.options.clearSearchButtonText = pe.dic.get('%jqm-clear-search');
+			$.mobile.selectmenu.prototype.options.closeText = pe.dic.get('%close');
+			$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
 		},
 		/**
 		 * The pe aware page query to append items to
@@ -730,7 +736,7 @@
 				if (menuitems.first().is('ul')) {
 					menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
 				} else {
-					menuitems.each(function (index) {
+					menuitems.each(function () {
 						var $this = $(this);
 						// If the menu item is a heading
 						if ($this.is('h' + hlevel)) {
