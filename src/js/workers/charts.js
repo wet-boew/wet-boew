@@ -14,7 +14,12 @@
 		type: 'plugin',
 		depends: ['raphael'],
 		_exec: function (elm) {
-			var options = {}, o;
+			var options = {},
+				o,
+				self = $(elm),
+				graphStartExecTime = new Date().getTime(), // This variable is used to autogenerate ids for the given tables.
+				charts = {};
+			// console.log('graph start exec time ' + graphStartExecTime);
 			if (typeof (wet_boew_charts) !== 'undefined' && wet_boew_charts !== null) {
 				options = wet_boew_charts;
 			}
@@ -187,10 +192,6 @@
 				var colours = {"aliceblue": "#f0f8ff", "antiquewhite": "#faebd7", "aqua": "#00ffff", "aquamarine": "#7fffd4", "azure": "#f0ffff", "beige": "#f5f5dc", "bisque": "#ffe4c4", "black": "#000000", "blanchedalmond": "#ffebcd", "blue": "#0000ff", "blueviolet": "#8a2be2", "brown": "#a52a2a", "burlywood": "#deb887", "cadetblue": "#5f9ea0", "chartreuse": "#7fff00", "chocolate": "#d2691e", "coral": "#ff7f50", "cornflowerblue": "#6495ed", "cornsilk": "#fff8dc", "crimson": "#dc143c", "cyan": "#00ffff", "darkblue": "#00008b", "darkcyan": "#008b8b", "darkgoldenrod": "#b8860b", "darkgray": "#a9a9a9", "darkgreen": "#006400", "darkkhaki": "#bdb76b", "darkmagenta": "#8b008b", "darkolivegreen": "#556b2f", "darkorange": "#ff8c00", "darkorchid": "#9932cc", "darkred": "#8b0000", "darksalmon": "#e9967a", "darkseagreen": "#8fbc8f", "darkslateblue": "#483d8b", "darkslategray": "#2f4f4f", "darkturquoise": "#00ced1", "darkviolet": "#9400d3", "deeppink": "#ff1493", "deepskyblue": "#00bfff", "dimgray": "#696969", "dodgerblue": "#1e90ff", "firebrick": "#b22222", "floralwhite": "#fffaf0", "forestgreen": "#228b22", "fuchsia": "#ff00ff", "gainsboro": "#dcdcdc", "ghostwhite": "#f8f8ff", "gold": "#ffd700", "goldenrod": "#daa520", "gray": "#808080", "green": "#008000", "greenyellow": "#adff2f", "honeydew": "#f0fff0", "hotpink": "#ff69b4", "indianred ": "#cd5c5c", "indigo ": "#4b0082", "ivory": "#fffff0", "khaki": "#f0e68c", "lavender": "#e6e6fa", "lavenderblush": "#fff0f5", "lawngreen": "#7cfc00", "lemonchiffon": "#fffacd", "lightblue": "#add8e6", "lightcoral": "#f08080", "lightcyan": "#e0ffff", "lightgoldenrodyellow": "#fafad2", "lightgrey": "#d3d3d3", "lightgreen": "#90ee90", "lightpink": "#ffb6c1", "lightsalmon": "#ffa07a", "lightseagreen": "#20b2aa", "lightskyblue": "#87cefa", "lightslategray": "#778899", "lightsteelblue": "#b0c4de", "lightyellow": "#ffffe0", "lime": "#00ff00", "limegreen": "#32cd32", "linen": "#faf0e6", "magenta": "#ff00ff", "maroon": "#800000", "mediumaquamarine": "#66cdaa", "mediumblue": "#0000cd", "mediumorchid": "#ba55d3", "mediumpurple": "#9370d8", "mediumseagreen": "#3cb371", "mediumslateblue": "#7b68ee", "mediumspringgreen": "#00fa9a", "mediumturquoise": "#48d1cc", "mediumvioletred": "#c71585", "midnightblue": "#191970", "mintcream": "#f5fffa", "mistyrose": "#ffe4e1", "moccasin": "#ffe4b5", "navajowhite": "#ffdead", "navy": "#000080", "oldlace": "#fdf5e6", "olive": "#808000", "olivedrab": "#6b8e23", "orange": "#ffa500", "orangered": "#ff4500", "orchid": "#da70d6", "palegoldenrod": "#eee8aa", "palegreen": "#98fb98", "paleturquoise": "#afeeee", "palevioletred": "#d87093", "papayawhip": "#ffefd5", "peachpuff": "#ffdab9", "peru": "#cd853f", "pink": "#ffc0cb", "plum": "#dda0dd", "powderblue": "#b0e0e6", "purple": "#800080", "red": "#ff0000", "rosybrown": "#bc8f8f", "royalblue": "#4169e1", "saddlebrown": "#8b4513", "salmon": "#fa8072", "sandybrown": "#f4a460", "seagreen": "#2e8b57", "seashell": "#fff5ee", "sienna": "#a0522d", "silver": "#c0c0c0", "skyblue": "#87ceeb", "slateblue": "#6a5acd", "slategray": "#708090", "snow": "#fffafa", "springgreen": "#00ff7f", "steelblue": "#4682b4", "tan": "#d2b48c", "teal": "#008080", "thistle": "#d8bfd8", "tomato":  "#ff6347", "turquoise":  "#40e0d0", "violet":  "#ee82ee", "wheat":  "#f5deb3", "white":  "#ffffff", "whitesmoke":  "#f5f5f5", "yellow": "#ffff00", "yellowgreen": "#9acd32"};
 				return (colours[colour.toLowerCase()] !== 'undefined' ? colours[colour.toLowerCase()] : ($.isArray(o.colors) ? o.colors[0] : o.colors));
 			}
-			var self = $(elm),
-				graphStartExecTime = new Date().getTime(); // This variable is used to autogenerate ids for the given tables.
-				// console.log('graph start exec time ' + graphStartExecTime);
-			var charts = {};
 			/**
 			* Chart plugin v2.0.1
 			* 
@@ -242,21 +243,23 @@
 					charts.circleGraph.series = series;
 					charts.circleGraph.options = options;
 					charts.circleGraph.width = charts.circleGraph.options.width;
-					var pieByRow = 1; // For the time being use 1 pie by Row (in the future try to calculate how many pie can be by row)
-					charts.circleGraph.pieByRow = pieByRow;
-					var nbExtraLevel = charts.circleGraph.series.nbColLevel - 1;
+					var pieByRow = 1, // For the time being use 1 pie by Row (in the future try to calculate how many pie can be by row)
+						nbExtraLevel = charts.circleGraph.series.nbColLevel - 1,
 					// Adapt the sector with based on the available space,
-					var XtraLevelWidth = (nbExtraLevel * ((charts.circleGraph.minLevelWidth * 2) + (charts.circleGraph.levelPadding * 2)) + (nbExtraLevel * (charts.circleGraph.strokeWidth * 2)));
-					var centerWidth = charts.circleGraph.minWidth + (charts.circleGraph.levelPadding * 2) + (charts.circleGraph.strokeWidth * 2);
-					var minWidth = XtraLevelWidth + centerWidth;
+						XtraLevelWidth = (nbExtraLevel * ((charts.circleGraph.minLevelWidth * 2) + (charts.circleGraph.levelPadding * 2)) + (nbExtraLevel * (charts.circleGraph.strokeWidth * 2))),
+						centerWidth = charts.circleGraph.minWidth + (charts.circleGraph.levelPadding * 2) + (charts.circleGraph.strokeWidth * 2),
+						minWidth = XtraLevelWidth + centerWidth,
+						centerRatio,
+						XtraLevelRatio;
+					charts.circleGraph.pieByRow = pieByRow;
 					if (!charts.circleGraph.width || minWidth > charts.circleGraph.width) {
 						// Set the minimal width for the graphic
 						charts.circleGraph.width = minWidth;
 					} else {
 						// TODO: Add the choice of strategy of growing [like ExtraLevel only, keep a specific ratio, stop at a maximum grow, ....
 						// Adap the sector width proportionally
-						var centerRatio = charts.circleGraph.minWidth / minWidth;
-						var XtraLevelRatio = charts.circleGraph.minLevelWidth / minWidth;
+						centerRatio = charts.circleGraph.minWidth / minWidth;
+						XtraLevelRatio = charts.circleGraph.minLevelWidth / minWidth;
 						charts.circleGraph.minWidth = Math.floor(centerRatio * (charts.circleGraph.width));
 						charts.circleGraph.minLevelWidth = Math.floor(XtraLevelRatio * (charts.circleGraph.width));
 					}
@@ -327,20 +330,33 @@
 					//	- Get his center position
 					//	- For each cell calculate their percentage
 					//	- Draw the first level
-					var currPosition = 1;
-					var currRowPos = 1;
-					var currColPos = 0;
-					var currRowPos2 = 0;
-					var legendGenerated = false;
-					$.each(charts.circleGraph.series.series, function () {
-						var chartsLabels = [];
-						var lastPathObj; // This represent the last created item in the pie chart, it's used to ordered the text label on mouse over and to do overlap with each pie quarter					
+					var currPosition = 1,
+						currRowPos = 1,
+						currColPos = 0,
+						currRowPos2 = 0,
 						legendGenerated = false;
-						var legendList = $('<ul>').appendTo(($.isArray(charts.circleGraph.paperContainer) ?  $(charts.circleGraph.paperContainer[currRowPos - 1]) : charts.circleGraph.paperContainer));
+					$.each(charts.circleGraph.series.series, function () {
+						var chartsLabels = [],
+							lastPathObj, // This represent the last created item in the pie chart, it's used to ordered the text label on mouse over and to do overlap with each pie quarter					
+							legendList,
+							currentPaper,
+							total,
+							InvalidSerie,
+							cx,
+							cy,
+							r,
+							stroke,
+							start,
+							angle,
+							rad,
+							lastEndAngle,
+							ms;
+						legendGenerated = false;
+						legendList = $('<ul>').appendTo(($.isArray(charts.circleGraph.paperContainer) ?  $(charts.circleGraph.paperContainer[currRowPos - 1]) : charts.circleGraph.paperContainer));
 						charts.circleGraph.legendContainer = legendList;
 						// var currentPaper = charts.circleGraph.paper[charts.circleGraph.series.series.length - currRowPos];
-						var currentPaper = ($.isArray(charts.circleGraph.paper) ? charts.circleGraph.paper[currRowPos - 1] : charts.circleGraph.paper);
-						currRowPos++;
+						currentPaper = ($.isArray(charts.circleGraph.paper) ? charts.circleGraph.paper[currRowPos - 1] : charts.circleGraph.paper);
+						currRowPos += 1;
 						if (currPosition >= (charts.circleGraph.pieByRow  * (currRowPos + 1))) {
 							// currRowPos ++;
 							currColPos = 0;
@@ -354,8 +370,8 @@
 						
 						*/
 						// Calcule the percent based on their range
-						var total = 0;
-						var InvalidSerie = false;
+						total = 0;
+						InvalidSerie = false;
 						// Get Top and Bottom Serie value
 						$.each(this.cell, function () {
 							if (this.value < 0) {
@@ -372,19 +388,17 @@
 							alert('This series are invalid, only positive number are acceptable');
 						}
 						*/
-						var cx = (charts.circleGraph.width / 2) + (charts.circleGraph.width * currColPos),
-							cy = (charts.circleGraph.width / 2) + (charts.circleGraph.width * currColPos);
+						cx = (charts.circleGraph.width / 2) + (charts.circleGraph.width * currColPos);
+						cy = (charts.circleGraph.width / 2) + (charts.circleGraph.width * currColPos);
 						/*
 					var cx = (charts.circleGraph.width/2) + (charts.circleGraph.width * currColPos),
 						cy = (charts.circleGraph.width/2) + ((charts.circleGraph.width + charts.circleGraph.levelPadding + charts.circleGraph.options.font.height) * currRowPos2);
 					*/
-						var	r,
-							stroke = '#000',
-							start = 0,
-							angle = 90,// 0,
-							rad = Math.PI / 180,
-							lastEndAngle,
-							ms = 500; // animation time
+						stroke = '#000';
+						start = 0;
+						angle = 90;// 0,
+						rad = Math.PI / 180;
+						ms = 500; // animation time
 						function getRBottom(level, height) {
 							var r1 = (charts.circleGraph.minWidth / 2) + // CenterPie
 								charts.circleGraph.strokeWidth + // CenterPie Stroke
@@ -677,8 +691,8 @@
 							});
 							angle += angleplus;
 							start += 0.1;
-							currPosition++;
-							currColPos++;
+							currPosition += 1;
+							currColPos += 1;
 						});
 						// Close any pending grouping
 						$.each(GroupingSeries, function () {
@@ -841,7 +855,7 @@
 					// Count the number of unique column
 					$.each(charts.graph2dAxis.series.heading, function () {
 						if (!this.isGroup && (this.colPos + this.width) > charts.graph2dAxis.series.nbRowLevel) {
-							charts.graph2dAxis.NbColumnHeading++;
+							charts.graph2dAxis.NbColumnHeading += 1;
 							if (!headingWidth[this.level] || (this.header.length * charts.graph2dAxis.options.font.width) > (headingWidth[this.level] * charts.graph2dAxis.options.font.width)) {
 								headingWidth[this.level] = this.header.length * charts.graph2dAxis.options.font.width;
 							}
@@ -850,7 +864,7 @@
 							charts.graph2dAxis.NbColumnHeaderLevel = this.level;
 						}
 					});
-					charts.graph2dAxis.NbColumnHeaderLevel++; // Increment to get the count value;
+					charts.graph2dAxis.NbColumnHeaderLevel += 1; // Increment to get the count value;
 					// headingSize: would be Top or Bottom Offset depend of client param or Negative/Positive data
 					headingSize = (charts.graph2dAxis.options.font.height * charts.graph2dAxis.NbColumnHeaderLevel) + (charts.graph2dAxis.options.axis.top.padding !== null ? charts.graph2dAxis.options.axis.top.padding : charts.graph2dAxis.options.axis.padding);
 					charts.graph2dAxis.layout.headingMinSize = headingSize;
@@ -1090,7 +1104,7 @@
 					var xAxisPath = 'M ' + charts.graph2dAxis.offset.left + ' ' + charts.graph2dAxis.xAxisOffset + ' ',
 						maxPos,
 						i;
-					for (i = 1; i <= (charts.graph2dAxis.NbColumnHeading); i++) {
+					for (i = 1; i <= (charts.graph2dAxis.NbColumnHeading); i += 1) {
 						// Valeur Maximale
 						maxPos = (i * ((charts.graph2dAxis.options.width - charts.graph2dAxis.offset.left) / charts.graph2dAxis.NbColumnHeading));
 						if (charts.graph2dAxis.options.axis.tick || (charts.graph2dAxis.options.axis.top.tick !== null ? charts.graph2dAxis.options.axis.top.tick : false) || (charts.graph2dAxis.options.axis.bottom.tick !== null ? charts.graph2dAxis.options.axis.bottom.tick : false)) {
@@ -1237,7 +1251,7 @@
 						charts.graph2dAxis.offset.top += (2 * charts.graph2dAxis.options.font.height);
 					}
 					var i;
-					for (i = 0; i < charts.graph2dAxis.nbStep; i++) {
+					for (i = 0; i < charts.graph2dAxis.nbStep; i += 1) {
 						if (charts.graph2dAxis.cuttingPos === 0 || (charts.graph2dAxis.cuttingPos > i && charts.graph2dAxis.bottom > 0) || charts.graph2dAxis.top < 0) {
 							// No Cutting currently normal way to do the data
 							// y axis label
@@ -1286,11 +1300,11 @@
 					$.each(charts.graph2dAxis.series.series, function () {
 						GraphType = this.type; // The first row are the default
 						if (GraphType === 'bar') { // && (PreviousGraphType != 'bar' || PreviousGraphType == undefined)) {
-							nbGraphBarSpace++;
+							nbGraphBarSpace += 1;
 							PreviousGraphType = 'bar';
 						}
 						if (GraphType === 'stacked'  && (PreviousGraphType !== 'stacked' || PreviousGraphType === undefined)) {
-							nbGraphBarSpace++;
+							nbGraphBarSpace += 1;
 							PreviousGraphType = 'stacked';
 						}
 					});
@@ -1353,7 +1367,7 @@
 								if (WorkingSpace === undefined) {
 									WorkingSpace = maxPos - minPos;
 								}
-								dataCellPos++;
+								dataCellPos += 1;
 							}
 						});
 						$(legendItem).append(HeaderText);
@@ -1445,7 +1459,7 @@
 						}
 						if (GraphType === 'bar' || GraphType === 'stacked') {
 							if ((PreviousGraphType !== 'stacked' && GraphType !== 'stacked') || PreviousGraphType !== GraphType) {
-								currGraphTypePos++;
+								currGraphTypePos += 1;
 							}
 							PreviousGraphType = GraphType;
 							// Calculare the space for the bar
@@ -1547,7 +1561,7 @@
 							PreviousGraphType = 'stacked';
 						}	*/
 						}
-						CurrentSerieID++;
+						CurrentSerieID += 1;
 					});
 				}
 			};
@@ -1767,7 +1781,7 @@
 									// Calculate the width of the spanned row
 									var w = Number($(this.ele.obj).attr('colspan') !== undefined ? $(this.ele.obj).attr('colspan') : 1),
 										i;
-									for (i = 1; i <= w; i++) {
+									for (i = 1; i <= w; i += 1) {
 										this.ele.colPos = i + CurrColPosition;
 										if (this.ele.isHeader) {
 											cellHeadingOrdered.push(jQuery.extend(true, {}, this.ele));
@@ -1777,13 +1791,13 @@
 									}
 									CurrColPosition += w;
 									if ($(this.ele.obj).get(0).nodeName.toLowerCase() === 'th' && parser.seriesHeadingLenght > CurrColPosition) {
-										currentSerieLevel++; // That would say on witch heading level we are
+										currentSerieLevel += 1; // That would say on witch heading level we are
 										if (this.rowspan >= 1) {
 											// Change the Grouping ID on the next iteration
 											CurrentGroupingID = this.ele.id;
 										}
 									}
-									this.rowspan--;
+									this.rowspan -= 1;
 								}
 							});
 							var serieHeaderText = '', // That would contain the current on process serie header
@@ -1792,7 +1806,7 @@
 								rejectedRaison = "";
 							// Get the Row heading Width
 							$('th, td', this).each(function () {
-								parser.cellID++;
+								parser.cellID += 1;
 								var IgnoreCurrentCell = false, // TODO check if wet-graph-ignore class is set, if yes use the cell value data as non numerical data
 								// Get the cell Value
 									cellValueObj = parser.getCellValue($(this).text());
@@ -1815,7 +1829,7 @@
 								// console.log('rowpos:' + parser.rowPos + ' CurrColPosition:' + CurrColPosition );
 								var cellColHeaders = "",
 									i;
-								for (i = CurrColPosition; i < (CurrColPosition + w); i++) {
+								for (i = CurrColPosition; i < (CurrColPosition + w); i += 1) {
 									if (columnIds[i] !== undefined) {
 										if (cellColHeaders === '') {
 											// Normal cell
@@ -1845,7 +1859,7 @@
 										$(this).attr('id', cellId); // Add the new ID to the table
 									}
 									// This loop make sur all column have their column set
-									for (i = 0; i < RowSpan; i++) {
+									for (i = 0; i < RowSpan; i += 1) {
 										var cellPos = i + parser.rowPos;
 										// console.log(cellPos);
 										if (rowsIds[cellPos] === undefined) {
@@ -1864,7 +1878,7 @@
 									// Check if is a header, if yes this series would be a inner series and that header are a goup header
 									if (cellInfo.isHeader && parser.seriesHeadingLenght > CurrColPosition) {
 										// This represent a sub row grouping
-										currentSerieLevel++; // Increment the heading level
+										currentSerieLevel += 1; // Increment the heading level
 										// Mark the current cell as Header 
 										cellInfo.isHeader = true;
 										header = {
@@ -1883,7 +1897,7 @@
 									}
 								}
 								// Add the current Row
-								for (i = 1; i <= w; i++) {
+								for (i = 1; i <= w; i += 1) {
 									cellInfo.colPos = i + CurrColPosition;
 									if (cellInfo.isHeader) {
 										cellHeadingOrdered.push(jQuery.extend(true, {}, cellInfo));
@@ -1919,7 +1933,7 @@
 									if (this.colpos === CurrColPosition && this.rowspan > 0) {
 										// Calculate the width of the spanned row
 										var w = Number($(this.ele.obj).attr('colspan') !== undefined ? $(this.ele.obj).attr('colspan') : 1);
-										for (i = 1; i <= w; i++) {
+										for (i = 1; i <= w; i += 1) {
 											this.ele.colPos = i + CurrColPosition;
 											if (this.ele.isHeader) {
 												cellHeadingOrdered.push(jQuery.extend(true, {}, this.ele));
@@ -1932,7 +1946,7 @@
 										var CurrCellHeaders = ($(this.ele.obj).attr('headers') !== undefined ? $(this.ele.obj).attr('headers') : ''),
 											tblCellColHeaders = parser.removeDuplicateElement(CurrCellHeaders.split(' ').concat(rowsIds[parser.rowPos].split(' ')));
 										$(this.ele.obj).attr('headers', tblCellColHeaders.join(' '));
-										this.rowspan--;
+										this.rowspan -= 1;
 									}
 								});
 							});
@@ -1952,7 +1966,7 @@
 								parser.tBodySeries.nbRowLevel = (currentSerieLevel + 1);
 							}
 							Series.series.push(serie);
-							parser.rowPos++;
+							parser.rowPos += 1;
 						});
 						parser.tBodySeries.series.push(Series);
 					});
@@ -1972,8 +1986,8 @@
 						i,
 						j;
 label:
-					for (i = 0; i < arrayName.length; i++) {
-						for (j = 0; j < newArray.length; j++) {
+					for (i = 0; i < arrayName.length; i += 1) {
+						for (j = 0; j < newArray.length; j += 1) {
 							if (newArray[j] === arrayName[i]) {
 								continue label;
 							}
@@ -1997,7 +2011,7 @@ label:
 						tMatrix = [];
 					capVal =  $("caption", self).text();
 					$('tr ', self).each(function () {
-						maxRowCol++;
+						maxRowCol += 1;
 						if (s < 1) {
 							$('td,th', $(this)).each(function () {
 								if ($(this).attr('colspan') === undefined) {
@@ -2007,12 +2021,12 @@ label:
 								// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo; 
 							});
 						}
-						s++;
+						s += 1;
 					});
 					// prepare the place holding matrix;
-					for (s = 0; s < maxRowCol; s++) {
+					for (s = 0; s < maxRowCol; s += 1) {
 						tMatrix[s] = [];
-						for (t = 0; t < maxRowCol; t++) {
+						for (t = 0; t < maxRowCol; t += 1) {
 							tMatrix[s][t] = 0;
 						}
 					}
@@ -2031,20 +2045,20 @@ label:
 							attrRow = Number($(this).attr("rowspan"));
 							// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo; 
 							while (tMatrix[i][j] === 3) {
-								j++;
+								j += 1;
 							}
 							var ii = i,
 								stopRow = i + attrRow - 1;
 							if (attrRow > 1 && attrCol > 1) {
 								var jj = j,
 									stopCol = j + attrCol - 1;
-								for (jj = j; jj <= stopCol; jj++) {
-									for (ii = i; ii <= stopRow; ii++) {
+								for (jj = j; jj <= stopCol; jj += 1) {
+									for (ii = i; ii <= stopRow; ii += 1) {
 										tMatrix[ii][jj] = 3; //random number as place marker; 
 									}
 								}
 							} else if (attrRow > 1) {
-								for (ii = i; ii <= stopRow; ii++) {
+								for (ii = i; ii <= stopRow; ii += 1) {
 									tMatrix[ii][j] = 3; // place holder; 
 								}
 							}
@@ -2055,7 +2069,7 @@ label:
 							(sMatrix[j] = sMatrix[j] || [])[i] = ss1;
 							j = j + attrCol;
 						});
-						i++;
+						i += 1;
 					});
 					// now creating the swapped table from the transformed matrix;
 					var swappedTable = $('<table>');
@@ -2074,7 +2088,7 @@ label:
 					html2 = html2.replace(/\n/g, "");
 					html2 = html2.replace(/<tr/gi, "\n<tr");
 					var arr = html2.split("\n");
-					for (i = 0; i < arr.length; i++) {
+					for (i = 0; i < arr.length; i += 1) {
 						var tr = arr[i];
 						if (tr.match(/<td/i) !== null) {
 							arr[i] = '</thead><tbody>' + tr;
@@ -2109,7 +2123,7 @@ label:
 										if (this.value < minValue || minValue === undefined) {
 											minValue = this.value;
 										}
-										nbData++;
+										nbData += 1;
 									}
 								});
 								this.maxValue = maxValue;
@@ -2255,7 +2269,7 @@ label:
 								propName = arrNamespace[arrNamespace.length - 1],
 								i,
 								j;
-							for (i = 0; i < arrParameter.length; i++) {
+							for (i = 0; i < arrParameter.length; i += 1) {
 								var valIsNext = (i + 2 === arrParameter.length ? true : false);
 								var isVal = (i + 1 === arrParameter.length ? true : false);
 								// console.log('propName:' + propName + ' value:' + arrParameter[i] + ' valIsNext:' + valIsNext + ' isVal:' + isVal);
@@ -2271,7 +2285,7 @@ label:
 								if (currObj[propName + '-typeof']) {
 									// Repair the value if needed
 									var arrValue = [];
-									for (j = (i + 1); j < arrParameter.length; j++) {
+									for (j = (i + 1); j < arrParameter.length; j += 1) {
 										arrValue.push(arrParameter[j]);
 									}
 									arrParameter[i] = arrValue.join(separatorNS);
@@ -2614,7 +2628,7 @@ label:
 							return;
 						}
 						_pe.fn.charts._exec(_pe.fn.charts.graphstacked.shift());
-						iteration++;
+						iteration += 1;
 						var delayedExecTime = 200;
 						if (o.execdelay) {
 							delayedExecTime = o.execdelay;
@@ -2696,7 +2710,7 @@ label:
 							parser.tBodySeries.ColHeading.push(colheadingCell);
 						}
 					});
-					currLevel++;
+					currLevel += 1;
 				});
 				parser.tBodySeries.nbColLevel = tblParserData.theadRowStack.length;
 				parser.rowPos = tblParserData.theadRowStack.length - 1;
@@ -2776,7 +2790,7 @@ label:
 								var MasterSeriesCell = [];
 								// Sum of each cell for each series
 								$.each(SeriesCellCumulative, function () {
-									for (i = 0; i < this.cell.length; i++) {
+									for (i = 0; i < this.cell.length; i += 1) {
 										if (MasterSeriesCell.length <= i) {
 											MasterSeriesCell.push(this.cell[i]);
 										} else {
@@ -2785,7 +2799,7 @@ label:
 									}
 								});
 								// Get the average
-								for (i = 0; i < MasterSeriesCell.length; i++) {
+								for (i = 0; i < MasterSeriesCell.length; i += 1) {
 									MasterSeriesCell[i] = MasterSeriesCell[i] / SeriesCellCumulative.length;
 								}
 								if (PreviousGraphGroup === '2daxis') {
@@ -2844,11 +2858,11 @@ label:
 							GraphType = GraphTypeTBody;
 						}
 						if (GraphType === 'bar' || GraphType === 'stacked' || GraphType === 'line' || GraphType === 'area') {
-							nb2dAxisGraph++;
+							nb2dAxisGraph += 1;
 							PreviousGraphGroup = '2daxis';
 							PreviousGraphType = GraphType;
 						} else if (GraphType === 'pie') {
-							nbCircleGraph++;
+							nbCircleGraph += 1;
 							PreviousGraphGroup = 'cicle';
 							PreviousGraphType = GraphType;
 						}
@@ -2858,7 +2872,7 @@ label:
 				var MasterSeriesCell = [];
 				// Sum of each cell for each series
 				$.each(SeriesCellCumulative, function () {
-					for (i = 0; i < this.cell.length; i++) {
+					for (i = 0; i < this.cell.length; i += 1) {
 						if (MasterSeriesCell.length <= i) {
 							MasterSeriesCell.push(this.cell[i]);
 						} else {
@@ -2867,7 +2881,7 @@ label:
 					}
 				});
 				// Get the average
-				for (i = 0; i < MasterSeriesCell.length; i++) {
+				for (i = 0; i < MasterSeriesCell.length; i += 1) {
 					MasterSeriesCell[i] = MasterSeriesCell[i] / SeriesCellCumulative.length;
 				}
 				if (MasterSeriesCell.length !== 0) {
@@ -2927,7 +2941,7 @@ label:
 				// Set the container class if required, by default the namespace is use as a class
 				if (parser.param.graphclass) {
 					if ($.isArray(parser.param.graphclass)) {
-						for (i = 0; i < parser.param.graphclass.length; i++) {
+						for (i = 0; i < parser.param.graphclass.length; i += 1) {
 							$(paperContainer).addClass(parser.param.graphclass[i]);
 						}
 					} else {
@@ -2996,11 +3010,7 @@ label:
 					// Transpose any inner element
 					$(graphTitle).append(tableHtmlCaption);
 					// Set the Graph Title
-					if (parser.param.endcaption) {
-						$(paperContainer).append(graphTitle); // Put the caption at the end
-					} else {
-						$(paperContainer).prepend(graphTitle); // Default
-					}
+					$(paperContainer).prepend(graphTitle);
 					var setAccessiblity = function () {
 						// Generate a unique id for the Graph Title
 						// var TitleID = 'graphtitle'+ new Date().getTime(); // Generate a new ID
@@ -3034,12 +3044,6 @@ label:
 							// This means that the default call form when the lib are loaded was happed in the past
 							$(tblSrcContainer).details();
 						}
-						//$(tblSrcContainer).addClass('polyfill');
-						// Make this new details elements working
-						//if ($.fn.details && !$.fn.details.support) {
-						// We need to run the pollyfill for this new details elements
-						// $(tblSrcContainer).details();
-						//}
 					}
 				} else {
 					// Destroy the paper container
