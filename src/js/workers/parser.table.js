@@ -111,8 +111,34 @@
 					rowcaption: groupZero.rowcaption,
 					elem: elem
 				};
+				// Extract the caption vs the description
+				// There are 2 techniques,
+				//	Recommanded is encapsulate the caption with "strong"
+				//	Use Details/Summary element
+				//	Use a simple paragraph
+				var caption, 
+					description = [];
+				$(elem).contents().filter(function() {
+					if(caption && this.nodeType === 3){
+						// Any other element are considerated to be the description
+						// This are a text Node, do a wrap in a paragraph and add it
+						description.push($(this).wrap('<p></p>'));
+					} else if(caption &&  this.nodeType === 1){
+						// Any other element are considerated as part of the description
+						description.push(this);
+					} else if(!caption && this.nodeType === 3){ // Text Node
+						// Doesn't matter what it is, but this will be considerated as the caption
+						caption = $(this).wrap('<strong></strong>');
+					} else if(!caption && this.nodeType === 1){
+						// Doesn't matter what it is, but this will be considerated as the caption
+						caption = this;
+					}
+				});
+				groupheadercell.caption = caption;
+				groupheadercell.description = description;
 				groupheadercell.groupZero = groupZero;
 				groupheadercell.type = 1;
+				groupZero.groupheadercell = groupheadercell;
 				$(elem).data().tblparser = groupheadercell;
 			}
 			function processColgroup(elem) {
