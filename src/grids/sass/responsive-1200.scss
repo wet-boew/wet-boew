@@ -91,8 +91,12 @@
 	width:1180px;
 }
 
-.span-2 .calendar-month td,.span-2 .calendar-month th,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month td,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month th,.grid-12 .span-3 .calendar-month td,.grid-12 .span-3 .calendar-month th{
-	width:34px;
-	height:32px;
-	padding:2px 3px;
+.span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3{
+	.calendar-month {
+		td, th {
+			width:34px;
+			height:32px;
+			padding:2px 3px;
+		}
+	}
 }

@@ -34,16 +34,16 @@ abbr,acronym{
 		display:inline-block;
 		width:100%;
 		padding:5px;
-	}
-	a, a:link, a:visited{
-		color:#FFF;
-		background-color:transparent;
-		font-weight:700;
-	}
-	a:focus, a:active{
-		background-color:#000;
-		text-decoration:none;
-		color:#FFF;
+		&, &:link, &:visited{
+			color:#FFF;
+			background-color:transparent;
+			font-weight:700;
+		}
+		&:focus, &:active{
+			background-color:#000;
+			text-decoration:none;
+			color:#FFF;
+		}
 	}
 }
 

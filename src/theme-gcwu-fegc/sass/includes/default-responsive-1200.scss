@@ -41,9 +41,9 @@ body{
 #gcwu-gcft {
 	li{
 		margin:12px 0 13px 88px;
-	}
-	li:first-child{
-		margin-left:10px;
+		&:first-child{
+			margin-left:10px;
+		}
 	}
 }
 
