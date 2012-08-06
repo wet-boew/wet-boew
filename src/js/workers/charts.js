@@ -2667,7 +2667,9 @@ label:
 			// New Parser
 			//
 			// 1. Parse the table with the new parser
-			_pe.fn.parsertable._exec($(self));
+			if(!$(self).data().tblparser){
+				_pe.fn.parsertable._exec($(self));
+			}
 			// 2. Build the ColHeading
 			//$(self).
 			var fnNewParser = function () {
@@ -2952,7 +2954,18 @@ label:
 				// Create the drawing object
 				var paper,
 					tableHtmlCaption = $('caption', parser.sourceTblSelf).html(),
-					lstpaperSubContainer;
+					lstSvgElement = [],
+					lstpaperSubContainer,
+					// Function to set the accessibility on the svg or vml generated image
+					setSvgAccessibility = function(caption, container){
+						// Get the svg or vml Object
+						var drawingObject = $(container).children((Raphael.svg ? 'svg:eq(0)' : 'div:eq(0)'));
+						lstSvgElement.push(drawingObject);
+						// Add the role="img" to the svg or vml
+						$(drawingObject).attr('role', 'img');
+						// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
+						$(drawingObject).attr('aria-label', (caption ? $(caption).text() + ' ' : '') + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
+					};
 				if (GroupCircleSeriesObj.series.length === 1 && GroupCircleSeriesObj.series[0].header.rawValue === tableHtmlCaption) {
 					// Use only one container, sub-container are not required
 					paper = [];
@@ -2989,6 +3002,8 @@ label:
 						//$(paperContainer).append(serieCaption);
 						paper.push(subPaper);
 						// charts.circleGraph.generateGraph(subContainer, subPaper);
+						console.log(this);
+						setSvgAccessibility(this.header.obj, subContainer);
 					});
 					charts.circleGraph.generateGraph(lstpaperSubContainer, paper);
 					// charts.circleGraph.generateGraph(paperContainer, paper);
@@ -3006,51 +3021,76 @@ label:
 				if (!fullSerieRejected) {
 					// var paperDOM = $(paperContainer).children();
 					// Create the Graph Caption
-					var graphTitle = $('<figcaption />');
+					
 					// Transpose any inner element
-					$(graphTitle).append(tableHtmlCaption);
+					// $(graphTitle).append(tableHtmlCaption);
 					// Set the Graph Title
-					$(paperContainer).prepend(graphTitle);
-
+					// $(paperContainer).prepend(graphTitle);
+					// Set the Chart Accessibility
 					// See: http://lists.w3.org/Archives/Public/w3c-wai-ig/2012JulSep/0176.html
-					
-					// If the a description are provided inside the table, use the same description for the graphic
-					
-					// Add the role="img" to the svg or vml 
-					
-					// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-					
-					// Add a aria label to the table element, build from his caption prepend the word " Table"
-					
-					// For the details summary, use the table caption prefixed with Table.
-					
-					// Be sure, that the long description provided for the table is the same for the svg
-					
-					// Will be possible to remove this function
-					var setAccessiblity = function () {
-						// Generate a unique id for the Graph Title
-						// var TitleID = 'graphtitle'+ new Date().getTime(); // Generate a new ID
-						// $(graphTitle).attr('id', TitleID); // Add the new ID to the title
-						// Check if the source Table have an id, if not generate a new one
-						var tblId = $(parser.sourceTblSelf).attr('id');
-						if (tblId === undefined || tblId === '') {
-							tblId = 'graphsource' + new Date().getTime(); // Generate a new ID
-							$(parser.sourceTblSelf).attr('id', tblId); // Add the new ID to the table
+					var graphDesc, 
+						descId,
+						captionParsed,
+						graphTitle,
+						tblSelfDescID = $(self).attr('aria-describedby');
+					// Create the Chart Caption and Description if provided
+					captionParsed = $('caption', self).data().tblparser;
+					if(captionParsed.caption){
+						graphTitle = $('<figcaption />');
+						$(paperContainer).prepend(graphTitle);
+						// Add the caption
+						if($(captionParsed.caption).get(0).nodeType !== 3){ 
+							if($(captionParsed.caption).get(0).nodeName.toLowerCase() === 'caption'){
+								// Get the inner HTML
+								$(graphTitle).append($(captionParsed.caption).html());
+							} else {
+								// Take that element 
+								$(graphTitle).append($(captionParsed.caption).clone());
+							}
+						} else {
+							// Just grab the text and wrap it with a strong element
+							$(graphTitle).append($('<strong></strong>').append($(captionParsed.caption).text()));
 						}
-						// $(paperContainer).attr('role', 'img'); This are not needed because the Container are set to Figure element
-						// $(paperContainer).attr('aria-labelledby', TitleID);
-						$(paperContainer).attr('aria-describedby', tblId);
-						//console.log(charts.graph2dAxis.paperDOM);
-						// $(paperDOM).attr('role', 'presentation');
-						// $(charts.graph2dAxis.legendContainer).attr('role', 'presentation');
-					};
-					// Make the graph Accessible
-					setAccessiblity();
-					if (!parser.param.noenhancement) {
+						// Add the description if any
+						// If the a description are provided inside the table, use the same description for the graphic
+						if(captionParsed.description){
+							graphDesc = captionParsed.description;
+							// If the description are build from more than one element we wrap it in a div
+							if(graphDesc.length > 1){
+								graphDesc = $(graphDesc).wrapAll('<div></div>').parent();
+							}
+							descId = $(graphDesc).attr('id');
+							if (descId === undefined || descId === '') {
+								descId = 'graphsourcedesc' + new Date().getTime(); // Generate a new ID
+								$(graphDesc).attr('id', descId); // Add the new ID to the description container
+							}
+							$(graphTitle).append(graphDesc);
+							// Set the aria-describedby attribute if required on the table, no overwrite
+							if(tblSelfDescID === undefined || tblSelfDescID === ''){
+								$(self).attr('aria-describedby', descId);
+							}
+						}
+					}
+					setSvgAccessibility(captionParsed.caption, paperContainer);
+					// Set the description to the image if any on the table
+					if(descId){
+						$.each(lstSvgElement, function(){
+							$(this).attr('aria-describedby', descId);
+						});
+					}
+					if($(self).attr('aria-label') === undefined || $(self).attr('aria-label') === ''){
+						$(self).attr('aria-label', (captionParsed.caption ? $(captionParsed.caption).text() + ' ' : '') + _pe.dic.get('%table-mention')); // Table
+					}
+					// Add a aria-label to the table
+					if (!parser.param.noenhancement) { // eg of use:  wb-charts-noenhancement-true
+						// Use a details/summary to encapsulate the table
+						// Add a aria label to the table element, build from his caption prepend the word " Table"
+						// For the details summary, use the table caption prefixed with Table.
 						var tblSrcContainer = $('<details />'),
 							tblSrcContainerSummary = $('<summary />');
 						$(tblSrcContainer).appendTo(paperContainer);
-						$(tblSrcContainerSummary).text(_pe.dic.get('%table-source')) // Text for the ability to show the table as a data source
+						// set the title for the ability to show or hide the table as a data source
+						$(tblSrcContainerSummary).text((captionParsed.caption ? $(captionParsed.caption).text() + ' ' : '') + _pe.dic.get('%table-mention')) 
 							.appendTo(tblSrcContainer)
 							.after(self);
 						// The pe.add._load has already a mecanism to prevent to load the same library
@@ -3060,6 +3100,9 @@ label:
 							// This means that the default call form when the lib are loaded was happed in the past
 							$(tblSrcContainer).details();
 						}
+					} else {
+						// Move the table inside the figure element
+						$(self).appendTo(paperContainer);
 					}
 				} else {
 					// Destroy the paper container
