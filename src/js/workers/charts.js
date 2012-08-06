@@ -29,7 +29,7 @@
 				"graphclass-autocreate": true, // This add the ability to set custom css class to the figure container.
 				"graphclass-overwrite-array-mode": true,
 				"graphclass-typeof": "string",
-				"noenhancement-autocreate": true,
+				"noencapsulation-autocreate": true,
 				// Force the Top and Bottom Value for a graph
 				"topvalue-autocreate": true,
 				"topvalue-typeof": "number",
@@ -96,7 +96,7 @@
 					"overcolor-autocreate": true,
 					"default-namespace": "wb-charts",
 					"dasharray-autocreate": true,
-					"noenhancement-autocreate": true,
+					"noencapsulation-autocreate": true,
 					"fillopacity-autocreate": true,
 					"fillopacity-typeof": "number"
 				},
@@ -3082,7 +3082,7 @@ label:
 						$(self).attr('aria-label', (captionParsed.caption ? $(captionParsed.caption).text() + ' ' : '') + _pe.dic.get('%table-mention')); // Table
 					}
 					// Add a aria-label to the table
-					if (!parser.param.noenhancement) { // eg of use:  wb-charts-noenhancement-true
+					if (!parser.param.noencapsulation) { // eg of use:  wb-charts-noencapsulation-true
 						// Use a details/summary to encapsulate the table
 						// Add a aria label to the table element, build from his caption prepend the word " Table"
 						// For the details summary, use the table caption prefixed with Table.
