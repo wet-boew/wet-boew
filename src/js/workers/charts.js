@@ -3011,6 +3011,22 @@ label:
 					$(graphTitle).append(tableHtmlCaption);
 					// Set the Graph Title
 					$(paperContainer).prepend(graphTitle);
+
+					// See: http://lists.w3.org/Archives/Public/w3c-wai-ig/2012JulSep/0176.html
+					
+					// If the a description are provided inside the table, use the same description for the graphic
+					
+					// Add the role="img" to the svg or vml 
+					
+					// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
+					
+					// Add a aria label to the table element, build from his caption prepend the word " Table"
+					
+					// For the details summary, use the table caption prefixed with Table.
+					
+					// Be sure, that the long description provided for the table is the same for the svg
+					
+					// Will be possible to remove this function
 					var setAccessiblity = function () {
 						// Generate a unique id for the Graph Title
 						// var TitleID = 'graphtitle'+ new Date().getTime(); // Generate a new ID
