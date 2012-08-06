@@ -173,7 +173,8 @@
 			"%jqm-clear-search" : "clear search",
 			"%jqm-filter" : "Filter items...",
 			/* Charts widget */
-			"%table-source": "View Data Source"
+			"%table-mention": "Table",
+			"%table-following": "Chart. Details in table following."
 		}
 	};
 	$(document).trigger("languageloaded");

@@ -1,5 +1,5 @@
 /*!
- * Web Experience Toolkit (WET) / BoÃ®te Ã  outils de l'expÃ©rience Web (BOEW)
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 /**
@@ -8,7 +8,6 @@
  * @author: Pierre Dubois
  *
  */
-/*global jQuery: false, pe: false*/
 (function ($) {
 
 var _pe = window.pe || {

@@ -169,7 +169,8 @@
 			"%jqm-clear-search" : "effacer le texte",
 			"%jqm-filter" : "Filtrer des articles...",
 			/* Charts widget */
-			"%table-source": "Voir le tableaux de donnée"
+			"%table-mention": "- Tableau",
+			"%table-following": "- Graphique. Plus de détails dans le tableau suivant."
 		}
 	};
 	$(document).trigger("languageloaded");
