@@ -117,25 +117,50 @@
 				//	Use Details/Summary element
 				//	Use a simple paragraph
 				var caption, 
+					captionFound,
 					description = [];
-				$(elem).contents().filter(function() {
-					if(caption && this.nodeType === 3){
-						// Any other element are considerated to be the description
-						// This are a text Node, do a wrap in a paragraph and add it
-						description.push($(this).wrap('<p></p>'));
-					} else if(caption &&  this.nodeType === 1){
-						// Any other element are considerated as part of the description
-						description.push(this);
-					} else if(!caption && this.nodeType === 3){ // Text Node
-						// Doesn't matter what it is, but this will be considerated as the caption
-						caption = $(this).wrap('<strong></strong>');
-					} else if(!caption && this.nodeType === 1){
-						// Doesn't matter what it is, but this will be considerated as the caption
-						caption = this;
-					}
-				});
-				groupheadercell.caption = caption;
-				groupheadercell.description = description;
+				if($(elem).children().length > 0){
+					// Use the contents function to retreive the caption
+					$(elem).contents().filter(function() {
+						if(!caption && this.nodeType === 3){ // Text Node
+							// Doesn't matter what it is, but this will be considerated as the caption
+							// if is not empty
+							caption = $(this).text().replace(/^\s+|\s+$/g,"");
+							if(caption.length !== 0){
+								caption = this;
+								captionFound = true;
+								return;
+							} else {
+								caption = false;
+							}
+						} else if(!caption && this.nodeType === 1){
+							// Doesn't matter what it is, the first children element will be considerated as the caption
+							caption = this;
+							return;
+						}
+					});
+					// Use the children function to retreive the description
+					$(elem).children().filter(function() {
+						// if the caption are an element, we should ignore the first one
+						if(captionFound){
+							description.push(this);
+						} else {
+							captionFound = true;
+						}
+					});
+				} else {
+					caption = elem;
+				}
+				// console.log(caption);
+				// Move the descriptin in a wrapper if there is more than one element
+				if(description.length > 1){
+					groupheadercell.description = $(description);
+				} else if (description.length === 1) {
+					groupheadercell.description = description[0];
+				}
+				if(caption) {
+					groupheadercell.caption = caption;
+				}
 				groupheadercell.groupZero = groupZero;
 				groupheadercell.type = 1;
 				groupZero.groupheadercell = groupheadercell;
