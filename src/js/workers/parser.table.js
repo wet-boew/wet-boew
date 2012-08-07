@@ -84,7 +84,8 @@
 				groupZero.rowgroup = [];
 			}
 			if (!groupZero.lstrowgroup) {
-				groupZero.lstrowgroup = [];
+				// groupZero.lstrowgroup = [];
+				groupZero.lstrowgroup = lstRowGroup;
 			}
 			groupZero.elem = obj;
 			groupZero.uid = uidElem;
@@ -344,7 +345,6 @@
 				// Parser any cell in the colgroup header
 				if (colgroupHeaderColEnd >0 && colgroupFrame.length == 1 || colgroupFrame.length == 0) {
 					// There are no colgroup element defined, All the cell will be considerated to be a data cell
-					
 					// Data Colgroup
 					var dataColgroup = {};
 					var dataColumns = [];
@@ -462,8 +462,8 @@ elem: undefined
 					for(i=0; i<groupZero.col.length; i++) {
 						groupZero.col[i].header = [];
 						for(j=0; j<tmpStack.length; j++) {
-							for(m=groupZero.col[i].start; m<= groupZero.col[i].end; m++) {
-								groupZero.col[i].header.push(tmpStack[j].cell[m]);
+							for (m = groupZero.col[i].start; m <= groupZero.col[i].end; m++) {
+								groupZero.col[i].header.push(tmpStack[j].cell[m-1]);
 							}
 						}
 					}
@@ -862,8 +862,11 @@ type: 2 // Set colgroup data type, that is the initial colgroup type
 
 				
 				// if no cell in the stack but first row group, mark this row group as a data row group
+				// console.log('rowgroupHeaderRowStack.length: ' + rowgroupHeaderRowStack.length);
+				// console.log(currentRowGroup);
+				// console.log('lstRowGroup.length: ' + lstRowGroup.length);
 				if (rowgroupHeaderRowStack.length == 0 && 
-						(!currentRowGroup || (currentRowGroup.type && currentRowGroup.type == 1)) && 
+						// (!currentRowGroup || (currentRowGroup.type && currentRowGroup.type == 1)) && 
 						lstRowGroup.length == 0) {
 					
 					if (currentRowGroup.type && currentRowGroup.type == 1) {
@@ -874,6 +877,7 @@ type: 2 // Set colgroup data type, that is the initial colgroup type
 					// This is the first data row group at level 1
 					currentRowGroup.type = 2;
 					currentRowGroup.level = 1; // Default Row Group Level
+					
 				}
 
 				// if no cell in the stack and not the first row group, this are a summary group
@@ -882,7 +886,7 @@ type: 2 // Set colgroup data type, that is the initial colgroup type
 				}
 				
 
-				// console.log(rowgroupHeaderRowStack);
+				// console.log(rowgroupHeaderRowStack); rowlevel
 				// console.log(currentRowGroup);
 				
 				rowgroupHeaderRowStack = []; // reset the row header stack	
@@ -965,6 +969,10 @@ type: 2 // Set colgroup data type, that is the initial colgroup type
 					
 				}
 				
+				if(!currentRowGroup.level || currentRowGroup.level < 0){
+					errorTrigger('You can not have a summary at level under 0, add a group header or merge a tbody togheter', currentRowGroup.elem);
+				}
+				
 			}
 			
 			
@@ -994,6 +1002,7 @@ rowpos: currentRowPos
 				
 				row.uid = uidElem;
 				uidElem += 1;
+				row.groupZero = groupZero;
 				groupZero.allParserObj.push(row);
 				
 				var colgroup = {
@@ -1658,6 +1667,7 @@ elem: this
 					groupZero.row = [];
 				}
 				groupZero.row.push(row);
+				currentRowGroup.row.push(row);
 				
 
 
