@@ -18,7 +18,11 @@
 				o,
 				self = $(elm),
 				graphStartExecTime = new Date().getTime(), // This variable is used to autogenerate ids for the given tables.
-				charts = {};
+				charts = {},
+				parser = {},
+				fnNewParser,
+				DesignerHeadingLevel,
+				GraphTypeTableDefault = '';
 			// console.log('graph start exec time ' + graphStartExecTime);
 			if (typeof (wet_boew_charts) !== 'undefined' && wet_boew_charts !== null) {
 				options = wet_boew_charts;
@@ -350,7 +354,9 @@
 							angle,
 							rad,
 							lastEndAngle,
-							ms;
+							ms,
+							CurrentLevel,
+							GroupingSeries = [];
 						legendGenerated = false;
 						legendList = $('<ul>').appendTo(($.isArray(charts.circleGraph.paperContainer) ?  $(charts.circleGraph.paperContainer[currRowPos - 1]) : charts.circleGraph.paperContainer));
 						charts.circleGraph.legendContainer = legendList;
@@ -410,15 +416,37 @@
 						function getRTop(level, height) {
 							return (getRBottom(level, height) + charts.circleGraph.minLevelWidth + charts.circleGraph.strokeWidth);
 						}
-						var CurrentLevel = charts.circleGraph.series.nbColLevel;
-						var GroupingSeries = [];
+						CurrentLevel = charts.circleGraph.series.nbColLevel;
 						// For each cell get the Total value base on SerieRange
 						$.each(this.cell, function () {
 							// Get the Cell Heading
-							var cellColPos = this.colPos;
-							var currentHeading = '';
-							var HeadingLevel = CurrentLevel;
-							var SuperiorHeading = []; // List containing the appropriate Path for the supperior existing heading
+							var cellColPos = this.colPos,
+								currentHeading = '',
+								HeadingLevel = CurrentLevel,
+								SuperiorHeading = [],
+								path = [],
+								angleplus,
+								startAngle,
+								x1,
+								y1,
+								endAngle,
+								x2,
+								y2,
+								bcolor,
+								color,
+								percent,
+								fillColor,
+								PaperPath,
+								legendItem,
+								legendPaperEle,
+								legendPaper,
+								legendRect,
+								popangle,
+								txt,
+								txtBorder,
+								txtBackGround,
+								startColor,
+								fillOverColor;
 							// Current Heading
 							$.each(charts.circleGraph.series.heading, function () {
 								// Check if the Heading correspond with the colPos and the rowPos
@@ -443,11 +471,10 @@
 							//
 							// Determine the Path for the sector
 							//
-							var path = [];
 							// Add the center Pos
 							path.push("M", cx, cy);
 							// Get the pie Angle
-							var angleplus = 360 * this.value / total;
+							angleplus = 360 * this.value / total;
 							// Check if the pie quarter need to be expend in some level
 							r = (charts.circleGraph.minWidth / 2);
 							if (HeadingLevel < (CurrentLevel - 1)) {
@@ -455,15 +482,15 @@
 								r += ((charts.circleGraph.minLevelWidth + charts.circleGraph.levelPadding + (charts.circleGraph.strokeWidth * 2)) * ((CurrentLevel - 1) - HeadingLevel));
 							}
 							// Calculate the pos of the first segment
-							var startAngle = angle,
-								x1 = cx + r * Math.cos(-startAngle * rad),
-								y1 = cy + r * Math.sin(-startAngle * rad);
+							startAngle = angle;
+							x1 = cx + r * Math.cos(-startAngle * rad);
+							y1 = cy + r * Math.sin(-startAngle * rad);
 							// Draw the line
 							path.push("L", x1, y1);
 							// Calculate the pos of the second segment
-							var endAngle = angle + angleplus,
-								x2 = cx + r * Math.cos(-endAngle * rad),
-								y2 = cy + r * Math.sin(-endAngle * rad);
+							endAngle = angle + angleplus;
+							x2 = cx + r * Math.cos(-endAngle * rad);
+							y2 = cy + r * Math.sin(-endAngle * rad);
 							lastEndAngle = endAngle;
 							// Draw the Curve (Elipsis)
 							path.push("A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2);
@@ -471,9 +498,11 @@
 							path.push("z");
 							$.each(SuperiorHeading, function () {
 								// This cell have a supperior heading
-								var supHeading = this;
+								var supHeading = this,
+									AddToIt = true,
+									r2,
+									r1;
 								supHeading.still = false; // Just a flag to know if is computed or not
-								var AddToIt = true;
 								// Check if can be computed
 								$.each(GroupingSeries, function () {
 									if (this.id === supHeading.id) {
@@ -485,8 +514,8 @@
 									}
 								});
 								if (!this.topX1) {
-									var r2 = getRBottom(this.level, this.height),
-										r1 = getRTop(this.level, this.height);
+									r2 = getRBottom(this.level, this.height);
+									r1 = getRTop(this.level, this.height);
 									// Set the starting point
 									this.topX1 = cx + r1 * Math.cos(-startAngle * rad);
 									this.topY1 = cy + r1 * Math.sin(-startAngle * rad);
@@ -512,19 +541,30 @@
 								if (!this.still  && !this.ignoreMe) {
 									// Draw this group
 									var r2 = getRBottom(this.level, this.height),
-										r1 = getRTop(this.level, this.height);
-									var topX2 = cx + r1 * Math.cos(-startAngle * rad);
-									var topY2 = cy + r1 * Math.sin(-startAngle * rad);
-									var bottomX2 = cx + r2 * Math.cos(-startAngle * rad);
-									var bottomY2 = cy + r2 * Math.sin(-startAngle * rad);
-									var p = [];
+										r1 = getRTop(this.level, this.height),
+										topX2 = cx + r1 * Math.cos(-startAngle * rad),
+										topY2 = cy + r1 * Math.sin(-startAngle * rad),
+										bottomX2 = cx + r2 * Math.cos(-startAngle * rad),
+										bottomY2 = cy + r2 * Math.sin(-startAngle * rad),
+										p = [],
+										percent = (startAngle - this.startAngle) / 360 * 100,
+										fillColor = "90-" + this.bcolor + "-" + this.color,
+										legendItem,
+										legendPaperEle,
+										legendPaper,
+										legendRect,
+										PaperPath,
+										popangle,
+										txt,
+										txtBorder,
+										txtBackGround,
+										startColor,
+										fillOverColor;
 									p.push("M", this.topX1, this.topY1);
 									p.push("A", r1, r1, 0, +(startAngle - this.startAngle > 180), 0, Math.ceil(topX2), Math.ceil(topY2));
 									p.push("L", Math.ceil(bottomX2), Math.ceil(bottomY2));
 									p.push("A", r2, r2, 0, +(startAngle - this.startAngle > 180), 1, Math.ceil(this.bottomX1), Math.ceil(this.bottomY1));
 									p.push("z");
-									// console.log('p:' + p);
-									var percent = (startAngle - this.startAngle) / 360 * 100;
 									// Adjust the percent to the precision requested
 									if (charts.circleGraph.options.decimal) {
 										percent = percent * (Math.pow(10, charts.circleGraph.options.decimal));
@@ -534,28 +574,27 @@
 									if (charts.circleGraph.options.decimal) {
 										percent = percent / (Math.pow(10, charts.circleGraph.options.decimal));
 									}
-									var fillColor = "90-" + this.bcolor + "-" + this.color;
 									if (this.param.color) {
 										fillColor = colourNameToHex(this.param.color);
 									}
 									if (!legendGenerated) {
-										var legendItem = $('<li></li>').appendTo($(legendList));
-										var legendPaperEle = $('<span style="margin-right:7px;"></span>').appendTo($(legendItem));
-										var legendPaper = new Raphael($(legendPaperEle).get(0), charts.circleGraph.options.font.size, charts.circleGraph.options.font.size);
-										var legendRect = legendPaper.rect(2, 2, charts.circleGraph.options.font.size - (2 * 2) + (2 / 2), charts.circleGraph.options.font.size - (2 * 2) + (2 / 2));
+										legendItem = $('<li></li>').appendTo($(legendList));
+										legendPaperEle = $('<span style="margin-right:7px;"></span>').appendTo($(legendItem));
+										legendPaper = new Raphael($(legendPaperEle).get(0), charts.circleGraph.options.font.size, charts.circleGraph.options.font.size);
+										legendRect = legendPaper.rect(2, 2, charts.circleGraph.options.font.size - (2 * 2) + (2 / 2), charts.circleGraph.options.font.size - (2 * 2) + (2 / 2));
 										$(legendItem).append(this.header);
 										legendRect.attr("fill", fillColor);
 									}
-									var PaperPath = currentPaper.path(p).attr({fill: fillColor, stroke: stroke, "stroke-width": 3, "title": this.header + ' (' + percent + '%)'});
+									PaperPath = currentPaper.path(p).attr({fill: fillColor, stroke: stroke, "stroke-width": 3, "title": this.header + ' (' + percent + '%)'});
 									// That the following was replaced by the Tooltip functionality
-									var popangle = ((startAngle - this.startAngle) / 2) + this.startAngle;
+									popangle = ((startAngle - this.startAngle) / 2) + this.startAngle;
 									// Old Caption : this.header + ' (' + percent + '%)'
-									var txt = currentPaper.text(cx + (r1 * Math.cos(-popangle * rad)), cy + (r1 * Math.sin(-popangle * rad)), percent + '%').attr({fill: '#000', stroke: "none", opacity: 1, "font-size": charts.circleGraph.fontSize});
-									var txtBorder = txt.getBBox();
-									var txtBackGround = currentPaper.rect(txtBorder.x - 10, txtBorder.y - 10, txtBorder.width + (2 * 10), txtBorder.height + (2 * 10)).attr({fill: '#FFF', stroke: "black", "stroke-width": "1", opacity: 1});
+									txt = currentPaper.text(cx + (r1 * Math.cos(-popangle * rad)), cy + (r1 * Math.sin(-popangle * rad)), percent + '%').attr({fill: '#000', stroke: "none", opacity: 1, "font-size": charts.circleGraph.fontSize});
+									txtBorder = txt.getBBox();
+									txtBackGround = currentPaper.rect(txtBorder.x - 10, txtBorder.y - 10, txtBorder.width + (2 * 10), txtBorder.height + (2 * 10)).attr({fill: '#FFF', stroke: "black", "stroke-width": "1", opacity: 1});
 									chartsLabels.push({txt: txt, bg: txtBackGround});
-									var startColor = this.start;
-									var fillOverColor = Raphael.hsb(startColor, 1, 0.3);
+									startColor = this.start;
+									fillOverColor = Raphael.hsb(startColor, 1, 0.3);
 									if (this.param.overcolor) {
 										fillOverColor = colourNameToHex(this.param.overcolor);
 									}
@@ -605,9 +644,9 @@
 								this.still = false;
 							});
 							// Add the new path
-							var bcolor = Raphael.hsb(start, 1, 1),
-								color = Raphael.hsb(start, 0.75, 1),
-								percent = (endAngle - startAngle) / 360 * 100;
+							bcolor = Raphael.hsb(start, 1, 1);
+							color = Raphael.hsb(start, 0.75, 1);
+							percent = (endAngle - startAngle) / 360 * 100;
 							// Adjust the percent to the precision requested
 							if (charts.circleGraph.options.decimal) {
 								percent = percent * (Math.pow(10, charts.circleGraph.options.decimal));
@@ -617,34 +656,34 @@
 							if (charts.circleGraph.options.decimal) {
 								percent = percent / (Math.pow(10, charts.circleGraph.options.decimal));
 							}
-							var fillColor = "90-" + bcolor + "-" + color;
+							fillColor = "90-" + bcolor + "-" + color;
 							if (this.param.color) {
 								fillColor = colourNameToHex(this.param.color);
 							}
 							// console.log(this);
 							// USE this.colPos if defined
 							// and get charts.circleGraph.series.ColHeading for the default color, and to build the legend.
-							var PaperPath = currentPaper.path(path).attr({fill: fillColor, stroke: stroke, "stroke-width": 3, "title": currentHeading + ' (' + percent + '%)'});
+							PaperPath = currentPaper.path(path).attr({fill: fillColor, stroke: stroke, "stroke-width": 3, "title": currentHeading + ' (' + percent + '%)'});
 							if (!legendGenerated) {
 								// Create the legend
-								var legendItem = $('<li></li>').appendTo($(legendList));
-								var legendPaperEle = $('<span style="margin-right:7px;"></span>').appendTo($(legendItem));
-								var legendPaper = new Raphael($(legendPaperEle).get(0), charts.circleGraph.options.font.size, charts.circleGraph.options.font.size);
-								var legendRect = legendPaper.rect(2, 2, charts.circleGraph.options.font.size - (2 * 2) + (2 / 2), charts.circleGraph.options.font.size - (2 * 2) + (2 / 2));
+								legendItem = $('<li></li>').appendTo($(legendList));
+								legendPaperEle = $('<span style="margin-right:7px;"></span>').appendTo($(legendItem));
+								legendPaper = new Raphael($(legendPaperEle).get(0), charts.circleGraph.options.font.size, charts.circleGraph.options.font.size);
+								legendRect = legendPaper.rect(2, 2, charts.circleGraph.options.font.size - (2 * 2) + (2 / 2), charts.circleGraph.options.font.size - (2 * 2) + (2 / 2));
 								$(legendItem).append(currentHeading);
 								legendRect.attr("fill", fillColor);
 							}
 							// var currentHeading = '';
 							// var HeadingLevel = CurrentLevel;
 							// Replaced by the Tooltip functionality
-							var popangle = angle + (angleplus / 2);
+							popangle = angle + (angleplus / 2);
 							// old caption : currentHeading + ' (' + percent + '%)'
-							var txt = currentPaper.text(cx + (r * Math.cos(-popangle * rad)), cy + (r * Math.sin(-popangle * rad)), percent + '%').attr({fill: '#000', stroke: "none", opacity: 1, "font-size": charts.circleGraph.fontSize});
-							var txtBorder = txt.getBBox();
-							var txtBackGround = currentPaper.rect(txtBorder.x - 10, txtBorder.y - 10, txtBorder.width + (2 * 10), txtBorder.height + (2 * 10)).attr({fill: '#FFF', stroke: "black", "stroke-width": "1", opacity: 1});
+							txt = currentPaper.text(cx + (r * Math.cos(-popangle * rad)), cy + (r * Math.sin(-popangle * rad)), percent + '%').attr({fill: '#000', stroke: "none", opacity: 1, "font-size": charts.circleGraph.fontSize});
+							txtBorder = txt.getBBox();
+							txtBackGround = currentPaper.rect(txtBorder.x - 10, txtBorder.y - 10, txtBorder.width + (2 * 10), txtBorder.height + (2 * 10)).attr({fill: '#FFF', stroke: "black", "stroke-width": "1", opacity: 1});
 							chartsLabels.push({txt: txt, bg: txtBackGround});
-							var startColor = start;
-							var fillOverColor = Raphael.hsb(startColor, 1, 0.3);
+							startColor = start;
+							fillOverColor = Raphael.hsb(startColor, 1, 0.3);
 							if (this.param.overcolor) {
 								fillOverColor = colourNameToHex(this.param.overcolor);
 							}
@@ -705,13 +744,26 @@
 									topY2 = cy + r1 * Math.sin(-lastEndAngle * rad),
 									bottomX2 = cx + r2 * Math.cos(-lastEndAngle * rad),
 									bottomY2 = cy + r2 * Math.sin(-lastEndAngle * rad),
-									p = [];
+									p = [],
+									percent,
+									fillColor,
+									legendRect,
+									legendPaper,
+									legendPaperEle,
+									legendItem,
+									PaperPath,
+									popangle,
+									txt,
+									txtBorder,
+									txtBackGround,
+									startColor,
+									fillOverColor;
 								p.push("M", this.topX1, this.topY1);
 								p.push("A", r1, r1, 0, +(lastEndAngle - this.startAngle > 180), 0, Math.ceil(topX2), Math.ceil(topY2));
 								p.push("L", Math.ceil(bottomX2), Math.ceil(bottomY2));
 								p.push("A", r2, r2, 0, +(lastEndAngle - this.startAngle > 180), 1, Math.ceil(this.bottomX1), Math.ceil(this.bottomY1));
 								p.push("z");
-								var percent = (lastEndAngle - this.startAngle) / 360 * 100;
+								percent = (lastEndAngle - this.startAngle) / 360 * 100;
 								// Adjust the percent to the precision requested
 								if (charts.circleGraph.options.decimal) {
 									percent = percent * (Math.pow(10, charts.circleGraph.options.decimal));
@@ -721,28 +773,28 @@
 								if (charts.circleGraph.options.decimal) {
 									percent = percent / (Math.pow(10, charts.circleGraph.options.decimal));
 								}
-								var fillColor = "90-" + this.bcolor + "-" + this.color;
+								fillColor = "90-" + this.bcolor + "-" + this.color;
 								if (this.param.color) {
 									fillColor = colourNameToHex(this.param.color);
 								}
 								if (!legendGenerated) {
-									var legendItem = $('<li></li>').appendTo($(legendList)),
-										legendPaperEle = $('<span style="margin-right:7px;"></span>').appendTo($(legendItem)),
-										legendPaper = new Raphael($(legendPaperEle).get(0), charts.circleGraph.options.font.size, charts.circleGraph.options.font.size),
-										legendRect = legendPaper.rect(2, 2, charts.circleGraph.options.font.size - (2 * 2) + (2 / 2), charts.circleGraph.options.font.size - (2 * 2) + (2 / 2));
+									legendItem = $('<li></li>').appendTo($(legendList));
+									legendPaperEle = $('<span style="margin-right:7px;"></span>').appendTo($(legendItem));
+									legendPaper = new Raphael($(legendPaperEle).get(0), charts.circleGraph.options.font.size, charts.circleGraph.options.font.size);
+									legendRect = legendPaper.rect(2, 2, charts.circleGraph.options.font.size - (2 * 2) + (2 / 2), charts.circleGraph.options.font.size - (2 * 2) + (2 / 2));
 									$(legendItem).append(this.header);
 									legendRect.attr("fill", fillColor);
 								}
-								var PaperPath = currentPaper.path(p).attr({fill: fillColor, stroke: stroke, "stroke-width": 3, "title": this.header + ' (' + percent + '%)'});
+								PaperPath = currentPaper.path(p).attr({fill: fillColor, stroke: stroke, "stroke-width": 3, "title": this.header + ' (' + percent + '%)'});
 								// Replaced by the tooltip functionality
-								var popangle = ((lastEndAngle - this.startAngle) / 2) + this.startAngle;
+								popangle = ((lastEndAngle - this.startAngle) / 2) + this.startAngle;
 								// old caption: this.header + ' (' + percent + '%)'
-								var txt = currentPaper.text(cx + (r1 * Math.cos(-popangle * rad)), cy + (r1 * Math.sin(-popangle * rad)), percent + '%').attr({fill: '#000', stroke: "none", opacity: 1, "font-size": charts.circleGraph.fontSize});
-								var txtBorder = txt.getBBox();
-								var txtBackGround = currentPaper.rect(txtBorder.x - 10, txtBorder.y - 10, txtBorder.width + (2 * 10), txtBorder.height + (2 * 10)).attr({fill: '#FFF', stroke: "black", "stroke-width": "1", opacity: 1});
+								txt = currentPaper.text(cx + (r1 * Math.cos(-popangle * rad)), cy + (r1 * Math.sin(-popangle * rad)), percent + '%').attr({fill: '#000', stroke: "none", opacity: 1, "font-size": charts.circleGraph.fontSize});
+								txtBorder = txt.getBBox();
+								txtBackGround = currentPaper.rect(txtBorder.x - 10, txtBorder.y - 10, txtBorder.width + (2 * 10), txtBorder.height + (2 * 10)).attr({fill: '#FFF', stroke: "black", "stroke-width": "1", opacity: 1});
 								chartsLabels.push({txt: txt, bg: txtBackGround});
-								var startColor = this.start;
-								var fillOverColor = Raphael.hsb(startColor, 1, 0.3);
+								startColor = this.start;
+								fillOverColor = Raphael.hsb(startColor, 1, 0.3);
 								if (this.param.overcolor) {
 									fillOverColor = colourNameToHex(this.param.overcolor);
 								}
@@ -884,9 +936,9 @@
 					// Top Offset, half size of the Font height
 					charts.graph2dAxis.offset.top = (charts.graph2dAxis.options.font.height / 2);
 					// Get the available Height for the draw area
-					var nbVerticalStep = Math.ceil((charts.graph2dAxis.options.height - charts.graph2dAxis.layout.headingMinSize) / charts.graph2dAxis.options.font.height);
-					// Remove the number of step required for drawing the label
-					var nbNumberVertical = nbVerticalStep - charts.graph2dAxis.NbColumnHeaderLevel;
+					var nbVerticalStep = Math.ceil((charts.graph2dAxis.options.height - charts.graph2dAxis.layout.headingMinSize) / charts.graph2dAxis.options.font.height),
+						// Remove the number of step required for drawing the label
+						nbNumberVertical = nbVerticalStep - charts.graph2dAxis.NbColumnHeaderLevel;
 					// Check if we meet the minimum requirement regarding the height size
 					if (nbNumberVertical < charts.graph2dAxis.options.axis.minNbIncrementStep) {
 						// Force a minimum height
@@ -921,7 +973,12 @@
 						BottomValue, // Min Value of the axe
 						interval, // Incrementation Step Between Max to Min
 						zeroPos, // Position into the axes of the 0 Value
-						cutingPos = 0; // If needed, Axe cutting Postion, Before of After the 0 Value, 0 Position = no cut
+						cutingPos = 0,  // If needed, Axe cutting Postion, Before of After the 0 Value, 0 Position = no cut
+						idealTopValue,
+						range,
+						IntervalTop,
+						IntervalBottom,
+						IntervalWithAxeCut;
 					// Set TopValue and BottomValue if defined in the table parameter
 					if (charts.graph2dAxis.options.topvalue) {
 						if (charts.graph2dAxis.options.topvaluenegative) {
@@ -956,7 +1013,7 @@
 					});
 					// Initial Top and Bottom Value
 					if (TopValue > 0) {
-						var idealTopValue = Math.floor(TopValue);
+						idealTopValue = Math.floor(TopValue);
 						TopValue = (TopValue - idealTopValue > 0 ? idealTopValue + 1 : idealTopValue);
 						// TopValue = Math.floor(TopValue);
 					} else {
@@ -974,7 +1031,7 @@
 						}
 					}
 					// Get Ìntitial Range and Interval
-					var range = charts.graph2dAxis.utils.topRound(TopValue - BottomValue);
+					range = charts.graph2dAxis.utils.topRound(TopValue - BottomValue);
 					interval = charts.graph2dAxis.utils.topRound(range / charts.graph2dAxis.nbStep);
 					// TODO, Validate the Precision, currently no decimal are authorized for the interval
 					// Set the Zero Position 
@@ -986,8 +1043,8 @@
 						zeroPos = 1;
 					}
 					// Get Best TopValue and BottomValue Interval
-					var IntervalTop = charts.graph2dAxis.utils.topRound(TopValue / (zeroPos - 1));
-					var IntervalBottom = Math.abs(charts.graph2dAxis.utils.topRound(BottomValue / (charts.graph2dAxis.nbStep - zeroPos)));
+					IntervalTop = charts.graph2dAxis.utils.topRound(TopValue / (zeroPos - 1));
+					IntervalBottom = Math.abs(charts.graph2dAxis.utils.topRound(BottomValue / (charts.graph2dAxis.nbStep - zeroPos)));
 					// Set the Interval
 					// Positive and negative Or Positive only table
 					if (IntervalTop > interval && (BottomValue >= 0 || (TopValue > 0 && 0 > BottomValue))) {
@@ -998,7 +1055,7 @@
 						interval = IntervalBottom;
 					}
 					// Check if we can cut the Axe
-					var IntervalWithAxeCut = charts.graph2dAxis.utils.topRound(range / (charts.graph2dAxis.nbStep - 2)); // Minus 2 because we don't count the 0 position plus the cutting point
+					IntervalWithAxeCut = charts.graph2dAxis.utils.topRound(range / (charts.graph2dAxis.nbStep - 2)); // Minus 2 because we don't count the 0 position plus the cutting point
 					if (!charts.graph2dAxis.options.nocutaxis) {
 						// Positive Table with Small range posibility
 						if (IntervalWithAxeCut < IntervalTop && BottomValue > 0) {
@@ -1103,14 +1160,16 @@
 				*/
 					var xAxisPath = 'M ' + charts.graph2dAxis.offset.left + ' ' + charts.graph2dAxis.xAxisOffset + ' ',
 						maxPos,
+						minPos,
+						centerPos,
 						i;
 					for (i = 1; i <= (charts.graph2dAxis.NbColumnHeading); i += 1) {
 						// Valeur Maximale
 						maxPos = (i * ((charts.graph2dAxis.options.width - charts.graph2dAxis.offset.left) / charts.graph2dAxis.NbColumnHeading));
 						if (charts.graph2dAxis.options.axis.tick || (charts.graph2dAxis.options.axis.top.tick !== null ? charts.graph2dAxis.options.axis.top.tick : false) || (charts.graph2dAxis.options.axis.bottom.tick !== null ? charts.graph2dAxis.options.axis.bottom.tick : false)) {
 							// Calculer la position centrale
-							var minPos = ((i - 1) * ((charts.graph2dAxis.options.width - charts.graph2dAxis.offset.left) / charts.graph2dAxis.NbColumnHeading)),
-								centerPos = ((maxPos - minPos) / 2) + minPos;
+							minPos = ((i - 1) * ((charts.graph2dAxis.options.width - charts.graph2dAxis.offset.left) / charts.graph2dAxis.NbColumnHeading));
+							centerPos = ((maxPos - minPos) / 2) + minPos;
 							// Add the Calculated Left Padding
 							centerPos += charts.graph2dAxis.offset.left;
 							// Ligne Droite
@@ -1149,54 +1208,69 @@
 					$.each(charts.graph2dAxis.series.heading, function () {
 						// Min Pos + Max Pos
 						var xMinPos = this.colPos,
-							xMaxPos = (this.colPos + this.width);
+							xMaxPos = (this.colPos + this.width),
+							xMinPosPaper,
+							xMaxPosPaper,
+							xPos,
+							textAnchor = 'middle',
+							hMin,
+							YLabelBg,
+							headingText,
+							YLabel,
+							topPos,
+							bottomPos,
+							middlePos,
+							leftPos,
+							width,
+							height,
+							fillColor,
+							fillOverColor;
 						if (xMinPos >= charts.graph2dAxis.series.nbRowLevel) {
 							// Get the starting x-axis position of the header area
 							xMinPos -= charts.graph2dAxis.series.nbRowLevel;
 							xMaxPos = xMaxPos - charts.graph2dAxis.series.nbRowLevel;
-							var xMinPosPaper = Math.floor((charts.graph2dAxis.options.width - charts.graph2dAxis.offset.left) / (charts.graph2dAxis.NbColumnHeading) * xMinPos),
-								xMaxPosPaper = Math.floor((charts.graph2dAxis.options.width - charts.graph2dAxis.offset.left) / (charts.graph2dAxis.NbColumnHeading) * xMaxPos);
+							xMinPosPaper = Math.floor((charts.graph2dAxis.options.width - charts.graph2dAxis.offset.left) / (charts.graph2dAxis.NbColumnHeading) * xMinPos);
+							xMaxPosPaper = Math.floor((charts.graph2dAxis.options.width - charts.graph2dAxis.offset.left) / (charts.graph2dAxis.NbColumnHeading) * xMaxPos);
 							// Get the middle position
-							var xPos = xMinPosPaper;
+							xPos = xMinPosPaper;
 							xPos = Math.floor((xMaxPosPaper - xMinPosPaper) / 2) + xMinPosPaper;
-							var textAnchor = 'middle';
 							// Add the Offset
 							xPos += charts.graph2dAxis.offset.left;
 							// Calculate the Label position into the Y perpective
 							// TODO NOTE: for draw-x use nbColLevel, and for draw-y use nbRowLevel
-							var hMin = (charts.graph2dAxis.series.nbColLevel - this.height - this.level),
+							hMin = (charts.graph2dAxis.series.nbColLevel - this.height - this.level);
 							// var hMax = hMin + (this.height-1);
 							// Get the Top and Bottom Position;
 							// var topPos = (charts.graph2dAxis.options.height - charts.graph2dAxis.offset.bottom) + (charts.graph2dAxis.options.font.height * hMin);
-								topPos = (charts.graph2dAxis.options.height - charts.graph2dAxis.layout.headingMinSize) + (charts.graph2dAxis.options.font.height * hMin),
-								bottomPos = topPos + (this.height * charts.graph2dAxis.options.font.height),
+							topPos = (charts.graph2dAxis.options.height - charts.graph2dAxis.layout.headingMinSize) + (charts.graph2dAxis.options.font.height * hMin);
+							bottomPos = topPos + (this.height * charts.graph2dAxis.options.font.height);
 							// Get the Middle pos for the label
-								middlePos = topPos + ((bottomPos - topPos) / 2),
+							middlePos = topPos + ((bottomPos - topPos) / 2);
 							// var h = ((charts.graph2dAxis.options.height -30) + ((((hMax-hMin) / 2) + hMin) * charts.graph2dAxis.options.font.height) - charts.graph2dAxis.options.font.height + charts.graph2dAxis.offset.top + charts.graph2dAxis.cuttingOffset + (4 * 2));
 							// var h = (charts.graph2dAxis.options.height + ((((hMax-hMin) / 2) + hMin) * charts.graph2dAxis.options.font.height) - charts.graph2dAxis.options.font.height - charts.graph2dAxis.offset.top - charts.graph2dAxis.cuttingOffset - (4 * 2));
 							// TopPos => offset.top + 
-								leftPos = xMinPosPaper + charts.graph2dAxis.offset.left,
+							leftPos = xMinPosPaper + charts.graph2dAxis.offset.left;
 							// var topPos = (charts.graph2dAxis.options.height + (hMin * charts.graph2dAxis.options.font.height) -charts.graph2dAxis.options.font.height + charts.graph2dAxis.offset.top + charts.graph2dAxis.cuttingOffset);
 							// var topPos = (charts.graph2dAxis.options.height + (hMin * charts.graph2dAxis.options.font.height) -charts.graph2dAxis.options.font.height - charts.graph2dAxis.offset.top - charts.graph2dAxis.cuttingOffset);
-								width = ((charts.graph2dAxis.options.width - charts.graph2dAxis.offset.left) / (charts.graph2dAxis.NbColumnHeading)) * (this.width),
-								height = bottomPos - topPos,
+							width = ((charts.graph2dAxis.options.width - charts.graph2dAxis.offset.left) / (charts.graph2dAxis.NbColumnHeading)) * (this.width);
+							height = bottomPos - topPos;
 							// Draw a background
 							// var fillColor = '90-#ee7-#ddd'; //'lightgreen';
-								fillColor = '50-#F4F4F4-#FFF', //'lightgreen';
+							fillColor = '50-#F4F4F4-#FFF'; //'lightgreen';
 							//var fillOverColor = colourNameToHex('lightblue');
 							// var fillOverColor = '90-#ddd-#7ee';
-								fillOverColor = '90-#FFF-#F4F4F4';
+							fillOverColor = '90-#FFF-#F4F4F4';
 							if (this.param.fill) {
 								fillColor = colourNameToHex(this.param.fill);
 							}
 							if (this.param.fillover) {
 								fillOverColor = colourNameToHex(this.param.fillover);
 							}
-							var YLabelBg = charts.graph2dAxis.paper.rect(leftPos, topPos, width, height);
+							YLabelBg = charts.graph2dAxis.paper.rect(leftPos, topPos, width, height);
 							YLabelBg.attr('fill', fillColor);
 							YLabelBg.attr('stroke-width', '0');
 							// var YLabel = paper.text(xPos, h, (this.level == 1 ? this.header.substring(0,1):this.header) ); // Test Only for (2lines-eng) by default use the second commented instruction.
-							var headingText = this.header;
+							headingText = this.header;
 							// TODO: replace in the headingTest any "<br />" or "<br>" by "\n" (if the SVG context are keeped vs Canvas)
 							// TODO: calculate the heading lenght based on the longer line when the heading is breaked in serveral lineHeight
 							// TODO: when the heading box size are calculated, do that based on the hightest number of breaked line for a given series
@@ -1205,7 +1279,7 @@
 								// Set the best width
 								headingText = headingText.substring(0, Math.floor(width / charts.graph2dAxis.options.font.width));
 							}
-							var YLabel = charts.graph2dAxis.paper.text(xPos, middlePos, headingText);
+							YLabel = charts.graph2dAxis.paper.text(xPos, middlePos, headingText);
 							YLabel.attr("text-anchor", textAnchor);
 							YLabel.attr('font-size', charts.graph2dAxis.options.font.size + 'px');
 							YLabel.attr('title', this.header);
@@ -1224,7 +1298,9 @@
 				},
 				yAxisLabel: function () {
 					var yAxisPath = 'M ' + charts.graph2dAxis.offset.left + ' ' + charts.graph2dAxis.offset.top + ' ',
-						YLabel;
+						YLabel,
+						i,
+						yAxis;
 					charts.graph2dAxis.cuttingPosPaper = 0;
 					if (charts.graph2dAxis.top < 0) {
 						// Draw the 0 label
@@ -1250,7 +1326,6 @@
 						// Adjust the charts.graph2dAxis.offset.top
 						charts.graph2dAxis.offset.top += (2 * charts.graph2dAxis.options.font.height);
 					}
-					var i;
 					for (i = 0; i < charts.graph2dAxis.nbStep; i += 1) {
 						if (charts.graph2dAxis.cuttingPos === 0 || (charts.graph2dAxis.cuttingPos > i && charts.graph2dAxis.bottom > 0) || charts.graph2dAxis.top < 0) {
 							// No Cutting currently normal way to do the data
@@ -1288,7 +1363,7 @@
 						charts.graph2dAxis.cuttingPosPaper = (charts.graph2dAxis.offset.top + (i * charts.graph2dAxis.options.font.height));
 						charts.graph2dAxis.options.height -= (2 * charts.graph2dAxis.options.font.height); // Remove the 0 level and the cutting point to the drawing graph area
 					}
-					var yAxis = charts.graph2dAxis.paper.path(yAxisPath);
+					yAxis = charts.graph2dAxis.paper.path(yAxisPath);
 				},
 				graph: function () {
 					//
@@ -1296,7 +1371,10 @@
 					//
 					var nbGraphBarSpace = 0,
 						PreviousGraphType,
-						GraphType = 'line'; // That is the default
+						GraphType = 'line', // That is the default
+						currGraphTypePos,
+						legendList,
+						CurrentSerieID;
 					$.each(charts.graph2dAxis.series.series, function () {
 						GraphType = this.type; // The first row are the default
 						if (GraphType === 'bar') { // && (PreviousGraphType != 'bar' || PreviousGraphType == undefined)) {
@@ -1309,9 +1387,9 @@
 						}
 					});
 					PreviousGraphType = undefined;
-					var currGraphTypePos = -1,
-						legendList = $('<ul>').appendTo($(charts.graph2dAxis.paperContainer)),
-						CurrentSerieID = 0;
+					currGraphTypePos = -1;
+					legendList = $('<ul>').appendTo($(charts.graph2dAxis.paperContainer));
+					CurrentSerieID = 0;
 					charts.graph2dAxis.legendContainer = legendList;
 					$.each(charts.graph2dAxis.series.series, function () {
 						var currentSerie = this,
@@ -1320,7 +1398,23 @@
 							legendPaper = new Raphael($(legendPaperEle).get(0), charts.graph2dAxis.options.font.size, charts.graph2dAxis.options.font.size),
 							legendRect = legendPaper.rect(2, 2, charts.graph2dAxis.options.font.size - (2 * 2) + (2 / 2), charts.graph2dAxis.options.font.size - (2 * 2) + (2 / 2)),
 							Color,
-							StrokeDashArray = "";
+							StrokeDashArray = "",
+							dataCellPos = 0,
+							WorkingSpace,
+							HeaderText,
+							path,
+							firstPos,
+							lastPos,
+							c,
+							percentPaddingStart,
+							percentPaddingEnd,
+							nbSmallSegment,
+							EmptyStartWorkingSpace,
+							EmptyEndWorkingSpace,
+							RealWorkingSpace,
+							SegmentWidth,
+							StartPos,
+							EndPos;
 						GraphType = this.type;
 						//			StrokeDashArray
 						//			[“”, “-”, “.”, “-.”, “-..”, “. ”, “- ”, “--”, “- .”, “--.”, “--..”]
@@ -1348,9 +1442,6 @@
 							// Do the appropriate find and replace in the string
 							StrokeDashArray = StrokeDashArray.replace("space", " ").replace("dash", "-").replace("dot", ".").replace("none", "");
 						}
-						var dataCellPos = 0,
-							WorkingSpace,
-							HeaderText;
 						if (HeaderText === undefined) {
 							HeaderText = currentSerie.header.rawValue;
 						}
@@ -1377,10 +1468,6 @@
 							// - Relay the area zone always to the 0 axis
 							// - Consider the cut axis pos if applicable
 							// - Consider the GraphValue can be positive and negative in the same series (Always relay the area to the 0 axis)
-							var path,
-								firstPos,
-								lastPos,
-								c;
 							$.each(this.cell, function () {
 								if (!this.isHeader) {
 									if (path === undefined) {
@@ -1468,21 +1555,23 @@
 							// 1/4 bar space at the end [That can be set to something else (May be a percentage of the real bar space)]
 							// (nbGraphBarSpace * 4) + 1 + 1 = Nombre Total de segment
 							// (nbGraphBarSpace * 100) + 25 + 25 = Nombre Total de petit-segment sur une base de 100 pour 1 segment
-							var percentPaddingStart = 50,
-								percentPaddingEnd = 50,
-								nbSmallSegment = (nbGraphBarSpace * 100) + percentPaddingStart + percentPaddingEnd, // Ou 25 = EmptyStartWorkingspace et l'autre 25 = empty end working space
-								EmptyStartWorkingSpace = (percentPaddingStart * WorkingSpace / nbSmallSegment),
-								EmptyEndWorkingSpace = (percentPaddingEnd * WorkingSpace / nbSmallSegment),
-								RealWorkingSpace = WorkingSpace - EmptyStartWorkingSpace - EmptyEndWorkingSpace,
-								SegmentWidth = RealWorkingSpace / nbGraphBarSpace,
-								StartPos = SegmentWidth * currGraphTypePos,
-								EndPos = StartPos + SegmentWidth;
+							percentPaddingStart = 50;
+							percentPaddingEnd = 50;
+							nbSmallSegment = (nbGraphBarSpace * 100) + percentPaddingStart + percentPaddingEnd; // Ou 25 = EmptyStartWorkingspace et l'autre 25 = empty end working space
+							EmptyStartWorkingSpace = (percentPaddingStart * WorkingSpace / nbSmallSegment);
+							EmptyEndWorkingSpace = (percentPaddingEnd * WorkingSpace / nbSmallSegment);
+							RealWorkingSpace = WorkingSpace - EmptyStartWorkingSpace - EmptyEndWorkingSpace;
+							SegmentWidth = RealWorkingSpace / nbGraphBarSpace;
+							StartPos = SegmentWidth * currGraphTypePos;
+							EndPos = StartPos + SegmentWidth;
 							$.each(this.cell, function () {
 								if (!this.isHeader) {
 									var xTopLeft = this.graphMinPos + StartPos + EmptyStartWorkingSpace + charts.graph2dAxis.offset.left, // That never change
 										yTopLeft,
 										height,
-										width = SegmentWidth; // That never change
+										width = SegmentWidth,
+										path = "",
+										bar;
 									// Check if the graphValue are below the 0 axis or top of 
 									if (charts.graph2dAxis.xAxisOffset >= this.graphValue) {
 										// The Point are below the 0 axis
@@ -1493,7 +1582,6 @@
 										yTopLeft = charts.graph2dAxis.xAxisOffset;
 										height = this.graphValue - charts.graph2dAxis.xAxisOffset;
 									}
-									var path = "", bar;
 									// Check if the y-axis is cut, if true cut the bar also
 									if (charts.graph2dAxis.cuttingPosPaper === 0) {
 										// Draw it the none cut bar
@@ -1568,7 +1656,7 @@
 			//
 			// Table Parser Object
 			//
-			var parser = {
+			parser = {
 				sourceTblSelf: undefined,
 				param: {}, // TO BE ELIMINATED WITH THE DEFAULT JS OPTIONS
 				parse: function () {
@@ -1579,7 +1667,8 @@
 					}
 					parser.setSeriesHeadingLenght();
 					// The following variable is used for auto add ids/headers to the table
-					var columnIds = []; // The array lenght must equal of parser.seriesHeadingLenght and each item are ids separated by space
+					var columnIds = [], // The array lenght must equal of parser.seriesHeadingLenght and each item are ids separated by space
+						rowsIds = [];
 					/* // Parse the Table Heading
 				$('thead', self).each(function() {
 					
@@ -1755,7 +1844,6 @@
 					
 				});
 				*/
-					var rowsIds = [];
 					// Parse the Table Cell Data and Serie Heading
 					$('tbody', self).each(function () {
 						var maxValue,
@@ -1774,7 +1862,12 @@
 								CurrentGroupingID = 0,
 								arrAllCell = $(this).children(),
 								cellOrdered = [],
-								cellHeadingOrdered = [];
+								cellHeadingOrdered = [],
+								serieHeaderText = '', // That would contain the current on process serie header
+								serieHeader, // JQuery object of the native Header for the current serie
+								isRejected = false,
+								rejectedRaison = "",
+								serie;
 							// Check if the first cell was spanned
 							$.each(SpannedRow, function () {
 								if (this.colpos === CurrColPosition && this.rowspan > 0) {
@@ -1800,17 +1893,13 @@
 									this.rowspan -= 1;
 								}
 							});
-							var serieHeaderText = '', // That would contain the current on process serie header
-								serieHeader, // JQuery object of the native Header for the current serie
-								isRejected = false,
-								rejectedRaison = "";
 							// Get the Row heading Width
 							$('th, td', this).each(function () {
 								parser.cellID += 1;
 								var IgnoreCurrentCell = false, // TODO check if wet-graph-ignore class is set, if yes use the cell value data as non numerical data
 								// Get the cell Value
-									cellValueObj = parser.getCellValue($(this).text());
-								var cellInfo = {
+									cellValueObj = parser.getCellValue($(this).text()),
+									cellInfo = {
 										id : parser.cellID,
 										isHeader: false,
 										rowPos: parser.rowPos,
@@ -1822,13 +1911,19 @@
 									},
 								// Get the dimension for the cell
 									w = Number($(this).attr('colspan') !== undefined ? $(this).attr('colspan') : 1),
-									RowSpan = ($(this).attr('rowspan') !== undefined ? $(this).attr('rowspan') : 1);
+									RowSpan = ($(this).attr('rowspan') !== undefined ? $(this).attr('rowspan') : 1),
 								// Set the header for the cells, if applicable
 								// console.log(' width: ' + w  + 'CurrColPosition: ' + CurrColPosition);
 								// console.log(typeof(w)  + ' ' + typeof(CurrColPosition));
 								// console.log('rowpos:' + parser.rowPos + ' CurrColPosition:' + CurrColPosition );
-								var cellColHeaders = "",
-									i;
+									cellColHeaders = "",
+									i,
+									cellRowHeaders = "",
+									header,
+									cellId,
+									cellPos,
+									NbRowToBeSpan,
+									tblCellColHeaders;
 								for (i = CurrColPosition; i < (CurrColPosition + w); i += 1) {
 									if (columnIds[i] !== undefined) {
 										if (cellColHeaders === '') {
@@ -1836,13 +1931,11 @@
 											cellColHeaders = columnIds[i];
 										} else {
 											// This is for about colspaned cell
-											var tblCellColHeaders = parser.removeDuplicateElement(cellColHeaders.split(' ').concat(columnIds[i].split(' ')));
+											tblCellColHeaders = parser.removeDuplicateElement(cellColHeaders.split(' ').concat(columnIds[i].split(' ')));
 											cellColHeaders  = tblCellColHeaders.join(' ');
 										}
 									}
 								}
-								var cellRowHeaders = "",
-									header;
 								if (rowsIds[parser.rowPos] !== undefined) {
 									cellRowHeaders = rowsIds[parser.rowPos];
 								}
@@ -1853,14 +1946,14 @@
 									// Mark the current cell as Header 
 									cellInfo.isHeader = true;
 									// Generate a cell ID if none + add it inside the heading list
-									var cellId = $(this).attr('id');
+									cellId = $(this).attr('id');
 									if (cellId === undefined || cellId === '') {
 										cellId = 'graphcellid' + graphStartExecTime + 'row' + parser.rowPos + 'col' + CurrColPosition; // Generate a new unique ID
 										$(this).attr('id', cellId); // Add the new ID to the table
 									}
 									// This loop make sur all column have their column set
 									for (i = 0; i < RowSpan; i += 1) {
-										var cellPos = i + parser.rowPos;
+										cellPos = i + parser.rowPos;
 										// console.log(cellPos);
 										if (rowsIds[cellPos] === undefined) {
 											rowsIds[cellPos] = cellId;
@@ -1872,7 +1965,7 @@
 								// Check if is a rowspan, if that row span are an header (th) that mean it a grouping of series
 								if (RowSpan > 1) {
 
-									var NbRowToBeSpan = RowSpan - 1;
+									NbRowToBeSpan = RowSpan - 1;
 									// Add the row to the list to be spanned
 									SpannedRow.push({ele: cellInfo, rowspan: NbRowToBeSpan, colpos: CurrColPosition, groupId : CurrentGroupingID});
 									// Check if is a header, if yes this series would be a inner series and that header are a goup header
@@ -1932,7 +2025,9 @@
 								$.each(SpannedRow, function () {
 									if (this.colpos === CurrColPosition && this.rowspan > 0) {
 										// Calculate the width of the spanned row
-										var w = Number($(this.ele.obj).attr('colspan') !== undefined ? $(this.ele.obj).attr('colspan') : 1);
+										var w = Number($(this.ele.obj).attr('colspan') !== undefined ? $(this.ele.obj).attr('colspan') : 1),
+											CurrCellHeaders,
+											tblCellColHeaders;
 										for (i = 1; i <= w; i += 1) {
 											this.ele.colPos = i + CurrColPosition;
 											if (this.ele.isHeader) {
@@ -1943,15 +2038,15 @@
 										}
 										CurrColPosition += w;
 										// Concat the new row heading as needed
-										var CurrCellHeaders = ($(this.ele.obj).attr('headers') !== undefined ? $(this.ele.obj).attr('headers') : ''),
-											tblCellColHeaders = parser.removeDuplicateElement(CurrCellHeaders.split(' ').concat(rowsIds[parser.rowPos].split(' ')));
+										CurrCellHeaders = ($(this.ele.obj).attr('headers') !== undefined ? $(this.ele.obj).attr('headers') : '');
+										tblCellColHeaders = parser.removeDuplicateElement(CurrCellHeaders.split(' ').concat(rowsIds[parser.rowPos].split(' ')));
 										$(this.ele.obj).attr('headers', tblCellColHeaders.join(' '));
 										this.rowspan -= 1;
 									}
 								});
 							});
 							// Create the serie object and add it the current collection
-							var serie = {
+							serie = {
 								cell : cellOrdered,
 								cellHeading : cellHeadingOrdered,
 								header : serieHeaderText,
@@ -2008,7 +2103,12 @@ label:
 						maxRowCol = 10, //basic;
 						s = 0,
 						t,
-						tMatrix = [];
+						tMatrix = [],
+						swappedTable,
+						html2,
+						headStr,
+						arr,
+						tr;
 					capVal =  $("caption", self).text();
 					$('tr ', self).each(function () {
 						maxRowCol += 1;
@@ -2048,10 +2148,13 @@ label:
 								j += 1;
 							}
 							var ii = i,
-								stopRow = i + attrRow - 1;
+								stopRow = i + attrRow - 1,
+								jj,
+								stopCol,
+								ss1;
 							if (attrRow > 1 && attrCol > 1) {
-								var jj = j,
-									stopCol = j + attrCol - 1;
+								jj = j;
+								stopCol = j + attrCol - 1;
 								for (jj = j; jj <= stopCol; jj += 1) {
 									for (ii = i; ii <= stopRow; ii += 1) {
 										tMatrix[ii][jj] = 3; //random number as place marker; 
@@ -2062,7 +2165,7 @@ label:
 									tMatrix[ii][j] = 3; // place holder; 
 								}
 							}
-							var ss1 = $(this).clone(); // have a copy of it, not destroying the look of the original table; 
+							ss1 = $(this).clone(); // have a copy of it, not destroying the look of the original table; 
 							// transforming rows and cols and their properties; 
 							ss1.attr("colspan", attrRow);
 							ss1.attr("rowspan", attrCol);
@@ -2072,7 +2175,7 @@ label:
 						i += 1;
 					});
 					// now creating the swapped table from the transformed matrix;
-					var swappedTable = $('<table>');
+					swappedTable = $('<table>');
 					$.each(sMatrix, function (s) {
 						var oneRow = $('<tr>');
 						swappedTable.append(oneRow);
@@ -2081,15 +2184,15 @@ label:
 						});
 					});
 					// now adding the missing thead; 
-					var html2 = swappedTable.html(),
-						headStr = "<table id=\"swappedGraph\">" + "<caption>" + capVal + " (Horizontal to Virtical)</caption><thead>";
+					html2 = swappedTable.html();
+					headStr = "<table id=\"swappedGraph\">" + "<caption>" + capVal + " (Horizontal to Virtical)</caption><thead>";
 					html2 = html2.replace(/<tbody>/gi, headStr);
 					html2 = html2.replace(/<\/tbody>/gi, "</tbody></table>");
 					html2 = html2.replace(/\n/g, "");
 					html2 = html2.replace(/<tr/gi, "\n<tr");
-					var arr = html2.split("\n");
+					arr = html2.split("\n");
 					for (i = 0; i < arr.length; i += 1) {
-						var tr = arr[i];
+						tr = arr[i];
 						if (tr.match(/<td/i) !== null) {
 							arr[i] = '</thead><tbody>' + tr;
 							break;
@@ -2183,6 +2286,11 @@ label:
 					return parser.setClassOptions(jQuery.extend(true, o.optionsClass, o.axis2dgraph), strClass, namespace);
 				},
 				setClassOptions: function (sourceOptions, strClass, namespace) {
+					var separatorNS = "",
+						separator = "",
+						autoCreate = false,
+						arrNamespace,
+						arrClass;
 					// Test: optSource
 					if (typeof (sourceOptions) !== "object") {
 						// console.log("Empty source");
@@ -2237,26 +2345,23 @@ label:
 						}
 					}
 					// Get the namespace separator if defined (optional)
-					var separatorNS = "";
 					if (sourceOptions['default-namespace-separator'] && typeof (sourceOptions['default-namespace-separator']) === "string") {
 						separatorNS = sourceOptions['default-namespace-separator'];
 					} else {
 						separatorNS = "-"; // Use the default
 					}
 					// Get the option separator if defined (optional)
-					var separator = "";
 					if (sourceOptions['default-separator'] && typeof (sourceOptions['default-separator']) === "string") {
 						separator = sourceOptions['default-separator'];
 					} else {
 						separator = " "; // Use the default
 					}
 					// Check if the the Auto Json option creation are authorized from class
-					var autoCreate = false;
 					if (sourceOptions['default-autocreate']) {
 						autoCreate = true;
 					}
-					var arrNamespace = namespace.split(separatorNS),
-						arrClass = strClass.split(separator); // Get each defined class
+					arrNamespace = namespace.split(separatorNS);
+					arrClass = strClass.split(separator); // Get each defined class
 					$.each(arrClass, function () {
 						// Get only the item larger than the namespace and remove the namespace
 						if (namespace === (this.length > namespace.length + separatorNS.length ? this.slice(0, namespace.length) : "")) {
@@ -2268,10 +2373,17 @@ label:
 							// Set the default property name (this can be overwrited later)
 								propName = arrNamespace[arrNamespace.length - 1],
 								i,
-								j;
+								j,
+								valIsNext,
+								isVal,
+								arrValue,
+								arrayOverwrite = false,
+								autoCreateMe = false,
+								jsonString,
+								val;
 							for (i = 0; i < arrParameter.length; i += 1) {
-								var valIsNext = (i + 2 === arrParameter.length ? true : false);
-								var isVal = (i + 1 === arrParameter.length ? true : false);
+								valIsNext = (i + 2 === arrParameter.length ? true : false);
+								isVal = (i + 1 === arrParameter.length ? true : false);
 								// console.log('propName:' + propName + ' value:' + arrParameter[i] + ' valIsNext:' + valIsNext + ' isVal:' + isVal);
 								// Check if that is the default value and make a reset to the parameter name if applicable
 								if (isVal && arrParameter.length === 1 && sourceOptions['default-option']) {
@@ -2284,7 +2396,7 @@ label:
 								// Check if the type are defined
 								if (currObj[propName + '-typeof']) {
 									// Repair the value if needed
-									var arrValue = [];
+									arrValue = [];
 									for (j = (i + 1); j < arrParameter.length; j += 1) {
 										arrValue.push(arrParameter[j]);
 									}
@@ -2322,16 +2434,13 @@ label:
 									}
 								}
 								// Get the type of overwritting, default are replacing the value
-								var arrayOverwrite = false;
 								if (currObj[propName + '-overwrite-array-mode']) {
 									arrayOverwrite = true;
 								}
 								// Check if this unique option can be autocreated
-								var autoCreateMe = false;
 								if (currObj[propName + '-autocreate']) {
 									autoCreateMe = true;
 								}
-								var jsonString;
 								// console.log('After propName:' + propName + ' value:' + arrParameter[i] + ' valIsNext:' + valIsNext + ' isVal:' + isVal);
 								if (valIsNext && arrParameter[i] !== undefined) {
 									// Keep the Property Name
@@ -2342,7 +2451,7 @@ label:
 										if ($.isArray(currObj[propName])) {
 											currObj[propName].push(arrParameter[i]);
 										} else {
-											var val = currObj[propName];
+											val = currObj[propName];
 											currObj[propName] = [];
 											currObj[propName].push(val);
 											currObj[propName].push(arrParameter[i]);
@@ -2616,8 +2725,8 @@ label:
 				if (!_pe.fn.charts.graphdelayedset) {
 					_pe.fn.charts.graphdelayedset = true;
 					// Fix the delayed processing
-					var tick;
-					var iteration = 0;
+					var tick,
+						iteration = 0;
 					(function ticker() {
 						if (iteration > 0) {
 							_pe.fn.charts.graphdelayed = true;
@@ -2667,17 +2776,17 @@ label:
 			// New Parser
 			//
 			// 1. Parse the table with the new parser
-			if(!$(self).data().tblparser){
+			if (!$(self).data().tblparser) {
 				_pe.fn.parsertable._exec($(self));
 			}
 			// 2. Build the ColHeading
 			//$(self).
-			var fnNewParser = function () {
+			fnNewParser = function () {
 				// parser.tBodySeries.oldColHeading = jQuery.extend(true, {}, parser.tBodySeries.ColHeading);
 				// parser.tBodySeries.ColHeading = [];
-				var tblParserData = $(self).data().tblparser;
-				var currLevel = 0;
-				var lastId = -1;
+				var tblParserData = $(self).data().tblparser,
+					currLevel = 0,
+					lastId = -1;
 				$.each(tblParserData.theadRowStack, function () {
 					$.each(this.cell, function () {
 						if (this.uid > lastId) {
@@ -2733,9 +2842,8 @@ label:
 			o.width = parseFloat(o.width > (o.maxwidth - o.widthPadding) ? o.maxwidth - o.widthPadding : o.width);
 			o.height = parseFloat(parser.param.height || o.height);
 			// 0 => Nearest of the serie, 1 > series grouping if any
-			var DesignerHeadingLevel = parser.tBodySeries.nbRowLevel;
+			DesignerHeadingLevel = parser.tBodySeries.nbRowLevel;
 			// Get the default Graph Type [Table level]
-			var GraphTypeTableDefault = '';
 			if (parser.param.graph) { // Check for table defined param
 				GraphTypeTableDefault = parser.param.graph;
 			} else if (parser.param.type) { // Overide the default if the type is clearly defined
@@ -2755,7 +2863,34 @@ label:
 					SeriesCircle = [],
 					i,
 				// Get the default Graph Type [Table Level]
-					GraphTypeTBody = 'line'; // Default of the Param default
+					GraphTypeTBody = 'line', // Default of the Param default
+					LastHeaderId = -1,
+					SeriesCellCumulative = [],
+					PreviousGraphType,
+					PreviousGraphGroup = '',
+					PreviousParam = {},
+					PreviousHeading = {},
+					SerieCells = [],
+					seriesObj,
+					fullSerieRejected = true,
+					MasterSeriesCell = [],
+					Group2dSeriesObj,
+					GroupCircleSeriesObj,
+					paperContainer,
+					paper,
+					tableHtmlCaption,
+					lstSvgElement = [],
+					lstpaperSubContainer,
+					// Function to set the accessibility on the svg or vml generated image
+					setSvgAccessibility,
+					subPaper,
+					graphDesc,
+					descId,
+					captionParsed,
+					graphTitle,
+					tblSelfDescID,
+					tblSrcContainer,
+					tblSrcContainerSummary;
 				if (parser.param.type) { // Overide the default if the type is clearly defined
 					GraphTypeTBody = parser.param.type;
 				}
@@ -2764,15 +2899,7 @@ label:
 					GraphTypeTBody = this.param.graph;
 				}
 				// Check for Series Definied Graph [Row level or Serie level]
-				var LastHeaderId = -1,
-					SeriesCellCumulative = [],
-					PreviousGraphType = GraphTypeTBody,
-					PreviousGraphGroup = '',
-					PreviousParam = {},
-					PreviousHeading = {},
-					SerieCells = [],
-					seriesObj,
-					fullSerieRejected = true;
+				PreviousGraphType = GraphTypeTBody;
 				$.each(this.series, function () {
 					if (this.cellHeading.length === 0) {
 						this.isRejected = true;
@@ -2781,7 +2908,9 @@ label:
 						fullSerieRejected = false;
 						var isCumulative = false,
 						// Get the param for the appropriate designer heading level
-							SerieObj = {};
+							SerieObj = {},
+							MasterSeriesCell = [],
+							GraphType = '';
 						if (this.cellHeading.length > DesignerHeadingLevel) {
 							// This implicate data cumulation for the series grouping
 							SerieObj = this.cellHeading[DesignerHeadingLevel];
@@ -2789,7 +2918,6 @@ label:
 								SeriesCellCumulative.push(jQuery.extend(true, {}, SerieObj));
 							} else {
 								// Compile the series
-								var MasterSeriesCell = [];
 								// Sum of each cell for each series
 								$.each(SeriesCellCumulative, function () {
 									for (i = 0; i < this.cell.length; i += 1) {
@@ -2853,7 +2981,6 @@ label:
 							PreviousParam = SerieObj.param;
 						}
 						PreviousHeading = SerieObj;
-						var GraphType = '';
 						if (SerieObj.param.type) {
 							GraphType = SerieObj.param.type;
 						} else {
@@ -2871,7 +2998,6 @@ label:
 						LastHeaderId = SerieObj.id;
 					}
 				});
-				var MasterSeriesCell = [];
 				// Sum of each cell for each series
 				$.each(SeriesCellCumulative, function () {
 					for (i = 0; i < this.cell.length; i += 1) {
@@ -2906,18 +3032,18 @@ label:
 					};
 					SeriesCircle.push(seriesObj);
 				}
-				var Group2dSeriesObj = {
-						heading: parser.tBodySeries.ColHeading,
-						nbRowLevel: parser.tBodySeries.nbRowLevel,
-						nbColLevel: parser.tBodySeries.nbColLevel,
-						series: Series2dAxis
-					},
-					GroupCircleSeriesObj = {
-						heading: parser.tBodySeries.ColHeading,
-						nbRowLevel: parser.tBodySeries.nbRowLevel,
-						nbColLevel: parser.tBodySeries.nbColLevel,
-						series: SeriesCircle
-					};
+				Group2dSeriesObj = {
+					heading: parser.tBodySeries.ColHeading,
+					nbRowLevel: parser.tBodySeries.nbRowLevel,
+					nbColLevel: parser.tBodySeries.nbColLevel,
+					series: Series2dAxis
+				};
+				GroupCircleSeriesObj = {
+					heading: parser.tBodySeries.ColHeading,
+					nbRowLevel: parser.tBodySeries.nbRowLevel,
+					nbColLevel: parser.tBodySeries.nbColLevel,
+					series: SeriesCircle
+				};
 				if (Group2dSeriesObj.series.length > 0) {
 					// console.log(parser);
 					// console.log(Group2dSeriesObj);
@@ -2932,7 +3058,7 @@ label:
 				// TODO: do something if the person have specified the container
 				// var paperContainer = (container || $('<div style="margin-top:10px; margin-bottom:10px" \/>').insertAfter(self));
 				// var paperContainer = $('<div style="margin-top:10px; margin-bottom:10px" \/>').insertAfter(parser.sourceTblSelf);
-				var paperContainer = $('<figure />').insertAfter(parser.sourceTblSelf);
+				paperContainer = $('<figure />').insertAfter(parser.sourceTblSelf);
 				// $(paperContainer).addClass(
 				// Set the width of the container
 				$(paperContainer).width(o.width + o.widthPadding);
@@ -2952,26 +3078,23 @@ label:
 				}
 				// console.log(parser.param);
 				// Create the drawing object
-				var paper,
-					tableHtmlCaption = $('caption', parser.sourceTblSelf).html(),
-					lstSvgElement = [],
-					lstpaperSubContainer,
-					// Function to set the accessibility on the svg or vml generated image
-					setSvgAccessibility = function(caption, container){
-						// Get the svg or vml Object
-						var drawingObject = $(container).children((Raphael.svg ? 'svg:eq(0)' : 'div:eq(0)'));
-						lstSvgElement.push(drawingObject);
-						// Add the role="img" to the svg or vml
-						$(drawingObject).attr('role', 'img');
-						// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-						$(drawingObject).attr('aria-label', (caption ? $(caption).text() + ' ' : '') + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
-					};
+				tableHtmlCaption = $('caption', parser.sourceTblSelf).html();
+				// Function to set the accessibility on the svg or vml generated image
+				setSvgAccessibility = function (caption, container) {
+					// Get the svg or vml Object
+					var drawingObject = $(container).children((Raphael.svg ? 'svg:eq(0)' : 'div:eq(0)'));
+					lstSvgElement.push(drawingObject);
+					// Add the role="img" to the svg or vml
+					$(drawingObject).attr('role', 'img');
+					// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
+					$(drawingObject).attr('aria-label', (caption ? $(caption).text() + ' ' : '') + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
+				};
 				if (GroupCircleSeriesObj.series.length === 1 && GroupCircleSeriesObj.series[0].header.rawValue === tableHtmlCaption) {
 					// Use only one container, sub-container are not required
 					paper = [];
 					lstpaperSubContainer = [];
 					lstpaperSubContainer.push(paperContainer);
-					var subPaper = new Raphael($(paperContainer).get(0), charts.circleGraph.width, charts.circleGraph.height);
+					subPaper = new Raphael($(paperContainer).get(0), charts.circleGraph.width, charts.circleGraph.height);
 					paper.push(subPaper);
 					charts.circleGraph.generateGraph(lstpaperSubContainer, paper);
 				} else if (GroupCircleSeriesObj.series.length > 0) {
@@ -2981,13 +3104,14 @@ label:
 					$.each(GroupCircleSeriesObj.series, function () {
 						// var subContainer = $(paperContainer).append('<div />');
 						// Add the caption for the series
-						var serieCaption = $('<figcaption />');
+						var serieCaption = $('<figcaption />'),
+							subContainer = $('<figure />'),
+							subPaper;
 						// 
 						$(serieCaption).append(this.header.rawValue); // Set the caption text
 						// var serieCaptionID = 'graphcaption' + paper.length + new Date().getTime(); // Generate a new ID
 						// $(serieCaption).attr('id', serieCaptionID); // Add the new ID to the title
 						// var subContainer = $('<div />');
-						var subContainer = $('<figure />');
 						$(paperContainer).append(subContainer);
 						lstpaperSubContainer.push(subContainer);
 						//
@@ -2995,14 +3119,13 @@ label:
 						//
 						// $(subContainer).attr('role', 'img'); // required if is a div element
 						//$(subContainer).attr('aria-labelledby', serieCaptionID);
-						var subPaper = new Raphael($(subContainer).get(0), charts.circleGraph.width, charts.circleGraph.height);
+						subPaper = new Raphael($(subContainer).get(0), charts.circleGraph.width, charts.circleGraph.height);
 						// Add the caption
 						$(serieCaption).prependTo($(subContainer));
 						// $(serieCaption).insertBefore($(subPaper));
 						//$(paperContainer).append(serieCaption);
 						paper.push(subPaper);
 						// charts.circleGraph.generateGraph(subContainer, subPaper);
-						console.log(this);
 						setSvgAccessibility(this.header.obj, subContainer);
 					});
 					charts.circleGraph.generateGraph(lstpaperSubContainer, paper);
@@ -3021,26 +3144,21 @@ label:
 				if (!fullSerieRejected) {
 					// var paperDOM = $(paperContainer).children();
 					// Create the Graph Caption
-					
 					// Transpose any inner element
 					// $(graphTitle).append(tableHtmlCaption);
 					// Set the Graph Title
 					// $(paperContainer).prepend(graphTitle);
 					// Set the Chart Accessibility
 					// See: http://lists.w3.org/Archives/Public/w3c-wai-ig/2012JulSep/0176.html
-					var graphDesc, 
-						descId,
-						captionParsed,
-						graphTitle,
-						tblSelfDescID = $(self).attr('aria-describedby');
+					tblSelfDescID = $(self).attr('aria-describedby');
 					// Create the Chart Caption and Description if provided
 					captionParsed = $('caption', self).data().tblparser;
-					if(captionParsed.caption){
+					if (captionParsed.caption) {
 						graphTitle = $('<figcaption />');
 						$(paperContainer).prepend(graphTitle);
 						// Add the caption
-						if($(captionParsed.caption).get(0).nodeType !== 3){ 
-							if($(captionParsed.caption).get(0).nodeName.toLowerCase() === 'caption'){
+						if ($(captionParsed.caption).get(0).nodeType !== 3) {
+							if ($(captionParsed.caption).get(0).nodeName.toLowerCase() === 'caption') {
 								// Get the inner HTML
 								$(graphTitle).append($(captionParsed.caption).html());
 							} else {
@@ -3053,10 +3171,10 @@ label:
 						}
 						// Add the description if any
 						// If the a description are provided inside the table, use the same description for the graphic
-						if(captionParsed.description){
+						if (captionParsed.description) {
 							graphDesc = captionParsed.description;
 							// If the description are build from more than one element we wrap it in a div
-							if(graphDesc.length > 1){
+							if (graphDesc.length > 1) {
 								graphDesc = $(graphDesc).wrapAll('<div></div>').parent();
 							}
 							descId = $(graphDesc).attr('id');
@@ -3066,19 +3184,19 @@ label:
 							}
 							$(graphTitle).append(graphDesc);
 							// Set the aria-describedby attribute if required on the table, no overwrite
-							if(tblSelfDescID === undefined || tblSelfDescID === ''){
+							if (tblSelfDescID === undefined || tblSelfDescID === '') {
 								$(self).attr('aria-describedby', descId);
 							}
 						}
 					}
 					setSvgAccessibility(captionParsed.caption, paperContainer);
 					// Set the description to the image if any on the table
-					if(descId){
-						$.each(lstSvgElement, function(){
+					if (descId) {
+						$.each(lstSvgElement, function () {
 							$(this).attr('aria-describedby', descId);
 						});
 					}
-					if($(self).attr('aria-label') === undefined || $(self).attr('aria-label') === ''){
+					if ($(self).attr('aria-label') === undefined || $(self).attr('aria-label') === '') {
 						$(self).attr('aria-label', (captionParsed.caption ? $(captionParsed.caption).text() + ' ' : '') + _pe.dic.get('%table-mention')); // Table
 					}
 					// Add a aria-label to the table
@@ -3086,11 +3204,11 @@ label:
 						// Use a details/summary to encapsulate the table
 						// Add a aria label to the table element, build from his caption prepend the word " Table"
 						// For the details summary, use the table caption prefixed with Table.
-						var tblSrcContainer = $('<details />'),
-							tblSrcContainerSummary = $('<summary />');
+						tblSrcContainer = $('<details />');
+						tblSrcContainerSummary = $('<summary />');
 						$(tblSrcContainer).appendTo(paperContainer);
 						// set the title for the ability to show or hide the table as a data source
-						$(tblSrcContainerSummary).text((captionParsed.caption ? $(captionParsed.caption).text() + ' ' : '') + _pe.dic.get('%table-mention')) 
+						$(tblSrcContainerSummary).text((captionParsed.caption ? $(captionParsed.caption).text() + ' ' : '') + _pe.dic.get('%table-mention'))
 							.appendTo(tblSrcContainer)
 							.after(self);
 						// The pe.add._load has already a mecanism to prevent to load the same library
