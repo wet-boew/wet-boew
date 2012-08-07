@@ -74,10 +74,6 @@ table.wet-boew-zebra,table.wet-boew-zebra table{
 		padding: 8px;
 		background-color: #F4F4F4!important;
 	}
-	td.table-layoutCell, th.table-layoutCell{
-		background-color: white!important;
-		border: none;
-	}
 	td.table-summarycol3, td.table-summaryrow3 {
 		background-color: #9EE!important;
 	}
@@ -110,4 +106,9 @@ table.wet-boew-zebra,table.wet-boew-zebra table{
 	th.table-hover {
 		background-color: lightgray;
 	}
+	
+	td.table-layoutCell, th.table-layoutCell{
+		background-color: white!important;
+	}
+
 }

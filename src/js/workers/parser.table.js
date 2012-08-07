@@ -232,6 +232,9 @@
 				colgroupFrame.push(colgroup);
 			}
 			function processRowgroupHeader(colgroupHeaderColEnd) { // thead row group processing
+				if(groupZero.colgrouphead){
+					return; // Prevent multiple call
+				}
 				if (colgroupHeaderColEnd && colgroupHeaderColEnd > 0) {
 					// The first colgroup must match the colgroupHeaderColEnd
 					if (colgroupFrame.length > 0 && (colgroupFrame[0].start != 1 || (colgroupFrame[0].end != colgroupHeaderColEnd && colgroupFrame[0].end != (colgroupHeaderColEnd + 1)))) {
@@ -245,6 +248,7 @@
 				} else {
 					colgroupHeaderColEnd = 0; // This mean that are no colgroup designated to be a colgroup header
 				}
+				console.log('Call ProcessRowGroupHeader');
 				
 				// Associate any descriptive cell to his top header
 				for(i=0; i<theadRowStack.length; i++) {
@@ -1528,12 +1532,13 @@ elem: this
 					//
 					// Process the table row heading and colgroup if required
 					//
+					processRowgroupHeader(lastHeadingColPos);
 					if (colgroupFrame.length != 0) {
 						
 						// We check the first colgroup to know if a colgroup type has been defined
 						if (!(colgroupFrame[0].type)) {
 							
-							processRowgroupHeader(lastHeadingColPos);
+							// processRowgroupHeader(lastHeadingColPos);
 							
 							// Match the already defined colgroup tag with the table rowgroup heading section
 							
@@ -1543,7 +1548,7 @@ elem: this
 						}
 						
 					} else {
-						processRowgroupHeader(lastHeadingColPos);
+						// processRowgroupHeader(lastHeadingColPos);
 						
 						// If the table have a table rowgroup heading section, let that to be transformed into colgroup
 						
@@ -1587,8 +1592,12 @@ elem: this
 								}
 								
 								// Test if this cell is a layout cell
-								if (row.type == 3 && colgroupFrame[j].type == 3 && ($(row.cell[i].elem).html().length == 0)) {
+								if (row.type == 3 && colgroupFrame[j].type == 3 && ($(row.cell[i].elem).text().length === 0)) {
 									row.cell[i].type = 6;
+									if (!groupZero.layoutCell) {
+										groupZero.layoutCell = [];
+									}
+									groupZero.layoutCell.push(row.cell[i]);
 								}
 								
 								row.cell[i].collevel = colgroupFrame[j].level;
@@ -1811,7 +1820,7 @@ elem: this
 			groupZero.theadRowStack = theadRowStack;
 			
 			
-			delete groupZero.colgroupFrame;
+			//delete groupZero.colgroupFrame;
 			groupZero.colgrouplevel = groupZero.colgrp;
 			delete groupZero.colgrp;
 			

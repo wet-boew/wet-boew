@@ -74,7 +74,7 @@
 				/* The Heading highlight take times to be set up in ÌE and just a little bit more in Firefox
 				 *
 				 */
-				
+				/*
 				var getCellHeaders = function (elem) {
 					var cellsheader = [],
 						tblparser = $(elem).data().tblparser;
@@ -132,10 +132,8 @@
 					autoRemoveTimeout = setTimeout(function () {
 						var i;
 						if (tblparser.type === 1){
-							if (tblparser.scope === "row") {
-								$(this).removeClass('table-hover');
-								return;
-							}
+							$(elem).removeClass('table-hover');
+							delete $(elem).data().zebrafor;
 							return;
 						}
 						for (i = 0; i < $(elem).data().cellsheader.length; i += 1) {
@@ -146,7 +144,7 @@
 						}
 					}, 25);
 				});
-				
+				*/
 				
 				
 				// Default Zebra
