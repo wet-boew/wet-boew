@@ -248,7 +248,7 @@
 				} else {
 					colgroupHeaderColEnd = 0; // This mean that are no colgroup designated to be a colgroup header
 				}
-				console.log('Call ProcessRowGroupHeader');
+				// console.log('Call ProcessRowGroupHeader');
 				
 				// Associate any descriptive cell to his top header
 				for(i=0; i<theadRowStack.length; i++) {
@@ -1820,7 +1820,7 @@ elem: this
 			groupZero.theadRowStack = theadRowStack;
 			
 			
-			//delete groupZero.colgroupFrame;
+			delete groupZero.colgroupFrame;
 			groupZero.colgrouplevel = groupZero.colgrp;
 			delete groupZero.colgrp;
 			
