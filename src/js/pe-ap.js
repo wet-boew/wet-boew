@@ -871,6 +871,12 @@
 						root.parentNode.removeChild(root);
 					}
 					return diff;
+				}(document)),
+				datepicker = (function (doc) {
+					var el = doc.createElement('input');
+					el.setAttribute('type', 'date');
+					el.value = ':)';
+					return el.value !== ':)';
 				}(document));
 			// localstorage
 			if (!window.localStorage) {
@@ -899,6 +905,11 @@
 					pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
 					elms.addClass('polyfill');
 				}
+			}
+			// datepicker
+			if (!datepicker) {
+				pe.add._load(lib + 'polyfills/datepicker' + pe.suffix + '.js');
+				$('input[type="date"]').addClass("polyfill");
 			}
 		},
 		/**
