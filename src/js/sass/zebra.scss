@@ -110,5 +110,20 @@ table.wet-boew-zebra,table.wet-boew-zebra table{
 	td.table-layoutCell, th.table-layoutCell{
 		background-color: white!important;
 	}
+	col {
+		&.table-odd {
+			background-color:#f0fcff;
+		}
+		&.table-even {
+			background-color:transparent;
+		}
+		
+		&.table-hover {
+			background-color:#eee!important;
+		}
+	
+	}
+	
+	
 
 }

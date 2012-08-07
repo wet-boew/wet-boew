@@ -15,13 +15,40 @@
 		type : 'plugin',
 		_exec : function (elem) {
 			var $trs,
+				$cols,
 				$lis,
-				parity;
+				parity,
+				tblparser,
+				i,
+				j,
+				opts,
+				overrides;
 			if (elem.is('table')) {
-				var tblparser,
-					i,
-					j;
-				// TODO: Add an option to force the default zebra
+				
+				// Defaults
+				opts = {
+					noheaderhighlight: false,
+					norowheaderhighlight: false,
+					nocolheaderhighlight: false,
+					columnhighlight: false
+				}
+				// Option to force to do not get header highlight
+				overrides = {
+					noheaderhighlight: elem.hasClass("noheaderhighlight") ? true : undefined,
+					norowheaderhighlight: elem.hasClass("norowheaderhighlight") ? true : undefined,
+					nocolheaderhighlight: elem.hasClass("nocolheaderhighlight") ? true : undefined,
+					columnhighlight: elem.hasClass("columnhighlight") ? true : undefined,
+				};
+				// Extend the defaults with settings passed through settings.js (wet_boew_share), class-based overrides and the data attribute
+				//$.metadata.setType("attr", "data-wet-boew");
+				if (typeof wet_boew_zebra !== 'undefined' && wet_boew_zebra !== null) {
+					$.extend(opts, wet_boew_zebra, overrides); //, elem.metadata());
+				} else {
+					$.extend(opts, overrides); //, elem.metadata());
+				}
+				if(opts.norowheaderhighlight && opts.nocolheaderhighlight){
+					opts.noheaderhighlight = true;
+				}
 				
 				// Parse the table
 				if (!$(elem).data().tblparser) {
@@ -74,90 +101,111 @@
 				/* The Heading highlight take times to be set up in ÌE and just a little bit more in Firefox
 				 *
 				 */
-				
-				var getCellHeaders = function (elem) {
-					var cellsheader = [],
-						tblparser = $(elem).data().tblparser;
-					// Get column Headers
-					if (tblparser.row && tblparser.row.header) {
-						if (!$.isArray(tblparser.row.header)) { 
-							cellsheader.push(tblparser.row.header.elem);
-						} else {
-							for (i = 0; i < tblparser.row.header.length; i += 1) {
-								cellsheader.push(tblparser.row.header[i].elem);
+				if(!opts.noheaderhighlight || opts.columnhighlight){
+					var getCellHeaders = function (elem) {
+						var cellsheader = [],
+							tblparser = $(elem).data().tblparser;
+						// Get column Headers
+						if (tblparser.row && tblparser.row.header && !opts.norowheaderhighlight) {
+							if (!$.isArray(tblparser.row.header)) { 
+								cellsheader.push(tblparser.row.header.elem);
+							} else {
+								for (i = 0; i < tblparser.row.header.length; i += 1) {
+									cellsheader.push(tblparser.row.header[i].elem);
+								}
 							}
 						}
-					}
-					if (tblparser.col && tblparser.col.header){
-						for (i = 0; i < tblparser.col.header.length; i += 1) {
-							cellsheader.push(tblparser.col.header[i].elem);
+						if (tblparser.col && tblparser.col.header && !opts.nocolheaderhighlight){
+							for (i = 0; i < tblparser.col.header.length; i += 1) {
+								cellsheader.push(tblparser.col.header[i].elem);
+							}
 						}
-					}
-					$(elem).data().cellsheader = cellsheader;
-				};
-				
-				// Cell Header Highlight
-				var autoRemoveTimeout;
-				$('td, th', elem).on('mouseenter focusin', function (e) {
-					var tblparser = $(this).data().tblparser;
-					clearTimeout(autoRemoveTimeout);
-					var oldThHover = $('th.table-hover', elem);
-					if (tblparser.type !== 1){
-						if (!$(this).data().cellsheader) {
-							getCellHeaders(this);
+						$(elem).data().cellsheader = cellsheader;
+					};
+					
+					// Cell Header Highlight
+					var autoRemoveTimeout;
+					$('td, th', elem).on('mouseenter focusin', function (e) {
+						var tblparser = $(this).data().tblparser;
+						if (!opts.noheaderhighlight) {
+							clearTimeout(autoRemoveTimeout);
+							var oldThHover = $('th.table-hover', elem);
+							if (tblparser.type !== 1){
+								if (!$(this).data().cellsheader) {
+									getCellHeaders(this);
+								}
+								//$($(this).data().cellsheader).addClass('table-hover');
+								$.each($(this).data().cellsheader, function () {
+									$(this).addClass('table-hover');
+									$(this).data().zebrafor = tblparser.uid;
+								});
+							} else {
+								if (tblparser.scope === "row" && !opts.norowheaderhighlight) {
+									$(this).addClass('table-hover');
+									$(this).data().zebrafor = tblparser.uid;
+								}
+							}
+							// Remove previous highlight, if required
+							$.each(oldThHover, function () {
+								if ($(this).data().zebrafor && $(this).data().zebrafor !== tblparser.uid) {
+									$(this).removeClass('table-hover');
+									delete $(this).data().zebrafor;
+								}
+							});
 						}
-						//$($(this).data().cellsheader).addClass('table-hover');
-						$.each($(this).data().cellsheader, function () {
-							$(this).addClass('table-hover');
-							$(this).data().zebrafor = tblparser.uid;
-						});
-					} else {
-						if (tblparser.scope === "row") {
-							$(this).addClass('table-hover');
-							$(this).data().zebrafor = tblparser.uid;
+						if (opts.columnhighlight && tblparser.col && tblparser.col.elem) {
+							$(tblparser.col.elem).addClass('table-hover');
 						}
-					}
-					// Remove previous highlight, if required
-					$.each(oldThHover, function () {
-						if ($(this).data().zebrafor && $(this).data().zebrafor !== tblparser.uid) {
-							$(this).removeClass('table-hover');
-							delete $(this).data().zebrafor;
+
+					});
+					$('td, th', elem).on('mouseleave focusout', function (e) {
+						var tblparser = $(this).data().tblparser,
+							elem = this;
+						if (!opts.noheaderhighlight) {
+							autoRemoveTimeout = setTimeout(function () {
+								var i;
+								if (tblparser.type === 1){
+									$(elem).removeClass('table-hover');
+									delete $(elem).data().zebrafor;
+									return;
+								}
+								for (i = 0; i < $(elem).data().cellsheader.length; i += 1) {
+									if ($($(elem).data().cellsheader[i]).data().zebrafor === tblparser.uid) {
+										$($(elem).data().cellsheader[i]).removeClass('table-hover');
+										delete $($(elem).data().cellsheader[i]).data().zebrafor;
+									}
+								}
+							}, 25);
+						}
+						if (opts.columnhighlight && tblparser.col && tblparser.col.elem) {
+							$(tblparser.col.elem).removeClass('table-hover');
 						}
 					});
-
-				});
-				$('td, th', elem).on('mouseleave focusout', function (e) {
-					var tblparser = $(this).data().tblparser,
-						elem = this;
-					autoRemoveTimeout = setTimeout(function () {
-						var i;
-						if (tblparser.type === 1){
-							$(elem).removeClass('table-hover');
-							delete $(elem).data().zebrafor;
-							return;
-						}
-						for (i = 0; i < $(elem).data().cellsheader.length; i += 1) {
-							if ($($(elem).data().cellsheader[i]).data().zebrafor === tblparser.uid) {
-								$($(elem).data().cellsheader[i]).removeClass('table-hover');
-								delete $($(elem).data().cellsheader[i]).data().zebrafor;
-							}
-						}
-					}, 25);
-				});
-				
+				}
 				
 				
 				// Default Zebra
 				$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
 					return $(this).children('td').length > 0;
 				});
-				// note: even/odd's indices start at 0
-				$trs.filter(':odd').addClass('table-even');
-				$trs.filter(':even').addClass('table-odd');
 				$trs.on('hover focusin focusout', function (e) {
 					e.stopPropagation();
 					$(this).toggleClass('table-hover');
 				});
+				if(!opts.columnhighlight){
+					// note: even/odd's indices start at 0
+					$trs.filter(':odd').addClass('table-even');
+					$trs.filter(':even').addClass('table-odd');
+				} else {
+					$cols = [];
+					for (i = 0; i < tblparser.col.length; i += 1) {
+						if (tblparser.col[i].elem) {
+							$cols.push(tblparser.col[i].elem);
+						}
+					}
+					$($cols).filter(':odd').addClass('table-even');
+					$($cols).filter(':even').addClass('table-odd');
+				}
 				
 			} else {
 				$lis = elem.children('li');
@@ -173,4 +221,4 @@
 	};
 	window.pe = _pe;
 	return _pe;
-}(jQuery));
+}(jQuery)); 
