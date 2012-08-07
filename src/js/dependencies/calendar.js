@@ -82,7 +82,7 @@
 			days = _pe.fn.calendar.createDays(containerid, year, month);
 			daysList = days.children("ol.cal-day-list").children("li");
 			objCalendar.append(days);
-			
+
 			//Trigger the calendarDisplayed Event
 			container.trigger('calendarDisplayed', [year, month, daysList]);
 		},

@@ -207,10 +207,10 @@
 					container.attr("aria-hidden", "false");
 					toggle.children("a").children("span").text(pe.dic.get('%datepicker-hide'));
 
-					if(container.find('.cal-prevmonth a').length !== 0) {
+					if (container.find('.cal-prevmonth a').length !== 0) {
 						pe.focus(container.find('.cal-prevmonth a'));
 					} else {
-						if(container.find('.cal-nextmonth a').length !== 0) {
+						if (container.find('.cal-nextmonth a').length !== 0) {
 							pe.focus(container.find('.cal-nextmonth a'));
 						} else {
 							pe.focus(container.find('.cal-goto a'));
