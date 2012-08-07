@@ -1580,6 +1580,10 @@ elem: this
 								// Test if this cell is a layout cell
 								if (row.type == 3 && colgroupFrame[j].type == 3 && ($(row.cell[i].elem).html().length == 0)) {
 									row.cell[i].type = 6;
+									if (!groupZero.layoutCell) {
+										groupZero.layoutCell = [];
+									}
+									groupZero.layoutCell.push(row.cell[i]);
 								}
 								
 								row.cell[i].collevel = colgroupFrame[j].level;
