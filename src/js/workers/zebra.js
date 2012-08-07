@@ -74,7 +74,7 @@
 				/* The Heading highlight take times to be set up in ÌE and just a little bit more in Firefox
 				 *
 				 */
-				/*
+				
 				var getCellHeaders = function (elem) {
 					var cellsheader = [],
 						tblparser = $(elem).data().tblparser;
@@ -144,7 +144,7 @@
 						}
 					}, 25);
 				});
-				*/
+				
 				
 				
 				// Default Zebra
