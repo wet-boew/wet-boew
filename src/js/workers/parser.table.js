@@ -88,17 +88,17 @@
 			}
 			groupZero.elem = obj;
 			groupZero.uid = uidElem;
-			uidElem++; // Set the uid for the groupZero
+			uidElem += 1; // Set the uid for the groupZero
 			groupZero.colcaption = {}; // Group Cell Header at level 0, scope=col
 			groupZero.colcaption.uid = uidElem;
-			uidElem++;
+			uidElem += 1;
 			groupZero.colcaption.elem = undefined;
 			groupZero.colcaption.type = 7;
 			groupZero.colcaption.dataset = [];
 			groupZero.colcaption.summaryset = [];
 			groupZero.rowcaption = {}; // Group Cell Header at level 0, scope=row
 			groupZero.rowcaption.uid = uidElem;
-			uidElem++;
+			uidElem += 1;
 			groupZero.rowcaption.elem = undefined;
 			groupZero.rowcaption.type = 7;
 			groupZero.rowcaption.dataset = [];
@@ -116,33 +116,32 @@
 				//	Recommanded is encapsulate the caption with "strong"
 				//	Use Details/Summary element
 				//	Use a simple paragraph
-				var caption, 
+				var caption,
 					captionFound,
 					description = [];
-				if($(elem).children().length > 0){
+				if ($(elem).children().length > 0) {
 					// Use the contents function to retreive the caption
-					$(elem).contents().filter(function() {
-						if(!caption && this.nodeType === 3){ // Text Node
+					$(elem).contents().filter(function () {
+						if (!caption && this.nodeType === 3) { // Text Node
 							// Doesn't matter what it is, but this will be considerated as the caption
 							// if is not empty
-							caption = $(this).text().replace(/^\s+|\s+$/g,"");
-							if(caption.length !== 0){
+							caption = $(this).text().replace(/^\s+|\s+$/g, "");
+							if (caption.length !== 0) {
 								caption = this;
 								captionFound = true;
 								return;
-							} else {
-								caption = false;
 							}
-						} else if(!caption && this.nodeType === 1){
+							caption = false;
+						} else if (!caption && this.nodeType === 1) {
 							// Doesn't matter what it is, the first children element will be considerated as the caption
 							caption = this;
 							return;
 						}
 					});
 					// Use the children function to retreive the description
-					$(elem).children().filter(function() {
+					$(elem).children().filter(function () {
 						// if the caption are an element, we should ignore the first one
-						if(captionFound){
+						if (captionFound) {
 							description.push(this);
 						} else {
 							captionFound = true;
@@ -153,12 +152,12 @@
 				}
 				// console.log(caption);
 				// Move the descriptin in a wrapper if there is more than one element
-				if(description.length > 1){
+				if (description.length > 1) {
 					groupheadercell.description = $(description);
 				} else if (description.length === 1) {
 					groupheadercell.description = description[0];
 				}
-				if(caption) {
+				if (caption) {
 					groupheadercell.caption = caption;
 				}
 				groupheadercell.groupZero = groupZero;
@@ -177,7 +176,7 @@
 				colgroup.elem = elem;
 				$(elem).data().tblparser = colgroup;
 				colgroup.uid = uidElem;
-				uidElem++;
+				uidElem += 1;
 				groupZero.allParserObj.push(colgroup);
 				if (colgroupFrame.length !== 0) {
 					colgroup.start = colgroupFrame[colgroupFrame.length - 1].end + 1;
@@ -195,7 +194,7 @@
 							groupZero: groupZero
 						};
 					col.uid = uidElem;
-					uidElem++;
+					uidElem += 1;
 					groupZero.allParserObj.push(col);
 					col.start = colgroup.start + colgroupspan;
 					col.end = colgroup.start + colgroupspan + width - 1; // Minus one because the default value was already calculated
@@ -212,7 +211,7 @@
 						i;
 					colgroupspan += width;
 					// Create virtual column 
-					for (i = colgroup.start; i < (colgroup.start + colgroupspan); i++) {
+					for (i = colgroup.start; i < (colgroup.start + colgroupspan); i += 1) {
 						var col = {
 							start: 0,
 							end: 0,
@@ -220,7 +219,7 @@
 							elem: undefined
 						};
 						col.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(col);
 						col.start = i;
 						col.end = i;
@@ -358,7 +357,7 @@ elem: undefined,
 type: 2 // Set colgroup data type
 					}
 					colgroup.uid = uidElem;
-					uidElem++;
+					uidElem += 1;
 					groupZero.allParserObj.push(colgroup);
 					
 					if (colgroup.start > colgroup.end) {
@@ -378,7 +377,7 @@ groupZero: groupZero,
 elem: undefined
 						}
 						col.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(col);
 						
 						if (!groupZero.col) {
@@ -412,7 +411,7 @@ groupZero: groupZero,
 type: 1 // Set colgroup data type
 						}
 						hcolgroup.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(hcolgroup);
 						
 						colgroupFrame.push(hcolgroup);
@@ -429,7 +428,7 @@ groupZero: groupZero,
 elem: undefined
 							}
 							col.uid = uidElem;
-							uidElem++;
+							uidElem += 1;
 							groupZero.allParserObj.push(col);
 							
 							if (!groupZero.col) {
@@ -994,7 +993,7 @@ rowpos: currentRowPos
 				$(elem).data().tblparser = row;
 				
 				row.uid = uidElem;
-				uidElem++;
+				uidElem += 1;
 				groupZero.allParserObj.push(row);
 				
 				var colgroup = {
@@ -1004,7 +1003,7 @@ type: false // 1 == header, 2 == data, 3 == summary, 4 == key, 5 == description,
 				}
 
 				colgroup.uid = uidElem;
-				uidElem++;
+				uidElem += 1;
 				groupZero.allParserObj.push(colgroup);
 				
 				
@@ -1024,7 +1023,7 @@ cell: [],
 type: 1
 						};
 						colgroup.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(colgroup);
 					}
 					colgroup.cell.push(headerCell);
@@ -1050,7 +1049,7 @@ cell: [],
 type: 2
 						};
 						colgroup.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(colgroup);
 					}
 
@@ -1118,7 +1117,7 @@ elem: this,
 						headerCell.groupZero = groupZero;
 						
 						headerCell.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(headerCell);
 						
 						fnPreProcessGroupHeaderCell(headerCell);
@@ -1156,7 +1155,7 @@ elem: this
 						dataCell.groupZero = groupZero;
 						
 						dataCell.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(dataCell);
 						
 						fnPreProcessGroupDataCell(dataCell);
@@ -1338,7 +1337,7 @@ elem: this
 						};
 						
 						grpRowHeader.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(grpRowHeader);	
 						
 						console.log(rowgroupHeaderRowStack);
