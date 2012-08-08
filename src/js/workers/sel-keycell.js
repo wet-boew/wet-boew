@@ -14,27 +14,27 @@ var _pe = window.pe || {
 		fn : {}
 	};
 
-$.extend($.expr[":"], {keycell:function(elem, i, match, array){  
+$.extend($.expr[":"], {keycell:function (elem, i, match, array) {
 
 	// query Example: $('table:eq(4):keycell').css('background-color', 'yellow');
 
 	// Is elem are a valid element for this selector ?
-	if(!$(elem).data().tblparser){
+	if (!$(elem).data().tblparser) {
 		// Get the table element
 		var tblElem = elem;
 		
-		while(true){
+		while (true) {
 			var ElemNodeName = tblElem.nodeName.toLowerCase();
-			if(ElemNodeName != "table" && ElemNodeName != "caption" &&
-				ElemNodeName != "colgroup" && ElemNodeName != "col" && 
-				ElemNodeName != "thead" && ElemNodeName != "tbody" && 
-				ElemNodeName != "tfoot" && ElemNodeName != "tr" && 
-				ElemNodeName != "th" && ElemNodeName != "td"){
+			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
+				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
+				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
+				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
+				ElemNodeName !== "th" && ElemNodeName !== "td") {
 			
 				return false; // elem are not valid
 			}
 			
-			if(ElemNodeName == "table"){
+			if (ElemNodeName === "table") {
 				break; // Horay we have found the table, now we can do the parsing
 			}
 			
@@ -47,12 +47,12 @@ $.extend($.expr[":"], {keycell:function(elem, i, match, array){
 		_pe.fn.parsertable._exec($(tblElem));
 	}
 	
-	switch(elem.nodeName.toLowerCase()){
+	switch (elem.nodeName.toLowerCase()) {
 	
 	case "table": // Matrix
 		// Return all the description cell
-		if($(elem).data().tblparser.keycell){
-			for(i=0; i<$(elem).data().tblparser.keycell.length; i++){
+		if ($(elem).data().tblparser.keycell) {
+			for (i = 0; i<$(elem).data().tblparser.keycell.length; i += 1) {
 
 				var ret = $(elem).data().tblparser.keycell[i].elem;
 				array.push(ret);
@@ -68,13 +68,13 @@ $.extend($.expr[":"], {keycell:function(elem, i, match, array){
 		
 		// return any description cell in the thead
 		var data = $(elem).data().tblparser;
-		for(i=0; i<data.groupZero.theadRowStack.length; i++){
+		for (i = 0; i<data.groupZero.theadRowStack.length; i += 1) {
 			
-			for(j=0; j< data.groupZero.theadRowStack[i].cell.length; j++){
+			for (j = 0; j< data.groupZero.theadRowStack[i].cell.length; j += 1) {
 				var cell = data.groupZero.theadRowStack[i].cell[j];
 				
-				if((cell.type == 5 || cell.descCell)  && cell.colpos >= data.start && (cell.colpos + cell.width -1) <= data.end){
-					if(cell.descCell){
+				if ((cell.type === 5 || cell.descCell)  && cell.colpos >= data.start && (cell.colpos + cell.width -1) <= data.end) {
+					if (cell.descCell) {
 						cell = cell.descCell;
 					}
 					var ret = cell.elem;
@@ -85,14 +85,14 @@ $.extend($.expr[":"], {keycell:function(elem, i, match, array){
 			
 		}
 		// return any description cell in the colgroup header if selected
-		if(data.start == 1){
+		if (data.start === 1) {
 			
-			for(i=0; i<data.groupZero.row.length; i++){
+			for (i = 0; i<data.groupZero.row.length; i += 1) {
 			
-				for(j=0; j< data.groupZero.row[i].cell.length; j++){
+				for (j = 0; j< data.groupZero.row[i].cell.length; j += 1) {
 					var cell = data.groupZero.row[i].cell[j];
 					
-					if(cell.type == 5 && cell.colpos >= data.start && (cell.colpos + cell.width -1) <= data.end){
+					if (cell.type === 5 && cell.colpos >= data.start && (cell.colpos + cell.width -1) <= data.end) {
 						var ret = cell.elem;
 						array.push(ret);
 						ret.prevObject = elem;
@@ -118,7 +118,7 @@ $.extend($.expr[":"], {keycell:function(elem, i, match, array){
 	case "th": // Cell
 	
 		// Return the associative key cell
-		if($(elem).data().tblparser.keycell){
+		if ($(elem).data().tblparser.keycell) {
 			var ret = $(elem).data().tblparser.keycell.elem;
 			array.push(ret);
 			ret.prevObject = elem;
@@ -129,7 +129,7 @@ $.extend($.expr[":"], {keycell:function(elem, i, match, array){
 	case "td": // Cell
 		
 		// Return true if this are a key cell otherwise false
-		if($(elem).data().tblparser.type == 4){
+		if ($(elem).data().tblparser.type === 4) {
 			return true;
 		}
 		break;
@@ -214,7 +214,7 @@ view plaincopy to clipboardprint?
 The anonymous function we specified for our original custom selector actually has four parameters. We only used the first, elem. The following is the full definition:
 view plaincopy to clipboardprint?
 
-    $.extend($.expr[":"], {selectorName:function(elem, i, match, array){  
+    $.extend($.expr[":"], {selectorName:function (elem, i, match, array) {
         return [boolean expression];  
     });  
 
@@ -238,7 +238,7 @@ view plaincopy to clipboardprint?
 So, if we just want the parameters, then match[3] is the way forward. This is a simple string value and it’s really up to you how you handle it. You can String.Split() it to get multiple parameters, and you can consider validating the parameters somehow. Again, we are drifting away somewhat from the scope of this discussion, so I’ll refer to the jQuery core once more:
 view plaincopy to clipboardprint?
 
-    gt: function(elem, i, match){  
+    gt: function (elem, i, match) {  
         return i > match[3] - 0;  
     },  
 
@@ -246,7 +246,7 @@ Here, a single parameter is expected and assumed. No validation attempt is made.
 view plaincopy to clipboardprint?
 
     $.extend($.expr[":"], {  
-        lengthBetween: function(elem, i, match) {  
+        lengthBetween: function (elem, i, match) {  
             var params = match[3].split(",");  //split our parameter string by commas  
             var elemLen = $(elem).val().length;   //cache current element length  
             return ((elemLen >= params[0] - 0) && (elemLen <= params[1] - 0));  //perform our check  

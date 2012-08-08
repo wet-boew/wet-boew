@@ -14,27 +14,27 @@ var _pe = window.pe || {
 		fn : {}
 	};
 
-$.extend($.expr[":"], {tblheader:function(elem, i, match, array){  
+$.extend($.expr[":"], {tblheader:function (elem, i, match, array) {
 
 	// query Example: $('table:eq(4):keycell').css('background-color', 'yellow');
 
 	// Is elem are a valid element for this selector ?
-	if(!$(elem).data().tblparser){
+	if (!$(elem).data().tblparser) {
 		// Get the table element
 		var tblElem = elem;
 		
-		while(true){
+		while (true) {
 			var ElemNodeName = tblElem.nodeName.toLowerCase();
-			if(ElemNodeName != "table" && ElemNodeName != "caption" &&
-				ElemNodeName != "colgroup" && ElemNodeName != "col" && 
-				ElemNodeName != "thead" && ElemNodeName != "tbody" && 
-				ElemNodeName != "tfoot" && ElemNodeName != "tr" && 
-				ElemNodeName != "th" && ElemNodeName != "td"){
+			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
+				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
+				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
+				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
+				ElemNodeName !== "th" && ElemNodeName !== "td") {
 			
 				return false; // elem are not valid
 			}
 			
-			if(ElemNodeName == "table"){
+			if (ElemNodeName === "table") {
 				break; // Horay we have found the table, now we can do the parsing
 			}
 			
@@ -47,7 +47,7 @@ $.extend($.expr[":"], {tblheader:function(elem, i, match, array){
 		_pe.fn.parsertable._exec($(tblElem));
 	}
 	
-	switch(elem.nodeName.toLowerCase()){
+	switch (elem.nodeName.toLowerCase()) {
 	
 	case "table": // Matrix
 		break;
@@ -69,7 +69,7 @@ $.extend($.expr[":"], {tblheader:function(elem, i, match, array){
 		
 		return false;
 	case "th": // Cell
-		if($(elem).data().tblparser.type != 1){
+		if ($(elem).data().tblparser.type !== 1) {
 			return false;
 		}
 		return true;
@@ -81,32 +81,32 @@ $.extend($.expr[":"], {tblheader:function(elem, i, match, array){
 }});
 
 
-$.fn.tblheader = function(scope){
+$.fn.tblheader = function (scope) {
 
 	var obj = this;
 	var objDOM = $(this).get(0);
 	
-	if(!scope || !(scope == "row" | scope == "col")){
+	if (!scope || !(scope === "row" | scope === "col")) {
 		scope = "row";
 	}
 
-	if(!$(obj).data().tblparser){
+	if (!$(obj).data().tblparser) {
 
 		// Get the table element
 		var tblElem = obj;
 		
-		while(true){
+		while (true) {
 			var ElemNodeName = tblElem.nodeName.toLowerCase();
-			if(ElemNodeName != "table" && ElemNodeName != "caption" &&
-				ElemNodeName != "colgroup" && ElemNodeName != "col" && 
-				ElemNodeName != "thead" && ElemNodeName != "tbody" && 
-				ElemNodeName != "tfoot" && ElemNodeName != "tr" && 
-				ElemNodeName != "th" && ElemNodeName != "td"){
+			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
+				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
+				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
+				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
+				ElemNodeName !== "th" && ElemNodeName !== "td") {
 			
 				return false; // elem are not valid
 			}
 			
-			if(ElemNodeName == "table"){
+			if (ElemNodeName === "table") {
 				break; // Horay we have found the table, now we can do the parsing
 			}
 			
@@ -123,7 +123,7 @@ $.fn.tblheader = function(scope){
 	
 
 	// Check what is "this"
-	switch(objDOM.nodeName.toLowerCase()){
+	switch (objDOM.nodeName.toLowerCase()) {
 	
 		case "table": // Matrix
 			break;
@@ -134,13 +134,13 @@ $.fn.tblheader = function(scope){
 			break;
 		case "col": // Vector
 			
-			if(!$(obj).data().tblparser && !$(obj).data().tblparser.header){
+			if (!$(obj).data().tblparser && !$(obj).data().tblparser.header) {
 				return $(); // A col object is required
 			}
 			
 			var stack = [];
 			
-			for(i=0; i<$(obj).data().tblparser.header.length; i++){
+			for (i = 0; i<$(obj).data().tblparser.header.length; i += 1) {
 				stack.push($(obj).data().tblparser.header[i].elem);
 			}
 			return $(stack);
@@ -153,7 +153,7 @@ $.fn.tblheader = function(scope){
 			break;
 		case "tr": // Vector
 
-			if(!$(obj).data().tblparser && !$(obj).data().tblparser.header){
+			if (!$(obj).data().tblparser && !$(obj).data().tblparser.header) {
 				return $(); // A col object is required
 			}
 
@@ -166,14 +166,14 @@ $.fn.tblheader = function(scope){
 		case "td": // Cell
 			
 			var stack = [];
-			if(scope == "row"){
+			if (scope === "row") {
 
 				stack.push($(obj).data().tblparser.row.header.elem);
 				return $(stack);
 				
 			} else {
 				
-				for(i=0; i<$(obj).data().tblparser.col.header.length; i++){
+				for (i = 0; i<$(obj).data().tblparser.col.header.length; i += 1) {
 					stack.push($(obj).data().tblparser.col.header[i].elem);
 				}
 				return $(stack);

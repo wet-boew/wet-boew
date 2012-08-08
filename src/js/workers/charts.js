@@ -301,16 +301,16 @@
 				
 				
 				// Minimum Width Size: pieByRow * minPieWidth + (2* charts.circleGraph.graphPadding) 
-				if (pieByRow == 0) {
+				if (pieByRow === 0) {
 					// Force the change of the width for the minimum requirement
 					charts.circleGraph.width = minPieWidth + (2* charts.circleGraph.graphPadding); 
 				} else {
 					// Check what kind of strategy is used, like take full width or keep it as minimal space
 					
-					if (charts.circleGraph.sizeMode == 'minimal') {
+					if (charts.circleGraph.sizeMode === 'minimal') {
 						charts.circleGraph.width = (pieByRow * minPieWidth) + (2* charts.circleGraph.graphPadding);
 						charts.circleGraph.height = Math.floor(NbPie / pieByRow * minPieWidth + (2* charts.circleGraph.graphPadding));
-					} else if (charts.circleGraph.sizeMode == 'maximal') {
+					} else if (charts.circleGraph.sizeMode === 'maximal') {
 						// TO BE IMPLEMENTED IN THE FUTURE
 					} else {
 						// TO BE IMPLEMENTED IN THE FUTURE
@@ -1201,7 +1201,7 @@
 					// Draw the X Label
 					//
 					// TODO
-					// for(i=0; i<tBodySeries.nbRowLevel; i++) {
+					// for (i = 0; i<tBodySeries.nbRowLevel; i += 1) {
 					// Draw a background for each row
 					// }
 					// For each column Header, calculate his position and add the label
@@ -1269,7 +1269,7 @@
 							YLabelBg = charts.graph2dAxis.paper.rect(leftPos, topPos, width, height);
 							YLabelBg.attr('fill', fillColor);
 							YLabelBg.attr('stroke-width', '0');
-							// var YLabel = paper.text(xPos, h, (this.level == 1 ? this.header.substring(0,1):this.header) ); // Test Only for (2lines-eng) by default use the second commented instruction.
+							// var YLabel = paper.text(xPos, h, (this.level === 1 ? this.header.substring(0,1):this.header) ); // Test Only for (2lines-eng) by default use the second commented instruction.
 							headingText = this.header;
 							// TODO: replace in the headingTest any "<br />" or "<br>" by "\n" (if the SVG context are keeped vs Canvas)
 							// TODO: calculate the heading lenght based on the longer line when the heading is breaked in serveral lineHeight
@@ -1377,7 +1377,7 @@
 						CurrentSerieID;
 					$.each(charts.graph2dAxis.series.series, function () {
 						GraphType = this.type; // The first row are the default
-						if (GraphType === 'bar') { // && (PreviousGraphType != 'bar' || PreviousGraphType == undefined)) {
+						if (GraphType === 'bar') { // && (PreviousGraphType !== 'bar' || PreviousGraphType === undefined)) {
 							nbGraphBarSpace += 1;
 							PreviousGraphType = 'bar';
 						}
@@ -1640,11 +1640,11 @@
 								}
 							});
 							/*
-						if (GraphType == 'bar' && (PreviousGraphType != 'bar' || PreviousGraphType == undefined)) {
+						if (GraphType === 'bar' && (PreviousGraphType !== 'bar' || PreviousGraphType === undefined)) {
 							currGraphTypePos ++;
 							PreviousGraphType = 'bar';
 						}
-						if (GraphType == 'stacked'  && (PreviousGraphType != 'stacked' || PreviousGraphType == undefined)) {
+						if (GraphType === 'stacked'  && (PreviousGraphType !== 'stacked' || PreviousGraphType === undefined)) {
 							currGraphTypePos ++;
 							PreviousGraphType = 'stacked';
 						}	*/
@@ -1670,7 +1670,7 @@
 					var columnIds = [], // The array lenght must equal of parser.seriesHeadingLenght and each item are ids separated by space
 						rowsIds = [];
 					/* // Parse the Table Heading
-				$('thead', self).each(function() {
+				$('thead', self).each(function () {
 					
 					var ColumnHeading = [];
 					var SpannedRow = [];
@@ -1680,7 +1680,7 @@
 
 					
 					// FOR EACH row get the series
-					$('tr', this).each(function() {
+					$('tr', this).each(function () {
 
 						
 						var currentSerieLevel = 0;
@@ -1689,11 +1689,11 @@
 					
 						
 						// Check if the first cell was spanned
-						$.each(SpannedRow, function() {
-							if (this.colpos == CurrColPosition && this.rowspan > 0) {
+						$.each(SpannedRow, function () {
+							if (this.colpos === CurrColPosition && this.rowspan > 0) {
 								
 								// Calculate the width of the spanned row
-								var w = (($(this.ele).attr('colspan') != undefined ? $(this.ele).attr('colspan') : 1) * 1);
+								var w = (($(this.ele).attr('colspan') !== undefined ? $(this.ele).attr('colspan') : 1) * 1);
 								
 								CurrColPosition += w;
 								
@@ -1708,7 +1708,7 @@
 						var serieHeader = ''; // That would contain the current on process serie header
 						
 						// Get the Row heading Width
-						$('td, th', this).each(function() {
+						$('td, th', this).each(function () {
 							
 							parser.cellID ++;
 							
@@ -1717,8 +1717,8 @@
 							
 
 							// Get the dimension for the cell
-							var w = (($(this).attr('colspan') != undefined ? $(this).attr('colspan') : 1) * 1);
-							var RowSpan = (($(this).attr('rowspan') != undefined ? $(this).attr('rowspan') : 1) * 1);
+							var w = (($(this).attr('colspan') !== undefined ? $(this).attr('colspan') : 1) * 1);
+							var RowSpan = (($(this).attr('rowspan') !== undefined ? $(this).attr('rowspan') : 1) * 1);
 							
 												
 							// Check if is a rowspan, if that row span are an header (th) that mean it a grouping of series
@@ -1733,7 +1733,7 @@
 							CurrentGroupingID = 0;
 							if (parser.rowPos > 0) {
 								var headerList = '';
-								$.each(ColumnHeading, function() {
+								$.each(ColumnHeading, function () {
 									if (CurrColPosition >= this.colPos && 
 										CurrColPosition < (this.colPos + this.width) && 
 										this.isGroup &&
@@ -1741,7 +1741,7 @@
 										// That is a Header group
 										CurrentGroupingID = this.id;
 										// Get the associate header for that cell
-										// headerList = (columnIds[this.colPos] != undefined ? columnIds[this.colPos]: '') + (this.uniqueID != '' ? ' ' + this.uniqueID : '');
+										// headerList = (columnIds[this.colPos] !== undefined ? columnIds[this.colPos]: '') + (this.uniqueID !== '' ? ' ' + this.uniqueID : '');
 										
 										
 									}
@@ -1755,30 +1755,30 @@
 							
 							// Check for Column Header spanned
 							var isGroup = false;
-							if (this.nodeName.toLowerCase() == 'th' && w > 1) {
+							if (this.nodeName.toLowerCase() === 'th' && w > 1) {
 								isGroup = true;
 							}
 							
-							if (columnIds[CurrColPosition] != undefined) {
+							if (columnIds[CurrColPosition] !== undefined) {
 								$(this).attr('headers', columnIds[CurrColPosition]);
 							}
 							
 							
 							// If this is an heading and there are no id, we create a new one
 							var cellId = '';
-							if (this.nodeName.toLowerCase() == 'th' && $(this).text().replace(/ /g,'') != "") { 
+							if (this.nodeName.toLowerCase() === 'th' && $(this).text().replace(/ /g,'') !== "") { 
 								cellId = $(this).attr('id');
 								//console.log(cellId);
-								if (cellId == undefined || cellId == '') {
+								if (cellId === undefined || cellId === '') {
 									cellId = 'graphcellid'+ graphStartExecTime + 'row' + parser.rowPos + 'col' + CurrColPosition; // Generate a new unique ID
 									$(this).attr('id', cellId); // Add the new ID to the table
 								}			
 								//console.log(cellId);
 								
 								// This loop make sur all column have their column set
-								for(i=0; i<w; i++) {
+								for (i = 0; i<w; i += 1) {
 									var cellPos = i + CurrColPosition;
-									if (columnIds[cellPos] == undefined) {
+									if (columnIds[cellPos] === undefined) {
 										columnIds[cellPos] = cellId;
 									} else {
 										columnIds[cellPos] = columnIds[cellPos] + ' ' + cellId;
@@ -1808,7 +1808,7 @@
 							};
 							ColumnHeading.push(header);
 
-							if (parser.tBodySeries.nbColLevel <= parser.rowPos || parser.tBodySeries.nbColLevel == undefined) {
+							if (parser.tBodySeries.nbColLevel <= parser.rowPos || parser.tBodySeries.nbColLevel === undefined) {
 								parser.tBodySeries.nbColLevel = (parser.rowPos + 1);
 							}
 
@@ -1819,9 +1819,9 @@
 							
 							
 							// Check for span row
-							$.each(SpannedRow, function() {
-								if (this.colpos == CurrColPosition && this.rowspan > 0) {
-									var w = (($(this.ele).attr('colspan') != undefined ? $(this.ele).attr('colspan') : 1) * 1);
+							$.each(SpannedRow, function () {
+								if (this.colpos === CurrColPosition && this.rowspan > 0) {
+									var w = (($(this.ele).attr('colspan') !== undefined ? $(this.ele).attr('colspan') : 1) * 1);
 									CurrColPosition += w;
 									this.rowspan --;
 								}
@@ -1940,7 +1940,7 @@
 									cellRowHeaders = rowsIds[parser.rowPos];
 								}
 								// Commented to because this will be moved in a new widget based on the table parser
-								// $(this).attr('headers', cellColHeaders + (cellColHeaders != "" && cellRowHeaders != ""? ' ': '') + cellRowHeaders);
+								// $(this).attr('headers', cellColHeaders + (cellColHeaders !== "" && cellRowHeaders !== ""? ' ': '') + cellRowHeaders);
 								// cellUnit will be use as global for the entire row group
 								if (this.nodeName.toLowerCase() === 'th') {
 									// Mark the current cell as Header 
@@ -2305,13 +2305,13 @@ label:
 							return;
 						}
 						var arrToRemove = [];
-						for(key in opt) {
+						for (key in opt) {
 							// if the key are ending "-remove", get the key to remove
-							if (key.lenght > 7 && key.substr(key.lenght - 7) == "-remove") {
+							if (key.lenght > 7 && key.substr(key.lenght - 7) === "-remove") {
 								arrToRemove.push(key.substr(0, key.lenght - 7));
 							} else {
 								// get it deeper if applicable
-								if (typeof(opt[key])) == "object") {
+								if (typeof(opt[key])) === "object") {
 									currLevel ++;
 									if (currLevel < maxLevel) {
 										unsetOption(opt[key], currLevel, maxLevel);
@@ -2319,13 +2319,13 @@ label:
 								}
 							}
 						}
-						for(i=0;i<arrToRemove.lenght;i++) {
+						for (i = 0;i<arrToRemove.lenght;i += 1) {
 							delete opt[arrToRemove[i]];
 						}
 					}
 					
 					// Check for an unsetOptionsLevel, if defined to the unset
-					if (sourceOptions['default-unsetoptionlevel'] && typeof(sourceOptions['default-unsetoptionlevel']) == "number") {
+					if (sourceOptions['default-unsetoptionlevel'] && typeof(sourceOptions['default-unsetoptionlevel']) === "number") {
 						unsetOption(sourceOptions, 1, sourceOptions['default-unsetoptionlevel']);
 					}*/
 					// Test: strClass
@@ -2519,26 +2519,26 @@ label:
 				var arrNamespace = namespace.split('-');
 				
 				var strClass = "";
-				if (typeof(el) == 'string') {
+				if (typeof(el) === 'string') {
 					strClass = el;
 				} else {
-					strClass = ($(el).attr('class') != undefined ? $(el).attr('class') : ""); // Get the content of class attribute
+					strClass = ($(el).attr('class') !== undefined ? $(el).attr('class') : ""); // Get the content of class attribute
 				}
 				
 				var jsonClass = {};
 
-				if (strClass.lenght == 0) {
+				if (strClass.lenght === 0) {
 					return jsonClass;
 				}
 
 				var arrClass = strClass.split(' '); // Get each defined class
-				$.each(arrClass, function() {
+				$.each(arrClass, function () {
 					
 					// This is for each class defined
 					
 					if (this.length > namespace.length+1) {
 					var extractNamespace  = this.slice(0, namespace.length);
-					if (extractNamespace == namespace) {
+					if (extractNamespace === namespace) {
 
 						// This is a valid parameter, convert to JSON object for options setup
 						var arrParameter = this.split('-').slice(arrNamespace.length),
@@ -2547,15 +2547,15 @@ label:
 							propName = arrNamespace[arrNamespace.length - 1], // use the last namespace element to define the property by default
 							ignoreMe = false,
 							ignoreOptionExist = false;
-						for(i=0; i<arrParameter.length; i++) {
+						for (i = 0; i<arrParameter.length; i += 1) {
 							
-							var isEndNode = (i+1 == arrParameter.length ? true : false);
+							var isEndNode = (i+1 === arrParameter.length ? true : false);
 							
 							var valeur = arrParameter[i];
 							
 							
 							// Check for the default case (eg. wb-graph-line => default are wb-graph-type-line)
-							if (isEndNode && arrParameter.length == 1) {
+							if (isEndNode && arrParameter.length === 1) {
 								// Default option need to be defined in the options
 								if (navOptions['default-option']) {
 									var opt = navOptions['default-option'];
@@ -2574,27 +2574,27 @@ label:
 									var typeofOption = typeof(navOptions[valeur]); // Get the typeof
 									
 									// Check if the option are a function, if true ignore the replacement
-									if (typeofOption == "function") {
+									if (typeofOption === "function") {
 										ignoreMe = true;
 									}
 									
 									
 									// a typeof undefined will be intrepreted as "json" or "array" object and will ignore subsequant check for props existance
-									if ((typeofDefined == "" | typeofDefined == "json" | typeofDefined == "array") && (typeofOption == "object" || typeofOption == "undefined")) {
+									if ((typeofDefined === "" | typeofDefined === "json" | typeofDefined === "array") && (typeofOption === "object" || typeofOption === "undefined")) {
 										ignoreOptionExist = true;
 									} else {
 										
 										// Get the rest of the value
 										var arrValue = [];
-										for(j=(i+1); j<arrParameter.length; j++) {
+										for (j=(i+1); j<arrParameter.length; j += 1) {
 											arrValue.push(arrParameter[j]);
 										}
 										var val = arrValue.join("-");
 										// Parse the value are the proper typeof if possible
-										if (val == "true") {
+										if (val === "true") {
 											val = true;
 										}
-										if (val == "false") {
+										if (val === "false") {
 											val = false;
 										}
 										if (!isNaN(parseInt(val))) {
@@ -2603,7 +2603,7 @@ label:
 										
 										var typeofVal = typeof(val);
 										
-										if (typeofVal == typeofDefined) { // Possible value: boolean, number or string
+										if (typeofVal === typeofDefined) { // Possible value: boolean, number or string
 											// Set or Add the value
 											
 										}
@@ -2612,8 +2612,8 @@ label:
 									
 									
 									// For an Array object, get the first itm and that would define the type we search
-									// eg. Options => {color: ["black"]} == Array of String
-									// eg. Options => {color: ["back"], 'color-typeof': 'number'} == Array of number
+									// eg. Options => {color: ["black"]} === Array of String
+									// eg. Options => {color: ["back"], 'color-typeof': 'number'} === Array of number
 									
 									
 									
@@ -2629,20 +2629,20 @@ label:
 							
 							
 							var valIsNext = false;
-							if (i+2 == arrParameter.length) {
+							if (i+2 === arrParameter.length) {
 								valIsNext = true;
 							}
 							
 							var isVal = false;
-							if (i+1 == arrParameter.length) {
+							if (i+1 === arrParameter.length) {
 								isVal = true;
 
 								
 								// // Fix for boolean value
-								// if (arrParameter[i] == "true") {
+								// if (arrParameter[i] === "true") {
 								//	arrParameter[i] = true;
 								// }
-								// if (arrParameter[i] == "false") {
+								// if (arrParameter[i] === "false") {
 								//	arrParameter[i] = false;
 								// }
 								// if (!isNaN(parseInt(arrParameter[i]))) {
@@ -2807,7 +2807,7 @@ label:
 						// Get the Id is exist, otherwise create a new one if is an header
 						var	cellHeaderId = "chartcheidcol" + (this.colpos -1); // Generate a new unique ID
 
-						if (!('id' in this.elem) || this.elem['id'] == "") {
+						if (!('id' in this.elem) || this.elem['id'] === "") {
 							$(this.elem).attr('id', cellHeaderId); // Add the new ID to the table
 						} else {
 							cellHeaderId = this.elem['id'];

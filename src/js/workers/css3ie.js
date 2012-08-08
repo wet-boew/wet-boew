@@ -77,7 +77,7 @@
 							$wbcore.css("margin-bottom", wbcoremb);
 						}
 					} /*else if (pe.ie === 8)) {
-						if (screen.deviceXDPI / screen.logicalXDPI != 1) {
+						if (screen.deviceXDPI / screen.logicalXDPI !== 1) {
 							pieEnabled = cleanup();
 						}
 						else if (!pieEnabled) {

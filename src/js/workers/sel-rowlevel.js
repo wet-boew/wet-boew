@@ -17,28 +17,28 @@ var _pe = window.pe || {
 
 
 
-$.extend($.expr[":"], {rowlevel:function(elem, i, match, array){ 
+$.extend($.expr[":"], {rowlevel:function (elem, i, match, array) {
 
 	// query Example: $('table:eq(4):summary:collevel(1)').css('background-color', 'yellow');
 	
 
 	// Is elem are a valid element ?
-	if(!$(elem).data().tblparser){
+	if (!$(elem).data().tblparser) {
 		// Get the table element
 		var tblElem = elem;
 		
-		while(true){
+		while (true) {
 			var ElemNodeName = tblElem.nodeName.toLowerCase();
-			if(ElemNodeName != "table" && ElemNodeName != "caption" &&
-				ElemNodeName != "colgroup" && ElemNodeName != "col" && 
-				ElemNodeName != "thead" && ElemNodeName != "tbody" && 
-				ElemNodeName != "tfoot" && ElemNodeName != "tr" && 
-				ElemNodeName != "th" && ElemNodeName != "td"){
+			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
+				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
+				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
+				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
+				ElemNodeName !== "th" && ElemNodeName !== "td") {
 			
 				return false; // elem are not valid
 			}
 			
-			if(ElemNodeName == "table"){
+			if (ElemNodeName === "table") {
 				break; // Horay we have found the table, now we can do the parsing
 			}
 			
@@ -52,7 +52,7 @@ $.extend($.expr[":"], {rowlevel:function(elem, i, match, array){
 	}
 	
 
-	switch(elem.nodeName.toLowerCase()){
+	switch (elem.nodeName.toLowerCase()) {
 	
 	case "table": // Matrix
 		break;
@@ -71,15 +71,15 @@ $.extend($.expr[":"], {rowlevel:function(elem, i, match, array){
 	case "tr": // Vector
 		break;
 	case "th": // Cell
-		if(match[3]){
-			if($(elem).data().tblparser.rowlevel == match[3]){
+		if (match[3]) {
+			if ($(elem).data().tblparser.rowlevel === match[3]) {
 				return true;
 			}
 		}
 		break;
 	case "td": // Cell
-		if(match[3]){
-			if($(elem).data().tblparser.rowlevel == match[3]){
+		if (match[3]) {
+			if ($(elem).data().tblparser.rowlevel === match[3]) {
 				return true;
 			}
 		}
@@ -92,34 +92,34 @@ $.extend($.expr[":"], {rowlevel:function(elem, i, match, array){
 	 return false;
 }});
 
-$.fn.rowlevel = function(level){
+$.fn.rowlevel = function (level) {
 
 	// TODO add the function (.next()) at the end to loop all the elements
 
 	var obj = this;
 	var objDOM = $(this).get(0);
 	
-	if(!level){
+	if (!level) {
 		level = 1; // Default Level
 	}
 
-	if(!$(obj).data().tblparser){
+	if (!$(obj).data().tblparser) {
 
 		// Get the table element
 		var tblElem = obj;
 		
-		while(true){
+		while (true) {
 			var ElemNodeName = tblElem.nodeName.toLowerCase();
-			if(ElemNodeName != "table" && ElemNodeName != "caption" &&
-				ElemNodeName != "colgroup" && ElemNodeName != "col" && 
-				ElemNodeName != "thead" && ElemNodeName != "tbody" && 
-				ElemNodeName != "tfoot" && ElemNodeName != "tr" && 
-				ElemNodeName != "th" && ElemNodeName != "td"){
+			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
+				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
+				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
+				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
+				ElemNodeName !== "th" && ElemNodeName !== "td") {
 			
 				return false; // elem are not valid
 			}
 			
-			if(ElemNodeName == "table"){
+			if (ElemNodeName === "table") {
 				break; // Horay we have found the table, now we can do the parsing
 			}
 			
@@ -136,7 +136,7 @@ $.fn.rowlevel = function(level){
 	
 
 	// Check what is "this"
-	switch(objDOM.nodeName.toLowerCase()){
+	switch (objDOM.nodeName.toLowerCase()) {
 	
 		case "table": // Matrix
 			break;
@@ -157,8 +157,8 @@ $.fn.rowlevel = function(level){
 		case "tr": // Vector
 			break;
 		case "th": // Cell
-			if($(obj).data().tblparser.scope == "row"){
-				if($(obj).data().tblparser.rowlevel == level){
+			if ($(obj).data().tblparser.scope === "row") {
+				if ($(obj).data().tblparser.rowlevel === level) {
 					var stack = [];
 					stack.push($(obj).data().tblparser.elem);
 					return $(stack);
@@ -170,7 +170,7 @@ $.fn.rowlevel = function(level){
 			
 			
 			
-			if($(obj).data().tblparser.rowlevel == level){
+			if ($(obj).data().tblparser.rowlevel === level) {
 				var stack = [];
 				stack.push($(obj).data().tblparser.elem);
 				return $(stack);

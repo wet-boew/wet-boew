@@ -14,27 +14,27 @@ var _pe = window.pe || {
 		fn : {}
 	};
 
-$.extend($.expr[":"], {row:function(elem, i, match, array){  
+$.extend($.expr[":"], {row:function (elem, i, match, array) {
 
 	// query Example: $('table:eq(4):keycell').css('background-color', 'yellow');
 
 	// Is elem are a valid element for this selector ?
-	if(!$(elem).data().tblparser){
+	if (!$(elem).data().tblparser) {
 		// Get the table element
 		var tblElem = elem;
 		
-		while(true){
+		while (true) {
 			var ElemNodeName = tblElem.nodeName.toLowerCase();
-			if(ElemNodeName != "table" && ElemNodeName != "caption" &&
-				ElemNodeName != "colgroup" && ElemNodeName != "col" && 
-				ElemNodeName != "thead" && ElemNodeName != "tbody" && 
-				ElemNodeName != "tfoot" && ElemNodeName != "tr" && 
-				ElemNodeName != "th" && ElemNodeName != "td"){
+			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
+				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
+				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
+				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
+				ElemNodeName !== "th" && ElemNodeName !== "td") {
 			
 				return false; // elem are not valid
 			}
 			
-			if(ElemNodeName == "table"){
+			if (ElemNodeName === "table") {
 				break; // Horay we have found the table, now we can do the parsing
 			}
 			
@@ -47,7 +47,7 @@ $.extend($.expr[":"], {row:function(elem, i, match, array){
 		_pe.fn.parsertable._exec($(tblElem));
 	}
 	
-	switch(elem.nodeName.toLowerCase()){
+	switch (elem.nodeName.toLowerCase()) {
 	
 	case "table": // Matrix
 		break;
@@ -67,10 +67,10 @@ $.extend($.expr[":"], {row:function(elem, i, match, array){
 		return true;
 		break;
 	case "th": // Cell
-		if($(elem).data().tblparser.type != 1){
+		if ($(elem).data().tblparser.type !== 1) {
 			return false;
 		}
-		if($(elem).data().tblparser.scope == "row"){
+		if ($(elem).data().tblparser.scope === "row") {
 			return true;
 		}
 		break;
@@ -85,28 +85,28 @@ $.extend($.expr[":"], {row:function(elem, i, match, array){
 }});
 
 
-$.fn.row = function(elem){
+$.fn.row = function (elem) {
 
 	var obj = (elem?$(elem):this);
 	var objDOM = (elem?$(elem):this).get(0);
 
-	if(!$(obj).data().tblparser){
+	if (!$(obj).data().tblparser) {
 
 		// Get the table element
 		var tblElem = obj;
 		
-		while(true){
+		while (true) {
 			var ElemNodeName = tblElem.nodeName.toLowerCase();
-			if(ElemNodeName != "table" && ElemNodeName != "caption" &&
-				ElemNodeName != "colgroup" && ElemNodeName != "col" && 
-				ElemNodeName != "thead" && ElemNodeName != "tbody" && 
-				ElemNodeName != "tfoot" && ElemNodeName != "tr" && 
-				ElemNodeName != "th" && ElemNodeName != "td"){
+			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
+				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
+				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
+				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
+				ElemNodeName !== "th" && ElemNodeName !== "td") {
 			
 				return false; // elem are not valid
 			}
 			
-			if(ElemNodeName == "table"){
+			if (ElemNodeName === "table") {
 				break; // Horay we have found the table, now we can do the parsing
 			}
 			
@@ -123,7 +123,7 @@ $.fn.row = function(elem){
 	
 
 	// Check what is "this"
-	switch(objDOM.nodeName.toLowerCase()){
+	switch (objDOM.nodeName.toLowerCase()) {
 	
 		case "table": // Matrix
 			break;
@@ -144,10 +144,10 @@ $.fn.row = function(elem){
 			return elem;
 		case "th": // Cell
 			
-			if($(obj).data().tblparser.type != 1){
+			if ($(obj).data().tblparser.type !== 1) {
 				return $();
 			}
-			if($(obj).data().tblparser.scope == "row"){
+			if ($(obj).data().tblparser.scope === "row") {
 				return obj;
 			}
 			break;

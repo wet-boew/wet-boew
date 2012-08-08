@@ -14,27 +14,27 @@ var _pe = window.pe || {
 		fn : {}
 	};
 
-$.extend($.expr[":"], {summary:function(elem, i, match, array){  
+$.extend($.expr[":"], {summary:function (elem, i, match, array) {
 
 	// query Example: $('table:eq(4):summary').css('background-color', 'yellow');
 
 	// Is elem are a valid element ?
-	if(!$(elem).data().tblparser){
+	if (!$(elem).data().tblparser) {
 		// Get the table element
 		var tblElem = elem;
 		
-		while(true){
+		while (true) {
 			var ElemNodeName = tblElem.nodeName.toLowerCase();
-			if(ElemNodeName != "table" && ElemNodeName != "caption" &&
-				ElemNodeName != "colgroup" && ElemNodeName != "col" && 
-				ElemNodeName != "thead" && ElemNodeName != "tbody" && 
-				ElemNodeName != "tfoot" && ElemNodeName != "tr" && 
-				ElemNodeName != "th" && ElemNodeName != "td"){
+			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
+				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
+				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
+				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
+				ElemNodeName !== "th" && ElemNodeName !== "td") {
 			
 				return false; // elem are not valid
 			}
 			
-			if(ElemNodeName == "table"){
+			if (ElemNodeName === "table") {
 				break; // Horay we have found the table, now we can do the parsing
 			}
 			
@@ -48,13 +48,13 @@ $.extend($.expr[":"], {summary:function(elem, i, match, array){
 	}
 	
 
-	switch(elem.nodeName.toLowerCase()){
+	switch (elem.nodeName.toLowerCase()) {
 	
 	case "table": // Matrix
-		if($(elem).data().tblparser.row){
-			for(i=0; i<$(elem).data().tblparser.row.length; i++){
-				for(j=0; j<$(elem).data().tblparser.row[i].cell.length; j++){
-					if($(elem).data().tblparser.row[i].cell[j].type == 3){
+		if ($(elem).data().tblparser.row) {
+			for (i = 0; i<$(elem).data().tblparser.row.length; i += 1) {
+				for (j = 0; j<$(elem).data().tblparser.row[i].cell.length; j += 1) {
+					if ($(elem).data().tblparser.row[i].cell[j].type === 3) {
 						array.push($(elem).data().tblparser.row[i].cell[j].elem);
 					}
 				}
@@ -65,7 +65,7 @@ $.extend($.expr[":"], {summary:function(elem, i, match, array){
 	case "caption": // Cell
 		break;
 	case "colgroup": // Group
-		if($(elem).data().tblparser.type == 3){
+		if ($(elem).data().tblparser.type === 3) {
 			return true;
 		}
 
@@ -85,7 +85,7 @@ $.extend($.expr[":"], {summary:function(elem, i, match, array){
 		
 	case "td": // Cell
 
-		if($(elem).data().tblparser.type == 3){
+		if ($(elem).data().tblparser.type === 3) {
 			return true;
 		}
 		break;
@@ -99,30 +99,30 @@ $.extend($.expr[":"], {summary:function(elem, i, match, array){
 
 
 
-$.fn.summary = function(level){
+$.fn.summary = function (level) {
 	
 	
 	var obj = this;
 	var objDOM = $(this).get(0);
 	
 
-	if(!$(obj).data().tblparser){
+	if (!$(obj).data().tblparser) {
 
 		// Get the table element
 		var tblElem = obj;
 		
-		while(true){
+		while (true) {
 			var ElemNodeName = tblElem.nodeName.toLowerCase();
-			if(ElemNodeName != "table" && ElemNodeName != "caption" &&
-				ElemNodeName != "colgroup" && ElemNodeName != "col" && 
-				ElemNodeName != "thead" && ElemNodeName != "tbody" && 
-				ElemNodeName != "tfoot" && ElemNodeName != "tr" && 
-				ElemNodeName != "th" && ElemNodeName != "td"){
+			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
+				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
+				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
+				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
+				ElemNodeName !== "th" && ElemNodeName !== "td") {
 			
 				return false; // elem are not valid
 			}
 			
-			if(ElemNodeName == "table"){
+			if (ElemNodeName === "table") {
 				break; // Horay we have found the table, now we can do the parsing
 			}
 			
@@ -139,7 +139,7 @@ $.fn.summary = function(level){
 	
 
 	// Check what is "this"
-	switch(objDOM.nodeName.toLowerCase()){
+	switch (objDOM.nodeName.toLowerCase()) {
 	
 		case "table": // Matrix
 			break;
@@ -147,7 +147,7 @@ $.fn.summary = function(level){
 			// A Caption can not have any key cell
 			return $();
 		case "colgroup": // Group
-			if($(obj).data().tblparser.type == 3){
+			if ($(obj).data().tblparser.type === 3) {
 				var stack = [];
 				stack.push($(obj).data().tblparser.elem);
 				return $(stack);
@@ -166,10 +166,10 @@ $.fn.summary = function(level){
 			break;
 		case "th": // Cell
 			
-			if($(obj).data().tblparser.type != 1){
+			if ($(obj).data().tblparser.type !== 1) {
 				return $();
 			}
-			if($(obj).data().tblparser.scope == "col"){
+			if ($(obj).data().tblparser.scope === "col") {
 				return obj;
 			}
 			break;
@@ -178,7 +178,7 @@ $.fn.summary = function(level){
 			
 			
 			
-			if($(obj).data().tblparser.type == 3 &&(!level?true: $(obj).data().tblparser.collevel == level)){
+			if ($(obj).data().tblparser.type === 3 &&(!level?true: $(obj).data().tblparser.collevel === level)) {
 				var stack = [];
 				stack.push($(obj).data().tblparser.elem);
 				return $(stack);

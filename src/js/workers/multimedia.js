@@ -228,7 +228,7 @@
 						}
 						break;
 					case "progress":
-						/*if (this.getBuffered() > 1){console.log(Math.round(this.getBuffered()/ this.getDuration() * 1000)/10);}*/
+						/*if (this.getBuffered() > 1) {console.log(Math.round(this.getBuffered()/ this.getDuration() * 1000)/10);}*/
 						break;
 					case "captionsloaded":
 						//Store the captions
