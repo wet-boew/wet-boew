@@ -49,7 +49,8 @@
 				rowgroupHeaderRowStack = [],
 				currentRowGroup,
 				currentRowGroupElement,
-				lstRowGroup = [];
+				lstRowGroup = [],
+				rowgroupheadercalled = false;
 
 			// Check if this table was already parsed, if yes we exit by throwing an error
 			if ($(obj).tblparser) {
@@ -252,9 +253,10 @@
 					colFrmId,
 					bigTotalColgroupFound;
 
-				if (groupZero.colgrouphead) {
+				if (groupZero.colgrouphead || rowgroupheadercalled) {
 					return; // Prevent multiple call
 				}
+				rowgroupheadercalled = true;
 				if (colgroupHeaderColEnd && colgroupHeaderColEnd > 0) {
 					// The first colgroup must match the colgroupHeaderColEnd
 					if (colgroupFrame.length > 0 && (colgroupFrame[0].start !== 1 || (colgroupFrame[0].end !== colgroupHeaderColEnd && colgroupFrame[0].end !== (colgroupHeaderColEnd + 1)))) {
