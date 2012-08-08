@@ -1343,8 +1343,23 @@
 									rowheader = row.cell[i];
 									headingRowCell.push(row.cell[i]);
 								}
+								for (j = 0; j < colKeyCell.length; j += 1) {
+									if (!(colKeyCell[j].type) && !(row.cell[i].keycell) && colKeyCell[j].height === row.cell[i].height) {
+										colKeyCell[j].type = 4;
+										row.cell[i].keycell = colKeyCell[j];
 
-								$.each(colKeyCell, function () {
+										if (!row.keycell) {
+											row.keycell = [];
+										}
+										row.keycell.push(colKeyCell[j]);
+
+										if (!groupZero.keycell) {
+											groupZero.keycell = [];
+										}
+										groupZero.keycell.push(colKeyCell[j]);
+									}
+								}
+								/*$.each(colKeyCell, function () {
 									if (!(this.type) && !(row.cell[i].keycell) && this.height === row.cell[i].height) {
 										this.type = 4;
 										row.cell[i].keycell = this;
@@ -1359,7 +1374,7 @@
 										}
 										groupZero.keycell.push(this);
 									}
-								});
+								});*/
 							}
 						}
 
