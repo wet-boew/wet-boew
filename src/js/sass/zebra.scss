@@ -63,4 +63,67 @@ table.wet-boew-zebra,table.wet-boew-zebra table{
 			background-color:#eee!important;
 		}
 	}
+	
+	/* Advance Zebra */
+	td.table-keycell{
+		font-style: italic;
+		padding: 8px;
+	}
+	td.table-desccell{
+		font-style: italic;
+		padding: 8px;
+		background-color: #F4F4F4!important;
+	}
+	td.table-summarycol3, td.table-summaryrow3 {
+		background-color: #9EE!important;
+	}
+	td.table-summarycol2, td.table-summaryrow2 {
+		background-color: #FAFAFA!important;
+	}
+	td.table-summarycol1, td.table-summaryrow1 {
+		background-color: #F4F4F4!important;
+	}
+	td.table-summarycol0, td.table-summaryrow0 {
+		background-color: #EEE!important;
+	}
+	
+	tbody.table-summary {
+		border-top: solid black 2px!important;
+	}
+	/*
+	 * I am not sure if we would like to style the cell header group, need to discuss
+	 *
+	th.table-headgroupcol1, th.table-headgrouprow1 {
+		background-color: #CCC;
+	}
+	th.table-headgroupcol2, th.table-headgrouprow2 {
+		background-color: #AAA;
+	}
+	th.table-headgroupcol3, th.table-headgrouprow3 {
+		background-color: #999;
+	}
+	*/
+	th.table-hover {
+		background-color: lightgray;
+	}
+	
+	td.table-layoutCell, th.table-layoutCell{
+		background-color: white!important;
+	}
+	col {
+		&.table-odd {
+			background-color:#f0fcff;
+		}
+		&.table-even {
+			background-color:transparent;
+		}
+		
+		&.table-hover {
+			background-color:#eee!important;
+		}
+	
+	}
+	
+	
+
 }
