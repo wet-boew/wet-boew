@@ -84,21 +84,22 @@
 				groupZero.rowgroup = [];
 			}
 			if (!groupZero.lstrowgroup) {
-				groupZero.lstrowgroup = [];
+				// groupZero.lstrowgroup = [];
+				groupZero.lstrowgroup = lstRowGroup;
 			}
 			groupZero.elem = obj;
 			groupZero.uid = uidElem;
-			uidElem++; // Set the uid for the groupZero
+			uidElem += 1; // Set the uid for the groupZero
 			groupZero.colcaption = {}; // Group Cell Header at level 0, scope=col
 			groupZero.colcaption.uid = uidElem;
-			uidElem++;
+			uidElem += 1;
 			groupZero.colcaption.elem = undefined;
 			groupZero.colcaption.type = 7;
 			groupZero.colcaption.dataset = [];
 			groupZero.colcaption.summaryset = [];
 			groupZero.rowcaption = {}; // Group Cell Header at level 0, scope=row
 			groupZero.rowcaption.uid = uidElem;
-			uidElem++;
+			uidElem += 1;
 			groupZero.rowcaption.elem = undefined;
 			groupZero.rowcaption.type = 7;
 			groupZero.rowcaption.dataset = [];
@@ -116,33 +117,32 @@
 				//	Recommanded is encapsulate the caption with "strong"
 				//	Use Details/Summary element
 				//	Use a simple paragraph
-				var caption, 
+				var caption,
 					captionFound,
 					description = [];
-				if($(elem).children().length > 0){
+				if ($(elem).children().length > 0) {
 					// Use the contents function to retreive the caption
-					$(elem).contents().filter(function() {
-						if(!caption && this.nodeType === 3){ // Text Node
+					$(elem).contents().filter(function () {
+						if (!caption && this.nodeType === 3) { // Text Node
 							// Doesn't matter what it is, but this will be considerated as the caption
 							// if is not empty
-							caption = $(this).text().replace(/^\s+|\s+$/g,"");
-							if(caption.length !== 0){
+							caption = $(this).text().replace(/^\s+|\s+$/g, "");
+							if (caption.length !== 0) {
 								caption = this;
 								captionFound = true;
 								return;
-							} else {
-								caption = false;
 							}
-						} else if(!caption && this.nodeType === 1){
+							caption = false;
+						} else if (!caption && this.nodeType === 1) {
 							// Doesn't matter what it is, the first children element will be considerated as the caption
 							caption = this;
 							return;
 						}
 					});
 					// Use the children function to retreive the description
-					$(elem).children().filter(function() {
+					$(elem).children().filter(function () {
 						// if the caption are an element, we should ignore the first one
-						if(captionFound){
+						if (captionFound) {
 							description.push(this);
 						} else {
 							captionFound = true;
@@ -153,12 +153,12 @@
 				}
 				// console.log(caption);
 				// Move the descriptin in a wrapper if there is more than one element
-				if(description.length > 1){
+				if (description.length > 1) {
 					groupheadercell.description = $(description);
 				} else if (description.length === 1) {
 					groupheadercell.description = description[0];
 				}
-				if(caption) {
+				if (caption) {
 					groupheadercell.caption = caption;
 				}
 				groupheadercell.groupZero = groupZero;
@@ -177,7 +177,7 @@
 				colgroup.elem = elem;
 				$(elem).data().tblparser = colgroup;
 				colgroup.uid = uidElem;
-				uidElem++;
+				uidElem += 1;
 				groupZero.allParserObj.push(colgroup);
 				if (colgroupFrame.length !== 0) {
 					colgroup.start = colgroupFrame[colgroupFrame.length - 1].end + 1;
@@ -195,7 +195,7 @@
 							groupZero: groupZero
 						};
 					col.uid = uidElem;
-					uidElem++;
+					uidElem += 1;
 					groupZero.allParserObj.push(col);
 					col.start = colgroup.start + colgroupspan;
 					col.end = colgroup.start + colgroupspan + width - 1; // Minus one because the default value was already calculated
@@ -212,7 +212,7 @@
 						i;
 					colgroupspan += width;
 					// Create virtual column 
-					for (i = colgroup.start; i < (colgroup.start + colgroupspan); i++) {
+					for (i = colgroup.start; i < (colgroup.start + colgroupspan); i += 1) {
 						var col = {
 							start: 0,
 							end: 0,
@@ -220,7 +220,7 @@
 							elem: undefined
 						};
 						col.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(col);
 						col.start = i;
 						col.end = i;
@@ -232,6 +232,9 @@
 				colgroupFrame.push(colgroup);
 			}
 			function processRowgroupHeader(colgroupHeaderColEnd) { // thead row group processing
+				if(groupZero.colgrouphead){
+					return; // Prevent multiple call
+				}
 				if (colgroupHeaderColEnd && colgroupHeaderColEnd > 0) {
 					// The first colgroup must match the colgroupHeaderColEnd
 					if (colgroupFrame.length > 0 && (colgroupFrame[0].start != 1 || (colgroupFrame[0].end != colgroupHeaderColEnd && colgroupFrame[0].end != (colgroupHeaderColEnd + 1)))) {
@@ -245,6 +248,7 @@
 				} else {
 					colgroupHeaderColEnd = 0; // This mean that are no colgroup designated to be a colgroup header
 				}
+				// console.log('Call ProcessRowGroupHeader');
 				
 				// Associate any descriptive cell to his top header
 				for(i=0; i<theadRowStack.length; i++) {
@@ -345,7 +349,6 @@
 				// Parser any cell in the colgroup header
 				if (colgroupHeaderColEnd >0 && colgroupFrame.length == 1 || colgroupFrame.length == 0) {
 					// There are no colgroup element defined, All the cell will be considerated to be a data cell
-					
 					// Data Colgroup
 					var dataColgroup = {};
 					var dataColumns = [];
@@ -358,7 +361,7 @@ elem: undefined,
 type: 2 // Set colgroup data type
 					}
 					colgroup.uid = uidElem;
-					uidElem++;
+					uidElem += 1;
 					groupZero.allParserObj.push(colgroup);
 					
 					if (colgroup.start > colgroup.end) {
@@ -378,7 +381,7 @@ groupZero: groupZero,
 elem: undefined
 						}
 						col.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(col);
 						
 						if (!groupZero.col) {
@@ -412,7 +415,7 @@ groupZero: groupZero,
 type: 1 // Set colgroup data type
 						}
 						hcolgroup.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(hcolgroup);
 						
 						colgroupFrame.push(hcolgroup);
@@ -429,7 +432,7 @@ groupZero: groupZero,
 elem: undefined
 							}
 							col.uid = uidElem;
-							uidElem++;
+							uidElem += 1;
 							groupZero.allParserObj.push(col);
 							
 							if (!groupZero.col) {
@@ -463,8 +466,8 @@ elem: undefined
 					for(i=0; i<groupZero.col.length; i++) {
 						groupZero.col[i].header = [];
 						for(j=0; j<tmpStack.length; j++) {
-							for(m=groupZero.col[i].start; m<= groupZero.col[i].end; m++) {
-								groupZero.col[i].header.push(tmpStack[j].cell[m]);
+							for (m = groupZero.col[i].start; m <= groupZero.col[i].end; m++) {
+								groupZero.col[i].header.push(tmpStack[j].cell[m-1]);
 							}
 						}
 					}
@@ -863,8 +866,11 @@ type: 2 // Set colgroup data type, that is the initial colgroup type
 
 				
 				// if no cell in the stack but first row group, mark this row group as a data row group
+				// console.log('rowgroupHeaderRowStack.length: ' + rowgroupHeaderRowStack.length);
+				// console.log(currentRowGroup);
+				// console.log('lstRowGroup.length: ' + lstRowGroup.length);
 				if (rowgroupHeaderRowStack.length == 0 && 
-						(!currentRowGroup || (currentRowGroup.type && currentRowGroup.type == 1)) && 
+						// (!currentRowGroup || (currentRowGroup.type && currentRowGroup.type == 1)) && 
 						lstRowGroup.length == 0) {
 					
 					if (currentRowGroup.type && currentRowGroup.type == 1) {
@@ -875,6 +881,7 @@ type: 2 // Set colgroup data type, that is the initial colgroup type
 					// This is the first data row group at level 1
 					currentRowGroup.type = 2;
 					currentRowGroup.level = 1; // Default Row Group Level
+					
 				}
 
 				// if no cell in the stack and not the first row group, this are a summary group
@@ -883,7 +890,7 @@ type: 2 // Set colgroup data type, that is the initial colgroup type
 				}
 				
 
-				// console.log(rowgroupHeaderRowStack);
+				// console.log(rowgroupHeaderRowStack); rowlevel
 				// console.log(currentRowGroup);
 				
 				rowgroupHeaderRowStack = []; // reset the row header stack	
@@ -966,6 +973,10 @@ type: 2 // Set colgroup data type, that is the initial colgroup type
 					
 				}
 				
+				if(!currentRowGroup.level || currentRowGroup.level < 0){
+					errorTrigger('You can not have a summary at level under 0, add a group header or merge a tbody togheter', currentRowGroup.elem);
+				}
+				
 			}
 			
 			
@@ -994,7 +1005,8 @@ rowpos: currentRowPos
 				$(elem).data().tblparser = row;
 				
 				row.uid = uidElem;
-				uidElem++;
+				uidElem += 1;
+				row.groupZero = groupZero;
 				groupZero.allParserObj.push(row);
 				
 				var colgroup = {
@@ -1004,7 +1016,7 @@ type: false // 1 == header, 2 == data, 3 == summary, 4 == key, 5 == description,
 				}
 
 				colgroup.uid = uidElem;
-				uidElem++;
+				uidElem += 1;
 				groupZero.allParserObj.push(colgroup);
 				
 				
@@ -1024,7 +1036,7 @@ cell: [],
 type: 1
 						};
 						colgroup.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(colgroup);
 					}
 					colgroup.cell.push(headerCell);
@@ -1050,7 +1062,7 @@ cell: [],
 type: 2
 						};
 						colgroup.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(colgroup);
 					}
 
@@ -1118,7 +1130,7 @@ elem: this,
 						headerCell.groupZero = groupZero;
 						
 						headerCell.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(headerCell);
 						
 						fnPreProcessGroupHeaderCell(headerCell);
@@ -1156,7 +1168,7 @@ elem: this
 						dataCell.groupZero = groupZero;
 						
 						dataCell.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(dataCell);
 						
 						fnPreProcessGroupDataCell(dataCell);
@@ -1338,7 +1350,7 @@ elem: this
 						};
 						
 						grpRowHeader.uid = uidElem;
-						uidElem++;
+						uidElem += 1;
 						groupZero.allParserObj.push(grpRowHeader);	
 						
 						console.log(rowgroupHeaderRowStack);
@@ -1520,12 +1532,13 @@ elem: this
 					//
 					// Process the table row heading and colgroup if required
 					//
+					processRowgroupHeader(lastHeadingColPos);
 					if (colgroupFrame.length != 0) {
 						
 						// We check the first colgroup to know if a colgroup type has been defined
 						if (!(colgroupFrame[0].type)) {
 							
-							processRowgroupHeader(lastHeadingColPos);
+							// processRowgroupHeader(lastHeadingColPos);
 							
 							// Match the already defined colgroup tag with the table rowgroup heading section
 							
@@ -1535,7 +1548,7 @@ elem: this
 						}
 						
 					} else {
-						processRowgroupHeader(lastHeadingColPos);
+						// processRowgroupHeader(lastHeadingColPos);
 						
 						// If the table have a table rowgroup heading section, let that to be transformed into colgroup
 						
@@ -1579,8 +1592,12 @@ elem: this
 								}
 								
 								// Test if this cell is a layout cell
-								if (row.type == 3 && colgroupFrame[j].type == 3 && ($(row.cell[i].elem).html().length == 0)) {
+								if (row.type == 3 && colgroupFrame[j].type == 3 && ($(row.cell[i].elem).text().length === 0)) {
 									row.cell[i].type = 6;
+									if (!groupZero.layoutCell) {
+										groupZero.layoutCell = [];
+									}
+									groupZero.layoutCell.push(row.cell[i]);
 								}
 								
 								row.cell[i].collevel = colgroupFrame[j].level;
@@ -1659,6 +1676,7 @@ elem: this
 					groupZero.row = [];
 				}
 				groupZero.row.push(row);
+				currentRowGroup.row.push(row);
 				
 
 

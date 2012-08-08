@@ -172,13 +172,13 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		
 	}
 	
-	newzebra('table:eq(0)', false);
-	newzebra('table:eq(1)', true);
-	newzebra('table:eq(2)', true);
+	// newzebra('table:eq(0)', false);
+	// newzebra('table:eq(1)', true);
+	// newzebra('table:eq(2)', true);
 	
-	newzebra('table:eq(4)', true);
-	newzebra('table:eq(5)', false);
-	newzebra('table:eq(6)', true);
+	// newzebra('table:eq(4)', true);
+	// newzebra('table:eq(5)', false);
+	// newzebra('table:eq(6)', true);
 	
 	});
 	//]]>
@@ -273,9 +273,75 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<li><a href="#sample7">Sample Table #7</a></li>
 </ul>
 
+<h3>Simple Table with Zebra and the Parser</h3>
+<table class="wet-boew-zebra">
+	<caption>A Caption</caption>
+		<!--<colgroup>
+			<col />
+		</colgroup>
+		<colgroup>
+			<col />
+			<col />
+			<col />
+			<col />
+		</colgroup>-->
+		<tbody>
+		<tr>
+			<th></th>
+			<th>Header b</th>
+			<th>Header c</th>
+			<th>Header d</th>
+			<th>Header e</th>
+		</tr>
+
+		<tr>
+			<th>Item 2a</th>
+			<td>Data 1b</td>
+			<td>Data 2c</td>
+			<td>Data 3d</td>
+			<td>Data 4e</td>
+		</tr>
+		<tr>
+			<th>Item 3a</th>
+			<td>Data 1b</td>
+			<td>Data 2c</td>
+			<td>Data 3d</td>
+			<td>Data 4e</td>
+		</tr>
+		<tr>
+			<th>Item 1a</th>
+			<td>Data 1b</td>
+			<td>Data 2c</td>
+			<td>Data 3d</td>
+			<td>Data 4e</td>
+		</tr>
+		<tr>
+			<th>Item 2a</th>
+			<td>Data 1b</td>
+			<td>Data 2c</td>
+			<td>Data 3d</td>
+			<td>Data 4e</td>
+		</tr>
+		<tr>
+			<th>Item 3a</th>
+			<td>Data 1b</td>
+			<td>Data 2c</td>
+			<td>Data 3d</td>
+			<td>Data 4e</td>
+		</tr>
+		<tbody>
+		<tr>
+			<th>Total</th>
+			<td>Data 1b</td>
+			<td>Data 2c</td>
+			<td>Data 3d</td>
+			<td>Data 4e</td>
+		</tr>
+</table>
+
 <h3 id="sample1">Sample Table #1</h3>
 
-<table>
+<table class="wet-boew-zebra">
 	<caption>Summary Column Highlight, No Column Hover</caption>
 	<colgroup span="3"></colgroup>
 	
@@ -466,6 +532,43 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			<td>125 $</td>
 			<td>221 $</td>
 		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<td>wet-boew-zebra</td>
+			<th>Zebra</th>
+			<td>Present usable tabular data</td>
+			<td>2</td>
+			<td>48 $</td>
+			<td>96 $</td>
+			<td>5</td>
+			<td>25 $</td>
+			<td>125 $</td>
+			<td>221 $</td>
+		</tr>		<tr>
+			<td>wet-boew-zebra</td>
+			<th>Zebra</th>
+			<td>Present usable tabular data</td>
+			<td>2</td>
+			<td>48 $</td>
+			<td>96 $</td>
+			<td>5</td>
+			<td>25 $</td>
+			<td>125 $</td>
+			<td>221 $</td>
+		</tr>		<tr>
+			<td>wet-boew-zebra</td>
+			<th>Zebra</th>
+			<td>Present usable tabular data</td>
+			<td>2</td>
+			<td>48 $</td>
+			<td>96 $</td>
+			<td>5</td>
+			<td>25 $</td>
+			<td>125 $</td>
+			<td>221 $</td>
+		</tr>	</tbody>
+	<tbody>
 		<tr>
 			<td>wet-boew-zebra</td>
 			<th>Zebra</th>
@@ -478,18 +581,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			<td>125 $</td>
 			<td>221 $</td>
 		</tr>
-		<tr>
-			<td>wet-boew-zebra</td>
-			<th>Zebra</th>
-			<td>Present usable tabular data</td>
-			<td>2</td>
-			<td>48 $</td>
-			<td>96 $</td>
-			<td>5</td>
-			<td>25 $</td>
-			<td>125 $</td>
-			<td>221 $</td>
-		</tr>
+	</tbody>
+	<tbody>
 		<tr>
 			<td>wet-boew-zebra</td>
 			<th>Zebra</th>
@@ -511,7 +604,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h3 id="sample2">Sample Table #2</h3>
 
-<table>
+<table class="wet-boew-zebra">
 	<caption>Summary Column Highlight, With Column Hover</caption>
 	<colgroup span="3"></colgroup>
 	
@@ -747,7 +840,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	
 <h3 id="sample3">Sample Table #3</h3>
 
-<table>
+<table class="wet-boew-zebra">
 	<caption>Last Summary Column Highlight and Column Hover</caption>
 	<colgroup span="3"></colgroup>
 	
