@@ -71,16 +71,23 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false, disable;
+			var hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false, disable, disablels;
+
+			// Load polyfills that need to be loaded before anything else
+			pe.polyfills.init();
 
 			// Get the query parameters from the URL
 			pe.urlquery = pe.url(document.location).params;
 
-			// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string
-			disable = pe.urlquery.pedisable;
+			// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string or localStorage
+			disablels = localStorage.getItem('pedisable');
+			disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels);
 			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
 				$('html').addClass('pe-disable');
+				localStorage.setItem('pedisable', 'true');
 				return false;
+			} else if (disable === "false" || disablels !== null) {
+				localStorage.setItem('pedisable', 'false');
 			}
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
@@ -207,7 +214,7 @@
 				pe.add.language(pe.language);
 			});
 
-			pe.polyfills();
+			pe.polyfills.load();
 		},
 		/**
 		 * @namespace pe.depends
@@ -842,76 +849,92 @@
 		 * @function
 		 * @return {void}
 		 */
-		polyfills: function () {
-			var lib = pe.add.liblocation,
-				elms,
-				// modernizer test for detailsummary support
-				details = (function (doc) {
-					var el = doc.createElement('details'),
-						fake,
-						root,
-						diff;
-					if (typeof el.open === "undefined") {
-						return false;
+		polyfills: (function () {
+			return {
+				/**
+				 * Polyfills to be loaded before everything else (pre-kill switch)
+				 * @memberof pe.polyfills
+				 */
+				init: function () {
+					var lib = pe.add.liblocation;
+					// localstorage
+					if (!window.localStorage) {
+						pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js');
 					}
-					root = doc.body || (function () {
-						var de = doc.documentElement;
-						fake = true;
-						return de.insertBefore(doc.createElement('body'), de.firstElementChild || de.firstChild);
+				},
+				/**
+				 * Polyfills to be loaded later on (post-kill switch)
+				 * @memberof pe.polyfills
+				 */
+				load: function () {
+					var lib = pe.add.liblocation,
+						elms,
+						// modernizer test for detail/summary support
+						details = (function (doc) {
+							var el = doc.createElement('details'),
+								fake,
+								root,
+								diff;
+							if (typeof el.open === "undefined") {
+								return false;
+							}
+							root = doc.body || (function () {
+								var de = doc.documentElement;
+								fake = true;
+								return de.insertBefore(doc.createElement('body'), de.firstElementChild || de.firstChild);
+							}
+							());
+							el.innerHTML = '<summary>a</summary>b';
+							el.style.display = 'block';
+							root.appendChild(el);
+							diff = el.offsetHeight;
+							el.open = true;
+							diff = diff !== el.offsetHeight;
+							root.removeChild(el);
+							if (fake) {
+								root.parentNode.removeChild(root);
+							}
+							return diff;
+						}(document)),
+						datepicker = (function (doc) {
+							var el = doc.createElement('input');
+							el.setAttribute('type', 'date');
+							el.value = ':)';
+							return el.value !== ':)';
+						}(document));
+					// progress
+					if (typeof document.createElement('progress').position === "undefined") {
+						elms = $('progress');
+						if (elms.length > 0) {
+							pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
+							elms.addClass('polyfill');
+						}
 					}
-					());
-					el.innerHTML = '<summary>a</summary>b';
-					el.style.display = 'block';
-					root.appendChild(el);
-					diff = el.offsetHeight;
-					el.open = true;
-					diff = diff !== el.offsetHeight;
-					root.removeChild(el);
-					if (fake) {
-						root.parentNode.removeChild(root);
+					// details + summary
+					if (!details) {
+						elms = $('details');
+						if (elms.length > 0) {
+							pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
+							elms.addClass('polyfill');
+						}
 					}
-					return diff;
-				}(document)),
-				datepicker = (function (doc) {
-					var el = doc.createElement('input');
-					el.setAttribute('type', 'date');
-					el.value = ':)';
-					return el.value !== ':)';
-				}(document));
-			// localstorage
-			if (!window.localStorage) {
-				pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js');
-			}
-			// progress
-			if (typeof document.createElement('progress').position === "undefined") {
-				elms = $('progress');
-				if (elms.length > 0) {
-					pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
-					elms.addClass('polyfill');
+					// datalist
+					if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
+						elms = $('input[list]');
+						if (elms.length > 0) {
+							pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
+							elms.addClass('polyfill');
+						}
+					}
+					// datepicker
+					if (!datepicker) {
+						pe.add._load(lib + 'polyfills/datepicker' + pe.suffix + '.js');
+						$('input[type="date"]').addClass("polyfill");
+					}
 				}
-			}
-			// details + summary
-			if (!details) {
-				elms = $('details');
-				if (elms.length > 0) {
-					pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
-					elms.addClass('polyfill');
-				}
-			}
-			// datalist
-			if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
-				elms = $('input[list]');
-				if (elms.length > 0) {
-					pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
-					elms.addClass('polyfill');
-				}
-			}
-			// datepicker
-			if (!datepicker) {
-				pe.add._load(lib + 'polyfills/datepicker' + pe.suffix + '.js');
-				$('input[type="date"]').addClass("polyfill");
-			}
-		},
+			};
+		}
+		()),
 		/**
 		 * A series of chainable methods to add elements to the head ( async )
 		 * @namespace pe.add
