@@ -50,7 +50,8 @@
 				currentRowGroup,
 				currentRowGroupElement,
 				lstRowGroup = [],
-				rowgroupheadercalled = false;
+				rowgroupheadercalled = false,
+				hasTfoot = $(obj).has('tfoot');
 
 			// Check if this table was already parsed, if yes we exit by throwing an error
 			if ($(obj).tblparser) {
@@ -1552,6 +1553,10 @@
 					// Here it's not possible to  Diggest the thead and the colgroup because we need the first data row to be half processed before
 					break;
 				case 'tbody':
+				case 'tfoot':
+				
+					// TODO: Add support if tfoot are defined before the tbody
+
 					currentRowGroupElement = this;
 					initiateRowGroup();
 
@@ -1594,13 +1599,13 @@
 					currentTbodyID += 1;
 					finalizeRowGroup();
 					break;
-				case 'tfoot':
-					currentRowGroupElement = this;
+					// case 'tfoot':
+					//currentRowGroupElement = this;
 
 					// The rowpos are not incremented here because this is a summary rowgroup for the GroupZero
 
 					// TODO: Question: Stack any row and processed them at the really end ???
-					break;
+					// break;
 				case 'tr':
 					// This are suppose to be a simple table
 					processRow(this);
