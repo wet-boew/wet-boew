@@ -167,7 +167,13 @@
 			"%jqm-expand" : " cliquer pour afficher le contenu",
 			"%jqm-collapse" : " cliquer pour masquer le contenu",
 			"%jqm-clear-search" : "effacer le texte",
-			"%jqm-filter" : "Filtrer des articles..."
+			"%jqm-filter" : "Filtrer des articles...",
+			/* Charts widget */
+			"%table-mention": "- Tableau",
+			"%table-following": "- Graphique. Plus de détails dans le tableau suivant.",
+			/* Disable/enable PE */
+			"%pe-disable": "Version HTML simplifiée",
+			"%pe-enable": "Version standard"
 		}
 	};
 	$(document).trigger("languageloaded");

@@ -71,17 +71,13 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var $lch3, $o, hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false, disable;
+			var hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false, disable, disablels;
+
+			// Load polyfills that need to be loaded before anything else
+			pe.polyfills.init();
 
 			// Get the query parameters from the URL
 			pe.urlquery = pe.url(document.location).params;
-
-			// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string
-			disable = pe.urlquery.pedisable;
-			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
-				$('html').addClass('pe-disable');
-				return false;
-			}
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
@@ -101,6 +97,9 @@
 						pushStateEnabled: false,
 						autoInitializePage: (init_on_mobileinit ? true : false)
 					});
+					if (init_on_mobileinit) {
+						pe.mobilelang();
+					}
 				});
 
 				// Replace hash with ?hashtarget= for links to other pages
@@ -155,7 +154,7 @@
 				}
 			}
 
-			//Load ajax content
+			// Load ajax content
 			$.when.apply($, $.map($("*[data-ajax-replace], *[data-ajax-append]"), function (o) {
 				var $o = $(o),
 					replace = false,
@@ -175,23 +174,31 @@
 			})).always(function () {
 				//Wait for localisation and ajax content to load plugins
 				$(document).on("languageloaded", function () {
+					// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string or localStorage
+					disablels = localStorage.getItem('pedisable');
+					disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels);
+					if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
+						$('html').addClass('pe-disable');
+						localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
+						$('#wb-tphp').append('<li><a href="?pedisable=false">' + pe.dic.get('%pe-enable') + '</a></li>'); // Add link to re-enable PE
+						return false;
+					} else if (disable === "false" || disablels !== null) {
+						localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
+					}
+					$('#wb-tphp').append('<li><a href="?pedisable=true">' + pe.dic.get('%pe-disable') + '</a></li>'); // Add link to disable PE
+
+					// Load the remaining polyfills
+					pe.polyfills.load();
+
 					if (wet_boew_theme !== null) {
 						// Initialize the theme
 						wet_boew_theme.init();
 
 						//Load the mobile view
 						if (pe.mobile === true) {
-							// Apply internationalization to jQuery Mobile
-							$.mobile.collapsible.prototype.options.expandCueText = pe.dic.get('%jqm-expand');
-							$.mobile.collapsible.prototype.options.collapseCueText = pe.dic.get('%jqm-collapse');
-							$.mobile.dialog.prototype.options.closeBtnText = pe.dic.get('%close');
-							$.mobile.page.prototype.options.backBtnText = pe.dic.get('%back');
-							$.mobile.textinput.prototype.options.clearSearchButtonText = pe.dic.get('%jqm-clear-search');
-							$.mobile.selectmenu.prototype.options.closeText = pe.dic.get('%close');
-							$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
-
 							$(document).on("mobileviewloaded", function () {
-								if ($.mobile !== undefined) {
+								if (typeof $.mobile !== "undefined") {
+									pe.mobilelang();
 									$.mobile.initializePage();
 								} else {
 									init_on_mobileinit = true;
@@ -200,7 +207,8 @@
 							wet_boew_theme.mobileview();
 						}
 					} else if (pe.mobile === true) {
-						if ($.mobile !== undefined) {
+						if (typeof $.mobile !== "undefined") {
+							pe.mobilelang();
 							$.mobile.initializePage();
 						} else {
 							init_on_mobileinit = true;
@@ -210,8 +218,6 @@
 				});
 				pe.add.language(pe.language);
 			});
-
-			pe.polyfills();
 		},
 		/**
 		 * @namespace pe.depends
@@ -268,6 +274,16 @@
 		mobile: false,
 		mobilecheck: function () {
 			return (window.innerWidth < 768 && !(pe.ie > 0 && pe.ie < 9));
+		},
+		mobilelang: function () {
+			// Apply internationalization to jQuery Mobile
+			$.mobile.collapsible.prototype.options.expandCueText = pe.dic.get('%jqm-expand');
+			$.mobile.collapsible.prototype.options.collapseCueText = pe.dic.get('%jqm-collapse');
+			$.mobile.dialog.prototype.options.closeBtnText = pe.dic.get('%close');
+			$.mobile.page.prototype.options.backBtnText = pe.dic.get('%back');
+			$.mobile.textinput.prototype.options.clearSearchButtonText = pe.dic.get('%jqm-clear-search');
+			$.mobile.selectmenu.prototype.options.closeText = pe.dic.get('%close');
+			$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
 		},
 		/**
 		 * The pe aware page query to append items to
@@ -730,7 +746,7 @@
 				if (menuitems.first().is('ul')) {
 					menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
 				} else {
-					menuitems.each(function (index) {
+					menuitems.each(function () {
 						var $this = $(this);
 						// If the menu item is a heading
 						if ($this.is('h' + hlevel)) {
@@ -836,65 +852,92 @@
 		 * @function
 		 * @return {void}
 		 */
-		polyfills: function () {
-			var lib = pe.add.liblocation,
-				elms,
-				// modernizer test for detailsummary support
-				details = (function (doc) {
-					var el = doc.createElement('details'),
-						fake,
-						root,
-						diff;
-					if (typeof el.open === "undefined") {
-						return false;
+		polyfills: (function () {
+			return {
+				/**
+				 * Polyfills to be loaded before everything else (pre-kill switch)
+				 * @memberof pe.polyfills
+				 */
+				init: function () {
+					var lib = pe.add.liblocation;
+					// localstorage
+					if (!window.localStorage) {
+						pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js');
 					}
-					root = doc.body || (function () {
-						var de = doc.documentElement;
-						fake = true;
-						return de.insertBefore(doc.createElement('body'), de.firstElementChild || de.firstChild);
+				},
+				/**
+				 * Polyfills to be loaded later on (post-kill switch)
+				 * @memberof pe.polyfills
+				 */
+				load: function () {
+					var lib = pe.add.liblocation,
+						elms,
+						// modernizer test for detail/summary support
+						details = (function (doc) {
+							var el = doc.createElement('details'),
+								fake,
+								root,
+								diff;
+							if (typeof el.open === "undefined") {
+								return false;
+							}
+							root = doc.body || (function () {
+								var de = doc.documentElement;
+								fake = true;
+								return de.insertBefore(doc.createElement('body'), de.firstElementChild || de.firstChild);
+							}
+							());
+							el.innerHTML = '<summary>a</summary>b';
+							el.style.display = 'block';
+							root.appendChild(el);
+							diff = el.offsetHeight;
+							el.open = true;
+							diff = diff !== el.offsetHeight;
+							root.removeChild(el);
+							if (fake) {
+								root.parentNode.removeChild(root);
+							}
+							return diff;
+						}(document)),
+						datepicker = (function (doc) {
+							var el = doc.createElement('input');
+							el.setAttribute('type', 'date');
+							el.value = ':)';
+							return el.value !== ':)';
+						}(document));
+					// progress
+					if (typeof document.createElement('progress').position === "undefined") {
+						elms = $('progress');
+						if (elms.length > 0) {
+							pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
+							elms.addClass('polyfill');
+						}
 					}
-					());
-					el.innerHTML = '<summary>a</summary>b';
-					el.style.display = 'block';
-					root.appendChild(el);
-					diff = el.offsetHeight;
-					el.open = true;
-					diff = diff !== el.offsetHeight;
-					root.removeChild(el);
-					if (fake) {
-						root.parentNode.removeChild(root);
+					// details + summary
+					if (!details) {
+						elms = $('details');
+						if (elms.length > 0) {
+							pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
+							elms.addClass('polyfill');
+						}
 					}
-					return diff;
-				}(document));
-			// localstorage
-			if (!window.localStorage) {
-				pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js');
-			}
-			// progress
-			if (typeof document.createElement('progress').position === "undefined") {
-				elms = $('progress');
-				if (elms.length > 0) {
-					pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
-					elms.addClass('polyfill');
+					// datalist
+					if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
+						elms = $('input[list]');
+						if (elms.length > 0) {
+							pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
+							elms.addClass('polyfill');
+						}
+					}
+					// datepicker
+					if (!datepicker) {
+						pe.add._load(lib + 'polyfills/datepicker' + pe.suffix + '.js');
+						$('input[type="date"]').addClass("polyfill");
+					}
 				}
-			}
-			// details + summary
-			if (!details) {
-				elms = $('details');
-				if (elms.length > 0) {
-					pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
-					elms.addClass('polyfill');
-				}
-			}
-			// datalist
-			if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
-				elms = $('input[list]');
-				if (elms.length > 0) {
-					pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
-					elms.addClass('polyfill');
-				}
-			}
-		},
+			};
+		}
+		()),
 		/**
 		 * A series of chainable methods to add elements to the head ( async )
 		 * @namespace pe.add

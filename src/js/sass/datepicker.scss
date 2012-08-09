@@ -12,18 +12,29 @@
 .picker-close {
 	float: right;
 }
-.picker-field{
+
+.picker-field, input[type="date"] {
 	width:7em;
 }
-.picker-toggle-visible, .picker-toggle-hidden{
-	margin-left:1em;
-	img{
-		width: auto;
-	}
-	a{
-		margin-left:0.5em;
-	}
+
+.picker-toggle {
+	display: none;
 }
+
+.picker-toggle-visible, .picker-toggle-hidden{
+	padding: 10px;
+}
+
+.picker-toggle-visible img, .picker-toggle-hidden img{
+	margin: 0;
+    vertical-align: middle;
+	width: auto;
+}
+
+.picker-toggle-visible a, .picker-toggle-hidden a{
+	margin-left:0.5em;
+}
+
 div.cal-days {
 	a{
 		text-decoration:underline;

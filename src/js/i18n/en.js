@@ -171,7 +171,13 @@
 			"%jqm-expand" : " click to expand contents",
 			"%jqm-collapse" : " click to collapse contents",
 			"%jqm-clear-search" : "clear search",
-			"%jqm-filter" : "Filter items..."
+			"%jqm-filter" : "Filter items...",
+			/* Charts widget */
+			"%table-mention": "Table",
+			"%table-following": "Chart. Details in table following.",
+			/* Disable/enable PE */
+			"%pe-disable": "Basic HTML version",
+			"%pe-enable": "Standard version"
 		}
 	};
 	$(document).trigger("languageloaded");

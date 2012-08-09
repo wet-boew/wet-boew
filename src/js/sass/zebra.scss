@@ -14,12 +14,14 @@ ol.wet-boew-zebra {
 	}
 }
 
-table.wet-boew-zebra,table.wet-boew-zebra table{
-    background-color:#fff;
-    border:1px solid #ccc;
-    border-collapse:collapse;
-    margin-bottom:10px;
-    margin-top:10px;
+table {
+	&.wet-boew-zebra,&.wet-boew-zebra table{
+		background-color:#fff;
+		border:1px solid #ccc;
+		border-collapse:collapse;
+		margin-bottom:10px;
+		margin-top:10px;
+	}
 }
  
 .wet-boew-zebra {
@@ -42,11 +44,49 @@ table.wet-boew-zebra,table.wet-boew-zebra table{
 		color:#333;
 		text-align:center;
 		padding:8px;
+		/*
+		 * I am not sure if we would like to style the cell header group, need to discuss
+		 *
+		&.table-headgroupcol1, &.table-headgrouprow1 {
+			background-color: #CCC;
+		}
+		&.table-headgroupcol2, &.table-headgrouprow2 {
+			background-color: #AAA;
+		}
+		&.table-headgroupcol3, &.table-headgrouprow3 {
+			background-color: #999;
+		}
+		*/
+		&.table-hover {
+			background-color: lightgray;
+		}
 	}
 	td{
 		border:1px solid #ccc;
 		vertical-align:top;
 		padding:5px 10px;
+		/* Advance Zebra */
+		&.table-keycell{
+			font-style: italic;
+			padding: 8px;
+		}
+		&.table-desccell{
+			font-style: italic;
+			padding: 8px;
+			background-color: #F4F4F4!important;
+		}
+		&.table-summarycol3, &.table-summaryrow3 {
+			background-color: #9EE!important;
+		}
+		&.table-summarycol2, &.table-summaryrow2 {
+			background-color: #FAFAFA!important;
+		}
+		&.table-summarycol1, &.table-summaryrow1 {
+			background-color: #F4F4F4!important;
+		}
+		&.table-summarycol0, &.table-summaryrow0 {
+			background-color: #EEE!important;
+		}
 	}
 	tr{
 		&.table-odd, &.table-even tr.table-odd{
@@ -60,6 +100,26 @@ table.wet-boew-zebra,table.wet-boew-zebra table{
 			}
 		}
 		&.table-hover td{
+			background-color:#eee!important;
+		}
+	}
+	tbody.table-summary {
+		border-top: solid black 2px!important;
+	}
+	td, th {
+		&.table-layoutCell {
+			background-color: white!important;
+		}
+	}
+	col {
+		&.table-odd {
+			background-color:#f0fcff;
+		}
+		&.table-even {
+			background-color:transparent;
+		}
+		
+		&.table-hover {
 			background-color:#eee!important;
 		}
 	}
