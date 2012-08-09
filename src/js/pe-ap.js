@@ -79,17 +79,6 @@
 			// Get the query parameters from the URL
 			pe.urlquery = pe.url(document.location).params;
 
-			// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string or localStorage
-			disablels = localStorage.getItem('pedisable');
-			disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels);
-			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
-				$('html').addClass('pe-disable');
-				localStorage.setItem('pedisable', 'true');
-				return false;
-			} else if (disable === "false" || disablels !== null) {
-				localStorage.setItem('pedisable', 'false');
-			}
-
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
 
@@ -165,7 +154,7 @@
 				}
 			}
 
-			//Load ajax content
+			// Load ajax content
 			$.when.apply($, $.map($("*[data-ajax-replace], *[data-ajax-append]"), function (o) {
 				var $o = $(o),
 					replace = false,
@@ -185,6 +174,22 @@
 			})).always(function () {
 				//Wait for localisation and ajax content to load plugins
 				$(document).on("languageloaded", function () {
+					// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string or localStorage
+					disablels = localStorage.getItem('pedisable');
+					disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels);
+					if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
+						$('html').addClass('pe-disable');
+						localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
+						$('#wb-tphp').append('<li><a href="?pedisable=false">' + pe.dic.get('%pe-enable') + '</a></li>'); // Add link to re-enable PE
+						return false;
+					} else if (disable === "false" || disablels !== null) {
+						localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
+					}
+					$('#wb-tphp').append('<li><a href="?pedisable=true">' + pe.dic.get('%pe-disable') + '</a></li>'); // Add link to disable PE
+
+					// Load the remaining polyfills
+					pe.polyfills.load();
+
 					if (wet_boew_theme !== null) {
 						// Initialize the theme
 						wet_boew_theme.init();
@@ -213,8 +218,6 @@
 				});
 				pe.add.language(pe.language);
 			});
-
-			pe.polyfills.load();
 		},
 		/**
 		 * @namespace pe.depends
