@@ -103,9 +103,545 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <h1 id="cn-cont">About the Table Usability Concept</h1>
 
 
+<h2>Is it new ?</h2>
+<p>No. The table usability concept is essentially based on common use. But from the web editor perpective this concept would simplify his work on how he will use the HTML table markup. Both following tables are the same, their only difference is the first one use the zebra stripping and the other one not.</p>
+
+<div class="span-4">
+<table class="wet-boew-zebra">
+  <caption>
+	  Copyright applications filed and registered by province/territory
+  </caption>
+  <thead>
+  	<tr>
+    	<th>Province</th>
+    	<th> Filed</th>
+    	<th> Registered</th>
+  	</tr>
+  </thead>
+  
+  <tbody>
+  <tr>
+    <th>Alberta</th>
+    <td>697 </td>
+    <td>670 </td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>1175 </td>
+    <td>1137 </td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>140 </td>
+    <td>139 </td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>96 </td>
+    <td>92 </td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>66 </td>
+    <td>60 </td>
+  </tr>
+  <tr>
+    <th>Northwest      Territories</th>
+    <td>7 </td>
+    <td>5 </td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>111 </td>
+    <td>110 </td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>3235 </td>
+    <td>3136 </td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7 </td>
+    <td>7 </td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>2196 </td>
+    <td>2161 </td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>141 </td>
+    <td>139 </td>
+  </tr>
+  <tr>
+    <th>Yukon Territory</th>
+    <td>6 </td>
+    <td>6 </td>
+  </tr>
+  </tbody>
+  <tbody>
+  <tr>
+    <th>Total</th>
+    <td>7877</td>
+    <td>7662</td>
+  </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div class="span-4">
+<table>
+  <caption>
+	  Copyright applications filed and registered by province/territory
+  </caption>
+  <thead>
+  	<tr>
+    	<th>Province</th>
+    	<th> Filed</th>
+    	<th> Registered</th>
+  	</tr>
+  </thead>
+  
+  <tbody>
+  <tr>
+    <th>Alberta</th>
+    <td>697 </td>
+    <td>670 </td>
+  </tr>
+  <tr>
+    <th>British Columbia</th>
+    <td>1175 </td>
+    <td>1137 </td>
+  </tr>
+  <tr>
+    <th>Manitoba</th>
+    <td>140 </td>
+    <td>139 </td>
+  </tr>
+  <tr>
+    <th>New Brunswick</th>
+    <td>96 </td>
+    <td>92 </td>
+  </tr>
+  <tr>
+    <th>Newfoundland and Labrador</th>
+    <td>66 </td>
+    <td>60 </td>
+  </tr>
+  <tr>
+    <th>Northwest      Territories</th>
+    <td>7 </td>
+    <td>5 </td>
+  </tr>
+  <tr>
+    <th>Nova Scotia</th>
+    <td>111 </td>
+    <td>110 </td>
+  </tr>
+  <tr>
+    <th>Ontario</th>
+    <td>3235 </td>
+    <td>3136 </td>
+  </tr>
+  <tr>
+    <th>Prince Edward Island</th>
+    <td>7 </td>
+    <td>7 </td>
+  </tr>
+  <tr>
+    <th>Quebec</th>
+    <td>2196 </td>
+    <td>2161 </td>
+  </tr>
+  <tr>
+    <th>Saskatchewan</th>
+    <td>141 </td>
+    <td>139 </td>
+  </tr>
+  <tr>
+    <th>Yukon Territory</th>
+    <td>6 </td>
+    <td>6 </td>
+  </tr>
+  </tbody>
+  <tbody>
+  <tr>
+    <th>Total</th>
+    <td>7877</td>
+    <td>7662</td>
+  </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+<div class="clear-both"></div>
+
+<p>I am sure you will prefer the first table with the zebra stripping. Why ? Simply because you can see the perception of the row summary called &quot;Total&quot; at the end of the table. The table usability concept is about a technique how a web editor should implement the descriptive cell, the key cell (eg. Product ID), the data summaries and how to create and resolve complex table. The following tables quickly show the concept of descriptive cell, key cell and having data summaries. The second table is the same but without the zebra stripping.</p>
+
+
+<table class="wet-boew-zebra">
+	<caption>With the zebra stripping</caption>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+	</colgroup>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Summary</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th colspan="10">Row Group Heading</th>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="3">Summary</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10">Row Group Heading</th>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="3">Summary</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="3">Summary</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+
+<table>
+	<caption>With the zebra stripping</caption>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+	</colgroup>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Header</th>
+			<th>Summary</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th colspan="10">Row Group Heading</th>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="3">Summary</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10">Row Group Heading</th>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Header</th>
+			<td>Description</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="3">Summary</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="3">Summary</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Interrested ?</h2>
+
 <div class="span-8 module-alert">
 
-<p><strong>A knowledge about how to design a table in a HTML format</strong> would help to understand the table usability concept. The Table Usability Concept assume that you already know the definition from the W3C about table related element defined in the <a href="http://dev.w3.org/html5/spec/index.html">HTML 5 specification</a>.</p>
+<p><strong>A knowledge about how to design a table in a HTML format</strong> would help to understand this documentation. The Table Usability Concept assume that you already know the definition from the W3C related to table elements defined in the <a href="http://dev.w3.org/html5/spec/index.html">HTML 5 specification</a>.</p>
 
 <p>Here a quick view about the definition of each table related element:</p>
 <ul>
@@ -131,18 +667,23 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<li><strong><a href="http://dev.w3.org/html5/spec/the-td-element.html#the-td-element">td</a>:</strong> The td element represents a data cell in a table.</li>
 </ul>
 
-<p>A basic knowledge about the <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#processing-model-0">HTML table processing model</a> help on how to use the colspan and rowspan attribute on a cell in regards of the group element. This concept would not interfer with the specification to <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#header-and-data-cell-semantics">forming relationships between data cells and header cells</a> if the <a href="http://www.w3.org/TR/WCAG20-TECHS/H43.html">H43: Using id and headers attributes to associate data cells with header cells in data tables</a> is used.</p>
-
-<p><em>Information was taken from the HTML 5 specification, Editor's Draft 26 June 2012, Revision 1.5697</em></p>
+<p><em>Information was token from the HTML 5 specification, Editor's Draft 26 June 2012, Revision 1.5697</em></p>
 
 </div>
 
+<p>A basic knowledge about the <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#processing-model-0">HTML table processing model</a> help on how to use the colspan and rowspan attribute on a cell in regards of the group element. The table usability concep should not conflic with the specification to <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#header-and-data-cell-semantics">forming relationships between data cells and header cells</a> if the <a href="http://www.w3.org/TR/WCAG20-TECHS/H43.html">H43: Using id and headers attributes to associate data cells with header cells in data tables</a> is used.</p>
 
-<h2>Informative Element</h2>
-<p>The informative element is related to the visual look of the table. In the HTML the table informative element are: caption, th, td</p>
 
-<h2>Structural Element</h2>
-<p>A structural element is used to classify and give a particular sementic to the informative element and hidden. In the HTML the table structural element are: table, colgroup, col, thead, tbody, tfoot, tr.</p>
+
+<hr />
+
+<h2>Element Grouping</h2>
+
+<ul>
+	<li class="margin-bottom-large"><strong>Informative:</strong> The informative element is related to the visual look of the table. In the HTML the table informative element are: caption, th, td</li>
+
+	<li class="margin-bottom-large"><strong>Structural:</strong> A structural element is used to classify and give a particular sementic to the informative element and hidden. In the HTML the table structural element are: table, colgroup, col, thead, tbody, tfoot, tr.</li>
+</ul>	
 
 <h2>Element Classification</h2>
 <p>The Informative and Structural element are classified in forth category</p>
