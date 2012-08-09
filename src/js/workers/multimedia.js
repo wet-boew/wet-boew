@@ -549,7 +549,7 @@
 
 	//Method to allow the flash player to trigger the media events
 	_pe.triggermediaevent = function (id, event) {
-		var o = $("#" + id).find("object :first-child").trigger(event);
+		var o = $("#" + id).find("param:eq(0)").trigger(event);
 	};
 
 	window.pe = _pe;
