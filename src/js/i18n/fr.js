@@ -170,7 +170,10 @@
 			"%jqm-filter" : "Filtrer des articles...",
 			/* Charts widget */
 			"%table-mention": "- Tableau",
-			"%table-following": "- Graphique. Plus de détails dans le tableau suivant."
+			"%table-following": "- Graphique. Plus de détails dans le tableau suivant.",
+			/* Disable/enable PE */
+			"%pe-disable": "Version HTML simplifiée",
+			"%pe-enable": "Version standard"
 		}
 	};
 	$(document).trigger("languageloaded");
