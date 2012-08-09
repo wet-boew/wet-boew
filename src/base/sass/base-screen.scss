@@ -20,15 +20,13 @@ abbr,acronym{
 	}
 	li{
 		position:absolute;
-		top:0;
-		width:auto;
+		top:10px;
+		left:0;
+		width:100%;
 		z-index:3;
-		margin:auto;
-		left:43%;
+		text-align:center;
 	}
 	a{
-		display:inline-block;
-		width:100%;
 		padding:5px;
 		&, &:link, &:visited{
 			color:#FFF;
