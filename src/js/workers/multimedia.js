@@ -148,7 +148,7 @@
 				});
 
 				//Map UI keyboard events
-				elm.on("keypress", function (e) {console.log(e);
+				elm.on("keypress", function (e) {
 					var $w = $(this),
 						v = 0;
 
@@ -489,7 +489,6 @@
 				$.ajax({
 					url : url,
 					context : evtmgr,
-					crossDomain : true,
 					dataType : "html",
 					success : function (data, status, response) {
 						var eventObj = {type: "captionsloaded"};
@@ -500,7 +499,7 @@
 						}
 						$(this).trigger(eventObj);
 					},
-					error : function (reponse, textStatus, errorThrown) {
+					error : function (response, textStatus, errorThrown) {
 						$(this).trigger({type: "captionsloadfailed", error: errorThrown});
 					}
 				});
