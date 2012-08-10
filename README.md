@@ -90,5 +90,5 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 * Recommandations quant au formatage&#160;:
   * Ajouter les tabulations en utilisant le [style d'indentation K&amp;R](http://fr.wikipedia.org/wiki/Style_d%27indentation#Style_K.26R)
   * Utiliser les guillemets simples pour les chaînes en JavaScript (de façon à ce que les guillemets doubles non échappés (unescaped) puissent être utilisés pour les attributs dans les données de sortie HTML)
-* Fureteurs supportés (cet élément devrait faire l’objet d’une vérification)&#160;:
+* Fureteurs pris en charge (cet élément devrait faire l’objet d’une vérification)&#160;:
   * [Browser test baseline - YUI Graded Browser Support](http://yuilibrary.com/yui/docs/tutorials/gbs/) (sauf Internet Explorer 6)
