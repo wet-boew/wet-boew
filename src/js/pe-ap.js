@@ -71,7 +71,7 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false, disable, disablels;
+			var hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false;
 
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
@@ -172,20 +172,12 @@
 					$o.append($(data));
 				}, "html");
 			})).always(function () {
-				//Wait for localisation and ajax content to load plugins
+				// Wait for localisation and ajax content to load plugins
 				$(document).on("languageloaded", function () {
-					// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string or localStorage
-					disablels = localStorage.getItem('pedisable');
-					disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels);
-					if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
-						$('html').addClass('pe-disable');
-						localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
-						$('#wb-tphp').append('<li><a href="?pedisable=false">' + pe.dic.get('%pe-enable') + '</a></li>'); // Add link to re-enable PE
-						return false;
-					} else if (disable === "false" || disablels !== null) {
-						localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
+					// Check to see if PE enhancements should be disabled
+					if (pe.pedisable() === true) {
+						return false; // Disable PE enhancements
 					}
-					$('#wb-tphp').append('<li><a href="?pedisable=true">' + pe.dic.get('%pe-disable') + '</a></li>'); // Add link to disable PE
 
 					// Load the remaining polyfills
 					pe.polyfills.load();
@@ -675,6 +667,32 @@
 			}
 		},
 		/**
+		 * A generic function for enabling/disabling PE enhancements
+		 * @memberof pe
+		 * @function
+		 * @return true if PE enhancements should be disabled, false if should be enabled
+		 */
+		pedisable: function () {
+			// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string or localStorage
+			var lsenabled = (typeof localStorage !== 'undefined'),
+				disablels = (lsenabled ? localStorage.getItem('pedisable') : null),
+				disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels);
+			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
+				$('html').addClass('no-js pe-disable');
+				if (lsenabled) {
+					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
+				}
+				$('#wb-tphp').append('<li><a href="?pedisable=false">' + pe.dic.get('%pe-enable') + '</a></li>'); // Add link to re-enable PE
+				return true;
+			} else if (disable === "false" || disablels !== null) {
+				if (lsenabled) {
+					localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
+				}
+			}
+			$('#wb-tphp').append('<li><a href="?pedisable=true">' + pe.dic.get('%pe-disable') + '</a></li>'); // Add link to disable PE
+			return false;
+		},
+		/**
 		 * A suite of menu related functions for easier handling of menus
 		 * @namespace pe.menu
 		 */
@@ -862,7 +880,7 @@
 					var lib = pe.add.liblocation;
 					// localstorage
 					if (!window.localStorage) {
-						pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js');
+						pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js', 'localstorage-loaded');
 					}
 				},
 				/**

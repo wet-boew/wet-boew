@@ -28,18 +28,12 @@
 		padding:1px 0;
 	}
 	#gcwu-title{
+		zoom:1;
 		position:relative;
-		a{
-			position:relative;
-			top:-50%;
-		}	
-	}
-	#gcwu-title,#gcwu-title a{
-		filter:Shadow(Color=#333333, Direction=125,Strength=1);
 	}
 	#gcwu-title-in{
 		position:absolute;
-		top:50%;
+		top:23%;
 	}
 	#gcwu-psnb {
 		.mb-mega .mb-sm-open{

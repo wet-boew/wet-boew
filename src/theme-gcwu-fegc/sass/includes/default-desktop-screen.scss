@@ -276,13 +276,17 @@ a{
 }
 
 #gcwu-gcnb ul li#gcwu-gcnb-lang a{
-	padding-right:11px;
+	padding-right:10px;
+	margin-right:1px;
 }
 
 #gcwu-title{
 	height:123px;
-	display:table;
-	margin-left:10px;
+	display:table-row;
+	a{
+		display:inline-block;
+		margin-left:10px;
+	}
 }
 
 #gcwu-title,#gcwu-title a{
@@ -311,7 +315,7 @@ a{
 	z-index:100;
 	padding:11px 10px 6px 12px;
 	input{
-		margin:0 0 2px;
+		margin:0 0 1px;
 		min-height: 0;
 	}
 	form{
@@ -367,6 +371,7 @@ a{
 	-moz-box-shadow:none;
 	-webkit-box-shadow:none;
 	padding:2px 6px;
+	display:inline;
 	&:focus,&:hover{
 		background:#ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
 		text-shadow:0 1px 0 #ddd;
