@@ -256,9 +256,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <ul>
 	<li><strong>Option 1: Use the CSS.</strong> This simple solution consist to directly go in the table source code, choose witch row should be considerated as the vector summary and directly fix his style. I saw often this solution applied to existing table.</li>
 	
-	<li><strong>Option 2: Group it in the <em>tfoot</em> element.</strong> So far, this is the best solution. As per his definition the data cell defined in the <em>tfoot</em> row group represent column summaries. The data cell in the &quot;Total&quot; row summaries all the data in his column.</li>
+	<li><strong>Option 2: Group it in the <em>tfoot</em> element.</strong> So far, this is the best solution. As per his definition the data cell defined in the <em>tfoot</em> row group represent column summaries.</li>
 	
-	<li><strong>Option 3: Group it in a second <em>tbody</em> element.</strong> Hein ?? Group it in a second &quot;tbdoy&quot; element ? Yes, the table usability concept use the multiple <em>tbody</em> element to define data summary. So by using this technique it his possible to have a markup segmentic to define sub-total row for an example.</li>
+	<li><strong>Option 3: Group it in a second <em>tbody</em> element.</strong> Hein ?? Group it in a second &quot;tbody&quot; element ? Yes, the table usability concept use the multiple <em>tbody</em> element to define data summary. So by using this technique it his possible to have a markup segmentic to define total and sub-total row for example.</li>
 </ul>
 
 <p>The option 2 are illustrated with the table 2 and the option 3 is illustrated with the table 3. Please note the first row was grouped into the <em>thead</em> element.</p>
@@ -598,7 +598,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2>Having multiple row group summary</h2>
 
-<p>I often seen a table that will show sub-total then at the end of the table will show the total. With the method described as the option 3 are helpfull to provide segmentic markup and retreive the relationship. The table 4 show an example of it.</p>
+<p>I often seen a table have sub-total and total combined together. With the method described at the option 3 are helpfull to provide segmentic markup and retreive the relationship. The table 4 show an example of it.</p>
 
 
 <table class="wet-boew-zebra">
@@ -943,7 +943,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </code></pre>
 </details>
 
-<p>A header cell colspan for the entire number of column is used to identify each group. In the table 4 that is the group cell header &quot;Copyright&quot; and &quot;Trade-mark&quot;. Each sub-total is associated to their respective group cell header. The &quot;Total&quot; row at the end represent the summaries for the entire table. The relationshipt are determined on how the subsequent <em>tbody</em> element is organized. The HTML 5 specification allow the use of multiple <em>tbody</em>.</p>
+<p>A header cell column spanned (colspan attribute) for the full table width is used to identify each group. The cell header &quot;Copyright&quot; and &quot;Trade-mark&quot; is used to identify each group in the table 4. Each sub-total is associated to their respective group cell header. The &quot;Total&quot; row at the end represent the summaries for the entire table. The relationshipt are determined on how the subsequent <em>tbody</em> element is organized. The HTML 5 specification allow the use of multiple <em>tbody</em>.</p>
 
 <p><em>Please note because of the complexity of the table 4 and 5, ids and headers attribute must be set as per the WCAG Level AA requirement.</em></p>
 
@@ -1427,6 +1427,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <p>If we consider a basic invoice with taxes, now it his possible to define the relationship between the sub-total and the total. The data row group will be considerated at level 1, the sub-total at the level 1 and the total at the level 0. When the level 0 is reached, no more row group is allowed. When the tfoot row group is used, it is considerated by default at the level 0. So the previous table 2 and 3 have a difference in their relationship association. The &quot;Total&quot; for the table 2 is calculated at the level 0 and the &quot;Total&quot; for the table 3 is calculated at the level 1.</p>
 
+<p>Now let see a common example of an invoice table. The first group level is set at 1 and considerated as data. The second row group level is set at 1 and considerated as summary. The third row group level is set at 0 and considerated as summary. Because of the absence of group header cell, each subsequent group is considerated as a summary group.</p>
+
 
 <table class="wet-boew-zebra">
 	<caption>Table 6 - Invoice</caption>
@@ -1548,6 +1550,308 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 </code></pre>
 </details>
+
+
+<h3>Dealing with data row group at level 3 or higher</h3>
+
+<p>This concept also work when there is a need for a table to have three or more data row group level. The next table show an abstract example of a table containing row group at level 3. Each header cell are unique numbered. Next to the table you will have an explaination of the meaning of each header cell.</p>
+
+
+
+
+<table class="wet-boew-zebra">
+	<caption>Row group header (Level 0)</caption>
+  
+	<colgroup><col /></colgroup>
+	<colgroup><col /><col /><col /><col /><col /></colgroup>
+
+<!--
+	<tr>
+		<td>Colgroup</td>
+		<td colspan="5">Colgroup</td>
+	</tr>
+--> 
+	<thead>
+		<tr>
+			<th></th>
+			<th>Column header</th>
+			<th>Column header</th>
+			<th>Column header</th>
+			<th>Column header</th>
+			<th>Column header</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<th colspan="6">1 - Row Group header</th>
+    </tr>
+    
+    <tr>
+		<th colspan="6">2 - Row Group header</th>
+    </tr>
+    
+    <tr>
+		<th>3 - Row header</th>
+		<td>66</td>
+		<td>64</td>
+		<td>20</td>
+		<td>87%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>4 - Row header</th>
+		<td>34</td>
+		<td>31</td>
+		<td>20</td>
+		<td>84%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>5 - Row header</th>
+		<td>36</td>
+		<td>36</td>
+		<td>42</td>
+		<td>92%</td>
+		<td>0</td>
+	</tr>
+
+	<tr>
+		<th>6 - Row header</th>
+		<td>19</td>
+		<td>23</td>
+		<td>66</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+	</tbody>
+	
+	<tbody>
+	<tr>
+		<th colspan="6">7 - Row Group header</th>
+    </tr>
+    
+    
+	<tr>
+		<th>8 - Row header</th>
+		<td>297</td>
+		<td>297</td>
+		<td>66</td>
+		<td>84%</td>
+		<td>1</td>
+	</tr>
+  
+	<tr>
+		<th>9 - Row header</th>
+		<td>396</td>
+		<td>381</td>
+		<td>67</td>
+		<td>88%</td>
+		<td>3</td>
+	</tr>
+	
+	<tr>
+		<th>10 - Row header</th>
+		<td>422</td>
+		<td>437</td>
+		<td>111</td>
+		<td>93%</td>
+		<td>1</td>
+	</tr>
+  </tbody>
+	
+	<tbody>
+	<tr>
+		<th>11 - Row header</th>
+		<td>626</td>
+		<td>654</td>
+		<td>99</td>
+		<td>99%</td>
+		<td>0</td>
+	</tr>
+	</tbody>
+	
+	<tbody>
+	<tr>
+		<th colspan="6">12 - Row Group header</th>
+    </tr>
+    
+    
+	<tr>
+		<th colspan="6">13 - Row Group header</th>
+    </tr>
+    
+    <tr>
+		<th>14 - Row header</th>
+		<td>12</td>
+		<td>11</td>
+		<td>11</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>15 - Row header</th>
+		<td>0</td>
+		<td>0</td>
+		<td>n/a</td>
+		<td>n/a</td>
+		<td>0</td>
+	</tr>
+	
+	<tr>
+		<th>16 - Row header</th>
+		<td>3</td>
+		<td>4</td>
+		<td>17</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+	</tbody>
+	
+	<tbody>
+	<tr>
+		<th>17 - Row header</th>
+		<td>8</td>
+		<td>8</td>
+		<td>33</td>
+		<td>100%</td>
+		<td>0</td>
+	</tr>
+  </tbody>
+	
+	<tbody>
+	<tr>
+		<th colspan="6">18 - Row Group header</th>
+    </tr>
+    
+	<tr>
+		<th>19 - Row header</th>
+		<td>89</td>
+		<td>99</td>
+		<td>50</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>20 - Row header</th>
+		<td>1</td>
+		<td>2</td>
+		<td>46</td>
+		<td>50%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>21 - Row header</th>
+		<td>107</td>
+		<td>104</td>
+		<td>64</td>
+		<td>97%</td>
+		<td>0</td>
+	</tr>
+	</tbody>
+	
+	<tbody>
+	<tr>
+		<th>22 - Row header</th>
+		<td>527</td>
+		<td>599</td>
+		<td>66</td>
+		<td>98%</td>
+		<td>0</td>
+	</tr>
+	</tbody>
+	<tbody>
+	<tr>
+		<th colspan="6">23 - Row Group header</th>
+    </tr>
+    
+	<tr>
+		<th>24 - Row header</th>
+		<td>89</td>
+		<td>99</td>
+		<td>50</td>
+		<td>96%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>25 - Row header</th>
+		<td>1</td>
+		<td>2</td>
+		<td>46</td>
+		<td>50%</td>
+		<td>0</td>
+	</tr>
+  
+	<tr>
+		<th>26 - Row header</th>
+		<td>107</td>
+		<td>104</td>
+		<td>64</td>
+		<td>97%</td>
+		<td>0</td>
+	</tr>
+	</tbody>
+	
+	<tbody>
+	<tr>
+		<th>27 - Row header</th>
+		<td>527</td>
+		<td>599</td>
+		<td>66</td>
+		<td>98%</td>
+		<td>0</td>
+	</tr>
+	</tbody>
+		<tbody>
+	<tr>
+		<th>28 - Row header</th>
+		<td>527</td>
+		<td>599</td>
+		<td>66</td>
+		<td>98%</td>
+		<td>0</td>
+	</tr>
+	</tbody>
+	<tbody>
+	<tr>
+		<th>29 - Row header</th>
+		<td>527</td>
+		<td>599</td>
+		<td>66</td>
+		<td>98%</td>
+		<td>0</td>
+	</tr>
+	</tbody>
+
+	
+</table>
+
+
+<ul>
+
+	<li>Cell #1 and #12: Represent the header group at level 1.</li>
+	<li>Cell #2, #7, #13, #18, #23: Represent the header group at level 2.</li>
+	<li>Cell #3, #4, #5, #6: Are not summariew by a row group summary</li>
+	<li>Cell #3 to #10, #14 to #16, #19 to #21 and #24 to #26: Represent a cell header row vector inside the row group level 2</li>
+	<li>Cell #11, #17, #22 and #27: Represent the summary group of the previous data group at level 2.</li>
+	<li>Cell #28: Represent the summary group at level 1 of the previous group. This should be equivalent to the cell identified by the header #1 to 27.</li>
+	<li>Cell #29: Represent the summary group at level 0. In theory, this summary group should be equivalent of all the data contained in the table.</li>
+</ul>
+
+
+
+
+<h2>Column Grouping</h2>
+
+<p>In this article you have see how to add row group summary. Now in the next article you will see how the concept of the <em>thead</em> element can be transposed to the first column group (<em>colgroup</em> element). You will learn how you can mark a key cell and how to mark a description cell for a row header cell.</p>
+
+<p><a href="">Header Column Group</a></p>
+
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-08-09</time></span></dd>
 </dl>
