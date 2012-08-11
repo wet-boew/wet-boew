@@ -10,7 +10,7 @@
 /*
  * pe, a progressive javascript library agnostic framework
  */
-/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, file: false, wet_boew_theme: false*/
+/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false*/
 (function ($) {
 	var pe, _pe;
 	/**
@@ -450,7 +450,7 @@
 				 *       returns "/aboutcanada-ausujetcanada/hist/menu-eng.html"
 				 */
 				removehash: function () {
-					return this.source.replace(/#([A-Za-z0-9-_=&]+)/, "");
+					return this.source.replace(/#([A-Za-z0-9\-_=&]+)/, "");
 				}
 			};
 		},
@@ -525,12 +525,12 @@
 			ify: (function () {
 				return {
 					"link": function (t) {
-						return t.replace(/[a-z]+:\/\/[a-z0-9-_]+\.[a-z0-9-_@:~%&\?\+#\/.=]+[^:\.,\)\s*$]/ig, function (m) {
+						return t.replace(/[a-z]+:\/\/[a-z0-9\-_]+\.[a-z0-9\-_@:~%&\?\+#\/.=]+[^:\.,\)\s*$]/ig, function (m) {
 							return '<a href="' + m + '">' + ((m.length > 25) ? m.substr(0, 24) + '...' : m) + '</a>';
 						});
 					},
 					"at": function (t) {
-						return t.replace(/(^|[^\w]+)\@([a-zA-Z0-9_]{1,15}(\/[a-zA-Z0-9-_]+)*)/g, function (m, m1, m2) {
+						return t.replace(/(^|[^\w]+)\@([a-zA-Z0-9_]{1,15}(\/[a-zA-Z0-9\-_]+)*)/g, function (m, m1, m2) {
 							return m1 + '@<a href="http://twitter.com/' + m2 + '">' + m2 + '</a>';
 						});
 					},
