@@ -66,7 +66,7 @@
 					_sm;
 				_node = $(toplink).closest("li");
 				_sm = _node.find(".mb-sm-open");
-				_sm.attr("aria-expanded", "false").attr("aria-hidden", "true").toggleClass("mb-sm mb-sm-open").css("right", "auto");
+				_sm.attr("aria-expanded", "false").attr("aria-hidden", "true").toggleClass("mb-sm mb-sm-open").css("right", "");
 				if (pe.cssenabled) {
 					_sm.find("a").attr("tabindex", "-1");
 				}
@@ -100,15 +100,14 @@
 			$scope.attr("role", "application");
 			$menu.attr("role", "menubar").find("a").attr("role", "menuitem");
 			pe.resize(correctheight);
-			/* Handles opening and closing of a submenu on click of a menu bar item
-			   but prevents any changes on click of the empty area in the submenu */
+			// Handles opening and closing of a submenu on click of a menu bar item but prevents any changes on click of the empty area in the submenu
 			$scope.find('.mb-sm').on("click vclick", function (event) {
 				if (event.stopPropagation) {
 					event.stopPropagation();
 				} else {
 					event.cancelBubble = true;
 				}
-			}).parent().find('> :header a').on("click vclick", function (event) {
+			}).parent().find('> :header a').on("click vclick", function () {
 				if ($(this).closest("li").hasClass("mb-active")) {
 					hidesubmenu(this);
 				} else {

@@ -34,10 +34,8 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 * [Validate your CSS](http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options) with the following changes to the default settings:
   * **Profile:** CSS level 3
   * **Vendor extensions:** Warnings
-* [Validate your JavaScript code](http://www.jslint.com) with the following changes to the default settings:
-  * **Tolerate dangling _ in identifiers:** true
-  * **Tolerate missing 'use strict' pragma:** true
-  * **Assume browser:** true
+* [Validate your JavaScript code](http://www.jshint.com) with the following changes to the default settings:
+  * **Warn - When code is not in strict mode:** false
 * Formatting recommendations:
   * Indent with tabs using the [K&R indenting style](http://en.wikipedia.org/wiki/Indent_style#K.26R_style)
   * Use single quotes for strings in JavaScript (so unescaped double quotes can be used for attributes in HTML output)
@@ -83,10 +81,8 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 * [Valider votre CSS](http://jigsaw.w3.org/css-validator/validator.html.fr#validate_by_uri+with_options) en apportant les changements suivants aux paramètres par défaut&#160;:
   * **Profil&#160;:** CSS niveau 3
   * **Extensions Proprétaires&#160;:** Avertissements
-* [Valider votre code JavaScript](http://www.jslint.com) en apportant les changements suivants aux paramètres par défaut&#160;:
-  * **Tolerate dangling _ in identifiers&#160;:** true
-  * **Tolerate missing 'use strict' pragma&#160;:** true
-  * **Assume browser&#160;:** true
+* [Valider votre code JavaScript](http://www.jshint.com) en apportant les changements suivants aux paramètres par défaut&#160;:
+  * **Warn - When code is not in strict mode:** false
 * Recommandations quant au formatage&#160;:
   * Ajouter les tabulations en utilisant le [style d'indentation K&amp;R](http://fr.wikipedia.org/wiki/Style_d%27indentation#Style_K.26R)
   * Utiliser les guillemets simples pour les chaînes en JavaScript (de façon à ce que les guillemets doubles non échappés (unescaped) puissent être utilisés pour les attributs dans les données de sortie HTML)
