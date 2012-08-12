@@ -91,7 +91,7 @@ body{
 	h3.top-section {
 		a{
 			color:#FFF;
-			background:#23447e url(../images/menu-background.gif) 0 -2px repeat-x;
+			background:#23447e url(../images/menu-bg.gif) 0 -2px repeat-x;
 			padding-top:5px;
 			padding-bottom:5px;
 			font-size:1.1em;
@@ -216,7 +216,7 @@ a{
 
 #wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in{
 	background:{
-		image:url(../images/headerleaf.jpg), url(../images/headerbg.jpg);
+		image:url(../images/header-leaf.jpg), url(../images/header-bg.jpg);
 		repeat: no-repeat, repeat-x;
 		position: center 3.08em;
 		color: #fff;
@@ -442,13 +442,13 @@ a{
 	}
 	.mb-menu,.mb-menu li{
 		min-height:2.15em;
-		background:#23447e url(../images/menu-background.gif) repeat-x;
+		background:#23447e url(../images/menu-bg.gif) repeat-x;
 	}
 	.mb-menu {
 		li{
 			border:{
 				left:1px solid #124B79;
-				border:1px solid #15598f;
+				right:1px solid #15598f;
 				bottom:none;
 			}
 			padding:0;
@@ -461,7 +461,7 @@ a{
 		}
 		.expandicon{
 			padding-right:10px;
-			background:url(../images/down-arrow.gif) no-repeat right center;
+			background:url(../images/menu-arrow.gif) no-repeat right center;
 		}
 		.mb-has-sm{
 			padding-right:5px;

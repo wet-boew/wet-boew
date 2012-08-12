@@ -36,11 +36,23 @@ h1 {
 #gcwu-sig {
 	margin-top: 20px;
 	margin-bottom: 7px;
+	line-height: normal;
+}
+
+#gcwu-sig,#gcwu-wmms {
+	img {
+		margin-bottom:0;
+	}
 }
 
 #wb-core-in {
 	overflow: visible !important;
-	background: #fff url(../images/splashpage-background.jpg) top center repeat-x;
+	background:{
+		image:url(../images/sp-pe-leaf.jpg), url(../images/sp-pe-bg.jpg);
+		position:center 92px, top center;
+		repeat:no-repeat, repeat-x;
+		color:#fff;
+	}
 	&:after {
 		content: ".";
 		display: block;
@@ -71,7 +83,5 @@ h1 {
 
 #gcwu-lang {
 	margin-top: 20px;
-	ul {
-		margin: 0;
-	}
+	line-height: normal;
 }
