@@ -4,6 +4,12 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 .ie8 {
+	#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in{
+		background:url(../images/headerbg-ie.jpg) repeat-x center 3.08em #fff;
+	}
+	#wb-head-in{
+		background-color:#406C93;
+	}
 	#gcwu-srch-submit{
 		padding:3px 5px;
 		background-color: #cecece !important;

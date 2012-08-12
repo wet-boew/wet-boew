@@ -215,7 +215,10 @@ a{
 }
 
 #wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in{
-	background:url(../images/background-withglow-andleaf.jpg) repeat-x center 3.08em #fff;
+	background-image:url(../images/headerleaf.jpg), url(../images/headerbg.jpg);
+	background-repeat: no-repeat, repeat-x;
+	background-position: center 3.08em;
+	background-color: #fff;
 }
 
 #wb-head-in{

@@ -18,7 +18,10 @@
 		width: 700px;
 	}
 	#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in{
-		background-position:center 3.1em;
+		background:url(../images/headerbg-ie.jpg) repeat-x center 3.1em #fff;
+	}
+	#wb-head-in{
+		background-color:#406C93;
 	}
 	#gcwu-srchbx{
 		padding-bottom:0;
