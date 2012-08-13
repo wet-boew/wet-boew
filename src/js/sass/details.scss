@@ -28,6 +28,14 @@ details {
 		}
 	}
 	summary { /* Make sure summary remains visible */
-		display: block; background: transparent
+		display: block;
+		background: transparent
 	}
+	> * {
+		display:none;
+	}
+}
+
+.no-js details > * {
+	display: block;
 }
