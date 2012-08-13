@@ -59,8 +59,8 @@
 	
 	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
 	<target name="compile.sass">
-		<copy todir="${src.dir}" file="${tasks.basedir}/build/compile.rb"/>
-		<copy todir="${src.dir}" file="${tasks.basedir}/build/config.rb"/>
+		<copy todir="${src.dir}" file="${tasks.basedir}/compile.rb"/>
+		<copy todir="${src.dir}" file="${tasks.basedir}/config.rb"/>
 		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
 			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; compile &quot;${src.dir}&quot;"/>
 		</java>

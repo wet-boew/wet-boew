@@ -27,4 +27,4 @@ IF "%*" == "" (
 SET ANT_OPTS=%*
 
 :RUN_ANT
-ant -file ..\build.xml
+ant -file build.xml
