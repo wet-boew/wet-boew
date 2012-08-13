@@ -31,25 +31,6 @@
 	</target>
 
 	<target name="build-css" depends="-base64-encode" />
-
-	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
-	<target name="compile.sass">
-		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; compile &quot;${src.dir}&quot;"/>
-		</java>
-		<echo level="info">
----Converted GCWU Intranet SCSS Files into CSS---
-		</echo>
-	</target>
-	<!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
-	<target name="watch.sass">
-		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; watch &quot;${src.dir}&quot;"/>
-		</java>
-		<echo level="info">
----Watching for SCSS Changes in GCWU Intranet Directory---
-		</echo>
-	</target>
   
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode" depends="-merge-css">
