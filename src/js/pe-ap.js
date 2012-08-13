@@ -320,7 +320,7 @@
 		 */
 		url: function (uri) {
 			var el = document.createElement('div'), a;
-			el.innerHTML = '<a href="' + encodeURIComponent(uri.href) + '">x</a>';
+			el.innerHTML = '<a href="' + pe.string.htmlEncode(uri.href) + '">x</a>';
 			a = el.firstChild;
 			return {
 				/**
@@ -572,6 +572,26 @@
 					str = "0" + str;
 				}
 				return str;
+			},
+			/**
+			 * HTML encodes a string (only encodes &, <, >, " and ')
+			 * @memberof pe.string
+			 * @function
+			 * @param {string} The string to encode
+			 * @return {string} The encoded string
+			 */
+			htmlEncode: function (str) {
+				return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+			},
+			/**
+			 * Decodes an HTML encoded string (only decodes &amp;, &lt, &gt, &quot and &apos)
+			 * @memberof pe.string
+			 * @function
+			 * @param {string} The HTML encoded string to decode
+			 * @return {string} The decoded string
+			 */
+			htmlDecode: function (str) {
+				return str.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, '\'');
 			}
 		},
 		/**
