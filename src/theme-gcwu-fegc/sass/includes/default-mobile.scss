@@ -43,8 +43,8 @@ body{
 #gcwu-title{
 	min-height:40px;
 	font-weight:700;
-	background:#146094 url(../images/background-waves.jpg);
-	padding:2px 10px;
+	background:#146094 url(../images/bg-waves.jpg);
+	padding:2px 5px;
 	a{
 		font-size:1.5em;
 		color:#fff !important;
@@ -57,14 +57,21 @@ body{
 	margin: 5px auto;
 }
 
+#gcwu-gcnb ul {
+	margin-right: 5px;
+}
+
 #gcwu-sig{
 	float:left;
-	margin:0 0 5px 10px;
+	margin:10px 0 5px 5px;
+	img {
+		margin-bottom:0;
+	}
 }
 
 #gcwu-date-mod{
 	float:right;
-	margin:5px 10px;
+	margin:5px 0;
 }
 
 #gcwu-priorities li{
@@ -122,10 +129,6 @@ body{
 	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
 		margin-bottom:20px;
 	}
-}
-
-.ui-mobile #wb-main-in h1{
-	margin-bottom:0 !important;
 }
 
 h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
@@ -451,7 +454,7 @@ img{
 			}
 		}
 		li {
-			background: url(../images/breadcrumb-mobile.png) no-repeat right center;
+			background: url(../images/bcrumb-mobile.png) no-repeat right center;
 			display: inline;
 			float: left;
 			margin: 0;

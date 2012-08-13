@@ -5,7 +5,7 @@
 /*
  * Events Calendar
  */
-/*global jQuery: false, pe: false, calendar: false, dates: false, wet_boew_eventscalendar: false*/
+/*global jQuery: false, pe: false, wet_boew_eventscalendar: false*/
 (function ($) {
 	var _pe = window.pe || {fn: {} };
 	/* local reference */
@@ -72,11 +72,11 @@
 							strDate,
 							z;
 
-						/*** Modification direct-linking or page-linking
-						*	 - added the ability  to have class set the behaviour of the links
-						*	 - default is to use the link of the item as the event link in the calendar
-						*	 - 'event-anchoring' class dynamically generates page anchors on the links it maps to the event
-						* ***/
+						/** Modification direct-linking or page-linking
+						*	- added the ability  to have class set the behaviour of the links
+						*	- default is to use the link of the item as the event link in the calendar
+						*	- 'event-anchoring' class dynamically generates page anchors on the links it maps to the event
+						***/
 						if (!direct_linking) {
 							link_id = (event.attr('id') !== undefined) ? event.attr('id') : randomId(6);
 							event.attr("id", link_id);
@@ -93,8 +93,8 @@
 						date = new Date();
 						tCollection = event.find("time, span.datetime");
 						/** Date spanning capability
-						*   - since there maybe some dates that are capable of spanning over months we need to identify them
-						*	 the process is see how many time nodes are in the event. 2 nodes will trigger a span
+						*	- since there maybe some dates that are capable of spanning over months we need to identify them
+						*	the process is see how many time nodes are in the event. 2 nodes will trigger a span
 						*/
 						if (tCollection.length > 1) {
 							// this is a spanning event

@@ -5,7 +5,7 @@
 /*
  * Share widget plugin
  */
-/*global jQuery: false, pe:false, wet_boew_share:false, data:false */
+/*global jQuery: false, pe:false, wet_boew_share:false */
 (function ($) {
 	var _pe = window.pe || {
 		fn : {}
@@ -228,7 +228,7 @@
 					}
 				});
 
-				$(document).on("click vclick touchstart", function (e) {
+				$(document).on("click vclick touchstart", function () {
 					if ($popup.attr('aria-hidden') === 'false') {
 						$popup.trigger("close");
 					}

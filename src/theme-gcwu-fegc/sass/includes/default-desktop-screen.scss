@@ -91,7 +91,7 @@ body{
 	h3.top-section {
 		a{
 			color:#FFF;
-			background:#23447e url(../images/menu-background.gif) 0 -2px repeat-x;
+			background:#23447e url(../images/menu-bg.gif) 0 -2px repeat-x;
 			padding-top:5px;
 			padding-bottom:5px;
 			font-size:1.1em;
@@ -215,7 +215,12 @@ a{
 }
 
 #wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in{
-	background:url(../images/background-withglow-andleaf.jpg) repeat-x center 3.08em #fff;
+	background:{
+		image:url(../images/header-leaf.jpg), url(../images/header-bg.jpg);
+		repeat: no-repeat, repeat-x;
+		position: center 3.08em;
+		color: #fff;
+	}
 }
 
 #wb-head-in{
@@ -357,12 +362,14 @@ a{
 	-webkit-appearance:none;
 	min-height:24px;
 	background:#ccc url(../images/search-button.gif) 0 0 repeat-x;
-	border-bottom:1px solid #999;
-	border-right:1px solid #999;
-	border-top:1px solid #fff;
-	border-left:1px solid #fff;
+	border:{
+		bottom:1px solid #999;
+		right:1px solid #999;
+		top:1px solid #fff;
+		left:1px solid #fff;
+		radius:2px;
+	}
 	color:#333;
-	border-radius:2px;
 	-moz-border-radius:2px;
 	-webkit-border-radius:2px;
 	text-shadow:0 1px 0 #eee;
@@ -378,10 +385,12 @@ a{
 		box-shadow:none;
 		-moz-box-shadow:none;
 		-webkit-box-shadow:none;
-		border-bottom:1px solid #999;
-		border-right:1px solid #999;
-		border-top:1px solid #fff;
-		border-left:1px solid #fff;
+		border:{
+			bottom:1px solid #999;
+			right:1px solid #999;
+			top:1px solid #fff;
+			left:1px solid #fff;
+		}
 	}
 	&:active{
 		-moz-box-shadow:inset 0 0 5px 2px #999, 0 0 0 0 #eee;
@@ -392,9 +401,12 @@ a{
 }
 
 #wb-core-in,#gcwu-bc-in{
-	background-repeat:repeat-y;
-	background-color:#fff;
-	background-position:center;
+	background:{
+		image:url(../images/content-deco-side.gif), url(../images/content-deco-side.gif);
+		position:left top, right top;
+		repeat:repeat-y;
+		color:#fff;
+	}
 }
 
 #gcwu-bnr-in{
@@ -430,13 +442,15 @@ a{
 	}
 	.mb-menu,.mb-menu li{
 		min-height:2.15em;
-		background:#23447e url(../images/menu-background.gif) repeat-x;
+		background:#23447e url(../images/menu-bg.gif) repeat-x;
 	}
 	.mb-menu {
 		li{
-			border-left:1px solid #124B79;
-			border-right:1px solid #15598f;
-			border-bottom:none;
+			border:{
+				left:1px solid #124B79;
+				right:1px solid #15598f;
+				bottom:none;
+			}
 			padding:0;
 		}
 		li:first-child.mb-active{
@@ -447,7 +461,7 @@ a{
 		}
 		.expandicon{
 			padding-right:10px;
-			background:url(../images/down-arrow.gif) no-repeat right center;
+			background:url(../images/menu-arrow.gif) no-repeat right center;
 		}
 		.mb-has-sm{
 			padding-right:5px;
@@ -501,7 +515,7 @@ a{
 
 #gcwu-sft{
 	padding-bottom:20px;
-	background:url(../images/foot-bottom-deco.gif) repeat-x #efefef;
+	background:url(../images/sft-deco.gif) center top repeat-x #efefef;
 	font-family:Arial, Helvetica, sans-serif;
 	a,span.link{
 		color:#222;
@@ -521,9 +535,12 @@ a{
 }
 
 #gcwu-sft-in{
-	background-repeat:no-repeat;
-	background-position:center top;
-	background-color:#efefef;
+	background:{
+		image:url(../images/sft-deco-leaf.gif), url(../images/sft-deco-side.gif), url(../images/sft-deco-side.gif);
+		position:center top, left top, right top;
+		repeat:no-repeat;
+		color:transparent;
+	}
 	padding-top:20px;
 	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
 		position:static;

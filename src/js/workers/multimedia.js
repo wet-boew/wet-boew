@@ -113,7 +113,6 @@
 				//Map UI mouse events
 				elm.on("click", function (e) {
 					var $target = $(e.target),
-						t,
 						p,
 						s;
 
