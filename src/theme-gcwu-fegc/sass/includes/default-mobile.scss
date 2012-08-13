@@ -44,7 +44,7 @@ body{
 	min-height:40px;
 	font-weight:700;
 	background:#146094 url(../images/bg-waves.jpg);
-	padding:2px 10px;
+	padding:2px 5px;
 	a{
 		font-size:1.5em;
 		color:#fff !important;
@@ -57,14 +57,21 @@ body{
 	margin: 5px auto;
 }
 
+#gcwu-gcnb ul {
+	margin-right: 5px;
+}
+
 #gcwu-sig{
 	float:left;
-	margin:0 0 5px 10px;
+	margin:10px 0 5px 5px;
+	img {
+		margin-bottom:0;
+	}
 }
 
 #gcwu-date-mod{
 	float:right;
-	margin:5px 10px;
+	margin:5px 0;
 }
 
 #gcwu-priorities li{

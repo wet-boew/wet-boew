@@ -12,8 +12,21 @@
 	margin: 5px auto;
 }
 
+#gcwu-sig{
+	float:left;
+	margin:10px 0 5px 5px;
+	img {
+		margin-bottom:0;
+	}
+}
+
 #gcwu-bnr {
 	width: 100%;
+}
+
+h1, #gcwu-title {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 #gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
@@ -25,7 +38,14 @@
 	clear: left;
 }
 
+#wb-main-in {
+	background:none;
+}
+
 #gcwu-lang {
+	ul {
+		margin:0;
+	}
 	a[href]{
 		&:hover, &:focus, &:active{
 			color: #FFF;

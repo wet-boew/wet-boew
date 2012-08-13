@@ -47,12 +47,7 @@ h1 {
 
 #wb-core-in {
 	overflow: visible !important;
-	background:{
-		image:url(../images/sp-pe-leaf.jpg), url(../images/sp-pe-bg.jpg);
-		position:center 92px, top center;
-		repeat:no-repeat, repeat-x;
-		color:#fff;
-	}
+	background:url(../images/sp-pe-bg.jpg) top center repeat-x #fff;
 	&:after {
 		content: ".";
 		display: block;
@@ -63,6 +58,7 @@ h1 {
 }
 
 #wb-main-in {
+	background:url(../images/sp-pe-leaf.jpg) center 92px no-repeat transparent;
 	position: relative;
 	padding-top:1px;
 	padding-bottom:1px;
