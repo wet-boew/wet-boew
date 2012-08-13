@@ -10,7 +10,7 @@
 /*
  * pe, a progressive javascript library agnostic framework
  */
-/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, file: false, wet_boew_theme: false*/
+/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false*/
 (function ($) {
 	var pe, _pe;
 	/**
@@ -71,17 +71,13 @@
 		 * @returns {void}
 		 */
 		_init: function () {
-			var hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false, disable;
+			var hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false;
+
+			// Load polyfills that need to be loaded before anything else
+			pe.polyfills.init();
 
 			// Get the query parameters from the URL
 			pe.urlquery = pe.url(document.location).params;
-
-			// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string
-			disable = pe.urlquery.pedisable;
-			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
-				$('html').addClass('pe-disable');
-				return false;
-			}
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
@@ -158,7 +154,7 @@
 				}
 			}
 
-			//Load ajax content
+			// Load ajax content
 			$.when.apply($, $.map($("*[data-ajax-replace], *[data-ajax-append]"), function (o) {
 				var $o = $(o),
 					replace = false,
@@ -176,8 +172,16 @@
 					$o.append($(data));
 				}, "html");
 			})).always(function () {
-				//Wait for localisation and ajax content to load plugins
+				// Wait for localisation and ajax content to load plugins
 				$(document).on("languageloaded", function () {
+					// Check to see if PE enhancements should be disabled
+					if (pe.pedisable() === true) {
+						return false; // Disable PE enhancements
+					}
+
+					// Load the remaining polyfills
+					pe.polyfills.load();
+
 					if (wet_boew_theme !== null) {
 						// Initialize the theme
 						wet_boew_theme.init();
@@ -206,8 +210,6 @@
 				});
 				pe.add.language(pe.language);
 			});
-
-			pe.polyfills();
 		},
 		/**
 		 * @namespace pe.depends
@@ -448,7 +450,7 @@
 				 *       returns "/aboutcanada-ausujetcanada/hist/menu-eng.html"
 				 */
 				removehash: function () {
-					return this.source.replace(/#([A-Za-z0-9-_=&]+)/, "");
+					return this.source.replace(/#([A-Za-z0-9\-_=&]+)/, "");
 				}
 			};
 		},
@@ -523,12 +525,12 @@
 			ify: (function () {
 				return {
 					"link": function (t) {
-						return t.replace(/[a-z]+:\/\/[a-z0-9-_]+\.[a-z0-9-_@:~%&\?\+#\/.=]+[^:\.,\)\s*$]/ig, function (m) {
+						return t.replace(/[a-z]+:\/\/[a-z0-9\-_]+\.[a-z0-9\-_@:~%&\?\+#\/.=]+[^:\.,\)\s*$]/ig, function (m) {
 							return '<a href="' + m + '">' + ((m.length > 25) ? m.substr(0, 24) + '...' : m) + '</a>';
 						});
 					},
 					"at": function (t) {
-						return t.replace(/(^|[^\w]+)\@([a-zA-Z0-9_]{1,15}(\/[a-zA-Z0-9-_]+)*)/g, function (m, m1, m2) {
+						return t.replace(/(^|[^\w]+)\@([a-zA-Z0-9_]{1,15}(\/[a-zA-Z0-9\-_]+)*)/g, function (m, m1, m2) {
 							return m1 + '@<a href="http://twitter.com/' + m2 + '">' + m2 + '</a>';
 						});
 					},
@@ -663,6 +665,32 @@
 				}
 				return date.getFullYear() + "-" + pe.string.pad(date.getMonth() + 1, 2, "0") + "-" + pe.string.pad(date.getDate(), 2, "0");
 			}
+		},
+		/**
+		 * A generic function for enabling/disabling PE enhancements
+		 * @memberof pe
+		 * @function
+		 * @return true if PE enhancements should be disabled, false if should be enabled
+		 */
+		pedisable: function () {
+			// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string or localStorage
+			var lsenabled = (typeof localStorage !== 'undefined'),
+				disablels = (lsenabled ? localStorage.getItem('pedisable') : null),
+				disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels);
+			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
+				$('html').addClass('no-js pe-disable');
+				if (lsenabled) {
+					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
+				}
+				$('#wb-tphp').append('<li><a href="?pedisable=false">' + pe.dic.get('%pe-enable') + '</a></li>'); // Add link to re-enable PE
+				return true;
+			} else if (disable === "false" || disablels !== null) {
+				if (lsenabled) {
+					localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
+				}
+			}
+			$('#wb-tphp').append('<li><a href="?pedisable=true">' + pe.dic.get('%pe-disable') + '</a></li>'); // Add link to disable PE
+			return false;
 		},
 		/**
 		 * A suite of menu related functions for easier handling of menus
@@ -842,76 +870,92 @@
 		 * @function
 		 * @return {void}
 		 */
-		polyfills: function () {
-			var lib = pe.add.liblocation,
-				elms,
-				// modernizer test for detailsummary support
-				details = (function (doc) {
-					var el = doc.createElement('details'),
-						fake,
-						root,
-						diff;
-					if (typeof el.open === "undefined") {
-						return false;
+		polyfills: (function () {
+			return {
+				/**
+				 * Polyfills to be loaded before everything else (pre-kill switch)
+				 * @memberof pe.polyfills
+				 */
+				init: function () {
+					var lib = pe.add.liblocation;
+					// localstorage
+					if (!window.localStorage) {
+						pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js', 'localstorage-loaded');
 					}
-					root = doc.body || (function () {
-						var de = doc.documentElement;
-						fake = true;
-						return de.insertBefore(doc.createElement('body'), de.firstElementChild || de.firstChild);
+				},
+				/**
+				 * Polyfills to be loaded later on (post-kill switch)
+				 * @memberof pe.polyfills
+				 */
+				load: function () {
+					var lib = pe.add.liblocation,
+						elms,
+						// modernizer test for detail/summary support
+						details = (function (doc) {
+							var el = doc.createElement('details'),
+								fake,
+								root,
+								diff;
+							if (typeof el.open === "undefined") {
+								return false;
+							}
+							root = doc.body || (function () {
+								var de = doc.documentElement;
+								fake = true;
+								return de.insertBefore(doc.createElement('body'), de.firstElementChild || de.firstChild);
+							}
+							());
+							el.innerHTML = '<summary>a</summary>b';
+							el.style.display = 'block';
+							root.appendChild(el);
+							diff = el.offsetHeight;
+							el.open = true;
+							diff = diff !== el.offsetHeight;
+							root.removeChild(el);
+							if (fake) {
+								root.parentNode.removeChild(root);
+							}
+							return diff;
+						}(document)),
+						datepicker = (function (doc) {
+							var el = doc.createElement('input');
+							el.setAttribute('type', 'date');
+							el.value = ':)';
+							return el.value !== ':)';
+						}(document));
+					// progress
+					if (typeof document.createElement('progress').position === "undefined") {
+						elms = $('progress');
+						if (elms.length > 0) {
+							pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
+							elms.addClass('polyfill');
+						}
 					}
-					());
-					el.innerHTML = '<summary>a</summary>b';
-					el.style.display = 'block';
-					root.appendChild(el);
-					diff = el.offsetHeight;
-					el.open = true;
-					diff = diff !== el.offsetHeight;
-					root.removeChild(el);
-					if (fake) {
-						root.parentNode.removeChild(root);
+					// details + summary
+					if (!details) {
+						elms = $('details');
+						if (elms.length > 0) {
+							pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
+							elms.addClass('polyfill');
+						}
 					}
-					return diff;
-				}(document)),
-				datepicker = (function (doc) {
-					var el = doc.createElement('input');
-					el.setAttribute('type', 'date');
-					el.value = ':)';
-					return el.value !== ':)';
-				}(document));
-			// localstorage
-			if (!window.localStorage) {
-				pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js');
-			}
-			// progress
-			if (typeof document.createElement('progress').position === "undefined") {
-				elms = $('progress');
-				if (elms.length > 0) {
-					pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
-					elms.addClass('polyfill');
+					// datalist
+					if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
+						elms = $('input[list]');
+						if (elms.length > 0) {
+							pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
+							elms.addClass('polyfill');
+						}
+					}
+					// datepicker
+					if (!datepicker) {
+						pe.add._load(lib + 'polyfills/datepicker' + pe.suffix + '.js');
+						$('input[type="date"]').addClass("polyfill");
+					}
 				}
-			}
-			// details + summary
-			if (!details) {
-				elms = $('details');
-				if (elms.length > 0) {
-					pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
-					elms.addClass('polyfill');
-				}
-			}
-			// datalist
-			if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
-				elms = $('input[list]');
-				if (elms.length > 0) {
-					pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
-					elms.addClass('polyfill');
-				}
-			}
-			// datepicker
-			if (!datepicker) {
-				pe.add._load(lib + 'polyfills/datepicker' + pe.suffix + '.js');
-				$('input[type="date"]').addClass("polyfill");
-			}
-		},
+			};
+		}
+		()),
 		/**
 		 * A series of chainable methods to add elements to the head ( async )
 		 * @namespace pe.add
