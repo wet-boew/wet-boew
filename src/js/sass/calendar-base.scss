@@ -41,7 +41,7 @@ div.cal-cnt{
 		float:right;
 	}
 	.cal-goto-button{
-		width:49%;
+		margin: 0 10px 0 5px;
 		float:left;
 		input{
 			padding:0.1em 0.2em;
@@ -50,18 +50,21 @@ div.cal-cnt{
 }
 
 div.cal-nextmonth , div.cal-prevmonth {
-		margin-bottom:-13px; 
+	margin-bottom:-15px; 
 }
 
 div.cal-nextmonth img, div.cal-prevmonth img{
-		vertical-align: sub;
+	margin: 0;
+	vertical-align: middle;
 }
 
 div.cal-prevmonth {
+	float: left;
 	text-align:left;
 }
 
 div.cal-nextmonth {
+	float: right;
 	text-align:right;
 }
 

@@ -26,7 +26,15 @@
 				getEvents,
 				randomId,
 				addEvents,
-				showOnlyEventsFor;
+				showOnlyEventsFor,
+				keyboardNavEvents,
+				keyboardNavCalendar,
+				mouseOnDay,
+				mouseOutDay,
+				focusDay,
+				blurDay,
+				blurEvent,
+				focusEvent;
 
 			getEvents = function (obj) {
 				// set some defaults due to classing over-rides
@@ -50,7 +58,7 @@
 				}
 
 				if (objEventsList.length > 0) {
-					objEventsList.children("li").each(function (e) {
+					objEventsList.children("li").each(function () {
 						var event = $(this),
 							_objTitle = event.find("*:header:first"),
 							title = _objTitle.text(),
@@ -63,10 +71,11 @@
 							strDate2,
 							strDate,
 							z;
+
 						/*** Modification direct-linking or page-linking
-						*     - added the ability  to have class set the behaviour of the links
-						*     - default is to use the link of the item as the event link in the calendar
-						*     - 'event-anchoring' class dynamically generates page anchors on the links it maps to the event
+						*	 - added the ability  to have class set the behaviour of the links
+						*	 - default is to use the link of the item as the event link in the calendar
+						*	 - 'event-anchoring' class dynamically generates page anchors on the links it maps to the event
 						* ***/
 						if (!direct_linking) {
 							link_id = (event.attr('id') !== undefined) ? event.attr('id') : randomId(6);
@@ -79,13 +88,13 @@
 							link = "#" + link_id;
 						}
 						/*** Modification XHTML 1.0 strict compatible
-						*    - XHTML 1.0 Strict does not contain the time element
+						*	- XHTML 1.0 Strict does not contain the time element
 						****/
 						date = new Date();
 						tCollection = event.find("time, span.datetime");
 						/** Date spanning capability
 						*   - since there maybe some dates that are capable of spanning over months we need to identify them
-						*     the process is see how many time nodes are in the event. 2 nodes will trigger a span
+						*	 the process is see how many time nodes are in the event. 2 nodes will trigger a span
 						*/
 						if (tCollection.length > 1) {
 							// this is a spanning event
@@ -135,6 +144,7 @@
 					// end of loop through objects/events
 					});
 				}
+
 				window.events = events;
 				return events;
 			};
@@ -157,9 +167,102 @@
 				}
 				return "id" + s;
 			};
+
+			keyboardNavCalendar = function (event) {
+				var i, evt;
+				switch (event.keyCode) {
+				case 13: // enter key
+				case 32: // spacebar
+				case 38: // up arrow
+				case 40: // down arrow
+					pe.focus(event.data.details.find('a').first());
+					return false;
+				case 37: // left arrow
+					i = $(this).closest('li').index();
+					evt = $(this).closest('ol').children('li:lt(' + i + ')').children('a').last();
+					pe.focus(evt);
+					return false;
+				case 39: // right arrow
+					i = $(this).closest('li').index();
+					evt = $(this).closest('ol').children('li:gt(' + i + ')').children('a').first();
+					pe.focus(evt);
+					return false;
+				case 27: // escape
+					$(this).siblings('.ev-details').removeClass('ev-details').addClass('wb-invisible');
+					return false;
+				}
+			};
+
+			keyboardNavEvents = function (event) {
+				var i, evt, length;
+				switch (event.keyCode) {
+				case 38: // up arrow
+					i = $(this).closest('li').index();
+					length = $(this).closest('li').length;
+					pe.focus($(this).closest('ul').children('li').children('a').get((i - 1) % length));
+					$(this).trigger('focus');
+					return false;
+				case 40: // down arrow
+					i = $(this).closest('li').index();
+					length = $(this).closest('li').length;
+					pe.focus($(this).closest('ul').children('li').children('a').get((i + 1) % length));
+					return false;
+				case 37: // left arrow
+					i = $(this).closest('li[id^=cal-]').index();
+					evt = $(this).closest('ol').children('li:lt(' + i + ')').children('a').last();
+					pe.focus(evt);
+					return false;
+				case 39: // right arrow
+					i = $(this).closest('li[id^=cal-]').index();
+					evt = $(this).closest('ol').children('li:gt(' + i + ')').children('a').first();
+					pe.focus(evt);
+					return false;
+				case 27: // escape
+					pe.focus($(this).closest('li[id^=cal-]').children('a.calEvent'));
+					return false;
+				}
+			};
+
+			mouseOnDay = function (event) {
+				event.data.details.dequeue();
+				event.data.details.removeClass("wb-invisible");
+				event.data.details.addClass("ev-details");
+			};
+
+			mouseOutDay = function (event) {
+				event.data.details.delay(100).queue(function () {
+					$(this).removeClass("ev-details");
+					$(this).addClass("wb-invisible");
+					$(this).dequeue();
+				});
+			};
+
+			focusDay = function (event) {
+				event.data.details.removeClass("wb-invisible");
+				event.data.details.addClass("ev-details");
+			};
+
+			blurDay = function (event) {
+				setTimeout(function () {
+					if (event.data.details.find('a:focus').length === 0) {
+						event.data.details.removeClass("ev-details");
+						event.data.details.addClass("wb-invisible");
+					}
+				}, 5);
+			};
+
+			blurEvent = function (event) {
+				event.data.details.removeClass("ev-details");
+				event.data.details.addClass("wb-invisible");
+			};
+
+			focusEvent = function (event) {
+				event.data.details.removeClass("wb-invisible");
+				event.data.details.addClass("ev-details");
+			};
+
 			addEvents = function (year, month, days, containerid, eventslist) {
-				var container = $("#" + containerid),
-					e,
+				var e,
 					date,
 					day,
 					content,
@@ -167,6 +270,7 @@
 					link,
 					eventDetails,
 					item_link;
+
 				//Fix required to make up with the IE z-index behavior mismatch
 				days.each(function (index, day) {
 					$(day).css("z-index", 31 - index);
@@ -188,55 +292,42 @@
 							day.append(link);
 							dayEvents = $('<ul class="wb-invisible"></ul>');
 
+							link.on('keydown', {details: dayEvents}, keyboardNavCalendar);
+
 							//Show day events on mouse over
-							day.bind("mouseover", {details: dayEvents}, function (event) {
-								event.data.details.dequeue();
-								event.data.details.removeClass("wb-invisible");
-								event.data.details.addClass("ev-details");
-							});
+							day.on("mouseover", {details: dayEvents}, mouseOnDay);
 
 							//Hide days events on mouse out
-							day.bind("mouseout", {details: dayEvents}, function (event) {
-								event.data.details.delay(100).queue(function () {
-									$(this).removeClass("ev-details");
-									$(this).addClass("wb-invisible");
-									$(this).dequeue();
-								});
-							});
+							day.bind("mouseout", {details: dayEvents}, mouseOutDay);
 
 							//Show day events when tabbing in
-							link.bind("focus", {details: dayEvents}, function (event) {
-								event.data.details.removeClass("wb-invisible");
-								event.data.details.addClass("ev-details");
-							});
+							link.bind("focus", {details: dayEvents}, focusDay);
 							//hide day events when tabbing out
-							link.bind("blur", {details: dayEvents}, function (event) {
-								event.data.details.removeClass("ev-details");
-								event.data.details.addClass("wb-invisible");
-							});
+							link.bind("blur", {details: dayEvents}, blurDay);
 
 							day.append(dayEvents);
 						} else {
-							// Modificiation - added and else to the date find due to event collions not being handled. So the pionter was getting lost
-							dayEvents = day.find('ul.cn-invisible');
+							// Modification - added and else to the date find due to event collisions not being handled. So the pointer was getting lost
+							dayEvents = day.find('ul.wb-invisible');
 						}
 
 						eventDetails = $('<li><a href="' + eventslist[e].href +  '">' + eventslist[e].title + '</a></li>');
+
+						if (pe.cssenabled) {
+							eventDetails.children('a').attr('tabindex', '-1');
+						}
+
 						dayEvents.append(eventDetails);
 
 						item_link = eventDetails.children("a");
 
+						item_link.on('keydown', keyboardNavEvents);
+
 						//Hide day events when the last event for the day loose focus
-						item_link.bind("blur", {details: dayEvents}, function (event) {
-							event.data.details.removeClass("ev-details");
-							event.data.details.addClass("wb-invisible");
-						});
+						item_link.bind("blur", {details: dayEvents}, blurEvent);
 
 						//Show day events when tabbing in
-						item_link.bind("focus", {details: dayEvents}, function (event) {
-							event.data.details.removeClass("wb-invisible");
-							event.data.details.addClass("ev-details");
-						});
+						item_link.bind("focus", {details: dayEvents}, focusEvent);
 
 					} // end of date range visible
 				} // end of event list loop

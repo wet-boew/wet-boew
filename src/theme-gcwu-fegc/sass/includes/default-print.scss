@@ -65,12 +65,12 @@ h6{
 	li{
 		background:none;
 		padding:0;
-	}
-	li:before{
-		content:" > ";
-	}
-	li:first-child:before{
-		content:"";
+		&:before{
+			content:" > ";
+		}
+		&:first-child:before{
+			content:"";
+		}
 	}
 	a{
 		padding-left:0;

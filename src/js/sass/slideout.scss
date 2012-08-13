@@ -38,10 +38,6 @@
 	position: relative; /* Needed for animation */
 }
 
-.tabbedSlideout #slideoutClose {
-	float: right;
-}
-
 #toggleLink {
 	cursor: pointer;
 	img {
@@ -58,6 +54,9 @@
 	position: relative; 
 	margin: auto;
 	width: 245px;
+	#slideoutClose {
+		float: right;
+	}
 }
 
 div.tabbedSlideout {

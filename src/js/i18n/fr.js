@@ -72,6 +72,7 @@
 			"%colon" : "&#160;:",
 			"%start" : "Lancer",
 			"%stop" : "Arrêter",
+			"%back" : "Précédent",
 			"%minute-ago": "il ya une minute",
 			"%couple-of-minutes": "il ya quelques minutes",
 			"%minutes-ago": {
@@ -161,7 +162,18 @@
 			"%lb-prev" : "Article précédent",
 			"%lb-xhr-error" : "Le chargement de ce contenu a échoué.",
 			"%lb-img-error" : "Le chargement de cette image a échoué.",
-			"%lb-slideshow" : "la diaporama"
+			"%lb-slideshow" : "la diaporama",
+			/* jQuery Mobile */
+			"%jqm-expand" : " cliquer pour afficher le contenu",
+			"%jqm-collapse" : " cliquer pour masquer le contenu",
+			"%jqm-clear-search" : "effacer le texte",
+			"%jqm-filter" : "Filtrer des articles...",
+			/* Charts widget */
+			"%table-mention": "- Tableau",
+			"%table-following": "- Graphique. Plus de détails dans le tableau suivant.",
+			/* Disable/enable PE */
+			"%pe-disable": "Version HTML simplifiée",
+			"%pe-enable": "Version standard"
 		}
 	};
 	$(document).trigger("languageloaded");

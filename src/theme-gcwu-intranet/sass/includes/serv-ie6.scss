@@ -24,8 +24,10 @@
 		position:static !important;
 		top:auto !important;
 	}
-	#gcwu-sig img,#gcwu-wmms img{
-		height: auto !important;
-		width: auto !important;
+	#gcwu-sig,#gcwu-wmms{
+		img{
+			height: auto !important;
+			width: auto !important;
+		}
 	}
 }
