@@ -100,8 +100,8 @@
 
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0)}, _pe.fn.multimedia._intf);
-
 				media.after(_pe.fn.multimedia._get_ui(media_id));
+				
 				//Scale the UI when the video scales
 				$(window).on('resize', {'media' : media, width : width, height : height}, function (e) {
 					if (e.data.media.width() > 0) {
@@ -113,7 +113,7 @@
 				$(window).trigger('resize');
 
 				//Map UI mouse events
-				elm.on('mousedown', function (e) {
+				elm.on('click', function (e) {
 					var $target = $(e.target),
 						p,
 						s;
@@ -217,12 +217,7 @@
 					case 'timeupdate':
 						p = this.getCurrentTime() / this.getDuration();
 						timeline = $w.find('.wet-boew-multimedia-timeline progress');
-						timeline.stop();
-						if (this.getSeeking()) {
-							timeline.attr('value', p);
-						} else {
-							timeline.animate({'value': p}, 200);
-						}
+						timeline.attr('value',p);
 						//Update captions
 						if ($.data(e.target, 'captions') !== undefined) {
 							_pe.fn.multimedia._update_captions($w.find('.wet-boew-multimedia-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
