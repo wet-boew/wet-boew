@@ -175,22 +175,6 @@
 		padding-bottom: 0;
 		> * { margin-right: $margin-medium / 2; }
 	}
-
-	#gcwu-srchbx-in {
-		#gcwu-srch { 
-			border-color: $accent;
-			margin-bottom: 0; 
-			padding: 4px;
-			@include border-radius;
-
-			&:focus, &:active { background-color: $white; border-color: darken($accent, 10%); }
-		}
-		#gcwu-srch-submit {
-			@include color-button($light);
-			margin-bottom: 0;
-			display: inline;
-		}
-	}
 }
  
 @mixin form-style {

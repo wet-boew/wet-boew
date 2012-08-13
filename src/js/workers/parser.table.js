@@ -42,7 +42,6 @@
 				rowgroupLevel = 1, // Default RowGroupLevel
 				currentRowHeader = [],
 				currentTbodyID,
-				pastTbodyID,
 				theadRowStack = [],
 				stackRowHeader = false,
 				// Row Group Variable

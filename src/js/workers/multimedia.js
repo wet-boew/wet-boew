@@ -113,7 +113,6 @@
 				//Map UI mouse events
 				elm.on('mousedown', function (e) {
 					var $target = $(e.target),
-						t,
 						p,
 						s;
 

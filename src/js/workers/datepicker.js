@@ -5,7 +5,7 @@
 /*
  * Datepicker
  */
-/*global jQuery: false, pe: false, wet_boew_datepicker: false, calendar: false, XRegExp: false*/
+/*global jQuery: false, pe: false, wet_boew_datepicker: false, XRegExp: false*/
 (function ($) {
 	var _pe = window.pe || {fn: {} };
 	/* local reference */
@@ -140,7 +140,7 @@
 				}
 			};
 			hideAll = function (exception) {
-				$("#wet-boew-datepicker").each(function (index, value) {
+				$("#wet-boew-datepicker").each(function () {
 					var fieldid, containerid, container, toggle, fieldLabel;
 					if ($(this).attr("id") !== exception) {
 						fieldid = $(this).attr("id");
