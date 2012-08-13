@@ -3,7 +3,7 @@ Copyright (c) 2011 Wojo Design
 Dual licensed under the MIT or GPL licenses.
 */
 (function(){
-    var window = this;
+	var window = this;
 	// check to see if we have localStorage or not
 	if( !window.localStorage ){		
 
@@ -27,6 +27,7 @@ Dual licensed under the MIT or GPL licenses.
 		document.getElementsByTagName( "head" )[ 0 ].appendChild( div );
 		if ( div.addBehavior ) {
 			div.addBehavior( "#default#userdata" );
+			//div.style.behavior = "url('#default#userData')";
 
 			var localStorage = window["localStorage"] = {
 				"length":0,

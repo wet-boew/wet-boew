@@ -42,14 +42,15 @@
 				rowgroupLevel = 1, // Default RowGroupLevel
 				currentRowHeader = [],
 				currentTbodyID,
-				pastTbodyID,
 				theadRowStack = [],
 				stackRowHeader = false,
 				// Row Group Variable
 				rowgroupHeaderRowStack = [],
 				currentRowGroup,
 				currentRowGroupElement,
-				lstRowGroup = [];
+				lstRowGroup = [],
+				rowgroupheadercalled = false,
+				hasTfoot = $(obj).has('tfoot');
 
 			// Check if this table was already parsed, if yes we exit by throwing an error
 			if ($(obj).tblparser) {
@@ -252,9 +253,10 @@
 					colFrmId,
 					bigTotalColgroupFound;
 
-				if (groupZero.colgrouphead) {
+				if (groupZero.colgrouphead || rowgroupheadercalled) {
 					return; // Prevent multiple call
 				}
+				rowgroupheadercalled = true;
 				if (colgroupHeaderColEnd && colgroupHeaderColEnd > 0) {
 					// The first colgroup must match the colgroupHeaderColEnd
 					if (colgroupFrame.length > 0 && (colgroupFrame[0].start !== 1 || (colgroupFrame[0].end !== colgroupHeaderColEnd && colgroupFrame[0].end !== (colgroupHeaderColEnd + 1)))) {
@@ -1343,8 +1345,23 @@
 									rowheader = row.cell[i];
 									headingRowCell.push(row.cell[i]);
 								}
+								for (j = 0; j < colKeyCell.length; j += 1) {
+									if (!(colKeyCell[j].type) && !(row.cell[i].keycell) && colKeyCell[j].height === row.cell[i].height) {
+										colKeyCell[j].type = 4;
+										row.cell[i].keycell = colKeyCell[j];
 
-								$.each(colKeyCell, function () {
+										if (!row.keycell) {
+											row.keycell = [];
+										}
+										row.keycell.push(colKeyCell[j]);
+
+										if (!groupZero.keycell) {
+											groupZero.keycell = [];
+										}
+										groupZero.keycell.push(colKeyCell[j]);
+									}
+								}
+								/*$.each(colKeyCell, function () {
 									if (!(this.type) && !(row.cell[i].keycell) && this.height === row.cell[i].height) {
 										this.type = 4;
 										row.cell[i].keycell = this;
@@ -1359,7 +1376,7 @@
 										}
 										groupZero.keycell.push(this);
 									}
-								});
+								});*/
 							}
 						}
 
@@ -1535,6 +1552,10 @@
 					// Here it's not possible to  Diggest the thead and the colgroup because we need the first data row to be half processed before
 					break;
 				case 'tbody':
+				case 'tfoot':
+				
+					// TODO: Add support if tfoot are defined before the tbody
+
 					currentRowGroupElement = this;
 					initiateRowGroup();
 
@@ -1577,13 +1598,13 @@
 					currentTbodyID += 1;
 					finalizeRowGroup();
 					break;
-				case 'tfoot':
-					currentRowGroupElement = this;
+					// case 'tfoot':
+					//currentRowGroupElement = this;
 
 					// The rowpos are not incremented here because this is a summary rowgroup for the GroupZero
 
 					// TODO: Question: Stack any row and processed them at the really end ???
-					break;
+					// break;
 				case 'tr':
 					// This are suppose to be a simple table
 					processRow(this);
