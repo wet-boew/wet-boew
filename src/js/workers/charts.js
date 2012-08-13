@@ -5,7 +5,7 @@
 /*
 * Chart  functionality WET
 */
-/*global jQuery: false*/
+/*global jQuery: false, pe:false, wet_boew_charts: false, Raphael: false*/
 (function ($) {
 	var _pe = window.pe || {
 		fn: {}
@@ -409,8 +409,8 @@
 							var r1 = (charts.circleGraph.minWidth / 2) + // CenterPie
 								charts.circleGraph.strokeWidth + // CenterPie Stroke
 								charts.circleGraph.levelPadding + // CenterPie Padding
-								(charts.circleGraph.series.nbColLevel - level - height - 1) // Number of under existing Level
-								* (charts.circleGraph.levelPadding + (charts.circleGraph.strokeWidth * 2) + charts.circleGraph.minLevelWidth);
+								(charts.circleGraph.series.nbColLevel - level - height - 1) * // Number of under existing Level
+								(charts.circleGraph.levelPadding + (charts.circleGraph.strokeWidth * 2) + charts.circleGraph.minLevelWidth);
 							return r1;
 						}
 						function getRTop(level, height) {
@@ -1149,8 +1149,7 @@
 					//
 					//
 					// TODO: Developper NOTE:
-					//	 Here they are a glitch when we draw the x axis, because his lenght is too long regarding the graph generated,
-					//   :-|
+					//	Here they are a glitch when we draw the x axis, because his lenght is too long regarding the graph generated,
 					// 
 					charts.graph2dAxis.xAxisOffset = (charts.graph2dAxis.options.font.height * (charts.graph2dAxis.zeroPos - 1) + charts.graph2dAxis.offset.top + charts.graph2dAxis.cuttingOffset);
 					/*
@@ -1846,10 +1845,7 @@
 				*/
 					// Parse the Table Cell Data and Serie Heading
 					$('tbody', self).each(function () {
-						var maxValue,
-							minValue,
-							unit,
-							SpannedRow = [],
+						var SpannedRow = [],
 							Series = {
 								headerList: [],
 								series: [],
