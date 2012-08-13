@@ -26,20 +26,30 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <script src="../../build/js/jquery.min.js"></script>
 
-<!-- The following script are for the try it button -->
-<script>
-	//<![CDATA[
-	
-	$(document).ready(function(){
-		$('input.tryit').click(function(){
-			eval($(this).prev().val());
-		});
-		
-	});
-	
-	//]]>
-</script>
-<!-- END of Try it button -->
+<style>
+
+.wet-boew-zebra tr.table-even td.table-summarycol4, .wet-boew-zebra tr.table-odd td.table-summarycol4,
+.wet-boew-zebra tr.table-even td.table-summaryrow4, .wet-boew-zebra tr.table-odd td.table-summaryrow4 {
+	background-color: yellow!important;
+}
+
+.wet-boew-zebra tr.table-even td.table-summarycol3, .wet-boew-zebra tr.table-odd td.table-summarycol3,
+.wet-boew-zebra tr.table-even td.table-summaryrow3, .wet-boew-zebra tr.table-odd td.table-summaryrow3 {
+	background-color: lightgreen!important;
+}
+
+.wet-boew-zebra tr.table-even td.table-summarycol2, .wet-boew-zebra tr.table-odd td.table-summarycol2, 
+.wet-boew-zebra tr.table-even td.table-summaryrow2, .wet-boew-zebra tr.table-odd td.table-summaryrow2{
+	background-color: pink!important;
+}
+
+.wet-boew-zebra tr.table-even td.table-summarycol1, .wet-boew-zebra tr.table-odd td.table-summarycol1, 
+.wet-boew-zebra tr.table-even td.table-summaryrow1, .wet-boew-zebra tr.table-odd td.table-summaryrow1{
+	background-color: lightblue!important;
+}
+
+
+</style>
 
 <link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
@@ -141,7 +151,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 &lt;colgroup&gt;&lt;col /&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
 &lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
 </code></pre>
-<table>
+<table class="wet-boew-zebra">
 	<caption>Example Table: Number of PPH requests</caption>
 
 	
@@ -246,13 +256,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	</tbody>
 	
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(0):data').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(0):summary:collevel(1)').css('background-color', 'pink');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(0):summary:collevel(0)').css('background-color', 'cyan');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 <details><summary>Source code</summary>
 <pre><code>
 
-&lt;table&gt;
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
 	&lt;caption&gt;Example Table: Number of PPH requests&lt;/caption&gt;
 
 	
@@ -384,7 +391,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 &lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
 &lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
 </code></pre>
-<table>
+<table class="wet-boew-zebra">
 	<caption>Example Table: Number of PPH requests</caption>
 
 	
@@ -462,11 +469,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	</tr>
 	</tbody>
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(1):data').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 <details><summary>Source code</summary>
 <pre><code>
 
-&lt;table&gt;
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
 	&lt;caption&gt;Example Table: Number of PPH requests&lt;/caption&gt;
 
 	
@@ -560,7 +566,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 &lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
 &lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
 </code></pre>
-<table>
+<table class="wet-boew-zebra">
 	<caption>
 Caption
 	</caption>
@@ -625,11 +631,10 @@ Caption
 
     </tbody>
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(2):data').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 <details><summary>Source code</summary>
 <pre><code>
 
-&lt;table&gt;
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
 	&lt;caption&gt;
 Caption
 	&lt;/caption&gt;
@@ -702,7 +707,7 @@ Caption
 
 
 <pre><code> &lt;colgroup span=&quot;6&quot;&gt;&lt;/colgroup&gt; </code></pre>
-<table>
+<table class="wet-boew-zebra">
 	<caption>
 Caption
 	</caption>
@@ -762,11 +767,10 @@ Caption
 
     </tbody>
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(3):data').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 <details><summary>Source code</summary>
 <pre><code>
 
-&lt;table&gt;
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
 	&lt;caption&gt;
 Caption
 	&lt;/caption&gt;
@@ -832,7 +836,7 @@ Caption
 
 
 <pre><code> &lt;colgroup span=&quot;4&quot;&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;</code></pre>
-<table>
+<table class="wet-boew-zebra">
 	<caption>
 Caption
 	</caption>
@@ -893,11 +897,10 @@ Caption
 
     </tbody>
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(4):data').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 <details><summary>Source code</summary>
 <pre><code>
 
-&lt;table&gt;
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
 	&lt;caption&gt;
 Caption
 	&lt;/caption&gt;
@@ -964,7 +967,7 @@ Caption
 
 
 <pre><code> &lt;colgroup span=&quot;4&quot;&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;</code></pre>
-<table>
+<table class="wet-boew-zebra">
 	<caption>
 Caption
 	</caption>
@@ -1026,12 +1029,10 @@ Caption
 
     </tbody>
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(5):data:collevel(1)').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(5):data:collevel(2)').css('background-color', 'lightgreen');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 <details><summary>Source code</summary>
 <pre><code>
 
-&lt;table&gt;
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
 	&lt;caption&gt;
 Caption
 	&lt;/caption&gt;
@@ -1103,7 +1104,7 @@ Caption
 &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt; 
 &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt;
 </code></pre>
-<table>
+<table class="wet-boew-zebra">
 	<caption>
 Caption
 	</caption>
@@ -1164,11 +1165,10 @@ Caption
         </tr>
     </tbody>
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(6):data').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 <details><summary>Source code</summary>
 <pre><code>
 
-&lt;table&gt;
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
 	&lt;caption&gt;
 Caption
 	&lt;/caption&gt;
@@ -1236,7 +1236,7 @@ Caption
 
 
 <pre><code> &lt;colgroup span=&quot;2&quot;&gt;&lt;/colgroup&gt; &lt;colgroup span=&quot;4&quot;&gt;&lt;/colgroup&gt;</code></pre>
-<table>
+<table class="wet-boew-zebra">
 	<caption>
 Caption
 	</caption>
@@ -1296,11 +1296,10 @@ Caption
         </tr>
     </tbody>
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(7):data').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 <details><summary>Source code</summary>
 <pre><code>
 
-&lt;table&gt;
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
 	&lt;caption&gt;
 Caption
 	&lt;/caption&gt;
@@ -1385,7 +1384,7 @@ Caption
 &lt;colgroup span=&quot;3&quot;&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
 &lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt; &lt;colgroup&gt;&lt;/colgroup&gt;
 </code></pre>
-<table>
+<table class="wet-boew-zebra">
 	<caption>Caption</caption>
 	
 	<colgroup>
@@ -1611,15 +1610,11 @@ Caption
 		</tr>
 	</tbody>
 </table>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(8):data').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(8):data:collevel(1)').css('background-color', 'cyan');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(8):data:collevel(2)').css('background-color', 'lightgreen');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(8):data:collevel(3)').css('background-color', 'orange');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(8):data:collevel(4)').css('background-color', 'lightgray');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
+
 <details><summary>Source code</summary>
 <pre><code>
 
-&lt;table&gt;
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
 	&lt;caption&gt;Caption&lt;/caption&gt;
 	
 	&lt;colgroup span=&quot;3&quot;&gt;&lt;/colgroup&gt; 

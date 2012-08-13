@@ -26,18 +26,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <script src="../../build/js/jquery.min.js"></script>
 
-<!-- The following script are for the try it button -->
-<script>
-	//<![CDATA[
-	$(document).ready(function(){
-		$('input.tryit').click(function(){
-			eval($(this).prev().val());
-		});
-	});
-	//]]>
-</script>
-<!-- END of Try it button -->
-
 <link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
@@ -115,20 +103,12 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <h1 id="cn-cont">&ldquo;Keys&rdquo; and &ldquo;Description&rdquo; cell in a table row - Table Usability - Web Experience Toolkit (WET)</h1>
 
 
-
-<p><em>This article about a table usability guideline. The purpose of the table usability guideline is to explain how you can create usable complex table. The HTML 5 markup are used to illustrate the guideline methodology. This documentation/guideline are supported by a javascript table parser. Anything regards of HTML accessibility are not discussed here because with the javascript table parser it would be possible to auto setup the accessibility requirement on the fly, that for a complex usable table.</em></p>
-
-
-
-
 <h2>Key Cell</h2>
 
-<p><strong>JQuery Selector:</strong> &quot;<em>:keycell</em>&quot;</p>
-
-<p>Defined by a data cell element (td), a <em>key cell</em> can by compared to a primary key in a table inside a relational database. A <em>key cell</em> are always associated to a row cell header (th). Only one key cell can be associated to a header but two key cell can co-exist in the same table row. A key cell is always at the left of his cell header.</p>
+<p>Defined by a data cell element (td), a <em>key cell</em> can by compared to a primary key in a relational database. A <em>key cell</em> are always associated to a row cell header (th). The key cell concept don't apply to column cell header. Only one key cell can be associated to a header but two key cell can co-exist in the same table row. A key cell is always at the left of his cell header.</p>
 
 
-<table>
+<table class="wet-boew-zebra">
 	<caption>Basic &quot;Key Cell&quot; Example</caption>
     
 
@@ -194,8 +174,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 	</tbody>
 </table>
-
-<p><label for="tryit0">Try it:</label> <input id="tryit0" type="text" style="width:450px;" value="$('table:eq(0):keycell').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 
 
 <details>
@@ -271,9 +249,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 </details>
 
-<p>As you can see in the previous table, the first table column are used to associate a product ID information to the product name. Whatever, it would not be clear to everybody, that doesn't know/search for a specific product, to use the product ID. It's most usable to use the product name. Keep in mind, when a entreprise market a product, he would use the product name and not the product key. The product key would be most useful for somebody that already know about it.</p>
+<p>As you can see in the previous table, the first table column are used to associate a product ID information to the product name. The intention about of the key cell concept is to quickly identify a cell header. The cell header are the meaniful name of the key cell.</p>
 
-<table>
+<table class="wet-boew-zebra">
 	<caption>Another &quot;Key Cell&quot; Example - Android (Operating system) Release date</caption>
     
     <thead>
@@ -322,7 +300,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 	</tbody>
 </table>
-<p><label for="tryit1">Try it:</label> <input id="tryit1" type="text" style="width:450px;" value="$('table:eq(1):keycell').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 
 <details>
 	<summary>Source Code</summary>
@@ -384,14 +361,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </details>
 
 
-<p>If you check the similar table in <a href="http://en.wikipedia.org/wiki/Android_%28operating_system%29">wikipedia on the Adroid webpage</a>, you will see the same relationship but displayed in an implicit way. They use emphasis in the first column to distinguish the key cell versus the row title.</p>
+<p>If you check the similar table in <a href="http://en.wikipedia.org/wiki/Android_%28operating_system%29">wikipedia on the Adroid webpage</a>, you will see the same relationship but displayed along with the cell header. They use emphasis to distinguish the key cell versus the row header.</p>
 
-<img src="img-keycell.jpg" alt="For the example see http://en.wikipedia.org/wiki/Android_%28operating_system%29" />
+<img src="img-keycell.jpg" alt="For the example see the Adroid webpage on Wikipedia" />
 
 <h3>Complex Key Cell Structure</h3>
-<p>Imagine you have serveral products and you want them to be classified by sector. You have an ID for each sector and an ID for each product. You would have a table like this:</p>
+<p>Imagine you have serveral products and you want them to be classified by sector. You have an ID for each sector and an ID for each product. With this concept you would have a table similar like this:</p>
 
-<table>
+<table class="wet-boew-zebra">
 	<caption>Product Listing</caption>
     
     <thead>
@@ -454,7 +431,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
         </tr>
 	</tbody>
 </table>
-<p><label for="tryit2">Try it:</label> <input id="tryit2" type="text" style="width:450px;" value="$('table:eq(2):keycell').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 
 <details>
 	<summary>Source Code</summary>
@@ -532,12 +508,11 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2>Description Cell</h2>
 
-<p><strong>JQuery Selector:</strong> &quot;<em>:description</em>&quot;</p>
 
-<p>There exist other technique on how to add descriptive cell to a cell header. One of those technique is to add in superscript a footnote. An other technique is to use the &quot;details/summary&quot; HTML 5 element in a cell header. Those two technique can be applied to any data cell in a table. When we look at the cell header (th), a thrid technique can be used. That technique is to add a data cell directly in the next column of (right of) the cell heading. A cell header can only have one descriptive data cell associated to.</p>
+<p>There exist a few technique on how to add descriptive cell to a cell header. One of those techniques is to add inside the cell header a footnote. An other technique is to use the &quot;details/summary&quot; HTML 5 element in the cell header. Those two technique can be applied to any data cell in a table. But when we look at the cell header (th), now a thrid technique can be used. That technique is to add a data cell directly in the next column of (right of) the cell heading. A cell header can only have one descriptive data cell associated to.</p>
 
 
-<table>
+<table class="wet-boew-zebra">
 	<caption>&quot;Description Cell&quot; example</caption>
     
     <thead>
@@ -633,7 +608,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
     </tbody>
 </table>
 
-<p><label for="tryit3">Try it:</label> <input id="tryit3" type="text" style="width:450px;" value="$('table:eq(3):description').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 
 <details>
 	<summary>Source Code</summary>
@@ -740,20 +714,20 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </details>
 
 
+<p>The previous description cell are explicited defined when it is located between two cell header. If you do not have a hiarchical header cell structure it still possible to define the descriptive cell. That method use the column group (<em>colgroup</em> element).</p>
+
+<h3>Column Group Header (<em>colgroup</em> element)</h3>
+
+<p>Rarely used, the column grouping can become very useful if we need to have a distinction between the data column group and the header column group. As the row group header <em>thead</em> element is the first row group in a table, the same sequence is applied to the column group. So if there is row header, the first column group would represent the column header group.</p>
 
 
-<p>The previous description cell are explicited defined when it is located between two cell header. Sometime they exist descrive cell but without any hiarchical cell. It is in that case the column grouping (colgroup element) are useful.</p>
 
-<h3>Column Group Header</h3>
-<p>Rarely used, the column grouping can became very useful if we need to have a distinction between the data column group and the header column group. Here I apply the same rule as defined for the table row grouping (thead, tfoot, tbody). In the HTML specification it's said that, if present, the thead row group are defined before any tfoot and tbody. So if we check the row group structure the row group header section are always the first. Now let apply the same approch to the colgroup structure. We have, the first colgroup element are used as an header group. Offcourse, if in the table body there are no row heading, that means there would not have a colgroup used as an header group.</p> 
-
-
-<h3>Descriptive cell defined with colgroup</h3>
+<p>The following table is a quick example of the use of the column group to define the existance of a descriptive cell to the row header.</h3>
 
 <pre><code>&lt;colgroup span=&quot;2&quot; /&gt;&lt;colgroup span=&quot;3&quot; /&gt;</code></pre>
 
 
-<table>
+<table class="wet-boew-zebra">
 	<caption>&quot;Description Cell&quot; example - with one header per row</caption>
     
     <colgroup span="2"></colgroup>
@@ -815,7 +789,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
     </tbody>
 </table>
-<p><label for="tryit4">Try it:</label> <input id="tryit4" type="text" style="width:450px;" value="$('table:eq(4):description').css('background-color', 'yellow');" /> <input class="tryit" style="margin-top:0px;" type="button" value="Go" /></p>
 
 <details>
 	<summary>Source Code</summary>
@@ -887,20 +860,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </details>
 
 
-<p>By using that technique, that create the possibility for a table parser to separate the real data vs descriptive information.</p>
 
+<h2>Column Grouping</h2>
 
-<h2>May you would like to see also...</h2>
+<p>In this article you have see how to identify a key cell and how to define a description for a row cell header. Now in the next article you will see the how you can use multiple column group to represent data group and summary group..</p>
 
-<ul>
-	<li><a href="Data-Cell.html">&ldquo;Data&rdquo; Cell</a></li>
-	<li><a href="Summary-Cell.html">&ldquo;Summarys&rdquo; Cell</a></li>
-</ul>
-
-
+<p><a href="columngroup.html">Column Grouping</a></p>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2011-10-31</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-08-09</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
