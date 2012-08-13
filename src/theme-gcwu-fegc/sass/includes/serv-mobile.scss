@@ -5,7 +5,7 @@
  */
 #gcwu-sig{
 	float:left;
-	margin:10px 0 5px 0;
+	margin:10px 0 10px 0;
 	img {
 		margin-bottom:0;
 	}
@@ -86,6 +86,15 @@
 			color: #C00;
 			}
 		}
+	}
+	#gcwu-sig{
+		margin-top:20px;
+	}
+	#gcwu-bar{
+		margin-bottom:5px;
+	}
+	#wb-foot {
+		padding: 0 5px;
 	}
 	#gcwu-sig,#gcwu-wmms,.gcwu-tc-left,.gcwu-tc-right{
 		width: 50%;
