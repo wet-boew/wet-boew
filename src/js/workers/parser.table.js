@@ -542,7 +542,8 @@
 						}
 
 						if (!groupLevel) {
-							errorTrigger(8, "Impossible to find the colgroup level, Check you colgroup definition or/and your table structure"); // That happened if we don't able to find an ending cell at the ending colgroup position.
+							groupLevel = 1; // Default colgroup data Level, this happen when there is no column header, (same as no thead)
+							// errorTrigger(8, "Impossible to find the colgroup level, Check you colgroup definition or/and your table structure"); // That happened if we don't able to find an ending cell at the ending colgroup position.
 						}
 
 						// All the cells at higher level (Bellow the group level found) of witch one found, need to be inside the colgroup
