@@ -28,7 +28,6 @@
 				opts2 = {},
 				overrides,
 				$lb,
-				$inline,
 				$lbContent,
 				$lbLoadedContent,
 				$lbNext,

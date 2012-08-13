@@ -28,6 +28,8 @@ video, object.video {
 	border:1px solid #BBB;
 }
 
+$progress-color: #000;
+
 .wet-boew-multimedia-controls{
 	width:100%;
 	background:#DADADA url('../images/multimedia/background-toolbar.png') repeat-x 0 0;
@@ -50,30 +52,27 @@ video, object.video {
 			margin:0;
 		}
 	}
-	
+
 	.wet-boew-multimedia-timeline{
 		@include border;
 		margin-left:82px;
 		margin-right:55px;
 		padding:1px 6px;
-	}
-}
-
-$progress-color: #000;
-
-progress {
-	@include border;
-	color:$progress-color;
-	width:100%;
-	&::-moz-progress-bar {
-		background:$progress-color;
-	}
-	
-	&::-webkit-progress-value {
-		background:$progress-color;
-	}
-	
-	&[aria-valuenow]:before  {
-		background:$progress-color;
+		progress {
+			@include border;
+			color:$progress-color;
+			width:100%;
+			&::-moz-progress-bar {
+				background:$progress-color;
+			}
+			
+			&::-webkit-progress-value {
+				background:$progress-color;
+			}
+			
+			&[aria-valuenow]:before  {
+				background:$progress-color;
+			}
+		}
 	}
 }
