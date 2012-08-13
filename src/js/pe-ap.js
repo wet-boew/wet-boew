@@ -462,6 +462,10 @@
 		_execute : function (fn_obj, elm) {
 			if (fn_obj !== undefined) {
 				var exec = (typeof fn_obj._exec !== "undefined") ? fn_obj._exec : fn_obj.exec;
+				//Loads the polyfill dependencies
+				if (typeof fn_obj.polyfills !== "undefined") {
+					pe.polyfills.load(fn_obj.polyfills);
+				}
 				if (typeof fn_obj.depends !== "undefined") {
 					pe.add.js(fn_obj.depends, function () {
 						exec(elm);
@@ -884,7 +888,7 @@
 				 * Polyfills to be loaded later on (post-kill switch)
 				 * @memberof pe.polyfills
 				 */
-				load: function () {
+				load: function (force) {
 					var lib = pe.add.liblocation,
 						elms,
 						// modernizer test for detail/summary support
@@ -921,9 +925,9 @@
 							return el.value !== ':)';
 						}(document));
 					// progress
-					if (typeof document.createElement('progress').position === "undefined") {
+					if (document.createElement('progress').position === undefined) {
 						elms = $('progress');
-						if (elms.length > 0) {
+						if (elms.length > 0 || $.inArray('progress', force) > -1) {
 							pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
 							elms.addClass('polyfill');
 						}
@@ -931,7 +935,7 @@
 					// details + summary
 					if (!details) {
 						elms = $('details');
-						if (elms.length > 0) {
+						if (elms.length > 0 || $.inArray('detailssummary', force) > -1) {
 							pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
 							elms.addClass('polyfill');
 						}
@@ -939,15 +943,18 @@
 					// datalist
 					if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
 						elms = $('input[list]');
-						if (elms.length > 0) {
+						if (elms.length > 0 || $.inArray('datalist', force) > -1) {
 							pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
 							elms.addClass('polyfill');
 						}
 					}
 					// datepicker
 					if (!datepicker) {
-						pe.add._load(lib + 'polyfills/datepicker' + pe.suffix + '.js');
-						$('input[type="date"]').addClass("polyfill");
+						elms = $('input[type="date"]');
+						if (elms.length > 0 || $.inArray('datepicker', force) > -1) {
+							pe.add._load(lib + 'polyfills/datepicker' + pe.suffix + '.js');
+							elms.addClass("polyfill");
+						}
 					}
 				}
 			};

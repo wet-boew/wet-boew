@@ -1,3 +1,6 @@
+# Set default behaviour, in case users don't have core.autocrlf set.
+* text=auto
+
 # These files are text and should be normalized (convert crlf => lf)
 *.js      text
 *.css     text
