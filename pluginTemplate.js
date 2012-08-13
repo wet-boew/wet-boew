@@ -16,7 +16,7 @@
 		// This is an example from tabbed interface, to show how to call required libraries when they are needed
 		depends: (pe.mobile ? [] : ['metadata', 'easytabs', 'equalheights']),
 		//Specifies polyfill needed by the plugin (for elements created at runtime)
-		plyfills:['progress','detailssummary'],
+		polyfills:['progress','detailssummary'],
 		// Don't include a mobile function if your plugin shouldn't run in mobile mode.
 		mobile: function (elm) {
 			// If applicaple, convert html elements and attributes into the format that jQuery mobile expects.
