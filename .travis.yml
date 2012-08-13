@@ -1,4 +1,4 @@
 language: java
 
 script:
-  - ant build/build.xml
+  - ant -file build/build.xml
