@@ -14,7 +14,7 @@
 
 #gcwu-sig{
 	float:left;
-	margin:10px 0 5px 5px;
+	margin:10px 0 10px 5px;
 	img {
 		margin-bottom:0;
 	}
@@ -65,8 +65,8 @@ h1, #gcwu-title {
 
 .no-js  {
 	#gcwu-lang, #wb-foot {
+		padding: 0 5px;
 		li {
-			margin-bottom: 5px;
 			margin-right: 20px;
 			width: 108px;
 		}
@@ -82,7 +82,7 @@ h1, #gcwu-title {
 	}
 	#gcwu-wmms {
 		float: right;
-		margin-top: 15px;
+		margin-top: 10px;
 	}
 	#wb-foot a[href]{
 		&:hover, &:focus, &:active{

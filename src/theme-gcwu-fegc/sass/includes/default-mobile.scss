@@ -57,13 +57,9 @@ body{
 	margin: 5px auto;
 }
 
-#gcwu-gcnb ul {
-	margin-right: 5px;
-}
-
 #gcwu-sig{
 	float:left;
-	margin:10px 0 5px 5px;
+	margin:10px 0 10px 5px;
 	img {
 		margin-bottom:0;
 	}
@@ -108,8 +104,12 @@ body{
 		font-size:1.1em;
 		width:auto !important;
 		background:#111;
-		background:-webkit-linear-gradient(#3C3C3C, #111111) #111111;
-		background:-moz-linear-gradient(#3C3C3C, #111111) #111111;
+		background-image:-webkit-gradient(linear,left top,left bottom,from(#3C3C3C),to(#111111));
+		background-image:-webkit-linear-gradient(#3C3C3C,#111111);
+		background-image:-moz-linear-gradient(#3C3C3C,#111111);
+		background-image:-ms-linear-gradient(#3C3C3C,#111111);
+		background-image:-o-linear-gradient(#3C3C3C,#111111);
+		background-image:linear-gradient(#3C3C3C,#111111);
 		border-bottom:1px solid #2A2A2A;
 		border-top:1px solid #2A2A2A;
 		color:#FFF;
@@ -168,8 +168,36 @@ h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
 	}
 }
 
+#wb-sec{
+	padding:5px;
+}
+
+#gcwu-sft, #gcwu-sft-in{
+	background: #efefef;
+}
+
+#gcwu-sft{
+	padding-bottom:5px;
+	margin-top:5px;
+	li a {
+		color:#fff !important;
+		font-weight:700;
+	}
+}
+
+#gcwu-sft-in{
+	border-top: 1px solid #CCCCCC;
+	padding: 5px;
+	div{
+		width:50%;
+		float:left;
+	}
+}
+
 #gcwu-tctr {
-	.gcwu-tc{
+	width:auto;
+	padding:0;
+	li.gcwu-tc{
 		border-right:1px solid #999;
 		padding:0 9px 0 0;
 	}
@@ -184,34 +212,20 @@ h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
 li#gcwu-gcft-ca a{
 	padding-left:0;
 	padding-right:0;
-	font-size:1.35em;
-	font-weight:700;
+	font-size:0.7em;
+	border:none;
 }
 
 #gcwu-gcft {
-	background:none repeat scroll 0 0 #040707;
 	clear:both;
 	margin:0;
-	padding:10px;
+	padding:5px;
 	li{
 		width:50%;
-		float:left;
+		float:left !important;
 		margin:10px 0;
-		&#gcwu-gcft-ca{
-			margin-right:0;
-			float:left;
-		}
 		&#gcwu-gcft-ca div{
 			text-align:left;
-		}
-	}
-	a{
-		color:#fff !important;
-		font-size:0.9em;
-		text-shadow:none;
-		span{
-			font-weight:700;
-			font-size:1.1em;
 		}
 	}
 }
@@ -222,10 +236,11 @@ img{
 	display:block;
 }
 
-#gcwu-gcnb-fip {
+#gcwu-gcnb ul {
+	margin: 0 5px 0 0;
 	li{
 		display:none;
-		padding-bottom:5px;
+		padding-top:8px;
 	}
 	#gcwu-gcnb-lang{
 		display:inline;
@@ -256,7 +271,6 @@ img{
 	border-top:1px solid #044062;
 	h2 {
 		text-shadow:0 1px 1px #044062;
-		border-right:#15598F;
 		background:#4E7EB7;
 		background-image:-webkit-gradient(linear,left top,left bottom,from(#5383BC),to(#225C96));
 		background-image:-webkit-linear-gradient(#5383BC,#225C96);
@@ -328,11 +342,9 @@ img{
 
 #gcwu-bnr{
 	background:#4E7EB7;
-	background: -moz-linear-gradient(#5383B7, #225C96) repeat scroll 0 0 #4E7EB7;
-	background:-webkit-linear-gradient(#5383B7, #225C96) repeat scroll 0 0 #4E7EB7;
 }
 
-#gcwu-priorities ul,#gcwu-date-mod,#gcwu-gcft ul,#wb-head{
+#gcwu-priorities ul,#gcwu-date-mod,#gcwu-gcft ul,#wb-head,#gcwu-sft-in,#jqm-wb-mb #gcwu-bc-in ol{
 	&:after{
 		content:".";
 		display:block;
@@ -434,8 +446,12 @@ img{
 	}
 	#gcwu-bc-in {
 		background:#DFDFDD;
-		background:-webkit-linear-gradient(#F0EFEF, #DFDFDD) #DFDFDD;
-		background:-moz-linear-gradient(#F0EFEF, #DFDFDD) #DFDFDD;
+		background-image:-webkit-gradient(linear,left top,left bottom,from(#F0EFEF),to(#DFDFDD));
+		background-image:-webkit-linear-gradient(#F0EFEF,#DFDFDD);
+		background-image:-moz-linear-gradient(#F0EFEF,#DFDFDD);
+		background-image:-ms-linear-gradient(#F0EFEF,#DFDFDD);
+		background-image:-o-linear-gradient(#F0EFEF,#DFDFDD);
+		background-image:linear-gradient(#F0EFEF,#DFDFDD);
 		color: #555;
 		border-radius:0;
 		-moz-border-radius:0;
@@ -473,13 +489,6 @@ img{
 			margin: 0;
 			padding: 0;
 			font-size:90%;
-			&:after {
-				clear: both;
-				content: ".";
-				display: block;
-				height: 0;
-				visibility: hidden;
-			}
 		}
 	}
 }
@@ -510,21 +519,6 @@ a:active{
 }
 
 .no-js {
-	#gcwu-sft{
-		background:#eee;
-		border-top:1px solid #ccc;
-		padding:10px 10px 25px;
-	}
-	#wb-foot {
-		a{
-			font-weight:400;
-			text-decoration:none;
-		}
-		ul{
-			list-style-type:none;
-			margin:0;
-		}
-	}
 	#gcwu-srch{
 		margin-top:3px;
 		padding:3px 0;
@@ -550,116 +544,11 @@ a:active{
 	#gcwu-srchbx:hover form{
 		border-bottom:1px solid #999;
 		text-align:center;
-		background:#ccc;
+		background:#1A3D6C;
 		padding:10px 0;
-	}
-	#gcwu-sft-in {
-		section:nth-child(3n-1),div:nth-child(3n-1){
-			clear:both;
-		}
-		div{
-			width:50%;
-			float:left;
-		}
-	}
-	#gcwu-sft{
-		&:after{
-			content:".";
-			display:block;
-			height:0;
-			clear:both;
-			visibility:hidden;
-		}
-		a,.link{
-			color:#222;
-		}
 	}
 	.ui-content{
 		padding:0;
-	}
-	#wb-sec{
-		padding:0 5px;
-	}
-	.wb-sec-def {
-		h3.top-section {
-			a{
-				color:#FFF;
-				background:#23447e;
-				padding-top:5px;
-				padding-bottom:5px;
-				font-size:1.1em;
-				&:hover,&:focus,&:active{
-					color:#FFF;
-					text-decoration:underline;
-				}
-				&.nav-current{
-					color:#FFF;
-					padding-top:4px;
-					padding-bottom:4px;
-					background:#0f315b;
-				}
-			}
-		}
-		h3,h4,.top-level{
-			font-size:100%;
-			border-bottom:none;
-			border-radius:2px;
-			-moz-border-radius:2px;
-			-webkit-border-radius:2px;
-			margin:0 0 3px;
-			a{
-				font-weight:700;
-				background:#DDD;
-				padding:2px 4px;
-				&.nav-current{
-					color:#0F315B;
-					padding:1px 3px;
-				}
-			}
-		}
-		li{
-			a{
-				padding:4px 5px;
-				&.nav-current{
-					color:#0F315B;
-					padding:3px 4px;
-				}
-			}
-			li{
-				margin-left:0;
-				border:none;
-				list-style-type:none;
-				padding:0;
-			}
-		}
-		a.nav-current{
-			border:1px solid #777;
-			border-radius:2px;
-			-moz-border-radius:2px;
-			-webkit-border-radius:2px;
-		}
-		h3,h4,.top-level,li{
-			a{
-				display:block;
-				color:#333;
-				text-decoration:none;
-				&:hover,&:focus,&:active{
-					color:#333;
-					text-decoration:underline;
-				}
-			}
-		}
-		ul{
-			list-style-type:none;
-			margin:0 0 6px;
-			padding:0;
-			ul{
-				list-style-type:none;
-				margin-left:10px;
-				padding-left:5px;
-				border-left:1px solid #ccc;
-			}
-		}
 	}
 	.mobile-pe{
 		display:none !important;
