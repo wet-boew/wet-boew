@@ -137,6 +137,7 @@
 				if (monthNav.children(".cal-" + suffix).length > 0) {
 					btnCtn = monthNav.children(".cal-" + suffix);
 				}
+
 				if (showButton) {
 					alt = titleSuffix + pe.dic.get('%calendar-monthNames')[newMonth] + " " + newYear;
 
@@ -239,7 +240,7 @@
 			} else {
 				// Update the list of available months when changing the year
 				yearField.bind('change', {minDate: minDate, maxDate: maxDate, monthField: monthField}, _pe.fn.calendar.yearChanged);
-				yearField.change(); // Populate initial month list        
+				yearField.change(); // Populate initial month list		
 			}
 
 			buttonContainer = $('<div class="cal-goto-button"></div>');
@@ -331,7 +332,7 @@
 						if (daycount > lastday) {
 							breakAtEnd = true;
 						}
-						element = $("<li></li>");
+						element = $('<li></li>');
 						child = $("<div></div>");
 
 						if (pe.language === 'en') {
@@ -374,6 +375,7 @@
 					break;
 				}
 			}
+
 			return cells;
 		},
 
@@ -445,24 +447,22 @@
 				o = s + o;
 			}
 			return o;
-//		}
 		},
-//	},
-//		dates = {
+
 		dates: {
 			/** dates
 			*  a date function to help with the data comparison
 			*/
 			convert : function (d) {
 				// Converts the date in d to a date-object. The input can be:
-				//   a date object: returned without modification
-				//  an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
-				//   a number     : Interpreted as number of milliseconds
-				//                  since 1 Jan 1970 (a timestamp)
-				//   a string     : Any format supported by the javascript engine, like
-				//                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
-				//  an object     : Interpreted as an object with year, month and date
-				//                  attributes.  **NOTE** month is 0-11.
+				// a date object: returned without modification
+				// an array	: Interpreted as [year,month,day]. NOTE: month is 0-11.
+				// a number	: Interpreted as number of milliseconds
+				//				since 1 Jan 1970 (a timestamp)
+				// a string	: Any format supported by the javascript engine, like
+				//				"YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
+				// an object: Interpreted as an object with year, month and date
+				//				attributes.  **NOTE** month is 0-11.
 				return (
 					d.constructor === Date ? d : d.constructor === Array ? new Date(d[0], d[1] - 1, d[2]) :
 							d.constructor === Number ? new Date(d) :
@@ -485,9 +485,9 @@
 			inRange : function (d, start, end) {
 				// Checks if date in d is between dates in start and end.
 				// Returns a boolean or NaN:
-				//    true  : if d is between start and end (inclusive)
-				//    false : if d is before start or after end
-				//    NaN   : if one or more of the dates is illegal.
+				// true  : if d is between start and end (inclusive)
+				// false : if d is before start or after end
+				// NaN   : if one or more of the dates is illegal.
 				// NOTE: The code inside isFinite does an assignment (=).
 				return (
 					isFinite(d = _pe.fn.calendar.dates.convert(d).valueOf()) && isFinite(start = _pe.fn.calendar.dates.convert(start).valueOf()) && isFinite(end = _pe.fn.calendar.dates.convert(end).valueOf()) ? start <= d && d <= end : NaN

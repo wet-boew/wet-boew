@@ -246,7 +246,7 @@
 
 				// 'Hide' link at the bottom of calendar to close the popup without selecting a date
 				/* $('<a class="picker-close" href="javascript:;">' + pe.dic.get('%datepicker-hide') + '</a>').appendTo(container)
-					.click(function(){
+					.click(function () {
 						pe.fn.toggle(id, containerid);
 					}); */
 

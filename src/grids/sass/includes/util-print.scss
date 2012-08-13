@@ -3,35 +3,13 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
-table{
-	border:1px solid #ccc;
-	border-collapse:collapse;
-}
-
-caption{
-	text-align:left;
-}
-
-th{
-	background-color:#eee;
-	border:1px solid #ccc;
-	color:#555;
-	text-align:center;
-	padding:8px;
-}
-
-td{
-	border:1px solid #ccc;
-	vertical-align:top;
-	padding:5px 10px;
-}
-
-ol ol li{
-	list-style-type:lower-alpha;
-}
-
-ol ol ol li{
-	list-style-type:lower-roman;
+ol ol {
+	li{
+		list-style-type:lower-alpha;
+	}
+	ol li{
+		list-style-type:lower-roman;
+	}
 }
 
 .list-lower-alpha{
@@ -118,47 +96,68 @@ ol.list-numeric li{
 	font-size:130% !important;
 }
 
-table.calendar-month{
+table{
 	border:1px solid #ccc;
-	margin:3px 0 2px;
+	border-collapse:collapse;
+	&.calendar-month{
+		border:1px solid #ccc;
+		margin:3px 0 2px;
+		caption{
+			background:#eee;
+			border:1px solid #ccc;
+			font-weight:700;
+			color:#555;
+			padding:2px 5px;
+		}
+	}
 }
 
-table.calendar-month caption{
-	background:#eee;
+caption{
+	text-align:left;
+}
+
+th{
+	background-color:#eee;
 	border:1px solid #ccc;
-	font-weight:700;
 	color:#555;
-	padding:2px 5px;
-}
-
-.calendar-month td,.calendar-month th{
 	text-align:center;
-	vertical-align:middle;
-	background:#fff;
-	color:#555;
-	margin-bottom:0;
+	padding:8px;
 }
 
-th.calendar-weekend,td.calendar-weekend{
-	background:#eee;
+.calendar-month{
+	td,th{
+		text-align:center;
+		vertical-align:middle;
+		background:#fff;
+		color:#555;
+		margin-bottom:0;
+	}
 }
 
-td.calendar-item{
-	background:#000;
-	font-weight:700;
-	padding:0;
+th,td{
+	&.calendar-weekend{
+		background:#eee;
+	}
 }
 
-td.calendar-today{
-	border:2px solid #00556b;
-}
-
-td.calendar-item a,td.calendar-item a:visited{
-	display:block;
-	color:#fff !important;
-	text-decoration:none;
-}
-
-td.calendar-item:hover{
-	background:#555;
+td{
+	border:1px solid #ccc;
+	vertical-align:top;
+	padding:5px 10px;
+	&.calendar-item{
+		background:#000;
+		font-weight:700;
+		padding:0;
+		a,a:visited{
+			display:block;
+			color:#fff !important;
+			text-decoration:none;
+		}
+		&:hover{
+			background:#555;
+		}
+	}
+	&.calendar-today{
+		border:2px solid #00556b;
+	}
 }

@@ -5,11 +5,15 @@
  */
 /* ---- IE7 fixes ---- */
 .ie7 {
-	#cn-centre-col a[href^='http://www'] {
-		background:none;padding-right:0;
-	}
-	#cn-centre-col a[href^='mailto:'],#cn-centre-col a[href$='.psd'],#cn-centre-col a[href$='.zip'],#cn-centre-col a[href$='.doc'],#cn-centre-col a[href$='.pdf'],#cn-centre-col a[href$='.xls'],#cn-centre-col a[href$='.xlt'],#cn-centre-col a[href$='.rtf'],#cn-centre-col a[href$='.txt'] {
-		background:none;padding-left:0;
+	#wb-core{
+		a[href^='http://www'] {
+			background:none;
+			padding-right:0;
+		}
+		a[href^='mailto:'],a[href$='.psd'],a[href$='.zip'],a[href$='.doc'],a[href$='.pdf'],a[href$='.xls'],a[href$='.xlt'],a[href$='.rtf'],a[href$='.txt'] {
+			background:none;
+			padding-left:0;
+		}
 	}
 	input[type=submit] {
 		border-color: #c8c8c8 !important;

@@ -6,15 +6,58 @@
 .ie7 {
 	.tabs li{
 		display:inline;
+		margin-right:2px;
 	}
-	.tabs-style-3 li.tabs-toggle{
-		width:2em;
-		margin-right:3px;
+	.tabs-roller {
+		filter:alpha(opacity=10);
 	}
-	.tabs-style-4 .tabs li.tabs-toggle {
-		display:inline;
+	.tabs-style-2 {
+		.tabs{
+			filter:alpha(opacity=95);
+			li.tabs-toggle {
+				margin-right:0;
+			}
+		}
+		.tabs-roller{
+			filter:alpha(opacity=25);
+		}
 	}
-	.tabs-style-5 .tabs li.tabs-toggle{
-		display:inline!important;
+	.tabs-style-3 {
+		.tabs {
+			li{
+				a{
+					&.active, &:hover, &:focus, &:active{
+						filter:alpha(opacity=75);
+					}
+				}
+				&.tabs-toggle{
+					width:29px;
+					a{
+						&:hover, &:focus, &:active{
+							filter:alpha(opacity=100);
+						}
+					}
+				}
+			}
+		}
+		.tabs-roller{
+			filter:alpha(opacity=20);
+		}
+	}
+	.tabs-style-4 .tabs li {
+		margin-top:-3px;
+	}
+	.tabs-style-4, .tabs-style-5{
+		.tabs li {
+			margin-right:0;
+			a {
+				margin-top:0;
+				top:0;
+			}
+			&.tabs-toggle{
+				margin-top:0;
+				display:inline !important;
+			}
+		}
 	}
 }

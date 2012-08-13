@@ -21,8 +21,8 @@
 			if (pe.svg) {
 				icon = _pe.fn.multimedia.icons.clone();
 				icon.children(':not(g[id="' + id + '"])').remove();
-				icon.prepend("<title>" + alt + "</title>");
-				return icon.attr({"role" : "img", "aria-label" : alt});
+				icon.prepend('<title>' + alt + '</title>');
+				return icon.attr({'role' : 'img', 'aria-label' : alt});
 			}
 
 			return $('<img src="' + _pe.add.liblocation + 'images/multimedia/' + id + '.png" alt="' + alt + '" height="20" width="20" />');
@@ -31,32 +31,32 @@
 		_exec: function (elm) {
 			var id,
 				canPlay = false,
-				media = elm.children("audio, video").eq(0),
+				media = elm.children('audio, video').eq(0),
 				media_id,
-				width = media.is("video") ? media.attr("width") : "0",
-				height = media.is("video") ? media.attr("height") : "0",
+				width = media.is('video') ? media.attr('width') : '0',
+				height = media.is('video') ? media.attr('height') : '0',
 				captions,
 				flash = true,
 				$fbObject,
-				fbVideoType = "video/mp4",
-				fbAudioType = "audio/mpeg", //MP3
-				fbBin = _pe.add.liblocation + "bin/multimedia.swf",
+				fbVideoType = 'video/mp4',
+				fbAudioType = 'audio/mpeg', //MP3
+				fbBin = _pe.add.liblocation + 'bin/multimedia.swf',
 				fbClass,
 				fbVars,
 				evtmgr;
 
 			//Add an id if an id is missing
-			if (elm.attr("id") !== undefined) {
-				id = elm.attr("id");
+			if (elm.attr('id') !== undefined) {
+				id = elm.attr('id');
 			} else {
-				id = "wet-boew-mediaplayer" + elm.index();
-				elm.attr("id", id);
+				id = 'wet-boew-mediaplayer' + elm.index();
+				elm.attr('id', id);
 			}
-			if (media.attr("id") !== undefined) {
-				media_id = media.attr("id");
+			if (media.attr('id') !== undefined) {
+				media_id = media.attr('id');
 			} else {
-				media_id = id + "-media";
-				media.attr("id", media_id);
+				media_id = id + '-media';
+				media.attr('id', media_id);
 			}
 
 			//Extract the captions file
@@ -64,60 +64,60 @@
 				captions = media.children('track[kind="captions"]').attr("src");
 			}
 
-			if (media.get(0).currentSrc !== "" && media.get(0).currentSrc !== undefined) {
+			if (media.get(0).currentSrc !== '' && media.get(0).currentSrc !== undefined) {
 				canPlay = true;
 			} else {
 				//No nativly supported format provided, trying Flash fallback
 				//TODO:Add Flash detection
-				fbVars = "id=" + elm.attr("id");
-				if (flash && media.is("video") && media.find("source[type=\"" + fbVideoType + "\"]").length > 0) {
-					fbClass = "video";
-					fbVars +=  "&height=" + media.height() + "&width=" + media.width() + "&posterimg=" + escape(_pe.url(media.attr("poster")).source) + "&media=" + escape(_pe.url(media.find("source[type=\"" + fbVideoType + "\"]").attr("src")).source);
+				fbVars = 'id=' + elm.attr('id');
+				if (flash && media.is('video') && media.find('source[type="' + fbVideoType + '"]').length > 0) {
+					fbClass = 'video';
+					fbVars +=  '&height=' + media.height() + '&width=' + media.width() + '&posterimg=' + escape(_pe.url(media.attr('poster')).source) + '&media=' + escape(_pe.url(media.find('source[type="' + fbVideoType + '"]').attr('src')).source);
 					canPlay = true;
-				} else if (flash && media.is("audio") && media.find("source[type=\"" + fbAudioType + "\"]").length > 0) {
-					fbClass = "audio";
-					fbVars += "&media=" + _pe.url(media.find("source[type=\"" + fbAudioType + "\"]").attr("src")).source;
+				} else if (flash && media.is('audio') && media.find('source[type="' + fbAudioType + '"]').length > 0) {
+					fbClass = 'audio';
+					fbVars += '&media=' + _pe.url(media.find('source[type="' + fbAudioType + '"]').attr('src')).source;
 					canPlay = true;
 				} else {
 					canPlay = false;
 				}
 				//Can play using a fallback
 				if (canPlay) {
-					$fbObject = $("<object play=\"\" id=\"" + media_id + "\" width=\"" + width + "\" height=\"" + height + "\" class=\"" + fbClass + "\" type=\"application/x-shockwave-flash\" data=\"" + fbBin + "\" tabindex=\"-1\"><param name=\"movie\" value=\"" + fbBin + "\"/><param name=\"flashvars\" value=\"" + fbVars + "\"/><param name=\"allowScriptAccess\" value=\"always\"/><param name=\"bgcolor\" value=\"#000000\"/><param name=\"wmode\" value=\"opaque\"/>");
+					$fbObject = $('<object play="" id="' + media_id + '" width="' + width + '" height="' + height + '" class="' + fbClass + '" type="application/x-shockwave-flash" data="' + fbBin + '" tabindex="-1"><param name="movie" value="' + fbBin + '"/><param name="flashvars" value="' + fbVars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>');
 					media.before($fbObject);
 					media.remove();
 					media = $fbObject;
 				} else {
-					media.before("<img src=\"" + media.attr("poster") + "\" width=\"" + width + "\" height=\"" + height + "\" alt=\"" + media.attr("title") + "\"/>");
+					media.before('<img src="' + media.attr("poster") + '" width="' + width + '" height="' + height + '" alt="' + media.attr("title") + '"/>');
 					media.remove();
 				}
 			}
 
 			if (canPlay) {
-				evtmgr = media.is("object") ? media.children(":first-child") : media;
+				evtmgr = media.is('object') ? media.children(':first-child') : media;
 
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0)}, _pe.fn.multimedia._intf);
 
 				media.after(_pe.fn.multimedia._get_ui(media_id));
 				//Scale the UI when the video scales
-				$(window).on("resize", {"media" : media, width : width, height : height}, function (e) {
+				$(window).on('resize', {'media' : media, width : width, height : height}, function (e) {
 					if (e.data.media.width() > 0) {
 						e.data.media.height(e.data.media.width() * e.data.height / e.data.width);
 					} else {
-						e.data.media.attr("height", e.data.media.parent().width() * e.data.height / e.data.width);
+						e.data.media.attr('height', e.data.media.parent().width() * e.data.height / e.data.width);
 					}
 				});
-				$(window).trigger("resize");
+				$(window).trigger('resize');
 
 				//Map UI mouse events
-				elm.on("click", function (e) {
+				elm.on('mousedown', function (e) {
 					var $target = $(e.target),
 						t,
 						p,
 						s;
 
-					if ($target.hasClass("playpause") || e.target === this.object) {
+					if ($target.hasClass('playpause') || e.target === this.object) {
 						if (this.getPaused() === true) {
 							this.play();
 						} else {
@@ -125,22 +125,22 @@
 						}
 					}
 
-					if ($target.hasClass("cc")) {
+					if ($target.hasClass('cc')) {
 						this.setCaptionsVisible(!this.getCaptionsVisible());
 					}
 
-					if ($target.hasClass("mute")) {
+					if ($target.hasClass('mute')) {
 						this.setMuted(!this.getMuted());
 					}
 
-					if ($target.is("progress")) {
+					if ($target.is('progress')) {
 						p = (e.pageX - $target.offset().left) / $target.width();
 						this.setCurrentTime(this.getDuration() * p);
 					}
 
-					if ($target.hasClass("rewind") || $target.hasClass("fastforward")) {
+					if ($target.hasClass('rewind') || $target.hasClass('fastforward')) {
 						s = this.getDuration() * 0.05;
-						if ($target.hasClass("rewind")) {
+						if ($target.hasClass('rewind')) {
 							s *= -1;
 						}
 						this.setCurrentTime(this.getCurrentTime() + s);
@@ -148,20 +148,20 @@
 				});
 
 				//Map UI keyboard events
-				elm.on("keypress", function (e) {
+				elm.on('keypress', function (e) {
 					var $w = $(this),
 						v = 0;
 
 					if ((e.which === 32 || e.which === 13) && e.target === this.object) {
-						$w.find(".wet-boew-button.playpause").click();
+						$w.find('.wet-boew-multimedia-controls .playpause').click();
 						return false;
 					}
 					if (e.keyCode === 37) {
-						$w.find(".wet-boew-button.rewind").click();
+						$w.find('.wet-boew-multimedia-controls .rewind').click();
 						return false;
 					}
 					if (e.keyCode === 39) {
-						$w.find(".wet-boew-button.fastforward").click();
+						$w.find('.wet-boew-multimedia-controls .fastforward').click();
 						return false;
 					}
 					if (e.keyCode === 38) {
@@ -181,67 +181,67 @@
 				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
-				evtmgr.on("loadeddata progress timeupdate seeked canplay play volumechange pause ended captionsloaded captionsloadfailed captionsshown captionshidden", $.proxy(function (e) {
+				evtmgr.on('loadeddata progress timeupdate seeked canplay play volumechange pause ended captionsloaded captionsloadfailed captionsshown captionshidden', $.proxy(function (e) {
 					var $w = $(this),
 						p,
 						timeline;
 					switch (e.type) {
-					case "play":
-						$w.find(".playpause").empty().append(_pe.fn.multimedia.get_image("pause", _pe.dic.get("%pause")));
+					case 'play':
+						$w.find('.playpause').empty().append(_pe.fn.multimedia.get_image('pause', _pe.dic.get('%pause')));
 						break;
-					case "pause":
-					case "ended":
-						$w.find(".playpause").empty().append(_pe.fn.multimedia.get_image("play", _pe.dic.get("%play")));
+					case 'pause':
+					case 'ended':
+						$w.find('.playpause').empty().append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')));
 						break;
-					case "volumechange":
+					case 'volumechange':
 						if (this.getMuted()) {
-							$w.find(".mute").empty().append(_pe.fn.multimedia.get_image("mute_on", _pe.dic.get("%mute", "disable")));
+							$w.find('.mute').empty().append(_pe.fn.multimedia.get_image('mute_on', _pe.dic.get('%mute', 'disable')));
 						} else {
-							$w.find(".mute").empty().append(_pe.fn.multimedia.get_image("mute_off", _pe.dic.get("%mute", "enable")));
+							$w.find('.mute').empty().append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')));
 						}
 						break;
-					case "captionsvisiblechange":
+					case 'captionsvisiblechange':
 						if (this.getCaptionsVisible()) {
-							$w.find(".cc img").attr({
-								alt: _pe.dic.get("%closed-captions", "disable"),
-								src: "" //player.icons.closedcaptions_on
+							$w.find('.cc img').attr({
+								alt: _pe.dic.get('%closed-captions', 'disable'),
+								src: ''
 							});
 						} else {
-							$w.find(".cc img").attr({
-								alt: _pe.dic.get("%closed-captions", "enable"),
-								src: "" //player.icons.closedcaptions_off
+							$w.find('.cc img').attr({
+								alt: _pe.dic.get('%closed-captions', 'enable'),
+								src: ''
 							});
 						}
 						break;
-					case "timeupdate":
+					case 'timeupdate':
 						p = this.getCurrentTime() / this.getDuration();
-						timeline = $w.find(".wet-boew-multimedia-timeline progress");
+						timeline = $w.find('.wet-boew-multimedia-timeline progress');
 						timeline.stop();
 						if (this.getSeeking()) {
-							timeline.attr("value", p);
+							timeline.attr('value', p);
 						} else {
-							timeline.animate({"value": p}, 200, "swing");
+							timeline.animate({'value': p}, 200);
 						}
 						//Update captions
-						if ($.data(e.target, "captions") !== undefined) {
-							_pe.fn.multimedia._update_captions($w.find(".wet-boew-multimedia-captionsarea"), this.getCurrentTime(), $.data(e.target, "captions"));
+						if ($.data(e.target, 'captions') !== undefined) {
+							_pe.fn.multimedia._update_captions($w.find('.wet-boew-multimedia-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
 						}
 						break;
-					case "progress":
-						/*if (this.getBuffered() > 1){console.log(Math.round(this.getBuffered()/ this.getDuration() * 1000)/10);}*/
+					case 'progress':
+						/*if (this.getBuffered() > 1) {console.log(Math.round(this.getBuffered()/ this.getDuration() * 1000)/10);}*/
 						break;
-					case "captionsloaded":
+					case 'captionsloaded':
 						//Store the captions
-						$.data(e.target, "captions", e.captions);
+						$.data(e.target, 'captions', e.captions);
 						break;
-					case "captionsloadfailed":
-						$w.find(".wet-boew-mediaplayer-captionsarea").empty().append("<p>" + _pe.dict.get("%captionserror") + "</p>");
+					case 'captionsloadfailed':
+						$w.find('.wet-boew-multimedia-captionsarea').append('<p>' + _pe.dic.get('%captionserror') + '</p>');
 						break;
 					}
 				}, elm.get(0)));
 
 				if (captions !== undefined) {
-					media.after($("<div class=\"wet-boew-multimedia-captionsarea\"/>").hide());
+					media.after($('<div class="wet-boew-multimedia-captionsarea"/>').hide());
 					_pe.fn.multimedia._load_captions(media, evtmgr, captions);
 				}
 			}
@@ -251,49 +251,49 @@
 		}, // end of exec
 
 		_get_ui : function (id) {
-			var ui = $("<div class=\"wet-boew-multimedia-controls\">"),
-				ui_start = $("<div class=\"wet-boew-multimedia-controls-start\">"),
-				ui_timeline = $("<div class=\"wet-boew-multimedia-timeline\" tabindex=\"0\"><progress value=\"0\" />"),
-				ui_end = $("<div class=\"wet-boew-multimedia-controls-end\">");
+			var ui = $('<div class="wet-boew-multimedia-controls">'),
+				ui_start = $('<div class="wet-boew-multimedia-controls-start">'),
+				ui_timeline = $('<div class="wet-boew-multimedia-timeline" tabindex="0"><progress value="0"/>'),
+				ui_end = $('<div class="wet-boew-multimedia-controls-end">');
 
 			ui_start.append(
-				$("<button>").attr({
-					type: "button",
-					"class": "rewind",
-					"aria-controls": id
-				}).append(_pe.fn.multimedia.get_image("rewind", _pe.dic.get("%rewind")))
+				$('<button>').attr({
+					type: 'button',
+					'class': 'rewind',
+					'aria-controls': id
+				}).append(_pe.fn.multimedia.get_image('rewind', _pe.dic.get('%rewind')))
 			);
 
 			ui_start.append(
-				$("<button>").attr({
-					type: "button",
-					"class": "playpause",
-					"aria-controls": id
-				}).append(_pe.fn.multimedia.get_image("play", _pe.dic.get("%play")))
+				$('<button>').attr({
+					type: 'button',
+					'class': 'playpause',
+					'aria-controls': id
+				}).append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')))
 			);
 
 			ui_start.append(
-				$("<button>").attr({
-					type: "button",
-					"class": "fastforward",
-					"aria-controls": id
-				}).append(_pe.fn.multimedia.get_image("ff", _pe.dic.get("%fast-forward")))
+				$('<button>').attr({
+					type: 'button',
+					'class': 'fastforward',
+					'aria-controls': id
+				}).append(_pe.fn.multimedia.get_image('ff', _pe.dic.get('%fast-forward')))
 			);
 
 			ui_end.append(
-				$("<button>").attr({
-					type: "button",
-					"class": "cc",
-					"aria-controls": id
-				}).append(_pe.fn.multimedia.get_image("cc", _pe.dic.get("%closed-caption", "enable")))
+				$('<button>').attr({
+					type: 'button',
+					'class': 'cc',
+					'aria-controls': id
+				}).append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')))
 			);
 
 			ui_end.append(
-				$("<button>").attr({
-					type: "button",
-					"class": "mute",
-					"aria-controls": id
-				}).append(_pe.fn.multimedia.get_image("mute_off", _pe.dic.get("%mute", "enable")))
+				$('<button>').attr({
+					type: 'button',
+					'class': 'mute',
+					'aria-controls': id
+				}).append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')))
 			);
 
 			ui.append(ui_start).append(ui_end).append(ui_timeline);
@@ -313,65 +313,65 @@
 
 			// Properties
 			getPaused: function () {
-				return (typeof this.object.paused !== "function" ? this.object.paused : this.object.paused());
+				return (typeof this.object.paused !== 'function' ? this.object.paused : this.object.paused());
 			},
 
 			getPlayed: function () {
-				return (typeof this.object.played !== "function" ? this.object.played : this.object.played());
+				return (typeof this.object.played !== 'function' ? this.object.played : this.object.played());
 			},
 
 			getEnded: function () {
-				return (typeof this.object.ended !== "function" ? this.object.ended : this.object.ended());
+				return (typeof this.object.ended !== 'function' ? this.object.ended : this.object.ended());
 			},
 
 			getSeeking: function () {
-				return (typeof this.object.seeking !== "function" ? this.object.seeking : this.object.seeking());
+				return (typeof this.object.seeking !== 'function' ? this.object.seeking : this.object.seeking());
 			},
 
 			getDuration: function () {
-				return (typeof this.object.duration !== "function" ? this.object.duration : this.object.duration());
+				return (typeof this.object.duration !== 'function' ? this.object.duration : this.object.duration());
 			},
 
 			getBuffered: function () {
-				return (typeof this.object.buffered !== "function" ? (this.object.buffered.length > 0 ? this.object.buffered.end(0) : 0) : this.object.buffered());
+				return (typeof this.object.buffered !== 'function' ? (this.object.buffered.length > 0 ? this.object.buffered.end(0) : 0) : this.object.buffered());
 			},
 
 			getCurrentTime: function () {
-				return (typeof this.object.currentTime !== "function" ? this.object.currentTime : this.object.currentTime());
+				return (typeof this.object.currentTime !== 'function' ? this.object.currentTime : this.object.currentTime());
 			},
 
 			setCurrentTime: function (t) {
-				if (typeof this.object.currentTime !== "function") { this.object.currentTime = t; } else { this.object.setCurrentTime(t); }
+				if (typeof this.object.currentTime !== 'function') { this.object.currentTime = t; } else { this.object.setCurrentTime(t); }
 			},
 
 			getCaptionsVisible: function () {
-				return $(this).find(".wet-boew-multimedia-captionsarea").is(":visible");
+				return $(this).find('.wet-boew-multimedia-captionsarea').is(':visible');
 			},
 
 			setCaptionsVisible : function (v) {
 				if (v) {
-					$(this).find(".wet-boew-multimedia-captionsarea").show();
-					$(this.object).trigger("captionsshown");
+					$(this).find('.wet-boew-multimedia-captionsarea').show();
+					$(this.object).trigger('captionsshown');
 				} else {
-					$(this).find(".wet-boew-multimedia-captionsarea").hide();
-					$(this.object).trigger("captionshidden");
+					$(this).find('.wet-boew-multimedia-captionsarea').hide();
+					$(this.object).trigger('captionshidden');
 				}
 			},
 
 			getMuted : function () {
-				return (typeof this.object.muted !== "function" ? this.object.muted : this.object.muted());
+				return (typeof this.object.muted !== 'function' ? this.object.muted : this.object.muted());
 			},
 
 			setMuted : function (m) {
-				if (typeof this.object.muted !== "function") { this.object.muted = m; } else { this.object.setMuted(m); }
+				if (typeof this.object.muted !== 'function') { this.object.muted = m; } else { this.object.setMuted(m); }
 			},
 
 			getVolume : function () {
-				return (typeof this.object.volume !== "function" ? this.object.volume : this.object.volume());
+				return (typeof this.object.volume !== 'function' ? this.object.volume : this.object.volume());
 			},
 
 			setVolume : function (v) {
-				if (typeof this.object.volume !== "function") { this.object.volume = v; } else { this.object.setVolume(v); }
+				if (typeof this.object.volume !== 'function') { this.object.volume = v; } else { this.object.setVolume(v); }
 			}
 		},
 
@@ -394,12 +394,12 @@
 					v;
 
 				if (string !== undefined) {
-					if (string.substring(string.length - 1) === "s") {
+					if (string.substring(string.length - 1) === 's') {
 						//offset-time
 						return parseFloat(string.substring(0, string.length - 1));
 					} else {
 						//clock time
-						parts = string.split(":").reverse();
+						parts = string.split(':').reverse();
 						for (p = 0; p < parts.length; p += 1) {
 							v = (p === 0) ? parseFloat(parts[p]) : parseInt(parts[p], 10);
 							s += v * Math.pow(60, p);
@@ -411,7 +411,7 @@
 			};
 
 			parse_html = function (content) {
-				var s = ".wet-boew-tt",
+				var s = '.wet-boew-tt',
 					te = content.find(s),
 					captions = [];
 
@@ -423,22 +423,22 @@
 						json;
 					e.find(s).detach();
 
-					if (e.attr("data-begin") !== undefined) {
+					if (e.attr('data-begin') !== undefined) {
 						//HTML5 captions (seperate attributes)
-						begin = parse_time(e.attr("data-begin"));
-						end = e.attr("data-end") !== undefined ? parse_time(e.attr("data-end")) : parse_time(e.attr("data-dur")) + begin;
+						begin = parse_time(e.attr('data-begin'));
+						end = e.attr('data-end') !== undefined ? parse_time(e.attr('data-end')) : parse_time(e.attr('data-dur')) + begin;
 					} else {
-						if (e.attr("data")) {
+						if (e.attr('data')) {
 							//HTML5 captions JSON in data attribute
-							json = e.attr("data");
+							json = e.attr('data');
 						} else {
 							//XHTML cations (inside the class attribute)
-							c = e.attr("class");
-							json = c.substring(c.indexOf("{"));
+							c = e.attr('class');
+							json = c.substring(c.indexOf('{'));
 						}
 
 						//Sanitze the JSON
-						json = json.replace(/(begin|dur|end)/gi, "\"$1\"").replace(/'/g, "\"");
+						json = json.replace(/(begin|dur|end)/gi, '"$1"').replace(/'/g, '"');
 						json = $.parseJSON(json);
 
 						begin = parse_time(json.begin);
@@ -455,7 +455,7 @@
 			};
 
 			parse_xml = function (content) {
-				var s = "[begin]",
+				var s = '[begin]',
 					te = content.find(s),
 					captions = [];
 
@@ -465,8 +465,8 @@
 						end = -1;
 
 					e.find(s).detach();
-					begin = parse_time(e.attr("begin"));
-					end = e.attr("end") !== undefined ? parse_time(e.attr("end")) : parse_time(e.attr("dur")) + begin;
+					begin = parse_time(e.attr('begin'));
+					end = e.attr('end') !== undefined ? parse_time(e.attr('end')) : parse_time(e.attr('dur')) + begin;
 					captions[captions.length] = {
 						text : e.html(),
 						begin : begin,
@@ -479,7 +479,7 @@
 
 			load_captions_internal = function (obj) {
 				var eventObj = {
-					type : "captionsloaded",
+					type : 'captionsloaded',
 					captions : parse_html(obj)
 				};
 				evtmgr.trigger(eventObj);
@@ -489,19 +489,18 @@
 				$.ajax({
 					url : url,
 					context : evtmgr,
-					crossDomain : true,
-					dataType : "html",
+					dataType : 'html',
 					success : function (data, status, response) {
-						var eventObj = {type: "captionsloaded"};
-						if (data.indexOf("<html") > -1) {
+						var eventObj = {type: 'captionsloaded'};
+						if (data.indexOf('<html') > -1) {
 							eventObj.captions = parse_html($(data));
 						} else {
 							eventObj.captions = parse_xml($(data));
 						}
 						$(this).trigger(eventObj);
 					},
-					error : function (reponse, textStatus, errorThrown) {
-						$(this).trigger({type: "captionsloadfailed", error: errorThrown});
+					error : function (response, textStatus, errorThrown) {
+						$(this).trigger({type: 'captionsloadfailed', error: errorThrown});
 					}
 				});
 			};
@@ -512,15 +511,15 @@
 
 				if (srcUrl.removehash() === curUrl.source) {
 					//Same page HTML captions
-					c = $("#" + srcUrl.hash);
+					c = $('#' + srcUrl.hash);
 					if (c.length > 0) {
 						load_captions_internal(c);
 						return;
 					}
 
 					evtmgr.trigger({
-						type: "captionsloadfailed",
-						error: new Error("Object with id '" + srcUrl.anchor + "' not found")
+						type: 'captionsloadfailed',
+						error: new Error('Object with id "' + srcUrl.anchor + '" not found')
 					});
 					return;
 				} else {
@@ -530,8 +529,8 @@
 				}
 			}
 			evtmgr.trigger({
-				type: "captionsloadfailed",
-				error: new Error("Caption source is missing")
+				type: 'captionsloadfailed',
+				error: new Error('Caption source is missing')
 			});
 		},
 
@@ -549,7 +548,7 @@
 
 	//Method to allow the flash player to trigger the media events
 	_pe.triggermediaevent = function (id, event) {
-		var o = $("#" + id).find("object :first-child").trigger(event);
+		var o = $('#' + id).find('param:eq(0)').trigger(event);
 	};
 
 	window.pe = _pe;

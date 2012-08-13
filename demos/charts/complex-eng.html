@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+<title>Complex Charts - Working examples - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="dcterms.description" content="English description/Description en anglais" />
+<meta name="description" content="English description/Description en anglais" />
+<meta name="keywords" content="English keywords/Mots-clés en anglais" />
+<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title/Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../build/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
+<!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="zebra-fra.html" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../docs/index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.inc">
+<li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
+<li><div><a href="section2/index-eng.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../docs/index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li>Zebra striping - Web Experience Toolkit (WET)</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Complex Charts - Web Experience Toolkit (WET)</h1>
+
+
+
+
+<!--
+<table id="graphme">
+	<caption>Current account balances</caption>
+	<thead>
+		<tr>
+			<th scope="col" colspan="2"></th>
+			<th scope="col">Goods</th>
+			<th scope="col">Other current account</th>
+			<th scope="col">Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="rowgroup" rowspan="2">2006</th>
+			<th scope="row">III</th>
+			<td>11.406</td>
+			<td>-7.010</td>
+			<td>4.396</td>
+		</tr>
+		<tr>
+			<th scope="row">IV</th>
+			<td>12.139</td>
+			<td>-7.437</td>
+			<td>4.702</td>
+		</tr>
+		<tr>
+			<th scope="rowgroup" rowspan="4">2007</th>
+			<th scope="row">I</th>
+			<td>13.563</td>
+			<td>-10.231</td>
+			<td>3.332</td>
+		</tr>
+		<tr>
+			<th scope="row">II</th>
+			<td>15.134</td>
+			<td>-9.516</td>
+			<td>5.618</td>
+		</tr>
+		<tr>
+			<th scope="row">III</th>
+			<td>9.510</td>
+			<td>-7.910</td>
+			<td>1.600</td>
+		</tr>
+		<tr>
+			<th scope="row">IV</th>
+			<td>9.230</td>
+			<td>-7.009</td>
+			<td>2.221</td>
+		</tr>
+		<tr>
+			<th scope="rowgroup" rowspan="4">2008</th>
+			<th scope="row">I</th>
+			<td>12.551</td>
+			<td>-6.387</td>
+			<td>6.164</td>
+		</tr>
+		<tr>
+			<th scope="row">II</th>
+			<td>16.095</td>
+			<td>-10.573</td>
+			<td>5.522</td>
+		</tr>
+		<tr>
+			<th scope="row">III</th>
+			<td>14.383</td>
+			<td>-11.603</td>
+			<td>2.780</td>
+		</tr>
+		<tr>
+			<th scope="row">IV</th>
+			<td>3.215</td>
+			<td>-10.763</td>
+			<td>-7.548</td>
+		</tr>
+		<tr>
+			<th scope="rowgroup" rowspan="4">2009</th>
+			<th scope="row">I</th>
+			<td>0.403</td>
+			<td>-7.498</td>
+			<td>-7.095</td>
+		</tr>
+		<tr>
+			<th scope="row">II</th>
+			<td>-2.019</td>
+			<td>-10.436</td>
+			<td>-12.455</td>
+		</tr>
+		<tr>
+			<th scope="row">III</th>
+			<td>-3.388</td>
+			<td>-10.382</td>
+			<td>-13.770</td>
+		</tr>
+		<tr>
+			<th scope="row">IV</th>
+			<td>0.436</td>
+			<td>-10.640</td>
+			<td>-10.204</td>
+		</tr>
+		<tr>
+			<th scope="rowgroup" rowspan="3">2010</th>
+			<th scope="row">I</th>
+			<td>1.103</td>
+			<td>-10.289</td>
+			<td>-9.186</td>
+		</tr>
+		<tr>
+			<th scope="row">II</th>
+			<td>-2.236</td>
+			<td>-10.747</td>
+			<td>-12.983</td>
+		</tr>
+		<tr>
+			<th scope="row">III</th>
+			<td>-6.504</td>
+			<td>-11.032</td>
+			<td>-17.536</td>
+		</tr>
+	</tbody>
+</table>
+
+		
+		<div id="graphme-container">
+		
+		
+		</div>
+		-->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- graphclass -->
+		
+<table class="wet-boew-charts wb-charts-graphclass-abc123 wb-charts-graphclass-supersize">
+	<caption>Current account balances</caption>
+	<thead>
+		<tr>
+			<td colspan="3" rowspan="2" style="border: none;">&#160;</td>
+			<th rowspan="2" id="a1">Goods</th>
+			<th colspan="2" id="b1">Test Group</th>
+		</tr>
+		<tr>
+			<th id="b11" headers="b1">Other current account</th>
+			<th id="b12" headers="b1">Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th rowspan="6" id="c1">Previous Year</th>
+			<th rowspan="2" id="c11" headers="c1">2006</th>
+			<th id="c111" headers="c1 c11" class="wb-charts-bar wb-charts-color-green wb-charts-fillopacity-20">III</th>
+			<td headers="a1 c1 c11 c111">11.406</td>
+			<td headers="b1 b11 c1 c11 c111">-7.010</td>
+			<td headers="b1 b12 c1 c11 c111">4.396</td>
+		</tr>
+		<tr>
+			<th id="c112" headers="c1 c11" class="wb-charts-bar wb-charts-color-red wb-charts-fillopacity-20">IV</th>
+			<td headers="a1 c1 c11 c112">12.139</td>
+			<td headers="b1 b11 c1 c11 c112">-7.437</td>
+			<td headers="b1 b12 c1 c11 c112">4.702</td>
+		</tr>
+		<tr>
+			<th id="c12" headers="c1" rowspan="4">2007</th>
+			<th id="c121" headers="c1 c12" class="wb-charts-bar wb-charts-color-blue wb-charts-fillopacity-20">I</th>
+			<td headers="a1 c1 c12 c121">13.563</td>
+			<td headers="b1 b11 b12 c1 c12 c121 c122 c123" rowspan="3" colspan="2">-10.231</td>
+		</tr>
+		<tr>
+			<th id="c122" headers="c1 c12" class="wb-charts-bar wb-charts-color-green wb-charts-fillopacity-40">II</th>
+			<td headers="a1 c1 c12 c122">$ 15.134</td>
+		</tr>
+		<tr>
+			<th id="c123" headers="c1 c12" class="wb-charts-bar wb-charts-color-red wb-charts-fillopacity-40">III</th>
+			<td headers="a1 c1 c12 c123">9.510 $</td>
+		</tr>
+		<tr>
+			<th id="c124" headers="c1 c12" class="wb-charts-bar wb-charts-color-blue wb-charts-fillopacity-40">IV</th>
+			<td headers="a1 c1 c12 c124">9.230</td>
+			<td headers="b1 b11 c1 c12 c124">-7.009</td>
+			<td headers="b1 b12 c1 c12 c124">2.221</td>
+		</tr>
+		<tr>
+			<th id="d1" class="wb-charts-bar wb-charts-color-green wb-charts-fillopacity-60" colspan="3">2008 - I</th>
+			<td headers="a1 d1">12.551</td>
+			<td headers="b1 b11 d1">-6.387</td>
+			<td headers="b1 b12 d1">6.164</td>
+		</tr>
+		<tr>
+			<th id="e1" class="wb-charts-bar wb-charts-color-red wb-charts-fillopacity-60" colspan="3">2008 - I</th>
+			<td headers="a1 e1">12.551</td>
+			<td headers="b1 b11 e1">-6.387</td>
+			<td headers="b1 b12 e1">6.164</td>
+		</tr>
+	</tbody>
+</table>
+
+	
+
+<table class="wet-boew-charts">
+	<caption>Current account balances</caption>
+	<thead>
+		<tr>
+			<th class="wb-charts-fill-Azure wb-charts-fillover-Beige" colspan="2" rowspan="3" style="border: none;">&#160;</th>
+			<th class="wb-charts-fill-Bisque wb-charts-fillover-BurlyWood" colspan="6">Previous Year</th>
+			<th class="wb-charts-fill-Cornsilk wb-charts-fillover-Cyan" rowspan="3">2008 - I</th>
+			<th class="wb-charts-fill-LightCoral wb-charts-fillover-HotPink" rowspan="3">2008 - I</th>
+		</tr>
+		<tr>
+			<th class="wb-charts-fill-pink wb-charts-fillover-yellow" colspan="2">2006</th>
+			<th class="wb-charts-fill-lightblue wb-charts-fillover-lightgreen" colspan="4">2007</th>
+		</tr>
+		<tr>
+			<th class="wb-charts-fill-pink wb-charts-fillover-yellow">III</th>
+			<th class="wb-charts-fill-pink wb-charts-fillover-blue">IV</th>
+			<th class="wb-charts-fill-pink wb-charts-fillover-red">I</th>
+			<th class="wb-charts-fill-pink wb-charts-fillover-yellow">II</th>
+			<th class="wb-charts-fill-pink wb-charts-fillover-blue">III</th>
+			<th class="wb-charts-fill-pink wb-charts-fillover-red">IV</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th class="wb-charts-stacked wb-charts-color-red wb-charts-dasharray-DashSpace wb-charts-fillopacity-50" colspan="2">Goods</th>
+			<td>11.406</td>
+			<td>12.139</td>
+			<td>13.563</td>
+			<td>$ 15.134</td>
+			<td>9.510 $</td>
+			<td>9.230</td>
+			<td>12.551</td>
+			<td>12.551</td>
+		</tr>
+		<tr>
+			<th class="wb-charts-line wb-charts-color-yellow" rowspan="2">Test Group</th>
+			<th class="wb-charts-stacked wb-charts-color-blue wb-charts-dasharray-DashDot wb-charts-fillopacity-50">Other current account</th>
+			<td>-7.010</td>
+			<td>-7.437</td>
+			<td colspan="3" rowspan="2">-10.231</td>
+			<td>-7.009</td>
+			<td>-6.387</td>
+			<td>-6.387</td>
+		</tr>
+		<tr>
+			<th class="wb-charts-area wb-charts-color-green">Total</th>
+			<td>4.396</td>
+			<td>4.702</td>
+			<td>2.221</td>
+			<td>-6.164</td>
+			<td>6.164</td>
+		</tr>
+
+	</tbody>
+		
+</table>
+
+
+<h2>Positive Table</h2>
+<table class="wet-boew-charts wb-charts-noencapsulation-true">
+	<caption>Current account balances
+		
+	<p>Default chart rendering with the option &quot;noencapsulation&quot; to show the table.</p>
+	</caption>
+	<thead>
+		<tr>
+			<th colspan="2" rowspan="3" style="border: none;">&#160;</th>
+			<th colspan="6">Previous Year</th>
+			<th rowspan="3">2008 - I</th>
+			<th rowspan="3">2008 - I</th>
+		</tr>
+		<tr>
+			<th colspan="2">2006</th>
+			<th colspan="4">2007</th>
+		</tr>
+		<tr>
+			<th>III</th>
+			<th>IV</th>
+			<th>I</th>
+			<th>II</th>
+			<th>III</th>
+			<th>IV</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th colspan="2">Goods</th>
+			<td>11.406</td>
+			<td>12.139</td>
+			<td>13.563</td>
+			<td>$ 15.134</td>
+			<td>9.510 $</td>
+			<td>9.230</td>
+			<td>12.551</td>
+			<td>12.551</td>
+		</tr>
+		<tr>
+			<th rowspan="2">Test Group</th>
+			<th>Other current account</th>
+			<td>7.010</td>
+			<td>7.437</td>
+			<td colspan="3" rowspan="2">10.231</td>
+			<td>7.009</td>
+			<td>6.387</td>
+			<td>6.387</td>
+		</tr>
+		<tr>
+			<th>Total</th>
+			<td>4.396</td>
+			<td>4.702</td>
+			<td>2.221</td>
+			<td>6.164</td>
+			<td>6.164</td>
+		</tr>
+
+	</tbody>
+		
+</table>
+
+
+<h2>Negative Table</h2>
+<table class="wet-boew-charts wb-charts-width-250">
+	<caption>Current account balances</caption>
+	<thead>
+		<tr>
+			<th colspan="2" rowspan="3" style="border: none;">&#160;</th>
+			<th colspan="6">Previous Year</th>
+			<th rowspan="3">2008 - I</th>
+			<th rowspan="3">2008 - I</th>
+		</tr>
+		<tr>
+			<th colspan="2">2006</th>
+			<th colspan="4">2007</th>
+		</tr>
+		<tr>
+			<th>III</th>
+			<th>IV</th>
+			<th>I</th>
+			<th>II</th>
+			<th>III</th>
+			<th>IV</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th colspan="2">Goods</th>
+			<td>-11.406</td>
+			<td>-12.139</td>
+			<td>-13.563</td>
+			<td>$ -15.134</td>
+			<td>-9.510 $</td>
+			<td>-9.230</td>
+			<td>-12.551</td>
+			<td>-12.551</td>
+		</tr>
+		<tr>
+			<th rowspan="2">Test Group</th>
+			<th>Other current account</th>
+			<td>-7.010</td>
+			<td>-7.437</td>
+			<td colspan="3" rowspan="2">-10.231</td>
+			<td>-7.009</td>
+			<td>-6.387</td>
+			<td>-6.387</td>
+		</tr>
+		<tr>
+			<th class="wb-charts-area wb-charts-color-green wb-charts-fillopacity-50">Total</th>
+			<td>-4.396</td>
+			<td>-4.702</td>
+			<td>-2.221</td>
+			<td>-6.164</td>
+			<td>-6.164</td>
+		</tr>
+
+	</tbody>
+		
+</table>
+
+
+<h2>Positive Table - Small range</h2>
+<table class="wet-boew-charts">
+	<caption>Current account balances</caption>
+	<thead>
+		<tr>
+			<th colspan="2" rowspan="3" style="border: none;">&#160;</th>
+			<th colspan="6">Previous Year</th>
+			<th rowspan="3">2008 - I</th>
+			<th rowspan="3">2008 - I</th>
+		</tr>
+		<tr>
+			<th colspan="2">2006</th>
+			<th colspan="4">2007</th>
+		</tr>
+		<tr>
+			<th>III</th>
+			<th>IV</th>
+			<th>I</th>
+			<th>II</th>
+			<th>III</th>
+			<th>IV</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th class="wb-charts-stacked wb-charts-color-green wb-charts-fillopacity-50" colspan="2">Goods</th>
+			<td>11.406</td>
+			<td>12.139</td>
+			<td>13.563</td>
+			<td>$ 15.134</td>
+			<td>10.510 $</td>
+			<td>10.230</td>
+			<td>12.551</td>
+			<td>12.551</td>
+		</tr>
+		<tr>
+			<th rowspan="2">Test Group</th>
+			<th class="wb-charts-stacked wb-charts-color-blue wb-charts-fillopacity-20">Other current account</th>
+			<td>11.010</td>
+			<td>11.437</td>
+			<td colspan="3" rowspan="2">10.231</td>
+			<td>12.009</td>
+			<td>15.387</td>
+			<td>15.387</td>
+		</tr>
+		<tr>
+			<th class="wb-charts-area wb-charts-color-red">Total</th>
+			<td>14.396</td>
+			<td>14.702</td>
+			<td>12.221</td>
+			<td>11.164</td>
+			<td>10.164</td>
+		</tr>
+
+	</tbody>
+		
+</table>
+
+
+
+<h2>Negative Table - Small range</h2>
+<table class="wet-boew-charts">
+	<caption>Current account balances</caption>
+	<thead>
+		<tr>
+			<th colspan="2" rowspan="3" style="border: none;">&#160;</th>
+			<th colspan="6">Previous Year</th>
+			<th rowspan="3">2008 - I</th>
+			<th rowspan="3">2008 - I</th>
+		</tr>
+		<tr>
+			<th colspan="2">2006</th>
+			<th colspan="4">2007</th>
+		</tr>
+		<tr>
+			<th>III</th>
+			<th>IV</th>
+			<th>I</th>
+			<th>II</th>
+			<th>III</th>
+			<th>IV</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th class="wb-charts-stacked wb-charts-color-green wb-charts-fillopacity-50" colspan="2">Goods</th>
+			<td>-11.406</td>
+			<td>-12.139</td>
+			<td>-13.563</td>
+			<td>$ -15.134</td>
+			<td>-10.510 $</td>
+			<td>-10.230</td>
+			<td>-12.551</td>
+			<td>-12.551</td>
+		</tr>
+		<tr>
+			<th rowspan="2">Test Group</th>
+			<th class="wb-charts-bar wb-charts-color-blue wb-charts-fillopacity-20">Other current account</th>
+			<td>-11.010</td>
+			<td>-11.437</td>
+			<td colspan="3" rowspan="2">-10.231</td>
+			<td>-12.009</td>
+			<td>-15.387</td>
+			<td>-15.387</td>
+		</tr>
+		<tr>
+			<th class="wb-charts-area wb-charts-color-black">Total</th>
+			<td>-14.396</td>
+			<td>-14.702</td>
+			<td>-12.221</td>
+			<td>-11.164</td>
+			<td>-10.164</td>
+		</tr>
+
+	</tbody>
+		
+</table>
+
+<h2>Pie Chart with Positive Table</h2>
+<table class="wet-boew-charts wb-charts-type-pie wb-charts-hide-true">
+	<caption>Current account balances</caption>
+	<thead>
+		<tr>
+			<th colspan="2" rowspan="3">&nbsp;</th>
+			<th colspan="6">Previous Year</th>
+			<th colspan="2">2008</th>
+		</tr>
+		<tr>
+			<th colspan="2">2006</th>
+			<th colspan="4">2007</th>
+			<th rowspan="2">I</th>
+			<th rowspan="2">I</th>
+		</tr>
+		<tr>
+			<th>III</th>
+			<th>IV</th>
+			<th>I</th>
+			<th>II</th>
+			<th>III</th>
+			<th>IV</th>
+		</tr>
+	</thead>
+	<tbody class="wb-charts-type-pie">
+		<tr>
+			<th colspan="2">Goods</th>
+			<td class="wb-charts-color-blue wb-charts-overcolor-red">11.406</td>
+			<td class="wb-charts-color-lightblue wb-charts-overcolor-red">12.139</td>
+			<td class="wb-charts-color-blue wb-charts-overcolor-red">13.563</td>
+			<td class="wb-charts-color-lightblue wb-charts-overcolor-red">$ 15.134</td>
+			<td class="wb-charts-color-blue wb-charts-overcolor-red">9.510 $</td>
+			<td class="wb-charts-color-lightblue wb-charts-overcolor-red">9.230</td>
+			<td class="wb-charts-color-blue wb-charts-overcolor-red">12.551</td>
+			<td class="wb-charts-color-lightblue wb-charts-overcolor-red">12.551</td>
+		</tr>
+		<tr>
+			<th rowspan="2">Test Group</th>
+			<th>Other current account</th>
+			<td>7.010</td>
+			<td>7.437</td>
+			<td colspan="3" rowspan="2">10.231</td>
+			<td>7.009</td>
+			<td>6.387</td>
+			<td>6.387</td>
+		</tr>
+		<tr>
+			<th>Total</th>
+			<td>4.396</td>
+			<td>4.702</td>
+			<td>2.221</td>
+			<td>6.164</td>
+			<td>6.164</td>
+		</tr>
+
+	</tbody>
+		
+</table>
+
+
+
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2011-10-31</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">Our Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../build/js/settings.js"></script>
+<script src="../../build/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>

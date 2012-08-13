@@ -67,9 +67,9 @@ h1 {
 	li {
 		a {
 			text-decoration: none;
-		}
-		a:hover,a:focus,a:active {
-			text-decoration: underline;
+			&:hover,&:focus,&:active {
+				text-decoration: underline;
+			}
 		}
 	}
 }

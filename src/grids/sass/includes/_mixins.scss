@@ -83,7 +83,7 @@ $default-color-border: false;
 			color: $text; 
 		}
 
-		&:hover {
+		&:hover, &:focus, &:active {
 			@if $text == white {
 				color: darken($text, 10%);
 			} @else {
