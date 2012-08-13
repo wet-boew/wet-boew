@@ -103,7 +103,7 @@ table {
 			background-color:#eee!important;
 		}
 	}
-	tbody.table-summary {
+	tbody.table-summary, tfoot.table-summary {
 		border-top: solid black 2px!important;
 	}
 	td, th {

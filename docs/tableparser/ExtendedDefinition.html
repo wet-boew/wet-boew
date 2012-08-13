@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>About the Table Usability Concept - Table Usability - Web Experience Toolkit (WET)</title>
+<title>Extended definition of HTML 5 table elements - Table Usability - Web Experience Toolkit (WET)</title>
 
 
 
@@ -100,12 +100,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
 
-<h1 id="cn-cont">About the Table Usability Concept</h1>
+<h1 id="cn-cont">Extended definition of HTML 5 table elements</h1>
 
 
-<div class="span-8 module-alert">
-
-<p><strong>A knowledge about how to design a table in a HTML format</strong> would help to understand the table usability concept. The Table Usability Concept assume that you already know the definition from the W3C about table related element defined in the <a href="http://dev.w3.org/html5/spec/index.html">HTML 5 specification</a>.</p>
+<p><strong>A knowledge about how to design a table in a HTML format</strong> would help to understand this documentation. The Table Usability Concept assume that you already know the definition from the W3C related to table elements defined in the <a href="http://dev.w3.org/html5/spec/index.html">HTML 5 specification</a>.</p>
 
 <p>Here a quick view about the definition of each table related element:</p>
 <ul>
@@ -131,18 +129,23 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<li><strong><a href="http://dev.w3.org/html5/spec/the-td-element.html#the-td-element">td</a>:</strong> The td element represents a data cell in a table.</li>
 </ul>
 
-<p>A basic knowledge about the <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#processing-model-0">HTML table processing model</a> help on how to use the colspan and rowspan attribute on a cell in regards of the group element. This concept would not interfer with the specification to <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#header-and-data-cell-semantics">forming relationships between data cells and header cells</a> if the <a href="http://www.w3.org/TR/WCAG20-TECHS/H43.html">H43: Using id and headers attributes to associate data cells with header cells in data tables</a> is used.</p>
-
-<p><em>Information was taken from the HTML 5 specification, Editor's Draft 26 June 2012, Revision 1.5697</em></p>
-
-</div>
+<p><em>Information was token from the HTML 5 specification, Editor's Draft 26 June 2012, Revision 1.5697</em></p>
 
 
-<h2>Informative Element</h2>
-<p>The informative element is related to the visual look of the table. In the HTML the table informative element are: caption, th, td</p>
 
-<h2>Structural Element</h2>
-<p>A structural element is used to classify and give a particular sementic to the informative element and hidden. In the HTML the table structural element are: table, colgroup, col, thead, tbody, tfoot, tr.</p>
+<p>A basic knowledge about the <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#processing-model-0">HTML table processing model</a> help on how to use the colspan and rowspan attribute on a cell in regards of the group element. The table usability concep should not conflic with the specification to <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#header-and-data-cell-semantics">forming relationships between data cells and header cells</a> if the WCAG technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H43.html">H43: Using id and headers attributes to associate data cells with header cells in data tables</a> is used.</p>
+
+<hr />
+
+<p>The Table Usability define a new concept on how to create the relationship between the informative elements versus the tables structure elements. That is accomplished by following the HTML 5 specification on how the HTML elements is nested. The Table Usability Concept are supported by a Javascript Parser build with the jQuery framework.</p>  
+
+<h2>Element Type</h2>
+
+<ul>
+	<li class="margin-bottom-large"><strong>Informative:</strong> The informative element is related to the visual look of the table. In the HTML the table informative element are: <em>caption, th, td</em></li>
+
+	<li class="margin-bottom-large"><strong>Structural:</strong> A structural element is used to classify and give a particular sementic to the informative element and their styling would affect the informative element associated to them. In the HTML the table structural element are: <em>table, colgroup, col, thead, tbody, tfoot, tr</em>.</li>
+</ul>	
 
 <h2>Element Classification</h2>
 <p>The Informative and Structural element are classified in forth category</p>
@@ -166,24 +169,24 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	
 	<li class="margin-bottom-large"><strong>Data:</strong> Basicly used to represent a data cell (td), this concept is applied to the Group, Vector and Cell</li>
 	
-	<li class="margin-bottom-large"><strong>Summary:</strong> Always preceded by a &quot;Data&quot;, the summary category is determined on how the group and the cell is defined in a table.</li>
+	<li class="margin-bottom-large"><strong>Summary:</strong> Always preceded by a &quot;Data&quot;, the summary category is determined on how the group and the cell is defined in a table. The <em>tfoot</em> element belong in the summary category.</li>
 	
-	<li class="margin-bottom-large"><strong>Key:</strong> Similar to a primary key in a relational database, the key cell can only defined for a row (Vector). The header cell associated is alway next to the key cell. Generally the key is not to intended to provide actual data but to provide a faster access to the data or give a unique name for a cell header as reference. It's important that the key cell have the same width and height of his assoicated cell header.</li>
+	<li class="margin-bottom-large"><strong>Key:</strong> Similar to a primary key in a relational database, the key cell can only be defined for a row (Vector). The header cell associated is alway next to the key cell. Generally the key is not to intended to provide actual data but to provide a faster access to the data or to give a unique name for a cell header as reference. It's important that the key cell have the same width and height of his assoicated cell header.</li>
 	
-	<li class="margin-bottom-large"><strong>Description:</strong> Used to provide additional information for a cell header. The description category is not a data but help to understand the cell header and/or provide additional information about the Vector. For a row (Vector), the cell description is next to the cell header that his providing a description. For a column (Vector), the cell description is directly bellow the cell header in the next row. It's important that the cell description have the same width and height of his assoicated cell header.</li>
+	<li class="margin-bottom-large"><strong>Description:</strong> Used to provide additional information for a cell header. The description are not part of the actual tabular data. The description help to understand the cell header and/or provide additional information about the Vector. For a row (Vector), the cell description is next to the cell header for witch is providing a description. For a column (Vector), the cell description is directly bellow the cell header in the next row. It's important that the cell description have the same width and height of his assoicated cell header.</li>
 	
-	<li class="margin-bottom-large"><strong>Layout:</strong> Only applicable to a cell, a layout cell don't provide any information. His location can only be at the intersection of the header group or at the insection of summary group. His width and height need to correspond to the group intersection.</li>
+	<li class="margin-bottom-large"><strong>Layout:</strong> Only applicable to a cell, a layout cell don't provide any information. His location can only be at the intersection of two header group or at the insection of two summary group. His width and height need to correspond to the group intersection. Also to be considerated as a layout cell, the element <em>th, td</em> identified at the intersection need to be an empty tag.</li>
 </ul>
 
 
-<h2>Concept of Each Table Element</h2>
+<h2>Combinaison of Element Classification with the Element Category</h2>
 
 <ul>
 	<li class="margin-bottom-large"><strong>Header Group:</strong> Represent a set of heading. In a row perpective this are represented by the <em>thead</em> element. In a column perpective this are represented by the first <em>colgroup</em> element. The key and the description is defined in the header group.</li>
 	
-	<li class="margin-bottom-large"><strong>Data Group:</strong> Represent a data set. In a row perpective this are represented by the <em>tbody</em> element. In a column perpective this are represented by the first <em>colgroup</em> element if no column header group or the second, Or by the second <em>colgroup</em> if a column header group exist. A table always have at least one data group for the column and one data group for the row. A Data Group is represented by a group header cell.</li>
+	<li class="margin-bottom-large"><strong>Data Group:</strong> Represent a data set. In a row perpective this are represented by the <em>tbody</em> element. In a column perpective this are represented by the first <em>colgroup</em> element if no column header group, Or by the second <em>colgroup</em> if a column header group exist. A table always have at least one data group for the column and one data group for the row. A Data Group can be represented by a group header cell.</li>
 	
-	<li class="margin-bottom-large"><strong>Summary Group:</strong> Often smaller than the associated data group, the summary group include all the vector that show information like sub-total, total. The summary share with a data group the same group header cell. However, it's possible, for a summary to do not share a group header cell with a data group. In this particular case the summary is set at the level 0 and no other group is allowed after.</li>
+	<li class="margin-bottom-large"><strong>Summary Group:</strong> Often smaller than his associated data group, the summary group include all the vector that show information like sub-total, total. The summary group share with his associated data group the same group header cell. However, it's possible, for a summary to do not share a group header cell with a data group. In this particular case the summary is set at the level 0 and no other group is allowed after.</li>
 	
 	<li class="margin-bottom-large"><strong>Header Vector:</strong> A row or a column that is last cell is a header cell.</li>
 	
@@ -192,26 +195,49 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
  
 	<li class="margin-bottom-large"><strong>Summary Vector:</strong> Similar to a data vector but defined inside a summary group.</li>
 	
-	<li class="margin-bottom-large"><strong>Key Vector:</strong> Only defined inside a column header group, the key vector represent the key cell used for each row.</li>
+	<li class="margin-bottom-large"><strong>Key Vector:</strong> Only defined inside a column header group, the key vector is simply the column of key cell.</li>
 	
 	<li class="margin-bottom-large"><strong>Description Vector:</strong> Only defined inside a header group, the description vector represent the column or/and the row that is used to describe a cell header.</li>
 	
 	<li class="margin-bottom-large"><strong>Header Cell:</strong> Represent a group or a vector. The table <em>caption</em> and <em>th</em> element is considerated to be header cell.</li>
 	
-	<li class="margin-bottom-large"><strong>Group Header Cell:</strong> Derivated from a header cell, a group header cell represent a data group or a combinaison of a data group with a summary group. The table <em>caption</em> is explicitly considerated to be a group header cell.</li>
+	<li class="margin-bottom-large"><strong>Group Header Cell:</strong> Derivated from a header cell, a group header cell represent a data group or a combinaison of a data group with a summary group. The table <em>caption</em> is considerated to be a group header cell.</li>
 	
 	<li class="margin-bottom-large"><strong>Data Cell:</strong> Defined inside a data group and represented by the <em>td</em> element.</li>
 	
 	<li class="margin-bottom-large"><strong>Summary Cell:</strong> Defined inside a summary group and represented by the <em>td</em> element.</li>
 	
-	<li class="margin-bottom-large"><strong>Key Cell:</strong> Defined inside a column header group. Similar to a primary key in a relational database, the key cell can only defined for a row (Vector). The header cell associated is alway next to the key cell. Generally the key is not to intended to provide actual data but to provide a faster access to the data or give a unique name for a cell header as reference. It's important that the key cell have the same width and height of his assoicated cell header.</li>
+	<li class="margin-bottom-large"><strong>Key Cell:</strong> His relation is defined by the column header group. Similar to a primary key in a relational database, the key cell can only be defined for a row (Vector). The header cell associated is alway next to the key cell. Generally the key is not to intended to provide actual data but to provide a faster access to the data or to give a unique name for a cell header as reference. It's important that the key cell have the same width and height of his assoicated cell header.</li>
 	
-	<li class="margin-bottom-large"><strong>Description Cell:</strong> Defined inside a column header group. Used to provide additional information for a cell header. The description category is not a data but help to understand the cell header and/or provide additional information about the Vector. For a row (Vector), the cell description is next to the cell header that his providing a description. For a column (Vector), the cell description is directly bellow the cell header in the next row. It's important that the cell description have the same width and height of his assoicated cell header.</li>
+	<li class="margin-bottom-large"><strong>Description Cell:</strong> His relation is defined by the header group. Used to provide additional information for a cell header. The description category is not a data but help to understand the cell header and/or provide additional information about the Vector. For a row (Vector), the cell description is next to the cell header that his providing a description. For a column (Vector), the cell description is directly bellow the cell header in the next row. It's important that the cell description have the same width and height of his assoicated cell header.</li>
 	
-	<li class="margin-bottom-large"><strong>Layout Cell:</strong> A layout cell don't provide any information. A layout need to be empty tag without any spaces inside. His location can only be at the intersection of the header group or at the insection of summary group. His width and height need to correspond to the group intersection. The layout cell can be a <em>th</em> or a <em>td</em> element.</li>
+	<li class="margin-bottom-large"><strong>Layout Cell:</strong> A layout cell don't provide any information. A layout cell need to be empty tag without any spaces inside. His location can only be at the intersection of the header group or at the insection of summary group. His width and height need to correspond to the group intersection. The layout cell can be a <em>th</em> or a <em>td</em> element.</li>
 	
 </ul>
 
+<h2>Check this New Definition in Action</h2>
+
+<ol>
+	<li><a href="SummaryRowGroup.html">Summary Row Group</a></li>
+	<li>Header Column Group
+		<ol>
+			<li>Key Cell</li>
+			<li>Descriptive Row Header Cell</li>
+		</ol>
+	</li>
+	<li>Header Row Group</li>
+	<li>Summary Column Group</li>
+	<li>Cell Header Nesting
+		<ol>
+			<li>Basic usage</li>
+			<li>Use of Key Cell and Descriptive Cell</li>
+		</ol>
+	</li>
+</ol>
+
+
+<hr />
+<p>Note: the following need to be moved in the Cell Header Nesting documentation</p>
 
 <h2>Data Level</h2>
 <p>The Data Level is applied to a group. A header, data and summary Cell always have two level. One level for the row and one level for the column. The caption element is associated at the level 1 for both scope. When a data is classified to be at the level 0, this is attached to the matrix.<p>
