@@ -25,32 +25,33 @@
 				overrides,
 				getCellHeaders,
 				autoRemoveTimeout;
+			// Defaults Options
+			opts = {
+				noheaderhighlight: false,
+				norowheaderhighlight: false,
+				nocolheaderhighlight: false,
+				columnhighlight: false,
+				nohover: false
+			};
+			// Option to force to do not get header highlight
+			overrides = {
+				noheaderhighlight: elem.hasClass("noheaderhighlight") ? true : undefined,
+				norowheaderhighlight: elem.hasClass("norowheaderhighlight") ? true : undefined,
+				nocolheaderhighlight: elem.hasClass("nocolheaderhighlight") ? true : undefined,
+				columnhighlight: elem.hasClass("columnhighlight") ? true : undefined,
+				nohover: elem.hasClass("nohover") ? true : undefined
+			};
+			// Extend the defaults with settings passed through settings.js (wet_boew_zebra), class-based overrides and the data attribute
+			//$.metadata.setType("attr", "data-wet-boew");
+			if (typeof wet_boew_zebra !== 'undefined' && wet_boew_zebra !== null) {
+				$.extend(opts, wet_boew_zebra, overrides); //, elem.metadata());
+			} else {
+				$.extend(opts, overrides); //, elem.metadata());
+			}
+			if (opts.norowheaderhighlight && opts.nocolheaderhighlight) {
+				opts.noheaderhighlight = true;
+			}
 			if (elem.is('table')) {
-				// Defaults
-				opts = {
-					noheaderhighlight: false,
-					norowheaderhighlight: false,
-					nocolheaderhighlight: false,
-					columnhighlight: false
-				};
-				// Option to force to do not get header highlight
-				overrides = {
-					noheaderhighlight: elem.hasClass("noheaderhighlight") ? true : undefined,
-					norowheaderhighlight: elem.hasClass("norowheaderhighlight") ? true : undefined,
-					nocolheaderhighlight: elem.hasClass("nocolheaderhighlight") ? true : undefined,
-					columnhighlight: elem.hasClass("columnhighlight") ? true : undefined
-				};
-				// Extend the defaults with settings passed through settings.js (wet_boew_zebra), class-based overrides and the data attribute
-				//$.metadata.setType("attr", "data-wet-boew");
-				if (typeof wet_boew_zebra !== 'undefined' && wet_boew_zebra !== null) {
-					$.extend(opts, wet_boew_zebra, overrides); //, elem.metadata());
-				} else {
-					$.extend(opts, overrides); //, elem.metadata());
-				}
-				if (opts.norowheaderhighlight && opts.nocolheaderhighlight) {
-					opts.noheaderhighlight = true;
-				}
-
 				// Parse the table
 				if (!$(elem).data().tblparser) {
 					_pe.fn.parsertable._exec($(elem));
@@ -209,15 +210,19 @@
 					$($cols).filter(':odd').addClass('table-even');
 					$($cols).filter(':even').addClass('table-odd');
 				}
+			} else if (elem.is('dl')) {
+				// Create a list based on "dt" element with their one or more "dd" after each of them
 			} else {
 				$lis = elem.children('li');
 				parity = (elem.parents('li').length + 1) % 2;
 				$lis.filter(':odd').addClass(parity === 0 ? 'list-odd' : 'list-even');
 				$lis.filter(':even').addClass(parity === 1 ? 'list-odd' : 'list-even');
-				$lis.on('mouseover mouseout focusin focusout', function (e) {
-					e.stopPropagation();
-					$(this).toggleClass('list-hover');
-				});
+				if (!opts.nohover) {
+					$lis.on('mouseover mouseout focusin focusout', function (e) {
+						e.stopPropagation();
+						$(this).toggleClass('list-hover');
+					});
+				}
 			}
 		} // end of exec
 	};
