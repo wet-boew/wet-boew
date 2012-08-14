@@ -12,9 +12,9 @@
 			if ($this.is('[value]')) {
 				if (progress.length < 1) {
 					progress = $('<div class="progress-frame"><div class="progress-bar"/></div>');
-					$this.on('DOMAttrModified propertychange', function () {
+					/*$this.on('DOMAttrModified propertychange', function () {
 						$this.progress();
-					});
+					});*/
 				}
 				params = $([$this.attr('max') || '1.0', $this.attr('value')]).map(function () {
 					try {
