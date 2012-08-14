@@ -20,7 +20,7 @@
 			var obj = elm,
 			// Event handler for issue error found durring the table parsing process
 				errorTrigger = function (numerr, err, obj) {	
-					// FYI - 30 Type of Error can be raised
+					// FYI - 31 Type of Error can be raised
 					if(typeof _pe.fn.parsertable.onParserError === "function"){
 						_pe.fn.parsertable.onParserError(numerr, err, obj);
 					}
@@ -173,7 +173,9 @@
 				groupZero.groupheadercell = groupheadercell;
 				$(elem).data().tblparser = groupheadercell;
 			}
-			function processColgroup(elem) {
+			function processColgroup(elem, nbvirtualcol) {
+				// if elem is undefined, this mean that is an big empty colgroup
+				// nbvirtualcol if defined is used to create the virtual colgroup
 				var colgroup = {
 						elem: {},
 						start: 0,
@@ -186,7 +188,9 @@
 					i,
 					col;
 				colgroup.elem = elem;
-				$(elem).data().tblparser = colgroup;
+				if (elem) {
+					$(elem).data().tblparser = colgroup;
+				}
 				colgroup.uid = uidElem;
 				uidElem += 1;
 				groupZero.allParserObj.push(colgroup);
@@ -220,7 +224,14 @@
 				});
 				// If no col element check for the span attribute
 				if (colgroup.col.length === 0) {
-					width = $(elem).attr('span') !== undefined ? parseInt($(elem).attr('span'), 10) : 1;
+					if (elem) {
+						width = $(elem).attr('span') !== undefined ? parseInt($(elem).attr('span'), 10) : 1;
+					} else if (typeof nbvirtualcol === "number") {
+						width = nbvirtualcol;
+					} else {
+						errorTrigger(31, 'Internal Error, Number of virtual column must be set [function processColgroup()]');
+						return;
+					}
 					colgroupspan += width;
 					// Create virtual column 
 					for (i = colgroup.start; i < (colgroup.start + colgroupspan); i += 1) {
@@ -1403,6 +1414,10 @@
 						// Any colgroup tag defined but be equal or greater than 0.
 						// if colgroup tag defined, they are all data colgroup. 
 						lastHeadingColPos = 0;
+						
+						if (colgroupFrame.length == 0) {
+							processColgroup(undefined, tableCellWidth);
+						}
 					}
 
 					//
