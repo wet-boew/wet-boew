@@ -38,6 +38,22 @@ table {
 			background-color:#f0fcff!important;
 		}
 	}
+	&.alterwg li {
+		&.list-odd{
+			background-color:#ddd!important;
+			border:none;
+		}
+		&.list-even{
+			background-color:#fff!important;
+			border:none;
+		}
+		&.list-hover{
+			background-color:#f0fcff!important;
+		}
+	}
+	&.nomargin {
+		margin: 0px;
+	}
 	th{
 		background-color:#eee;
 		border:1px solid #ccc;

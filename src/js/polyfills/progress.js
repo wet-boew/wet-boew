@@ -9,12 +9,11 @@
 				amt,
 				attr = {'role': 'progressbar'};
 
+			$this.off('DOMAttrModified propertychange');
 			if ($this.is('[value]')) {
 				if (progress.length < 1) {
 					progress = $('<div class="progress-frame"><div class="progress-bar"/></div>');
-					$this.on('DOMAttrModified propertychange', function () {
-						$this.progress();
-					});
+					$this.append(progress);
 				}
 				params = $([$this.attr('max') || '1.0', $this.attr('value')]).map(function () {
 					try {
@@ -31,9 +30,13 @@
 
 			} else if ($this.not('[value]') && progress.length < 1) {
 				progress = $('<div class="progress-undefined"/>');
+				$this.append(progress);
 			}
-			$this.append(progress);
+
 			$this.attr(attr);
+			$this.on('DOMAttrModified propertychange', function () {
+				$this.progress();
+			});
 		});
 	};
 	$('progress').progress();

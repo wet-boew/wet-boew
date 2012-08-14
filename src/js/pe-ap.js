@@ -77,7 +77,7 @@
 			pe.polyfills.init();
 
 			// Get the query parameters from the URL
-			pe.urlquery = pe.url(document.location).params;
+			pe.urlquery = pe.url(window.location.href).params;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
@@ -319,12 +319,9 @@
 		 * @param {string} uri A relative or absolute URL to manipulate.
 		 */
 		url: function (uri) {
-			var a, i;
-			a = document.createElement('a');
-			a.href = uri;
-			//Needed for IE because a doesn't translate to absolute(strangly)
-			i = document.createElement('img');
-			i.src = uri;
+			var el = document.createElement('div'), a;
+			el.innerHTML = '<a href="' + pe.string.htmlEncode(uri) + '">x</a>';
+			a = el.firstChild;
 			return {
 				/**
 				 * @namespace pe.url
@@ -334,7 +331,7 @@
 				 * @memberof pe.url
 				 * @type {string}
 				 */
-				source: i.src,
+				source: a.href,
 				/**
 				 * The protocol of the URL. eg. http or https
 				 * @memberof pe.url
@@ -575,6 +572,26 @@
 					str = "0" + str;
 				}
 				return str;
+			},
+			/**
+			 * HTML encodes a string (only encodes &, <, >, " and ')
+			 * @memberof pe.string
+			 * @function
+			 * @param {string} The string to encode
+			 * @return {string} The encoded string
+			 */
+			htmlEncode: function (str) {
+				return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+			},
+			/**
+			 * Decodes an HTML encoded string (only decodes &amp;, &lt, &gt, &quot and &apos)
+			 * @memberof pe.string
+			 * @function
+			 * @param {string} The HTML encoded string to decode
+			 * @return {string} The decoded string
+			 */
+			htmlDecode: function (str) {
+				return str.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, '\'');
 			}
 		},
 		/**
@@ -869,100 +886,161 @@
 			}
 		},
 		/**
-		 * A function to load required polyfills, @TODO: set up a single loader method to streamline
+		 * Functions for loading required polyfills
 		 * @memberof pe
 		 * @function
 		 * @return {void}
 		 */
-		polyfills: (function () {
-			return {
-				/**
-				 * Polyfills to be loaded before everything else (pre-kill switch)
-				 * @memberof pe.polyfills
-				 */
-				init: function () {
-					var lib = pe.add.liblocation;
-					// localstorage
-					if (!window.localStorage) {
-						pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js', 'localstorage-loaded');
+		polyfills: {
+			/**
+			 * Polyfills to be loaded before everything else (pre-kill switch)
+			 * @memberof pe.polyfills
+			 */
+			init: function () {
+				// localstorage
+				var lib = pe.add.liblocation;
+				if (!window.localStorage) {
+					pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js', 'localstorage-loaded');
+					$('html').addClass('polyfill-localstorage');
+				} else {
+					$('html').addClass('localstorage');
+				}
+			},
+			/**
+			 * Polyfill script loader
+			 * @memberof pe.polyfills
+			 */
+			polyload: function (elms, pfill_name) {
+				var pfill = pe.polyfills.polyfill[pfill_name],
+					$html = $('html'),
+					supported = $html.hasClass(pfill_name),
+					loaded = $html.hasClass('polyfill-' + pfill_name);
+				if (!supported && !loaded) {
+					supported = (typeof pfill.support_check === 'function' ? pfill.support_check() : pfill.support_check);
+					if (!supported) {
+						pe.add._load(typeof pfill.load !== "undefined" ? pfill.load : pe.add.liblocation + 'polyfills/' + pfill_name + pe.suffix + '.js');
+						elms.addClass('polyfill');
+						$html.addClass('polyfill-' + pfill_name);
+					} else {
+						$html.addClass(pfill_name);
 					}
-				},
-				/**
-				 * Polyfills to be loaded later on (post-kill switch)
-				 * @memberof pe.polyfills
-				 */
-				load: function (force) {
-					var lib = pe.add.liblocation,
-						elms,
-						// modernizer test for detail/summary support
-						details = (function (doc) {
-							var el = doc.createElement('details'),
-								fake,
-								root,
-								diff;
-							if (typeof el.open === "undefined") {
-								return false;
-							}
-							root = doc.body || (function () {
-								var de = doc.documentElement;
-								fake = true;
-								return de.insertBefore(doc.createElement('body'), de.firstElementChild || de.firstChild);
-							}
-							());
-							el.innerHTML = '<summary>a</summary>b';
-							el.style.display = 'block';
-							root.appendChild(el);
-							diff = el.offsetHeight;
-							el.open = true;
-							diff = diff !== el.offsetHeight;
-							root.removeChild(el);
-							if (fake) {
-								root.parentNode.removeChild(root);
-							}
-							return diff;
-						}(document)),
-						datepicker = (function (doc) {
-							var el = doc.createElement('input');
-							el.setAttribute('type', 'date');
-							el.value = ':)';
-							return el.value !== ':)';
-						}(document));
-					// progress
-					if (document.createElement('progress').position === undefined) {
-						elms = $('progress');
-						if (elms.length > 0 || $.inArray('progress', force) > -1) {
-							pe.add._load(lib + 'polyfills/progress' + pe.suffix + '.js');
-							elms.addClass('polyfill');
-						}
-					}
-					// details + summary
-					if (!details) {
-						elms = $('details');
-						if (elms.length > 0 || $.inArray('detailssummary', force) > -1) {
-							pe.add._load(lib + 'polyfills/detailssummary' + pe.suffix + '.js');
-							elms.addClass('polyfill');
-						}
-					}
-					// datalist
-					if (!(!!(document.createElement('datalist') && window.HTMLDataListElement))) {
-						elms = $('input[list]');
-						if (elms.length > 0 || $.inArray('datalist', force) > -1) {
-							pe.add._load(lib + 'polyfills/datalist' + pe.suffix + '.js');
-							elms.addClass('polyfill');
-						}
-					}
-					// datepicker
-					if (!datepicker) {
-						elms = $('input[type="date"]');
-						if (elms.length > 0 || $.inArray('datepicker', force) > -1) {
-							pe.add._load(lib + 'polyfills/datepicker' + pe.suffix + '.js');
-							elms.addClass("polyfill");
-						}
+				} else if (!supported) {
+					if (typeof pfill.update === 'function') {
+						pfill.update(elms);
+						elms.addClass('polyfill');
 					}
 				}
-			};
-		}
-		()),
+			},
+			/**
+			 * Polyfills to be loaded later on (post-kill switch)
+			 * @memberof pe.polyfills
+			 */
+			load: function (force) {
+				var polyfills = this.polyfill,
+					all_elms = $($.map(polyfills, function(value, key) {return value.selector;}).join(','));  // Find all elements that match the element selector
+				$.each(polyfills, function(index, value) {
+					// If element exists on the page or forcing polyfill (for dynamically added elements)
+					var elms = all_elms.filter(value.selector);
+					if (elms.length > 0 || $.inArray(index, force) > -1) {
+						pe.polyfills.polyload(elms, index);
+					}
+				});
+			},
+			/**
+			 * Details for each of the polyfills.
+			 * selector: Selector used to find elements that would be affected by the polyfill
+			 * supported: Check for determining if polyfill is needed (false = polyfill needed). Can be either a function or a property.
+			 * load (optional): path for the script to load (defaults to "lib + '/polyfills/' + polyfill_name + pe.suffix + '.js'")
+			 * @memberof pe.polyfills
+			 */
+			polyfill: {
+				'datalist': {
+					selector: 'input[list]',
+					update: function (elms) {
+						elms.datalist();
+					},
+					support_check: !!(document.createElement('datalist') && window.HTMLDataListElement)
+				},
+				'datepicker': {
+					selector: 'input[type="date"]',
+					/*update: function (elms) {
+						pe._execute(datepicker, elms);
+					},*/
+					support_check: function () {
+						var el = document.createElement('input');
+						el.setAttribute('type', 'date');
+						el.value = ':)';
+						return el.value !== ':)';
+					}
+				},
+				'detailssummary': {
+					selector: 'details',
+					update: function (elms) {
+						elms.details();
+					},
+					support_check: function () {
+						var doc = document,
+							el = doc.createElement('details'),
+							fake,
+							root,
+							diff;
+						if (typeof el.open === "undefined") {
+							return false;
+						}
+						root = doc.body || (function () {
+							var de = doc.documentElement;
+							fake = true;
+							return de.insertBefore(doc.createElement('body'), de.firstElementChild || de.firstChild);
+						}
+						());
+						el.innerHTML = '<summary>a</summary>b';
+						el.style.display = 'block';
+						root.appendChild(el);
+						diff = el.offsetHeight;
+						el.open = true;
+						diff = diff !== el.offsetHeight;
+						root.removeChild(el);
+						if (fake) {
+							root.parentNode.removeChild(root);
+						}
+						return diff;
+					}
+				},
+				'mathml': {
+					selector: 'math',
+					load: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML',
+					/*update: function (elms) {
+						MathJax.Hub.Queue(["Typeset",MathJax.Hub,elms]);
+					},*/
+					support_check: function () {
+						var hasMathML = false,
+							ns,
+							div,
+							mfrac;
+						if (document.createElementNS) {
+							ns = "http://www.w3.org/1998/Math/MathML";
+							div = document.createElement("div");
+							div.style.position = "absolute";
+							div.style.color = "#fff";
+							mfrac = div.appendChild(document.createElementNS(ns, "math")).appendChild(document.createElementNS(ns, "mfrac"));
+							mfrac.appendChild(document.createElementNS(ns, "mi")).appendChild(document.createTextNode("xx"));
+							mfrac.appendChild(document.createElementNS(ns, "mi")).appendChild(document.createTextNode("yy"));
+							document.body.appendChild(div);
+							hasMathML = div.offsetHeight > div.offsetWidth;
+							div.parentNode.removeChild(div);
+						}
+						return hasMathML;
+					}
+				},
+				'progress': {
+					selector: 'progress',
+					update: function (elms) {
+						elms.progress();
+					},
+					support_check: document.createElement('progress').position !== undefined
+				}
+			}
+		},
 		/**
 		 * A series of chainable methods to add elements to the head ( async )
 		 * @namespace pe.add
