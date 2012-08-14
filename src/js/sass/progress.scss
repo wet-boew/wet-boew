@@ -15,7 +15,7 @@
 progress {
 		display:inline-block;
 		
-		div.progress-frame,  {
+		div.progress-frame  {
 			@include progress(#FFF);
 		}
 	
@@ -24,7 +24,7 @@ progress {
 		}
 
 		div.progress-bar {
-			height: 1em;
+			height: 100%;
 			border: none;
 			background-color: #009900;  
 		}

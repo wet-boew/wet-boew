@@ -6,33 +6,37 @@
 			var $this = $(this),
 				progress = $this.children('.progress-frame, .progress-undefined'),
 				params,
-				val,
-				max,
-				amt;
+				amt,
+				attr = {'role': 'progressbar'};
 
+			$this.off('DOMAttrModified propertychange');
 			if ($this.is('[value]')) {
 				if (progress.length < 1) {
 					progress = $('<div class="progress-frame"><div class="progress-bar"/></div>');
-					$this.on('DOMAttrModified propertychange', function () {
-						$this.progress();
-					});
+					$this.append(progress);
 				}
 				params = $([$this.attr('max') || '1.0', $this.attr('value')]).map(function () {
 					try {
 						return parseFloat(this);
 					} catch (e) { return null; }
 				});
-				max = params[0];
-				val = params[1];
+				attr['aria-valuemin'] = 0;
+				attr['aria-valuemax'] = params[0];
+				attr['aria-valuenow'] = params[1];
 
-				if (val > max) {val = max; }
-				amt = (val / max) * 100.0;
+				if (attr['aria-valuenow'] > attr['aria-valuemax']) {attr['aria-valuenow'] = attr['aria-valuemax']; }
+				amt = (attr['aria-valuenow'] / attr['aria-valuemax']) * 100.0;
 				progress.children('.progress-bar').css('width', amt + '%');
 
 			} else if ($this.not('[value]') && progress.length < 1) {
 				progress = $('<div class="progress-undefined"/>');
+				$this.append(progress);
 			}
-			$this.append(progress);
+
+			$this.attr(attr);
+			$this.on('DOMAttrModified propertychange', function () {
+				$this.progress();
+			});
 		});
 	};
 	$('progress').progress();
