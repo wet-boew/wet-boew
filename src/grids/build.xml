@@ -3,7 +3,7 @@
 	<description>CSS Grid System project</description>
 
 	<property file="build.properties"/>
-	<import file="../../build-tasks.xml"/>
+	<import file="${build.dir}/../build-tasks.xml"/>
 
 	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
 
@@ -19,40 +19,9 @@
 		</yui-compressor>
 		<delete dir="${build.dir}/premin"/>
 	</target>
-
- <!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
-  <target name="compile.sass">
-    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; compile &quot;${src.dir}&quot;"/>
-    </java>
-    <echo level="info">
----Converted Grids SCSS Files into CSS---
-    </echo>
-  </target>
-  <!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
-  <target name="watch.sass">
-    <java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-        <arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems/&quot; watch &quot;${src.dir}&quot;"/>
-    </java>
-    <echo level="info">
----Watching for SCSS Changes in Grids Directory---
-    </echo>
-  </target>
   
 	<!--Build CSS Tasks -->
 	<target name="build-css" depends="-merge-css" />
-<!--
-	<target name="-base64-encode">
-		<copy todir="${build.dir}/premin/images">
-			<fileset dir="${src.dir}/images"/>
-		</copy>
-		<cssurlembed skipMissing="true">
-			<fileset dir="${build.dir}/premin/css/">
-				<include name="util.css"/>
-			</fileset>
-		</cssurlembed>
-	</target>
--->
 
 	<target name="-merge-css">
 		<copy todir="${build.dir}/premerge/css">
