@@ -897,10 +897,38 @@
 			 * @memberof pe.polyfills
 			 */
 			init: function () {
-				var lib = pe.add.liblocation;
 				// localstorage
+				var lib = pe.add.liblocation;
 				if (!window.localStorage) {
 					pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js', 'localstorage-loaded');
+					$('html').addClass('polyfill-localstorage');
+				} else {
+					$('html').addClass('localstorage');
+				}
+			},
+			/**
+			 * Polyfill script loader
+			 * @memberof pe.polyfills
+			 */
+			polyload: function (elms, pfill_name) {
+				var pfill = pe.polyfills.polyfill[pfill_name],
+					$html = $('html'),
+					supported = $html.hasClass(pfill_name),
+					loaded = $html.hasClass('polyfill-' + pfill_name);
+				if (!supported && !loaded) {
+					supported = (typeof pfill.support_check === 'function' ? pfill.support_check() : pfill.support_check);
+					if (!supported) {
+						pe.add._load(typeof pfill.load !== "undefined" ? pfill.load : pe.add.liblocation + 'polyfills/' + pfill_name + pe.suffix + '.js');
+						elms.addClass('polyfill');
+						$html.addClass('polyfill-' + pfill_name);
+					} else {
+						$html.addClass(pfill_name);
+					}
+				} else if (!supported) {
+					if (typeof pfill.update === 'function') {
+						pfill.update(elms);
+						elms.addClass('polyfill');
+					}
 				}
 			},
 			/**
@@ -908,17 +936,13 @@
 			 * @memberof pe.polyfills
 			 */
 			load: function (force) {
-				var lib = pe.add.liblocation,
-					polyfills = this.polyfill,
+				var polyfills = this.polyfill,
 					all_elms = $($.map(polyfills, function(value, key) {return value.selector;}).join(','));  // Find all elements that match the element selector
 				$.each(polyfills, function(index, value) {
 					// If element exists on the page or forcing polyfill (for dynamically added elements)
 					var elms = all_elms.filter(value.selector);
-					if ((elms.length > 0 || $.inArray(index, force) > -1)) {
-						if (!(typeof value.supported === 'function' ? value.supported() : value.supported)) {
-							pe.add._load(typeof value.load !== "undefined" ? value.load : lib + 'polyfills/' + index + pe.suffix + '.js');
-							elms.addClass('polyfill');
-						}
+					if (elms.length > 0 || $.inArray(index, force) > -1) {
+						pe.polyfills.polyload(elms, index);
 					}
 				});
 			},
@@ -932,11 +956,17 @@
 			polyfill: {
 				'datalist': {
 					selector: 'input[list]',
-					supported: !!(document.createElement('datalist') && window.HTMLDataListElement)
+					update: function (elms) {
+						elms.datalist();
+					},
+					support_check: !!(document.createElement('datalist') && window.HTMLDataListElement)
 				},
 				'datepicker': {
 					selector: 'input[type="date"]',
-					supported: function () {
+					/*update: function (elms) {
+						pe._execute(datepicker, elms);
+					},*/
+					support_check: function () {
 						var el = document.createElement('input');
 						el.setAttribute('type', 'date');
 						el.value = ':)';
@@ -945,7 +975,10 @@
 				},
 				'detailssummary': {
 					selector: 'details',
-					supported: function () {
+					update: function (elms) {
+						elms.details();
+					},
+					support_check: function () {
 						var doc = document,
 							el = doc.createElement('details'),
 							fake,
@@ -976,7 +1009,10 @@
 				'mathml': {
 					selector: 'math',
 					load: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML',
-					supported: function () {
+					/*update: function (elms) {
+						MathJax.Hub.Queue(["Typeset",MathJax.Hub,elms]);
+					},*/
+					support_check: function () {
 						var hasMathML = false,
 							ns,
 							div,
@@ -998,7 +1034,10 @@
 				},
 				'progress': {
 					selector: 'progress',
-					supported: document.createElement('progress').position !== undefined
+					update: function (elms) {
+						elms.progress();
+					},
+					support_check: document.createElement('progress').position !== undefined
 				}
 			}
 		},
