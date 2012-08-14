@@ -25,7 +25,7 @@
 				contact2 = contact_coord.find('#contact2'),
 				info = contact_coord.find('#info'),
 				referrerUrl = document.referrer,
-				urlParams = pe.url(document.location).params,
+				urlParams = pe.url(window.location.href).params,
 				load;
 
 			// Web Questions
