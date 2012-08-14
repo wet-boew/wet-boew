@@ -23,6 +23,7 @@
 			if (pe.svg) {
 				icon = _pe.fn.multimedia.icons.clone();
 				icon.children(':not(g[id="' + id + '"])').remove();
+				icon.children('g').removeAttr('id');
 				icon.prepend('<title>' + alt + '</title>');
 				return icon.attr({'role' : 'img', 'aria-label' : alt});
 			}
