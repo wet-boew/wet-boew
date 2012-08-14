@@ -503,7 +503,7 @@
 			};
 
 			if (src !== undefined) {
-				curUrl = _pe.url(window.location);
+				curUrl = _pe.url(window.location.href);
 				srcUrl = _pe.url(src);
 
 				if (srcUrl.removehash() === curUrl.source) {
