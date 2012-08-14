@@ -77,7 +77,7 @@
 			pe.polyfills.init();
 
 			// Get the query parameters from the URL
-			pe.urlquery = pe.url(document.location).params;
+			pe.urlquery = pe.url(window.location.href).params;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
@@ -319,15 +319,9 @@
 		 * @param {string} uri A relative or absolute URL to manipulate.
 		 */
 		url: function (uri) {
-			/*var el = document.createElement('div'), a;
-			el.innerHTML = '<a href="' + pe.string.htmlEncode(uri.href) + '">x</a>';
-			a = el.firstChild;*/
-			var a, i;
-			a = document.createElement('a');
-			a.href = uri;
-			//Needed for IE because a doesn't translate to absolute(strangly)
-			i = document.createElement('img');
-			i.src = uri;
+			var el = document.createElement('div'), a;
+			el.innerHTML = '<a href="' + pe.string.htmlEncode(uri) + '">x</a>';
+			a = el.firstChild;
 			return {
 				/**
 				 * @namespace pe.url
@@ -337,7 +331,7 @@
 				 * @memberof pe.url
 				 * @type {string}
 				 */
-				source: i.src,
+				source: a.href,
 				/**
 				 * The protocol of the URL. eg. http or https
 				 * @memberof pe.url
