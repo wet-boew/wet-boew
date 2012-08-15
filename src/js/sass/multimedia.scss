@@ -16,7 +16,7 @@ video, object.video {
 	min-height:1.5em;
 }
 
-.wet-boew-multimedia-overlay {
+.wet-boew-multimedia .wet-boew-multimedia-overlay {
 	position:absolute;
 	background:transparent;
 	border:0;
@@ -24,6 +24,11 @@ video, object.video {
 	* {
 		display:block;
 		margin:auto;
+	}
+	
+	img {
+		width:100px;
+		height:100px;
 	}
 }
 
