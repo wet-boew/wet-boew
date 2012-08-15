@@ -142,8 +142,11 @@ dl.wet-boew-zebra {
 			background-color:#eee!important;
 		}
 	}
-	tbody.table-summary, tfoot.table-summary {
+	tbody.table-rowgroupmarker, tfoot.table-rowgroupmarker {
 		border-top: solid black 2px!important;
+	}
+	colgroup.table-colgroupmarker {
+		border-left: solid black 2px!important;
 	}
 	td, th {
 		&.table-layoutCell {

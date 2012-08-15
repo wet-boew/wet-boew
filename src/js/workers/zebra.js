@@ -25,14 +25,18 @@
 				opts,
 				overrides,
 				getCellHeaders,
-				autoRemoveTimeout;
+				autoRemoveTimeout,
+				lstDlItems = [],
+				isodd = false,
+				dlitem = [];
 			// Defaults Options
 			opts = {
 				noheaderhighlight: false,
 				norowheaderhighlight: false,
 				nocolheaderhighlight: false,
 				columnhighlight: false,
-				nohover: false
+				nohover: false,
+				justgroup: false
 			};
 			// Option to force to do not get header highlight
 			overrides = {
@@ -40,7 +44,8 @@
 				norowheaderhighlight: elem.hasClass("norowheaderhighlight") ? true : undefined,
 				nocolheaderhighlight: elem.hasClass("nocolheaderhighlight") ? true : undefined,
 				columnhighlight: elem.hasClass("columnhighlight") ? true : undefined,
-				nohover: elem.hasClass("nohover") ? true : undefined
+				nohover: elem.hasClass("nohover") ? true : undefined,
+				justgroup: elem.hasClass("justgroup") ? true : undefined
 			};
 			// Extend the defaults with settings passed through settings.js (wet_boew_zebra), class-based overrides and the data attribute
 			//$.metadata.setType("attr", "data-wet-boew");
@@ -89,8 +94,9 @@
 								}
 							}
 						}
+						// Summary group styling
 						if (tblparser.row[i].type && tblparser.row[i].type === 3) {
-							$(tblparser.row[i].elem).parent().addClass('table-summary');
+							$(tblparser.row[i].elem).parent().addClass('table-rowgroupmarker');
 						}
 					}
 				}
@@ -101,6 +107,26 @@
 						$this.addClass('table-headgroup' + $this.data().tblparser.scope + $this.data().tblparser.level);  // level is a number, scope either "row" || "col"
 					}
 				});
+				
+				// Data Column Group
+				if (tblparser.colgroup) {
+					for (i = 0; i < tblparser.colgroup.length; i += 1) {
+						if (tblparser.colgroup[i].elem && ((i > 0 && tblparser.colgroup[i].type === 3 && tblparser.colgroup[i - 1].type === 3 && tblparser.colgroup[i - 1].level > tblparser.colgroup[i].level)
+						|| 
+						 (tblparser.colgroup[i].type === 2 && (i > 0 && tblparser.colgroup[0].type === 2 || i > 1 && tblparser.colgroup[0].type === 1)))) {
+							$(tblparser.colgroup[i].elem).addClass('table-colgroupmarker');
+						}
+					}
+				}
+				
+				// Data Row Group
+				if (tblparser.lstrowgroup) {
+					for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
+						if (tblparser.lstrowgroup[i].elem && tblparser.lstrowgroup[i].type === 2 && i > 0) {
+							$(tblparser.lstrowgroup[i].elem).addClass('table-rowgroupmarker');
+						}
+					}
+				}
 
 				/* The Heading highlight take times to be set up in ÌE and just a little bit more in Firefox
 				 *
@@ -193,40 +219,49 @@
 				$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
 					return $(this).children('td').length > 0;
 				});
-				$trs.on('hover focusin focusout', function (e) {
+				
+				$trs.on('mouseleave focusout', function (e) {
 					e.stopPropagation();
-					$(this).toggleClass('table-hover');
+					$(this).removeClass('table-hover');
 				});
-				if (!opts.columnhighlight) {
-					// note: even/odd's indices start at 0
-					$trs.filter(':odd').addClass('table-even');
-					$trs.filter(':even').addClass('table-odd');
-				} else {
-					$cols = [];
-					for (i = 0; i < tblparser.col.length; i += 1) {
-						if (tblparser.col[i].elem) {
-							$cols.push(tblparser.col[i].elem);
+				$trs.on('mouseenter focusin', function (e) {
+					e.stopPropagation();
+					$(this).addClass('table-hover');
+				});
+			
+				if (!opts.justgroup) {
+					if (!opts.columnhighlight) {
+						// note: even/odd's indices start at 0
+						$trs.filter(':odd').addClass('table-even');
+						$trs.filter(':even').addClass('table-odd');
+					} else {
+						$cols = [];
+						for (i = 0; i < tblparser.col.length; i += 1) {
+							if (tblparser.col[i].elem) {
+								$cols.push(tblparser.col[i].elem);
+							}
 						}
+						$($cols).filter(':odd').addClass('table-even');
+						$($cols).filter(':even').addClass('table-odd');
 					}
-					$($cols).filter(':odd').addClass('table-even');
-					$($cols).filter(':even').addClass('table-odd');
 				}
 			} else if (elem.is('dl')) {
 				// Create a list based on "dt" element with their one or more "dd" after each of them
-				var lstDlItems = [],
-					isodd = false,
-					dlitem = [];
-				
 				$(elem).children().each(function () {
 					var $this = $(this);
 					switch (this.nodeName.toLowerCase()) {
 					case 'dt':
 						if (isodd) {
 							isodd = false;
+							$this.addClass('list-even');
 						} else {
 							isodd = true;
+							$this.addClass('list-odd');
 						}
 						dlitem = [];
+						lstDlItems.push($this.get(0));
+						$this.data().dlitem = dlitem;
+						dlitem.push($this.get(0));
 						break;
 					case 'dd':
 						if (isodd) {
@@ -244,21 +279,28 @@
 				});
 			
 				if (!opts.nohover) {
-					$(lstDlItems).on('mouseover mouseout focusin focusout', function (e) {
+					$(lstDlItems).on('mouseleave focusout', function (e) {
 						e.stopPropagation();
-						$($(this).data().dlitem).toggleClass('list-hover');
+						$($(this).data().dlitem).removeClass('list-hover');
+					});
+					$(lstDlItems).on('mouseenter focusin', function (e) {
+						e.stopPropagation();
+						$($(this).data().dlitem).addClass('list-hover');
 					});
 				}
-				
 			} else {
 				$lis = elem.children('li');
 				parity = (elem.parents('li').length + 1) % 2;
 				$lis.filter(':odd').addClass(parity === 0 ? 'list-odd' : 'list-even');
 				$lis.filter(':even').addClass(parity === 1 ? 'list-odd' : 'list-even');
 				if (!opts.nohover) {
-					$lis.on('mouseover mouseout focusin focusout', function (e) {
+					$lis.on('mouseleave focusout', function (e) {
 						e.stopPropagation();
-						$(this).toggleClass('list-hover');
+						$(this).removeClass('list-hover');
+					});
+					$lis.on('mouseenter focusin', function (e) {
+						e.stopPropagation();
+						$(this).addClass('list-hover');
 					});
 				}
 			}

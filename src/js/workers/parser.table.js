@@ -10,7 +10,7 @@
 */
 /*global jQuery: false*/
 (function ($) {
-	"use strict";
+	+ "use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
@@ -111,6 +111,7 @@
 			groupZero.rowcaption.type = 7;
 			groupZero.rowcaption.dataset = [];
 			groupZero.rowcaption.summaryset = [];
+			groupZero.col = [];
 			function processCaption(elem) {
 				groupZero.colcaption.elem = elem;
 				groupZero.rowcaption.elem = elem;
@@ -202,27 +203,29 @@
 				}
 
 				// Add any exist structural col element
-				$('col', elem).each(function () {
-					var $this = $(this),
-						width = $this.attr('span') !== undefined ? parseInt($this.attr('span'), 10) : 1,
-						col = {
-							elem: {},
-							start: 0,
-							end: 0,
-							groupZero: groupZero
-						};
-					col.uid = uidElem;
-					uidElem += 1;
-					groupZero.allParserObj.push(col);
-					col.start = colgroup.start + colgroupspan;
-					col.end = colgroup.start + colgroupspan + width - 1; // Minus one because the default value was already calculated
-					col.elem = this;
-					col.groupZero = groupZero;
-					$this.data().tblparser = col;
-					colgroup.col.push(col);
-					columnFrame.push(col);
-					colgroupspan += width;
-				});
+				if (elem) {
+					$('col', elem).each(function () {
+						var $this = $(this),
+							width = $this.attr('span') !== undefined ? parseInt($this.attr('span'), 10) : 1,
+							col = {
+								elem: {},
+								start: 0,
+								end: 0,
+								groupZero: groupZero
+							};
+						col.uid = uidElem;
+						uidElem += 1;
+						groupZero.allParserObj.push(col);
+						col.start = colgroup.start + colgroupspan;
+						col.end = colgroup.start + colgroupspan + width - 1; // Minus one because the default value was already calculated
+						col.elem = this;
+						col.groupZero = groupZero;
+						$this.data().tblparser = col;
+						colgroup.col.push(col);
+						columnFrame.push(col);
+						colgroupspan += width;
+					});
+				}
 				// If no col element check for the span attribute
 				if (colgroup.col.length === 0) {
 					if (elem) {
@@ -652,7 +655,7 @@
 
 							if (currColgroupStructure[i].end <= curColgroupFrame.end) {
 
-								if (currColgroupStructure[i].level < groupLevel) {
+								if (currColgroupStructure[i].level < groupLevel && theadRowStack.length > 0) {
 									curColgroupFrame.type = 3;
 								}
 
@@ -667,7 +670,7 @@
 						}
 
 						// Catch the second and the third possible grouping at level 1
-						if (groupLevel === 1 && groupZero.colgrp[1] && groupZero.colgrp[1].length > 1) {
+						if (groupLevel === 1 && groupZero.colgrp[1] && groupZero.colgrp[1].length > 1 && theadRowStack.length > 0) {
 
 							// Check if in the group at level 1 if we don't already have a summary colgroup
 							for (i = 0; i < groupZero.colgrp[1].length; i += 1) {
@@ -826,8 +829,12 @@
 				}
 
 				// if no cell in the stack and not the first row group, this are a summary group
-				if (rowgroupHeaderRowStack.length === 0 && lstRowGroup.length > 0 && !currentRowGroup.type) {
+				// This is only valid if the first colgroup is a header colgroup.
+				if (rowgroupHeaderRowStack.length === 0 && lstRowGroup.length > 0 && !currentRowGroup.type && colgroupFrame[0] && colgroupFrame[0].type === 1) {
 					currentRowGroup.type = 3;
+				} else {
+					currentRowGroup.type = 2;
+					currentRowGroup.level = 1; // Default Row Group Level
 				}
 
 				// console.log(rowgroupHeaderRowStack); rowlevel
