@@ -16,6 +16,17 @@ video, object.video {
 	min-height:1.5em;
 }
 
+.wet-boew-multimedia-overlay {
+	position:absolute;
+	background:transparent;
+	border:0;
+	width:100%;
+	* {
+		display:block;
+		margin:auto;
+	}
+}
+
 @mixin border {
 	border:1px solid #BBB;
 }
@@ -53,7 +64,7 @@ $progress-color: #000;
 
 	.wet-boew-multimedia-controls-end {
 		float:right;
-}	
+	}
 	
 	.wet-boew-multimedia-timeline{
 		position:relative;
