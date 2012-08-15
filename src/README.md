@@ -56,7 +56,7 @@ development, you'll need to tell Compass to "watch" the sass directory so that
 any time a .scss file is changed it will automatically place a generated CSS
 file into your sub-theme's css directory:
   
-  a) root directory
+  a) build directory
 
   $ ant (will perform overall build out)
 

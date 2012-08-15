@@ -7,6 +7,7 @@
 */
 /*global jQuery: false, pe: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn: {}
 	};
@@ -84,7 +85,7 @@
 				fbVars = 'id=' + elm.attr('id');
 				if (flash && media.is('video') && media.find('source[type="' + fbVideoType + '"]').length > 0) {
 					fbClass = 'video';
-					fbVars +=  '&height=' + media.height() + '&width=' + media.width() + '&posterimg=' + escape(_pe.url(media.attr('poster')).source) + '&media=' + escape(_pe.url(media.find('source[type="' + fbVideoType + '"]').attr('src')).source);
+					fbVars +=  '&height=' + media.height() + '&width=' + media.width() + '&posterimg=' + encodeURI(_pe.url(media.attr('poster')).source) + '&media=' + encodeURI(_pe.url(media.find('source[type="' + fbVideoType + '"]').attr('src')).source);
 					canPlay = true;
 				} else if (flash && media.is('audio') && media.find('source[type="' + fbAudioType + '"]').length > 0) {
 					fbClass = 'audio';

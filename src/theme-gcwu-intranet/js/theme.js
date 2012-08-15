@@ -7,6 +7,7 @@
  */
 /*global jQuery: false, pe: false*/
 (function ($) {
+	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
 	/**
 	* wet_boew_theme object
@@ -53,9 +54,6 @@
 			} else if (wet_boew_theme.psnb.length === 0 && wet_boew_theme.search.length > 0) {
 				wet_boew_theme.search.css('width', '100%');
 			}
-		},
-		themename: function () {
-			return wet_boew_theme.theme;
 		},
 		mobileview: function () {
 			var mb_dialogue,

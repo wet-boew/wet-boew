@@ -5,8 +5,9 @@
 /*
  * Form validation plugin
  */
-/*global jQuery: false, pe: false, wet_boew_feedback: false*/
+/*global jQuery: false, pe: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn: {}
 	};

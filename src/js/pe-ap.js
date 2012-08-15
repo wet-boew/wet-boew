@@ -12,6 +12,7 @@
  */
 /*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false*/
 (function ($) {
+	"use strict";
 	var pe, _pe;
 	/**
 	* pe object
@@ -29,7 +30,7 @@
 		 */
 		language: ($("html").attr("lang").length > 0 ? $("html").attr("lang") : "en"),
 		touchscreen: 'ontouchstart' in document.documentElement,
-		theme: "",
+		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
 		main: $('#wb-main'),
@@ -80,7 +81,7 @@
 			pe.urlquery = pe.url(window.location.href).params;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
+			$('html').removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : "").addClass(pe.touchscreen ? 'touchscreen' : '');
 
 			hlinks = pe.main.find("a[href*='#']");
 			hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes
@@ -265,7 +266,7 @@
 		 */
 		mobile: false,
 		mobilecheck: function () {
-			return (window.innerWidth < 768 && !(pe.ie > 0 && pe.ie < 9));
+			return (pe.mobileview && window.innerWidth < 768 && !(pe.ie > 0 && pe.ie < 9));
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -320,7 +321,7 @@
 		 */
 		url: function (uri) {
 			var el = document.createElement('div'), a;
-			el.innerHTML = '<a href="' + pe.string.htmlEncode(uri) + '">x</a>';
+			el.innerHTML = '<a href="' + encodeURI(uri) + '">x</a>';
 			a = el.firstChild;
 			return {
 				/**
@@ -572,26 +573,6 @@
 					str = "0" + str;
 				}
 				return str;
-			},
-			/**
-			 * HTML encodes a string (only encodes &, <, >, " and ')
-			 * @memberof pe.string
-			 * @function
-			 * @param {string} The string to encode
-			 * @return {string} The encoded string
-			 */
-			htmlEncode: function (str) {
-				return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
-			},
-			/**
-			 * Decodes an HTML encoded string (only decodes &amp;, &lt, &gt, &quot and &apos)
-			 * @memberof pe.string
-			 * @function
-			 * @param {string} The HTML encoded string to decode
-			 * @return {string} The decoded string
-			 */
-			htmlDecode: function (str) {
-				return str.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, '\'');
 			}
 		},
 		/**
@@ -963,9 +944,9 @@
 				},
 				'datepicker': {
 					selector: 'input[type="date"]',
-					/*update: function (elms) {
-						pe._execute(datepicker, elms);
-					},*/
+					update: function (elms) {
+						elms.datepicker();
+					},
 					support_check: function () {
 						var el = document.createElement('input');
 						el.setAttribute('type', 'date');
@@ -1063,7 +1044,7 @@
 					return pefile.substr(0, pefile.lastIndexOf("/") + 1);
 				}()),
 				themecsslocation: (function () {
-					var themecss = $('head link[rel="stylesheet"][href*="' + wet_boew_theme.themename() + '"]');
+					var themecss = (wet_boew_theme !== null ? $('head link[rel="stylesheet"][href*="' + wet_boew_theme.theme + '"]') : "");
 					return themecss.length > 0 ? themecss.attr('href').substr(0, themecss.attr('href').lastIndexOf("/") + 1) : "theme-not-found/";
 				}()),
 				staged: [],
@@ -1082,10 +1063,10 @@
 						return this;
 					}
 					// - now lets bind the events
-					setTimeout(function () {
+					setTimeout(function timeout() {
 						if (typeof head.item !== "undefined") { // check if ref is still a live node list
 							if (!head[0]) { // append_to node not yet ready
-								setTimeout(arguments.callee, 25);
+								setTimeout(timeout, 25);
 								return;
 							}
 							head = head[0]; // reassign from live node list ref to pure node ref -- avoids nasty IE bug where changes to DOM invalidate live node lists
@@ -1253,7 +1234,7 @@
 			}
 			window.onresize = function () { // TODO: find a better way to switch back and forth between mobile and desktop modes.
 				if (pe.mobile !== pe.mobilecheck()) {
-					window.location.href = pe.url(window.location.href).removehash();
+					window.location.href = decodeURI(pe.url(window.location.href).removehash());
 				}
 			};
 		}
