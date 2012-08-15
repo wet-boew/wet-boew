@@ -10,6 +10,7 @@
 */
 /*global jQuery: false*/
 (function ($) {
+	+ "use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
@@ -1422,7 +1423,7 @@
 						// if colgroup tag defined, they are all data colgroup. 
 						lastHeadingColPos = 0;
 						
-						if (colgroupFrame.length == 0) {
+						if (colgroupFrame.length === 0) {
 							processColgroup(undefined, tableCellWidth);
 						}
 					}

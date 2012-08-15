@@ -5,8 +5,9 @@
 /*
  * Zebra stripping functionality for block level elements
  */
-/*global jQuery: false, pe: false, wet_boew_zebra: false*/
+/*global jQuery: false, wet_boew_zebra: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
@@ -252,11 +253,16 @@
 					case 'dt':
 						if (isodd) {
 							isodd = false;
+							$this.addClass('list-even');
 						} else {
 							isodd = true;
+							$this.addClass('list-odd');
 						}
 						dlitem = [];
-
+						lstDlItems.push($this.get(0));
+						$this.data().dlitem = dlitem;
+						dlitem.push($this.get(0));
+						break;
 					case 'dd':
 						if (isodd) {
 							$this.addClass('list-odd');
@@ -266,9 +272,9 @@
 						lstDlItems.push($this.get(0));
 						$this.data().dlitem = dlitem;
 						dlitem.push($this.get(0));
+						break;
 					default:
 						break;
-					
 					}
 				});
 			
