@@ -573,6 +573,18 @@
 					str = "0" + str;
 				}
 				return str;
+			},
+			/**
+			 * Eliminates duplicate strings in an array
+			 * @memberof pe.string
+			 * @function
+			 * @param {array} Array of strings
+			 * @return {array} Array with duplicate strings removed
+			 */
+			noduplicates: function (arr) {
+				return $.grep(arr, function (el, index) {
+					return index === $.inArray(el, arr);
+				});
 			}
 		},
 		/**
@@ -1210,8 +1222,39 @@
 		 */
 		dance: function () {
 			// global plugins
-			var i,	settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false;
-			$('[class^="wet-boew-"]').each(function () {
+			var i,	
+				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
+				wetboew = $('[class^="wet-boew-"]'),
+				classes = [],
+				deps = [],
+				poly = [];
+			// Retrieve all the plugin classes
+			wetboew.each(function () {
+				var _node = $(this),
+					_fcall = _node.attr("class").split(" "),
+					i;
+				for (i = 0; i < _fcall.length; i += 1) {
+					if (_fcall[i].indexOf('wet-boew-') === 0) {
+						classes.push(_fcall[i].substr(9).toLowerCase());
+					}
+				}
+			});
+			classes = pe.string.noduplicates(classes); // Eliminate duplicate classes
+			// Pull out each of the dependencies and polyfills
+			$.each(classes, function (index, value) {
+				if (typeof pe.fn[value] !== "undefined") {
+					if (typeof pe.fn[value].depends !== "undefined") {
+						deps.push.apply(deps, pe.fn[value].depends);
+					}
+					if (typeof pe.fn[value].polyfills !== "undefined") {
+						poly.push.apply(poly, pe.fn[value].polyfills);
+					}
+				}
+			});
+			deps = pe.string.noduplicates(deps); // Eliminate duplicate dependencies
+			poly = pe.string.noduplicates(poly); // Eliminate duplicate polyfills
+
+			wetboew.each(function () {
 				var _node = $(this),
 					_fcall = _node.attr("class").split(" "),
 					i;
