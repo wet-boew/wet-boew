@@ -5,9 +5,12 @@
 /*
  * Datepicker
  */
-/*global jQuery: false, pe: false, wet_boew_datepicker: false, calendar: false, XRegExp: false*/
+/*global jQuery: false, pe: false, XRegExp: false*/
 (function ($) {
-	var _pe = window.pe || {fn: {} };
+	"use strict";
+	var _pe = window.pe || {
+		fn: {}
+	},
 	/* local reference */
 	datepicker = {
 		type: 'polyfill',
@@ -188,8 +191,7 @@
 			};
 
 			toggle = function (fieldid, containerid) {
-				var toggle = wrapper.find("#" + containerid + "-toggle"),
-					fieldLabel;
+				var toggle = wrapper.find("#" + containerid + "-toggle");
 				toggle.toggleClass("picker-toggle-hidden picker-toggle-visible");
 
 				container.unbind("focusout.calendar");
@@ -223,7 +225,7 @@
 			};
 
 			hideAll = function (exception) {
-				$('.picker-field').each(function (index, value) {
+				$('.picker-field').each(function () {
 					if ($(this).attr("id") !== exception) {
 						hide($(this));
 					}
@@ -335,7 +337,14 @@
 		} // end of exec
 	};
 
-	$('[type="date"]').each(function () { pe._execute(datepicker, $(this)); });
+	$.fn.datepicker = function () {
+		$(this).each(function () {
+			pe._execute(datepicker, $(this));
+		});
+	};
 	window.pe = _pe;
+
+	$('[type="date"]').datepicker();
+
 	return _pe;
 }(jQuery));

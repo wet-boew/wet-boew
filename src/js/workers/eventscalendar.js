@@ -5,9 +5,12 @@
 /*
  * Events Calendar
  */
-/*global jQuery: false, pe: false, wet_boew_eventscalendar: false*/
+/*global jQuery: false, pe: false*/
 (function ($) {
-	var _pe = window.pe || {fn: {} };
+	"use strict";
+	var _pe = window.pe || {
+		fn: {}
+	};
 	/* local reference */
 	_pe.fn.eventscalendar = {
 		type: 'plugin',

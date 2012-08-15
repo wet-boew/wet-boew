@@ -7,7 +7,10 @@
  */
 /*global jQuery: false, pe: false*/
 (function ($) {
-	var _pe = window.pe || {fn: {} };
+	"use strict";
+	var _pe = window.pe || {
+		fn: {}
+	};
 	/* local reference */
 	_pe.fn.slideout = {
 		type: 'plugin',

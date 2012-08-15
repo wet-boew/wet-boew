@@ -4,7 +4,10 @@
  */
 /*global jQuery: false, pe: false*/
 (function ($) {
-	var _pe = window.pe || {fn: {} };
+	"use strict";
+	var _pe = window.pe || {
+		fn: {}
+	};
 	/* local reference */
 	_pe.fn.calendar = {
 		create: function (containerid, year, month, shownav, mindate, maxdate) {
