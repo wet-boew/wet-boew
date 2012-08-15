@@ -34,7 +34,8 @@
 				norowheaderhighlight: false,
 				nocolheaderhighlight: false,
 				columnhighlight: false,
-				nohover: false
+				nohover: false,
+				justgroup: false
 			};
 			// Option to force to do not get header highlight
 			overrides = {
@@ -42,7 +43,8 @@
 				norowheaderhighlight: elem.hasClass("norowheaderhighlight") ? true : undefined,
 				nocolheaderhighlight: elem.hasClass("nocolheaderhighlight") ? true : undefined,
 				columnhighlight: elem.hasClass("columnhighlight") ? true : undefined,
-				nohover: elem.hasClass("nohover") ? true : undefined
+				nohover: elem.hasClass("nohover") ? true : undefined,
+				justgroup: elem.hasClass("justgroup") ? true : undefined
 			};
 			// Extend the defaults with settings passed through settings.js (wet_boew_zebra), class-based overrides and the data attribute
 			//$.metadata.setType("attr", "data-wet-boew");
@@ -220,19 +222,21 @@
 					e.stopPropagation();
 					$(this).toggleClass('table-hover');
 				});
-				if (!opts.columnhighlight) {
-					// note: even/odd's indices start at 0
-					$trs.filter(':odd').addClass('table-even');
-					$trs.filter(':even').addClass('table-odd');
-				} else {
-					$cols = [];
-					for (i = 0; i < tblparser.col.length; i += 1) {
-						if (tblparser.col[i].elem) {
-							$cols.push(tblparser.col[i].elem);
+				if (!opts.justgroup) {
+					if (!opts.columnhighlight) {
+						// note: even/odd's indices start at 0
+						$trs.filter(':odd').addClass('table-even');
+						$trs.filter(':even').addClass('table-odd');
+					} else {
+						$cols = [];
+						for (i = 0; i < tblparser.col.length; i += 1) {
+							if (tblparser.col[i].elem) {
+								$cols.push(tblparser.col[i].elem);
+							}
 						}
+						$($cols).filter(':odd').addClass('table-even');
+						$($cols).filter(':even').addClass('table-odd');
 					}
-					$($cols).filter(':odd').addClass('table-even');
-					$($cols).filter(':even').addClass('table-odd');
 				}
 			} else if (elem.is('dl')) {
 				// Create a list based on "dt" element with their one or more "dd" after each of them

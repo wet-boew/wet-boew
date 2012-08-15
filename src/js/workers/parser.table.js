@@ -110,6 +110,7 @@
 			groupZero.rowcaption.type = 7;
 			groupZero.rowcaption.dataset = [];
 			groupZero.rowcaption.summaryset = [];
+			groupZero.col = [];
 			function processCaption(elem) {
 				groupZero.colcaption.elem = elem;
 				groupZero.rowcaption.elem = elem;
@@ -201,27 +202,29 @@
 				}
 
 				// Add any exist structural col element
-				$('col', elem).each(function () {
-					var $this = $(this),
-						width = $this.attr('span') !== undefined ? parseInt($this.attr('span'), 10) : 1,
-						col = {
-							elem: {},
-							start: 0,
-							end: 0,
-							groupZero: groupZero
-						};
-					col.uid = uidElem;
-					uidElem += 1;
-					groupZero.allParserObj.push(col);
-					col.start = colgroup.start + colgroupspan;
-					col.end = colgroup.start + colgroupspan + width - 1; // Minus one because the default value was already calculated
-					col.elem = this;
-					col.groupZero = groupZero;
-					$this.data().tblparser = col;
-					colgroup.col.push(col);
-					columnFrame.push(col);
-					colgroupspan += width;
-				});
+				if (elem) {
+					$('col', elem).each(function () {
+						var $this = $(this),
+							width = $this.attr('span') !== undefined ? parseInt($this.attr('span'), 10) : 1,
+							col = {
+								elem: {},
+								start: 0,
+								end: 0,
+								groupZero: groupZero
+							};
+						col.uid = uidElem;
+						uidElem += 1;
+						groupZero.allParserObj.push(col);
+						col.start = colgroup.start + colgroupspan;
+						col.end = colgroup.start + colgroupspan + width - 1; // Minus one because the default value was already calculated
+						col.elem = this;
+						col.groupZero = groupZero;
+						$this.data().tblparser = col;
+						colgroup.col.push(col);
+						columnFrame.push(col);
+						colgroupspan += width;
+					});
+				}
 				// If no col element check for the span attribute
 				if (colgroup.col.length === 0) {
 					if (elem) {
