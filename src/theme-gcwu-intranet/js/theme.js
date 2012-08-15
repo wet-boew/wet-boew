@@ -7,6 +7,7 @@
  */
 /*global jQuery: false, pe: false*/
 (function ($) {
+	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
 	/**
 	* wet_boew_theme object

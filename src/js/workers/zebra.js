@@ -5,8 +5,9 @@
 /*
  * Zebra stripping functionality for block level elements
  */
-/*global jQuery: false, pe: false, wet_boew_zebra: false*/
+/*global jQuery: false, wet_boew_zebra: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
@@ -213,7 +214,7 @@
 			} else if (elem.is('dl')) {
 				// Create a list based on "dt" element with their one or more "dd" after each of them
 				var lstDlItems = [],
-					isodd = false;
+					isodd = false,
 					dlitem = [];
 				
 				$(elem).children().each(function () {
@@ -226,7 +227,7 @@
 							isodd = true;
 						}
 						dlitem = [];
-
+						break;
 					case 'dd':
 						if (isodd) {
 							$this.addClass('list-odd');
@@ -236,9 +237,9 @@
 						lstDlItems.push($this.get(0));
 						$this.data().dlitem = dlitem;
 						dlitem.push($this.get(0));
+						break;
 					default:
 						break;
-					
 					}
 				});
 			

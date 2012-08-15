@@ -5,23 +5,23 @@
 /*
  * Web archived top page banner
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false*/
 (function ($) {
-	var _pe = window.pe || {fn: {} };
+	"use strict";
+	var _pe = window.pe || {
+		fn: {} 
+	};
 	/* local reference */
 	_pe.fn.langselect = {
 		type: 'plugin',
-
 		_exec: function (elm) {
 			elm.on('click', function () {
 				var url = window.location.toString();
 
 				if ((url.search(/_f\.htm/) > -1) || (url.search(/-fra\./) > -1)) {
-					url = url.replace(/_f\./, "_e.");
-					url = url.replace(/-fra\./, "-eng.");
+					url = url.replace(/_f\./, "_e.").replace(/-fra\./, "-eng.");
 				} else {
-					url = url.replace(/_e\./, "_f.");
-					url = url.replace(/-eng\./, "-fra.");
+					url = url.replace(/_e\./, "_f.").replace(/-eng\./, "-fra.");
 				}
 				if (url.search(/lang=eng/) > -1) {
 					url = url.replace(/lang=eng/, "lang=fra");

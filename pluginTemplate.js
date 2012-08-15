@@ -7,6 +7,7 @@
  */
 /*global jQuery: false, pe: false, wet_boew_pluginName: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn: {}
 	};
@@ -70,6 +71,9 @@
 			}
 
 			// Do plugin stuff here...
+			aVariable = true;
+			anotherVariable = 5;
+			
 			return elm;
 		} // end of exec
 	};
