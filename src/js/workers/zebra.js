@@ -212,6 +212,43 @@
 				}
 			} else if (elem.is('dl')) {
 				// Create a list based on "dt" element with their one or more "dd" after each of them
+				var lstDlItems = [],
+					isodd = false;
+					dlitem = [];
+				
+				$(elem).children().each(function () {
+					var $this = $(this);
+					switch (this.nodeName.toLowerCase()) {
+					case 'dt':
+						if (isodd) {
+							isodd = false;
+						} else {
+							isodd = true;
+						}
+						dlitem = [];
+
+					case 'dd':
+						if (isodd) {
+							$this.addClass('list-odd');
+						} else {
+							$this.addClass('list-even');
+						}
+						lstDlItems.push($this.get(0));
+						$this.data().dlitem = dlitem;
+						dlitem.push($this.get(0));
+					default:
+						break;
+					
+					}
+				});
+			
+				if (!opts.nohover) {
+					$(lstDlItems).on('mouseover mouseout focusin focusout', function (e) {
+						e.stopPropagation();
+						$($(this).data().dlitem).toggleClass('list-hover');
+					});
+				}
+				
 			} else {
 				$lis = elem.children('li');
 				parity = (elem.parents('li').length + 1) % 2;
