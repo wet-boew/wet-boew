@@ -8,37 +8,33 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>Progress bar (progress polyfill) - Working examples - Web Experience Toolkit (WET)</title>
+<title>Accessible footnotes - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="description" content="English description / Description en anglais" />
-<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
-<meta name="dcterms.title" content="English title / Titre en anglais" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.description" content="English description/Description en anglais" />
+<meta name="description" content="English description/Description en anglais" />
+<meta name="keywords" content="English keywords/Mots-clés en anglais" />
+<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title/Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
 <script src="../../build/js/polyfills/html5shiv-min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
-<style>
-progress {
-	width: 10em;
-}
-</style>
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -58,7 +54,7 @@ progress {
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="progress-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="footnotes-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -68,7 +64,7 @@ progress {
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -91,7 +87,7 @@ progress {
 <ol>
 <li><a href="../../docs/index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li>Progress bar (progress polyfill)</li>
+<li>Accessible footnotes</li>
 </ol>
 </div></div>
 </nav>
@@ -101,39 +97,47 @@ progress {
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Progress bar (progress polyfill)</h1>
+<h1 id="cn-cont">Accessible footnotes</h1>
 
-<p>The HTML5 <code>progress</code> elements is used to provide a progress bar. This component adds support for this elements in browsers that do not already have native support.</p>
-
-<section><h2>Examples</h2>
-
-<table>
-<thead>
-<tr>
-<th scope="col">Value</th>
-<th scope="col">Max</th>
-<th scope="col">Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>22</td>
-<td>100</td>
-<td><progress value="22" max="100"></progress></td>
-</tr>
-<tr>
-<td>198</td>
-<td>300</td>
-<td><progress value="198" max="300"></progress></td>
-</tr>
-<tr>
-<td>500</td>
-<td>500</td>
-<td><progress value="500" max="500"></progress></td>
-</tr>
-</tbody>
-</table>
+<section><h2>Overview</h2>
+<p>The purpose of the Accessible Footnotes sub-project is to implement a consistent, accessible way of handling footnotes across Government of Canada web sites<sup id="fnb1a-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup>. The main concept behind this solution is to place footnotes in a definition list, within a dedicated section. An example of this can be found in the <a href="#fnb">Footnotes</a> section. Supporting CSS is used to lay out the footnotes and hide navigational aids<sup id="fnb1b-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup>.</p>
 </section>
+<section><h2>Benefits</h2>
+<ul>
+	<li>Conforms to WCAG 2.0 AA<sup id="fnb2a-ref"><a class="footnote-link" href="#fnb2"><span class="wb-invisible">Footnote </span>2</a></sup></li>
+	<li>Progressive enhancement approach</li>
+	<li>Support for Firefox, Opera, Safari, Chrome, and IE 7+<sup id="fnb2b-ref"><a class="footnote-link" href="#fnb2"><span class="wb-invisible">Footnote </span>2</a></sup></li>
+	<li>Support for English and French<sup id="fnb2c-ref"><a class="footnote-link" href="#fnb2"><span class="wb-invisible">Footnote </span>2</a></sup></li>
+	<li>Configurable layout and design</li>
+</ul>
+</section>
+<section><h2>Recommended usage</h2>
+<ul>
+	<li>Implementing footnotes in Web pages<sup id="fnb3-ref"><a class="footnote-link" href="#fnb3"><span class="wb-invisible">Footnote </span>3</a></sup></li>
+</ul>
+</section>
+
+<section><div class="wet-boew-footnotes" role="note"><h2 id="fnb" class="wb-invisible">Footnotes</h2>
+<dl>
+	<dt id="fnb1">Footnote 1</dt>
+	<dd>
+		<p>Example of a footnote being referenced by multiple pieces of content.</p>
+		<p class="footnote-return"><a href="#fnb1a-ref"><span class="wb-invisible">Return to <span>first</span> footnote </span>1<span class="wb-invisible"> referrer</span></a></p>
+	</dd>
+	<dt id="fnb2">Footnote 2</dt>
+	<dd>
+		<p>Example of a footnote being referenced by multiple pieces of content.</p>
+		<p class="footnote-return"><a href="#fnb2a-ref"><span class="wb-invisible">Return to <span>first</span> footnote </span>2<span class="wb-invisible"> referrer</span></a></p>
+	</dd>
+	<dt id="fnb3">Footnote 3</dt>
+	<dd>
+		<p>Example of a footnote containing multiple paragraphs (first paragraph).</p>
+		<p>Example of a footnote containing multiple paragraphs (second paragraph).</p>
+		<p>Example of a footnote containing multiple paragraphs (third paragraph).</p>
+		<p class="footnote-return"><a href="#fnb3-ref"><span class="wb-invisible">Return to footnote </span>3<span class="wb-invisible"> referrer</span></a></p>
+	</dd>
+</dl>
+</div></section>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2011-10-31</time></span></dd>
@@ -202,5 +206,8 @@ progress {
 <script src="../../build/js/settings.js"></script>
 <script src="../../build/js/pe-ap-min.js"></script>
 <!-- ScriptsEnd -->
+<!-- TestStart -->
+<script src="../../src/js/workers/footnotes.js"></script>
+<!-- TestEnd -->
 </body>
 </html>

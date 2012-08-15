@@ -7,6 +7,7 @@
  */
 /*global jQuery: false, pe: false*/
 (function ($) {
+	"use strict";
     var _pe = window.pe || {
         fn: {}
     }; /* local reference */
