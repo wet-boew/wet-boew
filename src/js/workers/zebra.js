@@ -218,10 +218,16 @@
 				$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
 					return $(this).children('td').length > 0;
 				});
-				$trs.on('hover focusin focusout', function (e) {
+				
+				$trs.on('mouseleave focusout', function (e) {
 					e.stopPropagation();
-					$(this).toggleClass('table-hover');
+					$(this).removeClass('table-hover');
 				});
+				$trs.on('mouseenter focusin', function (e) {
+					e.stopPropagation();
+					$(this).addClass('table-hover');
+				});
+			
 				if (!opts.justgroup) {
 					if (!opts.columnhighlight) {
 						// note: even/odd's indices start at 0
@@ -267,21 +273,28 @@
 				});
 			
 				if (!opts.nohover) {
-					$(lstDlItems).on('mouseover mouseout focusin focusout', function (e) {
+					$(lstDlItems).on('mouseleave focusout', function (e) {
 						e.stopPropagation();
-						$($(this).data().dlitem).toggleClass('list-hover');
+						$(this).removeClass('list-hover');
+					});
+					$(lstDlItems).on('mouseenter focusin', function (e) {
+						e.stopPropagation();
+						$(this).addClass('list-hover');
 					});
 				}
-				
 			} else {
 				$lis = elem.children('li');
 				parity = (elem.parents('li').length + 1) % 2;
 				$lis.filter(':odd').addClass(parity === 0 ? 'list-odd' : 'list-even');
 				$lis.filter(':even').addClass(parity === 1 ? 'list-odd' : 'list-even');
 				if (!opts.nohover) {
-					$lis.on('mouseover mouseout focusin focusout', function (e) {
+					$lis.on('mouseleave focusout', function (e) {
 						e.stopPropagation();
-						$(this).toggleClass('list-hover');
+						$(this).removeClass('list-hover');
+					});
+					$lis.on('mouseenter focusin', function (e) {
+						e.stopPropagation();
+						$(this).addClass('list-hover');
 					});
 				}
 			}
