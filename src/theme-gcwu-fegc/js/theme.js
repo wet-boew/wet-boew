@@ -55,9 +55,6 @@
 				wet_boew_theme.search.css('width', '100%');
 			}
 		},
-		themename: function () {
-			return wet_boew_theme.theme;
-		},
 		mobileview: function () {
 			var mb_dialogue,
 				mb_header,

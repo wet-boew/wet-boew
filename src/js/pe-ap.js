@@ -30,7 +30,7 @@
 		 */
 		language: ($("html").attr("lang").length > 0 ? $("html").attr("lang") : "en"),
 		touchscreen: 'ontouchstart' in document.documentElement,
-		theme: "",
+		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
 		main: $('#wb-main'),
@@ -81,7 +81,7 @@
 			pe.urlquery = pe.url(window.location.href).params;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$('html').removeClass('no-js').addClass(pe.theme + ((pe.touchscreen) ? ' touchscreen' : ''));
+			$('html').removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : "").addClass(pe.touchscreen ? 'touchscreen' : '');
 
 			hlinks = pe.main.find("a[href*='#']");
 			hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes
@@ -266,7 +266,7 @@
 		 */
 		mobile: false,
 		mobilecheck: function () {
-			return (window.innerWidth < 768 && !(pe.ie > 0 && pe.ie < 9));
+			return (pe.mobileview && window.innerWidth < 768 && !(pe.ie > 0 && pe.ie < 9));
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -1044,7 +1044,7 @@
 					return pefile.substr(0, pefile.lastIndexOf("/") + 1);
 				}()),
 				themecsslocation: (function () {
-					var themecss = (wet_boew_theme !== null ? $('head link[rel="stylesheet"][href*="' + wet_boew_theme.themename() + '"]') : "");
+					var themecss = (wet_boew_theme !== null ? $('head link[rel="stylesheet"][href*="' + wet_boew_theme.theme + '"]') : "");
 					return themecss.length > 0 ? themecss.attr('href').substr(0, themecss.attr('href').lastIndexOf("/") + 1) : "theme-not-found/";
 				}()),
 				staged: [],
