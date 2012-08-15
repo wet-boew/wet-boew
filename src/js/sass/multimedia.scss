@@ -86,6 +86,12 @@ $progress-color: #000;
 		width:100%;
 		height:14px;
 		margin:2px 0;
+		&::-moz-progress-bar {
+			background: $progress-color;
+		}
+		&::-webkit-progress-value {
+			background: $progress-color;
+		}
 		/* Polyfill */
 		div.progress-frame {
 			border:none;
