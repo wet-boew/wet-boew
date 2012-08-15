@@ -5,8 +5,9 @@
 /*
  * Zebra stripping functionality for block level elements
  */
-/*global jQuery: false, pe: false, wet_boew_zebra: false*/
+/*global jQuery: false, wet_boew_zebra: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
@@ -25,32 +26,33 @@
 				overrides,
 				getCellHeaders,
 				autoRemoveTimeout;
+			// Defaults Options
+			opts = {
+				noheaderhighlight: false,
+				norowheaderhighlight: false,
+				nocolheaderhighlight: false,
+				columnhighlight: false,
+				nohover: false
+			};
+			// Option to force to do not get header highlight
+			overrides = {
+				noheaderhighlight: elem.hasClass("noheaderhighlight") ? true : undefined,
+				norowheaderhighlight: elem.hasClass("norowheaderhighlight") ? true : undefined,
+				nocolheaderhighlight: elem.hasClass("nocolheaderhighlight") ? true : undefined,
+				columnhighlight: elem.hasClass("columnhighlight") ? true : undefined,
+				nohover: elem.hasClass("nohover") ? true : undefined
+			};
+			// Extend the defaults with settings passed through settings.js (wet_boew_zebra), class-based overrides and the data attribute
+			//$.metadata.setType("attr", "data-wet-boew");
+			if (typeof wet_boew_zebra !== 'undefined' && wet_boew_zebra !== null) {
+				$.extend(opts, wet_boew_zebra, overrides); //, elem.metadata());
+			} else {
+				$.extend(opts, overrides); //, elem.metadata());
+			}
+			if (opts.norowheaderhighlight && opts.nocolheaderhighlight) {
+				opts.noheaderhighlight = true;
+			}
 			if (elem.is('table')) {
-				// Defaults
-				opts = {
-					noheaderhighlight: false,
-					norowheaderhighlight: false,
-					nocolheaderhighlight: false,
-					columnhighlight: false
-				};
-				// Option to force to do not get header highlight
-				overrides = {
-					noheaderhighlight: elem.hasClass("noheaderhighlight") ? true : undefined,
-					norowheaderhighlight: elem.hasClass("norowheaderhighlight") ? true : undefined,
-					nocolheaderhighlight: elem.hasClass("nocolheaderhighlight") ? true : undefined,
-					columnhighlight: elem.hasClass("columnhighlight") ? true : undefined
-				};
-				// Extend the defaults with settings passed through settings.js (wet_boew_zebra), class-based overrides and the data attribute
-				//$.metadata.setType("attr", "data-wet-boew");
-				if (typeof wet_boew_zebra !== 'undefined' && wet_boew_zebra !== null) {
-					$.extend(opts, wet_boew_zebra, overrides); //, elem.metadata());
-				} else {
-					$.extend(opts, overrides); //, elem.metadata());
-				}
-				if (opts.norowheaderhighlight && opts.nocolheaderhighlight) {
-					opts.noheaderhighlight = true;
-				}
-
 				// Parse the table
 				if (!$(elem).data().tblparser) {
 					_pe.fn.parsertable._exec($(elem));
@@ -209,15 +211,56 @@
 					$($cols).filter(':odd').addClass('table-even');
 					$($cols).filter(':even').addClass('table-odd');
 				}
+			} else if (elem.is('dl')) {
+				// Create a list based on "dt" element with their one or more "dd" after each of them
+				var lstDlItems = [],
+					isodd = false,
+					dlitem = [];
+				
+				$(elem).children().each(function () {
+					var $this = $(this);
+					switch (this.nodeName.toLowerCase()) {
+					case 'dt':
+						if (isodd) {
+							isodd = false;
+						} else {
+							isodd = true;
+						}
+						dlitem = [];
+						break;
+					case 'dd':
+						if (isodd) {
+							$this.addClass('list-odd');
+						} else {
+							$this.addClass('list-even');
+						}
+						lstDlItems.push($this.get(0));
+						$this.data().dlitem = dlitem;
+						dlitem.push($this.get(0));
+						break;
+					default:
+						break;
+					}
+				});
+			
+				if (!opts.nohover) {
+					$(lstDlItems).on('mouseover mouseout focusin focusout', function (e) {
+						e.stopPropagation();
+						$($(this).data().dlitem).toggleClass('list-hover');
+					});
+				}
+				
 			} else {
 				$lis = elem.children('li');
 				parity = (elem.parents('li').length + 1) % 2;
 				$lis.filter(':odd').addClass(parity === 0 ? 'list-odd' : 'list-even');
 				$lis.filter(':even').addClass(parity === 1 ? 'list-odd' : 'list-even');
-				$lis.on('mouseover mouseout focusin focusout', function (e) {
-					e.stopPropagation();
-					$(this).toggleClass('list-hover');
-				});
+				if (!opts.nohover) {
+					$lis.on('mouseover mouseout focusin focusout', function (e) {
+						e.stopPropagation();
+						$(this).toggleClass('list-hover');
+					});
+				}
 			}
 		} // end of exec
 	};

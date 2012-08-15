@@ -5,8 +5,9 @@
 /*
  * Form validation plugin
  */
-/*global jQuery: false, pe: false, wet_boew_feedback: false*/
+/*global jQuery: false, pe: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn: {}
 	};
@@ -25,7 +26,7 @@
 				contact2 = contact_coord.find('#contact2'),
 				info = contact_coord.find('#info'),
 				referrerUrl = document.referrer,
-				urlParams = pe.url(document.location).params,
+				urlParams = pe.url(window.location.href).params,
 				load;
 
 			// Web Questions

@@ -7,6 +7,7 @@
  */
 /*global jQuery: false, pe:false, wet_boew_share:false */
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
@@ -93,7 +94,7 @@
 					}
 				});
 				$popupText = elm.find('.bookmark_popup_text').off('click vclick keydown').wrap('<' + opts.popupTag + ' />');
-				$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').attr('aria-pressed', 'false').on("click vclick keydown", function (e) {
+				$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').on("click vclick keydown", function (e) {
 					if (e.type === "keydown") {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 							if (e.keyCode === 13 || e.keyCode === 32) { // enter or space
@@ -216,11 +217,11 @@
 							$popup.trigger("closenofocus");
 						}
 					} else if (e.type === "open") { // Open the popup menu an put the focus on the first link
-						$popupText.attr('aria-pressed', 'true').text(opts.hideText + opts.popupText);
+						$popupText.text(opts.hideText + opts.popupText);
 						$popup.attr('aria-hidden', 'false').show();
 						pe.focus($popup.show().find('li a').first());
 					} else if (e.type === "close" || e.type === "closenofocus") { // Close the popup menu
-						$popupText.attr('aria-pressed', 'false').text(opts.popupText);
+						$popupText.text(opts.popupText);
 						$popup.attr('aria-hidden', 'true').hide();
 						if (e.type === "close") {
 							pe.focus($popupText.first());

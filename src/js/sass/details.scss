@@ -34,6 +34,9 @@ details {
 	> * {
 		display:none;
 	}
+	&:not(.polyfill) > * { /* Show the details content for browsers that natively support it. Use of :not selector minimizes FOUC. */
+		display: block;
+	}
 }
 
 .no-js details > * {
