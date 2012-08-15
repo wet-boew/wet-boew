@@ -56,4 +56,29 @@
 		  <available file="${lib.dir}/jruby.jar" type="file"/>
 		</condition>
 	</target>
+	
+	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
+	<target name="compile.sass">
+		<antcall target="call.sass">
+			<param name="command" value="compile"/>
+		</antcall>
+		<echo level="info" message="---Converted CSS SCSS Files into CSS---"/>
+	</target>
+	
+	<target name="call.sass">
+		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+			<arg path="${tasks.basedir}/compile.rb"/>
+			<arg path="${lib.dir}/vendors/gems/"/>
+			<arg value="${command}"/>
+			<arg path="${src.dir}"/>
+		</java>
+	</target>
+	
+	<!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
+	<target name="watch.sass">
+		<antcall target="call.sass">
+			<param name="command" value="watch"/>
+		</antcall>
+		<echo level="info" message="---Watching for SCSS Changes in CSS Directory---"/>
+	</target>
 </project>
