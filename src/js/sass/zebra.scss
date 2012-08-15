@@ -23,9 +23,13 @@ table {
 		margin-top:10px;
 	}
 }
- 
+
+dl.wet-boew-zebra {
+	margin-left: 0px;
+}
+	
 .wet-boew-zebra {
-	li {
+	li, dt, dd {
 		&.list-odd{
 			background-color:#ddd!important;
 			border:1px solid #ccc;
@@ -38,7 +42,7 @@ table {
 			background-color:#f0fcff!important;
 		}
 	}
-	&.alterwg li {
+	&.alterwg li, &.alterwg dt, &.alterwg dd {
 		&.list-odd{
 			background-color:#ddd!important;
 			border:none;
@@ -51,6 +55,25 @@ table {
 			background-color:#f0fcff!important;
 		}
 	}
+	dt, dd {
+		&.list-odd{
+			border:none;
+		}
+		&.list-even{
+			border:none;
+		}
+	}
+	dl, dd {
+		margin-left: 0px;
+	}
+	dt, dd {
+		padding: 10px;
+	}
+	dt {
+		font-weight:bold;
+		margin-top: 2px;
+	}
+
 	&.nomargin {
 		margin: 0px;
 	}
