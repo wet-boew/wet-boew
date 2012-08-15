@@ -111,9 +111,8 @@
 				// Data Column Group
 				if (tblparser.colgroup) {
 					for (i = 0; i < tblparser.colgroup.length; i += 1) {
-						if (tblparser.colgroup[i].elem && ((i > 0 && tblparser.colgroup[i].type === 3 && tblparser.colgroup[i - 1].type === 3 && tblparser.colgroup[i - 1].level > tblparser.colgroup[i].level)
-						|| 
-						 (tblparser.colgroup[i].type === 2 && (i > 0 && tblparser.colgroup[0].type === 2 || i > 1 && tblparser.colgroup[0].type === 1)))) {
+						if (tblparser.colgroup[i].elem && ((i > 0 && tblparser.colgroup[i].type === 3 && tblparser.colgroup[i - 1].type === 3 && tblparser.colgroup[i - 1].level > tblparser.colgroup[i].level) ||
+						(tblparser.colgroup[i].type === 2 && (i > 0 && tblparser.colgroup[0].type === 2 || i > 1 && tblparser.colgroup[0].type === 1)))) {
 							$(tblparser.colgroup[i].elem).addClass('table-colgroupmarker');
 						}
 					}
