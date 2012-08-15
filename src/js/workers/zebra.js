@@ -24,7 +24,10 @@
 				opts,
 				overrides,
 				getCellHeaders,
-				autoRemoveTimeout;
+				autoRemoveTimeout,
+				lstDlItems = [],
+				isodd = false,
+				dlitem = [];
 			// Defaults Options
 			opts = {
 				noheaderhighlight: false,
@@ -88,8 +91,9 @@
 								}
 							}
 						}
+						// Summary group styling
 						if (tblparser.row[i].type && tblparser.row[i].type === 3) {
-							$(tblparser.row[i].elem).parent().addClass('table-summary');
+							$(tblparser.row[i].elem).parent().addClass('table-rowgroupmarker');
 						}
 					}
 				}
@@ -100,6 +104,26 @@
 						$this.addClass('table-headgroup' + $this.data().tblparser.scope + $this.data().tblparser.level);  // level is a number, scope either "row" || "col"
 					}
 				});
+				
+				// Data Column Group
+				if (tblparser.colgroup) {
+					for (i = 0; i < tblparser.colgroup.length; i += 1) {
+						if (tblparser.colgroup[i].elem && ((i > 0 && tblparser.colgroup[i].type === 3 && tblparser.colgroup[i - 1].type === 3 && tblparser.colgroup[i - 1].level > tblparser.colgroup[i].level)
+						|| 
+						 (tblparser.colgroup[i].type === 2 && (i > 0 && tblparser.colgroup[0].type === 2 || i > 1 && tblparser.colgroup[0].type === 1)))) {
+							$(tblparser.colgroup[i].elem).addClass('table-colgroupmarker');
+						}
+					}
+				}
+				
+				// Data Row Group
+				if (tblparser.lstrowgroup) {
+					for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
+						if (tblparser.lstrowgroup[i].elem && tblparser.lstrowgroup[i].type === 2 && i > 0) {
+							$(tblparser.lstrowgroup[i].elem).addClass('table-rowgroupmarker');
+						}
+					}
+				}
 
 				/* The Heading highlight take times to be set up in ÌE and just a little bit more in Firefox
 				 *
@@ -212,10 +236,6 @@
 				}
 			} else if (elem.is('dl')) {
 				// Create a list based on "dt" element with their one or more "dd" after each of them
-				var lstDlItems = [],
-					isodd = false;
-					dlitem = [];
-				
 				$(elem).children().each(function () {
 					var $this = $(this);
 					switch (this.nodeName.toLowerCase()) {

@@ -651,7 +651,7 @@
 
 							if (currColgroupStructure[i].end <= curColgroupFrame.end) {
 
-								if (currColgroupStructure[i].level < groupLevel) {
+								if (currColgroupStructure[i].level < groupLevel && theadRowStack.length > 0) {
 									curColgroupFrame.type = 3;
 								}
 
@@ -666,7 +666,7 @@
 						}
 
 						// Catch the second and the third possible grouping at level 1
-						if (groupLevel === 1 && groupZero.colgrp[1] && groupZero.colgrp[1].length > 1) {
+						if (groupLevel === 1 && groupZero.colgrp[1] && groupZero.colgrp[1].length > 1 && theadRowStack.length > 0) {
 
 							// Check if in the group at level 1 if we don't already have a summary colgroup
 							for (i = 0; i < groupZero.colgrp[1].length; i += 1) {
@@ -825,8 +825,12 @@
 				}
 
 				// if no cell in the stack and not the first row group, this are a summary group
-				if (rowgroupHeaderRowStack.length === 0 && lstRowGroup.length > 0 && !currentRowGroup.type) {
+				// This is only valid if the first colgroup is a header colgroup.
+				if (rowgroupHeaderRowStack.length === 0 && lstRowGroup.length > 0 && !currentRowGroup.type && colgroupFrame[0] && colgroupFrame[0].type === 1) {
 					currentRowGroup.type = 3;
+				} else {
+					currentRowGroup.type = 2;
+					currentRowGroup.level = 1; // Default Row Group Level
 				}
 
 				// console.log(rowgroupHeaderRowStack); rowlevel
