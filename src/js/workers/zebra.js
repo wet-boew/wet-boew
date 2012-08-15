@@ -281,11 +281,11 @@
 				if (!opts.nohover) {
 					$(lstDlItems).on('mouseleave focusout', function (e) {
 						e.stopPropagation();
-						$(this).removeClass('list-hover');
+						$($(this).data().dlitem).removeClass('list-hover');
 					});
 					$(lstDlItems).on('mouseenter focusin', function (e) {
 						e.stopPropagation();
-						$(this).addClass('list-hover');
+						$($(this).data().dlitem).addClass('list-hover');
 					});
 				}
 			} else {
