@@ -879,10 +879,13 @@
 			 * @param {array} deps Array of names of polyfills that plugins are dependent upon
 			 * @param {string} msg Message to inclue in the event that is triggered when the non-dependency polyfills are loaded
 			 * @function
-			 * @return {object} Object containing names of polyfills with depencencies to be loaded later
 			 */
 			polycheckload: function (deps, msg) {
-				var polyfills = this.polyfill, polydep = {}, loadnow = {}, non_deps = [], all_elms;
+				var polyfills = this.polyfill,
+					polydep = {},
+					loadnow = {},
+					non_deps = [],
+					all_elms;
 					// Get an array of selectors of supported polyfills that are not plugin dependencies
 					$.each(polyfills, function (polyname, polyprefs) {
 						if ($.inArray(polyname, deps) === -1) {
@@ -894,8 +897,7 @@
 				// Process each polyfill
 				$.each(polyfills, function (polyname, polyprefs) {
 					var elms = all_elms.filter(polyprefs.selector),
-						supported,
-						loadnow = {};
+						supported;
 					// Check to see if the polyfill might be needed
 					if (elms.length > 0 || $.inArray(polyname, deps) > -1) {
 						supported = (typeof polyprefs.support_check === 'function' ? polyprefs.support_check() : polyprefs.support_check);
@@ -911,11 +913,8 @@
 						}
 					}
 				});
-
 				// Load the non-dependency polyfills
 				pe.polyfills.polyload(loadnow, msg, polydep);
-
-				return polydep; // Return polyfills that have dependencies
 			},
 			/**
 			 * Details for each of the polyfills.
