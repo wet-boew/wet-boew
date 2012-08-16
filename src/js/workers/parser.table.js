@@ -1548,6 +1548,10 @@
 			//
 			// Main Entry For The Table Parsing
 			//
+			if ($(obj).has('tfoot')) {
+				// If there is a tfoot element, be sure to add it at the end of all the tbody. FYI - HTML 5 spec allow now tfoot to be at the end
+				$('tfoot', obj).appendTo($('tbody:last', obj).parent());
+			}
 			$(obj).children().each(function () {
 				var $this = $(this);
 				switch (this.nodeName.toLowerCase()) {
