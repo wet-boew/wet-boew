@@ -75,6 +75,52 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				
 				// Add id, headers attribute to each cell
 				
+				var tblparser = $('#directOutput table:eq(0)').data().tblparser,
+					i,
+					j,
+					currRow,
+					currCell,
+					idPrefix = 'usabletblparsed';
+				
+				// Set ID and Header for the table head
+				for (i = 0; i < tblparser.theadRowStack.length; i += 1) {
+					currRow = tblparser.theadRowStack[i];
+					
+					for (j = 0; j < currRow.cell.length; j += 1) {
+						currCell = currRow.cell[j];
+						
+						if ((currCell.type === 1 || currCell.type === 7) && (
+								!(j > 0 && currCell.uid === currRow.cell[j - 1].uid) ||
+								!(i > 0 && currCell.uid === tblparser.theadRowStack[i - 1].cell[j].uid)
+							)) {
+							
+							// If there no id, add an uid
+							var currCellId = $(currCell.elem).attr('id');
+							if (currCellId === undefined || currCellId === '') {
+								currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+								$(currCell.elem).attr('id', currCellId);
+							}
+							
+							// Set the header of the current cell if required
+							if (i > 0) {
+								var headersCurrCell = $(tblparser.theadRowStack[i - 1].cell[j].elem).attr('id');
+								
+								if ($(tblparser.theadRowStack[i-1].cell[j].elem).attr('headers') !== undefined) {
+									headersCurrCell = $(tblparser.theadRowStack[i - 1].cell[j].elem).attr('headers') + ' ' + headersCurrCell;
+								}
+								$(currCell.elem).attr('headers', headersCurrCell);
+							}
+							
+							
+							// Set the header on his descriptive cell is any (May be better aria-describedby
+							
+						}
+						
+					}
+					
+				}
+				
+				
 			}
 		
 			
