@@ -102,6 +102,9 @@
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0)}, _pe.fn.multimedia._intf);
 				media.after(_pe.fn.multimedia._get_ui(media_id));
+				if ($('html').hasClass('polyfill-progress')) {
+					elm.find('progress').progress();
+				}
 				
 				//Scale the UI when the video scales
 				$(window).on('resize', {'media' : media, width : width, height : height}, function (e) {
@@ -219,6 +222,7 @@
 						p = this.getCurrentTime() / this.getDuration();
 						timeline = $w.find('.wet-boew-multimedia-timeline progress');
 						timeline.attr('value',p);
+
 						//Update captions
 						if ($.data(e.target, 'captions') !== undefined) {
 							_pe.fn.multimedia._update_captions($w.find('.wet-boew-multimedia-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
@@ -242,7 +246,6 @@
 					_pe.fn.multimedia._load_captions(media, evtmgr, captions);
 				}
 			}
-
 
 			return elm;
 		}, // end of exec

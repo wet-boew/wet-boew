@@ -893,7 +893,7 @@
 						}
 					});
 					// Find all elements that match the element selector
-					all_elms = $(non_deps.join(','));
+					all_elms = $(non_deps.join(',')).filter(':not(".polyfill")');
 				// Process each polyfill
 				$.each(polyfills, function (polyname, polyprefs) {
 					var elms = all_elms.filter(polyprefs.selector),
@@ -910,6 +910,9 @@
 								// Polyfill is needed and has no dependencies so load now
 								loadnow[polyname] = elms;
 							}
+							$('html').addClass('polyfill-' + polyname);
+						} else {
+							$('html').addClass(polyname);
 						}
 					}
 				});
