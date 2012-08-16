@@ -95,8 +95,8 @@
 							}
 						}
 						// Summary group styling
-						if (tblparser.row[i].type && tblparser.row[i].type === 3) {
-							$(tblparser.row[i].elem).parent().addClass('table-rowgroupmarker');
+						if (tblparser.row[i].type && tblparser.row[i].type === 3 && tblparser.row[i].rowgroup.elem && i > 0 && tblparser.row[i-1].type && tblparser.row[i-1].type === 3 && tblparser.row[i-1].rowgroup.uid !== tblparser.row[i].rowgroup.uid) {
+							$(tblparser.row[i].rowgroup.elem).addClass('table-rowgroupmarker');
 						}
 					}
 				}
