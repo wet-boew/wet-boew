@@ -180,9 +180,6 @@
 						return false; // Disable PE enhancements
 					}
 
-					// Load the remaining polyfills
-					pe.polyfills.load();
-
 					if (wet_boew_theme !== null) {
 						// Initialize the theme
 						wet_boew_theme.init();
@@ -211,53 +208,6 @@
 				});
 				pe.add.language(pe.language);
 			});
-		},
-		/**
-		 * @namespace pe.depends
-		 */
-		depends: {
-			/**
-			 * Internal list for tracking dependencies.
-			 * @memberof pe.depends
-			 * @type {string[]}
-			 */
-			_ind: [],
-			/**
-			 * Checks if a dependency exists in the depends object.
-			 * @memberof pe.depends
-			 * @function
-			 * @param {string} name The name of the dependency
-			 * @return {number} The index of given dependency in the depends object. -1 if not found.
-			 */
-			is: function (name) {
-				return -1 !== $.inArray(name, pe.depends._ind);
-			},
-			/**
-			 * Adds a dependency to the depends object.
-			 * @memberof pe.depends
-			 * @function
-			 * @param {string} drone The name of the dependency
-			 * @return {void}
-			 */
-			put: function (drone) {
-				pe.depends._ind[pe.depends._ind.length] = drone;
-			},
-			/**
-			 * Binds a listener for the wet-boew-dependecy-loaded event.
-			 * @memberof pe.depends
-			 * @function
-			 * @return {Array} An empty array.
-			 */
-			on: (function () {
-				// lets bind a scan function to the drones property
-				$(document).on('wet-boew-dependency-loaded', function () {
-					var i, d;
-					for (i = 0, d = pe.depends.on.length; i < d; i += 1) {
-						pe.depends.on[i](i);
-					}
-				});
-				return []; // overwrite property to become a simple array
-			}())
 		},
 		/**
 		 * Mobile identification
@@ -451,33 +401,6 @@
 					return this.source.replace(/#([A-Za-z0-9\-_=&]+)/, "");
 				}
 			};
-		},
-		/**
-		 * Internal method to bind a plugin to a code block
-		 * @memberof pe
-		 * @function
-		 * @param {function} fn_obj The plugin to run the _exec method of.
-		 * @param {jQuery object} elm The jQuery object(s) to run the plugin against.
-		 * @return {void}
-		 */
-		_execute : function (fn_obj, elm) {
-			if (fn_obj !== undefined) {
-				var exec = (typeof fn_obj._exec !== "undefined") ? fn_obj._exec : fn_obj.exec;
-				//Loads the polyfill dependencies
-				if (typeof fn_obj.polyfills !== "undefined") {
-					pe.polyfills.load(fn_obj.polyfills);
-				}
-				if (typeof fn_obj.depends !== "undefined") {
-					pe.add.js(fn_obj.depends, function () {
-						exec(elm);
-					});
-				//delete fn_obj.depends;
-				} else {
-					// execute function since it has no depends and we can safely execute
-					exec(elm);
-				}
-			}
-			return;
 		},
 		/**
 		 * @memberof pe
@@ -903,41 +826,46 @@
 			 * Polyfill script loader
 			 * @memberof pe.polyfills
 			 */
-			polyload: function (elms, pfill_name) {
-				var pfill = pe.polyfills.polyfill[pfill_name],
-					$html = $('html'),
-					supported = $html.hasClass(pfill_name),
-					loaded = $html.hasClass('polyfill-' + pfill_name);
-				if (!supported && !loaded) {
-					supported = (typeof pfill.support_check === 'function' ? pfill.support_check() : pfill.support_check);
-					if (!supported) {
-						pe.add._load(typeof pfill.load !== "undefined" ? pfill.load : pe.add.liblocation + 'polyfills/' + pfill_name + pe.suffix + '.js');
-						elms.addClass('polyfill');
-						$html.addClass('polyfill-' + pfill_name);
-					} else {
-						$html.addClass(pfill_name);
-					}
-				} else if (!supported) {
-					if (typeof pfill.update === 'function') {
-						pfill.update(elms);
-						elms.addClass('polyfill');
-					}
-				}
+			polyload: function (elms, polyname) {
+				var polyprefs = this.polyfill[polyname];
+				pe.add._load(typeof polyprefs.load !== "undefined" ? polyprefs.load : pe.add.liblocation + 'polyfills/' + polyname + pe.suffix + '.js');
+				elms.addClass('polyfill');
 			},
 			/**
-			 * Polyfills to be loaded later on (post-kill switch)
+			 * Determines which post kill switch polyfills need to be loaded then loads them if they don't have dependencies
 			 * @memberof pe.polyfills
+			 * @param {array} deps Array of names of polyfills that plugins are dependent upon
+			 * @function
+			 * @return {object} Object containing names of polyfills with depencencies to be loaded later
 			 */
-			load: function (force) {
-				var polyfills = this.polyfill,
-					all_elms = $($.map(polyfills, function(value, key) {return value.selector;}).join(','));  // Find all elements that match the element selector
-				$.each(polyfills, function(index, value) {
-					// If element exists on the page or forcing polyfill (for dynamically added elements)
-					var elms = all_elms.filter(value.selector);
-					if (elms.length > 0 || $.inArray(index, force) > -1) {
-						pe.polyfills.polyload(elms, index);
+			polycheckload: function (deps) {
+				var polyfills = this.polyfill, polydep = {},
+					// Get an array of supported polyfills that are not plugin dependencies
+					non_deps = $.grep($.map(polyfills, function(value, key) {return value.selector;}), function(n, i) {
+						return $.inArray(n, deps) === -1;
+					}),
+					// Find all elements that match the element selector
+					all_elms = $(non_deps.join(','));
+				// Process each polyfill
+				$.each(polyfills, function(polyname, polyprefs) {
+					var elms = all_elms.filter(polyprefs.selector),
+						supported;
+					// Check to see if the polyfill might be needed
+					if (elms.length > 0 || $.inArray(polyname, deps) > -1) {
+						supported = (typeof polyprefs.support_check === 'function' ? polyprefs.support_check() : polyprefs.support_check);
+						// Check to see if there is native support
+						if (!supported) {
+							if (typeof polyprefs.depends !== "undefined") {
+								// Polyfill is needed but has dependencies so load later
+								polydep[polyname] = [polyprefs.depends, elms];
+							} else {
+								// Polyfill is needed and has no dependencies so load now
+								pe.polyfills.polyload(elms, polyname);
+							}
+						}
 					}
 				});
+				return polydep; // Return polyfills that have dependencies
 			},
 			/**
 			 * Details for each of the polyfills.
@@ -956,6 +884,7 @@
 				},
 				'datepicker': {
 					selector: 'input[type="date"]',
+					depends: ['calendar', 'xregexp'],
 					update: function (elms) {
 						elms.datepicker();
 					},
@@ -1070,11 +999,6 @@
 				_load: function (js, message) {
 					var head = pe.add.head,
 						msg = (message !== undefined ? message : 'wet-boew-dependency-loaded');
-					// - lets prevent double loading of dependencies
-					if ($.inArray(js, this.staged) > -1) {
-						return this;
-					}
-					// - now lets bind the events
 					setTimeout(function timeout() {
 						if (typeof head.item !== "undefined") { // check if ref is still a live node list
 							if (!head[0]) { // append_to node not yet ready
@@ -1092,8 +1016,6 @@
 							}
 							scriptElem.onload = scriptElem.onreadystatechange = null;
 							scriptdone = true;
-							// now add to dependency list
-							pe.depends.put(js);
 							$(document).trigger({type: msg, js: js});
 						};
 						scriptElem.src = js;
@@ -1103,7 +1025,6 @@
 							head.insertBefore(scriptElem, head.firstChild);
 						}
 					}, 0);
-					this.staged[this.staged.length] = js;
 					return this;
 				},
 				/**
@@ -1163,39 +1084,6 @@
 					pe.add._load(url);
 				},
 				/**
-				 * Adds a javascript link to the head.
-				 * @memberof pe.add
-				 * @function
-				 * @param {string} js The path and filename of the javascript file OR just the name (minus the path and extension).
-				 * @param {function} fn A callback to execute after the script is loaded.
-				 * @return {object} A reference to pe.add
-				 */
-				js: function (js, fn) {
-					var i;
-					js = pe.add.depends(js); // lets translate this to an array
-					for (i = 0; i < js.length; i += 1) {
-						if (!pe.depends.is(js[i])) {
-							pe.add._load(js[i]);
-						}
-					}
-					// now create the binding for dependencies
-					pe.depends.on[pe.depends.on.length] = function (index) {
-						var execute = true;
-						for (i = 0; i < js.length; i += 1) {
-							if (!pe.depends.is(js[i])) {
-								execute = false;
-							}
-						}
-						if (execute) {
-							pe.depends.on[index] = function () {};
-							fn();
-						}
-					};
-					// now trigger an update event to ensure plugins are filtered
-					$(document).trigger('wet-boew-dependency-loaded');
-					return this;
-				},
-				/**
 				 * Adds a metadata element (with given name and content attributes) to the head of the document. NOTE: Use this in conjuntion with pe.add.set if you need other attributes set.
 				 * @memberof pe.add
 				 * @function
@@ -1221,65 +1109,100 @@
 		 * @todo pass an element as the context for the recursion.
 		 */
 		dance: function () {
-			// global plugins
 			var i,	
 				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 				wetboew = $('[class^="wet-boew-"]'),
-				classes = [],
-				deps = [],
-				poly = [];
-			// Retrieve all the plugin classes
-			wetboew.each(function () {
-				var _node = $(this),
-					_fcall = _node.attr("class").split(" "),
-					i;
-				for (i = 0; i < _fcall.length; i += 1) {
-					if (_fcall[i].indexOf('wet-boew-') === 0) {
-						classes.push(_fcall[i].substr(9).toLowerCase());
-					}
-				}
-			});
-			classes = pe.string.noduplicates(classes); // Eliminate duplicate classes
-			// Pull out each of the dependencies and polyfills
-			$.each(classes, function (index, value) {
-				if (typeof pe.fn[value] !== "undefined") {
-					if (typeof pe.fn[value].depends !== "undefined") {
-						deps.push.apply(deps, pe.fn[value].depends);
-					}
-					if (typeof pe.fn[value].polyfills !== "undefined") {
-						poly.push.apply(poly, pe.fn[value].polyfills);
-					}
-				}
-			});
-			deps = pe.string.noduplicates(deps); // Eliminate duplicate dependencies
-			poly = pe.string.noduplicates(poly); // Eliminate duplicate polyfills
+				pcall = [],
+				poly = [],
+				polydeps,
+				dep = [],
+				dep_loaded = 0;
 
+			// Push each of the "wet-boew-*" plugin calls into the pcall array
 			wetboew.each(function () {
 				var _node = $(this),
-					_fcall = _node.attr("class").split(" "),
-					i;
-				for (i = 0; i < _fcall.length; i += 1) {
-					if (_fcall[i].indexOf('wet-boew-') === 0) {
-						_fcall[i] = _fcall[i].substr(9).toLowerCase();
-						if (typeof pe.fn[_fcall[i]] !== "undefined") {
-							pe._execute(pe.fn[_fcall[i]], _node);
-						}
+					classes = _node.attr("class").split(" "),
+					_pcall = [];
+				for (i = 0; i < classes.length; i += 1) {
+					if (classes[i].indexOf('wet-boew-') === 0) {
+						_pcall.push(classes[i].substr(9).toLowerCase()); // Push the plugin call into the local array
 					}
 				}
-			// lets safeguard the execution to only functions we have
+				_node.attr('data-load', _pcall.join(',')); // Add the plugins to load to data-load for loading later
+				pcall.push.apply(pcall, _pcall); // Push the plugin calls into the pcall array
 			});
-			// globals
+			
+			// Push each of the global plugin calls into the pcall array
 			if (settings) {
-				// loop throught globals adding functions
-				for (i = 0; i < settings.globals.length; i += 1) {
-					pe._execute(pe.fn[settings.globals[i]], document);
+				pcall.push(settings.globals);
+			}	
+
+			// Eliminate duplicate plugin calls
+			pcall = pe.string.noduplicates(pcall);
+
+			// Push each required polyfill and dependency into the poly and dep arrays
+			for (i = 0; i < pcall.length; i += 1) {
+				if (typeof pe.fn[pcall[i]] !== "undefined") {
+					if (typeof pe.fn[pcall[i]].polyfills !== "undefined") {
+						poly.push.apply(poly, pe.fn[pcall[i]].polyfills);
+					}
+					if (typeof pe.fn[pcall[i]].depends !== "undefined") {
+						dep.push.apply(dep, pe.fn[pcall[i]].depends);
+					}
 				}
 			}
-			window.onresize = function () { // TODO: find a better way to switch back and forth between mobile and desktop modes.
-				if (pe.mobile !== pe.mobilecheck()) {
-					window.location.href = decodeURI(pe.url(window.location.href).removehash());
+			
+			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)
+			polydeps = pe.polyfills.polycheckload(pe.string.noduplicates(poly));
+
+			// Push the polyfill dependencies into the dep array and an empty poly array
+			$.each(polydeps, function(polyname, polyparams) {
+				dep.push.apply(dep, polyparams[0]);
+			});
+
+			$(document).on('wb-pcall-dep-loaded', function () {
+				dep_loaded += 1;
+
+				// Don't do anything until all the dependencies have loaded
+				if (dep_loaded === dep.length) {
+					// Load the polyfills with dependencies
+					$.each(polydeps, function(polyname, polyparams) {
+						pe.polyfills.polyload(polyparams[1], polyname);
+					});
+
+					// Execute each of the node specific plugin calls
+					wetboew.each(function () {
+						var _node = $(this),
+							_fcall = _node.attr("data-load").split(","),
+							i;
+						for (i = 0; i < _fcall.length; i += 1) {
+							if (typeof pe.fn[_fcall[i]] !== "undefined") { // lets safeguard the execution to only functions we have
+								pe.fn[_fcall[i]]._exec(_node);
+							}
+						}
+					});
+
+					// Execute each of the global plugin calls
+					if (settings) {
+						for (i = 0; i < settings.globals.length; i += 1) {
+							pe.fn[settings.globals[i]]._exec(document);
+						}
+					}
+
+					// TODO: find a better way to switch back and forth between mobile and desktop modes.
+					window.onresize = function () { 
+						if (pe.mobile !== pe.mobilecheck()) {
+							window.location.href = decodeURI(pe.url(window.location.href).removehash());
+						}
+					};
 				}
-			};
+			});
+				
+			// Load each of the dependencies (eliminating duplicates)
+			dep = pe.add.depends(pe.string.noduplicates(dep));
+			for (i = 0; i < dep.length; i += 1) {
+				pe.add._load(dep[i], 'wb-pcall-dep-loaded');
+			}
 		}
 	};
 	/* window binding */

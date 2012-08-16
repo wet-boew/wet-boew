@@ -8,17 +8,11 @@
 /*global jQuery: false, pe: false, XRegExp: false*/
 (function ($) {
 	"use strict";
-	var _pe = window.pe || {
-		fn: {}
-	},
-	/* local reference */
-	datepicker = {
-		type: 'polyfill',
-		depends: ['calendar', 'xregexp'],
-		_exec: function (elm) {
+	$.fn.datepicker = function () {
+		return $(this).each(function () {
 			var addLinksToCalendar,
 				addSelectedDateToField,
-				calendar = _pe.fn.calendar,
+				calendar = pe.fn.calendar,
 				container,
 				containerid,
 				createToggleIcon,
@@ -37,7 +31,8 @@
 				setSelectedDate,
 				toggle,
 				year = date.getFullYear(),
-				wrapper;
+				wrapper,
+				elm = $(this);
 
 			elm.addClass("picker-field");
 
@@ -334,17 +329,7 @@
 				//Disable the tabbing of all the links when calendar is hidden
 				container.find("a").attr("tabindex", "-1");
 			}
-		} // end of exec
-	};
-
-	$.fn.datepicker = function () {
-		$(this).each(function () {
-			pe._execute(datepicker, $(this));
 		});
 	};
-	window.pe = _pe;
-
 	$('[type="date"]').datepicker();
-
-	return _pe;
 }(jQuery));
