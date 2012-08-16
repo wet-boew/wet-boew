@@ -52,7 +52,8 @@
 				currentRowGroupElement,
 				lstRowGroup = [],
 				rowgroupheadercalled = false,
-				hasTfoot = $(obj).has('tfoot');
+				hasTfoot = $(obj).has('tfoot'),
+				lastHeadingSummaryColPos;
 			// elm need to be a table
 			if ($(elm).get(0).nodeName.toLowerCase() !== 'table') {
 				errorTrigger(1, "Only table can be parsed with this parser", elm);
@@ -777,6 +778,9 @@
 				currentRowGroup.elem = currentRowGroupElement;
 				currentRowGroup.row = [];
 				currentRowGroup.headerlevel = [];
+				currentRowGroup.groupZero = groupZero;
+				currentRowGroup.uid = uidElem;
+				uidElem += 1;
 				//currentRowGroup.type = 2 // (1 if elem is a thead or if detected in the table, 2 default, 3 if summary data) // FYI Here the existance of the "type" property is used to determined the real type of row group
 			}
 
@@ -834,7 +838,7 @@
 					currentRowGroup.type = 3;
 				} else {
 					currentRowGroup.type = 2;
-					currentRowGroup.level = 1; // Default Row Group Level
+					// currentRowGroup.level = 1; // Default Row Group Level
 				}
 
 				// console.log(rowgroupHeaderRowStack); rowlevel
@@ -909,7 +913,7 @@
 					}
 				}
 
-				if (!currentRowGroup.level || currentRowGroup.level < 0) {
+				if (currentRowGroup.level === undefined || currentRowGroup.level < 0) {
 					errorTrigger(14, 'You can not have a summary at level under 0, add a group header or merge a tbody togheter', currentRowGroup.elem);
 				}
 			}
@@ -1232,6 +1236,7 @@
 						rowgroupSetup();
 					}
 					row.type = currentRowGroup.type;
+					row.level = currentRowGroup.level;
 					/*
 				if (rowgroupHeaderRowStack.length > 0 && currentRowHeader.length === 0) {
 					// TODO: check if the current stack of the current rowgroup need to have 0 datarow inside
@@ -1300,11 +1305,60 @@
 							lastHeadingColPos += 1;
 						} else {
 							// The colgroup are not representating the table structure
-							errorTrigger(22, 'The first colgroup need to be used as an header colgroup', colgroupFrame[0].elem);
+							if (currentRowGroup.row.length > 0 && currentRowGroup.type === 2 && (row.type === 2 || lastHeadingSummaryColPos !== (lastHeadingColPos + 1))) {
+								if ((lastHeadingColPos + 1) > colgroupFrame[0].end ) {
+									//
+									// In this special case we create a virtual row group
+									// This row and subsequent row will be considerated as a summary row
+									//
+									lastHeadingSummaryColPos = (lastHeadingColPos + 1);
+									
+									// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
+									$.each(spannedRow, function () {
+										if (this.spanHeight > 0) {
+											// That row are spanned in 2 different row group
+											errorTrigger(29, 'You can not span cell in 2 different rowgroup', this);
+										}
+									});
+
+									spannedRow = []; // Cleanup of any spanned row
+									rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
+									currentRowHeader = [];
+
+									// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
+									currentTbodyID += 1;
+									finalizeRowGroup();
+									
+									currentRowGroupElement = undefined;
+									initiateRowGroup();
+									rowgroupSetup();
+									row.type = currentRowGroup.type; // Reset the current row type
+								} else {
+									errorTrigger(22, 'The first colgroup need to be used as an header colgroup', colgroupFrame[0].elem);
+								}
+							}
 						}
 					}
 					row.lastHeadingColPos = lastHeadingColPos;
+					row.rowgroup = currentRowGroup;
+					
+					
+					//
+					//
+					//
+					// TODO: Check if the lastHeadingColPos is constant for data group and summary group
+					//
+					//
+					if (lastHeadingSummaryColPos && currentRowGroup.type === 3 && lastHeadingSummaryColPos !== (lastHeadingColPos + 1)) {
+						// Only two type of header is allowed, one for the data group and one for the summary row. They need to be constant
+						
+					}
+					//
+					//
+					//
 
+					
+					
 					// Build the initial colgroup structure
 					// If an cell header exist in that row....
 					if (lastHeadingColPos) {
@@ -1548,7 +1602,7 @@
 			//
 			// Main Entry For The Table Parsing
 			//
-			if ($(obj).has('tfoot')) {
+			if (hasTfoot) {
 				// If there is a tfoot element, be sure to add it at the end of all the tbody. FYI - HTML 5 spec allow now tfoot to be at the end
 				$('tfoot', obj).appendTo($('tbody:last', obj).parent());
 			}
