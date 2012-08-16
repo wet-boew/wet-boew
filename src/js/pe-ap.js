@@ -1238,12 +1238,13 @@
 			$(document).on('wb-polyinit-loaded', function (e) {
 				var polydeps = e.payload,
 					polydeps_load = {};
-
 				// Push the polyfill dependencies into the dep array and create a new object of polyfills to load
-				$.each(polydeps, function (polyname, polyparams) {
-					dep.push.apply(dep, polyparams[0]);
-					polydeps_load[polyname] = polyparams[1];
-				});
+				if (typeof polydeps !== 'undefined') {
+					$.each(polydeps, function (polyname, polyparams) {
+						dep.push.apply(dep, polyparams[0]);
+						polydeps_load[polyname] = polyparams[1];
+					});
+				}
 
 				$(document).on('wb-pcalldeps-loaded', function () {
 					$(document).on('wb-polydeps-loaded', function () {
@@ -1277,7 +1278,7 @@
 					// Load the polyfills with dependencies
 					pe.polyfills.polyload(polydeps_load, 'wb-polydeps-loaded');
 				});
-					
+
 				// Load each of the dependencies (eliminating duplicates)
 				pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), "wb-pcalldeps-loaded");
 			});
