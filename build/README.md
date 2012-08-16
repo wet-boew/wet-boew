@@ -8,7 +8,7 @@ Web Experience Toolkit (WET) uses Ant(1.8+), JRuby(1.6.7.2), YUI Compressor, and
 
 * Ant: download from [Apache](http://ant.apache.org) and extract to C:\ant
 * Java JDK: download from [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/index.html) if your current installation doesn't meet the minimum stated by "[Which version of Java is required to run Apache Ant?"](http://ant.apache.org/faq.html#java-version)
-* open a command prompt to the build directory and run:
+* open a command prompt to the root directory and run:
 > build.cmd 
 
 ### *nix (OS X, Linux)
@@ -16,7 +16,7 @@ Web Experience Toolkit (WET) uses Ant(1.8+), JRuby(1.6.7.2), YUI Compressor, and
 * Ant: many distributions come with a verions of Ant, but ensure that a version later than 1.8 is installed by running the following at the terminal:
 > ant -version
 
-* open a shell to the build directory and run:
+* open a shell to the root directory and run:
 > ant
 
 ## Proxy Issues
