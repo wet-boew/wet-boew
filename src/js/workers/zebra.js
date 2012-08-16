@@ -91,6 +91,10 @@
 								}
 								if (tblparser.row[i].type === 3) {
 									$(tblparser.row[i].cell[j].elem).addClass('table-summaryrow' + tblparser.row[i].cell[j].rowlevel); // rowlevel is a number
+									if (tblparser.row[i].level === 0 && tblparser.row[i].header.elem) {
+										// Special case for heading in that row
+										$(tblparser.row[i].header.elem).addClass('table-summaryrow' + tblparser.row[i].cell[j].rowlevel); // rowlevel is a number
+									}
 								}
 							}
 						}
