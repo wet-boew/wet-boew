@@ -869,7 +869,7 @@
 				$.each(obj, function (polyname, elms) {
 					var polyprefs = polyfills[polyname];
 					js[js.length] = (typeof polyprefs.load !== "undefined" ? polyprefs.load : lib + 'polyfills/' + polyname + pe.suffix + '.js');
-					if (typeof polyprefs.init !== 'undefine') {
+					if (typeof polyprefs.init !== 'undefined') {
 						needsinit.push(polyname);
 					}
 					elms.addClass('polyfill');
@@ -891,13 +891,14 @@
 			 * @param {string} msg Message to inclue in the event that is triggered when the non-dependency polyfills are loaded
 			 * @function
 			 */
-			polycheckload: function (deps, msg) {
+			polycheckload: function (deps, msg, checkdom) {
 				var polyfills = this.polyfill,
 					polydep = {},
 					loadnow = {},
 					non_deps = [],
 					payload = [],
 					all_elms;
+				if (typeof checkdom !== 'undefined' && checkdom) {
 					// Get an array of selectors of supported polyfills that are not plugin dependencies
 					$.each(polyfills, function (polyname, polyprefs) {
 						if ($.inArray(polyname, deps) === -1) {
@@ -906,6 +907,10 @@
 					});
 					// Find all elements that match the element selector
 					all_elms = $(non_deps.join(',')).filter(':not(".polyfill")');
+				} else {
+					all_elms = $();
+				}
+
 				// Process each polyfill
 				$.each(polyfills, function (polyname, polyprefs) {
 					var elms = all_elms.filter(polyprefs.selector),
@@ -1257,7 +1262,7 @@
 				wetboew = $('[class^="wet-boew-"]'),
 				pcall = [],
 				poly = [],
-				dep = [];
+				dep = ['equalheights']; // Can remove 'equalheights' once non-JS alternative to 'equalize' is in place
 
 			// Push each of the "wet-boew-*" plugin calls into the pcall array
 			wetboew.each(function () {
@@ -1354,7 +1359,7 @@
 			});
 
 			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)
-			pe.polyfills.polycheckload(pe.array.noduplicates(poly), 'wb-polyinit-loaded');
+			pe.polyfills.polycheckload(pe.array.noduplicates(poly), 'wb-polyinit-loaded', true);
 		}
 	};
 	/* window binding */
