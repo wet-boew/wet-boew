@@ -14,19 +14,18 @@
 	_pe.fn.texthighlight = {
 		type: 'plugin',
 		_exec: function (elm) {
-
-/*
-* addHighlight
-*
-* This function highlights any text within a pre-defined area that matches search criteria specified through the URL's query string.
-*
-* @param text string The text that we want to search for.
-* @param target Object The DOM object to look into
-* @param settings Object The plugins settings
-*
-* @return (nothing) Just updates the content directly
-*
-*/
+			/*
+			* addHighlight
+			*
+			* This function highlights any text within a pre-defined area that matches search criteria specified through the URL's query string.
+			*
+			* @param text string The text that we want to search for.
+			* @param target Object The DOM object to look into
+			* @param settings Object The plugins settings
+			*
+			* @return (nothing) Just updates the content directly
+			*
+			*/
 			function addHighlight(searchCriteria, target) {
 				var arrSearchCriteria, newText, i;
 				searchCriteria = searchCriteria.replace(/^\s+|\s+$/g, '');

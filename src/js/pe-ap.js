@@ -271,7 +271,7 @@
 		 */
 		url: function (uri) {
 			var el = document.createElement('div'), a;
-			el.innerHTML = '<a href="' + encodeURI(uri) + '">x</a>';
+			el.innerHTML = '<a href="' + uri + '">x</a>';
 			a = el.firstChild;
 			return {
 				/**
