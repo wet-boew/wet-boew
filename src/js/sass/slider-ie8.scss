@@ -25,10 +25,10 @@
 		.fd-slider-bar {
 			_bottom:auto;
 			*clear:expression(style.height=(parentNode.offsetHeight - 20)+'px',style.clear='none',0);
-			filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ffececec',endColorstr='#ffcccccc')
+			filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FFECECEC',endColorstr='#FFCCCCCC')
 		}
 		.fd-slider-range {
-			filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ff66cccc',endColorstr='#ff33ccff')
+			filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FF89A5BD',endColorstr='#FF165C91')
 		}
 		.fd-slider-disabled {
 			.fd-slider-bar {
@@ -66,11 +66,11 @@
 		_left:10px;
 		_right:auto;
 		_width:expression((this.parentNode.offsetWidth - 20)+'px');
-		filter:progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ffececec',endColorstr='#ffcccccc')
+		filter:progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#FFECECEC',endColorstr='#FFCCCCCC')
 	}
 	.fd-slider-range{
 		_left:10px;
-		filter:progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff66cccc',endColorstr='#ff33ccff')
+		filter:progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#FF89A5BD',endColorstr='#FF165C91')
 	}
 	.fd-slider-handle{
 		*background-image:url(../images/slider/fd-slider-sprite.png);
