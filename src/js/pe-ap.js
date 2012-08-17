@@ -37,27 +37,6 @@
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
 		urlquery: "",
-		/**
-		 * Detects the doctype of the document (loosely)
-		 * @function
-		 * @memberof pe
-		 * @returns {boolean}
-		 */
-		html5: (function () {
-			var res = false,
-				re = /\s+(X?HTML)\s+([\d\.]+)\s*([^\/]+)*\//gi;
-			/*********************************************
-			Just check for internet explorer.
-			**********************************************/
-			if (typeof document.namespaces !== "undefined") {
-				res = (document.all[0].nodeType === 8) ? re.test(document.all[0].nodeValue) : false;
-			} else {
-				res = (document.doctype !== null) ? re.test(document.doctype.publicId) : false;
-			}
-			return (res) ? false : true;
-		}
-		()),
-
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
 
 		/**
@@ -174,7 +153,7 @@
 				}, "html");
 			})).always(function () {
 				// Wait for localisation and ajax content to load plugins
-				$(document).on("languageloaded", function () {
+				$(document).one("languageloaded", function () {
 					// Check to see if PE enhancements should be disabled
 					if (pe.pedisable() === true) {
 						return false; // Disable PE enhancements
@@ -246,7 +225,7 @@
 		 * @return {string} The value of the parameter asked for.
 		 */
 		parameter: function (key, jqElm) {
-			return (pe.html5) ? jqElm.data(key) : jqElm.attr('class').replace('/.*' + key + '-([a-z0-9_]+).*/i', "$1");
+			return jqElm.data(key);
 		},
 		/**
 		 * Initializes the Resize dependency, and attaches a given function to various resize events.
@@ -1298,7 +1277,7 @@
 				}
 			}
 
-			$(document).on('wb-polyinit-loaded', function (e) {
+			$(document).one('wb-polyinit-loaded', function (e) {
 				var polyfills = pe.polyfills.polyfill,
 					polyinit = e.payload[1],
 					polydeps = e.payload[0],
@@ -1314,9 +1293,8 @@
 					dep.push.apply(dep, polyparams[0]);
 					polydeps_load[polyname] = polyparams[1];
 				});
-
-				$(document).on('wb-pcalldeps-loaded', function () {
-					$(document).on('wb-polydeps-loaded', function (e) {
+				$(document).one('wb-pcalldeps-loaded', function () {
+					$(document).one('wb-polydeps-loaded', function (e) {
 						// Initiate any polyfills that need to be initiated manually
 						polyinit = e.payload[0];
 						for (i = 0; i < polyinit.length; i += 1) {
