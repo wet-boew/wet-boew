@@ -936,7 +936,7 @@
 				},
 				'datepicker': {
 					selector: 'input[type="date"]',
-					depends: ['calendar', 'xregexp'],
+					depends: ['calendar', 'xregexp', 'outside'],
 					update: function (elms) {
 						elms.datepicker();
 					},
