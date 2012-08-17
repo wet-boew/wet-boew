@@ -113,7 +113,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 							
 							
 							// Set the header on his descriptive cell is any (May be better aria-describedby
-							
+							if (currCell.descCell) {
+								$(currCell.descCell.elem).attr('headers', currCellId);
+								var currCellDescId = $(currCell.descCell.elem).attr('id');
+								if (currCellDescId === undefined || currCellDescId === '') {
+									currCellDescId = idPrefix + new Date().getTime() + currCell.descCell.uid; // Generate a new ID
+									$(currCell.descCell.elem).attr('id', currCellDescId);
+								}
+								$(currCell.elem).attr('aria-describedby', currCellDescId);
+							}
 						}
 						
 					}

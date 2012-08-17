@@ -139,7 +139,7 @@
 						var cellsheader = [],
 							tblparser = $(elem).data().tblparser;
 						// Get column Headers
-						if (tblparser.row && tblparser.row.header && !opts.norowheaderhighlight) {
+						/*if (tblparser.row && tblparser.row.header && !opts.norowheaderhighlight) {
 							if (!$.isArray(tblparser.row.header)) {
 								cellsheader.push(tblparser.row.header.elem);
 							} else {
@@ -147,10 +147,25 @@
 									cellsheader.push(tblparser.row.header[i].elem);
 								}
 							}
+						}*/
+						if (tblparser.row && tblparser.row.header && !opts.norowheaderhighlight) {
+							for (i = 0; i < tblparser.row.header.length; i += 1) {
+								cellsheader.push(tblparser.row.header[i].elem);
+							}
+							if (tblparser.addrowheaders) {
+								for (i = 0; i < tblparser.addrowheaders.length; i += 1) {
+									cellsheader.push(tblparser.addrowheaders[i].elem);
+								}
+							}
 						}
 						if (tblparser.col && tblparser.col.header && !opts.nocolheaderhighlight) {
 							for (i = 0; i < tblparser.col.header.length; i += 1) {
 								cellsheader.push(tblparser.col.header[i].elem);
+							}
+							if (tblparser.addcolheaders) {
+								for (i = 0; i < tblparser.addcolheaders.length; i += 1) {
+									cellsheader.push(tblparser.addcolheaders[i].elem);
+								}
 							}
 						}
 						$(elem).data().cellsheader = cellsheader;

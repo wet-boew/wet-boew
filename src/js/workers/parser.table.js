@@ -356,7 +356,7 @@
 
 						// Check if all the cell in it are set to the type 5
 						for (j = 0; j < theadRowStack[i].cell.length; j += 1) {
-							if (theadRowStack[i].cell[j].type !== 5 && theadRowStack[i].cell[j].height === 1) {
+							if (theadRowStack[i].cell[j].type !== 5 && theadRowStack[i].cell[j].type !== 6 && theadRowStack[i].cell[j].height === 1) {
 								errorTrigger(4, ' You have an invalid cell inside a row description', theadRowStack[i].cell[j].elem);
 							}
 
@@ -1242,6 +1242,9 @@
 							rowgroupHeaderRowStack[i].cell[0].descCell = row.cell[0];
 							row.cell[0].describe.push(rowgroupHeaderRowStack[i].cell[0]);
 						}
+						if (!groupZero.desccell) {
+							groupZero.desccell = [];
+						}
 						groupZero.desccell.push(row.cell[0]);
 						
 						// FYI - We do not push this row in any stack because this row is a description row
@@ -1325,6 +1328,8 @@
 							rowgroupSetup(true);
 						
 							row.type = currentRowGroup.type; // Reset the current row type
+							
+							errorTrigger(34, 'The second data group, when header cell row exist, must have a group header cell', row.elem);
 							
 						} else if (!lastHeadingSummaryColPos && currentRowGroup.lastHeadingColPos > lastHeadingColPos) {
 							// This is an error, we can not have an row cell heading length inferior for a summary group
@@ -1465,8 +1470,7 @@
 								row.errorcell.push(this);
 							}
 						});
-						row.headerset = headingRowCell;
-						row.header = rowheader;
+						row.header = headingRowCell;
 					} else {
 						// There are only at least one colgroup,
 						// Any colgroup tag defined but be equal or greater than 0.
@@ -1478,10 +1482,15 @@
 						}
 					}
 
+					
+					
+					
 					//
 					// Process the table row heading and colgroup if required
 					//
 					processRowgroupHeader(lastHeadingColPos);
+					
+					row.headerset = (currentRowGroup.headerlevel ? currentRowGroup.headerlevel : []);
 					/*if (colgroupFrame.length !== 0) {
 
 						// We check the first colgroup to know if a colgroup type has been defined
@@ -1548,6 +1557,21 @@
 							row.cell[i].type = 2;
 							row.datacell.push(row.cell[i]);
 						}
+						
+						
+						// Add row header when the cell is span into more than one row
+						if (row.cell[i].rowpos < currentRowPos) {
+							if (!row.cell[i].addrowheaders) {
+								row.cell[i].addrowheaders = []; // addrowheaders for additional row headers
+							}
+							if (row.header) {
+								for (j = 0; j < row.header.length; j += 1) {
+									if ((row.header[j].rowpos === currentRowPos && row.cell[i].addrowheaders.length === 0) || (row.header[j].rowpos === currentRowPos && row.cell[i].addrowheaders[row.cell[i].addrowheaders.length - 1].uid !==  row.header[j].uid)) {
+										row.cell[i].addrowheaders.push(row.header[j]); // Add the current header
+									}
+								}
+							}
+						}
 					}
 
 					createGenericColgroup = (colgroupFrame.length === 0);
@@ -1556,13 +1580,7 @@
 						createGenericColgroup = false;
 					}
 
-					// Associate the row with the cell and Colgroup/Col association
-					for (i = 0; i < row.cell.length; i += 1) {
-						row.cell[i].row = row;
-						row.cell[i].rowlevel = currentRowGroup.level;
-						row.cell[i].rowlevelheader = currentRowGroup.headerlevel;
-						row.cell[i].rowgroup = currentRowGroup;
-					}
+					
 
 					// Add the cell in his appropriate column
 					if (!groupZero.col) {
@@ -1577,8 +1595,39 @@
 							// Be sure to do not include twice the same cell for a column spanned in 2 or more column
 							if (!(j > (groupZero.col[i].start - 1) && groupZero.col[i].cell[groupZero.col[i].cell.length - 1].uid === row.cell[j].uid)) {
 								groupZero.col[i].cell.push(row.cell[j]);
-								row.cell[j].col = groupZero.col[i];
+								if (!row.cell[j].col) {
+									row.cell[j].col = groupZero.col[i];
+								}
 							}
+						}
+					}
+					
+					// Associate the row with the cell and Colgroup/Col association
+					for (i = 0; i < row.cell.length; i += 1) {
+						if (!row.cell[i].row) {
+							row.cell[i].row = row;
+						}
+						row.cell[i].rowlevel = currentRowGroup.level;
+						row.cell[i].rowlevelheader = currentRowGroup.headerlevel;
+						row.cell[i].rowgroup = currentRowGroup;
+						
+						if (i > 0 && row.cell[i - 1].uid == row.cell[i].uid && row.cell[i].type !== 1 && row.cell[i].rowpos === currentRowPos) {
+							if (!row.cell[i].addcolheaders) {
+								row.cell[i].addcolheaders = []; // addcolheaders for additional col headers
+							}
+							
+							/*
+							// Add the column header if required
+							if (groupZero.col[i] && groupZero.col[i].header) {
+								for (j = 0; j < groupZero.col[i].header.length; j += 1) {
+									if (groupZero.col[i].header[j].colpos === i && row.cell[i].addcolheaders.length === 0) {
+										row.cell[i].addcolheaders.push(groupZero.col[i].header[j]); // Add the current header
+									}
+								}
+							}
+							
+							console.log('asg');
+							*/
 						}
 					}
 					summaryRowGroupEligible = true;
