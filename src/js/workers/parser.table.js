@@ -53,7 +53,8 @@
 				lstRowGroup = [],
 				rowgroupheadercalled = false,
 				hasTfoot = $(obj).has('tfoot'),
-				lastHeadingSummaryColPos;
+				lastHeadingSummaryColPos,
+				previousDataHeadingColPos;
 			// elm need to be a table
 			if ($(elm).get(0).nodeName.toLowerCase() !== 'table') {
 				errorTrigger(1, "Only table can be parsed with this parser", elm);
@@ -784,7 +785,7 @@
 				//currentRowGroup.type = 2 // (1 if elem is a thead or if detected in the table, 2 default, 3 if summary data) // FYI Here the existance of the "type" property is used to determined the real type of row group
 			}
 
-			function rowgroupSetup() {
+			function rowgroupSetup(forceDataGroup) {
 				// console.log('Row Group Setup');
 				var i,
 					previousRowGroup,
@@ -834,7 +835,7 @@
 
 				// if no cell in the stack and not the first row group, this are a summary group
 				// This is only valid if the first colgroup is a header colgroup.
-				if (rowgroupHeaderRowStack.length === 0 && lstRowGroup.length > 0 && !currentRowGroup.type && colgroupFrame[0] && colgroupFrame[0].type === 1) {
+				if (rowgroupHeaderRowStack.length === 0 && lstRowGroup.length > 0 && !currentRowGroup.type && colgroupFrame[0] && colgroupFrame[0].type === 1 && !forceDataGroup) {
 					currentRowGroup.type = 3;
 				} else {
 					currentRowGroup.type = 2;
@@ -1227,135 +1228,119 @@
 					// This mark the end of any row group header (thead)
 					headerRowGroupCompleted = true;
 
+					// Check if this row is considerated as a description row for a header
+					if (rowgroupHeaderRowStack.length > 0 && row.cell[0].uid === row.cell[row.cell.length - 1].uid) {
+						// Horay this row are a description cell for the preceding heading
+						
+						row.type = 5;
+						row.cell[0].type = 5;
+						row.cell[0].row = row;
+						if (!row.cell[0].describe) {
+							row.cell[0].describe = [];
+						}
+						for (i = 0; i < rowgroupHeaderRowStack.length; i += 1) {
+							rowgroupHeaderRowStack[i].cell[0].descCell = row.cell[0];
+							row.cell[0].describe.push(rowgroupHeaderRowStack[i].cell[0]);
+						}
+						groupZero.desccell.push(row.cell[0]);
+						
+						// FYI - We do not push this row in any stack because this row is a description row
+						
+						return; // Stop the processing for this row
+					}
+
 					//
-					// 
-					// TODO: Process any row used to defined the rowgroup label
-					//
+					// Process any row used to defined the rowgroup label
 					//
 					if (rowgroupHeaderRowStack.length > 0 || !currentRowGroup.type) {
 						rowgroupSetup();
 					}
 					row.type = currentRowGroup.type;
 					row.level = currentRowGroup.level;
-					/*
-				if (rowgroupHeaderRowStack.length > 0 && currentRowHeader.length === 0) {
-					// TODO: check if the current stack of the current rowgroup need to have 0 datarow inside
-					// Set the number of level for this group, also this group will be a data rowgroup
+					
+					// C
+					
+					
 
-					// we start at the level 1 for the first heading
-
-					// Calculate the starting row level by using preceding row level
-
-					var iniRowGroupLevel = (groupZero.lstrowgroup.length > 1 ? (rowgroupHeaderRowStack.length - groupZero.lstrowgroup[groupZero.lstrowgroup - 1].level): 1) - 1;
-
-					// Create virtual rowgroup
-					for (i = iniRowGroupLevel; i < (rowgroupHeaderRowStack.length - 1); i += 1) {
-						
-						var grpRowHeader = {
-							groupZero: groupZero,
-							header: [],
-							level: (i + 1)
-						};
-
-						grpRowHeader.uid = uidElem;
-						uidElem += 1;
-						groupZero.allParserObj.push(grpRowHeader);	
-
-						console.log(rowgroupHeaderRowStack);
-						console.log(iniRowGroupLevel);
-
-						grpRowHeader.elem = rowgroupHeaderRowStack[i].row.cell[0].elem;
-						// grpRowHeader.struct = rowgroupHeaderRowStack[i].row.elem;
-
-						rowgroupHeaderRowStack[i].row.cell[0].scope = "row";
-						rowgroupHeaderRowStack[i].row.cell[0].level = (i + 1);
-
-						rowgroupHeaderRowStack[i].row.type = 1;
-
-						currentRowHeader.push(grpRowHeader);
-
-						// Include this virtual row group in the current one
-					}
-
-					// Set the level for the current rowgroup
-
-					rowgroupHeaderRowStack[rowgroupHeaderRowStack.length - 1].cell[0].scope = "row";
-					rowgroupHeaderRowStack[rowgroupHeaderRowStack.length - 1].cell[0].level = rowgroupHeaderRowStack.length;
-					rowgroupHeaderRowStack[rowgroupHeaderRowStack.length - 1].type = 1;
-
-					currentRowHeader.push(rowgroupHeaderRowStack[rowgroupHeaderRowStack.length - 1].cell[0]);		
-
-					pastTbodyID	= currentTbodyID;
-				}
-
-				if (currentTbodyID !== pastTbodyID) {
-					row.type = 3;
-
-					currentRowHeader = groupZero.row[groupZero.row.length - 1].levelheader;
-				}
-				// We have a summary row group
-
-				row.levelheader = currentRowHeader;
-				row.level = (currentRowHeader.length > 0 ? currentRowHeader[currentRowHeader.length - 1].level:0);
-				*/
-
-					// Adjust if required, the lastHeadingColPos if colgroup are present, that would be the first colgroup
-					if (colgroupFrame[0] && lastHeadingColPos && colgroupFrame[0].end !== lastHeadingColPos) {
-						if (colgroupFrame[0].end === (lastHeadingColPos + 1)) {
-							lastHeadingColPos += 1;
-						} else {
-							// The colgroup are not representating the table structure
-							if (currentRowGroup.row.length > 0 && currentRowGroup.type === 2 && (row.type === 2 || lastHeadingSummaryColPos !== (lastHeadingColPos + 1))) {
-								if ((lastHeadingColPos + 1) > colgroupFrame[0].end ) {
-									//
-									// In this special case we create a virtual row group
-									// This row and subsequent row will be considerated as a summary row
-									//
-									lastHeadingSummaryColPos = (lastHeadingColPos + 1);
-									
-									// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
-									$.each(spannedRow, function () {
-										if (this.spanHeight > 0) {
-											// That row are spanned in 2 different row group
-											errorTrigger(29, 'You can not span cell in 2 different rowgroup', this);
-										}
-									});
-
-									spannedRow = []; // Cleanup of any spanned row
-									rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
-									currentRowHeader = [];
-
-									// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
-									currentTbodyID += 1;
-									finalizeRowGroup();
-									
-									currentRowGroupElement = undefined;
-									initiateRowGroup();
-									rowgroupSetup();
-									row.type = currentRowGroup.type; // Reset the current row type
-								} else {
-									errorTrigger(22, 'The first colgroup need to be used as an header colgroup', colgroupFrame[0].elem);
-								}
-							}
-						}
+					if (colgroupFrame[0] && lastHeadingColPos && colgroupFrame[0].end !== lastHeadingColPos && colgroupFrame[0].end === (lastHeadingColPos + 1)) {
+						lastHeadingColPos += 1; // Adjust if required, the lastHeadingColPos if colgroup are present, that would be the first colgroup
 					}
 					row.lastHeadingColPos = lastHeadingColPos;
+					if (!currentRowGroup.lastHeadingColPos) {
+						currentRowGroup.lastHeadingColPos = lastHeadingColPos;
+					}
+					if (!previousDataHeadingColPos) {
+						previousDataHeadingColPos = lastHeadingColPos;
+					}
 					row.rowgroup = currentRowGroup;
 					
 					
-					//
-					//
-					//
-					// TODO: Check if the lastHeadingColPos is constant for data group and summary group
-					//
-					//
-					if (lastHeadingSummaryColPos && currentRowGroup.type === 3 && lastHeadingSummaryColPos !== (lastHeadingColPos + 1)) {
-						// Only two type of header is allowed, one for the data group and one for the summary row. They need to be constant
+					if (currentRowGroup.lastHeadingColPos !== lastHeadingColPos) {
+						if ((!lastHeadingSummaryColPos && currentRowGroup.lastHeadingColPos < lastHeadingColPos) || (lastHeadingSummaryColPos && lastHeadingSummaryColPos === lastHeadingColPos)) {
+							// This is a virtual summary row group
+							
+							// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
+							$.each(spannedRow, function () {
+								if (this.spanHeight > 0) {
+									// That row are spanned in 2 different row group
+									errorTrigger(29, 'You can not span cell in 2 different rowgroup', this);
+								}
+							});
+
+							spannedRow = []; // Cleanup of any spanned row
+							rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
+							currentRowHeader = [];
+
+							// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
+							currentTbodyID += 1;
+							finalizeRowGroup();
+							
+							currentRowGroupElement = undefined;
+							initiateRowGroup();
+							rowgroupSetup();
 						
+							row.type = currentRowGroup.type; // Reset the current row type
+							
+						} else if (lastHeadingSummaryColPos && previousDataHeadingColPos === lastHeadingColPos) {
+							// This is a virtual data row group
+							
+							// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
+							$.each(spannedRow, function () {
+								if (this.spanHeight > 0) {
+									// That row are spanned in 2 different row group
+									errorTrigger(29, 'You can not span cell in 2 different rowgroup', this);
+								}
+							});
+
+							spannedRow = []; // Cleanup of any spanned row
+							rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
+							currentRowHeader = [];
+
+							// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
+							currentTbodyID += 1;
+							finalizeRowGroup();
+							
+							currentRowGroupElement = undefined;
+							initiateRowGroup();
+							rowgroupSetup(true);
+						
+							row.type = currentRowGroup.type; // Reset the current row type
+							
+						} else if (!lastHeadingSummaryColPos && currentRowGroup.lastHeadingColPos > lastHeadingColPos) {
+							// This is an error, we can not have an row cell heading length inferior for a summary group
+							errorTrigger(32, 'An row cell heading length can not be inferior of a data row group', this);
+						} else {
+							// This is an error, we can not have an row cell heading length that can not be categorized in the data group and summary group
+							errorTrigger(33, 'An row cell heading length that can not be categorized in the data group and summary group. Use uniform size for data/summary group. Uniform size between data group and summary group require a new tbody section.', this);
+						}
 					}
-					//
-					//
-					//
+					if (!currentRowGroup.lastHeadingColPos) {
+						currentRowGroup.lastHeadingColPos = lastHeadingColPos;
+					}
+					
+					if (currentRowGroup.type === 3 && !lastHeadingSummaryColPos) {
+						lastHeadingSummaryColPos = lastHeadingColPos;
+					}
 
 					
 					
@@ -1375,6 +1360,11 @@
 									row.cell[i].type = 5;
 									row.cell[i - 1].descCell = row.cell[i];
 
+									if (!row.cell[i].describe) {
+										row.cell[i].describe = [];
+									}
+									row.cell[i].describe.push(row.cell[i - 1]);
+									
 									if (!row.desccell) {
 										row.desccell = [];
 									}
@@ -1433,11 +1423,17 @@
 											row.keycell = [];
 										}
 										row.keycell.push(colKeyCell[j]);
-
+										
 										if (!groupZero.keycell) {
 											groupZero.keycell = [];
 										}
 										groupZero.keycell.push(colKeyCell[j]);
+										
+										
+										if (!colKeyCell[j].describe) {
+											colKeyCell[j].describe = [];
+										}
+										colKeyCell[j].describe.push(row.cell[i]);
 									}
 								}
 								/*$.each(colKeyCell, function () {
