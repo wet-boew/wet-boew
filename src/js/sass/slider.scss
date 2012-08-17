@@ -313,8 +313,21 @@ body {
 input[type="range"] {
 	width:100%;
 }
-input[data-fd-slider-vertival="v-s"] {
+input[data-fd-slider-vertical="v-s"] {
 	-webkit-appearance: slider-vertical;
+	width: 20px;
+	height: 300px;
+}
+input[data-fd-slider-vertical="v-s2"] {
+	-webkit-appearance: slider-vertical;
+	width: 20px;
+	height: 160px;
+}
+.ui-mobile {
+	input[data-fd-slider-vertical="v-s"], input[data-fd-slider-vertical="v-s2"] {
+		width:auto;
+		height:auto;
+	}
 }
 #html5shim-2-out {
 	font-weight:normal;
