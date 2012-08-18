@@ -1611,23 +1611,22 @@
 						row.cell[i].rowlevelheader = currentRowGroup.headerlevel;
 						row.cell[i].rowgroup = currentRowGroup;
 						
-						if (i > 0 && row.cell[i - 1].uid == row.cell[i].uid && row.cell[i].type !== 1 && row.cell[i].rowpos === currentRowPos) {
+						if (i > 0 && row.cell[i - 1].uid === row.cell[i].uid && row.cell[i].type !== 1 && row.cell[i].rowpos === currentRowPos && row.cell[i].colpos <= i) {
 							if (!row.cell[i].addcolheaders) {
 								row.cell[i].addcolheaders = []; // addcolheaders for additional col headers
 							}
 							
-							/*
 							// Add the column header if required
 							if (groupZero.col[i] && groupZero.col[i].header) {
 								for (j = 0; j < groupZero.col[i].header.length; j += 1) {
-									if (groupZero.col[i].header[j].colpos === i && row.cell[i].addcolheaders.length === 0) {
+									if (groupZero.col[i].header[j].colpos === (i +1)) {
 										row.cell[i].addcolheaders.push(groupZero.col[i].header[j]); // Add the current header
 									}
 								}
 							}
 							
 							console.log('asg');
-							*/
+							
 						}
 					}
 					summaryRowGroupEligible = true;
