@@ -98,7 +98,13 @@ dl.wet-boew-zebra {
 		*/
 		&.table-hover {
 			background-color: lightgray;
+			/*
+			&.table-summaryrow0 {
+				background-color:#eee!important;
+			}
+			*/
 		}
+		
 	}
 	td{
 		border:1px solid #ccc;
@@ -115,16 +121,25 @@ dl.wet-boew-zebra {
 			background-color: #F4F4F4!important;
 		}
 		&.table-summarycol3, &.table-summaryrow3 {
-			background-color: #9EE!important;
+			/* background-color: #9EE!important; */
+			background-color: #F4F4F4!important;
 		}
 		&.table-summarycol2, &.table-summaryrow2 {
 			background-color: #FAFAFA!important;
 		}
 		&.table-summarycol1, &.table-summaryrow1 {
-			background-color: #F4F4F4!important;
+			
+			background-color: #EEE!important;
 		}
 		&.table-summarycol0, &.table-summaryrow0 {
-			background-color: #EEE!important;
+			/* background-color: #EEE!important; */
+			background-color: #DDD!important;
+		}
+	}
+	th {
+		&.table-summarycol0, &.table-summaryrow0 {
+			/* background-color: #EEE!important; */
+			background-color: #DDD!important;
 		}
 	}
 	tr{
