@@ -91,12 +91,16 @@
 								}
 								if (tblparser.row[i].type === 3) {
 									$(tblparser.row[i].cell[j].elem).addClass('table-summaryrow' + tblparser.row[i].cell[j].rowlevel); // rowlevel is a number
+									if (tblparser.row[i].level === 0 && tblparser.row[i].header.elem) {
+										// Special case for heading in that row
+										$(tblparser.row[i].header.elem).addClass('table-summaryrow' + tblparser.row[i].cell[j].rowlevel); // rowlevel is a number
+									}
 								}
 							}
 						}
 						// Summary group styling
-						if (tblparser.row[i].type && tblparser.row[i].type === 3) {
-							$(tblparser.row[i].elem).parent().addClass('table-rowgroupmarker');
+						if (tblparser.row[i].type && tblparser.row[i].type === 3 && tblparser.row[i].rowgroup.elem && i > 0 && tblparser.row[i - 1].type && tblparser.row[i - 1].type === 3 && tblparser.row[i - 1].rowgroup.uid !== tblparser.row[i].rowgroup.uid) {
+							$(tblparser.row[i].rowgroup.elem).addClass('table-rowgroupmarker');
 						}
 					}
 				}
@@ -107,17 +111,17 @@
 						$this.addClass('table-headgroup' + $this.data().tblparser.scope + $this.data().tblparser.level);  // level is a number, scope either "row" || "col"
 					}
 				});
-				
+
 				// Data Column Group
 				if (tblparser.colgroup) {
 					for (i = 0; i < tblparser.colgroup.length; i += 1) {
 						if (tblparser.colgroup[i].elem && ((i > 0 && tblparser.colgroup[i].type === 3 && tblparser.colgroup[i - 1].type === 3 && tblparser.colgroup[i - 1].level > tblparser.colgroup[i].level) ||
-						(tblparser.colgroup[i].type === 2 && (i > 0 && tblparser.colgroup[0].type === 2 || i > 1 && tblparser.colgroup[0].type === 1)))) {
+							(tblparser.colgroup[i].type === 2 && ((i > 0 && tblparser.colgroup[0].type === 2) || (i > 1 && tblparser.colgroup[0].type === 1))))) {
 							$(tblparser.colgroup[i].elem).addClass('table-colgroupmarker');
 						}
 					}
 				}
-				
+
 				// Data Row Group
 				if (tblparser.lstrowgroup) {
 					for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
@@ -135,7 +139,7 @@
 						var cellsheader = [],
 							tblparser = $(elem).data().tblparser;
 						// Get column Headers
-						if (tblparser.row && tblparser.row.header && !opts.norowheaderhighlight) {
+						/*if (tblparser.row && tblparser.row.header && !opts.norowheaderhighlight) {
 							if (!$.isArray(tblparser.row.header)) {
 								cellsheader.push(tblparser.row.header.elem);
 							} else {
@@ -143,10 +147,25 @@
 									cellsheader.push(tblparser.row.header[i].elem);
 								}
 							}
+						}*/
+						if (tblparser.row && tblparser.row.header && !opts.norowheaderhighlight) {
+							for (i = 0; i < tblparser.row.header.length; i += 1) {
+								cellsheader.push(tblparser.row.header[i].elem);
+							}
+							if (tblparser.addrowheaders) {
+								for (i = 0; i < tblparser.addrowheaders.length; i += 1) {
+									cellsheader.push(tblparser.addrowheaders[i].elem);
+								}
+							}
 						}
 						if (tblparser.col && tblparser.col.header && !opts.nocolheaderhighlight) {
 							for (i = 0; i < tblparser.col.header.length; i += 1) {
 								cellsheader.push(tblparser.col.header[i].elem);
+							}
+							if (tblparser.addcolheaders) {
+								for (i = 0; i < tblparser.addcolheaders.length; i += 1) {
+									cellsheader.push(tblparser.addcolheaders[i].elem);
+								}
 							}
 						}
 						$(elem).data().cellsheader = cellsheader;
@@ -218,7 +237,7 @@
 				$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
 					return $(this).children('td').length > 0;
 				});
-				
+
 				$trs.on('mouseleave focusout', function (e) {
 					e.stopPropagation();
 					$(this).removeClass('table-hover');
@@ -227,7 +246,7 @@
 					e.stopPropagation();
 					$(this).addClass('table-hover');
 				});
-			
+
 				if (!opts.justgroup) {
 					if (!opts.columnhighlight) {
 						// note: even/odd's indices start at 0
@@ -276,7 +295,7 @@
 						break;
 					}
 				});
-			
+
 				if (!opts.nohover) {
 					$(lstDlItems).on('mouseleave focusout', function (e) {
 						e.stopPropagation();
