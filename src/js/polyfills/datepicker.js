@@ -8,17 +8,11 @@
 /*global jQuery: false, pe: false, XRegExp: false*/
 (function ($) {
 	"use strict";
-	var _pe = window.pe || {
-		fn: {}
-	},
-	/* local reference */
-	datepicker = {
-		type: 'polyfill',
-		depends: ['calendar', 'xregexp'],
-		_exec: function (elm) {
+	$.fn.datepicker = function () {
+		return $(this).each(function () {
 			var addLinksToCalendar,
 				addSelectedDateToField,
-				calendar = _pe.fn.calendar,
+				calendar = pe.fn.calendar,
 				container,
 				containerid,
 				createToggleIcon,
@@ -37,7 +31,8 @@
 				setSelectedDate,
 				toggle,
 				year = date.getFullYear(),
-				wrapper;
+				wrapper,
+				elm = $(this);
 
 			elm.addClass("picker-field");
 
@@ -47,6 +42,7 @@
 
 				objToggle.on('click', function () {
 					toggle(fieldid, containerid);
+					return false;
 				});
 
 				elm.after(objToggle);
@@ -133,6 +129,7 @@
 							setSelectedDate(event.data.fieldid, event.data.year, event.data.month, event.data.days, event.data.format);
 							//Hide the calendar on selection
 							toggle(event.data.fieldid, event.data.fieldid + "-picker");
+							return false;
 						});
 					}
 				});
@@ -302,7 +299,7 @@
 				field = elm;
 				wrapper = elm.parent();
 				containerid = id + '-picker';
-				container = $('<div id="' + containerid + '" class="picker-overlay" role="dialog" aria-controls="' + id + '" aria-labelledby="' + containerid + '-toggle"></div>');
+				container = $('<div id="' + containerid + '" class="picker-overlay" role="dialog" aria-controls="' + id + '" aria-labelledby="' + containerid + '-toggle" aria-hidden="true"></div>');
 
 				// Escape key to close popup
 				container.on('keyup', function (e) {
@@ -315,16 +312,31 @@
 				field.parent().after(container);
 
 				container.on("calendarDisplayed", function (e, year,  month, days) {
+					var $this = $(this);
 					addLinksToCalendar(id, year, month, days, minDate, maxDate, format);
 					setSelectedDate(id, year, month, days, format);
 
+					$this.on("click vclick", function (e) {
+						if (e.stopPropagation) {
+							e.stopImmediatePropagation();
+						} else {
+							e.cancelBubble = true;
+						}
+					});
+
 					// Close the popup a second after blur
-					$(this).find('a, select').on('blur', function () {
-						window.setTimeout(function () {
-							if (container.find(':focus').length === 0) {
-								hide($('#' + container.attr('id').slice(0, -7)));
-							}
-						}, 1000);
+					$this.on("focusoutside", function () {
+						if (container.attr('aria-hidden') === 'false') {
+							hide($('#' + container.attr('id').slice(0, -7)));
+							return false;
+						}
+					});
+
+					$(document).on("click touchstart", function () {
+						if (container.attr('aria-hidden') === 'false') {
+							hide($('#' + container.attr('id').slice(0, -7)));
+							return false;
+						}
 					});
 				});
 
@@ -334,17 +346,7 @@
 				//Disable the tabbing of all the links when calendar is hidden
 				container.find("a").attr("tabindex", "-1");
 			}
-		} // end of exec
-	};
-
-	$.fn.datepicker = function () {
-		$(this).each(function () {
-			pe._execute(datepicker, $(this));
 		});
 	};
-	window.pe = _pe;
-
 	$('[type="date"]').datepicker();
-
-	return _pe;
 }(jQuery));
