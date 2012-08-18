@@ -20,9 +20,9 @@
 		_exec : function (elm) {
 			var obj = elm,
 			// Event handler for issue error found durring the table parsing process
-				errorTrigger = function (numerr, err, obj) {	
+				errorTrigger = function (numerr, err, obj) {
 					// FYI - 31 Type of Error can be raised
-					if(typeof _pe.fn.parsertable.onParserError === "function"){
+					if (typeof _pe.fn.parsertable.onParserError === "function") {
 						_pe.fn.parsertable.onParserError(numerr, err, obj);
 					}
 					// $(obj).trigger('parser.table.error', err, obj);
@@ -1231,7 +1231,7 @@
 					// Check if this row is considerated as a description row for a header
 					if (rowgroupHeaderRowStack.length > 0 && row.cell[0].uid === row.cell[row.cell.length - 1].uid) {
 						// Horay this row are a description cell for the preceding heading
-						
+
 						row.type = 5;
 						row.cell[0].type = 5;
 						row.cell[0].row = row;
@@ -1246,9 +1246,9 @@
 							groupZero.desccell = [];
 						}
 						groupZero.desccell.push(row.cell[0]);
-						
+
 						// FYI - We do not push this row in any stack because this row is a description row
-						
+
 						return; // Stop the processing for this row
 					}
 
@@ -1260,10 +1260,7 @@
 					}
 					row.type = currentRowGroup.type;
 					row.level = currentRowGroup.level;
-					
-					// C
-					
-					
+
 
 					if (colgroupFrame[0] && lastHeadingColPos && colgroupFrame[0].end !== lastHeadingColPos && colgroupFrame[0].end === (lastHeadingColPos + 1)) {
 						lastHeadingColPos += 1; // Adjust if required, the lastHeadingColPos if colgroup are present, that would be the first colgroup
@@ -1276,12 +1273,12 @@
 						previousDataHeadingColPos = lastHeadingColPos;
 					}
 					row.rowgroup = currentRowGroup;
-					
-					
+
+
 					if (currentRowGroup.lastHeadingColPos !== lastHeadingColPos) {
 						if ((!lastHeadingSummaryColPos && currentRowGroup.lastHeadingColPos < lastHeadingColPos) || (lastHeadingSummaryColPos && lastHeadingSummaryColPos === lastHeadingColPos)) {
 							// This is a virtual summary row group
-							
+
 							// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
 							$.each(spannedRow, function () {
 								if (this.spanHeight > 0) {
@@ -1297,16 +1294,16 @@
 							// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
 							currentTbodyID += 1;
 							finalizeRowGroup();
-							
+
 							currentRowGroupElement = undefined;
 							initiateRowGroup();
 							rowgroupSetup();
-						
+
 							row.type = currentRowGroup.type; // Reset the current row type
-							
+
 						} else if (lastHeadingSummaryColPos && previousDataHeadingColPos === lastHeadingColPos) {
 							// This is a virtual data row group
-							
+
 							// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
 							$.each(spannedRow, function () {
 								if (this.spanHeight > 0) {
@@ -1322,33 +1319,35 @@
 							// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
 							currentTbodyID += 1;
 							finalizeRowGroup();
-							
+
 							currentRowGroupElement = undefined;
 							initiateRowGroup();
 							rowgroupSetup(true);
-						
+
 							row.type = currentRowGroup.type; // Reset the current row type
-							
+
 							errorTrigger(34, 'The second data group, when header cell row exist, must have a group header cell', row.elem);
-							
-						} else if (!lastHeadingSummaryColPos && currentRowGroup.lastHeadingColPos > lastHeadingColPos) {
-							// This is an error, we can not have an row cell heading length inferior for a summary group
-							errorTrigger(32, 'An row cell heading length can not be inferior of a data row group', this);
+
 						} else {
-							// This is an error, we can not have an row cell heading length that can not be categorized in the data group and summary group
-							errorTrigger(33, 'An row cell heading length that can not be categorized in the data group and summary group. Use uniform size for data/summary group. Uniform size between data group and summary group require a new tbody section.', this);
+							if (!lastHeadingSummaryColPos && currentRowGroup.lastHeadingColPos > lastHeadingColPos) {
+								// This is an error, we can not have an row cell heading length inferior for a summary group
+								errorTrigger(32, 'An row cell heading length can not be inferior of a data row group', this);
+							} else {
+								// This is an error, we can not have an row cell heading length that can not be categorized in the data group and summary group
+								errorTrigger(33, 'An row cell heading length that can not be categorized in the data group and summary group. Use uniform size for data/summary group. Uniform size between data group and summary group require a new tbody section.', this);
+							}
 						}
 					}
 					if (!currentRowGroup.lastHeadingColPos) {
 						currentRowGroup.lastHeadingColPos = lastHeadingColPos;
 					}
-					
+
 					if (currentRowGroup.type === 3 && !lastHeadingSummaryColPos) {
 						lastHeadingSummaryColPos = lastHeadingColPos;
 					}
 
-					
-					
+
+
 					// Build the initial colgroup structure
 					// If an cell header exist in that row....
 					if (lastHeadingColPos) {
@@ -1369,7 +1368,7 @@
 										row.cell[i].describe = [];
 									}
 									row.cell[i].describe.push(row.cell[i - 1]);
-									
+
 									if (!row.desccell) {
 										row.desccell = [];
 									}
@@ -1428,13 +1427,13 @@
 											row.keycell = [];
 										}
 										row.keycell.push(colKeyCell[j]);
-										
+
 										if (!groupZero.keycell) {
 											groupZero.keycell = [];
 										}
 										groupZero.keycell.push(colKeyCell[j]);
-										
-										
+
+
 										if (!colKeyCell[j].describe) {
 											colKeyCell[j].describe = [];
 										}
@@ -1476,21 +1475,20 @@
 						// Any colgroup tag defined but be equal or greater than 0.
 						// if colgroup tag defined, they are all data colgroup. 
 						lastHeadingColPos = 0;
-						
+
 						if (colgroupFrame.length === 0) {
 							processColgroup(undefined, tableCellWidth);
 						}
 					}
 
-					
-					
-					
+
+
 					//
 					// Process the table row heading and colgroup if required
 					//
 					processRowgroupHeader(lastHeadingColPos);
-					
-					row.headerset = (currentRowGroup.headerlevel ? currentRowGroup.headerlevel : []);
+
+					row.headerset = (currentRowGroup.headerlevel || []);
 					/*if (colgroupFrame.length !== 0) {
 
 						// We check the first colgroup to know if a colgroup type has been defined
@@ -1557,8 +1555,8 @@
 							row.cell[i].type = 2;
 							row.datacell.push(row.cell[i]);
 						}
-						
-						
+
+
 						// Add row header when the cell is span into more than one row
 						if (row.cell[i].rowpos < currentRowPos) {
 							if (!row.cell[i].addrowheaders) {
@@ -1580,7 +1578,7 @@
 						createGenericColgroup = false;
 					}
 
-					
+
 
 					// Add the cell in his appropriate column
 					if (!groupZero.col) {
@@ -1601,7 +1599,7 @@
 							}
 						}
 					}
-					
+
 					// Associate the row with the cell and Colgroup/Col association
 					for (i = 0; i < row.cell.length; i += 1) {
 						if (!row.cell[i].row) {
@@ -1610,23 +1608,20 @@
 						row.cell[i].rowlevel = currentRowGroup.level;
 						row.cell[i].rowlevelheader = currentRowGroup.headerlevel;
 						row.cell[i].rowgroup = currentRowGroup;
-						
+
 						if (i > 0 && row.cell[i - 1].uid === row.cell[i].uid && row.cell[i].type !== 1 && row.cell[i].rowpos === currentRowPos && row.cell[i].colpos <= i) {
 							if (!row.cell[i].addcolheaders) {
 								row.cell[i].addcolheaders = []; // addcolheaders for additional col headers
 							}
-							
+
 							// Add the column header if required
 							if (groupZero.col[i] && groupZero.col[i].header) {
 								for (j = 0; j < groupZero.col[i].header.length; j += 1) {
-									if (groupZero.col[i].header[j].colpos === (i +1)) {
+									if (groupZero.col[i].header[j].colpos === (i + 1)) {
 										row.cell[i].addcolheaders.push(groupZero.col[i].header[j]); // Add the current header
 									}
 								}
 							}
-							
-							console.log('asg');
-							
 						}
 					}
 					summaryRowGroupEligible = true;
@@ -1684,7 +1679,7 @@
 					break;
 				case 'tbody':
 				case 'tfoot':
-				
+
 					// TODO: Add support if tfoot are defined before the tbody
 
 					currentRowGroupElement = this;

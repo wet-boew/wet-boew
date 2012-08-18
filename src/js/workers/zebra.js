@@ -99,7 +99,7 @@
 							}
 						}
 						// Summary group styling
-						if (tblparser.row[i].type && tblparser.row[i].type === 3 && tblparser.row[i].rowgroup.elem && i > 0 && tblparser.row[i-1].type && tblparser.row[i-1].type === 3 && tblparser.row[i-1].rowgroup.uid !== tblparser.row[i].rowgroup.uid) {
+						if (tblparser.row[i].type && tblparser.row[i].type === 3 && tblparser.row[i].rowgroup.elem && i > 0 && tblparser.row[i - 1].type && tblparser.row[i - 1].type === 3 && tblparser.row[i - 1].rowgroup.uid !== tblparser.row[i].rowgroup.uid) {
 							$(tblparser.row[i].rowgroup.elem).addClass('table-rowgroupmarker');
 						}
 					}
@@ -111,17 +111,17 @@
 						$this.addClass('table-headgroup' + $this.data().tblparser.scope + $this.data().tblparser.level);  // level is a number, scope either "row" || "col"
 					}
 				});
-				
+
 				// Data Column Group
 				if (tblparser.colgroup) {
 					for (i = 0; i < tblparser.colgroup.length; i += 1) {
 						if (tblparser.colgroup[i].elem && ((i > 0 && tblparser.colgroup[i].type === 3 && tblparser.colgroup[i - 1].type === 3 && tblparser.colgroup[i - 1].level > tblparser.colgroup[i].level) ||
-						(tblparser.colgroup[i].type === 2 && (i > 0 && tblparser.colgroup[0].type === 2 || i > 1 && tblparser.colgroup[0].type === 1)))) {
+							(tblparser.colgroup[i].type === 2 && ((i > 0 && tblparser.colgroup[0].type === 2) || (i > 1 && tblparser.colgroup[0].type === 1))))) {
 							$(tblparser.colgroup[i].elem).addClass('table-colgroupmarker');
 						}
 					}
 				}
-				
+
 				// Data Row Group
 				if (tblparser.lstrowgroup) {
 					for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
@@ -237,7 +237,7 @@
 				$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
 					return $(this).children('td').length > 0;
 				});
-				
+
 				$trs.on('mouseleave focusout', function (e) {
 					e.stopPropagation();
 					$(this).removeClass('table-hover');
@@ -246,7 +246,7 @@
 					e.stopPropagation();
 					$(this).addClass('table-hover');
 				});
-			
+
 				if (!opts.justgroup) {
 					if (!opts.columnhighlight) {
 						// note: even/odd's indices start at 0
@@ -295,7 +295,7 @@
 						break;
 					}
 				});
-			
+
 				if (!opts.nohover) {
 					$(lstDlItems).on('mouseleave focusout', function (e) {
 						e.stopPropagation();
