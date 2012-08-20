@@ -45,7 +45,7 @@
 		text-align:left;
 		white-space:nowrap;
 		display:block;
-		padding:0.45em 0.79em;
+		padding:0.45em 1.72em 0.45em 0.79em;
 		&:link,&:visited{
 			text-decoration:none;
 			color:#fff;
@@ -53,6 +53,9 @@
 		&:hover,&:focus,&:active{
 			text-decoration:underline;
 		}
+	}
+	.mb-has-sm{
+		padding-right:0.79em;
 	}
 	.nav-current{
 		background:#242;
@@ -88,7 +91,7 @@
 		}
 	}
 	.expandicon{
-		padding-right:12px;
+		padding-right:0.93em;
 		background:url("../images/menubar/menu-arrow.gif") no-repeat right center;
 	}
 }

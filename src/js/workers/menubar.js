@@ -35,7 +35,8 @@
 				gotosubmenu,
 				hideallsubmenus,
 				hidesubmenu,
-				showsubmenu;
+				showsubmenu,
+				submenuHelp = pe.dic.get('%sub-menu-help');
 
 			/* functions that would be necessary for helpers */
 			showsubmenu = function (toplink) {
@@ -108,7 +109,7 @@
 				if ($childmenu.length > 0) {
 					$elm.attr("aria-haspopup", "true").addClass("mb-has-sm").wrapInner("<span class=\"expandicon\"><span class=\"sublink\"></span></span>");
 					$childmenu.attr({"role": "menu", "aria-expanded": "false", "aria-hidden": "true"}).find(":has(:header) ul").attr("role", "menu");
-					$elm.append("<span class=\"wb-invisible\">" + (pe.dic.get('%sub-menu-help')) + "</span>");
+					$elm.append("<span class=\"wb-invisible\">" + submenuHelp + "</span>");
 					$elm.closest("li").hoverIntent({
 						over: function () {
 							return showsubmenu(this);
