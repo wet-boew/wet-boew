@@ -8,39 +8,43 @@
  * @author: Pierre Dubois
  *
  */
+ /*global jQuery: false*/
 (function ($) {
-
-var _pe = window.pe || {
+	"use strict";
+	var _pe = window.pe || {
 		fn : {}
 	};
 
 $.extend($.expr[":"], {summary:function (elem, i, match, array) {
-
+	var tblElem,
+		ElemNodeName,
+		j, _ilen, _jlen,
+		row,
+		tblparser = $(elem).data().tblparser;
 	// query Example: $('table:eq(4):summary').css('background-color', 'yellow');
 
 	// Is elem are a valid element ?
-	if (!$(elem).data().tblparser) {
+	if (!tblparser) {
 		// Get the table element
-		var tblElem = elem;
+		tblElem = elem;
 		
 		while (true) {
-			var ElemNodeName = tblElem.nodeName.toLowerCase();
+			ElemNodeName = tblElem.nodeName.toLowerCase();
 			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
 				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
 				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
 				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
 				ElemNodeName !== "th" && ElemNodeName !== "td") {
-			
+
 				return false; // elem are not valid
 			}
-			
+
 			if (ElemNodeName === "table") {
 				break; // Horay we have found the table, now we can do the parsing
 			}
 			
 			// Get the parent
 			tblElem = $(tblElem).parent().get(0);
-			
 		}
 		
 		// Call the table parser before to filter the result
@@ -49,26 +53,24 @@ $.extend($.expr[":"], {summary:function (elem, i, match, array) {
 	
 
 	switch (elem.nodeName.toLowerCase()) {
-	
 	case "table": // Matrix
 		if ($(elem).data().tblparser.row) {
-			for (i = 0; i<$(elem).data().tblparser.row.length; i += 1) {
-				for (j = 0; j<$(elem).data().tblparser.row[i].cell.length; j += 1) {
-					if ($(elem).data().tblparser.row[i].cell[j].type === 3) {
-						array.push($(elem).data().tblparser.row[i].cell[j].elem);
+			for (i = 0, _ilen = tblparser.row.length; i < _ilen; i += 1) {
+				row = $(elem).data().tblparser.row[i];
+				for (j = 0, _jlen = row.cell.length; j < _jlen; j += 1) {
+					if (row.cell[j].type === 3) {
+						array.push(row.cell[j].elem);
 					}
 				}
-				
 			}
 		}
 		break;
 	case "caption": // Cell
 		break;
 	case "colgroup": // Group
-		if ($(elem).data().tblparser.type === 3) {
+		if (tblparser.type === 3) {
 			return true;
 		}
-
 		break;
 	case "col": // Vector
 		break;
@@ -82,43 +84,36 @@ $.extend($.expr[":"], {summary:function (elem, i, match, array) {
 		break;
 	case "th": // Cell
 		break;
-		
 	case "td": // Cell
-
-		if ($(elem).data().tblparser.type === 3) {
+		if (tblparser.type === 3) {
 			return true;
 		}
 		break;
-	
 	}
-
-
-
-	 return false;
+	return false;
 }});
 
 
-
 $.fn.summary = function (level) {
-	
-	
-	var obj = this;
-	var objDOM = $(this).get(0);
-	
+	var obj = this,
+		objDOM = $(this).get(0),
+		tblparser = $(obj).data().tblparser,
+		tblElem,
+		stack,
+		ElemNodeName;
 
-	if (!$(obj).data().tblparser) {
-
+	if (!tblparser) {
 		// Get the table element
-		var tblElem = obj;
-		
+		tblElem = obj;
+
 		while (true) {
-			var ElemNodeName = tblElem.nodeName.toLowerCase();
+			ElemNodeName = tblElem.nodeName.toLowerCase();
 			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
 				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
 				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
 				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
 				ElemNodeName !== "th" && ElemNodeName !== "td") {
-			
+
 				return false; // elem are not valid
 			}
 			
@@ -128,34 +123,28 @@ $.fn.summary = function (level) {
 			
 			// Get the parent
 			tblElem = $(tblElem).parent().get(0);
-			
 		}
-		
+
 		// Call the table parser before to filter the result
 		_pe.fn.parsertable._exec($(tblElem));
 	}
 
-
-	
-
 	// Check what is "this"
 	switch (objDOM.nodeName.toLowerCase()) {
-	
 		case "table": // Matrix
 			break;
 		case "caption": // Cell
 			// A Caption can not have any key cell
 			return $();
 		case "colgroup": // Group
-			if ($(obj).data().tblparser.type === 3) {
-				var stack = [];
-				stack.push($(obj).data().tblparser.elem);
+			if (tblparser.type === 3) {
+				stack = [];
+				stack.push(tblparser.elem);
 				return $(stack);
 			}
 			break;
 		case "col": // Vector
-			return elem;
-			break;
+			return obj;
 		case "thead": // Group
 			break;
 		case "tbody": // Group
@@ -165,28 +154,23 @@ $.fn.summary = function (level) {
 		case "tr": // Vector
 			break;
 		case "th": // Cell
-			
-			if ($(obj).data().tblparser.type !== 1) {
+			if (tblparser.type !== 1) {
 				return $();
 			}
-			if ($(obj).data().tblparser.scope === "col") {
+			if (tblparser.scope === "col") {
 				return obj;
 			}
 			break;
-			
 		case "td": // Cell
-			
-			
-			
-			if ($(obj).data().tblparser.type === 3 &&(!level?true: $(obj).data().tblparser.collevel === level)) {
-				var stack = [];
-				stack.push($(obj).data().tblparser.elem);
+			if (tblparser.type === 3 && (!level ? true : tblparser.collevel === level)) {
+				stack = [];
+				stack.push(tblparser.elem);
 				return $(stack);
 			}
 			break;
 			// array.push($(elem).data().tblparser.row.elem);
 			
-			// var ret = $($(obj).data().tblparser.row.elem);
+			// var ret = $(tblparser.row.elem);
 			// ret.prevObject = obj;
 			// return this.pushStack(ret, "row", "");
 			
@@ -194,7 +178,7 @@ $.fn.summary = function (level) {
 	
 	}
 	return $();
-}
+};
 	window.pe = _pe;
 	return _pe;
 }(jQuery));

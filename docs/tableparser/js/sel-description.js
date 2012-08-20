@@ -8,30 +8,40 @@
  * @author: Pierre Dubois
  *
  */
+/*global jQuery: false, console: false*/
 (function ($) {
-
-var _pe = window.pe || {
+	"use strict";
+	var _pe = window.pe || {
 		fn : {}
 	};
 
 $.extend($.expr[":"], {description:function (elem, i, match, array) {
+	var ret,
+		ElemNodeName,
+		tblElem,
+		tblparser = $(elem).data().tblparser,
+		j, _ilen, _jlen,
+		desccell, thRS,
+		data, cell, row,
+		stack,
+		keycell = tblparser.keycell;
 
 	// query Example: $('table:eq(4):description').css('background-color', 'yellow');
 
 	// Is elem are a valid element ?
 	
-	if (!$(elem).data().tblparser) {
+	if (!tblparser) {
 		// Get the table element
-		var tblElem = elem;
+		tblElem = elem;
 		
 		while (true) {
-			var ElemNodeName = tblElem.nodeName.toLowerCase();
+			ElemNodeName = tblElem.nodeName.toLowerCase();
 			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
 				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
 				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
 				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
 				ElemNodeName !== "th" && ElemNodeName !== "td") {
-			
+
 				return false; // elem are not valid
 			}
 			
@@ -41,7 +51,6 @@ $.extend($.expr[":"], {description:function (elem, i, match, array) {
 			
 			// Get the parent
 			tblElem = $(tblElem).parent().get(0);
-			
 		}
 		
 		// Call the table parser before to filter the result
@@ -52,10 +61,10 @@ $.extend($.expr[":"], {description:function (elem, i, match, array) {
 	
 	case "table": // Matrix
 		// Return all the description cell
-		if ($(elem).data().tblparser.desccell) {
-			for (i = 0; i<$(elem).data().tblparser.desccell.length; i += 1) {
-
-				var ret = $(elem).data().tblparser.desccell[i].elem;
+		if (tblparser.desccell) {
+			desccell = tblparser.desccell;
+			for (i = 0, _ilen = desccell.length; i < _ilen; i += 1) {
+				ret = desccell[i].elem;
 				array.push(ret);
 				ret.prevObject = elem;
 			}
@@ -68,17 +77,17 @@ $.extend($.expr[":"], {description:function (elem, i, match, array) {
 	case "colgroup": // Group
 		
 		// return any description cell in the thead
-		var data = $(elem).data().tblparser;
-		for (i = 0; i<data.groupZero.theadRowStack.length; i += 1) {
-			
-			for (j = 0; j< data.groupZero.theadRowStack[i].cell.length; j += 1) {
-				var cell = data.groupZero.theadRowStack[i].cell[j];
+		data = tblparser;
+		thRS = data.groupZero.theadRowStack;
+		for (i = 0, _ilen = thRS.length; i < _ilen; i += 1) {
+			for (j = 0; j< thRS[i].cell.length; j += 1) {
+				cell = thRS[i].cell[j];
 				
 				if ((cell.type === 5 || cell.descCell)  && cell.colpos >= data.start && (cell.colpos + cell.width -1) <= data.end) {
 					if (cell.descCell) {
 						cell = cell.descCell;
 					}
-					var ret = cell.elem;
+					ret = cell.elem;
 					array.push(ret);
 					ret.prevObject = elem;
 				}
@@ -87,23 +96,19 @@ $.extend($.expr[":"], {description:function (elem, i, match, array) {
 		}
 		// return any description cell in the colgroup header if selected
 		if (data.start === 1) {
-			
-			for (i = 0; i<data.groupZero.row.length; i += 1) {
-			
-				for (j = 0; j< data.groupZero.row[i].cell.length; j += 1) {
-					var cell = data.groupZero.row[i].cell[j];
-					
+			for (i = 0, _ilen = i < data.groupZero.row.length; i < _ilen; i += 1) {
+				row = data.groupZero.row;
+				for (j = 0, _jlen = row[i].cell.length; j < _jlen; j += 1) {
+					cell = row.cell[j];
 					if (cell.type === 5 && cell.colpos >= data.start && (cell.colpos + cell.width -1) <= data.end) {
-						var ret = cell.elem;
+						ret = cell.elem;
 						array.push(ret);
 						ret.prevObject = elem;
 					}
 				}
 				
 			}
-			
 		}
-		
 		break;
 	case "col": // Vector
 		break;
@@ -115,43 +120,34 @@ $.extend($.expr[":"], {description:function (elem, i, match, array) {
 		break;
 	case "tr": // Vector
 		// Return all the description cell for this row
-		
-		if ($(obj).data().tblparser.keycell) {
-			var stack = [];
-			for (i = 0; i<$(obj).data().tblparser.keycell.length; i += 1) {
-				stack.push($(obj).data().tblparser.keycell[i].elem);
+		if (keycell) {
+			stack = [];
+			for (i = 0, _ilen = keycell.length; i < _ilen; i += 1) {
+				stack.push(keycell[i].elem);
 			}
 			return stack;
 		}
 		return $();
 	case "th": // Cell
-	
 		// Return the associative key cell
-		if ($(obj).data().tblparser.keycell) {
-			var ret = $($(obj).data().tblparser.keycell.elem);
+		if (keycell) {
+			ret = $(keycell.elem);
 			console.log('add in push stack');
-			ret.prevObject = obj;
+			ret.prevObject = elem;
 			console.log(ret);
 			return this.pushStack(ret, "parsertablekey", "");
-			//return $($(obj).data().tblparser.keycell.elem);
+			//return $(keycell.elem);
 		}
 		break;
-		
 	case "td": // Cell
-		
 		// Return true if this are a key cell otherwise false
-		if ($(elem).data().tblparser.type === 5) {
+		if (tblparser.type === 5) {
 			return true;
 		}
 		break;
-	
 	}
-
-
-
-	 return false;
+	return false;
 }});
-
 	window.pe = _pe;
 	return _pe;
 }(jQuery));
