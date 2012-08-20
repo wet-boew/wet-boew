@@ -102,6 +102,9 @@
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0)}, _pe.fn.multimedia._intf);
 				media.after(_pe.fn.multimedia._get_ui(media_id));
+				if ($('html').hasClass('polyfill-progress')) {
+					elm.find('progress').progress();
+				}
 				
 				//Scale the UI when the video scales
 				$(window).on('resize', {'media' : media, width : width, height : height}, function (e) {
@@ -219,6 +222,7 @@
 						p = this.getCurrentTime() / this.getDuration();
 						timeline = $w.find('.wet-boew-multimedia-timeline progress');
 						timeline.attr('value',p);
+
 						//Update captions
 						if ($.data(e.target, 'captions') !== undefined) {
 							_pe.fn.multimedia._update_captions($w.find('.wet-boew-multimedia-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
@@ -242,7 +246,6 @@
 					_pe.fn.multimedia._load_captions(media, evtmgr, captions);
 				}
 			}
-
 
 			return elm;
 		}, // end of exec
@@ -388,6 +391,7 @@
 				var parts,
 					s = 0,
 					p,
+					_plen,
 					v;
 
 				if (string !== undefined) {
@@ -397,7 +401,7 @@
 					} else {
 						//clock time
 						parts = string.split(':').reverse();
-						for (p = 0; p < parts.length; p += 1) {
+						for (p = 0, _plen = parts.length; p < _plen; p += 1) {
 							v = (p === 0) ? parseFloat(parts[p]) : parseInt(parts[p], 10);
 							s += v * Math.pow(60, p);
 						}
@@ -532,9 +536,9 @@
 		},
 
 		_update_captions : function (area, seconds, captions) {
-			var c, caption;
+			var c, _clen, caption;
 			area.empty();
-			for (c = 0; c < captions.length; c += 1) {
+			for (c = 0, _clen = captions.length; c < _clen; c += 1) {
 				caption = captions[c];
 				if (seconds >= caption.begin && seconds <= caption.end) {
 					area.append($('<div>' + caption.text + '</div>'));

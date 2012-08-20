@@ -10,7 +10,7 @@
 /*
  * pe, a progressive javascript library agnostic framework
  */
-/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false*/
+/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false*/
 (function ($) {
 	"use strict";
 	var pe, _pe;
@@ -37,27 +37,6 @@
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
 		urlquery: "",
-		/**
-		 * Detects the doctype of the document (loosely)
-		 * @function
-		 * @memberof pe
-		 * @returns {boolean}
-		 */
-		html5: (function () {
-			var res = false,
-				re = /\s+(X?HTML)\s+([\d\.]+)\s*([^\/]+)*\//gi;
-			/*********************************************
-			Just check for internet explorer.
-			**********************************************/
-			if (typeof document.namespaces !== "undefined") {
-				res = (document.all[0].nodeType === 8) ? re.test(document.all[0].nodeValue) : false;
-			} else {
-				res = (document.doctype !== null) ? re.test(document.doctype.publicId) : false;
-			}
-			return (res) ? false : true;
-		}
-		()),
-
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
 
 		/**
@@ -174,7 +153,7 @@
 				}, "html");
 			})).always(function () {
 				// Wait for localisation and ajax content to load plugins
-				$(document).on("languageloaded", function () {
+				$(document).one("languageloaded", function () {
 					// Check to see if PE enhancements should be disabled
 					if (pe.pedisable() === true) {
 						return false; // Disable PE enhancements
@@ -186,7 +165,7 @@
 
 						//Load the mobile view
 						if (pe.mobile === true) {
-							$(document).on("mobileviewloaded", function () {
+							$(document).one("mobileviewloaded", function () {
 								if (typeof $.mobile !== "undefined") {
 									pe.mobilelang();
 									$.mobile.initializePage();
@@ -238,17 +217,6 @@
 			return $('#wb-body-sec-sup,#wb-body-sec,#wb-body').add('body').eq(0);
 		},
 		/**
-		 * Internal function that discovers parameters for the element against which a plugin will run.
-		 * @memberof pe
-		 * @function
-		 * @param {string} key The parameter to look for.
-		 * @param {jQuery object} jqElm The element to look for the parameter on.
-		 * @return {string} The value of the parameter asked for.
-		 */
-		parameter: function (key, jqElm) {
-			return (pe.html5) ? jqElm.data(key) : jqElm.attr('class').replace('/.*' + key + '-([a-z0-9_]+).*/i', "$1");
-		},
-		/**
 		 * Initializes the Resize dependency, and attaches a given function to various resize events.
 		 * @memberof pe
 		 * @function
@@ -271,7 +239,7 @@
 		 */
 		url: function (uri) {
 			var el = document.createElement('div'), a;
-			el.innerHTML = '<a href="' + encodeURI(uri) + '">x</a>';
+			el.innerHTML = '<a href="' + uri + '">x</a>';
 			a = el.firstChild;
 			return {
 				/**
@@ -496,18 +464,78 @@
 					str = "0" + str;
 				}
 				return str;
-			},
+			}
+		},
+		/**
+		 * @namespace pe.array
+		 */
+		array: {
 			/**
 			 * Eliminates duplicate strings in an array
-			 * @memberof pe.string
+			 * @memberof pe.sarray
 			 * @function
-			 * @param {array} Array of strings
-			 * @return {array} Array with duplicate strings removed
+			 * @param {array} arr Array of strings or primitives
+			 * @return {array} Array with duplicate strings or primitives removed
 			 */
 			noduplicates: function (arr) {
-				return $.grep(arr, function (el, index) {
-					return index === $.inArray(el, arr);
+				var i,
+					_ilen,
+					j,
+					out = [],
+					obj = {};
+				for (i = 0, _ilen = arr.length; i !== _ilen; i +=1) {
+					obj[arr[i]] = 0;
+				}
+				for (j in obj) {
+					if (obj.hasOwnProperty(j)) {
+						out.push(j);
+					} 
+				}
+				return out;
+			},
+			/**
+			 * Creates a new string array with the differences between two other string arrays
+			 * @memberof pe.array
+			 * @function
+			 * @param {array} arr1 Array of strings
+			 * @param {array} arr2 Array of strings
+			 * @return {array} Array with differences between arr1 and arr2
+			 */
+			diff: function (arr1, arr2) {
+				var i,
+					_ilen,
+					_iarr,
+					j,
+					_jlen,
+					match,
+					out = [];
+				for (i = 0, _ilen = arr1.length; i !== _ilen; i += 1) {
+					_iarr = arr1[i];
+					match = false;
+					for (j = 0, _jlen = arr2.length; j !== _jlen; j += 1) {
+						if (arr2[j] === _iarr) {
+							match = true;
+							break;
+						}
+					}
+					if (!match) {
+						out.push(_iarr);
+					}
+				}
+			},
+			/**
+			 * Returns the keys in an associative array
+			 * @memberof pe.array
+			 * @function
+			 * @param {object} obj The associative array
+			 * @return {array} Keys of the associative array
+			 */
+			keys: function (obj) {
+				var keys = [];
+				$.each(obj, function (key) {
+					keys.push(key);
 				});
+				return keys;
 			}
 		},
 		/**
@@ -613,20 +641,24 @@
 			// Prevent PE from loading if IE6 or ealier (unless overriden) or pedisable=true is in the query string or localStorage
 			var lsenabled = (typeof localStorage !== 'undefined'),
 				disablels = (lsenabled ? localStorage.getItem('pedisable') : null),
-				disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels);
+				disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels),
+				tphp = document.getElementById('wb-tphp'),
+				li = document.createElement('li');
 			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
 				$('html').addClass('no-js pe-disable');
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
 				}
-				$('#wb-tphp').append('<li><a href="?pedisable=false">' + pe.dic.get('%pe-enable') + '</a></li>'); // Add link to re-enable PE
+				li.innerHTML = '<a href="?pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
+				tphp.appendChild(li); // Add link to re-enable PE
 				return true;
 			} else if (disable === "false" || disablels !== null) {
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
 				}
 			}
-			$('#wb-tphp').append('<li><a href="?pedisable=true">' + pe.dic.get('%pe-disable') + '</a></li>'); // Add link to disable PE
+			li.innerHTML = '<a href="?pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
+			tphp.appendChild(li); // Add link to disable PE
 			return false;
 		},
 		/**
@@ -648,6 +680,7 @@
 					navurl,
 					navtext,
 					i,
+					_len,
 					pageurl = pe.url(window.location.href).removehash(),
 					bcurl = [],
 					bctext = [],
@@ -657,8 +690,9 @@
 				navclass = (typeof navclass === "undefined") ? 'nav-current' : navclass;
 				// Retrieve the path and link text for each breacrumb link
 				bcsrc.each(function (index) {
-					bcurl[index] = $(this).attr('href');
-					bctext[index] = $(this).text();
+					var $this = $(this);
+					bcurl[index] = $this.attr('href');
+					bctext[index] = $this.text();
 				});
 
 				$(menusrc.find('a').get().reverse()).each(function () {
@@ -666,7 +700,7 @@
 					navurl = navlink.attr('href');
 					navtext = navlink.text();
 					match = (navurl === pageurl);
-					for (i = 0; !match && i < bcurl.length; i += 1) {
+					for (i = 0, _len = bcurl.length; !match && i !== _len; i += 1) {
 						if (bcurl[i] !== "#" && (bcurl[i] === navurl || bctext[i] === navtext)) {
 							match = true;
 							break;
@@ -697,14 +731,15 @@
 					hlink,
 					nested,
 					menubar = (mbar !== undefined ? mbar : false),
-					expand = (expandall !== undefined ? expandall : false);
-				if (menuitems.first().is('ul')) {
+					expand = (expandall !== undefined ? expandall : false),
+					allText = pe.dic.get('%all');
+				if (menuitems.get(0).tagName.toLowerCase() === 'ul') {
 					menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
 				} else {
 					menuitems.each(function () {
 						var $this = $(this);
 						// If the menu item is a heading
-						if ($this.is('h' + hlevel)) {
+						if (this.tagName.toLowerCase() === 'h' + hlevel) {
 							hlink = $this.children('a');
 							subsection = $('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
 							// If the original menu item was in a menu bar
@@ -715,24 +750,26 @@
 								next = $this.next();
 							}
 
-							if (next.is('ul')) {
+							if (next.get(0).tagName.toLowerCase() === 'ul') {
 								// The original menu item was not in a menu bar
 								if (!menubar) {
-									next.append($('<li></li>').append($this.children('a').html(pe.dic.get('%all') + ' - ' + hlink.html())));
+									next.append($('<li></li>').append($this.children('a').html(allText + ' - ' + hlink.html())));
 								}
 								nested = next.find('li ul');
 								// If a nested list is detected
 								nested.each(function (index) {
-									var $this = $(this);
-									hlink = $this.prev('a');
+									var $this = $(this),
+										hlink_html;
 									if ((hlevel + 1 + index) < 7) {
 										// Make the nested list into a collapsible section
-										$this.attr('data-role', 'listview').attr('data-theme', theme).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '></div>');
-										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink.html() + '</h' + (hlevel + 1 + index) + '>');
-										$this.append('<li><a href="' + hlink.attr('href') + '">' + pe.dic.get('%all') + ' - ' + hlink.html() + '</a></li>');
+										hlink = $this.prev('a');
+										hlink_html = hlink.html();
+										$this.attr({'data-role':'listview', 'data-theme':theme}).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '></div>');
+										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink_html + '</h' + (hlevel + 1 + index) + '>');
+										$this.append('<li><a href="' + hlink.attr('href') + '">' + allText + ' - ' + hlink_html + '</a></li>');
 										hlink.remove();
 									} else {
-										$this.attr('data-role', 'listview').attr('data-theme', theme);
+										$this.attr({'data-role':'listview', 'data-theme':theme});
 									}
 								});
 								subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
@@ -742,12 +779,12 @@
 								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme, false, expand));
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
-									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(pe.dic.get('%all') + ' - ' + hlink.html()).attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(allText + ' - ' + hlink.html()).attr({'data-role':'button', 'data-theme':theme, 'data-icon':'arrow-r', 'data-iconpos':'right'}));
 								}
 							}
 							menu.append(subsection);
-						} else if ($this.is('div')) { // If the menu item is a div
-							menu.append($this.children('a').attr('data-role', 'button').attr('data-theme', theme).attr('data-icon', 'arrow-r').attr('data-iconpos', 'right'));
+						} else if (this.tagName.toLowerCase() === 'div') { // If the menu item is a div
+							menu.append($this.children('a').attr({'data-role':'button', 'data-theme':theme, 'data-icon':'arrow-r', 'data-iconpos':'right'}));
 						}
 					});
 					menu.children().wrapAll('<div data-role="collapsible-set" data-theme="' + theme + '"></div>');
@@ -780,13 +817,16 @@
 			 * @return {void}
 			 */
 			correctmobile: function (menusrc) {
-				$((typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc))).find('.ui-collapsible-set').each(function () {
+				var original = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc)),
+					parent = original.parent();
+				original.detach().find('.ui-collapsible-set').each(function () {
 					var $this = $(this);
 					if ($this.find('> ul .ui-collapsible').length > 0) {
 						$this = $this.children('ul');
 					}
 					$this.children().each(function () {
-						var $this = $(this), target = $this.is('a') ? $this : $this.find('a').first();
+						var $this = $(this), 
+							target = (this.tagName.toLowerCase() === 'a' ? $this : $this.find('a').first());
 						if ($this.prev().length > 0) {
 							target.removeClass('ui-corner-top');
 						} else {
@@ -799,6 +839,7 @@
 						}
 					});
 				});
+				original.appendTo(parent);
 			}
 		},
 		/**
@@ -823,49 +864,106 @@
 				}
 			},
 			/**
-			 * Polyfill script loader
+			 * Determines which polyfills need to be loaded then loads them if they don't have dependencies
+			 * Polyfills with dependencies are passed in the msg event's event.payload[0] and polyfills that need to be initalized are passed in event.payload[1]
 			 * @memberof pe.polyfills
-			 */
-			polyload: function (elms, polyname) {
-				var polyprefs = this.polyfill[polyname];
-				pe.add._load(typeof polyprefs.load !== "undefined" ? polyprefs.load : pe.add.liblocation + 'polyfills/' + polyname + pe.suffix + '.js');
-				elms.addClass('polyfill');
-			},
-			/**
-			 * Determines which post kill switch polyfills need to be loaded then loads them if they don't have dependencies
-			 * @memberof pe.polyfills
-			 * @param {array} deps Array of names of polyfills that plugins are dependent upon
+			 * @param {array} force Array of polyfills to force loading for if native support does not exist (because required by plugins to be loaded)
+			 * @param {string} msg Message to inclue in the event that is triggered when the non-dependency polyfills are loaded
 			 * @function
-			 * @return {object} Object containing names of polyfills with depencencies to be loaded later
 			 */
-			polycheckload: function (deps) {
-				var polyfills = this.polyfill, polydep = {},
-					// Get an array of supported polyfills that are not plugin dependencies
-					non_deps = $.grep($.map(polyfills, function(value, key) {return value.selector;}), function(n, i) {
-						return $.inArray(n, deps) === -1;
-					}),
+			polyload: function (force, msg, checkdom) {
+				var polyfills = this.polyfill,
+					polyname,
+					polyprefs,
+					elms,
+					polydep = {},
+					loadnow = [],
+					non_deps = [],
+					deps,
+					dep_paths,
+					dep_needed,
+					all_elms,
+					lib = pe.add.liblocation,
+					payload = [],
+					needsinit = [],
+					js = [],
+					i,
+					_len;
+
+				// Does the DOM need to be checked for elements to polyfill?
+				if (checkdom) {
+					// Get an array of selectors of supported polyfills that are not plugin dependencies
+					for (polyname in polyfills) {
+						if (polyfills.hasOwnProperty(polyname)) {
+							non_deps.push(polyfills[polyname].selector);
+						} 
+					}
 					// Find all elements that match the element selector
 					all_elms = $(non_deps.join(','));
+				} else {
+					all_elms = $();
+				}
+
 				// Process each polyfill
-				$.each(polyfills, function(polyname, polyprefs) {
-					var elms = all_elms.filter(polyprefs.selector),
-						supported;
-					// Check to see if the polyfill might be needed
-					if (elms.length > 0 || $.inArray(polyname, deps) > -1) {
-						supported = (typeof polyprefs.support_check === 'function' ? polyprefs.support_check() : polyprefs.support_check);
-						// Check to see if there is native support
-						if (!supported) {
-							if (typeof polyprefs.depends !== "undefined") {
-								// Polyfill is needed but has dependencies so load later
-								polydep[polyname] = [polyprefs.depends, elms];
-							} else {
-								// Polyfill is needed and has no dependencies so load now
-								pe.polyfills.polyload(elms, polyname);
+				for (polyname in polyfills) {
+					if (polyfills.hasOwnProperty(polyname)) {
+						polyprefs = polyfills[polyname];
+						elms = all_elms.length > 0 ? all_elms.filter(polyprefs.selector) : all_elms;
+						// Check to see if the polyfill might be needed
+						if (elms.length > 0 || $.inArray(polyname, force) > -1) {
+							if (typeof polyprefs.supported === 'undefined') { // Native support hasn't been checked yet
+								polyprefs.supported = (typeof polyprefs.support_check === 'function' ? polyprefs.support_check() : polyprefs.support_check);
+								// Check to see if there is native support
+								if (!polyprefs.supported) { // No native support
+									deps = polyprefs.depends;
+									if (typeof deps !== 'undefined') { // Polyfill has dependencies
+										// Check to see if dependencies are already loaded
+										dep_paths = pe.add.depends(deps);
+										dep_needed = [];
+										for (i = 0, _len = deps.length; i !== _len; i += 1) {
+											if ($.inArray(pe.add.staged, deps[i]) === -1) {
+												dep_needed.push(deps[i]);
+											}
+										}
+										if (dep_needed.length > 0) {
+											// Polyfill is needed but has unloaded dependencies so load later
+											polydep[polyname] = dep_needed;
+										} else {
+											// Polyfill is needed and all dependencies are loaded so load now
+											loadnow.push(polyname);
+										}
+									} else { // Polyfill has no dependencies
+										// Polyfill is needed and has no dependencies so load now
+										loadnow.push(polyname);
+									}
+									$('html').addClass('polyfill-' + polyname);
+									elms.addClass('polyfill'); // Add the 'polyfill' class to each element to be affected by the polyfill
+								} else { // Native support
+									$('html').addClass(polyname);
+								}
+							} else if (!polyprefs.supported && typeof polyprefs.loaded === 'undefined') { // No native support and polyfill hasn't been loaded yet
+								// Polyfill is needed and hasn't been loaded yet (any dependencies assumed to be taken care of already since at least second time through)
+								loadnow.push(polyname);
 							}
 						}
 					}
-				});
-				return polydep; // Return polyfills that have dependencies
+				}
+
+				for (i = 0, _len = loadnow.length; i !== _len; i += 1) {
+					polyprefs = polyfills[loadnow[i]];
+					js[js.length] = (typeof polyprefs.load !== "undefined" ? polyprefs.load : lib + 'polyfills/' + loadnow[i] + pe.suffix + '.js');
+					if (typeof polyprefs.init !== 'undefined') {
+						needsinit.push(loadnow[i]);
+					}
+					polyprefs.loaded = true;
+				}
+
+				// Push the polydep object and needsinit array into payload
+				payload.push(polydep);
+				payload.push(needsinit);
+
+				// Load the polyfill scripts
+				pe.add._load_arr(js, msg, payload);
 			},
 			/**
 			 * Details for each of the polyfills.
@@ -880,19 +978,26 @@
 					update: function (elms) {
 						elms.datalist();
 					},
+					/* Based on check from Modernizr 2.6.1 | MIT & BSD */
 					support_check: !!(document.createElement('datalist') && window.HTMLDataListElement)
 				},
 				'datepicker': {
 					selector: 'input[type="date"]',
-					depends: ['calendar', 'xregexp'],
+					depends: ['calendar', 'xregexp', 'outside'],
 					update: function (elms) {
 						elms.datepicker();
 					},
 					support_check: function () {
-						var el = document.createElement('input');
+						/* Based on check from Modernizr 2.6.1 | MIT & BSD */
+						var el = document.createElement('input'),
+							supported;
 						el.setAttribute('type', 'date');
 						el.value = ':)';
-						return el.value !== ':)';
+						el.style.cssText = 'position:absolute;visibility:hidden;';
+						document.body.appendChild(el);
+						supported = (el.value !== ':)');
+						document.body.removeChild(el);
+						return supported;
 					}
 				},
 				'detailssummary': {
@@ -901,6 +1006,7 @@
 						elms.details();
 					},
 					support_check: function () {
+						// By @mathias, based on http://mths.be/axh
 						var doc = document,
 							el = doc.createElement('details'),
 							fake,
@@ -935,6 +1041,11 @@
 						MathJax.Hub.Queue(["Typeset",MathJax.Hub,elms]);
 					},*/
 					support_check: function () {
+						// MathML
+						// http://www.w3.org/Math/
+						// By Addy Osmani
+						// Based on work by Davide (@dpvc) and David (@davidcarlisle)
+						// in https://github.com/mathjax/MathJax/issues/182
 						var hasMathML = false,
 							ns,
 							div,
@@ -959,7 +1070,32 @@
 					update: function (elms) {
 						elms.progress();
 					},
+					/* Based on check from Modernizr 2.6.1 | MIT & BSD */
 					support_check: document.createElement('progress').position !== undefined
+				},
+				'slider': {
+					selector: 'input[type="range"]',
+					depends: ['metadata'],
+					init: function () { // Needs to be initilized manually
+						fdSlider.onDomReady();
+					},
+					update: function () {
+						fdSlider.onDomReady();
+					},
+					support_check: function () {
+						/* Based on check from Modernizr 2.6.1 | MIT & BSD */
+						var el = document.createElement('input'),
+							defaultView,
+							bool;
+						el.setAttribute('type', 'range');
+						el.value = ':)';
+						el.style.cssText = 'position:absolute;visibility:hidden;';
+						document.body.appendChild(el);
+						defaultView = document.defaultView;
+						bool = el.style.WebkitAppearance !== undefined && defaultView.getComputedStyle && defaultView.getComputedStyle(el, null).WebkitAppearance !== 'textfield' && (el.offsetHeight !== 0);
+						document.body.removeChild(el);
+						return bool;
+					}
 				}
 			}
 		},
@@ -988,17 +1124,23 @@
 					var themecss = (wet_boew_theme !== null ? $('head link[rel="stylesheet"][href*="' + wet_boew_theme.theme + '"]') : "");
 					return themecss.length > 0 ? themecss.attr('href').substr(0, themecss.attr('href').lastIndexOf("/") + 1) : "theme-not-found/";
 				}()),
-				staged: [],
+				staged: [], // Tracks loaded dependencies and polyfills
 				/**
-				 * A loading algorthim borrowed from labjs. Thank you!
+				 * A loading algorithm borrowed from labjs. Thank you!
 				 * @memberof pe.add
 				 * @function
 				 * @param {string} js Path and filename of the javascript file to asynchronously load.
+				 * @param {string} message Message to include in the event triggered once load completed
 				 * @return {object} A reference to pe.add
 				 */
 				_load: function (js, message) {
 					var head = pe.add.head,
 						msg = (message !== undefined ? message : 'wet-boew-dependency-loaded');
+					// - lets prevent double loading of JavaScript files but still trigger an event indicating the file was loaded
+					if ($.inArray(js, this.staged) > -1) {
+						$(document).trigger({type: msg, js: js});
+						return this;
+					}
 					setTimeout(function timeout() {
 						if (typeof head.item !== "undefined") { // check if ref is still a live node list
 							if (!head[0]) { // append_to node not yet ready
@@ -1025,6 +1167,39 @@
 							head.insertBefore(scriptElem, head.firstChild);
 						}
 					}, 0);
+					this.staged[this.staged.length] = js;
+					return this;
+				},
+				/**
+				 * A loading algorithm for for multiple JavaScript files
+				 * @memberof pe.add
+				 * @function
+				 * @param {array} arr Array of paths and filenames of the javascript files to asynchronously load.
+				 * @param {string} message Message to include in the event triggered once all the loading is completed
+				 * @param {object} payload Optional. Object to include in the event when the loading is completed
+				 * @param {array} needsinit Optional. Names of scripts that need to be initialized manually (mainly used for polyfills)
+				 * @return {object} A reference to pe.add
+				 */
+				_load_arr: function (js, msg_all, payload) {
+					var js_loaded = 0, i, _len,
+						msg_single = msg_all + "-single";
+					$(document).on(msg_single, function () {
+						js_loaded += 1;
+						if (js_loaded === js.length) {
+							$(document).off(msg_single);
+							$(document).trigger({type: msg_all, payload: payload});
+						}
+					});
+					// Load each of the JavaScript files or trigger the completion event if there are none
+					if (js.length > 0) {
+						for (i = 0, _len = js.length; i < _len; i += 1) {
+							pe.add._load(js[i], msg_single);
+						}
+					} else {
+						$(document).off(msg_single);
+						$(document).trigger({type: msg_all, payload: payload});
+					}
+
 					return this;
 				},
 				/**
@@ -1109,100 +1284,112 @@
 		 * @todo pass an element as the context for the recursion.
 		 */
 		dance: function () {
-			var i,	
+			var i, _len,
 				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 				wetboew = $('[class^="wet-boew-"]'),
-				pcall = [],
+				pcalls = [],
+				pcall,
 				poly = [],
-				polydeps,
-				dep = [],
-				dep_loaded = 0;
+				dep = ['equalheights']; // Can remove 'equalheights' once non-JS alternative to 'equalize' is in place
 
-			// Push each of the "wet-boew-*" plugin calls into the pcall array
+			// Push each of the "wet-boew-*" plugin calls into the pcalls array
 			wetboew.each(function () {
 				var _node = $(this),
 					classes = _node.attr("class").split(" "),
-					_pcall = [];
-				for (i = 0; i < classes.length; i += 1) {
+					_pcalls = [];
+				for (i = 0, _len = classes.length; i !== _len; i += 1) {
 					if (classes[i].indexOf('wet-boew-') === 0) {
-						_pcall.push(classes[i].substr(9).toLowerCase()); // Push the plugin call into the local array
+						_pcalls.push(classes[i].substr(9).toLowerCase()); // Push the plugin call into the local array
 					}
 				}
-				_node.attr('data-load', _pcall.join(',')); // Add the plugins to load to data-load for loading later
-				pcall.push.apply(pcall, _pcall); // Push the plugin calls into the pcall array
+				_node.attr('data-load', _pcalls.join(',')); // Add the plugins to load to data-load for loading later
+				pcalls.push.apply(pcalls, _pcalls); // Push the plugin calls into the pcall array
 			});
 			
 			// Push each of the global plugin calls into the pcall array
 			if (settings) {
-				pcall.push(settings.globals);
+				pcalls.push(settings.globals);
 			}	
 
 			// Eliminate duplicate plugin calls
-			pcall = pe.string.noduplicates(pcall);
+			pcalls = pe.array.noduplicates(pcalls);
 
 			// Push each required polyfill and dependency into the poly and dep arrays
-			for (i = 0; i < pcall.length; i += 1) {
-				if (typeof pe.fn[pcall[i]] !== "undefined") {
-					if (typeof pe.fn[pcall[i]].polyfills !== "undefined") {
-						poly.push.apply(poly, pe.fn[pcall[i]].polyfills);
+			for (i = 0, _len = pcalls.length; i !== _len; i += 1) {
+				pcall = pcalls[i];
+				if (typeof pe.fn[pcall] !== "undefined") {
+					if (typeof pe.fn[pcall].polyfills !== "undefined") {
+						poly.push.apply(poly, pe.fn[pcall].polyfills);
 					}
-					if (typeof pe.fn[pcall[i]].depends !== "undefined") {
-						dep.push.apply(dep, pe.fn[pcall[i]].depends);
+					if (typeof pe.fn[pcall].depends !== "undefined") {
+						dep.push.apply(dep, pe.fn[pcall].depends);
 					}
 				}
 			}
-			
-			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)
-			polydeps = pe.polyfills.polycheckload(pe.string.noduplicates(poly));
 
-			// Push the polyfill dependencies into the dep array and an empty poly array
-			$.each(polydeps, function(polyname, polyparams) {
-				dep.push.apply(dep, polyparams[0]);
-			});
+			$(document).one('wb-polyinit-loaded', function (e) {
+				var polyfills = pe.polyfills.polyfill,
+					polydeps = e.payload[0],
+					polyinit = e.payload[1],
+					polydeps_load = [],
+					polyname;
+				// Initiate any polyfills that need to be initiated manually
+				for (i = 0, _len = polyinit.length; i !== _len; i += 1) {
+					polyfills[polyinit[i]].init();
+				}
 
-			$(document).on('wb-pcall-dep-loaded', function () {
-				dep_loaded += 1;
+				// Push the polyfill dependencies into the dep array and create a new array of polyfills to load
+				for (polyname in polydeps) {
+					if (polydeps.hasOwnProperty(polyname)) {
+						dep.push.apply(dep, polydeps[polyname]);
+						polydeps_load.push(polyname);
+					}
+				}
 
-				// Don't do anything until all the dependencies have loaded
-				if (dep_loaded === dep.length) {
-					// Load the polyfills with dependencies
-					$.each(polydeps, function(polyname, polyparams) {
-						pe.polyfills.polyload(polyparams[1], polyname);
-					});
+				$(document).one('wb-pcalldeps-loaded', function () {
+					$(document).one('wb-polydeps-loaded', function (e) {
+						// Initiate any polyfills that need to be initiated manually
+						polyinit = e.payload[1];
+						for (i = 0, _len = polyinit.length; i !== _len; i += 1) {
+							polyfills[polyinit[i]].init();
+						}
 
-					// Execute each of the node specific plugin calls
-					wetboew.each(function () {
-						var _node = $(this),
-							_fcall = _node.attr("data-load").split(","),
-							i;
-						for (i = 0; i < _fcall.length; i += 1) {
-							if (typeof pe.fn[_fcall[i]] !== "undefined") { // lets safeguard the execution to only functions we have
-								pe.fn[_fcall[i]]._exec(_node);
+						// Execute each of the node specific plugin calls
+						wetboew.each(function () {
+							var _node = $(this),
+								_fcall = _node.attr("data-load").split(",");
+							for (i = 0, _len = _fcall.length; i !== _len; i += 1) {
+								if (typeof pe.fn[_fcall[i]] !== "undefined") { // lets safeguard the execution to only functions we have
+									pe.fn[_fcall[i]]._exec(_node);
+								}
+							}
+						});
+
+						// Execute each of the global plugin calls
+						if (settings) {
+							for (i = 0, _len = settings.globals.length; i !== _len; i += 1) {
+								pe.fn[settings.globals[i]]._exec(document);
 							}
 						}
+
+						// TODO: find a better way to switch back and forth between mobile and desktop modes.
+						window.onresize = function () { 
+							if (pe.mobile !== pe.mobilecheck()) {
+								window.location.href = decodeURI(pe.url(window.location.href).removehash());
+							}
+						};
 					});
 
-					// Execute each of the global plugin calls
-					if (settings) {
-						for (i = 0; i < settings.globals.length; i += 1) {
-							pe.fn[settings.globals[i]]._exec(document);
-						}
-					}
+					// Load the polyfills with dependencies
+					pe.polyfills.polyload(polydeps_load, 'wb-polydeps-loaded', false);
+				});
 
-					// TODO: find a better way to switch back and forth between mobile and desktop modes.
-					window.onresize = function () { 
-						if (pe.mobile !== pe.mobilecheck()) {
-							window.location.href = decodeURI(pe.url(window.location.href).removehash());
-						}
-					};
-				}
+				// Load each of the dependencies (eliminating duplicates)
+				pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), "wb-pcalldeps-loaded");
 			});
-				
-			// Load each of the dependencies (eliminating duplicates)
-			dep = pe.add.depends(pe.string.noduplicates(dep));
-			for (i = 0; i < dep.length; i += 1) {
-				pe.add._load(dep[i], 'wb-pcall-dep-loaded');
-			}
+
+			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)
+			pe.polyfills.polyload(pe.array.noduplicates(poly), 'wb-polyinit-loaded', true);
 		}
 	};
 	/* window binding */

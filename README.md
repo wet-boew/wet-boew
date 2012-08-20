@@ -2,6 +2,8 @@
 
 [![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.png?branch=master)](http://travis-ci.org/wet-boew/wet-boew)
 
+**WET v3.0 to be released on September 17, 2012**
+
 Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities.  
 
 The toolkit complies with the new Standards on Web Accessibility and Web Usability; the toolkit will also ease compliance with the upcoming Standard Web Interoperability. WET is highly recommended for use on Government of Canada Websites.
@@ -46,6 +48,8 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 -------------------------------------------------------------------
 
 # Boîte à outils de l’expérience Web (BOEW)
+
+**Lancement de la version v3.0 de la BOEW est 17 septembre 2012**
 
 ## Vue d'ensemble
 

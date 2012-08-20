@@ -8,29 +8,35 @@
  * @author: Pierre Dubois
  *
  */
+/*global jQuery: false*/
 (function ($) {
-
-var _pe = window.pe || {
+	"use strict";
+	var _pe = window.pe || {
 		fn : {}
 	};
 
 $.extend($.expr[":"], {keycell:function (elem, i, match, array) {
-
+	var tblElem,
+		ElemNodeName,
+		tblparser = $(elem).data().tblparser,
+		keycell = tblparser.keycell,
+		ret, data, thRS, cell, row, groupZero,
+		j, _ilen, _jlen;
 	// query Example: $('table:eq(4):keycell').css('background-color', 'yellow');
 
 	// Is elem are a valid element for this selector ?
 	if (!$(elem).data().tblparser) {
 		// Get the table element
-		var tblElem = elem;
+		tblElem = elem;
 		
 		while (true) {
-			var ElemNodeName = tblElem.nodeName.toLowerCase();
+			ElemNodeName = tblElem.nodeName.toLowerCase();
 			if (ElemNodeName !== "table" && ElemNodeName !== "caption" &&
 				ElemNodeName !== "colgroup" && ElemNodeName !== "col" && 
 				ElemNodeName !== "thead" && ElemNodeName !== "tbody" && 
 				ElemNodeName !== "tfoot" && ElemNodeName !== "tr" && 
 				ElemNodeName !== "th" && ElemNodeName !== "td") {
-			
+
 				return false; // elem are not valid
 			}
 			
@@ -40,21 +46,19 @@ $.extend($.expr[":"], {keycell:function (elem, i, match, array) {
 			
 			// Get the parent
 			tblElem = $(tblElem).parent().get(0);
-			
 		}
 		
 		// Call the table parser before to filter the result
 		_pe.fn.parsertable._exec($(tblElem));
 	}
-	
+
 	switch (elem.nodeName.toLowerCase()) {
-	
+
 	case "table": // Matrix
 		// Return all the description cell
-		if ($(elem).data().tblparser.keycell) {
-			for (i = 0; i<$(elem).data().tblparser.keycell.length; i += 1) {
-
-				var ret = $(elem).data().tblparser.keycell[i].elem;
+		if (keycell) {
+			for (i = 0, _ilen = keycell.length; i < _ilen; i += 1) {
+				ret = keycell[i].elem;
 				array.push(ret);
 				ret.prevObject = elem;
 			}
@@ -65,19 +69,18 @@ $.extend($.expr[":"], {keycell:function (elem, i, match, array) {
 		// Question: Return the details element if any ?
 		break;
 	case "colgroup": // Group
-		
 		// return any description cell in the thead
-		var data = $(elem).data().tblparser;
-		for (i = 0; i<data.groupZero.theadRowStack.length; i += 1) {
-			
-			for (j = 0; j< data.groupZero.theadRowStack[i].cell.length; j += 1) {
-				var cell = data.groupZero.theadRowStack[i].cell[j];
-				
-				if ((cell.type === 5 || cell.descCell)  && cell.colpos >= data.start && (cell.colpos + cell.width -1) <= data.end) {
+		data = tblparser;
+		groupZero = data.groupZero;
+		for (i = 0, _ilen = groupZero.theadRowStack.length; i < _ilen; i += 1) {
+			thRS = groupZero.theadRowStack[i];
+			for (j = 0, _jlen = thRS.cell.length; j < _jlen; j += 1) {
+				cell = thRS.cell[j];
+				if ((cell.type === 5 || cell.descCell) && cell.colpos >= data.start && (cell.colpos + cell.width -1) <= data.end) {
 					if (cell.descCell) {
 						cell = cell.descCell;
 					}
-					var ret = cell.elem;
+					ret = cell.elem;
 					array.push(ret);
 					ret.prevObject = elem;
 				}
@@ -86,23 +89,18 @@ $.extend($.expr[":"], {keycell:function (elem, i, match, array) {
 		}
 		// return any description cell in the colgroup header if selected
 		if (data.start === 1) {
-			
-			for (i = 0; i<data.groupZero.row.length; i += 1) {
-			
-				for (j = 0; j< data.groupZero.row[i].cell.length; j += 1) {
-					var cell = data.groupZero.row[i].cell[j];
-					
+			for (i = 0, _ilen = groupZero.row.length; i < _ilen; i += 1) {
+				row = groupZero.row[i];
+				for (j = 0, _jlen = row.cell.length; j < _jlen; j += 1) {
+					cell = row.cell[j];
 					if (cell.type === 5 && cell.colpos >= data.start && (cell.colpos + cell.width -1) <= data.end) {
-						var ret = cell.elem;
+						ret = cell.elem;
 						array.push(ret);
 						ret.prevObject = elem;
 					}
 				}
-				
 			}
-			
 		}
-		
 		break;
 	case "col": // Vector
 		break;
@@ -116,29 +114,22 @@ $.extend($.expr[":"], {keycell:function (elem, i, match, array) {
 		// Return all the description cell for this row
 		break;
 	case "th": // Cell
-	
 		// Return the associative key cell
-		if ($(elem).data().tblparser.keycell) {
-			var ret = $(elem).data().tblparser.keycell.elem;
+		if (keycell) {
+			ret = keycell.elem;
 			array.push(ret);
 			ret.prevObject = elem;
 			$.fn.pushStack(ret, "parsertablekey", "");
 		}
 		return false;
-		
 	case "td": // Cell
-		
 		// Return true if this are a key cell otherwise false
-		if ($(elem).data().tblparser.type === 4) {
+		if (tblparser.type === 4) {
 			return true;
 		}
 		break;
-	
 	}
-
-
-
-	 return false;
+	return false;
 }});
 
 
@@ -193,9 +184,6 @@ The perpective for the computation/query search
 
 
 */
-
-
-
 
 
 /*
@@ -258,8 +246,6 @@ So there we have it - A custom selector that will filter out values whose length
 
  * 
  */
-
-
 	window.pe = _pe;
 	return _pe;
 }(jQuery));
