@@ -280,7 +280,8 @@
 					theadRSNext,
 					theadRSNextCell,
 					cell,
-					gzCol;
+					gzCol,
+					theadRS;
 
 				if (groupZero.colgrouphead || rowgroupheadercalled) {
 					return; // Prevent multiple call
