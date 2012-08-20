@@ -195,7 +195,7 @@
 		 */
 		mobile: false,
 		mobilecheck: function () {
-			return (pe.mobileview && window.innerWidth < 768 && !(pe.ie > 0 && pe.ie < 9));
+			return (pe.mobileview && window.innerWidth < 768 && (window.outerWidth - window.innerWidth < 50) && !(pe.ie > 0 && pe.ie < 9));
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -1290,7 +1290,7 @@
 				pcalls = [],
 				pcall,
 				poly = [],
-				dep = ['equalheights']; // Can remove 'equalheights' once non-JS alternative to 'equalize' is in place
+				dep = ['resize', 'equalheights']; // Can remove 'equalheights' once non-JS alternative to 'equalize' is in place
 
 			// Push each of the "wet-boew-*" plugin calls into the pcalls array
 			wetboew.each(function () {
