@@ -27,7 +27,7 @@
 			*
 			*/
 			function addHighlight(searchCriteria, target) {
-				var arrSearchCriteria, newText, i;
+				var arrSearchCriteria, newText, i, _ilen;
 				searchCriteria = searchCriteria.replace(/^\s+|\s+$/g, '');
 				searchCriteria = searchCriteria.replace(/\|+/g, ''); // don't let them use the | symbol
 				// --------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@
 				arrSearchCriteria = searchCriteria.split('+');
 				if (arrSearchCriteria.length > 0) {
 					searchCriteria = '';
-					for (i = 0; i < arrSearchCriteria.length; i += 1) {
+					for (i = 0, _ilen = arrSearchCriteria.length; i < _ilen; i += 1) {
 						searchCriteria += arrSearchCriteria[i] + " ";
 					}
 					searchCriteria = searchCriteria.replace(/^\s+|\s+$|\"|\(|\)/g, '');

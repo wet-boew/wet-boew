@@ -10,18 +10,21 @@
  */
 /*global jQuery: false, array: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
 
 	$.extend($.expr[":"], {col: function (elem, i, match, array) {
 		var tblElem,
-			ElemNodeName;
+			ElemNodeName,
+			tblparser = $(elem).data().tblparser,
+			_ilen;
 
 		// query Example: $('table:eq(4):keycell').css('background-color', 'yellow');
 
 		// Is elem are a valid element for this selector ?
-		if (!$(elem).data().tblparser) {
+		if (!tblparser) {
 			// Get the table element
 			tblElem = elem;
 
@@ -53,8 +56,8 @@
 		case "caption": // Cell
 			break;
 		case "colgroup": // Group
-			for (i = 0; i < $(elem).data().tblparser.col.length; i += 1) {
-				array.push($(elem).data().tblparser.col[i].elem);
+			for (i = 0, _ilen = tblparser.col.length; i < _ilen; i += 1) {
+				array.push(tblparser.col[i].elem);
 			}
 			break;
 		case "col": // Vector
@@ -68,16 +71,16 @@
 		case "tr": // Vector
 			break;
 		case "th": // Cell
-			if ($(elem).data().tblparser.type !== 1) {
+			if (tblparser.type !== 1) {
 				return false;
 			}
-			if ($(elem).data().tblparser.scope === "col") {
+			if (tblparser.scope === "col") {
 				return true;
 			}
 			break;
 		case "td": // Cell
-			if ($(elem).data().tblparser.col.elem) {
-				array.push($(elem).data().tblparser.col.elem);
+			if (tblparser.col.elem) {
+				array.push(tblparser.col.elem);
 			}
 			return false;
 		}
@@ -90,9 +93,10 @@
 			tblElem,
 			ElemNodeName,
 			stack,
-			i;
+			i, _ilen,
+			tblparser = $(obj).data().tblparser;
 
-		if (!$(obj).data().tblparser) {
+		if (!tblparser) {
 			// Get the table element
 			tblElem = obj;
 
@@ -127,8 +131,8 @@
 			return $();
 		case "colgroup": // Group
 			stack = [];
-			for (i = 0; i < $(obj).data().tblparser.col.length; i += 1) {
-				stack.push($(obj).data().tblparser.col[i].elem);
+			for (i = 0, _ilen = tblparser.col.length; i < _ilen; i += 1) {
+				stack.push(tblparser.col[i].elem);
 			}
 			return $(stack);
 		case "col": // Vector
@@ -142,23 +146,23 @@
 		case "tr": // Vector
 			break;
 		case "th": // Cell
-			if ($(obj).data().tblparser.type !== 1) {
+			if (tblparser.type !== 1) {
 				return $();
 			}
-			if ($(obj).data().tblparser.scope === "col") {
+			if (tblparser.scope === "col") {
 				return obj;
 			}
 			break;
 		case "td": // Cell
-			if ($(obj).data().tblparser.col.elem) {
+			if (tblparser.col.elem) {
 				stack = [];
-				stack.push($(obj).data().tblparser.col.elem);
+				stack.push(tblparser.col.elem);
 				return $(stack);
 			}
 			break;
 			// array.push($(elem).data().tblparser.row.elem);
 
-			// var ret = $($(obj).data().tblparser.row.elem);
+			// var ret = $(tblparser.row.elem);
 			// ret.prevObject = obj;
 			// return this.pushStack(ret, "row", "");
 

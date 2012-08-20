@@ -10,6 +10,7 @@
  */
 /*global jQuery: false, array: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
@@ -17,12 +18,13 @@
 	$.extend($.expr[":"], {cell: function (elem, i, match, array) {
 		var tblElem,
 			ElemNodeName,
-			j;
+			j, _ilen, _jlen, col,
+			tblparser = $(elem).data().tblparser;
 
 		// query Example: $('table:eq(4):keycell').css('background-color', 'yellow');
 
 		// Is elem are a valid element for this selector ?
-		if (!$(elem).data().tblparser) {
+		if (!tblparser) {
 			// Get the table element
 			tblElem = elem;
 
@@ -55,16 +57,17 @@
 		case "caption": // Cell
 			break;
 		case "colgroup": // Group
-			for (i = 0; i < $(elem).data().tblparser.col.length; i += 1) {
-				for (j = 0; j < $(elem).data().tblparser.col[i].cell.length; j += 1) {
-					array.push($(elem).data().tblparser.col[i].cell[j].elem);
+			for (i = 0, _ilen = tblparser.col.length; i < _ilen; i += 1) {
+				col = tblparser.col[i];
+				for (j = 0, _jlen = col.cell.length; j < _jlen; j += 1) {
+					array.push(col.cell[j].elem);
 				}
 			}
 
 			return false;
 		case "col": // Vector
-			for (i = 0; i < $(elem).data().tblparser.cell.length; i += 1) {
-				array.push($(elem).data().tblparser.cell[i].elem);
+			for (i = 0, _ilen = tblparser.cell.length; i < _ilen; i += 1) {
+				array.push(tblparser.cell[i].elem);
 			}
 			return false;
 		case "thead": // Group
@@ -74,8 +77,8 @@
 		case "tfoot": // Group
 			break;
 		case "tr": // Vector
-			for (i = 0; i < $(elem).data().tblparser.cell.length; i += 1) {
-				array.push($(elem).data().tblparser.cell[i].elem);
+			for (i = 0, _ilen = tblparser.cell.length; i < _ilen; i += 1) {
+				array.push(tblparser.cell[i].elem);
 			}
 			return false;
 		case "th": // Cell
@@ -94,11 +97,13 @@
 			objDOM = (elem ? $(elem) : this).get(0),
 			tblElem,
 			ElemNodeName,
-			i,
-			j,
-			stack;
+			i, _ilen,
+			j, _jlen,
+			col,
+			stack,
+			tblparser = $(obj).data().tblparser;
 
-		if (!$(obj).data().tblparser) {
+		if (!tblparser) {
 			// Get the table element
 			tblElem = obj;
 
@@ -133,16 +138,17 @@
 			// A Caption can not have any key cell
 			return $();
 		case "colgroup": // Group
-			for (i = 0; i < $(obj).data().tblparser.col.length; i += 1) {
-				for (j = 0; j < $(obj).data().tblparser.col[i].cell.length; j += 1) {
-					array.push($(obj).data().tblparser.col[i].cell[j].elem);
+			for (i = 0, _ilen = tblparser.col.length; i < _ilen; i += 1) {
+				col = tblparser.col[i];
+				for (j = 0, _jlen = col.cell.length; j < _jlen; j += 1) {
+					array.push(col.cell[j].elem);
 				}
 			}
 			break;
 		case "col": // Vector
 			stack = [];
-			for (i = 0; i < $(obj).data().tblparser.cell.length; i += 1) {
-				stack.push($(obj).data().tblparser.cell[i].elem);
+			for (i = 0, _ilen = tblparser.cell.length; i < _ilen; i += 1) {
+				stack.push(tblparser.cell[i].elem);
 			}
 			return $(stack);
 		case "thead": // Group
@@ -153,8 +159,8 @@
 			break;
 		case "tr": // Vector
 			stack = [];
-			for (i = 0; i < $(obj).data().tblparser.cell.length; i += 1) {
-				stack.push($(obj).data().tblparser.cell[i].elem);
+			for (i = 0, _ilen = tblparser.cell.length; i < _ilen; i += 1) {
+				stack.push(tblparser.cell[i].elem);
 			}
 			return $(stack);
 		case "th": // Cell

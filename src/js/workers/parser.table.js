@@ -190,6 +190,7 @@
 					colgroupspan = 0,
 					width,
 					i,
+					_ilen,
 					col;
 				colgroup.elem = elem;
 				if (elem) {
@@ -240,7 +241,7 @@
 					}
 					colgroupspan += width;
 					// Create virtual column 
-					for (i = colgroup.start; i < (colgroup.start + colgroupspan); i += 1) {
+					for (i = colgroup.start, _ilen = (colgroup.start + colgroupspan); i < _ilen; i += 1) {
 						col = {
 							start: 0,
 							end: 0,
@@ -260,10 +261,12 @@
 				colgroupFrame.push(colgroup);
 			}
 			function processRowgroupHeader(colgroupHeaderColEnd) { // thead row group processing
-				var i,
-					j,
-					m,
+				var i, _ilen,
+					j, _jlen,
+					m, _mlen,
 					tmpStack = [],
+					tmpStackCurr,
+					tmpStackCell,
 					dataColgroup,
 					dataColumns,
 					colgroup,
@@ -273,7 +276,11 @@
 					currColPos,
 					currColgroupStructure,
 					colFrmId,
-					bigTotalColgroupFound;
+					bigTotalColgroupFound,
+					theadRSNext,
+					theadRSNextCell,
+					cell,
+					gzCol;
 
 				if (groupZero.colgrouphead || rowgroupheadercalled) {
 					return; // Prevent multiple call
@@ -293,81 +300,86 @@
 				// console.log('Call ProcessRowGroupHeader');
 
 				// Associate any descriptive cell to his top header
-				for (i = 0; i < theadRowStack.length; i += 1) {
-					if (!theadRowStack[i].type) {
-						theadRowStack[i].type = 1;
+				for (i = 0, _ilen = theadRowStack.length; i < _ilen; i += 1) {
+					theadRS = theadRowStack[i];
+					if (!theadRS.type) {
+						theadRS.type = 1;
 					}
 
-					for (j = 0; j < theadRowStack[i].cell.length; j += 1) {
-						theadRowStack[i].cell[j].scope = "col";
+					for (j = 0, _jlen = theadRS.cell.length; j < _jlen; j += 1) {
+						cell = theadRowStack[i].cell[j];
+						cell.scope = "col";
 
 						// check if we have a layout cell at the top, left
-						if (i === 0 && j === 0 && $(theadRowStack[i].cell[j].elem).html().length === 0) {
+						if (i === 0 && j === 0 && $(cell.elem).html().length === 0) {
 							// That is a layout cell
-							theadRowStack[i].cell[j].type = 6; // Layout cell
+							cell.type = 6; // Layout cell
 							if (!groupZero.layoutCell) {
 								groupZero.layoutCell = [];
 							}
-							groupZero.layoutCell.push(theadRowStack[i].cell[j]);
+							groupZero.layoutCell.push(cell);
 
-							j = theadRowStack[i].cell[j].width - 1;
-							if (j >= theadRowStack[i].cell.length) {
+							j = cell.width - 1;
+							if (j >= _jlen) {
 								break;
 							}
 						}
 
-						// Check the next row to see if they have a corresponding description cell					
-						if (!theadRowStack[i].cell[j].descCell &&
-								theadRowStack[i].cell[j].elem.nodeName.toLowerCase() === 'th' &&
-								!theadRowStack[i].cell[j].type &&
-								theadRowStack[i + 1] &&
-								theadRowStack[i + 1].uid !== theadRowStack[i].cell[j].uid &&
-								!theadRowStack[i + 1].cell[j].type &&
-								theadRowStack[i + 1].cell[j].elem.nodeName.toLowerCase() === 'td' &&
-								theadRowStack[i + 1].cell[j].width === theadRowStack[i].cell[j].width &&
-								theadRowStack[i + 1].cell[j].height === 1) {
+						// Check the next row to see if they have a corresponding description cell
+						theadRSNext = theadRowStack[i + 1];
+						theadRSNextCell = (theadRSNext ? theadRSNext.cell[j] : "");
+						if (!cell.descCell &&
+								cell.elem.nodeName.toLowerCase() === 'th' &&
+								!cell.type &&
+								theadRSNext &&
+								theadRSNext.uid !== cell.uid &&
+								!theadRSNextCell.type &&
+								theadRSNextCell.elem.nodeName.toLowerCase() === 'td' &&
+								theadRSNextCell.width === cell.width &&
+								theadRSNextCell.height === 1) {
 
-							theadRowStack[i + 1].type = 5; // Mark the next row as a row description
-							theadRowStack[i + 1].cell[j].type = 5; // Mark the cell as a cell description
-							theadRowStack[i + 1].cell[j].row = theadRowStack[i + 1];
-							theadRowStack[i].cell[j].descCell = theadRowStack[i + 1].cell[j];
+							theadRSNext.type = 5; // Mark the next row as a row description
+							theadRSNextCell.type = 5; // Mark the cell as a cell description
+							theadRSNextCell.row = theadRS;
+							cell.descCell = cell;
 
 							// Add the description cell to the complete listing
 							if (!groupZero.desccell) {
 								groupZero.desccell = [];
 							}
-							groupZero.desccell.push(theadRowStack[i + 1].cell[j]);
+							groupZero.desccell.push(theadRSNextCell);
 
-							j = theadRowStack[i].cell[j].width - 1;
-							if (j >= theadRowStack[i].cell.length) {
+							j = cell.width - 1;
+							if (j >= _jlen) {
 								break;
 							}
 						}
 
-						if (!theadRowStack[i].cell[j].type) {
-							theadRowStack[i].cell[j].type = 1;
+						if (!cell.type) {
+							cell.type = 1;
 						}
 					}
 				}
 
 				// Clean the theadRowStack by removing any descriptive row
-				for (i = 0; i < theadRowStack.length; i += 1) {
-					if (theadRowStack[i].type === 5) {
-
+				for (i = 0, _ilen = theadRowStack.length; i < _ilen; i += 1) {
+					theadRS = theadRowStack[i];
+					if (theadRS.type === 5) {
 						// Check if all the cell in it are set to the type 5
-						for (j = 0; j < theadRowStack[i].cell.length; j += 1) {
-							if (theadRowStack[i].cell[j].type !== 5 && theadRowStack[i].cell[j].type !== 6 && theadRowStack[i].cell[j].height === 1) {
-								errorTrigger(4, ' You have an invalid cell inside a row description', theadRowStack[i].cell[j].elem);
+						for (j = 0, _jlen = theadRS.cell.length; j < _jlen; j += 1) {
+							cell = theadRS.cell[j];
+							if (cell.type !== 5 && cell.type !== 6 && cell.height === 1) {
+								errorTrigger(4, ' You have an invalid cell inside a row description', cell.elem);
 							}
 
 							// Check the row before and modify their height value
-							if (theadRowStack[i].cell[j].uid === theadRowStack[i - 1].cell[j].uid) {
-								theadRowStack[i].cell[j].height -= 1;
+							if (cell.uid === theadRowStack[i - 1].cell[j].uid) {
+								cell.height -= 1;
 							}
 						}
 						groupZero.nbDescriptionRow += 1;
 					} else {
-						tmpStack.push(theadRowStack[i]);
+						tmpStack.push(theadRS);
 					}
 				}
 				groupZero.colgrp = []; // Array based on level as indexes for columns and group headers
@@ -398,7 +410,7 @@
 
 					// Create the column
 					// Create virtual column 
-					for (i = colgroup.start; i <= colgroup.end; i += 1) {
+					for (i = colgroup.start, _ilen = colgroup.end; i <= _ilen; i += 1) {
 						col = {
 							start: 0,
 							end: 0,
@@ -446,7 +458,7 @@
 
 						// Create the column
 						// Create virtual column 
-						for (i = hcolgroup.start; i <= hcolgroup.end; i += 1) {
+						for (i = hcolgroup.start, _ilen = hcolgroup.end; i <= _ilen; i += 1) {
 							col = {
 								start: 0,
 								end: 0,
@@ -470,7 +482,7 @@
 							columnFrame.push(col);
 						}
 
-						for (i = 0; i < dataColumns.length; i += 1) {
+						for (i = 0, _ilen = dataColumns.length; i < _ilen; i += 1) {
 							groupZero.col.push(dataColumns[i]);
 						}
 					}
@@ -481,11 +493,12 @@
 					}
 
 					// Set the header for each column
-					for (i = 0; i < groupZero.col.length; i += 1) {
-						groupZero.col[i].header = [];
-						for (j = 0; j < tmpStack.length; j += 1) {
-							for (m = groupZero.col[i].start; m <= groupZero.col[i].end; m += 1) {
-								groupZero.col[i].header.push(tmpStack[j].cell[m - 1]);
+					for (i = 0, _ilen = groupZero.col.length; i < _ilen; i += 1) {
+						gzCol = groupZero.col[i];
+						gzCol.header = [];
+						for (j = 0, _jlen = tmpStack.length; j < _jlen; j += 1) {
+							for (m = gzCol.start, _mlen = gzCol.end; m <= _mlen; m += 1) {
+								gzCol.header.push(tmpStack[j].cell[m - 1]);
 							}
 						}
 					}
@@ -550,8 +563,9 @@
 						groupLevel = undefined;
 
 						// Get the colgroup level
-						for (i = 0; i < tmpStack.length; i += 1) {
-							if ((tmpStack[i].cell[curColgroupFrame.end - 1].colpos + tmpStack[i].cell[curColgroupFrame.end - 1].width - 1) === curColgroupFrame.end && (tmpStack[i].cell[curColgroupFrame.end - 1].colpos >= curColgroupFrame.start)) {
+						for (i = 0, _ilen = tmpStack.length; i < _ilen; i += 1) {
+							tmpStackCell = tmpStack[i].cell[curColgroupFrame.end - 1];
+							if ((tmpStackCell.colpos + tmpStackCell.width - 1) === curColgroupFrame.end && (tmpStackCell.colpos >= curColgroupFrame.start)) {
 								if (!groupLevel || groupLevel > (i + 1)) {
 									groupLevel = (i + 1); // would equal at the current data cell level. The lowest row level win
 								}
@@ -564,10 +578,12 @@
 						}
 
 						// All the cells at higher level (Bellow the group level found) of witch one found, need to be inside the colgroup
-						for (i = (groupLevel - 1); i < tmpStack.length; i += 1) {
+						for (i = (groupLevel - 1), _ilen = tmpStack.length; i < _ilen; i += 1) {
+							tmpStackCurr = tmpStack[i];
 							// Test each cell in that group
-							for (j = curColgroupFrame.start - 1; j < curColgroupFrame.end; j += 1) {
-								if (tmpStack[i].cell[j].colpos < curColgroupFrame.start || (tmpStack[i].cell[j].colpos + tmpStack[i].cell[j].width - 1) > curColgroupFrame.end) {
+							for (j = curColgroupFrame.start - 1, _jlen = curColgroupFrame.end; j < _jlen; j += 1) {
+								tmpStackCell = tmpStackCurr.cell[j];
+								if (tmpStackCell.colpos < curColgroupFrame.start || (tmpStackCell.colpos + tmpStackCell.width - 1) > curColgroupFrame.end) {
 									errorTrigger(9, "Error in you header row group, there are cell that are crossing more than one colgroup under the level:" + groupLevel);
 									return;
 								}
@@ -576,18 +592,18 @@
 
 
 						// Add virtual colgroup Based on the top header
-						for (i = currColgroupStructure.length; i < (groupLevel - 1); i += 1) {
-
+						for (i = currColgroupStructure.length, _ilen = (groupLevel - 1); i < _ilen; i += 1) {
+							tmpStackCell = tmpStack[i].cell[curColgroupFrame.start - 1];
 							// Use the top cell at level minus 1, that cell must be larger 
-							if (tmpStack[i].cell[curColgroupFrame.start - 1].uid !== tmpStack[i].cell[curColgroupFrame.end - 1].uid ||
-									tmpStack[i].cell[curColgroupFrame.start - 1].colpos > curColgroupFrame.start ||
-									tmpStack[i].cell[curColgroupFrame.start - 1].colpos + tmpStack[i].cell[curColgroupFrame.start - 1].width - 1 < curColgroupFrame.end) {
+							if (tmpStackCell.uid !== tmpStack[i].cell[curColgroupFrame.end - 1].uid ||
+									tmpStackCell.colpos > curColgroupFrame.start ||
+									tmpStackCell.colpos + tmpStackCell.width - 1 < curColgroupFrame.end) {
 								errorTrigger(10, "The cell used to represent the data at level: " + (groupLevel - 1) + " must encapsulate his group and be the same");
 								return;
 							}
 
 							// Convert the header in a group header cell
-							cgrp = tmpStack[i].cell[curColgroupFrame.start - 1];
+							cgrp = tmpStackCell;
 							cgrp.level = (i + 1);
 
 							cgrp.start = cgrp.colpos;
