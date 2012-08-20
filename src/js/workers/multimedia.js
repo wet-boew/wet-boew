@@ -113,19 +113,13 @@
 				$.extend(elm.get(0), {object: media.get(0)}, _pe.fn.multimedia._intf);
 				media.before($('<button class="wet-boew-multimedia-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)));
 				media.after(_pe.fn.multimedia._get_ui(media_id));
+				if ($('html').hasClass('polyfill-progress')) {
+					elm.find('progress').progress();
+				}
 
 				//Scale the UI when the video scales
-				$(window).on('resize', {'media' : media, width : width, height : height}, function (e) {
-					var height;
-					if (e.data.media.width() > 0) {
-						height = e.data.media.width() * e.data.height / e.data.width;
-						/*e.data.media.height();*/
-					} else {
-						height = e.data.media.parent().width() * e.data.height / e.data.width;
-						/*e.data.media.attr('height', );*/
-					}
-					e.data.media.height(height);
-					e.data.media.parent().find('.wet-boew-multimedia-overlay').height(height);
+				$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
+					e.data.media.height(e.data.media.parent().width() * e.data.ratio);
 				});
 				$(window).trigger('resize');
 
@@ -151,7 +145,7 @@
 						this.setMuted(!this.getMuted());
 					}
 
-					if ($target.is('progress')) {
+					if ($target.is('progress') || $target.hasClass('progress-frame') || $target.hasClass('progress-bar')) {
 						p = (e.pageX - $target.offset().left) / $target.width();
 						this.setCurrentTime(this.getDuration() * p);
 					}
@@ -260,7 +254,6 @@
 					_pe.fn.multimedia._load_captions(media, evtmgr, captions);
 				}
 			}
-
 
 			return elm;
 		}, // end of exec
@@ -406,6 +399,7 @@
 				var parts,
 					s = 0,
 					p,
+					_plen,
 					v;
 
 				if (string !== undefined) {
@@ -415,7 +409,7 @@
 					} else {
 						//clock time
 						parts = string.split(':').reverse();
-						for (p = 0; p < parts.length; p += 1) {
+						for (p = 0, _plen = parts.length; p < _plen; p += 1) {
 							v = (p === 0) ? parseFloat(parts[p]) : parseInt(parts[p], 10);
 							s += v * Math.pow(60, p);
 						}
@@ -550,9 +544,9 @@
 		},
 
 		_update_captions : function (area, seconds, captions) {
-			var c, caption;
+			var c, _clen, caption;
 			area.empty();
-			for (c = 0; c < captions.length; c += 1) {
+			for (c = 0, _clen = captions.length; c < _clen; c += 1) {
 				caption = captions[c];
 				if (seconds >= caption.begin && seconds <= caption.end) {
 					area.append($('<div>' + caption.text + '</div>'));

@@ -1,6 +1,6 @@
 @echo off
 :addPath pathVar /B
-::
+::  Taken from StackOverflow answer http://stackoverflow.com/a/8046515/455535
 ::  Safely appends the path contained within variable pathVar to the end
 ::  of PATH if and only if the path does not already exist within PATH.
 ::

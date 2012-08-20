@@ -22,12 +22,16 @@
 					overrides,
 					pre = $('body').find('pre'),
 					classes = elm.attr('class').split(' '),
-					i;
+					i,
+					_ilen,
+					currClass,
+					lib = pe.add.liblocation;
 
 				// Load language extensions as needed (called by adding lang-* in class, e.g., lang-css)
-				for (i = 0; i < classes.length; i += 1) {
-					if (classes[i].length < 12 && classes[i].indexOf('lang-') === 0) {
-						pe.add._load([pe.add.liblocation + 'dependencies/prettify/' + classes[i] + pe.suffix + '.js']);
+				for (i = 0, _ilen = classes.length; i < _ilen; i += 1) {
+					currClass = classes[i];
+					if (currClass.length < 12 && currClass.indexOf('lang-') === 0) {
+						pe.add._load([lib + 'dependencies/prettify/' + currClass + pe.suffix + '.js']);
 					}
 				}
 
