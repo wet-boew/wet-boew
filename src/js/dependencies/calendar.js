@@ -19,7 +19,7 @@
 				monthNav,
 				days,
 				daysList;
-	
+
 			container.addClass("cal-container");
 			container.removeClass("cal-container-extended");
 
@@ -67,11 +67,6 @@
 				monthNav = _pe.fn.calendar.createMonthNav(containerid, year, month, minDate, maxDate);
 				if ($("#cal-" + containerid + "-monthnav").length < 1) {
 					calHeader.append(monthNav);
-				}
-
-				if (container.children("div#cal-" + containerid + "-cnt").children(".cal-header").children(".cal-goto").length < 1) {
-					//Create the go to form
-					calHeader.append(_pe.fn.calendar.createGoToForm(containerid, year, month, minDate, maxDate));
 				}
 			}
 			objCalendar.append(calHeader);
@@ -121,6 +116,10 @@
 					}
 					break;
 				case 1:
+					if ($('#' + calendarid).children("div#cal-" + calendarid + "-cnt").children(".cal-header").find(".cal-goto").length < 1) {
+						//Create the go to form
+						monthNav.append(_pe.fn.calendar.createGoToForm(calendarid, year, month, minDate, maxDate));
+					}
 					suffix = "nextmonth";
 					titleSuffix = pe.dic.get('%calendar-nextMonth');
 					if (month < 11) {
@@ -145,14 +144,18 @@
 					alt = titleSuffix + pe.dic.get('%calendar-monthNames')[newMonth] + " " + newYear;
 
 					if (btnCtn) {
-						btn = btnCtn.children("a");
-						btn.children("img").attr("alt", alt).unbind();
+						btn = btnCtn.children("a").unbind();
+						btn.children("img").attr("alt", alt);
 					} else {
 						btnCtn = $('<div class="cal-' + suffix + '"></div>');
 						btn = $('<a href="javascript:;" role="button"><img src="' + pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.gif" alt="' + alt + '" /></a>');
 
 						btnCtn.append(btn);
-						monthNav.append(btnCtn);
+						if (n === 0) {
+							monthNav.prepend(btnCtn);
+						} else {
+							monthNav.append(btnCtn);
+						}
 					}
 					btn.bind('click', {calID: calendarid, year: newYear, month : newMonth, mindate: _pe.fn.calendar.getISOStringFromDate(minDate), maxdate: _pe.fn.calendar.getISOStringFromDate(maxDate)}, _pe.fn.calendar.buttonClick);
 				} else {
@@ -164,8 +167,16 @@
 			return monthNav;
 		},
 		buttonClick : function (event) {
+			var ctn = $(this).parent().parent(),
+				btnClass = $(this).parent().attr('class');
+
 			_pe.fn.calendar.create(event.data.calID, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
-			pe.focus($(this));
+
+			/* if (ctn.find('.' + btnClass).length < 1) {
+				pe.focus(ctn.find('.cal-goto-link a'));
+			} else {
+				pe.focus(ctn.find('.' + btnClass + ' a'));
+			} */
 		},
 		yearChanged : function (event) {
 			var year = $(this).val(),
@@ -203,7 +214,8 @@
 				fieldset,
 				yearContainer,
 				yearField,
-				y, _ylen,
+				y,
+				_ylen,
 				monthContainer,
 				monthField,
 				buttonContainer,
