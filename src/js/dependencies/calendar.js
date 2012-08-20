@@ -172,11 +172,11 @@
 
 			_pe.fn.calendar.create(event.data.calID, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
 
-			/* if (ctn.find('.' + btnClass).length < 1) {
+			if (ctn.find('.' + btnClass).length < 1) {
 				pe.focus(ctn.find('.cal-goto-link a'));
 			} else {
 				pe.focus(ctn.find('.' + btnClass + ' a'));
-			} */
+			}
 		},
 		yearChanged : function (event) {
 			var year = $(this).val(),
