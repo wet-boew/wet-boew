@@ -374,15 +374,18 @@ a{
 		li:first-child.mb-active{
 			border-left:1px solid #CCC;
 		}
+		a{
+			padding:0.45em 1.17em 0.45em 0.79em;
+		}
 		.nav-current{
 			background:#0f315b url(../images/menu-border.gif) repeat-x scroll 0 0;
 		}
 		.expandicon{
-			padding-right:10px;
+			padding-right:0.79em;
 			background:url(../images/menu-arrow.gif) no-repeat right center;
 		}
 		.mb-has-sm{
-			padding-right:5px;
+			padding-right:0.38em;
 		}
 		.mb-sm-open {
 			border-bottom:4px solid #0F315B;

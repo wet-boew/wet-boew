@@ -62,7 +62,7 @@
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : "").addClass(pe.touchscreen ? 'touchscreen' : '');
 
-			hlinks = pe.main.find("a[href*='#']");
+			hlinks = pe.main.find("a").filter("[href*='#']");
 			hlinks_other = hlinks.filter(":not([href^='#'])"); // Other page links with hashes
 			hlinks_same = hlinks.filter("[href^='#']"); // Same page links with hashes
 
