@@ -19,7 +19,7 @@
 				monthNav,
 				days,
 				daysList;
-
+	
 			container.addClass("cal-container");
 			container.removeClass("cal-container-extended");
 
