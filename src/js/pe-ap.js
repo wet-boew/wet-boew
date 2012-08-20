@@ -817,7 +817,9 @@
 			 * @return {void}
 			 */
 			correctmobile: function (menusrc) {
-				(typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc)).find('.ui-collapsible-set').each(function () {
+				var original = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc)),
+					parent = original.parent();
+				original.detach().find('.ui-collapsible-set').each(function () {
 					var $this = $(this);
 					if ($this.find('> ul .ui-collapsible').length > 0) {
 						$this = $this.children('ul');
@@ -837,6 +839,7 @@
 						}
 					});
 				});
+				original.appendTo(parent);
 			}
 		},
 		/**
