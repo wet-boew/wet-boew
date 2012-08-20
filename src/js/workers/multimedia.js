@@ -105,14 +105,10 @@
 				if ($('html').hasClass('polyfill-progress')) {
 					elm.find('progress').progress();
 				}
-				
+
 				//Scale the UI when the video scales
-				$(window).on('resize', {'media' : media, width : width, height : height}, function (e) {
-					if (e.data.media.width() > 0) {
-						e.data.media.height(e.data.media.width() * e.data.height / e.data.width);
-					} else {
-						e.data.media.attr('height', e.data.media.parent().width() * e.data.height / e.data.width);
-					}
+				$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
+					e.data.media.height(e.data.media.parent().width() * e.data.ratio);
 				});
 				$(window).trigger('resize');
 
@@ -138,7 +134,7 @@
 						this.setMuted(!this.getMuted());
 					}
 
-					if ($target.is('progress')) {
+					if ($target.is('progress') || $target.hasClass('progress-frame') || $target.hasClass('progress-bar')) {
 						p = (e.pageX - $target.offset().left) / $target.width();
 						this.setCurrentTime(this.getDuration() * p);
 					}
