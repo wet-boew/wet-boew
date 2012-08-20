@@ -73,7 +73,8 @@
 							strDate1,
 							strDate2,
 							strDate,
-							z;
+							z,
+							_zlen;
 
 						/** Modification direct-linking or page-linking
 						*	- added the ability  to have class set the behaviour of the links
@@ -107,7 +108,7 @@
 							date.setFullYear(strDate1[0], strDate1[1] - 1, strDate1[2]);
 
 							// now loop in events to load up all the days that it would be on tomorrow.setDate(tomorrow.getDate() + 1);
-							for (z = 0; z < dates.daysBetween(strDate1, strDate2) + 1; z += 1) {
+							for (z = 0, _zlen = dates.daysBetween(strDate1, strDate2) + 1; z < _zlen; z += 1) {
 								if (events.minDate === null || date < events.minDate) {
 									events.minDate = date;
 								}
@@ -266,6 +267,7 @@
 
 			addEvents = function (year, month, days, containerid, eventslist) {
 				var e,
+					_elen,
 					date,
 					day,
 					content,
@@ -280,7 +282,7 @@
 				});
 				//Determines for each event, if it occurs in the display month
 				//@modification - the author used a jQuery native $.each function for looping. This is a great function, but has a tendency to like HTMLELEMENTS and jQuery objects better. We have modified this to a for loop to ensure that all the elements are accounted for.
-				for (e = 0; e < eventslist.length; e += 1) {
+				for (e = 0, _elen = eventslist.length; e !== _elen; e += 1) {
 					date = new Date(eventslist[e].date);
 
 					if (date.getMonth() === month && date.getFullYear() === year) {
@@ -301,12 +303,12 @@
 							day.on("mouseover", {details: dayEvents}, mouseOnDay);
 
 							//Hide days events on mouse out
-							day.bind("mouseout", {details: dayEvents}, mouseOutDay);
+							day.on("mouseout", {details: dayEvents}, mouseOutDay);
 
 							//Show day events when tabbing in
-							link.bind("focus", {details: dayEvents}, focusDay);
+							link.on("focus", {details: dayEvents}, focusDay);
 							//hide day events when tabbing out
-							link.bind("blur", {details: dayEvents}, blurDay);
+							link.on("blur", {details: dayEvents}, blurDay);
 
 							day.append(dayEvents);
 						} else {
@@ -327,11 +329,10 @@
 						item_link.on('keydown', keyboardNavEvents);
 
 						//Hide day events when the last event for the day loose focus
-						item_link.bind("blur", {details: dayEvents}, blurEvent);
+						item_link.on("blur", {details: dayEvents}, blurEvent);
 
 						//Show day events when tabbing in
-						item_link.bind("focus", {details: dayEvents}, focusEvent);
-
+						item_link.on("focus", {details: dayEvents}, focusEvent);
 					} // end of date range visible
 				} // end of event list loop
 			};
@@ -357,7 +358,7 @@
 				$("#" + containerid).css("margin-left", "10px");
 			}
 
-			$("#" + containerid).bind("calendarDisplayed", function (e, year, month, days) {
+			$("#" + containerid).on("calendarDisplayed", function (e, year, month, days) {
 				addEvents(year, month, days, containerid, events.list);
 				showOnlyEventsFor(year, month, containerid);
 			});

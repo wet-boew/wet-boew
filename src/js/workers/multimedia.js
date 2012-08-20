@@ -391,6 +391,7 @@
 				var parts,
 					s = 0,
 					p,
+					_plen,
 					v;
 
 				if (string !== undefined) {
@@ -400,7 +401,7 @@
 					} else {
 						//clock time
 						parts = string.split(':').reverse();
-						for (p = 0; p < parts.length; p += 1) {
+						for (p = 0, _plen = parts.length; p < _plen; p += 1) {
 							v = (p === 0) ? parseFloat(parts[p]) : parseInt(parts[p], 10);
 							s += v * Math.pow(60, p);
 						}
@@ -535,9 +536,9 @@
 		},
 
 		_update_captions : function (area, seconds, captions) {
-			var c, caption;
+			var c, _clen, caption;
 			area.empty();
-			for (c = 0; c < captions.length; c += 1) {
+			for (c = 0, _clen = captions.length; c < _clen; c += 1) {
 				caption = captions[c];
 				if (seconds >= caption.begin && seconds <= caption.end) {
 					area.append($('<div>' + caption.text + '</div>'));

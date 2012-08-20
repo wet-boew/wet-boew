@@ -1162,8 +1162,9 @@
 						maxPos,
 						minPos,
 						centerPos,
-						i;
-					for (i = 1; i <= (charts.graph2dAxis.NbColumnHeading); i += 1) {
+						i,
+						_ilen;
+					for (i = 1, _ilen = charts.graph2dAxis.NbColumnHeading; i <= _ilen; i += 1) {
 						// Valeur Maximale
 						maxPos = (i * ((charts.graph2dAxis.options.width - charts.graph2dAxis.offset.left) / charts.graph2dAxis.NbColumnHeading));
 						if (charts.graph2dAxis.options.axis.tick || (charts.graph2dAxis.options.axis.top.tick !== null ? charts.graph2dAxis.options.axis.top.tick : false) || (charts.graph2dAxis.options.axis.bottom.tick !== null ? charts.graph2dAxis.options.axis.bottom.tick : false)) {
@@ -1201,7 +1202,7 @@
 					// Draw the X Label
 					//
 					// TODO
-					// for (i = 0; i<tBodySeries.nbRowLevel; i += 1) {
+					// for (i = 0, _ilen = tBodySeries.nbRowLevel; i < _ilen; i += 1) {
 					// Draw a background for each row
 					// }
 					// For each column Header, calculate his position and add the label
@@ -1300,6 +1301,7 @@
 					var yAxisPath = 'M ' + charts.graph2dAxis.offset.left + ' ' + charts.graph2dAxis.offset.top + ' ',
 						YLabel,
 						i,
+						_ilen,
 						yAxis;
 					charts.graph2dAxis.cuttingPosPaper = 0;
 					if (charts.graph2dAxis.top < 0) {
@@ -1326,7 +1328,7 @@
 						// Adjust the charts.graph2dAxis.offset.top
 						charts.graph2dAxis.offset.top += (2 * charts.graph2dAxis.options.font.height);
 					}
-					for (i = 0; i < charts.graph2dAxis.nbStep; i += 1) {
+					for (i = 0, _ilen = charts.graph2dAxis.nbStep; i < _ilen; i += 1) {
 						if (charts.graph2dAxis.cuttingPos === 0 || (charts.graph2dAxis.cuttingPos > i && charts.graph2dAxis.bottom > 0) || charts.graph2dAxis.top < 0) {
 							// No Cutting currently normal way to do the data
 							// y axis label
@@ -1915,13 +1917,14 @@
 								// console.log('rowpos:' + parser.rowPos + ' CurrColPosition:' + CurrColPosition );
 									cellColHeaders = "",
 									i,
+									_ilen,
 									cellRowHeaders = "",
 									header,
 									cellId,
 									cellPos,
 									NbRowToBeSpan,
 									tblCellColHeaders;
-								for (i = CurrColPosition; i < (CurrColPosition + w); i += 1) {
+								for (i = CurrColPosition, _ilen = (CurrColPosition + w); i < _ilen; i += 1) {
 									if (columnIds[i] !== undefined) {
 										if (cellColHeaders === '') {
 											// Normal cell
@@ -2075,11 +2078,11 @@
 				cellID: 0,
 				removeDuplicateElement: function (arrayName) {
 					var newArray = [],
-						i,
-						j;
+						i, _ilen,
+						j, _jlen;
 label:
-					for (i = 0; i < arrayName.length; i += 1) {
-						for (j = 0; j < newArray.length; j += 1) {
+					for (i = 0, _ilen = arrayName.length; i < _ilen; i += 1) {
+						for (j = 0, _jlen = newArray.length; j < _jlen; j += 1) {
 							if (newArray[j] === arrayName[i]) {
 								continue label;
 							}
@@ -2095,6 +2098,7 @@ label:
 					// important table element: id or class, th; 
 					var sMatrix = [],
 						i = 0,
+						_ilen,
 						j = 0,
 						capVal = "Table caption tag is missing",
 						maxRowCol = 10, //basic;
@@ -2188,7 +2192,7 @@ label:
 					html2 = html2.replace(/\n/g, "");
 					html2 = html2.replace(/<tr/gi, "\n<tr");
 					arr = html2.split("\n");
-					for (i = 0; i < arr.length; i += 1) {
+					for (i = 0, _ilen = arr.length; i < _ilen; i += 1) {
 						tr = arr[i];
 						if (tr.match(/<td/i) !== null) {
 							arr[i] = '</thead><tbody>' + tr;
@@ -2301,7 +2305,9 @@ label:
 						if (currLevel > maxLevel || !$.isArray(opt)) {
 							return;
 						}
-						var arrToRemove = [];
+						var arrToRemove = [],
+							i,
+							_ilen;
 						for (key in opt) {
 							// if the key are ending "-remove", get the key to remove
 							if (key.lenght > 7 && key.substr(key.lenght - 7) === "-remove") {
@@ -2316,7 +2322,7 @@ label:
 								}
 							}
 						}
-						for (i = 0;i<arrToRemove.lenght;i += 1) {
+						for (i = 0, _ilen =  arrToRemove.length; i < _ilen; i += 1) {
 							delete opt[arrToRemove[i]];
 						}
 					}
@@ -2369,7 +2375,7 @@ label:
 								currObj = sourceOptions,
 							// Set the default property name (this can be overwrited later)
 								propName = arrNamespace[arrNamespace.length - 1],
-								i,
+								i, _ilen,
 								j,
 								valIsNext,
 								isVal,
@@ -2378,12 +2384,12 @@ label:
 								autoCreateMe = false,
 								jsonString,
 								val;
-							for (i = 0; i < arrParameter.length; i += 1) {
-								valIsNext = (i + 2 === arrParameter.length ? true : false);
-								isVal = (i + 1 === arrParameter.length ? true : false);
+							for (i = 0, _ilen = arrParameter.length; i < _ilen; i += 1) {
+								valIsNext = (i + 2 === _ilen ? true : false);
+								isVal = (i + 1 === _ilen ? true : false);
 								// console.log('propName:' + propName + ' value:' + arrParameter[i] + ' valIsNext:' + valIsNext + ' isVal:' + isVal);
 								// Check if that is the default value and make a reset to the parameter name if applicable
-								if (isVal && arrParameter.length === 1 && sourceOptions['default-option']) {
+								if (isVal && _ilen === 1 && sourceOptions['default-option']) {
 									propName = sourceOptions['default-option'];
 								} else if (!isVal) {
 									propName = arrParameter[i];
@@ -2394,7 +2400,7 @@ label:
 								if (currObj[propName + '-typeof']) {
 									// Repair the value if needed
 									arrValue = [];
-									for (j = (i + 1); j < arrParameter.length; j += 1) {
+									for (j = (i + 1); j < _ilen; j += 1) {
 										arrValue.push(arrParameter[j]);
 									}
 									arrParameter[i] = arrValue.join(separatorNS);
@@ -2463,7 +2469,7 @@ label:
 										}
 										currObj = jQuery.extend(true, currObj, jQuery.parseJSON(jsonString));
 									}
-									i = arrParameter.length; // Make sur we don't iterate again
+									i = _ilen; // Make sur we don't iterate again
 								} else {
 									// Create a sub object
 									if (arrParameter[i] !== undefined && currObj[arrParameter[i]]) {
@@ -2476,7 +2482,7 @@ label:
 										currObj = currObj[arrParameter[i]];
 									} else {
 										// This configuration are rejected
-										i = arrParameter.length; // We don't iterate again
+										i = _ilen; // We don't iterate again
 									}
 								}
 							}
@@ -2543,10 +2549,11 @@ label:
 							navOptions = sourceOptions,
 							propName = arrNamespace[arrNamespace.length - 1], // use the last namespace element to define the property by default
 							ignoreMe = false,
-							ignoreOptionExist = false;
-						for (i = 0; i<arrParameter.length; i += 1) {
+							ignoreOptionExist = false,
+							i, _ilen;
+						for (i = 0, _ilen = arrParameter.length; i < _ilen; i += 1) {
 							
-							var isEndNode = (i+1 === arrParameter.length ? true : false);
+							var isEndNode = (i + 1 === arrParameter.length ? true : false);
 							
 							var valeur = arrParameter[i];
 							
@@ -2582,8 +2589,10 @@ label:
 									} else {
 										
 										// Get the rest of the value
-										var arrValue = [];
-										for (j=(i+1); j<arrParameter.length; j += 1) {
+										var arrValue = [],
+											j,
+											_jlen;
+										for (j = (i + 1), _jlen = arrParameter.length; j < _jlen; j += 1) {
 											arrValue.push(arrParameter[j]);
 										}
 										var val = arrValue.join("-");
@@ -2858,7 +2867,7 @@ label:
 					Series2dAxis = [],
 					nbCircleGraph = 0,
 					SeriesCircle = [],
-					i,
+					i, _ilen,
 				// Get the default Graph Type [Table Level]
 					GraphTypeTBody = 'line', // Default of the Param default
 					LastHeaderId = -1,
@@ -2917,7 +2926,7 @@ label:
 								// Compile the series
 								// Sum of each cell for each series
 								$.each(SeriesCellCumulative, function () {
-									for (i = 0; i < this.cell.length; i += 1) {
+									for (i = 0, _ilen < this.cell.length; i < _ilen; i += 1) {
 										if (MasterSeriesCell.length <= i) {
 											MasterSeriesCell.push(this.cell[i]);
 										} else {
@@ -2926,7 +2935,7 @@ label:
 									}
 								});
 								// Get the average
-								for (i = 0; i < MasterSeriesCell.length; i += 1) {
+								for (i = 0, _ilen = MasterSeriesCell.length; i < _ilen; i += 1) {
 									MasterSeriesCell[i] = MasterSeriesCell[i] / SeriesCellCumulative.length;
 								}
 								if (PreviousGraphGroup === '2daxis') {
@@ -2997,7 +3006,7 @@ label:
 				});
 				// Sum of each cell for each series
 				$.each(SeriesCellCumulative, function () {
-					for (i = 0; i < this.cell.length; i += 1) {
+					for (i = 0, _ilen = this.cell.length; i < _ilen; i += 1) {
 						if (MasterSeriesCell.length <= i) {
 							MasterSeriesCell.push(this.cell[i]);
 						} else {
@@ -3006,7 +3015,7 @@ label:
 					}
 				});
 				// Get the average
-				for (i = 0; i < MasterSeriesCell.length; i += 1) {
+				for (i = 0, _ilen = MasterSeriesCell.length; i < _ilen; i += 1) {
 					MasterSeriesCell[i] = MasterSeriesCell[i] / SeriesCellCumulative.length;
 				}
 				if (MasterSeriesCell.length !== 0) {
@@ -3066,7 +3075,7 @@ label:
 				// Set the container class if required, by default the namespace is use as a class
 				if (parser.param.graphclass) {
 					if ($.isArray(parser.param.graphclass)) {
-						for (i = 0; i < parser.param.graphclass.length; i += 1) {
+						for (i = 0, _ilen = parser.param.graphclass.length; i < _ilen; i += 1) {
 							$(paperContainer).addClass(parser.param.graphclass[i]);
 						}
 					} else {
