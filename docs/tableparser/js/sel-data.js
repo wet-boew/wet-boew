@@ -8,8 +8,9 @@
  * @author: Pierre Dubois
  *
  */
-/*global jQuery: false, array: false*/
+/*global jQuery: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
@@ -17,7 +18,9 @@
 	$.extend($.expr[":"], {data: function (elem, i, match, array) {
 		var tblElem,
 			ElemNodeName,
-			j;
+			j, _ilen, _jlen,
+			tblparser = $(elem).data().tblparser,
+			row, col;
 		// query Example: $('table:eq(4):summary').css('background-color', 'yellow');
 
 		// Is elem are a valid element ?
@@ -50,11 +53,12 @@
 
 		switch (elem.nodeName.toLowerCase()) {
 		case "table": // Matrix
-			if ($(elem).data().tblparser.row) {
-				for (i = 0; i < $(elem).data().tblparser.row.length; i += 1) {
-					for (j = 0; j < $(elem).data().tblparser.row[i].cell.length; j += 1) {
-						if ($(elem).data().tblparser.row[i].cell[j].type === 2) {
-							array.push($(elem).data().tblparser.row[i].cell[j].elem);
+			if (tblparser.row) {
+				for (i = 0, _ilen = tblparser.row.length; i < _ilen; i += 1) {
+					row = tblparser.row[i];
+					for (j = 0, _jlen = row.cell.length; j < _jlen; j += 1) {
+						if (row.cell[j].type === 2) {
+							array.push(row.cell[j].elem);
 						}
 					}
 				}
@@ -64,18 +68,18 @@
 			// TODO: Return all the data cell
 			break;
 		case "colgroup": // Group
-			if ($(elem).data().tblparser.type === 2) {
+			if (tblparser.type === 2) {
 				return true;
 			}
 			break;
 		case "col": // Vector
-			if ($(elem).data().tblparser.type === 2) {
+			if (tblparser.type === 2) {
 				return true;
 			}
-			//if ($(elem).data().tblparser.cell) {
-			//	for (i = 0; i < $(elem).data().tblparser.cell.length; i += 1) {
-			//		if ($(elem).data().tblparser.cell[i].type === 2) {
-			//			array.push($(elem).data().tblparser.cell[i].elem);
+			//if (tblparser.cell) {
+			//	for (i = 0, _ilen = tblparser.cell.length; i < _ilen; i += 1) {
+			//		if (tblparser.cell[i].type === 2) {
+			//			array.push(tblparser.cell[i].elem);
 			//		}
 			//	}
 			//}
@@ -89,19 +93,19 @@
 			// There are no data cell in the tfoot, if there are that is an table design layout issue
 			return false;
 		case "tr": // Vector
-			if ($(elem).data().tblparser.type === 2) {
+			if (tblparser.type === 2) {
 				return true;
 			}
 			break;
 		case "th": // Cell
-			if ($(elem).data().tblparser.type !== 1) {
+			if (tblparser.type !== 1) {
 				return false; // To Exclude any layout cell
 			}
 
 			// return false;
 
 			// If there are no TD in the stack, we would fill the stack
-			for (i = 0; i < array.length; i += 1) {
+			for (i = 0, _ilen = array.length; i < _ilen; i += 1) {
 				if (array[i].nodeName.toLowerCase() === "td") {
 					// console.log('No td added from th');
 					return false;
@@ -109,28 +113,29 @@
 			}
 
 			// Check for the th scope if is column or row, Invalid for layout th
-			if ($(elem).data().tblparser.scope === "row") {
+			if (tblparser.scope === "row") {
 
-				if ($(elem).data().tblparser.height === 1) {
+				if (tblparser.height === 1) {
 					// Only one row, go strait forward
-					for (i = 0; i < $(elem).data().tblparser.row.cell.length; i += 1) {
-						if ($(elem).data().tblparser.row.cell[i].type === 2) {
-							array.push($(elem).data().tblparser.row.cell[i].elem);
+					row = tblparser.row;
+					for (i = 0, _ilen = row.cell.length; i < _ilen; i += 1) {
+						if (row.cell[i].type === 2) {
+							array.push(row.cell[i].elem);
 						}
 					}
 					return false;
 				}
 
-				for (i = 0; i < $(elem).data().tblparser.groupZero.row.length; i += 1) {
-					if ($(elem).data().tblparser.groupZero.row[i].rowpos > ($(elem).data().tblparser.rowpos + $(elem).data().tblparser.height - 1)) {
+				for (i = 0, _ilen = tblparser.groupZero.row.length; i < _ilen; i += 1) {
+					row = tblparser.groupZero.row[i];
+					if (row.rowpos > (tblparser.rowpos + tblparser.height - 1)) {
 						break;
 					}
-					if ($(elem).data().tblparser.groupZero.row[i].rowpos >= $(elem).data().tblparser.rowpos &&
-							$(elem).data().tblparser.groupZero.row[i].rowpos <= ($(elem).data().tblparser.rowpos + $(elem).data().tblparser.height - 1)) {
+					if (row.rowpos >= tblparser.rowpos && row.rowpos <= (tblparser.rowpos + tblparser.height - 1)) {
 
-						for (j = 0; j < $(elem).data().tblparser.groupZero.row[i].cell.length; j += 1) {
-							if ($(elem).data().tblparser.groupZero.row[i].cell[j].type === 2) {
-								array.push($(elem).data().tblparser.groupZero.row[i].cell[j].elem);
+						for (j = 0, _jlen = row.cell.length; j < _jlen; j += 1) {
+							if (row.cell[j].type === 2) {
+								array.push(row.cell[j].elem);
 							}
 						}
 					}
@@ -138,17 +143,17 @@
 			}
 
 			// Column scope
-			if ($(elem).data().tblparser.scope === "col") {
-				for (i = 0; i < $(elem).data().tblparser.groupZero.col.length; i += 1) {
-					if ($(elem).data().tblparser.groupZero.col[i].end > ($(elem).data().tblparser.colpos + $(elem).data().tblparser.width - 1)) {
+			if (tblparser.scope === "col") {
+				for (i = 0, _ilen = tblparser.groupZero.col.length; i < _ilen; i += 1) {
+					col = tblparser.groupZero.col[i];
+					if (col.end > (tblparser.colpos + tblparser.width - 1)) {
 						break;
 					}
-					if ($(elem).data().tblparser.groupZero.col[i].start >= $(elem).data().tblparser.colpos &&
-							$(elem).data().tblparser.groupZero.col[i].end <= ($(elem).data().tblparser.colpos + $(elem).data().tblparser.width - 1)) {
+					if (col.start >= tblparser.colpos && col.end <= (tblparser.colpos + tblparser.width - 1)) {
 
-						for (j = 0; j < $(elem).data().tblparser.groupZero.col[i].cell.length; j += 1) {
-							if ($(elem).data().tblparser.groupZero.col[i].cell[j].type === 2) {
-								array.push($(elem).data().tblparser.groupZero.col[i].cell[j].elem);
+						for (j = 0, _jlen = col.cell.length; j < _jlen; j += 1) {
+							if (col.cell[j].type === 2) {
+								array.push(col.cell[j].elem);
 							}
 						}
 					}
@@ -156,7 +161,7 @@
 			}
 			break;
 		case "td": // Cell
-			if ($(elem).data().tblparser.type === 2) {
+			if (tblparser.type === 2) {
 				// console.log('dataCellFound');
 				return true;
 			}
@@ -175,9 +180,10 @@
 			objDOM = $(this).get(0),
 			tblElem,
 			ElemNodeName,
-			stack;
+			stack,
+			tblparser = $(obj).data().tblparser;
 
-		if (!$(obj).data().tblparser) {
+		if (!tblparser) {
 			// Get the table element
 			tblElem = obj;
 
@@ -226,15 +232,15 @@
 		case "th": // Cell
 			break;
 		case "td": // Cell
-			if ($(obj).data().tblparser.type === 2 && (!level ? true : $(obj).data().tblparser.collevel === level)) {
+			if (tblparser.type === 2 && (!level ? true : tblparser.collevel === level)) {
 				stack = [];
-				stack.push($(obj).data().tblparser.elem);
+				stack.push(tblparser.elem);
 				return $(stack);
 			}
 			break;
 			// array.push($(elem).data().tblparser.row.elem);
 
-			// var ret = $($(obj).data().tblparser.row.elem);
+			// var ret = $(tblparser.row.elem);
 			// ret.prevObject = obj;
 			// return this.pushStack(ret, "row", "");
 

@@ -19,7 +19,7 @@
 				monthNav,
 				days,
 				daysList;
-
+	
 			container.addClass("cal-container");
 			container.removeClass("cal-container-extended");
 
@@ -203,7 +203,7 @@
 				fieldset,
 				yearContainer,
 				yearField,
-				y,
+				y, _ylen,
 				monthContainer,
 				monthField,
 				buttonContainer,
@@ -221,7 +221,7 @@
 			//Create the year field
 			yearContainer = $('<div class="cal-goto-year"><label for="cal-' + calendarid + '-goto-year" class="wb-invisible">' + pe.dic.get("%calendar-goToYear") + '</label></div>');
 			yearField = $('<select id="cal-' + calendarid + '-goto-year"></select>');
-			for (y = minDate.getFullYear(); y <= maxDate.getFullYear(); y += 1) {
+			for (y = minDate.getFullYear(), _ylen = maxDate.getFullYear(); y <= _ylen; y += 1) {
 				yearField.append($('<option value="' + y + '"' + (y === year ? " selected=\"selected\"" : "") + '>' + y + '</option>'));
 			}
 
