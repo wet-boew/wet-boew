@@ -140,7 +140,7 @@
 			}
 
 			// Reattach $scope now that enhancements are complete
-			$scope.appendTo(parent);
+			$scope.appendTo($scopeParent);
 
 			// Adjust the height
 			correctheight();
