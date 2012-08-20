@@ -30,7 +30,7 @@
 			var $menu,
 				$menuBoundary,
 				$scope = elm,
-				$scopeClone,
+				$scopeParent = $scope.parent(),
 				correctheight,
 				gotosubmenu,
 				hideallsubmenus,
@@ -43,6 +43,7 @@
 				var _node = $(toplink).closest("li"),
 					_sm = _node.find(".mb-sm");
 				_sm.attr({"aria-expanded":"true", "aria-hidden":"false"}).toggleClass("mb-sm mb-sm-open");
+
 				if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
 					_sm.css("right", "0px");
 				}
@@ -92,16 +93,16 @@
 			$menuBoundary = $scope.children("div");
 			$menu = $menuBoundary.children("ul");
 			
-			/* Clone $scope to minimize reflow while enhancing the menu */
-			$scopeClone = $scope.clone();
+			/* Detach $scope to minimize reflow while enhancing the menu */
+			$scope.detach();
 			
 			/* ARIA additions */
-			$scopeClone.attr("role", "application");
-			$scopeClone.find('> div > ul').attr("role", "menubar").find("a").attr("role", "menuitem");
+			$scope.attr("role", "application");
+			$scope.find('> div > ul').attr("role", "menubar").find("a").attr("role", "menuitem");
 			pe.resize(correctheight);
 			
 			/* [Main] parse mega menu and establish all ARIA and Navigation classes */
-			$scopeClone.find('ul.mb-menu > li').find('a:eq(0)').each(function (index, value) {
+			$scope.find('ul.mb-menu > li').find('a:eq(0)').each(function (index, value) {
 				var $elm = $(value).addClass("knav-" + index + "-0-0"),
 					$childmenu = $elm.closest("li").find(".mb-sm");
 				if ($childmenu.length > 0) {
@@ -135,11 +136,11 @@
 
 			/* if CSS is enabled we want to ensure a correct tabbing response */
 			if (pe.cssenabled) {
-				$scopeClone.find(".mb-sm a").attr("tabindex", "-1");
+				$scope.find(".mb-sm a").attr("tabindex", "-1");
 			}
 
-			// Replace the original $scope with $scopeClone
-			$scope.replaceWith($scopeClone);
+			// Reattach $scope now that enhancements are complete
+			$scope.appendTo(parent);
 
 			// Adjust the height
 			correctheight();
