@@ -119,7 +119,9 @@
 
 				//Scale the UI when the video scales
 				$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
-					e.data.media.height(e.data.media.parent().width() * e.data.ratio);
+					var h = e.data.media.parent().width() * e.data.ratio;
+					e.data.media.height(h);
+					media.parent().find('.wet-boew-multimedia-overlay').height(h);
 				});
 				$(window).trigger('resize');
 
