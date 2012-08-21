@@ -136,6 +136,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 					var rowheadersgroup = "",
 						rowheaders = "",
 						currrowheader = "";
+						ongoingRowHeader = "";
 					
 					// Get or Generate a unique ID for each header in this row
 					if (currRow.headerset && !currRow.idsheaderset) { 
@@ -165,11 +166,13 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 					rowheaders = (currRow.idsheaderset ? currRow.idsheaderset + ' ' + rowheaders : rowheaders);
 					for (j = 0; j < currRow.cell.length; j += 1) {
 						
-						if ((j === 0) || (j > 1 && currRow.cell[j].uid != currRow.cell[j - 1].uid)){
+						if ((j === 0) || (j > 0 && currRow.cell[j].uid !== currRow.cell[(j - 1)].uid)){
 							var currCell = currRow.cell[j],
 								coldataheader = "";
 							
-							
+							if (currCell.uid === 75) {
+								console.log('j:' + j + ' currRow.cell[j].uid:' + currRow.cell[j].uid + (currRow.cell[j - 1] ? ' currRow.cell[j - 1].uid:' + currRow.cell[j - 1].uid : ''));
+							}
 							if (currCell.col && !currCell.col.dataheader) {
 								var currCol = currCell.col;
 								var colheaders = "",
@@ -202,7 +205,31 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 							if (currCell.col && currCell.col.dataheader) {
 								coldataheader = currCell.col.dataheader;
 							}
-						
+							
+							
+							
+							if (currCell.type === 1) {
+								console.log('Row Header uid:' + currCell.uid + ' at colpos:' + j);
+								console.log(coldataheader);
+								console.log(currRow.idsheaderset);
+								console.log(ongoingRowHeader);
+								
+								$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + 
+													(currRow.idsheaderset && coldataheader ? ' ' : '') +
+													(currRow.idsheaderset ? currRow.idsheaderset : '') +
+													((currRow.idsheaderset && ongoingRowHeader) || (coldataheader && ongoingRowHeader && !currRow.idsheaderset) ? ' ' : '') +
+													(ongoingRowHeader ? ongoingRowHeader : ''));
+								
+								var currCellId5 = $(currCell.elem).attr('id');
+								if (currCellId5 === undefined || currCellId5 === '') {
+									// currCellId5 = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+									currCellId5 = idPrefix + currCell.uid; // Generate a new ID
+									$(currCell.elem).attr('id', currCellId5);
+								}
+								
+								ongoingRowHeader = (ongoingRowHeader !== '' ? ongoingRowHeader + ' ' : '') + currCellId5;
+							}
+							
 							
 							if (currCell.type === 2 || currCell.type === 3) {
 								

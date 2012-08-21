@@ -560,7 +560,7 @@
 							}
 
 							// Skip this colgroup, this should happened only once and should represent the header colgroup
-							return;
+							// return;
 						}
 
 						groupLevel = undefined;
