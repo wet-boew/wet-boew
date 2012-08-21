@@ -147,6 +147,7 @@
 	<target name="-jshint">
 		<jshint dir="${src.dir}" fail="false" globalsFile="${jshint.globals.file}">
 			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
+			<include name="pe-ap.js"/>
 			<include name="workers/*.js"/>
 			<include name="i18n/*.js"/>
 			<include name="dependencies/calendar.js"/>
