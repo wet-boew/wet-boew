@@ -133,75 +133,174 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				// Set Id/headers for header cell and data cell in the table.
 				for (i = 0; i < tblparser.row.length; i += 1) {
 					currRow = tblparser.row[i];
-					var rowheaders;
+					var rowheadersgroup = "",
+						rowheaders = "",
+						currrowheader = "";
 					
 					// Get or Generate a unique ID for each header in this row
-					if (currRow.headerset) { 
+					if (currRow.headerset && !currRow.idsheaderset) { 
 						for (j = 0; j < currRow.headerset.length; j += 1) {
 							var currCellId = $(currRow.headerset[j].elem).attr('id');
 							if (currCellId === undefined || currCellId === '') {
 								// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-								currCellId = idPrefix + currCell.uid; // Generate a new ID
+								currCellId = idPrefix + currRow.headerset[j].uid; // Generate a new ID
 								$(currRow.headerset[j].elem).attr('id', currCellId);
 							}
-							rowheaders = (rowheaders ? rowheaders + ' ' + currCellId : currCellId);
+							rowheadersgroup= (rowheadersgroup ? rowheadersgroup + ' ' + currCellId : currCellId);
 						}
+						currRow.idsheaderset = rowheadersgroup;
 					}
+					
 					if (currRow.header) { 
 						for (j = 0; j < currRow.header.length; j += 1) {
-							var currCellId = $(currRow.header[j].elem).attr('id');
-							if (currCellId === undefined || currCellId === '') {
+							var currCellId2 = $(currRow.header[j].elem).attr('id');
+							if (currCellId2 === undefined || currCellId2 === '') {
 								// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-								currCellId = idPrefix + currCell.uid; // Generate a new ID
-								$(currRow.header[j].elem).attr('id', currCellId);
+								currCellId2 = idPrefix + currRow.header[j].uid; // Generate a new ID
+								$(currRow.header[j].elem).attr('id', currCellId2);
 							}
-							rowheaders = (rowheaders ? rowheaders + ' ' + currCellId : currCellId);
+							rowheaders = (rowheaders ? rowheaders + ' ' + currCellId2 : currCellId2);
 						}
 					}
+					rowheaders = (currRow.idsheaderset ? currRow.idsheaderset + ' ' + rowheaders : rowheaders);
 					for (j = 0; j < currRow.cell.length; j += 1) {
-						var currCell = currRow.cell[j];
 						
-						if (!currCell.col.dataheader) {
-							var currCol = currCell.col;
-							var colheaders;
-							if (currCol.headerset) { 
-								for (m = 0; m < currCol.headerset.length; m += 1) {
-									var currCellId = $(currCol.headerset[m].elem).attr('id');
-									if (currCellId === undefined || currCellId === '') {
-										// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-										currCellId = idPrefix + currCell.uid; // Generate a new ID
-										$(currCol.headerset[m].elem).attr('id', currCellId);
+						if ((j === 0) || (j > 1 && currRow.cell[j].uid != currRow.cell[j - 1].uid)){
+							var currCell = currRow.cell[j],
+								coldataheader = "";
+							
+							
+							if (currCell.col && !currCell.col.dataheader) {
+								var currCol = currCell.col;
+								var colheaders = "",
+									colheadersgroup = "";
+								if (currCol.headerLevel) { 
+									for (m = 0; m < currCol.headerLevel.length; m += 1) {
+										var currCellId = $(currCol.headerLevel[m].elem).attr('id');
+										if (currCellId === undefined || currCellId === '') {
+											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+											currCellId = idPrefix + currCol.headerLevel[m].uid; // Generate a new ID
+											$(currCol.headerLevel[m].elem).attr('id', currCellId);
+										}
+										colheadersgroup = (colheadersgroup ? colheadersgroup + ' ' + currCellId : currCellId);
 									}
-									colheaders = (colheaders ? colheaders + ' ' + currCellId : currCellId);
 								}
-							}
-							if (currCol.header) { 
-								for (m = 0; m < currCol.header.length; m += 1) {
-									var currCellId = $(currCol.header[m].elem).attr('id');
-									if (currCellId === undefined || currCellId === '') {
-										// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-										currCellId = idPrefix + currCell.uid; // Generate a new ID
-										$(currCol.header[m].elem).attr('id', currCellId);
+								if (currCol.header) { 
+									for (m = 0; m < currCol.header.length; m += 1) {
+										var currCellId = $(currCol.header[m].elem).attr('id');
+										if (currCellId === undefined || currCellId === '') {
+											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+											currCellId = idPrefix + currCol.header[m].uid; // Generate a new ID
+											$(currCol.header[m].elem).attr('id', currCellId);
+										}
+										colheaders = (colheaders ? colheaders + ' ' + currCellId : currCellId);
 									}
-									colheaders = (colheaders ? colheaders + ' ' + currCellId : currCellId);
 								}
+								currCol.dataheader = (colheadersgroup ? colheadersgroup + ' ' + colheaders : colheaders);
 							}
-							currCol.dataheader = colheaders;
+							
+							if (currCell.col && currCell.col.dataheader) {
+								coldataheader = currCell.col.dataheader;
+							}
+						
+							
+							if (currCell.type === 2 || currCell.type === 3) {
+								
+								// Get Current Column Headers
+								currrowheader = rowheaders;
+								
+								if (currCell.addcolheaders) {
+									for (m = 0; m < currCell.addcolheaders.length; m += 1) {
+										var currCellId = $(currCell.addcolheaders[m].elem).attr('id');
+										if (currCellId === undefined || currCellId === '') {
+											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+											currCellId = idPrefix + currCell.addcolheaders[m].uid; // Generate a new ID
+											$(currCell.addcolheaders[m].elem).attr('id', currCellId);
+										}
+										coldataheader = (coldataheader ? coldataheader + ' ' + currCellId : currCellId);
+									}
+								}
+								
+								if (currCell.addrowheaders) {
+									for (m = 0; m < currCell.addrowheaders.length; m += 1) {
+										var currCellId = $(currCell.addrowheaders[m].elem).attr('id');
+										if (currCellId === undefined || currCellId === '') {
+											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+											currCellId = idPrefix + currCell.addrowheaders[m].uid; // Generate a new ID
+											$(currCell.addrowheaders[m].elem).attr('id', currCellId);
+										}
+										currrowheader = (currrowheader ? currrowheader + ' ' + currCellId : currCellId);
+									}
+								}
+								
+								$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (currrowheader && coldataheader ? ' ' : '') + (currrowheader ? currrowheader : ''));
+							}
+							
+							if (currCell.type === 4 || currCell.type === 5) {
+								var descHeaders = "";
+								
+								if (currCell.describe) {
+									for (m = 0; m < currCell.describe.length; m += 1) {
+										var currCellId = $(currCell.describe[m].elem).attr('id');
+										if (currCellId === undefined || currCellId === '') {
+											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+											currCellId = idPrefix + currCell.describe[m].uid; // Generate a new ID
+											$(currCell.describe[m].elem).attr('id', currCellId);
+										}
+										descHeaders = (descHeaders ? descHeaders + ' ' + currCellId : currCellId);
+										if (currCell.type === 5 && !$(currCell.describe[m].elem).attr('aria-describedby')) {
+											var currCellId = $(currCell.elem).attr('id');
+											if (currCellId === undefined || currCellId === '') {
+												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+												currCellId = idPrefix + currCell.uid; // Generate a new ID
+												$(currCell.elem).attr('id', currCellId);
+											}
+											$(currCell.describe[m].elem).attr('aria-describedby', currCellId);
+										}
+									}
+								}
+								if (currCell.type !== 4) {
+									$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (coldataheader && descHeaders ? ' ' : '') + (descHeaders || ''));
+								} else if (!$(currCell.elem).attr('aria-describedby')) {
+									$(currCell.elem).attr('aria-describedby', descHeaders || '');
+									$(currCell.elem).attr('headers', coldataheader || '');
+								}
+							}						
 						}
-						
-						
-						if (currCell.type === 2 || currCell.type === 3) {
-							
-							// Get Current Column Headers
-							
-							// console.log(currCell.col.dataheader);
-							// console.log(rowheaders);
-							
-							$(currCell.elem).attr('headers', (currCell.col.dataheader ? currCell.col.dataheader : '') + (rowheaders && currCell.col.dataheader ? ' ' : '') + (rowheaders ? rowheaders : ''));
-						}
-						
 					}
 				}
+				
+				// Check for any description that are related to the an group header cell
+				
+				for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
+					
+					if (tblparser.lstrowgroup[i].headerlevel.length > 0) {
+						for (j = 0; j < tblparser.lstrowgroup[i].headerlevel.length; j += 1){
+							
+							if (tblparser.lstrowgroup[i].headerlevel[j].descCell) {
+								// Set the aria-describedby
+								var currCellId = $(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('id');
+								if (currCellId === undefined || currCellId === '') {
+									// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+									currCellId = idPrefix + tblparser.lstrowgroup[i].headerlevel[j].descCell.uid; // Generate a new ID
+									$(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('id', currCellId);
+								}
+								$(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('aria-describedby', currCellId);
+								
+								// Set the headers
+								var currCellId = $(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('id');
+								if (currCellId === undefined || currCellId === '') {
+									// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+									currCellId = idPrefix + tblparser.lstrowgroup[i].headerlevel[j].uid; // Generate a new ID
+									$(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('id', currCellId);
+								}
+								$(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('headers', currCellId);
+							}	
+							
+						}
+					}
+				}
+				
 				
 			}
 		
