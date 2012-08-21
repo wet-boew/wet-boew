@@ -14,6 +14,7 @@
 	_pe.fn.charts = {
 		type: 'plugin',
 		depends: ['raphael'],
+		polyfills: ['detailssummary'],
 		_exec: function (elm) {
 			var options = {},
 				o,
@@ -3217,13 +3218,11 @@ label:
 						$(tblSrcContainerSummary).text((captionParsed.caption ? $(captionParsed.caption).text() + ' ' : '') + _pe.dic.get('%table-mention'))
 							.appendTo(tblSrcContainer)
 							.after(self);
-						// The pe.add._load has already a mecanism to prevent to load the same library
-						pe.add._load(pe.add.liblocation + 'polyfills/detailssummary' + pe.suffix + '.js');
-						$(tblSrcContainer).addClass('polyfill');
-						if (typeof $(tblSrcContainer).details === "function") {
-							// This means that the default call form when the lib are loaded was happed in the past
+
+						if ($('html').hasClass('polyfill-detailssummary')) {
 							$(tblSrcContainer).details();
 						}
+						
 					} else {
 						// Move the table inside the figure element
 						$(self).appendTo(paperContainer);

@@ -90,14 +90,16 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 						currCell = currRow.cell[j];
 						
 						if ((currCell.type === 1 || currCell.type === 7) && (
-								!(j > 0 && currCell.uid === currRow.cell[j - 1].uid) ||
+								!(j > 0 && currCell.uid === currRow.cell[j - 1].uid) &&
 								!(i > 0 && currCell.uid === tblparser.theadRowStack[i - 1].cell[j].uid)
-							)) {
+							) ) {
+							
 							
 							// If there no id, add an uid
 							var currCellId = $(currCell.elem).attr('id');
 							if (currCellId === undefined || currCellId === '') {
-								currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+								// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+								currCellId = idPrefix + currCell.uid; // Generate a new ID
 								$(currCell.elem).attr('id', currCellId);
 							}
 							
@@ -117,7 +119,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 								$(currCell.descCell.elem).attr('headers', currCellId);
 								var currCellDescId = $(currCell.descCell.elem).attr('id');
 								if (currCellDescId === undefined || currCellDescId === '') {
-									currCellDescId = idPrefix + new Date().getTime() + currCell.descCell.uid; // Generate a new ID
+									// currCellDescId = idPrefix + new Date().getTime() + currCell.descCell.uid; // Generate a new ID
 									$(currCell.descCell.elem).attr('id', currCellDescId);
 								}
 								$(currCell.elem).attr('aria-describedby', currCellDescId);
@@ -128,6 +130,78 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 					
 				}
 				
+				// Set Id/headers for header cell and data cell in the table.
+				for (i = 0; i < tblparser.row.length; i += 1) {
+					currRow = tblparser.row[i];
+					var rowheaders;
+					
+					// Get or Generate a unique ID for each header in this row
+					if (currRow.headerset) { 
+						for (j = 0; j < currRow.headerset.length; j += 1) {
+							var currCellId = $(currRow.headerset[j].elem).attr('id');
+							if (currCellId === undefined || currCellId === '') {
+								// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+								currCellId = idPrefix + currCell.uid; // Generate a new ID
+								$(currRow.headerset[j].elem).attr('id', currCellId);
+							}
+							rowheaders = (rowheaders ? rowheaders + ' ' + currCellId : currCellId);
+						}
+					}
+					if (currRow.header) { 
+						for (j = 0; j < currRow.header.length; j += 1) {
+							var currCellId = $(currRow.header[j].elem).attr('id');
+							if (currCellId === undefined || currCellId === '') {
+								// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+								currCellId = idPrefix + currCell.uid; // Generate a new ID
+								$(currRow.header[j].elem).attr('id', currCellId);
+							}
+							rowheaders = (rowheaders ? rowheaders + ' ' + currCellId : currCellId);
+						}
+					}
+					for (j = 0; j < currRow.cell.length; j += 1) {
+						var currCell = currRow.cell[j];
+						
+						if (!currCell.col.dataheader) {
+							var currCol = currCell.col;
+							var colheaders;
+							if (currCol.headerset) { 
+								for (m = 0; m < currCol.headerset.length; m += 1) {
+									var currCellId = $(currCol.headerset[m].elem).attr('id');
+									if (currCellId === undefined || currCellId === '') {
+										// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+										currCellId = idPrefix + currCell.uid; // Generate a new ID
+										$(currCol.headerset[m].elem).attr('id', currCellId);
+									}
+									colheaders = (colheaders ? colheaders + ' ' + currCellId : currCellId);
+								}
+							}
+							if (currCol.header) { 
+								for (m = 0; m < currCol.header.length; m += 1) {
+									var currCellId = $(currCol.header[m].elem).attr('id');
+									if (currCellId === undefined || currCellId === '') {
+										// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+										currCellId = idPrefix + currCell.uid; // Generate a new ID
+										$(currCol.header[m].elem).attr('id', currCellId);
+									}
+									colheaders = (colheaders ? colheaders + ' ' + currCellId : currCellId);
+								}
+							}
+							currCol.dataheader = colheaders;
+						}
+						
+						
+						if (currCell.type === 2 || currCell.type === 3) {
+							
+							// Get Current Column Headers
+							
+							// console.log(currCell.col.dataheader);
+							// console.log(rowheaders);
+							
+							$(currCell.elem).attr('headers', (currCell.col.dataheader ? currCell.col.dataheader : '') + (rowheaders && currCell.col.dataheader ? ' ' : '') + (rowheaders ? rowheaders : ''));
+						}
+						
+					}
+				}
 				
 			}
 		
@@ -207,7 +281,74 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p><em>This is a HTML Table Validator to help you to see any issue from your HTML Table. Also you will be able to setup your header/ids attribute</em></p>
 
 <form action="#">
-<textarea id="inputHTMLtable" class="span-8" rows="20" cols="50"></textarea>
+<textarea id="inputHTMLtable" class="span-8" rows="20" cols="50">
+
+
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;caption&gt;Current account balances&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;td colspan=&quot;3&quot; rowspan=&quot;2&quot;&gt;&lt;/td&gt;
+&lt;th rowspan=&quot;2&quot;&gt;Goods&lt;/th&gt;
+&lt;th colspan=&quot;2&quot;&gt;Test Group&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th id=&quot;b11&quot;&gt;Other current account&lt;/th&gt;
+&lt;th id=&quot;b12&quot;&gt;Total&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th rowspan=&quot;6&quot;&gt;Previous Year&lt;/th&gt;
+&lt;th rowspan=&quot;2&quot;&gt;2006&lt;/th&gt;
+&lt;th&gt;III&lt;/th&gt;
+&lt;td&gt;11.406&lt;/td&gt;
+&lt;td&gt;-7.010&lt;/td&gt;
+&lt;td&gt;4.396&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;IV&lt;/th&gt;
+&lt;td&gt;12.139&lt;/td&gt;
+&lt;td&gt;-7.437&lt;/td&gt;
+&lt;td&gt;4.702&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th rowspan=&quot;4&quot;&gt;2007&lt;/th&gt;
+&lt;th&gt;I&lt;/th&gt;
+&lt;td&gt;13.563&lt;/td&gt;
+&lt;td rowspan=&quot;3&quot; colspan=&quot;2&quot;&gt;-10.231&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;II&lt;/th&gt;
+&lt;td&gt;$ 15.134&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;III&lt;/th&gt;
+&lt;td&gt;9.510 $&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;IV&lt;/th&gt;
+&lt;td&gt;9.230&lt;/td&gt;
+&lt;td&gt;-7.009&lt;/td&gt;
+&lt;td&gt;2.221&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th colspan=&quot;3&quot;&gt;2008 - I&lt;/th&gt;
+&lt;td&gt;12.551&lt;/td&gt;
+&lt;td&gt;-6.387&lt;/td&gt;
+&lt;td&gt;6.164&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th colspan=&quot;3&quot;&gt;2008 - I&lt;/th&gt;
+&lt;td&gt;12.551&lt;/td&gt;
+&lt;td&gt;-6.387&lt;/td&gt;
+&lt;td&gt;6.164&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+</textarea>
 
 <input type="submit" value="Analyse" />
 

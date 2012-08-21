@@ -2,3 +2,6 @@ language: java
 
 script:
   - ant
+  
+after_script: 
+  - ant test

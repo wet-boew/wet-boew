@@ -206,4 +206,6 @@
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
 	</target>
+
+	<target name="test" depends="-jshint"/>
 </project>
