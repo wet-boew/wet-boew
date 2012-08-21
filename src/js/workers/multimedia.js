@@ -96,7 +96,7 @@
 				}
 				//Can play using a fallback
 				if (canPlay) {
-					$fbObject = $('<object play="" id="' + media_id + '" width="' + width + '" height="' + height + '" class="' + fbClass + '" type="application/x-shockwave-flash" data="' + fbBin + '" tabindex="-1"><param name="movie" value="' + fbBin + '"/><param name="flashvars" value="' + fbVars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>');
+					$fbObject = $('<object play="" pause="" id="' + media_id + '" width="' + width + '" height="' + height + '" class="' + fbClass + '" type="application/x-shockwave-flash" data="' + fbBin + '" tabindex="-1"><param name="movie" value="' + fbBin + '"/><param name="flashvars" value="' + fbVars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>');
 					media.before($fbObject);
 					media.remove();
 					media = $fbObject;
