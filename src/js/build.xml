@@ -161,7 +161,6 @@
 			<exclude name="dependencies/browsertweaks.js"/>
 			<exclude name="dependencies/colorbox.js"/>
 			<exclude name="dependencies/easytabs.js"/>
-			<exclude name="dependencies/equalheights.js"/>
 			<exclude name="dependencies/hashchange.js"/>
 			<exclude name="dependencies/hoverintent.js"/>
 			<exclude name="dependencies/json.js"/>
