@@ -2,6 +2,7 @@
 <project name="wet" default="default" basedir=".">
 	<description>Web Experience Toolkit</description>
 	<property name="src.dir" value="src"/>
+	<property name="build.dir" value="build"/>
 
 	<target name="default" depends="clean,build" description="Performs a Cleand and Build when calling ant without any target"></target>
 
@@ -34,5 +35,11 @@
 		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean" antfile="build.xml" inheritAll="false"/>
 		<delete dir="${dist.dir}" />
+	</target>
+	<target name="test">
+		<echo level="info" message="---Running with JSLint---"/>
+		<ant dir="${src.dir}/js" target="test" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-gcwu-fegc" target="test" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-gcwu-intranet" target="test" antfile="build.xml" inheritAll="false"/>
 	</target>
 </project>
