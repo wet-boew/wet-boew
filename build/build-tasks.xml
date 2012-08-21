@@ -81,4 +81,7 @@
 		</antcall>
 		<echo level="info" message="---Watching for SCSS Changes in CSS Directory---"/>
 	</target>
+	
+	<!-- JSLint Ant task -->	
+	<taskdef uri="antlib:com.googlecode.jslint4java" resource="com/googlecode/jslint4java/antlib.xml" classpathref="ant.tasks.classpath" />
 </project>

@@ -2,3 +2,6 @@ language: java
 
 script:
   - ant
+  
+test: 
+  - ant test
