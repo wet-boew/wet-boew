@@ -36,11 +36,10 @@
 		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean" antfile="build.xml" inheritAll="false"/>
 		<delete dir="${dist.dir}" />
 	</target>
-	
 	<target name="test">
-		<jslint>
-			<formatter type="plain" />
-			<fileset dir="${build.dir}" includes="*.js" />
-		</jslint>
+		<echo level="info" message="---Running with JSLint---"/>
+		<ant dir="${src.dir}/js" target="test" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-gcwu-fegc" target="test" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-gcwu-intranet" target="test" antfile="build.xml" inheritAll="false"/>
 	</target>
 </project>

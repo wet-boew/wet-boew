@@ -83,8 +83,14 @@
 	</target>
 	
 	<!-- JSLint Ant task -->	
-	<path id="jslint.classpath">
-		<pathelement location="${jslint.jar}" />
-	</path> 
-	<taskdef uri="antlib:com.googlecode.jslint4java" resource="com/googlecode/jslint4java/antlib.xml" classpathref="jslint.classpath" />
+	<taskdef name="jslint"
+           classname="com.googlecode.jslint4java.ant.JSLintTask"
+           classpath="${jslint.jar}" />
+
+	<target name="test">
+		<jslint options="sloppy,nomen,browser" haltOnFailure="false">
+			<formatter type="plain" destfile="${build.dir}/jslint.out" />
+			<fileset dir="${src.dir}" includes="**/*.js" excludes="*.min.js" />
+		</jslint>
+	</target>
 </project>
