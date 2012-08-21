@@ -91,7 +91,7 @@
 	</target>
 	
 	<target name="-jshint">
-		<jshint dir="${src.dir}" fail="false" globalsFile="${jshint.globals.file}">
+		<jshint dir="${src.dir}" fail="true" globalsFile="${jshint.globals.file}">
 			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
