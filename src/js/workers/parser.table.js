@@ -499,7 +499,9 @@
 						gzCol.header = [];
 						for (j = 0, _jlen = tmpStack.length; j < _jlen; j += 1) {
 							for (m = gzCol.start, _mlen = gzCol.end; m <= _mlen; m += 1) {
-								gzCol.header.push(tmpStack[j].cell[m - 1]);
+								if (j == 0 || (j > 1 && tmpStack[j].cell[m - 1].uid !== tmpStack[j - 1].cell[m - 1].uid)) {
+									gzCol.header.push(tmpStack[j].cell[m - 1]);
+								}
 							}
 						}
 					}
