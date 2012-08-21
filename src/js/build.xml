@@ -149,7 +149,6 @@
 			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
-			<exclude name="i18n/formvalid/methods_nl.js"/>
 			<exclude name="jquery.mobile/jquery.mobile.js"/>
 			<exclude name="polyfills/datalist.js"/>
 			<exclude name="polyfills/detailssummary.js"/>
