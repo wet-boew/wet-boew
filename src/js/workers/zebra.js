@@ -1,20 +1,20 @@
- /*!
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
- */
+/*!
+* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+* www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+*/
 /*
- * Zebra stripping functionality for block level elements
- */
+* Zebra stripping functionality for block level elements
+*/
 /*global jQuery: false, wet_boew_zebra: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
-		fn : {}
+		fn: {}
 	};
 	/* local reference */
 	_pe.fn.zebra = {
-		type : 'plugin',
-		_exec : function (elem) {
+		type: 'plugin',
+		_exec: function (elem) {
 			var $trs,
 				$cols,
 				$lis,
@@ -132,21 +132,21 @@
 				}
 
 				/* The Heading highlight take times to be set up in ÌE and just a little bit more in Firefox
-				 *
-				 */
+				*
+				*/
 				if (!opts.noheaderhighlight || opts.columnhighlight) {
 					getCellHeaders = function (elem) {
 						var cellsheader = [],
 							tblparser = $(elem).data().tblparser;
 						// Get column Headers
 						/*if (tblparser.row && tblparser.row.header && !opts.norowheaderhighlight) {
-							if (!$.isArray(tblparser.row.header)) {
-								cellsheader.push(tblparser.row.header.elem);
-							} else {
-								for (i = 0; i < tblparser.row.header.length; i += 1) {
-									cellsheader.push(tblparser.row.header[i].elem);
-								}
-							}
+						if (!$.isArray(tblparser.row.header)) {
+						cellsheader.push(tblparser.row.header.elem);
+						} else {
+						for (i = 0; i < tblparser.row.header.length; i += 1) {
+						cellsheader.push(tblparser.row.header[i].elem);
+						}
+						}
 						}*/
 						if (tblparser.row && tblparser.row.header && !opts.norowheaderhighlight) {
 							for (i = 0; i < tblparser.row.header.length; i += 1) {
@@ -268,31 +268,31 @@
 				$(elem).children().each(function () {
 					var $this = $(this);
 					switch (this.nodeName.toLowerCase()) {
-					case 'dt':
-						if (isodd) {
-							isodd = false;
-							$this.addClass('list-even');
-						} else {
-							isodd = true;
-							$this.addClass('list-odd');
-						}
-						dlitem = [];
-						lstDlItems.push($this.get(0));
-						$this.data().dlitem = dlitem;
-						dlitem.push($this.get(0));
-						break;
-					case 'dd':
-						if (isodd) {
-							$this.addClass('list-odd');
-						} else {
-							$this.addClass('list-even');
-						}
-						lstDlItems.push($this.get(0));
-						$this.data().dlitem = dlitem;
-						dlitem.push($this.get(0));
-						break;
-					default:
-						break;
+						case 'dt':
+							if (isodd) {
+								isodd = false;
+								$this.addClass('list-even');
+							} else {
+								isodd = true;
+								$this.addClass('list-odd');
+							}
+							dlitem = [];
+							lstDlItems.push($this.get(0));
+							$this.data().dlitem = dlitem;
+							dlitem.push($this.get(0));
+							break;
+						case 'dd':
+							if (isodd) {
+								$this.addClass('list-odd');
+							} else {
+								$this.addClass('list-even');
+							}
+							lstDlItems.push($this.get(0));
+							$this.data().dlitem = dlitem;
+							dlitem.push($this.get(0));
+							break;
+						default:
+							break;
 					}
 				});
 

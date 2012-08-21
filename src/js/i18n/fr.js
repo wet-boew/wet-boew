@@ -6,6 +6,7 @@
 ----- Dictionary (il8n) ---
  */
 /*global jQuery: false, pe: false */
+/*jshint bitwise: false */
 (function ($) {
 	var _pe = window.pe || {
 		fn: {}
