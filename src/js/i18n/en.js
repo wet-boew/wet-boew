@@ -135,6 +135,7 @@
 			"%share-manual" : "Please close this dialog and\npress Ctrl-D to bookmark this page.",
 			"%share-showall" : "Show all ({n})",
 			"%share-showall-title" : "All bookmarking sites",
+			"%share-disclaimer" : "No endorsement of any products or services is expressed or implied.",
 			/* Form validation */
 			"%form-not-submitted" : "The form could not be submitted because ",
 			"%errors-found" : " errors were found.",

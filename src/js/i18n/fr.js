@@ -131,6 +131,7 @@
 			"%share-manual" : "S'il vous plaît fermer ce dialogue et\nappuyer sur Ctrl-D pour ajouter cette page à vos signets.",
 			"%share-showall" : "Tous montrer ({n})",
 			"%share-showall-title" : "Tout les sites de mise en signet",
+			"%share-disclaimer" : "Aucun appui n’est accordé, soit de façon expresse ou tacite, à aucun produit ou service.",
 			/* Form validation */
 			"%form-not-submitted" : "Le formulaire n'a pu être soumis car ",
 			"%errors-found" : " erreurs ont été trouvées.",
