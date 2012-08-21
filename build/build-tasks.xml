@@ -83,5 +83,8 @@
 	</target>
 	
 	<!-- JSLint Ant task -->	
-	<taskdef uri="antlib:com.googlecode.jslint4java" resource="com/googlecode/jslint4java/antlib.xml" classpathref="ant.tasks.classpath" />
+	<path id="jslint.classpath">
+		<pathelement location="${jslint.jar}" />
+	</path> 
+	<taskdef uri="antlib:com.googlecode.jslint4java" resource="com/googlecode/jslint4java/antlib.xml" classpathref="jslint.classpath" />
 </project>
