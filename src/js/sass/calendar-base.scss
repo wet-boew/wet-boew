@@ -19,12 +19,20 @@ div.cal-cnt{
 		font-size:100%;
 	}
 	.cal-header{
+		overflow: hidden;
 		padding:0.5em 4px;
 		text-align:center;
 		width:91%;
 	}
 	.cal-month{
 		font-size:110%;
+	}
+	.cal-goto{
+		margin-left: 16px;
+	}
+	.cal-goto p{
+		float: left;
+		width: 13.7em;
 	}
 	.cal-goto-link{
 		margin: 0 0 0.5em 0;
@@ -34,11 +42,11 @@ div.cal-cnt{
 	}
 	.cal-goto-month{
 		width:60%;
-		float:left;
+		float:right;
 	}
 	.cal-goto-year {
 		width:39%;
-		float:right;
+		float:left;
 	}
 	.cal-goto-button{
 		margin: 0 10px 0 5px;
