@@ -146,7 +146,6 @@
 	
 	<target name="-jshint">
 		<jshint dir="${src.dir}" fail="false" globalsFile="${jshint.globals.file}">
-			<report type="plain" destfile="${build.dir}/jshint.out" />
 			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
 			<include name="workers/*.js"/>
 			<include name="i18n/*.js"/>
