@@ -10,7 +10,7 @@
 /*
  * pe, a progressive javascript library agnostic framework
  */
-/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false*/
+/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false*/
 (function ($) {
 	"use strict";
 	var pe, _pe;
@@ -1139,7 +1139,7 @@
 						msg = (message !== undefined ? message : 'wet-boew-dependency-loaded');
 					// - lets prevent double loading of JavaScript files but still trigger an event indicating the file was loaded
 					if ($.inArray(js, this.staged) > -1) {
-						$(document).trigger({type: msg, js: js});
+						$(document).trigger({ type: msg, js: js });
 						return this;
 					}
 					setTimeout(function timeout() {
@@ -1159,7 +1159,7 @@
 							}
 							scriptElem.onload = scriptElem.onreadystatechange = null;
 							scriptdone = true;
-							$(document).trigger({type: msg, js: js});
+							$(document).trigger({ type: msg, js: js });
 						};
 						scriptElem.src = js;
 						if ((pe.ie > 0 && pe.ie < 9) || !head.insertBefore) {
@@ -1188,7 +1188,7 @@
 						js_loaded += 1;
 						if (js_loaded === js.length) {
 							$(document).off(msg_single);
-							$(document).trigger({type: msg_all, payload: payload});
+							$(document).trigger({ type: msg_all, payload: payload });
 						}
 					});
 					// Load each of the JavaScript files or trigger the completion event if there are none
@@ -1198,7 +1198,7 @@
 						}
 					} else {
 						$(document).off(msg_single);
-						$(document).trigger({type: msg_all, payload: payload});
+						$(document).trigger({ type: msg_all, payload: payload });
 					}
 
 					return this;
