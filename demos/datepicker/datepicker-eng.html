@@ -98,106 +98,35 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- MainContentStart -->
 <h1 id="wb-cont">Date picker - Calendar interface - Web Experience Toolkit (WET)</h1>
 
+<section>
+<h2>Examples</h2>
 <form method="get">
-    <div>
-        <label for="startdate">Start Date (<abbr title="Four digits year">YYYY</abbr>-<abbr title="Two digits month">MM</abbr>-<abbr title="Two digits day">DD</abbr>):</label>
-        <input type="date" id="startdate" name="startdate" data-min-date="2012-07-27" data-max-date="2012-09-07" />
-    </div>
-    <div>
-        <label for="enddate">End Date  (<abbr title="Four digits year">YYYY</abbr>-<abbr title="Two digits month">MM</abbr>-<abbr title="Two digits day">DD</abbr>):</label>
-        <input type="date" id="enddate" name="enddate" data-min-date="2011-07-27" data-max-date="2014-09-07" />
-    </div>
+	<div>
+		<label for="startdate">Start Date (<abbr title="Four digits year">YYYY</abbr>-<abbr title="Two digits month">MM</abbr>-<abbr title="Two digits day">DD</abbr>)</label>
+		<input type="date" id="startdate" name="startdate" data-min-date="2012-07-27" data-max-date="2012-09-07" />
+	</div>
+	<div>
+		<label for="enddate">End Date  (<abbr title="Four digits year">YYYY</abbr>-<abbr title="Two digits month">MM</abbr>-<abbr title="Two digits day">DD</abbr>)</label>
+		<input type="date" id="enddate" name="enddate" data-min-date="2011-07-27" data-max-date="2014-09-07" />
+	</div>
     <div>
         <input type="submit" value="Submit" />
     </div>
 </form>
-
-<section><h2>Heading 2 (<code>h2</code>) default appearance</h2>
-    <section><h3>Heading 3 (<code>h3</code>) default appearance</h3>
-		<section><h4>Heading 4 (<code>h4</code>) default appearance</h4>
-			<section><h5>Heading 5 (<code>h5</code>) default appearance</h5>
-				<section><h6>Heading 6 (<code>h6</code>) default appearance</h6>
-					<p>Paragraph  default appearance</p>
-				</section>
-			</section>
-		</section>
-	</section>
 </section>
-
-<p><a href="#">Link  default appearance</a></p>
-<p><a href="mailto:"><code>mailto:</code> link default appearance</a></p>
-<p><a href="http://www.">Third party <code>http://www.</code> link default appearance</a></p>
-<p><a href=".doc">Link to file downloads based on file type <code>.doc</code>, <code>.psd</code>, <code>.zip</code>, <code>.pdf</code>, <code>.xls</code>, <code>.xlt</code>, <code>.rtf</code> and <code>.txt</code> default appearance</a></p>
-<p>Abbreviation default appearance: <abbr title="Treasury Board">TBS</abbr>.</p>
-
-<ul>
-<li>unordered list (<code>ul</code>) first level default appearance
-	<ul>
-	<li>unordered list (<code>ul</code>) second level default appearance
-		<ul>
-		<li>unordered list (<code>ul</code>) third level default appearance</li>
-		</ul>
-	</li>
-	</ul>
-</li>
-</ul>
-
-<ol>
-<li>ordered list (<code>ol</code>)  first level default appearance</li>
-<li>ordered list (<code>ol</code>)   first level default appearance
-	<ol>
-	<li>ordered list (<code>ol</code>) second level default appearance</li>
-	<li>ordered list (<code>ol</code>)  second level default appearance
-		<ol>
-		<li>ordered list (<code>ol</code>) third level default appearance</li>
-		<li>ordered list (<code>ol</code>) third level default appearance</li>
-		</ol>
-	</li>
-	</ol>
-</li>
-</ol>
-
-<table>
-<caption>Table caption default appearance</caption>
-<thead>
-<tr>
-<th scope="col">Table header (<code>th</code>) default appearance</th>
-<th scope="col">Table header (<code>th</code>) default appearance</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Table data (<code>td</code>)  default appearance</td>
-<td>Table data (<code>td</code>) default appearance</td>
-</tr>
-</tbody>
-</table>
-
-<form action="#" method="post">
-<div><label for="data1">Form input default appearance:</label> <input name="data1" type="text" id="data1" /></div>
-<div><label for="data2">Form text area default appearance:</label> <textarea name="data2" cols="15" rows="3" id="data2"></textarea></div>
-<div><label for="data4">Form <code>select</code> default appearance:</label> 
-<select id="data4" name="data4">
-<option value="Option 1">Option 1</option>
-<option value="Option 2">Option 2</option>
-<option value="Option 3">Option 3</option>
-<option value="Option 4">Option 4</option>
-</select></div>
-
-<fieldset><legend>Form <code>legend</code>, <code>fieldset</code> and <code>checkbox</code> default appearance</legend>
-<div><label for="data5">Option 1</label>&#160;<input name="checkbox" type="checkbox" id="data5" value="checkbox" />&#160;&#160;
-<label for="data6">Option 2</label>&#160;<input name="checkbox" type="checkbox" id="data6" value="checkbox" />&#160;&#160;
-<label for="data7">Option 3</label>&#160;<input name="checkbox" type="checkbox" id="data7" value="checkbox" />&#160;&#160;
-<label for="data8">Option 4</label>&#160;<input name="checkbox" type="checkbox" id="data8" value="checkbox" /></div>
-</fieldset>
-
-<div><input name="submit" type="submit" id="submit" value="Submit default appearance" />
-<input name="reset" type="reset" id="reset" value="Reset default appearance" /></div>
-</form>
-
-<blockquote>
-<p>&quot;Blockquote default appearance&quot;.</p>
-</blockquote>
+<section>
+<h2>Relevant Attributes</h2>
+<dl>
+<dt>Relevant Start Date attributes:</dt>
+<dd><code>type="date"</code></dd>
+<dd><code>data-min-date="2012-07-27"</code></dd>
+<dd><code>data-max-date="2012-09-07"</code></dd>
+<dt>Relevant End Date attributes:</dt>
+<dd><code>type="date"</code></dd>
+<dd><code>data-min-date="2011-07-27"</code></dd>
+<dd><code>data-max-date="2014-09-07"</code></dd>
+</dl>
+</section>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2011-10-31</time></span></dd>
