@@ -483,13 +483,13 @@
 					j,
 					out = [],
 					obj = {};
-				for (i = 0, _ilen = arr.length; i !== _ilen; i +=1) {
+				for (i = 0, _ilen = arr.length; i !== _ilen; i += 1) {
 					obj[arr[i]] = 0;
 				}
 				for (j in obj) {
 					if (obj.hasOwnProperty(j)) {
 						out.push(j);
-					} 
+					}
 				}
 				return out;
 			},
@@ -764,12 +764,12 @@
 										// Make the nested list into a collapsible section
 										hlink = $this.prev('a');
 										hlink_html = hlink.html();
-										$this.attr({'data-role':'listview', 'data-theme':theme}).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '></div>');
+										$this.attr({ 'data-role': 'listview', 'data-theme': theme }).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '></div>');
 										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink_html + '</h' + (hlevel + 1 + index) + '>');
 										$this.append('<li><a href="' + hlink.attr('href') + '">' + allText + ' - ' + hlink_html + '</a></li>');
 										hlink.remove();
 									} else {
-										$this.attr({'data-role':'listview', 'data-theme':theme});
+										$this.attr({ 'data-role': 'listview', 'data-theme': theme });
 									}
 								});
 								subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
@@ -779,12 +779,12 @@
 								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme, false, expand));
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
-									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(allText + ' - ' + hlink.html()).attr({'data-role':'button', 'data-theme':theme, 'data-icon':'arrow-r', 'data-iconpos':'right'}));
+									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(allText + ' - ' + hlink.html()).attr({ 'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right' }));
 								}
 							}
 							menu.append(subsection);
 						} else if (this.tagName.toLowerCase() === 'div') { // If the menu item is a div
-							menu.append($this.children('a').attr({'data-role':'button', 'data-theme':theme, 'data-icon':'arrow-r', 'data-iconpos':'right'}));
+							menu.append($this.children('a').attr({ 'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right' }));
 						}
 					});
 					menu.children().wrapAll('<div data-role="collapsible-set" data-theme="' + theme + '"></div>');
@@ -825,7 +825,7 @@
 						$this = $this.children('ul');
 					}
 					$this.children().each(function () {
-						var $this = $(this), 
+						var $this = $(this),
 							target = (this.tagName.toLowerCase() === 'a' ? $this : $this.find('a').first());
 						if ($this.prev().length > 0) {
 							target.removeClass('ui-corner-top');
@@ -896,7 +896,7 @@
 					for (polyname in polyfills) {
 						if (polyfills.hasOwnProperty(polyname)) {
 							non_deps.push(polyfills[polyname].selector);
-						} 
+						}
 					}
 					// Find all elements that match the element selector
 					all_elms = $(non_deps.join(','));
@@ -1138,7 +1138,7 @@
 						msg = (message !== undefined ? message : 'wet-boew-dependency-loaded');
 					// - lets prevent double loading of JavaScript files but still trigger an event indicating the file was loaded
 					if ($.inArray(js, this.staged) > -1) {
-						$(document).trigger({type: msg, js: js});
+						$(document).trigger({ type: msg, js: js });
 						return this;
 					}
 					setTimeout(function timeout() {
@@ -1158,7 +1158,7 @@
 							}
 							scriptElem.onload = scriptElem.onreadystatechange = null;
 							scriptdone = true;
-							$(document).trigger({type: msg, js: js});
+							$(document).trigger({ type: msg, js: js });
 						};
 						scriptElem.src = js;
 						if ((pe.ie > 0 && pe.ie < 9) || !head.insertBefore) {
@@ -1187,7 +1187,7 @@
 						js_loaded += 1;
 						if (js_loaded === js.length) {
 							$(document).off(msg_single);
-							$(document).trigger({type: msg_all, payload: payload});
+							$(document).trigger({ type: msg_all, payload: payload });
 						}
 					});
 					// Load each of the JavaScript files or trigger the completion event if there are none
@@ -1197,7 +1197,7 @@
 						}
 					} else {
 						$(document).off(msg_single);
-						$(document).trigger({type: msg_all, payload: payload});
+						$(document).trigger({ type: msg_all, payload: payload });
 					}
 
 					return this;
@@ -1305,11 +1305,11 @@
 				_node.attr('data-load', _pcalls.join(',')); // Add the plugins to load to data-load for loading later
 				pcalls.push.apply(pcalls, _pcalls); // Push the plugin calls into the pcall array
 			});
-			
+
 			// Push each of the global plugin calls into the pcall array
 			if (settings) {
 				pcalls.push(settings.globals);
-			}	
+			}
 
 			// Eliminate duplicate plugin calls
 			pcalls = pe.array.noduplicates(pcalls);
@@ -1373,7 +1373,7 @@
 						}
 
 						// TODO: find a better way to switch back and forth between mobile and desktop modes.
-						window.onresize = function () { 
+						window.onresize = function () {
 							if (pe.mobile !== pe.mobilecheck()) {
 								window.location.href = decodeURI(pe.url(window.location.href).removehash());
 							}
