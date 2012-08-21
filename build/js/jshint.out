@@ -1,0 +1,123 @@
+JSHint validation summary:
+----------------------------------------------------------------------
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\dependencies\calendar.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\i18n\en.js
+Missing "use strict" statement. (line: 10, character: 5)
+ > 	var _pe = window.pe || {
+Unexpected use of '|'. (line: 15, character: 70)
+ > 			var truthiness = (typeof key === "string" && key !== "") | // eg. 000 or 001 ie. 0 or 1
+Unexpected use of '<<'. (line: 16, character: 61)
+ > 				(typeof state === "string" && state !== "") << 1 | // eg. 000 or 010 ie. 0 or 2
+Unexpected use of '|'. (line: 16, character: 66)
+ > 				(typeof state === "string" && state !== "") << 1 | // eg. 000 or 010 ie. 0 or 2
+Unexpected use of '<<'. (line: 17, character: 61)
+ > 				(typeof mixin === "string" && mixin !== "") << 2; // eg. 000 or 100 ie. 0 or 4
+Mixed spaces and tabs. (line: 32, character: 2)
+ > 		 */
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\i18n\fr.js
+Missing "use strict" statement. (line: 10, character: 5)
+ > 	var _pe = window.pe || {
+Unexpected use of '|'. (line: 15, character: 70)
+ > 			var truthiness = (typeof key === "string" && key !== "") | // eg. 000 or 001 ie. 0 or 1
+Unexpected use of '<<'. (line: 16, character: 61)
+ > 				(typeof state === "string" && state !== "") << 1 | // eg. 000 or 010 ie. 0 or 2
+Unexpected use of '|'. (line: 16, character: 66)
+ > 				(typeof state === "string" && state !== "") << 1 | // eg. 000 or 010 ie. 0 or 2
+Unexpected use of '<<'. (line: 17, character: 61)
+ > 				(typeof mixin === "string" && mixin !== "") << 2; // eg. 000 or 100 ie. 0 or 4
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\archived.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\charts.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\css3ie.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\deselectradio.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\equalize.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\eventscalendar.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\feedback.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\footnotes.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\formvalid.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\langselect.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\lightbox.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\menubar.js
+Unexpected use of '<<'. (line: 254, character: 38)
+ > 					level = !!_id[2] << 1 | !!_id[3];
+Unexpected use of '|'. (line: 254, character: 43)
+ > 					level = !!_id[2] << 1 | !!_id[3];
+Unexpected use of '<<'. (line: 281, character: 38)
+ > 					level = !!_id[2] << 1 | !!_id[3];
+Unexpected use of '|'. (line: 281, character: 43)
+ > 					level = !!_id[2] << 1 | !!_id[3];
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\multimedia.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\parser.table.js
+Unsafe character. (line: 2, character: 35)
+ > * Web Experience Toolkit (WET) / Bo�te � outils de l'exp�rience Web (BOEW)
+Possible strict violation. (line: 1350, character: 120)
+ > 								errorTrigger(32, 'An row cell heading length can not be inferior of a data row group', this);
+Possible strict violation. (line: 1353, character: 265)
+ > 								errorTrigger(33, 'An row cell heading length that can not be categorized in the data group and summary group. Use uniform size for data/summary group. Uniform size between data group and summary group require a new tbody section.', this);
+'theadRS' is not defined. (line: 304, character: 21)
+ > 					theadRS = theadRowStack[i];
+'theadRS' is not defined. (line: 305, character: 26)
+ > 					if (!theadRS.type) {
+'theadRS' is not defined. (line: 306, character: 25)
+ > 						theadRS.type = 1;
+'theadRS' is not defined. (line: 309, character: 41)
+ > 					for (j = 0, _jlen = theadRS.cell.length; j < _jlen; j += 1) {
+'theadRS' is not defined. (line: 343, character: 51)
+ > 							theadRSNextCell.row = theadRS;
+'theadRS' is not defined. (line: 366, character: 21)
+ > 					theadRS = theadRowStack[i];
+'theadRS' is not defined. (line: 367, character: 25)
+ > 					if (theadRS.type === 5) {
+'theadRS' is not defined. (line: 369, character: 45)
+ > 						for (j = 0, _jlen = theadRS.cell.length; j < _jlen; j += 1) {
+'theadRS' is not defined. (line: 370, character: 36)
+ > 							cell = theadRS.cell[j];
+'theadRS' is not defined. (line: 382, character: 39)
+ > 						tmpStack.push(theadRS);
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\prettify.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\share.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\slideout.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\tabbedinterface.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\texthighlight.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\toolbar.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\wamethod.js
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\webwidget.js
+Don't make functions within a loop. (line: 66, character: 22)
+ > 					});
+Don't make functions within a loop. (line: 100, character: 22)
+ > 					});
+Don't make functions within a loop. (line: 151, character: 22)
+ > 					});
+
+JSHint validation failed for c:\Workspace\wet-boew\src\js\workers\zebra.js
+Mixed spaces and tabs. (line: 135, character: 4)
+ > 				 *
+Mixed spaces and tabs. (line: 136, character: 4)
+ > 				 */
+----------------------------------------------------------------------
+JSHint found 33 errors.
+August 21, 2012 11:49:38 EDT AM
