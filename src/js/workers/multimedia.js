@@ -501,7 +501,7 @@
 					url : url,
 					context : evtmgr,
 					dataType : 'html',
-					success : function (data, status, response) {
+					success : function (data) {
 						var eventObj = {type: 'captionsloaded'};
 						if (data.indexOf('<html') > -1) {
 							eventObj.captions = parse_html($(data));
@@ -559,7 +559,7 @@
 
 	//Method to allow the flash player to trigger the media events
 	_pe.triggermediaevent = function (id, event) {
-		var o = $('#' + id).find('param:eq(0)').trigger(event);
+		$('#' + id).find('param:eq(0)').trigger(event);
 	};
 
 	window.pe = _pe;
