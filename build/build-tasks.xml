@@ -82,15 +82,13 @@
 		<echo level="info" message="---Watching for SCSS Changes in CSS Directory---"/>
 	</target>
 	
-	<!-- JSLint Ant task -->	
-	<taskdef name="jslint"
-           classname="com.googlecode.jslint4java.ant.JSLintTask"
-           classpath="${jslint.jar}" />
-
+	<!-- JSHint Ant task -->	
+	<taskdef name="jshint" classname="com.philmander.jshint.JsHintAntTask" classpath="${jshint.jar}" />
 	<target name="test">
-		<jslint options="sloppy,nomen,browser" haltOnFailure="false">
-			<formatter type="plain" destfile="${build.dir}/jslint.out" />
-			<fileset dir="${src.dir}" includes="**/*.js" excludes="*.min.js" />
-		</jslint>
+		<jshint dir="${src.dir}" fail="false">
+			<report type="plain" destfile="${build.dir}/jshint.out" />
+			<include name="**/*.js"/>
+			<exclude name="*.min.js"/>
+		</jshint>
 	</target>
 </project>
