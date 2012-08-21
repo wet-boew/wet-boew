@@ -141,4 +141,17 @@
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
 	</target>
+
+	<target name="test" depends="-jshint"/>
+	
+	<target name="-jshint">
+		<jshint dir="${src.dir}" fail="false" globalsFile="${jshint.globals.file}">
+			<report type="plain" destfile="${build.dir}/jshint.out" />
+			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
+			<include name="workers/*.js"/>
+			<include name="i18n/*.js"/>
+			<include name="dependencies/calendar.js"/>
+			<exclude name="**/*.min.js"/>
+		</jshint>
+	</target>
 </project>

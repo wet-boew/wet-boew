@@ -27,13 +27,21 @@
 		<classpath refid="cssurlembed.classpath" />
 	</taskdef>
 	
+	<!-- JSHint Ant task definition -->
+	<path id="jshint.classpath">
+		<pathelement location="${jshint.jar}" />
+	</path>
+	<taskdef name="jshint" classname="com.philmander.jshint.JsHintAntTask">
+		<classpath refid="jshint.classpath" />
+	</taskdef>
+	
 	<!-- Include the compiled jruby.jar file -->
 	<path id="jruby.classpath">
 		<fileset dir="${lib.dir}">
 		  <include name="jruby*.jar"/>
 		</fileset>
 	</path>
-	  
+	
 	<!-- Include jruby + gems (compass + sass + zengrids) -->
 	<target name="-build-jruby" depends="-jruby.jar.check" unless="jruby.jar.exists">
 		<mkdir dir="${lib.dir}/jruby-compiled" />
@@ -82,13 +90,12 @@
 		<echo level="info" message="---Watching for SCSS Changes in CSS Directory---"/>
 	</target>
 	
-	<!-- JSHint Ant task -->	
-	<taskdef name="jshint" classname="com.philmander.jshint.JsHintAntTask" classpath="${jshint.jar}" />
-	<target name="test">
-		<jshint dir="${src.dir}" fail="false">
+	<target name="-jshint">
+		<jshint dir="${src.dir}" fail="false" globalsFile="${jshint.globals.file}">
 			<report type="plain" destfile="${build.dir}/jshint.out" />
+			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
-			<exclude name="*.min.js"/>
+			<exclude name="**/*.min.js"/>
 		</jshint>
 	</target>
 </project>
