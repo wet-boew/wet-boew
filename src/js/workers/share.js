@@ -31,6 +31,8 @@
 				popup: true, // True to have it popup on demand, false to show always
 				popupTag: 'h2', // Parent tag for the popup link (should be either h2 or h3)
 				popupText: pe.dic.get('%share-text'), // Text for the popup trigger
+				includeDisclaimer: true, // True to include the popup disclaimer (at the bottom)
+				popupDisclaimer: pe.dic.get('%share-disclaimer'), // Text for the popup disclaimer
 				hideText: (pe.dic.get('%hide') + " - "), // Text to prepend to the popup trigger when popup is open
 				addFavorite: false,  // True to add a 'add to favourites' link, false for none
 				favoriteText: pe.dic.get('%favourite'),  // Display name for the favourites link
@@ -85,6 +87,9 @@
 						$span.removeAttr('title');
 					}
 				});
+				if (opts.includeDisclaimer) {
+					$popup.append('<p class="popup_disclaimer">' + opts.popupDisclaimer + '</p>');
+				}
 
 				$popup.on("click vclick", function (e) {
 					if (e.stopPropagation) {
