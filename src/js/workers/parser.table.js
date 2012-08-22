@@ -879,7 +879,7 @@
 				// console.log(rowgroupHeaderRowStack); rowlevel
 				// console.log(currentRowGroup);
 
-				rowgroupHeaderRowStack = []; // reset the row header stack	
+				
 
 				// TODO: Set the Data Level for this row group
 				// Calculate the appropriate row group level based on the previous rowgroup 
@@ -912,14 +912,6 @@
 								// This are a new set of heading, the level equal the number of group header cell found
 								currentRowGroup.level = currentRowGroup.headerlevel.length + 1;
 							}
-
-							// Set the level for each group header cell
-							for (i = 0; i < currentRowGroup.headerlevel.length; i += 1) {
-								if (!currentRowGroup.headerlevel[i].level) {
-									currentRowGroup.headerlevel[i].level = i + 1;
-									currentRowGroup.headerlevel[i].rowlevel = currentRowGroup.headerlevel[i].level;
-								}
-							}
 						} else if (currentRowGroup.type === 3) {
 							// Summary Group
 							if (previousRowGroup.type === 3) {
@@ -934,20 +926,28 @@
 
 							// Set the header level with the previous row group
 							for (i = 0; i < previousRowGroup.headerlevel.length; i += 1) {
-								if (previousRowGroup.headerlevel[i].level <= currentRowGroup.level) {
+								if (previousRowGroup.headerlevel[i].level < currentRowGroup.level) {
 									currentRowGroup.headerlevel.push(previousRowGroup.headerlevel[i]);
 								}
 							}
 						} else {
-							// Error ????
+							// Error
 							currentRowGroup.level = "Error, not calculated";
 							errorTrigger(13, "Error, Row group not calculated");
 						}
 					} else {
-						currentRowGroup.level = 2;
+						currentRowGroup.level = 1 + rowgroupHeaderRowStack.length;
 					}
 				}
+				
+				// Ensure that each row group cell heading have their level set
+				for (i = 0; i < currentRowGroup.headerlevel.length; i += 1) {
+					currentRowGroup.headerlevel[i].level = i + 1;
+					currentRowGroup.headerlevel[i].rowlevel = currentRowGroup.headerlevel[i].level;
+				}
 
+				rowgroupHeaderRowStack = []; // reset the row header stack	
+				
 				if (currentRowGroup.level === undefined || currentRowGroup.level < 0) {
 					errorTrigger(14, 'You can not have a summary at level under 0, add a group header or merge a tbody togheter', currentRowGroup.elem);
 				}

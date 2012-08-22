@@ -334,6 +334,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
 				
 				// Missing colgroup and col if any
+				var previousColgroup;
 				for (i = 0; i < tblparser.colgroup.length; i += 1) {
 					var colgroupelem;
 					if (tblparser.colgroup[i].elem === undefined) {
@@ -348,12 +349,16 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 							$(column).data().tblparser = tblparser.colgroup[i].col[j];
 						}
 						
-						
-						if ($(tblelement).has('caption')) {
-							$('caption:eq(0)', tblelement).after(colgroupelem);
+						if (previousColgroup) {
+							$(previousColgroup).after(colgroupelem);
 						} else {
-							$(tblelement).prepend(colgroupelem);
+							if ($(tblelement).has('caption')) {
+								$('caption:eq(0)', tblelement).after(colgroupelem);
+							} else {
+								$(tblelement).prepend(colgroupelem);
+							}
 						}
+						previousColgroup = colgroupelem;
 						
 						tblparser.colgroup[i].elem = $(colgroupelem).get(0);
 						$(colgroupelem).data().tblparser = tblparser.colgroup[i];
