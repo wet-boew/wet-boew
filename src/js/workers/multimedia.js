@@ -253,7 +253,7 @@
 
 				if (captions !== undefined) {
 					media.after($('<div class="wet-boew-multimedia-captionsarea"/>').hide());
-					_pe.fn.multimedia._load_captions(media, evtmgr, captions);
+					_pe.fn.multimedia._load_captions(evtmgr, captions);
 				}
 			}
 
@@ -385,7 +385,7 @@
 			}
 		},
 
-		_load_captions : function (media, evtmgr, src) {
+		_load_captions : function (evtmgr, src) {
 			var parse_time,
 				parse_html,
 				parse_xml,
@@ -427,40 +427,37 @@
 					captions = [];
 
 				te.each(function () {
-					var e = $(this).clone(),
+					var e = $(this),
 						begin = -1,
 						end = -1,
 						c,
 						json;
-					e.find(s).detach();
 
-					if (e.attr('data-begin') !== undefined) {
-						//HTML5 captions (seperate attributes)
-						begin = parse_time(e.attr('data-begin'));
-						end = e.attr('data-end') !== undefined ? parse_time(e.attr('data-end')) : parse_time(e.attr('data-dur')) + begin;
-					} else {
-						if (e.attr('data')) {
-							//HTML5 captions JSON in data attribute
+						if (typeof e.attr('data-begin') !== 'undefined') {
+							//HTML5 captions (seperate attributes)
+							begin = parse_time(e.attr('data-begin'));
+							end = e.attr('data-end') !== undefined ? parse_time(e.attr('data-end')) : parse_time(e.attr('data-dur')) + begin;
+						} else if (e.attr('data') !== undefined){
 							json = e.attr('data');
-						} else {
-							//XHTML cations (inside the class attribute)
-							c = e.attr('class');
-							json = c.substring(c.indexOf('{'));
+
+							//Sanitze the JSON
+							json = json.replace(/(begin|dur|end)/gi, '"$1"').replace(/'/g, '"');
+							json = $.parseJSON(json);
+
+							begin = parse_time(json.begin);
+							end = json.end !== undefined ? parse_time(json.end) : parse_time(json.dur) + begin;
 						}
+						//Removes nested captions if any
+						e = e.clone();
+						e.find(s).detach();
 
-						//Sanitze the JSON
-						json = json.replace(/(begin|dur|end)/gi, '"$1"').replace(/'/g, '"');
-						json = $.parseJSON(json);
+						captions[captions.length] = {
+							text : e.html(),
+							begin : begin,
+							end : end
+						};
 
-						begin = parse_time(json.begin);
-						end = json.end !== undefined ? parse_time(json.end) : parse_time(json.dur) + begin;
 
-					}
-					captions[captions.length] = {
-						text : e.html(),
-						begin : begin,
-						end : end
-					};
 				});
 				return captions;
 			};
@@ -471,13 +468,17 @@
 					captions = [];
 
 				te.each(function () {
-					var e = $(this).clone(),
+					var e = $(this),
 						begin = -1,
 						end = -1;
 
-					e.find(s).detach();
 					begin = parse_time(e.attr('begin'));
 					end = e.attr('end') !== undefined ? parse_time(e.attr('end')) : parse_time(e.attr('dur')) + begin;
+					
+					//Removes nested captions if any
+					e = e.clone();
+					e.find(s).detach();
+					
 					captions[captions.length] = {
 						text : e.html(),
 						begin : begin,
