@@ -334,6 +334,7 @@
 								!cell.type &&
 								theadRSNext &&
 								theadRSNext.uid !== cell.uid &&
+								theadRSNextCell &&
 								!theadRSNextCell.type &&
 								theadRSNextCell.elem.nodeName.toLowerCase() === 'td' &&
 								theadRSNextCell.width === cell.width &&
@@ -499,7 +500,7 @@
 						gzCol.header = [];
 						for (j = 0, _jlen = tmpStack.length; j < _jlen; j += 1) {
 							for (m = gzCol.start, _mlen = gzCol.end; m <= _mlen; m += 1) {
-								if (j == 0 || (j > 1 && tmpStack[j].cell[m - 1].uid !== tmpStack[j - 1].cell[m - 1].uid)) {
+								if ((j == 0 || (j > 1 && tmpStack[j].cell[m - 1].uid !== tmpStack[j - 1].cell[m - 1].uid)) && tmpStack[j].cell[m - 1].type === 1) {
 									gzCol.header.push(tmpStack[j].cell[m - 1]);
 								}
 							}
@@ -567,7 +568,7 @@
 								gzCol.header = [];
 								for (j = 0, _jlen = tmpStack.length; j < _jlen; j += 1) {
 									for (m = gzCol.start, _mlen = gzCol.end; m <= _mlen; m += 1) {
-										if (j == 0 || (j > 1 && tmpStack[j].cell[m - 1].uid !== tmpStack[j - 1].cell[m - 1].uid)) {
+										if ((j == 0 || (j > 1 && tmpStack[j].cell[m - 1].uid !== tmpStack[j - 1].cell[m - 1].uid)) && tmpStack[j].cell[m - 1].type === 1) {
 											gzCol.header.push(tmpStack[j].cell[m - 1]);
 										}
 									}
@@ -1248,7 +1249,7 @@
 					}
 
 					if (row.colgroup.length > 1  && currentRowPos !== 1) {
-						errorTrigger(21, 'This is an invalid row header because they can not mix data cell with header cell');
+						errorTrigger(21, 'Please wrap all the row used as the column cell heading in the thead row group');
 					}
 
 					//

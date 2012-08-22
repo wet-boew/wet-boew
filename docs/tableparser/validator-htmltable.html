@@ -55,8 +55,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		$('form').submit(function(){
 			var noErrorList = '<li>No Error Found</li>';
 			
-			$('#resultTableIdHeaders').hide();
 			$('#resultTableIdHeaders').val('');
+			$('#resultTableIdHeaders').hide();
+			
 
 			$('#errorList').empty();			
 			$('#directOutput').empty();
@@ -76,11 +77,13 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				// Add id, headers attribute to each cell
 				
 				var tblparser = $('#directOutput table:eq(0)').data().tblparser,
+					tblelement = $('#directOutput table:eq(0)'),
 					i,
 					j,
 					currRow,
 					currCell,
-					idPrefix = 'usabletblparsed';
+					idPrefix = $('#idprefix').val() || 'usabletblparsed';
+					
 				
 				// Set ID and Header for the table head
 				for (i = 0; i < tblparser.theadRowStack.length; i += 1) {
@@ -170,9 +173,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 							var currCell = currRow.cell[j],
 								coldataheader = "";
 							
-							if (currCell.uid === 75) {
-								console.log('j:' + j + ' currRow.cell[j].uid:' + currRow.cell[j].uid + (currRow.cell[j - 1] ? ' currRow.cell[j - 1].uid:' + currRow.cell[j - 1].uid : ''));
-							}
 							if (currCell.col && !currCell.col.dataheader) {
 								var currCol = currCell.col;
 								var colheaders = "",
@@ -209,10 +209,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 							
 							
 							if (currCell.type === 1) {
-								console.log('Row Header uid:' + currCell.uid + ' at colpos:' + j);
-								console.log(coldataheader);
-								console.log(currRow.idsheaderset);
-								console.log(ongoingRowHeader);
 								
 								$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + 
 													(currRow.idsheaderset && coldataheader ? ' ' : '') +
@@ -329,6 +325,63 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				}
 				
 				
+				// Horay, now all the table cell have theirs id/headers set as the table was parsed,
+				
+				// Suggestion: Add some aria-label to annonce the data summary, I will ask the WAI Interrest Mailing List to get some liable solution
+				
+				// tfoot question: do I force it as exclusive column summaries as the HTML 5 spec define it if it used as table footnote ??
+				
+				// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
+				
+				// Missing colgroup and col if any
+				for (i = 0; i < tblparser.colgroup.length; i += 1) {
+					var colgroupelem;
+					if (tblparser.colgroup[i].elem === undefined) {
+						// Create a colgroup element
+						colgroupelem = $('<colgroup></colgroup>');
+						
+						// Create the column
+						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
+							var column = $('<col />');
+							$(colgroupelem).append(column);
+							tblparser.colgroup[i].col[j].elem = $(column).get(0);
+							$(column).data().tblparser = tblparser.colgroup[i].col[j];
+						}
+						
+						
+						if ($(tblelement).has('caption')) {
+							$('caption:eq(0)', tblelement).after(colgroupelem);
+						} else {
+							$(tblelement).prepend(colgroupelem);
+						}
+						
+						tblparser.colgroup[i].elem = $(colgroupelem).get(0);
+						$(colgroupelem).data().tblparser = tblparser.colgroup[i];
+					} else {
+						// Remove the span attribute if exist
+						colgroupelem = tblparser.colgroup[i].elem;
+
+						$(colgroupelem).removeAttr('span');
+						
+						// Create the column
+						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
+							if (tblparser.colgroup[i].col[j].elem === undefined) {
+								var column = $('<col />');
+								$(colgroupelem).append(column);
+								tblparser.colgroup[i].col[j].elem = $(column).get(0);
+								$(column).data().tblparser = tblparser.colgroup[i].col[j];
+							}
+						}
+						
+					}
+				}
+				
+				// TODO: Rebuild the thead, tbody section
+				
+				
+				// Show the result
+				$('#resultTableIdHeaders').show();
+				$('#resultTableIdHeaders').val('<table>' + $(tblelement).html() + '</table>');
 			}
 		
 			
@@ -407,6 +460,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p><em>This is a HTML Table Validator to help you to see any issue from your HTML Table. Also you will be able to setup your header/ids attribute</em></p>
 
 <form action="#">
+	<label for="idprefix">Id Prefix:</label> <input id="idprefix" value="tbl" /><br />
+	
 <textarea id="inputHTMLtable" class="span-8" rows="20" cols="50">
 
 
