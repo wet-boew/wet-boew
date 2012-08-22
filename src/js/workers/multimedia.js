@@ -83,13 +83,13 @@
 				//No nativly supported format provided, trying Flash fallback
 				//TODO:Add Flash detection
 				fbVars = 'id=' + elm.attr('id');
-				if (flash && media.is('video') && media.find('source[type="' + fbVideoType + '"]').length > 0) {
+				if (flash && media.is('video') && media.find('source').filter('[type="' + fbVideoType + '"]').length > 0) {
 					fbClass = 'video';
-					fbVars +=  '&height=' + media.height() + '&width=' + media.width() + '&posterimg=' + encodeURI(_pe.url(media.attr('poster')).source) + '&media=' + encodeURI(_pe.url(media.find('source[type="' + fbVideoType + '"]').attr('src')).source);
+					fbVars +=  '&height=' + media.height() + '&width=' + media.width() + '&posterimg=' + encodeURI(_pe.url(media.attr('poster')).source) + '&media=' + encodeURI(_pe.url(media.find('source').filter('[type="' + fbVideoType + '"]').attr('src')).source);
 					canPlay = true;
-				} else if (flash && media.is('audio') && media.find('source[type="' + fbAudioType + '"]').length > 0) {
+				} else if (flash && media.is('audio') && media.find('source').filter('[type="' + fbAudioType + '"]').length > 0) {
 					fbClass = 'audio';
-					fbVars += '&media=' + _pe.url(media.find('source[type="' + fbAudioType + '"]').attr('src')).source;
+					fbVars += '&media=' + _pe.url(media.find('source').filter('[type="' + fbAudioType + '"]').attr('src')).source;
 					canPlay = true;
 				} else {
 					canPlay = false;
