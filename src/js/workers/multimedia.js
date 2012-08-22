@@ -430,32 +430,31 @@
 					var e = $(this),
 						begin = -1,
 						end = -1,
-						c,
 						json;
 
-						if (typeof e.attr('data-begin') !== 'undefined') {
-							//HTML5 captions (seperate attributes)
-							begin = parse_time(e.attr('data-begin'));
-							end = e.attr('data-end') !== undefined ? parse_time(e.attr('data-end')) : parse_time(e.attr('data-dur')) + begin;
-						} else if (e.attr('data') !== undefined){
-							json = e.attr('data');
+					if (e.attr('data-begin') !== undefined) {
+						//HTML5 captions (seperate attributes)
+						begin = parse_time(e.attr('data-begin'));
+						end = e.attr('data-end') !== undefined ? parse_time(e.attr('data-end')) : parse_time(e.attr('data-dur')) + begin;
+					} else if (e.attr('data') !== undefined) {
+						json = e.attr('data');
 
-							//Sanitze the JSON
-							json = json.replace(/(begin|dur|end)/gi, '"$1"').replace(/'/g, '"');
-							json = $.parseJSON(json);
+						//Sanitze the JSON
+						json = json.replace(/(begin|dur|end)/gi, '"$1"').replace(/'/g, '"');
+						json = $.parseJSON(json);
 
-							begin = parse_time(json.begin);
-							end = json.end !== undefined ? parse_time(json.end) : parse_time(json.dur) + begin;
-						}
-						//Removes nested captions if any
-						e = e.clone();
-						e.find(s).detach();
+						begin = parse_time(json.begin);
+						end = json.end !== undefined ? parse_time(json.end) : parse_time(json.dur) + begin;
+					}
+					//Removes nested captions if any
+					e = e.clone();
+					e.find(s).detach();
 
-						captions[captions.length] = {
-							text : e.html(),
-							begin : begin,
-							end : end
-						};
+					captions[captions.length] = {
+						text : e.html(),
+						begin : begin,
+						end : end
+					};
 
 
 				});
@@ -474,11 +473,11 @@
 
 					begin = parse_time(e.attr('begin'));
 					end = e.attr('end') !== undefined ? parse_time(e.attr('end')) : parse_time(e.attr('dur')) + begin;
-					
+
 					//Removes nested captions if any
 					e = e.clone();
 					e.find(s).detach();
-					
+
 					captions[captions.length] = {
 						text : e.html(),
 						begin : begin,
