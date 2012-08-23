@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+<title>Grids and grid utilities - Working examples - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../build/js/jquery.min.js"></script>
+<!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body class="wet-boew-prettify"><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="grid-utilities-fra.html" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../docs/index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.inc">
+<li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
+<li><div><a href="section2/index-eng.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../docs/index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li>Grids and grid utilities</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h3 id="versatile"><code>module</code> style</h3>
+<div class="span-4">
+	<p>Use the <code>module</code> class for <strong>any type of content</strong>. This module is typically located on the right but can be used anywhere.	It only works with a <code>span-2</code>.</p>
+</div>
+<div class="span-4">
+
+   <div class="span-2 row-start">
+      <h4 class="background-medium"><code>module</code> heading</h4>
+      <div class="module">
+         <p>There is some text in this paragraph.</p>
+         <ul>
+            <li>Text and <a href="#">fake link</a></li>
+            <li>Text</li>
+         </ul>
+      </div>
+      <div class="module">
+         <p>There is some text in this paragraph.</p>
+         <div class="background-dark">
+	         <p>There is some text in this paragraph in a <code>background-dark</code> <code>div</code>. The content was placed in a <code>div</code> so the background spanned the width of the module.</p>
+         </div>
+         <ul>
+            <li>Text and <a href="#">fake link</a></li>
+            <li>Text</li>
+         </ul>
+		</div>
+   </div>
+   <div class="span-2 row-end">
+      <h4 class="background-accent"><code>module</code> <code>background-accent</code> heading</h4>
+      <div class="module">
+         <p>There is some text in this paragraph.</p>
+         <ul>
+            <li>Text and <a href="#">fake link</a></li>
+            <li>Text</li>
+         </ul>
+         <div class="indent-medium margin-right-medium">
+            <table class="table-simplify table-condensed width-100">
+               <thead>
+                  <tr>
+                     <th>Header</th>
+                     <th>Header</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Data</td>
+                     <td>Data</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+        </div>
+   </div>
+
+</div>
+<div class="clear"></div>
+
+<h3 id="related"><code>module-related</code> style</h3>
+<div class="span-4">
+	<p>Use the <code>module-related</code> class to feature a <strong>list of links that point to related Web pages</strong>. This module is typically located on the right.</p>
+</div>
+<div class="span-2 module-related">
+   <h2>Related Links</h2>
+   <ul>
+      <li><a href="#related" >Fake link </a></li>
+      <li>Text and <a href="#related" >fake link</a></li>
+   </ul>
+</div>
+<div class="span-2 module-related">
+   <h2 class="background-accent">Related Links</h2>
+   <ul>
+      <li><a href="#related" >Fake link </a></li>
+      <li>Text and <a href="#related" >fake link</a></li>
+      <li>A large quantity of text and <a href="#related" >an impressively wide fake link</a></li>
+   </ul>
+</div>
+<div class="clear"></div>
+
+<h3 id="billboard"><code>module-billboard</code> style</h3>
+<div class="span-4">
+	<p>Use the <code>module-billboard</code> class to feature a list of <strong>links to specialty and newsworthy pages</strong>. This module forms part of the right menu and works with <code>span-2</code>.</p>
+</div>
+<div class="span-4 margin-bottom-none">
+	<div class="span-2 row-start module-billboard">
+	<h3>Billboard</h3>
+	<ul>
+		<li><a href="#billboard">Billboard link</a></li>
+		<li><a href="#billboard">Billboard link<br>
+		spread over 2 lines</a></li>
+	</ul>
+	</div>
+	<div class="span-2 row-end module-billboard">
+	<h3 class="background-dark">Billboard</h3>
+	<ul>
+		<li><a href="#billboard">Billboard link</a></li>
+		<li><a href="#billboard">Billboard link<br>
+		spread over 2 lines</a></li>
+	</ul>
+	</div>
+</div>
+<div class="clear"></div>
+<h3 id="event"><code>module-event</code> style</h3>
+<div class="span-4">
+	<p>An events menu must include a <strong>link to the main events page </strong>and can <strong>optionally include a calendar</strong>. This type of menu uses the class <code>module-event</code>. This module is typically located on the right but can be used anywhere. It only works with a <code>span-2</code>.</p>
+</div>
+<div class="span-4">
+   <div class="span-2 row-start module-event">
+      <h2>Events</h2>
+      <ul class="calendar-list">
+         <li>Event #1<br><span class="text-medium font-small">Loremipsum 18, 2012</span></li>
+         <li>Event #2</li>
+         <li>Event #3</li>
+         <li>Event #4</li>
+         <li class="calendar-more"><a href="#">View all events</a></li>
+      </ul>
+      <table class="calendar-month">
+         <caption>October 2009</caption>
+         <tr>
+            <th scope="col" class="calendar-weekend"><abbr title="Sunday">S</abbr></th>
+            <th scope="col"><abbr title="Monday">M</abbr></th>
+            <th scope="col"><abbr title="Tuesday">T</abbr></th>
+            <th scope="col"><abbr title="Wednesday">W</abbr></th>
+            <th scope="col"><abbr title="Thursday">T</abbr></th>
+            <th scope="col"><abbr title="Friday">F</abbr></th>
+            <th scope="col" class="calendar-weekend"><abbr title="Saturday">S</abbr></th>
+         </tr>
+         <tr>
+            <td  class="calendar-weekend"></td>
+            <td></td>
+            <td></td>
+            <td> 1</td>
+            <td> 2</td>
+            <td> 3</td>
+            <td  class="calendar-weekend"> 4</td>
+         </tr>
+         <tr>
+            <td  class="calendar-weekend"> 5</td>
+            <td> 6</td>
+            <td> 7</td>
+            <td> 8</td>
+            <td class="calendar-today">9</td>
+            <td>10</td>
+            <td  class="calendar-weekend">11</td>
+         </tr>
+         <tr>
+            <td  class="calendar-weekend">12</td>
+            <td class="calendar-item"><a href="#event">13<span class="cn-invisible ">th of October events</span></a></td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td  class="calendar-weekend">18</td>
+         </tr>
+         <tr>
+            <td  class="calendar-weekend">19</td>
+            <td>20</td>
+            <td>21</td>
+            <td class="calendar-item"><a href="#event">22<span class="cn-invisible ">nd of October events</span></a></td>
+            <td>23</td>
+            <td>24</td>
+            <td class="calendar-weekend"> 25</td>
+         </tr>
+         <tr>
+            <td class="calendar-weekend">26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td class="calendar-weekend"></td>
+         </tr>
+      </table>
+   </div>
+   
+   <div class="span-2 row-end module-event">
+      <h2 class="background-accent">Events</h2>
+      <table class="calendar-month">
+         <caption>
+         October 2009
+         </caption>
+         <tr>
+         <th scope="col" class="calendar-weekend"><abbr title="Sunday">S</abbr></th>
+         <th scope="col"><abbr title="Monday">M</abbr></th>
+         <th scope="col"><abbr title="Tuesday">T</abbr></th>
+         <th scope="col"><abbr title="Wednesday">W</abbr></th>
+         <th scope="col"><abbr title="Thursday">T</abbr></th>
+         <th scope="col"><abbr title="Friday">F</abbr></th>
+         <th scope="col" class="calendar-weekend"><abbr title="Saturday">S</abbr></th>
+         </tr>
+         <tr>
+         <td  class="calendar-weekend"></td>
+         <td></td>
+         <td></td>
+         <td> 1</td>
+         <td> 2</td>
+         <td> 3</td>
+         <td  class="calendar-weekend"> 4</td>
+         </tr>
+         <tr>
+         <td  class="calendar-weekend"> 5</td>
+         <td> 6</td>
+         <td> 7</td>
+         <td> 8</td>
+         <td class="calendar-today">9</td>
+         <td>10</td>
+         <td  class="calendar-weekend">11</td>
+         </tr>
+         <tr>
+         <td  class="calendar-weekend">12</td>
+         <td class="calendar-item"><a href="#event">13<span class="cn-invisible ">th of October events</span></a></td>
+         <td>14</td>
+         <td>15</td>
+         <td>16</td>
+         <td>17</td>
+         <td  class="calendar-weekend">18</td>
+         </tr>
+         <tr>
+         <td  class="calendar-weekend">19</td>
+         <td>20</td>
+         <td>21</td>
+         <td class="calendar-item"><a href="#event">22<span class="cn-invisible ">nd of October events</span></a></td>
+         <td>23</td>
+         <td>24</td>
+         <td class="calendar-weekend"> 25</td>
+         </tr>
+         <tr>
+         <td class="calendar-weekend">26</td>
+         <td>27</td>
+         <td>28</td>
+         <td>29</td>
+         <td>30</td>
+         <td>31</td>
+         <td class="calendar-weekend"></td>
+         </tr>
+      </table>
+      <ul class="calendar-list">
+         <li class="calendar-more"><a href="#toc" >View all events in detail</a></li>
+      </ul>
+   </div>
+</div>
+<div class="clear"></div>
+<h3 id="menu"><code>module-menu-section</code> style</h3>
+<div class="span-4">
+	<p>The <code>module-menu-section</code> class styles a supplementary menu that follows the user throughout a section of the site. This module works with all grid cells.</p>
+</div>
+<div class="span-2 module-menu-section">
+   <h4>default heading</h4>
+   <ul>
+      <li><a href="#">Fake link</a></li>
+      <li>
+      	<a href="#">Fake link</a>
+         <ul>
+            <li><a href="#">Fake link</a></li>
+            <li><a href="#">Fake link</a></li>
+            <li><a href="#">Fake link</a></li> 
+         </ul>
+      </li>
+      <li><a href="#">Fake link</a></li>
+      <li><a href="#">Fake link</a></li>
+   </ul>
+</div>
+<div class="span-2 row-end module-menu-section">
+   <h4 class="background-accent"><code>background-accent</code> heading</h4>
+   <ul>
+      <li><a href="#">Fake link</a></li>
+      <li><a href="#">Fake link</a></li>
+      <li><a href="#">Fake link</a></li>
+      <li><a href="#">Fake link</a></li>
+   </ul>
+</div>
+<div class="clear"></div>
+<h3 id="toc"><code>module-table-contents</code> style</h3>
+<p>Use the <code>module-table-contents</code> class to create a <strong>table of contents</strong>. For consistency and to keep things simple, table of contents should only use a <code>span-4</code> or a <code>span-6</code>. Each can have multiple columns of links. That is more than enough options while still adheres to a standard format.</p>
+
+<details class="span-4 view-example">
+	<summary>Examples</summary>
+	<div class="span-4 module-table-contents">
+		<h2>Table of contents</h2>
+		<ul class="column-two">
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+		</ul>
+	</div>
+</details>
+
+<details class="span-4 ">
+	<summary>Sample Code</summary>
+<pre class="prettyprint linenums">
+&lt;div class=&quot;span-4 module-table-contents&quot;&gt;
+	&lt;h2&gt;Table of contents&lt;/h2&gt;
+	&lt;ul class=&quot;column-three&quot;&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+</details>
+<div class="clear"></div>
+
+
+<h3 id="poster"><code>module-poster</code> style</h3>
+<p>Use the <code>module-poster</code> class to feature <strong>a large image and a caption</strong>.</p>
+
+<details class="span-4 view-example">
+	<summary>Example</summary>
+	<div class="width-50 module-poster">
+		<img src="images/poster.jpg" alt="T" />
+		<div class="image-caption">
+			<h4>Laura and Martha</h4>
+			<p>UxWG conference</p>
+		</div>
+	</div>
+</details>
+
+<details class="span-4 ">
+	<summary>Sample Code</summary>
+<pre class="prettyprint linenums">
+&lt;div class=&quot;width-50 module-poster&quot;&gt;
+	&lt;img src=&quot;images/poster.jpg&quot; alt=&quot;T&quot; /&gt;
+	&lt;div class=&quot;image-caption&quot;&gt;
+		&lt;h4&gt;Laura and Martha&lt;/h4&gt;
+		&lt;p&gt;UxWG conference&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</details>
+<div class="clear"></div>
+
+<!--<h3 id="contact"><code>module-contact</code> style</h3>
+<p>Use the <code>module-contact</code> to feature <strong>basic contact information</strong> (complex information should use a regular table instead of this <abbr title="Cascading Style Sheet">CSS</abbr> module).</p>
+<p class="color-attention">Example below:</p>
+<div class="span-8 module-contact">
+	<div class="span-2 row-start">
+	<p><a href="mailto:">Susan-Lynn McFakename</a></p>
+	</div>
+	<div class="span-2">
+	<p>613-222-1111</p>
+	</div>
+	<div class="span-2">
+	<p>Acting Program Director</p>
+	</div>
+	<div class="span-2 row-end">
+	<p>(some other details can go here)</p>
+	</div>
+	<div class="clear"></div>
+	<div class="span-2 row-start">
+	<p><a href="mailto:">Peter Notarealname</a></p>
+	</div>
+	<div class="span-2">
+	<p>613-222-2222</p>
+	</div>
+	<div class="span-2">
+	<p>Administrative Assistant</p>
+	</div>
+	<div class="span-2 row-end">
+	<p>(some other details can go here)</p>
+	</div>
+	<div class="clear"></div>
+	<div class="span-2 row-start">
+	<p><a href="mailto:">Jake Placeholder</a></p>
+	</div>
+	<div class="span-2">
+	<p>613-222-3333</p>
+	</div>
+	<div class="span-2">
+	<p>Officer</p>
+	</div>
+	<div class="span-2 row-end">
+	<p>(some other details can go here)</p>
+	</div>
+	<div class="clear"></div>
+	<div class="span-2 row-start">
+	<p><a href="mailto:">Belle MacPretend</a></p>
+	</div>
+	<div class="span-2">
+	<p>613-222-4444</p>
+	</div>
+	<div class="span-2">
+	<p>Officer</p>
+	</div>
+	<div class="span-2 row-end">
+	<p>(some other details can go here)</p>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="clear"></div>-->
+<h3 id="news"><code>module-news</code> and <code>module-spotlight</code> style</h3>
+<p>Use the <code>module-news</code> and <code>module-spotlight</code> classes for <strong>news articles and stories</strong>. The <code>module-news</code> class allows you to embed an article or story. It works in conjunction with the <code>module-news-article</code> class. The <code>module-spotlight</code> showcases a list of links to articles or stories.</p>
+<!--<p class="color-attention">Examples below:</p>
+<div class="span-4 module-news">
+	<h3><a href="#news">A year in review</a></h3>
+	<div class="module-news-article"><img src="images/placeholder2.gif" alt="" width="318" height="157" />
+	<p>This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
+	<p><a href="#news">Continue 
+		reading<span class="wb-invisible">: A year in review</span></a> <span><a href="#news">4 Comments<span class="wb-invisible">: A year in review</span></a></span></p>
+	</div>
+	<h3><a href="#news">New Commissioner and Deputy Commissioner</a></h3>
+	<div class="module-news-article"><img src="images/placeholder2.gif" alt="" width="318" height="157" />
+	<p>This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
+	<p><a href="#news">Continue reading<span class="wb-invisible">: New Commissioner and Deputy Commissioner</span></a> <span><a href="#news">18 Comments<span class="wb-invisible">: A decade of excellence</span><span class="wb-invisible">: New Commissioner and Deputy Commissioner</span></a></span></p>
+	</div>
+</div>
+<div class="span-4 module-spotlight">
+	<h3>Highlights</h3>
+	<ul>
+	<li><a href="#news"><img src="images/placeholder.gif" alt="" width="100" height="62" />A hair-raising (and fundraising!) Halloween at <abbr title="Human Resources Branch">HRB</abbr></a> <span><a href="#news">57 Comments<span class="wb-invisible"> </span></a></span></li>
+	<li><a href="#news"><img src="images/placeholder.gif" alt="" width="100" height="62" />Our neck of the woods</a> <span><a href="#news">34 Comments</a></span></li>
+	<li><a href="#news"><img src="images/placeholder.gif" alt="" width="100" height="62" />Mike is back</a> <span><a href="#news">48 Comments</a></span></li>
+	<li><a href="#news"><img src="images/placeholder.gif" alt="" width="100" height="62" />Memory keeper </a> <span><a href="#news">23 Comments</a></span></li>
+	<li><a href="#news"><img src="images/placeholder.gif" alt="" width="100" height="62" />Where are they now? </a> <span><a href="#news">5 Comments</a></span></li>
+	</ul>
+	<h3>Reoccurring articles </h3>
+	<ul>
+	<li><a href="#news"><img src="images/placeholder.gif" alt="" width="100" height="62" />Grammar geek </a> <span><a href="#news">160 Comments</a></span></li>
+	<li><a href="#news"><img src="images/placeholder.gif" alt="" width="100" height="62" />Sustainable development</a> <span><a href="#news">48 Comments</a></span></li>
+	<li><a href="#news"><img src="images/placeholder.gif" alt="" width="100" height="62" />Applause goes to &hellip;</a><span><a href="#news">48 Comments</a></span></li>
+	<li><a href="#news"><img src="images/placeholder.gif" alt="" width="100" height="62" />Retirements</a> <span><a href="#news">13 Comments</a></span></li>
+	</ul>
+</div>
+<div class="clear"></div>-->
+<details class="span-8 view-example">
+	<summary>Example - News Module</summary>
+	<div class="grid-12">
+		<div class="span-4 row-start module-news">
+		<h3 class="margin-bottom-medium"><a href="#news">Wenim vitae molestie rutrum!</a></h3>
+		<div class="module-news-article"> <img src="images/placeholder3.gif" alt="" width="198" height="122" />
+			<p>Fusce quis augue tortor. Aenean aliquet, enim vitae molestie rutrum, ligula est egestas eros, vel ullamcorper nulla sem sed tortor. Proin sollicitudin blandit turpis et faucibus.</p>
+			<p><a href="#news" class="button button-accent">Continue reading</a>
+			<a href="#news" class="button button-none">34 Comments</a></p>
+		</div>
+		</div>
+		<div class="span-4 module-news">
+		<h3 class="margin-bottom-medium"><a href="#news">Quisque blandit, leo non tempus</a></h3>
+		<div class="module-news-article"><img src="images/placeholder3.gif" alt="" width="198" height="122" />
+			<p>Integer condimentum faucibus bibendum. Integer tempus urna ut nulla pellentesque vulputate. Quisque blandit, leo non tempus adipiscing, mi metus tempor lorem, sit amet adipiscing ipsum ipsum non ligula.</p>
+			<p><a href="#news" class="button button-accent">Continue reading</a></p>
+		</div>
+		</div>
+		<div class="span-4 row-end module-news">
+		<h3 class="margin-bottom-medium"><a href="#news">Cras sit amet</a></h3>
+		<div class="module-news-article"><img src="images/placeholder3.gif" alt="" width="198" height="122" />
+			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed vestibulum venenatis arcu, eget molestie dui mattis sed. Cras sit amet sapien purus, vitae semper lectus.</p>
+			<p><a href="#news" class="button button-accent">Cast your vote </a>
+			<a href="#news" class="button button-none">25 Votes</a></p>
+		</div>
+		</div>
+	</div>
+<div class="clear"></div>
+</details>
+<div class="clear"></div>
+<details class="span-8 ">
+	<summary>Sample Code - News Module</summary>
+	<pre class="prettyprint linenums lang-html">
+&lt;div class=&quot;grid-12&quot;&gt;
+	&lt;div class=&quot;span-4 row-start module-news&quot;&gt;
+	&lt;h3 class=&quot;margin-bottom-medium&quot;&gt;&lt;a href=&quot;#news&quot;&gt;Wenim vitae molestie rutrum!&lt;/a&gt;&lt;/h3&gt;
+	&lt;div class=&quot;module-news-article&quot;&gt; &lt;img src=&quot;images/placeholder3.gif&quot; alt=&quot;&quot; width=&quot;198&quot; height=&quot;122&quot; /&gt;
+		&lt;p&gt;Fusce quis augue tortor. Aenean aliquet, enim vitae molestie rutrum, ligula est egestas eros, vel ullamcorper nulla sem sed tortor. Proin sollicitudin blandit turpis et faucibus.&lt;/p&gt;
+		&lt;p&gt;&lt;a href=&quot;#news&quot; class=&quot;button button-accent&quot;&gt;Continue reading&lt;/a&gt;
+		&lt;a href=&quot;#news&quot; class=&quot;button button-none&quot;&gt;34 Comments&lt;/a&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;span-4 module-news&quot;&gt;
+	&lt;h3 class=&quot;margin-bottom-medium&quot;&gt;&lt;a href=&quot;#news&quot;&gt;Quisque blandit, leo non tempus&lt;/a&gt;&lt;/h3&gt;
+	&lt;div class=&quot;module-news-article&quot;&gt;&lt;img src=&quot;images/placeholder3.gif&quot; alt=&quot;&quot; width=&quot;198&quot; height=&quot;122&quot; /&gt;
+		&lt;p&gt;Integer condimentum faucibus bibendum. Integer tempus urna ut nulla pellentesque vulputate. Quisque blandit, leo non tempus adipiscing, mi metus tempor lorem, sit amet adipiscing ipsum ipsum non ligula.&lt;/p&gt;
+		&lt;p&gt;&lt;a href=&quot;#news&quot; class=&quot;button button-accent&quot;&gt;Continue reading&lt;/a&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;span-4 row-end module-news&quot;&gt;
+	&lt;h3 class=&quot;margin-bottom-medium&quot;&gt;&lt;a href=&quot;#news&quot;&gt;Cras sit amet&lt;/a&gt;&lt;/h3&gt;
+	&lt;div class=&quot;module-news-article&quot;&gt;&lt;img src=&quot;images/placeholder3.gif&quot; alt=&quot;&quot; width=&quot;198&quot; height=&quot;122&quot; /&gt;
+		&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed vestibulum venenatis arcu, eget molestie dui mattis sed. Cras sit amet sapien purus, vitae semper lectus.&lt;/p&gt;
+		&lt;p&gt;&lt;a href=&quot;#news&quot; class=&quot;button button-accent&quot;&gt;Cast your vote &lt;/a&gt;
+		&lt;a href=&quot;#news&quot; class=&quot;button button-none&quot;&gt;25 Votes&lt;/a&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;	
+	</pre>
+</details>
+<div class="clear"></div>
+
+<h3 id="comment"><code>module-comment</code> style</h3>
+<p>Use the <code>module-comment</code> and <code>wet-boew-zebra</code> classes to style <strong>user's comments and responses</strong>.</p>
+<p class="color-attention">Example below:</p>
+<div class="span-8 module-comment">
+	<p class="background-dark">3 Comments</p>
+	<ol class="wet-boew-zebra">
+	<li>
+		<div>Jessica</div>
+		<div>November 19, 2009</div>
+		This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.</li>
+	<li>
+		<div>Mihn</div>
+		<div>November 19, 2009</div>
+	This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</li>
+	<li>
+		<div>Eddie</div>
+		<div>November 19, 2009</div>
+	This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.</li>
+	</ol>
+</div>
+<div class="clear"></div>
+
+<!--
+<h3 id="highlight"><code>module-higlight</code> and <code>module-highlight-details</code> style</h3>
+<p>You must add your own background color or border, as it is plain by default.</p>
+<div class="span-8 equalize">
+	<div class="span-6 row-start">
+	<div class="span-6 background-dark module-highlight">
+		<h2><a href="#">Article Heading</a></h2>
+		<p class="module-highlight-details">Vancouver, BC &mdash; Wednesday, 23 April 2008</p>
+		<p><img src="images/photo.jpg" width="60" height="60" alt="photo" class="image-actual" />This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. <a href="#">Visit site.</a></p>
+	</div>
+	<div class="span-6 margin-bottom-none module-highlight">
+		<h2><a href="#">Article Heading</a></h2>
+		<p class="module-highlight-details">Vancouver, BC &mdash; Wednesday, 23 April 2008</p>
+		<p><img src="images/photo.jpg" width="62" height="62" alt="photo" class="image-actual" />This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. <a href="#">Visit site.</a></p>
+	</div>
+	</div>
+	<div class="span-2 background-light row-end module-highlight">
+	<h2><a href="#">Article Heading</a></h2>
+	<p class="module-highlight-details">Vancouver, BC &mdash; Wednesday, 23 April 2008</p>
+	<p><img src="images/photo.jpg" width="62" height="62" alt="photo" class="image-actual" />This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. <a href="#">Visit site.</a></p>
+	</div>
+</div>
+<div class="clear"></div>
+<div class="span-8 equalize">
+	<div class="span-3 background-accent row-start module-highlight">
+	<h2><a href="#">Article Heading</a></h2>
+	<p class="module-highlight-details">Vancouver, BC &mdash; Wednesday, 23 April 2008</p>
+	<p><img src="images/photo.jpg" width="62" height="62" alt="photo" class="image-actual" />This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. <a href="#">Visit site.</a></p>
+	</div>
+	<div class="span-3 module-highlight">
+	<h2><a href="#">Article Heading</a></h2>
+	<p class="module-highlight-details">Vancouver, BC &mdash; Wednesday, 23 April 2008</p>
+	<p><img src="images/photo.jpg" width="62" height="62" alt="photo" class="image-actual" />This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. <a href="#">Visit site.</a></p>
+	</div>
+	<div class="span-2 background-dark module-highlight row-end">
+	<h2><a href="#">Article Heading</a></h2>
+	<p class="module-highlight-details">Vancouver, BC &mdash; Wednesday, 23 April 2008</p>
+	<p><img src="images/photo.jpg" width="62" height="62" alt="photo" class="image-actual" />This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. <a href="#">Visit site.</a></p>
+	</div>
+</div>
+<div class="clear"></div>
+-->
+
+
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2012-08-01</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">Our Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../build/js/settings.js"></script>
+<script src="../../build/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>
