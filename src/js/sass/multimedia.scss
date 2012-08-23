@@ -93,12 +93,12 @@ $progress-color: #000;
 			background: $progress-color;
 		}
 		/* Polyfill */
-		div.progress-frame {
+		div.wb-progress-outer {
 			border:none;
 			background-color:transparent!important;
 			padding:0;
 		}
-		div.progress-bar {
+		div.wb-progress-inner {
 			background-color:$progress-color!important;
 			padding:0;
 		}

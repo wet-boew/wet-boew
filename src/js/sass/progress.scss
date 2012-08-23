@@ -13,19 +13,19 @@
 }
 
 progress {
-		display:inline-block;
+	display:inline-block;
 		
-		div.progress-frame  {
-			@include progress(#FFF);
-		}
-	
-		div.progress-undefined {
-			@include progress(#FF9999);
-		}
+	div.wb-progress-outer  {
+		@include progress(#FFF);
+	}
 
-		div.progress-bar {
-			height: 100%;
-			border: none;
-			background-color: #009900;  
-		}
+	div.wb-progress-undefined {
+		@include progress(#FF9999);
+	}
+
+	div.wb-progress-inner {
+		height: 100%;
+		border: none;
+		background-color: #009900;  
+	}
 }
