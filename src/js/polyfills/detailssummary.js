@@ -33,14 +33,14 @@
                 close = isOpen && toggle || !isOpen && !toggle;
             if (close) {
 				/* wet-boew change */
-                $details.removeClass('open').prop('open', false).triggerHandler('close.details').attr('aria-hidden', 'true'); // Added aria-hidden
+                $details.removeClass('open').prop('open', false).attr('aria-hidden', 'true').triggerHandler('close.details'); // Added aria-hidden
 				//$detailsSummary.attr('aria-expanded', false);
 				$detailsSummary.attr('aria-pressed', 'false');
 				/* *************** */
                 $detailsNotSummary.hide();
             } else {
 				/* wet-boew change */
-                $details.addClass('open').prop('open', true).triggerHandler('open.details').attr('aria-hidden', 'false'); // Added aria-hidden
+                $details.addClass('open').prop('open', true).attr('aria-hidden', 'false').triggerHandler('open.details'); // Added aria-hidden
 				//$detailsSummary.attr('aria-expanded', true);
 				$detailsSummary.attr('aria-pressed', 'true');
 				/* *************** */
