@@ -562,7 +562,7 @@
 
 							// Skip this colgroup, this should happened only once and should represent the header colgroup
 							
-							// TODO: Assign the headers for this group
+							// Assign the headers for this group
 							for (i = 0, _ilen = curColgroupFrame.col.length; i < _ilen; i += 1) {
 								gzCol = curColgroupFrame.col[i];
 								gzCol.header = [];
@@ -746,7 +746,7 @@
 
 							column.header = [];
 							// Find the lowest header that would represent this column
-							for (j = (tmpStack.length - 1); j >= (groupLevel - 1); j -= 1) {
+							for (j = (groupLevel - 1); j < tmpStack.length; j += 1) {
 								for (i = (curColgroupFrame.start - 1); i < curColgroupFrame.end; i += 1) {
 									if ((tmpStack[j].cell[i].colpos >= column.start &&
 											tmpStack[j].cell[i].colpos <= column.end) ||
