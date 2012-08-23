@@ -89,6 +89,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- MainContentStart -->
 <h1 id="wb-cont">Boîte à outils de l’expérience Web (BOEW)</h1>
 
+<p><strong>Lancement de la version v3.0 de la BOEW est 17 septembre 2012</strong></p>
+
 <section><h2>Vue d'ensemble</h2>
 <p>La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.</p>
 <p>La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web et la Norme sur la facilité des sites Web et sera conforme à la Norme sur l’interopérabilité du Web. Il est fortement recommandé d’utiliser la BOEW pour tous les sites Web du gouvernement du Canada.</p>
@@ -123,7 +125,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li>Les nouvelles composantes devraient être ajoutées dans un branchement de type <span lang="en">feature</span>-* (p. ex., <span lang="en">feature-lightbox</span>).
 	<ul>
 	<li>Les licences de toutes les nouvelles composantes et du code afférent doivent être compatibles avec la licence MIT utilisée par la Boîte à outils de l’expérience Web (BOEW).</li>
-	<li>Les nouveaux modules d’extension devraient se servir de pluginTemplate.js comme base pour le code JavaScript.</li>
+	<li>Les nouveaux modules d’extension devraient se servir de <a href="https://github.com/wet-boew/wet-boew/blob/master/src/pluginTemplate.js">pluginTemplate.js</a> comme base pour le code JavaScript.</li>
 	<li>Inclure le bloc de texte sur les conditions d’utilisation de la BOEW dans tous les fichiers sources textuels soumis aux droits d’auteur de la Couronne.</li>
 	</ul>
 </li>
@@ -138,11 +140,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<li><strong>Extensions Proprétaires&#160;:</strong> Avertissements</li>
 	</ul>
 </li>
-<li><a href="http://www.jslint.com">Valider votre code JavaScript</a> en apportant les changements suivants aux paramètres par défaut&#160;:
+<li><a href="http://www.jshint.com">Valider votre code JavaScript</a> en apportant le changement suivant aux paramètres par défaut&#160;:
 	<ul lang="en">
-	<li><strong>Tolerate dangling _ in identifiers&#160;:</strong> true</li>
-	<li><strong>Tolerate missing 'use strict' pragma&#160;:</strong> true</li>
-	<li><strong>Assume browser&#160;:</strong> true</li>
+	<li><strong>Warn - When code is not in strict mode:</strong> true</li>
 	</ul>
 </li>
 <li>Recommandations quant au formatage&#160;:
@@ -151,7 +151,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<li>Utiliser les guillemets simples pour les chaînes en JavaScript (de façon à ce que les guillemets doubles non échappés (<span lang="en">unescaped</span>) puissent être utilisés pour les attributs dans les données de sortie HTML)</li>
 	</ul>
 </li>
-<li>Fureteurs supportés (cet élément devrait faire l’objet d’une vérification)&#160;:
+<li>Fureteurs pris en charge (cet élément devrait faire l’objet d’une vérification)&#160;:
 	<ul>
 	<li><a href="http://yuilibrary.com/yui/docs/tutorials/gbs/" lang="en">Browser test baseline - YUI Graded Browser Support</a> (sauf Internet Explorer 6)</li>
 	</ul>

@@ -4,7 +4,10 @@
  */
 /*global jQuery: false, pe: false*/
 (function ($) {
-	var _pe = window.pe || {fn: {} };
+	"use strict";
+	var _pe = window.pe || {
+		fn: {}
+	};
 	/* local reference */
 	_pe.fn.calendar = {
 		create: function (containerid, year, month, shownav, mindate, maxdate) {
@@ -17,8 +20,8 @@
 				days,
 				daysList;
 
-			container.addClass("cal-container");
-			container.removeClass("cal-container-extended");
+			container.addClass('cal-container');
+			container.removeClass('cal-container-extended');
 
 			//Converts min and max date from string to date objects
 			minDate = _pe.fn.calendar.getDateFromISOString(mindate);
@@ -42,33 +45,28 @@
 			}
 
 			//Reset calendar if the calendar previously existed
-			if (container.children("div#cal-" + containerid + "-cnt").length > 0) {
-				container.children("div#cal-" + containerid + "-cnt").find("ol#cal-" + containerid + "-weekdays, .cal-month, div#cal-" + containerid + "-days").remove();
-				objCalendar = container.children("div#cal-" + containerid + "-cnt");
+			if (container.children('div#cal-' + containerid + '-cnt').length > 0) {
+				container.children('div#cal-' + containerid + '-cnt').find('ol#cal-' + containerid + '-weekdays, .cal-month, div#cal-' + containerid + '-days').remove();
+				objCalendar = container.children('div#cal-' + containerid + '-cnt');
 			} else {
 				objCalendar = $('<div id="cal-' + containerid + '-cnt" class="cal-cnt"></div>');
 				container.append(objCalendar);
 			}
 
 			//Creates the calendar header
-			if (container.children("div#cal-" + containerid + "-cnt").children(".cal-header").length > 0) {
-				calHeader = container.children("div#cal-" + containerid + "-cnt").children(".cal-header");
+			if (container.children('div#cal-' + containerid + '-cnt').children('.cal-header').length > 0) {
+				calHeader = container.children('div#cal-' + containerid + '-cnt').children('.cal-header');
 			} else {
 				calHeader = $('<div class="cal-header"></div>');
 			}
 
-			calHeader.prepend('<div class="cal-month">' + pe.dic.get("%calendar-monthNames")[month] + ' ' + year + '</div>');
+			calHeader.prepend('<div class="cal-month">' + pe.dic.get('%calendar-monthNames')[month] + ' ' + year + '</div>');
 
 			if (shownav) {
 				//Create the month navigation
 				monthNav = _pe.fn.calendar.createMonthNav(containerid, year, month, minDate, maxDate);
-				if ($("#cal-" + containerid + "-monthnav").length < 1) {
+				if ($('#cal-' + containerid + '-monthnav').length < 1) {
 					calHeader.append(monthNav);
-				}
-
-				if (container.children("div#cal-" + containerid + "-cnt").children(".cal-header").children(".cal-goto").length < 1) {
-					//Create the go to form
-					calHeader.append(_pe.fn.calendar.createGoToForm(containerid, year, month, minDate, maxDate));
 				}
 			}
 			objCalendar.append(calHeader);
@@ -80,7 +78,7 @@
 
 			//Creates the rest of the calendar | Cree le reste du calendrier
 			days = _pe.fn.calendar.createDays(containerid, year, month);
-			daysList = days.children("ol.cal-day-list").children("li");
+			daysList = days.children('ol.cal-day-list').children('li');
 			objCalendar.append(days);
 
 			//Trigger the calendarDisplayed Event
@@ -89,10 +87,10 @@
 
 		createMonthNav : function (calendarid, year, month, minDate, maxDate) {
 			var monthNav, suffix, titleSuffix, newMonth, newYear, showButton, btnCtn, btn, n, alt;
-			if ($("#cal-" + calendarid + "-monthnav").length > 0) {
-				monthNav = $("#cal-" + calendarid +  "-monthnav");
+			if ($('#cal-' + calendarid + '-monthnav').length > 0) {
+				monthNav = $('#cal-' + calendarid +  '-monthnav');
 			} else {
-				monthNav = $("<div id=\"cal-" + calendarid +  "-monthnav\"></div>");
+				monthNav = $('<div id="cal-' + calendarid +  '-monthnav"></div>');
 			}
 
 			//Create month navigation links | Cree les liens de navigations
@@ -103,7 +101,7 @@
 				//Set context for each button
 				switch (n) {
 				case 0:
-					suffix = "prevmonth";
+					suffix = 'prevmonth';
 					titleSuffix = pe.dic.get('%calendar-previousMonth');
 					if (month > 0) {
 						newMonth = month - 1;
@@ -118,7 +116,11 @@
 					}
 					break;
 				case 1:
-					suffix = "nextmonth";
+					if ($('#' + calendarid).children('div#cal-' + calendarid + '-cnt').children('.cal-header').find('.cal-goto').length < 1) {
+						//Create the go to form
+						monthNav.append(_pe.fn.calendar.createGoToForm(calendarid, year, month, minDate, maxDate));
+					}
+					suffix = 'nextmonth';
 					titleSuffix = pe.dic.get('%calendar-nextMonth');
 					if (month < 11) {
 						newMonth = month + 1;
@@ -134,21 +136,26 @@
 					break;
 				}
 
-				if (monthNav.children(".cal-" + suffix).length > 0) {
-					btnCtn = monthNav.children(".cal-" + suffix);
+				if (monthNav.children('.cal-' + suffix).length > 0) {
+					btnCtn = monthNav.children('.cal-' + suffix);
 				}
+
 				if (showButton) {
-					alt = titleSuffix + pe.dic.get('%calendar-monthNames')[newMonth] + " " + newYear;
+					alt = titleSuffix + pe.dic.get('%calendar-monthNames')[newMonth] + ' ' + newYear;
 
 					if (btnCtn) {
-						btn = btnCtn.children("a");
-						btn.children("img").attr("alt", alt).unbind();
+						btn = btnCtn.children('a').unbind();
+						btn.children('img').attr('alt', alt);
 					} else {
 						btnCtn = $('<div class="cal-' + suffix + '"></div>');
 						btn = $('<a href="javascript:;" role="button"><img src="' + pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.gif" alt="' + alt + '" /></a>');
 
 						btnCtn.append(btn);
-						monthNav.append(btnCtn);
+						if (n === 0) {
+							monthNav.prepend(btnCtn);
+						} else {
+							monthNav.append(btnCtn);
+						}
 					}
 					btn.bind('click', {calID: calendarid, year: newYear, month : newMonth, mindate: _pe.fn.calendar.getISOStringFromDate(minDate), maxdate: _pe.fn.calendar.getISOStringFromDate(maxDate)}, _pe.fn.calendar.buttonClick);
 				} else {
@@ -160,8 +167,16 @@
 			return monthNav;
 		},
 		buttonClick : function (event) {
+			var ctn = $(this).parent().parent(),
+				btnClass = $(this).parent().attr('class');
+
 			_pe.fn.calendar.create(event.data.calID, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
-			pe.focus($(this));
+
+			if (ctn.find('.' + btnClass).length < 1) {
+				pe.focus(ctn.find('.cal-goto-link a'));
+			} else {
+				pe.focus(ctn.find('.' + btnClass + ' a'));
+			}
 		},
 		yearChanged : function (event) {
 			var year = $(this).val(),
@@ -189,17 +204,18 @@
 			}
 
 			for (i = minMonth; i <= maxMonth; i += 1) {
-				monthField.append('<option value="' + i + '"' + ((i === month) ? ' selected="selected"' : "") + '>' + pe.dic.get('%calendar-monthNames')[i] + '</option>');
+				monthField.append('<option value="' + i + '"' + ((i === month) ? ' selected="selected"' : '') + '>' + pe.dic.get('%calendar-monthNames')[i] + '</option>');
 			}
 		},
 
 		createGoToForm : function (calendarid, year, month, minDate, maxDate) {
 			var goToForm = $('<div class="cal-goto"></div>'),
-				form = $('<form id="cal-' + calendarid + '-goto" role="form" style="display:none;" action=""><fieldset><legend>' + pe.dic.get("%calendar-goToTitle") + '</legend></fieldset></form>'),
+				form = $('<form id="cal-' + calendarid + '-goto" role="form" style="display:none;" action=""><fieldset><legend>' + pe.dic.get('%calendar-goToTitle') + '</legend></fieldset></form>'),
 				fieldset,
 				yearContainer,
 				yearField,
 				y,
+				_ylen,
 				monthContainer,
 				monthField,
 				buttonContainer,
@@ -212,21 +228,21 @@
 				_pe.fn.calendar.onGoTo(calendarid, minDate, maxDate);
 				return false;
 			});
-			fieldset = form.children("fieldset");
+			fieldset = form.children('fieldset');
 
 			//Create the year field
-			yearContainer = $('<div class="cal-goto-year"><label for="cal-' + calendarid + '-goto-year" class="wb-invisible">' + pe.dic.get("%calendar-goToYear") + '</label></div>');
+			yearContainer = $('<div class="cal-goto-year"><label for="cal-' + calendarid + '-goto-year" class="wb-invisible">' + pe.dic.get('%calendar-goToYear') + '</label></div>');
 			yearField = $('<select id="cal-' + calendarid + '-goto-year"></select>');
-			for (y = minDate.getFullYear(); y <= maxDate.getFullYear(); y += 1) {
-				yearField.append($('<option value="' + y + '"' + (y === year ? " selected=\"selected\"" : "") + '>' + y + '</option>'));
+			for (y = minDate.getFullYear(), _ylen = maxDate.getFullYear(); y <= _ylen; y += 1) {
+				yearField.append($('<option value="' + y + '"' + (y === year ? ' selected="selected"' : '') + '>' + y + '</option>'));
 			}
 
 			yearContainer.append(yearField);
 			fieldset.append(yearContainer);
 
 			//Create the list of month field
-			monthContainer = $('<div class="cal-goto-month"><label for="cal-' + calendarid + '-goto-month" class="wb-invisible">' + pe.dic.get("%calendar-goToMonth") + '</label></div>');
-			monthField = $("<select id=\"cal-" + calendarid + "-goto-month\"></select>");
+			monthContainer = $('<div class="cal-goto-month"><label for="cal-' + calendarid + '-goto-month" class="wb-invisible">' + pe.dic.get('%calendar-goToMonth') + '</label></div>');
+			monthField = $('<select id="cal-' + calendarid + '-goto-month"></select>');
 
 			monthContainer.append(monthField);
 			fieldset.append(monthContainer);
@@ -234,21 +250,21 @@
 			// FIXME: Handle month filtering for IE6
 			if (pe.ie === 6) {
 				$(pe.dic.get('%calendar-monthNames')).each(function (index, value) {
-					monthField.append('<option value="' + index + '"' + ((index === month) ? " selected=\"selected\"" : "") + '>' + value + '</option>');
+					monthField.append('<option value="' + index + '"' + ((index === month) ? ' selected="selected"' : '') + '>' + value + '</option>');
 				});
 			} else {
 				// Update the list of available months when changing the year
 				yearField.bind('change', {minDate: minDate, maxDate: maxDate, monthField: monthField}, _pe.fn.calendar.yearChanged);
-				yearField.change(); // Populate initial month list        
+				yearField.change(); // Populate initial month list		
 			}
 
 			buttonContainer = $('<div class="cal-goto-button"></div>');
-			button = $('<input type="submit" value="' + pe.dic.get("%calendar-goToButton") + '\" />');
+			button = $('<input type="submit" value="' + pe.dic.get('%calendar-goToButton') + '" />');
 			buttonContainer.append(button);
 			fieldset.append(buttonContainer);
 
 			buttonCancelContainer = $('<div class="cal-goto-button"></div>');
-			buttonCancel = $('<input type="button" value="' + pe.dic.get("%calendar-cancelButton") + '" />');
+			buttonCancel = $('<input type="button" value="' + pe.dic.get('%calendar-cancelButton') + '" />');
 			buttonCancel.click(function () {
 				_pe.fn.calendar.hideGoToForm(calendarid);
 			});
@@ -256,7 +272,7 @@
 			fieldset.append(buttonCancelContainer);
 
 			goToLinkContainer = $('<p class="cal-goto-link" id="cal-' + calendarid + '-goto-link"></p>');
-			goToLink = $('<a href="javascript:;" role="button" aria-controls="cal-' + calendarid + '-goto" aria-expanded="false">' + pe.dic.get("%calendar-goToLink") + '</a>');
+			goToLink = $('<a href="javascript:;" role="button" aria-controls="cal-' + calendarid + '-goto" aria-expanded="false">' + pe.dic.get('%calendar-goToLink') + '</a>');
 			goToLink.on('click', function () {
 				_pe.fn.calendar.showGoToForm(calendarid);
 			});
@@ -277,7 +293,7 @@
 				txt = pe.dic.get('%calendar-weekDayNames')[wd];
 				wday = $('<li id="cal-' + calendarid + '-wd' + (wd + 1) + '" class="cal-wd' + (wd + 1) + '"><abbr title="' + txt + '">' + txt.substr(0, 1) + '</abbr></li>');
 				if (wd === 0 || wd === 6) {
-					wday.addClass = "we";
+					wday.addClass = 'we';
 				}
 				weekdays.append(wday);
 			}
@@ -331,42 +347,42 @@
 						if (daycount > lastday) {
 							breakAtEnd = true;
 						}
-						element = $("<li></li>");
-						child = $("<div></div>");
+						element = $('<li></li>');
+						child = $('<div></div>');
 
 						if (pe.language === 'en') {
-							suffix = "";
+							suffix = '';
 							if (daycount > 10 && daycount < 20) {
-								suffix = "th";
+								suffix = 'th';
 							} else {
 								switch (daycount % 10) {
 								case 1:
-									suffix = "st";
+									suffix = 'st';
 									break;
 								case 2:
-									suffix = "nd";
+									suffix = 'nd';
 									break;
 								case 3:
-									suffix = "rd";
+									suffix = 'rd';
 									break;
 								default:
-									suffix = "th";
+									suffix = 'th';
 								}
 							}
-							child.append('<span class="wb-invisible">' + pe.dic.get('%calendar-weekDayNames')[day] + ' ' + pe.dic.get('%calendar-monthNames')[month] + ' </span>' + daycount + '<span class="wb-invisible">' + suffix + ' ' + year + ((isCurrentDate) ? pe.dic.get('%calendar-currentDay') : "") + '</span>');
+							child.append('<span class="wb-invisible">' + pe.dic.get('%calendar-weekDayNames')[day] + ' ' + pe.dic.get('%calendar-monthNames')[month] + ' </span>' + daycount + '<span class="wb-invisible">' + suffix + ' ' + year + ((isCurrentDate) ? pe.dic.get('%calendar-currentDay') : '') + '</span>');
 						} else if (pe.language === 'fr') {
-							child.append('<span class="wb-invisible">' + pe.dic.get('%calendar-weekDayNames')[day] + ' </span>' + daycount + '<span class="wb-invisible"> ' + pe.dic.get('%calendar-monthNames')[month].toLowerCase() + ' ' + year + ((isCurrentDate) ? pe.dic.get('%calendar-currentDay') : "") + '</span>');
+							child.append('<span class="wb-invisible">' + pe.dic.get('%calendar-weekDayNames')[day] + ' </span>' + daycount + '<span class="wb-invisible"> ' + pe.dic.get('%calendar-monthNames')[month].toLowerCase() + ' ' + year + ((isCurrentDate) ? pe.dic.get('%calendar-currentDay') : '') + '</span>');
 						}
 						element.append(child);
 						elementParent = days;
 					}
-					element.attr("id", "cal-" + calendarid + "-w" + week + "d" + (day + 1)).addClass("cal-w" + week + "d" + (day + 1) + " cal-index-" + daycount);
+					element.attr('id', 'cal-' + calendarid + '-w' + week + 'd' + (day + 1)).addClass('cal-w' + week + 'd' + (day + 1) + ' cal-index-' + daycount);
 
 					if (day === 0 || day === 6) {
-						element.addClass("cal-we");
+						element.addClass('cal-we');
 					}
 					if (isCurrentDate) {
-						element.addClass("cal-currentday");
+						element.addClass('cal-currentday');
 					}
 					elementParent.append(element);
 				}
@@ -374,49 +390,50 @@
 					break;
 				}
 			}
+
 			return cells;
 		},
 
 		showGoToForm : function (calendarid) {
 			//Hide the month navigation
-			$("#cal-" + calendarid +  "-monthnav").children(".cal-prevmonth, .cal-nextmonth").addClass("wb-invisible").children("a").attr("aria-hidden", "true");
+			$('#cal-' + calendarid +  '-monthnav').children('.cal-prevmonth, .cal-nextmonth').addClass('wb-invisible').children('a').attr('aria-hidden', 'true');
 
-			var link = $("#cal-" + calendarid + "-goto-link"),
-				form = $("#cal-" + calendarid + "-goto");
+			var link = $('#cal-' + calendarid + '-goto-link'),
+				form = $('#cal-' + calendarid + '-goto');
 
 			link.stop().slideUp(0);
 			form.stop().slideDown(0).queue(function () {
-				pe.focus($(this).find(":input:eq(0)"));
+				pe.focus($(this).find(':input:eq(0)'));
 			});
 
-			link.children("a").attr("aria-hidden", "true").attr("aria-expanded", "true");
-			$("#" + calendarid).addClass("cal-container-extended");
+			link.children('a').attr('aria-hidden', 'true').attr('aria-expanded', 'true');
+			$('#' + calendarid).addClass('cal-container-extended');
 		},
 
 		hideGoToForm : function (calendarid) {
-			var link = $("#cal-" + calendarid + "-goto-link"),
-				form = $("#cal-" + calendarid + "-goto");
+			var link = $('#cal-' + calendarid + '-goto-link'),
+				form = $('#cal-' + calendarid + '-goto');
 
 			form.stop().slideUp(0).queue(function () {
 				//Show the month navigation
-				$("#cal-" + calendarid +  "-monthnav").children(".cal-prevmonth, .cal-nextmonth").removeClass("wb-invisible").children("a").attr("aria-hidden", "false");
-				$("#" + calendarid).removeClass("cal-container-extended");
+				$('#cal-' + calendarid +  '-monthnav').children('.cal-prevmonth, .cal-nextmonth').removeClass('wb-invisible').children('a').attr('aria-hidden', 'false');
+				$('#' + calendarid).removeClass('cal-container-extended');
 			});
-			link.stop().slideDown(0).children("a").attr("aria-hidden", "false").attr("aria-expanded", "false");
+			link.stop().slideDown(0).children('a').attr('aria-hidden', 'false').attr('aria-expanded', 'false');
 		},
 
 		onGoTo : function (calendarid, minDate, maxDate) {
-			var container = $("#" + calendarid),
-				fieldset = container.find("fieldset"),
-				month = parseInt(fieldset.find(".cal-goto-month select option:selected").attr('value'), 10),
-				year = parseInt(fieldset.find(".cal-goto-year select").attr("value"), 10);
+			var container = $('#' + calendarid),
+				fieldset = container.find('fieldset'),
+				month = parseInt(fieldset.find('.cal-goto-month select option:selected').attr('value'), 10),
+				year = parseInt(fieldset.find('.cal-goto-year select').attr('value'), 10);
 
 			if (!(month < minDate.getMonth() && year <= minDate.getFullYear()) && !(month > maxDate.getMonth() && year >= maxDate.getFullYear())) {
 				_pe.fn.calendar.create(calendarid, year, month, true, _pe.fn.calendar.getISOStringFromDate(minDate), _pe.fn.calendar.getISOStringFromDate(maxDate));
 				_pe.fn.calendar.hideGoToForm(calendarid);
 
 				//Go to the first day to avoid having to tab opver the navigation again.
-				pe.focus($("#cal-" + calendarid + "-days").find("a:eq(0)"));
+				pe.focus($('#cal-' + calendarid + '-days').find('a:eq(0)'));
 			}
 		},
 
@@ -445,29 +462,27 @@
 				o = s + o;
 			}
 			return o;
-//		}
 		},
-//	},
-//		dates = {
+
 		dates: {
 			/** dates
 			*  a date function to help with the data comparison
 			*/
 			convert : function (d) {
 				// Converts the date in d to a date-object. The input can be:
-				//   a date object: returned without modification
-				//  an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
-				//   a number     : Interpreted as number of milliseconds
-				//                  since 1 Jan 1970 (a timestamp)
-				//   a string     : Any format supported by the javascript engine, like
-				//                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
-				//  an object     : Interpreted as an object with year, month and date
-				//                  attributes.  **NOTE** month is 0-11.
+				// a date object: returned without modification
+				// an array	: Interpreted as [year,month,day]. NOTE: month is 0-11.
+				// a number	: Interpreted as number of milliseconds
+				//				since 1 Jan 1970 (a timestamp)
+				// a string	: Any format supported by the javascript engine, like
+				//				"YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
+				// an object: Interpreted as an object with year, month and date
+				//				attributes.  **NOTE** month is 0-11.
 				return (
 					d.constructor === Date ? d : d.constructor === Array ? new Date(d[0], d[1] - 1, d[2]) :
 							d.constructor === Number ? new Date(d) :
 									d.constructor === String ? new Date(d) :
-											typeof d === "object" ? new Date(d.year, d.month, d.date) : NaN
+											typeof d === 'object' ? new Date(d.year, d.month, d.date) : NaN
 				);
 			},
 			compare : function (a, b) {
@@ -485,9 +500,9 @@
 			inRange : function (d, start, end) {
 				// Checks if date in d is between dates in start and end.
 				// Returns a boolean or NaN:
-				//    true  : if d is between start and end (inclusive)
-				//    false : if d is before start or after end
-				//    NaN   : if one or more of the dates is illegal.
+				// true  : if d is between start and end (inclusive)
+				// false : if d is before start or after end
+				// NaN   : if one or more of the dates is illegal.
 				// NOTE: The code inside isFinite does an assignment (=).
 				return (
 					isFinite(d = _pe.fn.calendar.dates.convert(d).valueOf()) && isFinite(start = _pe.fn.calendar.dates.convert(start).valueOf()) && isFinite(end = _pe.fn.calendar.dates.convert(end).valueOf()) ? start <= d && d <= end : NaN

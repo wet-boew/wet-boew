@@ -3,49 +3,29 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
-progress[role] {
-    display: inline-block;
-    position: relative;
-    width: 10em;
-    height: 1em;
-    vertical-align: -.2em;
-    background-image: url(../images/progress/progress.gif);
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+
+@mixin progress ($color){
+	height: 1em;
+	width: 100%;
+	padding: 2px;
+	border: 1px solid black;
+	background-color: $color;
 }
 
-progress[role],
-progress[aria-valuenow]:before {
-    background-color: #5af;
-}
+progress {
+		display:inline-block;
+		
+		div.progress-frame  {
+			@include progress(#FFF);
+		}
+	
+		div.progress-undefined {
+			@include progress(#FF9999);
+		}
 
-progress[role],
-progress[role]:after {
-    background-repeat:repeat-x;
-    background-position: 0 0;
-    -moz-background-size: auto 100%;
-    -webkit-background-size: auto 100%;
-    background-size: auto 100%;
-}
-
-/* Determinate only overrides */
-progress[aria-valuenow] {
-    background: #eee;
-}
-
-progress[aria-valuenow]:before {
-    content: "";
-    display: block;
-    height: 100%;
-}
-
-/* Overlay */
-progress[role]:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: url(..images/progress/progress.png);
+		div.progress-bar {
+			height: 100%;
+			border: none;
+			background-color: #009900;  
+		}
 }

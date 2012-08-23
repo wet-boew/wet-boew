@@ -34,13 +34,13 @@ div.wet-boew-share {
 		letter-spacing:-.0004em;
 		display:inline-block;
 		padding:0 0 2px 18px;
-	}
-	.bookmark_popup_text.alt{
-		margin:5px;
-	}
-	.bookmark_popup_text img{
-		border:0;
-		vertical-align:bottom;
+		&.alt{
+			margin:5px;
+		}
+		img{
+			border:0;
+			vertical-align:bottom;
+		}
 	}
 	.bookmark_popup{
 		display:none;
@@ -52,14 +52,21 @@ div.wet-boew-share {
 			font-size:.85em;
 			margin:10px 0;
 		}
+		.popup_title,.popup_disclaimer{
+			margin:0;
+			padding:5px;
+			text-align:left;
+		}
 		.popup_title{
 			font-size:.95em;
 			font-weight:700;
 			background:#23447E;
 			color:#FFF;
-			margin:0;
-			padding:5px;
-			text-align:left;
+		}
+		.popup_disclaimer{
+			font-size:.85em;
+			background:#efefef;
+			color:#555;
 		}
 		.bookmark_compact{
 			border:0;
@@ -70,7 +77,7 @@ div.wet-boew-share {
 		display:inline-block;
 		list-style-type:none;
 		margin:0;
-		padding:5px;
+		padding:5px 5px 0;
 		text-align:left;
 		li{
 			float:left;
@@ -92,16 +99,16 @@ div.wet-boew-share {
 			display:inline-block;
 			width:16px;
 			height:16px;
-		}
-		span.bookmark_icons{
-			background:url(../images/share/bookmarks.png) no-repeat center;
+			&.bookmark_icons{
+				background:url(../images/share/bookmarks.png) no-repeat center;
+			}
 		}
 	}
 	.no-icons .bookmark_list span.bookmark_icons{
 		display: none;
 	}
 	.bookmark_compact{
-		background-color:#eee;
+		background-color:#efefef;
 		border:1px outset;
 		li{
 			width:16px;

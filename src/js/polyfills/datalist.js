@@ -1,78 +1,210 @@
-// HTML5 datalist plugin v.0.1
-// Copyright (c) 2010-The End of Time, Mike Taylor, http://miketaylr.com
-// MIT Licensed: http://www.opensource.org/licenses/mit-license.php
-//
-// Enables cross-browser html5 datalist for inputs, by first testing
-// for a native implementation before building one.
-//
+/*!
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+/*
+ * Datalist polyfill (Autocomplete for text input fields)
+ * @author: Paul Jackson (TBS)
+ */
+/*global jQuery: false, pe: false*/
+(function ($) {
+	"use strict";
+	$.fn.datalist = function () {
+		return $(this).each(function (index) {
+			var elm = $(this),
+				$datalist = $('#' + elm.attr('list')),
+				autolist,
+				options,
+				datalist_items = [],
+				showOptions,
+				correctWidth,
+				container;
+			
+			showOptions = function (string) {
+				var comparator = string.toLowerCase(),
+					visibleOptions = options.filter(function () {
+						var $this = $(this),
+							value = $this.find('span.al-value').html();
+						if (value.length === 0) {
+							value = $this.find('span.al-label').html();
+						}
+						return (comparator.length === 0 || value.toLowerCase().indexOf(comparator) === 0);
+					});
+				options.not(visibleOptions).addClass('al-hide');
+				visibleOptions.removeClass('al-hide');
+				if (visibleOptions.length !== 0) {
+					autolist.removeClass('al-hide');
+					elm.attr('aria-expanded', 'true');
+				} else {
+					autolist.addClass('al-hide');
+					elm.attr('aria-expanded', 'false');
+				}
+			};
 
-$.fn.datalist = function() {
-  
-  //first test for native placeholder support before continuing
-  return ((typeof this[0].list === 'object' ) && (document.createElement('datalist') && !!window.HTMLDataListElement)) ? this : this.each(function() {
-    //local vars
-    var $this = $(this),
-        //the main guts of the plugin
-        datalist = $('#' + $this.attr('list')),
-        opts = datalist.find('option'),
-        
-        //wrapper stuffs
-        width = $this.width(),
-        height = $this.height(),
-        ul = $("<ul>", {"class": "datalist", "width": width, "css": 
-          {'position': 'absolute', 
-           'left': 0, 
-           'top': height + 6, 
-           'margin': 0, 
-           'padding': '0 2px',
-           'list-style': 'none',
-           'border': '1px solid #ccc', 
-           '-moz-box-shadow': '0px 2px 3px #ccc', 
-           '-webkit-box-shadow': '0px 2px 3px #ccc', 
-           'box-shadow': '0px 2px 3px #ccc', 
-           'z-index':99, 
-           'background':'#fff', 
-           'cursor':'default'}
-          }),
-        wrapper = $('<div>').css('position', 'relative');
-        
-    //return this if matching datalist isn't found
-    //to be polite if there's any chaining
-    if (!datalist.length) {
-        return this;
-    } else {
-    //otherwise, build the structure
-      opts.each(function(i, opt) {
-        $('<li>')
-          .append('<span class="value">'+opt.value+'</span>')
-          .append('<span class="label" style="float:right">'+opt.label+'</span>')
-          .appendTo(ul);
-      });
-    };
-    
-    //stick the stuff in and hide it
-    $this.wrap(wrapper);
-    ul.hide().insertAfter($this);
-    
-    //show it on focus
-    $this.focus(function(){
-      ul.show(); 
-    });
-    
-    //hide it on blur
-    $this.blur(function(){
-      ul.hide();
-    });
-    
-    //set value of input to clicked option
-    var lis = $this.next().find('li');
-    lis.mousedown(function(){
-      var value = $(this).find('span.value').text();
-      $this.val(value); 
-    });
-  });
-};
+			correctWidth = function () {
+				container.css('min-width', elm.innerWidth());
+				if (pe.ie < 8) {
+					autolist.css('top', elm.innerHeight() + 13);
+				}
+			};
 
-$(document).ready(function(){
+			pe.resize(correctWidth);
+
+			$datalist.find('option').each(function (index2) {
+				var $this = $(this),
+					value = $this.attr('value'),
+					label = $this.attr('label');
+				if (value === 'undefined') {
+					value = $this.text();
+				}	
+				datalist_items.push('<li class="al-hide al-option" tabindex="-1" id="al-option-' + index + '-' + index2 + '"><span class="al-value">' + (value !== 'undefined' ? value : "") + '</span><span class="al-label">' + (label !== 'undefined' ? label : "") + '</span></li>');
+			});
+
+			elm.attr({"role": "combobox", "aria-expanded": "false", "aria-autocomplete": "list", "aria-owns": "wb-autolist-" + index}).wrap('<div class="wb-al-container"/>');
+			container = elm.parent().css('min-width', elm.innerWidth());
+
+			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide">' + datalist_items.join('') + '</ul>')
+			options = autolist.find('li');
+			elm.after(autolist);
+			if (pe.ie < 8) {
+				autolist.css('top', elm.innerHeight() + 13);
+			}
+			
+			elm.on('keyup keydown click vclick', function (e) {
+				var type = e.type,
+					keycode = e.keyCode,
+					dest;
+				if (type === 'keyup') {
+					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
+						if ((keycode > 47 && keycode < 58) || (keycode > 64 && keycode < 91) || keycode === 32 || keycode === 8) { // Number keys, letter keys, spacebar or backspace
+							showOptions(elm.val());
+						}
+					}
+				} else if (type === 'keydown') {
+					if (!(e.ctrlKey || e.metaKey)) {
+						if (!e.altKey && elm.attr('aria-expanded') === "true") {
+							if (keycode === 9 || keycode === 27) { // tab or escape key
+								showOptions('~!!@@#$');
+								elm.removeAttr('aria-activedescendent');
+								if (keycode === 27) {
+									return false;
+								}
+							} else if (keycode === 38) { // up arrow
+								dest = options.filter(':not(.al-hide)').last();
+								pe.focus(dest);
+								elm.attr('aria-activedescendent', dest.attr('id'));
+								return false;
+							} else if (keycode === 40) { // down arrow
+								dest = options.filter(':not(.al-hide)').eq(0).last();
+								pe.focus(dest);
+								elm.attr('aria-activedescendent', dest.attr('id'));
+								return false;
+							} else if (keycode === 38 || keycode === 40) { // up or down arrow (with or without alt)
+								showOptions('');
+								return false;
+							}
+						} else {
+							if (keycode === 38 || keycode === 40) { // up or down arrow (with or without alt)
+								showOptions('');
+								return false;
+							}
+						}
+					}
+				} else if (type === 'click' || type === 'vclick') {
+					if (elm.attr('aria-expanded') === "true") {
+						showOptions('~!!@@#$');
+					} else {
+						showOptions('');
+					}
+					return false;
+				}
+			});
+
+			autolist.on('keyup keydown click vclick', 'li, span', function (e) {
+				var type = e.type,
+					keycode = e.keyCode,
+					target = $(e.target),
+					dest,
+					val = elm.val(),
+					value;
+				if (type === 'keyup') {
+					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
+						if ((keycode > 47 && keycode < 58) || (keycode > 64 && keycode < 91) || keycode === 32 || keycode === 8) { // Number keys, letter keys, spacebar or backspace
+							pe.focus(elm);
+							showOptions(elm.val());
+						} else if (keycode === 8 && elm.val().length > 0) {
+							elm.val(val.substring(0, val.length - 1));
+							pe.focus(elm);
+							showOptions(elm.val());
+						}
+					}
+				} else if (type === 'keydown') {
+					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
+						if (keycode === 13) { // enter key
+							value = target.find('span.al-value').html();
+							if (value.length === 0) {
+								value = target.find('span.al-label').html();
+							}
+							elm.val(value);
+							pe.focus(elm);
+							showOptions('~!!@@#$');
+							return false;
+						} else if (keycode === 9 || keycode === 27) { // tab or escape key
+							pe.focus(elm);
+							showOptions('~!!@@#$');
+							elm.removeAttr('aria-activedescendent');
+							if (keycode === 27) {
+								return false;
+							}
+						} else if (keycode === 38) { // up arrow
+							dest = target.prev();
+							if (dest.length > 0) {
+								pe.focus(dest);
+								elm.attr('aria-activedescendent', dest.attr('id'));
+							} else {
+								dest = options.last();
+								pe.focus(dest);
+								elm.attr('aria-activedescendent', dest.attr('id'));
+							}
+							return false;
+						} else if (keycode === 40) { // down arrow
+							dest = target.next();
+							if (dest.length > 0) {
+								pe.focus(dest);
+								elm.attr('aria-activedescendent', dest.attr('id'));
+							} else {
+								dest = options.eq(0);
+								pe.focus(dest);
+								elm.attr('aria-activedescendent', dest.attr('id'));
+							}
+							return false;
+						} else if (keycode === 38 || keycode === 40) { // up or down arrow (with or without alt)
+							showOptions('');
+							return false;
+						}
+					}
+				} else if (type === 'click' || type === 'vclick') {
+					if (!target.hasClass('al-option')) {
+						target = target.parent();
+					}
+					value = target.find('span.al-value').html();
+					if (value.length === 0) {
+						value = target.find('span.al-label').html();
+					}
+					elm.val(value);
+					pe.focus(elm);
+					showOptions('~!!@@#$');
+					return false;
+				}
+			});
+
+			$(document).on("click touchstart", function () {
+				if (elm.attr('aria-expanded') === "true") {
+					showOptions('~!!@@#$');
+					elm.removeAttr('aria-activedescendent');
+				}
+			});
+		});
+	};
 	$('input[list]').datalist();
-});
+}(jQuery));

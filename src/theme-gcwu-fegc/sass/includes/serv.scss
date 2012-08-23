@@ -36,6 +36,12 @@ h1 {
 	margin-bottom: 11px;
 }
 
+#gcwu-sig, #gcwu-wmms {
+	img {
+		margin-bottom: 0;
+	}
+}
+
 #gcwu-title {
 	a,a:visited,a:hover,a:focus,a:active{
 		color:#295376;
@@ -67,9 +73,9 @@ h1 {
 	li {
 		a {
 			text-decoration: none;
-		}
-		a:hover,a:focus,a:active {
-			text-decoration: underline;
+			&:hover,&:focus,&:active {
+				text-decoration: underline;
+			}
 		}
 	}
 }

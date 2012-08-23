@@ -18,10 +18,10 @@ div.cal-cnt {
 	}
 	.cal-goto-link {
 		a:link, a:visited{
-			color:#FFF;
+			color:#FFF !important;
 		}
 		a:hover, a:focus, a:active{
-			color:#36C;
+			color:#36C !important;
 			background-color:#FFF;
 		}
 	}
@@ -29,6 +29,8 @@ div.cal-cnt {
 		color:#FFF;
 	}
 }
+
+.ui-mobile-viewport div.cal-cnt .cal-nextmonth a:link, .ui-mobile-viewport .cal-nextmonth a:visited, .ui-mobile-viewport .cal-nextmonth a:hover, .ui-mobile-viewport .cal-prevmonth a:link, .ui-mobile-viewport .cal-prevmonth a:visited, .ui-mobile-viewport .cal-prevmonth a:hover {border: none !important;}
 
 ol.cal-weekdays li{
 	border-style:solid;

@@ -16,59 +16,66 @@
 	margin:0 !important;
 }
 
-#gcwu-date-mod dt,#gcwu-date-mod dd{
-	float:left;
-}
-
-#gcwu-date-mod dd{
-	margin:0 0 0 10px;
+#gcwu-date-mod {
+	dt,dd{
+		float:left;
+	}
+	dd {
+		margin:0 0 0 10px;
+	}
 }
 
 #gcwu-content h2,#gcwu-priorities h3{
 	color:#333;
 	font-weight:400;
-}
-
-#gcwu-content h2,#gcwu-priorities h3{
 	border:none;
 	margin-bottom:5px;
 	font-size:1.6em;
 }
 
-div#gcwu-headlines ul li,div#gcwu-headlines ul{
-	list-style:none !important;
-	margin:0 !important;
-	padding:0 !important;
+div#gcwu-headlines {
+	ul,ul li{
+		list-style:none !important;
+		margin:0 !important;
+		padding:0 !important;
+	}
 }
 
-#gcwu-headlines ul li a,#gcwu-video a{
-	font-size:100%;
+#gcwu-headlines ul li,#gcwu-video{
+	a{
+		font-size:100%;
+	}
 }
 
-#gcwu-headlines ul li h3,#gcwu-headlines ul li p{
-	margin:0;
-	padding:5px;
-}
-
-#gcwu-headlines ul li h3{
-	font-size:1em;
-	font-weight:700;
+#gcwu-headlines ul li {
+	h3,p{
+		margin:0;
+		padding:5px;
+	}
+	h3{
+		font-size:1em;
+		font-weight:700;
+	}
 }
 
 #gcwu-priorities{
 	padding-bottom:10px;
 	border-bottom:1px solid #000;
+	img {
+		margin-bottom:0;
+	}
 }
 
-#gcwu-aside div#gcwu-priorities ul li{
-	margin:0;
-	padding:0;
-}
-
-#gcwu-aside div#gcwu-priorities ul{
-	list-style:none;
-	margin:0;
-	padding:0;
+#gcwu-aside div#gcwu-priorities{
+	ul{
+		list-style:none;
+		margin:0;
+		padding:0;
+	}
+	ul li{
+		margin:0;
+		padding:0;
+	}
 }
 
 #gcwu-connect {
@@ -99,7 +106,6 @@ div#gcwu-headlines ul li,div#gcwu-headlines ul{
 
 .gcwu-minister{
 	margin-top:10px;
-
 	img{
 		padding-right:5px;
 		float:left;
@@ -108,7 +114,6 @@ div#gcwu-headlines ul li,div#gcwu-headlines ul{
 	p{
 		margin:0;
 		padding:10px 5px 10px 0;
-
 		strong{
 			font-weight:700;
 			color:#001D45;
@@ -118,16 +123,16 @@ div#gcwu-headlines ul li,div#gcwu-headlines ul{
 		list-style-type:none;
 		padding-top:17px;
 		margin:0;
+		&:after{
+			content:".";
+			display:block;
+			height:0;
+			clear:both;
+			visibility:hidden;
+		}
 	}
 	li{
 		padding-bottom:8px;
-	}
-	ul:after{
-		content:".";
-		display:block;
-		height:0;
-		clear:both;
-		visibility:hidden;
 	}
 }
 

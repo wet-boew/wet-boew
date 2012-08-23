@@ -91,10 +91,12 @@
 			}
 			
 			th, td {
-				border-bottom: none;
-				border-right: none;
-				border-left-style: solid;
-				border-left-width: 1px;
+				border: {
+					bottom: none;
+					right: none;
+					left-style: solid;
+					left-width: 1px;
+				}
 			}
 		}
 		
@@ -163,7 +165,6 @@
 	}
 	th {
 		background-color: $color;
-	
 		color: $text;
 		text-shadow: $shadow 0 1px 1px;		
 	}

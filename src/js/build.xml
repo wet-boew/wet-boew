@@ -3,7 +3,7 @@
 	<description>Web Experience Toolkit Core Framework</description>
 
 	<property file="build.properties"/>
-	<import file="../../build-tasks.xml"/>
+	<import file="${build.dir}/../build-tasks.xml"/>
 
 	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
 
@@ -24,25 +24,6 @@
 			<include name="css/*.*" />
 		</yui-compressor>
 		<delete dir="${build.dir}/premin"/>
-	</target>
-
-	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
-	<target name="compile.sass">
-		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems&quot; compile &quot;${src.dir}&quot;"/>
-		</java>
-		<echo level="info">
----Converted JS SCSS Files into CSS---
-		</echo>
-	</target>
-	<!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
-	<target name="watch.sass">
-		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
-			<arg line="&quot;${src.dir}/compile.rb&quot; &quot;${lib.dir}/vendors/gems&quot; watch &quot;${src.dir}&quot;"/>
-		</java>
-		<echo level="info">
----Watching for SCSS Changes in JS Directory---
-		</echo>
 	</target>
 
 	<target name="build-js" depends="-build-pe">
@@ -107,7 +88,6 @@
 		</concat>
 		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf8" />
 	</target>
-
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode" depends="-merge-css">
 		<copy todir="${build.dir}/premin/images">
@@ -122,7 +102,6 @@
 			<fileset dir="${src.dir}/images"/>
 		</copy>
 	</target>
-
 	<target name="-merge-css">
 		<copy todir="${build.dir}/premerge/css">
 			<fileset dir="${src.dir}/css"/>
@@ -162,92 +141,40 @@
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
 	</target>
+
+	<target name="test" depends="-jshint"/>
+	
+	<target name="-jshint">
+		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
+			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
+			<include name="**/*.js"/>
+			<exclude name="**/*.min.js"/>
+			<exclude name="jquery.mobile/jquery.mobile.js"/>
+			<exclude name="polyfills/datalist.js"/>
+			<exclude name="polyfills/detailssummary.js"/>
+			<exclude name="polyfills/html5shiv.js"/>
+			<exclude name="polyfills/localstorage.js"/>
+			<exclude name="polyfills/slider.js"/>
+			<exclude name="workers/parser.table.js"/>
+			<exclude name="workers/webwidget.js"/>
+			<exclude name="dependencies/bookmark.js"/>
+			<exclude name="dependencies/browsertweaks.js"/>
+			<exclude name="dependencies/colorbox.js"/>
+			<exclude name="dependencies/easytabs.js"/>
+			<exclude name="dependencies/hashchange.js"/>
+			<exclude name="dependencies/hoverintent.js"/>
+			<exclude name="dependencies/json.js"/>
+			<exclude name="dependencies/matchMedia.js"/>
+			<exclude name="dependencies/metadata.js"/>
+			<exclude name="dependencies/outside.js"/>
+			<exclude name="dependencies/pie.js"/>
+			<exclude name="dependencies/prettify.js"/>
+			<exclude name="dependencies/prettify/**/*.js"/>
+			<exclude name="dependencies/raphael.js"/>
+			<exclude name="dependencies/resize.js"/>
+			<exclude name="dependencies/validate.js"/>
+			<exclude name="dependencies/validateAdditional.js"/>
+			<exclude name="dependencies/xregexp.js"/>
+		</jshint>
+	</target>
 </project>
-
-<!-- Future targets 
-
-<target name="-can-nodejs-coffeescript">
-		<property environment="env" />
-		<condition property="nodecoffee.present">
-			<available file="coffee" type="file">
-				<filepath>
-					<pathelement path="${env.PATH}" />
-				</filepath>
-			</available>
-		</condition>
-		<if>
-			<not>
-				<isset property="nodecoffee.present" />
-			</not>
-			<then>
-				<echo message="CoffeeScript for Node.js not found, using jCoffeeScript/Rhino (slower) instead" />
-			</then>
-		</if>
-	</target>
-	
-	<target name="-can-nodejs-lessc">
-		<property environment="env" />
-		<condition property="nodelessc.present">
-			<available file="lessc" type="file">
-				<filepath>
-					<pathelement path="${env.PATH}" />
-				</filepath>
-			</available>
-		</condition>
-		<if>
-			<not>
-				<isset property="nodelessc.present" />
-			</not>
-			<then>
-				<echo message="Lessc (Less Compiler) for Node.js not found, using LESS for Rhino (slower) instead" />
-			</then>
-		</if>
-	</target>
-	
-	<target name="-build-pe-nodejs" if="nodecoffee.present">
-		<exec executable="coffee" dir="." input="${build.dir}/pe-ap.pre.coffee" output="${build.dir}/pe-ap.pre.js">
-			<arg line="${nodecoffeescript.command}" />
-		</exec>
-	</target>
-	
-	<target name="-build-pe-rhino" unless="nodecoffee.present">
-		<exec executable="java" dir="." input="${build.dir}/pe-ap.pre.coffee" output="${build.dir}/pe-ap.pre.js">
-			<arg line="${jcoffeescript.command}" />
-		</exec>
-	</target>
-	
-	<target name="-merge-pe-core">
-		<concat dest="${build.dir}/pe-ap.pre.coffee" fixlastline="yes">
-				<filelist dir="${src.dir}/loader">
-						<file name="loader.coffee" />
-				</filelist>
-		</concat>
-	</target>
-	
-	<target name="-build-pe-modules" depends="-merge-pe-modules,-build-pe-module-nodejs,-build-pe-module-rhino"/>
-	
-	<target name="-build-pe-module-nodejs" if="nodecoffee.present">
-		<exec executable="coffee" dir="." input="${build.dir}/pe.worker.coffee" output="${build.dir}/pe.worker.js">
-			<arg line="${nodecoffeescript.command}" />
-		</exec>
-	</target>
-	
-	<target name="-build-pe-module-rhino" unless="nodecoffee.present">
-		<exec executable="java" dir="." input="${build.dir}/pe.worker.coffee" output="${build.dir}/pe.worker.js">
-			<arg line="${jcoffeescript.command}" />
-		</exec>
-	</target>
-	
-	<target name="-build-less" depends="-build-less-nodejs,-build-less-rhino" />
-	
-	<target name="-build-less-nodejs" if="nodelessc.present">
-		<exec executable="lessc" dir="." input="${src.dir}/test.less" output="${build.dir}/test.css">
-		</exec>
-	</target>
-	
-	<target name="-build-less-rhino" unless="nodelessc.present">
-		<exec executable="java" dir="." input="${src.dir}/test.less" output="${build.dir}/test.css">
-			<arg line="${jless.command}" />
-		</exec>
-	</target>
--->

@@ -109,8 +109,6 @@
 			text-align: right;
 		}
 	}
-	
-	
 }
 
 @mixin form-element {
@@ -145,7 +143,7 @@
 			position: relative;
 			vertical-align: middle;
 			
-			&:hover { z-index: 2; }
+			&:hover, &:focus, &:active { z-index: 2; }
 		}
 
 		button { @include border-left-radius(0); }
@@ -177,22 +175,6 @@
 		padding-bottom: 0;
 		> * { margin-right: $margin-medium / 2; }
 	}
-
-	#gcwu-srchbx-in {
-		#gcwu-srch { 
-			border-color: $accent;
-			margin-bottom: 0; 
-			padding: 4px;
-			@include border-radius;
-
-			&:focus, &:active { background-color: $white; border-color: darken($accent, 10%); }
-		}
-		#gcwu-srch-submit {
-			@include color-button($light);
-			margin-bottom: 0;
-			display: inline;
-		}
-	}
 }
  
 @mixin form-style {
@@ -222,7 +204,7 @@
 		border-color: darken($light, 15%);
 		@include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.05));
 		
-		&:focus {
+		&:focus, &:active {
 			border-color: $accent;
 			outline: none;
 			
@@ -236,7 +218,7 @@
 			color: $medium;
 			cursor: not-allowed;
 			
-			&:focus { 
+			&:focus, &:active { 
 				@include box-shadow(none);
 			}
 		}
@@ -246,15 +228,15 @@
 		// apply color to the form element
 		.form-confirm & { 
 			border-color: $summary;
-			&:focus { @include box-shadow($summary); }
+			&:focus, &:active { @include box-shadow($summary); }
 		}
 		.form-attention & { 
 			border-color: $attention;
-			&:focus { @include box-shadow($attention); }
+			&:focus, &:active { @include box-shadow($attention); }
 		}
 		.form-alert & { 
 			border-color: darken($alert, 37%);
-			&:focus { @include box-shadow(darken($alert, 37%)); }
+			&:focus, &:active { @include box-shadow(darken($alert, 37%)); }
 		}
 	}
 	

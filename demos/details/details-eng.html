@@ -52,7 +52,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	text-align: right;
 }
 .example3 summary:hover, .example3 summary:focus, .example3 summary:active {
-	background: #3A6D9C !important;
+	background: #1A4D7C !important;
+}
+.example3 summary:focus, .example3 summary:active {
+	outline: 1px dotted #000;
 }
 </style>
 <!-- CustomScriptsCSSEnd -->
@@ -216,10 +219,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="clear"></div>
 </section>
 
-<a href="javascript:;" onclick="javascript:newelm()">Test</a>
-
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2011-10-31</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
@@ -284,12 +285,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../build/js/settings.js"></script>
 <script src="../../build/js/pe-ap-min.js"></script>
-<script>
-function newelm() {
-var elm2 = $('<details class="span-4 example3"><summary class="background-accent">Example 4</summary><p>Example content that provides more details.</p><table><caption>Cups of coffee consumed by each delegate</caption><thead><tr><th scope="col">Name</th><th scope="col">Cups</th><th scope="col">Type of Coffee</th><th scope="col">Sugar?</th></tr></thead><tbody><tr><td>T. Sexton</td><td>10</td><td>Espresso</td><td>No</td></tr><tr><td>J. Dinnen</td><td>5</td><td>Decaf</td><td>Yes</td></tr></tbody></table></details>').addClass('polyfill');
-$('#gcwu-date-mod').before(elm2);
-}
-</script>
 <!-- ScriptsEnd -->
 </body>
 </html>

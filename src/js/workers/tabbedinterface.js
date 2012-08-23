@@ -7,6 +7,7 @@
  */
 /*global jQuery: false, pe: false, wet_boew_tabbedinterface: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
@@ -128,26 +129,36 @@
 				}
 			});
 			$default_tab = ($nav.find(".default").length > 0 ? $nav.find(".default") : $nav.find("li:first-child"));
-			$tabs.on("keydown", function (e) {
-				var $target = $(e.target);
-				if (e.keyCode === 13 || e.keyCode === 32) {
-					if (e.stopPropagation) {
-						e.stopImmediatePropagation();
-					} else {
-						e.cancelBubble = true;
+			$tabs.on("keydown click", function (e) {
+				var $target = $(e.target),
+					$panel;
+				if (e.type === 'keydown') {
+					if (e.keyCode === 13 || e.keyCode === 32) {
+						if (e.stopPropagation) {
+							e.stopImmediatePropagation();
+						} else {
+							e.cancelBubble = true;
+						}
+						e.preventDefault();
+						if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
+							selectTab($target, $tabs, $panels, opts, false);
+						} else {
+							pe.focus($panels.filter($target.attr('href')));
+						}
+					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
+						selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
+						e.preventDefault();
+					} else if (e.keyCode === 39 || e.keyCode === 40) { // right or down
+						selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
+						e.preventDefault();
 					}
-					e.preventDefault();
-					if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
-						selectTab($target, $tabs, $panels, opts, false);
-					} else {
-						pe.focus($panels.filter($target.attr('href')));
+				} else {
+					// Workaround for broken EasyTabs getHeightForHidden function where it misreports the panel height when the panel is first shown
+					// TODO: Issue should be fixed in EasyTabs
+					$panel = $panels.filter($target.attr('href'));
+					if (!$panel.data('easytabs').lastHeight) {
+						$panel.data('easytabs').lastHeight = $panel.outerHeight();
 					}
-				} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
-					selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
-					e.preventDefault();
-				} else if (e.keyCode === 39 || e.keyCode === 40) { // right or down
-					selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
-					e.preventDefault();
 				}
 			});
 			$default_tab.children("a").each(function () {
@@ -197,7 +208,7 @@
 			};
 			if (opts.autoHeight && !elm.hasClass("tabs-style-4") && !elm.hasClass("tabs-style-5")) {
 				$panels.show();
-				$(".tabs-panel", elm).equalHeights(true);
+				$tabsPanel.equalHeights(true);
 			}
 			elm.easytabs($.extend({}, opts, {
 				cycle : false
@@ -284,14 +295,14 @@
 						return e.preventDefault();
 					}
 				});
-				$nav.find("li a").not($toggleRow.find("a")).click(function () {
+				$nav.find("li a").not($toggleRow.find("a")).on('click', function () {
 					return stopCycle();
 				});
 				$tabs.each(function () {
 					var $pbar;
-					$pbar = $('<div class="tabs-roller">').hide().click(function () {
-						return $(this).siblings("a").click();
-					}).hover(function () {
+					$pbar = $('<div class="tabs-roller">').hide().on('click', function () {
+						return $(this).siblings("a").trigger('click');
+					}).on('hover', function () {
 						return $(this).css("cursor", "text");
 					});
 					if (pe.ie > 0 && pe.ie < 8) {
@@ -311,7 +322,7 @@
 				if (hash.length > 1) {
 					anchor = $(hash, $panels);
 					if (anchor.length) {
-						return $(this).click(function (e) {
+						return $(this).on('click', function (e) {
 							var panel,
 								panelId;
 							panel = anchor.parents('[role="tabpanel"]:hidden');

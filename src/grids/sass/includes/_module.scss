@@ -6,31 +6,30 @@
 @mixin modules {
 
 	.module-related, .module-billboard, .module-event, .module-menu-section, .module-table-contents {
-			
-
-			& > :first-child {
-				@include header;
-				@include colorize-base($medium);
-				@include colorize($medium);
-			}
-
-		
-
+		& > :first-child {
+			@include header;
+			@include colorize-base($medium);
+			@include colorize($medium);
+		}
 	}	
-	
+
 	.module-billboard li, .module-related > ul, .module-menu-section > ul, .module-event > ul, .module-event > table {
 		margin-top: 1px !important;
 		margin-bottom: 0;
 	}
-	
-	.module-event > ul, .module-event ul {
-		padding: 0;	
-		@include module-colorize($border:"border");
+
+	.module-event {
+		ul, > ul {
+			padding: 0;	
+			@include module-colorize($border:"border");
+		}
 	}
 	
-	.module-billboard ul, .module-related ul, .module-menu-section ul, .module-event ul {
-		margin: 0;
-		@include no-bullets;
+	.module-billboard, .module-related, .module-menu-section, .module-event {
+		ul {
+			margin: 0;
+			@include no-bullets;
+		}
 	}
 	
 	.module {
@@ -58,68 +57,57 @@
 				min-height: 32px;
 				padding: $spacing-medium;
 			
-				@include module-colorize($border:"border");
-				
-				&:hover {
-					text-decoration: none;
-					@include colorize-base($accent);
-					@include colorize-border($accent);
+				@include module-colorize($border:"border");			
+			}
+			a:hover, a:focus, a:active {
+				text-decoration: none;
+				@include colorize-base($accent);
+				@include colorize-border($accent);
+			}
+		}
+	}
+
+	.module-related, .module-menu-section {
+		ul {
+			@include module-colorize($border:"border");
+			li {
+				border-top: 1px dotted darken($light, 10%);
+				margin-bottom: 0 !important;
+				&:first-child {
+					border-top: none;
 				}
-				
 			}
 		}
 	}
-	
-	.module-related ul, .module-menu-section ul {
-	
-		@include module-colorize($border:"border");
-		
-		li {
-			border-top: 1px dotted darken($light, 10%);
-			margin-bottom: 0 !important;
-		
-			&:first-child {
-				border-top: none;
-			}
-		}
-		
-	}
-	
+
 	.module-related ul li, .module-menu-section ul li a {
 		display: block;
 		padding: ($margin-medium / 2) $margin-medium;
 	}
 	
 	.module-menu-section ul {
-		
 		li {
-			
 			a {
 				display: block;
 				text-decoration: none;
-				
-				&:hover {
+				&:hover, &:focus, &:active {
 					background-color: darken($light, 3%);
 					text-decoration: underline;
 				}
 			}
-		
 			ul { 
 				border: none; 
 				border-top: 1px dotted darken($light, 10%) !important;
 				margin-left: 0 !important;
 			}
-			
 			li a { padding-left: 20px !important; }
 			li li a { padding-left: 30px !important; }
 		}
 	}
 	
 	.module-event {
-		
 		ul.calendar-list { 
-			padding: 10px 10px 5px;
-			
+			padding: 10px 10px 5px;	
 			li {
 				padding-left: 25px;
 				@include fugue-icon("marker.png", $padding: 16px);
@@ -127,7 +115,6 @@
 				&.calendar-more { @include fugue-icon("calendar-list.png", $padding: 16px); }
 			}
 		}
-	
 		table.calendar-month { margin: 0; width: 100%; }
 	}
 	
@@ -162,8 +149,6 @@
 		
 		@include border-radius;
 		@include module-colorize($border:"border");
-		
-
 
 		.image-caption {
 			margin: $margin-medium $margin-medium ($margin-medium / 2);
@@ -179,7 +164,6 @@
 				padding: 0;
 			}
 		}
-		
 	}
 	
 	.module-poster img { margin-bottom: 0; }
@@ -308,5 +292,4 @@ $default-module-shadow: false;
 	@if $shadow == true {
 		@include box-shadow(0px 2px 2px rgba($color, 0.15));
 	}
-	
 }

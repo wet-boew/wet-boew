@@ -15,22 +15,77 @@ $pBtmSpace: $ddBtmSpace / 2;
 
 /** Screen and print CSS **/
 @media screen,print {
-	a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {background-color: #EEE; border: 1px solid #CCC; padding: 0 4px 1px; display: inline-block;}
-	a.footnote-link:hover, sup a.footnote-link:active, sup a.footnote-link:focus, .wet-boew-footnotes dl dd p.footnote-return a:hover, .wet-boew-footnotes dl dd p.footnote-return a:active, .wet-boew-footnotes dl dd p.footnote-return a:focus {border-color: #666;}
-	
-	.wet-boew-footnotes {margin: 2em 10px 0 10px; padding-top: $dlTopSpace; border-width: 1px 0 1px 0; border-style: solid; border-color: #CCC;}
-	
-	.wet-boew-footnotes h2 {margin-left: 0; margin-right: 0; margin-top: 0;}
-	
-	.wet-boew-footnotes dl {display: inline-block; margin: 0 0 $dlBtmSpace;}
-	.wet-boew-footnotes dl dt {position:absolute; clip:rect(1px, 1px, 1px, 1px); height:1px !important; width:1px !important; overflow:hidden !important; margin:0 !important;}/*borrow wb-invisible's properties via SASS?*/
-	.wet-boew-footnotes dl dd {position: relative; margin: 0 0 $ddBtmSpace;}
-	.wet-boew-footnotes dl dd p {margin: 0 0 $pBtmSpace $dtFullSpace}/*manage the left and bottom spacing via SASS?*/
-	.wet-boew-footnotes dl dd p.footnote-return {top: -1px !important; left: -1px; margin: 0 !important; padding: 1px 0 1px 1px; position: absolute !important; width: $dtWidth; overflow: hidden;}/*borrow position-top's properties via SASS?*/
+	a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
+		background-color: #EEE;
+		border: 1px solid #CCC;
+		padding: 0 4px 1px;
+		display: inline-block;
+	}
+	sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
+		&:hover, &:focus, &:active {
+			border-color: #666;
+		}
+	}
+	.wet-boew-footnotes {
+		margin: 2em 10px 0 10px;
+		padding-top: $dlTopSpace;
+		border: {
+			width: 1px 0 1px 0;
+			style: solid;
+			color: #CCC;
+		}
+		h2 {
+			margin: {
+				left: 0;
+				right: 0;
+				top: 0;
+			}
+		}
+		dl {
+			display: inline-block;
+			margin: 0 0 $dlBtmSpace;
+			dt {
+				position:absolute;
+				clip:rect(1px, 1px, 1px, 1px);
+				height:1px !important;
+				width:1px !important;
+				overflow:hidden !important;
+				margin:0 !important;
+				/*borrow wb-invisible's properties via SASS?*/
+			}
+			dd {
+				position: relative;
+				margin: 0 0 $ddBtmSpace;
+				p {
+					margin: 0 0 $pBtmSpace $dtFullSpace;
+					/*manage the left and bottom spacing via SASS?*/
+					&.footnote-return {
+						top: -1px !important;
+						left: -1px; margin: 0 !important;
+						padding: 1px 0 1px 1px;
+						position: absolute !important;
+						width: $dtWidth;
+						overflow: hidden;
+						/*borrow position-top's properties via SASS?*/
+					}
+				}
+			}
+		}
+	}
 }
 
 /** Print-only CSS **/
 @media print {
-	a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {background-color: transparent; border: 0; padding: 0;}
-	.wet-boew-footnotes {margin-left: 0; margin-right: 0; margin-bottom: 1em;}
+	a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
+		background-color: transparent;
+		border: 0;
+		padding: 0;
+	}
+	.wet-boew-footnotes {
+		margin: {
+			left: 0;
+			right: 0;
+			bottom: 1em;
+		}
+	}
 }

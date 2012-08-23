@@ -6,11 +6,22 @@
 
 /** Screen and print CSS **/
 @media screen,print {
-	.ie7 .wet-boew-footnotes {display: inline-block;}
-	.ie7 .wet-boew-footnotes dl {margin-bottom: 0;}
+	.ie7 {
+		.wet-boew-footnotes {
+			display: inline-block;
+			dl {
+				margin-bottom: 0;
+			}
+		}
+	}
 }
 
 /** Print-only CSS **/
 @media print {
-	.ie7 .wet-boew-footnotes {padding-bottom: 1em;}/*definition list's padding-top value x2 via SASS?*/
+	.ie7 {
+		.wet-boew-footnotes {
+			padding-bottom: 1em;
+			/*definition list's padding-top value x2 via SASS?*/
+		}
+	}
 }

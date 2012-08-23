@@ -21,15 +21,11 @@ h1 {
 	margin: auto;
 }
 
-#centre-col {
-	z-index: 1;
-	display: inline;
-}
-
-#fip-title,#gcwu-tc {
+#gcwu-title,#gcwu-tc {
 	display:block;
 	float:none;
 	margin:auto;
+	line-height:normal;
 }
 
 #wb-head, #wb-head-in, #wb-foot, #wb-foot-in  {
@@ -42,14 +38,19 @@ h1 {
 
 #wb-core-in {
 	overflow: visible !important;
-}
-
-#wb-core-in:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	div #gcwu-bar {
+		height: 10px;
+		background: #fff url(../images/bg-waves.jpg) -100px center repeat-x;
+		margin-bottom: 12px;
+		padding-bottom: 0;
+	}
 }
 
 #wb-main-in {
@@ -71,19 +72,8 @@ h1 {
 	height: 20px;
 }
 
-#gcwu-title {
-	width: auto;
-}
-
 #gcwu-title-right, .gcwu-alt-title-right {
 	text-align: right;
-}
-
-#wb-core-in div #gcwu-bar {
-	height: 10px;
-	background: #fff url(../images/background-waves.jpg) -100px center repeat-x;
-	margin-bottom: 12px;
-	padding-bottom: 0;
 }
 
 .gcwu-tc-left {
@@ -96,6 +86,7 @@ h1 {
 
 #gcwu-tc {
 	ul {
+		line-height:normal;
 		list-style:none;
 		margin: 0;
 		padding: 0;
@@ -103,8 +94,6 @@ h1 {
 	li {
 		float: left;
 		margin-bottom: 4px;
-	}
-	li {
 		a {
 			text-decoration: none;
 			font-size: 0.9em;

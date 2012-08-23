@@ -24,11 +24,8 @@ h3{
 
 /* Overrides from util.css */
 .embedded-nav {
-	a, a:visited, a:link{
+	a, a:visited, a:link, a:hover, a:focus, a:active{
 		background:#276cb9;
-		border-color:#276cb9;
-	}
-	a:hover, a:focus, a:active{
 		border-color:#276cb9;
 	}
 	.embedded-link-active{
@@ -52,9 +49,11 @@ h3{
 td.calendar-today{
 	border-color:#276cb9;
 }
-h2.background-accent,h3.background-accent,h4.background-accent,h5.background-accent,h6.background-accent{
-	background-color:#b84000 !important;
-	background-image:url(../images/bg-accent.gif) !important;
+h2,h3,h4,h5,h6{
+	&.background-accent{
+		background-color:#b84000 !important;
+		background-image:url(../images/bg-accent.gif) !important;
+	}
 }
 .module-welcomepage h2{
 	background:#276cb9;
@@ -63,8 +62,10 @@ h2.background-accent,h3.background-accent,h4.background-accent,h5.background-acc
 	background-color:#276cb9;
 }
 .module-news {
-	h2 a, h3 a{
-		color:#276cb9;
+	h2, h3{
+		a{
+			color:#276cb9;
+		}
 	}
 	.module-news-article {
 		a{

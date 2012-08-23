@@ -18,7 +18,10 @@
 		width: 700px;
 	}
 	#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in{
-		background-position:center 3.1em;
+		background:url(../images/header-bg-ie.jpg) repeat-x center 3.1em #fff;
+	}
+	#wb-head-in{
+		background-color:#406C93;
 	}
 	#gcwu-srchbx{
 		padding-bottom:0;
@@ -28,18 +31,12 @@
 		padding:1px 0;
 	}
 	#gcwu-title{
+		zoom:1;
 		position:relative;
-		a{
-			position:relative;
-			top:-50%;
-		}	
-	}
-	#gcwu-title,#gcwu-title a{
-		filter:Shadow(Color=#333333, Direction=125,Strength=1);
 	}
 	#gcwu-title-in{
 		position:absolute;
-		top:50%;
+		top:23%;
 	}
 	#gcwu-psnb {
 		.mb-mega .mb-sm-open{
@@ -53,7 +50,7 @@
 		position:relative;
 		float:right;
 		margin-bottom:-15px;
-		top:10px;
+		top:17px;
 	}
 	#gcwu-tctr{
 		padding:7px 0 6px;
@@ -69,5 +66,11 @@
 	}
 	#gcwu-bnr,#gcwu-tctr li{
 		float:left;
+	}
+	#wb-core-in,#gcwu-bc-in{
+		background:url(../images/content-deco-ie.gif) center top repeat-y;
+	}
+	#gcwu-sft-in{
+		background:url(../images/sft-deco-ie.gif) center top no-repeat;
 	}
 }

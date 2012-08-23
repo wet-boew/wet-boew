@@ -19,12 +19,20 @@ div.cal-cnt{
 		font-size:100%;
 	}
 	.cal-header{
+		overflow: hidden;
 		padding:0.5em 4px;
 		text-align:center;
 		width:91%;
 	}
 	.cal-month{
 		font-size:110%;
+	}
+	.cal-goto{
+		margin-left: 16px;
+	}
+	.cal-goto p{
+		float: left;
+		width: 13.7em;
 	}
 	.cal-goto-link{
 		margin: 0 0 0.5em 0;
@@ -34,14 +42,14 @@ div.cal-cnt{
 	}
 	.cal-goto-month{
 		width:60%;
-		float:left;
+		float:right;
 	}
 	.cal-goto-year {
 		width:39%;
-		float:right;
+		float:left;
 	}
 	.cal-goto-button{
-		width:49%;
+		margin: 0 10px 0 5px;
 		float:left;
 		input{
 			padding:0.1em 0.2em;
@@ -50,18 +58,21 @@ div.cal-cnt{
 }
 
 div.cal-nextmonth , div.cal-prevmonth {
-		margin-bottom:-13px; 
+	margin-bottom:-15px; 
 }
 
 div.cal-nextmonth img, div.cal-prevmonth img{
-		vertical-align: sub;
+	margin: 0;
+	vertical-align: middle;
 }
 
 div.cal-prevmonth {
+	float: left;
 	text-align:left;
 }
 
 div.cal-nextmonth {
+	float: right;
 	text-align:right;
 }
 

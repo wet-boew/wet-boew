@@ -3,6 +3,7 @@ nbproject/*
 .DS_Store
 jruby.jar
 build/lib/vendors
+build/lib/jruby-compiled
 _notes/
 
 # OS generated files #
@@ -14,3 +15,4 @@ _notes/
 ethumbs.db
 Thumbs.db
 /.project
+jshint.out.xml

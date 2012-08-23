@@ -5,8 +5,9 @@
 /*
  * Deselectable radio buttons plugin
  */
-/*global jQuery: false, pe:false*/
+/*global jQuery: false*/
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
@@ -15,7 +16,7 @@
 		type : 'plugin',
 		depends : [],
 		_exec : function (elm) {
-			var radio = $('input[type="radio"]').attr('role', 'radio').attr('aria-checked', 'false');
+			var radio = $('input[type="radio"]:not(.deselectable)').attr('role', 'radio').attr('aria-checked', 'false').addClass('deselectable');
 			radio.filter(':checked').attr('aria-checked', 'true');
 			radio.closest('fieldset').attr('role', 'radiogroup');
 			radio.on("click vclick", function () {

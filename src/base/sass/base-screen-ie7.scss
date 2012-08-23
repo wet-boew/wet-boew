@@ -5,15 +5,23 @@
  */
 .ie7 {
 	#wb-skip{
+		display:inline;
 		float:none;
 		ul{
 			float:left;
 		}
+		a{
+			margin:auto;
+			zoom:1;
+			position:relative;
+		}
 	}
-	a.wb-linkdesc span span{
-		top:-9000em;
-	}
-	a.wb-linkdesc:hover,a.wb-linkdesc:focus,a.wb-linkdesc:active{
-		height:1%;
+	a.wb-linkdesc{
+		span span{
+			top:-9000em;
+		}
+		&:hover,&:focus,&:active{
+			height:1%;
+		}
 	}
 }

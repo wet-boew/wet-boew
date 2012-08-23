@@ -19,17 +19,12 @@ h1 {
 	margin: 0;
 }
 
-#wb-head-in, #wb-core-in, #wb-foot-in  {
+#wb-head-in, #wb-core-in, #wb-foot-in {
 	margin: auto;
 }
 
 #wb-head, #wb-head-in, #wb-foot, #wb-foot-in  {
 	overflow: hidden;
-}
-
-#centre-col {
-	z-index: 1;
-	display: inline;
 }
 
 #gcwu-sig,#gcwu-tc {
@@ -41,22 +36,29 @@ h1 {
 #gcwu-sig {
 	margin-top: 20px;
 	margin-bottom: 7px;
+	line-height: normal;
+}
+
+#gcwu-sig,#gcwu-wmms {
+	img {
+		margin-bottom:0;
+	}
 }
 
 #wb-core-in {
 	overflow: visible !important;
-	background: #fff url(../images/splashpage-background.jpg) top center repeat-x;
-}
-
-#wb-core-in:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
+	background:url(../images/sp-pe-bg.jpg) top center repeat-x #fff;
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
 }
 
 #wb-main-in {
+	background:url(../images/sp-pe-leaf.jpg) center 92px no-repeat transparent;
 	position: relative;
 	padding-top:1px;
 	padding-bottom:1px;
@@ -77,8 +79,5 @@ h1 {
 
 #gcwu-lang {
 	margin-top: 20px;
-}
-
-#gcwu-lang ul {
-	margin: 0;
+	line-height: normal;
 }

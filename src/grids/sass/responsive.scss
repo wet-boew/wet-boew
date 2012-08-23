@@ -24,8 +24,10 @@ h1,h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
 	min-height:1px;
 }
 
-#wb-main-in .span-1,#wb-main-in .span-2,#wb-main-in .span-3,#wb-main-in .span-4,#wb-main-in .span-5,#wb-main-in .span-6,#wb-main-in .span-7,#wb-main-in .span-8,#wb-main-in .span-9,#wb-main-in .span-10,#wb-main-in .span-11,#wb-main-in .span-12{
-	margin-bottom:20px;
+#wb-main-in {
+	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
+		margin-bottom:20px;
+	}
 }
 
 .row-start {
@@ -61,10 +63,12 @@ img.image-actual,#gcwu-aside .gcwu-minister-img img {
 	height:auto;
 }
 
-.span-1 img,.span-2 img,.span-3 img,.span-4 img,.span-5 img,.span-6 img,.span-7 img,.span-8 img,.span-9 img,.span-10 img,.span-11 img,.span-12 img,#gcwu-aside img{
-	width:100%;
-	height:auto;
-	-ms-interpolation-mode:bicubic;
+.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12,#gcwu-aside{
+	img {
+		width:100%;
+		height:auto;
+		-ms-interpolation-mode:bicubic;
+	}
 }
 
 .equalize {
@@ -159,8 +163,12 @@ img.image-actual,#gcwu-aside .gcwu-minister-img img {
 	width:940px;
 }
 
-.span-2 .calendar-month td,.span-2 .calendar-month th,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month td,#wb-body-sec #wb-core .grid-12 .span-4 .calendar-month th,.grid-12 .span-3 .calendar-month td,.grid-12 .span-3 .calendar-month th{
-	width:30px;
-	height:32px;
-	padding:2px 3px;
+.span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3{
+	.calendar-month {
+		td, th {
+			width:30px;
+			height:32px;
+			padding:2px 3px;
+		}
+	}
 }
