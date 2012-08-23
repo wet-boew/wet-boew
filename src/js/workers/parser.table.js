@@ -500,7 +500,7 @@
 						gzCol.header = [];
 						for (j = 0, _jlen = tmpStack.length; j < _jlen; j += 1) {
 							for (m = gzCol.start, _mlen = gzCol.end; m <= _mlen; m += 1) {
-								if ((j == 0 || (j > 0 && tmpStack[j].cell[m - 1].uid !== tmpStack[j - 1].cell[m - 1].uid)) && tmpStack[j].cell[m - 1].type === 1) {
+								if ((j === 0 || (j > 0 && tmpStack[j].cell[m - 1].uid !== tmpStack[j - 1].cell[m - 1].uid)) && tmpStack[j].cell[m - 1].type === 1) {
 									gzCol.header.push(tmpStack[j].cell[m - 1]);
 								}
 							}
@@ -561,20 +561,20 @@
 							}
 
 							// Skip this colgroup, this should happened only once and should represent the header colgroup
-							
+
 							// Assign the headers for this group
 							for (i = 0, _ilen = curColgroupFrame.col.length; i < _ilen; i += 1) {
 								gzCol = curColgroupFrame.col[i];
 								gzCol.header = [];
 								for (j = 0, _jlen = tmpStack.length; j < _jlen; j += 1) {
 									for (m = gzCol.start, _mlen = gzCol.end; m <= _mlen; m += 1) {
-										if ((j == 0 || (j > 0 && tmpStack[j].cell[m - 1].uid !== tmpStack[j - 1].cell[m - 1].uid)) && tmpStack[j].cell[m - 1].type === 1) {
+										if ((j === 0 || (j > 0 && tmpStack[j].cell[m - 1].uid !== tmpStack[j - 1].cell[m - 1].uid)) && tmpStack[j].cell[m - 1].type === 1) {
 											gzCol.header.push(tmpStack[j].cell[m - 1]);
 										}
 									}
 								}
 							}
-							
+
 							return;
 						}
 
@@ -879,7 +879,7 @@
 				// console.log(rowgroupHeaderRowStack); rowlevel
 				// console.log(currentRowGroup);
 
-				
+
 
 				// TODO: Set the Data Level for this row group
 				// Calculate the appropriate row group level based on the previous rowgroup 
@@ -939,7 +939,7 @@
 						currentRowGroup.level = 1 + rowgroupHeaderRowStack.length;
 					}
 				}
-				
+
 				// Ensure that each row group cell heading have their level set
 				for (i = 0; i < currentRowGroup.headerlevel.length; i += 1) {
 					currentRowGroup.headerlevel[i].level = i + 1;
@@ -947,7 +947,7 @@
 				}
 
 				rowgroupHeaderRowStack = []; // reset the row header stack	
-				
+
 				if (currentRowGroup.level === undefined || currentRowGroup.level < 0) {
 					errorTrigger(14, 'You can not have a summary at level under 0, add a group header or merge a tbody togheter', currentRowGroup.elem);
 				}
