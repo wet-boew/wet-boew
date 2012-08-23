@@ -36,7 +36,7 @@ DEVELOPING WITH SASS AND ANT
 
 Steps performed for SASS ANT Support in ../build/lib (Compile + Watch Feature)
 
-  $ java -jar jruby-complete-1.6.7.2.jar -S gem install -i ./vendors compass sass zen-grids
+  $ java -jar jruby-complete-1.6.7.2.jar -S gem install -i ./vendors compass sass
   $ jar uf jruby-complete-1.6.7.2.jar -C vendors .
   $ rm -rf vendors
   $ java -jar jruby-complete-1.6.7.2.jar -S gem list
