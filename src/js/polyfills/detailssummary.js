@@ -93,7 +93,7 @@
             // Loop through all `details` elements
             return this.each(function (index) { // wet-boew change: Added index
                 // Store a reference to the current `details` element in a variable
-                var $details = $(this),
+                var $details = $(this).attr('id', 'details-' + index), // wet-boew change: added id for use with aria-controls
                     // Store a reference to the `summary` element of the current `details` element (if any) in a variable
                     $detailsSummary = $('summary', $details).first(),
                     // Do the same for the info within the `details` element
