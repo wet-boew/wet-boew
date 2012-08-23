@@ -64,15 +64,16 @@
     // Execute the fallback only if there’s no native `details` support
     if (isDetailsSupported) {
         details = proto.details = function () {
-            return this.each(function () {
+            return this.each(function (index) { // wet-boew change: Added index
                 var $details = $(this),
                     $summary = $('summary', $details).first();
-				$details.attr('aria-hidden', !$details.prop('open'));
+				$details.attr({'aria-hidden': !$details.prop('open'), 'id': 'details-' + index}); // wet-boew change: Added two attributes
                 $summary.attr({
                     'role': 'button',
                     /* wet-boew change */
 					//'aria-expanded': $details.prop('open')*
-					'aria-pressed': $details.prop('open')
+					'aria-pressed': $details.prop('open'),
+					'aria-controls': 'details-' + index /* wet-boew change: added aria-controls */
 					/* *************** */
                 }).on('click', function () {
                     // the value of the `open` property is the old value
@@ -90,7 +91,7 @@
     } else {
         details = proto.details = function () {
             // Loop through all `details` elements
-            return this.each(function () {
+            return this.each(function (index) { // wet-boew change: Added index
                 // Store a reference to the current `details` element in a variable
                 var $details = $(this),
                     // Store a reference to the `summary` element of the current `details` element (if any) in a variable
@@ -118,7 +119,7 @@
                 // Hide content unless there’s an `open` attribute
                 toggleOpen($details, $detailsSummary, $detailsNotSummary);
                 // Add `role=button` and set the `tabindex` of the `summary` element to `0` to make it keyboard accessible
-                $detailsSummary.attr('role', 'button').noSelect().prop('tabIndex', 0).on('click', function () {
+                $detailsSummary.attr({'role': 'button', 'aria-controls': 'details-' + index}).noSelect().prop('tabIndex', 0).on('click', function () { // wet-boew change: added aria-controls
                     // Focus on the `summary` element
                     $detailsSummary.focus();
                     // Toggle the `open` and `aria-expanded` attributes and the `open` property of the `details` element and display the additional info
