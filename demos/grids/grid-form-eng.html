@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+<title>Grids and grid utilities - Working examples - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../build/js/jquery.min.js"></script>
+<!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+
+<!-- CustomScriptsCSSStart -->
+
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="wb-body-sec">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to secondary menu</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2><span>Site</span> menu</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a  target="_blank" rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a  target="_blank" rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a  target="_blank" rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="application-secnav1-fra.html" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a target="_blank" href="../../docs/index-eng.html">Web Experience Toolkit (WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.inc">
+<li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
+<li><div><a href="section2/index-eng.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a target="_blank" href="../../docs/index-eng.html">Home</a></li>
+<li><a target="_blank" href="../index-eng.html">Working examples</a></li>
+<li><a href="index-eng.html">GC Web Usability theme</a></li>
+<li>Application Template</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+
+
+
+<h1><a id="forms"></a>Forms</h1>
+<div class="wet-boew-prettify all-pre linenums">
+<p>All form classes are based on <a href="http://formalize.me/">formalize.me</a> and <a href="http://twitter.github.com/bootstrap">Twitter Bootstrap</a>.</p>
+<p>There are three styles of common web forms.</p>
+<table class="table-simplify span-6">
+   <thead>
+      <tr>
+         <th>Name</th>
+         <th>Class</th>
+         <th>Description</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th>Vertical</th>
+         <td>No class required</td>
+         <td>Stacked, left-aligned labels over controls</td>
+      </tr>
+      <tr>
+         <th>Inline</th>
+         <td><code>.form-inline</code></td>
+         <td>Left-aligned label and inline-block controls for compact style</td>
+      </tr>
+      <tr>
+         <th>Horizontal</th>
+         <td><code>.form-horizontal</code></td>
+         <td>Use grid system, right-aligned labels on same line as controls</td>
+      </tr>
+   </tbody>
+</table>
+
+<h2>Vertical Form</h2>
+<p>No extra markup, standard form controls. </p>
+
+<div class="span-3">
+	
+	<form>
+
+		<label for="home-mail">E-mail:</label>
+		<input type="text" name="home-mail" id="home-mail" size="30" />
+		<label for="home-password">Password:</label>
+		<input type="password" name="home-password" id="home-password" size="10" />
+		<label for="home-remember" class="form-checkbox margin-bottom-medium">
+			<input type="checkbox" id="home-remember">
+			Remember Me
+		</label>
+		
+		<input type="submit" class="button button-accent" value="Sign in">
+	</form>
+    <details>
+	<summary>Source Code</summary>
+	<pre>&lt;form&gt;
+    &lt;label for=&quot;home-mail&quot;&gt;E-mail:&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;home-mail&quot; size=&quot;30&quot; /&gt;
+    &lt;label for=&quot;home-password&quot;&gt;Password:&lt;/label&gt;
+    &lt;input type=&quot;password&quot; id=&quot;home-password&quot; size=&quot;10&quot; /&gt;
+    &lt;label for=&quot;home-remember&quot; class=&quot;form-checkbox&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;home-remember&quot;&gt;
+    Remember Me
+    &lt;/label&gt;
+    &lt;input type=&quot;submit&quot; class=&quot;button button-accent&quot; value=&quot;Sign in&quot;&gt;
+&lt;/form&gt;</pre>
+</details>
+</div>
+<div class="span-3">
+	<form class="background-light">
+
+		<label for="home-mail2">E-mail:</label>
+		<input type="text" name="home-mail2" id="home-mail2" size="30" />
+		<label for="home-password2">Password:</label>
+		<input type="password" name="home-password2" id="home-password2" size="10" />
+		<label for="home-remember2" class="form-checkbox margin-bottom-medium">
+			<input type="checkbox" id="home-remember2">
+			Remember Me
+		</label>
+		
+		<input type="submit" class="button button-accent" value="Sign in">
+	</form>
+    <details>
+	<summary>Source Code</summary>
+	<pre>&lt;form class=&quot;background-light&quot;&gt;
+    &lt;label for=&quot;home-mail2&quot;&gt;E-mail:&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;home-mail2&quot; size=&quot;30&quot; /&gt;
+    &lt;label for=&quot;home-password2&quot;&gt;Password:&lt;/label&gt;
+    &lt;input type=&quot;password2&quot; id=&quot;home-password2&quot; size=&quot;10&quot; /&gt;
+    &lt;label for=&quot;home-remember2&quot; class=&quot;form-checkbox&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;home-remember2&quot;&gt;
+    Remember Me
+    &lt;/label&gt;
+    &lt;input type=&quot;submit&quot; class=&quot;button button-accent&quot; value=&quot;Sign in&quot;&gt;
+&lt;/form&gt;</pre>
+</details>
+<div class="clear"></div>
+
+
+</div>
+
+
+<div class="clear"></div>
+
+<h2>Inline Form</h2>
+<p>Inputs are block level to start. For <code>.form-inline</code> forms, we force all elements to be inline-block.</p>
+
+	<form class="form-inline span-4">
+	   <input type="text" class="width-20" placeholder="Email">
+	   <input type="password" class="width-20" placeholder="Password">
+	   <label class="form-checkbox" for="inline-check">
+	      <input type="checkbox" id="inline-check">
+	      Remember</label>
+	   <button type="submit" class="button button-accent">Sign in</button>
+	</form>
+
+<details class="span-2">
+	<summary>Source Code</summary>
+	<pre>
+&lt;form class="form-inline span-4"&gt;
+   &lt;input type="text" class="width-20" placeholder="Email"&gt;
+   &lt;input type="password" class="width-20" placeholder="Password"&gt;
+   &lt;label class="form-checkbox"&gt;
+      &lt;input type="checkbox"&gt;
+      Remember me &lt;/label&gt;
+   &lt;button type="submit" class="button button-accent"&gt;Sign in&lt;/buttonv
+&lt;/form&gt;</pre>
+</details>
+<div class="clear"></div>
+
+
+
+	<form class="form-inline background-light span-4">
+	   <input type="text" class="width-20" placeholder="Email">
+	   <input type="password" class="width-20" placeholder="Password">
+	   <label class="form-checkbox" for="inline-check2">
+	      <input type="checkbox" id="inline-check2">
+	      Remember</label>
+	   <button type="submit" class="button button-accent">Sign in</button>
+	</form>
+
+<details class="span-2">
+	<summary>Source Code</summary>
+	<pre>
+&lt;form class="form-inline span-4 background-light"&gt;
+   &lt;input type="text" class="width-20" placeholder="Email"&gt;
+   &lt;input type="password" class="width-20" placeholder="Password"&gt;
+   &lt;label class="form-checkbox2"&gt;
+      &lt;input type="checkbox2"&gt;
+      Remember me &lt;/label&gt;
+   &lt;button type="submit" class="button button-accent"&gt;Sign in&lt;/buttonv
+&lt;/form&gt;</pre>
+</details>
+<div class="clear"></div>
+
+
+<h2>Horizontal Forms</h2>
+<p>To make horizontal forms, we are required to use the grid system.</p>
+<div class="span-4">
+	<summary>Example</summary>
+	<form class="form-horizontal background-light">
+	  <div class="span-1 row-start margin-top-large">
+	     <label for="hor-01" class="form-label">E-mail</label>
+	  </div>
+	  <div class="span-3 row-end margin-top-large">
+	     <input type="text" id="hor-01" class="width-70">
+	  </div>
+	  <div class="clear"></div>
+	  <div class="span-1 row-start">
+	     <label for="hor-02" class="form-label">Password</label>
+	  </div>
+	  <div class="span-3 row-end">
+	     <input type="password" id="hor-02" class="width-30">
+	  </div>
+	  <div class="clear"></div>
+	  <div class="span-1 row-start"></div>
+	  <div class="span-3 row-end">
+	     <label class="form-checkbox" for="hor-03">
+	        <input type="checkbox" value="option1" id="hor-03">
+	        Remember Me</label>
+	  </div>
+	  <div class="clear"></div>
+	  <div class="span-1 row-start"></div>
+	  <div class="span-3 row-end">
+		   <button type="submit" class="button button-accent">Sign in</button>
+	  </div>
+	  <div class="clear"></div>
+	</form>
+</div>
+
+<details class="span-2 view-code">
+	<summary>Source Code</summary>
+	<pre class="prettyprint linenums">
+&lt;form class="form-horizontal"&gt;
+   &lt;div class="span-1 row-start"&gt;
+      &lt;label for="hor-01" class="form-label">E-mail&lt;/label&gt;
+   &lt;/div&gt;
+   &lt;div class="span-3 row-end"&gt;
+      &lt;input type="text" id="hor-01" class="width-70"&gt;
+   &lt;/div&gt;
+   &lt;div class="clear"&gt;&lt;/div&gt;
+   &lt;div class="span-1 row-start"&gt;
+      &lt;label for="hor-02" class="form-label"&gt;Password&lt;/label&gt;
+   &lt;/div&gt;
+   &lt;div class="span-3 row-end"&gt;
+      &lt;input type="password" id="hor-02" class="width-30"&gt;
+   &lt;/div&gt;
+   &lt;div class="clear"&gt;&lt;/div&gt;
+   &lt;div class="span-1 row-start"&gt;&lt;/div&gt;
+   &lt;div class="span-3 row-end"&gt;
+      &lt;label class="form-checkbox" for="hor-03"&gt;
+         &lt;input type="checkbox" value="option1" id="hor-03"&gt;
+         Remember Me&lt;/label&gt;
+   &lt;/div&gt;
+   &lt;div class="clear"&gt;&lt;/div&gt;
+   &lt;div class="span-1 row-start"&gt;&lt;/div&gt;
+   &lt;div class="span-3 row-end"&gt;
+      &lt;button type="submit" class="button button-accent"&gt;Sign in&lt;/button&gt;
+   &lt;/div&gt;
+   &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/form&gt;
+	</pre>
+</details>
+<div class="clear"></div>
+
+<h2>Control States</h2>
+<form class="form-horizontal">
+  <div class="span-2 row-start">
+     <label for="focusedInput">Focused input</label>
+  </div>
+  <div class="span-4 row-end">
+     <input type="text" value="This is focused…" id="focusedInput" class="width-80 focused">
+  </div>
+  <div class="clear"></div>
+  <div class="span-2 row-start">
+     <label class="form-label">Uneditable input</label>
+  </div>
+  <div class="span-4 row-end"> <input type="text" placeholder="Some value here" disabled="" class="width-80 form-uneditable-input"></div>
+  <div class="clear"></div>
+  <div class="span-2 row-start">
+     <label for="disabledInput" class="form-label">Disabled input</label>
+  </div>
+  <div class="span-4 row-end">
+     <input type="text" disabled="" placeholder="Disabled input here…" id="disabledInput" class="width-80 button-disabled">
+  </div>
+  <div class="clear"></div>
+  <div class="span-2 row-start">
+     <label for="optionsform-checkbox2" class="form-label">Disabled form-checkbox</label>
+  </div>
+  <div class="span-4 row-end">
+     <label class="form-checkbox">
+        <input type="checkbox" disabled="" value="option1" id="optionsform-checkbox2">
+        This is a disabled checkbox </label>
+  </div>
+  <div class="clear"></div>
+  <div class="span-2 row-start form-alert">
+     <label for="inputWarning" class="form-label">Input with warning</label>
+  </div>
+  <div class="span-4 row-end form-alert">
+     <input type="text" id="inputWarning">
+     <span class="form-text-inline">Something may have gone wrong</span> </div>
+  <div class="clear"></div>
+  <div class="span-2 row-start form-attention">
+     <label for="inputError" class="form-label">Input with error</label>
+  </div>
+  <div class="span-4 row-end form-attention">
+     <input type="text" id="inputError">
+     <span class="form-text-inline">Please correct the error</span> </div>
+  <div class="clear"></div>
+  <div class="span-2 row-start form-confirm">
+     <label for="inputSuccess" class="form-label">Input with success</label>
+  </div>
+  <div class="span-4 row-end form-confirm">
+     <input type="text" id="inputSuccess">
+     <span class="form-text-inline">Woohoo!</span> </div>
+  <div class="clear"></div>
+  <div class="span-2 row-start form-confirm">
+     <label for="selectError" class="form-label">Select with success</label>
+  </div>
+  <div class="span-4 row-end form-confirm">
+     <select name="selectError" id="selectError">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+     </select>
+     <span class="form-text-inline">Woohoo!</span> </div>
+  <div class="clear"></div>
+</form>
+<form class="form-horizontal">
+   <fieldset>
+      <legend>Extend Form Controls</legend>
+      
+      <div class="span-2 row-start">
+      <label class="form-label">Form grid sizes</label>
+      </div>
+      <div class="span-4 row-end">
+         <input type="text" placeholder=".span-1" class="span-1 margin-bottom-medium">
+         <br>
+         <input type="text" placeholder=".span-2 row-start" class="span-2 row-start margin-bottom-medium">
+         <br>
+         <input type="text" placeholder=".span-3" class="span-3 margin-bottom-medium">
+         <br>
+         <select name="select" class="span-1 margin-bottom-medium">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+         </select>
+         <br>
+         <select name="select" class="span-2 row-start margin-bottom-medium">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+         </select>
+         <br>
+         <select name="select" class="span-3 margin-bottom-medium">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+         </select>
+         <p>Use the same <code>.span-*</code> classes from the grid system for input sizes.</p>
+      </div>
+      <div class="clear"></div>
+      <div class="span-2 row-start">
+      <label class="form-label span-2 row-start">Alternate sizes</label>
+      </div>
+      <div class="span-4 row-end">
+         <input type="text" placeholder=".width-20" class="width-20 margin-bottom-medium" style="display:block;">
+         <input type="text" placeholder=".width-30" class="width-30 margin-bottom-medium" style="display:block;">
+         <input type="text" placeholder=".width-50" class="width-50 margin-bottom-medium" style="display:block;">
+         <input type="text" placeholder=".width-70" class="width-70 margin-bottom-medium" style="display:block;">
+         <input type="text" placeholder=".width-90" class="width-90 margin-bottom-medium" style="display:block;">
+         <p class="form-help-block">You may also use <code>.width-*</code> classes that don't map to the grid, but still adapt to the responsive CSS styles.</p>
+      </div>
+      <div class="clear"></div>
+      <div class="span-2 row-start">
+         <label for="prependedInput" class="form-label">Prepended text</label>
+      </div>
+      <div class="span-4 row-end">
+         <div class="form-input-prepend">
+            <span class="form-addon">@</span><input type="text" size="16" id="prependedInput" class="span2">
+         </div>
+         <p class="form-help-block">Here's some help text</p>
+      </div>
+      <div class="clear"></div>
+      <div class="span-2 row-start">
+         <label for="appendedInput" class="form-label">Appended text</label>
+      </div>
+      <div class="span-4 row-end">
+         <div class="form-input-append">
+            <input type="text" size="16" id="appendedInput" class="span2"><span class="form-addon">.00</span>
+         </div>
+         <span class="form-text-inline">Here's more help text</span>
+      </div>
+      <div class="clear"></div>
+      <div class="span-2 row-start">
+         <label for="appendedPrependedInput" class="form-label">Append and prepend</label>
+      </div>
+      <div class="span-4 row-end">
+         <div class="form-input-prepend form-input-append">
+            <span class="form-addon">$</span><input type="text" id="appendedPrependedInput" class="width-30"><span class="form-addon">.00</span>
+         </div>
+      </div>
+      <div class="clear"></div>
+      <div class="span-2 row-start">
+         <label for="appendedButton" class="form-label">Append with button</label>
+      </div>
+      <div class="span-4 row-end">
+         <div class="form-input-append">
+            <input type="text" id="appendedButton" class="width-30"><button type="button" class="form-addon">Go!</button>
+         </div>
+      </div>
+      <div class="clear"></div>
+      <div class="span-2 row-start">
+         <label class="form-label">Inline form-checkboxes</label>
+      </div>
+      <div class="span-4 row-end">
+         <label class="form-checkbox inline">
+            <input type="checkbox" value="option1" id="inlineform-checkbox1">
+            1 </label>
+         <label class="form-checkbox inline">
+            <input type="checkbox" value="option2" id="inlineform-checkbox2">
+            2 </label>
+         <label class="form-checkbox inline">
+            <input type="checkbox" value="option3" id="inlineform-checkbox3">
+            3 </label>
+      </div>
+      <div class="clear"></div>
+      <div class="span-2 row-start">
+         <label class="form-label">form-checkboxes</label>
+      </div>
+      <div class="span-4 row-end">
+         <label class="form-checkbox form-label align-left">
+            <input type="checkbox" value="option1" name="optionsform-checkboxList1">
+            Option one is this and that&mdash;be sure to include why it's great </label>
+         <label class="form-checkbox">
+            <input type="checkbox" value="option2" name="optionsform-checkboxList2">
+            Option two can also be checked and included in form results </label>
+         <label class="form-checkbox">
+            <input type="checkbox" value="option3" name="optionsform-checkboxList3">
+            Option three can&mdash;yes, you guessed it&mdash;also be checked and included in form results </label>
+         <p class="form-help-block"><strong>Note:</strong> Labels surround all the options for much larger click areas and a more usable form.</p>
+      </div>
+      <div class="clear"></div>
+      <div class="span-2 row-start">
+         <label class="form-label">form-radio buttons</label>
+      </div>
+      <div class="span-4 row-end">
+         <label class="form-radio form-label align-left">
+            <input type="radio" checked="" value="option1" id="optionsform-radios1" name="optionsform-radios">
+            Option one is this and that&mdash;be sure to include why it's great </label>
+         <label class="form-radio">
+            <input type="radio" value="option2" id="optionsform-radios2" name="optionsform-radios">
+            Option two can is something else and selecting it will deselect option one </label>
+      </div>
+      <div class="clear"></div>
+      <div class="form-actions">
+      	<div class="span-2 row-start"></div>
+         <div class="span-4 row-end">
+            <button type="submit" class="button">Save changes</button>
+            <button class="button">Cancel</button>
+			</div>
+      </div>
+   </fieldset>
+</form>
+
+</div>
+
+<!-- MainContentEnd -->
+</div></div>
+
+<div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
+<div class="wb-sec-def">
+<!-- SecNavStart -->
+<section><h3><a href="#">Base</a></h3>
+<ul>
+<li><a href="">Grid System</a></li>
+<li><a href="grid-color-eng.html">Colour</a></li>
+<li><a href="grid-button-bouton-eng.html">Buttons</a></li>
+<li><a href="grid-proximit-eng.html">Proximity</a></li>
+<li><a href="#">Table</a></li>
+<li><a href="grid-form-eng.html">Form</a></li>
+</ul>
+</section>
+<section><h3><a href="#">Modules</a></h3>
+<ul>
+<li><a href="#">Messages</a></li>
+<li><a href="#">Item 2.2b</a></li>
+<li><a href="#">Item 2.2c</a></li>
+</ul>
+</section>
+<section><h3><a href="section2/section23/index-eng.html">Section 2.3</a></h3>
+<ul>
+<li><a href="#">Item 2.3a</a></li>
+<li><a href="#">Item 2.3b</a></li>
+<li><a href="#">Item 2.3c</a></li>
+</ul>
+</section>
+<section><h3><a href="#">Section 2.4</a></h3>
+<ul>
+<li><a href="#">Item 2.4c</a></li>
+</ul>
+</section>
+<div class="top-level"><a href="#">Top level link 1</a></div>
+<div class="top-level"><a href="#">Top level link 2</a></div>
+<!-- SecNavEnd -->
+</div>
+</nav></div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2>Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" target="_blank" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#" target="_blank">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">About us</a></div></div>
+<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">News</a></div></div>
+<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">Contact us</a></div></div>
+<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">Stay connected</a></div></div>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a target="_blank" rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a target="_blank" rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a target="_blank" rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a target="_blank" rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a target="_blank" rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a target="_blank" rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../build/js/settings.js"></script>
+<script src="../../build/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>
