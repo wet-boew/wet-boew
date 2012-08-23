@@ -36,7 +36,7 @@ DEVELOPING WITH SASS AND ANT
 
 Steps performed for SASS ANT Support in ../build/lib (Compile + Watch Feature)
 
-  $ java -jar jruby-complete-1.6.7.2.jar -S gem install -i ./vendors compass sass zen-grids
+  $ java -jar jruby-complete-1.6.7.2.jar -S gem install -i ./vendors compass sass
   $ jar uf jruby-complete-1.6.7.2.jar -C vendors .
   $ rm -rf vendors
   $ java -jar jruby-complete-1.6.7.2.jar -S gem list
@@ -49,7 +49,6 @@ Steps performed for SASS ANT Support in ../build/lib (Compile + Watch Feature)
   rake (0.8.7)
   sass (3.1.19)
   sources (0.0.1)
-  zen-grids (1.2)
 
 To automatically generate the CSS versions of the scss while you are doing theme
 development, you'll need to tell Compass to "watch" the sass directory so that

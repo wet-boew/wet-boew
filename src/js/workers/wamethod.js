@@ -27,11 +27,11 @@
 			// Event handler
 			input.on('change', function () {
 				var a = input.filter('[id^="ap"]:checked, [id^="an"]:checked').length,
-					aeval = a + input.filter('[id^="af":checked').length,
+					aeval = a + input.filter('[id^="af"]:checked').length,
 					aa = input.filter('[id^="aap"]:checked, [id^="aan"]:checked').length,
-					aaeval = aa + input.filter('[id^"aaf":checked').length,
+					aaeval = aa + input.filter('[id^="aaf"]:checked').length,
 					aaa = input.filter('[id^="aaap"]:checked, [id^="aaan"]:checked').length,
-					aaaeval = aaa + input.filter('[id^"aaaf":checked').length,
+					aaaeval = aaa + input.filter('[id^="aaaf"]:checked').length,
 					na = input.filter('[id^="an"]:checked, [id^="aan"]:checked, , [id^="aaan"]:checked').length;
 
 				//Update number of Success Criteria evaluated and passed

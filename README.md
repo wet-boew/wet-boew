@@ -36,7 +36,7 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 * [Validate your CSS](http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options) with the following changes to the default settings:
   * **Profile:** CSS level 3
   * **Vendor extensions:** Warnings
-* [Validate your JavaScript code](http://www.jshint.com) with the following changes to the default settings:
+* [Validate your JavaScript code](http://www.jshint.com) with the following change to the default settings:
   * **Warn - When code is not in strict mode:** false
 * Formatting recommendations:
   * Indent with tabs using the [K&R indenting style](http://en.wikipedia.org/wiki/Indent_style#K.26R_style)
@@ -85,7 +85,7 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 * [Valider votre CSS](http://jigsaw.w3.org/css-validator/validator.html.fr#validate_by_uri+with_options) en apportant les changements suivants aux paramètres par défaut&#160;:
   * **Profil&#160;:** CSS niveau 3
   * **Extensions Proprétaires&#160;:** Avertissements
-* [Valider votre code JavaScript](http://www.jshint.com) en apportant les changements suivants aux paramètres par défaut&#160;:
+* [Valider votre code JavaScript](http://www.jshint.com) en apportant le changement suivant aux paramètres par défaut&#160;:
   * **Warn - When code is not in strict mode:** false
 * Recommandations quant au formatage&#160;:
   * Ajouter les tabulations en utilisant le [style d'indentation K&amp;R](http://fr.wikipedia.org/wiki/Style_d%27indentation#Style_K.26R)
