@@ -16,7 +16,9 @@
 				autolist,
 				options,
 				datalist_items = [],
-				showOptions;
+				showOptions,
+				correctWidth,
+				container;
 			
 			showOptions = function (string) {
 				var comparator = string.toLowerCase(),
@@ -40,8 +42,11 @@
 			};
 
 			correctWidth = function () {
-				autolist.css('min-width', elm.innerWidth());
-			}
+				container.css('min-width', elm.innerWidth());
+				if (pe.ie < 8) {
+					autolist.css('top', elm.innerHeight() + 13);
+				}
+			};
 
 			pe.resize(correctWidth);
 
@@ -55,11 +60,16 @@
 				datalist_items.push('<li class="al-hide al-option" tabindex="-1" id="al-option-' + index + '-' + index2 + '"><span class="al-value">' + (value !== 'undefined' ? value : "") + '</span><span class="al-label">' + (label !== 'undefined' ? label : "") + '</span></li>');
 			});
 
-			elm.attr({"role": "combobox", "aria-expanded": "false", "aria-autocomplete": "list", "aria-owns": "wb-autolist-" + index});
-			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide">' + datalist_items.join('') + '</ul>').css('min-width', elm.innerWidth());
+			elm.attr({"role": "combobox", "aria-expanded": "false", "aria-autocomplete": "list", "aria-owns": "wb-autolist-" + index}).wrap('<div class="wb-al-container"/>');
+			container = elm.parent().css('min-width', elm.innerWidth());
+
+			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide">' + datalist_items.join('') + '</ul>')
 			options = autolist.find('li');
 			elm.after(autolist);
-
+			if (pe.ie < 8) {
+				autolist.css('top', elm.innerHeight() + 13);
+			}
+			
 			elm.on('keyup keydown click vclick', function (e) {
 				var type = e.type,
 					keycode = e.keyCode,

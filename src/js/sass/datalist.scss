@@ -6,11 +6,19 @@
 datalist {
 	display: none;
 }
+.wb-al-container {
+	z-index:50;
+	display:inline;
+	position:relative;
+}
 ul.wb-autolist {
 	position:absolute;
 	margin-top:-10px;
 	margin-left:0;
 	padding-left:0;
+	z-index:50;
+	background:#fff;
+	width:100%;
 	border: {
 		width: 0 1px 1px;
 		style: solid;
