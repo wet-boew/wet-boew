@@ -98,7 +98,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- MainContentStart -->
 <h1 id="cn-cont">Multimedia player - Web Experience Toolkit (WET)</h1>
 <section>
-<div>
+
+	<p>The new version of the multimedia player leverages native HTML5 video and relies on Flash as a fallback mechanism when the HTML5 video tag is not implemented. To a minimum, the MPEG 4 format (H264 codec) is the minimum requirement for the player because the Flash fallback relies on it and H264 is the standard video format on many mobile devices. An optional but highly recommended Webm (VP8 codec) should be added as well to allow some browsers such as Firefox that do not include native support for H264 to leverage the HTML5 native performance gains. The multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
+	<p>The first two following examples use native HTML5 video on most modern browser such as Firefox 6+, Google Chrome 3+ and IE9. The last example works natively in some browsers but relies on the Flash fallback for Firefox. The Flash fallback is use for IE 7 and 8 as well as older versions of Firefox.</p>
 
     <div class="wet-boew-multimedia span-4">
 	<h2>MPEG4 (H264 + AAC) and WebM(VP8) source and HTML captions</h2>
@@ -354,7 +356,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		<p class="wet-boew-vd">(<em>Canada Wordmark</em>)</p>
 	</div>
     </div>
-</div>
 </section>
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-07-27</time></span></dd>

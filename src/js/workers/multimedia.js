@@ -83,20 +83,20 @@
 				//No nativly supported format provided, trying Flash fallback
 				//TODO:Add Flash detection
 				fbVars = 'id=' + elm.attr('id');
-				if (flash && media.is('video') && media.find('source[type="' + fbVideoType + '"]').length > 0) {
+				if (flash && media.is('video') && media.find('source').filter('[type="' + fbVideoType + '"]').length > 0) {
 					fbClass = 'video';
-					fbVars +=  '&height=' + media.height() + '&width=' + media.width() + '&posterimg=' + encodeURI(_pe.url(media.attr('poster')).source) + '&media=' + encodeURI(_pe.url(media.find('source[type="' + fbVideoType + '"]').attr('src')).source);
+					fbVars +=  '&height=' + media.height() + '&width=' + media.width() + '&posterimg=' + encodeURI(_pe.url(media.attr('poster')).source) + '&media=' + encodeURI(_pe.url(media.find('source').filter('[type="' + fbVideoType + '"]').attr('src')).source);
 					canPlay = true;
-				} else if (flash && media.is('audio') && media.find('source[type="' + fbAudioType + '"]').length > 0) {
+				} else if (flash && media.is('audio') && media.find('source').filter('[type="' + fbAudioType + '"]').length > 0) {
 					fbClass = 'audio';
-					fbVars += '&media=' + _pe.url(media.find('source[type="' + fbAudioType + '"]').attr('src')).source;
+					fbVars += '&media=' + _pe.url(media.find('source').filter('[type="' + fbAudioType + '"]').attr('src')).source;
 					canPlay = true;
 				} else {
 					canPlay = false;
 				}
 				//Can play using a fallback
 				if (canPlay) {
-					$fbObject = $('<object play="" id="' + media_id + '" width="' + width + '" height="' + height + '" class="' + fbClass + '" type="application/x-shockwave-flash" data="' + fbBin + '" tabindex="-1"><param name="movie" value="' + fbBin + '"/><param name="flashvars" value="' + fbVars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>');
+					$fbObject = $('<object play="" pause="" id="' + media_id + '" width="' + width + '" height="' + height + '" class="' + fbClass + '" type="application/x-shockwave-flash" data="' + fbBin + '" tabindex="-1"><param name="movie" value="' + fbBin + '"/><param name="flashvars" value="' + fbVars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>');
 					media.before($fbObject);
 					media.remove();
 					media = $fbObject;
@@ -110,8 +110,8 @@
 				evtmgr = media.is('object') ? media.children(':first-child') : media;
 
 				//Add the interface
-				$.extend(elm.get(0), {object: media.get(0)}, _pe.fn.multimedia._intf);
-				media.before($('<button class="wet-boew-multimedia-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)));
+				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
+				media.before($('<button class="wet-boew-multimedia-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
 				media.after(_pe.fn.multimedia._get_ui(media_id));
 				if ($('html').hasClass('polyfill-progress')) {
 					elm.find('progress').progress();
@@ -195,38 +195,43 @@
 				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
-				evtmgr.on('loadeddata progress timeupdate seeked canplay play volumechange pause ended captionsloaded captionsloadfailed captionsshown captionshidden', $.proxy(function (e) {
+				evtmgr.on('loadeddata progress timeupdate seeked canplay play volumechange pause ended captionsloaded captionsloadfailed captionsvisiblechange', $.proxy(function (e) {
 					var $w = $(this),
+						b,
 						p,
 						timeline;
 					switch (e.type) {
 					case 'play':
-						$w.find('.playpause').empty().append(_pe.fn.multimedia.get_image('pause', _pe.dic.get('%pause')));
+						b = $w.find('.playpause');
+						b.empty().append(_pe.fn.multimedia.get_image('pause', _pe.dic.get('%pause')));
+						b.attr('title', _pe.dic.get('%pause'));
 						$w.find('.wet-boew-multimedia-overlay').hide();
 						break;
 					case 'pause':
 					case 'ended':
-						$w.find('.playpause').empty().append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')));
+						b = $w.find('.playpause');
+						b.empty().append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')));
+						b.attr('title', _pe.dic.get('%play'));
 						$w.find('.wet-boew-multimedia-overlay').show();
 						break;
 					case 'volumechange':
+						b = $w.find('.mute').empty();
 						if (this.getMuted()) {
-							$w.find('.mute').empty().append(_pe.fn.multimedia.get_image('mute_on', _pe.dic.get('%mute', 'disable')));
+							b.append(_pe.fn.multimedia.get_image('mute_on', _pe.dic.get('%mute', 'disable')));
+							b.attr('title', _pe.dic.get('%mute', 'disable'));
 						} else {
-							$w.find('.mute').empty().append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')));
+							b.append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')));
+							b.attr('title', _pe.dic.get('%mute', 'enable'));
 						}
 						break;
 					case 'captionsvisiblechange':
+						b = $w.find('.cc').empty();
 						if (this.getCaptionsVisible()) {
-							$w.find('.cc img').attr({
-								alt: _pe.dic.get('%closed-captions', 'disable'),
-								src: ''
-							});
+							b.append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'disable')));
+							b.attr('title', _pe.dic.get('%closed-caption', 'disable'));
 						} else {
-							$w.find('.cc img').attr({
-								alt: _pe.dic.get('%closed-captions', 'enable'),
-								src: ''
-							});
+							b.append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')));
+							b.attr('title', _pe.dic.get('%closed-caption', 'enable'));
 						}
 						break;
 					case 'timeupdate':
@@ -253,7 +258,7 @@
 
 				if (captions !== undefined) {
 					media.after($('<div class="wet-boew-multimedia-captionsarea"/>').hide());
-					_pe.fn.multimedia._load_captions(media, evtmgr, captions);
+					_pe.fn.multimedia._load_captions(evtmgr, captions);
 				}
 			}
 
@@ -270,7 +275,8 @@
 				$('<button>').attr({
 					type: 'button',
 					'class': 'rewind',
-					'aria-controls': id
+					'aria-controls': id,
+					'title': _pe.dic.get('%rewind')
 				}).append(_pe.fn.multimedia.get_image('rewind', _pe.dic.get('%rewind')))
 			);
 
@@ -278,7 +284,8 @@
 				$('<button>').attr({
 					type: 'button',
 					'class': 'playpause',
-					'aria-controls': id
+					'aria-controls': id,
+					'title': _pe.dic.get('%play')
 				}).append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')))
 			);
 
@@ -286,7 +293,8 @@
 				$('<button>').attr({
 					type: 'button',
 					'class': 'fastforward',
-					'aria-controls': id
+					'aria-controls': id,
+					'title': _pe.dic.get('%fast-forward')
 				}).append(_pe.fn.multimedia.get_image('ff', _pe.dic.get('%fast-forward')))
 			);
 
@@ -294,7 +302,8 @@
 				$('<button>').attr({
 					type: 'button',
 					'class': 'cc',
-					'aria-controls': id
+					'aria-controls': id,
+					'title': _pe.dic.get('%closed-caption', 'enable')
 				}).append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')))
 			);
 
@@ -302,7 +311,8 @@
 				$('<button>').attr({
 					type: 'button',
 					'class': 'mute',
-					'aria-controls': id
+					'aria-controls': id,
+					'title': _pe.dic.get('%mute', 'enable')
 				}).append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')))
 			);
 
@@ -361,11 +371,10 @@
 			setCaptionsVisible : function (v) {
 				if (v) {
 					$(this).find('.wet-boew-multimedia-captionsarea').show();
-					$(this.object).trigger('captionsshown');
 				} else {
 					$(this).find('.wet-boew-multimedia-captionsarea').hide();
-					$(this.object).trigger('captionshidden');
 				}
+				$(this.evtmgr).trigger('captionsvisiblechange');
 			},
 
 			getMuted : function () {
@@ -385,7 +394,7 @@
 			}
 		},
 
-		_load_captions : function (media, evtmgr, src) {
+		_load_captions : function (evtmgr, src) {
 			var parse_time,
 				parse_html,
 				parse_xml,
@@ -427,26 +436,17 @@
 					captions = [];
 
 				te.each(function () {
-					var e = $(this).clone(),
+					var e = $(this),
 						begin = -1,
 						end = -1,
-						c,
 						json;
-					e.find(s).detach();
 
 					if (e.attr('data-begin') !== undefined) {
 						//HTML5 captions (seperate attributes)
 						begin = parse_time(e.attr('data-begin'));
 						end = e.attr('data-end') !== undefined ? parse_time(e.attr('data-end')) : parse_time(e.attr('data-dur')) + begin;
-					} else {
-						if (e.attr('data')) {
-							//HTML5 captions JSON in data attribute
-							json = e.attr('data');
-						} else {
-							//XHTML cations (inside the class attribute)
-							c = e.attr('class');
-							json = c.substring(c.indexOf('{'));
-						}
+					} else if (e.attr('data') !== undefined) {
+						json = e.attr('data');
 
 						//Sanitze the JSON
 						json = json.replace(/(begin|dur|end)/gi, '"$1"').replace(/'/g, '"');
@@ -454,13 +454,18 @@
 
 						begin = parse_time(json.begin);
 						end = json.end !== undefined ? parse_time(json.end) : parse_time(json.dur) + begin;
-
 					}
+					//Removes nested captions if any
+					e = e.clone();
+					e.find(s).detach();
+
 					captions[captions.length] = {
 						text : e.html(),
 						begin : begin,
 						end : end
 					};
+
+
 				});
 				return captions;
 			};
@@ -471,13 +476,17 @@
 					captions = [];
 
 				te.each(function () {
-					var e = $(this).clone(),
+					var e = $(this),
 						begin = -1,
 						end = -1;
 
-					e.find(s).detach();
 					begin = parse_time(e.attr('begin'));
 					end = e.attr('end') !== undefined ? parse_time(e.attr('end')) : parse_time(e.attr('dur')) + begin;
+
+					//Removes nested captions if any
+					e = e.clone();
+					e.find(s).detach();
+
 					captions[captions.length] = {
 						text : e.html(),
 						begin : begin,
@@ -501,7 +510,7 @@
 					url : url,
 					context : evtmgr,
 					dataType : 'html',
-					success : function (data, status, response) {
+					success : function (data) {
 						var eventObj = {type: 'captionsloaded'};
 						if (data.indexOf('<html') > -1) {
 							eventObj.captions = parse_html($(data));
@@ -559,7 +568,7 @@
 
 	//Method to allow the flash player to trigger the media events
 	_pe.triggermediaevent = function (id, event) {
-		var o = $('#' + id).find('param:eq(0)').trigger(event);
+		$('#' + id).find('param:eq(0)').trigger(event);
 	};
 
 	window.pe = _pe;

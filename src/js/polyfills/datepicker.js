@@ -348,5 +348,5 @@
 			}
 		});
 	};
-	$('[type="date"]').datepicker();
+	$('input[type="date"]').datepicker();
 }(jQuery));

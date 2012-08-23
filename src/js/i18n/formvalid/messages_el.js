@@ -14,11 +14,10 @@ jQuery.extend(jQuery.validator.messages, {
 	creditcard: "Παρακαλώ εισάγετε έναν έγκυρο αριθμό πιστωτικής κάρτας.",
 	equalTo: "Παρακαλώ εισάγετε την ίδια τιμή ξανά.",
 	accept: "Παρακαλώ εισάγετε μια τιμή με έγκυρη επέκταση αρχείου.",
-	maxlength: $.validator.format("Παρακαλώ εισάγετε μέχρι και {0} χαρακτήρες."),
-	minlength: $.validator.format("Παρακαλώ εισάγετε τουλάχιστον {0} χαρακτήρες."),
-	rangelength: $.validator.format("Παρακαλώ εισάγετε μια τιμή με μήκος μεταξύ {0} και {1} χαρακτήρων."),
-	range: $.validator.format("Παρακαλώ εισάγετε μια τιμή μεταξύ {0} και {1}."),
-	max: $.validator.format("Παρακαλώ εισάγετε μια τιμή μικρότερη ή ίση του {0}."),
-	min: $.validator.format("Παρακαλώ εισάγετε μια τιμή μεγαλύτερη ή ίση του {0}.")
+	maxlength: jQuery.validator.format("Παρακαλώ εισάγετε μέχρι και {0} χαρακτήρες."),
+	minlength: jQuery.validator.format("Παρακαλώ εισάγετε τουλάχιστον {0} χαρακτήρες."),
+	rangelength: jQuery.validator.format("Παρακαλώ εισάγετε μια τιμή με μήκος μεταξύ {0} και {1} χαρακτήρων."),
+	range: jQuery.validator.format("Παρακαλώ εισάγετε μια τιμή μεταξύ {0} και {1}."),
+	max: jQuery.validator.format("Παρακαλώ εισάγετε μια τιμή μικρότερη ή ίση του {0}."),
+	min: jQuery.validator.format("Παρακαλώ εισάγετε μια τιμή μεγαλύτερη ή ίση του {0}.")
 });
-

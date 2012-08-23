@@ -1,4 +1,7 @@
 language: java
 
+before_script: 
+  - ant test -Djshint.failbuild=true
+  
 script:
   - ant

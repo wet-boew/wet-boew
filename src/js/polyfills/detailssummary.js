@@ -32,12 +32,18 @@
             var isOpen = typeof $details.attr('open') == 'string',
                 close = isOpen && toggle || !isOpen && !toggle;
             if (close) {
-                $details.removeClass('open').prop('open', false).triggerHandler('close.details');
-                $detailsSummary.attr('aria-expanded', false);
+				/* wet-boew change */
+                $details.removeClass('open').prop('open', false).attr('aria-hidden', 'true').triggerHandler('close.details'); // Added aria-hidden
+				//$detailsSummary.attr('aria-expanded', false);
+				$detailsSummary.attr('aria-pressed', 'false');
+				/* *************** */
                 $detailsNotSummary.hide();
             } else {
-                $details.addClass('open').prop('open', true).triggerHandler('open.details');
-                $detailsSummary.attr('aria-expanded', true);
+				/* wet-boew change */
+                $details.addClass('open').prop('open', true).attr('aria-hidden', 'false').triggerHandler('open.details'); // Added aria-hidden
+				//$detailsSummary.attr('aria-expanded', true);
+				$detailsSummary.attr('aria-pressed', 'true');
+				/* *************** */
                 $detailsNotSummary.show();
             }
         }; /* http://mths.be/noselect v1.0.3 */
@@ -58,16 +64,25 @@
     // Execute the fallback only if there’s no native `details` support
     if (isDetailsSupported) {
         details = proto.details = function () {
-            return this.each(function () {
+            return this.each(function (index) { // wet-boew change: Added index
                 var $details = $(this),
                     $summary = $('summary', $details).first();
+				$details.attr({'aria-hidden': !$details.prop('open'), 'id': 'details-' + index}); // wet-boew change: Added two attributes
                 $summary.attr({
                     'role': 'button',
-                    'aria-expanded': $details.prop('open')
+                    /* wet-boew change */
+					//'aria-expanded': $details.prop('open')*
+					'aria-pressed': $details.prop('open'),
+					'aria-controls': 'details-' + index /* wet-boew change: added aria-controls */
+					/* *************** */
                 }).on('click', function () {
                     // the value of the `open` property is the old value
                     var close = $details.prop('open');
-                    $summary.attr('aria-expanded', !close);
+                    /* wet-boew change */
+					//$summary.attr('aria-expanded', !close);
+					$details.attr('aria-hidden', !close);
+					$summary.attr('aria-pressed', close);
+					/* *************** */
                     $details.triggerHandler((close ? 'close' : 'open') + '.details');
                 });
             });
@@ -76,9 +91,9 @@
     } else {
         details = proto.details = function () {
             // Loop through all `details` elements
-            return this.each(function () {
+            return this.each(function (index) { // wet-boew change: Added index
                 // Store a reference to the current `details` element in a variable
-                var $details = $(this),
+                var $details = $(this).attr('id', 'details-' + index), // wet-boew change: added id for use with aria-controls
                     // Store a reference to the `summary` element of the current `details` element (if any) in a variable
                     $detailsSummary = $('summary', $details).first(),
                     // Do the same for the info within the `details` element
@@ -104,7 +119,7 @@
                 // Hide content unless there’s an `open` attribute
                 toggleOpen($details, $detailsSummary, $detailsNotSummary);
                 // Add `role=button` and set the `tabindex` of the `summary` element to `0` to make it keyboard accessible
-                $detailsSummary.attr('role', 'button').noSelect().prop('tabIndex', 0).on('click', function () {
+                $detailsSummary.attr({'role': 'button', 'aria-controls': 'details-' + index}).noSelect().prop('tabIndex', 0).on('click', function () { // wet-boew change: added aria-controls
                     // Focus on the `summary` element
                     $detailsSummary.focus();
                     // Toggle the `open` and `aria-expanded` attributes and the `open` property of the `details` element and display the additional info
