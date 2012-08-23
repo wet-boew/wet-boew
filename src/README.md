@@ -49,7 +49,6 @@ Steps performed for SASS ANT Support in ../build/lib (Compile + Watch Feature)
   rake (0.8.7)
   sass (3.1.19)
   sources (0.0.1)
-  zen-grids (1.2)
 
 To automatically generate the CSS versions of the scss while you are doing theme
 development, you'll need to tell Compass to "watch" the sass directory so that
