@@ -147,7 +147,7 @@
 						this.setMuted(!this.getMuted());
 					}
 
-					if ($target.is('progress') || $target.hasClass('progress-frame') || $target.hasClass('progress-bar')) {
+					if ($target.is('progress') || $target.hasClass('wb-progress-inner') || $target.hasClass('wb-progress-outer')) {
 						p = (e.pageX - $target.offset().left) / $target.width();
 						this.setCurrentTime(this.getDuration() * p);
 					}
