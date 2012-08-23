@@ -7,7 +7,6 @@ end
 require 'rubygems'   
 require 'compass'  
 require 'compass/exec'
-require 'zen-grids'
 
 # Run Compass + Gems!
 exit Compass::Exec::SubCommandUI.new([ARGV[1], ARGV[2], "-c" + File.join(File.dirname(__FILE__), 'config.rb'),"-q"]).run!
