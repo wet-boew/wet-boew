@@ -976,6 +976,7 @@
 			polyfill: {
 				'datalist': {
 					selector: 'input[list]',
+					depends: ['resize'],
 					update: function (elms) {
 						elms.datalist();
 					},
