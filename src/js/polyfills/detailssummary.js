@@ -32,12 +32,18 @@
             var isOpen = typeof $details.attr('open') == 'string',
                 close = isOpen && toggle || !isOpen && !toggle;
             if (close) {
-                $details.removeClass('open').prop('open', false).triggerHandler('close.details');
-                $detailsSummary.attr('aria-expanded', false);
+				/* wet-boew change */
+                $details.removeClass('open').prop('open', false).triggerHandler('close.details').attr('aria-hidden', 'true'); // Added aria-hidden
+				//$detailsSummary.attr('aria-expanded', false);
+				$detailsSummary.attr('aria-pressed', 'false');
+				/* *************** */
                 $detailsNotSummary.hide();
             } else {
-                $details.addClass('open').prop('open', true).triggerHandler('open.details');
-                $detailsSummary.attr('aria-expanded', true);
+				/* wet-boew change */
+                $details.addClass('open').prop('open', true).triggerHandler('open.details').attr('aria-hidden', 'false'); // Added aria-hidden
+				//$detailsSummary.attr('aria-expanded', true);
+				$detailsSummary.attr('aria-pressed', 'true');
+				/* *************** */
                 $detailsNotSummary.show();
             }
         }; /* http://mths.be/noselect v1.0.3 */
@@ -61,13 +67,21 @@
             return this.each(function () {
                 var $details = $(this),
                     $summary = $('summary', $details).first();
+				$details.attr('aria-hidden', !$details.prop('open'));
                 $summary.attr({
                     'role': 'button',
-                    'aria-expanded': $details.prop('open')
+                    /* wet-boew change */
+					//'aria-expanded': $details.prop('open')*
+					'aria-pressed': $details.prop('open')
+					/* *************** */
                 }).on('click', function () {
                     // the value of the `open` property is the old value
                     var close = $details.prop('open');
-                    $summary.attr('aria-expanded', !close);
+                    /* wet-boew change */
+					//$summary.attr('aria-expanded', !close);
+					$details.attr('aria-hidden', !close);
+					$summary.attr('aria-pressed', close);
+					/* *************** */
                     $details.triggerHandler((close ? 'close' : 'open') + '.details');
                 });
             });
