@@ -1,17 +1,17 @@
 // +--------------------------------------------------------------------+ \\
-// ¦ Raphaël 2.1.0 - JavaScript Vector Library                          ¦ \\
-// +--------------------------------------------------------------------¦ \\
-// ¦ Copyright © 2008-2012 Dmitry Baranovskiy (http://raphaeljs.com)    ¦ \\
-// ¦ Copyright © 2008-2012 Sencha Labs (http://sencha.com)              ¦ \\
-// +--------------------------------------------------------------------¦ \\
-// ¦ Licensed under the MIT (http://raphaeljs.com/license.html) license.¦ \\
+// Â¦ RaphaÃ«l 2.1.0 - JavaScript Vector Library                          Â¦ \\
+// +--------------------------------------------------------------------Â¦ \\
+// Â¦ Copyright Â© 2008-2012 Dmitry Baranovskiy (http://raphaeljs.com)    Â¦ \\
+// Â¦ Copyright Â© 2008-2012 Sencha Labs (http://sencha.com)              Â¦ \\
+// +--------------------------------------------------------------------Â¦ \\
+// Â¦ Licensed under the MIT (http://raphaeljs.com/license.html) license.Â¦ \\
 // +--------------------------------------------------------------------+ \\
 
 // +--------------------------------------------------------------------------------------+ \\
-// ¦ Eve 0.3.4 - JavaScript Events Library                                                ¦ \\
-// +--------------------------------------------------------------------------------------¦ \\
-// ¦ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://dmitry.baranovskiy.com/)          ¦ \\
-// ¦ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license. ¦ \\
+// Â¦ Eve 0.3.4 - JavaScript Events Library                                                Â¦ \\
+// +--------------------------------------------------------------------------------------Â¦ \\
+// Â¦ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://dmitry.baranovskiy.com/)          Â¦ \\
+// Â¦ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license. Â¦ \\
 // +--------------------------------------------------------------------------------------+ \\
 
 (function (glob) {
@@ -224,11 +224,11 @@
 
 
 // +---------------------------------------------------------------------+ \\
-// ¦ "Raphaël 2.1.0" - JavaScript Vector Library                         ¦ \\
-// +---------------------------------------------------------------------¦ \\
-// ¦ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   ¦ \\
-// ¦ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             ¦ \\
-// ¦ Licensed under the MIT (http://raphaeljs.com/license.html) license. ¦ \\
+// Â¦ "RaphaÃ«l 2.1.0" - JavaScript Vector Library                         Â¦ \\
+// +---------------------------------------------------------------------Â¦ \\
+// Â¦ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   Â¦ \\
+// Â¦ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             Â¦ \\
+// Â¦ Licensed under the MIT (http://raphaeljs.com/license.html) license. Â¦ \\
 // +---------------------------------------------------------------------+ \\
 (function () {
     
@@ -3744,13 +3744,13 @@
 
 
 // +---------------------------------------------------------------------+ \\
-// ¦ Raphaël - JavaScript Vector Library                                 ¦ \\
-// +---------------------------------------------------------------------¦ \\
-// ¦ SVG Module                                                          ¦ \\
-// +---------------------------------------------------------------------¦ \\
-// ¦ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   ¦ \\
-// ¦ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             ¦ \\
-// ¦ Licensed under the MIT (http://raphaeljs.com/license.html) license. ¦ \\
+// Â¦ RaphaÃ«l - JavaScript Vector Library                                 Â¦ \\
+// +---------------------------------------------------------------------Â¦ \\
+// Â¦ SVG Module                                                          Â¦ \\
+// +---------------------------------------------------------------------Â¦ \\
+// Â¦ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   Â¦ \\
+// Â¦ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             Â¦ \\
+// Â¦ Licensed under the MIT (http://raphaeljs.com/license.html) license. Â¦ \\
 // +---------------------------------------------------------------------+ \\
 window.Raphael.svg && function (R) {
     var has = "hasOwnProperty",
@@ -4841,13 +4841,13 @@ window.Raphael.svg && function (R) {
 }(window.Raphael);
 
 // +---------------------------------------------------------------------+ \\
-// ¦ Raphaël - JavaScript Vector Library                                 ¦ \\
-// +---------------------------------------------------------------------¦ \\
-// ¦ VML Module                                                          ¦ \\
-// +---------------------------------------------------------------------¦ \\
-// ¦ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   ¦ \\
-// ¦ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             ¦ \\
-// ¦ Licensed under the MIT (http://raphaeljs.com/license.html) license. ¦ \\
+// Â¦ RaphaÃ«l - JavaScript Vector Library                                 Â¦ \\
+// +---------------------------------------------------------------------Â¦ \\
+// Â¦ VML Module                                                          Â¦ \\
+// +---------------------------------------------------------------------Â¦ \\
+// Â¦ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)   Â¦ \\
+// Â¦ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             Â¦ \\
+// Â¦ Licensed under the MIT (http://raphaeljs.com/license.html) license. Â¦ \\
 // +---------------------------------------------------------------------+ \\
 window.Raphael.vml && function (R) {
     var has = "hasOwnProperty",

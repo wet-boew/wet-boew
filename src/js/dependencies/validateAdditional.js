@@ -20,15 +20,15 @@
 		.replace(/[0-9.(),;:!?%#$'"_+=\/-]*/g,'');
 	}
 	jQuery.validator.addMethod("maxWords", function(value, element, params) {
-	    return this.optional(element) || stripHtml(value).match(/\b\w+\b/g).length < params;
+		return this.optional(element) || stripHtml(value).match(/\b\w+\b/g).length < params;
 	}, jQuery.validator.format("Please enter {0} words or less."));
 
 	jQuery.validator.addMethod("minWords", function(value, element, params) {
-	    return this.optional(element) || stripHtml(value).match(/\b\w+\b/g).length >= params;
+		return this.optional(element) || stripHtml(value).match(/\b\w+\b/g).length >= params;
 	}, jQuery.validator.format("Please enter at least {0} words."));
 
 	jQuery.validator.addMethod("rangeWords", function(value, element, params) {
-	    return this.optional(element) || stripHtml(value).match(/\b\w+\b/g).length >= params[0] && value.match(/bw+b/g).length < params[1];
+		return this.optional(element) || stripHtml(value).match(/\b\w+\b/g).length >= params[0] && value.match(/bw+b/g).length < params[1];
 	}, jQuery.validator.format("Please enter between {0} and {1} words."));
 
 })();
@@ -80,27 +80,27 @@ jQuery.validator.addMethod(
 		var FL    = [8,7,6,5,4,3,2,10,0,9,8,7,6,5,4,3,2];
 		var rs    = 0;
 		for(i = 0; i < 17; i++){
-		    f = FL[i];
-		    d = v.slice(i,i+1);
-		    if(i == 8){
-		        cdv = d;
-		    }
-		    if(!isNaN(d)){
-		        d *= f;
-		    }
-		    else{
-		        for(n = 0; n < LL.length; n++){
-		            if(d.toUpperCase() === LL[n]){
-		                d = VL[n];
-		                d *= f;
-		                if(isNaN(cdv) && n == 8){
-		                    cdv = LL[n];
-		                }
-		                break;
-		            }
-		        }
-		    }
-		    rs += d;
+			f = FL[i];
+			d = v.slice(i,i+1);
+			if(i == 8){
+				cdv = d;
+			}
+			if(!isNaN(d)){
+				d *= f;
+			}
+			else{
+				for(n = 0; n < LL.length; n++){
+					if(d.toUpperCase() === LL[n]){
+						d = VL[n];
+						d *= f;
+						if(isNaN(cdv) && n == 8){
+							cdv = LL[n];
+						}
+						break;
+					}
+				}
+			}
+			rs += d;
 		}
 		cd = rs % 11;
 		if(cd == 10){cd = "X";}
@@ -182,7 +182,7 @@ jQuery.validator.addMethod("time12h", function(value, element) {
  * 212 123 4567
  */
 jQuery.validator.addMethod("phoneUS", function(phone_number, element) {
-    phone_number = phone_number.replace(/\s+/g, "");
+	phone_number = phone_number.replace(/\s+/g, "");
 	return this.optional(element) || phone_number.length > 9 &&
 		phone_number.match(/^(1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/);
 }, "Please specify a valid phone number");
@@ -274,11 +274,11 @@ jQuery.validator.addMethod("creditcardtypes", function(value, element, param) {
 }, "Please enter a valid credit card number.");
 
 jQuery.validator.addMethod("ipv4", function(value, element, param) {
-    return this.optional(element) || /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/i.test(value);
+	return this.optional(element) || /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/i.test(value);
 }, "Please enter a valid IP v4 address.");
 
 jQuery.validator.addMethod("ipv6", function(value, element, param) {
-    return this.optional(element) || /^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i.test(value);
+	return this.optional(element) || /^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i.test(value);
 }, "Please enter a valid IP v6 address.");
 
 /**
@@ -295,6 +295,6 @@ jQuery.validator.addMethod("ipv6", function(value, element, param) {
   * @cat Plugins/Validate/Methods
   */
 jQuery.validator.addMethod("pattern", function(value, element, param) {
-    return this.optional(element) || param.test(value);
+	return this.optional(element) || param.test(value);
 }, "Invalid format.");
 
