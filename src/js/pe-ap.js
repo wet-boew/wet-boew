@@ -699,7 +699,7 @@
 					navlink = $(this);
 					navurl = navlink.attr('href');
 					navtext = navlink.text();
-					match = (navurl === pageurl);
+					match = (pageurl.indexOf(navurl) !== -1);
 					for (i = 0, _len = bcurl.length; !match && i !== _len; i += 1) {
 						if (bcurl[i] !== "#" && (bcurl[i] === navurl || bctext[i] === navtext)) {
 							match = true;

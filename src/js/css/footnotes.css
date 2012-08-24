@@ -1,0 +1,77 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+/*Variables*/
+/** Screen and print CSS **/
+@media screen, print {
+  a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
+    background-color: #EEE;
+    border: 1px solid #CCC;
+    padding: 0 4px 1px;
+    display: inline-block;
+  }
+
+  sup a.footnote-link:hover, sup a.footnote-link:focus, sup a.footnote-link:active, .wet-boew-footnotes dl dd p.footnote-return a:hover, .wet-boew-footnotes dl dd p.footnote-return a:focus, .wet-boew-footnotes dl dd p.footnote-return a:active {
+    border-color: #666;
+  }
+
+  .wet-boew-footnotes {
+    margin: 2em 10px 0 10px;
+    padding-top: 0.5em;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    border-color: #CCC;
+  }
+  .wet-boew-footnotes h2 {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+  }
+  .wet-boew-footnotes dl {
+    display: inline-block;
+    margin: 0 0 -1em;
+  }
+  .wet-boew-footnotes dl dt {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    /*borrow wb-invisible's properties via SASS?*/
+  }
+  .wet-boew-footnotes dl dd {
+    position: relative;
+    margin: 0 0 1.5em;
+  }
+  .wet-boew-footnotes dl dd p {
+    margin: 0 0 0.75em 3em;
+    /*manage the left and bottom spacing via SASS?*/
+  }
+  .wet-boew-footnotes dl dd p.footnote-return {
+    top: -1px !important;
+    left: -1px;
+    margin: 0 !important;
+    padding: 1px 0 1px 1px;
+    position: absolute !important;
+    width: 2.75em;
+    overflow: hidden;
+    /*borrow position-top's properties via SASS?*/
+  }
+}
+/** Print-only CSS **/
+@media print {
+  a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+  }
+
+  .wet-boew-footnotes {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1em;
+  }
+}

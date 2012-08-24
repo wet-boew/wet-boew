@@ -1,0 +1,50 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+.cal-container.picker-overlay {
+  position: absolute;
+  z-index: 498 !important;
+  margin-top: -2em;
+}
+
+.picker-close {
+  float: right;
+}
+
+.picker-field, input[type="date"] {
+  width: 7em;
+}
+
+.ui-mobile .polyfill.picker-field {
+  display: inline;
+}
+.ui-mobile .picker-toggle-hidden img, .ui-mobile .picker-toggle-visible img {
+  display: inline;
+}
+
+.picker-toggle {
+  display: none;
+}
+
+.picker-toggle-visible, .picker-toggle-hidden {
+  padding: 10px;
+}
+
+.picker-toggle-visible img, .picker-toggle-hidden img {
+  margin: 0;
+  vertical-align: middle;
+  width: auto;
+}
+
+.picker-toggle-visible a, .picker-toggle-hidden a {
+  margin-left: 0.5em;
+}
+
+div.cal-days a {
+  text-decoration: underline;
+}
+div.cal-days ol.cal-day-list li.datepicker-selected a {
+  background-color: #600;
+}
