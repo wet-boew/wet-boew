@@ -31,19 +31,22 @@ ul.wb-autolist {
 	}
 	li {
 		list-style-type: none;
-		padding:0 5px;
 		&.al-hide {
 			display: none;
-		}
-		.al-value {
 		}
 		.al-label {
 			padding-left: 10px;
 			float: right;
 		}
-		&:hover, &:focus, &:active {
-			background: #406C93;
-			color: #fff;
+		a {
+			text-decoration: none;
+			color: #000;
+			display: inline-block;
+			padding: 0 5px;
+			&:hover, &:focus, &:active {
+				background: #406C93;
+				color: #fff;
+			}
 		}
 	}
 }

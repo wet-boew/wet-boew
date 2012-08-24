@@ -32,6 +32,7 @@
 					});
 				options.not(visibleOptions).addClass('al-hide');
 				visibleOptions.removeClass('al-hide');
+
 				if (visibleOptions.length !== 0) {
 					autolist.removeClass('al-hide');
 					elm.attr('aria-expanded', 'true');
@@ -43,7 +44,7 @@
 
 			correctWidth = function () {
 				container.css('min-width', elm.innerWidth());
-				if (pe.ie < 8) {
+				if (pe.ie > 0 && pe.ie < 8) {
 					autolist.css('top', elm.innerHeight() + 13);
 				}
 			};
@@ -57,22 +58,24 @@
 				if (value === 'undefined') {
 					value = $this.text();
 				}	
-				datalist_items.push('<li class="al-hide al-option" tabindex="-1" id="al-option-' + index + '-' + index2 + '"><span class="al-value">' + (value !== 'undefined' ? value : "") + '</span><span class="al-label">' + (label !== 'undefined' ? label : "") + '</span></li>');
+				datalist_items.push('<li class="al-hide al-option" id="al-option-' + index + '-' + index2 + '"><a href="javascript:;"><span class="al-value">' + (value !== 'undefined' ? value : "") + '</span><span class="al-label">' + (label !== 'undefined' ? label : "") + '</span></a></li>');
 			});
 
 			elm.attr({"role": "combobox", "aria-expanded": "false", "aria-autocomplete": "list", "aria-owns": "wb-autolist-" + index}).wrap('<div class="wb-al-container"/>');
 			container = elm.parent().css('min-width', elm.innerWidth());
 
-			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide">' + datalist_items.join('') + '</ul>')
+			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide">' + datalist_items.join('') + '</ul>');
 			options = autolist.find('li');
 			elm.after(autolist);
-			if (pe.ie < 8) {
+			if (pe.ie > 0 && pe.ie < 8) {
 				autolist.css('top', elm.innerHeight() + 13);
 			}
 			
 			elm.on('keyup keydown click vclick', function (e) {
 				var type = e.type,
 					keycode = e.keyCode,
+					target = e.target,
+					visible_options = options.filter(':not(.al-hide)'),
 					dest;
 				if (type === 'keyup') {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
@@ -89,18 +92,18 @@
 								if (keycode === 27) {
 									return false;
 								}
-							} else if (keycode === 38) { // up arrow
-								dest = options.filter(':not(.al-hide)').last();
-								pe.focus(dest);
-								elm.attr('aria-activedescendent', dest.attr('id'));
-								return false;
-							} else if (keycode === 40) { // down arrow
-								dest = options.filter(':not(.al-hide)').eq(0).last();
-								pe.focus(dest);
-								elm.attr('aria-activedescendent', dest.attr('id'));
-								return false;
-							} else if (keycode === 38 || keycode === 40) { // up or down arrow (with or without alt)
-								showOptions('');
+							} else if (keycode === 38 || keycode === 40) { // up or down arrow 
+								visible_options = options.filter(':not(.al-hide)').find('a');
+								if (visible_options.length > 0) {
+									index = visible_options.index(target);
+									if (keycode === 38) { // up arrow
+										dest = visible_options.last();
+									} else { // down arrow
+										dest = visible_options.eq(0);
+									}
+									pe.focus(dest);
+									elm.attr('aria-activedescendent', dest.attr('id'));
+								}
 								return false;
 							}
 						} else {
@@ -124,18 +127,23 @@
 				var type = e.type,
 					keycode = e.keyCode,
 					target = $(e.target),
+					visible_options,
+					index,
 					dest,
 					val = elm.val(),
 					value;
 				if (type === 'keyup') {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-						if ((keycode > 47 && keycode < 58) || (keycode > 64 && keycode < 91) || keycode === 32 || keycode === 8) { // Number keys, letter keys, spacebar or backspace
+						if ((keycode > 47 && keycode < 58) || (keycode > 64 && keycode < 91) || keycode === 32) { // Number keys, letter keys or spacebar
+							elm.val(val + String.fromCharCode(keycode));
 							pe.focus(elm);
 							showOptions(elm.val());
-						} else if (keycode === 8 && elm.val().length > 0) {
-							elm.val(val.substring(0, val.length - 1));
+						} else if (keycode === 8) { // Backspace
+							if (elm.val().length > 0) {
+								elm.val(val.substring(0, val.length - 1));
+								showOptions(elm.val());
+							}
 							pe.focus(elm);
-							showOptions(elm.val());
 						}
 					}
 				} else if (type === 'keydown') {
@@ -156,30 +164,18 @@
 							if (keycode === 27) {
 								return false;
 							}
-						} else if (keycode === 38) { // up arrow
-							dest = target.prev();
-							if (dest.length > 0) {
-								pe.focus(dest);
-								elm.attr('aria-activedescendent', dest.attr('id'));
-							} else {
-								dest = options.last();
-								pe.focus(dest);
-								elm.attr('aria-activedescendent', dest.attr('id'));
-							}
-							return false;
-						} else if (keycode === 40) { // down arrow
-							dest = target.next();
-							if (dest.length > 0) {
-								pe.focus(dest);
-								elm.attr('aria-activedescendent', dest.attr('id'));
-							} else {
-								dest = options.eq(0);
+						} else if (keycode === 38 || keycode === 40) { // up or down arrow 
+							visible_options = options.filter(':not(.al-hide)').find('a');
+							if (visible_options.length > 0) {
+								index = visible_options.index(target);
+								if (keycode === 38) { // up arrow
+									dest = ((index - 1) === -1 ? visible_options.last() : visible_options.eq(index - 1));
+								} else { // down arrow
+									dest = ((index + 1) === visible_options.length ? visible_options.eq(0) : visible_options.eq(index + 1));
+								}
 								pe.focus(dest);
 								elm.attr('aria-activedescendent', dest.attr('id'));
 							}
-							return false;
-						} else if (keycode === 38 || keycode === 40) { // up or down arrow (with or without alt)
-							showOptions('');
 							return false;
 						}
 					}
@@ -198,8 +194,8 @@
 				}
 			});
 
-			$(document).on("click touchstart", function () {
-				if (elm.attr('aria-expanded') === "true") {
+			$(document).on("click touchstart", function (e) {
+				if (elm.attr('aria-expanded') === "true" && !$(e.target).is(elm)) {
 					showOptions('~!!@@#$');
 					elm.removeAttr('aria-activedescendent');
 				}
