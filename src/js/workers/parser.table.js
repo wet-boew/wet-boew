@@ -41,7 +41,6 @@
 				tableCellWidth = 0,
 				headerRowGroupCompleted = false,
 				summaryRowGroupEligible = false,
-				rowgroupLevel = 1, // Default RowGroupLevel
 				currentRowHeader = [],
 				currentTbodyID,
 				theadRowStack = [],
@@ -667,7 +666,7 @@
 						if (currColgroupStructure.length < groupLevel) {
 							// This colgroup are a data colgroup
 							// The current colgroup are a data colgroup
-							if (!curColgroupFrame.type) { // TODO: Remove this condition when this function will be called only once
+							if (!curColgroupFrame.type) {
 								curColgroupFrame.type = 2; // Set Data group type
 								curColgroupFrame.level = groupLevel;
 							}
@@ -732,7 +731,6 @@
 							curColgroupFrame.repheader = 'caption';
 						}
 
-						// TODO: Build a collection with all the column based on the column position, each of them will have as a structure element "col" if available, otherwise nothing. Also they will have the headerset ref and header ref and if applicable, description.
 						if (!groupZero.col) {
 							groupZero.col = [];
 						}
@@ -881,7 +879,7 @@
 
 
 
-				// TODO: Set the Data Level for this row group
+				// Set the Data Level for this row group
 				// Calculate the appropriate row group level based on the previous rowgroup 
 				//	* a Summary Group decrease the row group level
 				//	* a Data Group increase the row group level based of his number of row group header and the previous row group level
@@ -954,7 +952,7 @@
 			}
 
 			function processRow(elem) {
-				// TODO: Remove the possible confusion about the colgroup name used in the row processing but keep his functionality because that fix the grouping if no header cell are present.
+				// In this function there are a possible confusion about the colgroup variable name used here vs the real colgroup table, In this function the colgroup is used when there are no header cell.
 				currentRowPos += 1;
 				var columnPos = 1,
 					lastCellType = "",
@@ -967,7 +965,6 @@
 						rowpos: currentRowPos
 					},
 					colgroup,
-					irRowHeadingFound = false,
 					fnPreProcessGroupHeaderCell,
 					fnPreProcessGroupDataCell,
 					fnParseSpannedRowCell,
@@ -1023,7 +1020,7 @@
 						colgroup.type = 2;
 					}
 
-					// TODO: Check if we need to create a summary colgroup (Based on the top colgroup definition)
+					// Check if we need to create a summary colgroup (Based on the top colgroup definition)
 					if (colgroup.type !== 2) {
 						// Creation of a new colgroup
 						row.colgroup.push(colgroup); // Add the previous colgroup
@@ -1325,7 +1322,6 @@
 							rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
 							currentRowHeader = [];
 
-							// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
 							currentTbodyID += 1;
 							finalizeRowGroup();
 
@@ -1350,7 +1346,6 @@
 							rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
 							currentRowHeader = [];
 
-							// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
 							currentTbodyID += 1;
 							finalizeRowGroup();
 
@@ -1365,10 +1360,10 @@
 						} else {
 							if (!lastHeadingSummaryColPos && currentRowGroup.lastHeadingColPos > lastHeadingColPos) {
 								// This is an error, we can not have an row cell heading length inferior for a summary group
-								errorTrigger(32, 'An row cell heading length can not be inferior of a data row group', this);
+								errorTrigger(32, 'An row cell heading length can not be inferior of a data row group');
 							} else {
 								// This is an error, we can not have an row cell heading length that can not be categorized in the data group and summary group
-								errorTrigger(33, 'An row cell heading length that can not be categorized in the data group and summary group. Use uniform size for data/summary group. Uniform size between data group and summary group require a new tbody section.', this);
+								errorTrigger(33, 'An row cell heading length that can not be categorized in the data group and summary group. Use uniform size for data/summary group. Uniform size between data group and summary group require a new tbody section.');
 							}
 						}
 					}
@@ -1559,7 +1554,7 @@
 					}
 					for (i = lastHeadingColPos; i < row.cell.length; i += 1) {
 						isDataCell = true;
-						isDataColgroupType = true; // TODO: Remove this variable
+						isDataColgroupType = true;
 
 						for (j = (lastHeadingColPos === 0 ? 0 : 1); j < colgroupFrame.length; j += 1) { // If colgroup, the first are always header colgroup
 							if (colgroupFrame[j].start <= row.cell[i].colpos && row.cell[i].colpos <= colgroupFrame[j].end) {
@@ -1714,7 +1709,7 @@
 				case 'tbody':
 				case 'tfoot':
 
-					// TODO: Add support if tfoot are defined before the tbody
+					// Currently there are no specific support for tfoot element, the tfoot is understood as a normal tbody
 
 					currentRowGroupElement = this;
 					initiateRowGroup();
@@ -1754,7 +1749,6 @@
 					rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
 					currentRowHeader = [];
 
-					// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
 					currentTbodyID += 1;
 					finalizeRowGroup();
 					break;
@@ -1763,7 +1757,7 @@
 
 					// The rowpos are not incremented here because this is a summary rowgroup for the GroupZero
 
-					// TODO: Question: Stack any row and processed them at the really end ???
+					// Question: Stack any row and processed them at the really end ? Do we allow tfoot to be used as a footnote for the tabular data ?
 					// break;
 				case 'tr':
 					// This are suppose to be a simple table
