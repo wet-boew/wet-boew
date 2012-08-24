@@ -100,32 +100,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 <h1>Proximity</h1>
-
-<div class="span-2 module float-right">
-<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
+<div class="span-4 module-table-contents">
+<p>Table of contents</p>
 <ul>
-<li><code>indent-none</code></li>
-<li><code>indent-small</code></li>
-<li><code>indent-medium</code></li>
-<li><code>indent-large</code></li>
-<li><code>indent-xlarge</code></li>
-<li><code>margin-bottom-none</code></li>
-<li><code>margin-bottom-small</code></li>
-<li><code>margin-bottom-medium</code></li>
-<li><code>margin-bottom-large</code></li>
-<li><code>margin-bottom-xlarge</code></li>
-<li><code>margin-right-none</code></li>
-<li><code>margin-right-small</code></li>
-<li><code>margin-right-medium</code></li>
-<li><code>margin-right-large</code></li>
-<li><code>margin-right-xlarge</code></li>
-<li><code>margin-top-none</code></li>
-<li><code>margin-top-small</code></li>
-<li><code>margin-top-medium</code></li>
-<li><code>margin-top-large</code></li>
-<li><code>margin-top-xlarge</code></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#padding">Padding</a></li>
+<li><a href="#line">Line height</a></li>
+<li><a href="#margin">Margins and gutters</a></li>
 </ul>
+
 </div>
+<div class="clear"></div>
 <h2 id="overview">Overview</h2>
 <p>White space is an important feature of the grid system &mdash; which automatically generates by default. You can overwrite some white space with additional <abbr title="Cascading Style Sheet">CSS</abbr> in order to increase or decrease the default settings.</p>
 <p>Within a grid system, you can only change the white space above and below a grid cell. You can never change the <strong>gutters</strong> (white space to the left and right of a grid cell). This is because the grid system design fits perfectly in the content area, and is tied to the user's browser setting. There is no room for extra pixels. Reducing pixels causes the cells to behave in unexpected ways due to their <code>float: left</code> property.</p>
@@ -162,8 +147,64 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </details>
 
 <div class="clear"></div>
+<h2 id="line">Line Height</h2>
+<p>The <abbr title="Cascading Style Sheet">CSS</abbr> provides several line height options that you can use to override the default size. The sizes range from 1.0 to 2.0.</p>
+<div class="clear"></div>
 
-<h2 id="margins">Margins and Gutters</h2>
+<table class="table-simplify span-6">
+	<caption>
+	Line height options
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col">Class</th>
+			<th scope="col">Details</th>
+			<th scope="col">Example</th>
+		</tr>
+	</thead>
+	<tr>
+	<td><code>line-height-xsmall</code></td>
+	<td>Extra small font (0.8)</td>
+	<td><ul class="line-height-xsmall">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-small</code></td>
+	<td>Small font (1.0)</td>
+	<td><ul class="line-height-small">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-medium</code></td>
+	<td>Medium (1.25) = default size</td>
+	<td><ul class="line-height-medium">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-large</code></td>
+	<td>Large (1.5)</td>
+	<td><ul class="line-height-large">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-xlarge</code></td>
+	<td>Extra large (2.0)</td>
+	<td><ul class="line-height-xlarge">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<h2 id="margin">Margins and Gutters</h2>
 <p>The white space to the left and right of a grid cell is called the <strong>gutter</strong>. The white space above and below a grid cell is the <strong>margin</strong>. The default <code>margin</code> settings of a grid cell are as follows:
 <ul>
 	<li>the <strong>margin-top</strong> is set to zero</li>
@@ -445,43 +486,39 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div>
 <div class="clear"></div>
 
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
+</dl>
+<div class="clear"></div>
 <!-- MainContentEnd -->
 </div></div>
 
 <div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
 <div class="wb-sec-def">
 <!-- SecNavStart -->
-<section><h3><a href="#">Base</a></h3>
+<section><h3><a href="#">Basic effects</a></h3>
 <ul>
-<li><a href="">Grid System</a></li>
+<li><a href="grid-base-eng.html">Grid system</a></li>
+<li><a href="grid-text-eng.html">Text</a></li>
 <li><a href="grid-color-eng.html">Colour</a></li>
-<li><a href="grid-button-bouton-eng.html">Buttons</a></li>
-<li><a href="grid-proximit-eng.html">Proximity</a></li>
-<li><a href="#">Table</a></li>
-<li><a href="grid-form-eng.html">Form</a></li>
+<li><a href="grid-table-eng.html">Tables</a></li>
+<li><a href="grid-form-eng.html">Forms</a></li>
+<li><a href="grid-image-eng.html">Images</a></li>
+
+<li><a href="grid-proximity-eng.html">Proximity</a></li>
+<li><a href="grid-position-eng.html">Positioning and  alignment</a></li>
+<li><a href="grid-opacity-eng.html">Opacity</a></li>
+<li><a href="grid-border-eng.html">Borders</a></li>
+<li><a href="grid-button-eng.html">Buttons</a></li>
 </ul>
 </section>
-<section><h3><a href="#">Modules</a></h3>
+<section><h3><a href="#">Specialty effects</a></h3>
 <ul>
-<li><a href="#">Messages</a></li>
-<li><a href="#">Item 2.2b</a></li>
-<li><a href="#">Item 2.2c</a></li>
+<li><a href="grid-message-eng.html">Messages</a></li>
+<li><a href="grid-module-eng.html">Modules</a></li>
+<li><a href="grid-module-eng.html">Other</a></li>
 </ul>
 </section>
-<section><h3><a href="section2/section23/index-eng.html">Section 2.3</a></h3>
-<ul>
-<li><a href="#">Item 2.3a</a></li>
-<li><a href="#">Item 2.3b</a></li>
-<li><a href="#">Item 2.3c</a></li>
-</ul>
-</section>
-<section><h3><a href="#">Section 2.4</a></h3>
-<ul>
-<li><a href="#">Item 2.4c</a></li>
-</ul>
-</section>
-<div class="top-level"><a href="#">Top level link 1</a></div>
-<div class="top-level"><a href="#">Top level link 2</a></div>
 <!-- SecNavEnd -->
 </div>
 </nav></div></div>
