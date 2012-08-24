@@ -33,16 +33,16 @@
                 close = isOpen && toggle || !isOpen && !toggle;
             if (close) {
 				/* wet-boew change */
-                $details.removeClass('open').prop('open', false).attr('aria-hidden', 'true').triggerHandler('close.details'); // Added aria-hidden
-				//$detailsSummary.attr('aria-expanded', false);
-				$detailsSummary.attr('aria-pressed', 'false');
+                $details.removeClass('open').prop('open', false).triggerHandler('close.details'); // Added aria-hidden
+				$detailsSummary.attr('aria-expanded', false);
+				$detailsSummary.attr('aria-pressed', false);
 				/* *************** */
                 $detailsNotSummary.hide();
             } else {
 				/* wet-boew change */
-                $details.addClass('open').prop('open', true).attr('aria-hidden', 'false').triggerHandler('open.details'); // Added aria-hidden
-				//$detailsSummary.attr('aria-expanded', true);
-				$detailsSummary.attr('aria-pressed', 'true');
+                $details.addClass('open').prop('open', true).triggerHandler('open.details'); // Added aria-hidden
+				$detailsSummary.attr('aria-expanded', true);
+				$detailsSummary.attr('aria-pressed', true);
 				/* *************** */
                 $detailsNotSummary.show();
             }
@@ -67,11 +67,11 @@
             return this.each(function (index) { // wet-boew change: Added index
                 var $details = $(this),
                     $summary = $('summary', $details).first();
-				$details.attr({'aria-hidden': !$details.prop('open'), 'id': 'details-' + index}); // wet-boew change: Added two attributes
+				$details.attr('id', 'details-' + index); // wet-boew change: Added two attributes
                 $summary.attr({
                     'role': 'button',
                     /* wet-boew change */
-					//'aria-expanded': $details.prop('open')*
+					//'aria-expanded': $details.prop('open'),
 					'aria-pressed': $details.prop('open'),
 					'aria-controls': 'details-' + index /* wet-boew change: added aria-controls */
 					/* *************** */
@@ -80,7 +80,6 @@
                     var close = $details.prop('open');
                     /* wet-boew change */
 					//$summary.attr('aria-expanded', !close);
-					$details.attr('aria-hidden', !close);
 					$summary.attr('aria-pressed', close);
 					/* *************** */
                     $details.triggerHandler((close ? 'close' : 'open') + '.details');
@@ -119,7 +118,7 @@
                 // Hide content unless there’s an `open` attribute
                 toggleOpen($details, $detailsSummary, $detailsNotSummary);
                 // Add `role=button` and set the `tabindex` of the `summary` element to `0` to make it keyboard accessible
-                $detailsSummary.attr({'role': 'button', 'aria-controls': 'details-' + index}).noSelect().prop('tabIndex', 0).on('click', function () { // wet-boew change: added aria-controls
+                $detailsSummary.attr({'role': 'button', 'aria-controls': 'details-' + index, 'aria-pressed': $details.prop('open'), 'aria-expanded': 'false'}).noSelect().prop('tabIndex', 0).on('click', function () { // wet-boew change: added aria-controls
                     // Focus on the `summary` element
                     $detailsSummary.focus();
                     // Toggle the `open` and `aria-expanded` attributes and the `open` property of the `details` element and display the additional info
