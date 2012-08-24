@@ -109,6 +109,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a href="#supporting">Supporting classes</a>
 <ul>
   <li><a href="#sizes">Button sizes</a></li>
+  <li><a href="#disabled">Disabled buttons</a></li>
     <li><a href="#embedded">Embedded navigation</a></li>
     
 </ul>
@@ -124,6 +125,11 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 <h2 id="base">Base classes</h2>
+<p>Button CSS can be applied to a <code>&lt;button&gt;</code>, an <code>&lt;input&gt;</code> or a <code>&lt;a href&gt;</code>:  </p>
+<ul class="list-bullet-none"><li class="margin-bottom-medium"><button class="button">Button</button></li>
+<li><input type="submit" value="Input" class="button"></li>
+<li><a href="#" class="button">Link</a></li>
+</ul>
 <table class="table-simplify span-6">
    <thead>
       <tr>
@@ -143,43 +149,43 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
       <tr>
         <td><button class="button button-accent">Accent</button></td>
         <td><button class="button button-accent button-disabled" disabled="disabled">Accent</button></td>
-        <td><code>button-accent</code></td>
+        <td><code>button button-accent</code></td>
         <td>Provides extra visual weight and identifies the primary action</td>
       </tr>
       <tr>
         <td><button class="button button-info">Info</button></td>
         <td><button class="button button-info button-disabled">Info</button></td>
-        <td><code>button-info</code></td>
+        <td><code>button button-info</code></td>
         <td>Used as an alternate to the default styles</td>
       </tr>
       <tr>
         <td><button class="button button-confirm">Confirm</button></td>
         <td><button class="button button-confirm button-disabled">Confirm</button></td>
-        <td><code>button-confirm</code></td>
+        <td><code>button button-confirm</code></td>
         <td>Indicates a successful or positive action</td>
       </tr>
       <tr>
         <td><button class="button button-alert">Alert</button></td>
         <td><button class="button button-alert button-disabled">Alert</button></td>
-        <td><code>button-alert</code></td>
+        <td><code>button button-alert</code></td>
         <td>Indicates caution should be taken with this action</td>
       </tr>
       <tr>
         <td><button class="button button-attention">Attention</button></td>
         <td><button class="button button-attention button-disabled">Attention</button></td>
-        <td><code>button-attention</code></td>
+        <td><code>button button-attention</code></td>
         <td>Indicates a dangerous or potentially negative action</td>
       </tr>
       <tr>
         <td><button class="button button-dark">Dark</button></td>
         <td><button class="button button-dark button-disabled">Dark</button></td>
-        <td><code>button-dark</code></td>
+        <td><code>button button-dark</code></td>
         <td>Alternate dark gray button, not tied to a semantic action or use</td>
       </tr>
       <tr>
         <td><button class="button button-none">None</button></td>
         <td><button class="button button-none button-disabled">None</button></td>
-        <td><code>button-none</code></td>
+        <td><code>button button-none</code></td>
         <td>Maintains the dimensions of a button without creating the visual style</td>
       </tr>
    </tbody>
@@ -188,7 +194,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="clear"></div>
 <h2 id="supporting">Supporting Classes</h2>
 <h3 id="sizes">Button sizes</h3>
-<p>In addition to colour, the style guide supports several different <code>button</code> sizes. A change in button size will affect the button padding and font-size. Be weary of combining the <code>button-*</code> size classes with the <code>font-*</code> size classes, as this may lead to illegible (too small) text.</p>
+<p>A change in button size will affect the button padding and font-size. Be weary of combining the <code>button-*</code> size classes with the <code>font-*</code> size classes, as this may lead to illegible (too small) text.</p>
 
 
 
@@ -222,9 +228,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 &lt;/p&gt;</pre>
 </details>
 <div class="clear"></div>
-
+<h3 id="disabled">Disabled buttons</h3>
+<p>Remove the functionality of a button.</p>
+<div class="span-3"><a href="#embedded" class="button">default</a> <a href="#embedded" class="button button-disabled">disabled</a></div>
+<details class="span-3">
+	<summary>Source code</summary>
+<pre>&lt;a href=&quot;#embedded&quot; class=&quot;button button-disabled&quot;&gt;disabled&lt;/a&gt;</pre>
+</details>
 <div class="clear"></div>
-
+adf
 <h3 id="embedded">Embedded navigation</h3>
 <p>This class allows for embedded page navigation. The navigation may be based off an unordered list or paragraph text. To make the unordered list display horizontally, simply use the <code>menu-horizontal</code> class.</p>
 
@@ -429,37 +441,29 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
 <div class="wb-sec-def">
 <!-- SecNavStart -->
-<section><h3><a href="#">Base</a></h3>
+<section><h3><a href="#">Basic effects</a></h3>
 <ul>
-<li><a href="">Grid System</a></li>
+<li><a href="grid-base-eng.html">Grid system</a></li>
+<li><a href="grid-text-eng.html">Text</a></li>
 <li><a href="grid-color-eng.html">Colour</a></li>
-<li><a href="grid-button-bouton-eng.html">Buttons</a></li>
-<li><a href="grid-proximit-eng.html">Proximity</a></li>
-<li><a href="#">Table</a></li>
-<li><a href="grid-form-eng.html">Form</a></li>
+<li><a href="grid-table-eng.html">Tables</a></li>
+<li><a href="grid-form-eng.html">Forms</a></li>
+<li><a href="grid-image-eng.html">Images</a></li>
+
+<li><a href="grid-proximity-eng.html">Proximity</a></li>
+<li><a href="grid-position-eng.html">Positioning and  alignment</a></li>
+<li><a href="grid-opacity-eng.html">Opacity</a></li>
+<li><a href="grid-border-eng.html">Borders</a></li>
+<li><a href="grid-button-eng.html">Buttons</a></li>
 </ul>
 </section>
-<section><h3><a href="#">Modules</a></h3>
+<section><h3><a href="#">Specialty effects</a></h3>
 <ul>
-<li><a href="#">Messages</a></li>
-<li><a href="#">Item 2.2b</a></li>
-<li><a href="#">Item 2.2c</a></li>
+<li><a href="grid-message-eng.html">Messages</a></li>
+<li><a href="grid-module-eng.html">Modules</a></li>
+<li><a href="grid-module-eng.html">Other</a></li>
 </ul>
 </section>
-<section><h3><a href="section2/section23/index-eng.html">Section 2.3</a></h3>
-<ul>
-<li><a href="#">Item 2.3a</a></li>
-<li><a href="#">Item 2.3b</a></li>
-<li><a href="#">Item 2.3c</a></li>
-</ul>
-</section>
-<section><h3><a href="#">Section 2.4</a></h3>
-<ul>
-<li><a href="#">Item 2.4c</a></li>
-</ul>
-</section>
-<div class="top-level"><a href="#">Top level link 1</a></div>
-<div class="top-level"><a href="#">Top level link 2</a></div>
 <!-- SecNavEnd -->
 </div>
 </nav></div></div>
