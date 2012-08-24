@@ -4,6 +4,12 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 .ie7 {
+	/* Create new top-level stacking context to prevent overlap */
+	.wet-boew-share{
+		position: relative;
+		z-index: 1;
+	}
+
 	.wet-boew-share .bookmark_popup{
 		right:0;
 		top:1.5em;
