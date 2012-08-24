@@ -12,11 +12,11 @@
 .wet-boew-feedback #web label[for=otherprob] {
 	display: inline;
 }
-#feedback, #access, #contact1, #contact2 {
+#web, #mobile, #computer, #info {
 	display: none;
 }
 .no-js {
-	#feedback, #access, #contact1, #contact2 {
+	#web, #mobile, #computer, #info {
 		display: block;
 	}
 }
