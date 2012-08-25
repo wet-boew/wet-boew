@@ -83,7 +83,11 @@
 		&[type="image"], &[type="checkbox"], &[type="radio"] {
 			margin: 1px 0;
 			padding: 0;
+			min-height: 0;
 			@include border-radius(0);
+			+ label {
+				display: inline-block;
+			}
 		}
 		
 		&[type="image"] {
