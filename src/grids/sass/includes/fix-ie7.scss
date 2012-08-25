@@ -1,17 +1,17 @@
 @charset "utf-8";
 /*
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * Web Experience Toolkit (WET) / BoÃ®te Ã  outils de l'expÃ©rience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 /* ---- IE7 fixes ---- */
 .ie7 {
 	#wb-core{
 		a[href^='http://www'] {
-			background:none;
+			background-image:none;
 			padding-right:0;
 		}
 		a[href^='mailto:'],a[href$='.psd'],a[href$='.zip'],a[href$='.doc'],a[href$='.pdf'],a[href$='.xls'],a[href$='.xlt'],a[href$='.rtf'],a[href$='.txt'] {
-			background:none;
+			background-image:none;
 			padding-left:0;
 		}
 	}
