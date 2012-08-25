@@ -117,20 +117,136 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p>Defining a Data Row Group in a Data Table<p>
 
 <h3>Applicability</h3>
-<p>Use for data tables when presence of a key information related to a row cell header.<p>
+<p>Use for data tables where it include more than one data group.<p>
 
 <h3>User Agent Issues</h3>
 <p>Not Available<p>
 
 <h3>Description of Technique</h3>
 
-<p>The objective of this technique is to ...</p>
+<p>The objective of this technique is to define a row group header that would identify a data group. This technique simulate sub-caption in the data table. Each data group is delimited by a tbody element.</p>
 
+<p>This technique introduce a "Data Level" concept. This represent the relationship between each data group versus an heading. With this technique, the "caption" table element is considerated as a cell header.</p>
+
+<p>The default data level is 1. The data level increase depending of the number of the consecutive row group header cell found. A data level can be decreased when two or more consecutive summary group is found.</p>
+
+<p>The data level stay constant between 2 consecutive data group. Like if the first data group, with two row group header cell, is considerated at the level 3. If the second data group only have one row group header cell, that group is also considerated at the level 3 and have a relationship with the first row group header cell defined in the first data group.</p>
 
 <h2>Examples</h2>
 
-<h3>Examples Titles</h3>
+<h3>Two data row group</h3>
 
+<table class="wet-boew-zebra">
+	<caption>Two Data Row Group</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<th colspan="8">Group A</th>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="8">Group B</th>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<ul>
+	<li>Group A at level 2.</li>
+	<li>Group B at level 2.</li>
+</ul>
 
 <details>
 	<summary>Table Source Code</summary>
@@ -138,6 +254,420 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </details>
 
 
+
+<h3>Two data row group different level</h3>
+
+<table class="wet-boew-zebra">
+	<caption>Two Data Row Group</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="8">Group A</th>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<ul>
+	<li>First 4 row at level 1.</li>
+	<li>Group A at level 2.</li>
+</ul>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code></code></pre>
+</details>
+
+
+
+<h3>Two data row group</h3>
+
+<table class="wet-boew-zebra">
+	<caption>Two Data Row Group</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<th colspan="8">Group A</th>
+		</tr>
+		<tr>
+			<th colspan="8">Group B</th>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="8">Group C</th>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<ul>
+	<li>Group B at level 3.</li>
+	<li>Group C at level 3 with a relationshipt with the group A.</li>
+</ul>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code></code></pre>
+</details>
+
+
+<h3>Two data row group</h3>
+
+<table class="wet-boew-zebra">
+	<caption>Two Data Row Group</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+			<th>Col Heading</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<th colspan="8">Group A</th>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="8">Group B</th>
+		</tr>
+		<tr>
+			<th colspan="8">Group C</th>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="8">Group D</th>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<th>Row Heading</th>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<ul>
+	<li>Group A at level 2.</li>
+	<li>Group B at level 3 with a relationshipt with the group B.</li>
+	<li>Group D at level 3 with a relationshipt with the group B.</li>
+</ul>
+
+<!--
+<h3>Examples Titles</h3>
+
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code></code></pre>
+</details>
+-->
 
 
 
@@ -179,13 +709,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h3>Procedure</h3>
 <ol>
-	<li></li>
+	<li>Check if the data table have a row group header cell.</li>
+	<li>Check if the data table have more than one data row group.</li>
+	<li>Validate the relationship between the data group with the data meaning.</li>
 </ol>
 	
 <h3>Expected Result</h3>
 
 <ul>
-	<li></li>
+	<li>#1, #2 and #3 are true.</li>
 </ul>
 	
 <h3>Test File 1</h3>
