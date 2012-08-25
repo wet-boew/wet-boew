@@ -208,7 +208,7 @@
 			border-color: $accent;
 			outline: none;
 			
-			@include transition(border 0.2s linear 0s, box-shadow 0.2s linear 0s);
+			/*@include transition(border 0.2s linear 0s, box-shadow 0.2s linear 0s);*/
 			@include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.05), lighten($accent, 40%) 0 0 8px);
 			
 		}
