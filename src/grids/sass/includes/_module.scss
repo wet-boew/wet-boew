@@ -135,8 +135,8 @@
 			
 			li {
 				margin-bottom: $margin-medium / 2;
-				padding-left: 20px;
-				@include fugue-icon("control-record.png", $line-height: 20px, $padding: 16px);
+				margin-left: 25px;
+				list-style-image: url("../images/control-record.png");
 			}
 		}
 	} 
