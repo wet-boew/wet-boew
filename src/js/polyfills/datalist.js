@@ -30,14 +30,14 @@
 						}
 						return (comparator.length === 0 || value.toLowerCase().indexOf(comparator) === 0);
 					});
-				options.not(visibleOptions).addClass('al-hide');
-				visibleOptions.removeClass('al-hide');
+				options.not(visibleOptions).addClass('al-hide').attr('aria-hidden', 'true');
+				visibleOptions.removeClass('al-hide').attr('aria-hidden', 'false');
 
 				if (visibleOptions.length !== 0) {
-					autolist.removeClass('al-hide');
+					autolist.removeClass('al-hide').attr('aria-hidden', 'false');
 					elm.attr('aria-expanded', 'true');
 				} else {
-					autolist.addClass('al-hide');
+					autolist.addClass('al-hide').attr('aria-hidden', 'true');
 					elm.attr('aria-expanded', 'false');
 				}
 			};
@@ -58,13 +58,13 @@
 				if (value === 'undefined') {
 					value = $this.text();
 				}	
-				datalist_items.push('<li class="al-hide al-option" id="al-option-' + index + '-' + index2 + '"><a href="javascript:;"><span class="al-value">' + (value !== 'undefined' ? value : "") + '</span><span class="al-label">' + (label !== 'undefined' ? label : "") + '</span></a></li>');
+				datalist_items.push('<li class="al-hide al-option" aria-hidden="true" id="al-option-' + index + '-' + index2 + '"><a href="javascript:;"><span class="al-value">' + (value !== 'undefined' ? value : "") + '</span><span class="al-label">' + (label !== 'undefined' ? label : "") + '</span></a></li>');
 			});
 
 			elm.attr({"role": "combobox", "aria-expanded": "false", "aria-autocomplete": "list", "aria-owns": "wb-autolist-" + index}).wrap('<div class="wb-al-container"/>');
 			container = elm.parent().css('min-width', elm.innerWidth());
 
-			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide">' + datalist_items.join('') + '</ul>');
+			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide" aria-hidden="true">' + datalist_items.join('') + '</ul>');
 			options = autolist.find('li');
 			elm.after(autolist);
 			if (pe.ie > 0 && pe.ie < 8) {
@@ -75,7 +75,6 @@
 				var type = e.type,
 					keycode = e.keyCode,
 					target = e.target,
-					visible_options = options.filter(':not(.al-hide)'),
 					dest;
 				if (type === 'keyup') {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
@@ -114,7 +113,7 @@
 						}
 					}
 				} else if (type === 'click' || type === 'vclick') {
-					if (elm.attr('aria-expanded') === "true") {
+					if (!autolist.hasClass('al-hide')) {
 						showOptions('~!!@@#$');
 					} else {
 						showOptions('');
@@ -188,14 +187,13 @@
 						value = target.find('span.al-label').html();
 					}
 					elm.val(value);
-					pe.focus(elm);
 					showOptions('~!!@@#$');
-					return false;
+					pe.focus(elm);
 				}
 			});
 
 			$(document).on("click touchstart", function (e) {
-				if (elm.attr('aria-expanded') === "true" && !$(e.target).is(elm)) {
+				if (!autolist.hasClass('al-hide') && !$(e.target).is(elm)) {
 					showOptions('~!!@@#$');
 					elm.removeAttr('aria-activedescendent');
 				}
