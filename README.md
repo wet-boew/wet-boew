@@ -76,7 +76,7 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 ## Lignes directrices pour les contributeurs
 
 * Les demandes de retrait sont les bienvenues. Assurez-vous d'apporter les changements dans la dernière version du code et de limiter le champ de validation (commit range) seulement aux fichiers que vous aviez l’intention de modifier (pour éviter les conflits).
-* Les nouvelles composantes devraient être ajoutées dans un branchement de type feature-* (p. ex., `feature-lightbox`). 
+* Les nouvelles composantes devraient être ajoutées dans un branchement de type feature-* (p. ex., feature-lightbox). 
   * Les licences de toutes les nouvelles composantes et du code afférent doivent être compatibles avec la licence MIT utilisée par la Boîte à outils de l’expérience Web (BOEW).
   * Les nouveaux modules d’extension devraient se servir de [pluginTemplate.js](https://github.com/wet-boew/wet-boew/blob/master/src/pluginTemplate.js) comme base pour le code JavaScript.
   * Inclure le bloc de texte sur les conditions d’utilisation de la BOEW dans tous les fichiers sources textuels soumis aux droits d’auteur de la Couronne.
