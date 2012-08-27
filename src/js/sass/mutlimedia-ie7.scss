@@ -4,12 +4,16 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
 */
 .ie7 {
-	.wet-boew-multimedia-controls{
+	.wb-mm-controls{
 		button {
 			img {
 				display:inline;
 				height:18px;
 			}
+		}
+		
+		.wb-mm-timeline-inner progress {
+			margin-top:-22px;
 		}
 	}
 }
