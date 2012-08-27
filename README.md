@@ -60,15 +60,15 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 ## Avantages
 
 * Fournit composants réutilisables pour la conception et la mise à jour de sites Web innovateurs.
-* Respecte l'accessibilité ([WCAG 2.0](http://www.w3.org/Translations/WCAG20-fr) AA et [WAI-ARIA](http://www.w3.org/TR/wai-aria/)), la facilité d’emploi et l'interoperabilité.
-* Réduit les coûts par consolider les outils et solutions axés sur le Web. 
+* Respecte l'accessibilité ([WCAG 2.0](http://www.w3.org/Translations/WCAG20-fr) AA et [WAI-ARIA](http://www.w3.org/TR/wai-aria/)), la facilité d’emploi et l'interopérabilité.
+* Réduit les coûts en consolidant les outils et solutions axés sur le Web. 
 * Sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.
 * Fait appel à des technologies nouvelles et novatrices pour rendre les sites plus novateurs et interactifs :
   * [HTML5](http://www.w3.org/TR/html5/), [CSS3](http://www.w3.org/Style/CSS/current-work#CSS3) et [jQuery](http://jquery.com/) (cadre JavaScript); 
   * liste croissante de plugiciels et gadgets de source ouverte.
 * Permet d’avoir accès à une grande diversité de mises en page et de conceptions pour les sites Web internes et externes (y compris les applications). 
 
-## Resources clés
+## Ressources clés
 
 * [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
 * [Conditions régissant l'utilisation](https://github.com/wet-boew/wet-boew/blob/master/Licence-fra.txt)
@@ -84,11 +84,11 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
   * Pour vérifier si le balisage est bien formé, valider à l’aide d’un préréglage XHTML5 et cocher la case «&#160;Be lax about HTTP Content-Type&#160;». 
 * [Valider votre CSS](http://jigsaw.w3.org/css-validator/validator.html.fr#validate_by_uri+with_options) en apportant les changements suivants aux paramètres par défaut&#160;:
   * **Profil&#160;:** CSS niveau 3
-  * **Extensions Proprétaires&#160;:** Avertissements
+  * **Extensions Propriétaires&#160;:** Avertissements
 * [Valider votre code JavaScript](http://www.jshint.com) en apportant le changement suivant aux paramètres par défaut&#160;:
   * **Warn - When code is not in strict mode:** false
 * Recommandations quant au formatage&#160;:
   * Ajouter les tabulations en utilisant le [style d'indentation K&amp;R](http://fr.wikipedia.org/wiki/Style_d%27indentation#Style_K.26R)
-  * Utiliser les guillemets simples pour les chaînes en JavaScript (de façon à ce que les guillemets doubles non échappés (unescaped) puissent être utilisés pour les attributs dans les données de sortie HTML)
+  * Utiliser les guillemets simples pour les chaînes de caractères en JavaScript (de façon à ce que les guillemets doubles non échappés (unescaped) puissent être utilisés pour les attributs dans les données de sortie HTML)
 * Fureteurs pris en charge (cet élément devrait faire l’objet d’une vérification)&#160;:
   * [Browser test baseline - YUI Graded Browser Support](http://yuilibrary.com/yui/docs/tutorials/gbs/) (sauf Internet Explorer 6)
