@@ -43,7 +43,7 @@
 			};
 
 			correctWidth = function () {
-				container.css('min-width', elm.innerWidth());
+				autolist.css('width', elm.innerWidth());
 				if (pe.ie > 0 && pe.ie < 8) {
 					autolist.css('top', elm.innerHeight() + 13);
 				}
@@ -62,14 +62,11 @@
 			});
 
 			elm.attr({"role": "combobox", "aria-expanded": "false", "aria-autocomplete": "list", "aria-owns": "wb-autolist-" + index}).wrap('<div class="wb-al-container"/>');
-			container = elm.parent().css('min-width', elm.innerWidth());
 
 			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide" aria-hidden="true">' + datalist_items.join('') + '</ul>');
 			options = autolist.find('li');
 			elm.after(autolist);
-			if (pe.ie > 0 && pe.ie < 8) {
-				autolist.css('top', elm.innerHeight() + 13);
-			}
+			correctWidth();
 			
 			elm.on('keyup keydown click vclick', function (e) {
 				var type = e.type,

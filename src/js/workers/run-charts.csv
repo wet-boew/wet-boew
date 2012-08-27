@@ -1,0 +1,82 @@
+1345949985994, Start init function
+1345949985997, Start hlinks desktop fix
+1345949985997, End hlinks desktop fix
+1345949985997, Start AJAX in of content
+1345949986017, Done AJAX in of content
+1345949986104, Start theme init
+1345949986105, Start navcurrent
+1345949986112, End navcurrent
+1345949986113, End theme init
+1345949986113, Start DOM swarm
+1345949986114, End DOM swarm
+1345949986114, Start poly and dep array push
+1345949986114, End poly and dep array push
+1345949986114, Start polyload
+1345949986115, End polyload
+1345949986130, Polyfill init start
+1345949986130, Polyfill init end
+1345949986130, Polyfill dependency push start
+1345949986130, Polyfill dependency push end
+1345949986204, Start polyload
+1345949986204, End polyload
+1345949986205, Start polyfill depend init
+1345949986205, End polyfill depend init
+1345949986205, Start plugin calls
+1345949986205, Start menubar plugin call
+1345949986256, End menubar plugin call
+1345949986256, Start charts plugin call
+1345949986381, End charts plugin call, 125ms execution time
+1345949986381, Start charts plugin call
+1345949986383, End charts plugin call, 2ms execution time
+1345949986383, Start charts plugin call
+1345949986384, End charts plugin call, 1ms execution time
+1345949986384, Start charts plugin call
+1345949986385, End charts plugin call, 1ms execution time
+1345949986385, Start charts plugin call
+1345949986386, End charts plugin call, 1ms execution time
+1345949986386, End plugin calls
+1345949986386, Start global plugin calls
+1345949986387, End global plugin calls
+
+
+
+Cached:
+1345950048424, Start init function
+1345950048426, Start hlinks desktop fix
+1345950048426, End hlinks desktop fix
+1345950048426, Start AJAX in of content
+1345950048429, Done AJAX in of content
+1345950048485, Start theme init
+1345950048486, Start navcurrent
+1345950048487, End navcurrent
+1345950048487, End theme init
+1345950048487, Start DOM swarm
+1345950048490, End DOM swarm
+1345950048490, Start poly and dep array push
+1345950048490, End poly and dep array push
+1345950048490, Start polyload
+1345950048490, End polyload
+1345950048524, Polyfill init start
+1345950048524, Polyfill init end
+1345950048524, Polyfill dependency push start
+1345950048524, Polyfill dependency push end
+1345950048598, Start polyload
+1345950048598, End polyload
+1345950048599, Start polyfill depend init
+1345950048599, End polyfill depend init
+1345950048599, Start plugin calls
+1345950048599, Start menubar plugin call
+1345950048610, End menubar plugin call
+1345950048610, Start charts plugin call
+1345950048737, End charts plugin call, 127ms execution time
+1345950048737, Start charts plugin call
+1345950048739, End charts plugin call, 2ms execution time
+1345950048739, Start charts plugin call
+1345950048740, End charts plugin call, 1ms execution time
+1345950048740, Start charts plugin call
+1345950048741, End charts plugin call, 1ms execution time
+1345950048741, Start charts plugin call
+1345950048742, End charts plugin call, 1ms execution time
+1345950048742, End plugin calls
+1345950048742, Start global plugin calls
+1345950048743, End global plugin calls

@@ -1,0 +1,66 @@
+1345950448374, Start init function
+1345950448376, Start hlinks desktop fix
+1345950448376, End hlinks desktop fix
+1345950448376, Start AJAX in of content
+1345950448401, Done AJAX in of content
+1345950448481, Start theme init
+1345950448482, Start navcurrent
+1345950448489, End navcurrent
+1345950448490, End theme init
+1345950448490, Start DOM swarm
+1345950448491, End DOM swarm
+1345950448491, Start poly and dep array push
+1345950448491, End poly and dep array push
+1345950448491, Start polyload
+1345950448491, End polyload
+1345950448492, Polyfill init start
+1345950448492, Polyfill init end
+1345950448492, Polyfill dependency push start
+1345950448492, Polyfill dependency push end
+1345950448517, Start polyload
+1345950448517, End polyload
+1345950448518, Start polyfill depend init
+1345950448518, End polyfill depend init
+1345950448518, Start plugin calls
+1345950448518, Start menubar plugin call
+1345950448570, End menubar plugin call
+1345950448570, Start share plugin call
+1345950448616, End share plugin call, 46ms execution time
+1345950448616, End plugin calls
+1345950448616, Start global plugin calls
+1345950448620, End global plugin calls
+
+
+
+Cached:
+1345950495495, Start init function
+1345950495497, Start hlinks desktop fix
+1345950495498, End hlinks desktop fix
+1345950495498, Start AJAX in of content
+1345950495501, Done AJAX in of content
+1345950495569, Start theme init
+1345950495570, Start navcurrent
+1345950495571, End navcurrent
+1345950495572, End theme init
+1345950495572, Start DOM swarm
+1345950495573, End DOM swarm
+1345950495573, Start poly and dep array push
+1345950495573, End poly and dep array push
+1345950495573, Start polyload
+1345950495574, End polyload
+1345950495574, Polyfill init start
+1345950495574, Polyfill init end
+1345950495574, Polyfill dependency push start
+1345950495574, Polyfill dependency push end
+1345950495622, Start polyload
+1345950495622, End polyload
+1345950495622, Start polyfill depend init
+1345950495622, End polyfill depend init
+1345950495622, Start plugin calls
+1345950495622, Start menubar plugin call
+1345950495633, End menubar plugin call
+1345950495633, Start share plugin call
+1345950495680, End share plugin call, 47ms execution time
+1345950495680, End plugin calls
+1345950495680, Start global plugin calls
+1345950495683, End global plugin calls
