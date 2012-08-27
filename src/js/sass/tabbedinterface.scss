@@ -237,6 +237,7 @@
 				&.active, &:hover, &:focus, &:active{
 					background:#333;
 					color:#fff;
+					outline-color:#000;
 					padding-top:2px;
 				}
 			}
@@ -318,7 +319,6 @@
 			&.active{
 				border:none;
 				color:#fff;
-				outline-color:#000;
 			}
 			&.tabs-toggle {
 				width:auto;
