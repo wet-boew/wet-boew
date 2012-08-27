@@ -235,7 +235,7 @@
 						}
 						break;
 					case 'timeupdate':
-						p = this.getCurrentTime() / this.getDuration();
+						p = Math.round(this.getCurrentTime() / this.getDuration() * 1000)/10;
 						timeline = $w.find('.wet-boew-multimedia-timeline progress');
 						timeline.attr('value', p);
 						//Update captions
@@ -268,7 +268,7 @@
 		_get_ui : function (id) {
 			var ui = $('<div class="wet-boew-multimedia-controls">'),
 				ui_start = $('<div class="wet-boew-multimedia-controls-start">'),
-				ui_timeline = $('<div class="wet-boew-multimedia-timeline" tabindex="0"><progress value="0"/>'),
+				ui_timeline = $('<div class="wet-boew-multimedia-timeline" tabindex="0"><progress value="0" max="100"/>'),
 				ui_end = $('<div class="wet-boew-multimedia-controls-end">');
 
 			ui_start.append(
