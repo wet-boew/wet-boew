@@ -8,7 +8,7 @@ video, object.video {
 	background-color: #000;
 }
 
-.wet-boew-multimedia-captionsarea{
+.wb-mm-captionsarea{
 	background-color:#000;
 	color:#FFF;
 	text-align:center;
@@ -16,7 +16,7 @@ video, object.video {
 	min-height:1.5em;
 }
 
-.wet-boew-multimedia .wet-boew-multimedia-overlay {
+.wet-boew-multimedia .wb-mm-overlay {
 	position:absolute;
 	background:transparent;
 	border:0;
@@ -43,7 +43,7 @@ video, object.video {
 
 $progress-color: #000;
 
-.wet-boew-multimedia-controls{
+.wb-mm-controls{
 	width:100%;
 	padding:0;
 
@@ -63,21 +63,25 @@ $progress-color: #000;
 		}
 	}
 	
-	.wet-boew-multimedia-controls-start {
+	.wb-mm-controls-start, .wb-mm-timeline-current {
 		float:left;
 	}
 
-	.wet-boew-multimedia-controls-end {
+	.wb-mm-controls-end, .wb-mm-timeline-total {
 		float:right;
 	}
 	
-	.wet-boew-multimedia-timeline{
+	.wb-mm-timeline{
 		position:relative;
 		@include ui;
 		margin-left:83px;
 		margin-right:55px;
 		height:18px;
 		padding: 2px 4px;
+	}
+	
+	.wb-mm-timeline-inner {
+		margin:0 70px;
 	}
 	
 	progress {
@@ -88,6 +92,7 @@ $progress-color: #000;
 		margin:2px 0;
 		&::-moz-progress-bar {
 			background: $progress-color;
+			display:block;
 		}
 		&::-webkit-progress-value {
 			background: $progress-color;
