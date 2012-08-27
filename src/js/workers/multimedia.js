@@ -195,7 +195,7 @@
 				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
-				evtmgr.on('loadeddata progress timeupdate seeked canplay play volumechange pause ended captionsloaded captionsloadfailed captionsvisiblechange', $.proxy(function (e) {
+				evtmgr.on('timeupdate seeked canplay play volumechange pause ended captionsloaded captionsloadfailed captionsvisiblechange', $.proxy(function (e) {
 					var $w = $(this),
 						b,
 						p,
@@ -235,16 +235,17 @@
 						}
 						break;
 					case 'timeupdate':
-						p = Math.round(this.getCurrentTime() / this.getDuration() * 1000)/10;
+						p = Math.round(this.getCurrentTime() / this.getDuration() * 1000) / 10;
 						timeline = $w.find('.wet-boew-multimedia-timeline progress');
 						timeline.attr('value', p);
+
+						$w.find('.wet-boew-multimedia-timeline-current').text(_pe.fn.multimedia._format_time(this.getCurrentTime()));
+						$w.find('.wet-boew-multimedia-timeline-total').text(_pe.fn.multimedia._format_time(this.getDuration()));
+
 						//Update captions
 						if ($.data(e.target, 'captions') !== undefined) {
 							_pe.fn.multimedia._update_captions($w.find('.wet-boew-multimedia-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
 						}
-						break;
-					case 'progress':
-						/*if (this.getBuffered() > 1) {console.log(Math.round(this.getBuffered()/ this.getDuration() * 1000)/10);}*/
 						break;
 					case 'captionsloaded':
 						//Store the captions
@@ -268,7 +269,7 @@
 		_get_ui : function (id) {
 			var ui = $('<div class="wet-boew-multimedia-controls">'),
 				ui_start = $('<div class="wet-boew-multimedia-controls-start">'),
-				ui_timeline = $('<div class="wet-boew-multimedia-timeline" tabindex="0"><progress value="0" max="100"/>'),
+				ui_timeline = $('<div class="wet-boew-multimedia-timeline" tabindex="0"><div class="wet-boew-multimedia-timeline-current">00:00:00</div><div class="wet-boew-multimedia-timeline-total">--:--:--</div><div class="wet-boew-multimedia-timeline-inner"><progress value="0" max="100" /></div>'),
 				ui_end = $('<div class="wet-boew-multimedia-controls-end">');
 
 			ui_start.append(
@@ -392,6 +393,24 @@
 			setVolume : function (v) {
 				if (typeof this.object.volume !== 'function') { this.object.volume = v; } else { this.object.setVolume(v); }
 			}
+		},
+
+		_format_time : function (current) {
+			var t = "",
+				i,
+				c,
+				p;
+			current = Math.floor(current);
+
+			for (i = 2; i >= 0; i -= 1) {
+				p = Math.pow(60, i);
+				c = Math.floor(current / p);
+				if (t !== "") { t += ":"; }
+				t += _pe.string.pad(c, 2);
+				current -= p * c;
+			}
+
+			return t;
 		},
 
 		_load_captions : function (evtmgr, src) {

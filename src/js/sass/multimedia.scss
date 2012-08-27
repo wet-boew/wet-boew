@@ -63,11 +63,11 @@ $progress-color: #000;
 		}
 	}
 	
-	.wet-boew-multimedia-controls-start {
+	.wet-boew-multimedia-controls-start, .wet-boew-multimedia-timeline-current {
 		float:left;
 	}
 
-	.wet-boew-multimedia-controls-end {
+	.wet-boew-multimedia-controls-end, .wet-boew-multimedia-timeline-total {
 		float:right;
 	}
 	
@@ -80,6 +80,10 @@ $progress-color: #000;
 		padding: 2px 4px;
 	}
 	
+	.wet-boew-multimedia-timeline-inner {
+		margin:0 70px;
+	}
+	
 	progress {
 		@include border;
 		color:$progress-color;
@@ -88,6 +92,7 @@ $progress-color: #000;
 		margin:2px 0;
 		&::-moz-progress-bar {
 			background: $progress-color;
+			display:block;
 		}
 		&::-webkit-progress-value {
 			background: $progress-color;
