@@ -23,275 +23,82 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
-<!--[if lte IE 8]><link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/core-ie-min.css" /><![endif]-->
+<!--[if lte IE 8]>
+<script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
 <!--[if gt IE 8]><!-->
-<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/core-min.css" media="print and (min-width:768px), screen and (min-width:768px)" />
-<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/mobile-min.css" media="screen and (max-width:767px)" />
-<link rel="stylesheet" href="../../build/js/jquery.mobile/jquery.mobile.min.css" media="screen and (max-width:767px)" />
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
+<style>
+.paddingLeft-larger {
+	padding-left:40px;
+}
+
+.tbl-nostyling th {
+	background-color:white;
+	text-align: left;
+	
+}
+</style>
 <!-- CustomScriptsCSSEnd -->
 </head>
 
-<body><div id="cn-body-inner-1col" data-role="page">
-<div id="cn-skip-head">
-<ul id="cn-tphp">
-<li id="cn-sh-link-1"><a href="#wb-cont">Skip to main content</a></li>
-<li id="cn-sh-link-2"><a href="#cn-nav">Skip to footer</a></li>
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
 </ul>
 </div>
 
-<div id="cn-head"><div id="cn-head-inner"><header>
+<div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
-<nav role="navigation"><div id="cn-gcnb"><h2>Government of Canada navigation bar</h2><div id="cn-gcnb-inner"><div id="fip-pcim-gcnb">
-<div id="cn-sig"><div id="cn-sig-inner"><div id="fip-pcim-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
 <ul>
-<li id="cn-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
-<li id="cn-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
-<li id="cn-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
-<li id="cn-gcnb-lang"><a href="zebra-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="index-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
-<div id="cn-banner" role="banner"><div id="cn-banner-inner">
-<div id="cn-wmms"><div id="cn-wmms-inner"><div id="fip-pcim-wmms" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
-<div id="cn-site-title"><p id="cn-site-title-inner"><a href="../theme-gcwy-fegc/home-accueil-megamenu-theme-gcwu-fegc-eng.html">Site title</a></p></div>
 
-<section role="search"><div id="cn-search-box"><h2>Search</h2>
-<form action="#" method="post"><div id="cn-search-box-inner">
-<label for="cn-search">Search website</label><input id="cn-search" name="cn-search" type="search" value="" size="27" maxlength="150" />
-<input id="cn-search-submit" name="cn-search-submit" type="submit" value="Search" data-icon="search" />
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../docs/index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="cn-psnb"><h2><span>Site</span> menu</h2><div id="cn-psnb-inner"><div class="wet-boew-menubar mb-megamenu"><div>
-<ul class="mb-menu" data-role="navbar">
-<li><section><h3><a href="#">Section 1</a></h3><div class="mb-sm"><div class="span-2">
-<ul>
-<li><a href="#">Item 1.1</a></li>
-<li><a href="#">Item 1.2</a></li>
-<li><a href="#">Item 1.3</a></li>
-<li><a href="#">Item 1.4</a></li>
-<li><a href="#">Item 1.5</a></li>
-<li><a href="#">Item 1.6</a></li>
-<li><a href="#">Item 1.7</a></li>
-<li><a href="#">Item 1.8</a></li>
-</ul>
-</div>
-<div class="clear"></div>
-</div></section></li>
-<li><section><h3><a href="section2-eng.html">Section 2</a></h3><div class="mb-sm">
-<div class="span-2">
-<section><h4><a href="#">Section 2.1</a></h4>
-<ul>
-<li><a href="#">Item 2.1.1</a></li>
-<li><a href="#">Item 2.1.2</a></li>
-<li><a href="#">Item 2.1.3</a></li>
-<li><a href="#">Item 2.1.4</a></li>
-<li><a href="#">Item 2.1.5</a></li>
-<li><a href="#">Item 2.1.6</a></li>
-</ul>
-</section>
-</div>
-<div class="span-2">
-<section><h4><a href="#">Section 2.2</a></h4>
-<ul>
-<li><a href="#">Item 2.2.1</a></li>
-<li><a href="#">Item 2.2.2</a></li>
-<li><a href="#">Item 2.2.3</a></li>
-<li><a href="#">Item 2.2.4</a></li>
-<li><a href="#">Item 2.2.5</a></li>
-<li><a href="#">Item 2.2.6</a></li>
-<li><a href="#">Item 2.2.7</a></li>
-<li><a href="#">Item 2.2.8</a></li>
-</ul>
-</section>
-</div>
-<div class="clear"></div>
-</div></section></li>
-<li><section><h3><a href="#">Section 3</a></h3><div class="mb-sm">
-<div class="span-2">
-<section><h4><a href="#">Section 3.1</a></h4>
-<ul>
-<li><a href="#">Item 3.1.1</a></li>
-<li><a href="#">Item 3.1.2</a></li>
-<li><a href="#">Item 3.1.3</a></li>
-<li><a href="#">Item 3.1.4</a></li>
-<li><a href="#">Item 3.1.5</a></li>
-<li><a href="#">Item 3.1.6</a></li>
-</ul>
-</section>
-</div>
-<div class="span-2">
-<section><h4><a href="#">Section 3.2</a></h4>
-<ul>
-<li><a href="#">Item 3.2.1</a></li>
-<li><a href="#">Item 3.2.2</a></li>
-<li><a href="#">Item 3.2.3</a></li>
-<li><a href="#">Item 3.2.4</a></li>
-<li><a href="#">Item 3.2.5</a></li>
-<li><a href="#">Item 3.2.6</a></li>
-<li><a href="#">Item 3.2.7</a></li>
-<li><a href="#">Item 3.2.8</a></li>
-</ul>
-</section>
-</div>
-<div class="span-2">
-<section><h4><a href="#">Section 3.3</a></h4>
-<ul>
-<li><a href="#">Item 3.3.1</a></li>
-<li><a href="#">Item 3.3.2</a></li>
-<li><a href="#">Item 3.3.3</a></li>
-</ul>
-</section>
-</div>
-<div class="clear"></div>
-</div></section></li>
-<li><section><h3><a href="#">Section 4</a></h3><div class="mb-sm">
-<div class="span-2">
-<section><h4><a href="#">Section 4.1</a></h4>
-<ul>
-<li><a href="#">Item 4.1.1</a></li>
-<li><a href="#">Item 4.1.2</a></li>
-<li><a href="#">Item 4.1.3</a></li>
-</ul>
-</section>
-<section><h4><a href="#">Section 4.2</a></h4>
-<ul>
-<li><a href="#">Item 4.2.1</a></li>
-<li><a href="#">Item 4.2.2</a></li>
-<li><a href="#">Item 4.2.3</a></li>
-<li><a href="#">Item 4.2.4</a></li>
-</ul>
-</section>
-<section><h4><a href="#">Section 4.3</a></h4>
-<ul>
-<li><a href="#">Item 4.3.1</a></li>
-<li><a href="#">Item 4.3.2</a></li>
-</ul>
-</section>
-</div>
-<div class="span-2">
-<section><h4><a href="#">Section 4.4</a></h4>
-<ul>
-<li><a href="#">Item 4.4.1</a></li>
-<li><a href="#">Item 4.4.2</a></li>
-<li><a href="#">Item 4.4.3</a></li>
-<li><a href="#">Item 4.4.4</a></li>
-</ul>
-</section>
-<section><h4><a href="#">Section 4.5</a></h4>
-<ul>
-<li><a href="#">Item 4.5.1</a></li>
-<li><a href="#">Item 4.5.2</a></li>
-<li><a href="#">Item 4.5.3</a></li>
-<li><a href="#">Item 4.5.4</a></li>
-<li><a href="#">Item 4.5.5</a></li>
-</ul>
-</section>
-</div>
-<div class="clear"></div>
-</div></section></li>
+<div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="includes/menu-eng.inc">
+<li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
+<li><div><a href="section2/index-eng.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
 <li><div><a href="#">Section 5</a></div></li>
-<li><section><h3><a href="#">Section 6</a></h3><div class="mb-sm">
-<div class="span-2">
-<section><h4><a href="#">Section 6.1</a></h4>
-<ul>
-<li><a href="#">Item 6.1.1</a></li>
-<li><a href="#">Item 6.1.2</a></li>
-<li><a href="#">Item 6.1.3</a></li>
-<li><a href="#">Item 6.1.4</a></li>
-<li><a href="#">Item 6.1.5</a></li>
-<li><a href="#">Item 6.1.6</a></li>
-</ul>
-</section>
-</div>
-<div class="span-2">
-<section><h4><a href="#">Section 6.2</a></h4>
-<ul>
-<li><a href="#">Item 6.2.1</a></li>
-<li><a href="#">Item 6.2.2</a></li>
-<li><a href="#">Item 6.2.3</a></li>
-<li><a href="#">Item 6.2.4</a></li>
-<li><a href="#">Item 6.2.5</a></li>
-<li><a href="#">Item 6.2.6</a></li>
-<li><a href="#">Item 6.2.7</a></li>
-<li><a href="#">Item 6.2.8</a></li>
-</ul>
-</section>
-</div>
-<div class="span-2">
-<section><h4><a href="#">Section 6.3</a></h4>
-<ul>
-<li><a href="#">Item 6.3.1</a></li>
-<li><a href="#">Item 6.3.2</a></li>
-<li><a href="#">Item 6.3.3</a></li>
-</ul>
-</section>
-</div>
-<div class="span-2">
-<section><h4><a href="#">Section 6.4</a></h4>
-<ul>
-<li><a href="#">Item 6.4.1</a></li>
-<li><a href="#">Item 6.4.2</a></li>
-<li><a href="#">Item 6.4.3</a></li>
-<li><a href="#">Item 6.4.4</a></li>
-<li><a href="#">Item 6.4.5</a></li>
-<li><a href="#">Item 6.4.6</a></li>
-</ul>
-</section>
-</div>
-<div class="clear"></div>
-</div></section></li>
-<li><section><h3><a href="#">Section 7</a></h3><div class="mb-sm">
-<div class="span-2">
-<section><h4><a href="#">Section 7.1</a></h4>
-<ul>
-<li><a href="#">Item 7.1.1</a></li>
-<li><a href="#">Item 7.1.2</a></li>
-<li><a href="#">Item 7.1.3</a></li>
-<li><a href="#">Item 7.1.4</a></li>
-<li><a href="#">Item 7.1.5</a></li>
-<li><a href="#">Item 7.1.6</a></li>
-</ul>
-</section>
-</div>
-<div class="span-2">
-<section><h4><a href="#">Section 7.2</a></h4>
-<ul>
-<li><a href="#">Item 7.2.1</a></li>
-<li><a href="#">Item 7.2.2</a></li>
-<li><a href="#">Item 7.2.3</a></li>
-<li><a href="#">Item 7.2.4</a></li>
-<li><a href="#">Item 7.2.5</a></li>
-<li><a href="#">Item 7.2.6</a></li>
-<li><a href="#">Item 7.2.7</a></li>
-<li><a href="#">Item 7.2.8</a></li>
-</ul>
-</section>
-</div>
-<div class="span-2">
-<section><h4><a href="#">Section 7.3</a></h4>
-<ul>
-<li><a href="#">Item 7.3.1</a></li>
-<li><a href="#">Item 7.3.2</a></li>
-<li><a href="#">Item 7.3.3</a></li>
-</ul>
-</section>
-</div>
-<div class="clear"></div>
-</div></section></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
 </ul>
 </div></div></div></div>
 
-<div id="cn-bc"><h2>Breadcrumb trail</h2><div id="cn-bc-inner">
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
 <ol>
-<li><a href="../theme-gcwu-fegc/home-accueil-megamenu-theme-gcwu-fegc-eng.html">Home</a></li>
-<li><a href="section2-eng.html">Section 2</a></li>
+<li><a href="index-eng.html">Home</a></li>
 <li>Usable Table - Web Experience Toolkit (WET)</li>
 </ol>
 </div></div>
@@ -299,8 +106,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- HeaderEnd -->
 </header></div></div>
 
-<div id="cn-cols"><div id="cn-cols-inner" class="equalize">
-<div id="cn-centre-col" role="main"><div id="cn-centre-col-inner">
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
 <h1 id="wb-cont">Usable Table (Table Parser) - Web Experience Toolkit (WET)</h1>
 
@@ -2794,11 +2601,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <p>Sometime I already see a table that the rowgroup header are combined with the summary column. Something like the following table.</p>
 
-<style>
-.paddingLeft-larger {
-	padding-left:40px;
-}
-</style>
 <table>
   <caption>Applications filed and granted to residents of Canada</caption>
  <thead> 
@@ -2875,13 +2677,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <p>The visual relation between the &quot;Canada&quot; header and the following &quot;Provincial&quot; header is perceptible for a visual person and perceptible for a screen reader if the &quot;Canada&quot; header have a scope attribute set to &quot;rowgroup&quot;. But what is for somebody that are using a custom style sheet or if no style sheet are used at all ? You can get something like the following table.</p>
 
-<style>
-.tbl-nostyling th {
-	background-color:white;
-	text-align: left;
-	
-}
-</style>
 <table class="tbl-nostyling">
   <caption>Applications filed and granted to residents of Canada</caption>
  <thead> 
@@ -3132,7 +2927,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2>Use data cell for layout</h2>
 
-<p>Inside a data table, a cell can not be used for layout purpose. The exception are the <strong>summary/header group intersection</strong> if they are empty cell. Also in general a layout cell will be represented by td element but the top left cell can be a th element. The intersection between data group, data row and data col will be a data cell. In some case a data cell will be empty or contain something like &quot;N/A&quot;. The meaning of that particular cell will be an absence of data and not a layout cell.</h2>
+<p>Inside a data table, a cell can not be used for layout purpose. The exception are the <strong>summary/header group intersection</strong> if they are empty cell. Also in general a layout cell will be represented by td element but the top left cell can be a th element. The intersection between data group, data row and data col will be a data cell. In some case a data cell will be empty or contain something like &quot;N/A&quot;. The meaning of that particular cell will be an absence of data and not a layout cell.</p>
 
 
 <h3>Bad example (with layout data cell)</h3>
@@ -4770,7 +4565,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2>Data row</h2>
 
-<p>A data row is a table row that it's last cell are a data cell (&quo;td&quot; element). A data row can have a data cell between of two different level of row header cell</p>
+<p>A data row is a table row that it's last cell are a data cell (&quot;td&quot; element). A data row can have a data cell between of two different level of row header cell</p>
 
 <p>Here a data row</p>
 <table>
@@ -4830,7 +4625,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2>Group</h2>
 
-<p>A group are a set of row or column. When the group are a set of row, this is an row group. And when the group are a set of column, this is a column group. They exist three type of group</a>
+<p>A group are a set of row or column. When the group are a set of row, this is an row group. And when the group are a set of column, this is a column group. They exist three type of group</p>
 
 <ul>
 	<li>Header group</li>
@@ -4838,7 +4633,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<li>Summary group</li>
 </ul>
 
-<h3>Header group<h3>
+<h3>Header group</h3>
 
 <h4>Header row group</h4>
 <p>The header row group is delimited by a &quot;thead&quot; element. It's composed only of cell heading (th), optionally they can only contain one layout cell located at it's first column group. The header row group are always at the top of the table. The end can be marked by a rowgroup header spanned by the full table width or just the row before a data cell are found.</p>
@@ -5361,38 +5156,38 @@ table>
 
 
 
-<dl id="cn-doc-dates" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2012-06-17</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
 </div></div>
 </div></div>
 
-<div id="cn-foot"><div id="cn-foot-inner"><footer><h2 id="cn-nav">Footer</h2>
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
 <!-- FooterStart -->
-<nav role="navigation"><div id="cn-sft"><h3>Site footer</h3><div id="cn-sft-inner">
-<div id="cn-ft-tctr">
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
 <ul>
-<li class="terms"><a href="#" rel="license">Terms and conditions</a></li>
-<li class="trans"><a href="#">Transparency</a></li>
+<li class="gcwu-tc"><a href="http://www.tbs.gc.ca/ws-nw/wet-boew/terms" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="http://www.tbs-sct.gc.ca/pd-dp/gr-rg/index-eng.asp">Transparency</a></li>
 </ul>
 </div>
 <div class="clear"></div>
-<section><div class="span-2"><h4 class="col-head"><a href="#">About us</a></h4>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
 <ul>
 <li><a href="#">Our Mandate</a></li>
-<li><a href="#">Our Minister</a></li>
+<li><a href="#">The Minister</a></li>
 </ul>
 </div></section>
-<section><div class="span-2"><h4 class="col-head"><a href="#">News</a></h4>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
 <ul>
 <li><a href="#">News releases</a></li>
 <li><a href="#">Media advisories</a></li>
 <li><a href="#">Multimedia</a></li>
 </ul>
 </div></section>
-<section><div class="span-2"><h4 class="col-head"><a href="#">Contact us</a></h4>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
 <address>
 <ul>
 <li><a href="#">Phone numbers</a></li>
@@ -5400,7 +5195,7 @@ table>
 </ul>
 </address>
 </div></section>
-<section><div class="span-2"><h4 class="col-head"><a href="#">Stay connected</a></h4>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
 <ul>
 <li><a rel="external" href="#">YouTube</a></li>
 <li><a rel="external" href="#">Twitter</a></li>
@@ -5409,14 +5204,14 @@ table>
 </div></section>
 </div></div></nav>
 
-<nav role="navigation"><div id="cn-gcft"><h3>Government of Canada footer</h3><div id="cn-gcft-inner"><div id="fip-pcim-gcft">
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
 <ul>
 <li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
 <li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
 <li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
 <li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
-<li id="cn-ft-ca"><div><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></div></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->
@@ -5424,6 +5219,7 @@ table>
 </div></div></div>
 
 <!-- ScriptsStart -->
+<script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../build/js/settings.js"></script>
 <script src="../../build/js/pe-ap-min.js" id="progressive"></script>
 <!-- ScriptsEnd -->
