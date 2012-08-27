@@ -111,7 +111,7 @@
 
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
-				media.before($('<button class="wet-boew-multimedia-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
+				media.before($('<button class="wb-mm-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
 				media.after(_pe.fn.multimedia._get_ui(media_id));
 				if ($('html').hasClass('polyfill-progress')) {
 					elm.find('progress').progress();
@@ -121,7 +121,7 @@
 				$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
 					var h = e.data.media.parent().width() * e.data.ratio;
 					e.data.media.height(h);
-					media.parent().find('.wet-boew-multimedia-overlay').height(h);
+					media.parent().find('.wb-mm-overlay').height(h);
 				});
 				$(window).trigger('resize');
 
@@ -131,7 +131,7 @@
 						p,
 						s;
 
-					if ($target.hasClass('playpause') || e.target === this.object || $target.hasClass('wet-boew-multimedia-overlay')) {
+					if ($target.hasClass('playpause') || e.target === this.object || $target.hasClass('wb-mm-overlay')) {
 						if (this.getPaused() === true) {
 							this.play();
 						} else {
@@ -167,15 +167,15 @@
 						v = 0;
 
 					if ((e.which === 32 || e.which === 13) && e.target === this.object) {
-						$w.find('.wet-boew-multimedia-controls .playpause').click();
+						$w.find('.wb-mm-controls .playpause').click();
 						return false;
 					}
 					if (e.keyCode === 37) {
-						$w.find('.wet-boew-multimedia-controls .rewind').click();
+						$w.find('.wb-mm-controls .rewind').click();
 						return false;
 					}
 					if (e.keyCode === 39) {
-						$w.find('.wet-boew-multimedia-controls .fastforward').click();
+						$w.find('.wb-mm-controls .fastforward').click();
 						return false;
 					}
 					if (e.keyCode === 38) {
@@ -205,14 +205,14 @@
 						b = $w.find('.playpause');
 						b.empty().append(_pe.fn.multimedia.get_image('pause', _pe.dic.get('%pause')));
 						b.attr('title', _pe.dic.get('%pause'));
-						$w.find('.wet-boew-multimedia-overlay').hide();
+						$w.find('.wb-mm-overlay').hide();
 						break;
 					case 'pause':
 					case 'ended':
 						b = $w.find('.playpause');
 						b.empty().append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')));
 						b.attr('title', _pe.dic.get('%play'));
-						$w.find('.wet-boew-multimedia-overlay').show();
+						$w.find('.wb-mm-overlay').show();
 						break;
 					case 'volumechange':
 						b = $w.find('.mute').empty();
@@ -236,15 +236,15 @@
 						break;
 					case 'timeupdate':
 						p = Math.round(this.getCurrentTime() / this.getDuration() * 1000) / 10;
-						timeline = $w.find('.wet-boew-multimedia-timeline progress');
+						timeline = $w.find('.wb-mm-timeline progress');
 						timeline.attr('value', p);
 
-						$w.find('.wet-boew-multimedia-timeline-current').text(_pe.fn.multimedia._format_time(this.getCurrentTime()));
-						$w.find('.wet-boew-multimedia-timeline-total').text(_pe.fn.multimedia._format_time(this.getDuration()));
+						$w.find('.wb-mm-timeline-current').text(_pe.fn.multimedia._format_time(this.getCurrentTime()));
+						$w.find('.wb-mm-timeline-total').text(_pe.fn.multimedia._format_time(this.getDuration()));
 
 						//Update captions
 						if ($.data(e.target, 'captions') !== undefined) {
-							_pe.fn.multimedia._update_captions($w.find('.wet-boew-multimedia-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
+							_pe.fn.multimedia._update_captions($w.find('.wb-mm-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
 						}
 						break;
 					case 'captionsloaded':
@@ -252,13 +252,13 @@
 						$.data(e.target, 'captions', e.captions);
 						break;
 					case 'captionsloadfailed':
-						$w.find('.wet-boew-multimedia-captionsarea').append('<p>' + _pe.dic.get('%captionserror') + '</p>');
+						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%captionserror') + '</p>');
 						break;
 					}
 				}, elm.get(0)));
 
 				if (captions !== undefined) {
-					media.after($('<div class="wet-boew-multimedia-captionsarea"/>').hide());
+					media.after($('<div class="wb-mm-captionsarea"/>').hide());
 					_pe.fn.multimedia._load_captions(evtmgr, captions);
 				}
 			}
@@ -267,10 +267,10 @@
 		}, // end of exec
 
 		_get_ui : function (id) {
-			var ui = $('<div class="wet-boew-multimedia-controls">'),
-				ui_start = $('<div class="wet-boew-multimedia-controls-start">'),
-				ui_timeline = $('<div class="wet-boew-multimedia-timeline" tabindex="0"><div class="wet-boew-multimedia-timeline-current">00:00:00</div><div class="wet-boew-multimedia-timeline-total">--:--:--</div><div class="wet-boew-multimedia-timeline-inner"><progress value="0" max="100" /></div>'),
-				ui_end = $('<div class="wet-boew-multimedia-controls-end">');
+			var ui = $('<div class="wb-mm-controls">'),
+				ui_start = $('<div class="wb-mm-controls-start">'),
+				ui_timeline = $('<div class="wb-mm-timeline" tabindex="0"><div class="wb-mm-timeline-current">00:00:00</div><div class="wb-mm-timeline-total">--:--:--</div><div class="wb-mm-timeline-inner"><progress value="0" max="100" /></div>'),
+				ui_end = $('<div class="wb-mm-controls-end">');
 
 			ui_start.append(
 				$('<button>').attr({
@@ -366,14 +366,14 @@
 			},
 
 			getCaptionsVisible: function () {
-				return $(this).find('.wet-boew-multimedia-captionsarea').is(':visible');
+				return $(this).find('.wb-mm-captionsarea').is(':visible');
 			},
 
 			setCaptionsVisible : function (v) {
 				if (v) {
-					$(this).find('.wet-boew-multimedia-captionsarea').show();
+					$(this).find('.wb-mm-captionsarea').show();
 				} else {
-					$(this).find('.wet-boew-multimedia-captionsarea').hide();
+					$(this).find('.wb-mm-captionsarea').hide();
 				}
 				$(this.evtmgr).trigger('captionsvisiblechange');
 			},
