@@ -1381,11 +1381,13 @@
 						}
 
 						// TODO: find a better way to switch back and forth between mobile and desktop modes.
-						window.onresize = function () {
-							if (pe.mobile !== pe.mobilecheck()) {
+						pe.resize(function () {
+							var mobilecheck = pe.mobilecheck();
+							if (pe.mobile !== mobilecheck) {
+								pe.mobile = mobilecheck;
 								window.location.href = decodeURI(pe.url(window.location.href).removehash());
 							}
-						};
+						});
 					});
 
 					// Load the polyfills with dependencies
