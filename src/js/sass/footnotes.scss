@@ -15,8 +15,13 @@ $ddRtnWidth: 2.75em;
 		border: 1px solid #CCC;
 		padding: 0 4px 1px;
 		&:hover, &:focus, &:active {
-			border-color: #666;
+			border-color: #555;
 		}
+	}
+	sup:target a.footnote-link, .wet-boew-footnotes dl dt:target + dd p.footnote-return a {
+		color: #FFF;
+		background-color: #555;
+		border-color: #555;
 	}
 	.wet-boew-footnotes {
 		margin: 2em 10px 0 10px;
@@ -28,6 +33,7 @@ $ddRtnWidth: 2.75em;
 		h2 {
 			margin: {
 				left: 0;
+				right: 0;
 				top: 0;
 			}
 		}
@@ -41,9 +47,14 @@ $ddRtnWidth: 2.75em;
 				overflow: hidden;
 				margin: 0;
 			}
+			dt:target + dd {
+				background-color: #EEE;
+				border-color: #555;
+			}
 			dd {
 				position: relative;
 				margin: $spacing 0;
+				border: 1px solid transparent;
 				p {
 					margin: 0 0 0 ($spacing + $ddRtnWidth);
 					padding: 0 $spacing $spacing $spacing;
