@@ -201,7 +201,7 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return (pe.mobileview && window.innerWidth < 768 && (window.outerWidth - window.innerWidth < 50) && !(pe.ie > 0 && pe.ie < 9));
+			return (pe.mobileview && (screen.width < 768 || window.innerWidth < 768 && (window.outerWidth - window.innerWidth < 50)) && !(pe.ie > 0 && pe.ie < 9));
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
