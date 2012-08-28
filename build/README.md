@@ -27,18 +27,18 @@ You will need to set your proxy information in the ANT_OPTS environmental variab
 
     > build.cmd -Dhttp.proxyHost=PROXY -Dhttp.proxyPort=PORT
     
-* If the above way is not working, adding the proxy to the build file seems to be getting some result (at least in Statcan). Modify the build.xml to include the following block :
+* If the above way is not working, adding the proxy to the build file seems to get some result (at least in Statcan). Modify the build.xml to include the following block :
 
-	<target name="proxy">
-		<property name="proxy.host" value="****"/>
-		<property name="proxy.port" value="****"/>
-		<property name="proxy.user" value="****"/>
-		<property name="proxy.pass" value="****"/>
-		<setproxy proxyhost="${proxy.host}" proxyport="${proxy.port}"
-			proxyuser="${proxy.user}" proxypassword="${proxy.pass}"/>
-	</target>
+		<target name="proxy">
+			<property name="proxy.host" value="****"/>
+			<property name="proxy.port" value="****"/>
+			<property name="proxy.user" value="****"/>
+			<property name="proxy.pass" value="****"/>
+			<setproxy proxyhost="${proxy.host}" proxyport="${proxy.port}"
+				proxyuser="${proxy.user}" proxypassword="${proxy.pass}"/>
+		</target>
 	
     And in the default goal :
     
-	<target name="default" depends="clean,proxy,build" description="Performs a Cleand and Build when calling ant without any target"></target>
+		<target name="default" depends="clean,proxy,build" description="Performs a Cleand and Build when calling ant without any target"></target>
 	
