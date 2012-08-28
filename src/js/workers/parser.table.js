@@ -342,7 +342,7 @@
 							theadRSNext.type = 5; // Mark the next row as a row description
 							theadRSNextCell.type = 5; // Mark the cell as a cell description
 							theadRSNextCell.row = theadRS;
-							cell.descCell = cell;
+							cell.descCell = theadRSNextCell;
 
 							// Add the description cell to the complete listing
 							if (!groupZero.desccell) {
@@ -1269,10 +1269,8 @@
 						if (!row.cell[0].describe) {
 							row.cell[0].describe = [];
 						}
-						for (i = 0; i < rowgroupHeaderRowStack.length; i += 1) {
-							rowgroupHeaderRowStack[i].cell[0].descCell = row.cell[0];
-							row.cell[0].describe.push(rowgroupHeaderRowStack[i].cell[0]);
-						}
+						rowgroupHeaderRowStack[rowgroupHeaderRowStack.length - 1].cell[0].descCell = row.cell[0];
+						row.cell[0].describe.push(rowgroupHeaderRowStack[rowgroupHeaderRowStack.length - 1].cell[0]);
 						if (!groupZero.desccell) {
 							groupZero.desccell = [];
 						}
