@@ -34,25 +34,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
-<style type="text/css">
-.view-example {
-	margin-bottom: 0 !important;
-}
-.view-example summary {
-	background-color: #176ca7;
-	color: #fff;
-	margin-bottom: 10px;
-	padding: 3px 10px;
-}
-.view-code {
-	margin-bottom: 0 !important;
-}
-.view-code summary {
-	background-color: #dda;
-	margin-bottom: 10px;
-	padding: 3px 10px;
-}
-</style>
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -105,7 +86,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <ol>
 <li><a href="../../docs/index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li><a href="grid-base-eng.html">CSS Grid System</a></li>
+<li><a href="grid-base-eng.html">CSS grid system</a></li>
 <li>Positions and alignment</li>
 </ol>
 </div></div>
@@ -118,6 +99,18 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- MainContentStart -->
 <h1 id="wb-cont">Positions and alignment</h1>
 
+<div class="span-4 module-table-contents">
+<p>Table of contents</p>
+<ul>
+	<li><a href="#floats">Floats</a></li>
+    <li><a href="#horizontal">Horizontal alignment</a></li>
+    <li><a href="#vertical">Vertical alignment</a></li>
+    <li><a href="#width">Width</a></li>
+    <li><a href="#absolute">Absolute positioning</a></li>
+    <li><a href="#indentation">Indentation</a></li>
+</ul>
+</div>
+<div class="clear"></div>
 <h2 id="floats">Floats</h2>
 <p>The float classes are used to align content.</p>
 
@@ -138,8 +131,67 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		<td class="background-light"><p class="float-right"><span class="background-accent">Resulting text floats right</span></p></td>
 	</tr>
 </table>
+<div class="span-1"><p class="badge-intro">Examples</p></div>
+<div class="span-5">
+<h4>Example 1: Regular text flows under the grid cell</h4>
+  <p>Grid cells behave like fixed width columns, so content never freely floats in the available white space below or around a neighbouring cell. However, there are lots of situations where you want the dimensions and structure of a grid, but need the benefit of regular free-flowing content. For example, if you want a small floating box on the right side of your page, and you want the body text to fill the space around it. You need to do the following:</p>
+<ol>
+	<li>Create the grid cell you want to appear on the right. A <code>span-2</code> is ideal for this.</li>
+	<li>Apply the <code>float-right</code> class to this grid cell.</li>
+	<li>Do <strong>not</strong> put the rest of the content in a grid cell, like a <code>span-4</code>. Instead, treat it like regular body text. The result is <strong>non-restricted content that fills the available space.</strong></li>
+</ol>
 
-<h2 id="ha">Horizontal Alignment</h2>
+<div class="module background-highlight">
+	<div class="span-2 module-related float-right margin-top-medium">
+		<h3>Related Links</h3>
+		<ul>
+			<li><a href="#">Lorem ipsum</a></li>
+			<li><a href="#">Dolar sit amet</a></li>
+		</ul>
+	</div>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lorem est, sollicitudin eget rhoncus non, pellentesque in urna. Ut dictum dapibus convallis. Vestibulum egestas lacinia justo, quis pellentesque sapien ultricies in. Maecenas ac turpis nisi, vitae dictum dui. Nulla rhoncus molestie massa, a aliquet risus placerat vel. Etiam tortor justo, mollis eget ultrices sed, lacinia porttitor nisi. Nulla facilisi. Vestibulum est turpis, auctor ac bibendum et, vestibulum nec lectus. Curabitur pharetra ullamcorper enim quis aliquam. In malesuada hendrerit dolor id lobortis. Donec quis nibh sit amet massa cursus convallis. Donec volutpat ipsum et justo egestas viverra. Aenean faucibus urna non nisl lacinia vitae molestie risus dapibus. Sed porttitor congue arcu eu semper. Proin est arcu, iaculis vel feugiat vitae, ullamcorper bibendum nunc.</p>
+    </div>
+	<details>
+	  <summary>View code</summary>
+	<pre>&lt;div class=&quot;span-2 module-related float-right&quot;&gt;
+	&lt;h3&gt;Related Links&lt;/h3&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Lorem ipsum&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Dolar sit amet&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lorem est, sollicitudin eget rhoncus non, pellentesque in urna. Ut dictum dapibus convallis. Vestibulum egestas lacinia justo, quis pellentesque sapien ultricies in. Maecenas ac turpis nisi, vitae dictum dui. Nulla rhoncus molestie massa, a aliquet risus placerat vel. Etiam tortor justo, mollis eget ultrices sed, lacinia porttitor nisi. Nulla facilisi. Vestibulum est turpis, auctor ac bibendum et, vestibulum nec lectus. Curabitur pharetra ullamcorper enim quis aliquam. In malesuada hendrerit dolor id lobortis. Donec quis nibh sit amet massa cursus convallis. Donec volutpat ipsum et justo egestas viverra. Aenean faucibus urna non nisl lacinia vitae molestie risus dapibus. Sed porttitor congue arcu eu semper. Proin est arcu, iaculis vel feugiat vitae, ullamcorper bibendum nunc.&lt;/p&gt;</pre>
+
+</details>
+
+<div class="clear"></div>
+
+<h4>Example 2: Regular text flows under the grid cell</h4>
+<p>Text naturally flows under the following <code>span-2</code> cell. <strong>Remember to align all images up with the text.</strong> To override the default settings, the following example requires <code>class="indent-large"></code> to align the sunflower image on the left with the text. The other image on the right does not require extra styling.</p>
+
+	<div class="module background-highlight">
+		<div class="span-2 margin-bottom-medium margin-top-medium">
+			<img src="http://www.placehold.it/300x200" alt="" width="224" height="168" class="margin-bottom-none" />
+		</div>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lorem est, sollicitudin eget rhoncus non, pellentesque in urna. Ut dictum dapibus convallis. Vestibulum egestas lacinia justo, quis pellentesque sapien ultricies in. Maecenas ac turpis nisi, vitae dictum dui. Nulla rhoncus molestie massa, a aliquet risus placerat vel. Etiam tortor justo, mollis eget ultrices sed, lacinia porttitor nisi. Nulla facilisi. Vestibulum est turpis, auctor ac bibendum et, vestibulum nec lectus. Curabitur pharetra ullamcorper enim quis aliquam. In malesuada hendrerit dolor id lobortis. Donec quis nibh sit amet massa cursus convallis. Donec volutpat ipsum et justo egestas viverra. Aenean faucibus urna non nisl lacinia vitae molestie risus dapibus. Sed porttitor congue arcu eu semper. Proin est arcu, iaculis vel feugiat vitae, ullamcorper bibendum nunc.</p>
+		<p>Nullam vestibulum interdum erat, consequat semper ipsum vestibulum sed. Aenean vel placerat mi. Integer ac metus dolor, nec adipiscing mauris. Phasellus nec lorem tortor, in mollis nulla. Etiam urna felis, posuere vel vulputate eu, luctus sed sem. Aliquam nunc sapien, faucibus sit amet porttitor eu, ullamcorper a odio. Aenean ac augue dui, vel ultrices purus. Cras euismod laoreet leo, non venenatis est aliquam sit amet. Integer ornare vulputate neque at posuere. Nullam at augue vitae augue suscipit luctus eu non dui.</p>
+	</div>
+
+<details class="span-6">
+	<summary>View code</summary>
+	<pre>&lt;div class=&quot;span-2 margin-bottom-medium margin-top-medium indent-none&quot;&gt;
+	&lt;img src=&quot;http://www.placehold.it/300x200&quot; alt=&quot;&quot; width=&quot;224&quot; height=&quot;168&quot; class=&quot;margin-bottom-none&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lorem est, sollicitudin eget rhoncus non, pellentesque in urna. Ut dictum dapibus convallis. Vestibulum egestas lacinia justo, quis pellentesque sapien ultricies in. Maecenas ac turpis nisi, vitae dictum dui. Nulla rhoncus molestie massa, a aliquet risus placerat vel. Etiam tortor justo, mollis eget ultrices sed, lacinia porttitor nisi. Nulla facilisi. Vestibulum est turpis, auctor ac bibendum et, vestibulum nec lectus. Curabitur pharetra ullamcorper enim quis aliquam. In malesuada hendrerit dolor id lobortis. Donec quis nibh sit amet massa cursus convallis. Donec volutpat ipsum et justo egestas viverra. Aenean faucibus urna non nisl lacinia vitae molestie risus dapibus. Sed porttitor congue arcu eu semper. Proin est arcu, iaculis vel feugiat vitae, ullamcorper bibendum nunc.&lt;/p&gt;
+
+&lt;p&gt;Nullam vestibulum interdum erat, consequat semper ipsum vestibulum sed. Aenean vel placerat mi. Integer ac metus dolor, nec adipiscing mauris. Phasellus nec lorem tortor, in mollis nulla. Etiam urna felis, posuere vel vulputate eu, luctus sed sem. Aliquam nunc sapien, faucibus sit amet porttitor eu, ullamcorper a odio. Aenean ac augue dui, vel ultrices purus. Cras euismod laoreet leo, non venenatis est aliquam sit amet. Integer ornare vulputate neque at posuere. Nullam at augue vitae augue suscipit luctus eu non dui.&lt;/p&gt;</pre>
+</details>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+<h2 id="horizontal">Horizontal alignment</h2>
 <p>The align classes are used to align text within a content block.</p>
 <table class="table-simplify span-6">
 	<caption>The different horizontal alignment styling options</caption>
@@ -163,7 +215,110 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	</tr>
 </table>
 
-<h2 id="va">Vertical Alignment</h2>
+<div class="span-6">
+<h3>Float versus align</h3>
+<p><strong>Float <abbr title="Cascading Style Sheet">CSS</abbr> makes the grid cell float</strong>, but does not affect the content inside inside it. <strong>Align <abbr title="Cascading Style Sheet">CSS</abbr> affects only the content</strong> within the grid cell, but not the grid cell itself. For example:</p>
+<ul>
+	<li><code>&lt;div class=&quot;span-2 float-right&quot;&gt;content&lt;/div&gt;</code> moves the grid cell to the right side of the page, and</li>
+	<li><code>&lt;div class=&quot;span-2 align-right&quot;&gt;content&lt;/div&gt;</code> moves the content within the cell to the right side of the cell, but the cell itself does not move.</li>
+</ul>
+
+
+
+
+
+
+
+<div class="span-1 row-start"><p class="badge-intro">Examples</p></div>
+<div class="span-5 row-end">
+<h4>Single Alignment</h4>
+
+
+	
+	<table class="width-50">
+	<caption>Notice that <strong>some</strong> table data is centred.</caption>
+	<tr>
+		<th scope="col">Fake</th>
+		<th scope="col">Fake</th>
+		<th scope="col">Fake</th>
+		<th scope="col">Fake</th>
+	</tr>
+	<tr>
+		<td class="align-center">Centre</td>
+		<td>Left</td>
+		<td class="align-center">Centre</td>
+		<td>Left</td>
+	</tr>
+	</table>
+
+<div class="clear"></div>
+
+<details>
+	<summary>View code</summary>
+	<pre>
+&lt;table class=&quot;width-50&quot;&gt;
+	&lt;caption&gt;Notice that the table data is centred as well&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
+		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
+		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
+		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td class=&quot;align-center&quot;&gt;Centre&lt;/td&gt;
+		&lt;td&gt;Left&lt;/td&gt;
+		&lt;td class=&quot;align-center&quot;&gt;Centre&lt;/td&gt;
+		&lt;td&gt;Left&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</pre>
+</details>
+<h4>Group Alignment</h4>
+
+
+	<table class="width-50 align-center">
+	<caption>Notice that the table data is centred.</caption>
+	<tr>
+		<th scope="col">Fake</th>
+		<th scope="col">Fake</th>
+		<th scope="col">Fake</th>
+		<th scope="col">Fake</th>
+	</tr>
+	<tr>
+		<td>Centre</td>
+		<td>Centre</td>
+		<td>Centre</td>
+		<td>Centre</td>
+	</tr>
+	</table>
+
+<div class="clear"></div>
+
+<details>
+	<summary>View code</summary>
+	<pre>
+&lt;table class=&quot;width-50 align-center&quot;&gt;
+	&lt;caption&gt;Notice that the table data is centred as well&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
+		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
+		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
+		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Centre&lt;/td&gt;
+		&lt;td&gt;Centre&lt;/td&gt;
+		&lt;td&gt;Centre&lt;/td&gt;
+		&lt;td&gt;Centre&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</pre>
+</details>
+<div class="clear"></div>
+</div>
+
+</div>
+<div class="clear"></div>
+
+<h2 id="vertical">Vertical alignment</h2>
 <table class="table-simplify span-6">
 	<caption>The different vertical alignment styling options</caption>
 	<thead>
@@ -187,7 +342,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		<td class="background-light align-bottom"><p class="background-accent margin-top-none margin-bottom-none">Resulting text, middle vertical alignment</p></td>
 	</tr>
 </table>
-
+<div class="clear"></div>
 <h2 id="width">Width</h2>
 <p>This table uses the <code>width100</code> style to stretch it across 100% of the available space. This styling suits the content, as there is minimal word wrapping and white space.</p>
 <table class="table-simplify span-6">
@@ -240,9 +395,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		<td class="background-light"><div class="width-10"><p class="background-accent">This block uses the <code>width-10</code> class.</p></div>
 	</tr>
 </table>
+<div class="clear"></div>
 
-
-<h2>Absolute Positioning</h2>
+<h2 id="absolute">Absolute positioning</h2>
 <p>By default, grids cells float left and stack side-by-side, forming rows from left to right. However, you can use positional <abbr title="Cascading Style Sheet">CSS</abbr> to layer them on top of each other. The parent cell will act as the container, and the child cells can be layered horizontally and vertically within the container, on top of other cells.</p>
 <p>For example, here is a <code>span-6</code> (the parent) with a <code>span-3 position-top position-right</code> (the child). Inside the <code>span-3 position-top position-right</code> are three additional <code>span-1</code> children. <strong>Note:</strong> opacity <abbr title="Cascading Style Sheet">CSS</abbr> has been added to the below example, to further demonstrate the layering effect.</p>
 
@@ -266,8 +421,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div class="clear"></div>
 
-<details class="span-6 view-example">
-	<summary>View Example</summary>
+<div class="span-6">
 	<div class="span-6">
 		<img height="190" width="700" alt="" src="images/position.png"/>
 		<div class="span-3 position-top position-right">
@@ -292,11 +446,11 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			<div class="clear"></div>
 		</div>
 	</div>
-</details>
+</div>
 
-<details class="span-6 view-code">
-	<summary>Source Code</summary>
-<pre class="prettyprint linenums">&lt;div class=&quot;span-6&quot;&gt;
+<details class="span-6">
+	<summary>View code</summary>
+<pre>&lt;div class=&quot;span-6&quot;&gt;
 	&lt;img height=&quot;190&quot; width=&quot;700&quot; alt=&quot;&quot; src=&quot;1.png&quot;/&gt;
 	&lt;div class=&quot;span-3 position-top position-right&quot;&gt;
 		&lt;div class=&quot;span-1 row-start background-light opacity-90&quot;&gt;
@@ -440,214 +594,29 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<div class="clear"></div>
 	</div>
 </div>
-<div class="span-8 module-summary">
-	<h3>Recap: Grid parents and grid children</h3>
-	<ul>
-	<li>Within a grid cell, you can place other grids, thereby creating a grid parent that contains grid children (like a table inside a table).</li>
-	<li>In each row, you need to remove the left hand gutter from the first child and the right hand gutter from the last grid child so it fits into the available space (the <code>margin-right</code> is either 5px or 10px, depending on the user's resolution). Apply the <code>row-start</code> to the first child in the row and then <code>row-end</code> <abbr title="Cascading Style Sheet">CSS</abbr> to the last child in a given row to achieve this.</li>
-	<li>You have unlimited layout options when you use a parent &#47; child grid system.</li>
-	</ul>
-</div>
 <div class="clear"></div>
 
 
-<h2 id="positioning">Indentation</h2>
-<div class="span-2 module float-right">
-	<p><strong>Borrowing default <abbr title="Cascading Style Sheet">CSS</abbr>:</strong></p>
-	<ul>
-	<li><code>float-right</code></li>
-	<li><code>align-right</code></li>
-	<li><code>align-center</code></li>
-	</ul>
-</div>
-<p>The grid system borrows floating and alignment classes from grid utilities style sheet. Incorporating this <abbr title="Cascading Style Sheet">CSS</abbr> allows for even more layout and design options, while keeping the total number of classes to a minimum. Grid cells float left by default, but you can use the <code>float-right</code> class or any one of the numerous alignment classes.</p>
-
-
+<h2 id="indentation">Indentation</h2>
 <p>You can use a grid cell for indentation purposes. An <strong>empty grid cell </strong>for example, a <code>span-1</code> still retains its width property, but appears as empty white space.</p>
 
 <h3>Example</h3>
-<div class="equalize">
-	<div class="span-1 background-light"></div>
+
+	<div class="span-1"></div>
 	<div class="span-5">
 		<p><strong>This text indents because there is an empty <code>span-1</code> in front of it.</strong></p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lorem est, sollicitudin eget rhoncus non, pellentesque in urna. Ut dictum dapibus convallis. Vestibulum egestas lacinia justo, quis pellentesque sapien ultricies in. Maecenas ac turpis nisi, vitae dictum dui. Nulla rhoncus molestie massa, a aliquet risus placerat vel. Etiam tortor justo, mollis eget ultrices sed, lacinia porttitor nisi. Nulla facilisi. Vestibulum est turpis, auctor ac bibendum et, vestibulum nec lectus. Curabitur pharetra ullamcorper enim quis aliquam. In malesuada hendrerit dolor id lobortis. Donec quis nibh sit amet massa cursus convallis. Donec volutpat ipsum et justo egestas viverra. Aenean faucibus urna non nisl lacinia vitae molestie risus dapibus. Sed porttitor congue arcu eu semper. Proin est arcu, iaculis vel feugiat vitae, ullamcorper bibendum nunc.</p>
-		<p>Nullam vestibulum interdum erat, consequat semper ipsum vestibulum sed. Aenean vel placerat mi. Integer ac metus dolor, nec adipiscing mauris. Phasellus nec lorem tortor, in mollis nulla. Etiam urna felis, posuere vel vulputate eu, luctus sed sem. Aliquam nunc sapien, faucibus sit amet porttitor eu, ullamcorper a odio. Aenean ac augue dui, vel ultrices purus. Cras euismod laoreet leo, non venenatis est aliquam sit amet. Integer ornare vulputate neque at posuere. Nullam at augue vitae augue suscipit luctus eu non dui.</p>	
 	</div>
-</div>
 
 <details class="span-6 view-code">
 	<summary>Source</summary>
-	<pre class="prettyprint linenums">&lt;div class=&quot;span-1&quot;&gt;&lt;/div&gt;
+	<pre>&lt;div class=&quot;span-1&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;span-5&quot;&gt;
 	&lt;p&gt;This text indents because there is an empty &lt;code&gt;span-1&lt;/code&gt; in front of it.&lt;/p&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lorem est, sollicitudin eget rhoncus non, pellentesque in urna. Ut dictum dapibus convallis. Vestibulum egestas lacinia justo, quis pellentesque sapien ultricies in. Maecenas ac turpis nisi, vitae dictum dui. Nulla rhoncus molestie massa, a aliquet risus placerat vel. Etiam tortor justo, mollis eget ultrices sed, lacinia porttitor nisi. Nulla facilisi. Vestibulum est turpis, auctor ac bibendum et, vestibulum nec lectus. Curabitur pharetra ullamcorper enim quis aliquam. In malesuada hendrerit dolor id lobortis. Donec quis nibh sit amet massa cursus convallis. Donec volutpat ipsum et justo egestas viverra. Aenean faucibus urna non nisl lacinia vitae molestie risus dapibus. Sed porttitor congue arcu eu semper. Proin est arcu, iaculis vel feugiat vitae, ullamcorper bibendum nunc.&lt;/p&gt;
-	&lt;p&gt;Nullam vestibulum interdum erat, consequat semper ipsum vestibulum sed. Aenean vel placerat mi. Integer ac metus dolor, nec adipiscing mauris. Phasellus nec lorem tortor, in mollis nulla. Etiam urna felis, posuere vel vulputate eu, luctus sed sem. Aliquam nunc sapien, faucibus sit amet porttitor eu, ullamcorper a odio. Aenean ac augue dui, vel ultrices purus. Cras euismod laoreet leo, non venenatis est aliquam sit amet. Integer ornare vulputate neque at posuere. Nullam at augue vitae augue suscipit luctus eu non dui.&lt;/p&gt;	
 &lt;/div&gt;</pre>
 </details>
-
-
-<h3>Float versus align</h3>
-<p><strong>Float <abbr title="Cascading Style Sheet">CSS</abbr> makes the grid cell float</strong>, but does not affect the content inside inside it. <strong>Align <abbr title="Cascading Style Sheet">CSS</abbr> affects only the content</strong> within the grid cell, but not the grid cell itself. For example:</p>
-<ul>
-	<li><code>&lt;div class=&quot;span-2 float-right&quot;&gt;content&lt;/div&gt;</code> moves the grid cell to the right side of the page, and</li>
-	<li><code>&lt;div class=&quot;span-2 align-right&quot;&gt;content&lt;/div&gt;</code> moves the content within the cell to the right side of the cell, but the cell itself does not move.</li>
-</ul>
-<h3 class="margin-top-xlarge"><code>float-right</code> with a grid cell </h3>
-<p>Grid cells behave like fixed width columns, so content never freely floats in the available white space below or around a neighbouring cell. However, there are lots of situations where you want the dimensions and structure of a grid, but need the benefit of regular free-flowing content. For example, if you want a small floating box on the right side of your page, and you want the body text to fill the space around it. You need to do the following:</p>
-<ol>
-	<li>Create the grid cell you want to appear on the right. A <code>span-2</code> is ideal for this.</li>
-	<li>Apply the <code>float-right</code> class to this grid cell.</li>
-	<li>Do <strong>not</strong> put the rest of the content in a grid cell, like a <code>span-4</code>. Instead, treat it like regular body text. The result is <strong>non-restricted content that fills the available space.</strong></li>
-</ol>
-<h4 class="margin-top-large">Example 1: Regular text flows under the grid cell</h4>
-
-<details class="span-6 view-example">
-	<summary>View Example</summary>
-	<div class="span-2 module-related float-right">
-		<h3>Related Links</h3>
-		<ul>
-			<li><a href="#">Lorem ipsum</a></li>
-			<li><a href="#">Dolar sit amet</a></li>
-		</ul>
-	</div>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lorem est, sollicitudin eget rhoncus non, pellentesque in urna. Ut dictum dapibus convallis. Vestibulum egestas lacinia justo, quis pellentesque sapien ultricies in. Maecenas ac turpis nisi, vitae dictum dui. Nulla rhoncus molestie massa, a aliquet risus placerat vel. Etiam tortor justo, mollis eget ultrices sed, lacinia porttitor nisi. Nulla facilisi. Vestibulum est turpis, auctor ac bibendum et, vestibulum nec lectus. Curabitur pharetra ullamcorper enim quis aliquam. In malesuada hendrerit dolor id lobortis. Donec quis nibh sit amet massa cursus convallis. Donec volutpat ipsum et justo egestas viverra. Aenean faucibus urna non nisl lacinia vitae molestie risus dapibus. Sed porttitor congue arcu eu semper. Proin est arcu, iaculis vel feugiat vitae, ullamcorper bibendum nunc.</p>
-	<p>Nullam vestibulum interdum erat, consequat semper ipsum vestibulum sed. Aenean vel placerat mi. Integer ac metus dolor, nec adipiscing mauris. Phasellus nec lorem tortor, in mollis nulla. Etiam urna felis, posuere vel vulputate eu, luctus sed sem. Aliquam nunc sapien, faucibus sit amet porttitor eu, ullamcorper a odio. Aenean ac augue dui, vel ultrices purus. Cras euismod laoreet leo, non venenatis est aliquam sit amet. Integer ornare vulputate neque at posuere. Nullam at augue vitae augue suscipit luctus eu non dui.</p>		
-</details>
-
-<details class="span-6 view-code">
-	<summary>Source Code</summary>
-	<pre class="prettyprint linenums">&lt;div class=&quot;span-2 module-related float-right&quot;&gt;
-	&lt;h3&gt;Related Links&lt;/h3&gt;
-	&lt;ul&gt;
-		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Lorem ipsum&lt;/a&gt;&lt;/li&gt;
-		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Dolar sit amet&lt;/a&gt;&lt;/li&gt;
-	&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lorem est, sollicitudin eget rhoncus non, pellentesque in urna. Ut dictum dapibus convallis. Vestibulum egestas lacinia justo, quis pellentesque sapien ultricies in. Maecenas ac turpis nisi, vitae dictum dui. Nulla rhoncus molestie massa, a aliquet risus placerat vel. Etiam tortor justo, mollis eget ultrices sed, lacinia porttitor nisi. Nulla facilisi. Vestibulum est turpis, auctor ac bibendum et, vestibulum nec lectus. Curabitur pharetra ullamcorper enim quis aliquam. In malesuada hendrerit dolor id lobortis. Donec quis nibh sit amet massa cursus convallis. Donec volutpat ipsum et justo egestas viverra. Aenean faucibus urna non nisl lacinia vitae molestie risus dapibus. Sed porttitor congue arcu eu semper. Proin est arcu, iaculis vel feugiat vitae, ullamcorper bibendum nunc.&lt;/p&gt;
-
-&lt;p&gt;Nullam vestibulum interdum erat, consequat semper ipsum vestibulum sed. Aenean vel placerat mi. Integer ac metus dolor, nec adipiscing mauris. Phasellus nec lorem tortor, in mollis nulla. Etiam urna felis, posuere vel vulputate eu, luctus sed sem. Aliquam nunc sapien, faucibus sit amet porttitor eu, ullamcorper a odio. Aenean ac augue dui, vel ultrices purus. Cras euismod laoreet leo, non venenatis est aliquam sit amet. Integer ornare vulputate neque at posuere. Nullam at augue vitae augue suscipit luctus eu non dui.&lt;/p&gt;</pre>
-</details>
-
 <div class="clear"></div>
+<p>For more information about indents, refer to: <a href="grid-proximity-eng.html#indents" class="button button-accent">Proximity: Indents</a>
 
-<h4>Example 2: Regular text flows under the grid cell</h4>
-<p>Text naturally flows under the following <code>span-2</code> cell. <strong>Remember to align all images up with the text.</strong> To override the default settings, the following example requires <code>class="indent-large"></code> to align the sunflower image on the left with the text. The other image on the right does not require extra styling.</p>
-
-<details class="span-6 view-example">
-<summary>View Example</summary>
-	<div class="module span-6">
-		<div class="span-2 margin-bottom-medium margin-top-medium">
-			<img src="http://www.placehold.it/300x200" alt="" width="224" height="168" class="margin-bottom-none" />
-		</div>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lorem est, sollicitudin eget rhoncus non, pellentesque in urna. Ut dictum dapibus convallis. Vestibulum egestas lacinia justo, quis pellentesque sapien ultricies in. Maecenas ac turpis nisi, vitae dictum dui. Nulla rhoncus molestie massa, a aliquet risus placerat vel. Etiam tortor justo, mollis eget ultrices sed, lacinia porttitor nisi. Nulla facilisi. Vestibulum est turpis, auctor ac bibendum et, vestibulum nec lectus. Curabitur pharetra ullamcorper enim quis aliquam. In malesuada hendrerit dolor id lobortis. Donec quis nibh sit amet massa cursus convallis. Donec volutpat ipsum et justo egestas viverra. Aenean faucibus urna non nisl lacinia vitae molestie risus dapibus. Sed porttitor congue arcu eu semper. Proin est arcu, iaculis vel feugiat vitae, ullamcorper bibendum nunc.</p>
-		<p>Nullam vestibulum interdum erat, consequat semper ipsum vestibulum sed. Aenean vel placerat mi. Integer ac metus dolor, nec adipiscing mauris. Phasellus nec lorem tortor, in mollis nulla. Etiam urna felis, posuere vel vulputate eu, luctus sed sem. Aliquam nunc sapien, faucibus sit amet porttitor eu, ullamcorper a odio. Aenean ac augue dui, vel ultrices purus. Cras euismod laoreet leo, non venenatis est aliquam sit amet. Integer ornare vulputate neque at posuere. Nullam at augue vitae augue suscipit luctus eu non dui.</p>
-	</div>
-</details>
-
-<details class="span-6 view-code">
-	<summary>Source Code</summary>
-	<pre class="prettyprint linenums">&lt;div class=&quot;span-2 margin-bottom-medium margin-top-medium indent-none&quot;&gt;
-	&lt;img src=&quot;http://www.placehold.it/300x200&quot; alt=&quot;&quot; width=&quot;224&quot; height=&quot;168&quot; class=&quot;margin-bottom-none&quot; /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lorem est, sollicitudin eget rhoncus non, pellentesque in urna. Ut dictum dapibus convallis. Vestibulum egestas lacinia justo, quis pellentesque sapien ultricies in. Maecenas ac turpis nisi, vitae dictum dui. Nulla rhoncus molestie massa, a aliquet risus placerat vel. Etiam tortor justo, mollis eget ultrices sed, lacinia porttitor nisi. Nulla facilisi. Vestibulum est turpis, auctor ac bibendum et, vestibulum nec lectus. Curabitur pharetra ullamcorper enim quis aliquam. In malesuada hendrerit dolor id lobortis. Donec quis nibh sit amet massa cursus convallis. Donec volutpat ipsum et justo egestas viverra. Aenean faucibus urna non nisl lacinia vitae molestie risus dapibus. Sed porttitor congue arcu eu semper. Proin est arcu, iaculis vel feugiat vitae, ullamcorper bibendum nunc.&lt;/p&gt;
-
-&lt;p&gt;Nullam vestibulum interdum erat, consequat semper ipsum vestibulum sed. Aenean vel placerat mi. Integer ac metus dolor, nec adipiscing mauris. Phasellus nec lorem tortor, in mollis nulla. Etiam urna felis, posuere vel vulputate eu, luctus sed sem. Aliquam nunc sapien, faucibus sit amet porttitor eu, ullamcorper a odio. Aenean ac augue dui, vel ultrices purus. Cras euismod laoreet leo, non venenatis est aliquam sit amet. Integer ornare vulputate neque at posuere. Nullam at augue vitae augue suscipit luctus eu non dui.&lt;/p&gt;</pre>
-</details>
-<div class="clear"></div>
-
-
-<h3><code>align-right</code>, <code>align-center</code> on the entire grid cell or within a grid cell</h3>
-<p>If you apply an align class to a grid cell, you affect all content within that cell.</p>
-
-
-<h3>Single Alignment</h3>
-
-<details class="span-6 view-example">
-	<summary>View Example</summary>
-	<table class="width-50">
-	<caption>Notice that <strong>some</strong> table data is centred.</caption>
-	<tr>
-		<th scope="col">Fake</th>
-		<th scope="col">Fake</th>
-		<th scope="col">Fake</th>
-		<th scope="col">Fake</th>
-	</tr>
-	<tr>
-		<td class="align-center">Centre</td>
-		<td>Left</td>
-		<td class="align-center">Centre</td>
-		<td>Left</td>
-	</tr>
-	</table>
-</details>
-<div class="clear"></div>
-
-<details class="span-6 view-code">
-	<summary>Source Code</summary>
-	<pre class="prettyprint linenums">
-&lt;table class=&quot;width-50 align-center&quot;&gt;
-	&lt;caption&gt;Notice that the table data is centred as well&lt;/caption&gt;
-	&lt;tr&gt;
-		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
-		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
-		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
-		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td class=&quot;align-center&quot;&gt;Centre&lt;/td&gt;
-		&lt;td&gt;Left&lt;/td&gt;
-		&lt;td class=&quot;align-center&quot;&gt;Centre&lt;/td&gt;
-		&lt;td&gt;Left&lt;/td&gt;
-	&lt;/tr&gt;
-&lt;/table&gt;</pre>
-</details>
-<div class="clear"></div>
-
-
-<h3>Group Alignment</h3>
-
-<details class="span-6 view-example">
-	<summary>View Example</summary>
-	<table class="width-50 align-center">
-	<caption>Notice that the table data is centred.</caption>
-	<tr>
-		<th scope="col">Fake</th>
-		<th scope="col">Fake</th>
-		<th scope="col">Fake</th>
-		<th scope="col">Fake</th>
-	</tr>
-	<tr>
-		<td>Centre</td>
-		<td>Centre</td>
-		<td>Centre</td>
-		<td>Centre</td>
-	</tr>
-	</table>
-</details>
-<div class="clear"></div>
-
-<details class="span-6 view-code">
-	<summary>Source Code</summary>
-	<pre class="prettyprint linenums">
-&lt;table class=&quot;width-50 align-center&quot;&gt;
-	&lt;caption&gt;Notice that the table data is centred as well&lt;/caption&gt;
-	&lt;tr&gt;
-		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
-		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
-		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
-		&lt;th scope=&quot;col&quot;&gt;Fake&lt;/th&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Centre&lt;/td&gt;
-		&lt;td&gt;Centre&lt;/td&gt;
-		&lt;td&gt;Centre&lt;/td&gt;
-		&lt;td&gt;Centre&lt;/td&gt;
-	&lt;/tr&gt;
-&lt;/table&gt;</pre>
-</details>
-<div class="clear"></div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
@@ -657,33 +626,39 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div></div>
 
 <div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
-<div class="wb-sec-def">
-<!-- SecNavStart -->
-<section><h3><a href="#">Basic effects</a></h3>
-<ul>
-<li><a href="grid-base-eng.html">CSS Grid system</a></li>
-<li><a href="grid-text-eng.html">Text</a></li>
-<li><a href="grid-color-eng.html">Colour</a></li>
-<li><a href="grid-table-eng.html">Tables</a></li>
-<li><a href="grid-form-eng.html">Forms</a></li>
-<li><a href="grid-image-eng.html">Images</a></li>
-
-<li><a href="grid-proximity-eng.html">Proximity</a></li>
-<li><a href="grid-position-eng.html">Positioning and alignment</a></li>
-<li><a href="grid-opacity-eng.html">Opacity</a></li>
-<li><a href="grid-border-eng.html">Borders</a></li>
-<li><a href="grid-button-eng.html">Buttons</a></li>
-</ul>
-</section>
-<section><h3><a href="#">Specialty effects</a></h3>
-<ul>
-<li><a href="grid-message-eng.html">Messages</a></li>
-<li><a href="grid-module-eng.html">Modules</a></li>
-<li><a href="grid-util-eng.html">Other</a></li>
-</ul>
-</section>
-<!-- SecNavEnd -->
-</div>
+  <div class="wb-sec-def">
+    <!-- SecNavStart -->
+    <section>
+      <h3><a href="grid-structure-eng.html">Structure</a></h3>
+      <ul>
+        <li><a href="grid-base-eng.html">CSS grid system</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-basic-eng.html">Basic effects</a></h3>
+      <ul>
+        <li><a href="grid-text-eng.html">Text</a></li>
+        <li><a href="grid-table-eng.html">Tables</a></li>
+        <li><a href="grid-form-eng.html">Forms</a></li>
+        <li><a href="grid-image-eng.html">Images</a></li>
+        <li><a href="grid-color-eng.html">Colour</a></li>
+        <li><a href="grid-button-eng.html">Buttons</a></li>
+        <li><a href="grid-border-eng.html">Borders</a></li>
+        <li><a href="grid-opacity-eng.html">Opacity</a></li>
+        <li><a href="grid-proximity-eng.html">Proximity</a></li>
+        <li><a href="grid-position-eng.html">Positioning and alignment</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-specialty-eng.html">Specialty effects</a></h3>
+      <ul>
+        <li><a href="grid-message-eng.html">Messages</a></li>
+        <li><a href="grid-module-eng.html">Modules</a></li>
+        <li><a href="grid-other-eng.html">Other</a></li>
+      </ul>
+    </section>
+    <!-- SecNavEnd -->
+  </div>
 </nav></div></div>
 </div></div>
 

@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>Images - CSS Grid System - Working examples - Web Experience Toolkit (WET)</title>
+<title>Basic effects - CSS Grid System - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -34,7 +34,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
-
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -54,7 +53,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="grid-image-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="grid-opacity-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -88,7 +87,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a href="../../docs/index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
 <li><a href="grid-base-eng.html">CSS grid system</a></li>
-<li>Images</li>
+<li>Basic effects</li>
 </ol>
 </div></div>
 </nav>
@@ -98,95 +97,29 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Images</h1>
+<h1 id="wb-cont">Basic effects</h1>
 
-<div class="wet-boew-prettify all-pre linenums">
-<div class="span-4 module-table-contents">
-<p>Table of contents</p>
-<ul>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#fluid">Fluid width images</a></li>
+<p>The visual presentation of content can be enhanced one or more of various basic CSS effects. The effects can be combined with any other effect to alter the default styling. Refer to: </p>
 
-<li><a href="#fixed">Fixed width images</a></li>
-</ul>
-</div>
-	<div class="span-2 module-related margin-bottom-small">
-		
-		<h2 class="background-accent"><strong>Related module</strong></h2>
-		<ul>
-			<li><a href="grid-module-eng.html">module-poster</a></li>
-		</ul>
-	</div>
-    <div class="span-2 module-related">
-<h2 class="background-accent">Related accessibility topic</h2>
-<ul>
-<li><a href="../opt-cont/img-eng.html">Images - Optimal Content Examples</a></li>
-</ul>
-</div>
-    <div class="clear"></div>
-<h2 id="overview">Overview</h2>
-<p>An image is a static two dimensional visual artifact that is a type of non-text content classified as decorative, simple, complex, or an image of text.</p>
-<p>In order to accommodate multiple resolutions, grids automatically resize themselves. Text automatically word-wraps, but images are typically a fixed size. This can cause problems within a responsive grid system. To avoid such problems, images within a grid cell expand to fill 100% of the particular grid's width.</p>
-<p>To override this feature, you may use the <code>image-actual</code> class.</p>
+    <div class="button-toolbar">
+    <p class="button-group">
+    <a href="grid-text-eng.html" class="button">Text</a>
+    <a href="grid-table-eng.html" class="button">Tables</a>
+    <a href="grid-form-eng.html" class="button">Forms</a>
+    <a href="grid-image-eng.html" class="button">Images</a>
+    </p>
+    <p class="button-group">
+    <a href="grid-color-eng.html" class="button button-accent">Color</a>
+    <a href="grid-button-eng.html" class="button button-accent">Buttons</a>
+     <a href="grid-border-eng.html" class="button button-accent">Borders</a>
+     <a href="grid-opacity-eng.html" class="button button-accent">Opacity</a>
+    </p>
+    <p class="button-group">
+    <a href="grid-proximity-eng.html" class="button button-dark">Proximity</a>
+    <a href="grid-position-eng.html" class="button button-dark">Position and alignment</a>
+    </p>
 
-<h2 id="fluid">Fluid width images</h2>
-<p>The examples provided use the same source file, which is a 220 pixels wide. The smallest <code>span-1</code> version pinches the image at the corners; the largest <code>span-3</code> version stretches, and blurs it. Therefore, the best grid to view the below sunflower image is within in a <code>span-2</code> at 1024x768 resolution, as it is a perfect fit (optimal size for its placement).</p>
-
-
-	<div class="span-1"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 1" width="220" height="168" /></div>
-	<div class="span-2"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 2" width="220" height="168" /></div>
-	<div class="span-3"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 3" width="220" height="168" /></div>
-	<div class="clear"></div>
-
-
-<details class="span-6">
-	<summary>View code</summary>
-	<pre>&lt;div class=&quot;span-1&quot;&gt;
-   &lt;img src=&quot;images/a7.jpg&quot; alt=&quot;&quot; width=&quot;224&quot; height=&quot;168&quot; /&gt;
-&lt;/div&gt;</pre>
-</details>
-<div class="clear"></div>
-
-<h2 id="fixed">Fixed width images</h2>
-<p>If you <strong>do not</strong> want an image to stretch to 100% of the cell width, apply the <code>image-actual</code> class to the image. For example, if you view the 20x20 pixel check-mark image at 100% of a grid cell, it appears pixilated. The <code>image-actual</code> class ensures the image retains its width and height properties, and never visually distorts.</p>
-<h3>Undesired effect</h3>
-<p>The small images are being stretched to fit the full width of the grid cell.</p>
-<div class="span-2">
-	
-	<div class="span-1 row-start"><img src="images/tick.gif" alt="Example of large distorted check mark" width="20" height="20" /></div>
-	<div class="span-1 row-end"><img src="images/x.gif" alt="Example of large distorted X" width="20" height="20" /></div>	
-</div>
-
-<details class="span-4">
-	<summary>View code</summary>
-	<pre>&lt;div class=&quot;span-1&quot;&gt;
-   &lt;img src=&quot;tick.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
-&lt;/div&gt;
-&lt;div class=&quot;span-1&quot;&gt;      
-   &lt;img src=&quot;x.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
-&lt;/div&gt;</pre>
-</details>
-<div class="clear"></div>
-<h3>Desired effect</h3>
-<p>The images retain their default size.</p>
-<div class="span-2">
-	
-	<div class="span-1 row-start"><img class="image-actual" src="images/tick.gif" alt="Example of large distorted check mark" width="20" height="20" /></div>
-<div class="span-1 row-end"><img class="image-actual" src="images/x.gif" alt="Example of large distorted X" width="20" height="20" /></div>
-</div>
-
-<details class="span-4">
-	<summary>View code</summary>
-	<pre>&lt;div class=&quot;span-1&quot;&gt;
-   &lt;img class=&quot;image-actual&quot; src=&quot;tick.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
-&lt;/div&gt;
-&lt;div class=&quot;span-1&quot;&gt;   
-   &lt;img class=&quot;image-actual&quot; src=&quot;x.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
-&lt;/div&gt;</pre>
-</details>
-<div class="clear"></div>
-</div>
-
+    </div>
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
 </dl>
