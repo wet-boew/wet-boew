@@ -156,7 +156,6 @@
 			<exclude name="polyfills/localstorage.js"/>
 			<exclude name="polyfills/slider.js"/>
 			<exclude name="workers/parser.table.js"/>
-			<exclude name="workers/webwidget.js"/>
 			<exclude name="dependencies/bookmark.js"/>
 			<exclude name="dependencies/browsertweaks.js"/>
 			<exclude name="dependencies/colorbox.js"/>
