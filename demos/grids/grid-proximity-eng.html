@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>Grids and grid utilities - Working examples - Web Experience Toolkit (WET)</title>
+<title>Proximity - CSS Grid System - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -37,7 +37,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- CustomScriptsCSSEnd -->
 </head>
 
-<body class="wet-boew-prettify"><div id="wb-body-sec">
+<body><div id="wb-body-sec">
 <div id="wb-skip">
 <ul id="wb-tphp">
 <li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
@@ -47,19 +47,19 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
-<nav role="navigation"><div id="gcwu-gcnb"><h2><span>Site</span> menu</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
 <ul>
-<li id="gcwu-gcnb1"><a  target="_blank" rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
-<li id="gcwu-gcnb2"><a  target="_blank" rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a  target="_blank" rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="application-secnav1-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="grid-proximity-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbol of the Government of Canada" /></div></div></div>
-<div id="gcwu-title"><p id="gcwu-title-in"><a target="_blank" href="../../docs/index-eng.html">Web Experience Toolkit (WET)</a></p></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../docs/index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
@@ -84,10 +84,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
 <ol>
-<li><a target="_blank" href="../../docs/index-eng.html">Home</a></li>
-<li><a target="_blank" href="../index-eng.html">Working examples</a></li>
-<li><a href="index-eng.html">GC Web Usability theme</a></li>
-<li>Application Template</li>
+<li><a href="../../docs/index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li><a href="grid-base-eng.html">CSS grid system</a></li>
+<li>Proximity</li>
 </ol>
 </div></div>
 </nav>
@@ -97,35 +97,19 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
+<h1 id="wb-cont">Proximity</h1>
 
-
-<h1>Proximity</h1>
-
-<div class="span-2 module float-right">
-<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
+<div class="span-4 module-table-contents">
+<p>Table of contents</p>
 <ul>
-<li><code>indent-none</code></li>
-<li><code>indent-small</code></li>
-<li><code>indent-medium</code></li>
-<li><code>indent-large</code></li>
-<li><code>indent-xlarge</code></li>
-<li><code>margin-bottom-none</code></li>
-<li><code>margin-bottom-small</code></li>
-<li><code>margin-bottom-medium</code></li>
-<li><code>margin-bottom-large</code></li>
-<li><code>margin-bottom-xlarge</code></li>
-<li><code>margin-right-none</code></li>
-<li><code>margin-right-small</code></li>
-<li><code>margin-right-medium</code></li>
-<li><code>margin-right-large</code></li>
-<li><code>margin-right-xlarge</code></li>
-<li><code>margin-top-none</code></li>
-<li><code>margin-top-small</code></li>
-<li><code>margin-top-medium</code></li>
-<li><code>margin-top-large</code></li>
-<li><code>margin-top-xlarge</code></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#padding">Padding</a></li>
+<li><a href="#line">Line height</a></li>
+<li><a href="#margin">Margins and gutters</a></li>
 </ul>
+
 </div>
+<div class="clear"></div>
 <h2 id="overview">Overview</h2>
 <p>White space is an important feature of the grid system &mdash; which automatically generates by default. You can overwrite some white space with additional <abbr title="Cascading Style Sheet">CSS</abbr> in order to increase or decrease the default settings.</p>
 <p>Within a grid system, you can only change the white space above and below a grid cell. You can never change the <strong>gutters</strong> (white space to the left and right of a grid cell). This is because the grid system design fits perfectly in the content area, and is tied to the user's browser setting. There is no room for extra pixels. Reducing pixels causes the cells to behave in unexpected ways due to their <code>float: left</code> property.</p>
@@ -139,8 +123,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	</div>
 
 
-<details class="span-2 ">
-	<summary>View Code - Without Padding</summary>
+<details class="span-2">
+	<summary>View code</summary>
 	<pre class="prettyprint linenums">&lt;div class=&quot;span-4 background-light&quot;&gt;
 	With paragraph tag - text is easier to read with padding.
 &lt;/div&gt;</pre>
@@ -154,16 +138,72 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	</div>
 
 
-<details class="span-2 ">
-	<summary>View Code - With Padding</summary>
+<details class="span-2">
+	<summary>View code</summary>
 	<pre class="prettyprint linenums">&lt;div class=&quot;span-4 background-light&quot;&gt;
 	&lt;p&gt;With paragraph tag - text is easier to read with padding.&lt;/p&gt;
 &lt;/div&gt;</pre>
 </details>
 
 <div class="clear"></div>
+<h2 id="line">Line height</h2>
+<p>The <abbr title="Cascading Style Sheet">CSS</abbr> provides several line height options that you can use to override the default size. The sizes range from 1.0 to 2.0.</p>
+<div class="clear"></div>
 
-<h2 id="margins">Margins and Gutters</h2>
+<table class="table-simplify span-6">
+	<caption>
+	Line height options
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col">Class</th>
+			<th scope="col">Details</th>
+			<th scope="col">Example</th>
+		</tr>
+	</thead>
+	<tr>
+	<td><code>line-height-xsmall</code></td>
+	<td>Extra small font (0.8)</td>
+	<td><ul class="line-height-xsmall">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-small</code></td>
+	<td>Small font (1.0)</td>
+	<td><ul class="line-height-small">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-medium</code></td>
+	<td>Medium (1.25) = default size</td>
+	<td><ul class="line-height-medium">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-large</code></td>
+	<td>Large (1.5)</td>
+	<td><ul class="line-height-large">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-xlarge</code></td>
+	<td>Extra large (2.0)</td>
+	<td><ul class="line-height-xlarge">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<h2 id="margin">Margins and gutters</h2>
 <p>The white space to the left and right of a grid cell is called the <strong>gutter</strong>. The white space above and below a grid cell is the <strong>margin</strong>. The default <code>margin</code> settings of a grid cell are as follows:
 <ul>
 	<li>the <strong>margin-top</strong> is set to zero</li>
@@ -343,7 +383,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	</tr>
 </table>
 
-<table class="table-simplify span-6">
+<table id="indents" class="table-simplify span-6">
 	<caption><strong>Table 4:</strong> Indentation</caption>
 	<thead>
 		<tr>
@@ -407,7 +447,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		<div class="span-2 background-light"><p>Lorem ipsum dolar sit amet.</p></div>
 		<div class="span-2 margin-bottom-none"><img src="http://www.placehold.it/430x200" alt=""></div>
 	</div>
-	<div class="span-2 ">
+	<div class="span-2">
 		<h3 class="background-dark">Using <code>margin-bottom-small</code></h3>
 		<div class="span-2 background-light margin-bottom-small"><p class="indent-medium">Lorem ipsum dolar sit amet.</p></div>
 		<div class="span-2 background-light margin-bottom-small"><p class="indent-medium">Lorem ipsum dolar sit amet.</p></div>
@@ -416,7 +456,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 
-<details class="span-2 ">
+<details class="span-2">
 	<summary>View source</summary>
 	<pre class="prettyprint linenums">
 &lt;div class=&quot;span-2&quot;&gt;
@@ -445,45 +485,47 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div>
 <div class="clear"></div>
 
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
+</dl>
+<div class="clear"></div>
 <!-- MainContentEnd -->
 </div></div>
 
 <div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
-<div class="wb-sec-def">
-<!-- SecNavStart -->
-<section><h3><a href="#">Base</a></h3>
-<ul>
-<li><a href="">Grid System</a></li>
-<li><a href="grid-color-eng.html">Colour</a></li>
-<li><a href="grid-button-bouton-eng.html">Buttons</a></li>
-<li><a href="grid-proximit-eng.html">Proximity</a></li>
-<li><a href="#">Table</a></li>
-<li><a href="grid-form-eng.html">Form</a></li>
-</ul>
-</section>
-<section><h3><a href="#">Modules</a></h3>
-<ul>
-<li><a href="#">Messages</a></li>
-<li><a href="#">Item 2.2b</a></li>
-<li><a href="#">Item 2.2c</a></li>
-</ul>
-</section>
-<section><h3><a href="section2/section23/index-eng.html">Section 2.3</a></h3>
-<ul>
-<li><a href="#">Item 2.3a</a></li>
-<li><a href="#">Item 2.3b</a></li>
-<li><a href="#">Item 2.3c</a></li>
-</ul>
-</section>
-<section><h3><a href="#">Section 2.4</a></h3>
-<ul>
-<li><a href="#">Item 2.4c</a></li>
-</ul>
-</section>
-<div class="top-level"><a href="#">Top level link 1</a></div>
-<div class="top-level"><a href="#">Top level link 2</a></div>
-<!-- SecNavEnd -->
-</div>
+  <div class="wb-sec-def">
+    <!-- SecNavStart -->
+    <section>
+      <h3><a href="grid-structure-eng.html">Structure</a></h3>
+      <ul>
+        <li><a href="grid-base-eng.html">CSS grid system</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-basic-eng.html">Basic effects</a></h3>
+      <ul>
+        <li><a href="grid-text-eng.html">Text</a></li>
+        <li><a href="grid-table-eng.html">Tables</a></li>
+        <li><a href="grid-form-eng.html">Forms</a></li>
+        <li><a href="grid-image-eng.html">Images</a></li>
+        <li><a href="grid-color-eng.html">Colour</a></li>
+        <li><a href="grid-button-eng.html">Buttons</a></li>
+        <li><a href="grid-border-eng.html">Borders</a></li>
+        <li><a href="grid-opacity-eng.html">Opacity</a></li>
+        <li><a href="grid-proximity-eng.html">Proximity</a></li>
+        <li><a href="grid-position-eng.html">Positioning and alignment</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-specialty-eng.html">Specialty effects</a></h3>
+      <ul>
+        <li><a href="grid-message-eng.html">Messages</a></li>
+        <li><a href="grid-module-eng.html">Modules</a></li>
+        <li><a href="grid-other-eng.html">Other</a></li>
+      </ul>
+    </section>
+    <!-- SecNavEnd -->
+  </div>
 </nav></div></div>
 </div></div>
 
@@ -492,25 +534,49 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
 <div id="gcwu-tctr">
 <ul>
-<li class="gcwu-tc"><a href="#" target="_blank" rel="license">Terms and conditions</a></li>
-<li class="gcwu-tr"><a href="#" target="_blank">Transparency</a></li>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
 </ul>
 </div>
 <div class="clear"></div>
-<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">About us</a></div></div>
-<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">News</a></div></div>
-<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">Contact us</a></div></div>
-<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">Stay connected</a></div></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">The Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
 </div></div></nav>
 
 <nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
 <ul>
-<li><a target="_blank" rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
-<li><a target="_blank" rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
-<li><a target="_blank" rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
-<li><a target="_blank" rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
-<li><a target="_blank" rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a target="_blank" rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->

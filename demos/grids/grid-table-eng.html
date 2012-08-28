@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>Application Template - Secondary menu 1 - GC Web Usability theme - Working examples - Web Experience Toolkit (WET)</title>
+<title>Tables - CSS Grid System - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -47,19 +47,19 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
-<nav role="navigation"><div id="gcwu-gcnb"><h2><span>Site</span> menu</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
 <ul>
-<li id="gcwu-gcnb1"><a  target="_blank" rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
-<li id="gcwu-gcnb2"><a  target="_blank" rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a  target="_blank" rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="application-secnav1-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="grid-table-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbol of the Government of Canada" /></div></div></div>
-<div id="gcwu-title"><p id="gcwu-title-in"><a target="_blank" href="../../docs/index-eng.html">Web Experience Toolkit (WET)</a></p></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../docs/index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
@@ -84,10 +84,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
 <ol>
-<li><a target="_blank" href="../../docs/index-eng.html">Home</a></li>
-<li><a target="_blank" href="../index-eng.html">Working examples</a></li>
-<li><a href="index-eng.html">GC Web Usability theme</a></li>
-<li>Application Template</li>
+<li><a href="../../docs/index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li><a href="grid-base-eng.html">CSS grid system</a></li>
+<li>Tables</li>
 </ol>
 </div></div>
 </nav>
@@ -97,13 +97,42 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
+<h1 id="wb-cont">Tables</h1>
 
-
-<h1>Tables</h1>
 <div class="wet-boew-prettify all-pre linenums">
 
+<div class="span-4 module-table-contents">
+<p>Table of contents</p>
+<ul>
+<li><a href="#default">Default design</a></li>
+<li><a href="#supporting">Supporting classes</a>
+  <ul>
+    <li><a href="#header">Header background colours</a></li>
+    <li><a href="#simplified">Simplified design</a></li>
+    <li><a href="#bordered">Bordered design</a></li>
+    <li><a href="#condensed">Condensed table</a></li>
+    <li><a href="#right">Right align data</a></li>
+    <li><a href="#second">Second level header</a></li>
+    <li><a href="#zebra">Zebra striping</a></li>
+  </ul>
+</li>
+</ul>
 
+</div>
+<div class="span-2 module-related">
+<h2 class="background-accent">Related accessibility topic</h2>
+<ul>
+<li><a href="../opt-cont/tbl-eng.html">Tables - Optimal Content Examples</a></li>
+
+
+</ul>
+</div>
+<div class="clear"></div>
+<h2 id="default">Default design</h2>
 <table class="span-6">
+   <caption>
+   Default table 
+   </caption>
    <thead>
       <tr>
          <th scope="col">Header</th>
@@ -113,25 +142,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	</thead>
    <tbody>
       <tr>
-         <td>
-			<ul>
-				<li>List Item</li>
-				<li>List Item</li>
-				<li>List Item</li>
-			</ul>
-		 </td>
-         <td>
-			<table>
-				<tr>
-					<th>Header</th>
-					<th>Header</th>
-				</tr>
-				<tr>
-					<td>Data</td>
-					<td>Data</td>
-				</tr>
-			</table>
-		 </td>
+         <td>Data</td>
+         <td>Data</td>
          <td>Data</td>
       </tr>
       <tr>
@@ -140,10 +152,16 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
          <td>Data</td>
       </tr>
 	</tbody>
-   <caption>Default table style</caption>
 </table>
-
+<div class="clear"></div>
+<h2 id="supporting">Supporting classes</h2>
+<p>Additional CSS is provided to modify the appearance of a table.</p>
+<h3 id="header">Header background colours</h3>
+<p>Addition CSS: <code>table-accent</code></p>
 <table class="table-accent span-6">
+   <caption>
+   Accent style
+   </caption>
    <thead>
       <tr>
          <th scope="col">Header</th>
@@ -163,33 +181,91 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
          <td>Data</td>
       </tr>
 	</tbody>
-   <caption>Default table accent style</caption>
 </table>
+<div class="clear"></div>
 
+<p>Addition CSS: <code>table-medium</code></p>
+<table class="table-medium span-6">
+   <caption>
+   Medium style
+   </caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+<p>Addition CSS: <code>table-dark</code></p>
+<table class="table-dark span-6">
+   <caption>
+   Dark style
+   </caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+<h3 id="simplified">Simplified design</h3>
+<p>Addition CSS: <code>table-simplify</code></p>
 <table class="table-simplify span-6">
-   <thead>
-      <tr>
-         <th scope="col">Header</th>
-         <th scope="col">Header</th>
-         <th scope="col">Header</th>
-      </tr>
-	</thead>
-   <tbody>
-      <tr>
-         <td>Data</td>
-         <td>Data</td>
-         <td>Data</td>
-      </tr>
-      <tr>
-         <td>Data</td>
-         <td>Data</td>
-         <td>Data</td>
-      </tr>
-	</tbody>
    <caption>Simple table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
 </table>
-
-<table class="table-simplify zebra span-6">
+<div class="clear"></div>
+<h3 id="bordered">Bordered design</h3>
+<div class="span-3">
+<p>Addition CSS: <code>table-bordered table-simplify</code></p>
+<table class="table-simplify table-bordered span-3">
+    <caption>Simple table with border</caption>
    <thead>
       <tr>
          <th scope="col">Header</th>
@@ -214,10 +290,12 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
          <td>Data</td>
       </tr>
 	</tbody>
-	<caption>Striped table <span class="color-attention">I need to add the zebra-striped jQuery plugin functionality.</span></caption>
 </table>
-
-<table class="table-simplify table-bordered span-6">
+</div>
+<div class="span-3">
+<p>Versus <strong>without</strong> <code>table-bordered</code></p>
+<table class="table-simplify span-3">
+    <caption>Simple table default</caption>
    <thead>
       <tr>
          <th scope="col">Header</th>
@@ -242,10 +320,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
          <td>Data</td>
       </tr>
 	</tbody>
-    <caption>Bordered table</caption>
 </table>
-
-<table class="table-simplify table-bordered table-accent span-6">
+</div>
+<div class="clear"></div>
+<div class="span-3">
+<p>Addition CSS: <code>table-bordered table-simplify table-medium</code></p>
+<table class="table-simplify table-bordered table-medium span-3">
+    <caption>
+    Simple medium table with border
+    </caption>
    <thead>
       <tr>
          <th scope="col">Header</th>
@@ -270,10 +353,12 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
          <td>Data</td>
       </tr>
 	</tbody>
-    <caption>Bordered table (with colour)</caption>
 </table>
-
-<table class="table-simplify table-condensed span-6">
+</div>
+<div class="span-3">
+<p>Versus <strong>without</strong> <code>table-bordered</code></p>
+<table class="table-simplify table-medium span-3">
+    <caption>Simple medium table</caption>
    <thead>
       <tr>
          <th scope="col">Header</th>
@@ -298,10 +383,47 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
          <td>Data</td>
       </tr>
 	</tbody>
+</table>
+</div>
+<div class="clear"></div>
+<h3 id="condensed">Condensed table</h3>
+<div class="span-3">
+
+
+<p>Addition CSS: <code>table-condensed</code></p>
+<table class="table-condensed span-3">
    <caption>Condensed table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
 </table>
-
-<table class="table-simplify table-striped table-bordered table-condensed span-6">
+<div class="clear"></div>
+</div>
+<div class="span-3">
+<p>Versus <strong>without</strong> <code>table-condensed</code></p>
+<table class="span-3">
+   <caption>Normal table</caption>
    <thead>
       <tr>
          <th scope="col">Header</th>
@@ -326,10 +448,16 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
          <td>Data</td>
       </tr>
 	</tbody>
-   <caption>All styles combined</caption>
-</table>  
+</table>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+<div class="span-3">
 
-<table class="table-simplify table-striped table-bordered table-condensed table-medium span-6">
+
+<p>Addition CSS: <code>table-condensed table-simplify</code></p>
+<table class="table-simplify table-condensed span-3">
+   <caption>Condensed table</caption>
    <thead>
       <tr>
          <th scope="col">Header</th>
@@ -354,9 +482,48 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
          <td>Data</td>
       </tr>
 	</tbody>
-   <caption>All styles combined (with colour)</caption>
-</table> 
+</table>
+<div class="clear"></div>
+</div>
+<div class="span-3">
+<p>Versus <strong>without</strong> <code>table-bordered</code></p>
+<table class="table-simplify span-3">
+   <caption>Normal table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
 
+<h3 id="right">Right align data</h3>
+<div class="span-6 module-note">
+<h4>Note: Headers must be individually aligned right</h4>
+<p>The align-right CSS on the <code>&lt;table&gt;</code> will only affect the  <code>&lt;td&gt;</code> data in the <code>&lt;tr&gt;</code> rows.  The headers will remain  left aligned, as the table may have horizontal and/or vertical headers and each may need a different alignment. Therefore,  in order to right align specifc headers, each  <code>&lt;th class=&quot;align-right&quot;&gt;</code> must be manually classed, as desired.</p>
+</div>
+<div class="clear"></div>
 <table class="table-simplify align-right span-6">
    <caption>Expenses</caption>
    <colgroup>
@@ -377,42 +544,42 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
    </thead>
    <tbody>
    <tr>
-      <td>Human Resources</td>
+      <th scope="row">Human Resources</th>
       <td>$1,442,421</td>
       <td>14.89%</td>
       <td>$1,524,241</td>
       <td>12.99%</td>
    </tr>
    <tr>
-      <td>Communications</td>
+      <th scope="row">Communications</th>
       <td>$677,325</td>
       <td>6.99%</td>
       <td>$786,533</td>
       <td>6.70%</td>
    </tr>
    <tr>
-      <td>Compensation</td>
+      <th scope="row">Compensation</th>
       <td>$1,532,523</td>
       <td>15.82%</td>
       <td>$1,678,235</td>
       <td>14.30%</td>
    </tr>
    <tr>
-      <td>Information Technology</td>
+      <th scope="row">Information Technology</th>
       <td>$5,361,325</td>
       <td>55.36%</td>
       <td>$6,836,643</td>
       <td>58.27%</td>
    </tr>
    <tr>
-      <td>Administration</td>
+      <th scope="row">Administration</th>
       <td>$437,634</td>
       <td>4.52%</td>
       <td>$563,235</td>
       <td>4.80%</td>
    </tr>
    <tr>
-      <td>Other</td>
+      <th scope="row">Other</th>
       <td>$233,353</td>
       <td>2.41%</td>
       <td>$344,455</td>
@@ -429,7 +596,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
    </tr>
    </tfoot>
 </table>
-
+<div class="clear"></div>
+<h3 id="second">Second level header</h3>
+<p>Additional CSS: <code>&lt;tr class=&quot;table-header&quot;&gt;</code>
 <table class="table-simplify  span-6 align-right">
    <caption>Financial Table</caption>
    <thead>
@@ -467,52 +636,89 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
       </tr>
    </tfoot>
 </table>
+<div class="clear"></div>
+<h3 id="zebra">Zebra striping</h3>
+<p>There are several zebra striping techniques: <a href="../index-eng.html#zebra" class="button button-accent">Learn more about zebra striping</a></p>
+<p class="margin-top-large">Addition CSS: <code>wet-boew-zebra table-simplify</code></p>
+<table class="wet-boew-zebra table-simplify span-6">
+	<caption>Striped table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+<div class="span-6 module-note">
+<h2>Note</h2>
+<p>When using the zebra striping effect, the wet-boew-zebra class must appear <strong>first</strong> if the table is multi-classed with any other CSS.</p>
+
+<p>Correct: <code>&lt;table class=&quot;wet-boew-zebra table-simplify&quot;&gt;</code></p>
+<p>Incorrect: <code>&lt;table class=&quot;table-simplify wet-boew-zebra&quot;&gt;</code></p>
+</div>
+<div class="clear"></div>
 </div>
 
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
+</dl>
+<div class="clear"></div>
 <!-- MainContentEnd -->
 </div></div>
 
 <div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
-<div class="wb-sec-def">
-<!-- SecNavStart -->
-<section><h3><a href="#">Section 2.1</a></h3>
-<ul>
-<li><a href="#">Item 2.1a</a></li>
-<li><a href="#">Item 2.1b</a></li>
-<li><a href="#">Item 2.1c</a></li>
-</ul>
-</section>
-<section><h3><a href="#">Section 2.2</a></h3>
-<ul>
-<li><a href="#">Item 2.2a</a></li>
-<li><a href="#">Item 2.2b</a></li>
-<li><a href="#">Item 2.2c</a></li>
-</ul>
-</section>
-<section><h3><a href="section2/section23/index-eng.html">Section 2.3</a></h3>
-<ul>
-<li><a href="#">Item 2.3a</a></li>
-<li><a href="#">Item 2.3b</a></li>
-<li><a href="#">Item 2.3c</a></li>
-</ul>
-</section>
-<section><h3><a href="#">Section 2.4</a></h3>
-<ul>
-<li><a href="#">Item 2.4a</a></li>
-<li><a href="#">Item 2.4b</a>
-	<ul>
-	<li><a href="#">Item 2.4bi</a></li>
-	<li><a href="#">Item 2.4bii</a></li>
-	<li><a href="#">Item 2.4biii</a></li>
-	</ul>
-</li>
-<li><a href="#">Item 2.4c</a></li>
-</ul>
-</section>
-<div class="top-level"><a href="#">Top level link 1</a></div>
-<div class="top-level"><a href="#">Top level link 2</a></div>
-<!-- SecNavEnd -->
-</div>
+  <div class="wb-sec-def">
+    <!-- SecNavStart -->
+    <section>
+      <h3><a href="grid-structure-eng.html">Structure</a></h3>
+      <ul>
+        <li><a href="grid-base-eng.html">CSS grid system</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-basic-eng.html">Basic effects</a></h3>
+      <ul>
+        <li><a href="grid-text-eng.html">Text</a></li>
+        <li><a href="grid-table-eng.html">Tables</a></li>
+        <li><a href="grid-form-eng.html">Forms</a></li>
+        <li><a href="grid-image-eng.html">Images</a></li>
+        <li><a href="grid-color-eng.html">Colour</a></li>
+        <li><a href="grid-button-eng.html">Buttons</a></li>
+        <li><a href="grid-border-eng.html">Borders</a></li>
+        <li><a href="grid-opacity-eng.html">Opacity</a></li>
+        <li><a href="grid-proximity-eng.html">Proximity</a></li>
+        <li><a href="grid-position-eng.html">Positioning and alignment</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-specialty-eng.html">Specialty effects</a></h3>
+      <ul>
+        <li><a href="grid-message-eng.html">Messages</a></li>
+        <li><a href="grid-module-eng.html">Modules</a></li>
+        <li><a href="grid-other-eng.html">Other</a></li>
+      </ul>
+    </section>
+    <!-- SecNavEnd -->
+  </div>
 </nav></div></div>
 </div></div>
 
@@ -521,25 +727,49 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
 <div id="gcwu-tctr">
 <ul>
-<li class="gcwu-tc"><a href="#" target="_blank" rel="license">Terms and conditions</a></li>
-<li class="gcwu-tr"><a href="#" target="_blank">Transparency</a></li>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
 </ul>
 </div>
 <div class="clear"></div>
-<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">About us</a></div></div>
-<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">News</a></div></div>
-<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">Contact us</a></div></div>
-<div class="span-2"><div class="gcwu-col-head"><a href="#" target="_blank">Stay connected</a></div></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">The Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
 </div></div></nav>
 
 <nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
 <ul>
-<li><a target="_blank" rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
-<li><a target="_blank" rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
-<li><a target="_blank" rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
-<li><a target="_blank" rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
-<li><a target="_blank" rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a target="_blank" rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->

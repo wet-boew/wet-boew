@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>Content page + Secondary menu 2 - GC Web Usability theme - Working examples - Web Experience Toolkit (WET)</title>
+<title>Basic effects - CSS Grid System - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -53,7 +53,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="cont-secnav2-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="grid-opacity-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -86,9 +86,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <ol>
 <li><a href="../../docs/index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li><a href="index-eng.html">GC Web Usability theme</a></li>
-<li><a href="section2/section23/index-eng.html">Section 2.3</a></li>
-<li>Content page + Secondary menu 2</li>
+<li><a href="grid-base-eng.html">CSS grid system</a></li>
+<li>Basic effects</li>
 </ol>
 </div></div>
 </nav>
@@ -98,93 +97,29 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Content page + Secondary menu 2 - GC Web Usability theme</h1>
+<h1 id="wb-cont">Basic effects</h1>
 
-<section><h2>Heading 2 (<code>h2</code>) default appearance</h2>
-	<section><h3>Heading 3 (<code>h3</code>) default appearance</h3>
-		<section><h4>Heading 4 (<code>h4</code>) default appearance</h4>
-			<section><h5>Heading 5 (<code>h5</code>) default appearance</h5>
-				<section><h6>Heading 6 (<code>h6</code>) default appearance</h6>
-					<p>Paragraph default appearance</p>
-				</section>
-			</section>
-		</section>
-	</section>
-</section>
+<p>The visual presentation of content can be enhanced one or more of various basic CSS effects. The effects can be combined with any other effect to alter the default styling. Refer to: </p>
 
-<p><a href="#">Link default appearance</a></p>
-<p><a href="mailto:"><code>mailto:</code> link default appearance</a></p>
-<p><a href="http://www.">Third party <code>http://www.</code> link default appearance</a></p>
-<p><a href=".doc">Link to file downloads based on file type <code>.doc</code>, <code>.psd</code>, <code>.zip</code>, <code>.pdf</code>, <code>.xls</code>, <code>.xlt</code>, <code>.rtf</code> and <code>.txt</code> default appearance</a></p>
-<p>Abbreviation default appearance: <abbr title="Treasury Board">TBS</abbr>.</p>
+    <div class="button-toolbar">
+    <p class="button-group">
+    <a href="grid-text-eng.html" class="button">Text</a>
+    <a href="grid-table-eng.html" class="button">Tables</a>
+    <a href="grid-form-eng.html" class="button">Forms</a>
+    <a href="grid-image-eng.html" class="button">Images</a>
+    </p>
+    <p class="button-group">
+    <a href="grid-color-eng.html" class="button button-accent">Color</a>
+    <a href="grid-button-eng.html" class="button button-accent">Buttons</a>
+     <a href="grid-border-eng.html" class="button button-accent">Borders</a>
+     <a href="grid-opacity-eng.html" class="button button-accent">Opacity</a>
+    </p>
+    <p class="button-group">
+    <a href="grid-proximity-eng.html" class="button button-dark">Proximity</a>
+    <a href="grid-position-eng.html" class="button button-dark">Position and alignment</a>
+    </p>
 
-<ul>
-<li>unordered list (<code>ul</code>) first level default appearance
-	<ul>
-	<li>unordered list (<code>ul</code>) second level default appearance
-		<ul>
-		<li>unordered list (<code>ul</code>) third level default appearance</li>
-		</ul>
-	</li>
-	</ul>
-</li>
-</ul>
-
-<ol>
-<li>ordered list (<code>ol</code>) first level default appearance</li>
-<li>ordered list (<code>ol</code>) first level default appearance
-	<ol>
-	<li>ordered list (<code>ol</code>) second level default appearance</li>
-	<li>ordered list (<code>ol</code>) second level default appearance
-		<ol>
-		<li>ordered list (<code>ol</code>) third level default appearance</li>
-		<li>ordered list (<code>ol</code>) third level default appearance</li>
-		</ol>
-	</li>
-	</ol>
-</li>
-</ol>
-
-<table>
-<caption>Table caption default appearance</caption>
-<thead>
-<tr>
-<th scope="col">Table header (<code>th</code>) default appearance</th>
-<th scope="col">Table header (<code>th</code>) default appearance</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Table data (<code>td</code>) default appearance</td>
-<td>Table data (<code>td</code>) default appearance</td>
-</tr>
-</tbody>
-</table>
-
-<form action="#" method="post">
-<div><label for="data1">Form input default appearance:</label> <input name="data1" type="text" id="data1" /></div>
-<div><label for="data2">Form text area default appearance:</label> <textarea name="data2" cols="15" rows="3" id="data2"></textarea></div>
-<div><label for="data4">Form <code>select</code> default appearance:</label> 
-<select id="data4" name="data4">
-<option value="Option 1">Option 1</option>
-<option value="Option 2">Option 2</option>
-<option value="Option 3">Option 3</option>
-<option value="Option 4">Option 4</option>
-</select></div>
-<fieldset><legend>Form <code>legend</code>, <code>fieldset</code> and <code>checkbox</code> default appearance</legend>
-<div><input name="checkbox" type="checkbox" id="data5" value="checkbox" />&#160;<label for="data5">Option 1</label>&#160;&#160;
-<input name="checkbox" type="checkbox" id="data6" value="checkbox" />&#160;<label for="data6">Option 2</label>&#160;&#160;
-<input name="checkbox" type="checkbox" id="data7" value="checkbox" />&#160;<label for="data7">Option 3</label>&#160;&#160;
-<input name="checkbox" type="checkbox" id="data8" value="checkbox" />&#160;<label for="data8">Option 4</label></div>
-</fieldset>
-<div><input name="submit" type="submit" id="submit" value="Submit default appearance" />
-<input name="reset" type="reset" id="reset" value="Reset default appearance" /></div>
-</form>
-
-<blockquote>
-<p>&quot;Blockquote default appearance&quot;.</p>
-</blockquote>
-
+    </div>
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
 </dl>
@@ -193,48 +128,39 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div></div>
 
 <div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
-<div class="wb-sec-def">
-<!-- SecNavStart -->
-<section><h3 class="top-section"><a href="section2/index-eng.html">Section 2</a></h3>
-<section><h4><a href="#">Section 2.1</a></h4>
-<ul>
-<li><a href="#">Item 2.1a</a></li>
-<li><a href="#">Item 2.1b</a></li>
-<li><a href="#">Item 2.1c</a></li>
-</ul>
-</section>
-<section><h4><a href="#">Section 2.2</a></h4>
-<ul>
-<li><a href="#">Item 2.2a</a></li>
-<li><a href="#">Item 2.2b</a></li>
-<li><a href="#">Item 2.2c</a></li>
-</ul>
-</section>
-<section><h4><a href="section2/section23/index-eng.html">Section 2.3</a></h4>
-<ul>
-<li><a href="#">Item 2.3a</a></li>
-<li><a href="#">Item 2.3b</a></li>
-<li><a href="#">Item 2.3c</a></li>
-</ul>
-</section>
-<section><h4><a href="#">Section 2.4</a></h4>
-<ul>
-<li><a href="#">Item 2.4a</a></li>
-<li><a href="#">Item 2.4b</a>
-	<ul>
-	<li><a href="#">Item 2.4bi</a></li>
-	<li><a href="#">Item 2.4bii</a></li>
-	<li><a href="#">Item 2.4biii</a></li>
-	</ul>
-</li>
-<li><a href="#">Item 2.4c</a></li>
-</ul>
-</section>
-<div class="top-level"><a href="#">Top level link 1</a></div>
-<div class="top-level"><a href="#">Top level link 2</a></div>
-</section>
-<!-- SecNavEnd -->
-</div>
+  <div class="wb-sec-def">
+    <!-- SecNavStart -->
+    <section>
+      <h3><a href="grid-structure-eng.html">Structure</a></h3>
+      <ul>
+        <li><a href="grid-base-eng.html">CSS grid system</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-basic-eng.html">Basic effects</a></h3>
+      <ul>
+        <li><a href="grid-text-eng.html">Text</a></li>
+        <li><a href="grid-table-eng.html">Tables</a></li>
+        <li><a href="grid-form-eng.html">Forms</a></li>
+        <li><a href="grid-image-eng.html">Images</a></li>
+        <li><a href="grid-color-eng.html">Colour</a></li>
+        <li><a href="grid-button-eng.html">Buttons</a></li>
+        <li><a href="grid-border-eng.html">Borders</a></li>
+        <li><a href="grid-opacity-eng.html">Opacity</a></li>
+        <li><a href="grid-proximity-eng.html">Proximity</a></li>
+        <li><a href="grid-position-eng.html">Positioning and alignment</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-specialty-eng.html">Specialty effects</a></h3>
+      <ul>
+        <li><a href="grid-message-eng.html">Messages</a></li>
+        <li><a href="grid-module-eng.html">Modules</a></li>
+        <li><a href="grid-other-eng.html">Other</a></li>
+      </ul>
+    </section>
+    <!-- SecNavEnd -->
+  </div>
 </nav></div></div>
 </div></div>
 
