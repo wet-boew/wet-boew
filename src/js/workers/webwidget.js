@@ -33,40 +33,18 @@
 				result += "</ul>";
 				return elm.replaceWith(result);
 			},
+			_map_entries : function (data) {
+				return data;
+			},
 			_json_request: function (url) {
 				if (url.toLowerCase().indexOf("!/search/") > -1) {
-					return url.replace("http://", "https://").replace(/https:\/\/twitter.com\/#!\/search\/(.+$)/, function (str, p1, offset, s) {
+					return url.replace("http://", "https://").replace(/https:\/\/twitter.com\/#!\/search\/(.+$)/, function (str, p1) {
 						return "http://search.twitter.com/search.json?q=" + encodeURI(decodeURI(p1));
 					});
 				}
-				return url.replace("http://", "https://").replace(/https:\/\/twitter.com\/#!\/(.+$)/i, function (str, p1, offset, s) {
+				return url.replace("http://", "https://").replace(/https:\/\/twitter.com\/#!\/(.+$)/i, function (str, p1) {
 					return "http://twitter.com/status/user_timeline/" + encodeURI(decodeURI(p1)) + ".json?callback=?";
 				});
-			},
-			exec: function (urls, limit, elm) {
-				var entries, i, last, parse_entries, _results;
-				last = urls.length - 1;
-				entries = [];
-				parse_entries = this._parse_entries;
-				i = urls.length - 1;
-				_results = [];
-				while (i >= 0) {
-					$.getJSON(this._json_request(urls[i]), function (data) {
-						var k;
-						k = 0;
-						while (k < data.length) {
-							entries.push(data[k]);
-							k += 1;
-						}
-						if (!last) {
-							parse_entries(entries, limit, elm);
-						}
-						last -= 1;
-						return last;
-					});
-					_results.push(i -= 1);
-				}
-				return _results;
 			}
 		},
 		weather: {
@@ -77,30 +55,8 @@
 				result += "</ul>";
 				return elm.replaceWith(result);
 			},
-			exec: function (urls, limit, elm) {
-				var entries, i, last, parse_entries, _results;
-				last = urls.length - 1;
-				entries = [];
-				parse_entries = this._parse_entries;
-				i = urls.length - 1;
-				_results = [];
-				while (i >= 0) {
-					$.getJSON(this._json_request(urls[i]), function (data) {
-						var k;
-						k = 0;
-						while (k < data.responseData.feed.entries.length) {
-							entries.push(data.responseData.feed.entries[k]);
-							k += 1;
-						}
-						if (!last) {
-							parse_entries(entries, limit, elm);
-						}
-						last -= 1;
-						return last;
-					});
-					_results.push(i -= 1);
-				}
-				return _results;
+			_map_entries : function (data) {
+				return data.responseData.feed.entries;
 			},
 			_json_request: function (url, limit) {
 				var rl;
@@ -128,30 +84,9 @@
 				result += "</ul>";
 				return elm.replaceWith(result);
 			},
-			exec: function (urls, limit, elm) {
-				var entries, i, last, parse_entries, _results;
-				last = urls.length - 1;
-				entries = [];
-				parse_entries = this._parse_entries;
-				i = urls.length - 1;
-				_results = [];
-				while (i >= 0) {
-					$.getJSON(this._json_request(urls[i]), function (data) {
-						var k;
-						k = 0;
-						while (k < data.responseData.feed.entries.length) {
-							entries.push(data.responseData.feed.entries[k]);
-							k += 1;
-						}
-						if (!last) {
-							parse_entries(entries, limit, elm);
-						}
-						last -= 1;
-						return last;
-					});
-					_results.push(i -= 1);
-				}
-				return _results;
+
+			_map_entries : function (data) {
+				return data.responseData.feed.entries;
 			},
 			_json_request: function (url, limit) {
 				var rl;
@@ -163,9 +98,9 @@
 			}
 		},
 		_exec: function (elm, type) {
-			var $elm, $response, feeds, limit;
+			var $elm, $response, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results;
 			$elm = $(elm);
-			limit = pe.limit($elm);
+			limit = _pe.limit($elm);
 			feeds = $elm.find("a").map(function () {
 				var a;
 				a = $(this).attr("href");
@@ -182,7 +117,36 @@
 			});
 			$response = $("<ul class=\"widget-content\"><li class=\"widget-state-loading\"><img src=\"" + pe.add.liblocation + "/images/webfeeds/ajax-loader.gif" + "\" alt=\"" + pe.dic.get('%loading') + "\" /></li></ul>");
 			$elm.find(".widget-content").replaceWith($response);
-			$.extend({}, _pe.fn.webwidget[type]).exec(feeds, limit, $response);
+
+			typeObj = _pe.fn.webwidget[type];
+
+			last = feeds.length - 1;
+			entries = [];
+			parse_entries = typeObj._parse_entries;
+			i = feeds.length - 1;
+			_results = [];
+
+			process_entries = function (data) {
+				var k;
+				k = 0;
+				data = typeObj._map_entries(data);
+				while (k < data.length) {
+					entries.push(data[k]);
+					k += 1;
+				}
+				if (!last) {
+					parse_entries(entries, limit, $response);
+				}
+				last -= 1;
+				return last;
+			};
+
+			while (i >= 0) {
+				$.getJSON(typeObj._json_request(feeds[i]), process_entries);
+				_results.push(i -= 1);
+			}
+
+			$.extend({}, _results);
 			return;
 		} // end of exec
 	};
