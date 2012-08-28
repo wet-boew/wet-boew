@@ -17,11 +17,15 @@
 				options,
 				datalist_items = [],
 				showOptions,
+				closeOptions,
 				correctWidth,
 				container;
 			
 			showOptions = function (string) {
-				var comparator = string.toLowerCase(),
+				var comparator, visibleOptions;
+
+				if (string.length !== 0) {
+					comparator = string.toLowerCase();
 					visibleOptions = options.filter(function () {
 						var $this = $(this),
 							value = $this.find('span.al-value').html();
@@ -30,16 +34,24 @@
 						}
 						return (comparator.length === 0 || value.toLowerCase().indexOf(comparator) === 0);
 					});
-				options.not(visibleOptions).addClass('al-hide').attr('aria-hidden', 'true');
-				visibleOptions.removeClass('al-hide').attr('aria-hidden', 'false');
+				} else {
+					visibleOptions = options;
+				}
+
+				autolist.empty().append(visibleOptions); // Add the visible options to the autolist
 
 				if (visibleOptions.length !== 0) {
-					autolist.removeClass('al-hide').attr('aria-hidden', 'false');
+					autolist.removeClass('al-hide');
 					elm.attr('aria-expanded', 'true');
 				} else {
-					autolist.addClass('al-hide').attr('aria-hidden', 'true');
+					autolist.addClass('al-hide');
 					elm.attr('aria-expanded', 'false');
 				}
+			};
+		
+			closeOptions = function () {
+				autolist.addClass('al-hide').empty();
+				elm.attr({'aria-expanded': 'false', 'aria-activedescendent': ''});
 			};
 
 			correctWidth = function () {
@@ -58,20 +70,19 @@
 				if (value === 'undefined') {
 					value = $this.text();
 				}	
-				datalist_items.push('<li class="al-hide al-option" aria-hidden="true" id="al-option-' + index + '-' + index2 + '"><a href="javascript:;"><span class="al-value">' + (value !== 'undefined' ? value : "") + '</span><span class="al-label">' + (label !== 'undefined' ? label : "") + '</span></a></li>');
+				datalist_items.push('<li class="al-option" id="al-option-' + index + '-' + index2 + '"><a href="javascript:;"><span class="al-value">' + (value !== 'undefined' ? value : "") + '</span><span class="al-label">' + (label !== 'undefined' ? label : "") + '</span></a></li>');
 			});
 
-			elm.attr({"role": "combobox", "aria-expanded": "false", "aria-autocomplete": "list", "aria-owns": "wb-autolist-" + index}).wrap('<div class="wb-al-container"/>');
-
-			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide" aria-hidden="true">' + datalist_items.join('') + '</ul>');
-			options = autolist.find('li');
+			elm.attr({'autocomplete': 'off', 'role': 'textbox', 'aria-haspopup': 'true', 'aria-autocomplete': 'list', 'aria-owns': 'wb-autolist-' + index, 'aria-activedescendent': ''}).wrap('<div class="wb-al-container" role="application"/>');
+			container = elm.parent();
+			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide" aria-hidden="true" aria-live="polite"></ul>');
+			options = $(datalist_items.join(''));
 			elm.after(autolist);
 			correctWidth();
 			
-			elm.on('keyup keydown click vclick', function (e) {
+			elm.on('keyup keydown click vclick focus', function (e) {
 				var type = e.type,
 					keycode = e.keyCode,
-					target = e.target,
 					dest;
 				if (type === 'keyup') {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
@@ -81,25 +92,18 @@
 					}
 				} else if (type === 'keydown') {
 					if (!(e.ctrlKey || e.metaKey)) {
-						if (!e.altKey && elm.attr('aria-expanded') === "true") {
-							if (keycode === 9 || keycode === 27) { // tab or escape key
-								showOptions('~!!@@#$');
-								elm.removeAttr('aria-activedescendent');
-								if (keycode === 27) {
-									return false;
+						if (!e.altKey && !autolist.hasClass('al-hide')) {
+							if (keycode === 27) { // escape key
+								closeOptions();
+								return false;
+							} else if ((keycode === 38 || keycode === 40) && elm.attr('aria-activedescendent') === "") { // up or down arrow (aria-activedescendent check for IE7)
+								if (keycode === 38) { // up arrow
+									dest = autolist.find('a').last();
+								} else { // down arrow
+									dest = autolist.find('a').eq(0);
 								}
-							} else if (keycode === 38 || keycode === 40) { // up or down arrow 
-								visible_options = options.filter(':not(.al-hide)').find('a');
-								if (visible_options.length > 0) {
-									index = visible_options.index(target);
-									if (keycode === 38) { // up arrow
-										dest = visible_options.last();
-									} else { // down arrow
-										dest = visible_options.eq(0);
-									}
-									pe.focus(dest);
-									elm.attr('aria-activedescendent', dest.attr('id'));
-								}
+								elm.attr('aria-activedescendent', dest.parent().attr('id'));
+								pe.focus(dest);
 								return false;
 							}
 						} else {
@@ -111,15 +115,17 @@
 					}
 				} else if (type === 'click' || type === 'vclick') {
 					if (!autolist.hasClass('al-hide')) {
-						showOptions('~!!@@#$');
+						closeOptions();
 					} else {
 						showOptions('');
 					}
 					return false;
+				} else if (type === 'focus' && pe.ie > 0 && pe.ie < 8) {
+					autolist.addClass('al-hide').empty();
 				}
 			});
 
-			autolist.on('keyup keydown click vclick', 'li, span', function (e) {
+			autolist.on('keyup keydown click vclick', 'a, span', function (e) {
 				var type = e.type,
 					keycode = e.keyCode,
 					target = $(e.target),
@@ -151,26 +157,23 @@
 							}
 							elm.val(value);
 							pe.focus(elm);
-							showOptions('~!!@@#$');
+							closeOptions();
 							return false;
-						} else if (keycode === 9 || keycode === 27) { // tab or escape key
+						} else if (keycode === 9 || keycode === 27) { // escape key
 							pe.focus(elm);
-							showOptions('~!!@@#$');
-							elm.removeAttr('aria-activedescendent');
-							if (keycode === 27) {
-								return false;
-							}
+							closeOptions();
+							return false;
 						} else if (keycode === 38 || keycode === 40) { // up or down arrow 
-							visible_options = options.filter(':not(.al-hide)').find('a');
-							if (visible_options.length > 0) {
+							visible_options = autolist.find('a');
+							if (visible_options.length !== 0) {
 								index = visible_options.index(target);
 								if (keycode === 38) { // up arrow
 									dest = ((index - 1) === -1 ? visible_options.last() : visible_options.eq(index - 1));
 								} else { // down arrow
 									dest = ((index + 1) === visible_options.length ? visible_options.eq(0) : visible_options.eq(index + 1));
 								}
+								elm.attr('aria-activedescendent', dest.parent().attr('id'));
 								pe.focus(dest);
-								elm.attr('aria-activedescendent', dest.attr('id'));
 							}
 							return false;
 						}
@@ -184,15 +187,18 @@
 						value = target.find('span.al-label').html();
 					}
 					elm.val(value);
-					showOptions('~!!@@#$');
 					pe.focus(elm);
+					closeOptions();
 				}
+			});
+
+			$(container).on("focusoutside", function (e) {
+				closeOptions();
 			});
 
 			$(document).on("click touchstart", function (e) {
 				if (!autolist.hasClass('al-hide') && !$(e.target).is(elm)) {
-					showOptions('~!!@@#$');
-					elm.removeAttr('aria-activedescendent');
+					closeOptions();
 				}
 			});
 		});

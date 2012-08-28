@@ -24,16 +24,12 @@ ul.wb-autolist {
 		style: solid;
 		color: #000;
 	}
-	max-height: 15em;
 	overflow: auto;
 	&.al-hide {
 		display: none;
 	}
 	li {
 		list-style-type: none;
-		&.al-hide {
-			display: none;
-		}
 		.al-label {
 			padding-left: 10px;
 			float: right;

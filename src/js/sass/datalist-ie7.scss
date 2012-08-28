@@ -10,15 +10,15 @@
 	}
 	ul.wb-autolist {
 		left:0;
-	}
-	li {
-		a {
-			.al-value {
-				float: left;
+		li {
+			a {
+				.al-value {
+					float: left;
+				}
+				.al-label {
+					clear: right;
+				}
 			}
-			.al-label {
-				clear: right;
-			}
-		}
+		}	
 	}
 }
