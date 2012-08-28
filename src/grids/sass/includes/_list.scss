@@ -68,13 +68,7 @@
 		margin: $margin-medium $margin-medium $margin-medium 40px;
 		padding: 0;
 	}
-	
-	ol ol, dl dl, ul ul {
-		&, #cn-centre-col & {
-			margin-left: 30px;
-		}
-	}
-	
+		
 	ol ol li { list-style-type: lower-alpha; }
 	ol ol ol li { list-style-type: lower-roman; }
 
@@ -96,9 +90,6 @@
 	ul ul,ol ul,ul ol,ul ul,ol ul,ul ol,ul ul,ol ul,ul ol{margin-bottom:0 !important;padding-top:0 !important;}
 }*/
 	ul{
-		&#cn-pd-ul{
-			padding:0;
-		}
 		ul{
 			margin-top:0 !important;
 		}
