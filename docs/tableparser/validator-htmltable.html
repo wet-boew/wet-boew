@@ -116,12 +116,18 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 									headersCurrCell = $(tblparser.theadRowStack[i - 1].cell[j].elem).attr('headers') + ' ' + headersCurrCell;
 								}
 								$(currCell.elem).attr('headers', headersCurrCell);
+								if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+									$(currCell.elem).removeAttr('headers');
+								}
 							}
 							
 							
 							// Set the header on his descriptive cell is any (May be better aria-describedby
 							if (currCell.descCell) {
 								$(currCell.descCell.elem).attr('headers', currCellId);
+								if ($(currCell.descCell.elem).attr('headers') === undefined || $(currCell.descCell.elem).attr('headers') === '') {
+									$(currCell.descCell.elem).removeAttr('headers');
+								}
 								var currCellDescId = $(currCell.descCell.elem).attr('id');
 								if (currCellDescId === undefined || currCellDescId === '') {
 									// currCellDescId = idPrefix + new Date().getTime() + currCell.descCell.uid; // Generate a new ID
@@ -218,6 +224,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 													((currRow.idsheaderset && ongoingRowHeader) || (coldataheader && ongoingRowHeader && !currRow.idsheaderset) ? ' ' : '') +
 													(ongoingRowHeader ? ongoingRowHeader : ''));
 								
+								if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+									$(currCell.elem).removeAttr('headers');
+								}
+								
 								var currCellId5 = $(currCell.elem).attr('id');
 								if (currCellId5 === undefined || currCellId5 === '') {
 									// currCellId5 = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
@@ -259,6 +269,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 								}
 								
 								$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (currrowheader && coldataheader ? ' ' : '') + (currrowheader ? currrowheader : ''));
+								if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+									$(currCell.elem).removeAttr('headers');
+								}
 							}
 							
 							if (currCell.type === 4 || currCell.type === 5) {
@@ -286,9 +299,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 								}
 								if (currCell.type !== 4) {
 									$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (coldataheader && descHeaders ? ' ' : '') + (descHeaders || ''));
+									if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+										$(currCell.elem).removeAttr('headers');
+									}
 								} else if (!$(currCell.elem).attr('aria-describedby')) {
 									$(currCell.elem).attr('aria-describedby', descHeaders || '');
 									$(currCell.elem).attr('headers', coldataheader || '');
+									if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+										$(currCell.elem).removeAttr('headers');
+									}
 								}
 							}						
 						}
