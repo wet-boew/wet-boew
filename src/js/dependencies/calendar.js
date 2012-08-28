@@ -179,7 +179,7 @@
 			}
 		},
 		yearChanged : function (event) {
-			var year = $(this).val(),
+			var year = parseInt($(this).val()),
 				minDate = event.data.minDate,
 				maxDate = event.data.maxDate,
 				monthField = event.data.monthField,
