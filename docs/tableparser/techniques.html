@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
 <!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
@@ -6,14 +7,16 @@
 <!--<![endif]-->
 <head>
 <meta charset="utf-8" />
-<!-- Web Experience Toolkit (WET) / BoÃ®te Ã  outils de l'expÃ©rience Web (BOEW)
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>Charts - Working examples - Web Experience Toolkit (WET)</title>
+<title>Techniques about HTML Tables - Web Experience Toolkit (WET)</title>
+
+
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="dcterms.description" content="English description/Description en anglais" />
 <meta name="description" content="English description/Description en anglais" />
-<meta name="keywords" content="English keywords/Mots-clÃ©s en anglais" />
+<meta name="keywords" content="English keywords/Mots-clés en anglais" />
 <meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
 <meta name="dcterms.title" content="English title/Titre en anglais" />
 <meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
@@ -23,9 +26,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
+
 <link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
-<script src="../../build/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
@@ -34,8 +37,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
-<!-- CustomScriptsCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -51,10 +52,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="zebra-fra.html" lang="fr">FranÃ§ais</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="zebra-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -72,7 +73,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.inc">
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.html">
 <li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -87,7 +88,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <ol>
 <li><a href="../../docs/index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li>Zebra striping - Web Experience Toolkit (WET)</li>
+<li>Table Usability - Web Experience Toolkit (WET)</li>
 </ol>
 </div></div>
 </nav>
@@ -97,206 +98,150 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Charts - Web Experience Toolkit (WET)</h1>
+
+<h1 id="cn-cont">Techniques about HTML Tables - Web Experience Toolkit (WET)</h1>
+
+<ul>
+	<li><a href="keycell-techniques.html">Key Cell Technique</a></li>
+	
+	<li>Table Description technique</li>
+	<li>Header Column Cell Description Technique</li>
+	<li>Header Row Cell Description Technique</li>
+	
+	<li>Multiple Row for the row group header technique</li>
+	<li>Multiple Column for the column group header technique</li>
+	
+	<li>Row grouping technique</li>
+	<li>Column Grouping Technique</li>
+	
+	<li>Defining colum summaries for a single row group technique</li>
+	<li>Defining row summaries for a single data column group technique</li>
+	
+	<li>Defining multiple column summaries for a data row group set technique</li>
+	<li>Defining multiple row summaries for a data column group set technique</li>
+	
+	<li>WCAG 2.0 technique reference [...]<li>
+</ul>
+
+
+<h1>Technique Draft Template</h1>
+
+
+<h2>Technique Author</h2>
+<p>Name: Pierre Dubois</p>
+<p>Email: Pierre Dubois at ic dot gc dot ca</p>
+
+<h2>Technique Information<h2>
+
+<h3>Technology</h3>
+<p>HTML and XHTML Techniques</p>
+
+<h3>Guidelines Reference<h3>
+<p>Success Criterion 1.3.1 (Info and Relationships)</p>
+
+<h3>Technique Title</h3>
+<p>Defining Key Cell in a Table<p>
+
+<h3>Applicability</h3>
+<p>Use for data tables when presence of a key information related to a row cell header.<p>
+
+<h3>User Agent Issues</h3>
+<p>Not Available<p>
+
+<h3>Description of Technique</h3>
+
+<p>The objective of this technique is to ...</p>
+
+
+<h2>Examples</h2>
+
+<h3>Examples Titles</h3>
+
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code></code></pre>
+</details>
 
 
 
-			<table class="wet-boew-charts wb-charts-line">
-				<caption>2009 Individual Sales by Category</caption>
-				<thead>
-					<tr>
-						<td></td>
-						<th>food</th>
-						<th>auto</th>
-						<th>household</th>
-						<th>furniture</th>
-						<th>kitchen</th>
-						<th>bath</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>Mary</th>
-						<td>300</td>
-						<td>160</td>
-						<td>40</td>
-						<td>120</td>
-						<td>100</td>
-						<td>70</td>
-					</tr>
-					<tr>
-						<th>Tom</th>
-						<td>3</td>
-						<td>40</td>
-						<td>30</td>
-						<td>45</td>
-						<td>35</td>
-						<td>49</td>
-					</tr>
-					<tr>
-						<th>Brad</th>
-						<td>10</td>
-						<td>180</td>
-						<td>10</td>
-						<td>85</td>
-						<td>70</td>
-						<td>79</td>
-					</tr>
-					<tr>
-						<th>Kate</th>
-						<td>40</td>
-						<td>80</td>
-						<td>90</td>
-						<td>25</td>
-						<td>15</td>
-						<td>119</td>
-					</tr>		
-				</tbody>
-			</table>
-			
-			
-			<table class="wet-boew-charts wb-charts-area">
-				<caption>Some data</caption>
-				<thead>
-					<tr>
-						<th>col Heading for Row Heading</th>
-						<th>col1</th>
-						<th>col2</th>
-						<th>col3</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>Row Heading 1</th>
-						<td>50</td>
-						<td>100</td>
-						<td>150</td>
-					</tr>
-					<tr>
-						<th>Row Heading 2</th>
-						<td>210</td>
-						<td>25</td>
-						<td>75</td>
-					</tr>
-					<tr>
-						<th>Row Heading 2</th>
-						<td>1000</td>
-						<td>245</td>
-						<td>964</td>
-					</tr>	
-				</tbody>
-			</table>
-			
-			<table class="wet-boew-charts wb-charts-bar">
-				<caption>2009 Individual Sales by Category</caption>
-				<thead>
-					<tr>
-						<td></td>
-						<th>food</th>
-						<th>auto</th>
-						<th>household</th>
-						<th>furniture</th>
-						<th>kitchen</th>
-						<th>bath</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>Mary</th>
-						<td>300</td>
-						<td>160</td>
-						<td>40</td>
-						<td>120</td>
-						<td>100</td>
-						<td>70</td>
-					</tr>
-					<tr>
-						<th>Tom</th>
-						<td>3</td>
-						<td>40</td>
-						<td>30</td>
-						<td>45</td>
-						<td>35</td>
-						<td>49</td>
-					</tr>
-					<tr>
-						<th>Brad</th>
-						<td>10</td>
-						<td>180</td>
-						<td>10</td>
-						<td>85</td>
-						<td>70</td>
-						<td>79</td>
-					</tr>
-					<tr>
-						<th>Kate</th>
-						<td>40</td>
-						<td>80</td>
-						<td>90</td>
-						<td>25</td>
-						<td>15</td>
-						<td>119</td>
-					</tr>		
-				</tbody>
-			</table>
-			
-			<table class="wet-boew-charts wb-charts-pie">
-				<caption>2009 Individual Sales by Category</caption>
-				<thead>
-					<tr>
-						<td></td>
-						<th>food</th>
-						<th>auto</th>
-						<th>household</th>
-						<th>furniture</th>
-						<th>kitchen</th>
-						<th>bath</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>Mary</th>
-						<td>300</td>
-						<td>160</td>
-						<td>40</td>
-						<td>120</td>
-						<td>100</td>
-						<td>70</td>
-					</tr>
-					<tr>
-						<th>Tom</th>
-						<td>3</td>
-						<td>40</td>
-						<td>30</td>
-						<td>45</td>
-						<td>35</td>
-						<td>49</td>
-					</tr>
-					<tr>
-						<th>Brad</th>
-						<td>10</td>
-						<td>180</td>
-						<td>10</td>
-						<td>85</td>
-						<td>70</td>
-						<td>79</td>
-					</tr>
-					<tr>
-						<th>Kate</th>
-						<td>40</td>
-						<td>80</td>
-						<td>90</td>
-						<td>25</td>
-						<td>15</td>
-						<td>119</td>
-					</tr>		
-				</tbody>
-			</table>
 
+
+<h2>Resources</h2>
+
+<ul>
+	<li><a href="http://wet-boew.github.com/wet-boew/demos/zebra/invoice.html">Zebra stripping working example of an generic invoice</a></li>
+	<li><a href="https://raw.github.com/wet-boew/wet-boew/master/src/js/workers/parser.table.js">Javascript Table Parser Source Code (Build with JQuery)</a></li>
+	<li><a href="http://wet-boew.github.com/wet-boew/docs/tableparser/validator-htmltable.html">Data Table Validator and id/headers/aria-describedby auto setup</a></li>
+	<li>WET Table Parser Documentation, Example and How To</li>
+	<li><a href="http://dev.w3.org/html5/spec/Overview.html#tabular-data">HTML5 - 4.9 Tabular data</a></li>
+	<li><a href="http://www.w3.org/WAI/GL/2011/WD-WCAG20-TECHS-20110621/">Techniques for WCAG 2.0 - W3C Editor's Draft</a></li>
+	<li><a href="http://lists.w3.org/Archives/Public/public-wcag2-techs/2012Jan/0001.html">Submitted technique - HTML and XHTML Techniques - Using table row grouping to associate data cells with header cells in data tables</a></li>
+	<li><a href="http://lists.w3.org/Archives/Public/public-wcag2-techs/2012Jan/0002.html">Submitted technique - HTML and XHTML Techniques - Identifying data group (tbody) in a data table</a></li>
+	<li><a href="http://lists.w3.org/Archives/Public/public-wcag2-techs/2012Jan/0003.html">Submitted technique - HTML and XHTML Techniques - Using table row grouping to associate data cells with ids/headers</a></li>
+	<li><a href="http://www.tbs-sct.gc.ca/ws-nw/wa-aw/mwsa-rswa/table-eng.asp">Improving the accessibility of tables</a></li>
+	<li><del><a href="http://ircan-rican.gc.ca/projects/gcwwwgraph/wiki/Tables">Charts and graphs support project - Tables and HTML5 Tables</a></del></li>
+</ul>
+
+
+<h2>Related Techniques</h2>
+
+<ul>
+	
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H51">H51: Using table markup to present tabular information</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H39">H39: Using caption elements to associate data table captions with data tables</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H73">H73: Using the summary attribute of the table element to give an overview of data tables</a></li>
+	<li><del><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H63">H63: Using the scope attribute to associate header cells and data cells in data tables</a></del></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H43">H43: Using id and headers attributes to associate data cells with header cells in data tables</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H79">H79: Identifying the purpose of a link using link text combined with its enclosing table cell and associated table headings</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F34">F34: Failure of Success Criterion 1.3.1 and 1.3.2 due to using white space characters to format tables in plain text content</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F49">F49: Failure of Success Criterion 1.3.2 due to using an HTML layout table that does not make sense when linearized</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F46">F46: Failure of Success Criterion 1.3.1 due to using th elements, caption elements, or non-empty summary attributes in layout tables</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G57">G57: Ordering the content in a meaningful sequence</a></li>
+</ul>
+
+
+<h2>Test</h2>
+
+<h3>Procedure</h3>
+<ol>
+	<li></li>
+</ol>
+	
+<h3>Expected Result</h3>
+
+<ul>
+	<li></li>
+</ul>
+	
+<h3>Test File 1</h3>
+<p>This Test File 1 [fail/pass] this tecnique</p>
+
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code></code></pre>
+</details>
+	
+
+		
+<h3>Test File 2</h3>
+<p>This Test File 2 [fail/pass] this tecnique</p>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code></code></pre>
+</details>
+	
+	
+	
+<h2>Additional Notes<h2>
+
+<p>None</p>
 
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-08-09</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
@@ -350,7 +295,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
 <li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>
 <!-- FooterEnd -->
