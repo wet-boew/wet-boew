@@ -101,9 +101,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h1 id="cn-cont">Defining a Data Column Group in a Data Table - Web Experience Toolkit (WET)</h1>
 
+
+<div class="module-note span-6">
+	<h2><span class="color-dark">Note:</span> Table Source Code Example</h2>
+	<p>Id/Headers attribute, colgroup element and col element was omited intentionally for clarity.</p>
+</div>
+
+<div class="clear"></div>
+
 <h2>Technique Author</h2>
 <p>Name: Pierre Dubois</p>
-<p>Email: Pierre Dubois at ic dot gc dot ca</p>
+<!-- <p>Email: Pierre Dubois at ic dot gc dot ca</p> -->
 
 <h2>Technique Information<h2>
 
@@ -117,17 +125,315 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p>Defining a Data Column Group in a Data Table<p>
 
 <h3>Applicability</h3>
-<p>Use for data tables when presence of a key information related to a row cell header.<p>
+<p>Use for data tables when the table contain a data column.<p>
 
 <h3>User Agent Issues</h3>
 <p>Not Available<p>
 
 <h3>Description of Technique</h3>
 
-<p>The objective of this technique is to ...</p>
+<p>The objective of this technique is to define a relationship between the colgroup element and the data cell in the table.</p>
 
+<p>If the table contain an header column group, the next colgroup is considerated as a data column group.</p>
+<p>If the table don't have an header column group, the first colgroup is considerated as a data column group.</p>
+<p>When the table don't have column header cell, each colgroup is a data column group except for the first one if there a presence of a row header cell.</p>
 
 <h2>Examples</h2>
+
+<h3>Table 1</h3>
+
+<table class="wet-boew-zebra">
+	<caption>Table 1</caption>
+	<colgroup>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th id="tbl12">Col Header</th>
+			<th id="tbl13">Col Header</th>
+			<th id="tbl14">Col Header</th>
+			<th id="tbl15">Col Header</th>
+			<th id="tbl16">Col Header</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th headers="tbl12" id="tbl20">Row Header</th>
+			<td headers="tbl13 tbl20">Data</td>
+			<td headers="tbl14 tbl20">Data</td>
+			<td headers="tbl15 tbl20">Data</td>
+			<td headers="tbl16 tbl20">Data</td>
+		</tr>
+		<tr>
+			<th headers="tbl12" id="tbl28">Row Header</th>
+			<td headers="tbl13 tbl28">Data</td>
+			<td headers="tbl14 tbl28">Data</td>
+			<td headers="tbl15 tbl28">Data</td>
+			<td headers="tbl16 tbl28">Data</td>
+		</tr>
+		<tr>
+			<th headers="tbl12" id="tbl36">Row Header</th>
+			<td headers="tbl13 tbl36">Data</td>
+			<td headers="tbl14 tbl36">Data</td>
+			<td headers="tbl15 tbl36">Data</td>
+			<td headers="tbl16 tbl36">Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+	&lt;caption&gt;Table 1&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+
+<h3>Table 2</h3>
+
+<table class="wet-boew-zebra">
+	<caption>Table 2</caption>
+	<colgroup>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<tbody>
+		<tr>
+			<th headers="" id="tbla16">Row Header</th>
+			<td headers="tbla16">Data</td>
+			<td headers="tbla16">Data</td>
+			<td headers="tbla16">Data</td>
+			<td headers="tbla16">Data</td>
+			<td headers="tbla16">Data</td>
+			<td headers="tbla16">Data</td>
+		</tr>
+		<tr>
+			<th headers="" id="tbla26">Row Header</th>
+			<td headers="tbla26">Data</td>
+			<td headers="tbla26">Data</td>
+			<td headers="tbla26">Data</td>
+			<td headers="tbla26">Data</td>
+			<td headers="tbla26">Data</td>
+			<td headers="tbla26">Data</td>
+		</tr>
+		<tr>
+			<th headers="" id="tbla36">Row Header</th>
+			<td headers="tbla36">Data</td>
+			<td headers="tbla36">Data</td>
+			<td headers="tbla36">Data</td>
+			<td headers="tbla36">Data</td>
+			<td headers="tbla36">Data</td>
+			<td headers="tbla36">Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+	&lt;caption&gt;Table 2&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+<h3>Table 3</h3>
+
+<table class="wet-boew-zebra">
+	<caption>Table 3</caption>
+	<colgroup>
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	<tbody>
+		<tr>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+	&lt;caption&gt;Table 3&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+<!--
 
 <h3>Examples Titles</h3>
 
@@ -137,8 +443,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <pre><code></code></pre>
 </details>
 
-
-
+-->
 
 
 <h2>Resources</h2>
@@ -179,15 +484,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h3>Procedure</h3>
 <ol>
-	<li></li>
+	<li>If the table contain a data, check if there are defined also with the a colgroup element.</li>
 </ol>
 	
 <h3>Expected Result</h3>
 
 <ul>
-	<li></li>
+	<li>#1 is true</li>
 </ul>
-	
+<!--
 <h3>Test File 1</h3>
 <p>This Test File 1 [fail/pass] this tecnique</p>
 
@@ -212,10 +517,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <h2>Additional Notes<h2>
 
 <p>None</p>
-
+-->
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-08-09</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-08-27</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
