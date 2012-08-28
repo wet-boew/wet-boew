@@ -34,25 +34,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
-<style>
-.view-example {
-	margin-bottom: 0 !important;
-}
-.view-example summary {
-	background-color: #176ca7;
-	color: #fff;
-	margin-bottom: 10px;
-	padding: 3px 10px;
-}
-.view-code {
-	margin-bottom: 0 !important;
-}
-.view-code summary {
-	background-color: #dda;
-	margin-bottom: 10px;
-	padding: 3px 10px;
-}
-</style>
+
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -118,137 +100,111 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- MainContentStart -->
 <h1 id="wb-cont">Other</h1>
 
+<div class="wet-boew-prettify all-pre linenums">
+<div class="span-4 module-table-contents">
+<p>Table of contents</p>
+<ul>
+	<li><a href="#badges">Badges</a></li>
+	<li><a href="#invisible">Invisible</a></li>
+    <li><a href="#calendar">Calendar</a></li>
+    <li><a href="#print">Print</a></li>
+    </ul>
+    </div>
 
-<h3 id="teasers">Badges</h3>
-<p>Draw attention to a some keyword trigger text. This acts as a teaser to the information that immediately follows on the <strong>same line</strong>.</p>
-<table class="table-simplify span-8">
+<div class="clear"></div>
+<h2 id="badges">Badges</h2>
+<p>Draw attention to a some keyword trigger text. This acts as a teaser to the information that immediately follows/precedes.</p>
+<table class="table-simplify span-6">
 	<thead>
 	<tr>
 	<th scope="col">Class</th>
 	<th scope="col">Details</th>
 	<th scope="col" class="width-20">Example 1: With a heading</th>
-	<th scope="col" class="width-20">Example 2: With a list</th>
+	<th scope="col" class="width-30">Example 2: With a list</th>
 	<th scope="col" class="width-20">Example 3: With a link</th>
 	</tr>
 	</thead>
 	<tr>
 	<td><code>badge-intro</code></td>
 	<td>adds decoration to the trigger keywords</td>
-	<td><h2> <span class="badge-intro">Step 1</span> Do x</h2></td>
+	<td><h2><span class="badge-intro">Step 1</span> Do x</h2>
+    <details>
+    <summary>View code</summary>
+<pre>&lt;h2&gt;&lt;span class=&quot;badge-intro&quot;&gt;Step 1&lt;/span&gt; Do x&lt;/h2&gt;</pre>
+    </details>
+    </td>
 	<td><ul>
 		<li><span class="badge-intro">Option 1</span> X option</li>
-		</ul></td>
-	<td><p><a href="#"><span class="badge-intro">Did you know?</span> Text</a></p></td>
+		</ul>
+        
+        <details>
+    <summary>View code</summary>
+<pre>&lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;badge-intro&quot;&gt;Option 1&lt;/span&gt; X option&lt;/li&gt;
+&lt;/ul&gt;</pre></details></td>
+	<td><p><a href="#"><span class="badge-intro">Did you know?</span> Text</a></p>
+    
+    <details>
+    <summary>View code</summary>
+<pre>&lt;p&gt;&lt;a href=&quot;#&quot;&gt;&lt;span class=&quot;badge-intro&quot;&gt;Did you know?&lt;/span&gt; Text&lt;/a&gt;&lt;/p&gt;</pre>
+    </details></td>
 	</tr>
 	<tr>
 	<td><code>badge-new</code></td>
 	<td>adds decoration to the trigger keywords</td>
-	<td><h2>Do x <span class="badge-new">New</span></h2></td>
+	<td><h2><span class="badge-new">Step 1</span> Do x</h2>
+	  <details>
+	    <summary>View code</summary>
+	    <pre>&lt;h2&gt;&lt;span class=&quot;badge-new&quot;&gt;Step 1&lt;/span&gt; Do x&lt;/h2&gt;</pre>
+	    </details></td>
 	<td><ul>
-		<li>X option <span class="badge-new">New</span></li>
-		</ul></td>
-	<td><p><a href="#">Text</a> <span class="badge-new">New</span></p></td>
+	  <li><span class="badge-new">Option 1</span> X option</li>
+	  </ul>
+	  <details>
+	    <summary>View code</summary>
+	    <pre>&lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;badge-new&quot;&gt;Option 1&lt;/span&gt; X option&lt;/li&gt;
+&lt;/ul&gt;</pre>
+	    </details></td>
+	<td><p><a href="#"><span class="badge-new">Did you know?</span> Text</a></p>
+	  <details>
+	    <summary>View code</summary>
+	    <pre>&lt;p&gt;&lt;a href=&quot;#&quot;&gt;&lt;span class=&quot;badge-new&quot;&gt;Did you know?&lt;/span&gt; Text&lt;/a&gt;&lt;/p&gt;</pre>
+	    </details></td>
 	</tr>
 	<tr>
 	<td><code>badge-update</code></td>
 	<td>adds decoration to the trigger keywords</td>
-	<td><h2>Do x <span class="badge-update">Updated</span></h2></td>
+	<td><h2><span class="badge-update">Step 1</span> Do x</h2>
+	  <details>
+	    <summary>View code</summary>
+	    <pre>&lt;h2&gt;&lt;span class=&quot;badge-update&quot;&gt;Step 1&lt;/span&gt; Do x&lt;/h2&gt;</pre>
+	    </details></td>
 	<td><ul>
-		<li>X option <span class="badge-update">Updated</span></li>
-		</ul></td>
-	<td><p><a href="#">Text</a> <span class="badge-update">Updated</span></p></td>
+	  <li><span class="badge-update">Option 1</span> X option</li>
+	  </ul>
+	  <details>
+	    <summary>View code</summary>
+	    <pre>&lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;badge-update&quot;&gt;Option 1&lt;/span&gt; X option&lt;/li&gt;
+&lt;/ul&gt;</pre>
+	    </details></td>
+	<td><p><a href="#"><span class="badge-update">Did you know?</span> Text</a></p>
+	  <details>
+	    <summary>View code</summary>
+	    <pre>&lt;p&gt;&lt;a href=&quot;#&quot;&gt;&lt;span class=&quot;badge-update&quot;&gt;Did you know?&lt;/span&gt; Text&lt;/a&gt;&lt;/p&gt;</pre>
+	    </details></td>
 	</tr>
 </table>
-<h3 id="opacity">Opacity</h3>
-<p>Adjust the opacity of any element.</p>
-<table class="table-simplify span-8">
-	<thead>
-	<tr>
-	<th scope="col" class="width-20">Class</th>
-	<th scope="col">Details</th>
-	<th scope="col" class="width-10">Example 1</th>
-	<th scope="col">Example 2</th>
-	<th scope="col">Example 3</th>
-	</tr>
-</thead>
-	<tr>
-	<td><code>opacity-100</code></td>
-	<td>100% opacity</td>
-	<td><img src="images/position-mini-3.png" alt="demo image" width="100" height="50" class="opacity-100"></td>
-	<td><p class="background-accent opacity-100">Text</p></td>
-	<td><p class="opacity-100">Text</p></td>
-	</tr>
-	<tr>
-	<td><code>opacity-90</code></td>
-	<td>90% opacity</td>
-	<td><img src="images/position-mini-3.png" alt="demo image" width="100" height="50" class="opacity-90"></td>
-	<td><p class="background-accent opacity-90">Text</p></td>
-	<td><p class="opacity-90">Text</p></td>
-	</tr>
-	<tr>
-	<td><code>opacity-80</code></td>
-	<td>80% opacity</td>
-	<td><img src="images/position-mini-3.png" alt="demo image" width="100" height="50" class="opacity-80"></td>
-	<td><p class="background-accent opacity-80">Text</p></td>
-	<td><p class="opacity-80">Text</p></td>
-	</tr>
-	<tr>
-	<td><code>opacity-70</code></td>
-	<td>70% opacity</td>
-	<td><img src="images/position-mini-3.png" alt="demo image" width="100" height="50" class="opacity-70"></td>
-	<td><p class="background-accent opacity-70">Text</p></td>
-	<td><p class="opacity-70">Text</p></td>
-	</tr>
-	<tr>
-	<td><code>opacity-60</code></td>
-	<td>60% opacity</td>
-	<td><img src="images/position-mini-3.png" alt="demo image" width="100" height="50" class="opacity-60"></td>
-	<td><p class="background-accent opacity-60">Text</p></td>
-	<td><p class="opacity-60">Text</p></td>
-	</tr>
-	<tr>
-	<td><code>opacity-50</code></td>
-	<td>50% opacity</td>
-	<td><img src="images/position-mini-3.png" alt="demo image" width="100" height="50" class="opacity-50"></td>
-	<td><p class="background-accent opacity-50">Text</p></td>
-	<td><p class="opacity-50">Text</p></td>
-	</tr>
-	<tr>
-	<td><code>opacity-40</code></td>
-	<td>40% opacity</td>
-	<td><img src="images/position-mini-3.png" alt="demo image" width="100" height="50" class="opacity-40"></td>
-	<td><p class="background-accent opacity-40">Text</p></td>
-	<td><p class="opacity-40">Text</p></td>
-	</tr>
-	<tr>
-	<td><code>opacity-30</code></td>
-	<td>30% opacity</td>
-	<td><img src="images/position-mini-3.png" alt="demo image" width="100" height="50" class="opacity-30"></td>
-	<td><p class="background-accent opacity-30">Text</p></td>
-	<td><p class="opacity-30">Text</p></td>
-	</tr>
-	<tr>
-	<td><code>opacity-20</code></td>
-	<td>20% opacity</td>
-	<td><img src="images/position-mini-3.png" alt="demo image" width="100" height="50" class="opacity-20"></td>
-	<td><p class="background-accent opacity-20">Text</p></td>
-	<td><p class="opacity-20">Text</p></td>
-	</tr>
-	<tr>
-	<td><code>opacity-10</code></td>
-	<td>10% opacity</td>
-	<td><img src="images/position-mini-3.png" alt="demo image" width="100" height="50" class="opacity-10"></td>
-	<td><p class="background-accent opacity-10">Text</p></td>
-	<td><p class="opacity-10">Text</p></td>
-	</tr>
-</table>
-
-<h3 id="invisible"><code>wb-invisible</code> class</h3>
+<div class="clear"></div>
+<h2 id="invisible"><code>wb-invisible</code> class</h2>
 <p>The <code>wb-invisible</code> class clips content into a one pixel square. It allows you to create links that are descriptive (and compliant), but not visually clutter the page. It is common to use this technique to target assistive technology users. For example, JAWS users hear the information, but the visual user does not hear or see it. The <abbr title="Cascading Style Sheet">CSS</abbr> attribute <code>display:none;</code> does not achieve the same effect, as JAWS ignores this style entirely.</p>
+<div class="span-6">
+<details>
+    <summary>View code</summary>
+    <pre>&lt;a class=&quot;button button-small&quot; href=&quot;#embedded&quot;&gt;1&lt;span class=&quot;wb-invisible&quot;&gt;: Page 1 of search results&lt;/span&gt;&lt;/a&gt;</pre></details></div>
 
-<h3 id="wrap"><code>wrap-none</code> class</h3>
-<p>This class prevents content from splitting over multiple lines. Use it mainly when writing something such as a date, phone number or mathematical equation, as this ensures they are easy to read. For example: <code class="wrap-none">&lt;span class="wrap-none"&gt;January 1, 2010&lt;/span&gt;</code></p>
-<h3 id="calendar">Calendar <abbr title="Cascading Style Sheet">CSS</abbr> </h3>
+<h2 id="calendar">Calendar  </h2>
 <div class="span-2 module float-right">
 	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
 	<ul>
@@ -258,9 +214,9 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<li><code>calendar-item</code></li>
 	</ul>
 </div>
-<p>Use a calendar to link to events. For further details, refer to <a href="modules/module4.html">Right menu: Event menu <abbr title="Cascading Style Sheet">CSS</abbr> module &mdash; module-event</a></p>
-<div class="clear"></div>
-<table class="calendar-month indent-large">
+<p>Use a calendar to link to events. </p>
+
+<table class="calendar-month indent-medium">
 	<caption>
 	October 2009
 	</caption>
@@ -304,7 +260,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<td class="calendar-weekend">19</td>
 	<td>20</td>
 	<td>21</td>
-	<td class="calendar-item"><a href="#calendar">22<span class="invisible">nd of October events</span></a></td>
+	<td class="calendar-item"><a href="#calendar">22<span class="wb-invisible">nd of October events</span></a></td>
 	<td>23</td>
 	<td>24</td>
 	<td class="calendar-weekend"> 25</td>
@@ -319,35 +275,73 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<td class="calendar-weekend"></td>
 	</tr>
 </table>
-
-
-
-<h3 id="modules">Grid modules overview </h3>
-<p>Modules are specific <abbr title="Cascading Style Sheet">CSS</abbr> classes that work within the grid system and create an entire presentation style. By using one module class, you can easily create a full page or just a small section of stylized content. The <abbr title="Cascading Style Sheet">CSS</abbr> is written to style every detail of the grid cell for a specific use and purpose. All background colours, borders and other features appear automatically.</p>
-<p>It is easy to code a module. The following is an example:</p>
-<code class="indent-large"> &lt;div class=&quot;span-(#) module-(name)&quot;&gt;
-		(content)
-		&lt;/div&gt;</code>
-<h3 id="thermometer">Thermometer <abbr title="Cascading Style Sheet">CSS</abbr></h3>
-<p>Use this style is to record the donation progress for events such as the Government of Canada Workplace Charitable Campaign (GCWCC).</p>
-<p>This <abbr title="Cascading Style Sheet">CSS</abbr> determines which thermometer background image to display. By changing the class name on the <code>&lt;p&gt;</code> element, the thermometer image instantly reflects the new amount. Since the classes increase by 10% increments, you need to adjust your thermometer percentage to the nearest 10% class. Values range from 0% to 120%. For values in excess of 120% , use the 120% class.</p>
+<div class="span-6">
+<details>
+    <summary>View code</summary>
+<pre>&lt;table class=&quot;calendar-month indent-medium&quot;&gt;
+&lt;caption&gt;
+October 2009
+&lt;/caption&gt;
+&lt;tr&gt;
+    &lt;th scope=&quot;col&quot; class=&quot;calendar-weekend&quot;&gt;&lt;abbr title=&quot;Sunday&quot;&gt;Sun&lt;/abbr&gt;&lt;/th&gt;
+    &lt;th scope=&quot;col&quot;&gt;&lt;abbr title=&quot;Monday&quot;&gt;Mon&lt;/abbr&gt;&lt;/th&gt;
+    &lt;th scope=&quot;col&quot;&gt;&lt;abbr title=&quot;Tuesday&quot;&gt;Tue&lt;/abbr&gt;&lt;/th&gt;
+    &lt;th scope=&quot;col&quot;&gt;&lt;abbr title=&quot;Wednesday&quot;&gt;Wed&lt;/abbr&gt;&lt;/th&gt;
+    &lt;th scope=&quot;col&quot;&gt;&lt;abbr title=&quot;Thursday&quot;&gt;Thu&lt;/abbr&gt;&lt;/th&gt;
+    &lt;th scope=&quot;col&quot;&gt;&lt;abbr title=&quot;Friday&quot;&gt;Fri&lt;/abbr&gt;&lt;/th&gt;
+    &lt;th scope=&quot;col&quot; class=&quot;calendar-weekend&quot;&gt;&lt;abbr title=&quot;Saturday&quot;&gt;Sat&lt;/abbr&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td class=&quot;calendar-weekend&quot;&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;1&lt;/td&gt;
+    &lt;td&gt;2&lt;/td&gt;
+    &lt;td&gt;3&lt;/td&gt;
+    &lt;td class=&quot;calendar-weekend&quot;&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td class=&quot;calendar-weekend&quot;&gt;5&lt;/td&gt;
+    &lt;td&gt;6&lt;/td&gt;
+    &lt;td&gt;7&lt;/td&gt;
+    &lt;td&gt;8&lt;/td&gt;
+    &lt;td class=&quot;calendar-today&quot;&gt;9&lt;/td&gt;
+    &lt;td&gt;10&lt;/td&gt;
+    &lt;td class=&quot;calendar-weekend&quot;&gt;11&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td class=&quot;calendar-weekend&quot;&gt;12&lt;/td&gt;
+    &lt;td class=&quot;calendar-item&quot;&gt;&lt;a href=&quot;#calendar&quot;&gt;13&lt;span class=&quot;wb-invisible&quot;&gt;th of October events&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+    &lt;td&gt;14&lt;/td&gt;
+    &lt;td&gt;15&lt;/td&gt;
+    &lt;td&gt;16&lt;/td&gt;
+    &lt;td&gt;17&lt;/td&gt;
+    &lt;td class=&quot;calendar-weekend&quot;&gt;18&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td class=&quot;calendar-weekend&quot;&gt;19&lt;/td&gt;
+    &lt;td&gt;20&lt;/td&gt;
+    &lt;td&gt;21&lt;/td&gt;
+    &lt;td class=&quot;calendar-item&quot;&gt;&lt;a href=&quot;#calendar&quot;&gt;22&lt;span class=&quot;wb-invisible&quot;&gt;nd of October events&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+    &lt;td&gt;23&lt;/td&gt;
+    &lt;td&gt;24&lt;/td&gt;
+    &lt;td class=&quot;calendar-weekend&quot;&gt; 25&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td class=&quot;calendar-weekend&quot;&gt;26&lt;/td&gt;
+    &lt;td&gt;27&lt;/td&gt;
+    &lt;td&gt;28&lt;/td&gt;
+    &lt;td&gt;29&lt;/td&gt;
+    &lt;td&gt;30&lt;/td&gt;
+    &lt;td&gt;31&lt;/td&gt;
+    &lt;td class=&quot;calendar-weekend&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</pre>
+</details>
+</div>
 <div class="clear"></div>
-<div class="span-2 margin-bottom-none">
-<p class="thermometer-0">Donations to date are $0, which is 0% of the target.</p>
-<p>(Uses <code>thermometer-0</code>)</p>
-</div>
-<div class="span-2 margin-bottom-none">
-<p class="thermometer-40">Donations to date are $46,500, which is 38% of the target.</p>
-<p>(Uses <code>thermometer-40</code>)</p>
-</div>
-<div class="span-2 margin-bottom-none background-light">
-<p class="thermometer-120">Donations to date are $190,512, which is 150% of the target.</p>
-<p>(Uses <code>thermometer-120</code>)</p>
-</div>
-<div class="clear"></div>
 
-
-<h2 id="prnt">Print <abbr title="Cascading Style Sheet">CSS</abbr> and grids</h2>
+<h2 id="print">Print</h2>
 <p>Grid cells do not keep their design properties when printed, for various reasons:</p>
 <ul>
 	<li>Browsers do not process complex <abbr title="Cascading Style Sheet">CSS</abbr> well when printing, so grids print differently in <abbr title="Internet Explorer">IE</abbr>6 versus <abbr title="Internet Explorer">IE</abbr>8, both with unexpected and undesirable results.</li>
@@ -364,12 +358,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<li><code>print-span-7</code></li>
 	<li><code>print-span-8</code></li>
 </ul>
+<details class="span-6">
+<summary>View code</summary>
 <pre><code>&lt;div class=&quot;span-5 print-span-5&quot;&gt;</code></pre>
+</details>
+<div class="clear"></div>
 <p>Adding these classes have no affect on the Web page itself, but will <strong>roughly</strong> keep the grid layout when the page is printed. There is rarely a need for this, but may be handy for directives or policy documents.</p>
-<div class="span-8 module-note">
+<div class="span-6 module-note">
 	<p><strong>Note:</strong> These classes will not work on grid parent/child relationships. They are for simple grid designs.</p>
 </div>
 <div class="clear"></div>
+</div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
@@ -379,33 +378,39 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div></div>
 
 <div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
-<div class="wb-sec-def">
-<!-- SecNavStart -->
-<section><h3><a href="#">Basic effects</a></h3>
-<ul>
-<li><a href="grid-base-eng.html">CSS Grid system</a></li>
-<li><a href="grid-text-eng.html">Text</a></li>
-<li><a href="grid-color-eng.html">Colour</a></li>
-<li><a href="grid-table-eng.html">Tables</a></li>
-<li><a href="grid-form-eng.html">Forms</a></li>
-<li><a href="grid-image-eng.html">Images</a></li>
-
-<li><a href="grid-proximity-eng.html">Proximity</a></li>
-<li><a href="grid-position-eng.html">Positioning and alignment</a></li>
-<li><a href="grid-opacity-eng.html">Opacity</a></li>
-<li><a href="grid-border-eng.html">Borders</a></li>
-<li><a href="grid-button-eng.html">Buttons</a></li>
-</ul>
-</section>
-<section><h3><a href="#">Specialty effects</a></h3>
-<ul>
-<li><a href="grid-message-eng.html">Messages</a></li>
-<li><a href="grid-module-eng.html">Modules</a></li>
-<li><a href="grid-util-eng.html">Other</a></li>
-</ul>
-</section>
-<!-- SecNavEnd -->
-</div>
+  <div class="wb-sec-def">
+    <!-- SecNavStart -->
+    <section>
+      <h3><a href="grid-structure-eng.html">Structure</a></h3>
+      <ul>
+        <li><a href="grid-base-eng.html">CSS grid system</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-basic-eng.html">Basic effects</a></h3>
+      <ul>
+        <li><a href="grid-text-eng.html">Text</a></li>
+        <li><a href="grid-table-eng.html">Tables</a></li>
+        <li><a href="grid-form-eng.html">Forms</a></li>
+        <li><a href="grid-image-eng.html">Images</a></li>
+        <li><a href="grid-color-eng.html">Colour</a></li>
+        <li><a href="grid-button-eng.html">Buttons</a></li>
+        <li><a href="grid-border-eng.html">Borders</a></li>
+        <li><a href="grid-opacity-eng.html">Opacity</a></li>
+        <li><a href="grid-proximity-eng.html">Proximity</a></li>
+        <li><a href="grid-position-eng.html">Positioning and alignment</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-specialty-eng.html">Specialty effects</a></h3>
+      <ul>
+        <li><a href="grid-message-eng.html">Messages</a></li>
+        <li><a href="grid-module-eng.html">Modules</a></li>
+        <li><a href="grid-other-eng.html">Other</a></li>
+      </ul>
+    </section>
+    <!-- SecNavEnd -->
+  </div>
 </nav></div></div>
 </div></div>
 
