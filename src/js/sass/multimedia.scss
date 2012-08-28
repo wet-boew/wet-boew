@@ -78,10 +78,15 @@ $progress-color: #000;
 		margin-right:55px;
 		height:18px;
 		padding: 2px 4px;
-	}
+		
+		p{
+			margin:0;
+		}
+		
+		.wb-mm-timeline-inner {
+			margin:0 70px;
+		}
 	
-	.wb-mm-timeline-inner {
-		margin:0 70px;
 	}
 	
 	progress {
