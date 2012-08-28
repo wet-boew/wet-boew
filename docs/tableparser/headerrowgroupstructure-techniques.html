@@ -9,7 +9,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>Structuring the Header Row Group in a Data Table - Techniques about HTML Tables - Web Experience Toolkit (WET)</title>
+<title>Structuring the Header Row in a Data Table - Techniques about HTML Tables - Web Experience Toolkit (WET)</title>
 
 
 
@@ -99,11 +99,20 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
 
-<h1 id="cn-cont">Structuring the Header Row Group in a Data Table - Web Experience Toolkit (WET)</h1>
+<h1 id="cn-cont">Structuring the Header Row in a Data Table - Web Experience Toolkit (WET)</h1>
+
+
+<div class="module-note span-6">
+	<h2><span class="color-dark">Note:</span> Table Source Code Example</h2>
+	<p>Id/Headers attribute, colgroup element and col element was omited intentionally for clarity.</p>
+</div>
+
+<div class="clear"></div>
+
 
 <h2>Technique Author</h2>
 <p>Name: Pierre Dubois</p>
-<p>Email: Pierre Dubois at ic dot gc dot ca</p>
+<!-- <p>Email: Pierre Dubois at ic dot gc dot ca</p> -->
 
 <h2>Technique Information<h2>
 
@@ -114,20 +123,288 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <p>Success Criterion 1.3.1 (Info and Relationships)</p>
 
 <h3>Technique Title</h3>
-<p>Structuring the Header Row Group in a Data Table<p>
+<p>Structuring the Header Row in a Data Table<p>
 
 <h3>Applicability</h3>
-<p>Use for data tables when presence of a key information related to a row cell header.<p>
+<p>Use for data tables when presence a row contain more than one cell header (td element).<p>
 
 <h3>User Agent Issues</h3>
 <p>Not Available<p>
 
 <h3>Description of Technique</h3>
 
-<p>The objective of this technique is to ...</p>
+<p>The objective of this technique is to have the row cell header well structured and to avoid confusion between multiple heading in the same row.</p>
 
+<p>The size is calculated with the value of the rowspan attribute. A row header cell next to any row header cell his size is always smaller. Two row header cell with the same size can not co-exist in the same row.</p>
+
+<p>A row cell header can not be defined after any data cell. This exclude key cell and descriptive cell.</p>
+
+<p>The row cell header are contained inside the colgroup header.</p>
 
 <h2>Examples</h2>
+
+<h3>Table 1</h3>
+
+<table class="wet-boew-zebra">
+	<caption>Table 1</caption>
+	<colgroup>
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	
+	<tbody><tr>
+		<th headers="" id="tbl6" rowspan="4">Row Header</th>
+		<th headers="tbl6" id="tbl7">Row Header</th>
+		<td headers="tbl6 tbl7">Data</td>
+		<td headers="tbl6 tbl7">Data</td>
+		<td headers="tbl6 tbl7">Data</td>
+		<td headers="tbl6 tbl7">Data</td>
+		<td headers="tbl6 tbl7">Data</td>
+		<td headers="tbl6 tbl7">Data</td>
+	</tr>
+	<tr>
+		<th headers="tbl6" id="tbl27">Row Header</th>
+		<td headers="tbl6 tbl27">Data</td>
+		<td headers="tbl6 tbl27">Data</td>
+		<td headers="tbl6 tbl27">Data</td>
+		<td headers="tbl6 tbl27">Data</td>
+		<td headers="tbl6 tbl27">Data</td>
+		<td headers="tbl6 tbl27">Data</td>
+	</tr>
+	<tr>
+		<th headers="tbl6" id="tbl37">Row Header</th>
+		<td headers="tbl6 tbl37">Data</td>
+		<td headers="tbl6 tbl37">Data</td>
+		<td headers="tbl6 tbl37">Data</td>
+		<td headers="tbl6 tbl37">Data</td>
+		<td headers="tbl6 tbl37">Data</td>
+		<td headers="tbl6 tbl37">Data</td>
+	</tr>
+	<tr>
+		<th headers="tbl6" id="tbl47">Row Header</th>
+		<td headers="tbl6 tbl47">Data</td>
+		<td headers="tbl6 tbl47">Data</td>
+		<td headers="tbl6 tbl47">Data</td>
+		<td headers="tbl6 tbl47">Data</td>
+		<td headers="tbl6 tbl47">Data</td>
+		<td headers="tbl6 tbl47">Data</td>
+	</tr>
+	<tr>
+		<th headers="" id="tbl57" rowspan="2">Row Header</th>
+		<th headers="tbl57" id="tbl58">Row Header</th>
+		<td headers="tbl57 tbl58">Data</td>
+		<td headers="tbl57 tbl58">Data</td>
+		<td headers="tbl57 tbl58">Data</td>
+		<td headers="tbl57 tbl58">Data</td>
+		<td headers="tbl57 tbl58">Data</td>
+		<td headers="tbl57 tbl58">Data</td>
+	</tr>
+	<tr>
+		<th headers="tbl57" id="tbl68">Row Header</th>
+		<td headers="tbl57 tbl68">Data</td>
+		<td headers="tbl57 tbl68">Data</td>
+		<td headers="tbl57 tbl68">Data</td>
+		<td headers="tbl57 tbl68">Data</td>
+		<td headers="tbl57 tbl68">Data</td>
+		<td headers="tbl57 tbl68">Data</td>
+	</tr>
+	<tr>
+		<th headers="" id="tbl78" colspan="2">Row Header</th>
+		<td headers="tbl78">Data</td>
+		<td headers="tbl78">Data</td>
+		<td headers="tbl78">Data</td>
+		<td headers="tbl78">Data</td>
+		<td headers="tbl78">Data</td>
+		<td headers="tbl78">Data</td>
+	</tr>
+</tbody></table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+	&lt;caption&gt;Table 1&lt;/caption&gt;
+	
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;4&quot;&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th colspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+
+<h3>Table 2</h3>
+
+<table class="wet-boew-zebra">
+	<caption>Table 2</caption>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	
+	<tbody><tr>
+		<th headers="" id="tbla6" rowspan="4">Row Header</th>
+		<th headers="tbla6" id="tbla7" rowspan="2">Row Header</th>
+		<th headers="tbla6 tbla7" id="tbla8">Row Header</th>
+		<td headers="tbla6 tbla7 tbla8">Data</td>
+		<td headers="tbla6 tbla7 tbla8">Data</td>
+		<td headers="tbla6 tbla7 tbla8">Data</td>
+		<td headers="tbla6 tbla7 tbla8">Data</td>
+		<td headers="tbla6 tbla7 tbla8">Data</td>
+	</tr>
+	<tr>
+		<th headers="tbla6 tbla7" id="tbla27">Row Header</th>
+		<td headers="tbla6 tbla7 tbla27">Data</td>
+		<td headers="tbla6 tbla7 tbla27">Data</td>
+		<td headers="tbla6 tbla7 tbla27">Data</td>
+		<td headers="tbla6 tbla7 tbla27">Data</td>
+		<td headers="tbla6 tbla7 tbla27">Data</td>
+	</tr>
+	<tr>
+		<th headers="tbla6" id="tbla36" rowspan="2">Row Header</th>
+		<th headers="tbla6 tbla36" id="tbla37">Row Header</th>
+		<td headers="tbla6 tbla36 tbla37">Data</td>
+		<td headers="tbla6 tbla36 tbla37">Data</td>
+		<td headers="tbla6 tbla36 tbla37">Data</td>
+		<td headers="tbla6 tbla36 tbla37">Data</td>
+		<td headers="tbla6 tbla36 tbla37">Data</td>
+	</tr>
+	<tr>
+		<th headers="tbla6 tbla36" id="tbla46">Row Header</th>
+		<td headers="tbla6 tbla36 tbla46">Data</td>
+		<td headers="tbla6 tbla36 tbla46">Data</td>
+		<td headers="tbla6 tbla36 tbla46">Data</td>
+		<td headers="tbla6 tbla36 tbla46">Data</td>
+		<td headers="tbla6 tbla36 tbla46">Data</td>
+	</tr>
+</tbody></table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+	&lt;caption&gt;Table 2&lt;/caption&gt;
+	
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;4&quot;&gt;Row Header&lt;/th&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+
+<!--
+
 
 <h3>Examples Titles</h3>
 
@@ -137,7 +414,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <pre><code></code></pre>
 </details>
 
-
+-->
 
 
 
@@ -179,40 +456,354 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h3>Procedure</h3>
 <ol>
-	<li></li>
+	<li>If there is more than row cell header per row. Check if each subsequent row cell header is smaller than the previous one.</li>
 </ol>
 	
 <h3>Expected Result</h3>
 
 <ul>
-	<li></li>
+	<li>#1 is true.</li>
 </ul>
 	
 <h3>Test File 1</h3>
-<p>This Test File 1 [fail/pass] this tecnique</p>
+<p>This Test File 1 <strong>fail</strong> this technique</p>
 
+<table>
+	<caption>Table 3</caption>
+	<tr>
+		<th>Row Header</th>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+</table>
 
 <details>
 	<summary>Table Source Code</summary>
-<pre><code></code></pre>
+<pre><code>&lt;table&gt;
+	&lt;caption&gt;Table 3&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
 </details>
 	
 
 		
 <h3>Test File 2</h3>
-<p>This Test File 2 [fail/pass] this tecnique</p>
+<p>This Test File 2 <strong>fail</strong> this tecnique</p>
+
+<table>
+	<caption>Table 4</caption>
+	<tr>
+		<th>Row Header</th>
+		<th rowspan="2">Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<th rowspan="2">Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+</table>
 
 <details>
 	<summary>Table Source Code</summary>
-<pre><code></code></pre>
+<pre><code>
+&lt;table&gt;
+	&lt;caption&gt;Table 4&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
 </details>
 	
+
+<h3>Test File 3</h3>
+<p>This Test File 3 <strong>fail</strong> this technique</p>
+
+<table>
+	<caption>Table 5</caption>
+	<tr>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<th>Row Header</th>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<th>Row Header</th>
+		<td>Data</td>
+	</tr>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table&gt;
+	&lt;caption&gt;Table 5&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</details>
 	
+
+
+
+
+<h3>Test File 4</h3>
+<p>This Test File 4 <strong>fail</strong> this technique</p>
+
+<table>
+	<caption>Table 6</caption>
+	<tr>
+		<th rowspan="2">Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<th>Row Header</th>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<th>Row Header</th>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th rowspan="2">Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<th>Row Header</th>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<th>Row Header</th>
+		<td>Data</td>
+	</tr>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table&gt;
+	&lt;caption&gt;Table 6&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code></pre>
+</details>
 	
+
+
+
+
+<h3>Test File 5</h3>
+<p>This Test File 5 <strong>fail</strong> this technique</p>
+
+<table>
+	<caption>Table 7</caption>
+	<tr>
+		<th rowspan="2">Row Header</th>
+		<td rowspan="2">Data</td>
+		<td rowspan="2">Data</td>
+		<td rowspan="2">Data</td>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th rowspan="2">Row Header</th>
+		<td rowspan="2">Data</td>
+		<td rowspan="2">Data</td>
+		<td rowspan="2">Data</td>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table&gt;
+	&lt;caption&gt;Table 7&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;td rowspan=&quot;2&quot;&gt;Data&lt;/td&gt;
+		&lt;td rowspan=&quot;2&quot;&gt;Data&lt;/td&gt;
+		&lt;td rowspan=&quot;2&quot;&gt;Data&lt;/td&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;td rowspan=&quot;2&quot;&gt;Data&lt;/td&gt;
+		&lt;td rowspan=&quot;2&quot;&gt;Data&lt;/td&gt;
+		&lt;td rowspan=&quot;2&quot;&gt;Data&lt;/td&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+
+</code></pre>
+</details>
+
+<!--
 <h2>Additional Notes<h2>
 
 <p>None</p>
-
+-->
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-08-09</time></span></dd>
