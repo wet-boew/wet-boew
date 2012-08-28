@@ -982,7 +982,7 @@
 			polyfill: {
 				'datalist': {
 					selector: 'input[list]',
-					depends: ['resize'],
+					depends: ['resize', 'outside'],
 					update: function (elms) {
 						elms.datalist();
 					},
