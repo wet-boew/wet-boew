@@ -239,8 +239,8 @@
 						timeline = $w.find('.wb-mm-timeline progress');
 						timeline.attr('value', p);
 
-						$w.find('.wb-mm-timeline-current').text(_pe.fn.multimedia._format_time(this.getCurrentTime()));
-						$w.find('.wb-mm-timeline-total').text(_pe.fn.multimedia._format_time(this.getDuration()));
+						$w.find('.wb-mm-timeline-current span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(this.getCurrentTime()));
+						$w.find('.wb-mm-timeline-total span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(this.getDuration()));
 
 						//Update captions
 						if ($.data(e.target, 'captions') !== undefined) {
@@ -269,7 +269,7 @@
 		_get_ui : function (id) {
 			var ui = $('<div class="wb-mm-controls">'),
 				ui_start = $('<div class="wb-mm-controls-start">'),
-				ui_timeline = $('<div class="wb-mm-timeline" tabindex="0"><div class="wb-mm-timeline-current">00:00:00</div><div class="wb-mm-timeline-total">--:--:--</div><div class="wb-mm-timeline-inner"><progress value="0" max="100" /></div>'),
+				ui_timeline = $('<div class="wb-mm-timeline" tabindex="0"><p class="wb-mm-timeline-current"><span class="wb-invisible">' +_pe.dic.get('%position') + '</span><span>00:00:00</span></p><p class="wb-mm-timeline-total"><span class="wb-invisible">' +_pe.dic.get('%duration') + '</span><span>--:--:--</span></p><p class="wb-mm-timeline-inner"><span class="wb-invisible">%: </span><progress value="0" max="100" /></p>'),
 				ui_end = $('<div class="wb-mm-controls-end">');
 
 			ui_start.append(
