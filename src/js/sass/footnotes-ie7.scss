@@ -5,13 +5,10 @@
  */
 
 /** Screen and print CSS **/
-@media screen,print {
+@media screen {
 	.ie7 {
 		.wet-boew-footnotes {
 			display: inline-block;
-			dl {
-				margin-bottom: 0;
-			}
 		}
 	}
 }
@@ -20,8 +17,7 @@
 @media print {
 	.ie7 {
 		.wet-boew-footnotes {
-			padding-bottom: 1em;
-			/*definition list's padding-top value x2 via SASS?*/
+			display: block;
 		}
 	}
 }
