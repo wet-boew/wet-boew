@@ -31,28 +31,28 @@ dl.wet-boew-zebra {
 .wet-boew-zebra {
 	li, dt, dd {
 		&.list-odd{
-			background-color:#ddd!important;
+			background-color:#ddd;
 			border:1px solid #ccc;
 		}
 		&.list-even{
-			background-color:#eee!important;
+			background-color:#eee;
 			border:1px solid #ccc;
 		}
 		&.list-hover{
-			background-color:#f0fcff!important;
+			background-color:#f0fcff;
 		}
 	}
 	&.alterwg li, &.alterwg dt, &.alterwg dd {
 		&.list-odd{
-			background-color:#ddd!important;
+			background-color:#ddd;
 			border:none;
 		}
 		&.list-even{
-			background-color:#fff!important;
+			background-color:#fff;
 			border:none;
 		}
 		&.list-hover{
-			background-color:#f0fcff!important;
+			background-color:#f0fcff;
 		}
 	}
 	dt, dd {
@@ -77,6 +77,21 @@ dl.wet-boew-zebra {
 	&.nomargin {
 		margin: 0px;
 	}
+	tr{
+		&.table-odd, &.table-even tr.table-odd{
+			/* td{ */
+				background-color:#f0fcff;
+			/* } */
+		}
+		&.table-even, &.table-odd tr.table-even{
+			/* td{ */
+				background-color:transparent;
+			/* }*/
+		}
+		&.table-hover td{
+			background-color:#eee;
+		}
+	}
 	th{
 		background-color:#eee;
 		border:1px solid #ccc;
@@ -100,7 +115,7 @@ dl.wet-boew-zebra {
 			background-color: lightgray;
 			/*
 			&.table-summaryrow0 {
-				background-color:#eee!important;
+				background-color:#eee;
 			}
 			*/
 		}
@@ -114,59 +129,45 @@ dl.wet-boew-zebra {
 		&.table-keycell{
 			font-style: italic;
 			padding: 8px;
-			background-color: #FFF!important;
+			background-color: #FFF;
 		}
 		&.table-desccell{
 			font-style: italic;
 			padding: 8px;
-			background-color: #F4F4F4!important;
+			background-color: #F4F4F4;
 		}
 		&.table-summarycol3, &.table-summaryrow3 {
-			/* background-color: #9EE!important; */
-			background-color: #FAFAFA!important;
+			/* background-color: #9EE; */
+			background-color: #FAFAFA;
 		}
 		&.table-summarycol2, &.table-summaryrow2 {
-			background-color: #F4F4F4!important;
+			background-color: #F4F4F4;
 		}
 		&.table-summarycol1, &.table-summaryrow1 {
 			
-			background-color: #EEE!important;
+			background-color: #EEE;
 		}
 		&.table-summarycol0, &.table-summaryrow0 {
-			/* background-color: #EEE!important; */
-			background-color: #DDD!important;
+			/* background-color: #EEE; */
+			background-color: #DDD;
 		}
 	}
 	th {
 		&.table-summarycol0, &.table-summaryrow0 {
-			/* background-color: #EEE!important; */
-			background-color: #DDD!important;
+			/* background-color: #EEE; */
+			background-color: #DDD;
 		}
 	}
-	tr{
-		&.table-odd, &.table-even tr.table-odd{
-			td{
-				background-color:#f0fcff;
-			}
-		}
-		&.table-even, &.table-odd tr.table-even{
-			td{
-				background-color:transparent;
-			}
-		}
-		&.table-hover td{
-			background-color:#eee!important;
-		}
-	}
+	
 	tbody.table-rowgroupmarker, tfoot.table-rowgroupmarker {
-		border-top: solid black 2px!important;
+		border-top: solid black 2px;
 	}
 	colgroup.table-colgroupmarker {
-		border-left: solid black 2px!important;
+		border-left: solid black 2px;
 	}
 	td, th {
 		&.table-layoutCell {
-			background-color: white!important;
+			background-color: white;
 		}
 	}
 	col {
@@ -178,7 +179,7 @@ dl.wet-boew-zebra {
 		}
 		
 		&.table-hover {
-			background-color:#eee!important;
+			background-color:#eee;
 		}
 	}
 }
