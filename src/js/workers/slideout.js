@@ -264,7 +264,7 @@
 			$(document).on("click touchstart", documentToggle);
 
 			// Add the "Hide" link
-			elm.append('<a href="#" id="slideoutClose" role="button" aria-controls="slideout-body" aria-label="Test">' + closeLink + '</a>');
+			elm.append('<a href="#" id="slideoutClose" role="button" aria-controls="slideout-body">' + closeLink + '</a>');
 			slideoutClose = elm.find('#slideoutClose');
 
 			// Add the slideout toggle
