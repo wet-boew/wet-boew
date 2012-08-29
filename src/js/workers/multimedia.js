@@ -326,10 +326,18 @@
 		_intf : {
 			// Methods
 			play: function () {
-				this.object.play();
+				try {
+					this.object.play();
+				} catch (e) {
+					this.object.doPlay();
+				}
 			},
 			pause: function () {
-				this.object.pause();
+				try {
+					this.object.pause();
+				} catch (e) {
+					this.object.doPause();
+				}
 			},
 
 			// Properties
