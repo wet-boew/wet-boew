@@ -54,8 +54,7 @@
 			} else if (wet_boew_theme.psnb.length === 0 && wet_boew_theme.search.length > 0) {
 				wet_boew_theme.search.css('width', '100%');
 			}
-		},
-	
+		}
 	};
 	/* window binding */
 	window.wet_boew_theme = $.extend(true, wet_boew_theme, _wet_boew_theme);
