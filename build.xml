@@ -13,6 +13,8 @@
 		<ant dir="${src.dir}/base" antfile="build.xml" target="build" inheritAll="false"/>
 		<echo level="info" message="---Building CSS Grid System---"/>
 		<ant dir="${src.dir}/grids" antfile="build.xml" target="build" inheritAll="false"/>
+		<echo level="info" message="---Building CLF2 Theme---"/>
+		<ant dir="${src.dir}/theme-clf2-nsi2" antfile="build.xml" target="build" inheritAll="false"/>
 		<echo level="info" message="---Building GCWU Theme---"/>
 		<ant dir="${src.dir}/theme-gcwu-fegc" antfile="build.xml" target="build" inheritAll="false"/>
 		<echo level="info" message="---Building GCWU Intranet Theme---"/>
@@ -24,6 +26,7 @@
 		<ant dir="${src.dir}/base" target="clean-css" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/grids" target="clean-css" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/js" target="clean-css" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-clf2-nsi2" target="clean-css" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean-css" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean-css" antfile="build.xml" inheritAll="false"/>
 	</target>
@@ -32,6 +35,7 @@
 		<ant dir="${src.dir}/base" target="clean" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/grids" target="clean" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/js" target="clean" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-clf2-nsi2" target="clean" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean" antfile="build.xml" inheritAll="false"/>
 		<delete dir="${dist.dir}" />
@@ -39,6 +43,7 @@
 	<target name="test">
 		<echo level="info" message="---Running with JSLint---"/>
 		<ant dir="${src.dir}/js" target="test" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-clf2-nsi2" target="test" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-fegc" target="test" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-intranet" target="test" antfile="build.xml" inheritAll="false"/>
 	</target>
