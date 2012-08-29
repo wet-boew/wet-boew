@@ -15,6 +15,8 @@
 		<ant dir="${src.dir}/theme-gcwu-fegc" antfile="build.xml" target="default" inheritAll="false"/>
 		<echo level="info" message="---Building GCWU Intranet Theme---"/>
 		<ant dir="${src.dir}/theme-gcwu-intranet" antfile="build.xml" target="default" inheritAll="false"/>
+		<echo level="info" message="---Building CLF2 Theme---"/>
+		<ant dir="${src.dir}/theme-clf2-nsi2" antfile="build.xml" target="default" inheritAll="false"/>
 		<antcall target="clean-css"/>
 	</target>
 
@@ -24,6 +26,7 @@
 		<ant dir="${src.dir}/js" target="clean-css" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean-css" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean-css" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-clf2-nsi2" target="clean-css" antfile="build.xml" inheritAll="false"/>
 	</target>
 
 	<target name="test">
@@ -31,5 +34,6 @@
 		<ant dir="${src.dir}/js" target="test" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-fegc" target="test" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-intranet" target="test" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-clf2-nsi2" target="test" antfile="build.xml" inheritAll="false"/>
 	</target>
 </project>
