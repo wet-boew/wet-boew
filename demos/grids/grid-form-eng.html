@@ -35,18 +35,19 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <!-- CustomScriptsCSSStart -->
 <style>
-.form-radio.form-label-inline,
-.form-checkbox.form-label-inline {
-  display: inline-block;
-  padding-top: 5px;
-  margin-bottom: 0;
-  vertical-align: middle;
-}
-
-.form-radio.form-label-inline + .form-radio.form-label-inline,
-.form-checkbox.form-label-inline + .form-checkbox.form-label-inline {
-  margin-left: 10px;
-}
+form.background-light{padding-top:10px;}
+.form-radio.form-label-inline,.form-checkbox.form-label-inline{display:inline-block;padding-top:5px;margin-bottom:0;vertical-align:middle;}
+.form-radio.form-label-inline + .form-radio.form-label-inline,.form-checkbox.form-label-inline + .form-checkbox.form-label-inline{margin-left:10px;}
+.ui-mobile form [class*=width-]{width:100%!important;}
+.ui-mobile form.background-light > *{margin-left:0;margin-right:0;}
+.ui-mobile .form-inline > *{margin-right:0;}
+.ui-mobile .form-radio.form-label-inline,.ui-mobile .form-checkbox.form-label-inline{display:block;padding:0;}
+.ui-mobile .form-radio,.ui-mobile .form-checkbox{padding:0;}
+.ui-mobile form.background-light{outline:none;}
+.ui-mobile .form-inline label{display:block;}
+.ui-mobile .form-horizontal label{text-align:left;}
+.ui-mobile form [class*=margin-],.ui-mobile form [class*=span-]{margin:0!important;}
+.ui-mobile .form-input-append button{position:absolute;}
 </style>
 <!-- CustomScriptsCSSEnd -->
 </head>
@@ -386,7 +387,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="span-1"><p class="badge-intro">Example 2</p></div>
 
 	<form class="form-inline background-light span-5 margin-bottom-none">
-	   <label for="email2" class="wb-invisible">Email</label> <input type="text" id="email2" class="width-20" placeholder="Email" />">
+	   <label for="email2" class="wb-invisible">Email</label> <input type="text" id="email2" class="width-20" placeholder="Email" />
 	   <label for="pword2" class="wb-invisible">Password</label> <input type="password" id="pword2" class="width-20" placeholder="Password" />
 	   <label class="form-checkbox" for="inline-check2">
 	      <input type="checkbox" id="inline-check2" />
@@ -422,10 +423,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="span-5">
 	
 	<form class="form-horizontal">
-	  <div class="span-1 row-start margin-top-large">
+	  <div class="span-1 row-start">
 	     <label for="hor-01">E-mail</label>
 	  </div>
-	  <div class="span-4 row-end margin-top-large">
+	  <div class="span-4 row-end">
 	     <input type="text" id="hor-01" class="width-70" />
 	  </div>
 	  <div class="clear"></div>
@@ -454,10 +455,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<summary>View code</summary>
 	<pre>
 &lt;form class=&quot;form-horizontal&quot;&gt;
-   &lt;div class=&quot;span-1 row-start margin-top-large&quot;&gt;
+   &lt;div class=&quot;span-1 row-start&quot;&gt;
       &lt;label for=&quot;hor-01&quot;&gt;E-mail&lt;/label&gt;
    &lt;/div&gt;
-   &lt;div class=&quot;span-4 row-end margin-top-large&quot;&gt;
+   &lt;div class=&quot;span-4 row-end&quot;&gt;
       &lt;input type=&quot;text&quot; id=&quot;hor-01&quot; class=&quot;width-70&quot; /&gt;
    &lt;/div&gt;
    &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
@@ -488,10 +489,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="span-5">
 	
 	<form class="form-horizontal background-light">
-	  <div class="span-1 row-start margin-top-large">
+	  <div class="span-1 row-start margin-top-medium">
 	     <label for="hor-01-2">E-mail</label>
 	  </div>
-	  <div class="span-4 row-end margin-top-large">
+	  <div class="span-4 row-end margin-top-medium">
 	     <input type="text" id="hor-01-2" class="width-70" />
 	  </div>
 	  <div class="clear"></div>
@@ -520,10 +521,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<summary>View code</summary>
 	<pre>
 &lt;form class=&quot;form-horizontal background-light&quot;&gt;
-   &lt;div class=&quot;span-1 row-start margin-top-large&quot;&gt;
+   &lt;div class=&quot;span-1 row-start margin-top-medium&quot;&gt;
       &lt;label for=&quot;hor-01-2&quot;&gt;E-mail&lt;/label&gt;
    &lt;/div&gt;
-   &lt;div class=&quot;span-4 row-end margin-top-large&quot;&gt;
+   &lt;div class=&quot;span-4 row-end margin-top-medium&quot;&gt;
       &lt;input type=&quot;text&quot; id=&quot;hor-01-2&quot; class=&quot;width-70&quot; /&gt;
    &lt;/div&gt;
    &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
