@@ -24,4 +24,21 @@ The build will download several files during the first build so those behind res
 You will need to set your proxy information in the ANT_OPTS environmental variable. See the [Ant Proxy manual](http://ant.apache.org/manual/proxy.html) for further information.
 
 * On Windows you can use the build.cmd to set the ANT_OPTS variable: 
-	> build.cmd -Dhttp.proxyHost=PROXY -Dhttp.proxyPort=PORT
+
+    > build.cmd -Dhttp.proxyHost=PROXY -Dhttp.proxyPort=PORT
+    
+* If the above way is not working, adding the proxy to the build file seems to get some result (at least in Statcan). Modify the build.xml to include the following block :
+
+		<target name="proxy">
+			<property name="proxy.host" value="****"/>
+			<property name="proxy.port" value="****"/>
+			<property name="proxy.user" value="****"/>
+			<property name="proxy.pass" value="****"/>
+			<setproxy proxyhost="${proxy.host}" proxyport="${proxy.port}"
+				proxyuser="${proxy.user}" proxypassword="${proxy.pass}"/>
+		</target>
+	
+    And in the default goal :
+    
+		<target name="default" depends="clean,proxy,build" description="Performs a Cleand and Build when calling ant without any target"></target>
+	
