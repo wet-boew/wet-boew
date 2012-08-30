@@ -1284,7 +1284,7 @@
 			if (typeof options === 'undefined') {
 				options = {};
 			}
-			if (typeof event === 'undefined') {
+			if (typeof finished_event === 'undefined') {
 				finished_event = "wb-loaded";
 			}
 			var i, _len,
@@ -1420,7 +1420,6 @@
 		dance: function () {
 			var loading_finished = 'wb-init-loaded';
 			pe.document.one(loading_finished, function () {
-				// TODO: find a better way to switch back and forth between mobile and desktop modes.
 				pe.resize(function () {
 					var mobilecheck = pe.mobilecheck();
 					if (pe.mobile !== mobilecheck) {
