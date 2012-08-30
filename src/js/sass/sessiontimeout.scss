@@ -1,0 +1,21 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+/* Overlay class */
+.sOverlay {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	z-index: 999999;
+	/* Netscape */
+	-moz-opacity: 0.9;
+	/* Safari 1.x */
+	-khtml-opacity: 0.9;
+	/* Good browsers */
+	opacity: 0.9;
+	background-image: url(scrim.png);
+}
