@@ -885,11 +885,9 @@
 					elms,
 					polydep = {},
 					loadnow = [],
-					non_deps = [],
 					deps,
 					dep_paths,
 					dep_needed,
-					all_elms,
 					lib = pe.add.liblocation,
 					payload = [],
 					needsinit = [],
@@ -897,26 +895,11 @@
 					i,
 					_len;
 
-				// Does the DOM need to be checked for elements to polyfill?
-				if (checkdom) {
-					// Get an array of selectors of supported polyfills that are not plugin dependencies
-					for (polyname in polyfills) {
-						if (polyfills.hasOwnProperty(polyname)) {
-							non_deps.push(polyfills[polyname].selector);
-						}
-					}
-
-					// Find all elements that match the element selector
-					all_elms = $(non_deps.join(', '));
-				} else {
-					all_elms = $();
-				}
-
 				// Process each polyfill
 				for (polyname in polyfills) {
 					if (polyfills.hasOwnProperty(polyname)) {
 						polyprefs = polyfills[polyname];
-						elms = all_elms.length !== 0 ? all_elms.filter(polyprefs.selector) : all_elms;
+						elms = checkdom ? $(polyprefs.selector) : {};
 						// Check to see if the polyfill might be needed
 						if (elms.length !== 0 || $.inArray(polyname, force) !== -1) {
 							if (typeof polyprefs.supported === 'undefined') { // Native support hasn't been checked yet
