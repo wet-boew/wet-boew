@@ -6,6 +6,11 @@
 .ie7 {
 	.wet-boew-footnotes {
 		display: inline-block;
+		dl dt {
+			position:relative;
+			float:left;
+			margin-bottom:-1px;
+		}
 	}
 }
 
