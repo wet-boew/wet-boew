@@ -1289,7 +1289,9 @@
 			}
 			var i, _len,
 				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
-				pcalls = typeof options.plugins !== "undefined" ? options.plugins : [],
+				plugins = typeof options.plugins !== 'undefined' ? options.plugins : {},
+				plug,
+				pcalls = typeof options.global !== 'undefined' ? options.global : [],
 				pcall,
 				dep = typeof options.dep !== "undefined" ? options.dep : [],
 				poly = typeof options.poly !== "undefined" ? options.poly : [],
@@ -1301,6 +1303,13 @@
 				event_pcalldeps = 'wb-pcalldeps-loaded-' + time,
 				event_polydep = 'wb-polydeps-loaded-' + time;
 
+			// Prepare manually specified plugins for processing
+			for (plug in plugins) {
+				if (plugins.hasOwnProperty(plug)) {
+					wetboew.add(plugins[plug].addClass('wet-boew-' + plug));
+				}
+			}
+				
 			// Push each of the "wet-boew-*" plugin calls into the pcalls array
 			wetboew.each(function () {
 				var _node = $(this),
@@ -1409,7 +1418,7 @@
 		* @todo pass an element as the context for the recursion.
 		*/
 		dance: function () {
-			var wb_load, loading_finished = "wb-init-loaded";
+			var loading_finished = "wb-init-loaded";
 			pe.document.one(loading_finished, function () {
 				// TODO: find a better way to switch back and forth between mobile and desktop modes.
 				pe.resize(function () {
