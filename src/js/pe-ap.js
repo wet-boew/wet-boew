@@ -38,6 +38,7 @@
 		footer: $('#wb-foot'),
 		urlquery: "",
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
+		document: $(document),
 
 		/**
 		* @memberof pe
@@ -77,7 +78,7 @@
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page').addClass('ui-page-active');
 
-				$(document).on("mobileinit", function () {
+				pe.document.on("mobileinit", function () {
 					$.extend($.mobile, {
 						ajaxEnabled: false,
 						pushStateEnabled: false,
@@ -97,7 +98,7 @@
 					}
 				});
 
-				$(document).on("pageinit", function () {
+				pe.document.on("pageinit", function () {
 					// On click, puts focus on and scrolls to the target of same page links
 					hlinks_same.off("click vclick").on("click vclick", function () {
 						$this = $($(this).attr("href"));
@@ -159,7 +160,7 @@
 				}, "html");
 			})).always(function () {
 				// Wait for localisation and ajax content to load plugins
-				$(document).one("languageloaded", function () {
+				pe.document.one("languageloaded", function () {
 					// Check to see if PE enhancements should be disabled
 					if (pe.pedisable() === true) {
 						return false; // Disable PE enhancements
@@ -171,7 +172,7 @@
 
 						//Load the mobile view
 						if (pe.mobile === true) {
-							$(document).one("mobileviewloaded", function () {
+							pe.document.one("mobileviewloaded", function () {
 								if (typeof $.mobile !== "undefined") {
 									pe.mobilelang();
 									$.mobile.initializePage();
@@ -906,7 +907,7 @@
 					}
 
 					// Find all elements that match the element selector
-					all_elms = $(non_deps.join(','));
+					all_elms = $(non_deps.join(', '));
 				} else {
 					all_elms = $();
 				}
@@ -915,9 +916,9 @@
 				for (polyname in polyfills) {
 					if (polyfills.hasOwnProperty(polyname)) {
 						polyprefs = polyfills[polyname];
-						elms = all_elms.length > 0 ? all_elms.filter(polyprefs.selector) : all_elms;
+						elms = all_elms.length !== 0 ? all_elms.filter(polyprefs.selector) : all_elms;
 						// Check to see if the polyfill might be needed
-						if (elms.length > 0 || $.inArray(polyname, force) > -1) {
+						if (elms.length !== 0 || $.inArray(polyname, force) !== -1) {
 							if (typeof polyprefs.supported === 'undefined') { // Native support hasn't been checked yet
 								polyprefs.supported = (typeof polyprefs.support_check === 'function' ? polyprefs.support_check() : polyprefs.support_check);
 								// Check to see if there is native support
@@ -932,7 +933,7 @@
 												dep_needed.push(deps[i]);
 											}
 										}
-										if (dep_needed.length > 0) {
+										if (dep_needed.length !== 0) {
 											// Polyfill is needed but has unloaded dependencies so load later
 											polydep[polyname] = dep_needed;
 										} else {
@@ -1146,7 +1147,7 @@
 						msg = (message !== undefined ? message : 'wet-boew-dependency-loaded');
 					// - lets prevent double loading of JavaScript files but still trigger an event indicating the file was loaded
 					if ($.inArray(js, this.staged) > -1) {
-						$(document).trigger({ type: msg, js: js });
+						pe.document.trigger({ type: msg, js: js });
 						return this;
 					}
 					setTimeout(function timeout() {
@@ -1166,7 +1167,7 @@
 							}
 							scriptElem.onload = scriptElem.onreadystatechange = null;
 							scriptdone = true;
-							$(document).trigger({ type: msg, js: js });
+							pe.document.trigger({ type: msg, js: js });
 						};
 						scriptElem.src = js;
 						if ((pe.ie > 0 && pe.ie < 9) || !head.insertBefore) {
@@ -1191,11 +1192,11 @@
 				_load_arr: function (js, msg_all, payload) {
 					var js_loaded = 0, i, _len,
 						msg_single = msg_all + "-single";
-					$(document).on(msg_single, function () {
+					pe.document.on(msg_single, function () {
 						js_loaded += 1;
 						if (js_loaded === js.length) {
-							$(document).off(msg_single);
-							$(document).trigger({ type: msg_all, payload: payload });
+							pe.document.off(msg_single);
+							pe.document.trigger({ type: msg_all, payload: payload });
 						}
 					});
 					// Load each of the JavaScript files or trigger the completion event if there are none
@@ -1204,8 +1205,8 @@
 							pe.add._load(js[i], msg_single);
 						}
 					} else {
-						$(document).off(msg_single);
-						$(document).trigger({ type: msg_all, payload: payload });
+						pe.document.off(msg_single);
+						pe.document.trigger({ type: msg_all, payload: payload });
 					}
 
 					return this;
@@ -1298,7 +1299,10 @@
 				pcalls = [],
 				pcall,
 				poly = [],
-				dep = ['resize', 'equalheights']; // Can remove 'equalheights' once non-JS alternative to 'equalize' is in place
+				dep = ['resize', 'equalheights'], // Can remove 'equalheights' once non-JS alternative to 'equalize' is in place
+				event_polyinit = 'wb-polyinit-loaded',
+				event_pcalldeps = 'wb-pcalldeps-loaded',
+				event_polydep = 'wb-polydeps-loaded';
 
 			// Push each of the "wet-boew-*" plugin calls into the pcalls array
 			wetboew.each(function () {
@@ -1335,7 +1339,7 @@
 				}
 			}
 
-			$(document).one('wb-polyinit-loaded', function (e) {
+			pe.document.one(event_polyinit, function (e) {
 				var polyfills = pe.polyfills.polyfill,
 					polydeps = e.payload[0],
 					polyinit = e.payload[1],
@@ -1354,8 +1358,8 @@
 					}
 				}
 
-				$(document).one('wb-pcalldeps-loaded', function () {
-					$(document).one('wb-polydeps-loaded', function (e) {
+				pe.document.one(event_pcalldeps, function () {
+					pe.document.one(event_polydep, function (e) {
 						// Initiate any polyfills that need to be initiated manually
 						polyinit = e.payload[1];
 						for (i = 0, _len = polyinit.length; i !== _len; i += 1) {
@@ -1391,15 +1395,19 @@
 					});
 
 					// Load the polyfills with dependencies
-					pe.polyfills.polyload(polydeps_load, 'wb-polydeps-loaded', false);
+					if (polydeps_load.length !== 0) {
+						pe.polyfills.polyload(polydeps_load, event_polydep, false);
+					} else {
+						pe.document.trigger(event_polydep);
+					}
 				});
 
 				// Load each of the dependencies (eliminating duplicates)
-				pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), "wb-pcalldeps-loaded");
+				pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
 			});
 
 			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)
-			pe.polyfills.polyload(pe.array.noduplicates(poly), 'wb-polyinit-loaded', true);
+			pe.polyfills.polyload(pe.array.noduplicates(poly), event_polyinit, true);
 		}
 	};
 	/* window binding */
