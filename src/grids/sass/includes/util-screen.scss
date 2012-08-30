@@ -1,3 +1,9 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+*/
+
 @import "compass/"; 
 
 @import "mixins";
@@ -200,11 +206,6 @@ p.align-right	 { margin-right: $margin-medium; }
 .line-height-medium	 { line-height: 1.25 !important;}
 .line-height-large		{ line-height: 1.5 !important; }
 .line-height-xlarge	 { line-height: 2.0 !important; }
-
-/*	 columns	 */
-.column-two	 { @include column-count(2); }
-.column-three	 { @include column-count(3); }
-.column-four	{ @include column-count(4); }
 
 
 /*	 floating	 */

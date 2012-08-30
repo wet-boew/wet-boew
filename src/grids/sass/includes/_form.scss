@@ -36,11 +36,11 @@
 			background: none;
 			@include colorize-border(lighten($light, 3%), "outline");
 			@include colorize-base(lighten($light, 3%));
+			padding-top: 10px;
 
 			& > * {
 				margin-left: 10px;
 				margin-right: 10px;
-				&:first-child { margin-top: 9px; }
 			}
 
 			#{headings(2,6)} {
