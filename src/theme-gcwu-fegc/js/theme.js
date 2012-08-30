@@ -42,8 +42,6 @@
 			if (submenu.length > 0) {
 				submenu.prev().children('a').addClass('nav-current');
 			}
-			pe.theme = wet_boew_theme.theme;
-			$('html').addClass(wet_boew_theme.theme);
 			if (pe.secnav.length > 0) {
 				pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
 			}
