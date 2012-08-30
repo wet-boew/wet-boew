@@ -165,7 +165,6 @@
 					if (pe.pedisable() === true) {
 						return false; // Disable PE enhancements
 					}
-
 					if (wet_boew_theme !== null) {
 						// Initialize the theme
 						wet_boew_theme.init();
@@ -899,7 +898,7 @@
 				for (polyname in polyfills) {
 					if (polyfills.hasOwnProperty(polyname)) {
 						polyprefs = polyfills[polyname];
-						elms = checkdom ? $(polyprefs.selector) : {};
+						elms = checkdom ? $(polyprefs.selector) : $();
 						// Check to see if the polyfill might be needed
 						if (elms.length !== 0 || $.inArray(polyname, force) !== -1) {
 							if (typeof polyprefs.supported === 'undefined') { // Native support hasn't been checked yet
@@ -1269,23 +1268,38 @@
 		}
 		()),
 		/**
-		* Follows the _init function and i18n initialization.
-		* @memberof pe
+		* Handles loading of the plugins, dependencies and polyfills
 		* @function
+		* @param {object} options Object containing the loader options. The following optional properties are supported: 
+		* "plugins": {"plugin_name1": elms1, "plugin_name2": elms2, ...} - Names of plugins to laod
+		* "global": [plugin_name1, plugin_name2, ...] - Names of global plugins to load
+		* "deps": [dependency_name1, dependenccy_name2, ...] - Names of dependences to load
+		* "poly": [polyfill_name1, polyfill_name2, ...] - Names of polyfills to load
+		* "checkdom": true/false - Enable/disable checking the DOM for "wet-boew-*" triggers
+		* "polycheckdom": true/false - Enable/disable checking the DOM for elements to polyfill
+		* @param {string} finished_event Name of the event to trigger when loading is complete (defai;t is "wb-loaded")
 		* @return {void}
-		* @todo pass an element as the context for the recursion.
 		*/
-		dance: function () {
+		wb_load: function (options, finished_event) {
+			if (typeof options === "undefined") {
+				options = {};
+			}
+			if (typeof event === "undefined") {
+				finished_event = "wb-loaded";
+			}
 			var i, _len,
 				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
-				wetboew = $('[class^="wet-boew-"]'),
-				pcalls = [],
+				pcalls = typeof options.plugins !== "undefined" ? options.plugins : [],
 				pcall,
-				poly = [],
-				dep = ['resize', 'equalheights'], // Can remove 'equalheights' once non-JS alternative to 'equalize' is in place
-				event_polyinit = 'wb-polyinit-loaded',
-				event_pcalldeps = 'wb-pcalldeps-loaded',
-				event_polydep = 'wb-polydeps-loaded';
+				dep = typeof options.dep !== "undefined" ? options.dep : [],
+				poly = typeof options.poly !== "undefined" ? options.poly : [],
+				checkdom = typeof options.checkdom !== "undefined" ? options.checkdom : false,
+				polycheckdom = typeof options.polycheckdom !== "undefined" ? options.polycheckdom : false,
+				wetboew = checkdom ? $('[class^="wet-boew-"]') : $(),
+				time = (new Date()).getTime(),
+				event_polyinit = 'wb-polyinit-loaded-' + time,
+				event_pcalldeps = 'wb-pcalldeps-loaded-' + time,
+				event_polydep = 'wb-polydeps-loaded-' + time;
 
 			// Push each of the "wet-boew-*" plugin calls into the pcalls array
 			wetboew.each(function () {
@@ -1328,6 +1342,7 @@
 					polyinit = e.payload[1],
 					polydeps_load = [],
 					polyname;
+
 				// Initiate any polyfills that need to be initiated manually
 				for (i = 0, _len = polyinit.length; i !== _len; i += 1) {
 					polyfills[polyinit[i]].init();
@@ -1344,7 +1359,7 @@
 				pe.document.one(event_pcalldeps, function () {
 					pe.document.one(event_polydep, function (e) {
 						// Initiate any polyfills that need to be initiated manually
-						polyinit = e.payload[1];
+						polyinit = typeof e.payload !== "undefined" ? e.payload[1] : [];
 						for (i = 0, _len = polyinit.length; i !== _len; i += 1) {
 							polyfills[polyinit[i]].init();
 						}
@@ -1367,14 +1382,8 @@
 							}
 						}
 
-						// TODO: find a better way to switch back and forth between mobile and desktop modes.
-						pe.resize(function () {
-							var mobilecheck = pe.mobilecheck();
-							if (pe.mobile !== mobilecheck) {
-								pe.mobile = mobilecheck;
-								window.location.href = decodeURI(pe.url(window.location.href).removehash());
-							}
-						});
+						// Loading completed, trigger the finished event
+						pe.document.trigger(finished_event);
 					});
 
 					// Load the polyfills with dependencies
@@ -1390,7 +1399,28 @@
 			});
 
 			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)
-			pe.polyfills.polyload(pe.array.noduplicates(poly), event_polyinit, true);
+			pe.polyfills.polyload(pe.array.noduplicates(poly), event_polyinit, polycheckdom);
+		},
+		/**
+		* Follows the _init function and i18n initialization.
+		* @memberof pe
+		* @function
+		* @return {void}
+		* @todo pass an element as the context for the recursion.
+		*/
+		dance: function () {
+			var wb_load, loading_finished = "wb-init-loaded";
+			pe.document.one(loading_finished, function () {
+				// TODO: find a better way to switch back and forth between mobile and desktop modes.
+				pe.resize(function () {
+					var mobilecheck = pe.mobilecheck();
+					if (pe.mobile !== mobilecheck) {
+						pe.mobile = mobilecheck;
+						window.location.href = decodeURI(pe.url(window.location.href).removehash());
+					}
+				});
+			});
+			pe.wb_load({"dep": ['resize', 'equalheights'], "checkdom": true, "polycheckdom": true}, loading_finished);
 		}
 	};
 	/* window binding */
