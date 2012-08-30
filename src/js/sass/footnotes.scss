@@ -8,90 +8,96 @@
 $spacing: .375em;
 $ddRtnWidth: 2.75em;
 
-/** Screen and print CSS **/
-@media screen,print {
-	sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
-		background-color: #EEE;
-		border: 1px solid #CCC;
-		padding: 0 4px 1px;
-		&:hover, &:focus, &:active {
-			border-color: #555;
-		}
-	}
-	sup:target a.footnote-link, .wet-boew-footnotes dl dt:target + dd p.footnote-return a {
-		color: #FFF;
-		background-color: #555;
+sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
+	background-color: #EEE;
+	border: 1px solid #CCC;
+	padding: 0 4px 1px;
+	&:hover, &:focus, &:active {
 		border-color: #555;
 	}
-	table th sup a.footnote-link {
-		background-color: #FFF;
-		text-shadow: none;
+}
+sup:target a.footnote-link, .wet-boew-footnotes dl dt:target + dd p.footnote-return a {
+	color: #FFF;
+	background-color: #555;
+	border-color: #555;
+}
+table th sup a.footnote-link {
+	background-color: #FFF;
+	text-shadow: none;
+}
+.wet-boew-footnotes {
+	margin: 2em 10px 0 10px;
+	border: {
+		width: 1px 0 1px 0;
+		style: solid;
+		color: #CCC;
 	}
-	.wet-boew-footnotes {
-		margin: 2em 10px 0 10px;
-		border: {
-			width: 1px 0 1px 0;
-			style: solid;
-			color: #CCC;
+	h2 {
+		margin: {
+			left: 0;
+			right: 0;
+			top: 0;
 		}
-		h2 {
-			margin: {
-				left: 0;
-				right: 0;
-				top: 0;
-			}
-		}
-		dl {
+	}
+	dl {
+		margin: 0;
+		dt {
+			position: absolute;
+			clip: rect(1px, 1px, 1px, 1px);
+			height: 1px;
+			width: 1px;
+			overflow: hidden;
 			margin: 0;
-			dt {
-				position: absolute;
-				clip: rect(1px, 1px, 1px, 1px);
-				height: 1px;
-				width: 1px;
-				overflow: hidden;
-				margin: 0;
-			}
-			dt:target + dd {
-				background-color: #EEE;
-				border-color: #555;
-			}
-			dd {
-				position: relative;
-				margin: $spacing 0;
-				border: 1px solid transparent;
-				p {
-					margin: 0 0 0 ($spacing + $ddRtnWidth);
-					padding: 0 $spacing $spacing $spacing;
-					&:first-child {
-						padding-top: $spacing;
-					}
-					&.footnote-return {
-						top: 0;
-						margin: 0;
-						padding-top: $spacing;
-						padding-right: 0;
-						position: absolute;
-						width: $ddRtnWidth;
-						overflow: hidden;
-					}
+		}
+		dt:target + dd {
+			background-color: #EEE;
+			border-color: #555;
+		}
+		dd {
+			position: relative;
+			margin: $spacing 0;
+			border: 1px solid transparent;
+			p {
+				margin: 0 0 0 ($spacing + $ddRtnWidth);
+				padding: 0 $spacing $spacing $spacing;
+				&:first-child {
+					padding-top: $spacing;
+				}
+				&.footnote-return {
+					top: 0;
+					margin: 0;
+					padding-top: $spacing;
+					padding-right: 0;
+					position: absolute;
+					width: $ddRtnWidth;
+					overflow: hidden;
 				}
 			}
 		}
 	}
 }
 
-/** Print-only CSS **/
 @media print {
-	a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
+	sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 		background-color: transparent;
 		border: 0;
 		padding: 0;
+	}
+	table th sup a.footnote-link {
+		background-color: transparent;
 	}
 	.wet-boew-footnotes {
 		margin: {
 			left: 0;
 			right: 0;
 			bottom: 1em;
+		}
+		dl dd {
+			border: 0;
+			display: inline-block;
+			& p.footnote-return {
+				overflow: visible;
+			}
 		}
 	}
 }
