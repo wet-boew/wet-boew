@@ -11,15 +11,12 @@
 	var _pe = window.pe || {
 		fn: {}
 	};
-	/* local reference */
 	_pe.fn.slideout = {
 		type: 'plugin',
 		depends: ['resize'],
 		opened: false,
 		_exec: function (elm) {
-			var borderWidth = 10,
-				closeLink = pe.dic.get('%hide') + '<span class="wb-invisible">' + pe.dic.get('%table-contents') + '</span>',
-				focusOutlineAllowance = 2,
+			var closeLink = pe.dic.get('%hide') + '<span class="wb-invisible">' + pe.dic.get('%table-contents') + '</span>',
 				imgShow = { path: pe.add.liblocation + 'images/slideout/' + pe.dic.get('%show-image'), height: 147, width: 30, alt: pe.dic.get('%show-toc') + pe.dic.get('%table-contents') },
 				imgHide = { path: pe.add.liblocation + 'images/slideout/' + pe.dic.get('%hide-image'), height: 147, width: 30, alt: pe.dic.get('%hide') + pe.dic.get('%table-contents') },
 				opened = false,
@@ -34,7 +31,8 @@
 				keyhandler,
 				tocLinks,
 				documentToggle,
-				cssTest;
+				cssTest,
+				img;
 
 			// Don't do anything if CSS is disabled
 			// Couldn't get _pe.cssenabled() to work
@@ -49,7 +47,7 @@
 			elm.wrap('<div id="slideoutInnerWrapper" />'); // This is used for "animate".
 
 			// Add WAI-ARIA
-			elm.attr({'role':'menu', 'id':'slideout-body'}).find('li').attr('role', 'presentation');
+			elm.attr({'role': 'menu', 'id': 'slideout-body'}).find('li').attr('role', 'presentation');
 
 			// Remove the link off the page we're on if we're asked to
 			if (rmCurrLink) {
@@ -61,55 +59,68 @@
 
 			// Recalculate the slideout's position
 			reposition = function () {
-				if (!opened) { // Only when slideout is closed
-					var newPosition = $('#wb-core-in').offset().left;
-
-					if (newPosition <= borderWidth) {
-						newPosition = 0;
+				var offset = $('#wb-core-in').offset();
+				// Check if there's enough space for the slider to open without clipping contents
+				if (!wrapper.hasClass('so-ie7')) {
+					if ((ttlHeight + offset.top) > $(window).height()) {
+						scroll = false;
+						wrapper.removeClass('slideoutWrapper')
+							.addClass('slideoutWrapperRel').css({'top': 0,
+								'right': 1
+								});
+					} else {
+						scroll = true;
+						wrapper.removeClass('slideoutWrapperRel')
+							.addClass('slideoutWrapper')
+							.css({'top': offset.top,
+								'right': Math.floor(offset.left) + 1
+								});
 					}
-
-					// Vertical
-					wrapper.css('top', $('#wb-core-in').offset().top);
-					// Horizontal
-					wrapper.css('right', newPosition);
 				}
 			};
 
-			toggle = function () {
+			toggle = function (event) {
 				toggleLink.off('click vclick', toggle);
 				tocLinks.off('click vclick', toggle);
 				slideoutClose.off('click vclick', toggle);
-				wrapper.off("keydown", keyhandler);
-				elm.off("keydown", keyhandler);
-				$(document).off("click touchstart", documentToggle);
+				wrapper.off('keydown', keyhandler);
+				elm.off('keydown', keyhandler);
+				$(document).off('click touchstart', documentToggle);
 
 				if (!opened) {
-					var position = wrapper.position();
-					if (pe.ie === 0 || document.documentMode !== undefined) {
+					if (scroll && (pe.ie === 0 || document.documentMode !== undefined)) {
+						var position = wrapper.position();
 						wrapper.removeClass('slideoutWrapper')
 							.addClass('slideoutWrapperRel')
-							.css({"top": position.top - $('#wb-core-in').offset().top, "right": borderWidth - 10});
+							.css({'top': position.top - $('#wb-core-in').offset().top,
+								'right': 1
+								});
 					}
-					elm.show(); // Show the widget content if it is about to be opened
+					// Give the tab time to move out of view to prevent overlap
+					setTimeout(function () {
+						elm.show();
+					}, 50);
+					wrapper.find('#slideoutInnerWrapper').css('width', '');
 					pe.focus(tocLinks.eq(0));
 				}
 
 				opened = !opened;
 				wrapper.animate({
-					width: parseInt(wrapper.css('width'), 10) === (imgShow.width + focusOutlineAllowance) ? elm.outerWidth() + (imgShow.width + focusOutlineAllowance) : (imgShow.width + focusOutlineAllowance) + 'px'
+					width: parseInt(wrapper.css('width'), 10) === imgShow.width ? elm.outerWidth() + imgShow.width : imgShow.width
 				}, function () {
 					// Animation complete.
 					if (!opened) {
-						elm.hide(); // Hide the widget content if the widget was just closed
+						elm.hide(); // Hide the widget content if the widget was just closed						
 						wrapper.find('#slideoutInnerWrapper').css('width', imgHide.width);
-
-						if (pe.ie === 0 || document.documentMode !== undefined) {
-							wrapper.addClass('slideoutWrapper');
-							wrapper.removeClass('slideoutWrapperRel');
-							wrapper.css('width', (imgShow.width + focusOutlineAllowance) + 'px').css('top', $('#wb-core-in').offset().top);
-							reposition();
+						if (scroll && (pe.ie === 0 || document.documentMode !== undefined)) {
+							wrapper.addClass('slideoutWrapper')
+								.removeClass('slideoutWrapperRel')
+								.css({'width': imgShow.width,
+									'top': $('#wb-core-in').offset().top
+									});
 						}
-					} else { // Slideout just opened
+						reposition();
+					} else { // Slideout just opened						
 						if (pe.ie === 7 && document.documentMode === undefined) { // Just true IE7
 							elm.find('ul').html(elm.find('ul').html()); // Ugly fix for #4312 (post #11)
 						}
@@ -117,27 +128,20 @@
 					toggleLink.on('click vclick', toggle);
 					tocLinks.on('click vclick', toggle);
 					slideoutClose.on('click vclick', toggle);
-					wrapper.on("keydown", keyhandler);
-					elm.on("keydown", keyhandler);
-					$(document).on("click touchstart", documentToggle);
+					wrapper.on('keydown', keyhandler);
+					elm.on('keydown', keyhandler);
+					$(document).on('click touchstart', documentToggle);
 				});
 
-				if (opened) {
-					wrapper.find('#slideoutToggle a img').attr({'src': imgHide.path,
-						'title': imgHide.alt,
-						'alt': imgHide.alt});
-					wrapper.find('#slideoutToggle a');
-					elm.attr('aria-hidden', 'false');
-					wrapper.find('#slideoutInnerWrapper').css('width', '');
-				} else {
-					wrapper.find('#slideoutToggle a img').attr({'src': imgShow.path,
-						'title': imgShow.alt,
-						'alt': imgShow.alt});
-					wrapper.find('#slideoutToggle a');
-					elm.attr('aria-hidden', 'true');
-				}
+				img = opened ? imgHide : imgShow;
+				wrapper.find('#slideoutToggle a img').attr({'src': img.path,
+					'title': img.alt,
+					'alt': img.alt
+					});
+				elm.attr('aria-hidden', !opened);
 
-				return false;
+				// Only fire link's href if it's a slideout menu item
+				return event && $(event.target).attr('role') === 'menuitem';
 			};
 
 			// Handles specialized keyboard input
@@ -268,7 +272,7 @@
 			slideoutClose = elm.find('#slideoutClose');
 
 			// Add the slideout toggle
-			wrapper.find('#slideoutInnerWrapper').css('padding', (focusOutlineAllowance / 2) + 'px').prepend('<div id="slideoutToggle" class="slideoutToggle"><a id="toggleLink" role="button" aria-controls="slideout-body" aria-label="' + imgShow.alt + '" href="#" onclick="return false;"><img width="' + imgShow.width + 'px' + '" height="' + imgShow.height + 'px' + '" src="' + imgShow.path + '" alt="' + imgShow.alt + '" /></a></div>');
+			wrapper.find('#slideoutInnerWrapper').prepend('<div id="slideoutToggle" class="slideoutToggle"><a id="toggleLink" role="button" aria-controls="slideout-body" aria-label="' + imgShow.alt + '" href="#" onclick="return false;"><img width="' + imgShow.width + 'px' + '" height="' + imgShow.height + 'px' + '" src="' + imgShow.path + '" alt="' + imgShow.alt + '" /></a></div>');
 			toggleLink = wrapper.find('#toggleLink');
 			wrapper.find('#slideoutToggle').css({'width' : imgShow.width, 'height' : imgShow.height}); // Resize the toggle to correct dimensions
 
@@ -278,7 +282,10 @@
 			ttlHeight = elm.outerHeight();
 
 			// Set vertical position and hide the slideout on load -- we don't want it to animate so we can't call slideout.toggle()
-			wrapper.css('width', (imgShow.width + focusOutlineAllowance) + 'px').css('top', $('#wb-core-in').offset().top);
+			wrapper.css({
+				'width': imgShow.width,
+				'top': $('#wb-core-in').offset().top
+			});
 
 			// Hide widget content so we don't tab through the links when the slideout is closed
 			elm.hide().attr('aria-hidden', 'true');
@@ -298,7 +305,7 @@
 			} else {
 				wrapper.addClass('so-ie7');
 				wrapper.addClass('slideoutWrapperRel')
-					.css({'right': borderWidth - 10, 'top': '0'});
+					.css({'right': 1, 'top': 0});
 			}
 
 			// Toggle slideout
