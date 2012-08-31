@@ -106,7 +106,10 @@
 							.addClass('slideoutWrapperRel')
 							.css({'top': position.top - $('#wb-core-in').offset().top, 'right': borderWidth - 10});
 					}
-					elm.show(); // Show the widget content if it is about to be opened
+					// Give the tab time to move out of view to prevent overlap
+					setTimeout(function () {
+						elm.show();
+					}, 50);
 					pe.focus(tocLinks.eq(0));
 				}
 
