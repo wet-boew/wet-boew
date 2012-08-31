@@ -53,7 +53,7 @@
 				$fbObject,
 				fbVideoType = 'video/mp4',
 				fbAudioType = 'audio/mpeg', //MP3
-				fbBin = _pe.add.liblocation + 'bin/multimedia.swf' + _pe.ie > 0 ? '?seed=' + Math.random() : '',
+				fbBin = _pe.add.liblocation + 'bin/multimedia.swf?seed=' + Math.random(),
 				fbClass,
 				fbVars,
 				evtmgr;
