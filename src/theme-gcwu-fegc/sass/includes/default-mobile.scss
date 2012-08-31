@@ -113,6 +113,10 @@ body{
 		border-radius:3px;
 		margin-top:5px;
 		padding:10px;
+		&.wb-invisible{
+			position:absolute !important;
+			width: 1px !important;
+		}
 	}
 	.ui-link {
 		color: #326CA6;
