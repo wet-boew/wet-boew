@@ -53,7 +53,7 @@
 				$fbObject,
 				fbVideoType = 'video/mp4',
 				fbAudioType = 'audio/mpeg', //MP3
-				fbBin = _pe.add.liblocation + 'bin/multimedia.swf',
+				fbBin = _pe.add.liblocation + 'bin/multimedia.swf' + _pe.ie > 0 ? '?seed=' + Math.random() : '',
 				fbClass,
 				fbVars,
 				evtmgr;
@@ -370,7 +370,7 @@
 			},
 
 			setCurrentTime: function (t) {
-				if (typeof this.object.currentTime !== 'function') { this.object.currentTime = t; } else { this.object.setCurrentTime(t); }
+				if (typeof this.object.currentTime !== 'function') {this.object.currentTime = t;} else {this.object.setCurrentTime(t);}
 			},
 
 			getCaptionsVisible: function () {
@@ -391,7 +391,7 @@
 			},
 
 			setMuted : function (m) {
-				if (typeof this.object.muted !== 'function') { this.object.muted = m; } else { this.object.setMuted(m); }
+				if (typeof this.object.muted !== 'function') {this.object.muted = m;} else {this.object.setMuted(m);}
 			},
 
 			getVolume : function () {
@@ -399,7 +399,7 @@
 			},
 
 			setVolume : function (v) {
-				if (typeof this.object.volume !== 'function') { this.object.volume = v; } else { this.object.setVolume(v); }
+				if (typeof this.object.volume !== 'function') {this.object.volume = v;} else {this.object.setVolume(v);}
 			}
 		},
 
@@ -413,7 +413,7 @@
 			for (i = 2; i >= 0; i -= 1) {
 				p = Math.pow(60, i);
 				c = Math.floor(current / p);
-				if (t !== "") { t += ":"; }
+				if (t !== "") {t += ":";}
 				t += _pe.string.pad(c, 2);
 				current -= p * c;
 			}
