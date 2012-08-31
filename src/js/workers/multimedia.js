@@ -52,7 +52,7 @@
 				flash = true,
 				$fbObject,
 				fbVideoType = 'video/mp4',
-				fbAudioType = 'audio/mpeg', //MP3
+				fbAudioType = 'audio/mp3', //MP3
 				fbBin = _pe.add.liblocation + 'bin/multimedia.swf?seed=' + Math.random(),
 				fbClass,
 				fbVars,
