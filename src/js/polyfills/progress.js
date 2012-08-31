@@ -40,9 +40,11 @@
 			}
 
 			$this.attr(attr);
-			$this.on('DOMAttrModified propertychange', function () {
-				$this.progress();
-			});
+			setTimeout(function () {
+				$this.on('DOMAttrModified propertychange', function () {
+					$this.progress();
+				});
+			}, 0);
 		});
 	};
 	$('progress').progress();

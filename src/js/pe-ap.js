@@ -19,16 +19,16 @@
 	* @namespace pe
 	* @version 3.0
 	*/
-	pe = (typeof window.pe !== "undefined" && window.pe !== null) ? window.pe : {
+	pe = (typeof window.pe !== 'undefined' && window.pe !== null) ? window.pe : {
 		fn: {}
 	};
 	_pe = {
 		/** Global object init properties */
 		/**
 		* @memberof pe
-		* @type {string} Page language, defaults to "en" if not available
+		* @type {string} Page language, defaults to 'en' if not available
 		*/
-		language: ($("html").attr("lang").length > 0 ? $("html").attr("lang") : "en"),
+		language: ($('html').attr('lang').length > 0 ? $('html').attr('lang') : 'en'),
 		touchscreen: 'ontouchstart' in document.documentElement,
 		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
@@ -36,14 +36,15 @@
 		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
-		urlquery: "",
+		urlquery: '',
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
+		document: $(document),
 
 		/**
 		* @memberof pe
 		* @type {number} - IE major number if browser is IE, 0 otherwise
 		*/
-		ie: (/(MSIE) ([\w.]+)/.exec(navigator.userAgent) || [])[2] || "0",
+		ie: (/(MSIE) ([\w.]+)/.exec(navigator.userAgent) || [])[2] || '0',
 		/**
 		* A private function for initializing for pe.
 		* @function
@@ -60,7 +61,7 @@
 			pe.urlquery = pe.url(window.location.href).params;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$('html').removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : "").addClass(pe.touchscreen ? 'touchscreen' : '');
+			$('html').removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
 
 			hlinks = pe.main.find("a").filter(function () {
 				return this.href.indexOf('#') !== -1;
@@ -77,7 +78,7 @@
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page').addClass('ui-page-active');
 
-				$(document).on("mobileinit", function () {
+				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
 						ajaxEnabled: false,
 						pushStateEnabled: false,
@@ -93,13 +94,13 @@
 					$this = $(this);
 					url = pe.url($this.attr('href'));
 					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
-						$this.attr('href', url.removehash() + (url.params.length > 0 ? "&amp;" : "?") + 'hashtarget=' + url.hash);
+						$this.attr('href', url.removehash() + (url.params.length > 0 ? '&amp;' : '?') + 'hashtarget=' + url.hash);
 					}
 				});
 
-				$(document).on("pageinit", function () {
+				pe.document.on('pageinit', function () {
 					// On click, puts focus on and scrolls to the target of same page links
-					hlinks_same.off("click vclick").on("click vclick", function () {
+					hlinks_same.off('click vclick').on('click vclick', function () {
 						$this = $($(this).attr("href"));
 						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if ($this.length > 0) {
@@ -123,7 +124,7 @@
 			} else {
 				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
 				hlinks_same.on("click vclick", function () {
-					$this = $($(this).attr("href"));
+					$this = $($(this).attr('href'));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
@@ -141,38 +142,37 @@
 			}
 
 			// Load ajax content
-			$.when.apply($, $.map($("*[data-ajax-replace], *[data-ajax-append]"), function (o) {
+			$.when.apply($, $.map($('*[data-ajax-replace], *[data-ajax-append]'), function (o) {
 				var $o = $(o),
 					replace = false,
 					url;
-				if ($o.attr("data-ajax-replace") !== undefined) {
+				if ($o.attr('data-ajax-replace') !== undefined) {
 					replace = true;
-					url = $o.attr("data-ajax-replace");
-				} else if ($o.attr("data-ajax-append") !== undefined) {
-					url = $o.attr("data-ajax-append");
+					url = $o.attr('data-ajax-replace');
+				} else if ($o.attr('data-ajax-append') !== undefined) {
+					url = $o.attr('data-ajax-append');
 				}
 				return $.get(url, function (data) {
 					if (replace) {
 						$o.empty();
 					}
 					$o.append($(data));
-				}, "html");
+				}, 'html');
 			})).always(function () {
 				// Wait for localisation and ajax content to load plugins
-				$(document).one("languageloaded", function () {
+				pe.document.one('languageloaded', function () {
 					// Check to see if PE enhancements should be disabled
 					if (pe.pedisable() === true) {
 						return false; // Disable PE enhancements
 					}
-
 					if (wet_boew_theme !== null) {
 						// Initialize the theme
 						wet_boew_theme.init();
 
 						//Load the mobile view
 						if (pe.mobile === true) {
-							$(document).one("mobileviewloaded", function () {
-								if (typeof $.mobile !== "undefined") {
+							pe.document.one('mobileviewloaded', function () {
+								if (typeof $.mobile !== 'undefined') {
 									pe.mobilelang();
 									$.mobile.initializePage();
 								} else {
@@ -182,7 +182,7 @@
 							wet_boew_theme.mobileview();
 						}
 					} else if (pe.mobile === true) {
-						if (typeof $.mobile !== "undefined") {
+						if (typeof $.mobile !== 'undefined') {
 							pe.mobilelang();
 							$.mobile.initializePage();
 						} else {
@@ -231,7 +231,7 @@
 		*/
 		resize: function (fn) {
 			ResizeEvents.initialise(); // ensure resize function initialized
-			ResizeEvents.eventElement.bind("x-text-resize x-zoom-resize x-window-resize", function () {
+			ResizeEvents.eventElement.bind('x-text-resize x-zoom-resize x-window-resize', function () {
 				fn();
 			});
 			return;
@@ -269,7 +269,7 @@
 				* @type {string}
 				* @example
 				* pe.url('http://www.canada.ca/index.html').host
-				*    returns "www.canada.ca"
+				*    returns 'www.canada.ca'
 				*/
 				host: a.hostname,
 				/**
@@ -285,7 +285,7 @@
 				* @see #params
 				* @example
 				* pe.url('http://www.canada.ca?a=1&b=2').query
-				*    returns "?a=1&b=2"
+				*    returns '?a=1&b=2'
 				*/
 				query: a.search,
 				/**
@@ -297,8 +297,8 @@
 				* pe.url('http://www.canada.ca?a=1&b=2').params
 				*    returns
 				*       {
-				*          a: "1",
-				*          b: "2"
+				*          a: '1',
+				*          b: '2'
 				*       }
 				*/
 				params: (function () {
@@ -321,7 +321,7 @@
 				* @type {string}
 				* @example
 				*    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').file
-				*       returns "menu-eng.html"
+				*       returns 'menu-eng.html'
 				*/
 				file: a.pathname.match(/\/([^\/?#]+)$/i) ? a.pathname.match(/\/([^\/?#]+)$/i)[1] : '',
 				/**
@@ -330,7 +330,7 @@
 				* @type {string}
 				* @example
 				*    pe.url('http://www.canada.ca#wb-main-in').hash
-				*       returns "wb-main-in"
+				*       returns 'wb-main-in'
 				*/
 				hash: a.hash.replace('#', ''),
 				/**
@@ -339,7 +339,7 @@
 				* @type {string}
 				* @example
 				*    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').path
-				*       returns "/aboutcanada-ausujetcanada/hist/menu-eng.html"
+				*       returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				path: a.pathname.replace(/^([^\/])/, '/$1'),
 				/**
@@ -348,7 +348,7 @@
 				* @type {string}
 				* @example
 				*    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').relative
-				*       returns "/aboutcanada-ausujetcanada/hist/menu-eng.html"
+				*       returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				relative: a.href.match(/tps?:\/\/[^\/]+(.+)/) ? a.href.match(/tps?:\/\/[^\/]+(.+)/)[1] : '',
 				/**
@@ -357,7 +357,7 @@
 				* @type {string[]}
 				* @example
 				*    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').segments
-				*       returns ["aboutcanada-ausujetcanada", "hist", "menu-eng.html"]
+				*       returns ['aboutcanada-ausujetcanada', 'hist', 'menu-eng.html']
 				*/
 				segments: a.pathname.replace(/^\//, '').split('/'),
 				/**
@@ -367,12 +367,12 @@
 				* @function
 				* @example
 				*    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash()
-				*       returns "http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html"
+				*       returns 'http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*    pe.url( pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash() ).relative
-				*       returns "/aboutcanada-ausujetcanada/hist/menu-eng.html"
+				*       returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				removehash: function () {
-					return this.source.replace(/#([A-Za-z0-9\-_=&]+)/, "");
+					return this.source.replace(/#([A-Za-z0-9\-_=&]+)/, '');
 				}
 			};
 		},
@@ -393,11 +393,11 @@
 		*/
 		limit: function (elm) {
 			var count;
-			count = $(elm).attr("class").match(/\blimit-\d+/);
+			count = $(elm).attr('class').match(/\blimit-\d+/);
 			if (!count) {
 				return 0;
 			}
-			return Number(count[0].replace(/limit-/i, ""));
+			return Number(count[0].replace(/limit-/i, ''));
 		},
 		/**
 		* A generic function to focus elements in the DOM in a screen reader compatible way / selector or object.
@@ -408,7 +408,7 @@
 		*/
 		focus: function (elm) {
 			setTimeout(function () {
-				return (typeof elm.jquery !== "undefined" ? elm.focus() : $(elm).focus());
+				return (typeof elm.jquery !== 'undefined' ? elm.focus() : $(elm).focus());
 			}, 0);
 			return elm;
 		},
@@ -423,17 +423,17 @@
 			*/
 			ify: (function () {
 				return {
-					"link": function (t) {
+					'link': function (t) {
 						return t.replace(/[a-z]+:\/\/[a-z0-9\-_]+\.[a-z0-9\-_@:~%&\?\+#\/.=]+[^:\.,\)\s*$]/ig, function (m) {
 							return '<a href="' + m + '">' + ((m.length > 25) ? m.substr(0, 24) + '...' : m) + '</a>';
 						});
 					},
-					"at": function (t) {
+					'at': function (t) {
 						return t.replace(/(^|[^\w]+)\@([a-zA-Z0-9_]{1,15}(\/[a-zA-Z0-9\-_]+)*)/g, function (m, m1, m2) {
 							return m1 + '@<a href="http://twitter.com/' + m2 + '">' + m2 + '</a>';
 						});
 					},
-					"hash": function (t) {
+					'hash': function (t) {
 						return t.replace(/(^|[^&\w'"]+)\#([a-zA-Z0-9_]+)/g, function (m, m1, m2) {
 							return m1 + '#<a href="http://search.twitter.com/search?q=%23' + m2 + '">' + m2 + '</a>';
 						});
@@ -449,7 +449,7 @@
 					*    returns '@&lt;a href="http://twitter.com/ded"&gt;ded&lt;/a&gt; the cdn url is &lt;a href="http://cdn.enderjs.com"&gt;http://cdn.enderjs.com&lt;/a&gt;'
 					*        ie. '@<a href="http://twitter.com/ded">ded</a> the cdn url is <a href="http://cdn.enderjs.com">http://cdn.enderjs.com</a>'
 					*/
-					"clean": function (tweet) {
+					'clean': function (tweet) {
 						return this.hash(this.at(this.link(tweet)));
 					}
 				};
@@ -467,7 +467,7 @@
 				var str;
 				str = String(number);
 				while (str.length < length) {
-					str = "0" + str;
+					str = '0' + str;
 				}
 				return str;
 			}
@@ -553,9 +553,9 @@
 			* Converts the date to a date-object. The input can be:
 			* <ul>
 			* <li>a Date object:	returned without modification.</li>
-			* <li>an array:		Interpreted as [year,month,day]. NOTE: month is 0-11.</li>
-			* <li>a number:		Interpreted as number of milliseconds since 1 Jan 1970 (a timestamp).</li>
-			* <li>a string:		Any format supported by the javascript engine, like "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.</li>
+			* <li>an array:			Interpreted as [year,month,day]. NOTE: month is 0-11.</li>
+			* <li>a number:			Interpreted as number of milliseconds since 1 Jan 1970 (a timestamp).</li>
+			* <li>a string:			Any format supported by the javascript engine, like 'YYYY/MM/DD', 'MM/DD/YYYY', 'Jan 31 2009' etc.</li>
 			* <li>an object:		Interpreted as an object with year, month and date attributes. **NOTE** month is 0-11.</li>
 			* </ul>
 			* @memberof pe.date
@@ -576,7 +576,7 @@
 				if (d.constructor === String) {
 					return new Date(d);
 				}
-				if (typeof d === "object") {
+				if (typeof d === 'object') {
 					return new Date(d.year, d.month, d.date);
 				}
 				return NaN;
@@ -624,17 +624,17 @@
 			* @return {string}
 			* @example
 			* pe.date.to_iso_format(new Date())
-			*    returns "2012-04-27"
+			*    returns '2012-04-27'
 			* pe.date.to_iso_format(new Date(), true)
-			*    returns "2012-04-27 13:46"
+			*    returns '2012-04-27 13:46'
 			*/
 			to_iso_format: function (d, timepresent) {
 				var date;
 				date = this.convert(d);
 				if (timepresent) {
-					return date.getFullYear() + "-" + pe.string.pad(date.getMonth() + 1, 2, "0") + "-" + pe.string.pad(date.getDate(), 2, "0") + " " + pe.string.pad(date.getHours(), 2, "0") + ":" + pe.string.pad(date.getMinutes(), 2, "0");
+					return date.getFullYear() + '-' + pe.string.pad(date.getMonth() + 1, 2, '0') + '-' + pe.string.pad(date.getDate(), 2, '0') + ' ' + pe.string.pad(date.getHours(), 2, '0') + ':' + pe.string.pad(date.getMinutes(), 2, '0');
 				}
-				return date.getFullYear() + "-" + pe.string.pad(date.getMonth() + 1, 2, "0") + "-" + pe.string.pad(date.getDate(), 2, "0");
+				return date.getFullYear() + '-' + pe.string.pad(date.getMonth() + 1, 2, "0") + '-' + pe.string.pad(date.getDate(), 2, '0');
 			}
 		},
 		/**
@@ -691,9 +691,9 @@
 					bcurl = [],
 					bctext = [],
 					match;
-				menusrc = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc));
-				bcsrc = $((typeof bcsrc.jquery !== "undefined" ? bcsrc : $(bcsrc)).find('a').get().reverse());
-				navclass = (typeof navclass === "undefined") ? 'nav-current' : navclass;
+				menusrc = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc));
+				bcsrc = $((typeof bcsrc.jquery !== 'undefined' ? bcsrc : $(bcsrc)).find('a').get().reverse());
+				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;
 				// Retrieve the path and link text for each breacrumb link
 				bcsrc.each(function (index) {
 					var $this = $(this);
@@ -731,7 +731,7 @@
 			*/
 			buildmobile: function (menusrc, hlevel, theme, mbar, expandall) {
 				var menu = $('<div data-role="controlgroup"></div>'),
-					menuitems = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc)).find('> div, > ul, h' + hlevel),
+					menuitems = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)).find('> div, > ul, h' + hlevel),
 					next,
 					subsection,
 					hlink,
@@ -747,7 +747,7 @@
 						// If the menu item is a heading
 						if (this.tagName.toLowerCase() === 'h' + hlevel) {
 							hlink = $this.children('a');
-							subsection = $('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
+							subsection = $('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? ' data-collapsed="false"' : '') + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
 							// If the original menu item was in a menu bar
 							if (menubar) {
 								$this = $this.parent().find('a').eq(1).closest('ul, div, h' + hlevel + 1).first();
@@ -770,7 +770,7 @@
 										// Make the nested list into a collapsible section
 										hlink = $this.prev('a');
 										hlink_html = hlink.html();
-										$this.attr({ 'data-role': 'listview', 'data-theme': theme }).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? " data-collapsed=\"false\"" : "") + '></div>');
+										$this.attr({ 'data-role': 'listview', 'data-theme': theme }).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? ' data-collapsed="false"' : '') + '></div>');
 										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink_html + '</h' + (hlevel + 1 + index) + '>');
 										$this.append('<li><a href="' + hlink.attr('href') + '">' + allText + ' - ' + hlink_html + '</a></li>');
 										hlink.remove();
@@ -779,7 +779,7 @@
 									}
 								});
 								subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
-								subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? "<div data-role=\"collapsible-set\" data-theme=\"" + theme + "\"></div>" : "") + '</div>');
+								subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? '<div data-role="collapsible-set" data-theme="' + theme + '"></div>' : '') + '</div>');
 							} else {
 								// If the section contains sub-sections
 								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme, false, expand));
@@ -808,7 +808,7 @@
 			* @return {void} Mobile menu
 			*/
 			expandcollapsemobile: function (menusrc, selector, expand, allparents) {
-				var elm = $((typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc))).find(selector);
+				var elm = $((typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc))).find(selector);
 				if (allparents) {
 					elm.parents('div[data-role="collapsible"]').attr('data-collapsed', expand);
 				} else {
@@ -823,7 +823,7 @@
 			* @return {void}
 			*/
 			correctmobile: function (menusrc) {
-				var original = (typeof menusrc.jquery !== "undefined" ? menusrc : $(menusrc)),
+				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
 					parent = original.parent();
 				original.detach().find('.ui-collapsible-set').each(function () {
 					var $this = $(this);
@@ -884,11 +884,9 @@
 					elms,
 					polydep = {},
 					loadnow = [],
-					non_deps = [],
 					deps,
 					dep_paths,
 					dep_needed,
-					all_elms,
 					lib = pe.add.liblocation,
 					payload = [],
 					needsinit = [],
@@ -896,28 +894,13 @@
 					i,
 					_len;
 
-				// Does the DOM need to be checked for elements to polyfill?
-				if (checkdom) {
-					// Get an array of selectors of supported polyfills that are not plugin dependencies
-					for (polyname in polyfills) {
-						if (polyfills.hasOwnProperty(polyname)) {
-							non_deps.push(polyfills[polyname].selector);
-						}
-					}
-
-					// Find all elements that match the element selector
-					all_elms = $(non_deps.join(','));
-				} else {
-					all_elms = $();
-				}
-
 				// Process each polyfill
 				for (polyname in polyfills) {
 					if (polyfills.hasOwnProperty(polyname)) {
 						polyprefs = polyfills[polyname];
-						elms = all_elms.length > 0 ? all_elms.filter(polyprefs.selector) : all_elms;
+						elms = checkdom ? $(polyprefs.selector) : $();
 						// Check to see if the polyfill might be needed
-						if (elms.length > 0 || $.inArray(polyname, force) > -1) {
+						if (elms.length !== 0 || $.inArray(polyname, force) !== -1) {
 							if (typeof polyprefs.supported === 'undefined') { // Native support hasn't been checked yet
 								polyprefs.supported = (typeof polyprefs.support_check === 'function' ? polyprefs.support_check() : polyprefs.support_check);
 								// Check to see if there is native support
@@ -932,7 +915,7 @@
 												dep_needed.push(deps[i]);
 											}
 										}
-										if (dep_needed.length > 0) {
+										if (dep_needed.length !== 0) {
 											// Polyfill is needed but has unloaded dependencies so load later
 											polydep[polyname] = dep_needed;
 										} else {
@@ -958,7 +941,7 @@
 
 				for (i = 0, _len = loadnow.length; i !== _len; i += 1) {
 					polyprefs = polyfills[loadnow[i]];
-					js[js.length] = (typeof polyprefs.load !== "undefined" ? polyprefs.load : lib + 'polyfills/' + loadnow[i] + pe.suffix + '.js');
+					js[js.length] = (typeof polyprefs.load !== 'undefined' ? polyprefs.load : lib + 'polyfills/' + loadnow[i] + pe.suffix + '.js');
 					if (typeof polyprefs.init !== 'undefined') {
 						needsinit.push(loadnow[i]);
 					}
@@ -1020,7 +1003,7 @@
 							fake,
 							root,
 							diff;
-						if (typeof el.open === "undefined") {
+						if (typeof el.open === 'undefined') {
 							return false;
 						}
 						root = doc.body || (function () {
@@ -1059,13 +1042,13 @@
 							div,
 							mfrac;
 						if (document.createElementNS) {
-							ns = "http://www.w3.org/1998/Math/MathML";
-							div = document.createElement("div");
-							div.style.position = "absolute";
-							div.style.color = "#fff";
-							mfrac = div.appendChild(document.createElementNS(ns, "math")).appendChild(document.createElementNS(ns, "mfrac"));
-							mfrac.appendChild(document.createElementNS(ns, "mi")).appendChild(document.createTextNode("xx"));
-							mfrac.appendChild(document.createElementNS(ns, "mi")).appendChild(document.createTextNode("yy"));
+							ns = 'http://www.w3.org/1998/Math/MathML';
+							div = document.createElement('div');
+							div.style.position = 'absolute';
+							div.style.color = '#fff';
+							mfrac = div.appendChild(document.createElementNS(ns, 'math')).appendChild(document.createElementNS(ns, 'mfrac'));
+							mfrac.appendChild(document.createElementNS(ns, 'mi')).appendChild(document.createTextNode('xx'));
+							mfrac.appendChild(document.createElementNS(ns, 'mi')).appendChild(document.createTextNode('yy'));
 							document.body.appendChild(div);
 							hasMathML = div.offsetHeight > div.offsetWidth;
 							div.parentNode.removeChild(div);
@@ -1118,7 +1101,7 @@
 				* @memberof pe.add
 				* @type {DOM object}
 				*/
-				head: document.head || document.getElementsByTagName("head"),
+				head: document.head || document.getElementsByTagName('head'),
 				/**
 				* The path to the root folder of the javascript files (same folder as pe-ap.js).
 				* @memberof pe.add
@@ -1126,11 +1109,11 @@
 				*/
 				liblocation: (function () {
 					var pefile = $('body script[src*="/pe-ap"]').attr('src');
-					return pefile.substr(0, pefile.lastIndexOf("/") + 1);
+					return pefile.substr(0, pefile.lastIndexOf('/') + 1);
 				} ()),
 				themecsslocation: (function () {
-					var themecss = (wet_boew_theme !== null ? $('head link[rel="stylesheet"][href*="' + wet_boew_theme.theme + '"]') : "");
-					return themecss.length > 0 ? themecss.attr('href').substr(0, themecss.attr('href').lastIndexOf("/") + 1) : "theme-not-found/";
+					var themecss = (wet_boew_theme !== null ? $('head link[rel="stylesheet"][href*="' + wet_boew_theme.theme + '"]') : '');
+					return themecss.length > 0 ? themecss.attr('href').substr(0, themecss.attr('href').lastIndexOf("/") + 1) : 'theme-not-found/';
 				} ()),
 				staged: [], // Tracks loaded dependencies and polyfills
 				/**
@@ -1146,11 +1129,11 @@
 						msg = (message !== undefined ? message : 'wet-boew-dependency-loaded');
 					// - lets prevent double loading of JavaScript files but still trigger an event indicating the file was loaded
 					if ($.inArray(js, this.staged) > -1) {
-						$(document).trigger({ type: msg, js: js });
+						pe.document.trigger({ type: msg, js: js });
 						return this;
 					}
 					setTimeout(function timeout() {
-						if (typeof head.item !== "undefined") { // check if ref is still a live node list
+						if (typeof head.item !== 'undefined') { // check if ref is still a live node list
 							if (!head[0]) { // append_to node not yet ready
 								setTimeout(timeout, 25);
 								return;
@@ -1161,12 +1144,12 @@
 							scriptdone = false;
 						pe.add.set(scriptElem, 'async', 'async');
 						scriptElem.onload = scriptElem.onreadystatechange = function () {
-							if ((scriptElem.readyState && scriptElem.readyState !== "complete" && scriptElem.readyState !== "loaded") || scriptdone) {
+							if ((scriptElem.readyState && scriptElem.readyState !== 'complete' && scriptElem.readyState !== 'loaded') || scriptdone) {
 								return false;
 							}
 							scriptElem.onload = scriptElem.onreadystatechange = null;
 							scriptdone = true;
-							$(document).trigger({ type: msg, js: js });
+							pe.document.trigger({ type: msg, js: js });
 						};
 						scriptElem.src = js;
 						if ((pe.ie > 0 && pe.ie < 9) || !head.insertBefore) {
@@ -1191,11 +1174,11 @@
 				_load_arr: function (js, msg_all, payload) {
 					var js_loaded = 0, i, _len,
 						msg_single = msg_all + "-single";
-					$(document).on(msg_single, function () {
+					pe.document.on(msg_single, function () {
 						js_loaded += 1;
 						if (js_loaded === js.length) {
-							$(document).off(msg_single);
-							$(document).trigger({ type: msg_all, payload: payload });
+							pe.document.off(msg_single);
+							pe.document.trigger({ type: msg_all, payload: payload });
 						}
 					});
 					// Load each of the JavaScript files or trigger the completion event if there are none
@@ -1204,8 +1187,8 @@
 							pe.add._load(js[i], msg_single);
 						}
 					} else {
-						$(document).off(msg_single);
-						$(document).trigger({ type: msg_all, payload: payload });
+						pe.document.off(msg_single);
+						pe.document.trigger({ type: msg_all, payload: payload });
 					}
 
 					return this;
@@ -1235,7 +1218,7 @@
 						styleElement = document.createElement('link');
 					pe.add.set(styleElement, 'rel', 'stylesheet').set(styleElement, 'href', css);
 					if ((pe.ie > 0 && pe.ie < 10) || !head.insertBefore) {
-						$(styleElement).appendTo($(head)).attr("href", css);
+						$(styleElement).appendTo($(head)).attr('href', css);
 					} else {
 						head.insertBefore(styleElement, head.firstChild);
 					}
@@ -1263,7 +1246,7 @@
 				* @return {void}
 				*/
 				language: function (lang) {
-					var url = pe.add.liblocation + "i18n/" + lang + pe.suffix + ".js";
+					var url = pe.add.liblocation + 'i18n/' + lang + pe.suffix + '.js';
 					pe.add._load(url);
 				},
 				/**
@@ -1285,21 +1268,48 @@
 		}
 		()),
 		/**
-		* Follows the _init function and i18n initialization.
-		* @memberof pe
+		* Handles loading of the plugins, dependencies and polyfills
 		* @function
+		* @param {object} options Object containing the loader options. The following optional properties are supported: 
+		* "plugins": {"plugin_name1": elms1, "plugin_name2": elms2, ...} - Names of plugins to load and the elements to load them on
+		* "global": [plugin_name1, plugin_name2, ...] - Names of global plugins to load
+		* "deps": [dependency_name1, dependenccy_name2, ...] - Names of dependences to load
+		* "poly": [polyfill_name1, polyfill_name2, ...] - Names of polyfills to load
+		* "checkdom": true/false - Enable/disable checking the DOM for "wet-boew-*" triggers
+		* "polycheckdom": true/false - Enable/disable checking the DOM for elements to polyfill
+		* @param {string} finished_event Name of the event to trigger when loading is complete (defai;t is "wb-loaded")
 		* @return {void}
-		* @todo pass an element as the context for the recursion.
 		*/
-		dance: function () {
+		wb_load: function (options, finished_event) {
+			if (typeof options === 'undefined') {
+				options = {};
+			}
+			if (typeof finished_event === 'undefined') {
+				finished_event = "wb-loaded";
+			}
 			var i, _len,
 				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
-				wetboew = $('[class^="wet-boew-"]'),
-				pcalls = [],
+				plugins = typeof options.plugins !== 'undefined' ? options.plugins : {},
+				plug,
+				pcalls = typeof options.global !== 'undefined' ? options.global : [],
 				pcall,
-				poly = [],
-				dep = ['resize', 'equalheights']; // Can remove 'equalheights' once non-JS alternative to 'equalize' is in place
+				dep = typeof options.dep !== 'undefined' ? options.dep : [],
+				poly = typeof options.poly !== 'undefined' ? options.poly : [],
+				checkdom = typeof options.checkdom !== 'undefined' ? options.checkdom : false,
+				polycheckdom = typeof options.polycheckdom !== 'undefined' ? options.polycheckdom : false,
+				wetboew = checkdom ? $('[class^="wet-boew-"]') : $(),
+				time = (new Date()).getTime(),
+				event_polyinit = 'wb-polyinit-loaded-' + time,
+				event_pcalldeps = 'wb-pcalldeps-loaded-' + time,
+				event_polydep = 'wb-polydeps-loaded-' + time;
 
+			// Prepare manually specified plugins for processing
+			for (plug in plugins) {
+				if (plugins.hasOwnProperty(plug)) {
+					wetboew.add(plugins[plug].addClass('wet-boew-' + plug));
+				}
+			}
+				
 			// Push each of the "wet-boew-*" plugin calls into the pcalls array
 			wetboew.each(function () {
 				var _node = $(this),
@@ -1325,22 +1335,23 @@
 			// Push each required polyfill and dependency into the poly and dep arrays
 			for (i = 0, _len = pcalls.length; i !== _len; i += 1) {
 				pcall = pcalls[i];
-				if (typeof pe.fn[pcall] !== "undefined") {
-					if (typeof pe.fn[pcall].polyfills !== "undefined") {
+				if (typeof pe.fn[pcall] !== 'undefined') {
+					if (typeof pe.fn[pcall].polyfills !== 'undefined') {
 						poly.push.apply(poly, pe.fn[pcall].polyfills);
 					}
-					if (typeof pe.fn[pcall].depends !== "undefined") {
+					if (typeof pe.fn[pcall].depends !== 'undefined') {
 						dep.push.apply(dep, pe.fn[pcall].depends);
 					}
 				}
 			}
 
-			$(document).one('wb-polyinit-loaded', function (e) {
+			pe.document.one(event_polyinit, function (e) {
 				var polyfills = pe.polyfills.polyfill,
 					polydeps = e.payload[0],
 					polyinit = e.payload[1],
 					polydeps_load = [],
 					polyname;
+
 				// Initiate any polyfills that need to be initiated manually
 				for (i = 0, _len = polyinit.length; i !== _len; i += 1) {
 					polyfills[polyinit[i]].init();
@@ -1354,10 +1365,10 @@
 					}
 				}
 
-				$(document).one('wb-pcalldeps-loaded', function () {
-					$(document).one('wb-polydeps-loaded', function (e) {
+				pe.document.one(event_pcalldeps, function () {
+					pe.document.one(event_polydep, function (e) {
 						// Initiate any polyfills that need to be initiated manually
-						polyinit = e.payload[1];
+						polyinit = typeof e.payload !== 'undefined' ? e.payload[1] : [];
 						for (i = 0, _len = polyinit.length; i !== _len; i += 1) {
 							polyfills[polyinit[i]].init();
 						}
@@ -1365,9 +1376,9 @@
 						// Execute each of the node specific plugin calls
 						wetboew.each(function () {
 							var _node = $(this),
-								_fcall = _node.attr("data-load").split(",");
+								_fcall = _node.attr('data-load').split(',');
 							for (i = 0, _len = _fcall.length; i !== _len; i += 1) {
-								if (typeof pe.fn[_fcall[i]] !== "undefined") { // lets safeguard the execution to only functions we have
+								if (typeof pe.fn[_fcall[i]] !== 'undefined') { // lets safeguard the execution to only functions we have
 									pe.fn[_fcall[i]]._exec(_node);
 								}
 							}
@@ -1380,26 +1391,44 @@
 							}
 						}
 
-						// TODO: find a better way to switch back and forth between mobile and desktop modes.
-						pe.resize(function () {
-							var mobilecheck = pe.mobilecheck();
-							if (pe.mobile !== mobilecheck) {
-								pe.mobile = mobilecheck;
-								window.location.href = decodeURI(pe.url(window.location.href).removehash());
-							}
-						});
+						// Loading completed, trigger the finished event
+						pe.document.trigger(finished_event);
 					});
 
 					// Load the polyfills with dependencies
-					pe.polyfills.polyload(polydeps_load, 'wb-polydeps-loaded', false);
+					if (polydeps_load.length !== 0) {
+						pe.polyfills.polyload(polydeps_load, event_polydep, false);
+					} else {
+						pe.document.trigger(event_polydep);
+					}
 				});
 
 				// Load each of the dependencies (eliminating duplicates)
-				pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), "wb-pcalldeps-loaded");
+				pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
 			});
 
 			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)
-			pe.polyfills.polyload(pe.array.noduplicates(poly), 'wb-polyinit-loaded', true);
+			pe.polyfills.polyload(pe.array.noduplicates(poly), event_polyinit, polycheckdom);
+		},
+		/**
+		* Follows the _init function and i18n initialization.
+		* @memberof pe
+		* @function
+		* @return {void}
+		* @todo pass an element as the context for the recursion.
+		*/
+		dance: function () {
+			var loading_finished = 'wb-init-loaded';
+			pe.document.one(loading_finished, function () {
+				pe.resize(function () {
+					var mobilecheck = pe.mobilecheck();
+					if (pe.mobile !== mobilecheck) {
+						pe.mobile = mobilecheck;
+						window.location.href = decodeURI(pe.url(window.location.href).removehash());
+					}
+				});
+			});
+			pe.wb_load({'dep': ['resize', 'equalheights'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
 		}
 	};
 	/* window binding */
