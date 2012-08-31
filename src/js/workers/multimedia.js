@@ -45,16 +45,16 @@
 			var id,
 				canPlay = false,
 				media = elm.children('audio, video').eq(0),
+				media_type = media.is('video') ? 'video' : 'audio',
 				media_id,
-				width = media.is('video') ? media.attr('width') : '0',
-				height = media.is('video') ? media.attr('height') : '0',
+				width = media_type === 'video' ? media.attr('width') : '0',
+				height = media_type === 'video' ? media.attr('height') : '0',
 				captions,
 				flash = true,
 				$fbObject,
 				fbVideoType = 'video/mp4',
 				fbAudioType = 'audio/mp3', //MP3
 				fbBin = _pe.add.liblocation + 'bin/multimedia.swf?seed=' + Math.random(),
-				fbClass,
 				fbVars,
 				evtmgr;
 
@@ -83,12 +83,10 @@
 				//No nativly supported format provided, trying Flash fallback
 				//TODO:Add Flash detection
 				fbVars = 'id=' + elm.attr('id');
-				if (flash && media.is('video') && media.find('source').filter('[type="' + fbVideoType + '"]').length > 0) {
-					fbClass = 'video';
+				if (flash && media_type === 'video' && media.find('source').filter('[type="' + fbVideoType + '"]').length > 0) {
 					fbVars +=  '&height=' + media.height() + '&width=' + media.width() + '&posterimg=' + encodeURI(_pe.url(media.attr('poster')).source) + '&media=' + encodeURI(_pe.url(media.find('source').filter('[type="' + fbVideoType + '"]').attr('src')).source);
 					canPlay = true;
-				} else if (flash && media.is('audio') && media.find('source').filter('[type="' + fbAudioType + '"]').length > 0) {
-					fbClass = 'audio';
+				} else if (flash && media_type === 'audio' && media.find('source').filter('[type="' + fbAudioType + '"]').length > 0) {
 					fbVars += '&media=' + _pe.url(media.find('source').filter('[type="' + fbAudioType + '"]').attr('src')).source;
 					canPlay = true;
 				} else {
@@ -96,7 +94,7 @@
 				}
 				//Can play using a fallback
 				if (canPlay) {
-					$fbObject = $('<object play="" pause="" id="' + media_id + '" width="' + width + '" height="' + height + '" class="' + fbClass + '" type="application/x-shockwave-flash" data="' + fbBin + '" tabindex="-1"><param name="movie" value="' + fbBin + '"/><param name="flashvars" value="' + fbVars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>');
+					$fbObject = $('<object play="" pause="" id="' + media_id + '" width="' + width + '" height="' + height + '" class="' + media_type + '" type="application/x-shockwave-flash" data="' + fbBin + '" tabindex="-1"><param name="movie" value="' + fbBin + '"/><param name="flashvars" value="' + fbVars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>');
 					media.before($fbObject);
 					media.remove();
 					media = $fbObject;
@@ -113,10 +111,10 @@
 
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
-				if (media.is('video')) {
+				if (media_type === 'video') {
 					media.before($('<button class="wb-mm-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
 				}
-				media.after(_pe.fn.multimedia._get_ui(media_id));
+				media.after(_pe.fn.multimedia._get_ui(media_id, media_type === 'video' ? true : false));
 				if ($('html').hasClass('polyfill-progress')) {
 					elm.find('progress').progress();
 				}
@@ -270,7 +268,7 @@
 			return elm;
 		}, // end of exec
 
-		_get_ui : function (id) {
+		_get_ui : function (id, cc) {
 			var ui = $('<div class="wb-mm-controls">'),
 				ui_start = $('<div class="wb-mm-controls-start">'),
 				ui_timeline = $('<div class="wb-mm-timeline" tabindex="0"><p class="wb-mm-timeline-current"><span class="wb-invisible">' + _pe.dic.get('%position') + '</span><span>00:00:00</span></p><p class="wb-mm-timeline-total"><span class="wb-invisible">' + _pe.dic.get('%duration') + '</span><span>--:--:--</span></p><p class="wb-mm-timeline-inner"><span class="wb-invisible">' + _pe.dic.get('%percentage') + '</span><progress value="0" max="100" aria-live="off" /></p>'),
@@ -303,14 +301,18 @@
 				}).append(_pe.fn.multimedia.get_image('ff', _pe.dic.get('%fast-forward')))
 			);
 
-			ui_end.append(
-				$('<button>').attr({
-					type: 'button',
-					'class': 'cc',
-					'aria-controls': id,
-					'title': _pe.dic.get('%closed-caption', 'enable')
-				}).append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')))
-			);
+			if (cc === true) {
+				ui_end.append(
+					$('<button>').attr({
+						type: 'button',
+						'class': 'cc',
+						'aria-controls': id,
+						'title': _pe.dic.get('%closed-caption', 'enable')
+					}).append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')))
+				);
+			} else {
+				ui.addClass('wb-mm-no-cc');
+			}
 
 			ui_end.append(
 				$('<button>').attr({
