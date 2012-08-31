@@ -34,7 +34,22 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
-
+<style type="text/css">
+.thermometer-0,.thermometer-10,.thermometer-20,.thermometer-30,.thermometer-40,.thermometer-50,.thermometer-60,.thermometer-70,.thermometer-80,.thermometer-90,.thermometer-100,.thermometer-110,.thermometer-120{padding-bottom:230px !important;background-repeat:no-repeat;background-position:center bottom;}
+.thermometer-0{background-image:url(../../build/grids/images/thermometer-0.gif);}
+.thermometer-10{background-image:url(../../build/grids/images/thermometer-10.gif);}
+.thermometer-20{background-image:url(../../build/grids/images/thermometer-20.gif);}
+.thermometer-30{background-image:url(../../build/grids/images/thermometer-30.gif);}
+.thermometer-40{background-image:url(../../build/grids/images/thermometer-40.gif);}
+.thermometer-50{background-image:url(../../build/grids/images/thermometer-50.gif);}
+.thermometer-60{background-image:url(../../build/grids/images/thermometer-60.gif);}
+.thermometer-70{background-image:url(../../build/grids/images/thermometer-70.gif);}
+.thermometer-80{background-image:url(../../build/grids/images/thermometer-80.gif);}
+.thermometer-90{background-image:url(../../build/grids/images/thermometer-90.gif);}
+.thermometer-100{background-image:url(../../build/grids/images/thermometer-100.gif);}
+.thermometer-110{background-image:url(../../build/grids/images/thermometer-110.gif);}
+.thermometer-120{background-image:url(../../build/grids/images/thermometer-120.gif);}
+</style>
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -108,6 +123,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<li><a href="#invisible">Invisible</a></li>
     <li><a href="#calendar">Calendar</a></li>
     <li><a href="#print">Print</a></li>
+    <li><a href="#thermometer">Thermometer</a></li>
     </ul>
     </div>
 
@@ -342,6 +358,7 @@ October 2009
 <div class="clear"></div>
 
 <h2 id="print">Print</h2>
+<h3>Print grid layout</h3>
 <p>Grid cells do not keep their design properties when printed, for various reasons:</p>
 <ul>
 	<li>Browsers do not process complex <abbr title="Cascading Style Sheet">CSS</abbr> well when printing, so grids print differently in <abbr title="Internet Explorer">IE</abbr>6 versus <abbr title="Internet Explorer">IE</abbr>8, both with unexpected and undesirable results.</li>
@@ -357,15 +374,38 @@ October 2009
 	<li><code>print-span-6</code></li>
 	<li><code>print-span-7</code></li>
 	<li><code>print-span-8</code></li>
-</ul>
-<details class="span-6">
-<summary>View code</summary>
+	</ul>
+    <p>For example:</p>
+    <div class="span-6">
+ 
 <pre><code>&lt;div class=&quot;span-5 print-span-5&quot;&gt;</code></pre>
-</details>
+</div>
+
 <div class="clear"></div>
 <p>Adding these classes have no affect on the Web page itself, but will <strong>roughly</strong> keep the grid layout when the page is printed. There is rarely a need for this, but may be handy for directives or policy documents.</p>
 <div class="span-6 module-note">
 	<p><strong>Note:</strong> These classes will not work on grid parent/child relationships. They are for simple grid designs.</p>
+</div>
+<div class="clear"></div><h3>Print none</h3>
+<p>Some content, like right menus, may lose their value when printed. Use the  <code>print-none</code> CSS to remove specific content from the printed copy. </p>
+<p>For example: <pre>&lt;div class=&quot;span-2 module-related print-none&quot;&gt;&lt;p&gt;content&lt;/p&gt;&lt;/div&gt;</pre></p>
+
+
+<h2 id="thermometer">Thermometer <abbr title="Cascading Style Sheet">CSS</abbr></h2>
+<p>Use this style is to record the donation progress for events such as the Government of Canada Workplace Charitable Campaign (GCWCC). </p>
+<p>This CSS determines which thermometer background image to display. By changing the class name on the <code>&lt;p&gt;</code> element, the thermometer image instantly reflects the new  amount. Since the classes increase by 10% increments, you need to adjust your  thermometer percentage to the nearest 10% class. Values range from 0% to 120%. For  values in excess of 120% , use the 120% class.</p>
+<div class="clear"></div>
+<div class="span-2 margin-bottom-none">
+<p class="thermometer-0">Donations to date are $0, which is 0% of the target. </p>
+<p>(Uses <code>thermometer-0</code>)</p>
+</div>
+<div class="span-2 margin-bottom-none border-span-2">
+<p  class="thermometer-40">Donations to date are $46,500, which is 38% of the target. </p>
+<p>(Uses <code>thermometer-40</code>)</p>
+</div>
+<div class="span-2 margin-bottom-none border-span-2 background-light">
+<p  class="thermometer-120">Donations to date are $190,512, which is 150% of the target.</p>
+<p>(Uses <code>thermometer-120</code>)</p>
 </div>
 <div class="clear"></div>
 </div>
