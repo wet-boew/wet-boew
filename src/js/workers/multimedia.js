@@ -101,8 +101,10 @@
 					media.remove();
 					media = $fbObject;
 				} else {
-					media.before('<img src="' + media.attr("poster") + '" width="' + width + '" height="' + height + '" alt="' + media.attr("title") + '"/>');
-					media.remove();
+					if (media.is('video')) {
+						media.before('<img src="' + media.attr("poster") + '" width="' + width + '" height="' + height + '" alt="' + media.attr("title") + '"/>');
+						media.remove();
+					}
 				}
 			}
 
@@ -111,7 +113,9 @@
 
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
-				media.before($('<button class="wb-mm-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
+				if (media.is('video')) {
+					media.before($('<button class="wb-mm-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
+				}
 				media.after(_pe.fn.multimedia._get_ui(media_id));
 				if ($('html').hasClass('polyfill-progress')) {
 					elm.find('progress').progress();
