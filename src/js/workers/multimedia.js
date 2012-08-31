@@ -162,7 +162,7 @@
 				});
 
 				//Map UI keyboard events
-				elm.on('keypress', function (e) {
+				elm.on('keydown', function (e) {
 					var $w = $(this),
 						v = 0;
 
