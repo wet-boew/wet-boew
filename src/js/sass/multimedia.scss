@@ -36,7 +36,7 @@ video, object.video {
 	}
 
 	svg {
-		path, rect {
+		* {
 	 		pointer-events:none;
 	 	}
 	}
