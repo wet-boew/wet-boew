@@ -65,7 +65,6 @@
 				navbar,
 				links,
 				footer1,
-				ul,
 				lang_links,
 				lang_nav,
 				mb_li,
