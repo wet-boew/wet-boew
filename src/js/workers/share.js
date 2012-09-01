@@ -91,15 +91,15 @@
 					$popup.append('<p class="popup_disclaimer">' + opts.popupDisclaimer + '</p>');
 				}
 
-				$popup.on("click vclick", function (e) {
+				$popup.on("click vclick touchstart", function (e) {
 					if (e.stopPropagation) {
 						e.stopImmediatePropagation();
 					} else {
 						e.cancelBubble = true;
 					}
 				});
-				$popupText = elm.find('.bookmark_popup_text').off('click vclick keydown').wrap('<' + opts.popupTag + ' />');
-				$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').on("click vclick keydown", function (e) {
+				$popupText = elm.find('.bookmark_popup_text').off('click vclick touchstart keydown').wrap('<' + opts.popupTag + ' />');
+				$popupText.attr('role', 'button').attr('aria-controls', 'bookmark_popup').on("click vclick touchstart keydown", function (e) {
 					if (e.type === "keydown") {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 							if (e.keyCode === 13 || e.keyCode === 32) { // enter or space

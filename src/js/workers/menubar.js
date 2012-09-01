@@ -148,13 +148,13 @@
 			correctheight();
 
 			// Handles opening and closing of a submenu on click of a menu bar item but prevents any changes on click of the empty area in the submenu
-			$scope.find('.mb-sm').on("click vclick", function (event) {
+			$scope.find('.mb-sm').on("click vclick touchstart", function (event) {
 				if (event.stopPropagation) {
 					event.stopPropagation();
 				} else {
 					event.cancelBubble = true;
 				}
-			}).parent().on('click vclick', '> :header a', function () {
+			}).parent().on('click vclick touchstart', '> :header a', function () {
 				if ($(this).closest("li").hasClass("mb-active")) {
 					hidesubmenu(this);
 				} else {
@@ -336,7 +336,7 @@
 					}
 				}
 			});
-			$(document).on("click touchstart", function () {
+			$(document).on("click vclick touchstart", function () {
 				$scope.trigger("focusoutside");
 			});
 			$scope.on("focusoutside", function () {
