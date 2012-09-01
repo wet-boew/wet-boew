@@ -80,7 +80,7 @@
 			elm.after(autolist);
 			correctWidth();
 			
-			elm.on('keyup keydown click vclick focus', function (e) {
+			elm.on('keyup keydown click vclick touchstart focus', function (e) {
 				var type = e.type,
 					keycode = e.keyCode,
 					dest;
@@ -125,7 +125,7 @@
 				}
 			});
 
-			autolist.on('keyup keydown click vclick', 'a, span', function (e) {
+			autolist.on('keyup keydown click vclick touchstart', 'a, span', function (e) {
 				var type = e.type,
 					keycode = e.keyCode,
 					target = $(e.target),
@@ -178,7 +178,7 @@
 							return false;
 						}
 					}
-				} else if (type === 'click' || type === 'vclick') {
+				} else if (type === 'click' || type === 'vclick' || type === 'touchstart') {
 					if (!target.hasClass('al-option')) {
 						target = target.parent();
 					}
@@ -196,7 +196,7 @@
 				closeOptions();
 			});
 
-			$(document).on("click touchstart", function (e) {
+			$(document).on("click vclick touchstart", function (e) {
 				if (!autolist.hasClass('al-hide') && !$(e.target).is(elm)) {
 					closeOptions();
 				}
