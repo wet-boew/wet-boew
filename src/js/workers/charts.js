@@ -3,7 +3,7 @@
 * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
 */
 /*
-* Chart  functionality WET
+* Chart for WET 3.0
 */
 /*global jQuery: false, pe:false, wet_boew_charts: false, Raphael: false*/
 (function ($) {
@@ -31,7 +31,7 @@
 			}
 			//configuration
 			o = $.extend(true, {
-				"default-namespace": "wb-charts",
+				"default-namespace": ["wb-charts", "wb-chart", "wb-graph"],
 				"graphclass-autocreate": true, // This add the ability to set custom css class to the figure container.
 				"graphclass-overwrite-array-mode": true,
 				"graphclass-typeof": "string",
@@ -51,26 +51,12 @@
 				// Note: Any Top or bottom value will be overwritten with an pre-defined interval
 				"steps-autocreate": true,
 				"steps-typeof": "number",
-				// "wb-graph-topvalue"-[Number]
-				// wb-graph-topvaluenegative-[true | false]
-				// wb-graph-bottomvalue-[Number]
-				// wb-graph-bottomvaluenegative-[true | false]
 				// This is to set a decimal precision for the pie chart
 				"decimal-autocreate": true,
 				"decimal-typeof": "number",
 				// This is to set the delayed execution timer
 				"execdelay-autocreate": true,
 				"execdelay-typeof": "number",
-				/*
-			general: {
-				type: 'line', // line, bar, stacked, pie
-				width: $(this).width(), // This will be re-adjusted to the best fit as a lower value
-				height: $(this).height(), // This will be re-adjusted to the best fit as a lower value
-				maxWidth: 598, // Will overwrite the 'width' value if the width are larger
-				parseDirection: 'x', // 'x' | 'y' => That is the way to inteprete the table serie if is vertical or horizontal
-				foregroundColor: 'black', // Color used to draw the label and line (HTML color name or hexa Color value like #000000
-				hide: false // Indicate if the Table need to be hidden
-			},*/
 				// This is the default option for a series
 				serie: {
 					type: 'line',
@@ -90,17 +76,12 @@
 				// Graph Type
 				type: 'bar', // this be one of or an array of: area, pie, line, bar, stacked
 				"type-autocreate": true,
-				"endcaption-autocreate": true,
-				"endcaption-typeof": "boolean",
-				// Generate Graph ID automatic
-				generateids: true, // Not working anymore, check to remove it
-				"generateids-typeof": "boolean",
 				optionsClass: {
 					'default-option': 'type', // Default CSS Options
 					"type-autocreate": true,
 					"color-autocreate": true,
 					"overcolor-autocreate": true,
-					"default-namespace": "wb-charts",
+					"default-namespace": ["wb-charts", "wb-chart", "wb-graph"],
 					"dasharray-autocreate": true,
 					"noencapsulation-autocreate": true,
 					"fillopacity-autocreate": true,
@@ -125,7 +106,9 @@
 				//
 				// Data Table and Graph Orientation
 				//
-				parseDirection: 'x', // which direction to parse the table data
+				parsedirection: 'x', // which direction to parse the table data
+				"parsedirection-typeof": "string",
+				"parsedirection-autocreate": true,
 				drawDirection: 'x', // TODO Not implemented yet - which direction are the dependant axis
 				//
 				// Pie Graph Option 
@@ -176,23 +159,6 @@
 					padding: 4, // Number of pixel, distance between the axes/graph limit and the text
 					minNbIncrementStep: 6 // Minimum Number of incrementing step, that's mean an auto resize if needed and no Axis cut
 				}
-				// // //
-				// Not longer supported Options
-				// // //
-				// For acessibility and comprehension, a caption is always required
-				// appendTitle: true, // table caption text is added to chart
-				// title: null, // grabs from table caption if null
-				// // //
-				// Because the Key (header) of the serie are invisible the key (legend) is always added
-				// appendKey: true, //color key is added to chart
-				// // //
-				// In a future version that would be replaced by th class attribute to specify the column and/or row are descriptive only
-				// rowFilter: ' ',
-				// colFilter: ' ',
-				// // //
-				// Replaced by font.height
-				// yLabelInterval: 30 //distance between y labels
-				// // //
 			}, options);
 			function colourNameToHex(colour) {
 				var colours = {"aliceblue": "#f0f8ff", "antiquewhite": "#faebd7", "aqua": "#00ffff", "aquamarine": "#7fffd4", "azure": "#f0ffff", "beige": "#f5f5dc", "bisque": "#ffe4c4", "black": "#000000", "blanchedalmond": "#ffebcd", "blue": "#0000ff", "blueviolet": "#8a2be2", "brown": "#a52a2a", "burlywood": "#deb887", "cadetblue": "#5f9ea0", "chartreuse": "#7fff00", "chocolate": "#d2691e", "coral": "#ff7f50", "cornflowerblue": "#6495ed", "cornsilk": "#fff8dc", "crimson": "#dc143c", "cyan": "#00ffff", "darkblue": "#00008b", "darkcyan": "#008b8b", "darkgoldenrod": "#b8860b", "darkgray": "#a9a9a9", "darkgreen": "#006400", "darkkhaki": "#bdb76b", "darkmagenta": "#8b008b", "darkolivegreen": "#556b2f", "darkorange": "#ff8c00", "darkorchid": "#9932cc", "darkred": "#8b0000", "darksalmon": "#e9967a", "darkseagreen": "#8fbc8f", "darkslateblue": "#483d8b", "darkslategray": "#2f4f4f", "darkturquoise": "#00ced1", "darkviolet": "#9400d3", "deeppink": "#ff1493", "deepskyblue": "#00bfff", "dimgray": "#696969", "dodgerblue": "#1e90ff", "firebrick": "#b22222", "floralwhite": "#fffaf0", "forestgreen": "#228b22", "fuchsia": "#ff00ff", "gainsboro": "#dcdcdc", "ghostwhite": "#f8f8ff", "gold": "#ffd700", "goldenrod": "#daa520", "gray": "#808080", "green": "#008000", "greenyellow": "#adff2f", "honeydew": "#f0fff0", "hotpink": "#ff69b4", "indianred ": "#cd5c5c", "indigo ": "#4b0082", "ivory": "#fffff0", "khaki": "#f0e68c", "lavender": "#e6e6fa", "lavenderblush": "#fff0f5", "lawngreen": "#7cfc00", "lemonchiffon": "#fffacd", "lightblue": "#add8e6", "lightcoral": "#f08080", "lightcyan": "#e0ffff", "lightgoldenrodyellow": "#fafad2", "lightgrey": "#d3d3d3", "lightgreen": "#90ee90", "lightpink": "#ffb6c1", "lightsalmon": "#ffa07a", "lightseagreen": "#20b2aa", "lightskyblue": "#87cefa", "lightslategray": "#778899", "lightsteelblue": "#b0c4de", "lightyellow": "#ffffe0", "lime": "#00ff00", "limegreen": "#32cd32", "linen": "#faf0e6", "magenta": "#ff00ff", "maroon": "#800000", "mediumaquamarine": "#66cdaa", "mediumblue": "#0000cd", "mediumorchid": "#ba55d3", "mediumpurple": "#9370d8", "mediumseagreen": "#3cb371", "mediumslateblue": "#7b68ee", "mediumspringgreen": "#00fa9a", "mediumturquoise": "#48d1cc", "mediumvioletred": "#c71585", "midnightblue": "#191970", "mintcream": "#f5fffa", "mistyrose": "#ffe4e1", "moccasin": "#ffe4b5", "navajowhite": "#ffdead", "navy": "#000080", "oldlace": "#fdf5e6", "olive": "#808000", "olivedrab": "#6b8e23", "orange": "#ffa500", "orangered": "#ff4500", "orchid": "#da70d6", "palegoldenrod": "#eee8aa", "palegreen": "#98fb98", "paleturquoise": "#afeeee", "palevioletred": "#d87093", "papayawhip": "#ffefd5", "peachpuff": "#ffdab9", "peru": "#cd853f", "pink": "#ffc0cb", "plum": "#dda0dd", "powderblue": "#b0e0e6", "purple": "#800080", "red": "#ff0000", "rosybrown": "#bc8f8f", "royalblue": "#4169e1", "saddlebrown": "#8b4513", "salmon": "#fa8072", "sandybrown": "#f4a460", "seagreen": "#2e8b57", "seashell": "#fff5ee", "sienna": "#a0522d", "silver": "#c0c0c0", "skyblue": "#87ceeb", "slateblue": "#6a5acd", "slategray": "#708090", "snow": "#fffafa", "springgreen": "#00ff7f", "steelblue": "#4682b4", "tan": "#d2b48c", "teal": "#008080", "thistle": "#d8bfd8", "tomato":  "#ff6347", "turquoise":  "#40e0d0", "violet":  "#ee82ee", "wheat":  "#f5deb3", "white":  "#ffffff", "whitesmoke":  "#f5f5f5", "yellow": "#ffff00", "yellowgreen": "#9acd32"};
@@ -1665,188 +1631,13 @@
 				parse: function () {
 					parser.sourceTblSelf = self;
 					// Swap the table is requested
-					if (parser.param.parseDirection === 'y' || o.parseDirection === 'y') {
+					if (parser.param.parsedirection === 'y' || o.parsedirection === 'y') {
 						self = parser.swapTable(parser.sourceTblSelf);
 					}
 					parser.setSeriesHeadingLenght();
 					// The following variable is used for auto add ids/headers to the table
 					var columnIds = [], // The array lenght must equal of parser.seriesHeadingLenght and each item are ids separated by space
 						rowsIds = [];
-					/* // Parse the Table Heading
-				$('thead', self).each(function () {
-					
-					var ColumnHeading = [];
-					var SpannedRow = [];
-					
-					
-					parser.rowPos = 0; // re-init the row numbering
-
-					
-					// FOR EACH row get the series
-					$('tr', this).each(function () {
-
-						
-						var currentSerieLevel = 0;
-						
-						var CurrColPosition = 0;	
-					
-						
-						// Check if the first cell was spanned
-						$.each(SpannedRow, function () {
-							if (this.colpos === CurrColPosition && this.rowspan > 0) {
-								
-								// Calculate the width of the spanned row
-								var w = (($(this.ele).attr('colspan') !== undefined ? $(this.ele).attr('colspan') : 1) * 1);
-								
-								CurrColPosition += w;
-								
-								this.rowspan --;
-								
-							}
-						});
-						
-						
-						
-						
-						var serieHeader = ''; // That would contain the current on process serie header
-						
-						// Get the Row heading Width
-						$('td, th', this).each(function () {
-							
-							parser.cellID ++;
-							
-							
-							var IgnoreCurrentCell = false; // TODO check if wet-graph-ignore class is set, if yes use the cell value data as non numerical data
-							
-
-							// Get the dimension for the cell
-							var w = (($(this).attr('colspan') !== undefined ? $(this).attr('colspan') : 1) * 1);
-							var RowSpan = (($(this).attr('rowspan') !== undefined ? $(this).attr('rowspan') : 1) * 1);
-							
-												
-							// Check if is a rowspan, if that row span are an header (th) that mean it a grouping of series
-							if (RowSpan > 1) {
-								var NbRowToBeSpan = RowSpan - 1;
-								// Add the row to the list to be spanned
-								SpannedRow.push({ele: $(this), rowspan: NbRowToBeSpan, colpos: CurrColPosition});
-							}
-							
-							
-							// If is the second or more row, check for a group ID
-							CurrentGroupingID = 0;
-							if (parser.rowPos > 0) {
-								var headerList = '';
-								$.each(ColumnHeading, function () {
-									if (CurrColPosition >= this.colPos && 
-										CurrColPosition < (this.colPos + this.width) && 
-										this.isGroup &&
-										this.level < parser.rowPos) {
-										// That is a Header group
-										CurrentGroupingID = this.id;
-										// Get the associate header for that cell
-										// headerList = (columnIds[this.colPos] !== undefined ? columnIds[this.colPos]: '') + (this.uniqueID !== '' ? ' ' + this.uniqueID : '');
-										
-										
-									}
-								});
-								
-								// $(this).attr('headers', headerList); // Set the header and overwrite if any exist
-
-							}
-							
-							
-							
-							// Check for Column Header spanned
-							var isGroup = false;
-							if (this.nodeName.toLowerCase() === 'th' && w > 1) {
-								isGroup = true;
-							}
-							
-							if (columnIds[CurrColPosition] !== undefined) {
-								$(this).attr('headers', columnIds[CurrColPosition]);
-							}
-							
-							
-							// If this is an heading and there are no id, we create a new one
-							var cellId = '';
-							if (this.nodeName.toLowerCase() === 'th' && $(this).text().replace(/ /g,'') !== "") { 
-								cellId = $(this).attr('id');
-								//console.log(cellId);
-								if (cellId === undefined || cellId === '') {
-									cellId = 'graphcellid'+ graphStartExecTime + 'row' + parser.rowPos + 'col' + CurrColPosition; // Generate a new unique ID
-									$(this).attr('id', cellId); // Add the new ID to the table
-								}			
-								//console.log(cellId);
-								
-								// This loop make sur all column have their column set
-								for (i = 0; i<w; i += 1) {
-									var cellPos = i + CurrColPosition;
-									if (columnIds[cellPos] === undefined) {
-										columnIds[cellPos] = cellId;
-									} else {
-										columnIds[cellPos] = columnIds[cellPos] + ' ' + cellId;
-									}
-								}
-								
-							}
-							
-							
-							
-							var tblId = $(parser.sourceTblSelf).attr('id');
-					
-							
-							
-
-							var header = {
-								id : parser.cellID,
-								uniqueID: cellId,
-								level : parser.rowPos,
-								width : w,
-								height: RowSpan,
-								header : $(this).text(),
-								groupId : CurrentGroupingID,
-								isGroup : isGroup,
-								colPos: CurrColPosition,
-								param: parser.classToJson(this)
-							};
-							ColumnHeading.push(header);
-
-							if (parser.tBodySeries.nbColLevel <= parser.rowPos || parser.tBodySeries.nbColLevel === undefined) {
-								parser.tBodySeries.nbColLevel = (parser.rowPos + 1);
-							}
-
-							
-							
-							CurrColPosition += w; // Increment the Current ColPos
-
-							
-							
-							// Check for span row
-							$.each(SpannedRow, function () {
-								if (this.colpos === CurrColPosition && this.rowspan > 0) {
-									var w = (($(this.ele).attr('colspan') !== undefined ? $(this.ele).attr('colspan') : 1) * 1);
-									CurrColPosition += w;
-									this.rowspan --;
-								}
-							});
-							
-							
-						// console.log(CurrColPosition);							
-
-						});
-							
-						
-										
-						parser.rowPos ++;
-
-						
-					});
-					
-			
-					parser.tBodySeries.ColHeading = ColumnHeading;
-					
-				});
-				*/
 					// Parse the Table Cell Data and Serie Heading
 					$('tbody', self).each(function () {
 						var SpannedRow = [],
@@ -2065,6 +1856,7 @@
 							parser.rowPos += 1;
 						});
 						parser.tBodySeries.series.push(Series);
+						return; // Only one tbody is supported anyway
 					});
 				},
 				seriesHeadingLenght: 0,
@@ -2340,7 +2132,7 @@ label:
 					// Test: namespace
 					if (typeof (namespace) !== "string" || namespace.lenght === 0) {
 						// Try to get the default namespace
-						if (sourceOptions['default-namespace'] && typeof (sourceOptions['default-namespace']) === "string") {
+						if (sourceOptions['default-namespace'] && (typeof (sourceOptions['default-namespace']) === "string" || $.isArray(sourceOptions['default-namespace']))) {
 							namespace = sourceOptions['default-namespace'];
 						} else {
 							// This a not a valid namespace
@@ -2364,27 +2156,48 @@ label:
 					if (sourceOptions['default-autocreate']) {
 						autoCreate = true;
 					}
-					arrNamespace = namespace.split(separatorNS);
 					arrClass = strClass.split(separator); // Get each defined class
 					$.each(arrClass, function () {
+						var arrParameter,
+							// That variable is use for synchronization
+							currObj = sourceOptions,
+							// Set the default property name (this can be overwrited later)
+							propName,
+							i, _ilen,
+							j,
+							valIsNext,
+							isVal,
+							arrValue,
+							arrayOverwrite = false,
+							autoCreateMe = false,
+							jsonString,
+							val;
 						// Get only the item larger than the namespace and remove the namespace
-						if (namespace === (this.length > namespace.length + separatorNS.length ? this.slice(0, namespace.length) : "")) {
+						
+						
+						if ($.isArray(namespace)) {
+							// support to an array of namespace for backward compatibility and syntax error eg. wb-charts and wb-chart and wb-graph would be equivalent
+							for (i = 0, _ilen = namespace.length; i < _ilen; i += 1) {
+								if (namespace[i] === (this.length > namespace[i].length + separatorNS.length ? this.slice(0, namespace[i].length) : "")) {
+									arrNamespace = namespace[i].split(separatorNS);
+									arrParameter = this.split(separatorNS).slice(arrNamespace.length);
+									propName = arrNamespace[arrNamespace.length - 1];
+									break;
+								}
+							}
+						} else {
+							// One unique namespace
+							if (namespace === (this.length > namespace.length + separatorNS.length ? this.slice(0, namespace.length) : "")) {
+								arrNamespace = namespace.split(separatorNS);
+								arrParameter = this.split(separatorNS).slice(arrNamespace.length);
+								propName = arrNamespace[arrNamespace.length - 1];
+							}
+						}
+						
+						if (arrParameter && propName) {
 							// This is a valid parameter, start the convertion to a JSON object
 							// Get all defined parameter
-							var arrParameter = this.split(separatorNS).slice(arrNamespace.length),
-							// That variable is use for synchronization
-								currObj = sourceOptions,
-							// Set the default property name (this can be overwrited later)
-								propName = arrNamespace[arrNamespace.length - 1],
-								i, _ilen,
-								j,
-								valIsNext,
-								isVal,
-								arrValue,
-								arrayOverwrite = false,
-								autoCreateMe = false,
-								jsonString,
-								val;
+							
 							for (i = 0, _ilen = arrParameter.length; i < _ilen; i += 1) {
 								valIsNext = (i + 2 === _ilen ? true : false);
 								isVal = (i + 1 === _ilen ? true : false);
@@ -2491,222 +2304,6 @@ label:
 					});
 					return sourceOptions;
 				},
-				/*// Function to Convert Class instance to JSON
-			classToJson: function (el, namespace) {
-				if (namespace === undefined ) {
-				namespace = 'wb-graph';
-				}
-				
-				// Binded directly with the current option
-				// If the option are not exist, refuse the parameter
-				// this function check into the options if a typeof are defined (if available) to get the good type for the parameter
-				//
-				// an options file like
-				//		{color: 'blue'}
-				//	would be intreprated as a string only
-				// but
-				// if an options file like
-				//		{color: 'blue', "color-typeof": ['string', 'array']}
-				//	first instance would be a string, the second or subsequent would be stacked into an array of string
-				//		"wb-graph-color-black-blue" would be {color: 'black-blue'}
-				//		"wb-graph-color-black wb-graph-color-blue" would be {color: ['black', 'blue']}
-				// if an options file like
-				//		{color: null, "color-typeof": 'json'}
-				//  would create a json object for each param as the number of dash, like wb-graph-color-black-blue would be {color: {black: 'blue'}}
-				//		"wb-graph-color-black-blue" would be {color: {black: 'blue'}}
-				
-				// This function would try to best inteprete the options type in his best.
-				
-				
-				var sourceOptions = o; // Change the "o" variable for your own option variable (if needed)
-				
-				var arrNamespace = namespace.split('-');
-				
-				var strClass = "";
-				if (typeof(el) === 'string') {
-					strClass = el;
-				} else {
-					strClass = ($(el).attr('class') !== undefined ? $(el).attr('class') : ""); // Get the content of class attribute
-				}
-				
-				var jsonClass = {};
-
-				if (strClass.lenght === 0) {
-					return jsonClass;
-				}
-
-				var arrClass = strClass.split(' '); // Get each defined class
-				$.each(arrClass, function () {
-					
-					// This is for each class defined
-					
-					if (this.length > namespace.length+1) {
-					var extractNamespace  = this.slice(0, namespace.length);
-					if (extractNamespace === namespace) {
-
-						// This is a valid parameter, convert to JSON object for options setup
-						var arrParameter = this.split('-').slice(arrNamespace.length),
-							currObj = jsonClass,
-							navOptions = sourceOptions,
-							propName = arrNamespace[arrNamespace.length - 1], // use the last namespace element to define the property by default
-							ignoreMe = false,
-							ignoreOptionExist = false,
-							i, _ilen;
-						for (i = 0, _ilen = arrParameter.length; i < _ilen; i += 1) {
-							
-							var isEndNode = (i + 1 === arrParameter.length ? true : false);
-							
-							var valeur = arrParameter[i];
-							
-							
-							// Check for the default case (eg. wb-graph-line => default are wb-graph-type-line)
-							if (isEndNode && arrParameter.length === 1) {
-								// Default option need to be defined in the options
-								if (navOptions['default-option']) {
-									var opt = navOptions['default-option'];
-									var jsonString = "";
-									jsonString = '{\"' + opt + '\": \"' + valeur + '\"}';
-								}
-							}
-							
-							if (!isEndNode) {
-								// Check the corresponding type if exist
-								if (!ignoreOptionExist && navOptions[valeur]) {
-									// Check if a typeof are defined for this options
-									
-									var typeofDefined = (navOptions[valeur + '-typeof'] ? navOptions[valeur + '-typeof'] : "");
-									
-									var typeofOption = typeof(navOptions[valeur]); // Get the typeof
-									
-									// Check if the option are a function, if true ignore the replacement
-									if (typeofOption === "function") {
-										ignoreMe = true;
-									}
-									
-									
-									// a typeof undefined will be intrepreted as "json" or "array" object and will ignore subsequant check for props existance
-									if ((typeofDefined === "" | typeofDefined === "json" | typeofDefined === "array") && (typeofOption === "object" || typeofOption === "undefined")) {
-										ignoreOptionExist = true;
-									} else {
-										
-										// Get the rest of the value
-										var arrValue = [],
-											j,
-											_jlen;
-										for (j = (i + 1), _jlen = arrParameter.length; j < _jlen; j += 1) {
-											arrValue.push(arrParameter[j]);
-										}
-										var val = arrValue.join("-");
-										// Parse the value are the proper typeof if possible
-										if (val === "true") {
-											val = true;
-										}
-										if (val === "false") {
-											val = false;
-										}
-										if (!isNaN(parseInt(val))) {
-											val = parseInt(val);
-										}
-										
-										var typeofVal = typeof(val);
-										
-										if (typeofVal === typeofDefined) { // Possible value: boolean, number or string
-											// Set or Add the value
-											
-										}
-										
-									}
-									
-									
-									// For an Array object, get the first itm and that would define the type we search
-									// eg. Options => {color: ["black"]} === Array of String
-									// eg. Options => {color: ["back"], 'color-typeof': 'number'} === Array of number
-									
-									
-									
-									
-									
-									
-								} else {
-									// Not a valid value, set it to ignoreMe
-									ignoreMe = true;
-								}
-								
-							}
-							
-							
-							var valIsNext = false;
-							if (i+2 === arrParameter.length) {
-								valIsNext = true;
-							}
-							
-							var isVal = false;
-							if (i+1 === arrParameter.length) {
-								isVal = true;
-
-								
-								// // Fix for boolean value
-								// if (arrParameter[i] === "true") {
-								//	arrParameter[i] = true;
-								// }
-								// if (arrParameter[i] === "false") {
-								//	arrParameter[i] = false;
-								// }
-								// if (!isNaN(parseInt(arrParameter[i]))) {
-								//	arrParameter[i] = parseInt(arrParameter[i]);
-								// }
-								
-							}
-							
-							
-							// Get the value of the Property
-							propName = arrParameter[i];
-							
-							
-							if (valIsNext) {
-								// Keep the Property Name
-								propName = arrParameter[i];
-							} else if (isVal) {
-								
-								// Check if they are already an existing value, if yes change the value for an array
-								if (!currObj[propName]) {
-									// Set the value
-									var jsonString = '';
-									if (arrParameter[i] === true || arrParameter[i] === false || !isNaN(parseInt(arrParameter[i]))) {
-										jsonString = '{\"' + propName + '\": ' + arrParameter[i] + '}';
-									} else {
-										jsonString = '{\"' + propName + '\": \"' + arrParameter[i] + '\"}';
-									}
-									currObj = jQuery.extend(true, currObj, jQuery.parseJSON(jsonString));
-								} else {
-									if ($.isArray(currObj[propName])) {
-										currObj[propName].push(arrParameter[i]);
-									} else {
-										var val = currObj[propName];
-										currObj[propName] = [];
-										currObj[propName].push(val);
-										currObj[propName].push(arrParameter[i]);
-									}
-								}
-							} else {
-								// Create a sub object
-								if (!currObj[arrParameter[i]]) {
-									var jsonString = '{\"' + arrParameter[i] + '\": {}}';
-									currObj = jQuery.extend(true, currObj, jQuery.parseJSON(jsonString));
-									// parentObj = jQuery.extend(true, parentObj, currObj));
-									currObj = currObj[arrParameter[i]];
-								} else {
-									// The object or property already exist, just set the reference of
-									currObj = currObj[arrParameter[i]];
-								}
-							}
-						}
-					}}
-				});
-				
-				return jsonClass;
-			
-			},*/
 				tBodySeries: {
 					series: [],
 					nbRowLevel: undefined,
@@ -2759,6 +2356,7 @@ label:
 			//
 			// END of Performance Strategy
 			//
+
 			//
 			// Type of serie and graph in general
 			//
@@ -2767,14 +2365,6 @@ label:
 			//	wb-graph-type-stacked : Same as the Bar but if the previous serie are stacked [line or pie are ignored] would be at the same place over it
 			//	wb-graph-type-pie : Pie Chart for that serie [The Pie need to have it's own sqare space]
 
-			// NOTE:
-			// class example: wet-graph-color-[color partern]-percent
-			// wet-graph-color-rgb255000000 => rgb(255,0,0)
-			// wet-graph-color-red => red
-			// wet-graph-color-f00 => #f00
-			// wet-graph-color-ffffff => #ffffff
-			// wet-graph-line
-			// TODO: for IE compatibility, translate color name to the appropriate hex code
 			//
 			// Old parser
 			//
