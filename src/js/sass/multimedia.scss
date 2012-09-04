@@ -21,7 +21,7 @@ video, object.video {
 
 	.wb-mm-overlay {
 		position:absolute;
-		background:transparent;
+		background:rgba(0,0,0,0.001);
 		border:0;
 		width:100%;
 		* {
