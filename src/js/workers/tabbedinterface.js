@@ -16,7 +16,6 @@
 		type : 'plugin',
 		depends : (pe.mobile ? [] : ['metadata', 'easytabs', 'equalheights']),
 		mobile : function (elm, nested) {
-			var test = (new Date()).getTime();
 			// Process any nested tabs
 			if (typeof nested === 'undefined' || !nested) {
 				elm.find('.wet-boew-tabbedinterface').each(function () {
@@ -60,7 +59,6 @@
 							$children = $parent.children();
 						}
 						if ($children.length !== 0) {
-							console.log("Content found");
 							accordion += $parent.html();
 						}
 					}
@@ -69,7 +67,6 @@
 			});
 			accordion += '</div>';
 			elm.html(accordion);
-			console.log((new Date()).getTime() - test);
 			return elm;
 		},
 		_exec : function (elm) {
