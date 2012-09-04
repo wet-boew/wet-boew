@@ -98,6 +98,10 @@
 			display: block;
 			.form-inline & { @include inline-block; }
 		}
+
+		&[type="search"] {
+			-webkit-appearance: textfield;
+		}
 		
 		&:-moz-placeholder { color: $medium; }
 	}
