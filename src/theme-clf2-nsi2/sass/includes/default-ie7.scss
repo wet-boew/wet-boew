@@ -3,3 +3,21 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
+ .ie7{
+ 	#cn-bc h2, #cn-bc h2, #cn-psnb h2, #cn-psnb-2 h2, #cn-in-pd h3{
+		clip: rect(1px 1px 1px 1px);
+	}
+	#cn-bc, #cn-bc2{
+		ol{
+			margin: 1px 0 3px 0;
+			clear: left;
+			line-height: 1.25em;
+		}
+		li{
+			padding-bottom: 3px;
+		}
+	}
+	#cn-bc2 ol{
+		margin-top: -3px;
+	}
+}
