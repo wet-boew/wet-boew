@@ -38,17 +38,25 @@
 	#wb-core-in 
 		{overflow:visible !important;
 		position:relative;}
-	#wb-core-in:after 										{content:".";display:block;height:0;clear:both;visibility:hidden;}
+	#wb-core-in:after
+	   {content:".";
+	   display:block;
+	   height:0;
+	   clear:both;
+	   visibility:hidden;}
 	
 	/** Centre column **/
 	
 	#wb-main-in 
 		{padding-top:1px;
-		padding-bottom:1px;}
+		padding-bottom:1px;
+		}
 	#wb-body #wb-main 
-		{width:760px;float:left;}
+		{width:760px;
+		float:left;}
 	#wb-body-sec #wb-main 
-		{width:605px;float:right;}
+		{width:605px;
+		float:right;}
 	#cn-body-in-3col #wb-main 
 		{width:405px;
 		float:right;
@@ -66,7 +74,10 @@
 	#wb-sec {width:150px;float:left;}
 
 	/** Right column **/
-	#wb-sup {width:195px;float:right;position:relative;left:405px;}
+	#wb-sup {width:195px;
+	float:right;
+	position:relative;
+	left:405px;}
 
 	#wb-skip a:hover, #wb-skip a:focus, #wb-skip a:active 
 		{background-color: #363;}
@@ -147,7 +158,9 @@
 	#cn-psnb ul li a:hover, #cn-psnb-2 ul li a:hover, #cn-psnb ul li a:active, #cn-psnb-2 ul li a:active, #cn-psnb ul li a:focus, #cn-psnb-2 ul li a:focus 
 		{color: #000; background-color: #CCC;}
 	#cn-psnb6 a:hover, #cn-psnb6-2 a:hover, #cn-psnb6 a:active, #cn-psnb6-2 a:active {width: 120%;}
+	
 	#wb-sec {background-color: #CC9;}
+	
 	.wb-sec-def h3 
 		{padding: 2px 5px; background-color: #363; margin-top: 0; margin-bottom: 0; font-size: 110%;}
 	.wb-sec-def #cn-search-box, .cn-search-box 
@@ -156,10 +169,10 @@
 	.wb-sec-def #cn-search-box #cn-search, .cn-search-box .cn-search 
 		{border: 1px solid #363; margin-right: 5px; width: 92%;}
 		
-	/*
+
 	.wb-sec-def #cn-search-box #cn-search-submit, .cn-search-box .cn-search-submit 
 		{background-color: #363; color: #FFF; font-weight: bold;} 
-	*/
+
 	
 	.wb-sec-def li {border-top: 1px solid #363;}
 	.wb-sec-def li:first-child {border: none;}
@@ -255,4 +268,3 @@
 	.wb-sup-def ul {margin-bottom: 5px;}
 	.wb-sup-def ul ul {margin-bottom: 0px;}
 	.wb-sup-def li a img {margin-top: -3px; margin-left: -10px;}
-	
