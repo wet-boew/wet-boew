@@ -77,7 +77,7 @@
 				captions = media.children('track[kind="captions"]').attr("src");
 			}
 
-			if (media.get(0).currentSrc !== '' && media.get(0).currentSrc !== undefined) {
+			if (media.get(0).error == null && media.get(0).currentSrc !== '' && media.get(0).currentSrc !== undefined) {
 				canPlay = true;
 			} else {
 				//No nativly supported format provided, trying Flash fallback
