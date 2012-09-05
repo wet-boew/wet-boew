@@ -237,6 +237,40 @@ img.float-left { margin-right: $margin-medium; }
 .opacity-20	 { @include opacity(0.2); }
 .opacity-10	 { @include opacity(0.1); }
 
+.border-top,.border-right,.border-bottom,.border-left,.border-all {
+	display:inline;
+	float:left;
+	min-height:1px;
+	position:relative;
+	background-image:url(../images/border.gif);
+}
+ 
+.border-top {
+	background-position:0 0;
+	background-repeat:repeat-x;
+	min-height:1px;
+}
+ 
+.border-bottom {
+	background-position:0 bottom;
+	background-repeat:repeat-x;
+	min-height:1px;
+}
+ 
+.border-left {
+	background-position:left 0;
+	background-repeat:repeat-y;
+}
+ 
+.border-right {
+	background-position:right 0;
+	background-repeat:repeat-y;
+}
+.border-all {
+	outline:1px solid #ccc;
+	background:none;
+}
+
 /* ---- Keyboard keys ---- */
 kbd{
 	background:#eee none repeat scroll 0 0;
@@ -256,7 +290,7 @@ kbd{
 	-webkit-border-radius:2px;
 }
 
-/*	 progress effects	 *
+/*	 progress effects	 */
 [class*="thermometer"] {
 	padding-bottom: 230px !important;
 	background:{
@@ -277,7 +311,6 @@ kbd{
 .thermometer-100{background-image:url(../images/thermometer-100.gif);}
 .thermometer-110{background-image:url(../images/thermometer-110.gif);}
 .thermometer-120{background-image:url(../images/thermometer-120.gif);}
-*/
 
 /*	 calendar	 */
 table{
