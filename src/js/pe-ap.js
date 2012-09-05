@@ -67,10 +67,10 @@
 				return this.href.indexOf('#') !== -1;
 			});
 			hlinks_other = hlinks.filter(function () {
-				return this.href.indexOf('#') !== 0; // Other page links with hashes
+				return $(this).attr('href').indexOf('#') !== 0; // Other page links with hashes
 			});
 			hlinks_same = hlinks.filter(function () {
-				return this.href.indexOf('#') === 0; // Same page links with hashes
+				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
 			});
 
 			// Is this a mobile device?
@@ -91,10 +91,22 @@
 
 				// Replace hash with ?hashtarget= for links to other pages
 				hlinks_other.each(function () {
-					$this = $(this);
+					var $this = $(this),
+						newurl,
+						urlparams,
+						urlparam;
+
 					url = pe.url($this.attr('href'));
+					urlparams = url.params;
+
 					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
-						$this.attr('href', url.removehash() + (url.params.length > 0 ? '&amp;' : '?') + 'hashtarget=' + url.hash);
+						newurl = url.path + '?';
+						for (urlparam in urlparams) { // Rebuilt the query string
+							if (urlparams.hasOwnProperty(urlparam) && urlparam !== 'hashtarget') {
+								newurl += urlparams[urlparam] + '&amp;';
+							}
+						}
+						$this.attr('href', newurl + 'hashtarget=' + url.hash); // Append hashtarget to the query string
 					}
 				});
 
@@ -170,7 +182,7 @@
 						wet_boew_theme.init();
 
 						//Load the mobile view
-						if (pe.mobile === true) {
+						if (pe.mobile) {
 							pe.document.one('mobileviewloaded', function () {
 								if (typeof $.mobile !== 'undefined') {
 									pe.mobilelang();
@@ -181,7 +193,7 @@
 							});
 							wet_boew_theme.mobileview();
 						}
-					} else if (pe.mobile === true) {
+					} else if (pe.mobile) {
 						if (typeof $.mobile !== 'undefined') {
 							pe.mobilelang();
 							$.mobile.initializePage();
