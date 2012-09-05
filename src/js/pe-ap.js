@@ -1314,7 +1314,7 @@
 			// Prepare manually specified plugins for processing
 			for (plug in plugins) {
 				if (plugins.hasOwnProperty(plug)) {
-					wetboew.add(plugins[plug].addClass('wet-boew-' + plug));
+					wetboew = wetboew.add(plugins[plug].addClass('wet-boew-' + plug));
 				}
 			}
 				

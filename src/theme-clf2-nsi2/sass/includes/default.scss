@@ -3,49 +3,63 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
- 
- 	.wb-sec-def h3
-	{ margin:
-		{left: 0px;
-		right: 0px;}
+.wb-sec-def{
+	h3{
+		margin:{
+			left: 0px;
+			right: 0px;
+		}
 	}
-
-	.wb-sup-def ul
-	{
+	ul{
 		margin-right: 0px;
 	}
-	
-	#cn-bc h2, #cn-bc2 h2, #cn-psnb h2, #cn-psnb-2 h2, #cn-in-pd h3 
-	{position: absolute; 
+}
+
+#cn-bc h2, #cn-bc2 h2, #cn-psnb h2, #cn-psnb-2 h2, #cn-in-pd h3{
+	position: absolute; 
 	clip: rect(1px, 1px, 1px, 1px); 
 	height: 1px !important; 
 	width: 1px !important; 
-	overflow: hidden !important;}
+	overflow: hidden !important;
+}
 
-	#cn-bc, #cn-bc2
-	{
-		li {margin-top: 0; 
-		padding-top: 0; 
-		float: left; 
-		margin-right: 0.3em; 
-		white-space: nowrap;}
-		
-		ol {padding-top: 0; 
-		line-height: 1.57em; 
-		margin: 0; 
-		padding-left: 0; 
-		list-style-type: none; float: left; width: 100%; clear: right;}
+#cn-bc, #cn-bc2{
+	ol{
+		padding-top: 0;
+		line-height: 1.57em;
+		margin: 0;
+		padding-left: 0;
+		list-style-type: none;
+		float: left;
+		width: 100%;
+		clear: right;
 	}
+	li{
+		margin-top: 0;
+		padding-top: 0;
+		float: left;
+		margin-right: 0.3em;
+		white-space: nowrap;
+	}
+}
 
-	#cn-doc-dates, #cn-toppage-foot, #cn-in-pd-links 
-	{margin: 10px 0; width: 33%;}
-	
-	#cn-doc-dates 
-	{
-		float: left; clear: left; min-width: 6em; margin-top: 5px; padding: 3px 0;
-		dt {padding-right: 0.4em; float: left;}
-		dd {margin-left: 0px;
-			span {white-space: nowrap;}
-		}
+#cn-doc-dates, #cn-toppage-foot, #cn-in-pd-links{
+	margin: 10px 0;
+	width: 33%;
+}
+
+#cn-doc-dates{
+	float: left;
+	clear: left;
+	min-width: 6em;
+	margin-top: 5px;
+	padding: 3px 0;
+	dt{
+		padding-right: 0.4em;
+		float: left;
 	}
- 
+	dd{
+		margin-left: 0px;
+		span {white-space: nowrap;}
+	}
+}

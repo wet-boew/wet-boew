@@ -1,0 +1,27 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+/* --- positioning --- */
+.position-left,.position-left-small,.position-left-medium,.position-left-large,.position-left-xlarge,.position-top,.position-top-small,.position-top-medium,.position-top-large,.position-top-xlarge,.position-right,.position-right-small,.position-right-medium,.position-right-large,.position-right-xlarge,.position-bottom,.position-bottom-small,.position-bottom-medium,.position-bottom-large,.position-bottom-xlarge{position:absolute !important;margin:0 !important;}
+.position-left{left:0 !important;}
+.position-left-small{left:10px !important;}
+.position-left-medium{left:20px !important;}
+.position-left-large{left:50px !important;}
+.position-left-xlarge{left:100px !important;}
+.position-right{right:0 !important;}
+.position-right-small{right:10px !important;}
+.position-right-medium{right:20px !important;}
+.position-right-large{right:50px !important;}
+.position-right-xlarge{right:100px !important;}
+.position-top{top:0 !important;}
+.position-top-small{top:10px !important;}
+.position-top-medium{top:20px !important;}
+.position-top-large{top:50px !important;}
+.position-top-xlarge{top:100px !important;}
+.position-bottom{bottom:0 !important;}
+.position-bottom-small{bottom:10px !important;}
+.position-bottom-medium{bottom:20px !important;}
+.position-bottom-large{bottom:50px !important;}
+.position-bottom-xlarge{bottom:100px !important;}
