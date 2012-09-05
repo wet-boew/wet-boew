@@ -15,42 +15,58 @@
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
 		depends : (pe.mobile ? [] : ['metadata', 'easytabs', 'equalheights']),
-		mobile : function (elm) {
-			var $tabs = elm.find(".tabs > li"),
-				$panels = elm.find(".tabs-panel > div"),
-				$accordion = $('<div data-role="collapsible-set" data-content-theme="b" data-theme="b"/>'),
-				$collapsible,
+		mobile : function (elm, nested) {
+			// Process any nested tabs
+			if (typeof nested === 'undefined' || !nested) {
+				elm.find('.wet-boew-tabbedinterface').each(function () {
+					_pe.fn.tabbedinterface.mobile($(this), true);
+				});
+			}
+
+			var $tabs = elm.children('.tabs').children('li'),
+				$tab,
+				$panels = elm.children('.tabs-panel').children('div'),
+				accordion = '<div data-role="collapsible-set" data-content-theme="b" data-theme="b">',
 				needh = (elm.hasClass('tabs-style-4') || elm.hasClass('tabs-style-5')),
 				prevh,
 				hlevel,
-				defaulttab = false;
+				hopen,
+				hclose,
+				$parent,
+				$children;
 
 			// Convert html elements and attributes into the format the jQuery mobile accordian plugin expects.
 			// Get the content out of the html structure tabbedinterface usually expects.
 			// Create the accordion structure to move the content to.
-			elm.removeClass();
 			if (needh) {
 				prevh = elm.closest('section').find(':header:first');
 				hlevel = (prevh.length > 0 ? (parseInt(prevh.prop('tagName').substr(1), 10) + 1) : 3);
+				hopen = '<h' + hlevel + '>';
+				hclose = '</h' + hlevel + '>';
 			}
 			$panels.each(function (index) {
-				$collapsible = $('<div data-role="collapsible"/>');
-				if (needh) {
-					$collapsible.append('<h' + hlevel + '>' + $tabs.eq(index).children('a').html() + '</h' + hlevel + '>' + $(this).html());
-				} else {
-					$collapsible.append($(this).find(":header:first").parent().html());
+				$tab = $tabs.eq(index);
+				$parent = $(this);
+				$children = $parent.children();
+				if ($children.length !== 0) {
+					accordion += '<div data-role="collapsible"' + ($tab.hasClass('default') ? ' data-collapsed="false"' : '') + '>';
+					if (needh) {
+						accordion += hopen + $tab.children('a').html() + hclose + this.innerHTML;
+					} else {
+						// Find the actual content then append
+						while ($children.length === 1) {
+							$parent = $children;
+							$children = $parent.children();
+						}
+						if ($children.length !== 0) {
+							accordion += $parent.html();
+						}
+					}
+					accordion += '</div>';
 				}
-				if ($tabs.eq(index).hasClass('default')) {
-					$collapsible.attr('data-collapsed', 'false');
-					defaulttab = true;
-				}
-				$accordion.append($collapsible);
 			});
-			if (!defaulttab) {
-				$accordion.children().eq(0).attr('data-collapsed', 'false');
-			}
-			$tabs.remove();
-			elm.empty().append($accordion);
+			accordion += '</div>';
+			elm.html(accordion);
 			return elm;
 		},
 		_exec : function (elm) {
@@ -58,9 +74,9 @@
 				return _pe.fn.tabbedinterface.mobile(elm).trigger('create');
 			}
 			var $default_tab,
-				$nav = elm.find(".tabs"),
-				$tabs = $nav.find('a:not(.tabs-toggle)'),
-				$tabsPanel = elm.find('.tabs-panel'),
+				$nav = elm.children(".tabs"),
+				$tabs = $nav.find('a').filter(':not(.tabs-toggle)'),
+				$tabsPanel = elm.children('.tabs-panel'),
 				$panels = $tabsPanel.children(),
 				$toggleButton,
 				$toggleRow,

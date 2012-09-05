@@ -765,7 +765,7 @@
 							if (next.get(0).tagName.toLowerCase() === 'ul') {
 								// The original menu item was not in a menu bar
 								if (!menubar) {
-									next.append($('<li></li>').append($this.children('a').html(allText + ' - ' + hlink.html())));
+									next.append($('<li></li>').append($this.children('a').html(allText + ' - ' + hlink[0].innerHTML)));
 								}
 								nested = next.find('li ul');
 								// If a nested list is detected
@@ -777,7 +777,7 @@
 									if ((hlevel + 1 + index) < 7) {
 										// Make the nested list into a collapsible section
 										hlink = $this.prev('a');
-										hlink_html = hlink.html();
+										hlink_html = hlink[0].innerHTML;
 										$this.attr({ 'data-role': 'listview', 'data-theme': theme }).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? ' data-collapsed="false"' : '') + '></div>');
 										$this.parent().prepend(headingIndexOpen + hlink_html + headingIndexClose);
 										$this.append('<li><a href="' + hlink.attr('href') + '">' + allText + ' - ' + hlink_html + '</a></li>');
@@ -793,7 +793,7 @@
 								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme, false, expand));
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
-									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(allText + ' - ' + hlink.html()).attr({ 'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right' }));
+									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(allText + ' - ' + hlink[0].innerHTML).attr({'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right'}));
 								}
 							}
 							menu.append(subsection);
@@ -1314,7 +1314,7 @@
 			// Prepare manually specified plugins for processing
 			for (plug in plugins) {
 				if (plugins.hasOwnProperty(plug)) {
-					wetboew.add(plugins[plug].addClass('wet-boew-' + plug));
+					wetboew = wetboew.add(plugins[plug].addClass('wet-boew-' + plug));
 				}
 			}
 				
