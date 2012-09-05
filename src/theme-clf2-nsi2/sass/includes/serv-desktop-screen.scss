@@ -3,33 +3,47 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
+html{
+	overflow-y: scroll;
+}
+body{
+	min-width:780px;
+	margin:0;
+	padding:0;
+}
+#wb-body{
+	border: 10px solid #FFF;
+}
 
- 	html {overflow-y: scroll;}
-	body {min-width:780px;margin:0;padding:0;}
-	#wb-body {border: 10px solid #FFF;}
-	
-	/** Box model - centered **/
-	#wb-head, #cn-foot  {width: 100%;}
-	#wb-core, #wb-core-in  {width:760px;margin:auto;}
-	#wb-head-in, #wb-foot-in  {width:760px;margin:auto;}
-	#wb-main {z-index:1;display:inline;}
-	
-	/** Overflow restrict for background paintability control **/
-	#wb-head, #wb-head-in, #cn-foot, #wb-foot-in  {overflow:hidden;}
-	#wb-core-in {overflow:visible !important;position:relative;}
-	#wb-core-in:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
-	
-	/** Centre column **/
-	#wb-main-in {padding-top:1px;padding-bottom:1px;}
-	#wb-body #wb-main {width:760px;float:left;}
-	*:first-child+html #wb-body #wb-main {padding-bottom: 10px;}
+/** Box model - centered **/
+#wb-head, #cn-foot{
+	width: 100%;
+}
+#wb-core, #wb-core-in{
+	width:760px;
+	margin:auto;
+}
+#wb-head-in, #wb-foot-in{
+	width:760px;
+	margin:auto;
+}
+#wb-main{
+	z-index:1;
+	display:inline;
+}
 
-	#wb-skip li span {display: block;}
-	#wb-skip a:hover, #wb-skip a:focus, #wb-skip a:active {background-color: #363;}
-	
-	#cn-sig {float: left; width: 50%; min-width: 300px;}
-	#cn-wmms {float: right; text-align: right; width: 49.8%; min-width: 100px;}
-
-	#wb-main-in h1 {margin-top: 0;}
-
-	#cn-in-pd {border-top: 15px solid #363;}
+/** Overflow restrict for background paintability control **/
+#wb-head, #wb-head-in, #cn-foot, #wb-foot-in{
+	overflow:hidden;
+}
+#wb-core-in{
+	overflow:visible !important;
+	position:relative;
+	&:after{
+		content:".";
+		display:block;
+		height:0;
+		clear:both;
+		visibility:hidden;
+	}
+}

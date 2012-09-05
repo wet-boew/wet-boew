@@ -17,19 +17,28 @@ video, object.video {
 	min-height:1.5em;
 }
 
-.wet-boew-multimedia .wb-mm-overlay {
-	position:absolute;
-	background:transparent;
-	border:0;
-	width:100%;
-	* {
-		display:block;
-		margin:auto;
+.wet-boew-multimedia {
+
+	.wb-mm-overlay {
+		position:absolute;
+		background:transparent;
+		border:0;
+		width:100%;
+		* {
+			display:block;
+			margin:auto;
+		}
+		
+		img {
+			width:100px;
+			height:100px;
+		}
 	}
-	
-	img {
-		width:100px;
-		height:100px;
+
+	svg {
+		* {
+	 		pointer-events:none;
+	 	}
 	}
 }
 
@@ -90,6 +99,10 @@ $progress-color: #000;
 	
 	}
 	
+	&.wb-mm-no-cc .wb-mm-timeline{
+		margin-right:25px;
+	}
+	
 	progress {
 		@include border;
 		color:$progress-color;
@@ -115,5 +128,3 @@ $progress-color: #000;
 		}
 	}
 }
-
-

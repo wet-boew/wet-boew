@@ -11,6 +11,11 @@
 @import url('includes/util-screen.css');
 /* -----Build Include Section End----- */
 }
+@media screen and (min-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('includes/util-desktop-screen.css');
+/* -----Build Include Section End----- */
+}
 
 @media print{
 /* -----Build Include Section Start----- */

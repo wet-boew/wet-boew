@@ -92,12 +92,12 @@
 			};
 
 			toggle = function (e) {
-				toggleLink.off('click vclick', toggle);
-				tocLinks.off('click vclick', toggle);
-				slideoutClose.off('click vclick', toggle);
+				toggleLink.off('click vclick touchstart', toggle);
+				tocLinks.off('click vclick touchstart', toggle);
+				slideoutClose.off('click vclick touchstart', toggle);
 				wrapper.off('keydown', keyhandler);
 				elm.off('keydown', keyhandler);
-				$(document).off('click touchstart', documentToggle);
+				$(document).off('click vclick touchstart', documentToggle);
 
 				if (!opened) {
 					var position = wrapper.position();
@@ -106,7 +106,10 @@
 							.addClass('slideoutWrapperRel')
 							.css({'top': position.top - $('#wb-core-in').offset().top, 'right': borderWidth - 10});
 					}
-					elm.show(); // Show the widget content if it is about to be opened
+					// Give the tab time to move out of view to prevent overlap
+					setTimeout(function () {
+						elm.show();
+					}, 50);
 					pe.focus(tocLinks.eq(0));
 				}
 
@@ -130,12 +133,12 @@
 							elm.find('ul').html(elm.find('ul').html()); // Ugly fix for #4312 (post #11)
 						}
 					}
-					toggleLink.on('click vclick', toggle);
-					tocLinks.on('click vclick', toggle);
-					slideoutClose.on('click vclick', toggle);
+					toggleLink.on('click vclick touchstart', toggle);
+					tocLinks.on('click vclick touchstart', toggle);
+					slideoutClose.on('click vclick touchstart', toggle);
 					wrapper.on('keydown', keyhandler);
 					elm.on('keydown', keyhandler);
-					$(document).on('click touchstart', documentToggle);
+					$(document).on('click vclick touchstart', documentToggle);
 				});
 
 				if (opened) {
@@ -272,7 +275,7 @@
 			};
 
 			// Close slideout after clicking on a link
-			tocLinks.on('click vclick', toggle);
+			tocLinks.on('click vclick touchstart', toggle);
 			wrapper.on('keydown', keyhandler);
 			elm.on('keydown', keyhandler);
 
@@ -282,7 +285,7 @@
 					toggle();
 				}
 			};
-			$(document).on('click touchstart', documentToggle);
+			$(document).on('click vclick touchstart', documentToggle);
 
 			// Add the 'Hide' link
 			elm.append('<a href="#" id="slideoutClose" role="button" aria-controls="slideout-body">' + closeLink + '</a>');
@@ -323,8 +326,8 @@
 			}
 
 			// Toggle slideout
-			toggleLink.on('click vclick', toggle);
-			slideoutClose.on('click vclick', toggle);
+			toggleLink.on('click vclick touchstart', toggle);
+			slideoutClose.on('click vclick touchstart', toggle);
 
 			// Fix scrolling issue in some versions of IE (#4051)
 			if (parseInt(pe.ie, 10) === 7) { $('html').css('overflowY', 'auto'); }
