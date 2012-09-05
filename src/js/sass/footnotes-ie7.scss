@@ -3,7 +3,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
+ 
 .ie7 {
+	/*Default SCSS*/
 	.wet-boew-footnotes {
 		display: inline-block;
 		dl dt {
@@ -12,10 +14,9 @@
 			margin-bottom:-1px;
 		}
 	}
-}
-
-@media print {
-	.ie7 {
+	
+	/*Print SCSS*/
+	@media print {
 		.wet-boew-footnotes dl dd {
 			overflow: auto;
 		}
