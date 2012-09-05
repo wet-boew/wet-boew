@@ -3,24 +3,11 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
 */
-.ie7 {
+.ie8 {
 
 	.wet-boew-multimedia {	
 		.wb-mm-overlay {
 			background: url('../images/multimedia/background-overlay.png') repeat 0 0;
-		}
-	}
-
-	.wb-mm-controls{
-		button {
-			img {
-				display:inline;
-				height:18px;
-			}
-		}
-		
-		.wb-mm-timeline-inner progress {
-			margin-top:-21px;
 		}
 	}
 }
