@@ -4,12 +4,12 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
  
-.ie8 {
-	/*Print SCSS*/
-	@media print {
+/*Print SCSS*/
+@media print {
+	.ie8 {
 		.wet-boew-footnotes dl dd {
 			display: block;
-			& p {
+			p {
 				display: inline-block;
 				&.footnote-return {
 					display: block;
