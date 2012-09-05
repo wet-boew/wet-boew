@@ -128,3 +128,10 @@ $progress-color: #000;
 		}
 	}
 }
+
+@media print {
+	.wb-mm-controls, .wb-mm-overlay
+	{
+		display:none;
+	}
+}
