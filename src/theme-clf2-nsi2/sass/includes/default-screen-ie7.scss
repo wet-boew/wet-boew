@@ -3,91 +3,67 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
-	
-	#wb-head {float: none;}
-	#cn-leaf {margin-top: 5px;}
-	#cn-psnb ul, #cn-psnb-2 ul {height: auto; overflow: hidden;}
-	#cn-psnb ul li, #cn-psnb-2 ul li {width: 16.6%;}
-	
-	.wb-sec-def ul, .wb-sup-def ul {margin-left: 0px;}
-	.wb-sec-def ul ul, .wb-sup-def ul ul {margin-left: 40px;}
-	.wb-sec-def li, .wb-sup-def li {margin-left: auto;}
-	.wb-sec-def #cn-search-box, .cn-search-box {margin-top: -15px;}
-	.wb-sec-def #cn-search-box a, .cn-search-box a {margin-bottom: -19px;}
-	.wb-sec-def #cn-search-box #cn-search-submit, .cn-search-box .cn-search-submit {overflow: visible; padding: 0 8px;}
-	.wb-sec-def h3 a:hover, .wb-sec-def h3 a:active, .wb-sec-def h3 a:focus, .wb-sup-def h3 a:hover, .wb-sup-def h3 a:active, .wb-sup-def h3 a:focus {zoom: 1;}
-	.wb-sup-def h3 + div p {margin-top: 1em; margin-bottom: 1em;}
-	.wb-sup-def {margin-bottom: -10px;}
-
- /*
- 
-.ie7 {
-	#wb-core{
-		margin-bottom:-20px;
+.ie7{
+	#wb-head{
+		float: none;
 	}
-	.cn-minister ul{
-		padding-bottom:17px;
+	#cn-leaf{
+		margin-top: 5px;
 	}
-	#deocrative-banner-full {
-		display: inline-block !important; 
-		float: left; 
-		margin: 0; 
-		padding: 0 10px 0 10px; 
-		width: 700px;
+	#cn-psnb, #cn-psnb-2{
+		ul{
+			height: auto;
+			overflow: hidden;
+			li{
+				width: 16.6%;
+			}
+		}
 	}
-	#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in{
-		background-position:center 3.1em;
+	#wb-main-in{
+		h1,h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
+			margin-left:0;
+			margin-right:0;
+		}
 	}
-	#cn-search-box{
-		padding-bottom:0;
-		bottom:-4px;
+	.wb-sec-def, .wb-sup-def{
+		ul{
+			margin-left: 0px;
+			ul{
+				margin-left: 40px;
+			}
+		}
+		li{
+			margin-left: auto;
+		}
+		h3{
+			a:hover, a:active, a:focus{
+				zoom: 1;
+			}
+		}
 	}
-	#cn-search-submit{
-		padding:1px 0;
-	}
-	#cn-site-title{
-		position:relative;
+	.wb-sec-def #cn-search-box, .cn-search-box{
+		margin: -15px -10px 0 -10px;
 		a{
-			position:relative;
-			top:-50%;
-		}	
-	}
-	#cn-site-title,#cn-site-title a{
-		filter:Shadow(Color=#333333, Direction=125,Strength=1);
-	}
-	#cn-site-title-inner{
-		position:absolute;
-		top:50%;
-	}
-	#cn-psnb {
-		.mb-mega .mb-sm-open{
-			background:url(../images/gradiant.jpg) repeat-x 0 0 #eee;
-		}
-		.mb-hsubmenu .mb-sm-open ul{
-			width:960px;
+			margin-bottom: -9px;
 		}
 	}
-	#cn-doc-dates{
-		position:relative;
-		float:right;
-		margin-bottom:-15px;
-		top:10px;
+	.wb-sec-def #cn-search-box #cn-search-submit, .cn-search-box .cn-search-submit{
+		overflow: visible;
+		padding: 0 8px;
 	}
-	#cn-ft-tctr{
-		padding:7px 0 6px;
-		li.terms{
-			padding:0 10px;
+	.wb-sup-def{
+		margin-bottom: -10px;
+		h3 {
+			margin-left:0;
+			margin-right:-10px;
+			& + div p{
+				margin-top: 1em;
+				margin-bottom: 1em;
+				margin-left:0px;
+			}	
 		}
-		li.trans{
-			padding-left:10px;
-		}
 	}
-	#cn-gcft li{
-		margin:13px 35px 14px 9px;
-	}
-	#cn-banner,#cn-ft-tctr li{
-		float:left;
+	#wb-foot{
+		margin-top:-20px;
 	}
 }
-
-*/

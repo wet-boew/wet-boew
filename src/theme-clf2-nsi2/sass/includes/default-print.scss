@@ -3,111 +3,42 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
- 
- 	#wb-sec,#wb-sup,#cn-leaf, .cn-toppage, #cn-banner p, #cn-banner-eng p, #cn-banner-fra p, #cn-psnb, #cn-psnb-2, #cn-toppage-foot, #cn-in-pd-links {display: none;}
-	#wb-head {width: 100%;}
-	#cn-sig {position: absolute; top: 0; left: 0;}
-	#cn-wmms {position: absolute; top: 0; right: 0;}
-	#cn-banner #cn-banner-text, #cn-banner-eng #cn-banner-text, #cn-banner-fr #cn-banner-text {display: block; font-size: 14pt; width: 100%; color: #000; margin-top: 25px; margin-bottom: 6px; text-align: center;}
-	#cn-bc ol, #cn-bc2 ol {border-top: 1px solid #000; padding-top: 5px; margin-bottom: 5px;}
-	#wb-foot {border-top: 1px solid #000;}
-	#cn-doc-dates {width: 100%;}
- 
- 
- /*
-#cn-sig img{
-	position:absolute;
-	top:10px;
-	left:0;
+#wb-sec,#wb-sup,#cn-leaf, .cn-toppage, #cn-banner p, #cn-banner-eng p, #cn-banner-fra p, #cn-psnb, #cn-psnb-2, #cn-toppage-foot, #cn-in-pd-links{
+	display: none;
 }
-
-#cn-wmms img{
-	position:absolute;
-	top:0;
-	right:0;
+#wb-head{
+	width: 100%;
 }
-
-#cn-site-title,#cn-site-title a{
-	font-size:16pt;
-	text-decoration:none;
-	color:#000;
-	width:100%;
-	position:relative;
-	top:9px;
+#cn-sig{
+	position: absolute;
+	top: 0;left: 0;
 }
-
-#wb-main-in{
-	border-top:3px outset #666;
-	padding-top:5px;
+#cn-wmms{
+	position: absolute;
+	top: 0;
+	right: 0;
 }
-
-h1{
-	font-size:140%;
-	margin:0 !important;
+#cn-banner, #cn-banner-eng, #cn-banner-fr{
+	#cn-banner-text{
+		display: block;
+		font-size: 14pt;
+		width: 100%;
+		color: #000;
+		margin-top: 25px;
+		margin-bottom: 6px;
+		text-align: center;
+	}
 }
-
-h2{
-	font-size:125%;
-}
-
-h3{
-	font-size:120%;
-}
-
-h4{
-	font-size:115%;
-}
-
-h5{
-	font-size:110%;
-}
-
-h6{
-	font-size:100%;
-}
-
-#cn-bc{
-	min-height:inherit;
-	height:auto;
+#cn-bc, #cn-bc2{
 	ol{
-		width:100%;
-		margin:0;
-		padding:0;
-	}
-	li{
-		background:none;
-		padding:0;
-	}
-	li:before{
-		content:" > ";
-	}
-	li:first-child:before{
-		content:"";
-	}
-	a{
-		padding-left:0;
-		background:none;
+		border-top: 1px solid #000;
+		padding-top: 5px;
+		margin-bottom: 5px;
 	}
 }
-
-#wb-sec,#wb-sup,#cn-gcnb ul,#cn-search-box,#cn-psnb,#wb-foot{
-	display:none;
+#wb-foot{
+	border-top: 1px solid #000;
 }
-
 #cn-doc-dates{
-	float:right;
-	display:inline;
+	width: 100%;
 }
-
-.clear{
-	clear:both;
-	display:block;
-	height:0 !important;
-	min-height:0 !important;
-	overflow:hidden;
-	visibility:hidden;
-	width:0;
-	margin:0;
-}
-
-*/

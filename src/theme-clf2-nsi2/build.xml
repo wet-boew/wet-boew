@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="theme-clf2-nsi2" default="default" basedir=".">
-	<description>WET-BOEW CLF2 Theme</description>
+	<description>WET-BOEW CLF 2.0 theme</description>
 
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>
@@ -40,15 +40,11 @@
 		<copy todir="${build.dir}/encode/images">
 			<fileset dir="${src.dir}/images"/>
 		</copy>
-		<copy todir="${build.dir}/encode/css/images">
-			<fileset dir="${src.dir}/jquery.mobile/images"/>
-		</copy>
 		<copy todir="${build.dir}/encode/css">
 			<fileset dir="${build.dir}/css">
 				<include name="theme.css"/>
 				<include name="theme-sp-pe.css"/>
 				<include name="theme-serv.css"/>
-				<include name="jquery.mobile.css"/>
 			</fileset>
 		</copy>
 		<cssurlembed skipMissing="true">
@@ -56,7 +52,6 @@
 				<include name="theme.css"/>
 				<include name="theme-sp-pe.css"/>
 				<include name="theme-serv.css"/>
-				<include name="jquery.mobile.css"/>
 			</fileset>
 		</cssurlembed>
 		<copy todir="${build.dir}/css">
@@ -68,30 +63,6 @@
 	</target>
 	
 	<target name="-merge-css">
-		<copy todir="${build.dir}/pre/merge/jquery.mobile">
-			<fileset dir="${src.dir}/jquery.mobile">
-				<include name="*.css"/>
-				<exclude name="*.min.css"/>
-			</fileset>
-		</copy>
-		<copy todir="${build.dir}/pre/merge/jquery.mobile">
-			<fileset dir="${src.dir}/../js/jquery.mobile">
-				<include name="*.css"/>
-				<exclude name="*.min.css"/>
-			</fileset>
-		</copy>
-		<loadfile srcfile="${src.dir}/../js/jquery.mobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
-			<filterchain>
-				<headfilter lines="1"/>
-			</filterchain>
-		</loadfile>
-		<concat dest="${build.dir}/pre/merge/css/jquery.mobile.css">
-			<header>${jquery.mobile.license}</header> 
-			<fileset dir="${build.dir}/pre/merge/jquery.mobile">
-				<include name="*theme.css"/>
-				<include name="*structure.css"/>
-			</fileset>
-		</concat>
 		<copy todir="${build.dir}/pre/merge/css">
 			<fileset dir="${src.dir}/css"/>
 		</copy>
@@ -137,11 +108,6 @@
 			<filterchain>
 				<concatfilter prepend="${src.dir}/../css-head.txt"/>
 			</filterchain>
-		</copy>
-		<copy todir="${build.dir}/css">
-			<filelist dir="${build.dir}/pre/merge/css">
-				<file name="jquery.mobile.css"/>
-			</filelist>
 		</copy>
 		<delete dir="${build.dir}/pre"/>
 	</target>

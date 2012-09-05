@@ -84,6 +84,10 @@ h6{
 	font-size:110%;
 }
 
+.wb-hide {
+	display:none;
+}
+
 .wb-invisible,.wb-show-onfocus,#wb-skip a,#wb-skip a:link,#wb-skip a:visited,#wb-sec h2,#wb-sup h2,#wb-foot h2{
 	position:absolute;
 	clip:rect(1px, 1px, 1px, 1px);

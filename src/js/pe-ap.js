@@ -731,26 +731,32 @@
 			*/
 			buildmobile: function (menusrc, hlevel, theme, mbar, expandall) {
 				var menu = $('<div data-role="controlgroup"></div>'),
-					menuitems = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)).find('> div, > ul, h' + hlevel),
+					heading = 'h' + hlevel,
+					headingOpen = '<' + heading + '>',
+					headingClose = '</' + heading + '>',
+					headingNext = 'h' + hlevel + 1,
+					menuitems = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)).find('> div, > ul, ' + heading),
 					next,
 					subsection,
 					hlink,
 					nested,
 					menubar = (mbar !== undefined ? mbar : false),
 					expand = (expandall !== undefined ? expandall : false),
-					allText = pe.dic.get('%all');
+					allText = pe.dic.get('%all'),
+					collapsibleSet = '<div data-role="collapsible-set" data-theme="' + theme + '"></div>',
+					listView = '<ul data-role="listview" data-theme="' + theme + '"></ul>';
 				if (menuitems.get(0).tagName.toLowerCase() === 'ul') {
-					menu.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(menuitems.first().children('li')));
+					menu.append($(listView).append(menuitems.first().children('li')));
 				} else {
 					menuitems.each(function () {
 						var $this = $(this);
 						// If the menu item is a heading
-						if (this.tagName.toLowerCase() === 'h' + hlevel) {
+						if (this.tagName.toLowerCase() === heading) {
 							hlink = $this.children('a');
-							subsection = $('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? ' data-collapsed="false"' : '') + '><h' + hlevel + '>' + $this.text() + '</h' + hlevel + '></div>');
+							subsection = $('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? ' data-collapsed="false"' : '') + '>' + headingOpen + $this.text() + headingClose + '</div>');
 							// If the original menu item was in a menu bar
 							if (menubar) {
-								$this = $this.parent().find('a').eq(1).closest('ul, div, h' + hlevel + 1).first();
+								$this = $this.parent().find('a').eq(1).closest('ul, div, ' + headingNext).first();
 								next = $this;
 							} else {
 								next = $this.next();
@@ -759,33 +765,35 @@
 							if (next.get(0).tagName.toLowerCase() === 'ul') {
 								// The original menu item was not in a menu bar
 								if (!menubar) {
-									next.append($('<li></li>').append($this.children('a').html(allText + ' - ' + hlink.html())));
+									next.append($('<li></li>').append($this.children('a').html(allText + ' - ' + hlink[0].innerHTML)));
 								}
 								nested = next.find('li ul');
 								// If a nested list is detected
 								nested.each(function (index) {
 									var $this = $(this),
-										hlink_html;
+										hlink_html,
+										headingIndexOpen = '<h' + hlevel + 1 + index + '>',
+										headingIndexClose = '</h' + hlevel + 1 + index + '>';
 									if ((hlevel + 1 + index) < 7) {
 										// Make the nested list into a collapsible section
 										hlink = $this.prev('a');
-										hlink_html = hlink.html();
+										hlink_html = hlink[0].innerHTML;
 										$this.attr({ 'data-role': 'listview', 'data-theme': theme }).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? ' data-collapsed="false"' : '') + '></div>');
-										$this.parent().prepend('<h' + (hlevel + 1 + index) + '>' + hlink_html + '</h' + (hlevel + 1 + index) + '>');
+										$this.parent().prepend(headingIndexOpen + hlink_html + headingIndexClose);
 										$this.append('<li><a href="' + hlink.attr('href') + '">' + allText + ' - ' + hlink_html + '</a></li>');
 										hlink.remove();
 									} else {
 										$this.attr({ 'data-role': 'listview', 'data-theme': theme });
 									}
 								});
-								subsection.append($('<ul data-role="listview" data-theme="' + theme + '"></ul>').append(next.children('li')));
-								subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? '<div data-role="collapsible-set" data-theme="' + theme + '"></div>' : '') + '</div>');
+								subsection.append($(listView).append(next.children('li')));
+								subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? collapsibleSet : '') + '</div>');
 							} else {
 								// If the section contains sub-sections
 								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme, false, expand));
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
-									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(allText + ' - ' + hlink.html()).attr({ 'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right' }));
+									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(allText + ' - ' + hlink[0].innerHTML).attr({'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right'}));
 								}
 							}
 							menu.append(subsection);
@@ -793,7 +801,7 @@
 							menu.append($this.children('a').attr({ 'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right' }));
 						}
 					});
-					menu.children().wrapAll('<div data-role="collapsible-set" data-theme="' + theme + '"></div>');
+					menu.children().wrapAll(collapsibleSet);
 				}
 				return menu;
 			},
@@ -1306,7 +1314,7 @@
 			// Prepare manually specified plugins for processing
 			for (plug in plugins) {
 				if (plugins.hasOwnProperty(plug)) {
-					wetboew.add(plugins[plug].addClass('wet-boew-' + plug));
+					wetboew = wetboew.add(plugins[plug].addClass('wet-boew-' + plug));
 				}
 			}
 				
