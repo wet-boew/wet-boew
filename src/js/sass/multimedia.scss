@@ -6,9 +6,10 @@
 video, object.video {
 	width:100%;
 	background-color: #000;
+	margin-bottom:-5px;
 }
 
-.wet-boew-multimedia-captionsarea{
+.wb-mm-captionsarea{
 	background-color:#000;
 	color:#FFF;
 	text-align:center;
@@ -16,19 +17,28 @@ video, object.video {
 	min-height:1.5em;
 }
 
-.wet-boew-multimedia .wet-boew-multimedia-overlay {
-	position:absolute;
-	background:transparent;
-	border:0;
-	width:100%;
-	* {
-		display:block;
-		margin:auto;
+.wet-boew-multimedia {
+
+	.wb-mm-overlay {
+		position:absolute;
+		background:transparent;
+		border:0;
+		width:100%;
+		* {
+			display:block;
+			margin:auto;
+		}
+		
+		img {
+			width:100px;
+			height:100px;
+		}
 	}
-	
-	img {
-		width:100px;
-		height:100px;
+
+	svg {
+		* {
+	 		pointer-events:none;
+	 	}
 	}
 }
 
@@ -43,7 +53,7 @@ video, object.video {
 
 $progress-color: #000;
 
-.wet-boew-multimedia-controls{
+.wb-mm-controls{
 	width:100%;
 	padding:0;
 
@@ -63,21 +73,34 @@ $progress-color: #000;
 		}
 	}
 	
-	.wet-boew-multimedia-controls-start {
+	.wb-mm-controls-start, .wb-mm-timeline-current {
 		float:left;
 	}
 
-	.wet-boew-multimedia-controls-end {
+	.wb-mm-controls-end, .wb-mm-timeline-total {
 		float:right;
 	}
 	
-	.wet-boew-multimedia-timeline{
+	.wb-mm-timeline{
 		position:relative;
 		@include ui;
 		margin-left:83px;
 		margin-right:55px;
 		height:18px;
 		padding: 2px 4px;
+		
+		p{
+			margin:0;
+		}
+		
+		.wb-mm-timeline-inner {
+			margin:0 70px;
+		}
+	
+	}
+	
+	&.wb-mm-no-cc .wb-mm-timeline{
+		margin-right:25px;
 	}
 	
 	progress {
@@ -88,21 +111,20 @@ $progress-color: #000;
 		margin:2px 0;
 		&::-moz-progress-bar {
 			background: $progress-color;
+			display:block;
 		}
 		&::-webkit-progress-value {
 			background: $progress-color;
 		}
 		/* Polyfill */
-		div.progress-frame {
+		div.wb-progress-outer {
 			border:none;
 			background-color:transparent!important;
 			padding:0;
 		}
-		div.progress-bar {
+		div.wb-progress-inner {
 			background-color:$progress-color!important;
 			padding:0;
 		}
 	}
 }
-
-

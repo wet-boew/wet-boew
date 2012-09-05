@@ -40,7 +40,7 @@
 				var fieldLabel = wrapper.find('label[for="' + fieldid + '"]').text(),
 					objToggle = $('<a id="' + containerid + '-toggle" class="picker-toggle-hidden" href="javascript:;"><img src="' + pe.add.liblocation + 'images/datepicker/icon.png" alt="' + pe.dic.get('%datepicker-show') + fieldLabel + '"/></a>');
 
-				objToggle.on('click', function () {
+				objToggle.on('click vclick touchstart', function () {
 					toggle(fieldid, containerid);
 					return false;
 				});
@@ -124,7 +124,7 @@
 							}
 						});
 
-						link.bind('click', {fieldid: fieldid, year: year, month : month, day: index + 1, days: days, format: format}, function (event) {
+						link.on('click vclick touchstart', {fieldid: fieldid, year: year, month : month, day: index + 1, days: days, format: format}, function (event) {
 							addSelectedDateToField(event.data.fieldid, event.data.year, event.data.month + 1, event.data.day, event.data.format);
 							setSelectedDate(event.data.fieldid, event.data.year, event.data.month, event.data.days, event.data.format);
 							//Hide the calendar on selection
@@ -316,7 +316,7 @@
 					addLinksToCalendar(id, year, month, days, minDate, maxDate, format);
 					setSelectedDate(id, year, month, days, format);
 
-					$this.on('click vclick', function (e) {
+					$this.on('click vclick touchstart', function (e) {
 						if (e.stopPropagation) {
 							e.stopImmediatePropagation();
 						} else {
@@ -332,7 +332,7 @@
 						}
 					});
 
-					$(document).on('click touchstart', function () {
+					$(document).on('click vclick touchstart', function () {
 						if (container.attr('aria-hidden') === 'false') {
 							hide($('#' + container.attr('id').slice(0, -7)));
 							return false;

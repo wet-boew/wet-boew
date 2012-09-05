@@ -45,16 +45,16 @@
 			var id,
 				canPlay = false,
 				media = elm.children('audio, video').eq(0),
+				media_type = media.is('video') ? 'video' : 'audio',
 				media_id,
-				width = media.is('video') ? media.attr('width') : '0',
-				height = media.is('video') ? media.attr('height') : '0',
+				width = media_type === 'video' ? media.attr('width') : '0',
+				height = media_type === 'video' ? media.attr('height') : '0',
 				captions,
 				flash = true,
 				$fbObject,
 				fbVideoType = 'video/mp4',
-				fbAudioType = 'audio/mpeg', //MP3
-				fbBin = _pe.add.liblocation + 'bin/multimedia.swf',
-				fbClass,
+				fbAudioType = 'audio/mp3', //MP3
+				fbBin = _pe.add.liblocation + 'bin/multimedia.swf?seed=' + Math.random(),
 				fbVars,
 				evtmgr;
 
@@ -83,12 +83,10 @@
 				//No nativly supported format provided, trying Flash fallback
 				//TODO:Add Flash detection
 				fbVars = 'id=' + elm.attr('id');
-				if (flash && media.is('video') && media.find('source').filter('[type="' + fbVideoType + '"]').length > 0) {
-					fbClass = 'video';
+				if (flash && media_type === 'video' && media.find('source').filter('[type="' + fbVideoType + '"]').length > 0) {
 					fbVars +=  '&height=' + media.height() + '&width=' + media.width() + '&posterimg=' + encodeURI(_pe.url(media.attr('poster')).source) + '&media=' + encodeURI(_pe.url(media.find('source').filter('[type="' + fbVideoType + '"]').attr('src')).source);
 					canPlay = true;
-				} else if (flash && media.is('audio') && media.find('source').filter('[type="' + fbAudioType + '"]').length > 0) {
-					fbClass = 'audio';
+				} else if (flash && media_type === 'audio' && media.find('source').filter('[type="' + fbAudioType + '"]').length > 0) {
 					fbVars += '&media=' + _pe.url(media.find('source').filter('[type="' + fbAudioType + '"]').attr('src')).source;
 					canPlay = true;
 				} else {
@@ -96,13 +94,15 @@
 				}
 				//Can play using a fallback
 				if (canPlay) {
-					$fbObject = $('<object play="" pause="" id="' + media_id + '" width="' + width + '" height="' + height + '" class="' + fbClass + '" type="application/x-shockwave-flash" data="' + fbBin + '" tabindex="-1"><param name="movie" value="' + fbBin + '"/><param name="flashvars" value="' + fbVars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>');
+					$fbObject = $('<object play="" pause="" id="' + media_id + '" width="' + width + '" height="' + height + '" class="' + media_type + '" type="application/x-shockwave-flash" data="' + fbBin + '" tabindex="-1"><param name="movie" value="' + fbBin + '"/><param name="flashvars" value="' + fbVars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>');
 					media.before($fbObject);
 					media.remove();
 					media = $fbObject;
 				} else {
-					media.before('<img src="' + media.attr("poster") + '" width="' + width + '" height="' + height + '" alt="' + media.attr("title") + '"/>');
-					media.remove();
+					if (media.is('video')) {
+						media.before('<img src="' + media.attr("poster") + '" width="' + width + '" height="' + height + '" alt="' + media.attr("title") + '"/>');
+						media.remove();
+					}
 				}
 			}
 
@@ -111,8 +111,10 @@
 
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
-				media.before($('<button class="wet-boew-multimedia-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
-				media.after(_pe.fn.multimedia._get_ui(media_id));
+				if (media_type === 'video') {
+					media.before($('<button class="wb-mm-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
+				}
+				media.after(_pe.fn.multimedia._get_ui(media_id, media_type === 'video' ? true : false));
 				if ($('html').hasClass('polyfill-progress')) {
 					elm.find('progress').progress();
 				}
@@ -121,7 +123,7 @@
 				$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
 					var h = e.data.media.parent().width() * e.data.ratio;
 					e.data.media.height(h);
-					media.parent().find('.wet-boew-multimedia-overlay').height(h);
+					media.parent().find('.wb-mm-overlay').height(h);
 				});
 				$(window).trigger('resize');
 
@@ -131,7 +133,7 @@
 						p,
 						s;
 
-					if ($target.hasClass('playpause') || e.target === this.object || $target.hasClass('wet-boew-multimedia-overlay')) {
+					if ($target.hasClass('playpause') || e.target === this.object || $target.hasClass('wb-mm-overlay')) {
 						if (this.getPaused() === true) {
 							this.play();
 						} else {
@@ -147,7 +149,7 @@
 						this.setMuted(!this.getMuted());
 					}
 
-					if ($target.is('progress') || $target.hasClass('progress-frame') || $target.hasClass('progress-bar')) {
+					if ($target.is('progress') || $target.hasClass('wb-progress-inner') || $target.hasClass('wb-progress-outer')) {
 						p = (e.pageX - $target.offset().left) / $target.width();
 						this.setCurrentTime(this.getDuration() * p);
 					}
@@ -162,20 +164,20 @@
 				});
 
 				//Map UI keyboard events
-				elm.on('keypress', function (e) {
+				elm.on('keydown', function (e) {
 					var $w = $(this),
 						v = 0;
 
 					if ((e.which === 32 || e.which === 13) && e.target === this.object) {
-						$w.find('.wet-boew-multimedia-controls .playpause').click();
+						$w.find('.wb-mm-controls .playpause').click();
 						return false;
 					}
 					if (e.keyCode === 37) {
-						$w.find('.wet-boew-multimedia-controls .rewind').click();
+						$w.find('.wb-mm-controls .rewind').click();
 						return false;
 					}
 					if (e.keyCode === 39) {
-						$w.find('.wet-boew-multimedia-controls .fastforward').click();
+						$w.find('.wb-mm-controls .fastforward').click();
 						return false;
 					}
 					if (e.keyCode === 38) {
@@ -195,7 +197,7 @@
 				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
-				evtmgr.on('loadeddata progress timeupdate seeked canplay play volumechange pause ended captionsloaded captionsloadfailed captionsvisiblechange', $.proxy(function (e) {
+				evtmgr.on('timeupdate seeked canplay play volumechange pause ended captionsloaded captionsloadfailed captionsvisiblechange', $.proxy(function (e) {
 					var $w = $(this),
 						b,
 						p,
@@ -205,14 +207,14 @@
 						b = $w.find('.playpause');
 						b.empty().append(_pe.fn.multimedia.get_image('pause', _pe.dic.get('%pause')));
 						b.attr('title', _pe.dic.get('%pause'));
-						$w.find('.wet-boew-multimedia-overlay').hide();
+						$w.find('.wb-mm-overlay').hide();
 						break;
 					case 'pause':
 					case 'ended':
 						b = $w.find('.playpause');
 						b.empty().append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')));
 						b.attr('title', _pe.dic.get('%play'));
-						$w.find('.wet-boew-multimedia-overlay').show();
+						$w.find('.wb-mm-overlay').show();
 						break;
 					case 'volumechange':
 						b = $w.find('.mute').empty();
@@ -235,29 +237,30 @@
 						}
 						break;
 					case 'timeupdate':
-						p = this.getCurrentTime() / this.getDuration();
-						timeline = $w.find('.wet-boew-multimedia-timeline progress');
+						p = Math.round(this.getCurrentTime() / this.getDuration() * 1000) / 10;
+						timeline = $w.find('.wb-mm-timeline progress');
 						timeline.attr('value', p);
+
+						$w.find('.wb-mm-timeline-current span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(this.getCurrentTime()));
+						$w.find('.wb-mm-timeline-total span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(this.getDuration()));
+
 						//Update captions
 						if ($.data(e.target, 'captions') !== undefined) {
-							_pe.fn.multimedia._update_captions($w.find('.wet-boew-multimedia-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
+							_pe.fn.multimedia._update_captions($w.find('.wb-mm-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
 						}
-						break;
-					case 'progress':
-						/*if (this.getBuffered() > 1) {console.log(Math.round(this.getBuffered()/ this.getDuration() * 1000)/10);}*/
 						break;
 					case 'captionsloaded':
 						//Store the captions
 						$.data(e.target, 'captions', e.captions);
 						break;
 					case 'captionsloadfailed':
-						$w.find('.wet-boew-multimedia-captionsarea').append('<p>' + _pe.dic.get('%captionserror') + '</p>');
+						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%captionserror') + '</p>');
 						break;
 					}
 				}, elm.get(0)));
 
 				if (captions !== undefined) {
-					media.after($('<div class="wet-boew-multimedia-captionsarea"/>').hide());
+					media.after($('<div class="wb-mm-captionsarea"/>').hide());
 					_pe.fn.multimedia._load_captions(evtmgr, captions);
 				}
 			}
@@ -265,11 +268,11 @@
 			return elm;
 		}, // end of exec
 
-		_get_ui : function (id) {
-			var ui = $('<div class="wet-boew-multimedia-controls">'),
-				ui_start = $('<div class="wet-boew-multimedia-controls-start">'),
-				ui_timeline = $('<div class="wet-boew-multimedia-timeline" tabindex="0"><progress value="0"/>'),
-				ui_end = $('<div class="wet-boew-multimedia-controls-end">');
+		_get_ui : function (id, cc) {
+			var ui = $('<div class="wb-mm-controls">'),
+				ui_start = $('<div class="wb-mm-controls-start">'),
+				ui_timeline = $('<div class="wb-mm-timeline" tabindex="0"><p class="wb-mm-timeline-current"><span class="wb-invisible">' + _pe.dic.get('%position') + '</span><span>00:00:00</span></p><p class="wb-mm-timeline-total"><span class="wb-invisible">' + _pe.dic.get('%duration') + '</span><span>--:--:--</span></p><p class="wb-mm-timeline-inner"><span class="wb-invisible">' + _pe.dic.get('%percentage') + '</span><progress value="0" max="100" aria-live="off" /></p>'),
+				ui_end = $('<div class="wb-mm-controls-end">');
 
 			ui_start.append(
 				$('<button>').attr({
@@ -298,14 +301,18 @@
 				}).append(_pe.fn.multimedia.get_image('ff', _pe.dic.get('%fast-forward')))
 			);
 
-			ui_end.append(
-				$('<button>').attr({
-					type: 'button',
-					'class': 'cc',
-					'aria-controls': id,
-					'title': _pe.dic.get('%closed-caption', 'enable')
-				}).append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')))
-			);
+			if (cc === true) {
+				ui_end.append(
+					$('<button>').attr({
+						type: 'button',
+						'class': 'cc',
+						'aria-controls': id,
+						'title': _pe.dic.get('%closed-caption', 'enable')
+					}).append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')))
+				);
+			} else {
+				ui.addClass('wb-mm-no-cc');
+			}
 
 			ui_end.append(
 				$('<button>').attr({
@@ -325,10 +332,18 @@
 		_intf : {
 			// Methods
 			play: function () {
-				this.object.play();
+				try {
+					this.object.play();
+				} catch (e) {
+					this.object.doPlay();
+				}
 			},
 			pause: function () {
-				this.object.pause();
+				try {
+					this.object.pause();
+				} catch (e) {
+					this.object.doPause();
+				}
 			},
 
 			// Properties
@@ -361,18 +376,18 @@
 			},
 
 			setCurrentTime: function (t) {
-				if (typeof this.object.currentTime !== 'function') { this.object.currentTime = t; } else { this.object.setCurrentTime(t); }
+				if (typeof this.object.currentTime !== 'function') {this.object.currentTime = t; } else {this.object.setCurrentTime(t); }
 			},
 
 			getCaptionsVisible: function () {
-				return $(this).find('.wet-boew-multimedia-captionsarea').is(':visible');
+				return $(this).find('.wb-mm-captionsarea').is(':visible');
 			},
 
 			setCaptionsVisible : function (v) {
 				if (v) {
-					$(this).find('.wet-boew-multimedia-captionsarea').show();
+					$(this).find('.wb-mm-captionsarea').show();
 				} else {
-					$(this).find('.wet-boew-multimedia-captionsarea').hide();
+					$(this).find('.wb-mm-captionsarea').hide();
 				}
 				$(this.evtmgr).trigger('captionsvisiblechange');
 			},
@@ -382,7 +397,7 @@
 			},
 
 			setMuted : function (m) {
-				if (typeof this.object.muted !== 'function') { this.object.muted = m; } else { this.object.setMuted(m); }
+				if (typeof this.object.muted !== 'function') {this.object.muted = m; } else {this.object.setMuted(m); }
 			},
 
 			getVolume : function () {
@@ -390,8 +405,26 @@
 			},
 
 			setVolume : function (v) {
-				if (typeof this.object.volume !== 'function') { this.object.volume = v; } else { this.object.setVolume(v); }
+				if (typeof this.object.volume !== 'function') {this.object.volume = v; } else {this.object.setVolume(v); }
 			}
+		},
+
+		_format_time : function (current) {
+			var t = "",
+				i,
+				c,
+				p;
+			current = Math.floor(current);
+
+			for (i = 2; i >= 0; i -= 1) {
+				p = Math.pow(60, i);
+				c = Math.floor(current / p);
+				if (t !== "") {t += ":"; }
+				t += _pe.string.pad(c, 2);
+				current -= p * c;
+			}
+
+			return t;
 		},
 
 		_load_captions : function (evtmgr, src) {

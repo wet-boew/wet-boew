@@ -120,6 +120,7 @@
 			"%progress-bar": "utilisez les touches GAUCHE ou DROITE pour avancer ou reculer le progrès des médias",
 			"%no-video": "Votre navigateur ne semble pas avoir les capacité nécessaires pour lire cette vidéo, s'il vous plaît télécharger la vidéo ci-dessous",
 			"%position": "Position actuelle&#160;: ",
+			"%percentage": "Pourcentage&#160;: ",
 			"%duration": "Temps total&#160;: ",
 			"%buffered": "Mis en mémoire-tampon&#160;: ",
 			/* Share widget */
@@ -173,6 +174,10 @@
 			/* Charts widget */
 			"%table-mention": "- Tableau",
 			"%table-following": "- Graphique. Plus de détails dans le tableau suivant.",
+			/* Session timeout */
+			"%st-timeout-msg": "Votre session est sur le point d\'expirer, vous avez jusqu\'a #expireTime# pour sélectionnez \"OK\" ci-dessous pour prolonger votre session.",
+			"%st-msgbox-title": "Avertissement d'expiration de la session",
+			"%st-already-timeout-msg": "Désolé, votre session a déjà expiré. S'il vous plaît vous connecter à nouveau.",
 			/* Disable/enable PE */
 			"%pe-disable": "Version HTML simplifiée",
 			"%pe-enable": "Version standard"

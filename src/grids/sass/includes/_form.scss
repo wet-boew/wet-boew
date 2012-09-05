@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * Web Experience Toolkit (WET) / BoÃ®te Ã  outils de l'expÃ©rience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 @mixin forms {
@@ -83,7 +83,11 @@
 		&[type="image"], &[type="checkbox"], &[type="radio"] {
 			margin: 1px 0;
 			padding: 0;
+			min-height: 0;
 			@include border-radius(0);
+			+ label {
+				display: inline-block;
+			}
 		}
 		
 		&[type="image"] {
@@ -93,6 +97,10 @@
 		&[type="button"], &[type="reset"], &[type="submit"] {
 			display: block;
 			.form-inline & { @include inline-block; }
+		}
+
+		&[type="search"] {
+			-webkit-appearance: textfield;
 		}
 		
 		&:-moz-placeholder { color: $medium; }

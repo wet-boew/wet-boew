@@ -361,27 +361,26 @@ and
 				<li><a href="#tab32">Local events</a></li>
 			</ul>
 			<div class="tabs-panel">
-				<div id="tab30">
-					<h5 class="span-8">National events</h5>
-					<div class="span-4 background-light border-span-4"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
-					<div class="span-4 background-light border-span-4"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+				<div id="tab30" class="span-8">
+					<h5>National events</h5>
+					<div class="span-4 background-light border-span-4 row-start"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+					<div class="span-4 background-light border-span-4 row-end"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
 					<div class="clear"></div>
 				</div>
-				<div class="clear"></div>
-				<div id="tab31">
-					<h5 class="span-8">Regional events</h5>
+				<div id="tab31" class="span-8">
+					<h5>Regional events</h5>
+					<div class="span-2 background-dark border-span-2 row-start"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
 					<div class="span-2 background-dark border-span-2"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
 					<div class="span-2 background-dark border-span-2"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
-					<div class="span-2 background-dark border-span-2"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
-					<div class="span-2 background-dark border-span-2"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+					<div class="span-2 background-dark border-span-2 row-end"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
 					<div class="clear"></div>
 				</div>
-				<div id="tab32">
-					<div class="grid-12">
-						<h5 class="span-12">Local events</h5>
+				<div id="tab32" class="grid-12">
+					<div class="span-12">
+						<h5>Local events</h5>
+						<div class="span-4 background-accent border-span-4 row-start"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
 						<div class="span-4 background-accent border-span-4"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
-						<div class="span-4 background-accent border-span-4"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
-						<div class="span-4 background-accent border-span-4"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+						<div class="span-4 background-accent border-span-4 row-end"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
 						<div class="clear"></div>
 					</div>
 				</div>
@@ -392,35 +391,36 @@ and
 	<section><h4>Example 2</h4>
 		<p>Some tabs accommodate parent/child grid cells (i.e. you can put a grid cell in another grid cell).</p>
 		<div class="span-8">
-			<div class="wet-boew-tabbedinterface tabs-style-2 cycle">
+			<div class="wet-boew-tabbedinterface embedded-grid tabs-style-2 cycle">
 				<div class="tabs-panel">
 					<div id="tab33">
-						<div class="span-2 row-start margin-bottom-none"><img src="../grids/images/photo.jpg" width="220" height="220" alt="photo" /></div>
-						<section><h4 class="align-center">Tab 33</h4>
-							<div class="span-6 row-end margin-bottom-none">
+						<section>
+							<h4 class="align-center span-6 position-right margin-top-none margin-bottom-none">Tab 33</h4>
+							<div class="span-6 row-end margin-top-large margin-bottom-none float-right">
 								<section><h5><code>span-2</code> + <code>span-6</code></h5>
 									<p><a href="#">X heading</a><br />Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
 									<p><a href="#">fake link</a></p>
 								</section>
 							</div>
+							<div class="span-2 row-start margin-bottom-none float-left"><img src="../grids/images/photo.jpg" width="220" height="220" alt="photo" /></div>
+							<div class="clear"></div>
 						</section>
-						<div class="clear"></div>
 					</div>
 					<div id="tab34">
-						<div class="span-2 row-start margin-bottom-none float-right"><img src="../grids/images/photo.jpg" width="220" height="220" alt="photo" /></div>
-						<section><h4 class="align-center">Tab 34</h4>
-							<div class="span-6 row-end margin-bottom-none">
+						<section>
+							<h4 class="align-center span-6 position-right margin-top-none margin-bottom-none">Tab 34</h4>
+							<div class="span-6 row-end margin-top-large margin-bottom-none float-right">
 								<section><h5><code>span-6</code> + <code>span-2</code></h5>
 									<p><a href="#">fake link</a></p>
 									<p><a href="#">Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</a></p>
 								</section>
 							</div>
+							<div class="span-2 row-start margin-bottom-none float-left"><img src="../grids/images/photo.jpg" width="220" height="220" alt="photo" /></div>
+							<div class="clear"></div>
 						</section>
-						<div class="clear"></div>
 					</div>
 					<div id="tab35">
-						<section><h4 class="align-center">Tab 35</h4>
-							<div class="clear"></div>
+						<section><h4 class="align-center margin-top-none margin-bottom-none">Tab 35</h4>
 							<div class="span-2 margin-bottom-none row-start">
 								<div class="tabs-content-pad">
 									<section><h5><code>span-2</code></h5>

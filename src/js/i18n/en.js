@@ -124,6 +124,7 @@
 			"%progress-bar": "use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media's progress",
 			"%no-video": "Your browser does not appear to have the capabilities to play this video, please download the video below",
 			"%position": "Current Position: ",
+			"%percentage": "Percentage: ",
 			"%duration": "Total Time: ",
 			"%buffered": "Buffered: ",
 			/* Share widget */
@@ -177,6 +178,10 @@
 			/* Charts widget */
 			"%table-mention": "Table",
 			"%table-following": "Chart. Details in table following.",
+			/* Session timeout */
+			"%st-timeout-msg": "Your session is about to expire, you have until #expireTime# to activate the \"OK\" button below to extend your session.",
+			"%st-msgbox-title": "Session timeout warning",
+			"%st-already-timeout-msg": "Sorry your session has already expired. Please login again.",
 			/* Disable/enable PE */
 			"%pe-disable": "Basic HTML version",
 			"%pe-enable": "Standard version"

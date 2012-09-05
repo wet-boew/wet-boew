@@ -41,7 +41,6 @@
 				tableCellWidth = 0,
 				headerRowGroupCompleted = false,
 				summaryRowGroupEligible = false,
-				rowgroupLevel = 1, // Default RowGroupLevel
 				currentRowHeader = [],
 				currentTbodyID,
 				theadRowStack = [],
@@ -280,7 +279,8 @@
 					theadRSNext,
 					theadRSNextCell,
 					cell,
-					gzCol;
+					gzCol,
+					theadRS;
 
 				if (groupZero.colgrouphead || rowgroupheadercalled) {
 					return; // Prevent multiple call
@@ -333,6 +333,7 @@
 								!cell.type &&
 								theadRSNext &&
 								theadRSNext.uid !== cell.uid &&
+								theadRSNextCell &&
 								!theadRSNextCell.type &&
 								theadRSNextCell.elem.nodeName.toLowerCase() === 'td' &&
 								theadRSNextCell.width === cell.width &&
@@ -341,7 +342,7 @@
 							theadRSNext.type = 5; // Mark the next row as a row description
 							theadRSNextCell.type = 5; // Mark the cell as a cell description
 							theadRSNextCell.row = theadRS;
-							cell.descCell = cell;
+							cell.descCell = theadRSNextCell;
 
 							// Add the description cell to the complete listing
 							if (!groupZero.desccell) {
@@ -498,7 +499,9 @@
 						gzCol.header = [];
 						for (j = 0, _jlen = tmpStack.length; j < _jlen; j += 1) {
 							for (m = gzCol.start, _mlen = gzCol.end; m <= _mlen; m += 1) {
-								gzCol.header.push(tmpStack[j].cell[m - 1]);
+								if ((j === 0 || (j > 0 && tmpStack[j].cell[m - 1].uid !== tmpStack[j - 1].cell[m - 1].uid)) && tmpStack[j].cell[m - 1].type === 1) {
+									gzCol.header.push(tmpStack[j].cell[m - 1]);
+								}
 							}
 						}
 					}
@@ -557,6 +560,20 @@
 							}
 
 							// Skip this colgroup, this should happened only once and should represent the header colgroup
+
+							// Assign the headers for this group
+							for (i = 0, _ilen = curColgroupFrame.col.length; i < _ilen; i += 1) {
+								gzCol = curColgroupFrame.col[i];
+								gzCol.header = [];
+								for (j = 0, _jlen = tmpStack.length; j < _jlen; j += 1) {
+									for (m = gzCol.start, _mlen = gzCol.end; m <= _mlen; m += 1) {
+										if ((j === 0 || (j > 0 && tmpStack[j].cell[m - 1].uid !== tmpStack[j - 1].cell[m - 1].uid)) && tmpStack[j].cell[m - 1].type === 1) {
+											gzCol.header.push(tmpStack[j].cell[m - 1]);
+										}
+									}
+								}
+							}
+
 							return;
 						}
 
@@ -649,7 +666,7 @@
 						if (currColgroupStructure.length < groupLevel) {
 							// This colgroup are a data colgroup
 							// The current colgroup are a data colgroup
-							if (!curColgroupFrame.type) { // TODO: Remove this condition when this function will be called only once
+							if (!curColgroupFrame.type) {
 								curColgroupFrame.type = 2; // Set Data group type
 								curColgroupFrame.level = groupLevel;
 							}
@@ -714,7 +731,6 @@
 							curColgroupFrame.repheader = 'caption';
 						}
 
-						// TODO: Build a collection with all the column based on the column position, each of them will have as a structure element "col" if available, otherwise nothing. Also they will have the headerset ref and header ref and if applicable, description.
 						if (!groupZero.col) {
 							groupZero.col = [];
 						}
@@ -728,7 +744,7 @@
 
 							column.header = [];
 							// Find the lowest header that would represent this column
-							for (j = (tmpStack.length - 1); j >= (groupLevel - 1); j -= 1) {
+							for (j = (groupLevel - 1); j < tmpStack.length; j += 1) {
 								for (i = (curColgroupFrame.start - 1); i < curColgroupFrame.end; i += 1) {
 									if ((tmpStack[j].cell[i].colpos >= column.start &&
 											tmpStack[j].cell[i].colpos <= column.end) ||
@@ -861,9 +877,9 @@
 				// console.log(rowgroupHeaderRowStack); rowlevel
 				// console.log(currentRowGroup);
 
-				rowgroupHeaderRowStack = []; // reset the row header stack	
 
-				// TODO: Set the Data Level for this row group
+
+				// Set the Data Level for this row group
 				// Calculate the appropriate row group level based on the previous rowgroup 
 				//	* a Summary Group decrease the row group level
 				//	* a Data Group increase the row group level based of his number of row group header and the previous row group level
@@ -894,14 +910,6 @@
 								// This are a new set of heading, the level equal the number of group header cell found
 								currentRowGroup.level = currentRowGroup.headerlevel.length + 1;
 							}
-
-							// Set the level for each group header cell
-							for (i = 0; i < currentRowGroup.headerlevel.length; i += 1) {
-								if (!currentRowGroup.headerlevel[i].level) {
-									currentRowGroup.headerlevel[i].level = i + 1;
-									currentRowGroup.headerlevel[i].rowlevel = currentRowGroup.headerlevel[i].level;
-								}
-							}
 						} else if (currentRowGroup.type === 3) {
 							// Summary Group
 							if (previousRowGroup.type === 3) {
@@ -916,19 +924,27 @@
 
 							// Set the header level with the previous row group
 							for (i = 0; i < previousRowGroup.headerlevel.length; i += 1) {
-								if (previousRowGroup.headerlevel[i].level <= currentRowGroup.level) {
+								if (previousRowGroup.headerlevel[i].level < currentRowGroup.level) {
 									currentRowGroup.headerlevel.push(previousRowGroup.headerlevel[i]);
 								}
 							}
 						} else {
-							// Error ????
+							// Error
 							currentRowGroup.level = "Error, not calculated";
 							errorTrigger(13, "Error, Row group not calculated");
 						}
 					} else {
-						currentRowGroup.level = 2;
+						currentRowGroup.level = 1 + rowgroupHeaderRowStack.length;
 					}
 				}
+
+				// Ensure that each row group cell heading have their level set
+				for (i = 0; i < currentRowGroup.headerlevel.length; i += 1) {
+					currentRowGroup.headerlevel[i].level = i + 1;
+					currentRowGroup.headerlevel[i].rowlevel = currentRowGroup.headerlevel[i].level;
+				}
+
+				rowgroupHeaderRowStack = []; // reset the row header stack	
 
 				if (currentRowGroup.level === undefined || currentRowGroup.level < 0) {
 					errorTrigger(14, 'You can not have a summary at level under 0, add a group header or merge a tbody togheter', currentRowGroup.elem);
@@ -936,7 +952,7 @@
 			}
 
 			function processRow(elem) {
-				// TODO: Remove the possible confusion about the colgroup name used in the row processing but keep his functionality because that fix the grouping if no header cell are present.
+				// In this function there are a possible confusion about the colgroup variable name used here vs the real colgroup table, In this function the colgroup is used when there are no header cell.
 				currentRowPos += 1;
 				var columnPos = 1,
 					lastCellType = "",
@@ -949,7 +965,6 @@
 						rowpos: currentRowPos
 					},
 					colgroup,
-					irRowHeadingFound = false,
 					fnPreProcessGroupHeaderCell,
 					fnPreProcessGroupDataCell,
 					fnParseSpannedRowCell,
@@ -1005,7 +1020,7 @@
 						colgroup.type = 2;
 					}
 
-					// TODO: Check if we need to create a summary colgroup (Based on the top colgroup definition)
+					// Check if we need to create a summary colgroup (Based on the top colgroup definition)
 					if (colgroup.type !== 2) {
 						// Creation of a new colgroup
 						row.colgroup.push(colgroup); // Add the previous colgroup
@@ -1231,7 +1246,7 @@
 					}
 
 					if (row.colgroup.length > 1  && currentRowPos !== 1) {
-						errorTrigger(21, 'This is an invalid row header because they can not mix data cell with header cell');
+						errorTrigger(21, 'Please wrap all the row used as the column cell heading in the thead row group');
 					}
 
 					//
@@ -1254,10 +1269,8 @@
 						if (!row.cell[0].describe) {
 							row.cell[0].describe = [];
 						}
-						for (i = 0; i < rowgroupHeaderRowStack.length; i += 1) {
-							rowgroupHeaderRowStack[i].cell[0].descCell = row.cell[0];
-							row.cell[0].describe.push(rowgroupHeaderRowStack[i].cell[0]);
-						}
+						rowgroupHeaderRowStack[rowgroupHeaderRowStack.length - 1].cell[0].descCell = row.cell[0];
+						row.cell[0].describe.push(rowgroupHeaderRowStack[rowgroupHeaderRowStack.length - 1].cell[0]);
 						if (!groupZero.desccell) {
 							groupZero.desccell = [];
 						}
@@ -1307,7 +1320,6 @@
 							rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
 							currentRowHeader = [];
 
-							// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
 							currentTbodyID += 1;
 							finalizeRowGroup();
 
@@ -1332,7 +1344,6 @@
 							rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
 							currentRowHeader = [];
 
-							// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
 							currentTbodyID += 1;
 							finalizeRowGroup();
 
@@ -1347,10 +1358,10 @@
 						} else {
 							if (!lastHeadingSummaryColPos && currentRowGroup.lastHeadingColPos > lastHeadingColPos) {
 								// This is an error, we can not have an row cell heading length inferior for a summary group
-								errorTrigger(32, 'An row cell heading length can not be inferior of a data row group', this);
+								errorTrigger(32, 'An row cell heading length can not be inferior of a data row group');
 							} else {
 								// This is an error, we can not have an row cell heading length that can not be categorized in the data group and summary group
-								errorTrigger(33, 'An row cell heading length that can not be categorized in the data group and summary group. Use uniform size for data/summary group. Uniform size between data group and summary group require a new tbody section.', this);
+								errorTrigger(33, 'An row cell heading length that can not be categorized in the data group and summary group. Use uniform size for data/summary group. Uniform size between data group and summary group require a new tbody section.');
 							}
 						}
 					}
@@ -1541,7 +1552,7 @@
 					}
 					for (i = lastHeadingColPos; i < row.cell.length; i += 1) {
 						isDataCell = true;
-						isDataColgroupType = true; // TODO: Remove this variable
+						isDataColgroupType = true;
 
 						for (j = (lastHeadingColPos === 0 ? 0 : 1); j < colgroupFrame.length; j += 1) { // If colgroup, the first are always header colgroup
 							if (colgroupFrame[j].start <= row.cell[i].colpos && row.cell[i].colpos <= colgroupFrame[j].end) {
@@ -1696,7 +1707,7 @@
 				case 'tbody':
 				case 'tfoot':
 
-					// TODO: Add support if tfoot are defined before the tbody
+					// Currently there are no specific support for tfoot element, the tfoot is understood as a normal tbody
 
 					currentRowGroupElement = this;
 					initiateRowGroup();
@@ -1736,7 +1747,6 @@
 					rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
 					currentRowHeader = [];
 
-					// TODO: Check for sub-rowgroup defined inside the actual row group, like col1 have row spanned in 4 row constantly...
 					currentTbodyID += 1;
 					finalizeRowGroup();
 					break;
@@ -1745,7 +1755,7 @@
 
 					// The rowpos are not incremented here because this is a summary rowgroup for the GroupZero
 
-					// TODO: Question: Stack any row and processed them at the really end ???
+					// Question: Stack any row and processed them at the really end ? Do we allow tfoot to be used as a footnote for the tabular data ?
 					// break;
 				case 'tr':
 					// This are suppose to be a simple table

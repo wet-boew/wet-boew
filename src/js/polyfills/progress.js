@@ -1,10 +1,16 @@
-/*! HTML5 Progress polyfill | Jonathan Stipe | https://github.com/jonstipe/progress-polyfill*/
-/* Updated by Laurent Goderre | https://github.com/LaurentGoderre/progress-polyfill */
+/*!
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ */
+/*
+ * Progress
+ */
+/*global jQuery: false*/
 (function ($) {
 	$.fn.progress = function () {
 		return $(this).each(function () {
 			var $this = $(this),
-				progress = $this.children('.progress-frame, .progress-undefined'),
+				progress = $this.children('.wb-progress-outer, .wb-progress-undefined'),
 				params,
 				amt,
 				attr = {'role': 'progressbar'};
@@ -12,7 +18,7 @@
 			$this.off('DOMAttrModified propertychange');
 			if ($this.is('[value]')) {
 				if (progress.length < 1) {
-					progress = $('<div class="progress-frame"><div class="progress-bar"/></div>');
+					progress = $('<div class="wb-progress-outer"><div class="wb-progress-inner"/></div>');
 					$this.append(progress);
 				}
 				params = $([$this.attr('max') || '1.0', $this.attr('value')]).map(function () {
@@ -26,17 +32,19 @@
 
 				if (attr['aria-valuenow'] > attr['aria-valuemax']) {attr['aria-valuenow'] = attr['aria-valuemax']; }
 				amt = (attr['aria-valuenow'] / attr['aria-valuemax']) * 100.0;
-				progress.children('.progress-bar').css('width', amt + '%');
+				progress.children('.wb-progress-inner').css('width', amt + '%');
 
 			} else if ($this.not('[value]') && progress.length < 1) {
-				progress = $('<div class="progress-undefined"/>');
+				progress = $('<div class="wb-progress-undefined"/>');
 				$this.append(progress);
 			}
 
 			$this.attr(attr);
-			$this.on('DOMAttrModified propertychange', function () {
-				$this.progress();
-			});
+			setTimeout(function () {
+				$this.on('DOMAttrModified propertychange', function () {
+					$this.progress();
+				});
+			}, 0);
 		});
 	};
 	$('progress').progress();

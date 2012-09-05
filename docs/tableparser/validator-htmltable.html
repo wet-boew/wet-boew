@@ -1,4 +1,4 @@
-
+ï»¿
 <!DOCTYPE html>
 <!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
 <!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
@@ -7,7 +7,7 @@
 <!--<![endif]-->
 <head>
 <meta charset="utf-8" />
-<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+<!-- Web Experience Toolkit (WET) / BoÃ®te Ã  outils de l'expÃ©rience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <title>HTML Table Validator - Table Usability - Web Experience Toolkit (WET)</title>
 
@@ -16,7 +16,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="dcterms.description" content="English description/Description en anglais" />
 <meta name="description" content="English description/Description en anglais" />
-<meta name="keywords" content="English keywords/Mots-clés en anglais" />
+<meta name="keywords" content="English keywords/Mots-clÃ©s en anglais" />
 <meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
 <meta name="dcterms.title" content="English title/Titre en anglais" />
 <meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
@@ -26,6 +26,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
+<script type="text/javascript" src="js/htmlparser.js"></script>
 
 <link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
@@ -40,6 +41,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!-- CustomScriptsCSSStart -->
 <script>
 	//<![CDATA[
+(function ($) {
 	$(document).ready(function(){
 		$('#resultTableIdHeaders').hide();
 		
@@ -52,11 +54,12 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 			$(obj).css('background-color', 'red');
 		};
 		
-		$('form').submit(function(){
+		$('#analysetable').click(function(){
 			var noErrorList = '<li>No Error Found</li>';
 			
-			$('#resultTableIdHeaders').hide();
 			$('#resultTableIdHeaders').val('');
+			$('#resultTableIdHeaders').hide();
+			
 
 			$('#errorList').empty();			
 			$('#directOutput').empty();
@@ -76,11 +79,31 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				// Add id, headers attribute to each cell
 				
 				var tblparser = $('#directOutput table:eq(0)').data().tblparser,
+					tblelement = $('#directOutput table:eq(0)'),
 					i,
 					j,
 					currRow,
 					currCell,
-					idPrefix = 'usabletblparsed';
+					idPrefix = $('#idprefix').val() || 'usabletblparsed',
+					resetIds = false;
+					
+				
+				// Remove any headers and aria-describedby attribute
+				
+				$('#directOutput table:eq(0) [headers]').each(function () {
+					$(this).removeAttr('headers');
+				});
+				$('#directOutput table:eq(0) [aria-describedby]').each(function () {
+					$(this).removeAttr('aria-describedby');
+				});
+				
+				if ($('#idreset:checked').length > 0) {
+					$('#directOutput table:eq(0) [id]').each(function () {
+						$(this).removeAttr('id');
+					});
+				}
+				
+				
 				
 				// Set ID and Header for the table head
 				for (i = 0; i < tblparser.theadRowStack.length; i += 1) {
@@ -97,7 +120,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 							
 							// If there no id, add an uid
 							var currCellId = $(currCell.elem).attr('id');
-							if (currCellId === undefined || currCellId === '') {
+							if (currCellId === undefined || currCellId === '' || resetIds) {
 								// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
 								currCellId = idPrefix + currCell.uid; // Generate a new ID
 								$(currCell.elem).attr('id', currCellId);
@@ -111,14 +134,20 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 									headersCurrCell = $(tblparser.theadRowStack[i - 1].cell[j].elem).attr('headers') + ' ' + headersCurrCell;
 								}
 								$(currCell.elem).attr('headers', headersCurrCell);
+								if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+									$(currCell.elem).removeAttr('headers');
+								}
 							}
 							
 							
 							// Set the header on his descriptive cell is any (May be better aria-describedby
 							if (currCell.descCell) {
 								$(currCell.descCell.elem).attr('headers', currCellId);
+								if ($(currCell.descCell.elem).attr('headers') === undefined || $(currCell.descCell.elem).attr('headers') === '') {
+									$(currCell.descCell.elem).removeAttr('headers');
+								}
 								var currCellDescId = $(currCell.descCell.elem).attr('id');
-								if (currCellDescId === undefined || currCellDescId === '') {
+								if (currCellDescId === undefined || currCellDescId === '' || resetIds) {
 									// currCellDescId = idPrefix + new Date().getTime() + currCell.descCell.uid; // Generate a new ID
 									$(currCell.descCell.elem).attr('id', currCellDescId);
 								}
@@ -133,76 +162,283 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				// Set Id/headers for header cell and data cell in the table.
 				for (i = 0; i < tblparser.row.length; i += 1) {
 					currRow = tblparser.row[i];
-					var rowheaders;
+					var rowheadersgroup = "",
+						rowheaders = "",
+						currrowheader = "";
+						ongoingRowHeader = "";
 					
 					// Get or Generate a unique ID for each header in this row
-					if (currRow.headerset) { 
+					if (currRow.headerset && !currRow.idsheaderset) { 
 						for (j = 0; j < currRow.headerset.length; j += 1) {
 							var currCellId = $(currRow.headerset[j].elem).attr('id');
-							if (currCellId === undefined || currCellId === '') {
+							if (currCellId === undefined || currCellId === '' || resetIds) {
 								// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-								currCellId = idPrefix + currCell.uid; // Generate a new ID
+								currCellId = idPrefix + currRow.headerset[j].uid; // Generate a new ID
 								$(currRow.headerset[j].elem).attr('id', currCellId);
 							}
-							rowheaders = (rowheaders ? rowheaders + ' ' + currCellId : currCellId);
+							rowheadersgroup= (rowheadersgroup ? rowheadersgroup + ' ' + currCellId : currCellId);
 						}
+						currRow.idsheaderset = rowheadersgroup;
 					}
+					
 					if (currRow.header) { 
 						for (j = 0; j < currRow.header.length; j += 1) {
-							var currCellId = $(currRow.header[j].elem).attr('id');
-							if (currCellId === undefined || currCellId === '') {
+							var currCellId2 = $(currRow.header[j].elem).attr('id');
+							if (currCellId2 === undefined || currCellId2 === '' || resetIds) {
 								// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-								currCellId = idPrefix + currCell.uid; // Generate a new ID
-								$(currRow.header[j].elem).attr('id', currCellId);
+								currCellId2 = idPrefix + currRow.header[j].uid; // Generate a new ID
+								$(currRow.header[j].elem).attr('id', currCellId2);
 							}
-							rowheaders = (rowheaders ? rowheaders + ' ' + currCellId : currCellId);
+							rowheaders = (rowheaders ? rowheaders + ' ' + currCellId2 : currCellId2);
 						}
 					}
+					rowheaders = (currRow.idsheaderset ? currRow.idsheaderset + ' ' + rowheaders : rowheaders);
 					for (j = 0; j < currRow.cell.length; j += 1) {
-						var currCell = currRow.cell[j];
 						
-						if (!currCell.col.dataheader) {
-							var currCol = currCell.col;
-							var colheaders;
-							if (currCol.headerset) { 
-								for (m = 0; m < currCol.headerset.length; m += 1) {
-									var currCellId = $(currCol.headerset[m].elem).attr('id');
-									if (currCellId === undefined || currCellId === '') {
-										// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-										currCellId = idPrefix + currCell.uid; // Generate a new ID
-										$(currCol.headerset[m].elem).attr('id', currCellId);
+						if ((j === 0) || (j > 0 && currRow.cell[j].uid !== currRow.cell[(j - 1)].uid)){
+							var currCell = currRow.cell[j],
+								coldataheader = "";
+							
+							if (currCell.col && !currCell.col.dataheader) {
+								var currCol = currCell.col;
+								var colheaders = "",
+									colheadersgroup = "";
+								if (currCol.headerLevel) { 
+									for (m = 0; m < currCol.headerLevel.length; m += 1) {
+										var currCellId = $(currCol.headerLevel[m].elem).attr('id');
+										if (currCellId === undefined || currCellId === '' || resetIds) {
+											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+											currCellId = idPrefix + currCol.headerLevel[m].uid; // Generate a new ID
+											$(currCol.headerLevel[m].elem).attr('id', currCellId);
+										}
+										colheadersgroup = (colheadersgroup ? colheadersgroup + ' ' + currCellId : currCellId);
 									}
-									colheaders = (colheaders ? colheaders + ' ' + currCellId : currCellId);
+								}
+								if (currCol.header) { 
+									for (m = 0; m < currCol.header.length; m += 1) {
+										var currCellId = $(currCol.header[m].elem).attr('id');
+										if (currCellId === undefined || currCellId === '' || resetIds) {
+											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+											currCellId = idPrefix + currCol.header[m].uid; // Generate a new ID
+											$(currCol.header[m].elem).attr('id', currCellId);
+										}
+										colheaders = (colheaders ? colheaders + ' ' + currCellId : currCellId);
+									}
+								}
+								currCol.dataheader = (colheadersgroup ? colheadersgroup + ' ' + colheaders : colheaders);
+							}
+							
+							if (currCell.col && currCell.col.dataheader) {
+								coldataheader = currCell.col.dataheader;
+							}
+							
+							
+							
+							if (currCell.type === 1) {
+								
+								$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + 
+													(currRow.idsheaderset && coldataheader ? ' ' : '') +
+													(currRow.idsheaderset ? currRow.idsheaderset : '') +
+													((currRow.idsheaderset && ongoingRowHeader) || (coldataheader && ongoingRowHeader && !currRow.idsheaderset) ? ' ' : '') +
+													(ongoingRowHeader ? ongoingRowHeader : ''));
+								
+								if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+									$(currCell.elem).removeAttr('headers');
+								}
+								
+								var currCellId5 = $(currCell.elem).attr('id');
+								if (currCellId5 === undefined || currCellId5 === '' || resetIds) {
+									// currCellId5 = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+									currCellId5 = idPrefix + currCellId5.uid; // Generate a new ID
+									$(currCell.elem).attr('id', currCellId5);
+								}
+								
+								ongoingRowHeader = (ongoingRowHeader !== '' ? ongoingRowHeader + ' ' : '') + currCellId5;
+							}
+							
+							
+							if (currCell.type === 2 || currCell.type === 3) {
+								
+								// Get Current Column Headers
+								currrowheader = rowheaders;
+								
+								if (currCell.addcolheaders) {
+									for (m = 0; m < currCell.addcolheaders.length; m += 1) {
+										var currCellId = $(currCell.addcolheaders[m].elem).attr('id');
+										if (currCellId === undefined || currCellId === '' || resetIds) {
+											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+											currCellId = idPrefix + currCell.addcolheaders[m].uid; // Generate a new ID
+											$(currCell.addcolheaders[m].elem).attr('id', currCellId);
+										}
+										coldataheader = (coldataheader ? coldataheader + ' ' + currCellId : currCellId);
+									}
+								}
+								
+								if (currCell.addrowheaders) {
+									for (m = 0; m < currCell.addrowheaders.length; m += 1) {
+										var currCellId = $(currCell.addrowheaders[m].elem).attr('id');
+										if (currCellId === undefined || currCellId === '' || resetIds) {
+											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+											currCellId = idPrefix + currCell.addrowheaders[m].uid; // Generate a new ID
+											$(currCell.addrowheaders[m].elem).attr('id', currCellId);
+										}
+										currrowheader = (currrowheader ? currrowheader + ' ' + currCellId : currCellId);
+									}
+								}
+								
+								$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (currrowheader && coldataheader ? ' ' : '') + (currrowheader ? currrowheader : ''));
+								if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+									$(currCell.elem).removeAttr('headers');
 								}
 							}
-							if (currCol.header) { 
-								for (m = 0; m < currCol.header.length; m += 1) {
-									var currCellId = $(currCol.header[m].elem).attr('id');
-									if (currCellId === undefined || currCellId === '') {
-										// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-										currCellId = idPrefix + currCell.uid; // Generate a new ID
-										$(currCol.header[m].elem).attr('id', currCellId);
+							
+							if (currCell.type === 4 || currCell.type === 5) {
+								var descHeaders = "";
+								
+								if (currCell.describe) {
+									for (m = 0; m < currCell.describe.length; m += 1) {
+										var currCellId = $(currCell.describe[m].elem).attr('id');
+										if (currCellId === undefined || currCellId === '' || resetIds) {
+											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+											currCellId = idPrefix + currCell.describe[m].uid; // Generate a new ID
+											$(currCell.describe[m].elem).attr('id', currCellId);
+										}
+										descHeaders = (descHeaders ? descHeaders + ' ' + currCellId : currCellId);
+										if (currCell.type === 5 && !$(currCell.describe[m].elem).attr('aria-describedby')) {
+											var currCellId = $(currCell.elem).attr('id');
+											if (currCellId === undefined || currCellId === '' || resetIds) {
+												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+												currCellId = idPrefix + currCell.uid; // Generate a new ID
+												$(currCell.elem).attr('id', currCellId);
+											}
+											$(currCell.describe[m].elem).attr('aria-describedby', currCellId);
+										}
 									}
-									colheaders = (colheaders ? colheaders + ' ' + currCellId : currCellId);
 								}
-							}
-							currCol.dataheader = colheaders;
+								if (currCell.type !== 4) {
+									$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (coldataheader && descHeaders ? ' ' : '') + (descHeaders || ''));
+									if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+										$(currCell.elem).removeAttr('headers');
+									}
+								} else if (!$(currCell.elem).attr('aria-describedby')) {
+									$(currCell.elem).attr('aria-describedby', descHeaders || '');
+									$(currCell.elem).attr('headers', coldataheader || '');
+									if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+										$(currCell.elem).removeAttr('headers');
+									}
+								}
+							}						
+						}
+					}
+				}
+				
+				// Check for any description that are related to the an group header cell
+				
+				for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
+					
+					if (tblparser.lstrowgroup[i].headerlevel.length > 0) {
+						for (j = 0; j < tblparser.lstrowgroup[i].headerlevel.length; j += 1){
+							
+							if (tblparser.lstrowgroup[i].headerlevel[j].descCell) {
+								// Set the aria-describedby
+								var currDescCellId = $(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('id');
+								if (currDescCellId === undefined || currDescCellId === '' || resetIds) {
+									// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+									currDescCellId = idPrefix + tblparser.lstrowgroup[i].headerlevel[j].descCell.uid; // Generate a new ID
+									$(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('id', currDescCellId);
+								}
+								$(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('aria-describedby', currDescCellId);
+								
+								// Set the headers
+								currCellId = $(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('id');
+								if (currCellId === undefined || currCellId === '' || resetIds) {
+									// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+									currCellId = idPrefix + tblparser.lstrowgroup[i].headerlevel[j].uid; // Generate a new ID
+									$(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('id', currCellId);
+								}
+								$(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('headers', currCellId);
+							}	
+							
+						}
+					}
+				}
+				
+				
+				// Horay, now all the table cell have theirs id/headers set as the table was parsed,
+				
+				// Suggestion: Add some aria-label to annonce the data summary, I will ask the WAI Interrest Mailing List to get some liable solution
+				
+				// tfoot question: do I force it as exclusive column summaries as the HTML 5 spec define it if it used as table footnote ??
+				
+				// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
+				
+				// Missing colgroup and col if any
+				var previousColgroup;
+				for (i = 0; i < tblparser.colgroup.length; i += 1) {
+					var colgroupelem;
+					if (tblparser.colgroup[i].elem === undefined) {
+						// Create a colgroup element
+						colgroupelem = $('<colgroup></colgroup>');
+						
+						// Create the column
+						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
+							var column = $('<col />');
+							$(colgroupelem).append(column);
+							tblparser.colgroup[i].col[j].elem = $(column).get(0);
+							$(column).data().tblparser = tblparser.colgroup[i].col[j];
 						}
 						
+						if (previousColgroup) {
+							$(previousColgroup).after(colgroupelem);
+						} else {
+							if ($(tblelement).has('caption')) {
+								$('caption:eq(0)', tblelement).after(colgroupelem);
+							} else {
+								$(tblelement).prepend(colgroupelem);
+							}
+						}
+						previousColgroup = colgroupelem;
 						
-						if (currCell.type === 2 || currCell.type === 3) {
-							
-							// Get Current Column Headers
-							
-							// console.log(currCell.col.dataheader);
-							// console.log(rowheaders);
-							
-							$(currCell.elem).attr('headers', (currCell.col.dataheader ? currCell.col.dataheader : '') + (rowheaders && currCell.col.dataheader ? ' ' : '') + (rowheaders ? rowheaders : ''));
+						tblparser.colgroup[i].elem = $(colgroupelem).get(0);
+						$(colgroupelem).data().tblparser = tblparser.colgroup[i];
+					} else {
+						// Remove the span attribute if exist
+						colgroupelem = tblparser.colgroup[i].elem;
+
+						$(colgroupelem).removeAttr('span');
+						
+						// Create the column
+						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
+							if (tblparser.colgroup[i].col[j].elem === undefined) {
+								var column = $('<col />');
+								$(colgroupelem).append(column);
+								tblparser.colgroup[i].col[j].elem = $(column).get(0);
+								$(column).data().tblparser = tblparser.colgroup[i].col[j];
+							}
 						}
 						
 					}
 				}
 				
+				// TODO: Rebuild the thead, tbody section
+				
+				
+				// Show the result
+				$('#resultTableIdHeaders').show();
+				// '<table>' + $(tblelement).html() + '</table>';
+				
+				
+				
+								
+								 
+				
+				// $('#resultTableIdHeaders').html(prettyPrintOne('<table>' + $(tblelement).html() + '</table>'));
+				
+				$('#resultTableIdHeaders').html('<pre class="prettyprint"><code>' + ('<table>' + $(tblelement).html() + '</table>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '</code></pre>');
+				
+
+				
+				prettyPrint();
 			}
 		
 			
@@ -211,6 +447,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		
 		
 	});
+
+}(jQuery));
 	//]]>
 </script>
 <!-- CustomScriptsCSSEnd -->
@@ -232,7 +470,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="zebra-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="zebra-fra.html" lang="fr">FranÃ§ais</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -276,11 +514,12 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
 
-<h1 id="cn-cont">HTML Table Validator - Table Usability - Web Experience Toolkit (WET)</h1>
+<h1 id="wb-cont">HTML Table Validator - Table Usability - Web Experience Toolkit (WET)</h1>
 
 <p><em>This is a HTML Table Validator to help you to see any issue from your HTML Table. Also you will be able to setup your header/ids attribute</em></p>
 
-<form action="#">
+	<label for="idprefix">Id Prefix:</label> <input id="idprefix" value="tbl" /> <label for="idreset">Reset Ids:</label> <input id="idreset" type="checkbox" /><br />
+	
 <textarea id="inputHTMLtable" class="span-8" rows="20" cols="50">
 
 
@@ -350,7 +589,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 </textarea>
 
-<input type="submit" value="Analyse" />
+<button id="analysetable" value="Analyse">Analyse</button>
 
 
 <div id="directOutput"></div>
@@ -362,9 +601,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 
+<div id="resultTableIdHeaders" class="wet-boew-prettify">
+</div>
+
+<!-- 
 <textarea id="resultTableIdHeaders" class="span-8" rows="20" cols="50"></textarea>
 
-</form>
+-->
+
 
 
 

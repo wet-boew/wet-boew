@@ -10,8 +10,8 @@ IF "%ANT_HOME%" == "" (
 	SET ANT_HOME=c:\ant
 )
 
-IF NOT EXIST %ANT_HOME% (
-	ECHO Please ensure Ant is installed to C:\ant
+IF NOT EXIST "%ANT_HOME%" (
+	ECHO Please ensure Ant is installed to %ANT_HOME%
 	ECHO Otherwise manually run "SET ANT_HOME=Where you installed Ant"
 	EXIT /b 1
 )
