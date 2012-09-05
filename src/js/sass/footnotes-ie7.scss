@@ -11,6 +11,17 @@
 			display: inline-block;
 			dl {
 				margin-bottom: 0;
+				dd {
+					&:focus, &:active, &.footnote-focus {
+						border: 1px dotted #000;
+						margin: 0 0 7px 0;
+						left: -1px;
+						top: -1px;
+						p.footnote-return {
+							top: 1px !important;
+						}
+					}
+				}
 			}
 		}
 	}
