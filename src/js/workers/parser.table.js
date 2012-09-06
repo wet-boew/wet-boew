@@ -790,6 +790,13 @@
 
 			function finalizeRowGroup() {
 
+				// Check if the current rowgroup has been go in the rowgroup setup, if not we do
+				if (!currentRowGroup.type || !currentRowGroup.level) {
+					// Colgroup Setup,
+					rowgroupSetup();
+				}
+
+
 				// console.log('Row Group Finalization');
 
 				// If the current row group are a data group, check each row if we can found a pattern about to increment the data level for this row group
@@ -867,7 +874,9 @@
 
 				// if no cell in the stack and not the first row group, this are a summary group
 				// This is only valid if the first colgroup is a header colgroup.
-				if (rowgroupHeaderRowStack.length === 0 && lstRowGroup.length > 0 && !currentRowGroup.type && colgroupFrame[0] && colgroupFrame[0].type === 1 && !forceDataGroup) {
+				//console.log('rowgroupHeaderRowStack.length: ' + rowgroupHeaderRowStack.length + ' lstRowGroup.length: ' + lstRowGroup.length + ' currentRowGroup.type: ' + currentRowGroup.type);
+				// console.log(' colgroupFrame[0]: ' + colgroupFrame[0] + ' colgroupFrame[0].type: ' + colgroupFrame[0].type + ' forceDataGroup: ' + forceDataGroup);
+				if (rowgroupHeaderRowStack.length === 0 && lstRowGroup.length > 0 && !currentRowGroup.type && colgroupFrame[0] && (colgroupFrame[0].type === 1 || (!colgroupFrame[0].type && colgroupFrame.length > 0)) && !forceDataGroup) {
 					currentRowGroup.type = 3;
 				} else {
 					currentRowGroup.type = 2;
@@ -1636,7 +1645,7 @@
 						row.cell[i].rowlevelheader = currentRowGroup.headerlevel;
 						row.cell[i].rowgroup = currentRowGroup;
 
-						if (i > 0 && row.cell[i - 1].uid === row.cell[i].uid && row.cell[i].type !== 1 && row.cell[i].rowpos === currentRowPos && row.cell[i].colpos <= i) {
+						if (i > 0 && row.cell[i - 1].uid === row.cell[i].uid && row.cell[i].type !== 1 && row.cell[i].type !== 5 && row.cell[i].rowpos === currentRowPos && row.cell[i].colpos <= i) {
 							if (!row.cell[i].addcolheaders) {
 								row.cell[i].addcolheaders = []; // addcolheaders for additional col headers
 							}
@@ -1735,6 +1744,8 @@
 						processRow(this);
 					});
 
+					finalizeRowGroup();
+					
 					// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
 					$.each(spannedRow, function () {
 						if (this.spanHeight > 0) {
@@ -1748,7 +1759,6 @@
 					currentRowHeader = [];
 
 					currentTbodyID += 1;
-					finalizeRowGroup();
 					break;
 					// case 'tfoot':
 					//currentRowGroupElement = this;
