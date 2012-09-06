@@ -7,15 +7,6 @@
 
 	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
 
-	<target name="build" description="" depends="-init, compile.sass" />
-  
-	<target name="-init" depends="-build-jruby">
-		<mkdir dir="${build.dir}"/>
-	</target>
+	<target name="build" depends="-init, compile.sass" />
 
-	<target name="clean"></target>
-	
-	<target name="clean-css">
-		<delete dir="${src.dir}/css" />
-	</target>
 </project>

@@ -3,15 +3,25 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
- 
+
+/*SCSS Variables*/
+$clrLight: #EEE;
+$clrDark: #555;
+
 /*Default SCSS*/
 .ie7 {
 	.wet-boew-footnotes {
 		display: inline-block;
-		dl dt {
-			position:relative;
-			float:left;
-			margin-bottom:-1px;
+		dl {
+			dt {
+				position:relative;
+				float:left;
+				margin-bottom:-1px;
+			}
+			dd.footnote-focus {
+				background-color: $clrLight;
+				border-color: $clrDark;
+			}
 		}
 	}
 }

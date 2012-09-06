@@ -52,6 +52,7 @@
 				captions,
 				flash = true,
 				$fbObject,
+				poster,
 				fbVideoType = 'video/mp4',
 				fbAudioType = 'audio/mp3', //MP3
 				fbBin = _pe.add.liblocation + 'bin/multimedia.swf?seed=' + Math.random(),
@@ -77,15 +78,18 @@
 				captions = media.children('track[kind="captions"]').attr("src");
 			}
 
-			if (media.get(0).currentSrc !== '' && media.get(0).currentSrc !== undefined) {
+			if (media.get(0).error === null && media.get(0).currentSrc !== '' && media.get(0).currentSrc !== undefined) {
 				canPlay = true;
 			} else {
 				//No nativly supported format provided, trying Flash fallback
 				//TODO:Add Flash detection
 				fbVars = 'id=' + elm.attr('id');
-				if (flash && media_type === 'video' && media.find('source').filter('[type="' + fbVideoType + '"]').length > 0) {
-					fbVars +=  '&height=' + media.height() + '&width=' + media.width() + '&posterimg=' + encodeURI(_pe.url(media.attr('poster')).source) + '&media=' + encodeURI(_pe.url(media.find('source').filter('[type="' + fbVideoType + '"]').attr('src')).source);
-					canPlay = true;
+				if (media_type === 'video') {
+					poster = '<img src="' + media.attr("poster") + '" width="' + width + '" height="' + height + '" alt="' + media.attr("title") + '"/>';
+					if (flash && media.find('source').filter('[type="' + fbVideoType + '"]').length > 0) {
+						fbVars +=  '&height=' + media.height() + '&width=' + media.width() + '&posterimg=' + encodeURI(_pe.url(media.attr('poster')).source) + '&media=' + encodeURI(_pe.url(media.find('source').filter('[type="' + fbVideoType + '"]').attr('src')).source);
+						canPlay = true;
+					}
 				} else if (flash && media_type === 'audio' && media.find('source').filter('[type="' + fbAudioType + '"]').length > 0) {
 					fbVars += '&media=' + _pe.url(media.find('source').filter('[type="' + fbAudioType + '"]').attr('src')).source;
 					canPlay = true;
@@ -94,13 +98,13 @@
 				}
 				//Can play using a fallback
 				if (canPlay) {
-					$fbObject = $('<object play="" pause="" id="' + media_id + '" width="' + width + '" height="' + height + '" class="' + media_type + '" type="application/x-shockwave-flash" data="' + fbBin + '" tabindex="-1"><param name="movie" value="' + fbBin + '"/><param name="flashvars" value="' + fbVars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>');
+					$fbObject = $('<object play="" pause="" id="' + media_id + '" width="' + width + '" height="' + height + '" class="' + media_type + '" type="application/x-shockwave-flash" data="' + fbBin + '" tabindex="-1"><param name="movie" value="' + fbBin + '"/><param name="flashvars" value="' + fbVars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>' + (typeof poster === 'string' ? poster : ''));
 					media.before($fbObject);
 					media.remove();
 					media = $fbObject;
 				} else {
-					if (media.is('video')) {
-						media.before('<img src="' + media.attr("poster") + '" width="' + width + '" height="' + height + '" alt="' + media.attr("title") + '"/>');
+					if (poster !== undefined) {
+						media.before($(poster));
 						media.remove();
 					}
 				}

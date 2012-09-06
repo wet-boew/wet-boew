@@ -6,7 +6,7 @@
 video, object.video {
 	width:100%;
 	background-color: #000;
-	margin-bottom:-5px;
+	margin-bottom:-4px;
 }
 
 .wb-mm-captionsarea{
@@ -21,7 +21,7 @@ video, object.video {
 
 	.wb-mm-overlay {
 		position:absolute;
-		background:transparent;
+		background:rgba(0,0,0,0.001);
 		border:0;
 		width:100%;
 		* {
@@ -126,5 +126,12 @@ $progress-color: #000;
 			background-color:$progress-color!important;
 			padding:0;
 		}
+	}
+}
+
+@media print {
+	.wb-mm-controls, .wb-mm-overlay
+	{
+		display:none;
 	}
 }

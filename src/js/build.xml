@@ -7,13 +7,9 @@
 
 	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
 
-	<target name="build" description="" depends="-init, -minify" />
+	<target name="build" depends="-init, -minify" />
 
-	<target name="-init" depends="-build-jruby"> <!-- Future depends: -can-nodejs-coffeescript -->
-		<mkdir dir="${build.dir}"/>
-	</target>
-
-	<target name = "-minify" depends="compile.sass, build-js, build-css">
+	<target name = "-minify" depends="compile.sass, build-js, -base64-encode">
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/premin" toDir="${build.dir}">
 			<include name="*.*" />
 			<include name="i18n/*.*" />
@@ -69,8 +65,6 @@
 			</resources> 
 		</copy> 
 	</target>
-
-	<target name="build-css" depends="-base64-encode" />
 
 	<!-- Build JS Tasks -->
 	<target name="-build-pe" depends="-merge-workers">
