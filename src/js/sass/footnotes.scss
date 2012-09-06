@@ -18,11 +18,13 @@ sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 	border: 1px solid $clrMedium;
 	padding: 0 4px 1px;
 	&:hover, &:focus, &:active {
+		color: $clrWhite !important;
+		background-color: $clrDark;
 		border-color: $clrDark;
+		text-shadow: none !important;
 	}
 }
-sup:target a.footnote-link, .wet-boew-footnotes dl dd:target p.footnote-return a, 
-sup:focus a.footnote-link, .wet-boew-footnotes dl dd:focus p.footnote-return a {
+.wet-boew-footnotes dl dd:focus p.footnote-return a {
 	color: $clrWhite !important;
 	background-color: $clrDark;
 	border-color: $clrDark;
@@ -60,7 +62,7 @@ table th sup a.footnote-link {
 			position: relative;
 			margin: $spacing 0;
 			border: 1px solid transparent;
-			&:target, &:focus {
+			&:focus {
 				background-color: $clrLight;
 				border-color: $clrDark;
 			}
