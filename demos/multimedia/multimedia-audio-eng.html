@@ -8,28 +8,27 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
-<title>Accessible footnotes - Working examples - Web Experience Toolkit (WET)</title>
+<title>Multimedia player Audio - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="dcterms.description" content="English description/Description en anglais" />
-<meta name="description" content="English description/Description en anglais" />
-<meta name="keywords" content="English keywords/Mots-clés en anglais" />
-<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
-<meta name="dcterms.title" content="English title/Titre en anglais" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../build/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <!--[if lte IE 8]>
 <script src="../../build/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../build/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
@@ -54,7 +53,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="footnotes-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="multimedia-audio-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -64,7 +63,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
 <input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
@@ -87,7 +86,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <ol>
 <li><a href="../../docs/index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li>Accessible footnotes</li>
+<li>Multimedia player Audio</li>
 </ol>
 </div></div>
 </nav>
@@ -97,50 +96,21 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Accessible footnotes</h1>
+<h1 id="wb-cont">Multimedia player Audio - Web Experience Toolkit (WET)</h1>
+<section>
 
-<section><h2>Overview</h2>
-<p>The purpose of the Accessible Footnotes sub-project is to implement a consistent, accessible way of handling footnotes across Government of Canada web sites<sup id="fnb1a-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup>. The main concept behind this solution is to place footnotes in a definition list, within a dedicated section. An example of this can be found in the <a href="#fnb">Footnotes</a> section. Supporting CSS is used to lay out the footnotes and hide navigational aids<sup id="fnb1b-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup>.</p>
-</section>
-<section><h2>Benefits</h2>
-<ul>
-	<li>Conforms to WCAG 2.0 AA<sup id="fnb2a-ref"><a class="footnote-link" href="#fnb2"><span class="wb-invisible">Footnote </span>2</a></sup></li>
-	<li>Progressive enhancement approach</li>
-	<li>Support for Firefox, Opera, Safari, Chrome, and IE 7+<sup id="fnb2b-ref"><a class="footnote-link" href="#fnb2"><span class="wb-invisible">Footnote </span>2</a></sup></li>
-	<li>Support for English and French<sup id="fnb2c-ref"><a class="footnote-link" href="#fnb2"><span class="wb-invisible">Footnote </span>2</a></sup></li>
-	<li>Configurable layout and design</li>
-</ul>
-</section>
-<section><h2>Recommended usage</h2>
-<ul>
-	<li>Implementing footnotes in Web pages<sup id="fnb3-ref"><a class="footnote-link" href="#fnb3"><span class="wb-invisible">Footnote </span>3</a></sup></li>
-</ul>
-</section>
+	<p>The new version of the multimedia player leverages native HTML5 audio tag and relies on Flash as a fallback mechanism when the HTML5 audio tag is not implemented. The MP3 format (H264 codec) is the minimum requirement for the player because the Flash fallback relies on it and MP3 is a widely supported format on many mobile devices. An optional but highly recommended format, OGG Vorbis, should be added as well to allow some browsers such as Firefox that do not include native support for MP3 to leverage the HTML5 native performance gains. The multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
 
-<section><div class="wet-boew-footnotes" role="note"><h2 id="fnb" class="wb-invisible">Footnotes</h2>
-<dl>
-	<dt>Footnote 1</dt>
-	<dd id="fnb1">
-		<p>Example of a footnote being referenced by multiple pieces of content.</p>
-		<p class="footnote-return"><a href="#fnb1a-ref"><span class="wb-invisible">Return to <span>first</span> footnote </span>1<span class="wb-invisible"> referrer</span></a></p>
-	</dd>
-	<dt>Footnote 2</dt>
-	<dd id="fnb2">
-		<p>Example of a footnote being referenced by multiple pieces of content.</p>
-		<p class="footnote-return"><a href="#fnb2a-ref"><span class="wb-invisible">Return to <span>first</span> footnote </span>2<span class="wb-invisible"> referrer</span></a></p>
-	</dd>
-	<dt>Footnote 3</dt>
-	<dd id="fnb3">
-		<p>Example of a footnote containing multiple paragraphs (first paragraph).</p>
-		<p>Example of a footnote containing multiple paragraphs (second paragraph).</p>
-		<p>Example of a footnote containing multiple paragraphs (third paragraph).</p>
-		<p class="footnote-return"><a href="#fnb3-ref"><span class="wb-invisible">Return to footnote </span>3<span class="wb-invisible"> referrer</span></a></p>
-	</dd>
-</dl>
-</div></section>
-
+    <div class="wet-boew-multimedia span-4">
+	<h2>Audio Example (Ride of the Valkyries)</h2>
+	<audio title="Audio Example (Ride of the Valkyries)">
+		<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" />
+		<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" />
+	</audio>
+    </div>
+</section>
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-07-27</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
@@ -206,8 +176,5 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <script src="../../build/js/settings.js"></script>
 <script src="../../build/js/pe-ap-min.js"></script>
 <!-- ScriptsEnd -->
-<!-- TestStart -->
-<script src="../../src/js/workers/footnotes.js"></script>
-<!-- TestEnd -->
 </body>
 </html>

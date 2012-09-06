@@ -3,20 +3,58 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
- 
- 	#wb-body h1, #cn-in-pd h3 {position: absolute; clip: rect(1px, 1px, 1px, 1px); height: 1px !important; width: 1px !important; overflow: hidden !important;}
-	*:first-child+html #wb-body h1, *:first-child+html  #cn-in-pd h3 {clip: rect(1px 1px 1px 1px); height: 1px !important; width: 1px !important; overflow: hidden !important;}
-	#wb-skip {display:none;visibility:hidden;}
-
-	#cn-left-msg, #cn-right-msg {width: 49%;}
-	#cn-left-msg {float: left;}
-	#cn-right-msg {float: right;}
-
-	#cn-in-pd ul {list-style-type: none; margin: -2px 0 0 0;}
-	#cn-in-pd ul li {width: 47%; margin-top: 5px;}
-	#cn-inotices-link-left {float: left;}
-	#cn-inotices-link-right {float: right; text-align: right;}
-	.cn-doc-dates {margin: 0px; width: 100%; float: left; clear: left; min-width: 6em; margin-top: 5px;}
-	.cn-doc-dates dt {display: inline;}
-	.cn-doc-dates dd {margin-left: 0px; display: inline;}
-	.cn-doc-dates dd span {white-space: nowrap;}
+#wb-body h1, #cn-in-pd h3{
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px !important;
+	width: 1px !important;
+	overflow: hidden !important;
+}
+#wb-skip{
+	display:none;
+	visibility:hidden;
+}
+#cn-left-msg, #cn-right-msg{
+	width: 49%;
+}
+#cn-left-msg{
+	float: left;
+}
+#cn-right-msg{
+	float: right;
+}
+#cn-in-pd{
+	ul{
+		list-style-type: none;
+		margin: -2px 0 0 0;
+		li{
+			width: 47%;
+			margin-top: 5px;
+		}
+	}
+}
+#cn-inotices-link-left{
+	float: left;
+}
+#cn-inotices-link-right{
+	float: right;
+	text-align: right;
+}
+.cn-doc-dates{
+	margin: 0px;
+	width: 100%;
+	float: left;
+	clear: left;
+	min-width: 6em;
+	margin-top: 5px;
+	dt{
+		display: inline;
+	}
+	dd{
+		margin-left: 0px;
+		display: inline;
+		span{
+			white-space: nowrap;
+		}
+	}
+}
