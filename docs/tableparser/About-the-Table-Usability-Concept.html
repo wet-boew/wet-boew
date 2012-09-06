@@ -284,7 +284,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <div class="clear"></div>
 
-<p>I am sure you prefer the first table with the zebra stripping. Why ? Simply because you have the perception of the group summary (the row cell header &quot;Total&quot; at the end of the table). The table usability concept is about several small HTML technique for web editor/web developper. With the combinaison of all those technique, the user experience would be enhanced. Also this concept define of what is an acceptable complex table. The following tables quickly show the concept of descriptive cell, key cell, layout cell and multiple row/column group summary. The second table is the same but without the zebra stripping.</p>
+<p>I am sure you prefer the first table with the zebra stripping. Why ? Simply because you have the perception of the group summary (the row cell header &quot;Total&quot; at the end of the table). The table usability concept is about twelve small HTML technique for web editor/web developper. With the combinaison of all those technique, the user experience can be enhanced. This concept define of what can be a limit of an acceptable complex table. The following tables quickly show the concept of descriptive cell, key cell, layout cell and multiple row/column group summary. The second table is the same but without the zebra stripping.</p>
 
 
 <table class="wet-boew-zebra">
@@ -465,7 +465,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 
 <table>
-	<caption>With the zebra stripping</caption>
+	<caption>Without the zebra stripping</caption>
 	<colgroup>
 		<col />
 		<col />
@@ -641,63 +641,92 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </table>
 
 
-<h2>Interrested ?</h2>
+<h2>Technique related to this concept</h2>
 
-<p>This documetation would give you a new perpective on how you see complex table. You will see also how you can use the <em>tbody</em>, <em>colgroup</em> and <em>col</em> elements in your table markup in the most efficient way. </p>
-
+<h3>Issued from the WET Toolbox 3.0</h3>
 <ol>
-	<li><a href="ExtendedDefinition.html">Extended definition of HTML 5 table elements</a></li>
-	<li><a href="SummaryRowGroup.html">Summary Row Group</a></li>
-	<li>Header Column Group
-		<ol>
-			<li>Key Cell</li>
-			<li>Descriptive Row Header Cell</li>
-		</ol>
-	</li>
-	<li>Header Row Group</li>
-	<li>Summary Column Group</li>
-	<li>Cell Header Nesting
-		<ol>
-			<li>Basic usage</li>
-			<li>Use of Key Cell and Descriptive Cell</li>
-		</ol>
-	</li>
-	<li>Simple Table</li>
-	<li>Case Studies
-		<ol>
-			<li>Case #1</li>
-			<li>Case #2</li>
-			<li>Case #3</li>
-		</ol>
-	</li>
+<li><a href="keycell-techniques.html">Defining a Key Cell</a></li>
+<li><a href="rowgrouping-techniques.html">Defining a Data Row Group</a></li>
+<li><a href="summariesrowgroup-techniques.html">Summaries a Data Row Group</a></li>
+<li><a href="headerrowgroupstructure-techniques.html">Structuring the Header Row</a></li>
+<li><a href="rowheader-description-techniques.html">Describing a Row Header Cell</a></li>
+<li><a href="rowgroupheader-description-techniques.html">Describing a Row Group Header Cell</a></li>
+<li><a href="colgroupheader-techniques.html">Defining Column Group Header</a></li>
+<li><a href="headercolgroupstructure-techniques.html">Structuring the Header Column Cell</a></li>
+<li><a href="datacolgroup-techniques.html">Defining a Data Column Group</a></li>
+<li><a href="colgroupsummary-techniques.html">Summaries a Data Column Group</a></li>
+<li><a href="colheader-description-techniques.html">Describing a Column Header Cell</a></li>
+<li><a href="layoutcell-techniques.html">Defining a Layout Cell</a></li>
 </ol>
 
-<h2>Want More ?</h2>
-
-<p>So, I imagine you understand the new table concept and how you can HTML code it. May be by reading this documentation you have get idea. As mentionned couple time in the documentation. The full concept is currently supported by a Javascript table parser. The following documentation will show you how to access to the parsed data and how you will be able to create your famous plugin based on table usability concept. The table parser require the jQuery framework.</p>
+<h3>From the WCAG 2.0</h3>
 
 <ul>
-	<li>Get the standalone uncompressed version of the table parser</li>
-	<li>Get access to the digested information</li>
-	<li>Data Structure</li>
-	<li><em>table</em> element</li>
-	<li><em>caption</em> element</li>
-	<li><em>colgroup</em> element</li>
-	<li><em>col</em> element</li>
-	<li><em>thead</em> element</li>
-	<li><em>tbody</em> element</li>
-	<li><em>tfoot</em> element</li>
-	<li><em>th</em> element</li>
-	<li><em>td</em> element</li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H51">H51: Using table markup to present tabular information</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H39">H39: Using caption elements to associate data table captions with data tables</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H73">H73: Using the summary attribute of the table element to give an overview of data tables</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H63">H63: Using the scope attribute to associate header cells and data cells in data tables</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H43">H43: Using id and headers attributes to associate data cells with header cells in data tables</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H79">H79: Identifying the purpose of a link using link text combined with its enclosing table cell and associated table headings</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F34">F34: Failure of Success Criterion 1.3.1 and 1.3.2 due to using white space characters to format tables in plain text content</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F49">F49: Failure of Success Criterion 1.3.2 due to using an HTML layout table that does not make sense when linearized</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F46">F46: Failure of Success Criterion 1.3.1 due to using th elements, caption elements, or non-empty summary attributes in layout tables</a></li>
+	<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G57">G57: Ordering the content in a meaningful sequence</a></li>
+</ul>
+
+
+<h2>More Resource</h2>
+
+<ul>
+	<li><a href="ExtendedDefinition.html">Extended definition of HTML 5 table elements</a></li>
+	<li><a href="validator-htmltable.html">HTML Table Validator</a> <em>(With ids/headers/aria-describedby auto assignation)</em></li>
+</ul>
+
+<h3>Zebra striping for tables</h3>
+<ul>
+<li><a href="zebra/columnhightlight.html"><span class="wb-invisible">Zebra striping - </span>Column highlight table</a></li>
+<li><a href="zebra/simple.html"><span class="wb-invisible">Zebra striping - </span>Simple table</a></li>
+<li><a href="zebra/simplegrouping.html"><span class="wb-invisible">Zebra striping - </span>Simple grouping table</a></li>
+<li><a href="zebra/invoice.html"><span class="wb-invisible">Zebra striping - </span>Invoice table</a></li>
+<li><a href="zebra/rowlevelwithsummary.html"><span class="wb-invisible">Zebra striping - </span>Row level with summary table</a></li>
+</ul>
+
+<h3>Case Studies</h3>
+
+<ol>
+	<li><a href="Table-CaseStudies.html">Case Studies #1</a></li>
+	<li><a href="Table-CaseStudies-2.html">Nutrition Facts table</a></li>
+	<li><a href="Table-CaseStudies-3.html">Ottawa Senators vs. Buffalo Sabres - Game ID # 270519002</a></li>
+</ol>
+
+<h3>Table Parser - Technical Documentation </h3>
+
+<p><em>Documentation in progress...</em></p>
+<ul>
+	<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/parser.table.js">Standalone uncompressed version of the table parser</a></li>
+	<li>How to access to the digested information</li>
+	<li>Data Structure
+		<ul>
+			<li><em>table</em> element</li>
+			<li><em>caption</em> element</li>
+			<li><em>colgroup</em> element</li>
+			<li><em>col</em> element</li>
+			<li><em>thead</em> element</li>
+			<li><em>tbody</em> element</li>
+			<li><em>tfoot</em> element</li>
+			<li><em>th</em> element</li>
+			<li><em>td</em> element</li>
+		</ul>
+	</li>
 </ul>
 
 <h2>Question / Comment ?</h2>
 
-<p>You can contact me via twitter <a href="https://twitter.com/duboi5p">@duboi5p</a>.</p>
+<p>You can contact me via twitter <a href="https://twitter.com/duboi5p">@duboi5p</a> or by submiting an <a href="https://github.com/wet-boew/wet-boew/issues">issue on the wet-boew github</a>.</p>
 
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-07-05</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-09-05</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

@@ -25,6 +25,9 @@ $pBtmSpace: $ddBtmSpace / 2;
 		&:hover, &:focus, &:active {
 			border-color: #666;
 		}
+		&:focus, &:active {
+			outline: 1px dotted #000;
+		}
 	}
 	.wet-boew-footnotes {
 		margin: 2em 10px 0 10px;
@@ -56,6 +59,9 @@ $pBtmSpace: $ddBtmSpace / 2;
 			dd {
 				position: relative;
 				margin: 0 0 $ddBtmSpace;
+				&:focus, &:active {
+					outline: 1px dotted #000;
+				}
 				p {
 					margin: 0 0 $pBtmSpace $dtFullSpace;
 					/*manage the left and bottom spacing via SASS?*/
