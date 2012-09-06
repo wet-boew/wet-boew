@@ -236,7 +236,6 @@
 					}, opts.cycle - 200, 'linear', function () {
 						$(this).width(0).hide();
 						selectTab(getNextTab($tabs), $tabs, $panels, opts, true);
-						console.log($tabs.eq(0).attr('aria-selected') + ', ' + $tabs.eq(1).attr('aria-selected') + ', ' + $tabs.eq(2).attr('aria-selected'));
 						return elm.data('interval', setTimeout(function () {
 							return cycle($tabs, $panels, opts);
 						}, 0));
