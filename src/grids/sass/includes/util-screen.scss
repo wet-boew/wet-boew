@@ -291,7 +291,7 @@ kbd{
 }
 
 /*	 progress effects	 */
-[class*="thermometer"] {
+[class*="background-"] p[class*="thermometer"] {
 	padding-bottom: 230px !important;
 	background:{
 		repeat: no-repeat;
