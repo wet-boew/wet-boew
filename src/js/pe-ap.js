@@ -784,8 +784,8 @@
 								nested.each(function (index) {
 									var $this = $(this),
 										hlink_html,
-										headingIndexOpen = '<h' + hlevel + 1 + index + '>',
-										headingIndexClose = '</h' + hlevel + 1 + index + '>';
+										headingIndexOpen = '<h' + (hlevel + 1 + index) + '>',
+										headingIndexClose = '</h' + (hlevel + 1 + index) + '>';
 									if ((hlevel + 1 + index) < 7) {
 										// Make the nested list into a collapsible section
 										hlink = $this.prev('a');
@@ -810,7 +810,7 @@
 							}
 							menu.append(subsection);
 						} else if (this.tagName.toLowerCase() === 'div') { // If the menu item is a div
-							menu.append($this.children('a').attr({ 'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right' }));
+							menu.append($this.children('a').removeClass().attr({ 'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right' }));
 						}
 					});
 					menu.children().wrapAll(collapsibleSet);

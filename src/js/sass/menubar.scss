@@ -138,3 +138,42 @@
 .mb-container{
 	position:relative;
 }
+
+.mb-sm{
+	.mb-highlights:first-child{
+		margin-top:-10px;
+	}
+	.clear > .mb-highlights:first-child{
+		margin-top:0;
+	}
+}
+
+.mb-highlight{
+	background-color:#E5E5E5;
+	border-bottom:1px solid #bbb;
+	margin-bottom:10px;
+	padding:10px;
+	font-weight:700;
+	color:#666;
+	a{
+		display:inline-block !important;
+		font-weight:400 !important;
+		&.button {
+			padding:5px 10px !important;
+		}
+	}
+	a + a{
+		border-left:1px solid #999;
+		padding:0.25em 1em !important;
+	}
+	p {
+		margin:0;
+	}
+}
+
+div + .mb-highlight, ul + .mb-highlight{
+	border-bottom:medium none;
+	border-top:1px solid #bbb;
+	margin-bottom:0;
+	margin-top:0;
+}
