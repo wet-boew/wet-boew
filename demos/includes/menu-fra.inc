@@ -12,7 +12,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </ul>
 </div>
 <div class="clear"></div>
-<div class="mb-highlight"><a class="button button-accent" href="#">Tous - Projet de la BOEW</a></div>
+<div class="mb-highlight"><a class="button button-accent" href="http://wet-boew.github.com/wet-boew/docs/index-fra.html">Tous - Projet de la BOEW</a></div>
 </div></section></li>
 <li><section><h3><a href="section2/index-fra.html">Section 2</a></h3><div class="mb-sm">
 <div class="span-2">
