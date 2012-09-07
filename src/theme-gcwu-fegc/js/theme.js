@@ -105,7 +105,7 @@
 				mb_dialogue += '</nav></div></div></div>';
 				pe.pagecontainer().append(mb_dialogue);
 				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="dialog"></a>');
-				_list += '<li><a data-rel="dialog" data-theme="b" data-icon="grid" href="#jqm-wb-mb">' + mb_header.find('a').text() + '</a></li>';
+				_list += '<li><a data-rel="dialog" data-theme="b" data-icon="site-menu" href="#jqm-wb-mb">' + mb_header.find('a').text() + '</a></li>';
 			}
 			if (wet_boew_theme.search.length > 0) {
 				// :: Search box transform lets transform the search box to a dialog box
