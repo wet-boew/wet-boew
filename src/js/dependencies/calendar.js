@@ -148,7 +148,7 @@
 						btn.children('img').attr('alt', alt);
 					} else {
 						btnCtn = $('<div class="cal-' + suffix + '"></div>');
-						btn = $('<a href="javascript:;" role="button"><img src="' + pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.gif" alt="' + alt + '" /></a>');
+						btn = $('<a href="javascript:;" role="button"><img class="image-actual" src="' + pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.gif" alt="' + alt + '" /></a>');
 
 						btnCtn.append(btn);
 						if (n === 0) {
