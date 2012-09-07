@@ -24,12 +24,6 @@ sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 		text-shadow: none !important;
 	}
 }
-.wet-boew-footnotes dl dd:focus p.footnote-return a {
-	color: $clrWhite !important;
-	background-color: $clrDark;
-	border-color: $clrDark;
-	text-shadow: none !important;
-}
 table th sup a.footnote-link {
 	background-color: $clrWhite;
 	text-shadow: none;
@@ -65,6 +59,13 @@ table th sup a.footnote-link {
 			&:focus {
 				background-color: $clrLight;
 				border-color: $clrDark;
+				p.footnote-return a {
+					/*Re-uses the same properties as regular footnote links in hover/focus/active states... leverage placeholder selectors (i.e. %foo) once SASS 3.2.1 or higher gets implemented*/
+					color: $clrWhite !important;
+					background-color: $clrDark;
+					border-color: $clrDark;
+					text-shadow: none !important;
+				}
 			}
 			p {
 				margin: 0 0 0 ($spacing + $ddRtnWidth);
