@@ -135,27 +135,6 @@
 	top:0;
 	right:0;
 }
-#gcwu-subsite{
-	border-top:1px solid #ccc;
-	clear:left;
-	font-size:130%;
-	text-shadow: 1px 1px 1px #333;
-	p{
-		margin:0 auto;
-		padding-top:4px;
-		padding-bottom:7px;
-	}
-	a{
-		text-shadow: 1px 1px 1px #333;
-		border-left:1px solid #ccc;
-		font-size:75%;
-		&:first-child{
-			border-left:none;
-			padding-left:0;
-			font-size:100%;
-		}
-	}
-}
 #wb-core-in{
 	padding-top:0;
 }
