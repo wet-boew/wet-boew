@@ -517,6 +517,31 @@ a:active{
     border:0;
 }
 
+/* Custom jquery.mobile icons */
+.ui-icon-site-menu {
+	background-image: url(../images/icons-18-white.png);
+}
+.ui-icon-alt {
+	background-image: url(../images/icons-18-black.png);
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+	
+	.ui-icon-site-menu {
+		background-image: url(../images/icons-36-white.png);
+	}
+	.ui-icon-alt {
+		background-image: url(../images/icons-36-black.png);
+	}
+}
+
+/* Position the custom icons  */
+.ui-icon-site-menu {
+	background-position: 0px 50%;
+}
+
 .no-js {
 	#gcwu-srch{
 		margin-top:3px;
