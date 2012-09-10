@@ -222,7 +222,6 @@
 						o = $w.find('.wb-mm-overlay');
 						o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
 						o.show();
-						this.setBuffering(false);
 						break;
 					case 'volumechange':
 						b = $w.find('.mute').empty();
