@@ -201,7 +201,7 @@
 				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
-				evtmgr.on('timeupdate seeked canplay play volumechange pause ended waiting captionsloaded captionsloadfailed captionsvisiblechange', $.proxy(function (e) {
+				evtmgr.on('timeupdate seeked canplay play volumechange pause ended waiting captionsloaded captionsloadfailed captionsvisiblechange progress', $.proxy(function (e) {
 					var $w = $(this),
 						b,
 						p,
@@ -263,9 +263,9 @@
 					case 'captionsloadfailed':
 						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%captionserror') + '</p>');
 						break;
-					// Determine when the loading icon should be shown.  Change to 'waiting' event once browsers have implmeneted.
+					// Determine when the loading icon should be shown. 
 					case 'waiting':
-						//Prevents the loading icon to show up when waiting fior less than half a second
+						//Prevents the loading icon to show up when waiting for less than half a second
 						this.loading = setTimeout(function () {
 							o = $w.find('.wb-mm-overlay');
 							o.empty().append(_pe.fn.multimedia._get_loading_ind($w, 'loading', _pe.dic.get('%loading'), 100, 100));
@@ -274,9 +274,26 @@
 						break;
 					case 'canplay':
 						clearTimeout(this.loading);
-						o = $w.find('.wb-mm-overlay');
-						o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
-						o.hide();
+						if (this.getPaused() === false) {
+							o = $w.find('.wb-mm-overlay');
+							o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
+							o.hide();
+						}
+						break;		
+					// Fallback for browsers that don't implement the waiting/canplay events
+					case 'progress':
+						// Waiting detected, display the loading icon
+						if (this.getWaiting() === true) {
+							if (this.getBuffering() === false) {
+								this.setBuffering(true);
+								evtmgr.trigger('waiting');								
+							}								
+						// Waiting has ended, but icon is still visible - remove it.
+						} else if (this.getBuffering() === true) {							
+							this.setBuffering(false);
+							evtmgr.trigger('canplay');
+						}
+						this.setPreviousTime(this.getCurrentTime());
 						break;
 					}
 				}, elm.get(0)));
@@ -418,6 +435,14 @@
 				if (typeof this.object.currentTime !== 'function') {this.object.currentTime = t; } else {this.object.setCurrentTime(t); }
 			},
 
+			getPreviousTime: function () {
+				return (typeof this.object.previousTime !== 'undefined' ? this.object.previousTime : 0);
+			},
+
+			setPreviousTime: function (t) {
+				this.object.previousTime = t;
+			},			
+			
 			getCaptionsVisible: function () {
 				return $(this).find('.wb-mm-captionsarea').is(':visible');
 			},
@@ -445,7 +470,19 @@
 
 			setVolume : function (v) {
 				if (typeof this.object.volume !== 'function') {this.object.volume = v; } else {this.object.setVolume(v); }
-			}
+			},
+			
+			getWaiting : function () {
+				return this.getPaused() === false && this.getCurrentTime() === this.getPreviousTime();
+			},
+			
+			getBuffering : function () {
+				return (typeof this.object.buffering !== 'undefined' ? this.object.buffering : false);
+			},
+
+			setBuffering : function (b) {
+				this.object.buffering = b;
+			}			
 		},
 
 		_format_time : function (current) {
