@@ -144,6 +144,15 @@
 		vertical-align: middle;
 		@include inline-block;
 	}
+	.form-radio.form-label-inline,.form-checkbox.form-label-inline	{
+		display:inline-block;
+		padding-top:5px;
+		margin-bottom:0;
+		vertical-align:middle;
+	}
+	.form-radio.form-label-inline + .form-radio.form-label-inline,.form-checkbox.form-label-inline + .form-checkbox.form-label-inline {
+		margin-left:10px;
+	}
 	
 	.form-input-prepend, .form-input-append {
 		
@@ -164,7 +173,7 @@
 			*min-width: auto;
 			padding: 4px; 
 			text-align: center;
-			vertical-align: middle;
+			vertical-align: top;
 			
 			&:first-child { @include border-left-radius; margin-right: -1px; }
 			&:last-child { @include border-right-radius; margin-left: -1px; }
