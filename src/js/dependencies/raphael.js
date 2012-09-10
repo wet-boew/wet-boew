@@ -3746,7 +3746,7 @@
 // +---------------------------------------------------------------------+ \\
 // ¦ Raphaël - JavaScript Vector Library								 ¦ \\
 // +---------------------------------------------------------------------¦ \\
-// ¦ SVG Module														  	 ¦ \\
+// ¦ SVG Module															 ¦ \\
 // +---------------------------------------------------------------------¦ \\
 // ¦ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)	 ¦ \\
 // ¦ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)			 ¦ \\
@@ -4843,7 +4843,7 @@ window.Raphael.svg && function (R) {
 // +---------------------------------------------------------------------+ \\
 // ¦ Raphaël - JavaScript Vector Library								 ¦ \\
 // +---------------------------------------------------------------------¦ \\
-// ¦ VML Module														  	 ¦ \\
+// ¦ VML Module															 ¦ \\
 // +---------------------------------------------------------------------¦ \\
 // ¦ Copyright (c) 2008-2011 Dmitry Baranovskiy (http://raphaeljs.com)	 ¦ \\
 // ¦ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)			 ¦ \\
