@@ -274,7 +274,7 @@ img{
 		color:#fff;
 		text-align:center;
 		font-size:1em;
-		text-transform:xxxcapitalize;
+		text-transform:capitalize;
 		position:relative;
 		font-weight:700;
 		margin:0;
@@ -283,6 +283,12 @@ img{
 		border-bottom:1px solid #000;
 		border-left:1px solid #000;
 		border-right:none;
+	}
+}
+
+#gcwu-psnb h2 {
+	span {
+		display: none;
 	}
 }
 
@@ -366,6 +372,18 @@ img{
 
 .ui-dialog h1 {
 	border-bottom: none;
+}
+
+#gcwu-bnr .ui-navbar a.ui-btn-active {
+	background-color:#444444;
+	background-image:-webkit-gradient(linear,left top,left bottom,from(#606060),to(#333333));
+	background-image:-webkit-linear-gradient(#606060,#333333);
+	background-image:-moz-linear-gradient(#606060,#333333);
+	background-image:-ms-linear-gradient(#606060,#333333);
+	background-image:-o-linear-gradient(#606060,#333333);
+	background-image:linear-gradient(#606060,#333333);
+	border:1px solid #000;
+	border-right:none;
 }
 
 #jqm-wb-mb, #jqm-wb-search {
@@ -522,7 +540,6 @@ a:active{
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (min--moz-device-pixel-ratio: 1.5),
        only screen and (min-resolution: 240dpi) {
-	
 	.ui-icon-site-menu {
 		background-image: url(../images/icons-36-white.png);
 	}
