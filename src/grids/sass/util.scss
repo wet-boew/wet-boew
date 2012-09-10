@@ -17,6 +17,13 @@
 /* -----Build Include Section End----- */
 }
 
+/* Mobile view */
+@media (max-width:767px) {
+/* -----Build Include Section Start----- */
+@import url('includes/util-mobile.css');
+/* -----Build Include Section End----- */
+}
+
 @media print{
 /* -----Build Include Section Start----- */
 @import url('includes/util-print.css');

@@ -78,19 +78,6 @@ body{
 	position:relative;
 }
 
-.border-span-1,.border-span-2,.border-span-3,.border-span-4,.border-span-5,.border-span-6,.border-span-7,.border-span-8,.border-span-9,.border-span-10,.border-span-11,.border-span-12{
-	.background-light,.background-dark,.background-accent{
-		border-radius:3px;
-		-moz-border-radius:3px;
-		-webkit-border-radius:3px;
-	}
-}
-
-#wb-body-sec #wb-core .grid-12 .border-span-1,.grid-12 .border-span-1,.border-span-1,#wb-body-sec #wb-core .grid-12 .border-span-2,.module-versatile,.grid-12 .border-span-2,.module-versatile,#wb-body-sec #wb-core .grid-12 .border-span-3,.border-span-2,.module-versatile,#wb-body-sec #wb-core .grid-12 .border-span-4,.grid-12 .border-span-3,#wb-body-sec #wb-core .grid-12 .border-span-5,.grid-12 .border-span-4,.border-span-3,#wb-body-sec #wb-core .grid-12 .border-span-6,.grid-12 .border-span-5,#wb-body-sec #wb-core .grid-12 .border-span-7,.border-span-4,.module-table-contents,.module-welcomepage,#wb-body-sec #wb-core .grid-12 .border-span-8,.grid-12 .border-span-6,#wb-body-sec #wb-core .grid-12 .border-span-9,.grid-12 .border-span-7,.border-span-5,#wb-body-sec #wb-core .grid-12 .border-span-10,.grid-12 .border-span-8,#wb-body-sec #wb-core .grid-12 .border-span-11,.border-span-6,#wb-body-sec #wb-core .grid-12 .border-span-12,.grid-12 .border-span-9,.grid-12 .border-span-10,.border-span-7,.grid-12 .border-span-11,.border-span-8,.grid-12 .border-span-12,.gcwu-minister{
-	border:1px solid #ccc;
-	padding:2px;
-}
-
 #wb-main-in {
 	padding-left:5px;
 	padding-right:5px;
@@ -103,13 +90,6 @@ body{
 			position:absolute !important;
 		}
 	}
-	a, .ui-link {
-		color: #326CA6;
-		font-weight:bold;
-		&:hover,&:focus,&:active {
-			color: #124C86;
-		}
-	}
 	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
 		margin-bottom:20px;
 	}
@@ -119,6 +99,14 @@ h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
 	margin-left:0;
 	margin-right:0;
 	text-shadow:none;
+}
+
+a {
+	color: #326CA6;
+	font-weight:bold;
+	&:hover,&:focus,&:active {
+		color: #124C86;
+	}
 }
 
 .clear{
