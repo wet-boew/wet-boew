@@ -1058,24 +1058,41 @@
 					support_check: function () {
 						// MathML
 						// http://www.w3.org/Math/
-						// By Addy Osmani
-						// Based on work by Davide (@dpvc) and David (@davidcarlisle)
-						// in https://github.com/mathjax/MathJax/issues/182
+						// Based on work by Addy Osmani which is based on work by Davide (@dpvc) and David (@davidcarlisle) in https://github.com/mathjax/MathJax/issues/182
 						var hasMathML = false,
 							ns,
+							cont,
 							div,
+							divCompare,
+							mrow,
+							mo,
 							mfrac;
 						if (document.createElementNS) {
 							ns = 'http://www.w3.org/1998/Math/MathML';
-							div = document.createElement('div');
+							divParent = document.createElement('div');
+							div = divParent.appendChild(document.createElement('div'));
 							div.style.position = 'absolute';
 							div.style.color = '#fff';
-							mfrac = div.appendChild(document.createElementNS(ns, 'math')).appendChild(document.createElementNS(ns, 'mfrac'));
+							mrow = div.appendChild(document.createElementNS(ns, 'math')).appendChild(document.createElementNS(ns, 'mrow'));
+							mo = mrow.appendChild(document.createElementNS(ns, 'mo'));
+							mo.appendChild(document.createTextNode('|'));
+							mfrac = mrow.appendChild(document.createElementNS(ns, 'mfrac'));
 							mfrac.appendChild(document.createElementNS(ns, 'mi')).appendChild(document.createTextNode('xx'));
 							mfrac.appendChild(document.createElementNS(ns, 'mi')).appendChild(document.createTextNode('yy'));
-							document.body.appendChild(div);
-							hasMathML = div.offsetHeight > div.offsetWidth;
-							div.parentNode.removeChild(div);
+							mrow.appendChild(document.createElementNS(ns, 'mo')).appendChild(document.createTextNode('|'));
+
+							// For testing ability to render stretched vertical bars
+							divCompare = divParent.appendChild(document.createElement('div'));
+							divCompare.style.color = '#fff';
+							divCompare.style.display = 'inline';
+							divCompare.appendChild(document.createTextNode('|xx|'));
+
+							hasMathML = div.offsetHeight > div.offsetWidth; // Can MathML be rendered?
+							div.style.position = 'static';
+							div.style.display = 'inline';
+							hasMathML = hasMathML && div.offsetWidth < divCompare.offsetWidth; // Can stretched vertical bars be rendered well? (catches Safari but not Opera)
+							console.log(divCompare.offsetHeight + ', ' + divCompare2.offsetHeight);
+							divParent.parentNode.removeChild(divParent);
 						}
 						return hasMathML;
 					}
