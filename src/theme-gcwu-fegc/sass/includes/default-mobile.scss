@@ -90,13 +90,6 @@ body{
 			position:absolute !important;
 		}
 	}
-	a, .ui-link {
-		color: #326CA6;
-		font-weight:bold;
-		&:hover,&:focus,&:active {
-			color: #124C86;
-		}
-	}
 	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
 		margin-bottom:20px;
 	}
@@ -106,6 +99,14 @@ h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
 	margin-left:0;
 	margin-right:0;
 	text-shadow:none;
+}
+
+a {
+	color: #326CA6;
+	font-weight:bold;
+	&:hover,&:focus,&:active {
+		color: #124C86;
+	}
 }
 
 .clear{
