@@ -1,11 +1,13 @@
 @charset "utf-8";
 /*
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * Web Experience Toolkit (WET) / BoÃ®te Ã  outils de l'expÃ©rience Web (BOEW)
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
- */
+*/
+
 @import "compass/"; 
 
 @import "mixins";
+@import "border";
 @import "button";
 @import "color";
 @import "module";
@@ -206,11 +208,6 @@ p.align-right	 { margin-right: $margin-medium; }
 .line-height-large		{ line-height: 1.5 !important; }
 .line-height-xlarge	 { line-height: 2.0 !important; }
 
-/*	 columns	 */
-.column-two	 { @include column-count(2); }
-.column-three	 { @include column-count(3); }
-.column-four	{ @include column-count(4); }
-
 
 /*	 floating	 */
 img.float-left { margin-right: $margin-medium; }
@@ -241,6 +238,40 @@ img.float-left { margin-right: $margin-medium; }
 .opacity-20	 { @include opacity(0.2); }
 .opacity-10	 { @include opacity(0.1); }
 
+.border-top,.border-right,.border-bottom,.border-left,.border-all {
+	display:inline;
+	float:left;
+	min-height:1px;
+	position:relative;
+	background-image:url(../images/border.gif);
+}
+ 
+.border-top {
+	background-position:0 0;
+	background-repeat:repeat-x;
+	min-height:1px;
+}
+ 
+.border-bottom {
+	background-position:0 bottom;
+	background-repeat:repeat-x;
+	min-height:1px;
+}
+ 
+.border-left {
+	background-position:left 0;
+	background-repeat:repeat-y;
+}
+ 
+.border-right {
+	background-position:right 0;
+	background-repeat:repeat-y;
+}
+.border-all {
+	outline:1px solid #ccc;
+	background:none;
+}
+
 /* ---- Keyboard keys ---- */
 kbd{
 	background:#eee none repeat scroll 0 0;
@@ -260,8 +291,8 @@ kbd{
 	-webkit-border-radius:2px;
 }
 
-/*	 progress effects	 *
-[class*="thermometer"] {
+/*	 progress effects	 */
+[class*="background-"] p[class*="thermometer"] {
 	padding-bottom: 230px !important;
 	background:{
 		repeat: no-repeat;
@@ -281,7 +312,6 @@ kbd{
 .thermometer-100{background-image:url(../images/thermometer-100.gif);}
 .thermometer-110{background-image:url(../images/thermometer-110.gif);}
 .thermometer-120{background-image:url(../images/thermometer-120.gif);}
-*/
 
 /*	 calendar	 */
 table{

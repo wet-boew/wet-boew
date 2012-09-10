@@ -4,8 +4,8 @@
  * Copyright (c) 2006 John Resig, Yehuda Katz, Jörn Zaefferer, Paul McLanahan
  *
  * Dual licensed under the MIT and GPL licenses:
- *   http://www.opensource.org/licenses/mit-license.php
- *   http://www.gnu.org/licenses/gpl.html
+ *	 http://www.opensource.org/licenses/mit-license.php
+ *	 http://www.gnu.org/licenses/gpl.html
  *
  */
 
@@ -15,13 +15,13 @@
  *
  * There are three supported types of metadata storage:
  *
- *   attr:  Inside an attribute. The name parameter indicates *which* attribute.
- *          
- *   class: Inside the class attribute, wrapped in curly braces: { }
- *   
- *   elem:  Inside a child element (e.g. a script tag). The
- *          name parameter indicates *which* element.
- *          
+ *	 attr:	Inside an attribute. The name parameter indicates *which* attribute.
+ *			
+ *	 class: Inside the class attribute, wrapped in curly braces: { }
+ *	 
+ *	 elem:	Inside a child element (e.g. a script tag). The
+ *			name parameter indicates *which* element.
+ *			
  * The metadata for an element is loaded the first time the element is accessed via jQuery.
  *
  * As a result, you can define the metadata type, use $(expr) to load the metadata into the elements
