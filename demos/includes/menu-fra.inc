@@ -12,7 +12,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </ul>
 </div>
 <div class="clear"></div>
-<div class="mb-highlight"><a class="button button-accent" href="http://wet-boew.github.com/wet-boew/docs/index-fra.html">Tous - Projet de la BOEW</a></div>
+<div class="mb-main-link"><a href="http://wet-boew.github.com/wet-boew/docs/index-fra.html">Projet de la BOEW - Page principale</a></div>
 </div></section></li>
 <li><section><h3><a href="section2/index-fra.html">Section 2</a></h3><div class="mb-sm">
 <div class="span-2">
@@ -48,7 +48,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-highlight"><a class="button button-accent" href="#">Tous - Section 2</a></div>
+<div class="mb-main-link"><a href="#">Section 2 - Page principale</a></div>
 </div></section></li>
 <li><section><h3><a href="#">Section 3</a></h3><div class="mb-sm">
 <div class="span-2">
@@ -87,7 +87,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-highlight"><a class="button button-accent" href="#">Tous - Section 3</a></div>
+<div class="mb-main-link"><a href="#">Section 3 - Page principale</a></div>
 </div></section></li>
 <li><section><h3><a href="#">Section 4</a></h3><div class="mb-sm">
 <div class="span-2">
@@ -133,7 +133,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-highlight"><a class="button button-accent" href="#">Tous - Section 4</a></div>
+<div class="mb-main-link"><a href="#">Section 4 - Page principale</a></div>
 </div></section></li>
 <li><div><a href="#">Section 5</a></div></li>
 <li><section><h3><a href="#">Section 6</a></h3><div class="mb-sm">
@@ -185,7 +185,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-highlight"><a class="button button-accent" href="#">Tous - Section 6</a></div>
+<div class="mb-main-link"><a href="#">Section 6 - Page principale</a></div>
 </div></section></li>
 <li><section><h3><a href="#">Section 7</a></h3><div class="mb-sm">
 <div class="span-2">
@@ -224,7 +224,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-highlight"><a class="button button-accent" href="#">Tous - Section 7</a></div>
+<div class="mb-main-link"><a href="#">Section 7 - Page principale</a></div>
 </div></section></li>
 <!-- DataAjaxFragmentEnd -->
 </html>
