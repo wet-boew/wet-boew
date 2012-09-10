@@ -40,7 +40,7 @@
 
 			return $('<img src="' + _pe.add.liblocation + 'images/multimedia/' + id + '.png" alt="' + alt + '" height="' + height + '" width="' + width + '" />');
 		},
-		
+
 		_exec: function (elm) {
 			var id,
 				canPlay = false,
@@ -201,7 +201,7 @@
 				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
-				evtmgr.on('timeupdate seeked canplay play volumechange pause ended captionsloaded captionsloadfailed captionsvisiblechange progress', $.proxy(function (e) {
+				evtmgr.on('timeupdate seeked canplay play volumechange pause ended waiting captionsloaded captionsloadfailed captionsvisiblechange', $.proxy(function (e) {
 					var $w = $(this),
 						b,
 						p,
@@ -218,9 +218,9 @@
 					case 'ended':
 						b = $w.find('.playpause');
 						b.empty().append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')));
-						b.attr('title', _pe.dic.get('%play'));						
+						b.attr('title', _pe.dic.get('%play'));
 						o = $w.find('.wb-mm-overlay');
-						o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));						
+						o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
 						o.show();
 						this.setBuffering(false);
 						break;
@@ -265,24 +265,20 @@
 						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%captionserror') + '</p>');
 						break;
 					// Determine when the loading icon should be shown.  Change to 'waiting' event once browsers have implmeneted.
-					case 'progress':
-						// Waiting detected, display the loading icon
-						if (this.getWaiting() === true) {
-							if(this.getBuffering() === false){
-								o = $w.find('.wb-mm-overlay');
-								o.empty().append(_pe.fn.multimedia._get_loading_ind($w, 'loading', _pe.dic.get('%loading'), 100, 100));
-								o.show();
-							}
-							this.setBuffering(true);
-						// Waiting has ended, but icon is still visible - remove it.
-						} else if (this.getBuffering() === true) {							
+					case 'waiting':
+						//Prevents the loading icon to show up when waiting fior less than half a second
+						this.loading = setTimeout(function () {
 							o = $w.find('.wb-mm-overlay');
-							o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
-							o.hide();						
-							this.setBuffering(false);
-						}
-						this.setPreviousTime(this.getCurrentTime());
-						break;						
+							o.empty().append(_pe.fn.multimedia._get_loading_ind($w, 'loading', _pe.dic.get('%loading'), 100, 100));
+							o.show();
+						}, 500);
+						break;
+					case 'canplay':
+						clearTimeout(this.loading);
+						o = $w.find('.wb-mm-overlay');
+						o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
+						o.hide();
+						break;
 					}
 				}, elm.get(0)));
 
@@ -295,24 +291,23 @@
 			return elm;
 		}, // end of exec
 
-		
-		_get_loading_ind : function($elm, id, title, w, h){
-			var img = _pe.fn.multimedia.get_image(id, title, w, h).attr('title', title),				
+		_get_loading_ind : function ($elm, id, title, w, h) {
+			var img = _pe.fn.multimedia.get_image(id, title, w, h).attr('title', title),
 				angle = 0,
 				spinner,
 				t;
-			
+
 			if (img.is('svg')) {
 				spinner = img.find('#spinner');
 				t = spinner.attr('transform');
 				clearInterval($elm.data('spin'));
-				$elm.data('spin', setInterval( function () {
-					spinner.attr('transform', t + ',rotate('+(angle+=20)+' 0 0)');
-				}, 50));										
+				$elm.data('spin', setInterval(function () {
+					spinner.attr('transform', t + ',rotate(' + (angle += 20) + ' 0 0)');
+				}, 50));
 			}
 			return img;
 		},
-		
+
 		_get_ui : function (id, cc) {
 			var ui = $('<div class="wb-mm-controls">'),
 				ui_start = $('<div class="wb-mm-controls-start">'),
@@ -423,14 +418,6 @@
 			setCurrentTime: function (t) {
 				if (typeof this.object.currentTime !== 'function') {this.object.currentTime = t; } else {this.object.setCurrentTime(t); }
 			},
-			
-			getPreviousTime: function () {
-				return (typeof this.object.previousTime !== 'undefined' ? this.object.previousTime : 0);
-			},
-
-			setPreviousTime: function (t) {
-				this.object.previousTime = t;
-			},			
 
 			getCaptionsVisible: function () {
 				return $(this).find('.wb-mm-captionsarea').is(':visible');
@@ -459,19 +446,7 @@
 
 			setVolume : function (v) {
 				if (typeof this.object.volume !== 'function') {this.object.volume = v; } else {this.object.setVolume(v); }
-			},
-			
-			getWaiting : function () {
-				return this.getPaused() === false && this.getEnded() === false && this.getCurrentTime() === this.getPreviousTime();
-			},
-			
-			getBuffering : function () {
-				return (typeof this.object.buffering !== 'undefined' ? this.object.buffering : false);
-			},
-
-			setBuffering : function (b) {
-				this.object.buffering = b;
-			}			
+			}
 		},
 
 		_format_time : function (current) {
