@@ -285,7 +285,7 @@
 				* @type {string}
 				* @example
 				* pe.url('http://www.canada.ca/index.html').host
-				*	 returns 'www.canada.ca'
+				*	returns 'www.canada.ca'
 				*/
 				host: a.hostname,
 				/**
@@ -301,7 +301,7 @@
 				* @see #params
 				* @example
 				* pe.url('http://www.canada.ca?a=1&b=2').query
-				*	 returns '?a=1&b=2'
+				*	returns '?a=1&b=2'
 				*/
 				query: a.search,
 				/**
@@ -310,12 +310,12 @@
 				* @type {object (key/value map of strings)}
 				* @see #query
 				* @example
-				* pe.url('http://www.canada.ca?a=1&b=2').params
-				*	 returns
-				*		{
-				*		   a: '1',
-				*		   b: '2'
-				*		}
+				*	pe.url('http://www.canada.ca?a=1&b=2').params
+				*		returns
+				*			{
+				*				a: '1',
+				*				b: '2'
+				*			}
 				*/
 				params: (function () {
 					var key, ret, s, seg, _i, _len;
@@ -336,7 +336,7 @@
 				* @memberof pe.url
 				* @type {string}
 				* @example
-				*	 pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').file
+				*	pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').file
 				*		returns 'menu-eng.html'
 				*/
 				file: a.pathname.match(/\/([^\/?#]+)$/i) ? a.pathname.match(/\/([^\/?#]+)$/i)[1] : '',
@@ -345,7 +345,7 @@
 				* @memberof pe.url
 				* @type {string}
 				* @example
-				*	 pe.url('http://www.canada.ca#wb-main-in').hash
+				*	pe.url('http://www.canada.ca#wb-main-in').hash
 				*		returns 'wb-main-in'
 				*/
 				hash: a.hash.replace('#', ''),
@@ -354,7 +354,7 @@
 				* @memberof pe.url
 				* @type {string}
 				* @example
-				*	 pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').path
+				*	pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').path
 				*		returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				path: a.pathname.replace(/^([^\/])/, '/$1'),
@@ -363,7 +363,7 @@
 				* @memberof pe.url
 				* @type {string}
 				* @example
-				*	 pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').relative
+				*	pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').relative
 				*		returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				relative: a.href.match(/tps?:\/\/[^\/]+(.+)/) ? a.href.match(/tps?:\/\/[^\/]+(.+)/)[1] : '',
@@ -372,7 +372,7 @@
 				* @memberof pe.url
 				* @type {string[]}
 				* @example
-				*	 pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').segments
+				*	pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').segments
 				*		returns ['aboutcanada-ausujetcanada', 'hist', 'menu-eng.html']
 				*/
 				segments: a.pathname.replace(/^\//, '').split('/'),
@@ -382,9 +382,9 @@
 				* @type {string}
 				* @function
 				* @example
-				*	 pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash()
+				*	pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash()
 				*		returns 'http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html'
-				*	 pe.url( pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash() ).relative
+				*	pe.url( pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash() ).relative
 				*		returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				removehash: function () {
@@ -461,9 +461,9 @@
 					* @param {string} tweet The tweet to format.
 					* @return {string}
 					* @example
-					* pe.string.ify.clean('@ded the cdn url is http://cdn.enderjs.com')
-					*	 returns '@&lt;a href="http://twitter.com/ded"&gt;ded&lt;/a&gt; the cdn url is &lt;a href="http://cdn.enderjs.com"&gt;http://cdn.enderjs.com&lt;/a&gt;'
-					*		 ie. '@<a href="http://twitter.com/ded">ded</a> the cdn url is <a href="http://cdn.enderjs.com">http://cdn.enderjs.com</a>'
+					*	pe.string.ify.clean('@ded the cdn url is http://cdn.enderjs.com')
+					*		returns '@&lt;a href="http://twitter.com/ded"&gt;ded&lt;/a&gt; the cdn url is &lt;a href="http://cdn.enderjs.com"&gt;http://cdn.enderjs.com&lt;/a&gt;'
+					*		ie. '@<a href="http://twitter.com/ded">ded</a> the cdn url is <a href="http://cdn.enderjs.com">http://cdn.enderjs.com</a>'
 					*/
 					'clean': function (tweet) {
 						return this.hash(this.at(this.link(tweet)));
@@ -639,10 +639,10 @@
 			* @param {boolean} timepresent Optional. Whether to include the time in the result, or just the date. False if blank.
 			* @return {string}
 			* @example
-			* pe.date.to_iso_format(new Date())
-			*	 returns '2012-04-27'
-			* pe.date.to_iso_format(new Date(), true)
-			*	 returns '2012-04-27 13:46'
+			*	pe.date.to_iso_format(new Date())
+			*		returns '2012-04-27'
+			*	pe.date.to_iso_format(new Date(), true)
+			*		returns '2012-04-27 13:46'
 			*/
 			to_iso_format: function (d, timepresent) {
 				var date;
