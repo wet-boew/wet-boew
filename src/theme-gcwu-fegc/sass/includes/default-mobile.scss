@@ -103,7 +103,7 @@ body{
 			position:absolute !important;
 		}
 	}
-	.ui-link {
+	a, .ui-link {
 		color: #326CA6;
 		font-weight:bold;
 		&:hover,&:focus,&:active {

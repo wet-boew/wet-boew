@@ -48,9 +48,23 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="#">Section 2 - Main page</a></div>
+<div class="mb-main-link"><a href="section2/index-eng.html">Section 2 - Main page</a></div>
 </div></section></li>
 <li><section><h3><a href="#">Section 3</a></h3><div class="mb-sm">
+<div class="mb-highlight">
+<section><h4><a href="#">Focus</a></h4>
+<ul>
+<li><a href="#">Link 1</a></li>
+<li><a href="#">Link 2</a></li>
+<li><a href="#">Link 3</a></li>
+<li><a href="#">Link 4</a></li>
+<li><a href="#">Link 5</a></li>
+<li><a href="#">Link 6</a></li>
+<li><a href="#">Link 7</a></li>
+</ul>
+<div class="clear"></div>
+</section>
+</div>
 <div class="span-2">
 <section><h4><a href="#">Section 3.1</a></h4>
 <ul>
@@ -137,6 +151,20 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div></section></li>
 <li><div><a href="#">Section 5</a></div></li>
 <li><section><h3><a href="#">Section 6</a></h3><div class="mb-sm">
+<div class="mb-highlight">
+<section><h4><a href="#">Focus</a></h4>
+<ul>
+<li><a href="#">Link 1</a></li>
+<li><a href="#">Link 2</a></li>
+<li><a href="#">Link 3</a></li>
+<li><a href="#">Link 4</a></li>
+<li><a href="#">Link 5</a></li>
+<li><a href="#">Link 6</a></li>
+<li><a href="#">Link 7</a></li>
+</ul>
+<div class="clear"></div>
+</section>
+</div>
 <div class="span-2">
 <section><h4><a href="#">Section 6.1</a></h4>
 <ul>

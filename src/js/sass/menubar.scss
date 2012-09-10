@@ -112,7 +112,7 @@
 		z-index:499;
 		background-color:#CCC;
 		border-bottom:4px solid #242;
-		padding-top:5px;
+		padding-top:4px;
 		border-radius:0 0 3px 3px;
 		-moz-border-radius:0 0 3px 3px;
 		-webkit-border-radius:0 0 3px 3px;
@@ -148,42 +148,41 @@
 	}
 }
 
-.mb-sm-open > div > a {
+.mb-sm-open > div > a{
 	font-size: 120%;
 }
 
-.mb-main-link {
+.mb-main-link{
 	background-color:#DDD;
 	border-top:1px solid #AAA;
 	padding-left:10px;
 }
 
 .mb-highlight{
-	background-color:#E5E5E5;
-	border-bottom:1px solid #bbb;
+	background-color:#DDD;
+	border-top:1px solid #AAA;
+	border-bottom:1px solid #AAA;
 	margin-bottom:10px;
-	padding:10px;
-	font-weight:700;
-	color:#666;
-	a{
-		display:inline-block !important;
-		font-weight:400 !important;
-		&.button {
-			padding:5px 10px !important;
+	h4{
+		float:left;
+		font-size:1em !important;
+		margin-left: 10px !important;
+	}
+	ul{
+		margin:0 !important;
+		padding: 0.45em 0 !important;
+		float:left;
+	}
+	li{
+		float:left !important;
+		width:auto;
+		&:first-child a{
+			border-left:none;
+		}
+		a{
+			display:inline-block !important;
+			border-left:1px solid #999;
+			padding:0 1em !important;
 		}
 	}
-	a + a{
-		border-left:1px solid #999;
-		padding:0.25em 1em !important;
-	}
-	p {
-		margin:0;
-	}
-}
-
-div + .mb-highlight, ul + .mb-highlight{
-	border-bottom:medium none;
-	border-top:1px solid #bbb;
-	margin-bottom:0;
-	margin-top:0;
 }
