@@ -265,7 +265,7 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 		markerClassName : 'hasBookmark',
 		
 		/* Override the default settings for all bookmarking instances.
-		@param  settings  (object) the new settings to use as defaults
+		@param	settings  (object) the new settings to use as defaults
 		@return void */
 		setDefaults : function (settings) {
 			extendRemove(this._defaults, settings || {});
@@ -273,13 +273,13 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 		},
 		
 		/* Add a new bookmarking site to the list.
-		@param  id        (string) the ID of the new site
-		@param  display   (string) the display name for this site
-		@param  icon      (string) the location (URL) of an icon for this site (16x16), or
+		@param	id		  (string) the ID of the new site
+		@param	display   (string) the display name for this site
+		@param	icon	  (string) the location (URL) of an icon for this site (16x16), or
 		(number) the index of the icon within the combined image
-		@param  lang      (string) the language code for this site
-		@param  category  (string) the category for this site
-		@param  url       (string) the submission URL for this site,
+		@param	lang	  (string) the language code for this site
+		@param	category  (string) the category for this site
+		@param	url	  (string) the submission URL for this site,
 		with {u} marking where the current page's URL should be inserted,
 		and {t} indicating the title insertion point
 		@return this singleton */
@@ -297,17 +297,17 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 		/* Return the list of defined sites.
 		@return  (object[]) indexed by site id (string), each object contains
 		display (string) the display name,
-		icon    (string) the location of the icon, or
+		icon	(string) the location of the icon, or
 		(number) the icon's index in the combined image
-		lang    (string) the language code for this site
-		url     (string) the submission URL for the site */
+		lang	(string) the language code for this site
+		url	(string) the submission URL for the site */
 		getSites : function () {
 			return this._sites;
 		},
 		
 		/* Attach the bookmarking widget to a div.
-		@param  target    (element) the bookmark container
-		@param  settings  (object) the settings for this container */
+		@param	target	  (element) the bookmark container
+		@param	settings  (object) the settings for this container */
 		_attachBookmark : function (target, settings) {
 			target = $(target);
 			if (target.hasClass(this.markerClassName)) {
@@ -318,10 +318,10 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 		},
 		
 		/* Reconfigure the settings for a bookmarking div.
-		@param  target    (element) the bookmark container
-		@param  settings  (object) the new settings for this container or
+		@param	target	  (element) the bookmark container
+		@param	settings  (object) the new settings for this container or
 		(string) a single setting name
-		@param  value     (any) the single setting's value */
+		@param	value	  (any) the single setting's value */
 		_changeBookmark : function (target, settings, value) {
 			target = $(target);
 			if (!target.hasClass(this.markerClassName)) {
@@ -336,8 +336,8 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 		},
 		
 		/* Construct the requested bookmarking links.
-		@param  target    (element) the bookmark container
-		@param  settings  (object) the settings for this container */
+		@param	target	  (element) the bookmark container
+		@param	settings  (object) the settings for this container */
 		_updateBookmark : function (target, settings) {
 			var oldSettings = $.data(target[0], PROP_NAME) || $.extend({}, this._defaults),
 				target,
@@ -417,10 +417,10 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 			}
 		},
 		/* Add all the selected sites to the list.
-		@param  sites     (string[]) the IDs of the selected sites
-		@param  details   (object) details about this page
-		@param  settings  (object) the bookmark settings
-		@param  list      (jQuery) the list to add to */
+		@param	sites	  (string[]) the IDs of the selected sites
+		@param	details   (object) details about this page
+		@param	settings  (object) the bookmark settings
+		@param	list	  (jQuery) the list to add to */
 		_addSelectedSites : function (sites, details, settings, list) {
 			$.each(sites, function (index, id) {
 				var site = $.bookmark._sites[id];
@@ -447,14 +447,14 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 			});
 		},
 		/* Add a single site to the list.
-		@param  settings  (object) the bookmark settings
-		@param  list      (jQuery) the list to add to
-		@param  display   (string) the display name for this site
-		@param  icon      (string) the location (URL) of an icon for this site (16x16), or
+		@param	settings  (object) the bookmark settings
+		@param	list	  (jQuery) the list to add to
+		@param	display   (string) the display name for this site
+		@param	icon	  (string) the location (URL) of an icon for this site (16x16), or
 		(number) the index of the icon within the combined image
-		@param  url       (string) the URl for this site
-		@param  onclick   (function, optional) additional processing for this link
-		@param  hint      (string, optional) the hint text to use for this link */
+		@param	url	  (string) the URl for this site
+		@param	onclick   (function, optional) additional processing for this link
+		@param	hint	  (string, optional) the hint text to use for this link */
 		_addOneSite : function (settings, list, display, icon, url, onclick, hint) {
 			var hintFormat = settings.hint || '{s}',
 				html = '<li><a href="' + url + '"' + (settings.target ? ' target="' + settings.target + '"' : '') + '>',
@@ -489,7 +489,7 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 			}
 		},
 		/* Remove the bookmarking widget from a div.
-		@param  target  (element) the bookmark container */
+		@param	target	(element) the bookmark container */
 		_destroyBookmark : function (target) {
 			target = $(target);
 			if (!target.hasClass(this.markerClassName)) {
@@ -499,8 +499,8 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 			$.removeData(target[0], PROP_NAME);
 		},
 		/* Callback when selected.
-		@param  target  (element) the target div
-		@param  siteID  (string) the selected site ID */
+		@param	target	(element) the target div
+		@param	siteID	(string) the selected site ID */
 		_selected : function (target, siteID) {
 			var settings = $.data(target, PROP_NAME),
 				site = $.bookmark._sites[siteID],
@@ -510,8 +510,8 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 					replace(/\{t\}/, details.title2).replace(/\{d\}/, details.desc2)]);
 		},
 		/* Add the current page as a favourite in the browser.
-		@param  url    (string) the URL to bookmark
-		@param  title  (string) the title to bookmark */
+		@param	url    (string) the URL to bookmark
+		@param	title  (string) the title to bookmark */
 		_addFavourite : function (url, title) {
 			if ($.browser.msie) {
 				window.external.addFavorite(url, title);
@@ -520,8 +520,8 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 			}
 		},
 		/* Show all sites in a popup list.
-		@param  elem      (element) the clicked 'Show all' link
-		@param  settings  (object) the bookmark settings */
+		@param	elem	  (element) the clicked 'Show all' link
+		@param	settings  (object) the bookmark settings */
 		_showAll : function (elem, settings) {
 			var sites = [],
 				details,
@@ -552,7 +552,7 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 			});
 		},
 		/* Retrieve details about the current site.
-		@param  settings  (object) the bookmark settings
+		@param	settings  (object) the bookmark settings
 		@return  (object) the site details */
 		_getSiteDetails : function (settings) {
 			var url = settings.url || window.location.href,
@@ -584,8 +584,8 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 		return target;
 	}
 	/* Attach the bookmarking functionality to a jQuery selection.
-	@param  command  (string) the command to run (optional, default 'attach')
-	@param  options  (object) the new settings to use for these bookmarking instances
+	@param	command  (string) the command to run (optional, default 'attach')
+	@param	options  (object) the new settings to use for these bookmarking instances
 	@return  (jQuery object) for chaining further calls */
 	$.fn.bookmark = function (options) {
 		var otherArgs = Array.prototype.slice.call(arguments, 1);
