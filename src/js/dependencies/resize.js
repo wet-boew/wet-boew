@@ -2,9 +2,9 @@
 * Resize Events
 * @version 0.7
 * Changelog:
-*   * 0.5 Added API bind() function to make it easier to add listeners.
-*   * 0.6 Added support for window height changes
-*   * 0.7 Clean up outstanding bugs (duplicate event firing) and refactor.
+*	* 0.5 Added API bind() function to make it easier to add listeners.
+*	* 0.6 Added support for window height changes
+*	* 0.7 Clean up outstanding bugs (duplicate event firing) and refactor.
 *
 * There is no standard event for when a user resizes the text in their browser.
 * There is also no consistency between browser implementations of the window resize event

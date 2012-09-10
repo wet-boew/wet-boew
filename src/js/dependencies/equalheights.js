@@ -1,6 +1,6 @@
 /*-------------------------------------------------------------------- 
 * JQuery Plugin: "EqualHeights"
-* by:    Scott Jehl, Todd Parker, Maggie Costello Wachs (http://www.filamentgroup.com)
+* by:	 Scott Jehl, Todd Parker, Maggie Costello Wachs (http://www.filamentgroup.com)
 *
 * Copyright (c) 2008 Filament Group
 * Licensed under GPL (http://www.opensource.org/licenses/gpl-license.php)

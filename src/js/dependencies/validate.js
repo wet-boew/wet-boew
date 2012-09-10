@@ -7,8 +7,8 @@
  * Copyright (c) 2006 - 2011 Jörn Zaefferer
  *
  * Dual licensed under the MIT and GPL licenses:
- *   http://www.opensource.org/licenses/mit-license.php
- *   http://www.gnu.org/licenses/gpl.html
+ *	 http://www.opensource.org/licenses/mit-license.php
+ *	 http://www.gnu.org/licenses/gpl.html
  */
 
 (function($) {
@@ -690,7 +690,7 @@ $.extend($.validator, {
 			// select by name and filter by form for performance over form.find("[name=...]")
 			var form = this.currentForm;
 			return $(document.getElementsByName(name)).map(function(index, element) {
-				return element.form == form && element.name == name && element  || null;
+				return element.form == form && element.name == name && element	|| null;
 			});
 		},
 

@@ -17,15 +17,15 @@
 * // advanced usage receives configuration object only
 * $("ul li").hoverIntent({
 *	sensitivity: 7, // number = sensitivity threshold (must be 1 or higher)
-*	interval: 100,   // number = milliseconds of polling interval
-*	over: showNav,  // function = onMouseOver callback (required)
+*	interval: 100,	 // number = milliseconds of polling interval
+*	over: showNav,	// function = onMouseOver callback (required)
 *	timeout: 0,   // number = milliseconds delay before onMouseOut function call
-*	out: hideNav    // function = onMouseOut callback (required)
+*	out: hideNav	// function = onMouseOut callback (required)
 * });
 * 
 * @param  f  onMouseOver function || An object with configuration options
 * @param  g  onMouseOut function  || Nothing (use configuration options object)
-* @author    Brian Cherne brian(at)cherne(dot)net
+* @author	 Brian Cherne brian(at)cherne(dot)net
 */
 (function($) {
 	$.fn.hoverIntent = function(f,g) {

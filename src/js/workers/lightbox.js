@@ -8,11 +8,11 @@
 /*global jQuery: false, pe: false, wet_boew_lightbox: false*/
 (function ($) {
 	"use strict";
-    var _pe = window.pe || {
+	var _pe = window.pe || {
 		fn : {}
-    };
-    /* local reference */
-    _pe.fn.lightbox = {
+	};
+	/* local reference */
+	_pe.fn.lightbox = {
 		type : 'plugin',
 		// This is an example from tabbed interface, to show how to call
 		// required libraries
@@ -154,7 +154,7 @@
 				}
 			});
 		} // end of exec
-    };
-    window.pe = _pe;
-    return _pe;
+	};
+	window.pe = _pe;
+	return _pe;
 }(jQuery));
