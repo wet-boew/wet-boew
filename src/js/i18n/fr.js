@@ -58,6 +58,7 @@
 		ind: {
 			"%all": "Tous",
 			"%home": "Accueil",
+			"%main-page": "Page principale",
 			"%top-of-page": "Haut de la page",
 			"%you-are-in": "Vous êtes dans :",
 			"%welcome-to": "Bienvenue à : " + $('#gcwu-title').text(),
@@ -120,7 +121,7 @@
 			"%progress-bar": "utilisez les touches GAUCHE ou DROITE pour avancer ou reculer le progrès des médias",
 			"%no-video": "Votre navigateur ne semble pas avoir les capacité nécessaires pour lire cette vidéo, s'il vous plaît télécharger la vidéo ci-dessous",
 			"%position": "Position actuelle&#160;: ",
-			"%percentage": "Pourcentage&#160;: ",
+			"%percentage": "Pourcentage de lecture&#160;: ",
 			"%duration": "Temps total&#160;: ",
 			"%buffered": "Mis en mémoire-tampon&#160;: ",
 			/* Share widget */

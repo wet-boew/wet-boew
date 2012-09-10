@@ -61,6 +61,7 @@
 		ind: {
 			"%all": "All",
 			"%home": "Home",
+			"%main-page": "Main page",
 			"%top-of-page": "Top of Page",
 			"%you-are-in": "You are in: ",
 			"%welcome-to": "Welcome to: " + $('#gcwu-title').text(),
@@ -124,7 +125,7 @@
 			"%progress-bar": "use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media's progress",
 			"%no-video": "Your browser does not appear to have the capabilities to play this video, please download the video below",
 			"%position": "Current Position: ",
-			"%percentage": "Percentage: ",
+			"%percentage": "Playback Percentage: ",
 			"%duration": "Total Time: ",
 			"%buffered": "Buffered: ",
 			/* Share widget */

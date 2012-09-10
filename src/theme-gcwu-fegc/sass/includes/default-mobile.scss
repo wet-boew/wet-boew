@@ -90,7 +90,7 @@ body{
 			position:absolute !important;
 		}
 	}
-	.ui-link {
+	a, .ui-link {
 		color: #326CA6;
 		font-weight:bold;
 		&:hover,&:focus,&:active {
@@ -119,12 +119,6 @@ h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
 }
 
 .ui-mobile {
-	input{
-		&[type="submit"],&[type="reset"],&[type="button"]{
-			background:none;
-			border:none;
-		}
-	}
 	#gcwu-srch{
 		box-shadow:none;
 	}
@@ -216,6 +210,7 @@ img{
 	#gcwu-gcnb-lang{
 		display:inline;
 		float:right;
+		margin-bottom:2px;
 	}
 }
 
@@ -261,7 +256,7 @@ img{
 		color:#fff;
 		text-align:center;
 		font-size:1em;
-		text-transform:xxxcapitalize;
+		text-transform:capitalize;
 		position:relative;
 		font-weight:700;
 		margin:0;
@@ -270,6 +265,12 @@ img{
 		border-bottom:1px solid #000;
 		border-left:1px solid #000;
 		border-right:none;
+	}
+}
+
+#gcwu-psnb h2 {
+	span {
+		display: none;
 	}
 }
 
@@ -353,6 +354,18 @@ img{
 
 .ui-dialog h1 {
 	border-bottom: none;
+}
+
+#gcwu-bnr .ui-navbar a.ui-btn-active {
+	background-color:#444444;
+	background-image:-webkit-gradient(linear,left top,left bottom,from(#606060),to(#333333));
+	background-image:-webkit-linear-gradient(#606060,#333333);
+	background-image:-moz-linear-gradient(#606060,#333333);
+	background-image:-ms-linear-gradient(#606060,#333333);
+	background-image:-o-linear-gradient(#606060,#333333);
+	background-image:linear-gradient(#606060,#333333);
+	border:1px solid #000;
+	border-right:none;
 }
 
 #jqm-wb-mb, #jqm-wb-search {
@@ -509,7 +522,6 @@ a:active{
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (min--moz-device-pixel-ratio: 1.5),
        only screen and (min-resolution: 240dpi) {
-	
 	.ui-icon-site-menu {
 		background-image: url(../images/icons-36-white.png);
 	}
