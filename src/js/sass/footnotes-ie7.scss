@@ -4,35 +4,40 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
  */
 
-/** Screen and print CSS **/
-@media screen,print {
-	.ie7 {
-		.wet-boew-footnotes {
-			display: inline-block;
-			dl {
-				margin-bottom: 0;
-				dd {
-					&:focus, &:active, &.footnote-focus {
-						border: 1px dotted #000;
-						margin: 0 0 7px 0;
-						left: -1px;
-						top: -1px;
-						p.footnote-return {
-							top: 1px !important;
-						}
-					}
+/*SCSS Variables*/
+$clrWhite: #FFF;
+$clrLight: #EEE;
+$clrDark: #555;
+
+/*Default SCSS*/
+.ie7 {
+	.wet-boew-footnotes {
+		display: inline-block;
+		dl {
+			dt {
+				position:relative;
+				float:left;
+				margin-bottom:-1px;
+			}
+			dd.footnote-focus {
+				background-color: $clrLight;
+				border-color: $clrDark;
+				p.footnote-return a {
+					color: $clrWhite !important;
+					background-color: $clrDark;
+					border-color: $clrDark;
+					text-shadow: none !important;
 				}
 			}
 		}
 	}
 }
 
-/** Print-only CSS **/
+/*Print SCSS*/
 @media print {
 	.ie7 {
-		.wet-boew-footnotes {
-			padding-bottom: 1em;
-			/*definition list's padding-top value x2 via SASS?*/
+		.wet-boew-footnotes dl dd {
+			overflow: auto;
 		}
 	}
 }
