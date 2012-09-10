@@ -22,7 +22,7 @@
 		}
 	}
 }
-.wb-sup-def .nav-current{
+.wb-sec-def .nav-current{
 	color:#333 !important;
 	border-color:#28507a;
 }
@@ -32,7 +32,7 @@
 	border-bottom:1px solid #ccc;
 	font-size:1em;
 	height:auto;
-	min-height:82px;
+	min-height:80px;
 	background:#fff url(../images/core/gcwu-intranetnb-sprite.gif) repeat-x 0 -170px;
 	text-shadow: 1px 1px 1px #333;
 	a:hover, a:focus{
@@ -41,7 +41,7 @@
 }
 #gcwu-gcnb-fip{
 	position:relative;
-	min-height:82px;
+	min-height:80px;
 }
 #gcwu-sig{
 	bottom:10px;
@@ -72,8 +72,8 @@
 	height:auto !important;
 }
 #gcwu-title,#gcwu-title a{
-	margin-top:7px;
-	margin-bottom:7px;
+	margin-top:3px;
+	margin-bottom:3px;
 	top:auto;
 	position:static;
 }
@@ -135,31 +135,10 @@
 	top:0;
 	right:0;
 }
-#gcwu-subsite{
-	border-top:1px solid #ccc;
-	clear:left;
-	font-size:130%;
-	text-shadow: 1px 1px 1px #333;
-	p{
-		margin:0 auto;
-		padding-top:4px;
-		padding-bottom:7px;
-	}
-	a{
-		text-shadow: 1px 1px 1px #333;
-		border-left:1px solid #ccc;
-		font-size:75%;
-		&:first-child{
-			border-left:none;
-			padding-left:0;
-			font-size:100%;
-		}
-	}
-}
 #wb-core-in{
 	padding-top:0;
 }
-.wb-sup-def {
+.wb-sec-def {
 	h3.top-section{
 		margin:0 0 2px -10px;
 		text-shadow: 1px 1px 1px #fff;
@@ -278,4 +257,8 @@
 	padding-top:7px;
 	padding-bottom:13px;
 	margin-top:0;
+}
+#gcwu-psnb .mb-menu li{
+	border-left-color:#1b5a9f;
+	border-right-color:#3874bd;
 }

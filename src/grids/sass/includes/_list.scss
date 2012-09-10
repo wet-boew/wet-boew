@@ -81,6 +81,11 @@
 
 	ul.menu-horizontal {
 		@include horizontal-list(2px);
+		margin: 0 10px;
+		
+		li {
+			margin-bottom: 5px;
+		}
 	}
 	
 /*ul,dl,ol{margin:0 10px 10px 40px;padding:0;}
