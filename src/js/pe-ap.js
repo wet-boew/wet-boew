@@ -1061,7 +1061,7 @@
 						// Based on work by Addy Osmani which is based on work by Davide (@dpvc) and David (@davidcarlisle) in https://github.com/mathjax/MathJax/issues/182
 						var hasMathML = false,
 							ns,
-							cont,
+							divParent,
 							div,
 							divCompare,
 							mrow,
@@ -1091,7 +1091,6 @@
 							div.style.position = 'static';
 							div.style.display = 'inline';
 							hasMathML = hasMathML && div.offsetWidth < divCompare.offsetWidth; // Can stretched vertical bars be rendered well? (catches Safari but not Opera)
-							console.log(divCompare.offsetHeight + ', ' + divCompare2.offsetHeight);
 							divParent.parentNode.removeChild(divParent);
 						}
 						return hasMathML;
