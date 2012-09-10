@@ -7,8 +7,8 @@
  * Copyright (c) 2006 - 2011 Jörn Zaefferer
  *
  * Dual licensed under the MIT and GPL licenses:
- *   http://www.opensource.org/licenses/mit-license.php
- *   http://www.gnu.org/licenses/gpl.html
+ *	 http://www.opensource.org/licenses/mit-license.php
+ *	 http://www.gnu.org/licenses/gpl.html
  */
 
 (function() {
@@ -75,10 +75,10 @@ jQuery.validator.addMethod(
 		if (v.length != 17)
 			return false;
 		var i, n, d, f, cd, cdv;
-		var LL    = ["A","B","C","D","E","F","G","H","J","K","L","M","N","P","R","S","T","U","V","W","X","Y","Z"];
-		var VL    = [1,2,3,4,5,6,7,8,1,2,3,4,5,7,9,2,3,4,5,6,7,8,9];
-		var FL    = [8,7,6,5,4,3,2,10,0,9,8,7,6,5,4,3,2];
-		var rs    = 0;
+		var LL	  = ["A","B","C","D","E","F","G","H","J","K","L","M","N","P","R","S","T","U","V","W","X","Y","Z"];
+		var VL	  = [1,2,3,4,5,6,7,8,1,2,3,4,5,7,9,2,3,4,5,6,7,8,9];
+		var FL	  = [8,7,6,5,4,3,2,10,0,9,8,7,6,5,4,3,2];
+		var rs	  = 0;
 		for(i = 0; i < 17; i++){
 			f = FL[i];
 			d = v.slice(i,i+1);
