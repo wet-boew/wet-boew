@@ -125,7 +125,7 @@
 			"%progress-bar": "use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media's progress",
 			"%no-video": "Your browser does not appear to have the capabilities to play this video, please download the video below",
 			"%position": "Current Position: ",
-			"%percentage": "Percentage: ",
+			"%percentage": "Playback Percentage: ",
 			"%duration": "Total Time: ",
 			"%buffered": "Buffered: ",
 			/* Share widget */
