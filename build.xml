@@ -46,4 +46,8 @@
 		<ant dir="${src.dir}/theme-gcwu-intranet" target="test" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-clf2-nsi2" target="test" antfile="build.xml" inheritAll="false"/>
 	</target>
+	
+	<target name="preflight" description="Sets tabbing and encoding as indicated by the contributor guidelines">
+		<fixcrlf srcdir="${src.dir}" includes="**/*.js" tab="add" tablength="4" />
+	</target>
 </project>
