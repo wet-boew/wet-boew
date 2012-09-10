@@ -132,12 +132,6 @@ h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
 }
 
 .ui-mobile {
-	input{
-		&[type="submit"],&[type="reset"],&[type="button"]{
-			background:none;
-			border:none;
-		}
-	}
 	#gcwu-srch{
 		box-shadow:none;
 	}
@@ -229,6 +223,7 @@ img{
 	#gcwu-gcnb-lang{
 		display:inline;
 		float:right;
+		margin-bottom:2px;
 	}
 }
 

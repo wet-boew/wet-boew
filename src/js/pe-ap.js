@@ -36,6 +36,8 @@
 		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
+		urlpage: '',
+		urlhash: '',
 		urlquery: '',
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
 		document: $(document),
@@ -57,8 +59,10 @@
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
 
-			// Get the query parameters from the URL
-			pe.urlquery = pe.url(window.location.href).params;
+			// Get the hash and query parameters from the URL
+			pe.urlpage = pe.url(window.location.href);
+			pe.urlhash = pe.urlpage.hash;
+			pe.urlquery = pe.urlpage.params;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
@@ -113,7 +117,7 @@
 				pe.document.on('pageinit', function () {
 					// On click, puts focus on and scrolls to the target of same page links
 					hlinks_same.off('click vclick').on('click vclick', function () {
-						$this = $($(this).attr("href"));
+						$this = $($(this).attr("href").replace(/[.:]/, '\\$1'));
 						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if ($this.length > 0) {
 							$.mobile.silentScroll(pe.focus($this).offset().top);
@@ -122,7 +126,7 @@
 
 					// If hashtarget is in the query string then put focus on and scroll to the target
 					if (pe.urlquery.hashtarget !== undefined) {
-						target = pe.main.find('#' + pe.urlquery.hashtarget);
+						target = pe.main.find('#' + pe.urlquery.hashtarget.replace(/[.:]/, '\\$1'));
 						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if (target.length > 0) {
 							setTimeout(function () {
@@ -136,7 +140,7 @@
 			} else {
 				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
 				hlinks_same.on("click vclick", function () {
-					$this = $($(this).attr('href'));
+					$this = $($(this).attr('href').replace(/[.:]/, '\\$1'));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
@@ -144,8 +148,8 @@
 				});
 
 				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
-				if (window.location.hash.length > 0) {
-					$this = $(window.location.hash);
+				if (pe.urlhash.length > 0) {
+					$this = $(pe.urlhash.replace(/[.:]/, '\\$1'));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
@@ -384,7 +388,7 @@
 				*       returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				removehash: function () {
-					return this.source.replace(/#([A-Za-z0-9\-_=&]+)/, '');
+					return this.source.replace(/#([A-Za-z0-9\-_=&]+.:)/, '');
 				}
 			};
 		},
