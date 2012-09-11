@@ -23,7 +23,6 @@
 			color: $dark;
 			display: block;
 			padding: 0;
-			width: 100%; 
 		}
 
 		#{headings(2,6)} {
@@ -48,9 +47,14 @@
 				margin-right: 0;
 			}
 			
-			& > legend {
+			& fieldset > * {
 				margin-left: 10px;
 				margin-right: 10px;
+			}
+			
+			& legend {
+				padding-left: 10px !important;
+				padding-right: 10px !important;
 			}
 
 			#{headings(2,6)} {
@@ -66,7 +70,7 @@
 	
 	fieldset {
 		padding: 0;
-		margin: $margin-large 0 $margin-medium;
+		margin: 0 0 $margin-medium;
 		border: 0;	
 		vertical-align: middle;
 	}
@@ -227,7 +231,7 @@
 	}
 	
 	input, textarea, select {
-	
+		background: #fff;
 		border-color: darken($light, 15%);
 		@include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.05));
 		
