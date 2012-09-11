@@ -148,7 +148,7 @@
 						btn.children('img').attr('alt', alt);
 					} else {
 						btnCtn = $('<div class="cal-' + suffix + '"></div>');
-						btn = $('<a href="javascript:;" role="button"><img class="image-actual" src="' + pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.gif" alt="' + alt + '" /></a>');
+						btn = $('<a href="javascript:;" role="button"><img class="image-actual" src="' + pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.png" alt="' + alt + '" /></a>');
 
 						btnCtn.append(btn);
 						if (n === 0) {
@@ -259,12 +259,12 @@
 			}
 
 			buttonContainer = $('<div class="cal-goto-button"></div>');
-			button = $('<input type="submit" value="' + pe.dic.get('%calendar-goToButton') + '" />');
+			button = $('<input type="submit" class="button button-accent" value="' + pe.dic.get('%calendar-goToButton') + '" />');
 			buttonContainer.append(button);
 			fieldset.append(buttonContainer);
 
 			buttonCancelContainer = $('<div class="cal-goto-button"></div>');
-			buttonCancel = $('<input type="button" value="' + pe.dic.get('%calendar-cancelButton') + '" />');
+			buttonCancel = $('<input type="button" class="button button-dark" value="' + pe.dic.get('%calendar-cancelButton') + '" />');
 			buttonCancel.click(function () {
 				_pe.fn.calendar.hideGoToForm(calendarid);
 			});
