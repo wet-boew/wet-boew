@@ -105,9 +105,9 @@
 
 					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
 						newurl = url.path + '?';
-						for (urlparam in urlparams) { // Rebuilt the query string
+						for (urlparam in urlparams) { // Rebuild the query string
 							if (urlparams.hasOwnProperty(urlparam) && urlparam !== 'hashtarget') {
-								newurl += urlparams[urlparam] + '&amp;';
+								newurl += urlparam + '=' + urlparams[urlparam] + '&amp;';
 							}
 						}
 						$this.attr('href', newurl + 'hashtarget=' + url.hash); // Append hashtarget to the query string
@@ -665,13 +665,23 @@
 				disablels = (lsenabled ? localStorage.getItem('pedisable') : null),
 				disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels),
 				tphp = document.getElementById('wb-tphp'),
-				li = document.createElement('li');
+				li = document.createElement('li'),
+				qparams = pe.urlquery,
+				qparam,
+				newquery = '?';
+
+			for (qparam in qparams) { // Rebuild the query string
+				if (qparams.hasOwnProperty(qparam) && qparam !== 'pedisable') {
+					newquery += qparam + '=' + qparams[qparam] + '&amp;';
+				}
+			}
+
 			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
 				$('html').addClass('no-js pe-disable');
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
 				}
-				li.innerHTML = '<a href="?pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
+				li.innerHTML = '<a href="' + newquery + 'pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
 				tphp.appendChild(li); // Add link to re-enable PE
 				return true;
 			} else if (disable === "false" || disablels !== null) {
@@ -679,7 +689,7 @@
 					localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
 				}
 			}
-			li.innerHTML = '<a href="?pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
+			li.innerHTML = '<a href="' + newquery + 'pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
 			tphp.appendChild(li); // Add link to disable PE
 			return false;
 		},
@@ -1064,9 +1074,11 @@
 							divParent,
 							div,
 							divCompare,
+							/*divCompare2,*/
 							mrow,
 							mo,
-							mfrac;
+							mfrac/*,
+							munderover*/;
 						if (document.createElementNS) {
 							ns = 'http://www.w3.org/1998/Math/MathML';
 							divParent = document.createElement('div');
@@ -1081,16 +1093,17 @@
 							mfrac.appendChild(document.createElementNS(ns, 'mi')).appendChild(document.createTextNode('yy'));
 							mrow.appendChild(document.createElementNS(ns, 'mo')).appendChild(document.createTextNode('|'));
 
-							// For testing ability to render stretched vertical bars
+							// For testing ability to render stretched vertical bars (Safari and Opera test)
 							divCompare = divParent.appendChild(document.createElement('div'));
 							divCompare.style.color = '#fff';
 							divCompare.style.display = 'inline';
 							divCompare.appendChild(document.createTextNode('|xx|'));
 
+							document.body.appendChild(divParent);
 							hasMathML = div.offsetHeight > div.offsetWidth; // Can MathML be rendered?
 							div.style.position = 'static';
 							div.style.display = 'inline';
-							hasMathML = hasMathML && div.offsetWidth < divCompare.offsetWidth; // Can stretched vertical bars be rendered well? (catches Safari but not Opera)
+							hasMathML = hasMathML && div.offsetWidth < divCompare.offsetWidth; // Can stretched vertical bars be rendered well? (catches Safari and Opera)
 							divParent.parentNode.removeChild(divParent);
 						}
 						return hasMathML;
