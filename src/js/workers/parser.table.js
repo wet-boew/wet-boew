@@ -1430,7 +1430,7 @@
 								if (rowheader && rowheader.uid !== row.cell[i].uid) {
 									if (rowheader.height >= row.cell[i].height) {
 										if (rowheader.height === row.cell[i].height) {
-											errorTrigger(23, 'You can not have paralel row heading, do a cell merge to fix this');
+											errorTrigger(23, 'You cannot have paralel row headers, it\'s recommended do a cell merge to fix it');
 										}
 									
 										// The current cell are a child of the previous rowheader 
