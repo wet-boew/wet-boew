@@ -5,7 +5,7 @@
  */
 @mixin modules {
 
-	.module-related, .module-billboard, .module-event, .module-menu-section, .module-table-contents {
+	.module-related, .module-billboard, .module-menu-section, .module-table-contents {
 		& > :first-child {
 			@include header;
 			@include colorize-base($medium);
@@ -13,19 +13,12 @@
 		}
 	}	
 
-	.module-billboard li, .module-related > ul, .module-menu-section > ul, .module-event > ul, .module-event > table {
+	.module-billboard li, .module-related > ul, .module-menu-section > ul {
 		margin-top: 1px !important;
 		margin-bottom: 0;
 	}
-
-	.module-event {
-		ul, > ul {
-			padding: 0;	
-			@include module-colorize($border:"border");
-		}
-	}
 	
-	.module-billboard, .module-related, .module-menu-section, .module-event {
+	.module-billboard, .module-related, .module-menu-section {
 		ul {
 			margin: 0;
 			@include no-bullets;
@@ -105,19 +98,6 @@
 		}
 	}
 	
-	.module-event {
-		ul.calendar-list { 
-			padding: 10px 10px 5px;	
-			li {
-				padding-left: 25px;
-				@include fugue-icon("marker.png", $padding: 16px);
-				
-				&.calendar-more { @include fugue-icon("calendar-list.png", $padding: 16px); }
-			}
-		}
-		table.calendar-month { margin: 0; width: 100%; }
-	}
-	
 	.module-table-contents {
 		
 		background: none;
@@ -136,7 +116,7 @@
 			li {
 				margin-bottom: $margin-medium / 2;
 				margin-left: 25px;
-				list-style-image: url("../images/control-record.png");
+				list-style-image: url("../images/bullet.png");
 			}
 		}
 	} 
@@ -177,7 +157,7 @@
 			width:auto;
 		}
 		
-		&[class*="span-"]{
+		& [class*="span-"]{
 				margin-bottom:0 !important;
 		}
 	}
@@ -224,8 +204,8 @@
 		}
 		
 		img{
-			width:100px;
-			height:62px;
+			width:100px !important;
+			height:62px !important;
 			float:left;
 			margin-left:10px;
 		}

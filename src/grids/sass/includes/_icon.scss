@@ -1,0 +1,386 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+*/
+
+[class*=icon-] {
+	background:url(../images/icons.png) no-repeat top left;
+	width:16px;
+	height:16px;
+	margin-right:4px;
+	display:inline-block;
+	vertical-align:text-top;
+}
+
+.icon-alarm {
+	background-position:0 0;
+}
+
+.icon-book-alt {
+	background-position:0 -17px;
+}
+
+.icon-book-open {
+	background-position:0 -34px;
+}
+
+.icon-book {
+	background-position:0 -51px;
+}
+
+.icon-box {
+	background-position:0 -68px;
+}
+
+.icon-bulb-off {
+	background-position:0 -85px;
+}
+
+.icon-bulb {
+	background-position:0 -102px;
+}
+
+.icon-calculator-arrow {
+	background-position:0 -119px;
+}
+
+.icon-calculator-exclamation {
+	background-position:0 -136px;
+}
+
+.icon-calculator-minus {
+	background-position:0 -153px;
+}
+
+.icon-calculator-plus {
+		background-position:0 -170px;
+}
+
+.icon-calculator {
+	background-position:0 -187px;
+}
+
+.icon-calendar-day {
+	background-position:0 -204px;
+}
+
+.icon-calendar-list {
+	background-position:0 -221px;
+}
+
+.icon-calendar-month {
+	background-position:0 -238px;
+}
+
+.icon-calendar {
+	background-position:0 -255px;
+}
+
+.icon-chart-down {
+	background-position:0 -272px;
+}
+
+.icon-chart-pie {
+	background-position:0 -289px;
+}
+
+.icon-chart-up {
+	background-position:0 -306px;
+}
+
+.icon-chart {
+	background-position:0 -323px;
+}
+
+.icon-clip {
+	background-position:0 -340px;
+}
+
+.icon-clipboard-exclamation {
+	background-position:0 -357px;
+}
+
+.icon-clipboard {
+	background-position:0 -374px;
+}
+
+.icon-clock {
+	background-position:0 -391px;
+}
+
+.icon-comment {
+	background-position:0 -408px;
+}
+
+.icon-compass {
+	background-position:0 -425px;
+}
+
+.icon-cone {
+	background-position:0 -442px;
+}
+
+.icon-construction {
+	background-position:0 -459px;
+}
+
+.icon-desktop {
+	background-position:0 -476px;
+}
+
+.icon-direction {
+	background-position:0 -493px;
+}
+
+.icon-disk {
+	background-position:0 -510px;
+}
+
+.icon-document {
+	background-position:0 -527px;
+}
+
+.icon-envelope {
+	background-position:0 -544px;
+}
+
+.icon-exclamation-alt {
+	background-position:0 -561px;
+}
+
+.icon-exclamation-alt2 {
+	background-position:0 -578px;
+}
+
+.icon-exclamation {
+	background-position:0 -595px;
+}
+
+.icon-film {
+	background-position:0 -612px;
+}
+
+.icon-folder-alt {
+	background-position:0 -629px;
+}
+
+.icon-folder-open {
+	background-position:0 -646px;
+}
+
+.icon-folder {
+	background-position:0 -663px;
+}
+
+.icon-gavel {
+	background-position:0 -680px;
+}
+
+.icon-gear {
+	background-position:0 -697px;
+}
+
+.icon-globe {
+	background-position:0 -714px;
+}
+
+.icon-home {
+	background-position:0 -731px;
+}
+
+.icon-hourglass {
+	background-position:0 -748px;
+}
+
+.icon-image {
+	background-position:0 -765px;
+}
+
+.icon-info-alt {
+	background-position:0 -782px;
+}
+
+.icon-info {
+	background-position:0 -799px;
+}
+
+.icon-light-exclamation {
+	background-position:0 -816px;
+}
+
+.icon-light-green {
+	background-position:0 -833px;
+}
+
+.icon-light-red {
+	background-position:0 -850px;
+}
+
+.icon-light-yellow {
+	background-position:0 -867px;
+}
+
+.icon-light {
+	background-position:0 -884px;
+}
+
+.icon-lock-unlock {
+	background-position:0 -901px;
+}
+
+.icon-lock {
+	background-position:0 -918px;
+}
+
+.icon-magnifier {
+	background-position:0 -935px;
+}
+
+.icon-mail {
+	background-position:0 -952px;
+}
+
+.icon-marker {
+	background-position:0 -969px;
+}
+
+.icon-megaphone {
+	background-position:0 -986px;
+}
+
+.icon-monitor {
+	background-position:0 -1003px;
+}
+
+.icon-nav-090-alt {
+	background-position:0 -1020px;
+}
+
+.icon-nav-090 {
+	background-position:0 -1037px;
+}
+
+.icon-nav-180-alt {
+	background-position:0 -1054px;
+}
+
+.icon-nav-180 {
+	background-position:0 -1071px;
+}
+
+.icon-nav-270-alt {
+	background-position:0 -1088px;
+}
+
+.icon-nav-270 {
+	background-position:0 -1105px;
+}
+
+.icon-nav-alt {
+	background-position:0 -1122px;
+}
+
+.icon-nav {
+	background-position:0 -1139px;
+}
+
+.icon-newspaper {
+	background-position:0 -1156px;
+}
+
+.icon-note-pencil {
+	background-position:0 -1173px;
+}
+
+.icon-note {
+	background-position:0 -1190px;
+}
+
+.icon-paper-pencil {
+	background-position:0 -1207px;
+}
+
+.icon-paper {
+	background-position:0 -1224px;
+}
+
+.icon-pencil {
+	background-position:0 -1241px;
+}
+
+.icon-picture {
+	background-position:0 -1258px;
+}
+
+.icon-printer {
+	background-position:0 -1275px;
+}
+
+.icon-prohibit {
+	background-position:0 -1292px;
+}
+
+.icon-question-alt {
+	background-position:0 -1309px;
+}
+
+.icon-question {
+	background-position:0 -1326px;
+}
+
+.icon-rss {
+	background-position:0 -1343px;
+}
+
+.icon-safe {
+	background-position:0 -1360px;
+}
+
+.icon-scale {
+	background-position:0 -1377px;
+}
+
+.icon-sitemap {
+	background-position:0 -1394px;
+}
+
+.icon-table {
+	background-position:0 -1411px;
+}
+
+.icon-tick-alt {
+	background-position:0 -1428px;
+}
+
+.icon-tick-alt2 {
+	background-position:0 -1445px;
+}
+
+.icon-tick {
+	background-position:0 -1462px;
+}
+
+.icon-tool {
+	background-position:0 -1479px;
+}
+
+.icon-toolbox {
+	background-position:0 -1496px;
+}
+
+.icon-user {
+	background-position:0 -1513px;
+}
+
+.icon-x-alt {
+	background-position:0 -1530px;
+}
+
+.icon-x-alt2 {
+	background-position:0 -1547px;
+}
+
+.icon-x {
+	background-position:0 -1564px;
+}
