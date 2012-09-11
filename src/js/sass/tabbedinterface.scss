@@ -305,7 +305,7 @@
 				text-decoration:none;
 				background:transparent;
 				padding:5px 5px 5px 25px;
-				&.active, &:hover, &:focus, &:active{
+				&:hover, &:focus, &:active{
 					background:#000;
 					color:#fff;
 					outline-color:#000;

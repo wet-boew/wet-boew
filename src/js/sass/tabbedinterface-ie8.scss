@@ -19,7 +19,7 @@
 		.tabs {
 			li{
 				a{
-					&.active, &:hover, &:focus, &:active{
+					&:hover, &:focus, &:active{
 						filter:alpha(opacity=75);
 					}
 				}
