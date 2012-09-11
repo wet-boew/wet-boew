@@ -96,7 +96,18 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
 <h1 id="wb-cont">Affichage des formules mathématiques ou scientifiques (correctif pour MathML)</h1>
-
+<div lang="en">
+<section><h2>Overview</h2>
+<p>This polyfill loads MathJax when MathML is detected on the page and the browser has inadequate MathML support.</p>
+<section><h3>Known issues</h3>
+<ol>
+<li>Browsers that lack both MathML and SVG support (e.g., IE7 - IE9) will take longer to load MathML than browsers with either SVG or MathML support</li>
+<li>IE8 takes a lot longer to load MathML than either IE7 or IE9 (known MathJax reflow issue)</li>
+<li>Pages with a lot of complex formulas can take a few minutes to load on slow machines running IE8 (known MathJax issue)</li>
+</ol>
+</section>
+</section>
+</div>
 <section><h2>Exemples de formules simples</h2>
 
 <p>
