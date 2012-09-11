@@ -5,12 +5,12 @@
  */
 div.cal-cnt {
 	.cal-header{
-		background:#36C;
+		background:#333;
 		color:#FFF;
 		font-weight:bold;
 	}
 	.cal-nextmonth a:link, .cal-nextmonth a:visited, .cal-prevmonth a:link, .cal-prevmonth a:visited {
-		border:1px solid #36C;
+		border:1px solid #333;
 	}
 	.cal-nextmonth a:hover, .cal-nextmonth a:focus, .cal-nextmonth a:active, .cal-prevmonth a:hover, .cal-prevmonth a:focus, .cal-prevmonth a:active{
 		color:#FFF;
@@ -34,9 +34,9 @@ div.cal-cnt {
 
 ol.cal-weekdays li{
 	border-style:solid;
-	border-color:#111;
+	border-color:#333;
 	font-weight:bolder;
-	background:#222;
+	background:#555;
 	color:#FFF;
 }
 
@@ -47,13 +47,13 @@ div.cal-days {
 		background:#FFF;
 	}
 	span.cal-we, ol.cal-day-list li.cal-we{
-		background:#CCC;
+		background:#EEE;
 	}
 	a{
 		color:#111;
 	}
 	a:hover, a:focus, a:active{	/* active is for IE, focus is for Firefox | active est pour IE, focus est pour Firefox */
-		background:#600;
+		background:#333;
 		color:#FFF;
 	}
 	.cal-currentday, .cal-currentday a{
