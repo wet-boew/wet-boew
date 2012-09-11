@@ -1064,9 +1064,11 @@
 							divParent,
 							div,
 							divCompare,
+							/*divCompare2,*/
 							mrow,
 							mo,
-							mfrac;
+							mfrac/*,
+							munderover*/;
 						if (document.createElementNS) {
 							ns = 'http://www.w3.org/1998/Math/MathML';
 							divParent = document.createElement('div');
@@ -1081,16 +1083,17 @@
 							mfrac.appendChild(document.createElementNS(ns, 'mi')).appendChild(document.createTextNode('yy'));
 							mrow.appendChild(document.createElementNS(ns, 'mo')).appendChild(document.createTextNode('|'));
 
-							// For testing ability to render stretched vertical bars
+							// For testing ability to render stretched vertical bars (Safari and Opera test)
 							divCompare = divParent.appendChild(document.createElement('div'));
 							divCompare.style.color = '#fff';
 							divCompare.style.display = 'inline';
 							divCompare.appendChild(document.createTextNode('|xx|'));
 
+							document.body.appendChild(divParent);
 							hasMathML = div.offsetHeight > div.offsetWidth; // Can MathML be rendered?
 							div.style.position = 'static';
 							div.style.display = 'inline';
-							hasMathML = hasMathML && div.offsetWidth < divCompare.offsetWidth; // Can stretched vertical bars be rendered well? (catches Safari but not Opera)
+							hasMathML = hasMathML && div.offsetWidth < divCompare.offsetWidth; // Can stretched vertical bars be rendered well? (catches Safari and Opera)
 							divParent.parentNode.removeChild(divParent);
 						}
 						return hasMathML;
