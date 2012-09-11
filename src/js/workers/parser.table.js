@@ -1428,8 +1428,11 @@
 								row.cell[i].type = 1; // Mark the cell to be an header cell
 								row.cell[i].scope = "row";
 								if (rowheader && rowheader.uid !== row.cell[i].uid) {
-									if (rowheader.height > row.cell[i].height) {
-
+									if (rowheader.height >= row.cell[i].height) {
+										if (rowheader.height === row.cell[i].height) {
+											errorTrigger(23, 'You can not have paralel row heading, do a cell merge to fix this');
+										}
+									
 										// The current cell are a child of the previous rowheader 
 										if (!rowheader.subheader) {
 											rowheader.subheader = [];
@@ -1442,11 +1445,7 @@
 										headingRowCell.push(row.cell[i]);
 									} else {
 										// This case are either paralel heading of growing header, this are an error.
-										if (rowheader.height === row.cell[i].height) {
-											errorTrigger(23, 'You can not have paralel row heading, do a cell merge to fix this');
-										} else {
-											errorTrigger(24, 'For a data row, the heading hiearchy need to be the Generic to the specific');
-										}
+										errorTrigger(24, 'For a data row, the heading hiearchy need to be the Generic to the specific');
 									}
 								}
 								if (!rowheader) {
