@@ -70,7 +70,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-eng.inc">
 <li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
@@ -97,6 +97,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
 <h1 id="wb-cont">Mathematical/scientific formula display (MathML polyfill)</h1>
+
+<section><h2>Overview</h2>
+<p>This polyfill loads MathJax when MathML is detected on the page and the browser has inadequate MathML support.</p>
+<section><h3>Known issues</h3>
+<ol>
+<li>Browsers that lack both MathML and SVG support (e.g., IE7 - IE9) will take longer to load MathML than browsers with either SVG or MathML support</li>
+<li>IE8 takes a lot longer to load MathML than either IE7 or IE9 (known MathJax reflow issue)</li>
+<li>Pages with a lot of complex formulas can take a few minutes to load on slow machines running IE8 (known MathJax issue)</li>
+</ol>
+</section>
+</section>
 
 <section><h2>Examples of simple formulas</h2>
 
@@ -469,10 +480,6 @@ Given the quadratic equation
 </td>
 </tr>
 <tr>
-<tr>
-<td>Test</td>
-<td><math><mrow><mo>|</mo><mfrac><mi>xx</mi><mi>yy</mi></mfrac><mo>|</mo></mrow></math></td>
-</tr>
 <td>Vandermonde Determinant</td>
 <td>
 <math>
@@ -1398,16 +1405,7 @@ Given the quadratic equation
 			</maction>
 		</maction>
 		<mo>,</mo>
-		<mtext>&#x205F;&#x0200A;</mtext>
-		<mtext>&#x205F;&#x0200A;</mtext>
-		<mstyle fontstyle="normal">
-			<mrow>
-				<mi>f</mi>
-				<mi>o</mi>
-				<mi>r</mi>
-			</mrow>
-		</mstyle>
-		<mtext>&#x205F;</mtext>
+		<mtext>&#160;&#160;for&#160;&#160;</mtext>
 		<mo stretchy="false">|</mo>
 		<mi>q</mi>
 		<mo stretchy="false">|</mo>
@@ -1477,7 +1475,7 @@ Given the quadratic equation
 <li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
 <li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
-<li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/en"><span>Economy</span><br />actionplan.gc.ca</a></li>
 <li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>

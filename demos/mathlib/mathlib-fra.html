@@ -70,7 +70,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2><span>Menu</span> du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="gcwu-psnb"><h2>Menu<span> du site</span></h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-fra.inc">
 <li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-fra.html">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
@@ -96,7 +96,18 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
 <h1 id="wb-cont">Affichage des formules mathématiques ou scientifiques (correctif pour MathML)</h1>
-
+<div lang="en">
+<section><h2>Overview</h2>
+<p>This polyfill loads MathJax when MathML is detected on the page and the browser has inadequate MathML support.</p>
+<section><h3>Known issues</h3>
+<ol>
+<li>Browsers that lack both MathML and SVG support (e.g., IE7 - IE9) will take longer to load MathML than browsers with either SVG or MathML support</li>
+<li>IE8 takes a lot longer to load MathML than either IE7 or IE9 (known MathJax reflow issue)</li>
+<li>Pages with a lot of complex formulas can take a few minutes to load on slow machines running IE8 (known MathJax issue)</li>
+</ol>
+</section>
+</section>
+</div>
 <section><h2>Exemples de formules simples</h2>
 
 <p>
@@ -1393,16 +1404,7 @@ Compte tenu de l'équation quadratique
 			</maction>
 		</maction>
 		<mo>,</mo>
-		<mtext>&#x205F;&#x0200A;</mtext>
-		<mtext>&#x205F;&#x0200A;</mtext>
-		<mstyle fontstyle="normal">
-			<mrow>
-				<mi>f</mi>
-				<mi>o</mi>
-				<mi>r</mi>
-			</mrow>
-		</mstyle>
-		<mtext>&#x205F;</mtext>
+		<mtext>&#160;&#160;for&#160;&#160;</mtext>
 		<mo stretchy="false">|</mo>
 		<mi>q</mi>
 		<mo stretchy="false">|</mo>
@@ -1472,7 +1474,7 @@ Compte tenu de l'équation quadratique
 <li><a rel="external" href="http://www.voyage.gc.ca/index-fra.asp"><span>Voyage</span><br />voyage.gc.ca</a></li>
 <li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
-<li><a rel="external" href="http://plandaction.gc.ca/fra/index.asp"><span>Économie</span><br />plandaction.gc.ca</a></li>
+<li><a rel="external" href="http://plandaction.gc.ca/fr"><span>Économie</span><br />plandaction.gc.ca</a></li>
 <li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></div></li>
 </ul>
 </div></div></div></nav>

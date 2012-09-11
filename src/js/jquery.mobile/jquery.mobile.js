@@ -508,7 +508,7 @@ if ( eventCaptureSupported ) {
 					if ( ( ele === target && Math.abs( o.x - x ) < threshold && Math.abs( o.y - y ) < threshold ) ||
 								$.data( ele, touchTargetPropertyName ) === o.touchID ) {
 						// XXX: We may want to consider removing matches from the block list
-						//      instead of waiting for the reset timer to fire.
+						//		instead of waiting for the reset timer to fire.
 						e.preventDefault();
 						e.stopPropagation();
 						return;
@@ -528,9 +528,9 @@ if ( eventCaptureSupported ) {
 // *Version: 1.3, Last updated: 7/21/2010*
 // 
 // Project Home - http://benalman.com/projects/jquery-hashchange-plugin/
-// GitHub       - http://github.com/cowboy/jquery-hashchange/
-// Source       - http://github.com/cowboy/jquery-hashchange/raw/master/jquery.ba-hashchange.js
-// (Minified)   - http://github.com/cowboy/jquery-hashchange/raw/master/jquery.ba-hashchange.min.js (0.8kb gzipped)
+// GitHub		- http://github.com/cowboy/jquery-hashchange/
+// Source		- http://github.com/cowboy/jquery-hashchange/raw/master/jquery.ba-hashchange.js
+// (Minified)	- http://github.com/cowboy/jquery-hashchange/raw/master/jquery.ba-hashchange.min.js (0.8kb gzipped)
 // 
 // About: License
 // 
@@ -554,8 +554,8 @@ if ( eventCaptureSupported ) {
 // 
 // jQuery Versions - 1.2.6, 1.3.2, 1.4.1, 1.4.2
 // Browsers Tested - Internet Explorer 6-8, Firefox 2-4, Chrome 5-6, Safari 3.2-5,
-//                   Opera 9.6-10.60, iPhone 3.1, Android 1.6-2.2, BlackBerry 4.6-5.
-// Unit Tests      - http://benalman.com/code/projects/jquery-hashchange/unit/
+//					 Opera 9.6-10.60, iPhone 3.1, Android 1.6-2.2, BlackBerry 4.6-5.
+// Unit Tests	   - http://benalman.com/code/projects/jquery-hashchange/unit/
 // 
 // About: Known issues
 // 
@@ -575,52 +575,52 @@ if ( eventCaptureSupported ) {
 // 
 // About: Release History
 // 
-// 1.3   - (7/21/2010) Reorganized IE6/7 Iframe code to make it more
-//         "removable" for mobile-only development. Added IE6/7 document.title
-//         support. Attempted to make Iframe as hidden as possible by using
-//         techniques from http://www.paciellogroup.com/blog/?p=604. Added 
-//         support for the "shortcut" format $(window).hashchange( fn ) and
-//         $(window).hashchange() like jQuery provides for built-in events.
-//         Renamed jQuery.hashchangeDelay to <jQuery.fn.hashchange.delay> and
-//         lowered its default value to 50. Added <jQuery.fn.hashchange.domain>
-//         and <jQuery.fn.hashchange.src> properties plus document-domain.html
-//         file to address access denied issues when setting document.domain in
-//         IE6/7.
-// 1.2   - (2/11/2010) Fixed a bug where coming back to a page using this plugin
-//         from a page on another domain would cause an error in Safari 4. Also,
-//         IE6/7 Iframe is now inserted after the body (this actually works),
-//         which prevents the page from scrolling when the event is first bound.
-//         Event can also now be bound before DOM ready, but it won't be usable
-//         before then in IE6/7.
-// 1.1   - (1/21/2010) Incorporated document.documentMode test to fix IE8 bug
-//         where browser version is incorrectly reported as 8.0, despite
-//         inclusion of the X-UA-Compatible IE=EmulateIE7 meta tag.
-// 1.0   - (1/9/2010) Initial Release. Broke out the jQuery BBQ event.special
-//         window.onhashchange functionality into a separate plugin for users
-//         who want just the basic event & back button support, without all the
-//         extra awesomeness that BBQ provides. This plugin will be included as
-//         part of jQuery BBQ, but also be available separately.
+// 1.3	 - (7/21/2010) Reorganized IE6/7 Iframe code to make it more
+//		   "removable" for mobile-only development. Added IE6/7 document.title
+//		   support. Attempted to make Iframe as hidden as possible by using
+//		   techniques from http://www.paciellogroup.com/blog/?p=604. Added 
+//		   support for the "shortcut" format $(window).hashchange( fn ) and
+//		   $(window).hashchange() like jQuery provides for built-in events.
+//		   Renamed jQuery.hashchangeDelay to <jQuery.fn.hashchange.delay> and
+//		   lowered its default value to 50. Added <jQuery.fn.hashchange.domain>
+//		   and <jQuery.fn.hashchange.src> properties plus document-domain.html
+//		   file to address access denied issues when setting document.domain in
+//		   IE6/7.
+// 1.2	 - (2/11/2010) Fixed a bug where coming back to a page using this plugin
+//		   from a page on another domain would cause an error in Safari 4. Also,
+//		   IE6/7 Iframe is now inserted after the body (this actually works),
+//		   which prevents the page from scrolling when the event is first bound.
+//		   Event can also now be bound before DOM ready, but it won't be usable
+//		   before then in IE6/7.
+// 1.1	 - (1/21/2010) Incorporated document.documentMode test to fix IE8 bug
+//		   where browser version is incorrectly reported as 8.0, despite
+//		   inclusion of the X-UA-Compatible IE=EmulateIE7 meta tag.
+// 1.0	 - (1/9/2010) Initial Release. Broke out the jQuery BBQ event.special
+//		   window.onhashchange functionality into a separate plugin for users
+//		   who want just the basic event & back button support, without all the
+//		   extra awesomeness that BBQ provides. This plugin will be included as
+//		   part of jQuery BBQ, but also be available separately.
 
 (function($,window,undefined){
   // Reused string.
   var str_hashchange = 'hashchange',
-    
-    // Method / object references.
-    doc = document,
-    fake_onhashchange,
-    special = $.event.special,
-    
-    // Does the browser support window.onhashchange? Note that IE8 running in
-    // IE7 compatibility mode reports true for 'onhashchange' in window, even
-    // though the event isn't supported, so also test document.documentMode.
-    doc_mode = doc.documentMode,
-    supports_onhashchange = 'on' + str_hashchange in window && ( doc_mode === undefined || doc_mode > 7 );
+	
+	// Method / object references.
+	doc = document,
+	fake_onhashchange,
+	special = $.event.special,
+	
+	// Does the browser support window.onhashchange? Note that IE8 running in
+	// IE7 compatibility mode reports true for 'onhashchange' in window, even
+	// though the event isn't supported, so also test document.documentMode.
+	doc_mode = doc.documentMode,
+	supports_onhashchange = 'on' + str_hashchange in window && ( doc_mode === undefined || doc_mode > 7 );
   
   // Get location.hash (or what you'd expect location.hash to be) sans any
   // leading #. Thanks for making this necessary, Firefox!
   function get_fragment( url ) {
-    url = url || location.href;
-    return '#' + url.replace( /^[^#]*#?(.*)$/, '$1' );
+	url = url || location.href;
+	return '#' + url.replace( /^[^#]*#?(.*)$/, '$1' );
   };
   
   // Method: jQuery.fn.hashchange
@@ -636,12 +636,12 @@ if ( eventCaptureSupported ) {
   // Arguments:
   // 
   //  handler - (Function) Optional handler to be bound to the hashchange
-  //    event. This is a "shortcut" for the more verbose form:
-  //    jQuery(window).bind( 'hashchange', handler ). If handler is omitted,
-  //    all bound window.onhashchange event handlers will be triggered. This
-  //    is a shortcut for the more verbose
-  //    jQuery(window).trigger( 'hashchange' ). These forms are described in
-  //    the <hashchange event> section.
+  //	event. This is a "shortcut" for the more verbose form:
+  //	jQuery(window).bind( 'hashchange', handler ). If handler is omitted,
+  //	all bound window.onhashchange event handlers will be triggered. This
+  //	is a shortcut for the more verbose
+  //	jQuery(window).trigger( 'hashchange' ). These forms are described in
+  //	the <hashchange event> section.
   // 
   // Returns:
   // 
@@ -650,7 +650,7 @@ if ( eventCaptureSupported ) {
   // Allow the "shortcut" format $(elem).hashchange( fn ) for binding and
   // $(elem).hashchange() for triggering, like jQuery does for built-in events.
   $.fn[ str_hashchange ] = function( fn ) {
-    return fn ? this.bind( str_hashchange, fn ) : this.trigger( str_hashchange );
+	return fn ? this.bind( str_hashchange, fn ) : this.trigger( str_hashchange );
   };
   
   // Property: jQuery.fn.hashchange.delay
@@ -707,8 +707,8 @@ if ( eventCaptureSupported ) {
   // 
   // > // Bind an event handler.
   // > jQuery(window).hashchange( function(e) {
-  // >   var hash = location.hash;
-  // >   ...
+  // >	 var hash = location.hash;
+  // >	 ...
   // > });
   // > 
   // > // Manually trigger the event handler.
@@ -718,8 +718,8 @@ if ( eventCaptureSupported ) {
   // 
   // > // Bind an event handler.
   // > jQuery(window).bind( 'hashchange', function(e) {
-  // >   var hash = location.hash;
-  // >   ...
+  // >	 var hash = location.hash;
+  // >	 ...
   // > });
   // > 
   // > // Manually trigger the event handler.
@@ -740,27 +740,27 @@ if ( eventCaptureSupported ) {
   // Override existing $.event.special.hashchange methods (allowing this plugin
   // to be defined after jQuery BBQ in BBQ's source code).
   special[ str_hashchange ] = $.extend( special[ str_hashchange ], {
-    
-    // Called only when the first 'hashchange' event is bound to window.
-    setup: function() {
-      // If window.onhashchange is supported natively, there's nothing to do..
-      if ( supports_onhashchange ) { return false; }
-      
-      // Otherwise, we need to create our own. And we don't want to call this
-      // until the user binds to the event, just in case they never do, since it
-      // will create a polling loop and possibly even a hidden Iframe.
-      $( fake_onhashchange.start );
-    },
-    
-    // Called only when the last 'hashchange' event is unbound from window.
-    teardown: function() {
-      // If window.onhashchange is supported natively, there's nothing to do..
-      if ( supports_onhashchange ) { return false; }
-      
-      // Otherwise, we need to stop ours (if possible).
-      $( fake_onhashchange.stop );
-    }
-    
+	
+	// Called only when the first 'hashchange' event is bound to window.
+	setup: function() {
+	  // If window.onhashchange is supported natively, there's nothing to do..
+	  if ( supports_onhashchange ) { return false; }
+	  
+	  // Otherwise, we need to create our own. And we don't want to call this
+	  // until the user binds to the event, just in case they never do, since it
+	  // will create a polling loop and possibly even a hidden Iframe.
+	  $( fake_onhashchange.start );
+	},
+	
+	// Called only when the last 'hashchange' event is unbound from window.
+	teardown: function() {
+	  // If window.onhashchange is supported natively, there's nothing to do..
+	  if ( supports_onhashchange ) { return false; }
+	  
+	  // Otherwise, we need to stop ours (if possible).
+	  $( fake_onhashchange.stop );
+	}
+	
   });
   
   // fake_onhashchange does all the work of triggering the window.onhashchange
@@ -768,137 +768,137 @@ if ( eventCaptureSupported ) {
   // polling loop to watch for hash changes and in IE 6/7 creating a hidden
   // Iframe to enable back and forward.
   fake_onhashchange = (function(){
-    var self = {},
-      timeout_id,
-      
-      // Remember the initial hash so it doesn't get triggered immediately.
-      last_hash = get_fragment(),
-      
-      fn_retval = function(val){ return val; },
-      history_set = fn_retval,
-      history_get = fn_retval;
-    
-    // Start the polling loop.
-    self.start = function() {
-      timeout_id || poll();
-    };
-    
-    // Stop the polling loop.
-    self.stop = function() {
-      timeout_id && clearTimeout( timeout_id );
-      timeout_id = undefined;
-    };
-    
-    // This polling loop checks every $.fn.hashchange.delay milliseconds to see
-    // if location.hash has changed, and triggers the 'hashchange' event on
-    // window when necessary.
-    function poll() {
-      var hash = get_fragment(),
-        history_hash = history_get( last_hash );
-      
-      if ( hash !== last_hash ) {
-        history_set( last_hash = hash, history_hash );
-        
-        $(window).trigger( str_hashchange );
-        
-      } else if ( history_hash !== last_hash ) {
-        location.href = location.href.replace( /#.*/, '' ) + history_hash;
-      }
-      
-      timeout_id = setTimeout( poll, $.fn[ str_hashchange ].delay );
-    };
-    
-    // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-    // vvvvvvvvvvvvvvvvvvv REMOVE IF NOT SUPPORTING IE6/7/8 vvvvvvvvvvvvvvvvvvv
-    // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-    $.browser.msie && !supports_onhashchange && (function(){
-      // Not only do IE6/7 need the "magical" Iframe treatment, but so does IE8
-      // when running in "IE7 compatibility" mode.
-      
-      var iframe,
-        iframe_src;
-      
-      // When the event is bound and polling starts in IE 6/7, create a hidden
-      // Iframe for history handling.
-      self.start = function(){
-        if ( !iframe ) {
-          iframe_src = $.fn[ str_hashchange ].src;
-          iframe_src = iframe_src && iframe_src + get_fragment();
-          
-          // Create hidden Iframe. Attempt to make Iframe as hidden as possible
-          // by using techniques from http://www.paciellogroup.com/blog/?p=604.
-          iframe = $('<iframe tabindex="-1" title="empty"/>').hide()
-            
-            // When Iframe has completely loaded, initialize the history and
-            // start polling.
-            .one( 'load', function(){
-              iframe_src || history_set( get_fragment() );
-              poll();
-            })
-            
-            // Load Iframe src if specified, otherwise nothing.
-            .attr( 'src', iframe_src || 'javascript:0' )
-            
-            // Append Iframe after the end of the body to prevent unnecessary
-            // initial page scrolling (yes, this works).
-            .insertAfter( 'body' )[0].contentWindow;
-          
-          // Whenever `document.title` changes, update the Iframe's title to
-          // prettify the back/next history menu entries. Since IE sometimes
-          // errors with "Unspecified error" the very first time this is set
-          // (yes, very useful) wrap this with a try/catch block.
-          doc.onpropertychange = function(){
-            try {
-              if ( event.propertyName === 'title' ) {
-                iframe.document.title = doc.title;
-              }
-            } catch(e) {}
-          };
-          
-        }
-      };
-      
-      // Override the "stop" method since an IE6/7 Iframe was created. Even
-      // if there are no longer any bound event handlers, the polling loop
-      // is still necessary for back/next to work at all!
-      self.stop = fn_retval;
-      
-      // Get history by looking at the hidden Iframe's location.hash.
-      history_get = function() {
-        return get_fragment( iframe.location.href );
-      };
-      
-      // Set a new history item by opening and then closing the Iframe
-      // document, *then* setting its location.hash. If document.domain has
-      // been set, update that as well.
-      history_set = function( hash, history_hash ) {
-        var iframe_doc = iframe.document,
-          domain = $.fn[ str_hashchange ].domain;
-        
-        if ( hash !== history_hash ) {
-          // Update Iframe with any initial `document.title` that might be set.
-          iframe_doc.title = doc.title;
-          
-          // Opening the Iframe's document after it has been closed is what
-          // actually adds a history entry.
-          iframe_doc.open();
-          
-          // Set document.domain for the Iframe document as well, if necessary.
-          domain && iframe_doc.write( '<script>document.domain="' + domain + '"</script>' );
-          
-          iframe_doc.close();
-          
-          // Update the Iframe's hash, for great justice.
-          iframe.location.hash = hash;
-        }
-      };
-      
-    })();
-    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    // ^^^^^^^^^^^^^^^^^^^ REMOVE IF NOT SUPPORTING IE6/7/8 ^^^^^^^^^^^^^^^^^^^
-    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    
-    return self;
+	var self = {},
+	  timeout_id,
+	  
+	  // Remember the initial hash so it doesn't get triggered immediately.
+	  last_hash = get_fragment(),
+	  
+	  fn_retval = function(val){ return val; },
+	  history_set = fn_retval,
+	  history_get = fn_retval;
+	
+	// Start the polling loop.
+	self.start = function() {
+	  timeout_id || poll();
+	};
+	
+	// Stop the polling loop.
+	self.stop = function() {
+	  timeout_id && clearTimeout( timeout_id );
+	  timeout_id = undefined;
+	};
+	
+	// This polling loop checks every $.fn.hashchange.delay milliseconds to see
+	// if location.hash has changed, and triggers the 'hashchange' event on
+	// window when necessary.
+	function poll() {
+	  var hash = get_fragment(),
+		history_hash = history_get( last_hash );
+	  
+	  if ( hash !== last_hash ) {
+		history_set( last_hash = hash, history_hash );
+		
+		$(window).trigger( str_hashchange );
+		
+	  } else if ( history_hash !== last_hash ) {
+		location.href = location.href.replace( /#.*/, '' ) + history_hash;
+	  }
+	  
+	  timeout_id = setTimeout( poll, $.fn[ str_hashchange ].delay );
+	};
+	
+	// vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+	// vvvvvvvvvvvvvvvvvvv REMOVE IF NOT SUPPORTING IE6/7/8 vvvvvvvvvvvvvvvvvvv
+	// vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+	$.browser.msie && !supports_onhashchange && (function(){
+	  // Not only do IE6/7 need the "magical" Iframe treatment, but so does IE8
+	  // when running in "IE7 compatibility" mode.
+	  
+	  var iframe,
+		iframe_src;
+	  
+	  // When the event is bound and polling starts in IE 6/7, create a hidden
+	  // Iframe for history handling.
+	  self.start = function(){
+		if ( !iframe ) {
+		  iframe_src = $.fn[ str_hashchange ].src;
+		  iframe_src = iframe_src && iframe_src + get_fragment();
+		  
+		  // Create hidden Iframe. Attempt to make Iframe as hidden as possible
+		  // by using techniques from http://www.paciellogroup.com/blog/?p=604.
+		  iframe = $('<iframe tabindex="-1" title="empty"/>').hide()
+			
+			// When Iframe has completely loaded, initialize the history and
+			// start polling.
+			.one( 'load', function(){
+			  iframe_src || history_set( get_fragment() );
+			  poll();
+			})
+			
+			// Load Iframe src if specified, otherwise nothing.
+			.attr( 'src', iframe_src || 'javascript:0' )
+			
+			// Append Iframe after the end of the body to prevent unnecessary
+			// initial page scrolling (yes, this works).
+			.insertAfter( 'body' )[0].contentWindow;
+		  
+		  // Whenever `document.title` changes, update the Iframe's title to
+		  // prettify the back/next history menu entries. Since IE sometimes
+		  // errors with "Unspecified error" the very first time this is set
+		  // (yes, very useful) wrap this with a try/catch block.
+		  doc.onpropertychange = function(){
+			try {
+			  if ( event.propertyName === 'title' ) {
+				iframe.document.title = doc.title;
+			  }
+			} catch(e) {}
+		  };
+		  
+		}
+	  };
+	  
+	  // Override the "stop" method since an IE6/7 Iframe was created. Even
+	  // if there are no longer any bound event handlers, the polling loop
+	  // is still necessary for back/next to work at all!
+	  self.stop = fn_retval;
+	  
+	  // Get history by looking at the hidden Iframe's location.hash.
+	  history_get = function() {
+		return get_fragment( iframe.location.href );
+	  };
+	  
+	  // Set a new history item by opening and then closing the Iframe
+	  // document, *then* setting its location.hash. If document.domain has
+	  // been set, update that as well.
+	  history_set = function( hash, history_hash ) {
+		var iframe_doc = iframe.document,
+		  domain = $.fn[ str_hashchange ].domain;
+		
+		if ( hash !== history_hash ) {
+		  // Update Iframe with any initial `document.title` that might be set.
+		  iframe_doc.title = doc.title;
+		  
+		  // Opening the Iframe's document after it has been closed is what
+		  // actually adds a history entry.
+		  iframe_doc.open();
+		  
+		  // Set document.domain for the Iframe document as well, if necessary.
+		  domain && iframe_doc.write( '<script>document.domain="' + domain + '"</script>' );
+		  
+		  iframe_doc.close();
+		  
+		  // Update the Iframe's hash, for great justice.
+		  iframe.location.hash = hash;
+		}
+	  };
+	  
+	})();
+	// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	// ^^^^^^^^^^^^^^^^^^^ REMOVE IF NOT SUPPORTING IE6/7/8 ^^^^^^^^^^^^^^^^^^^
+	// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	
+	return self;
   })();
   
 })(jQuery,this);
@@ -1097,7 +1097,7 @@ $.Widget.prototype = {
 			return $.extend( {}, this.options );
 		}
 
-		if  (typeof key === "string" ) {
+		if	(typeof key === "string" ) {
 			if ( value === undefined ) {
 				return this.options[ key ];
 			}
@@ -1586,7 +1586,7 @@ $.mobile.media = (function() {
 			//must set type for IE!
 			styleBlock.type = "text/css";
 
-			if ( styleBlock.styleSheet  ){
+			if ( styleBlock.styleSheet	){
 				styleBlock.styleSheet.cssText = cssrule;
 			} else {
 				styleBlock.appendChild( document.createTextNode(cssrule) );
@@ -1630,7 +1630,7 @@ function validStyle( prop, value, check_vend ) {
 			return txt.charAt( 0 ).toUpperCase() + txt.substr( 1 )
 		},
 		vend_pref = function( vend ) {
-			return  "-" + vend.charAt( 0 ).toLowerCase() + vend.substr( 1 ) + "-";
+			return	"-" + vend.charAt( 0 ).toLowerCase() + vend.substr( 1 ) + "-";
 		},
 		check_style = function( vend ) {
 			var vend_prop = vend_pref( vend ) + prop + ": " + value + ";",
@@ -1695,11 +1695,11 @@ function cssPointerEventsTest() {
 
 	element.style.pointerEvents = 'auto';
 	element.style.pointerEvents = 'x';
-    documentElement.appendChild(element);
+	documentElement.appendChild(element);
 	supports = getComputedStyle &&
-    getComputedStyle( element, '' ).pointerEvents === 'auto';
+	getComputedStyle( element, '' ).pointerEvents === 'auto';
 	documentElement.removeChild( element );
-    return !!supports;
+	return !!supports;
 }
 
 
@@ -1901,7 +1901,7 @@ $.event.special.swipe = {
 
 	horizontalDistanceThreshold: 30,  // Swipe horizontal displacement must be more than this.
 
-	verticalDistanceThreshold: 75,  // Swipe vertical displacement must be less than this.
+	verticalDistanceThreshold: 75,	// Swipe vertical displacement must be less than this.
 
 	setup: function() {
 		var thisObject = this,
@@ -1978,7 +1978,7 @@ $.event.special.swipe = {
 	// Note that we used to use a media query to figure out what the orientation the browser
 	// thinks it is in:
 	//
-	//     initial_orientation_is_landscape = $.mobile.media("all and (orientation: landscape)");
+	//	   initial_orientation_is_landscape = $.mobile.media("all and (orientation: landscape)");
 	//
 	// but there was an iPhone/iPod Touch bug beginning with iOS 4.2, up through iOS 5.1,
 	// where the browser *ALWAYS* applied the landscape media query. This bug does not
@@ -2366,24 +2366,24 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 			// URL as well as some other commonly used sub-parts. When used with RegExp.exec()
 			// or String.match, it parses the URL into a results array that looks like this:
 			//
-			//     [0]: http://jblas:password@mycompany.com:8080/mail/inbox?msg=1234&type=unread#msg-content
-			//     [1]: http://jblas:password@mycompany.com:8080/mail/inbox?msg=1234&type=unread
-			//     [2]: http://jblas:password@mycompany.com:8080/mail/inbox
-			//     [3]: http://jblas:password@mycompany.com:8080
-			//     [4]: http:
-			//     [5]: //
-			//     [6]: jblas:password@mycompany.com:8080
-			//     [7]: jblas:password
-			//     [8]: jblas
-			//     [9]: password
-			//    [10]: mycompany.com:8080
-			//    [11]: mycompany.com
-			//    [12]: 8080
-			//    [13]: /mail/inbox
-			//    [14]: /mail/
-			//    [15]: inbox
-			//    [16]: ?msg=1234&type=unread
-			//    [17]: #msg-content
+			//	   [0]: http://jblas:password@mycompany.com:8080/mail/inbox?msg=1234&type=unread#msg-content
+			//	   [1]: http://jblas:password@mycompany.com:8080/mail/inbox?msg=1234&type=unread
+			//	   [2]: http://jblas:password@mycompany.com:8080/mail/inbox
+			//	   [3]: http://jblas:password@mycompany.com:8080
+			//	   [4]: http:
+			//	   [5]: //
+			//	   [6]: jblas:password@mycompany.com:8080
+			//	   [7]: jblas:password
+			//	   [8]: jblas
+			//	   [9]: password
+			//	  [10]: mycompany.com:8080
+			//	  [11]: mycompany.com
+			//	  [12]: 8080
+			//	  [13]: /mail/inbox
+			//	  [14]: /mail/
+			//	  [15]: inbox
+			//	  [16]: ?msg=1234&type=unread
+			//	  [17]: #msg-content
 			//
 			urlParseRE: /^(((([^:\/#\?]+:)?(?:(\/\/)((?:(([^:@\/#\?]+)(?:\:([^:@\/#\?]+))?)@)?(([^:\/#\?\]\[]+|\[[^\/\]@#?]+\])(?:\:([0-9]+))?))?)?)?((\/?(?:[^\/\?#]+\/+)*)([^\?#]*)))?(\?[^#]+)?)(#.*)?/,
 
@@ -2403,23 +2403,23 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 					// like all other browsers do, so we normalize everything so its consistent
 					// no matter what browser we're running on.
 					return {
-						href:         matches[  0 ] || "",
-						hrefNoHash:   matches[  1 ] || "",
-						hrefNoSearch: matches[  2 ] || "",
-						domain:       matches[  3 ] || "",
-						protocol:     matches[  4 ] || "",
-						doubleSlash:  matches[  5 ] || "",
-						authority:    matches[  6 ] || "",
-						username:     matches[  8 ] || "",
-						password:     matches[  9 ] || "",
-						host:         matches[ 10 ] || "",
-						hostname:     matches[ 11 ] || "",
-						port:         matches[ 12 ] || "",
-						pathname:     matches[ 13 ] || "",
-						directory:    matches[ 14 ] || "",
-						filename:     matches[ 15 ] || "",
-						search:       matches[ 16 ] || "",
-						hash:         matches[ 17 ] || ""
+						href:		  matches[	0 ] || "",
+						hrefNoHash:   matches[	1 ] || "",
+						hrefNoSearch: matches[	2 ] || "",
+						domain:	  matches[	3 ] || "",
+						protocol:	  matches[	4 ] || "",
+						doubleSlash:  matches[	5 ] || "",
+						authority:	  matches[	6 ] || "",
+						username:	  matches[	8 ] || "",
+						password:	  matches[	9 ] || "",
+						host:		  matches[ 10 ] || "",
+						hostname:	  matches[ 11 ] || "",
+						port:		  matches[ 12 ] || "",
+						pathname:	  matches[ 13 ] || "",
+						directory:	  matches[ 14 ] || "",
+						filename:	  matches[ 15 ] || "",
+						search:	  matches[ 16 ] || "",
+						hash:		  matches[ 17 ] || ""
 					};
 			},
 
@@ -2501,8 +2501,8 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 			convertUrlToDataUrl: function( absUrl ) {
 				var u = path.parseUrl( absUrl );
 				if ( path.isEmbeddedPage( u ) ) {
-				    // For embedded pages, remove the dialog hash key as in getFilePath(),
-				    // otherwise the Data Url won't match the id of the embedded Page.
+					// For embedded pages, remove the dialog hash key as in getFilePath(),
+					// otherwise the Data Url won't match the id of the embedded Page.
 					return u.hash.split( dialogHashKey )[0].replace( /^#/, "" );
 				} else if ( path.isSameDomain( u, documentBase ) ) {
 					return u.hrefNoHash.replace( documentBase.domain, "" ).split( dialogHashKey )[0];
@@ -2803,7 +2803,7 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 	// because the recording of the scroll position is delayed for 100ms after
 	// the browser might have changed the position because of the hashchange
 	$window.bind( $.support.pushState ? "popstate" : "hashchange", function() {
-	 	setLastScrollEnabled = false;
+		setLastScrollEnabled = false;
 	});
 
 	// handle initial hashchange from chrome :(
@@ -2816,7 +2816,7 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 		// once the page has changed, re-enable the scroll recording
 		$.mobile.pageContainer.bind( "pagechange", function() {
 
-	 		setLastScrollEnabled = true;
+			setLastScrollEnabled = true;
 
 			// remove any binding that previously existed on the get scroll
 			// which may or may not be different than the scroll element determined for
@@ -3037,7 +3037,7 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 				if ( $.mobile.firstPage.parent().length ) {
 					page = $( $.mobile.firstPage );
 				}
-			} else if ( path.isEmbeddedPage( fileUrl )  ) {
+			} else if ( path.isEmbeddedPage( fileUrl )	) {
 				deferred.reject( absUrl, options );
 				return deferred.promise();
 			}
@@ -3151,7 +3151,7 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 								thisUrl = $( this ).attr( thisAttr );
 
 							// XXX_jblas: We need to fix this so that it removes the document
-							//            base URL, and then prepends with the new page URL.
+							//			  base URL, and then prepends with the new page URL.
 							//if full path exists and is same, chop it - helps IE out
 							thisUrl = thisUrl.replace( location.protocol + '//' + location.host + location.pathname, '' );
 
@@ -3163,8 +3163,8 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 
 					//append to page and enhance
 					// TODO taging a page with external to make sure that embedded pages aren't removed
-					//      by the various page handling code is bad. Having page handling code in many
-					//      places is bad. Solutions post 1.0
+					//		by the various page handling code is bad. Having page handling code in many
+					//		places is bad. Solutions post 1.0
 					page
 						.attr( "data-" + $.mobile.ns + "url", path.convertUrlToDataUrl( fileUrl ) )
 						.attr( "data-" + $.mobile.ns + "external-page", true )
@@ -3382,8 +3382,8 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 
 		// Kill the keyboard.
 		// XXX_jblas: We need to stop crawling the entire document to kill focus. Instead,
-		//            we should be tracking focus with a delegate() handler so we already have
-		//            the element in hand at this point.
+		//			  we should be tracking focus with a delegate() handler so we already have
+		//			  the element in hand at this point.
 		// Wrap this in a try/catch block since IE9 throw "Unspecified error" if document.activeElement
 		// is undefined when we are in an IFrame.
 		try {
@@ -3656,14 +3656,14 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 			}
 
 			// XXX_jblas: Ideally links to application pages should be specified as
-			//            an url to the application document with a hash that is either
-			//            the site relative path or id to the page. But some of the
-			//            internal code that dynamically generates sub-pages for nested
-			//            lists and select dialogs, just write a hash in the link they
-			//            create. This means the actual URL path is based on whatever
-			//            the current value of the base tag is at the time this code
-			//            is called. For now we are just assuming that any url with a
-			//            hash in it is an application page reference.
+			//			  an url to the application document with a hash that is either
+			//			  the site relative path or id to the page. But some of the
+			//			  internal code that dynamically generates sub-pages for nested
+			//			  lists and select dialogs, just write a hash in the link they
+			//			  create. This means the actual URL path is based on whatever
+			//			  the current value of the base tag is at the time this code
+			//			  is called. For now we are just assuming that any url with a
+			//			  hash in it is an application page reference.
 			if ( href.search( "#" ) != -1 ) {
 				href = href.replace( /[^#]*#/, "" );
 				if ( !href ) {
@@ -3692,7 +3692,7 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 
 				//check for protocol or rel and its not an embedded page
 				//TODO overlap in logic from isExternal, rel=external check should be
-				//     moved into more comprehensive isExternalLink
+				//	   moved into more comprehensive isExternalLink
 				isExternal = useDefaultUrlHandling || ( path.isExternal( href ) && !path.isPermittedCrossDomainRequest(documentUrl, href) );
 
 			if( isExternal ) {
@@ -4099,7 +4099,7 @@ $( document ).bind( "pagecreate create", function( e ){
 
 $.widget( "mobile.dialog", $.mobile.widget, {
 	options: {
-		closeBtnText 	: "Close",
+		closeBtnText	: "Close",
 		overlayTheme	: "a",
 		initSelector	: ":jqmData(role='dialog')"
 	},
@@ -4193,16 +4193,16 @@ $( document ).delegate( $.mobile.dialog.prototype.options.initSelector, "pagecre
 (function( $, undefined ) {
 
 $.mobile.page.prototype.options.backBtnText  = "Back";
-$.mobile.page.prototype.options.addBackBtn   = false;
+$.mobile.page.prototype.options.addBackBtn	 = false;
 $.mobile.page.prototype.options.backBtnTheme = null;
 $.mobile.page.prototype.options.headerTheme  = "a";
 $.mobile.page.prototype.options.footerTheme  = "a";
 $.mobile.page.prototype.options.contentTheme = null;
 
 // NOTE bind used to force this binding to run before the buttonMarkup binding
-//      which expects .ui-footer top be applied in its gigantic selector 
+//		which expects .ui-footer top be applied in its gigantic selector 
 // TODO remove the buttonMarkup giant selector and move it to the various modules
-//      on which it depends
+//		on which it depends
 $( document ).bind( "pagecreate", function( e ) {
 	var $page = $( e.target ),
 		o = $page.data( "page" ).options,
@@ -4270,7 +4270,7 @@ $( document ).bind( "pagecreate", function( e ) {
 
 		} else if ( role === "content" ) {
 			if ( contentTheme ) {
-			    $this.addClass( "ui-body-" + ( contentTheme ) );
+				$this.addClass( "ui-body-" + ( contentTheme ) );
 			}
 
 			// Add ARIA role
@@ -4367,14 +4367,14 @@ $.fn.buttonMarkup = function( options ) {
 		var el = $workingSet.eq( i ),
 			e = el[ 0 ],
 			o = $.extend( {}, $.fn.buttonMarkup.defaults, {
-				icon:       options.icon       !== undefined ? options.icon       : el.jqmData( "icon" ),
-				iconpos:    options.iconpos    !== undefined ? options.iconpos    : el.jqmData( "iconpos" ),
-				theme:      options.theme      !== undefined ? options.theme      : el.jqmData( "theme" ) || $.mobile.getInheritedTheme( el, "c" ),
-				inline:     options.inline     !== undefined ? options.inline     : el.jqmData( "inline" ),
-				shadow:     options.shadow     !== undefined ? options.shadow     : el.jqmData( "shadow" ),
-				corners:    options.corners    !== undefined ? options.corners    : el.jqmData( "corners" ),
+				icon:		options.icon	   !== undefined ? options.icon	  : el.jqmData( "icon" ),
+				iconpos:	options.iconpos    !== undefined ? options.iconpos	  : el.jqmData( "iconpos" ),
+				theme:		options.theme	   !== undefined ? options.theme	  : el.jqmData( "theme" ) || $.mobile.getInheritedTheme( el, "c" ),
+				inline:	options.inline	   !== undefined ? options.inline	  : el.jqmData( "inline" ),
+				shadow:	options.shadow	   !== undefined ? options.shadow	  : el.jqmData( "shadow" ),
+				corners:	options.corners    !== undefined ? options.corners	  : el.jqmData( "corners" ),
 				iconshadow: options.iconshadow !== undefined ? options.iconshadow : el.jqmData( "iconshadow" ),
-				mini:       options.mini       !== undefined ? options.mini       : el.jqmData( "mini" )
+				mini:		options.mini	   !== undefined ? options.mini	  : el.jqmData( "mini" )
 			}, options ),
 
 			// Classes Defined
@@ -4453,7 +4453,7 @@ $.fn.buttonMarkup = function( options ) {
 				el.attr( "title", el.getEncodedText() );
 			}
 		}
-    
+	
 		innerClass += o.corners ? " ui-btn-corner-all" : "";
 
 		if ( o.iconpos && o.iconpos === "notext" && !el.attr( "title" ) ) {
@@ -4497,9 +4497,9 @@ $.fn.buttonMarkup = function( options ) {
 			icon  : buttonIcon
 		};
 
-		$.data(e,           'buttonElements', buttonElements);
+		$.data(e,			'buttonElements', buttonElements);
 		$.data(buttonInner, 'buttonElements', buttonElements);
-		$.data(buttonText,  'buttonElements', buttonElements);
+		$.data(buttonText,	'buttonElements', buttonElements);
 		if (buttonIcon) {
 			$.data(buttonIcon, 'buttonElements', buttonElements);
 		}
@@ -4516,22 +4516,22 @@ $.fn.buttonMarkup.defaults = {
 };
 
 function closestEnabledButton( element ) {
-    var cname;
+	var cname;
 
-    while ( element ) {
+	while ( element ) {
 		// Note that we check for typeof className below because the element we
 		// handed could be in an SVG DOM where className on SVG elements is defined to
 		// be of a different type (SVGAnimatedString). We only operate on HTML DOM
 		// elements, so we look for plain "string".
-        cname = ( typeof element.className === 'string' ) && (element.className + ' ');
-        if ( cname && cname.indexOf("ui-btn ") > -1 && cname.indexOf("ui-disabled ") < 0 ) {
-            break;
-        }
+		cname = ( typeof element.className === 'string' ) && (element.className + ' ');
+		if ( cname && cname.indexOf("ui-btn ") > -1 && cname.indexOf("ui-disabled ") < 0 ) {
+			break;
+		}
 
-        element = element.parentNode;
-    }
+		element = element.parentNode;
+	}
 
-    return element;
+	return element;
 }
 
 var attachEvents = function() {
@@ -4586,7 +4586,7 @@ var attachEvents = function() {
 	attachEvents = null;
 };
 
-//links in bars, or those with  data-role become buttons
+//links in bars, or those with	data-role become buttons
 //auto self-init widgets
 $( document ).bind( "pagecreate create", function( e ){
 
@@ -4678,7 +4678,7 @@ $.widget( "mobile.collapsible", $.mobile.widget, {
 
 					var $this = $( this ),
 						isCollapse = ( event.type === "collapse" ),
-					    contentTheme = o.contentTheme;
+						contentTheme = o.contentTheme;
 
 					collapsibleHeading
 						.toggleClass( "ui-collapsible-heading-collapsed", isCollapse)
@@ -4760,7 +4760,7 @@ $.widget( "mobile.collapsibleset", $.mobile.widget, {
 					var isCollapse = ( event.type === "collapse" ),
 						collapsible = $( event.target ).closest( ".ui-collapsible" ),
 						widget = collapsible.data( "collapsible" ),
-					    contentTheme = widget.options.contentTheme;
+						contentTheme = widget.options.contentTheme;
 					if ( contentTheme && collapsible.jqmData( "collapsible-last" ) ) {
 						collapsible.find( widget.options.heading ).first()
 							.find( "a" ).first()
@@ -4848,7 +4848,7 @@ $.widget( "mobile.navbar", $.mobile.widget, {
 		$navbtns.buttonMarkup({
 			corners:	false,
 			shadow:		false,
-			inline:     true,
+			inline:	true,
 			iconpos:	iconpos
 		});
 
@@ -4941,8 +4941,8 @@ $.widget( "mobile.listview", $.mobile.widget, {
 
 			$topli.add( $topli.find( ".ui-btn-inner" )
 					.not( ".ui-li-link-alt span:first-child" ) )
-                                .addClass( "ui-corner-top" )
-                                .end()
+								.addClass( "ui-corner-top" )
+								.end()
 				.find( ".ui-li-link-alt, .ui-li-link-alt span:first-child" )
 					.addClass( "ui-corner-tr" )
 				.end()
@@ -5164,7 +5164,7 @@ $.widget( "mobile.listview", $.mobile.widget, {
 		// can place the appropriate classes on the image and list item.
 		// Note that we used to use something like:
 		//
-		//    li.find(">img:eq(0), .ui-link-inherit>img:eq(0)").each( ... );
+		//	  li.find(">img:eq(0), .ui-link-inherit>img:eq(0)").each( ... );
 		//
 		// But executing a find() like that on Windows Phone 7.5 took a
 		// really long time. Walking things manually with the code below
@@ -5366,8 +5366,8 @@ $.widget( "mobile.checkboxradio", $.mobile.widget, {
 				// trigger click handler's bound directly to the input as a substitute for
 				// how label clicks behave normally in the browsers
 				// TODO: it would be nice to let the browser's handle the clicks and pass them
-				//       through to the associate input. we can swallow that click at the parent
-				//       wrapper element level
+				//		 through to the associate input. we can swallow that click at the parent
+				//		 wrapper element level
 				input.triggerHandler( 'click' );
 
 				// Input set for common radio buttons will contain all the radio
@@ -5504,9 +5504,9 @@ $.widget( "mobile.button", $.mobile.widget, {
 
 		// if this is a link, check if it's been enhanced and, if not, use the right function
 		if( $el[ 0 ].tagName === "A" ) {
-	 	 	!$el.hasClass( "ui-btn" ) && $el.buttonMarkup();
-	 	 	return;
- 	 	}
+			!$el.hasClass( "ui-btn" ) && $el.buttonMarkup();
+			return;
+		}
 
 		// get the inherited theme
 		// TODO centralize for all widgets
@@ -5549,7 +5549,7 @@ $.widget( "mobile.button", $.mobile.widget, {
 			.addClass( classes )
 			.append( $el.addClass( "ui-btn-hidden" ) );
 
-        $button = this.button;
+		$button = this.button;
 		type = $el.attr( "type" );
 		name = $el.attr( "name" );
 
@@ -5576,15 +5576,15 @@ $.widget( "mobile.button", $.mobile.widget, {
 				});
 		}
 
-        $el.bind({
-            focus: function() {
-                $button.addClass( $.mobile.focusClass );
-            },
+		$el.bind({
+			focus: function() {
+				$button.addClass( $.mobile.focusClass );
+			},
 
-            blur: function() {
-                $button.removeClass( $.mobile.focusClass );
-            }
-        });
+			blur: function() {
+				$button.removeClass( $.mobile.focusClass );
+			}
+		});
 
 		this.refresh();
 	},
@@ -5690,9 +5690,9 @@ $( document ).bind( "pagecreate create", function( e ){
 
 ( function( $ ) {
 	var	meta = $( "meta[name=viewport]" ),
-        initialContent = meta.attr( "content" ),
-        disabledZoom = initialContent + ",maximum-scale=1, user-scalable=no",
-        enabledZoom = initialContent + ",maximum-scale=10, user-scalable=yes",
+		initialContent = meta.attr( "content" ),
+		disabledZoom = initialContent + ",maximum-scale=1, user-scalable=no",
+		enabledZoom = initialContent + ",maximum-scale=10, user-scalable=yes",
 		disabledInitially = /(user-scalable[\s]*=[\s]*no)|(maximum-scale[\s]*=[\s]*1)[$,\s]/.test( initialContent );
 	
 	$.mobile.zoom = $.extend( {}, {
@@ -5700,22 +5700,22 @@ $( document ).bind( "pagecreate create", function( e ){
 		locked: false,
 		disable: function( lock ) {
 			if( !disabledInitially && !$.mobile.zoom.locked ){
-	        	meta.attr( "content", disabledZoom );
-	        	$.mobile.zoom.enabled = false;
+				meta.attr( "content", disabledZoom );
+				$.mobile.zoom.enabled = false;
 				$.mobile.zoom.locked = lock || false;
 			}
 		},
 		enable: function( unlock ) {
 			if( !disabledInitially && ( !$.mobile.zoom.locked || unlock === true ) ){
-		        meta.attr( "content", enabledZoom );
-		        $.mobile.zoom.enabled = true;
+				meta.attr( "content", enabledZoom );
+				$.mobile.zoom.enabled = true;
 				$.mobile.zoom.locked = false;
 			}
 		},
 		restore: function() {
 			if( !disabledInitially ){
-	        	meta.attr( "content", initialContent );
-	        	$.mobile.zoom.enabled = true;
+				meta.attr( "content", initialContent );
+				$.mobile.zoom.enabled = true;
 			}
 		}
 	});
@@ -5738,7 +5738,7 @@ $.widget( "mobile.textinput", $.mobile.widget, {
 		var input = this.element,
 			o = this.options,
 			theme = o.theme || $.mobile.getInheritedTheme( this.element, "c" ),
-			themeclass  = " ui-body-" + theme,
+			themeclass	= " ui-body-" + theme,
 			mini = input.jqmData("mini") == true,
 			miniclass = mini ? " ui-mini" : "",
 			focusedEl, clearbtn;
@@ -5748,12 +5748,12 @@ $.widget( "mobile.textinput", $.mobile.widget, {
 		focusedEl = input.addClass("ui-input-text ui-body-"+ theme );
 
 		// XXX: Temporary workaround for issue 785 (Apple bug 8910589).
-		//      Turn off autocorrect and autocomplete on non-iOS 5 devices
-		//      since the popup they use can't be dismissed by the user. Note
-		//      that we test for the presence of the feature by looking for
-		//      the autocorrect property on the input element. We currently
-		//      have no test for iOS 5 or newer so we're temporarily using
-		//      the touchOverflow support flag for jQM 1.0. Yes, I feel dirty. - jblas
+		//		Turn off autocorrect and autocomplete on non-iOS 5 devices
+		//		since the popup they use can't be dismissed by the user. Note
+		//		that we test for the presence of the feature by looking for
+		//		the autocorrect property on the input element. We currently
+		//		have no test for iOS 5 or newer so we're temporarily using
+		//		the touchOverflow support flag for jQM 1.0. Yes, I feel dirty. - jblas
 		if ( typeof input[0].autocorrect !== "undefined" && !$.support.touchOverflow ) {
 			// Set the attribute instead of the property just in case there
 			// is code that attempts to make modifications via HTML.
@@ -6012,7 +6012,7 @@ $.widget( "mobile.slider", $.mobile.widget, {
 			label = $label.attr( "id", labelID ),
 
 			val = function() {
-				return  cType == "input"  ? parseFloat( control.val() ) : control[0].selectedIndex;
+				return	cType == "input"  ? parseFloat( control.val() ) : control[0].selectedIndex;
 			},
 
 			min =  cType == "input" ? parseFloat( control.attr( "min" ) ) : 0,
@@ -6039,7 +6039,7 @@ $.widget( "mobile.slider", $.mobile.widget, {
 
 			options;
 
-        domHandle.setAttribute( 'href', "#" );
+		domHandle.setAttribute( 'href', "#" );
 		domSlider.setAttribute('role','application');
 		domSlider.className = ['ui-slider ',selectClass," ui-btn-down-",trackTheme,' ui-btn-corner-all', inlineClass, miniClass].join("");
 		domHandle.className = 'ui-slider-handle';
@@ -6426,7 +6426,7 @@ $.widget( "mobile.selectmenu", $.mobile.widget, {
 	},
 
   _selectOptions: function() {
-    return this.select.find( "option" );
+	return this.select.find( "option" );
   },
 
 	// setup items that are generally necessary for select menu extension
@@ -6456,7 +6456,7 @@ $.widget( "mobile.selectmenu", $.mobile.widget, {
 	_create: function() {
 		this._preExtension();
 
- 		// Allows for extension of the native select for custom selects and other plugins
+		// Allows for extension of the native select for custom selects and other plugins
 		// see select.custom for example extension
 		// TODO explore plugin registration
 		this._trigger( "beforeCreate" );
@@ -6529,12 +6529,12 @@ $.widget( "mobile.selectmenu", $.mobile.widget, {
 				// Add active class to button
 				self.button.addClass( $.mobile.activeBtnClass );
 			})
-            .bind( "focus", function() {
-                self.button.addClass( $.mobile.focusClass );
-            })
-            .bind( "blur", function() {
-                self.button.removeClass( $.mobile.focusClass );
-            })
+			.bind( "focus", function() {
+				self.button.addClass( $.mobile.focusClass );
+			})
+			.bind( "blur", function() {
+				self.button.removeClass( $.mobile.focusClass );
+			})
 			.bind( "focus vmouseover", function() {
 				self.button.trigger( "vmouseover" );
 			})
@@ -6948,8 +6948,8 @@ $( document ).bind( "pagecreate create", function( e ){
 				}
 
 				var self = this,
-          $window = $( window ),
-          selfListParent = self.list.parent(),
+		  $window = $( window ),
+		  selfListParent = self.list.parent(),
 					menuHeight = selfListParent.outerHeight(),
 					menuWidth = selfListParent.outerWidth(),
 					activePage = $( ".ui-page-active" ),
@@ -7083,7 +7083,7 @@ $( document ).bind( "pagecreate create", function( e ){
 						$option = $(option),
 						parent = option.parentNode,
 						text = $option.text(),
-						anchor  = document.createElement('a'),
+						anchor	= document.createElement('a'),
 						classes = [];
 
 					anchor.setAttribute('href','#');
@@ -7306,7 +7306,7 @@ $( document ).bind( "pagecreate create", function( e ){
 					self.updatePagePadding( thisPage );
 					if( o.updatePagePadding ){
 						$( window ).bind( "throttledresize." + self.widgetName, function(){
-						 	self.updatePagePadding( thisPage );
+							self.updatePagePadding( thisPage );
 						});
 					}
 				})
@@ -7457,10 +7457,10 @@ $( document ).bind( "pagecreate create", function( e ){
 		return;
 	}
 	
-    var zoom = $.mobile.zoom,
+	var zoom = $.mobile.zoom,
 		evt, x, y, z, aig;
 	
-    function checkTilt( e ){
+	function checkTilt( e ){
 		evt = e.originalEvent;
 		aig = evt.accelerationIncludingGravity;
 		
@@ -7469,17 +7469,17 @@ $( document ).bind( "pagecreate create", function( e ){
 		z = Math.abs( aig.z );
 				
 		// If portrait orientation and in one of the danger zones
-        if( !window.orientation && ( x > 7 || ( ( z > 6 && y < 8 || z < 8 && y > 6 ) && x > 5 ) ) ){
+		if( !window.orientation && ( x > 7 || ( ( z > 6 && y < 8 || z < 8 && y > 6 ) && x > 5 ) ) ){
 			if( zoom.enabled ){
 				zoom.disable();
-			}        	
-        }
+			}			
+		}
 		else if( !zoom.enabled ){
 			zoom.enable();
-        }
-    }
+		}
+	}
 
-    $( window )
+	$( window )
 		.bind( "orientationchange.iosorientationfix", zoom.enable )
 		.bind( "devicemotion.iosorientationfix", checkTilt );
 
@@ -7625,9 +7625,9 @@ $( document ).bind( "pagecreate create", function( e ){
 			// or there is no page with that hash, change to the first page in the DOM
 			// Remember, however, that the hash can also be a path!
 			if ( ! ( $.mobile.hashListeningEnabled &&
-			         $.mobile.path.isHashValid( location.hash ) &&
-			         ( $( location.hash + ':jqmData(role="page")' ).length ||
-			           $.mobile.path.isPath( location.hash ) ) ) ) {
+					 $.mobile.path.isHashValid( location.hash ) &&
+					 ( $( location.hash + ':jqmData(role="page")' ).length ||
+					   $.mobile.path.isPath( location.hash ) ) ) ) {
 				$.mobile.changePage( $.mobile.firstPage, { transition: "none", reverse: true, changeHash: false, fromHashChange: true } );
 			}
 			// otherwise, trigger a hashchange to load a deeplink

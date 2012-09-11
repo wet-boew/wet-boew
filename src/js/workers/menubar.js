@@ -121,7 +121,7 @@
 						timeout: 500
 					});
 					/* now recurse all focusable to be able to navigate */
-					$childmenu.find("h3 a, h4 a").each(function (i) {
+					$childmenu.find("h3 a, h4 a, > div > a").each(function (i) {
 						var $this = $(this);
 						$this.addClass("knav-" + index + "-" + (i + 1) + "-0");
 						$this.parent().next("ul").find("a").each(function (j) {

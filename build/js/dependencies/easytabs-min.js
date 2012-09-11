@@ -4,8 +4,8 @@
  * Copyright (c) 2010-2011 Steve Schwartz (JangoSteve)
  *
  * Dual licensed under the MIT and GPL licenses:
- *   http://www.opensource.org/licenses/mit-license.php
- *   http://www.gnu.org/licenses/gpl.html
+ *	 http://www.opensource.org/licenses/mit-license.php
+ *	 http://www.gnu.org/licenses/gpl.html
  *
  * Date: Tue Jan 26 16:30:00 2012 -0500
  */

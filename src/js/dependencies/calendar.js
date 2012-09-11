@@ -148,7 +148,7 @@
 						btn.children('img').attr('alt', alt);
 					} else {
 						btnCtn = $('<div class="cal-' + suffix + '"></div>');
-						btn = $('<a href="javascript:;" role="button"><img class="image-actual" src="' + pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.gif" alt="' + alt + '" /></a>');
+						btn = $('<a href="javascript:;" role="button"><img class="image-actual" src="' + pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.png" alt="' + alt + '" /></a>');
 
 						btnCtn.append(btn);
 						if (n === 0) {
@@ -259,12 +259,12 @@
 			}
 
 			buttonContainer = $('<div class="cal-goto-button"></div>');
-			button = $('<input type="submit" value="' + pe.dic.get('%calendar-goToButton') + '" />');
+			button = $('<input type="submit" class="button button-accent" value="' + pe.dic.get('%calendar-goToButton') + '" />');
 			buttonContainer.append(button);
 			fieldset.append(buttonContainer);
 
 			buttonCancelContainer = $('<div class="cal-goto-button"></div>');
-			buttonCancel = $('<input type="button" value="' + pe.dic.get('%calendar-cancelButton') + '" />');
+			buttonCancel = $('<input type="button" class="button button-dark" value="' + pe.dic.get('%calendar-cancelButton') + '" />');
 			buttonCancel.click(function () {
 				_pe.fn.calendar.hideGoToForm(calendarid);
 			});
@@ -488,9 +488,9 @@
 			compare : function (a, b) {
 				// Compare two dates (could be of any type supported by the convert
 				// function above) and returns:
-				//  -1 : if a < b
-				//   0 : if a = b
-				//   1 : if a > b
+				// -1 : if a < b
+				// 0 : if a = b
+				// 1 : if a > b
 				// NaN : if a or b is an illegal date
 				// NOTE: The code inside isFinite does an assignment (=).
 				return (
@@ -500,9 +500,9 @@
 			inRange : function (d, start, end) {
 				// Checks if date in d is between dates in start and end.
 				// Returns a boolean or NaN:
-				// true  : if d is between start and end (inclusive)
+				// true : if d is between start and end (inclusive)
 				// false : if d is before start or after end
-				// NaN   : if one or more of the dates is illegal.
+				// NaN : if one or more of the dates is illegal.
 				// NOTE: The code inside isFinite does an assignment (=).
 				return (
 					isFinite(d = _pe.fn.calendar.dates.convert(d).valueOf()) && isFinite(start = _pe.fn.calendar.dates.convert(start).valueOf()) && isFinite(end = _pe.fn.calendar.dates.convert(end).valueOf()) ? start <= d && d <= end : NaN

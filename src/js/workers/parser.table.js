@@ -65,27 +65,26 @@
 				return;
 			}
 			/*
-		
 			+-----------------------------------------------------+
 			| FYI - Here the value and signification of each type |
-			+------+---------------+------------------------------+
-			| Type | Signification | Technicality
-			+------+---------------+-------------------------------
-			|  1   | Header        | TH element only
-			+------+---------------+-------------------------------
-			|  2   | Data          | TD element only
-			+------+---------------+-------------------------------
-			|  3   | Summary       | TD element and TD of type 2 exist
-			+------+---------------+-------------------------------
-			|  4   | Key           | TD element applicable to right TH, Only available on row
-			+------+---------------+-------------------------------
-			|  5   | Description   | TD element applicable to left or top TH
-			+------+---------------+-------------------------------
-			|  6   | Layout        | Can be only: Top Left cell or/and Summmary group intersection
-			+------+---------------+-------------------------------
-			|  7   | Header Group  | TH element only, visual heading grouping, this type are an extension of the type 1
-			+------+---------------+-------------------------------
-		*/
+			+-------+---------------+-----------------------------+
+			| Type  | Signification | Technicality
+			+-------+---------------+------------------------------
+			|	1	| Header		| TH element only
+			+-------+---------------+------------------------------
+			|	2	| Data			| TD element only
+			+-------+---------------+------------------------------
+			|	3	| Summary		| TD element and TD of type 2 exist
+			+-------+---------------+------------------------------
+			|	4	| Key			| TD element applicable to right TH, Only available on row
+			+-------+---------------+------------------------------
+			|	5	| Description   | TD element applicable to left or top TH
+			+-------+---------------+------------------------------
+			|	6	| Layout		| Can be only: Top Left cell or/and Summmary group intersection
+			+-------+---------------+------------------------------
+			|	7	| Header Group  | TH element only, visual heading grouping, this type are an extension of the type 1
+			+-------+---------------+------------------------------
+			*/
 			$(obj).data().tblparser = groupZero;
 			groupZero.colgroup = colgroupFrame;
 			if (!groupZero.rowgroup) {
@@ -892,7 +891,7 @@
 				// Calculate the appropriate row group level based on the previous rowgroup 
 				//	* a Summary Group decrease the row group level
 				//	* a Data Group increase the row group level based of his number of row group header and the previous row group level
-				//  * Dont forget to set the appropriate level to each group header cell inside this row group.
+				//	* Dont forget to set the appropriate level to each group header cell inside this row group.
 				if (!currentRowGroup.level) {
 					// Get the level of the previous group
 					if (lstRowGroup.length > 0) {

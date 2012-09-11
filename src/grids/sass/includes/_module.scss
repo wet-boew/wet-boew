@@ -164,9 +164,23 @@
 				padding: 0;
 			}
 		}
+		
+		img { 
+				margin-bottom: 0; 
+		}
 	}
 	
-	.module-poster img { margin-bottom: 0; }
+	.module-contact{
+		.clear {
+			border-top:1px solid #eee;
+			visibility:visible;
+			width:auto;
+		}
+		
+		& [class*="span-"]{
+				margin-bottom:0 !important;
+		}
+	}
 
 	.module-news {
 	
@@ -207,6 +221,18 @@
 				float: left;
 				margin-right: 10px;
 			}
+		}
+		
+		img{
+			width:100px !important;
+			height:62px !important;
+			float:left;
+			margin-left:10px;
+		}
+		
+		& > * {
+			padding:10px;
+			margin:0;
 		}
 	}
 	

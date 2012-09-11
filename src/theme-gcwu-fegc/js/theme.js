@@ -57,7 +57,7 @@
 			var mb_dialogue,
 				mb_header,
 				mb_header_html,
-				mb_btn_txt = 'Menus',
+				mb_btn_txt = 'Menu',
 				srch_btn_txt = (pe.language === 'en' ? 'Search' : 'Recherche'),
 				srch_head,
 				secnav_h2,

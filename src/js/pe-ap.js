@@ -36,6 +36,8 @@
 		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
+		urlpage: '',
+		urlhash: '',
 		urlquery: '',
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
 		document: $(document),
@@ -57,8 +59,10 @@
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
 
-			// Get the query parameters from the URL
-			pe.urlquery = pe.url(window.location.href).params;
+			// Get the hash and query parameters from the URL
+			pe.urlpage = pe.url(window.location.href);
+			pe.urlhash = pe.urlpage.hash;
+			pe.urlquery = pe.urlpage.params;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$('html').removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
@@ -113,7 +117,7 @@
 				pe.document.on('pageinit', function () {
 					// On click, puts focus on and scrolls to the target of same page links
 					hlinks_same.off('click vclick').on('click vclick', function () {
-						$this = $($(this).attr("href"));
+						$this = $($(this).attr("href").replace(/[.:]/, '\\$1'));
 						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if ($this.length > 0) {
 							$.mobile.silentScroll(pe.focus($this).offset().top);
@@ -122,7 +126,7 @@
 
 					// If hashtarget is in the query string then put focus on and scroll to the target
 					if (pe.urlquery.hashtarget !== undefined) {
-						target = pe.main.find('#' + pe.urlquery.hashtarget);
+						target = pe.main.find('#' + pe.urlquery.hashtarget.replace(/[.:]/, '\\$1'));
 						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if (target.length > 0) {
 							setTimeout(function () {
@@ -136,7 +140,7 @@
 			} else {
 				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
 				hlinks_same.on("click vclick", function () {
-					$this = $($(this).attr('href'));
+					$this = $($(this).attr('href').replace(/[.:]/, '\\$1'));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
@@ -144,8 +148,8 @@
 				});
 
 				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
-				if (window.location.hash.length > 0) {
-					$this = $(window.location.hash);
+				if (pe.urlhash.length > 0) {
+					$this = $(pe.urlhash.replace(/[.:]/, '\\$1'));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
@@ -213,7 +217,7 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return (pe.mobileview && (screen.width < 768 || window.innerWidth < 768 && (window.outerWidth - window.innerWidth < 50)) && !(pe.ie > 0 && pe.ie < 9));
+			return (pe.mobileview && (screen.width < 768 || (window.innerWidth < 768 && (window.innerHeight === document.documentElement.clientHeight))) && !(pe.ie > 0 && pe.ie < 9));
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -281,7 +285,7 @@
 				* @type {string}
 				* @example
 				* pe.url('http://www.canada.ca/index.html').host
-				*    returns 'www.canada.ca'
+				*	returns 'www.canada.ca'
 				*/
 				host: a.hostname,
 				/**
@@ -297,7 +301,7 @@
 				* @see #params
 				* @example
 				* pe.url('http://www.canada.ca?a=1&b=2').query
-				*    returns '?a=1&b=2'
+				*	returns '?a=1&b=2'
 				*/
 				query: a.search,
 				/**
@@ -306,12 +310,12 @@
 				* @type {object (key/value map of strings)}
 				* @see #query
 				* @example
-				* pe.url('http://www.canada.ca?a=1&b=2').params
-				*    returns
-				*       {
-				*          a: '1',
-				*          b: '2'
-				*       }
+				*	pe.url('http://www.canada.ca?a=1&b=2').params
+				*		returns
+				*			{
+				*				a: '1',
+				*				b: '2'
+				*			}
 				*/
 				params: (function () {
 					var key, ret, s, seg, _i, _len;
@@ -332,8 +336,8 @@
 				* @memberof pe.url
 				* @type {string}
 				* @example
-				*    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').file
-				*       returns 'menu-eng.html'
+				*	pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').file
+				*		returns 'menu-eng.html'
 				*/
 				file: a.pathname.match(/\/([^\/?#]+)$/i) ? a.pathname.match(/\/([^\/?#]+)$/i)[1] : '',
 				/**
@@ -341,8 +345,8 @@
 				* @memberof pe.url
 				* @type {string}
 				* @example
-				*    pe.url('http://www.canada.ca#wb-main-in').hash
-				*       returns 'wb-main-in'
+				*	pe.url('http://www.canada.ca#wb-main-in').hash
+				*		returns 'wb-main-in'
 				*/
 				hash: a.hash.replace('#', ''),
 				/**
@@ -350,8 +354,8 @@
 				* @memberof pe.url
 				* @type {string}
 				* @example
-				*    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').path
-				*       returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
+				*	pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').path
+				*		returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				path: a.pathname.replace(/^([^\/])/, '/$1'),
 				/**
@@ -359,8 +363,8 @@
 				* @memberof pe.url
 				* @type {string}
 				* @example
-				*    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').relative
-				*       returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
+				*	pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').relative
+				*		returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				relative: a.href.match(/tps?:\/\/[^\/]+(.+)/) ? a.href.match(/tps?:\/\/[^\/]+(.+)/)[1] : '',
 				/**
@@ -368,8 +372,8 @@
 				* @memberof pe.url
 				* @type {string[]}
 				* @example
-				*    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').segments
-				*       returns ['aboutcanada-ausujetcanada', 'hist', 'menu-eng.html']
+				*	pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html').segments
+				*		returns ['aboutcanada-ausujetcanada', 'hist', 'menu-eng.html']
 				*/
 				segments: a.pathname.replace(/^\//, '').split('/'),
 				/**
@@ -378,13 +382,13 @@
 				* @type {string}
 				* @function
 				* @example
-				*    pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash()
-				*       returns 'http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html'
-				*    pe.url( pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash() ).relative
-				*       returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
+				*	pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash()
+				*		returns 'http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html'
+				*	pe.url( pe.url('http://www.canada.gc.ca/aboutcanada-ausujetcanada/hist/menu-eng.html#wb-main-in').removehash() ).relative
+				*		returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				removehash: function () {
-					return this.source.replace(/#([A-Za-z0-9\-_=&]+)/, '');
+					return this.source.replace(/#([A-Za-z0-9\-_=&]+.:)/, '');
 				}
 			};
 		},
@@ -457,9 +461,9 @@
 					* @param {string} tweet The tweet to format.
 					* @return {string}
 					* @example
-					* pe.string.ify.clean('@ded the cdn url is http://cdn.enderjs.com')
-					*    returns '@&lt;a href="http://twitter.com/ded"&gt;ded&lt;/a&gt; the cdn url is &lt;a href="http://cdn.enderjs.com"&gt;http://cdn.enderjs.com&lt;/a&gt;'
-					*        ie. '@<a href="http://twitter.com/ded">ded</a> the cdn url is <a href="http://cdn.enderjs.com">http://cdn.enderjs.com</a>'
+					*	pe.string.ify.clean('@ded the cdn url is http://cdn.enderjs.com')
+					*		returns '@&lt;a href="http://twitter.com/ded"&gt;ded&lt;/a&gt; the cdn url is &lt;a href="http://cdn.enderjs.com"&gt;http://cdn.enderjs.com&lt;/a&gt;'
+					*		ie. '@<a href="http://twitter.com/ded">ded</a> the cdn url is <a href="http://cdn.enderjs.com">http://cdn.enderjs.com</a>'
 					*/
 					'clean': function (tweet) {
 						return this.hash(this.at(this.link(tweet)));
@@ -635,10 +639,10 @@
 			* @param {boolean} timepresent Optional. Whether to include the time in the result, or just the date. False if blank.
 			* @return {string}
 			* @example
-			* pe.date.to_iso_format(new Date())
-			*    returns '2012-04-27'
-			* pe.date.to_iso_format(new Date(), true)
-			*    returns '2012-04-27 13:46'
+			*	pe.date.to_iso_format(new Date())
+			*		returns '2012-04-27'
+			*	pe.date.to_iso_format(new Date(), true)
+			*		returns '2012-04-27 13:46'
 			*/
 			to_iso_format: function (d, timepresent) {
 				var date;
@@ -754,7 +758,7 @@
 					nested,
 					menubar = (mbar !== undefined ? mbar : false),
 					expand = (expandall !== undefined ? expandall : false),
-					allText = pe.dic.get('%all'),
+					mainText = pe.dic.get('%main-page'),
 					collapsibleSet = '<div data-role="collapsible-set" data-theme="' + theme + '"></div>',
 					listView = '<ul data-role="listview" data-theme="' + theme + '"></ul>';
 				if (menuitems.get(0).tagName.toLowerCase() === 'ul') {
@@ -777,22 +781,22 @@
 							if (next.get(0).tagName.toLowerCase() === 'ul') {
 								// The original menu item was not in a menu bar
 								if (!menubar) {
-									next.append($('<li></li>').append($this.children('a').html(allText + ' - ' + hlink[0].innerHTML)));
+									next.append($('<li></li>').append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText)));
 								}
 								nested = next.find('li ul');
 								// If a nested list is detected
 								nested.each(function (index) {
 									var $this = $(this),
 										hlink_html,
-										headingIndexOpen = '<h' + hlevel + 1 + index + '>',
-										headingIndexClose = '</h' + hlevel + 1 + index + '>';
+										headingIndexOpen = '<h' + (hlevel + 1 + index) + '>',
+										headingIndexClose = '</h' + (hlevel + 1 + index) + '>';
 									if ((hlevel + 1 + index) < 7) {
 										// Make the nested list into a collapsible section
 										hlink = $this.prev('a');
 										hlink_html = hlink[0].innerHTML;
 										$this.attr({ 'data-role': 'listview', 'data-theme': theme }).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? ' data-collapsed="false"' : '') + '></div>');
 										$this.parent().prepend(headingIndexOpen + hlink_html + headingIndexClose);
-										$this.append('<li><a href="' + hlink.attr('href') + '">' + allText + ' - ' + hlink_html + '</a></li>');
+										$this.append('<li><a href="' + hlink.attr('href') + '">' + hlink_html + ' - ' + mainText + '</a></li>');
 										hlink.remove();
 									} else {
 										$this.attr({ 'data-role': 'listview', 'data-theme': theme });
@@ -805,7 +809,7 @@
 								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme, false, expand));
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
-									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(allText + ' - ' + hlink[0].innerHTML).attr({'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right'}));
+									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right'}));
 								}
 							}
 							menu.append(subsection);
@@ -1054,24 +1058,43 @@
 					support_check: function () {
 						// MathML
 						// http://www.w3.org/Math/
-						// By Addy Osmani
-						// Based on work by Davide (@dpvc) and David (@davidcarlisle)
-						// in https://github.com/mathjax/MathJax/issues/182
+						// Based on work by Addy Osmani which is based on work by Davide (@dpvc) and David (@davidcarlisle) in https://github.com/mathjax/MathJax/issues/182
 						var hasMathML = false,
 							ns,
+							divParent,
 							div,
-							mfrac;
+							divCompare,
+							/*divCompare2,*/
+							mrow,
+							mo,
+							mfrac/*,
+							munderover*/;
 						if (document.createElementNS) {
 							ns = 'http://www.w3.org/1998/Math/MathML';
-							div = document.createElement('div');
+							divParent = document.createElement('div');
+							div = divParent.appendChild(document.createElement('div'));
 							div.style.position = 'absolute';
 							div.style.color = '#fff';
-							mfrac = div.appendChild(document.createElementNS(ns, 'math')).appendChild(document.createElementNS(ns, 'mfrac'));
+							mrow = div.appendChild(document.createElementNS(ns, 'math')).appendChild(document.createElementNS(ns, 'mrow'));
+							mo = mrow.appendChild(document.createElementNS(ns, 'mo'));
+							mo.appendChild(document.createTextNode('|'));
+							mfrac = mrow.appendChild(document.createElementNS(ns, 'mfrac'));
 							mfrac.appendChild(document.createElementNS(ns, 'mi')).appendChild(document.createTextNode('xx'));
 							mfrac.appendChild(document.createElementNS(ns, 'mi')).appendChild(document.createTextNode('yy'));
-							document.body.appendChild(div);
-							hasMathML = div.offsetHeight > div.offsetWidth;
-							div.parentNode.removeChild(div);
+							mrow.appendChild(document.createElementNS(ns, 'mo')).appendChild(document.createTextNode('|'));
+
+							// For testing ability to render stretched vertical bars (Safari and Opera test)
+							divCompare = divParent.appendChild(document.createElement('div'));
+							divCompare.style.color = '#fff';
+							divCompare.style.display = 'inline';
+							divCompare.appendChild(document.createTextNode('|xx|'));
+
+							document.body.appendChild(divParent);
+							hasMathML = div.offsetHeight > div.offsetWidth; // Can MathML be rendered?
+							div.style.position = 'static';
+							div.style.display = 'inline';
+							hasMathML = hasMathML && div.offsetWidth < divCompare.offsetWidth; // Can stretched vertical bars be rendered well? (catches Safari and Opera)
+							divParent.parentNode.removeChild(divParent);
 						}
 						return hasMathML;
 					}
