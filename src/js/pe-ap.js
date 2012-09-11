@@ -105,9 +105,9 @@
 
 					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
 						newurl = url.path + '?';
-						for (urlparam in urlparams) { // Rebuilt the query string
+						for (urlparam in urlparams) { // Rebuild the query string
 							if (urlparams.hasOwnProperty(urlparam) && urlparam !== 'hashtarget') {
-								newurl += urlparams[urlparam] + '&amp;';
+								newurl += urlparam + '=' + urlparams[urlparam] + '&amp;';
 							}
 						}
 						$this.attr('href', newurl + 'hashtarget=' + url.hash); // Append hashtarget to the query string
@@ -665,13 +665,23 @@
 				disablels = (lsenabled ? localStorage.getItem('pedisable') : null),
 				disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels),
 				tphp = document.getElementById('wb-tphp'),
-				li = document.createElement('li');
+				li = document.createElement('li'),
+				qparams = pe.urlquery,
+				qparam,
+				newquery = '?';
+
+			for (qparam in qparams) { // Rebuild the query string
+				if (qparams.hasOwnProperty(qparam) && qparam !== 'pedisable') {
+					newquery += qparam + '=' + qparams[qparam] + '&amp;';
+				}
+			}
+
 			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
 				$('html').addClass('no-js pe-disable');
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
 				}
-				li.innerHTML = '<a href="?pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
+				li.innerHTML = '<a href="' + newquery + 'pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
 				tphp.appendChild(li); // Add link to re-enable PE
 				return true;
 			} else if (disable === "false" || disablels !== null) {
@@ -679,7 +689,7 @@
 					localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
 				}
 			}
-			li.innerHTML = '<a href="?pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
+			li.innerHTML = '<a href="' + newquery + 'pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
 			tphp.appendChild(li); // Add link to disable PE
 			return false;
 		},
