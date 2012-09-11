@@ -43,22 +43,41 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	//<![CDATA[
 (function ($) {
 	$(document).ready(function(){
-		$('#resultTableIdHeaders').hide();
+		$('#resultTableIdHeaders').empty();
+		$('#resultTableIdHeaders').append('<pre>Nothing to being displayed</pre>');
+		
+		$('form').submit(function() {
+			$('#inputHTMLtable').focus();
+			return false;
+		});
+		
 		
 		var _pe = window.pe || {
 			fn : {}
-		};
+		},
+			nbErrorFound = 0;
 		
 		_pe.fn.parsertable.onParserError = function(numerr, err, obj){
-			$('#errorList').append($('<li><strong>' + numerr + '</strong> ' + err + '</li>'));
-			$(obj).css('background-color', 'red');
+			var msgListItem = '<li><span class="wb-invisible">' + numerr + '</span> ';
+			if(numerr !== 23) {
+				nbErrorFound += 1;
+				msgListItem += 'Error: ';
+			} else {
+				msgListItem += 'Warning: ';
+			}
+			$('#errorList').append($(msgListItem + err + '</li>'));
+			if (obj) {
+				$(obj).css('background-color', 'red');
+			}
 		};
 		
 		$('#analysetable').click(function(){
-			var noErrorList = '<li>No Error Found</li>';
+			var noErrorList = '<li>No Error Found</li>',
+				genericMessage = '<li>Use the above text field to analyse your HTML Complex Table Source Code</li>';
 			
 			$('#resultTableIdHeaders').val('');
-			$('#resultTableIdHeaders').hide();
+			$('#resultTableIdHeaders').empty();
+			$('#resultTableIdHeaders').append('<pre>Nothing to being displayed</pre>');
 			
 
 			$('#errorList').empty();			
@@ -73,7 +92,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 				$('#directOutput').empty();
 			}
 			
-			if($('#errorList').children().length === 0){
+			if(nbErrorFound === 0){
 				$('#errorList').append($(noErrorList));
 				
 				// Add id, headers attribute to each cell
@@ -249,7 +268,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 								var currCellId5 = $(currCell.elem).attr('id');
 								if (currCellId5 === undefined || currCellId5 === '' || resetIds) {
 									// currCellId5 = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-									currCellId5 = idPrefix + currCellId5.uid; // Generate a new ID
+									currCellId5 = idPrefix + currCell.uid; // Generate a new ID
 									$(currCell.elem).attr('id', currCellId5);
 								}
 								
@@ -433,7 +452,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 								 
 				
 				// $('#resultTableIdHeaders').html(prettyPrintOne('<table>' + $(tblelement).html() + '</table>'));
-				
+				$('#resultTableIdHeaders').empty();
 				$('#resultTableIdHeaders').html('<pre class="prettyprint"><code>' + ('<table>' + $(tblelement).html() + '</table>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '</code></pre>');
 				
 
@@ -516,95 +535,66 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h1 id="wb-cont">HTML Table Validator - Table Usability - Web Experience Toolkit (WET)</h1>
 
-<p><em>This is a HTML Table Validator to help you to see any issue from your HTML Table. Also you will be able to setup your header/ids attribute</em></p>
+<h2>Instruction</h2>
 
-<div class="module span-8">
-	<label for="idprefix">Id Prefix:</label> <input id="idprefix" value="tbl" /> <label for="idreset">Reset Ids:</label> <input id="idreset" type="checkbox" /><br />
-	
-<textarea id="inputHTMLtable" class="span-8" rows="20" cols="50">
+<p>This validator would help you find any relationship error defined in your complex table. The validation process can be accomplished by <strong>pasting your HTML table source code</strong> in the text field below and clicking the button "<strong>Analyse</strong>".</p>
 
+<p>Once the validator has detected that your complex and simple table is well structured, under the Result heading you will get access to a version with ids/headers/aria-describedby set on your complex table markup. By default, the headers assignation would use the existing ids in your markup and create new ids for the other header cells. However, it is possible by checking the "Reset Ids" option to overwrite any existing ids. Only the id attribute, headers attribute and the aria-describedby attribute are altered by the validator. Don't forget to remove any scope attribute because it can conflict with this complex table concept. Please note that you would have different result of the same complex table depending of the browser used, but both are valid as per the HTML5 specification.<p>
 
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
-&lt;caption&gt;Current account balances&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;td colspan=&quot;3&quot; rowspan=&quot;2&quot;&gt;&lt;/td&gt;
-&lt;th rowspan=&quot;2&quot;&gt;Goods&lt;/th&gt;
-&lt;th colspan=&quot;2&quot;&gt;Test Group&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th id=&quot;b11&quot;&gt;Other current account&lt;/th&gt;
-&lt;th id=&quot;b12&quot;&gt;Total&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th rowspan=&quot;6&quot;&gt;Previous Year&lt;/th&gt;
-&lt;th rowspan=&quot;2&quot;&gt;2006&lt;/th&gt;
-&lt;th&gt;III&lt;/th&gt;
-&lt;td&gt;11.406&lt;/td&gt;
-&lt;td&gt;-7.010&lt;/td&gt;
-&lt;td&gt;4.396&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;IV&lt;/th&gt;
-&lt;td&gt;12.139&lt;/td&gt;
-&lt;td&gt;-7.437&lt;/td&gt;
-&lt;td&gt;4.702&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th rowspan=&quot;4&quot;&gt;2007&lt;/th&gt;
-&lt;th&gt;I&lt;/th&gt;
-&lt;td&gt;13.563&lt;/td&gt;
-&lt;td rowspan=&quot;3&quot; colspan=&quot;2&quot;&gt;-10.231&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;II&lt;/th&gt;
-&lt;td&gt;$ 15.134&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;III&lt;/th&gt;
-&lt;td&gt;9.510 $&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;IV&lt;/th&gt;
-&lt;td&gt;9.230&lt;/td&gt;
-&lt;td&gt;-7.009&lt;/td&gt;
-&lt;td&gt;2.221&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th colspan=&quot;3&quot;&gt;2008 - I&lt;/th&gt;
-&lt;td&gt;12.551&lt;/td&gt;
-&lt;td&gt;-6.387&lt;/td&gt;
-&lt;td&gt;6.164&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th colspan=&quot;3&quot;&gt;2008 - I&lt;/th&gt;
-&lt;td&gt;12.551&lt;/td&gt;
-&lt;td&gt;-6.387&lt;/td&gt;
-&lt;td&gt;6.164&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-
-</textarea>
-
-<button id="analysetable" value="Analyse">Analyse</button>
+<div class="module-alert span-8">
+<p>The table structure analysis is based on the WCAG 2.0 Level AA, HTML5 specification and the <a href="#wethtmltabletechnique">12 techniques</a> listed below under "Resources".<p>
 </div>
+
+<div class="clear"></div>
+
+<h2>Analysing your Complex HTML Table</h2>
+
+<form class="form-inline span-8 background-light">
+
+
+	<frameset>
+		<legend>Options</legend>
+		
+			<label for="idprefix">Ids Prefix:</label>
+			<input id="idprefix" value="tbl" />
+		
+			
+			<label class="form-checkbox" for="idreset">
+			<input type="checkbox" value="option1" id="idreset"> Reset Ids </label>
+		
+	</frameset>
+	
+	<div class="clear"></div>
+	
+	<frameset>
+		<legend>Paste your Complex HTML Source Code</legend>
+		<div>
+			<textarea id="inputHTMLtable" class="width-90" rows="20" cols="50" placeholder="Paste your HTML Table Source Code"></textarea>
+		</div>
+	</frameset>
+	
+	<div class="clear"></div>
+	
+	<button id="analysetable"  class="button button-accent">Analyse</button>
+
+</form>
 
 <div class="clear"></div>
 
 <div id="directOutput"></div>
 
+<h3>Message</h3>
 <ul id="errorList">
-	<li>No Error Found</li>
+	<li>Use the above text field to analyse your HTML Complex Table Source Code</li>
 </ul>
 
 
-
+<h3>Result</h3>
 
 <div id="resultTableIdHeaders" class="wet-boew-prettify">
+<pre>
+Nothing to being displayed
+</pre>
 </div>
 
 <!-- 
@@ -620,7 +610,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h3>HTML Table Technique</h3>
 
-<h4>Issued from the WET Toolbox 3.0</h4>
+<h4 id="wethtmltabletechnique">Issued from the WET Toolbox 3.0</h4>
 <ol>
 <li><a href="keycell-techniques.html">Defining a Key Cell</a></li>
 <li><a href="rowgrouping-techniques.html">Defining a Data Row Group</a></li>
