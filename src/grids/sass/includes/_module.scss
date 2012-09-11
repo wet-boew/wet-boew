@@ -177,7 +177,7 @@
 			width:auto;
 		}
 		
-		&[class*="span-"]{
+		& [class*="span-"]{
 				margin-bottom:0 !important;
 		}
 	}
@@ -224,8 +224,8 @@
 		}
 		
 		img{
-			width:100px;
-			height:62px;
+			width:100px !important;
+			height:62px !important;
 			float:left;
 			margin-left:10px;
 		}

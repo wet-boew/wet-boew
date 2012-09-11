@@ -292,12 +292,15 @@ kbd{
 }
 
 /*	 progress effects	 */
-[class*="background-"] p[class*="thermometer"] {
+p[class*="thermometer"] {
 	padding-bottom: 230px !important;
 	background:{
 		repeat: no-repeat;
 		position: center bottom;
 	}
+}
+[class*="background-"] p[class*="thermometer"] {
+	padding-bottom: 230px !important;
 }
 .thermometer-0{background-image:url(../images/thermometer-0.gif);}
 .thermometer-10{background-image:url(../images/thermometer-10.gif);}
