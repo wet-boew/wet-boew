@@ -52,9 +52,11 @@ form {
 
 .ui-mobile {
 	input, textarea, select {
+		box-shadow: none !important;
+		border-radius: 0 !important;
 		&:focus, &:active {
-			/*box-shadow: none;
-			transition: all 0 ease 0;*/
+			box-shadow: none !important;
+			border-radius: 0 !important;
 		}
 	}
 }

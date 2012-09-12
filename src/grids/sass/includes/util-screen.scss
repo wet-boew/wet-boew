@@ -12,7 +12,7 @@
 @import "color";
 @import "module";
 @import "table";
-//@import "form";
+@import "form";
 @import "badge";
 @import "list";
 @import "icon";
@@ -21,7 +21,7 @@
 @include colors;
 @include modules;
 @include tables;	/*done tables*/
-//@include forms; 
+@include forms; 
 @include badges;	/*done tables*/
 @include lists;
 
