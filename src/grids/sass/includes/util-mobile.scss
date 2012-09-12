@@ -49,14 +49,3 @@ form {
 .form-input-append button{
 	position:absolute;
 }
-
-.ui-mobile {
-	input, textarea, select {
-		box-shadow: none !important;
-		border-radius: 0 !important;
-		&:focus, &:active {
-			box-shadow: none !important;
-			border-radius: 0 !important;
-		}
-	}
-}
