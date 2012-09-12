@@ -50,6 +50,11 @@ form {
 	position:absolute;
 }
 
-input, textarea, select {
-	box-shadow:none !important;
+.ui-mobile {
+	input, textarea, select {
+		&:focus, &:active {
+			box-shadow: none;
+			/*transition: all 0 ease 0;*/
+		}
+	}
 }
