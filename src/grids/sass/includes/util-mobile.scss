@@ -53,8 +53,8 @@ form {
 .ui-mobile {
 	input, textarea, select {
 		&:focus, &:active {
-			box-shadow: none;
-			transition: all 0 ease 0;
+			/*box-shadow: none;
+			transition: all 0 ease 0;*/
 		}
 	}
 }
