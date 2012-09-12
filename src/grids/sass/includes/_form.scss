@@ -87,7 +87,7 @@
 		margin-top: 0;
 		margin-bottom: $margin-medium;
 		padding: $default-border-radius;
-		@include border-radius;
+		/*@include border-radius;*/
 		
 		&[class*="span"] { float: none; margin-left: 0; margin-right: 0; }
 		.form-horizontal & { margin-bottom: 0; }
