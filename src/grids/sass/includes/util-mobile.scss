@@ -38,13 +38,18 @@ form {
 	padding:0;
 }
 
-.form-radio, .form-checkbox{padding:0;}
+.form-radio, .form-checkbox{
+	padding:0;
+}
 
-.form-horizontal label{text-align:left;}
+.form-horizontal label{
+	text-align:left;
+}
 
-.form-input-append button{position:absolute;}
+.form-input-append button{
+	position:absolute;
+}
 
- 
-
-
-
+input, textarea, select {
+	box-shadow:none;
+}
