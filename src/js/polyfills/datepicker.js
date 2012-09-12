@@ -38,7 +38,7 @@
 
 			createToggleIcon = function (fieldid, containerid) {
 				var fieldLabel = wrapper.find('label[for="' + fieldid + '"]').text(),
-					objToggle = $('<a id="' + containerid + '-toggle" class="picker-toggle-hidden" href="javascript:;"><img class="image-actual" src="' + pe.add.liblocation + 'images/datepicker/icon.png" alt="' + pe.dic.get('%datepicker-show') + fieldLabel + '"/></a>');
+					objToggle = $('<a id="' + containerid + '-toggle" class="picker-toggle-hidden" href="javascript:;"><img class="image-actual" src="' + pe.add.liblocation + 'images/datepicker/calendar-month.png" alt="' + pe.dic.get('%datepicker-show') + fieldLabel + '"/></a>');
 
 				objToggle.on('click vclick touchstart', function () {
 					toggle(fieldid, containerid);

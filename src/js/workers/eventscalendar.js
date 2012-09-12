@@ -202,14 +202,14 @@
 				switch (event.keyCode) {
 				case 38: // up arrow
 					i = $(this).closest('li').index();
-					length = $(this).closest('li').length;
-					pe.focus($(this).closest('ul').children('li').children('a').get((i - 1) % length));
-					$(this).trigger('focus');
+					length = $(this).closest('ul').children('li').length;
+					pe.focus($(this).closest('ul').children('li').eq((i - 1) % length).children('a'));
+					// $(this).trigger('focus');
 					return false;
 				case 40: // down arrow
 					i = $(this).closest('li').index();
-					length = $(this).closest('li').length;
-					pe.focus($(this).closest('ul').children('li').children('a').get((i + 1) % length));
+					length = $(this).closest('ul').children('li').length;
+					pe.focus($(this).closest('ul').children('li').eq((i + 1) % length).children('a'));
 					return false;
 				case 37: // left arrow
 					i = $(this).closest('li[id^=cal-]').index();
@@ -256,8 +256,12 @@
 			};
 
 			blurEvent = function (event) {
-				event.data.details.removeClass('ev-details');
-				event.data.details.addClass('wb-invisible');
+				setTimeout(function () {
+					if (event.data.details.find('a:focus').length === 0) {
+						event.data.details.removeClass('ev-details');
+						event.data.details.addClass('wb-invisible');
+					}
+				}, 5);
 			};
 
 			focusEvent = function (event) {
