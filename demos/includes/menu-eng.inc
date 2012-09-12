@@ -120,29 +120,21 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li><a href="#">Item 4.2.4</a></li>
 </ul>
 </section>
+</div>
+<div class="span-2">
 <section><h4><a href="#">Section 4.3</a></h4>
 <ul>
 <li><a href="#">Item 4.3.1</a></li>
 <li><a href="#">Item 4.3.2</a></li>
+<li><a href="#">Item 4.3.3</a></li>
+<li><a href="#">Item 4.3.4</a></li>
 </ul>
 </section>
-</div>
-<div class="span-2">
 <section><h4><a href="#">Section 4.4</a></h4>
 <ul>
 <li><a href="#">Item 4.4.1</a></li>
 <li><a href="#">Item 4.4.2</a></li>
 <li><a href="#">Item 4.4.3</a></li>
-<li><a href="#">Item 4.4.4</a></li>
-</ul>
-</section>
-<section><h4><a href="#">Section 4.5</a></h4>
-<ul>
-<li><a href="#">Item 4.5.1</a></li>
-<li><a href="#">Item 4.5.2</a></li>
-<li><a href="#">Item 4.5.3</a></li>
-<li><a href="#">Item 4.5.4</a></li>
-<li><a href="#">Item 4.5.5</a></li>
 </ul>
 </section>
 </div>
