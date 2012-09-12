@@ -72,7 +72,8 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 		};
 		
 		$('#analysetable').click(function(){
-			var noErrorList = '<li>No Error Found</li>',
+			//var noErrorList = '<li>No Error Found</li>',
+			var noErrorList = '<li>Table passed, see the resulting source code bellow</li>',
 				genericMessage = '<li>Use the above text field to analyse your HTML Complex Table Source Code</li>';
 			
 			$('#resultTableIdHeaders').val('');
@@ -567,7 +568,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<div class="clear"></div>
 	
 	<frameset>
-		<legend>Paste your Complex HTML Source Code</legend>
+		<legend>Please add content bellow</legend>
 		<div>
 			<textarea id="inputHTMLtable" class="width-90" rows="20" cols="50" placeholder="Paste your HTML Table Source Code"></textarea>
 		</div>
