@@ -1,1 +1,1 @@
-jQuery.extend(jQuery.validator.methods,{date:function(b,a){return this.optional(a)||/^\d\d?[\.\/-]\d\d?[\.\/-]\d\d\d?\d?$/.test(b)}});
+jQuery.extend(jQuery.validator.methods,{date:function(b,a){return this.optional(a)||/^\d\d?[\.\/\-]\d\d?[\.\/\-]\d\d\d?\d?$/.test(b)}});
