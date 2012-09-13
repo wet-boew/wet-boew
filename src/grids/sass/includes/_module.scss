@@ -24,38 +24,34 @@
 			@include no-bullets;
 		}
 	}
-	
+
 	.module {
-		
 		@include module-colorize;
 		outline: 1px solid darken($light, 10%);
 		margin-top: 2px;
 		margin-bottom: 3px;
 		padding: 1px 0;
-
 		> p, > blockquote, > span {
 			margin-left: 10px;
 			margin-right: 10px;
 		}
-
 	}
-	
+
 	.module-billboard ul {
 		li {		
 			a, a:link, a:visited {
-			
-				border-style: solid;
-				border-width: 1px;
 				display: block;
 				min-height: 32px;
 				padding: $spacing-medium;
-			
-				@include module-colorize($border:"border");			
+				text-decoration: none;
+				background-repeat:no-repeat;
+				background-position:top right;
+				text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #555, 1px 1px 0 #000;  
+				font-weight:700;
+				@include colorize-base($accent);		
 			}
 			a:hover, a:focus, a:active {
-				text-decoration: none;
-				@include colorize-base($accent);
-				@include colorize-border($accent);
+				text-decoration: underline;
 			}
 		}
 	}
@@ -77,7 +73,7 @@
 		display: block;
 		padding: ($margin-medium / 2) $margin-medium;
 	}
-	
+
 	.module-menu-section ul {
 		li {
 			a {
@@ -88,31 +84,34 @@
 					text-decoration: underline;
 				}
 			}
-			ul { 
+			ul {
 				border: none; 
 				border-top: 1px dotted darken($light, 10%) !important;
 				margin-left: 0 !important;
 			}
-			li a { padding-left: 20px !important; }
-			li li a { padding-left: 30px !important; }
+			li {
+				a {
+					padding-left: 20px !important;
+				}
+				li a {
+					padding-left: 30px !important;
+				}
+			}
 		}
 	}
-	
+
 	.module-table-contents {
-		
 		background: none;
-		
-		> [class*="span-"] { margin-bottom: 0 !important; }
-		
+		> [class*="span-"] {
+			margin-bottom: 0 !important;
+		}
 		> ul {
 			@include module-colorize($border: "border");
 		}
-
 		ul, ul[class*="column-"] {
 			list-style-type: none;
 			margin: 0;
 			padding: $margin-medium $margin-medium;
-			
 			li {
 				margin-bottom: $margin-medium / 2;
 				margin-left: 25px;
@@ -120,23 +119,18 @@
 			}
 		}
 	} 
-	
+
 	.module-poster {
-	
 		display: block;
 		line-height: 0;
 		padding: $margin-medium / 2;
-		
 		@include border-radius;
 		@include module-colorize($border:"border");
-
 		.image-caption {
 			margin: $margin-medium $margin-medium ($margin-medium / 2);
-			
 			#{headers(2,6)} {
 				font-family: $sans-serif;
 			}
-
 			& > * {
 				font-size: 100%;
 				line-height: 1.5;
@@ -144,57 +138,48 @@
 				padding: 0;
 			}
 		}
-		
 		img { 
 				margin-bottom: 0; 
 		}
 	}
-	
+
 	.module-contact{
 		.clear {
 			border-top:1px solid #eee;
 			visibility:visible;
 			width:auto;
 		}
-		
 		& [class*="span-"]{
 				margin-bottom:0 !important;
 		}
 	}
 
 	.module-news {
-	
 		#{headers(2,6)} {
 			border-bottom: 2px solid $medium;
-			
 			a {
 				text-decoration: none;
 			}
-			
 			&:first-child { margin-top: 0 !important; }
 		}
 	}
-	
+
 	.module-news-article {
 		padding: $spacing-medium $spacing-medium 0;
-		
 		@include module-colorize($border:"border", $shadow:true);
-		
-		img { display: block; }
+		img {
+			display: block;
+		}
 	}
-	
+
 	.module-spotlight {
-		
 		@include module-colorize($accent, $border:"outline");
-		
 		ul {
 			@include no-bullet;
-			
 			li { 
 				clear: left; 
 				margin-bottom: 10px;
 				overflow: hidden;
-				
 				span { display: block; }
 			}
 			img {
@@ -202,56 +187,48 @@
 				margin-right: 10px;
 			}
 		}
-		
 		img{
 			width:100px !important;
 			height:62px !important;
 			float:left;
 			margin-left:10px;
 		}
-		
 		& > * {
 			padding:10px;
 			margin:0;
 		}
 	}
-	
+
 	.module-comment {
 		ol, ul {
 			@include no-bullet;
 			margin-right: 0;
-			
 			li {
 				margin-bottom: $margin-medium;
 				padding: $margin-medium $margin-medium $margin-medium ($margin-xlarge - $margin-medium) !important;
-				
 				@include fugue-icon("user-silhouette.png", $line-height: 40px, $padding: 40px);
 				@include border-radius;
 				@include module-colorize($border:"border");
 			}
 		}
 	}
-	
+
 	div {
-
-		[class*="module-"] li {	margin-bottom: $margin-medium / 2; }
-
+		[class*="module-"] li {
+			margin-bottom: $margin-medium / 2;
+		}
 		.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
-		
 			background-image: url('../images/module.jpg'); 
 			background-repeat: no-repeat;
 			/*padding-bottom: 1px; - the margin-bottom wasn't displaying? */
 			padding-top: 30px;
 			@include box-sizing(border-box);
-			
 			> div, > p, > h2, > h3, > h4, > h5, > h6 {
 				margin: $margin-medium;
 			}
-			
 			ul, ol {
 				margin: $margin-medium $margin-medium $margin-medium 40px;
 			}
-			
 			#{headers(2,6)} {
 				border-bottom: 1px solid #ddd;
 				font-family: $sans-serif;
@@ -259,13 +236,11 @@
 				font-weight: $font-weight-normal;
 				width: auto;
 			}
-			
 			&.module-simplify {
 				background-image: none;
 				padding-top: 0;
 			}
 		}
-		
 		.module-attention 	{ @include module-colorize($attention, $border:"outline"); background-position: 0 0; }
 		.module-alert 		{ @include module-colorize($alert, $border:"outline"); background-position: -1200px 0; }
 		.module-note 		{ @include module-colorize($note, $border:"outline"); background-position: -2400px 0; }
@@ -286,15 +261,13 @@ $default-module-border: false;
 $default-module-shadow: false;
 
 @mixin module-colorize($color: $default-module-color, $shadow: $default-module-shadow, $border: $default-module-border) {
-
 	background-color: mix($color, $white, 10%);
-	
 	@if $border == "border" {
 		border: 1px solid $color;
 	} @else if $border == "outline" {
 		outline: 1px solid $color;
 	}
-	
+
 	@if $shadow == true {
 		@include box-shadow(0px 2px 2px rgba($color, 0.15));
 	}
