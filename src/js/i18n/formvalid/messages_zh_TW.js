@@ -1,9 +1,10 @@
 /*
  * Translated default messages for the jQuery validation plugin.
- * Locale: TW (Taiwan - Traditional Chinese)
+ * Locale: ZH (Chinese; 中文 (Zhōngwén), 汉语, 漢語)
+ * Region: TW (Taiwan)
  */
 jQuery.extend(jQuery.validator.messages, {
-		required: "必填",
+        required: "必填",
 		remote: "請修正此欄位",
 		email: "請輸入正確的電子信箱",
 		url: "請輸入合法的URL",
