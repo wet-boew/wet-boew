@@ -6,7 +6,6 @@
  * Form validation plugin
  */
 /*global jQuery: false, pe: false*/
-/*jshint unused: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
