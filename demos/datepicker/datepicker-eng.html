@@ -100,14 +100,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <section>
 <h2>Examples</h2>
-<form method="get">
+<form method="get" action="#">
 	<div>
 		<label for="startdate">Start Date (<abbr title="Four digits year">YYYY</abbr>-<abbr title="Two digits month">MM</abbr>-<abbr title="Two digits day">DD</abbr>)</label>
-		<input type="date" id="startdate" name="startdate" data-min-date="2012-07-27" data-max-date="2012-09-07" />
+		<input type="date" id="startdate" name="startdate" min="2012-07-27" max="2012-09-07" />
 	</div>
 	<div>
 		<label for="enddate">End Date  (<abbr title="Four digits year">YYYY</abbr>-<abbr title="Two digits month">MM</abbr>-<abbr title="Two digits day">DD</abbr>)</label>
-		<input type="date" id="enddate" name="enddate" data-min-date="2011-07-27" data-max-date="2014-09-07" />
+		<input type="date" id="enddate" name="enddate" min="2011-07-27" max="2014-09-07" />
 	</div>
     <div>
         <input type="submit" value="Submit" />
@@ -119,12 +119,12 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <dl>
 <dt>Relevant Start Date attributes:</dt>
 <dd><code>type="date"</code></dd>
-<dd><code>data-min-date="2012-07-27"</code></dd>
-<dd><code>data-max-date="2012-09-07"</code></dd>
+<dd><code>min="2012-07-27"</code></dd>
+<dd><code>max="2012-09-07"</code></dd>
 <dt>Relevant End Date attributes:</dt>
 <dd><code>type="date"</code></dd>
-<dd><code>data-min-date="2011-07-27"</code></dd>
-<dd><code>data-max-date="2014-09-07"</code></dd>
+<dd><code>min="2011-07-27"</code></dd>
+<dd><code>max="2014-09-07"</code></dd>
 </dl>
 </section>
 

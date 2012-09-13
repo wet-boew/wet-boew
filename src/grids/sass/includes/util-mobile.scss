@@ -4,7 +4,7 @@
  * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
 */
 
-.float-right,.float-left{float:none;}
+.float-right,.float-left{float:none!important;}
 
 form {
 	[class*=width-] {

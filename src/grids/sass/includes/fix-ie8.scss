@@ -8,4 +8,7 @@
 	.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
 		border: none;
 	}
+	.module-billboard a {
+		background-image:none !important;
+	}
 }
