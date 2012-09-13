@@ -283,14 +283,14 @@
 
 			if (elm.attr('id') !== undefined) {
 				id = elm.attr('id');
-				if (elm.attr('data-min-date') !== undefined) {
-					minDate = elm.attr('data-min-date');
+				if (elm.attr('min') !== undefined) {
+					minDate = elm.attr('min');
 				} else {
 					minDate = '1800-01-01';
 				}
 
-				if (elm.attr('data-max-date') !== undefined) {
-					maxDate = elm.attr('data-max-date');
+				if (elm.attr('max') !== undefined) {
+					maxDate = elm.attr('max');
 				} else {
 					maxDate = '2100-01-01';
 				}
