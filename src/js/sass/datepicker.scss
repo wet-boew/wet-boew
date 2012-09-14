@@ -11,8 +11,12 @@
 
 .picker-close {
 	position: absolute;
-	right: 5px;
+	right: 17px;
 	top: 5px;
+}
+
+.picker-close  img {
+	margin: 0;
 }
 
 .picker-field, input[type="date"] {

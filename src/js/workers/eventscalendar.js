@@ -367,6 +367,8 @@
 				showOnlyEventsFor(year, month, containerid);
 			});
 			calendar.create(containerid, year, month, true, calendar.getISOStringFromDate(events.minDate), calendar.getISOStringFromDate(events.maxDate));
+			
+			$('#' + containerid).attr('role', 'application');
 		} // end of exec
 	};
 	window.pe = _pe;
