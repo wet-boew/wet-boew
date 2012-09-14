@@ -341,7 +341,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2 id="inline">Inline form</h2>
 <p>Inputs are block level to start. For <code>.form-inline</code> forms, we force all elements to be inline-block.</p>
-<div class="span-1"><p class="badge-intro">Example 1</p></div>
+<div class="span-1 margin-bottom-none"><p class="badge-intro">Example 1</p></div>
 	<form class="form-inline span-5 margin-bottom-none">
 	   <label for="email1" class="wb-invisible">Email</label> <input type="text" id="email1" class="width-20" placeholder="Email" />
 	   <label for="pword1" class="wb-invisible">Password</label> <input type="password" id="pword1" class="width-20" placeholder="Password" />
@@ -389,12 +389,29 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
    &lt;label class="form-checkbox2"&gt;
       &lt;input type="checkbox2"&gt;
       Remember me &lt;/label&gt;
-   &lt;button type="submit" class="button button-accent"&gt;Sign in&lt;/buttonv
+   &lt;button type="submit" class="button button-accent"&gt;Sign in&lt;/button&gt;
 &lt;/form&gt;</pre>
 </details>
 <div class="clear"></div>
 
-
+<div class="span-1 margin-bottom-none"><p class="badge-intro">Example 3</p></div>
+<div class="span-5 margin-top-medium  margin-bottom-none">
+	<form>
+	   <div class="form-inline"><input type="submit" class="button button-accent" value="Submit feedback" id="submit" name="submit"> <input type="reset" class="button" value="Reset"></div>
+	</form>
+    </div>
+    <div class="clear"></div>
+<div class="span-1"></div>
+<details class="span-5">
+	<summary>View code</summary>
+	<pre>
+&lt;form&gt;
+   &lt;div class=&quot;form-inline&quot;&gt;
+	&lt;input type=&quot;submit&quot; class=&quot;button button-accent&quot; value=&quot;Submit feedback&quot; id=&quot;submit&quot; name=&quot;submit&quot;&gt; &lt;input type=&quot;reset&quot; class=&quot;button&quot; value=&quot;Reset&quot;&gt;
+   &lt;/div&gt;
+&lt;/form&gt;</pre>
+</details>
+<div class="clear"></div>
 <h2 id="horizontal">Horizontal form</h2>
 <div class="span-6 module-note">
 <h3>The <code>form-horizontal</code> class behaves like a grid parent.</h3>

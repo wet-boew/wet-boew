@@ -34,6 +34,11 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
+<style type="text/css">
+.billboard-1{background-image:url(images/billboard-1.jpg);}
+.billboard-2{background-image:url(images/billboard-2.jpg);}
+.billboard-3{background-image:url(images/billboard-3.jpg);}
+</style>
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -166,24 +171,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="clear"></div>
 
 <h2 id="related"><code>module-related</code> style</h2>
-<p>Use the <code>module-related</code> class to feature a <strong>list of links that point to related Web pages</strong>. This module is typically located on the right.</p><div class="span-2"></div>
+<p>Use the <code>module-related</code> class to feature a <strong>list of links that point to related Web pages</strong>. This module is typically located on the right.</p><div class="span-4"></div>
 <div class="span-2">
-<div class="span-2 module-related">
+  <div class="span-2 module-related">
    <h2>Related Links</h2>
-   <ul>
-      <li><a href="#related">Fake link </a></li>
-      <li>Text and <a href="#related">fake link</a></li>
-   </ul>
-</div>
-<div class="clear"></div>
-<details>
-<summary>View code</summary>
-<pre>&lt;div class=&quot;span-2 module-related&quot;&gt;<br>   &lt;h2&gt;Related Links&lt;/h2&gt;<br>   &lt;ul&gt;<br>      &lt;li&gt;&lt;a href=&quot;#related&quot;&gt;Fake link &lt;/a&gt;&lt;/li&gt;<br>      &lt;li&gt;Text and &lt;a href=&quot;#related&quot;&gt;fake link&lt;/a&gt;&lt;/li&gt;<br>   &lt;/ul&gt;<br>&lt;/div&gt;</pre>
-</details>
-</div>
-<div class="span-2">
-<div class="span-2 module-related">
-   <h2 class="background-accent">Related Links</h2>
    <ul>
       <li><a href="#related">Fake link </a></li>
       <li>Text and <a href="#related">fake link</a></li>
@@ -194,7 +185,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <details>
 <summary>View code</summary>
 <pre>&lt;div class=&quot;span-2 module-related&quot;&gt;
-&lt;h2 class=&quot;background-accent&quot;&gt;Related Links&lt;/h2&gt;
+&lt;h2&gt;Related Links&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#related&quot;&gt;Fake link &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Text and &lt;a href=&quot;#related&quot;&gt;fake link&lt;/a&gt;&lt;/li&gt;
@@ -208,15 +199,34 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2 id="billboard"><code>module-billboard</code> style</h2>
 
-	<p>Use the <code>module-billboard</code> class to feature a list of <strong>links to specialty and newsworthy pages</strong>. </p>
-<div class="span-2"></div>
+	<p>Use the <code>module-billboard</code> with a <code>span-2</code> to feature links to  <strong>short-term specialty (announcements, general interest) and newsworthy pages (stories, events and happenings)</strong>. Do <strong>not</strong> place permanent links in this module as it is for temporarily listings only.  It is not intended to be used as a graphical menu system to supplement or substitute permanent navigation.  This ensures that the billboard remains relevant and that users continue to notice the evergreen items.</p>
+<div class="span-4">
+<div class="module-attention module-simplify margin-bottom-medium"><h2>Limited display in IE7/8</h2>
+<p>In order to ensure there is enough colour contrast between the white link text and the background image, a CSS text shadow has been applied to the link.  However, this feature is only available in modern browsers.  Therefore, users with IE7 and IE8 will see a scaled down display where there is no background image and instead a solid background colour. </p>
+</div>
+<div class="module-info module-simplify">
+<h2>Tip</h2>
+<p>Background images 280px wide by 80px height. </p>
+<ul><li>280px =  the maximimum width a <code>span-2</code> can be in a responsive design.</li>
+<li>80px = the height needed for a link that occupies 3 lines. A two line english billboard may be three lines in French.</li>
+</ul>
+<p>Create your own background billboard CSS as follows: </p>
+<p>
+  <pre>.billboard-1{background-image:url(images/billboard-1.jpg);}</pre>
+
+<p>This is custom CSS so it must be located in a local custom file.</p>
+</p>
+</div></div>
 <div class="span-2">
+
 	<div class="span-2  module-billboard">
 	<h3>Billboard</h3>
 	<ul>
-		<li><a href="#billboard">Billboard link</a></li>
-		<li><a href="#billboard">Billboard link<br>
-		spread over 2 lines</a></li>
+		<li><a href="#billboard" class="billboard-1">Sustainable Development Committee</a></li>
+		<li><a href="#billboard" class="billboard-2">GCWCC<br>
+		Campaign<br> starts now!</a></li>
+        <li><a href="#billboard" class="billboard-3">National Award <br>
+		of Excellence</a></li>
 	</ul>
 	</div>
     <div class="clear"></div>
@@ -225,35 +235,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <pre>&lt;div class=&quot;span-2 module-billboard&quot;&gt;
 &lt;h3&gt;Billboard&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#billboard&quot;&gt;Billboard link&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#billboard&quot;&gt;Billboard link&lt;br&gt;
-spread over 2 lines&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;</pre>
+&lt;li&gt;&lt;a href=&quot;#billboard&quot; class=&quot;billboard-1&quot;&gt;Sustainable Development Committee&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#billboard&quot; class=&quot;billboard-2&quot;&gt;GCWCC&lt;br&gt;
+Campaign&lt;br&gt; starts now!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#billboard&quot; class=&quot;billboard-3&quot;&gt;National Award &lt;br&gt;
+of Excellence&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</pre>
 </details>
     </div>
-    <div class="span-2">
-	<div class="span-2 module-billboard">
-	<h3 class="background-dark">Billboard</h3>
-	<ul>
-		<li><a href="#billboard">Billboard link</a></li>
-		<li><a href="#billboard">Billboard link<br>
-		spread over 2 lines</a></li>
-	</ul>
-	</div>
-<div class="clear"></div>
-<details>
-<summary>View code</summary>
-<pre>&lt;div class=&quot;span-2 module-billboard&quot;&gt;
-&lt;h3 class=&quot;background-dark&quot;&gt;Billboard&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#billboard&quot;&gt;Billboard link&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#billboard&quot;&gt;Billboard link&lt;br&gt;
-spread over 2 lines&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;</pre>
-</details>
-</div>
 <div class="clear"></div>
 
  

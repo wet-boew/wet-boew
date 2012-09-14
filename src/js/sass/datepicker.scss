@@ -10,7 +10,9 @@
 }
 
 .picker-close {
-	float: right;
+	position: absolute;
+	right: 5px;
+	top: 5px;
 }
 
 .picker-field, input[type="date"] {
