@@ -109,15 +109,15 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <option value="ms">Madame</option>
 </select>
 
-<label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" required pattern="{2,}" class="{validate:{minlength:2}}" />
-<label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" required pattern="{2,}" class="{validate:{minlength:2}}" />
-<label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label><input id="tel" name="tel" type="tel" required class="{validate:{phoneUS:true}}" />
+<label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" required="required" pattern="{2,}" class="{validate:{minlength:2}}" />
+<label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" required="required" pattern="{2,}" class="{validate:{minlength:2}}" />
+<label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label><input id="tel" name="tel" type="tel" required="required" class="{validate:{phoneUS:true}}" />
 <label for="email1"><span class="field-name">Adresse électronique</span></label><input id="email1" name="email1" type="email" />
 <label for="url1"><span class="field-name">URL du site Web (http://www.url.com)</span></label><input id="url1" name="url1" type="url" class="{validate:{url:true}}" />
 </fieldset>
 
 <fieldset><legend>Autres exemples</legend>
-<label for="date1"><span class="field-name">Date</span> (AAAA-MM-JJ)</label><input id="date1" name="date1" type="date" data-min-date="2012-07-27" data-max-date="2013-09-07" class="{validate:{dateISO:true}}" />
+<label for="date1"><span class="field-name">Date</span> (AAAA-MM-JJ)</label><input id="date1" name="date1" type="date" class="{validate:{dateISO:true}}" />
 <label for="time1"><span class="field-name">Heure</span> (hh:mm)</label><input id="time1" name="time1" type="time" />
 <label for="an1"><span class="field-name">Alphanumérique</span> (4 caractères minimum)</label><input id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" class="{validate:{alphanumeric:true,minlength:4}}" />
 <label for="digits1"><span class="field-name">Chiffres seulement</span></label><input id="digits1" name="digits1" type="number" />

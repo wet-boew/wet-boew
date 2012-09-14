@@ -47,3 +47,11 @@ form {
 .form-input-append button{
 	position:absolute;
 }
+
+.border-top,.border-right,.border-bottom,.border-left,.border-all {
+	float:none;
+	display:block;
+	outline:none;
+	position:static;
+	background:none;
+}

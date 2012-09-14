@@ -1062,9 +1062,6 @@
 				'mathml': {
 					selector: 'math',
 					load: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible',
-					/*update: function (elms) {
-					MathJax.Hub.Queue(["Typeset",MathJax.Hub,elms]);
-					},*/
 					support_check: function () {
 						// MathML
 						// http://www.w3.org/Math/
@@ -1074,11 +1071,9 @@
 							divParent,
 							div,
 							divCompare,
-							/*divCompare2,*/
 							mrow,
 							mo,
-							mfrac/*,
-							munderover*/;
+							mfrac;
 						if (document.createElementNS) {
 							ns = 'http://www.w3.org/1998/Math/MathML';
 							divParent = document.createElement('div');
