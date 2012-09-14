@@ -107,6 +107,7 @@
 			<file name="theme-sp-pe-ie.css"/>
 			<file name="theme-serv.css"/>
 			<file name="theme-serv-ie.css"/>
+			<file name="theme-ns.css"/>
 		</filelist>
 		<for param="css-file">
 			<path>
@@ -127,6 +128,7 @@
 				<file name="theme-sp-pe-ie.css"/>
 				<file name="theme-serv.css"/>
 				<file name="theme-serv-ie.css"/>
+				<file name="theme-ns.css"/>
 			</filelist>
 			<filterchain>
 				<concatfilter prepend="${src.dir}/../css-head.txt"/>
