@@ -1061,7 +1061,7 @@
 				},
 				'mathml': {
 					selector: 'math',
-					load: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML',
+					load: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible',
 					/*update: function (elms) {
 					MathJax.Hub.Queue(["Typeset",MathJax.Hub,elms]);
 					},*/
