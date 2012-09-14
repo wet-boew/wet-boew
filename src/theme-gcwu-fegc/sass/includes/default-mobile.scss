@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 body{
 	-webkit-text-size-adjust:none;
@@ -538,15 +538,6 @@ a:active{
 		margin-top:3px;
 		padding:3px 0;
 	}
-	#gcwu-psnb:hover #gcwu-psnb-in,#gcwu-srchbx:hover form{
-		display:block;
-		position:absolute;
-		right:0;
-		left:0;
-		width:100%;
-		margin-bottom:50px;
-		z-index:100;
-	}
 	#gcwu-psnb {
 		li{
 			border: 1px solid #222;
@@ -555,12 +546,6 @@ a:active{
 			color:#222;
 			padding: 0.45em 0.79em;
 		}
-	}
-	#gcwu-srchbx:hover form{
-		border-bottom:1px solid #999;
-		text-align:center;
-		background:#1A3D6C;
-		padding:10px 0;
 	}
 	.ui-content{
 		padding:0;
