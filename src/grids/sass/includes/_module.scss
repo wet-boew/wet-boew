@@ -82,7 +82,7 @@
 		padding: ($margin-medium / 2) $margin-medium;
 	}
 	
-	.module-menu-section a {
+	.module-related a {
 		text-decoration: none;
 		&:hover, &:focus, &:active {
 			text-decoration: underline;
@@ -132,6 +132,9 @@
 				margin-left: 25px;
 				list-style-image: url("../images/bullet.png");
 			}
+		}
+		ul ul {
+			margin-top:5px;
 		}
 	} 
 
