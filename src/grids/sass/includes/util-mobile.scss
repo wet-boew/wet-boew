@@ -1,16 +1,15 @@
 @charset "utf-8";
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
 
-.float-right,.float-left{float:none;}
+.float-right,.float-left{float:none!important;}
 
 form {
 	[class*=width-] {
 		width:100%!important;
 	}
-	
 	[class*=margin-], [class*=span-]{
 		margin:0!important;
 	}
@@ -21,7 +20,6 @@ form {
 		margin-right:0;
 	}
 }
-
 
 .form-inline{
 		& > * {
@@ -38,13 +36,30 @@ form {
 	padding:0;
 }
 
-.form-radio, .form-checkbox{padding:0;}
+.form-radio, .form-checkbox{
+	padding:0;
+}
 
-.form-horizontal label{text-align:left;}
+.form-horizontal label{
+	text-align:left;
+}
 
-.form-input-append button{position:absolute;}
+.form-input-append button{
+	position:absolute;
+}
 
- 
+.border-top,.border-right,.border-bottom,.border-left,.border-all {
+	float:none;
+	display:block;
+	outline:none;
+	position:static;
+	background:none;
+}
 
+.module-billboard {
+	max-width:280px;
+}
 
-
+.module-poster {
+	display:inline-block;
+}

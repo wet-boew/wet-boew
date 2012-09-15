@@ -1,6 +1,6 @@
 /*!
 * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-* www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+* wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
 /**
 * Table Parser - Table usability - Core plugin
@@ -20,10 +20,10 @@
 		_exec : function (elm) {
 			var obj = elm,
 			// Event handler for issue error found durring the table parsing process
-				errorTrigger = function (numerr, err, obj) {
+				errorTrigger = function (numerr, obj) {
 					// FYI - 31 Type of Error can be raised
 					if (typeof _pe.fn.parsertable.onParserError === "function") {
-						_pe.fn.parsertable.onParserError(numerr, err, obj);
+						_pe.fn.parsertable.onParserError(numerr, obj);
 					}
 					// $(obj).trigger('parser.table.error', err, obj);
 					// console.log("Trigger ERROR: " + err); // Debug Mode
@@ -56,12 +56,12 @@
 				previousDataHeadingColPos;
 			// elm need to be a table
 			if ($(elm).get(0).nodeName.toLowerCase() !== 'table') {
-				errorTrigger(1, "Only table can be parsed with this parser", elm);
+				errorTrigger(1, elm);
 				return;
 			}
 			// Check if this table was already parsed, if yes we exit by throwing an error
 			if ($(obj).tblparser) {
-				errorTrigger(2, "The table was already parsed, Why you want to parse it a second time ?", obj);
+				errorTrigger(2, obj);
 				return;
 			}
 			/*
@@ -234,7 +234,7 @@
 					} else if (typeof nbvirtualcol === "number") {
 						width = nbvirtualcol;
 					} else {
-						errorTrigger(31, 'Internal Error, Number of virtual column must be set [function processColgroup()]');
+						errorTrigger(31);
 						return;
 					}
 					colgroupspan += width;
@@ -288,7 +288,7 @@
 				if (colgroupHeaderColEnd && colgroupHeaderColEnd > 0) {
 					// The first colgroup must match the colgroupHeaderColEnd
 					if (colgroupFrame.length > 0 && (colgroupFrame[0].start !== 1 || (colgroupFrame[0].end !== colgroupHeaderColEnd && colgroupFrame[0].end !== (colgroupHeaderColEnd + 1)))) {
-						errorTrigger(3, 'The first colgroup must be spanned either ' + colgroupHeaderColEnd + ' or ' + (colgroupHeaderColEnd + 1));
+						errorTrigger(3);
 
 						// Destroy any existing colgroup, because they are not valid
 						colgroupFrame = [];
@@ -369,7 +369,7 @@
 						for (j = 0, _jlen = theadRS.cell.length; j < _jlen; j += 1) {
 							cell = theadRS.cell[j];
 							if (cell.type !== 5 && cell.type !== 6 && cell.height === 1) {
-								errorTrigger(4, ' You have an invalid cell inside a row description', cell.elem);
+								errorTrigger(4, cell.elem);
 							}
 
 							// Check the row before and modify their height value
@@ -403,7 +403,7 @@
 					groupZero.allParserObj.push(colgroup);
 
 					if (colgroup.start > colgroup.end) {
-						errorTrigger(5, 'You need at least one data colgroup, review your table structure');
+						errorTrigger(5);
 					}
 
 					dataColgroup = colgroup;
@@ -538,7 +538,7 @@
 						colFrmId += 1;
 
 						if (bigTotalColgroupFound || groupZero.colgrp[0]) {
-							errorTrigger(6, "The Lowest column group have been found, You may have an error in you column structure", curColgroupFrame);
+							errorTrigger(6, curColgroupFrame);
 							return;
 						}
 
@@ -555,7 +555,7 @@
 
 						if (curColgroupFrame.start < currColPos) {
 							if (colgroupHeaderColEnd !== curColgroupFrame.end) {
-								errorTrigger(7, "The initial colgroup should group all the header, there are no place for any data cell", curColgroupFrame);
+								errorTrigger(7, curColgroupFrame);
 							}
 
 							// Skip this colgroup, this should happened only once and should represent the header colgroup
@@ -600,7 +600,7 @@
 							for (j = curColgroupFrame.start - 1, _jlen = curColgroupFrame.end; j < _jlen; j += 1) {
 								tmpStackCell = tmpStackCurr.cell[j];
 								if (tmpStackCell.colpos < curColgroupFrame.start || (tmpStackCell.colpos + tmpStackCell.width - 1) > curColgroupFrame.end) {
-									errorTrigger(9, "Error in you header row group, there are cell that are crossing more than one colgroup under the level:" + groupLevel);
+									errorTrigger(9);
 									return;
 								}
 							}
@@ -614,7 +614,7 @@
 							if (tmpStackCell.uid !== tmpStack[i].cell[curColgroupFrame.end - 1].uid ||
 									tmpStackCell.colpos > curColgroupFrame.start ||
 									tmpStackCell.colpos + tmpStackCell.width - 1 < curColgroupFrame.end) {
-								errorTrigger(10, "The cell used to represent the data at level: " + (groupLevel - 1) + " must encapsulate his group and be the same");
+								errorTrigger(10);
 								return;
 							}
 
@@ -927,7 +927,7 @@
 							}
 							if (currentRowGroup.level < 0) {
 								// This is an error, Last summary row group was already found.
-								errorTrigger(12, "Last summary row group already found");
+								errorTrigger(12);
 							}
 
 							// Set the header level with the previous row group
@@ -939,7 +939,7 @@
 						} else {
 							// Error
 							currentRowGroup.level = "Error, not calculated";
-							errorTrigger(13, "Error, Row group not calculated");
+							errorTrigger(13);
 						}
 					} else {
 						currentRowGroup.level = 1 + rowgroupHeaderRowStack.length;
@@ -955,7 +955,7 @@
 				rowgroupHeaderRowStack = []; // reset the row header stack	
 
 				if (currentRowGroup.level === undefined || currentRowGroup.level < 0) {
-					errorTrigger(14, 'You can not have a summary at level under 0, add a group header or merge a tbody togheter', currentRowGroup.elem);
+					errorTrigger(14, currentRowGroup.elem);
 				}
 			}
 
@@ -1162,7 +1162,7 @@
 						fnParseSpannedRowCell();
 						break;
 					default:
-						errorTrigger(15, 'tr element need to only have th or td element as his child', this);
+						errorTrigger(15, this);
 						break;
 					}
 
@@ -1179,7 +1179,7 @@
 				}
 				if (tableCellWidth !== row.cell.length) {
 					row.spannedRow = spannedRow;
-					errorTrigger(16, 'The row do not have a good width', row.elem);
+					errorTrigger(16, row.elem);
 				}
 
 				// Check if we are into a thead rowgroup, if yes we stop here.
@@ -1216,10 +1216,10 @@
 
 								return; // We do not go further
 							}
-							errorTrigger(17, 'ERROR: Seems to be a row in the row group header, but the layout cell is not empty');
+							errorTrigger(17);
 						} else {
 							// Invalid row header
-							errorTrigger(18, 'This is an INVALID row header and CAN NOT be Assigned to the rowgroup header');
+							errorTrigger(18);
 						}
 					}
 
@@ -1236,7 +1236,7 @@
 								return; // We do not go further
 							}
 							// Bad row, remove the row or split the table
-							errorTrigger(19, 'This is an INVALID row header for the header row group, split the table or remove the row');
+							errorTrigger(18);
 						} else {
 							if (currentRowPos !== 1) {
 								// Stack the row found for the rowgroup header
@@ -1249,12 +1249,12 @@
 
 								return;
 							}
-							errorTrigger(20, 'You can not set a header row for a rowgroup in the first table row');
+							errorTrigger(18);
 						}
 					}
 
 					if (row.colgroup.length > 1  && currentRowPos !== 1) {
-						errorTrigger(21, 'Please wrap all the row used as the column cell heading in the thead row group');
+						errorTrigger(21);
 					}
 
 					//
@@ -1320,7 +1320,7 @@
 							$.each(spannedRow, function () {
 								if (this.spanHeight > 0) {
 									// That row are spanned in 2 different row group
-									errorTrigger(29, 'You can not span cell in 2 different rowgroup', this);
+									errorTrigger(29, this);
 								}
 							});
 
@@ -1344,7 +1344,7 @@
 							$.each(spannedRow, function () {
 								if (this.spanHeight > 0) {
 									// That row are spanned in 2 different row group
-									errorTrigger(29, 'You can not span cell in 2 different rowgroup', this);
+									errorTrigger(29, this);
 								}
 							});
 
@@ -1361,16 +1361,10 @@
 
 							row.type = currentRowGroup.type; // Reset the current row type
 
-							errorTrigger(34, 'The second data group, when header cell row exist, must have a group header cell', row.elem);
+							errorTrigger(34, row.elem);
 
 						} else {
-							if (!lastHeadingSummaryColPos && currentRowGroup.lastHeadingColPos > lastHeadingColPos) {
-								// This is an error, we can not have an row cell heading length inferior for a summary group
-								errorTrigger(32, 'An row cell heading length can not be inferior of a data row group');
-							} else {
-								// This is an error, we can not have an row cell heading length that can not be categorized in the data group and summary group
-								errorTrigger(33, 'An row cell heading length that can not be categorized in the data group and summary group. Use uniform size for data/summary group. Uniform size between data group and summary group require a new tbody section.');
-							}
+							errorTrigger(32);
 						}
 					}
 					if (!currentRowGroup.lastHeadingColPos) {
@@ -1428,8 +1422,11 @@
 								row.cell[i].type = 1; // Mark the cell to be an header cell
 								row.cell[i].scope = "row";
 								if (rowheader && rowheader.uid !== row.cell[i].uid) {
-									if (rowheader.height > row.cell[i].height) {
-
+									if (rowheader.height >= row.cell[i].height) {
+										if (rowheader.height === row.cell[i].height) {
+											errorTrigger(23);
+										}
+									
 										// The current cell are a child of the previous rowheader 
 										if (!rowheader.subheader) {
 											rowheader.subheader = [];
@@ -1442,11 +1439,7 @@
 										headingRowCell.push(row.cell[i]);
 									} else {
 										// This case are either paralel heading of growing header, this are an error.
-										if (rowheader.height === row.cell[i].height) {
-											errorTrigger(23, 'You can not have paralel row heading, do a cell merge to fix this');
-										} else {
-											errorTrigger(24, 'For a data row, the heading hiearchy need to be the Generic to the specific');
-										}
+										errorTrigger(24);
 									}
 								}
 								if (!rowheader) {
@@ -1497,7 +1490,7 @@
 						// All the cell that have no "type" in the colKeyCell collection are problematic cells
 						$.each(colKeyCell, function () {
 							if (!(this.type)) {
-								errorTrigger(25, 'You have a problematic cell, in your colgroup heading, that can not be understood by the parser');
+								errorTrigger(25);
 								if (!row.errorcell) {
 									row.errorcell = [];
 								}
@@ -1693,7 +1686,7 @@
 					currentRowGroupElement = this;
 					// The table should not have any row at this point
 					if (theadRowStack.length !== 0 || (groupZero.row && groupZero.row.length > 0)) {
-						errorTrigger(26, 'You can not define any row before the thead group', this);
+						errorTrigger(26, this);
 					}
 
 					$(this).data("tblparser", groupZero);
@@ -1703,7 +1696,7 @@
 					$(this).children().each(function () {
 						if (this.nodeName.toLowerCase() !== 'tr') {
 							// ERROR
-							errorTrigger(27, 'thead element need to only have tr element as his child', this);
+							errorTrigger(27, this);
 						}
 						processRow(this);
 					});
@@ -1737,7 +1730,7 @@
 					$this.children().each(function () {
 						if (this.nodeName.toLowerCase() !== 'tr') {
 							// ERROR
-							errorTrigger(28, 'tbody element need to only have tr element as his child', this);
+							errorTrigger(27, this);
 							return;
 						}
 						processRow(this);
@@ -1749,7 +1742,7 @@
 					$.each(spannedRow, function () {
 						if (this.spanHeight > 0) {
 							// That row are spanned in 2 different row group
-							errorTrigger(29, 'You can not span cell in 2 different rowgroup', this);
+							errorTrigger(29, this);
 						}
 					});
 
@@ -1772,7 +1765,7 @@
 					break;
 				default:
 					// There is a DOM Structure error
-					errorTrigger(30, 'Use the appropriate table markup', this);
+					errorTrigger(30, this);
 					break;
 				}
 			});

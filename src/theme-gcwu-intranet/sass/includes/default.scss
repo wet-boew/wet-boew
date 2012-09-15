@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 
 /** From branding.css **/
@@ -14,69 +14,6 @@
 		color:#fff !important;
 		text-shadow:1px 1px 1px #333 !important;
 	}
-}
-
-/* Overrides from util.css */
-.embedded-nav {
-	a, a:visited, a:link, a:hover, a:focus, a:active{
-		background:#276cb9;
-		border-color:#276cb9;
-	}
-	.embedded-link-active{
-		color:#276cb9;
-	}
-}
-
-.table-accent{
-	border-color:#276cb9;
-	th{
-		background-color:#276cb9 !important;
-	}
-	td{
-		border-color:#276cb9;
-	}
-}
-
-.background-accent{
-	background-color:#276cb9 !important;
-}
-td.calendar-today{
-	border-color:#276cb9;
-}
-h2,h3,h4,h5,h6{
-	&.background-accent{
-		background-color:#b84000 !important;
-		background-image:url(../images/bg-accent.gif) !important;
-	}
-}
-.module-welcomepage h2{
-	background:#276cb9;
-}
-.module-billboard li{
-	background-color:#276cb9;
-}
-.module-news {
-	h2, h3{
-		a{
-			color:#276cb9;
-		}
-	}
-	.module-news-article {
-		a{
-			background:#276cb9;
-		}
-		span a{
-			color:#276cb9;
-		}
-	}
-}
-
-.module-spotlight li span a{
-	color:#276cb9;
-}
-.teaser-1{
-	background-color:#2e5b86;
-	background-image:url(../images/teaser-1.gif);
 }
 
 /** From default.css **/
@@ -119,4 +56,8 @@ h2,h3,h4,h5,h6{
 			font-size:100%;
 		}
 	}
+}
+
+#gcwu-psnb .mb-menu .mb-highlight h4 a {
+	padding-top:6px;
 }

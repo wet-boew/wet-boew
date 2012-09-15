@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="en" class="no-js">
 <!--<![endif]-->
 <head>
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
 <title>Modules - CSS grid system - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
@@ -32,8 +32,14 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
+<noscript><link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
 
 <!-- CustomScriptsCSSStart -->
+<style type="text/css">
+.billboard-1{background-image:url(images/billboard-1.jpg);}
+.billboard-2{background-image:url(images/billboard-2.jpg);}
+.billboard-3{background-image:url(images/billboard-3.jpg);}
+</style>
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -106,7 +112,6 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<li><a href="#module">module</a></li>
     <li><a href="#related">module-related</a></li>
     <li><a href="#billboard">module-billboard</a></li>
-    <li><a href="#event">module-event</a></li>
         <li><a href="#menu">module-menu-section</a></li>
     <li><a href="#toc">module-table-contents</a></li>
     <li><a href="#poster">module-poster</a></li>
@@ -167,24 +172,10 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <div class="clear"></div>
 
 <h2 id="related"><code>module-related</code> style</h2>
-<p>Use the <code>module-related</code> class to feature a <strong>list of links that point to related Web pages</strong>. This module is typically located on the right.</p><div class="span-2"></div>
+<p>Use the <code>module-related</code> class to feature a <strong>list of links that point to related Web pages</strong>. This module is typically located on the right.</p><div class="span-4"></div>
 <div class="span-2">
-<div class="span-2 module-related">
+  <div class="span-2 module-related">
    <h2>Related Links</h2>
-   <ul>
-      <li><a href="#related">Fake link </a></li>
-      <li>Text and <a href="#related">fake link</a></li>
-   </ul>
-</div>
-<div class="clear"></div>
-<details>
-<summary>View code</summary>
-<pre>&lt;div class=&quot;span-2 module-related&quot;&gt;<br>   &lt;h2&gt;Related Links&lt;/h2&gt;<br>   &lt;ul&gt;<br>      &lt;li&gt;&lt;a href=&quot;#related&quot;&gt;Fake link &lt;/a&gt;&lt;/li&gt;<br>      &lt;li&gt;Text and &lt;a href=&quot;#related&quot;&gt;fake link&lt;/a&gt;&lt;/li&gt;<br>   &lt;/ul&gt;<br>&lt;/div&gt;</pre>
-</details>
-</div>
-<div class="span-2">
-<div class="span-2 module-related">
-   <h2 class="background-accent">Related Links</h2>
    <ul>
       <li><a href="#related">Fake link </a></li>
       <li>Text and <a href="#related">fake link</a></li>
@@ -195,7 +186,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <details>
 <summary>View code</summary>
 <pre>&lt;div class=&quot;span-2 module-related&quot;&gt;
-&lt;h2 class=&quot;background-accent&quot;&gt;Related Links&lt;/h2&gt;
+&lt;h2&gt;Related Links&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#related&quot;&gt;Fake link &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Text and &lt;a href=&quot;#related&quot;&gt;fake link&lt;/a&gt;&lt;/li&gt;
@@ -209,15 +200,34 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2 id="billboard"><code>module-billboard</code> style</h2>
 
-	<p>Use the <code>module-billboard</code> class to feature a list of <strong>links to specialty and newsworthy pages</strong>. </p>
-<div class="span-2"></div>
+	<p>Use the <code>module-billboard</code> with a <code>span-2</code> to feature links to  <strong>short-term specialty (announcements, general interest) and newsworthy pages (stories, events and happenings)</strong>. Do <strong>not</strong> place permanent links in this module as it is for temporarily listings only.  It is not intended to be used as a graphical menu system to supplement or substitute permanent navigation.  This ensures that the billboard remains relevant and that users continue to notice the evergreen items.</p>
+<div class="span-4">
+<div class="module-attention module-simplify margin-bottom-medium"><h2>Limited display in IE7/8</h2>
+<p>In order to ensure there is enough colour contrast between the white link text and the background image, a CSS text shadow has been applied to the link.  However, this feature is only available in modern browsers.  Therefore, users with IE7 and IE8 will see a scaled down display where there is no background image and instead a solid background colour. </p>
+</div>
+<div class="module-info module-simplify">
+<h2>Tip</h2>
+<p>Background images 280px wide by 80px height. </p>
+<ul><li>280px =  the maximimum width a <code>span-2</code> can be in a responsive design.</li>
+<li>80px = the height needed for a link that occupies 3 lines. A two line english billboard may be three lines in French.</li>
+</ul>
+<p>Create your own background billboard CSS as follows: </p>
+<p>
+  <pre>.billboard-1{background-image:url(images/billboard-1.jpg);}</pre>
+
+<p>This is custom CSS so it must be located in a local custom file.</p>
+</p>
+</div></div>
 <div class="span-2">
+
 	<div class="span-2  module-billboard">
 	<h3>Billboard</h3>
 	<ul>
-		<li><a href="#billboard">Billboard link</a></li>
-		<li><a href="#billboard">Billboard link<br>
-		spread over 2 lines</a></li>
+		<li><a href="#billboard" class="billboard-1">Sustainable Development Committee</a></li>
+		<li><a href="#billboard" class="billboard-2">GCWCC<br>
+		Campaign<br> starts now!</a></li>
+        <li><a href="#billboard" class="billboard-3">National Award <br>
+		of Excellence</a></li>
 	</ul>
 	</div>
     <div class="clear"></div>
@@ -226,256 +236,17 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <pre>&lt;div class=&quot;span-2 module-billboard&quot;&gt;
 &lt;h3&gt;Billboard&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#billboard&quot;&gt;Billboard link&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#billboard&quot;&gt;Billboard link&lt;br&gt;
-spread over 2 lines&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;</pre>
+&lt;li&gt;&lt;a href=&quot;#billboard&quot; class=&quot;billboard-1&quot;&gt;Sustainable Development Committee&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#billboard&quot; class=&quot;billboard-2&quot;&gt;GCWCC&lt;br&gt;
+Campaign&lt;br&gt; starts now!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#billboard&quot; class=&quot;billboard-3&quot;&gt;National Award &lt;br&gt;
+of Excellence&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</pre>
 </details>
     </div>
-    <div class="span-2">
-	<div class="span-2 module-billboard">
-	<h3 class="background-dark">Billboard</h3>
-	<ul>
-		<li><a href="#billboard">Billboard link</a></li>
-		<li><a href="#billboard">Billboard link<br>
-		spread over 2 lines</a></li>
-	</ul>
-	</div>
 <div class="clear"></div>
-<details>
-<summary>View code</summary>
-<pre>&lt;div class=&quot;span-2 module-billboard&quot;&gt;
-&lt;h3 class=&quot;background-dark&quot;&gt;Billboard&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#billboard&quot;&gt;Billboard link&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#billboard&quot;&gt;Billboard link&lt;br&gt;
-spread over 2 lines&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;</pre>
-</details>
-</div>
-<div class="clear"></div>
-<h2 id="event"><code>module-event</code> style</h2>
 
-	<p>An events menu must include a <strong>link to the main events page </strong>and can <strong>optionally include a calendar</strong>. This type of menu uses the class <code>module-event</code>. This module is typically located on the right but can be used anywhere. </p>
-<div class="span-2"></div>
-<div class="span-2">
-   <div class="span-2 module-event">
-      <h2>Events</h2>
-      <ul class="calendar-list">
-         <li>Event #1<br><span class="text-medium font-small">Loremipsum 18, 2012</span></li>
-         <li>Event #2</li>
-         <li>Event #3</li>
-         <li>Event #4</li>
-         <li class="calendar-more"><a href="#">View all events</a></li>
-      </ul>
-      <table class="calendar-month">
-         <caption>October 2009</caption>
-         <tr>
-            <th scope="col" class="calendar-weekend"><abbr title="Sunday">S</abbr></th>
-            <th scope="col"><abbr title="Monday">M</abbr></th>
-            <th scope="col"><abbr title="Tuesday">T</abbr></th>
-            <th scope="col"><abbr title="Wednesday">W</abbr></th>
-            <th scope="col"><abbr title="Thursday">T</abbr></th>
-            <th scope="col"><abbr title="Friday">F</abbr></th>
-            <th scope="col" class="calendar-weekend"><abbr title="Saturday">S</abbr></th>
-         </tr>
-         <tr>
-            <td  class="calendar-weekend"></td>
-            <td></td>
-            <td></td>
-            <td> 1</td>
-            <td> 2</td>
-            <td> 3</td>
-            <td  class="calendar-weekend"> 4</td>
-         </tr>
-         <tr>
-            <td  class="calendar-weekend"> 5</td>
-            <td> 6</td>
-            <td> 7</td>
-            <td> 8</td>
-            <td class="calendar-today">9</td>
-            <td>10</td>
-            <td  class="calendar-weekend">11</td>
-         </tr>
-         <tr>
-            <td  class="calendar-weekend">12</td>
-            <td class="calendar-item"><a href="#event">13<span class="wb-invisible">th of October events</span></a></td>
-            <td>14</td>
-            <td>15</td>
-            <td>16</td>
-            <td>17</td>
-            <td  class="calendar-weekend">18</td>
-         </tr>
-         <tr>
-            <td  class="calendar-weekend">19</td>
-            <td>20</td>
-            <td>21</td>
-            <td class="calendar-item"><a href="#event">22<span class="wb-invisible">nd of October events</span></a></td>
-            <td>23</td>
-            <td>24</td>
-            <td class="calendar-weekend"> 25</td>
-         </tr>
-         <tr>
-            <td class="calendar-weekend">26</td>
-            <td>27</td>
-            <td>28</td>
-            <td>29</td>
-            <td>30</td>
-            <td>31</td>
-            <td class="calendar-weekend"></td>
-         </tr>
-      </table>
-   </div>
-   <div class="clear"></div>
-
-   </div>
-   
-   
-   <div class="span-2 module-event">
-      <h2 class="background-accent">Events</h2>
-      <table class="calendar-month">
-         <caption>
-         October 2009
-         </caption>
-         <tr>
-         <th scope="col" class="calendar-weekend"><abbr title="Sunday">S</abbr></th>
-         <th scope="col"><abbr title="Monday">M</abbr></th>
-         <th scope="col"><abbr title="Tuesday">T</abbr></th>
-         <th scope="col"><abbr title="Wednesday">W</abbr></th>
-         <th scope="col"><abbr title="Thursday">T</abbr></th>
-         <th scope="col"><abbr title="Friday">F</abbr></th>
-         <th scope="col" class="calendar-weekend"><abbr title="Saturday">S</abbr></th>
-         </tr>
-         <tr>
-         <td  class="calendar-weekend"></td>
-         <td></td>
-         <td></td>
-         <td> 1</td>
-         <td> 2</td>
-         <td> 3</td>
-         <td  class="calendar-weekend"> 4</td>
-         </tr>
-         <tr>
-         <td  class="calendar-weekend"> 5</td>
-         <td> 6</td>
-         <td> 7</td>
-         <td> 8</td>
-         <td class="calendar-today">9</td>
-         <td>10</td>
-         <td  class="calendar-weekend">11</td>
-         </tr>
-         <tr>
-         <td  class="calendar-weekend">12</td>
-         <td class="calendar-item"><a href="#event">13<span class="wb-invisible">th of October events</span></a></td>
-         <td>14</td>
-         <td>15</td>
-         <td>16</td>
-         <td>17</td>
-         <td  class="calendar-weekend">18</td>
-         </tr>
-         <tr>
-         <td  class="calendar-weekend">19</td>
-         <td>20</td>
-         <td>21</td>
-         <td class="calendar-item"><a href="#event">22<span class="wb-invisible">nd of October events</span></a></td>
-         <td>23</td>
-         <td>24</td>
-         <td class="calendar-weekend"> 25</td>
-         </tr>
-         <tr>
-         <td class="calendar-weekend">26</td>
-         <td>27</td>
-         <td>28</td>
-         <td>29</td>
-         <td>30</td>
-         <td>31</td>
-         <td class="calendar-weekend"></td>
-         </tr>
-      </table>
-      <ul class="calendar-list">
-         <li class="calendar-more"><a href="#toc">View all events in detail</a></li>
-      </ul>
-   </div>
-
-<div class="clear"></div>
-<div class="span-2"></div>
-<div class="span-4">
-
-   <details>
-   	<summary>View code</summary><p>Code is for first example only </p>
-    <pre>&lt;div class=&quot;span-2 module-event&quot;&gt;
-&lt;h2&gt;Events&lt;/h2&gt;
-&lt;ul class=&quot;calendar-list&quot;&gt;
-&lt;li&gt;Event #1&lt;br&gt;&lt;span class=&quot;text-medium font-small&quot;&gt;Loremipsum 18, 2012&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;Event #2&lt;/li&gt;
-&lt;li&gt;Event #3&lt;/li&gt;
-&lt;li&gt;Event #4&lt;/li&gt;
-&lt;li class=&quot;calendar-more&quot;&gt;&lt;a href=&quot;#&quot;&gt;View all events&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table class=&quot;calendar-month&quot;&gt;
-&lt;caption&gt;October 2009&lt;/caption&gt;
-&lt;tr&gt;
-&lt;th scope=&quot;col&quot; class=&quot;calendar-weekend&quot;&gt;&lt;abbr title=&quot;Sunday&quot;&gt;S&lt;/abbr&gt;&lt;/th&gt;
-&lt;th scope=&quot;col&quot;&gt;&lt;abbr title=&quot;Monday&quot;&gt;M&lt;/abbr&gt;&lt;/th&gt;
-&lt;th scope=&quot;col&quot;&gt;&lt;abbr title=&quot;Tuesday&quot;&gt;T&lt;/abbr&gt;&lt;/th&gt;
-&lt;th scope=&quot;col&quot;&gt;&lt;abbr title=&quot;Wednesday&quot;&gt;W&lt;/abbr&gt;&lt;/th&gt;
-&lt;th scope=&quot;col&quot;&gt;&lt;abbr title=&quot;Thursday&quot;&gt;T&lt;/abbr&gt;&lt;/th&gt;
-&lt;th scope=&quot;col&quot;&gt;&lt;abbr title=&quot;Friday&quot;&gt;F&lt;/abbr&gt;&lt;/th&gt;
-&lt;th scope=&quot;col&quot; class=&quot;calendar-weekend&quot;&gt;&lt;abbr title=&quot;Saturday&quot;&gt;S&lt;/abbr&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td  class=&quot;calendar-weekend&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt; 1&lt;/td&gt;
-&lt;td&gt; 2&lt;/td&gt;
-&lt;td&gt; 3&lt;/td&gt;
-&lt;td  class=&quot;calendar-weekend&quot;&gt; 4&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td  class=&quot;calendar-weekend&quot;&gt; 5&lt;/td&gt;
-&lt;td&gt; 6&lt;/td&gt;
-&lt;td&gt; 7&lt;/td&gt;
-&lt;td&gt; 8&lt;/td&gt;
-&lt;td class=&quot;calendar-today&quot;&gt;9&lt;/td&gt;
-&lt;td&gt;10&lt;/td&gt;
-&lt;td  class=&quot;calendar-weekend&quot;&gt;11&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td  class=&quot;calendar-weekend&quot;&gt;12&lt;/td&gt;
-&lt;td class=&quot;calendar-item&quot;&gt;&lt;a href=&quot;#event&quot;&gt;13&lt;span class=&quot;wb-invisible&quot;&gt;th of October events&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;14&lt;/td&gt;
-&lt;td&gt;15&lt;/td&gt;
-&lt;td&gt;16&lt;/td&gt;
-&lt;td&gt;17&lt;/td&gt;
-&lt;td  class=&quot;calendar-weekend&quot;&gt;18&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td  class=&quot;calendar-weekend&quot;&gt;19&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;21&lt;/td&gt;
-&lt;td class=&quot;calendar-item&quot;&gt;&lt;a href=&quot;#event&quot;&gt;22&lt;span class=&quot;wb-invisible&quot;&gt;nd of October events&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;23&lt;/td&gt;
-&lt;td&gt;24&lt;/td&gt;
-&lt;td class=&quot;calendar-weekend&quot;&gt; 25&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class=&quot;calendar-weekend&quot;&gt;26&lt;/td&gt;
-&lt;td&gt;27&lt;/td&gt;
-&lt;td&gt;28&lt;/td&gt;
-&lt;td&gt;29&lt;/td&gt;
-&lt;td&gt;30&lt;/td&gt;
-&lt;td&gt;31&lt;/td&gt;
-&lt;td class=&quot;calendar-weekend&quot;&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;</pre>
-    
-    </details>
-    </div>
-    <div class="clear"></div>
+ 
 <h2 id="menu"><code>module-menu-section</code> style</h2>
 
 	<p>The <code>module-menu-section</code> class styles a supplementary menu that follows the user throughout a section of the site. </p>
@@ -941,6 +712,7 @@ spread over 2 lines&lt;/a&gt;&lt;/li&gt;
         <li><a href="grid-color-eng.html">Colour</a></li>
         <li><a href="grid-button-eng.html">Buttons</a></li>
         <li><a href="grid-border-eng.html">Borders</a></li>
+        <li><a href="grid-icon-eng.html">Icons</a></li>
         <li><a href="grid-opacity-eng.html">Opacity</a></li>
         <li><a href="grid-proximity-eng.html">Proximity</a></li>
         <li><a href="grid-position-eng.html">Positioning and alignment</a></li>

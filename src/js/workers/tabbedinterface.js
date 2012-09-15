@@ -1,6 +1,6 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*
  * Tabbed interface plugin
@@ -26,7 +26,7 @@
 			var $tabs = elm.children('.tabs').children('li'),
 				$tab,
 				$panels = elm.children('.tabs-panel').children('div'),
-				accordion = '<div data-role="collapsible-set" data-content-theme="b" data-theme="b">',
+				accordion = '<div data-role="collapsible-set" data-content-theme="b" data-theme="b" data-mini="true">',
 				needh = (elm.hasClass('tabs-style-4') || elm.hasClass('tabs-style-5')),
 				prevh,
 				hlevel,

@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*!
  * Icons by Yusuke Kamiyamane (http://p.yusukekamiyamane.com/) - Creative Commons Attribution 3.0 License (http://creativecommons.org/licenses/by/3.0/)
@@ -18,7 +18,7 @@
 }
 
 /* Mobile view */
-@media (max-width:767px) {
+@media screen and (max-width:767px) {
 /* -----Build Include Section Start----- */
 @import url('includes/util-mobile.css');
 /* -----Build Include Section End----- */

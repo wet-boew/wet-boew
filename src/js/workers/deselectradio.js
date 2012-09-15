@@ -1,6 +1,6 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*
  * Deselectable radio buttons plugin
@@ -16,7 +16,7 @@
 		type : 'plugin',
 		depends : [],
 		_exec : function (elm) {
-			var radio = $('input[type="radio"]:not(.deselectable)').attr('role', 'radio').attr('aria-checked', 'false').addClass('deselectable');
+			var radio = $('input[type="radio"]:not(.deselectable, .deselect-off)').attr('role', 'radio').attr('aria-checked', 'false').addClass('deselectable');
 			radio.filter(':checked').attr('aria-checked', 'true');
 			radio.closest('fieldset').attr('role', 'radiogroup');
 			radio.on("click vclick", function () {

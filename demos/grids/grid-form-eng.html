@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="en" class="no-js">
 <!--<![endif]-->
 <head>
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
 <title>Forms - CSS grid system - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
@@ -32,6 +32,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
+<noscript><link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
 
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
@@ -53,7 +54,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="grid-image-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="grid-form-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -341,7 +342,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 
 <h2 id="inline">Inline form</h2>
 <p>Inputs are block level to start. For <code>.form-inline</code> forms, we force all elements to be inline-block.</p>
-<div class="span-1"><p class="badge-intro">Example 1</p></div>
+<div class="span-1 margin-bottom-none"><p class="badge-intro">Example 1</p></div>
 	<form class="form-inline span-5 margin-bottom-none">
 	   <label for="email1" class="wb-invisible">Email</label> <input type="text" id="email1" class="width-20" placeholder="Email" />
 	   <label for="pword1" class="wb-invisible">Password</label> <input type="password" id="pword1" class="width-20" placeholder="Password" />
@@ -389,12 +390,29 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
    &lt;label class="form-checkbox2"&gt;
       &lt;input type="checkbox2"&gt;
       Remember me &lt;/label&gt;
-   &lt;button type="submit" class="button button-accent"&gt;Sign in&lt;/buttonv
+   &lt;button type="submit" class="button button-accent"&gt;Sign in&lt;/button&gt;
 &lt;/form&gt;</pre>
 </details>
 <div class="clear"></div>
 
-
+<div class="span-1 margin-bottom-none"><p class="badge-intro">Example 3</p></div>
+<div class="span-5 margin-top-medium  margin-bottom-none">
+	<form>
+	   <div class="form-inline"><input type="submit" class="button button-accent" value="Submit feedback" id="submit" name="submit"> <input type="reset" class="button" value="Reset"></div>
+	</form>
+    </div>
+    <div class="clear"></div>
+<div class="span-1"></div>
+<details class="span-5">
+	<summary>View code</summary>
+	<pre>
+&lt;form&gt;
+   &lt;div class=&quot;form-inline&quot;&gt;
+	&lt;input type=&quot;submit&quot; class=&quot;button button-accent&quot; value=&quot;Submit feedback&quot; id=&quot;submit&quot; name=&quot;submit&quot;&gt; &lt;input type=&quot;reset&quot; class=&quot;button&quot; value=&quot;Reset&quot;&gt;
+   &lt;/div&gt;
+&lt;/form&gt;</pre>
+</details>
+<div class="clear"></div>
 <h2 id="horizontal">Horizontal form</h2>
 <div class="span-6 module-note">
 <h3>The <code>form-horizontal</code> class behaves like a grid parent.</h3>
@@ -752,12 +770,12 @@ This is a disabled checkbox &lt;/label&gt;</pre>
       </div>
       <div class="span-4 row-end">
 			<label for="helptext-1" class="wb-invisible">Block help option 1</label>
-            <input type="text" size="16" id="helptext-1" class="span-2" />
+            <input type="text" size="16" id="helptext-1" class="span-2 margin-bottom-none" />
             <p>Here's some help text</p>
          <details>
          <summary>View code</summary>
 <pre>&lt;label for=&quot;helptext-1&quot; class=&quot;wb-invisible&quot;&gt;Block help option 1&lt;/label&gt;<br />
-&lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-1&quot; class=&quot;span-2&quot;&gt;<br />
+&lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-1&quot; class=&quot;span-2 margin-bottom-none&quot;&gt;<br />
 &lt;p&gt;Here's some help text&lt;/p&gt;</pre></details>
       </div>
       <div class="clear"></div>
@@ -769,38 +787,38 @@ This is a disabled checkbox &lt;/label&gt;</pre>
       <div class="span-4 row-end">
       <div class="span-4 row-end form-alert margin-bottom-none">
 			<label for="helptext-1a" class="wb-invisible">Block help option 2 - .form-alert</label>
-            <input type="text" size="16" id="helptext-1a" class="span-2" />
+            <input type="text" size="16" id="helptext-1a" class="span-2 margin-bottom-none" />
             <p class="form-help-block">Here's some help text</p>
           <details>
          <summary>View code</summary>
 <pre>&lt;div class=&quot;form-alert&quot;&gt;
 	&lt;label for=&quot;helptext-1a&quot; class=&quot;wb-invisible&quot;&gt;Block help option 2 - .form-alert&lt;/label&gt;
-    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-1a&quot; class=&quot;span-2&quot; /&gt;
+    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-1a&quot; class=&quot;span-2 margin-bottom-none&quot; /&gt;
     &lt;p class=&quot;form-help-block&quot;&gt;Here's some help text&lt;/p&gt;
 &lt;/div&gt;</pre></details>
       </div>
       <div class="span-4 row-end form-attention margin-bottom-none margin-top-large">
          <label for="helptext-1a1" class="wb-invisible">Block help option 2 - .form-attention</label>
-         <input type="text" size="16" id="helptext-1a1" class="span-2" />
+         <input type="text" size="16" id="helptext-1a1" class="span-2 margin-bottom-none" />
          <p class="form-help-block">Here's some help text</p>
           <details>
          <summary>View code</summary>
 <pre>&lt;div class=&quot;form-attention&quot;&gt;
 	&lt;label for=&quot;helptext-1a&quot; class=&quot;wb-invisible&quot;&gt;Block help option 2 - .form-attention&lt;/label&gt;
-    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-1a1&quot; class=&quot;span-2&quot; /&gt;
+    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-1a1&quot; class=&quot;span-2 margin-bottom-none&quot; /&gt;
     &lt;p class=&quot;form-help-block&quot;&gt;Here's some help text&lt;/p&gt;
 &lt;/div&gt;</pre>
          </details>
       </div>
       <div class="span-4 row-end form-confirm margin-bottom-none  margin-top-large">
 		 <label for="helptext-1a2" class="wb-invisible">Block help option 2 - .form-confirm</label>
-         <input type="text" size="16" id="helptext-1a2" class="span-2" />
+         <input type="text" size="16" id="helptext-1a2" class="span-2 margin-bottom-none" />
          <p class="form-help-block">Here's some help text</p>
           <details>
          <summary>View code</summary>
 <pre>&lt;div class=&quot;form-confirm&quot;&gt;
 	&lt;label for=&quot;helptext-1a2&quot; class=&quot;wb-invisible&quot;&gt;Block help option 2 - .form-confirm&lt;/label&gt;
-    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-1a2&quot; class=&quot;span-2&quot; /&gt;
+    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-1a2&quot; class=&quot;span-2 margin-bottom-none&quot; /&gt;
     &lt;p class=&quot;form-help-block&quot;&gt;Here's some help text&lt;/p&gt;
 &lt;/div&gt;</pre>
          </details>
@@ -813,12 +831,12 @@ This is a disabled checkbox &lt;/label&gt;</pre>
       </div>
       <div class="span-4 row-end">
 		<label for="helptext-2" class="wb-invisible">Inline help option 1</label>
-        <input type="text" size="16" id="helptext-2" class="span-2" />
+        <input type="text" size="16" id="helptext-2" class="span-2 margin-bottom-none" />
         <p class="form-text-inline">Here's some help text</p>
           <details>
          <summary>View code</summary>
 <pre>&lt;label for=&quot;helptext-2&quot; class=&quot;wb-invisible&quot;&gt;Inline help option 1&lt;/label&gt;
-&lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-2&quot; class=&quot;span-2&quot; /&gt;
+&lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-2&quot; class=&quot;span-2 margin-bottom-none&quot; /&gt;
 &lt;p class=&quot;form-text-inline&quot;&gt;Here's some help text&lt;/p&gt;</pre></details>
       </div>
       <div class="clear"></div>
@@ -829,38 +847,38 @@ This is a disabled checkbox &lt;/label&gt;</pre>
       <div class="span-4 row-end">
       <div class="span-4 row-end form-alert">
 			<label for="helptext-2a" class="wb-invisible">Inline help option 2 - .form-alert</label>
-            <input type="text" size="16" id="helptext-2a" class="span-2" />
+            <input type="text" size="16" id="helptext-2a" class="span-2 margin-bottom-none" />
             <p class="form-text-inline">Here's some help text</p>
           <details>
          <summary>View code</summary>
 <pre>&lt;div class=&quot;form-alert&quot;&gt;
 	&lt;label for=&quot;helptext-2a&quot; class=&quot;wb-invisible&quot;&gt;Inline help option 2 - .form-alert&lt;/label&gt;
-    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-2a&quot; class=&quot;span-2&quot; /&gt;
+    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-2a&quot; class=&quot;span-2 margin-bottom-none&quot; /&gt;
     &lt;p class=&quot;form-text-inline&quot;&gt;Here's some help text&lt;/p&gt;
 &lt;/div&gt;</pre></details>
       </div>
       <div class="span-4 row-end form-attention">
          <label for="helptext-2a1" class="wb-invisible">Inline help option 2 - .form-attention</label>
-         <input type="text" size="16" id="helptext-2a1" class="span-2" />
+         <input type="text" size="16" id="helptext-2a1" class="span-2 margin-bottom-none" />
          <p class="form-text-inline">Here's some help text</p>
           <details>
          <summary>View code</summary>
 <pre>&lt;div class=&quot;form-attention&quot;&gt;
 	&lt;label for=&quot;helptext-2a1&quot; class=&quot;wb-invisible&quot;&gt;Inline help option 2 - .form-attention&lt;/label&gt;
-    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-2a1&quot; class=&quot;span-2&quot; /&gt;
+    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-2a1&quot; class=&quot;span-2 margin-bottom-none&quot; /&gt;
     &lt;p class=&quot;form-text-inline&quot;&gt;Here's some help text&lt;/p&gt;
 &lt;/div&gt;</pre>
          </details>
       </div>
       <div class="span-4 row-end form-confirm">
 		<label for="helptext-2a2" class="wb-invisible">Inline help option 2 - .form-confirm</label>
-		<input type="text" size="16" id="helptext-2a2" class="span-2" />
+		<input type="text" size="16" id="helptext-2a2" class="span-2 margin-bottom-none" />
 		<p class="form-text-inline">Here's some help text</p>
           <details>
          <summary>View code</summary>
 <pre>&lt;div class=&quot;form-confirm&quot;&gt;
 	&lt;label for=&quot;helptext-2a2&quot; class=&quot;wb-invisible&quot;&gt;Inline help option 2 - .form-confirm&lt;/label&gt;
-    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-2a2&quot; class=&quot;span-2&quot; /&gt;
+    &lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;helptext-2a2&quot; class=&quot;span-2 margin-bottom-none&quot; /&gt;
     &lt;p class=&quot;form-text-inline&quot;&gt;Here's some help text&lt;/p&gt;
 &lt;/div&gt;</pre>
          </details>
@@ -873,11 +891,11 @@ This is a disabled checkbox &lt;/label&gt;</pre>
       </div>
       <div class="span-4 row-end">
          <div class="form-input-prepend">
-            <span class="form-addon">@</span><input type="text" size="16" id="prependedInput" class="span-2" />
+            <span class="form-addon">@</span><input type="text" size="16" id="prependedInput" class="span-2 margin-bottom-none" />
              <details>
          <summary>View code</summary>
          <pre>&lt;div class=&quot;form-input-prepend&quot;&gt;
-	&lt;span class=&quot;form-addon&quot;&gt;@&lt;/span&gt;&lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;prependedInput&quot; class=&quot;span-2&quot; /&gt;
+	&lt;span class=&quot;form-addon&quot;&gt;@&lt;/span&gt;&lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;prependedInput&quot; class=&quot;span-2 margin-bottom-none&quot; /&gt;
 &lt;/div&gt;</pre></details>
          </div>
       </div>
@@ -888,11 +906,11 @@ This is a disabled checkbox &lt;/label&gt;</pre>
       </div>
       <div class="span-4 row-end">
          <div class="form-input-append">
-            <input type="text" size="16" id="appendedInput" class="span-2" /><span class="form-addon">.00</span>
+            <input type="text" size="16" id="appendedInput" class="span-2 margin-bottom-none" /><span class="form-addon">.00</span>
              <details>
          <summary>View code</summary>
 <pre>&lt;div class=&quot;form-input-append&quot;&gt;
-	&lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;appendedInput&quot; class=&quot;span-2&quot; /&gt;&lt;span class=&quot;form-addon&quot;&gt;.00&lt;/span&gt;
+	&lt;input type=&quot;text&quot; size=&quot;16&quot; id=&quot;appendedInput&quot; class=&quot;span-2 margin-bottom-none&quot; /&gt;&lt;span class=&quot;form-addon&quot;&gt;.00&lt;/span&gt;
 &lt;/div&gt;</pre></details>
          </div>
       </div>
@@ -959,6 +977,7 @@ This is a disabled checkbox &lt;/label&gt;</pre>
         <li><a href="grid-color-eng.html">Colour</a></li>
         <li><a href="grid-button-eng.html">Buttons</a></li>
         <li><a href="grid-border-eng.html">Borders</a></li>
+        <li><a href="grid-icon-eng.html">Icons</a></li>
         <li><a href="grid-opacity-eng.html">Opacity</a></li>
         <li><a href="grid-proximity-eng.html">Proximity</a></li>
         <li><a href="grid-position-eng.html">Positioning and alignment</a></li>

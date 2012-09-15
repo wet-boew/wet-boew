@@ -1,65 +1,10 @@
 @charset "utf-8";
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @mixin lists {
 	@include list-base;
-	@include list-icon;
-}
-
-
-@mixin list-icon {
-	
-	ul.list-icon {
-		margin-left: 10px;
-		
-		li {
-			padding-left: 30px;
-			list-style-type: none;			
-			@include fugue-icon("control-record.png");
-		}
-	}
-	
-	p, div, span {
-		[class*="wb-icon-"] {
-			padding-left: 30px;
-		}
-	}
-
-	ul.icon-document li, ul.list-icon li.wb-icon-word, .wb-icon-word { @include fugue-icon("document-list.png"); }
-	ul.wb-icon-pdf li, ul.list-icon li.wb-icon-pdf, .wb-icon-pdf { @include fugue-icon("document-pdf.png"); }
-	ul.wb-icon-book li, ul.list-icon li.wb-icon-book, .wb-icon-book { @include fugue-icon("book.png"); }
-	ul.wb-icon-calendar li, ul.list-icon li.wb-icon-calendar, .wb-icon-calendar { @include fugue-icon("calendar-list.png"); }
-	ul.wb-icon-image li, ul.list-icon li.wb-icon-image, .wb-icon-image { @include fugue-icon("image.png"); }
-	ul.wb-icon-film li, ul.list-icon li.wb-icon-film, .wb-icon-film { @include fugue-icon("film.png"); }
-	ul.wb-icon-mail li, ul.list-icon li.wb-icon-mail, .wb-icon-mail { @include fugue-icon("mail.png"); }
-	ul.wb-icon-download li, ul.list-icon li.wb-icon-download, .wb-icon-download { @include fugue-icon("drive-download.png"); }
-	ul.wb-icon-feed li, ul.list-icon li.wb-icon-feed, .wb-icon-feed { @include fugue-icon("feed.png"); }
-	ul.wb-icon-folder li, ul.list-icon li.wb-icon-folder, .wb-icon-folder { @include fugue-icon("folder-horizontal.png"); }
-	ul.wb-icon-marker li, ul.list-icon li.wb-icon-marker, .wb-icon-marker { @include fugue-icon("marker.png"); }
-	ul.wb-icon-user li, ul.list-icon li.wb-icon-user, .wb-icon-user { @include fugue-icon("user-silhouette.png"); }
-	ul.wb-icon-news li, ul.list-icon li.wb-icon-news, .wb-icon-news { @include fugue-icon("newspaper.png"); }
-	//&.wb-icon- li, li.wb-icon- { @include fugue-icon(".png"); }
-	
-	/*
-	ul.list-block { 
-		
-		list-style-type: none;
-		margin-left: $margin-medium;
-		
-		li { 
-			margin-bottom: 0;
-			padding-bottom: 1px !important;
-			overflow: hidden;
-			
-			img { margin-bottom: $margin-medium; }
-
-		}
-		
-	}
-	*/
-	
 }
 
 @mixin list-base {

@@ -1,7 +1,7 @@
 ﻿<%@ LANGUAGE="VBSCRIPT" %>
 <%
 ' Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-' www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+' wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 sString = Request.ServerVariables("HTTP_REFERER")
 sFullFileName = Mid (sString, Instr (sString, ".asp"))
 iLen = Instr (sString, ".asp")-4

@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
 
 @import "compass/"; 
@@ -15,6 +15,7 @@
 @import "form";
 @import "badge";
 @import "list";
+@import "icon";
 
 @include buttons; /*done buttons*/
 @include colors;
@@ -29,20 +30,12 @@
 
 /* ---- Links ---- */
 #wb-core{
-	/*a[href^='http://www']{
-		background:transparent url(../images/icon-external.gif) no-repeat right;
-		padding-right:17px;
-	}*/
-	a[href*='rss'], a[href*='Rss']{
-		background:none;
-		padding:0;
-	}
-	a[href^='mailto:']{
-		background:transparent url(../images/icon-email.gif) no-repeat 0 2px;
+		a[href^='mailto:']{
+		background:transparent url(../images/mail.png) no-repeat 0 2px;
 		padding-left:19px;
 	}
 	a[href$='.docx'], a[href$='.dotx'], a[href$='.xlsx'], a[href$='.xltx'], a[href$='.pptx'], a[href$='.potx'], a[href$='.psd'], a[href$='.zip'], a[href$='.doc'], a[href$='.pdf'], a[href$='.xls'], a[href$='.xlt'], a[href$='.rtf'], a[href$='.txt']{
-		background:transparent url(../images/icon-download.gif) no-repeat 0 0;
+		background:transparent url(../images/drive-download.png) no-repeat 0 0;
 		padding-left:15px;
 	}
 }

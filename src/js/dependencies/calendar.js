@@ -1,6 +1,6 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*global jQuery: false, pe: false*/
 (function ($) {
@@ -231,8 +231,8 @@
 			fieldset = form.children('fieldset');
 
 			//Create the year field
-			yearContainer = $('<div class="cal-goto-year"><label for="cal-' + calendarid + '-goto-year" class="wb-invisible">' + pe.dic.get('%calendar-goToYear') + '</label></div>');
-			yearField = $('<select id="cal-' + calendarid + '-goto-year"></select>');
+			yearContainer = $('<div class="cal-goto-year"></div>');
+			yearField = $('<select title="' + pe.dic.get('%calendar-goToYear') + '" id="cal-' + calendarid + '-goto-year"></select>');
 			for (y = minDate.getFullYear(), _ylen = maxDate.getFullYear(); y <= _ylen; y += 1) {
 				yearField.append($('<option value="' + y + '"' + (y === year ? ' selected="selected"' : '') + '>' + y + '</option>'));
 			}
@@ -241,8 +241,8 @@
 			fieldset.append(yearContainer);
 
 			//Create the list of month field
-			monthContainer = $('<div class="cal-goto-month"><label for="cal-' + calendarid + '-goto-month" class="wb-invisible">' + pe.dic.get('%calendar-goToMonth') + '</label></div>');
-			monthField = $('<select id="cal-' + calendarid + '-goto-month"></select>');
+			monthContainer = $('<div class="cal-goto-month"></div>');
+			monthField = $('<select title="' + pe.dic.get('%calendar-goToMonth') + '" id="cal-' + calendarid + '-goto-month"></select>');
 
 			monthContainer.append(monthField);
 			fieldset.append(monthContainer);
@@ -313,8 +313,7 @@
 				element,
 				elementParent,
 				child,
-				isCurrentDate,
-				suffix;
+				isCurrentDate;
 			//Get the day of the week of the first day of the month | Determine le jour de la semaine du premier jour du mois
 			date.setFullYear(year, month, 1);
 			firstday = date.getDay();
@@ -351,25 +350,7 @@
 						child = $('<div></div>');
 
 						if (pe.language === 'en') {
-							suffix = '';
-							if (daycount > 10 && daycount < 20) {
-								suffix = 'th';
-							} else {
-								switch (daycount % 10) {
-								case 1:
-									suffix = 'st';
-									break;
-								case 2:
-									suffix = 'nd';
-									break;
-								case 3:
-									suffix = 'rd';
-									break;
-								default:
-									suffix = 'th';
-								}
-							}
-							child.append('<span class="wb-invisible">' + pe.dic.get('%calendar-weekDayNames')[day] + ' ' + pe.dic.get('%calendar-monthNames')[month] + ' </span>' + daycount + '<span class="wb-invisible">' + suffix + ' ' + year + ((isCurrentDate) ? pe.dic.get('%calendar-currentDay') : '') + '</span>');
+							child.append('<span class="wb-invisible">' + pe.dic.get('%calendar-weekDayNames')[day] + ' ' + pe.dic.get('%calendar-monthNames')[month] + ' </span>' + daycount + '<span class="wb-invisible"> ' + year + ((isCurrentDate) ? pe.dic.get('%calendar-currentDay') : '') + '</span>');
 						} else if (pe.language === 'fr') {
 							child.append('<span class="wb-invisible">' + pe.dic.get('%calendar-weekDayNames')[day] + ' </span>' + daycount + '<span class="wb-invisible"> ' + pe.dic.get('%calendar-monthNames')[month].toLowerCase() + ' ' + year + ((isCurrentDate) ? pe.dic.get('%calendar-currentDay') : '') + '</span>');
 						}

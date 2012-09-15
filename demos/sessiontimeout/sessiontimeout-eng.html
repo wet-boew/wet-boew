@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="en" class="no-js">
 <!--<![endif]-->
 <head>
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
 <title>Session timeout - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
@@ -32,6 +32,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 <link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
+<noscript><link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
 
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
@@ -114,7 +115,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 </ul>
 <p>The only required parameter is logouturl, all other fields are optional. The default code would be:</p>
 <p><code>&lt;span class="wet-boew-sessiontimeout"&gt; data-wet-boew="{logouturl: './'}"&gt;&lt;/span&gt;</code></p>
-<p><strong>IMPORTANT NOTE:</strong> The inactivity, reactionTime and sessionalive parameters are set in miliseconds. The only required paramter is the logouturl. The default inactivity and sessionalive is set to 20 minutes with a 30 second confirmation time with the dialog message. The refreshCallbackUrl must not be a page containing the timeout function again as a loop will be created, it should be simply a viewless page that refreshes the session.</p>
+<p><strong>IMPORTANT NOTE:</strong> The inactivity, reactionTime and sessionalive parameters are set in milliseconds. The only required parameter is the logouturl. The default inactivity and sessionalive is set to 20 minutes with a 30 second confirmation time with the dialog message. The refreshCallbackUrl must not be a page containing the timeout function again as a loop will be created, it should be simply a viewless page that refreshes the session.</p>
 <p>Need help with the conversion? See: <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>
 <p><strong>IMPORTANT NOTE</strong>: Your sessionalive and inactivity parameters should be equal to your web server session alive time minus the reactionTime time. If you set your sessionalive time and inactivity time to the same as your web server without taking into consideration the reactionTime time then the session will have ended by the server as soon as the popup appears to extend the session.</p>
 </section>

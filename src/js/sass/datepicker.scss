@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .cal-container.picker-overlay {
 	position:absolute;
@@ -10,7 +10,13 @@
 }
 
 .picker-close {
-	float: right;
+	position: absolute;
+	right: 17px;
+	top: 5px;
+}
+
+.picker-close img {
+	margin: 0;
 }
 
 .picker-field, input[type="date"] {

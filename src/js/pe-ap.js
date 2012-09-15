@@ -1,15 +1,15 @@
 /*!
-* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-* www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
-*/
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
 /*
-* Dependencies for pe
-* - desktop will more than likely be more intensive in terms of capabilities
-* - mobile will be thinner
-*/
+ * Dependencies for pe
+ * - desktop will more than likely be more intensive in terms of capabilities
+ * - mobile will be thinner
+ */
 /*
-* pe, a progressive javascript library agnostic framework
-*/
+ * pe, a progressive javascript library agnostic framework
+ */
 /*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false*/
 (function ($) {
 	"use strict";
@@ -105,9 +105,9 @@
 
 					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
 						newurl = url.path + '?';
-						for (urlparam in urlparams) { // Rebuilt the query string
+						for (urlparam in urlparams) { // Rebuild the query string
 							if (urlparams.hasOwnProperty(urlparam) && urlparam !== 'hashtarget') {
-								newurl += urlparams[urlparam] + '&amp;';
+								newurl += urlparam + '=' + urlparams[urlparam] + '&amp;';
 							}
 						}
 						$this.attr('href', newurl + 'hashtarget=' + url.hash); // Append hashtarget to the query string
@@ -217,7 +217,7 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return (pe.mobileview && (screen.width < 768 || (window.innerWidth < 768 && (window.innerHeight === document.documentElement.clientHeight))) && !(pe.ie > 0 && pe.ie < 9));
+			return (pe.mobileview && (screen.width < 768 || (window.innerWidth < 768 && (window.innerHeight === document.documentElement.clientHeight || window.outerWidth - window.innerWidth < 50))) && !(pe.ie > 0 && pe.ie < 9));
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -665,13 +665,23 @@
 				disablels = (lsenabled ? localStorage.getItem('pedisable') : null),
 				disable = (pe.urlquery.pedisable !== undefined ? pe.urlquery.pedisable : disablels),
 				tphp = document.getElementById('wb-tphp'),
-				li = document.createElement('li');
+				li = document.createElement('li'),
+				qparams = pe.urlquery,
+				qparam,
+				newquery = '?';
+
+			for (qparam in qparams) { // Rebuild the query string
+				if (qparams.hasOwnProperty(qparam) && qparam !== 'pedisable') {
+					newquery += qparam + '=' + qparams[qparam] + '&amp;';
+				}
+			}
+
 			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
 				$('html').addClass('no-js pe-disable');
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
 				}
-				li.innerHTML = '<a href="?pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
+				li.innerHTML = '<a href="' + newquery + 'pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
 				tphp.appendChild(li); // Add link to re-enable PE
 				return true;
 			} else if (disable === "false" || disablels !== null) {
@@ -679,7 +689,7 @@
 					localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
 				}
 			}
-			li.innerHTML = '<a href="?pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
+			li.innerHTML = '<a href="' + newquery + 'pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
 			tphp.appendChild(li); // Add link to disable PE
 			return false;
 		},
@@ -750,12 +760,12 @@
 					heading = 'h' + hlevel,
 					headingOpen = '<' + heading + '>',
 					headingClose = '</' + heading + '>',
-					headingNext = 'h' + hlevel + 1,
 					menuitems = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)).find('> div, > ul, ' + heading),
 					next,
 					subsection,
 					hlink,
 					nested,
+					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
 					expand = (expandall !== undefined ? expandall : false),
 					mainText = pe.dic.get('%main-page'),
@@ -764,20 +774,15 @@
 				if (menuitems.get(0).tagName.toLowerCase() === 'ul') {
 					menu.append($(listView).append(menuitems.first().children('li')));
 				} else {
+					hasHeading = menuitems.filter(heading).length !== 0;
 					menuitems.each(function () {
-						var $this = $(this);
+						var $this = $(this),
+							tagName = this.tagName.toLowerCase();
 						// If the menu item is a heading
-						if (this.tagName.toLowerCase() === heading) {
+						if (tagName === heading) {
 							hlink = $this.children('a');
 							subsection = $('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? ' data-collapsed="false"' : '') + '>' + headingOpen + $this.text() + headingClose + '</div>');
-							// If the original menu item was in a menu bar
-							if (menubar) {
-								$this = $this.parent().find('a').eq(1).closest('ul, div, ' + headingNext).first();
-								next = $this;
-							} else {
-								next = $this.next();
-							}
-
+							next = $this.next();
 							if (next.get(0).tagName.toLowerCase() === 'ul') {
 								// The original menu item was not in a menu bar
 								if (!menubar) {
@@ -804,17 +809,31 @@
 								});
 								subsection.append($(listView).append(next.children('li')));
 								subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? collapsibleSet : '') + '</div>');
-							} else {
-								// If the section contains sub-sections
-								subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme, false, expand));
+							} else { // If the section contains sub-sections
+								if (menubar) {
+									subsection.append(pe.menu.buildmobile($this.parent().find('.mb-sm'), hlevel + 1, theme, false, expand));
+								} else {
+									subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme, false, expand));
+								}
 								// If the original menu item was not in a menu bar
 								if (!menubar) {
 									subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right'}));
 								}
 							}
 							menu.append(subsection);
-						} else if (this.tagName.toLowerCase() === 'div') { // If the menu item is a div
-							menu.append($this.children('a').attr({ 'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right' }));
+						} else if (tagName === 'div') { // If the menu item is a div
+							next = $this.children('a, ul');
+							if (next.length > 0) {
+								if (next.get(0).tagName.toLowerCase() === 'a') {
+									if (hasHeading) {
+										menu.append('<a href="' + next.attr('href') + '" data-role="button" data-theme="' + theme + '" data-icon="arrow-r" data-iconpos="right">' + next.html() + '</a>');
+									} else {
+										menu.append('<ul data-role="listview" data-theme="' + theme + '"><li><a href="' + next.attr('href') + '">' + next.html() + '</a></li></ul>');
+									}
+								} else {
+									menu.append($this.children('ul').attr({ 'data-role': 'listview', 'data-theme': theme }));
+								}
+							}
 						}
 					});
 					menu.children().wrapAll(collapsibleSet);
@@ -1051,10 +1070,7 @@
 				},
 				'mathml': {
 					selector: 'math',
-					load: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML',
-					/*update: function (elms) {
-					MathJax.Hub.Queue(["Typeset",MathJax.Hub,elms]);
-					},*/
+					load: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible',
 					support_check: function () {
 						// MathML
 						// http://www.w3.org/Math/
@@ -1064,11 +1080,9 @@
 							divParent,
 							div,
 							divCompare,
-							/*divCompare2,*/
 							mrow,
 							mo,
-							mfrac/*,
-							munderover*/;
+							mfrac;
 						if (document.createElementNS) {
 							ns = 'http://www.w3.org/1998/Math/MathML';
 							divParent = document.createElement('div');

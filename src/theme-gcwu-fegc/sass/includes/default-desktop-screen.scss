@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 html{
 	overflow-y:scroll;
@@ -263,7 +263,7 @@ a{
 		-moz-box-shadow:none;
 		-webkit-box-shadow:none;
 		background:#fff;
-		padding:3px 0;
+		padding:2px 0;
 		&:focus,&:active{
 			background:#f0fcff;
 		}
