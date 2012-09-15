@@ -18,7 +18,7 @@
 }
 
 /* Mobile view */
-@media (max-width:767px) {
+@media screen and (max-width:767px) {
 /* -----Build Include Section Start----- */
 @import url('includes/util-mobile.css');
 /* -----Build Include Section End----- */
