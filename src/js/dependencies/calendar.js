@@ -231,8 +231,8 @@
 			fieldset = form.children('fieldset');
 
 			//Create the year field
-			yearContainer = $('<div class="cal-goto-year"><label for="cal-' + calendarid + '-goto-year" class="wb-invisible">' + pe.dic.get('%calendar-goToYear') + '</label></div>');
-			yearField = $('<select id="cal-' + calendarid + '-goto-year"></select>');
+			yearContainer = $('<div class="cal-goto-year"></div>');
+			yearField = $('<select title="' + pe.dic.get('%calendar-goToYear') + '" id="cal-' + calendarid + '-goto-year"></select>');
 			for (y = minDate.getFullYear(), _ylen = maxDate.getFullYear(); y <= _ylen; y += 1) {
 				yearField.append($('<option value="' + y + '"' + (y === year ? ' selected="selected"' : '') + '>' + y + '</option>'));
 			}
@@ -241,8 +241,8 @@
 			fieldset.append(yearContainer);
 
 			//Create the list of month field
-			monthContainer = $('<div class="cal-goto-month"><label for="cal-' + calendarid + '-goto-month" class="wb-invisible">' + pe.dic.get('%calendar-goToMonth') + '</label></div>');
-			monthField = $('<select id="cal-' + calendarid + '-goto-month"></select>');
+			monthContainer = $('<div class="cal-goto-month"></div>');
+			monthField = $('<select title="' + pe.dic.get('%calendar-goToMonth') + '" id="cal-' + calendarid + '-goto-month"></select>');
 
 			monthContainer.append(monthField);
 			fieldset.append(monthContainer);

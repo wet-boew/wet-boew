@@ -34,6 +34,10 @@
 				wrapper,
 				elm = $(this);
 
+			if(elm.hasClass('picker-field')) {
+				return;
+			}
+
 			elm.addClass('picker-field');
 
 			createToggleIcon = function (fieldid, containerid) {

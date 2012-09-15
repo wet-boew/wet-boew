@@ -17,6 +17,7 @@ sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 	background-color: $clrLight;
 	border: 1px solid $clrMedium;
 	padding: 0 4px 1px;
+	white-space: nowrap;
 	&:hover, &:focus, &:active {
 		color: $clrWhite !important;
 		background-color: $clrDark;

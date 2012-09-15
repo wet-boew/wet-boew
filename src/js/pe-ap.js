@@ -1,15 +1,15 @@
 /*!
-* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-* wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
-*/
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
 /*
-* Dependencies for pe
-* - desktop will more than likely be more intensive in terms of capabilities
-* - mobile will be thinner
-*/
+ * Dependencies for pe
+ * - desktop will more than likely be more intensive in terms of capabilities
+ * - mobile will be thinner
+ */
 /*
-* pe, a progressive javascript library agnostic framework
-*/
+ * pe, a progressive javascript library agnostic framework
+ */
 /*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false*/
 (function ($) {
 	"use strict";

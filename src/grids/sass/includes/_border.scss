@@ -39,3 +39,9 @@
 	outline: 1px solid #ccc;
 	background: none;
 }
+
+[class*="border-"] { 
+		#{headings(2,6)}, p {
+			padding: $margin-medium !important;
+		}
+	}

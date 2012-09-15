@@ -38,6 +38,12 @@ $clrDark: #555;
 	.ie7 {
 		.wet-boew-footnotes dl dd {
 			overflow: auto;
+			&.footnote-focus {
+				background-color: transparent;
+				p.footnote-return a {
+					background-color: transparent;
+				}
+			}
 		}
 	}
 }
