@@ -39,7 +39,7 @@
 		margin-top: 2px;
 		margin-bottom: 3px;
 		padding: 1px 0;
-		> p, > blockquote, > span {
+		p, h2, h3, h4, h5, h6, blockquote, > span {
 			margin-left: 10px;
 			margin-right: 10px;
 		}
@@ -242,7 +242,7 @@
 			padding-bottom:5px;
 			padding-top: 30px;
 			@include box-sizing(border-box);
-			> div, > p, > h2, > h3, > h4, > h5, > h6 {
+			> div, p, h2, h3, h4, h5, h6 {
 				margin: $margin-medium;
 			}
 			ul, ol {
