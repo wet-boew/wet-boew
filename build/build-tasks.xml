@@ -163,4 +163,18 @@
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
 	</target>
+	
+	<!--From http://tlrobinson.net/blog/2008/11/ant-tasks-for-git/-->
+	<macrodef name="git">
+		<attribute name="command" />
+		<attribute name="dir" default="${build.dir}/../" />
+		<element name ="args" optional="true" />
+		<sequential>
+			<echo message="git @{command}" />
+			<exec executable="git" dir="@{dir}">
+				<arg value="@{command}" />
+				<args/>
+			</exec>
+		</sequential>
+	</macrodef>
 </project>

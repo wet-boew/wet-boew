@@ -50,4 +50,27 @@
 	<target name="preflight" description="Sets tabbing and encoding as indicated by the contributor guidelines">
 		<fixcrlf srcdir="${src.dir}" includes="**/*.js" encoding="UTF-8" outputencoding="UTF-8" tab="add" tablength="4" />
 	</target>
+	
+	<target name="pull-request">
+		<echo level="info" message="---Merge upstream code---"/>
+		<git command="pull">
+			<arg value="git://github.com/wet-boew/wet-boew.git" />
+		</git>
+		
+		<echo level="info" message="---Ensure code conventions---"/>
+		<antcall target="preflight" />
+		
+		<!-- Run a build to get the latest minified files after the merge -->
+		<antcall target="default" />
+		
+		<echo level="info" message="---Commit any changes---"/>
+		<git command="commit">
+			<arg value="-am 'Prelight and rebuilt for PR'" />
+		</git>
+		
+		<echo level="info" message="---Pushing back to remote---"/>
+		<git command="push" />
+		
+		<echo level="info" message="---Go to Github.com to create the pull request---"/>
+	</target>
 </project>
