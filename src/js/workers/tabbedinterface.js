@@ -26,7 +26,7 @@
 			var $tabs = elm.children('.tabs').children('li'),
 				$tab,
 				$panels = elm.children('.tabs-panel').children('div'),
-				accordion = '<div data-role="collapsible-set" data-content-theme="b" data-theme="b" data-mini="true">',
+				accordion = '<div data-role="collapsible-set" data-mini="true" data-content-theme="b" data-theme="b">',
 				needh = (elm.hasClass('tabs-style-4') || elm.hasClass('tabs-style-5')),
 				prevh,
 				hlevel,
