@@ -86,11 +86,9 @@ h5, h6 {
 	}
 }
 
-.border-none	{ border: none; }
-
 /*	 text	 */
-.serif			{ font-family: $serif; }
-.sans-serif	 { font-family: $sans-serif; }
+.font-serif			{ font-family: $serif; }
+.font-sans-serif	 { font-family: $sans-serif; }
 .wrap-none		{ white-space: nowrap;}
 
 .font-xxsmall { font-size: $font-xxsmall !important; }
@@ -316,14 +314,20 @@ table{
 	}
 }
 
-/*	event	 */
+/*	date  */
 .date-container {
 	height: 94px;
 	float: left;
 	margin-right: $margin-medium;
+	margin-left: $margin-medium;
 	min-width: 80px;
 	position: relative;
 }
+
+[class*="span-"] .date-container {
+	margin-left:0;
+}
+
 .date-month {
 	width: 100%;
 	border: 1px solid rgba(0,0,0,0.25);
