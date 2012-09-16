@@ -557,10 +557,12 @@ a:active{
 
 .bb-pre7 {
 	input, textarea, select {
-		box-shadow: none !important;
-		-webkit-box-shadow: none !important;
 		&:focus, &:active {
-			box-shadow: none !important;
+			-webkit-box-shadow: none !important;
+		}
+	}
+	.ui-input-text, .ui-input-search {
+		&.ui-focus {
 			-webkit-box-shadow: none !important;
 		}
 	}
