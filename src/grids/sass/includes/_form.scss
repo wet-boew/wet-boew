@@ -271,9 +271,12 @@
 		}
 	}
 
-	.bb-pre6 {
-		&:focus, &:active {
-			color:#fff;
+	.bb-pre7 {
+		input, textarea, select {
+			@include box-shadow(none);			
+			&:focus, &:active {
+				@include box-shadow(none);				
+			}
 		}
 	}
 

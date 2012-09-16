@@ -54,7 +54,7 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = $('html'), hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false;
+			var $html = $('html'), hlinks, hlinks_same, hlinks_other, $this, url, target, test, init_on_mobileinit = false;
 
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
@@ -81,8 +81,10 @@
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page').addClass('ui-page-active');
-				$html.addClass(navigator.userAgent.indexOf('BlackBerry') === 0 ? 'bb-pre6' : '');
-				alert(navigator.userAgent);
+				
+				// Detect if pre-OS7 BlackBerry device is being used
+				test = navigator.userAgent.indexOf('BlackBerry');
+				$html.addClass((test === 0 || (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) ? 'bb-pre7' : ''));
 
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
