@@ -54,7 +54,7 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false;
+			var $html = $('html'), hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false;
 
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
@@ -65,7 +65,7 @@
 			pe.urlquery = pe.urlpage.params;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$('html').removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
+			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
 
 			hlinks = pe.main.find("a").filter(function () {
 				return this.href.indexOf('#') !== -1;
@@ -81,6 +81,7 @@
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page').addClass('ui-page-active');
+				$html.addClass(navigator.userAgent.indexOf('BlackBerry') === 0 ? 'bb-pre6' : '');
 
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {

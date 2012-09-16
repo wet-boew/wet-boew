@@ -270,7 +270,16 @@
 			&:focus, &:active { @include box-shadow(darken($alert, 37%)); }
 		}
 	}
-	
+
+	.bb-pre6 {
+		input, textarea, select {
+			@include box-shadow(none);
+		}
+		&:focus, &:active {
+			@include box-shadow(none);
+		}
+	}
+
 	// apply color to form text elements
 	.form-help-block, .form-text-inline, > label {
 		.form-confirm & { color: darken($summary, 5%); }
