@@ -554,3 +554,11 @@ a:active{
 		display:none !important;
 	}
 }
+
+.bb-pre7 {
+	input, textarea, select {
+		&:focus, &:active {
+			box-shadow: none !important;
+		}
+	}
+}
