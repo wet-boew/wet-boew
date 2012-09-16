@@ -86,7 +86,7 @@
 				// Handle deep linking from other pages
 				if (pe.urlhash.length !== 0) {
 					test = $('#' + pe.urlhash);
-					if (test.length > 0 && test.attr('data-role') !== 'page') { // Not a jQuery Mobile sub-page
+					if (test.length !== 0 && test.attr('data-role') !== 'page') { // Not a jQuery Mobile sub-page
 						newurl = '';
 						for (urlparam in pe.urlquery) { // Rebuild the query string
 							if (pe.urlquery.hasOwnProperty(urlparam) && urlparam !== 'hashtarget') {
@@ -127,7 +127,7 @@
 						if (target.length > 0) {
 							setTimeout(function () {
 								$.mobile.silentScroll(pe.focus(target).offset().top);
-							}, 0);
+							}, 200);
 						}
 					}
 				});
