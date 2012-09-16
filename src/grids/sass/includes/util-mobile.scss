@@ -63,3 +63,7 @@ form {
 .module-poster {
 	display:inline-block;
 }
+
+input[type="image"] + label, input[type="checkbox"] + label, input[type="radio"] + label {
+	display:block;
+}

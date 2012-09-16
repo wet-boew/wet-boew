@@ -3,7 +3,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-h1,h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
+h1,h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre,details{
 	margin-left:10px;
 	margin-right:10px;
 }
@@ -156,14 +156,4 @@ img.image-actual,#gcwu-aside .gcwu-minister-img img {
 
 .span-8,.grid-12 .span-12{
 	width:940px;
-}
-
-.span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3{
-	.calendar-month {
-		td, th {
-			width:30px;
-			height:32px;
-			padding:2px 3px;
-		}
-	}
 }

@@ -309,68 +309,15 @@ p[class*="thermometer"] {
 .thermometer-110{background-image:url(../images/thermometer-110.gif);}
 .thermometer-120{background-image:url(../images/thermometer-120.gif);}
 
-/*	 calendar	 */
+/*	grid on a table	 */
 table{
-	&.calendar-month{
-		border: 1px solid darken($light, 10%);
-		margin:3px 0 2px;
-		caption {
-			background: $light;
-			border: 1px solid darken($light, 10%);
-			border-bottom-width:0;
-			font-weight: $font-weight-bold;
-			color:#555;
-			padding:5px;
-			margin:0;
-		}
-	}
 	&.span-1,&.span-2,&.span-3,&.span-4,&.span-5,&.span-6,&.span-7,&.span-8,&.span-9,&.span-10,&.span-11,&.span-12{
 		display:table;
 	}
 }
 
-.calendar-month{
-	td, th{
-		text-align: center;
-		vertical-align: middle;
-		background: $white;
-		color: $medium;
-		margin-bottom:0;
-	}
-}
-th,td{
-	&.calendar-weekend{
-		background: lighten($light, 3%);
-	}
-}
-td{
-	&.calendar-today{
-		border:2px solid $accent;
-	}
-	&.calendar-item{
-		background: $dark;
-		font-weight: $font-weight-bold;
-		padding: 0;
-		a,a:visited{
-			display: block;
-			color: $white !important;
-			text-decoration:none;
-		}
-		&:hover, &:focus, &:active{
-			background: lighten($dark, 15%);
-		}
-	}
-}
-.span-2 .calendar-month {
-	td,th{
-		width:30px;
-		height:32px;
-		padding:2px 3px;
-	}
-}
-
-/*
-.date {
+/*	event	 */
+.date-container {
 	height: 94px;
 	float: left;
 	margin-right: $margin-medium;
@@ -417,4 +364,3 @@ td{
 		width: 100%;
 	}
 }
-*/
