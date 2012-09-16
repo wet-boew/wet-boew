@@ -54,7 +54,7 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = $('html'), hlinks, hlinks_same, $this, url, target, test, init_on_mobileinit = false;
+			var $html = $('html'), hlinks, hlinks_same, $this, newurl, urlparams, urlparam, target, test, init_on_mobileinit = false;
 
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
