@@ -71,8 +71,8 @@ input[type="image"] + label, input[type="checkbox"] + label, input[type="radio"]
 .bb-pre7 {
 	input, textarea, select {
 		&:focus, &:active {
-			background:#000;
-			color:#fff;
+			background:#000 !important;
+			color:#fff !important;
 		}
 	}
 }
