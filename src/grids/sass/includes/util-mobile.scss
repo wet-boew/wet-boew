@@ -76,6 +76,7 @@ input[type="image"] + label, input[type="checkbox"] + label, input[type="radio"]
 			color:#fff !important;
 			box-shadow: none !important;
 			-webkit-box-shadow: none !important;
+			display:none !important;
 		}
 	}
 }
