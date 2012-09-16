@@ -271,15 +271,6 @@
 		}
 	}
 
-	.bb-pre7 {
-		input, textarea, select {
-			@include box-shadow(none);			
-			&:focus, &:active {
-				@include box-shadow(none);
-			}
-		}
-	}
-
 	// apply color to form text elements
 	.form-help-block, .form-text-inline, > label {
 		.form-confirm & { color: darken($summary, 5%); }
@@ -295,5 +286,14 @@
 			@include colorize-border($light);
 		}
 		
+	}
+}
+
+.bb-pre7 {
+	input, textarea, select {
+		box-shadow:none !important;
+		&:focus, &:active {
+			box-shadow:none !important;
+		}
 	}
 }

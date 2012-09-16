@@ -85,7 +85,6 @@
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
 				$html.addClass((test === 0 || (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) ? 'bb-pre7' : ''));
-				alert((test === 0 || (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) ? 'bb-pre7' : 'nope'));
 
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
