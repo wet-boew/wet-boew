@@ -288,15 +288,3 @@
 		
 	}
 }
-
-.bb-pre7 {
-	input, textarea, select {
-		box-shadow: none !important;
-		-webkit-box-shadow: none !important;
-		&:focus, &:active {
-			color:#fff !important;
-			box-shadow: none !important;
-			-webkit-box-shadow: none !important;
-		}
-	}
-}
