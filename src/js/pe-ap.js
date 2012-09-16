@@ -82,6 +82,9 @@
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page').addClass('ui-page-active');
 				$html.addClass(navigator.userAgent.indexOf('BlackBerry') === 0 ? 'bb-pre6' : '');
+				if ($html.hasClass('bb-pre6')) {
+					alert('bb-pre6');
+				}
 
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
