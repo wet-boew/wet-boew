@@ -54,7 +54,7 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = $('html'), hlinks, hlinks_same, hlinks_other, $this, url, target, test, init_on_mobileinit = false;
+			var $html = $('html'), hlinks, hlinks_same, $this, url, target, test, init_on_mobileinit = false;
 
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
@@ -70,9 +70,6 @@
 			hlinks = pe.main.find("a").filter(function () {
 				return this.href.indexOf('#') !== -1;
 			});
-			hlinks_other = hlinks.filter(function () {
-				return $(this).attr('href').indexOf('#') !== 0; // Other page links with hashes
-			});
 			hlinks_same = hlinks.filter(function () {
 				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
 			});
@@ -86,6 +83,22 @@
 				test = navigator.userAgent.indexOf('BlackBerry');
 				$html.addClass((test === 0 || (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) ? 'bb-pre7' : ''));
 
+				// Handle deep linking from other pages
+				if (pe.urlhash.length !== 0) {
+					test = $('#' + pe.urlhash);
+					if (test.length > 0 && test.attr('data-role') !== 'page') { // Not a jQuery Mobile sub-page
+						newurl = '';
+						for (urlparam in pe.urlquery) { // Rebuild the query string
+							if (pe.urlquery.hasOwnProperty(urlparam) && urlparam !== 'hashtarget') {
+								newurl += urlparam + '=' + urlparams[urlparam] + '&amp;';
+							}
+						}
+						newurl += 'hashtarget=' + pe.urlhash;
+						window.location.search = newurl;
+					}
+					window.location.hash = '';
+				}
+
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
 						ajaxEnabled: false,
@@ -94,27 +107,6 @@
 					});
 					if (init_on_mobileinit) {
 						pe.mobilelang();
-					}
-				});
-
-				// Replace hash with ?hashtarget= for links to other pages
-				hlinks_other.each(function () {
-					var $this = $(this),
-						newurl,
-						urlparams,
-						urlparam;
-
-					url = pe.url($this.attr('href'));
-					urlparams = url.params;
-
-					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
-						newurl = url.path + '?';
-						for (urlparam in urlparams) { // Rebuild the query string
-							if (urlparams.hasOwnProperty(urlparam) && urlparam !== 'hashtarget') {
-								newurl += urlparam + '=' + urlparams[urlparam] + '&amp;';
-							}
-						}
-						$this.attr('href', newurl + 'hashtarget=' + url.hash); // Append hashtarget to the query string
 					}
 				});
 
