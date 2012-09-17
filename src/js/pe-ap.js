@@ -704,42 +704,51 @@
 			* @return {jQuery object} Link where match found
 			*/
 			navcurrent: function (menusrc, bcsrc, navclass) {
-				var navlink,
-					navurl,
-					navtext,
-					i,
-					_len,
-					pageurl = pe.url(window.location.href).removehash(),
-					bcurl = [],
-					bctext = [],
-					match;
-				menusrc = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc));
-				bcsrc = $((typeof bcsrc.jquery !== 'undefined' ? bcsrc : $(bcsrc)).find('a').get().reverse());
-				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;
-				// Retrieve the path and link text for each breacrumb link
-				bcsrc.each(function (index) {
-					var $this = $(this);
-					bcurl[index] = $this.attr('href');
-					bctext[index] = $this.text();
-				});
+				var pageurl = window.location.pathname,
+					pageurlquery = pageurl + window.location.search,
+					menulinks,
+					menulink,
+					menulinkurl,
+					menulinkquery,
+					menulinkslen,
+					menulinksindex,
+					bclinks,
+					bclink,
+					bclinkslen,
+					bcindex,
+					h1text = pe.main.find('h1').text(),
+					match = false,
+				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
+				menulinks = menusrc.find('a').get();
+				menulinkslen = menulinks.length;
+				bcsrc = typeof bcsrc.jquery !== 'undefined' ? bcsrc : $(bcsrc);
+				bclinks = bcsrc.find('a').get();
+				bclinkslen = bclinks.length;
+				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;		
 
-				$(menusrc.find('a').get().reverse()).each(function () {
-					navlink = $(this);
-					navurl = navlink.attr('href');
-					navtext = navlink.text();
-					match = (pageurl.indexOf(navurl) !== -1);
-					for (i = 0, _len = bcurl.length; !match && i !== _len; i += 1) {
-						if (bcurl[i] !== "#" && (bcurl[i] === navurl || bctext[i] === navtext)) {
+				while (menulinkslen--) {
+					menulink = menulinks[menulinkslen];
+					if (menulink.getAttribute('href').indexOf('#') !== 0) {
+						menulinkurl = menulink.pathname;
+						menulinkquery = menulink.search;
+						bcindex = bclinkslen;
+						if ((menulinkquery.length !== 0 && (menulinkurl + menulinkquery).indexOf(pageurlquery) !== -1) || (menulinkquery.length === 0 && menulinkurl.indexOf(pageurl) !== -1) || menulink.innerHTML === h1text) {
 							match = true;
 							break;
 						}
+						while (bcindex--) {
+							bclink = bclinks[bcindex];
+							if (bclink.pathname.indexOf(menulinkurl) !== -1) {
+								match = true;
+								break;
+							}
+						}
+						if (match) {
+							break;
+						}
 					}
-					if (match) {
-						navlink.addClass(navclass);
-						return false;
-					}
-				});
-				return (match ? navlink : $());
+				}
+				return (match ? $(menulink).addClass(navclass) : $());
 			},
 			/**
 			* Builds jQuery Mobile nested accordion menus from an existing menu

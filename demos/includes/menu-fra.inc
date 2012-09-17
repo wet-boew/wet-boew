@@ -103,7 +103,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 <div class="mb-main-link"><a href="#">Section 3 - Page principale</a></div>
 </div></section></li>
-<li><section><h3><a href="#">Section 4</a></h3><div class="mb-sm">
+<li><section><h3><a href="section4/index-fra.html">Section 4</a></h3><div class="mb-sm">
 <div class="span-2">
 <section><h4><a href="#">Section 4.1</a></h4>
 <ul>
@@ -122,7 +122,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </section>
 </div>
 <div class="span-2">
-<section><h4><a href="#">Section 4.3</a></h4>
+<section><h4><a href="section4/section43/index-fra.html">Section 4.3</a></h4>
 <ul>
 <li><a href="#">Article 4.3.1</a></li>
 <li><a href="#">Article 4.3.2</a></li>
