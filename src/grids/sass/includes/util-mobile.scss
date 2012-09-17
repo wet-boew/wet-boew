@@ -48,6 +48,10 @@ form {
 	position:absolute;
 }
 
+input[type="image"] + label, input[type="checkbox"] + label, input[type="radio"] + label {
+	display:block;
+}
+
 .border-top,.border-right,.border-bottom,.border-left,.border-all {
 	float:none;
 	display:block;
@@ -62,4 +66,15 @@ form {
 
 .module-poster {
 	display:inline-block;
+}
+
+.date-month a {
+	color:#fff !important;
+}
+
+.bb-pre7 {
+	input:focus, input:active, textarea:focus, textarea:active, select:focus, select:active, .ui-input-text.ui-focus, .ui-input-search.ui-focus {
+		background:#333 !important;
+		color:#f9f9f9 !important;
+	}
 }

@@ -178,7 +178,7 @@ p, blockquote, table, form, img, pre {
 [class*="span-"] {
 
 	// reset margin left and right to elements that are used inside a grid cell
-	#{headings(all)}, p, blockquote, table, form, img, pre {
+	#{headings(all)}, p, blockquote, table, form, img, pre, details {
 		margin-left: 0;
 		margin-right: 0;
 	}

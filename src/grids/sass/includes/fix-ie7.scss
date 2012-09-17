@@ -24,4 +24,15 @@
 	.module-billboard a {
 		background-image:none !important;
 	}
+	.date-month {
+		min-width:80px;
+		p {
+			padding-top:3px;
+			padding-bottom:3px;
+		}
+	}
+	.date-day {
+		min-width:78px;
+		width:auto;
+	}
 }

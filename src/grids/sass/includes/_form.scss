@@ -36,6 +36,7 @@
 			@include colorize-border(lighten($light, 3%), "outline");
 			@include colorize-base(lighten($light, 3%));
 			padding-top: 10px;
+			padding-bottom:10px;
 
 			& > * {
 				margin-left: 10px;
@@ -53,8 +54,8 @@
 			}
 			
 			& legend {
-				padding-left: 10px !important;
-				padding-right: 10px !important;
+				margin-left: 10px;
+				margin-right: 10px;
 			}
 
 			#{headings(2,6)} {
@@ -269,7 +270,7 @@
 			&:focus, &:active { @include box-shadow(darken($alert, 37%)); }
 		}
 	}
-	
+
 	// apply color to form text elements
 	.form-help-block, .form-text-inline, > label {
 		.form-confirm & { color: darken($summary, 5%); }

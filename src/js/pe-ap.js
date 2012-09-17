@@ -54,7 +54,7 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var hlinks, hlinks_same, hlinks_other, $this, url, target, init_on_mobileinit = false;
+			var $html = $('html'), hlinks, hlinks_same, $this, newurl, urlparams, urlparam, target, test, init_on_mobileinit = false;
 
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
@@ -65,13 +65,10 @@
 			pe.urlquery = pe.urlpage.params;
 
 			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$('html').removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
+			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
 
 			hlinks = pe.main.find("a").filter(function () {
 				return this.href.indexOf('#') !== -1;
-			});
-			hlinks_other = hlinks.filter(function () {
-				return $(this).attr('href').indexOf('#') !== 0; // Other page links with hashes
 			});
 			hlinks_same = hlinks.filter(function () {
 				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
@@ -81,6 +78,26 @@
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
 				$('body > div').attr('data-role', 'page').addClass('ui-page-active');
+				
+				// Detect if pre-OS7 BlackBerry device is being used
+				test = navigator.userAgent.indexOf('BlackBerry');
+				$html.addClass((test === 0 || (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) ? 'bb-pre7' : ''));
+
+				// Handle deep linking from other pages
+				if (pe.urlhash.length !== 0) {
+					test = $('#' + pe.urlhash);
+					if (test.length !== 0 && test.attr('data-role') !== 'page') { // Not a jQuery Mobile sub-page
+						newurl = '';
+						for (urlparam in pe.urlquery) { // Rebuild the query string
+							if (pe.urlquery.hasOwnProperty(urlparam) && urlparam !== 'hashtarget') {
+								newurl += urlparam + '=' + urlparams[urlparam] + '&amp;';
+							}
+						}
+						newurl += 'hashtarget=' + pe.urlhash;
+						window.location.search = newurl;
+					}
+					window.location.hash = '';
+				}
 
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
@@ -90,27 +107,6 @@
 					});
 					if (init_on_mobileinit) {
 						pe.mobilelang();
-					}
-				});
-
-				// Replace hash with ?hashtarget= for links to other pages
-				hlinks_other.each(function () {
-					var $this = $(this),
-						newurl,
-						urlparams,
-						urlparam;
-
-					url = pe.url($this.attr('href'));
-					urlparams = url.params;
-
-					if (($this.attr('data-replace-hash') === undefined && (url.hash.length > 0 && window.location.hostname === url.host)) || ($this.attr('data-replace-hash') !== undefined && $this.attr('data-replace-hash') === true)) {
-						newurl = url.path + '?';
-						for (urlparam in urlparams) { // Rebuild the query string
-							if (urlparams.hasOwnProperty(urlparam) && urlparam !== 'hashtarget') {
-								newurl += urlparam + '=' + urlparams[urlparam] + '&amp;';
-							}
-						}
-						$this.attr('href', newurl + 'hashtarget=' + url.hash); // Append hashtarget to the query string
 					}
 				});
 
@@ -131,7 +127,7 @@
 						if (target.length > 0) {
 							setTimeout(function () {
 								$.mobile.silentScroll(pe.focus(target).offset().top);
-							}, 0);
+							}, 200);
 						}
 					}
 				});

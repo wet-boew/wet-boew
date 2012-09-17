@@ -15,19 +15,25 @@ $clrDark: #555;
 		display: inline-block;
 		dl {
 			dt {
-				position:relative;
-				float:left;
-				margin-bottom:-1px;
+				position: relative;
+				float: left;
+				margin-bottom: -1px;
 			}
-			dd.footnote-focus {
-				background-color: $clrLight;
+		}
+	}
+}
+
+/*Screen SCSS*/
+@media screen {
+	.ie7 {
+		.wet-boew-footnotes dd.footnote-focus {
+			background-color: $clrLight;
+			border-color: $clrDark;
+			p.footnote-return a {
+				color: $clrWhite !important;
+				background-color: $clrDark;
 				border-color: $clrDark;
-				p.footnote-return a {
-					color: $clrWhite !important;
-					background-color: $clrDark;
-					border-color: $clrDark;
-					text-shadow: none !important;
-				}
+				text-shadow: none !important;
 			}
 		}
 	}
@@ -38,12 +44,6 @@ $clrDark: #555;
 	.ie7 {
 		.wet-boew-footnotes dl dd {
 			overflow: auto;
-			&.footnote-focus {
-				background-color: transparent;
-				p.footnote-return a {
-					background-color: transparent;
-				}
-			}
 		}
 	}
 }
