@@ -711,13 +711,12 @@
 					menulinkurl,
 					menulinkquery,
 					menulinkslen,
-					menulinksindex,
 					bclinks,
 					bclink,
 					bclinkslen,
 					bcindex,
 					h1text = pe.main.find('h1').text(),
-					match = false,
+					match = false;
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
 				menulinks = menusrc.find('a').get();
 				menulinkslen = menulinks.length;
