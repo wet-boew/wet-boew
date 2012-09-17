@@ -72,10 +72,8 @@
 				<arg value="-am 'Prelight and rebuilt for PR'" />
 			</args>
 		</git>
-		
-		<echo level="info" message="---Pushing back to remote---"/>
-		<git command="push" />
-		
-		<echo level="info" message="---Go to Github.com to create the pull request---"/>
+		<!-- Push can't be readily automated, due to user/password request-->
+		<echo level="info" message="---Now run 'git push'---"/>
+		<echo level="info" message="---then to Github.com to create the pull request---"/>
 	</target>
 </project>
