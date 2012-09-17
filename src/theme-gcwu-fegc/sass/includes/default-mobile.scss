@@ -16,6 +16,12 @@ body{
 }
 
 #wb-skip {
+	a, a:link, a:visited {
+		text-shadow: none !important;
+	}
+}
+
+#wb-body-sec #wb-skip2 {
 	display:none;
 	visibility:hidden;
 }
