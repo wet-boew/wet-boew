@@ -3,6 +3,7 @@
 	<description>Web Experience Toolkit</description>
 	<property name="src.dir" value="src"/>
 	<property name="build.dir" value="build"/>
+	<import file="${build.dir}/build-tasks.xml"/>
 
 	<target name="default" depends="clean,build,clean-css" description="Performs a Cleand and Build when calling ant without any target"></target>
 
@@ -54,7 +55,9 @@
 	<target name="pull-request">
 		<echo level="info" message="---Merge upstream code---"/>
 		<git command="pull">
-			<arg value="git://github.com/wet-boew/wet-boew.git" />
+			<args>
+				<arg value="git://github.com/wet-boew/wet-boew.git" />
+			</args>
 		</git>
 		
 		<echo level="info" message="---Ensure code conventions---"/>
@@ -65,7 +68,9 @@
 		
 		<echo level="info" message="---Commit any changes---"/>
 		<git command="commit">
-			<arg value="-am 'Prelight and rebuilt for PR'" />
+			<args>
+				<arg value="-am 'Prelight and rebuilt for PR'" />
+			</args>
 		</git>
 		
 		<echo level="info" message="---Pushing back to remote---"/>

@@ -11,8 +11,8 @@
  * Copyright (c) 2006 - 2011 Jörn Zaefferer
  *
  * Dual licensed under the MIT and GPL licenses:
- *   http://www.opensource.org/licenses/mit-license.php
- *   http://www.gnu.org/licenses/gpl.html
+ *	 http://www.opensource.org/licenses/mit-license.php
+ *	 http://www.gnu.org/licenses/gpl.html
  */
 
 (function() {
@@ -209,9 +209,9 @@ jQuery.validator.addMethod('phonesUK', function(phone_number, element) {
 		phone_number.match(/^(?:(?:(?:00\s?|\+)44\s?|0)(?:1\d{8,9}|[23]\d{9}|7(?:[45789]\d{8}|624\d{6})))$/);
 }, 'Please specify a valid uk phone number');
 // On the above three UK functions, do the following server side processing:
-//  Compare with ^((?:00\s?|\+)(44)\s?)?\(?0?(?:\)\s?)?([1-9]\d{1,4}\)?[\d\s]+)
-//  Extract $2 and set $prefix to '+44<space>' if $2 is '44' otherwise set $prefix to '0'
-//  Extract $3 and remove spaces and parentheses. Phone number is combined $2 and $3.
+//	Compare with ^((?:00\s?|\+)(44)\s?)?\(?0?(?:\)\s?)?([1-9]\d{1,4}\)?[\d\s]+)
+//	Extract $2 and set $prefix to '+44<space>' if $2 is '44' otherwise set $prefix to '0'
+//	Extract $3 and remove spaces and parentheses. Phone number is combined $2 and $3.
 // A number of very detailed GB telephone number RegEx patterns can also be found at:
 // http://www.aa-asterisk.org.uk/index.php/Regular_Expressions_for_Validating_and_Formatting_UK_Telephone_Numbers
 
@@ -334,12 +334,12 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
  *
  * The end result is that neither of these inputs:
  *
- *  <input class="productinfo" name="partnumber">
- *  <input class="productinfo" name="description">
+ *	<input class="productinfo" name="partnumber">
+ *	<input class="productinfo" name="description">
  *
- *  ...will validate unless at least one of them is filled.
+ *	...will validate unless at least one of them is filled.
  *
- * partnumber:  {require_from_group: [1,".productinfo"]},
+ * partnumber:	{require_from_group: [1,".productinfo"]},
  * description: {require_from_group: [1,".productinfo"]}
  *
  */
@@ -365,16 +365,16 @@ jQuery.validator.addMethod("require_from_group", function(value, element, option
  *
  * The end result, is that none of these inputs:
  *
- *  <input class="productinfo" name="partnumber">
- *  <input class="productinfo" name="description">
- *  <input class="productinfo" name="color">
+ *	<input class="productinfo" name="partnumber">
+ *	<input class="productinfo" name="description">
+ *	<input class="productinfo" name="color">
  *
- *  ...will validate unless either at least two of them are filled,
- *  OR none of them are.
+ *	...will validate unless either at least two of them are filled,
+ *	OR none of them are.
  *
- * partnumber:  {skip_or_fill_minimum: [2,".productinfo"]},
- *  description: {skip_or_fill_minimum: [2,".productinfo"]},
- * color:       {skip_or_fill_minimum: [2,".productinfo"]}
+ * partnumber:	{skip_or_fill_minimum: [2,".productinfo"]},
+ *	description: {skip_or_fill_minimum: [2,".productinfo"]},
+ * color:		{skip_or_fill_minimum: [2,".productinfo"]}
  *
  */
 jQuery.validator.addMethod("skip_or_fill_minimum", function(value, element, options) {
