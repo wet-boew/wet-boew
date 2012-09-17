@@ -37,33 +37,26 @@
 		border:1px solid #ccc;
 		padding:5px 10px 10px!important;
 	}
-	.widget-title{
+	.widget-title, .widget-title-dark, .widget-title-blue, .widget-title-attention{
 		font-weight:700;
 		font-size:100%;
-		margin:0;
+		margin:4px 0 0 0;
 		padding:4px;
-		margin-top:4px;
 		border-bottom:0;
+		border-top-left-radius: 4px; //TODO: Removed after Grids system is fixed
+		border-top-right-radius: 4px; //TODO: Removed after Grids system is fixed
 	}
 	.widget-title-dark{
-		font-weight:700;
-		font-size:100%;
-		margin:0;
-		margin-top:4px;
-		padding:4px;
 		background:#333!important;
 		color:#fff!important;
-		border-bottom:0;
+	}
+	.widget-title-blue{
+		background:#176CA7!important;
+		color:#fff!important;
 	}
 	.widget-title-attention{
-		font-weight:700;
-		font-size:100%;
-		margin:0;
-		padding:4px;
-		margin-top:4px;
 		background:#781a21!important;
 		color:#fff!important;
-		border-bottom:0;
 	}
 	ul{
 		list-style-type:none!important;
