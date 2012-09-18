@@ -54,4 +54,4 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 * [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil)
 * [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/Licence-fra.txt)
-* [Lignes directrices pour les contributeurs](http://wet-boew.github.com/wet-boew/CONTRIBUTING.md)
+* [Lignes directrices pour les contributeurs](https://github.com/nschonni/wet-boew/blob/split-contributor-guidelines/CONTRIBUTING.md#bo%C3%AEte-%C3%A0-outils-de-l%E2%80%99exp%C3%A9rience-web-boew-lignes-directrices-pour-les-contributeurs)
