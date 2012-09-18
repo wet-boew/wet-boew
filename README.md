@@ -2,11 +2,11 @@
 
 [![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.png?branch=master)](http://travis-ci.org/wet-boew/wet-boew)
 
-**WET v3.0 to be released on September 17, 2012**
+**WET v3.0 was released on September 17, 2012**
 
 Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities.  
 
-The toolkit complies with the new Standards on Web Accessibility and Web Usability; the toolkit will also ease compliance with the upcoming Standard Web Interoperability. WET is highly recommended for use on Government of Canada Websites.
+The toolkit complies with the new Standards on Web Accessibility and Web Usability and will ease compliance with the new Standard Web Interoperability. WET is highly recommended for use on Government of Canada Websites.
 
 ## Benefits
 
@@ -21,9 +21,10 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 ## Key resources
 
-* [Terms and conditions](http://wet-boew.github.com/wet-boew/License-eng.txt)
-* [Documentation](https://github.com/wet-boew/wet-boew/wiki)
 * [Working examples](http://wet-boew.github.com/wet-boew/demos/index-eng.html)
+* [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
+* [Download](https://github.com/wet-boew/wet-boew/downloads)
+* [Terms and conditions](http://wet-boew.github.com/wet-boew/License-eng.txt)
 
 ## Contributor guidelines
 
@@ -50,7 +51,7 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 # Boîte à outils de l’expérience Web (BOEW)
 
-**Lancement de la version v3.0 de la BOEW est 17 septembre 2012**
+**Lancement de la version v3.0 de la BOEW a été 17 septembre 2012**
 
 ## Vue d'ensemble
 
@@ -72,7 +73,8 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 ## Ressources clés
 
 * [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
-* [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil)
+* [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
+* [Télécharger](https://github.com/wet-boew/wet-boew/downloads)
 * [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/Licence-fra.txt)
 
 ## Lignes directrices pour les contributeurs

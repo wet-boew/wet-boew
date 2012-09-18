@@ -7,8 +7,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="span-2">
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Page principale du projet</a></li>
-<li><a href="http://wet-boew.github.com/wet-boew/Licence-fra.txt">Conditions régissant l'utilisation</a></li>
 <li><a href="http://wet-boew.github.com/wet-boew/demos/index-fra.html">Exemples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/downloads">Télécharger</a></li>
+<li><a href="http://wet-boew.github.com/wet-boew/Licence-fra.txt">Conditions régissant l'utilisation</a></li>
 </ul>
 </div>
 <div class="clear"></div>
