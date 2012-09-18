@@ -152,9 +152,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			
 			if(numerr === 23 || numerr === 18) {
 				msgListItem += 'Warning: ';
-				nbErrorFound += 1;
+				
 			} else {
 				msgListItem += 'Error: ';
+				nbErrorFound += 1;
 			}
 			$('#errorList').append($(msgListItem + err + '</li>'));
 			if (obj) {
