@@ -29,6 +29,7 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 -------------------------------------------------------------------
 
+
 # Boîte à outils de l’expérience Web (BOEW)
 
 **Lancement de la version v3.0 de la BOEW a été 17 septembre 2012**
@@ -56,4 +57,4 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil)
 * [Télécharger](https://github.com/wet-boew/wet-boew/downloads)
 * [Conditions régissant l'utilisation](Licence-fra.txt)
-* [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Développer-pour-la-boew#wiki-Lignes_directrices_pour_les_contributeurs__Bote__outils_de_lexprience_Web_BOEW)
+* [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Développer-pour-la-boew#wiki-Lignes_directrices_pour_les_contributeurs)
