@@ -108,6 +108,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="span-6 module-table-contents">
               <h2>Table of contents</h2>
             <ul class="column-three">
+              <li><a href="#cdng">Coding differences: Internet versus intranet</a></li> 
               <li><a href="#lyt">Page layout types</a>              
                 <ul>
                   <li><a href="#content">Content pages</a></li>
@@ -140,7 +141,33 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
            <p>The intranet theme is customizable in order for a Department to subtly brand their intranet. Details are outlined below.</p>
             </div>
 <div class="clear"></div>
+<h2 id="cdng">Coding differences: Internet versus intranet</h2>
+<p>The intranet templates share the same coding foundation as the internet templates. However, there are a few minor coding adjustments that help to create a more intranet-focused product.  The intranet templates can:</p>
+<ul>
+              <li>Feature the department signature.</li>
+              <li>Have some department branding elements applied.</li>
+              <li> Have customize links in the header and footer.</li>
+          </ul>
+<h3><a id="hdr"></a>Changes to the header</h3>
+<h4><span class="badge-intro">Difference 1</span> Rework the top bar and <abbr title="Federal Indentification Program">FIP</abbr> elements</h4>
 
+<ul>
+            <li>Remove Government of Canada bar</li>
+              <li>Rename heading: <em>Government of Canada navigation bar</em> to <em>Intranet navigation bar</em></li>
+              <li>Add an intranet local bar</li>
+              <li>Group <abbr title="Federal Identification Program">FIP</abbr> elements together</li>
+              <li>The generic Government of Canada signature should be <a href="#sgntr">replaced with the Department's actual signature image</a>. </li>
+          </ul>
+
+<h3><span class="badge-intro">Difference 2</span> Optional sub-site bar</h3>
+<p>A sub-site bar can be added just before the banner ends. Refer to: <a href="#sbst">Adding sub-sites </a></p>
+<h2><a id="ftr"></a>Changes to the footer</h2>
+<h3><span class="badge-intro">Difference 3 </span> Footer notices have moved</h3>
+<p>The <strong>Terms and conditions</strong> | <strong>Transparency</strong> links have been moved below the department's footer links.</p>
+<h3><span class="badge-intro">Difference 4 </span> Footer links can be customized</h3>
+<p>Although you should adheres as closely as possible to the internet footer, there is likely a need for local customization.  Refer to: <a href="#lnk">Footer links</a></p>
+<h3><span class="badge-intro">Difference 5 </span> <abbr title="Government of Canada">GC</abbr> footer removed and branding image allowed.</h3>
+<p>The <abbr title="Government of Canada">GC</abbr> footer has been replaced with a departmental branding opportunity.  Refer to: <a href="#brndgmg">Branding image</a></p>
 <h2 id="lyt">Page layout types</h2>
 <section>
 <div class="span-3"><h3 id="content">Content pages</h3>
@@ -289,13 +316,13 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ul>
               <li>A sub-site bar is added and appears below the standard banner elements.</li>
               <li>The sub-site text links to the the sub-site's homepage.</li>
-              <li>The background is controlled by a customizable <abbr title="Cascading Style Sheet">CSS</abbr> class.  The default appearance is attached to the class <code>cn-subsite-1</code>.  The code is: <pre class="margin-top-none"><code>&lt;div class=&quot;<span class="color-attention">gcwu-subsite-1</span>&quot; id=&quot;gcwu-subsite&quot;&gt;
+              <li>The background is controlled by a customizable <abbr title="Cascading Style Sheet">CSS</abbr> class.  The default appearance is attached to the class <code>gcwu-subsite-1</code>.  The code is: <pre class="margin-top-none"><code>&lt;div class=&quot;<span class="color-attention">gcwu-subsite-1</span>&quot; id=&quot;gcwu-subsite&quot;&gt;
 	&lt;p&gt;&lt;a href=&quot;/hr/index-e.html&quot;&gt;Human Resources Branch&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 Also, when adding a sub-site, you must modify the banner code to include the <abbr title="Accessible Rich Internet Applications">ARIA</abbr> code.  The banner must reference the ID<code>gcwu-bnr</code>:
 <pre class="margin-top-none"><code>&lt;div <span class="color-attention">aria-owns=&quot;gcwu-subsite&quot;</span> role=&quot;banner&quot; id=&quot;gcwu-bnr&quot;&gt;</code></pre>
            </li>
-              <li>When additional colour themes are needed, you must create and maintain custom <abbr title="Cascading Style Sheet">CSS file</abbr>.  The template comes with <code>cn-subsite-1</code> so you must add as many additional classes are your site needs.  For example <code>cn-subsite-2</code> could be red, <code>cn-subsite-3</code> could be orange, <code>cn-subsite-4</code> could be purple etc. The number of extra sub-site classes depends on the architecture of your site.</li>
+              <li>When additional colour themes are needed, you must create and maintain custom <abbr title="Cascading Style Sheet">CSS file</abbr>.  The template comes with <code>gcwu-subsite-1</code> so you must add as many additional classes are your site needs.  For example <code>gcwu-subsite-2</code> could be red, <code>gcwu-subsite-3</code> could be orange, <code>gcwu-subsite-4</code> could be purple etc. The number of extra sub-site classes depends on the architecture of your site.</li>
           </ul>
 <h3 id="nvgtn">Site navigation  bar</h3>
 <div class="span-2 float-right module-attention">
