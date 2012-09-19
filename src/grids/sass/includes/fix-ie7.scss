@@ -5,16 +5,6 @@
  */
 /* ---- IE7 fixes ---- */
 .ie7 {
-	#wb-core{
-		a[href^='http://www'] {
-			background-image:none;
-			padding-right:0;
-		}
-		a[href^='mailto:'],a[href$='.psd'],a[href$='.zip'],a[href$='.doc'],a[href$='.pdf'],a[href$='.xls'],a[href$='.xlt'],a[href$='.rtf'],a[href$='.txt'] {
-			background-image:none;
-			padding-left:0;
-		}
-	}
 	input[type=submit] {
 		border-color: #c8c8c8 !important;
 	}

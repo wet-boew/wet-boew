@@ -704,18 +704,22 @@
 			* @return {jQuery object} Link where match found
 			*/
 			navcurrent: function (menusrc, bcsrc, navclass) {
-				var pageurl = window.location.pathname,
-					pageurlquery = pageurl + window.location.search,
+				var pageurl = window.location.hostname + window.location.pathname,
+					pageurlquery = window.location.search,
 					menulinks,
 					menulink,
 					menulinkurl,
+					menulinkurllen,
 					menulinkquery,
+					menulinkquerylen,
 					menulinkslen,
 					bclinks,
 					bclink,
+					bclinkurl,
 					bclinkslen,
 					bcindex,
 					h1text = pe.main.find('h1').text(),
+					addslash = true,
 					match = false;
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
 				menulinks = menusrc.find('a').get();
@@ -727,17 +731,20 @@
 
 				while (menulinkslen--) {
 					menulink = menulinks[menulinkslen];
-					if (menulink.getAttribute('href').indexOf('#') !== 0) {
-						menulinkurl = menulink.pathname;
+					if (menulink.getAttribute('href').slice(0, 1) !== '#') {
+						menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
+						menulinkurllen = menulinkurl.length;
 						menulinkquery = menulink.search;
+						menulinkquerylen = menulinkquery.length;
 						bcindex = bclinkslen;
-						if ((menulinkquery.length !== 0 && (menulinkurl + menulinkquery).indexOf(pageurlquery) !== -1) || (menulinkquery.length === 0 && menulinkurl.indexOf(pageurl) !== -1) || menulink.innerHTML === h1text) {
+						if ((pageurl.slice(-menulinkurllen) === menulinkurl && (menulinkquerylen === 0 || pageurlquery.slice(-menulinkquerylen) === menulinkquery)) || menulink.innerHTML === h1text) {
 							match = true;
 							break;
 						}
 						while (bcindex--) {
 							bclink = bclinks[bcindex];
-							if (bclink.pathname.indexOf(menulinkurl) !== -1) {
+							bclinkurl = bclink.hostname + bclink.pathname.replace(/^([^\/])/, '/$1');
+							if (bclinkurl.slice(-menulinkurllen) === menulinkurl) {
 								match = true;
 								break;
 							}
