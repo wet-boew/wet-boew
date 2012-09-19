@@ -1238,7 +1238,7 @@
 							// Bad row, remove the row or split the table
 							errorTrigger(18);
 						} else {
-							if (currentRowPos !== 1) {
+							if (currentRowPos !== 1 || row.cell[0].uid === row.cell[row.cell.length - 1].uid) {
 								// Stack the row found for the rowgroup header
 								rowgroupHeaderRowStack.push(row);
 
