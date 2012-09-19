@@ -41,6 +41,7 @@
 		urlquery: '',
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
 		document: $(document),
+		mobiletest: '',
 
 		/**
 		* @memberof pe
@@ -55,6 +56,11 @@
 		*/
 		_init: function () {
 			var $html = $('html'), hlinks, hlinks_same, $this, newurl, urlparams, urlparam, target, test, init_on_mobileinit = false;
+
+			// Append the mobile test to the body
+			pe.mobiletest = document.createElement('div');
+			pe.mobiletest.setAttribute('id', 'mobiletest'); // Used to detect CSS media queries result regarding mobile/desktop view
+			document.body.appendChild(pe.mobiletest);
 
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
@@ -213,7 +219,7 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return (pe.mobileview && (screen.width < 768 || (window.innerWidth < 768 && (window.innerHeight === document.documentElement.clientHeight || window.outerWidth - window.innerWidth < 50))) && !(pe.ie > 0 && pe.ie < 9));
+			return pe.mobiletest.offsetWidth !== 0; // CSS (through media queries) sets to offsetWidth = 0 in desktop view and offsetWidth = 1 in mobile view
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
