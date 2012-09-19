@@ -21,7 +21,7 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 ## Key resources
 
-* [Working examples](demos/index-eng.html)
+* [Working examples](http://wet-boew.github.com/wet-boew/demos/index-eng.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki)
 * [Download](https://github.com/wet-boew/wet-boew/downloads)
 * [Terms and conditions](License-eng.txt)
@@ -52,7 +52,7 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 
 ## Ressources clés
 
-* [Exemples pratiques](demos/index-fra.html)
+* [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil)
 * [Télécharger](https://github.com/wet-boew/wet-boew/downloads)
 * [Conditions régissant l'utilisation](Licence-fra.txt)
