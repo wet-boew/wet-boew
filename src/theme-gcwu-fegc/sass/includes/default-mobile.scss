@@ -441,6 +441,9 @@ img{
 	.top-level.ui-btn-corner-all {
 		border-radius:0.6em;
 	}
+	li.top-level div.ui-btn-inner {
+		padding-left:25px;
+	}
 	#gcwu-bc-in {
 		background:#DFDFDD;
 		background-image:-webkit-gradient(linear,left top,left bottom,from(#F0EFEF),to(#DFDFDD));

@@ -105,13 +105,13 @@
 			
 			/* [Main] parse mega menu and establish all ARIA and Navigation classes */
 			$scope.find('ul.mb-menu > li').find('a:eq(0)').each(function (index, value) {
-				var $elm = $(value).addClass("knav-" + index + "-0-0"),
-					$childmenu = $elm.closest("li").find(".mb-sm");
+				var $elm = $(value).addClass('knav-' + index + '-0-0'),
+					$childmenu = $elm.closest('li').find('.mb-sm');
 				if ($childmenu.length > 0) {
-					$elm.attr("aria-haspopup", "true").addClass("mb-has-sm").wrapInner("<span class=\"expandicon\"><span class=\"sublink\"></span></span>");
-					$childmenu.attr({"role": "menu", "aria-expanded": "false", "aria-hidden": "true"}).find(":has(:header) ul").attr("role", "menu");
-					$elm.append("<span class=\"wb-invisible\">" + submenuHelp + "</span>");
-					$elm.closest("li").hoverIntent({
+					$elm.attr('aria-haspopup', 'true').addClass('mb-has-sm').wrapInner('<span class="expandicon"><span class="sublink"></span></span>');
+					$childmenu.attr({'role': 'menu', 'aria-expanded': 'false', 'aria-hidden': 'true'}).find(':has(:header) ul').attr('role', 'menu');
+					$elm.append('<span class="wb-invisible">' + submenuHelp + '</span>');
+					$elm.closest('li').hoverIntent({
 						over: function () {
 							return showsubmenu(this);
 						},
@@ -121,16 +121,19 @@
 						timeout: 500
 					});
 					/* now recurse all focusable to be able to navigate */
-					$childmenu.find("h3 a, h4 a, > div > a").each(function (i) {
-						var $this = $(this);
+					$childmenu.find('h3 a, h4 a, div.top-level > a, li.top-level a').each(function (i) {
+						var $this = $(this),
+							$parent = $this.parent();
 						$this.addClass("knav-" + index + "-" + (i + 1) + "-0");
-						$this.parent().next("ul").find("a").each(function (j) {
-							$(this).addClass("knav-" + index + "-" + (i + 1) + "-" + (j + 1));
-							return;
-						});
+						if ($parent.is('h3, h4')) {
+							$this.parent().next("ul").find("a").each(function (j) {
+								$(this).addClass("knav-" + index + "-" + (i + 1) + "-" + (j + 1));
+								return;
+							});
+						}
 						return;
 					});
-					$childmenu.find("> ul a, > div > ul a").each(function (i) {
+					$childmenu.find('> ul li, > div > ul li').filter(':not(.top-level)').children('a').each(function (i) {
 						$(this).addClass("knav-" + index + "-0-" + (i + 1));
 					});
 				}
@@ -138,7 +141,7 @@
 
 			/* if CSS is enabled we want to ensure a correct tabbing response */
 			if (pe.cssenabled) {
-				$scope.find(".mb-sm a").attr("tabindex", "-1");
+				$scope.find('.mb-sm a').attr('tabindex', '-1');
 			}
 
 			// Reattach $scope now that enhancements are complete
