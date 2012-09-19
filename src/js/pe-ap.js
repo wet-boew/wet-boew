@@ -704,8 +704,8 @@
 			* @return {jQuery object} Link where match found
 			*/
 			navcurrent: function (menusrc, bcsrc, navclass) {
-				var pageurl = window.location.pathname,
-					pageurlquery = pageurl + window.location.search,
+				var pageurl = window.location.hostname + window.location.pathname,
+					pageurlquery = window.location.search,
 					menulinks,
 					menulink,
 					menulinkurl,
@@ -713,6 +713,7 @@
 					menulinkslen,
 					bclinks,
 					bclink,
+					bclinkurl,
 					bclinkslen,
 					bcindex,
 					h1text = pe.main.find('h1').text(),
@@ -727,17 +728,18 @@
 
 				while (menulinkslen--) {
 					menulink = menulinks[menulinkslen];
-					if (menulink.getAttribute('href').indexOf('#') !== 0) {
-						menulinkurl = menulink.pathname;
+					if (menulink.getAttribute('href').slice(0, 1) !== '#') {
+						menulinkurl = menulink.hostname + menulink.pathname;
 						menulinkquery = menulink.search;
 						bcindex = bclinkslen;
-						if ((menulinkquery.length !== 0 && (menulinkurl + menulinkquery).indexOf(pageurlquery) !== -1) || (menulinkquery.length === 0 && menulinkurl.indexOf(pageurl) !== -1) || menulink.innerHTML === h1text) {
+						if ((pageurl.slice(-menulinkurl.length) === menulinkurl && (menulinkquery.length === 0 || pageurlquery.slice(-menulinkquery.length) === menulinkquery)) || menulink.innerHTML === h1text) {
 							match = true;
 							break;
 						}
 						while (bcindex--) {
 							bclink = bclinks[bcindex];
-							if (bclink.pathname.indexOf(menulinkurl) !== -1) {
+							bclinkurl = bclink.hostname + bclink.pathname;
+							if (bclinkurl.indexOf(menulinkurl) !== -1) {
 								match = true;
 								break;
 							}
