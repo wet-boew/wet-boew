@@ -709,7 +709,9 @@
 					menulinks,
 					menulink,
 					menulinkurl,
+					menulinkurllen,
 					menulinkquery,
+					menulinkquerylen,
 					menulinkslen,
 					bclinks,
 					bclink,
@@ -717,6 +719,7 @@
 					bclinkslen,
 					bcindex,
 					h1text = pe.main.find('h1').text(),
+					addslash = true,
 					match = false;
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
 				menulinks = menusrc.find('a').get();
@@ -729,17 +732,19 @@
 				while (menulinkslen--) {
 					menulink = menulinks[menulinkslen];
 					if (menulink.getAttribute('href').slice(0, 1) !== '#') {
-						menulinkurl = menulink.hostname + menulink.pathname;
+						menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
+						menulinkurllen = menulinkurl.length;
 						menulinkquery = menulink.search;
+						menulinkquerylen = menulinkquery.length;
 						bcindex = bclinkslen;
-						if ((pageurl.slice(-menulinkurl.length) === menulinkurl && (menulinkquery.length === 0 || pageurlquery.slice(-menulinkquery.length) === menulinkquery)) || menulink.innerHTML === h1text) {
+						if ((pageurl.slice(-menulinkurllen) === menulinkurl && (menulinkquerylen === 0 || pageurlquery.slice(-menulinkquerylen) === menulinkquery)) || menulink.innerHTML === h1text) {
 							match = true;
 							break;
 						}
 						while (bcindex--) {
 							bclink = bclinks[bcindex];
-							bclinkurl = bclink.hostname + bclink.pathname;
-							if (bclinkurl.indexOf(menulinkurl) !== -1) {
+							bclinkurl = bclink.hostname + bclink.pathname.replace(/^([^\/])/, '/$1');
+							if (bclinkurl.slice(-menulinkurllen) === menulinkurl) {
 								match = true;
 								break;
 							}
