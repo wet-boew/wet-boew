@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="wet" default="default" basedir=".">
+<project name="wet-boew" default="default" basedir=".">
 	<description>Web Experience Toolkit</description>
 	<property name="src.dir" value="src"/>
 	<property name="build.dir" value="build"/>

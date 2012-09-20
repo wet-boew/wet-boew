@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="grids" default="default" basedir=".">
-	<description>CSS Grid System project</description>
+<project name="wet-boew.grids" default="default" basedir=".">
+	<description>Web Experience Toolkit CSS Grid System</description>
 
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>

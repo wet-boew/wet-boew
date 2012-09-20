@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="base" default="default" basedir=".">
-	<description>WET-BOEW Base CSS</description>
+<project name="wet-boew.basecss" default="default" basedir=".">
+	<description>Web Experience Toolkit Base CSS</description>
 
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>
