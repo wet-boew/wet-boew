@@ -15,6 +15,13 @@
 		</move>
 		<copy todir="${build.dir}/js/premin">
 			<fileset dir="${src.dir}/js"/>
+			<filterchain>
+				<concatfilter prepend="${src.dir}/../build-js-head.txt"/>
+				<replacetokens>
+					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
+					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
+				</replacetokens>
+			</filterchain>
 		</copy>
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/css/premin" toDir="${build.dir}/css">
 			<include name="*.*" />
@@ -100,7 +107,11 @@
 				<file name="theme-serv-ie.css"/>
 			</filelist>
 			<filterchain>
-				<concatfilter prepend="${src.dir}/../css-head.txt"/>
+				<concatfilter prepend="${src.dir}/../build-css-head.txt"/>
+				<replacetokens>
+					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
+					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
+				</replacetokens>
 			</filterchain>
 		</copy>
 		<delete dir="${build.dir}/pre"/>
