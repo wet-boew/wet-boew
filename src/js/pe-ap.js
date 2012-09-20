@@ -726,7 +726,8 @@
 					bcindex,
 					h1text = pe.main.find('h1').text(),
 					addslash = true,
-					match = false;
+					match = false,
+					hrefBug = pe.ie !== 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
 				menulinks = menusrc.find('a').get();
 				menulinkslen = menulinks.length;
@@ -737,7 +738,7 @@
 
 				while (menulinkslen--) {
 					menulink = menulinks[menulinkslen];
-					if (menulink.getAttribute('href').slice(0, 1) !== '#') {
+					if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
 						menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
 						menulinkurllen = menulinkurl.length;
 						menulinkquery = menulink.search;
