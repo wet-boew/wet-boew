@@ -3,7 +3,13 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@media (max-width:767px) {
+@media screen and (max-width:767px) and (max-resolution: 191dpi), 
+	only screen and (max-width:1199px) and (-webkit-min-device-pixel-ratio:2), 
+	only screen and (max-width:1199px) and (min--moz-device-pixel-ratio:2), 
+	only screen and (max-width:1199px) and (-o-min-device-pixel-ratio: 2/1), 
+	only screen and (max-width:1199px) and (min-device-pixel-ratio:2), 
+	only screen and (max-width:1199px) and (min-resolution:192dpi), 
+	only screen and (max-width:1199px) and (min-resolution:2dppx) {
 	.no-js {
 		#gcwu-psnb{
 			margin-top: -11px;

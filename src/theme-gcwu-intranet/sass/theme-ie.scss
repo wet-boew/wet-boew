@@ -7,11 +7,11 @@
 @import url('includes/default.css');
 @import url('includes/default-ie7.css');
 @import url('includes/default-ie8.css');
-@import url('includes/default-desktop.css');
 /* -----Build Include Section End----- */
 
 @media screen{
 /* -----Build Include Section Start----- */
 @import url('includes/default-responsive.css');
+@import url('includes/default-desktop-screen.css');
 /* -----Build Include Section End----- */
 }

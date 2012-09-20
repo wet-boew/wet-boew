@@ -133,6 +133,11 @@ blockquote {
 		}
 		padding: 0 10px; 
 	}
+	.align-left, .align-right {
+		font-style:normal;
+		font-family:Verdana, Geneva, sans-serif;
+		font-size:90%;
+	}
 }
 
 code { 

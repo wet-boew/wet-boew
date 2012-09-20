@@ -526,9 +526,12 @@ a:active{
 	background-image: url(../images/icons-18-black.png);
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (min--moz-device-pixel-ratio: 1.5),
-       only screen and (min-resolution: 240dpi) {
+@media only screen and (min-width:1200px) and (-webkit-min-device-pixel-ratio:2),
+	only screen and (min-width:1200px) and (min--moz-device-pixel-ratio:2), 
+	only screen and (min-width:1200px) and (-o-min-device-pixel-ratio: 2/1), 
+	only screen and (min-width:1200px) and (min-device-pixel-ratio:2), 
+	only screen and (min-width:1200px) and (min-resolution:192dpi), 
+	only screen and (min-width:1200px) and (min-resolution:2dppx) {
 	.ui-icon-site-menu {
 		background-image: url(../images/icons-36-white.png);
 	}

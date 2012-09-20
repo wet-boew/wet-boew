@@ -9,13 +9,25 @@
 /* -----Build Include Section End----- */
 
 /* Desktop view */
-@media (min-width:768px) {
+@media (min-width:768px) and (max-resolution: 191dpi), 
+	(min-width:1200px) and (-webkit-min-device-pixel-ratio:2), 
+	(min-width:1200px) and (min--moz-device-pixel-ratio:2), 
+	(min-width:1200px) and (-o-min-device-pixel-ratio: 2/1), 
+	(min-width:1200px) and (min-device-pixel-ratio:2), 
+	(min-width:1200px) and (min-resolution:192dpi), 
+	(min-width:1200px) and (min-resolution:2dppx) {
 /* -----Build Include Section Start----- */
 @import url('../../css/base-desktop.css');
 @import url('includes/sp-pe-desktop.css');
 /* -----Build Include Section End----- */
 }
-@media screen and (min-width:768px) {
+@media screen and (min-width:768px) and (max-resolution: 191dpi), 
+	only screen and (min-width:1200px) and (-webkit-min-device-pixel-ratio:2), 
+	only screen and (min-width:1200px) and (min--moz-device-pixel-ratio:2), 
+	only screen and (min-width:1200px) and (-o-min-device-pixel-ratio: 2/1), 
+	only screen and (min-width:1200px) and (min-device-pixel-ratio:2), 
+	only screen and (min-width:1200px) and (min-resolution:192dpi), 
+	only screen and (min-width:1200px) and (min-resolution:2dppx) {
 /* -----Build Include Section Start----- */
 @import url('../../css/base-desktop-screen.css');
 @import url('includes/sp-pe-desktop-screen.css');
@@ -23,7 +35,7 @@
 @import url('includes/default-responsive.css');
 /* -----Build Include Section End----- */
 }
-@media screen and (min-width:768px) and (max-width:959px){
+@media screen and (min-width:768px) and (max-width:959px) and (max-resolution: 191dpi) {
 /* -----Build Include Section Start----- */
 @import url('../../grids/css/responsive-768.css');
 @import url('includes/default-responsive-768.css');
@@ -44,7 +56,13 @@
 }
 
 /* Mobile view */
-@media screen and (max-width:767px) {
+@media screen and (max-width:767px) and (max-resolution: 191dpi), 
+	only screen and (max-width:1199px) and (-webkit-min-device-pixel-ratio:2), 
+	only screen and (max-width:1199px) and (min--moz-device-pixel-ratio:2), 
+	only screen and (max-width:1199px) and (-o-min-device-pixel-ratio: 2/1), 
+	only screen and (max-width:1199px) and (min-device-pixel-ratio:2), 
+	only screen and (max-width:1199px) and (min-resolution:192dpi), 
+	only screen and (max-width:1199px) and (min-resolution:2dppx) {
 /* -----Build Include Section Start----- */
 @import url('../../css/base-mobile.css');
 @import url('includes/sp-pe-mobile.css');

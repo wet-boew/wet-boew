@@ -99,17 +99,6 @@ ol.list-numeric li{
 table{
 	border:1px solid #ccc;
 	border-collapse:collapse;
-	&.calendar-month{
-		border:1px solid #ccc;
-		margin:3px 0 2px;
-		caption{
-			background:#eee;
-			border:1px solid #ccc;
-			font-weight:700;
-			color:#555;
-			padding:2px 5px;
-		}
-	}
 }
 
 caption{
@@ -124,40 +113,8 @@ th{
 	padding:8px;
 }
 
-.calendar-month{
-	td,th{
-		text-align:center;
-		vertical-align:middle;
-		background:#fff;
-		color:#555;
-		margin-bottom:0;
-	}
-}
-
-th,td{
-	&.calendar-weekend{
-		background:#eee;
-	}
-}
-
 td{
 	border:1px solid #ccc;
 	vertical-align:top;
 	padding:5px 10px;
-	&.calendar-item{
-		background:#000;
-		font-weight:700;
-		padding:0;
-		a,a:visited{
-			display:block;
-			color:#fff !important;
-			text-decoration:none;
-		}
-		&:hover{
-			background:#555;
-		}
-	}
-	&.calendar-today{
-		border:2px solid #00556b;
-	}
 }

@@ -111,6 +111,9 @@ body{
 #cn-wmms{
 	float: right;
 	text-align: right;
+	img {
+		margin: 0;
+	}
 }
 #cn-ef-lang-links, #cn-other-lang-links{
 	list-style-type: none;
