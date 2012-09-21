@@ -10,6 +10,7 @@
 
 	<property name="src.dir" value="src"/>
 	<property name="build.dir" value="build"/>
+	<import file="${build.dir}/build-tasks.xml"/>
 
 	<target name="default" depends="clean,build,clean-css" description="Performs a Cleand and Build when calling ant without any target"></target>
 
@@ -80,5 +81,35 @@
 	
 	<target name="preflight" description="Sets tabbing and encoding as indicated by the contributor guidelines">
 		<fixcrlf srcdir="${src.dir}" includes="**/*.js" encoding="UTF-8" outputencoding="UTF-8" tab="add" tablength="4" />
+	</target>
+	
+	<target name="pull-request">
+		<echo level="info" message="---Merge upstream code---"/>
+		<git command="pull">
+			<args>
+				<arg value="git://github.com/wet-boew/wet-boew.git" />
+			</args>
+		</git>
+		
+		<echo level="info" message="---Ensure code is Linted---"/>
+		<antcall target="test">
+			<param name="jshint.failbuild" value="true"/>
+		</antcall>
+		
+		<echo level="info" message="---Ensure code conventions---"/>
+		<antcall target="preflight" />
+		
+		<!-- Run a build to get the latest minified files after the merge -->
+		<antcall target="default" />
+		
+		<echo level="info" message="---Commit any changes---"/>
+		<git command="commit">
+			<args>
+				<arg value="-am 'Prelight and rebuilt for PR'" />
+			</args>
+		</git>
+		<!-- Push can't be readily automated, due to user/password request-->
+		<echo level="info" message="---Now run 'git push'---"/>
+		<echo level="info" message="---then to Github.com to create the pull request---"/>
 	</target>
 </project>
