@@ -9,13 +9,7 @@
 @import url('../../grids/css/util-ns.css');
 @import url('../../js/css/pe-ap-ns.css');
 /* -----Build Include Section End----- */
-@media screen and (max-width:767px), 
-	only screen and (max-width:1199px) and (-webkit-min-device-pixel-ratio:2), 
-	only screen and (max-width:1199px) and (min--moz-device-pixel-ratio:2), 
-	only screen and (max-width:1199px) and (-o-min-device-pixel-ratio: 2/1), 
-	only screen and (max-width:1199px) and (min-device-pixel-ratio:2), 
-	only screen and (max-width:1199px) and (min-resolution:192dpi), 
-	only screen and (max-width:1199px) and (min-resolution:2dppx) {
+@media screen and (max-width:767px), screen and (max-device-width:767px) {
 	.no-js {
 		#gcwu-psnb{
 			margin-top: -11px;
