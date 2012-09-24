@@ -3,7 +3,7 @@
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
 <!-- DataAjaxFragmentStart -->
-<li><section><h3><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></h3><div class="mb-sm">
+<li><section><h3><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Main project page</a></li>
@@ -14,7 +14,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </ul>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project - Main page</a></div>
+<div class="mb-main-link"><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project - Main page</a></div>
 </div></section></li>
 <li><section><h3><a href="section2/index-eng.html">Section 2</a></h3><div class="mb-sm">
 <div class="span-2">
