@@ -115,7 +115,7 @@
 				}
 				return $(this).attr("href");
 			});
-			$response = $('<ul class="widget-content"><li class="widget-state-loading"><img src="' + pe.add.liblocation + '/images/webfeeds/ajax-loader.gif" alt="' + pe.dic.get('%loading') + '" /></li></ul>');
+			$response = $('<ul class="widget-content"><li class="widget-state-loading"><img src="' + pe.add.liblocation + 'images/webfeeds/ajax-loader.gif" alt="' + pe.dic.get('%loading') + '" /></li></ul>');
 			$elm.find('.widget-content').replaceWith($response);
 
 			typeObj = _pe.fn.webwidget[type];
