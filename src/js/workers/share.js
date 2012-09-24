@@ -16,7 +16,7 @@
 		type : 'plugin',
 		depends : ['metadata', 'bookmark', 'outside'],
 		_exec : function (elm) {
-			var opts, overrides, $popup, $popupUL, $popupText, $popupLinks, target, leftoffset, keychar, elmtext, matches, match;
+			var opts, overrides, $popup, $popupText, $popupLinks, popupLink, popupLinksLen, popupLinkSpan, target, leftoffset, keychar, elmtext, matches, match;
 
 			// Defaults
 			opts = {
@@ -77,21 +77,26 @@
 				if (opts.popupTag.substring(0, 1) === 'h') { // If a heading element is used for the popup tag, then wrap the contents in a section element
 					elm.wrapInner('<section />');
 				}
-				$popup = elm.find('.bookmark_popup').attr({'id': 'bookmark_popup', 'aria-hidden': 'true', 'role': 'menu'}).prepend('<p class="popup_title">' + opts.popupText + '</p>');
-				$popupUL = $popup.children('ul').detach();
-				$popupLinks = $popupUL.find('li').attr('role', 'presentation').find('a').attr('role', 'menuitem').each(function () {
-					// TODO: Should work with authot to fix in bookmark.js rather than maintain this workaround (fix needed otherwise some screen readers read the link twice)
-					var $this = $(this),
-						$span = $this.children('span');
-					if ($span.length > 0) {
-						$this.attr('title', $span.attr('title'));
-						$span.removeAttr('title');
+				$popup = elm.find('.bookmark_popup').detach();
+				$popup.attr({'id': 'bookmark_popup', 'aria-hidden': 'true', 'role': 'menu'}).prepend('<p class="popup_title">' + opts.popupText + '</p>');
+				$popupLinks = $popup.find('a').get();
+				popupLinksLen = $popupLinks.length;
+				while (popupLinksLen--) {
+					popupLink = $popupLinks[popupLinksLen];
+					popupLink.setAttribute('role', 'menuitem');
+					popupLink.parentNode.setAttribute('role', 'presentation');
+					// TODO: Should work with author to fix in bookmark.js rather than maintain this workaround (fix needed otherwise some screen readers read the link twice)
+					popupLinkSpan = popupLink.getElementsByTagName('span');
+					if (popupLinkSpan.length > 0) {
+						popupLinkSpan = popupLinkSpan[0];
+						popupLink.setAttribute('title', popupLinkSpan.getAttribute('title'));
+						popupLinkSpan.removeAttribute('title');
 					}
-				});
-				$popup.append($popupUL);
-				if (opts.includeDisclaimer) {
+				}
+				if (opts.includeDisclaimer) { // Append the disclaimer
 					$popup.append('<p class="popup_disclaimer">' + opts.popupDisclaimer + '</p>');
 				}
+				elm.append($popup);
 
 				$popup.on('click vclick touchstart', function (e) {
 					if (e.stopPropagation) {
@@ -99,7 +104,12 @@
 					} else {
 						e.cancelBubble = true;
 					}
+				}).on('click vclick touchstart', 'a', function () { // Workaround for some touchscreen devices that don't 
+					window.open(this.href, '_blank');
+					$popup.trigger('close');
+					return false;
 				});
+
 				$popupText = elm.find('.bookmark_popup_text').off('click vclick touchstart keydown').wrap('<' + opts.popupTag + ' />');
 				$popupText.attr({'role': 'button', 'aria-controls': 'bookmark_popup'}).on('click vclick touchstart keydown', function (e) {
 					if (e.type === "keydown") {
@@ -244,6 +254,7 @@
 			} else {
 				elm.addClass('popup-none');
 			}
+
 			return elm;
 		} // end of exec
 	};
