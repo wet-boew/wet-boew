@@ -725,7 +725,6 @@
 					bclinkslen,
 					bcindex,
 					h1text = pe.main.find('h1').text(),
-					addslash = true,
 					match = false,
 					hrefBug = pe.ie !== 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
@@ -953,7 +952,7 @@
 					needsinit = [],
 					js = [],
 					i,
-					_len
+					_len,
 					$html = $('html');
 
 				// Process each polyfill
