@@ -4,11 +4,13 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
 
-.border-top,.border-right,.border-bottom,.border-left,.border-all {
+div.border-top,div.border-right,div.border-bottom,div.border-left,div.border-all {
 	display: inline;
 	float: left;
-	min-height:1px;
 	position: relative;
+}
+.border-top,.border-right,.border-bottom,.border-left,.border-all {
+	min-height:1px;
 	background-image: url(../images/border.gif);
 }
 
@@ -42,6 +44,6 @@
 
 [class*="border-"] { 
 		#{headings(2,6)}, p {
-			padding: $margin-medium !important;
+			padding: 5px 10px !important;
 		}
 	}

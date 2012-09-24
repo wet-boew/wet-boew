@@ -953,7 +953,8 @@
 					needsinit = [],
 					js = [],
 					i,
-					_len;
+					_len
+					$html = $('html');
 
 				// Process each polyfill
 				for (polyname in polyfills) {
@@ -987,10 +988,10 @@
 										// Polyfill is needed and has no dependencies so load now
 										loadnow.push(polyname);
 									}
-									$('html').addClass('polyfill-' + polyname);
+									$html.addClass('polyfill-' + polyname);
 									elms.addClass('polyfill'); // Add the 'polyfill' class to each element to be affected by the polyfill
 								} else { // Native support
-									$('html').addClass(polyname);
+									$html.addClass(polyname);
 								}
 							} else if (!polyprefs.supported && typeof polyprefs.loaded === 'undefined') { // No native support and polyfill hasn't been loaded yet
 								// Polyfill is needed and hasn't been loaded yet (any dependencies assumed to be taken care of already since at least second time through)
