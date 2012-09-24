@@ -164,6 +164,19 @@
 				if (_list.length > 0) {
 					navbar.children().removeClass('wb-hide');
 				}
+				
+				//Transition to show loading icon on transition
+				function loadingTransition(name, reverse, $to, $from)
+				{
+					var r;
+
+					$.mobile.showPageLoadingMsg();
+					r = $.mobile.transitionHandlers['simultaneous']('pop', reverse, $to, $from);
+					r.done(function(){$.mobile.hidePageLoadingMsg();});
+					return r;
+				}
+				$.mobile.transitionHandlers["loadingTransition"] = loadingTransition
+				$.mobile.defaultDialogTransition = "loadingTransition";
 			});
 			// preprocessing before mobile page is enhanced
 			$(document).on('pageinit', function () {
