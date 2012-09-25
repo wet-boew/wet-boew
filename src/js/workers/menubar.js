@@ -121,7 +121,7 @@
 						timeout: 500
 					});
 					/* now recurse all focusable to be able to navigate */
-					$childmenu.find('h3 a, h4 a, div.top-level > a, li.top-level a').each(function (i) {
+					$childmenu.find('h3 a, h4 a, div.top-level > a, li.top-level a, div.mb-main-link > a').each(function (i) {
 						var $this = $(this),
 							$parent = $this.parent();
 						$this.addClass("knav-" + index + "-" + (i + 1) + "-0");
