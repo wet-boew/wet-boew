@@ -166,8 +166,7 @@
 				}
 				
 				//Transition to show loading icon on transition
-				function loadingTransition(name, reverse, $to, $from)
-				{
+				function loadingTransition(name, reverse, $to, $from) {
 					var r;
 
 					$.mobile.showPageLoadingMsg();

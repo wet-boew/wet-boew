@@ -141,7 +141,6 @@
 
 	.module-poster {
 		display: block;
-		line-height: 0;
 		padding: $margin-medium / 2;
 		@include border-radius;
 		@include module-colorize($border:"border");
