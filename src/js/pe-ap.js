@@ -89,22 +89,6 @@
 				test = navigator.userAgent.indexOf('BlackBerry');
 				$html.addClass((test === 0 || (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) ? 'bb-pre7' : ''));
 
-				// Handle deep linking from other pages
-				if (pe.urlhash.length !== 0) {
-					test = $('#' + pe.urlhash);
-					if (test.length !== 0 && test.attr('data-role') !== 'page') { // Not a jQuery Mobile sub-page
-						newurl = '';
-						for (urlparam in pe.urlquery) { // Rebuild the query string
-							if (pe.urlquery.hasOwnProperty(urlparam) && urlparam !== 'hashtarget') {
-								newurl += urlparam + '=' + urlparams[urlparam] + '&amp;';
-							}
-						}
-						newurl += 'hashtarget=' + pe.urlhash;
-						window.location.search = newurl;
-					}
-					window.location.hash = '';
-				}
-
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
 						ajaxEnabled: false,
@@ -126,11 +110,11 @@
 						}
 					});
 
-					// If hashtarget is in the query string then put focus on and scroll to the target
-					if (pe.urlquery.hashtarget !== undefined) {
-						target = pe.main.find('#' + pe.urlquery.hashtarget.replace(/[.:]/, '\\$1'));
+					// If the page URL includes a hash upon page load, then focus on and scroll to the target
+					if (pe.urlhash.length !== 0) {
+						target = pe.main.find('#' + pe.urlhash);
 						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if (target.length > 0) {
+						if (target.length > 0 && test.attr('data-role') !== 'page') {
 							setTimeout(function () {
 								$.mobile.silentScroll(pe.focus(target).offset().top);
 							}, 200);
