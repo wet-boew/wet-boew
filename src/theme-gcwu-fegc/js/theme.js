@@ -170,11 +170,11 @@
 					var r;
 
 					$.mobile.showPageLoadingMsg();
-					r = $.mobile.transitionHandlers['simultaneous']('pop', reverse, $to, $from);
+					r = $.mobile.transitionHandlers.simultaneous('pop', reverse, $to, $from);
 					r.done(function(){$.mobile.hidePageLoadingMsg();});
 					return r;
 				}
-				$.mobile.transitionHandlers["loadingTransition"] = loadingTransition
+				$.mobile.transitionHandlers.loadingTransition = loadingTransition;
 				$.mobile.defaultDialogTransition = "loadingTransition";
 			});
 			// preprocessing before mobile page is enhanced
