@@ -617,6 +617,38 @@
 				}
 				return NaN;
 			},
+			
+			daysInMonth: function (iYear, iMonth) {
+				// Simplfied function to allow for us to get the days in specific months
+				return 32 - new Date(iYear, iMonth, 32).getDate();
+			},
+			
+			daysBetween: function (datelow, datehigh) {
+				// simplified conversion to date object
+				var date1 = pe.date.convert(datelow),
+					date2 = pe.date.convert(datehigh),
+					DSTAdjust = 0,
+					oneMinute = 1000 * 60,
+					oneDay = oneMinute * 60 * 24,
+					diff;
+				// equalize times in case date objects have them
+				date1.setHours(0);
+				date1.setMinutes(0);
+				date1.setSeconds(0);
+				date2.setHours(0);
+				date2.setMinutes(0);
+				date2.setSeconds(0);
+				// take care of spans across Daylight Saving Time changes
+				if (date2 > date1) {
+					DSTAdjust = (date2.getTimezoneOffset() - date1.getTimezoneOffset()) * oneMinute;
+				} else {
+					DSTAdjust = (date1.getTimezoneOffset() - date2.getTimezoneOffset()) * oneMinute;
+				}
+				diff = Math.abs(date2.getTime() - date1.getTime()) - DSTAdjust;
+				return Math.ceil(diff / oneDay);
+			},
+			
+			
 			/**
 			* Cross-browser safe way of translating a date to iso format
 			* @memberof pe.date
@@ -637,6 +669,18 @@
 					return date.getFullYear() + '-' + pe.string.pad(date.getMonth() + 1, 2, '0') + '-' + pe.string.pad(date.getDate(), 2, '0') + ' ' + pe.string.pad(date.getHours(), 2, '0') + ':' + pe.string.pad(date.getMinutes(), 2, '0');
 				}
 				return date.getFullYear() + '-' + pe.string.pad(date.getMonth() + 1, 2, "0") + '-' + pe.string.pad(date.getDate(), 2, '0');
+			},
+			
+			from_iso_format: function(s){
+				var date = null;
+				if (s) {
+					if (s.match(/\d{4}-\d{2}-\d{2}/)) {
+						date = new Date();
+						date.setFullYear(s.substr(0, 4), s.substr(5, 2) - 1, s.substr(8, 2) - 1);
+					}
+					return date;
+				}
+				return null;
 			}
 		},
 		/**

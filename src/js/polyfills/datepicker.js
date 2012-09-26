@@ -54,8 +54,8 @@
 			};
 
 			addLinksToCalendar = function (fieldid, year, month, days, minDate, maxDate, format) {
-				minDate = calendar.getDateFromISOString(minDate);
-				maxDate = calendar.getDateFromISOString(maxDate);
+				minDate = pe.date.from_iso_format(minDate);
+				maxDate = pe.date.from_iso_format(maxDate);
 
 				var lLimit = (year === minDate.getFullYear() && month === minDate.getMonth()),
 					hLimit = (year === maxDate.getFullYear() && month === maxDate.getMonth());
@@ -149,7 +149,7 @@
 				}
 
 				if (targetDate.getMonth() !== month || targetDate.getFullYear() !== year) {
-					calendar.create(calendarid, targetDate.getFullYear(), targetDate.getMonth(), true, calendar.getISOStringFromDate(minDate), calendar.getISOStringFromDate(maxDate));
+					calendar.create(calendarid, targetDate.getFullYear(), targetDate.getMonth(), true, minDate, maxDate);
 				}
 
 				pe.focus($('#' + calendarid).find('.cal-day-list').children('li:eq(' + (targetDate.getDate() - 1) + ')').children('a'));
@@ -275,9 +275,9 @@
 
 			formatDate = function (year, month, day, format) {
 				var output = format;
-				output = output.replace('DD', calendar.strPad(day, 2, '0'));
+				output = output.replace('DD', pe.string.pad(day, 2));
 				output = output.replace('D', day);
-				output = output.replace('MM', calendar.strPad(month, 2, '0'));
+				output = output.replace('MM', pe.string.pad(month, 2));
 				output = output.replace('M', month);
 				output = output.replace('YYYY', year);
 				output = output.replace('YY', year.toString().substr(2, 2));
