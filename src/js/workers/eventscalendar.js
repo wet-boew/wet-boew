@@ -18,7 +18,6 @@
 		_exec: function (elm) {
 			var date = new Date(),
 				calendar = _pe.fn.calendar,
-				dates = _pe.fn.calendar.dates,
 				year = date.getFullYear(),
 				month = date.getMonth(),
 				elm_year = elm.find('.year'),
@@ -108,7 +107,7 @@
 							date.setFullYear(strDate1[0], strDate1[1] - 1, strDate1[2]);
 
 							// now loop in events to load up all the days that it would be on tomorrow.setDate(tomorrow.getDate() + 1);
-							for (z = 0, _zlen = dates.daysBetween(strDate1, strDate2) + 1; z < _zlen; z += 1) {
+							for (z = 0, _zlen = pe.date.daysBetween(strDate1, strDate2) + 1; z <= _zlen; z += 1) {
 								if (events.minDate === null || date < events.minDate) {
 									events.minDate = date;
 								}
@@ -119,8 +118,8 @@
 								events.list[events.iCount] = { 'title': title, 'date': new Date(date.getTime()), 'href': link };
 								date = new Date(date.setDate(date.getDate() + 1));
 								// add a viewfilter
-								if (!_objTitle.hasClass('filter-' + (date.getFullYear()) + '-' + calendar.strPad(date.getMonth() + 1, 2))) {
-									_objTitle.addClass('filter-' + (date.getFullYear()) + '-' + calendar.strPad(date.getMonth() + 1, 2));
+								if (!_objTitle.hasClass('filter-' + (date.getFullYear()) + '-' + pe.string.pad(date.getMonth() + 1, 2))) {
+									_objTitle.addClass('filter-' + (date.getFullYear()) + '-' + pe.string.pad(date.getMonth() + 1, 2));
 								}
 								events.iCount += 1;
 							}
@@ -139,8 +138,8 @@
 							}
 							events.list[events.iCount] = {'title' : title, 'date' : date, 'href' : link};
 							// add a viewfilter
-							if (!_objTitle.hasClass('filter-' + (date.getFullYear()) + '-' + calendar.strPad(date.getMonth() + 1, 2))) {
-								_objTitle.addClass('filter-' + (date.getFullYear()) + '-' + calendar.strPad(date.getMonth() + 1, 2));
+							if (!_objTitle.hasClass('filter-' + (date.getFullYear()) + '-' + pe.string.pad(date.getMonth() + 1, 2))) {
+								_objTitle.addClass('filter-' + (date.getFullYear()) + '-' + pe.string.pad(date.getMonth() + 1, 2));
 							}
 							events.iCount += 1;
 						}
@@ -342,7 +341,7 @@
 			};
 			showOnlyEventsFor = function (year, month, calendarid) {
 				$('.' + calendarid + ' li.calendar-display-onshow').addClass('wb-invisible');
-				$('.' + calendarid + ' li.calendar-display-onshow').has(':header[class*=filter-' + year + '-' + calendar.strPad(parseInt(month, 10) + 1, 2) + ']').removeClass('wb-invisible');
+				$('.' + calendarid + ' li.calendar-display-onshow').has(':header[class*=filter-' + year + '-' + pe.string.pad(parseInt(month, 10) + 1, 2) + ']').removeClass('wb-invisible');
 			};
 
 			if (elm_year.length > 0 && elm_month.length > 0) {
@@ -366,7 +365,7 @@
 				addEvents(year, month, days, containerid, events.list);
 				showOnlyEventsFor(year, month, containerid);
 			});
-			calendar.create(containerid, year, month, true, calendar.getISOStringFromDate(events.minDate), calendar.getISOStringFromDate(events.maxDate));
+			calendar.create(containerid, year, month, true, events.minDate, events.maxDate);
 
 			$('#' + containerid).attr('role', 'application');
 		} // end of exec
