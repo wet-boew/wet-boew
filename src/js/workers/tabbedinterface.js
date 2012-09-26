@@ -16,6 +16,7 @@
 		type : 'plugin',
 		depends : (pe.mobile ? [] : ['metadata', 'easytabs', 'equalheights']),
 		mobile : function (elm, nested) {
+
 			// Process any nested tabs
 			if (typeof nested === 'undefined' || !nested) {
 				elm.find('.wet-boew-tabbedinterface').each(function () {
@@ -24,49 +25,48 @@
 			}
 
 			var $tabs = elm.children('.tabs').children('li'),
-				$tab,
 				$panels = elm.children('.tabs-panel').children('div'),
+				defaultTab = 0,
 				accordion = '<div data-role="collapsible-set" data-mini="true" data-content-theme="b" data-theme="b">',
-				needh = (elm.hasClass('tabs-style-4') || elm.hasClass('tabs-style-5')),
-				prevh,
+				heading,
+				parent,
 				hlevel,
 				hopen,
 				hclose,
-				$parent,
-				$children;
+				index,
+				len;
+
+			// Find the default tab
+			for (index = 0, len = $tabs.length; index < len; index += 1) {
+				if ($tabs.eq(index).hasClass('default')) {
+					defaultTab = index;
+					break;
+				}
+			}
 
 			// Convert html elements and attributes into the format the jQuery mobile accordian plugin expects.
 			// Get the content out of the html structure tabbedinterface usually expects.
 			// Create the accordion structure to move the content to.
-			if (needh) {
-				prevh = elm.closest('section').find(':header:first');
-				hlevel = (prevh.length > 0 ? (parseInt(prevh.prop('tagName').substr(1), 10) + 1) : 3);
-				hopen = '<h' + hlevel + '>';
-				hclose = '</h' + hlevel + '>';
-			}
-			$panels.each(function (index) {
-				$tab = $tabs.eq(index);
-				$parent = $(this);
-				$children = $parent.children();
-				if ($children.length !== 0) {
-					accordion += '<div data-role="collapsible"' + ($tab.hasClass('default') ? ' data-collapsed="false"' : '') + '>';
-					if (needh) {
-						accordion += hopen + $tab.children('a').html() + hclose + this.innerHTML;
-					} else {
-						// Find the actual content then append
-						while ($children.length === 1) {
-							$parent = $children;
-							$children = $parent.children();
-						}
-						if ($children.length !== 0) {
-							accordion += $parent.html();
-						}
-					}
-					accordion += '</div>';
+			heading = elm.find(':header');
+			if (heading.length !== 0) {
+				hlevel = parseInt(heading.prop('tagName').substr(1), 10);
+			} else {
+				parent = elm;
+				while (heading.length === 0) {
+					parent = parent.parent();
+					heading = parent.find(':header');
 				}
+				hlevel = parseInt(heading.prop('tagName').substr(1), 10) + 1;
+			}
+			hopen = '<h' + hlevel + '>';
+			hclose = '</h' + hlevel + '>';
+
+			$panels.each(function (index) {
+				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + '>' + hopen + $tabs.eq(index).children('a').text() + hclose + this.innerHTML + '</div>';
 			});
 			accordion += '</div>';
 			elm.html(accordion);
+
 			return elm;
 		},
 		_exec : function (elm) {
