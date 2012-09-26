@@ -13,9 +13,9 @@
 		create: function (containerid, year, month, shownav, mindate, maxdate) {
 			var objCalendar,
 				container = $('#' + containerid),
-				minDate,
-				maxDate,
 				calHeader,
+				defaultMinDate = new Date().setFullYear(year - 1, month, 1),
+				defaultMaxDate = new Date().setFullYear(year + 1, month, 1),
 				monthNav,
 				days,
 				daysList;
@@ -24,24 +24,40 @@
 			container.removeClass('cal-container-extended');
 
 			//Converts min and max date from string to date objects
-			minDate = _pe.fn.calendar.getDateFromISOString(mindate);
-			if (minDate === null) {
-				minDate = new Date();
-				minDate.setFullYear(year - 1, month, 1);
+			if (typeof mindate === 'object') {
+				//Object is not a date object
+				if (typeof mindate.getFullYear === 'undefined') {
+					mindate = defaultMinDate;
+				}
+			} else if (typeof mindate === 'string') {
+				mindate = _pe.date.from_iso_format(mindate);
+				if (mindate === null) {
+					mindate = defaultMinDate;
+				}
+			} else {
+				mindate = defaultMinDate;
 			}
-			maxDate = _pe.fn.calendar.getDateFromISOString(maxdate);
-			if (maxDate === null) {
-				maxDate = new Date();
-				maxDate.setFullYear(year + 1, month, 1);
+			if (typeof maxdate === 'object') {
+				//Object is not a date object
+				if (typeof maxdate.getFullYear === 'undefined') {
+					maxdate = defaultMaxDate;
+				}
+			} else if (typeof maxdate === 'string') {
+				maxdate = _pe.date.from_iso_format(maxdate);
+				if (maxdate === null) {
+					maxdate = defaultMaxDate;
+				}
+			} else {
+				maxdate = defaultMaxDate;
 			}
 
 			//Validates that the year and month are in the min and max date range
-			if (year > maxDate.getFullYear() || (year === maxDate.getFullYear() && month > maxDate.getMonth())) {
-				year = maxDate.getFullYear();
-				month = maxDate.getMonth();
-			} else if (year < minDate.getFullYear() || (year === minDate.getFullYear() && month < minDate.getMonth())) {
-				year = minDate.getFullYear();
-				month = minDate.getMonth();
+			if (year > maxdate.getFullYear() || (year === maxdate.getFullYear() && month > maxdate.getMonth())) {
+				year = maxdate.getFullYear();
+				month = maxdate.getMonth();
+			} else if (year < mindate.getFullYear() || (year === mindate.getFullYear() && month < mindate.getMonth())) {
+				year = mindate.getFullYear();
+				month = mindate.getMonth();
 			}
 
 			//Reset calendar if the calendar previously existed
@@ -64,7 +80,7 @@
 
 			if (shownav) {
 				//Create the month navigation
-				monthNav = _pe.fn.calendar.createMonthNav(containerid, year, month, minDate, maxDate);
+				monthNav = _pe.fn.calendar.createMonthNav(containerid, year, month, mindate, maxdate);
 				if ($('#cal-' + containerid + '-monthnav').length < 1) {
 					calHeader.append(monthNav);
 				}
@@ -157,7 +173,7 @@
 							monthNav.append(btnCtn);
 						}
 					}
-					btn.bind('click', {calID: calendarid, year: newYear, month : newMonth, mindate: _pe.fn.calendar.getISOStringFromDate(minDate), maxdate: _pe.fn.calendar.getISOStringFromDate(maxDate)}, _pe.fn.calendar.buttonClick);
+					btn.bind('click', {calID: calendarid, year: newYear, month : newMonth, mindate: minDate, maxdate: maxDate}, _pe.fn.calendar.buttonClick);
 				} else {
 					if (btnCtn) {
 						btnCtn.remove();
@@ -410,112 +426,11 @@
 				year = parseInt(fieldset.find('.cal-goto-year select').attr('value'), 10);
 
 			if (!(month < minDate.getMonth() && year <= minDate.getFullYear()) && !(month > maxDate.getMonth() && year >= maxDate.getFullYear())) {
-				_pe.fn.calendar.create(calendarid, year, month, true, _pe.fn.calendar.getISOStringFromDate(minDate), _pe.fn.calendar.getISOStringFromDate(maxDate));
+				_pe.fn.calendar.create(calendarid, year, month, true, minDate, maxDate);
 				_pe.fn.calendar.hideGoToForm(calendarid);
 
 				//Go to the first day to avoid having to tab opver the navigation again.
 				pe.focus($('#cal-' + calendarid + '-days').find('a:eq(0)'));
-			}
-		},
-
-		getDateFromISOString : function (strdate) {
-			var date = null;
-			if (strdate) {
-				if (strdate.match(/\d{4}-\d{2}-\d{2}/)) {
-					date = new Date();
-					date.setFullYear(strdate.substr(0, 4), strdate.substr(5, 2) - 1, strdate.substr(8, 2) - 1);
-				}
-				return date;
-			}
-			return null;
-		},
-
-		getISOStringFromDate : function (date) {
-			return date.getFullYear() + '-' + _pe.fn.calendar.strPad(date.getMonth() + 1, 2, '0') + '-' + _pe.fn.calendar.strPad(date.getDate() + 1, 2, '0');
-		},
-
-		strPad : function (i, l, s) {
-			var o = i.toString();
-			if (!s) {
-				s = '0';
-			}
-			while (o.length < l) {
-				o = s + o;
-			}
-			return o;
-		},
-
-		dates: {
-			/** dates
-			*  a date function to help with the data comparison
-			*/
-			convert : function (d) {
-				// Converts the date in d to a date-object. The input can be:
-				// a date object: returned without modification
-				// an array	: Interpreted as [year,month,day]. NOTE: month is 0-11.
-				// a number	: Interpreted as number of milliseconds
-				//				since 1 Jan 1970 (a timestamp)
-				// a string	: Any format supported by the javascript engine, like
-				//				"YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
-				// an object: Interpreted as an object with year, month and date
-				//				attributes.  **NOTE** month is 0-11.
-				return (
-					d.constructor === Date ? d : d.constructor === Array ? new Date(d[0], d[1] - 1, d[2]) :
-							d.constructor === Number ? new Date(d) :
-									d.constructor === String ? new Date(d) :
-											typeof d === 'object' ? new Date(d.year, d.month, d.date) : NaN
-				);
-			},
-			compare : function (a, b) {
-				// Compare two dates (could be of any type supported by the convert
-				// function above) and returns:
-				// -1 : if a < b
-				// 0 : if a = b
-				// 1 : if a > b
-				// NaN : if a or b is an illegal date
-				// NOTE: The code inside isFinite does an assignment (=).
-				return (
-					isFinite(a = _pe.fn.calendar.dates.convert(a).valueOf()) && isFinite(b = _pe.fn.calendar.dates.convert(b).valueOf()) ? (a > b) - (a < b) : NaN
-				);
-			},
-			inRange : function (d, start, end) {
-				// Checks if date in d is between dates in start and end.
-				// Returns a boolean or NaN:
-				// true : if d is between start and end (inclusive)
-				// false : if d is before start or after end
-				// NaN : if one or more of the dates is illegal.
-				// NOTE: The code inside isFinite does an assignment (=).
-				return (
-					isFinite(d = _pe.fn.calendar.dates.convert(d).valueOf()) && isFinite(start = _pe.fn.calendar.dates.convert(start).valueOf()) && isFinite(end = _pe.fn.calendar.dates.convert(end).valueOf()) ? start <= d && d <= end : NaN
-				);
-			},
-			daysInMonth: function (iYear, iMonth) {
-				// Simplfied function to allow for us to get the days in specific months
-				return 32 - new Date(iYear, iMonth, 32).getDate();
-			},
-			daysBetween: function (datelow, datehigh) {
-				// simplified conversion to date object
-				var date1 = _pe.fn.calendar.dates.convert(datelow),
-					date2 = _pe.fn.calendar.dates.convert(datehigh),
-					DSTAdjust = 0,
-					oneMinute = 1000 * 60,
-					oneDay = oneMinute * 60 * 24,
-					diff;
-				// equalize times in case date objects have them
-				date1.setHours(0);
-				date1.setMinutes(0);
-				date1.setSeconds(0);
-				date2.setHours(0);
-				date2.setMinutes(0);
-				date2.setSeconds(0);
-				// take care of spans across Daylight Saving Time changes
-				if (date2 > date1) {
-					DSTAdjust = (date2.getTimezoneOffset() - date1.getTimezoneOffset()) * oneMinute;
-				} else {
-					DSTAdjust = (date1.getTimezoneOffset() - date2.getTimezoneOffset()) * oneMinute;
-				}
-				diff = Math.abs(date2.getTime() - date1.getTime()) - DSTAdjust;
-				return Math.ceil(diff / oneDay);
 			}
 		}
 	};
