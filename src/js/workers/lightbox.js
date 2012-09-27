@@ -23,7 +23,6 @@
 		// mobile mode.
 
 		_exec : function (elm) {
-
 			// Variables
 			var opts,
 				opts2 = {},
@@ -38,25 +37,25 @@
 
 			// Defaults
 			opts = {
-				transition : "elastic",
+				transition : 'elastic',
 				loop : true,
-				current : pe.dic.get("%lb-current"),
-				previous : pe.dic.get("%lb-prev"),
-				next : pe.dic.get("%lb-next"),
-				close : pe.dic.get("%close"),
-				xhrError : pe.dic.get("%lb-xhr-error"),
-				imgError : pe.dic.get("%lb-img-error"),
-				maxWidth : "100%",
-				maxHeight : "100%",
-				slideshowStart : pe.dic.get("%start") + " " + pe.dic.get("%lb-slideshow"),
-				slideshowStop : pe.dic.get("%stop") + " " + pe.dic.get("%lb-slideshow"),
+				current : pe.dic.get('%lb-current'),
+				previous : pe.dic.get('%lb-prev'),
+				next : pe.dic.get('%lb-next'),
+				close : pe.dic.get('%close'),
+				xhrError : pe.dic.get('%lb-xhr-error'),
+				imgError : pe.dic.get('%lb-img-error'),
+				maxWidth : '100%',
+				maxHeight : '100%',
+				slideshowStart : pe.dic.get('%start') + ' ' + pe.dic.get('%lb-slideshow'),
+				slideshowStop : pe.dic.get('%stop') + ' ' + pe.dic.get('%lb-slideshow'),
 				slideshow : false,
 				slideshowAuto : false,
 				onLoad : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
 						$lbCurrent = $lbTitle.next();
-					$lbTitle.hide();
-					$lbCurrent.hide();
+					$lbTitle.addClass('wb-hide');
+					$lbCurrent.addClass('wb-hide');
 				},
 				onComplete : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
@@ -69,8 +68,8 @@
 					} else {
 						$lbLoadedContent.children().attr('alt', $lbTitle.text());
 					}
-					$lbTitle.show();
-					$lbCurrent.show();
+					$lbTitle.removeClass('wb-hide');
+					$lbCurrent.removeClass('wb-hide');
 					pe.focus($lbLoadedContent);
 					open = true;
 				},
@@ -81,14 +80,14 @@
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
 			overrides = {
-				transition : (elm.hasClass("transition-fade") ? "fade" : (elm.hasClass("transition-none") ? "none" : undefined)),
-				loop : elm.hasClass("loop-none") ? false : undefined,
-				slideshow : elm.hasClass("slideshow") ? true : undefined,
-				slideshowAuto : elm.hasClass("slideshow-auto") ? true : undefined
+				transition : (elm.hasClass('transition-fade') ? 'fade' : (elm.hasClass('transition-none') ? 'none' : undefined)),
+				loop : elm.hasClass('loop-none') ? false : undefined,
+				slideshow : elm.hasClass('slideshow') ? true : undefined,
+				slideshowAuto : elm.hasClass('slideshow-auto') ? true : undefined
 			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data attribute
-			$.metadata.setType("attr", "data-wet-boew");
+			$.metadata.setType('attr', 'data-wet-boew');
 			if (typeof wet_boew_lightbox !== 'undefined' && wet_boew_lightbox !== null) {
 				$.extend(opts, wet_boew_lightbox, overrides, elm.metadata());
 			} else {
@@ -101,7 +100,7 @@
 			});
 
 			// Create options object for inline content
-			$.extend(opts2, opts, {inline: "true"});
+			$.extend(opts2, opts, {inline: 'true'});
 
 			// Build single images, inline content and AJAXed content
 			$lb.filter('.lb-item').attr('aria-haspopup', 'true').each(function () {
@@ -121,32 +120,32 @@
 			});
 
 			// Add WAI-ARIA
-			$lbContent = $('body').find('#colorbox #cboxContent').attr('role', 'dialog');//.attr('aria-labelledby', 'cboxTitle cboxCurrent');
-			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr('tabindex', '0').attr('role', 'button').attr('aria-controls', 'cboxLoadedContent');
+			$lbContent = pe.main.find('#colorbox #cboxContent').attr('role', 'dialog');
+			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr({'tabindex': '0', 'role': 'button', 'aria-controls': 'cboxLoadedContent'});
 			$lbNext = $lbContent.find('#cboxNext');
 			$lbPrev = $lbContent.find('#cboxPrevious');
 			$lbClose = $lbContent.find('#cboxClose');
 
 			// Add extra keyboard support (handling for tab, enter and space)
 			$lbContent.on('keydown', function (e) {
-				var target = $(e.target);
+				var target_id = e.target.id;
 				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 					if (e.keyCode === 9) {
-						if (e.shiftKey && target.attr("id") === "cboxLoadedContent") {
+						if (e.shiftKey && target_id === 'cboxLoadedContent') {
 							pe.focus($lbClose);
 							e.preventDefault();
-						} else if (!e.shiftKey && target.attr("id") === "cboxClose") {
+						} else if (!e.shiftKey && target_id === 'cboxClose') {
 							pe.focus($lbLoadedContent);
 							e.preventDefault();
 						}
 					} else if (e.keyCode === 13 || e.keyCode === 32) {
-						if (target.attr("id") === "cboxLoadedContent" || target.attr("id") === "cboxNext") {
+						if (target_id === 'cboxLoadedContent' || target_id === 'cboxNext') {
 							$.colorbox.next();
 							e.preventDefault();
-						} else if (target.attr("id") === "cboxPrevious") {
+						} else if (target_id === 'cboxPrevious') {
 							$.colorbox.prev();
 							e.preventDefault();
-						} else if (target.attr("id") === "cboxClose") {
+						} else if (target_id === 'cboxClose') {
 							$.colorbox.close();
 							e.preventDefault();
 						}

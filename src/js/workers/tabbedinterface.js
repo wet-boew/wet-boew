@@ -131,8 +131,8 @@
 			$tabs.attr({'role': 'tab', 'aria-selected': 'false'});
 			$tabsPanel.attr('id', $panels.eq(0).attr('id') + '-parent');
 			$panels.attr({'tabindex': '-1', 'role': 'tabpanel', 'aria-hidden': 'true'}).each(function () {
-				if (pe.ie > 0) {
-					this.setAttribute('aria-labelledby', this.getAttribute('id') + tabSuffix);
+				if (pe.ie !== 0) {
+					this.setAttribute('aria-labelledby', this.id + tabSuffix);
 				}
 			});
 
