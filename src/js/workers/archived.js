@@ -12,18 +12,19 @@
 	/* local reference */
 	_pe.fn.archived = {
 		type: 'plugin',
-		_exec: function (elm) {z
+		_exec: function (elm) {
 			if (pe.mobile) {
 				return; // we do not want this on mobile devices
 			}
 			// create the toolbar
-			var notice = $('<div class="archived" role="toolbar"><a class="archived-top-page" href="#archived" role="link">' + pe.dic.get('%archived-page') + '</a></div>');
+			var notice = $('<div class="archived" role="toolbar"><a class="archived-top-page" href="#archived" role="link">' + pe.dic.get('%archived-page') + '</a></div>'),
+				$window = $(window);
 			// lets bind the scrolls
-			$(window).on('scroll', function () {
+			$window.on('scroll', function () {
 				if ($(this).scrollTop() > 10) {
-					notice.fadeIn("normal").attr('aria-hidden', 'false');
+					notice.fadeIn('normal').attr('aria-hidden', 'false');
 				} else {
-					notice.fadeOut("normal").attr('aria-hidden', 'true');
+					notice.fadeOut('normal').attr('aria-hidden', 'true');
 				}
 			});
 
@@ -31,18 +32,20 @@
 			$(document).on('focusin', function (e) {
 				var target = $(e.target);
 				if (notice.attr('aria-hidden') === 'false' && (target.offset().top + target.outerHeight()) <= (notice.offset().top + notice.outerHeight())) {
-					$(window).scrollTop($(window).scrollTop() - notice.outerHeight());
+					$window.scrollTop($window.scrollTop() - notice.outerHeight());
 				}
 			});
 
 			// now test to ensure that we have this correctly placed
-			if ($(window).scrollTop() < 10 || $(window).scrollTop() === 'undefined') {
-				notice.fadeOut("normal").attr('aria-hidden', 'true');
+			if ($window.scrollTop() < 10 || $window.scrollTop() === 'undefined') {
+				notice.fadeOut('normal').attr('aria-hidden', 'true');
 			} else {
-				notice.fadeIn("normal").attr('aria-hidden', 'false');
+				notice.fadeIn('normal').attr('aria-hidden', 'false');
 			}
 			// add to page
 			pe.pagecontainer().append(notice);
+
+			return elm;
 		} // end of exec
 	};
 	window.pe = _pe;

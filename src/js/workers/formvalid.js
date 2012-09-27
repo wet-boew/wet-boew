@@ -24,6 +24,7 @@
 				$inputs = $(inputs),
 				inputs_len = inputs.length,
 				input,
+				len,
 				submitted = false,
 				required = form.find('[required]').attr('aria-required', 'true'),
 				$errorFormId = 'errors-' + (form.attr('id') === undefined ? 'default' : form.attr('id')),
