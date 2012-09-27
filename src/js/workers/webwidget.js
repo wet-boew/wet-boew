@@ -16,19 +16,15 @@
 		type: 'plugin',
 		twitter: {
 			_parse_entries: function (entries, limit, elm) {
-				var cap, i, result, sorted;
+				var cap, i, result, sorted, sorted_entry;
 				cap = (limit > 0 && limit < entries.length ? limit : entries.length);
 				sorted = entries.sort(function (a, b) {
 					return pe.date.compare(b.created_at.replace('+0000 ', '') + ' GMT', a.created_at.replace('+0000 ', '') + ' GMT');
 				});
 				result = '<ul class="widget-content">';
-				i = 0;
-				while (i < cap) {
-					result += '<li><a class="float-left" href="http://www.twitter.com/';
-					result += sorted[i].user.name + '/status/' + sorted[i].user.id + '"><img class="widget-avatar" src="' + sorted[i].user.profile_image_url + '" alt="' + sorted[i].user.name + '" /></a> ';
-					result += pe.string.ify.clean(sorted[i].text);
-					result += ' <span class="widget-datestamp-accent">' + pe.dic.ago(sorted[i].created_at) + '</span></li>';
-					i += 1;
+				for (i = 0; i < cap; i += 1) {
+					sorted_entry = sorted[i];
+					result += '<li><a class="float-left" href="http://www.twitter.com/' + sorted_entry.user.name + '/status/' + sorted_entry.user.id + '"><img class="widget-avatar" src="' + sorted_entry.user.profile_image_url + '" alt="' + sorted_entry.user.name + '" /></a> ' + pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' + pe.dic.ago(sorted_entry.created_at) + '</span></li>';
 				}
 				result += '</ul>';
 				return elm.replaceWith(result);
@@ -49,10 +45,8 @@
 		},
 		weather: {
 			_parse_entries: function (entries, limit, elm) {
-				var result;
-				result = '<ul class="widget-content">';
-				result += '<li><a href="' + entries[1].link + '">' + entries[1].title + '</a><span class="widget-datestamp">[' + pe.date.to_iso_format(entries[1].publishedDate, true) + ']</span></li>';
-				result += '</ul>';
+				var entry = entries[1],
+					result = '<ul class="widget-content"><li><a href="' + entry.link + '">' + entry.title + '</a><span class="widget-datestamp">[' + pe.date.to_iso_format(entry.publishedDate, true) + ']</span></li></ul>';
 				return elm.replaceWith(result);
 			},
 			_map_entries : function (data) {
@@ -70,16 +64,15 @@
 		},
 		rss: {
 			_parse_entries: function (entries, limit, elm) {
-				var cap, i, result, sorted;
+				var cap, i, result, sorted, sorted_entry;
 				cap = (limit > 0 && limit < entries.length ? limit : entries.length);
 				sorted = entries.sort(function (a, b) {
 					return pe.date.compare(b.publishedDate, a.publishedDate);
 				});
 				result = '<ul class="widget-content">';
-				i = 0;
-				while (i < cap) {
-					result += '<li><a href="' + sorted[i].link + '">' + sorted[i].title + '</a><span class="widget-datestamp">[' + pe.date.to_iso_format(sorted[i].publishedDate, true) + ']</span></li>';
-					i += 1;
+				for (i = 0; i < cap; i += 1) {
+					sorted_entry = sorted[i];
+					result += '<li><a href="' + sorted_entry.link + '">' + sorted_entry.title + '</a><span class="widget-datestamp">[' + pe.date.to_iso_format(sorted_entry.publishedDate, true) + ']</span></li>';
 				}
 				result += '</ul>';
 				return elm.replaceWith(result);
@@ -98,12 +91,10 @@
 			}
 		},
 		_exec: function (elm, type) {
-			var $elm, $response, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results;
-			$elm = $(elm);
-			limit = _pe.limit($elm);
-			feeds = $elm.find("a").map(function () {
-				var a;
-				a = $(this).attr("href");
+			var $response, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results;
+			limit = _pe.limit(elm);
+			feeds = elm.find('a').map(function () {
+				var a = this.href;
 				if (!type && /twitter.com/i.test(a)) {
 					type = "twitter";
 				}
@@ -113,10 +104,10 @@
 				if (!type) {
 					type = "rss";
 				}
-				return $(this).attr("href");
+				return a;
 			});
 			$response = $('<ul class="widget-content"><li class="widget-state-loading"><img src="' + pe.add.liblocation + 'images/webfeeds/ajax-loader.gif" alt="' + pe.dic.get('%loading') + '" /></li></ul>');
-			$elm.find('.widget-content').replaceWith($response);
+			elm.find('.widget-content').replaceWith($response);
 
 			typeObj = _pe.fn.webwidget[type];
 
@@ -127,12 +118,10 @@
 			_results = [];
 
 			process_entries = function (data) {
-				var k;
-				k = 0;
+				var k, len;
 				data = typeObj._map_entries(data);
-				while (k < data.length) {
+				for (k = 0, len = data.length; k < len; k += 1) {
 					entries.push(data[k]);
-					k += 1;
 				}
 				if (!last) {
 					parse_entries(entries, limit, $response);
