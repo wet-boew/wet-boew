@@ -1,11 +1,9 @@
-/*!
-// ColorBox v1.3.19.3 - jQuery lightbox plugin
-// (c) 2011 Jack Moore - jacklmoore.com
+// ColorBox v1.3.20.1 - jQuery lightbox plugin
+// (c) 2012 Jack Moore - jacklmoore.com
 // License: http://www.opensource.org/licenses/mit-license.php
- */
 (function ($, document, window) {
 	var
-	// Default settings object.	
+	// Default settings object.
 	// See http://jacklmoore.com/colorbox for details.
 	defaults = {
 		transition: "elastic",
@@ -52,7 +50,7 @@
 		onComplete: false,
 		onCleanup: false,
 		onClosed: false,
-		overlayClose: true,		
+		overlayClose: true,
 		escKey: true,
 		arrowKey: true,
 		top: false,
@@ -68,7 +66,7 @@
 	prefix = 'cbox',
 	boxElement = prefix + 'Element',
 	
-	// Events	
+	// Events
 	event_open = prefix + '_open',
 	event_load = prefix + '_load',
 	event_complete = prefix + '_complete',
@@ -141,8 +139,8 @@
 
 	// Determine the next and previous members in a group.
 	function getIndex(increment) {
-		var 
-		max = $related.length, 
+		var
+		max = $related.length,
 		newIndex = (index + increment) % max;
 		
 		return (newIndex < 0) ? max + newIndex : newIndex;
@@ -150,15 +148,25 @@
 
 	// Convert '%' and 'px' values to integers
 	function setSize(size, dimension) {
-		return Math.round((/%/.test(size) ? ((dimension === 'x' ? $window.width() : $window.height()) / 100) : 1) * parseInt(size, 10));
+		return Math.round((/%/.test(size) ? ((dimension === 'x' ? winWidth() : winHeight()) / 100) : 1) * parseInt(size, 10));
 	}
 	
 	// Checks an href to see if it is a photo.
 	// There is a force photo option (photo: true) for hrefs that cannot be matched by this regex.
 	function isImage(url) {
-		return settings.photo || /\.(gif|png|jpe?g|bmp|ico)((#|\?).*)?$/i.test(url);
+		return settings.photo || /\.(gif|png|jp(e|g|eg)|bmp|ico)((#|\?).*)?$/i.test(url);
 	}
 	
+	function winWidth() {
+		// $(window).width() is incorrect for some mobile browsers, but
+		// window.innerWidth is unsupported in IE8 and lower.
+		return window.innerWidth || $window.width();
+	}
+
+	function winHeight() {
+		return window.innerHeight || $window.height();
+	}
+
 	// Assigns function results to their respective properties
 	function makeSettings() {
 		var i,
@@ -167,7 +175,7 @@
 		if (data == null) {
 			settings = $.extend({}, defaults);
 			if (console && console.log) {
-				console.log('Error: cboxElement missing settings object')
+				console.log('Error: cboxElement missing settings object');
 			}
 		} else {
 			settings = $.extend({}, data);
@@ -258,7 +266,7 @@
 			
 			if (settings.rel !== 'nofollow') {
 				$related = $('.' + boxElement).filter(function () {
-					var data = $.data(this, colorbox), 
+					var data = $.data(this, colorbox),
 						relRelated;
 
 					if (data) {
@@ -297,7 +305,7 @@
 				
 				if (isIE6) {
 					$window.bind('resize.' + event_ie6 + ' scroll.' + event_ie6, function () {
-						$overlay.css({width: $window.width(), height: $window.height(), top: $window.scrollTop(), left: $window.scrollLeft()});
+						$overlay.css({width: winWidth(), height: winHeight(), top: $window.scrollTop(), left: $window.scrollLeft()});
 					}).trigger('resize.' + event_ie6);
 				}
 				
@@ -321,10 +329,10 @@
 			$window = $(window);
 			$box = $tag(div).attr({id: colorbox, 'class': isIE ? prefix + (isIE6 ? 'IE6' : 'IE') : ''}).hide();
 			$overlay = $tag(div, "Overlay", isIE6 ? 'position:absolute' : '').hide();
+			$loadingOverlay = $tag(div, "LoadingOverlay").add($tag(div, "LoadingGraphic"));
 			$wrap = $tag(div, "Wrapper");
 			$content = $tag(div, "Content").append(
 				$loaded = $tag(div, "LoadedContent", 'width:0; height:0; overflow:hidden'),
-				$loadingOverlay = $tag(div, "LoadingOverlay").add($tag(div, "LoadingGraphic")),
 				$title = $tag(div, "Title"),
 				$current = $tag(div, "Current"),
 				$next = $tag(div, "Next"),
@@ -471,16 +479,17 @@
 	};
 
 	publicMethod.position = function (speed, loadedCallback) {
-		var 
-		top = 0, 
-		left = 0, 
+		var
+		css,
+		top = 0,
+		left = 0,
 		offset = $box.offset(),
-		scrollTop, 
+		scrollTop,
 		scrollLeft;
 		
 		$window.unbind('resize.' + prefix);
 
-		// remove the modal so that it doesn't influence the document width/height		  
+		// remove the modal so that it doesn't influence the document width/height
 		$box.css({top: -9e4, left: -9e4});
 
 		scrollTop = $window.scrollTop();
@@ -498,19 +507,19 @@
 
 		// keeps the top and left positions within the browser's viewport.
 		if (settings.right !== false) {
-			left += Math.max($window.width() - settings.w - loadedWidth - interfaceWidth - setSize(settings.right, 'x'), 0);
+			left += Math.max(winWidth() - settings.w - loadedWidth - interfaceWidth - setSize(settings.right, 'x'), 0);
 		} else if (settings.left !== false) {
 			left += setSize(settings.left, 'x');
 		} else {
-			left += Math.round(Math.max($window.width() - settings.w - loadedWidth - interfaceWidth, 0) / 2);
+			left += Math.round(Math.max(winWidth() - settings.w - loadedWidth - interfaceWidth, 0) / 2);
 		}
 		
 		if (settings.bottom !== false) {
-			top += Math.max($window.height() - settings.h - loadedHeight - interfaceHeight - setSize(settings.bottom, 'y'), 0);
+			top += Math.max(winHeight() - settings.h - loadedHeight - interfaceHeight - setSize(settings.bottom, 'y'), 0);
 		} else if (settings.top !== false) {
 			top += setSize(settings.top, 'y');
 		} else {
-			top += Math.round(Math.max($window.height() - settings.h - loadedHeight - interfaceHeight, 0) / 2);
+			top += Math.round(Math.max(winHeight() - settings.h - loadedHeight - interfaceHeight, 0) / 2);
 		}
 
 		$box.css({top: offset.top, left: offset.left});
@@ -527,8 +536,12 @@
 			$topBorder[0].style.width = $bottomBorder[0].style.width = $content[0].style.width = that.style.width;
 			$content[0].style.height = $leftBorder[0].style.height = $rightBorder[0].style.height = that.style.height;
 		}
-		
-		$box.dequeue().animate({width: settings.w + loadedWidth, height: settings.h + loadedHeight, top: top, left: left}, {
+
+		css = {width: settings.w + loadedWidth, height: settings.h + loadedHeight, top: top, left: left};
+		if(speed===0){ // temporary workaround to side-step jQuery-UI 1.8 bug (http://bugs.jquery.com/ticket/12273)
+			$box.css(css);
+		}
+		$box.dequeue().animate(css, {
 			duration: speed,
 			complete: function () {
 				modalDimensions(this);
@@ -627,15 +640,15 @@
 		}
 		
 		callback = function () {
-			var preload, 
-				i, 
-				total = $related.length, 
-				iframe, 
-				frameBorder = 'frameBorder', 
-				allowTransparency = 'allowTransparency', 
-				complete, 
-				src, 
-				img, 
+			var preload,
+				i,
+				total = $related.length,
+				iframe,
+				frameBorder = 'frameBorder',
+				allowTransparency = 'allowTransparency',
+				complete,
+				src,
+				img,
 				data;
 			
 			if (!open) {
@@ -650,7 +663,8 @@
 			
 			complete = function () {
 				clearTimeout(loadingTimer);
-				$loadingOverlay.hide();
+				// Detaching forces Andriod stock browser to redraw the area underneat the loading overlay.  Hiding alone isn't enough.
+				$loadingOverlay.detach().hide();
 				trigger(event_complete, settings.onComplete);
 			};
 			
@@ -789,7 +803,7 @@
 		href = settings.href;
 		
 		loadingTimer = setTimeout(function () {
-			$loadingOverlay.show();
+			$loadingOverlay.show().appendTo($content);
 		}, 100);
 		
 		if (settings.inline) {
@@ -819,7 +833,7 @@
 				if (settings.scalePhotos) {
 					setResize = function () {
 						photo.height -= photo.height * percent;
-						photo.width -= photo.width * percent;	
+						photo.width -= photo.width * percent;
 					};
 					if (settings.mw && photo.width > settings.mw) {
 						percent = (photo.width - settings.mw) / photo.width;
@@ -891,7 +905,7 @@
 			$overlay.fadeTo(200, 0);
 			
 			$box.stop().fadeTo(300, 0, function () {
-
+			
 				$box.add($overlay).css({'opacity': 1, cursor: 'auto'}).hide();
 				
 				trigger(event_purge);
