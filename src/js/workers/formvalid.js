@@ -17,6 +17,13 @@
 		depends: ['validate', 'validateAdditional', 'metadata'],
 		_exec: function (elm) {
 			var form = elm.find('form'),
+				formDOM = form.get(0),
+				labels = formDOM.getElementsByTagName('label'),
+				labels_len = labels.length,
+				inputs = formDOM.getElementsByTagName('input'),
+				$inputs = $(inputs),
+				inputs_len = inputs.length,
+				input,
 				submitted = false,
 				required = form.find('[required]').attr('aria-required', 'true'),
 				$errorFormId = 'errors-' + (form.attr('id') === undefined ? 'default' : form.attr('id')),
@@ -30,14 +37,11 @@
 				pe.add._load(pe.add.liblocation + 'i18n/formvalid/methods_' + pe.language + pe.suffix + '.js');
 			}
 
-			// Add WAI-ARIA roles
-			required.attr('aria-required', 'true');
-
 			// Add space to the end of the labels (so separation between label and error when CSS turned off)
-			form.find('label').each(function () {
-				var $this = $(this);
-				$this.html(this.innerHTML + ' ');
-			});
+			len = labels_len;
+			while (len--) {
+				labels[len].innerHTML += ' ';
+			}
 
 			function addValidation(target, key, value) {
 				var targetclass = target.attr('class'),
@@ -55,14 +59,20 @@
 			}
 
 			// Remove the pattern attribute until it is safe to use with jQuery Validation
-			form.find('input[pattern]').removeAttr('pattern');
+			len = inputs_len;
+			while (len--) {
+				input = inputs[len];
+				if (input.hasAttribute('pattern')) {
+					input.removeAttribute('pattern');
+				}
+			}
 
 			// Change form attributes and values that intefere with validation in IE7/8
 			if (pe.ie > 0 && pe.ie < 9) {
 				required.removeAttr('required').each(function () {
 					addValidation($(this), 'required', 'true'); // Adds required:true to validation:{}
 				});
-				form.find('input[type="date"]').each(function () {
+				$inputs.filter('[type="date"]').each(function () {
 					var $this = $(this),
 						parent = $this.wrap('<div/>').parent(),
 						newelm = $(parent.html().replace('type=' + $this.attr('type'), 'type=text'));
@@ -72,21 +82,22 @@
 
 			// Special handling for mobile
 			if (pe.mobile) {
-				form.attr('data-ajax', 'false').find('input[type="checkbox"]').closest('fieldset').attr('data-role', 'controlgroup');
+				formDOM.setAttribute('data-ajax', 'false');
+				$inputs.filter('[type="checkbox"]').closest('fieldset').attr('data-role', 'controlgroup');
 			}
 
 			// The jQuery validation plug-in in action
 			validator = form.validate({
-				meta: "validate",
+				meta: 'validate',
 				focusInvalid: false,
 
 				//Set the element which will wrap the inline error messages
-				errorElement: "strong",
+				errorElement: 'strong',
 
 				// Location for the inline error messages
 				// In this case we will place them in the associated label element
 				errorPlacement: function (error, element) {
-					error.appendTo(form.find('label[for="' + $(element).attr('id') + '"]'));
+					error.appendTo(form.find('label[for="' + element.attr('id') + '"]'));
 				},
 
 				// Create our error summary that will appear before the form
@@ -154,14 +165,13 @@
 			}); //end of validate()
 
 			// Clear the form and remove error messages on reset
-			form.find('input[type="reset"]').on('click', function () {
+			$inputs.filter('[type="reset"]').on('click vclick touchstart', function () {
 				validator.resetForm();
 				var summaryContainer = form.find('#' + $errorFormId);
 				if (summaryContainer.length > 0) {
 					summaryContainer.empty();
 				}
 				form.find('[aria-invalid="true"]').removeAttr('aria-invalid');
-				form.find('#' + $errorFormId);
 			});
 
 			return elm;

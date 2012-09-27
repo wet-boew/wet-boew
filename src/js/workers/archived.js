@@ -12,7 +12,7 @@
 	/* local reference */
 	_pe.fn.archived = {
 		type: 'plugin',
-		_exec: function (elm) {
+		_exec: function (elm) {z
 			if (pe.mobile) {
 				return; // we do not want this on mobile devices
 			}
