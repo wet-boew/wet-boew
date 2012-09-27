@@ -42,67 +42,67 @@
 			/* functions that would be necessary for helpers */
 			showsubmenu = function (toplink) {
 				hideallsubmenus();
-				var _node = $(toplink).closest("li"),
-					_sm = _node.find(".mb-sm");
-				_sm.attr({"aria-expanded":"true", "aria-hidden":"false"}).toggleClass("mb-sm mb-sm-open");
+				var _node = $(toplink).closest('li'),
+					_sm = _node.find('.mb-sm');
+				_sm.attr({'aria-expanded':'true', 'aria-hidden':'false'}).toggleClass('mb-sm mb-sm-open');
 
 				if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
-					_sm.css("right", "0px");
+					_sm.css('right', '0px');
 				}
-				_node.addClass("mb-active");
+				_node.addClass('mb-active');
 				return;
 			};
 			/* action function to go to menu */
 			gotosubmenu = function (toplink) {
 				var _node = $(toplink),
-					_sm = _node.closest("li").find(".mb-sm-open");
+					_sm = _node.closest('li').find('.mb-sm-open');
 				if (pe.cssenabled) {
-					_sm.find("a").attr("tabindex", "0");
+					_sm.find('a').attr('tabindex', '0');
 				}
-				_node.trigger("item-next");
+				_node.trigger('item-next');
 				return;
 			};
 			/* hidemenu worker function */
 			hidesubmenu = function (toplink) {
-				var _node = $(toplink).closest("li"),
-					_sm = _node.find(".mb-sm-open");
-				_sm.attr({"aria-expanded":"false", "aria-hidden":"true"}).toggleClass("mb-sm mb-sm-open").css("right", "");
+				var _node = $(toplink).closest('li'),
+					_sm = _node.find('.mb-sm-open');
+				_sm.attr({'aria-expanded':'false', 'aria-hidden':'true'}).toggleClass('mb-sm mb-sm-open').css('right', '');
 				if (pe.cssenabled) {
-					_sm.find("a").attr("tabindex", "-1");
+					_sm.find('a').attr('tabindex', '-1');
 				}
-				_node.removeClass("mb-active");
+				_node.removeClass('mb-active');
 				return;
 			};
 			/* hide all the submenus */
 			hideallsubmenus = function () {
-				$menu.find(".mb-sm-open").each(function () {
-					var _menu = $(this).closest("li");
+				$menu.find('.mb-sm-open').each(function () {
+					var _menu = $(this).closest('li');
 					return hidesubmenu(_menu);
 				});
 				return;
 			};
 			/* function to correct the hieght of the menu on resize */
 			correctheight = function () {
-				var _lastmenuli = $menu.children("li:last"),
+				var _lastmenuli = $menu.children('li:last'),
 					newouterheight = (_lastmenuli.offset().top + _lastmenuli.outerHeight()) - $scope.offset().top;
-				return $scope.css("min-height", newouterheight);
+				return $scope.css('min-height', newouterheight);
 			};
 			/*
 			/// End of Functions ///
 			*/
 
 			/* establish boundaries */
-			$menuBoundary = $scope.children("div");
-			$menu = $menuBoundary.children("ul");
+			$menuBoundary = $scope.children('div');
+			$menu = $menuBoundary.children('ul');
 			
 			/* Detach $scope to minimize reflow while enhancing the menu */
 			$scope.detach();
 			
 			/* ARIA additions */
-			$scope.attr("role", "application");
-			$scope.find('> div > ul').attr("role", "menubar").find("a").attr("role", "menuitem");
+			$scope.attr('role', 'application');
+			$scope.find('> div > ul').attr('role', 'menubar').find('a').attr('role', 'menuitem');
 			pe.resize(correctheight);
-			
+
 			/* [Main] parse mega menu and establish all ARIA and Navigation classes */
 			$scope.find('ul.mb-menu > li').find('a:eq(0)').each(function (index, value) {
 				var $elm = $(value).addClass('knav-' + index + '-0-0'),
@@ -124,17 +124,16 @@
 					$childmenu.find('h3 a, h4 a, div.top-level > a, li.top-level a, div.mb-main-link > a').each(function (i) {
 						var $this = $(this),
 							$parent = $this.parent();
-						$this.addClass("knav-" + index + "-" + (i + 1) + "-0");
+						this.className += 'knav-' + index + '-' + (i + 1) + '-0';
 						if ($parent.is('h3, h4')) {
-							$this.parent().next("ul").find("a").each(function (j) {
-								$(this).addClass("knav-" + index + "-" + (i + 1) + "-" + (j + 1));
-								return;
+							$this.parent().next('ul').find('a').each(function (j) {
+								this.className += ' knav-' + index + '-' + (i + 1) + '-' + (j + 1);
 							});
 						}
 						return;
 					});
 					$childmenu.find('> ul li, > div > ul li').filter(':not(.top-level)').children('a').each(function (i) {
-						$(this).addClass("knav-" + index + "-0-" + (i + 1));
+						this.className += ' knav-' + index + '-0-' + (i + 1);
 					});
 				}
 			});
@@ -151,14 +150,14 @@
 			correctheight();
 
 			// Handles opening and closing of a submenu on click of a menu bar item but prevents any changes on click of the empty area in the submenu
-			$scope.find('.mb-sm').on("click vclick touchstart", function (event) {
+			$scope.find('.mb-sm').on('click vclick touchstart', function (event) {
 				if (event.stopPropagation) {
 					event.stopPropagation();
 				} else {
 					event.cancelBubble = true;
 				}
 			}).parent().on('click vclick touchstart', '> :header a', function () {
-				if ($(this).closest("li").hasClass("mb-active")) {
+				if ($(this).closest('li').hasClass('mb-active')) {
 					hidesubmenu(this);
 				} else {
 					showsubmenu(this);
@@ -167,7 +166,7 @@
 			});
 
 			/* bind all custom events and triggers to menu */
-			$scope.on("keydown focusin section-next section-previous item-next item-previous close", "li", function (e) {
+			$scope.on('keydown focusin section-next section-previous item-next item-previous close', 'li', function (e) {
 				var next,
 					_elm = $(e.target),
 					_activemenu = $scope.find('.mb-active'),
@@ -183,7 +182,7 @@
 				_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
 					return parseInt(n, 10);
 				});
-				if (type === "keydown") {
+				if (type === 'keydown') {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 						if (keycode === 13) { // enter key
 							if (_id[2] === 0 && _id[3] === 0) {
@@ -249,17 +248,17 @@
 							}
 						}
 					}
-				} else if (type === "close") {
-					pe.focus(_activemenu.find(".knav-" + _id[1] + "-0-0"));
+				} else if (type === 'close') {
+					pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-0'));
 					setTimeout(function () {
 						return hideallsubmenus();
 					}, 5);
-				} else if (type === "section-previous") {
+				} else if (type === 'section-previous') {
 					level = !!_id[2] << 1 | !!_id[3];
 					switch (level) {
 					case 0: // top-level menu link has focus
 					case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
-						next = $scope.find(".knav-" + (_id[1] - 1) + "-0-0");
+						next = $scope.find('.knav-' + (_id[1] - 1) + '-0-0');
 						if (next.length > 0) {
 							pe.focus(next);
 						} else {
@@ -268,11 +267,11 @@
 						break;
 					case 2: // sub-section link has focus
 					case 3: // 3rd level link (child of a sub-section) has focus
-						next = _activemenu.find(".knav-" + (_id[1]) + "-" + (_id[2] - 1) + "-0");
+						next = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] - 1) + '-0');
 						if (next.length > 0 && _id[2] > 1) {
 							pe.focus(next);
 						} else {
-							next = $scope.find(".knav-" + (_id[1] - 1) + "-0-0"); // wrap around at the sub-section level
+							next = $scope.find('.knav-' + (_id[1] - 1) + '-0-0'); // wrap around at the sub-section level
 							if (next.length > 0) {
 								pe.focus(next);
 							} else {
@@ -281,68 +280,68 @@
 						}
 						break;
 					}
-				} else if (type === "section-next") {
+				} else if (type === 'section-next') {
 					level = !!_id[2] << 1 | !!_id[3];
 					switch (level) {
 					case 0: // top-level menu link has focus
 					case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
-						next = $scope.find(".knav-" + (_id[1] + 1) + "-0-0");
+						next = $scope.find('.knav-' + (_id[1] + 1) + '-0-0');
 						if (next.length > 0) {
 							pe.focus(next);
 						} else {
-							pe.focus($scope.find(".knav-0-0-0")); // wrap around at the top level
+							pe.focus($scope.find('.knav-0-0-0')); // wrap around at the top level
 						}
 						break;
 					case 2: // sub-section link has focus
 					case 3: // 3rd level link (child of a sub-section) has focus
-						next = _activemenu.find(".knav-" + (_id[1]) + "-" + (_id[2] + 1) + "-0");
+						next = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] + 1) + '-0');
 						if (next.length > 0) {
 							pe.focus(next);
 						} else {
-							next = $scope.find(".knav-" + (_id[1] + 1) + "-0-0"); // wrap around at the sub-section level
+							next = $scope.find('.knav-' + (_id[1] + 1) + '-0-0'); // wrap around at the sub-section level
 							if (next.length > 0) {
 								pe.focus(next);
 							} else {
-								pe.focus($scope.find(".knav-0-0-0")); // wrap around at the top level
+								pe.focus($scope.find('.knav-0-0-0')); // wrap around at the top level
 							}
 						}
 						break;
 					}
-				} else if (type === "item-next") {
-					next = _activemenu.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] + 1)); // move to next item
+				} else if (type === 'item-next') {
+					next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2]) + '-' + (_id[3] + 1)); // move to next item
 					if (next.length > 0) {
 						pe.focus(next);
 					} else {
-						next = _activemenu.find(".knav-" + _id[1] + "-" + (_id[2] + 1) + "-0"); // move to next section
+						next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2] + 1) + '-0'); // move to next section
 						if (next.length > 0) {
 							pe.focus(next);
 						} else {
-							pe.focus(_activemenu.find(".knav-" + _id[1] + "-1-0, .knav-" + _id[1] + "-0-1,")); // move to first item in the submenu
+							pe.focus(_activemenu.find('.knav-' + _id[1] + '-1-0, .knav-' + _id[1] + '-0-1')); // move to first item in the submenu
 						}
 					}
-				} else if (type === "item-previous") {
-					next = ((_id[2] > 0 || _id[3] > 1) ? _activemenu.find(".knav-" + _id[1] + "-" + (_id[2]) + "-" + (_id[3] - 1)) : ''); // move to previous item
+				} else if (type === 'item-previous') {
+					next = ((_id[2] > 0 || _id[3] > 1) ? _activemenu.find('.knav-' + _id[1] + '-' + (_id[2]) + '-' + (_id[3] - 1)) : ''); // move to previous item
 					if ((_id[2] > 0 || _id[3] > 1) && next.length > 0) {
 						pe.focus(next);
 					} else {
-						next = ((_id[2] > 1 || _id[3] > 0) ? _activemenu.find("[class*='knav-" + _id[1] + "-" + (_id[2] - 1) + "-']").last() : ''); // move to last item of the previous section
+						next = ((_id[2] > 1 || _id[3] > 0) ? _activemenu.find('[class*="knav-' + _id[1] + '-' + (_id[2] - 1) + '-"]').last() : ''); // move to last item of the previous section
 						if ((_id[2] > 1 || _id[3] > 0) && next.length > 0) {
 							pe.focus(next);
 						} else {
-							pe.focus(_activemenu.find("[class*='knav-']").last()); // move to last item in the submenu
+							pe.focus(_activemenu.find('[class*="knav-"]').last()); // move to last item in the submenu
 						}
 					}
-				} else if (type === "focusin" && _id[2] === 0 && _id[3] === 0) {
+				} else if (type === 'focusin' && _id[2] === 0 && _id[3] === 0) {
 					hideallsubmenus();
 					if (_elm.find('.expandicon').length > 0) {
 						showsubmenu(e.target);
 					}
 				}
 			});
-			$(document).on("click vclick touchstart", function () {
-				$scope.trigger("focusoutside");
+			$(document).on('click vclick touchstart', function () {
+				$scope.trigger('focusoutside');
 			});
-			$scope.on("focusoutside", function () {
+			$scope.on('focusoutside', function () {
 				return hideallsubmenus();
 			});
 

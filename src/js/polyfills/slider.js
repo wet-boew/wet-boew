@@ -1,6 +1,6 @@
 /*! Unobtrusive Slider Control / HTML5 Input Range polyfill - MIT/GPL2 @freqdec */
 var fdSlider = (function() {
-
+var test = (new Date()).getTime();
 		var sliders		  = {},	
 			uniqueid		  = 0,
 			mouseWheelEnabled = true,			 
