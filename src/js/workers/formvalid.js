@@ -28,14 +28,23 @@
 				submitted = false,
 				required = form.find('[required]').attr('aria-required', 'true'),
 				$errorFormId = 'errors-' + (form.attr('id') === undefined ? 'default' : form.attr('id')),
-				validator;
+				validator,
+				lang = pe.language.toLowerCase();
 
 			// Load different language strings if page is not in English
-			if (pe.language !== "en") {
-				pe.add._load(pe.add.liblocation + 'i18n/formvalid/messages_' + pe.language + pe.suffix + '.js');
+			if (lang !== "en") {
+				if (lang === 'pt-br') {
+					lang = 'pt_BR';
+				} else if (lang === 'pt' || lang === 'pt-pt') {
+					lang = 'pt_PT';
+				} else if (lang === 'zh-tw') {
+					lang = 'zh_TW';
+				} else {
+					pe.add._load(pe.add.liblocation + 'i18n/formvalid/messages_' + lang + pe.suffix + '.js');
+				}
 			}
-			if (pe.language === "de" || pe.language === "nl" || pe.language === "pt") {
-				pe.add._load(pe.add.liblocation + 'i18n/formvalid/methods_' + pe.language + pe.suffix + '.js');
+			if (lang === "de" || lang === "nl" || lang === "pr_PT" || lang === "pr_BR") {
+				pe.add._load(pe.add.liblocation + 'i18n/formvalid/methods_' + lang + pe.suffix + '.js');
 			}
 
 			// Add space to the end of the labels (so separation between label and error when CSS turned off)

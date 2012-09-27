@@ -1,0 +1,35 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+/*SCSS Variables*/
+/*Default SCSS*/
+.ie7 .wet-boew-footnotes {
+  display: inline-block;
+}
+.ie7 .wet-boew-footnotes dl dt {
+  position: relative;
+  float: left;
+  margin-bottom: -1px;
+}
+
+/*Screen SCSS*/
+@media screen {
+  .ie7 .wet-boew-footnotes dd.footnote-focus {
+    background-color: #eeeeee;
+    border-color: #555555;
+  }
+  .ie7 .wet-boew-footnotes dd.footnote-focus p.footnote-return a {
+    color: white !important;
+    background-color: #555555;
+    border-color: #555555;
+    text-shadow: none !important;
+  }
+}
+/*Print SCSS*/
+@media print {
+  .ie7 .wet-boew-footnotes dl dd {
+    overflow: auto;
+  }
+}
