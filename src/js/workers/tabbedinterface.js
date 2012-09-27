@@ -16,7 +16,6 @@
 		type : 'plugin',
 		depends : (pe.mobile ? [] : ['metadata', 'easytabs', 'equalheights']),
 		mobile : function (elm, nested) {
-
 			// Process any nested tabs
 			if (typeof nested === 'undefined' || !nested) {
 				elm.find('.wet-boew-tabbedinterface').each(function () {
@@ -127,16 +126,24 @@
 			} else {
 				$.extend(opts, overrides, elm.metadata());
 			}
+
 			$nav.attr('role', 'tablist').children('li').attr('role', 'presentation');
 			$tabs.attr({'role': 'tab', 'aria-selected': 'false'});
 			$tabsPanel.attr('id', $panels.eq(0).attr('id') + '-parent');
 			$panels.attr({'tabindex': '-1', 'role': 'tabpanel', 'aria-hidden': 'true'}).each(function () {
-				var $this = $(this);
 				if (pe.ie > 0) {
-					$this.attr('aria-labelledby', $this.attr('id') + tabSuffix);
+					this.setAttribute('aria-labelledby', this.getAttribute('id') + tabSuffix);
 				}
 			});
-			$default_tab = ($nav.find('.default').length > 0 ? $nav.find('.default') : $nav.find('li:first-child'));
+
+			// Find the default tab
+			$default_tab = $nav.find('.default a');
+			if ($default_tab.length === 0) {
+				$default_tab = $nav.find('li:first-child a');
+			}
+			$default_tab.attr('aria-selected', 'true');
+			$panels.filter(this.hash).attr('aria-hidden', 'false');
+
 			$tabs.on('keydown click', function (e) {
 				var $target = $(e.target),
 					$panel;
@@ -169,11 +176,7 @@
 					}
 				}
 			});
-			$default_tab.children("a").each(function () {
-				var $this = $(this);
-				$this.attr('aria-selected', 'true');
-				return $('#' + $this.attr('href').substring(1)).attr('aria-hidden', 'false');
-			});
+
 			getNextTab = function ($tabs) {
 				var $next = $tabs.filter('.' + opts.tabActiveClass).parent().next(':not(.tabs-toggle)');
 				return ($next.length === 0 ? $tabs.first() : $next.children());
@@ -187,7 +190,7 @@
 				$panels.stop(true, true);
 				if (opts.animate) {
 					activePanel = $panels.filter('.' + opts.panelActiveClass).removeClass(opts.panelActiveClass).attr("aria-hidden", "true");
-					nextPanel = $panels.filter('#' + $selection.attr('href').substr(1));
+					nextPanel = $panels.filter($selection.attr('href'));
 					activePanel.fadeOut(opts.animationSpeed, function () {
 						return nextPanel.fadeIn(opts.animationSpeed, function () {
 							return $(this).addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
@@ -195,11 +198,11 @@
 					});
 				} else {
 					$panels.removeClass(opts.panelActiveClass).attr('aria-hidden', 'true').hide();
-					$panels.filter('#' + $selection.attr('href').substr(1)).show().addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
+					$panels.filter($selection.attr('href')).show().addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
 				}
 				$tabs.parent().removeClass(opts.tabActiveClass).children().removeClass(opts.tabActiveClass).attr('aria-selected', 'false');
 				$selection.parent().addClass(opts.tabActiveClass).children().addClass(opts.tabActiveClass).attr('aria-selected', 'true');
-				cycleButton = $selection.parent().siblings(".tabs-toggle");
+				cycleButton = $selection.parent().siblings('.tabs-toggle');
 				if (!keepFocus && (cycleButton.length === 0 || cycleButton.data('state') === 'stopped')) {
 					return pe.focus($selection);
 				}
@@ -318,6 +321,7 @@
 					}
 				}
 			});
+
 			return elm.attr('class', elm.attr('class').replace(/\bwidget-style-/, "style-"));
 		} // end of exec
 	};
