@@ -12,7 +12,6 @@
 	/**
 	* wet_boew_theme object
 	* @namespace wet_boew_theme
-	* @version 3.0
 	*/
 	wet_boew_theme = (typeof window.wet_boew_theme !== "undefined" && window.wet_boew_theme !== null) ? window.wet_boew_theme : {
 		fn: {}
@@ -73,8 +72,7 @@
 				target;
 
 			if (wet_boew_theme.menubar.length > 0 || pe.secnav.length > 0 || wet_boew_theme.search.length > 0) {
-				// @TODO: optimize the dom manipulation routines - there is alot of DOM additions that should be keep as a document frag and replaced with .innerHTML as the end. // jsperf - 342% increase
-				// lets transform the menu to a dialog box
+				// Transform the menu to a dialog box
 				mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
 				mb_dialogue = '<div data-role="page" id="jqm-wb-mb"><div data-role="header">';
 				secnav_h2 = (pe.secnav.length > 0 ? pe.secnav.find('h2').eq(0) : '');
