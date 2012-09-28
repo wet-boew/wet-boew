@@ -72,8 +72,12 @@
 			len = inputs_len;
 			while (len--) {
 				input = inputs[len];
-				if (input.hasAttribute('pattern')) {
-					input.removeAttribute('pattern');
+				if (input.hasAttribute !== undefined) {
+					if (input.hasAttribute('pattern')) {
+						input.removeAttribute('pattern');
+					}
+				} else {
+					$(input).removeAttr('pattern');
 				}
 			}
 
