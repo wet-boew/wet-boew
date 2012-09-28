@@ -12,7 +12,6 @@
 	/**
 	* wet_boew_theme object
 	* @namespace wet_boew_theme
-	* @version 3.0
 	*/
 	wet_boew_theme = (typeof window.wet_boew_theme !== "undefined" && window.wet_boew_theme !== null) ? window.wet_boew_theme : {
 		fn: {}
