@@ -77,3 +77,10 @@ div.tabbedSlideout {
 		}
 	}
 }
+
+/*Print SCSS*/
+@media print {
+	#slideoutWrapper {
+		display:none;
+	}
+}

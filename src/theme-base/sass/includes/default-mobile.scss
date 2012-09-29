@@ -1,0 +1,269 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+body{
+	-webkit-text-size-adjust:none;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:80%;
+	color:#333;
+}
+
+/* Override jQuery Mobile hiding of content on mobile loading to eliminate white flicker */
+.ui-mobile-rendering > * {
+	visibility: visible !important;
+}
+
+#wb-skip {
+	a, a:link, a:visited {
+		text-shadow: none !important;
+	}
+}
+
+#wb-body-sec #wb-skip2 {
+	display:none;
+	visibility:hidden;
+}
+
+#wb-body,#wb-body-sec{
+	background:#fff !important;
+}
+
+[class*="span-"]{
+	position:relative;
+}
+
+#wb-main-in {
+	padding-left:5px;
+	padding-right:5px;
+	h1{
+		font-weight:400;
+		margin-top:5px;
+		position:static !important;
+		&.wb-invisible{
+			position:absolute !important;
+		}
+	}
+	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
+		margin-bottom:20px;
+	}
+}
+
+h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
+	margin-left:0;
+	margin-right:0;
+	text-shadow:none;
+}
+
+a {
+	color: #326CA6;
+	font-weight:bold;
+}
+
+.clear{
+	clear:both;
+	display:block;
+	height:0;
+	overflow:hidden;
+	visibility:hidden;
+	width:0;
+	margin:0;
+}
+
+.ui-mobile {
+	#wb-sec{
+		display:none;
+	}
+	.ui-content{
+		padding:0 15px;
+	}
+	.wet-boew-menubar a{
+		padding:0;
+	}
+}
+
+#wb-sec{
+	padding:5px;
+}
+
+img{
+	max-width:100%;
+	height:auto;
+	display:block;
+}
+
+#wb-core{
+	clear:both;
+}
+
+#wb-head{
+	&:after{
+		content:".";
+		display:block;
+		height:0;
+		clear:both;
+		visibility:hidden;
+	}
+}
+
+.ui-content .ui-listview {
+    margin: 0 -15px;
+}
+
+.ui-collapsible-heading, .ui-li-static {
+	font-size:1em;
+	margin:0;
+}
+
+.ui-dialog h1 {
+	border-bottom: none;
+}
+
+#jqm-wb-mb {
+	.ui-bar-a h1 {
+		color: #fff;
+	}
+	a:link{
+		text-decoration: none
+	}
+	h3.top-section{
+		font-size:1.2em;
+	}
+	.ui-content .ui-listview{
+		margin:0;
+	}
+	.ui-btn-inner{
+		white-space:normal;
+	}
+	.ui-btn-icon-top .ui-btn-inner{
+		padding:0.6em 33px 0.7em 10px;
+	}
+	.ui-btn-icon-right .ui-btn-inner {
+		padding-left: 40px;
+	}
+	.ui-body-a {
+		background: #FFF;
+	}
+	.ui-collapsible .ui-collapsible-content {
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	.ui-li-static {
+		border-left: none; border-right: none;
+	}
+	.ui-btn{
+		margin:0;
+		text-align:left;
+	}
+	.ui-li{
+		padding: 0;
+		border-width:1px 1px 0 1px;
+	}
+	.ui-corner-bottom {
+		border-bottom-width:1px;
+	}
+	h1{
+		border-bottom:none;
+	}
+	h2{
+		color:#555;
+	}
+	div.ui-collapsible-set + h2{
+		border-top:3px groove #fff;
+		padding-top:8px;
+		margin-top:23px;
+	}
+	.ui-content h2 + ul.ui-listview{
+		margin-bottom:1em;
+	}
+	.top-section a{
+		margin:0 0 5px;
+		border-radius:0;
+		-moz-border-radius:0;
+		-webkit-border-radius:0;
+	}
+	.top-level.ui-btn-corner-all {
+		border-radius:0.6em;
+	}
+	li.top-level div.ui-btn-inner {
+		padding-left:25px;
+	}
+}
+
+#jqm-mb-location-text {
+	margin:0 -15px 10px;
+	border-bottom:1px solid #ccc;
+	h2{
+		display:none;
+	}
+	a {
+		&:hover,&:active{
+			text-decoration:underline;
+		}
+	}
+	li {
+		background: url(../images/bcrumb-mobile.png) no-repeat right center;
+		display: inline;
+		float: left;
+		margin: 0;
+		padding: 5px 12px 5px 5px;
+		&:last-child {
+			background-image: none;
+			padding-left:5px;
+		}
+	}
+	ol {
+		line-height: 1.57em;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		font-size:90%;
+	}
+}
+
+.mobile-hide{
+	display:none !important;
+}
+
+.mobile-show{
+	display:block !important;
+}
+
+a:active{
+	text-decoration:underline !important;
+}
+
+.ui-loader-default h1{
+    margin:0;
+    padding:0;
+    border:0;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),
+	only screen and (min--moz-device-pixel-ratio:1.5), 
+	only screen and (-o-min-device-pixel-ratio: 3/2), 
+	only screen and (min-device-pixel-ratio:1.5), 
+	only screen and (min-resolution:240dpi), 
+	only screen and (min-resolution:1.5dppx) {
+	.ui-icon-site-menu {
+		background-image: url(../images/icons-36-white.png);
+	}
+	.ui-icon-alt {
+		background-image: url(../images/icons-36-black.png);
+	}
+}
+
+/* Position the custom icons  */
+.ui-icon-site-menu {
+	background-position: 0px 50%;
+}
+
+.no-js {
+	.ui-content{
+		padding:0;
+	}
+	.mobile-pe{
+		display:none !important;
+	}
+}

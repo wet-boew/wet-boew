@@ -3,7 +3,7 @@
 	<description>Web Experience Toolkit</description>
 
 	<!-- Version and build time-->
-	<property name="wet-boew-build.version" value="v3.0.1a1"/>
+	<property name="wet-boew-build.version" value="v3.1a1"/>
 	<tstamp>
 		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
 	</tstamp>
@@ -50,6 +50,12 @@
 				<propertyref prefix="wet-boew-build"/>
 			</propertyset>
 		</ant>
+		<echo level="info" message="---Building Base Theme---"/>
+		<ant dir="${src.dir}/theme-base" antfile="build.xml" target="build" inheritAll="false">
+			<propertyset>
+				<propertyref prefix="wet-boew-build"/>
+			</propertyset>
+		</ant>
 	</target>
 
 	<target name="clean-css">
@@ -59,6 +65,7 @@
 		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean-css" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean-css" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-clf2-nsi2" target="clean-css" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-base" target="clean-css" antfile="build.xml" inheritAll="false"/>
 	</target>
 	
 	<target name="clean">
@@ -68,6 +75,7 @@
 		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-clf2-nsi2" target="clean" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-base" target="clean" antfile="build.xml" inheritAll="false"/>
 	</target>
 
 	<target name="test">
@@ -76,6 +84,7 @@
 		<ant dir="${src.dir}/theme-gcwu-fegc" target="test" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-gcwu-intranet" target="test" antfile="build.xml" inheritAll="false"/>
 		<ant dir="${src.dir}/theme-clf2-nsi2" target="test" antfile="build.xml" inheritAll="false"/>
+		<ant dir="${src.dir}/theme-base" target="test" antfile="build.xml" inheritAll="false"/>
 	</target>
 	
 	<target name="preflight" description="Sets tabbing and encoding as indicated by the contributor guidelines">
