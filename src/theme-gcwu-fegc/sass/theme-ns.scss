@@ -8,26 +8,12 @@
 @import url('../../grids/css/responsive-ns.css');
 @import url('../../grids/css/util-ns.css');
 @import url('../../js/css/pe-ap-ns.css');
+@import url('includes/default-ns.css');
 /* -----Build Include Section End----- */
+
+/* Mobile view */
 @media screen and (max-width:767px), screen and (max-device-width:767px) {
-	.no-js {
-		#gcwu-psnb{
-			margin-top: -11px;
-		}
-		#gcwu-psnb, #gcwu-srchbx {
-			width:100% !important;
-			float:none;
-		}
-		#gcwu-psnb #gcwu-psnb-in,#gcwu-srchbx form{
-			display:block;
-			width:100%;
-			z-index:100;
-		}
-		#gcwu-srchbx form{
-			border-bottom:1px solid #999;
-			text-align:center;
-			background:#1A3D6C;
-			padding:10px 0;
-		}
-	}
+/* -----Build Include Section Start----- */
+@import url('includes/default-mobile-ns.css');
+/* -----Build Include Section End----- */
 }

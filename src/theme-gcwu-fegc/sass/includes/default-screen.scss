@@ -11,7 +11,6 @@ body{
 	h3.top-section {
 		a{
 			color:#FFF;
-			background:#23447e url(../images/menu-bg.gif) 0 -2px repeat-x;
 			padding-top:5px;
 			padding-bottom:5px;
 			font-size:1.1em;
@@ -114,7 +113,6 @@ body{
 
 #gcwu-sft{
 	padding-bottom:20px;
-	background:url(../images/sft-deco.gif) center top repeat-x #efefef;
 	font-family:Arial, Helvetica, sans-serif;
 	a,span.link{
 		color:#222;
@@ -134,12 +132,6 @@ body{
 }
 
 #gcwu-sft-in{
-	background:{
-		image:url(../images/sft-deco-leaf.gif), url(../images/sft-deco-side.gif), url(../images/sft-deco-side.gif);
-		position:center top, left top, right top;
-		repeat:no-repeat;
-		color:transparent;
-	}
 	padding-top:20px;
 	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
 		position:static;

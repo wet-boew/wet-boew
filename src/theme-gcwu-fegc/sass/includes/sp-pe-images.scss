@@ -1,0 +1,15 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+#gcwu-ef-lang, #gcwu-other-lang {
+	li {
+			a{
+				background: #ccc url(../images/sp-pe-button.gif) 0 0 repeat-x;
+				&:hover, &:focus, &:active{
+					background: #ddd url(../images/sp-pe-button-focus.gif) 0 0 repeat-x;
+				}
+			}
+	}
+}

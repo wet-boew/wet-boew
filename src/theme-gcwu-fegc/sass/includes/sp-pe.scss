@@ -3,7 +3,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-
 #wb-body, #wb-body-sec {
 	background:#fff;
 }
@@ -52,7 +51,6 @@ h2 {
 		text-align: center;
 			a{
 				-webkit-appearance: none;
-				background: #ccc url(../images/sp-pe-button.gif) 0 0 repeat-x;
 				border-bottom:1px solid #999;
 				border-right: 1px solid #999;
 				border-top: 1px solid #fff;
@@ -71,7 +69,6 @@ h2 {
 				font-size: 120%;
 				text-decoration: none;
 				&:hover, &:focus, &:active{
-					background: #ddd url(../images/sp-pe-button-focus.gif) 0 0 repeat-x;
 					text-shadow: 0 1px 0 #ddd;
 					box-shadow:none;
 					-moz-box-shadow:none;
