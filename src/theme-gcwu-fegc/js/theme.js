@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*
- * GC Web Usability Intranet theme scripting
+ * GC Web Usability theme scripting
  */
 /*global jQuery: false, pe: false, window: false, document: false*/
 (function ($) {

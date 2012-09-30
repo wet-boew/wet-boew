@@ -7,4 +7,39 @@
 	#wb-core{
 		margin-bottom:-20px;
 	}
+	#gcwu-srchbx{
+		padding-bottom:0;
+		bottom:-4px;
+	}
+	#gcwu-srch-submit{
+		padding:2px 0;
+		position:relative;
+		top:1px;
+	}
+	#gcwu-title{
+		zoom:1;
+		position:relative;
+	}
+	#gcwu-title-in{
+		position:absolute;
+		top:23%;
+	}
+	#gcwu-date-mod{
+		position:relative;
+		float:right;
+		margin-bottom:-15px;
+		top:17px;
+	}
+	#gcwu-tctr{
+		padding:7px 0 6px;
+		li.gcwu-tc{
+			padding:0 10px;
+		}
+		li.gcwu-tr{
+			padding-left:10px;
+		}
+	}
+	#gcwu-bnr,#gcwu-tctr li{
+		float:left;
+	}
 }

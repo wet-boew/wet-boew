@@ -7,8 +7,12 @@ body{
 	min-width:960px;
 }
 
-#wb-head,#wb-core,#wb-foot{
+#wb-head,#wb-core,#wb-foot,#gcwu-bnr,#gcwu-psnb,#gcwu-bc,#gcwu-sft{
 	width:100%;
+}
+
+#gcwu-title-in{
+	width:360px;
 }
 
 #wb-body-sec-sup #wb-main{
@@ -25,7 +29,7 @@ body{
 	left:480px;
 }
 
-#wb-head-in,#wb-core-in,#wb-body #wb-main,#wb-foot-in{
+#wb-core-in,#wb-head-in,#wb-foot-in,#gcwu-bnr-in,#gcwu-psnb-in,#gcwu-bc-in,#gcwu-sft-in,#gcwu-bnr-in,#gcwu-psnb .mb-menu,#wb-body #wb-main{
 	width:960px;
 }
 
