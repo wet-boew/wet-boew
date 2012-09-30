@@ -540,9 +540,10 @@ a:active{
 	}
 }
 
-/* Position the custom icons  */
-.ui-icon-site-menu {
+/* Position and size the custom icon */
+.ui-icon-site-menu,.ui-icon-alt {
 	background-position: 0px 50%;
+	background-size: 18px 18px;
 }
 
 .no-js {
