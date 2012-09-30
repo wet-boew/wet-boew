@@ -55,7 +55,7 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = $('html'), hlinks, hlinks_same, $this, newurl, urlparams, urlparam, target, test, init_on_mobileinit = false;
+			var $html = $('html'), hlinks, hlinks_same, $this, target, test, init_on_mobileinit = false;
 
 			// Append the mobile test to the body
 			pe.mobiletest = document.createElement('div');
@@ -809,6 +809,7 @@
 					next,
 					subsection,
 					hlink,
+					navCurrent,
 					nested,
 					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
@@ -826,7 +827,8 @@
 						// If the menu item is a heading
 						if (tagName === heading) {
 							hlink = $this.children('a');
-							subsection = $('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? ' data-collapsed="false"' : '') + '>' + headingOpen + $this.text() + headingClose + '</div>');
+							navCurrent = hlink.hasClass('nav-current');
+							subsection = $('<div data-role="collapsible"' + ((expand && !menubar) || navCurrent ? ' data-collapsed="false"' : '') + (navCurrent ? ' class="nav-current"' : '') + '>' + headingOpen + $this.text() + headingClose + '</div>');
 							next = $this.next();
 							if (next.get(0).tagName.toLowerCase() === 'ul') {
 								// The original menu item was not in a menu bar
@@ -890,17 +892,17 @@
 			* @memberof pe.menu
 			* @param {jQuery object | DOM object} menusrc Mobile menu to correct
 			* @param {string} selector Selector for the link(s) to expand/collapse.
-			* @param {boolean} expand Expand (true) or collapse (false) the selected collapsible menus.
+			* @param {boolean} collapse Collapse (true) or expand (false) the selected collapsible menus.
 			* @param {boolean} allparents Expand/collapse all ancestor collapsible menus (true) or just the nearest parent (false).
 			* @function
 			* @return {void} Mobile menu
 			*/
-			expandcollapsemobile: function (menusrc, selector, expand, allparents) {
+			expandcollapsemobile: function (menusrc, selector, collapse, allparents) {
 				var elm = $((typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc))).find(selector);
 				if (allparents) {
-					elm.parents('div[data-role="collapsible"]').attr('data-collapsed', expand);
+					elm.parents('div[data-role="collapsible"]').attr('data-collapsed', collapse);
 				} else {
-					elm.closest('div[data-role="collapsible"]').attr('data-collapsed', expand);
+					elm.closest('div[data-role="collapsible"]').attr('data-collapsed', collapse);
 				}
 			},
 			/**

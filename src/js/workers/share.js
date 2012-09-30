@@ -89,7 +89,7 @@
 					popupLinkSpan = popupLink.getElementsByTagName('span');
 					if (popupLinkSpan.length > 0) {
 						popupLinkSpan = popupLinkSpan[0];
-						popupLink.setAttribute('title', popupLinkSpan.getAttribute('title'));
+						popupLink.title = popupLinkSpan.title;
 						popupLinkSpan.removeAttribute('title');
 					}
 				}

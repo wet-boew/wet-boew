@@ -25,6 +25,7 @@
 				inputs_len = inputs.length,
 				input,
 				len,
+				nativeAttribute,
 				submitted = false,
 				required = form.find('[required]').attr('aria-required', 'true'),
 				$errorFormId = 'errors-' + (form.attr('id') === undefined ? 'default' : form.attr('id')),
@@ -70,14 +71,16 @@
 
 			// Remove the pattern attribute until it is safe to use with jQuery Validation
 			len = inputs_len;
-			while (len--) {
-				input = inputs[len];
-				if (input.hasAttribute !== undefined) {
-					if (input.hasAttribute('pattern')) {
-						input.removeAttribute('pattern');
+			if (len !== 0 && inputs[0].hasAttribute !== undefined) {
+				while (len--) {
+					input = inputs[len];
+					if (nativeAttribute) {
+						if (input.hasAttribute('pattern')) {
+							input.removeAttribute('pattern');
+						}
+					} else {
+						$(input).removeAttr('pattern');
 					}
-				} else {
-					$(input).removeAttr('pattern');
 				}
 			}
 

@@ -97,8 +97,6 @@
 
 				if (wet_boew_theme.menubar.length > 0) {
 					nav = pe.menu.buildmobile(mb_li, 3, 'a', true, true);
-					pe.menu.expandcollapsemobile(nav, 'h3', true, false);
-					pe.menu.expandcollapsemobile(nav, '.nav-current', false, true);
 					mb_dialogue += '<section><div><h2>' + mb_header_html + '</h2><div data-role="controlgroup">' + nav[0].innerHTML + '</div></div></section>';
 				}
 				mb_dialogue += '</nav></div></div></div>';
