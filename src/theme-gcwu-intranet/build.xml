@@ -38,9 +38,11 @@
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode" depends="-merge-css">
 		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/../theme-gcwu-fegc/images"/>
 			<fileset dir="${src.dir}/images"/>
 		</copy>
 		<copy todir="${build.dir}/encode/images">
+			<fileset dir="${src.dir}/../theme-gcwu-fegc/images"/>
 			<fileset dir="${src.dir}/images"/>
 		</copy>
 		<copy todir="${build.dir}/encode/css/images">
@@ -102,6 +104,20 @@
 		<copy todir="${build.dir}/images">
 			<fileset dir="${src.dir}/images" />
 		</copy>
+		<copy todir="${build.dir}/pre/merge/../css">
+			<fileset dir="${src.dir}/../base/css"/>
+		</copy>
+		<copy todir="${build.dir}/pre/merge/../grids/css">
+			<fileset dir="${src.dir}/../grids/css"/>
+		</copy>
+		<copy todir="${build.dir}/pre/merge/../js/css">
+			<filelist dir="${src.dir}/../js/css">
+				<file name="pe-ap-ns.css"/>
+			</filelist>
+		</copy>
+		<copy todir="${build.dir}/pre/merge/../theme-gcwu-fegc/css/includes">
+			<fileset dir="${src.dir}/../theme-gcwu-fegc/css/includes"/>
+		</copy>
 		<filelist id="corefiles" dir="${build.dir}/pre/merge/css">
 			<file name="theme.css"/>
 			<file name="theme-ie.css"/>
@@ -109,6 +125,7 @@
 			<file name="theme-sp-pe-ie.css"/>
 			<file name="theme-serv.css"/>
 			<file name="theme-serv-ie.css"/>
+			<file name="theme-ns.css"/>
 		</filelist>
 		<for param="css-file">
 			<path>
@@ -129,6 +146,7 @@
 				<file name="theme-sp-pe-ie.css"/>
 				<file name="theme-serv.css"/>
 				<file name="theme-serv-ie.css"/>
+				<file name="theme-ns.css"/>
 			</filelist>
 			<filterchain>
 				<concatfilter prepend="${src.dir}/../build-css-head.txt"/>

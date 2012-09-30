@@ -49,7 +49,6 @@ body{
 #gcwu-title{
 	min-height:40px;
 	font-weight:700;
-	background:#146094 url(../images/bg-waves.jpg);
 	padding:2px 5px;
 	a{
 		font-size:1.5em;
@@ -470,7 +469,6 @@ img{
 			}
 		}
 		li {
-			background: url(../images/bcrumb-mobile.png) no-repeat right center;
 			display: inline;
 			float: left;
 			margin: 0;
@@ -516,34 +514,6 @@ a:active{
     margin:0;
     padding:0;
     border:0;
-}
-
-/* Custom jquery.mobile icons */
-.ui-icon-site-menu {
-	background-image: url(../images/icons-18-white.png);
-}
-.ui-icon-alt {
-	background-image: url(../images/icons-18-black.png);
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio:1.5),
-	only screen and (min--moz-device-pixel-ratio:1.5), 
-	only screen and (-o-min-device-pixel-ratio: 3/2), 
-	only screen and (min-device-pixel-ratio:1.5), 
-	only screen and (min-resolution:240dpi), 
-	only screen and (min-resolution:1.5dppx) {
-	.ui-icon-site-menu {
-		background-image: url(../images/icons-36-white.png);
-	}
-	.ui-icon-alt {
-		background-image: url(../images/icons-36-black.png);
-	}
-}
-
-/* Position and size the custom icon */
-.ui-icon-site-menu,.ui-icon-alt {
-	background-position: 0px 50%;
-	background-size: 18px 18px;
 }
 
 .no-js {

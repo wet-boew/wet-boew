@@ -4,5 +4,61 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /* -----Build Include Section Start----- */
+@import url('../../css/base.css');
+@import url('../../theme-gcwu-fegc/css/includes/serv.css');
 @import url('includes/serv.css');
 /* -----Build Include Section End----- */
+
+/* Desktop view */
+@media screen and (min-width:768px) and (min-device-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('../../grids/css/responsive.css');
+@import url('../../theme-gcwu-fegc/css/includes/default-responsive.css');
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width:768px) and (max-width:959px) and (min-device-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('../../grids/css/responsive-768.css');
+@import url('../../theme-gcwu-fegc/css/includes/default-responsive-768.css');
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width:1200px) and (min-device-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('../../grids/css/responsive-1200.css');
+@import url('../../theme-gcwu-fegc/css/includes/default-responsive-1200.css');
+/* -----Build Include Section End----- */
+}
+@media (min-width:768px) and (min-device-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('../../css/base-desktop.css');
+@import url('../../theme-gcwu-fegc/css/includes/serv-desktop.css');
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width:768px) and (min-device-width:768px) {
+/* -----Build Include Section Start----- */
+@import url('../../css/base-desktop-screen.css');
+@import url('../../theme-gcwu-fegc/css/includes/serv-desktop-screen.css');
+/* -----Build Include Section End----- */
+}
+
+@media screen{
+/* -----Build Include Section Start----- */
+@import url('../../css/base-screen.css');
+@import url('../../theme-gcwu-fegc/css/includes/serv-screen.css');
+/* -----Build Include Section End----- */
+}
+
+/* Mobile view */
+@media screen and (max-width:767px), screen and (max-device-width:767px) {
+/* -----Build Include Section Start----- */
+@import url('../../css/base-mobile.css');
+@import url('../../theme-gcwu-fegc/css/includes/serv-mobile.css');
+/* -----Build Include Section End----- */
+}
+
+@media print{
+/* -----Build Include Section Start----- */
+@import url('../../css/base-print.css');
+@import url('../../theme-gcwu-fegc/css/includes/serv-print.css');
+/* -----Build Include Section End----- */
+}
