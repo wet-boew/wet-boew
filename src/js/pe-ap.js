@@ -28,7 +28,7 @@
 		* @memberof pe
 		* @type {string} Page language, defaults to 'en' if not available
 		*/
-		language: ($('html').attr('lang').length > 0 ? $('html').attr('lang') : 'en'),
+		language: (document.getElementsByTagName('html')[0].lang ? document.getElementsByTagName('html')[0].lang : 'en'),
 		touchscreen: 'ontouchstart' in document.documentElement,
 		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
@@ -1344,7 +1344,7 @@
 					return c_d;
 				},
 				/**
-				* Adds a javascript link for i18n to the head. It picks the file in pe.add.liblocation + "i18n/" whose prefix matches the page language.
+				* Adds a JavaScript link for i18n to the head. It picks the file in pe.add.liblocation + "i18n/" whose prefix matches the page language.
 				* @memberof pe.add
 				* @function
 				* @param {string} lang The two (iso 639-1) or three (iso 639-2) letter language code of the page.
