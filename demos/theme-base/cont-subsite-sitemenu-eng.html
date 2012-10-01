@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>Base theme - Working examples - Web Experience Toolkit (WET)</title>
+<title>Content page + Sub-site + Site menu - Base theme - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-base/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -47,12 +47,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="base-fullhd-in">
 <p>id="base-fullhd-in"</p>
 <ul>
-<li id="base-fullhd-lang"><a href="index-fra.html" lang="fr">Français</a></li>
+<li id="base-fullhd-lang"><a href="cont-subsite-sitemenu-fra.html" lang="fr">Français</a></li>
 </ul>
 </div>
 </div></section>
 
-<div id="base-bnr" role="banner"><div id="base-bnr-in">
+<div id="base-bnr" role="banner" aria-owns="base-subsite"><div id="base-bnr-in">
 <div id="base-title"><p id="base-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
 
 <section role="search"><div id="base-srchbx"><h2>Search</h2>
@@ -61,6 +61,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <input id="base-srch-submit" name="base-srch-submit" type="submit" value="Search" data-icon="search" />
 </div></form>
 </div></section>
+</div></div>
+<div id="base-subsite" class="base-subsite-1">
+<p><a href="#">Sub-site name</a></p>
 </div></div>
 
 <nav role="navigation">
@@ -80,7 +83,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ol>
 <li><a href="../../index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li>Base theme</li>
+<li><a href="index-eng.html">Base theme</a></li>
+<li>Content page + Sub-site + Site menu</li>
 </ol>
 </div></div>
 </nav>
@@ -90,34 +94,92 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Base theme</h1>
+<h1 id="wb-cont">Content page + Sub-site + Site menu - Base theme</h1>
 
-<section><h2 id="content">Content pages</h2>
-<ul>
-<!--<li><a href="cont-subsite-sitemenu-eng.html"><span class="wb-invisible">Content pages - </span>English example - Sub-site + Site menu</a></li>
-<li><a href="cont-subsite-sitemenu-fra.html"><span class="wb-invisible">Content pages - </span>French example - Sub-site + Site menu</a></li>-->
-<li><a href="cont-sitemenu-eng.html"><span class="wb-invisible">Content pages - </span>English example - Site menu</a></li>
-<li><a href="cont-sitemenu-fra.html"><span class="wb-invisible">Content pages - </span>French example - Site menu</a></li>
-</ul>
-
-<section><h4>Secondary menu 1</h4>
-<ul>
-<!--<li><a href="cont-secnav1-subsite-sitemenu-eng.html"><span class="wb-invisible">Content pages - </span>English example - Secondary menu 1 + Sub-site + Site menu</a></li>
-<li><a href="cont-secnav1-subsite-sitemenu-fra.html"><span class="wb-invisible">Content pages - </span>French example - Secondary menu 1 + Sub-site + Site menu</a></li>-->
-<li><a href="cont-secnav1-sitemenu-eng.html"><span class="wb-invisible">Content pages - </span>English example - Secondary menu 1 + Site menu</a></li>
-<li><a href="cont-secnav1-sitemenu-fra.html"><span class="wb-invisible">Content pages - </span>French example - Secondary menu 1 + Site menu</a></li>
-</ul>
+<section><h2>Heading 2 (<code>h2</code>) default appearance</h2>
+	<section><h3>Heading 3 (<code>h3</code>) default appearance</h3>
+		<section><h4>Heading 4 (<code>h4</code>) default appearance</h4>
+			<section><h5>Heading 5 (<code>h5</code>) default appearance</h5>
+				<section><h6>Heading 6 (<code>h6</code>) default appearance</h6>
+					<p>Paragraph default appearance</p>
+				</section>
+			</section>
+		</section>
+	</section>
 </section>
 
-<section><h4>Secondary menu 2</h4>
+<p><a href="#">Link default appearance</a></p>
+<p><a href="mailto:"><code>mailto:</code> link default appearance</a></p>
+<p><a href="http://www.">Third party <code>http://www.</code> link default appearance</a></p>
+<p><a href=".doc">Link to file downloads based on file type <code>.doc</code>, <code>.psd</code>, <code>.zip</code>, <code>.pdf</code>, <code>.xls</code>, <code>.xlt</code>, <code>.rtf</code> and <code>.txt</code> default appearance</a></p>
+<p>Abbreviation default appearance: <abbr title="Treasury Board">TBS</abbr>.</p>
+
 <ul>
-<!--<li><a href="cont-secnav2-subsite-sitemenu-eng.html"><span class="wb-invisible">Content pages - </span>English example - Secondary menu 2 + Sub-site + Site menu</a></li>
-<li><a href="cont-secnav2-subsite-sitemenu-fra.html"><span class="wb-invisible">Content pages - </span>French example - Secondary menu 2 + Sub-site + Site menu</a></li>-->
-<li><a href="cont-secnav2-sitemenu-eng.html"><span class="wb-invisible">Content pages - </span>English example - Secondary menu 2 + Site menu</a></li>
-<li><a href="cont-secnav2-sitemenu-fra.html"><span class="wb-invisible">Content pages - </span>French example - Secondary menu 2 + Site menu</a></li>
+<li>unordered list (<code>ul</code>) first level default appearance
+	<ul>
+	<li>unordered list (<code>ul</code>) second level default appearance
+		<ul>
+		<li>unordered list (<code>ul</code>) third level default appearance</li>
+		</ul>
+	</li>
+	</ul>
+</li>
 </ul>
-</section>
-</section>
+
+<ol>
+<li>ordered list (<code>ol</code>) first level default appearance</li>
+<li>ordered list (<code>ol</code>) first level default appearance
+	<ol>
+	<li>ordered list (<code>ol</code>) second level default appearance</li>
+	<li>ordered list (<code>ol</code>) second level default appearance
+		<ol>
+		<li>ordered list (<code>ol</code>) third level default appearance</li>
+		<li>ordered list (<code>ol</code>) third level default appearance</li>
+		</ol>
+	</li>
+	</ol>
+</li>
+</ol>
+
+<table>
+<caption>Table caption default appearance</caption>
+<thead>
+<tr>
+<th scope="col">Table header (<code>th</code>) default appearance</th>
+<th scope="col">Table header (<code>th</code>) default appearance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Table data (<code>td</code>) default appearance</td>
+<td>Table data (<code>td</code>) default appearance</td>
+</tr>
+</tbody>
+</table>
+
+<form action="#" method="post">
+<div><label for="data1">Form input default appearance:</label> <input name="data1" type="text" id="data1" /></div>
+<div><label for="data2">Form text area default appearance:</label> <textarea name="data2" cols="15" rows="3" id="data2"></textarea></div>
+<div><label for="data4">Form <code>select</code> default appearance:</label> 
+<select id="data4" name="data4">
+<option value="Option 1">Option 1</option>
+<option value="Option 2">Option 2</option>
+<option value="Option 3">Option 3</option>
+<option value="Option 4">Option 4</option>
+</select></div>
+<fieldset><legend>Form <code>legend</code>, <code>fieldset</code> and <code>checkbox</code> default appearance</legend>
+<div><input name="checkbox" type="checkbox" id="data5" value="checkbox" />&#160;<label for="data5">Option 1</label>&#160;&#160;
+<input name="checkbox" type="checkbox" id="data6" value="checkbox" />&#160;<label for="data6">Option 2</label>&#160;&#160;
+<input name="checkbox" type="checkbox" id="data7" value="checkbox" />&#160;<label for="data7">Option 3</label>&#160;&#160;
+<input name="checkbox" type="checkbox" id="data8" value="checkbox" />&#160;<label for="data8">Option 4</label></div>
+</fieldset>
+<div><input name="submit" type="submit" id="submit" value="Submit default appearance" />
+<input name="reset" type="reset" id="reset" value="Reset default appearance" /></div>
+</form>
+
+<blockquote>
+<p>&quot;Blockquote default appearance&quot;.</p>
+</blockquote>
 
 <dl id="base-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
