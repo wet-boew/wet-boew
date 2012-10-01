@@ -65,7 +65,7 @@
 			elm.wrap('<div id="slideoutInnerWrapper" />'); // This is used for 'animate'.
 
 			// Add WAI-ARIA
-			elm.attr({'role': 'menu', 'id': 'slideout-body'}).find('li').attr('role', 'presentation');
+			elm.attr({'role': 'menu', 'id': 'slideout-body'}).find('ul, li').attr('role', 'presentation');
 
 			// Remove the link off the page we're on if we're asked to
 			if (rmCurrLink) {

@@ -7,7 +7,6 @@ html{
 	overflow-y: scroll;
 }
 body{
-	min-width:600px;
 	margin:0;
 	padding:0;
 }
@@ -20,17 +19,6 @@ body{
 }
 
 /** Box model - centered **/
-#wb-head, #wb-foot{
-	width: 100%;
-}
-#wb-core, #wb-core-in{
-	width:600px;
-	margin:auto;
-}
-#wb-head-in, #wb-foot-in{
-	width:760px;
-	margin:auto;
-}
 #wb-main{
 	z-index:1;
 	display:inline;
@@ -59,10 +47,8 @@ body{
 }
 #wb-body{
 	margin: 0 auto;
-	width: 600px;
 	border-top: 20px solid #FFFFFF;
 	#wb-main{
-		width:600px;
 		float:left;
 	}
 }
@@ -81,7 +67,6 @@ body{
 	float: left;
 	margin-bottom: 30px;
 	min-height: 250px;
-	width: 600px;
 	color: #000;
 }
 #cn-upper-msg{
@@ -96,6 +81,7 @@ body{
 	p{
 		width: 45%;
 		font-size: 140%;
+		padding: 0 5px;
 	}
 }
 #cn-left-msg{
