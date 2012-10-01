@@ -21,12 +21,12 @@ body{
 	}
 }
 
-#wb-body-sec #wb-skip2 {
+#base-fullhd, #wb-body-sec #wb-skip2 {
 	display:none;
 	visibility:hidden;
 }
 
-#gcwu-psnb,#gcwu-srchbx{
+#base-psnb,#base-srchbx{
 	h2 a{
 		color:#fff;
 		text-decoration:none;
@@ -37,7 +37,8 @@ body{
 	background:#fff !important;
 }
 
-#gcwu-title{
+#base-title{
+	background:#146094;
 	min-height:40px;
 	font-weight:700;
 	padding:2px 5px;
@@ -49,7 +50,7 @@ body{
 	}
 }
 
-#gcwu-date-mod{
+#base-date-mod{
 	float:right;
 	margin:5px 0;
 }
@@ -97,7 +98,7 @@ a {
 }
 
 .ui-mobile {
-	#gcwu-srch{
+	#base-srch{
 		box-shadow:none;
 	}
 	#wb-sec{
@@ -115,20 +116,19 @@ a {
 	padding:5px;
 }
 
-#gcwu-sft, #gcwu-sft-in{
+#base-sft, #base-sft-in{
 	background: #efefef;
 }
 
-#gcwu-sft{
+#base-sft{
 	padding-bottom:5px;
 	margin-top:5px;
 	li a.ui-btn {
-		color:#fff !important;
 		font-weight:700;
 	}
 }
 
-#gcwu-sft-in{
+#base-sft-in{
 	border-top: 1px solid #CCCCCC;
 	padding: 5px;
 	div{
@@ -137,18 +137,17 @@ a {
 	}
 }
 
-#gcwu-tctr {
-	width:auto;
-	padding:0;
-	li.gcwu-tc{
-		border-right:1px solid #999;
-		padding:0 9px 0 0;
-	}
-	.gcwu-tr{
-		padding-left:6px;
-	}
+#base-fullft {
+	clear:both;
+	margin:0;
+	padding:5px;
 	li{
-		display:inline;
+		width:50%;
+		float:left !important;
+		margin:10px 0;
+		&#base-fullft-ca div{
+			text-align:left;
+		}
 	}
 }
 
@@ -158,13 +157,13 @@ img{
 	display:block;
 }
 
-#gcwu-srch-submit{
+#base-srch-submit{
 	min-height:22px;
 	display:inline;
 	margin:0;
 }
 
-#gcwu-psnb,#gcwu-srchbx{
+#base-psnb,#base-srchbx{
 	width:50%;
 	float:right;
 	border-top:1px solid #044062;
@@ -201,17 +200,17 @@ img{
 	}
 }
 
-#gcwu-psnb h2 {
+#base-psnb h2 {
 	span {
 		display: none;
 	}
 }
 
-#gcwu-srchbx h2{
+#base-srchbx h2{
 	padding-right:20px;
 }
 
-#gcwu-bnr-in .ui-mini .ui-btn-inner {
+#base-bnr-in .ui-mini .ui-btn-inner {
 	font-size:1em;
 }
 
@@ -250,15 +249,15 @@ img{
 	}
 }
 
-#gcwu-bnr,#wb-core{
+#base-bnr,#wb-core{
 	clear:both;
 }
 
-#gcwu-bnr{
+#base-bnr{
 	background:#4E7EB7;
 }
 
-#gcwu-date-mod,#wb-head,#gcwu-sft-in,#jqm-wb-mb #gcwu-bc-in ol{
+#base-date-mod,#wb-head,#base-sft-in,#jqm-wb-mb #base-bc-in ol{
 	&:after{
 		content:".";
 		display:block;
@@ -268,11 +267,11 @@ img{
 	}
 }
 
-.wet-boew-menubar li .mb-sm,#gcwu-bc,#gcwu-psnb #gcwu-psnb-in,#gcwu-srchbx form,.wet-boew-menubar li .mb-sm *{
+.wet-boew-menubar li .mb-sm,#base-bc,#base-psnb #base-psnb-in,#base-srchbx form,.wet-boew-menubar li .mb-sm *{
 	display:none;
 }
 
-#gcwu-srch-submit{
+#base-srch-submit{
 	min-height: 22px;
 }
 
@@ -289,7 +288,7 @@ img{
 	border-bottom: none;
 }
 
-#gcwu-bnr .ui-navbar a.ui-btn-active {
+#base-bnr .ui-navbar a.ui-btn-active {
 	background-color:#444444;
 	background-image:-webkit-gradient(linear,left top,left bottom,from(#606060),to(#333333));
 	background-image:-webkit-linear-gradient(#606060,#333333);
@@ -299,12 +298,6 @@ img{
 	background-image:linear-gradient(#606060,#333333);
 	border:1px solid #000;
 	border-right:none;
-}
-
-#jqm-wb-mb, #jqm-wb-search {
-	.ui-bar-a h1 {
-		color: #fff;
-	}
 }
 
 #jqm-wb-mb {
@@ -373,7 +366,7 @@ img{
 	li.top-level div.ui-btn-inner {
 		padding-left:25px;
 	}
-	#gcwu-bc-in {
+	#base-bc-in {
 		background:#DFDFDD;
 		background-image:-webkit-gradient(linear,left top,left bottom,from(#F0EFEF),to(#DFDFDD));
 		background-image:-webkit-linear-gradient(#F0EFEF,#DFDFDD);
@@ -399,6 +392,7 @@ img{
 			}
 		}
 		li {
+			background: url(../images/bcrumb-mobile.png) no-repeat right center;
 			display: inline;
 			float: left;
 			margin: 0;
@@ -446,12 +440,40 @@ a:active{
     border:0;
 }
 
+/* Custom jquery.mobile icons */
+.ui-icon-site-menu {
+	background-image: url(../images/icons-18-white.png);
+}
+.ui-icon-alt {
+	background-image: url(../images/icons-18-black.png);
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),
+	only screen and (min--moz-device-pixel-ratio:1.5), 
+	only screen and (-o-min-device-pixel-ratio: 3/2), 
+	only screen and (min-device-pixel-ratio:1.5), 
+	only screen and (min-resolution:240dpi), 
+	only screen and (min-resolution:1.5dppx) {
+	.ui-icon-site-menu {
+		background-image: url(../images/icons-36-white.png);
+	}
+	.ui-icon-alt {
+		background-image: url(../images/icons-36-black.png);
+	}
+}
+
+/* Position and size the custom icon */
+.ui-icon-site-menu,.ui-icon-alt {
+	background-position: 0px 50%;
+	background-size: 18px 18px;
+}
+
 .no-js {
-	#gcwu-srch{
+	#base-srch{
 		margin-top:3px;
 		padding:3px 0;
 	}
-	#gcwu-psnb {
+	#base-psnb {
 		li{
 			border: 1px solid #222;
 		}

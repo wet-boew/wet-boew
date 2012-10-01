@@ -10,6 +10,7 @@ body{
 .wb-sec-def {
 	h3.top-section {
 		a{
+			background:#1A3D6C;
 			color:#FFF;
 			padding-top:5px;
 			padding-bottom:5px;
@@ -89,7 +90,7 @@ body{
 }
 
 #wb-foot {
-	h4,.gcwu-col-head{
+	h4,.base-col-head{
 		font-size:110%;
 		border:none;
 		font-weight:700;
@@ -111,8 +112,8 @@ body{
 	}
 }
 
-#gcwu-sft{
-	padding-bottom:20px;
+#base-sft{
+	background:#696;
 	font-family:Arial, Helvetica, sans-serif;
 	a,span.link{
 		color:#222;
@@ -120,7 +121,7 @@ body{
 	li a,li span.link{
 		line-height:1.75em;
 	}
-	h4,.gcwu-col-head{
+	h4,.base-col-head{
 		margin-top:10px;
 	}
 	address{
@@ -131,24 +132,19 @@ body{
 	}
 }
 
-#gcwu-sft-in{
-	padding-top:20px;
+#base-sft-in{
+	background:#CCC;
+	padding:20px 0;
 	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
 		position:static;
 	}
 }
 
-#gcwu-tctr{
-	margin:0;
-	padding:8px 0 6px;
-	li{
-		display:inline;
-		&.gcwu-tc{
-			border-right:1px solid #999;
-			padding:0 9px 0 10px;
-		}
-		&.gcwu-tr{
-			padding-left:6px;
-		}
-	}
+#base-fullft{
+	background:#000;
+	color:#FFF;
+}
+
+#base-fullft-in{
+	background:#666;
 }

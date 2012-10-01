@@ -22,13 +22,17 @@
 		search: null,
 		bcrumb: null,
 		title: null,
-		wmms: $('#gcwu-wmms'),
+		sft: null,
+		fullft: null,
 		init: function () {
-			wet_boew_theme.psnb = pe.header.find('#gcwu-psnb');
+			wet_boew_theme.fullhd = pe.header.find('#base-fullhd');
+			wet_boew_theme.psnb = pe.header.find('#base-psnb');
 			wet_boew_theme.menubar = wet_boew_theme.psnb.find('.wet-boew-menubar');
-			wet_boew_theme.search = pe.header.find('#gcwu-srchbx');
-			wet_boew_theme.bcrumb = pe.header.find('#gcwu-bc');
-			wet_boew_theme.title = pe.header.find('#gcwu-title');
+			wet_boew_theme.search = pe.header.find('#base-srchbx');
+			wet_boew_theme.bcrumb = pe.header.find('#base-bc');
+			wet_boew_theme.title = pe.header.find('#base-title');
+			wet_boew_theme.sft = pe.footer.find('#base-sft');
+			wet_boew_theme.fullft = pe.footer.find('#base-fullft');
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm');
@@ -60,7 +64,12 @@
 				s_dialogue,
 				_list = "",
 				navbar,
-				mb_li;
+				links,
+				footer1,
+				lang_links,
+				lang_nav,
+				mb_li,
+				target;
 
 			if (wet_boew_theme.menubar.length > 0 || pe.secnav.length > 0 || wet_boew_theme.search.length > 0) {
 				// Transform the menu to a dialog box
@@ -106,6 +115,21 @@
 			if (_list.length > 0) {
 				navbar = $('<div data-role="navbar" data-iconpos="right"><ul class="wb-hide">' + _list + '</ul></div>');
 				wet_boew_theme.title.after(navbar);
+			}
+			wet_boew_theme.fullhd.remove();
+
+			if (wet_boew_theme.sft.length > 0) {
+				links = wet_boew_theme.sft.find('.base-col-head a');
+				target = wet_boew_theme.sft.children('#base-sft-in');
+				wet_boew_theme.fullft.parent().remove();
+
+				// transform the footer into mobile nav bar
+				footer1 = '<div data-role="navbar"><ul>';
+				links.each(function () {
+					footer1 += '<li><a href="' + this.href + '" data-theme="b">' + this.innerHTML + '</a></li>';
+				});
+				footer1 += '</ul></div>';
+				target.replaceWith(footer1);
 			}
 
 			// jquery mobile has loaded

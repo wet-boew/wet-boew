@@ -3,7 +3,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#gcwu-title,#gcwu-title a{
+#base-title,#base-title a{
 	font-size:16pt;
 	text-decoration:none;
 	color:#000;
@@ -42,7 +42,7 @@ h6{
 	font-size:100%;
 }
 
-#gcwu-bc{
+#base-bc{
 	min-height:inherit;
 	height:auto;
 	ol{
@@ -66,11 +66,11 @@ h6{
 	}
 }
 
-#wb-sec,#wb-sup,#gcwu-srchbx,#gcwu-psnb,#wb-foot{
+#wb-sec,#wb-sup,#base-srchbx,#base-psnb,#wb-foot{
 	display:none;
 }
 
-#gcwu-date-mod{
+#base-date-mod{
 	float:right;
 	display:inline;
 }
