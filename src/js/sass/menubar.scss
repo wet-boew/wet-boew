@@ -5,7 +5,7 @@
  */
 .wet-boew-menubar{
 	background-color:#1A3D6C;
-	border-bottom:4px solid #999;
+	border-bottom:4px solid #AAA;
 	min-height:28px;
 	min-height:2.187em;
 }
@@ -19,14 +19,14 @@
 
 .mb-menu{
 	position:absolute;
-	background-color:#1A3D6C;
+	background-color:#222;
 	width:100%;
 	z-index:500;
 	float:left;
 	li{
-		background-color:#1A3D6C;
-		border-left:1px solid #358;
-		border-right:1px solid #557;
+		background-color:#222;
+		border-left:1px solid #333;
+		border-right:1px solid #999;
 		float:left;
 		h3{
 			font-size:100%;
@@ -34,7 +34,7 @@
 			padding:0;
 		}
 		&:first-child.mb-active{
-			border-left:1px solid #CCC;
+			border-left:1px solid #AAA;
 		}
 		div.mb-sm{
 			display:none;
@@ -59,7 +59,7 @@
 		padding-right:0.79em;
 	}
 	.nav-current{
-		background:#242;
+		background:#1A3D6C;
 		color:#fff;
 	}
 	.mb-sm-open {
@@ -105,7 +105,7 @@
 .mb-active {
 	a:hover,a:link,a:visited{
 		&.mb-has-sm{
-			background-color:#CCC;
+			background-color:#AAA;
 			color:#000;
 		}
 	}
@@ -115,8 +115,8 @@
 	.mb-sm-open{
 		position:absolute;
 		z-index:499;
-		background-color:#CCC;
-		border-bottom:4px solid #242;
+		background-color:#AAA;
+		border-bottom:4px solid #222;
 		padding-top:4px;
 		border-radius:0 0 3px 3px;
 		-moz-border-radius:0 0 3px 3px;
@@ -154,15 +154,15 @@
 }
 
 .mb-main-link{
-	background-color:#DDD;
-	border-top:1px solid #AAA;
+	background-color:#CCC;
+	border-top:1px solid #999;
 	padding-left:10px;
 }
 
 .mb-highlight{
-	background-color:#DDD;
-	border-top:1px solid #AAA;
-	border-bottom:1px solid #AAA;
+	background-color:#CCC;
+	border-top:1px solid #888;
+	border-bottom:1px solid #888;
 	margin-bottom:10px;
 	h4{
 		float:left;
@@ -182,7 +182,7 @@
 		}
 		a{
 			display:inline-block !important;
-			border-left:1px solid #999;
+			border-left:1px solid #777;
 			padding:0 1em !important;
 		}
 	}
