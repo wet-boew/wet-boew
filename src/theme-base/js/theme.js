@@ -116,7 +116,6 @@
 				navbar = $('<div data-role="navbar" data-iconpos="right"><ul class="wb-hide">' + _list + '</ul></div>');
 				wet_boew_theme.title.after(navbar);
 			}
-			wet_boew_theme.fullhd.remove();
 
 			if (wet_boew_theme.sft.length > 0) {
 				links = wet_boew_theme.sft.find('.base-col-head a');

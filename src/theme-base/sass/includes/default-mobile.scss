@@ -21,7 +21,7 @@ body{
 	}
 }
 
-#base-fullhd, #wb-body-sec #wb-skip2 {
+#wb-body-sec #wb-skip2 {
 	display:none;
 	visibility:hidden;
 }
@@ -157,6 +157,35 @@ img{
 	display:block;
 }
 
+#base-fullhd{ 
+	p {
+		display:none;
+	}
+	ul {
+		margin: 0 5px 0 0;
+		li{
+			display:none;
+			padding-top:8px;
+		}
+		#base-fullhd-lang{
+			display:inline;
+			float:right;
+			margin-bottom:2px;
+		}
+	}
+}
+
+#base-fullhd-lang a{
+	color:#222;
+	text-decoration:none;
+	background:#eee;
+	border:1px solid #ddd;
+	border-radius:2px;
+	float:right;
+	font-weight:400;
+	padding:3px;
+}
+
 #base-srch-submit{
 	min-height:22px;
 	display:inline;
@@ -166,26 +195,26 @@ img{
 #base-psnb,#base-srchbx{
 	width:50%;
 	float:right;
-	border-top:1px solid #044062;
+	border-top:1px solid #CCC;
 	h2 {
-		text-shadow:0 1px 1px #044062;
-		background-color:#333333;
-		background-image:-webkit-gradient(linear,left top,left bottom,from(#444444),to(#2D2D2D));
-		background-image:-webkit-linear-gradient(#444444,#2D2D2D);
-		background-image:-moz-linear-gradient(#444444,#2D2D2D);
-		background-image:-ms-linear-gradient(#444444,#2D2D2D);
-		background-image:-o-linear-gradient(#444444,#2D2D2D);
-		background-image:linear-gradient(#444444,#2D2D2D);
+		text-shadow:0 1px 0 #FFF;
+		background-color:#EEEEEE;
+		background-image:-webkit-gradient(linear,left top,left bottom,from(#FFFFFF),to(#F1F1F1));
+		background-image:-webkit-linear-gradient(#FFFFFF,#F1F1F1);
+		background-image:-moz-linear-gradient(#FFFFFF,#F1F1F1);
+		background-image:-ms-linear-gradient(#FFFFFF,#F1F1F1);
+		background-image:-o-linear-gradient(#FFFFFF,#F1F1F1);
+		background-image:linear-gradient(#FFFFFF,#F1F1F1);
 		&:hover, &:focus, &:active {
-			background-color:#444444;
-			background-image:-webkit-gradient(linear,left top,left bottom,from(#606060),to(#333333));
-			background-image:-webkit-linear-gradient(#606060,#333333);
-			background-image:-moz-linear-gradient(#606060,#333333);
-			background-image:-ms-linear-gradient(#606060,#333333);
-			background-image:-o-linear-gradient(#606060,#333333);
-			background-image:linear-gradient(#606060,#333333);
+			background-color:#DFDFDF;
+			background-image:-webkit-gradient(linear,left top,left bottom,from(#F6F6F6),to(#E0E0E0));
+			background-image:-webkit-linear-gradient(#F6F6F6,#E0E0E0);
+			background-image:-moz-linear-gradient(#F6F6F6,#E0E0E0);
+			background-image:-ms-linear-gradient(#F6F6F6,#E0E0E0);
+			background-image:-o-linear-gradient(#F6F6F6,#E0E0E0);
+			background-image:linear-gradient(#F6F6F6,#E0E0E0);
 		}
-		color:#fff;
+		color:#222;
 		text-align:center;
 		font-size:1em;
 		text-transform:capitalize;
@@ -193,11 +222,25 @@ img{
 		font-weight:700;
 		margin:0;
 		padding:0.7em 18px 0.8em 0;
-		border-top: 1px solid rgba(255, 255, 255, 0.3);
-		border-bottom:1px solid #000;
-		border-left:1px solid #000;
+		border-top: 1px solid #CCC;
+		border-bottom:1px solid #CCC;
+		border-left:1px solid #CCC;
 		border-right:none;
 	}
+}
+
+#base-bnr .ui-navbar a.ui-btn-active {
+	background-color:#DFDFDF;
+	background-image:-webkit-gradient(linear,left top,left bottom,from(#F6F6F6),to(#E0E0E0));
+	background-image:-webkit-linear-gradient(#F6F6F6,#E0E0E0);
+	background-image:-moz-linear-gradient(#F6F6F6,#E0E0E0);
+	background-image:-ms-linear-gradient(#F6F6F6,#E0E0E0);
+	background-image:-o-linear-gradient(#F6F6F6,#E0E0E0);
+	background-image:linear-gradient(#F6F6F6,#E0E0E0);
+	border:1px solid #CCC;
+	border-right:none;
+	color:#222;
+	text-shadow:none;
 }
 
 #base-psnb h2 {
@@ -208,6 +251,15 @@ img{
 
 #base-srchbx h2{
 	padding-right:20px;
+}
+
+#base-subsite{
+	font-size:130%;
+	text-shadow:1px 1px 1px #333;
+	p {
+		margin-top:0px;
+		margin-bottom:0px;
+	}
 }
 
 #base-bnr-in .ui-mini .ui-btn-inner {
@@ -286,18 +338,6 @@ img{
 
 .ui-dialog h1 {
 	border-bottom: none;
-}
-
-#base-bnr .ui-navbar a.ui-btn-active {
-	background-color:#444444;
-	background-image:-webkit-gradient(linear,left top,left bottom,from(#606060),to(#333333));
-	background-image:-webkit-linear-gradient(#606060,#333333);
-	background-image:-moz-linear-gradient(#606060,#333333);
-	background-image:-ms-linear-gradient(#606060,#333333);
-	background-image:-o-linear-gradient(#606060,#333333);
-	background-image:linear-gradient(#606060,#333333);
-	border:1px solid #000;
-	border-right:none;
 }
 
 #jqm-wb-mb {

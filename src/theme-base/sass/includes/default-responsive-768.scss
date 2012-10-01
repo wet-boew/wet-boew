@@ -29,10 +29,14 @@ body{
 	left:384px;
 }
 
-#wb-core-in,#base-fullhd-in,#base-bnr-in,#base-psnb-in,#base-bc-in,#base-fullft-in,#base-sft-in,#base-bnr-in,#base-psnb .mb-menu,#wb-body #wb-main{
+#wb-core-in,#base-fullhd-in,#base-bnr-in,#base-psnb-in,#base-bc-in,#base-fullft-in,#base-sft-in,#base-bnr-in,#base-psnb .mb-menu,#wb-body #wb-main,#base-subsite p{
 	width:768px;
 }
 
 #wb-body-sec #wb-main,#wb-body-sec-sup #wb-main,#wb-body-sec #wb-main-in,#wb-body-sec-sup #wb-main-in{
 	width:576px;
+}
+
+#base-subsite p{
+	margin:0 auto;
 }
