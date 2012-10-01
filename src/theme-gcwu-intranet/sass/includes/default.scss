@@ -20,11 +20,6 @@
 #wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-head-in,#gcwu-sig-eng,#gcwu-sig-fra,#gcwu-wmms-fip {
 	background:none;
 }
-#gcwu-subsite a{
-	color:#fff;
-	text-decoration:none;
-	padding:0 5px 0 10px;
-}
 #gcwu-bnr-in{
 	background:transparent url(../images/gcwu-bnr-in.png) no-repeat center 0;
 	min-height:52px !important;
@@ -48,6 +43,9 @@
 		padding-bottom:7px;
 	}
 	a{
+		color:#fff;
+		text-decoration:none;
+		padding:0 5px 0 10px;
 		text-shadow: 1px 1px 1px #333;
 		border-left:1px solid #ccc;
 		font-size:75%;
