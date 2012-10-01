@@ -222,12 +222,8 @@
 		left:0;
 		li{
 			border:none;
-			margin-right:2px;
-			-moz-border-radius: 2px;
-			-webkit-border-radius: 2px;
-			border-radius:2px;
+			margin-right:-3px;
 			width:auto;
-			float:left;
 			a{
 				border:1px solid #999;
 				padding:2px 5px;
@@ -247,6 +243,8 @@
 				color:#fff;
 			}
 			&.tabs-toggle {
+				margin-left:6px;
+				margin-right:-6px;
 				a{
 					background-color: transparent !important;
 					&:hover, &:focus, &:active{

@@ -7,7 +7,6 @@ html{
 	overflow-y: scroll;
 }
 body{
-	min-width:780px;
 	margin:0;
 	padding:0;
 }
@@ -16,17 +15,6 @@ body{
 }
 
 /** Box model - centered **/
-#wb-head, #cn-foot{
-	width: 100%;
-}
-#wb-core, #wb-core-in{
-	width:760px;
-	margin:auto;
-}
-#wb-head-in, #wb-foot-in{
-	width:760px;
-	margin:auto;
-}
 #wb-main{
 	z-index:1;
 	display:inline;

@@ -179,11 +179,11 @@
 
 			getNextTab = function ($tabs) {
 				var $next = $tabs.filter('.' + opts.tabActiveClass).parent().next(':not(.tabs-toggle)');
-				return ($next.length === 0 ? $tabs.first() : $next.children());
+				return ($next.length === 0 ? $tabs.first() : $next.children('a'));
 			};
 			getPrevTab = function ($tabs) {
 				var $prev = $tabs.filter('.' + opts.tabActiveClass).parent().prev();
-				return ($prev.length === 0 ? $tabs.last() : $prev.children());
+				return ($prev.length === 0 ? $tabs.last() : $prev.children('a'));
 			};
 			selectTab = function ($selection, $tabs, $panels, opts, keepFocus) {
 				var cycleButton, activePanel, nextPanel;
@@ -200,8 +200,8 @@
 					$panels.removeClass(opts.panelActiveClass).attr('aria-hidden', 'true').hide();
 					$panels.filter($selection.attr('href')).show().addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
 				}
-				$tabs.parent().removeClass(opts.tabActiveClass).children().removeClass(opts.tabActiveClass).attr('aria-selected', 'false');
-				$selection.parent().addClass(opts.tabActiveClass).children().addClass(opts.tabActiveClass).attr('aria-selected', 'true');
+				$tabs.removeClass(opts.tabActiveClass).attr('aria-selected', 'false').parent().removeClass(opts.tabActiveClass);
+				$selection.addClass(opts.tabActiveClass).attr('aria-selected', 'true').parent().addClass(opts.tabActiveClass);
 				cycleButton = $selection.parent().siblings('.tabs-toggle');
 				if (!keepFocus && (cycleButton.length === 0 || cycleButton.data('state') === 'stopped')) {
 					return pe.focus($selection);
@@ -210,7 +210,7 @@
 			toggleCycle = function () {
 				if ($toggleRow.data('state') === 'stopped') {
 					cycle($tabs, $panels, opts);
-					$toggleButton.removeClass('tabs-start').addClass('tabs-stop').html(stopText + '<span class="wb-invisible">' + stopHiddenText + '</span>').attr('aria-pressed', true);
+					$toggleButton.removeClass('tabs-start').addClass('tabs-stop').html(stopText + '<span class="wb-invisible">' + stopHiddenText + '</span>');
 					return $('.wb-invisible', $toggleButton).text(stopHiddenText);
 				}
 				if ($toggleRow.data('state') === 'started') {
@@ -245,7 +245,7 @@
 					clearTimeout(elm.data('interval'));
 					elm.find('.tabs-roller').width(0).hide().stop();
 					elm.find('.tabs-toggle').data('state', 'stopped');
-					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + startHiddenText + '</span>').attr('aria-pressed', false);
+					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + startHiddenText + '</span>');
 					return $('.wb-invisible', $toggleButton).text(startHiddenText);
 				};
 				//
@@ -269,7 +269,7 @@
 				//
 				//End NEXT button
 				//
-				$toggleRow = $('<li class="tabs-toggle"><a class="tabs-stop" href="javascript:;" role="button" aria-pressed="true">' + stopText + '<span class="wb-invisible">' + stopHiddenText + '</span></a></li>');
+				$toggleRow = $('<li class="tabs-toggle"><a class="tabs-stop" href="javascript:;" role="button">' + stopText + '<span class="wb-invisible">' + stopHiddenText + '</span></a></li>');
 				$toggleButton = $toggleRow.find('a');
 				$nav.append($toggleRow);
 				$toggleRow.click(toggleCycle).on('keydown', function (e) {

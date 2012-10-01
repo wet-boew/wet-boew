@@ -7,7 +7,6 @@ html{
 	overflow-y: scroll;
 }
 body{
-	min-width:780px;
 	margin:0;
 	padding:0;
 }
@@ -23,17 +22,6 @@ body{
 }
 
 /** Box model - centered **/
-#wb-head, #wb-foot{
-	width: 100%;
-}
-#wb-core, #wb-core-in{
-	width:760px;
-	margin:auto;
-}
-#wb-head-in, #wb-foot-in{
-	width:760px;
-	margin:auto;
-}
 #wb-main, #wb-sec, #wb-sup{
 	z-index:1;
 	display:inline;
@@ -61,42 +49,33 @@ body{
 	padding-bottom:1px;
 }
 #wb-body #wb-main{
-	width:760px;
 	float:left;
 }
 #wb-body-sec #wb-main{
-	width:605px;
 	float:right;
 }
 #cn-body-in-3col #wb-main{
-	width:405px;
 	float:right;
 	position:relative;
-	right:200px;
 }
 #wb-body-sec #wb-main-in{
-	width:600px;
 	padding-left:5px;
 }
 #cn-body-in-3col #wb-main-in{
-	width:395px;
 	padding-left:5px;
 	padding-right:5px;
 }
 	
 /** Left column **/
 #wb-sec{
-	width:150px;
 	float:left;
 	background-color: #CC9;
 }
 
 /** Right column **/
 #wb-sup{
-	width:195px;
 	float:right;
 	position:relative;
-	left:405px;
 }
 
 #wb-skip a{

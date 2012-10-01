@@ -79,7 +79,7 @@
 				}
 				$popup = elm.find('.bookmark_popup').detach();
 				$popup.attr({'id': 'bookmark_popup', 'aria-hidden': 'true', 'role': 'menu'}).prepend('<p class="popup_title">' + opts.popupText + '</p>');
-				$popupLinks = $popup.find('a').get();
+				$popupLinks = $popup.find('ul').attr('role', 'presentation').find('a').get();
 				popupLinksLen = $popupLinks.length;
 				while (popupLinksLen--) {
 					popupLink = $popupLinks[popupLinksLen];
