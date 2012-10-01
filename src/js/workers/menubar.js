@@ -37,7 +37,10 @@
 				hideallsubmenus,
 				hidesubmenu,
 				showsubmenu,
-				submenuHelp = pe.dic.get('%sub-menu-help');
+				submenuHelp = pe.dic.get('%sub-menu-help'),
+				menuelms,
+				menuelm,
+				menulen;
 
 			/* functions that would be necessary for helpers */
 			showsubmenu = function (toplink) {
@@ -100,7 +103,16 @@
 			
 			/* ARIA additions */
 			$scope.attr('role', 'application');
-			$scope.find('> div > ul').attr('role', 'menubar').find('a').attr('role', 'menuitem');
+			menuelms = $scope.find('> div > ul').attr('role', 'menubar').get(0).getElementsByTagName('*');
+			menulen = menuelms.length;
+			while (menulen--) {
+				menuelm = menuelms[menulen];
+				if (menuelm.tagName.toLowerCase() === 'a') {
+					menuelm.setAttribute('role', 'menuitem');
+				} else {
+					menuelm.setAttribute('role', 'presentation');
+				}
+			}
 			pe.resize(correctheight);
 
 			/* [Main] parse mega menu and establish all ARIA and Navigation classes */
