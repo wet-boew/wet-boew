@@ -16,7 +16,7 @@
 		<copy todir="${build.dir}/js/premin">
 			<fileset dir="${src.dir}/js"/>
 			<filterchain>
-				<concatfilter prepend="${src.dir}/../build-js-head.txt"/>
+				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
 				<replacetokens>
 					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
 					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
@@ -143,7 +143,7 @@
 				<file name="theme-ns.css"/>
 			</filelist>
 			<filterchain>
-				<concatfilter prepend="${src.dir}/../build-css-head.txt"/>
+				<concatfilter prepend="${build.dir}/../build-css-head.txt"/>
 				<replacetokens>
 					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
 					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
