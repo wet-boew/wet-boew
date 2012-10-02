@@ -330,6 +330,11 @@ a{
 		.mb-has-sm{
 			padding-right:0.38em;
 		}
+		.mb-sm-open{
+			-moz-box-shadow:0px 5px 5px -4px rgba(0,0,0,0.5), 5px 5px 5px -4px rgba(0,0,0,0.5), -5px 5px 5px -4px rgba(0,0,0,0.5);
+			-webkit-box-shadow:0px 5px 5px -4px rgba(0,0,0,0.5), 5px 0px 5px -4px rgba(0,0,0,0.5), -5px 5px 5px -4px rgba(0,0,0,0.5);
+			box-shadow:0px 5px 5px -4px rgba(0,0,0,0.5), 5px 5px 5px -4px rgba(0,0,0,0.5), -5px 5px 5px -4px rgba(0,0,0,0.5);
+		}
 	}
 	.mb-menu,.mb-menu li{
 		min-height:2.15em;
