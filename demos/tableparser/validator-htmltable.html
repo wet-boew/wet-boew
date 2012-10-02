@@ -38,7 +38,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <script>
 	//<![CDATA[
 (function ($) {
-	$(document).ready(function(){
+	$(document).ready(function() {
 		$('#resultTableIdHeaders').empty();
 		$('#resultTableIdHeaders').append('<pre>Nothing to being displayed</pre>');
 		
@@ -129,7 +129,11 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				"Summaries a Data Column Group in a Data Table", // 10
 				"Describing a Column Header Cell in a Data Table", // 11
 				"Defining a Layout Cell in a Data Table", // 12
-				"HTML5 Specification"]; // 13;
+				"HTML5 Specification"], // 13;
+			tableOpenTag = '&lt;table&gt;',
+			tableOpenTagNoEncode = '<table>',
+			tableOpenTagZebra = '&lt;table class=&quot;wet-boew-zebra&quot;&gt;';
+			tableOpenTagZebraNoEncode = '<table class="wet-boew-zebra">';
 		
 		_pe.fn.parsertable.onParserError = function(numerr, obj){
 			var msgListItem = '<li><span class="wb-invisible">' + numerr + '</span> ',
@@ -178,14 +182,23 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 			$('#errorList').empty();			
 			$('#directOutput').empty();
-			$('#directOutput').append($('#inputHTMLtable').val());
 			
+			
+		
+			if($('#addzebra').is(':checked')){
+				$('#directOutput').append(tableOpenTagZebraNoEncode + $('#inputHTMLtable').val() + '</table>');
+			} else {
+				$('#directOutput').append(tableOpenTagNoEncode + $('#inputHTMLtable').val() + '</table>');
+			}
+
+			// $('#directOutput').append($('#inputHTMLtable').val());
+
 			// Parse the table
 			if ($('#directOutput table:eq(0)').length > 0) {
 				_pe.fn.parsertable._exec($('#directOutput table:eq(0)'));
 			} else {
 				alert('Please add HTML Table code');
-				$('#directOutput').empty();
+				// $('#directOutput').empty();
 				$('#errorList').append($(genericMessage));
 				return;
 			}
@@ -230,6 +243,11 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 					});
 				}
 				
+				if($('#removeScope:checked').length > 0) {
+					$('#directOutput table:eq(0) [scope]').each(function () {
+						$(this).removeAttr('scope');
+					});
+				}
 				
 				
 				// Set ID and Header for the table head
@@ -572,6 +590,19 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			_pe.dance();
 		});
 		
+		$('#addzebra').click(function () {
+			if($('#addzebra').is(':checked')){
+				$('#tableopentag').html(tableOpenTagZebra);
+			} else {
+				$('#tableopentag').html(tableOpenTag);
+			}
+		});
+		if($('#addzebra').is(':checked')){
+			$('#tableopentag').html(tableOpenTagZebra);
+		} else {
+			$('#tableopentag').html(tableOpenTag);
+		}
+			
 		
 	});
 
@@ -645,7 +676,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <h2>Instruction</h2>
 
-<p>This validator would help you find any relationship error defined in your complex table. The validation process can be accomplished by <strong>pasting your HTML table source code</strong> in the text field below and clicking the button "<strong>Analyse</strong>".</p>
+<p>This validator would help you find any relationship error defined in your complex table. The validation process can be accomplished by <strong>pasting your HTML table source code <ins>without the table element</ins></strong> in the text field below and clicking the button "<strong>Analyse</strong>".</p>
 
 <p>Once the validator has detected that your complex and simple table is well structured, under the Result heading you will get access to a version with ids/headers/aria-describedby set on your complex table markup. By default, the headers assignation would use the existing ids in your markup and create new ids for the other header cells. However, it is possible by checking the "Reset Ids" option to overwrite any existing ids. Only the id attribute, headers attribute and the aria-describedby attribute are altered by the validator. Don't forget to remove any scope attribute because it can conflict with this complex table concept. Please note that you would have different result of the same complex table depending of the browser used, but both are valid as per the HTML5 specification.<p>
 
@@ -663,12 +694,18 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<frameset>
 		<legend>Options</legend>
 		
+			<label class="form-checkbox" for="addzebra"><input type="checkbox" value="addzebra" id="addzebra"/> Zebra Stripping Enhancement</label><br />
+			<label class="form-checkbox" for="removeScope"><input type="checkbox" value="removeScope" id="removeScope"/> Remove any scope attribute</label><br />
+			
+			
 			<label for="idprefix">Ids Prefix:</label>
 			<input id="idprefix" value="tbl" />
 		
 			
 			<label class="form-checkbox" for="idreset">
 			<input type="checkbox" value="option1" id="idreset"> Reset Ids </label>
+
+			
 		
 	</frameset>
 	
@@ -677,7 +714,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<frameset>
 		<legend>Please add content bellow</legend>
 		<div>
+			<p class="background-highlight"><code id="tableopentag">&lt;table&gt;</code></p>
 			<textarea id="inputHTMLtable" class="width-90" rows="20" cols="50" placeholder="Paste your HTML Table Source Code"></textarea>
+			<p class="background-highlight"><code>&lt;/table&gt;</code></p>
 		</div>
 	</frameset>
 	
