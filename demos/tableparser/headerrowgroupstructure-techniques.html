@@ -458,10 +458,42 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </ul>
 	
 <h3>Test File 1</h3>
-<p>This Test File 1 <strong>fail</strong> this technique</p>
+<p>This Test File 1 <strong>fail</strong> this technique. The HTML Table Validator would show a warning. See the Test File 6 for an example that would pass.</p>
 
 <table>
 	<caption>Table 3</caption>
+	<tr>
+		<th>Row Header</th>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
 	<tr>
 		<th>Row Header</th>
 		<th>Row Header</th>
@@ -484,6 +516,38 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<summary>Table Source Code</summary>
 <pre><code>&lt;table&gt;
 	&lt;caption&gt;Table 3&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;th&gt;Row Header&lt;/th&gt;
 		&lt;th&gt;Row Header&lt;/th&gt;
@@ -790,6 +854,117 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 </code></pre>
 </details>
+
+
+
+
+
+<h3>Test File 6</h3>
+<p>This Test File 6 <strong>pass</strong> this technique. Even if the HTML Table Validator show an warning, this test pass because the heading row structure patern are not the same for all row. So here the paralel heading don't have the same signification as the one illustrated in the Test File 1.</p>
+
+<table class="wet-boew-zebra">
+	<caption>Table 3</caption>
+	<tr>
+		<th>Row Header</th>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th rowspan="2">Row Header</th>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th rowspan="2">Row Header</th>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+	<tr>
+		<th>Row Header</th>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+		<td>Data</td>
+	</tr>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table&gt;
+	&lt;caption&gt;Table 3&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th rowspan=&quot;2&quot;&gt;Row Header&lt;/th&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Header&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</details>
+	
 
 <!--
 <h2>Additional Notes<h2>
