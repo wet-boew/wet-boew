@@ -114,7 +114,7 @@
 					if (pe.urlhash.length !== 0) {
 						target = pe.main.find('#' + pe.urlhash);
 						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if (target.length > 0 && test.attr('data-role') !== 'page') {
+						if (target.length > 0 && target.attr('data-role') !== 'page') {
 							setTimeout(function () {
 								$.mobile.silentScroll(pe.focus(target).offset().top);
 							}, 200);
