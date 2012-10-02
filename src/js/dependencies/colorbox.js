@@ -1,7 +1,7 @@
 // ColorBox v1.3.20.1 - jQuery lightbox plugin
 // (c) 2012 Jack Moore - jacklmoore.com
 // License: http://www.opensource.org/licenses/mit-license.php
-(function ($, document, window) {
+(function ($) {
 	var
 	// Default settings object.
 	// See http://jacklmoore.com/colorbox for details.
@@ -939,4 +939,4 @@
 
 	publicMethod.settings = defaults;
 
-}(jQuery, document, this));
+}(jQuery));
