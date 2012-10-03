@@ -180,6 +180,7 @@
 			/* bind all custom events and triggers to menu */
 			$scope.on('keydown focusin section-next section-previous item-next item-previous close', 'li', function (e) {
 				var next,
+					prev,
 					_elm = $(e.target),
 					_activemenu = $scope.find('.mb-active'),
 					_id,
@@ -270,28 +271,29 @@
 					switch (level) {
 					case 0: // top-level menu link has focus
 					case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
-						next = $scope.find('.knav-' + (_id[1] - 1) + '-0-0');
-						if (next.length > 0) {
-							pe.focus(next);
+						prev = $scope.find('.knav-' + (_id[1] - 1) + '-0-0');
+						if (prev.length > 0) {
+							pe.focus(prev);
 						} else {
 							pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
 						}
 						break;
 					case 2: // sub-section link has focus
 					case 3: // 3rd level link (child of a sub-section) has focus
-						next = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] - 1) + '-0');
-						if (next.length > 0 && _id[2] > 1) {
-							pe.focus(next);
+						prev = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] - 1) + '-0');
+						if (prev.length > 0 && _id[2] > 1) {
+							pe.focus(prev);
 						} else {
-							next = $scope.find('.knav-' + (_id[1] - 1) + '-0-0'); // wrap around at the sub-section level
-							if (next.length > 0) {
-								pe.focus(next);
+							prev = $scope.find('.knav-' + (_id[1] - 1) + '-0-0'); // wrap around at the sub-section level
+							if (prev.length > 0) {
+								pe.focus(prev);
 							} else {
 								pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
 							}
 						}
 						break;
 					}
+					return false;
 				} else if (type === 'section-next') {
 					level = !!_id[2] << 1 | !!_id[3];
 					switch (level) {
@@ -319,30 +321,29 @@
 						}
 						break;
 					}
+					return false;
 				} else if (type === 'item-next') {
 					next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2]) + '-' + (_id[3] + 1)); // move to next item
-					if (next.length > 0) {
-						pe.focus(next);
-					} else {
+					if (next.length === 0) {
 						next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2] + 1) + '-0'); // move to next section
-						if (next.length > 0) {
-							pe.focus(next);
-						} else {
-							pe.focus(_activemenu.find('.knav-' + _id[1] + '-1-0, .knav-' + _id[1] + '-0-1')); // move to first item in the submenu
-						}
 					}
-				} else if (type === 'item-previous') {
-					next = ((_id[2] > 0 || _id[3] > 1) ? _activemenu.find('.knav-' + _id[1] + '-' + (_id[2]) + '-' + (_id[3] - 1)) : ''); // move to previous item
-					if ((_id[2] > 0 || _id[3] > 1) && next.length > 0) {
+					if (next.length !== 0) {
 						pe.focus(next);
 					} else {
-						next = ((_id[2] > 1 || _id[3] > 0) ? _activemenu.find('[class*="knav-' + _id[1] + '-' + (_id[2] - 1) + '-"]').last() : ''); // move to last item of the previous section
-						if ((_id[2] > 1 || _id[3] > 0) && next.length > 0) {
-							pe.focus(next);
-						} else {
-							pe.focus(_activemenu.find('[class*="knav-"]').last()); // move to last item in the submenu
-						}
+						pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-1, .knav-' + _id[1] + '-1-0').first()); // move to first item in the submenu
 					}
+					return false;
+				} else if (type === 'item-previous') {
+					prev = ((_id[2] !== 0 && _id[3] !== 0) || (_id[2] === 0 && _id[3] > 1) ? _activemenu.find('.knav-' + _id[1] + '-' + (_id[2]) + '-' + (_id[3] - 1)) : ''); // move to previous item
+					if (prev.length === 0) {
+						prev = (_id[2] !== 0 ? _activemenu.find('a').filter('[class*="knav-' + _id[1] + '-' + (_id[2] - 1) + '-"]:not(.knav-' + _id[1] + '-0-0)').last() : ''); // move to last item of the previous section
+					}
+					if (prev.length !== 0) {
+						pe.focus(prev);
+					} else {
+						pe.focus(_activemenu.find('[class*="knav-"]').last()); // move to last item in the submenu
+					}
+					return false;
 				} else if (type === 'focusin' && _id[2] === 0 && _id[3] === 0) {
 					hideallsubmenus();
 					if (_elm.find('.expandicon').length > 0) {
