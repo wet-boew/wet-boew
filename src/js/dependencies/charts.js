@@ -11,7 +11,7 @@
 	var _pe = window.pe || {
 		fn: {}
 	}; /* local reference */
-	_pe.fn.charts = {
+	_pe.fn.chartsGraph = {
 		// type: 'plugin',
 		// depends: ['raphael', 'parserTable'],
 		// polyfills: ['detailssummary'],
@@ -2319,28 +2319,28 @@ label:
 			// Do the first graphic without stacking
 			// Add somewhere in the PE Object that the first graphic is done
 			// If the first graphic are done or near to be fully processed, we would stack the other table for 1500 milisecond later
-			if (_pe.fn.charts.graphprocessed && !_pe.fn.charts.graphdelayed) {
+			if (_pe.fn.chartsGraph.graphprocessed && !_pe.fn.chartsGraph.graphdelayed) {
 				// There is alreay a graphic that is ongoing, we would stack this one
-				if (!_pe.fn.charts.graphstacked) {
-					_pe.fn.charts.graphstacked = [];
+				if (!_pe.fn.chartsGraph.graphstacked) {
+					_pe.fn.chartsGraph.graphstacked = [];
 				}
-				_pe.fn.charts.graphstacked.push(elm);
+				_pe.fn.chartsGraph.graphstacked.push(elm);
 				// Check if the delay was already set
-				if (!_pe.fn.charts.graphdelayedset) {
-					_pe.fn.charts.graphdelayedset = true;
+				if (!_pe.fn.chartsGraph.graphdelayedset) {
+					_pe.fn.chartsGraph.graphdelayedset = true;
 					// Fix the delayed processing
 					var tick,
 						iteration = 0;
 					(function ticker() {
 						if (iteration > 0) {
-							_pe.fn.charts.graphdelayed = true;
+							_pe.fn.chartsGraph.graphdelayed = true;
 						}
 						// Clear the timer if all the object is processed
-						if (_pe.fn.charts.graphstacked.length === 0) {
+						if (_pe.fn.chartsGraph.graphstacked.length === 0) {
 							clearTimeout(tick);
 							return;
 						}
-						_pe.fn.charts._exec(_pe.fn.charts.graphstacked.shift());
+						_pe.fn.chartsGraph.generate(_pe.fn.chartsGraph.graphstacked.shift());
 						iteration += 1;
 						var delayedExecTime = 200;
 						if (o.execdelay) {
@@ -2352,7 +2352,7 @@ label:
 				}
 				return;
 			}
-			_pe.fn.charts.graphprocessed = true;
+			_pe.fn.chartsGraph.graphprocessed = true;
 			//
 			// END of Performance Strategy
 			//

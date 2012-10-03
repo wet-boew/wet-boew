@@ -16,7 +16,7 @@
 		depends: ['raphael', 'parserTable', 'charts'],
 		polyfills: ['detailssummary'],
 		_exec: function (elm) {
-			_pe.fn.charts.generate(elm);
+			_pe.fn.chartsGraph.generate(elm);
 		} // end of exec
 	};
 	window.pe = _pe;
