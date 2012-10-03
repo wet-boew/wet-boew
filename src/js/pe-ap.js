@@ -750,7 +750,6 @@
 					bclinks,
 					bclink,
 					bclinkslen,
-					bcurls,
 					bcindex,
 					h1text = pe.main.find('h1').text(),
 					match = false,
@@ -784,7 +783,7 @@
 					bcindex = bclinkslen;
 					while (bcindex--) {
 						bclink = bclinks[bcindex];
-						bcurls[bcindex] = bclink.hostname + bclink.pathname.replace(/^([^\/])/, '/$1');
+						bclinks[bcindex] = bclink.hostname + bclink.pathname.replace(/^([^\/])/, '/$1');
 					}
 
 					// Try to match each breadcrumb link
@@ -796,7 +795,7 @@
 							menulinkurllen = menulinkurl.length;
 							bcindex = bclinkslen;
 							while (bcindex--) {
-								if (bcurls[bcindex].slice(-menulinkurllen) === menulinkurl) {
+								if (bclinks[bcindex].slice(-menulinkurllen) === menulinkurl) {
 									match = true;
 									break;
 								}
