@@ -13,7 +13,7 @@
 	}; /* local reference */
 	_pe.fn.charts = {
 		type: 'plugin',
-		depends: ['raphael'],
+		depends: ['raphael', 'parserTable'],
 		polyfills: ['detailssummary'],
 		_exec: function (elm) {
 			var options = {},
@@ -2374,7 +2374,7 @@ label:
 			//
 			// 1. Parse the table with the new parser
 			if (!$(self).data().tblparser) {
-				_pe.fn.parsertable._exec($(self));
+				_pe.fn.parsertable.parse($(self));
 			}
 			// 2. Build the ColHeading
 			//$(self).
