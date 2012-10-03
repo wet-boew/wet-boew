@@ -12,10 +12,10 @@
 		fn: {}
 	}; /* local reference */
 	_pe.fn.charts = {
-		type: 'plugin',
-		depends: ['raphael', 'parserTable'],
-		polyfills: ['detailssummary'],
-		_exec: function (elm) {
+		// type: 'plugin',
+		// depends: ['raphael', 'parserTable'],
+		// polyfills: ['detailssummary'],
+		generate: function (elm) {
 			var options = {},
 				o,
 				self = $(elm),
