@@ -14,6 +14,7 @@
 	/* local reference */
 	_pe.fn.zebra = {
 		type: 'plugin',
+		depends: ['parserTable'],
 		_exec: function (elem) {
 			var $trs,
 				$cols,
@@ -60,7 +61,7 @@
 			if (elem.is('table')) {
 				// Parse the table
 				if (!$(elem).data().tblparser) {
-					_pe.fn.parsertable._exec($(elem));
+					_pe.fn.parsertable.parse($(elem));
 				}
 				tblparser = $(elem).data().tblparser; // Create an alias
 				// Key Cell
