@@ -136,7 +136,7 @@
 					$childmenu.find('h3 a, h4 a, div.top-level > a, li.top-level a, div.mb-main-link > a').each(function (i) {
 						var $this = $(this),
 							$parent = $this.parent();
-						this.className += 'knav-' + index + '-' + (i + 1) + '-0';
+						this.className += ' knav-' + index + '-' + (i + 1) + '-0';
 						if ($parent.is('h3, h4')) {
 							$this.parent().next('ul').find('a').each(function (j) {
 								this.className += ' knav-' + index + '-' + (i + 1) + '-' + (j + 1);
