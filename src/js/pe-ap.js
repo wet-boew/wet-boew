@@ -749,20 +749,18 @@
 					menulinkslen,
 					bclinks,
 					bclink,
-					bclinkurl,
 					bclinkslen,
+					bcurls,
 					bcindex,
 					h1text = pe.main.find('h1').text(),
 					match = false,
 					hrefBug = pe.ie !== 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
 				menulinks = menusrc.find('a').get();
-				menulinkslen = menulinks.length;
-				bcsrc = typeof bcsrc.jquery !== 'undefined' ? bcsrc : $(bcsrc);
-				bclinks = bcsrc.find('a').get();
-				bclinkslen = bclinks.length;
-				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;		
+				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;
 
+				// Try to find a match with the page URL or h1
+				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
 					menulink = menulinks[menulinkslen];
 					if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
@@ -770,21 +768,42 @@
 						menulinkurllen = menulinkurl.length;
 						menulinkquery = menulink.search;
 						menulinkquerylen = menulinkquery.length;
-						bcindex = bclinkslen;
 						if ((pageurl.slice(-menulinkurllen) === menulinkurl && (menulinkquerylen === 0 || pageurlquery.slice(-menulinkquerylen) === menulinkquery)) || menulink.innerHTML === h1text) {
 							match = true;
 							break;
 						}
-						while (bcindex--) {
-							bclink = bclinks[bcindex];
-							bclinkurl = bclink.hostname + bclink.pathname.replace(/^([^\/])/, '/$1');
-							if (bclinkurl.slice(-menulinkurllen) === menulinkurl) {
-								match = true;
+					}
+				}
+
+				// No page URL match found, try a breadcrumb link match instead
+				if (!match) {
+					// Pre-process the breadcrumb links
+					bcsrc = typeof bcsrc.jquery !== 'undefined' ? bcsrc : $(bcsrc);
+					bclinks = bcsrc.find('a').get();
+					bclinkslen = bclinks.length;
+					bcindex = bclinkslen;
+					while (bcindex--) {
+						bclink = bclinks[bcindex];
+						bcurls[bcindex] = bclink.hostname + bclink.pathname.replace(/^([^\/])/, '/$1');
+					}
+
+					// Try to match each breadcrumb link
+					menulinkslen = menulinks.length;
+					while (menulinkslen--) {
+						menulink = menulinks[menulinkslen];
+						if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
+							menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
+							menulinkurllen = menulinkurl.length;
+							bcindex = bclinkslen;
+							while (bcindex--) {
+								if (bcurls[bcindex].slice(-menulinkurllen) === menulinkurl) {
+									match = true;
+									break;
+								}
+							}
+							if (match) {
 								break;
 							}
-						}
-						if (match) {
-							break;
 						}
 					}
 				}
