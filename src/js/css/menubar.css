@@ -1,0 +1,177 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+.wet-boew-menubar {
+  background-color: #1A3D6C;
+  border-bottom: 4px solid #999;
+  min-height: 28px;
+  min-height: 2.187em;
+}
+
+.mb-menu, .mb-menu li {
+  list-style: none;
+  min-height: 2.2em;
+  margin: 0;
+  padding: 0;
+}
+
+.mb-menu {
+  position: absolute;
+  background-color: #1A3D6C;
+  width: 100%;
+  z-index: 500;
+  float: left;
+}
+.mb-menu li {
+  background-color: #1A3D6C;
+  border-left: 1px solid #353;
+  border-right: 1px solid #575;
+  float: left;
+}
+.mb-menu li h3 {
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+}
+.mb-menu li:first-child.mb-active {
+  border-left: 1px solid #CCC;
+}
+.mb-menu li div.mb-sm {
+  display: none;
+  visibility: hidden;
+}
+.mb-menu a {
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+  display: block;
+  padding: 0.45em 1.72em 0.45em 0.79em;
+}
+.mb-menu a:link, .mb-menu a:visited {
+  text-decoration: none;
+  color: #fff;
+}
+.mb-menu a:hover, .mb-menu a:focus, .mb-menu a:active {
+  text-decoration: underline;
+}
+.mb-menu .mb-has-sm {
+  padding-right: 0.79em;
+}
+.mb-menu .nav-current {
+  background: #242;
+  color: #fff;
+}
+.mb-menu .mb-sm-open a {
+  white-space: normal;
+  padding: 0.28em 0.79em;
+}
+.mb-menu .mb-sm-open a, .mb-menu .mb-sm-open a:link, .mb-menu .mb-sm-open a:visited {
+  color: #000;
+}
+.mb-menu .mb-sm-open ul {
+  list-style-type: none;
+}
+.mb-menu .mb-sm-open li, .mb-menu .mb-sm-open li div {
+  display: block;
+  float: none;
+  background: none;
+  border: none;
+  min-height: 0;
+}
+.mb-menu .mb-sm-open li a {
+  font-weight: 400;
+}
+.mb-menu .mb-sm-open li.top-level {
+  margin-left: -15px;
+  margin-top: 0.3em;
+}
+.mb-menu .mb-sm-open li.top-level:first-child {
+  margin-top: 0;
+}
+.mb-menu .mb-sm-open li.top-level a {
+  font-weight: 700;
+}
+.mb-menu .expandicon {
+  padding-right: 0.93em;
+  background: url("../images/menubar/menu-arrow.gif") no-repeat right center;
+}
+
+.mb-active a:hover.mb-has-sm, .mb-active a:link.mb-has-sm, .mb-active a:visited.mb-has-sm {
+  background-color: #CCC;
+  color: #000;
+}
+
+.mb-mega .mb-sm-open {
+  position: absolute;
+  z-index: 499;
+  background-color: #CCC;
+  border-bottom: 4px solid #242;
+  padding-top: 4px;
+  border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 0 0 3px 3px;
+}
+.mb-mega .mb-sm-open h2, .mb-mega .mb-sm-open h3, .mb-mega .mb-sm-open h4, .mb-mega .mb-sm-open .top-level {
+  font-size: 1.2em;
+  font-weight: 700;
+  margin: 0;
+}
+.mb-mega .mb-sm-open ul {
+  margin: 0 0 0 1.2em;
+  padding: 0 0 1.15em;
+}
+.mb-mega .mb-sm-open ul ul {
+  padding: 0;
+}
+.mb-mega .mb-sm-open .menu-col {
+  float: left;
+  min-width: 190px;
+}
+
+.mb-container {
+  position: relative;
+}
+
+.mb-sm .mb-highlights:first-child {
+  margin-top: -10px;
+}
+.mb-sm .clear > .mb-highlights:first-child {
+  margin-top: 0;
+}
+
+.mb-main-link {
+  background-color: #DDD;
+  border-top: 1px solid #AAA;
+  padding-left: 10px;
+}
+
+.mb-highlight {
+  background-color: #DDD;
+  border-top: 1px solid #AAA;
+  border-bottom: 1px solid #AAA;
+  margin-bottom: 10px;
+}
+.mb-highlight h4 {
+  float: left;
+  font-size: 1em !important;
+  margin-left: 10px !important;
+}
+.mb-highlight ul {
+  margin: 0 !important;
+  padding: 0.45em 0 !important;
+  float: left;
+}
+.mb-highlight li {
+  float: left !important;
+  width: auto;
+}
+.mb-highlight li:first-child a {
+  border-left: none;
+}
+.mb-highlight li a {
+  display: inline-block !important;
+  border-left: 1px solid #999;
+  padding: 0 1em !important;
+}
