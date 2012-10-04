@@ -55,7 +55,7 @@
 				poster,
 				fbVideoType = 'video/mp4',
 				fbAudioType = 'audio/mp3', //MP3
-				fbBin = _pe.add.liblocation + 'bin/multimedia.swf?seed=' + Math.random(),
+				fbBin = _pe.add.liblocation + 'binary/multimedia.swf?seed=' + Math.random(),
 				fbVars,
 				evtmgr;
 

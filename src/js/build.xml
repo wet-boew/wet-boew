@@ -27,7 +27,7 @@
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="images/**"/>
-					<include name="bin/**"/>
+					<include name="binary/**"/>
 					<include name="jquerymobile/*.min.js"/>
 					<include name="*.js"/>
 					<exclude name="pe-ap.js"/> 
