@@ -33,6 +33,7 @@
 		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
+		bodydiv: $('body > div'),
 		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
@@ -83,7 +84,7 @@
 			// Is this a mobile device?
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
-				$('body > div').attr('data-role', 'page').addClass('ui-page-active');
+				pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 				
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
@@ -122,7 +123,7 @@
 					}
 				});
 				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
-				pe.add._load([pe.add.liblocation + 'jquery.mobile/jquery.mobile.min.js']);
+				pe.add._load([pe.add.liblocation + 'jquerymobile/jquery.mobile.min.js']);
 			} else {
 				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
 				hlinks_same.on("click vclick", function () {

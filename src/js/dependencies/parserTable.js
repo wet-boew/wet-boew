@@ -15,9 +15,8 @@
 		fn : {}
 	};
 	_pe.fn.parsertable = {
-		type : 'plugin',
 		onParserError: undefined,
-		_exec : function (elm) {
+		parse : function (elm) {
 			var obj = elm,
 			// Event handler for issue error found durring the table parsing process
 				errorTrigger = function (numerr, obj) {
