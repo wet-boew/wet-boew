@@ -101,7 +101,7 @@
 					mb_dialogue += '<section><div><h2>' + mb_header_html + '</h2><div data-role="controlgroup">' + nav[0].innerHTML + '</div></div></section>';
 				}
 				mb_dialogue += '</nav></div></div></div>';
-				pe.pagecontainer().append(mb_dialogue);
+				pe.bodydiv.append(mb_dialogue);
 				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="dialog"></a>');
 				_list += '<li><a data-rel="popup" data-theme="a" data-icon="site-menu" href="#jqm-wb-mb">' + mb_btn_txt + '</a></li>';
 			}
