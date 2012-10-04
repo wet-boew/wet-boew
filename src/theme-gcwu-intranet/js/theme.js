@@ -63,7 +63,7 @@
 				nav,
 				s_dialogue,
 				force_dialog = $('html').hasClass('bb-pre7'), // Fallback for mobile devices that can't handle the popup with a lot of nested menus
-				dialog_role = 'data-role="dialog"',
+				dialog_role = 'data-role="page"',
 				popup_role = 'data-role="popup" data-overlay-theme="a"',
 				popup_close = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">' + pe.dic.get('%close') + '</a>',
 				_list = '',
@@ -104,7 +104,7 @@
 					mb_dialogue += '<section><div><h2>' + mb_header_html + '</h2><div data-role="controlgroup">' + nav[0].innerHTML + '</div></div></section>';
 				}
 				mb_dialogue += '</nav></div></div></div>';
-				(force_dialog ? pe.container() : pe.bodydiv).append(mb_dialogue);
+				(force_dialog ? pe.pagecontainer() : pe.bodydiv).append(mb_dialogue);
 				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="' + (force_dialog ? 'dialog' : 'popup') + '"></a>');
 				_list += '<li><a data-rel="' + (force_dialog ? 'dialog' : 'popup') + '" data-theme="a" data-icon="site-menu" href="#jqm-wb-mb">' + mb_btn_txt + '</a></li>';
 			}
