@@ -1,0 +1,38 @@
+@charset "utf-8";
+@import url('../../css/base.css');
+@import url('../../css/base-desktop.css');
+@import url('../../css/base-ie7.css');
+@import url('../../css/base-ie8.css');
+@import url('includes/serv.css');
+@import url('includes/serv-desktop.css');
+@import url('includes/serv-ie7.css');
+@import url('includes/serv-ie8.css');
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+/* -----Build Include Section Start----- */
+/* -----Build Include Section End----- */
+@media screen {
+  /* -----Build Include Section Start----- */
+  @import url('../../css/base-screen.css');
+  @import url('../../css/base-desktop-screen.css');
+  @import url('../../css/base-screen-ie7.css');
+  @import url('../../css/base-screen-ie8.css');
+  @import url('includes/serv-screen.css');
+  @import url('includes/serv-desktop-screen.css');
+  @import url('includes/serv-screen-ie7.css');
+  @import url('includes/serv-screen-ie8.css');
+  @import url('includes/serv-responsive.css');
+  /* -----Build Include Section End----- */
+}
+@media print {
+  /* -----Build Include Section Start----- */
+  @import url('../../css/base-print.css');
+  @import url('../../css/base-print-ie7.css');
+  @import url('../../css/base-print-ie8.css');
+  @import url('includes/serv-print.css');
+  @import url('includes/serv-print-ie7.css');
+  @import url('includes/serv-print-ie8.css');
+  /* -----Build Include Section End----- */
+}

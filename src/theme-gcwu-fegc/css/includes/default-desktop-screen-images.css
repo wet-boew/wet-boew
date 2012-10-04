@@ -1,0 +1,82 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+#wb-body, #wb-body-sec, #wb-body-sec-sup, #wb-body-sec-sup, #wb-head-in {
+  background-image: url(../images/header-leaf.jpg), url(../images/header-bg.jpg);
+  background-repeat: no-repeat, repeat-x;
+  background-position: center 3.08em;
+  background-color: #fff;
+}
+
+#wb-head-in {
+  background-color: #406C93;
+}
+
+#gcwu-sig-eng {
+  height: 100%;
+  width: 100%;
+  background: url(../images/sig-eng-bg.gif) no-repeat 0 0 transparent;
+}
+
+#gcwu-sig-fra {
+  height: 100%;
+  width: 100%;
+  background: url(../images/sig-fra-bg.gif) no-repeat 0 0 transparent;
+}
+
+#gcwu-srch-submit {
+  background: #cccccc url(../images/search-button.gif) 0 0 repeat-x;
+}
+#gcwu-srch-submit:focus, #gcwu-srch-submit:hover {
+  background: #dddddd url(../images/search-button-focus.gif) 0 0 repeat-x;
+}
+
+#wb-core-in, #gcwu-bc-in {
+  background-image: url(../images/content-deco-side.gif), url(../images/content-deco-side.gif);
+  background-position: left top, right top;
+  background-repeat: repeat-y;
+  background-color: #fff;
+}
+
+#gcwu-wmms-fip {
+  height: 100%;
+  width: 100%;
+  background: url(../images/wmms-bg.gif) no-repeat 4px 0 transparent;
+}
+
+#gcwu-psnb .mb-menu, #gcwu-psnb .mb-menu li {
+  background: #23447e url(../images/menu-bg.gif) repeat-x;
+}
+#gcwu-psnb .mb-menu .nav-current {
+  background: #0f315b url(../images/menu-border.gif) repeat-x scroll 0 0;
+}
+#gcwu-psnb .mb-menu .expandicon {
+  padding-right: 0.79em;
+  background: url(../images/menu-arrow.gif) no-repeat right center;
+}
+#gcwu-psnb .mb-menu .mb-sm-open {
+  border-bottom: 4px solid #0F315B;
+  background: linear-gradient(bottom, #eeeeee 0%, #cccccc 100%);
+  background: -o-linear-gradient(bottom, #eeeeee 0%, #cccccc 100%);
+  background: -moz-linear-gradient(bottom, #eeeeee 0%, #cccccc 100%);
+  background: -webkit-linear-gradient(bottom, #eeeeee 0%, #cccccc 100%);
+  background: -ms-linear-gradient(bottom, #eeeeee 0%, #cccccc 100%);
+}
+#gcwu-psnb .mb-menu .mb-sm-open li {
+  background: transparent;
+  min-height: 0;
+  border: none;
+}
+#gcwu-psnb .mb-menu .mb-sm-open .nav-current {
+  background: none;
+}
+#gcwu-psnb .mb-active a:hover.mb-has-sm, #gcwu-psnb .mb-active a:link.mb-has-sm, #gcwu-psnb .mb-active a:visited.mb-has-sm {
+  background-color: #CCC;
+  color: #000;
+}
+
+#gcwu-psnb .mb-sm-open li {
+  background: transparent;
+}

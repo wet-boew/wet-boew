@@ -1,0 +1,123 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+.wet-boew-webwidget {
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  background-color: #e0e2e4!important;
+  background-image: url(../images/webfeeds/gradient.png) !important;
+  color: #555;
+}
+.wet-boew-webwidget .widget-state-loading {
+  margin: auto;
+  width: 100%;
+  line-height: 60px;
+  text-align: center;
+}
+.wet-boew-webwidget .widget-state-loading img {
+  margin: auto;
+  height: auto!important;
+  width: auto!important;
+  vertical-align: middle;
+}
+.wet-boew-webwidget a {
+  text-decoration: none;
+  font-weight: 700;
+  background-image: none!important;
+  margin-right: auto!important;
+  display: inline-block;
+}
+.wet-boew-webwidget a.widget-notice {
+  text-decoration: underline;
+}
+.wet-boew-webwidget .widget-container {
+  border: 1px solid #ccc;
+  padding: 5px 10px 10px!important;
+}
+.wet-boew-webwidget .widget-title, .wet-boew-webwidget .widget-title-dark, .wet-boew-webwidget .widget-title-blue, .wet-boew-webwidget .widget-title-attention {
+  font-weight: 700;
+  font-size: 100%;
+  margin: 4px 0 0 0;
+  padding: 4px;
+  border-bottom: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.wet-boew-webwidget .widget-title-dark {
+  background: #333!important;
+  color: #fff!important;
+}
+.wet-boew-webwidget .widget-title-blue {
+  background: #176CA7!important;
+  color: #fff!important;
+}
+.wet-boew-webwidget .widget-title-attention {
+  background: #781a21!important;
+  color: #fff!important;
+}
+.wet-boew-webwidget ul {
+  list-style-type: none!important;
+  font-size: 90%;
+  min-height: 50px;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  margin: 0!important;
+  padding: 5px 2px 2px 5px!important;
+}
+.wet-boew-webwidget li {
+  margin: 0!important;
+  padding: 0 0 10px 0!important;
+  float: left;
+}
+.wet-boew-webwidget li a img {
+  margin-right: 5px;
+}
+.wet-boew-webwidget p.widget-lang {
+  margin: 0;
+}
+.wet-boew-webwidget .widget-lang a, .wet-boew-webwidget .widget-lang a:visited, .wet-boew-webwidget .widget-lang a:hover {
+  color: #000;
+  font-weight: 400;
+  text-align: center;
+  background: #fff;
+  font-size: 90%;
+  float: right;
+  border: 1px solid #ccc;
+  border-top: 0;
+  margin: 0;
+  padding: 2px 4px!important;
+}
+.wet-boew-webwidget .widget-add {
+  background: #fff;
+  padding: 0 10px;
+}
+.wet-boew-webwidget .widget-add p {
+  text-align: center;
+  margin: 0;
+}
+.wet-boew-webwidget .widget-add a {
+  color: #333;
+  border: 3px double #ccc;
+  border-top: 0;
+  padding: 3px;
+}
+.wet-boew-webwidget .widget-add a:hover, .wet-boew-webwidget .widget-lang a:hover {
+  color: #c00;
+}
+.wet-boew-webwidget .widget-avatar {
+  height: auto!important;
+  width: auto!important;
+  border: 0;
+  vertical-align: middle;
+}
+.wet-boew-webwidget .widget-datestamp {
+  font-size: 90%;
+}
+.wet-boew-webwidget .widget-datestamp-accent {
+  font-size: 90%;
+  color: #781a21!important;
+  white-space: nowrap;
+}

@@ -1,0 +1,59 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+.ie7 #wb-head {
+  float: none;
+}
+.ie7 #cn-leaf {
+  margin-top: 5px;
+}
+.ie7 #cn-psnb ul, .ie7 #cn-psnb-2 ul {
+  height: auto;
+  overflow: hidden;
+}
+.ie7 #cn-psnb ul li, .ie7 #cn-psnb-2 ul li {
+  width: 16.6%;
+}
+.ie7 #wb-main-in h1, .ie7 #wb-main-in h2, .ie7 #wb-main-in h3, .ie7 #wb-main-in h4, .ie7 #wb-main-in h5, .ie7 #wb-main-in h6, .ie7 #wb-main-in p, .ie7 #wb-main-in blockquote, .ie7 #wb-main-in table, .ie7 #wb-main-in form, .ie7 #wb-main-in img, .ie7 #wb-main-in pre {
+  margin-left: 0;
+  margin-right: 0;
+}
+.ie7 .wb-sec-def ul, .ie7 .wb-sup-def ul {
+  margin-left: 0px;
+}
+.ie7 .wb-sec-def ul ul, .ie7 .wb-sup-def ul ul {
+  margin-left: 40px;
+}
+.ie7 .wb-sec-def li, .ie7 .wb-sup-def li {
+  margin-left: auto;
+}
+.ie7 .wb-sec-def h3 a:hover, .ie7 .wb-sec-def h3 a:active, .ie7 .wb-sec-def h3 a:focus, .ie7 .wb-sup-def h3 a:hover, .ie7 .wb-sup-def h3 a:active, .ie7 .wb-sup-def h3 a:focus {
+  zoom: 1;
+}
+.ie7 .wb-sec-def #cn-search-box, .ie7 .cn-search-box {
+  margin: -15px -10px 0 -10px;
+}
+.ie7 .wb-sec-def #cn-search-box a, .ie7 .cn-search-box a {
+  margin-bottom: -9px;
+}
+.ie7 .wb-sec-def #cn-search-box #cn-search-submit, .ie7 .cn-search-box .cn-search-submit {
+  overflow: visible;
+  padding: 0 8px;
+}
+.ie7 .wb-sup-def {
+  margin-bottom: -10px;
+}
+.ie7 .wb-sup-def h3 {
+  margin-left: 0;
+  margin-right: -10px;
+}
+.ie7 .wb-sup-def h3 + div p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0px;
+}
+.ie7 #wb-foot {
+  margin-top: -20px;
+}

@@ -1,0 +1,103 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+html {
+  overflow-y: scroll;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+#wb-head-in, #wb-core-in, #wb-foot-in {
+  margin: auto;
+}
+
+#gcwu-title, #gcwu-tc {
+  display: block;
+  float: none;
+  margin: auto;
+  line-height: normal;
+}
+
+#wb-head, #wb-head-in, #wb-foot, #wb-foot-in {
+  overflow: hidden;
+}
+
+#wb-foot-in, #wb-core-in {
+  background: #fff;
+}
+
+#wb-core-in {
+  overflow: visible !important;
+}
+#wb-core-in:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+#wb-core-in div #gcwu-bar {
+  height: 10px;
+  background: #28507a;
+  margin-bottom: 12px;
+  padding-bottom: 0;
+}
+
+#wb-main-in {
+  position: relative;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+#wb-body #wb-main {
+  float: left;
+}
+
+#gcwu-bnr {
+  width: 100%;
+}
+
+#gcwu-sig-in {
+  width: 214px;
+  height: 20px;
+}
+
+#gcwu-title-right, .gcwu-alt-title-right {
+  text-align: right;
+}
+
+.gcwu-tc-left {
+  text-align: left;
+}
+
+.gcwu-tc-right {
+  text-align: right;
+}
+
+#gcwu-tc ul {
+  line-height: normal;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#gcwu-tc li {
+  float: left;
+  margin-bottom: 4px;
+}
+#gcwu-tc li a {
+  text-decoration: none;
+  font-size: 0.9em;
+}
+#gcwu-tc li a:hover, #gcwu-tc li a:focus, #gcwu-tc li a:active {
+  text-decoration: underline;
+}

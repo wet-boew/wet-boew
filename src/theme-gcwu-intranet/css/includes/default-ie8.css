@@ -1,0 +1,11 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+.ie8 #wb-body, .ie8 #wb-body-sec, .ie8 #wb-body-sec-sup, .ie8 #wb-body-sec-sup, .ie8 #wb-head-in {
+  background: none;
+}
+.ie8 #gcwu-sft-in {
+  background: transparent url(../images/gcwu-sft-in.png) no-repeat right bottom;
+}

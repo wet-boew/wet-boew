@@ -1,0 +1,44 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+/* details polyfill */
+/* <details> and <summary> are block level elements */
+details, summary {
+  display: block;
+}
+
+summary {
+  cursor: pointer;
+  /* Apply a pointer cursor upon hover to indicate it’s a clickable element. These styles can be applied regardless of whether the fallback is needed */
+}
+summary:hover, summary:focus, summary:active {
+  /* Add focus styles (for keyboard accessibility) */
+  background: #ddd;
+}
+
+details.polyfill {
+  /* Only get applied if JavaScript is enabled and <details> is not natively supported */
+}
+details.polyfill > summary:before {
+  /* Add the close pointer */
+  content: "\25BA\a0";
+}
+details.polyfill.open > summary:before {
+  /* Add the open pointer */
+  content: "\25BC\a0";
+}
+details summary {
+  /* Make sure summary remains visible */
+  display: block;
+  background: transparent;
+}
+details > * {
+  display: none;
+}
+
+.detailssummary details > * {
+  /* Show the details content for browsers that natively support it. */
+  display: block;
+}

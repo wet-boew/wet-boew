@@ -1,0 +1,21 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+/* ---- IE6 fixes ---- */
+.ie6 .width-100 {
+  width: 98.5% !important;
+}
+.ie6 legend {
+  margin-left: -10px;
+}
+.ie6 td.calendar-item {
+  padding: 2px 5px;
+}
+.ie6 .border-top, .ie6 .border-bottom {
+  height: 1px;
+}
+.ie6 .module-billboard a {
+  background-image: none !important;
+}

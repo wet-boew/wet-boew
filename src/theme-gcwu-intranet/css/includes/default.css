@@ -1,0 +1,64 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+/** From branding.css **/
+#gcwu-bnr {
+  background-color: #28507a;
+}
+
+.gcwu-subsite-1 {
+  background: #618000 url(../images/gcwu-subsite-1.gif) repeat-x 0 top;
+}
+.gcwu-subsite-1 a {
+  color: #fff !important;
+  text-shadow: 1px 1px 1px #333 !important;
+}
+
+/** From default.css **/
+#wb-body, #wb-body-sec, #wb-body-sec-sup, #wb-head-in, #gcwu-sig-eng, #gcwu-sig-fra, #gcwu-wmms-fip {
+  background: none;
+}
+
+#gcwu-bnr-in {
+  background: transparent url(../images/gcwu-bnr-in.png) no-repeat center 0;
+  min-height: 52px !important;
+}
+
+#gcwu-bnr {
+  background-image: url(../images/gcwu-bnr.png);
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  border-top: 1px solid #eee;
+  clear: both;
+  position: static;
+}
+
+#gcwu-subsite {
+  border-top: 1px solid #ccc;
+  clear: left;
+  font-size: 130%;
+  text-shadow: 1px 1px 1px #333;
+}
+#gcwu-subsite p {
+  margin: 0 auto;
+  padding-top: 4px;
+  padding-bottom: 7px;
+}
+#gcwu-subsite a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0 5px 0 10px;
+  text-shadow: 1px 1px 1px #333;
+  border-left: 1px solid #ccc;
+  font-size: 75%;
+}
+#gcwu-subsite a:first-child {
+  border-left: none;
+  font-size: 100%;
+}
+
+#gcwu-psnb .mb-menu .mb-highlight h4 a {
+  padding-top: 6px;
+}

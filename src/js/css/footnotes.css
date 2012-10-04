@@ -1,0 +1,113 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+/*SCSS Variables*/
+/*Default SCSS*/
+sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  padding: 0 4px 1px;
+  white-space: nowrap;
+}
+sup a.footnote-link:hover, sup a.footnote-link:focus, sup a.footnote-link:active, .wet-boew-footnotes dl dd p.footnote-return a:hover, .wet-boew-footnotes dl dd p.footnote-return a:focus, .wet-boew-footnotes dl dd p.footnote-return a:active {
+  color: white !important;
+  background-color: #555555;
+  border-color: #555555;
+  text-shadow: none !important;
+}
+
+table th sup a.footnote-link {
+  background-color: white;
+  text-shadow: none;
+}
+
+.wet-boew-footnotes {
+  margin: 2em 10px 0 10px;
+  border-width: 1px 0 1px 0;
+  border-style: solid;
+  border-color: #cccccc;
+}
+.wet-boew-footnotes h2 {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+}
+.wet-boew-footnotes dl {
+  margin: 0;
+}
+.wet-boew-footnotes dl dt {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  margin: 0;
+}
+.wet-boew-footnotes dl dd {
+  position: relative;
+  margin: 0.375em 0;
+  border: 1px solid transparent;
+}
+.wet-boew-footnotes dl dd:focus {
+  background-color: #eeeeee;
+  border-color: #555555;
+}
+.wet-boew-footnotes dl dd:focus p.footnote-return a {
+  /*Re-uses the same properties as regular footnote links in hover/focus/active states... leverage placeholder selectors (i.e. %foo) once SASS 3.2.1 or higher gets implemented*/
+  color: white !important;
+  background-color: #555555;
+  border-color: #555555;
+  text-shadow: none !important;
+}
+.wet-boew-footnotes dl dd p {
+  margin: 0 0 0 3.125em;
+  padding: 0 0.375em 0.375em 0.375em;
+}
+.wet-boew-footnotes dl dd p:first-child {
+  padding-top: 0.375em;
+}
+.wet-boew-footnotes dl dd p.footnote-return {
+  top: 0;
+  margin: 0;
+  padding-top: 0.375em;
+  padding-right: 0;
+  position: absolute;
+  width: 2.75em;
+  overflow: hidden;
+}
+.wet-boew-footnotes dl dd p.footnote-return a {
+  display: inline-block;
+  padding-bottom: 0;
+}
+
+/*Print SCSS*/
+@media print {
+  sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+  }
+
+  table th sup a.footnote-link {
+    background-color: transparent;
+  }
+
+  .wet-boew-footnotes {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1em;
+  }
+  .wet-boew-footnotes border {
+    left: 0;
+    right: 0;
+  }
+  .wet-boew-footnotes dl dd {
+    border: 0;
+    display: inline-block;
+  }
+  .wet-boew-footnotes dl dd p.footnote-return {
+    overflow: visible;
+  }
+}

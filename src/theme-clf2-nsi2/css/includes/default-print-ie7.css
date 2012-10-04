@@ -1,0 +1,25 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+.ie7 #cn-banner {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.ie7 #cn-bc {
+  padding: 5px 0;
+}
+.ie7 #cn-bc ol {
+  line-height: normal;
+}
+.ie7 #cn-bc li {
+  border-left: 1px solid #000;
+  margin: 0;
+  padding: 0 10px;
+}
+.ie7 #cn-bc li:first-child {
+  border-left: none;
+  padding-left: 0;
+}

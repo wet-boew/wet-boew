@@ -1,0 +1,20 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+.ie8 #wb-body, .ie8 #wb-body-sec, .ie8 #wb-body-sec-sup, .ie8 #wb-body-sec-sup, .ie8 #wb-head-in {
+  background: url(../images/header-bg-ie.jpg) repeat-x center 3.1em white;
+}
+.ie8 #wb-head-in {
+  background-color: #406C93;
+}
+.ie8 #gcwu-psnb .mb-mega .mb-sm-open {
+  background: url(../images/gradiant.jpg) repeat-x 0 0 #eeeeee;
+}
+.ie8 #wb-core-in, .ie8 #gcwu-bc-in {
+  background: url(../images/content-deco-ie.gif) center top repeat-y;
+}
+.ie8 #gcwu-sft-in {
+  background: url(../images/sft-deco-ie.gif) center top no-repeat;
+}

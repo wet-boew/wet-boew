@@ -1,0 +1,190 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+body {
+  margin: 0;
+}
+
+.wb-sec-def h3.top-section a {
+  color: #FFF;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 1.1em;
+}
+.wb-sec-def h3.top-section a:hover, .wb-sec-def h3.top-section a:focus, .wb-sec-def h3.top-section a:active {
+  color: #FFF;
+  text-decoration: underline;
+}
+.wb-sec-def h3.top-section a.nav-current {
+  color: #FFF;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background: #0f315b;
+}
+.wb-sec-def h3, .wb-sec-def h4, .wb-sec-def .top-level {
+  font-size: 100%;
+  border-bottom: none;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  margin: 0 0 3px;
+}
+.wb-sec-def h3 a, .wb-sec-def h4 a, .wb-sec-def .top-level a {
+  font-weight: 700;
+  background: #DDD;
+  padding: 2px 4px;
+}
+.wb-sec-def h3 a.nav-current, .wb-sec-def h4 a.nav-current, .wb-sec-def .top-level a.nav-current {
+  color: #0F315B;
+  padding: 1px 3px;
+}
+.wb-sec-def li a {
+  padding: 4px 5px;
+}
+.wb-sec-def li a.nav-current {
+  color: #0F315B;
+  padding: 3px 4px;
+}
+.wb-sec-def a.nav-current {
+  border: 1px solid #777;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+.wb-sec-def h3 a, .wb-sec-def h4 a, .wb-sec-def .top-level a, .wb-sec-def li a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+}
+.wb-sec-def h3 a:hover, .wb-sec-def h3 a:focus, .wb-sec-def h3 a:active, .wb-sec-def h4 a:hover, .wb-sec-def h4 a:focus, .wb-sec-def h4 a:active, .wb-sec-def .top-level a:hover, .wb-sec-def .top-level a:focus, .wb-sec-def .top-level a:active, .wb-sec-def li a:hover, .wb-sec-def li a:focus, .wb-sec-def li a:active {
+  color: #333;
+  text-decoration: underline;
+}
+.wb-sec-def ul {
+  list-style-type: none;
+  margin: 0 0 3px;
+  padding: 0;
+}
+.wb-sec-def ul ul {
+  list-style-type: none;
+  margin-left: 10px;
+  padding-left: 5px;
+  border-left: 1px solid #ccc;
+}
+.wb-sec-def li li {
+  margin-left: 0;
+  border: none;
+  list-style-type: none;
+  padding: 0;
+}
+
+#wb-foot h4, #wb-foot .gcwu-col-head {
+  font-size: 110%;
+  border: none;
+  font-weight: 700;
+  margin: 20px 0 5px;
+}
+#wb-foot ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#wb-foot li a {
+  font-weight: 400;
+}
+#wb-foot a {
+  text-decoration: none;
+}
+#wb-foot .span-1, #wb-foot .span-2, #wb-foot .span-3, #wb-foot .span-4, #wb-foot .span-5, #wb-foot .span-6, #wb-foot .span-7, #wb-foot .span-8, #wb-foot .span-9, #wb-foot .span-10, #wb-foot .span-11, #wb-foot .span-12 {
+  margin-bottom: 0;
+}
+
+#gcwu-sft {
+  padding-bottom: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#gcwu-sft a, #gcwu-sft span.link {
+  color: #222;
+}
+#gcwu-sft li a, #gcwu-sft li span.link {
+  line-height: 1.75em;
+}
+#gcwu-sft h4, #gcwu-sft .gcwu-col-head {
+  margin-top: 10px;
+}
+#gcwu-sft address {
+  font-style: normal;
+}
+#gcwu-sft a:hover, #gcwu-sft a:focus, #gcwu-sft a:active {
+  color: #c00;
+}
+
+#gcwu-sft-in {
+  padding-top: 20px;
+}
+#gcwu-sft-in .span-1, #gcwu-sft-in .span-2, #gcwu-sft-in .span-3, #gcwu-sft-in .span-4, #gcwu-sft-in .span-5, #gcwu-sft-in .span-6, #gcwu-sft-in .span-7, #gcwu-sft-in .span-8, #gcwu-sft-in .span-9, #gcwu-sft-in .span-10, #gcwu-sft-in .span-11, #gcwu-sft-in .span-12 {
+  position: static;
+}
+
+#gcwu-tctr {
+  margin: 0;
+  padding: 8px 0 6px;
+}
+#gcwu-tctr li {
+  display: inline;
+}
+#gcwu-tctr li.gcwu-tc {
+  border-right: 1px solid #999;
+  padding: 0 9px 0 10px;
+}
+#gcwu-tctr li.gcwu-tr {
+  padding-left: 6px;
+}
+
+#gcwu-gcft {
+  background: #040707;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#gcwu-gcft ul {
+  list-style-type: none;
+  margin: 0;
+}
+#gcwu-gcft li {
+  float: left;
+}
+#gcwu-gcft li span {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+#gcwu-gcft li#gcwu-gcft-ca {
+  float: right;
+  padding-left: 0;
+  margin-right: 0;
+}
+#gcwu-gcft li#gcwu-gcft-ca div {
+  font-size: 170%;
+  text-align: right;
+  font-weight: 400;
+  margin: 0;
+}
+#gcwu-gcft a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 90%;
+}
+
+#gcwu-gcft-ca {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+li#gcwu-gcft-ca a {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  border-left: 1px solid #666;
+  line-height: 1.45em;
+  padding-right: 10px;
+  font-size: 0.95em;
+}
