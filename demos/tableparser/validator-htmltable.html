@@ -133,40 +133,46 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			tableOpenTag = '&lt;table&gt;',
 			tableOpenTagNoEncode = '<table>',
 			tableOpenTagZebra = '&lt;table class=&quot;wet-boew-zebra&quot;&gt;';
-			tableOpenTagZebraNoEncode = '<table class="wet-boew-zebra">';
-		
-		_pe.fn.parsertable.onParserError = function(numerr, obj){
-			var msgListItem = '<li><span class="wb-invisible">' + numerr + '</span> ',
-				err;
+			tableOpenTagZebraNoEncode = '<table class="wet-boew-zebra">',
 			
-			// Retreive the Error message
-			if (ErrorMessage['%tblparser' + numerr]) {
-				err = ErrorMessage['%tblparser' + numerr];
-				
-				// Check if a technique exist related to the error
-				if (ErrorMessage['%tblparser' + numerr + 'Tech'] !== undefined) {
-					var techNum = ErrorMessage['%tblparser' + numerr + 'Tech'];
-					err = '<a href="' + techniqueURL[techNum] + '" title="' + techniqueName[techNum] + '">' + err + '</a>';
-				}
-				
-			} else {
-				err = 'Error found, but not documented. Error Number:' + numerr;
-			}
-			
-			
-			if(numerr === 23 || numerr === 18) {
-				msgListItem += 'Warning: ';
-				
-			} else {
-				msgListItem += 'Error: ';
-				nbErrorFound += 1;
-			}
-			$('#errorList').append($(msgListItem + err + '</li>'));
-			if (obj) {
-				$(obj).css('background-color', 'red');
-			}
-		};
-		
+			fnParserLoaded = function () {
+				_pe.fn.parsertable.onParserError = function(numerr, obj){
+					var msgListItem = '<li><span class="wb-invisible">' + numerr + '</span> ',
+						err;
+					
+					// Retreive the Error message
+					if (ErrorMessage['%tblparser' + numerr]) {
+						err = ErrorMessage['%tblparser' + numerr];
+						
+						// Check if a technique exist related to the error
+						if (ErrorMessage['%tblparser' + numerr + 'Tech'] !== undefined) {
+							var techNum = ErrorMessage['%tblparser' + numerr + 'Tech'];
+							err = '<a href="' + techniqueURL[techNum] + '" title="' + techniqueName[techNum] + '">' + err + '</a>';
+						}
+						
+					} else {
+						err = 'Error found, but not documented. Error Number:' + numerr;
+					}
+					
+					
+					if(numerr === 23 || numerr === 18) {
+						msgListItem += 'Warning: ';
+						
+					} else {
+						msgListItem += 'Error: ';
+						nbErrorFound += 1;
+					}
+					$('#errorList').append($(msgListItem + err + '</li>'));
+					if (obj) {
+						$(obj).css('background-color', 'red');
+					}
+				};
+			};
+
+		$(document).on('depsTableParserLoaded', fnParserLoaded);
+
+		_pe.wb_load({'dep': ['parserTable']}, "depsTableParserLoaded");
+
 		$('#analysetable').click(function(){
 			//var noErrorList = '<li>No Error Found</li>',
 			var noErrorList = '<li>Table passed, see the resulting source code bellow</li>',
@@ -195,7 +201,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 			// Parse the table
 			if ($('#directOutput table:eq(0)').length > 0) {
-				_pe.fn.parsertable._exec($('#directOutput table:eq(0)'));
+				_pe.fn.parsertable.parse($('#directOutput table:eq(0)'));
 			} else {
 				alert('Please add HTML Table code');
 				// $('#directOutput').empty();
@@ -597,6 +603,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				$('#tableopentag').html(tableOpenTag);
 			}
 		});
+
 		if($('#addzebra').is(':checked')){
 			$('#tableopentag').html(tableOpenTagZebra);
 		} else {
