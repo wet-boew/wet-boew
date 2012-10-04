@@ -31,130 +31,13 @@
 				autoRemoveTimeout,
 				lstDlItems = [],
 				isodd = false,
-				dlitem = [];
-			// Defaults Options
-			opts = {
-				noheaderhighlight: false,
-				norowheaderhighlight: false,
-				nocolheaderhighlight: false,
-				columnhighlight: false,
-				nohover: false,
-				vectorstripe: false,
-				complextableparsing: false // Option to force simple table detection to be anaylsed as a complex table
-			};
-			// Option to force to do not get header highlight
-			overrides = {
-				noheaderhighlight: elem.hasClass("noheaderhighlight") ? true : undefined,
-				norowheaderhighlight: elem.hasClass("norowheaderhighlight") ? true : undefined,
-				nocolheaderhighlight: elem.hasClass("nocolheaderhighlight") ? true : undefined,
-				columnhighlight: elem.hasClass("columnhighlight") ? true : undefined,
-				nohover: elem.hasClass("nohover") ? true : undefined,
-				vectorstripe: elem.hasClass("vectorstripe") ? true : undefined,
-				complextableparsing: elem.hasClass("complextableparsing") ? true : undefined
-			};
-			// Extend the defaults with settings passed through settings.js (wet_boew_zebra), class-based overrides and the data attribute
-			//$.metadata.setType("attr", "data-wet-boew");
-			if (typeof wet_boew_zebra !== 'undefined' && wet_boew_zebra !== null) {
-				$.extend(opts, wet_boew_zebra, overrides); //, elem.metadata());
-			} else {
-				$.extend(opts, overrides); //, elem.metadata());
-			}
-			if (opts.norowheaderhighlight && opts.nocolheaderhighlight) {
-				opts.noheaderhighlight = true;
-			}
-			if (elem.is('table')) {
-
-				// Perform a test to know if we need to completly parse the table
-				//
-				// Simple Table Condition :
-				// * No CSS Options set
-				// * 0-1 row for the columns
-				// * 0-1 row in the thead
-				// * 0-1 tbody row group
-				// * 0-1 cell headers per row. That cell headers would need to be located at the first column position
-				// * 0-2 colgroup
-				// * n col element
-				// * 0-1 tfoot row group
-
-				if (opts.complextableparsing || opts.noheaderhighlight || opts.norowheaderhighlight || opts.nocolheaderhighlight || opts.nohover || opts.vectorstripe) {
-					isSimpleTable = false;
-				}
-
-
-
-				// This condifition for simple table are not supported by IE
-				// 
-				// if (isSimpleTable && $('th[rowspan], th[colspan], td[rowspan], td[colspan], colgroup[span]', elem).length > 0) {
-				//	isSimpleTable = false;
-				// }
-				// console.log('2 Zebra, isSimpleTable:' + isSimpleTable);
-				// console.log($('th[rowspan]', elem).length + '  ' + $('th[colspan]', elem).length + '  ' + $('td[rowspan]', elem).length + '  ' + $('td[colspan]', elem).length + '  ' + $('colgroup[span]', elem).length);
-
-				if (isSimpleTable && (elem.children('tbody').length > 1 || elem.children('thead').children('tr').length > 1 || elem.children('colgroup').length > 2)) {
-					isSimpleTable = false;
-				}
-
-				if (isSimpleTable && (elem.children('colgroup').length === 2 && elem.children('colgroup:first').children('col').length > 1)) {
-					isSimpleTable = false;
-				}
-
-				if (isSimpleTable && ($('tr:first th, tr:first td, tr', elem).length) < $('th', elem).length) {
-					isSimpleTable = false;
-				}
-
-				i = 0;
-				$('tr:eq(2)', elem).children().each(function () {
-					var nn = this.nodeName.toLowerCase();
-					if (!isSimpleTable) {
-						return;
-					}
-					if (nn === 'th' && i > 0) {
-						isSimpleTable = false;
-						return;
-					}
-					i += 1;
-				});
-
-
-				if (isSimpleTable) {
-					// Default Zebra
-					$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
-						return $(this).children('td').length > 0;
-					});
-
-					$trs.on('mouseleave focusout', function (e) {
-						e.stopPropagation();
-						$(this).removeClass('table-hover');
-					});
-					$trs.on('mouseenter focusin', function (e) {
-						e.stopPropagation();
-						$(this).addClass('table-hover');
-					});
-
-
-					if (!opts.columnhighlight) {
-						// note: even/odd's indices start at 0
-						$trs.filter(':odd').addClass('table-even');
-						$trs.filter(':even').addClass('table-odd');
-					} else {
-						$cols = elem.children('colgroup:last').children('col');
-
-						$($cols).filter(':odd').addClass('table-even');
-						$($cols).filter(':even').addClass('table-odd');
-
-					}
-
-
-					return; // Simple Table Zebra Striping done
-				}
-
-
-				fnZebraComplexTable = function () {
+				dlitem = [],
+				fnZebraComplexTable = function (elem) {
 
 					
 					// Prevent multi call issue on dependency load
 					if (!_pe.fn.parsertable) {
-						// $(elem).css('background-color', 'red');
+						$(elem).css('background-color', 'red');
 						return;
 					}
 
@@ -356,10 +239,133 @@
 					}
 
 				};
+			// Defaults Options
+			opts = {
+				noheaderhighlight: false,
+				norowheaderhighlight: false,
+				nocolheaderhighlight: false,
+				columnhighlight: false,
+				nohover: false,
+				vectorstripe: false,
+				complextableparsing: false // Option to force simple table detection to be anaylsed as a complex table
+			};
+			// Option to force to do not get header highlight
+			overrides = {
+				noheaderhighlight: elem.hasClass("noheaderhighlight") ? true : undefined,
+				norowheaderhighlight: elem.hasClass("norowheaderhighlight") ? true : undefined,
+				nocolheaderhighlight: elem.hasClass("nocolheaderhighlight") ? true : undefined,
+				columnhighlight: elem.hasClass("columnhighlight") ? true : undefined,
+				nohover: elem.hasClass("nohover") ? true : undefined,
+				vectorstripe: elem.hasClass("vectorstripe") ? true : undefined,
+				complextableparsing: elem.hasClass("complextableparsing") ? true : undefined
+			};
+			// Extend the defaults with settings passed through settings.js (wet_boew_zebra), class-based overrides and the data attribute
+			//$.metadata.setType("attr", "data-wet-boew");
+			if (typeof wet_boew_zebra !== 'undefined' && wet_boew_zebra !== null) {
+				$.extend(opts, wet_boew_zebra, overrides); //, elem.metadata());
+			} else {
+				$.extend(opts, overrides); //, elem.metadata());
+			}
+			if (opts.norowheaderhighlight && opts.nocolheaderhighlight) {
+				opts.noheaderhighlight = true;
+			}
+			if (elem.is('table')) {
 
-				$(document).on('depsTableParserLoaded-' + time, fnZebraComplexTable);
+				// Perform a test to know if we need to completly parse the table
+				//
+				// Simple Table Condition :
+				// * No CSS Options set
+				// * 0-1 row for the columns
+				// * 0-1 row in the thead
+				// * 0-1 tbody row group
+				// * 0-1 cell headers per row. That cell headers would need to be located at the first column position
+				// * 0-2 colgroup
+				// * n col element
+				// * 0-1 tfoot row group
 
-				_pe.wb_load({'dep': ['parserTable']}, 'depsTableParserLoaded-' + time);
+				if (opts.complextableparsing || opts.noheaderhighlight || opts.norowheaderhighlight || opts.nocolheaderhighlight || opts.nohover || opts.vectorstripe) {
+					isSimpleTable = false;
+				}
+
+
+
+				// This condifition for simple table are not supported by IE
+				// 
+				// if (isSimpleTable && $('th[rowspan], th[colspan], td[rowspan], td[colspan], colgroup[span]', elem).length > 0) {
+				//	isSimpleTable = false;
+				// }
+				// console.log('2 Zebra, isSimpleTable:' + isSimpleTable);
+				// console.log($('th[rowspan]', elem).length + '  ' + $('th[colspan]', elem).length + '  ' + $('td[rowspan]', elem).length + '  ' + $('td[colspan]', elem).length + '  ' + $('colgroup[span]', elem).length);
+
+				if (isSimpleTable && (elem.children('tbody').length > 1 || elem.children('thead').children('tr').length > 1 || elem.children('colgroup').length > 2)) {
+					isSimpleTable = false;
+				}
+
+				if (isSimpleTable && (elem.children('colgroup').length === 2 && elem.children('colgroup:first').children('col').length > 1)) {
+					isSimpleTable = false;
+				}
+
+				if (isSimpleTable && ($('tr:first th, tr:first td, tr', elem).length) < $('th', elem).length) {
+					isSimpleTable = false;
+				}
+
+				i = 0;
+				$('tr:eq(2)', elem).children().each(function () {
+					var nn = this.nodeName.toLowerCase();
+					if (!isSimpleTable) {
+						return;
+					}
+					if (nn === 'th' && i > 0) {
+						isSimpleTable = false;
+						return;
+					}
+					i += 1;
+				});
+
+
+				if (isSimpleTable) {
+					// Default Zebra
+					$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
+						return $(this).children('td').length > 0;
+					});
+
+					$trs.on('mouseleave focusout', function (e) {
+						e.stopPropagation();
+						$(this).removeClass('table-hover');
+					});
+					$trs.on('mouseenter focusin', function (e) {
+						e.stopPropagation();
+						$(this).addClass('table-hover');
+					});
+
+
+					if (!opts.columnhighlight) {
+						// note: even/odd's indices start at 0
+						$trs.filter(':odd').addClass('table-even');
+						$trs.filter(':even').addClass('table-odd');
+					} else {
+						$cols = elem.children('colgroup:last').children('col');
+
+						$($cols).filter(':odd').addClass('table-even');
+						$($cols).filter(':even').addClass('table-odd');
+
+					}
+
+
+					return; // Simple Table Zebra Striping done
+				}
+
+
+				
+				if (_pe.fn.parsertable) {
+					fnZebraComplexTable(elem);
+				} else {
+					$(document).on('depsTableParserLoaded-' + time, function() {
+						 fnZebraComplexTable(elem);
+					});
+
+					_pe.wb_load({'dep': ['parserTable']}, 'depsTableParserLoaded-' + time);
+				}
 
 			} else if (elem.is('dl')) {
 				// Create a list based on "dt" element with their one or more "dd" after each of them
