@@ -79,9 +79,15 @@
 					isSimpleTable = false;
 				}
 
-				if (isSimpleTable && $('th[rowspan], th[colspan], td[rowspan], td[colspan], colgroup[span]', elem).length > 0) {
-					isSimpleTable = false;
-				}
+
+
+				// This condifition for simple table are not supported by IE
+				// 
+				// if (isSimpleTable && $('th[rowspan], th[colspan], td[rowspan], td[colspan], colgroup[span]', elem).length > 0) {
+				//	isSimpleTable = false;
+				// }
+				// console.log('2 Zebra, isSimpleTable:' + isSimpleTable);
+				// console.log($('th[rowspan]', elem).length + '  ' + $('th[colspan]', elem).length + '  ' + $('td[rowspan]', elem).length + '  ' + $('td[colspan]', elem).length + '  ' + $('colgroup[span]', elem).length);
 
 				if (isSimpleTable && (elem.children('tbody').length > 1 || elem.children('thead').children('tr').length > 1 || elem.children('colgroup').length > 2)) {
 					isSimpleTable = false;
