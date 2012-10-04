@@ -28,7 +28,7 @@
 				<fileset dir="${src.dir}">
 					<include name="images/**"/>
 					<include name="bin/**"/>
-					<include name="jquery.mobile/*.min.js"/>
+					<include name="jquerymobile/*.min.js"/>
 					<include name="*.js"/>
 					<exclude name="pe-ap.js"/> 
 				</fileset>
@@ -176,7 +176,7 @@
 			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
-			<exclude name="jquery.mobile/jquery.mobile.js"/>
+			<exclude name="jquerymobile/jquery.mobile.js"/>
 			<exclude name="polyfills/datalist.js"/>
 			<exclude name="polyfills/detailssummary.js"/>
 			<exclude name="polyfills/html5shiv.js"/>
