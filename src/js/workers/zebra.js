@@ -22,6 +22,7 @@
 				tblparser,
 				isSimpleTable = true,
 				fnZebraComplexTable,
+				time = (new Date()).getTime(),
 				i,
 				j,
 				opts,
@@ -150,6 +151,7 @@
 
 				fnZebraComplexTable = function () {
 
+					
 					// Prevent multi call issue on dependency load
 					if (!_pe.fn.parsertable) {
 						// $(elem).css('background-color', 'red');
@@ -355,9 +357,9 @@
 
 				};
 
-				$(document).on('depsTableParserLoaded', fnZebraComplexTable);
+				$(document).on('depsTableParserLoaded-' + time, fnZebraComplexTable);
 
-				_pe.wb_load({'dep': ['parserTable']}, "depsTableParserLoaded");
+				_pe.wb_load({'dep': ['parserTable']}, 'depsTableParserLoaded-' + time);
 
 			} else if (elem.is('dl')) {
 				// Create a list based on "dt" element with their one or more "dd" after each of them
