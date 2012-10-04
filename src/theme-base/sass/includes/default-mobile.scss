@@ -336,8 +336,10 @@ img{
 	margin:0;
 }
 
-.ui-dialog h1 {
-	border-bottom: none;
+.ui-dialog, .ui-popup {
+	h1 {
+		border-bottom: none;
+	}
 }
 
 #jqm-wb-mb {
@@ -367,7 +369,9 @@ img{
 		padding-bottom: 5px;
 	}
 	.ui-li-static {
-		border-left: none; border-right: none;
+		border-left: none;
+		border-right: none;
+		background: #F4F4F4;
 	}
 	.ui-btn{
 		margin:0;
