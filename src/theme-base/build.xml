@@ -42,7 +42,7 @@
 			<fileset dir="${src.dir}/images"/>
 		</copy>
 		<copy todir="${build.dir}/encode/css/images">
-			<fileset dir="${src.dir}/jquery.mobile/images"/>
+			<fileset dir="${src.dir}/jquerymobile/images"/>
 		</copy>
 		<copy todir="${build.dir}/encode/css">
 			<fileset dir="${build.dir}/css">
@@ -65,26 +65,26 @@
 	</target>
 	
 	<target name="-merge-css">
-		<copy todir="${build.dir}/pre/merge/jquery.mobile">
-			<fileset dir="${src.dir}/jquery.mobile">
+		<copy todir="${build.dir}/pre/merge/jquerymobile">
+			<fileset dir="${src.dir}/jquerymobile">
 				<include name="*.css"/>
 				<exclude name="*.min.css"/>
 			</fileset>
 		</copy>
-		<copy todir="${build.dir}/pre/merge/jquery.mobile">
-			<fileset dir="${src.dir}/../js/jquery.mobile">
+		<copy todir="${build.dir}/pre/merge/jquerymobile">
+			<fileset dir="${src.dir}/../js/jquerymobile">
 				<include name="*.css"/>
 				<exclude name="*.min.css"/>
 			</fileset>
 		</copy>
-		<loadfile srcfile="${src.dir}/../js/jquery.mobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
+		<loadfile srcfile="${src.dir}/../js/jquerymobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
 			<filterchain>
 				<headfilter lines="1"/>
 			</filterchain>
 		</loadfile>
 		<concat dest="${build.dir}/pre/merge/css/jquery.mobile.css">
 			<header>${jquery.mobile.license}</header> 
-			<fileset dir="${build.dir}/pre/merge/jquery.mobile">
+			<fileset dir="${build.dir}/pre/merge/jquerymobile">
 				<include name="*theme.css"/>
 				<include name="*structure.css"/>
 			</fileset>
