@@ -62,10 +62,9 @@
 				secnav_h2,
 				nav,
 				s_dialogue,
-				force_dialog = $('html').hasClass('bb-pre7'),
-				popup_linktype = force_dialog ? 'dialog' : 'popup',
-				popup_type = force_dialog ? 'data-role="page"' : 'data-role="popup" data-overlay-theme="a"',
-				popup_close = force_dialog ? '' : '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">' + pe.dic.get('%close') + '</a>',
+				force_menu_dialog = $('html').hasClass('bb-pre7'), // Fallback for mobile devices that can't handle the popup with a lot of nested menus
+				popup_role = 'data-role="popup" data-overlay-theme="a"',
+				popup_close = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">' + pe.dic.get('%close') + '</a>',
 				_list = '',
 				navbar,
 				links,
@@ -78,11 +77,11 @@
 			if (wet_boew_theme.menubar.length > 0 || pe.secnav.length > 0 || wet_boew_theme.search.length > 0) {
 				// Transform the menu to a popup
 				mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
-				mb_dialogue = '<div ' + popup_type + ' id="jqm-wb-mb"><div data-role="header">';
+				mb_dialogue = '<div ' + (force_menu_dialog ? 'data-role="page"' : popup_role) + ' id="jqm-wb-mb"><div data-role="header">';
 				secnav_h2 = (pe.secnav.length > 0 ? pe.secnav.find('h2').eq(0) : '');
 				mb_header = (wet_boew_theme.menubar.length > 0 ? wet_boew_theme.psnb.children(':header') : (pe.secnav.length > 0 ? secnav_h2 : wet_boew_theme.bcrumb.children(':header')));
 				mb_header_html = mb_header[0].innerHTML;
-				mb_dialogue += '<h1>' + mb_btn_txt + '</h1>' + popup_close + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
+				mb_dialogue += '<h1>' + mb_btn_txt + '</h1>' + (force_menu_dialog ? '' : popup_close) + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
 
 				if (wet_boew_theme.bcrumb.length > 0) {
 					mb_dialogue += '<section><div id="jqm-mb-location-text">' + wet_boew_theme.bcrumb[0].innerHTML + '</div></section>';
@@ -104,25 +103,21 @@
 					mb_dialogue += '<section><div><h2>' + mb_header_html + '</h2><div data-role="controlgroup">' + nav[0].innerHTML + '</div></div></section>';
 				}
 				mb_dialogue += '</nav></div></div></div>';
-				if (force_dialog) {
+				if (force_menu_dialog) {
 					pe.container().append(mb_dialogue);
 				} else {
 					pe.bodydiv.append(mb_dialogue);
 				}
-				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="' + popup_linktype + '"></a>');
-				_list += '<li><a data-rel="' + popup_linktype + '" data-theme="a" data-icon="site-menu" href="#jqm-wb-mb">' + mb_btn_txt + '</a></li>';
+				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="' + (force_menu_dialog ? 'dialog' : 'popup') + '"></a>');
+				_list += '<li><a data-rel="' + (force_menu_dialog ? 'dialog' : 'popup') + '" data-theme="a" data-icon="site-menu" href="#jqm-wb-mb">' + mb_btn_txt + '</a></li>';
 			}
 			if (wet_boew_theme.search.length > 0) {
 				// :: Search box transform lets transform the search box to a popup
 				srch_head = wet_boew_theme.search.find(':header');
-				s_dialogue = '<div ' + popup_type + ' id="jqm-wb-search"><div data-role="header"><h1>' + srch_btn_txt + '</h1>' + popup_close + '</div><div data-role="content">' + ($('<div/>').append(wet_boew_theme.search.find('form')))[0].innerHTML + '</div></div>';
-				if (force_dialog) {
-					pe.container().append(s_dialogue);
-				} else {
-					pe.bodydiv.append(s_dialogue);
-				}
+				s_dialogue = '<div ' + popup_role + ' id="jqm-wb-search"><div data-role="header"><h1>' + srch_btn_txt + '</h1>' + popup_close + '</div><div data-role="content">' + ($('<div/>').append(wet_boew_theme.search.find('form')))[0].innerHTML + '</div></div>';
+				pe.bodydiv.append(s_dialogue);
 				srch_head.wrapInner('<a href="#jqm-wb-search" data-rel="popup"></a>');
-				_list += '<li><a data-rel="' + popup_linktype + '" data-theme="a" data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a></li>';
+				_list += '<li><a data-rel="popup" data-theme="a" data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a></li>';
 			}
 			if (_list.length > 0) {
 				navbar = $('<div data-role="navbar" data-iconpos="right"><ul class="wb-hide">' + _list + '</ul></div>');
