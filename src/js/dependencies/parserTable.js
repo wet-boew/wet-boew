@@ -580,7 +580,7 @@
 						// Get the colgroup level
 						for (i = 0, _ilen = tmpStack.length; i < _ilen; i += 1) {
 							tmpStackCell = tmpStack[i].cell[curColgroupFrame.end - 1];
-							if(!tmpStackCell && curColgroupFrame.end > tmpStack[i].cell.length){
+							if (!tmpStackCell && curColgroupFrame.end > tmpStack[i].cell.length) {
 								errorTrigger(7); // Number of column are not corresponding to the table width
 								break;
 							}
@@ -1429,7 +1429,7 @@
 										if (rowheader.height === row.cell[i].height) {
 											errorTrigger(23);
 										}
-									
+
 										// The current cell are a child of the previous rowheader 
 										if (!rowheader.subheader) {
 											rowheader.subheader = [];
@@ -1740,7 +1740,7 @@
 					});
 
 					finalizeRowGroup();
-					
+
 					// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
 					$.each(spannedRow, function () {
 						if (this.spanHeight > 0) {

@@ -14,15 +14,14 @@
 	/* local reference */
 	_pe.fn.zebra = {
 		type: 'plugin',
-		// depends: ['parserTable'],
 		_exec: function (elem) {
-			// console.log('1 Zebra Call');
 			var $trs,
 				$cols,
 				$lis,
 				parity,
 				tblparser,
 				isSimpleTable = true,
+				fnZebraComplexTable,
 				i,
 				j,
 				opts,
@@ -63,7 +62,7 @@
 				opts.noheaderhighlight = true;
 			}
 			if (elem.is('table')) {
-				
+
 				// Perform a test to know if we need to completly parse the table
 				//
 				// Simple Table Condition :
@@ -76,7 +75,7 @@
 				// * n col element
 				// * 0-1 tfoot row group
 
-				if(opts.complextableparsing || opts.noheaderhighlight || opts.norowheaderhighlight || opts.nocolheaderhighlight || opts.nohover || opts.vectorstripe) {
+				if (opts.complextableparsing || opts.noheaderhighlight || opts.norowheaderhighlight || opts.nocolheaderhighlight || opts.nohover || opts.vectorstripe) {
 					isSimpleTable = false;
 				}
 
@@ -88,21 +87,21 @@
 					isSimpleTable = false;
 				}
 
-				if (isSimpleTable && (elem.children('colgroup').length === 2 && elem.children('colgroup:first').children('col').length > 1)){
+				if (isSimpleTable && (elem.children('colgroup').length === 2 && elem.children('colgroup:first').children('col').length > 1)) {
 					isSimpleTable = false;
 				}
 
-				if (isSimpleTable && ($('tr:first th, tr:first td, tr', elem).length) < $('th', elem).length){
+				if (isSimpleTable && ($('tr:first th, tr:first td, tr', elem).length) < $('th', elem).length) {
 					isSimpleTable = false;
 				}
 
 				i = 0;
 				$('tr:eq(2)', elem).children().each(function () {
 					var nn = this.nodeName.toLowerCase();
-					if (!isSimpleTable){
+					if (!isSimpleTable) {
 						return;
 					}
-					if(nn === 'th' && i > 0) {
+					if (nn === 'th' && i > 0) {
 						isSimpleTable = false;
 						return;
 					}
@@ -125,17 +124,17 @@
 						$(this).addClass('table-hover');
 					});
 
-					
+
 					if (!opts.columnhighlight) {
 						// note: even/odd's indices start at 0
 						$trs.filter(':odd').addClass('table-even');
 						$trs.filter(':even').addClass('table-odd');
 					} else {
 						$cols = elem.children('colgroup:last').children('col');
-						
+
 						$($cols).filter(':odd').addClass('table-even');
 						$($cols).filter(':even').addClass('table-odd');
-						
+
 					}
 
 
@@ -143,18 +142,14 @@
 				}
 
 
-				var fnZebraComplexTable = function() {
-					
-					// console.log('Complex Zebra Call');
-					
+				fnZebraComplexTable = function () {
+
 					// Prevent multi call issue on dependency load
-					if(!_pe.fn.parsertable){
+					if (!_pe.fn.parsertable) {
 						// $(elem).css('background-color', 'red');
 						return;
 					}
-					
-					// console.log('2 Complex Zebra Call 2');
-					
+
 					// Parse the table
 					if (!$(elem).data().tblparser) {
 						_pe.fn.parsertable.parse($(elem));
@@ -320,7 +315,7 @@
 						});
 					}
 
-					
+
 					// Default Zebra
 					$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
 						return $(this).children('td').length > 0;
@@ -357,37 +352,37 @@
 				$(document).on('depsTableParserLoaded', fnZebraComplexTable);
 
 				_pe.wb_load({'dep': ['parserTable']}, "depsTableParserLoaded");
-				
+
 			} else if (elem.is('dl')) {
 				// Create a list based on "dt" element with their one or more "dd" after each of them
 				$(elem).children().each(function () {
 					var $this = $(this);
 					switch (this.nodeName.toLowerCase()) {
-						case 'dt':
-							if (isodd) {
-								isodd = false;
-								$this.addClass('list-even');
-							} else {
-								isodd = true;
-								$this.addClass('list-odd');
-							}
-							dlitem = [];
-							lstDlItems.push($this.get(0));
-							$this.data().dlitem = dlitem;
-							dlitem.push($this.get(0));
-							break;
-						case 'dd':
-							if (isodd) {
-								$this.addClass('list-odd');
-							} else {
-								$this.addClass('list-even');
-							}
-							lstDlItems.push($this.get(0));
-							$this.data().dlitem = dlitem;
-							dlitem.push($this.get(0));
-							break;
-						default:
-							break;
+					case 'dt':
+						if (isodd) {
+							isodd = false;
+							$this.addClass('list-even');
+						} else {
+							isodd = true;
+							$this.addClass('list-odd');
+						}
+						dlitem = [];
+						lstDlItems.push($this.get(0));
+						$this.data().dlitem = dlitem;
+						dlitem.push($this.get(0));
+						break;
+					case 'dd':
+						if (isodd) {
+							$this.addClass('list-odd');
+						} else {
+							$this.addClass('list-even');
+						}
+						lstDlItems.push($this.get(0));
+						$this.data().dlitem = dlitem;
+						dlitem.push($this.get(0));
+						break;
+					default:
+						break;
 					}
 				});
 
