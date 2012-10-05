@@ -59,133 +59,134 @@
 			return r;
 		},
 		ind: {
-			"%all": "All",
-			"%home": "Home",
-			"%main-page": "Main page",
-			"%top-of-page": "Top of Page",
-			"%you-are-in": "You are in: ",
-			"%welcome-to": "Welcome to: " + $('#gcwu-title').text(),
-			"%loading": "loading...",
-			"%search": "Search",
-			"%search-for-terms": "Search for term(s):",
-			"%no-match-found": "No match found",
+			"%all": "Todo",
+			"%home": "Página de Inicio",
+			"%main-page": "Página Principal",
+			"%top-of-page": "Arriba",
+			"%you-are-in": "Usted está en: ",
+			"%welcome-to": "Bienvenido/a  a: " + $('#gcwu-title').text(),
+			"%loading": "cargando...",
+			"%search": "Búsqueda",
+			"%search-for-terms": "Buscar por palabra(s):",
+			"%no-match-found": "0 resultados encontrados",
 			"%matches-found": {
-				"mixin": "[MIXIN] match(es) found"
+				"mixin": "[MIXIN] resultado(s) encontrados"
 			},
-			"%menu": "Menu",
-			"%hide": "Hide",
+			"%menu": "Menú",
+			"%hide": "Ocultar",
 			"%error": "Error",
 			"%colon": ":",
-			"%start": "Start",
-			"%stop": "Stop",
-			"%back": "Back",
-			"%minute-ago": "a minute ago",
-			"%couple-of-minutes": "couple of minutes ago",
+			"%start": "Iniciar",
+			"%stop": "Detener",
+			"%back": "Volver",
+			"%minute-ago": "hace un minuto",
+			"%couple-of-minutes": "hace algunos minutos",
 			"%minutes-ago": {
-				"mixin": "[MIXIN] minutes ago"
+				"mixin": "hace [MIXIN] minutos"
 			},
-			"%hour-ago": "an hour ago",
+			"%hour-ago": "hace una hora",
 			"%hours-ago": {
-				"mixin": "[MIXIN] hours ago"
+				"mixin": "hace [MIXIN] horas"
 			},
 			"%days-ago": {
-				"mixin": "[MIXIN] days ago"
+				"mixin": "hace [MIXIN] días"
 			},
-			"%yesterday": "yesterday",
+			"%yesterday": "ayer",
 			/* Archived Web page template */
-			"%archived-page": "This Web page has been archived on the Web.",
+			"%archived-page": "Esta página Web ha estado archivada en la red.",
 			/* Menu bar */
-			"%sub-menu-help": "(open the submenu with the enter key and close with the escape key)",
+			"%sub-menu-help": "(Aprete “enter” para abrir el sub-menú y ciérrelo con la tecla “esc”)",
 			/* Tabbed interface */
 			"%tab-rotation": {
-				"disable": "Stop tab rotation",
-				"enable": "Start tab rotation"
+				"disable": "Detener rotación de tabs",
+				"enable": "Comenzar rotación de tabs"
 			},
 			/* Multimedia player */
-			"%play": "Play",
-			"%pause": "Pause",
-			"%close": "Close",
-			"%rewind": "Rewind",
-			"%next": "Next",
-			"%previous": "Previous",
-			"%fast-forward": "Fast forward ",
+			"%play": "Reproducir",
+			"%pause": "Pausa",
+			"%close": "Cerrar",
+			"%rewind": "Retroceder",
+			"%next": "Siguiente",
+			"%previous": "Previo",
+			"%fast-forward": "Avance rápido ",
 			"%mute": {
-				"enable": "Mute",
-				"disable": "Unmute"
+				"enable": "Silenciar",
+				"disable": "Habilitar Sonido"
 			},
 			"%closed-caption": {
-				"disable": "Hide Closed captioning",
-				"enable": "Show Closed captioning"
+				"disable": "Ocultar subtítulos",
+				"enable": "Mostrar subtítulos"
 			},
-			"%captionserror": "Error loading closed captions",
+			"%captionserror": "Error al cargar subtítulos",
 			"%audio-description": {
-				"enable": "Enable Audio Description",
-				"disable": "Disable Audio Description"
+				"enable": "Habilitar Audio Descripción",
+				"disable": "Deshabilitar Audio Descripción"
 			},
-			"%progress-bar": "use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media's progress",
-			"%no-video": "Your browser does not appear to have the capabilities to play this video, please download the video below",
-			"%position": "Current Position: ",
-			"%percentage": "Playback Percentage: ",
-			"%duration": "Total Time: ",
+			"%progress-bar": "Usar las teclas de flechas IZQUIERDA y DERECHA para avanzar o retroceder la presentación multimedia",
+			"%no-video": "Su browser no es compatible con este video, por favor descargue el video que aparece abajo",
+			"%position": "Posición actual: ",
+			"%percentage": "Porcentaje de Playback: ",
+			"%duration": "Tiempo Total: ",
 			"%buffered": "Buffered: ",
 			/* Share widget */
-			"%favourite": "Favourite",
+			"%favourite": "Favorito",
 			"%email": "Email",
-			"%share-text": "Share this page",
-			"%share-hint": " with {s} (Opens in a new window)",
-			"%share-email-subject": "Interesting page",
-			"%share-email-body": "I thought you might find this page interesting:\n{t} ({u})",
-			"%share-manual": "Please close this dialog and\npress Ctrl-D to bookmark this page.",
-			"%share-showall": "Show all ({n})",
-			"%share-showall-title": "All bookmarking sites",
-			"%share-disclaimer" : "No endorsement of any products or services is expressed or implied.",
+			"%share-text": "Compartir esta página",
+			"%share-hint": " con {s} (Abrir nueva ventana)",
+			"%share-email-subject": "Página de interés",
+			"%share-email-body": "Pienso que encontrarás interesante esta página:\n{t} ({u})",
+			"%share-manual": "Por favor cierre este diálogo y  pulse Ctrl-D para colocar esta página como bookmark.",
+			"%share-showall": "Mostrar todo ({n})",
+			"%share-showall-title": "Todos los sitios marcados como bookmark",
+			"%share-disclaimer" : "No implica la promoción ni recomendación de ningún producto o servicio.",
 			/* Form validation */
-			"%form-not-submitted": "The form could not be submitted because ",
-			"%errors-found": " errors were found.",
-			"%error-found": " error was found.",
+			"%form-not-submitted": "El formulario no pudo ser enviado debido a ",
+			"%errors-found": " se hallaron errores.",
+			"%error-found": " se hallo un error.",
 			/* Date picker */
-			"%datepicker-hide": "Hide Calendar",
-			"%datepicker-show": "Pick a date from a calendar for field: ",
-			"%datepicker-selected": "Selected",
+			"%datepicker-hide": "Ocultar Calendario",
+			"%datepicker-show": "Seleccionar una fecha del calendario por tema: ",
+			"%datepicker-selected": "Seleccionado",
 			/* Calendar */
-			"%calendar-weekDayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-			"%calendar-monthNames": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-			"%calendar-currentDay": " (Current Day)",
-			"%calendar-goToLink": "Go To<span class=\"wb-invisible\"> Month of Year</span>",
-			"%calendar-goToTitle": "Go To Month of Year",
-			"%calendar-goToMonth": "Month:",
-			"%calendar-goToYear": "Year:",
-			"%calendar-goToButton": "Go",
-			"%calendar-cancelButton": "Cancel",
-			"%calendar-previousMonth": "Previous Month: ",
-			"%calendar-nextMonth": "Next Month: ",
+			"%calendar-weekDayNames": ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+			"%calendar-monthNames": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+			"%calendar-currentDay": " (Hoy)",
+			"%calendar-goToLink": "Ir a<span class=\"wb-invisible\"> Mes del Año</span>",
+			"%calendar-goToTitle": "Ir al Mes del Año",
+			"%calendar-goToMonth": "Mes:",
+			"%calendar-goToYear": "Año:",
+			"%calendar-goToButton": "Ir",
+			"%calendar-cancelButton": "Cancelar",
+			"%calendar-previousMonth": "Mes Anterior: ",
+			"%calendar-nextMonth": "Mes Siguiente: ",
 			/* Slideout */
-			"%show-toc": "Show",
-			"%show-image": "show.png",
-			"%hide-image": "hide.png",
-			"%table-contents": " table of contents",
+			"%show-toc": "Mostrar",
+			"%show-image": "mostrar.png",
+			"%hide-image": "ocultar.png",
+			"%table-contents": " índice",
 			/* Lightbox */
-			"%lb-current": "Item {current} of {total}",
-			"%lb-next": "Next item",
-			"%lb-prev": "Previous item",
-			"%lb-xhr-error": "This content failed to load.",
-			"%lb-img-error": "This image failed to load.",
+			"%lb-current": "Ítem {current} de {total}",
+			"%lb-next": "Ítem siguiente",
+			"%lb-prev": "Ítem previo",
+			"%lb-xhr-error": "Este contenido no pudo ser cargado.",
+			"%lb-img-error": "Esta imagen no pudo ser cargada.",
 			"%lb-slideshow": "slideshow",
 			/* jQuery Mobile */
-			"%jqm-expand": " click to expand contents",
-			"%jqm-collapse": " click to collapse contents",
-			"%jqm-clear-search": "clear search",
-			"%jqm-filter": "Filter items...",
+			"%jqm-expand": " click para expandir contenidos",
+			"%jqm-collapse": " click para achicar contenidos",
+			"%jqm-clear-search": "nueva búsqueda",
+			"%jqm-filter": "Filtrar ítems",
 			/* Charts widget */
-			"%table-mention": "Table",
-			"%table-following": "Chart. Details in table following.",
+			"%table-mention": "Tabla",
+			"%table-following": "Gráfico. Detalles en la siguiente tabla.",
 			/* Session timeout */
-			"%st-timeout-msg": "Your session is about to expire, you have until #expireTime# to activate the \"OK\" button below to extend your session.",
-			"%st-msgbox-title": "Session timeout warning",
-			"%st-already-timeout-msg": "Sorry your session has already expired. Please login again.",
+			/* Session timeout */
+			"%st-timeout-msg": "Su sesión está próxima a expirar, tiene hasta #expireTime# para activar el botón \"OK\" y así extender su sesión.",
+			"%st-msgbox-title": "Aviso de finalización de sesión",
+			"%st-already-timeout-msg": "Lamentablemente su sesión ha expirado. Por favor ingrese nuevamente.",
 			/* Disable/enable PE */
-			"%pe-disable": "Basic HTML version",
-			"%pe-enable": "Standard version"
+			"%pe-disable": "Versión básica HTML",
+			"%pe-enable": "Versión standard"
 		}
 	};
 	$(document).trigger("languageloaded");
