@@ -24,12 +24,6 @@
 				$trs,
 				$cols;
 
-			// Prevent multi call issue on dependency load
-			if (!_pe.fn.parsertable) {
-				$(elem).css('background-color', 'red');
-				return;
-			}
-
 			// Parse the table
 			if (!$(elem).data().tblparser) {
 				_pe.fn.parsertable.parse($(elem));
