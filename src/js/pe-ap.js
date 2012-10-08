@@ -822,7 +822,7 @@
 			* @function
 			* @return {jQuery object} Mobile menu
 			*/
-			buildmobile: function (menusrc, hlevel, theme1, mbar, expandall, theme2, top) {
+			buildmobile: function (menusrc, hlevel, theme_1, mbar, expandall, theme_2, top) {
 				var heading = 'h' + hlevel,
 					headingOpen = '<' + heading + '>',
 					headingClose = '</' + heading + '>',
@@ -837,8 +837,8 @@
 					expand = (expandall !== undefined ? expandall : false),
 					mainText = pe.dic.get('%main-page'),
 					toplevel = (top !== undefined ? top : true),
-					theme2 = (theme2 !== undefined ? theme2 : theme1),
-					theme1 = (toplevel ? theme1 : theme2),
+					theme2 = (theme_2 !== undefined ? theme_2 : theme_1),
+					theme1 = (toplevel ? theme_1 : theme_2),
 					collapsibleSet = '<div data-role="collapsible-set" data-theme="' + theme2 + '"></div>',
 					listView = '<ul data-role="listview" data-theme="' + theme2 + '"></ul>',
 					menu = toplevel ? $('<div data-role="controlgroup"></div>') : $('<div/>');
@@ -900,7 +900,7 @@
 									}
 									// If the original menu item was not in a menu bar
 									if (!menubar) {
-										subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme, 'data-icon': 'arrow-r', 'data-iconpos': 'right'}));
+										subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme2, 'data-icon': 'arrow-r', 'data-iconpos': 'right'}));
 									}
 								}
 								menu.append(subsection);
@@ -947,8 +947,7 @@
 			*/
 			correctmobile: function (menusrc) {
 				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
-					parent = original.parent(),
-					set;
+					parent = original.parent();
 				original.detach().find('.ui-controlgroup-controls > .ui-collapsible-set').each(function () {
 					var $this = $(this);
 					if ($this.find('> ul .ui-collapsible').length > 0) {
