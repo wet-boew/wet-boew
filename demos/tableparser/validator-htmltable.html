@@ -134,7 +134,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			tableOpenTagNoEncode = '<table>',
 			tableOpenTagZebra = '&lt;table class=&quot;wet-boew-zebra&quot;&gt;';
 			tableOpenTagZebraNoEncode = '<table class="wet-boew-zebra">',
-			
+			errorHandlerAttached = false,
 			fnParserLoaded = function () {
 				_pe.fn.parsertable.onParserError = function(numerr, obj){
 					var msgListItem = '<li><span class="wb-invisible">' + numerr + '</span> ',
@@ -167,11 +167,430 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 						$(obj).css('background-color', 'red');
 					}
 				};
+				errorHandlerAttached = true;
+			},
+			generateIdHeaders = function(){
+				//var noErrorList = '<li>No Error Found</li>',
+				var noErrorList = '<li>Table passed, see the resulting source code bellow</li>',
+					ErrorParsedByForce = '<li>Forced the HTML results, It\'s recommended to fix the errors.</li>',
+					genericMessage = '<li>Use the above text field to analyse your HTML Complex Table Source Code</li>',
+					emptyTable = '<li>Empty Table</li>',
+					bypassOnError = false;
+				
+				nbErrorFound = 0;
+				
+				
+				if (!errorHandlerAttached){
+					fnParserLoaded();
+				}
+				
+				_pe.fn.parsertable.parse($('#directOutput table:eq(0)'));
+				
+				if ($('#byPassOnErrorStop').is(':checked')) {
+					bypassOnError = true;
+				}
+				
+				if(nbErrorFound === 0 || bypassOnError){
+					
+					// Add id, headers attribute to each cell
+					
+					var tblparser = $('#directOutput table:eq(0)').data().tblparser,
+						tblelement = $('#directOutput table:eq(0)'),
+						i,
+						j,
+						currRow,
+						currCell,
+						idPrefix = $('#idprefix').val() || 'usabletblparsed',
+						resetIds = false;
+						
+					
+					if (!tblparser.row) {
+						alert('Your table must have at least one row');
+						$('#directOutput').empty();
+						$('#errorList').empty();
+						$('#errorList').append($(emptyTable));
+						return;
+					}
+					
+					
+					// Show the last message, regarding the HTML results
+					if(nbErrorFound === 0){
+						$('#errorList').append($(noErrorList));
+					} else {
+						$('#errorList').append($(ErrorParsedByForce));
+					}
+				
+					
+					// Remove any headers and aria-describedby attribute
+					
+					$('#directOutput table:eq(0) [headers]').each(function () {
+						$(this).removeAttr('headers');
+					});
+					$('#directOutput table:eq(0) [aria-describedby]').each(function () {
+						$(this).removeAttr('aria-describedby');
+					});
+					
+					if ($('#idreset:checked').length > 0) {
+						$('#directOutput table:eq(0) [id]').each(function () {
+							$(this).removeAttr('id');
+						});
+					}
+					
+					if($('#removeScope:checked').length > 0) {
+						$('#directOutput table:eq(0) [scope]').each(function () {
+							$(this).removeAttr('scope');
+						});
+					}
+					
+					
+					// Set ID and Header for the table head
+					for (i = 0; i < tblparser.theadRowStack.length; i += 1) {
+						currRow = tblparser.theadRowStack[i];
+						
+						for (j = 0; j < currRow.cell.length; j += 1) {
+							currCell = currRow.cell[j];
+							
+							if ((currCell.type === 1 || currCell.type === 7) && (
+									!(j > 0 && currCell.uid === currRow.cell[j - 1].uid) &&
+									!(i > 0 && currCell.uid === tblparser.theadRowStack[i - 1].cell[j].uid)
+								) ) {
+								
+								
+								// If there no id, add an uid
+								var currCellId = $(currCell.elem).attr('id');
+								if (currCellId === undefined || currCellId === '' || resetIds) {
+									// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+									currCellId = idPrefix + currCell.uid; // Generate a new ID
+									$(currCell.elem).attr('id', currCellId);
+								}
+								
+								// Set the header of the current cell if required
+								if (i > 0) {
+									var headersCurrCell = $(tblparser.theadRowStack[i - 1].cell[j].elem).attr('id');
+									
+									if ($(tblparser.theadRowStack[i-1].cell[j].elem).attr('headers') !== undefined) {
+										headersCurrCell = $(tblparser.theadRowStack[i - 1].cell[j].elem).attr('headers') + ' ' + headersCurrCell;
+									}
+									$(currCell.elem).attr('headers', headersCurrCell);
+									if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+										$(currCell.elem).removeAttr('headers');
+									}
+								}
+								
+								
+								// Set the header on his descriptive cell is any (May be better aria-describedby
+								if (currCell.descCell) {
+									$(currCell.descCell.elem).attr('headers', currCellId);
+									if ($(currCell.descCell.elem).attr('headers') === undefined || $(currCell.descCell.elem).attr('headers') === '') {
+										$(currCell.descCell.elem).removeAttr('headers');
+									}
+									var currCellDescId = $(currCell.descCell.elem).attr('id');
+									if (currCellDescId === undefined || currCellDescId === '' || resetIds) {
+										// currCellDescId = idPrefix + new Date().getTime() + currCell.descCell.uid; // Generate a new ID
+										$(currCell.descCell.elem).attr('id', currCellDescId);
+									}
+									$(currCell.elem).attr('aria-describedby', currCellDescId);
+								}
+							}
+							
+						}
+						
+					}
+					
+					// Set Id/headers for header cell and data cell in the table.
+					for (i = 0; i < tblparser.row.length; i += 1) {
+						currRow = tblparser.row[i];
+						var rowheadersgroup = "",
+							rowheaders = "",
+							currrowheader = "";
+							ongoingRowHeader = "";
+						
+						// Get or Generate a unique ID for each header in this row
+						if (currRow.headerset && !currRow.idsheaderset) { 
+							for (j = 0; j < currRow.headerset.length; j += 1) {
+								var currCellId = $(currRow.headerset[j].elem).attr('id');
+								if (currCellId === undefined || currCellId === '' || resetIds) {
+									// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+									currCellId = idPrefix + currRow.headerset[j].uid; // Generate a new ID
+									$(currRow.headerset[j].elem).attr('id', currCellId);
+								}
+								rowheadersgroup= (rowheadersgroup ? rowheadersgroup + ' ' + currCellId : currCellId);
+							}
+							currRow.idsheaderset = rowheadersgroup;
+						}
+						
+						if (currRow.header) { 
+							for (j = 0; j < currRow.header.length; j += 1) {
+								var currCellId2 = $(currRow.header[j].elem).attr('id');
+								if (currCellId2 === undefined || currCellId2 === '' || resetIds) {
+									// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+									currCellId2 = idPrefix + currRow.header[j].uid; // Generate a new ID
+									$(currRow.header[j].elem).attr('id', currCellId2);
+								}
+								rowheaders = (rowheaders ? rowheaders + ' ' + currCellId2 : currCellId2);
+							}
+						}
+						rowheaders = (currRow.idsheaderset ? currRow.idsheaderset + ' ' + rowheaders : rowheaders);
+						for (j = 0; j < currRow.cell.length; j += 1) {
+							
+							if ((j === 0) || (j > 0 && currRow.cell[j].uid !== currRow.cell[(j - 1)].uid)){
+								var currCell = currRow.cell[j],
+									coldataheader = "";
+								
+								if (currCell.col && !currCell.col.dataheader) {
+									var currCol = currCell.col;
+									var colheaders = "",
+										colheadersgroup = "";
+									if (currCol.headerLevel) { 
+										for (m = 0; m < currCol.headerLevel.length; m += 1) {
+											var currCellId = $(currCol.headerLevel[m].elem).attr('id');
+											if (currCellId === undefined || currCellId === '' || resetIds) {
+												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+												currCellId = idPrefix + currCol.headerLevel[m].uid; // Generate a new ID
+												$(currCol.headerLevel[m].elem).attr('id', currCellId);
+											}
+											colheadersgroup = (colheadersgroup ? colheadersgroup + ' ' + currCellId : currCellId);
+										}
+									}
+									if (currCol.header) { 
+										for (m = 0; m < currCol.header.length; m += 1) {
+											var currCellId = $(currCol.header[m].elem).attr('id');
+											if (currCellId === undefined || currCellId === '' || resetIds) {
+												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+												currCellId = idPrefix + currCol.header[m].uid; // Generate a new ID
+												$(currCol.header[m].elem).attr('id', currCellId);
+											}
+											colheaders = (colheaders ? colheaders + ' ' + currCellId : currCellId);
+										}
+									}
+									currCol.dataheader = (colheadersgroup ? colheadersgroup + ' ' + colheaders : colheaders);
+								}
+								
+								if (currCell.col && currCell.col.dataheader) {
+									coldataheader = currCell.col.dataheader;
+								}
+								
+								
+								
+								if (currCell.type === 1) {
+									
+									$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + 
+														(currRow.idsheaderset && coldataheader ? ' ' : '') +
+														(currRow.idsheaderset ? currRow.idsheaderset : '') +
+														((currRow.idsheaderset && ongoingRowHeader) || (coldataheader && ongoingRowHeader && !currRow.idsheaderset) ? ' ' : '') +
+														(ongoingRowHeader ? ongoingRowHeader : ''));
+									
+									if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+										$(currCell.elem).removeAttr('headers');
+									}
+									
+									var currCellId5 = $(currCell.elem).attr('id');
+									if (currCellId5 === undefined || currCellId5 === '' || resetIds) {
+										// currCellId5 = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+										currCellId5 = idPrefix + currCell.uid; // Generate a new ID
+										$(currCell.elem).attr('id', currCellId5);
+									}
+									
+									ongoingRowHeader = (ongoingRowHeader !== '' ? ongoingRowHeader + ' ' : '') + currCellId5;
+								}
+								
+								
+								if (currCell.type === 2 || currCell.type === 3) {
+									
+									// Get Current Column Headers
+									currrowheader = rowheaders;
+									
+									if (currCell.addcolheaders) {
+										for (m = 0; m < currCell.addcolheaders.length; m += 1) {
+											var currCellId = $(currCell.addcolheaders[m].elem).attr('id');
+											if (currCellId === undefined || currCellId === '' || resetIds) {
+												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+												currCellId = idPrefix + currCell.addcolheaders[m].uid; // Generate a new ID
+												$(currCell.addcolheaders[m].elem).attr('id', currCellId);
+											}
+											coldataheader = (coldataheader ? coldataheader + ' ' + currCellId : currCellId);
+										}
+									}
+									
+									if (currCell.addrowheaders) {
+										for (m = 0; m < currCell.addrowheaders.length; m += 1) {
+											var currCellId = $(currCell.addrowheaders[m].elem).attr('id');
+											if (currCellId === undefined || currCellId === '' || resetIds) {
+												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+												currCellId = idPrefix + currCell.addrowheaders[m].uid; // Generate a new ID
+												$(currCell.addrowheaders[m].elem).attr('id', currCellId);
+											}
+											currrowheader = (currrowheader ? currrowheader + ' ' + currCellId : currCellId);
+										}
+									}
+									
+									$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (currrowheader && coldataheader ? ' ' : '') + (currrowheader ? currrowheader : ''));
+									if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+										$(currCell.elem).removeAttr('headers');
+									}
+								}
+								
+								if (currCell.type === 4 || currCell.type === 5) {
+									var descHeaders = "";
+									
+									if (currCell.describe) {
+										for (m = 0; m < currCell.describe.length; m += 1) {
+											var currCellId = $(currCell.describe[m].elem).attr('id');
+											if (currCellId === undefined || currCellId === '' || resetIds) {
+												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+												currCellId = idPrefix + currCell.describe[m].uid; // Generate a new ID
+												$(currCell.describe[m].elem).attr('id', currCellId);
+											}
+											descHeaders = (descHeaders ? descHeaders + ' ' + currCellId : currCellId);
+											if (currCell.type === 5 && !$(currCell.describe[m].elem).attr('aria-describedby')) {
+												var currCellId = $(currCell.elem).attr('id');
+												if (currCellId === undefined || currCellId === '' || resetIds) {
+													// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+													currCellId = idPrefix + currCell.uid; // Generate a new ID
+													$(currCell.elem).attr('id', currCellId);
+												}
+												$(currCell.describe[m].elem).attr('aria-describedby', currCellId);
+											}
+										}
+									}
+									if (currCell.type !== 4) {
+										$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (coldataheader && descHeaders ? ' ' : '') + (descHeaders || ''));
+										if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+											$(currCell.elem).removeAttr('headers');
+										}
+									} else if (!$(currCell.elem).attr('aria-describedby')) {
+										$(currCell.elem).attr('aria-describedby', descHeaders || '');
+										$(currCell.elem).attr('headers', coldataheader || '');
+										if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
+											$(currCell.elem).removeAttr('headers');
+										}
+									}
+								}						
+							}
+						}
+					}
+					
+					// Check for any description that are related to the an group header cell
+					
+					for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
+						
+						if (tblparser.lstrowgroup[i].headerlevel.length > 0) {
+							for (j = 0; j < tblparser.lstrowgroup[i].headerlevel.length; j += 1){
+								
+								if (tblparser.lstrowgroup[i].headerlevel[j].descCell) {
+									// Set the aria-describedby
+									var currDescCellId = $(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('id');
+									if (currDescCellId === undefined || currDescCellId === '' || resetIds) {
+										// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+										currDescCellId = idPrefix + tblparser.lstrowgroup[i].headerlevel[j].descCell.uid; // Generate a new ID
+										$(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('id', currDescCellId);
+									}
+									$(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('aria-describedby', currDescCellId);
+									
+									// Set the headers
+									currCellId = $(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('id');
+									if (currCellId === undefined || currCellId === '' || resetIds) {
+										// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
+										currCellId = idPrefix + tblparser.lstrowgroup[i].headerlevel[j].uid; // Generate a new ID
+										$(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('id', currCellId);
+									}
+									$(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('headers', currCellId);
+								}	
+								
+							}
+						}
+					}
+					
+					
+					// Horay, now all the table cell have theirs id/headers set as the table was parsed,
+					
+					// Suggestion: Add some aria-label to annonce the data summary, I will ask the WAI Interrest Mailing List to get some liable solution
+					
+					// tfoot question: do I force it as exclusive column summaries as the HTML 5 spec define it if it used as table footnote ??
+					
+					// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
+					
+					// Missing colgroup and col if any
+					var previousColgroup;
+					for (i = 0; i < tblparser.colgroup.length; i += 1) {
+						var colgroupelem;
+						if (tblparser.colgroup[i].elem === undefined) {
+							// Create a colgroup element
+							colgroupelem = $('<colgroup></colgroup>');
+							
+							// Create the column
+							for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
+								var column = $('<col />');
+								$(colgroupelem).append(column);
+								tblparser.colgroup[i].col[j].elem = $(column).get(0);
+								$(column).data().tblparser = tblparser.colgroup[i].col[j];
+							}
+							
+							if (previousColgroup) {
+								$(previousColgroup).after(colgroupelem);
+							} else {
+								if ($(tblelement).has('caption')) {
+									$('caption:eq(0)', tblelement).after(colgroupelem);
+								} else {
+									$(tblelement).prepend(colgroupelem);
+								}
+							}
+							previousColgroup = colgroupelem;
+							
+							tblparser.colgroup[i].elem = $(colgroupelem).get(0);
+							$(colgroupelem).data().tblparser = tblparser.colgroup[i];
+						} else {
+							// Remove the span attribute if exist
+							colgroupelem = tblparser.colgroup[i].elem;
+
+							$(colgroupelem).removeAttr('span');
+							
+							// Create the column
+							for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
+								if (tblparser.colgroup[i].col[j].elem === undefined) {
+									var column = $('<col />');
+									$(colgroupelem).append(column);
+									tblparser.colgroup[i].col[j].elem = $(column).get(0);
+									$(column).data().tblparser = tblparser.colgroup[i].col[j];
+								}
+							}
+							
+						}
+					}
+					
+					// TODO: Rebuild the thead, tbody section
+					
+					
+					// Show the result
+					$('#resultTableIdHeaders').show();
+					// '<table>' + $(tblelement).html() + '</table>';
+					
+					
+					
+									
+									 
+					
+					// $('#resultTableIdHeaders').html(prettyPrintOne('<table>' + $(tblelement).html() + '</table>'));
+					$('#resultTableIdHeaders').empty();
+					$('#resultTableIdHeaders').html('<pre class="prettyprint"><code>' + ('<table>' + $(tblelement).html() + '</table>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '</code></pre>');
+					
+
+					
+					prettyPrint();
+				}
+			
+				
+				_pe.dance();
+			
 			};
+			
 
-		$(document).on('depsTableParserLoaded', fnParserLoaded);
+		
 
-		_pe.wb_load({'dep': ['parserTable']}, "depsTableParserLoaded");
+		
+		// setTimeout(function(){
+		//	_pe.wb_load({'dep': ['parserTable']}, "depsTableParserLoaded")
+		//	}, 2000);
 
 		$('#analysetable').click(function(){
 			//var noErrorList = '<li>No Error Found</li>',
@@ -197,403 +616,19 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				$('#directOutput').append(tableOpenTagNoEncode + $('#inputHTMLtable').val() + '</table>');
 			}
 
-			// $('#directOutput').append($('#inputHTMLtable').val());
-
-			// Parse the table
-			if ($('#directOutput table:eq(0)').length > 0) {
-				_pe.fn.parsertable.parse($('#directOutput table:eq(0)'));
-			} else {
+			if ($('#directOutput table:eq(0)').length === 0) {
 				alert('Please add HTML Table code');
 				// $('#directOutput').empty();
 				$('#errorList').append($(genericMessage));
 				return;
 			}
 			
-			
-			if(nbErrorFound === 0){
-				
-				// Add id, headers attribute to each cell
-				
-				var tblparser = $('#directOutput table:eq(0)').data().tblparser,
-					tblelement = $('#directOutput table:eq(0)'),
-					i,
-					j,
-					currRow,
-					currCell,
-					idPrefix = $('#idprefix').val() || 'usabletblparsed',
-					resetIds = false;
-					
-				
-				if (!tblparser.row) {
-					alert('Your table must have at least one row');
-					$('#directOutput').empty();
-					$('#errorList').empty();
-					$('#errorList').append($(emptyTable));
-					return;
-				}
-				
-				$('#errorList').append($(noErrorList));
-				
-				// Remove any headers and aria-describedby attribute
-				
-				$('#directOutput table:eq(0) [headers]').each(function () {
-					$(this).removeAttr('headers');
-				});
-				$('#directOutput table:eq(0) [aria-describedby]').each(function () {
-					$(this).removeAttr('aria-describedby');
-				});
-				
-				if ($('#idreset:checked').length > 0) {
-					$('#directOutput table:eq(0) [id]').each(function () {
-						$(this).removeAttr('id');
-					});
-				}
-				
-				if($('#removeScope:checked').length > 0) {
-					$('#directOutput table:eq(0) [scope]').each(function () {
-						$(this).removeAttr('scope');
-					});
-				}
-				
-				
-				// Set ID and Header for the table head
-				for (i = 0; i < tblparser.theadRowStack.length; i += 1) {
-					currRow = tblparser.theadRowStack[i];
-					
-					for (j = 0; j < currRow.cell.length; j += 1) {
-						currCell = currRow.cell[j];
-						
-						if ((currCell.type === 1 || currCell.type === 7) && (
-								!(j > 0 && currCell.uid === currRow.cell[j - 1].uid) &&
-								!(i > 0 && currCell.uid === tblparser.theadRowStack[i - 1].cell[j].uid)
-							) ) {
-							
-							
-							// If there no id, add an uid
-							var currCellId = $(currCell.elem).attr('id');
-							if (currCellId === undefined || currCellId === '' || resetIds) {
-								// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-								currCellId = idPrefix + currCell.uid; // Generate a new ID
-								$(currCell.elem).attr('id', currCellId);
-							}
-							
-							// Set the header of the current cell if required
-							if (i > 0) {
-								var headersCurrCell = $(tblparser.theadRowStack[i - 1].cell[j].elem).attr('id');
-								
-								if ($(tblparser.theadRowStack[i-1].cell[j].elem).attr('headers') !== undefined) {
-									headersCurrCell = $(tblparser.theadRowStack[i - 1].cell[j].elem).attr('headers') + ' ' + headersCurrCell;
-								}
-								$(currCell.elem).attr('headers', headersCurrCell);
-								if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
-									$(currCell.elem).removeAttr('headers');
-								}
-							}
-							
-							
-							// Set the header on his descriptive cell is any (May be better aria-describedby
-							if (currCell.descCell) {
-								$(currCell.descCell.elem).attr('headers', currCellId);
-								if ($(currCell.descCell.elem).attr('headers') === undefined || $(currCell.descCell.elem).attr('headers') === '') {
-									$(currCell.descCell.elem).removeAttr('headers');
-								}
-								var currCellDescId = $(currCell.descCell.elem).attr('id');
-								if (currCellDescId === undefined || currCellDescId === '' || resetIds) {
-									// currCellDescId = idPrefix + new Date().getTime() + currCell.descCell.uid; // Generate a new ID
-									$(currCell.descCell.elem).attr('id', currCellDescId);
-								}
-								$(currCell.elem).attr('aria-describedby', currCellDescId);
-							}
-						}
-						
-					}
-					
-				}
-				
-				// Set Id/headers for header cell and data cell in the table.
-				for (i = 0; i < tblparser.row.length; i += 1) {
-					currRow = tblparser.row[i];
-					var rowheadersgroup = "",
-						rowheaders = "",
-						currrowheader = "";
-						ongoingRowHeader = "";
-					
-					// Get or Generate a unique ID for each header in this row
-					if (currRow.headerset && !currRow.idsheaderset) { 
-						for (j = 0; j < currRow.headerset.length; j += 1) {
-							var currCellId = $(currRow.headerset[j].elem).attr('id');
-							if (currCellId === undefined || currCellId === '' || resetIds) {
-								// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-								currCellId = idPrefix + currRow.headerset[j].uid; // Generate a new ID
-								$(currRow.headerset[j].elem).attr('id', currCellId);
-							}
-							rowheadersgroup= (rowheadersgroup ? rowheadersgroup + ' ' + currCellId : currCellId);
-						}
-						currRow.idsheaderset = rowheadersgroup;
-					}
-					
-					if (currRow.header) { 
-						for (j = 0; j < currRow.header.length; j += 1) {
-							var currCellId2 = $(currRow.header[j].elem).attr('id');
-							if (currCellId2 === undefined || currCellId2 === '' || resetIds) {
-								// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-								currCellId2 = idPrefix + currRow.header[j].uid; // Generate a new ID
-								$(currRow.header[j].elem).attr('id', currCellId2);
-							}
-							rowheaders = (rowheaders ? rowheaders + ' ' + currCellId2 : currCellId2);
-						}
-					}
-					rowheaders = (currRow.idsheaderset ? currRow.idsheaderset + ' ' + rowheaders : rowheaders);
-					for (j = 0; j < currRow.cell.length; j += 1) {
-						
-						if ((j === 0) || (j > 0 && currRow.cell[j].uid !== currRow.cell[(j - 1)].uid)){
-							var currCell = currRow.cell[j],
-								coldataheader = "";
-							
-							if (currCell.col && !currCell.col.dataheader) {
-								var currCol = currCell.col;
-								var colheaders = "",
-									colheadersgroup = "";
-								if (currCol.headerLevel) { 
-									for (m = 0; m < currCol.headerLevel.length; m += 1) {
-										var currCellId = $(currCol.headerLevel[m].elem).attr('id');
-										if (currCellId === undefined || currCellId === '' || resetIds) {
-											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-											currCellId = idPrefix + currCol.headerLevel[m].uid; // Generate a new ID
-											$(currCol.headerLevel[m].elem).attr('id', currCellId);
-										}
-										colheadersgroup = (colheadersgroup ? colheadersgroup + ' ' + currCellId : currCellId);
-									}
-								}
-								if (currCol.header) { 
-									for (m = 0; m < currCol.header.length; m += 1) {
-										var currCellId = $(currCol.header[m].elem).attr('id');
-										if (currCellId === undefined || currCellId === '' || resetIds) {
-											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-											currCellId = idPrefix + currCol.header[m].uid; // Generate a new ID
-											$(currCol.header[m].elem).attr('id', currCellId);
-										}
-										colheaders = (colheaders ? colheaders + ' ' + currCellId : currCellId);
-									}
-								}
-								currCol.dataheader = (colheadersgroup ? colheadersgroup + ' ' + colheaders : colheaders);
-							}
-							
-							if (currCell.col && currCell.col.dataheader) {
-								coldataheader = currCell.col.dataheader;
-							}
-							
-							
-							
-							if (currCell.type === 1) {
-								
-								$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + 
-													(currRow.idsheaderset && coldataheader ? ' ' : '') +
-													(currRow.idsheaderset ? currRow.idsheaderset : '') +
-													((currRow.idsheaderset && ongoingRowHeader) || (coldataheader && ongoingRowHeader && !currRow.idsheaderset) ? ' ' : '') +
-													(ongoingRowHeader ? ongoingRowHeader : ''));
-								
-								if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
-									$(currCell.elem).removeAttr('headers');
-								}
-								
-								var currCellId5 = $(currCell.elem).attr('id');
-								if (currCellId5 === undefined || currCellId5 === '' || resetIds) {
-									// currCellId5 = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-									currCellId5 = idPrefix + currCell.uid; // Generate a new ID
-									$(currCell.elem).attr('id', currCellId5);
-								}
-								
-								ongoingRowHeader = (ongoingRowHeader !== '' ? ongoingRowHeader + ' ' : '') + currCellId5;
-							}
-							
-							
-							if (currCell.type === 2 || currCell.type === 3) {
-								
-								// Get Current Column Headers
-								currrowheader = rowheaders;
-								
-								if (currCell.addcolheaders) {
-									for (m = 0; m < currCell.addcolheaders.length; m += 1) {
-										var currCellId = $(currCell.addcolheaders[m].elem).attr('id');
-										if (currCellId === undefined || currCellId === '' || resetIds) {
-											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-											currCellId = idPrefix + currCell.addcolheaders[m].uid; // Generate a new ID
-											$(currCell.addcolheaders[m].elem).attr('id', currCellId);
-										}
-										coldataheader = (coldataheader ? coldataheader + ' ' + currCellId : currCellId);
-									}
-								}
-								
-								if (currCell.addrowheaders) {
-									for (m = 0; m < currCell.addrowheaders.length; m += 1) {
-										var currCellId = $(currCell.addrowheaders[m].elem).attr('id');
-										if (currCellId === undefined || currCellId === '' || resetIds) {
-											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-											currCellId = idPrefix + currCell.addrowheaders[m].uid; // Generate a new ID
-											$(currCell.addrowheaders[m].elem).attr('id', currCellId);
-										}
-										currrowheader = (currrowheader ? currrowheader + ' ' + currCellId : currCellId);
-									}
-								}
-								
-								$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (currrowheader && coldataheader ? ' ' : '') + (currrowheader ? currrowheader : ''));
-								if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
-									$(currCell.elem).removeAttr('headers');
-								}
-							}
-							
-							if (currCell.type === 4 || currCell.type === 5) {
-								var descHeaders = "";
-								
-								if (currCell.describe) {
-									for (m = 0; m < currCell.describe.length; m += 1) {
-										var currCellId = $(currCell.describe[m].elem).attr('id');
-										if (currCellId === undefined || currCellId === '' || resetIds) {
-											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-											currCellId = idPrefix + currCell.describe[m].uid; // Generate a new ID
-											$(currCell.describe[m].elem).attr('id', currCellId);
-										}
-										descHeaders = (descHeaders ? descHeaders + ' ' + currCellId : currCellId);
-										if (currCell.type === 5 && !$(currCell.describe[m].elem).attr('aria-describedby')) {
-											var currCellId = $(currCell.elem).attr('id');
-											if (currCellId === undefined || currCellId === '' || resetIds) {
-												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-												currCellId = idPrefix + currCell.uid; // Generate a new ID
-												$(currCell.elem).attr('id', currCellId);
-											}
-											$(currCell.describe[m].elem).attr('aria-describedby', currCellId);
-										}
-									}
-								}
-								if (currCell.type !== 4) {
-									$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (coldataheader && descHeaders ? ' ' : '') + (descHeaders || ''));
-									if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
-										$(currCell.elem).removeAttr('headers');
-									}
-								} else if (!$(currCell.elem).attr('aria-describedby')) {
-									$(currCell.elem).attr('aria-describedby', descHeaders || '');
-									$(currCell.elem).attr('headers', coldataheader || '');
-									if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
-										$(currCell.elem).removeAttr('headers');
-									}
-								}
-							}						
-						}
-					}
-				}
-				
-				// Check for any description that are related to the an group header cell
-				
-				for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
-					
-					if (tblparser.lstrowgroup[i].headerlevel.length > 0) {
-						for (j = 0; j < tblparser.lstrowgroup[i].headerlevel.length; j += 1){
-							
-							if (tblparser.lstrowgroup[i].headerlevel[j].descCell) {
-								// Set the aria-describedby
-								var currDescCellId = $(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('id');
-								if (currDescCellId === undefined || currDescCellId === '' || resetIds) {
-									// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-									currDescCellId = idPrefix + tblparser.lstrowgroup[i].headerlevel[j].descCell.uid; // Generate a new ID
-									$(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('id', currDescCellId);
-								}
-								$(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('aria-describedby', currDescCellId);
-								
-								// Set the headers
-								currCellId = $(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('id');
-								if (currCellId === undefined || currCellId === '' || resetIds) {
-									// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-									currCellId = idPrefix + tblparser.lstrowgroup[i].headerlevel[j].uid; // Generate a new ID
-									$(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('id', currCellId);
-								}
-								$(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('headers', currCellId);
-							}	
-							
-						}
-					}
-				}
-				
-				
-				// Horay, now all the table cell have theirs id/headers set as the table was parsed,
-				
-				// Suggestion: Add some aria-label to annonce the data summary, I will ask the WAI Interrest Mailing List to get some liable solution
-				
-				// tfoot question: do I force it as exclusive column summaries as the HTML 5 spec define it if it used as table footnote ??
-				
-				// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
-				
-				// Missing colgroup and col if any
-				var previousColgroup;
-				for (i = 0; i < tblparser.colgroup.length; i += 1) {
-					var colgroupelem;
-					if (tblparser.colgroup[i].elem === undefined) {
-						// Create a colgroup element
-						colgroupelem = $('<colgroup></colgroup>');
-						
-						// Create the column
-						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
-							var column = $('<col />');
-							$(colgroupelem).append(column);
-							tblparser.colgroup[i].col[j].elem = $(column).get(0);
-							$(column).data().tblparser = tblparser.colgroup[i].col[j];
-						}
-						
-						if (previousColgroup) {
-							$(previousColgroup).after(colgroupelem);
-						} else {
-							if ($(tblelement).has('caption')) {
-								$('caption:eq(0)', tblelement).after(colgroupelem);
-							} else {
-								$(tblelement).prepend(colgroupelem);
-							}
-						}
-						previousColgroup = colgroupelem;
-						
-						tblparser.colgroup[i].elem = $(colgroupelem).get(0);
-						$(colgroupelem).data().tblparser = tblparser.colgroup[i];
-					} else {
-						// Remove the span attribute if exist
-						colgroupelem = tblparser.colgroup[i].elem;
-
-						$(colgroupelem).removeAttr('span');
-						
-						// Create the column
-						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
-							if (tblparser.colgroup[i].col[j].elem === undefined) {
-								var column = $('<col />');
-								$(colgroupelem).append(column);
-								tblparser.colgroup[i].col[j].elem = $(column).get(0);
-								$(column).data().tblparser = tblparser.colgroup[i].col[j];
-							}
-						}
-						
-					}
-				}
-				
-				// TODO: Rebuild the thead, tbody section
-				
-				
-				// Show the result
-				$('#resultTableIdHeaders').show();
-				// '<table>' + $(tblelement).html() + '</table>';
-				
-				
-				
-								
-								 
-				
-				// $('#resultTableIdHeaders').html(prettyPrintOne('<table>' + $(tblelement).html() + '</table>'));
-				$('#resultTableIdHeaders').empty();
-				$('#resultTableIdHeaders').html('<pre class="prettyprint"><code>' + ('<table>' + $(tblelement).html() + '</table>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '</code></pre>');
-				
-
-				
-				prettyPrint();
+			if (_pe.fn.parsertable) {
+				generateIdHeaders();
+			} else {
+				$(document).on('depsTableParserLoaded', generateIdHeaders);
+				_pe.wb_load({'dep': ['parserTable']}, "depsTableParserLoaded");
 			}
-		
-			
-			_pe.dance();
 		});
 		
 		$('#addzebra').click(function () {
@@ -703,12 +738,11 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 		
 			<label class="form-checkbox" for="addzebra"><input type="checkbox" value="addzebra" id="addzebra"/> Zebra Stripping Enhancement</label><br />
 			<label class="form-checkbox" for="removeScope"><input type="checkbox" value="removeScope" id="removeScope"/> Remove any scope attribute</label><br />
-			
+			<label class="form-checkbox" for="byPassOnErrorStop"><input type="checkbox" value="byPassOnErrorStop" id="byPassOnErrorStop"/> Force the HTML Results<sup id="fnb1-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup></label><br />
 			
 			<label for="idprefix">Ids Prefix:</label>
 			<input id="idprefix" value="tbl" />
 		
-			
 			<label class="form-checkbox" for="idreset">
 			<input type="checkbox" value="option1" id="idreset"> Reset Ids </label>
 
@@ -796,7 +830,17 @@ Nothing to being displayed
 </ul>
 
 
-
+<div class="wet-boew-footnotes" role="note">
+<section><h2 id="fnb" class="wb-invisible">Footnotes</h2>
+<dl>
+	<dt>Footnote 1</dt>
+	<dd id="fnb1">
+		<p>Forcing the HTML Results to be show may cause undesired javascript errors. But forcing the HTML Results can sometimes helps to figure out the errors detected in the tabular markup.</p>
+		<p class="footnote-return"><a href="#fnb1-ref"><span class="wb-invisible">Return to footnote </span>1<span class="wb-invisible"> referrer</span></a></p>
+	</dd>
+</dl>
+</section>
+</div>
 
 
 
