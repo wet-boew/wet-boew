@@ -62,7 +62,7 @@
 				secnav_h2,
 				nav,
 				s_dialogue,
-				force_dialog = $('html').hasClass('bb-pre7'),
+				force_dialog = $('html').hasClass('bb-pre7'), // Fallback for mobile devices that can't handle the popup with a lot of nested menus
 				dialog_role = 'data-role="page"',
 				popup_role = 'data-role="popup" data-overlay-theme="a"',
 				popup_close = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">' + pe.dic.get('%close') + '</a>',
@@ -74,7 +74,7 @@
 				target;
 
 			if (wet_boew_theme.menubar.length > 0 || pe.secnav.length > 0 || wet_boew_theme.search.length > 0) {
-				// Transform the menu to a dialog box
+				// Transform the menu to a popup
 				mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
 				mb_dialogue = '<div ' + (force_dialog ? dialog_role : popup_role) + ' id="jqm-wb-mb"><div data-role="header">';
 				secnav_h2 = (pe.secnav.length > 0 ? pe.secnav.find('h2').eq(0) : '');
@@ -90,7 +90,7 @@
 				}
 
 				if (pe.secnav.length > 0) {
-					nav = pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'c', false, true);
+					nav = pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'b', false, true, 'c', true);
 					pe.menu.expandcollapsemobile(nav, (pe.secnav.find('h3.top-section').length > 0 ? 'h4' : 'h3'), true, false);
 					pe.menu.expandcollapsemobile(nav, '.nav-current', false, true);
 					mb_dialogue += '<section><div><h2>' + secnav_h2[0].innerHTML + '</h2><div data-role="controlgroup">' + nav[0].innerHTML + '</div></div></section>';
@@ -98,7 +98,7 @@
 				}
 
 				if (wet_boew_theme.menubar.length > 0) {
-					nav = pe.menu.buildmobile(mb_li, 3, 'a', true, true);
+					nav = pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true);
 					mb_dialogue += '<section><div><h2>' + mb_header_html + '</h2><div data-role="controlgroup">' + nav[0].innerHTML + '</div></div></section>';
 				}
 				mb_dialogue += '</nav></div></div></div>';
@@ -107,7 +107,7 @@
 				_list += '<li><a data-rel="' + (force_dialog ? 'dialog' : 'popup') + '" data-theme="a" data-icon="site-menu" href="#jqm-wb-mb">' + mb_btn_txt + '</a></li>';
 			}
 			if (wet_boew_theme.search.length > 0) {
-				// :: Search box transform lets transform the search box to a dialog box
+				// :: Search box transform lets transform the search box to a popup
 				srch_head = wet_boew_theme.search.find(':header');
 				s_dialogue = '<div ' + popup_role + ' id="jqm-wb-search"><div data-role="header"><h1>' + srch_btn_txt + '</h1>' + popup_close + '</div><div data-role="content">' + ($('<div/>').append(wet_boew_theme.search.find('form')))[0].innerHTML + '</div></div>';
 				pe.bodydiv.append(s_dialogue);
