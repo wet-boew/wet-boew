@@ -92,7 +92,7 @@
 				}
 
 				if (pe.secnav.length > 0) {
-					nav = pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'c', false, true);
+					nav = pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'b', false, true, 'c', true);
 					pe.menu.expandcollapsemobile(nav, (pe.secnav.find('h3.top-section').length > 0 ? 'h4' : 'h3'), true, false);
 					pe.menu.expandcollapsemobile(nav, '.nav-current', false, true);
 					mb_dialogue += '<section><div><h2>' + secnav_h2[0].innerHTML + '</h2><div data-role="controlgroup">' + nav[0].innerHTML + '</div></div></section>';
@@ -100,7 +100,7 @@
 				}
 
 				if (wet_boew_theme.menubar.length > 0) {
-					nav = pe.menu.buildmobile(mb_li, 3, 'a', true, true);
+					nav = pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true);
 					mb_dialogue += '<section><div><h2>' + mb_header_html + '</h2><div data-role="controlgroup">' + nav[0].innerHTML + '</div></div></section>';
 				}
 				mb_dialogue += '</nav></div></div></div>';

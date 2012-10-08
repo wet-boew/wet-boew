@@ -386,8 +386,11 @@ img{
 	h3.top-section{
 		font-size:1.2em;
 	}
-	.ui-content .ui-listview{
-		margin:0;
+	.ui-content{
+		padding:0 15px;
+		.ui-listview{
+			margin:0;
+		}
 	}
 	.ui-btn-inner{
 		white-space:normal;
@@ -395,15 +398,53 @@ img{
 	.ui-btn-icon-top .ui-btn-inner{
 		padding:0.6em 33px 0.7em 10px;
 	}
-	.ui-btn-icon-right .ui-btn-inner {
-		padding-left: 40px;
+	.ui-btn-icon-right {
+		span.ui-btn-inner {
+			padding-left: 40px;
+		}
+		div.ui-btn-inner {
+			padding-left: 25px;
+		}
 	}
 	.ui-body-a {
 		background: #FFF;
 	}
-	.ui-collapsible .ui-collapsible-content {
-		padding-top: 5px;
-		padding-bottom: 5px;
+	.ui-collapsible-set {
+		margin: 0;
+		a {
+			white-space: normal;
+		}
+	}
+	.ui-collapsible-content {
+		padding:0;
+		a {
+			padding-left:55px;
+		}
+		.ui-btn-icon-right .ui-btn-inner {
+			padding-left: 0;
+		}
+		.ui-collapsible-heading-toggle {
+			padding-left:15px;
+		}
+		.ui-collapsible-content {
+			a {
+				padding-left:70px;
+			}
+			.ui-collapsible-heading-toggle {
+				padding-left:30px;
+			}
+			.ui-collapsible-content {
+				a {
+					padding-left:85px;
+				}
+				.ui-collapsible-heading-toggle {
+					padding-left:45px;
+				}
+			}
+		}
+	}
+	.ui-li-last{
+		border-radius:0 !important;
 	}
 	.ui-li-static {
 		border-left: none;
@@ -417,6 +458,9 @@ img{
 	.ui-li{
 		padding: 0;
 		border-width:1px 1px 0 1px;
+		.ui-collapsible:first-child {
+			margin-top: -1px;
+		}
 	}
 	.ui-corner-bottom {
 		border-bottom-width:1px;
@@ -443,9 +487,6 @@ img{
 	}
 	.top-level.ui-btn-corner-all {
 		border-radius:0.6em;
-	}
-	li.top-level div.ui-btn-inner {
-		padding-left:25px;
 	}
 	#gcwu-bc-in {
 		background:#DFDFDD;
