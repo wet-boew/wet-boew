@@ -178,7 +178,7 @@
 			"%jqm-filter": "Filter items...",
 			/* Charts widget */
 			"%table-mention": "Table",
-			"%table-following": "Chart. Details in table following.",
+			"%table-following": "Chart. Details in the following table.",
 			/* Session timeout */
 			"%st-timeout-msg": "Your session is about to expire, you have until #expireTime# to activate the \"OK\" button below to extend your session.",
 			"%st-msgbox-title": "Session timeout warning",
