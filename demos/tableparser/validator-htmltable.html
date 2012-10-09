@@ -262,7 +262,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 						tblparser.colgroup.length === 1)){ // One data colum group
 						
 						// Without grouping
-						if (tblparser.lstrowgroup.length === 1) { // Only one row group
+						if (tblparser.lstrowgroup.length === 1 || (tblparser.lstrowgroup[0].type === 2 && tblparser.lstrowgroup[1].type === 3 && tblparser.lstrowgroup[1].level === 0)) { // Only one row group or one data group with a summary group at level 0 (tfoot)
 						
 							// This table is qualified to be an simple table
 							$('#errorList').append($(qualifiedSimple));
@@ -639,6 +639,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 					// tfoot question: do I force it as exclusive column summaries as the HTML 5 spec define it if it used as table footnote ??
 					
 					// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
+					var previousColgroup = false;
 					for (i = 0; i < tblparser.colgroup.length; i += 1) {
 					if (tblparser.colgroup[i].elem === undefined) {
 						// Create a colgroup element
@@ -910,7 +911,7 @@ Nothing to being displayed
 </ul>
 
 <details>
-	<summary>Example</summary>
+	<summary>Simple Example</summary>
 
 <pre><code>
 &lt;table&gt;
@@ -970,6 +971,73 @@ Nothing to being displayed
 	
 </details>
 
+
+<details>
+	<summary>Simple Example with a <code>tfoot</code></summary>
+
+<pre><code>
+&lt;table&gt;
+	&lt;caption&gt;Table 2 - Simple Table Example with a &lt;code&gt;tfoot&lt;/code&gt;&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tfoot&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tfoot&gt;
+&lt;/table&gt;
+</code></pre>
+</details>
+
 <h3>Simple Grouping Table</h3>
 
 <ul>
@@ -986,7 +1054,7 @@ Nothing to being displayed
 &lt;!-- The &quot;scope&quot; attribute was omited for clarity. If you would like to see the following table with the scope attribute set, you just need to use the above HTML Table Validator --&gt;
 
 &lt;table&gt;
-	&lt;caption&gt;Table 2 - Simple Grouping Table Example&lt;/caption&gt;
+	&lt;caption&gt;Table 3 - Simple Grouping Table Example&lt;/caption&gt;
 	&lt;thead&gt;
 		&lt;tr&gt;
 			&lt;th&gt;&lt;/th&gt;
