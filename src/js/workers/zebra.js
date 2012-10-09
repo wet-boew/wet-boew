@@ -345,7 +345,7 @@
 						$($cols).filter(':even').addClass('table-odd');
 
 					}
-
+					
 					return; // Simple Table Zebra Striping done
 				}
 
