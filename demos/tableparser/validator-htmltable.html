@@ -169,12 +169,33 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				};
 				errorHandlerAttached = true;
 			},
-			generateIdHeaders = function(){
+			displayTableResult = function (){
+				// Missing colgroup and col if any
+				var tblelement = $('#directOutput table:eq(0)');
+				
+				// Show the result
+				$('#resultTableIdHeaders').show();
+				
+				$('#resultTableIdHeaders').empty();
+				$('#resultTableIdHeaders').html('<pre class="prettyprint"><code>' + ('<table>' + $(tblelement).html() + '</table>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '</code></pre>');
+				
+
+				
+				prettyPrint();
+				
+				if($('#addzebra').is(':checked')){
+					_pe.fn.zebra._exec(tblelement);
+				}
+			},
+			optimizeAccessibilitySet = function (){
 				//var noErrorList = '<li>No Error Found</li>',
 				var noErrorList = '<li>Table passed, see the resulting source code bellow</li>',
 					ErrorParsedByForce = '<li>Forced the HTML results, It\'s recommended to fix the errors.</li>',
 					genericMessage = '<li>Use the above text field to analyse your HTML Complex Table Source Code</li>',
 					emptyTable = '<li>Empty Table</li>',
+					qualifiedSimple = '<li>You have a <strong>Simple Table</strong></li>',
+					qualifiedSimpleGrouping = '<li>You have a <strong>Simple Grouping Table</strong> (Acessibility set with scope attribute)</li>',
+					qualifiedComplex = '<li>You have a <strong>Complex Table</strong> (Acessibility set with id/headers attribute)</li>',
 					bypassOnError = false;
 				
 				nbErrorFound = 0;
@@ -190,7 +211,132 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 					bypassOnError = true;
 				}
 				
-				if(nbErrorFound === 0 || bypassOnError){
+				if (nbErrorFound === 0 || bypassOnError) {
+					
+					var tblparser = $('#directOutput table:eq(0)').data().tblparser;
+					
+					if (!tblparser.row) {
+						alert('Your table must have at least one row');
+						$('#directOutput').empty();
+						$('#errorList').empty();
+						$('#errorList').append($(emptyTable));
+						return;
+					}
+					
+					$('#errorList').empty();
+					if(nbErrorFound === 0){
+						$('#errorList').append($(noErrorList));
+					} else {
+						$('#errorList').append($(ErrorParsedByForce));
+					}
+
+					// Clean the markup if requested
+					if (!$('#chkCleanMarkup').is(':checked')) {
+						$('#directOutput table:eq(0) [headers]').each(function () {
+							$(this).removeAttr('headers');
+						});
+						$('#directOutput table:eq(0) [aria-describedby]').each(function () {
+							$(this).removeAttr('aria-describedby');
+						});
+						
+						$('#directOutput table:eq(0) [id]').each(function () {
+							$(this).removeAttr('id');
+						});
+					
+						$('#directOutput table:eq(0) [scope]').each(function () {
+							$(this).removeAttr('scope');
+						});
+						
+						$('#directOutput table:eq(0) [class]').each(function () {
+							$(this).removeAttr('class');
+						});
+					}
+					
+					// Auto-Detect the best way to make the table accessible WCAG 2.0
+					
+					// Is Simple Table ?
+					if (tblparser.theadRowStack.length <= 1 && // One Row for column headers
+						!tblparser.desccell && // No Description Cell
+						!tblparser.keycell && // No Key Cell
+						((tblparser.colgroup.length === 2 && tblparser.colgroup[0].type === 1 && tblparser.colgroup[0].col.length === 1) || // an header column group build with one column followed by a data column group
+						tblparser.colgroup.length === 1)){ // One data colum group
+						
+						// Without grouping
+						if (tblparser.lstrowgroup.length === 1 || (tblparser.lstrowgroup[0].type === 2 && tblparser.lstrowgroup[1].type === 3 && tblparser.lstrowgroup[1].level === 0)) { // Only one row group or one data group with a summary group at level 0 (tfoot)
+						
+							// This table is qualified to be an simple table
+							$('#errorList').append($(qualifiedSimple));
+							
+							displayTableResult();
+							return;
+						}
+						
+						
+						var qualifySimpleGrouping = true;
+						// Simple Row grouping (Need to be at only at level 0, 1 or 2 and no summary)
+						for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
+							if (!((tblparser.lstrowgroup[i].type === 2 && tblparser.lstrowgroup[i].level <= 2) || (tblparser.lstrowgroup[i].type === 3 && tblparser.lstrowgroup[i].level === 0))) {
+								// Sorry, but this table are not qualify for simple row grouping
+								qualifySimpleGrouping = false;
+								break;
+							}
+						}
+						
+						if (qualifySimpleGrouping) {
+							// Do the simple row grouping
+							$('#errorList').append($(qualifiedSimpleGrouping));
+							
+							for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
+								if (tblparser.lstrowgroup[i].headerlevel && tblparser.lstrowgroup[i].headerlevel[0]) {
+									$(tblparser.lstrowgroup[i].headerlevel[0].elem).attr('scope', 'rowgroup');
+								}
+								for (j = 0; j < tblparser.lstrowgroup[i].row.length; j += 1) {
+									if (tblparser.lstrowgroup[i].row[j].cell[0].type === 1) {
+										$(tblparser.lstrowgroup[i].row[j].cell[0].elem).attr('scope', 'row');
+									}
+								}
+							}
+							if (tblparser.theadRowStack.length === 1) {
+								for (i = 0; i < tblparser.theadRowStack[0].cell.length; i += 1) {
+									if (tblparser.theadRowStack[0].cell[i].type === 1){
+										$(tblparser.theadRowStack[0].cell[i].elem).attr('scope', 'col');
+									}
+								}
+							}
+							displayTableResult();
+							return;
+						}
+						
+					}
+					
+					// All Others Cases
+					$('#errorList').append($(qualifiedComplex));
+					generateIdHeaders();
+					
+				}
+			},
+			generateIdHeaders = function(){
+				//var noErrorList = '<li>No Error Found</li>',
+				var noErrorList = '<li>Table passed, see the resulting source code bellow</li>',
+					ErrorParsedByForce = '<li>Forced the HTML results, It\'s recommended to fix the errors.</li>',
+					genericMessage = '<li>Use the above text field to analyse your HTML Complex Table Source Code</li>',
+					emptyTable = '<li>Empty Table</li>',
+					bypassOnError = false;
+				/*
+				nbErrorFound = 0;
+				
+				
+				if (!errorHandlerAttached){
+					fnParserLoaded();
+				}
+				
+				_pe.fn.parsertable.parse($('#directOutput table:eq(0)'));
+				
+				if ($('#byPassOnErrorStop').is(':checked')) {
+					bypassOnError = true;
+				}
+				*/
+				// if(nbErrorFound === 0 || bypassOnError){
 					
 					// Add id, headers attribute to each cell
 					
@@ -203,23 +349,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 						idPrefix = $('#idprefix').val() || 'usabletblparsed',
 						resetIds = false;
 						
-					
-					if (!tblparser.row) {
-						alert('Your table must have at least one row');
-						$('#directOutput').empty();
-						$('#errorList').empty();
-						$('#errorList').append($(emptyTable));
-						return;
-					}
-					
-					
-					// Show the last message, regarding the HTML results
-					if(nbErrorFound === 0){
-						$('#errorList').append($(noErrorList));
-					} else {
-						$('#errorList').append($(ErrorParsedByForce));
-					}
-				
+					/*
 					
 					// Remove any headers and aria-describedby attribute
 					
@@ -241,7 +371,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 							$(this).removeAttr('scope');
 						});
 					}
-					
+					*/
 					
 					// Set ID and Header for the table head
 					for (i = 0; i < tblparser.theadRowStack.length; i += 1) {
@@ -509,78 +639,59 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 					// tfoot question: do I force it as exclusive column summaries as the HTML 5 spec define it if it used as table footnote ??
 					
 					// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
-					
-					// Missing colgroup and col if any
-					var previousColgroup;
+					var previousColgroup = false;
 					for (i = 0; i < tblparser.colgroup.length; i += 1) {
-						var colgroupelem;
-						if (tblparser.colgroup[i].elem === undefined) {
-							// Create a colgroup element
-							colgroupelem = $('<colgroup></colgroup>');
-							
-							// Create the column
-							for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
+					if (tblparser.colgroup[i].elem === undefined) {
+						// Create a colgroup element
+						colgroupelem = $('<colgroup></colgroup>');
+						
+						// Create the column
+						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
+							var column = $('<col />');
+							$(colgroupelem).append(column);
+							tblparser.colgroup[i].col[j].elem = $(column).get(0);
+							$(column).data().tblparser = tblparser.colgroup[i].col[j];
+						}
+						
+						if (previousColgroup) {
+							$(previousColgroup).after(colgroupelem);
+						} else {
+							if ($(tblelement).has('caption')) {
+								$('caption:eq(0)', tblelement).after(colgroupelem);
+							} else {
+								$(tblelement).prepend(colgroupelem);
+							}
+						}
+						previousColgroup = colgroupelem;
+						
+						tblparser.colgroup[i].elem = $(colgroupelem).get(0);
+						$(colgroupelem).data().tblparser = tblparser.colgroup[i];
+					} else {
+						// Remove the span attribute if exist
+						colgroupelem = tblparser.colgroup[i].elem;
+
+						$(colgroupelem).removeAttr('span');
+						
+						// Create the column
+						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
+							if (tblparser.colgroup[i].col[j].elem === undefined) {
 								var column = $('<col />');
 								$(colgroupelem).append(column);
 								tblparser.colgroup[i].col[j].elem = $(column).get(0);
 								$(column).data().tblparser = tblparser.colgroup[i].col[j];
 							}
-							
-							if (previousColgroup) {
-								$(previousColgroup).after(colgroupelem);
-							} else {
-								if ($(tblelement).has('caption')) {
-									$('caption:eq(0)', tblelement).after(colgroupelem);
-								} else {
-									$(tblelement).prepend(colgroupelem);
-								}
-							}
-							previousColgroup = colgroupelem;
-							
-							tblparser.colgroup[i].elem = $(colgroupelem).get(0);
-							$(colgroupelem).data().tblparser = tblparser.colgroup[i];
-						} else {
-							// Remove the span attribute if exist
-							colgroupelem = tblparser.colgroup[i].elem;
-
-							$(colgroupelem).removeAttr('span');
-							
-							// Create the column
-							for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
-								if (tblparser.colgroup[i].col[j].elem === undefined) {
-									var column = $('<col />');
-									$(colgroupelem).append(column);
-									tblparser.colgroup[i].col[j].elem = $(column).get(0);
-									$(column).data().tblparser = tblparser.colgroup[i].col[j];
-								}
-							}
-							
 						}
+						
 					}
-					
-					// TODO: Rebuild the thead, tbody section
-					
-					
-					// Show the result
-					$('#resultTableIdHeaders').show();
-					// '<table>' + $(tblelement).html() + '</table>';
-					
-					
-					
-									
-									 
-					
-					// $('#resultTableIdHeaders').html(prettyPrintOne('<table>' + $(tblelement).html() + '</table>'));
-					$('#resultTableIdHeaders').empty();
-					$('#resultTableIdHeaders').html('<pre class="prettyprint"><code>' + ('<table>' + $(tblelement).html() + '</table>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '</code></pre>');
-					
-
-					
-					prettyPrint();
 				}
+				
+				// TODO: Rebuild the thead, tbody section
+				
+				displayTableResult();
+				// }
 			
 				
-				_pe.dance();
+				
 			
 			};
 			
@@ -596,7 +707,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			//var noErrorList = '<li>No Error Found</li>',
 			var noErrorList = '<li>Table passed, see the resulting source code bellow</li>',
 				genericMessage = '<li>Use the above text field to analyse your HTML Complex Table Source Code</li>',
-				emptyTable = '<li>Empty Table</li>';
+				emptyTable = '<li>Empty Table</li>',
+				parsingInProgress = '<li>Please wait, you will see the result in a moment.</li>';
 			
 			nbErrorFound = 0;
 			
@@ -609,12 +721,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			$('#directOutput').empty();
 			
 			
-		
+			
 			if($('#addzebra').is(':checked')){
 				$('#directOutput').append(tableOpenTagZebraNoEncode + $('#inputHTMLtable').val() + '</table>');
 			} else {
 				$('#directOutput').append(tableOpenTagNoEncode + $('#inputHTMLtable').val() + '</table>');
 			}
+			
+			
 
 			if ($('#directOutput table:eq(0)').length === 0) {
 				alert('Please add HTML Table code');
@@ -623,10 +737,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				return;
 			}
 			
+			$('#errorList').append($(parsingInProgress));
+			
 			if (_pe.fn.parsertable) {
-				generateIdHeaders();
+				optimizeAccessibilitySet();
 			} else {
-				$(document).on('depsTableParserLoaded', generateIdHeaders);
+				$(document).on('depsTableParserLoaded', optimizeAccessibilitySet);
 				_pe.wb_load({'dep': ['parserTable']}, "depsTableParserLoaded");
 			}
 		});
@@ -735,17 +851,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 	<frameset>
 		<legend>Options</legend>
-		
-			<label class="form-checkbox" for="addzebra"><input type="checkbox" value="addzebra" id="addzebra"/> Zebra Stripping Enhancement</label><br />
-			<label class="form-checkbox" for="removeScope"><input type="checkbox" value="removeScope" id="removeScope"/> Remove any scope attribute</label><br />
-			<label class="form-checkbox" for="byPassOnErrorStop"><input type="checkbox" value="byPassOnErrorStop" id="byPassOnErrorStop"/> Force the HTML Results<sup id="fnb1-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup></label><br />
+			<label class="form-checkbox" for="chkCleanMarkup"><input type="checkbox" value="chkCleanMarkup" id="chkCleanMarkup"/> Do not clean the HTML Tabular Markup<sup id="fnb1-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup></label>
+			<label class="form-checkbox" for="addzebra"><input type="checkbox" value="addzebra" id="addzebra"/> Zebra Stripping Enhancement</label>
+			<label class="form-checkbox" for="byPassOnErrorStop"><input type="checkbox" value="byPassOnErrorStop" id="byPassOnErrorStop"/> Force the HTML Results<sup id="fnb2-ref"><a class="footnote-link" href="#fnb2"><span class="wb-invisible">Footnote </span>2</a></sup></label><br />
 			
 			<label for="idprefix">Ids Prefix:</label>
 			<input id="idprefix" value="tbl" />
-		
-			<label class="form-checkbox" for="idreset">
-			<input type="checkbox" value="option1" id="idreset"> Reset Ids </label>
-
 			
 		
 	</frameset>
@@ -785,16 +896,319 @@ Nothing to being displayed
 </pre>
 </div>
 
-<!-- 
-<textarea id="resultTableIdHeaders" class="span-8" rows="20" cols="50"></textarea>
-
--->
-
 <hr />
 
 <h2>Resources</h2>
 
 <p><a href="index-eng.html">View all resource</a></p>
+
+<h3>Simple Table</h3>
+
+<ul>
+	<li>Zero or one row used to define column headers. That row is located at the top of the table.</li>
+	<li>Zero or one column used to define row headers. That is the first cell for each row, excluding the first table row if it used for columns headers.</li>
+	<li>If there is no table footers (<code>tfoot</code>) row group, the row grouping element <code>thead, tbody</code> can be omited.</li>
+</ul>
+
+<details>
+	<summary>Simple Example</summary>
+
+<pre><code>
+&lt;table&gt;
+	&lt;caption&gt;Table 1 - Simple Table Example&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;th&gt;&lt;/th&gt;
+		&lt;th&gt;Col Heading&lt;/th&gt;
+		&lt;th&gt;Col Heading&lt;/th&gt;
+		&lt;th&gt;Col Heading&lt;/th&gt;
+		&lt;th&gt;Col Heading&lt;/th&gt;
+		&lt;th&gt;Col Heading&lt;/th&gt;
+		&lt;th&gt;Col Heading&lt;/th&gt;
+		&lt;th&gt;Col Heading&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Heading&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Heading&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Heading&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Row Heading&lt;/th&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+		&lt;td&gt;Data&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+	
+</details>
+
+
+<details>
+	<summary>Simple Example with a <code>tfoot</code></summary>
+
+<pre><code>
+&lt;table&gt;
+	&lt;caption&gt;Table 2 - Simple Table Example with a &lt;code&gt;tfoot&lt;/code&gt;&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tfoot&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tfoot&gt;
+&lt;/table&gt;
+</code></pre>
+</details>
+
+<h3>Simple Grouping Table</h3>
+
+<ul>
+	<li>Zero or one row used to define column headers. That row is located at the top of the table.</li>
+	<li>Zero or one column used to define row headers. That is the first cell for each row, excluding the first table row if it used for columns headers.</li>
+	<li>The row grouping element is required <code>thead, tbody, tfoot</code> because the scope &quot;rowgroup&quot; needs to be anchored in a <code>tbody</code> element.</li>
+</ul>
+
+<details>
+	<summary>Example</summary>
+
+<pre><code>
+
+&lt;!-- The &quot;scope&quot; attribute was omited for clarity. If you would like to see the following table with the scope attribute set, you just need to use the above HTML Table Validator --&gt;
+
+&lt;table&gt;
+	&lt;caption&gt;Table 3 - Simple Grouping Table Example&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+			&lt;th&gt;Col Heading&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;8&quot;&gt;Group A&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;8&quot;&gt;Group B&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Heading&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+</code></pre>
+</details>
+
+
+<h3>Complex Table</h3>
+
+<p>Everything that are not defined as Simple Table and Simple Grouping Table.</p>
 
 <h3>HTML Table Technique</h3>
 
@@ -835,8 +1249,13 @@ Nothing to being displayed
 <dl>
 	<dt>Footnote 1</dt>
 	<dd id="fnb1">
-		<p>Forcing the HTML Results to be show may cause undesired javascript errors. But forcing the HTML Results can sometimes helps to figure out the errors detected in the tabular markup.</p>
+		<p>Clean HTML Tabular Markup means to remove any <code>scope, class, id, headers, aria-describedby</code> attribute that was originally defined in the pasted HTML table code.</p>
 		<p class="footnote-return"><a href="#fnb1-ref"><span class="wb-invisible">Return to footnote </span>1<span class="wb-invisible"> referrer</span></a></p>
+	</dd>
+	<dt>Footnote 2</dt>
+	<dd id="fnb2">
+		<p>Forcing the HTML Results to be show may cause undesired javascript errors. But forcing the HTML Results can sometimes helps to figure out the errors detected in the tabular markup.</p>
+		<p class="footnote-return"><a href="#fnb2-ref"><span class="wb-invisible">Return to footnote </span>2<span class="wb-invisible"> referrer</span></a></p>
 	</dd>
 </dl>
 </section>

@@ -52,7 +52,8 @@
 				rowgroupheadercalled = false,
 				hasTfoot = $(obj).has('tfoot'),
 				lastHeadingSummaryColPos,
-				previousDataHeadingColPos;
+				previousDataHeadingColPos,
+				tfootOnProcess = false;
 			// elm need to be a table
 			if ($(elm).get(0).nodeName.toLowerCase() !== 'table') {
 				errorTrigger(1, elm);
@@ -827,11 +828,17 @@
 			}
 
 			function rowgroupSetup(forceDataGroup) {
-				// console.log('Row Group Setup');
+
 				var i,
 					previousRowGroup,
 					tmpHeaderLevel;
 
+				if (tfootOnProcess) {
+					currentRowGroup.type = 3;
+					currentRowGroup.level = 0;
+					rowgroupHeaderRowStack = [];
+					return;
+				}
 				// Check if the current row group, already have some row, if yes this is a new row group
 				if (rowgroupHeaderRowStack.length > 0) {
 					// if more than 0 cell in the stack, mark this row group as a data row group and create the new row group (can be only virtual)
@@ -1677,15 +1684,14 @@
 				$('tfoot', obj).appendTo($('tbody:last', obj).parent());
 			}
 			$(obj).children().each(function () {
-				var $this = $(this);
-				switch (this.nodeName.toLowerCase()) {
-				case 'caption':
+				var $this = $(this),
+					nodeName = this.nodeName.toLowerCase();
+
+				if (nodeName === 'caption') {
 					processCaption(this);
-					break;
-				case 'colgroup':
+				} else if (nodeName === 'colgroup') {
 					processColgroup(this);
-					break;
-				case 'thead':
+				} else if (nodeName === 'thead') {
 					currentRowGroupElement = this;
 					// The table should not have any row at this point
 					if (theadRowStack.length !== 0 || (groupZero.row && groupZero.row.length > 0)) {
@@ -1707,10 +1713,11 @@
 					stackRowHeader = false;
 
 					// Here it's not possible to  Diggest the thead and the colgroup because we need the first data row to be half processed before
-					break;
-				case 'tbody':
-				case 'tfoot':
-
+				} else if (nodeName === 'tbody' || nodeName === 'tfoot') {
+					
+					if (nodeName === 'tfoot') {
+						tfootOnProcess = true;
+					}
 					// Currently there are no specific support for tfoot element, the tfoot is understood as a normal tbody
 
 					currentRowGroupElement = this;
@@ -1754,22 +1761,12 @@
 					currentRowHeader = [];
 
 					currentTbodyID += 1;
-					break;
-					// case 'tfoot':
-					//currentRowGroupElement = this;
-
-					// The rowpos are not incremented here because this is a summary rowgroup for the GroupZero
-
-					// Question: Stack any row and processed them at the really end ? Do we allow tfoot to be used as a footnote for the tabular data ?
-					// break;
-				case 'tr':
+				} else if (nodeName === 'tr') {
 					// This are suppose to be a simple table
 					processRow(this);
-					break;
-				default:
+				} else {
 					// There is a DOM Structure error
 					errorTrigger(30, this);
-					break;
 				}
 			});
 
