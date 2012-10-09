@@ -907,7 +907,7 @@
 								next = $this.children('a, ul');
 								if (next.length > 0) {
 									if (next.get(0).tagName.toLowerCase() === 'a') {
-										menu.append('<a href="' + next.attr('href') + '" data-role="button" data-theme="' + theme1 + '" data-icon="arrow-r" data-iconpos="right" data-corner="false">' + next.html() + '</a>');
+										menu.append('<a href="' + next.attr('href') + '" data-role="button" data-theme="' + theme1 + '" data-icon="arrow-r" data-iconpos="right" data-corners="false">' + next.html() + '</a>');
 									} else {
 										menu.append($this.children('ul').attr({ 'data-role': 'listview', 'data-theme': (toplevel ? theme1 : theme2) }));
 									}

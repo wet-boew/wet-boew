@@ -147,9 +147,14 @@ a {
 #gcwu-sft{
 	padding-bottom:5px;
 	margin-top:5px;
-	li a.ui-btn {
-		color:#fff !important;
-		font-weight:700;
+	li {
+		a.ui-btn {
+			font-weight:700;
+			margin-top:-1px;
+		}
+		a.ui-btn-active{
+			color:#fff;
+		}
 	}
 }
 
