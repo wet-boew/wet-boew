@@ -839,7 +839,7 @@
 					toplevel = (top !== undefined ? top : true),
 					theme2 = (theme_2 !== undefined ? theme_2 : theme_1),
 					theme1 = (toplevel ? theme_1 : theme_2),
-					collapsibleSet = '<div data-role="collapsible-set" data-theme="' + theme2 + '"></div>',
+					collapsibleSet = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme2 + '"></div>',
 					listView = '<ul data-role="listview" data-theme="' + theme2 + '"></ul>',
 					menu = toplevel ? $('<div data-role="controlgroup"></div>') : $('<div/>');
 				if (menuitems.get(0).tagName.toLowerCase() === 'ul') {
@@ -888,7 +888,6 @@
 										}
 									});
 									subsection.append($(listView).append(next.children('li')));
-									//subsection.find('ul').wrap('<div data-role="controlgroup">' + (nested.length > 0 ? collapsibleSet : '') + '</div>');
 									if (nested.length > 0) {
 										subsection.find('ul').wrap(collapsibleSet);
 									}
@@ -900,7 +899,7 @@
 									}
 									// If the original menu item was not in a menu bar
 									if (!menubar) {
-										subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme2, 'data-icon': 'arrow-r', 'data-iconpos': 'right'}));
+										subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme2, 'data-icon': 'arrow-r', 'data-iconpos': 'right', 'data-corners': 'false'}));
 									}
 								}
 								menu.append(subsection);
@@ -908,14 +907,14 @@
 								next = $this.children('a, ul');
 								if (next.length > 0) {
 									if (next.get(0).tagName.toLowerCase() === 'a') {
-										menu.append('<a href="' + next.attr('href') + '" data-role="button" data-theme="' + theme1 + '" data-icon="arrow-r" data-iconpos="right">' + next.html() + '</a>');
+										menu.append('<a href="' + next.attr('href') + '" data-role="button" data-theme="' + theme1 + '" data-icon="arrow-r" data-iconpos="right" data-corner="false">' + next.html() + '</a>');
 									} else {
 										menu.append($this.children('ul').attr({ 'data-role': 'listview', 'data-theme': (toplevel ? theme1 : theme2) }));
 									}
 								}
 							}
 						});
-						menu.children().wrapAll('<div data-role="collapsible-set" data-theme="' + theme1 + '"></div>');
+						menu.children().wrapAll('<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"></div>');
 					}
 				}
 				return menu;
@@ -946,29 +945,12 @@
 			* @return {void}
 			*/
 			correctmobile: function (menusrc) {
-				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
-					parent = original.parent();
-				original.detach().find('.ui-controlgroup-controls > .ui-collapsible-set').each(function () {
-					var $this = $(this);
-					if ($this.find('> ul .ui-collapsible').length > 0) {
-						$this = $this.children('ul');
-					}
-					$this.children().each(function () {
-						var $this = $(this),
-							target = (this.tagName.toLowerCase() === 'a' ? $this : $this.find('a').first());
-						if ($this.prev().length > 0) {
-							target.removeClass('ui-corner-top');
-						} else {
-							target.addClass('ui-corner-top');
-						}
-						if ($this.next().length > 0) {
-							target.removeClass('ui-corner-bottom');
-						} else {
-							target.addClass('ui-corner-bottom');
-						}
-					});
+				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc));
+				original.find('.ui-controlgroup-controls > .ui-collapsible-set').each(function() {
+					var children = $(this).children();
+					children.first().find('a').eq(0).addClass('ui-corner-top');
+					children.last().find('a').eq(0).addClass('ui-corner-bottom');
 				});
-				original.appendTo(parent);
 			}
 		},
 		/**
