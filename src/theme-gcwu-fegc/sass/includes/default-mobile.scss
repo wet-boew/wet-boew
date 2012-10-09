@@ -415,6 +415,10 @@ img{
 			white-space: normal;
 		}
 	}
+	.ui-collapsible-heading .ui-btn {
+		border-left-width: 1px;
+		border-right-width: 1px;
+	}
 	.ui-collapsible-content {
 		padding:0;
 		a {
