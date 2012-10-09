@@ -159,6 +159,12 @@ dl.wet-boew-zebra {
 		}
 	}
 	
+	tfoot {
+		td {
+			background-color: #DDD;
+		}
+	}
+	
 	tbody.table-rowgroupmarker, tfoot.table-rowgroupmarker {
 		border-top: solid black 2px;
 	}

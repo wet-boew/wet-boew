@@ -865,7 +865,7 @@
 								next = $this.next();
 								if (next.get(0).tagName.toLowerCase() === 'ul') {
 									// The original menu item was not in a menu bar
-									if (!menubar) {
+									if (!menubar && hlink.length > 0) {
 										next.append($('<li></li>').append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText)));
 									}
 									nested = next.find('li ul');
@@ -946,7 +946,7 @@
 			*/
 			correctmobile: function (menusrc) {
 				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
-					menus = original.find('.ui-controlgroup-controls > .ui-collapsible-set').get(),
+					menus = original.find('.ui-controlgroup-controls').children().get(),
 					menu,
 					menu_len = menus.length,
 					children,
