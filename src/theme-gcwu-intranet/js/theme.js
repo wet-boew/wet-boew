@@ -94,7 +94,7 @@
 					mb_popup += '<div id="jqm-mb-location-text"></div>';
 				}
 
-				// Build menu
+				// Build the menu
 				if (pe.secnav.length > 0) {
 					nav = pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'b', false, true, 'c', true);
 					pe.menu.expandcollapsemobile(nav, (pe.secnav.find('h3.top-section').length > 0 ? 'h4' : 'h3'), true, false);
@@ -102,14 +102,13 @@
 					mb_menu += '<section><div><h2>' + secnav_h2[0].innerHTML + '</h2><div data-role="controlgroup">' + nav[0].innerHTML + '</div></div></section>';
 					pe.secnav.remove();
 				}
-
 				if (wet_boew_theme.menubar.length > 0) {
 					nav = pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true);
 					mb_menu += '<section><div><h2>' + mb_header_html + '</h2><div data-role="controlgroup">' + nav[0].innerHTML + '</div></div></section>';
 				}
-				mb_popup += '<div id="jqm-mb-menu"></div></nav></div></div></div>';
 				
 				// Append the popup/dialog container and store the menu for appending later
+				mb_popup += '<div id="jqm-mb-menu"></div></nav></div></div></div>';
 				(force_dialog ? pe.pagecontainer() : pe.bodydiv).append(mb_popup);
 				wet_boew_theme.force_dialog = force_dialog;
 				wet_boew_theme.menu = mb_menu;
