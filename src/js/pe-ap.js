@@ -945,12 +945,26 @@
 			* @return {void}
 			*/
 			correctmobile: function (menusrc) {
-				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc));
-				original.find('.ui-controlgroup-controls > .ui-collapsible-set').each(function() {
-					var children = $(this).children();
-					children.first().find('a').eq(0).addClass('ui-corner-top');
-					children.last().find('a').eq(0).addClass('ui-corner-bottom');
-				});
+				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
+					menus = original.find('.ui-controlgroup-controls > .ui-collapsible-set').get(),
+					menu,
+					menu_len = menus.length,
+					children,
+					child,
+					children_len;
+				while (menu_len--) {
+					menu = menus[menu_len];
+					menu.getElementsByTagName('a')[0].className += ' ui-corner-top';
+					children = menu.childNodes;
+					children_len = children.length;
+					while (children_len--) {
+						child = children[children_len];
+						if (child.nodeType === 1) {
+							child.getElementsByTagName('a')[0].className += ' ui-corner-bottom';
+							break;
+						}
+					}
+				}
 			}
 		},
 		/**
