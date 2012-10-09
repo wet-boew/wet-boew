@@ -169,12 +169,91 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				};
 				errorHandlerAttached = true;
 			},
-			generateIdHeaders = function(){
+			displayTableResult = function (){
+				// Missing colgroup and col if any
+				var previousColgroup,
+					colgroupelem,
+					tblparser = $('#directOutput table:eq(0)').data().tblparser,
+					i,
+					j,
+					tblelement = $('#directOutput table:eq(0)');
+					
+				for (i = 0; i < tblparser.colgroup.length; i += 1) {
+					if (tblparser.colgroup[i].elem === undefined) {
+						// Create a colgroup element
+						colgroupelem = $('<colgroup></colgroup>');
+						
+						// Create the column
+						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
+							var column = $('<col />');
+							$(colgroupelem).append(column);
+							tblparser.colgroup[i].col[j].elem = $(column).get(0);
+							$(column).data().tblparser = tblparser.colgroup[i].col[j];
+						}
+						
+						if (previousColgroup) {
+							$(previousColgroup).after(colgroupelem);
+						} else {
+							if ($(tblelement).has('caption')) {
+								$('caption:eq(0)', tblelement).after(colgroupelem);
+							} else {
+								$(tblelement).prepend(colgroupelem);
+							}
+						}
+						previousColgroup = colgroupelem;
+						
+						tblparser.colgroup[i].elem = $(colgroupelem).get(0);
+						$(colgroupelem).data().tblparser = tblparser.colgroup[i];
+					} else {
+						// Remove the span attribute if exist
+						colgroupelem = tblparser.colgroup[i].elem;
+
+						$(colgroupelem).removeAttr('span');
+						
+						// Create the column
+						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
+							if (tblparser.colgroup[i].col[j].elem === undefined) {
+								var column = $('<col />');
+								$(colgroupelem).append(column);
+								tblparser.colgroup[i].col[j].elem = $(column).get(0);
+								$(column).data().tblparser = tblparser.colgroup[i].col[j];
+							}
+						}
+						
+					}
+				}
+				
+				// TODO: Rebuild the thead, tbody section
+				
+				
+				// Show the result
+				$('#resultTableIdHeaders').show();
+				// '<table>' + $(tblelement).html() + '</table>';
+				
+				
+				
+								
+								 
+				
+				// $('#resultTableIdHeaders').html(prettyPrintOne('<table>' + $(tblelement).html() + '</table>'));
+				$('#resultTableIdHeaders').empty();
+				$('#resultTableIdHeaders').html('<pre class="prettyprint"><code>' + ('<table>' + $(tblelement).html() + '</table>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '</code></pre>');
+				
+
+				
+				prettyPrint();
+				
+				_pe.dance();
+			},
+			optimizeAccessibilitySet = function (){
 				//var noErrorList = '<li>No Error Found</li>',
 				var noErrorList = '<li>Table passed, see the resulting source code bellow</li>',
 					ErrorParsedByForce = '<li>Forced the HTML results, It\'s recommended to fix the errors.</li>',
 					genericMessage = '<li>Use the above text field to analyse your HTML Complex Table Source Code</li>',
 					emptyTable = '<li>Empty Table</li>',
+					qualifiedSimple = '<li>You have a <strong>Simple Table</strong></li>',
+					qualifiedSimpleGrouping = '<li>You have a <strong>Simple Grouping Table</strong> (Acessibility set with scope attribute)</li>',
+					qualifiedComplex = '<li>You have a <strong>Complex Table</strong> (Acessibility set with id/headers attribute)</li>',
 					bypassOnError = false;
 				
 				nbErrorFound = 0;
@@ -190,7 +269,127 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 					bypassOnError = true;
 				}
 				
-				if(nbErrorFound === 0 || bypassOnError){
+				if (nbErrorFound === 0 || bypassOnError) {
+					
+					var tblparser = $('#directOutput table:eq(0)').data().tblparser;
+					
+					if (!tblparser.row) {
+						alert('Your table must have at least one row');
+						$('#directOutput').empty();
+						$('#errorList').empty();
+						$('#errorList').append($(emptyTable));
+						return;
+					}
+				
+					if(nbErrorFound === 0){
+						$('#errorList').append($(noErrorList));
+					} else {
+						$('#errorList').append($(ErrorParsedByForce));
+					}
+
+					// Clean the markup if requested
+					if ($('#chkCleanMarkup').is(':checked')) {
+						$('#directOutput table:eq(0) [headers]').each(function () {
+							$(this).removeAttr('headers');
+						});
+						$('#directOutput table:eq(0) [aria-describedby]').each(function () {
+							$(this).removeAttr('aria-describedby');
+						});
+						
+						$('#directOutput table:eq(0) [id]').each(function () {
+							$(this).removeAttr('id');
+						});
+					
+						$('#directOutput table:eq(0) [scope]').each(function () {
+							$(this).removeAttr('scope');
+						});
+					}
+					
+					// Auto-Detect the best way to make the table accessible WCAG 2.0
+					
+					// Is Simple Table ?
+					if (tblparser.theadRowStack.length <= 1 && // One Row for column headers
+						!tblparser.desccell && // No Description Cell
+						!tblparser.keycell && // No Key Cell
+						((tblparser.colgroup.length === 2 && tblparser.colgroup[0].type === 1 && tblparser.colgroup[0].col.length === 1) || // an header column group build with one column followed by a data column group
+						tblparser.colgroup.length === 1)){ // One data colum group
+						
+						// Without grouping
+						if (tblparser.lstrowgroup.length === 1) { // Only one row group
+						
+							// This table is qualified to be an simple table
+							$('#errorList').append($(qualifiedSimple));
+							
+							displayTableResult();
+							return;
+						}
+						
+						
+						var qualifySimpleGrouping = true;
+						// Simple Row grouping (Need to be at only at level 0, 1 or 2 and no summary)
+						for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
+							if (!((tblparser.lstrowgroup[i].type === 2 && tblparser.lstrowgroup[i].level <= 2) || (tblparser.lstrowgroup[i].type === 3 && tblparser.lstrowgroup[i].level === 0))) {
+								// Sorry, but this table are not qualify for simple row grouping
+								qualifySimpleGrouping = false;
+								break;
+							}
+						}
+						
+						if (qualifySimpleGrouping) {
+							// Do the simple row grouping
+							$('#errorList').append($(qualifiedSimpleGrouping));
+							
+							for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
+								if (tblparser.lstrowgroup[i].headerlevel) {
+									$(tblparser.lstrowgroup[i].headerlevel[0].elem).attr('scope', 'rowgroup');
+								}
+								for (j = 0; j < tblparser.lstrowgroup[i].row.length; j += 1) {
+									if (tblparser.lstrowgroup[i].row[j].cell[0].type === 1) {
+										$(tblparser.lstrowgroup[i].row[j].cell[0].elem).attr('scope', 'row');
+									}
+								}
+							}
+							if (tblparser.theadRowStack.length === 1) {
+								for (i = 0; i < tblparser.theadRowStack[0].cell.length; i += 1) {
+									if (tblparser.theadRowStack[0].cell[i].type === 1){
+										$(tblparser.theadRowStack[0].cell[i].elem).attr('scope', 'col');
+									}
+								}
+							}
+							displayTableResult();
+							return;
+						}
+						
+					}
+					
+					// All Others Cases
+					$('#errorList').append($(qualifiedComplex));
+					generateIdHeaders();
+					
+				}
+			},
+			generateIdHeaders = function(){
+				//var noErrorList = '<li>No Error Found</li>',
+				var noErrorList = '<li>Table passed, see the resulting source code bellow</li>',
+					ErrorParsedByForce = '<li>Forced the HTML results, It\'s recommended to fix the errors.</li>',
+					genericMessage = '<li>Use the above text field to analyse your HTML Complex Table Source Code</li>',
+					emptyTable = '<li>Empty Table</li>',
+					bypassOnError = false;
+				/*
+				nbErrorFound = 0;
+				
+				
+				if (!errorHandlerAttached){
+					fnParserLoaded();
+				}
+				
+				_pe.fn.parsertable.parse($('#directOutput table:eq(0)'));
+				
+				if ($('#byPassOnErrorStop').is(':checked')) {
+					bypassOnError = true;
+				}
+				*/
+				// if(nbErrorFound === 0 || bypassOnError){
 					
 					// Add id, headers attribute to each cell
 					
@@ -203,23 +402,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 						idPrefix = $('#idprefix').val() || 'usabletblparsed',
 						resetIds = false;
 						
-					
-					if (!tblparser.row) {
-						alert('Your table must have at least one row');
-						$('#directOutput').empty();
-						$('#errorList').empty();
-						$('#errorList').append($(emptyTable));
-						return;
-					}
-					
-					
-					// Show the last message, regarding the HTML results
-					if(nbErrorFound === 0){
-						$('#errorList').append($(noErrorList));
-					} else {
-						$('#errorList').append($(ErrorParsedByForce));
-					}
-				
+					/*
 					
 					// Remove any headers and aria-describedby attribute
 					
@@ -241,7 +424,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 							$(this).removeAttr('scope');
 						});
 					}
-					
+					*/
 					
 					// Set ID and Header for the table head
 					for (i = 0; i < tblparser.theadRowStack.length; i += 1) {
@@ -510,77 +693,11 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 					
 					// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
 					
-					// Missing colgroup and col if any
-					var previousColgroup;
-					for (i = 0; i < tblparser.colgroup.length; i += 1) {
-						var colgroupelem;
-						if (tblparser.colgroup[i].elem === undefined) {
-							// Create a colgroup element
-							colgroupelem = $('<colgroup></colgroup>');
-							
-							// Create the column
-							for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
-								var column = $('<col />');
-								$(colgroupelem).append(column);
-								tblparser.colgroup[i].col[j].elem = $(column).get(0);
-								$(column).data().tblparser = tblparser.colgroup[i].col[j];
-							}
-							
-							if (previousColgroup) {
-								$(previousColgroup).after(colgroupelem);
-							} else {
-								if ($(tblelement).has('caption')) {
-									$('caption:eq(0)', tblelement).after(colgroupelem);
-								} else {
-									$(tblelement).prepend(colgroupelem);
-								}
-							}
-							previousColgroup = colgroupelem;
-							
-							tblparser.colgroup[i].elem = $(colgroupelem).get(0);
-							$(colgroupelem).data().tblparser = tblparser.colgroup[i];
-						} else {
-							// Remove the span attribute if exist
-							colgroupelem = tblparser.colgroup[i].elem;
-
-							$(colgroupelem).removeAttr('span');
-							
-							// Create the column
-							for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
-								if (tblparser.colgroup[i].col[j].elem === undefined) {
-									var column = $('<col />');
-									$(colgroupelem).append(column);
-									tblparser.colgroup[i].col[j].elem = $(column).get(0);
-									$(column).data().tblparser = tblparser.colgroup[i].col[j];
-								}
-							}
-							
-						}
-					}
-					
-					// TODO: Rebuild the thead, tbody section
-					
-					
-					// Show the result
-					$('#resultTableIdHeaders').show();
-					// '<table>' + $(tblelement).html() + '</table>';
-					
-					
-					
-									
-									 
-					
-					// $('#resultTableIdHeaders').html(prettyPrintOne('<table>' + $(tblelement).html() + '</table>'));
-					$('#resultTableIdHeaders').empty();
-					$('#resultTableIdHeaders').html('<pre class="prettyprint"><code>' + ('<table>' + $(tblelement).html() + '</table>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '</code></pre>');
-					
-
-					
-					prettyPrint();
-				}
+					displayTableResult();
+				// }
 			
 				
-				_pe.dance();
+				
 			
 			};
 			
@@ -624,9 +741,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			}
 			
 			if (_pe.fn.parsertable) {
-				generateIdHeaders();
+				optimizeAccessibilitySet();
 			} else {
-				$(document).on('depsTableParserLoaded', generateIdHeaders);
+				$(document).on('depsTableParserLoaded', optimizeAccessibilitySet);
 				_pe.wb_load({'dep': ['parserTable']}, "depsTableParserLoaded");
 			}
 		});
@@ -744,7 +861,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<input id="idprefix" value="tbl" />
 		
 			<label class="form-checkbox" for="idreset">
-			<input type="checkbox" value="option1" id="idreset"> Reset Ids </label>
+			<input type="checkbox" value="option1" id="idreset"> Reset Ids </label><br />
+			<label class="form-checkbox" for="chkCleanMarkup"><input type="checkbox" value="chkCleanMarkup" id="chkCleanMarkup"/> Clean HTML Tabular Markup<sup id="fnb2-ref"><a class="footnote-link" href="#fnb2"><span class="wb-invisible">Footnote </span>2</a></sup></label>
+			
 
 			
 		
