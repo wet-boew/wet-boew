@@ -80,13 +80,6 @@
 	#gcwu-bar,#wb-foot{
 		display: block;
 	}
-	#wb-head,#wb-foot{
-		a[href]{
-			&:hover,&:focus,&:active{
-			color: #C00;
-			}
-		}
-	}
 	#gcwu-sig{
 		margin-top:20px;
 	}
