@@ -175,7 +175,7 @@
 
 				// Delay appending of menu by 1 millisecond to avoid JavaScript execution timeout issues
 				setTimeout(function() {
-					(wet_boew_theme.force_dialog ? pe.pagecontainer() : pe.bodydiv).find('#jqm-mb-menu').append(wet_boew_theme.menu).trigger('create')
+					(wet_boew_theme.force_dialog ? pe.pagecontainer() : pe.bodydiv).find('#jqm-mb-menu').append(wet_boew_theme.menu).trigger('create');
 				},1);
 
 				//Transition to show loading icon on transition
