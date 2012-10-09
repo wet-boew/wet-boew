@@ -24,7 +24,6 @@
 		title: null,
 		sft: null,
 		fullft: null,
-		force_dialog: false,
 		menu: null,
 		init: function () {
 			wet_boew_theme.fullhd = pe.header.find('#base-fullhd');
@@ -65,8 +64,6 @@
 				secnav_h2,
 				nav,
 				s_popup,
-				force_dialog = false, // Fallback for mobile devices that can't handle the popup with a lot of nested menus (e.g., $('html').hasClass('bb-pre7'))
-				dialog_role = 'data-role="page"',
 				popup_role = 'data-role="popup" data-overlay-theme="a"',
 				popup_close = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">' + pe.dic.get('%close') + '</a>',
 				_list = '',
@@ -79,11 +76,11 @@
 			if (wet_boew_theme.menubar.length > 0 || pe.secnav.length > 0 || wet_boew_theme.search.length > 0) {
 				// Transform the menu to a popup
 				mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
-				mb_popup = '<div ' + (force_dialog ? dialog_role : popup_role) + ' id="jqm-wb-mb"><div data-role="header">';
+				mb_popup = '<div ' + popup_role + ' id="jqm-wb-mb"><div data-role="header">';
 				secnav_h2 = (pe.secnav.length > 0 ? pe.secnav.find('h2').eq(0) : '');
 				mb_header = (wet_boew_theme.menubar.length > 0 ? wet_boew_theme.psnb.children(':header') : (pe.secnav.length > 0 ? secnav_h2 : wet_boew_theme.bcrumb.children(':header')));
 				mb_header_html = mb_header[0].innerHTML;
-				mb_popup += '<h1>' + mb_btn_txt + '</h1>' + (force_dialog ? '' : popup_close) + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
+				mb_popup += '<h1>' + mb_btn_txt + '</h1>' + popup_close + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
 
 				if (wet_boew_theme.bcrumb.length > 0) {
 					mb_popup += '<section><div id="jqm-mb-location-text">' + wet_boew_theme.bcrumb[0].innerHTML + '</div></section>';
@@ -107,12 +104,11 @@
 				
 				// Append the popup/dialog container and store the menu for appending later
 				mb_popup += '<div id="jqm-mb-menu"></div></nav></div></div></div>';
-				(force_dialog ? pe.pagecontainer() : pe.bodydiv).append(mb_popup);
-				wet_boew_theme.force_dialog = force_dialog;
+				pe.bodydiv.append(mb_popup);
 				wet_boew_theme.menu = mb_menu;
 
-				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="' + (force_dialog ? 'dialog' : 'popup') + '"></a>');
-				_list += '<li><a data-rel="' + (force_dialog ? 'dialog' : 'popup') + '" data-theme="a" data-icon="site-menu" href="#jqm-wb-mb">' + mb_btn_txt + '</a></li>';
+				mb_header.wrapInner('<a href="#jqm-wb-mb" data-rel="popup"></a>');
+				_list += '<li><a data-rel="popup" data-theme="a" data-icon="site-menu" href="#jqm-wb-mb">' + mb_btn_txt + '</a></li>';
 			}
 			if (wet_boew_theme.search.length > 0) {
 				// :: Search box transform lets transform the search box to a popup
@@ -154,8 +150,10 @@
 				}
 
 				// Delay appending of menu by 1 millisecond to avoid JavaScript execution timeout issues
+				var menu = pe.bodydiv.find('#jqm-mb-menu');
 				setTimeout(function() {
-					(wet_boew_theme.force_dialog ? pe.pagecontainer() : pe.bodydiv).find('#jqm-mb-menu').append(wet_boew_theme.menu).trigger('create');
+					menu.append(wet_boew_theme.menu).trigger('create');
+					pe.menu.correctmobile(menu);
 				},1);
 
 				//Transition to show loading icon on transition
@@ -169,11 +167,6 @@
 				}
 				$.mobile.transitionHandlers.loadingTransition = loadingTransition;
 				$.mobile.defaultDialogTransition = "loadingTransition";
-			});
-			// preprocessing before mobile page is enhanced
-			$(document).on('pageinit', function () {
-				// Correct the corners for each of the site menu/secondary menu sections and sub-sections
-				pe.menu.correctmobile($('#jqm-wb-mb'));
 			});
 			$(document).trigger('mobileviewloaded');
 			return;
