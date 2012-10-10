@@ -382,6 +382,14 @@ img{
 		border-left-width: 1px;
 		border-right-width: 1px;
 	}
+	.ui-collapsible-heading:not(.ui-collapsible-heading-collapsed) a {
+		-webkit-border-bottom-right-radius: 0;
+		-webkit-border-bottom-left-radius: 0;
+		-moz-border-radius-bottomright: 0;
+		-moz-border-radius-bottomleft: 0;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
 	.ui-collapsible-content {
 		padding:0;
 		a {
