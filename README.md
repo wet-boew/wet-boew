@@ -2,7 +2,8 @@
 
 [![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.png?branch=master)](http://travis-ci.org/wet-boew/wet-boew)
 
-**WET v3.0 was released on September 17, 2012**
+* **WET v3.0.1 was released on October 19, 2012** ([v3.0.1 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.1-release-notes))
+* **WET v3.0 was released on September 17, 2012** ([v3.0 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0-release-notes))
 
 Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities.  
 
@@ -32,7 +33,8 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 # Boîte à outils de l’expérience Web (BOEW)
 
-**Lancement de la version v3.0 de la BOEW a été 17 septembre 2012**
+* **Lancement de la version v3.0.1 de la BOEW a été 19 octobre 2012** ([v3.0.1 - instructions d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.1-release-notes))
+* **Lancement de la version v3.0.1 de la BOEW a été 17 septembre 2012** ([v3.0 - instructions d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0-release-notes))
 
 ## Vue d'ensemble
 
