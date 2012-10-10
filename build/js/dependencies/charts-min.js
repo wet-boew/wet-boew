@@ -2,11 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  *
-<<<<<<< HEAD
  * Version: v3.1a1
-=======
- * Version: v3.0.2a1
->>>>>>> Fixed issue #533 by adding the polyfill class to dynamically created details summary
  */
 /*!
 * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
