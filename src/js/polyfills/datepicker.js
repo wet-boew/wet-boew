@@ -348,7 +348,7 @@
 				createToggleIcon(id, containerid);
 				
 				// Close button
-				$('<a class="picker-close" role="button" href="javascript:;"><img src="../../build/js/images/datepicker/cross-button.png" alt="' + pe.dic.get('%datepicker-hide') + '" class="image-actual" /></a>').appendTo(container)
+				$('<a class="picker-close" role="button" href="javascript:;"><img src="' + pe.add.liblocation + 'images/datepicker/cross-button.png" alt="' + pe.dic.get('%datepicker-hide') + '" class="image-actual" /></a>').appendTo(container)
 					.click(function(){
 						toggle(id, containerid);
 					});
