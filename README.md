@@ -27,6 +27,7 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 * [Download](https://github.com/wet-boew/wet-boew/downloads)
 * [Terms and conditions](http://wet-boew.github.com/wet-boew/License-eng.txt)
 * [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET#wiki-Contributor_guidelines)
+* [Roadmap](https://github.com/wet-boew/wet-boew/wiki/Roadmap)
 
 -------------------------------------------------------------------
 
@@ -60,3 +61,4 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 * [Télécharger](https://github.com/wet-boew/wet-boew/downloads)
 * [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/Licence-fra.txt)
 * [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Développer-pour-la-boew#wiki-Lignes_directrices_pour_les_contributeurs)
+* [Feuille de route](https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route)
