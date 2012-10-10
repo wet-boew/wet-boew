@@ -269,6 +269,16 @@ a{
 	}
 }
 
+#base-psnb {
+	.mb-menu {
+		.mb-sm-open {
+			.nav-current{
+				background:none;
+			}
+		}
+	}
+}
+
 @-moz-document url-prefix() {
 	#base-srch-submit{
 		min-height: 22px;
