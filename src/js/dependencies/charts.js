@@ -2810,7 +2810,7 @@ label:
 							.after(self);
 
 						if ($('html').hasClass('polyfill-detailssummary')) {
-							$(tblSrcContainer).details();
+							$(tblSrcContainer).addClass('polyfill').details();
 						}
 						
 					} else {
