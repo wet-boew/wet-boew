@@ -16,28 +16,30 @@
 		type: 'plugin',
 		_exec: function (elm) {
 			var opts,
-				overrides,
-				timeholder =  $('#gcwu-date-mod dd span time'),
+				timeholder =  document.getElementById('gcwu-date-mod').getElementsByTagName('time')[0],
 				modifiedMeta = document.getElementsByName('dcterms.modified')[0];
 
-			// Defaults
+			//escape early if meta tag is missing
+			if (typeof modifiedMeta === 'undefined' || modifiedMeta === null) {
+				return false;
+			}
+			
 			opts = {
 				// Should the Date Modified value be overwritten
 				updateNonEmpty : false
 			};
-
+			
 			if (typeof wet_boew_datemodified !== 'undefined' && wet_boew_datemodified !== null) {
 				$.extend(opts, wet_boew_datemodified);
 			} else {
 				$.extend(opts);
 			}
 			
-			if ( timeholder.text() === '' ||  opts.updateNonEmpty){
-				timeholder.text(modifiedMeta.content);
+			if ( timeholder.innerHTML === '' ||  opts.updateNonEmpty){
+				timeholder.innerHTML = modifiedMeta.content;
 			}
-			
 			return false;
-		} // end of exec
+		} 
 	};
 	window.pe = _pe;
 	return _pe;
