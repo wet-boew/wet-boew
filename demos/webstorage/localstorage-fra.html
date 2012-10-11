@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>Mémoire de session (correctif pour sessionStorage) - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Mémoire persistante (correctif pour localStorage) - Web Storage (HTML5) - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -54,7 +54,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
-<li id="gcwu-gcnb-lang"><a href="sessionstorage-eng.html" lang="en">English</a></li>
+<li id="gcwu-gcnb-lang"><a href="localstorage-eng.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -87,7 +87,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ol>
 <li><a href="../../index-fra.html">Accueil</a></li>
 <li><a href="../index-fra.html">Exemples pratiques</a></li>
-<li>Mémoire de session (correctif pour <span lang="en">sessionStorage</span>)</li>
+<li>Mémoire persistante (correctif pour <span lang="en">localStorage</span>) - <span lang="en">Web Storage</span> (HTML5)</li>
 </ol></div></div>
 </nav>
 <!-- HeaderEnd -->
@@ -96,23 +96,13 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Mémoire de session (correctif pour <span lang="en">sessionStorage</span>)</h1>
+<h1 id="wb-cont">Mémoire persistante (correctif pour <span lang="en">localStorage</span>) - <span lang="en">Web Storage</span> (HTML5)</h1>
 
-<div class="module-info span-4"><section>
-<h2><span class="color-dark">Durée de la session</h2>
-<p id="update">Bienvenue à la démonstration du correctif pour <span lang="en">sessionStorage</span>.</p>
-</section></div>
-<div class="clear"></div>
+<div id="process-status"></div>
 
 <h2>Vue d'ensemble</h2>
-<div class="module-note span-8"><section>
-<h3><span class="color-dark">Nota</span></h3>
-<p>Ce correctif dépend sur les témoins alors ne fonction pas o&ugrave; les témoins ne peuvent pas être utilisés (p. ex., visiter la page hors connexion).</p>
-</section></div>
-
-<p>L'objet HTML5 <code lang="en">sessionStorage</code> est utilisé pour maintenir les données pour la session actuelle. Ce composant ajoute le soutien pour ces éléments dans les navigateurs qui n'ont pas déjà la prise en charge native.</p>
-<p>Cet exemple pratique démontre comment fonctionne l'objet HTML5 <span lang="en">sessionStorage</span>. Il commence une session et maintient les données pendant la session, même après avoir navigué à une autre page. 
-Essayer ceci en naviguant à une nouvelle page (dans la même onglet/fenêtre) et après frappé le bouton arrière ou navigué manuellement à la page originelle. Au retour, le minuteur continuera à montrer combien de temps a passé depuis l'initialisation de la session.</p>
+<p>L'objet HTML5 <code lang="en">localStorage</code> est utilisé pour maintenir les données avec persistance (sans date d'expiration). Ce composant ajoute le soutien pour ces éléments dans les navigateurs qui n'ont pas déjà la prise en charge native.</p>
+<p>Cet exemple pratique démontre comment fonctionne l'objet HTML5 <span lang="en">localStorage</span>. Il commence une session et maintient les données pendant la session, même après avoir navigué à une autre page.</p>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date de modification&#160;:</dt><dd><span><time>2012-10-09</time></span></dd>
@@ -179,30 +169,27 @@ Essayer ceci en naviguant à une nouvelle page (dans la même onglet/fenêtre) e
 <script>
 /* <![CDATA[ */
 (function ($) {
-	/* Based on the demo for http://code.google.com/p/sessionstorage/ */
-	var update = document.getElementById('update'),
+	var $status = $('#process-status'),
 		$document = $(document);
-	$document.on('sessionstorage-loaded', function() {
-		if(typeof sessionStorage === 'undefined' || sessionStorage.disabled)
-			update.innerHTML = '<strong>Erreur :</strong> Le correctif pour <span lang="en">sessionStorage</span> ne fonctionne pas quand témoins sont désactivés.';
-		else {
-			update.setAttribute('role', 'timer');
-			if(sessionStorage.getItem('sessionStarted')){
-				function showInfo(){
-					update.innerHTML = 'Votre session a commencé il y a ' + Math.floor((new Date - sessionStarted) / 1000) + ' secondes.';
-					return showInfo;
-				};
-				var sessionStarted  = new Date(parseInt(sessionStorage.getItem('sessionStarted'), 0));
-				setInterval(showInfo(), 250);
-			}
-			else {
-				sessionStorage.clear();
-				sessionStorage.setItem('sessionStarted', new Date().getTime());
-			}
+	$document.on('localstorage-loaded status-change', function() {
+		var processStatus = localStorage.getItem('processStatus');
+		if (processStatus && processStatus === 'deactivated') {
+			$status.html('<div class="module-attention span-4"><section><h2>Attention</h2><p>Processus désactivé <a class="button button-confirm">Activer le processus</a></p></section></div><div class="clear"></div>');
+		} else {
+			$status.html('<div class="module-note span-4"><section><h2>Nota</h2><p>Processus activé <a class="button button-attention">Déactiver le process</a></p></section></div><div class="clear"></div>');
 		}
+		$status.find('a').one('click vclick', function() {
+			var processStatus = localStorage.getItem('processStatus');
+			if (processStatus && processStatus === 'deactivated') {
+				localStorage.setItem('processStatus', 'activated');
+			} else {
+				localStorage.setItem('processStatus', 'deactivated');
+			}
+			$document.trigger('status-change');
+		});
 	});
-	if(window.sessionStorage) {
-		$document.trigger('sessionstorage-loaded');
+	if (window.localStorage) {
+		$document.trigger('localstorage-loaded');
 	}
 }(jQuery));
 /* ]]> */

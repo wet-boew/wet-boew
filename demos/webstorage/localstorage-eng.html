@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>Session storage (sessionStorage polyfill) - Working examples - Web Experience Toolkit (WET)</title>
+<title>Persistent storage (localStorage polyfill) - Web Storage (HTML5) - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -54,7 +54,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="sessionstorage-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="localstorage-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -87,7 +87,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ol>
 <li><a href="../../index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li>Session storage (sessionStorage polyfill)</li>
+<li>Persistent storage (localStorage polyfill) - Web Storage (HTML5)</li>
 </ol>
 </div></div>
 </nav>
@@ -97,23 +97,13 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Session storage (sessionStorage polyfill)</h1>
+<h1 id="wb-cont">Persistent storage (localStorage polyfill) - Web Storage (HTML5)</h1>
 
-<div class="module-info span-4"><section>
-<h2><span class="color-dark">Session duration</h2>
-<p id="update">Welcome to sessionStorage polyfill demonstration.</p>
-</section></div>
-<div class="clear"></div>
+<div id="process-status"></div>
 
 <h2>Overview</h2>
-<div class="module-note span-8"><section>
-<h3><span class="color-dark">Note</span></h3>
-<p>This polyfill is dependent upon cookies so will not work where cookies can't be used (e.g., viewing the page offline).</p>
-</section></div>
-
-<p>The HTML5 sessionStorage object is used to store data for the current session. This component adds support for this object in browsers that do not already have native support.</p>
-<p>This working example demonstrates how HTML5 sessionStorage works. It starts a session and maintains the session data for the duration of the session, even after navigating away from the page. 
-Test this out by navigating to a new page (in the same tab/window) then either hitting the back button or manually navigating to the original page. Upon return, the timer will continue to show how long the session has been active since it was first initialized.</p>
+<p>The HTML5 localStorage object is used to store data persistently (no expiration date). This component adds support for this object in browsers that do not already have native support.</p>
+<p>This working example demonstrates how HTML5 localStorage works. It remembers the activated/deactivated state even after the browser has been closed.</p>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-10-09</time></span></dd>
@@ -180,30 +170,27 @@ Test this out by navigating to a new page (in the same tab/window) then either h
 <script>
 /* <![CDATA[ */
 (function ($) {
-	/* Based on the demo for http://code.google.com/p/sessionstorage/ */
-	var update = document.getElementById('update'),
+	var $status = $('#process-status'),
 		$document = $(document);
-	$document.on('sessionstorage-loaded', function() {
-		if(typeof sessionStorage === 'undefined' || sessionStorage.disabled)
-			update.innerHTML = '<strong>Error:</strong> The sessionStorage polyfill does not work with cookies disabled.';
-		else {
-			update.setAttribute('role', 'timer');
-			if(sessionStorage.getItem('sessionStarted')){
-				function showInfo(){
-					update.innerHTML = 'Your session started ' + Math.floor((new Date - sessionStarted) / 1000) + ' seconds ago.';
-					return showInfo;
-				};
-				var sessionStarted  = new Date(parseInt(sessionStorage.getItem('sessionStarted'), 0));
-				setInterval(showInfo(), 250);
-			}
-			else {
-				sessionStorage.clear();
-				sessionStorage.setItem('sessionStarted', new Date().getTime());
-			}
+	$document.on('localstorage-loaded status-change', function() {
+		var processStatus = localStorage.getItem('processStatus');
+		if (processStatus && processStatus === 'deactivated') {
+			$status.html('<div class="module-attention span-4"><section><h2>Attention</h2><p>Process deactivated <a class="button button-confirm">Activate process</a></p></section></div><div class="clear"></div>');
+		} else {
+			$status.html('<div class="module-note span-4"><section><h2>Note</h2><p>Process activated <a class="button button-attention">Deactivate process</a></p></section></div><div class="clear"></div>');
 		}
+		$status.find('a').one('click vclick', function() {
+			var processStatus = localStorage.getItem('processStatus');
+			if (processStatus && processStatus === 'deactivated') {
+				localStorage.setItem('processStatus', 'activated');
+			} else {
+				localStorage.setItem('processStatus', 'deactivated');
+			}
+			$document.trigger('status-change');
+		});
 	});
-	if(window.sessionStorage) {
-		$document.trigger('sessionstorage-loaded');
+	if (window.localStorage) {
+		$document.trigger('localstorage-loaded');
 	}
 }(jQuery));
 /* ]]> */
