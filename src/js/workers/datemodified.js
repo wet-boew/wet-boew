@@ -5,7 +5,7 @@
 /*
  * Date Modified Plug-in
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false, pe: false, wet_boew_datemodified: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
