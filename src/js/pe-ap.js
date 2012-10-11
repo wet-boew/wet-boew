@@ -979,13 +979,22 @@
 			* @memberof pe.polyfills
 			*/
 			init: function () {
-				// localstorage
-				var lib = pe.add.liblocation;
+				// localStorage
+				var lib = pe.add.liblocation,
+					$html = $('html');
 				if (!window.localStorage) {
 					pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js', 'localstorage-loaded');
-					$('html').addClass('polyfill-localstorage');
+					$html.addClass('polyfill-localstorage');
 				} else {
-					$('html').addClass('localstorage');
+					$html.addClass('localstorage');
+				}
+
+				// sessionStorage
+				if (!window.sessionStorage) {
+					pe.add._load(lib + 'polyfills/sessionstorage' + pe.suffix + '.js', 'sessionstorage-loaded');
+					$html.addClass('polyfill-sessionstorage');
+				} else {
+					$html.addClass('sessionstorage');
 				}
 			},
 			/**

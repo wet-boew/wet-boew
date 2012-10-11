@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>Expiration de la session - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Mémoire de session (correctif pour sessionStorage) - Web Storage (HTML5) - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -54,7 +54,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
-<li id="gcwu-gcnb-lang"><a href="sessiontimeout-eng.html" lang="en">English</a></li>
+<li id="gcwu-gcnb-lang"><a href="sessionstorage-eng.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -87,7 +87,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ol>
 <li><a href="../../index-fra.html">Accueil</a></li>
 <li><a href="../index-fra.html">Exemples pratiques</a></li>
-<li>Expiration de la session</li>
+<li>Mémoire de session (correctif pour <span lang="en">sessionStorage</span>) - <span lang="en">Web Storage</span> (HTML5)</li>
 </ol></div></div>
 </nav>
 <!-- HeaderEnd -->
@@ -96,38 +96,26 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Expiration de la session</h1>
+<h1 id="wb-cont">Mémoire de session (correctif pour <span lang="en">sessionStorage</span>) - <span lang="en">Web Storage</span> (HTML5)</h1>
 
-<span class="wet-boew-sessiontimeout" data-wet-boew="{inactivity: 30000, logouturl: 'http://wet-boew.github.com/wet-boew/demos/index-fra.html'}"></span>
+<div class="module-info span-4"><section>
+<h2><span class="color-dark">Durée de la session</h2>
+<p id="update">Démonstration du correctif pour <span lang="en">sessionStorage</span>.</p>
+</section></div>
+<div class="clear"></div>
 
-<section><h2>Aperçu</h2>
-<p>Ce sous-projet aidera les propriétaires d'actifs Web à configurer leurs actifs avec une fonction «&#160;Expiration de la session&#160;». Celle-ci sera activée en deux circonstances&#160;: après une période de temps spécifique ou lors d'inactivité. Par exemple, si l'utilisateur demeure trop longtemps sur la même page, la fonction sera activée. De même, si l’utilisateur demeure inactif, la fonction sera activée. Le fureteur affichera alors une boîte de dialogue proposant deux options à l'utilisateur ; s’il souhaite rester connecté il devra sélectionner « OK » et ce, dans un laps de temps précis et s’il souhaite mettre fin à sa session, il n’aura qu’à choisir «&#160;Annuler&#160;». Advenant que l'utilisateur tarde trop à faire son choix, ce sera le paramètre de déconnexion qui s’affichera.</p>
-<p>Le code que vous êtes autorisés à modifier (dans la page) est&#160;:</p>
-<p><code>&lt;span class="wet-boew-sessiontimeout"&gt; data-wet-boew="{inactivity: 1200000, reactionTime: 30000, sessionalive: 1200000, logouturl: './', refreshCallbackUrl: './'}"&gt;&lt;/span&gt;</code></p>
-<p>Les paramètres suivants vous permettent de configurer la fonction&#160;:</p>
-<ul>
-<li><strong>inactivity&#160;:</strong> période de temps d'inactivité après laquelle la boîte de dialogue apparaîtra.</li>
-<li><strong>reactionTime&#160;:</strong> période de temps dont dispose l'utilisateur pour faire un choix lorsque la boîte de dialogue apparaît.</li>
-<li><strong>sessionalive&#160;:</strong> période de temps durant laquelle la session demeure active avant que la boîte de dialogue n’apparaisse.</li>
-<li><strong>logouturl&#160;:</strong> adresse URL à laquelle l’utilisateur est acheminé lorsque la session a expiré.</li>
-<li><strong>refreshCallbackUrl&#160;:</strong> Ceci est l'URL pour effectuer une actualisation ajax, doit retourner true/false.</li>
-</ul>
-<p>Le seul paramètre requis est logouturl, tous les autres champs sont facultatifs. Le JavaScript par défaut serait&#160;:</p>
-<p><code>&lt;span class="wet-boew-sessiontimeout"&gt; data-wet-boew="{logouturl: './'}"&gt;&lt;/span&gt;</code></p>
-<p><strong>NOTE IMPORTANTE&#160;:</strong> Les paramètres inactivity, reactionTime et sessionAlive sont mis en millisecondes. Le seule paramètre obligatoire est le logouturl. Les paramètres inactivity et sessionalive est fixé à 20 minutes par défaut avec un temps de 30 secondes  pour la confirmation du message de dialogue. Le paramètre refreshCallbackUrl ne doit pas être une page contenant la fonction d'expiration de la session de nouveau sinon une boucle sera créé, il devrait être tout simplement une page qui rafraîchit la session.</p>
-<p>Voici un outil qui vous aidera a convertir des minutes en millisecondes (disponible en anglais seulement)&#160;: <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>
-<p><strong>NOTE IMPORTANTE&#160;:</strong> Les paramètres sessionalive et inactivity devrait être égal à votre session sur le serveur web moins le temps de reactionTime. Si vous définissez paramètres sessionalive et inactivity avec le même temps que la session sur le serveur web, sans prendre en considération le temps reactionTime, alors la session sur le serveur sera fini dès que la fenêtre contextuelle apparaît pour prolonger la session.</p>
-</section>
-<section><h2>Configuration</h2>
-<p>Ajoutez les lignes suivantes à la page&#160;:</p>
-<p><code>&lt;span class="wet-boew-sessiontimeout"&gt; data-wet-boew="{logouturl: './'}"&gt;&lt;/span&gt;</code></p>
-</section>
-<section><h2>Faites un essai</h2>
-<p>Cette page a été configurée pour expirer dans 30 secondes. Après ce délai, vous aurez 30 secondes pour choisir de la garder active ou non. Veuillez svp attendre que la boîte de dialogue apparaisse.</p>
-</section>
+<h2>Vue d'ensemble</h2>
+<div class="module-note span-8"><section>
+<h3><span class="color-dark">Nota</span></h3>
+<p>Ce correctif dépend sur les témoins alors ne fonction pas o&ugrave; les témoins ne peuvent pas être utilisés (p. ex., visiter la page hors connexion).</p>
+</section></div>
+
+<p>L'objet HTML5 <code lang="en">sessionStorage</code> est utilisé pour maintenir les données pour la session actuelle. Ce composant ajoute le soutien pour ces éléments dans les navigateurs qui n'ont pas déjà la prise en charge native.</p>
+<p>Cet exemple pratique démontre comment fonctionne l'objet HTML5 <span lang="en">sessionStorage</span>. Il commence une session et maintient les données pendant la session, même après avoir navigué à une autre page. 
+Essayer ceci en naviguant à une nouvelle page (dans la même onglet/fenêtre) et après frappé le bouton arrière ou navigué manuellement à la page originelle. Au retour, le minuteur continuera à montrer combien de temps a passé depuis l'initialisation de la session.</p>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date de modification&#160;:</dt><dd><span><time>2012-09-17</time></span></dd>
+<dt>Date de modification&#160;:</dt><dd><span><time>2012-10-09</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
@@ -187,6 +175,38 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!-- FooterEnd -->
 </footer>
 </div></div></div>
+
+<script>
+/* <![CDATA[ */
+(function ($) {
+	/* Based on the demo for http://code.google.com/p/sessionstorage/ */
+	var update = document.getElementById('update'),
+		$document = $(document);
+	$document.on('sessionstorage-loaded', function() {
+		if(typeof sessionStorage === 'undefined' || sessionStorage.disabled)
+			update.innerHTML = '<strong>Erreur :</strong> Le correctif pour <span lang="en">sessionStorage</span> ne fonctionne pas quand témoins sont désactivés.';
+		else {
+			update.setAttribute('role', 'timer');
+			if(sessionStorage.getItem('sessionStarted')){
+				function showInfo(){
+					update.innerHTML = 'Votre session a commencé il y a ' + Math.floor((new Date - sessionStarted) / 1000) + ' secondes.';
+					return showInfo;
+				};
+				var sessionStarted  = new Date(parseInt(sessionStorage.getItem('sessionStarted'), 0));
+				setInterval(showInfo(), 250);
+			}
+			else {
+				sessionStorage.clear();
+				sessionStorage.setItem('sessionStarted', new Date().getTime());
+			}
+		}
+	});
+	if(window.sessionStorage) {
+		$document.trigger('sessionstorage-loaded');
+	}
+}(jQuery));
+/* ]]> */
+</script>
 
 <!-- ScriptsStart -->
 <script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>

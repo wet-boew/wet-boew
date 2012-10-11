@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>Menu bar - Horizontal site navigation bar - Working examples - Web Experience Toolkit (WET)</title>
+<title>Session storage (sessionStorage polyfill) - Web Storage (HTML5) - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -54,7 +54,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="hsitenavbar-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="sessionstorage-fra.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -71,13 +71,15 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar"><div>
-<ul class="mb-menu">
+<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
 <li><div><a href="#">Section 4</a></div></li>
 <li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
 </ul>
 </div></div></div></div>
 
@@ -85,8 +87,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ol>
 <li><a href="../../index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li>Menu bar Horizontal site navigation bar</li>
-</ol></div></div>
+<li>Session storage (sessionStorage polyfill) - Web Storage (HTML5)</li>
+</ol>
+</div></div>
 </nav>
 <!-- HeaderEnd -->
 </header></div></div>
@@ -94,95 +97,26 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Menu bar - Horizontal site navigation bar</h1>
+<h1 id="wb-cont">Session storage (sessionStorage polyfill) - Web Storage (HTML5)</h1>
 
-<section><h2>Heading 2 (<code>h2</code>) default appearance</h2>
-	<section><h3>Heading 3 (<code>h3</code>) default appearance</h3>
-		<section><h4>Heading 4 (<code>h4</code>) default appearance</h4>
-			<section><h5>Heading 5 (<code>h5</code>) default appearance</h5>
-				<section><h6>Heading 6 (<code>h6</code>) default appearance</h6>
-					<p>Paragraph default appearance</p>
-				</section>
-			</section>
-		</section>
-	</section>
-</section>
+<div class="module-info span-4"><section>
+<h2><span class="color-dark">Session duration</h2>
+<p id="update">Demonstration of the sessionStorage polyfill.</p>
+</section></div>
+<div class="clear"></div>
 
-<p><a href="#">Link default appearance</a></p>
-<p><a href="mailto:"><code>mailto:</code> link default appearance</a></p>
-<p><a href="http://www.">Third party <code>http://www.</code> link default appearance</a></p>
-<p><a href=".doc">Link to file downloads based on file type <code>.doc</code>, <code>.psd</code>, <code>.zip</code>, <code>.pdf</code>, <code>.xls</code>, <code>.xlt</code>, <code>.rtf</code> and <code>.txt</code> default appearance</a></p>
-<p>Abbreviation default appearance: <abbr title="Treasury Board Secretariat">TBS</abbr>.</p>
+<h2>Overview</h2>
+<div class="module-note span-8"><section>
+<h3><span class="color-dark">Note</span></h3>
+<p>This polyfill is dependent upon cookies so will not work where cookies can't be used (e.g., viewing the page offline).</p>
+</section></div>
 
-<ul>
-<li>unordered list (<code>ul</code>) first level default appearance
-	<ul>
-	<li>unordered list (<code>ul</code>) second level default appearance
-		<ul>
-		<li>unordered list (<code>ul</code>) third level default appearance</li>
-		</ul>
-	</li>
-	</ul>
-</li>
-</ul>
-
-<ol>
-<li>ordered list (<code>ol</code>) first level default appearance</li>
-<li>ordered list (<code>ol</code>) first level default appearance
-	<ol>
-	<li>ordered list (<code>ol</code>) second level default appearance</li>
-	<li>ordered list (<code>ol</code>) second level default appearance
-		<ol>
-		<li>ordered list (<code>ol</code>) third level default appearance</li>
-		<li>ordered list (<code>ol</code>) third level default appearance</li>
-		</ol>
-	</li>
-	</ol>
-</li>
-</ol>
-
-<table>
-<caption>Table caption default appearance</caption>
-<thead>
-<tr>
-<th scope="col">Table header (<code>th</code>) default appearance</th>
-<th scope="col">Table header (<code>th</code>) default appearance</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Table data (<code>td</code>) default appearance</td>
-<td>Table data (<code>td</code>) default appearance</td>
-</tr>
-</tbody>
-</table>
-
-<form action="#" method="post">
-<div><label for="data1">Form input default appearance:</label> <input name="data1" type="text" id="data1" /></div>
-<div><label for="data2">Form text area default appearance:</label> <textarea name="data2" cols="15" rows="3" id="data2"></textarea></div>
-<div><label for="data4">Form <code>select</code> default appearance:</label> 
-<select id="data4" name="data4">
-<option value="Option 1">Option 1</option>
-<option value="Option 2">Option 2</option>
-<option value="Option 3">Option 3</option>
-<option value="Option 4">Option 4</option>
-</select></div>
-<fieldset><legend>Form <code>legend</code>, <code>fieldset</code> and <code>checkbox</code> default appearance</legend>
-<div><input name="checkbox" type="checkbox" id="data5" value="checkbox" />&#160;<label for="data5">Option 1</label>&#160;&#160;
-<input name="checkbox" type="checkbox" id="data6" value="checkbox" />&#160;<label for="data6">Option 2</label>&#160;&#160;
-<input name="checkbox" type="checkbox" id="data7" value="checkbox" />&#160;<label for="data7">Option 3</label>&#160;&#160;
-<input name="checkbox" type="checkbox" id="data8" value="checkbox" />&#160;<label for="data8">Option 4</label></div>
-</fieldset>
-<div><input name="submit" type="submit" id="submit" value="Submit default appearance" />
-<input name="reset" type="reset" id="reset" value="Reset default appearance" /></div>
-</form>
-
-<blockquote>
-<p>&quot;Blockquote default appearance&quot;.</p>
-</blockquote>
+<p>The HTML5 sessionStorage object is used to store data for the current session. This component adds support for this object in browsers that do not already have native support.</p>
+<p>This working example demonstrates how HTML5 sessionStorage works. It starts a session and maintains the session data for the duration of the session, even after navigating away from the page. 
+Test this out by navigating to a new page (in the same tab/window) then either hitting the back button or manually navigating to the original page. Upon return, the timer will continue to show how long the session has been active since it was first initialized.</p>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-10-09</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
@@ -242,6 +176,38 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!-- FooterEnd -->
 </footer>
 </div></div></div>
+
+<script>
+/* <![CDATA[ */
+(function ($) {
+	/* Based on the demo for http://code.google.com/p/sessionstorage/ */
+	var update = document.getElementById('update'),
+		$document = $(document);
+	$document.on('sessionstorage-loaded', function() {
+		if(typeof sessionStorage === 'undefined' || sessionStorage.disabled)
+			update.innerHTML = '<strong>Error:</strong> The sessionStorage polyfill does not work with cookies disabled.';
+		else {
+			update.setAttribute('role', 'timer');
+			if(sessionStorage.getItem('sessionStarted')){
+				function showInfo(){
+					update.innerHTML = 'Your session started ' + Math.floor((new Date - sessionStarted) / 1000) + ' seconds ago.';
+					return showInfo;
+				};
+				var sessionStarted  = new Date(parseInt(sessionStorage.getItem('sessionStarted'), 0));
+				setInterval(showInfo(), 250);
+			}
+			else {
+				sessionStorage.clear();
+				sessionStorage.setItem('sessionStarted', new Date().getTime());
+			}
+		}
+	});
+	if(window.sessionStorage) {
+		$document.trigger('sessionstorage-loaded');
+	}
+}(jQuery));
+/* ]]> */
+</script>
 
 <!-- ScriptsStart -->
 <script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>

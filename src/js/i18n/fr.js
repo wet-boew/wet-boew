@@ -76,17 +76,17 @@
 			"%start": "Lancer",
 			"%stop": "Arrêter",
 			"%back": "Précédent",
-			"%minute-ago": "il ya une minute",
-			"%couple-of-minutes": "il ya quelques minutes",
+			"%minute-ago": "il y a une minute",
+			"%couple-of-minutes": "il y a quelques minutes",
 			"%minutes-ago": {
-				"mixin": "il ya [MIXIN] minutes"
+				"mixin": "il y a [MIXIN] minutes"
 			},
-			"%hour-ago": "il ya une heure",
+			"%hour-ago": "il y a une heure",
 			"%hours-ago": {
-				"mixin": "il ya [MIXIN] heures"
+				"mixin": "il y a [MIXIN] heures"
 			},
 			"%days-ago": {
-				"mixin": "il ya [MIXIN] jours"
+				"mixin": "il y a [MIXIN] jours"
 			},
 			"%yesterday": "hier",
 			/* Archived Web page template */
