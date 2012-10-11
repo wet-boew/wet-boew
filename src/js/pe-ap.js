@@ -990,7 +990,7 @@
 				}
 
 				// sessionStorage
-				if (!window.localStorage) {
+				if (!window.sessionStorage) {
 					pe.add._load(lib + 'polyfills/sessionstorage' + pe.suffix + '.js', 'sessionstorage-loaded');
 					$html.addClass('polyfill-sessionstorage');
 				} else {
