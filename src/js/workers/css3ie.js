@@ -57,9 +57,6 @@
 					} else {
 						$wbcore.css('margin-bottom', ($wbcorein.offset().top + $wbcorein.height()) - ($wbcore.offset().top + $wbcore.height()));
 					}
-				} else if (pe.ie === 8) {
-					/*if (screen.deviceXDPI / screen.logicalXDPI === 1) {}*/
-					pieEnabled = setupPIE();
 				} else {
 					pieEnabled = setupPIE();
 				}
