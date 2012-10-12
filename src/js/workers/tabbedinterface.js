@@ -101,7 +101,7 @@
 				stopCycle,
 				toggleCycle,
 				tabsPanelId,
-				tabSuffix = "-link";				
+				tabSuffix = '-link';				
 				
 			// Defaults
 			opts = {
