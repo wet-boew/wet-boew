@@ -43,3 +43,9 @@ details {
 		}
 	}
 }
+
+.pe-disable {
+	details > * {
+		display: block;
+	}
+}
