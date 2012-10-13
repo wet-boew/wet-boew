@@ -1092,11 +1092,13 @@
 			* @function
 			*/
 			enhance: function (poly_name, objs) {
-				objs = (typeof objs.jquery !== 'undefined' ? objs.get() : objs);
-				var polyobj = this.polyfill[poly_name],
-					objs_len = objs.length;
-				while (objs_len--) {
-					polyobj.update($(objs[objs_len]).addClass('polyfill'));
+				if ($('html').hasClass('polyfill-' + poly_name)) {
+					objs = (typeof objs.jquery !== 'undefined' ? objs.get() : objs);
+					var polyobj = this.polyfill[poly_name],
+						objs_len = objs.length;
+					while (objs_len--) {
+						polyobj.update($(objs[objs_len]).addClass('polyfill'));
+					}
 				}
 			},
 			/**
