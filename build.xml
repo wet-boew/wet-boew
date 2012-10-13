@@ -3,7 +3,7 @@
 	<description>Web Experience Toolkit</description>
 
 	<!-- Version and build time-->
-	<property name="wet-boew-build.version" value="v3.1a1"/>
+	<property name="wet-boew-build.version" value="v3.1.0-a1"/>
 	<tstamp>
 		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
 	</tstamp>
