@@ -1076,6 +1076,21 @@
 				pe.add._load_arr(js, msg, payload);
 			},
 			/**
+			* Enhances one or more elements with an already loaded polyfill
+			* @memberof pe.polyfills
+			* @param {string} poly_name Name of the polyfill
+			* @param {jQuery object|DOM object} objs Objects to enhance
+			* @function
+			*/
+			enhance: function (poly_name, objs) {
+				objs = (typeof objs.jquery !== 'undefined' ? objs.get() : objs);
+				var polyobj = this.polyfill[poly_name],
+					objs_len = objs.length;
+				while (objs_len--) {
+					polyobj.update($(objs[objs_len]).addClass('polyfill'));
+				}
+			},
+			/**
 			* Details for each of the polyfills.
 			* selector: Selector used to find elements that would be affected by the polyfill
 			* supported: Check for determining if polyfill is needed (false = polyfill needed). Can be either a function or a property.
