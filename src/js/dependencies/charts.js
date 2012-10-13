@@ -2809,9 +2809,7 @@ label:
 							.appendTo(tblSrcContainer)
 							.after(self);
 
-						if ($('html').hasClass('polyfill-detailssummary')) {
-							$(tblSrcContainer).addClass('polyfill').details();
-						}
+						_pe.polyfills.enhance('detailssummary', tblSrcContainer);
 						
 					} else {
 						// Move the table inside the figure element
