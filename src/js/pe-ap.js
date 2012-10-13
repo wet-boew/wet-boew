@@ -1086,13 +1086,9 @@
 				if ($('html').hasClass('polyfill-' + poly_name)) {
 					objs = (typeof objs.jquery !== 'undefined' ? objs.get() : objs);
 					var polyobj = this.polyfill[poly_name],
-						objs_len = objs.length,
-						obj;
+						objs_len = objs.length;
 					while (objs_len--) {
-						obj = objs[objs_len];
-						if (obj.className.indexOf('polyfill') === -1) {
-							polyobj.update($(obj).addClass('polyfill'));
-						}
+						polyobj.update($(objs[objs_len]).addClass('polyfill'));
 					}
 				}
 			},
