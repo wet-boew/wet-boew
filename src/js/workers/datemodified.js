@@ -31,8 +31,6 @@
 			
 			if (typeof wet_boew_datemodified !== 'undefined' && wet_boew_datemodified !== null) {
 				$.extend(opts, wet_boew_datemodified);
-			} else {
-				$.extend(opts);
 			}
 			
 			if ( timeholder.innerHTML === '' ||  opts.updateNonEmpty){
