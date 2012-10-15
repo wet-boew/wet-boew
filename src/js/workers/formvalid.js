@@ -45,7 +45,7 @@
 				}
 			}
 			if (lang === "de" || lang === "nl" || lang === "pt_PT" || lang === "pt_BR") {
-				pe.add._load(pe.add.liblocation + 'i18n/formvalid/methods_' + lang + pe.suffix + '.js');
+				pe.add._load(pe.add.liblocation + 'i18n/formvalid/methods_' + lang.substr(0,2) + pe.suffix + '.js');
 			}
 
 			// Add space to the end of the labels (so separation between label and error when CSS turned off)
