@@ -3,7 +3,7 @@
 * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
 /*
------ Dictionary (il8n) ---
+----- English Dictionary (il8n) ---
 */
 /*global jQuery: false, pe: false */
 /*jshint bitwise: false */
