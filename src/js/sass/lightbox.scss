@@ -125,3 +125,10 @@
 	display: inline;
 	visibility: visible;
 }
+
+.pe-disable {
+	.lb-inline, .lb-hidden-gallery a {
+		display: block;
+		visibility: visible;
+	}
+}

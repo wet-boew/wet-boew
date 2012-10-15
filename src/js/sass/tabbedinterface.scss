@@ -85,16 +85,20 @@
 	}
 }
 
-.tabs-panel > div.active{
-    display:block;
-}
-
 .tabs-panel{
     border:solid 1px #ccc;
     border-top:none;
     padding:10px;
 	> div {
 		display:none;
+	}
+	> div.active,.viewport {
+		display:block;
+	}
+	.viewport {
+		position:absolute;		
+		left:0;
+		top:0;			
 	}
 	h2,h3,h4,h5,h6{
 		border:none;
@@ -104,6 +108,14 @@
 	}
 	.float-left {
 		margin-right:10px;
+	}
+}
+
+.slide-horz,
+.slide-vert{
+	.tabs-panel{
+		overflow:hidden;
+		position:relative;	
 	}
 }
 
@@ -142,6 +154,16 @@
 .span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
 	.tabs{
 		margin:0;
+	}
+}
+
+.tabs-style-default,
+.tabs-style-1 {
+	.panel{
+		margin:10px;
+		> div{
+			padding: 10px;
+		}
 	}
 }
 
@@ -485,5 +507,11 @@
 	.tabs-style-1, .tabs-style-3 {
 	    border:none;
 		padding:0;
+	}
+}
+
+.pe-disable {
+	.tabs-panel > div {
+		display: block;
 	}
 }
