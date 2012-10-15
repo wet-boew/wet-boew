@@ -44,7 +44,7 @@
 					pe.add._load(pe.add.liblocation + 'i18n/formvalid/messages_' + lang + pe.suffix + '.js');
 				}
 			}
-			if (lang === "de" || lang === "nl" || lang === "pr_PT" || lang === "pr_BR") {
+			if (lang === "de" || lang === "nl" || lang === "pt_PT" || lang === "pt_BR") {
 				pe.add._load(pe.add.liblocation + 'i18n/formvalid/methods_' + lang + pe.suffix + '.js');
 			}
 
