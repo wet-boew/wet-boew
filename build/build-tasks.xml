@@ -66,13 +66,13 @@
 		<exec executable="jar" dir="${lib.dir}/">
 		  <arg line="-uf jruby-download.jar -C vendors ." />
 		</exec>
-		<move file="${lib.dir}/jruby-download.jar" tofile="${lib.dir}/jruby.jar"/>
+		<move file="${lib.dir}/jruby-download.jar" tofile="${jruby.jar}"/>
 		<delete dir="${lib.dir}/jruby-compiled" />
 	</target>
 		
 	<target name="-jruby.jar.check">
 		<condition property="jruby.jar.exists">
-		  <available file="${lib.dir}/jruby.jar" type="file"/>
+		  <available file="${jruby.jar}" type="file"/>
 		</condition>
 	</target>
 	
