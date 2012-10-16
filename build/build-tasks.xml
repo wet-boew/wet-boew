@@ -49,26 +49,26 @@
 	<!-- Include jruby + gems (compass + sass) -->
 	<target name="-build-jruby" depends="-jruby.jar.check" unless="jruby.jar.exists">
 		<mkdir dir="${lib.dir}/jruby-compiled" />
-		<delete dir="${lib.dir}/vendors" />
+		<delete dir="${lib.dir}/vendors-${jruby.depends}" />
 		<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/jruby-complete-${jruby.version}.jar" dest="${lib.dir}/jruby-complete-${jruby.version}.jar" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${sass.gem}" dest="${gem.dir}/${sass.gem}" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${chunky_png.gem}" dest="${gem.dir}/${chunky_png.gem}" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${fssm.gem}" dest="${gem.dir}/${fssm.gem}" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${compass.gem}" dest="${gem.dir}/${compass.gem}" skipexisting="true"/>
 		<java jar="${lib.dir}/jruby-complete-${jruby.version}.jar" fork="true">
-			<arg line="-S gem install -i &quot;${lib.dir}/vendors&quot; &quot;${gem.dir}/${sass.gem}&quot; &quot;${gem.dir}/${chunky_png.gem}&quot; &quot;${gem.dir}/${fssm.gem}&quot; &quot;${gem.dir}/${compass.gem}&quot;"/>
+			<arg line="-S gem install -i &quot;${lib.dir}/vendors-${jruby.depends}&quot; &quot;${gem.dir}/${sass.gem}&quot; &quot;${gem.dir}/${chunky_png.gem}&quot; &quot;${gem.dir}/${fssm.gem}&quot; &quot;${gem.dir}/${compass.gem}&quot;"/>
 		</java>
 		<exec executable="jar" dir="${lib.dir}/">
-			<arg line="-uf jruby-complete-${jruby.version}.jar -C vendors ." />
+			<arg line="-uf jruby-complete-${jruby.version}.jar -C vendors-${jruby.depends} ." />
 		</exec>
 		<move file="${lib.dir}/jruby-complete-${jruby.version}.jar" tofile="${lib.dir}/${jruby.jar}"/>
 		<delete dir="${gem.dir}" />
 	</target>
 
 	<target name="-jruby.jar.check">
-	<condition property="jruby.jar.exists">
-	<available file="${lib.dir}/${jruby.jar}" type="file"/>
-	</condition>
+		<condition property="jruby.jar.exists">
+			<available file="${lib.dir}/${jruby.jar}" type="file"/>
+		</condition>
 	</target>
 	
 	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
@@ -82,7 +82,7 @@
 	<target name="call.sass">
 		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
 			<arg path="${tasks.basedir}/compile.rb"/>
-			<arg path="${lib.dir}/vendors/gems/"/>
+			<arg path="${lib.dir}/vendors-${jruby.depends}/gems/"/>
 			<arg value="${command}"/>
 			<arg path="${src.dir}"/>
 		</java>
