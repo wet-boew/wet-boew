@@ -17,3 +17,4 @@ Thumbs.db
 /.project
 jshint.out.xml
 *.orig
+*.tmp
