@@ -16,19 +16,38 @@
 		type : 'plugin',
 		depends : [],
 		_exec : function (elm) {
-			var radio = $('input[type="radio"]:not(.deselectable, .deselect-off)').attr('role', 'radio').attr('aria-checked', 'false').addClass('deselectable');
-			radio.filter(':checked').attr('aria-checked', 'true');
-			radio.closest('fieldset').attr('role', 'radiogroup');
-			radio.on("click vclick", function () {
-				var $this = $(this);
-				if ($this.attr('aria-checked') === 'true') {
-					$this.prop('checked', false).attr('aria-checked', 'false');
-				} else {
-					$this.closest('fieldset').find('input[type="radio"]').prop('checked', false).attr('aria-checked', 'false');
-					$this.prop('checked', true).attr('aria-checked', 'true');
+			var inputs = document.getElementsByTagName('input'),
+				inputs_len = inputs.length,
+				input;
+			// Functionality can be disabled by applying deselect-off to the radio button
+			while (inputs_len--) {
+				input = inputs[inputs_len];
+				if (input.type === 'radio' && input.className.indexOf('deselect-off') === -1) {
+					input.className += ' deselectable' + (input.checked ? ' checked' : '');
+				}
+			}
+			$(document).on('click vclick', 'input[type="radio"].deselectable', function () {
+				if (this.className.indexOf(' checked') !== -1) { // Already selected so deselect and remember that it is no longer selected
+					this.checked = false;
+					this.className = this.className.replace(' checked', '');
+				} else { // Not selected previously so remember that it is now selected
+					var name = this.getAttribute('name'),
+						inputs,
+						input,
+						inputs_len;
+					if (name !== undefined) {
+						inputs = document.getElementsByName(name);
+						inputs_len = inputs.length;
+						while (inputs_len--) {
+							input = inputs[inputs_len];
+							if (input.className.indexOf(' checked') !== -1) {
+								input.className = input.className.replace(' checked', '');
+							}
+						}
+						this.className += ' checked';
+					}
 				}
 			});
-
 			return elm;
 		} // end of exec
 	};
