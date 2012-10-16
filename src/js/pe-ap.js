@@ -861,7 +861,7 @@
 							if (tagName === heading) {
 								hlink = $this.children('a');
 								navCurrent = hlink.hasClass('nav-current');
-								subsection = $('<div data-role="collapsible"' + ((expand && !menubar) || navCurrent ? ' data-collapsed="false"' : '') + (navCurrent ? ' class="nav-current"' : '') + '>' + headingOpen + $this.text() + headingClose + '</div>');
+								subsection = $('<div data-role="collapsible"' + ((expand && !menubar) || navCurrent ? ' data-collapsed="false" data-theme="' + theme1 + '"' : '') + (navCurrent ? ' class="nav-current"' : '') + '>' + headingOpen + $this.text() + headingClose + '</div>');
 								next = $this.next();
 								if (next.get(0).tagName.toLowerCase() === 'ul') {
 									// The original menu item was not in a menu bar
@@ -879,7 +879,7 @@
 											// Make the nested list into a collapsible section
 											hlink = $this.prev('a');
 											hlink_html = hlink[0].innerHTML;
-											$this.attr({ 'data-role': 'listview', 'data-theme': theme2 }).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? ' data-collapsed="false"' : '') + '></div>');
+											$this.attr({ 'data-role': 'listview', 'data-theme': theme2 }).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? 'data-collapsed="false" data-theme="' + theme2 + '"' : '') + '></div>');
 											$this.parent().prepend(headingIndexOpen + hlink_html + headingIndexClose);
 											$this.append('<li><a href="' + hlink.attr('href') + '">' + hlink_html + ' - ' + mainText + '</a></li>');
 											hlink.remove();
@@ -888,7 +888,7 @@
 										}
 									});
 									subsection.append($(listView).append(next.children('li')));
-									if (nested.length > 0) {
+									if (!expand && nested.length > 0) {
 										subsection.find('ul').wrap(collapsibleSet);
 									}
 								} else { // If the section contains sub-sections
@@ -898,7 +898,7 @@
 										subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme1, false, expand, theme2, false));
 									}
 									// If the original menu item was not in a menu bar
-									if (!menubar) {
+									if (!menubar && !expand) {
 										subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme2, 'data-icon': 'arrow-r', 'data-iconpos': 'right', 'data-corners': 'false'}));
 									}
 								}
@@ -914,7 +914,9 @@
 								}
 							}
 						});
-						menu.children().wrapAll('<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"></div>');
+						if (toplevel || !expand) {
+							menu.children().wrapAll('<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"></div>');
+						}
 					}
 				}
 				return menu;
