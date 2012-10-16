@@ -692,44 +692,47 @@
 
 						// Check if we need to pop out the current header colgroup 
 						summaryAttached = false;
-						if (hassumMode) {
-							for (i = currColgroupStructure.length - 1; i >= 0; i -= 1) {
+						for (i = currColgroupStructure.length - 1; i >= 0; i -= 1) {
 
-								if (currColgroupStructure[i].end <= curColgroupFrame.end) {
+							if (currColgroupStructure[i].end <= curColgroupFrame.end) {
 
-									if (currColgroupStructure[i].level < groupLevel && theadRowStack.length > 0) {
-										curColgroupFrame.type = 3;
+								if (currColgroupStructure[i].level < groupLevel && theadRowStack.length > 0) {
+									curColgroupFrame.type = 3;
+								}
+
+								// Attach the Summary group to the colgroup poped if current colgroup are type 3
+								if (curColgroupFrame.type === 3 && !summaryAttached) {
+									currColgroupStructure[currColgroupStructure.length - 1].summary = curColgroupFrame;
+									summaryAttached = true; // This are used to do not attach a summary of level 4 to an inapropriate level 1 for exampled
+								}
+
+								currColgroupStructure.pop();
+							}
+						}
+
+						if (!hassumMode) {
+							curColgroupFrame.type = 2;
+						}
+
+						// Catch the second and the third possible grouping at level 1
+						if (groupLevel === 1 && groupZero.colgrp[1] && groupZero.colgrp[1].length > 1 && theadRowStack.length > 0) {
+
+							// Check if in the group at level 1 if we don't already have a summary colgroup
+							for (i = 0; i < groupZero.colgrp[1].length; i += 1) {
+								if (groupZero.colgrp[1][i].type === 3) {
+									// Congrat, we found the last possible colgroup, 
+									curColgroupFrame.level = 0;
+									if (!groupZero.colgrp[0]) {
+										groupZero.colgrp[0] = [];
 									}
+									groupZero.colgrp[0].push(curColgroupFrame);
+									groupZero.colgrp[1].pop();
 
-									// Attach the Summary group to the colgroup poped if current colgroup are type 3
-									if (curColgroupFrame.type === 3 && !summaryAttached) {
-										currColgroupStructure[currColgroupStructure.length - 1].summary = curColgroupFrame;
-										summaryAttached = true; // This are used to do not attach a summary of level 4 to an inapropriate level 1 for exampled
-									}
-
-									currColgroupStructure.pop();
+									bigTotalColgroupFound = true;
+									break;
 								}
 							}
-
-							// Catch the second and the third possible grouping at level 1
-							if (groupLevel === 1 && groupZero.colgrp[1] && groupZero.colgrp[1].length > 1 && theadRowStack.length > 0) {
-
-								// Check if in the group at level 1 if we don't already have a summary colgroup
-								for (i = 0; i < groupZero.colgrp[1].length; i += 1) {
-									if (groupZero.colgrp[1][i].type === 3) {
-										// Congrat, we found the last possible colgroup, 
-										curColgroupFrame.level = 0;
-										if (!groupZero.colgrp[0]) {
-											groupZero.colgrp[0] = [];
-										}
-										groupZero.colgrp[0].push(curColgroupFrame);
-										groupZero.colgrp[1].pop();
-
-										bigTotalColgroupFound = true;
-										break;
-									}
-								}
-
+							if (hassumMode) {
 								curColgroupFrame.type = 3;
 							}
 						}
@@ -897,7 +900,7 @@
 					// currentRowGroup.level = 1; // Default Row Group Level
 				}
 
-				if (currentRowGroup.type === 3 && hassumMode) {
+				if (currentRowGroup.type === 3 && !hassumMode) {
 					currentRowGroup.type = 2;
 					currentRowGroup.level = lstRowGroup[lstRowGroup.length - 1].level;
 				}
