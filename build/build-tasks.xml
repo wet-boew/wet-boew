@@ -56,6 +56,9 @@
 	<target name="-build-jruby" depends="-jruby.jar.check" unless="jruby.jar.exists">
 		<mkdir dir="${lib.dir}/jruby-compiled" />
 		<delete dir="${lib.dir}/vendors" />
+		<delete>
+			<fileset dir="${lib.dir}" includes="jruby*.jar" excludes="jruby-download.jar"/>
+		</delete>
 		<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/jruby-complete-${jruby.version}.jar" dest="${lib.dir}/jruby-download.jar" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${sass.gem}" dest="${gem.dir}/${sass.gem}" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${chunky_png.gem}" dest="${gem.dir}/${chunky_png.gem}" skipexisting="true"/>
