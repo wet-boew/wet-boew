@@ -171,6 +171,8 @@ and
 <li><code>animate-fast</code></li>
 <li><code>animate-slow</code></li>
 <li><code>animate</code></li>
+<li><code>slide-horz</code></li>
+<li><code>slide-vert</code></li>
 </ul>
 </section></div>
 <div class="clear"></div>
@@ -245,8 +247,8 @@ and
 	</div><div class="clear"></div></section>
 
 	<section><div class="span-4"><h3 class="background-dark margin-bottom-medium"><code>tabs-style-2</code> design</h3>
-		<p><strong>Demo includes:</strong> <code>cycle-slow</code> and <code>animate</code></p>
-		<div class="wet-boew-tabbedinterface tabs-style-2 cycle-slow animate">
+		<p><strong>Demo includes:</strong> <code>cycle-slow</code>, <code>animate</code> and <code>slide-horz</code></p>
+		<div class="wet-boew-tabbedinterface tabs-style-2 cycle-slow animate slide-horz">
 			<div class="tabs-panel">
 				<div id="tab7" class="tabs-content-pad"><section><h4>Tab 7</h4>
 					<p><a href="#">fake link</a></p>
@@ -354,7 +356,7 @@ and
 		<p>When creating parent/child grids, you must use <code>row-start</code> and <code>row-end</code>. There are rare times where this may not be desirable. For example, with drag and drop widgets each grid cell must be the same size so the addition of
 			<code>row-start</code> or <code>row-end</code> on some of them may cause layout problems when the box is moved from one column to another. In such a case, you can use the class
 			<code>embedded-grid</code>. This CSS acts as a container for the tabs and you do not need to put them in a grid cell. It also removes the borders so the full with of the space is available.</p>
-		<div class="wet-boew-tabbedinterface embedded-grid">
+		<div class="wet-boew-tabbedinterface embedded-grid animate slide-vert">
 			<ul class="tabs">
 				<li><a href="#tab30">National events</a></li>
 				<li><a href="#tab31">Regional events</a></li>
