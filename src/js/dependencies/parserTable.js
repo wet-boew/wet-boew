@@ -1646,7 +1646,7 @@
 										row.cell[j].col = groupZero.col[i];
 									}
 								} else {
-									errorTrigger(35, this);
+									errorTrigger(35);
 								}
 							}
 						}
@@ -1728,7 +1728,7 @@
 
 					// Here it's not possible to  Diggest the thead and the colgroup because we need the first data row to be half processed before
 				} else if (nodeName === 'tbody' || nodeName === 'tfoot') {
-					
+
 					if (nodeName === 'tfoot') {
 						tfootOnProcess = true;
 					}
