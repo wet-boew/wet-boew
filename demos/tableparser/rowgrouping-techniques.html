@@ -100,6 +100,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <h1 id="wb-cont">Defining a Data Row Group in a Data Table - Web Experience Toolkit (WET)</h1>
 
+<div class="module-attention span-6">
+	<h2><span class="color-dark">Attention:</span> Since October 16, 2012</h2>
+	<p>The default behaviour regarding the subsequent group has been changed for backward compatibility issue and because of some use case. See the Test File 2 for an example.</p>
+</div>
+
+<div class="clear"></div>
+
+
 <div class="module-note span-6">
 	<h2><span class="color-dark">Note:</span> Table Source Code Example</h2>
 	<p>Id/Headers attribute, colgroup element and col element was omited intentionally for clarity.</p>
@@ -136,7 +144,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <p>This technique introduce a "Data Level" concept. This represent the relationship between each data group versus an heading. With this technique, the "caption" table element is considerated as a cell header.</p>
 
-<p>The default data level is 1. The data level increase depending of the number of the consecutive row group header cell found. A data level can be decreased when two or more consecutive summary group is found.</p>
+<p>The default data level is 1. The data level increase depending of the number of the consecutive row group header cell found. <ins>By Default if a subsequent data row group do not have a row group header cell, it is considerated as the same data level of the preceding row group. When the table is on the <strong>&quot;hassum&quot;</strong> mode, the</ins> <del>A</del> data level can be decreased when two or more consecutive summary group is found.</p>
 
 <p>The data level stay constant between 2 consecutive data group. Like if the first data group, with two row group header cell, is considerated at the level 3. If the second data group only have one row group header cell, that group is also considerated at the level 3 and have a relationship with the first row group header cell defined in the first data group.</p>
 
@@ -1470,6 +1478,209 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </code></pre>
 </details>
 
+
+
+<h3>Test File 2</h3>
+<p>This Test File 2 <strong>Pass</strong> this technique</p>
+
+
+<table class="wet-boew-zebra">
+	<colgroup>
+		<col>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<tbody>
+		<tr>
+			<th rowspan="4" id="tblv17">Group A</th>
+			<th id="tblv18" headers="tblv17">Row Heading</th>
+			<td headers="tblv17 tblv18">Data</td>
+			<td headers="tblv17 tblv18">Data</td>
+			<td headers="tblv17 tblv18">Data</td>
+			<td headers="tblv17 tblv18">Data</td>
+			<td headers="tblv17 tblv18">Data</td>
+			<td headers="tblv17 tblv18">Data</td>
+			<td headers="tblv17 tblv18">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv29" headers="tblv17">Row Heading</th>
+			<td headers="tblv17 tblv29">Data</td>
+			<td headers="tblv17 tblv29">Data</td>
+			<td headers="tblv17 tblv29">Data</td>
+			<td headers="tblv17 tblv29">Data</td>
+			<td headers="tblv17 tblv29">Data</td>
+			<td headers="tblv17 tblv29">Data</td>
+			<td headers="tblv17 tblv29">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv40" headers="tblv17">Row Heading</th>
+			<td headers="tblv17 tblv40">Data</td>
+			<td headers="tblv17 tblv40">Data</td>
+			<td headers="tblv17 tblv40">Data</td>
+			<td headers="tblv17 tblv40">Data</td>
+			<td headers="tblv17 tblv40">Data</td>
+			<td headers="tblv17 tblv40">Data</td>
+			<td headers="tblv17 tblv40">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv51" headers="tblv17">Row Heading</th>
+			<td headers="tblv17 tblv51">Data</td>
+			<td headers="tblv17 tblv51">Data</td>
+			<td headers="tblv17 tblv51">Data</td>
+			<td headers="tblv17 tblv51">Data</td>
+			<td headers="tblv17 tblv51">Data</td>
+			<td headers="tblv17 tblv51">Data</td>
+			<td headers="tblv17 tblv51">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th rowspan="4" id="tblv63">Group B</th>
+			<th id="tblv64" headers="tblv63">Row Heading</th>
+			<td headers="tblv63 tblv64">Data</td>
+			<td headers="tblv63 tblv64">Data</td>
+			<td headers="tblv63 tblv64">Data</td>
+			<td headers="tblv63 tblv64">Data</td>
+			<td headers="tblv63 tblv64">Data</td>
+			<td headers="tblv63 tblv64">Data</td>
+			<td headers="tblv63 tblv64">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv75" headers="tblv63">Row Heading</th>
+			<td headers="tblv63 tblv75">Data</td>
+			<td headers="tblv63 tblv75">Data</td>
+			<td headers="tblv63 tblv75">Data</td>
+			<td headers="tblv63 tblv75">Data</td>
+			<td headers="tblv63 tblv75">Data</td>
+			<td headers="tblv63 tblv75">Data</td>
+			<td headers="tblv63 tblv75">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv86" headers="tblv63">Row Heading</th>
+			<td headers="tblv63 tblv86">Data</td>
+			<td headers="tblv63 tblv86">Data</td>
+			<td headers="tblv63 tblv86">Data</td>
+			<td headers="tblv63 tblv86">Data</td>
+			<td headers="tblv63 tblv86">Data</td>
+			<td headers="tblv63 tblv86">Data</td>
+			<td headers="tblv63 tblv86">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv97" headers="tblv63">Row Heading</th>
+			<td headers="tblv63 tblv97">Data</td>
+			<td headers="tblv63 tblv97">Data</td>
+			<td headers="tblv63 tblv97">Data</td>
+			<td headers="tblv63 tblv97">Data</td>
+			<td headers="tblv63 tblv97">Data</td>
+			<td headers="tblv63 tblv97">Data</td>
+			<td headers="tblv63 tblv97">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="9" id="tblv109">Group C</th>
+		</tr>
+		<tr>
+			<th rowspan="4" id="tblv112" headers="tblv109">Group D</th>
+			<th id="tblv113" headers="tblv109 tblv112">Row Heading</th>
+			<td headers="tblv109 tblv112 tblv113">Data</td>
+			<td headers="tblv109 tblv112 tblv113">Data</td>
+			<td headers="tblv109 tblv112 tblv113">Data</td>
+			<td headers="tblv109 tblv112 tblv113">Data</td>
+			<td headers="tblv109 tblv112 tblv113">Data</td>
+			<td headers="tblv109 tblv112 tblv113">Data</td>
+			<td headers="tblv109 tblv112 tblv113">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv124" headers="tblv109 tblv112">Row Heading</th>
+			<td headers="tblv109 tblv112 tblv124">Data</td>
+			<td headers="tblv109 tblv112 tblv124">Data</td>
+			<td headers="tblv109 tblv112 tblv124">Data</td>
+			<td headers="tblv109 tblv112 tblv124">Data</td>
+			<td headers="tblv109 tblv112 tblv124">Data</td>
+			<td headers="tblv109 tblv112 tblv124">Data</td>
+			<td headers="tblv109 tblv112 tblv124">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv135" headers="tblv109 tblv112">Row Heading</th>
+			<td headers="tblv109 tblv112 tblv135">Data</td>
+			<td headers="tblv109 tblv112 tblv135">Data</td>
+			<td headers="tblv109 tblv112 tblv135">Data</td>
+			<td headers="tblv109 tblv112 tblv135">Data</td>
+			<td headers="tblv109 tblv112 tblv135">Data</td>
+			<td headers="tblv109 tblv112 tblv135">Data</td>
+			<td headers="tblv109 tblv112 tblv135">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv146" headers="tblv109 tblv112">Row Heading</th>
+			<td headers="tblv109 tblv112 tblv146">Data</td>
+			<td headers="tblv109 tblv112 tblv146">Data</td>
+			<td headers="tblv109 tblv112 tblv146">Data</td>
+			<td headers="tblv109 tblv112 tblv146">Data</td>
+			<td headers="tblv109 tblv112 tblv146">Data</td>
+			<td headers="tblv109 tblv112 tblv146">Data</td>
+			<td headers="tblv109 tblv112 tblv146">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th rowspan="4" id="tblv158">Group E</th>
+			<th id="tblv159" headers="tblv158">Row Heading</th>
+			<td headers="tblv158 tblv159">Data</td>
+			<td headers="tblv158 tblv159">Data</td>
+			<td headers="tblv158 tblv159">Data</td>
+			<td headers="tblv158 tblv159">Data</td>
+			<td headers="tblv158 tblv159">Data</td>
+			<td headers="tblv158 tblv159">Data</td>
+			<td headers="tblv158 tblv159">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv170" headers="tblv158">Row Heading</th>
+			<td headers="tblv158 tblv170">Data</td>
+			<td headers="tblv158 tblv170">Data</td>
+			<td headers="tblv158 tblv170">Data</td>
+			<td headers="tblv158 tblv170">Data</td>
+			<td headers="tblv158 tblv170">Data</td>
+			<td headers="tblv158 tblv170">Data</td>
+			<td headers="tblv158 tblv170">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv181" headers="tblv158">Row Heading</th>
+			<td headers="tblv158 tblv181">Data</td>
+			<td headers="tblv158 tblv181">Data</td>
+			<td headers="tblv158 tblv181">Data</td>
+			<td headers="tblv158 tblv181">Data</td>
+			<td headers="tblv158 tblv181">Data</td>
+			<td headers="tblv158 tblv181">Data</td>
+			<td headers="tblv158 tblv181">Data</td>
+		</tr>
+		<tr>
+			<th id="tblv192" headers="tblv158">Row Heading</th>
+			<td headers="tblv158 tblv192">Data</td>
+			<td headers="tblv158 tblv192">Data</td>
+			<td headers="tblv158 tblv192">Data</td>
+			<td headers="tblv158 tblv192">Data</td>
+			<td headers="tblv158 tblv192">Data</td>
+			<td headers="tblv158 tblv192">Data</td>
+			<td headers="tblv158 tblv192">Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<ul>
+	<li>Group A at level 1.</li>
+	<li>Group B at level 1.</li>
+	<li>Group C at level 2.</li>
+	<li>Group E at level 2.</li>
+</ul>
 
 
 <dl id="gcwu-date-mod" role="contentinfo">
