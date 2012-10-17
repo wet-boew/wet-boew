@@ -3,6 +3,12 @@
 	<dirname property="tasks.basedir" file="${ant.file.build-tasks}"/>
 	<property file="${tasks.basedir}/build-tasks.properties"/>
 	
+	<!-- Version and build time-->
+	<property name="wet-boew-build.version" value="v3.1.0-a1"/>
+	<tstamp>
+		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
+	</tstamp>
+	
 	<!-- ant contribs task definition  -->
 	<path id="antcontrib.classpath">
 		<pathelement location="${antcontribs.jar}" />
@@ -42,31 +48,32 @@
 	<!-- Include the compiled jruby.jar file -->
 	<path id="jruby.classpath">
 		<fileset dir="${lib.dir}">
-		  <include name="jruby*.jar"/>
+			<include name="${jruby.jar}"/>
 		</fileset>
-	</path>
-	
+	</path>	
+
 	<!-- Include jruby + gems (compass + sass) -->
 	<target name="-build-jruby" depends="-jruby.jar.check" unless="jruby.jar.exists">
 		<mkdir dir="${lib.dir}/jruby-compiled" />
-		<get src="http://jruby.org.s3.amazonaws.com/downloads/1.6.7.2/jruby-complete-1.6.7.2.jar" dest="${lib.dir}/jruby-download.jar" skipexisting="true"/>
-		<get src="http://production.cf.rubygems.org/gems/sass-3.1.19.gem" dest="${lib.dir}/jruby-compiled/sass.gem" skipexisting="true"/>
-		<get src="http://production.cf.rubygems.org/gems/chunky_png-1.2.5.gem" dest="${lib.dir}/jruby-compiled/chunky_png.gem" skipexisting="true"/>
-		<get src="http://production.cf.rubygems.org/gems/fssm-0.2.9.gem" dest="${lib.dir}/jruby-compiled/fssm.gem" skipexisting="true"/>
-		<get src="http://production.cf.rubygems.org/gems/compass-0.12.1.gem" dest="${lib.dir}/jruby-compiled/compass.gem" skipexisting="true"/>
-		<java jar="${lib.dir}/jruby-download.jar" fork="true">
-			<arg line="-S gem install -i &quot;${lib.dir}/vendors&quot; &quot;${lib.dir}/jruby-compiled/sass.gem&quot; &quot;${lib.dir}/jruby-compiled/chunky_png.gem&quot; &quot;${lib.dir}/jruby-compiled/fssm.gem&quot; &quot;${lib.dir}/jruby-compiled/compass.gem&quot;"/>
+		<delete dir="${lib.dir}/vendors-${jruby.depends}" />
+		<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/jruby-complete-${jruby.version}.jar" dest="${lib.dir}/jruby-complete-${jruby.version}.jar" skipexisting="true"/>
+		<get src="http://production.cf.rubygems.org/gems/${sass.gem}" dest="${gem.dir}/${sass.gem}" skipexisting="true"/>
+		<get src="http://production.cf.rubygems.org/gems/${chunky_png.gem}" dest="${gem.dir}/${chunky_png.gem}" skipexisting="true"/>
+		<get src="http://production.cf.rubygems.org/gems/${fssm.gem}" dest="${gem.dir}/${fssm.gem}" skipexisting="true"/>
+		<get src="http://production.cf.rubygems.org/gems/${compass.gem}" dest="${gem.dir}/${compass.gem}" skipexisting="true"/>
+		<java jar="${lib.dir}/jruby-complete-${jruby.version}.jar" fork="true">
+			<arg line="-S gem install -i &quot;${lib.dir}/vendors-${jruby.depends}&quot; &quot;${gem.dir}/${sass.gem}&quot; &quot;${gem.dir}/${chunky_png.gem}&quot; &quot;${gem.dir}/${fssm.gem}&quot; &quot;${gem.dir}/${compass.gem}&quot;"/>
 		</java>
 		<exec executable="jar" dir="${lib.dir}/">
-		  <arg line="-uf jruby-download.jar -C vendors ." />
+			<arg line="-uf jruby-complete-${jruby.version}.jar -C vendors-${jruby.depends} ." />
 		</exec>
-		<move file="${lib.dir}/jruby-download.jar" tofile="${lib.dir}/jruby.jar"/>
-		<delete dir="${lib.dir}/jruby-compiled" />
+		<move file="${lib.dir}/jruby-complete-${jruby.version}.jar" tofile="${lib.dir}/${jruby.jar}"/>
+		<delete dir="${gem.dir}" />
 	</target>
-		
+
 	<target name="-jruby.jar.check">
 		<condition property="jruby.jar.exists">
-		  <available file="${lib.dir}/jruby.jar" type="file"/>
+			<available file="${lib.dir}/${jruby.jar}" type="file"/>
 		</condition>
 	</target>
 	
@@ -81,7 +88,7 @@
 	<target name="call.sass">
 		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
 			<arg path="${tasks.basedir}/compile.rb"/>
-			<arg path="${lib.dir}/vendors/gems/"/>
+			<arg path="${lib.dir}/vendors-${jruby.depends}/gems/"/>
 			<arg value="${command}"/>
 			<arg path="${src.dir}"/>
 		</java>

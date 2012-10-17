@@ -582,3 +582,9 @@
 		padding:0;
 	}
 }
+
+.pe-disable {
+	.tabs-panel > div {
+		display: block;
+	}
+}
