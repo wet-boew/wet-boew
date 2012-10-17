@@ -1,0 +1,197 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+$sans-serif:		Verdana, Arial, Helvetica, sans-serif;
+$serif:				Georgia, "Times New Roman", Times, serif;
+
+$margin-xsmall:		1px;
+$margin-small:		2px;
+$margin-medium:		10px;
+$margin-large:		20px;
+$margin-xlarge:		50px;
+
+$spacing-xsmall:	1px; 
+$spacing-small:		5px;
+$spacing-medium:	10px;
+$spacing-large:		20px;
+$spacing-xlarge:	50px;
+
+$font-xxsmall:		50%;
+$font-xsmall:		70%;
+$font-small:		85%;
+$font-medium:		100%;
+$font-large:		120%;
+$font-xlarge:		150%;
+$font-xxlarge:		180%;
+
+$font-weight-normal:	400;
+$font-weight-bold:		700;
+
+$highlight:		#ffffc9;
+$attention:		#cc0000;
+$accent:		#176ca7; //#176ca7; //#1a7abd; // #cc0000;
+$black:			#000000;
+$dark:			#222222;
+$medium:		#666666;
+$light:			#eeeeee;
+$white:			#ffffff;
+$silver:		#cccccc;
+
+$alert:			#ffe75d;
+$attention:		#d73d38;
+$note:			#555555;
+$info:			#2a7da6;
+$question:		#888888;
+$answer:		#6c9f42;
+$tool:			#bab595;
+$inprogress:	#6d92a5;
+$refer:			#3f577c;
+$summary:		#418541;
+$archive:		#b93531;
+
+$line-height:		18px;
+
+// global
+// used in: @border-radius
+$default-border-radius:		4px;
+
+// custom
+// used in: @colorize
+$default-color: #cccccc;
+$default-color-gradient: true;
+$default-color-shadow: true;
+$default-color-border: false;
+
+
+
+@mixin colorize-base($color: $default-color, $important: false) {
+	
+	// set default colors
+	$text: contrast-color($color, $dark, $white, 75%);
+	@if $important {
+		background-color: $color !important;
+	} @else {
+		background-color: $color;
+	}
+	color: $text !important;
+
+	// apply link colors to base only
+	a { 
+		&, &:link, &:visited {
+			color: $text; 
+		}
+
+		&:hover, &:focus, &:active {
+			@if $text == white {
+				color: darken($text, 10%);
+			} @else {
+				color: lighten($text, 20%);
+			}
+		}
+	}
+
+}
+
+@mixin colorize-border($color: $default-color, $border: "border") {
+	
+	@if $border == "border" {
+		border: 1px solid darken($color, 10%);
+	} @else if $border == "outline" {
+		outline: 1px solid darken($color, 10%);
+	}
+
+}
+
+@mixin colorize($color: $default-color, $gradient: $default-color-gradient, $shadow: $default-color-shadow, $border: $default-color-border, $important: false) {
+
+	// used to set text shadow 
+	$text: contrast-color($color, $dark, $white, 75%);
+
+	@if $border {
+		@include colorize-border($color, $border)
+	}
+	
+	// add text shadow
+	@if $shadow == true {
+		text-shadow: contrast-color($text, $dark, $white, 50%) 0 1px 1px;
+	}
+	
+	// add gradient
+	@if $gradient == true {
+	
+		background-repeat: repeat-x;
+		
+		@if $important {
+
+			$gradient: linear-gradient($color, darken($color, 7%));
+			background-image: $gradient !important;
+			@if $support-for-original-webkit-gradients and prefixed(-owg, $gradient) {
+				background-image: -owg($gradient) !important; }
+			@if $experimental-support-for-webkit and prefixed(-webkit, $gradient) {
+				background-image: -webkit($gradient) !important; }
+			@if $experimental-support-for-mozilla and prefixed(-moz, $gradient) {
+				background-image: -moz($gradient) !important; }
+			@if $experimental-support-for-opera and prefixed(-o, $gradient) {
+				background-image: -o($gradient) !important; }
+
+		} @else {
+			@include background-image(
+				linear-gradient(
+					$color,
+					darken($color, 7%)
+				)
+			);
+		}
+	}
+
+}
+
+/*   base appearance   */
+body {
+	font-size: 13px;
+	line-height: 1.5em;
+}
+
+p, table {
+	margin-bottom: $margin-medium;
+	margin-top: $margin-medium;
+	
+	img { margin-left: 0; }
+}
+
+pre { 
+	overflow-x: auto;  /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */ 
+	white-space:pre-wrap; /* css-3 */ 
+	white-space:-moz-pre-wrap !important; 
+	white-space:-pre-wrap; /* Opera 4-6 */ 
+	white-space:-o-pre-wrap; /* Opera 7 */ 
+	word-wrap:break-word; /* Internet Explorer 5.5+ */
+}
+
+p, blockquote, table, form, img, pre {
+	margin-bottom: $margin-medium;
+}
+
+// reset elements in grid system
+[class*="span-"] {
+
+	// reset margin left and right to elements that are used inside a grid cell
+	#{headings(all)}, p, blockquote, table, form, img, pre, details {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	
+	p {
+		margin-bottom: $margin-medium;
+		margin-top: $margin-medium;
+	}
+	
+	ul, ol, dl {
+		margin: 5px 5px 10px 40px;
+		padding: 0;
+	}
+	
+	.float-right { margin-right: 0; }
+}

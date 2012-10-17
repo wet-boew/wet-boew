@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wet-boew.basecss" default="default" basedir=".">
+	<description>Web Experience Toolkit Base CSS</description>
+
+	<property file="build.properties"/>
+	<import file="${build.dir}/../build-tasks.xml"/>
+
+	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
+
+	<target name="build" depends="-init, compile.sass" />
+
+</project>

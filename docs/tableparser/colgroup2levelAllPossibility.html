@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
+<title>Column Group - Table Usability - Web Experience Toolkit (WET)</title>
+
+
+
+<link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="dcterms.description" content="English description/Description en anglais" />
+<meta name="description" content="English description/Description en anglais" />
+<meta name="keywords" content="English keywords/Mots-clés en anglais" />
+<meta name="dcterms.creator" content="English name of the content author/Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title/Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD)/Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD)/Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms/Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../build/js/jquery.min.js"></script>
+
+<link rel="stylesheet" href="../../build/grids/css/util-min.css" />
+<!--[if lte IE 8]>
+<link rel="stylesheet" href="../../build/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../build/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../build/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="zebra-fra.html" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../build/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../docs/index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2><span>Site</span> menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.html">
+<li><div><a href="http://wet-boew.github.com/wet-boew/docs/index-eng.html">WET project</a></div></li>
+<li><div><a href="section2/index-eng.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../docs/index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li>Table Usability - Web Experience Toolkit (WET)</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+
+<h1 id="wb-cont">Column Group Impact - Table Usability - Web Experience Toolkit (WET)</h1>
+
+<p><em>Please note the column group (colgroup element) width should be equal of the table width as per his cell, spanned or not, for a any row.</em></p>
+
+<p>You have seen some common example, but now let see how the use of the colgroup element can have a huge impact on how the data can be interpretated.</p>
+
+<p>The following example show how the table parser and any widget that use table would see your data. In regards of the colgroup element, my research conduct me to use this methodology because it seem to be most common but I fully understand that it is possible to have a different interpretation.</p>
+
+<p>To show you all the possibility, we will always use the same table format and the example above will only play on how the colgroup element is defined and the table caption</p>
+
+<p>The following table is the base table used</p>
+
+
+<table>
+		<caption>
+			<strong>Table 0</strong>
+			<p>Table Template Used for illustration</p>
+		</caption>
+    <thead>
+    	<tr>
+        	<th colspan="2">Heading - A</th>
+        	<th colspan="2">Heading - B</th>
+        	<th colspan="2">Heading - C</th>
+        </tr>
+
+    	<tr>
+        	<th>Heading - AA</th>
+            <th>Heading - AB</th>
+            <th>Heading - BA</th>
+            <th>Heading - BB</th>
+            <th>Heading - CA</th>
+            <th>Heading - CB</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+<h2>Simple Table</h2>
+
+<table class="wet-boew-zebra">
+		<caption>
+			<strong>Table 1</strong>
+			<p>(no colgroup)</p>
+		</caption>
+    <thead>
+    	<tr>
+        	<th colspan="2">Heading - A</th>
+        	<th colspan="2">Heading - B</th>
+        	<th colspan="2">Heading - C</th>
+        </tr>
+
+    	<tr>
+        	<th>Heading - AA</th>
+            <th>Heading - AB</th>
+            <th>Heading - BA</th>
+            <th>Heading - BB</th>
+            <th>Heading - CA</th>
+            <th>Heading - CB</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<h2>Simple Table - One colgroup</h2>
+
+
+
+<table class="wet-boew-zebra">
+	<caption>
+		<strong>Table 2</strong>
+		<pre><code>&lt;colgroup span=&quot;6&quot;&gt;&lt;/ colgroup&gt;</code></pre></caption>
+	<colgroup span="6"></colgroup>
+    <thead>
+    	<tr>
+        	<th colspan="2">Heading - A</th>
+        	<th colspan="2">Heading - B</th>
+        	<th colspan="2">Heading - C</th>
+        </tr>
+
+    	<tr>
+        	<th>Heading - AA</th>
+            <th>Heading - AB</th>
+            <th>Heading - BA</th>
+            <th>Heading - BB</th>
+            <th>Heading - CA</th>
+            <th>Heading - CB</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<h2>Two Colgroup Combinaison</h2>
+
+
+
+<table class="wet-boew-zebra">
+	<caption>
+		<strong>Table 3</strong>
+		<pre><code>&lt;colgroup span=&quot;5&quot;&gt;&lt;/ colgroup&gt;&lt;colgroup&gt;&lt;/ colgroup&gt;</code></pre>
+	</caption>
+	<colgroup span="5"></colgroup>
+	<colgroup></colgroup>
+    <thead>
+    	<tr>
+        	<th colspan="2">Heading - A</th>
+        	<th colspan="2">Heading - B</th>
+        	<th colspan="2">Heading - C</th>
+        </tr>
+
+    	<tr>
+        	<th>Heading - AA</th>
+            <th>Heading - AB</th>
+            <th>Heading - BA</th>
+            <th>Heading - BB</th>
+            <th>Heading - CA</th>
+            <th>Heading - CB</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>If you hover the fift column in the table 3 you will be noticed that there are no column header highlight. That is because the table parser when in a issue when it was trying to understand the tabular data. The table validator give the error <em>10 - The cell used to represent the data at level: 1 must encapsulate his group and be the same</em>. So what that means ? Simply the table parser saw two distinct data group at different column data level because the superior cell header for the summary column can not be mixed between the data at level 1 and level 2. The fix is pretty simple, use three colgroup element. See the next table (table 4).</p>
+
+
+<table class="wet-boew-zebra">
+	<caption>
+		<strong>Table 4</strong>
+		<pre><code>&lt;colgroup span=&quot;4&quot;&gt;&lt;/ colgroup&gt;&lt;colgroup&gt;&lt;/ colgroup&gt;&lt;colgroup&gt;&lt;/ colgroup&gt;</code></pre>
+	</caption>
+	<colgroup span="4"></colgroup>
+	<colgroup></colgroup>
+	<colgroup></colgroup>
+    <thead>
+    	<tr>
+        	<th colspan="2">Heading - A</th>
+        	<th colspan="2">Heading - B</th>
+        	<th colspan="2">Heading - C</th>
+        </tr>
+
+    	<tr>
+        	<th>Heading - AA</th>
+            <th>Heading - AB</th>
+            <th>Heading - BA</th>
+            <th>Heading - BB</th>
+            <th>Heading - CA</th>
+            <th>Heading - CB</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Explaination of the table 4. The column CB is now understanded as a summary of the column CA. So the column CA and CB should be equivalent.</p>
+
+<table class="wet-boew-zebra">
+	<caption>
+		<strong>Table 5</strong>
+		<pre><code>&lt;colgroup span=&quot;4&quot;&gt;&lt;/ colgroup&gt;&lt;colgroup span=&quot;2&quot;&gt;&lt;/ colgroup&gt;</code></pre>
+	</caption>
+	<colgroup span="4"></colgroup>
+	<colgroup span="2"></colgroup>
+    <thead>
+    	<tr>
+        	<th colspan="2">Heading - A</th>
+        	<th colspan="2">Heading - B</th>
+        	<th colspan="2">Heading - C</th>
+        </tr>
+
+    	<tr>
+        	<th>Heading - AA</th>
+            <th>Heading - AB</th>
+            <th>Heading - BA</th>
+            <th>Heading - BB</th>
+            <th>Heading - CA</th>
+            <th>Heading - CB</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Explaination of the table 5. The column C is now understanded as a summary of the column A and B. So the column C should be equivalent to the combinaison of the column A and B.</p>
+
+
+
+<table class="wet-boew-zebra">
+	<caption>
+		<strong>Table 6</strong>
+		<pre><code>&lt;colgroup span=&quot;3&quot;&gt;&lt;/ colgroup&gt;&lt;colgroup span=&quot;3&quot;&gt;&lt;/ colgroup&gt;</code></pre>
+	</caption>
+	<colgroup span="3"></colgroup>
+	<colgroup span="3"></colgroup>
+    <thead>
+    	<tr>
+        	<th colspan="2">Heading - A</th>
+        	<th colspan="2">Heading - B</th>
+        	<th colspan="2">Heading - C</th>
+        </tr>
+
+    	<tr>
+        	<th>Heading - AA</th>
+            <th>Heading - AB</th>
+            <th>Heading - BA</th>
+            <th>Heading - BB</th>
+            <th>Heading - CA</th>
+            <th>Heading - CB</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Explaination of the table 6. You will remark that their are no column cell header highlight at all. That is because the column group don't make sense. The HTML Table validator will throw two error now. The error 10 (see the explaination of the table 3) and the error <em>9 Error in you header row group, there are cell that are crossing more than one colgroup under the level:1</em>. This means that the cell header used to represent the column grouping are not representative of the colgroup element defined with the table. To get it fixed you will need to either redefine the column grouping or change the cell heading structure.</p>
+
+
+<table class="wet-boew-zebra">
+	<caption>
+		<strong>Table 7</strong>
+		<pre><code>&lt;colgroup span=&quot;2&quot;&gt;&lt;/ colgroup&gt;&lt;colgroup span=&quot;4&quot;&gt;&lt;/ colgroup&gt;</code></pre>
+	</caption>
+	<colgroup span="2"></colgroup>
+	<colgroup span="4"></colgroup>
+    <thead>
+    	<tr>
+        	<th colspan="2">Heading - A</th>
+        	<th colspan="2">Heading - B</th>
+        	<th colspan="2">Heading - C</th>
+        </tr>
+
+    	<tr>
+        	<th>Heading - AA</th>
+            <th>Heading - AB</th>
+            <th>Heading - BA</th>
+            <th>Heading - BB</th>
+            <th>Heading - CA</th>
+            <th>Heading - CB</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Explaination of the table 7. The column B and C is now understanded as a summary of the column A. So the combinaison of the column B and C should be equivalent to the column A.</p>
+
+
+
+<table class="wet-boew-zebra">
+	<caption>
+		<strong>Table 8</strong>
+		<pre><code>&lt;colgroup&gt;&lt;/ colgroup&gt;&lt;colgroup span=&quot;5&quot;&gt;&lt;/ colgroup&gt;</code></pre>
+	</caption>
+	<colgroup span="1"></colgroup>
+	<colgroup span="5"></colgroup>
+    <thead>
+    	<tr>
+        	<th colspan="2">Heading - A</th>
+        	<th colspan="2">Heading - B</th>
+        	<th colspan="2">Heading - C</th>
+        </tr>
+
+    	<tr>
+        	<th>Heading - AA</th>
+            <th>Heading - AB</th>
+            <th>Heading - BA</th>
+            <th>Heading - BB</th>
+            <th>Heading - CA</th>
+            <th>Heading - CB</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Explaination of the table 8. You will remark that their are no column cell header highlight at all. That is because the column group don't make sense. The HTML Table validator will throw the error 9. See the explainaison of the table 6 for more details.</p>
+
+
+<h2>Three colgroup and more</h2>
+
+
+
+<table class="wet-boew-zebra">
+	<caption>
+		<strong>Table 9</strong>
+		<pre><code>&lt;colgroup span=&quot;2&quot;&gt;&lt;/ colgroup&gt;&lt;colgroup span=&quot;2&quot;&gt;&lt;/ colgroup&gt;&lt;colgroup span=&quot;2&quot;&gt;&lt;/ colgroup&gt;</code></pre>
+	</caption>
+	<colgroup span="2"></colgroup>
+	<colgroup span="2"></colgroup>
+	<colgroup span="2"></colgroup>
+    <thead>
+    	<tr>
+        	<th colspan="2">Heading - A</th>
+        	<th colspan="2">Heading - B</th>
+        	<th colspan="2">Heading - C</th>
+        </tr>
+
+    	<tr>
+        	<th>Heading - AA</th>
+            <th>Heading - AB</th>
+            <th>Heading - BA</th>
+            <th>Heading - BB</th>
+            <th>Heading - CA</th>
+            <th>Heading - CB</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Explaination of the table 9. The column B is now understanded as a summary of the column A. The column C is understanded as a summary of either Column A or B. The column A is a data column at level 1, the column B is a summary at level 1 and the column C is a summary at level 0.</p>
+
+
+
+
+<table class="wet-boew-zebra">
+	<caption>
+		<strong>Table 10</strong>
+		<pre><code>&lt;colgroup&gt;&lt;/ colgroup&gt;&lt;colgroup&gt;&lt;/ colgroup&gt;&lt;colgroup&gt;&lt;/ colgroup&gt;&lt;colgroup&gt;&lt;/ colgroup&gt;&lt;colgroup&gt;&lt;/ colgroup&gt;&lt;colgroup&gt;&lt;/ colgroup&gt;</code></pre>
+	</caption>
+	<colgroup></colgroup>
+	<colgroup></colgroup>
+	<colgroup></colgroup>
+	<colgroup></colgroup>
+	<colgroup></colgroup>
+	<colgroup></colgroup>
+    <thead>
+    	<tr>
+        	<th colspan="2">Heading - A</th>
+        	<th colspan="2">Heading - B</th>
+        	<th colspan="2">Heading - C</th>
+        </tr>
+
+    	<tr>
+        	<th>Heading - AA</th>
+            <th>Heading - AB</th>
+            <th>Heading - BA</th>
+            <th>Heading - BB</th>
+            <th>Heading - CA</th>
+            <th>Heading - CB</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+        <tr>
+            <td>Data - C1</td>
+            <td>Data - C2</td>
+            <td>Data - C3</td>
+            <td>Data - C4</td>
+            <td>Data - C5</td>
+            <td>Data - C6</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Explaination of the table 10. The column AB, BB and CB is now understanded as a summary of their respective column at their left. All the data and summary cell is at the level 2. To represent that it's normal to don't see highlight for the cell header A, B, C. The cell header A, B, C is a group cell header.</p>
+
+
+<h2>What's next ?</h2>
+
+<p>Try the <a href="validator-htmltable.html">HTML Table Validator</a></p>
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2012-08-09</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">Our Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/eng/index.asp"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../build/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../build/js/settings.js"></script>
+<script src="../../build/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>
