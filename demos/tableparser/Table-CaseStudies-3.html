@@ -102,6 +102,13 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <h1 id="wb-cont">Case Studies #3 - Ottawa Senators vs. Buffalo Sabres - Game ID # 270519002</h1>
 
+<div class="module-note span-6">
+	<h2><span class="color-dark">Note:</span> Table in &quot;hassum&quot; mode</h2>
+	<p>This case study use table with the option &quot;hassum&quot;.</p>
+</div>
+
+<div class="clear"></div>
+
 <h2>About this Case Studies</h2>
 <p>Reference: <a href="http://lists.w3.org/Archives/Public/public-html/2008Mar/0215.html">Re: several messages about tables and related subjects</a> from Ian Hickson on the public-html@w3.org mailing list</p>
 
@@ -2111,7 +2118,7 @@ can't help with this one.
 </details>
 
 
-<h3>Styling</h3>
+<h3>Set the table in &quot;hassum&quot; mode and styling</h3>
 
 <p>Now we have a better table structure and markup. Let's use styling. FYI - the default markup don't have class set to except for the table element. It is the Zebra plugin that add custom class to the table childrens elements.
 
@@ -2124,7 +2131,7 @@ can't help with this one.
 </style>
 
 <details>
-	<summary>Styling source code</summary>
+	<summary>Custom style source code</summary>
 <pre><code>&lt;style&gt;
 &lt;!--
 	.notablebg td.table-desccell, .notablebg td.table-keycell {
@@ -2135,9 +2142,9 @@ can't help with this one.
 </code></pre>
 </details>
 
-<p>The following table is the same as the previous one, but the class <code>notablebg</code> was added to the table element</p>
+<p>The following table is the same as the previous one, but the class <code>notablebg</code> and <code>hassum</code> was added to the table element</p>
 
-<table class="wet-boew-zebra notablebg">
+<table class="wet-boew-zebra notablebg hassum">
 	<colgroup>
 		<col />
 		<col />
@@ -2318,6 +2325,193 @@ can't help with this one.
 	</tbody>
 </table>
 
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>
+&lt;table class=&quot;wet-boew-zebra notablebg hassum&quot;&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Time&lt;/th&gt;
+			&lt;th&gt;Team&lt;/th&gt;
+			&lt;th&gt;Detail&lt;/th&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;th&gt;BUF&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;1st Period Summary&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;Scoring&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td colspan=&quot;5&quot;&gt;No scoring this period&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;3&quot;&gt;Score&lt;/th&gt;
+			&lt;td&gt;0&lt;/td&gt;
+			&lt;td&gt;0&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;Penalty Detail&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;16:16&lt;/td&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Chris Neil: 2 Minutes  for Interference of Drew Stafford&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;17:53&lt;/td&gt;
+			&lt;th&gt;BUF&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Derek Roy: 2 Minutes  for Hooking Wade Redden &lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;2nd Period Summary&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;Scoring Detail&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;4:30&lt;/td&gt;
+			&lt;th&gt;BUF&lt;/th&gt;
+			&lt;td&gt;Jochen Hecht (4) &lt;br&gt;&lt;i&gt;Assists: Jason Pominville, Danny Briere&lt;/i&gt;&lt;/td&gt;
+			&lt;td&gt;0&lt;/td&gt;
+			&lt;td&gt;1&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;15:41&lt;/td&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;td&gt;Dany Heatley (6) &lt;br&gt;&lt;i&gt;Assists: Jason Spezza, Wade Redden&lt;/i&gt;&lt;/td&gt;
+			&lt;td&gt;1&lt;/td&gt;
+			&lt;td&gt;1&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;19:21&lt;/td&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;td&gt;Jason Spezza (7) &lt;br&gt;&lt;i&gt;Assists: Daniel Alfredsson, Dany Heatley&lt;/i&gt;&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;1&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;Penalty Detail&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;5:16&lt;/td&gt;
+			&lt;th&gt;BUF&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Jochen Hecht: 2 Minutes  for Hooking Dany Heatley &lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;6:29&lt;/td&gt;
+			&lt;th&gt;BUF&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Derek Roy: 2 Minutes  for Hooking Jason Spezza&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;12:29&lt;/td&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Mike Fisher: 2 Minutes  for Interference of Brian Campbell&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;12:29&lt;/td&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Mike Fisher: 2 Minutes  for Interference of Paul Gaustad&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;13:36&lt;/td&gt;
+			&lt;th&gt;BUF&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Brian Campbell: 2 Minutes  for Tripping Daniel Alfredsson&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;3rd Period Summary&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;Scoring Detail&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;10:58&lt;/td&gt;
+			&lt;th&gt;BUF&lt;/th&gt;
+			&lt;td&gt;Maxim Afinogenov (5)  (Power Play) &lt;br&gt;&lt;i&gt;Assists: Danny Briere, Thomas Vanek&lt;/i&gt;&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;Penalty Detail&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;3:33&lt;/td&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Daniel Alfredsson: 2 Minutes  for Hooking Ales Kotalik&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;8:55&lt;/td&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Anton Volchenkov: 2 Minutes  for Tripping Danny Briere&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;9:25&lt;/td&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Christoph Schubert: 2 Minutes  for Slashing Tim Connolly&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;12:21&lt;/td&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Chris Neil: 2 Minutes  for Roughing Adam Mair&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;17:10&lt;/td&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;td colspan=&quot;3&quot;&gt;Mike Comrie: 2 Minutes  for Delay of Game&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;OT Summary&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;Scoring Detail&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;9:32&lt;/td&gt;
+			&lt;th&gt;OTT&lt;/th&gt;
+			&lt;td&gt;Daniel Alfredsson (10) &lt;br&gt;&lt;i&gt;Assists: Dany Heatley, Andrej Meszaros&lt;/i&gt;&lt;/td&gt;
+			&lt;td&gt;3&lt;/td&gt;
+			&lt;td&gt;2&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;Penalty Detail&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td colspan=&quot;5&quot;&gt;No penalties this period&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+</details>
+
+
 <h2>Ressource</h2>
 
 <p><a href="validator-htmltable.html">HTML table validator</a></p>
@@ -2327,7 +2521,7 @@ can't help with this one.
 
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-09-03</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-10-17</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
