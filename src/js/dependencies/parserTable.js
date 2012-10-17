@@ -1640,9 +1640,13 @@
 							}
 							// Be sure to do not include twice the same cell for a column spanned in 2 or more column
 							if (!(j > (groupZero.col[i].start - 1) && groupZero.col[i].cell[groupZero.col[i].cell.length - 1].uid === row.cell[j].uid)) {
-								groupZero.col[i].cell.push(row.cell[j]);
-								if (!row.cell[j].col) {
-									row.cell[j].col = groupZero.col[i];
+								if (row.cell[j]) {
+									groupZero.col[i].cell.push(row.cell[j]);
+									if (!row.cell[j].col) {
+										row.cell[j].col = groupZero.col[i];
+									}
+								} else {
+									errorTrigger(35, this);
 								}
 							}
 						}
