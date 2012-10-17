@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wet-boew.grids" default="default" basedir=".">
+	<description>Web Experience Toolkit CSS Grid System</description>
+
+	<property file="build.properties"/>
+	<import file="${build.dir}/../build-tasks.xml"/>
+
+	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
+
+	<target name="build" depends="-init, -minify" />
+
+	<target name="-minify" depends="compile.sass, -merge-css">
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/premin" toDir="${build.dir}">
+			<include name="css/*.*" />
+		</yui-compressor>
+		<delete dir="${build.dir}/premin"/>
+	</target>
+
+	<target name="-merge-css">
+		<copy todir="${build.dir}/premerge/css">
+			<fileset dir="${src.dir}/css">
+				<include name="util*.css"/>
+				<include name="includes/*.css"/>
+				<exclude name="responsive*.css"/>
+			</fileset>
+		</copy>
+		<replace dir="${build.dir}/premerge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/images" />
+		</copy>
+		<filelist id="corefiles" dir="${build.dir}/premerge/css">
+			<file name="util.css"/>
+			<file name="util-ie.css"/>
+		</filelist>
+		<for param="css-file">
+			<path>
+				<filelist refid="corefiles"/>
+			</path>
+			<sequential>
+				<antcall target="-resolve-css-imports" inheritAll="false">
+					<param name="file" value="@{css-file}"/>
+					<param name="topfile" value="true"/>
+				</antcall>
+			</sequential>
+		</for>
+		<copy todir="${build.dir}/premin/css">
+			<filelist dir="${build.dir}/premerge/css">
+				<file name="util.css"/>
+				<file name="util-ie.css"/>
+			</filelist>
+			<filterchain>
+				<concatfilter prepend="${build.dir}/../build-css-head.txt"/>
+				<replacetokens>
+					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
+					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+		<delete dir="${build.dir}/premerge"/>
+	</target>
+</project>

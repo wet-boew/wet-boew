@@ -1,0 +1,386 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+*/
+
+[class*=wb-icon-] {
+	background:url(../images/icons.png) no-repeat top left;
+	width:16px;
+	height:16px;
+	margin-right:4px;
+	display:inline-block;
+	vertical-align:text-top;
+}
+
+.wb-icon-alarm {
+	background-position:0 0;
+}
+
+.wb-icon-book-alt {
+	background-position:0 -17px;
+}
+
+.wb-icon-book-open {
+	background-position:0 -34px;
+}
+
+.wb-icon-book {
+	background-position:0 -51px;
+}
+
+.wb-icon-box {
+	background-position:0 -68px;
+}
+
+.wb-icon-bulb-off {
+	background-position:0 -85px;
+}
+
+.wb-icon-bulb {
+	background-position:0 -102px;
+}
+
+.wb-icon-calculator-arrow {
+	background-position:0 -119px;
+}
+
+.wb-icon-calculator-exclamation {
+	background-position:0 -136px;
+}
+
+.wb-icon-calculator-minus {
+	background-position:0 -153px;
+}
+
+.wb-icon-calculator-plus {
+		background-position:0 -170px;
+}
+
+.wb-icon-calculator {
+	background-position:0 -187px;
+}
+
+.wb-icon-calendar-day {
+	background-position:0 -204px;
+}
+
+.wb-icon-calendar-list {
+	background-position:0 -221px;
+}
+
+.wb-icon-calendar-month {
+	background-position:0 -238px;
+}
+
+.wb-icon-calendar {
+	background-position:0 -255px;
+}
+
+.wb-icon-chart-down {
+	background-position:0 -272px;
+}
+
+.wb-icon-chart-pie {
+	background-position:0 -289px;
+}
+
+.wb-icon-chart-up {
+	background-position:0 -306px;
+}
+
+.wb-icon-chart {
+	background-position:0 -323px;
+}
+
+.wb-icon-clip {
+	background-position:0 -340px;
+}
+
+.wb-icon-clipboard-exclamation {
+	background-position:0 -357px;
+}
+
+.wb-icon-clipboard {
+	background-position:0 -374px;
+}
+
+.wb-icon-clock {
+	background-position:0 -391px;
+}
+
+.wb-icon-comment {
+	background-position:0 -408px;
+}
+
+.wb-icon-compass {
+	background-position:0 -425px;
+}
+
+.wb-icon-cone {
+	background-position:0 -442px;
+}
+
+.wb-icon-construction {
+	background-position:0 -459px;
+}
+
+.wb-icon-desktop {
+	background-position:0 -476px;
+}
+
+.wb-icon-direction {
+	background-position:0 -493px;
+}
+
+.wb-icon-disk {
+	background-position:0 -510px;
+}
+
+.wb-icon-document {
+	background-position:0 -527px;
+}
+
+.wb-icon-envelope {
+	background-position:0 -544px;
+}
+
+.wb-icon-exclamation-alt {
+	background-position:0 -561px;
+}
+
+.wb-icon-exclamation-alt2 {
+	background-position:0 -578px;
+}
+
+.wb-icon-exclamation {
+	background-position:0 -595px;
+}
+
+.wb-icon-film {
+	background-position:0 -612px;
+}
+
+.wb-icon-folder-alt {
+	background-position:0 -629px;
+}
+
+.wb-icon-folder-open {
+	background-position:0 -646px;
+}
+
+.wb-icon-folder {
+	background-position:0 -663px;
+}
+
+.wb-icon-gavel {
+	background-position:0 -680px;
+}
+
+.wb-icon-gear {
+	background-position:0 -697px;
+}
+
+.wb-icon-globe {
+	background-position:0 -714px;
+}
+
+.wb-icon-home {
+	background-position:0 -731px;
+}
+
+.wb-icon-hourglass {
+	background-position:0 -748px;
+}
+
+.wb-icon-image {
+	background-position:0 -765px;
+}
+
+.wb-icon-info-alt {
+	background-position:0 -782px;
+}
+
+.wb-icon-info {
+	background-position:0 -799px;
+}
+
+.wb-icon-light-exclamation {
+	background-position:0 -816px;
+}
+
+.wb-icon-light-green {
+	background-position:0 -833px;
+}
+
+.wb-icon-light-red {
+	background-position:0 -850px;
+}
+
+.wb-icon-light-yellow {
+	background-position:0 -867px;
+}
+
+.wb-icon-light {
+	background-position:0 -884px;
+}
+
+.wb-icon-lock-unlock {
+	background-position:0 -901px;
+}
+
+.wb-icon-lock {
+	background-position:0 -918px;
+}
+
+.wb-icon-magnifier {
+	background-position:0 -935px;
+}
+
+.wb-icon-mail {
+	background-position:0 -952px;
+}
+
+.wb-icon-marker {
+	background-position:0 -969px;
+}
+
+.wb-icon-megaphone {
+	background-position:0 -986px;
+}
+
+.wb-icon-monitor {
+	background-position:0 -1003px;
+}
+
+.wb-icon-nav-090-alt {
+	background-position:0 -1020px;
+}
+
+.wb-icon-nav-090 {
+	background-position:0 -1037px;
+}
+
+.wb-icon-nav-180-alt {
+	background-position:0 -1054px;
+}
+
+.wb-icon-nav-180 {
+	background-position:0 -1071px;
+}
+
+.wb-icon-nav-270-alt {
+	background-position:0 -1088px;
+}
+
+.wb-icon-nav-270 {
+	background-position:0 -1105px;
+}
+
+.wb-icon-nav-alt {
+	background-position:0 -1122px;
+}
+
+.wb-icon-nav {
+	background-position:0 -1139px;
+}
+
+.wb-icon-newspaper {
+	background-position:0 -1156px;
+}
+
+.wb-icon-note-pencil {
+	background-position:0 -1173px;
+}
+
+.wb-icon-note {
+	background-position:0 -1190px;
+}
+
+.wb-icon-paper-pencil {
+	background-position:0 -1207px;
+}
+
+.wb-icon-paper {
+	background-position:0 -1224px;
+}
+
+.wb-icon-pencil {
+	background-position:0 -1241px;
+}
+
+.wb-icon-picture {
+	background-position:0 -1258px;
+}
+
+.wb-icon-printer {
+	background-position:0 -1275px;
+}
+
+.wb-icon-prohibit {
+	background-position:0 -1292px;
+}
+
+.wb-icon-question-alt {
+	background-position:0 -1309px;
+}
+
+.wb-icon-question {
+	background-position:0 -1326px;
+}
+
+.wb-icon-rss {
+	background-position:0 -1343px;
+}
+
+.wb-icon-safe {
+	background-position:0 -1360px;
+}
+
+.wb-icon-scale {
+	background-position:0 -1377px;
+}
+
+.wb-icon-sitemap {
+	background-position:0 -1394px;
+}
+
+.wb-icon-table {
+	background-position:0 -1411px;
+}
+
+.wb-icon-tick-alt {
+	background-position:0 -1428px;
+}
+
+.wb-icon-tick-alt2 {
+	background-position:0 -1445px;
+}
+
+.wb-icon-tick {
+	background-position:0 -1462px;
+}
+
+.wb-icon-tool {
+	background-position:0 -1479px;
+}
+
+.wb-icon-toolbox {
+	background-position:0 -1496px;
+}
+
+.wb-icon-user {
+	background-position:0 -1513px;
+}
+
+.wb-icon-x-alt {
+	background-position:0 -1530px;
+}
+
+.wb-icon-x-alt2 {
+	background-position:0 -1547px;
+}
+
+.wb-icon-x {
+	background-position:0 -1564px;
+}

@@ -1,0 +1,191 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+ol.wet-boew-zebra {
+	li, li li{
+		list-style-type:none;
+	}
+	li{
+		margin-bottom:2px;
+		margin-right:0;
+		padding:10px;
+	}
+}
+
+table {
+	&.wet-boew-zebra,&.wet-boew-zebra table{
+		background-color:#fff;
+		border:1px solid #ccc;
+		border-collapse:collapse;
+		margin-bottom:10px;
+		margin-top:10px;
+	}
+}
+
+dl.wet-boew-zebra {
+	margin-left: 0px;
+}
+	
+.wet-boew-zebra {
+	li, dt, dd {
+		&.list-odd{
+			background-color:#ddd;
+			border:1px solid #ccc;
+		}
+		&.list-even{
+			background-color:#eee;
+			border:1px solid #ccc;
+		}
+		&.list-hover{
+			background-color:#f0fcff;
+		}
+	}
+	&.alterwg li, &.alterwg dt, &.alterwg dd {
+		&.list-odd{
+			background-color:#ddd;
+			border:none;
+		}
+		&.list-even{
+			background-color:#fff;
+			border:none;
+		}
+		&.list-hover{
+			background-color:#f0fcff;
+		}
+	}
+	dt, dd {
+		&.list-odd{
+			border:none;
+		}
+		&.list-even{
+			border:none;
+		}
+	}
+	dl, dd {
+		margin-left: 0px;
+	}
+	dt, dd {
+		padding: 10px;
+	}
+	dt {
+		font-weight:bold;
+		margin-top: 2px;
+	}
+
+	&.nomargin {
+		margin: 0px;
+	}
+	tr{
+		&.table-odd, &.table-even tr.table-odd{
+			/* td{ */
+				background-color:#f0fcff;
+			/* } */
+		}
+		&.table-even, &.table-odd tr.table-even{
+			/* td{ */
+				background-color:transparent;
+			/* }*/
+		}
+		&.table-hover td{
+			background-color:#eee;
+		}
+	}
+	th{
+		background-color:#eee;
+		border:1px solid #ccc;
+		color:#333;
+		text-align:center;
+		padding:8px;
+		/*
+		 * I am not sure if we would like to style the cell header group, need to discuss
+		 *
+		&.table-headgroupcol1, &.table-headgrouprow1 {
+			background-color: #CCC;
+		}
+		&.table-headgroupcol2, &.table-headgrouprow2 {
+			background-color: #AAA;
+		}
+		&.table-headgroupcol3, &.table-headgrouprow3 {
+			background-color: #999;
+		}
+		*/
+		&.table-hover {
+			background-color: lightgray;
+			/*
+			&.table-summaryrow0 {
+				background-color:#eee;
+			}
+			*/
+		}
+		
+	}
+	td{
+		border:1px solid #ccc;
+		vertical-align:top;
+		padding:5px 10px;
+		/* Advance Zebra */
+		&.table-keycell{
+			font-style: italic;
+			padding: 8px;
+			background-color: #FFF;
+		}
+		&.table-desccell{
+			font-style: italic;
+			padding: 8px;
+			background-color: #F4F4F4;
+		}
+		&.table-summarycol3, &.table-summaryrow3 {
+			/* background-color: #9EE; */
+			background-color: #FAFAFA;
+		}
+		&.table-summarycol2, &.table-summaryrow2 {
+			background-color: #F4F4F4;
+		}
+		&.table-summarycol1, &.table-summaryrow1 {
+			
+			background-color: #EEE;
+		}
+		&.table-summarycol0, &.table-summaryrow0 {
+			/* background-color: #EEE; */
+			background-color: #DDD;
+		}
+	}
+	th {
+		&.table-summarycol0, &.table-summaryrow0 {
+			/* background-color: #EEE; */
+			background-color: #DDD;
+		}
+	}
+	
+	tfoot {
+		td {
+			background-color: #DDD;
+		}
+	}
+	
+	tbody.table-rowgroupmarker, tfoot.table-rowgroupmarker {
+		border-top: solid black 2px;
+	}
+	colgroup.table-colgroupmarker {
+		border-left: solid black 2px;
+	}
+	td, th {
+		&.table-layoutCell {
+			background-color: white;
+		}
+	}
+	col {
+		&.table-odd {
+			background-color:#f0fcff;
+		}
+		&.table-even {
+			background-color:transparent;
+		}
+		
+		&.table-hover {
+			background-color:#eee;
+		}
+	}
+}

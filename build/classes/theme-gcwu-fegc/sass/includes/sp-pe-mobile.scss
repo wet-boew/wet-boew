@@ -1,0 +1,87 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+#wb-foot {
+	background: #FFF;
+}
+
+#wb-foot #gcwu-wmms img{
+	display: block;
+	margin: 5px auto;
+}
+
+#gcwu-sig{
+	float:left;
+	margin:10px 0 10px 5px;
+	img {
+		margin-bottom:0;
+	}
+}
+
+#gcwu-bnr {
+	width: 100%;
+}
+
+h1, #gcwu-title {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
+	width: 50%;
+	float: left;
+}
+
+#gcwu-title-left, .gcwu-alt-title-left{
+	clear: left;
+}
+
+#wb-main-in {
+	background:none;
+}
+
+#gcwu-lang {
+	ul {
+		margin:0;
+	}
+	a[href]{
+		&:hover, &:focus, &:active{
+			color: #FFF;
+		}
+	}
+}
+
+#gcwu-lang, #wb-foot{
+	display: none;
+}
+
+.ui-mobile, .no-js {
+	#gcwu-lang, #wb-foot{
+		display: block;
+	}
+}
+
+.no-js  {
+	#gcwu-lang, #wb-foot {
+		padding: 0 5px;
+		li {
+			margin-right: 20px;
+			width: 108px;
+		}
+	}
+	#gcwu-lang {
+		a:hover, a:focus, a:active {
+			color: #000;
+		}
+		.span-6 {
+			width: 256px;
+			float: left;
+		}
+	}
+	#gcwu-wmms {
+		float: right;
+		margin-top: 10px;
+	}
+}

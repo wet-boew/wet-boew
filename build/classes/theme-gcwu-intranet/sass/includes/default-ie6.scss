@@ -1,0 +1,62 @@
+@charset "utf-8";
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+.ie6 {
+	#wb-head{
+		margin-top:3px;
+	}
+	#gcwu-gcnb-fip,#gcwu-gcnb{
+		height:82px !important;
+	}
+	#gcwu-bnr-in{
+		height:52px !important;
+		overflow:visible;
+	}
+	#gcwu-intranetnb,#gcwu-intranetnb-in,#gcwu-psnb .wet-boew-menubar,.mb-menu li{
+		height:32px !important;
+	}
+	#gcwu-sig{
+		margin:0;
+	}
+	#gcwu-wmms{
+		top:44px;
+	}
+	#gcwu-gcnb ul li{
+		padding:8px 0 10px 5px !important;
+	}
+	#gcwu-title{
+		position:static !important;
+		a{
+			position:relative !important;
+			top:auto !important;
+		}
+	}
+	#gcwu-title-in{
+		position:static !important;
+		top:auto !important;
+	}
+	#gcwu-sig,#gcwu-wmms{
+		img{
+			height: auto !important;
+			width: auto !important;
+		}
+	}
+	#gcwu-psnb {
+		.mb-menu .expandicon{
+			background-image:url(../images/menu-drop-down.gif);
+		}
+		.wet-boew-menu .showcase-visible{
+			width:960px;
+		}
+	}
+	#gcwu-bc ol{
+		padding-bottom:10px;
+	}
+	#gcwu-subsite a{
+		font-size:expression(this.previousSibling == null ? '100%' : '-' );
+		padding-left:expression(this.previousSibling == null ? '0' : '-' );
+		border-left:expression(this.previousSibling == null ? 'none' : '-' );
+	}
+}

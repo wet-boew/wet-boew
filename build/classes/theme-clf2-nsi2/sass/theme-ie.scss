@@ -1,0 +1,40 @@
+@charset "utf-8";
+/*!
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+/* -----Build Include Section Start----- */
+@import url('../../css/base.css');
+@import url('../../css/base-desktop.css');
+@import url('../../css/base-ie7.css');
+@import url('../../css/base-ie8.css');
+@import url('includes/default.css');
+@import url('includes/default-desktop.css');
+@import url('includes/default-ie7.css');
+@import url('includes/default-ie8.css');
+/* -----Build Include Section End----- */
+
+@media screen{
+/* -----Build Include Section Start----- */
+@import url('../../css/base-screen.css');
+@import url('../../css/base-desktop-screen.css');
+@import url('../../css/base-screen-ie7.css');
+@import url('../../css/base-screen-ie8.css');
+@import url('includes/default-screen.css');
+@import url('includes/default-desktop-screen.css');
+@import url('includes/default-screen-ie7.css');
+@import url('includes/default-screen-ie8.css');
+@import url('includes/default-responsive.css');
+/* -----Build Include Section End----- */
+}
+
+@media print{
+/* -----Build Include Section Start----- */
+@import url('../../css/base-print.css');
+@import url('../../css/base-print-ie7.css');
+@import url('../../css/base-print-ie8.css');
+@import url('includes/default-print.css');
+@import url('includes/default-print-ie7.css');
+@import url('includes/default-print-ie8.css');
+/* -----Build Include Section End----- */
+}
