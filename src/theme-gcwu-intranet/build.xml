@@ -41,13 +41,6 @@
 			<fileset dir="${src.dir}/../theme-gcwu-fegc/images"/>
 			<fileset dir="${src.dir}/images"/>
 		</copy>
-		<copy todir="${build.dir}/encode/images">
-			<fileset dir="${src.dir}/../theme-gcwu-fegc/images"/>
-			<fileset dir="${src.dir}/images"/>
-		</copy>
-		<copy todir="${build.dir}/encode/css/images">
-			<fileset dir="${src.dir}/jquerymobile/images"/>
-		</copy>
 		<copy todir="${build.dir}/encode/css">
 			<fileset dir="${build.dir}/css">
 				<include name="theme.css"/>
@@ -56,14 +49,23 @@
 				<include name="jquery.mobile.css"/>
 			</fileset>
 		</copy>
-		<cssurlembed skipMissing="true">
-			<fileset dir="${build.dir}/encode/css/">
+		
+		<property name="image.dir" location="${build.dir}/images"/>
+		<cssurlembed skipMissing="true" root="${image.dir}">
+			<fileset dir="${build.dir}/encode/css">
 				<include name="theme.css"/>
 				<include name="theme-sp-pe.css"/>
 				<include name="theme-serv.css"/>
+			</fileset>
+		</cssurlembed>
+		
+		<property name="jquerymobile.dir" location="${src.dir}/jquerymobile"/>
+		<cssurlembed skipMissing="true" root="${jquerymobile.dir}">
+			<fileset dir="${build.dir}/encode/css">
 				<include name="jquery.mobile.css"/>
 			</fileset>
 		</cssurlembed>
+		
 		<copy todir="${build.dir}/css">
 			<fileset dir="${build.dir}/encode/css">
 				<include name="*.css"/>
@@ -101,9 +103,6 @@
 			<fileset dir="${src.dir}/css"/>
 		</copy>
 		<replace dir="${build.dir}/pre/merge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
-		<copy todir="${build.dir}/images">
-			<fileset dir="${src.dir}/images" />
-		</copy>
 		<copy todir="${build.dir}/pre/merge/../css">
 			<fileset dir="${src.dir}/../base/css"/>
 		</copy>
