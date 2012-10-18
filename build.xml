@@ -8,19 +8,27 @@
 	<target name="default" depends="clean,build,clean-css" description="Performs a Cleand and Build when calling ant without any target"></target>
 
 	<target name="build" depends="">
-		<subant dir="${src.dir}" target="build"/>
+		<subant target="build">
+			<fileset dir="${src.dir}" includes="**/build.xml"/>
+		</subant>
 	</target>
 
 	<target name="clean-css">
-		<subant dir="${src.dir}" target="clean-css"/>
+		<subant target="clean-css">
+			<fileset dir="${src.dir}" includes="**/build.xml"/>
+		</subant>
 	</target>
 	
 	<target name="clean">
-		<subant dir="${src.dir}" target="clean"/>
+		<subant target="clean">
+			<fileset dir="${src.dir}" includes="**/build.xml"/>
+		</subant>
 	</target>
 
 	<target name="test">
-		<subant dir="${src.dir}" target="test"/>
+		<subant target="test">
+			<fileset dir="${src.dir}" includes="**/**/build.xml"/>
+		</subant>
 	</target>
 	
 	<target name="preflight" description="Sets tabbing and encoding as indicated by the contributor guidelines">
