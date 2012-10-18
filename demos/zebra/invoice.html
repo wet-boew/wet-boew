@@ -100,11 +100,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <h1 id="wb-cont">Invoice Table - Zebra striping - Web Experience Toolkit (WET)</h1>
 
 
+<h2>Without <code>colgroup</code> and Without <code>rowgroup</code></h2>
 <table class="wet-boew-zebra">
-	<caption>
-		<strong>Invoice Table 1</strong>
-		<p>(Without colgroup and Without rowgroup)</p>
-	</caption>
+	<caption>Invoice Table 1</caption>
 	<tr>
 		<th>Product ID</th>
 		<th>Product</th>
@@ -211,10 +209,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<summary>Source Code of Invoice Table 1</summary>
 <pre><code>
 &lt;table class=&quot;wet-boew-zebra&quot;&gt;
-	&lt;caption&gt;
-		&lt;strong&gt;Invoice Table 1&lt;/strong&gt;
-		&lt;p&gt;(Without colgroup and Without rowgroup)&lt;/p&gt;
-	&lt;/caption&gt;
+	&lt;caption&gt;Invoice Table 1&lt;/caption&gt;
 	&lt;tr&gt;
 		&lt;th&gt;Product ID&lt;/th&gt;
 		&lt;th&gt;Product&lt;/th&gt;
@@ -321,11 +316,24 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </details>
 
 
+<h2>With <code>colgroup</code> and <code>rowgroup</code></h2>
+
+
+
 <table class="wet-boew-zebra">
-	<caption>
-		<strong>Invoice Table 2</strong>
-		<p>(Without colgroup and With rowgroup)</p>
-	</caption>
+	<caption>Invoice Table 2</caption>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+	</colgroup>
 	<thead>
 		<tr>
 			<th>Product ID</th>
@@ -440,10 +448,19 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<summary>Source Code of Invoice Table 2</summary>
 <pre><code>
 &lt;table class=&quot;wet-boew-zebra&quot;&gt;
-	&lt;caption&gt;
-		&lt;strong&gt;Invoice Table 2&lt;/strong&gt;
-		&lt;p&gt;(Without colgroup and With rowgroup)&lt;/p&gt;
-	&lt;/caption&gt;
+	&lt;caption&gt;Invoice Table 2&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
 	&lt;thead&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Product ID&lt;/th&gt;
@@ -557,257 +574,15 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </details>
 
 
+<h2>With <code>colgroup</code> and <code>rowgroup</code> and the class <code>hassum</code></h2>
 
-<table class="wet-boew-zebra">
-	<caption>
-		<strong>Invoice Table 3</strong>
-		<p>(With colgroup and Without rowgroup)</p>
-	</caption>
-	<colgroup>
-		<col />
-		<col />
-		<col />
-	</colgroup>
-	<colgroup>
-		<col />
-		<col />
-	</colgroup>
-	<colgroup>
-		<col />
-	</colgroup>
-	<tr>
-		<th>Product ID</th>
-		<th>Product</th>
-		<th>Description</th>
-		<th>Quantity</th>
-		<th>Unit Price</th>
-		<th>Total</th>
-	</tr>
-	<tr>
-		<td>Key</td>
-		<th>Item</th>
-		<td>Description</td>
-		<td>2 times</td>
-		<td>25.99 $</td>
-		<td>51.98</td>
-	</tr>
-	<tr>
-		<td>Key</td>
-		<th>Item</th>
-		<td>Description</td>
-		<td>2 times</td>
-		<td>25.99 $</td>
-		<td>51.98</td>
-	</tr>
-	<tr>
-		<td>Key</td>
-		<th>Item</th>
-		<td>Description</td>
-		<td>2 times</td>
-		<td>25.99 $</td>
-		<td>51.98</td>
-	</tr>
-	<tr>
-		<td>Key</td>
-		<th>Item</th>
-		<td>Description</td>
-		<td>2 times</td>
-		<td>25.99 $</td>
-		<td>51.98</td>
-	</tr>
-	<tr>
-		<td>Key</td>
-		<th>Item</th>
-		<td>Description</td>
-		<td>2 times</td>
-		<td>25.99 $</td>
-		<td>51.98</td>
-	</tr>
-	<tr>
-		<td>Key</td>
-		<th>Item</th>
-		<td>Description</td>
-		<td>2 times</td>
-		<td>25.99 $</td>
-		<td>51.98</td>
-	</tr>
-	<tr>
-		<td>Key</td>
-		<th>Item</th>
-		<td>Description</td>
-		<td>2 times</td>
-		<td>25.99 $</td>
-		<td>51.98</td>
-	</tr>
-	<tr>
-		<td>Key</td>
-		<th>Item</th>
-		<td>Description</td>
-		<td>2 times</td>
-		<td>25.99 $</td>
-		<td>51.98</td>
-	</tr>
-	<tr>
-		<td>Key</td>
-		<th>Item</th>
-		<td>Description</td>
-		<td>2 times</td>
-		<td>25.99 $</td>
-		<td>51.98</td>
-	</tr>
-	<tr>
-		<td>Key</td>
-		<th>Item</th>
-		<td>Description</td>
-		<td>2 times</td>
-		<td>25.99 $</td>
-		<td>51.98</td>
-	</tr>
-	<tr>
-		<th colspan="5">Subtotal</td>
-		<td>519.80</td>
-	</tr>
-	<tr>
-		<th colspan="5">Taxes (10%)</td>
-		<td>51.98</td>
-	</tr>
-	<tr>
-		<th colspan="5">Total</td>
-		<td>571.78</td>
-	</tr>
-</table>
+<div class="module-note width-90">
+<h3>Please note: Using of the class <code>hassum</code></h3>
+<p>This have an impact on relationships between the consecutive data group in the same data level. Subsequent groups would be know as <strong>summary group</strong>. Third and subsequent groups get their <strong>data level decreased</strong>.</p> 
+</div>
 
-<details>
-	<summary>Source Code of Invoice Table 3</summary>
-<pre><code>
-
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
-	&lt;caption&gt;
-		&lt;strong&gt;Invoice Table 3&lt;/strong&gt;
-		&lt;p&gt;(With colgroup and Without rowgroup)&lt;/p&gt;
-	&lt;/caption&gt;
-	&lt;colgroup&gt;
-		&lt;col /&gt;
-		&lt;col /&gt;
-		&lt;col /&gt;
-	&lt;/colgroup&gt;
-	&lt;colgroup&gt;
-		&lt;col /&gt;
-		&lt;col /&gt;
-	&lt;/colgroup&gt;
-	&lt;colgroup&gt;
-		&lt;col /&gt;
-	&lt;/colgroup&gt;
-	&lt;tr&gt;
-		&lt;th&gt;Product ID&lt;/th&gt;
-		&lt;th&gt;Product&lt;/th&gt;
-		&lt;th&gt;Description&lt;/th&gt;
-		&lt;th&gt;Quantity&lt;/th&gt;
-		&lt;th&gt;Unit Price&lt;/th&gt;
-		&lt;th&gt;Total&lt;/th&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Key&lt;/td&gt;
-		&lt;th&gt;Item&lt;/th&gt;
-		&lt;td&gt;Description&lt;/td&gt;
-		&lt;td&gt;2 times&lt;/td&gt;
-		&lt;td&gt;25.99 $&lt;/td&gt;
-		&lt;td&gt;51.98&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Key&lt;/td&gt;
-		&lt;th&gt;Item&lt;/th&gt;
-		&lt;td&gt;Description&lt;/td&gt;
-		&lt;td&gt;2 times&lt;/td&gt;
-		&lt;td&gt;25.99 $&lt;/td&gt;
-		&lt;td&gt;51.98&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Key&lt;/td&gt;
-		&lt;th&gt;Item&lt;/th&gt;
-		&lt;td&gt;Description&lt;/td&gt;
-		&lt;td&gt;2 times&lt;/td&gt;
-		&lt;td&gt;25.99 $&lt;/td&gt;
-		&lt;td&gt;51.98&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Key&lt;/td&gt;
-		&lt;th&gt;Item&lt;/th&gt;
-		&lt;td&gt;Description&lt;/td&gt;
-		&lt;td&gt;2 times&lt;/td&gt;
-		&lt;td&gt;25.99 $&lt;/td&gt;
-		&lt;td&gt;51.98&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Key&lt;/td&gt;
-		&lt;th&gt;Item&lt;/th&gt;
-		&lt;td&gt;Description&lt;/td&gt;
-		&lt;td&gt;2 times&lt;/td&gt;
-		&lt;td&gt;25.99 $&lt;/td&gt;
-		&lt;td&gt;51.98&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Key&lt;/td&gt;
-		&lt;th&gt;Item&lt;/th&gt;
-		&lt;td&gt;Description&lt;/td&gt;
-		&lt;td&gt;2 times&lt;/td&gt;
-		&lt;td&gt;25.99 $&lt;/td&gt;
-		&lt;td&gt;51.98&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Key&lt;/td&gt;
-		&lt;th&gt;Item&lt;/th&gt;
-		&lt;td&gt;Description&lt;/td&gt;
-		&lt;td&gt;2 times&lt;/td&gt;
-		&lt;td&gt;25.99 $&lt;/td&gt;
-		&lt;td&gt;51.98&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Key&lt;/td&gt;
-		&lt;th&gt;Item&lt;/th&gt;
-		&lt;td&gt;Description&lt;/td&gt;
-		&lt;td&gt;2 times&lt;/td&gt;
-		&lt;td&gt;25.99 $&lt;/td&gt;
-		&lt;td&gt;51.98&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Key&lt;/td&gt;
-		&lt;th&gt;Item&lt;/th&gt;
-		&lt;td&gt;Description&lt;/td&gt;
-		&lt;td&gt;2 times&lt;/td&gt;
-		&lt;td&gt;25.99 $&lt;/td&gt;
-		&lt;td&gt;51.98&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Key&lt;/td&gt;
-		&lt;th&gt;Item&lt;/th&gt;
-		&lt;td&gt;Description&lt;/td&gt;
-		&lt;td&gt;2 times&lt;/td&gt;
-		&lt;td&gt;25.99 $&lt;/td&gt;
-		&lt;td&gt;51.98&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;th colspan=&quot;5&quot;&gt;Subtotal&lt;/td&gt;
-		&lt;td&gt;519.80&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;th colspan=&quot;5&quot;&gt;Taxes (10%)&lt;/td&gt;
-		&lt;td&gt;51.98&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;th colspan=&quot;5&quot;&gt;Total&lt;/td&gt;
-		&lt;td&gt;571.78&lt;/td&gt;
-	&lt;/tr&gt;
-&lt;/table&gt;</code></pre>
-
-</details>
-
-
-<table class="wet-boew-zebra">
-	<caption>
-		<strong>Invoice Table 4</strong>
-		<p>(With colgroup and With rowgroup)</p>
-	</caption>
+<table class="wet-boew-zebra hassum">
+	<caption>Invoice Table 3</caption>
 	<colgroup>
 		<col />
 		<col />
@@ -931,13 +706,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </table>
 
 <details>
-	<summary>Source Code of Invoice Table 4</summary>
+	<summary>Source Code of Invoice Table 3</summary>
 <pre><code>
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
-	&lt;caption&gt;
-		&lt;strong&gt;Invoice Table 4&lt;/strong&gt;
-		&lt;p&gt;(With colgroup and With rowgroup)&lt;/p&gt;
-	&lt;/caption&gt;
+&lt;table class=&quot;wet-boew-zebra hassum&quot;&gt;
+	&lt;caption&gt;Invoice Table 3&lt;/caption&gt;
 	&lt;colgroup&gt;
 		&lt;col /&gt;
 		&lt;col /&gt;
@@ -1061,6 +833,265 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 &lt;/table&gt;
 </code></pre>
 </details>
+
+
+
+
+<h2>With <code>colgroup</code>, <code>rowgroup</code> and last row group is <code>tfoot</code></h2>
+
+<table class="wet-boew-zebra">
+	<caption>Invoice Table 4</caption>
+	<colgroup>
+		<col />
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+		<col />
+	</colgroup>
+	<colgroup>
+		<col />
+	</colgroup>
+	<thead>
+		<tr>
+			<th>Product ID</th>
+			<th>Product</th>
+			<th>Description</th>
+			<th>Quantity</th>
+			<th>Unit Price</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Key</td>
+			<th>Item</th>
+			<td>Description</td>
+			<td>2 times</td>
+			<td>25.99 $</td>
+			<td>51.98</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Item</th>
+			<td>Description</td>
+			<td>2 times</td>
+			<td>25.99 $</td>
+			<td>51.98</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Item</th>
+			<td>Description</td>
+			<td>2 times</td>
+			<td>25.99 $</td>
+			<td>51.98</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Item</th>
+			<td>Description</td>
+			<td>2 times</td>
+			<td>25.99 $</td>
+			<td>51.98</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Item</th>
+			<td>Description</td>
+			<td>2 times</td>
+			<td>25.99 $</td>
+			<td>51.98</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Item</th>
+			<td>Description</td>
+			<td>2 times</td>
+			<td>25.99 $</td>
+			<td>51.98</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Item</th>
+			<td>Description</td>
+			<td>2 times</td>
+			<td>25.99 $</td>
+			<td>51.98</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Item</th>
+			<td>Description</td>
+			<td>2 times</td>
+			<td>25.99 $</td>
+			<td>51.98</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Item</th>
+			<td>Description</td>
+			<td>2 times</td>
+			<td>25.99 $</td>
+			<td>51.98</td>
+		</tr>
+		<tr>
+			<td>Key</td>
+			<th>Item</th>
+			<td>Description</td>
+			<td>2 times</td>
+			<td>25.99 $</td>
+			<td>51.98</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="5">Subtotal</td>
+			<td>519.80</td>
+		</tr>
+		<tr>
+			<th colspan="5">Taxes (10%)</td>
+			<td>51.98</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="5">Total</td>
+			<td>571.78</td>
+		</tr>
+	</tfoot>
+</table>
+
+<details>
+	<summary>Source Code of Invoice Table 4</summary>
+<pre><code>
+&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+	&lt;caption&gt;Invoice Table 4&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Product ID&lt;/th&gt;
+			&lt;th&gt;Product&lt;/th&gt;
+			&lt;th&gt;Description&lt;/th&gt;
+			&lt;th&gt;Quantity&lt;/th&gt;
+			&lt;th&gt;Unit Price&lt;/th&gt;
+			&lt;th&gt;Total&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Key&lt;/td&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;2 times&lt;/td&gt;
+			&lt;td&gt;25.99 $&lt;/td&gt;
+			&lt;td&gt;51.98&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Key&lt;/td&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;2 times&lt;/td&gt;
+			&lt;td&gt;25.99 $&lt;/td&gt;
+			&lt;td&gt;51.98&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Key&lt;/td&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;2 times&lt;/td&gt;
+			&lt;td&gt;25.99 $&lt;/td&gt;
+			&lt;td&gt;51.98&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Key&lt;/td&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;2 times&lt;/td&gt;
+			&lt;td&gt;25.99 $&lt;/td&gt;
+			&lt;td&gt;51.98&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Key&lt;/td&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;2 times&lt;/td&gt;
+			&lt;td&gt;25.99 $&lt;/td&gt;
+			&lt;td&gt;51.98&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Key&lt;/td&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;2 times&lt;/td&gt;
+			&lt;td&gt;25.99 $&lt;/td&gt;
+			&lt;td&gt;51.98&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Key&lt;/td&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;2 times&lt;/td&gt;
+			&lt;td&gt;25.99 $&lt;/td&gt;
+			&lt;td&gt;51.98&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Key&lt;/td&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;2 times&lt;/td&gt;
+			&lt;td&gt;25.99 $&lt;/td&gt;
+			&lt;td&gt;51.98&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Key&lt;/td&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;2 times&lt;/td&gt;
+			&lt;td&gt;25.99 $&lt;/td&gt;
+			&lt;td&gt;51.98&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Key&lt;/td&gt;
+			&lt;th&gt;Item&lt;/th&gt;
+			&lt;td&gt;Description&lt;/td&gt;
+			&lt;td&gt;2 times&lt;/td&gt;
+			&lt;td&gt;25.99 $&lt;/td&gt;
+			&lt;td&gt;51.98&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;Subtotal&lt;/td&gt;
+			&lt;td&gt;519.80&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;Taxes (10%)&lt;/td&gt;
+			&lt;td&gt;51.98&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tfoot&gt;
+		&lt;tr&gt;
+			&lt;th colspan=&quot;5&quot;&gt;Total&lt;/td&gt;
+			&lt;td&gt;571.78&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tfoot&gt;
+&lt;/table&gt;
+</code></pre>
+</details>
+
 
 
 <dl id="gcwu-date-mod" role="contentinfo">

@@ -33,161 +33,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../build/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
-
-<!-- CustomScriptsCSSStart -->
-<!-- The following script are for the try it button -->
-<script>
-	//<![CDATA[
-	$(document).ready(function(){
-		
-		
-		function newzebra (tblSelector, isColumnHover){
-		
-		
-		// Column color for summary colgroup
-		$.each($(tblSelector + ':summary'), function(){
-			$(this).collevel(0).css('background-color', '#faf0fa');
-			$(this).collevel(1).css('background-color', '#F0FAFA');
-			$(this).collevel(2).css('background-color', '#F0FAF0');
-			$(this).collevel(3).css('background-color', '#FAFAF0');
-			$(this).collevel(4).css('background-color', '#f0f0fa');
-		});
-
-		// Key cell styling
-		$.each($(tblSelector + ':keycell'), function(){
-			$(this).css('font-style', 'italic');
-			$(this).css('padding', '8px');
-			$(this).collevel(4).css('background-color', '#f0f0fa');
-		});
-		
-		// Description cell styling
-		$.each($(tblSelector + ':description'), function(){
-			$(this).css('font-style', 'italic');
-			$(this).css('padding', '8px');
-			$(this).css('background-color', '#F4F4F4');
-		});
-
-		// Column Group Level color
-		/*$.each($(tblSelector + ' colgroup:data'), function(){
-			$.each($(this).col().first().cell(), function(){
-				
-				$(this).tbldata().collevel(1).css('border-left', '2px solid #7dfafa');
-				$(this).tbldata().collevel(2).css('border-left', '2px solid #7dfa7d');
-				$(this).tbldata().collevel(3).css('border-left', '2px solid #fafa7d');
-				$(this).tbldata().collevel(4).css('border-left', '2px solid #7d7dfa');
-			});
-			$.each($(this).col(), function(){
-
-				$(this).tblheader().collevel(1).css('border-bottom', '2px solid #7dfafa');
-				$(this).tblheader().collevel(2).css('border-bottom', '2px solid #7dfa7d');
-				$(this).tblheader().collevel(3).css('border-bottom', '2px solid #fafa7d');
-				$(this).tblheader().collevel(4).css('border-bottom', '2px solid #7d7dfa');
-				
-			});
-		});
-		
-		$.each($(tblSelector + ' colgroup:summary'), function(){
-			$.each($(this).col().last().cell(), function(){
-				
-				$(this).summary().collevel(1).css('border-right', '2px solid #7dfafa');
-				$(this).summary().collevel(2).css('border-right', '2px solid #7dfa7d');
-				$(this).summary().collevel(3).css('border-right', '2px solid #fafa7d');
-				$(this).summary().collevel(4).css('border-right', '2px solid #7d7dfa');
-			});
-			$.each($(this).col(), function(){
-
-				$(this).tblheader().collevel(1).css('border-bottom', '2px solid #7dfafa');
-				$(this).tblheader().collevel(2).css('border-bottom', '2px solid #7dfa7d');
-				$(this).tblheader().collevel(3).css('border-bottom', '2px solid #fafa7d');
-				$(this).tblheader().collevel(4).css('border-bottom', '2px solid #7d7dfa');
-				
-			});
-		});
-		*/
-
-		// Mouse hover 
-		$(tblSelector + ':data, ' + tblSelector + ':summary' ).hover(
-			function(){
-
-				$.each($(this).row().cell(), function(){
-					if(!$(this).data().zebraPrevBgColor){
-						$(this).data().zebraPrevBgColor = $(this).css('background-color');
-					}
-					
-					// HighLight
-					// Level 1 #F0FAFA
-					// Level 2 #F0FAF0
-					// Level 3 #FAFAF0
-					
-					$(this).tbldata().css('background-color', 'lightgray');
-					$(this).summary().css('background-color', 'white');
-					
-				});
-				
-				if(isColumnHover){
-					$.each($(this).col().cell(), function(){
-						if(!$(this).data().zebraPrevBgColor){
-							$(this).data().zebraPrevBgColor = $(this).css('background-color');
-						}
-						$(this).collevel(1).css('background-color', '#F0FAFA');
-						$(this).collevel(2).css('background-color', '#F0FAF0');
-						$(this).collevel(3).css('background-color', '#FAFAF0');
-						$(this).collevel(4).css('background-color', '#f0f0fa');
-						
-						$(this).summary().css('background-color', '#FFFFFF');
-					});
-					
-					$(this).css('background-color', 'white');
-					
-					
-					
-					$(this).summary(1).css('background-color', '#F0FAFA');
-					$(this).summary(2).css('background-color', '#F0FAF0');
-					$(this).summary(3).css('background-color', '#FAFAF0');
-					$(this).summary(4).css('background-color', '#f0f0fa');
-				}
-				
-				
-				// Highlight the header
-				$(this).row().tblheader().data().zebraPrevBgColor = $(this).row().tblheader().css('background-color');
-				$(this).row().tblheader().css('background-color', 'lightgray');
-
-				$(this).col().tblheader().data().zebraPrevBgColor = $(this).col().tblheader().css('background-color');
-				$(this).col().tblheader().css('background-color', 'lightgray');
-			},
-			function(){
-				$.each($(this).row().cell(), function(){
-					if($(this).data().zebraPrevBgColor){
-						$(this).css('background-color',  $(this).data().zebraPrevBgColor);
-						// delete $(this).data().zebraPrevBgColor;
-					}
-				});
-
-				$.each($(this).col().cell(), function(){
-					if($(this).data().zebraPrevBgColor){
-						$(this).css('background-color',  $(this).data().zebraPrevBgColor);
-						// delete $(this).data().zebraPrevBgColor;
-					}
-				});
-				
-				
-				$(this).row().tblheader().css('background-color', $(this).row().tblheader().data().zebraPrevBgColor);
-				delete $(this).row().tblheader().data().zebraPrevBgColor;
-
-				$(this).col().tblheader().css('background-color', $(this).col().tblheader().data().zebraPrevBgColor);
-				delete $(this).col().tblheader().data().zebraPrevBgColor;
-			}
-		);
-		
-	}
-	
-	// newzebra('table:eq(0)', false);
-	
-	});
-	//]]>
-</script>
-<!-- END of Try it button -->
-<!-- CustomScriptsCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -253,6 +98,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <h1 id="wb-cont">Case Studies #2 - Nutrition Facts table</h1>
 
 
+<div class="module-note span-6">
+	<h2><span class="color-dark">Note:</span> Table in &quot;hassum&quot; mode</h2>
+	<p>This case study use table with the option &quot;hassum&quot;.</p>
+</div>
+
+<div class="clear"></div>
 
 <h2>Overview</h2>
 <p>Tranform a Nutrition Facts table into a HTML table can not be done straight forward. Why ? simply the relationship between the data and the header are not cleary defined and when the need to be WCAG Level AA compliant become harder.</p>
@@ -272,7 +123,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <div class="span-3">
 <h4>The result</h4>
-<table>
+<table class="wet-boew-zebra hassum">
 	<caption>
 		<details open="open">
 			<summary>Nutrition Facts</summary>
@@ -576,7 +427,7 @@ to do not have a row group heading.</p>
 
 
 <h4>Now</h4>
-<table>
+<table class="wet-boew-zebra hassum">
 	<caption>
 		<details open="open">
 			<summary>Nutrition Facts</summary>
@@ -727,7 +578,7 @@ to do not have a row group heading.</p>
 <pre>
 <code>
 
-&lt;table&gt;
+&lt;table class=&quot;wet-boew-zebra hassum&quot;&gt;
 	&lt;caption&gt;
 		&lt;details open=&quot;open&quot;&gt;
 			&lt;summary&gt;Nutrition Facts&lt;/summary&gt;
@@ -886,7 +737,7 @@ to do not have a row group heading.</p>
 <h4>Quick view about the data level represented with the cell header</h4>
 <p>Same table but the text of each cell header was replaced by the data level</p>
 
-<table>
+<table class="wet-boew-zebra hassum">
 	<caption>Level 0</caption>
 	
 	<colgroup></colgroup>
@@ -1025,43 +876,10 @@ to do not have a row group heading.</p>
 		</tr>
 	</tfoot>
 </table>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 
-
-
-
-
-
-
-      
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-06-25</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-10-17</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

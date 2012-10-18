@@ -53,7 +53,8 @@
 				hasTfoot = $(obj).has('tfoot'),
 				lastHeadingSummaryColPos,
 				previousDataHeadingColPos,
-				tfootOnProcess = false;
+				tfootOnProcess = false,
+				hassumMode = false;
 			// elm need to be a table
 			if ($(elm).get(0).nodeName.toLowerCase() !== 'table') {
 				errorTrigger(1, elm);
@@ -64,6 +65,8 @@
 				errorTrigger(2, obj);
 				return;
 			}
+			// Check for hassum mode
+			hassumMode = $(elm).hasClass('hassum');
 			/*
 			+-----------------------------------------------------+
 			| FYI - Here the value and signification of each type |
@@ -707,6 +710,10 @@
 							}
 						}
 
+						if (!hassumMode) {
+							curColgroupFrame.type = 2;
+						}
+
 						// Catch the second and the third possible grouping at level 1
 						if (groupLevel === 1 && groupZero.colgrp[1] && groupZero.colgrp[1].length > 1 && theadRowStack.length > 0) {
 
@@ -725,8 +732,9 @@
 									break;
 								}
 							}
-
-							curColgroupFrame.type = 3;
+							if (hassumMode) {
+								curColgroupFrame.type = 3;
+							}
 						}
 
 						// Set the representative header "caption" element for a group at level 0
@@ -892,8 +900,10 @@
 					// currentRowGroup.level = 1; // Default Row Group Level
 				}
 
-				// console.log(rowgroupHeaderRowStack); rowlevel
-				// console.log(currentRowGroup);
+				if (currentRowGroup.type === 3 && !hassumMode) {
+					currentRowGroup.type = 2;
+					currentRowGroup.level = lstRowGroup[lstRowGroup.length - 1].level;
+				}
 
 
 
@@ -1630,9 +1640,13 @@
 							}
 							// Be sure to do not include twice the same cell for a column spanned in 2 or more column
 							if (!(j > (groupZero.col[i].start - 1) && groupZero.col[i].cell[groupZero.col[i].cell.length - 1].uid === row.cell[j].uid)) {
-								groupZero.col[i].cell.push(row.cell[j]);
-								if (!row.cell[j].col) {
-									row.cell[j].col = groupZero.col[i];
+								if (row.cell[j]) {
+									groupZero.col[i].cell.push(row.cell[j]);
+									if (!row.cell[j].col) {
+										row.cell[j].col = groupZero.col[i];
+									}
+								} else {
+									errorTrigger(35);
 								}
 							}
 						}
@@ -1714,7 +1728,7 @@
 
 					// Here it's not possible to  Diggest the thead and the colgroup because we need the first data row to be half processed before
 				} else if (nodeName === 'tbody' || nodeName === 'tfoot') {
-					
+
 					if (nodeName === 'tfoot') {
 						tfootOnProcess = true;
 					}
