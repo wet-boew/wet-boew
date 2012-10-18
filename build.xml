@@ -2,80 +2,33 @@
 <project name="wet-boew" default="default" basedir=".">
 	<description>Web Experience Toolkit</description>
 
-	<!-- Version and build time-->
-	<property name="wet-boew-build.version" value="v3.0.2a1"/>
-	<tstamp>
-		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
-	</tstamp>
-
 	<property name="src.dir" value="src"/>
 	<property name="build.dir" value="build"/>
 
 	<target name="default" depends="clean,build,clean-css" description="Performs a Cleand and Build when calling ant without any target"></target>
 
 	<target name="build" depends="">
-		<echo level="info" message="---Building WET Core Framework---"/>
-		<ant dir="${src.dir}/js" antfile="build.xml" target="build" inheritAll="false">
-			<propertyset>
-				<propertyref prefix="wet-boew-build"/>
-			</propertyset>
-		</ant>
-		<echo level="info" message="---Building Base CSS---"/>
-		<ant dir="${src.dir}/base" antfile="build.xml" target="build" inheritAll="false">
-			<propertyset>
-				<propertyref prefix="wet-boew-build"/>
-			</propertyset>
-		</ant>
-		<echo level="info" message="---Building CSS Grid System---"/>
-		<ant dir="${src.dir}/grids" antfile="build.xml" target="build" inheritAll="false">
-			<propertyset>
-				<propertyref prefix="wet-boew-build"/>
-			</propertyset>
-		</ant>
-		<echo level="info" message="---Building GCWU Theme---"/>
-		<ant dir="${src.dir}/theme-gcwu-fegc" antfile="build.xml" target="build" inheritAll="false">
-			<propertyset>
-				<propertyref prefix="wet-boew-build"/>
-			</propertyset>
-		</ant>
-		<echo level="info" message="---Building GCWU Intranet Theme---"/>
-		<ant dir="${src.dir}/theme-gcwu-intranet" antfile="build.xml" target="build" inheritAll="false">
-			<propertyset>
-				<propertyref prefix="wet-boew-build"/>
-			</propertyset>
-		</ant>
-		<echo level="info" message="---Building CLF2 Theme---"/>
-		<ant dir="${src.dir}/theme-clf2-nsi2" antfile="build.xml" target="build" inheritAll="false">
-			<propertyset>
-				<propertyref prefix="wet-boew-build"/>
-			</propertyset>
-		</ant>
+		<subant target="build">
+			<fileset dir="${src.dir}" includes="**/build.xml"/>
+		</subant>
 	</target>
 
 	<target name="clean-css">
-		<ant dir="${src.dir}/base" target="clean-css" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/grids" target="clean-css" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/js" target="clean-css" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean-css" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean-css" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/theme-clf2-nsi2" target="clean-css" antfile="build.xml" inheritAll="false"/>
+		<subant target="clean-css">
+			<fileset dir="${src.dir}" includes="**/build.xml"/>
+		</subant>
 	</target>
 	
 	<target name="clean">
-		<ant dir="${src.dir}/base" target="clean" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/grids" target="clean" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/js" target="clean" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/theme-gcwu-fegc" target="clean" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/theme-gcwu-intranet" target="clean" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/theme-clf2-nsi2" target="clean" antfile="build.xml" inheritAll="false"/>
+		<subant target="clean">
+			<fileset dir="${src.dir}" includes="**/build.xml"/>
+		</subant>
 	</target>
 
 	<target name="test">
-		<echo level="info" message="---Running with JSHint---"/>
-		<ant dir="${src.dir}/js" target="test" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/theme-gcwu-fegc" target="test" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/theme-gcwu-intranet" target="test" antfile="build.xml" inheritAll="false"/>
-		<ant dir="${src.dir}/theme-clf2-nsi2" target="test" antfile="build.xml" inheritAll="false"/>
+		<subant target="test">
+			<fileset dir="${src.dir}" includes="**/**/build.xml"/>
+		</subant>
 	</target>
 	
 	<target name="preflight" description="Sets tabbing and encoding as indicated by the contributor guidelines">
