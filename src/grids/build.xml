@@ -58,4 +58,6 @@
 		</copy>
 		<delete dir="${build.dir}/premerge"/>
 	</target>
+	
+	<target name="test" description="Placeholder for future test tasks"/>
 </project>

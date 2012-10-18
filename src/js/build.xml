@@ -113,11 +113,10 @@
 	</target>
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode" depends="-merge-css">
-		<copy todir="${build.dir}/premin/images">
-			<fileset dir="${src.dir}/images"/>
-		</copy>
-		<cssurlembed skipMissing="true">
-			<fileset dir="${build.dir}/premin/css/">
+		<property name="image.dir" location="${build.dir}/images"/>
+
+		<cssurlembed skipMissing="true" root="${image.dir}">
+			<fileset dir="${build.dir}/premin/css">
 				<include name="pe-ap.css"/>
 			</fileset>
 		</cssurlembed>
