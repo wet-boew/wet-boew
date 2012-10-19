@@ -71,7 +71,7 @@
 		<delete dir="${build.dir}/encode"/>
 	</target>
 	
-	<target name="-merge-css">
+	<target name="-merge-css" depends="build-theme-deps">
 		<copy todir="${build.dir}/pre/merge/jquerymobile">
 			<fileset dir="${src.dir}/jquerymobile">
 				<include name="*.css"/>

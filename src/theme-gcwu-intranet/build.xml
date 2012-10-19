@@ -74,7 +74,14 @@
 		<delete dir="${build.dir}/encode"/>
 	</target>
 	
-	<target name="-merge-css">
+	<target name="-merge-css" depends="build-theme-deps">
+		<if>
+			<available type="dir" file="../theme-gcwu-fegc/css"/>
+			<then />
+			<else>
+				<ant dir="../theme-gcwu-fegc" target="-init" inheritAll="false"/>
+			</else>
+		</if>	
 		<copy todir="${build.dir}/pre/merge/jquerymobile">
 			<fileset dir="${src.dir}/jquerymobile">
 				<include name="*.css"/>

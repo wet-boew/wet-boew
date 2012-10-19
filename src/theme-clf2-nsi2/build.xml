@@ -59,7 +59,7 @@
 		<delete dir="${build.dir}/encode"/>
 	</target>
 	
-	<target name="-merge-css">
+	<target name="-merge-css" depends="build-theme-deps">
 		<copy todir="${build.dir}/pre/merge/css">
 			<fileset dir="${src.dir}/css"/>
 		</copy>

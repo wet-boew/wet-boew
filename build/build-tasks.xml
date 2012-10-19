@@ -162,6 +162,37 @@
         <var name="file.recurse" unset="true"/>
 	</target>
 	
+	<target name="build-theme-deps" description="Initializes the Grid, JS and Base CSS projects so that the Sass has been compiled">
+		<if>
+			<available type="dir" file="${gridsrc.dir}/css"/>
+			<then />
+			<else>
+				<ant dir="${gridsrc.dir}" target="-init" inheritAll="false"/>
+			</else>
+		</if>		
+		<if>
+			<available type="dir" file="${basesrc.dir}/css"/>
+			<then />
+			<else>
+				<ant dir="${basesrc.dir}" target="-init" inheritAll="false"/>
+			</else>
+		</if>		
+		<if>
+			<available type="dir" file="${jssrc.dir}/css"/>
+			<then />
+			<else>
+				<ant dir="${jssrc.dir}" target="-init" inheritAll="false"/>
+			</else>
+		</if>
+	</target>
+	
+	<target name="clean-theme-deps" description="Clean the Grid, JS and Base CSS files. Used for after building an individual theme">
+		<ant dir="${gridsrc.dir}" target="clean-css" inheritAll="false"/>
+		<ant dir="${basesrc.dir}" target="clean-css" inheritAll="false"/>
+		<ant dir="${jssrc.dir}" target="clean-css" inheritAll="false"/>
+		<antcall target="clean-css" inheritAll="false"/>
+	</target>
+	
 	<target name="clean-css">
 		<delete dir="${src.dir}/css" />
 	</target>
