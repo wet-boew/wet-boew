@@ -9,7 +9,7 @@
 
 	<target name="build" description="" depends="-init, -minify" />
 
-	<target name="-minify" depends="compile.sass, -base64-encode">
+	<target name="-minify" depends="-merge-css, -base64-encode">
 		<move todir="${build.dir}/css/premin">
 			<fileset dir="${build.dir}/css"/>
 		</move>
@@ -34,7 +34,10 @@
 	</target>
   
 	<!--Build CSS Tasks -->
-	<target name="-base64-encode" depends="-merge-css">
+	<target name="-base64-encode">
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/images" />
+		</copy>
 		<copy todir="${build.dir}/encode/css">
 			<fileset dir="${build.dir}/css">
 				<include name="theme.css"/>
@@ -59,14 +62,11 @@
 		<delete dir="${build.dir}/encode"/>
 	</target>
 	
-	<target name="-merge-css">
+	<target name="-merge-css" depends="compile.sass, build-theme-deps">
 		<copy todir="${build.dir}/pre/merge/css">
 			<fileset dir="${src.dir}/css"/>
 		</copy>
 		<replace dir="${build.dir}/pre/merge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
-		<copy todir="${build.dir}/images">
-			<fileset dir="${src.dir}/images" />
-		</copy>
 		<copy todir="${build.dir}/pre/merge/../css">
 			<fileset dir="${src.dir}/../base/css"/>
 		</copy>
