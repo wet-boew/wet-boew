@@ -60,7 +60,7 @@
 				onComplete : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
 						$lbCurrent = $lbTitle.next();
-						
+
 					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr('tabindex', '0');
 					$lbLoadedContent.attr('aria-label', $lbTitle.text() + ' ' + $lbCurrent.text());
 					if ($lbLoadedContent.children('.cboxPhoto').length === 0) {
@@ -120,7 +120,7 @@
 			});
 
 			// Add WAI-ARIA
-			$lbContent = pe.main.find('#colorbox #cboxContent').attr('role', 'dialog');
+			$lbContent = $('#colorbox #cboxContent').attr('role', 'dialog');
 			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr({'tabindex': '0', 'role': 'button', 'aria-controls': 'cboxLoadedContent'});
 			$lbNext = $lbContent.find('#cboxNext');
 			$lbPrev = $lbContent.find('#cboxPrevious');
