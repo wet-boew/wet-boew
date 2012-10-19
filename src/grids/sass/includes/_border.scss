@@ -43,7 +43,7 @@ div.border-top,div.border-right,div.border-bottom,div.border-left,div.border-all
 }
 
 [class*="border-"] { 
-		& > #{headings(2,6)}, & > p {
+		& > h2, & > h3, & > h4, & > h5, & > h6, & > p {
 			padding: 5px 10px !important;
 		}
 	}
