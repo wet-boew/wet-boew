@@ -103,10 +103,17 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <p>This case study is about to transform a complex table in a more usable table</p>
 
+<div class="module-note span-6">
+	<h2><span class="color-dark">Note:</span> Table in &quot;hassum&quot; mode</h2>
+	<p>This case study use table with the option &quot;hassum&quot;.</p>
+</div>
+
+<div class="clear"></div>
+
 <h2>The result</h2>
 
 
-<table class="wet-boew-zebra">
+<table class="wet-boew-zebra hassum">
 <caption>Canada &#8211; Permanent residents by gender and category, 1986 to 2010</caption>
 <colgroup>
 	<col />
@@ -458,7 +465,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<pre><code>
 	
 	
-&lt;table&gt;
+&lt;table class=&quot;hassum&quot;&gt;
 &lt;caption&gt;Canada &amp;#8211; Permanent residents by gender and category, 1986 to 2010&lt;/caption&gt;
 &lt;colgroup&gt;
 	&lt;col /&gt;
@@ -1455,12 +1462,13 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<li>I removed in the table source code any id, headers and scope attribute</li>
 	<li>I found the two subtotal row and total row was already identified by a css class of the same name, I used them</li>
 	<li>I added the appropriate row grouping tag for each section, header row group (thead), data row group (tbody), summary row group (tbody)</li>
+	<li>I put the table in the &quot;hassum&quot; mode</li>
 	<li>That was my choice but I decided to use an another tbody element to define the total row group. The tfoot element can be also used here</li>
 </ol>
 
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-06-25</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-10-17</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

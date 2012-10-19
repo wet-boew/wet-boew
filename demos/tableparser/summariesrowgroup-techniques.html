@@ -100,6 +100,13 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <h1 id="wb-cont">Summaries a Data Row Group in a Data Table - Web Experience Toolkit (WET)</h1>
 
+<div class="module-attention span-6">
+	<h2><span class="color-dark">Attention:</span> Since October 16, 2012</h2>
+	<p>The default behaviour regarding the subsequent group has been changed because of backward compatibility issue and because of some use case. The <strong>option &quot;hassum&quot;</strong> is now required to apply this technique.</p>
+</div>
+
+<div class="clear"></div>
+
 <h2>Technique Author</h2>
 <p>Name: Pierre Dubois</p>
 <!-- <p>Email: Pierre Dubois at ic dot gc dot ca</p> -->
@@ -123,7 +130,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <h3>Description of Technique</h3>
 
-<p>The objective of this technique is to separate the data group with their associative data summary group. This concept is similar as the &quot;tfoot&quot; definition but instead of having only one summary group, this technique allow to have multiple summary group. You can compare this technique of having the subtotal row group in an invoice.</p>
+<p>The objective of this technique is to separate the data group with their associative data summary group <ins>when the table have the option &quot;hassum&quot;</ins>. This concept is similar as the &quot;tfoot&quot; definition but instead of having only one summary group, this technique allow to have multiple summary group. You can compare this technique of having the subtotal row group in an <a href="../zebra/invoice.html">invoice</a>.</p>
 
 <p>A change in the width of the column header group may define a summary group if the column header group size is the same for each summary group.</p>
 
@@ -136,7 +143,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <h3>Table 1</h3>
 
-<table class="wet-boew-zebra">
+<table class="wet-boew-zebra hassum">
 	<caption>Table 1</caption>
 	<colgroup>
 		<col />
@@ -307,7 +314,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <details>
 	<summary>Table Source Code</summary>
 <pre><code>
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class=&quot;wet-boew-zebra hassum&quot;&gt;
 	&lt;caption&gt;Table 1&lt;/caption&gt;
 	&lt;colgroup&gt;
 		&lt;col /&gt;
@@ -475,7 +482,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <h3>Table 2</h3>
 
-<table class="wet-boew-zebra">
+<table class="wet-boew-zebra hassum">
 	<caption>Table 2</caption>
 	<colgroup>
 		<col />
@@ -666,7 +673,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <details>
 	<summary>Table Source Code</summary>
 <pre><code>
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class=&quot;wet-boew-zebra hassum&quot;&gt;
 	&lt;caption&gt;Table 2 - Two Data Row Group&lt;/caption&gt;
 	&lt;colgroup&gt;
 		&lt;col /&gt;
@@ -852,7 +859,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 
 <h3>Table 3 - Two data row group</h3>
-<table class="wet-boew-zebra">
+<table class="wet-boew-zebra hassum">
 	<caption>Table 3 - Showing the relation between sub-total row group and total row group</caption>
 	<colgroup>
 		<col>
@@ -1071,7 +1078,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <details>
 	<summary>Table Source Code</summary>
 <pre><code>
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class=&quot;wet-boew-zebra hassum&quot;&gt;
 	&lt;caption&gt;Table 3 - Showing the relation between sub-total row group and total row group&lt;/caption&gt;
 	&lt;colgroup&gt;
 		&lt;col /&gt;
@@ -1287,7 +1294,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <h3>Table 4 - Invoice</h3>
 
-<table class="wet-boew-zebra">
+<table class="wet-boew-zebra hassum">
 	<caption>Table 4 - Generic Invoice Example</caption>
 	<colgroup>
 		<col />
@@ -1375,7 +1382,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <details>
 	<summary>Table Source Code</summary>
 <pre><code>
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class=&quot;wet-boew-zebra hassum&quot;&gt;
 	&lt;caption&gt;Table 4 - Generic Invoice Example&lt;/caption&gt;
 	&lt;colgroup&gt;
 		&lt;col /&gt;
@@ -1517,10 +1524,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </ul>
 	
 <h3>Test File 1</h3>
-<p>This Test File 1 <strong>fail</strong> this tecnique</p>
+<p>This Test File 1 <strong>fail</strong> this technique</p>
 
 
-<table class="wet-boew-zebra">
+<table class="wet-boew-zebra hassum">
 	<caption>Table 5</caption>
 	<colgroup>
 		<col />
@@ -1612,7 +1619,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <details>
 	<summary>Table Source Code</summary>
 <pre><code>
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class=&quot;wet-boew-zebra hassum&quot;&gt;
 	&lt;caption&gt;Table 5&lt;/caption&gt;
 	&lt;colgroup&gt;
 		&lt;col /&gt;
@@ -1705,9 +1712,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 		
 <h3>Test File 2</h3>
-<p>This Test File 2 <strong>pass</strong> this tecnique</p>
+<p>This Test File 2 <strong>pass</strong> this technique</p>
 
-<table class="wet-boew-zebra">
+<table class="wet-boew-zebra hassum">
 <caption>Table 6</caption>
 	<colgroup>
 		<col />
@@ -1792,7 +1799,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <details>
 	<summary>Table Source Code</summary>
 <pre><code>
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class=&quot;wet-boew-zebra hassum&quot;&gt;
 	&lt;caption&gt;Table 6&lt;/caption&gt;
 	&lt;colgroup&gt;
 		&lt;col /&gt;
@@ -1879,9 +1886,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	
 	
 <h3>Test File 3</h3>
-<p>This Test File 3 <strong>fail</strong> this tecnique</p>
+<p>This Test File 3 <strong>fail</strong> this technique</p>
 
-<table class="wet-boew-zebra">
+<table class="wet-boew-zebra hassum">
 	<caption>Table 7</caption>
 	<colgroup>
 		<col />
@@ -1948,7 +1955,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <details>
 	<summary>Table Source Code</summary>
 <pre><code>
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class=&quot;wet-boew-zebra hassum&quot;&gt;
 	&lt;caption&gt;Table 7&lt;/caption&gt;
 	&lt;colgroup&gt;
 		&lt;col /&gt;
@@ -2018,9 +2025,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 	
 <h3>Test File 4</h3>
-<p>This Test File 4 <strong>pass</strong> this tecnique</p>
+<p>This Test File 4 <strong>pass</strong> this technique</p>
 
-<table class="wet-boew-zebra">
+<table class="wet-boew-zebra hassum">
 	<caption>Table 8</caption>
 	<colgroup>
 		<col>
@@ -2089,7 +2096,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <details>
 	<summary>Table Source Code</summary>
 <pre><code>
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class=&quot;wet-boew-zebra hassum&quot;&gt;
 	&lt;caption&gt;Table 8&lt;/caption&gt;
 	&lt;colgroup&gt;
 		&lt;col /&gt;
@@ -2165,7 +2172,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 -->
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-09-05</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2012-10-17</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
