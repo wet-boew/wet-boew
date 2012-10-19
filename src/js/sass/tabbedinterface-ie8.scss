@@ -36,4 +36,21 @@
 			filter:alpha(opacity=20);
 		}
 	}
+	.tabs-style-6 {
+		.tabs {
+			li {
+				&.img {
+					a {
+						filter:alpha(opacity=50);						
+						&:hover, &.active, &.active:hover:focus:active {
+							filter:alpha(opacity=100);
+						}
+					}
+				}				
+			}
+		}
+		.tabs-roller {
+			filter:alpha(opacity=50);
+		}
+	}
 }

@@ -5,7 +5,7 @@
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>
 
-	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
+	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
 	<target name="build" description="" depends="-init, -minify" />
 
@@ -35,12 +35,6 @@
   
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode" depends="-merge-css">
-		<copy todir="${build.dir}/images">
-			<fileset dir="${src.dir}/images"/>
-		</copy>
-		<copy todir="${build.dir}/encode/images">
-			<fileset dir="${src.dir}/images"/>
-		</copy>
 		<copy todir="${build.dir}/encode/css">
 			<fileset dir="${build.dir}/css">
 				<include name="theme.css"/>
@@ -48,8 +42,10 @@
 				<include name="theme-serv.css"/>
 			</fileset>
 		</copy>
-		<cssurlembed skipMissing="true">
-			<fileset dir="${build.dir}/encode/css/">
+
+		<property name="image.dir" location="${build.dir}/images"/>
+		<cssurlembed skipMissing="true" root="${image.dir}">
+			<fileset dir="${build.dir}/encode/css">
 				<include name="theme.css"/>
 				<include name="theme-sp-pe.css"/>
 				<include name="theme-serv.css"/>

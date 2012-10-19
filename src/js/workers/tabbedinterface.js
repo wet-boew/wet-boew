@@ -63,7 +63,7 @@
 			$panels.each(function (index) {
 				var text = $tabs.eq(index).children('a').text();
 				if(text === ''){
-					text = $tabs.eq(index).find('img').attr('alt');
+					text = $tabs.eq(index).find('span').text();					
 				}
 				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + '>' + hopen + text + hclose + this.innerHTML + '</div>';
 			});
@@ -158,7 +158,15 @@
 			$default_tab.attr('aria-selected', 'true');
 			$panels.filter($default_tab.attr('href')).attr('aria-hidden', 'false');
 
-	
+			// easytabs IE7 bug: using images as tabs breaks easytabs.activateDefaultTab().
+			if(_pe.ie > 0 && _pe.ie < 8) {
+				if($tabs.parent().hasClass('img')) {
+					$tabs.parent().removeClass('img');
+					$tabs.find('span').removeClass('wb-invisible');
+					$tabs.find('img').remove();
+				}
+			}		
+			
 			$tabs.on('keydown click', function (e) {
 				var $target = $(e.target),
 					$panel;
@@ -387,8 +395,8 @@
 				}
 				
 				$(document).keyup(function(e) {
-					if (e.keyCode === 27) { // Escape
-						stopCycle();
+					if (e.keyCode === 27) { // Escape						
+						stopCycle();						
 					}
 				});	
 			}
