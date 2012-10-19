@@ -167,21 +167,21 @@
 			<available type="dir" file="${gridsrc.dir}/css"/>
 			<then />
 			<else>
-				<ant dir="${gridsrc.dir}" target="-init" inheritAll="false"/>
+				<ant dir="${gridsrc.dir}" target="compile.sass" inheritAll="false"/>
 			</else>
 		</if>		
 		<if>
 			<available type="dir" file="${basesrc.dir}/css"/>
 			<then />
 			<else>
-				<ant dir="${basesrc.dir}" target="-init" inheritAll="false"/>
+				<ant dir="${basesrc.dir}" target="compile.sass" inheritAll="false"/>
 			</else>
 		</if>		
 		<if>
 			<available type="dir" file="${jssrc.dir}/css"/>
 			<then />
 			<else>
-				<ant dir="${jssrc.dir}" target="-init" inheritAll="false"/>
+				<ant dir="${jssrc.dir}" target="compile.sass" inheritAll="false"/>
 			</else>
 		</if>
 	</target>
