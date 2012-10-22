@@ -10,6 +10,12 @@
 	.tabs-style-2 {
 		.tabs{
 			filter:alpha(opacity=95);
+			li{
+				margin-right:-2px !important;
+				&.tabs-toggle{
+					margin-right:-5px !important;
+				}
+			}			
 		}
 		.tabs-roller{
 			filter:alpha(opacity=25);
