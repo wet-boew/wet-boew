@@ -1,61 +1,60 @@
-@charset "utf-8";
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /* -----Build Include Section Start----- */
-@import url('../../css/base.css');
-@import url('../../theme-gcwu-fegc/css/includes/sp-pe.css');
-@import url('../../theme-gcwu-fegc/css/includes/sp-pe-images.css');
+@import '../../base/sass/base.scss';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe.scss';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-images.scss';
 /* -----Build Include Section End----- */
 
 /* Desktop view */
 @media (min-width:768px) and (min-device-width:768px) {
 /* -----Build Include Section Start----- */
-@import url('../../css/base-desktop.css');
-@import url('../../theme-gcwu-fegc/css/includes/sp-pe-desktop.css');
+@import '../../base/sass/base-desktop.scss';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-desktop.scss';
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:768px) and (min-device-width:768px) {
 /* -----Build Include Section Start----- */
-@import url('../../css/base-desktop-screen.css');
-@import url('../../theme-gcwu-fegc/css/includes/sp-pe-desktop-screen.css');
-@import url('../../grids/css/responsive.css');
-@import url('../../theme-gcwu-fegc/css/includes/default-responsive.css');
+@import '../../base/sass/base-desktop-screen.scss';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-desktop-screen.scss';
+@import '../../grids/sass/responsive.scss';
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive.scss';
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:768px) and (max-width:959px) and (min-device-width:768px) {
 /* -----Build Include Section Start----- */
-@import url('../../grids/css/responsive-768.css');
-@import url('../../theme-gcwu-fegc/css/includes/default-responsive-768.css');
+@import '../../grids/sass/responsive-768.scss';
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive-768.scss';
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:1200px) and (min-device-width:768px) {
 /* -----Build Include Section Start----- */
-@import url('../../grids/css/responsive-1200.css');
-@import url('../../theme-gcwu-fegc/css/includes/default-responsive-1200.css');
+@import '../../grids/sass/responsive-1200.scss';
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive-1200.scss';
 /* -----Build Include Section End----- */
 }
 
 @media screen {
 /* -----Build Include Section Start----- */
-@import url('../../css/base-screen.css');
-@import url('../../theme-gcwu-fegc/css/includes/sp-pe-screen.css');
-@import url('includes/sp-pe-screen.css');
+@import '../../base/sass/base-screen.scss';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen.scss';
+@import 'includes/sp-pe-screen.scss';
 /* -----Build Include Section End----- */
 }
 
 /* Mobile view */
 @media screen and (max-width:767px), screen and (max-device-width:767px) {
 /* -----Build Include Section Start----- */
-@import url('../../css/base-mobile.css');
-@import url('../../theme-gcwu-fegc/css/includes/sp-pe-mobile.css');
+@import '../../base/sass/base-mobile.scss';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-mobile.scss';
 /* -----Build Include Section End----- */
 }
 
 @media print {
 /* -----Build Include Section Start----- */
-@import url('../../css/base-print.css');
-@import url('../../theme-gcwu-fegc/css/includes/sp-pe-print.css');
+@import '../../base/sass/base-print.scss';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-print.scss';
 /* -----Build Include Section End----- */
 }
