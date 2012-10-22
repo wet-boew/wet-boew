@@ -395,7 +395,10 @@
 				}
 				
 				$(document).keyup(function(e) {
-					if (e.keyCode === 27) { // Escape						
+					if (e.keyCode === 27) { // Escape	
+						if(elm.find('.tabs-toggle').data('state') === 'started') {
+							elm.find('.tabs .' + opts.tabActiveClass).focus();
+						}
 						stopCycle();						
 					}
 				});	
