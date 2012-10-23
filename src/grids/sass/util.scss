@@ -1,4 +1,3 @@
-@charset "utf-8";
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
@@ -8,24 +7,24 @@
  */
 @media screen{
 /* -----Build Include Section Start----- */
-@import url('includes/util-screen.css');
+@import 'includes/util-screen.scss';
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:768px) and (min-device-width:768px) {
 /* -----Build Include Section Start----- */
-@import url('includes/util-desktop-screen.css');
+@import 'includes/util-desktop-screen.scss';
 /* -----Build Include Section End----- */
 }
 
 /* Mobile view */
 @media screen and (max-width:767px), screen and (max-device-width:767px) {
 /* -----Build Include Section Start----- */
-@import url('includes/util-mobile.css');
+@import 'includes/util-mobile.scss';
 /* -----Build Include Section End----- */
 }
 
 @media print{
 /* -----Build Include Section Start----- */
-@import url('includes/util-print.css');
+@import 'includes/util-print.scss';
 /* -----Build Include Section End----- */
 }
