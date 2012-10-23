@@ -1,11 +1,10 @@
-@charset "utf-8";
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /* -----Build Include Section Start----- */
-@import url('../../css/base-ns.css');
-@import url('../../grids/css/responsive-ns.css');
-@import url('../../grids/css/util-ns.css');
-@import url('../../js/css/pe-ap-ns.css');
+@import '../../base/sass/base-ns.scss';
+@import '../../grids/sass/responsive-ns.scss';
+@import '../../grids/sass/util-ns.scss';
+@import '../../js/sass/pe-ap-ns.scss';
 /* -----Build Include Section End----- */
