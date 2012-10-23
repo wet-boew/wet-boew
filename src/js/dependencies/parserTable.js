@@ -1067,35 +1067,48 @@
 				};
 
 				fnParseSpannedRowCell = function () {
-					var i;
+					var i,
+						j,
+						currCell;
 
-					// Check for spanned row
-					$.each(spannedRow, function () {
-						if (this.colpos === columnPos && this.spanHeight > 0 && (this.height + this.rowpos - this.spanHeight === currentRowPos)) {
-
-							if (this.elem.nodeName.toLowerCase() === 'th') {
-								fnPreProcessGroupHeaderCell(this);
-							}
-
-							if (this.elem.nodeName.toLowerCase() === 'td') {
-								fnPreProcessGroupDataCell(this);
-							}
-
-							this.spanHeight -= 1;
-
-							// Increment the column position
-							columnPos += this.width;
-
-							// Add the column
-							for (i = 1; i <= this.width; i += 1) {
-								row.cell.push(this);
-							}
-
-							lastCellType = this.elem.nodeName.toLowerCase();
+					// Check for spanned row 
+					while (columnPos <= tableCellWidth) {
+						if (!spannedRow[columnPos]) {
+							break;
 						}
-					});
+						currCell = spannedRow[columnPos];
+
+						if (currCell.spanHeight && currCell.spanHeight > 0 && currCell.colpos === columnPos) {
+							if (currCell.height + currCell.rowpos - currCell.spanHeight !== currentRowPos) {
+								break;
+							}
+
+							lastCellType = currCell.elem.nodeName.toLowerCase();
+
+							if (lastCellType === 'th') {
+								fnPreProcessGroupHeaderCell(currCell);
+							} else if (lastCellType === 'td') {
+								fnPreProcessGroupDataCell(currCell);
+							}
+
+							// Adjust the spanned value for the next check
+							if (currCell.spanHeight === 1) {
+								delete currCell.spanHeight;
+							} else {
+								currCell.spanHeight -= 1;
+							}
+
+							for (j = 0; j < currCell.width; j += 1) {
+								row.cell.push(currCell);
+							}
+							// Increment the column position
+							columnPos += currCell.width;
+						} else {
+							break;
+						}
+					}
+
 				};
-				fnParseSpannedRowCell(); // This are for any row that have spanned row in is first cells
 
 				// Read the row
 				$.each(cells, function () {
@@ -1107,7 +1120,9 @@
 						i;
 
 					switch (this.nodeName.toLowerCase()) {
-					case 'th': // cell header					
+					case 'th': // cell header		
+						fnParseSpannedRowCell(); // Check for spanned cell between cells
+
 						headerCell = {
 							rowpos: currentRowPos,
 							colpos: columnPos,
@@ -1129,23 +1144,20 @@
 
 						headerCell.parent = colgroup;
 
-						// Check if needs to be added to the spannedRow collection
-						if (height > 1) {
-							headerCell.spanHeight = height - 1;
-							spannedRow.push(headerCell);
+						headerCell.spanHeight = height - 1;
+
+						for (i = 0; i < width; i += 1) {
+							row.cell.push(headerCell);
+							spannedRow[columnPos + i] = headerCell;
 						}
 
 						// Increment the column position
 						columnPos += headerCell.width;
 
-						for (i = 1; i <= width; i += 1) {
-							row.cell.push(headerCell);
-						}
-
-						// Check for any spanned cell
-						fnParseSpannedRowCell();
 						break;
 					case 'td': // data cell
+						fnParseSpannedRowCell(); // Check for spanned cell between cells
+
 						dataCell = {
 							rowpos: currentRowPos,
 							colpos: columnPos,
@@ -1165,21 +1177,16 @@
 
 						dataCell.parent = colgroup;
 
-						// Check if needs to be added to the spannedRow collection
-						if (height > 1) {
-							dataCell.spanHeight = height - 1;
-							spannedRow.push(dataCell);
+						dataCell.spanHeight = height - 1;
+
+						for (i = 0; i < width; i += 1) {
+							row.cell.push(dataCell);
+							spannedRow[columnPos + i] = dataCell;
 						}
 
 						// Increment the column position
 						columnPos += dataCell.width;
 
-						for (i = 1; i <= width; i += 1) {
-							row.cell.push(dataCell);
-						}
-
-						// Check for any spanned cell
-						fnParseSpannedRowCell();
 						break;
 					default:
 						errorTrigger(15, this);
@@ -1187,6 +1194,7 @@
 					}
 
 					lastCellType = this.nodeName.toLowerCase();
+
 				});
 
 				// Check for any spanned cell
@@ -1338,7 +1346,7 @@
 
 							// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
 							$.each(spannedRow, function () {
-								if (this.spanHeight > 0) {
+								if (this && this.spanHeight > 0) {
 									// That row are spanned in 2 different row group
 									errorTrigger(29, this);
 								}
@@ -1362,7 +1370,7 @@
 
 							// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
 							$.each(spannedRow, function () {
-								if (this.spanHeight > 0) {
+								if (this && this.spanHeight > 0) {
 									// That row are spanned in 2 different row group
 									errorTrigger(29, this);
 								}
@@ -1764,7 +1772,7 @@
 
 					// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
 					$.each(spannedRow, function () {
-						if (this.spanHeight > 0) {
+						if (this && this.spanHeigh && this.spanHeight > 0) {
 							// That row are spanned in 2 different row group
 							errorTrigger(29, this);
 						}
