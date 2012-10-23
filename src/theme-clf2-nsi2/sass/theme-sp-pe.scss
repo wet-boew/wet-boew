@@ -1,28 +1,27 @@
-@charset "utf-8";
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /* -----Build Include Section Start----- */
-@import url('../../css/base.css');
-@import url('includes/sp-pe.css');
-@import url('includes/sp-pe-responsive.css');
-@import url('../../css/base-desktop.css');
-@import url('includes/sp-pe-desktop.css');
+@import '../../base/sass/base.scss';
+@import 'includes/sp-pe.scss';
+@import 'includes/sp-pe-responsive.scss';
+@import '../../base/sass/base-desktop.scss';
+@import 'includes/sp-pe-desktop.scss';
 /* -----Build Include Section End----- */
 
 @media screen {
 /* -----Build Include Section Start----- */
-@import url('../../css/base-desktop-screen.css');
-@import url('includes/sp-pe-desktop-screen.css');
-@import url('../../css/base-screen.css');
-@import url('includes/sp-pe-screen.css');
+@import '../../base/sass/base-desktop-screen.scss';
+@import 'includes/sp-pe-desktop-screen.scss';
+@import '../../base/sass/base-screen.scss';
+@import 'includes/sp-pe-screen.scss';
 /* -----Build Include Section End----- */
 }
 
 @media print{
 /* -----Build Include Section Start----- */
-@import url('../../css/base-print.css');
-@import url('includes/sp-pe-print.css');
+@import '../../base/sass/base-print.scss';
+@import 'includes/sp-pe-print.scss';
 /* -----Build Include Section End----- */
 }

@@ -5,11 +5,11 @@
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>
 
-	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
+	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
 	<target name="build" depends="-init, -minify" />
   
-	<target name="-minify" depends="compile.sass, -base64-encode">
+	<target name="-minify" depends="-merge-css, -base64-encode">
 		<move todir="${build.dir}/css/premin">
 			<fileset dir="${build.dir}/css"/>
 		</move>
@@ -34,15 +34,9 @@
 	</target>
   
 	<!--Build CSS Tasks -->
-	<target name="-base64-encode" depends="-merge-css">
+	<target name="-base64-encode">
 		<copy todir="${build.dir}/images">
 			<fileset dir="${src.dir}/images"/>
-		</copy>
-		<copy todir="${build.dir}/encode/images">
-			<fileset dir="${src.dir}/images"/>
-		</copy>
-		<copy todir="${build.dir}/encode/css/images">
-			<fileset dir="${src.dir}/jquerymobile/images"/>
 		</copy>
 		<copy todir="${build.dir}/encode/css">
 			<fileset dir="${build.dir}/css">
@@ -52,14 +46,23 @@
 				<include name="jquery.mobile.css"/>
 			</fileset>
 		</copy>
-		<cssurlembed skipMissing="true">
-			<fileset dir="${build.dir}/encode/css/">
+		
+		<property name="image.dir" location="${build.dir}/images"/>
+		<cssurlembed skipMissing="true" root="${image.dir}">
+			<fileset dir="${build.dir}/encode/css">
 				<include name="theme.css"/>
 				<include name="theme-sp-pe.css"/>
 				<include name="theme-serv.css"/>
+			</fileset>
+		</cssurlembed>
+		
+		<property name="jquerymobile.dir" location="${src.dir}/jquerymobile"/>
+		<cssurlembed skipMissing="false" root="${jquerymobile.dir}">
+			<fileset dir="${build.dir}/encode/css">
 				<include name="jquery.mobile.css"/>
 			</fileset>
 		</cssurlembed>
+		
 		<copy todir="${build.dir}/css">
 			<fileset dir="${build.dir}/encode/css">
 				<include name="*.css"/>
@@ -68,7 +71,7 @@
 		<delete dir="${build.dir}/encode"/>
 	</target>
 	
-	<target name="-merge-css">
+	<target name="-merge-css" depends="compile.sass, build-theme-deps">
 		<copy todir="${build.dir}/pre/merge/jquerymobile">
 			<fileset dir="${src.dir}/jquerymobile">
 				<include name="*.css"/>

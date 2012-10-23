@@ -1,4 +1,3 @@
-@charset "utf-8";
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
@@ -25,8 +24,12 @@
 	}
 	#gcwu-title-in{
 		position:absolute;
-		top:23%;
+		top:50%;
 	}
+	#gcwu-title-in a { 
+		position: relative; 
+		top:-50%; 
+	} 	
 	#gcwu-date-mod{
 		position:relative;
 		float:right;

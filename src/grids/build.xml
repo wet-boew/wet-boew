@@ -5,18 +5,18 @@
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>
 
-	<target name="default" depends="clean,build" description="Performs a Clean and Build when calling ant without any target"></target>
+	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
 	<target name="build" depends="-init, -minify" />
 
-	<target name="-minify" depends="compile.sass, -merge-css">
+	<target name="-minify" depends="-merge-css">
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/premin" toDir="${build.dir}">
 			<include name="css/*.*" />
 		</yui-compressor>
 		<delete dir="${build.dir}/premin"/>
 	</target>
 
-	<target name="-merge-css">
+	<target name="-merge-css" depends="compile.sass">
 		<copy todir="${build.dir}/premerge/css">
 			<fileset dir="${src.dir}/css">
 				<include name="util*.css"/>
@@ -58,4 +58,6 @@
 		</copy>
 		<delete dir="${build.dir}/premerge"/>
 	</target>
+	
+	<target name="test" description="Placeholder for future test tasks"/>
 </project>

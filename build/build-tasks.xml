@@ -3,6 +3,12 @@
 	<dirname property="tasks.basedir" file="${ant.file.build-tasks}"/>
 	<property file="${tasks.basedir}/build-tasks.properties"/>
 	
+	<!-- Version and build time-->
+	<property name="wet-boew-build.version" value="v3.0.2-a1"/>
+	<tstamp>
+		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
+	</tstamp>
+	
 	<!-- ant contribs task definition  -->
 	<path id="antcontrib.classpath">
 		<pathelement location="${antcontribs.jar}" />
@@ -66,6 +72,8 @@
 	</target>
 
 	<target name="-jruby.jar.check">
+		<checksum file="${tasks.basedir}/build-tasks.properties" property="jruby.depends"/>
+		<property name="jruby.jar" value="jruby-${jruby.depends}.jar" />
 		<condition property="jruby.jar.exists">
 			<available file="${lib.dir}/${jruby.jar}" type="file"/>
 		</condition>
@@ -154,6 +162,37 @@
 		</for>
 		<var name="src" unset="true"/>
         <var name="file.recurse" unset="true"/>
+	</target>
+	
+	<target name="build-theme-deps" description="Initializes the Grid, JS and Base CSS projects so that the Sass has been compiled">
+		<if>
+			<available type="dir" file="${gridsrc.dir}/css"/>
+			<then />
+			<else>
+				<ant dir="${gridsrc.dir}" target="compile.sass" inheritAll="false"/>
+			</else>
+		</if>		
+		<if>
+			<available type="dir" file="${basesrc.dir}/css"/>
+			<then />
+			<else>
+				<ant dir="${basesrc.dir}" target="compile.sass" inheritAll="false"/>
+			</else>
+		</if>		
+		<if>
+			<available type="dir" file="${jssrc.dir}/css"/>
+			<then />
+			<else>
+				<ant dir="${jssrc.dir}" target="compile.sass" inheritAll="false"/>
+			</else>
+		</if>
+	</target>
+	
+	<target name="clean-theme-deps" description="Clean the Grid, JS and Base CSS files. Used for after building an individual theme">
+		<ant dir="${gridsrc.dir}" target="clean-css" inheritAll="false"/>
+		<ant dir="${basesrc.dir}" target="clean-css" inheritAll="false"/>
+		<ant dir="${jssrc.dir}" target="clean-css" inheritAll="false"/>
+		<antcall target="clean-css" inheritAll="false"/>
 	</target>
 	
 	<target name="clean-css">

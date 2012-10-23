@@ -1,4 +1,3 @@
-@charset "utf-8";
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
@@ -8,15 +7,15 @@
  */
 @media screen{
 /* -----Build Include Section Start----- */
-@import url('includes/util-screen.css');
-@import url('includes/util-desktop-screen.css');
-@import url('includes/fix-ie7.css');
-@import url('includes/fix-ie8.css');
+@import 'includes/util-screen.scss';
+@import 'includes/util-desktop-screen.scss';
+@import 'includes/fix-ie7.scss';
+@import 'includes/fix-ie8.scss';
 /* -----Build Include Section End----- */
 }
 
 @media print{
 /* -----Build Include Section Start----- */
-@import url('includes/util-print.css');
+@import 'includes/util-print.scss';
 /* -----Build Include Section End----- */
 }
