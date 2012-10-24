@@ -18,7 +18,9 @@
 		opened: false,
 		_exec: function (elm) {
 			var borderWidth = 10,
-				closeLink = pe.dic.get('%hide') + '<span class="wb-invisible">' + pe.dic.get('%table-contents') + '</span>',
+				tocText = pe.dic.get('%table-contents'),
+				hideText = pe.dic.get('%hide'),
+				closeLink = hideText + '<span class="wb-invisible">' + tocText + '</span>',
 				focusOutlineAllowance = 2,
 				opened = false,
 				reposition,
@@ -34,12 +36,10 @@
 				keyhandler,
 				tocLinks,
 				documentToggle,
-				cssTest,
 				opts,
 				ie7 = pe.ie > 0 && pe.ie < 8,
 				$wbcorein = $('#wb-core-in'),
-				imagesDir = pe.add.liblocation + 'images/slideout/',
-				tocText = pe.dic.get('%table-contents');
+				imagesDir = pe.add.liblocation + 'images/slideout/';
 
 			$.metadata.setType('attr', 'data-wet-boew');
 			opts = {
@@ -53,7 +53,7 @@
 					src: imagesDir + pe.dic.get('%hide-image'),
 					height: 147,
 					width: 30,
-					alt: pe.dic.get('%hide') + tocText
+					alt: hideText + tocText
 				}
 			};
 			$.extend(opts, elm.metadata());
