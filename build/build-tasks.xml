@@ -18,7 +18,7 @@
 		<classpath refid="antcontrib.classpath" />
 	</taskdef>
 	
-	<target name="-init" depends="-build-jruby">
+	<target name="-init">
 		<mkdir dir="${build.dir}"/>
 	</target>
 	
@@ -46,36 +46,6 @@
 		<classpath refid="jshint.classpath" />
 	</taskdef>
 	
-	<!-- Include the compiled jruby.jar file -->
-	<path id="jruby.classpath">
-		<fileset dir="${lib.dir}">
-			<include name="${jruby.jar}"/>
-		</fileset>
-	</path>	
-
-	<!-- Include jruby + gems (compass + sass) -->
-	<target name="-build-jruby" depends="-jruby.jar.check" unless="jruby.jar.exists">
-		<mkdir dir="${gem.dir}" />
-		<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/jruby-complete-${jruby.version}.jar" dest="${lib.dir}/${jruby.jar}" skipexisting="true"/>
-		<get src="http://production.cf.rubygems.org/gems/${sass.gem}" dest="${gem.dir}/${sass.gem}" skipexisting="true"/>
-		<get src="http://production.cf.rubygems.org/gems/${chunky_png.gem}" dest="${gem.dir}/${chunky_png.gem}" skipexisting="true"/>
-		<get src="http://production.cf.rubygems.org/gems/${fssm.gem}" dest="${gem.dir}/${fssm.gem}" skipexisting="true"/>
-		<get src="http://production.cf.rubygems.org/gems/${compass.gem}" dest="${gem.dir}/${compass.gem}" skipexisting="true"/>
-		<java jar="${lib.dir}/${jruby.jar}" fork="true">
-			<arg line="-S gem install -i &quot;${lib.dir}/vendors-${jruby.depends}&quot; &quot;${gem.dir}/${sass.gem}&quot; &quot;${gem.dir}/${chunky_png.gem}&quot; &quot;${gem.dir}/${fssm.gem}&quot; &quot;${gem.dir}/${compass.gem}&quot;"/>
-		</java>
-	</target>
-
-	<target name="-jruby.jar.check">
-		<checksum file="${tasks.basedir}/gem.properties" property="jruby.depends"/>
-		<condition property="jruby.jar.exists">
-			<and>
-				<available file="${lib.dir}/${jruby.jar}" type="file"/>
-				<available file="${lib.dir}/vendors-${jruby.depends}" type="dir"/>
-			</and>
-		</condition>
-	</target>	
-	
 	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
 	<target name="compile.sass">
 		<antcall target="call.sass">
@@ -85,7 +55,32 @@
 	</target>
 	
 	<target name="call.sass">
-		<java classname="org.jruby.Main" fork="true" failonerror="true" classpathref="jruby.classpath">
+		<checksum file="${tasks.basedir}/gem.properties" property="jruby.depends"/>
+		<if>
+			<not>
+				<and>
+					<available file="${lib.dir}/${jruby.jar}" type="file"/>
+					<available file="${lib.dir}/vendors-${jruby.depends}" type="dir"/>
+				</and>
+			</not>
+			<then>
+				<mkdir dir="${gem.dir}" />
+				<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/jruby-complete-${jruby.version}.jar" dest="${lib.dir}/${jruby.jar}" skipexisting="true"/>
+				<get src="http://production.cf.rubygems.org/gems/${sass.gem}" dest="${gem.dir}/${sass.gem}" skipexisting="true"/>
+				<get src="http://production.cf.rubygems.org/gems/${chunky_png.gem}" dest="${gem.dir}/${chunky_png.gem}" skipexisting="true"/>
+				<get src="http://production.cf.rubygems.org/gems/${fssm.gem}" dest="${gem.dir}/${fssm.gem}" skipexisting="true"/>
+				<get src="http://production.cf.rubygems.org/gems/${compass.gem}" dest="${gem.dir}/${compass.gem}" skipexisting="true"/>
+				<java jar="${lib.dir}/${jruby.jar}" fork="true">
+					<arg line="-S gem install -i &quot;${lib.dir}/vendors-${jruby.depends}&quot; &quot;${gem.dir}/${sass.gem}&quot; &quot;${gem.dir}/${chunky_png.gem}&quot; &quot;${gem.dir}/${fssm.gem}&quot; &quot;${gem.dir}/${compass.gem}&quot;"/>
+				</java>
+			</then>
+		</if>
+		<java classname="org.jruby.Main" fork="true" failonerror="true">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="${jruby.jar}"/>
+				</fileset>
+			</classpath>
 			<arg path="${tasks.basedir}/compile.rb"/>
 			<arg path="${lib.dir}/vendors-${jruby.depends}/gems/"/>
 			<arg value="${command}"/>
