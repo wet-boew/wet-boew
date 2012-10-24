@@ -2,6 +2,7 @@
 <project name="build-tasks" default="default" basedir=".">
 	<dirname property="tasks.basedir" file="${ant.file.build-tasks}"/>
 	<property file="${tasks.basedir}/build-tasks.properties"/>
+	<property file="${tasks.basedir}/gem.properties"/>
 	
 	<!-- Version and build time-->
 	<property name="wet-boew-build.version" value="v3.0.2-a1"/>
@@ -55,7 +56,6 @@
 	<!-- Include jruby + gems (compass + sass) -->
 	<target name="-build-jruby" depends="-jruby.jar.check" unless="jruby.jar.exists">
 		<mkdir dir="${gem.dir}" />
-		<delete dir="${lib.dir}/vendors-${jruby.depends}" />
 		<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/jruby-complete-${jruby.version}.jar" dest="${lib.dir}/${jruby.jar}" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${sass.gem}" dest="${gem.dir}/${sass.gem}" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${chunky_png.gem}" dest="${gem.dir}/${chunky_png.gem}" skipexisting="true"/>
@@ -67,11 +67,14 @@
 	</target>
 
 	<target name="-jruby.jar.check">
-		<checksum file="${tasks.basedir}/build-tasks.properties" property="jruby.depends"/>
+		<checksum file="${tasks.basedir}/gem.properties" property="jruby.depends"/>
 		<condition property="jruby.jar.exists">
-			<available file="${lib.dir}/${jruby.jar}" type="file"/>
+			<and>
+				<available file="${lib.dir}/${jruby.jar}" type="file"/>
+				<available file="${lib.dir}/vendors-${jruby.depends}" type="dir"/>
+			</and>
 		</condition>
-	</target>
+	</target>	
 	
 	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
 	<target name="compile.sass">
