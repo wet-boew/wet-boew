@@ -58,14 +58,18 @@
 		<checksum file="${tasks.basedir}/gem.properties" property="jruby.depends"/>
 		<if>
 			<not>
-				<and>
 					<available file="${lib.dir}/${jruby.jar}" type="file"/>
+			</not>
+			<then>
+				<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/jruby-complete-${jruby.version}.jar" dest="${lib.dir}/${jruby.jar}" skipexisting="true"/>
+			</then>
+		</if>
+		<if>
+			<not>
 					<available file="${lib.dir}/vendors-${jruby.depends}" type="dir"/>
-				</and>
 			</not>
 			<then>
 				<mkdir dir="${gem.dir}" />
-				<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/jruby-complete-${jruby.version}.jar" dest="${lib.dir}/${jruby.jar}" skipexisting="true"/>
 				<get src="http://production.cf.rubygems.org/gems/${sass.gem}" dest="${gem.dir}/${sass.gem}" skipexisting="true"/>
 				<get src="http://production.cf.rubygems.org/gems/${chunky_png.gem}" dest="${gem.dir}/${chunky_png.gem}" skipexisting="true"/>
 				<get src="http://production.cf.rubygems.org/gems/${fssm.gem}" dest="${gem.dir}/${fssm.gem}" skipexisting="true"/>
