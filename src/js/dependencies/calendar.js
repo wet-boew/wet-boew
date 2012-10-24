@@ -11,7 +11,6 @@
 	/* local reference */
 	_pe.fn.calendar = {
 		create: function (containerid, year, month, shownav, mindate, maxdate) {
-			var test = (new Date()).getTime();
 			var objCalendar,
 				container = $('#' + containerid),
 				calHeader,
@@ -100,7 +99,6 @@
 
 			//Trigger the calendarDisplayed Event
 			container.trigger('calendarDisplayed', [year, month, daysList]);
-			console.log((new Date()).getTime() - test);
 		},
 
 		createMonthNav : function (calendarid, year, month, minDate, maxDate) {
