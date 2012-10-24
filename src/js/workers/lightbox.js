@@ -23,6 +23,7 @@
 		// mobile mode.
 
 		_exec : function (elm) {
+		var test = (new Date()).getTime();
 			// Variables
 			var opts,
 				opts2 = {},
@@ -152,6 +153,7 @@
 					}
 				}
 			});
+			console.log((new Date()).getTime() - test);
 		} // end of exec
 	};
 	window.pe = _pe;
