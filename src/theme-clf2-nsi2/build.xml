@@ -88,17 +88,7 @@
 			<file name="theme-serv-ie.css"/>
 			<file name="theme-ns.css"/>
 		</filelist>
-		<for param="css-file">
-			<path>
-				<filelist refid="corefiles"/>
-			</path>
-			<sequential>
-				<antcall target="-resolve-css-imports" inheritAll="false">
-					<param name="file" value="@{css-file}"/>
-					<param name="topfile" value="true"/>
-				</antcall>
-			</sequential>
-		</for>
+
 		<copy todir="${build.dir}/css">
 			<filelist dir="${build.dir}/pre/merge/css">
 				<file name="theme.css"/>
