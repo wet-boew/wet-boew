@@ -33,7 +33,7 @@
 			feedback.attr('aria-controls', 'web').on('keyup click load', function (e) {
 				load = (e.type === 'load');
 				if (!load && this.value === 'web') {
-					this.setAttribute('aria-hidden', 'false')
+					this.setAttribute('aria-hidden', 'false');
 					web.show('slow');
 				} else {
 					this.setAttribute('aria-hidden', 'true');
