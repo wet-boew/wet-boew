@@ -64,9 +64,6 @@
 		<java jar="${lib.dir}/jruby-complete-${jruby.version}.jar" fork="true">
 			<arg line="-S gem install -i &quot;${lib.dir}/vendors-${jruby.depends}&quot; &quot;${gem.dir}/${sass.gem}&quot; &quot;${gem.dir}/${chunky_png.gem}&quot; &quot;${gem.dir}/${fssm.gem}&quot; &quot;${gem.dir}/${compass.gem}&quot;"/>
 		</java>
-		<exec executable="jar" dir="${lib.dir}/">
-			<arg line="-uf jruby-complete-${jruby.version}.jar -C vendors-${jruby.depends} ." />
-		</exec>
 		<move file="${lib.dir}/jruby-complete-${jruby.version}.jar" tofile="${lib.dir}/${jruby.jar}"/>
 		<delete dir="${gem.dir}" />
 	</target>
