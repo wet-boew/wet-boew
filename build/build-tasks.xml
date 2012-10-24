@@ -54,23 +54,21 @@
 
 	<!-- Include jruby + gems (compass + sass) -->
 	<target name="-build-jruby" depends="-jruby.jar.check" unless="jruby.jar.exists">
-		<mkdir dir="${lib.dir}/jruby-compiled" />
+		<mkdir dir="${gem.dir}" />
 		<delete dir="${lib.dir}/vendors-${jruby.depends}" />
-		<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/jruby-complete-${jruby.version}.jar" dest="${lib.dir}/jruby-complete-${jruby.version}.jar" skipexisting="true"/>
+		<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/jruby-complete-${jruby.version}.jar" dest="${lib.dir}/${jruby.jar}" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${sass.gem}" dest="${gem.dir}/${sass.gem}" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${chunky_png.gem}" dest="${gem.dir}/${chunky_png.gem}" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${fssm.gem}" dest="${gem.dir}/${fssm.gem}" skipexisting="true"/>
 		<get src="http://production.cf.rubygems.org/gems/${compass.gem}" dest="${gem.dir}/${compass.gem}" skipexisting="true"/>
-		<java jar="${lib.dir}/jruby-complete-${jruby.version}.jar" fork="true">
+		<java jar="${lib.dir}/${jruby.jar}" fork="true">
 			<arg line="-S gem install -i &quot;${lib.dir}/vendors-${jruby.depends}&quot; &quot;${gem.dir}/${sass.gem}&quot; &quot;${gem.dir}/${chunky_png.gem}&quot; &quot;${gem.dir}/${fssm.gem}&quot; &quot;${gem.dir}/${compass.gem}&quot;"/>
 		</java>
-		<move file="${lib.dir}/jruby-complete-${jruby.version}.jar" tofile="${lib.dir}/${jruby.jar}"/>
 		<delete dir="${gem.dir}" />
 	</target>
 
 	<target name="-jruby.jar.check">
 		<checksum file="${tasks.basedir}/build-tasks.properties" property="jruby.depends"/>
-		<property name="jruby.jar" value="jruby-${jruby.depends}.jar" />
 		<condition property="jruby.jar.exists">
 			<available file="${lib.dir}/${jruby.jar}" type="file"/>
 		</condition>
