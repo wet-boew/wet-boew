@@ -204,7 +204,7 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return pe.mobiletest.offsetWidth !== 0; // CSS (through media queries) sets to offsetWidth = 0 in desktop view and offsetWidth = 1 in mobile view
+			return pe.mobiletest.offsetWidth === 1; // CSS (through media queries) sets to offsetWidth = 0 in desktop view and offsetWidth = 1 in mobile view
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -385,7 +385,7 @@
 		* @return {boolean}
 		*/
 		cssenabled: function () {
-			return $('link').get(0).disabled;
+			return pe.mobiletest.offsetWidth < 2; // pe.mobiletest will be either 0 or 1 if CSS is enabled
 		},
 		/**
 		* Returns a class-based set limit on plugin instances

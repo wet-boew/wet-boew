@@ -30,62 +30,85 @@
 				load;
 
 			// Web Questions
-			feedback.attr('aria-controls', 'web').on("keyup click load", function (e) {
-				load = (e.type === "load");
-				if (!load && $(this).val() === 'web') {
-					web.attr('aria-hidden', 'false').show("slow");
+			feedback.attr('aria-controls', 'web').on('keyup click load', function (e) {
+				load = (e.type === 'load');
+				if (!load && this.value === 'web') {
+					this.setAttribute('aria-hidden', 'false')
+					web.show('slow');
 				} else {
-					web.attr('aria-hidden', 'true').hide((load ? "" : "slow"));
+					this.setAttribute('aria-hidden', 'true');
+					if (load) {
+						web.css('display', 'none');
+					} else {
+						web.hide('slow');
+					}
 				}
 			});
 			// Automatically select the reason if specified in the query string
 
 			if (urlParams.submit === undefined && urlParams.feedback !== undefined) {
-				feedback.find('option[value="' + urlParams.feedback + '"]').attr("selected", "selected");
+				feedback.find('option[value="' + urlParams.feedback + '"]').attr('selected', 'selected');
 			}
-			feedback.trigger("load");
+			feedback.trigger('load');
 
 			// Computer and Mobile
-			access.attr('aria-controls', 'mobile computer').on("keyup click load", function (e) {
+			access.attr('aria-controls', 'mobile computer').on('keyup click load', function (e) {
 				load = (e.type === "load");
-				if (!load && access.val() === 'mobile') {
-					mobile.attr('aria-hidden', 'false').show("slow");
-					computer.attr('aria-hidden', 'true').hide("slow");
+				if (!load && this.value === 'mobile') {
+					mobile.attr('aria-hidden', 'false').show('slow');
+					computer.attr('aria-hidden', 'true').hide('slow');
 				} else {
-					computer.attr('aria-hidden', 'false').show((load ? "" : "slow"));
-					mobile.attr('aria-hidden', 'true').hide((load ? "" : "slow"));
+					computer.attr('aria-hidden', 'false');
+					mobile.attr('aria-hidden', 'true');
+					if (load) {
+						computer.css('display', 'block');
+						mobile.css('display', 'none');
+					} else {
+						computer.show('slow');
+						mobile.hide('slow');
+					}
 				}
-			}).trigger("load");
+			}).trigger('load');
 
 			// Contact info first selection
 			contact1.on("keyup click load", function (e) {
 				load = (e.type === "load");
-				if (!load && $(this).val() === 'yes') {
-					info.attr('aria-hidden', 'false').show("slow");
-				} else if (load || (($(this).val() === 'no' || $(this).val() === null) && (contact2.val() === 'no' || contact2.val() === null))) {
-					info.attr('aria-hidden', 'true').hide((load ? "" : "slow"));
+				if (!load && this.value === 'yes') {
+					info.attr('aria-hidden', 'false').show('slow');
+				} else if (load || ((this.value === 'no' || this.value === null) && (contact2.val() === 'no' || contact2.val() === null))) {
+					info.attr('aria-hidden', 'true');
+					if (load) {
+						info.css('display', 'none');
+					} else {
+						info.hide('slow');
+					}
 				}
-			}).trigger("click");
+			}).trigger('load');
 
 			// Contact info second selection
 			contact2.on("keyup click load", function (e) {
 				load = (e.type === "load");
-				if (!load && $(this).val() === 'yes') {
-					info.attr('aria-hidden', 'false').show("slow");
-				} else if (load || (($(this).val() === 'no' || $(this).val() === null) && (contact1.val() === 'no' || contact1.val() === null))) {
-					info.attr('aria-hidden', 'true').hide((load ? "" : "slow"));
+				if (!load && this.value === 'yes') {
+					info.attr('aria-hidden', 'false').show('slow');
+				} else if (load || ((this.value === 'no' || this.value === null) && (contact1.val() === 'no' || contact1.val() === null))) {
+					info.attr('aria-hidden', 'true');
+					if (load) {
+						info.css('display', 'none');
+					} else {
+						info.hide('slow');
+					}
 				}
-			}).trigger("load");
+			}).trigger('load');
 
 			// Prepopulates URL form field with referrer
 			web.find('#page').attr('value', referrerUrl);
 
 			// Return to the form defaults when the reset button is activated
 			elm.find('input[type=reset]').on('click', function () {
-				feedback.trigger("load");
-				access.trigger("load");
-				contact1.trigger("load");
-				contact2.trigger("load");
+				feedback.trigger('load');
+				access.trigger('load');
+				contact1.trigger('load');
+				contact2.trigger('load');
 			});
 
 			return elm;
