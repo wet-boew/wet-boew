@@ -183,6 +183,9 @@
 			"%st-timeout-msg": "Your session is about to expire, you have until #expireTime# to activate the \"OK\" button below to extend your session.",
 			"%st-msgbox-title": "Session timeout warning",
 			"%st-already-timeout-msg": "Sorry your session has already expired. Please login again.",
+			/* Toggle details */
+			'%toggle-open': 'Toggle open',
+			'%toggle-close': 'Toggle close',			
 			/* Disable/enable PE */
 			"%pe-disable": "Basic HTML version",
 			"%pe-enable": "Standard version"
