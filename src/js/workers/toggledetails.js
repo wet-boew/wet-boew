@@ -5,7 +5,7 @@
 /*
  * Toggle details plugin
  */
-/*global jQuery: false, wet_boewtoggledetails: false */
+/*global jQuery: false, wet_boew_toggledetails: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -40,8 +40,8 @@
 			};
 			
 			// Extend the defaults with settings passed through settings.js (wet_boewtoggledetails) and class-based overrides
-			if (typeof wet_boewtoggledetails !== 'undefined' && wet_boewtoggledetails !== null) {
-				$.extend(opts, wet_boewtoggledetails, overrides);
+			if (typeof wet_boew_toggledetails !== 'undefined' && wet_boew_toggledetails !== null) {
+				$.extend(opts, wet_boew_toggledetails, overrides);
 			} else {
 				$.extend(opts, overrides);
 			}	
