@@ -70,11 +70,11 @@
 		}, // end of exec
 				
 		isOpen : function() {				
-			return this.open === true;
+			return this._open === true;
 		},
 		
 		setOpen : function(open) {
-			this.open = open;
+			this._open = open;
 		},
 		
 		toggle : function() {
