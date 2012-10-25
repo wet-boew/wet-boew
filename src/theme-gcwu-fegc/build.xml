@@ -38,18 +38,10 @@
 		<copy todir="${build.dir}/images">
 			<fileset dir="${src.dir}/images"/>
 		</copy>
-		<copy todir="${build.dir}/encode/css">
-			<fileset dir="${build.dir}/css">
-				<include name="theme.css"/>
-				<include name="theme-sp-pe.css"/>
-				<include name="theme-serv.css"/>
-				<include name="jquery.mobile.css"/>
-			</fileset>
-		</copy>
 		
 		<property name="image.dir" location="${build.dir}/images"/>
 		<cssurlembed skipMissing="true" root="${image.dir}">
-			<fileset dir="${build.dir}/encode/css">
+			<fileset dir="${build.dir}/css">
 				<include name="theme.css"/>
 				<include name="theme-sp-pe.css"/>
 				<include name="theme-serv.css"/>
@@ -58,17 +50,10 @@
 		
 		<property name="jquerymobile.dir" location="${src.dir}/jquerymobile"/>
 		<cssurlembed skipMissing="false" root="${jquerymobile.dir}">
-			<fileset dir="${build.dir}/encode/css">
+			<fileset dir="${build.dir}/css">
 				<include name="jquery.mobile.css"/>
 			</fileset>
 		</cssurlembed>
-		
-		<copy todir="${build.dir}/css">
-			<fileset dir="${build.dir}/encode/css">
-				<include name="*.css"/>
-			</fileset>
-		</copy>
-		<delete dir="${build.dir}/encode"/>
 	</target>
 	
 	<target name="-merge-css" depends="compile.sass, build-theme-deps">
