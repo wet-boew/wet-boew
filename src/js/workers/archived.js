@@ -18,7 +18,8 @@
 			}
 			// create the toolbar
 			var notice = $('<div class="archived" role="toolbar"><a class="archived-top-page" href="#archived" role="link">' + pe.dic.get('%archived-page') + '</a></div>'),
-				$window = $(window);
+				$window = $(window),
+				scrollTop = $window.scrollTop();
 			// lets bind the scrolls
 			$window.on('scroll', function () {
 				if ($(this).scrollTop() > 10) {
@@ -37,14 +38,13 @@
 			});
 
 			// now test to ensure that we have this correctly placed
-			if ($window.scrollTop() < 10 || $window.scrollTop() === 'undefined') {
-				notice.fadeOut('normal').attr('aria-hidden', 'true');
+			if (scrollTop < 10 || scrollTop === 'undefined') {
+				notice.attr('aria-hidden', 'true');
 			} else {
 				notice.fadeIn('normal').attr('aria-hidden', 'false');
 			}
 			// add to page
 			pe.pagecontainer().append(notice);
-
 			return elm;
 		} // end of exec
 	};
