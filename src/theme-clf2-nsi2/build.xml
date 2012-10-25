@@ -38,28 +38,15 @@
 		<copy todir="${build.dir}/images">
 			<fileset dir="${src.dir}/images" />
 		</copy>
-		<copy todir="${build.dir}/encode/css">
+
+		<property name="image.dir" location="${build.dir}/images"/>
+		<cssurlembed skipMissing="true" root="${image.dir}">
 			<fileset dir="${build.dir}/css">
 				<include name="theme.css"/>
 				<include name="theme-sp-pe.css"/>
 				<include name="theme-serv.css"/>
 			</fileset>
-		</copy>
-
-		<property name="image.dir" location="${build.dir}/images"/>
-		<cssurlembed skipMissing="true" root="${image.dir}">
-			<fileset dir="${build.dir}/encode/css">
-				<include name="theme.css"/>
-				<include name="theme-sp-pe.css"/>
-				<include name="theme-serv.css"/>
-			</fileset>
 		</cssurlembed>
-		<copy todir="${build.dir}/css">
-			<fileset dir="${build.dir}/encode/css">
-				<include name="*.css"/>
-			</fileset>
-		</copy>
-		<delete dir="${build.dir}/encode"/>
 	</target>
 	
 	<target name="-merge-css" depends="compile.sass, build-theme-deps">
@@ -88,17 +75,7 @@
 			<file name="theme-serv-ie.css"/>
 			<file name="theme-ns.css"/>
 		</filelist>
-		<for param="css-file">
-			<path>
-				<filelist refid="corefiles"/>
-			</path>
-			<sequential>
-				<antcall target="-resolve-css-imports" inheritAll="false">
-					<param name="file" value="@{css-file}"/>
-					<param name="topfile" value="true"/>
-				</antcall>
-			</sequential>
-		</for>
+
 		<copy todir="${build.dir}/css">
 			<filelist dir="${build.dir}/pre/merge/css">
 				<file name="theme.css"/>
