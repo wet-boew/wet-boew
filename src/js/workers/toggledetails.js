@@ -14,13 +14,11 @@
 	
 	_pe.fn.toggledetails = {
 		type : 'plugin',
-		_open : false,	// Globally track the toggle state to allow for multiple controls on a page
-		_togglers : [],	// All toggler elements on a page.  Allows for easy title attribute update on state change.
+		_open : false,	// Globally track the toggle state to support multiple controls on a page
+		_togglers : [],	// Reference to all toggle controls. Allows for easy title attribute update on state change.
 		_exec : function (elm) {		
 			var opts,
-				overrides,				
-				$details = $('details'),
-				$summary = $details.find('summary');
+				overrides;
 				
 			// Default options
 			opts = { 
@@ -37,7 +35,8 @@
 			overrides = {					
 				onlyOpen: elm.hasClass('only-open') ? true : undefined,
 				onlyClose: elm.hasClass('only-close') ? true : undefined,
-				printOpen: elm.hasClass('print-open') ? true : undefined					
+				printOpen: elm.hasClass('print-open') ? true : undefined,
+				title : elm.hasClass('no-title') ? false : opts.title
 			};
 			
 			// Extend the defaults with settings passed through settings.js (wet_boewtoggledetails) and class-based overrides
@@ -51,52 +50,53 @@
 			this._setTitle(elm, opts);			
 			
 			// Handle toggle control clicks
-			elm.on('click', function(e) {
-				var open = _pe.fn.toggledetails.isOpen();	
-				
+			elm.on('click', $.proxy(function(e) {				
+				this.setOpen(opts.onlyOpen ? false : opts.onlyClose ? true : this.isOpen());
+				this.toggle();
 				e.preventDefault();
-				
-				if((opts.onlyOpen && open) || (opts.onlyClose && !open)) {
-					return;
-				}
-				_pe.fn.toggledetails.toggle($details, $summary);
-			});				
+				e.target.focus();
+			}, this));				
 			
 			// Open details on print.
 			// TODO Add support for Opera and WebKit
-			if(opts.printOpen){
-				$(window).on('beforeprint', function(){
-					_pe.fn.toggledetails.setOpen(false);
-					_pe.fn.toggledetails.toggle($details, $summary);	
-				});			
-			}			
-			return elm;	
+			if(opts.printOpen) {
+				$(window).on('beforeprint', $.proxy(function() {
+					this.setOpen(false);
+					this.toggle();	
+				}, this));			
+			}
 			
-			
+			return elm;					
 		}, // end of exec
-		
+				
 		isOpen : function() {				
 			return this.open === true;
-		},	
+		},
 		
 		setOpen : function(open) {
 			this.open = open;
 		},
 		
-		toggle : function($details, $summary) {
-			var i, l = this._togglers.length;
+		toggle : function() {
+			var i = 0, 
+				l = this._togglers.length,
+				$details = $('details');
 			
-			$details.attr('open', (this.isOpen() ? 'open' : null));
-			$summary.trigger('click');	
+			// Set the state we're currently in and trigger the change
+			$details.prop('open', this.isOpen());
+			$details.find('summary').click();	
 			
-			this.setOpen(!this.isOpen());			
-			for(i = 0; i < l; i++) {
+			// Update our state and the title of the togglers
+			this.setOpen(!this.isOpen());
+			for(; i < l; i++) {
 				this._setTitle(this._togglers[i].elm, this._togglers[i].opts);
 			}
 		},
 
 		_setTitle : function(elm, opts) {
-			elm.attr('title', (opts.onlyClose || (!opts.onlyOpen && this.isOpen()) ? opts.title.close : opts.title.open));
+			if(opts.title !== false) {
+				elm[0].title = opts.onlyClose || (!opts.onlyOpen && this.isOpen()) ? opts.title.close : opts.title.open;
+			}
 		}		
 	};
 	window.pe = _pe;

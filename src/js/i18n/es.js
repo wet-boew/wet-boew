@@ -184,6 +184,9 @@
 			'%st-timeout-msg': 'Su sesión está próxima a expirar, tiene hasta #expireTime# para activar el botón \'OK\' y así extender su sesión.',
 			'%st-msgbox-title': 'Aviso de finalización de sesión',
 			'%st-already-timeout-msg': 'Lamentablemente su sesión ha expirado. Por favor ingrese nuevamente.',
+			/* Toggle details */
+			'%toggle-open': 'Toggle open',
+			'%toggle-close': 'Toggle close',			
 			/* Disable/enable PE */
 			'%pe-disable': 'Versión básica HTML',
 			'%pe-enable': 'Versión standard'
