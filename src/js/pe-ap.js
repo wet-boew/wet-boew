@@ -898,8 +898,8 @@
 										subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme1, false, expand, theme2, false));
 									}
 									// If the original menu item was not in a menu bar
-									if (!menubar && !expand) {
-										subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme2, 'data-icon': 'arrow-r', 'data-iconpos': 'right', 'data-corners': 'false'}));
+									if (!menubar && toplevel) {
+										subsection.append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme2, 'data-icon': 'arrow-r', 'data-iconpos': 'right', 'data-corners': 'false'}));
 									}
 								}
 								menu.append(subsection);
