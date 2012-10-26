@@ -180,6 +180,9 @@
 			'%st-timeout-msg': 'Votre session est sur le point d\'expirer, vous avez jusqu\'a #expireTime# pour sélectionnez \'OK\' ci-dessous pour prolonger votre session.',
 			'%st-msgbox-title': 'Avertissement d\'expiration de la session',
 			'%st-already-timeout-msg': 'Désolé, votre session a déjà expiré. S\'il vous plaît vous connecter à nouveau.',
+			/* Toggle details */
+			'%toggle-open': 'Basculer: ouvrir',
+			'%toggle-close': 'Basculer: fermé',			
 			/* Disable/enable PE */
 			'%pe-disable': 'Version HTML simplifiée',
 			'%pe-enable': 'Version standard'

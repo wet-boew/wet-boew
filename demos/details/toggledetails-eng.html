@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>Session timeout - Working examples - Web Experience Toolkit (WET)</title>
+<title>Expand/Collapse All - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -54,7 +54,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="sessiontimeout-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="#" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -87,7 +87,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ol>
 <li><a href="../../index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li>Session timeout</li>
+<li>Expand/Collapse All</li>
 </ol>
 </div></div>
 </nav>
@@ -97,35 +97,117 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Session timeout</h1>
+<h1 id="wb-cont">Expand/Collapse All</h1>
+<p>This plugin creates an element that can be used to toggle open and closed all <code>details</code> elements on a page.</p>
 
-<span class="wet-boew-sessiontimeout" data-wet-boew="{inactivity: 30000, logouturl: 'http://wet-boew.github.com/wet-boew/demos/index-eng.html'}"></span>
+<section>
 
-<section><h2>Overview</h2>
-<p>This sub project will help web asset owners provide session timeout and inactivity timeout functionality. When a user requests a page with this plugin implemented their session will begin. After the specified session period, they will be notified that their session is about to timeout.  At this point, they will have the option to remain logged in by clicking "OK", or logging out by clicking "Cancel".  At anytime during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to time out. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "OK" or "Cancel" they will be automatically redirected to the log out page.</p>
-<p>The code you're allowed to edit (within the page) is:</p>
-<p><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew="{inactivity: 1200000, reactionTime: 30000, sessionalive: 1200000, logouturl: './', refreshCallbackUrl: './'}"&gt;&lt;/span&gt;</code></p>
-<p>This allows you to configure the plugin:</p>
-<ul>
-<li><strong>inactivity:</strong> This is the inactivity period of time after which the dialog message will appear.</li>
-<li><strong>reactionTime:</strong> This is the period of time the user has to perform an action with the dialog message.</li>
-<li><strong>sessionalive:</strong> This is the period of time for the session to stay alive until the dialog message appears.</li>
-<li><strong>logouturl:</strong> This is the URL that users are sent to when the session has expired.</li>
-<li><strong>refreshCallbackUrl:</strong> This is the URL to perform an ajax refresh, must return true/false.</li>
-</ul>
-<p>The only required parameter is logouturl, all other fields are optional. The default code would be:</p>
-<p><code>&lt;span class="wet-boew-sessiontimeout"&gt; data-wet-boew="{logouturl: './'}"&gt;&lt;/span&gt;</code></p>
-<p><strong>IMPORTANT NOTE:</strong> The inactivity, reactionTime and sessionalive parameters are set in milliseconds. The only required parameter is the logouturl. The default inactivity and sessionalive is set to 20 minutes with a 30 second confirmation time with the dialog message. The refreshCallbackUrl must not be a page containing the timeout function again as a loop will be created, it should be simply a viewless page that refreshes the session.</p>
-<p>Need help with the conversion? See: <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>
-<p><strong>IMPORTANT NOTE</strong>: Your sessionalive and inactivity parameters should be equal to your web server session alive time minus the reactionTime time. If you set your sessionalive time and inactivity time to the same as your web server without taking into consideration the reactionTime time then the session will have ended by the server as soon as the popup appears to extend the session.</p>
+<h2>Examples</h2>	
+
+	<div class="span-3">
+		
+		<p class="button-group">
+	   		<a href="#" class="wet-boew-toggledetails button button-accent">Toggle</a>
+	   		<a href="#" class="wet-boew-toggledetails button only-open print-open">Open</a>
+	   		<a href="#" class="wet-boew-toggledetails button only-close">Close</a>
+	   	</p>
+	   	
+		<details class="wet-boew-prettify all-pre linenums">
+			<summary>View code</summary>
+			<pre>
+&lt;p class="button-group"&gt;
+  &lt;a href="#" class="wet-boew-toggledetails button button-accent"&gt;Toggle&lt;/a&gt;
+  &lt;a href="#" class="wet-boew-toggledetails only-open button"&gt;Open&lt;/a&gt;
+  &lt;a href="#" class="wet-boew-toggledetails only-close button"&gt;Close&lt;/a&gt;
+&lt;/p&gt;</pre>
+		</details>	 
+		
+		
+		<details>
+			<summary>Details 1</summary>
+			<p>Example content that provides more details.</p>
+			<table>
+				<caption>Cups of coffee consumed by each delegate</caption>
+				<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Cups</th>
+					<th scope="col">Type of Coffee</th>
+					<th scope="col">Sugar?</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>T. Sexton</td>
+						<td>10</td>
+						<td>Espresso</td>
+						<td>No</td>
+					</tr>
+					<tr>
+						<td>J. Dinnen</td>
+						<td>5</td>
+						<td>Decaf</td>
+						<td>Yes</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>	
+		
+		<details>
+			<summary>Details 2</summary>
+			<div>
+				<div class="span-3 margin-bottom-none">
+					<img src="../tabs/images/demo-3.jpg" alt="description 1">
+					<div class="span-3 position-right position-top opacity-90 background-accent">
+						<p>Consectetur adipiscing elit.</p>
+					</div>
+				</div>	
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent est felis, gravida eu suscipit vitae, iaculis et leo. Aenean commodo erat sed dolor gravida in semper eros varius. Cras auctor sodales magna, eget tempus ligula pellentesque non.</p>
+			
+			</div>
+		</details>
+	   	
+	</div>
+
+	<div class="span-5">		
+		<p>CSS classes can be used to configure the behaviour of the toggle element.  These can also be set using the settings.js override file:
+		<table class="table-simplify">
+			<caption>
+			CSS Configuration Options
+			</caption>
+			<thead>
+				<tr>
+					<th scope="col" class="width-30">Class</th>
+					<th scope="col">Details</th>
+				</tr>
+			</thead>
+			<tr>
+				<td><code>wet-boew-toggledetails</code></td>
+				<td>Create a toggle element</td>
+			</tr>
+			<tr>
+				<td><code>no-title</code></td>
+				<td>Stop automatic update of the toggle element's title attribute</td>
+			</tr>
+			<tr>
+				<td><code>only-close</code></td>
+				<td>Toggle element will only close details</td>
+			</tr>
+			<tr>
+				<td><code>only-open</code></td>
+				<td>Toggle element will only open details</td>
+			</tr>
+			<tr>
+				<td><code>print-open</code></td>
+				<td>Automatically open details when printing (Internet Explorer and Firefox only)</td>
+			</tr>			
+		</table>		
+
+	</div>
+	<div class="clear"></div>
+	
 </section>
-<section><h2>How do I use it?</h2>
-<p>Add the following to the page:</p>
-<p><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew="{logouturl: './'}"&gt;&lt;/span&gt;</code></p>
-</section>
-<section><h2>Try it out!</h2>
-<p>This page has a 30 seconds inactivity timeout period. You also have 30 seconds to confirm if you want to keep the session alive. Please wait for the prompt to appear.</p>
-</section>
+
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>

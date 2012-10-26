@@ -204,7 +204,7 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return pe.mobiletest.offsetWidth !== 0; // CSS (through media queries) sets to offsetWidth = 0 in desktop view and offsetWidth = 1 in mobile view
+			return pe.mobiletest.offsetWidth === 1; // CSS (through media queries) sets to offsetWidth = 0 in desktop view and offsetWidth = 1 in mobile view
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -385,7 +385,7 @@
 		* @return {boolean}
 		*/
 		cssenabled: function () {
-			return $('link').get(0).disabled;
+			return pe.mobiletest.offsetWidth < 2; // pe.mobiletest will be either 0 or 1 if CSS is enabled
 		},
 		/**
 		* Returns a class-based set limit on plugin instances
@@ -898,8 +898,8 @@
 										subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme1, false, expand, theme2, false));
 									}
 									// If the original menu item was not in a menu bar
-									if (!menubar && !expand) {
-										subsection.find('div[data-role="collapsible-set"]').eq(0).append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme2, 'data-icon': 'arrow-r', 'data-iconpos': 'right', 'data-corners': 'false'}));
+									if (!menubar && toplevel) {
+										subsection.append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme2, 'data-icon': 'arrow-r', 'data-iconpos': 'right', 'data-corners': 'false'}));
 									}
 								}
 								menu.append(subsection);

@@ -36,10 +36,13 @@
 			//
 			timeholder =  document.getElementById(opts.modifiedId);
 			if (typeof timeholder === 'undefined' || timeholder === null) {
-				return false;
-			} else {
-				timeholder = timeholder.getElementsByTagName('time')[0];
-			}
+				return false; //No Date modified section at all, like the splash pages
+			} 
+			
+			timeholder = timeholder.getElementsByTagName('time')[0];
+			if (typeof timeholder === 'undefined' || timeholder === null) {
+				return false; //Date modified section is being used for a version string as per section 2.2.6.2  of the Standard on Web Usability
+			} 
 			
 			if ( timeholder.innerHTML === '' ||  opts.updateNonEmpty){
 				timeholder.innerHTML = modifiedMeta.content;
