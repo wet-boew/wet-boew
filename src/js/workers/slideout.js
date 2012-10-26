@@ -163,8 +163,7 @@
 					elm.attr('aria-hidden', 'true');
 				}
 
-//				if (typeof e !== 'undefined' && $(e.target).is(slideoutClose)) {
-				if ($(e.target).is(slideoutClose)) {
+				if (typeof e !== 'undefined' && $(e.target).is(slideoutClose)) {
 					return false;
 				}
 			};
