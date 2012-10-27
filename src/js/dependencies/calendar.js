@@ -61,17 +61,17 @@
 			}
 
 			//Reset calendar if the calendar previously existed
-			if (container.children('div#cal-' + containerid + '-cnt').length > 0) {
-				container.children('div#cal-' + containerid + '-cnt').find('ol#cal-' + containerid + '-weekdays, .cal-month, div#cal-' + containerid + '-days').remove();
-				objCalendar = container.children('div#cal-' + containerid + '-cnt');
+			if (container.children('#cal-' + containerid + '-cnt').length > 0) {
+				container.children('#cal-' + containerid + '-cnt').find('#cal-' + containerid + '-weekdays, .cal-month, #cal-' + containerid + '-days').remove();
+				objCalendar = container.children('#cal-' + containerid + '-cnt');
 			} else {
 				objCalendar = $('<div id="cal-' + containerid + '-cnt" class="cal-cnt"></div>');
 				container.append(objCalendar);
 			}
 
 			//Creates the calendar header
-			if (container.children('div#cal-' + containerid + '-cnt').children('.cal-header').length > 0) {
-				calHeader = container.children('div#cal-' + containerid + '-cnt').children('.cal-header');
+			if (container.children('#cal-' + containerid + '-cnt').children('.cal-header').length > 0) {
+				calHeader = container.children('#cal-' + containerid + '-cnt').children('.cal-header');
 			} else {
 				calHeader = $('<div class="cal-header"></div>');
 			}
@@ -132,7 +132,7 @@
 					}
 					break;
 				case 1:
-					if ($('#' + calendarid).children('div#cal-' + calendarid + '-cnt').children('.cal-header').find('.cal-goto').length < 1) {
+					if ($('#' + calendarid).children('#cal-' + calendarid + '-cnt').children('.cal-header').find('.cal-goto').length < 1) {
 						//Create the go to form
 						monthNav.append(_pe.fn.calendar.createGoToForm(calendarid, year, month, minDate, maxDate));
 					}
