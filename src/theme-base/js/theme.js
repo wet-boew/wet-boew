@@ -129,9 +129,10 @@
 				wet_boew_theme.fullft.parent().remove();
 
 				// transform the footer into mobile nav bar
-				footer1 = '<div data-role="navbar"><ul>';
-				links.each(function () {
-					footer1 += '<li><a href="' + this.href + '" data-theme="c">' + this.innerHTML + '</a></li>';
+				//footer1 = '<div data-role="navbar"><ul class="ui-grid-a">';
+				footer1 = '<div data-role="footer"><ul class="ui-grid-a">';
+				links.each(function (index) {
+					footer1 += '<li class="ui-block-' + (index % 2 !== 0 ? 'b' : 'a') + '"><a href="' + this.href + '" data-role="button" data-theme="c" data-corners="false">' + this.innerHTML + '</a></li>';
 				});
 				footer1 += '</ul></div>';
 				target.replaceWith(footer1);
