@@ -275,14 +275,21 @@ a{
 				background:none;
 			}
 		}
+		.nav-current {
+			background:#333;
+		}
+		.mb-active a.mb-has-sm {
+			&:hover, &:link, &:visited {
+			    background-color: #AAAAAA;
+				color: #000000;
+			}
+		}
 	}
-	.mb-menu,.mb-menu li{
+	.mb-menu,.mb-menu li {
 		background:#555;
 	}
 	.mb-menu {
-		.nav-current{
-			background:#333;
-		}
+
 	}
 }
 
@@ -291,4 +298,3 @@ a{
 		min-height: 22px;
 	}
 }
-	
