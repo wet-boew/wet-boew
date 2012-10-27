@@ -129,11 +129,11 @@ a {
 		a.ui-btn {
 			font-weight:700;
 			margin:0;
-			
+			border-top-width:0;
 		}
 		&:nth-child(1), &:nth-child(2) {
 			a.ui-btn {
-				border-bottom:0;
+				border-top-width:1px;
 			}
 		}
 		&.ui-block-a a.ui-btn {
