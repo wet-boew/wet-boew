@@ -91,7 +91,7 @@
 			}
 		},
 		_exec: function (elm, type) {
-			var $response, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results;
+			var $loading, $content, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results;
 			limit = _pe.limit(elm);
 			feeds = elm.find('a').map(function () {
 				var a = this.href;
@@ -106,8 +106,11 @@
 				}
 				return a;
 			});
-			$response = $('<ul class="widget-content"><li class="widget-state-loading"><img src="' + pe.add.liblocation + 'images/webfeeds/ajax-loader.gif" alt="' + pe.dic.get('%loading') + '" /></li></ul>');
-			elm.find('.widget-content').replaceWith($response);
+
+			$loading = $('<li class="widget-state-loading"><img src="' + pe.add.liblocation + 'images/webfeeds/ajax-loader.gif" alt="' + pe.dic.get('%loading') + '" /></li>');
+			$content = elm.find('.widget-content');
+			$content.find('li').hide();
+			$content.append($loading);
 
 			typeObj = _pe.fn.webwidget[type];
 
@@ -119,15 +122,21 @@
 
 			process_entries = function (data) {
 				var k, len;
-				data = typeObj._map_entries(data);
-				for (k = 0, len = data.length; k < len; k += 1) {
-					entries.push(data[k]);
+				try{
+					data = typeObj._map_entries(data);
+					for (k = 0, len = data.length; k < len; k += 1) {
+						entries.push(data[k]);
+					}
+					if (!last) {
+						parse_entries(entries, limit, $content);
+					}
+					
+					last -= 1;
+					return last;
+				}finally{
+					$loading.remove();
+					$content.find('li').show();
 				}
-				if (!last) {
-					parse_entries(entries, limit, $response);
-				}
-				last -= 1;
-				return last;
 			};
 
 			while (i >= 0) {
