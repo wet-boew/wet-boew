@@ -58,28 +58,18 @@
 	</target>
 	
 	<target name="-merge-css" depends="compile.sass">
-		<copy todir="${build.dir}/pre/merge/jquerymobile">
-			<fileset dir="${src.dir}/jquerymobile">
-				<include name="*.css"/>
-				<exclude name="*.min.css"/>
-			</fileset>
-		</copy>
-		<copy todir="${build.dir}/pre/merge/jquerymobile">
-			<fileset dir="${src.dir}/../js/jquerymobile">
-				<include name="*.css"/>
-				<exclude name="*.min.css"/>
-			</fileset>
-		</copy>
 		<loadfile srcfile="${src.dir}/../js/jquerymobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
 			<filterchain>
 				<headfilter lines="1"/>
 			</filterchain>
 		</loadfile>
 		<concat dest="${build.dir}/css/jquery.mobile.css">
-			<header>${jquery.mobile.license}</header> 
-			<fileset dir="${build.dir}/pre/merge/jquerymobile">
-				<include name="*theme.css"/>
+			<header>${jquery.mobile.license}</header>
+			<fileset dir="${src.dir}/../js/jquerymobile">
 				<include name="*structure.css"/>
+			</fileset>
+			<fileset dir="${src.dir}/jquerymobile">
+				<include name="*theme.css"/>
 			</fileset>
 		</concat>
 
