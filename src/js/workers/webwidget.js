@@ -35,11 +35,11 @@
 			_json_request: function (url) {
 				if (url.toLowerCase().indexOf('!/search/') > -1) {
 					return url.replace('http://', 'https://').replace(/https:\/\/twitter.com\/#!\/search\/(.+$)/, function (str, p1) {
-						return 'http://search.twitter.com/search.json?q=' + encodeURI(decodeURI(p1));
+						return 'http://search.twitter.com/search.json?q=' + encodeURI(decodeURI(p1)) + '&callback=?';
 					});
 				}
 				return url.replace('http://', 'https://').replace(/https:\/\/twitter.com\/#!\/(.+$)/i, function (str, p1) {
-					return 'http://twitter.com/status/user_timeline/' + encodeURI(decodeURI(p1)) + '.json?callback=?';
+					return 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=' + encodeURI(decodeURI(p1)) + '&callback=?';
 				});
 			}
 		},
