@@ -92,9 +92,6 @@
 		<copy todir="${build.dir}/pre/merge/css">
 			<fileset dir="${src.dir}/css"/>
 		</copy>
-		<copy todir="${build.dir}/pre/merge/../grids/css">
-			<fileset dir="${src.dir}/../grids/css"/>
-		</copy>
 		<copy todir="${build.dir}/pre/merge/../js/css">
 			<filelist dir="${src.dir}/../js/css">
 				<file name="pe-ap-ns.css"/>
