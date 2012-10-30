@@ -185,6 +185,8 @@
 			'%st-msgbox-title': 'Aviso de finalización de sesión',
 			'%st-already-timeout-msg': 'Lamentablemente su sesión ha expirado. Por favor ingrese nuevamente.',
 			/* Toggle details */
+			'%open': 'Open',
+			'%toggle': 'Toggle',			
 			'%toggle-open': 'Toggle open',
 			'%toggle-close': 'Toggle close',			
 			/* Disable/enable PE */
