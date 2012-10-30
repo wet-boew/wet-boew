@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base.scss';
+@import '../../base/sass/_base.scss';
 @import 'includes/serv.scss';
 /* -----Build Include Section End----- */
 
@@ -28,20 +28,20 @@
 }
 @media (min-width:768px) and (min-device-width:768px) {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-desktop.scss';
+@import '../../base/sass/_base-desktop.scss';
 @import 'includes/serv-desktop.scss';
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:768px) and (min-device-width:768px) {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-desktop-screen.scss';
+@import '../../base/sass/_base-desktop-screen.scss';
 @import 'includes/serv-desktop-screen.scss';
 /* -----Build Include Section End----- */
 }
 
 @media screen{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-screen.scss';
+@import '../../base/sass/_base-screen.scss';
 @import 'includes/serv-screen.scss';
 /* -----Build Include Section End----- */
 }
@@ -49,14 +49,14 @@
 /* Mobile view */
 @media screen and (max-width:767px), screen and (max-device-width:767px) {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-mobile.scss';
+@import '../../base/sass/_base-mobile.scss';
 @import 'includes/serv-mobile.scss';
 /* -----Build Include Section End----- */
 }
 
 @media print{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-print.scss';
+@import '../../base/sass/_base-print.scss';
 @import 'includes/serv-print.scss';
 /* -----Build Include Section End----- */
 }

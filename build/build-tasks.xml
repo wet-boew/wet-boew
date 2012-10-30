@@ -119,14 +119,7 @@
 			<else>
 				<ant dir="${gridsrc.dir}" target="compile.sass" inheritAll="false"/>
 			</else>
-		</if>		
-		<if>
-			<available type="dir" file="${basesrc.dir}/css"/>
-			<then />
-			<else>
-				<ant dir="${basesrc.dir}" target="compile.sass" inheritAll="false"/>
-			</else>
-		</if>		
+		</if>
 		<if>
 			<available type="dir" file="${jssrc.dir}/css"/>
 			<then />

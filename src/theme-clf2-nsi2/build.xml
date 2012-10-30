@@ -54,9 +54,6 @@
 			<fileset dir="${src.dir}/css"/>
 		</copy>
 		<replace dir="${build.dir}/pre/merge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
-		<copy todir="${build.dir}/pre/merge/../css">
-			<fileset dir="${src.dir}/../base/css"/>
-		</copy>
 		<copy todir="${build.dir}/pre/merge/../grids/css">
 			<fileset dir="${src.dir}/../grids/css"/>
 		</copy>
@@ -65,7 +62,6 @@
 				<file name="pe-ap-ns.css"/>
 			</filelist>
 		</copy>
-		<replace dir="${build.dir}/pre/merge/../css" token="@charset &quot;utf-8&quot;;" value=" "/>
 		<filelist id="corefiles" dir="${build.dir}/pre/merge/css">
 			<file name="theme.css"/>
 			<file name="theme-ie.css"/>

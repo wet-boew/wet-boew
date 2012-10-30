@@ -3,10 +3,10 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base.scss';
-@import '../../base/sass/base-desktop.scss';
-@import '../../base/sass/base-ie7.scss';
-@import '../../base/sass/base-ie8.scss';
+@import '../../base/sass/_base.scss';
+@import '../../base/sass/_base-desktop.scss';
+@import '../../base/sass/_base-ie7.scss';
+@import '../../base/sass/_base-ie8.scss';
 @import 'includes/serv.scss';
 @import 'includes/serv-desktop.scss';
 @import 'includes/serv-ie7.scss';
@@ -15,10 +15,10 @@
 
 @media screen{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-screen.scss';
-@import '../../base/sass/base-desktop-screen.scss';
-@import '../../base/sass/base-screen-ie7.scss';
-@import '../../base/sass/base-screen-ie8.scss';
+@import '../../base/sass/_base-screen.scss';
+@import '../../base/sass/_base-desktop-screen.scss';
+@import '../../base/sass/_base-screen-ie7.scss';
+@import '../../base/sass/_base-screen-ie8.scss';
 @import 'includes/serv-screen.scss';
 @import 'includes/serv-desktop-screen.scss';
 @import 'includes/serv-screen-ie7.scss';
@@ -29,9 +29,9 @@
 
 @media print{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-print.scss';
-@import '../../base/sass/base-print-ie7.scss';
-@import '../../base/sass/base-print-ie8.scss';
+@import '../../base/sass/_base-print.scss';
+@import '../../base/sass/_base-print-ie7.scss';
+@import '../../base/sass/_base-print-ie8.scss';
 @import 'includes/serv-print.scss';
 @import 'includes/serv-print-ie7.scss';
 @import 'includes/serv-print-ie8.scss';
