@@ -111,17 +111,7 @@
 			<exclude name="**/*.min.js"/>
 		</jshint>
 	</target>
-		
-	<target name="build-theme-deps" description="Initializes the Grid, JS and Base CSS projects so that the Sass has been compiled">
-	</target>
-	
-	<target name="clean-theme-deps" description="Clean the Grid, JS and Base CSS files. Used for after building an individual theme">
-		<ant dir="${gridsrc.dir}" target="clean-css" inheritAll="false"/>
-		<ant dir="${basesrc.dir}" target="clean-css" inheritAll="false"/>
-		<ant dir="${jssrc.dir}" target="clean-css" inheritAll="false"/>
-		<antcall target="clean-css" inheritAll="false"/>
-	</target>
-	
+
 	<target name="clean-css">
 		<delete dir="${src.dir}/css" />
 	</target>

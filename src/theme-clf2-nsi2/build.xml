@@ -49,7 +49,7 @@
 		</cssurlembed>
 	</target>
 	
-	<target name="-merge-css" depends="compile.sass, build-theme-deps">
+	<target name="-merge-css" depends="compile.sass">
 		<copy todir="${build.dir}/css">
 			<filelist dir="${src.dir}/css">
 				<file name="theme.css"/>

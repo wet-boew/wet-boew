@@ -56,7 +56,7 @@
 		</cssurlembed>
 	</target>
 	
-	<target name="-merge-css" depends="compile.sass, build-theme-deps">
+	<target name="-merge-css" depends="compile.sass">
 		<copy todir="${build.dir}/pre/merge/jquerymobile">
 			<fileset dir="${src.dir}/jquerymobile">
 				<include name="*.css"/>
