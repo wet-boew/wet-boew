@@ -3,25 +3,25 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /* -----Build Include Section Start----- */
-@import '../../base/sass/_base.scss';
-@import 'includes/sp-pe.scss';
-@import 'includes/sp-pe-responsive.scss';
-@import '../../base/sass/_base-desktop.scss';
-@import 'includes/sp-pe-desktop.scss';
+@import '../../base/sass/base';
+@import 'includes/sp-pe';
+@import 'includes/sp-pe-responsive';
+@import '../../base/sass/base-desktop';
+@import 'includes/sp-pe-desktop';
 /* -----Build Include Section End----- */
 
 @media screen {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/_base-desktop-screen.scss';
-@import 'includes/sp-pe-desktop-screen.scss';
-@import '../../base/sass/_base-screen.scss';
-@import 'includes/sp-pe-screen.scss';
+@import '../../base/sass/base-desktop-screen';
+@import 'includes/sp-pe-desktop-screen';
+@import '../../base/sass/base-screen';
+@import 'includes/sp-pe-screen';
 /* -----Build Include Section End----- */
 }
 
 @media print{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/_base-print.scss';
-@import 'includes/sp-pe-print.scss';
+@import '../../base/sass/base-print';
+@import 'includes/sp-pe-print';
 /* -----Build Include Section End----- */
 }

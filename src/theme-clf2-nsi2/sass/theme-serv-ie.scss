@@ -3,37 +3,37 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /* -----Build Include Section Start----- */
-@import '../../base/sass/_base.scss';
-@import '../../base/sass/_base-desktop.scss';
-@import '../../base/sass/_base-ie7.scss';
-@import '../../base/sass/_base-ie8.scss';
-@import 'includes/serv.scss';
-@import 'includes/serv-desktop.scss';
-@import 'includes/serv-ie7.scss';
-@import 'includes/serv-ie8.scss';
+@import '../../base/sass/base';
+@import '../../base/sass/base-desktop';
+@import '../../base/sass/base-ie7';
+@import '../../base/sass/base-ie8';
+@import 'includes/serv';
+@import 'includes/serv-desktop';
+@import 'includes/serv-ie7';
+@import 'includes/serv-ie8';
 /* -----Build Include Section End----- */
 
 @media screen{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/_base-screen.scss';
-@import '../../base/sass/_base-desktop-screen.scss';
-@import '../../base/sass/_base-screen-ie7.scss';
-@import '../../base/sass/_base-screen-ie8.scss';
-@import 'includes/serv-screen.scss';
-@import 'includes/serv-desktop-screen.scss';
-@import 'includes/serv-screen-ie7.scss';
-@import 'includes/serv-screen-ie8.scss';
-@import 'includes/serv-responsive.scss';
+@import '../../base/sass/base-screen';
+@import '../../base/sass/base-desktop-screen';
+@import '../../base/sass/base-screen-ie7';
+@import '../../base/sass/base-screen-ie8';
+@import 'includes/serv-screen';
+@import 'includes/serv-desktop-screen';
+@import 'includes/serv-screen-ie7';
+@import 'includes/serv-screen-ie8';
+@import 'includes/serv-responsive';
 /* -----Build Include Section End----- */
 }
 
 @media print{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/_base-print.scss';
-@import '../../base/sass/_base-print-ie7.scss';
-@import '../../base/sass/_base-print-ie8.scss';
-@import 'includes/serv-print.scss';
-@import 'includes/serv-print-ie7.scss';
-@import 'includes/serv-print-ie8.scss';
+@import '../../base/sass/base-print';
+@import '../../base/sass/base-print-ie7';
+@import '../../base/sass/base-print-ie8';
+@import 'includes/serv-print';
+@import 'includes/serv-print-ie7';
+@import 'includes/serv-print-ie8';
 /* -----Build Include Section End----- */
 }
