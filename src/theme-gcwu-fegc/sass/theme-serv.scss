@@ -10,19 +10,19 @@
 /* Desktop view */
 @media screen and (min-width:768px) and (min-device-width:768px) {
 /* -----Build Include Section Start----- */
-@import '../../grids/sass/responsive.scss';
+@import '../../grids/sass/_responsive.scss';
 @import 'includes/default-responsive.scss';
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:768px) and (max-width:959px) and (min-device-width:768px) {
 /* -----Build Include Section Start----- */
-@import '../../grids/sass/responsive-768.scss';
+@import '../../grids/sass/_responsive-768.scss';
 @import 'includes/default-responsive-768.scss';
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width:1200px) and (min-device-width:768px) {
 /* -----Build Include Section Start----- */
-@import '../../grids/sass/responsive-1200.scss';
+@import '../../grids/sass/_responsive-1200.scss';
 @import 'includes/default-responsive-1200.scss';
 /* -----Build Include Section End----- */
 }
