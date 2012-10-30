@@ -58,13 +58,6 @@
 	</target>
 	
 	<target name="-merge-css" depends="compile.sass, build-theme-deps">
-		<if>
-			<available type="dir" file="${src.dir}/../theme-gcwu-fegc/css"/>
-			<then/>
-			<else>
-				<ant dir="${src.dir}/../theme-gcwu-fegc" target="compile.sass" inheritAll="false"/>
-			</else>
-		</if>	
 		<copy todir="${build.dir}/pre/merge/jquerymobile">
 			<fileset dir="${src.dir}/jquerymobile">
 				<include name="*.css"/>
@@ -82,36 +75,16 @@
 				<headfilter lines="1"/>
 			</filterchain>
 		</loadfile>
-		<concat dest="${build.dir}/pre/merge/css/jquery.mobile.css">
+		<concat dest="${build.dir}/css/jquery.mobile.css">
 			<header>${jquery.mobile.license}</header> 
 			<fileset dir="${build.dir}/pre/merge/jquerymobile">
 				<include name="*theme.css"/>
 				<include name="*structure.css"/>
 			</fileset>
 		</concat>
-		<copy todir="${build.dir}/pre/merge/css">
-			<fileset dir="${src.dir}/css"/>
-		</copy>
-		<copy todir="${build.dir}/pre/merge/../js/css">
-			<filelist dir="${src.dir}/../js/css">
-				<file name="pe-ap-ns.css"/>
-			</filelist>
-		</copy>
-		<copy todir="${build.dir}/pre/merge/../theme-gcwu-fegc/css/includes">
-			<fileset dir="${src.dir}/../theme-gcwu-fegc/css/includes"/>
-		</copy>
-		<filelist id="corefiles" dir="${build.dir}/pre/merge/css">
-			<file name="theme.css"/>
-			<file name="theme-ie.css"/>
-			<file name="theme-sp-pe.css"/>
-			<file name="theme-sp-pe-ie.css"/>
-			<file name="theme-serv.css"/>
-			<file name="theme-serv-ie.css"/>
-			<file name="theme-ns.css"/>
-		</filelist>
 
 		<copy todir="${build.dir}/css">
-			<filelist dir="${build.dir}/pre/merge/css">
+			<filelist dir="${src.dir}/css">
 				<file name="theme.css"/>
 				<file name="theme-ie.css"/>
 				<file name="theme-sp-pe.css"/>
@@ -128,12 +101,6 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
-		<copy todir="${build.dir}/css">
-			<filelist dir="${build.dir}/pre/merge/css">
-				<file name="jquery.mobile.css"/>
-			</filelist>
-		</copy>
-		<delete dir="${build.dir}/pre"/>
 	</target>
 
 	<target name="test" depends="-jshint"/>
