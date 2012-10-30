@@ -24,7 +24,7 @@
 				result = '<ul class="widget-content">';
 				for (i = 0; i < cap; i += 1) {
 					sorted_entry = sorted[i];
-					result += '<li><a class="float-left" href="http://www.twitter.com/' + sorted_entry.user.name + '/status/' + sorted_entry.user.id + '"><img class="widget-avatar" src="' + sorted_entry.user.profile_image_url + '" alt="' + sorted_entry.user.name + '" /></a> ' + pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' + pe.dic.ago(sorted_entry.created_at) + '</span></li>';
+					result += '<li><a class="float-left" href="http://www.twitter.com/' + sorted_entry.user.screen_name + '"><img class="widget-avatar" src="' + sorted_entry.user.profile_image_url + '" alt="' + sorted_entry.user.name + '" /></a> ' + pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' + pe.dic.ago(sorted_entry.created_at) + '</span></li>';
 				}
 				result += '</ul>';
 				return elm.replaceWith(result);
