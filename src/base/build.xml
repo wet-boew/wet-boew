@@ -7,7 +7,7 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="build" depends="-init, compile.sass" />
+	<target name="build" />
 	
 	<target name="test" description="Placeholder for future test tasks"/>
 
