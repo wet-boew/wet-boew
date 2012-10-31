@@ -181,6 +181,8 @@
 			'%st-msgbox-title': 'Avertissement d\'expiration de la session',
 			'%st-already-timeout-msg': 'Désolé, votre session a déjà expiré. S\'il vous plaît vous connecter à nouveau.',
 			/* Toggle details */
+			'%open': 'Ouvrir',
+			'%toggle': 'Basculer',			
 			'%toggle-open': 'Basculer: ouvrir',
 			'%toggle-close': 'Basculer: fermé',			
 			/* Disable/enable PE */

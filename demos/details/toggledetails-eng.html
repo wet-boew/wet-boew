@@ -106,66 +106,26 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 	<div class="span-3">
 		
-		<p class="button-group">
-	   		<a href="#" class="wet-boew-toggledetails button button-accent">Toggle</a>
-	   		<a href="#" class="wet-boew-toggledetails button only-open print-open">Open</a>
-	   		<a href="#" class="wet-boew-toggledetails button only-close">Close</a>
-	   	</p>
+		<div class="wet-boew-toggledetails toggle toggle-open toggle-close accent-first print-open"></div>
 	   	
 		<details class="wet-boew-prettify all-pre linenums">
 			<summary>View code</summary>
-			<pre>
-&lt;p class="button-group"&gt;
-  &lt;a href="#" class="wet-boew-toggledetails button button-accent"&gt;Toggle&lt;/a&gt;
-  &lt;a href="#" class="wet-boew-toggledetails only-open button"&gt;Open&lt;/a&gt;
-  &lt;a href="#" class="wet-boew-toggledetails only-close button"&gt;Close&lt;/a&gt;
-&lt;/p&gt;</pre>
-		</details>	 
-		
-		
-		<details>
-			<summary>Details 1</summary>
-			<p>Example content that provides more details.</p>
-			<table>
-				<caption>Cups of coffee consumed by each delegate</caption>
-				<thead>
-				<tr>
-					<th scope="col">Name</th>
-					<th scope="col">Cups</th>
-					<th scope="col">Type of Coffee</th>
-					<th scope="col">Sugar?</th>
-				</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>T. Sexton</td>
-						<td>10</td>
-						<td>Espresso</td>
-						<td>No</td>
-					</tr>
-					<tr>
-						<td>J. Dinnen</td>
-						<td>5</td>
-						<td>Decaf</td>
-						<td>Yes</td>
-					</tr>
-				</tbody>
-			</table>
-		</details>	
-		
-		<details>
-			<summary>Details 2</summary>
-			<div>
-				<div class="span-3 margin-bottom-none">
-					<img src="../tabs/images/demo-3.jpg" alt="description 1">
-					<div class="span-3 position-right position-top opacity-90 background-accent">
-						<p>Consectetur adipiscing elit.</p>
-					</div>
-				</div>	
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent est felis, gravida eu suscipit vitae, iaculis et leo. Aenean commodo erat sed dolor gravida in semper eros varius. Cras auctor sodales magna, eget tempus ligula pellentesque non.</p>
-			
-			</div>
+			<pre>&lt;div class="wet-boew-toggledetails toggle toggle-open toggle-close accent-first print-open"&gt;&lt;/div&gt;</pre>
 		</details>
+		
+		<div class="wet-boew-toggledetails toggle-open toggle-close"></div>
+	   	
+		<details class="wet-boew-prettify all-pre linenums">
+			<summary>View code</summary>
+			<pre>&lt;div class="wet-boew-toggledetails toggle-open toggle-close"&gt;&lt;/div&gt;</pre>
+		</details>		
+		
+		<div class="wet-boew-toggledetails"></div>
+	   	
+		<details class="wet-boew-prettify all-pre linenums">
+			<summary>View code</summary>
+			<pre>&lt;div class="wet-boew-toggledetails"&gt;&lt;/div&gt;</pre>
+		</details>				
 	   	
 	</div>
 
@@ -183,24 +143,28 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			</thead>
 			<tr>
 				<td><code>wet-boew-toggledetails</code></td>
-				<td>Create a toggle element</td>
+				<td>Create a toggle element.  With no other options this will create a single toggle button.</td>
 			</tr>
 			<tr>
-				<td><code>no-title</code></td>
-				<td>Stop automatic update of the toggle element's title attribute</td>
-			</tr>
-			<tr>
-				<td><code>only-close</code></td>
-				<td>Toggle element will only close details</td>
-			</tr>
-			<tr>
-				<td><code>only-open</code></td>
-				<td>Toggle element will only open details</td>
+				<td><code>accent-first</code></td>
+				<td>Accents the first button</td>
 			</tr>
 			<tr>
 				<td><code>print-open</code></td>
-				<td>Automatically open details when printing (Internet Explorer and Firefox only)</td>
-			</tr>			
+				<td>Automatically open details when printing</td>
+			</tr>							
+			<tr>
+				<td><code>toggle</code></td>
+				<td>Add a button that opens and closes details elements</td>
+			</tr>
+			<tr>
+				<td><code>toggle-close</code></td>
+				<td>Add a button that will only close details elements</td>
+			</tr>
+			<tr>
+				<td><code>toggle-open</code></td>
+				<td>Add a button that will only open details elements</td>
+			</tr>		
 		</table>		
 
 	</div>

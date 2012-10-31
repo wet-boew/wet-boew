@@ -184,6 +184,8 @@
 			"%st-msgbox-title": "Session timeout warning",
 			"%st-already-timeout-msg": "Sorry your session has already expired. Please login again.",
 			/* Toggle details */
+			'%open': 'Open',
+			'%toggle': 'Toggle',			
 			'%toggle-open': 'Toggle open',
 			'%toggle-close': 'Toggle close',			
 			/* Disable/enable PE */
