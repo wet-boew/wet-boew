@@ -7,15 +7,15 @@
  */
 @media screen{
 /* -----Build Include Section Start----- */
-@import 'includes/util-screen.scss';
-@import 'includes/util-desktop-screen.scss';
-@import 'includes/fix-ie7.scss';
-@import 'includes/fix-ie8.scss';
+@import 'includes/_util-screen.scss';
+@import 'includes/_util-desktop-screen.scss';
+@import 'includes/_fix-ie7.scss';
+@import 'includes/_fix-ie8.scss';
 /* -----Build Include Section End----- */
 }
 
 @media print{
 /* -----Build Include Section Start----- */
-@import 'includes/util-print.scss';
+@import 'includes/_util-print.scss';
 /* -----Build Include Section End----- */
 }
