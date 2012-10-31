@@ -49,35 +49,9 @@
 		</cssurlembed>
 	</target>
 	
-	<target name="-merge-css" depends="compile.sass, build-theme-deps">
-		<copy todir="${build.dir}/pre/merge/css">
-			<fileset dir="${src.dir}/css"/>
-		</copy>
-		<replace dir="${build.dir}/pre/merge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
-		<copy todir="${build.dir}/pre/merge/../css">
-			<fileset dir="${src.dir}/../base/css"/>
-		</copy>
-		<copy todir="${build.dir}/pre/merge/../grids/css">
-			<fileset dir="${src.dir}/../grids/css"/>
-		</copy>
-		<copy todir="${build.dir}/pre/merge/../js/css">
-			<filelist dir="${src.dir}/../js/css">
-				<file name="pe-ap-ns.css"/>
-			</filelist>
-		</copy>
-		<replace dir="${build.dir}/pre/merge/../css" token="@charset &quot;utf-8&quot;;" value=" "/>
-		<filelist id="corefiles" dir="${build.dir}/pre/merge/css">
-			<file name="theme.css"/>
-			<file name="theme-ie.css"/>
-			<file name="theme-sp-pe.css"/>
-			<file name="theme-sp-pe-ie.css"/>
-			<file name="theme-serv.css"/>
-			<file name="theme-serv-ie.css"/>
-			<file name="theme-ns.css"/>
-		</filelist>
-
+	<target name="-merge-css" depends="compile.sass">
 		<copy todir="${build.dir}/css">
-			<filelist dir="${build.dir}/pre/merge/css">
+			<filelist dir="${src.dir}/css">
 				<file name="theme.css"/>
 				<file name="theme-ie.css"/>
 				<file name="theme-sp-pe.css"/>
@@ -94,7 +68,6 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
-		<delete dir="${build.dir}/pre"/>
 	</target>
 	
 	<target name="test" depends="-jshint"/>
