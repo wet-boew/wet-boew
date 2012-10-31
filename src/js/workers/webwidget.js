@@ -148,7 +148,14 @@
 			};
 
 			while (i >= 0) {
-				$.getJSON(typeObj._json_request(feeds[i]), process_entries);
+				//$.getJSON(typeObj._json_request(feeds[i]), process_entries);
+				$.ajax({
+					url: typeObj._json_request(feeds[i]),
+					dataType: 'json',
+					success: process_entries,
+					timeout:1000,
+					error: fallback
+				});
 				_results.push(i -= 1);
 			}
 
