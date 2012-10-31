@@ -95,9 +95,7 @@
 		},
 		
 		toggle : function() {
-			var i, 
-				length,
-				$details = $('details');
+			var $details = $('details');
 			
 			// Set the state we're currently in and trigger the change
 			$details.prop('open', this.isOpen());
@@ -105,15 +103,13 @@
 			
 			// Update our state and the title of the toggler controls
 			this.setOpen(!this.isOpen());
-			for(i = 0, length = this._togglers.length; i < length; i++) {
+			for(var i = 0, length = this._togglers.length; i < length; i++) {
 				this._setTitle(this._togglers[i]);
 			}
 		},
 			
 		_initTogglers : function(elm, opts) {
-			var i,
-				length,
-				li,
+			var li,
 				toggler,
 				types,				
 				ul = document.createElement('ul'); 
@@ -125,7 +121,7 @@
 							
 			// Create the requested togglers and add to the page
 			types = _pe.array.keys(opts.togglers);
-			for(i = 0, length = types.length; i < length; i++) {
+			for(var i = 0, length = types.length; i < length; i++) {
 				if(opts.togglers[types[i]] === true) {
 					toggler = this._createToggler(types[i], opts);
 					li = document.createElement('li');
