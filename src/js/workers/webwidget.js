@@ -16,12 +16,11 @@
 		type: 'plugin',
 		twitter: {
 			_parse_entries: function (entries, limit, elm) {
-				var cap, i, result, sorted, sorted_entry;
+				var cap, i, result = "", sorted, sorted_entry;
 				cap = (limit > 0 && limit < entries.length ? limit : entries.length);
 				sorted = entries.sort(function (a, b) {
 					return pe.date.compare(b.created_at.replace('+0000 ', '') + ' GMT', a.created_at.replace('+0000 ', '') + ' GMT');
 				});
-				result = '<ul class="widget-content">';
 				for (i = 0; i < cap; i += 1) {
 					sorted_entry = sorted[i];
 					if (sorted_entry.user !== undefined) {
@@ -30,8 +29,7 @@
 						result += '<li><a class="float-left" href="http://www.twitter.com/' + sorted_entry.from_user + '"><img class="widget-avatar" src="' + sorted_entry.profile_image_url + '" alt="' + sorted_entry.from_user_name + '" /></a> ' + pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' + pe.dic.ago(sorted_entry.created_at) + '</span></li>';
 					}
 				}
-				result += '</ul>';
-				return elm.replaceWith(result);
+				return elm.empty().append(result);
 			},
 			_map_entries : function (data) {
 				return data.results !== undefined ? data.results : data;
@@ -50,8 +48,8 @@
 		weather: {
 			_parse_entries: function (entries, limit, elm) {
 				var entry = entries[1],
-					result = '<ul class="widget-content"><li><a href="' + entry.link + '">' + entry.title + '</a><span class="widget-datestamp">[' + pe.date.to_iso_format(entry.publishedDate, true) + ']</span></li></ul>';
-				return elm.replaceWith(result);
+					result = '<li><a href="' + entry.link + '">' + entry.title + '</a><span class="widget-datestamp">[' + pe.date.to_iso_format(entry.publishedDate, true) + ']</span></li>';
+				return elm.empty().append(result);
 			},
 			_map_entries : function (data) {
 				return data.responseData.feed.entries;
@@ -68,18 +66,16 @@
 		},
 		rss: {
 			_parse_entries: function (entries, limit, elm) {
-				var cap, i, result, sorted, sorted_entry;
+				var cap, i, result = "", sorted, sorted_entry;
 				cap = (limit > 0 && limit < entries.length ? limit : entries.length);
 				sorted = entries.sort(function (a, b) {
 					return pe.date.compare(b.publishedDate, a.publishedDate);
 				});
-				result = '<ul class="widget-content">';
 				for (i = 0; i < cap; i += 1) {
 					sorted_entry = sorted[i];
 					result += '<li><a href="' + sorted_entry.link + '">' + sorted_entry.title + '</a><span class="widget-datestamp">[' + pe.date.to_iso_format(sorted_entry.publishedDate, true) + ']</span></li>';
 				}
-				result += '</ul>';
-				return elm.replaceWith(result);
+				return elm.empty().append(result);
 			},
 
 			_map_entries : function (data) {
@@ -95,7 +91,7 @@
 			}
 		},
 		_exec: function (elm, type) {
-			var $loading, $content, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results, fallback;
+			var $loading, $content, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results, finalize;
 			limit = _pe.limit(elm);
 			feeds = elm.find('a').map(function () {
 				var a = this.href;
@@ -113,7 +109,6 @@
 
 			$loading = $('<li class="widget-state-loading"><img src="' + pe.add.liblocation + 'images/webfeeds/ajax-loader.gif" alt="' + pe.dic.get('%loading') + '" /></li>');
 			$content = elm.find('.widget-content');
-			$content.find('li').hide();
 			$content.append($loading);
 
 			typeObj = _pe.fn.webwidget[type];
@@ -124,38 +119,32 @@
 			i = feeds.length - 1;
 			_results = [];
 
-			fallback = function () {
+			process_entries = function (data) {
+				var k, len;
+				data = typeObj._map_entries(data);
+				for (k = 0, len = data.length; k < len; k += 1) {
+					entries.push(data[k]);
+				}
+				if (!last) {
+					parse_entries(entries, limit, $content);
+				}
+
+				last -= 1;
+				return last;
+			};
+			
+			finalize = function () {
 				$loading.remove();
 				$content.find('li').show();
 			};
 
-			process_entries = function (data) {
-				var k, len;
-				try {
-					data = typeObj._map_entries(data);
-					for (k = 0, len = data.length; k < len; k += 1) {
-						entries.push(data[k]);
-					}
-					if (!last) {
-						parse_entries(entries, limit, $content);
-					}
-
-					last -= 1;
-					return last;
-				} finally {
-					fallback();
-				}
-			};
-
 			while (i >= 0) {
-				//$.getJSON(typeObj._json_request(feeds[i]), process_entries);
 				$.ajax({
 					url: typeObj._json_request(feeds[i]),
 					dataType: 'json',
 					success: process_entries,
-					timeout:1000,
-					error: fallback
-				});
+					timeout: 1000
+				}).complete(finalize);
 				_results.push(i -= 1);
 			}
 
