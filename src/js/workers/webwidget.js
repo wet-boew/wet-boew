@@ -24,22 +24,26 @@
 				result = '<ul class="widget-content">';
 				for (i = 0; i < cap; i += 1) {
 					sorted_entry = sorted[i];
-					result += '<li><a class="float-left" href="http://www.twitter.com/' + sorted_entry.user.name + '/status/' + sorted_entry.user.id + '"><img class="widget-avatar" src="' + sorted_entry.user.profile_image_url + '" alt="' + sorted_entry.user.name + '" /></a> ' + pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' + pe.dic.ago(sorted_entry.created_at) + '</span></li>';
+					if (sorted_entry.user !== undefined) {
+						result += '<li><a class="float-left" href="http://www.twitter.com/' + sorted_entry.user.screen_name + '"><img class="widget-avatar" src="' + sorted_entry.user.profile_image_url + '" alt="' + sorted_entry.user.name + '" /></a> ' + pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' + pe.dic.ago(sorted_entry.created_at) + '</span></li>';
+					} else {
+						result += '<li><a class="float-left" href="http://www.twitter.com/' + sorted_entry.from_user + '"><img class="widget-avatar" src="' + sorted_entry.profile_image_url + '" alt="' + sorted_entry.from_user_name + '" /></a> ' + pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' + pe.dic.ago(sorted_entry.created_at) + '</span></li>';
+					}
 				}
 				result += '</ul>';
 				return elm.replaceWith(result);
 			},
 			_map_entries : function (data) {
-				return data;
+				return data.results !== undefined ? data.results : data;
 			},
 			_json_request: function (url) {
 				if (url.toLowerCase().indexOf('!/search/') > -1) {
 					return url.replace('http://', 'https://').replace(/https:\/\/twitter.com\/#!\/search\/(.+$)/, function (str, p1) {
-						return 'http://search.twitter.com/search.json?q=' + encodeURI(decodeURI(p1));
+						return 'http://search.twitter.com/search.json?q=' + encodeURI(decodeURI(p1)) + '&callback=?';
 					});
 				}
 				return url.replace('http://', 'https://').replace(/https:\/\/twitter.com\/#!\/(.+$)/i, function (str, p1) {
-					return 'http://twitter.com/status/user_timeline/' + encodeURI(decodeURI(p1)) + '.json?callback=?';
+					return 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=' + encodeURI(decodeURI(p1)) + '&callback=?';
 				});
 			}
 		},
@@ -91,7 +95,7 @@
 			}
 		},
 		_exec: function (elm, type) {
-			var $response, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results;
+			var $loading, $content, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results, fallback;
 			limit = _pe.limit(elm);
 			feeds = elm.find('a').map(function () {
 				var a = this.href;
@@ -106,8 +110,11 @@
 				}
 				return a;
 			});
-			$response = $('<ul class="widget-content"><li class="widget-state-loading"><img src="' + pe.add.liblocation + 'images/webfeeds/ajax-loader.gif" alt="' + pe.dic.get('%loading') + '" /></li></ul>');
-			elm.find('.widget-content').replaceWith($response);
+
+			$loading = $('<li class="widget-state-loading"><img src="' + pe.add.liblocation + 'images/webfeeds/ajax-loader.gif" alt="' + pe.dic.get('%loading') + '" /></li>');
+			$content = elm.find('.widget-content');
+			$content.find('li').hide();
+			$content.append($loading);
 
 			typeObj = _pe.fn.webwidget[type];
 
@@ -117,17 +124,27 @@
 			i = feeds.length - 1;
 			_results = [];
 
+			fallback = function () {
+				$loading.remove();
+				$content.find('li').show();
+			};
+
 			process_entries = function (data) {
 				var k, len;
-				data = typeObj._map_entries(data);
-				for (k = 0, len = data.length; k < len; k += 1) {
-					entries.push(data[k]);
+				try {
+					data = typeObj._map_entries(data);
+					for (k = 0, len = data.length; k < len; k += 1) {
+						entries.push(data[k]);
+					}
+					if (!last) {
+						parse_entries(entries, limit, $content);
+					}
+
+					last -= 1;
+					return last;
+				} finally {
+					fallback();
 				}
-				if (!last) {
-					parse_entries(entries, limit, $response);
-				}
-				last -= 1;
-				return last;
 			};
 
 			while (i >= 0) {
