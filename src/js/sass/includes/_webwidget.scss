@@ -2,6 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+.no-js .wet-boew-webwidget li{
+		display: block;
+}
 .wet-boew-webwidget {
 	background:{
 		repeat:repeat-x;
@@ -10,7 +13,8 @@
 		image:url(../images/webfeeds/gradient.png)!important;
 	}
 	color:#555;
-	.widget-state-loading{
+	li.widget-state-loading{
+		display:block!important;
 		margin:auto;
 		width:100%;
 		line-height:60px;
@@ -68,12 +72,14 @@
 		padding:5px 2px 2px 5px!important;
 	}
 	li{
+		display: none;
 		margin:0!important;
 		padding:0 0 10px 0!important;
 		float:left; 
 		a img{
 			margin-right:5px;
 		}
+		
 	}
 	p.widget-lang{
 		margin:0;
