@@ -7,7 +7,7 @@ WET-BOEW-Settings
  */
 var wet_boew_properties = {
 	/** global plugins are called via a array of dependency names **/
-	globals : ['equalize', 'deselectradio', 'css3ie']
+	globals : ['equalize', 'deselectradio', 'css3ie'],
 };
 
 /*
