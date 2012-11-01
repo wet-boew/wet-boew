@@ -24,7 +24,7 @@ table {
 }
 
 dl.wet-boew-zebra {
-	margin-left: 0px;
+	margin-left: 0;
 }
 	
 .wet-boew-zebra {
@@ -63,7 +63,7 @@ dl.wet-boew-zebra {
 		}
 	}
 	dl, dd {
-		margin-left: 0px;
+		margin-left: 0;
 	}
 	dt, dd {
 		padding: 10px;
@@ -74,7 +74,7 @@ dl.wet-boew-zebra {
 	}
 
 	&.nomargin {
-		margin: 0px;
+		margin: 0;
 	}
 	tr{
 		&.table-odd, &.table-even tr.table-odd{

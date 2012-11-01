@@ -337,7 +337,7 @@ table{
 .date-month {
 	width: 100%;
 	border: 1px solid rgba(0,0,0,0.25);
-	box-shadow: inset 0px 1px 1px 0px rgba(255,255,255,0.4);
+	box-shadow: inset 0 1px 1px 0 rgba(255,255,255,0.4);
 	
 	@include border-top-radius;
 	@include colorize-base($accent);
@@ -346,7 +346,7 @@ table{
 		text-align: center;
 		color: #fff;
 		font-size: 85%;
-		text-shadow: 0px 1px 0px #111;
+		text-shadow: 0 1px 0 #111;
 		margin: 5px 0 0 0;
 		margin: 3px 8px 0 8px;
 		padding: 0 0 1px 0;
@@ -359,7 +359,7 @@ table{
 	width: 100%;	
 	@include background(top, rgba(255, 255, 255, 1) 0%, rgba(247, 247, 247, 1) 100%);
 	@include border-bottom-radius($default-border-radius);
-	@include box-shadow(0px 1px 0px 0px $light, 0px 2px 0px 0px $silver,0px 3px 0px 0px $light, 0px 4px 0px 0px $silver);
+	@include box-shadow(0 1px 0 0 $light, 0 2px 0 0 $silver,0 3px 0 0 $light, 0 4px 0 0 $silver);
 	p {
 		text-align: center;
 		font:{
@@ -369,7 +369,7 @@ table{
 		color: $dark;
 		letter-spacing: -0.1em;
 		line-height: 55px;
-		text-shadow: 1px 1px 0px $white;
+		text-shadow: 1px 1px 0 $white;
 		margin: 0 !important;
 		width: 100%;
 	}
