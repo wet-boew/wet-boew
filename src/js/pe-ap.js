@@ -43,6 +43,7 @@
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
 		document: $(document),
 		mobiletest: '',
+		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 
 		/**
 		* @memberof pe
@@ -699,7 +700,9 @@
 				li = document.createElement('li'),
 				qparams = pe.urlquery,
 				qparam,
-				newquery = '?';
+				newquery = '?',
+				settings = pe.settings,
+				pedisable_link = (settings && typeof settings.pedisable_link === 'boolean' ? settings.pedisable_link : true);
 
 			for (qparam in qparams) { // Rebuild the query string
 				if (qparams.hasOwnProperty(qparam) && qparam !== 'pedisable') {
@@ -712,16 +715,23 @@
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
 				}
-				li.innerHTML = '<a href="' + newquery + 'pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
-				tphp.appendChild(li); // Add link to re-enable PE
+				// Append the Standard version link version unless explicitly disabled in settings.js
+				if (pedisable_link) {
+					li.innerHTML = '<a href="' + newquery + 'pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
+					tphp.appendChild(li); // Add link to re-enable PE
+				}
 				return true;
 			} else if (disable === "false" || disablels !== null) {
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
 				}
 			}
-			li.innerHTML = '<a href="' + newquery + 'pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
-			tphp.appendChild(li); // Add link to disable PE
+
+			// Append the Basic HTML version link version unless explicitly disabled in settings.js
+			if (pedisable_link) {
+				li.innerHTML = '<a href="' + newquery + 'pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
+				tphp.appendChild(li); // Add link to disable PE
+			}
 			return false;
 		},
 		/**
@@ -1455,7 +1465,7 @@
 				finished_event = "wb-loaded";
 			}
 			var i, _len,
-				settings = (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
+				settings = pe.settings,
 				plugins = typeof options.plugins !== 'undefined' ? options.plugins : {},
 				plug,
 				pcalls = typeof options.global !== 'undefined' ? options.global : [],
