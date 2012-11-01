@@ -16,7 +16,7 @@
 		type: 'plugin',
 		twitter: {
 			_parse_entries: function (entries, limit, elm) {
-				var cap, i, result = "", sorted, sorted_entry;
+				var cap, i, result = '', sorted, sorted_entry;
 				cap = (limit > 0 && limit < entries.length ? limit : entries.length);
 				sorted = entries.sort(function (a, b) {
 					return pe.date.compare(b.created_at.replace('+0000 ', '') + ' GMT', a.created_at.replace('+0000 ', '') + ' GMT');
@@ -66,7 +66,7 @@
 		},
 		rss: {
 			_parse_entries: function (entries, limit, elm) {
-				var cap, i, result = "", sorted, sorted_entry;
+				var cap, i, result = '', sorted, sorted_entry;
 				cap = (limit > 0 && limit < entries.length ? limit : entries.length);
 				sorted = entries.sort(function (a, b) {
 					return pe.date.compare(b.publishedDate, a.publishedDate);
