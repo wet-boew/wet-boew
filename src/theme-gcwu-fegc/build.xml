@@ -10,10 +10,7 @@
 	<target name="build" depends="-init, -minify" />
   
 	<target name="-minify" depends="-merge-css, -base64-encode">
-		<move todir="${build.dir}/css/premin">
-			<fileset dir="${build.dir}/css"/>
-		</move>
-		<copy todir="${build.dir}/js/premin">
+		<copy todir="${build.dir}/js">
 			<fileset dir="${src.dir}/js"/>
 			<filterchain>
 				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
@@ -23,14 +20,20 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
-		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/css/premin" toDir="${build.dir}/css">
-			<include name="*.*" />
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}">
+			<include name="**/*.css" />
+			<include name="**/*.js" />
+			<exclude name="**/*-min.css" />
+			<exclude name="**/*-min.js" />
 		</yui-compressor>
-		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/js/premin" toDir="${build.dir}/js">
-			<include name="*.*" />
-		</yui-compressor>
-		<delete dir="${build.dir}/css/premin"/>
-		<delete dir="${build.dir}/js/premin"/>
+		<delete>
+			<fileset dir="${build.dir}">
+				<include name="**/*.css" />
+				<include name="**/*.js" />
+				<exclude name="**/*-min.css" />
+				<exclude name="**/*-min.js" />
+			</fileset>
+		</delete>
 	</target>
   
 	<!--Build CSS Tasks -->

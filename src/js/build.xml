@@ -10,16 +10,24 @@
 	<target name="build" depends="-init, -minify" />
 
 	<target name = "-minify" depends="-merge-css, -base64-encode, build-js">
-		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/premin" toDir="${build.dir}">
-			<include name="*.*" />
-			<include name="i18n/*.*" />
-			<include name="i18n/formvalid/*.*" />
-			<include name="dependencies/*.*"/>
-			<include name="dependencies/prettify/*.*"/>
-			<include name="polyfills/*.*"/>
-			<include name="css/*.*" />
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}">
+			<include name="**/*.css" />
+			<include name="**/*.js" />
+			<exclude name="**/*-min.css" />
+			<exclude name="**/settings.js" />
+			<exclude name="**/*-min.js" />
+			<exclude name="**/*.min.js" />
 		</yui-compressor>
-		<delete dir="${build.dir}/premin"/>
+		<delete>
+			<fileset dir="${build.dir}">
+				<include name="**/*.css" />
+				<include name="**/*.js" />
+				<exclude name="**/settings.js" />
+				<exclude name="**/*-min.css" />
+				<exclude name="**/*-min.js" />
+				<exclude name="**/*.min.js" />
+			</fileset>
+		</delete>
 	</target>
 
 	<target name="build-js" depends="-build-pe">
@@ -34,14 +42,14 @@
 				</fileset>
 			</resources>  
 		</copy>
-		<copy todir="${build.dir}/premin">  
+		<copy todir="${build.dir}">  
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="i18n/**"/>
 				</fileset>
 			</resources>  
 		</copy>
-		<copy todir="${build.dir}/premin">
+		<copy todir="${build.dir}">
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="dependencies/**"/>
@@ -57,7 +65,7 @@
 				</replacetokens>
 			</filterchain>
 		</copy> 
-		<copy todir="${build.dir}/premin">
+		<copy todir="${build.dir}">
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="dependencies/**"/>
@@ -69,7 +77,7 @@
 				</fileset>
 			</resources> 
 		</copy> 
-		<copy todir="${build.dir}/premin">
+		<copy todir="${build.dir}">
 			<filterchain>
 				<replaceregex byline="false" pattern="\/\*" replace="\/\*!"/>
 			</filterchain>
@@ -90,7 +98,7 @@
 
 	<!-- Build JS Tasks -->
 	<target name="-build-pe" depends="-merge-workers">
-		<concat dest="${build.dir}/premin/pe-ap.js" fixlastline="yes">
+		<concat dest="${build.dir}/pe-ap.js" fixlastline="yes">
 			<file file="${src.dir}/pe-ap.js"/>
 			<file file="${build.dir}/workers.js"/>
 			<filterchain>
@@ -119,13 +127,13 @@
 		<property name="image.dir" location="${build.dir}/images"/>
 
 		<cssurlembed skipMissing="true" root="${image.dir}">
-			<fileset dir="${build.dir}/premin/css">
+			<fileset dir="${build.dir}/css">
 				<include name="pe-ap.css"/>
 			</fileset>
 		</cssurlembed>
 	</target>
 	<target name="-merge-css" depends="compile.sass">
-		<copy todir="${build.dir}/premin/css">
+		<copy todir="${build.dir}/css">
 			<filelist dir="${src.dir}/css">
 				<file name="pe-ap.css"/>
 				<file name="pe-ap-ie.css"/>
