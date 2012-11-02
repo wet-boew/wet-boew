@@ -34,17 +34,11 @@
 				</fileset>
 			</resources>  
 		</copy>
-		<copy todir="${build.dir}/premin">  
-			<resources>
-				<fileset dir="${src.dir}">
-					<include name="i18n/**"/>
-				</fileset>
-			</resources>  
-		</copy>
 		<copy todir="${build.dir}/premin">
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="dependencies/**"/>
+					<include name="i18n/**"/>
 					<include name="polyfills/**"/>
 					<contains text="* Web Experience Toolkit (WET)" casesensitive="no"/>
 				</fileset>
@@ -61,6 +55,7 @@
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="dependencies/**"/>
+					<include name="i18n/**"/>
 					<include name="polyfills/**"/>
 					<contains text="/*!" casesensitive="no"/>
 					<not>
@@ -76,6 +71,7 @@
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="dependencies/**"/>
+					<include name="i18n/**"/>
 					<include name="polyfills/**"/>
 					<not>
 						<contains text="/*!" casesensitive="no"/>

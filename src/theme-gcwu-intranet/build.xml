@@ -72,7 +72,6 @@
 				<include name="*theme.css"/>
 			</fileset>
 		</concat>
-
 		<copy todir="${build.dir}/css">
 			<filelist dir="${src.dir}/css">
 				<file name="theme.css"/>
