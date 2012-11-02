@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*
------ Dictionary (il8n) ---
+----- French dictionary (il8n) ---
  */
 /*global jQuery: false, pe: false */
 /*jshint bitwise: false */
@@ -149,7 +149,7 @@
 			'%calendar-weekDayNames': ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
 			'%calendar-monthNames': ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
 			'%calendar-currentDay': ' (Jour courrant)',
-			'%calendar-goToLink': 'Aller au <span class=\'wb-invisible\'> mois de l\'année</span>',
+			'%calendar-goToLink': 'Aller au <span class="wb-invisible"> mois de l\'année</span>',
 			'%calendar-goToTitle': 'Aller au mois de l\'année',
 			'%calendar-goToMonth': 'Mois : ',
 			'%calendar-goToYear': 'Année : ',
@@ -178,7 +178,7 @@
 			'%table-mention': '- Tableau',
 			'%table-following': '- Graphique. Plus de détails dans le tableau suivant.',
 			/* Session timeout */
-			'%st-timeout-msg': 'Votre session est sur le point d\'expirer, vous avez jusqu\'a #expireTime# pour sélectionnez \'OK\' ci-dessous pour prolonger votre session.',
+			'%st-timeout-msg': 'Votre session est sur le point d\'expirer, vous avez jusqu\'a #expireTime# pour sélectionnez "OK" ci-dessous pour prolonger votre session.',
 			'%st-msgbox-title': 'Avertissement d\'expiration de la session',
 			'%st-already-timeout-msg': 'Désolé, votre session a déjà expiré. S\'il vous plaît vous connecter à nouveau.',
 			/* Disable/enable PE */

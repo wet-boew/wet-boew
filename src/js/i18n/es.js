@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*
------ Dictionary (il8n) ---
+----- Spanish dictionary (il8n) ---
  */
 /*global jQuery: false, pe: false */
 /*jshint bitwise: false */
@@ -96,7 +96,7 @@
 			/* Archived Web page template */
 			'%archived-page': 'Esta página Web ha estado archivada en la red.',
 			/* Menu bar */
-			'%sub-menu-help': '(Aprete “enter” para abrir el sub-menú y ciérrelo con la tecla “esc”)',
+			'%sub-menu-help': '(Aprete "enter" para abrir el sub-menú y ciérrelo con la tecla “esc”)',
 			/* Tabbed interface */
 			'%tab-rotation': {
 				'disable': 'Detener rotación de tabs',
@@ -152,7 +152,7 @@
 			'%calendar-weekDayNames': ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
 			'%calendar-monthNames': ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
 			'%calendar-currentDay': ' (Hoy)',
-			'%calendar-goToLink': 'Ir a<span class=\'wb-invisible\'> Mes del Año</span>',
+			'%calendar-goToLink': 'Ir a<span class="wb-invisible"> Mes del Año</span>',
 			'%calendar-goToTitle': 'Ir al Mes del Año',
 			'%calendar-goToMonth': 'Mes:',
 			'%calendar-goToYear': 'Año:',
@@ -182,7 +182,7 @@
 			'%table-following': 'Gráfico. Detalles en la siguiente tabla.',
 			/* Session timeout */
 			/* Session timeout */
-			'%st-timeout-msg': 'Su sesión está próxima a expirar, tiene hasta #expireTime# para activar el botón \'OK\' y así extender su sesión.',
+			'%st-timeout-msg': 'Su sesión está próxima a expirar, tiene hasta #expireTime# para activar el botón "OK" y así extender su sesión.',
 			'%st-msgbox-title': 'Aviso de finalización de sesión',
 			'%st-already-timeout-msg': 'Lamentablemente su sesión ha expirado. Por favor ingrese nuevamente.',
 			/* Disable/enable PE */
