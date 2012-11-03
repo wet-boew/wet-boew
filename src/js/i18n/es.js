@@ -96,7 +96,7 @@
 			/* Archived Web page template */
 			'%archived-page': 'Esta página Web ha estado archivada en la red.',
 			/* Menu bar */
-			'%sub-menu-help': '(Aprete "enter" para abrir el sub-menú y ciérrelo con la tecla “esc”)',
+			'%sub-menu-help': '(Aprete "enter" para abrir el sub-menú y ciérrelo con la tecla "esc")',
 			/* Tabbed interface */
 			'%tab-rotation': {
 				'disable': 'Detener rotación de tabs',
@@ -193,4 +193,4 @@
 	$(document).trigger('languageloaded');
 	window.pe = _pe;
 	return _pe;
-} (jQuery));
+}(jQuery));

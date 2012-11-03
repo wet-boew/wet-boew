@@ -192,4 +192,4 @@
 	$(document).trigger('languageloaded');
 	window.pe = _pe;
 	return _pe;
-} (jQuery));
+}(jQuery));
