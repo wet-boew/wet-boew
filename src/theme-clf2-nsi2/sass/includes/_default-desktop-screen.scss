@@ -158,7 +158,7 @@ body{
 				display: block; 
 				text-align: left; 
 				width: 100%; 
-				padding: 0.16em 0px 0.16em 3px; 
+				padding: 0.16em 0 0.16em 3px; 
 				border-left: 1px solid #FFF; 
 				font-weight: bold; 
 				min-height: 1.25em;
@@ -361,7 +361,7 @@ body{
 		margin-bottom: 5px;
 		ul{
 			list-style-type: disc;
-			margin-bottom: 0px;
+			margin-bottom: 0;
 		}
 	}
 	li{
