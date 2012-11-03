@@ -1,13 +1,14 @@
-/*!
-* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-* wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
-*/
 /*
------ English Dictionary (il8n) ---
-*/
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+/*
+----- English dictionary (il8n) ---
+ */
 /*global jQuery: false, pe: false */
 /*jshint bitwise: false */
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn: {}
 	};
@@ -180,7 +181,7 @@
 			'%table-mention': 'Table',
 			'%table-following': 'Chart. Details in the following table.',
 			/* Session timeout */
-			'%st-timeout-msg': 'Your session is about to expire, you have until #expireTime# to activate the \'OK\' button below to extend your session.',
+			'%st-timeout-msg': 'Your session is about to expire, you have until #expireTime# to activate the "OK" button below to extend your session.',
 			'%st-msgbox-title': 'Session timeout warning',
 			'%st-already-timeout-msg': 'Sorry your session has already expired. Please login again.',
 			/* Toggle details */
@@ -189,10 +190,9 @@
 			/* Disable/enable PE */
 			'%pe-disable': 'Basic HTML version',
 			'%pe-enable': 'Standard version'
-			
 		}
 	};
 	$(document).trigger('languageloaded');
 	window.pe = _pe;
 	return _pe;
-} (jQuery));
+}(jQuery));

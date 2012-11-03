@@ -1,13 +1,14 @@
-/*!
-* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-* wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
-*/
 /*
------ Spanish Dictionary (il8n) ---
-*/
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+/*
+----- Spanish dictionary (il8n) ---
+ */
 /*global jQuery: false, pe: false */
 /*jshint bitwise: false */
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn: {}
 	};
@@ -95,7 +96,7 @@
 			/* Archived Web page template */
 			'%archived-page': 'Esta página Web ha estado archivada en la red.',
 			/* Menu bar */
-			'%sub-menu-help': '(Aprete “enter” para abrir el sub-menú y ciérrelo con la tecla “esc”)',
+			'%sub-menu-help': '(Aprete "enter" para abrir el sub-menú y ciérrelo con la tecla “esc”)',
 			/* Tabbed interface */
 			'%tab-rotation': {
 				'disable': 'Detener rotación de tabs',
@@ -180,13 +181,12 @@
 			'%table-mention': 'Tabla',
 			'%table-following': 'Gráfico. Detalles en la siguiente tabla.',
 			/* Session timeout */
-			/* Session timeout */
-			'%st-timeout-msg': 'Su sesión está próxima a expirar, tiene hasta #expireTime# para activar el botón \'OK\' y así extender su sesión.',
+			'%st-timeout-msg': 'Su sesión está próxima a expirar, tiene hasta #expireTime# para activar el botón "OK" y así extender su sesión.',
 			'%st-msgbox-title': 'Aviso de finalización de sesión',
 			'%st-already-timeout-msg': 'Lamentablemente su sesión ha expirado. Por favor ingrese nuevamente.',
 			/* Toggle details */
 			'%toggle-open': 'Toggle open',
-			'%toggle-close': 'Toggle close',			
+			'%toggle-close': 'Toggle close',
 			/* Disable/enable PE */
 			'%pe-disable': 'Versión básica HTML',
 			'%pe-enable': 'Versión standard'
@@ -195,4 +195,4 @@
 	$(document).trigger('languageloaded');
 	window.pe = _pe;
 	return _pe;
-} (jQuery));
+}(jQuery));

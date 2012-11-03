@@ -1,13 +1,14 @@
-/*!
+/*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*
------ French Dictionary (il8n) ---
+----- French dictionary (il8n) ---
  */
 /*global jQuery: false, pe: false */
 /*jshint bitwise: false */
 (function ($) {
+	"use strict";
 	var _pe = window.pe || {
 		fn: {}
 	};
@@ -17,14 +18,14 @@
 				(typeof state === 'string' && state !== '') << 1 | // eg. 000 or 010 ie. 0 or 2
 				(typeof mixin === 'string' && mixin !== '') << 2; // eg. 000 or 100 ie. 0 or 4
 			switch (truthiness) {
-			case 1:
-				return this.ind[key]; // only key was provided.
-			case 3:
-				return this.ind[key][state]; // key and state were provided.
-			case 7:
-				return this.ind[key][state].replace('[MIXIN]', mixin); // key, state, and mixin were provided.
-			default:
-				return '';
+				case 1:
+					return this.ind[key]; // only key was provided.
+				case 3:
+					return this.ind[key][state]; // key and state were provided.
+				case 7:
+					return this.ind[key][state].replace('[MIXIN]', mixin); // key, state, and mixin were provided.
+				default:
+					return '';
 			}
 		},
 /*
@@ -177,12 +178,12 @@
 			'%table-mention': '- Tableau',
 			'%table-following': '- Graphique. Plus de détails dans le tableau suivant.',
 			/* Session timeout */
-			'%st-timeout-msg': 'Votre session est sur le point d\'expirer, vous avez jusqu\'a #expireTime# pour sélectionnez \'OK\' ci-dessous pour prolonger votre session.',
+			'%st-timeout-msg': 'Votre session est sur le point d\'expirer, vous avez jusqu\'a #expireTime# pour sélectionnez "OK" ci-dessous pour prolonger votre session.',
 			'%st-msgbox-title': 'Avertissement d\'expiration de la session',
 			'%st-already-timeout-msg': 'Désolé, votre session a déjà expiré. S\'il vous plaît vous connecter à nouveau.',
 			/* Toggle details */
 			'%toggle-open': 'Basculer: ouvrir',
-			'%toggle-close': 'Basculer: fermé',			
+			'%toggle-close': 'Basculer: fermé',	
 			/* Disable/enable PE */
 			'%pe-disable': 'Version HTML simplifiée',
 			'%pe-enable': 'Version standard'
