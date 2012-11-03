@@ -61,19 +61,27 @@
 	</target>
 	
 	<target name="-merge-css" depends="compile.sass">
+		<loadfile srcfile="${build.dir}/../build-css-head.txt" property="build.css.head"/>
 		<loadfile srcfile="${src.dir}/../js/jquerymobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
 			<filterchain>
 				<headfilter lines="1"/>
 			</filterchain>
 		</loadfile>
 		<concat dest="${build.dir}/css/jquery.mobile.css">
-			<header>${jquery.mobile.license}</header>
+			<header>${build.css.head}
+			${jquery.mobile.license}</header>
 			<fileset dir="${src.dir}/../js/jquerymobile">
 				<include name="*structure.css"/>
 			</fileset>
 			<fileset dir="${src.dir}/jquerymobile">
 				<include name="*theme.css"/>
 			</fileset>
+			<filterchain>
+				<replacetokens>
+					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
+					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
+				</replacetokens>
+			</filterchain>
 		</concat>
 		<copy todir="${build.dir}/css">
 			<filelist dir="${src.dir}/css">
