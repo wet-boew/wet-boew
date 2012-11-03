@@ -63,7 +63,10 @@
 	<target name="-jruby.jar.check">
 		<checksum file="${tasks.basedir}/build-tasks.properties" property="jruby.depends"/>
 		<condition property="jruby.jar.exists">
-			<available file="${lib.dir}/${jruby.jar}" type="file"/>
+			<and>
+				<available file="${lib.dir}/${jruby.jar}" type="file"/>
+				<available file="${lib.dir}/vendors-${jruby.depends}" type="dir"/>
+			</and>
 		</condition>
 	</target>
 	
