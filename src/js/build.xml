@@ -152,10 +152,8 @@
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
 	</target>
-
-	<target name="test" depends="-jshint"/>
 	
-	<target name="-jshint">
+	<target name="-jshint" extensionOf="test">
 		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
 			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>

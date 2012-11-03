@@ -7,9 +7,7 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="build" depends="-init, -minify" />
-
-	<target name="-minify" depends="-merge-css, -base64-encode">
+	<target name="-minify" extensionOf="build" depends="-merge-css, -base64-encode">
 		<copy todir="${build.dir}/js">
 			<fileset dir="${src.dir}/js"/>
 			<filterchain>
@@ -103,5 +101,5 @@
 		</copy>
 	</target>
 
-	<target name="test" depends="-jshint"/>
+	<target name="lint" extensionOf="test" depends="-jshint"/>
 </project>

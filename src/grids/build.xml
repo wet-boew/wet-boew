@@ -41,6 +41,4 @@
 			</filterchain>
 		</copy>
 	</target>
-	
-	<target name="test" description="Placeholder for future test tasks"/>
 </project>

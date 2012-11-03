@@ -17,9 +17,7 @@
 		<classpath refid="antcontrib.classpath" />
 	</taskdef>
 	
-	<target name="-init" depends="-build-jruby">
-		<mkdir dir="${build.dir}"/>
-	</target>
+	<extension-point name="-init"/>
 	
 	<!-- yui-compressor task definition  -->
 	<path id="yui.classpath">
@@ -53,7 +51,7 @@
 	</path>	
 
 	<!-- Include jruby + gems (compass + sass) -->
-	<target name="-build-jruby" depends="-jruby.jar.check" unless="jruby.jar.exists">
+	<target name="-build-jruby" extensionOf="-init" depends="-jruby.jar.check" unless="jruby.jar.exists">
 		<mkdir dir="${lib.dir}/jruby-compiled" />
 		<delete dir="${lib.dir}/vendors-${jruby.depends}" />
 		<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/jruby-complete-${jruby.version}.jar" dest="${lib.dir}/jruby-complete-${jruby.version}.jar" skipexisting="true"/>
@@ -120,4 +118,8 @@
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
 	</target>
+	
+	<extension-point name="build" depends="-init" />
+	
+	<extension-point name="test" />
 </project>

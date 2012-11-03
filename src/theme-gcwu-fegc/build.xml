@@ -102,5 +102,5 @@
 		</copy>
 	</target>
 
-	<target name="test" depends="-jshint"/>
+	<target name="lint" extensionOf="test" depends="-jshint"/>
 </project>
