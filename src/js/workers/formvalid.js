@@ -15,6 +15,8 @@
 	_pe.fn.formvalid = {
 		type: 'plugin',
 		depends: ['validate', 'validateAdditional', 'metadata'],
+		languages: ['@wet-boew-build.validlanguagelist@'],
+		methods: ['@wet-boew-build.validlanguagemethod@'],
 		_exec: function (elm) {
 			var form = elm.find('form'),
 				formDOM = form.get(0),

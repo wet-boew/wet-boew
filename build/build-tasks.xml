@@ -18,6 +18,7 @@
 	</taskdef>
 	
 	<target name="-init" depends="-build-jruby">
+		<propertyregex property="basedir.escaped" input="${basedir}" regexp="\\" replace="\\\\\\\\" global="true"/>
 		<mkdir dir="${build.dir}"/>
 	</target>
 	

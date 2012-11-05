@@ -89,7 +89,7 @@
 	</target>
 
 	<!-- Build JS Tasks -->
-	<target name="-build-pe" depends="-get-languages, -merge-workers">
+	<target name="-build-pe" depends="-get-languages, -get-validation-languages, -merge-workers">
 		<concat dest="${build.dir}/premin/pe-ap.js" fixlastline="yes">
 			<file file="${src.dir}/pe-ap.js"/>
 			<file file="${build.dir}/workers.js"/>
@@ -99,6 +99,8 @@
 					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
 					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
 					<token key="wet-boew-build.languagelist" value="${languagelist}"/>
+					<token key="wet-boew-build.validlanguagelist" value="${validlanguagelist}"/>
+					<token key="wet-boew-build.validlanguagemethod" value="${validlanguagemethod}"/>
 				</replacetokens>
 			</filterchain>
 		</concat>
@@ -107,10 +109,20 @@
 	</target>
 	
 	<target name="-get-languages">
-		<propertyregex property="basedir.escaped" input="${basedir}" regexp="\\" replace="\\\\\\\\" global="true"/>
 		<fileset id="languages" dir="${src.dir}/i18n" includes="*.js"/>
 		<pathconvert targetos="unix" pathsep="','" property="languagelist" refid="languages">
 			<regexpmapper from="${basedir.escaped}\\i18n\\(.*)\.js" to="\1" />
+		</pathconvert>
+	</target>
+	
+	<target name="-get-validation-languages">
+		<fileset id="validlanguages" dir="${src.dir}/i18n/formvalid" includes="messages_*.js"/>
+		<pathconvert targetos="unix" pathsep="','" property="validlanguagelist" refid="validlanguages">
+			<regexpmapper from="${basedir.escaped}\\i18n\\formvalid\\messages_(.*)\.js" to="\1" />
+		</pathconvert>
+		<fileset id="validlanguagesmethod" dir="${src.dir}/i18n/formvalid" includes="methods_*.js"/>
+		<pathconvert targetos="unix" pathsep="','" property="validlanguagemethod" refid="validlanguagesmethod">
+			<regexpmapper from="${basedir.escaped}\\i18n\\formvalid\\methods_(.*)\.js" to="\1" />
 		</pathconvert>
 	</target>
 
@@ -120,6 +132,7 @@
 		</concat>
 		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf8" />
 	</target>
+	
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode">
 		<copy todir="${build.dir}/images">
