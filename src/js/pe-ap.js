@@ -196,7 +196,7 @@
 					}
 					pe.dance();
 				});
-				pe.add.language(pe.language, pe.languages);
+				pe.add.language(pe.language);
 			});
 		},
 		/**
@@ -1254,6 +1254,27 @@
 				}
 			}
 		},
+		
+		/**
+		* A method to get a languages from a list of supported language.
+		* @namespace pe.add
+		*/
+		get_language: function (lang, supported, sep) {
+			var d;
+			sep = (typeof sep === 'undefined') ? '-' : sep;
+			if (supported.indexOf(lang) !== -1) {
+				return lang;
+			} else {
+				d = lang.indexOf(sep);
+				if (d !== -1) {
+					lang = lang.substr(0, d);
+					if (supported.indexOf(lang) !== -1) {
+						return lang;
+					}
+				} 
+			}
+			return null;
+		},
 		/**
 		* A series of chainable methods to add elements to the head ( async )
 		* @namespace pe.add
@@ -1410,20 +1431,10 @@
 				* @param {array} available of two (iso 639-1) or three (iso 639-2) letter language code supported by WET.
 				* @return {void}
 				*/
-				language: function (lang, available) {
+				language: function (lang) {
 					var d, url;
-					if (available.indexOf(lang) === -1) {
-						d = lang.indexOf('-');
-						if (d !== -1) {
-							lang = lang.substr(0, d);
-							if (available.indexOf(lang) === -1) {
-								lang = 'en';
-							}
-						} else {
-							lang = 'en';
-						}
-					}
-					url = pe.add.liblocation + 'i18n/' + lang + pe.suffix + '.js';
+					lang = pe.get_language(lang, pe.languages);
+					url = pe.add.liblocation + 'i18n/' + (lang !== null ? lang : 'en') + pe.suffix + '.js';
 					pe.add._load(url);
 				},
 				/**

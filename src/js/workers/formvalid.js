@@ -32,22 +32,18 @@
 				required = form.find('[required]').attr('aria-required', 'true'),
 				$errorFormId = 'errors-' + (form.attr('id') === undefined ? 'default' : form.attr('id')),
 				validator,
-				lang = pe.language.toLowerCase();
+				vlang = pe.language.replace('-', '_'),
+				lang = pe.get_language(vlang, _pe.fn.formvalid.languages, '_'),
+				mthdlang = pe.get_language(vlang, _pe.fn.formvalid.methods, '_'),
+				d;
 
 			// Load different language strings if page is not in English
-			if (lang !== "en") {
-				if (lang === 'pt-br') {
-					lang = 'pt_BR';
-				} else if (lang === 'pt' || lang === 'pt-pt') {
-					lang = 'pt_PT';
-				} else if (lang === 'zh-tw') {
-					lang = 'zh_TW';
-				} else {
-					pe.add._load(pe.add.liblocation + 'i18n/formvalid/messages_' + lang + pe.suffix + '.js');
-				}
+			if (lang !== null) {
+				pe.add._load(pe.add.liblocation + 'i18n/formvalid/messages_' + lang + pe.suffix + '.js');
 			}
-			if (lang === "de" || lang === "nl" || lang === "pr_PT" || lang === "pr_BR") {
-				pe.add._load(pe.add.liblocation + 'i18n/formvalid/methods_' + lang + pe.suffix + '.js');
+			
+			if (mthdlang !== null) {
+				pe.add._load(pe.add.liblocation + 'i18n/formvalid/methods_' + mthdlang + pe.suffix + '.js');
 			}
 
 			// Add space to the end of the labels (so separation between label and error when CSS turned off)
