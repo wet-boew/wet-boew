@@ -7,17 +7,7 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="-minify" extensionOf="build" depends="-merge-css, -base64-encode">
-		<copy todir="${build.dir}/js">
-			<fileset dir="${src.dir}/js"/>
-			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
-		</copy>
+	<target name="-minify" extensionOf="compress" depends="-base64-encode">
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}">
 			<include name="**/*.css" />
 			<include name="**/*.js" />
@@ -36,11 +26,6 @@
   
 	<!--Build CSS Tasks -->
 	<target name="-base64-encode">
-		<copy todir="${build.dir}/images">
-			<fileset dir="${src.dir}/../theme-gcwu-fegc/images"/>
-			<fileset dir="${src.dir}/images"/>
-		</copy>
-		
 		<property name="image.dir" location="${build.dir}/images"/>
 		<cssurlembed skipMissing="true" root="${image.dir}">
 			<fileset dir="${build.dir}/css">
@@ -58,7 +43,7 @@
 		</cssurlembed>
 	</target>
 	
-	<target name="-merge-css" depends="compile.sass">
+	<target name="-copy-css" extensionOf="prepare-files" depends="compile.sass">
 		<loadfile srcfile="${build.dir}/../build-css-head.txt" property="build.css.head"/>
 		<loadfile srcfile="${src.dir}/../js/jquerymobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
 			<filterchain>
@@ -98,6 +83,31 @@
 					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
 				</replacetokens>
 			</filterchain>
+		</copy>
+	</target>
+	
+		<target name="-copy-js" extensionOf="prepare-files">
+		<copy todir="${build.dir}/js">
+			<fileset dir="${src.dir}/js"/>
+			<filterchain>
+				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
+				<replacetokens>
+					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
+					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+	</target>
+	
+	<target name="-copy-images" extensionOf="prepare-files">
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/images" />
+		</copy>
+	</target>
+	
+	<target name="-copy-gcwu-images" extensionOf="prepare-files">
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/../theme-gcwu-fegc/images"/>
 		</copy>
 	</target>
 

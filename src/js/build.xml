@@ -7,7 +7,7 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name = "-minify" extensionOf="build" depends="-merge-css, -base64-encode, build-js">
+	<target name="-minify" extensionOf="compress" depends="-base64-encode">
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}">
 			<include name="**/*.css" />
 			<include name="**/*.js" />
@@ -28,7 +28,7 @@
 		</delete>
 	</target>
 
-	<target name="build-js" depends="-build-pe">
+	<target name="build-js" extensionOf="prepare-files" depends="-build-pe">
 		<copy todir="${build.dir}">  
 			<resources>
 				<fileset dir="${src.dir}">
@@ -113,11 +113,8 @@
 		</concat>
 		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf8" />
 	</target>
-	<!--Build CSS Tasks -->
+	
 	<target name="-base64-encode">
-		<copy todir="${build.dir}/images">
-			<fileset dir="${src.dir}/images"/>
-		</copy>
 		<property name="image.dir" location="${build.dir}/images"/>
 
 		<cssurlembed skipMissing="true" root="${image.dir}">
@@ -126,7 +123,8 @@
 			</fileset>
 		</cssurlembed>
 	</target>
-	<target name="-merge-css" depends="compile.sass">
+	
+	<target name="-copy-css" extensionOf="prepare-files" depends="compile.sass">
 		<copy todir="${build.dir}/css">
 			<filelist dir="${src.dir}/css">
 				<file name="pe-ap.css"/>
@@ -141,14 +139,11 @@
 			</filterchain>
 		</copy>
 	</target>
-
-	<target name="clean-css">
-		<delete dir="${src.dir}/css" />
-	</target>
-
-	<target name="clean">
-		<delete dir="${build.dir}" />
-		<delete dir="${dist.dir}" />
+	
+	<target name="-copy-images" extensionOf="prepare-files">
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/images" />
+		</copy>
 	</target>
 	
 	<target name="-jshint" extensionOf="test">

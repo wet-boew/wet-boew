@@ -121,7 +121,11 @@
 		<delete dir="${dist.dir}" />
 	</target>
 	
-	<extension-point name="build" depends="-init" />
+	<extension-point name="build" depends="prepare-files, compress" description="Core build task. Subprojects should subscrib to the 'prepare-files' and 'compress'" />
+	
+	<extension-point name="prepare-files" depends="-init" />
+	
+	<extension-point name="compress" depends="prepare-files" />
 	
 	<extension-point name="test" />
 </project>
