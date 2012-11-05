@@ -9,22 +9,7 @@
 
 	<target name="-encode-css" extensionOf="encode-images" depends="-base64-encode"/>	
 
-	<target name="-minify" extensionOf="compress">
-		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}">
-			<include name="**/*.css" />
-			<include name="**/*.js" />
-			<exclude name="**/*-min.css" />
-			<exclude name="**/*-min.js" />
-		</yui-compressor>
-		<delete>
-			<fileset dir="${build.dir}">
-				<include name="**/*.css" />
-				<include name="**/*.js" />
-				<exclude name="**/*-min.css" />
-				<exclude name="**/*-min.js" />
-			</fileset>
-		</delete>
-	</target>
+	<target name="compress-all" extensionOf="compress" depends="-minify"/>
 
 	<target name="-copy-css" depends="compile.sass" extensionOf="prepare-files">
 		<copy todir="${build.dir}/css">

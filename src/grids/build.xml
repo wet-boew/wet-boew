@@ -7,18 +7,7 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="-minify" extensionOf="compress">
-		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}">
-			<include name="**/*.css" />
-			<exclude name="**/*-min.css" />
-		</yui-compressor>
-		<delete>
-			<fileset dir="${build.dir}">
-				<include name="**/*.css" />
-				<exclude name="**/*-min.css" />
-			</fileset>
-		</delete>
-	</target>
+	<target name="compress-all" extensionOf="compress" depends="-minify"/>	
 
 	<target name="-copy-css" extensionOf="prepare-files" depends="compile.sass">
 		<copy todir="${build.dir}/css">
