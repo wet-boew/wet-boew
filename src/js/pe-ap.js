@@ -76,7 +76,7 @@
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
 
-			hlinks = pe.main.find("a").filter(function () {
+			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
 				return this.href.indexOf('#') !== -1;
 			});
 			hlinks_same = hlinks.filter(function () {

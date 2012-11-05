@@ -10,31 +10,25 @@
 	<target name="build" depends="-init, -minify" />
 
 	<target name="-minify" depends="-merge-css">
-		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}/premin" toDir="${build.dir}">
-			<include name="css/*.*" />
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}">
+			<include name="**/*.css" />
+			<exclude name="**/*-min.css" />
 		</yui-compressor>
-		<delete dir="${build.dir}/premin"/>
+		<delete>
+			<fileset dir="${build.dir}">
+				<include name="**/*.css" />
+				<exclude name="**/*-min.css" />
+			</fileset>
+		</delete>
 	</target>
 
 	<target name="-merge-css" depends="compile.sass">
-		<copy todir="${build.dir}/premerge/css">
-			<fileset dir="${src.dir}/css">
-				<include name="util*.css"/>
-				<include name="includes/*.css"/>
-				<exclude name="responsive*.css"/>
-			</fileset>
-		</copy>
-		<replace dir="${build.dir}/premerge/css" token="@charset &quot;utf-8&quot;;" value=" "/>
 		<copy todir="${build.dir}/images">
 			<fileset dir="${src.dir}/images" />
 		</copy>
-		<filelist id="corefiles" dir="${build.dir}/premerge/css">
-			<file name="util.css"/>
-			<file name="util-ie.css"/>
-		</filelist>
 
-		<copy todir="${build.dir}/premin/css">
-			<filelist dir="${build.dir}/premerge/css">
+		<copy todir="${build.dir}/css">
+			<filelist dir="${src.dir}/css">
 				<file name="util.css"/>
 				<file name="util-ie.css"/>
 			</filelist>
@@ -46,7 +40,6 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
-		<delete dir="${build.dir}/premerge"/>
 	</target>
 	
 	<target name="test" description="Placeholder for future test tasks"/>
