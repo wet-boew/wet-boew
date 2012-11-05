@@ -196,7 +196,7 @@
 					}
 					pe.dance();
 				});
-				pe.add.language(pe.language);
+				pe.add.language(pe.language, pe.languages);
 			});
 		},
 		/**
@@ -1407,10 +1407,23 @@
 				* @memberof pe.add
 				* @function
 				* @param {string} lang The two (iso 639-1) or three (iso 639-2) letter language code of the page.
+				* @param {array} available of two (iso 639-1) or three (iso 639-2) letter language code supported by WET.
 				* @return {void}
 				*/
-				language: function (lang) {
-					var url = pe.add.liblocation + 'i18n/' + lang + pe.suffix + '.js';
+				language: function (lang, available) {
+					var d, url;
+					if (available.indexOf(lang) === -1) {
+						d = lang.indexOf('-');
+						if (d !== -1) {
+							lang = lang.substr(0, d);
+							if (available.indexOf(lang) === -1) {
+								lang = 'en';
+							}
+						} else {
+							lang = 'en';
+						}
+					}
+					url = pe.add.liblocation + 'i18n/' + lang + pe.suffix + '.js';
 					pe.add._load(url);
 				},
 				/**
