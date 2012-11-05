@@ -7,7 +7,9 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="-minify" extensionOf="compress" depends="-base64-encode">
+	<target name="-encode-css" extensionOf="encode-images" depends="-base64-encode"/>	
+	
+	<target name="-minify" extensionOf="compress">
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}">
 			<include name="**/*.css" />
 			<include name="**/*.js" />
