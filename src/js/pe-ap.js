@@ -29,6 +29,7 @@
 		* @type {string} Page language, defaults to 'en' if not available
 		*/
 		language: (document.getElementsByTagName('html')[0].lang ? document.getElementsByTagName('html')[0].lang : 'en'),
+		languages: ['@wet-boew-build.languagelist@'],
 		touchscreen: 'ontouchstart' in document.documentElement,
 		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
