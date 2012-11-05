@@ -7,7 +7,7 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
   
-	<target name="-minify" extensionOf="compress" depends="-base64-encode">
+	<target name="-minify" extensionOf="compress" depends="-base64-encode,-base64-encode-jquery">
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}">
 			<include name="**/*.css" />
 			<include name="**/*.js" />
@@ -23,26 +23,7 @@
 			</fileset>
 		</delete>
 	</target>
-  
-	<!--Build CSS Tasks -->
-	<target name="-base64-encode">
-		<property name="image.dir" location="${build.dir}/images"/>
-		<cssurlembed skipMissing="true" root="${image.dir}">
-			<fileset dir="${build.dir}/css">
-				<include name="theme.css"/>
-				<include name="theme-sp-pe.css"/>
-				<include name="theme-serv.css"/>
-			</fileset>
-		</cssurlembed>
-		
-		<property name="jquerymobile.dir" location="${src.dir}/jquerymobile"/>
-		<cssurlembed skipMissing="false" root="${jquerymobile.dir}">
-			<fileset dir="${build.dir}/css">
-				<include name="jquery.mobile.css"/>
-			</fileset>
-		</cssurlembed>
-	</target>
-	
+  	
 	<target name="-copy-css" extensionOf="prepare-files" depends="compile.sass">
 		<loadfile srcfile="${build.dir}/../build-css-head.txt" property="build.css.head"/>
 		<loadfile srcfile="${src.dir}/../js/jquerymobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">

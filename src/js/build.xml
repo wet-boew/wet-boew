@@ -114,16 +114,6 @@
 		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf8" />
 	</target>
 	
-	<target name="-base64-encode">
-		<property name="image.dir" location="${build.dir}/images"/>
-
-		<cssurlembed skipMissing="true" root="${image.dir}">
-			<fileset dir="${build.dir}/css">
-				<include name="pe-ap.css"/>
-			</fileset>
-		</cssurlembed>
-	</target>
-	
 	<target name="-copy-css" extensionOf="prepare-files" depends="compile.sass">
 		<copy todir="${build.dir}/css">
 			<filelist dir="${src.dir}/css">

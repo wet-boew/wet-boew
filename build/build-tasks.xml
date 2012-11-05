@@ -128,4 +128,24 @@
 	<extension-point name="compress" depends="prepare-files" />
 	
 	<extension-point name="test" />
+	
+	<target name="-base64-encode">
+		<property name="image.dir" location="${build.dir}/images"/>
+
+		<cssurlembed skipMissing="true" root="${image.dir}">
+			<fileset dir="${build.dir}/css">
+				<include name="*.css"/>
+				<exclude name="*ie.css"/>
+			</fileset>
+		</cssurlembed>
+	</target>
+	
+	<target name="-base64-encode-jquery">
+		<property name="jquerymobile.dir" location="${src.dir}/jquerymobile"/>
+		<cssurlembed skipMissing="false" root="${jquerymobile.dir}">
+			<fileset dir="${build.dir}/css">
+				<include name="jquery.mobile.css"/>
+			</fileset>
+		</cssurlembed>
+	</target>
 </project>

@@ -23,18 +23,7 @@
 			</fileset>
 		</delete>
 	</target>
-  
-	<!--Build CSS Tasks -->
-	<target name="-base64-encode">
-		<property name="image.dir" location="${build.dir}/images"/>
-		<cssurlembed skipMissing="true" root="${image.dir}">
-			<fileset dir="${build.dir}/css">
-				<include name="*.css"/>
-				<exclude name="*ie.css"/>
-			</fileset>
-		</cssurlembed>
-	</target>
-	
+
 	<target name="-copy-css" depends="compile.sass" extensionOf="prepare-files">
 		<copy todir="${build.dir}/css">
 			<fileset dir="${src.dir}/css">
