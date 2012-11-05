@@ -7,43 +7,11 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="-encode-css" extensionOf="encode-images" depends="-base64-encode"/>	
+	<target name="encode-css" extensionOf="encode-images" depends="-base64-encode"/>	
 
 	<target name="compress-all" extensionOf="compress" depends="-minify"/>
 
-	<target name="-copy-css" depends="compile.sass" extensionOf="prepare-files">
-		<copy todir="${build.dir}/css">
-			<fileset dir="${src.dir}/css">
-				<include name="*.css"/>
-			</fileset>
-			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-css-head.txt"/>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
-		</copy>
-	</target>
-	
-	<target name="-copy-js" extensionOf="prepare-files">
-		<copy todir="${build.dir}/js">
-			<fileset dir="${src.dir}/js"/>
-			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
-		</copy>
-	</target>
-	
-	<target name="-copy-images" extensionOf="prepare-files">
-		<copy todir="${build.dir}/images">
-			<fileset dir="${src.dir}/images" />
-		</copy>
-	</target>
+	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js"/>
 	
 	<target name="lint" extensionOf="test" depends="-jshint"/>
 </project>

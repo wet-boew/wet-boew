@@ -7,15 +7,16 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="-encode-css" extensionOf="encode-images" depends="-base64-encode"/>	
+	<target name="encode-css" extensionOf="encode-images" depends="-base64-encode"/>	
 	
 	<target name="compress-all" extensionOf="compress" depends="-minify"/>	
 
-	<target name="build-js" extensionOf="prepare-files" depends="-build-pe">
+	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js"/>
+	
+	<target name="-copy-js" depends="-build-pe">
 		<copy todir="${build.dir}">  
 			<resources>
 				<fileset dir="${src.dir}">
-					<include name="images/**"/>
 					<include name="binary/**"/>
 					<include name="jquerymobile/*.min.js"/>
 					<include name="*.js"/>
@@ -95,28 +96,6 @@
 			<fileset dir="${src.dir}/workers" includes="**/**.js" />
 		</concat>
 		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf8" />
-	</target>
-	
-	<target name="-copy-css" extensionOf="prepare-files" depends="compile.sass">
-		<copy todir="${build.dir}/css">
-			<filelist dir="${src.dir}/css">
-				<file name="pe-ap.css"/>
-				<file name="pe-ap-ie.css"/>
-			</filelist>
-			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-css-head.txt"/>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
-		</copy>
-	</target>
-	
-	<target name="-copy-images" extensionOf="prepare-files">
-		<copy todir="${build.dir}/images">
-			<fileset dir="${src.dir}/images" />
-		</copy>
 	</target>
 	
 	<target name="-jshint" extensionOf="test">
