@@ -5,6 +5,9 @@
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>
 
+	<property name="basedir.escaped" value=""/>
+	<propertyregex property="basedir.escaped" input="${basedir}" regexp="\\" replace="\\\\\\\\" global="true"/>
+	
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
 	<target name="build" depends="-init, -minify" />
