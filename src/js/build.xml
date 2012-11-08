@@ -114,7 +114,7 @@
 	
 	<target name="-get-languages">
 		<fileset id="languages" dir="${src.dir}/i18n" includes="*.js"/>
-		<pathconvert targetos="unix" pathsep="','" property="languagelist" refid="languages">
+		<pathconvert pathsep="','" property="languagelist" refid="languages">
 			<globmapper from="${basedir}${file.separator}i18n${file.separator}*.js" to="*" />
 		</pathconvert>
 		<echo message="Supported core languages: '${languagelist}'" level="info"/>
