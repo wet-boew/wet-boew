@@ -4,9 +4,6 @@
 
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>
-
-	<property name="basedir.escaped" value=""/>
-	<propertyregex property="basedir.escaped" input="${basedir}" regexp="\\" replace="\\\\\\\\" global="true"/>
 	
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
@@ -118,19 +115,21 @@
 	<target name="-get-languages">
 		<fileset id="languages" dir="${src.dir}/i18n" includes="*.js"/>
 		<pathconvert targetos="unix" pathsep="','" property="languagelist" refid="languages">
-			<regexpmapper from="${basedir.escaped}\\i18n\\(.*)\.js" to="\1" />
+			<globmapper from="${basedir}${file.separator}i18n${file.separator}*.js" to="*" />
 		</pathconvert>
+		<echo message="Supported core languages: '${languagelist}'" level="info"/>
 	</target>
 	
 	<target name="-get-validation-languages">
 		<fileset id="validlanguages" dir="${src.dir}/i18n/formvalid" includes="messages_*.js"/>
 		<pathconvert pathsep="','" property="validlanguagelist" refid="validlanguages">
-			<regexpmapper from="${basedir.escaped}\\i18n\\formvalid\\messages_(.*)\.js" to="\1" />
+			<globmapper from="${basedir}${file.separator}i18n${file.separator}formvalid${file.separator}messages_*.js" to="*" />
 		</pathconvert>
 		<fileset id="validlanguagesmethod" dir="${src.dir}/i18n/formvalid" includes="methods_*.js"/>
 		<pathconvert pathsep="','" property="validlanguagemethod" refid="validlanguagesmethod">
-			<regexpmapper from="${basedir.escaped}\\i18n\\formvalid\\methods_(.*)\.js" to="\1" />
+			<globmapper from="${basedir}${file.separator}i18n${file.separator}formvalid${file.separator}methods_*.js" to="*" />
 		</pathconvert>
+		<echo message="Supported jQuery validation languages: '${validlanguagelist}'" level="info"/>
 	</target>
 
 	<target name="-merge-workers">
