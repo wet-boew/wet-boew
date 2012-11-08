@@ -27,7 +27,7 @@
 				sites: [], // List of site IDs or language selectors (lang:xx) or
 					// category selectors (category:xx) to use, empty for all
 				compact: false, // True if a compact presentation should be used, false for full
-				hint: pe.dic.get('%share-text') + pe.dic.get('%share-hint'), // Popup hint for links, {s} is replaced by display name
+				hint: pe.dic.get('%share-text') + pe.dic.get('%share-hint') + pe.dic.get('%new-window'), // Popup hint for links, {s} is replaced by display name
 				popup: true, // True to have it popup on demand, false to show always
 				popupTag: 'h2', // Parent tag for the popup link (should be either h2 or h3)
 				popupText: pe.dic.get('%share-text'), // Text for the popup trigger
@@ -92,6 +92,13 @@
 						popupLink.title = popupLinkSpan.title;
 						popupLinkSpan.removeAttribute('title');
 					}
+				}
+				if (opts.addEmail) { // Removes target attribute and opens in new window warning from email link
+					match = $popup.find('a[href*="mailto:"]').removeAttr('target');
+					match.attr('title', match.attr('title').replace(pe.dic.get('%new-window'), ''));
+				}
+				if (opts.addFavorite) { // Removes target attribute and makes title more relevant for favorite link
+					match = $popup.find('a[href*="#"]').removeAttr('target').attr('title', opts.favoriteText + pe.dic.get('%share-fav-title'));
 				}
 				if (opts.includeDisclaimer) { // Append the disclaimer
 					$popup.append('<p class="popup_disclaimer">' + opts.popupDisclaimer + '</p>');

@@ -3,25 +3,25 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base.scss';
-@import 'includes/default.scss';
-@import '../../base/sass/base-desktop.scss';
-@import 'includes/default-desktop.scss';
+@import '../../base/sass/base';
+@import 'includes/default';
+@import '../../base/sass/base-desktop';
+@import 'includes/default-desktop';
 /* -----Build Include Section End----- */
 
 @media screen{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-screen.scss';
-@import 'includes/default-screen.scss';
-@import '../../base/sass/base-desktop-screen.scss';
-@import 'includes/default-desktop-screen.scss';
-@import 'includes/default-responsive.scss';
+@import '../../base/sass/base-screen';
+@import 'includes/default-screen';
+@import '../../base/sass/base-desktop-screen';
+@import 'includes/default-desktop-screen';
+@import 'includes/default-responsive';
 /* -----Build Include Section End----- */
 }
 
 @media print{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-print.scss';
-@import 'includes/default-print.scss';
+@import '../../base/sass/base-print';
+@import 'includes/default-print';
 /* -----Build Include Section End----- */
 }
