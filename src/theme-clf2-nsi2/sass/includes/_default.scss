@@ -5,12 +5,12 @@
 .wb-sec-def{
 	h3{
 		margin:{
-			left: 0px;
-			right: 0px;
+			left: 0;
+			right: 0;
 		}
 	}
 	ul{
-		margin-right: 0px;
+		margin-right: 0;
 	}
 }
 
@@ -58,7 +58,7 @@
 		float: left;
 	}
 	dd{
-		margin-left: 0px;
+		margin-left: 0;
 		span {white-space: nowrap;}
 	}
 }
