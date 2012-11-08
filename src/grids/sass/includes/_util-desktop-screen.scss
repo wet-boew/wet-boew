@@ -21,7 +21,7 @@
 }
 
 .position-left{
-	@include pos(left,0px);
+	@include pos(left,0);
 }
 
 .position-left-small{
@@ -41,7 +41,7 @@
 }
 
 .position-right{
-	@include pos(right,0px);
+	@include pos(right,0);
 }
 
 .position-right-small{
@@ -61,7 +61,7 @@
 }
 
 .position-top{
-	@include pos(top,0px);
+	@include pos(top,0);
 }
 
 .position-top-small{
@@ -81,7 +81,7 @@
 }
 
 .position-bottom{
-	@include pos(bottom,0px);
+	@include pos(bottom,0);
 }
 
 .position-bottom-small{

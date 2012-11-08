@@ -1,0 +1,195 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00000000, pid=5212, tid=5696
+#
+# JRE version: 6.0_32-b05
+# Java VM: Java HotSpot(TM) Client VM (20.7-b02 mixed mode, sharing windows-x86 )
+# Problematic frame:
+# C  0x00000000
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x034e6400):  JavaThread "Thread-13" [_thread_in_native, id=5696, stack(0x03950000,0x039a0000)]
+
+siginfo: ExceptionCode=0xc0000005, ExceptionInformation=0x00000008 0x00000000
+
+Registers:
+EAX=0x0399eaf8, EBX=0x716f0000, ECX=0x7ffd4000, EDX=0x00000a28
+ESP=0x0399ead8, EBP=0x0399eb14, ESI=0x0000033c, EDI=0x00000000
+EIP=0x00000000, EFLAGS=0x00010206
+
+Top of Stack: (sp=0x0399ead8)
+0x0399ead8:   725505e3 0000033c 716f0000 0399eaf8
+0x0399eae8:   0000001c 0399eeec 7255e390 000000d2
+0x0399eaf8:   00000000 0399eba8 7254f6c6 0399eb3c
+0x0399eb08:   725493f8 72548e38 72548e70 0399eba8
+0x0399eb18:   725509b8 000000d2 0000033c 0399f0e0
+0x0399eb28:   72550b66 0399eba8 0399eeec 7c90de8e
+0x0399eb38:   0000033c 00000001 7255e390 7255e390
+0x0399eb48:   000000c2 00000000 00000000 00000000 
+
+Instructions: (pc=0x00000000)
+0xffffffe0:   
+
+
+Register to memory mapping:
+
+EAX=0x0399eaf8 is pointing into the stack for thread: 0x034e6400
+EBX=0x716f0000 is an unknown value
+ECX=0x7ffd4000 is an unknown value
+EDX=0x00000a28 is an unknown value
+ESP=0x0399ead8 is pointing into the stack for thread: 0x034e6400
+EBP=0x0399eb14 is pointing into the stack for thread: 0x034e6400
+ESI=0x0000033c is an unknown value
+EDI=0x00000000 is an unknown value
+
+
+Stack: [0x03950000,0x039a0000],  sp=0x0399ead8,  free space=314k
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  java.lang.ProcessImpl.create(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/io/FileDescriptor;Ljava/io/FileDescriptor;Ljava/io/FileDescriptor;)J+0
+j  java.lang.ProcessImpl.<init>([Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V+244
+j  java.lang.ProcessImpl.start([Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Z)Ljava/lang/Process;+15
+j  java.lang.ProcessBuilder.start()Ljava/lang/Process;+120
+j  java.lang.Runtime.exec([Ljava/lang/String;[Ljava/lang/String;Ljava/io/File;)Ljava/lang/Process;+16
+j  org.apache.tools.ant.taskdefs.Execute$Java13CommandLauncher.exec(Lorg/apache/tools/ant/Project;[Ljava/lang/String;[Ljava/lang/String;Ljava/io/File;)Ljava/lang/Process;+38
+j  org.apache.tools.ant.taskdefs.Execute.launch(Lorg/apache/tools/ant/Project;[Ljava/lang/String;[Ljava/lang/String;Ljava/io/File;Z)Ljava/lang/Process;+66
+j  org.apache.tools.ant.taskdefs.Execute.execute()I+67
+j  org.apache.tools.ant.taskdefs.Java.fork([Ljava/lang/String;)I+26
+j  org.apache.tools.ant.taskdefs.Java.executeJava(Lorg/apache/tools/ant/types/CommandlineJava;)I+19
+j  org.apache.tools.ant.taskdefs.Java.executeJava()I+5
+j  org.apache.tools.ant.taskdefs.Java.execute()V+17
+j  org.apache.tools.ant.UnknownElement.execute()V+58
+j  sun.reflect.GeneratedMethodAccessor4.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+36
+j  sun.reflect.DelegatingMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+6
+j  java.lang.reflect.Method.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+161
+j  org.apache.tools.ant.dispatch.DispatchUtils.execute(Ljava/lang/Object;)V+518
+j  org.apache.tools.ant.Task.perform()V+22
+j  org.apache.tools.ant.taskdefs.Parallel$TaskRunnable.run()V+24
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x03433400 JavaThread "Thread-15" daemon [_thread_blocked, id=4936, stack(0x03aa0000,0x03af0000)]
+  0x03573800 JavaThread "Thread-17" daemon [_thread_blocked, id=4112, stack(0x03a50000,0x03aa0000)]
+  0x034cd400 JavaThread "Thread-16" daemon [_thread_blocked, id=4952, stack(0x03a00000,0x03a50000)]
+  0x035c3400 JavaThread "Thread-14" [_thread_in_native, id=3272, stack(0x039a0000,0x039f0000)]
+=>0x034e6400 JavaThread "Thread-13" [_thread_in_native, id=5696, stack(0x03950000,0x039a0000)]
+  0x034a1400 JavaThread "Thread-12" [_thread_in_native, id=5012, stack(0x03900000,0x03950000)]
+  0x0346c800 JavaThread "Thread-11" [_thread_in_native, id=3860, stack(0x038b0000,0x03900000)]
+  0x034ba800 JavaThread "Keep-Alive-Timer" daemon [_thread_blocked, id=3924, stack(0x03c80000,0x03cd0000)]
+  0x02f79c00 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=5956, stack(0x031f0000,0x03240000)]
+  0x02f73800 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=3424, stack(0x031a0000,0x031f0000)]
+  0x02f71c00 JavaThread "Attach Listener" daemon [_thread_blocked, id=5384, stack(0x03150000,0x031a0000)]
+  0x02f70800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=4504, stack(0x03100000,0x03150000)]
+  0x02f68400 JavaThread "Finalizer" daemon [_thread_blocked, id=3304, stack(0x030b0000,0x03100000)]
+  0x02f67000 JavaThread "Reference Handler" daemon [_thread_blocked, id=4724, stack(0x03060000,0x030b0000)]
+  0x003f6c00 JavaThread "main" [_thread_blocked, id=5744, stack(0x00cb0000,0x00d00000)]
+
+Other Threads:
+  0x02f2ac00 VMThread [stack: 0x03010000,0x03060000] [id=5944]
+  0x02f8c800 WatcherThread [stack: 0x03240000,0x03290000] [id=396]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ def new generation   total 4928K, used 3695K [0x22c30000, 0x23180000, 0x28180000)
+  eden space 4416K,  72% used [0x22c30000, 0x22f4bc40, 0x23080000)
+  from space 512K, 100% used [0x23080000, 0x23100000, 0x23100000)
+  to   space 512K,   0% used [0x23100000, 0x23100000, 0x23180000)
+ tenured generation   total 10944K, used 2019K [0x28180000, 0x28c30000, 0x32c30000)
+   the space 10944K,  18% used [0x28180000, 0x28378cb8, 0x28378e00, 0x28c30000)
+ compacting perm gen  total 12288K, used 5392K [0x32c30000, 0x33830000, 0x36c30000)
+   the space 12288K,  43% used [0x32c30000, 0x33174310, 0x33174400, 0x33830000)
+    ro space 10240K,  54% used [0x36c30000, 0x371aee18, 0x371af000, 0x37630000)
+    rw space 12288K,  55% used [0x37630000, 0x37cd27d8, 0x37cd2800, 0x38230000)
+
+Code Cache  [0x00d30000, 0x00ec0000, 0x02d30000)
+ total_blobs=721 nmethods=582 adapters=74 free_code_cache=31953344 largest_free_block=5504
+
+Dynamic libraries:
+0x00400000 - 0x00425000 	c:\Program Files\Java\jdk1.6.0_32\jre\bin\java.exe
+0x7c900000 - 0x7c9b2000 	C:\WINNT\system32\ntdll.dll
+0x7c800000 - 0x7c8f6000 	C:\WINNT\system32\kernel32.dll
+0x002b0000 - 0x0031c000 	C:\WINNT\SYSTEM32\SYSFER.DLL
+0x77dd0000 - 0x77e6b000 	C:\WINNT\system32\ADVAPI32.dll
+0x77e70000 - 0x77f03000 	C:\WINNT\system32\RPCRT4.dll
+0x77fe0000 - 0x77ff1000 	C:\WINNT\system32\Secur32.dll
+0x72500000 - 0x7259f000 	C:\Program Files\Print Audit Inc\Print Audit 6\Client\pa6wtrak.dll
+0x7e410000 - 0x7e4a1000 	C:\WINNT\system32\USER32.dll
+0x77f10000 - 0x77f59000 	C:\WINNT\system32\GDI32.dll
+0x73000000 - 0x73026000 	C:\WINNT\system32\WINSPOOL.DRV
+0x77c10000 - 0x77c68000 	C:\WINNT\system32\msvcrt.dll
+0x77120000 - 0x771ab000 	C:\WINNT\system32\OLEAUT32.dll
+0x774e0000 - 0x7761e000 	C:\WINNT\system32\ole32.dll
+0x76390000 - 0x763ad000 	C:\WINNT\system32\IMM32.DLL
+0x7c340000 - 0x7c396000 	c:\Program Files\Java\jdk1.6.0_32\jre\bin\msvcr71.dll
+0x6d8c0000 - 0x6db6f000 	c:\Program Files\Java\jdk1.6.0_32\jre\bin\client\jvm.dll
+0x76b40000 - 0x76b6d000 	C:\WINNT\system32\WINMM.dll
+0x6d870000 - 0x6d87c000 	c:\Program Files\Java\jdk1.6.0_32\jre\bin\verify.dll
+0x6d3d0000 - 0x6d3ef000 	c:\Program Files\Java\jdk1.6.0_32\jre\bin\java.dll
+0x6d8b0000 - 0x6d8bf000 	c:\Program Files\Java\jdk1.6.0_32\jre\bin\zip.dll
+0x6d6b0000 - 0x6d6c3000 	C:\Program Files\Java\jdk1.6.0_32\jre\bin\net.dll
+0x71ab0000 - 0x71ac7000 	C:\WINNT\system32\WS2_32.dll
+0x71aa0000 - 0x71aa8000 	C:\WINNT\system32\WS2HELP.dll
+0x71a50000 - 0x71a8f000 	C:\WINNT\System32\mswsock.dll
+0x76f20000 - 0x76f47000 	C:\WINNT\system32\DNSAPI.dll
+0x76d60000 - 0x76d79000 	C:\WINNT\system32\iphlpapi.dll
+0x76fb0000 - 0x76fb8000 	C:\WINNT\System32\winrnr.dll
+0x76f60000 - 0x76f8c000 	C:\WINNT\system32\WLDAP32.dll
+0x76fc0000 - 0x76fc6000 	C:\WINNT\system32\rasadhlp.dll
+0x662b0000 - 0x66308000 	C:\WINNT\system32\hnetcfg.dll
+0x71a90000 - 0x71a98000 	C:\WINNT\System32\wshtcpip.dll
+0x6d850000 - 0x6d858000 	C:\Program Files\Java\jdk1.6.0_32\jre\bin\sunmscapi.dll
+0x77a80000 - 0x77b15000 	C:\WINNT\system32\CRYPT32.dll
+0x77b20000 - 0x77b32000 	C:\WINNT\system32\MSASN1.dll
+0x6d880000 - 0x6d886000 	C:\Program Files\Java\jdk1.6.0_32\jre\bin\w2k_lsa_auth.dll
+0x71ad0000 - 0x71ad9000 	C:\WINNT\system32\WSOCK32.dll
+0x71f80000 - 0x71f84000 	C:\WINNT\system32\security.dll
+0x71e50000 - 0x71e65000 	C:\WINNT\system32\msapsspc.dll
+0x78080000 - 0x78091000 	C:\WINNT\system32\MSVCRT40.dll
+0x75b00000 - 0x75b15000 	C:\WINNT\system32\digest.dll
+0x747b0000 - 0x747f7000 	C:\WINNT\system32\msnsspc.dll
+0x77c70000 - 0x77c95000 	C:\WINNT\system32\msv1_0.dll
+0x76790000 - 0x7679c000 	C:\WINNT\system32\cryptdll.dll
+0x77b40000 - 0x77b62000 	C:\WINNT\system32\Apphelp.dll
+0x76bf0000 - 0x76bfb000 	C:\WINNT\system32\PSAPI.DLL
+
+VM Arguments:
+jvm_args: -Dhttp.proxyHost=proxyArray -Dhttp.proxyPort=8080 -Dant.home=c:/Program Files/NetBeans 7.1.2/java/ant -Dant.library.dir=c:/Program Files/NetBeans 7.1.2/java/ant/lib 
+java_command: org.apache.tools.ant.launch.Launcher -cp C:\Program Files\Java\jdk1.6.0_32
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=c:/Program Files/Java/jdk1.6.0_32
+CLASSPATH=C:\Program Files\Java\jdk1.6.0_32
+PATH=y:\bin;.;C:\Program Files\Git\local\bin;C:\Program Files\Git\mingw\bin;C:\Program Files\Git\bin;c:\WINNT\system32;c:\WINNT;c:\WINNT\System32\Wbem;c:\Program Files\QuickTime\QTSystem\;c:\Program Files\Windows Imaging\;c:\PROGRA~1\DISKEE~1\DISKEE~1\;c:\Program Files\NetBeans 7.1.2\java\ant\bin;c:\Program Files\Java\jdk1.6.0_32\bin
+USERNAME=PJACKSON
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=x86 Family 6 Model 42 Stepping 7, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows XP Build 2600 Service Pack 3
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht
+
+Memory: 4k page, physical 2786632k(1388972k free), swap 4718500k(3337620k free)
+
+vm_info: Java HotSpot(TM) Client VM (20.7-b02) for windows-x86 JRE (1.6.0_32-b05), built on Apr  5 2012 13:50:34 by "java_re" with MS VC++ 7.1 (VS2003)
+
+time: Thu Nov 08 15:27:00 2012
+elapsed time: 12 seconds
+
