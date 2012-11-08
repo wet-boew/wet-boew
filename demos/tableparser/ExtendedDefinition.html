@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>Extended definition of HTML 5 table elements - Table Usability - Web Experience Toolkit (WET)</title>
+<title>Extended definition of HTLM5 table elements - Table Usability - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../build/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -98,44 +98,43 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
 
-<h1 id="wb-cont">Extended definition of HTML 5 table elements</h1>
+<h1 id="wb-cont">Extended definition of HTLM5 table elements</h1>
 
 
-<p><strong>A knowledge about how to design a table in a HTML format</strong> would help to understand this documentation. The Table Usability Concept assume that you already know the definition from the W3C related to table elements defined in the <a href="http://dev.w3.org/html5/spec/index.html">HTML 5 specification</a>.</p>
+<p><strong>A knowledge about how to design a table in a HTML format</strong> would help to understand this documentation. The Table Usability Concept assume that you already know the definition from the W3C related to table elements defined in the <a href="http://www.w3.org/TR/html5/index.html" rel="external">HTML5 specification</a>.</p>
 
 <p>Here a quick view about the definition of each table related element:</p>
 <ul>
-	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-table-element.html#the-table-element">table</a>:</strong> The table element represents data with more than one dimension, in the form of a table. [...] Tables have rows, columns, and cells given by their descendants. The rows and columns form a grid; a table's cells must completely cover that grid without overlap. [...] Authors are encouraged to provide information describing how to interpret complex tables.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-table-element.html#the-table-element" rel="external">table</a>:</strong> The table element represents data with more than one dimension, in the form of a table. [...] Tables have rows, columns, and cells given by their descendants. The rows and columns form a grid; a table's cells must completely cover that grid without overlap. [...] Authors are encouraged to provide information describing how to interpret complex tables.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-caption-element.html#the-caption-element">caption</a>:</strong> The caption element represents the title of the table that is its parent, if it has a parent and that is a table element. [..] A caption can introduce context for a table, making it significantly easier to understand.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-caption-element.html#the-caption-element" rel="external">caption</a>:</strong> The caption element represents the title of the table that is its parent, if it has a parent and that is a table element. [..] A caption can introduce context for a table, making it significantly easier to understand.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-colgroup-element.html#the-colgroup-element">colgroup</a>:</strong> The colgroup element represents a group of one or more columns in the table that is its parent, if it has a parent and that is a table element.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-colgroup-element.html#the-colgroup-element" rel="external">colgroup</a>:</strong> The colgroup element represents a group of one or more columns in the table that is its parent, if it has a parent and that is a table element.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-col-element.html#the-col-element">col</a>:</strong> If a col element has a parent and that is a colgroup element that itself has a parent that is a table element, then the col element represents one or more columns in the column group represented by that colgroup.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-col-element.html#the-col-element" rel="external">col</a>:</strong> If a col element has a parent and that is a colgroup element that itself has a parent that is a table element, then the col element represents one or more columns in the column group represented by that colgroup.</li>
 	
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-thead-element.html#the-thead-element" rel="external">thead</a>:</strong> The thead element represents the block of rows that consist of the column labels (headers) for the parent table element, if the thead element has a parent and it is a table. [...] Notice the use of both th and td elements in the thead element: the first row is the headers, and the second row is an explanation of how to fill in the table.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-thead-element.html#the-thead-element">thead</a>:</strong> The thead element represents the block of rows that consist of the column labels (headers) for the parent table element, if the thead element has a parent and it is a table. [...] Notice the use of both th and td elements in the thead element: the first row is the headers, and the second row is an explanation of how to fill in the table.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-tbody-element.html#the-tbody-element" rel="external">tbody</a>:</strong> The tbody element represents a block of rows that consist of a body of data for the parent table element, if the tbody element has a parent and it is a table.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-tbody-element.html#the-tbody-element">tbody</a>:</strong> The tbody element represents a block of rows that consist of a body of data for the parent table element, if the tbody element has a parent and it is a table.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-tfoot-element.html#the-tfoot-element" rel="external">tfoot</a>:</strong> The tfoot element represents the block of rows that consist of the column summaries (footers) for the parent table element, if the tfoot element has a parent and it is a table.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-tfoot-element.html#the-tfoot-element">tfoot</a>:</strong> The tfoot element represents the block of rows that consist of the column summaries (footers) for the parent table element, if the tfoot element has a parent and it is a table.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-tr-element.html#the-tr-element" rel="external">tr</a>:</strong> The tr element represents a row of cells in a table.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-tr-element.html#the-tr-element">tr</a>:</strong> The tr element represents a row of cells in a table.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-th-element.html#the-th-element" rel="external">th</a>:</strong> The th element represents a header cell in a table.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://dev.w3.org/html5/spec/the-th-element.html#the-th-element">th</a>:</strong> The th element represents a header cell in a table.</li>
-	
-	<li><strong><a href="http://dev.w3.org/html5/spec/the-td-element.html#the-td-element">td</a>:</strong> The td element represents a data cell in a table.</li>
+	<li><strong><a href="http://www.w3.org/TR/html5/the-td-element.html#the-td-element" rel="external">td</a>:</strong> The td element represents a data cell in a table.</li>
 </ul>
 
-<p><em>Information was token from the HTML 5 specification, Editor's Draft 26 June 2012, Revision 1.5697</em></p>
+<p><em>Information was token from the HTLM5 specification, Editor's Draft 26 June 2012, Revision 1.5697</em></p>
 
 
 
-<p>A basic knowledge about the <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#processing-model-0">HTML table processing model</a> help on how to use the colspan and rowspan attribute on a cell in regards of the group element. The table usability concep should not conflic with the specification to <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#header-and-data-cell-semantics">forming relationships between data cells and header cells</a> if the WCAG technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H43.html">H43: Using id and headers attributes to associate data cells with header cells in data tables</a> is used.</p>
+<p>A basic knowledge about the <a href="http://www.w3.org/TR/html5/attributes-common-to-td-and-th-elements.html#processing-model-0" rel="external">HTML table processing model</a> help on how to use the colspan and rowspan attribute on a cell in regards of the group element. The table usability concep should not conflic with the specification to <a href="http://www.w3.org/TR/html5/attributes-common-to-td-and-th-elements.html#header-and-data-cell-semantics" rel="external">forming relationships between data cells and header cells</a> if the WCAG technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H43.html" rel="external">H43: Using id and headers attributes to associate data cells with header cells in data tables</a> is used.</p>
 
 <hr />
 
-<p>The Table Usability define a new concept on how to create the relationship between the informative elements versus the tables structure elements. That is accomplished by following the HTML 5 specification on how the HTML elements is nested. The Table Usability Concept are supported by a Javascript Parser build with the jQuery framework.</p>  
+<p>The Table Usability define a new concept on how to create the relationship between the informative elements versus the tables structure elements. That is accomplished by following the HTLM5 specification on how the HTML elements is nested. The Table Usability Concept are supported by a Javascript Parser build with the jQuery framework.</p>  
 
 <h2>Element Type</h2>
 
@@ -249,7 +248,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <p>The row level is calculated by the number of row header inside a data row group. The level always increase and decrease of one level for the next summary row group.</p>
 
 <h3>Row Level Inside a Data Group</h3>
-<p>A row level can be increased inside a data group if the table structure is constant. This create a sub group based on the number of row the group header cell is spanned. However no summary can be defined in that sub row group because in the <a href="http://dev.w3.org/html5/spec/attributes-common-to-td-and-th-elements.html#processing-model-0">4.9.12 Processing model</a> from the HTML 5 specification said: <cite>A cell cannot cover slots that are from two or more row groups.</cite>.</p>
+<p>A row level can be increased inside a data group if the table structure is constant. This create a sub group based on the number of row the group header cell is spanned. However no summary can be defined in that sub row group because in the <a href="http://www.w3.org/TR/html5/attributes-common-to-td-and-th-elements.html#processing-model-0">4.9.12 Processing model</a> from the HTLM5 specification said: <cite>A cell cannot cover slots that are from two or more row groups.</cite>.</p>
 
 -->
 

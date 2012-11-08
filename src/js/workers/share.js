@@ -84,6 +84,7 @@
 				while (popupLinksLen--) {
 					popupLink = $popupLinks[popupLinksLen];
 					popupLink.setAttribute('role', 'menuitem');
+					popupLink.setAttribute('rel', 'external');
 					popupLink.parentNode.setAttribute('role', 'presentation');
 					// TODO: Should work with author to fix in bookmark.js rather than maintain this workaround (fix needed otherwise some screen readers read the link twice)
 					popupLinkSpan = popupLink.getElementsByTagName('span');
@@ -94,11 +95,11 @@
 					}
 				}
 				if (opts.addEmail) { // Removes target attribute and opens in new window warning from email link
-					match = $popup.find('a[href*="mailto:"]').removeAttr('target');
+					match = $popup.find('a[href*="mailto:"]').removeAttr('target').removeAttr('rel');
 					match.attr('title', match.attr('title').replace(pe.dic.get('%new-window'), ''));
 				}
 				if (opts.addFavorite) { // Removes target attribute and makes title more relevant for favorite link
-					match = $popup.find('a[href*="#"]').removeAttr('target').attr('title', opts.favoriteText + pe.dic.get('%share-fav-title'));
+					match = $popup.find('a[href*="#"]').removeAttr('target').removeAttr('rel').attr('title', opts.favoriteText + pe.dic.get('%share-fav-title'));
 				}
 				if (opts.includeDisclaimer) { // Append the disclaimer
 					$popup.append('<p class="popup_disclaimer">' + opts.popupDisclaimer + '</p>');
