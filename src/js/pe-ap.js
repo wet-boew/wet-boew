@@ -29,6 +29,7 @@
 		* @type {string} Page language, defaults to 'en' if not available
 		*/
 		language: (document.getElementsByTagName('html')[0].lang ? document.getElementsByTagName('html')[0].lang : 'en'),
+		languages: ['@wet-boew-build.languagelist@'],
 		touchscreen: 'ontouchstart' in document.documentElement,
 		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
@@ -1253,6 +1254,27 @@
 				}
 			}
 		},
+		
+		/**
+		* A method to get a languages from a list of supported language.
+		* @namespace pe.add
+		*/
+		get_language: function (lang, supported, sep) {
+			var d;
+			sep = (typeof sep === 'undefined') ? '-' : sep;
+			if (supported.indexOf(lang) !== -1) {
+				return lang;
+			} else {
+				d = lang.indexOf(sep);
+				if (d !== -1) {
+					lang = lang.substr(0, d);
+					if (supported.indexOf(lang) !== -1) {
+						return lang;
+					}
+				} 
+			}
+			return null;
+		},
 		/**
 		* A series of chainable methods to add elements to the head ( async )
 		* @namespace pe.add
@@ -1405,11 +1427,13 @@
 				* Adds a JavaScript link for i18n to the head. It picks the file in pe.add.liblocation + "i18n/" whose prefix matches the page language.
 				* @memberof pe.add
 				* @function
-				* @param {string} lang The two (iso 639-1) or three (iso 639-2) letter language code of the page.
+				* @param {string} lang The two (iso 639-1)  code of the page.
 				* @return {void}
 				*/
 				language: function (lang) {
-					var url = pe.add.liblocation + 'i18n/' + lang + pe.suffix + '.js';
+					var d, url;
+					lang = pe.get_language(lang, pe.languages);
+					url = pe.add.liblocation + 'i18n/' + (lang !== null ? lang : 'en') + pe.suffix + '.js';
 					pe.add._load(url);
 				},
 				/**

@@ -4,7 +4,7 @@
 
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>
-
+	
 	<target name="default" depends="clean,build,clean-css" description="Performs a clean and build when calling ant without any target"></target>
 
 	<target name="encode-css" extensionOf="encode-images" depends="-base64-encode"/>	
@@ -75,7 +75,7 @@
 	</target>
 
 	<!-- Build JS Tasks -->
-	<target name="-build-pe" depends="-merge-workers">
+	<target name="-build-pe" depends="-get-languages, -get-validation-languages, -merge-workers">
 		<concat dest="${build.dir}/pe-ap.js" fixlastline="yes">
 			<file file="${src.dir}/pe-ap.js"/>
 			<file file="${build.dir}/workers.js"/>
@@ -84,10 +84,33 @@
 				<replacetokens>
 					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
 					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
+					<token key="wet-boew-build.languagelist" value="${languagelist}"/>
+					<token key="wet-boew-build.validlanguagelist" value="${validlanguagelist}"/>
+					<token key="wet-boew-build.validlanguagemethod" value="${validlanguagemethod}"/>
 				</replacetokens>
 			</filterchain>
 		</concat>
 		<delete file="${build.dir}/workers.js"/>
+	</target>
+	
+	<target name="-get-languages">
+		<fileset id="languages" dir="${src.dir}/i18n" includes="*.js"/>
+		<pathconvert pathsep="','" property="languagelist" refid="languages">
+			<globmapper from="${basedir}${file.separator}i18n${file.separator}*.js" to="*" />
+		</pathconvert>
+		<echo message="Supported core languages: '${languagelist}'" level="info"/>
+	</target>
+	
+	<target name="-get-validation-languages">
+		<fileset id="validlanguages" dir="${src.dir}/i18n/formvalid" includes="messages_*.js"/>
+		<pathconvert pathsep="','" property="validlanguagelist" refid="validlanguages">
+			<globmapper from="${basedir}${file.separator}i18n${file.separator}formvalid${file.separator}messages_*.js" to="*" />
+		</pathconvert>
+		<fileset id="validlanguagesmethod" dir="${src.dir}/i18n/formvalid" includes="methods_*.js"/>
+		<pathconvert pathsep="','" property="validlanguagemethod" refid="validlanguagesmethod">
+			<globmapper from="${basedir}${file.separator}i18n${file.separator}formvalid${file.separator}methods_*.js" to="*" />
+		</pathconvert>
+		<echo message="Supported jQuery validation languages: '${validlanguagelist}'" level="info"/>
 	</target>
 
 	<target name="-merge-workers">
@@ -96,6 +119,7 @@
 		</concat>
 		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf8" />
 	</target>
+	
 	
 	<target name="-jshint" extensionOf="test">
 		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
