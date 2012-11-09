@@ -152,7 +152,7 @@
 	</target>
 	
 	<target name="-minify">
-		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}">
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}" charset="utf-8>
 			<include name="**/*.css" />
 			<include name="**/*.js" />
 			<exclude name="**/*-min.css" />
