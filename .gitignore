@@ -18,3 +18,4 @@ Thumbs.db
 jshint.out.xml
 *.orig
 *.tmp
+*.log
