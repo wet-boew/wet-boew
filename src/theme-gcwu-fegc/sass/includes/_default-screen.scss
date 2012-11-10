@@ -28,9 +28,9 @@ body{
 	h3,h4,.top-level{
 		font-size:100%;
 		border-bottom:none;
-		border-radius:2px;
 		-moz-border-radius:2px;
 		-webkit-border-radius:2px;
+		border-radius:2px;
 		margin:0 0 3px;
 		a{
 			font-weight:700;
@@ -53,9 +53,9 @@ body{
 	}
 	a.nav-current{
 		border:1px solid #777;
-		border-radius:2px;
 		-moz-border-radius:2px;
 		-webkit-border-radius:2px;
+		border-radius:2px;
 	}
 	h3,h4,.top-level,li{
 		a{
