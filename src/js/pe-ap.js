@@ -17,7 +17,6 @@
 	/**
 	* pe object
 	* @namespace pe
-	* @version 3.0
 	*/
 	pe = (typeof window.pe !== 'undefined' && window.pe !== null) ? window.pe : {
 		fn: {}
@@ -90,7 +89,11 @@
 				
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
-				$html.addClass((test === 0 || (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) ? 'bb-pre7' : ''));
+				if (test === 0) {
+					$html.addClass('bb-pre6 bb-pre7');
+				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
+					$html.addClass('bb-pre7');
+				}
 
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
@@ -703,6 +706,7 @@
 				qparam,
 				newquery = '?',
 				settings = pe.settings,
+				$html = $('html'),
 				pedisable_link = (settings && typeof settings.pedisable_link === 'boolean' ? settings.pedisable_link : true);
 
 			for (qparam in qparams) { // Rebuild the query string
@@ -711,8 +715,8 @@
 				}
 			}
 
-			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
-				$('html').addClass('no-js pe-disable');
+			if ((((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== "false") || disable === "true") {
+				$html.addClass('no-js pe-disable');
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
 				}
