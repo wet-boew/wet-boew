@@ -2,6 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3";
+
 .intranet {
 	#gcwu-subsite{
 		border-top:1px solid #CCC;
@@ -86,7 +88,7 @@
 	a{
 		background: none repeat scroll 0 0 #eee;
 		border: 1px solid #ddd;
-		border-radius: 2px 2px 2px 2px;
+		@include border-radius(2px 2px 2px 2px);
 		color: #222;
 		float: right;
 		font-weight: 400;

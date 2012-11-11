@@ -2,6 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3";
+
 body{
 	-webkit-text-size-adjust:none;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
@@ -240,8 +242,16 @@ img{
 	border:1px solid #ddd;
 	border-radius:2px;
 	float:right;
-	font-weight:400;
-	padding:3px;
+	margin-bottom:2px;
+	a{
+		color:#222;
+		text-decoration:none;
+		background:#eee;
+		border:1px solid #ddd;
+		@include border-radius(2px);
+		font-weight:400;
+		padding:3px;
+	}
 }
 
 #gcwu-srch-submit{
@@ -436,12 +446,8 @@ img{
 		border-right-width: 1px;
 	}
 	.ui-collapsible-heading:not(.ui-collapsible-heading-collapsed) a {
-		-webkit-border-bottom-right-radius: 0;
-		-webkit-border-bottom-left-radius: 0;
-		-moz-border-radius-bottomright: 0;
-		-moz-border-radius-bottomleft: 0;
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
+		@include border-bottom-left-radius(0);
+		@include border-bottom-right-radius(0);
 	}
 	.ui-collapsible-content {
 		padding:0;
@@ -506,12 +512,10 @@ img{
 	}
 	.top-section a{
 		margin:0 0 5px;
-		-moz-border-radius:0;
-		-webkit-border-radius:0;
-		border-radius:0;
+		@include border-radius(0);
 	}
 	.top-level.ui-btn-corner-all {
-		border-radius:0.6em;
+		@include border-radius(0.6em);
 	}
 	#gcwu-bc-in {
 		background:#DFDFDD;
@@ -522,18 +526,14 @@ img{
 		background-image:-o-linear-gradient(#F0EFEF,#DFDFDD);
 		background-image:linear-gradient(#F0EFEF,#DFDFDD);
 		color: #555;
-		-moz-border-radius:0;
-		-webkit-border-radius:0;
-		border-radius:0;
+		@include border-radius(0);
 		text-shadow:0 1px 1px #fff;
 		border-bottom:1px solid #ccc;
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 		a {
 			color: #295376;
 			text-decoration: none;
-			-moz-border-radius:0;
-			-webkit-border-radius:0;
-			border-radius:0;
+			@include border-radius(0);
 			&:hover,&:active{
 				text-decoration:underline;
 			}
@@ -543,9 +543,7 @@ img{
 			float: left;
 			margin: 0;
 			padding: 5px 12px 5px 5px;
-			-moz-border-radius:0;
-			-webkit-border-radius:0;
-			border-radius:0;
+			@include border-radius(0);
 			&:last-child {
 				background-image: none;
 				padding-left:5px;

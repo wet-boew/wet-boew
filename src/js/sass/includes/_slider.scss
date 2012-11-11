@@ -125,9 +125,7 @@
 		image:-o-linear-gradient(top,#ececec,#ccc);
 		image:linear-gradient(to bottom,#ececec,#ccc);
 	}
-	-webkit-border-radius:2px;
-	-moz-border-radius:2px;
-	border-radius:2px;
+	@include border-radius(2px);
 	-webkit-background-clip:padding-box;
 	-moz-background-clip:padding;
 	background-clip:padding-box
@@ -163,9 +161,7 @@
 		image:-o-linear-gradient(left,#89A5BD,#165c91);
 		image:linear-gradient(to right,#89A5BD,#165c91);
 	}
-	-webkit-border-radius:2px;
-	-moz-border-radius:2px;
-	border-radius:2px;
+	@include border-radius(2px);
 	-webkit-background-clip:padding-box;
 	-moz-background-clip:padding;background-clip:padding-box
 }
@@ -306,9 +302,7 @@ body {
 	padding:1em;
 	border:3px solid #a84444;
 	background:#fff;
-	-webkit-border-radius:8px;
-	-moz-border-radius:8px;
-	border-radius:8px;
+	@include border-radius(8px);
 }
 input[type="range"] {
 	width:100%;

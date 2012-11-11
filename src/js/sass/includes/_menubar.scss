@@ -2,7 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-.wet-boew-menubar{
+@import "compass/css3"; 
+
+ .wet-boew-menubar{
 	background-color:#1A3D6C;
 	border-bottom:4px solid #999;
 	min-height:28px;
@@ -117,9 +119,7 @@
 		background-color:#CCC;
 		border-bottom:4px solid #242;
 		padding-top:4px;
-		-moz-border-radius:0 0 3px 3px;
-		-webkit-border-radius:0 0 3px 3px;
-		border-radius:0 0 3px 3px;
+		@include border-radius(0 0 3px 3px);
 		h2,h3,h4,.top-level{
 			font-size:1.2em;
 			font-weight:700;

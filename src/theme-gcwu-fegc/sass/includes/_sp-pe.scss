@@ -2,6 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3";
+
 #wb-body, #wb-body-sec {
 	background:#fff;
 }
@@ -56,9 +58,7 @@ h2 {
 				border-left: 1px solid #fff;
 				color: #333;
 				padding: 10px 0;
-				-moz-border-radius: 2px;
-				-webkit-border-radius:2px;
-				border-radius:2px;
+				@include border-radius(2px);
 				text-shadow: 0 1px 0 #eee;
 				font-weight:700;
 				-moz-box-shadow:none;

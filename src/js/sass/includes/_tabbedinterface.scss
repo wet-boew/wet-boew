@@ -17,9 +17,7 @@
 		display:inline-block;
 		border:solid 1px #ccc;
 		border-bottom:none;
-		-moz-border-radius:2px 2px 0 0;
-		-webkit-border-radius:2px 2px 0 0;
-		border-radius:2px 2px 0 0;
+		@include border-radius(2px 2px 0 0);
 		a{
 			display:block;
 			text-decoration:none;
@@ -45,9 +43,7 @@
 		&.tabs-toggle {
 			a{
 				cursor:pointer;
-				-moz-border-radius:2px;
-				-webkit-border-radius:2px;
-				border-radius:2px;
+				@include border-radius(2px);
 				border:1px solid #999;
 				margin-right: 2px;
 				&:hover, &:focus, &:active{
@@ -226,9 +222,7 @@
 			a{
 				border:1px solid #999;
 				padding:2px 5px;
-				-moz-border-radius: 2px;
-				-webkit-border-radius: 2px;
-				border-radius:2px;
+				@include border-radius(2px);
 				&.active, &:hover, &:focus, &:active{
 					background:#333;
 					color:#fff;
@@ -282,9 +276,7 @@
     margin:0;
     min-height:220px;
     padding:10px 0 10px 10px;
-    -moz-border-radius:5px;
-    -webkit-border-radius:3px;
-    border-radius:3px;
+    @include border-radius(3px);
 	.tabs{
 		width:35%;
 		position:absolute;
@@ -309,9 +301,7 @@
 					margin-right:0;
 					padding:5px 5px 5px 25px;
 					opacity:0.75;
-					-moz-border-radius: 3px 0 0 3px;
-					-webkit-border-radius: 3px 0 0 3px;
-					border-radius: 3px 0 0 3px;
+					@include border-radius(3px 0 0 3px);
 				}
 			}
 			&.active{
@@ -354,9 +344,7 @@
 	.tabs-roller{
 		background-color:white;
 		opacity:0.2;
-		-moz-border-radius: 3px 0 0 3px;
-		-webkit-border-radius: 3px 0 0 3px;
-		border-radius: 3px 0 0 3px;
+		@include border-radius(3px 0 0 3px);
 	}
 }
 
