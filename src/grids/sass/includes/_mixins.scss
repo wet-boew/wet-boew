@@ -123,25 +123,9 @@ $default-color-border: false;
 		background-repeat: repeat-x;
 		
 		@if $important {
-
-			$gradient: linear-gradient($color, darken($color, 7%));
-			background-image: $gradient !important;
-			@if $support-for-original-webkit-gradients and prefixed(-owg, $gradient) {
-				background-image: -owg($gradient) !important; }
-			@if $experimental-support-for-webkit and prefixed(-webkit, $gradient) {
-				background-image: -webkit($gradient) !important; }
-			@if $experimental-support-for-mozilla and prefixed(-moz, $gradient) {
-				background-image: -moz($gradient) !important; }
-			@if $experimental-support-for-opera and prefixed(-o, $gradient) {
-				background-image: -o($gradient) !important; }
-
+			@include background-image(linear-gradient($color, darken($color, 7%)) !important);
 		} @else {
-			@include background-image(
-				linear-gradient(
-					$color,
-					darken($color, 7%)
-				)
-			);
+			@include background-image(linear-gradient($color, darken($color, 7%)));
 		}
 	}
 

@@ -124,12 +124,7 @@
 	color: $text !important;
 	text-shadow: contrast-color($text, $dark, $white, 50%) 0 1px 1px;
 	
-	@include background-image(
-		linear-gradient(
-			$color,
-			darken($color, 10%)
-		)
-	);
+	@include background-image(linear-gradient($color,darken($color, 10%)));
 	&:hover, &:focus, &:active { 
 		background-color: darken($color, 10%);
 	}
