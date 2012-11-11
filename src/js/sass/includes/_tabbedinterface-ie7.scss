@@ -8,11 +8,11 @@
 		margin-right:5px;
 	}
 	.tabs-roller {
-		filter:alpha(opacity=10);
+		@include opacity(0.1);;
 	}
 	.tabs-style-2 {
 		.tabs{
-			filter:alpha(opacity=95);
+			@include opacity(0.95);
 			li{
 				margin-right:2px;
 				margin-bottom:-6px;
@@ -22,7 +22,7 @@
 			}
 		}
 		.tabs-roller{
-			filter:alpha(opacity=25);
+			@include opacity(0.25);
 		}
 	}
 	.tabs-style-3 {
@@ -30,7 +30,7 @@
 			li{
 				a{
 					&.active, &:hover, &:focus, &:active{
-						filter:alpha(opacity=75);
+						@include opacity(0.75);
 					}
 				}
 				&.tabs-toggle{
@@ -38,7 +38,7 @@
 					margin-right:15px;
 					a{
 						&:hover, &:focus, &:active{
-							filter:alpha(opacity=100);
+							@include opaque;
 						}
 						&.tabs-start{
 							margin-left:-15px;
@@ -48,7 +48,7 @@
 			}
 		}
 		.tabs-roller{
-			filter:alpha(opacity=20);
+			@include opacity(0.2);
 		}
 	}
 	.tabs-style-4 .tabs li {

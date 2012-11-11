@@ -121,7 +121,7 @@
     left:0;
     cursor:text;
     background-color:#000;
-    opacity:0.1;
+    @include opacity(0.1);
 }
 
 /*with grids*/
@@ -206,7 +206,7 @@
 	.tabs{
 		border:none;
 		background:#eee;
-		opacity:0.95;
+		@include opacity(0.95);
 		min-height:24px;
 		position:absolute;
 		width:100%;
@@ -263,7 +263,7 @@
 	}
 	.tabs-roller{
 		background-color:#fff;
-		opacity:0.25;
+		@include opacity(0.25);
 	}
 }
 
@@ -300,7 +300,7 @@
 					outline-color:#000;
 					margin-right:0;
 					padding:5px 5px 5px 25px;
-					opacity:0.75;
+					@include opacity(0.75);
 					@include border-radius(3px 0 0 3px);
 				}
 			}
@@ -315,7 +315,7 @@
 					margin-top:10px;
 					border:1px solid #ccc;
 					&:hover, &:focus, &:active{
-						opacity:1;
+						@include opaque;
 						color:#000;
 						margin-right:2px;
 					}
@@ -343,7 +343,7 @@
 	}
 	.tabs-roller{
 		background-color:white;
-		opacity:0.2;
+		@include opacity(0.2);
 		@include border-radius(3px 0 0 3px);
 	}
 }

@@ -4,6 +4,6 @@
  */
 .ie7 {
 	.sOverlay {
-		filter: alpha(opacity=90);
+		@include opacity(0.9);
 	}
 }

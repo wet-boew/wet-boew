@@ -10,11 +10,6 @@
 	left: 0;
 	top: 0;
 	z-index: 999999;
-	/* Netscape */
-	-moz-opacity: 0.9;
-	/* Safari 1.x */
-	-khtml-opacity: 0.9;
-	/* Good browsers */
-	opacity: 0.9;
+	@include opacity(0.9);
 	background-image: url(../images/sessiontimeout/scrim.png);
 }

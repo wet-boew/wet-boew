@@ -180,12 +180,12 @@ body {
 	}
 }
 .fd-slider-disabled {
-	opacity:.8;
+	@include opacity(0.8);
 	cursor:default
 	.fd-slider-handle {
 		cursor:default!important;
 		background-position:0 -40px;
-		opacity:1
+		@include opaque;
 	}
 	.fd-slider-bar {
 		cursor:auto!important;
