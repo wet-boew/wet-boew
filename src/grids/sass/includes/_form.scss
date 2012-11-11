@@ -114,7 +114,7 @@
 		}
 
 		&[type="search"] {
-			-webkit-appearance: textfield;
+			@include appearance(textfield);
 		}
 		
 		&:-moz-placeholder { color: $medium; }

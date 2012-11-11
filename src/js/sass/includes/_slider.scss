@@ -249,12 +249,12 @@ input[type="range"] {
 	width:100%;
 }
 input[data-fd-slider-vertical="v-s"] {
-	-webkit-appearance: slider-vertical;
+	@include appearance(slider-vertical);
 	width: 20px;
 	height: 300px;
 }
 input[data-fd-slider-vertical="v-s2"] {
-	-webkit-appearance: slider-vertical;
+	@include appearance(slider-vertical);
 	width: 20px;
 	height: 160px;
 }
