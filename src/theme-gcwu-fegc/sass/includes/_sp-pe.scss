@@ -61,17 +61,13 @@ h2 {
 				@include border-radius(2px);
 				text-shadow: 0 1px 0 #eee;
 				font-weight:700;
-				-moz-box-shadow:none;
-				-webkit-box-shadow:none;
-				box-shadow:none;
+				@include box-shadow(none);
 				display:block;
 				font-size: 120%;
 				text-decoration: none;
 				&:hover, &:focus, &:active{
 					text-shadow: 0 1px 0 #ddd;
-					-moz-box-shadow:none;
-					-webkit-box-shadow:none;
-					box-shadow:none;
+					@include box-shadow(none);
 					border: 1px solid #999;
 				}
 			}
@@ -84,9 +80,7 @@ h2 {
 #gcwu-ef-lang li {
 	display: inline-block;
 	a:active{
-		-moz-box-shadow: inset 0 0 5px 2px #999, 0 0 0 0 #eee;
-		-webkit-box-shadow: inset 0 0 5px 2px #999, 0 0 0 0 #eee;
-		box-shadow: inset 0 0 5px 2px #999, 0 0 0 0 #eee;
+		@include box-shadow(inset 0 0 5px 2px #999, 0 0 0 0 #eee);
 	}
 }
 

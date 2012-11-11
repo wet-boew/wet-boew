@@ -73,9 +73,7 @@
 	background:#fafafa;
 	margin-bottom:5px;
 	border-bottom:1px solid #eee;
-	-moz-box-shadow:inset 1px 1px 2px #999;
-	-webkit-box-shadow: inset 1px 1px 2px #999;
-	box-shadow: inset 1px 1px 2px #999;
+	@include box-shadow(inset 1px 1px 2px #999);
 	ul{
 		margin:0;
 		float:right;

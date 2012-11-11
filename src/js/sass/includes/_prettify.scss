@@ -46,7 +46,7 @@ pre.prettyprint {
 
 /* Specify class=linenums on a pre to get line numbering */
 pre.prettyprint.linenums {
-	box-shadow: 40px 0 0 #FBFBFC inset, 41px 0 0 #eee inset;
+	@include box-shadow(40px 0 0 #FBFBFC inset, 41px 0 0 #eee inset);
 }
 ol.linenums {
 	margin: 0 0 0 32px !important;

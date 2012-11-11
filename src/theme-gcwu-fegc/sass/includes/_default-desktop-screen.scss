@@ -229,9 +229,7 @@ a{
 		@include border-radius(2px);		
 		margin-left:0;
 		width:218px;
-		-moz-box-shadow:none;
-		-webkit-box-shadow:none;
-		box-shadow:none;
+		@include box-shadow(none);
 		background:#fff;
 		padding:2px 0;
 		&:focus,&:active{
@@ -259,16 +257,12 @@ a{
 	@include border-radius(2px);
 	text-shadow:0 1px 0 #eee;
 	font-weight:400;
-	-moz-box-shadow:none;
-	-webkit-box-shadow:none;
-	box-shadow:none;
+	@include box-shadow(none);
 	padding:2px 6px;
 	display:inline;
 	&:focus,&:hover{
 		text-shadow:0 1px 0 #ddd;
-		-moz-box-shadow:none;
-		-webkit-box-shadow:none;
-		box-shadow:none;
+		@include box-shadow(none);
 		border:{
 			bottom:1px solid #999;
 			right:1px solid #999;
@@ -277,9 +271,7 @@ a{
 		}
 	}
 	&:active{
-		-moz-box-shadow:inset 0 0 5px 2px #999, 0 0 0 0 #eee;
-		-webkit-box-shadow:inset 0 0 5px 2px #999, 0 0 0 0 #eee;
-		box-shadow:inset 0 0 5px 2px #999, 0 0 0 0 #eee;
+		@include box-shadow(inset 0 0 5px 2px #999, 0 0 0 0 #eee);
 		border:1px solid #999;
 	}
 }
@@ -328,9 +320,7 @@ a{
 			padding-right:0.38em;
 		}
 		.mb-sm-open{
-			-moz-box-shadow: 0 5px 5px -4px rgba(0,0,0,0.5), 5px 5px 5px -4px rgba(0,0,0,0.5), -5px 5px 5px -4px rgba(0,0,0,0.5);
-			-webkit-box-shadow: 0 5px 5px -4px rgba(0,0,0,0.5), 5px 0 5px -4px rgba(0,0,0,0.5), -5px 5px 5px -4px rgba(0,0,0,0.5);
-			box-shadow: 0 5px 5px -4px rgba(0,0,0,0.5), 5px 5px 5px -4px rgba(0,0,0,0.5), -5px 5px 5px -4px rgba(0,0,0,0.5);
+			@include box-shadow(0 5px 5px -4px rgba(0,0,0,0.5), 5px 5px 5px -4px rgba(0,0,0,0.5), -5px 5px 5px -4px rgba(0,0,0,0.5));
 		}
 	}
 	.mb-menu,.mb-menu li{

@@ -132,9 +132,7 @@
 }
 .fd-slider-focused {
 	.fd-slider-bar {
-		-webkit-box-shadow:0 0 6px rgba(10,130,170,0.7);
-		-moz-box-shadow:0 0 6px rgba(10,130,170,0.7);
-		box-shadow:0 0 6px rgba(10,130,170,0.7);
+		@include box-shadow(0 0 6px rgba(10,130,170,0.7));
 		-webkit-animation:fd-pulse 2s infinite;
 		-moz-animation:fd-pulse 2s infinite;
 		-ms-animation:fd-pulse 2s infinite;

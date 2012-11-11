@@ -124,7 +124,7 @@ a {
 
 .ui-mobile {
 	#gcwu-srch{
-		box-shadow:none;
+		@include box-shadow(none);
 	}
 	#wb-sec{
 		display:none;
@@ -529,7 +529,7 @@ img{
 		@include border-radius(0);
 		text-shadow:0 1px 1px #fff;
 		border-bottom:1px solid #ccc;
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+		@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 		a {
 			color: #295376;
 			text-decoration: none;
