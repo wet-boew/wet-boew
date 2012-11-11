@@ -2,6 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3/text-shadow";
+
 @mixin buttons {
 
 	//.button, button 
@@ -22,7 +24,7 @@
 			@include box-shadow(none);
 			cursor: default;
 			font-style: italic;
-			text-shadow: none;
+			@include text-shadow(none);
 		}
 	}
 	
@@ -44,7 +46,7 @@
 				@include box-shadow(none);
 				outline-color: transparent;
 				text-decoration: underline;
-				text-shadow: none;
+				@include text-shadow(none);
 			}
 			&:hover, &:focus, &:active {
 				color: $attention !important;
@@ -120,7 +122,7 @@
 	
 	$text: contrast-color($color, $dark, $white, 55%);
 	color: $text !important;
-	text-shadow: contrast-color($text, $dark, $white, 50%) 0 1px 1px;
+	@include text-shadow(contrast-color($text, $dark, $white, 50%) 0 1px 1px);
 	
 	@include background-image(linear-gradient($color,darken($color, 10%)));
 	&:hover, &:focus, &:active { 

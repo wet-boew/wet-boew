@@ -2,6 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3/text-shadow";
+
 /* Pretty printing styles. Used with prettify.js. */
 
 /* SPAN elements with the classes below are added by prettyprint. */
@@ -52,6 +54,6 @@ ol.linenums {
 	margin: 0 0 0 32px !important;
 	li {
 		padding-left: 10px;
-		text-shadow: 0 1px 0 #fff;
+		@include text-shadow(0 1px 0 #fff);
 	}
 }

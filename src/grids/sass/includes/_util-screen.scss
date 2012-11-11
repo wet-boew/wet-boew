@@ -150,7 +150,7 @@ code {
 		weight: $font-weight-normal;
 	}
 	padding:0 2px !important;
-	text-shadow: none; 
+	@include text-shadow(none);
 	
 	@include colorize-base($light);
 	@include colorize-border($light);
@@ -344,7 +344,7 @@ table{
 		text-align: center;
 		color: #fff;
 		font-size: 85%;
-		text-shadow: 0 1px 0 #111;
+		@include text-shadow(0 1px 0 #111);
 		margin: 5px 0 0 0;
 		margin: 3px 8px 0 8px;
 		padding: 0 0 1px 0;
@@ -367,7 +367,7 @@ table{
 		color: $dark;
 		letter-spacing: -0.1em;
 		line-height: 55px;
-		text-shadow: 1px 1px 0 $white;
+		@include text-shadow(1px 1px 0 $white);
 		margin: 0 !important;
 		width: 100%;
 	}

@@ -18,7 +18,7 @@ body{
 
 #wb-skip {
 	a, a:link, a:visited {
-		text-shadow: none !important;
+		@include text-shadow(none !important);
 	}
 }
 
@@ -54,7 +54,7 @@ body{
 	a{
 		font-size:1.5em;
 		color:#fff !important;
-		text-shadow:0 1px 1px #044062;
+		@include text-shadow(0 1px 1px #044062);
 		text-decoration:none;
 	}
 }
@@ -104,7 +104,7 @@ body{
 h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
 	margin-left:0;
 	margin-right:0;
-	text-shadow:none;
+	@include text-shadow(none);
 }
 
 a {
@@ -265,7 +265,7 @@ img{
 	float:right;
 	border-top:1px solid #044062;
 	h2 {
-		text-shadow:0 1px 1px #044062;
+		@include text-shadow(0 1px 1px #044062);
 		background-color:#333333;
 		@include background-image(linear-gradient(#444444,#2D2D2D));
 		&:hover, &:focus, &:active {
@@ -331,7 +331,7 @@ img{
 	}
 	li{
 		color:#333;
-		text-shadow:0 1px 0 #fff;
+		@include text-shadow(0 1px 0 #fff);
 		position:relative;
 		z-index:1;
 		h3{
@@ -507,7 +507,7 @@ img{
 		@include background-image(linear-gradient(#F0EFEF,#DFDFDD));
 		color: #555;
 		@include border-radius(0);
-		text-shadow:0 1px 1px #fff;
+		@include text-shadow(0 1px 1px #fff);
 		border-bottom:1px solid #ccc;
 		@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 		a {

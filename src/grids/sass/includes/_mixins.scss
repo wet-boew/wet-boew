@@ -2,6 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3/text-shadow";
+
 $sans-serif:		Verdana, Arial, Helvetica, sans-serif;
 $serif:				Georgia, "Times New Roman", Times, serif;
 
@@ -114,7 +116,7 @@ $default-color-border: false;
 	
 	// add text shadow
 	@if $shadow == true {
-		text-shadow: contrast-color($text, $dark, $white, 50%) 0 1px 1px;
+		@include text-shadow(contrast-color($text, $dark, $white, 50%) 0 1px 1px);
 	}
 	
 	// add gradient
