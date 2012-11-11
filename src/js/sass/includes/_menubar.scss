@@ -180,7 +180,7 @@
 			border-left:none;
 		}
 		a{
-			display:inline-block !important;
+			@include inline-block;
 			border-left:1px solid #999;
 			padding:0 1em !important;
 		}

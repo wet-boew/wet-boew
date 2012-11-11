@@ -2,6 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3/inline-block";
 
 /*SCSS Variables*/
 $clrWhite: #FFF;
@@ -11,7 +12,7 @@ $clrDark: #555;
 /*Default SCSS*/
 .ie7 {
 	.wet-boew-footnotes {
-		display: inline-block;
+		@include inline-block;
 		dl {
 			dt {
 				position: relative;

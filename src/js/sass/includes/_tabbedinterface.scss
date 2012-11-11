@@ -14,7 +14,7 @@
     padding:0;
     position:relative;
 	li{
-		display:inline-block;
+		@include inline-block;
 		border:solid 1px #ccc;
 		border-bottom:none;
 		@include border-radius(2px 2px 0 0);
@@ -379,7 +379,7 @@
 			}
 			&.tabs-toggle {
 				margin-top:3px;
-				display:inline-block;
+				@include inline-block;
 				a{
 					font-size:100%;
 					width:auto!important;
@@ -437,7 +437,7 @@
 				display:none!important;
 			}
 			&.tabs-toggle{
-				display:inline-block!important;
+				@include inline-block;
 				a{
 					display:block!important;
 					width:auto!important;

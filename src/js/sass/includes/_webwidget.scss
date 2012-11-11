@@ -31,7 +31,7 @@
 		font-weight:700;
 		background-image:none!important;
 		margin-right:auto!important;
-		display:inline-block;
+		@include inline-block;
 		&.widget-notice{
 			text-decoration:underline;
 		}

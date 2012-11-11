@@ -91,9 +91,7 @@
 		margin-top: $spacing-medium;
 	
 		.button-group {
-			display: inline-block;
-			*display: inline;
-			*zoom: 1;
+			@include inline-block;
 		}
 	}
 	

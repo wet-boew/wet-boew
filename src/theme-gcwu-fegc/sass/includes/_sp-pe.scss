@@ -43,7 +43,7 @@ h2 {
 
 #gcwu-ef-lang, #gcwu-other-lang {
 	list-style-type: none;
-	display: inline-block;
+	@include inline-block;
 	margin: 10px 0 0;
 	padding-left: 0;
 	li {
@@ -78,7 +78,7 @@ h2 {
 }
 
 #gcwu-ef-lang li {
-	display: inline-block;
+	@include inline-block;
 	a:active{
 		@include box-shadow(inset 0 0 5px 2px #999, 0 0 0 0 #eee);
 	}
@@ -90,7 +90,7 @@ h2 {
 
 #gcwu-ef-tc, #gcwu-other-tc {
 	list-style-type: none;
-	display: inline-block;
+	@include inline-block;
 	margin: 0;
 	padding-top: 4px;
 	padding-left: 0;
