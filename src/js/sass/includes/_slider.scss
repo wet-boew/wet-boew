@@ -126,9 +126,7 @@
 		image:linear-gradient(to bottom,#ececec,#ccc);
 	}
 	@include border-radius(2px);
-	-webkit-background-clip:padding-box;
-	-moz-background-clip:padding;
-	background-clip:padding-box
+	@include background-clip(padding-box);
 }
 .fd-slider-focused {
 	.fd-slider-bar {
@@ -160,8 +158,7 @@
 		image:linear-gradient(to right,#89A5BD,#165c91);
 	}
 	@include border-radius(2px);
-	-webkit-background-clip:padding-box;
-	-moz-background-clip:padding;background-clip:padding-box
+	@include background-clip(padding-box);
 }
 .fd-slider-handle {
 	position:absolute;
