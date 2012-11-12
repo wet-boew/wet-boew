@@ -2,22 +2,22 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import '../../base/sass/remove-oldie-vendor-prefix';
+@import '../../base/sass/oldie-vendor-prefix';
 
 /*!
  * Icons by Yusuke Kamiyamane (http://p.yusukekamiyamane.com/) - Creative Commons Attribution 3.0 License (http://creativecommons.org/licenses/by/3.0/)
  */
 @media screen{
 /* -----Build Include Section Start----- */
-@import 'includes/_util-screen.scss';
-@import 'includes/_util-desktop-screen.scss';
-@import 'includes/_fix-ie7.scss';
-@import 'includes/_fix-ie8.scss';
+@import 'includes/util-screen';
+@import 'includes/util-desktop-screen';
+@import 'includes/fix-ie7';
+@import 'includes/fix-ie8';
 /* -----Build Include Section End----- */
 }
 
 @media print{
 /* -----Build Include Section Start----- */
-@import 'includes/_util-print.scss';
+@import 'includes/util-print';
 /* -----Build Include Section End----- */
 }

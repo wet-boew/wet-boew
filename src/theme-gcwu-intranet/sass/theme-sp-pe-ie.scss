@@ -2,44 +2,44 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import '../../base/sass/remove-oldie-vendor-prefix';
+@import '../../base/sass/oldie-vendor-prefix';
 
 /* -----Build Include Section Start----- */
-@import '../../base/sass/_base.scss';
-@import '../../base/sass/_base-desktop.scss';
-@import '../../base/sass/_base-ie7.scss';
-@import '../../base/sass/_base-ie8.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-images.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-desktop-screen.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-ie7.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-ie8.scss';
+@import '../../base/sass/base';
+@import '../../base/sass/base-desktop';
+@import '../../base/sass/base-ie7';
+@import '../../base/sass/base-ie8';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-images';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-desktop-screen';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-ie7';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-ie8';
 /* -----Build Include Section End----- */
 
 @media screen{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/_base-screen.scss';
-@import '../../base/sass/_base-desktop-screen.scss';
-@import '../../base/sass/_base-screen-ie7.scss';
-@import '../../base/sass/_base-screen-ie8.scss';
-@import '../../grids/sass/_responsive.scss';
-@import '../../grids/sass/_responsive-ie7.scss';
-@import '../../theme-gcwu-fegc/sass/includes/default-responsive.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-desktop.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen-ie7.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen-ie8.scss';
-@import 'includes/sp-pe-screen.scss';
+@import '../../base/sass/base-screen';
+@import '../../base/sass/base-desktop-screen';
+@import '../../base/sass/base-screen-ie7';
+@import '../../base/sass/base-screen-ie8';
+@import '../../grids/sass/responsive';
+@import '../../grids/sass/responsive-ie7';
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-desktop';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen-ie7';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen-ie8';
+@import 'includes/sp-pe-screen';
 /* -----Build Include Section End----- */
 }
 
 @media print{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/_base-print.scss';
-@import '../../base/sass/_base-print-ie7.scss';
-@import '../../base/sass/_base-print-ie8.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-print.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-print-ie7.scss';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-print-ie8.scss';
+@import '../../base/sass/base-print';
+@import '../../base/sass/base-print-ie7';
+@import '../../base/sass/base-print-ie8';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-print';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-print-ie7';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-print-ie8';
 /* -----Build Include Section End----- */
 }
