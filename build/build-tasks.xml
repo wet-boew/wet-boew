@@ -113,6 +113,23 @@
 			<exclude name="**/*.min.js"/>
 		</jshint>
 	</target>
+	
+	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files">
+		<apply executable="java" failonerror="false" parallel="true" output="${build.dir}/csslint.out.xml">
+			<fileset dir="${src.dir}/css">
+				<include name="*.css"/>
+			</fileset>
+			<arg value="-jar"/>
+			<arg path="${lib.dir}/js.jar"/>
+			<arg path="${lib.dir}/csslint-rhino.js" />      
+
+			<!-- your customized arguments go here -->
+			<arg value="--format=lint-xml"/>
+			<arg value="--ignore=font-sizes,ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,floats,adjoining-classes,unique-headings"/>
+			<arg value="--error=outline-none"/>
+			<srcfile/>
+		</apply>
+	</target>
 
 	<target name="clean-css">
 		<delete dir="${src.dir}/css" />

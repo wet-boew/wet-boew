@@ -16,6 +16,7 @@ ethumbs.db
 Thumbs.db
 /.project
 jshint.out.xml
+csslint.out.xml
 *.orig
 *.tmp
 *.log
