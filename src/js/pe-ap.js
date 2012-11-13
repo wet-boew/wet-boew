@@ -86,7 +86,7 @@
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
 				pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
-				
+
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
 				if (test === 0) {
@@ -623,12 +623,12 @@
 				}
 				return NaN;
 			},
-			
+
 			daysInMonth: function (iYear, iMonth) {
 				// Simplfied function to allow for us to get the days in specific months
 				return 32 - new Date(iYear, iMonth, 32).getDate();
 			},
-			
+
 			daysBetween: function (datelow, datehigh) {
 				// simplified conversion to date object
 				var date1 = pe.date.convert(datelow),
@@ -653,8 +653,7 @@
 				diff = Math.abs(date2.getTime() - date1.getTime()) - DSTAdjust;
 				return Math.ceil(diff / oneDay);
 			},
-			
-			
+
 			/**
 			* Cross-browser safe way of translating a date to iso format
 			* @memberof pe.date
@@ -676,8 +675,8 @@
 				}
 				return date.getFullYear() + '-' + pe.string.pad(date.getMonth() + 1, 2, "0") + '-' + pe.string.pad(date.getDate(), 2, '0');
 			},
-			
-			from_iso_format: function(s){
+
+			from_iso_format: function (s) {
 				var date = null;
 				if (s) {
 					if (s.match(/\d{4}-\d{2}-\d{2}/)) {
@@ -1272,7 +1271,7 @@
 				}
 			}
 		},
-		
+
 		/**
 		* A method to get a languages from a list of supported language.
 		* @namespace pe.add
@@ -1280,6 +1279,20 @@
 		get_language: function (lang, supported, sep) {
 			var d;
 			sep = (typeof sep === 'undefined') ? '-' : sep;
+
+			//Add barebone function for IE < 9
+			if (typeof supported.indexOf === 'undefined') {
+				supported.indexOf = function (val) {
+					var i, len;
+					for (i = 0, len = this.length; i < len; i += 1) {
+						if (this[i] === val) {
+							return i;
+						}
+					}
+					return -1;
+				};
+			}
+
 			if (supported.indexOf(lang) !== -1) {
 				return lang;
 			} else {
@@ -1289,7 +1302,7 @@
 					if (supported.indexOf(lang) !== -1) {
 						return lang;
 					}
-				} 
+				}
 			}
 			return null;
 		},
@@ -1449,7 +1462,7 @@
 				* @return {void}
 				*/
 				language: function (lang) {
-					var d, url;
+					var url;
 					lang = pe.get_language(lang, pe.languages);
 					url = pe.add.liblocation + 'i18n/' + (lang !== null ? lang : 'en') + pe.suffix + '.js';
 					pe.add._load(url);
@@ -1514,7 +1527,7 @@
 					wetboew = wetboew.add(plugins[plug].addClass('wet-boew-' + plug));
 				}
 			}
-				
+
 			// Push each of the "wet-boew-*" plugin calls into the pcalls array
 			wetboew.each(function () {
 				var _node = $(this),
