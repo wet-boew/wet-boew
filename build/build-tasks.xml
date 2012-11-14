@@ -187,7 +187,9 @@
 	
 	<extension-point name="encode-images" depends="prepare-files" />
 	
-	<extension-point name="compress" depends="encode-images" />
+	<target name="encode-css" extensionOf="encode-images" depends="-base64-encode"/>
+
+	<extension-point name="compress" depends="encode-images, -minify" />
 	
 	<extension-point name="test" />
 	
@@ -200,6 +202,8 @@
 			<fileset dir="${build.dir}/css">
 				<include name="*.css"/>
 				<exclude name="*ie.css"/>
+				<!-- Because of themometer images -->
+				<exclude name="util.css"/>
 			</fileset>
 		</cssurlembed>
 	</target>

@@ -7,7 +7,5 @@
 
 	<target name="default" depends="clean,build,clean-css" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="compress-all" extensionOf="compress" depends="-minify"/>	
-
 	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images"/>
 </project>
