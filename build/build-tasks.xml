@@ -93,6 +93,7 @@
 			<arg path="${lib.dir}/vendors-${jruby.depends}/gems/"/>
 			<arg value="${command}"/>
 			<arg path="${src.dir}"/>
+			<arg value="${build.dir}/_css"/>
 		</java>
 	</target>
 	
@@ -171,10 +172,6 @@
 			<srcfile/>
 		</apply>
 	</target>
-
-	<target name="clean-css">
-		<delete dir="${src.dir}/css" />
-	</target>
   
 	<target name="clean">
 		<delete dir="${build.dir}" />
@@ -193,7 +190,7 @@
 	
 	<extension-point name="test" />
 	
-	<target name="lint" extensionOf="test" depends="-jshint, csslint, clean-css"/>
+	<target name="lint" extensionOf="test" depends="-jshint, csslint"/>
 	
 	<target name="-base64-encode">
 		<property name="image.dir" location="${build.dir}/images"/>
@@ -240,8 +237,8 @@
 	
 	<target name="-copy-css" depends="compile.sass">
 		<loadfile srcfile="${build.dir}/../build-css-head.txt" property="build.css.head"/>
-		<copy todir="${build.dir}/css">
-			<fileset dir="${src.dir}/css">
+		<move todir="${build.dir}/css">
+			<fileset dir="${build.dir}/_css">
 				<include name="*.css"/>
 			</fileset>
 			<filterchain>
@@ -251,7 +248,7 @@
 					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
 				</replacetokens>
 			</filterchain>
-		</copy>
+		</move>
 	</target>
 	
 	<target name="-copy-jquery-css">
