@@ -262,7 +262,11 @@
 						}
 					}
 				} else if (type === 'close') {
-					pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-0'));
+					if ((!!_id[2] << 1 | !!_id[3]) === 0) { // top-level menu link has focus so close menus and put focus after menu bar
+						pe.focus(pe.main.find('#wb-cont').attr('tabindex', '-1'));
+					} else { // submenu link has focus so close menu and put focus on the parent menu bar link
+						pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-0'));
+					}
 					setTimeout(function () {
 						return hideallsubmenus();
 					}, 5);
