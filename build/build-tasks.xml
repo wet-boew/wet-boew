@@ -17,9 +17,7 @@
 		<classpath refid="antcontrib.classpath" />
 	</taskdef>
 	
-	<target name="-init" depends="-build-jruby">
-		<mkdir dir="${build.dir}"/>
-	</target>
+	<extension-point name="-init"/>
 	
 	<!-- yui-compressor task definition  -->
 	<path id="yui.classpath">
@@ -46,7 +44,7 @@
 	</taskdef>
 	
 	<!-- Include jruby + gems (compass + sass) -->
-	<target name="-build-jruby" depends="-jruby.jar.check" unless="jruby.jar.exists">
+	<target name="-build-jruby" extensionOf="-init" depends="-jruby.jar.check" unless="jruby.jar.exists">
 		<mkdir dir="${lib.dir}/jruby-compiled" />
 		<parallel>
 			<get src="http://jruby.org.s3.amazonaws.com/downloads/${jruby.version}/${jruby.jar}" dest="${lib.dir}/${jruby.jar}" skipexisting="true"/>
@@ -107,14 +105,59 @@
 	</target>
 	
 	<target name="-jshint">
-		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}">
+		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
 			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
+			<exclude name="jquerymobile/jquery.mobile.js"/>
+			<exclude name="polyfills/datalist.js"/>
+			<exclude name="polyfills/detailssummary.js"/>
+			<exclude name="polyfills/html5shiv.js"/>
+			<exclude name="polyfills/localstorage.js"/>
+			<exclude name="polyfills/meter.js"/>
+			<exclude name="polyfills/sessionstorage.js"/>
+			<exclude name="polyfills/slider.js"/>
+			<exclude name="dependencies/bookmark.js"/>
+			<exclude name="dependencies/browsertweaks.js"/>
+			<exclude name="dependencies/colorbox.js"/>
+			<exclude name="dependencies/easytabs.js"/>
+			<exclude name="dependencies/hashchange.js"/>
+			<exclude name="dependencies/hoverintent.js"/>
+			<exclude name="dependencies/json.js"/>
+			<exclude name="dependencies/matchMedia.js"/>
+			<exclude name="dependencies/metadata.js"/>
+			<exclude name="dependencies/outside.js"/>
+			<exclude name="dependencies/pie.js"/>
+			<exclude name="dependencies/prettify.js"/>
+			<exclude name="dependencies/prettify/**/*.js"/>
+			<exclude name="dependencies/raphael.js"/>
+			<exclude name="dependencies/resize.js"/>
+			<exclude name="dependencies/validate.js"/>
+			<exclude name="dependencies/validateAdditional.js"/>
+			<exclude name="dependencies/xregexp.js"/>
 		</jshint>
 	</target>
 	
-	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files">
+	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="prepare-files">
+		<apply executable="java" failonerror="false" parallel="false">
+			<fileset dir="${src.dir}/css">
+				<include name="*.css"/>
+				<exclude name="jquery.mobile.structure.css"/>
+				<exclude name="*.min.css"/>
+			</fileset>
+			<arg value="-jar"/>
+			<arg path="${lib.dir}/js.jar"/>
+			<arg path="${lib.dir}/csslint-rhino.js" />      
+
+			<!-- your customized arguments go here -->
+			<arg value="--format=compact"/>
+			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors"/>
+			<arg value="--error=outline-none"/>
+			<srcfile/>
+		</apply>
+	</target>
+	
+	<target name="csslint-report" description="Produceds CSSLint XML report in the build directory for selected project" depends="prepare-files">
 		<apply executable="java" failonerror="false" parallel="true" output="${build.dir}/csslint.out.xml">
 			<fileset dir="${src.dir}/css">
 				<include name="*.css"/>
@@ -125,7 +168,7 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=lint-xml"/>
-			<arg value="--ignore=font-sizes,ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,floats,adjoining-classes,unique-headings"/>
+			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors"/>
 			<arg value="--error=outline-none"/>
 			<srcfile/>
 		</apply>
@@ -138,5 +181,122 @@
 	<target name="clean">
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
+	</target>
+	
+	<extension-point name="build" depends="prepare-files, encode-images, compress" description="Core build task. Subprojects should subscrib to the 'prepare-files' and 'compress'" />
+	
+	<extension-point name="prepare-files" depends="-init" />
+	
+	<extension-point name="encode-images" depends="prepare-files" />
+	
+	<target name="encode-css" extensionOf="encode-images" depends="-base64-encode"/>
+
+	<extension-point name="compress" depends="encode-images, -minify" />
+	
+	<extension-point name="test" />
+	
+	<target name="lint" extensionOf="test" depends="-jshint, csslint, clean-css"/>
+	
+	<target name="-base64-encode">
+		<property name="image.dir" location="${build.dir}/images"/>
+
+		<cssurlembed skipMissing="true" root="${image.dir}">
+			<fileset dir="${build.dir}/css">
+				<include name="*.css"/>
+				<exclude name="*ie.css"/>
+				<!-- Because of themometer images -->
+				<exclude name="util.css"/>
+			</fileset>
+		</cssurlembed>
+	</target>
+	
+	<target name="-base64-encode-jquery">
+		<property name="jquerymobile.dir" location="${src.dir}/jquerymobile"/>
+		<cssurlembed skipMissing="false" root="${jquerymobile.dir}">
+			<fileset dir="${build.dir}/css">
+				<include name="jquery.mobile.css"/>
+			</fileset>
+		</cssurlembed>
+	</target>
+	
+	<target name="-minify">
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}" charset="utf-8">
+			<include name="**/*.css" />
+			<include name="**/*.js" />
+			<exclude name="**/*-min.css" />
+			<exclude name="**/settings.js" />
+			<exclude name="**/*-min.js" />
+			<exclude name="**/*.min.js" />
+		</yui-compressor>
+		<delete>
+			<fileset dir="${build.dir}">
+				<include name="**/*.css" />
+				<include name="**/*.js" />
+				<exclude name="**/settings.js" />
+				<exclude name="**/*-min.css" />
+				<exclude name="**/*-min.js" />
+				<exclude name="**/*.min.js" />
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="-copy-css" depends="compile.sass">
+		<loadfile srcfile="${build.dir}/../build-css-head.txt" property="build.css.head"/>
+		<copy todir="${build.dir}/css">
+			<fileset dir="${src.dir}/css">
+				<include name="*.css"/>
+			</fileset>
+			<filterchain>
+				<concatfilter prepend="${build.dir}/../build-css-head.txt"/>
+				<replacetokens>
+					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
+					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+	</target>
+	
+	<target name="-copy-jquery-css">
+		<loadfile srcfile="${build.dir}/../build-css-head.txt" property="build.css.head"/>
+		<loadfile srcfile="${src.dir}/../js/jquerymobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
+			<filterchain>
+				<headfilter lines="1"/>
+			</filterchain>
+		</loadfile>
+		<concat dest="${build.dir}/css/jquery.mobile.css">
+			<header>${build.css.head}
+			${jquery.mobile.license}</header>
+			<fileset dir="${src.dir}/../js/jquerymobile">
+				<include name="*structure.css"/>
+			</fileset>
+			<fileset dir="${src.dir}/jquerymobile">
+				<include name="*theme.css"/>
+			</fileset>
+			<filterchain>
+				<replacetokens>
+					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
+					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
+				</replacetokens>
+			</filterchain>
+		</concat>
+	</target>
+	
+	<target name="-copy-js">
+		<copy todir="${build.dir}/js">
+			<fileset dir="${src.dir}/js"/>
+			<filterchain>
+				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
+				<replacetokens>
+					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
+					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+	</target>
+	
+	<target name="-copy-images">
+		<copy todir="${build.dir}/images">
+			<fileset dir="${src.dir}/images" />
+		</copy>
 	</target>
 </project>
