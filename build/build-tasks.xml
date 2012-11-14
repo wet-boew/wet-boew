@@ -139,7 +139,7 @@
 	
 	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="prepare-files">
 		<apply executable="java" failonerror="false" parallel="false">
-			<fileset dir="${src.dir}/css">
+			<fileset dir="${build.dir}/css">
 				<include name="*.css"/>
 				<exclude name="jquery.mobile.structure.css"/>
 				<exclude name="*.min.css"/>
