@@ -270,7 +270,22 @@ body {
 	}
 }
 
-@-webkit-keyframes fd-pulse{
+@mixin keyframes($animation-name) {
+	@-webkit-keyframes $animation-name {
+		@content;
+	}
+	@-moz-keyframes $animation-name {
+		@content;
+	}
+	@-o-keyframes $animation-name {
+		@content;
+	}
+	@keyframes $animation-name {
+		@content;
+	}
+}
+
+@include keyframes(fd-pulse) {
 	0%{box-shadow:0 0 3px rgba(100,130,170,0.55)}
 	20%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
 	40%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
@@ -278,30 +293,7 @@ body {
 	80%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
 	100%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
 }
-@-moz-keyframes fd-pulse{
-	0%{box-shadow:0 0 3px rgba(100,130,170,0.55)}
-	20%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
-	40%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
-	60%{box-shadow:0 0 6px rgba(10,130,170,0.7)}
-	80%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
-	100%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
-}
-@-ms-keyframes fd-pulse{
-	0%{box-shadow:0 0 3px rgba(100,130,170,0.55)}
-	20%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
-	40%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
-	60%{box-shadow:0 0 6px rgba(10,130,170,0.7)}
-	80%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
-	100%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
-}
-@-o-keyframes fd-pulse{
-	0%{box-shadow:0 0 3px rgba(100,130,170,0.55)}
-	20%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
-	40%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
-	60%{box-shadow:0 0 6px rgba(10,130,170,0.7)}
-	80%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
-	100%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
-}
+
 #fd-slider-describedby {
 	padding:1em;
 	border:3px solid #a84444;
