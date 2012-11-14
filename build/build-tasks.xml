@@ -104,7 +104,7 @@
 		<echo level="info" message="---Watching for SCSS Changes in CSS Directory---"/>
 	</target>
 	
-	<target name="-jshint" extensionOf="test">
+	<target name="-jshint">
 		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
 			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
@@ -136,7 +136,26 @@
 		</jshint>
 	</target>
 	
-	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files">
+	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="prepare-files">
+		<apply executable="java" failonerror="false" parallel="false">
+			<fileset dir="${src.dir}/css">
+				<include name="*.css"/>
+				<exclude name="jquery.mobile.structure.css"/>
+				<exclude name="*.min.css"/>
+			</fileset>
+			<arg value="-jar"/>
+			<arg path="${lib.dir}/js.jar"/>
+			<arg path="${lib.dir}/csslint-rhino.js" />      
+
+			<!-- your customized arguments go here -->
+			<arg value="--format=compact"/>
+			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors"/>
+			<arg value="--error=outline-none"/>
+			<srcfile/>
+		</apply>
+	</target>
+	
+	<target name="csslint-report" description="Produceds CSSLint XML report in the build directory for selected project" depends="prepare-files">
 		<apply executable="java" failonerror="false" parallel="true" output="${build.dir}/csslint.out.xml">
 			<fileset dir="${src.dir}/css">
 				<include name="*.css"/>
@@ -147,7 +166,7 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=lint-xml"/>
-			<arg value="--ignore=font-sizes,ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,floats,adjoining-classes,unique-headings"/>
+			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors"/>
 			<arg value="--error=outline-none"/>
 			<srcfile/>
 		</apply>
@@ -172,7 +191,7 @@
 	
 	<extension-point name="test" />
 	
-	<target name="lint" extensionOf="test" depends="-jshint"/>
+	<target name="lint" extensionOf="test" depends="-jshint, csslint, clean-css"/>
 	
 	<target name="-base64-encode">
 		<property name="image.dir" location="${build.dir}/images"/>
