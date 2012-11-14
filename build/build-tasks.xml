@@ -104,11 +104,35 @@
 		<echo level="info" message="---Watching for SCSS Changes in CSS Directory---"/>
 	</target>
 	
-	<target name="-jshint">
-		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}">
+	<target name="-jshint" extensionOf="test">
+		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
 			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
+			<exclude name="jquerymobile/jquery.mobile.js"/>
+			<exclude name="polyfills/datalist.js"/>
+			<exclude name="polyfills/detailssummary.js"/>
+			<exclude name="polyfills/html5shiv.js"/>
+			<exclude name="polyfills/localstorage.js"/>
+			<exclude name="polyfills/slider.js"/>
+			<exclude name="dependencies/bookmark.js"/>
+			<exclude name="dependencies/browsertweaks.js"/>
+			<exclude name="dependencies/colorbox.js"/>
+			<exclude name="dependencies/easytabs.js"/>
+			<exclude name="dependencies/hashchange.js"/>
+			<exclude name="dependencies/hoverintent.js"/>
+			<exclude name="dependencies/json.js"/>
+			<exclude name="dependencies/matchMedia.js"/>
+			<exclude name="dependencies/metadata.js"/>
+			<exclude name="dependencies/outside.js"/>
+			<exclude name="dependencies/pie.js"/>
+			<exclude name="dependencies/prettify.js"/>
+			<exclude name="dependencies/prettify/**/*.js"/>
+			<exclude name="dependencies/raphael.js"/>
+			<exclude name="dependencies/resize.js"/>
+			<exclude name="dependencies/validate.js"/>
+			<exclude name="dependencies/validateAdditional.js"/>
+			<exclude name="dependencies/xregexp.js"/>
 		</jshint>
 	</target>
 
@@ -130,6 +154,8 @@
 	<extension-point name="compress" depends="encode-images" />
 	
 	<extension-point name="test" />
+	
+	<target name="lint" extensionOf="test" depends="-jshint"/>
 	
 	<target name="-base64-encode">
 		<property name="image.dir" location="${build.dir}/images"/>

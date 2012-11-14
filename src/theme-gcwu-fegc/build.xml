@@ -12,6 +12,4 @@
 	<target name="compress-all" extensionOf="compress" depends="-minify"/>
   	
 	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-copy-jquery-css"/>
-	
-	<target name="lint" extensionOf="test" depends="-jshint"/>
 </project>

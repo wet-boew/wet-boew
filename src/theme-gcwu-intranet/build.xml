@@ -18,6 +18,4 @@
 			<fileset dir="${src.dir}/../theme-gcwu-fegc/images"/>
 		</copy>
 	</target>
-
-	<target name="lint" extensionOf="test" depends="-jshint"/>
 </project>
