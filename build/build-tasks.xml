@@ -114,6 +114,8 @@
 			<exclude name="polyfills/detailssummary.js"/>
 			<exclude name="polyfills/html5shiv.js"/>
 			<exclude name="polyfills/localstorage.js"/>
+			<exclude name="polyfills/meter.js"/>
+			<exclude name="polyfills/sessionstorage.js"/>
 			<exclude name="polyfills/slider.js"/>
 			<exclude name="dependencies/bookmark.js"/>
 			<exclude name="dependencies/browsertweaks.js"/>

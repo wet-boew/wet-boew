@@ -115,6 +115,4 @@
 		</concat>
 		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf8" />
 	</target>
-			<exclude name="polyfills/meter.js"/>
-			<exclude name="polyfills/sessionstorage.js"/>
 </project>
