@@ -5,42 +5,7 @@
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>
 
-	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
+	<target name="default" depends="clean,build,clean-css" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="build" depends="-init, -minify" />
-
-	<target name="-minify" depends="-merge-css">
-		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}">
-			<include name="**/*.css" />
-			<exclude name="**/*-min.css" />
-		</yui-compressor>
-		<delete>
-			<fileset dir="${build.dir}">
-				<include name="**/*.css" />
-				<exclude name="**/*-min.css" />
-			</fileset>
-		</delete>
-	</target>
-
-	<target name="-merge-css" depends="compile.sass">
-		<copy todir="${build.dir}/images">
-			<fileset dir="${src.dir}/images" />
-		</copy>
-
-		<copy todir="${build.dir}/css">
-			<filelist dir="${src.dir}/css">
-				<file name="util.css"/>
-				<file name="util-ie.css"/>
-			</filelist>
-			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-css-head.txt"/>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
-		</copy>
-	</target>
-	
-	<target name="test" description="Placeholder for future test tasks"/>
+	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images"/>
 </project>

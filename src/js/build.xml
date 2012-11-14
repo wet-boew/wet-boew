@@ -5,36 +5,14 @@
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>
 	
-	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
+	<target name="default" depends="clean,build,clean-css" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="build" depends="-init, -minify" />
-
-	<target name = "-minify" depends="-merge-css, -base64-encode, build-js">
-		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}" charset="utf-8">
-			<include name="**/*.css" />
-			<include name="**/*.js" />
-			<exclude name="**/*-min.css" />
-			<exclude name="**/settings.js" />
-			<exclude name="**/*-min.js" />
-			<exclude name="**/*.min.js" />
-		</yui-compressor>
-		<delete>
-			<fileset dir="${build.dir}">
-				<include name="**/*.css" />
-				<include name="**/*.js" />
-				<exclude name="**/settings.js" />
-				<exclude name="**/*-min.css" />
-				<exclude name="**/*-min.js" />
-				<exclude name="**/*.min.js" />
-			</fileset>
-		</delete>
-	</target>
-
-	<target name="build-js" depends="-build-pe">
+	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js"/>
+	
+	<target name="-copy-js" depends="-build-pe">
 		<copy todir="${build.dir}">  
 			<resources>
 				<fileset dir="${src.dir}">
-					<include name="images/**"/>
 					<include name="binary/**"/>
 					<include name="jquerymobile/*.min.js"/>
 					<include name="*.js"/>
@@ -109,7 +87,6 @@
 			</filterchain>
 		</concat>
 		<delete file="${build.dir}/workers.js"/>
-		<delete file="${build.dir}/dependencies.js"/>
 	</target>
 	
 	<target name="-get-languages">
@@ -138,78 +115,6 @@
 		</concat>
 		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf8" />
 	</target>
-	
-	<!--Build CSS Tasks -->
-	<target name="-base64-encode">
-		<copy todir="${build.dir}/images">
-			<fileset dir="${src.dir}/images"/>
-		</copy>
-		<property name="image.dir" location="${build.dir}/images"/>
-
-		<cssurlembed skipMissing="true" root="${image.dir}">
-			<fileset dir="${build.dir}/css">
-				<include name="pe-ap.css"/>
-			</fileset>
-		</cssurlembed>
-	</target>
-	<target name="-merge-css" depends="compile.sass">
-		<copy todir="${build.dir}/css">
-			<filelist dir="${src.dir}/css">
-				<file name="pe-ap.css"/>
-				<file name="pe-ap-ie.css"/>
-			</filelist>
-			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-css-head.txt"/>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
-		</copy>
-	</target>
-
-	<target name="clean-css">
-		<delete dir="${src.dir}/css" />
-	</target>
-
-	<target name="clean">
-		<delete dir="${build.dir}" />
-		<delete dir="${dist.dir}" />
-	</target>
-
-	<target name="test" depends="-jshint"/>
-	
-	<target name="-jshint">
-		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
-			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
-			<include name="**/*.js"/>
-			<exclude name="**/*.min.js"/>
-			<exclude name="jquerymobile/jquery.mobile.js"/>
-			<exclude name="polyfills/datalist.js"/>
-			<exclude name="polyfills/detailssummary.js"/>
-			<exclude name="polyfills/html5shiv.js"/>
 			<exclude name="polyfills/meter.js"/>
-			<exclude name="polyfills/localstorage.js"/>
 			<exclude name="polyfills/sessionstorage.js"/>
-			<exclude name="polyfills/slider.js"/>
-			<exclude name="dependencies/bookmark.js"/>
-			<exclude name="dependencies/browsertweaks.js"/>
-			<exclude name="dependencies/colorbox.js"/>
-			<exclude name="dependencies/easytabs.js"/>
-			<exclude name="dependencies/hashchange.js"/>
-			<exclude name="dependencies/hoverintent.js"/>
-			<exclude name="dependencies/json.js"/>
-			<exclude name="dependencies/matchMedia.js"/>
-			<exclude name="dependencies/metadata.js"/>
-			<exclude name="dependencies/outside.js"/>
-			<exclude name="dependencies/pie.js"/>
-			<exclude name="dependencies/prettify.js"/>
-			<exclude name="dependencies/prettify/**/*.js"/>
-			<exclude name="dependencies/raphael.js"/>
-			<exclude name="dependencies/resize.js"/>
-			<exclude name="dependencies/validate.js"/>
-			<exclude name="dependencies/validateAdditional.js"/>
-			<exclude name="dependencies/xregexp.js"/>
-		</jshint>
-	</target>
 </project>
