@@ -17,7 +17,6 @@
 	/**
 	* pe object
 	* @namespace pe
-	* @version 3.0
 	*/
 	pe = (typeof window.pe !== 'undefined' && window.pe !== null) ? window.pe : {
 		fn: {}
@@ -87,10 +86,14 @@
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
 				pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
-				
+
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
-				$html.addClass((test === 0 || (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) ? 'bb-pre7' : ''));
+				if (test === 0) {
+					$html.addClass('bb-pre6 bb-pre7');
+				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
+					$html.addClass('bb-pre7');
+				}
 
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
@@ -620,12 +623,12 @@
 				}
 				return NaN;
 			},
-			
+
 			daysInMonth: function (iYear, iMonth) {
 				// Simplfied function to allow for us to get the days in specific months
 				return 32 - new Date(iYear, iMonth, 32).getDate();
 			},
-			
+
 			daysBetween: function (datelow, datehigh) {
 				// simplified conversion to date object
 				var date1 = pe.date.convert(datelow),
@@ -650,8 +653,7 @@
 				diff = Math.abs(date2.getTime() - date1.getTime()) - DSTAdjust;
 				return Math.ceil(diff / oneDay);
 			},
-			
-			
+
 			/**
 			* Cross-browser safe way of translating a date to iso format
 			* @memberof pe.date
@@ -673,8 +675,8 @@
 				}
 				return date.getFullYear() + '-' + pe.string.pad(date.getMonth() + 1, 2, "0") + '-' + pe.string.pad(date.getDate(), 2, '0');
 			},
-			
-			from_iso_format: function(s){
+
+			from_iso_format: function (s) {
 				var date = null;
 				if (s) {
 					if (s.match(/\d{4}-\d{2}-\d{2}/)) {
@@ -703,6 +705,7 @@
 				qparam,
 				newquery = '?',
 				settings = pe.settings,
+				$html = $('html'),
 				pedisable_link = (settings && typeof settings.pedisable_link === 'boolean' ? settings.pedisable_link : true);
 
 			for (qparam in qparams) { // Rebuild the query string
@@ -711,8 +714,8 @@
 				}
 			}
 
-			if ((pe.ie > 0 && pe.ie < 7 && disable !== "false") || disable === "true") {
-				$('html').addClass('no-js pe-disable');
+			if ((((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== "false") || disable === "true") {
+				$html.addClass('no-js pe-disable');
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
 				}
@@ -992,13 +995,22 @@
 			* @memberof pe.polyfills
 			*/
 			init: function () {
-				// localstorage
-				var lib = pe.add.liblocation;
+				// localStorage
+				var lib = pe.add.liblocation,
+					$html = $('html');
 				if (!window.localStorage) {
 					pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js', 'localstorage-loaded');
-					$('html').addClass('polyfill-localstorage');
+					$html.addClass('polyfill-localstorage');
 				} else {
-					$('html').addClass('localstorage');
+					$html.addClass('localstorage');
+				}
+
+				// sessionStorage
+				if (!window.sessionStorage) {
+					pe.add._load(lib + 'polyfills/sessionstorage' + pe.suffix + '.js', 'sessionstorage-loaded');
+					$html.addClass('polyfill-sessionstorage');
+				} else {
+					$html.addClass('sessionstorage');
 				}
 			},
 			/**
@@ -1220,6 +1232,11 @@
 						return hasMathML;
 					}
 				},
+				'meter': {
+					selector: 'meter',
+					/* Based on check from Modernizr 2.6.1 | MIT & BSD */
+					support_check: document.createElement('meter').max !== undefined
+				},
 				'progress': {
 					selector: 'progress',
 					update: function (elms) {
@@ -1254,7 +1271,7 @@
 				}
 			}
 		},
-		
+
 		/**
 		* A method to get a languages from a list of supported language.
 		* @namespace pe.add
@@ -1262,6 +1279,20 @@
 		get_language: function (lang, supported, sep) {
 			var d;
 			sep = (typeof sep === 'undefined') ? '-' : sep;
+
+			//Add barebone function for IE < 9
+			if (typeof supported.indexOf === 'undefined') {
+				supported.indexOf = function (val) {
+					var i, len;
+					for (i = 0, len = this.length; i < len; i += 1) {
+						if (this[i] === val) {
+							return i;
+						}
+					}
+					return -1;
+				};
+			}
+
 			if (supported.indexOf(lang) !== -1) {
 				return lang;
 			} else {
@@ -1271,7 +1302,7 @@
 					if (supported.indexOf(lang) !== -1) {
 						return lang;
 					}
-				} 
+				}
 			}
 			return null;
 		},
@@ -1431,7 +1462,7 @@
 				* @return {void}
 				*/
 				language: function (lang) {
-					var d, url;
+					var url;
 					lang = pe.get_language(lang, pe.languages);
 					url = pe.add.liblocation + 'i18n/' + (lang !== null ? lang : 'en') + pe.suffix + '.js';
 					pe.add._load(url);
@@ -1496,7 +1527,7 @@
 					wetboew = wetboew.add(plugins[plug].addClass('wet-boew-' + plug));
 				}
 			}
-				
+
 			// Push each of the "wet-boew-*" plugin calls into the pcalls array
 			wetboew.each(function () {
 				var _node = $(this),

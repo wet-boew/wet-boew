@@ -607,3 +607,24 @@ a:active{
 		display:none !important;
 	}
 }
+
+.pe-disable {
+	#gcwu-psnb{
+		margin-top: -11px;
+	}
+	#gcwu-psnb, #gcwu-srchbx {
+		width:100% !important;
+		float:none;
+	}
+	#gcwu-psnb #gcwu-psnb-in,#gcwu-srchbx form{
+		display:block;
+		width:100%;
+		z-index:100;
+	}
+	#gcwu-srchbx form{
+		border-bottom:1px solid #999;
+		text-align:center;
+		background:#1A3D6C;
+		padding:10px 0;
+	}
+}
