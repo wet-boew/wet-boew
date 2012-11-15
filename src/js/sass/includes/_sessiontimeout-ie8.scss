@@ -4,6 +4,6 @@
  */
 .ie8 {
 	.sOverlay {
-		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+		@include opacity(0.9);
 	}
 }

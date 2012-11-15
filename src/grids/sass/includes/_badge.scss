@@ -22,7 +22,7 @@
 	}
 	
 	.badge-intro {
-		display: inline-block;
+		@include inline-block;
 		margin-right: $margin-medium / 2;
 		margin-top: -($margin-medium / 2);
 		padding: ($margin-medium / 2) $margin-medium;

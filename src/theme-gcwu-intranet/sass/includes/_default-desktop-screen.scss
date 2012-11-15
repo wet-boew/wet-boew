@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-
 /** From branding.css **/
 #gcwu-sig,#gcwu-sig-in,#gcwu-sig img{
 	height:20px !important;
@@ -33,7 +32,7 @@
 	height:auto;
 	min-height:80px;
 	background:#fff url(../images/core/gcwu-intranetnb-sprite.gif) repeat-x 0 -170px;
-	text-shadow: 1px 1px 1px #333;
+	@include text-shadow(1px 1px 1px #333);
 	a:hover, a:focus{
 		text-decoration:underline;
 	}
@@ -140,19 +139,15 @@
 .wb-sec-def {
 	h3.top-section{
 		margin:0 0 2px -10px;
-		text-shadow: 1px 1px 1px #fff;
+		@include text-shadow(1px 1px 1px #fff);
 		background:#bbb url(../images/core/top-section.png) repeat-x 0 0 !important;
-		-moz-border-radius:0 2px 2px 0;
-		-webkit-border-radius:0 2px 2px 0;
-		border-radius:0 2px 2px 0;
+		@include border-radius(0 2px 2px 0);
 		border:medium none;
 		display:block;
 		font-size:120%;
 		position:static;
 		text-decoration:none;
-		-moz-box-shadow:inset 0 0 3px 1px #999;
-		-webkit-box-shadow:inset 0 0 3px 1px #999;
-		box-shadow:inset 0 0 3px 1px #999;
+		@include box-shadow(inset 0 0 3px 1px #999);
 		padding: 0 4px 0 13px;
 		border-right:1px solid #bbb;
 		border-left:1px solid #ccc;

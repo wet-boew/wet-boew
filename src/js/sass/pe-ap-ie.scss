@@ -1,47 +1,48 @@
 /*
- * Web Experience Toolkit (WET) / Boîte à outils de l.scss';expérience Web (BOEW)
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
- 
+@import '../../base/sass/oldie-vendor-prefix';
+
 @import 'includes/archived';
 @import 'includes/calendar-base';
 @import 'includes/calendar-theme';
 @import 'includes/charts';
 @import 'includes/core';
-@import 'includes/datalist-ie7.scss';
+@import 'includes/datalist-ie7';
 @import 'includes/datalist';
 @import 'includes/datepicker';
-@import 'includes/details-ie7.scss';
+@import 'includes/details-ie7';
 @import 'includes/details';
 @import 'includes/events-calendar';
 @import 'includes/feedback';
-@import 'includes/footnotes-ie7.scss';
-@import 'includes/footnotes-ie8.scss';
+@import 'includes/footnotes-ie7';
+@import 'includes/footnotes-ie8';
 @import 'includes/footnotes';
 @import 'includes/formvalid';
 @import 'includes/lightbox';
-@import 'includes/menubar-ie7.scss';
+@import 'includes/menubar-ie7';
 @import 'includes/menubar';
-@import 'includes/multimedia-ie7.scss';
-@import 'includes/multimedia-ie8.scss';
+@import 'includes/multimedia-ie7';
+@import 'includes/multimedia-ie8';
 @import 'includes/multimedia';
 @import 'includes/prettify';
 @import 'includes/progress';
-@import 'includes/sessiontimeout-ie7.scss';
-@import 'includes/sessiontimeout-ie8.scss';
+@import 'includes/sessiontimeout-ie7';
+@import 'includes/sessiontimeout-ie8';
 @import 'includes/sessiontimeout';
-@import 'includes/share-ie7.scss';
+@import 'includes/share-ie7';
 @import 'includes/share';
 @import 'includes/slideout';
-@import 'includes/slideout-ie7.scss';
-@import 'includes/slider-ie7.scss';
-@import 'includes/slider-ie8.scss';
+@import 'includes/slideout-ie7';
+@import 'includes/slider-ie7';
+@import 'includes/slider-ie8';
 @import 'includes/slider';
-@import 'includes/tabbedinterface-ie7.scss';
-@import 'includes/tabbedinterface-ie8.scss';
+@import 'includes/tabbedinterface-ie7';
+@import 'includes/tabbedinterface-ie8';
 @import 'includes/tabbedinterface';
 @import 'includes/texthighlight';
-@import 'includes/wamethod-ie7.scss';
+@import 'includes/wamethod-ie7';
 @import 'includes/wamethod';
 @import 'includes/webwidget';
 @import 'includes/zebra';
