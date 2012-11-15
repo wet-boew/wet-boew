@@ -8,7 +8,7 @@
 		border-color: #c8c8c8 !important;
 	}
 	label {
-		display:inline-block;
+		@include inline-block;
 	}
 	.module-billboard a {
 		background-image:none !important;

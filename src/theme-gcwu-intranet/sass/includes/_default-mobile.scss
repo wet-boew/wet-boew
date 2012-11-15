@@ -7,7 +7,7 @@
 		border-top:1px solid #CCC;
 		clear:both;
 		font-size:130%;
-		text-shadow:1px 1px 1px #333;
+		@include text-shadow(1px 1px 1px #333);
 		background:url(../images/gcwu-subsite-1.gif) repeat-x scroll 0 top #618000;
 	}
 	#wb-head-in{
@@ -48,7 +48,7 @@
 
 #gcwu-subsite{
 	font-size:130%;
-	text-shadow:1px 1px 1px #333;
+	@include text-shadow(1px 1px 1px #333);
 	p {
 		margin-top: 0;
 		margin-bottom: 0;
@@ -71,9 +71,7 @@
 	background:#fafafa;
 	margin-bottom:5px;
 	border-bottom:1px solid #eee;
-	-moz-box-shadow:inset 1px 1px 2px #999;
-	-webkit-box-shadow: inset 1px 1px 2px #999;
-	box-shadow: inset 1px 1px 2px #999;
+	@include box-shadow(inset 1px 1px 2px #999);
 	ul{
 		margin:0;
 		float:right;
@@ -86,7 +84,7 @@
 	a{
 		background: none repeat scroll 0 0 #eee;
 		border: 1px solid #ddd;
-		border-radius: 2px 2px 2px 2px;
+		@include border-radius(2px 2px 2px 2px);
 		color: #222;
 		float: right;
 		font-weight: 400;

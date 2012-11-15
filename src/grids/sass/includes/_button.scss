@@ -2,6 +2,12 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3/text-shadow";
+@import "compass/css3/box-shadow";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/transition";
+
 @mixin buttons {
 
 	//.button, button 
@@ -19,10 +25,10 @@
 		
 		&:disabled, &.button-disabled {
 			background: none;
-			box-shadow: none;
+			@include box-shadow(none);
 			cursor: default;
 			font-style: italic;
-			text-shadow: none;
+			@include text-shadow(none);
 		}
 	}
 	
@@ -41,10 +47,10 @@
 			&, &:hover, &:focus, &:active {
 				background: none;
 				border-color: transparent !important;
-				box-shadow: none;
+				@include box-shadow(none);
 				outline-color: transparent;
 				text-decoration: underline;
-				text-shadow: none;
+				@include text-shadow(none);
 			}
 			&:hover, &:focus, &:active {
 				color: $attention !important;
@@ -91,9 +97,7 @@
 		margin-top: $spacing-medium;
 	
 		.button-group {
-			display: inline-block;
-			*display: inline;
-			*zoom: 1;
+			@include inline-block;
 		}
 	}
 	
@@ -103,7 +107,7 @@
 	background-repeat: repeat-x;
 	border-width: 1px;
 	border-style: solid;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+	@include box-shadow(0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05));
 	cursor: pointer;
 	font-family: $sans-serif;
 	line-height: 16px;
@@ -122,14 +126,9 @@
 	
 	$text: contrast-color($color, $dark, $white, 55%);
 	color: $text !important;
-	text-shadow: contrast-color($text, $dark, $white, 50%) 0 1px 1px;
+	@include text-shadow(contrast-color($text, $dark, $white, 50%) 0 1px 1px);
 	
-	@include background-image(
-		linear-gradient(
-			$color,
-			darken($color, 10%)
-		)
-	);
+	@include background-image(linear-gradient($color,darken($color, 10%)));
 	&:hover, &:focus, &:active { 
 		background-color: darken($color, 10%);
 	}

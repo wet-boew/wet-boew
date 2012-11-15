@@ -31,7 +31,7 @@ div.wet-boew-share {
 		cursor:pointer;
 		font-family:Tahoma,Verdana,Helvetica,sans-serif;
 		letter-spacing:-.0004em;
-		display:inline-block;
+		@include inline-block;
 		padding:0 0 2px 18px;
 		&.alt{
 			margin:5px;
@@ -73,7 +73,7 @@ div.wet-boew-share {
 		}
 	}
 	.bookmark_list{
-		display:inline-block;
+		@include inline-block;
 		list-style-type:none;
 		margin:0;
 		padding:5px 5px 0;
@@ -99,7 +99,7 @@ div.wet-boew-share {
 			}
 		}
 		span{
-			display:inline-block;
+			@include inline-block;
 			width:16px;
 			height:16px;
 			&.bookmark_icons{
