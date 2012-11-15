@@ -96,10 +96,7 @@
 .fd-slider-focused {
 	.fd-slider-bar {
 		@include box-shadow(0 0 6px rgba(10,130,170,0.7));
-		-webkit-animation:fd-pulse 2s infinite;
-		-moz-animation:fd-pulse 2s infinite;
-		-ms-animation:fd-pulse 2s infinite;
-		-o-animation:fd-pulse 2s infinite
+		@include experimental(animation,fd-pulse 2s infinite,-moz, -webkit, -o, not -ms, not -khtml, official);
 	}
 }
 .fd-slider-range {
