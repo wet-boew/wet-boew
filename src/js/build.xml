@@ -130,4 +130,9 @@
 		</concat>
 		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf-8" />
 	</target>
+	
+	<target name="fix-spanish-character" extensionOf="compress" depends="-minify">
+		<!-- Hack to fix http://yuilibrary.com/projects/yuicompressor/ticket/2528132 -->
+		<replace file="${build.dir}/i18n/es-min.js" encoding="UTF-8" token="�?" value="Í" />
+	</target>
 </project>
