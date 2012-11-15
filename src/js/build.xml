@@ -10,7 +10,7 @@
 	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js"/>
 	
 	<target name="-copy-js" depends="-build-pe">
-		<copy todir="${build.dir}">  
+		<copy todir="${build.dir}" encoding="UTF-8">  
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="binary/**"/>
@@ -20,7 +20,7 @@
 				</fileset>
 			</resources>  
 		</copy>
-		<copy todir="${build.dir}">  
+		<copy todir="${build.dir}" encoding="UTF-8">  
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="dependencies/**"/>
@@ -37,7 +37,7 @@
 				</replacetokens>
 			</filterchain>
 		</copy> 
-		<copy todir="${build.dir}">
+		<copy todir="${build.dir}" encoding="UTF-8">
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="dependencies/**"/>
@@ -50,7 +50,7 @@
 				</fileset>
 			</resources> 
 		</copy> 
-		<copy todir="${build.dir}">
+		<copy todir="${build.dir}" encoding="UTF-8">
 			<filterchain>
 				<replaceregex byline="false" pattern="\/\*" replace="\/\*!"/>
 			</filterchain>
@@ -113,6 +113,6 @@
 		<concat dest="${build.dir}/workers.js" fixlastline="yes">
 			<fileset dir="${src.dir}/workers" includes="**/**.js" />
 		</concat>
-		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf8" />
+		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf-8" />
 	</target>
 </project>
