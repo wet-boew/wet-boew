@@ -136,7 +136,7 @@
 	line-height:20px;
 	font-size:10px;
 	@if $experimental-support-for-mozilla {-moz-outline:0 none;}
-	-webkit-touch-callout:none;
+	@if $experimental-support-for-webkit {-webkit-touch-callout:none;}
 	@include user-select(none);
 	&:focus{
 		outline:0 none;
