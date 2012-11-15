@@ -5,16 +5,10 @@
 	<property name="src.dir" value="src"/>
 	<property name="build.dir" value="build"/>
 
-	<target name="default" depends="clean,build,clean-css" description="Performs a clean and build when calling ant without any target"></target>
+	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
 	<target name="build" depends="">
 		<subant target="build">
-			<fileset dir="${src.dir}" includes="**/build.xml"/>
-		</subant>
-	</target>
-
-	<target name="clean-css">
-		<subant target="clean-css">
 			<fileset dir="${src.dir}" includes="**/build.xml"/>
 		</subant>
 	</target>
