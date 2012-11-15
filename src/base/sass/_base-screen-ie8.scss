@@ -4,9 +4,9 @@
  */
 .ie8 {
 	.wb-show-onhover{
-		-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)";
+		@include transparent;
 		&:hover,&:focus,&:active{
-			-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=100)";
+			@include opaque;
 		}
 	}
 }

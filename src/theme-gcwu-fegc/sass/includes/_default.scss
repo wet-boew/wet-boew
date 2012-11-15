@@ -2,6 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3/inline-block";
+
 #wb-head, #wb-foot, #wb-sec, #gcwu-date-mod {
 	line-height: normal;
 }
@@ -90,7 +92,7 @@ div#gcwu-headlines {
 		list-style-type:none;
 	}
 	li{
-		display:inline-block;
+		@include inline-block;
 	}
 	a{
 		background:none;

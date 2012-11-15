@@ -12,7 +12,7 @@
 }
 
 progress {
-	display:inline-block;
+	@include inline-block;
 		
 	div.wb-progress-outer  {
 		@include progress(#FFF);

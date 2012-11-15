@@ -2,6 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3/appearance";
+
 @mixin forms {
 
 	@include form-layout;
@@ -100,7 +102,7 @@
 			min-height: 0;
 			@include border-radius(0);
 			+ label {
-				display: inline-block;
+				@include inline-block;
 			}
 		}
 		
@@ -114,7 +116,7 @@
 		}
 
 		&[type="search"] {
-			-webkit-appearance: textfield;
+			@include appearance(textfield);
 		}
 		
 		&:-moz-placeholder { color: $medium; }
@@ -159,7 +161,7 @@
 		@include inline-block;
 	}
 	.form-radio.form-label-inline,.form-checkbox.form-label-inline	{
-		display:inline-block;
+		@include inline-block;
 		padding-top:5px;
 		margin-bottom:0;
 		vertical-align:middle;
@@ -180,7 +182,7 @@
 		button { @include border-left-radius(0); }
 		
 		.form-addon {
-			display: inline-block;
+			@include inline-block;
 			min-height: 18px;
 			line-height: 18px;
 			min-width: 16px;
