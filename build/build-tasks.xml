@@ -143,6 +143,7 @@
 				<include name="*.css"/>
 				<exclude name="jquery.mobile.structure.css"/>
 				<exclude name="*.min.css"/>
+				<exclude name="*-min.css"/>
 			</fileset>
 			<arg value="-jar"/>
 			<arg path="${lib.dir}/js.jar"/>
@@ -160,6 +161,9 @@
 		<apply executable="java" failonerror="false" parallel="true" output="${build.dir}/csslint.out.xml">
 			<fileset dir="${src.dir}/css">
 				<include name="*.css"/>
+				<exclude name="jquery.mobile.structure.css"/>
+				<exclude name="*.min.css"/>
+				<exclude name="*-min.css"/>
 			</fileset>
 			<arg value="-jar"/>
 			<arg path="${lib.dir}/js.jar"/>
