@@ -75,7 +75,6 @@
 	top:50%;
 	width:28px;
 	height:65px;
-	text-indent:-9999px;
 }
 #cboxPrevious{
 	left:-28px;
@@ -89,6 +88,8 @@
 #cboxNext, #cboxClose, #cboxPrevious{
 	background-image: url(../images/lightbox/controls.png);
 	background-repeat: no-repeat;
+	direction: ltr;
+	text-indent:-9999px;
 }
 #cboxNext{
 	right:-28px;
@@ -112,7 +113,6 @@
 	background-position: 50% 0;
 	width:38px;
 	height:19px;
-	text-indent:-9999px;
 	&:hover,&:focus,&:active{
 		background-position:50% 100%;
 	}
