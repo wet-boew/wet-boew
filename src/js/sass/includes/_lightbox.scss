@@ -90,7 +90,7 @@
 	margin-top:-32px;
 	background:url(../images/lightbox/controls.png) no-repeat top left;
 	&:hover,&:focus,&:active{
-		background-position:bottom left;
+		background-position:0 100%;
 	}
 }
 #cboxLoadingOverlay{
@@ -109,7 +109,7 @@
 	height:19px;
 	text-indent:-9999px;
 	&:hover,&:focus,&:active{
-		background-position:bottom center;
+		background-position:50% 100%;
 	}
 }
 #cboxNext,#cboxPrevious,#cboxClose{
