@@ -159,7 +159,7 @@
 	
 	<target name="csslint-report" description="Produceds CSSLint XML report in the build directory for selected project" depends="prepare-files">
 		<apply executable="java" failonerror="false" parallel="true" output="${build.dir}/csslint.out.xml">
-			<fileset dir="${src.dir}/css">
+			<fileset dir="${build.dir}/css">
 				<include name="*.css"/>
 				<exclude name="jquery.mobile.structure.css"/>
 				<exclude name="*.min.css"/>
