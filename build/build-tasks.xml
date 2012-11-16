@@ -151,7 +151,7 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=compact"/>
-			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors"/>
+			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties"/>
 			<arg value="--error=outline-none"/>
 			<srcfile/>
 		</apply>
@@ -171,7 +171,7 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=lint-xml"/>
-			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors"/>
+			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties"/>
 			<arg value="--error=outline-none"/>
 			<srcfile/>
 		</apply>
