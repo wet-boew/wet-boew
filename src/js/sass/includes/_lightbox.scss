@@ -80,15 +80,20 @@
 #cboxPrevious{
 	left:-28px;
 	margin-top:-32px;
-	background:url(../images/lightbox/controls.png) no-repeat top right;
+	background-position: 100% 0;
 	&:hover,&:focus,&:active{
 		background-position:bottom right;
 	}
 }
+
+#cboxNext, #cboxClose, #cboxPrevious{
+	background-image: url(../images/lightbox/controls.png);
+	background-repeat: no-repeat;
+}
 #cboxNext{
 	right:-28px;
 	margin-top:-32px;
-	background:url(../images/lightbox/controls.png) no-repeat top left;
+	background-position: 0 0;
 	&:hover,&:focus,&:active{
 		background-position:0 100%;
 	}
@@ -104,7 +109,7 @@
 	top:-19px;
 	right:5px;
 	display:block;
-	background:url(../images/lightbox/controls.png) no-repeat top center;
+	background-position: 50% 0;
 	width:38px;
 	height:19px;
 	text-indent:-9999px;
