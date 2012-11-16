@@ -96,10 +96,7 @@
 .fd-slider-focused {
 	.fd-slider-bar {
 		@include box-shadow(0 0 6px rgba(10,130,170,0.7));
-		-webkit-animation:fd-pulse 2s infinite;
-		-moz-animation:fd-pulse 2s infinite;
-		-ms-animation:fd-pulse 2s infinite;
-		-o-animation:fd-pulse 2s infinite
+		@include experimental(animation,fd-pulse 2s infinite,-moz, -webkit, -o, not -ms, not -khtml, official);
 	}
 }
 .fd-slider-range {
@@ -138,17 +135,19 @@
 	cursor:W-resize;
 	line-height:20px;
 	font-size:10px;
-	-moz-outline:0 none;
-	-webkit-touch-callout:none;
+	@if $experimental-support-for-mozilla {-moz-outline:0 none;}
+	@if $experimental-support-for-webkit {-webkit-touch-callout:none;}
 	@include user-select(none);
 	&:focus{
 		outline:0 none;
 		border:0 none;
-		-moz-user-focus:normal
+		@if $experimental-support-for-mozilla {-moz-user-focus:normal;}
 	}
 }
-.fd-slider-handle:focus::-moz-focus-inner {
-	border-color:transparent
+@if $experimental-support-for-mozilla {
+	.fd-slider-handle:focus::-moz-focus-inner {
+		border-color:transparent
+	}
 }
 .fd-slider-focused,.fd-slider-hover,.fd-slider-active {
 	.fd-slider-handle {

@@ -336,9 +336,10 @@ a{
 		text-decoration:underline;
 	}
 }
-
-@-moz-document url-prefix() {
-	#gcwu-srch-submit{
-		min-height: 22px;
+@if $experimental-support-for-mozilla {
+	@-moz-document url-prefix() {
+		#gcwu-srch-submit{
+			min-height: 22px;
+		}
 	}
 }
