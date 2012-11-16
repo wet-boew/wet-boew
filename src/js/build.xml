@@ -10,7 +10,7 @@
 	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js"/>
 	
 	<target name="-copy-js" depends="-build-pe">
-		<copy todir="${build.dir}" encoding="UTF-8">  
+		<copy todir="${build.dir}">  
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="binary/**"/>
@@ -20,12 +20,27 @@
 				</fileset>
 			</resources>  
 		</copy>
-		<copy todir="${build.dir}" encoding="UTF-8">  
+		<copy todir="${build.dir}">  
 			<resources>
 				<fileset dir="${src.dir}">
 					<include name="dependencies/**"/>
-					<include name="i18n/**"/>
+					<include name="i18n/*.js"/>
 					<include name="polyfills/**"/>
+					<contains text="* Web Experience Toolkit (WET)" casesensitive="no"/>
+				</fileset>
+			</resources> 
+			<filterchain>
+				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
+				<replacetokens>
+					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
+					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+		<copy todir="${build.dir}" encoding="UTF-8">  
+			<resources>
+				<fileset dir="${src.dir}">
+					<include name="i18n/formvalid/*.js"/>
 					<contains text="* Web Experience Toolkit (WET)" casesensitive="no"/>
 				</fileset>
 			</resources> 
@@ -114,5 +129,10 @@
 			<fileset dir="${src.dir}/workers" includes="**/**.js" />
 		</concat>
 		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf-8" />
+	</target>
+	
+	<target name="fix-spanish-character" extensionOf="compress" depends="-minify">
+		<!-- Hack to fix http://yuilibrary.com/projects/yuicompressor/ticket/2528132 -->
+		<replace file="${build.dir}/i18n/es-min.js" encoding="UTF-8" token="�?" value="Í" />
 	</target>
 </project>
