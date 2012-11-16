@@ -14,58 +14,75 @@
 	
 	_pe.fn.toggledetails = {
 		type : 'plugin',
-		_open : false,	// Globally track the toggle state to support multiple controls on a page
-		_togglers : [],	// Reference to all toggle controls. Allows for easy title attribute update on state change.
+		_open : false,			// Globally track the toggle state to support multiple controls on a page
+		_togglers : [],			// Reference to all toggle controls
+		_aria_controls : null,	// Space separated ID list of <details> elements for toggle control aria-controls attribute
 		_exec : function (elm) {		
 			var opts,
-				overrides;
+				overrides,
+				$window;
 				
 			// Default options
 			opts = { 
-				onlyOpen: false,	// Only toggle open
-				onlyClose: false,	// Only toggle closed
+				togglers: {			// Define the toggle controls to create
+					toggle: false,	// Toggle open and close
+					open: false,	// Toggle open only
+					close: false	// Toggle close only
+				},   
+				accentFirst: false,	// Add 'button-accent' class to first toggle control
 				printOpen: false,	// Toggle open before print
-				title: {			// Title attribute text
-					open: _pe.dic.get('%toggle-open'),
-					close: _pe.dic.get('%toggle-close')
+				text: {				// Button text and titles
+					toggle: _pe.dic.get('%toggle'),
+					open: _pe.dic.get('%open'),
+					close: _pe.dic.get('%close'),
+					titleOpen: _pe.dic.get('%toggle-open'),
+					titleClose: _pe.dic.get('%toggle-close')
 				}
 			};				
 				
 			// Check for overrides from CSS classes
-			overrides = {					
-				onlyOpen: elm.hasClass('only-open') ? true : undefined,
-				onlyClose: elm.hasClass('only-close') ? true : undefined,
-				printOpen: elm.hasClass('print-open') ? true : undefined,
-				title : elm.hasClass('no-title') ? false : opts.title
+			overrides = {
+				togglers: {
+					toggle: elm.hasClass('toggle') ? true : false,
+					open: elm.hasClass('toggle-open') ? true : false,
+					close: elm.hasClass('toggle-close') ? true : false
+				},
+				accentFirst: elm.hasClass('accent-first') ? true : undefined,
+				printOpen: elm.hasClass('print-open') ? true : undefined
 			};
 			
-			// Extend the defaults with settings passed through settings.js (wet_boewtoggledetails) and class-based overrides
+			// Extend the defaults with settings passed through settings.js (wet_boew_toggledetails) and class-based overrides
 			if (typeof wet_boew_toggledetails !== 'undefined' && wet_boew_toggledetails !== null) {
 				$.extend(opts, wet_boew_toggledetails, overrides);
 			} else {
 				$.extend(opts, overrides);
 			}	
 			
-			this._togglers.push({elm: elm, opts: opts});
-			this._setTitle(elm, opts);			
+			// Create the toggle controls and add them to the page
+			this._initTogglers(elm, opts);
 			
-			// Handle toggle control clicks
-			elm.on('click', $.proxy(function(e) {				
-				this.setOpen(opts.onlyOpen ? false : opts.onlyClose ? true : this.isOpen());
-				this.toggle();
-				e.preventDefault();
-				e.target.focus();
-			}, this));				
-			
-			// Open details on print.
-			// TODO Add support for Opera and WebKit
+			// Open details on print
 			if(opts.printOpen) {
-				$(window).on('beforeprint', $.proxy(function() {
+				$window = $(window);
+				
+				// Native event support
+				$window.on('beforeprint', $.proxy(function() {
 					this.setOpen(false);
 					this.toggle();	
-				}, this));			
-			}
-			
+				}, this));		
+				
+				// Fallback for browsers that don't support print event
+				if (window.matchMedia) {	
+					window.matchMedia('print').addListener(function(query) {						
+						if (query.matches) {
+							$window.trigger('beforeprint');
+						}
+					});
+				}
+				
+				// Polyfill open using CSS
+				$('details').addClass('print-open');			
+			}			
 			return elm;					
 		}, // end of exec
 				
@@ -78,25 +95,90 @@
 		},
 		
 		toggle : function() {
-			var i = 0, 
-				l = this._togglers.length,
-				$details = $('details');
+			var $details = $('details');
 			
 			// Set the state we're currently in and trigger the change
 			$details.prop('open', this.isOpen());
 			$details.find('summary').click();	
 			
-			// Update our state and the title of the togglers
+			// Update our state and the title of the toggler controls
 			this.setOpen(!this.isOpen());
-			for(; i < l; i++) {
-				this._setTitle(this._togglers[i].elm, this._togglers[i].opts);
+			for(var i = 0, length = this._togglers.length; i < length; i++) {
+				this._setTitle(this._togglers[i]);
 			}
 		},
-
-		_setTitle : function(elm, opts) {
-			if(opts.title !== false) {
-				elm[0].title = opts.onlyClose || (!opts.onlyOpen && this.isOpen()) ? opts.title.close : opts.title.open;
+			
+		_initTogglers : function(elm, opts) {
+			var li,
+				toggler,
+				types,				
+				ul = document.createElement('ul'); 
+			
+			// Make sure there is at least one toggle control 
+			if(!opts.togglers || (!opts.togglers.toggle && !opts.togglers.open && !opts.togglers.close)){
+				opts.togglers.toggle = true;
+			}				
+							
+			// Create the requested togglers and add to the page
+			types = _pe.array.keys(opts.togglers);
+			for(var i = 0, length = types.length; i < length; i++) {
+				if(opts.togglers[types[i]] === true) {
+					toggler = this._createToggler(types[i], opts);
+					li = document.createElement('li');
+					li.appendChild(toggler[0]);
+					ul.appendChild(li);
+					this._togglers.push(toggler);
+				}
 			}
+			ul.className = 'menu-horizontal';
+			elm.append(ul);	
+			
+			if(opts.accentFirst === true) {
+				this._togglers[0].addClass('button-accent');
+			}			
+		},
+		
+		_createToggler : function(type, opts) {
+			var $toggler = $('<a>').attr({
+					'href': '#',
+					'role': 'button',
+					'class': 'button',
+					'aria-controls': this._getAriaControls(),
+					'data-type': type,
+					'data-title-close': opts.text.titleClose,
+					'data-title-open': opts.text.titleOpen
+				}).text(opts.text[type]);
+			
+			$toggler.on('click', $.proxy(function(e) {
+				this.setOpen(type === 'open' ? false : type === 'close' ? true : this.isOpen());
+				this.toggle();
+				e.preventDefault();
+				e.target.focus();		
+			}, this));			
+			
+			this._setTitle($toggler);
+			return $toggler;
+		},
+		
+		_getAriaControls : function() {
+			var ids = '';
+			
+			// Init with a space separated list of <details> element IDs
+			if(this._aria_controls === null) {
+				$('details').each(function(idx) {
+					if(this.id === '') {
+						this.id = 'details_' + idx;
+					}
+					ids += this.id + ' ';
+				});
+				this._aria_controls = $.trim(ids);
+			}
+			return this._aria_controls;
+		},			
+		
+		_setTitle : function(toggler) {
+			var type = toggler.data('type');
+			toggler[0].title = type === 'close' || (type !== 'open' && this.isOpen()) ? toggler.data('title-close') : toggler.data('title-open');
 		}		
 	};
 	window.pe = _pe;

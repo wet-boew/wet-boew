@@ -106,6 +106,7 @@
 			/* Multimedia player */
 			'%play': 'Play',
 			'%pause': 'Pause',
+			'%open': 'Open',
 			'%close': 'Close',
 			'%rewind': 'Rewind',
 			'%next': 'Next',
@@ -187,6 +188,7 @@
 			'%st-msgbox-title': 'Session timeout warning',
 			'%st-already-timeout-msg': 'Sorry your session has already expired. Please login again.',
 			/* Toggle details */
+			'%toggle': 'Toggle',
 			'%toggle-open': 'Toggle open',
 			'%toggle-close': 'Toggle close',
 			/* Disable/enable PE */

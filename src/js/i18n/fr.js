@@ -103,6 +103,7 @@
 			/* Multimedia player */
 			'%play': 'Jouer',
 			'%pause': 'Pause',
+			'%open': 'Ouvrir',
 			'%close': 'Fermer',
 			'%rewind': 'Reculer',
 			'%next': 'Prochaine',
@@ -184,8 +185,9 @@
 			'%st-msgbox-title': 'Avertissement d\'expiration de la session',
 			'%st-already-timeout-msg': 'Désolé, votre session a déjà expiré. S\'il vous plaît vous connecter à nouveau.',
 			/* Toggle details */
-			'%toggle-open': 'Basculer: ouvrir',
-			'%toggle-close': 'Basculer: fermé',	
+			'%toggle': 'Basculer',
+			'%toggle-open': 'Basculer ouvert',
+			'%toggle-close': 'Basculer fermé',	
 			/* Disable/enable PE */
 			'%pe-disable': 'Version HTML simplifiée',
 			'%pe-enable': 'Version standard'
