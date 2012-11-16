@@ -184,10 +184,8 @@ body {
 		border:1px solid rgba(136,136,136,.8);
 		border-bottom:1px solid rgba(153,153,153,.8);
 		border-right:1px solid rgba(153,153,153,.8);
-		background: {
-			color:#555;
-			@include background-image(linear-gradient(left,#666,#333));
-		}
+		background-color:#555;
+		@include background-image(linear-gradient(left,#666,#333));
 	}
 	.fd-slider-range {
 		cursor:auto!important;
