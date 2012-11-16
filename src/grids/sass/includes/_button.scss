@@ -72,7 +72,7 @@
 
 	.button-group {
 		position: relative;
-		*zoom: 1;
+		@include has-layout-zoom;
 		
 		&:before, &:after {
 			display: table;
