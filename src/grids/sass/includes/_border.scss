@@ -8,9 +8,12 @@ div.border-top,div.border-right,div.border-bottom,div.border-left,div.border-all
 	float: left;
 	position: relative;
 }
+.border-image {
+	background-image: url(../images/border.gif);
+}
 .border-top,.border-right,.border-bottom,.border-left,.border-all {
 	min-height:1px;
-	background-image: url(../images/border.gif);
+	@extend .border-image;
 }
 
 .border-top, .border-bottom {
