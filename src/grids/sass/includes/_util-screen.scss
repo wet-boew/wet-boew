@@ -239,7 +239,7 @@ img.float-left { margin-right: $margin-medium; }
 	float:left;
 	min-height:1px;
 	position:relative;
-	background-image:url(../images/border.gif);
+	@extend .border-image;
 }
  
 .border-top {
