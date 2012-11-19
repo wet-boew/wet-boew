@@ -75,22 +75,28 @@
 	top:50%;
 	width:28px;
 	height:65px;
-	text-indent:-9999px;
 }
 #cboxPrevious{
 	left:-28px;
 	margin-top:-32px;
-	background:url(../images/lightbox/controls.png) no-repeat top right;
+	background-position: 100% 0;
 	&:hover,&:focus,&:active{
-		background-position:bottom right;
+		background-position: 100% 100%; //bottom right
 	}
+}
+
+#cboxNext, #cboxClose, #cboxPrevious{
+	background-image: url(../images/lightbox/controls.png);
+	background-repeat: no-repeat;
+	direction: ltr;
+	text-indent:-9999px;
 }
 #cboxNext{
 	right:-28px;
 	margin-top:-32px;
-	background:url(../images/lightbox/controls.png) no-repeat top left;
+	background-position: 0 0;
 	&:hover,&:focus,&:active{
-		background-position:bottom left;
+		background-position:0 100%;
 	}
 }
 #cboxLoadingOverlay{
@@ -104,12 +110,11 @@
 	top:-19px;
 	right:5px;
 	display:block;
-	background:url(../images/lightbox/controls.png) no-repeat top center;
+	background-position: 50% 0;
 	width:38px;
 	height:19px;
-	text-indent:-9999px;
 	&:hover,&:focus,&:active{
-		background-position:bottom center;
+		background-position:50% 100%;
 	}
 }
 #cboxNext,#cboxPrevious,#cboxClose{
