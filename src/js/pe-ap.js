@@ -1317,7 +1317,7 @@
 				* @memberof pe.add
 				* @type {DOM object}
 				*/
-				head: document.head || document.getElementsByTagName('head'),
+				head: document.head || document.getElementsByTagName('head')[0],
 				/**
 				* The path to the root folder of the javascript files (same folder as pe-ap.js).
 				* @memberof pe.add
