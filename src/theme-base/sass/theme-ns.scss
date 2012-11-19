@@ -3,16 +3,16 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-ns.scss';
-@import '../../grids/sass/responsive-ns.scss';
-@import '../../grids/sass/util-ns.scss';
-@import '../../js/sass/pe-ap-ns.scss';
-@import 'includes/default-ns.scss';
+@import '../../base/sass/base-ns';
+@import '../../grids/sass/responsive-ns';
+@import '../../grids/sass/util-ns';
+@import '../../js/sass/pe-ap-ns';
+@import 'includes/default-ns';
 /* -----Build Include Section End----- */
 
 /* Mobile view */
 @media screen and (max-width:767px), screen and (max-device-width:767px) {
 /* -----Build Include Section Start----- */
-@import 'includes/default-mobile-ns.scss';
+@import 'includes/default-mobile-ns';
 /* -----Build Include Section End----- */
 }
