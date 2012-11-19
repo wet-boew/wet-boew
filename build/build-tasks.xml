@@ -4,7 +4,7 @@
 	<property file="${tasks.basedir}/build-tasks.properties"/>
 	
 	<!-- Version and build time-->
-	<property name="wet-boew-build.version" value="v3.0.2-a1"/>
+	<property name="wet-boew-build.version" value="v3.0.3-a1"/>
 	<tstamp>
 		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
 	</tstamp>
@@ -106,7 +106,7 @@
 	</target>
 	
 	<target name="-jshint">
-		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
+		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false" jshintSrc="${lib.dir}/jshint.js">
 			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
@@ -143,6 +143,7 @@
 				<include name="*.css"/>
 				<exclude name="jquery.mobile.structure.css"/>
 				<exclude name="*.min.css"/>
+				<exclude name="*-min.css"/>
 			</fileset>
 			<arg value="-jar"/>
 			<arg path="${lib.dir}/js.jar"/>
@@ -150,7 +151,7 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=compact"/>
-			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors"/>
+			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties"/>
 			<arg value="--error=outline-none"/>
 			<srcfile/>
 		</apply>
@@ -158,8 +159,11 @@
 	
 	<target name="csslint-report" description="Produceds CSSLint XML report in the build directory for selected project" depends="prepare-files">
 		<apply executable="java" failonerror="false" parallel="true" output="${build.dir}/csslint.out.xml">
-			<fileset dir="${src.dir}/css">
+			<fileset dir="${build.dir}/css">
 				<include name="*.css"/>
+				<exclude name="jquery.mobile.structure.css"/>
+				<exclude name="*.min.css"/>
+				<exclude name="*-min.css"/>
 			</fileset>
 			<arg value="-jar"/>
 			<arg path="${lib.dir}/js.jar"/>
@@ -167,7 +171,7 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=lint-xml"/>
-			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors"/>
+			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties"/>
 			<arg value="--error=outline-none"/>
 			<srcfile/>
 		</apply>

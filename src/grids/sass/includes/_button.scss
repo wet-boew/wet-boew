@@ -20,6 +20,7 @@
 		&:hover, &:focus, &:active {
 			background-position: 0 -15px;
 			text-decoration: none;
+			outline-offset: -6px;
 			@include single-transition(background-position, 0.1s, linear);
 		}
 		
@@ -71,7 +72,7 @@
 
 	.button-group {
 		position: relative;
-		*zoom: 1;
+		@include has-layout-zoom;
 		
 		&:before, &:after {
 			display: table;
@@ -131,6 +132,11 @@
 	@include background-image(linear-gradient($color,darken($color, 10%)));
 	&:hover, &:focus, &:active { 
 		background-color: darken($color, 10%);
+	}
+	@if $experimental-support-for-mozilla {
+		&:focus::-moz-focus-inner, &:active::-moz-focus-inner {
+			border-color: $text;
+		}
 	}
 	&:disabled, &.button-disabled {
 		background-color: $color;
