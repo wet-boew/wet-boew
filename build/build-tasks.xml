@@ -152,7 +152,7 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=compact"/>
-			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors"/>
+			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties"/>
 			<arg value="--error=outline-none"/>
 			<srcfile/>
 		</apply>
@@ -160,7 +160,7 @@
 	
 	<target name="csslint-report" description="Produceds CSSLint XML report in the build directory for selected project" depends="prepare-files">
 		<apply executable="java" failonerror="false" parallel="true" output="${build.dir}/csslint.out.xml">
-			<fileset dir="${src.dir}/css">
+			<fileset dir="${build.dir}/css">
 				<include name="*.css"/>
 				<exclude name="jquery.mobile.structure.css"/>
 				<exclude name="*.min.css"/>
@@ -172,7 +172,7 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=lint-xml"/>
-			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors"/>
+			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties"/>
 			<arg value="--error=outline-none"/>
 			<srcfile/>
 		</apply>

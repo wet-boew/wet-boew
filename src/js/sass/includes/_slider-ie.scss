@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /* fd-slider.min.css referencing individual .png images for IE6 and 7 */
-.ie7 {
+.ie7, .ie8 {
 	.fd-slider, .fd-slider-vertical {
 		*background:transparent url(../images/slider/blank.gif) repeat
 	}

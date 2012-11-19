@@ -118,8 +118,9 @@
 		&[type="search"] {
 			@include appearance(textfield);
 		}
-		
-		&:-moz-placeholder { color: $medium; }
+		@if $experimental-support-for-mozilla {
+			&:-moz-placeholder { color: $medium; }
+		}
 	}
 	
 	label {

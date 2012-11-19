@@ -72,7 +72,7 @@
 
 	.button-group {
 		position: relative;
-		*zoom: 1;
+		@include has-layout-zoom;
 		
 		&:before, &:after {
 			display: table;
@@ -133,8 +133,10 @@
 	&:hover, &:focus, &:active { 
 		background-color: darken($color, 10%);
 	}
-	&:focus::-moz-focus-inner, &:active::-moz-focus-inner {
-		border-color: $text;
+	@if $experimental-support-for-mozilla {
+		&:focus::-moz-focus-inner, &:active::-moz-focus-inner {
+			border-color: $text;
+		}
 	}
 	&:disabled, &.button-disabled {
 		background-color: $color;

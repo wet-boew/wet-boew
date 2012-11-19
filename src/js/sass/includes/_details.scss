@@ -17,8 +17,9 @@ summary{
 	}
 }
 
+/* Only get applied if JavaScript is enabled and <details> is not natively supported */
 details {
-	&.polyfill { /* Only get applied if JavaScript is enabled and <details> is not natively supported */
+	&.polyfill { 
 		> summary:before { /* Add the close pointer */
 			content: "\25BA\a0";
 		}
