@@ -45,7 +45,7 @@ video, object.video {
 	border:1px solid #BBB;
 }
 
-@mixin ui {
+.wb-mm-toolbar {
 	@include border;
 	background:#DADADA url('../images/multimedia/background-toolbar.png') repeat-x 0 0;
 }
@@ -58,7 +58,7 @@ $progress-color: #000;
 	padding:0;
 
 	button {
-		@include ui;
+		@extend .wb-mm-toolbar;
 		padding:0;
 		
 		svg, img {
@@ -89,7 +89,7 @@ $progress-color: #000;
 	
 	.wb-mm-timeline{
 		position:relative;
-		@include ui;
+		@extend .wb-mm-toolbar;
 		margin-left:83px;
 		margin-right:55px;
 		height:18px;
