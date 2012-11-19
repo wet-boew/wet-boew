@@ -2,14 +2,14 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
+@import "compass/css3/inline-block";
 
 [class*=wb-icon-] {
 	background:url(../images/icons.png) no-repeat top left;
 	width:16px;
 	height:16px;
 	margin-right:4px;
-	display:inline-block;
-	vertical-align:text-top;
+	@include inline-block(text-top);
 }
 
 .wb-icon-alarm {

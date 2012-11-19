@@ -41,6 +41,7 @@
 				autolist.empty().append(visibleOptions); // Add the visible options to the autolist
 
 				if (visibleOptions.length !== 0) {
+					correctWidth();
 					autolist.removeClass('al-hide');
 					elm.attr('aria-expanded', 'true');
 				} else {
@@ -78,7 +79,6 @@
 			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide" aria-hidden="true" aria-live="polite"></ul>');
 			options = $(datalist_items.join(''));
 			elm.after(autolist);
-			correctWidth();
 			
 			elm.on('keyup keydown click vclick touchstart focus', function (e) {
 				var type = e.type,

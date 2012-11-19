@@ -106,6 +106,7 @@
 			/* Multimedia player */
 			'%play': 'Reproducir',
 			'%pause': 'Pausa',
+			'%open': 'Abrir',
 			'%close': 'Cerrar',
 			'%rewind': 'Retroceder',
 			'%next': 'Siguiente',
@@ -187,8 +188,9 @@
 			'%st-msgbox-title': 'Aviso de finalización de sesión',
 			'%st-already-timeout-msg': 'Lamentablemente su sesión ha expirado. Por favor ingrese nuevamente.',
 			/* Toggle details */
-			'%toggle-open': 'Toggle open',
-			'%toggle-close': 'Toggle close',
+			'%toggle': 'Bascular',
+			'%toggle-open': 'Bascular abierto',
+			'%toggle-close': 'Bascular cerrado',
 			/* Disable/enable PE */
 			'%pe-disable': 'Versión básica HTML',
 			'%pe-enable': 'Versión standard'

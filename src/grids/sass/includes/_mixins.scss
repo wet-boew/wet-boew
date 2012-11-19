@@ -2,6 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3/text-shadow";
+@import "compass/utilities/color";
+
 $sans-serif:		Verdana, Arial, Helvetica, sans-serif;
 $serif:				Georgia, "Times New Roman", Times, serif;
 
@@ -114,7 +117,7 @@ $default-color-border: false;
 	
 	// add text shadow
 	@if $shadow == true {
-		text-shadow: contrast-color($text, $dark, $white, 50%) 0 1px 1px;
+		@include text-shadow(contrast-color($text, $dark, $white, 50%) 0 1px 1px);
 	}
 	
 	// add gradient
@@ -123,25 +126,9 @@ $default-color-border: false;
 		background-repeat: repeat-x;
 		
 		@if $important {
-
-			$gradient: linear-gradient($color, darken($color, 7%));
-			background-image: $gradient !important;
-			@if $support-for-original-webkit-gradients and prefixed(-owg, $gradient) {
-				background-image: -owg($gradient) !important; }
-			@if $experimental-support-for-webkit and prefixed(-webkit, $gradient) {
-				background-image: -webkit($gradient) !important; }
-			@if $experimental-support-for-mozilla and prefixed(-moz, $gradient) {
-				background-image: -moz($gradient) !important; }
-			@if $experimental-support-for-opera and prefixed(-o, $gradient) {
-				background-image: -o($gradient) !important; }
-
+			@include background-image(linear-gradient($color, darken($color, 7%)) !important);
 		} @else {
-			@include background-image(
-				linear-gradient(
-					$color,
-					darken($color, 7%)
-				)
-			);
+			@include background-image(linear-gradient($color, darken($color, 7%)));
 		}
 	}
 

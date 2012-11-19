@@ -5,7 +5,7 @@
 	<property name="src.dir" value="src"/>
 	<property name="build.dir" value="build"/>
 
-	<target name="default" depends="clean,build,clean-css" description="Performs a clean and build when calling ant without any target"></target>
+	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
 	<target name="build" depends="">
 		<subant target="build">
@@ -13,12 +13,6 @@
 		</subant>
 	</target>
 
-	<target name="clean-css">
-		<subant target="clean-css">
-			<fileset dir="${src.dir}" includes="**/build.xml"/>
-		</subant>
-	</target>
-	
 	<target name="clean">
 		<subant target="clean">
 			<fileset dir="${src.dir}" includes="**/build.xml"/>
@@ -30,13 +24,7 @@
 			<fileset dir="${src.dir}" includes="**/**/build.xml"/>
 		</subant>
 	</target>
-	
-	<target name="csslint" depends="clean,build">
-		<subant target="csslint">
-			<fileset dir="${src.dir}" includes="**/**/build.xml" excludes="**/base/build.xml"/>
-		</subant>
-	</target>
-	
+
 	<target name="preflight" description="Sets tabbing and encoding as indicated by the contributor guidelines">
 		<fixcrlf srcdir="${src.dir}" includes="**/*.js" encoding="UTF-8" outputencoding="UTF-8" tab="add" tablength="4" />
 	</target>

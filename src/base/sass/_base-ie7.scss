@@ -23,9 +23,9 @@
 		}
 	}
 	.wb-show-onhover,a.wb-linkdesc span span{
-		filter:alpha(opacity=0);
+		@include transparent;
 		&:hover,&:focus,&:active{
-			filter:alpha(opacity=100);
+			@include opaque;
 		}
 	}
 }
