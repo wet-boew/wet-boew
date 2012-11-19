@@ -149,7 +149,9 @@
 			&[type="radio"], &[type="checkbox"] {
 				float: left;
 				margin-left: -1 * $margin-large;
-				border: none\9;
+				@if $legacy-support-for-ie { 
+					border: none\9; 
+				}
 			}
 		}
 		
