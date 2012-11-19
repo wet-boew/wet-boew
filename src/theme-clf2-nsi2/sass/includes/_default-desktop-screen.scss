@@ -304,7 +304,7 @@ body{
 	text-align: center; 
 	background-image: url(../images/tphp.gif); 
 	background-repeat: no-repeat; 
-	background-position: top center;
+	background-position: 50% 0;//top center
 	a{
 		@include inline-block;
 		padding-top: 13px;
