@@ -104,8 +104,7 @@
 
 			// Build single images, inline content and AJAXed content
 			$lb.filter('.lb-item').attr('aria-haspopup', 'true').each(function () {
-				var $this = $(this);
-				$this.colorbox($this.attr('href').substring(0, 1) !== '#' ? opts : opts2);
+				pe.fn.lightbox._init_colorbox(this, opts, opts2);
 			});
 
 			// Build galleries
@@ -114,8 +113,7 @@
 				$.extend(opts, group);
 				$.extend(opts2, group);
 				$(this).find('.lb-item-gal').attr('aria-haspopup', 'true').each(function () {
-					var $this = $(this);
-					$this.colorbox($this.attr('href').substring(0, 1) !== '#' ? opts : opts2);
+					pe.fn.lightbox._init_colorbox(this, opts, opts2);
 				});
 			});
 
@@ -152,7 +150,18 @@
 					}
 				}
 			});
-		} // end of exec
+		}, // end of exec
+
+		_init_colorbox : function(link, opts_default, opts_inline) {
+			var opts = link.href.substring(0, 1) !== '#' ? opts_default : opts_inline,
+				title = this._get_title(link);
+			$(link).colorbox(title ? $.extend({}, opts, title) : opts);
+		},
+
+		_get_title : function(link) {
+			var	title = document.getElementById(link.getAttribute('data-title'));
+			return (title && title.innerHTML.length > 0) ? {title: title.innerHTML} : false;
+		}
 	};
 	window.pe = _pe;
 	return _pe;
