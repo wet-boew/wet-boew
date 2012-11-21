@@ -141,7 +141,7 @@
 		<apply executable="java" failonerror="false" parallel="false">
 			<fileset dir="${build.dir}/css">
 				<include name="*.css"/>
-				<exclude name="jquery.mobile.structure.css"/>
+				<exclude name="jquery.mobile.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -161,7 +161,7 @@
 		<apply executable="java" failonerror="false" parallel="true" output="${build.dir}/csslint.out.xml">
 			<fileset dir="${build.dir}/css">
 				<include name="*.css"/>
-				<exclude name="jquery.mobile.structure.css"/>
+				<exclude name="jquery.mobile.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
