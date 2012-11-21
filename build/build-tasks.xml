@@ -249,21 +249,9 @@
 	</target>
 	
 	<target name="-copy-jquery-css">
-		<loadfile srcfile="${build.dir}/../build-css-head.txt" property="build.css.head"/>
-		<loadfile srcfile="${src.dir}/../js/jquerymobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
-			<filterchain>
-				<headfilter lines="1"/>
-			</filterchain>
-		</loadfile>
 		<concat dest="${build.dir}/css/jquery.mobile.css">
-			<header>${build.css.head}
-			${jquery.mobile.license}</header>
-			<fileset dir="${src.dir}/../js/jquerymobile">
-				<include name="*structure.css"/>
-			</fileset>
-			<fileset dir="${src.dir}/jquerymobile">
-				<include name="*theme.css"/>
-			</fileset>
+			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme.css"/>
+			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure.css"/>
 			<filterchain>
 				<replacetokens>
 					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
