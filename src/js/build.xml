@@ -91,7 +91,6 @@
 			<file file="${src.dir}/pe-ap.js"/>
 			<fileset dir="${src.dir}/workers" includes="**/**.js" />
 			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
 				<replacetokens>
 					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
 					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
