@@ -5,3 +5,6 @@ before_script:
   
 script:
   - ant
+  
+after_script:
+  - git diff --exit-code > /dev/null; if [ "${PIPESTATUS[0]}" = "1" ]; then echo "Changes have not been built"; fi;
