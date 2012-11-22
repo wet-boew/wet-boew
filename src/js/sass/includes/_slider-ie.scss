@@ -24,17 +24,17 @@
 		.fd-slider-bar {
 			_bottom:auto;
 			*clear:expression(style.height=(parentNode.offsetHeight - 20)+'px',style.clear='none',0);
-			filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FFECECEC',endColorstr='#FFCCCCCC')
+			@include filter-gradient(#ECECEC,#CCC,vertical);
 		}
 		.fd-slider-range {
-			filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FF89A5BD',endColorstr='#FF165C91')
+			@include filter-gradient(#89A5BD,#165C91,vertical);
 		}
 		.fd-slider-disabled {
 			.fd-slider-bar {
-				filter:progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff666666',endColorstr='#ff333333')
+				@include filter-gradient(#666,#333,horizontal);
 			}
 			.fd-slider-range {
-				filter:progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff222222',endColorstr='#ff000000')
+				@include filter-gradient(#222,#000,horizontal);
 			}
 		}
 	}
@@ -65,11 +65,11 @@
 		_left:10px;
 		_right:auto;
 		_width:expression((this.parentNode.offsetWidth - 20)+'px');
-		filter:progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#FFECECEC',endColorstr='#FFCCCCCC')
+		@include filter-gradient(#ECECEC,#CCC,horizontal);
 	}
 	.fd-slider-range{
 		_left:10px;
-		filter:progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#FF89A5BD',endColorstr='#FF165C91')
+		@include filter-gradient(#89A5BD,#165C91,horizontal);
 	}
 	.fd-slider-handle{
 		*background-image:url(../images/slider/fd-slider-sprite.png);
@@ -92,10 +92,10 @@
 			_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='../images/slider/fd-handle-disabled.png')
 		}
 		.fd-slider-bar {
-			filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ff666666',endColorstr='#ff333333')
+			@include filter-gradient(#666,#333,vertical);
 		}
 		.fd-slider-range {
-			filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ff222222',endColorstr='#ff000000')
+			@include filter-gradient(#222,#000,vertical);
 		}
 	}
 }
