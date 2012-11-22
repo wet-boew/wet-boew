@@ -7,6 +7,4 @@ script:
   - ant
   
 after_script:
-  - cd build
-  - chmod 777 travis_after_script.sh
-  - ./travis_after_script.sh
+  - ./build/travis_after_script.sh
