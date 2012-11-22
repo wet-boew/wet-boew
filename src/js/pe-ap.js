@@ -1458,7 +1458,7 @@
 				* Adds a JavaScript link for i18n to the head. It picks the file in pe.add.liblocation + "i18n/" whose prefix matches the page language.
 				* @memberof pe.add
 				* @function
-				* @param {string} lang The two (iso 639-1)  code of the page.
+				* @param {string} lang The two (iso 639-1)	code of the page.
 				* @return {void}
 				*/
 				language: function (lang) {

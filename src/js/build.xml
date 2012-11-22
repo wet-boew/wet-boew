@@ -86,10 +86,10 @@
 	</target>
 
 	<!-- Build JS Tasks -->
-	<target name="-build-pe" depends="-get-languages, -get-validation-languages, -merge-workers">
+	<target name="-build-pe" depends="-get-languages, -get-validation-languages">
 		<concat dest="${build.dir}/pe-ap.js" fixlastline="yes">
 			<file file="${src.dir}/pe-ap.js"/>
-			<file file="${build.dir}/workers.js"/>
+			<fileset dir="${src.dir}/workers" includes="**/**.js" />
 			<filterchain>
 				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
 				<replacetokens>
@@ -101,7 +101,6 @@
 				</replacetokens>
 			</filterchain>
 		</concat>
-		<delete file="${build.dir}/workers.js"/>
 	</target>
 	
 	<target name="-get-languages">
@@ -122,13 +121,6 @@
 			<globmapper from="${basedir}${file.separator}i18n${file.separator}formvalid${file.separator}methods_*.js" to="*" />
 		</pathconvert>
 		<echo message="Supported jQuery validation languages: '${validlanguagelist}'" level="info"/>
-	</target>
-
-	<target name="-merge-workers">
-		<concat dest="${build.dir}/workers.js" fixlastline="yes">
-			<fileset dir="${src.dir}/workers" includes="**/**.js" />
-		</concat>
-		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf-8" />
 	</target>
 	
 	<target name="fix-spanish-character" extensionOf="compress" depends="-minify">
