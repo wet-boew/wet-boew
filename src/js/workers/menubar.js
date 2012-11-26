@@ -198,7 +198,7 @@
 				if (type === 'keydown') {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 						if (keycode === 13) { // enter key
-							if (_id[2] === 0 && _id[3] === 0) {
+							if (_id[2] === 0 && _id[3] === 0 && _elm.hasClass('mb-has-sm')) {
 								gotosubmenu(e.target);
 								return false;
 							}
@@ -206,7 +206,7 @@
 							_elm.trigger('close');
 							return false;
 						} else if (keycode === 32) { // spacebar
-							if (_id[2] === 0 && _id[3] === 0) {
+							if (_id[2] === 0 && _id[3] === 0 && _elm.hasClass('mb-has-sm')) {
 								gotosubmenu(e.target);
 							} else {
 								window.location = _elm.attr('href');
