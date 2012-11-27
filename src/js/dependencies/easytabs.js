@@ -1,4 +1,4 @@
-/*
+/*!
  * jQuery EasyTabs plugin 3.1.1
  *
  * Copyright (c) 2010-2011 Steve Schwartz (JangoSteve)

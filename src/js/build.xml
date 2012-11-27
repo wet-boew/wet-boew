@@ -5,30 +5,10 @@
 	<property file="build.properties"/>
 	<import file="${build.dir}/../build-tasks.xml"/>
 	
-	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
+	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"/>
 
-	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-copy-binaries"/>
+	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-build-pe,-copy-binaries"/>
 	
-	<target name="-copy-js" depends="-build-pe">
-		<copy todir="${build.dir}" encoding="UTF-8">
-			<fileset dir="${src.dir}">
-				<include name="**/*.js"/>
-				<exclude name="workers/**"/> 
-				<exclude name="pe-ap.js"/> 
-				<exclude name="jquerymobile/jquery.mobile.js"/> 
-			</fileset>
-			<filterchain>
-				<replaceregex byline="false" pattern="^\/(\*)+[^!]" replace="\/\*!" flags="s"/>
-			</filterchain>
-		</copy>
-		<replace dir="${build.dir}">
-			<include name="**/*.js"/>
-			<exclude name="**/*-min.js"/>
-			<exclude name="**/*.min.js"/>
-			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version}"/>
-		</replace>
-	</target>
-
 	<target name="-copy-binaries">
 		<copy todir="${build.dir}">  
 			<fileset dir="${src.dir}">
@@ -45,7 +25,6 @@
 			<filterchain>
 				<replacetokens>
 					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
 					<token key="wet-boew-build.languagelist" value="${languagelist}"/>
 					<token key="wet-boew-build.validlanguagelist" value="${validlanguagelist}"/>
 					<token key="wet-boew-build.validlanguagemethod" value="${validlanguagemethod}"/>
