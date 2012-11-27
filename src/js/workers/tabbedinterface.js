@@ -144,7 +144,7 @@
 			$default_tab.attr('aria-selected', 'true');
 			$panels.filter(this.hash).attr('aria-hidden', 'false');
 
-			$tabs.on('keydown click', function (e) {
+			$tabs.off('click vclick').on('keydown click', function (e) {
 				var $target = $(e.target),
 					$panel;
 				if (e.type === 'keydown') {
@@ -168,6 +168,9 @@
 						e.preventDefault();
 					}
 				} else {
+					if ($target.is($tabs.filter('.' + opts.tabActiveClass))) {
+						pe.focus($panels.filter($target.attr('href')));
+					}
 					// Workaround for broken EasyTabs getHeightForHidden function where it misreports the panel height when the panel is first shown
 					// TODO: Issue should be fixed in EasyTabs
 					$panel = $panels.filter($target.attr('href'));
