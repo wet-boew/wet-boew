@@ -28,7 +28,7 @@
 					toggle: false,	// Toggle open and close
 					open: false,	// Toggle open only
 					close: false	// Toggle close only
-				},   
+				},	 
 				accentFirst: false,	// Add 'button-accent' class to first toggle control
 				printOpen: false,	// Toggle open before print
 				text: {				// Button text and titles

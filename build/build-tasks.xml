@@ -241,6 +241,10 @@
 				<exclude name="**/*.min.js" />
 			</fileset>
 		</delete>
+		<fixcrlf srcdir="${build.dir}" fixlast="false" encoding="UTF-8" outputencoding="UTF-8">
+			<include name="**/*-min.css" />
+			<include name="**/*-min.js" />
+		</fixcrlf>
 	</target>
 	
 	<target name="-copy-css" depends="compile.sass">
@@ -265,16 +269,21 @@
 		</concat>
 	</target>
 	
-	<target name="-copy-js">
-		<copy todir="${build.dir}/js">
-			<fileset dir="${src.dir}/js"/>
-			<filterchain>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
+	<target name="-copy-js" depends="">
+		<fixcrlf srcdir="${src.dir}" includes="**/*.js" encoding="UTF-8" outputencoding="UTF-8" tab="add" tablength="4" fixlast="false"/>
+		<copy todir="${build.dir}" encoding="UTF-8">
+			<fileset dir="${src.dir}">
+				<include name="**/*.js"/>
+				<exclude name="workers/**"/> 
+				<exclude name="pe-ap.js"/> 
+			</fileset>
 		</copy>
+		<replace dir="${build.dir}">
+			<include name="**/*.js"/>
+			<exclude name="**/*-min.js"/>
+			<exclude name="**/*.min.js"/>
+			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version}"/>
+		</replace>
 	</target>
 	
 	<target name="-copy-images">

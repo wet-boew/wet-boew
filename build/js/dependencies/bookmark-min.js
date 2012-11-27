@@ -1,4 +1,4 @@
-/*!http://keith-wood.name/bookmark.html
+/*! http://keith-wood.name/bookmark.html
 Sharing bookmarks for jQuery v1.4.0.
 Written by Keith Wood (kbwood{at}iinet.com.au) March 2008.
 Dual licensed under the GPL (http://dev.jquery.com/browser/trunk/jquery/GPL-LICENSE.txt) and
