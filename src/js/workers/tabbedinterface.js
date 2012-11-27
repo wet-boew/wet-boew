@@ -167,9 +167,10 @@
 				}
 			}		
 			
-			$tabs.on('keydown click', function (e) {
+			$tabs.off('click vclick').on('keydown click', function (e) {
 				var $target = $(e.target),
-					$panel;
+					$panel,
+					$link;
 				if (e.type === 'keydown') {
 					if (e.keyCode === 13 || e.keyCode === 32) {
 						if (e.stopPropagation) {
@@ -191,17 +192,20 @@
 						e.preventDefault();
 					}
 				} else {
-				
+					// Make sure working with a link since it's possible for an image to be the target of a mouse click
+					$link = (e.target.tagName.toLowerCase() !== 'a') ? $target.closest('a') : $target;
+
+					// Shift focus to the panel if the tab is already active
+					if ($link.is($tabs.filter('.' + opts.tabActiveClass))) {
+						pe.focus($panels.filter($link.attr('href')));
+					}
+
 					// Workaround for broken EasyTabs getHeightForHidden function where it misreports the panel height when the panel is first shown
 					// TODO: Issue should be fixed in EasyTabs
-					
-					// Make sure we're dealing with a link
-					if(!$target.is('a')){
-						$target = $target.parents('a:first');
-					}					
-					
+					$link.parents('a:first');		
+
 					// Get the panel to display
-					$panel = $panels.filter($target.attr('href'));
+					$panel = $panels.filter($link.attr('href'));
 					if ($panel.data('easytabs') && !$panel.data('easytabs').lastHeight) {
 						$panel.data('easytabs').lastHeight = $panel.outerHeight();
 					}
@@ -429,26 +433,26 @@
 	
 			
 			// Setup sliding panel behaviour
-			if(isSlider()){	
+			if (isSlider()) {	
 			
 				$(window).resize(positionPanels);
 				positionPanels();
 				
 				// Prevent focus event from prematurely showing the active panel
-				$panels.bind('focus', function(e){
-					if(!$(this).hasClass(opts.panelActiveClass)){
+				$panels.on('focus', function(e) {
+					if (!$(this).hasClass(opts.panelActiveClass)) {
 						e.preventDefault();
 					}
 				});					
 				
 				// Override the tab transition with our slide animation
 				// TODO: slide transitions should be added to easytabs lib
-				elm.bind('easytabs:before', function(e, $tab) {
-					selectTab($tab, $tabs, $panels, opts, false);
+				elm.on('easytabs:before', function(e, $tab) {
+					selectTab($tab, $tabs, $panels, opts, true);
 					return false;
 				});					
 			}				
-			
+
 			return elm.attr('class', elm.attr('class').replace(/\bwidget-style-/, "style-"));
 		} // end of exec
 	};
