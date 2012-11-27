@@ -1,4 +1,4 @@
-/*!------------------------------------------------------------------- 
+/*!-------------------------------------------------------------------- 
 * JQuery Plugin: "EqualHeights"
 * by: Scott Jehl, Todd Parker, Maggie Costello Wachs (http://www.filamentgroup.com)
 *
