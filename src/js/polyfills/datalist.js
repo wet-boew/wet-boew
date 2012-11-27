@@ -1,6 +1,10 @@
-/*
+/*!
+ *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ *
+ * Version: @wet-boew-build.version@
+ *
  */
 /*
  * Datalist polyfill (Autocomplete for text input fields)
@@ -32,7 +36,7 @@
 						if (value.length === 0) {
 							value = $this.find('span.al-label').html();
 						}
-						return (comparator.length === 0 || value.toLowerCase().indexOf(comparator) === 0);
+						return (comparator.length === 0 || value.toLowerCase().indexOf(comparator) !== -1);
 					});
 				} else {
 					visibleOptions = options;
@@ -192,7 +196,7 @@
 				}
 			});
 
-			$(container).on("focusoutside", function (e) {
+			$(container).on("focusoutside", function () {
 				closeOptions();
 			});
 

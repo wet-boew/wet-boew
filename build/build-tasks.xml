@@ -93,7 +93,7 @@
 			<arg path="${lib.dir}/vendors-${jruby.depends}/gems/"/>
 			<arg value="${command}"/>
 			<arg path="${src.dir}"/>
-			<arg value="${build.dir}/_css"/>
+			<arg value="${build.dir}/css"/>
 		</java>
 	</target>
 	
@@ -137,12 +137,15 @@
 			<exclude name="dependencies/xregexp.js"/>
 		</jshint>
 	</target>
-	
+
+	<property name="csslint.ignores" value="ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties,box-sizing"/>
+	<property name="csslint.errors" value="outline-none"/>
+
 	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="prepare-files">
 		<apply executable="java" failonerror="false" parallel="false">
 			<fileset dir="${build.dir}/css">
 				<include name="*.css"/>
-				<exclude name="jquery.mobile.structure.css"/>
+				<exclude name="jquery.mobile.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -152,8 +155,8 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=compact"/>
-			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties"/>
-			<arg value="--error=outline-none"/>
+			<arg value="--ignore=${csslint.ignores}"/>
+			<arg value="--error=${csslint.errors}"/>
 			<srcfile/>
 		</apply>
 	</target>
@@ -162,7 +165,7 @@
 		<apply executable="java" failonerror="false" parallel="true" output="${build.dir}/csslint.out.xml">
 			<fileset dir="${build.dir}/css">
 				<include name="*.css"/>
-				<exclude name="jquery.mobile.structure.css"/>
+				<exclude name="jquery.mobile.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -172,8 +175,8 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=lint-xml"/>
-			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties"/>
-			<arg value="--error=outline-none"/>
+			<arg value="--ignore=${csslint.ignores}"/>
+			<arg value="--error=${csslint.errors}"/>
 			<srcfile/>
 		</apply>
 	</target>
@@ -238,40 +241,25 @@
 				<exclude name="**/*.min.js" />
 			</fileset>
 		</delete>
+		<fixcrlf srcdir="${build.dir}" fixlast="false" encoding="UTF-8" outputencoding="UTF-8">
+			<include name="**/*-min.css" />
+			<include name="**/*-min.js" />
+		</fixcrlf>
 	</target>
 	
 	<target name="-copy-css" depends="compile.sass">
-		<loadfile srcfile="${build.dir}/../build-css-head.txt" property="build.css.head"/>
-		<move todir="${build.dir}/css">
-			<fileset dir="${build.dir}/_css">
-				<include name="*.css"/>
-			</fileset>
-			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-css-head.txt"/>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
-		</move>
+		<replace dir="${build.dir}/css">
+			<include name="*.css"/>
+			<exclude name="*-min.css"/>
+			<exclude name="*.min.css"/>
+			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version}"/>
+		</replace>
 	</target>
 	
 	<target name="-copy-jquery-css">
-		<loadfile srcfile="${build.dir}/../build-css-head.txt" property="build.css.head"/>
-		<loadfile srcfile="${src.dir}/../js/jquerymobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
-			<filterchain>
-				<headfilter lines="1"/>
-			</filterchain>
-		</loadfile>
 		<concat dest="${build.dir}/css/jquery.mobile.css">
-			<header>${build.css.head}
-			${jquery.mobile.license}</header>
-			<fileset dir="${src.dir}/../js/jquerymobile">
-				<include name="*structure.css"/>
-			</fileset>
-			<fileset dir="${src.dir}/jquerymobile">
-				<include name="*theme.css"/>
-			</fileset>
+			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme.css"/>
+			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure.css"/>
 			<filterchain>
 				<replacetokens>
 					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
@@ -281,17 +269,21 @@
 		</concat>
 	</target>
 	
-	<target name="-copy-js">
-		<copy todir="${build.dir}/js">
-			<fileset dir="${src.dir}/js"/>
-			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
+	<target name="-copy-js" depends="">
+		<fixcrlf srcdir="${src.dir}" includes="**/*.js" encoding="UTF-8" outputencoding="UTF-8" tab="add" tablength="4" fixlast="false"/>
+		<copy todir="${build.dir}" encoding="UTF-8">
+			<fileset dir="${src.dir}">
+				<include name="**/*.js"/>
+				<exclude name="workers/**"/> 
+				<exclude name="pe-ap.js"/> 
+			</fileset>
 		</copy>
+		<replace dir="${build.dir}">
+			<include name="**/*.js"/>
+			<exclude name="**/*-min.js"/>
+			<exclude name="**/*.min.js"/>
+			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version}"/>
+		</replace>
 	</target>
 	
 	<target name="-copy-images">

@@ -24,8 +24,4 @@
 			<fileset dir="${src.dir}" includes="**/**/build.xml"/>
 		</subant>
 	</target>
-
-	<target name="preflight" description="Sets tabbing and encoding as indicated by the contributor guidelines">
-		<fixcrlf srcdir="${src.dir}" includes="**/*.js" encoding="UTF-8" outputencoding="UTF-8" tab="add" tablength="4" />
-	</target>
 </project>

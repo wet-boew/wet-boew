@@ -1,4 +1,4 @@
-/*
+/*!
 PIE: CSS3 rendering for IE
 Version 1.0.0
 http://css3pie.com

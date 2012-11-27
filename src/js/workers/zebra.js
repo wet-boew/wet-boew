@@ -1,4 +1,4 @@
-/*!
+/*
 * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
@@ -290,7 +290,7 @@
 				//	isSimpleTable = false;
 				// }
 				// console.log('2 Zebra, isSimpleTable:' + isSimpleTable);
-				// console.log($('th[rowspan]', elem).length + '  ' + $('th[colspan]', elem).length + '  ' + $('td[rowspan]', elem).length + '  ' + $('td[colspan]', elem).length + '  ' + $('colgroup[span]', elem).length);
+				// console.log($('th[rowspan]', elem).length + '  ' + $('th[colspan]', elem).length + '  ' + $('td[rowspan]', elem).length + '	' + $('td[colspan]', elem).length + '  ' + $('colgroup[span]', elem).length);
 
 				if (isSimpleTable && (elem.children('tbody').length > 1 || elem.children('thead').children('tr').length > 1 || elem.children('colgroup').length > 2)) {
 					isSimpleTable = false;

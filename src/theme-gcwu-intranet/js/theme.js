@@ -1,6 +1,10 @@
-/*
+/*!
+ *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ *
+ * Version: @wet-boew-build.version@
+ *
  */
 /*
  * GC Web Usability Intranet theme scripting
@@ -48,9 +52,9 @@
 
 			// If no search is provided, then make the site menu link 100% wide
 			if (wet_boew_theme.psnb.length !== 0 && wet_boew_theme.search.length === 0) {
-				wet_boew_theme.psnb.css('width', '100%');
+				wet_boew_theme.psnb.addClass('mobile-change');
 			} else if (wet_boew_theme.psnb.length === 0 && wet_boew_theme.search.length !== 0) {
-				wet_boew_theme.search.css('width', '100%');
+				wet_boew_theme.search.addClass('mobile-change');
 			}
 		},
 		mobileview: function () {
