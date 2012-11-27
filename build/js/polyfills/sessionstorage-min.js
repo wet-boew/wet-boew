@@ -1,4 +1,4 @@
-/*!* HTML5 sessionStorage
+/*!HTML5 sessionStorage
  * @build       2009-08-20 23:35:12
  * @author      Andrea Giammarchi
  * @license     Mit Style License
