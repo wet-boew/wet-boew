@@ -1,7 +1,7 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
-*/
+ */
 
 @import "compass/css3/opacity";
 
@@ -34,7 +34,7 @@
 		background-position:0 -950px; // slightly different than wb-icon-mail to match old layout
 		padding-left:19px;
 	}
-		a[href$='.psd'],a[href$='.zip'],a[href$='.doc'],a[href$='.pdf'],a[href$='.xls'],a[href$='.rtf'],a[href$='.txt'],a[href$='.pot'],a[href$='.ppt'],a[href$='.pps'],a[href$='.pptm'],a[href$='.docx'],a[href$='.xlsx'],a[href$='.pptx']{
+		a[href$='.psd'],a[href$='.zip'],a[href$='.doc'],a[href$='.pdf'],a[href$='.xls'],a[href$='.rtf'],a[href$='.pot'],a[href$='.ppt'],a[href$='.pps'],a[href$='.pptm'],a[href$='.docx'],a[href$='.xlsx'],a[href$='.pptx']{
 		background:transparent url(../images/download.png) no-repeat 0 0;
 		padding-left:19px;
 	}
@@ -315,6 +315,19 @@ table{
 	&.span-1,&.span-2,&.span-3,&.span-4,&.span-5,&.span-6,&.span-7,&.span-8,&.span-9,&.span-10,&.span-11,&.span-12{
 		display:table;
 	}
+}
+
+/*	display overrides  */
+.display-block{
+	display:block !important;
+}
+
+.display-inline-block{
+	display:inline-block !important;
+}
+
+.display-inline{
+	display:inline !important;
 }
 
 /*	date  */
