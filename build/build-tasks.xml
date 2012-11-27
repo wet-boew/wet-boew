@@ -93,7 +93,7 @@
 			<arg path="${lib.dir}/vendors-${jruby.depends}/gems/"/>
 			<arg value="${command}"/>
 			<arg path="${src.dir}"/>
-			<arg value="${build.dir}/_css"/>
+			<arg value="${build.dir}/css"/>
 		</java>
 	</target>
 	
@@ -240,37 +240,18 @@
 	</target>
 	
 	<target name="-copy-css" depends="compile.sass">
-		<loadfile srcfile="${build.dir}/../build-css-head.txt" property="build.css.head"/>
-		<move todir="${build.dir}/css">
-			<fileset dir="${build.dir}/_css">
-				<include name="*.css"/>
-			</fileset>
-			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-css-head.txt"/>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
-		</move>
+		<replace dir="${build.dir}/css">
+			<include name="*.css"/>
+			<exclude name="*-min.css"/>
+			<exclude name="*.min.css"/>
+			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version}"/>
+		</replace>
 	</target>
 	
 	<target name="-copy-jquery-css">
-		<loadfile srcfile="${build.dir}/../build-css-head.txt" property="build.css.head"/>
-		<loadfile srcfile="${src.dir}/../js/jquerymobile/jquery.mobile.structure.min.css" property="jquery.mobile.license">
-			<filterchain>
-				<headfilter lines="1"/>
-			</filterchain>
-		</loadfile>
 		<concat dest="${build.dir}/css/jquery.mobile.css">
-			<header>${build.css.head}
-			${jquery.mobile.license}</header>
-			<fileset dir="${src.dir}/../js/jquerymobile">
-				<include name="*structure.css"/>
-			</fileset>
-			<fileset dir="${src.dir}/jquerymobile">
-				<include name="*theme.css"/>
-			</fileset>
+			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme.css"/>
+			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure.css"/>
 			<filterchain>
 				<replacetokens>
 					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
