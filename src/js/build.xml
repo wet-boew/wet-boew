@@ -7,91 +7,42 @@
 	
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js"/>
+	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-copy-binaries"/>
 	
 	<target name="-copy-js" depends="-build-pe">
-		<copy todir="${build.dir}">  
-			<resources>
-				<fileset dir="${src.dir}">
-					<include name="binary/**"/>
-					<include name="jquerymobile/*.min.js"/>
-					<include name="*.js"/>
-					<exclude name="pe-ap.js"/> 
-				</fileset>
-			</resources>  
-		</copy>
-		<copy todir="${build.dir}">  
-			<resources>
-				<fileset dir="${src.dir}">
-					<include name="dependencies/**"/>
-					<include name="i18n/*.js"/>
-					<include name="polyfills/**"/>
-					<contains text="* Web Experience Toolkit (WET)" casesensitive="no"/>
-				</fileset>
-			</resources> 
+		<copy todir="${build.dir}" encoding="UTF-8">
+			<fileset dir="${src.dir}">
+				<include name="**/*.js"/>
+				<exclude name="workers/**"/> 
+				<exclude name="pe-ap.js"/> 
+				<exclude name="jquerymobile/jquery.mobile.js"/> 
+			</fileset>
 			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
+				<replaceregex byline="false" pattern="^\/(\*)+[^!]" replace="\/\*!" flags="s"/>
 			</filterchain>
 		</copy>
-		<copy todir="${build.dir}" encoding="UTF-8">  
-			<resources>
-				<fileset dir="${src.dir}">
-					<include name="i18n/formvalid/*.js"/>
-					<contains text="* Web Experience Toolkit (WET)" casesensitive="no"/>
-				</fileset>
-			</resources> 
-			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
-		</copy> 
-		<copy todir="${build.dir}" encoding="UTF-8">
-			<resources>
-				<fileset dir="${src.dir}">
-					<include name="dependencies/**"/>
-					<include name="i18n/**"/>
-					<include name="polyfills/**"/>
-					<contains text="/*!" casesensitive="no"/>
-					<not>
-						<contains text="* Web Experience Toolkit (WET)" casesensitive="no"/>
-					</not>
-				</fileset>
-			</resources> 
-		</copy> 
-		<copy todir="${build.dir}" encoding="UTF-8">
-			<filterchain>
-				<replaceregex byline="false" pattern="\/\*" replace="\/\*!"/>
-			</filterchain>
-			<resources>
-				<fileset dir="${src.dir}">
-					<include name="dependencies/**"/>
-					<include name="i18n/**"/>
-					<include name="polyfills/**"/>
-					<not>
-						<contains text="/*!" casesensitive="no"/>
-					</not>
-					<not>
-						<contains text="* Web Experience Toolkit (WET)" casesensitive="no"/>
-					</not>
-				</fileset>
-			</resources> 
+		<replace dir="${build.dir}">
+			<include name="**/*.js"/>
+			<exclude name="**/*-min.js"/>
+			<exclude name="**/*.min.js"/>
+			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version}"/>
+		</replace>
+	</target>
+
+	<target name="-copy-binaries">
+		<copy todir="${build.dir}">  
+			<fileset dir="${src.dir}">
+				<include name="binary/**"/>
+			</fileset>
 		</copy>
 	</target>
 
 	<!-- Build JS Tasks -->
-	<target name="-build-pe" depends="-get-languages, -get-validation-languages, -merge-workers">
+	<target name="-build-pe" depends="-get-languages, -get-validation-languages">
 		<concat dest="${build.dir}/pe-ap.js" fixlastline="yes">
 			<file file="${src.dir}/pe-ap.js"/>
-			<file file="${build.dir}/workers.js"/>
+			<fileset dir="${src.dir}/workers" includes="**/**.js" />
 			<filterchain>
-				<concatfilter prepend="${build.dir}/../build-js-head.txt"/>
 				<replacetokens>
 					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
 					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
@@ -101,7 +52,6 @@
 				</replacetokens>
 			</filterchain>
 		</concat>
-		<delete file="${build.dir}/workers.js"/>
 	</target>
 	
 	<target name="-get-languages">
@@ -122,13 +72,6 @@
 			<globmapper from="${basedir}${file.separator}i18n${file.separator}formvalid${file.separator}methods_*.js" to="*" />
 		</pathconvert>
 		<echo message="Supported jQuery validation languages: '${validlanguagelist}'" level="info"/>
-	</target>
-
-	<target name="-merge-workers">
-		<concat dest="${build.dir}/workers.js" fixlastline="yes">
-			<fileset dir="${src.dir}/workers" includes="**/**.js" />
-		</concat>
-		<replaceregexp flags="gis" file="${build.dir}/workers.js" match="/\*.*?\*/" replace="" encoding="utf-8" />
 	</target>
 	
 	<target name="fix-spanish-character" extensionOf="compress" depends="-minify">

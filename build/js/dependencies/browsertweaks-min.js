@@ -1,4 +1,4 @@
-/*!*
+/*!
  *	Flash IE6/IE7 fix for safe flash unloading and loading
  *	@credits: http://www.longtailvideo.com/support/forums/jw-player/bug-reports/10374/javascript-error-with-embed
  */
