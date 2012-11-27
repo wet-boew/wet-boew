@@ -2,6 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
+@import "compass/css3/border-radius";
+
 html{
 	overflow-y:scroll;
 }
@@ -133,7 +136,7 @@ a{
 	li#base-fullhd-lang-current{
 		margin-right: 1px;
 		padding-right: 10px;
-		background:url(../images/activemenu.png) no-repeat center bottom;
+		background:url(../images/lang_current.png) no-repeat center bottom;
 		color:#CCC;
 	}
 	li:first-child[id*="base-fullhd-lang"]{
@@ -167,8 +170,8 @@ a{
 	display:table-cell;
 	vertical-align:middle;
 	margin:0;
-	padding:24px 0 24px 155px;
-	background:  url(../images/logo.png) no-repeat 0 2px;
+	padding:24px 0 24px 0;
+	background:  url(../images/logo.png) no-repeat 0 center;
 }
 
 #base-title{
@@ -181,7 +184,7 @@ a{
 	top:24px;
 	padding:0;
 	background:#FFF;
-	border-radius:4px;
+	@include border-radius(4px);
 	float:right;
 	margin:0;
 	position:absolute;
@@ -209,9 +212,7 @@ a{
 	#base-srch{
 		color:#444;
 		border:1px solid #FFF;
-		border-radius:3px;
-		-moz-border-radius:2px;
-		-webkit-border-radius:2px;
+		@include border-radius(3px);
 		margin:0 0 0 3px;
 		width:218px;
 		box-shadow:none;
@@ -255,7 +256,7 @@ a{
 			background-image:-moz-linear-gradient(bottom,#EEE,#CCC);
 			background-image:-o-linear-gradient(bottom,#EEE,#CCC);
 			background-image:linear-gradient(bottom,#EEE,#CCC);
-			border-radius:0;
+			@include border-radius(0);
 			li, .nav-current{
 				background:none;
 			}

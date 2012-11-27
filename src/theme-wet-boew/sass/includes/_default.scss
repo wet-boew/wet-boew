@@ -35,8 +35,8 @@
 	text-shadow: 1px 1px 1px #333;
 	p{
 		margin:0 auto;
-		padding-top:4px;
-		padding-bottom:6px;
+		padding-top:1px;
+		padding-bottom:5px;
 	}
 	a{
 		color:#fff;
@@ -47,7 +47,7 @@
 		font-size:75%;
 		&:first-child{
 			border-left:none;
-			font-size:100%;
+			font-size:120%;
 		}
 	}
 }
