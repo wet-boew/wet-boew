@@ -1,4 +1,4 @@
-/**
+/*!
 * Resize Events
 * @version 0.7
 * Changelog:

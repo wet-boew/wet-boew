@@ -1,4 +1,4 @@
-/*
+/*!
 Copyright (c) 2011 Wojo Design
 Dual licensed under the MIT or GPL licenses.
 */

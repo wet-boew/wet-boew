@@ -275,11 +275,7 @@
 				<include name="**/*.js"/>
 				<exclude name="workers/**"/> 
 				<exclude name="pe-ap.js"/> 
-				<exclude name="jquerymobile/jquery.mobile.js"/> 
 			</fileset>
-			<filterchain>
-				<replaceregex byline="false" pattern="^\/(\*)+[^!]" replace="\/\*!" flags="s"/>
-			</filterchain>
 		</copy>
 		<replace dir="${build.dir}">
 			<include name="**/*.js"/>
