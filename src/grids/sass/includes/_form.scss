@@ -260,15 +260,15 @@
 		// apply color to the form element
 		.form-confirm & { 
 			border-color: $summary;
-			&:focus, &:active { @include box-shadow($summary); }
+			&:focus, &:active { @include single-box-shadow($summary); }
 		}
 		.form-attention & { 
 			border-color: $attention;
-			&:focus, &:active { @include box-shadow($attention); }
+			&:focus, &:active { @include single-box-shadow($attention); }
 		}
 		.form-alert & { 
 			border-color: darken($alert, 37%);
-			&:focus, &:active { @include box-shadow(darken($alert, 37%)); }
+			&:focus, &:active { @include single-box-shadow(darken($alert, 37%)); }
 		}
 	}
 

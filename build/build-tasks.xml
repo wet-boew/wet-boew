@@ -137,12 +137,15 @@
 			<exclude name="dependencies/xregexp.js"/>
 		</jshint>
 	</target>
-	
+
+	<property name="csslint.ignores" value="ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties,box-sizing"/>
+	<property name="csslint.errors" value="outline-none"/>
+
 	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="prepare-files">
 		<apply executable="java" failonerror="false" parallel="false">
 			<fileset dir="${build.dir}/css">
 				<include name="*.css"/>
-				<exclude name="jquery.mobile.structure.css"/>
+				<exclude name="jquery.mobile.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -152,8 +155,8 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=compact"/>
-			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties"/>
-			<arg value="--error=outline-none"/>
+			<arg value="--ignore=${csslint.ignores}"/>
+			<arg value="--error=${csslint.errors}"/>
 			<srcfile/>
 		</apply>
 	</target>
@@ -162,7 +165,7 @@
 		<apply executable="java" failonerror="false" parallel="true" output="${build.dir}/csslint.out.xml">
 			<fileset dir="${build.dir}/css">
 				<include name="*.css"/>
-				<exclude name="jquery.mobile.structure.css"/>
+				<exclude name="jquery.mobile.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -172,8 +175,8 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=lint-xml"/>
-			<arg value="--ignore=ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties"/>
-			<arg value="--error=outline-none"/>
+			<arg value="--ignore=${csslint.ignores}"/>
+			<arg value="--error=${csslint.errors}"/>
 			<srcfile/>
 		</apply>
 	</target>
