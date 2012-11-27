@@ -1,4 +1,4 @@
-/**
+/*!
 * jQuery JSON Plugin
 * version: 2.3 (2011-09-17)
 *
