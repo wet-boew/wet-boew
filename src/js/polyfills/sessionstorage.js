@@ -1,8 +1,8 @@
-/** HTML5 sessionStorage
+/*! HTML5 sessionStorage
  * @build		2009-08-20 23:35:12
  * @author		Andrea Giammarchi
- * @license 	Mit Style License
- * @project 	http://code.google.com/p/sessionstorage/
+ * @license	Mit Style License
+ * @project	http://code.google.com/p/sessionstorage/
  */
 
 // define sessionStorage only if not present (old browser)
@@ -22,21 +22,21 @@ try {
 /** RC4 Stream Cipher
  *	http://www.wisdom.weizmann.ac.il/~itsik/RC4/rc4.html
  * -----------------------------------------------
- * @description 	A quick stream cipher object able to encode
+ * @description	A quick stream cipher object able to encode
  *					or decode whatever string using
  *					a random key from lennght 1 to 256
  *
  * @author			this JavaScript porting by Andrea Giammarchi
- * @license 		Mit Style License
+ * @license		Mit Style License
  * @blog			http://webreflection.blogspot.com/
- * @version 		1.1
+ * @version		1.1
  * @compatibility	hopefully every browser
  */
  var RC4 = (function(fromCharCode, random){
 	return {
 
 		/** RC4.decode(key:String, data:String):String
-		 * @description 	given a data string encoded with the same key
+		 * @description	given a data string encoded with the same key
 		 *					generates original data string.
 		 * @param	String	key precedently used to encode data
 		 * @param	String	data encoded using same key
@@ -47,7 +47,7 @@ try {
 		},
 
 		/** RC4.encode(key:String, data:String):String
-		 * @description 	encode a data string using provided key
+		 * @description	encode a data string using provided key
 		 * @param	String	key to use for this encoding
 		 * @param	String	data to encode
 		 * @return	String	encoded data. Will require same key to be decoded
@@ -77,7 +77,7 @@ try {
 		},
 
 		/** RC4.key(length:Number):String
-		 * @description 	generate a random key with arbitrary length
+		 * @description	generate a random key with arbitrary length
 		 * @param	Number	the length of the generated key
 		 * @return	String	a randomly generated key
 		 */
@@ -94,13 +94,13 @@ try {
 
 /** Linear String Storage
  * -----------------------------------------------
- * @description 	A Linear String Storage is a way to save
+ * @description	A Linear String Storage is a way to save
  *					unique keys with related values inside a string.
  *
  * @author			Andrea Giammarchi
- * @license 		Mit Style License
+ * @license		Mit Style License
  * @blog			http://webreflection.blogspot.com/
- * @version 		1.3
+ * @version		1.3
  * @compatibility	Internet Explorer, Chrome, Opera (unobtrusive for others)
  * @protocol		Linear String Storage Protocol Specs
  * -----------------------------------------------
@@ -159,14 +159,14 @@ var LSS = (function(window){
 	LSS.prototype._c = ".";
 
 	/** this.clear(void):void
-	 * @description 	reset the storage string
+	 * @description	reset the storage string
 	 */
 	LSS.prototype.clear = function(){
 		this._storage[this._key] = this._data;
 	};
 
 	/** this.del(key:String):void
-	 * @description 	remove a key if present and its related value.
+	 * @description	remove a key if present and its related value.
 	 * @param	String	the key to remove
 	 */
 	LSS.prototype.del = function(key){
@@ -176,7 +176,7 @@ var LSS = (function(window){
 	};
 
 	/** this.escape(data:String):String
-	 * @description 	escape a generic string. By default it uses window.escape function.
+	 * @description	escape a generic string. By default it uses window.escape function.
 	 *					Please note if modified it should preserve the used special character.
 	 * @param	String	data to escape
 	 * @return	String	escaped data that can NOT contain the special character.
@@ -184,7 +184,7 @@ var LSS = (function(window){
 	LSS.prototype.escape   = window.escape;
 
 	/** this.get(key:String):String
-	 * @description 	retrieve stored data if key is present.
+	 * @description	retrieve stored data if key is present.
 	 * @param	String	key related to stored data
 	 * @return	String	stored data or null if key was not present.
 	 */
@@ -203,7 +203,7 @@ var LSS = (function(window){
 	};
 
 	/** this.key(void):Array
-	 * @description 	put each key into an array and return it
+	 * @description	put each key into an array and return it
 	 * @return	Array	all keys found in the storage.
 	 */
 	LSS.prototype.key = function(){
@@ -225,7 +225,7 @@ var LSS = (function(window){
 	};
 
 	/** this.set(key:String, data:String):void
-	 * @description 	stores data relating it with the specified key.
+	 * @description	stores data relating it with the specified key.
 	 *					pleae note if the key was present, it is removed
 	 *					and the new key/value pair appended.
 	 * @param	String	key to related with specified data.
@@ -237,14 +237,14 @@ var LSS = (function(window){
 	};
 
 	/** this.unescape(data:String):String
-	 * @description 	unescape a generic string. This should compatible with escape.
+	 * @description	unescape a generic string. This should compatible with escape.
 	 * @param	String	data to unescape
 	 * @return	String	unescaped data that could contain the special char as well.
 	 */
 	LSS.prototype.unescape = window.unescape;
 
 	/** escape(key:String, data:String):String
-	 * @description 	private scope callback. A shortcut to retrieve an entry via key and data
+	 * @description	private scope callback. A shortcut to retrieve an entry via key and data
 	 */
 	function escape(key, data){
 		var c = this.c;
@@ -256,7 +256,7 @@ var LSS = (function(window){
 })(window);
 
 /** HTML5 sessionStorage cross-browser implementation
- * @description 	sessionStorage object is an HTML5 working draft
+ * @description	sessionStorage object is an HTML5 working draft
  *					which aim is to remove cookie limits.
  *					Using a sort of "de-facto" standard as window.name
  *					behavior is, it is possible to implement the
@@ -267,11 +267,11 @@ var LSS = (function(window){
  *					in order to reduce security problems as much as possible.
  *
  * @author			Andrea Giammarchi
- * @license 		Mit Style License
+ * @license		Mit Style License
  * @blog			http://webreflection.blogspot.com/
- * @version 		1.4
+ * @version		1.4
  * @compatibility	Android, Chrome, Explorer, Opera, unobtrusive for other browsers
- * @credits 		W3 WebStorage Draft 	http://dev.w3.org/html5/webstorage/
+ * @credits		W3 WebStorage Draft	http://dev.w3.org/html5/webstorage/
  *					RC4 Stream Cipher		http://www.wisdom.weizmann.ac.il/~itsik/RC4/rc4.html
  * @protocol		Linear String Storage, by the @author
  */

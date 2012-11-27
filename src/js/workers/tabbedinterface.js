@@ -5,7 +5,7 @@
 /*
  * Tabbed interface plugin
  */
-/*global jQuery: false, pe: false, wet_boew_tabbedinterface: false*/
+/*global jQuery: false, wet_boew_tabbedinterface: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -197,7 +197,7 @@
 
 					// Shift focus to the panel if the tab is already active
 					if ($link.is($tabs.filter('.' + opts.tabActiveClass))) {
-						pe.focus($panels.filter($link.attr('href')));
+						_pe.focus($panels.filter($link.attr('href')));
 					}
 
 					// Workaround for broken EasyTabs getHeightForHidden function where it misreports the panel height when the panel is first shown
