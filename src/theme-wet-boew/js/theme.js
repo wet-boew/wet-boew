@@ -17,7 +17,7 @@
 		fn: {}
 	};
 	_wet_boew_theme = {
-		theme: 'theme-base',
+		theme: 'theme-wet-boew',
 		psnb: null,
 		search: null,
 		bcrumb: null,
