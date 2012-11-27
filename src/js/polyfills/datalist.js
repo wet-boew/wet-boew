@@ -36,7 +36,7 @@
 						if (value.length === 0) {
 							value = $this.find('span.al-label').html();
 						}
-						return (comparator.length === 0 || value.toLowerCase().indexOf(comparator) === 0);
+						return (comparator.length === 0 || value.toLowerCase().indexOf(comparator) !== -1);
 					});
 				} else {
 					visibleOptions = options;
