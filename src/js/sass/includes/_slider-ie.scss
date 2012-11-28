@@ -60,10 +60,10 @@
 	.fd-slider-bar {
 		@include filter-gradient(#ECECEC,#CCC,horizontal);
 	}
-	.fd-slider-range{
+	.fd-slider-range {
 		@include filter-gradient(#89A5BD,#165C91,horizontal);
 	}
-	.fd-slider-handle{
+	.fd-slider-handle {
 		*background-image:url(../images/slider/fd-slider-sprite.png);
 		outline:expression(hideFocus='true')
 	}

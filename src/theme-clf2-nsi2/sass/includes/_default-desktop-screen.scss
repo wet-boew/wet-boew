@@ -4,38 +4,38 @@
  */
 @import "compass/css3/inline-block";
 
-html{
+html {
 	overflow-y: scroll;
 }
-body{
+body {
 	margin:0;
 	padding:0;
 }
-#wb-head-in, #wb-core-in, #wb-main, #wb-foot-in{
+#wb-head-in, #wb-core-in, #wb-main, #wb-foot-in {
 	background: #FFF;
 }
-#wb-head-in{
+#wb-head-in {
 	border-top: 10px solid #FFF;
 }
-#wb-head-in, #wb-core, #wb-foot-in{
+#wb-head-in, #wb-core, #wb-foot-in {
 	border-left: 10px solid #FFF;
 	border-right: 10px solid #FFF;
 }
 
 /** Box model - centered **/
-#wb-main, #wb-sec, #wb-sup{
+#wb-main, #wb-sec, #wb-sup {
 	z-index:1;
 	display:inline;
 }
 
 /** Overflow restrict for background paintability control **/
-#wb-head, #wb-head-in, #wb-foot, #wb-foot-in{
+#wb-head, #wb-head-in, #wb-foot, #wb-foot-in {
 	overflow:hidden;
 }
-#wb-core-in{
+#wb-core-in {
 	overflow:visible !important;
 	position:relative;
-	&:after{
+	&:after {
 		content:".";
 		display:block;
 		height:0;
@@ -45,62 +45,62 @@ body{
 }
 
 /** Centre column **/
-#wb-main-in{
+#wb-main-in {
 	padding-top:1px;
 	padding-bottom:1px;
 }
-#wb-body #wb-main{
+#wb-body #wb-main {
 	float:left;
 }
-#wb-body-sec #wb-main{
+#wb-body-sec #wb-main {
 	float:right;
 }
-#cn-body-in-3col #wb-main{
+#cn-body-in-3col #wb-main {
 	float:right;
 	position:relative;
 }
-#wb-body-sec #wb-main-in{
+#wb-body-sec #wb-main-in {
 	padding-left:5px;
 }
-#cn-body-in-3col #wb-main-in{
+#cn-body-in-3col #wb-main-in {
 	padding-left:5px;
 	padding-right:5px;
 }
 	
 /** Left column **/
-#wb-sec{
+#wb-sec {
 	float:left;
 	background-color: #CC9;
 }
 
 /** Right column **/
-#wb-sup{
+#wb-sup {
 	float:right;
 	position:relative;
 }
 
-#wb-skip a{
-	&:hover, &:focus, &:active{
+#wb-skip a {
+	&:hover, &:focus, &:active {
 		background-color: #363;
 	}
 }
-#cn-sig{
+#cn-sig {
 	float: left; 
 	width: 50%; 
 	min-width: 300px;
 }
-#cn-wmms{
+#cn-wmms {
 	float: right; 
 	text-align: right; 
 	width: 49.8%; 
 	min-width: 100px;
 }
-#cn-sig, #cn-wmms{
-	img{
+#cn-sig, #cn-wmms {
+	img {
 		margin-bottom:0;
 	}
 }
-#cn-leaf{
+#cn-leaf {
 	position: relative; 
 	z-index: 2; 
 	float: left; 
@@ -115,14 +115,14 @@ body{
 	}
 	margin-top: 2px;
 }
-#cn-banner, #cn-banner-eng, #cn-banner-fra{
+#cn-banner, #cn-banner-eng, #cn-banner-fra {
 	float: left; 
 	width: 100%; 
 	min-height: 80px; 
 	margin-top: -35px; 
 	text-align: center; 
 	background-color: #363;
-	#cn-banner-text{
+	#cn-banner-text {
 		width: 100%; 
 		margin: 0; 
 		padding: 29px 0 0 0; 
@@ -131,7 +131,7 @@ body{
 		font-size: 180%; 
 		font-family: "times new roman", serif;
 	}
-	p{
+	p {
 		width: 100%; 
 		margin: 0; 
 		padding: 0 0 4px 0; 
@@ -141,22 +141,22 @@ body{
 	}
 }
 
-#cn-psnb, #cn-psnb-2{
+#cn-psnb, #cn-psnb-2 {
 	width: 100%; 
 	float: left;
-	&, ul li{
+	&, ul li {
 		background-color: #000;
 	}
-	ul{
+	ul {
 		list-style-type: none; 
 		margin: 0; 
 		padding-left: 0; 
 		overflow-x: hidden;
-		li{
+		li {
 			float: left; 
 			width: 16.6%; 
 			min-width: 9.5em;
-			a{
+			a {
 				display: block; 
 				text-align: left; 
 				width: 100%; 
@@ -164,192 +164,192 @@ body{
 				border-left: 1px solid #FFF; 
 				font-weight: bold; 
 				min-height: 1.25em;
-				&:link, &:visited{
+				&:link, &:visited {
 					background-color: #000; 
 					color: #FFF; 
 					text-decoration: none;
 				}
-				&:hover, &:active, &:focus{
+				&:hover, &:active, &:focus {
 					color: #000;
 					background-color: #CCC;
 				}
 			}
-			&:first-child a{
+			&:first-child a {
 				border-left: none;
 			}
 		}
 	}
 }
 
-#cn-psnb6, #cn-psnb6-2{
-	a{
-		&:hover, &:active, &:focus{
+#cn-psnb6, #cn-psnb6-2 {
+	a {
+		&:hover, &:active, &:focus {
 			width: 120%;
 		}
 	}
 }
 
 .wb-sec-def {
-	h3{
+	h3 {
 		padding: 2px 5px;
 		background-color: #363;
 		margin-top: 0;
 		margin-bottom: 0;
 		font-size: 110%;
-		&, a:link, a:visited{
+		&, a:link, a:visited {
 			color: #FFF; 
 			text-decoration: none; 
 			display: block;
 		}
-		a{
+		a {
 			margin: -2px -5px; 
 			padding: 2px 5px; 
 			width: 100%;
 		}
-		label{
+		label {
 			font-weight: 700
 		}
 	}
-	ul{
+	ul {
 		list-style-type: none;
 		margin:0 0 0;
 		margin-top: 0; 
 		margin-bottom: 0;
-		ul{
+		ul {
 			list-style-type: disc;
 			margin-left:25px;
 		}
 	}
-	li{
+	li {
 		border-top: 1px solid #363;
-		&:first-child{
+		&:first-child {
 			border: none;
 		}
-		li{
+		li {
 			margin-left: 0;
 			padding: 0; 
 			border: none;
-			a{
+			a {
 				padding: 1px 5px 1px 5px;
 				margin-left: -5px;
 			}
 		}
 	}
-	form{
+	form {
 		margin-bottom:0;
 	}
 }
 
-.wb-sec-def #cn-search-box, .cn-search-box{
+.wb-sec-def #cn-search-box, .cn-search-box {
 	padding: 4px;
 	a {
 		padding-left: 5px;
 	}
 }
-.wb-sec-def #cn-search-box #cn-search, .cn-search-box .cn-search{
+.wb-sec-def #cn-search-box #cn-search, .cn-search-box .cn-search {
 	border: 1px solid #363;
 	margin-right: 5px;
 	width: 92%;
 }
-.wb-sec-def #cn-search-box #cn-search-submit, .cn-search-box .cn-search-submit{
+.wb-sec-def #cn-search-box #cn-search-submit, .cn-search-box .cn-search-submit {
 	background-color: #363;
 	color: #FFF;
 	font-weight: bold;
 	margin:0;
 }
-.wb-sec-def h3 a:hover, .wb-sec-def h3 a:active, .wb-sec-def h3 a:focus, .wb-sec-def li a, #cn-search-box a{
+.wb-sec-def h3 a:hover, .wb-sec-def h3 a:active, .wb-sec-def h3 a:focus, .wb-sec-def li a, #cn-search-box a {
 	display: block; 
 	padding: 3px 5px 3px 10px;
 }
-.wb-sec-def li, #cn-search-box{
-	a{
-		&:link{
+.wb-sec-def li, #cn-search-box {
+	a {
+		&:link {
 			color: #000;
 			text-decoration: none;
 		}
-		&:visited{
+		&:visited {
 			color: #636; 
 			text-decoration: none;
 		}
-		&:hover, &:focus, &:active{
+		&:hover, &:focus, &:active {
 			color: #CC9; 
 			background-color: #030; outline: none;
 		}
 	}
 }
 
-#wb-main-in h1{
+#wb-main-in h1 {
 	margin-top: 0;
 }
-#cn-in-pd{
+#cn-in-pd {
 	border-top: 15px solid #363;
-	ul{
+	ul {
 		list-style-type: none; 
 		margin: -2px 0 0 -40px;
 	}
 }
 
-#cn-toppage-foot{
+#cn-toppage-foot {
 	float: left; 
 	text-align: center; 
 	margin-left: 5px; 
 	min-width: 4em;
 }
-#cn-in-pd-links{
+#cn-in-pd-links {
 	float: right; 
 	text-align: right; 
 	min-width: 4em;
 }
-.cn-toppage, #cn-toppage-foot{
+.cn-toppage, #cn-toppage-foot {
 	text-align: center; 
 	background-image: url(../images/tphp.gif); 
 	background-repeat: no-repeat; 
 	background-position: 50% 0;//top center
-	a{
+	a {
 		@include inline-block;
 		padding-top: 13px;
 	}
 }
 .cn-toppage {float: right;}
 
-#cn-search-submit{
+#cn-search-submit {
 	margin-top: 5px;
 }
 
 .wb-sup-def {
-	h3{
+	h3 {
 		padding: 2px 5px;
 		background-color: #363;
 		margin-top: 0;
 		margin-bottom: 0;
 		font-size: 110%;
-		&, a:link, a:visited{
+		&, a:link, a:visited {
 			color: #FFF;
 			text-decoration: none;
 			display: block;
 		}
-		a{
+		a {
 			margin: -2px -5px;
 			padding: 2px 5px;
 			width: 100%;
-			&:hover, &:active, &:focus{
+			&:hover, &:active, &:focus {
 				background-color: #030;
 				color: #CC9;
 			}
 		}
-		& + div{
+		& + div {
 			border: 1px solid #000;
 			padding-left: 8px;
 			padding-right: 5px;
 			margin-bottom: 10px;
-			ul{
-				a{
+			ul {
+				a {
 					margin-left: -8px;
 					margin-right: -5px;
 					padding-left: 8px;
 				}
-				ul{
-					a{
+				ul {
+					a {
 						padding: 1px 5px 1px 5px;
 						margin-left: -5px;
 					}
@@ -357,39 +357,39 @@ body{
 			}
 		}
 	}
-	ul{
+	ul {
 		list-style-type: none;
 		margin-top: 0;
 		margin-bottom: 5px;
-		ul{
+		ul {
 			list-style-type: disc;
 			margin-bottom: 0;
 		}
 	}
-	li{
+	li {
 		margin-left: -40px;
-		li{
+		li {
 			margin-left: 0;
 			padding: 0;
 			border: none;
 		}
-		a{
+		a {
 			display: block;
 			padding: 3px 5px 3px 10px;
-			&:link{
+			&:link {
 				color: #000;
 				text-decoration: none;
 			}
-			&:visited{
+			&:visited {
 				color: #636;
 				text-decoration: none;
 			}
-			&:hover, &:focus, &:active{
+			&:hover, &:focus, &:active {
 				color: #CC9;
 				background-color: #030;
 				outline: none;
 			}
-			img{
+			img {
 				margin-top: -3px;
 				margin-left: -10px;
 			}

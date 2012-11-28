@@ -4,7 +4,7 @@
 */
 @import "compass/css3/inline-block";
 
-.float-right,.float-left{float:none!important;}
+.float-right,.float-left {float:none!important;}
 
 form {
 	[class*=width-] {
@@ -21,30 +21,30 @@ form {
 	}
 }
 
-.form-inline{
+.form-inline {
 		& > * {
 			margin-right:0;
 		}
 		
-		label{
+		label {
 			display: block;
 		}
 }
 
-.form-radio.form-label-inline,.form-checkbox.form-label-inline{
+.form-radio.form-label-inline,.form-checkbox.form-label-inline {
 	display: block;
 	padding:0;
 }
 
-.form-radio, .form-checkbox{
+.form-radio, .form-checkbox {
 	padding:0;
 }
 
-.form-horizontal label{
+.form-horizontal label {
 	text-align:left;
 }
 
-.form-input-append button{
+.form-input-append button {
 	position:absolute;
 }
 

@@ -10,7 +10,7 @@
 .column-four	{ @include column-count(4); }
 
 /* --- positioning --- */
-.position-left,.position-left-small,.position-left-medium,.position-left-large,.position-left-xlarge,.position-top,.position-top-small,.position-top-medium,.position-top-large,.position-top-xlarge,.position-right,.position-right-small,.position-right-medium,.position-right-large,.position-right-xlarge,.position-bottom,.position-bottom-small,.position-bottom-medium,.position-bottom-large,.position-bottom-xlarge{
+.position-left,.position-left-small,.position-left-medium,.position-left-large,.position-left-xlarge,.position-top,.position-top-small,.position-top-medium,.position-top-large,.position-top-xlarge,.position-right,.position-right-small,.position-right-medium,.position-right-large,.position-right-xlarge,.position-bottom,.position-bottom-small,.position-bottom-medium,.position-bottom-large,.position-bottom-xlarge {
 	position:absolute !important;
 	margin:0 !important;
 }
@@ -19,82 +19,82 @@
 	#{$pos}:$amt!important;
 }
 
-.position-left{
+.position-left {
 	@include pos(left,0);
 }
 
-.position-left-small{
+.position-left-small {
 	@include pos(left,10px);
 }
 
-.position-left-medium{
+.position-left-medium {
 	@include pos(left,20px);
 }
 
-.position-left-large{
+.position-left-large {
 	@include pos(left,50px);
 }
 
-.position-left-xlarge{
+.position-left-xlarge {
 	@include pos(left,100px);
 }
 
-.position-right{
+.position-right {
 	@include pos(right,0);
 }
 
-.position-right-small{
+.position-right-small {
 	@include pos(right,10px);
 }
 
-.position-right-medium{
+.position-right-medium {
 	@include pos(right,20px);
 }
 	
-.position-right-large{
+.position-right-large {
 	@include pos(right,50px);
 }
 
-.position-right-xlarge{
+.position-right-xlarge {
 	@include pos(right,100px);
 }
 
-.position-top{
+.position-top {
 	@include pos(top,0);
 }
 
-.position-top-small{
+.position-top-small {
 	@include pos(top,10px);
 }
 
-.position-top-medium{
+.position-top-medium {
 	@include pos(top,20px);
 }
 
-.position-top-large{
+.position-top-large {
 	@include pos(top,50px);
 }
 	
-.position-top-xlarge{
+.position-top-xlarge {
 	@include pos(top,100px);
 }
 
-.position-bottom{
+.position-bottom {
 	@include pos(bottom,0);
 }
 
-.position-bottom-small{
+.position-bottom-small {
 	@include pos(bottom,10px);
 }
 
-.position-bottom-medium{
+.position-bottom-medium {
 	@include pos(bottom,20px);
 }
 
-.position-bottom-large{
+.position-bottom-large {
 	@include pos(bottom,50px);
 }
 
-.position-bottom-xlarge{
+.position-bottom-xlarge {
 	@include pos(bottom,100px);
 }
