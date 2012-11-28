@@ -1,5 +1,0 @@
-/*!
-Copyright (c) 2011 Wojo Design
-Dual licensed under the MIT or GPL licenses.
-*/
-(function(){var c=this;if(!c.localStorage){if(c.globalStorage){try{c.localStorage=c.globalStorage}catch(f){}return}var g=document.createElement("div"),d="localStorage";g.style.display="none";document.getElementsByTagName("head")[0].appendChild(g);if(g.addBehavior){g.addBehavior("#default#userdata");var b=c.localStorage={length:0,setItem:function(e,h){g.load(d);e=a(e);if(!g.getAttribute(e)){this.length++}g.setAttribute(e,h);g.save(d)},getItem:function(e){g.load(d);e=a(e);return g.getAttribute(e)},removeItem:function(e){g.load(d);e=a(e);g.removeAttribute(e);g.save(d);this.length--;if(this.length<0){this.length=0}},clear:function(){g.load(d);var e=0;while(attr=g.XMLDocument.documentElement.attributes[e++]){g.removeAttribute(attr.name)}g.save(d);this.length=0},key:function(e){g.load(d);return g.XMLDocument.documentElement.attributes[e]}},a=function(e){return e.replace(/[^-._0-9A-Za-z\xb7\xc0-\xd6\xd8-\xf6\xf8-\u037d\u37f-\u1fff\u200c-\u200d\u203f\u2040\u2070-\u218f]/g,"-")};g.load(d);b.length=g.XMLDocument.documentElement.attributes.length}}})();
