@@ -384,7 +384,7 @@
 				*		returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				removehash: function () {
-					return this.source.replace(/#([A-Za-z0-9\-_=&]+.:)/, '');
+					return this.source.replace(/#([A-Za-z0-9\-_=&\.:]+)/, '');
 				}
 			};
 		},
