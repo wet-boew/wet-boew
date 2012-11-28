@@ -235,7 +235,6 @@ img.float-left { margin-right: $margin-medium; }
 .opacity-10	 { @include opacity(0.1); }
 
 .border-top,.border-right,.border-bottom,.border-left,.border-all {
-	display:inline;
 	float:left;
 	min-height:1px;
 	position:relative;
