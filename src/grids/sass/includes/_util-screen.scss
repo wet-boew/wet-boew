@@ -29,12 +29,12 @@
 
 /* ---- Links ---- */
 #wb-core{
-		a[href^='mailto:']{
-		background:url(../images/icons.png) no-repeat top left;
+	a[href^='mailto:']{
+		@extend .wb-icon;
 		background-position:0 -950px; // slightly different than wb-icon-mail to match old layout
 		padding-left:19px;
 	}
-		a[href$='.psd'],a[href$='.zip'],a[href$='.doc'],a[href$='.pdf'],a[href$='.xls'],a[href$='.rtf'],a[href$='.pot'],a[href$='.ppt'],a[href$='.pps'],a[href$='.pptm'],a[href$='.docx'],a[href$='.xlsx'],a[href$='.pptx']{
+	a[href$='.psd'],a[href$='.zip'],a[href$='.doc'],a[href$='.pdf'],a[href$='.xls'],a[href$='.rtf'],a[href$='.pot'],a[href$='.ppt'],a[href$='.pps'],a[href$='.pptm'],a[href$='.docx'],a[href$='.xlsx'],a[href$='.pptx']{
 		background:transparent url(../images/download.png) no-repeat 0 0;
 		padding-left:19px;
 	}
