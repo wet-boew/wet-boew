@@ -2,6 +2,10 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
+.gcwu-intranetnb-sprite {
+	background-image: url(../images/core/gcwu-intranetnb-sprite.gif);
+}
 /** From branding.css **/
 #gcwu-sig,#gcwu-sig-in,#gcwu-sig img{
 	height:20px !important;
@@ -31,7 +35,12 @@
 	font-size:1em;
 	height:auto;
 	min-height:80px;
-	background:#fff url(../images/core/gcwu-intranetnb-sprite.gif) repeat-x 0 -170px;
+	@extend .gcwu-intranetnb-sprite;
+	background: {
+		color: #fff;
+		repeat: repeat-x;
+		position: 0 -170px;
+	}
 	@include text-shadow(1px 1px 1px #333);
 	a:hover, a:focus{
 		text-decoration:underline;
@@ -96,18 +105,33 @@
 	right:0;
 }
 #gcwu-intranetnb-in{
-	background:transparent url(../images/core/gcwu-intranetnb-sprite.gif) no-repeat right -60px;
+	@extend .gcwu-intranetnb-sprite;
+	background: {
+		color: transparent;
+		repeat: no-repeat;
+		position: right -60px;
+	}
 	min-height:32px;
 	margin:auto;
 	ul{
 		list-style-type:none;
-		background:transparent url(../images/core/gcwu-intranetnb-sprite.gif) no-repeat 0 0;
+		@extend .gcwu-intranetnb-sprite;
+		background: {
+			color: transparent;
+			repeat: no-repeat;
+			position: 0 0;
+		}
 		padding:0 10px;
 		position:relative;
 		z-index:2;
 		li{
 			float:left;
-			background:#333 url(../images/core/gcwu-intranetnb-sprite.gif) repeat-x 0 -120px;
+			@extend .gcwu-intranetnb-sprite;
+			background: {
+				color:#333;
+				repeat: repeat-x;
+				position: 0 -120px;
+			}
 			padding:8px 0 10px;
 		}
 	}
