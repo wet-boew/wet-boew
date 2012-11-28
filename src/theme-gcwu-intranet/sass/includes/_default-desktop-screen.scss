@@ -200,6 +200,9 @@
 	}
 }
 
+.gcwu-psnb-background {
+	background:#555 url(../images/gcwu-psnb.gif) repeat-x 0 0; //TODO: Replace with gradient if applicable
+}
 #gcwu-psnb {
 	.wet-boew-menubar {
 		margin-top:12px;
@@ -210,7 +213,7 @@
 	.mb-menu {
 		min-height:32px;
 		border:none;
-		background:#555 url(../images/gcwu-psnb.gif) repeat-x 0 0;
+		@extend .gcwu-psnb-background;
 		li {
 			background:transparent;
 		}
@@ -227,7 +230,7 @@
 
 .mb-menu {
 	li {
-		background:#555 url(../images/gcwu-psnb.gif) repeat-x 0 0;
+		@extend .gcwu-psnb-background;
 		min-height:32px;
 		h3 {
 			border:none;
