@@ -113,7 +113,7 @@
 				pe.document.on('pageinit', function () {
 					// On click, puts focus on and scrolls to the target of same page links
 					hlinks_same.off('click vclick').on('click vclick', function () {
-						$this = $(pe.string.jqescape($(this).attr('href')));
+						$this = $('#' + pe.string.jqescape($(this).attr('href')));
 						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if ($this.length > 0) {
 							$.mobile.silentScroll(pe.focus($this).offset().top);
@@ -136,7 +136,7 @@
 			} else {
 				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
 				hlinks_same.on("click vclick", function () {
-					$this = $(pe.string.jqescape($(this).attr('href')));
+					$this = $('#' + pe.string.jqescape($(this).attr('href')));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
@@ -145,7 +145,7 @@
 
 				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
 				if (pe.urlhash.length > 0) {
-					$this = $(pe.string.jqescape(pe.urlhash));
+					$this = $('#' + pe.string.jqescape(pe.urlhash));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);

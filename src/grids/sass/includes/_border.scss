@@ -4,7 +4,6 @@
 */
 
 div.border-top,div.border-right,div.border-bottom,div.border-left,div.border-all {
-	display: inline;
 	float: left;
 	position: relative;
 }
@@ -45,7 +44,7 @@ div.border-top,div.border-right,div.border-bottom,div.border-left,div.border-all
 }
 
 [class*="border-"] { 
-		& > h2, & > h3, & > h4, & > h5, & > h6, & > p {
-			padding: 5px 10px !important;
-		}
+	& > h2, & > h3, & > h4, & > h5, & > h6, & > p {
+		padding: 5px 10px !important;
 	}
+}
