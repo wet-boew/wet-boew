@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 div.cal-cnt {
-	.cal-header{
+	.cal-header {
 		background:#333;
 		color:#FFF;
 		font-weight:bold;
@@ -11,27 +11,27 @@ div.cal-cnt {
 	.cal-nextmonth a:link, .cal-nextmonth a:visited, .cal-prevmonth a:link, .cal-prevmonth a:visited {
 		border:1px solid #333;
 	}
-	.cal-nextmonth a:hover, .cal-nextmonth a:focus, .cal-nextmonth a:active, .cal-prevmonth a:hover, .cal-prevmonth a:focus, .cal-prevmonth a:active{
+	.cal-nextmonth a:hover, .cal-nextmonth a:focus, .cal-nextmonth a:active, .cal-prevmonth a:hover, .cal-prevmonth a:focus, .cal-prevmonth a:active {
 		color:#FFF;
 		border:1px solid #FFF;
 	}
 	.cal-goto-link {
-		a:link, a:visited{
+		a:link, a:visited {
 			color:#FFF !important;
 		}
-		a:hover, a:focus, a:active{
+		a:hover, a:focus, a:active {
 			color:#36C !important;
 			background-color:#FFF;
 		}
 	}
-	.cal-goto legend{
+	.cal-goto legend {
 		color:#FFF;
 	}
 }
 
 .ui-mobile-viewport div.cal-cnt .cal-nextmonth a:link, .ui-mobile-viewport .cal-nextmonth a:visited, .ui-mobile-viewport .cal-nextmonth a:hover, .ui-mobile-viewport .cal-prevmonth a:link, .ui-mobile-viewport .cal-prevmonth a:visited, .ui-mobile-viewport .cal-prevmonth a:hover {border: none !important;}
 
-ol.cal-weekdays li{
+ol.cal-weekdays li {
 	border-style:solid;
 	border-color:#333;
 	font-weight:bolder;
@@ -40,26 +40,26 @@ ol.cal-weekdays li{
 }
 
 div.cal-days {
-	span.cal-empty, ol.cal-day-list li{
+	span.cal-empty, ol.cal-day-list li {
 		border-style:solid;
 		border-color:#AAA;
 		background:#FFF;
 	}
-	span.cal-we, ol.cal-day-list li.cal-we{
+	span.cal-we, ol.cal-day-list li.cal-we {
 		background:#EEE;
 	}
-	a{
+	a {
 		color:#111;
 	}
-	a:hover, a:focus, a:active{	/* active is for IE, focus is for Firefox | active est pour IE, focus est pour Firefox */
+	a:hover, a:focus, a:active {	/* active is for IE, focus is for Firefox | active est pour IE, focus est pour Firefox */
 		background:#333;
 		color:#FFF;
 	}
-	.cal-currentday, .cal-currentday a{
+	.cal-currentday, .cal-currentday a {
 		color:#FFF;
 	}
 }
 
-div.cal-days ol.cal-day-list li.cal-currentday, .cal-currentday a{
+div.cal-days ol.cal-day-list li.cal-currentday, .cal-currentday a {
 	background-color:#333;
 }

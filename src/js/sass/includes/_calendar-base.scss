@@ -2,44 +2,44 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-.cal-container{
+.cal-container {
 	height:22em;
 	width:18em;
 	margin-top:0.5em;
 }
 
-.cal-container-extended{
+.cal-container-extended {
 	height:28em;
 }
 
-div.cal-cnt{
+div.cal-cnt {
 	text-align:left;
 	*{
 		font-size:100%;
 	}
-	.cal-header{
+	.cal-header {
 		overflow: hidden;
 		padding:0.5em 4px;
 		text-align:center;
 		width:91%;
 	}
-	.cal-month{
+	.cal-month {
 		font-size:110%;
 	}
-	.cal-goto{
+	.cal-goto {
 		margin-left: 16px;
 	}
-	.cal-goto p{
+	.cal-goto p {
 		float: left;
 		width: 13.5em;
 	}
-	.cal-goto-link{
+	.cal-goto-link {
 		margin: 0 0 0.5em 0;
 	}
 	.cal-goto legend,.cal-goto-month,.cal-goto-year,.cal-goto-button {
 		position:relative;
 	}
-	.cal-goto-month{
+	.cal-goto-month {
 		width:60%;
 		float:right;
 	}
@@ -47,10 +47,10 @@ div.cal-cnt{
 		width:39%;
 		float:left;
 	}
-	.cal-goto-button{
+	.cal-goto-button {
 		margin: 0 10px 0 5px;
 		float:left;
-		input{
+		input {
 			padding:0.1em 0.2em;
 		}
 	}
@@ -60,7 +60,7 @@ div.cal-nextmonth , div.cal-prevmonth {
 	margin-bottom:-15px; 
 }
 
-div.cal-nextmonth img, div.cal-prevmonth img{
+div.cal-nextmonth img, div.cal-prevmonth img {
 	margin: 0;
 	vertical-align: middle;
 }
@@ -75,21 +75,21 @@ div.cal-nextmonth {
 	text-align:right;
 }
 
-div.cal-days, ol.cal-weekdays{
+div.cal-days, ol.cal-weekdays {
 	margin:0;
 }
 
-div.cal-days ol.cal-day-list, div.cal-cnt ol.cal-weekdays{
+div.cal-days ol.cal-day-list, div.cal-cnt ol.cal-weekdays {
 	list-style-type:none; 
 	margin:0;
 	padding:0;
 }
 
-div.cal-days ol.cal-day-list li, div.cal-cnt ol.cal-weekdays li{
+div.cal-days ol.cal-day-list li, div.cal-cnt ol.cal-weekdays li {
 	margin:0;
 }
 
-div.cal-days span.cal-empty, div.cal-days ol.cal-day-list li, ol.cal-weekdays li{
+div.cal-days span.cal-empty, div.cal-days ol.cal-day-list li, ol.cal-weekdays li {
 	position:relative;
 	float:left;
 	border-width:0;
@@ -99,21 +99,21 @@ div.cal-days span.cal-empty, div.cal-days ol.cal-day-list li, ol.cal-weekdays li
 	text-align: center;
 }
 
-ol.cal-weekdays li.cal-wd7, div.cal-days ol.cal-day-list .cal-w1d7, div.cal-days ol.cal-day-list .cal-w2d7, div.cal-days ol.cal-day-list .cal-w3d7, div.cal-days ol.cal-day-list .cal-w4d7, div.cal-days ol.cal-day-list .cal-w5d7, div.cal-days ol.cal-day-list .cal-w6d7, div.cal-days span.cal-empty.cal-w5d7, div.cal-days span.cal-empty.cal-w6d7{
+ol.cal-weekdays li.cal-wd7, div.cal-days ol.cal-day-list .cal-w1d7, div.cal-days ol.cal-day-list .cal-w2d7, div.cal-days ol.cal-day-list .cal-w3d7, div.cal-days ol.cal-day-list .cal-w4d7, div.cal-days ol.cal-day-list .cal-w5d7, div.cal-days ol.cal-day-list .cal-w6d7, div.cal-days span.cal-empty.cal-w5d7, div.cal-days span.cal-empty.cal-w6d7 {
 	border-right-width:1px;
 	clear:right;
 }
 
-div.cal-days a, div.cal-days div{
+div.cal-days a, div.cal-days div {
 	height:100%;
 	width:100%;
 }
 
-span.cal-empty, ol.cal-weekdays li, div.cal-days a, div.cal-days div{
+span.cal-empty, ol.cal-weekdays li, div.cal-days a, div.cal-days div {
 	display:block;
 	padding:0.5em 0;
 }
 
-div.cal-days .cal-currentday{
+div.cal-days .cal-currentday {
 	font-weight:bolder;
 }

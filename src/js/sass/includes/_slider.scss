@@ -70,7 +70,7 @@
 .fd-slider-inner {
 	display:none
 }
-.fd-slider-bar{
+.fd-slider-bar {
 	display:block;
 	position:absolute;
 	top:8px;
@@ -138,7 +138,7 @@
 	@if $experimental-support-for-mozilla {-moz-outline:0 none;}
 	@if $experimental-support-for-webkit {-webkit-touch-callout:none;}
 	@include user-select(none);
-	&:focus{
+	&:focus {
 		outline:0 none;
 		border:0 none;
 		@if $experimental-support-for-mozilla {-moz-user-focus:normal;}
