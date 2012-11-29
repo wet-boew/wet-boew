@@ -7,7 +7,7 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
 
-body{
+body {
 	@if $experimental-support-for-webkit {-webkit-text-size-adjust:none;}
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:80%;
@@ -30,14 +30,14 @@ body{
 	visibility:hidden;
 }
 
-#gcwu-psnb,#gcwu-srchbx{
-	h2 a{
+#gcwu-psnb,#gcwu-srchbx {
+	h2 a {
 		color:#fff;
 		text-decoration:none;
 	}
 }
 
-#wb-head #gcwu-wmms{
+#wb-head #gcwu-wmms {
 	clip:rect(1px, 1px, 1px, 1px);
 	height:0 !important;
 	overflow:hidden !important;
@@ -46,15 +46,15 @@ body{
 	margin:0 !important;
 }
 
-#wb-body,#wb-body-sec{
+#wb-body,#wb-body-sec {
 	background:#fff !important;
 }
 
-#gcwu-title{
+#gcwu-title {
 	min-height:40px;
 	font-weight:700;
 	padding:2px 5px;
-	a{
+	a {
 		font-size:1.5em;
 		color:#fff !important;
 		@include text-shadow(0 1px 1px #044062);
@@ -62,11 +62,11 @@ body{
 	}
 }
 
-#wb-foot #gcwu-wmms img{
+#wb-foot #gcwu-wmms img {
 	margin: 5px auto;
 }
 
-#gcwu-sig{
+#gcwu-sig {
 	float:left;
 	margin:10px 0 10px 5px;
 	img {
@@ -74,12 +74,12 @@ body{
 	}
 }
 
-#gcwu-date-mod{
+#gcwu-date-mod {
 	float:right;
 	margin:5px 0;
 }
 
-#gcwu-priorities li{
+#gcwu-priorities li {
 	text-align:center;
 }
 
@@ -90,21 +90,21 @@ body{
 #wb-main-in {
 	padding-left:5px;
 	padding-right:5px;
-	h1{
+	h1 {
 		border-bottom:1px solid #e5e5e5;
 		font-weight:400;
 		margin-top:5px;
 		position:static !important;
-		&.wb-invisible{
+		&.wb-invisible {
 			position:absolute !important;
 		}
 	}
-	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
+	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12 {
 		margin-bottom:20px;
 	}
 }
 
-h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre{
+h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre {
 	margin-left:0;
 	margin-right:0;
 	@include text-shadow(none);
@@ -115,7 +115,7 @@ a {
 	font-weight:bold;
 }
 
-.clear{
+.clear {
 	clear:both;
 	display:block;
 	height:0;
@@ -126,29 +126,29 @@ a {
 }
 
 .ui-mobile {
-	#gcwu-srch{
+	#gcwu-srch {
 		@include box-shadow(none);
 	}
-	#wb-sec{
+	#wb-sec {
 		display:none;
 	}
-	.ui-content{
+	.ui-content {
 		padding:0 15px;
 	}
-	.wet-boew-menubar a{
+	.wet-boew-menubar a {
 		padding:0;
 	}
 }
 
-#wb-sec{
+#wb-sec {
 	padding:5px;
 }
 
-#gcwu-sft, #gcwu-sft-in{
+#gcwu-sft, #gcwu-sft-in {
 	background: #efefef;
 }
 
-#gcwu-sft{
+#gcwu-sft {
 	padding-bottom:5px;
 	margin-top:5px;
 	.ui-footer {
@@ -160,7 +160,7 @@ a {
 			margin:0;
 			border-top-width:0;
 		}
-		a.ui-btn-active{
+		a.ui-btn-active {
 			color:#fff;
 		}
 		&:nth-child(1), &:nth-child(2) {
@@ -174,10 +174,10 @@ a {
 	}
 }
 
-#gcwu-sft-in{
+#gcwu-sft-in {
 	border-top: 1px solid #CCCCCC;
 	padding: 5px;
-	div{
+	div {
 		width:50%;
 		float:left;
 	}
@@ -186,19 +186,19 @@ a {
 #gcwu-tctr {
 	width:auto;
 	padding:0;
-	li.gcwu-tc{
+	li.gcwu-tc {
 		border-right:1px solid #999;
 		padding:0 9px 0 0;
 	}
-	.gcwu-tr{
+	.gcwu-tr {
 		padding-left:6px;
 	}
-	li{
+	li {
 		display:inline;
 	}
 }
 
-li#gcwu-gcft-ca a{
+li#gcwu-gcft-ca a {
 	padding-left:0;
 	padding-right:0;
 	font-size:0.7em;
@@ -209,17 +209,17 @@ li#gcwu-gcft-ca a{
 	clear:both;
 	margin:0;
 	padding:5px;
-	li{
+	li {
 		width:50%;
 		float:left !important;
 		margin:10px 0;
-		&#gcwu-gcft-ca div{
+		&#gcwu-gcft-ca div {
 			text-align:left;
 		}
 	}
 }
 
-img{
+img {
 	max-width:100%;
 	height:auto;
 	display:block;
@@ -227,43 +227,35 @@ img{
 
 #gcwu-gcnb ul {
 	margin: 0 5px 0 0;
-	li{
+	li {
 		display:none;
 		padding-top:8px;
 	}
-	#gcwu-gcnb-lang{
+	#gcwu-gcnb-lang {
 		display:inline;
 		float:right;
 		margin-bottom:2px;
 	}
 }
 
-#gcwu-gcnb-lang a{
+#gcwu-gcnb-lang a {
 	color:#222;
 	text-decoration:none;
 	background:#eee;
 	border:1px solid #ddd;
-	border-radius:2px;
+	@include border-radius(2px);
 	float:right;
-	margin-bottom:2px;
-	a{
-		color:#222;
-		text-decoration:none;
-		background:#eee;
-		border:1px solid #ddd;
-		@include border-radius(2px);
-		font-weight:400;
-		padding:3px;
-	}
+	font-weight:400;
+	padding:3px;
 }
 
-#gcwu-srch-submit{
+#gcwu-srch-submit {
 	min-height:22px;
 	display:inline;
 	margin:0;
 }
 
-#gcwu-psnb,#gcwu-srchbx{
+#gcwu-psnb,#gcwu-srchbx {
 	width:50%;
 	float:right;
 	border-top:1px solid #044062;
@@ -303,7 +295,7 @@ img{
 	}
 }
 
-#gcwu-srchbx h2{
+#gcwu-srchbx h2 {
 	padding-right:20px;
 }
 
@@ -312,7 +304,7 @@ img{
 }
 
 .wet-boew-menubar {
-	a{
+	a {
 		border-top:1px solid #ccc;
 		border-bottom:1px solid #ccc;
 		color:#222;
@@ -325,19 +317,19 @@ img{
 		background:#eee;
 		padding:0.8em 0 0.9em;
 	}
-	ul{
+	ul {
 		list-style-type:none;
 		position:relative;
 		z-index:1;
 		margin:0;
 		padding:0;
 	}
-	li{
+	li {
 		color:#333;
 		@include text-shadow(0 1px 0 #fff);
 		position:relative;
 		z-index:1;
-		h3{
+		h3 {
 			font-weight:400;
 			font-size:1em;
 			margin:0;
@@ -346,16 +338,16 @@ img{
 	}
 }
 
-#gcwu-bnr,#wb-core{
+#gcwu-bnr,#wb-core {
 	clear:both;
 }
 
-#gcwu-bnr{
+#gcwu-bnr {
 	background:#4E7EB7;
 }
 
-#gcwu-priorities ul,#gcwu-date-mod,#gcwu-gcft ul,#wb-head,#gcwu-sft-in,#jqm-wb-mb #gcwu-bc-in ol{
-	&:after{
+#gcwu-priorities ul,#gcwu-date-mod,#gcwu-gcft ul,#wb-head,#gcwu-sft-in,#jqm-wb-mb #gcwu-bc-in ol {
+	&:after {
 		content:".";
 		display:block;
 		height:0;
@@ -368,7 +360,7 @@ img{
 	display:none;
 }
 
-#gcwu-srch-submit{
+#gcwu-srch-submit {
 	min-height: 22px;
 }
 
@@ -394,22 +386,22 @@ img{
 }
 
 #jqm-wb-mb {
-	a:link{
+	a:link {
 		text-decoration: none
 	}
-	h3.top-section{
+	h3.top-section {
 		font-size:1.2em;
 	}
-	.ui-content{
+	.ui-content {
 		padding:0 15px 5px;
-		.ui-listview{
+		.ui-listview {
 			margin:0;
 		}
 	}
-	.ui-btn-inner{
+	.ui-btn-inner {
 		white-space:normal;
 	}
-	.ui-btn-icon-top .ui-btn-inner{
+	.ui-btn-icon-top .ui-btn-inner {
 		padding:0.6em 33px 0.7em 10px;
 	}
 	.ui-btn-icon-right {
@@ -470,11 +462,11 @@ img{
 		border-right: none;
 		background: #F4F4F4;
 	}
-	.ui-btn{
+	.ui-btn {
 		margin:0;
 		text-align:left;
 	}
-	.ui-li{
+	.ui-li {
 		padding: 0;
 		border-width:1px 1px 0 1px;
 		.ui-collapsible:first-child {
@@ -484,21 +476,21 @@ img{
 	.ui-corner-bottom {
 		border-bottom-width:1px;
 	}
-	h1{
+	h1 {
 		border-bottom:none;
 	}
-	h2{
+	h2 {
 		color:#555;
 	}
-	div.ui-collapsible-set + h2{
+	div.ui-collapsible-set + h2 {
 		border-top:3px groove #fff;
 		padding-top:8px;
 		margin-top:23px;
 	}
-	.ui-content h2 + ul.ui-listview{
+	.ui-content h2 + ul.ui-listview {
 		margin-bottom:1em;
 	}
-	.top-section a{
+	.top-section a {
 		margin:0 0 5px;
 		@include border-radius(0);
 	}
@@ -517,12 +509,11 @@ img{
 			color: #295376;
 			text-decoration: none;
 			@include border-radius(0);
-			&:hover,&:active{
+			&:hover,&:active {
 				text-decoration:underline;
 			}
 		}
 		li {
-			display: inline;
 			float: left;
 			margin: 0;
 			padding: 5px 12px 5px 5px;
@@ -544,65 +535,65 @@ img{
 
 #jqm-mb-location-text {
 	margin:0 -15px 10px;
-	h2{
+	h2 {
 		display:none;
 	}
 }
 
-.mobile-hide{
+.mobile-hide {
 	display:none !important;
 }
 
-.mobile-show{
+.mobile-show {
 	display:block !important;
 }
 
-a:active{
+a:active {
 	text-decoration:underline !important;
 }
 
-.ui-loader-default h1{
+.ui-loader-default h1 {
     margin:0;
     padding:0;
     border:0;
 }
 
 .no-js {
-	#gcwu-srch{
+	#gcwu-srch {
 		margin-top:3px;
 		padding:3px 0;
 	}
 	#gcwu-psnb {
-		li{
+		li {
 			border: 1px solid #222;
 		}
-		a{
+		a {
 			color:#222;
 			padding: 0.45em 0.79em;
 		}
 	}
-	.ui-content{
+	.ui-content {
 		padding:0;
 	}
-	.mobile-pe{
+	.mobile-pe {
 		display:none !important;
 	}
 }
 
 .pe-disable {
-	#gcwu-psnb{
+	#gcwu-psnb {
 		margin-top: -11px;
 	}
 	#gcwu-psnb, #gcwu-srchbx {
 		width:100% !important;
 		float:none;
 	}
-	#gcwu-psnb #gcwu-psnb-in,#gcwu-srchbx form{
+	#gcwu-psnb #gcwu-psnb-in,#gcwu-srchbx form {
 		display:block;
 		width:100%;
 		z-index:100;
 	}
-	#gcwu-srchbx form{
+	#gcwu-srchbx form {
 		border-bottom:1px solid #999;
 		text-align:center;
 		background:#1A3D6C;

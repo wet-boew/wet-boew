@@ -186,7 +186,7 @@
 		<delete dir="${dist.dir}" />
 	</target>
 	
-	<extension-point name="build" depends="prepare-files, encode-images, compress" description="Core build task. Subprojects should subscrib to the 'prepare-files' and 'compress'" />
+	<extension-point name="build" depends="prepare-files, encode-images, compress, finalize" description="Core build task. Subprojects should subscrib to the 'prepare-files' and 'compress'" />
 	
 	<extension-point name="prepare-files" depends="-init" />
 	
@@ -195,6 +195,8 @@
 	<target name="encode-css" extensionOf="encode-images" depends="-base64-encode"/>
 
 	<extension-point name="compress" depends="encode-images, -minify" />
+	
+	<extension-point name="finalize" depends="-distribute" />
 	
 	<extension-point name="test" />
 	
@@ -290,5 +292,11 @@
 		<copy todir="${build.dir}/images">
 			<fileset dir="${src.dir}/images" />
 		</copy>
+	</target>
+	
+	<target name="-distribute">
+		<move todir="${dist.dir}">
+			<fileset dir="${build.dir}"/>
+		</move>
 	</target>
 </project>

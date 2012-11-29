@@ -4,7 +4,7 @@
  */
 @import "compass/css3/images";
 
-#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in{
+#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in {
 	background:{
 		repeat: no-repeat, repeat-x;
 		position: center 3.08em;
@@ -12,14 +12,14 @@
 	}
 }
 
-#gcwu-srch-submit{
+#gcwu-srch-submit {
 	background:#ccc url(../images/search-button.gif) 0 0 repeat-x;
-	&:focus,&:hover{
+	&:focus,&:hover {
 		background:#ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
 	}
 }
 
-#wb-core-in,#gcwu-bc-in{
+#wb-core-in,#gcwu-bc-in {
 	background:{
 		image:url(../images/content-deco-side.gif), url(../images/content-deco-side.gif);
 		position:left top, right top;
@@ -30,29 +30,29 @@
 
 #gcwu-psnb {
 	.mb-menu {
-		.nav-current{
+		.nav-current {
 			background:#0f315b url(../images/menu-border.gif) repeat-x scroll 0 0;
 		}
 		.mb-sm-open {
 			border-bottom:4px solid #0F315B;
 			@include background-image(linear-gradient(bottom, #EEE, #CCC));
-			li{
+			li {
 				background:transparent;
 				min-height:0;
 				border:none;
 			}
-			.nav-current{
+			.nav-current {
 				background:none;
 			}
 		}
 	}
 	.mb-active {
-		a:hover.mb-has-sm,a:link.mb-has-sm,a:visited.mb-has-sm{
+		a:hover.mb-has-sm,a:link.mb-has-sm,a:visited.mb-has-sm {
 			background-color:#CCC;
 			color:#000;
 		}
 	}
 }
-#gcwu-psnb .mb-sm-open li{
+#gcwu-psnb .mb-sm-open li {
 	background:transparent;
 }

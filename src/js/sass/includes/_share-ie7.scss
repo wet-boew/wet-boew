@@ -4,12 +4,12 @@
  */
 /* Create new top-level stacking context to prevent overlap */
 .ie7 {
-	.wet-boew-share{
+	.wet-boew-share {
 		position: relative;
 		z-index: 1;
 	}
 
-	.wet-boew-share .bookmark_popup{
+	.wet-boew-share .bookmark_popup {
 		right:0;
 		top:1.5em;
 	}

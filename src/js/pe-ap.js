@@ -113,7 +113,7 @@
 				pe.document.on('pageinit', function () {
 					// On click, puts focus on and scrolls to the target of same page links
 					hlinks_same.off('click vclick').on('click vclick', function () {
-						$this = $($(this).attr("href").replace(/[.:]/, '\\$1'));
+						$this = $('#' + pe.string.jqescape($(this).attr('href')));
 						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if ($this.length > 0) {
 							$.mobile.silentScroll(pe.focus($this).offset().top);
@@ -136,7 +136,7 @@
 			} else {
 				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
 				hlinks_same.on("click vclick", function () {
-					$this = $($(this).attr('href').replace(/[.:]/, '\\$1'));
+					$this = $('#' + pe.string.jqescape($(this).attr('href')));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
@@ -145,7 +145,7 @@
 
 				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
 				if (pe.urlhash.length > 0) {
-					$this = $(pe.urlhash.replace(/[.:]/, '\\$1'));
+					$this = $('#' + pe.string.jqescape(pe.urlhash));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
@@ -384,7 +384,7 @@
 				*		returns '/aboutcanada-ausujetcanada/hist/menu-eng.html'
 				*/
 				removehash: function () {
-					return this.source.replace(/#([A-Za-z0-9\-_=&]+.:)/, '');
+					return this.source.replace(/#([A-Za-z0-9\-_=&\.:]+)/, '');
 				}
 			};
 		},
@@ -482,6 +482,20 @@
 					str = '0' + str;
 				}
 				return str;
+			},
+			/**
+			* Escapes the characters in a string for use in a jQuery selector
+			* Based on http://totaldev.com/content/escaping-characters-get-valid-jquery-id
+			* @memberof pe.string
+			* @function
+			* @param (string) str The string to escape.
+			* @return (string) The escaped string.
+			* @example
+			*	pe.string.jqescape('alpha.beta:delta_gamma-omgega=sigma')
+			*		returns 'alpha\.beta\:delta_gamma-omega\=sigma')
+			*/
+			jqescape: function (str) {
+				return str.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '\\$1');
 			}
 		},
 		/**

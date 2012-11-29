@@ -8,7 +8,7 @@
 	line-height: normal;
 }
  
-#gcwu-gcnb h2,#gcwu-srchbx label,#gcwu-aside h2,.gcwu-minister h2,.gcwu-minister h3,#gcwu-sft h3,#gcwu-bc h2,#gcwu-gcft h3{
+#gcwu-gcnb h2,#gcwu-srchbx label,#gcwu-aside h2,.gcwu-minister h2,.gcwu-minister h3,#gcwu-sft h3,#gcwu-bc h2,#gcwu-gcft h3 {
 	clip:rect(1px, 1px, 1px, 1px);
 	height:0 !important;
 	overflow:hidden !important;
@@ -18,7 +18,7 @@
 }
 
 #gcwu-date-mod {
-	dt,dd{
+	dt,dd {
 		float:left;
 	}
 	dd {
@@ -26,7 +26,7 @@
 	}
 }
 
-#gcwu-content h2,#gcwu-priorities h3{
+#gcwu-content h2,#gcwu-priorities h3 {
 	color:#333;
 	font-weight:400;
 	border:none;
@@ -35,31 +35,31 @@
 }
 
 div#gcwu-headlines {
-	ul,ul li{
+	ul,ul li {
 		list-style:none !important;
 		margin:0 !important;
 		padding:0 !important;
 	}
 }
 
-#gcwu-headlines ul li,#gcwu-video{
-	a{
+#gcwu-headlines ul li,#gcwu-video {
+	a {
 		font-size:100%;
 	}
 }
 
 #gcwu-headlines ul li {
-	h3,p{
+	h3,p {
 		margin:0;
 		padding:5px;
 	}
-	h3{
+	h3 {
 		font-size:1em;
 		font-weight:700;
 	}
 }
 
-#gcwu-priorities{
+#gcwu-priorities {
 	padding-bottom:10px;
 	border-bottom:1px solid #000;
 	img {
@@ -67,20 +67,20 @@ div#gcwu-headlines {
 	}
 }
 
-#gcwu-aside div#gcwu-priorities{
-	ul{
+#gcwu-aside div#gcwu-priorities {
+	ul {
 		list-style:none;
 		margin:0;
 		padding:0;
 	}
-	ul li{
+	ul li {
 		margin:0;
 		padding:0;
 	}
 }
 
 #gcwu-connect {
-	h2{
+	h2 {
 		border:none;
 		margin-bottom:5px;
 		color:#333;
@@ -88,43 +88,43 @@ div#gcwu-headlines {
 		margin-top:2px;
 		margin-right:10px;
 	}
-	ul{
+	ul {
 		list-style-type:none;
 	}
-	li{
+	li {
 		@include inline-block;
 	}
-	a{
+	a {
 		background:none;
 		padding-right:0;
 		text-decoration:none;
 	}
 }
 
-.gcwu-minister-in{
+.gcwu-minister-in {
 	min-height:149px;
 }
 
-.gcwu-minister{
+.gcwu-minister {
 	margin-top:10px;
-	img{
+	img {
 		padding-right:5px;
 		float:left;
 		margin:0;
 	}
-	p{
+	p {
 		margin:0;
 		padding:10px 5px 10px 0;
-		strong{
+		strong {
 			font-weight:700;
 			color:#001D45;
 		}
 	}
-	ul{
+	ul {
 		list-style-type:none;
 		padding-top:17px;
 		margin:0;
-		&:after{
+		&:after {
 			content:".";
 			display:block;
 			height:0;
@@ -132,16 +132,16 @@ div#gcwu-headlines {
 			visibility:hidden;
 		}
 	}
-	li{
+	li {
 		padding-bottom:8px;
 	}
 }
 
-#gcwu-title a,.gcwu-minister li a:hover,.gcwu-minister li a:focus,.gcwu-minister li a:active{
+#gcwu-title a,.gcwu-minister li a:hover,.gcwu-minister li a:focus,.gcwu-minister li a:active {
 	text-decoration:none;
 }
 
-#gcwu-aside img,#gcwu-priorities h2,#gcwu-priorities h3,.gcwu-minister h2,.gcwu-minister h3{
+#gcwu-aside img,#gcwu-priorities h2,#gcwu-priorities h3,.gcwu-minister h2,.gcwu-minister h3 {
 	margin-left:0;
 	margin-right:0;
 }
