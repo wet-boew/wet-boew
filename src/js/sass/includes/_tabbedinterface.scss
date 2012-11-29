@@ -432,15 +432,12 @@
 		border:none;
 		top:3px;
 		li {
-			display:none!important;
-			a {
-				display:none!important;
-			}
+			display:none;
 			&.tabs-toggle {
 				@include inline-block;
 				a {
-					display:block!important;
-					width:auto!important;
+					display:block;
+					width:auto;
 				}
 			}
 		}
