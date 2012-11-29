@@ -14,14 +14,8 @@
 	/* local reference */
 	_pe.fn.lightbox = {
 		type : 'plugin',
-		// This is an example from tabbed interface, to show how to call
-		// required libraries
 		depends : ['colorbox', 'metadata'],
 		groupindex : 0,
-
-		// Don't include a mobile function if your plugin shouldn't run in
-		// mobile mode.
-
 		_exec : function (elm) {
 			// Variables
 			var opts,
@@ -78,7 +72,7 @@
 				}
 			};
 
-			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
+			// Class-based overrides
 			overrides = {
 				transition : (elm.hasClass('transition-fade') ? 'fade' : (elm.hasClass('transition-none') ? 'none' : undefined)),
 				loop : elm.hasClass('loop-none') ? false : undefined,
@@ -104,8 +98,7 @@
 
 			// Build single images, inline content and AJAXed content
 			$lb.filter('.lb-item').attr('aria-haspopup', 'true').each(function () {
-				var $this = $(this);
-				$this.colorbox($this.attr('href').substring(0, 1) !== '#' ? opts : opts2);
+				pe.fn.lightbox._init_colorbox(this, opts, opts2);
 			});
 
 			// Build galleries
@@ -114,8 +107,7 @@
 				$.extend(opts, group);
 				$.extend(opts2, group);
 				$(this).find('.lb-item-gal').attr('aria-haspopup', 'true').each(function () {
-					var $this = $(this);
-					$this.colorbox($this.attr('href').substring(0, 1) !== '#' ? opts : opts2);
+					pe.fn.lightbox._init_colorbox(this, opts, opts2);
 				});
 			});
 
@@ -152,7 +144,11 @@
 					}
 				}
 			});
-		} // end of exec
+		}, // end of exec
+		_init_colorbox : function(link, opts_default, opts_inline) {
+			var opts = link.getAttribute('href').substring(0, 1) !== '#' ? opts_default : opts_inline;
+			$(link).colorbox(opts);
+		}
 	};
 	window.pe = _pe;
 	return _pe;

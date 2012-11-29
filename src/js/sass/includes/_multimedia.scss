@@ -8,7 +8,7 @@ video, object.video {
 	margin-bottom:-4px;
 }
 
-.wb-mm-captionsarea{
+.wb-mm-captionsarea {
 	background-color:#000;
 	color:#FFF;
 	text-align:center;
@@ -52,7 +52,7 @@ video, object.video {
 
 $progress-color: #000;
 
-.wb-mm-controls{
+.wb-mm-controls {
 	position:relative;
 	width:100%;
 	padding:0;
@@ -87,7 +87,7 @@ $progress-color: #000;
 		right:0;
 	}	
 	
-	.wb-mm-timeline{
+	.wb-mm-timeline {
 		position:relative;
 		@extend .wb-mm-toolbar;
 		margin-left:83px;
@@ -95,7 +95,7 @@ $progress-color: #000;
 		height:18px;
 		padding: 2px 4px;
 		
-		p{
+		p {
 			margin:0;
 		}
 		
@@ -105,7 +105,7 @@ $progress-color: #000;
 	
 	}
 	
-	&.wb-mm-no-cc .wb-mm-timeline{
+	&.wb-mm-no-cc .wb-mm-timeline {
 		margin-right:25px;
 	}
 	

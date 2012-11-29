@@ -28,13 +28,13 @@
 
 
 /* ---- Links ---- */
-#wb-core{
-		a[href^='mailto:']{
-		background:url(../images/icons.png) no-repeat top left;
+#wb-core {
+	a[href^='mailto:']{
+		@extend .wb-icon;
 		background-position:0 -950px; // slightly different than wb-icon-mail to match old layout
 		padding-left:19px;
 	}
-		a[href$='.psd'],a[href$='.zip'],a[href$='.doc'],a[href$='.pdf'],a[href$='.xls'],a[href$='.rtf'],a[href$='.pot'],a[href$='.ppt'],a[href$='.pps'],a[href$='.pptm'],a[href$='.docx'],a[href$='.xlsx'],a[href$='.pptx']{
+	a[href$='.psd'],a[href$='.zip'],a[href$='.doc'],a[href$='.pdf'],a[href$='.xls'],a[href$='.rtf'],a[href$='.pot'],a[href$='.ppt'],a[href$='.pps'],a[href$='.pptm'],a[href$='.docx'],a[href$='.xlsx'],a[href$='.pptx']{
 		background:transparent url(../images/download.png) no-repeat 0 0;
 		padding-left:19px;
 	}
@@ -207,7 +207,7 @@ p.align-right	 { margin-right: $margin-medium; }
 
 /*	 floating	 */
 img.float-left { margin-right: $margin-medium; }
-.float-left{float:left !important;}
+.float-left {float:left !important;}
 .float-right {float:right !important;/*background-color:#fff;*/} /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
 
 /*	 width	 */
@@ -235,7 +235,6 @@ img.float-left { margin-right: $margin-medium; }
 .opacity-10	 { @include opacity(0.1); }
 
 .border-top,.border-right,.border-bottom,.border-left,.border-all {
-	display:inline;
 	float:left;
 	min-height:1px;
 	position:relative;
@@ -269,7 +268,7 @@ img.float-left { margin-right: $margin-medium; }
 }
 
 /* ---- Keyboard keys ---- */
-kbd{
+kbd {
 	background:#eee none repeat scroll 0 0;
 	border:{
 		color:#ccc #999 #777 #999;
@@ -296,37 +295,37 @@ p[class*="thermometer"] {
 [class*="background-"] p[class*="thermometer"] {
 	padding-bottom: 230px !important;
 }
-.thermometer-0{background-image:url(../images/thermometer-0.gif);}
-.thermometer-10{background-image:url(../images/thermometer-10.gif);}
-.thermometer-20{background-image:url(../images/thermometer-20.gif);}
-.thermometer-30{background-image:url(../images/thermometer-30.gif);}
-.thermometer-40{background-image:url(../images/thermometer-40.gif);}
-.thermometer-50{background-image:url(../images/thermometer-50.gif);}
-.thermometer-60{background-image:url(../images/thermometer-60.gif);}
-.thermometer-70{background-image:url(../images/thermometer-70.gif);}
-.thermometer-80{background-image:url(../images/thermometer-80.gif);}
-.thermometer-90{background-image:url(../images/thermometer-90.gif);}
-.thermometer-100{background-image:url(../images/thermometer-100.gif);}
-.thermometer-110{background-image:url(../images/thermometer-110.gif);}
-.thermometer-120{background-image:url(../images/thermometer-120.gif);}
+.thermometer-0 {background-image:url(../images/thermometer-0.gif);}
+.thermometer-10 {background-image:url(../images/thermometer-10.gif);}
+.thermometer-20 {background-image:url(../images/thermometer-20.gif);}
+.thermometer-30 {background-image:url(../images/thermometer-30.gif);}
+.thermometer-40 {background-image:url(../images/thermometer-40.gif);}
+.thermometer-50 {background-image:url(../images/thermometer-50.gif);}
+.thermometer-60 {background-image:url(../images/thermometer-60.gif);}
+.thermometer-70 {background-image:url(../images/thermometer-70.gif);}
+.thermometer-80 {background-image:url(../images/thermometer-80.gif);}
+.thermometer-90 {background-image:url(../images/thermometer-90.gif);}
+.thermometer-100 {background-image:url(../images/thermometer-100.gif);}
+.thermometer-110 {background-image:url(../images/thermometer-110.gif);}
+.thermometer-120 {background-image:url(../images/thermometer-120.gif);}
 
 /*	grid on a table	 */
-table{
-	&.span-1,&.span-2,&.span-3,&.span-4,&.span-5,&.span-6,&.span-7,&.span-8,&.span-9,&.span-10,&.span-11,&.span-12{
+table {
+	&.span-1,&.span-2,&.span-3,&.span-4,&.span-5,&.span-6,&.span-7,&.span-8,&.span-9,&.span-10,&.span-11,&.span-12 {
 		display:table;
 	}
 }
 
 /*	display overrides  */
-.display-block{
+.display-block {
 	display:block !important;
 }
 
-.display-inline-block{
+.display-inline-block {
 	display:inline-block !important;
 }
 
-.display-inline{
+.display-inline {
 	display:inline !important;
 }
 
