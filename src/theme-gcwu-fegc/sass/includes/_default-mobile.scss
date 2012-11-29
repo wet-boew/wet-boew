@@ -242,18 +242,9 @@ img {
 	text-decoration:none;
 	background:#eee;
 	border:1px solid #ddd;
-	border-radius:2px;
+	@include border-radius(2px);
 	float:right;
 	margin-bottom:2px;
-	a {
-		color:#222;
-		text-decoration:none;
-		background:#eee;
-		border:1px solid #ddd;
-		@include border-radius(2px);
-		font-weight:400;
-		padding:3px;
-	}
 }
 
 #gcwu-srch-submit {
