@@ -228,7 +228,6 @@
 				cycle : false
 			}));
 			if (opts.cycle) {
-				console.log(elm.attr('class'));
 				cycle = function ($tabs, $panels, opts) {
 					var $current,
 						$pbar;
