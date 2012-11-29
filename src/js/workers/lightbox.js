@@ -14,14 +14,8 @@
 	/* local reference */
 	_pe.fn.lightbox = {
 		type : 'plugin',
-		// This is an example from tabbed interface, to show how to call
-		// required libraries
 		depends : ['colorbox', 'metadata'],
 		groupindex : 0,
-
-		// Don't include a mobile function if your plugin shouldn't run in
-		// mobile mode.
-
 		_exec : function (elm) {
 			// Variables
 			var opts,
@@ -78,7 +72,7 @@
 				}
 			};
 
-			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
+			// Class-based overrides
 			overrides = {
 				transition : (elm.hasClass('transition-fade') ? 'fade' : (elm.hasClass('transition-none') ? 'none' : undefined)),
 				loop : elm.hasClass('loop-none') ? false : undefined,
