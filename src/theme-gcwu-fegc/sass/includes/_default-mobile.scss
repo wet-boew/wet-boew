@@ -232,6 +232,7 @@ img {
 		padding-top:8px;
 	}
 	#gcwu-gcnb-lang {
+		display:inline;
 		float:right;
 		margin-bottom:2px;
 	}
@@ -244,7 +245,8 @@ img {
 	border:1px solid #ddd;
 	@include border-radius(2px);
 	float:right;
-	margin-bottom:2px;
+	font-weight:400;
+	padding:3px;
 }
 
 #gcwu-srch-submit {
