@@ -3,23 +3,23 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ie7 {
-	#wb-skip{
+	#wb-skip {
 		display:inline;
 		float:none;
-		ul{
+		ul {
 			float:left;
 		}
-		a{
+		a {
 			margin:auto;
 			zoom:1;
 			position:relative;
 		}
 	}
-	a.wb-linkdesc{
-		span span{
+	a.wb-linkdesc {
+		span span {
 			top:-9000em;
 		}
-		&:hover,&:focus,&:active{
+		&:hover,&:focus,&:active {
 			height:1%;
 		}
 	}

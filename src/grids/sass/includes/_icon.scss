@@ -4,8 +4,12 @@
 */
 @import "compass/css3/inline-block";
 
-[class*=wb-icon-] {
+.wb-icon {
 	background:url(../images/icons.png) no-repeat top left;
+}
+
+[class*=wb-icon-] {
+	@extend .wb-icon;
 	width:16px;
 	height:16px;
 	margin-right:4px;

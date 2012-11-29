@@ -5,12 +5,12 @@
 @import "compass/css3/text-shadow";
 
 /** From branding.css **/
-#gcwu-bnr{
+#gcwu-bnr {
 	background-color:#28507a;
 }
-.gcwu-subsite-1{
+.gcwu-subsite-1 {
 	background:#618000 url(../images/gcwu-subsite-1.gif) repeat-x 0 top;
-	a{
+	a {
 		color:#fff !important;
 		@include text-shadow(1px 1px 1px #333 !important);
 	}
@@ -20,36 +20,34 @@
 #wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-head-in,#gcwu-sig-eng,#gcwu-sig-fra,#gcwu-wmms-fip {
 	background:none;
 }
-#gcwu-bnr-in{
+#gcwu-bnr-in {
 	background:transparent url(../images/gcwu-bnr-in.png) no-repeat center 0;
 	min-height:52px !important;
 }
-#gcwu-bnr{
-	background-image:url(../images/gcwu-bnr.png);
-	background-repeat:repeat-x;
-	background-position:0 0;
+#gcwu-bnr {
+	background: transparent url(../images/gcwu-bnr.png) repeat-x 0 0;
 	border-top:1px solid #eee;
 	clear:both;
 	position:static;
 }
-#gcwu-subsite{
+#gcwu-subsite {
 	border-top:1px solid #ccc;
 	clear:left;
 	font-size:130%;
 	@include text-shadow(1px 1px 1px #333);
-	p{
+	p {
 		margin:0 auto;
 		padding-top:4px;
 		padding-bottom:7px;
 	}
-	a{
+	a {
 		color:#fff;
 		text-decoration:none;
 		padding:0 5px 0 10px;
 		@include text-shadow(1px 1px 1px #333);
 		border-left:1px solid #ccc;
 		font-size:75%;
-		&:first-child{
+		&:first-child {
 			border-left:none;
 			font-size:100%;
 		}

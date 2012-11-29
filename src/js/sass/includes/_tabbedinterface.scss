@@ -8,17 +8,17 @@
 	background:url(../images/tabs/gradient.png) repeat-x 0 0 #eee;
 }
  
-.tabs{
+.tabs {
     border-bottom:solid 1px #ccc;
     margin:0;
     padding:0;
     position:relative;
-	li{
+	li {
 		@include inline-block;
 		border:solid 1px #ccc;
 		border-bottom:none;
 		@include border-radius(2px 2px 0 0);
-		a{
+		a {
 			display:block;
 			text-decoration:none;
 			color:#333;
@@ -28,7 +28,7 @@
 			top:1px;
 			margin-top:-1px;
 			&.active {
-				&,&:hover,&:focus,&:active{
+				&,&:hover,&:focus,&:active {
 					color:#333;
 					padding-top:5px;
 					background:#fff;
@@ -36,36 +36,36 @@
 				}
 			}
 		}
-		&.active{
+		&.active {
 			background:#fff;
 			position:relative;
 		}
 		&.tabs-toggle {
-			a{
+			a {
 				cursor:pointer;
 				@include border-radius(2px);
 				border:1px solid #999;
 				margin-right: 2px;
-				&:hover, &:focus, &:active{
+				&:hover, &:focus, &:active {
 					text-decoration:underline;
 					color:#000;
 				}
-				&.tabs-next, &.tabs-prev{
+				&.tabs-next, &.tabs-prev {
 					padding:2px 5px !important;
 				}
-				&.tabs-start, &.tabs-stop{
+				&.tabs-start, &.tabs-stop {
 					padding:2px 5px 2px 24px !important;
 				}
-				&.tabs-prev{
+				&.tabs-prev {
 					background:url(../images/tabs/prev.gif) no-repeat center 5px #fff !important;
 				}
-				&.tabs-next{
+				&.tabs-next {
 					background:url(../images/tabs/next.gif) no-repeat center 5px #fff !important;
 				}
-				&.tabs-stop{
+				&.tabs-stop {
 					background:url(../images/tabs/pause.png) no-repeat -1px 0 #fff !important;
 				}
-				&.tabs-start{
+				&.tabs-start {
 					background:url(../images/tabs/play.png) no-repeat -1px 0 #fff !important;
 				}
 			}
@@ -136,17 +136,17 @@
 }
 
 /*with grids*/
-.embedded-grid,.embedded-grid .tabs-panel{
+.embedded-grid,.embedded-grid .tabs-panel {
     border:none;
     padding:0;
 }
 
-.embedded-grid .tabs{
+.embedded-grid .tabs {
     margin:0 10px 10px;
 }
 
-.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
-	.tabs{
+.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12 {
+	.tabs {
 		margin:0;
 	}
 }
@@ -162,69 +162,69 @@
 }
 
 /* style 1 */
-.tabs-style-1{
+.tabs-style-1 {
     border:solid 1px #ccc;
     padding:2px;
-	.tabs{
+	.tabs {
 		border:1px solid silver;
 		color:#222;
 		font-weight:700;
 		padding:2px 2px 0;
 		li {
-			a{
+			a {
 				background:#555 url(../images/tabs/gradient2.png) repeat-x  0 bottom;
 				border-top:none;
 				color:#fff;
 				padding:3px 4px 4px;
-				&:hover, &:focus, &:active{
+				&:hover, &:focus, &:active {
 					color:#000;
 					border-top:1px solid #fff;
 					padding-top:1px;
 				}
-				&.active{
-					&, &:hover, &:focus, &:active{
+				&.active {
+					&, &:hover, &:focus, &:active {
 						color:#000;
 						background:#fff;
 						border-top:none;
 						padding:4px;
 					}
 				}
-				&.tabs-start, &.tabs-stop{
+				&.tabs-start, &.tabs-stop {
 					color:#000;
 				}
 			}
 		}
 		li.tabs-toggle {
-			a{
+			a {
 				color:#000;
-				&, &:active, &:hover, &:active{
+				&, &:active, &:hover, &:active {
 					background-repeat:no-repeat;
 					background-position:-1px 0;
 					border:1px solid #999;
 				}
-				&:active, &:hover, &:active{
+				&:active, &:hover, &:active {
 					color:#c00;
 				}
-				&.tabs-prev,&.tabs-next{
+				&.tabs-prev,&.tabs-next {
 					background-position:center 5px;
 				}
 			}
 		}
 	}
-	.tabs-panel{
+	.tabs-panel {
 		border:none;
 	}
 }
 
 
 /* style 2 */
-.tabs-style-2{
+.tabs-style-2 {
     border:0;
     padding:0;
     position:relative;
     z-index:1;
     margin:0;
-	.tabs{
+	.tabs {
 		border:none;
 		background:#eee;
 		@include opacity(0.95);
@@ -236,22 +236,22 @@
 		margin-top:0;
 		bottom:0;
 		left:0;
-		li{
+		li {
 			border:none;
 			margin-right:-3px;
 			width:auto;
-			a{
+			a {
 				border:1px solid #999;
 				padding:2px 5px;
 				@include border-radius(2px);
-				&.active, &:hover, &:focus, &:active{
+				&.active, &:hover, &:focus, &:active {
 					background:#333;
 					color:#fff;
 					outline-color:#000;
 					padding-top:2px;
 				}
 			}
-			&.active{
+			&.active {
 				border:none;
 				top:auto;
 				color:#fff;
@@ -259,16 +259,16 @@
 			&.tabs-toggle {
 				margin-left:6px;
 				margin-right:-6px;
-				a{
+				a {
 					background-color: transparent !important;
-					&:hover, &:focus, &:active{
+					&:hover, &:focus, &:active {
 						color:#000;
 					}
 				}
 			}
 		}
 	}
-	.tabs-panel{
+	.tabs-panel {
 		border:none;
 		min-height:220px;
 		background:url(../images/tabs/gradient3.png) repeat-x 0 bottom #555;
@@ -279,10 +279,10 @@
 			color:#fff;
 		}
 	}
-	.tabs-content-pad{
+	.tabs-content-pad {
 		padding:10px 10px 36px;
 	}
-	.tabs-roller{
+	.tabs-roller {
 		background-color:#fff;
 		@include opacity(0.25);
 	}
@@ -290,7 +290,7 @@
 
 
 /* style 3 */
-.tabs-style-3{
+.tabs-style-3 {
     position:relative;
     z-index:1;
     border:1px solid #ccc;
@@ -298,24 +298,24 @@
     min-height:220px;
     padding:10px 0 10px 10px;
     @include border-radius(3px);
-	.tabs{
+	.tabs {
 		width:34%;
 		position:absolute;
 		z-index:3;
 		border:none;
 		margin:20px 0 0;
 		right:0;
-		li{
+		li {
 			border:none;
 			margin:0;
 			width:100%;
-			a{
+			a {
 				display:block;
 				border:none;
 				text-decoration:none;
 				background:transparent;
 				padding:5px 5px 5px 25px;
-				&.active, &:hover, &:focus, &:active{
+				&.active, &:hover, &:focus, &:active {
 					background:#000;
 					color:#fff;
 					outline-color:#000;
@@ -325,17 +325,17 @@
 					@include border-radius(3px 0 0 3px);
 				}
 			}
-			&.active{
+			&.active {
 				border:none;
 				color:#fff;
 			}
 			&.tabs-toggle {
 				width:auto;
-				a{
+				a {
 					float:right;
 					margin-top:10px;
 					border:1px solid #ccc;
-					&:hover, &:focus, &:active{
+					&:hover, &:focus, &:active {
 						@include opaque;
 						color:#000;
 						margin-right:2px;
@@ -344,7 +344,7 @@
 			}
 		}
 	}
-	.tabs-panel{
+	.tabs-panel {
 		width:66%;
 		z-index:1;
 		border:none;
@@ -356,13 +356,13 @@
 		z-index:2;
 		border:1px solid #ccc;
 	}
-	.tabs-prev{
+	.tabs-prev {
 		margin-left:15px;
 	}
-	.tabs-content-pad{
+	.tabs-content-pad {
 		padding:10px;
 	}
-	.tabs-roller{
+	.tabs-roller {
 		background-color:white;
 		@include opacity(0.2);
 		@include border-radius(3px 0 0 3px);
@@ -371,7 +371,7 @@
 
 
 /* style 4 */
-.tabs-style-4{
+.tabs-style-4 {
     padding:0;
 	.tabs {
 		font-weight:700;
@@ -401,7 +401,7 @@
 			&.tabs-toggle {
 				margin-top:3px;
 				@include inline-block;
-				a{
+				a {
 					font-size:100%;
 					width:auto!important;
 					color:#000!important;
@@ -415,7 +415,7 @@
 		border:none;
 		margin:0;
 		padding:0;
-		img{
+		img {
 			display:block;
 			margin-bottom:0;
 		}
@@ -423,54 +423,51 @@
 }
 
 .wb-sup-def {
-	.tabs-style-4{
+	.tabs-style-4 {
 		padding:0;
 	}
-	.tabs{
+	.tabs {
 		margin-left:-1px;
 		padding:0;
-		li{
+		li {
 			padding-left:0;
 			margin-left:0;
-			a:visited{
+			a:visited {
 				color:#FFF;
 			}
 		}
-		a.active, a.active:hover{
+		a.active, a.active:hover {
 			color:#000!important;
 		}
 	}
-	.tabs-toggle{
+	.tabs-toggle {
 		margin-left:2px!important;
 	}
 }
 
 
 /* style 5 */
-.tabs-style-5{
+.tabs-style-5 {
     padding:0;
-	.tabs{
+	.tabs {
 		border:none;
 		top:3px;
-		li{
-			display:none!important;
-			a{
-				display:none!important;
-			}
-			&.tabs-toggle{
+		li {
+			display:none;
+			&.tabs-toggle {
 				@include inline-block;
-				a{
-					display:block!important;
-					width:auto!important;
+				a {
+					display:block;
+					width:auto;
 				}
 			}
 		}
 	}
-	.tabs-panel{
+	.tabs-panel {
 		border:none;
 		margin:0;
 		padding:0;
-		img{
+		img {
 			display:block;
 			margin-bottom:0;
 		}
@@ -549,12 +546,12 @@
 }
 
 .wb-sup-def {
-	.tabs-style-5{
+	.tabs-style-5 {
 		padding:0;
-		.tabs{
+		.tabs {
 			margin-bottom:1px;
 		}
-		.tabs-toggle{
+		.tabs-toggle {
 			margin-left:9px!important;
 		}
 	}

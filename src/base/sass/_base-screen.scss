@@ -2,22 +2,22 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-a:active,a:focus{
+a:active,a:focus {
 	cursor:auto;
 }
 
-abbr,acronym{
+abbr,acronym {
 	cursor:help;
 }
 
-#wb-skip{
+#wb-skip {
 	height:0;
 	float:left;
-	ul{
+	ul {
 		list-style-type:none;
 		margin-top:-1.8em;
 	}
-	li{
+	li {
 		position:absolute;
 		top:10px;
 		left:0;
@@ -25,14 +25,14 @@ abbr,acronym{
 		z-index:3;
 		text-align:center;
 	}
-	a{
+	a {
 		padding:5px;
-		&, &:link, &:visited{
+		&, &:link, &:visited {
 			color:#FFF;
 			background-color:transparent;
 			font-weight:700;
 		}
-		&:focus, &:active{
+		&:focus, &:active {
 			background-color:#000;
 			text-decoration:none;
 			color:#FFF;
@@ -40,10 +40,10 @@ abbr,acronym{
 	}
 }
 
-a.wb-linkdesc{
+a.wb-linkdesc {
 	position:relative;
 	z-index:24;
-	span span{
+	span span {
 		position:absolute;
 		clip:rect(1px, 1px, 1px, 1px);
 		height:1px !important;
@@ -52,11 +52,11 @@ a.wb-linkdesc{
 	}
 }
 
-a.wb-linkdesc:hover,a.wb-linkdesc:focus,a.wb-linkdesc:active{
+a.wb-linkdesc:hover,a.wb-linkdesc:focus,a.wb-linkdesc:active {
 	z-index:25;
 	outline:0;
 	text-decoration:none;
-	span span{
+	span span {
 		clip:auto;
 		height:auto !important;
 		width:auto !important;

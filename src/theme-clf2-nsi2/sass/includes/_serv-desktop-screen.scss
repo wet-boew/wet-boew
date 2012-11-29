@@ -2,31 +2,31 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-html{
+html {
 	overflow-y: scroll;
 }
-body{
+body {
 	margin:0;
 	padding:0;
 }
-#wb-body{
+#wb-body {
 	border: 10px solid #FFF;
 }
 
 /** Box model - centered **/
-#wb-main{
+#wb-main {
 	z-index:1;
 	display:inline;
 }
 
 /** Overflow restrict for background paintability control **/
-#wb-head, #wb-head-in, #cn-foot, #wb-foot-in{
+#wb-head, #wb-head-in, #cn-foot, #wb-foot-in {
 	overflow:hidden;
 }
-#wb-core-in{
+#wb-core-in {
 	overflow:visible !important;
 	position:relative;
-	&:after{
+	&:after {
 		content:".";
 		display:block;
 		height:0;

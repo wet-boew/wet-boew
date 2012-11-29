@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ie7 {
-	.tabs li{
+	.tabs li {
 		display:inline;
 		margin-right:5px;
 	}
@@ -11,57 +11,57 @@
 		@include opacity(0.1);;
 	}
 	.tabs-style-2 {
-		.tabs{
+		.tabs {
 			@include opacity(0.95);
-			li{
+			li {
 				margin-right:2px;
 				margin-bottom:-6px;
-				&.tabs-toggle{
+				&.tabs-toggle {
 					margin-right:-6px;
 				}
 			}
 		}
-		.tabs-roller{
+		.tabs-roller {
 			@include opacity(0.25);
 		}
 	}
 	.tabs-style-3 {
 		.tabs {
-			li{
-				a{
-					&.active, &:hover, &:focus, &:active{
+			li {
+				a {
+					&.active, &:hover, &:focus, &:active {
 						@include opacity(0.75);
 					}
 				}
-				&.tabs-toggle{
+				&.tabs-toggle {
 					width:29px;
 					margin-right:15px;
-					a{
-						&:hover, &:focus, &:active{
+					a {
+						&:hover, &:focus, &:active {
 							@include opaque;
 						}
-						&.tabs-start{
+						&.tabs-start {
 							margin-left:-15px;
 						}
 					}
 				}
 			}
 		}
-		.tabs-roller{
+		.tabs-roller {
 			@include opacity(0.2);
 		}
 	}
 	.tabs-style-4 .tabs li {
 		margin-top:-3px;
 	}
-	.tabs-style-4, .tabs-style-5{
+	.tabs-style-4, .tabs-style-5 {
 		.tabs li {
 			margin-right:0;
 			a {
 				margin-top:0;
 				top:0;
 			}
-			&.tabs-toggle{
+			&.tabs-toggle {
 				margin-top:0;
 				display:inline !important;
 			}

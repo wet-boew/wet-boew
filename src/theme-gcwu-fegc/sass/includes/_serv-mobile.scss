@@ -2,7 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#gcwu-sig{
+#gcwu-sig {
 	float:left;
 	margin:10px 0 10px 0;
 	img {
@@ -23,21 +23,21 @@
 	background: #FFF;
 }
 
-#wb-foot #gcwu-wmms img{
+#wb-foot #gcwu-wmms img {
 	display: block;
 	margin: 5px auto;
 }
 
-#wb-body{
+#wb-body {
 	background:#fff;
 }
 
 #gcwu-title {
-	a,a:visited,a:hover,a:focus,a:active{
+	a,a:visited,a:hover,a:focus,a:active {
 		color:#295376;
 		text-decoration:none;
 	}
-	a:hover,a:focus,a:active{
+	a:hover,a:focus,a:active {
 		text-decoration:underline;
 	}
 }
@@ -51,7 +51,7 @@
 	float: left;
 }
 
-#gcwu-title-left, .gcwu-alt-title-left{
+#gcwu-title-left, .gcwu-alt-title-left {
 	clear: left;
 }
 
@@ -71,28 +71,28 @@
 	display: none;
 }
 
-.ui-mobile #wb-foot{
+.ui-mobile #wb-foot {
 	display: block;
 }
 
 .no-js {
-	#gcwu-bar,#wb-foot{
+	#gcwu-bar,#wb-foot {
 		display: block;
 	}
-	#gcwu-sig{
+	#gcwu-sig {
 		margin-top:20px;
 	}
-	#gcwu-bar{
+	#gcwu-bar {
 		margin-bottom:5px;
 	}
 	#wb-foot {
 		padding: 0 5px;
 	}
-	#gcwu-sig,#gcwu-wmms,.gcwu-tc-left,.gcwu-tc-right{
+	#gcwu-sig,#gcwu-wmms,.gcwu-tc-left,.gcwu-tc-right {
 		width: 50%;
 		float: left;
 	}
-	.gcwu-tc-right{
+	.gcwu-tc-right {
 		text-align: right;
 	}
 }
