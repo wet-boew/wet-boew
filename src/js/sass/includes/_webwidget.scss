@@ -2,7 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-.no-js .wet-boew-webwidget li{
+.no-js .wet-boew-webwidget li {
 		display: block;
 }
 .wet-boew-webwidget {
@@ -13,34 +13,34 @@
 		image:url(../images/webfeeds/gradient.png)!important;
 	}
 	color:#555;
-	li.widget-state-loading{
+	li.widget-state-loading {
 		display:block!important;
 		margin:auto;
 		width:100%;
 		line-height:60px;
 		text-align:center;
-		img{
+		img {
 			margin:auto;
 			height:auto!important;
 			width:auto!important;
 			vertical-align:middle;
 		}
 	}
-	a{
+	a {
 		text-decoration:none;
 		font-weight:700;
 		background-image:none!important;
 		margin-right:auto!important;
 		@include inline-block;
-		&.widget-notice{
+		&.widget-notice {
 			text-decoration:underline;
 		}
 	}
-	.widget-container{
+	.widget-container {
 		border:1px solid #ccc;
 		padding:5px 10px 10px!important;
 	}
-	.widget-title, .widget-title-dark, .widget-title-blue, .widget-title-attention{
+	.widget-title, .widget-title-dark, .widget-title-blue, .widget-title-attention {
 		font-weight:700;
 		font-size:100%;
 		margin:4px 0 0 0;
@@ -49,19 +49,19 @@
 		border-top-left-radius: 4px; //TODO: Removed after Grids system is fixed
 		border-top-right-radius: 4px; //TODO: Removed after Grids system is fixed
 	}
-	.widget-title-dark{
+	.widget-title-dark {
 		background:#333!important;
 		color:#fff!important;
 	}
-	.widget-title-blue{
+	.widget-title-blue {
 		background:#176CA7!important;
 		color:#fff!important;
 	}
-	.widget-title-attention{
+	.widget-title-attention {
 		background:#781a21!important;
 		color:#fff!important;
 	}
-	ul{
+	ul {
 		list-style-type:none!important;
 		font-size:90%;
 		min-height:50px;
@@ -71,21 +71,21 @@
 		margin:0!important;
 		padding:5px 2px 2px 5px!important;
 	}
-	li{
+	li {
 		display: none;
 		margin:0!important;
 		padding:0 0 10px 0!important;
 		float:left; 
-		a img{
+		a img {
 			margin-right:5px;
 		}
 		
 	}
-	p.widget-lang{
+	p.widget-lang {
 		margin:0;
 	}
 	.widget-lang {
-		a,a:visited,a:hover{
+		a,a:visited,a:hover {
 			color:#000;
 			font-weight:400;
 			text-align:center;
@@ -98,35 +98,35 @@
 			padding:2px 4px!important;
 		}
 	}
-	.widget-add{
+	.widget-add {
 		background:#fff;
 		padding:0 10px;
-		p{
+		p {
 			text-align:center;
 			margin:0;
 		}
-		a{
+		a {
 			color:#333;
 			border:3px double #ccc;
 			border-top:0;
 			padding:3px;
 		}
 	}
-	.widget-add,.widget-lang{
-		a:hover{
+	.widget-add,.widget-lang {
+		a:hover {
 			color:#c00;
 		}
 	}
-	.widget-avatar{
+	.widget-avatar {
 		height:auto!important;
 		width:auto!important;
 		border:0;
 		vertical-align:middle;
 	}
-	.widget-datestamp{
+	.widget-datestamp {
 		font-size:90%;
 	}
-	.widget-datestamp-accent{
+	.widget-datestamp-accent {
 		font-size:90%;
 		color:#781a21!important;
 		white-space:nowrap;

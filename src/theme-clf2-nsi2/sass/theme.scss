@@ -16,7 +16,7 @@
 @import 'includes/default-desktop';
 /* -----Build Include Section End----- */
 
-@media screen{
+@media screen {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/base-screen';
 @import 'includes/default-screen';
@@ -26,7 +26,7 @@
 /* -----Build Include Section End----- */
 }
 
-@media print{
+@media print {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/base-print';
 @import 'includes/default-print';
