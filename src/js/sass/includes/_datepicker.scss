@@ -37,25 +37,25 @@
 	display: none;
 }
 
-.picker-toggle-visible, .picker-toggle-hidden{
+.picker-toggle-visible, .picker-toggle-hidden {
 	padding: 10px;
 }
 
-.picker-toggle-visible img, .picker-toggle-hidden img{
+.picker-toggle-visible img, .picker-toggle-hidden img {
 	margin: 0;
     vertical-align: middle;
 	width: auto;
 }
 
-.picker-toggle-visible a, .picker-toggle-hidden a{
+.picker-toggle-visible a, .picker-toggle-hidden a {
 	margin-left:0.5em;
 }
 
 div.cal-days {
-	a{
+	a {
 		text-decoration:underline;
 	}
-	ol.cal-day-list li.datepicker-selected a{
+	ol.cal-day-list li.datepicker-selected a {
 		background-color:#333;
 	}
 }

@@ -7,37 +7,37 @@
 		@include opacity(0.1);
 	}
 	.tabs-style-2 {
-		.tabs{
+		.tabs {
 			@include opacity(0.95);
-			li{
+			li {
 				margin-right:-2px !important;
-				&.tabs-toggle{
+				&.tabs-toggle {
 					margin-right:-5px !important;
 				}
 			}			
 		}
-		.tabs-roller{
+		.tabs-roller {
 			@include opacity(0.25);
 		}
 	}
 	.tabs-style-3 {
 		.tabs {
-			li{
-				a{
-					&.active, &:hover, &:focus, &:active{
+			li {
+				a {
+					&.active, &:hover, &:focus, &:active {
 						@include opacity(0.75);
 					}
 				}
-				&.tabs-toggle{
-					a{
-						&:hover, &:focus, &:active{
+				&.tabs-toggle {
+					a {
+						&:hover, &:focus, &:active {
 							@include opaque;
 						}
 					}
 				}
 			}
 		}
-		.tabs-roller{
+		.tabs-roller {
 			@include opacity(0.2);
 		}
 	}

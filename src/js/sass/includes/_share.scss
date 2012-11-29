@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ui-mobile {
-	div.wet-boew-share{
+	div.wet-boew-share {
 		width:100%;
 		max-width:39em;
 	}
@@ -25,7 +25,7 @@ div.wet-boew-share {
 
 .wet-boew-share {
 	text-align:right;
-	.bookmark_popup_text{
+	.bookmark_popup_text {
 		background:url(../images/share/icons-share.gif) left 3px no-repeat;
 		color:#3c6783;
 		cursor:pointer;
@@ -33,59 +33,59 @@ div.wet-boew-share {
 		letter-spacing:-.0004em;
 		@include inline-block;
 		padding:0 0 2px 18px;
-		&.alt{
+		&.alt {
 			margin:5px;
 		}
-		img{
+		img {
 			border:0;
 			vertical-align:bottom;
 		}
 	}
-	.bookmark_popup{
+	.bookmark_popup {
 		display:none;
 		position:absolute;
 		z-index:99;
 		background:#fff;
 		border:1px solid #000;
-		p{
+		p {
 			font-size:.85em;
 			margin:10px 0;
 		}
-		.popup_title,.popup_disclaimer{
+		.popup_title,.popup_disclaimer {
 			margin:0;
 			padding:5px;
 			text-align:left;
 		}
-		.popup_title{
+		.popup_title {
 			font-size:.95em;
 			font-weight:700;
 			background:#23447E;
 			color:#FFF;
 		}
-		.popup_disclaimer{
+		.popup_disclaimer {
 			font-size:.85em;
 			background:#efefef;
 			color:#555;
 		}
-		.bookmark_compact{
+		.bookmark_compact {
 			border:0;
 			margin-bottom:-3px;
 		}
 	}
-	.bookmark_list{
+	.bookmark_list {
 		@include inline-block;
 		list-style-type:none;
 		margin:0;
 		padding:5px 5px 0;
 		text-align:left;
-		li{
+		li {
 			float:left;
 			width:12em;
 			font-size:.85em;
 			margin:0;
 			padding:0 0 5px;
 		}
-		a{
+		a {
 			width:100%;
 			text-decoration:none;
 			cursor:pointer;
@@ -98,22 +98,22 @@ div.wet-boew-share {
 				padding-left: 0 !important;
 			}
 		}
-		span{
+		span {
 			@include inline-block;
 			width:16px;
 			height:16px;
-			&.bookmark_icons{
+			&.bookmark_icons {
 				background:url(../images/share/bookmarks.png) no-repeat center;
 			}
 		}
 	}
-	.no-icons .bookmark_list span.bookmark_icons{
+	.no-icons .bookmark_list span.bookmark_icons {
 		display: none;
 	}
-	.bookmark_compact{
+	.bookmark_compact {
 		background-color:#efefef;
 		border:1px outset;
-		li{
+		li {
 			width:16px;
 			height:16px;
 			background-color:transparent;
@@ -124,6 +124,6 @@ div.wet-boew-share {
 	}
 }
 
-html:first-child .bookmark_list{
+html:first-child .bookmark_list {
     font-size:80%;
 }

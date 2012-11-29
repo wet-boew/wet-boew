@@ -3,17 +3,17 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .intranet {
-	#gcwu-subsite{
+	#gcwu-subsite {
 		border-top:1px solid #CCC;
 		clear:both;
 		font-size:130%;
 		@include text-shadow(1px 1px 1px #333);
 		background:url(../images/gcwu-subsite-1.gif) repeat-x scroll 0 top #618000;
 	}
-	#wb-head-in{
+	#wb-head-in {
 		position:relative;
 	}
-	#gcwu-psnb{
+	#gcwu-psnb {
 		position:absolute;
 		margin-top:-64px;
 	}
@@ -21,7 +21,7 @@
 		min-height:32px;
 	}
 	#gcwu-subsite {
-		p{
+		p {
 			margin:0;
 			padding:5px 10px;
 		}
@@ -34,19 +34,19 @@
 			clear:both;
 		}
 	}
-	#gcwu-tctr{
+	#gcwu-tctr {
 		padding-top:20px;
 		clear:both;
 	}
 }
 
 .ui-mobile {
-	#gcwu-subsite a{
+	#gcwu-subsite a {
 		white-space:normal;
 	}
 }
 
-#gcwu-subsite{
+#gcwu-subsite {
 	font-size:130%;
 	@include text-shadow(1px 1px 1px #333);
 	p {
@@ -56,11 +56,11 @@
 }
 
 #gcwu-intranetnb {
-	li{
+	li {
 		display:none;
 		padding-bottom:5px;
 	}
-	#gcwu-gcnb-lang{
+	#gcwu-gcnb-lang {
 		float:right;
 	}
 }
@@ -71,15 +71,15 @@
 	margin-bottom:5px;
 	border-bottom:1px solid #eee;
 	@include box-shadow(inset 1px 1px 2px #999);
-	ul{
+	ul {
 		margin:0;
 		float:right;
 	}
-	li{
+	li {
 		float:left;
 		padding:5px 0 5px 5px;
 	}
-	a{
+	a {
 		background: none repeat scroll 0 0 #eee;
 		border: 1px solid #ddd;
 		@include border-radius(2px 2px 2px 2px);
@@ -89,7 +89,7 @@
 		padding: 3px;
 		text-decoration: none;
 	}
-	&:after{
+	&:after {
 		content:".";
 		display:block;
 		height:0;
@@ -98,6 +98,6 @@
 	}
 }
 
-#gcwu-psnb{
+#gcwu-psnb {
 	margin-top:-3px;
 }

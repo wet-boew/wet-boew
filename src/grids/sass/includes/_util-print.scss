@@ -3,108 +3,108 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 ol ol {
-	li{
+	li {
 		list-style-type:lower-alpha;
 	}
-	ol li{
+	ol li {
 		list-style-type:lower-roman;
 	}
 }
 
-.list-lower-alpha{
+.list-lower-alpha {
 	list-style-type:lower-alpha !important;
 }
 
-.list-lower-roman{
+.list-lower-roman {
 	list-style-type:lower-roman !important;
 }
 
-.list-bullet-none{
+.list-bullet-none {
 	list-style-type:none !important;
 }
 
-ol.list-numeric li{
+ol.list-numeric li {
 	list-style-type:decimal !important;
 }
 
-.list-upper-alpha{
+.list-upper-alpha {
 	list-style-type:upper-alpha !important;
 }
 
-.list-upper-roman{
+.list-upper-roman {
 	list-style-type:upper-roman !important;
 }
 
-.margin-bottom-none{
+.margin-bottom-none {
 	margin-bottom:0 !important;
 }
 
-.margin-bottom-small{
+.margin-bottom-small {
 	margin-bottom:2px !important;
 }
 
-.margin-bottom-medium{
+.margin-bottom-medium {
 	margin-bottom:10px !important;
 }
 
-.margin-bottom-large{
+.margin-bottom-large {
 	margin-bottom:20px !important;
 }
 
-.margin-bottom-xlarge{
+.margin-bottom-xlarge {
 	margin-bottom:57px !important;
 }
 
-.margin-top-none{
+.margin-top-none {
 	margin-top:0 !important;
 }
 
-.margin-top-small{
+.margin-top-small {
 	margin-top:2px !important;
 }
 
-.margin-top-medium{
+.margin-top-medium {
 	margin-top:10px !important;
 }
 
-.margin-top-large{
+.margin-top-large {
 	margin-top:20px !important;
 }
 
-.margin-top-xlarge{
+.margin-top-xlarge {
 	margin-top:57px !important;
 }
 
-.font-xsmall{
+.font-xsmall {
 	font-size:70% !important;
 }
 
-.font-small{
+.font-small {
 	font-size:85% !important;
 }
 
-.font-medium{
+.font-medium {
 	font-size:100% !important;
 }
 
-.font-large{
+.font-large {
 	font-size:120% !important;
 }
 
-.font-xlarge{
+.font-xlarge {
 	font-size:130% !important;
 }
 
-table{
+table {
 	border:1px solid #ccc;
 	border-collapse:collapse;
 }
 
-caption{
+caption {
 	text-align:left;
 }
 
-th{
+th {
 	background-color:#eee;
 	border:1px solid #ccc;
 	color:#555;
@@ -112,7 +112,7 @@ th{
 	padding:8px;
 }
 
-td{
+td {
 	border:1px solid #ccc;
 	vertical-align:top;
 	padding:5px 10px;

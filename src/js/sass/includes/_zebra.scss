@@ -3,10 +3,10 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 ol.wet-boew-zebra {
-	li, li li{
+	li, li li {
 		list-style-type:none;
 	}
-	li{
+	li {
 		margin-bottom:2px;
 		margin-right:0;
 		padding:10px;
@@ -14,7 +14,7 @@ ol.wet-boew-zebra {
 }
 
 table {
-	&.wet-boew-zebra,&.wet-boew-zebra table{
+	&.wet-boew-zebra,&.wet-boew-zebra table {
 		background-color:#fff;
 		border:1px solid #ccc;
 		border-collapse:collapse;
@@ -29,36 +29,36 @@ dl.wet-boew-zebra {
 	
 .wet-boew-zebra {
 	li, dt, dd {
-		&.list-odd{
+		&.list-odd {
 			background-color:#ddd;
 			border:1px solid #ccc;
 		}
-		&.list-even{
+		&.list-even {
 			background-color:#eee;
 			border:1px solid #ccc;
 		}
-		&.list-hover{
+		&.list-hover {
 			background-color:#f0fcff;
 		}
 	}
 	&.alterwg li, &.alterwg dt, &.alterwg dd {
-		&.list-odd{
+		&.list-odd {
 			background-color:#ddd;
 			border:none;
 		}
-		&.list-even{
+		&.list-even {
 			background-color:#fff;
 			border:none;
 		}
-		&.list-hover{
+		&.list-hover {
 			background-color:#f0fcff;
 		}
 	}
 	dt, dd {
-		&.list-odd{
+		&.list-odd {
 			border:none;
 		}
-		&.list-even{
+		&.list-even {
 			border:none;
 		}
 	}
@@ -76,22 +76,22 @@ dl.wet-boew-zebra {
 	&.nomargin {
 		margin: 0;
 	}
-	tr{
-		&.table-odd, &.table-even tr.table-odd{
-			/* td{ */
+	tr {
+		&.table-odd, &.table-even tr.table-odd {
+			/* td { */
 				background-color:#f0fcff;
 			/* } */
 		}
-		&.table-even, &.table-odd tr.table-even{
-			/* td{ */
+		&.table-even, &.table-odd tr.table-even {
+			/* td { */
 				background-color:transparent;
 			/* }*/
 		}
-		&.table-hover td{
+		&.table-hover td {
 			background-color:#eee;
 		}
 	}
-	th{
+	th {
 		background-color:#eee;
 		border:1px solid #ccc;
 		color:#333;
@@ -120,17 +120,17 @@ dl.wet-boew-zebra {
 		}
 		
 	}
-	td{
+	td {
 		border:1px solid #ccc;
 		vertical-align:top;
 		padding:5px 10px;
 		/* Advance Zebra */
-		&.table-keycell{
+		&.table-keycell {
 			font-style: italic;
 			padding: 8px;
 			background-color: #FFF;
 		}
-		&.table-desccell{
+		&.table-desccell {
 			font-style: italic;
 			padding: 8px;
 			background-color: #F4F4F4;
