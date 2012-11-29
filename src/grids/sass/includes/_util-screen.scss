@@ -208,7 +208,7 @@ p.align-right	 { margin-right: $margin-medium; }
 /*	 floating	 */
 img.float-left { margin-right: $margin-medium; }
 .float-left {float:left !important;}
-.float-right {float:right !important;/*background-color:#fff;*/} /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
+.float-right {float:right !important;} /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
 
 /*	 width	 */
 .width-100	{ width: 100% !important; }

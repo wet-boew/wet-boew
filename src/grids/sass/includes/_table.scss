@@ -56,7 +56,9 @@
 			border: 1px solid darken($light, 10%);
 			border-left: 0;
 			border-collapse: separate;
-			*border-collapse: collapse;
+			@if $legacy-support-for-ie7 {
+				*border-collapse: collapse;
+			}
 			@include border-radius(4px);
 		
 			thead, tbody {
