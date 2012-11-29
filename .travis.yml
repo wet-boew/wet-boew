@@ -1,10 +1,14 @@
 language: java
 
+env:
+  global:
+    - secure: "KukqyuTXSpgRqzqHZOKf4tyxDUIKaFjlvMPesLx1BsdXA69+XP2zEWU+J7WU\nL1LEVcfFGsEGb0wPxFaDRGUxxtP7u9nQQGTs2DRVTjr8OBBBB9vr/eLGdmL8\nzv3P13JrSAqYRiLwujcOatxsxCQd/F8cLT8op6dtjgag6GfxHV0="
+
 before_script: 
   - ant test -Djshint.failbuild=true
   
 script:
   - ant
-  
-after_script:
-  - ./build/travis_after_script.sh
+
+after_success:
+  - ./build/update_working_examples.sh
