@@ -16,6 +16,12 @@
 	@include inline-block(text-top);
 }
 
+.wb-icon-none {
+	background-image:none;
+	padding-left:0;
+	display:inline;
+}
+
 .wb-icon-alarm {
 	background-position:0 0;
 }
