@@ -795,7 +795,7 @@
 				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
 					menulink = menulinks[menulinkslen];
-					menulink.href = menulink.hasAttribute('href') ? menulink.getAttribute('href') : '#'; //Fix for empty A tags
+					menulink.href = menulink.getAttribute('href') !== '' ? menulink.getAttribute('href') : '#'; //Fix for empty A tags
 					if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
 						menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
 						menulinkurllen = menulinkurl.length;
@@ -824,6 +824,7 @@
 					menulinkslen = menulinks.length;
 					while (menulinkslen--) {
 						menulink = menulinks[menulinkslen];
+						menulink.href = menulink.getAttribute('href') !== '' ? menulink.getAttribute('href') : '#'; //Fix for empty A tags
 						if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
 							menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
 							menulinkurllen = menulinkurl.length;
