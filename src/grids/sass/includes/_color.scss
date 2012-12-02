@@ -35,7 +35,7 @@
 	.background-accent { @include colorize-base($accent, true); }
 	.background-white { background-color: $white !important; }
 	.background-light { background-color: $light !important; }
-	.background-medium { background-color: $medium !important; }
+	.background-medium { @include colorize-base($medium, true); }
 	.background-dark { @include colorize-base($dark, true); }
 }
 
