@@ -8,7 +8,7 @@
 
 Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities.  
 
-The toolkit complies with the new Standards on Web Accessibility and Web Usability; the toolkit will also ease compliance with the upcoming Standard Web Interoperability. WET is highly recommended for use on Government of Canada Websites.
+The toolkit complies with the new Standards on Web Accessibility and Web Usability; the toolkit will also ease compliance with the Standard on Web Interoperability. WET is highly recommended for use on Government of Canada Websites.
 
 ## Benefits
 
