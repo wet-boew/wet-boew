@@ -27,21 +27,6 @@
 // fixes
 
 
-/* ---- Links ---- */
-#wb-core {
-	a[href^='mailto:']{
-		@extend .wb-icon;
-		background-position:0 -950px; // slightly different than wb-icon-mail to match old layout
-		padding-left:19px;
-	}
-	a[href$='.psd'],a[href$='.zip'],a[href$='.doc'],a[href$='.pdf'],a[href$='.xls'],a[href$='.rtf'],a[href$='.pot'],a[href$='.ppt'],a[href$='.pps'],a[href$='.pptm'],a[href$='.docx'],a[href$='.xlsx'],a[href$='.pptx']{
-		background-image: url(../images/download.png);
-		background-repeat: no-repeat;
-		background-position: 0 0;
-		padding-left:19px;
-	}
-}
-
 /* ---- Headings ---- */
 #wb-main {
 	h1, h2, h3, h4, h5, h6 {
