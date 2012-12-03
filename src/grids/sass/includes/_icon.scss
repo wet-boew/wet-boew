@@ -5,7 +5,9 @@
 @import "compass/css3/inline-block";
 
 .wb-icon {
-	background:url(../images/icons.png) no-repeat top left;
+	background-image: url(../images/icons.png);
+	background-repeat: no-repeat;
+	background-position: top left;
 }
 
 [href^='mailto:']{
