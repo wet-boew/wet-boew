@@ -53,10 +53,10 @@ input[type="image"] + label, input[type="checkbox"] + label, input[type="radio"]
 }
 
 .border-top,.border-right,.border-bottom,.border-left,.border-all {
-	float:none;
+	float:none important;
 	display:block;
 	outline:none;
-	position:static;
+	position:static  important;
 	background:none;
 }
 
