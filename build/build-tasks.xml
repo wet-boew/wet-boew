@@ -242,10 +242,6 @@
 				<exclude name="**/*.min.js" />
 			</fileset>
 		</delete>
-		<fixcrlf srcdir="${build.dir}" fixlast="false" encoding="UTF-8" outputencoding="UTF-8">
-			<include name="**/*-min.css" />
-			<include name="**/*-min.js" />
-		</fixcrlf>
 	</target>
 	
 	<target name="-copy-css" depends="compile.sass">
