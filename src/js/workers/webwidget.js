@@ -78,7 +78,7 @@
 				});
 				for (i = 0; i < cap; i += 1) {
 					sorted_entry = sorted[i];
-					result += '<li><a href="' + sorted_entry.link + '">' + sorted_entry.title + '</a><span class="widget-datestamp">[' + pe.date.to_iso_format(sorted_entry.publishedDate, true) + ']</span></li>';
+					result += '<li><a href="' + sorted_entry.link + '">' + sorted_entry.title + '</a>' + (sorted_entry.publishedDate !== '' ?  '<span class="widget-datestamp">[' + pe.date.to_iso_format(sorted_entry.publishedDate, true) + ']</span>' : '') + '</li>';
 				}
 				return elm.empty().append(result);
 			},
