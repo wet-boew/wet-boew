@@ -195,7 +195,7 @@
 
 	<extension-point name="compress" depends="encode-images, -minify" />
 	
-	<extension-point name="finalize" depends="-distribute" />
+	<extension-point name="finalize"/>
 	
 	<extension-point name="test" />
 	
@@ -244,25 +244,12 @@
 		</delete>
 	</target>
 	
-	<target name="-copy-css" depends="compile.sass">
-		<replace dir="${build.dir}/css">
-			<include name="*.css"/>
-			<exclude name="*-min.css"/>
-			<exclude name="*.min.css"/>
-			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version}"/>
-		</replace>
-	</target>
+	<target name="-copy-css" depends="compile.sass"/>
 	
 	<target name="-copy-jquery-css">
 		<concat dest="${build.dir}/css/jquery.mobile.css">
 			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme.css"/>
 			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure.css"/>
-			<filterchain>
-				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
-					<token key="wet-boew-build.starttime" value="${wet-boew-build.starttime}"/>
-				</replacetokens>
-			</filterchain>
 		</concat>
 	</target>
 	
@@ -275,12 +262,6 @@
 				<exclude name="pe-ap.js"/> 
 			</fileset>
 		</copy>
-		<replace dir="${build.dir}">
-			<include name="**/*.js"/>
-			<exclude name="**/*-min.js"/>
-			<exclude name="**/*.min.js"/>
-			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version}"/>
-		</replace>
 	</target>
 	
 	<target name="-copy-images">
@@ -289,9 +270,14 @@
 		</copy>
 	</target>
 	
-	<target name="-distribute">
+	<target name="-distribute" extensionOf="finalize">
 		<move todir="${dist.dir}">
 			<fileset dir="${build.dir}"/>
 		</move>
+		<replace dir="${dist.dir}">
+			<include name="**/*.js"/>
+			<exclude name="**/*.css"/>
+			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version} Build: ${wet-boew-build.starttime}"/>
+		</replace>
 	</target>
 </project>
