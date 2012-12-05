@@ -24,12 +24,20 @@
 			@include single-transition(background-position, 0.1s, linear);
 		}
 		
-		&:disabled, &.button-disabled {
+		&.button-disabled {
 			background: none;
 			@include box-shadow(none);
 			cursor: default;
 			font-style: italic;
-			@include text-shadow(none);
+			@include text-shadow(none);	
+		}
+		
+		&:disabled {
+			background: none;
+			@include box-shadow(none);
+			cursor: default;
+			font-style: italic;
+			@include text-shadow(none);		
 		}
 	}
 	

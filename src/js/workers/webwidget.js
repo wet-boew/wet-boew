@@ -16,7 +16,7 @@
 		type: 'plugin',
 		twitter: {
 			_parse_entries: function (entries, limit, elm) {
-				var cap, i, result = '', sorted, sorted_entry;
+				var cap, i, result = '', sorted, sorted_entry, username, displayname, image;
 				cap = (limit > 0 && limit < entries.length ? limit : entries.length);
 				sorted = entries.sort(function (a, b) {
 					return pe.date.compare(b.created_at.replace('+0000 ', '') + ' GMT', a.created_at.replace('+0000 ', '') + ' GMT');
@@ -24,10 +24,15 @@
 				for (i = 0; i < cap; i += 1) {
 					sorted_entry = sorted[i];
 					if (sorted_entry.user !== undefined) {
-						result += '<li><a class="float-left" href="http://www.twitter.com/' + sorted_entry.user.screen_name + '"><img class="widget-avatar" src="' + sorted_entry.user.profile_image_url + '" alt="' + sorted_entry.user.name + '" /></a> ' + pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' + pe.dic.ago(sorted_entry.created_at) + '</span></li>';
+						username = sorted_entry.user.screen_name;
+						displayname = sorted_entry.user.name;
+						image = sorted_entry.user.profile_image_url;
 					} else {
-						result += '<li><a class="float-left" href="http://www.twitter.com/' + sorted_entry.from_user + '"><img class="widget-avatar" src="' + sorted_entry.profile_image_url + '" alt="' + sorted_entry.from_user_name + '" /></a> ' + pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' + pe.dic.ago(sorted_entry.created_at) + '</span></li>';
+						username = sorted_entry.from_user;
+						displayname = sorted_entry.from_user_name;
+						image = sorted_entry.profile_image_url;
 					}
+					result += '<li><a class="float-left" href="http://www.twitter.com/' + username + '"><img class="widget-avatar" src="' + image  + '" alt="' + displayname + '" /></a> ' + pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' +  pe.dic.ago(sorted_entry.created_at) + '</span></li>';
 				}
 				return elm.empty().append(result);
 			},
@@ -73,7 +78,7 @@
 				});
 				for (i = 0; i < cap; i += 1) {
 					sorted_entry = sorted[i];
-					result += '<li><a href="' + sorted_entry.link + '">' + sorted_entry.title + '</a><span class="widget-datestamp">[' + pe.date.to_iso_format(sorted_entry.publishedDate, true) + ']</span></li>';
+					result += '<li><a href="' + sorted_entry.link + '">' + sorted_entry.title + '</a>' + (sorted_entry.publishedDate !== '' ?  '<span class="widget-datestamp">[' + pe.date.to_iso_format(sorted_entry.publishedDate, true) + ']</span>' : '') + '</li>';
 				}
 				return elm.empty().append(result);
 			},
