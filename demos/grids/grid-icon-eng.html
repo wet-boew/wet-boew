@@ -100,7 +100,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!-- MainContentStart -->
 <h1 id="wb-cont">Icons</h1>
 
-<div class="wet-boew-prettify all-pre linenums">
+<div class="wet-boew-prettify all-pre">
 <div class="span-4 module-table-contents">
 <h2>Table of contents</h2>
 <ul>
@@ -118,166 +118,52 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <p>Since the  icons are CSS background images, they cannot have an <code>alt</code> attribute. Therefore, the icon must be accompanied by actual text to ensure that there is no loss of information for the visually impaired user. For example: </p>
 <pre>&lt;p&gt;&lt;span class=&quot;wb-icon-calendar&quot;&gt;&lt;/span&gt;&lt;a href=&quot;#&quot;&gt;View the events calendar&lt;/a&gt;&lt;/p&gt;</pre>
 <h2 id="icons">Icon options</h2>
+<h3>Removing icons</h3>
 
-<p>Some icons appear by default.  A link to a download product has this appearance <a href=".doc">Link to .doc file</a> and a link to a mailto: command has this appearance <a href="mailto:">email link</a>.  To remove this icon, apply the <code>wb-icon-none</code> CSS to the link.</p>
-<p>Default: <a href=".doc">Link to .doc file</a> or with <code>wb-icon-none</code> CSS: <a href=".doc" class="wb-icon-none">Link to .doc file</a>. </p>
-<div class="span-2">
-<h2 class="background-light">Time and place</h2>
-<ul class="list-bullet-none indent-none">
+
+<p>Icons on certain types of links appear by default. To remove this icon, apply the <code>wb-icon-none</code> CSS to the link.</p>
+<table class="table-accent span-6">
+   <caption>
+   Icons on links
+   </caption>
+   <thead>
+      <tr>
+         <th scope="col">Default</th>
+         <th scope="col">Remove icon</th>
+         <th scope="col">Remove icon and then add button</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td><a href=".doc">Link to download file (.doc, .zip etc)</a></td>
+         <td><a href=".doc" class="wb-icon-none">Link to download file (.doc, .zip etc)</a></td>
+         <td><a href=".doc" class="wb-icon-none button">Link to download file (.doc, .zip etc)</a></td>
+      </tr>
+      <tr>
+         <td><a href="mailto:">Link to a mailto: command</a></td>
+		 <td><a href="mailto:" class="wb-icon-none">Link to a mailto: command</a></td>
+		 <td><a href="mailto:" class="wb-icon-none button">Link to a mailto: command</a></td>
+      </tr>
+	</tbody>
+</table>
+
+
+
+<h3>Adding icons</h3>
+<p>Add an icon to any type of content</p>
+
+
+ 
+<ul class="list-bullet-none indent-none column-three">
 <li><span class="wb-icon-alarm"></span>wb-icon-alarm</li>
-
-
-<li><span class="wb-icon-calendar"></span>wb-icon-calendar</li>
-<li><span class="wb-icon-calendar-day"></span>wb-icon-calendar-day</li>
-<li><span class="wb-icon-calendar-list"></span>wb-icon-calendar-list</li>
-<li><span class="wb-icon-calendar-month"></span>wb-icon-calendar-month</li>
-<li><span class="wb-icon-clock"></span>wb-icon-clock</li>
-<li><span class="wb-icon-compass"></span>wb-icon-compass</li>
-
-
-<li><span class="wb-icon-direction"></span>wb-icon-direction</li>
-<li><span class="wb-icon-globe"></span>wb-icon-globe</li>
-
-<li><span class="wb-icon-home"></span>wb-icon-home</li>
-<li><span class="wb-icon-hourglass"></span>wb-icon-hourglass</li>
-<li><span class="wb-icon-mail"></span>wb-icon-mail</li>
-<li><span class="wb-icon-marker"></span>wb-icon-marker</li>
-<li><span class="wb-icon-user"></span>wb-icon-user</li>
-</ul>
-<h2 class="background-light">Navigation</h2>
-<ul class="list-bullet-none indent-none">
-
-<li><span class="wb-icon-compass"></span>wb-icon-compass</li>
-<li><span class="wb-icon-cone"></span>wb-icon-cone</li>
-<li><span class="wb-icon-construction"></span>wb-icon-construction</li>
-<li><span class="wb-icon-desktop"></span>wb-icon-desktop</li>
-
-<li><span class="wb-icon-direction"></span>wb-icon-direction</li>
-<li><span class="wb-icon-folder"></span>wb-icon-folder</li>
-<li><span class="wb-icon-folder-alt"></span>wb-icon-folder-alt</li>
-<li><span class="wb-icon-folder-open"></span>wb-icon-folder-open</li>
-<li><span class="wb-icon-light"></span>wb-icon-light</li>
-<li><span class="wb-icon-light-exclamation"></span>wb-icon-light-exclamation</li>
-<li><span class="wb-icon-light-green"></span>wb-icon-light-green</li>
-<li><span class="wb-icon-light-red"></span>wb-icon-light-red</li>
-<li><span class="wb-icon-light-yellow"></span>wb-icon-light-yellow</li>
-<li><span class="wb-icon-marker"></span>wb-icon-marker</li>
-<li><span class="wb-icon-nav"></span>wb-icon-nav</li>
-<li><span class="wb-icon-nav-alt"></span>wb-icon-nav-alt</li>
-<li><span class="wb-icon-nav-090"></span>wb-icon-nav-090</li>
-<li><span class="wb-icon-nav-090-alt"></span>wb-icon-nav-090-alt</li>
-<li><span class="wb-icon-nav-180"></span>wb-icon-nav-180</li>
-<li><span class="wb-icon-nav-180-alt"></span>wb-icon-nav-180-alt</li>
-<li><span class="wb-icon-nav-270"></span>wb-icon-nav-270</li>
-<li><span class="wb-icon-nav-270-alt"></span>wb-icon-nav-270-alt</li>
-<li><span class="wb-icon-sitemap"></span>wb-icon-sitemap</li>
-</ul>
-
-</div>
-
-<div class="span-2">
-<h2 class="background-light">Alerts</h2>
-<ul class="list-bullet-none indent-none">
-<li><span class="wb-icon-alarm"></span>wb-icon-alarm</li>
-<li><span class="wb-icon-bulb"></span>wb-icon-bulb</li>
-<li><span class="wb-icon-bulb-off"></span>wb-icon-bulb-off</li>
-<li><span class="wb-icon-clipboard-exclamation"></span>wb-icon-clipboard-exclamation</li>
-<li><span class="wb-icon-comment"></span>wb-icon-comment</li>
-<li><span class="wb-icon-cone"></span>wb-icon-cone</li>
-<li><span class="wb-icon-construction"></span>wb-icon-construction</li>
-
-<li><span class="wb-icon-direction"></span>wb-icon-direction</li>
-<li><span class="wb-icon-exclamation"></span>wb-icon-exclamation</li>
-<li><span class="wb-icon-exclamation-alt"></span>wb-icon-exclamation-alt</li>
-<li><span class="wb-icon-exclamation-alt2"></span>wb-icon-exclamation-alt2</li>
-<li><span class="wb-icon-gavel"></span>wb-icon-gavel</li>
-<li><span class="wb-icon-gear"></span>wb-icon-gear</li>
-<li><span class="wb-icon-hourglass"></span>wb-icon-hourglass</li>
-<li><span class="wb-icon-info"></span>wb-icon-info</li>
-<li><span class="wb-icon-info-alt"></span>wb-icon-info-alt</li>
-<li><span class="wb-icon-light"></span>wb-icon-light</li>
-<li><span class="wb-icon-light-exclamation"></span>wb-icon-light-exclamation</li>
-<li><span class="wb-icon-light-green"></span>wb-icon-light-green</li>
-<li><span class="wb-icon-light-red"></span>wb-icon-light-red</li>
-<li><span class="wb-icon-light-yellow"></span>wb-icon-light-yellow</li>
-<li><span class="wb-icon-lock"></span>wb-icon-lock</li>
-<li><span class="wb-icon-lock-unlock"></span>wb-icon-lock-unlock</li>
-<li><span class="wb-icon-magnifier"></span>wb-icon-magnifier</li>
-<li><span class="wb-icon-marker"></span>wb-icon-marker</li>
-<li><span class="wb-icon-megaphone"></span>wb-icon-megaphone</li>
-<li><span class="wb-icon-prohibit"></span>wb-icon-prohibit</li>
-<li><span class="wb-icon-question"></span>wb-icon-question</li>
-<li><span class="wb-icon-question-alt"></span>wb-icon-question-alt</li>
-<li><span class="wb-icon-safe"></span>wb-icon-safe</li>
-<li><span class="wb-icon-scale"></span>wb-icon-scale</li>
-<li><span class="wb-icon-tick"></span>wb-icon-tick</li>
-<li><span class="wb-icon-tick-alt"></span>wb-icon-tick-alt</li>
-<li><span class="wb-icon-tick-alt2"></span>wb-icon-tick-alt2</li>
-<li><span class="wb-icon-tool"></span>wb-icon-tool</li>
-<li><span class="wb-icon-toolbox"></span>wb-icon-toolbox</li>
-<li><span class="wb-icon-x"></span>wb-icon-x</li>
-<li><span class="wb-icon-x-alt"></span>wb-icon-x-alt</li>
-<li><span class="wb-icon-x-alt2"></span>wb-icon-x-alt2</li>
-</ul>
-<h2 class="background-light">Document products</h2>
-<ul class="list-bullet-none indent-none">
-  <li><span class="wb-icon-book"></span>wb-icon-book</li>
-<li><span class="wb-icon-book-alt"></span>wb-icon-book-alt</li>
-<li><span class="wb-icon-book-open"></span>wb-icon-book-open</li>
-<li><span class="wb-icon-box"></span>wb-icon-box</li>
-
-
-<li><span class="wb-icon-calculator"></span>wb-icon-calculator</li>
-<li><span class="wb-icon-calculator-arrow"></span>wb-icon-calculator-arrow</li>
-<li><span class="wb-icon-calculator-exclamation"></span>wb-icon-calculator-exclamation</li>
-<li><span class="wb-icon-calculator-minus"></span>wb-icon-calculator-minus</li>
-<li><span class="wb-icon-calculator-plus"></span>wb-icon-calculator-plus</li>
-<li><span class="wb-icon-chart"></span>wb-icon-chart</li>
-<li><span class="wb-icon-chart-down"></span>wb-icon-chart-down</li>
-<li><span class="wb-icon-chart-pie"></span>wb-icon-chart-pie</li>
-<li><span class="wb-icon-chart-up"></span>wb-icon-chart-up</li>
-<li><span class="wb-icon-paperclip"></span>wb-icon-clip</li>
-<li><span class="wb-icon-clipboard"></span>wb-icon-clipboard</li>
-<li><span class="wb-icon-clipboard-exclamation"></span>wb-icon-clipboard-exclamation</li>
-
-
-
-<li><span class="wb-icon-direction"></span>wb-icon-direction</li>
-<li><span class="wb-icon-disk"></span>wb-icon-disk</li>
-<li><span class="wb-icon-document"></span>wb-icon-document</li>
-
-<li><span class="wb-icon-envelope"></span>wb-icon-envelope</li>
-
-<li><span class="wb-icon-film"></span>wb-icon-film</li>
-<li><span class="wb-icon-folder"></span>wb-icon-folder</li>
-<li><span class="wb-icon-folder-alt"></span>wb-icon-folder-alt</li>
-<li><span class="wb-icon-folder-open"></span>wb-icon-folder-open</li>
-<li><span class="wb-icon-image"></span>wb-icon-image</li>
-<li><span class="wb-icon-mail"></span>wb-icon-mail</li>
-<li><span class="wb-icon-newspaper"></span>wb-icon-newspaper</li>
-<li><span class="wb-icon-note"></span>wb-icon-note</li>
-<li><span class="wb-icon-note-pencil"></span>wb-icon-note-pencil</li>
-<li><span class="wb-icon-paper"></span>wb-icon-paper</li>
-<li><span class="wb-icon-paper-pencil"></span>wb-icon-paper-pencil</li>
-
-<li><span class="wb-icon-pencil"></span>wb-icon-pencil</li>
-<li><span class="wb-icon-picture"></span>wb-icon-picture</li>
-<li><span class="wb-icon-printer"></span>wb-icon-printer</li>
-
-
-<li><span class="wb-icon-table"></span>wb-icon-table</li>
-</ul>
-
-</div>
-<div class="border-left">
-<div class="span-2">
-  <h2 class="background-accent">All icons</h2>
-<ul class="list-bullet-none indent-none">
-<li><span class="wb-icon-alarm"></span>wb-icon-alarm</li>
+<li><span class="wb-icon-balance"></span>wb-icon-balance</li>
+<li><span class="wb-icon-bank"></span>wb-icon-bank</li>
 <li><span class="wb-icon-book"></span>wb-icon-book</li>
+<li><span class="wb-icon-book-address"></span>wb-icon-book-address</li>
 <li><span class="wb-icon-book-alt"></span>wb-icon-book-alt</li>
 <li><span class="wb-icon-book-open"></span>wb-icon-book-open</li>
 <li><span class="wb-icon-box"></span>wb-icon-box</li>
+<li><span class="wb-icon-briefcase"></span>wb-icon-briefcase</li>
 <li><span class="wb-icon-bulb"></span>wb-icon-bulb</li>
 <li><span class="wb-icon-bulb-off"></span>wb-icon-bulb-off</li>
 
@@ -292,11 +178,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li><span class="wb-icon-calendar-day"></span>wb-icon-calendar-day</li>
 <li><span class="wb-icon-calendar-list"></span>wb-icon-calendar-list</li>
 <li><span class="wb-icon-calendar-month"></span>wb-icon-calendar-month</li>
+<li><span class="wb-icon-car"></span>wb-icon-car</li>
 <li><span class="wb-icon-chart"></span>wb-icon-chart</li>
 <li><span class="wb-icon-chart-down"></span>wb-icon-chart-down</li>
 <li><span class="wb-icon-chart-pie"></span>wb-icon-chart-pie</li>
 <li><span class="wb-icon-chart-up"></span>wb-icon-chart-up</li>
-<li><span class="wb-icon-paperclip"></span>wb-icon-clip</li>
+<li><span class="wb-icon-clip"></span>wb-icon-clip</li>
 <li><span class="wb-icon-clipboard"></span>wb-icon-clipboard</li>
 <li><span class="wb-icon-clipboard-exclamation"></span>wb-icon-clipboard-exclamation</li>
 <li><span class="wb-icon-clock"></span>wb-icon-clock</li>
@@ -304,13 +191,25 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li><span class="wb-icon-compass"></span>wb-icon-compass</li>
 <li><span class="wb-icon-cone"></span>wb-icon-cone</li>
 <li><span class="wb-icon-construction"></span>wb-icon-construction</li>
+<li><span class="wb-icon-currency"></span>wb-icon-currency</li>
 <li><span class="wb-icon-desktop"></span>wb-icon-desktop</li>
 
 <li><span class="wb-icon-direction"></span>wb-icon-direction</li>
 <li><span class="wb-icon-disk"></span>wb-icon-disk</li>
 <li><span class="wb-icon-document"></span>wb-icon-document</li>
 
+<li><span class="wb-icon-documents"></span>wb-icon-documents</li>
+<li><span class="wb-icon-document-zip"></span>wb-icon-document-zip</li>
+<li><span class="wb-icon-door"></span>wb-icon-door</li>
+<li><span class="wb-icon-door-open"></span>wb-icon-door-open</li>
+<li><span class="wb-icon-drive-arrow"></span>wb-icon-drive-arrow</li>
+<li><span class="wb-icon-drive-download"></span>wb-icon-drive-download</li>
+<li><span class="wb-icon-drive-network"></span>wb-icon-drive-network</li>
+<li><span class="wb-icon-drive-upload"></span>wb-icon-drive-upload</li>
 <li><span class="wb-icon-envelope"></span>wb-icon-envelope</li>
+<li><span class="wb-icon-envelope-arrow"></span>wb-icon-envelope-arrow</li>
+<li><span class="wb-icon-envelope-share"></span>wb-icon-envelope-share</li>
+<li><span class="wb-icon-eraser"></span>wb-icon-eraser</li>
 <li><span class="wb-icon-exclamation"></span>wb-icon-exclamation</li>
 <li><span class="wb-icon-exclamation-alt"></span>wb-icon-exclamation-alt</li>
 <li><span class="wb-icon-exclamation-alt2"></span>wb-icon-exclamation-alt2</li>
@@ -328,6 +227,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li><span class="wb-icon-image"></span>wb-icon-image</li>
 <li><span class="wb-icon-info"></span>wb-icon-info</li>
 <li><span class="wb-icon-info-alt"></span>wb-icon-info-alt</li>
+<li><span class="wb-icon-key"></span>wb-icon-key</li>
 <li><span class="wb-icon-light"></span>wb-icon-light</li>
 <li><span class="wb-icon-light-exclamation"></span>wb-icon-light-exclamation</li>
 <li><span class="wb-icon-light-green"></span>wb-icon-light-green</li>
@@ -335,10 +235,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li><span class="wb-icon-light-yellow"></span>wb-icon-light-yellow</li>
 <li><span class="wb-icon-lock"></span>wb-icon-lock</li>
 <li><span class="wb-icon-lock-unlock"></span>wb-icon-lock-unlock</li>
+<li><span class="wb-icon-luggage"></span>wb-icon-luggage</li>
+<li><span class="wb-icon-magnet"></span>wb-icon-magnet</li>
 <li><span class="wb-icon-magnifier"></span>wb-icon-magnifier</li>
 <li><span class="wb-icon-mail"></span>wb-icon-mail</li>
+<li><span class="wb-icon-mail-open"></span>wb-icon-mail-open</li>
 <li><span class="wb-icon-marker"></span>wb-icon-marker</li>
 <li><span class="wb-icon-megaphone"></span>wb-icon-megaphone</li>
+<li><span class="wb-icon-microphone"></span>wb-icon-microphone</li>
 <li><span class="wb-icon-monitor"></span>wb-icon-monitor</li>
 <li><span class="wb-icon-nav"></span>wb-icon-nav</li>
 <li><span class="wb-icon-nav-alt"></span>wb-icon-nav-alt</li>
@@ -353,33 +257,55 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li><span class="wb-icon-note-pencil"></span>wb-icon-note-pencil</li>
 <li><span class="wb-icon-paper"></span>wb-icon-paper</li>
 <li><span class="wb-icon-paper-pencil"></span>wb-icon-paper-pencil</li>
-
+<li><span class="wb-icon-paper-share"></span>wb-icon-paper-share</li>
 <li><span class="wb-icon-pencil"></span>wb-icon-pencil</li>
 <li><span class="wb-icon-picture"></span>wb-icon-picture</li>
 <li><span class="wb-icon-printer"></span>wb-icon-printer</li>
 <li><span class="wb-icon-prohibit"></span>wb-icon-prohibit</li>
 <li><span class="wb-icon-question"></span>wb-icon-question</li>
 <li><span class="wb-icon-question-alt"></span>wb-icon-question-alt</li>
+<li><span class="wb-icon-report"></span>wb-icon-report</li>
+<li><span class="wb-icon-report-pencil"></span>wb-icon-report-pencil</li>
+<li><span class="wb-icon-reports"></span>wb-icon-reports</li>
 <li><span class="wb-icon-rss"></span>wb-icon-rss</li>
 <li><span class="wb-icon-safe"></span>wb-icon-safe</li>
 <li><span class="wb-icon-scale"></span>wb-icon-scale</li>
+<li><span class="wb-icon-server"></span>wb-icon-server</li>
+<li><span class="wb-icon-server-network"></span>wb-icon-server-network</li>
+<li><span class="wb-icon-service-bell"></span>wb-icon-service-bell</li>
 <li><span class="wb-icon-sitemap"></span>wb-icon-sitemap</li>
 
 
 <li><span class="wb-icon-table"></span>wb-icon-table</li>
+<li><span class="wb-icon-target"></span>wb-icon-target</li>
+<li><span class="wb-icon-telephone"></span>wb-icon-telephone</li>
+<li><span class="wb-icon-telephone-fax"></span>wb-icon-telephone-fax</li>
+<li><span class="wb-icon-thermometer"></span>wb-icon-thermometer</li>
+<li><span class="wb-icon-thermometer-high"></span>wb-icon-thermometer-high</li>
+<li><span class="wb-icon-thermometer-low"></span>wb-icon-thermometer-low</li>
 <li><span class="wb-icon-tick"></span>wb-icon-tick</li>
 <li><span class="wb-icon-tick-alt"></span>wb-icon-tick-alt</li>
 <li><span class="wb-icon-tick-alt2"></span>wb-icon-tick-alt2</li>
 <li><span class="wb-icon-tool"></span>wb-icon-tool</li>
 <li><span class="wb-icon-toolbox"></span>wb-icon-toolbox</li>
+<li><span class="wb-icon-tshirt"></span>wb-icon-tshirt</li>
+<li><span class="wb-icon-usb"></span>wb-icon-usb</li>
+<li><span class="wb-icon-usb-arrow"></span>wb-icon-usb-arrow</li>
+<li><span class="wb-icon-usb-logo"></span>wb-icon-usb-logo</li>
 <li><span class="wb-icon-user"></span>wb-icon-user</li>
+<li><span class="wb-icon-users"></span>wb-icon-users</li>
+<li><span class="wb-icon-weather-cloud"></span>wb-icon-weather-cloud</li>
+<li><span class="wb-icon-weather-lightning"></span>wb-icon-weather-lightning</li>
+<li><span class="wb-icon-weather-rain"></span>wb-icon-weather-rain</li>
+<li><span class="wb-icon-weather-snow"></span>wb-icon-weather-snow</li>
+<li><span class="wb-icon-weather-sun"></span>wb-icon-weather-sun</li>
+<li><span class="wb-icon-weather-sun-cloud"></span>wb-icon-weather-sun-cloud</li>
 <li><span class="wb-icon-x"></span>wb-icon-x</li>
 <li><span class="wb-icon-x-alt"></span>wb-icon-x-alt</li>
 <li><span class="wb-icon-x-alt2"></span>wb-icon-x-alt2</li>
 </ul>
-</div>
-</div>
-<div class="clear"></div>
+
+
 </div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
