@@ -43,8 +43,8 @@
 
 	.module {
 		@include module-colorize;
-		outline: 1px solid darken($light, 10%);
-		margin-top: 2px;
+		border: 1px solid darken($light, 10%);
+		margin-top: 1px;
 		margin-bottom: 3px;
 		padding: 1px 0;
 		p, h2, h3, h4, h5, h6, blockquote, > span {
