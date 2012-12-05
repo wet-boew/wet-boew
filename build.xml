@@ -3,7 +3,6 @@
 	<description>Web Experience Toolkit</description>
 
 	<property name="src.dir" value="src"/>
-	<property name="build.dir" value="build"/>
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"/>
 
