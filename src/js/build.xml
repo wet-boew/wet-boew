@@ -10,7 +10,7 @@
 	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-build-pe,-copy-binaries"/>
 	
 	<target name="-copy-binaries">
-		<copy todir="${build.dir}">  
+		<copy todir="${dist.dir}">  
 			<fileset dir="${src.dir}">
 				<include name="binary/**"/>
 			</fileset>
@@ -19,7 +19,7 @@
 
 	<!-- Build JS Tasks -->
 	<target name="-build-pe" depends="-get-languages, -get-validation-languages">
-		<concat dest="${build.dir}/pe-ap.js" fixlastline="yes">
+		<concat dest="${dist.dir}/pe-ap.js" fixlastline="yes">
 			<file file="${src.dir}/pe-ap.js"/>
 			<fileset dir="${src.dir}/workers" includes="**/**.js" />
 			<filterchain>
@@ -55,6 +55,6 @@
 	
 	<target name="fix-spanish-character" extensionOf="compress" depends="-minify">
 		<!-- Hack to fix http://yuilibrary.com/projects/yuicompressor/ticket/2528132 -->
-		<replace file="${build.dir}/i18n/es-min.js" encoding="UTF-8" token="�?" value="Í" />
+		<replace file="${dist.dir}/i18n/es-min.js" encoding="UTF-8" token="�?" value="Í" />
 	</target>
 </project>

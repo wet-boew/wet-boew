@@ -12,7 +12,7 @@
 	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-copy-jquery-css,-copy-gcwu-images"/>
 	
 	<target name="-copy-gcwu-images" extensionOf="prepare-files">
-		<copy todir="${build.dir}/images">
+		<copy todir="${dist.dir}/images">
 			<fileset dir="${src.dir}/../theme-gcwu-fegc/images"/>
 		</copy>
 	</target>
