@@ -93,7 +93,7 @@
 			<arg path="${lib.dir}/vendors-${jruby.depends}/gems/"/>
 			<arg value="${command}"/>
 			<arg path="${src.dir}"/>
-			<arg value="${build.dir}/css"/>
+			<arg value="${dist.dir}/css"/>
 		</java>
 	</target>
 	
@@ -107,7 +107,7 @@
 	
 	<target name="-jshint">
 		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false" jshintSrc="${lib.dir}/jshint.js">
-			<report type="xml" destfile="${build.dir}/jshint.out.xml" />
+			<report type="xml" destfile="${src.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
 			<exclude name="jquerymobile/jquery.mobile.js"/>
@@ -142,7 +142,7 @@
 
 	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="prepare-files">
 		<apply executable="java" failonerror="false" parallel="false">
-			<fileset dir="${build.dir}/css">
+			<fileset dir="${dist.dir}/css">
 				<include name="*.css"/>
 				<exclude name="jquery.mobile.css"/>
 				<exclude name="*.min.css"/>
@@ -161,8 +161,8 @@
 	</target>
 	
 	<target name="csslint-report" description="Produceds CSSLint XML report in the build directory for selected project" depends="prepare-files">
-		<apply executable="java" failonerror="false" parallel="true" output="${build.dir}/csslint.out.xml">
-			<fileset dir="${build.dir}/css">
+		<apply executable="java" failonerror="false" parallel="true" output="${src.dir}/csslint.out.xml">
+			<fileset dir="${dist.dir}/css">
 				<include name="*.css"/>
 				<exclude name="jquery.mobile.css"/>
 				<exclude name="*.min.css"/>
@@ -181,7 +181,6 @@
 	</target>
   
 	<target name="clean">
-		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
 	</target>
 	
@@ -202,10 +201,10 @@
 	<target name="lint" extensionOf="test" depends="-jshint, csslint"/>
 	
 	<target name="-base64-encode">
-		<property name="image.dir" location="${build.dir}/images"/>
+		<property name="image.dir" location="${dist.dir}/images"/>
 
 		<cssurlembed skipMissing="true" root="${image.dir}">
-			<fileset dir="${build.dir}/css">
+			<fileset dir="${dist.dir}/css">
 				<include name="*.css"/>
 				<exclude name="*ie.css"/>
 				<!-- Because of themometer images -->
@@ -217,14 +216,14 @@
 	<target name="-base64-encode-jquery">
 		<property name="jquerymobile.dir" location="${src.dir}/jquerymobile"/>
 		<cssurlembed skipMissing="false" root="${jquerymobile.dir}">
-			<fileset dir="${build.dir}/css">
+			<fileset dir="${dist.dir}/css">
 				<include name="jquery.mobile.css"/>
 			</fileset>
 		</cssurlembed>
 	</target>
 	
 	<target name="-minify">
-		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${build.dir}" toDir="${build.dir}" charset="utf-8">
+		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${dist.dir}" toDir="${dist.dir}" charset="utf-8">
 			<include name="**/*.css" />
 			<include name="**/*.js" />
 			<exclude name="**/*-min.css" />
@@ -233,7 +232,7 @@
 			<exclude name="**/*.min.js" />
 		</yui-compressor>
 		<delete>
-			<fileset dir="${build.dir}">
+			<fileset dir="${dist.dir}">
 				<include name="**/*.css" />
 				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
@@ -247,15 +246,15 @@
 	<target name="-copy-css" depends="compile.sass"/>
 	
 	<target name="-copy-jquery-css">
-		<concat dest="${build.dir}/css/jquery.mobile.css">
+		<concat dest="${dist.dir}/css/jquery.mobile.css">
 			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme.css"/>
 			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure.css"/>
 		</concat>
 	</target>
 	
-	<target name="-copy-js" depends="">
+	<target name="-copy-js">
 		<fixcrlf srcdir="${src.dir}" includes="**/*.js" encoding="UTF-8" outputencoding="UTF-8" tab="add" tablength="4" fixlast="false"/>
-		<copy todir="${build.dir}" encoding="UTF-8">
+		<copy todir="${dist.dir}" encoding="UTF-8">
 			<fileset dir="${src.dir}">
 				<include name="**/*.js"/>
 				<exclude name="workers/**"/> 
@@ -265,15 +264,12 @@
 	</target>
 	
 	<target name="-copy-images">
-		<copy todir="${build.dir}/images">
+		<copy todir="${dist.dir}/images">
 			<fileset dir="${src.dir}/images" />
 		</copy>
 	</target>
 	
-	<target name="-distribute" extensionOf="finalize">
-		<move todir="${dist.dir}">
-			<fileset dir="${build.dir}"/>
-		</move>
+	<target name="-update-headers" extensionOf="finalize">
 		<replace dir="${dist.dir}">
 			<include name="**/*.js"/>
 			<exclude name="**/*.css"/>
