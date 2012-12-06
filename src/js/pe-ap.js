@@ -1023,6 +1023,14 @@
 				} else {
 					$html.addClass('localstorage');
 				}
+
+				// sessionStorage
+				if (!window.sessionStorage) {
+					pe.add._load(lib + 'polyfills/sessionstorage' + pe.suffix + '.js', 'sessionstorage-loaded');
+					$html.addClass('polyfill-sessionstorage');
+				} else {
+					$html.addClass('sessionstorage');
+				}
 			},
 			/**
 			* Determines which polyfills need to be loaded then loads them if they don't have dependencies
