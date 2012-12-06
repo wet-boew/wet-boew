@@ -121,8 +121,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <h3>Removing icons</h3>
 
 
-<p>Icons on certain types of links appear by default. To remove this icon, apply the <code>wb-icon-none</code> CSS to the link.</p>
-<table class="table-accent span-6">
+<p>Icons on certain types of links appear by default. To remove this icon, apply the <code>wb-icon-none</code> CSS to the link and apply the <code>button</code> CSS and it will remove the icon automatically.</p>
+<table class="table-simplify span-6">
    <caption>
    Icons on links
    </caption>
@@ -130,19 +130,22 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
       <tr>
          <th scope="col">Default</th>
          <th scope="col">Remove icon</th>
-         <th scope="col">Remove icon and then add button</th>
+         <th scope="col">Remove icon and add button</th>
+		 <th scope="col">Keep icon with button</th>
       </tr>
 	</thead>
    <tbody>
       <tr>
-         <td><a href=".doc">Link to download file (.doc, .zip etc)</a></td>
-         <td><a href=".doc" class="wb-icon-none">Link to download file (.doc, .zip etc)</a></td>
-         <td><a href=".doc" class="wb-icon-none button">Link to download file (.doc, .zip etc)</a></td>
+         <td><a href=".doc">Download link</a></td>
+         <td><a href=".doc" class="wb-icon-none">Download link</a></td>
+         <td><a href=".doc" class="button">Download link</a></td>
+		 <td><a href=".doc" class="button"><span class="wb-icon-mail"></span>Download link</a></td>
       </tr>
       <tr>
-         <td><a href="mailto:">Link to a mailto: command</a></td>
-		 <td><a href="mailto:" class="wb-icon-none">Link to a mailto: command</a></td>
-		 <td><a href="mailto:" class="wb-icon-none button">Link to a mailto: command</a></td>
+         <td><a href="mailto:">mailto: link</a></td>
+		 <td><a href="mailto:" class="wb-icon-none">mailto: link</a></td>
+		 <td><a href="mailto:" class="button">mailto: link</a></td>
+		 <td><a href="mailto:" class="button"><span class="wb-icon-drive-download"></span>mailto: link</a></td>
       </tr>
 	</tbody>
 </table>
@@ -154,9 +157,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 
  
-<ul class="list-bullet-none indent-none column-three">
+<ul class="list-bullet-none indent-medium column-three">
 <li><span class="wb-icon-alarm"></span>wb-icon-alarm</li>
-<li><span class="wb-icon-balance"></span>wb-icon-balance</li>
 <li><span class="wb-icon-bank"></span>wb-icon-bank</li>
 <li><span class="wb-icon-book"></span>wb-icon-book</li>
 <li><span class="wb-icon-book-address"></span>wb-icon-book-address</li>

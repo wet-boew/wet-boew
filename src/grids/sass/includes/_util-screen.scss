@@ -371,3 +371,16 @@ table {
 		width: 100%;
 	}
 }
+
+.date-small {
+	height: 64px;
+	min-width: 40px;
+	.date-day {
+		height:30px;
+		p {
+			line-height:30px;
+			font-size:150%;
+		}
+	}
+}
+
