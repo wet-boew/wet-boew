@@ -96,7 +96,7 @@
 			}
 		},
 		_exec: function (elm, type) {
-			var $loading, $content, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results, finalize;
+			var $loading, $content, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results, finalize, defered;
 			limit = _pe.limit(elm);
 			feeds = elm.find('a').map(function () {
 				var a = this.href;
@@ -143,15 +143,16 @@
 				$content.find('li').show();
 			};
 
+			defered = new Array();
 			while (i >= 0) {
-				$.ajax({
+				defered[i] = $.ajax({
 					url: typeObj._json_request(feeds[i]),
 					dataType: 'json',
-					success: process_entries,
 					timeout: 1000
-				}).complete(finalize);
+				}).done(process_entries);
 				_results.push(i -= 1);
 			}
+			$.when.apply(null, defered).always(finalize);
 
 			$.extend({}, _results);
 			return;
