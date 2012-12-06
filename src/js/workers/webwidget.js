@@ -143,7 +143,7 @@
 				$content.find('li').show();
 			};
 
-			defered = new Array();
+			defered = [];
 			while (i >= 0) {
 				defered[i] = $.ajax({
 					url: typeObj._json_request(feeds[i]),
