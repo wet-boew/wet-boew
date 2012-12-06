@@ -2,7 +2,7 @@ language: java
 
 env:
   global:
-    - secure: "W05j2qTzzUgutdAOAfC829vLXzxHB5NE6boGcl+DTOSZLM1Bqb85xvYn7tHc\nr4XY+lSDhtLd/bL3dPEyjONCfVtt78KfsTYuaEmjuD6x1Qsp+ek+J+onWn0K\n8yyVmpBZIzNPioCZF9F8yCAjZMvPZDhdnrOAc4hewqEhzNfvW4A="
+    - secure: "Vd6aDdDAKL8SZQx8L/LeoDI4+I/Y6cjIoedk31MFCWn6NzAWNj08h6JfRT31\noCH7+jPjIVoakzdjFHBxiLskPfqPSZA4xkVCml3kMai9UqYortnRK8VcFg2W\nqi8XQHOCF7e5mOmHt4AycN/1kJHJZ39u1gdoXu1eO4ml62uKLxc="
 
 before_script: 
   - ant test -Djshint.failbuild=true
