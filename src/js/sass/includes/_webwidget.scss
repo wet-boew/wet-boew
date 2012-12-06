@@ -2,6 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+ 
+@import "compass/css3/border-radius";
+ 
 .no-js .wet-boew-webwidget li {
 		display: block;
 }
@@ -40,14 +43,12 @@
 		border:1px solid #ccc;
 		padding:10px!important;
 	}
-	h2, h3, h4, h5, h6 {
+	 h2, h3, h4, h5, h6 {
 		font-weight:700;
 		font-size:100%;
 		margin:4px 0 0 0;
 		padding:4px;
-		border-bottom:0;
-		border-top-left-radius: 0; 
-		border-top-right-radius: 0; 
+		@include border-radius(0); 
 	}
 	ul {
 		list-style-type:none!important;
@@ -63,8 +64,7 @@
 		display: none;
 		margin:0!important;
 		padding:0 0 10px 0!important;
-		float: none;
-		clear: both;
+		float:none;
 		a img {
 			margin-right:5px;
 		}

@@ -5,6 +5,7 @@
 @import "compass/css3/text-shadow";
 @import "compass/css3/box-sizing";
 @import "compass/typography/lists/bullets";
+@import "compass/css3/border-radius";
 
 @mixin modules {
 
@@ -50,6 +51,7 @@
 		p, h2, h3, h4, h5, h6, blockquote, > span {
 			margin-left: 10px;
 			margin-right: 10px;
+			@include border-radius(0);
 		}
 	}
 

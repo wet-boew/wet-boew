@@ -106,6 +106,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ul>
 	<li><a href="#badges">Badges</a></li>
 	<li><a href="#invisible">Invisible</a></li>
+	<li><a href="#display">Display options</a></li>
     <li><a href="#print">Print</a></li>
     <li><a href="#thermometer">Thermometer</a></li>
     <li><a href="#date">Date</a></li>
@@ -207,6 +208,35 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 
 <div class="clear"></div>
+<h2 id="display">Display options</h2>
+<p>Most styles are have their default display attribute as block, inline or inline-block.  Use the CSS <code>display-block</code>, <code>display-inline</code> or <code>display-inline-block</code> to override the default.</p>
+
+<div class="span-3">
+<p><a href="#embedded" class="button">default</a></p>
+<p><a href="#embedded" class="button display-block">display-block</a></p>
+</div>
+<details class="span-3">
+	<summary>View code</summary>
+	<pre>&lt;span-3&gt;
+  &lt;p&gt;
+    &lt;a href=&quot;#embedded&quot; class=&quot;button button-small&quot;&gt;button-small&lt;/a&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;a href=&quot;#embedded&quot; class=&quot;button button-small button-dark&quot;&gt;button-small&lt;/a&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</pre>
+</details>
+<div class="clear"></div>
+
+<div class="span-6">
+<details>
+    <summary>View code</summary>
+    <pre>&lt;a class=&quot;button button-small&quot; href=&quot;#embedded&quot;&gt;1&lt;span class=&quot;wb-invisible&quot;&gt;: Page 1 of search results&lt;/span&gt;&lt;/a&gt;</pre></details></div>
+
+
+<div class="clear"></div>
+
+
 
 <h2 id="print">Print</h2>
 
@@ -269,25 +299,25 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <p>13</p>
 </div>
 </div>
-<div class="date-container">
+<div class="date-container date-small">
 <div class="date-month">
-<p>January</p>
+<p><abbr title="January">Jan</abbr></p>
 </div>
 <div class="date-day">
 <p>14</p>
 </div>
 </div>
-<div class="date-container">
+<div class="date-container date-small">
 <div class="date-month">
-<p><a href="#">June</a></p>
+<p><a href="#"><abbr title="June">Jun</abbr></a></p>
 </div>
 <div class="date-day">
 <p>3</p>
 </div>
 </div>
-<div class="date-container">
+<div class="date-container date-small">
 <div class="date-month">
-<p>January</p>
+<p><abbr title="January">Jan</abbr></p>
 </div>
 <div class="date-day">
 <p>1</p>
@@ -303,7 +333,19 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   &lt;div class=&quot;date-day&quot;&gt;
    &lt;p&gt;11&lt;/p&gt;
 &lt;/div&gt;
-  &lt;/div&gt;</pre></details>
+  &lt;/div&gt;
+  
+  &lt;div class=&quot;date-container date-small&quot;&gt;
+  &lt;div class=&quot;date-month&quot;&gt;
+   &lt;p&gt;&lt;abbr=&quot;January&quot;&gt;Jan&lt;/abbr&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;date-day&quot;&gt;
+   &lt;p&gt;11&lt;/p&gt;
+&lt;/div&gt;
+  &lt;/div&gt;
+  
+  
+  </pre></details>
   <div class="clear"></div>
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
