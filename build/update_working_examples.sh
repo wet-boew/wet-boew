@@ -4,7 +4,8 @@ if [ "$TRAVIS_BRANCH" == "master" -a "$REPO" == "wet-boew/wet-boew" ]; then
 	git add -f dist/.
 	git stash
 	git fetch
-	git rebase --committer-date-is-author-date master gh-pages
+	git checkout gh-pages
+	git rebase --committer-date-is-author-date master
 	git rm -r dist/.
 	git stash pop
 	git add -f dist/.
