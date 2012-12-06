@@ -35,6 +35,11 @@
 			@include no-bullets;
 		}
 	}
+	
+	[class*="module-"] .background-light {
+		color:#222 !important;
+		text-shadow: 0 1px 1px #FFF;
+	}
 
 	.module {
 		@include module-colorize;

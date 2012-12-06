@@ -113,7 +113,7 @@
 				pe.document.on('pageinit', function () {
 					// On click, puts focus on and scrolls to the target of same page links
 					hlinks_same.off('click vclick').on('click vclick', function () {
-						$this = $('#' + pe.string.jqescape($(this).attr('href')));
+						$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
 						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if ($this.length > 0) {
 							$.mobile.silentScroll(pe.focus($this).offset().top);
@@ -122,7 +122,7 @@
 
 					// If the page URL includes a hash upon page load, then focus on and scroll to the target
 					if (pe.urlhash.length !== 0) {
-						target = pe.main.find('#' + pe.urlhash);
+						target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
 						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if (target.length > 0 && target.attr('data-role') !== 'page') {
 							setTimeout(function () {
@@ -135,8 +135,8 @@
 				pe.add._load([pe.add.liblocation + 'jquerymobile/jquery.mobile.min.js']);
 			} else {
 				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
-				hlinks_same.on("click vclick", function () {
-					$this = $('#' + pe.string.jqescape($(this).attr('href')));
+				hlinks_same.on('click vclick', function () {
+					$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
@@ -287,7 +287,7 @@
 				/**
 				* The port of the URL.
 				* @memberof pe.url
-				* @type {string} If no port is specified, this will return "80".
+				* @type {string} If no port is specified, this will return '80'.
 				*/
 				port: a.port === '0' ? '80' : a.port,
 				/**
@@ -691,7 +691,7 @@
 				if (timepresent) {
 					return date.getFullYear() + '-' + pe.string.pad(date.getMonth() + 1, 2, '0') + '-' + pe.string.pad(date.getDate(), 2, '0') + ' ' + pe.string.pad(date.getHours(), 2, '0') + ':' + pe.string.pad(date.getMinutes(), 2, '0');
 				}
-				return date.getFullYear() + '-' + pe.string.pad(date.getMonth() + 1, 2, "0") + '-' + pe.string.pad(date.getDate(), 2, '0');
+				return date.getFullYear() + '-' + pe.string.pad(date.getMonth() + 1, 2, '0') + '-' + pe.string.pad(date.getDate(), 2, '0');
 			},
 
 			from_iso_format: function (s) {
@@ -732,7 +732,7 @@
 				}
 			}
 
-			if ((((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== "false") || disable === "true") {
+			if ((((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== 'false') || disable === 'true') {
 				$html.addClass('no-js pe-disable');
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
@@ -743,7 +743,7 @@
 					tphp.appendChild(li); // Add link to re-enable PE
 				}
 				return true;
-			} else if (disable === "false" || disablels !== null) {
+			} else if (disable === 'false' || disablels !== null) {
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
 				}
@@ -766,7 +766,7 @@
 			* @memberof pe.menu
 			* @param {jQuery object | DOM object} menusrc Menu to apply the class to
 			* @param {jQuery object | DOM object} bc Breadcrumb trail
-			* @param {string} navclass Optional. Class to apply. Defaults to "nav-current".
+			* @param {string} navclass Optional. Class to apply. Defaults to 'nav-current'.
 			* @function
 			* @return {jQuery object} Link where match found
 			*/
@@ -795,6 +795,7 @@
 				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
 					menulink = menulinks[menulinkslen];
+					menulink.href = menulink.getAttribute('href') !== '' ? menulink.getAttribute('href') : '#'; //Fix for empty A tags
 					if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
 						menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
 						menulinkurllen = menulinkurl.length;
@@ -1021,14 +1022,6 @@
 					$html.addClass('polyfill-localstorage');
 				} else {
 					$html.addClass('localstorage');
-				}
-
-				// sessionStorage
-				if (!window.sessionStorage) {
-					pe.add._load(lib + 'polyfills/sessionstorage' + pe.suffix + '.js', 'sessionstorage-loaded');
-					$html.addClass('polyfill-sessionstorage');
-				} else {
-					$html.addClass('sessionstorage');
 				}
 			},
 			/**
@@ -1347,7 +1340,7 @@
 				} ()),
 				themecsslocation: (function () {
 					var themecss = (wet_boew_theme !== null ? $('head link[rel="stylesheet"][href*="' + wet_boew_theme.theme + '"]') : '');
-					return themecss.length > 0 ? themecss.attr('href').substr(0, themecss.attr('href').lastIndexOf("/") + 1) : 'theme-not-found/';
+					return themecss.length > 0 ? themecss.attr('href').substr(0, themecss.attr('href').lastIndexOf('/') + 1) : 'theme-not-found/';
 				} ()),
 				staged: [], // Tracks loaded dependencies and polyfills
 				/**
@@ -1374,7 +1367,7 @@
 							}
 							head = head[0]; // reassign from live node list ref to pure node ref -- avoids nasty IE bug where changes to DOM invalidate live node lists
 						}
-						var scriptElem = document.createElement("script"),
+						var scriptElem = document.createElement('script'),
 							scriptdone = false;
 						pe.add.set(scriptElem, 'async', 'async');
 						scriptElem.onload = scriptElem.onreadystatechange = function () {
@@ -1407,7 +1400,7 @@
 				*/
 				_load_arr: function (js, msg_all, payload) {
 					var js_loaded = 0, i, _len,
-						msg_single = msg_all + "-single";
+						msg_single = msg_all + '-single';
 					pe.document.on(msg_single, function () {
 						js_loaded += 1;
 						if (js_loaded === js.length) {
@@ -1473,7 +1466,7 @@
 					return c_d;
 				},
 				/**
-				* Adds a JavaScript link for i18n to the head. It picks the file in pe.add.liblocation + "i18n/" whose prefix matches the page language.
+				* Adds a JavaScript link for i18n to the head. It picks the file in pe.add.liblocation + 'i18n/' whose prefix matches the page language.
 				* @memberof pe.add
 				* @function
 				* @param {string} lang The two (iso 639-1) code of the page.
@@ -1521,7 +1514,7 @@
 				options = {};
 			}
 			if (typeof finished_event === 'undefined') {
-				finished_event = "wb-loaded";
+				finished_event = 'wb-loaded';
 			}
 			var i, _len,
 				settings = pe.settings,
@@ -1546,10 +1539,10 @@
 				}
 			}
 
-			// Push each of the "wet-boew-*" plugin calls into the pcalls array
+			// Push each of the 'wet-boew-*' plugin calls into the pcalls array
 			wetboew.each(function () {
 				var _node = $(this),
-					classes = _node.attr("class").split(" "),
+					classes = _node.attr('class').split(' '),
 					_pcalls = [];
 				for (i = 0, _len = classes.length; i !== _len; i += 1) {
 					if (classes[i].indexOf('wet-boew-') === 0) {

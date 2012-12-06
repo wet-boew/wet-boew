@@ -17,7 +17,9 @@
 	form {
 
 		padding-bottom: 1px;
-		*padding-bottom: $margin-medium;
+		@if $legacy-support-for-ie7 {
+			*padding-bottom: $margin-medium;
+		}
 		padding-top: 1px;
 		
 		legend {
@@ -55,8 +57,8 @@
 			}
 			
 			& legend {
-				margin-left: 10px;
-				margin-right: 10px;
+				padding-left: 10px;
+				padding-right: 10px;
 			}
 
 			#{headings(2,6)} {
@@ -126,7 +128,9 @@
 	label {
 		display: block;
 		margin-bottom: $spacing-small;
-		*min-width: 97%;
+		@if $legacy-support-for-ie7 {
+			*min-width: 97%;
+		}
 		
 		.form-inline & { @include inline-block; }
 		.form-horizontal & {
@@ -187,7 +191,9 @@
 			min-height: 18px;
 			line-height: 18px;
 			min-width: 16px;
-			*min-width: auto;
+			@if $legacy-support-for-ie7 {
+				*min-width: auto;
+			}
 			padding: 4px; 
 			text-align: center;
 			vertical-align: top;
