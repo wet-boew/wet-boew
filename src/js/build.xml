@@ -24,7 +24,6 @@
 			<fileset dir="${src.dir}/workers" includes="**/**.js" />
 			<filterchain>
 				<replacetokens>
-					<token key="wet-boew-build.version" value="${wet-boew-build.version}"/>
 					<token key="wet-boew-build.languagelist" value="${languagelist}"/>
 					<token key="wet-boew-build.validlanguagelist" value="${validlanguagelist}"/>
 					<token key="wet-boew-build.validlanguagemethod" value="${validlanguagemethod}"/>
