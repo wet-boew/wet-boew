@@ -273,7 +273,7 @@
 	<target name="-update-headers" extensionOf="finalize">
 		<replace dir="${dist.dir}">
 			<include name="**/*.js"/>
-			<exclude name="**/*.css"/>
+			<include name="**/*.css"/>
 			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version} Build: ${wet-boew-build.starttime}"/>
 		</replace>
 	</target>
