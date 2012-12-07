@@ -15,4 +15,4 @@ script:
   - ant
 
 after_success:
-  - ./build/update_working_examples.sh
+  - ./build/post_build.sh
