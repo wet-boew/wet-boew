@@ -95,6 +95,10 @@
 				'mixin': 'il y a [MIXIN] jours'
 			},
 			'%yesterday': 'hier',
+			
+			'%next': 'Suivant',
+			'%previous': 'Précédent',
+			
 			/* Archived Web page template */
 			'%archived-page': 'Cette page Web a été archivée dans le Web.',
 			/* Menu bar */
@@ -110,8 +114,6 @@
 			'%open': 'Ouvrir',
 			'%close': 'Fermer',
 			'%rewind': 'Reculer',
-			'%next': 'Prochaine',
-			'%previous': 'Précedent',
 			'%fast-forward': 'Avancer ',
 			'%mute': {
 				'enable': 'Activer le mode muet',

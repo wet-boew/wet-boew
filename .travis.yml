@@ -4,11 +4,15 @@ env:
   global:
     - secure: "Vd6aDdDAKL8SZQx8L/LeoDI4+I/Y6cjIoedk31MFCWn6NzAWNj08h6JfRT31\noCH7+jPjIVoakzdjFHBxiLskPfqPSZA4xkVCml3kMai9UqYortnRK8VcFg2W\nqi8XQHOCF7e5mOmHt4AycN/1kJHJZ39u1gdoXu1eO4ml62uKLxc="
 
+branches:
+  except:
+    - downloads
+
 before_script: 
   - ant test -Djshint.failbuild=true
-  
+
 script:
   - ant
 
 after_success:
-  - ./build/update_working_examples.sh
+  - ./build/post_build.sh

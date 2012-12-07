@@ -98,6 +98,10 @@
 				'mixin': '[MIXIN] days ago'
 			},
 			'%yesterday': 'yesterday',
+			
+			'%next': 'Next',
+			'%previous': 'Previous',
+			
 			/* Archived Web page template */
 			'%archived-page': 'This Web page has been archived on the Web.',
 			/* Menu bar */
@@ -113,8 +117,6 @@
 			'%open': 'Open',
 			'%close': 'Close',
 			'%rewind': 'Rewind',
-			'%next': 'Next',
-			'%previous': 'Previous',
 			'%fast-forward': 'Fast forward ',
 			'%mute': {
 				'enable': 'Mute',
