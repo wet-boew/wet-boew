@@ -4,7 +4,7 @@ number_to_keep=10 #Number of build to keep for
 branch='downloads' #branch that hosts the artifacts
 
 #Copy result of build in a temporary location
-cp dist $HOME/dist
+cp -r dist $HOME/dist
 
 git fetch
 
