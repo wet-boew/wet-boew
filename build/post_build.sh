@@ -1,12 +1,12 @@
 export REPO="$(pwd | sed s,^/home/travis/builds/,,g)"
 declare -a supported_branches=('master' 'v3.0') # List of branches to store build output for
 number_to_keep=10 #Number of build to keep for
-branch='downloads'
+branch='downloads' #branch that hosts the artifacts
 
 git fetch
 
-#Update working example
 if [ "$REPO" == "wet-boew/wet-boew" ]; then
+	#Update working example
 	if [ "$TRAVIS_BRANCH" == "master" ]; then
 		echo "Updating working examples..."
 
