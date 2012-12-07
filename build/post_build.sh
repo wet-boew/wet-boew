@@ -1,12 +1,15 @@
 export REPO="$(pwd | sed s,^/home/travis/builds/,,g)"
 declare -a supported_branches=('master' 'v3.0') # List of branches to store build output for
 number_to_keep=10 #Number of build to keep for
-branch='downloads'
+branch='downloads' #branch that hosts the artifacts
+
+#Copy result of build in a temporary location
+cp -r dist $HOME/dist
 
 git fetch
 
-#Update working example
 if [ "$REPO" == "wet-boew/wet-boew" ]; then
+	#Update working example
 	if [ "$TRAVIS_BRANCH" == "master" ]; then
 		echo "Updating working examples..."
 
@@ -55,12 +58,10 @@ if [ "$REPO" == "wet-boew/wet-boew" ]; then
 
 		#Add the latest build files
 		dest="$TRAVIS_BRANCH/latest-$TRAVIS_COMMIT"
-		git archive --format tar --prefix $dest/ --output "output.tar" gh-pages dist
-		tar xf "output.tar" --transform='s,/dist/,/,'
-		rm -r "output.tar" $dest/dist
+		mv $HOME/dist $dest
 
 		#Commit the result
-		git add -f .
+		git add -f $dest
 		git commit -m "Travis build $TRAVIS_JOB_ID pushed to $branch"
 		git push -fq https://${GH_TOKEN}@github.com/${REPO}.git $branch > /dev/null
 
