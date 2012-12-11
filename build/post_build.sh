@@ -46,8 +46,11 @@ if [ "$REPO" == "wet-boew/wet-boew" ]; then
 			ls -Qt | awk 'NR>'$number_to_keep | xargs -r rm -rf
 		fi
 
+		cd ..
+
 		#Add the latest build files
-		mv $HOME/dist $TRAVIS_COMMIT
+		dest="$TRAVIS_BRANCH/$TRAVIS_COMMIT"
+		mv $HOME/dist $dest
 
 		#Commit the result
 		git add -f $dest
