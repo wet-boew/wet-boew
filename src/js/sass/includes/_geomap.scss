@@ -136,14 +136,14 @@ div.olControlMousePosition {
 
 .olControlOverviewMapExtentRectangle {
     overflow:hidden;
-    background-image:url("img/blank.gif");
+    background-image:url(../images/geomap/blank.gif);
     cursor:move;
     border:2px dotted red;
 }
 .olControlOverviewMapRectReplacement {
     overflow:hidden;
     cursor:move;
-    background-image:url("img/overview_replacement.gif");
+    background-image:url(../images/geomap/overview_replacement.gif);
     background-repeat:no-repeat;
     background-position:center;
 }
@@ -171,7 +171,7 @@ div.olControlMousePosition {
 }
 
 .olControlNavigationHistory {
-   background-image:url("img/navigation_history.png");
+   background-image:url(../images/geomap/navigation_history.png);
    background-repeat:no-repeat;
    width: 24px;
    height:24px;
@@ -191,12 +191,12 @@ div.olControlMousePosition {
 }
 
 div.olControlSaveFeaturesItemActive {
-    background-image:url(img/save_features_on.png);
+    background-image:url(../images/geomap/save_features_on.png);
     background-repeat:no-repeat;
     background-position:0 1px;
 }
 div.olControlSaveFeaturesItemInactive {
-    background-image:url(img/save_features_off.png);
+    background-image:url(../images/geomap/save_features_off.png);
     background-repeat:no-repeat;
     background-position:0 1px;
 }
@@ -224,7 +224,7 @@ div.olControlSaveFeaturesItemInactive {
 }
 
 .olControlPanPanel div {
-    background-image:url(img/pan-panel.png);
+    background-image:url(../images/geomap/pan-panel.png);
     height:18px;
     width:18px;
     cursor:pointer;
@@ -259,7 +259,7 @@ div.olControlSaveFeaturesItemInactive {
 }
 
 .olControlZoomPanel div {
-    background-image:url(img/zoom-panel.png);
+    background-image:url(../images/geomap/zoom-panel.png);
     position:absolute;
     height:18px;
     width:18px;
@@ -293,7 +293,7 @@ div.olControlSaveFeaturesItemInactive {
 }
 
 .olPopupCloseBox {
-  background:url("img/close.gif") no-repeat;
+  background:url(../images/geomap/close.gif) no-repeat;
   cursor:pointer;
 }
 
@@ -410,7 +410,7 @@ span.olGoogleAttribution.hybrid a, span.olGoogleAttribution.satellite a {
 }
 .olControlNavToolbar div,
 .olControlEditingToolbar div {
-    background-image:url("img/editing_tool_bar.png");
+    background-image:url(../images/geomap/editing_tool_bar.png);
     background-repeat:no-repeat;
     margin:0 0 5px 5px;
     width:24px;

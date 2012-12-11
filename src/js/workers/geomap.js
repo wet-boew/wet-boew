@@ -340,11 +340,15 @@
 //			}
 			var opts,
 				overrides,
-				map;
+				map,
+				useScale,
+				useLayerSwitcher,
+				useMousePosition,
+				usePanZoomBar;
 
 			// Defaults
 			opts = {
-				//controls: [],
+				controls: [],
 				maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
 				maxResolution: 'auto',
 				projection: 'EPSG:3978', 
@@ -352,9 +356,9 @@
 				units: 'm',
 				displayProjection: new OpenLayers.Projection("EPSG:4269"),
 				numZoomLevels: 12,
-				autoUpdateSize: true
-			};
-			
+				autoUpdateSize: true,
+				theme: null
+			};			
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
 			overrides = {
@@ -383,8 +387,9 @@
 			
 			// Initiate the map
 			elm.attr('id', 'geomap');
-			elm.height(elm.width() * 0.8);
+			elm.height(elm.width() * 0.8);			
 			
+			OpenLayers.ImgPath = pe.add.liblocation + "/images/geomap/";
 			
 			map = new OpenLayers.Map('geomap', opts);
 			
@@ -392,30 +397,29 @@
 			map.addLayer(new OpenLayers.Layer.WMS("CBMT", 
 					"http://geogratis.gc.ca/maps/CBMT", 
 					{ layers: 'CBMT', version: '1.1.1', format: 'image/png' },
-					{ isBaseLayer: true, singleTile: true, ratio: 1.0} ));
+					{ isBaseLayer: true, singleTile: true, ratio: 1.0} ));			
 			
-			
-			//OpenLayers.Control.Navigation or OpenLayers.Control.TouchNavigation
-			//map.addControl(new OpenLayers.Control.Navigation());
+			//TODO: ensure WCAG compliance before enabling
 			//map.addControl(new OpenLayers.Control.MousePosition());
-			//map.addControl(new OpenLayers.Control.Scale());
-			//map.addControl(new OpenLayers.Control.PanZoomBar());
-			//map.addControl(new OpenLayers.Control.KeyboardDefaults());
+			//map.addControl(new OpenLayers.Control.Scale());			
+			
+			map.addControl(new OpenLayers.Control.LayerSwitcher());			
+			map.addControl(new OpenLayers.Control.PanZoomBar());			
+			map.addControl(new OpenLayers.Control.KeyboardDefaults());
+			
+			//TODO: enable TouchNavigation for mobile clients
+			map.addControl(new OpenLayers.Control.Navigation({zoomWheelEnabled : true}));
+			//map.addControl(new OpenLayers.Control.TouchNavigation();
+			
 			map.fractionalZoom = true;
 			
 			this.accessibilize();
 
-			map.zoomToMaxExtent();
-			
-//			$(window).resize(function(){
-//			  //elm.height(elm.width() * 0.8);
-//			  map.updateSize();
-//			});
+			map.zoomToMaxExtent();			
 			
 			// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
-			//$("#" + map.div.id).before((pe.language == "en") ? '<p><strong>Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.</p>' : '<p><strong>Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.</p>');
-			
-				
+			$("#" + map.div.id).before((_pe.language == "en") ? '<p><strong>Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.</p>' : '<p><strong>Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.</p>');
+							
 			return elm;
 		} // end of exec
 	};
