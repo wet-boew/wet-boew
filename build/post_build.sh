@@ -47,8 +47,7 @@ if [ "$REPO" == "wet-boew/wet-boew" ]; then
 		fi
 
 		#Add the latest build files
-		dest="$TRAVIS_BRANCH/$TRAVIS_COMMIT"
-		mv $HOME/dist $dest
+		mv $HOME/dist $TRAVIS_COMMIT
 
 		#Commit the result
 		git add -f $dest
