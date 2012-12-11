@@ -2,6 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+ 
+@import "compass/css3/border-radius";
+ 
 .no-js .wet-boew-webwidget li {
 		display: block;
 }
@@ -38,28 +41,14 @@
 	}
 	.widget-container {
 		border:1px solid #ccc;
-		padding:5px 10px 10px!important;
+		padding:10px!important;
 	}
-	.widget-title, .widget-title-dark, .widget-title-blue, .widget-title-attention {
+	 h2, h3, h4, h5, h6 {
 		font-weight:700;
 		font-size:100%;
 		margin:4px 0 0 0;
 		padding:4px;
-		border-bottom:0;
-		border-top-left-radius: 4px; //TODO: Removed after Grids system is fixed
-		border-top-right-radius: 4px; //TODO: Removed after Grids system is fixed
-	}
-	.widget-title-dark {
-		background:#333!important;
-		color:#fff!important;
-	}
-	.widget-title-blue {
-		background:#176CA7!important;
-		color:#fff!important;
-	}
-	.widget-title-attention {
-		background:#781a21!important;
-		color:#fff!important;
+		@include border-radius(0); 
 	}
 	ul {
 		list-style-type:none!important;
@@ -75,7 +64,7 @@
 		display: none;
 		margin:0!important;
 		padding:0 0 10px 0!important;
-		float:left; 
+		float:none;
 		a img {
 			margin-right:5px;
 		}
@@ -118,9 +107,12 @@
 		}
 	}
 	.widget-avatar {
+		margin-right:5px !important;
 		height:auto!important;
 		width:auto!important;
-		border:0;
+		border:1px solid #ccc !important;
+		background:#EEE;
+		padding:2px;
 		vertical-align:middle;
 	}
 	.widget-datestamp {

@@ -27,19 +27,6 @@
 // fixes
 
 
-/* ---- Links ---- */
-#wb-core {
-	a[href^='mailto:']{
-		@extend .wb-icon;
-		background-position:0 -950px; // slightly different than wb-icon-mail to match old layout
-		padding-left:19px;
-	}
-	a[href$='.psd'],a[href$='.zip'],a[href$='.doc'],a[href$='.pdf'],a[href$='.xls'],a[href$='.rtf'],a[href$='.pot'],a[href$='.ppt'],a[href$='.pps'],a[href$='.pptm'],a[href$='.docx'],a[href$='.xlsx'],a[href$='.pptx']{
-		background:transparent url(../images/download.png) no-repeat 0 0;
-		padding-left:19px;
-	}
-}
-
 /* ---- Headings ---- */
 #wb-main {
 	h1, h2, h3, h4, h5, h6 {
@@ -208,7 +195,7 @@ p.align-right	 { margin-right: $margin-medium; }
 /*	 floating	 */
 img.float-left { margin-right: $margin-medium; }
 .float-left {float:left !important;}
-.float-right {float:right !important;/*background-color:#fff;*/} /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
+.float-right {float:right !important;} /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
 
 /*	 width	 */
 .width-100	{ width: 100% !important; }
@@ -358,8 +345,11 @@ table {
 		font-size: 85%;
 		@include text-shadow(0 1px 0 #111);
 		margin: 5px 0 0 0;
-		margin: 3px 8px 0 8px;
+		margin: 0 8px;
 		padding: 0 0 1px 0;
+	}
+	abbr, acronym {
+		border: none;
 	}
 }
 .date-day {
@@ -384,3 +374,16 @@ table {
 		width: 100%;
 	}
 }
+
+.date-small {
+	height: 64px;
+	min-width: 40px;
+	.date-day {
+		height:30px;
+		p {
+			line-height:30px;
+			font-size:150%;
+		}
+	}
+}
+

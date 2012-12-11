@@ -5,6 +5,7 @@
 @import "compass/css3/text-shadow";
 @import "compass/css3/box-sizing";
 @import "compass/typography/lists/bullets";
+@import "compass/css3/border-radius";
 
 @mixin modules {
 
@@ -35,6 +36,11 @@
 			@include no-bullets;
 		}
 	}
+	
+	[class*="module-"] .background-light {
+		color:#222 !important;
+		text-shadow: 0 1px 1px #FFF;
+	}
 
 	.module {
 		@include module-colorize;
@@ -45,6 +51,7 @@
 		p, h2, h3, h4, h5, h6, blockquote, > span {
 			margin-left: 10px;
 			margin-right: 10px;
+			@include border-radius(0);
 		}
 	}
 

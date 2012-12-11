@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*
- * Accessible footnotes
+ * Footnotes
  */
 /*global jQuery: false, pe: false*/
 (function ($) {
