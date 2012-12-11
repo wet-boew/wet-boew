@@ -46,18 +46,8 @@ if [ "$REPO" == "wet-boew/wet-boew" ]; then
 			ls -Qt | awk 'NR>'$number_to_keep | xargs -r rm -rf
 		fi
 
-		#remove the latest prefix to leave place for the new latest
-		if ls -d latest* &> /dev/null ;
-		then
-			for f in latest-*; do
-				file=${f:7}
-				[ ! -f $file ] && mv "$f" $file
-			done
-		fi
-		cd ..
-
 		#Add the latest build files
-		dest="$TRAVIS_BRANCH/latest-$TRAVIS_COMMIT"
+		dest="$TRAVIS_BRANCH/$TRAVIS_COMMIT"
 		mv $HOME/dist $dest
 
 		#Commit the result
