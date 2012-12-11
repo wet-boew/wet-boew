@@ -1,0 +1,41 @@
+/*!
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+/* -----Build Include Section Start----- */
+@import '../../base/sass/base';
+@import '../../base/sass/base-desktop';
+@import '../../base/sass/base-ie7';
+@import '../../base/sass/base-ie8';
+@import 'includes/default';
+@import 'includes/default-desktop';
+@import 'includes/default-ie7';
+@import 'includes/default-ie8';
+/* -----Build Include Section End----- */
+
+@media screen{
+/* -----Build Include Section Start----- */
+@import '../../base/sass/base-screen';
+@import '../../base/sass/base-desktop-screen';
+@import '../../base/sass/base-screen-ie7';
+@import '../../base/sass/base-screen-ie8';
+@import '../../grids/sass/responsive';
+@import '../../grids/sass/responsive-ie7';
+@import 'includes/default-responsive';
+@import 'includes/default-screen';
+@import 'includes/default-desktop-screen';
+@import 'includes/default-screen-ie7';
+@import 'includes/default-screen-ie8';
+/* -----Build Include Section End----- */
+}
+
+@media print{
+/* -----Build Include Section Start----- */
+@import '../../base/sass/base-print';
+@import '../../base/sass/base-print-ie7';
+@import '../../base/sass/base-print-ie8';
+@import 'includes/default-print';
+@import 'includes/default-print-ie7';
+@import 'includes/default-print-ie8';
+/* -----Build Include Section End----- */
+}

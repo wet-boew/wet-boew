@@ -1,0 +1,144 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+@import "compass/css3/border-radius";
+
+body{
+	margin:0;
+}
+
+.wb-sec-def {
+	h3.top-section {
+		a{
+			background:#0B3048;
+			color:#FFF;
+			padding-top:8px;
+			padding-bottom:8px;
+			font-size:1.1em;
+			&:hover,&:focus,&:active{
+				color:#FFF;
+				text-decoration:underline;
+			}
+			&.nav-current{
+				color:#FFF;
+				padding-top:4px;
+				padding-bottom:4px;
+				background:#0F315B;
+			}
+		}
+	}
+	h3,h4,.top-level{
+		font-size:100%;
+		border-bottom:none;
+		@include border-radius(2px);
+		margin:0 0 3px;
+		a{
+			font-weight:700;
+			background:#DDD;
+			padding:2px 4px;
+			&.nav-current{
+				color:#0F315B;
+				padding:1px 3px;
+			}
+		}
+	}
+	li{
+		a{
+			padding:4px 5px;
+			&.nav-current{
+				color:#0F315B;
+				padding:3px 4px;
+			}
+		}
+	}
+	a.nav-current{
+		border:1px solid #777;
+		@include border-radius(2px);
+	}
+	h3,h4,.top-level,li{
+		a{
+			display:block;
+			color:#333;
+			text-decoration:none;
+			&:hover,&:focus,&:active{
+				color:#333;
+				text-decoration:underline;
+			}
+		}
+	}
+	ul{
+		list-style-type:none;
+		margin:0 0 3px;
+		padding:0;
+		ul {
+			list-style-type:none;
+			margin-left:10px;
+			padding-left:5px;
+			border-left:1px solid #CCC;
+		}
+	}
+	li li{
+		margin-left:0;
+		border:none;
+		list-style-type:none;
+		padding:0;
+	}
+}
+
+#wb-foot {
+	h4,.base-col-head{
+		font-size:110%;
+		border:none;
+		font-weight:700;
+		margin:20px 0 5px;
+	}
+	ul{
+		list-style-type:none;
+		margin:0;
+		padding:0;
+	}
+	li a{
+		font-weight:400;
+	}
+	a{
+		text-decoration:none;
+	}
+	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
+		margin-bottom:0;
+	}
+}
+
+#base-sft{
+	background:#CCC;
+	border-top:#BBB 1px solid;
+	font-family:Arial, Helvetica, sans-serif;
+	a,span.link{
+		color:#222;
+	}
+	li a,li span.link{
+		line-height:1.75em;
+	}
+	h4,.base-col-head{
+		margin-top:0;
+	}
+	address{
+		font-style:normal;
+	}
+}
+
+#base-sft-in{
+	padding:20px 0;
+	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
+		position:static;
+	}
+}
+
+#base-fullft{
+	background:#333;
+	color:#FFF;
+}
+
+#base-fullft-in{
+	background:#666;
+}
