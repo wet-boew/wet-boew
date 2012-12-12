@@ -194,9 +194,11 @@
 			'%st-msgbox-title': 'Session timeout warning',
 			'%st-already-timeout-msg': 'Sorry your session has already expired. Please login again.',
 			/* Toggle details */
-			'%toggle': 'Toggle',
-			'%toggle-open': 'Toggle open',
-			'%toggle-close': 'Toggle close',
+			'%td-toggle': 'Toggle all',
+			'%td-open': 'Open all',
+			'%td-close': 'Close all',
+			'%td-ttl-open': 'Open all details elements',
+			'%td-ttl-close': 'Close all details elements',
 			/* Disable/enable PE */
 			'%pe-disable': 'Basic HTML version',
 			'%pe-enable': 'Standard version'
