@@ -2,23 +2,78 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-ol.wet-boew-zebra {
+ul.wet-boew-zebra {
 	li, li li {
 		list-style-type:none;
 	}
-	li {
+}
+
+ol,ul {
+	&.wet-boew-zebra li {
 		margin-bottom:2px;
 		margin-right:0;
 		padding:10px;
 	}
+	
+	&.wet-boew-zebra {
+		margin: 5px 0px 10px 0px;
+	}
+	/*
+	&.list-bullet-none {
+		list-style-type: none;
+	}*/
 }
 
-ul.wet-boew-zebra li {
-	margin-bottom:2px;
-	margin-right:0;
-	padding:10px;
+ol.wet-boew-zebra {    
+   padding: 0;
+   list-style-type: decimal;
+   counter-reset:li;
+   
+	> li {
+		/* Make room for the number you add with :before */    
+		padding-left: 2em;  
+		position: relative;
+		list-style: none;  
+  
+	}
+   
+	> li:before {
+		/* Add the number using the counter and increment */
+		content: counter(li) '. ';
+		counter-increment: li;  
+		position: absolute;
+		left: 5px;
+	}
+	
+	ol li {
+		padding-left: 0;
+		/* list-style-type: lower-alpha; */
+	}
+
+	ol li:before {
+		content: normal;   
+	}
+	
+	ol ol li {
+		/* list-style-type: lower-roman; */
+	}
+	
+}
+.module-comment ol.wet-boew-zebra, ol.wet-boew-zebra.module-comment, ol.wet-boew-zebra.list-bullet-none {  
+	> li:before {
+		content: normal;
+		counter-increment: none;
+		position: static;
+		left: auto;
+	}
 }
 
+.module-comment ol.wet-boew-zebra, ol.wet-boew-zebra.module-comment {
+	ol li, ol ol li {
+		list-style-type: none;
+	}
+}
+	
 table {
 	&.wet-boew-zebra,&.wet-boew-zebra table {
 		background-color:#fff;
