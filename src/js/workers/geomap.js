@@ -11,6 +11,7 @@
 	var _pe = window.pe || {
 		fn: {}
 	};
+	var map;
 	/* local reference */
 	_pe.fn.geomap = {
 		type: 'plugin',
@@ -331,6 +332,28 @@
 				OpenLayers.Event.stop(e);
 			};
 		},
+		onPopupClose: function(evt) {
+			selectControl.unselect(selectedFeature);
+		},
+ 
+		onFeatureSelect: function(feature) {			
+			text = "<h4>"+feature.attributes.name + "</h4>" + feature.attributes.description;
+			popup = new OpenLayers.Popup("popup", 
+				feature.geometry.getBounds().getCenterLonLat(),
+				null,
+				text,
+				true, this.onPopupClose
+			);
+			feature.popup = popup;
+			popup.setOpacity(0.7);
+			map.addPopup(popup);
+		},
+ 
+		onFeatureUnselect: function(feature) {
+			map.removePopup(feature.popup);
+			feature.popup.destroy();
+			feature.popup = null;
+		},
 		
 		_exec: function (elm) {
 			
@@ -339,8 +362,8 @@
 //				return _pe.fn.geomap.mobile(elm).trigger('create');
 //			}
 			var opts,
-				overrides,
-				map;
+				overrides,				
+				queryLayers = [];
 
 			// Defaults
 			opts = {
@@ -406,26 +429,33 @@
 							{ visibility: layer.visible }
 						)
 					);
-				} else if (layer.type=='kml') {				
-					map.addLayer(
-						new OpenLayers.Layer.Vector(
-								layer.title, {
-								projection: map.displayProjection,
-								strategies: [new OpenLayers.Strategy.Fixed()],
-								protocol: new OpenLayers.Protocol.HTTP({
-								url: layer.url,
-								format: new OpenLayers.Format.KML({
-									extractStyles: true, 
-									extractAttributes: true/*,
-									maxDepth: 2*/
-									})
+				} else if (layer.type=='kml') {					
+					olLayer = new OpenLayers.Layer.Vector(
+							layer.title, {
+							projection: map.displayProjection,
+							strategies: [new OpenLayers.Strategy.Fixed()],
+							protocol: new OpenLayers.Protocol.HTTP({
+							url: layer.url,
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true/*,
+								maxDepth: 2*/
 								})
-							},
-							{ visibility: layer.visible }
-						)					
-					);
+							})
+						},
+						{ visibility: layer.visible }
+					)					
+					map.addLayer(olLayer);
+					queryLayers.push(olLayer);
 				}
-			});
+			});			
+			
+			var selectControl = new OpenLayers.Control.SelectFeature(
+				queryLayers,
+				{ onSelect: this.onFeatureSelect, onUnselect: this.onFeatureUnselect }
+			);			
+			map.addControl(selectControl);
+			selectControl.activate();			
 			
 			//TODO: ensure WCAG compliance before enabling
 			//map.addControl(new OpenLayers.Control.MousePosition());
