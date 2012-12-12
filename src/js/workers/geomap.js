@@ -340,11 +340,7 @@
 //			}
 			var opts,
 				overrides,
-				map,
-				useScale,
-				useLayerSwitcher,
-				useMousePosition,
-				usePanZoomBar;
+				map;
 
 			// Defaults
 			opts = {
@@ -354,10 +350,10 @@
 				projection: 'EPSG:3978', 
 				restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
 				units: 'm',
-				displayProjection: new OpenLayers.Projection("EPSG:4269"),
+				displayProjection: new OpenLayers.Projection("EPSG:4269") /* only used by specific controls (i.e. MousePosition) */ ,
 				numZoomLevels: 12,
 				autoUpdateSize: true,
-				theme: null
+				theme: null				
 			};			
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
@@ -397,15 +393,47 @@
 			map.addLayer(new OpenLayers.Layer.WMS("CBMT", 
 					"http://geogratis.gc.ca/maps/CBMT", 
 					{ layers: 'CBMT', version: '1.1.1', format: 'image/png' },
-					{ isBaseLayer: true, singleTile: true, ratio: 1.0} ));			
+					{ isBaseLayer: true, singleTile: false, ratio: 1.0, displayInLayerSwitcher: false } ));			
+			
+			// Add layers passed in through settings
+			$.each(wet_boew_geomap.overlays, function(index, layer) {				
+				if(layer.type=='wms') {
+					map.addLayer(
+						new OpenLayers.Layer.WMS(
+							layer.title, 
+							layer.url, 
+							{ layers: layer.layers, transparent: 'true', format: layer.format },
+							{ visibility: layer.visible }
+						)
+					);
+				} else if (layer.type=='kml') {				
+					map.addLayer(
+						new OpenLayers.Layer.Vector(
+								layer.title, {
+								projection: map.displayProjection,
+								strategies: [new OpenLayers.Strategy.Fixed()],
+								protocol: new OpenLayers.Protocol.HTTP({
+								url: layer.url,
+								format: new OpenLayers.Format.KML({
+									extractStyles: true, 
+									extractAttributes: true/*,
+									maxDepth: 2*/
+									})
+								})
+							},
+							{ visibility: layer.visible }
+						)					
+					);
+				}
+			});
 			
 			//TODO: ensure WCAG compliance before enabling
 			//map.addControl(new OpenLayers.Control.MousePosition());
-			//map.addControl(new OpenLayers.Control.Scale());			
+			//map.addControl(new OpenLayers.Control.Scale());		
+			//map.addControl(new OpenLayers.Control.Attribution());
 			
 			map.addControl(new OpenLayers.Control.LayerSwitcher());			
 			map.addControl(new OpenLayers.Control.PanZoomBar());			
-			map.addControl(new OpenLayers.Control.KeyboardDefaults());
 			
 			//TODO: enable TouchNavigation for mobile clients
 			map.addControl(new OpenLayers.Control.Navigation({zoomWheelEnabled : true}));

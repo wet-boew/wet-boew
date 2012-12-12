@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utF-8" standalone="yes"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:georss="http://www.georss.org/georss"
+     version="2.0">
+   <channel>
+      <atom:link rel="self" type="application/rss+xml"
+                 href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?max-results=25&amp;alt=rss"/>
+      <atom:link rel="next" type="application/rss+xml"
+                 href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?start-index=98&amp;max-results=25&amp;alt=rss"/>
+      <title>GeoGratis Product Selection</title>
+      <description>Natural Resources Canada</description>
+      <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?max-results=25</link>
+      <language>en</language>
+      <pubDate>Thu, 26 Jan 2012 14:22:36 GMT</pubDate>
+      <lastBuildDate>Thu, 26 Jan 2012 14:22:36 GMT</lastBuildDate>
+      <managingEditor>info@geogratis.gc.ca (GeoGratis)</managingEditor>
+      <webMaster>info@geogratis.gc.ca (GeoGratis)</webMaster>
+      <docs>http://geogratis.gc.ca</docs>
+      <item>
+         <title>Toporama - 095D11</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:51 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.xml</guid>
+         <georss:polygon>60.5 -127.5 60.75 -127.5 60.75 -127 60.5 -127 60.5 -127.5</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 063C05</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:53 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.xml</guid>
+         <georss:polygon>52.25 -102 52.5 -102 52.5 -101.5 52.25 -101.5 52.25 -102</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 033N15</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:53 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.xml</guid>
+         <georss:polygon>55.75 -77 56 -77 56 -76.5 55.75 -76.5 55.75 -77</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 036O13</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:55 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.xml</guid>
+         <georss:polygon>67.75 -76 68 -76 68 -75.5 67.75 -75.5 67.75 -76</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 026N05</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:55 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.xml</guid>
+         <georss:polygon>67.25 -70 67.5 -70 67.5 -69.5 67.25 -69.5 67.25 -70</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 022J16</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:55 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.xml</guid>
+         <georss:polygon>50.75 -66.5 51 -66.5 51 -66 50.75 -66 50.75 -66.5</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 030N15</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:55 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.xml</guid>
+         <georss:polygon>43.75 -77 44 -77 44 -76.5 43.75 -76.5 43.75 -77</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 064P06</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:56 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.xml</guid>
+         <georss:polygon>59.25 -97.5 59.5 -97.5 59.5 -97 59.25 -97 59.25 -97.5</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 094O10</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:56 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.xml</guid>
+         <georss:polygon>59.5 -123 59.75 -123 59.75 -122.5 59.5 -122.5 59.5 -123</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 025L11</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:56 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.xml</guid>
+         <georss:polygon>62.5 -71.5 62.75 -71.5 62.75 -71 62.5 -71 62.5 -71.5</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 059D10</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:58 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.xml</guid>
+         <georss:polygon>77.5 -90 77.75 -90 77.75 -89 77.5 -89 77.5 -90</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 072G03</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:57 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.xml</guid>
+         <georss:polygon>49 -107.5 49.25 -107.5 49.25 -107 49 -107 49 -107.5</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 026N11</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:05:57 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.xml</guid>
+         <georss:polygon>67.5 -69.5 67.75 -69.5 67.75 -69 67.5 -69 67.5 -69.5</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 096N12</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:00 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.xml</guid>
+         <georss:polygon>67.5 -126 67.75 -126 67.75 -125.5 67.5 -125.5 67.5 -126</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 088G15</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:00 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.xml</guid>
+         <georss:polygon>75.75 -118 76 -118 76 -117 75.75 -117 75.75 -118</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 075N11</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:00 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.xml</guid>
+         <georss:polygon>63.5 -109.5 63.75 -109.5 63.75 -109 63.5 -109 63.5 -109.5</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 083H15</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:00 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.xml</guid>
+         <georss:polygon>53.75 -113 54 -113 54 -112.5 53.75 -112.5 53.75 -113</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 093N02</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:00 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.xml</guid>
+         <georss:polygon>55 -125 55.25 -125 55.25 -124.5 55 -124.5 55 -125</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 013N12</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:00 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.xml</guid>
+         <georss:polygon>55.5 -62 55.75 -62 55.75 -61.5 55.5 -61.5 55.5 -62</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 023G13</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:02 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.xml</guid>
+         <georss:polygon>53.75 -68 54 -68 54 -67.5 53.75 -67.5 53.75 -68</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 063G05</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:01 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.xml</guid>
+         <georss:polygon>53.25 -100 53.5 -100 53.5 -99.5 53.25 -99.5 53.25 -100</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 032I03</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:01 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.xml</guid>
+         <georss:polygon>50 -73.5 50.25 -73.5 50.25 -73 50 -73 50 -73.5</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 085J03</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:03 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.xml</guid>
+         <georss:polygon>62 -115.5 62.25 -115.5 62.25 -115 62 -115 62 -115.5</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 065N02</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:02 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.xml</guid>
+         <georss:polygon>63 -101 63.25 -101 63.25 -100.5 63 -100.5 63 -101</georss:polygon>
+      </item>
+      <item>
+         <title>Toporama - 034L08</title>
+         <description><![CDATA[Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps.  Toporama is published as an edition (or "release") approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude).  Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.xml</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 28 Jan 2012 12:06:02 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.xml</guid>
+         <georss:polygon>58.25 -78.5 58.5 -78.5 58.5 -78 58.25 -78 58.25 -78.5</georss:polygon>
+      </item>
+   </channel>
+</rss>

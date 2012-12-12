@@ -20,8 +20,28 @@ Global overrides for individual components
 
 // Share widget
 var wet_boew_share = {
-	sites : ['del.icio.us', 'digg', 'facebook', 'google', 'linkedin', 'reddit', 'stumbleupon', 'twitter', 'yahoobuzz']
+	sites : ['facebook', 'google', 'linkedin', 'reddit', 'stumbleupon', 'twitter', 'yahoobuzz']
 };
 
 // Charts widget 
 // var wet_boew_charts = { };
+
+//Geomap widget
+var wet_boew_geomap = {
+	overlays : [
+		{
+		   title: 'WMS Demo',
+		   type: 'wms',
+		   url: 'http://www2.dmsolutions.ca/cgi-bin/mswms_gmap',
+		   layers: 'bathymetry,land_fn,park,drain_fn,drainage,prov_bound,fedlimit,rail,road,popplace',		   
+		   format: 'image/png',
+		   visible: false
+		},
+		{
+		   title: 'KML Demo',
+		   type: 'kml',
+		   url: 'data/sample.kml',		   
+		   visible: true
+		}		
+	]
+};

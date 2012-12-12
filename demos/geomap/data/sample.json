@@ -1,0 +1,3374 @@
+
+{
+    
+    "parameters": {
+        "max-results": "25"
+    },    
+    "links": [ 
+    
+      {
+          "rel": "self",          
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?max-results=25"      
+      },
+      {
+          "rel": "next",          
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?start-index=98&max-results=25"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?max-results=25&alt=atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?max-results=25&alt=html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?max-results=25&alt=phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?max-results=25&alt=csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?max-results=25&alt=rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?max-results=25&alt=kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?max-results=25&alt=gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?max-results=25"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/?max-results=25"
+      }
+    
+    ],
+    "count": 171590,
+    "pagesize": 25,
+    "products": [
+        {
+            
+        "id": "b5bd9c07-c067-4883-9dbe-d8920afb70b9",
+        "title": "Toporama - 095D11",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "095d11",
+                        "label": "095D11"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--yukon",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > YUKON"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--yukon-territory",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > YUKON TERRITORY"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-127.5,60.5], [-127.5,60.75], [-127.0,60.75], [-127.0,60.5], [-127.5,60.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "9a722227-b010-4109-821d-b847b9ed9c08",
+        "title": "Toporama - 063C05",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "063c05",
+                        "label": "063C05"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--manitoba",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > MANITOBA"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--saskatchewan",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > SASKATCHEWAN"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--manitoba",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > MANITOBA"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--saskatchewan",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > SASKATCHEWAN"
+                    },
+                    {
+                        "term": "townsend-lake",
+                        "label": "TOWNSEND LAKE"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-102.0,52.25], [-102.0,52.5], [-101.5,52.5], [-101.5,52.25], [-102.0,52.25] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "73ec0ce4-7460-48fe-9c57-9b9248fbef56",
+        "title": "Toporama - 033N15",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "033n15",
+                        "label": "033N15"
+                    },
+                    {
+                        "term": "lac-desjardins",
+                        "label": "LAC DESJARDINS"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--nunavut",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > NUNAVUT"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--quebec",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > QUÉBEC"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--nunavut",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NUNAVUT"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--quebec",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > QUEBEC"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-77.0,55.75], [-77.0,56.0], [-76.5,56.0], [-76.5,55.75], [-77.0,55.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "1e2facd1-5c12-4039-b4eb-fcd4680097e4",
+        "title": "Toporama - 036O13",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "036o13",
+                        "label": "036O13"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--nunavut",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > NUNAVUT"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--nunavut",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NUNAVUT"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-76.0,67.75], [-76.0,68.0], [-75.5,68.0], [-75.5,67.75], [-76.0,67.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "80b0bdd3-c109-49a6-ad76-00876cee76d9",
+        "title": "Toporama - 026N05",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "026n05",
+                        "label": "026N05"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--nunavut",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > NUNAVUT"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--nunavut",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NUNAVUT"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-70.0,67.25], [-70.0,67.5], [-69.5,67.5], [-69.5,67.25], [-70.0,67.25] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "9ec2a30c-1200-48a3-9a87-ecc4e10f6b64",
+        "title": "Toporama - 022J16",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "022j16",
+                        "label": "022J16"
+                    },
+                    {
+                        "term": "lac-a-leau-doree",
+                        "label": "LAC À L'EAU DORÉE"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--quebec",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > QUÉBEC"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--quebec",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > QUEBEC"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-66.5,50.75], [-66.5,51.0], [-66.0,51.0], [-66.0,50.75], [-66.5,50.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "1e401bd2-c0d2-447a-83af-0b38278655bb",
+        "title": "Toporama - 030N15",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "030n15",
+                        "label": "030N15"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--ontario",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > ONTARIO"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--ontario",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > ONTARIO"
+                    },
+                    {
+                        "term": "yorkshire-island",
+                        "label": "YORKSHIRE ISLAND"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-77.0,43.75], [-77.0,44.0], [-76.5,44.0], [-76.5,43.75], [-77.0,43.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "d07106d0-2ae0-499d-9d75-a0342dad5034",
+        "title": "Toporama - 064P06",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "064p06",
+                        "label": "064P06"
+                    },
+                    {
+                        "term": "fallis-lake",
+                        "label": "FALLIS LAKE"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--manitoba",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > MANITOBA"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--manitoba",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > MANITOBA"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-97.5,59.25], [-97.5,59.5], [-97.0,59.5], [-97.0,59.25], [-97.5,59.25] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "8f846b91-1987-4144-b454-dcffccacc386",
+        "title": "Toporama - 094O10",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "094o10",
+                        "label": "094O10"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--colombie-britanique",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > COLOMBIE-BRITANIQUE"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--british-columbia",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > BRITISH COLUMBIA"
+                    },
+                    {
+                        "term": "tightfit-lake",
+                        "label": "TIGHTFIT LAKE"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-123.0,59.5], [-123.0,59.75], [-122.5,59.75], [-122.5,59.5], [-123.0,59.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "742d4076-2a58-4bbb-a85d-ee9584fc69e6",
+        "title": "Toporama - 025L11",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "025l11",
+                        "label": "025L11"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-71.5,62.5], [-71.5,62.75], [-71.0,62.75], [-71.0,62.5], [-71.5,62.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "ca03d849-eabf-4320-9649-5e798d724653",
+        "title": "Toporama - 059D10",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "059d10",
+                        "label": "059D10"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--nunavut",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > NUNAVUT"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--nunavut",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NUNAVUT"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-90.0,77.5], [-90.0,77.75], [-89.0,77.75], [-89.0,77.5], [-90.0,77.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "8a8deec0-b483-4b4e-b889-d04f03be4b26",
+        "title": "Toporama - 072G03",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "072g03",
+                        "label": "072G03"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--saskatchewan",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > SASKATCHEWAN"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--saskatchewan",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > SASKATCHEWAN"
+                    },
+                    {
+                        "term": "wideview",
+                        "label": "WIDEVIEW"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-107.5,49.0], [-107.5,49.25], [-107.0,49.25], [-107.0,49.0], [-107.5,49.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "03bb11b0-fd63-4dbe-b150-7ea797869542",
+        "title": "Toporama - 026N11",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "026n11",
+                        "label": "026N11"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--nunavut",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > NUNAVUT"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--nunavut",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NUNAVUT"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-69.5,67.5], [-69.5,67.75], [-69.0,67.75], [-69.0,67.5], [-69.5,67.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "d9f4dff5-f12f-40e8-9580-0438161b9182",
+        "title": "Toporama - 096N12",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "096n12",
+                        "label": "096N12"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--territoires-du-nord-ouest",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > TERRITOIRES DU NORD-OUEST"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--northwest-territories",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NORTHWEST TERRITORIES"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-126.0,67.5], [-126.0,67.75], [-125.5,67.75], [-125.5,67.5], [-126.0,67.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "d2f72691-c0f4-45dc-b092-a06ca481ffd5",
+        "title": "Toporama - 088G15",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "088g15",
+                        "label": "088G15"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--territoires-du-nord-ouest",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > TERRITOIRES DU NORD-OUEST"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--northwest-territories",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NORTHWEST TERRITORIES"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-118.0,75.75], [-118.0,76.0], [-117.0,76.0], [-117.0,75.75], [-118.0,75.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "586d3856-78e3-40ac-b221-08975b90fce0",
+        "title": "Toporama - 075N11",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "075n11",
+                        "label": "075N11"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--territoires-du-nord-ouest",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > TERRITOIRES DU NORD-OUEST"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--northwest-territories",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NORTHWEST TERRITORIES"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-109.5,63.5], [-109.5,63.75], [-109.0,63.75], [-109.0,63.5], [-109.5,63.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "7ca7035f-fc40-440c-ac51-080fc435e3a5",
+        "title": "Toporama - 083H15",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "083h15",
+                        "label": "083H15"
+                    },
+                    {
+                        "term": "lamont",
+                        "label": "LAMONT"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--alberta",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > ALBERTA"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--alberta",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > ALBERTA"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-113.0,53.75], [-113.0,54.0], [-112.5,54.0], [-112.5,53.75], [-113.0,53.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "c69c44d4-f72b-42ff-b5b9-895a5fbf402a",
+        "title": "Toporama - 093N02",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "093n02",
+                        "label": "093N02"
+                    },
+                    {
+                        "term": "chuchi-lake",
+                        "label": "CHUCHI LAKE"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--colombie-britanique",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > COLOMBIE-BRITANIQUE"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--british-columbia",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > BRITISH COLUMBIA"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-125.0,55.0], [-125.0,55.25], [-124.5,55.25], [-124.5,55.0], [-125.0,55.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "74130125-e04d-49a5-8c42-8181e8206df0",
+        "title": "Toporama - 013N12",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "013n12",
+                        "label": "013N12"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--terre-neuve-et-labrador",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > TERRE-NEUVE-ET-LABRADOR"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--newfoundland-and-labrador",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NEWFOUNDLAND AND LABRADOR"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-62.0,55.5], [-62.0,55.75], [-61.5,55.75], [-61.5,55.5], [-62.0,55.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "3336cfde-2234-46c3-ae07-3512883fcfc4",
+        "title": "Toporama - 023G13",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "023g13",
+                        "label": "023G13"
+                    },
+                    {
+                        "term": "lac-descayrac",
+                        "label": "LAC DESCAYRAC"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--quebec",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > QUÉBEC"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--terre-neuve-et-labrador",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > TERRE-NEUVE-ET-LABRADOR"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--newfoundland-and-labrador",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NEWFOUNDLAND AND LABRADOR"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--quebec",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > QUEBEC"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-68.0,53.75], [-68.0,54.0], [-67.5,54.0], [-67.5,53.75], [-68.0,53.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "e4fdedc0-0416-42f7-977e-41d4df307946",
+        "title": "Toporama - 063G05",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "063g05",
+                        "label": "063G05"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--manitoba",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > MANITOBA"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--manitoba",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > MANITOBA"
+                    },
+                    {
+                        "term": "perch-lake",
+                        "label": "PERCH LAKE"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-100.0,53.25], [-100.0,53.5], [-99.5,53.5], [-99.5,53.25], [-100.0,53.25] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "99b23f06-9bac-4a48-9083-89fcb57c0712",
+        "title": "Toporama - 032I03",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "032i03",
+                        "label": "032I03"
+                    },
+                    {
+                        "term": "lac-dutilly",
+                        "label": "LAC DUTILLY"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--quebec",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > QUÉBEC"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--quebec",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > QUEBEC"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-73.5,50.0], [-73.5,50.25], [-73.0,50.25], [-73.0,50.0], [-73.5,50.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "d077de75-8679-419e-bedb-18100526a48b",
+        "title": "Toporama - 085J03",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "085j03",
+                        "label": "085J03"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--territoires-du-nord-ouest",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > TERRITOIRES DU NORD-OUEST"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--northwest-territories",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NORTHWEST TERRITORIES"
+                    },
+                    {
+                        "term": "mciver-bay",
+                        "label": "MCIVER BAY"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-115.5,62.0], [-115.5,62.25], [-115.0,62.25], [-115.0,62.0], [-115.5,62.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "4cb35654-d0ef-4db5-9065-8cd773f56c5b",
+        "title": "Toporama - 065N02",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "065n02",
+                        "label": "065N02"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--nunavut",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > NUNAVUT"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--nunavut",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NUNAVUT"
+                    },
+                    {
+                        "term": "slow-river",
+                        "label": "SLOW RIVER"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-101.0,63.0], [-101.0,63.25], [-100.5,63.25], [-100.5,63.0], [-101.0,63.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "86f5b274-6f79-4a76-95fb-4d04aafcac7d",
+        "title": "Toporama - 034L08",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.xml"
+      }
+    
+        ],
+        "author": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke",
+        "summary": "Toporama is a digital topographic reference product developed by Natural Resources Canada (NRCan). It covers the entire area of Canada's landmass and provides topographic, geo-referenced, and symbolic information in a raster format. The delimitation, content and representation of this product are similar to those of 1:50,000 scale topographical maps. Toporama is published as an edition (or release) approximately every six months. It is available free of charge through the GeoGratis portal (www.GeoGratis.gc.ca) in GeoTIFF format, which is a geo-referenced raster format. Toporama is available in the following spatial reference systems: Universal Transverse Mercator (UTM) and geographic (latitude and longitude). Toporama is a product aimed at the general public that can be used by GPS system users who need a geo-referenced raster map product.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "government-of-canada-natural-resources-canada-earth-sciences-sector-mapping-information-branch-centre-for-topographic-information---sherbrooke",
+                        "label": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "034l08",
+                        "label": "034L08"
+                    },
+                    {
+                        "term": "inukjuak",
+                        "label": "INUKJUAK"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--nunavut",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > NUNAVUT"
+                    },
+                    {
+                        "term": "localisations--continent--amerique-du-nord--canada--quebec",
+                        "label": "Localisations > CONTINENT > AMÉRIQUE DU NORD > CANADA > QUÉBEC"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--nunavut",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > NUNAVUT"
+                    },
+                    {
+                        "term": "locations--continent--north-america--canada--quebec",
+                        "label": "Locations > CONTINENT > NORTH AMERICA > CANADA > QUEBEC"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "toporama",
+                        "label": "Toporama"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-78.5,58.25], [-78.5,58.5], [-78.0,58.5], [-78.0,58.25], [-78.5,58.25] ] ]
+  
+        }
+        }]
+  
+}
+  
