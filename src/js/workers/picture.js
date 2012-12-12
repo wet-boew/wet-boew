@@ -24,10 +24,25 @@
 			_pe.resize(function() {
 				w.picturefill();
 			});			
+				
+			/* GET request for raw HTML of the page.  Allows IE to "see" the picture's source elements.
+			if(_pe.ie !== 0){
+				$.get(_pe.url(window.location.href).source, function(data) {
+					data = data.replace( /(<)source([^>]+>)/gmi, "$1div$2" );
+					var picture = $('picture');
+					$(data).find('picture div').each(function(){
+						picture.append($(this));
+					});		
+					
+					// Run picturefill
+					w.picturefill();	
+					elm.find('img').css({visibility: 'visible'});				
+				});
+			}
+			*/		
 			
-			// Run picturefill
 			w.picturefill();	
-			elm.find('img').css({visibility: 'visible'});
+			elm.find('img').css({visibility: 'visible'});				
 			
 			return elm;					
 		} // end of exec
