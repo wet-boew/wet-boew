@@ -34,12 +34,12 @@
          </PolyStyle>
       </Style>
       <Placemark>
-         <name>Toporama - 095D11</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Surficial geology of north-central Manitoba</name>
+         <description><![CDATA[<b>Date Added: </b>November 14, 2012<br/>
+            <b>Author: </b>Klassen, R W<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b5bd9c07-c067-4883-9dbe-d8920afb70b9.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -48,18 +48,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-127.5,60.5 -127.5,60.75 -127.0,60.75 -127.0,60.5 -127.5,60.5</coordinates>
+                  <coordinates>-102.0,52.0 -102.0,60.0 -90.0,60.0 -90.0,52.0 -102.0,52.0</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 063C05</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>A preliminary tsunami hazard assessment of the Canadian Coastline</name>
+         <description><![CDATA[<b>Date Added: </b>November 14, 2012<br/>
+            <b>Author: </b>Leonard, L J; Rogers, G C; Mazzotti, S<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9a722227-b010-4109-821d-b847b9ed9c08.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -68,18 +68,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-102.0,52.25 -102.0,52.5 -101.5,52.5 -101.5,52.25 -102.0,52.25</coordinates>
+                  <coordinates>-144.0,42.0 -144.0,84.0 -48.0,84.0 -48.0,42.0 -144.0,42.0</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 033N15</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Preliminary characterisation of metamorphism on Cumberland Peninsula, Baffin Island, Nunavut</name>
+         <description><![CDATA[<b>Date Added: </b>November 23, 2012<br/>
+            <b>Author: </b>Hamilton, B M; Patison, D R M; Sanborn-Barrie, M; Young, M D<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/73ec0ce4-7460-48fe-9c57-9b9248fbef56.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -88,18 +88,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-77.0,55.75 -77.0,56.0 -76.5,56.0 -76.5,55.75 -77.0,55.75</coordinates>
+                  <coordinates>-66.5,64.75 -66.5,67.5 -60.5,67.5 -60.5,64.75 -66.5,64.75</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 036O13</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Structural model of the Greater Toronto and Oak Ridges Moraine areas, southern Ontario: Halton Till</name>
+         <description><![CDATA[<b>Date Added: </b>January 5, 2012<br/>
+            <b>Author: </b>Russell, H A J; Sharpe, D R; Logan, C<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e2facd1-5c12-4039-b4eb-fcd4680097e4.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -108,18 +108,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-76.0,67.75 -76.0,68.0 -75.5,68.0 -75.5,67.75 -76.0,67.75</coordinates>
+                  <coordinates>-80.0,43.25 -80.0,44.5 -78.0,44.5 -78.0,43.25 -80.0,43.25</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 026N05</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>U-Pb ages of Archean basement and Paleoproterozoic plutonic rocks, southern Cumberland Peninsula, eastern Baffin Island, Nunavut</name>
+         <description><![CDATA[<b>Date Added: </b>August 30, 2012<br/>
+            <b>Author: </b>Rayner, N M; Sanborn-Barrie, M; Young, M D; Whalen, J B<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/80b0bdd3-c109-49a6-ad76-00876cee76d9.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -128,18 +128,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-70.0,67.25 -70.0,67.5 -69.5,67.5 -69.5,67.25 -70.0,67.25</coordinates>
+                  <coordinates>-66.5,64.75 -66.5,67.5 -60.5,67.5 -60.5,64.75 -66.5,64.75</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 022J16</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Geophysical Series, detailed geophysical compilation project, Yukon Plateau, Yukon, NTS 115-I, J, K, N, O, P and 116A and B</name>
+         <description><![CDATA[<b>Date Added: </b>November 21, 2012<br/>
+            <b>Author: </b>Hayward, N; Miles, W; Oneschuk, D<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/9ec2a30c-1200-48a3-9a87-ecc4e10f6b64.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -148,18 +148,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-66.5,50.75 -66.5,51.0 -66.0,51.0 -66.0,50.75 -66.5,50.75</coordinates>
+                  <coordinates>-141.0,60.75 -141.0,64.25 -136.5,64.25 -136.5,60.75 -141.0,60.75</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 030N15</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Configuration of Mike21 for the simulation of nearshore storm waves, currents and sediment transport: Brackley Bight, Prince Edward Island</name>
+         <description><![CDATA[<b>Date Added: </b>November 22, 2012<br/>
+            <b>Author: </b>Manson, G K<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/1e401bd2-c0d2-447a-83af-0b38278655bb.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -168,18 +168,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-77.0,43.75 -77.0,44.0 -76.5,44.0 -76.5,43.75 -77.0,43.75</coordinates>
+                  <coordinates>-63.5,47.3333 -63.5,47.5833 -62.6667,47.5833 -62.6667,47.3333 -63.5,47.3333</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 064P06</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-P/12 and part of 115-P/11, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d07106d0-2ae0-499d-9d75-a0342dad5034.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -188,18 +188,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-97.5,59.25 -97.5,59.5 -97.0,59.5 -97.0,59.25 -97.5,59.25</coordinates>
+                  <coordinates>-138.0,63.5 -138.0,63.75 -137.4167,63.75 -137.4167,63.5 -138.0,63.5</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 094O10</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/4 and part of 115-O/3, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8f846b91-1987-4144-b454-dcffccacc386.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -208,18 +208,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-123.0,59.5 -123.0,59.75 -122.5,59.75 -122.5,59.5 -123.0,59.5</coordinates>
+                  <coordinates>-139.9,63.0 -139.9,63.25 -139.25,63.25 -139.25,63.0 -139.9,63.0</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 025L11</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/8 and part of 115-O/7, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/742d4076-2a58-4bbb-a85d-ee9584fc69e6.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -228,18 +228,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-71.5,62.5 -71.5,62.75 -71.0,62.75 -71.0,62.5 -71.5,62.5</coordinates>
+                  <coordinates>-138.75,63.25 -138.75,63.5 -138.0,63.5 -138.0,63.25 -138.75,63.25</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 059D10</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-P/13 and part of NTS 115-P/14, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ca03d849-eabf-4320-9649-5e798d724653.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -248,18 +248,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-90.0,77.5 -90.0,77.75 -89.0,77.75 -89.0,77.5 -90.0,77.5</coordinates>
+                  <coordinates>-138.0,63.75 -138.0,64.0 -137.3333,64.0 -137.3333,63.75 -138.0,63.75</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 072G03</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/6 and part of 115-O/7, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/8a8deec0-b483-4b4e-b889-d04f03be4b26.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -268,18 +268,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-107.5,49.0 -107.5,49.25 -107.0,49.25 -107.0,49.0 -107.5,49.0</coordinates>
+                  <coordinates>-139.25,63.0 -139.25,63.4167 -138.75,63.4167 -138.75,63.0 -139.25,63.0</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 026N11</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/9 and part of NTS 115-O/10, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/03bb11b0-fd63-4dbe-b150-7ea797869542.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -288,18 +288,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-69.5,67.5 -69.5,67.75 -69.0,67.75 -69.0,67.5 -69.5,67.5</coordinates>
+                  <coordinates>-138.5833,63.5 -138.5833,63.75 -138.0,63.75 -138.0,63.5 -138.5833,63.5</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 096N12</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-I/11 and parts of NTS 115-I/5, 6, 12, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d9f4dff5-f12f-40e8-9580-0438161b9182.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -308,18 +308,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-126.0,67.5 -126.0,67.75 -125.5,67.75 -125.5,67.5 -126.0,67.5</coordinates>
+                  <coordinates>-137.8333,62.4667 -137.8333,62.75 -137.0,62.75 -137.0,62.4667 -137.8333,62.4667</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 088G15</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/9 and part of NTS 115-O/10, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d2f72691-c0f4-45dc-b092-a06ca481ffd5.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -328,18 +328,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-118.0,75.75 -118.0,76.0 -117.0,76.0 -117.0,75.75 -118.0,75.75</coordinates>
+                  <coordinates>-138.5833,63.5 -138.5833,63.75 -138.0,63.75 -138.0,63.5 -138.5833,63.5</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 075N11</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/4 and part of 115-O/3, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/586d3856-78e3-40ac-b221-08975b90fce0.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -348,18 +348,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-109.5,63.5 -109.5,63.75 -109.0,63.75 -109.0,63.5 -109.5,63.5</coordinates>
+                  <coordinates>-139.9,63.0 -139.9,63.25 -139.25,63.25 -139.25,63.0 -139.9,63.0</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 083H15</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/6 and part of 115-O/7, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7ca7035f-fc40-440c-ac51-080fc435e3a5.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -368,18 +368,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-113.0,53.75 -113.0,54.0 -112.5,54.0 -112.5,53.75 -113.0,53.75</coordinates>
+                  <coordinates>-139.25,63.0 -139.25,63.4167 -138.75,63.4167 -138.75,63.0 -139.25,63.0</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 093N02</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/2 and part of 115-O/3, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c69c44d4-f72b-42ff-b5b9-895a5fbf402a.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -388,18 +388,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-125.0,55.0 -125.0,55.25 -124.5,55.25 -124.5,55.0 -125.0,55.0</coordinates>
+                  <coordinates>-139.25,63.0 -139.25,63.25 -138.5,63.25 -138.5,63.0 -139.25,63.0</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 013N12</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-I/11 and parts of NTS 115-I/5, 6, 12, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/74130125-e04d-49a5-8c42-8181e8206df0.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -408,18 +408,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-62.0,55.5 -62.0,55.75 -61.5,55.75 -61.5,55.5 -62.0,55.5</coordinates>
+                  <coordinates>-137.8333,62.4667 -137.8333,62.75 -137.0,62.75 -137.0,62.4667 -137.8333,62.4667</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 023G13</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/8 and part of 115-O/7, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3336cfde-2234-46c3-ae07-3512883fcfc4.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -428,18 +428,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-68.0,53.75 -68.0,54.0 -67.5,54.0 -67.5,53.75 -68.0,53.75</coordinates>
+                  <coordinates>-138.75,63.25 -138.75,63.5 -138.0,63.5 -138.0,63.25 -138.75,63.25</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 063G05</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-P/12 and part of 115-P/11, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/e4fdedc0-0416-42f7-977e-41d4df307946.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -448,18 +448,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-100.0,53.25 -100.0,53.5 -99.5,53.5 -99.5,53.25 -100.0,53.25</coordinates>
+                  <coordinates>-138.0,63.5 -138.0,63.75 -137.4167,63.75 -137.4167,63.5 -138.0,63.5</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 032I03</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-P/13 and part of NTS 115-P/14, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/99b23f06-9bac-4a48-9083-89fcb57c0712.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -468,18 +468,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-73.5,50.0 -73.5,50.25 -73.0,50.25 -73.0,50.0 -73.5,50.0</coordinates>
+                  <coordinates>-138.0,63.75 -138.0,64.0 -137.3333,64.0 -137.3333,63.75 -138.0,63.75</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 085J03</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/2 and part of 115-O/3, Yukon</name>
+         <description><![CDATA[<b>Date Added: </b>November 20, 2012<br/>
+            <b>Author: </b>Kiss, F<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/d077de75-8679-419e-bedb-18100526a48b.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -488,18 +488,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-115.5,62.0 -115.5,62.25 -115.0,62.25 -115.0,62.0 -115.5,62.0</coordinates>
+                  <coordinates>-139.25,63.0 -139.25,63.25 -138.5,63.25 -138.5,63.0 -139.25,63.0</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 065N02</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>The search for surficial expressions of buried Cordilleran porphyry deposits; preliminary findings in a new TGI4 activity in the southern Canadian Cordillera</name>
+         <description><![CDATA[<b>Date Added: </b>November 21, 2012<br/>
+            <b>Author: </b>Anderson, R G; Plouffe, A; Ferbey, T; Dunn, C E<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/4cb35654-d0ef-4db5-9065-8cd773f56c5b.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -508,18 +508,18 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-101.0,63.0 -101.0,63.25 -100.5,63.25 -100.5,63.0 -101.0,63.0</coordinates>
+                  <coordinates>-123.0,50.0 -123.0,53.0 -120.0,53.0 -120.0,50.0 -123.0,50.0</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
       </Placemark>
       <Placemark>
-         <name>Toporama - 034L08</name>
-         <description><![CDATA[<b>Date Added: </b>January 28, 2012<br/>
-            <b>Author: </b>Government of Canada, Natural Resources Canada, Earth Sciences Sector, Mapping Information Branch, Centre for Topographic Information - Sherbrooke<br/>
+         <name>Geophysical Series, detailed geophysical compilation project, Yukon Plateau, Yukon, NTS 115-I, J, K, N, O, P and 116A and B</name>
+         <description><![CDATA[<b>Date Added: </b>January 5, 2012<br/>
+            <b>Author: </b>Hayward, N; Oneschuk, D<br/>
             <br/>
             <b>
-               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/86f5b274-6f79-4a76-95fb-4d04aafcac7d.html">More Information</a>
+               <a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.html">More Information</a>
             </b>
             <br/>
             <br/>
@@ -528,7 +528,7 @@
          <Polygon>
             <outerBoundaryIs>
                <LinearRing>
-                  <coordinates>-78.5,58.25 -78.5,58.5 -78.0,58.5 -78.0,58.25 -78.5,58.25</coordinates>
+                  <coordinates>-141.0,62.0 -141.0,64.25 -136.5,64.25 -136.5,62.0 -141.0,62.0</coordinates>
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
@@ -539,7 +539,7 @@
          <open>0</open>
          <description>View More Results</description>
          <Link>
-            <href>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/?start-index=98&amp;max-results=25&amp;alt=kml</href>
+            <href>http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?start-index=944099&amp;alt=kml</href>
             <viewRefreshMode>onRequest</viewRefreshMode>
          </Link>
       </NetworkLink>

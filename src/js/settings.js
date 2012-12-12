@@ -41,7 +41,19 @@ var wet_boew_geomap = {
 		   title: 'KML Demo',
 		   type: 'kml',
 		   url: 'data/sample.kml',		   
+		   visible: false
+		},
+		{
+		   title: 'ATOM Demo',
+		   type: 'atom',
+		   url: 'data/sample.atom',		   
+		   visible: false
+		},
+		{
+		   title: 'GeoRSS Demo',
+		   type: 'georss',
+		   url: 'data/sample.rss',		   
 		   visible: true
-		}		
+		}				
 	]
 };

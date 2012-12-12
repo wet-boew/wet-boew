@@ -380,17 +380,7 @@
 			};			
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
-			overrides = {
-				// This is an example from tabbedinterface, to override defaults with configuration parameters passed from the html element to the plugin
-				// There are some simple examples here, along with some more complicated ones.
-//				defaultTab : ((elm.find(".default").length) ? ".default" : undefined),
-//				autoHeight : elm.hasClass("auto-height-none") ? false : undefined,
-//				cycle : (elm.hasClass("cycle-slow") ? 8000 : (elm.hasClass("cycle-fast") ? 2000 : (elm.hasClass("cycle") ? 6000 : undefined))),
-//				carousel : elm.hasClass("style-carousel") ? true : undefined,
-//				autoPlay : elm.hasClass("auto-play") ? true : undefined,
-//				animate : (elm.hasClass("animate") || elm.hasClass("animate-slow") || elm.hasClass("animate-fast")) ? true : undefined,
-//				animationSpeed : (elm.hasClass("animate-slow") ? "slow" : (elm.hasClass("animate-fast") ? "fast" : undefined))
-			};
+			overrides = {};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
 			// Only needed if there are configurable options (has 'metadata' dependency)
@@ -416,7 +406,7 @@
 			map.addLayer(new OpenLayers.Layer.WMS("CBMT", 
 					"http://geogratis.gc.ca/maps/CBMT", 
 					{ layers: 'CBMT', version: '1.1.1', format: 'image/png' },
-					{ isBaseLayer: true, singleTile: false, ratio: 1.0, displayInLayerSwitcher: false } ));			
+					{ isBaseLayer: true, singleTile: true, ratio: 1.0, displayInLayerSwitcher: false } ));			
 			
 			// Add layers passed in through settings
 			$.each(wet_boew_geomap.overlays, function(index, layer) {				
@@ -431,23 +421,54 @@
 					);
 				} else if (layer.type=='kml') {					
 					olLayer = new OpenLayers.Layer.Vector(
-							layer.title, {
+						layer.title, {
 							projection: map.displayProjection,
 							strategies: [new OpenLayers.Strategy.Fixed()],
 							protocol: new OpenLayers.Protocol.HTTP({
 							url: layer.url,
 							format: new OpenLayers.Format.KML({
 								extractStyles: true, 
-								extractAttributes: true/*,
-								maxDepth: 2*/
+								extractAttributes: true
 								})
 							})
-						},
-						{ visibility: layer.visible }
-					)					
+						}
+					)
+					olLayer.visibility=layer.visible;
 					map.addLayer(olLayer);
 					queryLayers.push(olLayer);
-				}
+				} else if (layer.type=='atom') {
+					olLayer = new OpenLayers.Layer.Vector(
+						layer.title, {
+							projection: map.displayProjection,
+							strategies: [new OpenLayers.Strategy.Fixed()],
+							protocol: new OpenLayers.Protocol.HTTP({
+							url: layer.url,
+							format: new OpenLayers.Format.Atom({
+								// TODO: extract data fields for query
+								})
+							})
+						}
+					)
+					olLayer.visibility=layer.visible;
+					map.addLayer(olLayer);
+					queryLayers.push(olLayer);
+				} else if (layer.type=='georss') {
+					olLayer = new OpenLayers.Layer.Vector(
+						layer.title, {
+							projection: map.displayProjection,
+							strategies: [new OpenLayers.Strategy.Fixed()],
+							protocol: new OpenLayers.Protocol.HTTP({
+							url: layer.url,
+							format: new OpenLayers.Format.GeoRSS({
+								// TODO: extract data fields for query
+								})
+							})
+						}
+					)
+					olLayer.visibility=layer.visible;
+					map.addLayer(olLayer);
+					queryLayers.push(olLayer);
+				}				
 			});			
 			
 			var selectControl = new OpenLayers.Control.SelectFeature(
@@ -457,7 +478,7 @@
 			map.addControl(selectControl);
 			selectControl.activate();			
 			
-			//TODO: ensure WCAG compliance before enabling
+			// TODO: ensure WCAG compliance before enabling
 			//map.addControl(new OpenLayers.Control.MousePosition());
 			//map.addControl(new OpenLayers.Control.Scale());		
 			//map.addControl(new OpenLayers.Control.Attribution());
@@ -465,7 +486,7 @@
 			map.addControl(new OpenLayers.Control.LayerSwitcher());			
 			map.addControl(new OpenLayers.Control.PanZoomBar());			
 			
-			//TODO: enable TouchNavigation for mobile clients
+			// TODO: enable TouchNavigation for mobile clients
 			map.addControl(new OpenLayers.Control.Navigation({zoomWheelEnabled : true}));
 			//map.addControl(new OpenLayers.Control.TouchNavigation();
 			
