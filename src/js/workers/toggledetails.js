@@ -32,11 +32,11 @@
 				accentFirst: false,	// Add 'button-accent' class to first toggle control
 				printOpen: false,	// Toggle open before print
 				text: {				// Button text and titles
-					toggle: _pe.dic.get('%toggle'),
-					open: _pe.dic.get('%open'),
-					close: _pe.dic.get('%close'),
-					titleOpen: _pe.dic.get('%toggle-open'),
-					titleClose: _pe.dic.get('%toggle-close')
+					toggle: _pe.dic.get('%td-toggle'),
+					open: _pe.dic.get('%td-open'),
+					close: _pe.dic.get('%td-close'),
+					titleOpen: _pe.dic.get('%td-ttl-open'),
+					titleClose: _pe.dic.get('%td-ttl-close')
 				}
 			};				
 				
