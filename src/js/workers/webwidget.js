@@ -40,7 +40,12 @@
 				return data.results !== undefined ? data.results : data;
 			},
 			_json_request: function (url) {
-				if (url.toLowerCase().indexOf('!/search/') > -1) {
+				if (url.toLowerCase().indexOf('/search?q=') > -1) {
+					return url.replace('http://', 'https://').replace(/https:\/\/twitter.com\/search\?q=([^&]*)/, function (str, p1) {
+						return 'http://search.twitter.com/search.json?q=' + encodeURI(decodeURI(p1)) + '&callback=?';
+					});
+				} else if (url.toLowerCase().indexOf('!/search/') > -1) {
+					//DEPRECATED
 					return url.replace('http://', 'https://').replace(/https:\/\/twitter.com\/#!\/search\/(.+$)/, function (str, p1) {
 						return 'http://search.twitter.com/search.json?q=' + encodeURI(decodeURI(p1)) + '&callback=?';
 					});
