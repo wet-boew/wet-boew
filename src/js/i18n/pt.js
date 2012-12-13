@@ -193,10 +193,10 @@
 			'%st-already-timeout-msg': 'Sorry your session has already expired. Please login again.',
 			/* Toggle details */
 			'%td-toggle': 'Toggle all',
-			'%td-open': 'Open all',
-			'%td-close': 'Close all',
-			'%td-ttl-open': 'Open all details elements',
-			'%td-ttl-close': 'Close all details elements',
+			'%td-open': 'Expand all',
+			'%td-close': 'Collapse all',
+			'%td-ttl-open': 'Expand all sections of content',
+			'%td-ttl-close': 'Collapse all sections of content',
 			/* Disable/enable PE */
 			'%pe-disable': 'Basic HTML version',
 			'%pe-enable': 'Standard version'

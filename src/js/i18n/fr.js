@@ -191,11 +191,11 @@
 			'%st-msgbox-title': 'Avertissement d\'expiration de la session',
 			'%st-already-timeout-msg': 'Désolé, votre session a déjà expiré. S\'il vous plaît vous connecter à nouveau.',
 			/* Toggle details */
-			'%td-toggle': 'Basculer tous',
-			'%td-open': 'Ouvrir tous',
-			'%td-close': 'Fermer tous',
-			'%td-ttl-open': 'Ouvrir tous les éléments de détails',
-			'%td-ttl-close': 'Fermer tous les éléments de détails',
+			'%td-toggle': 'Basculer tout',
+			'%td-open': 'Afficher tout',
+			'%td-close': 'Réduire tout',
+			'%td-ttl-open': 'Afficher toutes les sections de contenu',
+			'%td-ttl-close': 'Réduire toutes les sections de contenu',
 			/* Disable/enable PE */
 			'%pe-disable': 'Version HTML simplifiée',
 			'%pe-enable': 'Version standard'
