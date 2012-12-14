@@ -43,6 +43,14 @@
 		<classpath refid="jshint.classpath" />
 	</taskdef>
 	
+	<!-- Maven Ant Tasks task definitions -->
+	<path id="maven-ant.classpath">
+		<pathelement location="${maven-ant.jar}" />
+	</path>
+	<taskdef name="mvn" classname="org.apache.maven.artifact.ant.Mvn">
+		<classpath refid="maven-ant.classpath" />
+	</taskdef>
+	
 	<!-- Include jruby + gems (compass + sass) -->
 	<target name="-build-jruby" extensionOf="-init" depends="-jruby.jar.check" unless="jruby.jar.exists">
 		<mkdir dir="${lib.dir}/jruby-compiled" />
