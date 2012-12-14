@@ -17,6 +17,7 @@
 		
 	ol ol li { list-style-type: lower-alpha; }
 	ol ol ol li { list-style-type: lower-roman; }
+	ol ul li { list-style-type:inherit; } 
 
 	ol.list-numeric li		{ list-style-type: decimal !important; }
 	.list-lower-alpha		{ list-style-type: lower-alpha !important; }
