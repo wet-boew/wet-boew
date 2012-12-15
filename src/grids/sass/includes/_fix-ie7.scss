@@ -10,6 +10,15 @@
 	label {
 		@include inline-block;
 	}
+	ol ul li {
+		list-style-type: disc !important;
+		li {
+			list-style-type: circle !important;
+			li {
+				list-style-type: square !important;
+			}
+		}
+	}
 	.module-billboard a {
 		background-image:none !important;
 	}
