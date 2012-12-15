@@ -25,7 +25,7 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 * [Working examples](http://wet-boew.github.com/wet-boew/demos/index-eng.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
-* [Download](https://github.com/wet-boew/wet-boew/downloads)
+* [Download](https://github.com/wet-boew/wet-boew/wiki/Downloads)
 * [Terms and conditions](http://wet-boew.github.com/wet-boew/License-eng.txt)
 * [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET#wiki-Contributor_guidelines)
 * [Roadmap](https://github.com/wet-boew/wet-boew/wiki/Roadmap)
@@ -60,7 +60,7 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 
 * [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
-* [Télécharger](https://github.com/wet-boew/wet-boew/downloads)
+* [Versions à télécharger](https://github.com/wet-boew/wet-boew/wiki/Versions-de-t%C3%A9l%C3%A9chargement)
 * [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/Licence-fra.txt)
 * [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Développer-pour-la-boew#wiki-Lignes_directrices_pour_les_contributeurs)
 * [Feuille de route](https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route)
