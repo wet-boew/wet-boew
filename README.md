@@ -25,7 +25,7 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 * [Working examples](http://wet-boew.github.com/wet-boew/demos/index-eng.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
-* [Download](https://github.com/wet-boew/wet-boew/wiki/Downloads)
+* [Downloads](https://github.com/wet-boew/wet-boew/wiki/Downloads)
 * [Terms and conditions](http://wet-boew.github.com/wet-boew/License-eng.txt)
 * [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET#wiki-Contributor_guidelines)
 * [Roadmap](https://github.com/wet-boew/wet-boew/wiki/Roadmap)
