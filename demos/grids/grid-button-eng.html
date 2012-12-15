@@ -250,10 +250,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <h3 id="disabled">Disabled buttons</h3>
 <p>Remove the functionality of a button.</p>
-<div class="span-3"><a href="#embedded" class="button">default</a> <a href="#embedded" class="button button-disabled">disabled</a></div>
+<div class="span-3"><a href="#embedded" class="button">default</a> <a href="#embedded" class="button button-disabled ui-disabled">disabled</a></div>
 <details class="span-3">
 	<summary>View code</summary>
-<pre>&lt;a href=&quot;#embedded&quot; class=&quot;button button-disabled&quot;&gt;disabled&lt;/a&gt;</pre>
+<pre>&lt;a href=&quot;#embedded&quot; class=&quot;button button-disabled ui-disabled&quot;&gt;disabled&lt;/a&gt;</pre>
 </details>
 <div class="clear"></div>
 
@@ -317,14 +317,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <h4>Button toolbar</h4>
 <div class="span-3">
 	<div class="button-toolbar margin-top-none">
-		<p class="button-group">
-			<a href="#embedded" class="button button-accent">Primary Action</a>
-			<a href="#embedded" class="button">Action</a>
-		</p>
-		<p class="button-group">
-			<a href="#embedded" class="button">Action</a>
-			<a href="#embedded" class="button">Action</a>
-		</p>
+	<ul class="button-group">
+		<li><a href="#embedded" class="button button-accent">Primary Action</a></li>
+		<li><a href="#embedded" class="button">Action</a></li>
+	</ul>
+	<ul class="button-group">
+		<li><a href="#embedded" class="button">Action</a></li>
+		<li><a href="#embedded" class="button">Action</a></li>
+	</ul>
 		<p class="button-group">
 			<a href="#embedded" class="button">Help</a>
 		</p>
@@ -334,14 +334,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <details class="span-3">
 	<summary>View code</summary>
 	<pre>&lt;div class=&quot;button-toolbar&quot;&gt;
-   &lt;p class=&quot;button-group&quot;&gt;
-      &lt;a href=&quot;#embedded&quot; class=&quot;button button-accent&quot;&gt;Primary Action&lt;/a&gt;
-      &lt;a href=&quot;#embedded&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;
-   &lt;/p&gt;
-   &lt;p class=&quot;button-group&quot;&gt;
-      &lt;a href=&quot;#embedded&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;
-      &lt;a href=&quot;#embedded&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;
-   &lt;/p&gt;
+   &lt;ul class=&quot;button-group&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#embedded&quot; class=&quot;button button-accent&quot;&gt;Primary Action&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#embedded&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+   &lt;ul class=&quot;button-group&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#embedded&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#embedded&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
    &lt;p class=&quot;button-group&quot;&gt;
       &lt;a href=&quot;#embedded&quot; class=&quot;button&quot;&gt;Help&lt;/a&gt;
    &lt;/p&gt;
@@ -353,71 +353,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     
 	<h2 id="examples">Examples</h2>
 
-   <p>
-      <a href="#embedded" class="button button-small">A<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">B<span class="wb-invisible">topics</span></a>
-      <span class="button button-small button-none">C</span><span class="wb-invisible">topics</span>
-      <a href="#embedded" class="button button-small">D<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">E<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">F<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">G<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small button-accent button-disabled" disabled="disabled">H<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">I<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">J<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">K<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">L<span class="wb-invisible">topics</span></a> 
-      <span class="button button-small button-none">M</span><span class="wb-invisible">topics</span>
-      <a href="#embedded" class="button button-small">N<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">O<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">P<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">Q<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">R<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">S<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">T<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">U<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">V<span class="wb-invisible">topics</span></a>
-      <span class="button button-small button-none">W</span><span class="wb-invisible">topics</span>
-      <a href="#embedded" class="button button-small">X<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">Y<span class="wb-invisible">topics</span></a>
-      <a href="#embedded" class="button button-small">Z<span class="wb-invisible">topics</span></a>
-   </p>
-   
-   <p>
-      <a href="#embedded" class="button button-small button-accent">Previous<span class="wb-invisible">page of search results</span></a>
-      <a href="#embedded" class="button button-small">1<span class="wb-invisible">: Page 1 of search results</span></a>
-      <a href="#embedded" class="button button-small">2<span class="wb-invisible">: Page 2 of search results</span></a>
-      <span class="button button-small button-attention button-disabled" disabled="disabled">3<span class="wb-invisible">: Page 3 of search results</span></span>
-      <a href="#embedded" class="button button-small">4<span class="wb-invisible">: Page 4 of search results</span></a>
-      <a href="#embedded" class="button button-small">5<span class="wb-invisible">: Page 5 of search results</span></a>
-      <a href="#embedded" class="button button-small">6<span class="wb-invisible">: Page 6 of search results</span></a>
-      <a href="#embedded" class="button button-small">7<span class="wb-invisible">: Page 7 of search results</span></a>
-      <a href="#embedded" class="button button-small">8<span class="wb-invisible">: Page 8 of search results</span></a>
-      <a href="#embedded" class="button button-small">9<span class="wb-invisible">: Page 9 of search results</span></a>
-      <a href="#embedded" class="button button-small">10<span class="wb-invisible">: Page 10 of search results</span></a>
-      <a href="#embedded" class="button button-small button-accent">Next<span class="wb-invisible">page of search results</span></a>
-   </p>
-   
-   <p class="button-group">
-      <a href="#" rel="prev" class="button">Previous</a>
-      <a href="#" rel="index" class="button">Table of Contents</a>
-      <a href="#" rel="next" class="button">Next</a>
-   </p>
-   
-   
-   <ul class="menu-horizontal span-3">
+    <ul class="menu-horizontal">
       <li><a href="#embedded" class="button button-small">A<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">B<span class="wb-invisible">topics</span></a></li>
-      <li><a class="button button-small button-disabled" disabled="disabled">C<span class="wb-invisible">topics</span></a></li>
+      <li><a class="button button-small button-disabled ui-disabled">C<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">D<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">E<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">F<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">G<span class="wb-invisible">topics</span></a></li>
-      <li><a href="#embedded" class="button button-small button-accent button-disabled" disabled="disabled">H<span class="wb-invisible">topics</span></a></li>
+      <li><a href="#embedded" class="button button-small button-accent button-disabled ui-disabled">H<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">I<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">J<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">K<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">L<span class="wb-invisible">topics</span></a></li>
-      <li><a class="button button-small button-disabled" disabled="disabled">M<span class="wb-invisible">topics</span></a></li>
+      <li><a class="button button-small button-disabled ui-disabled">M<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">N<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">O<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">P<span class="wb-invisible">topics</span></a></li>
@@ -427,11 +376,34 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
       <li><a href="#embedded" class="button button-small">T<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">U<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">V<span class="wb-invisible">topics</span></a></li>
-      <li><a class="button button-small button-disabled" disabled="disabled">W<span class="wb-invisible">topics</span></a></li>
+      <li><a class="button button-small button-disabled ui-disabled">W<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">X<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">Y<span class="wb-invisible">topics</span></a></li>
       <li><a href="#embedded" class="button button-small">Z<span class="wb-invisible">topics</span></a></li>
    </ul>
+   
+    <ul class="menu-horizontal">
+      <li><a href="#embedded" class="button button-small button-accent">Previous<span class="wb-invisible">page of search results</span></a></li>
+      <li><a href="#embedded" class="button button-small">1<span class="wb-invisible">: Page 1 of search results</span></a></li>
+     <li> <a href="#embedded" class="button button-small">2<span class="wb-invisible">: Page 2 of search results</span></a></li>
+     <li> <span class="button button-small button-attention button-disabled ui-disabled">3<span class="wb-invisible">: Page 3 of search results</span></span></li>
+      <li><a href="#embedded" class="button button-small">4<span class="wb-invisible">: Page 4 of search results</span></a></li>
+      <li><a href="#embedded" class="button button-small">5<span class="wb-invisible">: Page 5 of search results</span></a></li>
+     <li> <a href="#embedded" class="button button-small">6<span class="wb-invisible">: Page 6 of search results</span></a></li>
+      <li><a href="#embedded" class="button button-small">7<span class="wb-invisible">: Page 7 of search results</span></a></li>
+      <li><a href="#embedded" class="button button-small">8<span class="wb-invisible">: Page 8 of search results</span></a></li>
+      <li><a href="#embedded" class="button button-small">9<span class="wb-invisible">: Page 9 of search results</span></a></li>
+      <li><a href="#embedded" class="button button-small">10<span class="wb-invisible">: Page 10 of search results</span></a></li>
+      <li><a href="#embedded" class="button button-small button-accent">Next<span class="wb-invisible">page of search results</span></a></li>
+   </ul>
+   
+   <ul class="button-group">
+      <li><a href="#" rel="prev" class="button">Previous</a></li>
+      <li><a href="#" rel="index" class="button">Table of Contents</a></li>
+      <li><a href="#" rel="next" class="button">Next</a></li>
+   </ul>
+   
+   
    <div class="clear"></div>
    <div class="module-attention span-3">
 	<h3 class="font-xlarge"><span class="color-dark">Warning: </span> Lorem ipsum dolor sit amet</h3>
