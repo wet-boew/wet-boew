@@ -95,7 +95,7 @@
 		}
 		&:after { clear: both; }
 		
-		> .button {
+		.button {
 			position: relative;
 			float: left;
 			margin-left: -1px;
@@ -109,6 +109,8 @@
 			list-style:none;
 			float:left;
 		}
+		li:first-child .button { @include border-left-radius(4px); }
+		li:last-child .button { @include border-right-radius(4px); }
 	}
 	
 	ul.button-group {
