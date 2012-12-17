@@ -6,7 +6,8 @@ env:
 
 branches:
   except:
-    - downloads
+    - v3.0-dist
+    - master-dist
 
 before_script: 
   - ant test -Djshint.failbuild=true
