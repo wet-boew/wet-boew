@@ -45,7 +45,7 @@ if [ "$REPO" == "wet-boew/wet-boew" ]; then
 		git push -fq https://${GH_TOKEN}@github.com/${REPO}.git $build_branch > /dev/null
 
 		#Tag the latest build
-		git tag -af $TRAVIS_BRANCH.latest-dist -m 'Latest build for branch $TRAVIS_BRANCH'
+		git tag -af $TRAVIS_BRANCH.latest-dist -m "Latest build for branch $TRAVIS_BRANCH"
 		git push -fq https://${GH_TOKEN}@github.com/${REPO}.git --tags > /dev/null
 
 		echo "Finished tagging the latest build for branch $TRAVIS_BRANCH"
