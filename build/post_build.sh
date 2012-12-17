@@ -33,7 +33,8 @@ if [ "$REPO" == "wet-boew/wet-boew" ]; then
 
 		git checkout "$build_branch"
 
-		#Replace the dist and demo folder with the new ones
+		#Remove all files and replace with the new dist and demo folders
+		git rm -r */
 		mv -f $HOME/dist dist
 		mv -f $HOME/demos demos
 
