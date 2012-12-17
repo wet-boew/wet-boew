@@ -31,15 +31,15 @@ if [ "$REPO" == "wet-boew/wet-boew" ]; then
 
 		build_branch="$TRAVIS_BRANCH-dist"
 
-		git checkout "$build_branch"
+		git checkout -f "$build_branch"
 
-		#Remove all files and replace with the new dist and demo folders
-		git rm -r */
+		#Replace the new dist and demo folders with the new ones
 		mv -f $HOME/dist dist
 		mv -f $HOME/demos demos
 
 		#Commit the result
-		git add -f .
+		git add -f dist
+		git add -f demos
 		git commit -m "Travis build $TRAVIS_JOB_ID pushed to $TRAVIS_BRANCH"
 		git push -fq https://${GH_TOKEN}@github.com/${REPO}.git $build_branch > /dev/null
 
