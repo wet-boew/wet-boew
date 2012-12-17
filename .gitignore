@@ -1,0 +1,23 @@
+nbproject/*
+.sass-cache/
+.DS_Store
+jruby*.jar
+dist/*
+build/lib/vendors*
+build/lib/jruby-compiled
+_notes/
+
+# OS generated files #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ethumbs.db
+Thumbs.db
+/.project
+jshint.out.xml
+csslint.out.xml
+*.orig
+*.tmp
+*.log
