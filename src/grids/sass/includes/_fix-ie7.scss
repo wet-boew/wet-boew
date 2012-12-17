@@ -10,6 +10,9 @@
 	label {
 		@include inline-block;
 	}
+	pre {
+		word-wrap: break-word;
+	}
 	.module-billboard a {
 		background-image:none !important;
 	}
