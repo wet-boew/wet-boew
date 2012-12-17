@@ -4,7 +4,6 @@
  */
 @import "compass/css3/text-shadow";
 @import "compass/utilities/color";
-@import "compass/typography/text";
 
 $sans-serif:		Verdana, Arial, Helvetica, sans-serif;
 $serif:				Georgia, "Times New Roman", Times, serif;
@@ -152,7 +151,7 @@ pre {
 	@if $legacy-support-for-mozilla {
 		overflow-x: auto;  /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */
 	}
-	@include force-wrap;
+	white-space: pre-wrap;
 }
 
 p, blockquote, table, form, img, pre {
