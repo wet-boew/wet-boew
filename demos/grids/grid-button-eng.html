@@ -258,9 +258,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 
 <h3 id="embedded">Embedded navigation</h3>
-<p>This class allows for embedded page navigation. The navigation may be based off an unordered list or paragraph text. To make the unordered list display horizontally, simply use the <code>menu-horizontal</code> class.</p>
+<p>These classes allows for embedded page navigation. The navigation may be based off an unordered list or paragraph text. To make the unordered list of buttons display horizontally, use the <code>menu-horizontal</code> class.  To group buttons together, use the <code>button-group</code>  class together.</p>
 
-<h4>Unordered list</h4>
+<h4>Unordered list using <code>menu-horizontal</code></h4>
 <div class="span-3">
 	<ul class="menu-horizontal margin-bottom-medium">
 		<li><a href="#embedded" class="button button-accent">Primary Action</a></li>
@@ -278,43 +278,25 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <div class="clear"></div>
 
-<h4>Button</h4>
+<h4>Unordered list using <code>button-group</code></h4>
 <div class="span-3">
-	<p>
-		<a href="#embedded" class="button button-accent">Primary Action</a>
-		<a href="#embedded" class="button">Action</a>
-	</p>
+	<ul class="button-group">
+		<li><a href="#embedded" class="button button-accent">Primary Action</a></li>
+		<li><a href="#embedded" class="button">Action</a></li>
+	</ul>	
 </div>
 
 <details class="span-3">
 	<summary>View code</summary>
-	<pre>&lt;p&gt;
-   &lt;a href=&quot;#embedded&quot; class=&quot;button button-accent&quot;&gt;Primary Action&lt;/a&gt;
-   &lt;a href=&quot;#embedded&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;
-&lt;/p&gt;</pre>
+	<pre>&lt;ul class=&quot;button-group&quot;&gt;
+   &lt;li&gt;&lt;a href=&quot;#embedded&quot; class=&quot;button button-accent&quot;&gt;Primary Action&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href=&quot;#embedded&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
 </details>
 
 <div class="clear"></div>
 
-<h4>Button group</h4>
-<div class="span-3">
-	<p class="button-group">
-		<a href="#embedded" class="button button-accent">Primary Action</a>
-		<a href="#embedded" class="button">Action</a>
-	</p>	
-</div>
-
-<details class="span-3">
-	<summary>View code</summary>
-	<pre>&lt;p class=&quot;button-group&quot;&gt;
-   &lt;a href=&quot;#embedded&quot; class=&quot;button button-accent&quot;&gt;Primary Action&lt;/a&gt;
-   &lt;a href=&quot;#embedded&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;
-&lt;/p&gt;</pre>
-</details>
-
-<div class="clear"></div>
-
-<h4>Button toolbar</h4>
+<h4>Muliple unordered lists using <code>button-toolbar</code> and <code>button-group</code></h4>
 <div class="span-3">
 	<div class="button-toolbar margin-top-none">
 	<ul class="button-group">
@@ -409,10 +391,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<h3 class="font-xlarge"><span class="color-dark">Warning: </span> Lorem ipsum dolor sit amet</h3>
    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin gravida,   ipsum vitae malesuada pellentesque, mauris purus accumsan ipsum, sed   porta lectus justo ac mauris. </p>
    <div class="button-toolbar">
-  <p class="button-group">
-      <a href="#" class="button">Report a problem</a>
-      <a href="#" class="button">Learn more</a>
-   </p>
+  <ul class="button-group">
+      <li><a href="#" class="button">Report a problem</a></li>
+      <li><a href="#" class="button">Learn more</a></li>
+   </ul>
    <p class="button-group float-right">
       <a href="#" class="button button-attention">Delete</a>
    </p>
