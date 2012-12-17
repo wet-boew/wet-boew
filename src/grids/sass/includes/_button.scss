@@ -1,5 +1,5 @@
 /*
- * Web Experience Toolkit (WET) / BoÃ®te Ã  outils de l'expÃ©rience Web (BOEW)
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/text-shadow";
@@ -101,9 +101,11 @@
 			margin-left: -1px;
 			@include border-radius(0);
 			
+			&:hover, &:focus, &:active { z-index: 2; }
+			}
+		> .button {	
 			&:first-child { @include border-left-radius(4px); }
 			&:last-child { @include border-right-radius(4px); }
-			&:hover, &:focus, &:active { z-index: 2; }
 		}
 		li {
 			list-style:none;
