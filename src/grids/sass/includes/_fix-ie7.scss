@@ -10,6 +10,15 @@
 	label {
 		@include inline-block;
 	}
+	ol ul li {
+		list-style-type: disc !important;
+		li {
+			list-style-type: circle !important;
+			li {
+				list-style-type: square !important;
+			}
+		}
+	}
 	pre {
 		word-wrap: break-word;
 	}
