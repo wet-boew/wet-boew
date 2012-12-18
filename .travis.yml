@@ -2,11 +2,12 @@ language: java
 
 env:
   global:
-    - secure: "Vd6aDdDAKL8SZQx8L/LeoDI4+I/Y6cjIoedk31MFCWn6NzAWNj08h6JfRT31\noCH7+jPjIVoakzdjFHBxiLskPfqPSZA4xkVCml3kMai9UqYortnRK8VcFg2W\nqi8XQHOCF7e5mOmHt4AycN/1kJHJZ39u1gdoXu1eO4ml62uKLxc="
+    - secure: "qSXbG59qPwiF3NccMohXgkOQIm17ZgclLoqwSD/vFM5Hf6fbhH/Kmks7S7N5\nlVfk0c6q11BDVXOspQF86a07/VmKNMlkb+BhpePvMZAwx9IPYE9eFzTqPkRB\ncUbiPOLZUvaPaVDkoJrjYnawQTkaOwm3oYSMBXQTTI9lXrqs6Xo="
 
 branches:
   except:
-    - downloads
+    - v3.0-dist
+    - master-dist
 
 before_script: 
   - ant test -Djshint.failbuild=true

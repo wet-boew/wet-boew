@@ -192,9 +192,11 @@
 			'%st-msgbox-title': 'Aviso de finalización de sesión',
 			'%st-already-timeout-msg': 'Lamentablemente su sesión ha expirado. Por favor ingrese nuevamente.',
 			/* Toggle details */
-			'%toggle': 'Bascular',
-			'%toggle-open': 'Bascular abierto',
-			'%toggle-close': 'Bascular cerrado',
+			'%td-toggle': 'Alternar todo',
+			'%td-open': 'Expandir todo',
+			'%td-close': 'Plegar todo',
+			'%td-ttl-open': 'Expandir todas las secciones de contenido',
+			'%td-ttl-close': 'Plegar todas las secciones de contenido',
 			/* Disable/enable PE */
 			'%pe-disable': 'Versión básica HTML',
 			'%pe-enable': 'Versión standard'

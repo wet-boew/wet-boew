@@ -129,7 +129,7 @@
 					if (errors.length > 0) {
 						// Create our container if one doesn't already exist
 						if (summaryContainer.length === 0) {
-							summaryContainer = $('<div id="' + $errorFormId + '" class="errorContainer" role="alert" tabindex="-1"/>').prependTo(form);
+							summaryContainer = $('<div id="' + $errorFormId + '" class="errorContainer" tabindex="-1"/>').prependTo(form);
 						} else {
 							summaryContainer.empty();
 						}
