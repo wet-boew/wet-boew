@@ -388,7 +388,7 @@
 				}).append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')))
 			);
 
-			ui.append(ui_start).append(ui_timeline).append(ui_end);
+			ui.append(ui_start).append(ui_end).append(ui_timeline);
 
 			return ui;
 		},
