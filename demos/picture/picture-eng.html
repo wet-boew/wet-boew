@@ -98,27 +98,129 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Picture Element</h1>
+<h1 id="wb-cont">Responsive Images</h1>
 
-<div class="wet-boew-picture span-8">
-	<picture alt="Parliament Hill">
-		<source src="images/parliament-hill-small.jpg">
-		<source src="images/parliament-hill-medium.jpg" media="(min-width: 500px)">
-		<source src="images/parliament-hill-large.jpg" media="(min-width: 960px)">
-		<source src="images/parliament-hill-extralarge.jpg" media="(min-width: 1200px)">
 
-		<!-- IE9 support
-		<source src="images/parliament-hill-small.jpg">
-		<source src="images/parliament-hill-medium.jpg" media="(min-width: 500px)">
-		<source src="images/parliament-hill-large.jpg" media="(min-width: 960px)">
-		<source src="images/parliament-hill-extralarge.jpg" media="(min-width: 1200px)">
-		 -->
+<div class="span-4">
+	<h2>Features</h2>
+	<p>This plugin provides support for responsive images which allows you to specify multiple sources for an image that are optimized for different resolutions and devices.</p>
+	<p><a href="http://www.w3.org/TR/css3-mediaqueries/" title="Learn more about CSS media queries">CSS media queries</a> are used to determine which image source should be loaded. As a result responsive images will only work in modern browers that <a href="http://caniuse.com/css-mediaqueries" title="View CSS media query support">support CSS media queries</a>.</p>
+</div>
+<div class="span-4">
+	<h2>Usage</h2>
+	<p>Add the <code>wet-boew-picture</code> CSS class to any element on your page.  This will trigger the plugin, which in turn uses the <a href="https://github.com/scottjehl/picturefill" title="Picturefill library on GitHub">Picturefill library</a> to create the responsive image.</p>
+	<h3></h3>
+	<table class="table-simplify">
+		<caption>
+		Data Attributes
+		</caption>
+		<thead>
+			<tr>
+				<th scope="col" class="width-30">Attribute</th>
+				<th scope="col">Purpose</th>
+			</tr>
+		</thead>
+		<tr>
+			<td><code>data-picture</code></td>
+			<td>Identifies the &lt;div&gt; as a resonsive image.</td>
+		</tr>
+		<tr>
+			<td><code>data-alt</code></td>
+			<td>Alternate text that will be used for the image's alt attribute.</td>
+		</tr>
+		<tr>
+			<td><code>data-src</code></td>
+			<td>Path to the image.</td>
+		</tr>
+		<tr>
+			<td><code>data-media</code></td>
+			<td>CSS media query that determines when the image source is used.</td>
+		</tr>					
+	</table>	
+</div>
+<div class="clear"></div> 
 
-		 <!-- Fallback for non-supporting browsers -->
-		<img src="images/parliament-hill-large.jpg" alt="Parliament Hill">
-	</picture>
-	<p class="margin-top-none">Photo by <a href="http://www.flickr.com/photos/intercultura/6130311384">Noema Pérez</a>, licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en_CA">Creative Commons</a>.</p>
-</div>	
+<div class="span-8">
+	<h2>Examples</h2>
+	<h3>Browser Width</h3>
+	<p>This example uses <a href="http://www.w3.org/TR/css3-mediaqueries/#width">min-width</a> to determine which image should be displayed.  Resize the browser window to see the different images load.</p>
+	<div data-picture data-alt="Parliament Hill" class="wet-boew-picture">	
+		<!-- Image sources for different minimum browser widths -->
+		<div data-src="images/parliament-hill-small.jpg"></div>
+		<div data-src="images/parliament-hill-medium.jpg" data-media="(min-width: 500px)"></div>
+		<div data-src="images/parliament-hill-large.jpg" data-media="(min-width: 960px)"></div>
+		<div data-src="images/parliament-hill-extralarge.jpg" data-media="(min-width: 1200px)"></div>
+	
+		<!-- Default image for IE8 and below (no CSS media query support) -->
+        <!--[if (lt IE 9) & (!IEMobile)]>        	
+            <div data-src="images/parliament-hill-large.jpg"></div>	
+        <![endif]-->	
+	
+		<!-- Fallback content for non-JS browsers. -->
+		<noscript><img src="images/parliament-hill-large.jpg" alt="Parliament Hill"></noscript>
+	</div>	
+	<p class="font-xsmall margin-top-none">Photo by <a href="http://www.flickr.com/photos/intercultura/6130311384">Noema Pérez</a>, licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en_CA">Creative Commons</a>.</p>
+	<details class="wet-boew-prettify all-pre linenums">
+		<summary>View code</summary>
+		<pre>
+&lt;div data-picture data-alt="Image alt text" class="wet-boew-picture"&gt;	
+  &lt;!-- Image sources for different minimum browser widths --&gt;
+  &lt;div data-src="images/small.jpg"&gt;&lt;/div&gt;
+  &lt;div data-src="images/medium.jpg" data-media="(min-width: 500px)"&gt;&lt;/div&gt;
+  &lt;div data-src="images/large.jpg" data-media="(min-width: 960px)"&gt;&lt;/div&gt;
+  &lt;div data-src="images/extralarge.jpg" data-media="(min-width: 1200px)"&gt;&lt;/div&gt;
+
+  &lt;!-- Default image for IE8 and below (no CSS media query support) --&gt;
+  &lt;!--[if (lt IE 9) & (!IEMobile)]&gt;        	
+    &lt;div data-src="images/parliament-hill-large.jpg"&gt;&lt;/div&gt;	
+  &lt;![endif]--&gt;	
+
+  &lt;!-- Fallback image for non-JS browsers. --&gt;
+  &lt;noscript&gt;&lt;img src="images/large.jpg" alt="Image alt text"&gt;&lt;/noscript&gt;
+&lt;/div&gt;</pre>
+	</details>	
+	
+	<h3>High Pixel Density</h3>
+	<p>This example uses min-device-pixel-ratio to serve high resolution images to devices that will benefit from them (i.e. Retina displays).</p>
+	<div class="span-2 row-start">
+		<div data-picture data-alt="False Kiva, located in the Island in the Sky district of Canyonlands">
+			<!-- Image sources for different device pixel ratios -->
+		    <div data-src="images/cave-low-res.jpg"></div>
+		    <div data-src="images/cave-high-res.jpg" data-media="(min-device-pixel-ratio: 2.0)"></div>
+		
+			<!-- Default image for IE8 and below (no CSS media query support) -->
+	        <!--[if (lt IE 9) & (!IEMobile)]>        	
+	            <div data-src="images/cave-low-res.jpg"></div>	
+	        <![endif]-->			
+		
+		    <!-- Fallback content for non-JS browsers -->
+		    <noscript><img src="images/cave-low-res.jpg" alt="False Kiva, located in the Island in the Sky district of Canyonlands"></noscript>
+	    </div>
+	    <p class="font-xsmall margin-top-none">Photo by <a href="http://www.flickr.com/photos/snowpeak/">snowpeak</a>, licensed under <a href="http://creativecommons.org/licenses/by/2.0/">Creative Commons</a>.</p>
+    </div>
+    <div class="clear"></div>
+    
+	<details class="wet-boew-prettify all-pre linenums">
+		<summary>View code</summary>
+		<pre>
+&lt;div data-picture data-alt="False Kiva, located in the Island in the Sky district of Canyonlands"&gt;
+  &lt;!-- Image sources for different device pixel ratios --&gt;
+  &lt;div data-src="images/cave-low-res.jpg"&gt;&lt;/div&gt;
+  &lt;div data-src="images/cave-high-res.jpg" data-media="(min-device-pixel-ratio: 2.0)"&gt;&lt;/div&gt;
+
+  &lt;!-- Default image for IE8 and below (no CSS media query support) --&gt;
+  &lt;!--[if (lt IE 9) & (!IEMobile)]&gt;        	
+    &lt;div data-src="images/cave-low-res.jpg"&gt;&lt;/div&gt;	
+  &lt;![endif]--&gt;	
+
+  &lt;!-- Fallback content for non-JS browsers --&gt;
+  &lt;noscript&gt;&lt;img src="images/cave-low-res.jpg" alt="False Kiva, located in the Island in the Sky district of Canyonlands"&gt;&lt;/noscript&gt;
+&lt;/div&gt;</pre>
+	</details>	  
+    
+    
+</div>
+<div class="clear"></div> 
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
