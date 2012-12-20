@@ -130,7 +130,7 @@
 			}
 
 			// Add hidden tab list heading
-			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(pe.dic.get('%tab-list') + tabListCount);
+			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(_pe.dic.get('%tab-list') + tabListCount);
 			if (_pe.ie > 0 && _pe.ie < 9) {
 				$tabListHeading.wrap('<div>'); // Stop empty text nodes from moving the tabs around
 			}
