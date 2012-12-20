@@ -108,6 +108,7 @@
 				'disable': 'Arrêter la rotation d\'onglets',
 				'enable': 'Lancer la rotation d\'onglets'
 			},
+			'%tab-list': 'Liste des onglets',
 			/* Multimedia player */
 			'%play': 'Jouer',
 			'%pause': 'Pause',
