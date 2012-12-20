@@ -27,8 +27,6 @@
 				$panels = elm.children('.tabs-panel').children('div'),
 				defaultTab = 0,
 				accordion = '<div data-role="collapsible-set" data-mini="true" data-content-theme="b" data-theme="b">',
-				heading,
-				parent,
 				hlevel,
 				hopen,
 				hclose,
@@ -46,17 +44,7 @@
 			// Convert html elements and attributes into the format the jQuery mobile accordian plugin expects.
 			// Get the content out of the html structure tabbedinterface usually expects.
 			// Create the accordion structure to move the content to.
-			heading = elm.find(':header');
-			if (heading.length !== 0) {
-				hlevel = parseInt(heading.prop('tagName').substr(1), 10);
-			} else {
-				parent = elm;
-				while (heading.length === 0) {
-					parent = parent.parent();
-					heading = parent.find(':header');
-				}
-				hlevel = parseInt(heading.prop('tagName').substr(1), 10) + 1;
-			}
+			hlevel = this._get_heading_level(elm);
 			hopen = '<h' + hlevel + '>';
 			hclose = '</h' + hlevel + '>';
 
@@ -76,6 +64,8 @@
 				$nav = elm.children('.tabs'),
 				$tabs = $nav.find('a').filter(':not(.tabs-toggle)'),
 				$tabsPanel = elm.children('.tabs-panel'),
+				$tabbedInterfaces = $('.wet-boew-tabbedinterface'),
+				$tabListHeading,
 				$panels = $tabsPanel.children(),
 				$toggleButton,
 				$toggleRow,
@@ -91,6 +81,7 @@
 				startHiddenText = pe.dic.get('%tab-rotation', 'enable'),
 				stopCycle,
 				toggleCycle,
+				tabListCount = $tabbedInterfaces.length > 1 ? ' ' + ($tabbedInterfaces.index(elm) + 1) : '',
 				tabsPanelId,
 				tabSuffix = "-link";
 
@@ -126,6 +117,13 @@
 			} else {
 				$.extend(opts, overrides, elm.metadata());
 			}
+
+			// Add hidden tab list heading
+			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(pe.dic.get('%tab-list') + tabListCount);
+			if (_pe.ie > 0 && _pe.ie < 9) {
+				$tabListHeading.wrap('<div>'); // Stop empty text nodes from moving the tabs around
+			}
+			$tabListHeading.insertBefore($nav);
 
 			$nav.attr('role', 'tablist').children('li').attr('role', 'presentation');
 			$tabs.attr({'role': 'tab', 'aria-selected': 'false'});
@@ -326,7 +324,28 @@
 			});
 
 			return elm.attr('class', elm.attr('class').replace(/\bwidget-style-/, "style-"));
-		} // end of exec
+		}, // end of exec
+
+		/**
+		 * Given an element, find the appropriate heading level for its content
+		 */
+		_get_heading_level : function(elm) {
+			var heading = elm.find(':header'),
+				hlevel,
+				parent;
+
+			if (heading.length !== 0) {
+				hlevel = parseInt(heading.prop('tagName').substr(1), 10);
+			} else {
+				parent = elm;
+				while (heading.length === 0) {
+					parent = parent.parent();
+					heading = parent.find(':header');
+				}
+				hlevel = parseInt(heading.prop('tagName').substr(1), 10) + 1;
+			}
+			return hlevel;
+		}
 	};
 	window.pe = _pe;
 	return _pe;
