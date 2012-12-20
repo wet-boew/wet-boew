@@ -107,6 +107,7 @@
 				'disable': 'Stop tab rotation',
 				'enable': 'Start tab rotation'
 			},
+			'%tab-list': 'Tab list',
 			/* Multimedia player */
 			'%play': 'Play',
 			'%pause': 'Pause',
