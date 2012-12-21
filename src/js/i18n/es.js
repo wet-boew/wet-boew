@@ -107,6 +107,7 @@
 				'disable': 'Detener rotación de tabs',
 				'enable': 'Comenzar rotación de tabs'
 			},
+			'%tab-list': 'Lista de pestañas',
 			/* Multimedia player */
 			'%play': 'Reproducir',
 			'%pause': 'Pausa',
