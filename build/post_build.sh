@@ -2,8 +2,8 @@ export REPO="$(pwd | sed s,^/home/travis/builds/,,g)"
 declare -a supported_branches=('master' 'v3.0') # List of branches to store build output for
 
 #Copy result of build and demo in a temporary location
-cp -r dist $HOME/dist
-cp -r demos $HOME/demos
+cp -R dist $HOME/dist
+cp -R demos $HOME/demos
 
 git fetch
 
@@ -34,8 +34,8 @@ if [ "$REPO" == "wet-boew/wet-boew" ]; then
 		git checkout -f "$build_branch"
 
 		#Replace the new dist and demo folders with the new ones
-		mv -f $HOME/dist dist
-		mv -f $HOME/demos demos
+		cp -Rf $HOME/dist .
+		cp -Rf $HOME/demos .
 
 		#Commit the result
 		git add -f dist
