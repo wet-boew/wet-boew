@@ -3,16 +3,16 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*
- * Toggle details plugin
+ * Expand/Collapse All Content plugin
  */
-/*global jQuery: false, wet_boew_toggledetails: false */
+/*global jQuery: false, wet_boew_expandcollapseall: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
 		fn : {}
 	};
 	
-	_pe.fn.toggledetails = {
+	_pe.fn.expandcollapseall = {
 		type : 'plugin',
 		_open : false,			// Globally track the toggle state to support multiple controls on a page
 		_togglers : [],			// Reference to all toggle controls
@@ -51,9 +51,9 @@
 				printOpen: elm.hasClass('print-open') ? true : undefined
 			};
 			
-			// Extend the defaults with settings passed through settings.js (wet_boew_toggledetails) and class-based overrides
-			if (typeof wet_boew_toggledetails !== 'undefined' && wet_boew_toggledetails !== null) {
-				$.extend(opts, wet_boew_toggledetails, overrides);
+			// Extend the defaults with settings passed through settings.js (wet_boew_expandcollapseall) and class-based overrides
+			if (typeof wet_boew_expandcollapseall !== 'undefined' && wet_boew_expandcollapseall !== null) {
+				$.extend(opts, wet_boew_expandcollapseall, overrides);
 			} else {
 				$.extend(opts, overrides);
 			}	
