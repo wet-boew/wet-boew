@@ -18,7 +18,7 @@
 		_exec : function (elm) {	
 			var w = window;			
 
-			// Prevent multiple initialization of the plugin
+			// Prevent multiple initializations of the plugin
 			if(this._initialized === false) {
 			
 				// Remove the picturefill resize event listener and let pe.resize to do the work
