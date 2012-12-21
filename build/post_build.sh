@@ -34,8 +34,8 @@ if [ "$REPO" == "wet-boew/wet-boew" ]; then
 		git checkout -f "$build_branch"
 
 		#Replace the new dist and demo folders with the new ones
-		mv -f $HOME/dist dist
-		mv -f $HOME/demos demos
+		cp -rf $HOME/dist ./dist/
+		cp -rf $HOME/demos ./demos/
 
 		#Commit the result
 		git add -f dist
