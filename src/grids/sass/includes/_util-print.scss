@@ -104,6 +104,10 @@ caption {
 	text-align:left;
 }
 
+[dir="rtl"] caption {
+	text-align:right;
+}
+
 th {
 	background-color:#eee;
 	border:1px solid #ccc;
