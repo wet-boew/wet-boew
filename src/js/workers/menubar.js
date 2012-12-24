@@ -49,9 +49,18 @@
 					_sm = _node.find('.mb-sm');
 				_sm.attr({'aria-expanded':'true', 'aria-hidden':'false'}).toggleClass('mb-sm mb-sm-open');
 
-				if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
-					_sm.css('right', '0px');
+				var rtl = ($('head').attr("dir") === "rtl") ? true : false;
+					
+				if (rtl) {
+					if ((Math.floor($(window).width() - _sm.offset().left) - Math.floor($(window).width() - $menuBoundary.offset().left)) >= -1) {
+						_sm.css("left", "0px");
+					}
+				} else {
+					if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
+						_sm.css('right', '0px');
+					}
 				}
+
 				_node.addClass('mb-active');
 				return;
 			};
