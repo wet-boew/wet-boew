@@ -81,6 +81,17 @@ h2 {
 	}
 }
 
+[dir="rtl"] #gcwu-ef-lang, [dir="rtl"] #gcwu-other-lang {
+	padding-right: 0;
+	li {
+		float: right;
+			a {
+				border-right: 1px solid #fff;
+				border-left: 1px solid #999;
+			}
+	}
+}
+
 #gcwu-ef-lang li {
 	@include inline-block;
 	a:active {
@@ -113,5 +124,12 @@ h2 {
 	}
 	div {
 		min-width: 8em;
+	}
+}
+
+[dir="rtl"] #gcwu-ef-tc, [dir="rtl"] #gcwu-other-tc {
+	padding-right: 0;
+	li {
+		float: right;
 	}
 }

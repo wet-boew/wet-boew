@@ -12,6 +12,15 @@
 	}
 }
 
+[dir="rtl"] #wb-body,[dir="rtl"] #wb-body-sec,[dir="rtl"] #wb-body-sec-sup,[dir="rtl"] #wb-body-sec-sup,[dir="rtl"] #wb-head-in {
+	background:{
+		image:url(../images/header-leaf-rtl.jpg), url(../images/header-bg-rtl.jpg);
+		repeat: no-repeat, repeat-x;
+		position: center 3.08em;
+		color: #fff;
+	}
+}
+
 #wb-head-in {
 	background-color:#406C93;
 }
@@ -52,6 +61,10 @@
 	background:url(../images/wmms-bg.gif) no-repeat 4px 0 transparent;
 }
 
+[dir="rtl"] #gcwu-wmms-fip {
+	background:url(../images/wmms-bg.gif) no-repeat 0 0 transparent;
+}
+
 #gcwu-psnb {
 	.mb-menu,.mb-menu li {
 		background:#23447e url(../images/menu-bg.gif) repeat-x;
@@ -84,6 +97,17 @@
 		}
 	}
 }
+
+[dir="rtl"] #gcwu-psnb {
+	.mb-menu {
+		.expandicon {
+			padding-right:0;
+			padding-left:0.79em;
+			background:url(../images/menu-arrow.gif) no-repeat left center;
+		}
+	}
+}
+
 #gcwu-psnb .mb-sm-open li {
 	background:transparent;
 }

@@ -6,6 +6,14 @@
 	background:url(../images/sp-pe-bg.jpg) top center repeat-x #fff;
 }
 
+[dir="rtl"] #wb-core-in {
+	background:url(../images/sp-pe-bg-rtl.jpg) top center repeat-x #fff;
+}
+
 #wb-main-in {
 	background:url(../images/sp-pe-leaf.jpg) center 92px no-repeat transparent;
+}
+
+[dir="rtl"] #wb-main-in {
+	background:url(../images/sp-pe-leaf-rtl.jpg) center 92px no-repeat transparent;
 }

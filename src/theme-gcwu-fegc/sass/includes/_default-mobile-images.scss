@@ -6,10 +6,22 @@
 	background:#146094 url(../images/bg-waves.jpg);
 }
 
+[dir="rtl"] #gcwu-title {
+	background:#146094 url(../images/bg-waves.jpg);
+}
+
 #jqm-wb-mb {
 	#gcwu-bc-in {
 		li {
 			background: url(../images/bcrumb-mobile.png) no-repeat right center;
+		}
+	}
+}
+
+[dir="rtl"] #jqm-wb-mb {
+	#gcwu-bc-in {
+		li {
+			background: url(../images/bcrumb-mobile-rtl.png) no-repeat left center;
 		}
 	}
 }
