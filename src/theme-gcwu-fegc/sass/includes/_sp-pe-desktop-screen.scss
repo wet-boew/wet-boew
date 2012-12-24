@@ -10,8 +10,16 @@
 	}
 }
 
+[dir="rtl"] #gcwu-wmms {
+	text-align: left;
+}
+
 #wb-body #wb-main {
 	float:left;
+}
+
+[dir="rtl"] #wb-body #wb-main {
+	float:right;
 }
 
 #wb-main {

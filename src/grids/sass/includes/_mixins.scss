@@ -179,3 +179,11 @@ p, blockquote, table, form, img, pre {
 	
 	.float-right { margin-right: 0; }
 }
+
+[dir="rtl"] [class*="span-"] {
+	ul, ol, dl {
+		margin: 5px 40px 10px 5px;
+	}
+	
+	.float-right { margin-right: 0; }
+}

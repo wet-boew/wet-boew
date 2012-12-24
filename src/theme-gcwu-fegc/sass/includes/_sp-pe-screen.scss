@@ -74,6 +74,10 @@ h1 {
 	text-align: right;
 }
 
+[dir="rtl"] #gcwu-title-right, [dir="rtl"] .gcwu-alt-title-right {
+	text-align: left;
+}
+
 #gcwu-lang {
 	margin-top: 20px;
 	line-height: normal;

@@ -23,6 +23,11 @@ body {
 	right:240px;
 }
 
+[dir="rtl"] #wb-body-sec-sup #wb-main {
+	right:auto;
+	left:240px;
+}
+
 #wb-sec {
 	width:240px;
 }
@@ -30,6 +35,11 @@ body {
 #wb-sup {
 	width:240px;
 	left:480px;
+}
+
+[dir="rtl"] #wb-sup {
+	left:auto;
+	right:480px;
 }
 
 #gcwu-gcft {
@@ -41,8 +51,23 @@ body {
 	}
 }
 
+[dir="rtl"] #gcwu-gcft {
+	li {
+		margin:12px 44px 13px 0;
+		&:first-child {
+			margin-left:auto;
+			margin-right:10px;
+		}
+	}
+}
+
 li#gcwu-gcft-ca a {
 	padding-left:44px;
+}
+
+[dir="rtl"] li#gcwu-gcft-ca a {
+	padding-left:0;
+	padding-right:44px;
 }
 
 #wb-core-in,#gcwu-gcnb-in,#gcwu-bnr-in,#gcwu-psnb-in,#gcwu-bc-in,#gcwu-gcft-in,#gcwu-sft-in,#gcwu-psnb .mb-menu,#wb-body #wb-main {
@@ -63,4 +88,9 @@ li#gcwu-gcft-ca a {
 
 li#gcwu-gcft-ca {
 	margin-left:0 !important;
+}
+
+[dir="rtl"] li#gcwu-gcft-ca {
+	margin-left:auto !important;
+	margin-right:0 !important;
 }

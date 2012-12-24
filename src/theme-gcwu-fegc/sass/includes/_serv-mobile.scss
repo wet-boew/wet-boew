@@ -9,7 +9,11 @@
 		margin-bottom:0;
 	}
 }
- 
+
+[dir="rtl"] #gcwu-sig {
+	float:right;
+}
+
 #gcwu-sig-in {
 	width: 214px;
 	height: 20px;
@@ -51,8 +55,16 @@
 	float: left;
 }
 
+[dir="rtl"] #gcwu-title-left, [dir="rtl"] #gcwu-title-right, [dir="rtl"] .gcwu-alt-title-left, [dir="rtl"] .gcwu-alt-title-right {
+	float: right;
+}
+
 #gcwu-title-left, .gcwu-alt-title-left {
 	clear: left;
+}
+
+[dir="rtl"] #gcwu-title-left, [dir="rtl"] .gcwu-alt-title-left {
+	clear: right;
 }
 
 .gcwu-alt-title-left, .gcwu-alt-title-right {
@@ -92,7 +104,13 @@
 		width: 50%;
 		float: left;
 	}
+	[dir="rtl"] #gcwu-sig,[dir="rtl"] #gcwu-wmms,[dir="rtl"] .gcwu-tc-left,[dir="rtl"] .gcwu-tc-right {
+		float: right;
+	}	
 	.gcwu-tc-right {
 		text-align: right;
+	}
+	[dir="rtl"] .gcwu-tc-right {
+		text-align: left;
 	}
 }

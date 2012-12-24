@@ -26,6 +26,15 @@
 	}
 }
 
+[dir="rtl"] #gcwu-date-mod {
+	dt,dd {
+		float:right;
+	}
+	dd {
+		margin:0 10px 0 0;
+	}
+}
+
 #gcwu-content h2,#gcwu-priorities h3 {
 	color:#333;
 	font-weight:400;
@@ -101,6 +110,17 @@ div#gcwu-headlines {
 	}
 }
 
+[dir="rtl"] #gcwu-connect {
+	h2 {
+		float:right;
+		margin-right:auto;
+		margin-left:10px;
+	}
+	a {
+		padding-left:0;
+	}
+}
+
 .gcwu-minister-in {
 	min-height:149px;
 }
@@ -134,6 +154,17 @@ div#gcwu-headlines {
 	}
 	li {
 		padding-bottom:8px;
+	}
+}
+
+[dir="rtl"] .gcwu-minister {
+	img {
+		padding-right:0;
+		padding-left:5px;
+		float:right;
+	}
+	p {
+		padding:10px 0 10px 5px;
 	}
 }
 

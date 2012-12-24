@@ -35,6 +35,10 @@ h1 {
 	margin-bottom: 11px;
 }
 
+[dir="rtl"] #gcwu-wmms {
+	text-align: left;
+}
+
 #gcwu-sig, #gcwu-wmms {
 	img {
 		margin-bottom: 0;
@@ -77,5 +81,12 @@ h1 {
 				text-decoration: underline;
 			}
 		}
+	}
+}
+
+[dir="rtl"] #wb-core-in {
+	h2,p {
+		margin-left: auto;
+		margin-right: 0;
 	}
 }

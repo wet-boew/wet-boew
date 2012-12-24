@@ -7,6 +7,9 @@
 	#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in {
 		background:url(../images/header-bg-ie.jpg) repeat-x center 3.1em #fff;
 	}
+	[dir="rtl"] #wb-body,[dir="rtl"] #wb-body-sec,[dir="rtl"] #wb-body-sec-sup,[dir="rtl"] #wb-body-sec-sup,[dir="rtl"] #wb-head-in {
+		background:url(../images/header-bg-ie-rtl.jpg) repeat-x center 3.1em #fff;
+	}
 	#wb-head-in {
 		background-color:#406C93;
 	}
