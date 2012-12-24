@@ -15,6 +15,11 @@
 			position:relative;
 		}
 	}
+	[dir="rtl"] #wb-skip {
+		ul {
+			float:right;
+		}
+	}
 	a.wb-linkdesc {
 		span span {
 			top:-9000em;
