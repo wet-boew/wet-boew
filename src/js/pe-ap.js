@@ -31,8 +31,9 @@
 		* @memberof pe
 		* @type {string} Page language, defaults to 'en' if not available
 		*/
-		language: (document.getElementsByTagName('html')[0].lang ? document.getElementsByTagName('html')[0].lang : 'en'),
+		language: 'en',
 		languages: ['@wet-boew-build.languagelist@'],
+		rtl: false,
 		touchscreen: 'ontouchstart' in document.documentElement,
 		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
 		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
@@ -62,6 +63,16 @@
 		*/
 		_init: function () {
 			var $html = $('html'), hlinks, hlinks_same, $this, target, test, init_on_mobileinit = false;
+
+			// Determine the page language and if the text direction is right to left (rtl)
+			test = $html.attr('lang');
+			if (typeof test !== 'undefined' && test.length > 0) {
+				pe.language = test;
+			}
+			test = $html.attr('dir');
+			if (typeof test !== 'undefined' && test.length > 0) {
+				pe.rtl = (test === 'rtl');
+			}
 
 			// Append the mobile test to the body
 			pe.mobiletest = document.createElement('div');
