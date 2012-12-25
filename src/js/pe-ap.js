@@ -73,8 +73,7 @@
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
-console.log(pe.language);
-console.log(pe.rtl);
+
 			// Append the mobile test to the body
 			pe.mobiletest = document.createElement('div');
 			pe.mobiletest.setAttribute('id', 'mobiletest'); // Used to detect CSS media queries result regarding mobile/desktop view
