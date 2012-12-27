@@ -48,10 +48,8 @@
 				var _node = $(toplink).closest('li'),
 					_sm = _node.find('.mb-sm');
 				_sm.attr({'aria-expanded':'true', 'aria-hidden':'false'}).toggleClass('mb-sm mb-sm-open');
-
-				var rtl = ($('head').attr("dir") === "rtl") ? true : false;
 					
-				if (rtl) {
+				if (pe.rtl) {
 					if ((Math.floor($(window).width() - _sm.offset().left) - Math.floor($(window).width() - $menuBoundary.offset().left)) >= -1) {
 						_sm.css("left", "0px");
 					}
