@@ -10,10 +10,12 @@ body {
 	display: none;
 }
 
-a.wb-linkdesc {
-	span {
+a {
+	&.wb-linkdesc {
 		span {
-			@extent .print-none;
+			span {
+				@extend .print-none;
+			}
 		}
 	}
 }

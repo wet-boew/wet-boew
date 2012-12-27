@@ -20,8 +20,10 @@ img, a img {
 	border: none;
 }
 
-q:before, q:after {
-	content: "";
+q {
+	&:before, &:after {
+		content: "";
+	}
 }
 
 dl, ol, ul {
@@ -91,7 +93,7 @@ h6 {
 	display: none;
 }
 
-.wb-invisible, .wb-show-onfocus, #wb-skip a, #wb-skip a:link, #wb-skip a:visited, #wb-sec h2, #wb-sup h2, #wb-foot h2 {
+.wb-invisible {
 	position: absolute;
 	clip: rect(1px, 1px, 1px, 1px);
 	height: 1px !important;
@@ -100,7 +102,14 @@ h6 {
 	margin: 0 !important;
 }
 
-.wb-show-onfocus, #wb-skip a {
+#wb-sec, #wb-sup, #wb-foot {
+	h2 {
+		@extend .wb-invisible;
+	}
+}
+
+.wb-show-onfocus {
+	@extend .wb-invisible;
 	&:focus, &:active {
 		position: static;
 		clip: auto;
@@ -108,6 +117,15 @@ h6 {
 		width: inherit !important;
 		overflow: inherit !important;
 		margin: inherit !important;
+	}
+}
+
+#wb-skip {
+	a {
+		@extend .wb-show-onfocus;
+		&, &:link, &:visited{
+			@extend .wb-invisible;
+		}
 	}
 }
 

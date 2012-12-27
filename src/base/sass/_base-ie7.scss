@@ -12,6 +12,7 @@
 	}
 	#wb-skip {
 		a {
+			@extend .wb-show-onfocus;
 			&:link, &:visited {
 				@extend .wb-ie-clip-rect-1;
 			}
@@ -23,13 +24,14 @@
 			@extend .wb-ie-clip-rect-1;
 		}
 	}
-	.wb-invisible, .wb-show-onfocus {
+	.wb-invisible {
 		position: relative;
 		float: left;
 		margin-bottom: -1px !important;
 		@extend .wb-ie-clip-rect-1;
 	}
-	.wb-show-onfocus, #wb-skip a {
+	.wb-show-onfocus {
+		@extend .wb-invisible;
 		&:focus, &:active {
 			width: auto !important;
 			height: auto !important;
@@ -37,6 +39,7 @@
 			white-space: nowrap;
 		}
 	}
+	
 	.wb-show-onhover {
 		@include transparent;
 		&:hover, &:focus, &:active {
@@ -44,10 +47,12 @@
 		}
 	}
 	
-	a.wb-linkdesc {
-		span {
+	a {
+		&.wb-linkdesc {
 			span {
-				@extent .wb-show-onhover;
+				span {
+					@extend .wb-show-onhover;
+				}
 			}
 		}
 	}
