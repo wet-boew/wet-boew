@@ -13,9 +13,6 @@
 		position:relative;
 		float:left;
 		margin-bottom:-1px !important;
-	}
-	[dir="rtl"] .wb-invisible,[dir="rtl"] .wb-show-onfocus,[dir="rtl"] #wb-foot h2 {
-		float:right;
 	}	
 	.wb-show-onfocus,#wb-skip a {
 		&:focus, &:active {
@@ -29,6 +26,11 @@
 		@include transparent;
 		&:hover,&:focus,&:active {
 			@include opaque;
+		}
+	}
+	[dir="rtl"] {
+		.wb-invisible, .wb-show-onfocus, #wb-foot h2 {
+			float:right;
 		}
 	}
 }
