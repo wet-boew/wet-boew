@@ -3,9 +3,11 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
 
-div.border-top, div.border-right, div.border-bottom, div.border-left, div.border-all {
-	float: left;
-	position: relative;
+div {
+	&.border-top, &.border-right, &.border-bottom, &.border-left, &.border-all {
+		float: left;
+		position: relative;
+	}
 }
 .border-image {
 	background-image: url(../images/border.gif);
