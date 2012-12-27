@@ -71,8 +71,10 @@ h1, #gcwu-title {
 		}
 	}
 	#gcwu-lang {
-		a:hover, a:focus, a:active {
-			color: #000;
+		a {
+			&:hover, &:focus, &:active {
+				color: #000;
+			}
 		}
 		.span-6 {
 			width: 256px;

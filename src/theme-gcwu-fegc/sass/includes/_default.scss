@@ -134,11 +134,18 @@ div#gcwu-headlines {
 	}
 	li {
 		padding-bottom: 8px;
+		a {
+			&:hover, &:focus, &:active {
+				text-decoration: none;
+			}
+		}
 	}
 }
 
-#gcwu-title a, .gcwu-minister li a:hover, .gcwu-minister li a:focus, .gcwu-minister li a:active {
-	text-decoration: none;
+#gcwu-title {
+	a {
+		text-decoration: none;
+	}
 }
 
 #gcwu-aside img, #gcwu-priorities h2, #gcwu-priorities h3, .gcwu-minister h2, .gcwu-minister h3 {

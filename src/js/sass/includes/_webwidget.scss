@@ -74,17 +74,19 @@
 		margin: 0;
 	}
 	.widget-lang {
-		a, a:visited, a:hover {
-			color: #000;
-			font-weight: 400;
-			text-align: center;
-			background: #fff;
-			font-size: 90%;
-			float: right;
-			border: 1px solid #ccc;
-			border-top: 0;
-			margin: 0;
-			padding: 2px 4px !important;
+		a {
+			&, &:visited, &:hover {
+				color: #000;
+				font-weight: 400;
+				text-align: center;
+				background: #fff;
+				font-size: 90%;
+				float: right;
+				border: 1px solid #ccc;
+				border-top: 0;
+				margin: 0;
+				padding: 2px 4px !important;
+			}
 		}
 	}
 	.widget-add {

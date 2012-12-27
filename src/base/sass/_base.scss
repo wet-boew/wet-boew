@@ -10,8 +10,10 @@ body {
 	padding: 0;
 }
 
-a:hover, a:active, a:focus {
-	text-decoration: underline;
+a {
+	&:hover, &:focus, &:active {
+		text-decoration: underline;
+	}
 }
 
 img, a img {

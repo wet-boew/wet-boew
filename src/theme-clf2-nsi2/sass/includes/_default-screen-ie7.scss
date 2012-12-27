@@ -35,8 +35,10 @@
 			margin-left: auto;
 		}
 		h3 {
-			a:hover, a:active, a:focus {
-				zoom: 1;
+			a {
+				&:hover, &:focus, &:active {
+					zoom: 1;
+				}
 			}
 		}
 	}

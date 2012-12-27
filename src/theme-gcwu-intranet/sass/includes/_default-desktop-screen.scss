@@ -42,8 +42,10 @@
 		position: 0 -170px;
 	}
 	@include text-shadow(1px 1px 1px #333);
-	a:hover, a:focus {
-		text-decoration: underline;
+	a {
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
 	}
 }
 #gcwu-gcnb-fip {
@@ -253,8 +255,10 @@
 	margin: 0;
 }
 #gcwu-intranetnb, #gcwu-subsite {
-	a:hover, a:focus, a:active {
-		text-decoration: underline;
+	a {
+		&:hover, &:focus, &:active {
+			text-decoration: underline;
+		}
 	}
 }
 

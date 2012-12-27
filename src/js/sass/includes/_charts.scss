@@ -45,8 +45,10 @@ figure.wb-charts {
 	}
 	
 	/* Add focus styles (for keyboard accessibility) */
-	summary:hover, summary:focus { 
-		background: #ddd; 
+	summary {
+		&:hover, &:focus { 
+			background: #ddd; 
+		}
 	}
 	
 	figure {

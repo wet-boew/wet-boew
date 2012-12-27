@@ -370,11 +370,13 @@
 				&:hover, &:focus, &:active {
 					color: #000;
 				}
-				&.active, &.active:hover {
-					background: none repeat scroll 0 0 #FFF;
-					border: none;
-					color: #000 !important;
-					padding-top: 2px;
+				&.active {
+					&, &:hover {
+						background: none repeat scroll 0 0 #FFF;
+						border: none;
+						color: #000 !important;
+						padding-top: 2px;
+					}
 				}
 			}
 			&.tabs-toggle {
@@ -415,8 +417,10 @@
 				color: #FFF;
 			}
 		}
-		a.active, a.active:hover {
-			color: #000 !important;
+		a.active {
+			&, &:hover {
+				color: #000 !important;
+			}
 		}
 	}
 	.tabs-toggle {

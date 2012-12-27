@@ -43,12 +43,14 @@ h1 {
 
 #gcwu-title {
 	border-bottom: 1px solid #666;
-	a, a:visited, a:hover, a:focus, a:active {
-		color: #295376;
-		text-decoration: none;
-	}
-	a:hover, a:focus, a:active {
-		text-decoration: underline;
+	a {
+		&, &:visited, &:hover, &:focus, &:active {
+			color: #295376;
+			text-decoration: none;
+		}
+		&:hover, &:focus, &:active {
+			text-decoration: underline;
+		}
 	}
 }
 

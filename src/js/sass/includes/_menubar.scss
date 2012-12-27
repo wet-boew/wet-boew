@@ -107,10 +107,12 @@
 }
 
 .mb-active {
-	a:hover, a:link, a:visited {
-		&.mb-has-sm {
-			background-color: #CCC;
-			color: #000;
+	a {
+		&:hover, &:link, &:visited {
+			&.mb-has-sm {
+				background-color: #CCC;
+				color: #000;
+			}
 		}
 	}
 }

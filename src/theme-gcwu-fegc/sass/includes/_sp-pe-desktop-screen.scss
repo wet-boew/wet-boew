@@ -15,8 +15,10 @@
 }
 
 #wb-main {
-	a[href]:hover, a[href]:focus, a[href]:active {
-		color: #000;
+	a[href] { 
+		&:hover, &:focus, &:active {
+			color: #000;
+		}
 	}
 }
 

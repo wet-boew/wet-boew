@@ -329,8 +329,10 @@ a {
 }
 
 #gcwu-gcnb, #gcwu-srchbx, #wb-foot {
-	a:hover, a:focus, a:active {
-		text-decoration: underline;
+	a {
+		&:hover, &:focus, &:active {
+			text-decoration: underline;
+		}
 	}
 }
 @if $experimental-support-for-mozilla {

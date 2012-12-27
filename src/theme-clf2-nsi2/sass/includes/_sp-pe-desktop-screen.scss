@@ -6,7 +6,9 @@
 	li span {
 		display: block;
 	}
-	a:hover, a:focus, a:active {
-		background-color: #363;
+	a {
+		&:hover, &:focus, &:active {
+			background-color: #363;
+		}
 	}
 }
