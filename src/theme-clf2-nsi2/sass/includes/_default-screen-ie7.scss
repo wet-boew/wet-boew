@@ -20,8 +20,8 @@
 	}
 	#wb-main-in {
 		h1, h2, h3, h4, h5, h6, p, blockquote, table, form, img, pre {
-			margin-left:0;
-			margin-right:0;
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 	.wb-sec-def, .wb-sup-def {
@@ -53,8 +53,8 @@
 	.wb-sup-def {
 		margin-bottom: -10px;
 		h3 {
-			margin-left:0;
-			margin-right:-10px;
+			margin-left: 0;
+			margin-right: -10px;
 			& + div p {
 				margin-top: 1em;
 				margin-bottom: 1em;
@@ -63,6 +63,6 @@
 		}
 	}
 	#wb-foot {
-		margin-top:-20px;
+		margin-top: -20px;
 	}
 }

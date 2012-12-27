@@ -15,10 +15,10 @@
 			@include header;
 		}
 		
-		&.background-accent { @include colorize($accent, $important:true); }
-		&.background-light { @include colorize($light, $important:true); }
-		&.background-medium { @include colorize($medium, $important:true); }
-		&.background-dark { @include colorize($dark, $important:true); }
+		&.background-accent { @include colorize($accent, $important: true); }
+		&.background-light { @include colorize($light, $important: true); }
+		&.background-medium { @include colorize($medium, $important: true); }
+		&.background-dark { @include colorize($dark, $important: true); }
 		
 	}
 	
@@ -39,7 +39,7 @@
 	.background-dark { @include colorize-base($dark, true); }
 }
 
-@mixin header($radius:true) {
+@mixin header($radius: true) {
 	
 	font-family: $sans-serif;
 	font-size: 100%;

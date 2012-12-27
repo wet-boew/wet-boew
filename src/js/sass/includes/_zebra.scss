@@ -4,15 +4,15 @@
  */
 ul.wet-boew-zebra {
 	li, li li {
-		list-style-type:none;
+		list-style-type: none;
 	}
 }
 
 ol, ul {
 	&.wet-boew-zebra li {
-		margin-bottom:2px;
-		margin-right:0;
-		padding:10px;
+		margin-bottom: 2px;
+		margin-right: 0;
+		padding: 10px;
 	}
 	
 	&.wet-boew-zebra {
@@ -27,7 +27,7 @@ ol, ul {
 ol.wet-boew-zebra {    
    padding: 0;
    list-style-type: decimal;
-   counter-reset:li;
+   counter-reset: li;
    
 	> li {
 		/* Make room for the number you add with :before */    
@@ -76,11 +76,11 @@ ol.wet-boew-zebra {
 	
 table {
 	&.wet-boew-zebra, &.wet-boew-zebra table {
-		background-color:#fff;
-		border:1px solid #ccc;
-		border-collapse:collapse;
-		margin-bottom:10px;
-		margin-top:10px;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-collapse: collapse;
+		margin-bottom: 10px;
+		margin-top: 10px;
 	}
 }
 
@@ -91,36 +91,36 @@ dl.wet-boew-zebra {
 .wet-boew-zebra {
 	li, dt, dd {
 		&.list-odd {
-			background-color:#ddd;
-			border:1px solid #ccc;
+			background-color: #ddd;
+			border: 1px solid #ccc;
 		}
 		&.list-even {
-			background-color:#eee;
-			border:1px solid #ccc;
+			background-color: #eee;
+			border: 1px solid #ccc;
 		}
 		&.list-hover {
-			background-color:#f0fcff;
+			background-color: #f0fcff;
 		}
 	}
 	&.alterwg li, &.alterwg dt, &.alterwg dd {
 		&.list-odd {
-			background-color:#ddd;
-			border:none;
+			background-color: #ddd;
+			border: none;
 		}
 		&.list-even {
-			background-color:#fff;
-			border:none;
+			background-color: #fff;
+			border: none;
 		}
 		&.list-hover {
-			background-color:#f0fcff;
+			background-color: #f0fcff;
 		}
 	}
 	dt, dd {
 		&.list-odd {
-			border:none;
+			border: none;
 		}
 		&.list-even {
-			border:none;
+			border: none;
 		}
 	}
 	dl, dd {
@@ -130,7 +130,7 @@ dl.wet-boew-zebra {
 		padding: 10px;
 	}
 	dt {
-		font-weight:bold;
+		font-weight: bold;
 		margin-top: 2px;
 	}
 
@@ -140,24 +140,24 @@ dl.wet-boew-zebra {
 	tr {
 		&.table-odd, &.table-even tr.table-odd {
 			/* td { */
-				background-color:#f0fcff;
+				background-color: #f0fcff;
 			/* } */
 		}
 		&.table-even, &.table-odd tr.table-even {
 			/* td { */
-				background-color:transparent;
+				background-color: transparent;
 			/* }*/
 		}
 		&.table-hover td {
-			background-color:#eee;
+			background-color: #eee;
 		}
 	}
 	th {
-		background-color:#eee;
-		border:1px solid #ccc;
-		color:#333;
-		text-align:center;
-		padding:8px;
+		background-color: #eee;
+		border: 1px solid #ccc;
+		color: #333;
+		text-align: center;
+		padding: 8px;
 		/*
 		 * I am not sure if we would like to style the cell header group, need to discuss
 		 *
@@ -175,16 +175,16 @@ dl.wet-boew-zebra {
 			background-color: lightgray;
 			/*
 			&.table-summaryrow0 {
-				background-color:#eee;
+				background-color: #eee;
 			}
 			*/
 		}
 		
 	}
 	td {
-		border:1px solid #ccc;
-		vertical-align:top;
-		padding:5px 10px;
+		border: 1px solid #ccc;
+		vertical-align: top;
+		padding: 5px 10px;
 		/* Advance Zebra */
 		&.table-keycell {
 			font-style: italic;
@@ -238,14 +238,14 @@ dl.wet-boew-zebra {
 	}
 	col {
 		&.table-odd {
-			background-color:#f0fcff;
+			background-color: #f0fcff;
 		}
 		&.table-even {
-			background-color:transparent;
+			background-color: transparent;
 		}
 		
 		&.table-hover {
-			background-color:#eee;
+			background-color: #eee;
 		}
 	}
 }

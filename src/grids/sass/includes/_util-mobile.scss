@@ -4,26 +4,26 @@
 */
 @import "compass/css3/inline-block";
 
-.float-right, .float-left {float:none!important;}
+.float-right, .float-left {float: none !important;}
 
 form {
 	[class*=width-] {
-		width:100%!important;
+		width: 100% !important;
 	}
 	[class*=margin-], [class*=span-]{
-		margin:0!important;
+		margin: 0 !important;
 	}
 	
 	&.background-light > * {
 		outline: none;
-		margin-left:0;
-		margin-right:0;
+		margin-left: 0;
+		margin-right: 0;
 	}
 }
 
 .form-inline {
 		& > * {
-			margin-right:0;
+			margin-right: 0;
 		}
 		
 		label {
@@ -33,35 +33,35 @@ form {
 
 .form-radio.form-label-inline, .form-checkbox.form-label-inline {
 	display: block;
-	padding:0;
+	padding: 0;
 }
 
 .form-radio, .form-checkbox {
-	padding:0;
+	padding: 0;
 }
 
 .form-horizontal label {
-	text-align:left;
+	text-align: left;
 }
 
 .form-input-append button {
-	position:absolute;
+	position: absolute;
 }
 
 input[type="image"] + label, input[type="checkbox"] + label, input[type="radio"] + label {
-	display:block;
+	display: block;
 }
 
 .border-top, .border-right, .border-bottom, .border-left, .border-all {
-	float:none!important;
-	display:block;
-	outline:none;
-	position:static!important;
-	background:none;
+	float: none !important;
+	display: block;
+	outline: none;
+	position: static !important;
+	background: none;
 }
 
 .module-billboard {
-	max-width:280px;
+	max-width: 280px;
 }
 
 .module-poster {
@@ -69,12 +69,12 @@ input[type="image"] + label, input[type="checkbox"] + label, input[type="radio"]
 }
 
 .date-month a {
-	color:#fff !important;
+	color: #fff !important;
 }
 
 .bb-pre7 {
 	input:focus, input:active, textarea:focus, textarea:active, select:focus, select:active, .ui-input-text.ui-focus, .ui-input-search.ui-focus {
-		background:#333 !important;
-		color:#f9f9f9 !important;
+		background: #333 !important;
+		color: #f9f9f9 !important;
 	}
 }

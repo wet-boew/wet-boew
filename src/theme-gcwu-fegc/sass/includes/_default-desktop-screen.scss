@@ -8,276 +8,276 @@
 @import "compass/css3/appearance";
 
 html {
-	overflow-y:scroll;
+	overflow-y: scroll;
 }
 
 body {
-	padding:0;
+	padding: 0;
 }
 
 #gcwu-sig, #gcwu-wmms {
 	img {
-		position:absolute;
-		clip:rect(1px, 1px, 1px, 1px);
-		height:0 !important;
-		width:0 !important;
-		overflow:hidden !important;
-		margin:0 !important;
+		position: absolute;
+		clip: rect(1px, 1px, 1px, 1px);
+		height: 0 !important;
+		width: 0 !important;
+		overflow: hidden !important;
+		margin: 0 !important;
 	}
 }
 
 #wb-sec, #wb-sup {
-	z-index:1;
-	display:inline;
+	z-index: 1;
+	display: inline;
 }
 
 #wb-head, #wb-head-in, #wb-foot, #wb-foot-in, #gcwu-gcnb, #gcwu-bnr, #gcwu-bc, #gcwu-gcft, #gcwu-sft, #gcwu-gcnb-in, #gcwu-bnr-in, #gcwu-bc-in, #gcwu-gcft-in, #gcwu-sft-in {
-	overflow:hidden;
+	overflow: hidden;
 }
 
 #wb-core-in {
-	overflow:visible !important;
-	position:relative;
-	padding-top:5px;
+	overflow: visible !important;
+	position: relative;
+	padding-top: 5px;
 }
 
 #gcwu-bnr {
-	position:relative;
-	z-index:501 !important;
+	position: relative;
+	z-index: 501 !important;
 }
 
 #gcwu-bnr-in {
-	position:relative;
+	position: relative;
 }
 
 #wb-main-in {
-	padding-top:1px;
-	padding-bottom:2.5em;
+	padding-top: 1px;
+	padding-bottom: 2.5em;
 }
 
 #wb-body-sec #wb-main {
-	float:right;
+	float: right;
 }
 
 #wb-sec-in {
-	margin:7px 0 0 10px;
+	margin: 7px 0 0 10px;
 }
 
 #wb-body #gcwu-content {
-	float:left;
-	position:relative;
+	float: left;
+	position: relative;
 }
 
 #wb-body-sec #gcwu-content {
-	float:left;
+	float: left;
 }
 
 #gcwu-aside {
-	float:right;
-	margin-left:10px;
-	margin-right:10px;
+	float: right;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 #gcwu-title {
 	&:hover, &:focus, &:active {
-		text-decoration:underline;
+		text-decoration: underline;
 	}
 }
 
 #gcwu-date-mod {
-	position:absolute;
-	bottom:0;
-	right:10px;
+	position: absolute;
+	bottom: 0;
+	right: 10px;
 }
 
 img {
-	border:none;
+	border: none;
 }
 
 h1 {
-	color:#333;
-	font-weight:400;
-	border-bottom:1px solid #333;
-	font-size:1.8em;
-	margin-bottom:10px !important;
-	margin-top:0;
+	color: #333;
+	font-weight: 400;
+	border-bottom: 1px solid #333;
+	font-size: 1.8em;
+	margin-bottom: 10px !important;
+	margin-top: 0;
 }
 
 #wb-core-in:after {
-	content:".";
-	display:block;
-	height:0;
-	clear:both;
-	visibility:hidden;
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
 }
 
 #wb-body #wb-main, #wb-body-sec-sup #wb-main, #wb-sec {
-	float:left;
+	float: left;
 }
 
 #wb-body-sec-sup #wb-main, #wb-sup {
-	float:right;
-	position:relative;
+	float: right;
+	position: relative;
 }
 
 a {
 	&:link {
-		color:#295376;
+		color: #295376;
 	}
 	&:visited {
-		color:#5a306b;
+		color: #5a306b;
 	}	
 }
 
 #gcwu-gcnb {
-	background:#000;
-	font-size:0.9em;
-	height:3.6em;
-	min-height:41px;
+	background: #000;
+	font-size: 0.9em;
+	height: 3.6em;
+	min-height: 41px;
 }
 
 #gcwu-sig {
-	width:247px;
-	float:left;
-	margin:8px 0;
+	width: 247px;
+	float: left;
+	margin: 8px 0;
 }
 
 #gcwu-sig-in {
-	margin-left:10px;
-	height:24px;
+	margin-left: 10px;
+	height: 24px;
 }
 
 #gcwu-gcnb {
 	ul {
-		list-style-type:none;
-		float:right;
-		margin:0;
-		padding:0;
+		list-style-type: none;
+		float: right;
+		margin: 0;
+		padding: 0;
 		li {
-			float:left;
-			padding:13px 0;
+			float: left;
+			padding: 13px 0;
 		}
 	}
 	a {
-		border-left:1px solid #fff;
-		color:#fff;
-		display:block;
-		text-decoration:none;
-		padding:0 1em;
+		border-left: 1px solid #fff;
+		color: #fff;
+		display: block;
+		text-decoration: none;
+		padding: 0 1em;
 	}
 	li:first-child a {
-		border-left:none;
+		border-left: none;
 	}
 }
 
 #gcwu-gcnb ul li#gcwu-gcnb-lang a {
-	padding-right:10px;
-	margin-right:1px;
+	padding-right: 10px;
+	margin-right: 1px;
 }
 
 #gcwu-title {
-	height:123px;
-	display:table-row;
+	height: 123px;
+	display: table-row;
 	a {
-		display:inline-block;
-		margin-left:10px;
+		display: inline-block;
+		margin-left: 10px;
 	}
 }
 
 #gcwu-title, #gcwu-title a {
-	color:#fff;
-	font-size:1.52em;
-	font-family:Arial, Helvetica, sans-serif;
+	color: #fff;
+	font-size: 1.52em;
+	font-family: Arial, Helvetica, sans-serif;
 	@include text-shadow(#333 1px 1px 1px);
 }
 
 #gcwu-title-in {
-	display:table-cell;
-	vertical-align:middle;
-	margin:0;
+	display: table-cell;
+	vertical-align: middle;
+	margin: 0;
 }
 
 #gcwu-srchbx {
-	position:absolute;
-	background:#146094;
-	border-top:1px solid #87aec9;
-	text-align:right;
-	right:0;
-	bottom:-1px;
-	width:auto;
-	border-left:1px solid #15527D;
-	border-right:1px solid #15527D;
-	z-index:100;
-	padding:11px 10px 6px 12px;
+	position: absolute;
+	background: #146094;
+	border-top: 1px solid #87aec9;
+	text-align: right;
+	right: 0;
+	bottom: -1px;
+	width: auto;
+	border-left: 1px solid #15527D;
+	border-right: 1px solid #15527D;
+	z-index: 100;
+	padding: 11px 10px 6px 12px;
 	input {
-		margin:0 0 1px;
+		margin: 0 0 1px;
 		min-height: 0;
 	}
 	form {
-		margin:0;
+		margin: 0;
 	}
 	label {
-		position:absolute;
-		clip:rect(1px, 1px, 1px, 1px);
-		height:1px;
-		width:1px;
-		overflow:hidden;
+		position: absolute;
+		clip: rect(1px, 1px, 1px, 1px);
+		height: 1px;
+		width: 1px;
+		overflow: hidden;
 	}
 	#gcwu-srch {
-		color:#444;
-		border:1px solid #ccc;
+		color: #444;
+		border: 1px solid #ccc;
 		@include border-radius(2px);		
-		margin-left:0;
-		width:218px;
+		margin-left: 0;
+		width: 218px;
 		@include box-shadow(none);
-		background:#fff;
-		padding:2px 0;
+		background: #fff;
+		padding: 2px 0;
 		&:focus, &:active {
-			background:#f0fcff;
+			background: #f0fcff;
 		}
 	}
 	a, a:visited {
-		color:#fff;
-		text-decoration:none;
-		font-size:80%;
-		padding:2px;
+		color: #fff;
+		text-decoration: none;
+		font-size: 80%;
+		padding: 2px;
 	}	
 }
 
 #gcwu-srch-submit {
 	@include appearance(none);
-	min-height:24px;
-	border:{
-		bottom:1px solid #999;
-		right:1px solid #999;
-		top:1px solid #fff;
-		left:1px solid #fff;
+	min-height: 24px;
+	border: {
+		bottom: 1px solid #999;
+		right: 1px solid #999;
+		top: 1px solid #fff;
+		left: 1px solid #fff;
 	}
-	color:#333;
+	color: #333;
 	@include border-radius(2px);
 	@include text-shadow(0 1px 0 #eee);
-	font-weight:400;
+	font-weight: 400;
 	@include box-shadow(none);
-	padding:2px 6px;
-	display:inline;
+	padding: 2px 6px;
+	display: inline;
 	&:focus, &:hover {
 		@include text-shadow(0 1px 0 #ddd);
 		@include box-shadow(none);
-		border:{
-			bottom:1px solid #999;
-			right:1px solid #999;
-			top:1px solid #fff;
-			left:1px solid #fff;
+		border: {
+			bottom: 1px solid #999;
+			right: 1px solid #999;
+			top: 1px solid #fff;
+			left: 1px solid #fff;
 		}
 	}
 	&:active {
 		@include box-shadow(inset 0 0 5px 2px #999, 0 0 0 0 #eee);
-		border:1px solid #999;
+		border: 1px solid #999;
 	}
 }
 
 #gcwu-bnr-in {
-	min-height:6.5em;
+	min-height: 6.5em;
 }
 
 #wb-foot #gcwu-wmms {
@@ -285,52 +285,52 @@ a {
 }
 
 #gcwu-wmms {
-	position:absolute;
-	top:36px;
-	right:10px;
+	position: absolute;
+	top: 36px;
+	right: 10px;
 }
 
 #gcwu-wmms-in {
 	float: right;
-	height:39px;
-	width:147px;
+	height: 39px;
+	width: 147px;
 }
 
 #gcwu-psnb {
 	.wet-boew-menubar {
-		margin-top:-1px;
-		border-bottom:4px solid #ccc;
+		margin-top: -1px;
+		border-bottom: 4px solid #ccc;
 	}
 	.mb-menu {
 		li {
-			border:{
-				left:1px solid #124B79;
-				right:1px solid #15598f;
-				bottom:none;
+			border: {
+				left: 1px solid #124B79;
+				right: 1px solid #15598f;
+				bottom: none;
 			}
-			padding:0;
+			padding: 0;
 		}
 		li:first-child.mb-active {
-			border-left:1px solid #CCC;
+			border-left: 1px solid #CCC;
 		}
 		a {
-			padding:0.45em 1.17em 0.45em 0.79em;
+			padding: 0.45em 1.17em 0.45em 0.79em;
 		}
 		.mb-has-sm {
-			padding-right:0.38em;
+			padding-right: 0.38em;
 		}
 		.mb-sm-open {
 			@include box-shadow(0 5px 5px -4px rgba(0, 0, 0, 0.5), 5px 5px 5px -4px rgba(0, 0, 0, 0.5), -5px 5px 5px -4px rgba(0, 0, 0, 0.5));
 		}
 	}
 	.mb-menu, .mb-menu li {
-		min-height:2.15em;
+		min-height: 2.15em;
 	}
 }
 
 #gcwu-gcnb, #gcwu-srchbx, #wb-foot {
 	a:hover, a:focus, a:active {
-		text-decoration:underline;
+		text-decoration: underline;
 	}
 }
 @if $experimental-support-for-mozilla {

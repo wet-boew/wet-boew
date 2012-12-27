@@ -13,12 +13,12 @@
 	
 	.badge-new {
 		@include colorize-base($attention);
-		@include colorize($attention, false, $border:"border");
+		@include colorize($attention, false, $border: "border");
 	}
 	
 	.badge-update {
 		@include colorize-base($light);
-		@include colorize($light, false, $border:"border");
+		@include colorize($light, false, $border: "border");
 	}
 	
 	.badge-intro {

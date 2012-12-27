@@ -8,8 +8,8 @@ html {
 	overflow-y: scroll;
 }
 body {
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 }
 #wb-head-in, #wb-core-in, #wb-main, #wb-foot-in {
 	background: #FFF;
@@ -24,59 +24,59 @@ body {
 
 /** Box model - centered **/
 #wb-main, #wb-sec, #wb-sup {
-	z-index:1;
-	display:inline;
+	z-index: 1;
+	display: inline;
 }
 
 /** Overflow restrict for background paintability control **/
 #wb-head, #wb-head-in, #wb-foot, #wb-foot-in {
-	overflow:hidden;
+	overflow: hidden;
 }
 #wb-core-in {
-	overflow:visible !important;
-	position:relative;
+	overflow: visible !important;
+	position: relative;
 	&:after {
-		content:".";
-		display:block;
-		height:0;
-		clear:both;
-		visibility:hidden;
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
 	}
 }
 
 /** Centre column **/
 #wb-main-in {
-	padding-top:1px;
-	padding-bottom:1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 }
 #wb-body #wb-main {
-	float:left;
+	float: left;
 }
 #wb-body-sec #wb-main {
-	float:right;
+	float: right;
 }
 #cn-body-in-3col #wb-main {
-	float:right;
-	position:relative;
+	float: right;
+	position: relative;
 }
 #wb-body-sec #wb-main-in {
-	padding-left:5px;
+	padding-left: 5px;
 }
 #cn-body-in-3col #wb-main-in {
-	padding-left:5px;
-	padding-right:5px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 	
 /** Left column **/
 #wb-sec {
-	float:left;
+	float: left;
 	background-color: #CC9;
 }
 
 /** Right column **/
 #wb-sup {
-	float:right;
-	position:relative;
+	float: right;
+	position: relative;
 }
 
 #wb-skip a {
@@ -97,7 +97,7 @@ body {
 }
 #cn-sig, #cn-wmms {
 	img {
-		margin-bottom:0;
+		margin-bottom: 0;
 	}
 }
 #cn-leaf {
@@ -108,7 +108,7 @@ body {
 	width: 100%; 
 	min-width: 70px; 
 	height: 70px; 
-	background:{
+	background: {
 		image: url(../images/lffl.png); 
 		repeat: no-repeat; 
 		position: top center;
@@ -212,12 +212,12 @@ body {
 	}
 	ul {
 		list-style-type: none;
-		margin:0 0 0;
+		margin: 0 0 0;
 		margin-top: 0; 
 		margin-bottom: 0;
 		ul {
 			list-style-type: disc;
-			margin-left:25px;
+			margin-left: 25px;
 		}
 	}
 	li {
@@ -236,7 +236,7 @@ body {
 		}
 	}
 	form {
-		margin-bottom:0;
+		margin-bottom: 0;
 	}
 }
 
@@ -255,7 +255,7 @@ body {
 	background-color: #363;
 	color: #FFF;
 	font-weight: bold;
-	margin:0;
+	margin: 0;
 }
 .wb-sec-def h3 a:hover, .wb-sec-def h3 a:active, .wb-sec-def h3 a:focus, .wb-sec-def li a, #cn-search-box a {
 	display: block; 

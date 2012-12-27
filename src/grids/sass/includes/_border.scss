@@ -11,7 +11,7 @@ div.border-top, div.border-right, div.border-bottom, div.border-left, div.border
 	background-image: url(../images/border.gif);
 }
 .border-top, .border-right, .border-bottom, .border-left, .border-all {
-	min-height:1px;
+	min-height: 1px;
 	@extend .border-image;
 }
 
@@ -24,11 +24,11 @@ div.border-top, div.border-right, div.border-bottom, div.border-left, div.border
 }
 
 .border-top {
-	background-position:0 0;
+	background-position: 0 0;
 }
 	
 .border-bottom {
-	background-position:0 bottom;
+	background-position: 0 bottom;
 }
  
 .border-left {

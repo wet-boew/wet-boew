@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 #gcwu-title {
-	background:#146094 url(../images/bg-waves.jpg);
+	background: #146094 url(../images/bg-waves.jpg);
 }
 
 #jqm-wb-mb {
@@ -22,12 +22,12 @@
 	background-image: url(../images/icons-18-black.png);
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio:1.5),
-	only screen and (min--moz-device-pixel-ratio:1.5), 
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (min--moz-device-pixel-ratio: 1.5), 
 	only screen and (-o-min-device-pixel-ratio: 3/2), 
-	only screen and (min-device-pixel-ratio:1.5), 
-	only screen and (min-resolution:240dpi), 
-	only screen and (min-resolution:1.5dppx) {
+	only screen and (min-device-pixel-ratio: 1.5), 
+	only screen and (min-resolution: 240dpi), 
+	only screen and (min-resolution: 1.5dppx) {
 	.ui-icon-site-menu {
 		background-image: url(../images/icons-36-white.png);
 	}

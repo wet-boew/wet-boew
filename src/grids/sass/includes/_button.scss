@@ -108,31 +108,31 @@
 			&:last-child { @include border-right-radius(4px); }
 		}
 		li {
-			list-style:none;
-			float:left;
+			list-style: none;
+			float: left;
 		}
 		li:first-child .button { @include border-left-radius(4px); }
 		li:last-child .button { @include border-right-radius(4px); }
 	}
 	
 	ul.button-group {
-	 	margin:0 10px 10px;
+	 	margin: 0 10px 10px;
 	}
 	
 	p.button-group {
-		margin-top:0;
+		margin-top: 0;
 	}
 	
 	[class*="span-"] {
 		 ul.button-group, ul.menu-horizontal {
-		 	margin-left:0;
-			margin-right:0;
+		 	margin-left: 0;
+			margin-right: 0;
 		}
 	}
 	
-	p.button-group .button:nth-child(1):nth-last-child(1), ul.button-group li:nth-child(1):nth-last-child(1) .button{
+	p.button-group .button:nth-child(1):nth-last-child(1), ul.button-group li:nth-child(1):nth-last-child(1) .button {
 		@include border-radius(4px);
-		margin-right:4px;
+		margin-right: 4px;
 	}
 	
 	.button-toolbar {
@@ -141,7 +141,7 @@
 		margin-top: $spacing-medium;
 		
 		p, ul {
-			margin-top:0;	
+			margin-top: 0;	
 		}
 	
 		.button-group {

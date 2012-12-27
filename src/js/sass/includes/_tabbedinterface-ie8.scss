@@ -10,9 +10,9 @@
 		.tabs {
 			@include opacity(0.95);
 			li {
-				margin-right:-2px !important;
+				margin-right: -2px !important;
 				&.tabs-toggle {
-					margin-right:-5px !important;
+					margin-right: -5px !important;
 				}
 			}			
 		}

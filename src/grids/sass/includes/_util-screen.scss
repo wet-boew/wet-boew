@@ -88,11 +88,11 @@ h5, h6 {
 
 blockquote {
 	&, &.float-left, &.float-right {
-		border-left:{
+		border-left: {
 			width: 8px !important;
 			color: $accent !important;
 		}
-		font:{
+		font: {
 			family: $serif;
 			size: 110%;
 			style: italic;
@@ -114,29 +114,29 @@ blockquote {
 		width: 30%; 
 	}
 	&.float-right, &.float-left { 
-		font:{
+		font: {
 			family: $serif;
 			style: normal;
 		}
-		border:{
+		border: {
 			left: none; 
 			right: none;
 		}
 		padding: 0 10px; 
 	}
 	.align-left, .align-right {
-		font-style:normal;
-		font-family:Verdana, Geneva, sans-serif;
-		font-size:90%;
+		font-style: normal;
+		font-family: Verdana, Geneva, sans-serif;
+		font-size: 90%;
 	}
 }
 
 code { 
-	font:{
+	font: {
 		size: 90%;
 		weight: $font-weight-normal;
 	}
-	padding:0 2px !important;
+	padding: 0 2px !important;
 	@include text-shadow(none);
 	
 	@include colorize-base($light);
@@ -194,8 +194,8 @@ p.align-right	 { margin-right: $margin-medium; }
 
 /*	 floating	 */
 img.float-left { margin-right: $margin-medium; }
-.float-left {float:left !important;}
-.float-right {float:right !important;} /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
+.float-left {float: left !important;}
+.float-right {float: right !important;} /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
 
 /*	 width	 */
 .width-100	{ width: 100% !important; }
@@ -222,59 +222,59 @@ img.float-left { margin-right: $margin-medium; }
 .opacity-10	 { @include opacity(0.1); }
 
 .border-top, .border-right, .border-bottom, .border-left, .border-all {
-	float:left;
-	min-height:1px;
-	position:relative;
+	float: left;
+	min-height: 1px;
+	position: relative;
 	@extend .border-image;
 }
  
 .border-top {
-	background-position:0 0;
-	background-repeat:repeat-x;
-	min-height:1px;
+	background-position: 0 0;
+	background-repeat: repeat-x;
+	min-height: 1px;
 }
  
 .border-bottom {
-	background-position:0 bottom;
-	background-repeat:repeat-x;
-	min-height:1px;
+	background-position: 0 bottom;
+	background-repeat: repeat-x;
+	min-height: 1px;
 }
  
 .border-left {
-	background-position:left 0;
-	background-repeat:repeat-y;
+	background-position: left 0;
+	background-repeat: repeat-y;
 }
  
 .border-right {
-	background-position:right 0;
-	background-repeat:repeat-y;
+	background-position: right 0;
+	background-repeat: repeat-y;
 }
 .border-all {
-	outline:1px solid #ccc;
-	background:none;
+	outline: 1px solid #ccc;
+	background: none;
 }
 
 /* ---- Keyboard keys ---- */
 kbd {
-	background:#eee none repeat scroll 0 0;
-	border:{
-		color:#ccc #999 #777 #999;
-		style:solid;
-		width:1px 3px 3px 2px;
+	background: #eee none repeat scroll 0 0;
+	border: {
+		color: #ccc #999 #777 #999;
+		style: solid;
+		width: 1px 3px 3px 2px;
 	}
-	font:{
-		family:Arial, Helvetica, sans-serif;
-		size:80%;
+	font: {
+		family: Arial, Helvetica, sans-serif;
+		size: 80%;
 	}
-	padding:0 3px;
-	white-space:nowrap;
+	padding: 0 3px;
+	white-space: nowrap;
 	@include border-radius(2px);
 }
 
 /*	 progress effects	 */
 p[class*="thermometer"] {
 	padding-bottom: 230px !important;
-	background:{
+	background: {
 		repeat: no-repeat;
 		position: center bottom;
 	}
@@ -282,38 +282,38 @@ p[class*="thermometer"] {
 [class*="background-"] p[class*="thermometer"] {
 	padding-bottom: 230px !important;
 }
-.thermometer-0 {background-image:url(../images/thermometer-0.gif);}
-.thermometer-10 {background-image:url(../images/thermometer-10.gif);}
-.thermometer-20 {background-image:url(../images/thermometer-20.gif);}
-.thermometer-30 {background-image:url(../images/thermometer-30.gif);}
-.thermometer-40 {background-image:url(../images/thermometer-40.gif);}
-.thermometer-50 {background-image:url(../images/thermometer-50.gif);}
-.thermometer-60 {background-image:url(../images/thermometer-60.gif);}
-.thermometer-70 {background-image:url(../images/thermometer-70.gif);}
-.thermometer-80 {background-image:url(../images/thermometer-80.gif);}
-.thermometer-90 {background-image:url(../images/thermometer-90.gif);}
-.thermometer-100 {background-image:url(../images/thermometer-100.gif);}
-.thermometer-110 {background-image:url(../images/thermometer-110.gif);}
-.thermometer-120 {background-image:url(../images/thermometer-120.gif);}
+.thermometer-0 {background-image: url(../images/thermometer-0.gif);}
+.thermometer-10 {background-image: url(../images/thermometer-10.gif);}
+.thermometer-20 {background-image: url(../images/thermometer-20.gif);}
+.thermometer-30 {background-image: url(../images/thermometer-30.gif);}
+.thermometer-40 {background-image: url(../images/thermometer-40.gif);}
+.thermometer-50 {background-image: url(../images/thermometer-50.gif);}
+.thermometer-60 {background-image: url(../images/thermometer-60.gif);}
+.thermometer-70 {background-image: url(../images/thermometer-70.gif);}
+.thermometer-80 {background-image: url(../images/thermometer-80.gif);}
+.thermometer-90 {background-image: url(../images/thermometer-90.gif);}
+.thermometer-100 {background-image: url(../images/thermometer-100.gif);}
+.thermometer-110 {background-image: url(../images/thermometer-110.gif);}
+.thermometer-120 {background-image: url(../images/thermometer-120.gif);}
 
 /*	grid on a table	 */
 table {
 	&.span-1, &.span-2, &.span-3, &.span-4, &.span-5, &.span-6, &.span-7, &.span-8, &.span-9, &.span-10, &.span-11, &.span-12 {
-		display:table;
+		display: table;
 	}
 }
 
 /*	display overrides  */
 .display-block {
-	display:block !important;
+	display: block !important;
 }
 
 .display-inline-block {
-	display:inline-block !important;
+	display: inline-block !important;
 }
 
 .display-inline {
-	display:inline !important;
+	display: inline !important;
 }
 
 /*	date  */
@@ -324,11 +324,11 @@ table {
 	margin-left: $margin-medium;
 	min-width: 80px;
 	position: relative;
-	text-align:center;
+	text-align: center;
 }
 
 [class*="span-"] .date-container {
-	margin-left:0;
+	margin-left: 0;
 }
 
 .date-month {
@@ -338,7 +338,7 @@ table {
 	
 	@include border-top-radius;
 	@include colorize-base($accent);
-	@include colorize($accent, $border:false);
+	@include colorize($accent, $border: false);
 	p {
 		text-align: center;
 		color: #fff;
@@ -362,7 +362,7 @@ table {
 	@include box-shadow(0 1px 0 0 $light, 0 2px 0 0 $silver, 0 3px 0 0 $light, 0 4px 0 0 $silver);
 	p {
 		text-align: center;
-		font:{
+		font: {
 			size: 275%;
 			weight: $font-weight-bold;
 		}
@@ -379,10 +379,10 @@ table {
 	height: 64px;
 	min-width: 40px;
 	.date-day {
-		height:30px;
+		height: 30px;
 		p {
-			line-height:30px;
-			font-size:150%;
+			line-height: 30px;
+			font-size: 150%;
 		}
 	}
 }

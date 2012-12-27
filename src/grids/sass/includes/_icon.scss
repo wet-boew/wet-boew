@@ -10,35 +10,35 @@
 	background-position: top left;
 }
 
-[href^='mailto:']{
+[href^='mailto: ']{
 	background-image: url(../images/mail.png);
 	background-repeat: no-repeat;
 	background-position: 0 0;
-	padding-left:19px;
+	padding-left: 19px;
 }
 
 [href$='.psd'], [href$='.zip'], [href$='.doc'], [href$='.pdf'], [href$='.xls'], [href$='.rtf'], [href$='.pot'], [href$='.ppt'], [href$='.pps'], [href$='.pptm'], [href$='.docx'], [href$='.xlsx'], [href$='.pptx']{
 	background-image: url(../images/download.png);
 	background-repeat: no-repeat;
 	background-position: 0 0;
-	padding-left:19px;
+	padding-left: 19px;
 }
 
 [class*=wb-icon-] {
 	@extend .wb-icon;
-	width:16px;
-	height:16px;
-	margin-right:4px;
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
 	@include inline-block(text-top);
 }
 
 .wb-icon-none {
-	background-image:none;
-	padding-left:0;
-	display:inline;
-	height:auto;
-	margin-right:0;
-	width:auto;
+	background-image: none;
+	padding-left: 0;
+	display: inline;
+	height: auto;
+	margin-right: 0;
+	width: auto;
 }
 
 .wb-icon-alarm {background-position: 0 0;} 

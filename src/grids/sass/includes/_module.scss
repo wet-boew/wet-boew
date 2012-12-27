@@ -38,7 +38,7 @@
 	}
 	
 	[class*="module-"] .background-light {
-		color:#222 !important;
+		color: #222 !important;
 		text-shadow: 0 1px 1px #FFF;
 	}
 
@@ -62,10 +62,10 @@
 				min-height: 32px;
 				padding: $spacing-medium;
 				text-decoration: none;
-				background-repeat:no-repeat;
-				background-position:top right;
+				background-repeat: no-repeat;
+				background-position: top right;
 				@include text-shadow(-1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #555, 1px 1px 0 #000);
-				font-weight:700;
+				font-weight: 700;
 				@include colorize-base($accent);		
 			}
 			a:hover, a:focus, a:active {
@@ -76,7 +76,7 @@
 
 	.module-related, .module-menu-section {
 		ul {
-			@include module-colorize($border:"border");
+			@include module-colorize($border: "border");
 			li {
 				border-top: 1px dotted darken($light, 10%);
 				margin-bottom: 0 !important;
@@ -144,8 +144,8 @@
 			}
 		}
 		ul ul {
-			padding-top:5px;
-			padding-bottom:0;
+			padding-top: 5px;
+			padding-bottom: 0;
 		}
 	} 
 
@@ -153,7 +153,7 @@
 		display: block;
 		padding: $margin-medium / 2;
 		@include border-radius;
-		@include module-colorize($border:"border");
+		@include module-colorize($border: "border");
 		.image-caption {
 			margin: $margin-medium $margin-medium ($margin-medium / 2);
 			#{headers(2, 6)} {
@@ -173,12 +173,12 @@
 
 	.module-contact {
 		.clear {
-			border-top:1px solid #eee;
-			visibility:visible;
-			width:auto;
+			border-top: 1px solid #eee;
+			visibility: visible;
+			width: auto;
 		}
 		& [class*="span-"]{
-				margin-bottom:0 !important;
+				margin-bottom: 0 !important;
 		}
 	}
 
@@ -194,14 +194,14 @@
 
 	.module-news-article {
 		padding: $spacing-medium $spacing-medium 0;
-		@include module-colorize($border:"border", $shadow:true);
+		@include module-colorize($border: "border", $shadow: true);
 		img {
 			display: block;
 		}
 	}
 
 	.module-spotlight {
-		@include module-colorize($accent, $border:"outline");
+		@include module-colorize($accent, $border: "outline");
 		ul {
 			@include no-bullet;
 			li { 
@@ -216,14 +216,14 @@
 			}
 		}
 		img {
-			width:100px !important;
-			height:62px !important;
-			float:left;
-			margin-left:10px;
+			width: 100px !important;
+			height: 62px !important;
+			float: left;
+			margin-left: 10px;
 		}
 		& > * {
-			padding:10px;
-			margin:0;
+			padding: 10px;
+			margin: 0;
 		}
 	}
 
@@ -236,7 +236,7 @@
 				padding: $margin-medium $margin-medium $margin-medium ($margin-xlarge - $margin-medium) !important;
 				@include fugue-icon("user-silhouette.png", $line-height: 40px, $padding: 40px);
 				@include border-radius;
-				@include module-colorize($border:"border");
+				@include module-colorize($border: "border");
 			}
 		}
 	}
@@ -248,7 +248,7 @@
 		.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
 			background-image: url('../images/module.jpg'); 
 			background-repeat: no-repeat;
-			padding-bottom:5px;
+			padding-bottom: 5px;
 			padding-top: 30px;
 			@include box-sizing(border-box);
 			> div, p, h2, h3, h4, h5, h6 {
@@ -269,17 +269,17 @@
 				padding-top: 5px;
 			}
 		}
-		.module-attention 	{ @include module-colorize($attention, $border:"outline"); background-position: 0 0; }
-		.module-alert 		{ @include module-colorize($alert, $border:"outline"); background-position: -1200px 0; }
-		.module-note 		{ @include module-colorize($note, $border:"outline"); background-position: -2400px 0; }
-		.module-info 		{ @include module-colorize($info, $border:"outline"); background-position: -3600px 0; }
-		.module-question 	{ @include module-colorize($question, $border:"outline"); background-position: -4800px 0; }
-		.module-answer 		{ @include module-colorize($answer, $border:"outline"); background-position: -6000px 0; }
-		.module-tool 		{ @include module-colorize($tool, $border:"outline"); background-position: -7200px 0; }
-		.module-inprogress 	{ @include module-colorize($inprogress, $border:"outline"); background-position: -8400px 0; }
-		.module-refer 		{ @include module-colorize($refer, $border:"outline"); background-position: -9600px 0; }
-		.module-summary 	{ @include module-colorize($summary, $border:"outline"); background-position: -10800px 0; }
-		.module-archive 	{ @include module-colorize($archive, $border:"outline"); background-position: -12000px 0; }
+		.module-attention 	{ @include module-colorize($attention, $border: "outline"); background-position: 0 0; }
+		.module-alert 		{ @include module-colorize($alert, $border: "outline"); background-position: -1200px 0; }
+		.module-note 		{ @include module-colorize($note, $border: "outline"); background-position: -2400px 0; }
+		.module-info 		{ @include module-colorize($info, $border: "outline"); background-position: -3600px 0; }
+		.module-question 	{ @include module-colorize($question, $border: "outline"); background-position: -4800px 0; }
+		.module-answer 		{ @include module-colorize($answer, $border: "outline"); background-position: -6000px 0; }
+		.module-tool 		{ @include module-colorize($tool, $border: "outline"); background-position: -7200px 0; }
+		.module-inprogress 	{ @include module-colorize($inprogress, $border: "outline"); background-position: -8400px 0; }
+		.module-refer 		{ @include module-colorize($refer, $border: "outline"); background-position: -9600px 0; }
+		.module-summary 	{ @include module-colorize($summary, $border: "outline"); background-position: -10800px 0; }
+		.module-archive 	{ @include module-colorize($archive, $border: "outline"); background-position: -12000px 0; }
 	}
 }
 

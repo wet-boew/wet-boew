@@ -3,12 +3,12 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .wet-boew-slideout {
-	display:none;
+	display: none;
 }
 
 .no-js {
 	.wet-boew-slideout {
-		display:block;
+		display: block;
 	}
 }
  
@@ -80,6 +80,6 @@ div.tabbedSlideout {
 /*Print SCSS*/
 @media print {
 	#slideoutWrapper {
-		display:none;
+		display: none;
 	}
 }

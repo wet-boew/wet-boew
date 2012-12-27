@@ -3,28 +3,28 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .cal-container {
-	height:22em;
-	width:18em;
-	margin-top:0.5em;
+	height: 22em;
+	width: 18em;
+	margin-top: 0.5em;
 }
 
 .cal-container-extended {
-	height:28em;
+	height: 28em;
 }
 
 div.cal-cnt {
-	text-align:left;
+	text-align: left;
 	*{
-		font-size:100%;
+		font-size: 100%;
 	}
 	.cal-header {
 		overflow: hidden;
-		padding:0.5em 4px;
-		text-align:center;
-		width:91%;
+		padding: 0.5em 4px;
+		text-align: center;
+		width: 91%;
 	}
 	.cal-month {
-		font-size:110%;
+		font-size: 110%;
 	}
 	.cal-goto {
 		margin-left: 16px;
@@ -37,27 +37,27 @@ div.cal-cnt {
 		margin: 0 0 0.5em 0;
 	}
 	.cal-goto legend, .cal-goto-month, .cal-goto-year, .cal-goto-button {
-		position:relative;
+		position: relative;
 	}
 	.cal-goto-month {
-		width:60%;
-		float:right;
+		width: 60%;
+		float: right;
 	}
 	.cal-goto-year {
-		width:39%;
-		float:left;
+		width: 39%;
+		float: left;
 	}
 	.cal-goto-button {
 		margin: 0 10px 0 5px;
-		float:left;
+		float: left;
 		input {
-			padding:0.1em 0.2em;
+			padding: 0.1em 0.2em;
 		}
 	}
 }
 
 div.cal-nextmonth , div.cal-prevmonth {
-	margin-bottom:-15px; 
+	margin-bottom: -15px; 
 }
 
 div.cal-nextmonth img, div.cal-prevmonth img {
@@ -67,53 +67,53 @@ div.cal-nextmonth img, div.cal-prevmonth img {
 
 div.cal-prevmonth {
 	float: left;
-	text-align:left;
+	text-align: left;
 }
 
 div.cal-nextmonth {
 	float: right;
-	text-align:right;
+	text-align: right;
 }
 
 div.cal-days, ol.cal-weekdays {
-	margin:0;
+	margin: 0;
 }
 
 div.cal-days ol.cal-day-list, div.cal-cnt ol.cal-weekdays {
-	list-style-type:none; 
-	margin:0;
-	padding:0;
+	list-style-type: none; 
+	margin: 0;
+	padding: 0;
 }
 
 div.cal-days ol.cal-day-list li, div.cal-cnt ol.cal-weekdays li {
-	margin:0;
+	margin: 0;
 }
 
 div.cal-days span.cal-empty, div.cal-days ol.cal-day-list li, ol.cal-weekdays li {
-	position:relative;
-	float:left;
-	border-width:0;
-	border-left-width:1px;
-	border-bottom-width:1px;
-	width:13%;
+	position: relative;
+	float: left;
+	border-width: 0;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	width: 13%;
 	text-align: center;
 }
 
 ol.cal-weekdays li.cal-wd7, div.cal-days ol.cal-day-list .cal-w1d7, div.cal-days ol.cal-day-list .cal-w2d7, div.cal-days ol.cal-day-list .cal-w3d7, div.cal-days ol.cal-day-list .cal-w4d7, div.cal-days ol.cal-day-list .cal-w5d7, div.cal-days ol.cal-day-list .cal-w6d7, div.cal-days span.cal-empty.cal-w5d7, div.cal-days span.cal-empty.cal-w6d7 {
-	border-right-width:1px;
-	clear:right;
+	border-right-width: 1px;
+	clear: right;
 }
 
 div.cal-days a, div.cal-days div {
-	height:100%;
-	width:100%;
+	height: 100%;
+	width: 100%;
 }
 
 span.cal-empty, ol.cal-weekdays li, div.cal-days a, div.cal-days div {
-	display:block;
-	padding:0.5em 0;
+	display: block;
+	padding: 0.5em 0;
 }
 
 div.cal-days .cal-currentday {
-	font-weight:bolder;
+	font-weight: bolder;
 }

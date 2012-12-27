@@ -4,22 +4,22 @@
  */
 .ie7 {
 	select, button {
-		font-size:100%;
+		font-size: 100%;
 	}
 	.wb-invisible, .wb-show-onfocus, #wb-skip a:link, #wb-skip a:visited, #wb-sec h2, #wb-sup h2, #wb-foot h2 {
-		clip:rect(1px 1px 1px 1px);
+		clip: rect(1px 1px 1px 1px);
 	}
 	.wb-invisible, .wb-show-onfocus, #wb-foot h2 {
-		position:relative;
-		float:left;
-		margin-bottom:-1px !important;
+		position: relative;
+		float: left;
+		margin-bottom: -1px !important;
 	}
 	.wb-show-onfocus, #wb-skip a {
 		&:focus, &:active {
-			width:auto !important;
-			height:auto !important;
-			overflow:visible !important;
-			white-space:nowrap;
+			width: auto !important;
+			height: auto !important;
+			overflow: visible !important;
+			white-space: nowrap;
 		}
 	}
 	.wb-show-onhover, a.wb-linkdesc span span {

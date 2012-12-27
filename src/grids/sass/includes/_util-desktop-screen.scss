@@ -11,12 +11,12 @@
 
 /* --- positioning --- */
 .position-left, .position-left-small, .position-left-medium, .position-left-large, .position-left-xlarge, .position-top, .position-top-small, .position-top-medium, .position-top-large, .position-top-xlarge, .position-right, .position-right-small, .position-right-medium, .position-right-large, .position-right-xlarge, .position-bottom, .position-bottom-small, .position-bottom-medium, .position-bottom-large, .position-bottom-xlarge {
-	position:absolute !important;
-	margin:0 !important;
+	position: absolute !important;
+	margin: 0 !important;
 }
 
 @mixin pos($pos, $amt){
-	#{$pos}:$amt!important;
+	#{$pos}: $amt !important;
 }
 
 .position-left {

@@ -9,15 +9,15 @@
 @import "compass/css3/box-shadow";
 
 #wb-body, #wb-body-sec {
-	background:#fff;
+	background: #fff;
 }
 
 h1 {
 	font-size: 2em;
-	color:#222;
-	border:none;
-	font-weight:bold;
-	margin-bottom:0 !important;
+	color: #222;
+	border: none;
+	font-weight: bold;
+	margin-bottom: 0 !important;
 }
 
 h2 {
@@ -30,8 +30,8 @@ h2 {
 }
 
 #wb-skip {
-	display:none;
-	visibility:hidden;
+	display: none;
+	visibility: hidden;
 }
 
 #gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
@@ -56,7 +56,7 @@ h2 {
 		text-align: center;
 			a {
 				@include appearance(none);
-				border-bottom:1px solid #999;
+				border-bottom: 1px solid #999;
 				border-right: 1px solid #999;
 				border-top: 1px solid #fff;
 				border-left: 1px solid #fff;
@@ -64,9 +64,9 @@ h2 {
 				padding: 10px 0;
 				@include border-radius(2px);
 				@include text-shadow(0 1px 0 #eee);
-				font-weight:700;
+				font-weight: 700;
 				@include box-shadow(none);
-				display:block;
+				display: block;
 				font-size: 120%;
 				text-decoration: none;
 				&:hover, &:focus, &:active {
@@ -89,7 +89,7 @@ h2 {
 }
 
 #gcwu-tc {
-	margin-top:0;
+	margin-top: 0;
 }
 
 #gcwu-ef-tc, #gcwu-other-tc {

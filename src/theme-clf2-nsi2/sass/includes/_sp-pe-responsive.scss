@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 body {
-	min-width:600px;
+	min-width: 600px;
 }
 
 /** Box model - centered **/
@@ -11,20 +11,20 @@ body {
 	width: 100%;
 }
 #wb-core, #wb-core-in, #wb-head-in, #wb-foot-in {
-	margin:auto;
+	margin: auto;
 }
 #wb-core, #wb-core-in {
-	width:600px;
+	width: 600px;
 }
 #wb-head-in, #wb-foot-in {
-	width:760px;
+	width: 760px;
 }
 
 /** Centre column **/
 #wb-body {
 	width: 600px;
 	#wb-main {
-		width:600px;
+		width: 600px;
 	}
 }
 #cn-msg-space {

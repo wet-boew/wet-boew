@@ -3,9 +3,9 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .cal-container.picker-overlay {
-	position:absolute;
-	z-index:498 !important;
-	margin-top:-2em;
+	position: absolute;
+	z-index: 498 !important;
+	margin-top: -2em;
 }
 
 .picker-close {
@@ -19,16 +19,16 @@
 }
 
 .picker-field {
-	width:7em;
+	width: 7em;
 }
 
 .ui-mobile {
 	.polyfill.picker-field {
-		display:inline;
+		display: inline;
 	}
 	.picker-toggle-hidden, .picker-toggle-visible {
 		img {
-			display:inline;
+			display: inline;
 		}
 	}
 }
@@ -48,14 +48,14 @@
 }
 
 .picker-toggle-visible a, .picker-toggle-hidden a {
-	margin-left:0.5em;
+	margin-left: 0.5em;
 }
 
 div.cal-days {
 	a {
-		text-decoration:underline;
+		text-decoration: underline;
 	}
 	ol.cal-day-list li.datepicker-selected a {
-		background-color:#333;
+		background-color: #333;
 	}
 }
