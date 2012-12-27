@@ -104,10 +104,6 @@ caption {
 	text-align:left;
 }
 
-[dir="rtl"] caption {
-	text-align:right;
-}
-
 th {
 	background-color:#eee;
 	border:1px solid #ccc;
@@ -120,4 +116,10 @@ td {
 	border:1px solid #ccc;
 	vertical-align:top;
 	padding:5px 10px;
+}
+
+[dir="rtl"] {
+	caption {
+		text-align:right;
+	}
 }

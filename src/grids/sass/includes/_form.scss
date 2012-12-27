@@ -138,6 +138,14 @@
 			text-align: right;
 		}
 	}
+
+	[dir="rtl"] {
+		label {
+			.form-horizontal & {
+				text-align: left;
+			}
+		}
+	}
 }
 
 @mixin form-element {
@@ -214,6 +222,56 @@
 	.form-inline {
 		padding-bottom: 0;
 		> * { margin-right: $margin-medium / 2; }
+	}
+
+	[dir="rtl"] {
+		.form-radio, .form-checkbox {
+			// TODO reset left padding
+			//padding-left: $margin-large;
+			padding-right: $margin-large;
+			text-align: right !important;
+
+			input {
+				&[type="radio"], &[type="checkbox"] {
+					float: right;
+					margin-left: auto;
+					margin-right: -1 * $margin-large;
+				}
+			}
+			
+			.form-inline & {
+				margin-right: auto;
+				margin-left: $margin-medium;
+			}
+		}
+		
+		.form-text-inline {
+			// TODO reset padding left
+			//padding-left: 5px;
+			padding-right: 5px;
+		}
+		.form-radio.form-label-inline + .form-radio.form-label-inline,.form-checkbox.form-label-inline + .form-checkbox.form-label-inline {
+			margin-left:auto;
+			margin-right:10px;
+		}
+		
+		.form-input-prepend, .form-input-append {
+			button { @include border-right-radius(0); }
+		}
+
+		.form-input-prepend {
+			input, select, .form-uneditable-input, button { @include border-right-radius(0); }
+		}
+		.form-input-append { 
+			input, select, .form-uneditable-input, button { @include border-left-radius(0); }
+		}
+		
+		.form-inline {
+			> * {
+				margin-right: auto;
+				margin-left: $margin-medium / 2;
+			}
+		}
 	}
 }
  

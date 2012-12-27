@@ -281,6 +281,85 @@
 		.module-summary 	{ @include module-colorize($summary, $border:"outline"); background-position: -10800px 0; }
 		.module-archive 	{ @include module-colorize($archive, $border:"outline"); background-position: -12000px 0; }
 	}
+
+	[dir="rtl"] {
+		.module-billboard ul {
+			li {		
+				a, a:link, a:visited {
+					background-position:top left;
+					//TODO
+					//@include text-shadow(-1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #555, 1px 1px 0 #000);	
+				}
+			}
+		}
+
+		.module-menu-section ul {
+			li {
+				ul {
+					margin-left: auto !important;
+					margin-right: 0 !important;
+				}
+				li {
+					a {
+						// TODO reset left padding
+						//padding-left: 20px !important;
+						padding-right: 20px !important;
+					}
+					li a {
+						// TODO reset left padding
+						//padding-left: 30px !important;
+						padding-right: 30px !important;
+					}
+				}
+			}
+		}
+
+		.module-table-contents {
+			ul, ul[class*="column-"] {
+				li {
+					margin-left: auto;
+					margin-right: 25px;
+				}
+			}
+		}
+
+		.module-spotlight {
+			ul {
+				@include no-bullet;
+				li { 
+					clear: right;
+				}
+				img {
+					float: right;
+					margin-right: auto;
+					margin-left: 10px;
+				}
+			}
+			img {
+				float:right;
+				margin-left:auto;
+				margin-right:10px;
+			}
+		}
+
+		.module-comment {
+			ol, ul {
+				margin-right: auto;
+				margin-left: 0;
+				li {
+					padding: $margin-medium ($margin-xlarge - $margin-medium) $margin-medium $margin-medium !important;
+				}
+			}
+		}
+
+		div {
+			.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
+				ul, ol {
+					margin: $margin-medium 40px $margin-medium $margin-medium;
+				}
+			}
+		}
+	}
 }
 
 // used in: @module-colorize

@@ -15,18 +15,10 @@ h1,h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre,details {
 	margin-right:10px;
 }
 
-[dir="rtl"] .span-1,[dir="rtl"] .span-2,[dir="rtl"] .span-3,[dir="rtl"] .span-4,[dir="rtl"] .span-5,[dir="rtl"] .span-6,[dir="rtl"] .span-7,[dir="rtl"] .span-8,[dir="rtl"] .span-9,[dir="rtl"] .span-10,[dir="rtl"] .span-11,[dir="rtl"] .span-12 {
-	float:right;
-}
-
 .border-top,.border-right,.border-bottom,.border-left {
 	position:relative;
 	float:left;
 	min-height:1px;
-}
-
-[dir="rtl"] .border-top,[dir="rtl"] .border-right,[dir="rtl"] .border-bottom,[dir="rtl"] .border-left {
-	float:right;
 }
 
 #wb-main-in {
@@ -39,18 +31,8 @@ h1,h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre,details {
 	margin-left:0 !important;
 }
 
-[dir="rtl"] .row-start {
-	margin-left:auto !important;
-	margin-right:0 !important;
-}
-
 .row-end {
 	margin-right:0  !important;
-}
-
-[dir="rtl"] .row-end {
-	margin-right:auto  !important;
-	margin-left:0  !important;
 }
 
 .clear {
@@ -171,4 +153,20 @@ img.image-actual,#gcwu-aside .gcwu-minister-img img {
 
 .span-8,.grid-12 .span-12 {
 	width:940px;
+}
+
+[dir="rtl"] {
+	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .border-top, .border-right, .border-bottom, .border-left {
+		float:right;
+	}
+
+	.row-start {
+		margin-left:auto !important;
+		margin-right:0 !important;
+	}
+
+	.row-end {
+		margin-right:auto  !important;
+		margin-left:0  !important;
+	}
 }
