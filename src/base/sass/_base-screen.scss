@@ -2,11 +2,11 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-a:active,a:focus {
+a:active, a:focus {
 	cursor:auto;
 }
 
-abbr,acronym {
+abbr, acronym {
 	cursor:help;
 }
 
@@ -52,7 +52,7 @@ a.wb-linkdesc {
 	}
 }
 
-a.wb-linkdesc:hover,a.wb-linkdesc:focus,a.wb-linkdesc:active {
+a.wb-linkdesc:hover, a.wb-linkdesc:focus, a.wb-linkdesc:active {
 	z-index:25;
 	outline:0;
 	text-decoration:none;

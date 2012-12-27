@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/images";
-#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in {
+#wb-body, #wb-body-sec, #wb-body-sec-sup, #wb-body-sec-sup, #wb-head-in {
 	background:{
 		image:url(../images/header-leaf.jpg), url(../images/header-bg.jpg);
 		repeat: no-repeat, repeat-x;
@@ -32,12 +32,12 @@
 
 #gcwu-srch-submit {
 	background:#ccc url(../images/search-button.gif) 0 0 repeat-x;
-	&:focus,&:hover {
+	&:focus, &:hover {
 		background:#ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
 	}
 }
 
-#wb-core-in,#gcwu-bc-in {
+#wb-core-in, #gcwu-bc-in {
 	background:{
 		image:url(../images/content-deco-side.gif), url(../images/content-deco-side.gif);
 		position:left top, right top;
@@ -53,7 +53,7 @@
 }
 
 #gcwu-psnb {
-	.mb-menu,.mb-menu li {
+	.mb-menu, .mb-menu li {
 		background:#23447e url(../images/menu-bg.gif) repeat-x;
 	}
 	.mb-menu {
@@ -78,7 +78,7 @@
 		}
 	}
 	.mb-active {
-		a:hover.mb-has-sm,a:link.mb-has-sm,a:visited.mb-has-sm {
+		a:hover.mb-has-sm, a:link.mb-has-sm, a:visited.mb-has-sm {
 			background-color:#CCC;
 			color:#000;
 		}

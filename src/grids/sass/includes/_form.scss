@@ -28,7 +28,7 @@
 			padding: 0;
 		}
 
-		#{headings(2,6)} {
+		#{headings(2, 6)} {
 			margin-left: 0;
 			margin-right: 0;
 		}
@@ -61,7 +61,7 @@
 				padding-right: 10px;
 			}
 
-			#{headings(2,6)} {
+			#{headings(2, 6)} {
 				margin-left: 10px;
 				margin-right: 10px;
 			}
@@ -165,13 +165,13 @@
 		vertical-align: middle;
 		@include inline-block;
 	}
-	.form-radio.form-label-inline,.form-checkbox.form-label-inline	{
+	.form-radio.form-label-inline, .form-checkbox.form-label-inline	{
 		@include inline-block;
 		padding-top:5px;
 		margin-bottom:0;
 		vertical-align:middle;
 	}
-	.form-radio.form-label-inline + .form-radio.form-label-inline,.form-checkbox.form-label-inline + .form-checkbox.form-label-inline {
+	.form-radio.form-label-inline + .form-radio.form-label-inline, .form-checkbox.form-label-inline + .form-checkbox.form-label-inline {
 		margin-left:10px;
 	}
 	
@@ -219,7 +219,7 @@
  
 @mixin form-style {
 	form {
-		#{headings(2,6)} {
+		#{headings(2, 6)} {
 			border-bottom: 1px solid darken($light, 10%);
 			color: $dark !important;
 		}

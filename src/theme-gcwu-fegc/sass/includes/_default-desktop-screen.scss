@@ -15,7 +15,7 @@ body {
 	padding:0;
 }
 
-#gcwu-sig,#gcwu-wmms {
+#gcwu-sig, #gcwu-wmms {
 	img {
 		position:absolute;
 		clip:rect(1px, 1px, 1px, 1px);
@@ -26,12 +26,12 @@ body {
 	}
 }
 
-#wb-sec,#wb-sup {
+#wb-sec, #wb-sup {
 	z-index:1;
 	display:inline;
 }
 
-#wb-head,#wb-head-in,#wb-foot,#wb-foot-in,#gcwu-gcnb,#gcwu-bnr,#gcwu-bc,#gcwu-gcft,#gcwu-sft,#gcwu-gcnb-in,#gcwu-bnr-in,#gcwu-bc-in,#gcwu-gcft-in,#gcwu-sft-in {
+#wb-head, #wb-head-in, #wb-foot, #wb-foot-in, #gcwu-gcnb, #gcwu-bnr, #gcwu-bc, #gcwu-gcft, #gcwu-sft, #gcwu-gcnb-in, #gcwu-bnr-in, #gcwu-bc-in, #gcwu-gcft-in, #gcwu-sft-in {
 	overflow:hidden;
 }
 
@@ -79,7 +79,7 @@ body {
 }
 
 #gcwu-title {
-	&:hover,&:focus,&:active {
+	&:hover, &:focus, &:active {
 		text-decoration:underline;
 	}
 }
@@ -111,11 +111,11 @@ h1 {
 	visibility:hidden;
 }
 
-#wb-body #wb-main,#wb-body-sec-sup #wb-main,#wb-sec {
+#wb-body #wb-main, #wb-body-sec-sup #wb-main, #wb-sec {
 	float:left;
 }
 
-#wb-body-sec-sup #wb-main,#wb-sup {
+#wb-body-sec-sup #wb-main, #wb-sup {
 	float:right;
 	position:relative;
 }
@@ -184,7 +184,7 @@ a {
 	}
 }
 
-#gcwu-title,#gcwu-title a {
+#gcwu-title, #gcwu-title a {
 	color:#fff;
 	font-size:1.52em;
 	font-family:Arial, Helvetica, sans-serif;
@@ -232,11 +232,11 @@ a {
 		@include box-shadow(none);
 		background:#fff;
 		padding:2px 0;
-		&:focus,&:active {
+		&:focus, &:active {
 			background:#f0fcff;
 		}
 	}
-	a,a:visited {
+	a, a:visited {
 		color:#fff;
 		text-decoration:none;
 		font-size:80%;
@@ -260,7 +260,7 @@ a {
 	@include box-shadow(none);
 	padding:2px 6px;
 	display:inline;
-	&:focus,&:hover {
+	&:focus, &:hover {
 		@include text-shadow(0 1px 0 #ddd);
 		@include box-shadow(none);
 		border:{
@@ -320,16 +320,16 @@ a {
 			padding-right:0.38em;
 		}
 		.mb-sm-open {
-			@include box-shadow(0 5px 5px -4px rgba(0,0,0,0.5), 5px 5px 5px -4px rgba(0,0,0,0.5), -5px 5px 5px -4px rgba(0,0,0,0.5));
+			@include box-shadow(0 5px 5px -4px rgba(0, 0, 0, 0.5), 5px 5px 5px -4px rgba(0, 0, 0, 0.5), -5px 5px 5px -4px rgba(0, 0, 0, 0.5));
 		}
 	}
-	.mb-menu,.mb-menu li {
+	.mb-menu, .mb-menu li {
 		min-height:2.15em;
 	}
 }
 
-#gcwu-gcnb,#gcwu-srchbx,#wb-foot {
-	a:hover,a:focus,a:active {
+#gcwu-gcnb, #gcwu-srchbx, #wb-foot {
+	a:hover, a:focus, a:active {
 		text-decoration:underline;
 	}
 }

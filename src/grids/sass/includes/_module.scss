@@ -156,7 +156,7 @@
 		@include module-colorize($border:"border");
 		.image-caption {
 			margin: $margin-medium $margin-medium ($margin-medium / 2);
-			#{headers(2,6)} {
+			#{headers(2, 6)} {
 				font-family: $sans-serif;
 			}
 			& > * {
@@ -183,7 +183,7 @@
 	}
 
 	.module-news {
-		#{headers(2,6)} {
+		#{headers(2, 6)} {
 			border-bottom: 2px solid $medium;
 			a {
 				text-decoration: none;
@@ -257,7 +257,7 @@
 			ul, ol {
 				margin: $margin-medium $margin-medium $margin-medium 40px;
 			}
-			#{headers(2,6)} {
+			#{headers(2, 6)} {
 				border-bottom: 1px solid #ddd;
 				font-family: $sans-serif;
 				font-size: 130%;

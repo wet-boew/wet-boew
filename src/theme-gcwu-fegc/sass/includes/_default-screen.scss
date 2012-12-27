@@ -15,7 +15,7 @@ body {
 			padding-top:5px;
 			padding-bottom:5px;
 			font-size:1.1em;
-			&:hover,&:focus,&:active {
+			&:hover, &:focus, &:active {
 				color:#FFF;
 				text-decoration:underline;
 			}
@@ -27,7 +27,7 @@ body {
 			}
 		}
 	}
-	h3,h4,.top-level {
+	h3, h4, .top-level {
 		font-size:100%;
 		border-bottom:none;
 		@include border-radius(2px);
@@ -55,12 +55,12 @@ body {
 		border:1px solid #777;
 		@include border-radius(2px);
 	}
-	h3,h4,.top-level,li {
+	h3, h4, .top-level, li {
 		a {
 			display:block;
 			color:#333;
 			text-decoration:none;
-			&:hover,&:focus,&:active {
+			&:hover, &:focus, &:active {
 				color:#333;
 				text-decoration:underline;
 			}
@@ -86,7 +86,7 @@ body {
 }
 
 #wb-foot {
-	h4,.gcwu-col-head {
+	h4, .gcwu-col-head {
 		font-size:110%;
 		border:none;
 		font-weight:700;
@@ -103,7 +103,7 @@ body {
 	a {
 		text-decoration:none;
 	}
-	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12 {
+	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
 		margin-bottom:0;
 	}
 }
@@ -111,13 +111,13 @@ body {
 #gcwu-sft {
 	padding-bottom:20px;
 	font-family:Arial, Helvetica, sans-serif;
-	a,span.link {
+	a, span.link {
 		color:#222;
 	}
-	li a,li span.link {
+	li a, li span.link {
 		line-height:1.75em;
 	}
-	h4,.gcwu-col-head {
+	h4, .gcwu-col-head {
 		margin-top:10px;
 	}
 	address {
@@ -127,7 +127,7 @@ body {
 
 #gcwu-sft-in {
 	padding-top:20px;
-	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12 {
+	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
 		position:static;
 	}
 }

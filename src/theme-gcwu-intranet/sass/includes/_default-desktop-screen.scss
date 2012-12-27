@@ -7,7 +7,7 @@
 	background-image: url(../images/core/gcwu-intranetnb-sprite.gif);
 }
 /** From branding.css **/
-#gcwu-sig,#gcwu-sig-in,#gcwu-sig img {
+#gcwu-sig, #gcwu-sig-in, #gcwu-sig img {
 	height:20px !important;
 	overflow:visible !important;
 }
@@ -19,7 +19,7 @@
 	background:none;
 	padding-right:0;
 	#gcwu-srch {
-		&:focus,&:active {
+		&:focus, &:active {
 			background:#f0fcff;
 		}
 	}
@@ -68,7 +68,7 @@
 	height:30px;
 	width:126px;
 }
-#gcwu-sig,#gcwu-wmms {
+#gcwu-sig, #gcwu-wmms {
 	img {
 		position:absolute;
 		clip:rect(auto, auto, auto, auto);
@@ -78,7 +78,7 @@
 #gcwu-wmms img {
 	height:auto !important;
 }
-#gcwu-title,#gcwu-title a {
+#gcwu-title, #gcwu-title a {
 	margin-top:3px;
 	margin-bottom:3px;
 	top:auto;
@@ -252,8 +252,8 @@
 #gcwu-sig-in {
 	margin:0;
 }
-#gcwu-intranetnb,#gcwu-subsite {
-	a:hover,a:focus,a:active {
+#gcwu-intranetnb, #gcwu-subsite {
+	a:hover, a:focus, a:active {
 		text-decoration:underline;
 	}
 }

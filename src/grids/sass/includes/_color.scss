@@ -26,7 +26,7 @@
 	span[class*="background-"] { padding: 1px 4px; }
 	
 	[class*="background-"] { 
-		#{headings(2,6)}, p {
+		#{headings(2, 6)}, p {
 			padding: 5px 10px !important;
 		}
 	}

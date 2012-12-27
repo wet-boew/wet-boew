@@ -33,11 +33,11 @@
 }
 
 #gcwu-title {
-	a,a:visited,a:hover,a:focus,a:active {
+	a, a:visited, a:hover, a:focus, a:active {
 		color:#295376;
 		text-decoration:none;
 	}
-	a:hover,a:focus,a:active {
+	a:hover, a:focus, a:active {
 		text-decoration:underline;
 	}
 }
@@ -76,7 +76,7 @@
 }
 
 .no-js {
-	#gcwu-bar,#wb-foot {
+	#gcwu-bar, #wb-foot {
 		display: block;
 	}
 	#gcwu-sig {
@@ -88,7 +88,7 @@
 	#wb-foot {
 		padding: 0 5px;
 	}
-	#gcwu-sig,#gcwu-wmms,.gcwu-tc-left,.gcwu-tc-right {
+	#gcwu-sig, #gcwu-wmms, .gcwu-tc-left, .gcwu-tc-right {
 		width: 50%;
 		float: left;
 	}

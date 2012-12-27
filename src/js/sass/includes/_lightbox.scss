@@ -80,7 +80,7 @@
 	left:-28px;
 	margin-top:-32px;
 	background-position: 100% 0;
-	&:hover,&:focus,&:active {
+	&:hover, &:focus, &:active {
 		background-position: 100% 100%; //bottom right
 	}
 }
@@ -95,7 +95,7 @@
 	right:-28px;
 	margin-top:-32px;
 	background-position: 0 0;
-	&:hover,&:focus,&:active {
+	&:hover, &:focus, &:active {
 		background-position:0 100%;
 	}
 }
@@ -113,12 +113,12 @@
 	background-position: 50% 0;
 	width:38px;
 	height:19px;
-	&:hover,&:focus,&:active {
+	&:hover, &:focus, &:active {
 		background-position:50% 100%;
 	}
 }
-#cboxNext,#cboxPrevious,#cboxClose {
-	&:focus,&:active {
+#cboxNext, #cboxPrevious, #cboxClose {
+	&:focus, &:active {
 		outline:0;
 		border:1px dotted #000;
 	}

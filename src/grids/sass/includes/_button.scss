@@ -130,7 +130,7 @@
 		}
 	}
 	
-	p.button-group .button:nth-child(1):nth-last-child(1),ul.button-group li:nth-child(1):nth-last-child(1) .button{
+	p.button-group .button:nth-child(1):nth-last-child(1), ul.button-group li:nth-child(1):nth-last-child(1) .button{
 		@include border-radius(4px);
 		margin-right:4px;
 	}
@@ -176,7 +176,7 @@
 	color: $text !important;
 	@include text-shadow(contrast-color($text, $dark, $white, 50%) 0 1px 1px);
 	
-	@include background-image(linear-gradient($color,darken($color, 10%)));
+	@include background-image(linear-gradient($color, darken($color, 10%)));
 	&:hover, &:focus, &:active { 
 		background-color: darken($color, 10%);
 	}

@@ -37,7 +37,7 @@
 		position:relative;
 		@include text-shadow(none);
 		&[href] {
-			&:link,&:hover,&:focus,&:active {
+			&:link, &:hover, &:focus, &:active {
 				color:#FFFFFF;
 			}
 		}

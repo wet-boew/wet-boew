@@ -14,7 +14,7 @@
 	min-height:2.187em;
 }
 
-.mb-menu,.mb-menu li {
+.mb-menu, .mb-menu li {
 	list-style:none;
 	min-height:2.2em;
 	margin:0;
@@ -51,11 +51,11 @@
 		white-space:nowrap;
 		display:block;
 		padding:0.45em 1.72em 0.45em 0.79em;
-		&:link,&:visited {
+		&:link, &:visited {
 			text-decoration:none;
 			color:#fff;
 		}
-		&:hover,&:focus,&:active {
+		&:hover, &:focus, &:active {
 			text-decoration:underline;
 		}
 	}
@@ -70,7 +70,7 @@
 		a {
 			white-space:normal;
 			padding:0.28em 0.79em;
-			&,&:link,&:visited {
+			&, &:link, &:visited {
 				color:#000;
 			}
 		}
@@ -78,7 +78,7 @@
 			list-style-type:none;
 		}
 		li {
-			&,div {
+			&, div {
 				display:block;
 				float:none;
 				background:none;
@@ -107,7 +107,7 @@
 }
 
 .mb-active {
-	a:hover,a:link,a:visited {
+	a:hover, a:link, a:visited {
 		&.mb-has-sm {
 			background-color:#CCC;
 			color:#000;
@@ -123,7 +123,7 @@
 		border-bottom:4px solid #242;
 		padding-top:4px;
 		@include border-radius(0 0 3px 3px);
-		h2,h3,h4,.top-level {
+		h2, h3, h4, .top-level {
 			font-size:1.2em;
 			font-weight:700;
 			margin:0;

@@ -2,7 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#gcwu-psnb,#gcwu-srchbx {
+#gcwu-psnb, #gcwu-srchbx {
 	h2 {
 		position:absolute;
 		clip:rect(1px, 1px, 1px, 1px);
@@ -42,7 +42,7 @@
 	a {
 		color:#295376;
 		text-decoration:none;
-		&:hover,&:focus,&:active {
+		&:hover, &:focus, &:active {
 			color:#295376;
 			text-decoration:underline;
 		}
@@ -53,6 +53,6 @@
 	margin:0;
 }
 
-#gcwu-bnr .ui-navbar,#jqm-wb-mb,#jqm-wb-search,.ui-loader {
+#gcwu-bnr .ui-navbar, #jqm-wb-mb, #jqm-wb-search, .ui-loader {
 	display:none !important;
 }

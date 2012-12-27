@@ -27,7 +27,7 @@
 		left:8px;
 		height:auto;
 		background-color:#ddd;
-		@include background-image(linear-gradient(left,#ececec,#ccc));
+		@include background-image(linear-gradient(left, #ececec, #ccc));
 	}
 	.fd-slider-range {
 		height:auto;
@@ -37,21 +37,21 @@
 		bottom:11px;
 		left:9px;
 		background-color:#165c91;
-		@include background-image(linear-gradient(left,#89A5BD,#165c91));
+		@include background-image(linear-gradient(left, #89A5BD, #165c91));
 	}
 	.fd-slider-disabled {
 		.fd-slider-bar {
-			@include background-image(linear-gradient(top,#333,#666));
+			@include background-image(linear-gradient(top, #333, #666));
 		}
 		.fd-slider-range {
-			@include background-image(linear-gradient(top,#000,#222));
+			@include background-image(linear-gradient(top, #000, #222));
 		}
 	}
 	.fd-slider-handle {
 		cursor:N-resize
 	}
 }
-.fd-slider,.fd-slider-vertical {
+.fd-slider, .fd-slider-vertical {
 	text-align:center;
 	display:block;
 	position:relative;
@@ -84,19 +84,19 @@
 	border:1px solid #606060;
 	border-bottom:1px solid #aaa;
 	border-right:1px solid #aaa;
-	border:1px solid rgba(187,187,187,.8);
-	border-bottom:1px solid rgba(170,170,170,.8);
-	border-right:1px solid rgba(170,170,170,.8);
+	border:1px solid rgba(187, 187, 187, .8);
+	border-bottom:1px solid rgba(170, 170, 170, .8);
+	border-right:1px solid rgba(170, 170, 170, .8);
 	line-height:4px;
 	background-color:#ddd;
-	@include background-image(linear-gradient(top,#ececec,#ccc));
+	@include background-image(linear-gradient(top, #ececec, #ccc));
 	@include border-radius(2px);
 	@include background-clip(padding-box);
 }
 .fd-slider-focused {
 	.fd-slider-bar {
-		@include box-shadow(0 0 6px rgba(10,130,170,0.7));
-		@include experimental(animation,fd-pulse 2s infinite,-moz, -webkit, -o, not -ms, not -khtml, official);
+		@include box-shadow(0 0 6px rgba(10, 130, 170, 0.7));
+		@include experimental(animation, fd-pulse 2s infinite, -moz, -webkit, -o, not -ms, not -khtml, official);
 	}
 }
 .fd-slider-range {
@@ -111,7 +111,7 @@
 	overflow:hidden;
 	line-height:2px;
 	background-color:#165c91;
-	@include background-image(linear-gradient(left,#89A5BD,#165c91));
+	@include background-image(linear-gradient(left, #89A5BD, #165c91));
 	@include border-radius(2px);
 	@include background-clip(padding-box);
 }
@@ -149,7 +149,7 @@
 		border-color:transparent
 	}
 }
-.fd-slider-focused,.fd-slider-hover,.fd-slider-active {
+.fd-slider-focused, .fd-slider-hover, .fd-slider-active {
 	.fd-slider-handle {
 		background-position:0 -20px
 	}
@@ -160,11 +160,11 @@
 	}
 }
 body {
-	&.fd-slider-drag-horizontal,&.fd-slider-drag-horizontal *,&.fd-slider-drag-vertical,&.fd-slider-drag-vertical * {
+	&.fd-slider-drag-horizontal, &.fd-slider-drag-horizontal *, &.fd-slider-drag-vertical, &.fd-slider-drag-vertical * {
 		cursor:N-resize!important;
 		@include user-select(none);
 	}
-	&.fd-slider-drag-horizontal,&.fd-slider-drag-horizontal * {
+	&.fd-slider-drag-horizontal, &.fd-slider-drag-horizontal * {
 		cursor:W-resize!important
 	}
 }
@@ -181,16 +181,16 @@ body {
 		border:1px solid #888;
 		border-bottom:1px solid #999;
 		border-right:1px solid #999;
-		border:1px solid rgba(136,136,136,.8);
-		border-bottom:1px solid rgba(153,153,153,.8);
-		border-right:1px solid rgba(153,153,153,.8);
+		border:1px solid rgba(136, 136, 136, .8);
+		border-bottom:1px solid rgba(153, 153, 153, .8);
+		border-right:1px solid rgba(153, 153, 153, .8);
 		background-color:#555;
-		@include background-image(linear-gradient(left,#666,#333));
+		@include background-image(linear-gradient(left, #666, #333));
 	}
 	.fd-slider-range {
 		cursor:auto!important;
 		background-color:#222;
-		@include background-image(linear-gradient(left,#222,#000));
+		@include background-image(linear-gradient(left, #222, #000));
 	}
 }
 
@@ -210,12 +210,12 @@ body {
 }
 
 @include keyframes(fd-pulse) {
-	0%{box-shadow:0 0 3px rgba(100,130,170,0.55)}
-	20%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
-	40%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
-	60%{box-shadow:0 0 6px rgba(10,130,170,0.7)}
-	80%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
-	100%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
+	0%{box-shadow:0 0 3px rgba(100, 130, 170, 0.55)}
+	20%{box-shadow:0 0 4px rgba(70, 130, 170, 0.6)}
+	40%{box-shadow:0 0 5px rgba(40, 130, 170, 0.65)}
+	60%{box-shadow:0 0 6px rgba(10, 130, 170, 0.7)}
+	80%{box-shadow:0 0 5px rgba(40, 130, 170, 0.65)}
+	100%{box-shadow:0 0 4px rgba(70, 130, 170, 0.6)}
 }
 
 #fd-slider-describedby {

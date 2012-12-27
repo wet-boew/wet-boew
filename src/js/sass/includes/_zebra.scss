@@ -8,7 +8,7 @@ ul.wet-boew-zebra {
 	}
 }
 
-ol,ul {
+ol, ul {
 	&.wet-boew-zebra li {
 		margin-bottom:2px;
 		margin-right:0;
@@ -75,7 +75,7 @@ ol.wet-boew-zebra {
 }
 	
 table {
-	&.wet-boew-zebra,&.wet-boew-zebra table {
+	&.wet-boew-zebra, &.wet-boew-zebra table {
 		background-color:#fff;
 		border:1px solid #ccc;
 		border-collapse:collapse;

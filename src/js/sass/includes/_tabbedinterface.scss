@@ -28,7 +28,7 @@
 			top:1px;
 			margin-top:-1px;
 			&.active {
-				&,&:hover,&:focus,&:active {
+				&, &:hover, &:focus, &:active {
 					color:#333;
 					padding-top:5px;
 					background:#fff;
@@ -91,7 +91,7 @@
 	> div {
 		display:none;
 	}
-	h2,h3,h4,h5,h6 {
+	h2, h3, h4, h5, h6 {
 		border:none;
 	}
 	.float-right {
@@ -125,7 +125,7 @@
 }
 
 /*with grids*/
-.embedded-grid,.embedded-grid .tabs-panel {
+.embedded-grid, .embedded-grid .tabs-panel {
     border:none;
     padding:0;
 }
@@ -134,7 +134,7 @@
     margin:0 10px 10px;
 }
 
-.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12 {
+.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
 	.tabs {
 		margin:0;
 	}
@@ -184,7 +184,7 @@
 				&:active, &:hover, &:active {
 					color:#c00;
 				}
-				&.tabs-prev,&.tabs-next {
+				&.tabs-prev, &.tabs-next {
 					background-position:center 5px;
 				}
 			}
