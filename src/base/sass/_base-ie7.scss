@@ -6,13 +6,28 @@
 	select, button {
 		font-size: 100%;
 	}
-	.wb-invisible, .wb-show-onfocus, #wb-skip a:link, #wb-skip a:visited, #wb-sec h2, #wb-sup h2, #wb-foot h2 {
+	.wb-ie-clip-rect-1
+	{
 		clip: rect(1px 1px 1px 1px);
 	}
-	.wb-invisible, .wb-show-onfocus, #wb-foot h2 {
+	#wb-skip {
+		a {
+			&:link, &:visited {
+				@extend .wb-ie-clip-rect-1;
+			}
+		}
+	}
+	
+	#wb-sec, #wb-sup {
+		h2 {
+			@extend .wb-ie-clip-rect-1;
+		}
+	}
+	.wb-invisible, .wb-show-onfocus {
 		position: relative;
 		float: left;
 		margin-bottom: -1px !important;
+		@extend .wb-ie-clip-rect-1;
 	}
 	.wb-show-onfocus, #wb-skip a {
 		&:focus, &:active {
