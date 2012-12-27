@@ -6,8 +6,16 @@ body {
 	background: #FFF;
 }
 
-#wb-skip, a.wb-linkdesc span span, .print-none {
+.print-none, #wb-skip {
 	display: none;
+}
+
+a.wb-linkdesc {
+	span {
+		span {
+			@extent .print-none;
+		}
+	}
 }
 
 #wb-main, #wb-sec, #wb-sup {

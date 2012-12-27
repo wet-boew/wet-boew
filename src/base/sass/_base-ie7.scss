@@ -22,10 +22,18 @@
 			white-space: nowrap;
 		}
 	}
-	.wb-show-onhover, a.wb-linkdesc span span {
+	.wb-show-onhover {
 		@include transparent;
 		&:hover, &:focus, &:active {
 			@include opaque;
+		}
+	}
+	
+	a.wb-linkdesc {
+		span {
+			span {
+				@extent .wb-show-onhover;
+			}
 		}
 	}
 }
