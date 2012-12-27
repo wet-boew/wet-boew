@@ -8,10 +8,20 @@
 	left: 0;
 }
 
+[dir="rtl"] #gcwu-sig img {
+	left: auto;
+	right: 0;
+}
+
 #gcwu-wmms img {
 	position: absolute;
 	top: 0;
 	right: 0;
+}
+
+[dir="rtl"] #gcwu-wmms img {
+	right: auto;
+	left: 0;
 }
 
 h1 {
@@ -22,5 +32,12 @@ h1 {
 #gcwu-lang, #gcwu-tc {
 	li {
 		margin-right: 20px;
+	}
+}
+
+[dir="rtl"] #gcwu-lang, [dir="rtl"] #gcwu-tc {
+	li {
+		margin-right: auto;
+		margin-left: 20px;
 	}
 }

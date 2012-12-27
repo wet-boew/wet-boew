@@ -22,13 +22,13 @@ form {
 }
 
 .form-inline {
-		& > * {
-			margin-right:0;
-		}
-		
-		label {
-			display: block;
-		}
+	& > * {
+		margin-right:0;
+	}
+	
+	label {
+		display: block;
+	}
 }
 
 .form-radio.form-label-inline,.form-checkbox.form-label-inline {
@@ -76,5 +76,18 @@ input[type="image"] + label, input[type="checkbox"] + label, input[type="radio"]
 	input:focus, input:active, textarea:focus, textarea:active, select:focus, select:active, .ui-input-text.ui-focus, .ui-input-search.ui-focus {
 		background:#333 !important;
 		color:#f9f9f9 !important;
+	}
+}
+
+[dir="rtl"] {
+	.form-inline {
+		& > * {
+			margin-right:auto;
+			margin-left:0;
+		}
+	}
+
+	.form-horizontal label {
+		text-align:right;
 	}
 }

@@ -40,6 +40,9 @@
 		margin-bottom:-15px;
 		top:17px;
 	}
+	[dir="rtl"] #gcwu-date-mod {
+		float:left;
+	}
 	#gcwu-tctr {
 		padding:7px 0 6px;
 		li.gcwu-tc {
@@ -49,10 +52,22 @@
 			padding-left:10px;
 		}
 	}
+	[dir="rtl"] #gcwu-tctr {
+		li.gcwu-tr {
+			padding-left:0;
+			padding-right:10px;
+		}
+	}	
 	#gcwu-gcft li {
 		margin:13px 35px 14px 9px;
 	}
+	[dir="rtl"] #gcwu-gcft li {
+		margin:13px 9px 14px 35px;
+	}
 	#gcwu-bnr,#gcwu-tctr li {
 		float:left;
+	}
+	[dir="rtl"] #gcwu-bnr,[dir="rtl"] #gcwu-tctr li {
+		float:right;
 	}
 }

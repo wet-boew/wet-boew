@@ -120,6 +120,62 @@
 	
 	}
 
+	[dir="rtl"] {
+		table {
+			&.table-simplify {				
+				td, th {
+					text-align: right;
+				}
+			}
+
+			&.table-bordered {
+				border: 1px solid darken($light, 10%);
+				border-right: 0;
+
+				@include border-radius(4px);
+
+				thead, tbody {
+					&:first-child {
+						tr {				
+							&:first-child {
+								th {
+									&:first-child {
+										@include border-radius($default-border-radius 0 0 0);
+									}
+									&:last-child {
+										@include border-radius(0 0 $default-border-radius 0);
+									}
+								}
+							}
+						}
+					}
+					&:last-child {
+						tr {
+							&:last-child {
+								th {
+									&:first-child {
+										@include border-radius(0 0 0 $default-border-radius);
+									}
+									&:last-child {
+										@include border-radius(0 $default-border-radius 0 0);
+									}
+								}
+							}
+						}
+					}
+				}
+				
+				th, td {
+					border: {
+						left: none;
+						right-style: solid;
+						right-width: 1px;
+					}
+				}
+			}
+		}
+	}
+
 }
 
 @mixin table {
@@ -152,7 +208,13 @@
 	ul, ol, dl {
 		margin-left: $spacing-large;
 	}
-	
+
+	[dir="rtl"] {
+		ul, ol, dl {
+			margin-left: auto;
+			margin-right: $spacing-large;
+		}
+	}
 }
 
 @mixin table-color($color) {

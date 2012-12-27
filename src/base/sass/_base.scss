@@ -121,3 +121,8 @@ h6 {
 	height:0;
 	left:-9999px;
 }
+
+[dir="rtl"] #mobiletest {
+	left:auto;
+	right:-9999px;
+}

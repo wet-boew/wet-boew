@@ -8,10 +8,20 @@
 	left: 0;
 }
 
+[dir="rtl"] #gcwu-sig img {
+	left: auto;
+	right: 0;
+}
+
 #gcwu-wmms img {
 	position: absolute;
 	top: 0;
 	right: 0;
+}
+
+[dir="rtl"] #gcwu-wmms img {
+	right: auto;
+	left: 0;
 }
 
 #gcwu-title {

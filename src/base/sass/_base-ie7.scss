@@ -13,7 +13,7 @@
 		position:relative;
 		float:left;
 		margin-bottom:-1px !important;
-	}
+	}	
 	.wb-show-onfocus,#wb-skip a {
 		&:focus, &:active {
 			width:auto !important;
@@ -26,6 +26,11 @@
 		@include transparent;
 		&:hover,&:focus,&:active {
 			@include opaque;
+		}
+	}
+	[dir="rtl"] {
+		.wb-invisible, .wb-show-onfocus, #wb-foot h2 {
+			float:right;
 		}
 	}
 }

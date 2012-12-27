@@ -14,7 +14,7 @@
 		margin: $margin-medium $margin-medium $margin-medium 40px;
 		padding: 0;
 	}
-		
+
 	ol ol li { list-style-type: lower-alpha; }
 	ol ol ol li { list-style-type: lower-roman; }
 
@@ -35,11 +35,26 @@
 			padding-right:4px;
 		}
 	}
+
 	ul {
 		ul {
 			margin-top:0 !important;
 		}
 	}
+
+	[dir="rtl"] {
+		ul, dl, ol {
+			margin: $margin-medium 40px $margin-medium $margin-medium;
+		}
+
+		ul.menu-horizontal {
+			li {
+				padding-left:4px;
+				padding-right:0;
+			}
+		}
+	}
+
 }
 
 

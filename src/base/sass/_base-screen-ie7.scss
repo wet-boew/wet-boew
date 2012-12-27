@@ -23,4 +23,9 @@
 			height:1%;
 		}
 	}
+	[dir="rtl"] #wb-skip {
+		ul {
+			float:right;
+		}
+	}
 }

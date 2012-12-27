@@ -387,3 +387,48 @@ table {
 	}
 }
 
+[dir-"rtl"] {
+	blockquote {
+		&, &.float-left, &.float-right {
+			border-left:none;
+			border-right:{
+				width: 8px !important;
+			}			
+		}
+	}
+
+	.border-top,.border-right,.border-bottom,.border-left,.border-all {
+		float:right;
+	}
+
+	/* ---- Keyboard keys ---- */
+	kbd {
+		border:{
+			width:1px 2px 3px 3px;
+		}
+	}
+
+	.thermometer-0 {background-image:url(../images/thermometer-0.gif); transform:rotateY(180deg);}
+	.thermometer-10 {background-image:url(../images/thermometer-10.gif); transform:rotateY(180deg);}
+	.thermometer-20 {background-image:url(../images/thermometer-20.gif); transform:rotateY(180deg);}
+	.thermometer-30 {background-image:url(../images/thermometer-30.gif); transform:rotateY(180deg);}
+	.thermometer-40 {background-image:url(../images/thermometer-40.gif); transform:rotateY(180deg);}
+	.thermometer-50 {background-image:url(../images/thermometer-50.gif); transform:rotateY(180deg);}
+	.thermometer-60 {background-image:url(../images/thermometer-60.gif); transform:rotateY(180deg);}
+	.thermometer-70 {background-image:url(../images/thermometer-70.gif); transform:rotateY(180deg);}
+	.thermometer-80 {background-image:url(../images/thermometer-80.gif); transform:rotateY(180deg);}
+	.thermometer-90 {background-image:url(../images/thermometer-90.gif); transform:rotateY(180deg);}
+	.thermometer-100 {background-image:url(../images/thermometer-100.gif); transform:rotateY(180deg);}
+	.thermometer-110 {background-image:url(../images/thermometer-110.gif); transform:rotateY(180deg);}
+	.thermometer-120 {background-image:url(../images/thermometer-120.gif); transform:rotateY(180deg);}
+
+	/*	date  */
+	.date-container {
+		float: right;
+	}
+
+	[class*="span-"] .date-container {
+		margin-left:auto;
+		margin-right:0;
+	}
+}

@@ -48,3 +48,9 @@ div.border-top,div.border-right,div.border-bottom,div.border-left,div.border-all
 		padding: 5px 10px !important;
 	}
 }
+
+[dir="rtl"] {
+	div.border-top,div.border-right,div.border-bottom,div.border-left,div.border-all {
+		float: right;
+	}
+}
