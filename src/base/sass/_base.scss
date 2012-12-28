@@ -104,7 +104,7 @@ h6 {
 
 #wb-sec, #wb-sup, #wb-foot {
 	h2 {
-		@extend .wb-invisible;
+		@extend .wb-invisible !optional;
 	}
 }
 
@@ -122,9 +122,9 @@ h6 {
 
 #wb-skip {
 	a {
-		@extend .wb-show-onfocus;
-		&, &:link, &:visited{
-			@extend .wb-invisible;
+		@extend .wb-show-onfocus !optional;
+		&, &:link, &:visited {
+			@extend .wb-invisible !optional;
 		}
 	}
 }
