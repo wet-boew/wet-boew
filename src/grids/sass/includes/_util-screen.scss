@@ -31,7 +31,7 @@
 
 /* ---- Headings ---- */
 #wb-main {
-	h1, h2, h3, h4, h5, h6 {
+	#{headings(all)} {
 		font-weight: $font-weight-bold;
 		line-height: 150%;
 		vertical-align: bottom;

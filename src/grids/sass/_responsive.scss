@@ -2,7 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-h1, h2, h3, h4, h5, h6, p, blockquote, table, form, img, pre, details {
+#{headings(all)}, p, blockquote, table, form, img, pre, details {
 	margin-left: 10px;
 	margin-right: 10px;
 }

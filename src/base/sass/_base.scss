@@ -54,13 +54,13 @@ address {
 	font-style: normal;
 }
 
-h1, h2, h3, h4, h5, h6 {
+#{headings(all)} {
 	font-weight: 700;
 	margin: 1em 0;
 }
 
 #wb-main {
-	h1, h2, h3, h4, h5, h6 {
+	#{headings(all)} {
 		font-family: sans-serif;
 	}
 }
