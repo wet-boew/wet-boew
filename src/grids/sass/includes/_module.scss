@@ -23,6 +23,12 @@
 			@include colorize-base($accent);
 			@include colorize($accent);
 		}
+		a {
+			text-decoration: none;
+			&:hover, &:focus, &:active {
+				text-decoration: underline;
+			}
+		}
 	}
 
 	.module-billboard li, .module-related > ul, .module-menu-section > ul {
@@ -37,11 +43,13 @@
 		}
 	}
 	
-	[class*="module-"] .background-light {
-		color: #222 !important;
-		text-shadow: 0 1px 1px #FFF;
+	[class*="module-"] {
+		.background-light {
+			color: #222 !important;
+			text-shadow: 0 1px 1px #FFF;
+		}
 	}
-
+	
 	.module {
 		@include module-colorize;
 		outline: 1px solid darken($light, 10%);
@@ -55,22 +63,24 @@
 		}
 	}
 
-	.module-billboard ul {
-		li {		
-			a {
-				&, &:link, &:visited {
-					display: block;
-					min-height: 32px;
-					padding: $spacing-medium;
-					text-decoration: none;
-					background-repeat: no-repeat;
-					background-position: top right;
-					@include text-shadow(-1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #555, 1px 1px 0 #000);
-					font-weight: 700;
-					@include colorize-base($accent);
-				}
-				&:hover, &:focus, &:active {
-					text-decoration: underline;
+	.module-billboard {
+		ul {
+			li {		
+				a {
+					&, &:link, &:visited {
+						display: block;
+						min-height: 32px;
+						padding: $spacing-medium;
+						text-decoration: none;
+						background-repeat: no-repeat;
+						background-position: top right;
+						@include text-shadow(-1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #555, 1px 1px 0 #000);
+						font-weight: 700;
+						@include colorize-base($accent);
+					}
+					&:hover, &:focus, &:active {
+						text-decoration: underline;
+					}
 				}
 			}
 		}
@@ -94,34 +104,31 @@
 		padding: ($margin-medium / 2) $margin-medium;
 	}
 	
-	.module-related a {
-		text-decoration: none;
-		&:hover, &:focus, &:active {
-			text-decoration: underline;
-				}
-	}
-
-	.module-menu-section ul {
-		li {
-			a {
-				display: block;
-				text-decoration: none;
-				&:hover, &:focus, &:active {
-					background-color: darken($light, 3%);
-					text-decoration: underline;
-				}
-			}
-			ul {
-				border: none; 
-				border-top: 1px dotted darken($light, 10%) !important;
-				margin-left: 0 !important;
-			}
+	.module-menu-section {
+		ul {
 			li {
 				a {
-					padding-left: 20px !important;
+					display: block;
+					text-decoration: none;
+					&:hover, &:focus, &:active {
+						background-color: darken($light, 3%);
+						text-decoration: underline;
+					}
 				}
-				li a {
-					padding-left: 30px !important;
+				ul {
+					border: none; 
+					border-top: 1px dotted darken($light, 10%) !important;
+					margin-left: 0 !important;
+				}
+				li {
+					a {
+						padding-left: 20px !important;
+					}
+					li {
+						a {
+							padding-left: 30px !important;
+						}
+					}
 				}
 			}
 		}
@@ -135,19 +142,21 @@
 		> ul, > nav, > section {
 			@include module-colorize($border: "border");
 		}
-		ul, ul[class*="column-"] {
-			list-style-type: none;
-			margin: 0;
-			padding: $margin-medium $margin-medium;
-			li {
-				margin-bottom: $margin-medium / 2;
-				margin-left: 25px;
-				list-style-image: url("../images/bullet.png");
+		ul {
+			&, &[class*="column-"] {
+				list-style-type: none;
+				margin: 0;
+				padding: $margin-medium $margin-medium;
+				li {
+					margin-bottom: $margin-medium / 2;
+					margin-left: 25px;
+					list-style-image: url("../images/bullet.png");
+				}
 			}
-		}
-		ul ul {
-			padding-top: 5px;
-			padding-bottom: 0;
+			ul {
+				padding-top: 5px;
+				padding-bottom: 0;
+			}
 		}
 	} 
 
@@ -244,8 +253,10 @@
 	}
 
 	div {
-		[class*="module-"] li {
-			margin-bottom: $margin-medium / 2;
+		[class*="module-"] {
+			li {
+				margin-bottom: $margin-medium / 2;
+			}
 		}
 		.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
 			background-image: url('../images/module.jpg'); 
@@ -271,17 +282,39 @@
 				padding-top: 5px;
 			}
 		}
-		.module-attention 	{ @include module-colorize($attention, $border: "outline"); background-position: 0 0; }
-		.module-alert 		{ @include module-colorize($alert, $border: "outline"); background-position: -1200px 0; }
-		.module-note 		{ @include module-colorize($note, $border: "outline"); background-position: -2400px 0; }
-		.module-info 		{ @include module-colorize($info, $border: "outline"); background-position: -3600px 0; }
-		.module-question 	{ @include module-colorize($question, $border: "outline"); background-position: -4800px 0; }
-		.module-answer 		{ @include module-colorize($answer, $border: "outline"); background-position: -6000px 0; }
-		.module-tool 		{ @include module-colorize($tool, $border: "outline"); background-position: -7200px 0; }
-		.module-inprogress 	{ @include module-colorize($inprogress, $border: "outline"); background-position: -8400px 0; }
-		.module-refer 		{ @include module-colorize($refer, $border: "outline"); background-position: -9600px 0; }
-		.module-summary 	{ @include module-colorize($summary, $border: "outline"); background-position: -10800px 0; }
-		.module-archive 	{ @include module-colorize($archive, $border: "outline"); background-position: -12000px 0; }
+		.module-attention {
+			@include module-colorize($attention, $border: "outline"); background-position: 0 0;
+		}
+		.module-alert {
+			@include module-colorize($alert, $border: "outline"); background-position: -1200px 0;
+		}
+		.module-note {
+			@include module-colorize($note, $border: "outline"); background-position: -2400px 0;
+		}
+		.module-info {
+			@include module-colorize($info, $border: "outline"); background-position: -3600px 0;
+		}
+		.module-question {
+			@include module-colorize($question, $border: "outline"); background-position: -4800px 0;
+		}
+		.module-answer {
+			@include module-colorize($answer, $border: "outline"); background-position: -6000px 0;
+		}
+		.module-tool {
+			@include module-colorize($tool, $border: "outline"); background-position: -7200px 0;
+		}
+		.module-inprogress {
+			@include module-colorize($inprogress, $border: "outline"); background-position: -8400px 0;
+		}
+		.module-refer {
+			@include module-colorize($refer, $border: "outline"); background-position: -9600px 0;
+		}
+		.module-summary {
+			@include module-colorize($summary, $border: "outline"); background-position: -10800px 0;
+		}
+		.module-archive {
+			@include module-colorize($archive, $border: "outline"); background-position: -12000px 0;
+		}
 	}
 }
 
