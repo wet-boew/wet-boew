@@ -125,7 +125,7 @@
 		border-bottom: 4px solid #242;
 		padding-top: 4px;
 		@include border-radius(0 0 3px 3px);
-		h2, h3, h4, .top-level {
+		#{headings(2,4)}, .top-level {
 			font-size: 1.2em;
 			font-weight: 700;
 			margin: 0;

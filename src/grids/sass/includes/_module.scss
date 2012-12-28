@@ -10,7 +10,7 @@
 @mixin modules {
 
 	.module-billboard, .module-menu-section, .module-table-contents {
-		p, h2, h3, h4, h5, h6 {
+		p, #{headings(2,6)} {
 			@include header;
 			@include colorize-base($medium);
 			@include colorize($medium);
@@ -18,7 +18,7 @@
 	}	
 	
 	.module-related {
-		p, h2, h3, h4, h5, h6 {
+		p, #{headings(2,6)} {
 			@include header;
 			@include colorize-base($accent);
 			@include colorize($accent);
@@ -56,7 +56,7 @@
 		margin-top: 2px;
 		margin-bottom: 3px;
 		padding: 1px 0;
-		p, h2, h3, h4, h5, h6, blockquote, > span {
+		p, #{headings(2,6)}, blockquote, > span {
 			margin-left: 10px;
 			margin-right: 10px;
 			@include border-radius(0);
@@ -264,7 +264,7 @@
 			padding-bottom: 5px;
 			padding-top: 30px;
 			@include box-sizing(border-box);
-			> div, p, h2, h3, h4, h5, h6 {
+			> div, p, #{headings(2,6)} {
 				margin: $margin-medium;
 			}
 			ul, ol {

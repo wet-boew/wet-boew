@@ -15,7 +15,7 @@ div.wet-boew-share {
 
 #wb-main {
 	.wet-boew-share {
-		h2, h3 {
+		#{headings(2,3)} {
 			font-size: 1em;
 			margin: 0;
 			font-weight: normal;

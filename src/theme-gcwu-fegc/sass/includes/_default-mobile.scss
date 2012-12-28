@@ -104,7 +104,7 @@ body {
 	}
 }
 
-h2, h3, h4, h5, h6, p, blockquote, table, form, img, pre {
+#{headings(2,6)}, p, blockquote, table, form, img, pre {
 	margin-left: 0;
 	margin-right: 0;
 	@include text-shadow(none);

@@ -91,7 +91,7 @@
 	> div {
 		display: none;
 	}
-	h2, h3, h4, h5, h6 {
+	#{headings(2,6)} {
 		border: none;
 	}
 	.float-right {
@@ -254,7 +254,7 @@
 		color: #fff;
 		margin: 0;
 		padding: 0;
-		a, a:visited, h2, h3, h4, h5, h6 {
+		a, a:visited, #{headings(2,6)} {
 			color: #fff;
 		}
 	}
