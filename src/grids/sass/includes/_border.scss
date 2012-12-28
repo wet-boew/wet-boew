@@ -3,18 +3,17 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
 
+//TODO: Parent div important, or can this be combined with the %border-image placeholder. The same rules are applied in util-screen without the parent div.
 div {
 	&.border-top, &.border-right, &.border-bottom, &.border-left, &.border-all {
 		float: left;
 		position: relative;
 	}
 }
-.border-image {
+
+%border-image {
 	background-image: url(../images/border.gif);
-}
-.border-top, .border-right, .border-bottom, .border-left, .border-all {
 	min-height: 1px;
-	@extend .border-image;
 }
 
 .border-top, .border-bottom {
@@ -27,26 +26,33 @@ div {
 
 .border-top {
 	background-position: 0 0;
+	@extend %border-image;
 }
 	
 .border-bottom {
 	background-position: 0 bottom;
+	@extend %border-image;
 }
  
 .border-left {
 	background-position: left 0;
+	@extend %border-image;
 }
  
 .border-right {
 	background-position: right 0;
+	@extend %border-image;
 }
 .border-all {
 	outline: 1px solid #ccc;
 	background: none;
+	@extend %border-image;
 }
 
 [class*="border-"] { 
-	& > h2, & > h3, & > h4, & > h5, & > h6, & > p {
-		padding: 5px 10px !important;
+	> {
+		#{headings(2,6)}, p {
+			padding: 5px 10px !important;
+		}
 	}
 }

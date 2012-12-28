@@ -240,9 +240,8 @@ img {
 
 .border-top, .border-right, .border-bottom, .border-left, .border-all {
 	float: left;
-	min-height: 1px;
 	position: relative;
-	@extend .border-image;
+	@extend %border-image;
 }
 	
 .border-top {
