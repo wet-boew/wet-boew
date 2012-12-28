@@ -4,11 +4,13 @@
  */
 #wb-foot {
 	background: #FFF;
-}
 
-#wb-foot #gcwu-wmms img {
-	display: block;
-	margin: 5px auto;
+	#gcwu-wmms {
+		img {
+			display: block;
+			margin: 5px auto;
+		}
+	}
 }
 
 #gcwu-sig {
@@ -45,6 +47,7 @@ h1, #gcwu-title {
 	ul {
 		margin: 0;
 	}
+	//TODO: Is an empty href selector necessary?
 	a[href]{
 		&:hover, &:focus, &:active {
 			color: #FFF;
@@ -76,6 +79,7 @@ h1, #gcwu-title {
 				color: #000;
 			}
 		}
+		//TODO: Move to grid system?
 		.span-6 {
 			width: 256px;
 			float: left;
