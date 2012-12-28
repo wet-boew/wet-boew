@@ -34,29 +34,31 @@
 		}
 		
 		&.background-light {
-
 			background: none;
 			@include colorize-border(lighten($light, 3%), "outline");
 			@include colorize-base(lighten($light, 3%));
 			padding-top: 10px;
 			padding-bottom: 10px;
 
-			& > * {
-				margin-left: 10px;
-				margin-right: 10px;
+			> {
+				* {
+					margin-left: 10px;
+					margin-right: 10px;
+				}
+				fieldset {
+					margin-left: 0;
+					margin-right: 0;
+				}
 			}
 			
-			& > fieldset {
-				margin-left: 0;
-				margin-right: 0;
+			fieldset > {
+				* {
+					margin-left: 10px;
+					margin-right: 10px;
+				}
 			}
 			
-			& fieldset > * {
-				margin-left: 10px;
-				margin-right: 10px;
-			}
-			
-			& legend {
+			legend {
 				padding-left: 10px;
 				padding-right: 10px;
 			}
@@ -67,11 +69,12 @@
 			}
 		}
 		
-		&.form-horizontal { padding: 1px 0 0; }
+		&.form-horizontal {
+			padding: 1px 0 0;
+		}
 
 	}
-	
-	
+
 	fieldset {
 		padding: 0;
 		margin: 0 0 $margin-medium;
@@ -93,8 +96,14 @@
 		padding: $default-border-radius;
 		@include border-radius;
 		
-		&[class*="span"] { float: none; margin-left: 0; margin-right: 0; }
-		.form-horizontal & { margin-bottom: 0; }
+		&[class*="span"] {
+			float: none;
+			margin-left: 0;
+			margin-right: 0;
+		}
+		.form-horizontal & {
+			margin-bottom: 0;
+		}
 	}
 	
 	input {
@@ -114,7 +123,9 @@
 
 		&[type="button"], &[type="reset"], &[type="submit"] {
 			display: block;
-			.form-inline & { @include inline-block; }
+			.form-inline & {
+				@include inline-block;
+			}
 		}
 
 		&[type="search"] {
@@ -132,7 +143,9 @@
 			*min-width: 97%;
 		}
 		
-		.form-inline & { @include inline-block; }
+		.form-inline & {
+			@include inline-block;
+		}
 		.form-horizontal & {
 			padding-top: 3px; 
 			text-align: right;
@@ -153,26 +166,29 @@
 			&[type="radio"], &[type="checkbox"] {
 				float: left;
 				margin-left: -1 * $margin-large;
-				border: none\9;
+				border: none\9; //Divide by 9 IE Hack
 			}
 		}
 		
-		.form-inline & { margin-right: $margin-medium; }
+		.form-inline & {
+			margin-right: $margin-medium;
+		}
+		&.form-label-inline {
+			@include inline-block;
+			padding-top: 5px;
+			margin-bottom: 0;
+			vertical-align: middle;
+			//Nested parent of matching class
+			& + & {
+				margin-left: 10px;
+			}
+		}
 	}
 	
 	.form-text-inline {
 		padding-left: 5px;
 		vertical-align: middle;
 		@include inline-block;
-	}
-	.form-radio.form-label-inline, .form-checkbox.form-label-inline	{
-		@include inline-block;
-		padding-top: 5px;
-		margin-bottom: 0;
-		vertical-align: middle;
-	}
-	.form-radio.form-label-inline + .form-radio.form-label-inline, .form-checkbox.form-label-inline + .form-checkbox.form-label-inline {
-		margin-left: 10px;
 	}
 	
 	.form-input-prepend, .form-input-append {
@@ -181,10 +197,14 @@
 			position: relative;
 			vertical-align: middle;
 			
-			&:hover, &:focus, &:active { z-index: 2; }
+			&:hover, &:focus, &:active {
+				z-index: 2;
+			}
 		}
 
-		button { @include border-left-radius(0); }
+		button {
+			@include border-left-radius(0);
+		}
 		
 		.form-addon {
 			@include inline-block;
@@ -198,22 +218,34 @@
 			text-align: center;
 			vertical-align: top;
 			
-			&:first-child { @include border-left-radius; margin-right: -1px; }
-			&:last-child { @include border-right-radius; margin-left: -1px; }
+			&:first-child {
+				@include border-left-radius;
+				margin-right: -1px;
+			}
+			&:last-child {
+				@include border-right-radius;
+				margin-left: -1px;
+			}
 		}
 		 
 	}
 
-	.form-input-prepend {
-		input, select, .form-uneditable-input, button { @include border-left-radius(0); }
-	}
-	.form-input-append { 
-		input, select, .form-uneditable-input, button { @include border-right-radius(0); }
+	input, select, .form-uneditable-input, button {
+		.form-input-prepend & {
+			@include border-left-radius(0);
+		}
+		.form-input-append & { 
+			@include border-right-radius(0);
+		}
 	}
 	
 	.form-inline {
 		padding-bottom: 0;
-		> * { margin-right: $margin-medium / 2; }
+		> {
+			* {
+				margin-right: $margin-medium / 2;
+			}
+		}
 	}
 }
  
@@ -232,7 +264,6 @@
 		&:after {
 			border-top: 1px solid $silver;
 			content: "";
-			//visibility: hidden;
 			display: block;
 			height: $margin-medium;
 			clear: both;
@@ -261,28 +292,42 @@
 			}
 		}
 		
-		&.form-uneditable-input { background-color: $white !important; }
+		&.form-uneditable-input {
+			background-color: $white !important;
+		}
 		
 		// apply color to the form element
 		.form-confirm & { 
 			border-color: $summary;
-			&:focus, &:active { @include single-box-shadow($summary); }
+			&:focus, &:active {
+				@include single-box-shadow($summary);
+			}
 		}
 		.form-attention & { 
 			border-color: $attention;
-			&:focus, &:active { @include single-box-shadow($attention); }
+			&:focus, &:active {
+				@include single-box-shadow($attention);
+			}
 		}
 		.form-alert & { 
 			border-color: darken($alert, 37%);
-			&:focus, &:active { @include single-box-shadow(darken($alert, 37%)); }
+			&:focus, &:active {
+				@include single-box-shadow(darken($alert, 37%));
+			}
 		}
 	}
 
 	// apply color to form text elements
 	.form-help-block, .form-text-inline, > label {
-		.form-confirm & { color: darken($summary, 5%); }
-		.form-attention & { color: darken($attention, 5%); }
-		.form-alert & { color: darken($alert, 42%); }
+		.form-confirm & {
+			color: darken($summary, 5%);
+		}
+		.form-attention & {
+			color: darken($attention, 5%);
+		}
+		.form-alert & {
+			color: darken($alert, 42%);
+		}
 	}
 	
 	// format the prepend and append styles
