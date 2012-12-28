@@ -5,18 +5,25 @@
 @import "compass/css3/columns";
 
 /*	 columns	 */
-.column-two	 { @include column-count(2); }
-.column-three	 { @include column-count(3); }
-.column-four	{ @include column-count(4); }
+.column-two {
+	@include column-count(2);
+}
+.column-three {
+	@include column-count(3);
+}
+.column-four {
+	@include column-count(4);
+}
 
 /* --- positioning --- */
-.position-left, .position-left-small, .position-left-medium, .position-left-large, .position-left-xlarge, .position-top, .position-top-small, .position-top-medium, .position-top-large, .position-top-xlarge, .position-right, .position-right-small, .position-right-medium, .position-right-large, .position-right-xlarge, .position-bottom, .position-bottom-small, .position-bottom-medium, .position-bottom-large, .position-bottom-xlarge {
+%util-desktop-screen-position {
 	position: absolute !important;
 	margin: 0 !important;
 }
 
 @mixin pos($pos, $amt){
 	#{$pos}: $amt !important;
+	@extend %util-desktop-screen-position;
 }
 
 .position-left {
