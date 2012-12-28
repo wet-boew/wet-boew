@@ -65,7 +65,9 @@
 				&:first-child {
 					tr {				
 						&:first-child {
-							td, th { border-top: none; }
+							td, th {
+								border-top: none; 
+							}
 							th {
 								&:first-child {
 									@include border-radius($default-border-radius 0 0 0);
@@ -109,14 +111,22 @@
 				td, th {
 					&:first-child { text-align: left; }
 				}
-				td { text-align: right; }
+				td { 
+					text-align: right;
+				}
 			}
 			
 		}
 		
-		&.table-accent 	{ @include table-color($accent); }
-		&.table-dark 	{ @include table-color($dark); }
-		&.table-medium	{ @include table-color($medium); }
+		&.table-accent {
+			@include table-color($accent);
+		}
+		&.table-dark {
+			@include table-color($dark);
+		}
+		&.table-medium {
+			@include table-color($medium);
+		}
 	
 	}
 
