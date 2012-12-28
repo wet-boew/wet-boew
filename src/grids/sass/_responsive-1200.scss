@@ -9,37 +9,37 @@
 				width: 55px;
 			}
 			.span-2 {
-				@extend %width130;
+				@extend %responsive1200-width130;
 			}
 			.span-3 {
 				width: 205px;
 			}
 			.span-4 {
-				@extend %width280;
+				@extend %responsive1200-width280;
 			}
 			.span-5 {
 				width: 355px;
 			}
 			.span-6 {
-				@extend %width430;
+				@extend %responsive1200-width430;
 			}
 			.span-7 {
 				width: 505px;
 			}
 			.span-8 {
-				@extend %width580;
+				@extend %responsive1200-width580;
 			}
 			.span-9 {
 				width: 655px;
 			}
 			.span-10 {
-				@extend %width730;
+				@extend %responsive1200-width730;
 			}
 			.span-11 {
 				width: 805px;
 			}
 			.span-12 {
-				@extend %width880;
+				@extend %responsive1200-width880;
 			}
 		}
 	}
@@ -53,7 +53,7 @@
 		width: 180px;
 	}
 	.span-3 {
-		@extend %width280;
+		@extend %responsive1200-width280;
 	}
 	.span-4 {
 		width: 380px;
@@ -62,7 +62,7 @@
 		width: 480px;
 	}
 	.span-6 {
-		@extend %width580;
+		@extend %responsive1200-width580;
 	}
 	.span-7 {
 		width: 680px;
@@ -71,7 +71,7 @@
 		width: 780px;
 	}
 	.span-9 {
-		@extend %width880;
+		@extend %responsive1200-width880;
 	}
 	.span-10 {
 		width: 980px;
@@ -80,66 +80,66 @@
 		width: 1080px;
 	}
 	.span-12 {
-		@extend %width1180;
+		@extend %responsive1200-width1180;
 	}
 }
 
-%width130 {
+%responsive1200-width130 {
 	width: 130px;
 }
 
 .span-1 {
-	@extend %width130;
+	@extend %responsive1200-width130;
 }
 
-%width280 {
+%responsive1200-width280 {
 	width: 280px;
 }
 
 .span-2 {
-	@extend %width280;
+	@extend %responsive1200-width280;
 }
 
-%width430 {
+%responsive1200-width430 {
 	width: 430px;
 }
 
 .span-3 {
-	@extend %width430;
+	@extend %responsive1200-width430;
 }
 
-%width580 {
+%responsive1200-width580 {
 	width: 580px;
 }
 
 .span-4 {
-	@extend %width580;
+	@extend %responsive1200-width580;
 }
 
-%width730 {
+%responsive1200-width730 {
 	width: 730px;
 }
 
 .span-5 {
-	@extend %width730;
+	@extend %responsive1200-width730;
 }
 
-%width880 {
+%responsive1200-width880 {
 	width: 880px;
 }
 
 .span-6 {
-	@extend %width880;
+	@extend %responsive1200-width880;
 }
 
 .span-7 {
 	width: 1030px;
 }
 
-%width1180 {
+%responsive1200-width1180 {
 	width: 1180px;
 }
 
 .span-8 {
-	@extend %width1180;
+	@extend %responsive1200-width1180;
 }
