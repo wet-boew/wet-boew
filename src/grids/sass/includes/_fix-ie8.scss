@@ -7,8 +7,10 @@
 	.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
 		border: none;
 	}
-	.module-billboard a {
-		background-image: none !important;
+	.module-billboard {
+		a {
+			background-image: none !important;
+		}
 	}
 	.date-month {
 		min-width: 80px;
@@ -21,10 +23,12 @@
 		min-width: 78px;
 		width: auto;
 	}
-	.date-small .date-month {
-		min-width: 40px;
-	}
-	.date-small .date-day {
-		min-width: 38px;
+	.date-small {
+		.date-month {
+			min-width: 40px;
+		}
+		.date-day {
+			min-width: 38px;
+		}
 	}
 }
