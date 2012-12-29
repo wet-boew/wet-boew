@@ -7,17 +7,19 @@
 		position: relative;
 		display: inline;
 	}
-	ul.wb-autolist {
-		left: 0;
-		li {
-			a {
-				.al-value {
-					float: left;
+	ul {
+		&.wb-autolist {
+			left: 0;
+			li {
+				a {
+					.al-value {
+						float: left;
+					}
+					.al-label {
+						clear: right;
+					}
 				}
-				.al-label {
-					clear: right;
-				}
-			}
-		}	
+			}	
+		}
 	}
 }
