@@ -7,8 +7,12 @@
 #gcwu-sig, #gcwu-sig-in, #gcwu-sig img {
 	height: 20px !important;
 }
-#wb-core-in div #gcwu-bar {
-	background: #28507a;
+#wb-core-in {
+	div {
+		#gcwu-bar {
+			background: #28507a;
+		}
+	}
 }
 #gcwu-title-left, #gcwu-title-right {
 	a {

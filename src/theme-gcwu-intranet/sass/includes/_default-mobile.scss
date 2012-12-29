@@ -27,11 +27,13 @@
 		}
 	}
 	#gcwu-sft-in {
-		section:nth-child(3n-1), div:nth-child(3n-1){
-			clear: none;
-		}
-		section:nth-child(3n), div:nth-child(3n){
-			clear: both;
+		section, div {
+			&:nth-child(3n-1) {
+				clear: none;
+			}
+			&:nth-child(3n) {
+				clear: both;
+			}
 		}
 	}
 	#gcwu-tctr {
@@ -41,8 +43,10 @@
 }
 
 .ui-mobile {
-	#gcwu-subsite a {
-		white-space: normal;
+	#gcwu-subsite {
+		a {
+			white-space: normal;
+		}
 	}
 }
 

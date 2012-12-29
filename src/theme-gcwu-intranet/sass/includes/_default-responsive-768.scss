@@ -8,9 +8,11 @@
 #gcwu-title-in {
 	width: 430px;
 }
-#gcwu-subsite p {
-	width: 768px;
-	margin: 0 auto;
+#gcwu-subsite {
+	p {
+		width: 768px;
+		margin: 0 auto;
+	}
 }
 #gcwu-gcnb {
 	background-image: none !important;
@@ -30,11 +32,15 @@
 	background-color: #333 !important;
 	@include border-radius(0 0 5px 5px);
 	@include box-shadow(inset 0 0 2px 2px #222);
+	ul {
+		background: none !important;
+	}
 }
-#gcwu-intranetnb-in ul {
-	background: none !important;
-}
-#gcwu-psnb .wet-boew-menu .expandicon {
-	margin-right: 5px;
-	padding-right: 10px;
+#gcwu-psnb {
+	.wet-boew-menu {
+		.expandicon {
+			margin-right: 5px;
+			padding-right: 10px;
+		}
+	}
 }

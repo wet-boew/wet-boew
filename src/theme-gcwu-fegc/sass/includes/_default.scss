@@ -34,11 +34,15 @@
 	font-size: 1.6em;
 }
 
-div#gcwu-headlines {
-	ul, ul li {
-		list-style: none !important;
-		margin: 0 !important;
-		padding: 0 !important;
+div {
+	&#gcwu-headlines {
+		ul {
+			&, li {
+				list-style: none !important;
+				margin: 0 !important;
+				padding: 0 !important;
+			}
+		}
 	}
 }
 
@@ -48,14 +52,18 @@ div#gcwu-headlines {
 	}
 }
 
-#gcwu-headlines ul li {
-	h3, p {
-		margin: 0;
-		padding: 5px;
-	}
-	h3 {
-		font-size: 1em;
-		font-weight: 700;
+#gcwu-headlines {
+	ul {
+		li {
+			h3, p {
+				margin: 0;
+				padding: 5px;
+			}
+			h3 {
+				font-size: 1em;
+				font-weight: 700;
+			}
+		}
 	}
 }
 
@@ -67,15 +75,19 @@ div#gcwu-headlines {
 	}
 }
 
-#gcwu-aside div#gcwu-priorities {
-	ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-	ul li {
-		margin: 0;
-		padding: 0;
+#gcwu-aside {
+	div {
+		&#gcwu-priorities {
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				li {
+					margin: 0;
+					padding: 0;
+				}
+			}
+		}
 	}
 }
 
