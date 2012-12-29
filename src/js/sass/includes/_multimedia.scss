@@ -2,12 +2,10 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
-video {
-	&, object.& {
-		width: 100%;
-		background-color: #000;
-		margin-bottom: -4px;
-	}
+video, object.video {
+	width: 100%;
+	background-color: #000;
+	margin-bottom: -4px;
 }
 
 .wb-mm-captionsarea {
