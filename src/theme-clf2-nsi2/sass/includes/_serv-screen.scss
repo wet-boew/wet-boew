@@ -12,17 +12,17 @@ body {
 }
 #wb-body {
 	border: 10px solid #FFF;
+	#wb-main {
+		width: 760px;
+		float: left;
+	}
 }
 	
 /** Box model - centered **/
 #wb-head, #cn-foot {
 	width: 100%;
 }
-#wb-core, #wb-core-in {
-	width: 760px;
-	margin: auto;
-}
-#wb-head-in, #wb-foot-in {
+#wb-core, #wb-core-in, #wb-head-in, #wb-foot-in {
 	width: 760px;
 	margin: auto;
 }
@@ -55,14 +55,12 @@ body {
 		margin-top: 0;
 	}
 }
-#wb-body #wb-main {
-	width: 760px;
-	float: left;
-}
 
 #wb-skip {
-	li span {
-		display: block;
+	li {
+		span {
+			display: block;
+		}
 	}
 	a {
 		&:hover, &:focus, &:active {
