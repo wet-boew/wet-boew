@@ -2,7 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
- 
+
+//TODO: Use extend for the gradient
 /* Gradient (avoid encoding duplication) */
 .tabs li a, .tabs-style-1 .tabs, .tabs-style-1 .tabs li a:hover, .tabs-style-1 .tabs li a:focus, .tabs-style-1 .tabs li a:active, .tabs-style-2 .tabs li.tabs-toggle, .tabs-style-3 .tabs-panel, .tabs-style-4 .tabs li a:hover,  .tabs-style-4 .tabs li a:focus,  .tabs-style-4 .tabs li a:active {
 	background: url(../images/tabs/gradient.png) repeat-x 0 0 #eee;
@@ -80,16 +81,14 @@
 	}
 }
 
-.tabs-panel > div.active {
-    display: block;
-}
-
 .tabs-panel {
     border: solid 1px #ccc;
     border-top: none;
     padding: 10px;
-	> div {
-		display: none;
+	> {
+		div {
+			display: none;
+		}
 	}
 	#{headings(2,6)} {
 		border: none;
@@ -99,6 +98,13 @@
 	}
 	.float-left {
 		margin-right: 10px;
+	}
+	> {
+		div {
+			&.active {
+				display: block;
+			}
+		}
 	}
 }
 
@@ -125,13 +131,14 @@
 }
 
 /*with grids*/
-.embedded-grid, .embedded-grid .tabs-panel {
-    border: none;
-    padding: 0;
-}
-
-.embedded-grid .tabs {
-    margin: 0 10px 10px;
+.embedded-grid {
+	&, .tabs-panel {
+		border: none;
+		padding: 0;
+	}
+	.tabs {
+		margin: 0 10px 10px;
+	}
 }
 
 .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
@@ -173,19 +180,21 @@
 				}
 			}
 		}
-		li.tabs-toggle {
-			a {
-				color: #000;
-				&, &:active, &:hover, &:active {
-					background-repeat: no-repeat;
-					background-position: -1px 0;
-					border: 1px solid #999;
-				}
-				&:active, &:hover, &:active {
-					color: #c00;
-				}
-				&.tabs-prev, &.tabs-next {
-					background-position: center 5px;
+		li {
+			&.tabs-toggle {
+				a {
+					color: #000;
+					&, &:active, &:hover, &:active {
+						background-repeat: no-repeat;
+						background-position: -1px 0;
+						border: 1px solid #999;
+					}
+					&:active, &:hover, &:active {
+						color: #c00;
+					}
+					&.tabs-prev, &.tabs-next {
+						background-position: center 5px;
+					}
 				}
 			}
 		}
@@ -407,6 +416,15 @@
 	.tabs-style-4 {
 		padding: 0;
 	}
+	.tabs-style-5 {
+		padding: 0;
+		.tabs {
+			margin-bottom: 1px;
+		}
+		.tabs-toggle {
+			margin-left: 9px !important;
+		}
+	}
 	.tabs {
 		margin-left: -1px;
 		padding: 0;
@@ -417,9 +435,11 @@
 				color: #FFF;
 			}
 		}
-		a.active {
-			&, &:hover {
-				color: #000 !important;
+		a {
+			&.active {
+				&, &:hover {
+					color: #000 !important;
+				}
 			}
 		}
 	}
@@ -453,18 +473,6 @@
 		img {
 			display: block;
 			margin-bottom: 0;
-		}
-	}
-}
-
-.wb-sup-def {
-	.tabs-style-5 {
-		padding: 0;
-		.tabs {
-			margin-bottom: 1px;
-		}
-		.tabs-toggle {
-			margin-left: 9px !important;
 		}
 	}
 }

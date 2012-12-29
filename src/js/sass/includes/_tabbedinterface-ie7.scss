@@ -3,9 +3,11 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ie7 {
-	.tabs li {
-		display: inline;
-		margin-right: 5px;
+	.tabs {
+		li {
+			display: inline;
+			margin-right: 5px;
+		}
 	}
 	.tabs-roller {
 		@include opacity(0.1);;
@@ -51,19 +53,25 @@
 			@include opacity(0.2);
 		}
 	}
-	.tabs-style-4 .tabs li {
-		margin-top: -3px;
+	.tabs-style-4 {
+		.tabs {
+			li {
+				margin-top: -3px;
+			}
+		}
 	}
 	.tabs-style-4, .tabs-style-5 {
-		.tabs li {
-			margin-right: 0;
-			a {
-				margin-top: 0;
-				top: 0;
-			}
-			&.tabs-toggle {
-				margin-top: 0;
-				display: inline !important;
+		.tabs {
+			li {
+				margin-right: 0;
+				a {
+					margin-top: 0;
+					top: 0;
+				}
+				&.tabs-toggle {
+					margin-top: 0;
+					display: inline !important;
+				}
 			}
 		}
 	}
