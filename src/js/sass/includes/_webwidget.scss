@@ -5,8 +5,12 @@
  
 @import "compass/css3/border-radius";
  
-.no-js .wet-boew-webwidget li {
-		display: block;
+.no-js {
+	.wet-boew-webwidget {
+		li {
+				display: block;
+		}
+	}
 }
 .wet-boew-webwidget {
 	background: {
@@ -16,17 +20,28 @@
 		image: url(../images/webfeeds/gradient.png) !important;
 	}
 	color: #555;
-	li.widget-state-loading {
-		display: block !important;
-		margin: auto;
-		width: 100%;
-		line-height: 60px;
-		text-align: center;
-		img {
+	li {
+		display: none;
+		margin: 0 !important;
+		padding: 0 0 10px 0 !important;
+		float: none;
+		a {
+			img {
+				margin-right: 5px;
+			}
+		}
+		&.widget-state-loading {
+			display: block !important;
 			margin: auto;
-			height: auto !important;
-			width: auto !important;
-			vertical-align: middle;
+			width: 100%;
+			line-height: 60px;
+			text-align: center;
+			img {
+				margin: auto;
+				height: auto !important;
+				width: auto !important;
+				vertical-align: middle;
+			}
 		}
 	}
 	a {
@@ -60,18 +75,10 @@
 		margin: 0 !important;
 		padding: 5px 2px 2px 5px !important;
 	}
-	li {
-		display: none;
-		margin: 0 !important;
-		padding: 0 0 10px 0 !important;
-		float: none;
-		a img {
-			margin-right: 5px;
+	p {
+		&.widget-lang {
+			margin: 0;
 		}
-		
-	}
-	p.widget-lang {
-		margin: 0;
 	}
 	.widget-lang {
 		a {
@@ -104,8 +111,10 @@
 		}
 	}
 	.widget-add, .widget-lang {
-		a:hover {
-			color: #c00;
+		a {
+			&:hover {
+				color: #c00;
+			}
 		}
 	}
 	.widget-avatar {
