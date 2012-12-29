@@ -10,8 +10,10 @@
 	}
 }
 
-#wb-body #wb-main {
-	float: left;
+#wb-body {
+	#wb-main {
+		float: left;
+	}
 }
 
 #wb-main {
