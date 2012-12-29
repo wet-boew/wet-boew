@@ -227,26 +227,32 @@ body {
 input[type="range"] {
 	width: 100%;
 }
-html:not(.ui-mobile) input[data-fd-slider-vertical="v-s"] {
-	@include appearance(slider-vertical);
-	width: 20px;
-	height: 300px;
-}
-html:not(.ui-mobile) input[data-fd-slider-vertical="v-s2"] {
-	@include appearance(slider-vertical);
-	width: 20px;
-	height: 160px;
+html {
+	&:not(.ui-mobile) {
+		input[data-fd-slider-vertical="v-s"] {
+			@include appearance(slider-vertical);
+			width: 20px;
+			height: 300px;
+		}
+		input[data-fd-slider-vertical="v-s2"] {
+			@include appearance(slider-vertical);
+			width: 20px;
+			height: 160px;
+		}
+	}
 }
 #html5shim-2-out {
 	font-weight: normal;
 	font-style: italic;
 }
 /* The following classes are given to the vertical sliders to set their height */        
-span.v-s {
-	height: 300px;
-}
-span.v-s2 {
-	height: 160px;
+span {
+	&.v-s {
+		height: 300px;
+	}
+	&.v-s2 {
+		height: 160px;
+	}
 }
 #html5shim-4 {
 	width: 20px;
