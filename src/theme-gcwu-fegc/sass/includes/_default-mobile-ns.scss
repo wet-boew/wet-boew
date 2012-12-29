@@ -3,22 +3,30 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .no-js {
-	#gcwu-psnb {
-		margin-top: -11px;
-	}
-	#gcwu-psnb, #gcwu-srchbx {
+	%gcwu-default-mobile-positioning {
 		width: 100% !important;
 		float: none;
 	}
-	#gcwu-psnb #gcwu-psnb-in, #gcwu-srchbx form {
+	%gcwu-default-mobile-display-block {
 		display: block;
 		width: 100%;
 		z-index: 100;
 	}
-	#gcwu-srchbx form {
-		border-bottom: 1px solid #999;
-		text-align: center;
-		background: #1A3D6C;
-		padding: 10px 0;
+	#gcwu-psnb {
+		margin-top: -11px;
+		@extend %gcwu-default-mobile-positioning;
+		#gcwu-psnb-in {
+			@extend %gcwu-default-mobile-display-block;
+		}
+	}
+	#gcwu-srchbx {
+		@extend %gcwu-default-mobile-positioning;
+		form {
+			border-bottom: 1px solid #999;
+			text-align: center;
+			background: #1A3D6C;
+			padding: 10px 0;
+			@extend %gcwu-default-mobile-display-block;
+		}
 	}
 }
