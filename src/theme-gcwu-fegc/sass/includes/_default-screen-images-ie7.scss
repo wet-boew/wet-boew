@@ -10,8 +10,12 @@
 	#wb-head-in {
 		background-color: #406C93;
 	}
-	#gcwu-psnb .mb-mega .mb-sm-open {
-		@include filter-gradient(#CCC, #EEE);
+	#gcwu-psnb {
+		.mb-mega {
+			.mb-sm-open {
+				@include filter-gradient(#CCC, #EEE);
+			}
+		}
 	}
 	#wb-core-in, #gcwu-bc-in {
 		background: url(../images/content-deco-ie.gif) center top repeat-y;
