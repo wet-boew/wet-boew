@@ -162,7 +162,7 @@
 			pe.footer.find('footer').append(wet_boew_theme.wmms.detach());
 
 			// jquery mobile has loaded
-			$(document).on("pagecreate", function () {
+			$(document).on('pagecreate', function () {
 				if (wet_boew_theme.menubar.length !== 0) {
 					wet_boew_theme.psnb.parent().remove();
 				}
@@ -173,13 +173,15 @@
 					navbar.children().removeClass('wb-hide');
 				}
 
-				// Delay appending of menu by 1 millisecond to avoid JavaScript execution timeout issues
+				// Defer appending of menu until after page is enhanced by jQuery Mobile, and
+				// defer enhancing of menu until it is opened the first time (all to reduce initial page load time)
 				var menu = pe.bodydiv.find('#jqm-mb-menu');
-				setTimeout(function() {
-					menu.append(wet_boew_theme.menu).trigger('create');
+				menu.append(wet_boew_theme.menu);
+				navbar.find('a[href="#jqm-wb-mb"]').one('click vclick', function () {
+					menu.trigger('create');
 					pe.menu.correctmobile(menu);
-				},1);
-				
+				});
+
 				//Transition to show loading icon on transition
 				function loadingTransition(name, reverse, $to, $from) {
 					var r;
@@ -190,7 +192,7 @@
 					return r;
 				}
 				$.mobile.transitionHandlers.loadingTransition = loadingTransition;
-				$.mobile.defaultDialogTransition = "loadingTransition";
+				$.mobile.defaultDialogTransition = 'loadingTransition';
 			});
 			$(document).trigger('mobileviewloaded');
 			return;
