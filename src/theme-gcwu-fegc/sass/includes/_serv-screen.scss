@@ -44,11 +44,13 @@ h1 {
 		clear: both;
 		visibility: hidden;
 	}
-	div #gcwu-bar {
-		height: 10px;
-		background: #28507a;
-		margin-bottom: 12px;
-		padding-bottom: 0;
+	div { //TODO: Is the div precondition needed when the child selector is an ID?
+		#gcwu-bar {
+			height: 10px;
+			background: #28507a;
+			margin-bottom: 12px;
+			padding-bottom: 0;
+		}
 	}
 }
 
@@ -58,8 +60,10 @@ h1 {
 	padding-bottom: 1px;
 }
 
-#wb-body #wb-main {
-	float: left;
+#wb-body {
+	#wb-main {
+		float: left;
+	}
 }
 
 #gcwu-bnr {
@@ -96,9 +100,9 @@ h1 {
 		a {
 			text-decoration: none;
 			font-size: 0.9em;
-		}
-		a:hover, a:focus, a:active {
-			text-decoration: underline;
+			&:hover, &:focus, &:active {
+				text-decoration: underline;
+			}
 		}
 	}
 }
