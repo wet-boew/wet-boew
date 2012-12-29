@@ -7,25 +7,25 @@
 		padding: ($spacing-small - 2) $spacing-small + 1;
 		@include border-radius(100px);
 	}
-	
+
 	%badge-small-font {
 		font-size: $font-small;
 	}
-	
+
 	.badge-new {
 		@include colorize-base($attention);
 		@include colorize($attention, false, $border: "border");
 		@extend %badge-small-font;
 		@extend %badge-border-radius-100;
 	}
-	
+
 	.badge-update {
 		@include colorize-base($light);
 		@include colorize($light, false, $border: "border");
 		@extend %badge-small-font;
 		@extend %badge-border-radius-100;
 	}
-	
+
 	.badge-intro {
 		font-size: 100%;
 		@include inline-block;
@@ -36,9 +36,9 @@
 
 		@include colorize-base($medium);
 		@include colorize($medium);
-		
+
 		@extend %badge-border-radius-100;
-		
+
 		a & {
 			float: left;
 			text-decoration: underline;

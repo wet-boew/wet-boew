@@ -15,8 +15,8 @@
 			@include colorize-base($medium);
 			@include colorize($medium);
 		}
-	}	
-	
+	}
+
 	.module-related {
 		p, #{headings(2,6)} {
 			@include header;
@@ -35,21 +35,21 @@
 		margin-top: 1px !important;
 		margin-bottom: 0;
 	}
-	
+
 	.module-billboard, .module-related, .module-menu-section {
 		ul {
 			margin: 0;
 			@include no-bullets;
 		}
 	}
-	
+
 	[class*="module-"] {
 		.background-light {
 			color: #222 !important;
 			text-shadow: 0 1px 1px #FFF;
 		}
 	}
-	
+
 	.module {
 		@include module-colorize;
 		outline: 1px solid darken($light, 10%);
@@ -65,7 +65,7 @@
 
 	.module-billboard {
 		ul {
-			li {		
+			li {
 				a {
 					&, &:link, &:visited {
 						display: block;
@@ -103,7 +103,7 @@
 		display: block;
 		padding: ($margin-medium / 2) $margin-medium;
 	}
-	
+
 	.module-menu-section {
 		ul {
 			li {
@@ -116,7 +116,7 @@
 					}
 				}
 				ul {
-					border: none; 
+					border: none;
 					border-top: 1px dotted darken($light, 10%) !important;
 					margin-left: 0 !important;
 				}
@@ -158,7 +158,7 @@
 				padding-bottom: 0;
 			}
 		}
-	} 
+	}
 
 	.module-poster {
 		display: block;
@@ -177,8 +177,8 @@
 				padding: 0;
 			}
 		}
-		img { 
-				margin-bottom: 0; 
+		img {
+				margin-bottom: 0;
 		}
 	}
 
@@ -215,8 +215,8 @@
 		@include module-colorize($accent, $border: "outline");
 		ul {
 			@include no-bullet;
-			li { 
-				clear: left; 
+			li {
+				clear: left;
 				margin-bottom: 10px;
 				overflow: hidden;
 				span { display: block; }
@@ -259,7 +259,7 @@
 			}
 		}
 		.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
-			background-image: url('../images/module.jpg'); 
+			background-image: url('../images/module.jpg');
 			background-repeat: no-repeat;
 			padding-bottom: 5px;
 			padding-top: 30px;

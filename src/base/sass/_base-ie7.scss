@@ -18,7 +18,7 @@
 			}
 		}
 	}
-	
+
 	#wb-sec, #wb-sup {
 		h2 {
 			@extend .wb-ie-clip-rect-1;
@@ -39,14 +39,14 @@
 			white-space: nowrap;
 		}
 	}
-	
+
 	.wb-show-onhover {
 		@include transparent;
 		&:hover, &:focus, &:active {
 			@include opaque;
 		}
 	}
-	
+
 	a {
 		&.wb-linkdesc {
 			span {

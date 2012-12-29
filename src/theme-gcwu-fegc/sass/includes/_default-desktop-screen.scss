@@ -34,7 +34,7 @@ a {
 	}
 	&:visited {
 		color: #5a306b;
-	}	
+	}
 }
 
 #gcwu-sig, #gcwu-wmms {
@@ -227,7 +227,7 @@ a {
 	#gcwu-srch {
 		color: #444;
 		border: 1px solid #ccc;
-		@include border-radius(2px);		
+		@include border-radius(2px);
 		margin-left: 0;
 		width: 218px;
 		@include box-shadow(none);

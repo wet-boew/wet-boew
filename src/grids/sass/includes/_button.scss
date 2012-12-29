@@ -12,28 +12,28 @@
 
 	.button {
 		@include button($light);
-		
+
 		&:hover, &:focus, &:active {
 			background-position: 0 -15px;
 			text-decoration: none;
 			outline-offset: -6px;
 			@include single-transition(background-position, 0.1s, linear);
 		}
-		
+
 		&.button-disabled, &:disabled {
 			background: none;
 			@include box-shadow(none);
 			cursor: default;
 			font-style: italic;
-			@include text-shadow(none);	
+			@include text-shadow(none);
 		}
 	}
-	
+
 	/* added for Firefox, Chrome, Safari to default submit buttons to blue */
 	input[type="button"] {
 		@include color-button($accent);
-	} 
-	
+	}
+
 	/* without line 29 the buttons would not be coloured in IE, move to fixes? */
 	input, button, a {
 		&.button-accent {
@@ -66,7 +66,7 @@
 			&:hover, &:focus, &:active {
 				color: $attention !important;
 			}
-			
+
 			&.button-disabled, &:disabled {
 				text-decoration: none !important;
 				&:hover, &:focus, &:active {
@@ -75,7 +75,7 @@
 			}
 		}
 	}
-	
+
 	.button-small {
 		@include button-size(2px 6px, 80%, 14px);
 	}
@@ -89,7 +89,7 @@
 	.button-group {
 		position: relative;
 		@include has-layout-zoom;
-		
+
 		&:before, &:after {
 			display: table;
 			content: "";
@@ -97,18 +97,18 @@
 		&:after {
 			clear: both;
 		}
-		
+
 		.button {
 			position: relative;
 			float: left;
 			margin-left: -1px;
 			@include border-radius(0);
-			
+
 			&:hover, &:focus, &:active {
 				z-index: 2;
 			}
 		}
-		> .button {	
+		> .button {
 			&:first-child { @include border-left-radius(4px); }
 			&:last-child { @include border-right-radius(4px); }
 		}
@@ -127,19 +127,19 @@
 			}
 		}
 	}
-	
+
 	ul {
 		&.button-group {
 			margin: 0 10px 10px;
 		}
 	}
-	
+
 	p {
 		&.button-group {
 			margin-top: 0;
 		}
 	}
-	
+
 	[class*="span-"] {
 		 ul {
 			 &.button-group, &.menu-horizontal {
@@ -148,27 +148,27 @@
 			}
 		}
 	}
-	
+
 	p.button-group .button:nth-child(1):nth-last-child(1), ul.button-group li:nth-child(1):nth-last-child(1) .button {
 		@include border-radius(4px);
 		margin-right: 4px;
 	}
-	
+
 	.button-toolbar {
 		margin-bottom: $spacing-medium;
 		margin-top: $spacing-medium;
-		
+
 		p, ul {
-			margin-top: 0;	
+			margin-top: 0;
 		}
-	
+
 		.button-group {
 			@include inline-block;
 		}
 	}
-	
+
 }
- 
+
 @mixin button($color) {
 	background-repeat: repeat-x; //TODO: Still needed now that images aren't used?
 	border-width: 1px;
@@ -186,16 +186,16 @@
 }
 
 @mixin color-button($color) {
-	
+
 	background-color: $color;
 	border-color: darken($color, 15%) darken($color, 15%) darken($color, 20%);
-	
+
 	$text: contrast-color($color, $dark, $white, 55%);
 	color: $text !important;
 	@include text-shadow(contrast-color($text, $dark, $white, 50%) 0 1px 1px);
-	
+
 	@include background-image(linear-gradient($color, darken($color, 10%)));
-	&:hover, &:focus, &:active { 
+	&:hover, &:focus, &:active {
 		background-color: darken($color, 10%);
 	}
 	@if $experimental-support-for-mozilla {

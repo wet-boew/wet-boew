@@ -15,7 +15,7 @@ form {
 	[class*=margin-], [class*=span-]{
 		margin: 0 !important;
 	}
-	
+
 	&.background-light > * {
 		outline: none;
 		margin-left: 0;
@@ -27,7 +27,7 @@ form {
 		& > * {
 			margin-right: 0;
 		}
-		
+
 		label {
 			display: block;
 		}

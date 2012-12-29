@@ -13,7 +13,7 @@
 
 progress {
 	@include inline-block;
-		
+
 	div {
 		&.wb-progress-outer  {
 			@include progress(#FFF);
@@ -24,7 +24,7 @@ progress {
 		&.wb-progress-inner {
 			height: 100%;
 			border: none;
-			background-color: #090;  
+			background-color: #090;
 		}
 	}
 }

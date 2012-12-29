@@ -57,7 +57,7 @@
 .position-right-medium {
 	@include pos(right, 20px);
 }
-	
+
 .position-right-large {
 	@include pos(right, 50px);
 }
@@ -81,7 +81,7 @@
 .position-top-large {
 	@include pos(top, 50px);
 }
-	
+
 .position-top-xlarge {
 	@include pos(top, 100px);
 }

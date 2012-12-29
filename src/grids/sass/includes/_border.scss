@@ -28,17 +28,17 @@ div {
 	background-position: 0 0;
 	@extend %border-image;
 }
-	
+
 .border-bottom {
 	background-position: 0 bottom;
 	@extend %border-image;
 }
- 
+
 .border-left {
 	background-position: left 0;
 	@extend %border-image;
 }
- 
+
 .border-right {
 	background-position: right 0;
 	@extend %border-image;
@@ -49,7 +49,7 @@ div {
 	@extend %border-image;
 }
 
-[class*="border-"] { 
+[class*="border-"] {
 	> {
 		#{headings(2,6)}, p {
 			padding: 5px 10px !important;

@@ -7,18 +7,18 @@
 .ie7 {
     ol {
 		> {
-			li {       
-				padding-left: 10px;     
-				list-style: decimal inside;         
+			li {
+				padding-left: 10px;
+				list-style: decimal inside;
 			}
 		}
 		ol {
 			li {
-				list-style: lower-alpha outside; 
+				list-style: lower-alpha outside;
 			}
 			ol {
 				li {
-					list-style: lower-roman outside; 
+					list-style: lower-roman outside;
 				}
 			}
 		}

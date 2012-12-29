@@ -18,7 +18,7 @@
 
 #wb-main {
 	//TODO: Is an empty href selector necessary?
-	a[href] { 
+	a[href] {
 		&:hover, &:focus, &:active {
 			color: #000;
 		}

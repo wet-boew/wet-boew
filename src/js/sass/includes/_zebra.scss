@@ -24,38 +24,38 @@ ol, ul {
 }
 
 ol {
-	&.wet-boew-zebra {    
+	&.wet-boew-zebra {
 	   padding: 0;
 	   list-style-type: decimal;
 	   counter-reset: li;
-	   
+
 		> {
 			li {
-				/* Make room for the number you add with :before */    
-				padding-left: 2em;  
+				/* Make room for the number you add with :before */
+				padding-left: 2em;
 				position: relative;
-				list-style: none;  
+				list-style: none;
 				&:before {
 					/* Add the number using the counter and increment */
 					content: counter(li) '. ';
-					counter-increment: li;  
+					counter-increment: li;
 					position: absolute;
 					left: 5px;
 				}
 			}
 		}
-		
+
 		ol {
 			li {
 				padding-left: 0;
 				&:before {
-					content: normal;   
+					content: normal;
 				}
 			}
 		}
 	}
 }
-.module-comment ol.wet-boew-zebra, ol.wet-boew-zebra.module-comment, ol.wet-boew-zebra.list-bullet-none {  
+.module-comment ol.wet-boew-zebra, ol.wet-boew-zebra.module-comment, ol.wet-boew-zebra.list-bullet-none {
 	> {
 		li {
 			&:before {
@@ -75,7 +75,7 @@ ol {
 		}
 	}
 }
-	
+
 table {
 	&.wet-boew-zebra {
 		&, table {
@@ -93,7 +93,7 @@ dl {
 		margin-left: 0;
 	}
 }
-	
+
 .wet-boew-zebra {
 	li, dt, dd {
 		&.list-odd {
@@ -183,7 +183,7 @@ dl {
 			}
 			*/
 		}
-		
+
 	}
 	td {
 		border: 1px solid #ccc;
@@ -218,13 +218,13 @@ dl {
 			background-color: #DDD;
 		}
 	}
-	
+
 	tfoot {
 		td {
 			background-color: #DDD;
 		}
 	}
-	
+
 	tbody, tfoot {
 		&.table-rowgroupmarker {
 			border-top: solid black 2px;

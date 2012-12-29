@@ -97,14 +97,14 @@ body {
 	}
 }
 #cn-sig {
-	float: left; 
-	width: 50%; 
+	float: left;
+	width: 50%;
 	min-width: 300px;
 }
 #cn-wmms {
-	float: right; 
-	text-align: right; 
-	width: 49.8%; 
+	float: right;
+	text-align: right;
+	width: 49.8%;
 	min-width: 100px;
 }
 #cn-sig, #cn-wmms {
@@ -113,72 +113,72 @@ body {
 	}
 }
 #cn-leaf {
-	position: relative; 
-	z-index: 2; 
-	float: left; 
-	text-align: center; 
-	width: 100%; 
-	min-width: 70px; 
-	height: 70px; 
+	position: relative;
+	z-index: 2;
+	float: left;
+	text-align: center;
+	width: 100%;
+	min-width: 70px;
+	height: 70px;
 	background: {
-		image: url(../images/lffl.png); 
-		repeat: no-repeat; 
+		image: url(../images/lffl.png);
+		repeat: no-repeat;
 		position: top center;
 	}
 	margin-top: 2px;
 }
 #cn-banner, #cn-banner-eng, #cn-banner-fra {
-	float: left; 
-	width: 100%; 
-	min-height: 80px; 
-	margin-top: -35px; 
-	text-align: center; 
+	float: left;
+	width: 100%;
+	min-height: 80px;
+	margin-top: -35px;
+	text-align: center;
 	background-color: #363;
 	#cn-banner-text {
-		width: 100%; 
-		margin: 0; 
-		padding: 29px 0 0 0; 
-		color: #FFF; 
-		font-weight: bold; 
-		font-size: 180%; 
+		width: 100%;
+		margin: 0;
+		padding: 29px 0 0 0;
+		color: #FFF;
+		font-weight: bold;
+		font-size: 180%;
 		font-family: "times new roman", serif;
 	}
 	p {
-		width: 100%; 
-		margin: 0; 
-		padding: 0 0 4px 0; 
-		color: #FFF; 
-		font-size: 120%; 
+		width: 100%;
+		margin: 0;
+		padding: 0 0 4px 0;
+		color: #FFF;
+		font-size: 120%;
 		font-family: Arial, Helvetica, sans-serif;
 	}
 }
 
 #cn-psnb, #cn-psnb-2 {
-	width: 100%; 
+	width: 100%;
 	float: left;
 	&, ul li {
 		background-color: #000;
 	}
 	ul {
-		list-style-type: none; 
-		margin: 0; 
-		padding-left: 0; 
+		list-style-type: none;
+		margin: 0;
+		padding-left: 0;
 		overflow-x: hidden;
 		li {
-			float: left; 
-			width: 16.6%; 
+			float: left;
+			width: 16.6%;
 			min-width: 9.5em;
 			a {
-				display: block; 
-				text-align: left; 
-				width: 100%; 
-				padding: 0.16em 0 0.16em 3px; 
-				border-left: 1px solid #FFF; 
-				font-weight: bold; 
+				display: block;
+				text-align: left;
+				width: 100%;
+				padding: 0.16em 0 0.16em 3px;
+				border-left: 1px solid #FFF;
+				font-weight: bold;
 				min-height: 1.25em;
 				&:link, &:visited {
-					background-color: #000; 
-					color: #FFF; 
+					background-color: #000;
+					color: #FFF;
 					text-decoration: none;
 				}
 				&:hover, &:active, &:focus {
@@ -211,13 +211,13 @@ body {
 		margin-bottom: 0;
 		font-size: 110%;
 		&, a:link, a:visited {
-			color: #FFF; 
-			text-decoration: none; 
+			color: #FFF;
+			text-decoration: none;
 			display: block;
 		}
 		a {
-			margin: -2px -5px; 
-			padding: 2px 5px; 
+			margin: -2px -5px;
+			padding: 2px 5px;
 			width: 100%;
 		}
 		label {
@@ -227,7 +227,7 @@ body {
 	ul {
 		list-style-type: none;
 		margin: 0 0 0;
-		margin-top: 0; 
+		margin-top: 0;
 		margin-bottom: 0;
 		ul {
 			list-style-type: disc;
@@ -241,7 +241,7 @@ body {
 		}
 		li {
 			margin-left: 0;
-			padding: 0; 
+			padding: 0;
 			border: none;
 			a {
 				padding: 1px 5px 1px 5px;
@@ -272,7 +272,7 @@ body {
 	margin: 0;
 }
 .wb-sec-def h3 a:hover, .wb-sec-def h3 a:active, .wb-sec-def h3 a:focus, .wb-sec-def li a, #cn-search-box a {
-	display: block; 
+	display: block;
 	padding: 3px 5px 3px 10px;
 }
 .wb-sec-def li, #cn-search-box {
@@ -282,7 +282,7 @@ body {
 			text-decoration: none;
 		}
 		&:visited {
-			color: #636; 
+			color: #636;
 			text-decoration: none;
 		}
 		&:hover, &:focus, &:active {
@@ -296,26 +296,26 @@ body {
 #cn-in-pd {
 	border-top: 15px solid #363;
 	ul {
-		list-style-type: none; 
+		list-style-type: none;
 		margin: -2px 0 0 -40px;
 	}
 }
 
 #cn-toppage-foot {
-	float: left; 
-	text-align: center; 
-	margin-left: 5px; 
+	float: left;
+	text-align: center;
+	margin-left: 5px;
 	min-width: 4em;
 }
 #cn-in-pd-links {
-	float: right; 
-	text-align: right; 
+	float: right;
+	text-align: right;
 	min-width: 4em;
 }
 .cn-toppage, #cn-toppage-foot {
-	text-align: center; 
-	background-image: url(../images/tphp.gif); 
-	background-repeat: no-repeat; 
+	text-align: center;
+	background-image: url(../images/tphp.gif);
+	background-repeat: no-repeat;
 	background-position: 50% 0;//top center
 	a {
 		@include inline-block;

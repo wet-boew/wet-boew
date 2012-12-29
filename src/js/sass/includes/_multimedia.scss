@@ -27,7 +27,7 @@ video, object.video {
 			display: block;
 			margin: auto;
 		}
-		
+
 		img {
 			width: 100px;
 			height: 100px;
@@ -60,19 +60,19 @@ $progress-color: #000;
 	button {
 		@extend .wb-mm-toolbar;
 		padding: 0;
-		
+
 		svg, img {
 			display: block;
 			margin: 0;
 			padding: 0;
 		}
-		
+
 		img {
 			width: 20px;
 			height: 20px;
 		}
 	}
-	
+
 	.wb-mm-controls-start, .wb-mm-timeline-current {
 		float: left;
 	}
@@ -80,13 +80,13 @@ $progress-color: #000;
 	.wb-mm-timeline-total {
 		float: right;
 	}
-	
+
 	.wb-mm-controls-end {
 		position: absolute;
 		top: 0;
 		right: 0;
-	}	
-	
+	}
+
 	.wb-mm-timeline {
 		position: relative;
 		@extend .wb-mm-toolbar;
@@ -94,23 +94,23 @@ $progress-color: #000;
 		margin-right: 55px;
 		height: 18px;
 		padding: 2px 4px;
-		
+
 		p {
 			margin: 0;
 		}
-		
+
 		.wb-mm-timeline-inner {
 			margin: 0 70px;
 		}
-	
+
 	}
-	
+
 	&.wb-mm-no-cc {
 		.wb-mm-timeline {
 			margin-right: 25px;
 		}
 	}
-	
+
 	progress {
 		@include border;
 		color: $progress-color;

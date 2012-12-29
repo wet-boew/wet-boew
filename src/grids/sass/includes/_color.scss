@@ -16,13 +16,13 @@
 	.color-attention {
 		color: darken($attention, 5%);
 	}
-	
+
 	#{headings(all)} {
-		
+
 		&[class*="background-"] {
 			@include header;
 		}
-		
+
 		&.background-accent {
 			@include colorize($accent, $important: true);
 		}
@@ -36,20 +36,20 @@
 			@include colorize($dark, $important: true);
 		}
 	}
-	
+
 	p[class*="background-"] {
 		padding: 3px 8px;
 	}
 	span[class*="background-"] {
 		padding: 1px 4px;
 	}
-	
-	[class*="background-"] { 
+
+	[class*="background-"] {
 		#{headings(2, 6)}, p {
 			padding: 5px 10px !important;
 		}
 	}
-	
+
 	.background-highlight {
 		@include colorize-base($highlight, true);
 	}
@@ -79,7 +79,7 @@
 	margin: 0 0 $spacing-xsmall !important;
 	padding: $spacing-small $spacing-medium;
 	width: auto;
-	
+
 	@if $radius == true {
 		@include border-top-radius;
 	}
