@@ -53,10 +53,10 @@
 }
 
 #gcwu-psnb {
-	.mb-menu, .mb-menu li {
-		background: #23447e url(../images/menu-bg.gif) repeat-x;
-	}
 	.mb-menu {
+		&, li {
+			background: #23447e url(../images/menu-bg.gif) repeat-x;
+		}
 		.nav-current {
 			background: #0f315b url(../images/menu-border.gif) repeat-x scroll 0 0;
 		}
@@ -87,7 +87,9 @@
 			}
 		}
 	}
-}
-#gcwu-psnb .mb-sm-open li {
-	background: transparent;
+	.mb-sm-open {
+		li {
+			background: transparent;
+		}
+	}
 }
