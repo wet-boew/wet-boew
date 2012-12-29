@@ -21,22 +21,30 @@ ul {
 
 div {
 	&.cal-days {
-		ol.cal-day-list ul.ev-details li {
-			border: 0;
-			width: 100%;
-			list-style-type: none;   
-			a {
-				&, &:link {
-					color: #000 !important;
-					width: auto;
-				}
-				&:hover, &:focus, &:active {
-					color: #FFF !important;
+		ol {
+			&.cal-day-list {
+				ul {
+					&.ev-details {
+						li {
+							border: 0;
+							width: 100%;
+							list-style-type: none;   
+							a {
+								&, &:link {
+									color: #000 !important;
+									width: auto;
+								}
+								&:hover, &:focus, &:active {
+									color: #FFF !important;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
 		a {
-			&.calEvent {
+			&.calEvent { //TODO: Check if breaking change to fix capitialization and namespacing for consistency
 				color: #FFF !important;
 				background: #176ca7;
 			}
