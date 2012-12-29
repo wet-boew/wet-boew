@@ -21,11 +21,13 @@
 		margin: 0 10px !important;
 	}
 	.wet-boew-zebra {
-		li.list-even {
-			background-color: #FFF !important;
-		}
-		li.list-hover {
-			background-color: #DCD8BD !important;
+		li {
+			&.list-even {
+				background-color: #FFF !important;
+			}
+			&.list-hover {
+				background-color: #DCD8BD !important;
+			}
 		}
 	}
 	fieldset {
