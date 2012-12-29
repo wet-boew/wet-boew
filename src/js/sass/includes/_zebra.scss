@@ -2,90 +2,96 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-ul.wet-boew-zebra {
-	li, li li {
-		list-style-type: none;
+ul {
+	&.wet-boew-zebra {
+		li {
+			&, li {
+				list-style-type: none;
+			}
+		}
 	}
 }
 
 ol, ul {
-	&.wet-boew-zebra li {
-		margin-bottom: 2px;
-		margin-right: 0;
-		padding: 10px;
-	}
-	
 	&.wet-boew-zebra {
 		margin: 5px 0px 10px 0px;
+		li {
+			margin-bottom: 2px;
+			margin-right: 0;
+			padding: 10px;
+		}
 	}
-	/*
-	&.list-bullet-none {
-		list-style-type: none;
-	}*/
 }
 
-ol.wet-boew-zebra {    
-   padding: 0;
-   list-style-type: decimal;
-   counter-reset: li;
-   
-	> li {
-		/* Make room for the number you add with :before */    
-		padding-left: 2em;  
-		position: relative;
-		list-style: none;  
-  
+ol {
+	&.wet-boew-zebra {    
+	   padding: 0;
+	   list-style-type: decimal;
+	   counter-reset: li;
+	   
+		> {
+			li {
+				/* Make room for the number you add with :before */    
+				padding-left: 2em;  
+				position: relative;
+				list-style: none;  
+				&:before {
+					/* Add the number using the counter and increment */
+					content: counter(li) '. ';
+					counter-increment: li;  
+					position: absolute;
+					left: 5px;
+				}
+			}
+		}
+		
+		ol {
+			li {
+				padding-left: 0;
+				&:before {
+					content: normal;   
+				}
+			}
+		}
 	}
-   
-	> li:before {
-		/* Add the number using the counter and increment */
-		content: counter(li) '. ';
-		counter-increment: li;  
-		position: absolute;
-		left: 5px;
-	}
-	
-	ol li {
-		padding-left: 0;
-		/* list-style-type: lower-alpha; */
-	}
-
-	ol li:before {
-		content: normal;   
-	}
-	
-	ol ol li {
-		/* list-style-type: lower-roman; */
-	}
-	
 }
 .module-comment ol.wet-boew-zebra, ol.wet-boew-zebra.module-comment, ol.wet-boew-zebra.list-bullet-none {  
-	> li:before {
-		content: normal;
-		counter-increment: none;
-		position: static;
-		left: auto;
+	> {
+		li {
+			&:before {
+				content: normal;
+				counter-increment: none;
+				position: static;
+				left: auto;
+			}
+		}
 	}
 }
 
 .module-comment ol.wet-boew-zebra, ol.wet-boew-zebra.module-comment {
-	ol li, ol ol li {
-		list-style-type: none;
+	ol {
+		li, ol li {
+			list-style-type: none;
+		}
 	}
 }
 	
 table {
-	&.wet-boew-zebra, &.wet-boew-zebra table {
-		background-color: #fff;
-		border: 1px solid #ccc;
-		border-collapse: collapse;
-		margin-bottom: 10px;
-		margin-top: 10px;
+	&.wet-boew-zebra {
+		&, table {
+			background-color: #fff;
+			border: 1px solid #ccc;
+			border-collapse: collapse;
+			margin-bottom: 10px;
+			margin-top: 10px;
+		}
 	}
 }
 
-dl.wet-boew-zebra {
-	margin-left: 0;
+dl {
+	&.wet-boew-zebra {
+		margin-left: 0;
+	}
 }
 	
 .wet-boew-zebra {
@@ -102,20 +108,23 @@ dl.wet-boew-zebra {
 			background-color: #f0fcff;
 		}
 	}
-	&.alterwg li, &.alterwg dt, &.alterwg dd {
-		&.list-odd {
-			background-color: #ddd;
-			border: none;
-		}
-		&.list-even {
-			background-color: #fff;
-			border: none;
-		}
-		&.list-hover {
-			background-color: #f0fcff;
+	&.alterwg {
+		li, dt, dd {
+			&.list-odd {
+				background-color: #ddd;
+				border: none;
+			}
+			&.list-even {
+				background-color: #fff;
+				border: none;
+			}
+			&.list-hover {
+				background-color: #f0fcff;
+			}
 		}
 	}
 	dt, dd {
+		padding: 10px;
 		&.list-odd {
 			border: none;
 		}
@@ -125,9 +134,6 @@ dl.wet-boew-zebra {
 	}
 	dl, dd {
 		margin-left: 0;
-	}
-	dt, dd {
-		padding: 10px;
 	}
 	dt {
 		font-weight: bold;
@@ -139,17 +145,15 @@ dl.wet-boew-zebra {
 	}
 	tr {
 		&.table-odd, &.table-even tr.table-odd {
-			/* td { */
-				background-color: #f0fcff;
-			/* } */
+			background-color: #f0fcff;
 		}
 		&.table-even, &.table-odd tr.table-even {
-			/* td { */
-				background-color: transparent;
-			/* }*/
+			background-color: transparent;
 		}
-		&.table-hover td {
-			background-color: #eee;
+		&.table-hover {
+			td {
+				background-color: #eee;
+			}
 		}
 	}
 	th {
@@ -197,24 +201,20 @@ dl.wet-boew-zebra {
 			background-color: #F4F4F4;
 		}
 		&.table-summarycol3, &.table-summaryrow3 {
-			/* background-color: #9EE; */
 			background-color: #FAFAFA;
 		}
 		&.table-summarycol2, &.table-summaryrow2 {
 			background-color: #F4F4F4;
 		}
 		&.table-summarycol1, &.table-summaryrow1 {
-			
 			background-color: #EEE;
 		}
 		&.table-summarycol0, &.table-summaryrow0 {
-			/* background-color: #EEE; */
 			background-color: #DDD;
 		}
 	}
 	th {
 		&.table-summarycol0, &.table-summaryrow0 {
-			/* background-color: #EEE; */
 			background-color: #DDD;
 		}
 	}
@@ -225,11 +225,15 @@ dl.wet-boew-zebra {
 		}
 	}
 	
-	tbody.table-rowgroupmarker, tfoot.table-rowgroupmarker {
-		border-top: solid black 2px;
+	tbody, tfoot {
+		&.table-rowgroupmarker {
+			border-top: solid black 2px;
+		}
 	}
-	colgroup.table-colgroupmarker {
-		border-left: solid black 2px;
+	colgroup {
+		&.table-colgroupmarker {
+			border-left: solid black 2px;
+		}
 	}
 	td, th {
 		&.table-layoutCell {
@@ -243,7 +247,6 @@ dl.wet-boew-zebra {
 		&.table-even {
 			background-color: transparent;
 		}
-		
 		&.table-hover {
 			background-color: #eee;
 		}
