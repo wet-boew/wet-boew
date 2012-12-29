@@ -3,14 +3,18 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ui-mobile {
-	div.wet-boew-share {
-		width: 100%;
-		max-width: 39em;
+	div {
+		&.wet-boew-share {
+			width: 100%;
+			max-width: 39em;
+		}
 	}
 }
 
-div.wet-boew-share {
-	float: right;
+div {
+	&.wet-boew-share {
+		float: right;
+	}
 }
 
 #wb-main {
@@ -107,8 +111,14 @@ div.wet-boew-share {
 			}
 		}
 	}
-	.no-icons .bookmark_list span.bookmark_icons {
-		display: none;
+	.no-icons {
+		.bookmark_list {
+			span {
+				&.bookmark_icons {
+					display: none;
+				}
+			}
+		}
 	}
 	.bookmark_compact {
 		background-color: #efefef;
@@ -124,6 +134,10 @@ div.wet-boew-share {
 	}
 }
 
-html:first-child .bookmark_list {
-    font-size: 80%;
+html {
+	&:first-child {
+		.bookmark_list {
+			font-size: 80%;
+		}
+	}
 }
