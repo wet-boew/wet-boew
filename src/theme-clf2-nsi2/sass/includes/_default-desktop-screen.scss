@@ -48,25 +48,35 @@ body {
 #wb-main-in {
 	padding-top: 1px;
 	padding-bottom: 1px;
+	h1 {
+		margin-top: 0;
+	}
 }
-#wb-body #wb-main {
-	float: left;
+#wb-body {
+	#wb-main {
+		float: left;
+	}
 }
-#wb-body-sec #wb-main {
-	float: right;
+
+#wb-body-sec {
+	#wb-main {
+		float: right;
+	}
+	#wb-main-in {
+		padding-left: 5px;
+	}
 }
-#cn-body-in-3col #wb-main {
-	float: right;
-	position: relative;
+#cn-body-in-3col {
+	#wb-main {
+		float: right;
+		position: relative;
+	}
+	#wb-main-in {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
 }
-#wb-body-sec #wb-main-in {
-	padding-left: 5px;
-}
-#cn-body-in-3col #wb-main-in {
-	padding-left: 5px;
-	padding-right: 5px;
-}
-	
+
 /** Left column **/
 #wb-sec {
 	float: left;
@@ -79,9 +89,11 @@ body {
 	position: relative;
 }
 
-#wb-skip a {
-	&:hover, &:focus, &:active {
-		background-color: #363;
+#wb-skip {
+	a {
+		&:hover, &:focus, &:active {
+			background-color: #363;
+		}
 	}
 }
 #cn-sig {
@@ -174,8 +186,10 @@ body {
 					background-color: #CCC;
 				}
 			}
-			&:first-child a {
-				border-left: none;
+			&:first-child {
+				a {
+					border-left: none;
+				}
 			}
 		}
 	}
@@ -272,15 +286,13 @@ body {
 			text-decoration: none;
 		}
 		&:hover, &:focus, &:active {
-			color: #CC9; 
-			background-color: #030; outline: none;
+			color: #CC9;
+			background-color: #030;
+			outline: none;
 		}
 	}
 }
 
-#wb-main-in h1 {
-	margin-top: 0;
-}
 #cn-in-pd {
 	border-top: 15px solid #363;
 	ul {
@@ -310,7 +322,9 @@ body {
 		padding-top: 13px;
 	}
 }
-.cn-toppage {float: right;}
+.cn-toppage {
+	float: right;
+}
 
 #cn-search-submit {
 	margin-top: 5px;
@@ -337,21 +351,23 @@ body {
 				color: #CC9;
 			}
 		}
-		& + div {
-			border: 1px solid #000;
-			padding-left: 8px;
-			padding-right: 5px;
-			margin-bottom: 10px;
-			ul {
-				a {
-					margin-left: -8px;
-					margin-right: -5px;
-					padding-left: 8px;
-				}
+		+ {
+			div {
+				border: 1px solid #000;
+				padding-left: 8px;
+				padding-right: 5px;
+				margin-bottom: 10px;
 				ul {
 					a {
-						padding: 1px 5px 1px 5px;
-						margin-left: -5px;
+						margin-left: -8px;
+						margin-right: -5px;
+						padding-left: 8px;
+					}
+					ul {
+						a {
+							padding: 1px 5px 1px 5px;
+							margin-left: -5px;
+						}
 					}
 				}
 			}
