@@ -23,9 +23,13 @@
 	background: #FFF;
 }
 
-#wb-foot #gcwu-wmms img {
-	display: block;
-	margin: 5px auto;
+#wb-foot {
+	#gcwu-wmms {
+		img {
+			display: block;
+			margin: 5px auto;
+		}
+	}
 }
 
 #wb-body {
@@ -73,8 +77,10 @@
 	display: none;
 }
 
-.ui-mobile #wb-foot {
-	display: block;
+.ui-mobile {
+	#wb-foot {
+		display: block;
+	}
 }
 
 .no-js {
