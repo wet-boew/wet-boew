@@ -7,18 +7,11 @@
 @import "compass/css3/opacity";
 @import "compass/css3/images";
 
- .wet-boew-menubar {
+.wet-boew-menubar {
 	background-color: #1A3D6C;
 	border-bottom: 4px solid #999;
 	min-height: 28px;
 	min-height: 2.187em;
-}
-
-.mb-menu, .mb-menu li {
-	list-style: none;
-	min-height: 2.2em;
-	margin: 0;
-	padding: 0;
 }
 
 .mb-menu {
@@ -27,6 +20,12 @@
 	width: 100%;
 	z-index: 500;
 	float: left;
+	&, li {
+		list-style: none;
+		min-height: 2.2em;
+		margin: 0;
+		padding: 0;
+	}
 	li {
 		background-color: #1A3D6C;
 		border-left: 1px solid #353;
@@ -37,12 +36,16 @@
 			margin: 0;
 			padding: 0;
 		}
-		&:first-child.mb-active {
-			border-left: 1px solid #CCC;
+		&:first-child {
+			&.mb-active {
+				border-left: 1px solid #CCC;
+			}
 		}
-		div.mb-sm {
-			display: none;
-			visibility: hidden;
+		div {
+			&.mb-sm {
+				display: none;
+				visibility: hidden;
+			}
 		}
 	}
 	a {
@@ -149,11 +152,19 @@
 }
 
 .mb-sm {
-	.mb-highlights:first-child {
-		margin-top: -10px;
+	.mb-highlights {
+		&:first-child {
+			margin-top: -10px;
+		}
 	}
-	.clear > .mb-highlights:first-child {
-		margin-top: 0;
+	.clear {
+		> {
+			.mb-highlights {
+				&:first-child {
+					margin-top: 0;
+				}
+			}
+		}
 	}
 }
 
@@ -181,8 +192,10 @@
 	li {
 		float: left !important;
 		width: auto;
-		&:first-child a {
-			border-left: none;
+		&:first-child {
+			a {
+				border-left: none;
+			}
 		}
 		a {
 			@include inline-block;
