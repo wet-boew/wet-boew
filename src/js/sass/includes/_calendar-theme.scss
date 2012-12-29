@@ -2,78 +2,90 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-div.cal-cnt {
-	.cal-header {
-		background: #333;
-		color: #FFF;
-		font-weight: bold;
-	}
-	.cal-nextmonth, .cal-prevmonth {
-		a {
-			&:link, &:visited {
-				border: 1px solid #333;
+//TODO: Is the parent div required or the .cal-cnt sufficient?
+div {
+	&.cal-cnt {
+		.cal-header {
+			background: #333;
+			color: #FFF;
+			font-weight: bold;
+		}
+		.cal-nextmonth, .cal-prevmonth {
+			a {
+				&:link, &:visited {
+					border: 1px solid #333;
+				}
+				&:hover, &:focus, &:active {
+					color: #FFF;
+					border: 1px solid #FFF;
+				}
 			}
-			&:hover, &:focus, &:active {
+		}
+		.cal-goto-link {
+			a {
+				&:link, &:visited {
+					color: #FFF !important;
+				}
+				&:hover, &:focus, &:active {
+					color: #36C !important;
+					background-color: #FFF;
+				}
+			}
+		}
+		.cal-goto {
+			legend {
 				color: #FFF;
-				border: 1px solid #FFF;
 			}
 		}
 	}
-	.cal-goto-link {
+	&.cal-days {
+		span.cal-empty, ol.cal-day-list li {
+			border-style: solid;
+			border-color: #AAA;
+			background: #FFF;
+		}
+		span.cal-we, ol.cal-day-list li.cal-we {
+			background: #EEE;
+		}
 		a {
-			&:link, &:visited {
-				color: #FFF !important;
-			}
-			&:hover, &:focus, &:active {
-				color: #36C !important;
-				background-color: #FFF;
+			color: #111;
+			&:hover, &:focus, &:active { 
+				/* active is for IE, focus is for Firefox | active est pour IE, focus est pour Firefox */
+				background: #333;
+				color: #FFF;
 			}
 		}
-	}
-	.cal-goto legend {
-		color: #FFF;
+		.cal-currentday {
+			&, a {
+				color: #FFF;
+			}
+		}
 	}
 }
 
 .ui-mobile-viewport {
-	div.cal-cnt {
-		.cal-nextmonth, .cal-prevmonth {
-			a {
-				&:link, &:visited {
-					border: none !important;
+	div {
+		&.cal-cnt {
+			.cal-nextmonth, .cal-prevmonth {
+				a {
+					&:link, &:visited {
+						border: none !important;
+					}
 				}
 			}
 		}
 	}
 }
 
-ol.cal-weekdays li {
-	border-style: solid;
-	border-color: #333;
-	font-weight: bolder;
-	background: #555;
-	color: #FFF;
-}
-
-div.cal-days {
-	span.cal-empty, ol.cal-day-list li {
-		border-style: solid;
-		border-color: #AAA;
-		background: #FFF;
-	}
-	span.cal-we, ol.cal-day-list li.cal-we {
-		background: #EEE;
-	}
-	a {
-		color: #111;
-		&:hover, &:focus, &:active { 
-			/* active is for IE, focus is for Firefox | active est pour IE, focus est pour Firefox */
-			background: #333;
+ol {
+	&.cal-weekdays {
+		li {
+			border-style: solid;
+			border-color: #333;
+			font-weight: bolder;
+			background: #555;
 			color: #FFF;
 		}
-	}
-	.cal-currentday, .cal-currentday a {
-		color: #FFF;
 	}
 }
 
