@@ -10,20 +10,23 @@ body {
 #wb-head, #wb-foot {
 	width: 100%;
 }
-#wb-core, #wb-core-in, #wb-head-in, #wb-foot-in {
+%clf-sp-pe-responsive-margin-auto {
 	margin: auto;
 }
 #wb-core, #wb-core-in {
 	width: 600px;
+	@extend %clf-sp-pe-responsive-margin-auto;
 }
 #wb-head-in, #wb-foot-in {
 	width: 760px;
+	@extend %clf-sp-pe-responsive-margin-auto;
 }
 
 /** Centre column **/
 #wb-body {
 	width: 600px;
 	#wb-main {
+		//TODO: Is the nested ID selector important or can the above and below 600px rules be combined
 		width: 600px;
 	}
 }
