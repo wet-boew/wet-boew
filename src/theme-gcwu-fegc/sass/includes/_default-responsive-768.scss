@@ -10,13 +10,14 @@ body {
 	width: 290px;
 }
 
-#wb-body-sec-sup #wb-main {
-	width: 384px;
-	right: 192px;
-}
-
-#wb-body-sec-sup #wb-main-in {
-	width: 384px;
+#wb-body-sec-sup {
+	#wb-main {
+		width: 384px;
+		right: 192px;
+	}
+	#wb-main-in {
+		width: 384px;
+	}
 }
 
 #wb-sec {
@@ -28,8 +29,10 @@ body {
 	left: 384px;
 }
 
-#wb-body-sec #gcwu-content {
-	width: 480px;
+#wb-body-sec {
+	#gcwu-content {
+		width: 480px;
+	}
 }
 
 #gcwu-gcft {
@@ -44,12 +47,15 @@ body {
 	}
 }
 
-li#gcwu-gcft-ca {
-	margin-left: 0 !important;
-	a {
-		padding-left: 20px;
-		&:lang(fr){
-			padding-left: 13px;
+//TODO: Is li parent nessessary?
+li {
+	&#gcwu-gcft-ca {
+		margin-left: 0 !important;
+		a {
+			padding-left: 20px;
+			&:lang(fr){
+				padding-left: 13px;
+			}
 		}
 	}
 }
