@@ -41,8 +41,14 @@ body {
 	}
 }
 
-li#gcwu-gcft-ca a {
-	padding-left: 44px;
+//TODO: Is li parent nessessary?
+li {
+	&#gcwu-gcft-ca {
+		margin-left: 0 !important;
+		a {
+			padding-left: 44px;
+		}
+	}
 }
 
 #wb-core-in, #gcwu-gcnb-in, #gcwu-bnr-in, #gcwu-psnb-in, #gcwu-bc-in, #gcwu-gcft-in, #gcwu-sft-in, #gcwu-psnb .mb-menu, #wb-body #wb-main {
@@ -59,8 +65,4 @@ li#gcwu-gcft-ca a {
 
 #gcwu-aside, #gcwu-priorities {
 	width: 220px;
-}
-
-li#gcwu-gcft-ca {
-	margin-left: 0 !important;
 }
