@@ -179,3 +179,33 @@
 .wb-icon-x-alt {background-position: -18px -432px;} 
 .wb-icon-x-alt2 {background-position: -18px -450px;} 
 .wb-icon-x {background-position: -18px -468px;} 
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.wb-icon {
+		background-position: top right;
+	}
+
+	[href^='mailto:']{
+		background-position: 100% 0;
+		padding-left: 0;
+		padding-right: 19px;
+	}
+
+	[href$='.psd'],[href$='.zip'],[href$='.doc'],[href$='.pdf'],[href$='.xls'],[href$='.rtf'],[href$='.pot'],[href$='.ppt'],[href$='.pps'],[href$='.pptm'],[href$='.docx'],[href$='.xlsx'],[href$='.pptx']{
+		background-position: 100% 0;
+		padding-left: 0;
+		padding-right: 19px;
+	}
+
+	[class*=wb-icon-] {
+		margin-right: auto;
+		margin-left: 4px;
+	}
+
+	.wb-icon-none {
+		padding-right: 0;
+		margin-right: auto;
+		margin-left: 0;
+	}
+}

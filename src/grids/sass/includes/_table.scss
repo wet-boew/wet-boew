@@ -120,6 +120,68 @@
 	
 	}
 
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		table {
+			&.table-simplify {			
+				td, th {
+					text-align: right;
+				}
+			}
+
+			&.table-bordered {
+				border-right: 0;
+
+				thead, tbody {
+					&:first-child {
+						tr {				
+							&:first-child {
+								th {
+									&:first-child {
+										@include border-radius(0 $default-border-radius 0 0);
+									}
+									&:last-child {
+										@include border-radius($default-border-radius 0 0 0);
+									}
+								}
+							}
+						}
+					}
+
+					&:last-child {
+						tr {
+							&:last-child {
+								th {
+									&:first-child {
+										@include border-radius(0 0 $default-border-radius 0);
+									}
+									&:last-child {
+										@include border-radius(0 0 0 $default-border-radius);
+									}
+								}
+							}
+						}
+					}
+				}
+				
+				th, td {
+					border: {
+						left: none;
+					}
+				}
+			}
+			
+			&.align-right {
+				tbody, tfoot {
+					td, th {
+						&:first-child { text-align: right; }
+					}
+
+					td { text-align: left; }
+				}
+			}
+		}
+	}
 }
 
 @mixin table {
@@ -152,7 +214,14 @@
 	ul, ol, dl {
 		margin-left: $spacing-large;
 	}
-	
+
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		ul, ol, dl {
+			margin-left: auto;
+			margin-right: $spacing-large;
+		}
+	}
 }
 
 @mixin table-color($color) {

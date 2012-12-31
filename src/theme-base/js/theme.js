@@ -69,7 +69,7 @@
 				nav,
 				s_popup,
 				popup_role = 'data-role="popup" data-overlay-theme="a"',
-				popup_close = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">' + pe.dic.get('%close') + '</a>',
+				popup_close = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-' + ((pe.rtl) ? 'right' : 'left') + '">' + pe.dic.get('%close') + '</a>',
 				_list = '',
 				navbar,
 				links,
@@ -121,7 +121,7 @@
 				_list += '<li><a data-rel="popup" data-theme="a" data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a></li>';
 			}
 			if (_list.length !== 0) {
-				navbar = $('<div data-role="navbar" data-iconpos="right"><ul class="wb-hide">' + _list + '</ul></div>');
+				navbar = $('<div data-role="navbar" data-iconpos="' + ((pe.rtl) ? 'left' : 'right') + '"><ul class="wb-hide">' + _list + '</ul></div>');
 				wet_boew_theme.title.after(navbar);
 			}
 
