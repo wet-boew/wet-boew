@@ -15,6 +15,7 @@
 	//input[type="reset"], button[type="reset"],
 	//input[type="submit"], button[type="submit"]
 	.button {
+		background-image: none;
 		@include button($light);
 		
 		&:hover, &:focus, &:active {
