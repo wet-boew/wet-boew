@@ -73,7 +73,7 @@
 						padding: $spacing-medium;
 						text-decoration: none;
 						background-repeat: no-repeat;
-						background-position: top right;
+						background-position: 100% 0; //top right;
 						@include text-shadow(-1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #555, 1px 1px 0 #000);
 						font-weight: 700;
 						@include colorize-base($accent);
