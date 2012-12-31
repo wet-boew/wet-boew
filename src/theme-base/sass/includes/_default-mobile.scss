@@ -405,43 +405,43 @@ img{
 		border-bottom-right-radius: 0;
 	}
 	.wb-nested-menu {
-		padding:0;
+		padding: 0;
 		h2, h3, h4, h5 {
-			margin:0;
+			margin: 0;
 		}
 		.ui-btn-icon-right {
 			.ui-btn-inner {
-				padding-left:0;
+				padding-left: 0;
 			}
 		}
 		a {
-			padding-left:55px;
+			padding-left: 55px;
 			&.ui-btn-icon-left {
-				padding-left:0px;
+				padding-left: 0px;
 			}
 		}
 		.wb-nested-menu {
 			a {
-				padding-left:70px;
+				padding-left: 70px;
 				&.ui-btn-icon-left {
-					padding-left:15px;
+					padding-left: 15px;
 				}
 			}
 			.wb-nested-menu {
 				a {
-					padding-left:85px;
+					padding-left: 85px;
 					&.ui-btn-icon-left {
-						padding-left:30px;
+						padding-left: 30px;
 					}
 				}
 			}
 		}
 		.wb-nested-li-heading a {
-			border-top:0;
+			border-top: 0;
 		}
 	}
 	.ui-collapsible-content {
-		padding:0;
+		padding: 0;
 	}
 	.ui-li-static {
 		border-left: none;
