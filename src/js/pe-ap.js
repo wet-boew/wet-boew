@@ -879,16 +879,16 @@
 					nested,
 					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
-					collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true),
 					mainText = pe.dic.get('%main-page'),
 					toplevel = (top !== undefined ? top : true),
 					secnav2Top = false,
-					collapsible = (collapsible !== undefined ? collapsible : false),
 					theme2 = (theme_2 !== undefined ? theme_2 : theme_1),
 					theme1 = (toplevel ? theme_1 : theme_2),
 					collapsibleSet = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme2 + '"></div>',
 					listView = '<ul data-role="listview" data-theme="' + theme2 + '"></ul>',
 					menu = toplevel ? $('<div data-role="controlgroup"></div>') : $('<div/>');
+				collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true);
+				collapsible = (collapsible !== undefined ? collapsible : false);
 				if (menuitems.get(0).tagName.toLowerCase() === 'ul') {
 					menu.append($(listView).append(menuitems.first().children('li')));
 				} else {
