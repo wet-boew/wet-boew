@@ -6,7 +6,7 @@
 	select, button {
 		font-size: 100%;
 	}
-	.wb-ie-clip-rect-1
+	%base-ie7-clip-rect-1
 	{
 		clip: rect(1px 1px 1px 1px);
 	}
@@ -14,21 +14,25 @@
 		a {
 			@extend .wb-show-onfocus;
 			&:link, &:visited {
-				@extend .wb-ie-clip-rect-1;
+				@extend %base-ie7-clip-rect-1;
 			}
 		}
 	}
-
-	#wb-sec, #wb-sup {
+	#wb-sec {
 		h2 {
-			@extend .wb-ie-clip-rect-1;
+			@extend %base-ie7-clip-rect-1;
+		}
+	}
+	#wb-sup {
+		h2 {
+			@extend %base-ie7-clip-rect-1;
 		}
 	}
 	.wb-invisible {
 		position: relative;
 		float: left;
 		margin-bottom: -1px !important;
-		@extend .wb-ie-clip-rect-1;
+		@extend %base-ie7-clip-rect-1;
 	}
 	.wb-show-onfocus {
 		@extend .wb-invisible;
