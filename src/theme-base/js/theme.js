@@ -96,8 +96,6 @@
 				// Build the menu
 				if (pe.secnav.length !== 0) {
 					nav = pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'b', false, true, 'c', true);
-					pe.menu.expandcollapsemobile(nav, (pe.secnav.find('h3.top-section').length !== 0 ? 'h4' : 'h3'), true, false);
-					pe.menu.expandcollapsemobile(nav, '.nav-current', false, true);
 					mb_menu += '<section><div><h2>' + secnav_h2[0].innerHTML + '</h2><div data-role="controlgroup">' + nav[0].innerHTML + '</div></div></section>';
 					pe.secnav.remove();
 				}
