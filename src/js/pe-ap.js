@@ -860,13 +860,14 @@
 			* @param {number} hlevel Heading level to process (e.g., h3 = 3)
 			* @param {string} theme1 Letter representing the jQuery Mobile theme for menu items
 			* @param {boolean} mbar Optional. Is the heading level to process in a menu bar? Defaults to false.
-			* @param {boolean} expandall Optional. Expand all collapsible items by default? Defaults to false.
+			* @param {boolean} collapseTopOnly Optional. Collapse only the top level sections? Defaults to true.
 			* @param {string} theme2 Optional. Letter representing the jQuery Mobile theme to use for secondary menu items. Defaults to theme1 value.
 			* @param {boolean} top Optional. Is the menu level being processed the top level? Defaults to true.
+			* @param {boolean} collapsible Optional. Collapse the sections at the current hierarchy level (override for collapseTopOnly = true).
 			* @function
 			* @return {jQuery object} Mobile menu
 			*/
-			buildmobile: function (menusrc, hlevel, theme_1, mbar, expandall, theme_2, top) {
+			buildmobile: function (menusrc, hlevel, theme_1, mbar, collapseTopOnly, theme_2, top, collapsible) {
 				var heading = 'h' + hlevel,
 					headingOpen = '<' + heading + '>',
 					headingClose = '</' + heading + '>',
@@ -878,9 +879,11 @@
 					nested,
 					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
-					expand = (expandall !== undefined ? expandall : false),
+					collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true),
 					mainText = pe.dic.get('%main-page'),
 					toplevel = (top !== undefined ? top : true),
+					secnav2Top = false,
+					collapsible = (collapsible !== undefined ? collapsible : false),
 					theme2 = (theme_2 !== undefined ? theme_2 : theme_1),
 					theme1 = (toplevel ? theme_1 : theme_2),
 					collapsibleSet = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme2 + '"></div>',
@@ -904,45 +907,58 @@
 							// If the menu item is a heading
 							if (tagName === heading) {
 								hlink = $this.children('a');
-								navCurrent = hlink.hasClass('nav-current');
-								subsection = $('<div data-role="collapsible"' + ((expand && !menubar) || navCurrent ? ' data-collapsed="false" data-theme="' + theme1 + '"' : '') + (navCurrent ? ' class="nav-current"' : '') + '>' + headingOpen + $this.text() + headingClose + '</div>');
+								navCurrent = hlink.hasClass('nav-current'),
+								secnav2Top = $this.hasClass('top-section');
+								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
+								if (toplevel || !collapseTopOnly || collapsible) {
+									subsection = $('<div data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false" data-theme="' + theme1 + '"' : '') + ' class="wb-nested-menu' + (navCurrent ? ' nav-current' : '') + '">' + headingOpen + $this.text() + headingClose + '</div>');
+								} else {
+									subsection = $('<div data-theme="' + theme1 + '" class="wb-nested-menu' + (navCurrent ? ' nav-current' : '') + '">' + headingOpen + '<a href="' + hlink.attr('href') + '" data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false">' + $this.text() + '</a>' + headingClose + '</div>');
+								}
 								next = $this.next();
 								if (next.get(0).tagName.toLowerCase() === 'ul') {
-									// The original menu item was not in a menu bar
-									if (!menubar && hlink.length > 0) {
-										next.append($('<li></li>').append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText)));
-									}
 									nested = next.find('li ul');
 									// If a nested list is detected
 									nested.each(function (index) {
 										var $this = $(this),
 											hlink_html,
-											headingIndexOpen = '<h' + (hlevel + 1 + index) + '>',
-											headingIndexClose = '</h' + (hlevel + 1 + index) + '>';
+											headingIndex = 'h' + (hlevel + 1 + index),
+											headingIndexOpen = '<' + headingIndex + (collapseTopOnly ? ' class="wb-nested-li-heading"' : '') + '>',
+											headingIndexClose = '</' + headingIndex + '>';
 										if ((hlevel + 1 + index) < 7) {
-											// Make the nested list into a collapsible section
 											hlink = $this.prev('a');
 											hlink_html = hlink[0].innerHTML;
-											$this.attr({ 'data-role': 'listview', 'data-theme': theme2 }).wrap('<div data-role="collapsible"' + (expand || hlink.hasClass('nav-current') ? 'data-collapsed="false" data-theme="' + theme2 + '"' : '') + '></div>');
-											$this.parent().prepend(headingIndexOpen + hlink_html + headingIndexClose);
-											$this.append('<li><a href="' + hlink.attr('href') + '">' + hlink_html + ' - ' + mainText + '</a></li>');
+											$this.attr({ 'data-role': 'listview', 'data-theme': theme2 });
+											// Use collapsible content if all sections are to be collapsed (collapseTopOnly = false); otherwise use a button
+											if (!collapseTopOnly) {
+												$this.wrap('<div data-role="collapsible"' + (hlink.hasClass('nav-current') ? 'data-collapsed="false" data-theme="' + theme2 + '"' : '') + ' class="wb-nested-menu"></div>');
+												$this.append('<li><a href="' + hlink.attr('href') + '">' + hlink_html + ' - ' + mainText + '</a></li>');
+												$this.parent().prepend(headingIndexOpen + hlink_html + headingIndexClose);
+											} else {
+												$this.wrap('<div data-theme="' + theme1 + '" class="wb-nested-menu"></div>');
+												$this.parent().prepend(headingIndexOpen + '<a href="' + hlink.attr('href') + '" data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false">' + hlink_html + '</a>' + headingIndexClose);
+											}
 											hlink.remove();
 										} else {
 											$this.attr({ 'data-role': 'listview', 'data-theme': theme2 });
 										}
 									});
 									subsection.append($(listView).append(next.children('li')));
-									if (!expand && nested.length > 0) {
+									if (!collapseTopOnly && nested.length > 0) {
 										subsection.find('ul').wrap(collapsibleSet);
+									}
+									// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
+									if (!menubar && hlink.length > 0 && (toplevel || !collapseTopOnly || collapsible)) {
+										subsection.append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme2, 'data-icon': 'arrow-r', 'data-iconpos': 'right', 'data-corners': 'false'}));
 									}
 								} else { // If the section contains sub-sections
 									if (menubar) {
-										subsection.append(pe.menu.buildmobile($this.parent().find('.mb-sm'), hlevel + 1, theme1, false, expand, theme2, false));
+										subsection.append(pe.menu.buildmobile($this.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false));
 									} else {
-										subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme1, false, expand, theme2, false));
+										subsection.append(pe.menu.buildmobile($this.parent(), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, secnav2Top));
 									}
-									// If the original menu item was not in a menu bar
-									if (!menubar && toplevel) {
+									// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
+									if (!menubar && (toplevel || !collapseTopOnly || collapsible)) {
 										subsection.append($this.children('a').html(hlink[0].innerHTML + ' - ' + mainText).attr({'data-role': 'button', 'data-theme': theme2, 'data-icon': 'arrow-r', 'data-iconpos': 'right', 'data-corners': 'false'}));
 									}
 								}
@@ -958,30 +974,13 @@
 								}
 							}
 						});
-						if (toplevel || !expand) {
+						// Not a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
+						if (toplevel || !collapseTopOnly || collapsible) {
 							menu.children().wrapAll('<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"></div>');
 						}
 					}
 				}
 				return menu;
-			},
-			/**
-			* Closes collapsible menus built by pe.menu.mobile that have a descendant matching the selector
-			* @memberof pe.menu
-			* @param {jQuery object | DOM object} menusrc Mobile menu to correct
-			* @param {string} selector Selector for the link(s) to expand/collapse.
-			* @param {boolean} collapse Collapse (true) or expand (false) the selected collapsible menus.
-			* @param {boolean} allparents Expand/collapse all ancestor collapsible menus (true) or just the nearest parent (false).
-			* @function
-			* @return {void} Mobile menu
-			*/
-			expandcollapsemobile: function (menusrc, selector, collapse, allparents) {
-				var elm = $((typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc))).find(selector);
-				if (allparents) {
-					elm.parents('div[data-role="collapsible"]').attr('data-collapsed', collapse);
-				} else {
-					elm.closest('div[data-role="collapsible"]').attr('data-collapsed', collapse);
-				}
 			},
 			/**
 			* Correct the corners for each sections and sub-section in the menu build by pe.menu.buildmobile
