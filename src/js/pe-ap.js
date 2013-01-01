@@ -873,7 +873,7 @@
 					headingOpen = '<' + heading + '>',
 					headingClose = '</' + heading + '>',
 					m = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
-					mDOM = m[0],
+					mDOM = m[0].parentNode,
 					mItems = m.find('> div, > ul, ' + heading),
 					mItemsDOM = mItems.get(),
 					mItems_i,
@@ -917,7 +917,7 @@
 				} else {
 					hasHeading = mDOM.getElementsByTagName(heading).length !== 0;
 					if (menubar && !hasHeading) { // Menu bar without a mega menu
-						menu = sectionOpen + '<ul data-role="listview" data-theme="' + theme1 + '">';
+						menu = sectionOpen + '"><ul data-role="listview" data-theme="' + theme1 + '">';
 						mItemsDOM = mDOM.getElementsByTagName('a');
 						for (mItems_i = 0, mItems_len = mItemsDOM.length; mItems_i < mItems_len; mItems_i += 1) {
 							mItemDOM = mItemsDOM[mItems_i];
@@ -964,7 +964,7 @@
 											hnestLinkDOM = hnestLink[0];
 											hnest.wrap(sectionOpen + '"></div>');
 											hnest.parent().prepend('<' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>');
-											hnestLink.remove();
+											hnestLinkDOM.parentNode.removeChild(hnestLinkDOM);
 										}
 									}
 									menu += listView + nextDOM.innerHTML + '</ul>';
