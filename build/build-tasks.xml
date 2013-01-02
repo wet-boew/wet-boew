@@ -139,7 +139,7 @@
 		</jshint>
 	</target>
 
-	<property name="csslint.ignores" value="ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties,box-sizing"/>
+	<property name="csslint.ignores" value="ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,floats,overqualified-elements,font-sizes,regex-selectors,duplicate-properties,box-sizing"/>
 	<property name="csslint.errors" value="outline-none"/>
 
 	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="prepare-files">
