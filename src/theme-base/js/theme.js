@@ -127,9 +127,9 @@
 
 			if (wet_boew_theme.sft.length !== 0) {
 				links = wet_boew_theme.sft.find('.base-col-head a').get();
-				target = document.getElementById('#base-sft-in');
+				target = document.getElementById('base-sft-in');
 				if (wet_boew_theme.fullft.length !== 0) {
-					node = wet_boew_theme.fullft.gcft[0];
+					node = wet_boew_theme.fullft[0];
 					node.parentNode.removeChild(node);
 				}
 				// transform the footer into mobile nav bar
