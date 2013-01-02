@@ -19,7 +19,9 @@
 				var cap, i, result = '', sorted, sorted_entry, username, displayname, image;
 				cap = (limit > 0 && limit < entries.length ? limit : entries.length);
 				sorted = entries.sort(function (a, b) {
-					return pe.date.compare(b.created_at.replace('+0000 ', '') + ' GMT', a.created_at.replace('+0000 ', '') + ' GMT');
+					a.created_at = a.created_at.replace(/\+\d{4} (\d{4})/, '$1 GMT');
+					b.created_at = b.created_at.replace(/\+\d{4} (\d{4})/, '$1 GMT');
+					return pe.date.compare(b.created_at, a.created_at);
 				});
 				for (i = 0; i < cap; i += 1) {
 					sorted_entry = sorted[i];
