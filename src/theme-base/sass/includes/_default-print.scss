@@ -84,3 +84,16 @@ h6{
 	width:0;
 	margin:0;
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#base-bc {
+		a {
+			padding-right: 0;
+		}
+	}
+
+	#base-date-mod {
+		float: left;
+	}
+}
