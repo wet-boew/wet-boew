@@ -328,6 +328,7 @@
 						$pbar;
 					$current = $tabs.filter('.' + opts.tabActiveClass);
 					$pbar = $current.siblings('.tabs-roller');
+					$nav.addClass('started');
 					elm.find('.tabs-toggle').data('state', 'started');
 					return $pbar.show().animate({
 						width : $current.parent().width()
@@ -343,6 +344,7 @@
 					clearTimeout(elm.data('interval'));
 					elm.find('.tabs-roller').width(0).hide().stop();
 					elm.find('.tabs-toggle').data('state', 'stopped');
+					$nav.removeClass('started');
 					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + startHiddenText + '</span>');
 					return $('.wb-invisible', $toggleButton).text(startHiddenText);
 				};
@@ -383,8 +385,6 @@
 					var $pbar;
 					$pbar = $('<div class="tabs-roller">').hide().on('click', function () {
 						return $(this).siblings('a').trigger('click');
-					}).on('hover', function () {
-						return $(this).css('cursor', 'text');
 					});
 					if (_pe.ie > 0 && _pe.ie < 8) {
 						$('.tabs-style-2 .tabs, .tabs-style-2 .tabs li').css('filter', '');
