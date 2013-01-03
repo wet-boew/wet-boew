@@ -4,14 +4,6 @@
  */
 @import "compass/css3/images";
 
-#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in {
-	background:{
-		repeat: no-repeat, repeat-x;
-		position: center 3.08em;
-		color: #fff;
-	}
-}
-
 #gcwu-srch-submit {
 	background:#ccc url(../images/search-button.gif) 0 0 repeat-x;
 	&:focus,&:hover {
