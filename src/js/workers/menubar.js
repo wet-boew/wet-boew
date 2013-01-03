@@ -50,7 +50,7 @@
 				_sm.attr({'aria-expanded':'true', 'aria-hidden':'false'}).toggleClass('mb-sm mb-sm-open');
 
 				if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
-					_sm.css('right', '0px');
+					_sm.css('right', '0');
 				}
 				_node.addClass('mb-active');
 				return;
