@@ -302,7 +302,7 @@ a{
 
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
-	#wb-body-sec #wb-main {
+	#wb-body #wb-main, #wb-body-sec #wb-main {
 		float: left;
 	}
 
@@ -315,7 +315,7 @@ a{
 		left: 10px;
 	}
 
-	#wb-body #wb-main, #wb-body-sec-sup #wb-main, #wb-sec {
+	#wb-sec {
 		float: right;
 	}
 

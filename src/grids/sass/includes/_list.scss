@@ -48,6 +48,12 @@
 			padding: 0;
 		}
 
+		.ui-navbar {
+			ul, dl, ol {
+				margin: 0;
+			}
+		}
+
 		ul.menu-horizontal {
 			li {
 				padding-left: 4px;

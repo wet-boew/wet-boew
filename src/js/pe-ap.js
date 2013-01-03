@@ -69,7 +69,7 @@
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.language = test;
 			}
-			test = $('head').attr('dir');
+			test = $html.attr('dir');
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
