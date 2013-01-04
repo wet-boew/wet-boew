@@ -221,7 +221,7 @@
 					pe.focus(evt);
 					return false;
 				case 27: // escape
-					pe.focus($(this).closest('li[id^=cal-]').children('a.calEvent'));
+					pe.focus($(this).closest('li[id^=cal-]').children('.cal-event'));
 					return false;
 				}
 			};
@@ -296,7 +296,7 @@
 						// lets see if the cell is empty is so lets create the cell
 						if (day.children('a').length < 1) {
 							day.empty();
-							link = $('<a href="#ev-' + day.attr('id') + '" class="calEvent">' + content + '</a>');
+							link = $('<a href="#ev-' + day.attr('id') + '" class="cal-event">' + content + '</a>');
 							day.append(link);
 							dayEvents = $('<ul class="wb-invisible"></ul>');
 

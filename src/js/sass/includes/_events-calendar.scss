@@ -44,7 +44,7 @@ div {
 			}
 		}
 		a {
-			&.calEvent { //TODO: Check if breaking change to fix capitialization and namespacing for consistency
+			&.cal-event {
 				color: #FFF !important;
 				background: #176ca7;
 			}

@@ -12,82 +12,84 @@
 	height: 28em;
 }
 
-//TODO: Can parent div selector be removed?
-div {
-	&.cal-cnt {
-		text-align: left;
-		* {
-			font-size: 100%;
-		}
-		.cal-header {
-			overflow: hidden;
-			padding: 0.5em 4px;
-			text-align: center;
-			width: 91%;
-		}
-		.cal-month {
-			font-size: 110%;
-		}
-		.cal-goto {
-			margin-left: 16px;
-			p {
-				float: left;
-				width: 13.5em;
-			}
-		}
-		.cal-goto-link {
-			margin: 0 0 0.5em 0;
-		}
-		.cal-goto legend, .cal-goto-month, .cal-goto-year, .cal-goto-button {
-			position: relative;
-		}
-		.cal-goto-month {
-			width: 60%;
-			float: right;
-		}
-		.cal-goto-year {
-			width: 39%;
+.cal-cnt {
+	text-align: left;
+	* {
+		font-size: 100%;
+	}
+	.cal-header {
+		overflow: hidden;
+		padding: 0.5em 4px;
+		text-align: center;
+		width: 91%;
+	}
+	.cal-month {
+		font-size: 110%;
+	}
+	.cal-goto {
+		margin-left: 16px;
+		p {
 			float: left;
-		}
-		.cal-goto-button {
-			margin: 0 10px 0 5px;
-			float: left;
-			input {
-				padding: 0.1em 0.2em;
-			}
+			width: 13.5em;
 		}
 	}
-	&.cal-nextmonth , &.cal-prevmonth {
-		margin-bottom: -15px;
-		img {
-			margin: 0;
-			vertical-align: middle;
-		}
+	.cal-goto-link {
+		margin: 0 0 0.5em 0;
 	}
-	&.cal-prevmonth {
-		float: left;
-		text-align: left;
+	.cal-goto legend, .cal-goto-month, .cal-goto-year, .cal-goto-button {
+		position: relative;
 	}
-	&.cal-nextmonth {
+	.cal-goto-month {
+		width: 60%;
 		float: right;
-		text-align: right;
 	}
-	&.cal-days ol.cal-day-list, &.cal-cnt ol.cal-weekdays {
-		list-style-type: none;
+	.cal-goto-year {
+		width: 39%;
+		float: left;
+	}
+	.cal-goto-button {
+		margin: 0 10px 0 5px;
+		float: left;
+		input {
+			padding: 0.1em 0.2em;
+		}
+	}
+}
+
+.cal-nextmonth , .cal-prevmonth {
+	margin-bottom: -15px;
+	img {
 		margin: 0;
-		padding: 0;
-		li {
-			margin: 0;
-		}
+		vertical-align: middle;
 	}
-	&.cal-days {
-		a, div {
-			height: 100%;
-			width: 100%;
-		}
-		.cal-currentday {
-			font-weight: bolder;
-		}
+}
+
+.cal-prevmonth {
+	float: left;
+	text-align: left;
+}
+
+.cal-nextmonth {
+	float: right;
+	text-align: right;
+}
+
+.cal-days ol.cal-day-list, .cal-cnt ol.cal-weekdays {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	li {
+		margin: 0;
+	}
+}
+
+.cal-days {
+	a, div {
+		height: 100%;
+		width: 100%;
+	}
+	.cal-currentday {
+		font-weight: bolder;
 	}
 }
 

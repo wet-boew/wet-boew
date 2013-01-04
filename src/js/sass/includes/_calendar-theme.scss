@@ -2,63 +2,62 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-//TODO: Is the parent div required or the .cal-cnt sufficient?
-div {
-	&.cal-cnt {
-		.cal-header {
-			background: #333;
-			color: #FFF;
-			font-weight: bold;
-		}
-		.cal-nextmonth, .cal-prevmonth {
-			a {
-				&:link, &:visited {
-					border: 1px solid #333;
-				}
-				&:hover, &:focus, &:active {
-					color: #FFF;
-					border: 1px solid #FFF;
-				}
+
+.cal-cnt {
+	.cal-header {
+		background: #333;
+		color: #FFF;
+		font-weight: bold;
+	}
+	.cal-nextmonth, .cal-prevmonth {
+		a {
+			&:link, &:visited {
+				border: 1px solid #333;
 			}
-		}
-		.cal-goto-link {
-			a {
-				&:link, &:visited {
-					color: #FFF !important;
-				}
-				&:hover, &:focus, &:active {
-					color: #36C !important;
-					background-color: #FFF;
-				}
-			}
-		}
-		.cal-goto {
-			legend {
+			&:hover, &:focus, &:active {
 				color: #FFF;
+				border: 1px solid #FFF;
 			}
 		}
 	}
-	&.cal-days {
-		span.cal-empty, ol.cal-day-list li {
-			border-style: solid;
-			border-color: #AAA;
-			background: #FFF;
-		}
-		span.cal-we, ol.cal-day-list li.cal-we {
-			background: #EEE;
-		}
+	.cal-goto-link {
 		a {
-			color: #111;
+			&:link, &:visited {
+				color: #FFF !important;
+			}
 			&:hover, &:focus, &:active {
-				/* active is for IE, focus is for Firefox | active est pour IE, focus est pour Firefox */
-				background: #333;
-				color: #FFF;
+				color: #36C !important;
+				background-color: #FFF;
 			}
 		}
-		.cal-currentday {
-			&, a {
-				color: #FFF;
-			}
+	}
+	.cal-goto {
+		legend {
+			color: #FFF;
+		}
+	}
+}
+
+.cal-days {
+	span.cal-empty, ol.cal-day-list li {
+		border-style: solid;
+		border-color: #AAA;
+		background: #FFF;
+	}
+	span.cal-we, ol.cal-day-list li.cal-we {
+		background: #EEE;
+	}
+	.cal-day-list a {
+		color: #111;
+		&:hover, &:focus, &:active {
+			/* active is for IE, focus is for Firefox | active est pour IE, focus est pour Firefox */
+			background: #333;
+			color: #FFF;
+		}
+	}
+	.cal-currentday {
+		&, a {
+			color: #FFF;
 		}
 	}
 }
