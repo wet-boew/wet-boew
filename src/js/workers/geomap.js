@@ -25,157 +25,58 @@
 //			// If applicaple, convert html elements and attributes into the format that jQuery mobile expects.
 //			return elm;
 //		},
-		
-		removeDefaultControls: function () {
-			var defaultControls = map.getControlsBy("CLASS_NAME", /OpenLayers\.Control\.\w*/);
-			for (var c in defaultControls) {
-				if (defaultControls.hasOwnProperty(c)) {
-					map.removeControl(defaultControls[c]);
-				}
-			}
-		},
 	
-		accessibilize: function () { 
-			OpenLayers.Control.PanZoom.prototype._addButton = 
-			OpenLayers.Control.PanZoomBar.prototype._addButton = function(id, img, xy, sz, title) {
-				var imgLocation = OpenLayers.Util.getImagesLocation() + img;
-				var btn = OpenLayers.Util.createAlphaImageDiv(this.id + "_" + id, xy, sz, imgLocation, "absolute");
-				// add tooltips and alt text
-				if (title) {
-					btn.firstChild.alt = title;
-					btn.title = title;
-				}
-				// make it tab-able
-				btn.tabIndex = 0;
-				//we want to add the outer div
-				this.div.appendChild(btn);
-				OpenLayers.Event.observe(btn, "mousedown", OpenLayers.Function.bindAsEventListener(this.buttonDown, btn));
-				OpenLayers.Event.observe(btn, "dblclick", OpenLayers.Function.bindAsEventListener(this.doubleClick, btn));
-				OpenLayers.Event.observe(btn, "click", OpenLayers.Function.bindAsEventListener(this.doubleClick, btn));
-				// keyboard events
-				OpenLayers.Event.observe(btn, "keydown", OpenLayers.Function.bindAsEventListener(this.buttonDown, btn));
-				btn.action = id;
-				btn.map = this.map;
-				if(!this.slideRatio) {
-					var slideFactorPixels = this.slideFactor;
-					var getSlideFactor = function() {
-						return slideFactorPixels;
-					};
-				} else {
-					var slideRatio = this.slideRatio;
-					var getSlideFactor = function(dim) {
-						return this.map.getSize()[dim] * slideRatio;
-					};
-				}
-				btn.getSlideFactor = getSlideFactor;
-				//we want to remember/reference the outer div
-				this.buttons.push(btn);
-				return btn;
-			};
+		accessibilize: function () {	
 			
-			OpenLayers.Control.PanZoom.prototype.draw = function(px) {
-				// initialize our internal div
-				OpenLayers.Control.prototype.draw.apply(this, arguments);
-				px = this.position;
-				// place the controls
-				this.buttons = [];
-				var sz = new OpenLayers.Size(18,18);
-				var centered = new OpenLayers.Pixel(px.x+sz.w/2, px.y);
-				if(PE.language === 'eng') {
-					this._addButton("panup", "north-mini.png", centered, sz, "Pan up");
-					px.y = centered.y+sz.h;
-					this._addButton("panleft", "west-mini.png", px, sz, "Pan left");
-					this._addButton("panright", "east-mini.png", px.add(sz.w, 0), sz, "Pan right");
-					this._addButton("pandown", "south-mini.png", centered.add(0, sz.h*2), sz, "Pan down");
-					this._addButton("zoomin", "zoom-plus-mini.png", centered.add(0, sz.h*3+5), sz, "Zoom in");
-					this._addButton("zoomworld", "zoom-world-mini.png", centered.add(0, sz.h*4+5), sz, "Zoom to world");
-					this._addButton("zoomout", "zoom-minus-mini.png", centered.add(0, sz.h*5+5), sz, "Zoom out");
-				} else {
-					this._addButton("panup", "north-mini.png", centered, sz, "Déplacer ver le haut");
-					px.y = centered.y+sz.h;
-					this._addButton("panleft", "west-mini.png", px, sz, "Déplacer ver la gauche");
-					this._addButton("panright", "east-mini.png", px.add(sz.w, 0), sz, "Déplacer ver la droite");
-					this._addButton("pandown", "south-mini.png", centered.add(0, sz.h*2), sz, "Déplacer ver le bas");
-					this._addButton("zoomin", "zoom-plus-mini.png", centered.add(0, sz.h*3+5), sz, "Zoom avant");
-					this._addButton("zoomworld", "zoom-world-mini.png", centered.add(0, sz.h*4+5), sz, "Zoom au monde");
-					this._addButton("zoomout", "zoom-minus-mini.png", centered.add(0, sz.h*5+5), sz, "Zoom arrière");
-				}
-				return this.div;
-			};
+			/*
+			 *	Add alt text to map controls and make tab-able
+			 */ 
 			
-			OpenLayers.Control.PanZoom.prototype.buttonDown =
-			OpenLayers.Control.PanZoomBar.prototype.buttonDown = function (evt) {
-				if (OpenLayers.Event.isLeftClick(evt) || evt.keyCode == 13 || evt.keyCode == 32) {
-					switch (this.action) {
-						case "panup": 
-							this.map.pan(0, -this.getSlideFactor("h"));
-							break;
-						case "pandown": 
-							this.map.pan(0, this.getSlideFactor("h"));
-							break;
-						case "panleft": 
-							this.map.pan(-this.getSlideFactor("w"), 0);
-							break;
-						case "panright": 
-							this.map.pan(this.getSlideFactor("w"), 0);
-							break;
-						case "zoomin": 
-							this.map.zoomIn(); 
-							break;
-						case "zoomout": 
-							this.map.zoomOut(); 
-							break;
-						case "zoomworld": 
-							this.map.zoomToMaxExtent(); 
-							break;
+			$('div.olButton').each(function(){
+				
+				var $div = $(this);
+				var $img = $(this).find('img.olAlphaImg');								
+				var altTxt = _pe.language === 'en' ? 'Map control' : 'Contrôle de la carte';				
+				var actn = this.action;				
+				
+				if(actn != undefined) {
+					
+					this.tabIndex = 0;
+					
+					// add alt text
+					switch (actn) {
+					case "panup": 
+						altTxt =  _pe.language === 'en' ? 'Pan up' : 'Déplacer ver le haut';
+						break;
+					case "pandown": 
+						altTxt = _pe.language === 'en' ? 'Pan down' : 'Déplacer ver le bas';
+						break;
+					case "panleft": 
+						altTxt = _pe.language === 'en' ? 'Pan left' : 'Déplacer ver la gauche';
+						break;
+					case "panright": 
+						altTxt = _pe.language === 'en' ? 'Pan right' : 'Déplacer ver la droite';
+						break;
+					case "zoomin": 
+						altTxt = _pe.language === 'en' ? 'Zoom in' : 'Zoom avant'; 
+						break;
+					case "zoomout": 
+						altTxt = _pe.language === 'en' ? 'Zoom out' : 'Zoom arrière'; 
+						break;
+					case "zoomworld": 
+						altTxt = _pe.language === 'en' ? 'Zoom to map extent' : ' Zoom sur l’étendue de la carte'; 
+						break;				
 					}
-					this.focus();
-					OpenLayers.Event.stop(evt);
+					
+					$img.attr('alt', altTxt);
+					$div.attr('title', altTxt);
 				}
-			};
+			});
 		
-			OpenLayers.Control.PanZoomBar.prototype.draw = function(px) {
-				// initialize our internal div
-				OpenLayers.Control.prototype.draw.apply(this, arguments);
-				px = this.position.clone();
-				// place the controls
-				this.buttons = [];
-				var sz = new OpenLayers.Size(18,18);
-				var centered = new OpenLayers.Pixel(px.x+sz.w/2, px.y);
-				var wposition = sz.w;
-				if (this.zoomWorldIcon) {
-					centered = new OpenLayers.Pixel(px.x+sz.w, px.y);
-				}
-				if (pe.language==='en') {
-					this._addButton("panup", "north-mini.png", centered, sz, "Pan up");
-					px.y = centered.y+sz.h;
-					this._addButton("panleft", "west-mini.png", px, sz, "Pan left");
-					if (this.zoomWorldIcon) {
-						this._addButton("zoomworld", "zoom-world-mini.png", px.add(sz.w, 0), sz, "Zoom to world");
-						wposition *= 2;
-					}
-					this._addButton("panright", "east-mini.png", px.add(wposition, 0), sz, "Pan right");
-					this._addButton("pandown", "south-mini.png", centered.add(0, sz.h*2), sz, "Pan down");
-					this._addButton("zoomin", "zoom-plus-mini.png", centered.add(0, sz.h*3+5), sz, "Zoom in");
-					centered = this._addZoomBar(centered.add(0, sz.h*4 + 5));
-					this._addButton("zoomout", "zoom-minus-mini.png", centered, sz, "Zoom out");
-				} else {
-					this._addButton("panup", "north-mini.png", centered, sz, "Déplacer ver le haut");
-					px.y = centered.y+sz.h;
-					this._addButton("panleft", "west-mini.png", px, sz, "Déplacer ver la gauche");
-					if (this.zoomWorldIcon) {
-						this._addButton("zoomworld", "zoom-world-mini.png", px.add(sz.w, 0), sz, "Zoom au monde");
-						wposition *= 2;
-					}
-					this._addButton("panright", "east-mini.png", px.add(wposition, 0), sz, "Déplacer ver la droite");
-					this._addButton("pandown", "south-mini.png", centered.add(0, sz.h*2), sz, "Déplacer ver le bas");
-					this._addButton("zoomin", "zoom-plus-mini.png", centered.add(0, sz.h*3+5), sz, "Zoom avant");
-					centered = this._addZoomBar(centered.add(0, sz.h*4 + 5));
-					this._addButton("zoomout", "zoom-minus-mini.png", centered, sz, "Zoom arrière");
-				}
-				return this.div;
-			};
-		
+			/*
+			 *	Configure OpenLayers LayerSwitcher control
+			 */ 
+			
 			OpenLayers.Control.LayerSwitcher.prototype.redraw = function() {
 				//if the state hasn't changed since last redraw, no need 
 				// to do anything. Just return the existing div.
@@ -331,7 +232,8 @@
 				}
 				OpenLayers.Event.stop(e);
 			};
-		},
+		}, // end accessibilize function		
+		
 		onPopupClose: function(evt) {
 			selectControl.unselect(selectedFeature);
 		},
@@ -363,24 +265,35 @@
 //			}
 			var opts,
 				overrides,				
-				queryLayers = [];
-
+				queryLayers = [];			
+			
 			// Defaults
 			opts = {
-				controls: [],
-				maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
-				maxResolution: 'auto',
-				projection: 'EPSG:3978', 
-				restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
-				units: 'm',
-				displayProjection: new OpenLayers.Projection("EPSG:4269") /* only used by specific controls (i.e. MousePosition) */ ,
-				numZoomLevels: 12,
-				autoUpdateSize: true,
-				theme: null				
+				mapOptions: {
+					controls: [],
+					maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
+					maxResolution: 'auto',
+					projection: 'EPSG:3978', 
+					restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
+					units: 'm',
+					displayProjection: new OpenLayers.Projection('EPSG:4269') /* only used by specific controls (i.e. MousePosition) */ ,
+					numZoomLevels: 12,
+					autoUpdateSize: true,
+					fractionalZoom: true,
+					theme: null
+				},
+				features: [],
+				useLayerSwitcher: false,
+				useScaleLine: false,
+				useMousePosition: false
 			};			
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
-			overrides = {};
+			overrides = {
+				useLayerSwitcher: elm.hasClass('layerswitcher') ? true : undefined,
+				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
+				useMousePosition: elm.hasClass('position') ? true : undefined					
+			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
 			// Only needed if there are configurable options (has 'metadata' dependency)
@@ -389,110 +302,174 @@
 				$.extend(opts, wet_boew_geomap, overrides, elm.metadata());
 			} else {
 				$.extend(opts, overrides, elm.metadata());
-			}
+			}		
+						
+			// Set the language for OpenLayers
+			_pe.language === 'fr' ? OpenLayers.Lang.setCode('fr') : OpenLayers.Lang.setCode('en');
 			
-			// Add projections
-			Proj4js.defs["EPSG:3978"] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
+			// Set the image path for OpenLayers
+			OpenLayers.ImgPath = pe.add.liblocation + "/images/geomap/";
 			
+			// Add projection for default base map
+			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
+					
 			// Initiate the map
 			elm.attr('id', 'geomap');
 			elm.height(elm.width() * 0.8);			
 			
-			OpenLayers.ImgPath = pe.add.liblocation + "/images/geomap/";
+			map = new OpenLayers.Map('geomap', opts.mapOptions);			
 			
-			map = new OpenLayers.Map('geomap', opts);
-			
-			// Add the Canada Transportation Base Map (CBMT)
-			map.addLayer(new OpenLayers.Layer.WMS("CBMT", 
+			// Check to see if a base map has been configured. If not add the
+			// default base map (the Canada Transportation Base Map (CBMT))
+			if(wet_boew_geomap.basemap){
+				var basemap = wet_boew_geomap.basemap;				
+				map.addLayer(new OpenLayers.Layer.WMS(
+					basemap.title, 
+					basemap.url, 
+					{ layers: basemap.layers, version: basemap.version, format: basemap.format },
+					basemap.options 
+				));					
+			} else {
+				console.log("WET-Geomap: using default basemap");
+				// Add the Canada Transportation Base Map (CBMT)			
+				map.addLayer(new OpenLayers.Layer.WMS(
+					"CBMT", 
 					"http://geogratis.gc.ca/maps/CBMT", 
 					{ layers: 'CBMT', version: '1.1.1', format: 'image/png' },
-					{ isBaseLayer: true, singleTile: true, ratio: 1.0, displayInLayerSwitcher: false } ));			
+					{ isBaseLayer: true, 
+						singleTile: true, 
+						ratio: 1.0, 
+						displayInLayerSwitcher: false,
+						projection: 'EPSG:3978' 
+					} 
+				));			
+			}
 			
-			// Add layers passed in through settings
-			$.each(wet_boew_geomap.overlays, function(index, layer) {				
-				if(layer.type=='wms') {
-					map.addLayer(
-						new OpenLayers.Layer.WMS(
-							layer.title, 
-							layer.url, 
-							{ layers: layer.layers, transparent: 'true', format: layer.format },
-							{ visibility: layer.visible }
+			// Create projection objects
+			var projLatLon = new OpenLayers.Projection('EPSG:4326');
+			var projMap = map.getProjectionObject();			
+			
+			console.log("WET-Geomap: using projection " + projMap.getCode());
+			
+			/*
+			 * Load overlays
+			 * 
+			 * TODO: turn this into a public function
+			 */
+			
+			if(wet_boew_geomap.overlays){				
+				$.each(wet_boew_geomap.overlays, function(index, layer) {				
+					if(layer.type=='wms') {
+						map.addLayer(
+							new OpenLayers.Layer.WMS(
+								layer.title, 
+								layer.url, 
+								{ layers: layer.layers, transparent: 'true', format: layer.format },
+								{ visibility: layer.visible }
+							)
+						);
+					} else if (layer.type=='kml') {					
+						olLayer = new OpenLayers.Layer.Vector(
+							layer.title, {							
+								strategies: [new OpenLayers.Strategy.Fixed()],
+								protocol: new OpenLayers.Protocol.HTTP({
+								url: layer.url,
+								format: new OpenLayers.Format.KML({
+									extractStyles: true, 
+									extractAttributes: true,
+									internalProjection: map.getProjectionObject(),
+									externalProjection: new OpenLayers.Projection('EPSG:4269')
+									})
+								})
+							}
 						)
-					);
-				} else if (layer.type=='kml') {					
-					olLayer = new OpenLayers.Layer.Vector(
-						layer.title, {
-							projection: map.displayProjection,
-							strategies: [new OpenLayers.Strategy.Fixed()],
-							protocol: new OpenLayers.Protocol.HTTP({
-							url: layer.url,
-							format: new OpenLayers.Format.KML({
-								extractStyles: true, 
-								extractAttributes: true
+						olLayer.visibility=layer.visible;
+						map.addLayer(olLayer);
+						queryLayers.push(olLayer);
+					} else if (layer.type=='atom') {
+						olLayer = new OpenLayers.Layer.Vector(
+							layer.title, {
+								projection: map.displayProjection,
+								strategies: [new OpenLayers.Strategy.Fixed()],
+								protocol: new OpenLayers.Protocol.HTTP({
+								url: layer.url,
+								format: new OpenLayers.Format.Atom({
+									// TODO: extract data fields for query
+									})
 								})
-							})
-						}
-					)
-					olLayer.visibility=layer.visible;
-					map.addLayer(olLayer);
-					queryLayers.push(olLayer);
-				} else if (layer.type=='atom') {
-					olLayer = new OpenLayers.Layer.Vector(
-						layer.title, {
-							projection: map.displayProjection,
-							strategies: [new OpenLayers.Strategy.Fixed()],
-							protocol: new OpenLayers.Protocol.HTTP({
-							url: layer.url,
-							format: new OpenLayers.Format.Atom({
-								// TODO: extract data fields for query
+							}
+						)
+						olLayer.visibility=layer.visible;
+						map.addLayer(olLayer);
+						queryLayers.push(olLayer);
+					} else if (layer.type=='georss') {
+						olLayer = new OpenLayers.Layer.Vector(
+							layer.title, {
+								projection: map.displayProjection,
+								strategies: [new OpenLayers.Strategy.Fixed()],
+								protocol: new OpenLayers.Protocol.HTTP({
+								url: layer.url,
+								format: new OpenLayers.Format.GeoRSS({
+									// TODO: extract data fields for query
+									})
 								})
-							})
-						}
-					)
-					olLayer.visibility=layer.visible;
-					map.addLayer(olLayer);
-					queryLayers.push(olLayer);
-				} else if (layer.type=='georss') {
-					olLayer = new OpenLayers.Layer.Vector(
-						layer.title, {
-							projection: map.displayProjection,
-							strategies: [new OpenLayers.Strategy.Fixed()],
-							protocol: new OpenLayers.Protocol.HTTP({
-							url: layer.url,
-							format: new OpenLayers.Format.GeoRSS({
-								// TODO: extract data fields for query
-								})
-							})
-						}
-					)
-					olLayer.visibility=layer.visible;
-					map.addLayer(olLayer);
-					queryLayers.push(olLayer);
-				}				
+							}
+						)
+						olLayer.visibility=layer.visible;
+						map.addLayer(olLayer);
+						queryLayers.push(olLayer);
+					}				
+				});
+			}
+			
+			/*
+			 * Add vector features
+			 * 
+			 * TODO: turn this into a public function
+			 */ 
+			
+			var vectorLayer = new OpenLayers.Layer.Vector('Features');			
+			
+			$.each(opts.features, function(index, feature) {
+								
+				var wktParser = new OpenLayers.Format.WKT({						
+					'internalProjection': projMap, 
+					'externalProjection': projLatLon
+				});
+				
+				vectorLayer.addFeatures([										 
+					wktParser.read(feature)															 
+				]);
+				
 			});			
 			
-			var selectControl = new OpenLayers.Control.SelectFeature(
-				queryLayers,
-				{ onSelect: this.onFeatureSelect, onUnselect: this.onFeatureUnselect }
-			);			
-			map.addControl(selectControl);
-			selectControl.activate();			
+			map.addLayer(vectorLayer);
 			
-			// TODO: ensure WCAG compliance before enabling
-			//map.addControl(new OpenLayers.Control.MousePosition());
-			//map.addControl(new OpenLayers.Control.Scale());		
-			//map.addControl(new OpenLayers.Control.Attribution());
+			/*
+			 * Load Controls
+			 */ 
 			
-			map.addControl(new OpenLayers.Control.LayerSwitcher());			
-			map.addControl(new OpenLayers.Control.PanZoomBar());			
+			// TODO: ensure WCAG compliance before enabling			
+//			var selectControl = new OpenLayers.Control.SelectFeature(
+//				queryLayers,
+//				{ onSelect: this.onFeatureSelect, onUnselect: this.onFeatureUnselect }
+//			);			
+//			map.addControl(selectControl);
+//			selectControl.activate();			
 			
-			// TODO: enable TouchNavigation for mobile clients
-			map.addControl(new OpenLayers.Control.Navigation({zoomWheelEnabled : true}));
+			if(opts.useMousePosition) { map.addControl(new OpenLayers.Control.MousePosition()) };
+			if(opts.useScaleLine) { map.addControl(new OpenLayers.Control.ScaleLine()) };					
+			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
+			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
+			map.addControl(new OpenLayers.Control.KeyboardDefaults());
+			
+			// TODO: enable TouchNavigation for mobile clients			
 			//map.addControl(new OpenLayers.Control.TouchNavigation();
 			
-			map.fractionalZoom = true;
+			// add accessibility enhancements
+			this.accessibilize();					
 			
-			this.accessibilize();
+			if(opts.useLayerSwitcher) { map.addControl(new OpenLayers.Control.LayerSwitcher()) };	// needs to be added after accessibilize		
 
 			map.zoomToMaxExtent();			
 			
