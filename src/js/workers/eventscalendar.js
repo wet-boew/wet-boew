@@ -357,7 +357,7 @@
 			events = getEvents(elm);
 			containerid = $(elm).attr('class').split(' ').slice(-1);
 
-			if ($('#wb-main-in').css('padding-left') === '0px') {
+			if ($('#wb-main-in').css('padding-left') === '0px') { //jQuery returns 0px even if no units specified in CSS "padding-left: 0;"
 				$('#' + containerid).css('margin-left', '10px');
 			}
 
