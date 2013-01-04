@@ -75,7 +75,7 @@
 	event_purge = prefix + '_purge',
 	
 	// Special Handling for IE
-	isIE = !$.support.opacity && !$.support.style, // IE7 & IE8
+	isIE = !$.support.leadingWhitespace, // IE6 to IE8
 	isIE6 = isIE && !window.XMLHttpRequest, // IE6
 	event_ie6 = prefix + '_IE6',
 
@@ -821,7 +821,7 @@
 		} else if (isImage(href)) {
 			$(photo = new Image())
 			.addClass(prefix + 'Photo')
-			.error(function () {
+			.bind('error',function () {
 				settings.title = false;
 				prep($tag(div, 'Error').html(settings.imgError));
 			})
