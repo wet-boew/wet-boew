@@ -221,7 +221,7 @@
 					pe.focus(evt);
 					return false;
 				case 27: // escape
-					pe.focus($(this).closest('li[id^=cal-]').children('a.cal-event'));
+					pe.focus($(this).closest('li[id^=cal-]').children('.cal-event'));
 					return false;
 				}
 			};
