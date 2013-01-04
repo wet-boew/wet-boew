@@ -51,13 +51,14 @@
 
 				if (pe.rtl) {
 					if ((Math.floor($(window).width() - _sm.offset().left) - Math.floor($(window).width() - $menuBoundary.offset().left)) >= -1) {
-						_sm.css("left", "0px");
+						_sm.css('left', '0');
 					}
 				} else {
 					if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
-						_sm.css('right', '0px');
+						_sm.css('right', '0');
 					}
 				}
+
 				_node.addClass('mb-active');
 				return;
 			};
