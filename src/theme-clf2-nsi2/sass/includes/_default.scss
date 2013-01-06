@@ -4,7 +4,7 @@
  */
 .wb-sec-def {
 	h3 {
-		margin:{
+		margin: {
 			left: 0;
 			right: 0;
 		}
@@ -15,10 +15,10 @@
 }
 
 #cn-bc h2, #cn-bc2 h2, #cn-psnb h2, #cn-psnb-2 h2, #cn-in-pd h3 {
-	position: absolute; 
-	clip: rect(1px, 1px, 1px, 1px); 
-	height: 1px !important; 
-	width: 1px !important; 
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px !important;
+	width: 1px !important;
 	overflow: hidden !important;
 }
 
@@ -59,6 +59,8 @@
 	}
 	dd {
 		margin-left: 0;
-		span {white-space: nowrap;}
+		span {
+			white-space: nowrap;
+		}
 	}
 }

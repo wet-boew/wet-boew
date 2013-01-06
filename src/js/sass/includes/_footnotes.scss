@@ -26,9 +26,17 @@ sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 		@include text-shadow(none !important);
 	}
 }
-table th sup a.footnote-link {
-	background-color: $clrWhite;
-	@include text-shadow(none);
+table {
+	th {
+		sup {
+			a {
+				&.footnote-link {
+					background-color: $clrWhite;
+					@include text-shadow(none);
+				}
+			}
+		}
+	}
 }
 .wet-boew-footnotes {
 	margin: 2em 10px 0 10px;
@@ -61,12 +69,16 @@ table th sup a.footnote-link {
 			&:focus {
 				background-color: $clrLight;
 				border-color: $clrDark;
-				p.footnote-return a {
-					/*Re-uses the same properties as regular footnote links in hover/focus/active states... leverage placeholder selectors (i.e. %foo) once SASS 3.2.1 or higher gets implemented*/
-					color: $clrWhite !important;
-					background-color: $clrDark;
-					border-color: $clrDark;
-					@include text-shadow(none !important);
+				p {
+					&.footnote-return {
+						a {
+							/*Re-uses the same properties as regular footnote links in hover/focus/active states... leverage placeholder selectors (i.e. %foo) once SASS 3.2.1 or higher gets implemented*/
+							color: $clrWhite !important;
+							background-color: $clrDark;
+							border-color: $clrDark;
+							@include text-shadow(none !important);
+						}
+					}
 				}
 			}
 			p {
@@ -100,8 +112,16 @@ table th sup a.footnote-link {
 		border: 0;
 		padding: 0;
 	}
-	table th sup a.footnote-link {
-		background-color: transparent;
+	table {
+		th {
+			sup {
+				a {
+					&.footnote-link {
+						background-color: transparent;
+					}
+				}
+			}
+		}
 	}
 	.wet-boew-footnotes {
 		border {
@@ -113,11 +133,15 @@ table th sup a.footnote-link {
 			right: 0;
 			bottom: 1em;
 		}
-		dl dd {
-			border: 0;
-			@include inline-block;
-			p.footnote-return {
-				overflow: visible;
+		dl {
+			dd {
+				border: 0;
+				@include inline-block;
+				p {
+					&.footnote-return {
+						overflow: visible;
+					}
+				}
 			}
 		}
 	}

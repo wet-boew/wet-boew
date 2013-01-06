@@ -6,49 +6,49 @@ html {
 	overflow-y: scroll;
 }
 body {
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 }
 #wb-body {
 	border: 10px solid #FFF;
 }
 #wb-skip {
-	display:none;
-	visibility:hidden;
+	display: none;
+	visibility: hidden;
 }
 
 /** Box model - centered **/
 #wb-main {
-	z-index:1;
-	display:inline;
+	z-index: 1;
+	display: inline;
 }
 
 /** Overflow restrict for background paintability control **/
 #wb-head, #wb-head-in, #wb-foot, #wb-foot-in {
-	overflow:hidden;
+	overflow: hidden;
 }
 #wb-core-in {
-	overflow:visible !important;
-	position:relative;
+	overflow: visible !important;
+	position: relative;
 	&:after {
-		content:".";
-		display:block;
-		height:0;
-		clear:both;
-		visibility:hidden;
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
 	}
 }
 
 /** Centre column **/
 #wb-main-in {
-	padding-top:1px;
-	padding-bottom:1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 }
 #wb-body {
 	margin: 0 auto;
 	border-top: 20px solid #FFFFFF;
 	#wb-main {
-		float:left;
+		float: left;
 	}
 }
 #wb-main-in h1, #wb-main-in h2, #cn-in-pd h3 {

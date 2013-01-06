@@ -19,9 +19,9 @@
 		}
 	}
 	#wb-main-in {
-		h1,h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre {
-			margin-left:0;
-			margin-right:0;
+		#{headings(all)}, p, blockquote, table, form, img, pre {
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 	.wb-sec-def, .wb-sup-def {
@@ -35,8 +35,10 @@
 			margin-left: auto;
 		}
 		h3 {
-			a:hover, a:active, a:focus {
-				zoom: 1;
+			a {
+				&:hover, &:focus, &:active {
+					zoom: 1;
+				}
 			}
 		}
 	}
@@ -46,6 +48,7 @@
 			margin-bottom: -9px;
 		}
 	}
+	//TODO: cn-search-box is used as a class and an ID, which should it be
 	.wb-sec-def #cn-search-box #cn-search-submit, .cn-search-box .cn-search-submit {
 		overflow: visible;
 		padding: 0 8px;
@@ -53,16 +56,20 @@
 	.wb-sup-def {
 		margin-bottom: -10px;
 		h3 {
-			margin-left:0;
-			margin-right:-10px;
-			& + div p {
-				margin-top: 1em;
-				margin-bottom: 1em;
-				margin-left: 0;
-			}	
+			margin-left: 0;
+			margin-right: -10px;
+			+ {
+				div {
+					p {
+						margin-top: 1em;
+						margin-bottom: 1em;
+						margin-left: 0;
+					}
+				}
+			}
 		}
 	}
 	#wb-foot {
-		margin-top:-20px;
+		margin-top: -20px;
 	}
 }

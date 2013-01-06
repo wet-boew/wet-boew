@@ -7,12 +7,16 @@
 /*Print SCSS*/
 @media print {
 	.ie8 {
-		.wet-boew-footnotes dl dd {
-			display: block;
-			p {
-				@include inline-block;
-				&.footnote-return {
+		.wet-boew-footnotes {
+			dl {
+				dd {
 					display: block;
+					p {
+						@include inline-block;
+						&.footnote-return {
+							display: block;
+						}
+					}
 				}
 			}
 		}

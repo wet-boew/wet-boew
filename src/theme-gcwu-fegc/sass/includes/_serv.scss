@@ -12,15 +12,11 @@ h1 {
 }
 
 #wb-skip {
-	display:none;
-	visibility:hidden;
+	display: none;
+	visibility: hidden;
 }
 
-#wb-body {
-	background:#fff;
-}
-
-#wb-core-in,#wb-head-in {
+#wb-body, #wb-core-in, #wb-head-in {
 	background: #fff;
 }
 
@@ -43,12 +39,14 @@ h1 {
 
 #gcwu-title {
 	border-bottom: 1px solid #666;
-	a,a:visited,a:hover,a:focus,a:active {
-		color:#295376;
-		text-decoration:none;
-	}
-	a:hover,a:focus,a:active {
-		text-decoration:underline;
+	a {
+		&, &:visited, &:hover, &:focus, &:active {
+			color: #295376;
+			text-decoration: none;
+		}
+		&:hover, &:focus, &:active {
+			text-decoration: underline;
+		}
 	}
 }
 
@@ -67,13 +65,13 @@ h1 {
 }
 
 #wb-core-in {
-	h2,p {
+	h2, p {
 		margin-left: 0;
 	}
 	li {
 		a {
 			text-decoration: none;
-			&:hover,&:focus,&:active {
+			&:hover, &:focus, &:active {
 				text-decoration: underline;
 			}
 		}
