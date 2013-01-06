@@ -41,6 +41,7 @@ h1, #gcwu-title {
 
 #wb-main-in {
 	background: none;
+	padding-bottom: 0;
 }
 
 #gcwu-lang {
@@ -57,9 +58,34 @@ h1, #gcwu-title {
 
 #gcwu-lang, #wb-foot {
 	display: none;
+	ul, a {
+		margin: 0;
+	}
+	li {
+		a.ui-btn {
+			border-top-width: 0;
+		}
+		&:nth-child(1), &:nth-child(2) {
+			a.ui-btn {
+				border-top-width: 1px;
+			}
+		}
+		&:not(:last-child).ui-block-a {
+			a.ui-btn {
+				border-right-width: 0;
+			}
+		}
+	}
 }
 
-.ui-mobile, .no-js {
+#wb-foot {
+	.ui-footer {
+		border: 0;
+		background: none;
+	}
+}
+
+.ui-mobile {
 	#gcwu-lang, #wb-foot {
 		display: block;
 	}
@@ -67,6 +93,7 @@ h1, #gcwu-title {
 
 .no-js  {
 	#gcwu-lang, #wb-foot {
+		display: block;
 		padding: 0 5px;
 		li {
 			margin-right: 20px;

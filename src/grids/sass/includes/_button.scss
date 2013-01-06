@@ -11,6 +11,7 @@
 @mixin buttons {
 
 	.button {
+		background-image: none;
 		@include button($light);
 
 		&:hover, &:focus, &:active {

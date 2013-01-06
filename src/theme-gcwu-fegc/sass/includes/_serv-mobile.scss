@@ -77,6 +77,31 @@
 	display: none;
 }
 
+#wb-foot {
+	ul, a {
+		margin: 0;
+	}
+	.ui-footer {
+		border: 0;
+		background: none;
+	}
+	li {
+		a.ui-btn {
+			border-top-width: 0;
+		}
+		&:nth-child(1), &:nth-child(2) {
+			a.ui-btn {
+				border-top-width: 1px;
+			}
+		}
+		&:not(:last-child).ui-block-a {
+			a.ui-btn {
+				border-right-width: 0;
+			}
+		}
+	}
+}
+
 .ui-mobile {
 	#wb-foot {
 		display: block;

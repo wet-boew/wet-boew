@@ -9,6 +9,12 @@
 	background: url(../images/tabs/gradient.png) repeat-x 0 0 #eee;
 }
 
+.tabs.started a.active {
+	&,&:hover,&:focus,&:active {
+		cursor: pointer;
+	}
+}
+
 .tabs {
     border-bottom: solid 1px #ccc;
     margin: 0;
@@ -125,7 +131,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    cursor: text;
+    cursor:pointer;
     background-color: #000;
     @include opacity(0.1);
 }

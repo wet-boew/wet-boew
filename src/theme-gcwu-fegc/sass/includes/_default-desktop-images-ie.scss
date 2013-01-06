@@ -4,12 +4,12 @@
  */
 #gcwu-bc {
 	li {
-		background: url(../images/bcrumb.gif) right center no-repeat;
+		background:url(../images/bcrumb.gif) left center no-repeat;
 		margin:0 5px 0 0;
-		padding:0 11px 0 0;
-		&:last-child {
+		padding:0 0 0 11px;
+		&:first-child {
 			background-image:none;
-			padding-right:0;
+			padding-left:0;
 		}
 	}
 }
