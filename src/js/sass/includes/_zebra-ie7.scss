@@ -5,16 +5,22 @@
 
 /* IE7 hacks - should be in an IE7 only .css */
 .ie7 {
-    ol > li {       
-        padding-left: 10px;     
-        list-style: decimal inside;         
-    }
-
-    ol ol li {
-        list-style: lower-alpha outside; 
-    }
-
-    ol ol ol li {
-        list-style: lower-roman outside; 
-    }   
+    ol {
+		> {
+			li {
+				padding-left: 10px;
+				list-style: decimal inside;
+			}
+		}
+		ol {
+			li {
+				list-style: lower-alpha outside;
+			}
+			ol {
+				li {
+					list-style: lower-roman outside;
+				}
+			}
+		}
+	}
 }

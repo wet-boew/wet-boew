@@ -5,55 +5,61 @@
 @import "compass/css3/text-shadow";
 
 /** From branding.css **/
-#gcwu-bnr {
-	background-color:#28507a;
-}
 .gcwu-subsite-1 {
-	background:#618000 url(../images/gcwu-subsite-1.gif) repeat-x 0 top;
+	background: #618000 url(../images/gcwu-subsite-1.gif) repeat-x 0 top;
 	a {
-		color:#fff !important;
+		color: #fff !important;
 		@include text-shadow(1px 1px 1px #333 !important);
 	}
 }
 
 /** From default.css **/
-#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-head-in,#gcwu-sig-eng,#gcwu-sig-fra,#gcwu-wmms-fip {
-	background:none;
+#wb-body, #wb-body-sec, #wb-body-sec-sup, #wb-head-in, #gcwu-sig-eng, #gcwu-sig-fra, #gcwu-wmms-fip {
+	background: none;
 }
 #gcwu-bnr-in {
-	background:transparent url(../images/gcwu-bnr-in.png) no-repeat center 0;
-	min-height:52px !important;
+	background: transparent url(../images/gcwu-bnr-in.png) no-repeat center 0;
+	min-height: 52px !important;
 }
 #gcwu-bnr {
+	background-color: #28507a;
 	background: transparent url(../images/gcwu-bnr.png) repeat-x 0 0;
-	border-top:1px solid #eee;
-	clear:both;
-	position:static;
+	border-top: 1px solid #eee;
+	clear: both;
+	position: static;
 }
 #gcwu-subsite {
-	border-top:1px solid #ccc;
-	clear:left;
-	font-size:130%;
+	border-top: 1px solid #ccc;
+	clear: left;
+	font-size: 130%;
 	@include text-shadow(1px 1px 1px #333);
 	p {
-		margin:0 auto;
-		padding-top:4px;
-		padding-bottom:7px;
+		margin: 0 auto;
+		padding-top: 4px;
+		padding-bottom: 7px;
 	}
 	a {
-		color:#fff;
-		text-decoration:none;
-		padding:0 5px 0 10px;
+		color: #fff;
+		text-decoration: none;
+		padding: 0 5px 0 10px;
 		@include text-shadow(1px 1px 1px #333);
-		border-left:1px solid #ccc;
-		font-size:75%;
+		border-left: 1px solid #ccc;
+		font-size: 75%;
 		&:first-child {
-			border-left:none;
-			font-size:100%;
+			border-left: none;
+			font-size: 100%;
 		}
 	}
 }
 
-#gcwu-psnb .mb-menu .mb-highlight h4 a {
-	padding-top:6px;
+#gcwu-psnb {
+	.mb-menu {
+		.mb-highlight {
+			h4 {
+				a {
+					padding-top: 6px;
+				}
+			}
+		}
+	}
 }
