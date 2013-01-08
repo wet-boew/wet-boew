@@ -14,16 +14,34 @@ $clrMedium: #CCC;
 $clrDark: #555;
 
 /*Default SCSS*/
+%footnote-link-highlight {
+	color: $clrWhite !important;
+	background-color: $clrDark;
+	border-color: $clrDark;
+	@include text-shadow(none !important);
+}
+%footnote-link-background-white {
+	background-color: $clrWhite;
+}
 sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 	background-color: $clrLight;
 	border: 1px solid $clrMedium;
 	padding: 0 4px 1px;
 	white-space: nowrap;
 	&:hover, &:focus, &:active {
-		color: $clrWhite !important;
-		background-color: $clrDark;
-		border-color: $clrDark;
-		@include text-shadow(none !important);
+		@extend %footnote-link-highlight;
+	}
+}
+.background-light {
+	sup {
+		a {
+			&.footnote-link {
+				@extend %footnote-link-background-white;
+				&:hover, &:focus, &:active {
+					@extend %footnote-link-highlight;
+				}
+			}
+		}
 	}
 }
 table {
@@ -31,7 +49,7 @@ table {
 		sup {
 			a {
 				&.footnote-link {
-					background-color: $clrWhite;
+					@extend %footnote-link-background-white;
 					@include text-shadow(none);
 				}
 			}
@@ -72,11 +90,7 @@ table {
 				p {
 					&.footnote-return {
 						a {
-							/*Re-uses the same properties as regular footnote links in hover/focus/active states... leverage placeholder selectors (i.e. %foo) once SASS 3.2.1 or higher gets implemented*/
-							color: $clrWhite !important;
-							background-color: $clrDark;
-							border-color: $clrDark;
-							@include text-shadow(none !important);
+							@extend %footnote-link-highlight;
 						}
 					}
 				}
@@ -107,17 +121,29 @@ table {
 
 /*Print SCSS*/
 @media print {
+	%footnote-link-background-transparent {
+		background-color: transparent;
+	}
 	sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 		background-color: transparent;
 		border: 0;
 		padding: 0;
+	}
+	.background-light {
+		sup {
+			a {
+				&.footnote-link {
+					@extend %footnote-link-background-transparent;
+				}
+			}
+		}
 	}
 	table {
 		th {
 			sup {
 				a {
 					&.footnote-link {
-						background-color: transparent;
+						@extend %footnote-link-background-transparent;
 					}
 				}
 			}
