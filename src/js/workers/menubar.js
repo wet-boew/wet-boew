@@ -50,7 +50,7 @@
 				_sm.attr({'aria-expanded':'true', 'aria-hidden':'false'}).toggleClass('mb-sm mb-sm-open');
 
 				if (pe.rtl) {
-					if ((Math.floor($(window).width() - _sm.offset().left) - Math.floor($(window).width() - $menuBoundary.offset().left)) >= -1) {
+					if ((Math.floor(_sm.offset().left) - Math.floor($menuBoundary.offset().left)) <= 0) {
 						_sm.css('left', '0');
 					}
 				} else {
