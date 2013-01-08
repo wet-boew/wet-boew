@@ -43,3 +43,16 @@ body{
 #wb-body-sec-sup #wb-main-in{
 	width:480px;
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-body-sec-sup #wb-main {
+		right: auto;
+		left: 240px;
+	}
+
+	#wb-sup {
+		left: auto;
+		right: 480px;
+	}
+}

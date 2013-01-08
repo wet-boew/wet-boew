@@ -41,6 +41,17 @@
 		.badge-intro { font-size: $font-small; line-height: 1em; }
 	}
 
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		.badge-intro {
+			margin-right: auto;
+			margin-left: $margin-medium / 2;
+
+			a & {
+				float: right;
+			}
+		}
+	}
 }
 
 @mixin badge {

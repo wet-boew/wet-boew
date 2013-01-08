@@ -13,3 +13,17 @@
 		}
 	}
 }
+
+[dir="rtl"] {
+	#base-bc {
+		li {
+			background:url(../images/bcrumb-rtl.gif) right center no-repeat;
+			margin:0 0 0 5px;
+			padding:0 11px 0 0;
+			&:first-child {
+				background-image:none;
+				padding-right:0;
+			}
+		}
+	}
+}

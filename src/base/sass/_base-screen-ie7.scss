@@ -23,4 +23,13 @@
 			height:1%;
 		}
 	}
+
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		#wb-skip {
+			ul {
+				float: right;
+			}
+		}
+	}
 }
