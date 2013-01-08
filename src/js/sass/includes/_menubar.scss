@@ -204,3 +204,91 @@
 		}
 	}
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.mb-menu, .mb-menu li {
+		margin: 0 !important;
+	}
+
+	.mb-menu {
+		float: right;
+		li {
+			float: right;
+
+			&:first-child.mb-active {
+				border-right: 1px solid #CCC;
+			}
+		}
+
+		a {
+			text-align: right;
+			padding: 0.45em 0.79em 0.45em 1.72em;
+		}
+
+		.mb-has-sm {
+			padding-left: 0.79em;
+		}
+
+		.mb-sm-open {
+			li {
+				&, div {
+					float: none;
+				}
+
+				&.top-level {
+					margin-left: auto;
+					margin-right: -15px;
+				}
+			}
+		}
+		.expandicon {
+			display: inline-block;
+			padding-right: 0;
+			padding-left: 0.93em;
+			background-position: left center;
+		}
+	}
+
+	.mb-mega {
+		.mb-sm-open {
+			ul {
+				margin: 0 1.2em 0 0;
+			}
+
+			.menu-col {
+				float: right;
+			}
+		}
+	}
+
+	.mb-main-link {
+		padding-left: 0;
+		padding-right: 10px;
+	}
+
+	.mb-highlight {
+		h4 {
+			float: right;
+			margin-left: auto !important;
+			margin-right: 10px !important;
+		}
+
+		ul {
+			float: right;
+		}
+
+		li {
+			float: right !important;
+
+			&:first-child a {
+				border-right: none;
+			}
+
+			a {
+				border-left: none;
+				border-right: 1px solid #999;
+			}
+		}
+	}
+}

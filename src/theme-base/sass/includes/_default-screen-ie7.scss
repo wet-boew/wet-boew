@@ -46,4 +46,26 @@
 	#base-bnr,#base-tctr li{
 		float:left;
 	}
+
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		#base-date-mod {
+			float: left;
+		}
+
+		#base-tctr {
+			li.base-tr {
+				padding-left: 0;
+				padding-right: 10px;
+			}
+		}
+
+		#base-fullft li {
+			margin: 13px 9px 14px 35px;
+		}
+
+		#base-bnr, #base-tctr li {
+			float: right;
+		}
+	}
 }

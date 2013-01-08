@@ -141,3 +141,11 @@ h6 {
 	height: 0;
 	left: -9999px;
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#mobiletest {
+		left: auto;
+		right: -9999px;
+	}
+}

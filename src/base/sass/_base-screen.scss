@@ -78,3 +78,23 @@ a.wb-linkdesc {
 		}
 	}
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-skip {
+		float: right;
+
+		li {
+			left: auto;
+			right: 0;
+		}
+	}
+
+	a.wb-linkdesc:hover, a.wb-linkdesc:focus, a.wb-linkdesc:active {
+		span span {
+			left: auto;
+			right: 2.2em;
+			text-align: right;
+		}
+	}
+}

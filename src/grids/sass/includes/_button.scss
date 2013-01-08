@@ -1,5 +1,5 @@
 /*
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * Web Experience Toolkit (WET) / Boï¿½te ï¿½ outils de l'expï¿½rience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/text-shadow";
@@ -168,6 +168,25 @@
 		}
 	}
 
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		.button-group {
+			.button {
+				float: right;
+				margin-left: auto;
+				margin-right: -1px;
+			}
+
+			li {
+				float: right;
+			}
+		}
+
+		p.button-group .button:nth-child(1):nth-last-child(1), ul.button-group li:nth-child(1):nth-last-child(1) .button{
+			margin-right: auto;
+			margin-left: 4px;
+		}
+	}
 }
 
 @mixin button($color) {

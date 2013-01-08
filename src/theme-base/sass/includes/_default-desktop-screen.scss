@@ -299,3 +299,85 @@ a{
 		min-height: 22px;
 	}
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-body #wb-main, #wb-body-sec #wb-main {
+		float: left;
+	}
+
+	#wb-sec-in {
+		margin: 7px 10px 0 0;
+	}
+
+	#base-date-mod {
+		right: auto;
+		left: 10px;
+	}
+
+	#wb-sec {
+		float: right;
+	}
+
+	#wb-body-sec-sup #wb-main, #wb-sup {
+		float: left;
+	}
+
+	#base-fullhd {
+		ul {
+			float: left;
+			li {
+				float: right;
+			}
+		}
+
+		a {
+			border-left: none;
+			border-right: 1px solid #fff;
+		}
+
+		li:first-child a {
+			border-right: none;
+		}
+	}
+
+	#base-fullhd ul li#base-fullhd-lang a {
+		padding-right: 0;
+		padding-left: 10px;
+		margin-right: auto;
+		margin-left: 1px;
+	}
+
+	#base-title {
+		a {
+			margin-left: auto;
+			margin-right: 10px;
+		}
+	}
+
+	#base-srchbx {
+		text-align: left;
+		right: auto;
+		left: 0;
+		padding: 11px 12px 6px 5px;
+
+		#base-srch {
+			margin-left: auto;
+			margin-right: 0;
+		}
+	}
+
+	#base-srch-submit {
+		border: {
+			right: 1px solid #fff;
+			left: 1px solid #999;
+		}
+
+		&:focus, &:hover {
+			border: {
+				right: 1px solid #fff;
+				left: 1px solid #999;
+			}
+		}
+	}
+}

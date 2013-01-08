@@ -184,3 +184,20 @@ blockquote, form, img, pre {
 		margin-right: 0;
 	}
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	p, table {
+		img {
+			margin-left: auto;
+			margin-right: 0;
+		}
+	}
+
+	// reset elements in grid system
+	[class*="span-"] {
+		ul, ol, dl {
+			margin: 5px 40px 10px 5px;
+		}
+	}
+}

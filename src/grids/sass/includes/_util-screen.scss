@@ -378,3 +378,32 @@ table {
 	}
 }
 
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	blockquote {
+		&, &.float-left, &.float-right {
+			border-left: {
+				width: 1px !important;
+				color: #ddd !important;
+			}
+
+			border-right: {
+				width: 8px !important;
+				color: $accent !important;
+			}
+		}
+	}
+
+	.border-top, .border-right, .border-bottom, .border-left, .border-all {
+		float: right;
+	}
+
+	.date-container {
+		float: right;
+	}
+
+	[class*="span-"] .date-container {
+		margin-left: auto;
+		margin-right: 0;
+	}
+}

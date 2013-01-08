@@ -39,3 +39,16 @@ body{
 #base-subsite p{
 	margin:0 auto;
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-body-sec-sup #wb-main {
+		right: auto;
+		left: 192px;
+	}
+
+	#wb-sup {
+		left: auto;
+		right: 384px;
+	}
+}

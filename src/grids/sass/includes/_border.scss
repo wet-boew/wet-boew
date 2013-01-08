@@ -56,3 +56,10 @@ div {
 		}
 	}
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	div.border-top, div.border-right, div.border-bottom, div.border-left, div.border-all {
+		float: right;
+	}
+}
