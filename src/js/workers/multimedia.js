@@ -116,7 +116,7 @@
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
 				if (media_type === 'video') {
-					media.before($('<button class="wb-mm-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
+					media.before($('<button class="wb-mm-overlay" type="button"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
 				}
 				media.after(_pe.fn.multimedia._get_ui(media_id, media_type === 'video' ? true : false));
 				if ($('html').hasClass('polyfill-progress')) {
