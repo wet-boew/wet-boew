@@ -14,16 +14,19 @@ $clrMedium: #CCC;
 $clrDark: #555;
 
 /*Default SCSS*/
+%footnote-link-highlight {
+	color: $clrWhite !important;
+	background-color: $clrDark;
+	border-color: $clrDark;
+	@include text-shadow(none !important);
+}
 sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 	background-color: $clrLight;
 	border: 1px solid $clrMedium;
 	padding: 0 4px 1px;
 	white-space: nowrap;
 	&:hover, &:focus, &:active {
-		color: $clrWhite !important;
-		background-color: $clrDark;
-		border-color: $clrDark;
-		@include text-shadow(none !important);
+		@extend %footnote-link-highlight;
 	}
 }
 table {
@@ -72,11 +75,7 @@ table {
 				p {
 					&.footnote-return {
 						a {
-							/*Re-uses the same properties as regular footnote links in hover/focus/active states... leverage placeholder selectors (i.e. %foo) once SASS 3.2.1 or higher gets implemented*/
-							color: $clrWhite !important;
-							background-color: $clrDark;
-							border-color: $clrDark;
-							@include text-shadow(none !important);
+							@extend %footnote-link-highlight;
 						}
 					}
 				}
