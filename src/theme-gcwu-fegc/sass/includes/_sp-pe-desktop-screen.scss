@@ -10,13 +10,18 @@
 	}
 }
 
-#wb-body #wb-main {
-	float:left;
+#wb-body {
+	#wb-main {
+		float: left;
+	}
 }
 
 #wb-main {
-	a[href]:hover,a[href]:focus,a[href]:active {
-		color: #000;
+	//TODO: Is an empty href selector necessary?
+	a[href] {
+		&:hover, &:focus, &:active {
+			color: #000;
+		}
 	}
 }
 

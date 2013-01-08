@@ -4,50 +4,54 @@
  */
 .intranet {
 	#gcwu-subsite {
-		border-top:1px solid #CCC;
-		clear:both;
-		font-size:130%;
+		border-top: 1px solid #CCC;
+		clear: both;
+		font-size: 130%;
 		@include text-shadow(1px 1px 1px #333);
-		background:url(../images/gcwu-subsite-1.gif) repeat-x scroll 0 top #618000;
+		background: url(../images/gcwu-subsite-1.gif) repeat-x scroll 0 top #618000;
 	}
 	#wb-head-in {
-		position:relative;
+		position: relative;
 	}
 	#gcwu-psnb {
-		position:absolute;
-		margin-top:-64px;
+		position: absolute;
+		margin-top: -64px;
 	}
 	#gcwu-psnb, #gcwu-srchbx {
-		min-height:32px;
+		min-height: 32px;
 	}
 	#gcwu-subsite {
 		p {
-			margin:0;
-			padding:5px 10px;
+			margin: 0;
+			padding: 5px 10px;
 		}
 	}
 	#gcwu-sft-in {
-		section:nth-child(3n-1), div:nth-child(3n-1){
-			clear:none;
-		}
-		section:nth-child(3n), div:nth-child(3n){
-			clear:both;
+		section, div {
+			&:nth-child(3n-1) {
+				clear: none;
+			}
+			&:nth-child(3n) {
+				clear: both;
+			}
 		}
 	}
 	#gcwu-tctr {
-		padding-top:20px;
-		clear:both;
+		padding-top: 20px;
+		clear: both;
 	}
 }
 
 .ui-mobile {
-	#gcwu-subsite a {
-		white-space:normal;
+	#gcwu-subsite {
+		a {
+			white-space: normal;
+		}
 	}
 }
 
 #gcwu-subsite {
-	font-size:130%;
+	font-size: 130%;
 	@include text-shadow(1px 1px 1px #333);
 	p {
 		margin-top: 0;
@@ -57,27 +61,27 @@
 
 #gcwu-intranetnb {
 	li {
-		display:none;
-		padding-bottom:5px;
+		display: none;
+		padding-bottom: 5px;
 	}
 	#gcwu-gcnb-lang {
-		float:right;
+		float: right;
 	}
 }
 
 #gcwu-intranetnb-inner {
-	padding:0 5px;
-	background:#fafafa;
-	margin-bottom:5px;
-	border-bottom:1px solid #eee;
+	padding: 0 5px;
+	background: #fafafa;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #eee;
 	@include box-shadow(inset 1px 1px 2px #999);
 	ul {
-		margin:0;
-		float:right;
+		margin: 0;
+		float: right;
 	}
 	li {
-		float:left;
-		padding:5px 0 5px 5px;
+		float: left;
+		padding: 5px 0 5px 5px;
 	}
 	a {
 		background: none repeat scroll 0 0 #eee;
@@ -90,14 +94,14 @@
 		text-decoration: none;
 	}
 	&:after {
-		content:".";
-		display:block;
-		height:0;
-		clear:both;
-		visibility:hidden;
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
 	}
 }
 
 #gcwu-psnb {
-	margin-top:-3px;
+	margin-top: -3px;
 }

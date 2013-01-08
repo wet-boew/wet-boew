@@ -3,24 +3,28 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ie7 {
-	#gcwu-title-in {		
+	#gcwu-title-in {
 		position: static !important;
+		a {
+			top: 0 !important;
+		}
 	}
-	#gcwu-title-in a { 
-		top:0 !important;
-	} 
-	#gcwu-bc ol {
-		padding-bottom:10px;
+	#gcwu-bc {
+		ol {
+			padding-bottom: 10px;
+		}
 	}
-	#gcwu-subsite a {
-		font-size:expression(this.previousSibling == null ? '100%' : '-' );
-		padding-left:expression(this.previousSibling == null ? '0' : '-' );
-		border-left:expression(this.previousSibling == null ? 'none' : '-' );
+	#gcwu-subsite {
+		a {
+			font-size: expression(this.previousSibling == null ? '100%' : '-' );
+			padding-left: expression(this.previousSibling == null ? '0' : '-' );
+			border-left: expression(this.previousSibling == null ? 'none' : '-' );
+		}
 	}
-	#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in {
-		background:none;
+	#wb-body, #wb-body-sec, #wb-body-sec-sup, #wb-body-sec-sup, #wb-head-in {
+		background: none;
 	}
 	#gcwu-sft-in {
-		background:transparent url(../images/gcwu-sft-in.png) no-repeat right bottom;
+		background: transparent url(../images/gcwu-sft-in.png) no-repeat right bottom;
 	}
 }

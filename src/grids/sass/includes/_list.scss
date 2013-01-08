@@ -5,39 +5,58 @@
 @import "compass/typography/lists/horizontal-list";
 
 @mixin lists {
-	@include list-base;
-}
-
-@mixin list-base {
-
 	ul, dl, ol {
 		margin: $margin-medium $margin-medium $margin-medium 40px;
 		padding: 0;
 	}
-		
-	ol ol li { list-style-type: lower-alpha; }
-	ol ol ol li { list-style-type: lower-roman; }
 
-	ol.list-numeric li		{ list-style-type: decimal !important; }
-	.list-lower-alpha		{ list-style-type: lower-alpha !important; }
-	.list-lower-roman		{ list-style-type: lower-roman !important; }
-	.list-bullet-none		{ list-style-type: none !important; }
-	.list-upper-alpha		{ list-style-type: upper-alpha !important; }
-	.list-upper-roman		{ list-style-type: upper-roman !important; }
-
-	ul.menu-horizontal {
-		@include horizontal-list(2px);
-		margin: 0 10px;
-		
-		li {
-			margin-bottom: 5px;
-			padding-left:0;
-			padding-right:4px;
+	ol {
+		ol {
+			li {
+				list-style-type: lower-alpha;
+			}
+			ol {
+				li {
+					list-style-type: lower-roman;
+				}
+			}
+		}
+		&.list-numeric {
+			li {
+				list-style-type: decimal !important;
+			}
 		}
 	}
+
+	.list-lower-alpha {
+		list-style-type: lower-alpha !important;
+	}
+	.list-lower-roman {
+		list-style-type: lower-roman !important;
+	}
+	.list-bullet-none {
+		list-style-type: none !important;
+	}
+	.list-upper-alpha {
+		list-style-type: upper-alpha !important;
+	}
+	.list-upper-roman {
+		list-style-type: upper-roman !important;
+	}
+
 	ul {
+		&.menu-horizontal {
+			@include horizontal-list(2px);
+			margin: 0 10px;
+
+			li {
+				margin-bottom: 5px;
+				padding-left: 0;
+				padding-right: 4px;
+			}
+		}
 		ul {
-			margin-top:0 !important;
+			margin-top: 0 !important;
 		}
 	}
 }

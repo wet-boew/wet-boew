@@ -7,9 +7,9 @@ html {
 }
 
 body {
-	width:100%;
-	margin:0;
-	padding:0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 h1 {
@@ -20,11 +20,11 @@ h1 {
 	margin: auto;
 }
 
-#gcwu-title,#gcwu-tc {
-	display:block;
-	float:none;
-	margin:auto;
-	line-height:normal;
+#gcwu-title, #gcwu-tc {
+	display: block;
+	float: none;
+	margin: auto;
+	line-height: normal;
 }
 
 #wb-head, #wb-head-in, #wb-foot, #wb-foot-in  {
@@ -44,22 +44,26 @@ h1 {
 		clear: both;
 		visibility: hidden;
 	}
-	div #gcwu-bar {
-		height: 10px;
-		background:#28507a;
-		margin-bottom: 12px;
-		padding-bottom: 0;
+	div { //TODO: Is the div precondition needed when the child selector is an ID?
+		#gcwu-bar {
+			height: 10px;
+			background: #28507a;
+			margin-bottom: 12px;
+			padding-bottom: 0;
+		}
 	}
 }
 
 #wb-main-in {
 	position: relative;
-	padding-top:1px;
-	padding-bottom:1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 }
 
-#wb-body #wb-main {
-	float:left;
+#wb-body {
+	#wb-main {
+		float: left;
+	}
 }
 
 #gcwu-bnr {
@@ -85,8 +89,8 @@ h1 {
 
 #gcwu-tc {
 	ul {
-		line-height:normal;
-		list-style:none;
+		line-height: normal;
+		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
@@ -96,9 +100,9 @@ h1 {
 		a {
 			text-decoration: none;
 			font-size: 0.9em;
-		}
-		a:hover,a:focus,a:active {
-			text-decoration: underline;
+			&:hover, &:focus, &:active {
+				text-decoration: underline;
+			}
 		}
 	}
 }

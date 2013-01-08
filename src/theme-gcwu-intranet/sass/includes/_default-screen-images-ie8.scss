@@ -2,12 +2,17 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+//TODO: This is a duplicate of the IE7 version. They may be combined.
 @import "compass/css3/images";
 .ie8 {
-	#gcwu-psnb .mb-mega .mb-sm-open {
-		@include filter-gradient(#CCC,#EEE);
+	#gcwu-psnb {
+		.mb-mega {
+			.mb-sm-open {
+				@include filter-gradient(#CCC, #EEE);
+			}
+		}
 	}
-	#wb-core-in,#gcwu-bc-in {
-		background:url(../images/content-deco-ie.gif) center top repeat-y;
+	#wb-core-in, #gcwu-bc-in {
+		background: url(../images/content-deco-ie.gif) center top repeat-y;
 	}
 }
