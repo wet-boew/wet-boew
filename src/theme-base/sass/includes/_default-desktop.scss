@@ -55,20 +55,3 @@
 #base-bnr .ui-navbar,#jqm-wb-mb,#jqm-wb-search,.ui-loader{
 	display:none !important;
 }
-
-/* Right to left (RTL) CSS */
-[dir="rtl"] {
-	#base-bc {
-		li {
-			background: url(../images/bcrumb-rtl.gif) right 60% no-repeat;
-			float: right;
-			margin: 0 0 0 5px;
-			padding: 0 11px 0 0;
-
-			&:first-child {
-				background-image: none;
-				padding-right: 0;
-			}
-		}
-	}
-}

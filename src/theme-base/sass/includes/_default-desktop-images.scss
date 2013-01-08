@@ -17,11 +17,11 @@
 }
 
 [dir="rtl"] {
-	#gcwu-bc a {
+	#base-bc a {
 		display: inline-block;
 	}
 
-	#wb-body, #gcwu-gcnb, #gcwu-bnr, #gcwu-psnb, #gcwu-bc li:last-child, #gcwu-bc a, #wb-core, #wb-foot {
+	body, #wb-skip, #base-fullhd, #base-bnr, #base-psnb, #base-bc li:last-child, #base-bc a, #wb-core, #wb-foot {
 		@include scaleX(-1);
 	}
 }
