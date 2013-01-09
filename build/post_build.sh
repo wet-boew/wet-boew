@@ -20,7 +20,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 			git rm -r dist/.
 			git stash pop
 			git add -f dist/.
-			git commit -m "Travis build $TRAVIS_JOB_ID pushed to gh-pages"
+			git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
 			git push -fq https://${GH_TOKEN}@github.com/${REPO}.git gh-pages > /dev/null
 
 			echo "Finished updating the working examples"
@@ -41,7 +41,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 			#Commit the result
 			git add -f dist
 			git add -f demos
-			git commit -m "Travis build $TRAVIS_JOB_ID pushed to $TRAVIS_BRANCH"
+			git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
 			git push -fq https://${GH_TOKEN}@github.com/${REPO}.git $build_branch > /dev/null
 
 			echo "Finished tagging the latest build for branch $TRAVIS_BRANCH"
