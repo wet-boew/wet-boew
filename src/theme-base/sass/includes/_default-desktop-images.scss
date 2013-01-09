@@ -21,7 +21,7 @@
 		display: inline-block;
 	}
 
-	#wb-body, #wb-body-sec, #wb-body-secr, #wb-body-sec-sup, #wb-skip, #base-fullhd, #base-bnr, #base-psnb .mb-menu, #base-bc li:last-child, #base-bc a, #wb-core, #wb-foot {
+	[id|="wb-body"], #wb-skip, #base-fullhd, #base-bnr, #base-psnb .mb-menu, #base-bc li:last-child, #base-bc a, #wb-core, #wb-foot {
 		@include scaleX(-1);
 	}
 }

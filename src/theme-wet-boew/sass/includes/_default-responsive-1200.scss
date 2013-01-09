@@ -33,7 +33,7 @@ body{
 	width:1200px;
 }
 
-#wb-body-sec #wb-main,#wb-body-sec-sup #wb-main,#wb-body-sec #wb-main-in,#wb-body-sec-sup #wb-main-in{
+[id|="wb-body-sec"] [id|="wb-main"] {
 	width:900px;
 }
 

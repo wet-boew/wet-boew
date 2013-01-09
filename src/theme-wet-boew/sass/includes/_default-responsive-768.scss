@@ -10,13 +10,14 @@ body{
 	width:400px;
 }
 
-#wb-body-sec-sup #wb-main{
-	width:384px;
-	right:192px;
-}
-
-#wb-body-sec-sup #wb-main-in{
-	width:384px;
+#wb-body-sec-sup {
+	#wb-main {
+		width:384px;
+		right:192px;
+	}
+	#wb-main-in{
+		width:384px;
+	}
 }
 
 #wb-sec{
@@ -32,7 +33,7 @@ body{
 	width:768px;
 }
 
-#wb-body-sec #wb-main,#wb-body-sec-sup #wb-main,#wb-body-sec #wb-main-in,#wb-body-sec-sup #wb-main-in{
+[id|="wb-body-sec"] [id|="wb-main"] {
 	width:576px;
 }
 
