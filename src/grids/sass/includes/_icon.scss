@@ -23,13 +23,16 @@
 	padding-left: 19px;
 }
 
-@each $downloadable-file-type in psd, zip, egret, doc, pdf, xls, rtf, pot, ppt, pps, pptm, docx, xlsx, pptx {
-	[href$='.#{$downloadable-file-type}'] {
-		background: {
+%download-icon {
+	background: {
 			image: url(../images/download.png);
 			repeat: no-repeat;
 		}
-		padding-left: 19px;
+	padding-left: 19px;
+}
+@each $downloadable-file-type in psd, zip, egret, doc, pdf, xls, rtf, pot, ppt, pps, pptm, docx, xlsx, pptx {
+	[href$='.#{$downloadable-file-type}'] {
+		@extend %download-icon;
 	}
 }
 
