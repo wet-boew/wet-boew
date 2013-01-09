@@ -13,18 +13,18 @@
 
 progress {
 	@include inline-block;
-		
-	div.wb-progress-outer  {
-		@include progress(#FFF);
-	}
 
-	div.wb-progress-undefined {
-		@include progress(#FF9999);
-	}
-
-	div.wb-progress-inner {
-		height: 100%;
-		border: none;
-		background-color: #009900;  
+	div {
+		&.wb-progress-outer  {
+			@include progress(#FFF);
+		}
+		&.wb-progress-undefined {
+			@include progress(#F99);
+		}
+		&.wb-progress-inner {
+			height: 100%;
+			border: none;
+			background-color: #090;
+		}
 	}
 }

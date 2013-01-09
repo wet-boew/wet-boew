@@ -4,23 +4,23 @@
  */
 .ie7 {
 	#cn-banner {
-		width:100%;
-		margin-top:20px;
-		margin-bottom:20px;
+		width: 100%;
+		margin-top: 20px;
+		margin-bottom: 20px;
 	}
 	#cn-bc {
-		padding:5px 0;
+		padding: 5px 0;
 		ol {
-			line-height:normal;
+			line-height: normal;
 		}
 		li {
-			border-left:1px solid #000;
-			margin:0;
-			padding:0 10px;
-		}
-		li:first-child {
-			border-left:none;
-			padding-left:0;
+			border-left: 1px solid #000;
+			margin: 0;
+			padding: 0 10px;
+			&:first-child {
+				border-left: none;
+				padding-left: 0;
+			}
 		}
 	}
 }

@@ -5,14 +5,14 @@
 .guidance-block {
 	h2 {
 		margin-left: 10px;
-		color:#000;
+		color: #000;
 		font-weight: bold;
 		border-top: 1px solid #CCC;
 		padding-top: 30px;
 		margin-top: 0;
 	}
 	ol {
-		list-style:none;
+		list-style: none;
 		padding-left: 0;
 		margin: 0;
 	}
@@ -21,11 +21,13 @@
 		margin: 0 10px !important;
 	}
 	.wet-boew-zebra {
-		li.list-even {
-			background-color: #FFF!important;
-		}
-		li.list-hover {
-			background-color: #DCD8BD!important;
+		li {
+			&.list-even {
+				background-color: #FFF !important;
+			}
+			&.list-hover {
+				background-color: #DCD8BD !important;
+			}
 		}
 	}
 	fieldset {
@@ -34,7 +36,7 @@
 		margin: 0;
 	}
 	legend {
-		display:block;
+		display: block;
 		margin: 0;
 		padding: 0;
 		white-space: normal;
@@ -45,7 +47,7 @@
 		}
 	}
 	label {
-		padding:0 0.2em;
+		padding: 0 0.2em;
 	}
 	.box, .box-fra {
 		float: right;
@@ -58,14 +60,14 @@
 }
 
 .guidance-sub-block {
-	h2, h3 {
+	#{headings(2,3)} {
 		color: #000;
 		font-size: 1.25em;
 		border-bottom: none;
 		font-weight: bold;
-		margin-top:0;
+		margin-top: 0;
 	}
-	h2, h3, h4, p {
+	#{headings(2,4)}, p {
 		margin-left: 20px;
 	}
 	p, ul {
@@ -76,12 +78,12 @@
 .guidance-sub-block3-top {
 	h3 {
 		float: left;
-		margin-top:0;
+		margin-top: 0;
 		margin-right: 20px;
 	}
 	h4 {
 		font-weight: bold;
-		font-size:1.1em;
+		font-size: 1.1em;
 	}
 	h4, ul {
 		margin-left: 20px;
@@ -91,22 +93,22 @@
 		list-style-type: none;
 	}
 	p {
-		margin-bottom:0;
+		margin-bottom: 0;
 	}
 }
 
 .guidance-sub-block3-top, .guidance-sub-block3-top-round, .guidance-sub-block3-bottom-round {
-	background:#F3F3F3;
+	background: #F3F3F3;
 }
 
 .guidance-sub-block3-top-round {
 	@include border-radius(20px 20px 0 0);
-	height:20px;
+	height: 20px;
 }
 
 .guidance-sub-block3-bottom-round {
 	@include border-radius(0 0 20px 20px);
-	height:20px;
+	height: 20px;
 }
 
 .wet-boew-wamethod {
