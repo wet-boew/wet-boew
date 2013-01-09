@@ -15,7 +15,7 @@
 	@include inline-block(text-top);
 }
 
-[href^='mailto: ']{
+[href^='mailto:']{
 	background: {
 		image: url(../images/mail.png);
 		repeat: no-repeat;
