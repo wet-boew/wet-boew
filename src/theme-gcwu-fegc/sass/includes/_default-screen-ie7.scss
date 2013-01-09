@@ -60,4 +60,26 @@
 	#gcwu-bnr, #gcwu-tctr li {
 		float: left;
 	}
+
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		#gcwu-date-mod {
+			float: left;
+		}
+
+		#gcwu-tctr {
+			li.gcwu-tr {
+				padding-left: 0;
+				padding-right: 10px;
+			}
+		}
+
+		#gcwu-gcft li {
+			margin: 13px 9px 14px 35px;
+		}
+
+		#gcwu-bnr, #gcwu-tctr li {
+			float: right;
+		}
+	}
 }

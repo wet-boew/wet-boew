@@ -40,3 +40,18 @@ body{
 #base-subsite p{
 	margin:0 auto;
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-body-sec-sup {
+		#wb-main {
+			left: auto;
+			right: 300px;
+		}
+	}
+
+	#wb-sup {
+		left: auto;
+		right: 600px;
+	}
+}

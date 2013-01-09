@@ -210,3 +210,18 @@ body {
 		font-size: 0.95em;
 	}
 }
+
+[dir="rtl"] {
+	#gcwu-tctr {
+		li {
+			&.gcwu-tc {
+				border-left: 1px solid #999;
+				border-right: 0;
+				padding: 0 10px;
+			}
+			&.gcwu-tr {
+				padding: 0 6px 0 9px;
+			}
+		}
+	}
+}

@@ -106,3 +106,24 @@ h1 {
 		}
 	}
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.wb-sec-def {
+		ul {
+			ul {
+				margin-left: auto;
+				margin-right: 10px;
+				padding-left: 0;
+				padding-right: 5px;
+				border-left: none;
+				border-right: 1px solid #ccc;
+			}
+		}
+
+		li li {
+			margin-left: auto;
+			margin-right: 0;
+		}
+	}
+}

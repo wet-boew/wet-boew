@@ -760,18 +760,6 @@ a:active{
 			text-align: right;
 		}
 
-		#base-bc-in {
-			li {
-				background: url(../images/bcrumb-mobile-rtl.png) no-repeat left center;
-				float: right;
-				padding: 5px 5px 5px 12px;
-
-				&:last-child {
-					background-image: none;
-				}
-			}
-		}
-
 		.ui-icon-site-menu, .ui-icon-alt {
 			background-position: 100% 50%;
 		}

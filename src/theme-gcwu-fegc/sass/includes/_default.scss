@@ -164,3 +164,17 @@ div {
 	margin-left: 0;
 	margin-right: 0;
 }
+
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#gcwu-date-mod {
+		dt, dd {
+			float: right;
+		}
+
+		dd {
+			margin: 0 10px 0 0;
+		}
+	}
+}

@@ -101,3 +101,16 @@ h6 {
 	width: 0;
 	margin: 0;
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#gcwu-bc {
+		a {
+			padding-right: 0;
+		}
+	}
+
+	#gcwu-date-mod {
+		float: left;
+	}
+}

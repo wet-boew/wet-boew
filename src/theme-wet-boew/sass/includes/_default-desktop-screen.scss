@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-
 @import "compass/css3/border-radius";
 
 html{
@@ -296,5 +295,98 @@ a{
 @-moz-document url-prefix() {
 	#base-srch-submit{
 		min-height: 22px;
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-body, #wb-body-sec {
+		#wb-main {
+			float: left;
+		}
+	}
+
+	#base-title-in{
+		padding:24px 0 24px 0;
+		background-position:  right center;
+	}
+	#wb-sec-in {
+		margin: 7px 10px 0 0;
+	}
+
+	#base-date-mod {
+		right: auto;
+		left: 10px;
+	}
+
+	#wb-sec {
+		float: right;
+	}
+
+	#wb-body-sec-sup #wb-main, #wb-sup {
+		float: left;
+	}
+
+	#base-fullhd {
+		ul {
+			float: left;
+			li {
+				float: right;
+				&#base-fullhd-lang a {
+					padding-right: 0;
+					padding-left: 10px;
+					margin-right: auto;
+					margin-left: 1px;
+				}
+			}
+		}
+
+		li:first-child a {
+			border-right: none;
+		}
+		
+		li[id*="base-fullhd-lang"] {
+			padding-left: 0;
+			border-right: 1px solid #777;
+			border-left: 0;
+		}
+
+		li#base-fullhd-lang-current{
+			padding-left: 10px;
+		}
+	}
+
+	#base-title {
+		a {
+			margin-left: auto;
+			margin-right: 10px;
+			padding-left: 0;
+			padding-right: 145px;
+		}
+	}
+
+	#base-srchbx {
+		text-align: left;
+		right: auto;
+		left: 0;
+
+		#base-srch {
+			margin-left: auto;
+			margin-right: 0;
+		}
+	}
+
+	#base-srch-submit {
+		border: {
+			right: 1px solid #fff;
+			left: 1px solid #999;
+		}
+
+		&:focus, &:hover {
+			border: {
+				right: 1px solid #fff;
+				left: 1px solid #999;
+			}
+		}
 	}
 }

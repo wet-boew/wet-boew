@@ -302,8 +302,10 @@ a{
 
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
-	#wb-body #wb-main, #wb-body-sec #wb-main {
-		float: left;
+	#wb-body, #wb-body-sec {
+		#wb-main {
+			float: left;
+		}
 	}
 
 	#wb-sec-in {
@@ -328,6 +330,12 @@ a{
 			float: left;
 			li {
 				float: right;
+				&#base-fullhd-lang a {
+					padding-right: 0;
+					padding-left: 10px;
+					margin-right: auto;
+					margin-left: 1px;
+				}
 			}
 		}
 
@@ -339,13 +347,6 @@ a{
 		li:first-child a {
 			border-right: none;
 		}
-	}
-
-	#base-fullhd ul li#base-fullhd-lang a {
-		padding-right: 0;
-		padding-left: 10px;
-		margin-right: auto;
-		margin-left: 1px;
 	}
 
 	#base-title {
