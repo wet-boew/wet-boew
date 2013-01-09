@@ -23,9 +23,11 @@ body{
 	}
 }
 
-#wb-body-sec #wb-skip2 {
-	display:none;
-	visibility:hidden;
+[id|="wb-body-sec"] {
+	#wb-skip2 {
+		display:none;
+		visibility:hidden;
+	}
 }
 
 #base-psnb,#base-srchbx{
@@ -35,7 +37,7 @@ body{
 	}
 }
 
-#wb-body,#wb-body-sec{
+[id|="wb-body"] {
 	background:#fff !important;
 }
 
