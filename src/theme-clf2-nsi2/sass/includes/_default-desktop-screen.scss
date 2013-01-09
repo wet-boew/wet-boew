@@ -58,7 +58,7 @@ body {
 	}
 }
 
-#wb-body-sec {
+[id|="wb-body-sec"] {
 	#wb-main {
 		float: right;
 	}
@@ -66,13 +66,11 @@ body {
 		padding-left: 5px;
 	}
 }
-#cn-body-in-3col {
+#wb-body-sec-sup {
 	#wb-main {
-		float: right;
 		position: relative;
 	}
 	#wb-main-in {
-		padding-left: 5px;
 		padding-right: 5px;
 	}
 }

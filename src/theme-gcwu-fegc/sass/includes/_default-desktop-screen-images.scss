@@ -4,7 +4,7 @@
  */
 @import "compass/css3/images";
 
-#wb-body, #wb-body-sec, #wb-body-sec-sup, #wb-body-sec-sup, #wb-head-in {
+#wb-body, [id|="wb-body-sec"], #wb-head-in {
 	background: {
 		image: url(../images/header-leaf.jpg), url(../images/header-bg.jpg);
 		repeat: no-repeat, repeat-x;

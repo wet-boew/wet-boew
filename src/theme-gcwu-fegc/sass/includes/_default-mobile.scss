@@ -58,7 +58,7 @@ li {
 	}
 }
 
-#wb-body-sec {
+[id|="wb-body-sec"] {
 	#wb-skip2 {
 		display: none;
 		visibility: hidden;
@@ -83,7 +83,7 @@ li {
 	}
 }
 
-#wb-body, #wb-body-sec {
+[id|="wb-body"] {
 	background: #fff !important;
 }
 

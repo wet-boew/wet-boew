@@ -4,7 +4,7 @@
  */
 @import "compass/css3/images";
 .ie7 {
-	#wb-body, #wb-body-sec, #wb-body-sec-sup, #wb-body-sec-sup, #wb-head-in {
+	[id|="wb-body"], #wb-head-in {
 		background: url(../images/header-bg-ie.jpg) repeat-x center 3.1em #fff;
 	}
 	#wb-head-in {

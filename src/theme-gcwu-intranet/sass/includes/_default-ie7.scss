@@ -21,7 +21,7 @@
 			border-left: expression(this.previousSibling == null ? 'none' : '-' );
 		}
 	}
-	#wb-body, #wb-body-sec, #wb-body-sec-sup, #wb-body-sec-sup, #wb-head-in {
+	[id|="wb-body"], #wb-head-in {
 		background: none;
 	}
 	#gcwu-sft-in {
