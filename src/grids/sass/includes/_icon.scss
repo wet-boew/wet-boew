@@ -19,7 +19,6 @@
 	background: {
 		image: url(../images/mail.png);
 		repeat: no-repeat;
-		position: 0 0;
 	}
 	padding-left: 19px;
 }
@@ -29,7 +28,6 @@
 		background: {
 			image: url(../images/download.png);
 			repeat: no-repeat;
-			position: 0 0;
 		}
 		padding-left: 19px;
 	}
@@ -44,8 +42,7 @@
 	width: auto;
 }
 
-.wb-icon-alarm {	background-position: 0 0;
-	@extend %wb-icon;}
+.wb-icon-alarm {	@extend %wb-icon;}
 .wb-icon-bank {	background-position: 0 -18px;
 	@extend %wb-icon;}
 .wb-icon-book-address {	background-position: 0 -36px;
