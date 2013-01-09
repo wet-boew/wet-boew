@@ -24,13 +24,15 @@
 	padding-left: 19px;
 }
 
-[href$='.psd'], [href$='.zip'], [href$='.doc'], [href$='.pdf'], [href$='.xls'], [href$='.rtf'], [href$='.pot'], [href$='.ppt'], [href$='.pps'], [href$='.pptm'], [href$='.docx'], [href$='.xlsx'], [href$='.pptx']{
-	background: {
-		image: url(../images/download.png);
-		repeat: no-repeat;
-		position: 0 0;
+@each $downloadable-file-type in psd, zip, egret, doc, pdf, xls, rtf, pot, ppt, pps, pptm, docx, xlsx, pptx {
+	[href$='.#{$downloadable-file-type}'] {
+		background: {
+			image: url(../images/download.png);
+			repeat: no-repeat;
+			position: 0 0;
+		}
+		padding-left: 19px;
 	}
-	padding-left: 19px;
 }
 
 .wb-icon-none {
