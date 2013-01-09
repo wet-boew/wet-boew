@@ -115,16 +115,6 @@
 
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
-<<<<<<< HEAD
-				if (!elm.hasClass('wb-mm-no-ui')) {
-					if (media_type === 'video') {
-						media.before($('<button class="wb-mm-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
-					}
-					media.after(_pe.fn.multimedia._get_ui(media_id, media_type === 'video' ? true : false));
-					if ($('html').hasClass('polyfill-progress')) {
-						elm.find('progress').progress();
-					}
-=======
 				if (media_type === 'video') {
 					media.before($('<button class="wb-mm-overlay" type="button"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
 				}
@@ -142,12 +132,7 @@
 				$(window).trigger('resize');
 
 				//Map UI mouse events
-				elm.on('click', function (e) {
-					var $target = $(e.target),
-						p,
-						s;
->>>>>>> v3.0
-
+				elm.on('click', function () {
 					//Scale the UI when the video scales
 					$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
 						var h = e.data.media.parent().width() * e.data.ratio;
@@ -224,7 +209,7 @@
 
 						return true;
 					});
-				}
+				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
 				evtmgr.on('timeupdate seeked canplay play volumechange pause ended waiting captionsloaded captionsloadfailed captionsvisiblechange progress', $.proxy(function (e) {
