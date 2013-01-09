@@ -4,7 +4,7 @@
 */
 .ie7 {
 
-	.wet-boew-multimedia {	
+	.wet-boew-multimedia {
 		.wb-mm-overlay {
 			background: url('../images/multimedia/background-overlay.png') repeat 0 0;
 		}
@@ -13,13 +13,15 @@
 	.wb-mm-controls {
 		button {
 			img {
-				display:inline;
-				height:18px;
+				display: inline;
+				height: 18px;
 			}
 		}
-		
-		.wb-mm-timeline-inner progress {
-			margin-top:-21px;
+
+		.wb-mm-timeline-inner {
+			progress {
+				margin-top: -21px;
+			}
 		}
 	}
 }

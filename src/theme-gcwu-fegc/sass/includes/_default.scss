@@ -7,141 +7,160 @@
 #wb-head, #wb-foot, #wb-sec, #gcwu-date-mod {
 	line-height: normal;
 }
- 
-#gcwu-gcnb h2,#gcwu-srchbx label,#gcwu-aside h2,.gcwu-minister h2,.gcwu-minister h3,#gcwu-sft h3,#gcwu-bc h2,#gcwu-gcft h3 {
-	clip:rect(1px, 1px, 1px, 1px);
-	height:0 !important;
-	overflow:hidden !important;
-	position:absolute;
-	width:0 !important;
-	margin:0 !important;
+
+#gcwu-gcnb h2, #gcwu-srchbx label, #gcwu-aside h2, .gcwu-minister h2, .gcwu-minister h3, #gcwu-sft h3, #gcwu-bc h2, #gcwu-gcft h3 {
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 0 !important;
+	overflow: hidden !important;
+	position: absolute;
+	width: 0 !important;
+	margin: 0 !important;
 }
 
 #gcwu-date-mod {
-	dt,dd {
-		float:left;
+	dt, dd {
+		float: left;
 	}
 	dd {
-		margin:0 0 0 10px;
+		margin: 0 0 0 10px;
 	}
 }
 
-#gcwu-content h2,#gcwu-priorities h3 {
-	color:#333;
-	font-weight:400;
-	border:none;
-	margin-bottom:5px;
-	font-size:1.6em;
+#gcwu-content h2, #gcwu-priorities h3 {
+	color: #333;
+	font-weight: 400;
+	border: none;
+	margin-bottom: 5px;
+	font-size: 1.6em;
 }
 
-div#gcwu-headlines {
-	ul,ul li {
-		list-style:none !important;
-		margin:0 !important;
-		padding:0 !important;
+div {
+	&#gcwu-headlines {
+		ul {
+			&, li {
+				list-style: none !important;
+				margin: 0 !important;
+				padding: 0 !important;
+			}
+		}
 	}
 }
 
-#gcwu-headlines ul li,#gcwu-video {
+#gcwu-headlines ul li, #gcwu-video {
 	a {
-		font-size:100%;
+		font-size: 100%;
 	}
 }
 
-#gcwu-headlines ul li {
-	h3,p {
-		margin:0;
-		padding:5px;
-	}
-	h3 {
-		font-size:1em;
-		font-weight:700;
+#gcwu-headlines {
+	ul {
+		li {
+			h3, p {
+				margin: 0;
+				padding: 5px;
+			}
+			h3 {
+				font-size: 1em;
+				font-weight: 700;
+			}
+		}
 	}
 }
 
 #gcwu-priorities {
-	padding-bottom:10px;
-	border-bottom:1px solid #000;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #000;
 	img {
-		margin-bottom:0;
+		margin-bottom: 0;
 	}
 }
 
-#gcwu-aside div#gcwu-priorities {
-	ul {
-		list-style:none;
-		margin:0;
-		padding:0;
-	}
-	ul li {
-		margin:0;
-		padding:0;
+#gcwu-aside {
+	div {
+		&#gcwu-priorities {
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				li {
+					margin: 0;
+					padding: 0;
+				}
+			}
+		}
 	}
 }
 
 #gcwu-connect {
 	h2 {
-		border:none;
-		margin-bottom:5px;
-		color:#333;
-		float:left;
-		margin-top:2px;
-		margin-right:10px;
+		border: none;
+		margin-bottom: 5px;
+		color: #333;
+		float: left;
+		margin-top: 2px;
+		margin-right: 10px;
 	}
 	ul {
-		list-style-type:none;
+		list-style-type: none;
 	}
 	li {
 		@include inline-block;
 	}
 	a {
-		background:none;
-		padding-right:0;
-		text-decoration:none;
+		background: none;
+		padding-right: 0;
+		text-decoration: none;
 	}
 }
 
 .gcwu-minister-in {
-	min-height:149px;
+	min-height: 149px;
 }
 
 .gcwu-minister {
-	margin-top:10px;
+	margin-top: 10px;
 	img {
-		padding-right:5px;
-		float:left;
-		margin:0;
+		padding-right: 5px;
+		float: left;
+		margin: 0;
 	}
 	p {
-		margin:0;
-		padding:10px 5px 10px 0;
+		margin: 0;
+		padding: 10px 5px 10px 0;
 		strong {
-			font-weight:700;
-			color:#001D45;
+			font-weight: 700;
+			color: #001D45;
 		}
 	}
 	ul {
-		list-style-type:none;
-		padding-top:17px;
-		margin:0;
+		list-style-type: none;
+		padding-top: 17px;
+		margin: 0;
 		&:after {
-			content:".";
-			display:block;
-			height:0;
-			clear:both;
-			visibility:hidden;
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
 		}
 	}
 	li {
-		padding-bottom:8px;
+		padding-bottom: 8px;
+		a {
+			&:hover, &:focus, &:active {
+				text-decoration: none;
+			}
+		}
 	}
 }
 
-#gcwu-title a,.gcwu-minister li a:hover,.gcwu-minister li a:focus,.gcwu-minister li a:active {
-	text-decoration:none;
+#gcwu-title {
+	a {
+		text-decoration: none;
+	}
 }
 
-#gcwu-aside img,#gcwu-priorities h2,#gcwu-priorities h3,.gcwu-minister h2,.gcwu-minister h3 {
-	margin-left:0;
-	margin-right:0;
+#gcwu-aside img, #gcwu-priorities h2, #gcwu-priorities h3, .gcwu-minister h2, .gcwu-minister h3 {
+	margin-left: 0;
+	margin-right: 0;
 }

@@ -4,23 +4,27 @@
  */
 .ie7 {
 	#wb-skip {
-		display:inline;
-		float:none;
+		display: inline;
+		float: none;
 		ul {
-			float:left;
+			float: left;
 		}
 		a {
-			margin:auto;
-			zoom:1;
-			position:relative;
+			margin: auto;
+			zoom: 1;
+			position: relative;
 		}
 	}
-	a.wb-linkdesc {
-		span span {
-			top:-9000em;
-		}
-		&:hover,&:focus,&:active {
-			height:1%;
+	a {
+		&.wb-linkdesc {
+			span {
+				span {
+					top: -9000em;
+				}
+			}
+			&:hover, &:focus, &:active {
+				height: 1%;
+			}
 		}
 	}
 

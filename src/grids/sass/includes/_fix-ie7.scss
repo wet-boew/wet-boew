@@ -10,36 +10,44 @@
 	label {
 		@include inline-block;
 	}
-	ol ul li {
-		list-style-type: disc !important;
-		li {
-			list-style-type: circle !important;
+	ol {
+		ul {
 			li {
-				list-style-type: square !important;
+				list-style-type: disc !important;
+				li {
+					list-style-type: circle !important;
+					li {
+						list-style-type: square !important;
+					}
+				}
 			}
 		}
 	}
 	pre {
 		word-wrap: break-word;
 	}
-	.module-billboard a {
-		background-image:none !important;
+	.module-billboard {
+		a {
+			background-image: none !important;
+		}
 	}
 	.date-month {
-		min-width:80px;
+		min-width: 80px;
 		p {
-			padding-top:3px;
-			padding-bottom:3px;
+			padding-top: 3px;
+			padding-bottom: 3px;
 		}
 	}
 	.date-day {
-		min-width:78px;
-		width:auto;
+		min-width: 78px;
+		width: auto;
 	}
-	.date-small .date-month {
-		min-width: 40px;
-	}
-	.date-small .date-day {
-		min-width: 38px;
+	.date-small {
+		.date-month {
+			min-width: 40px;
+		}
+		.date-day {
+			min-width: 38px;
+		}
 	}
 }
