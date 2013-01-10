@@ -8,6 +8,7 @@ body {
 	font-size: 80%;
 	margin: 0;
 	padding: 0;
+	@extend %base-verdana-font;
 }
 
 a {
@@ -36,12 +37,12 @@ table {
 	border-spacing: 0;
 }
 
-textarea, input, body {
+%base-verdana-font {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 80%;
 }
 
 textarea, input {
+	@extend %base-verdana-font;
 	font-size: 100%;
 }
 
