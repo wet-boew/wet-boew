@@ -64,132 +64,132 @@
 			return r;
 		},
 		ind: {
-			'%all': 'All',
+			'%all': 'Allen',
 			'%home': 'Home',
 			'%main-page': 'Main page',
-			'%top-of-page': 'Top of Page',
-			'%you-are-in': 'You are in: ',
-			'%welcome-to': 'Welcome to: ' + $('#gcwu-title').text(),
-			'%loading': 'loading...',
-			'%search': 'Search',
-			'%search-for-terms': 'Search for term(s):',
-			'%no-match-found': 'No match found',
+			'%top-of-page': 'Bovenkant pagina',
+			'%you-are-in': 'U bent hier:  ',
+			'%welcome-to': 'Welkom bij: ' + $('#gcwu-title').text(),
+			'%loading': 'aan het laden..',
+			'%search': 'Zoek',
+			'%search-for-terms': 'Zoekwoord(en):',
+			'%no-match-found': 'Er zijn geen resultaten met deze zoekterm(en)',
 			'%matches-found': {
-				'mixin': '[MIXIN] match(es) found'
+				'mixin': '[MIXIN] gevonden zoekresultaten'
 			},
 			'%menu': 'Menu',
-			'%hide': 'Hide',
-			'%error': 'Error',
+			'%hide': 'Verberg',
+			'%error': 'Fout',
 			'%colon': ':',
 			'%start': 'Start',
 			'%stop': 'Stop',
-			'%back': 'Back',
-			'%new-window': ' (Opens in a new window)',
-			'%minute-ago': 'a minute ago',
-			'%couple-of-minutes': 'couple of minutes ago',
+			'%back': 'Terug',
+			'%new-window': ' (Opent in een nieuw venster)',
+			'%minute-ago': 'Een minuut geleden',
+			'%couple-of-minutes': 'Enkele minuten geleden',
 			'%minutes-ago': {
-				'mixin': '[MIXIN] minutes ago'
+				'mixin': '[MIXIN] minuten geleden'
 			},
-			'%hour-ago': 'an hour ago',
+			'%hour-ago': 'een uur geleden',
 			'%hours-ago': {
-				'mixin': '[MIXIN] hours ago'
+				'mixin': '[MIXIN] uur geleden'
 			},
 			'%days-ago': {
-				'mixin': '[MIXIN] days ago'
+				'mixin': '[MIXIN] dagen geleden'
 			},
-			'%yesterday': 'yesterday',
+			'%yesterday': 'gisteren',
 			
-			'%next': 'Next',
-			'%previous': 'Previous',
+			'%next': 'Volgende',
+			'%previous': 'Vorige',
 			
 			/* Archived Web page template */
-			'%archived-page': 'This Web page has been archived on the Web.',
+			'%archived-page': 'Deze pagina is gearchiveerd',
 			/* Menu bar */
-			'%sub-menu-help': '(open the submenu with the enter key and close with the escape key)',
+			'%sub-menu-help': '(open het submenu via de Enter-toets en sluit het met de Escape-toets)',
 			/* Tabbed interface */
 			'%tab-rotation': {
-				'disable': 'Stop tab rotation',
-				'enable': 'Start tab rotation'
+				'disable': 'Stop de rotatie van de tabs',
+				'enable': 'Start de rotatie van de tabs'
 			},
 			'%tab-list': 'Tab list',
 			/* Multimedia player */
-			'%play': 'Play',
+			'%play': 'Speel af',
 			'%pause': 'Pause',
 			'%open': 'Open',
-			'%close': 'Close',
-			'%rewind': 'Rewind',
-			'%fast-forward': 'Fast forward ',
+			'%close': 'Sluit af',
+			'%rewind': 'Keer terug',
+			'%fast-forward': 'Snel vooruit ',
 			'%mute': {
-				'enable': 'Mute',
-				'disable': 'Unmute'
+				'enable': 'Desactiveer geluid',
+				'disable': 'Activeer geluid'
 			},
 			'%closed-caption': {
-				'disable': 'Hide Closed captioning',
-				'enable': 'Show Closed captioning'
+				'disable': 'Verberg ondertiteling',
+				'enable': 'Toon ondertiteling'
 			},
-			'%captionserror': 'Error loading closed captions',
+			'%captionserror': 'Fout bij het tonen van de ondertiteling',
 			'%audio-description': {
-				'enable': 'Enable Audio Description',
-				'disable': 'Disable Audio Description'
+				'enable': 'Activeer audio-beschrijving',
+				'disable': 'Desactiveer audio-beschrijving'
 			},
-			'%progress-bar': 'use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media\'s progress',
-			'%no-video': 'Your browser does not appear to have the capabilities to play this video, please download the video below',
-			'%position': 'Current Position: ',
+			'%progress-bar': 'gebruik LINKSE en RECHTSE pijlen om verder te gaan of terug te keren',
+			'%no-video': 'Uw browser is blijkbaar niet in staat om deze video af te spelen; gelieve de video hieronder af te spelen',
+			'%position': 'Huidige positie: ',
 			'%percentage': 'Playback Percentage: ',
-			'%duration': 'Total Time: ',
-			'%buffered': 'Buffered: ',
+			'%duration': 'Totaaltijd: ',
+			'%buffered': 'Gebufferd: ',
 			/* Share widget */
-			'%favourite': 'Favourite',
-			'%email': 'Email',
-			'%share-text': 'Share this page',
+			'%favourite': 'Favoriet',
+			'%email': 'E-mail',
+			'%share-text': 'Deel deze pagina met anderen',
 			'%share-hint': ' with {s}',
-			'%share-email-subject': 'Interesting page',
-			'%share-email-body': 'I thought you might find this page interesting:\n{t} ({u})',
+			'%share-email-subject': 'Interessante pagina',
+			'%share-email-body': 'Ik meende dat u deze pagina wellicht interessant vond:\n{t} ({u})',
 			'%share-fav-title': ' (bookmark this page)',
-			'%share-manual': 'Please close this dialog and\npress Ctrl-D to bookmark this page.',
-			'%share-showall': 'Show all ({n})',
-			'%share-showall-title': 'All bookmarking sites',
+			'%share-manual': 'Gelieve dit dialoogvenster te sluiten en met Ctrl-D te bookmarken',
+			'%share-showall': 'Toon alle ({n})',
+			'%share-showall-title': 'Alle bookmark sites',
 			'%share-disclaimer' : 'No endorsement of any products or services is expressed or implied.',
 			/* Form validation */
-			'%form-not-submitted': 'The form could not be submitted because ',
-			'%errors-found': ' errors were found.',
-			'%error-found': ' error was found.',
+			'%form-not-submitted': 'Het formulier kon niet worden verwerkt omdat ',
+			'%errors-found': ' er fouten zijn opgetreden.',
+			'%error-found': ' er een fout is opgetreden.',
 			/* Date picker */
-			'%datepicker-hide': 'Hide Calendar',
-			'%datepicker-show': 'Pick a date from a calendar for field: ',
-			'%datepicker-selected': 'Selected',
+			'%datepicker-hide': 'Verberg de kalender',
+			'%datepicker-show': 'Kies een kalenderdatum voor het veld: ',
+			'%datepicker-selected': 'Geselecteerd',
 			/* Calendar */
-			'%calendar-weekDayNames': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-			'%calendar-monthNames': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-			'%calendar-currentDay': ' (Current Day)',
+			'%calendar-weekDayNames': ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'],
+			'%calendar-monthNames': ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
+			'%calendar-currentDay': ' (Vandaag)',
 			'%calendar-goToLink': 'Go To<span class="wb-invisible"> Month of Year</span>',
-			'%calendar-goToTitle': 'Go To Month of Year',
-			'%calendar-goToMonth': 'Month:',
-			'%calendar-goToYear': 'Year:',
-			'%calendar-goToButton': 'Go',
-			'%calendar-cancelButton': 'Cancel',
-			'%calendar-previousMonth': 'Previous Month: ',
-			'%calendar-nextMonth': 'Next Month: ',
+			'%calendar-goToTitle': 'Ga naar de maand of het jaar',
+			'%calendar-goToMonth': 'Maand:',
+			'%calendar-goToYear': 'Jaar:',
+			'%calendar-goToButton': 'Ga',
+			'%calendar-cancelButton': 'Annuleer',
+			'%calendar-previousMonth': 'Vorige maand: ',
+			'%calendar-nextMonth': 'Volgende maand: ',
 			/* Slideout */
-			'%show-toc': 'Show',
+			'%show-toc': 'Toon',
 			'%show-image': 'show.png',
 			'%hide-image': 'hide.png',
-			'%table-contents': ' table of contents',
+			'%table-contents': ' inhoudstafel',
 			/* Lightbox */
-			'%lb-current': 'Item {current} of {total}',
-			'%lb-next': 'Next item',
-			'%lb-prev': 'Previous item',
-			'%lb-xhr-error': 'This content failed to load.',
-			'%lb-img-error': 'This image failed to load.',
-			'%lb-slideshow': 'slideshow',
+			'%lb-current': 'Item {current} op een totaal van {total}',
+			'%lb-next': 'Volgend artikel',
+			'%lb-prev': 'Vorig artikel',
+			'%lb-xhr-error': 'De inhoud is niet ingeladen',
+			'%lb-img-error': 'Het beeld is niet ingeladen',
+			'%lb-slideshow': 'diavoorstelling',
 			/* jQuery Mobile */
-			'%jqm-expand': ' click to expand contents',
-			'%jqm-collapse': ' click to collapse contents',
-			'%jqm-clear-search': 'clear search',
-			'%jqm-filter': 'Filter items...',
+			'%jqm-expand': ' klik om de inhoud te tonen',
+			'%jqm-collapse': ' klik om de inhoud te verbergen',
+			'%jqm-clear-search': 'verwijder de opzoeking',
+			'%jqm-filter': 'Filter de artikelen',
 			/* Charts widget */
-			'%table-mention': 'Table',
-			'%table-following': 'Chart. Details in the following table.',
+			'%table-mention': 'Tabel',
+			'%table-following': 'Grafiek. Meer details in volgende tabel ',
 			/* Session timeout */
 			'%st-timeout-msg': 'Your session is about to expire, you have until #expireTime# to activate the "OK" button below to extend your session.',
 			'%st-msgbox-title': 'Session timeout warning',
@@ -201,8 +201,8 @@
 			'%td-ttl-open': 'Expand all sections of content',
 			'%td-ttl-close': 'Collapse all sections of content',
 			/* Disable/enable PE */
-			'%pe-disable': 'Basic HTML version',
-			'%pe-enable': 'Standard version'
+			'%pe-disable': 'Versie in basis-HTML',
+			'%pe-enable': 'Standaardversie'
 		}
 	};
 	$(document).trigger('languageloaded');

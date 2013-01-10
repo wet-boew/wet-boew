@@ -64,132 +64,132 @@
 			return r;
 		},
 		ind: {
-			'%all': 'All',
-			'%home': 'Home',
+			'%all': 'Kõik',
+			'%home': 'Kodu',
 			'%main-page': 'Main page',
-			'%top-of-page': 'Top of Page',
-			'%you-are-in': 'You are in: ',
-			'%welcome-to': 'Welcome to: ' + $('#gcwu-title').text(),
-			'%loading': 'loading...',
-			'%search': 'Search',
-			'%search-for-terms': 'Search for term(s):',
-			'%no-match-found': 'No match found',
+			'%top-of-page': 'Lehekülje algusesse',
+			'%you-are-in': 'Te olete ',
+			'%welcome-to': 'Tere tulemast ' + $('#gcwu-title').text(),
+			'%loading': 'laeb...',
+			'%search': 'Otsi',
+			'%search-for-terms': 'Otsi väjendit',
+			'%no-match-found': 'Vastet ei leitud',
 			'%matches-found': {
-				'mixin': '[MIXIN] match(es) found'
+				'mixin': '[MIXIN] vaste leitud'
 			},
-			'%menu': 'Menu',
-			'%hide': 'Hide',
-			'%error': 'Error',
+			'%menu': 'Menüü',
+			'%hide': 'Peida',
+			'%error': 'Viga',
 			'%colon': ':',
-			'%start': 'Start',
-			'%stop': 'Stop',
-			'%back': 'Back',
-			'%new-window': ' (Opens in a new window)',
-			'%minute-ago': 'a minute ago',
-			'%couple-of-minutes': 'couple of minutes ago',
+			'%start': 'Alusta',
+			'%stop': 'Lõpeta',
+			'%back': 'Tagasi',
+			'%new-window': ' (avaneb uues aknas)',
+			'%minute-ago': 'minut tagasi',
+			'%couple-of-minutes': 'mõned minutid tagasi',
 			'%minutes-ago': {
-				'mixin': '[MIXIN] minutes ago'
+				'mixin': '[MIXIN] minutit tagasi'
 			},
-			'%hour-ago': 'an hour ago',
+			'%hour-ago': 'tund aega tagasi',
 			'%hours-ago': {
-				'mixin': '[MIXIN] hours ago'
+				'mixin': '[MIXIN] tundi tagasi'
 			},
 			'%days-ago': {
-				'mixin': '[MIXIN] days ago'
+				'mixin': '[MIXIN] päeva tagasi'
 			},
-			'%yesterday': 'yesterday',
+			'%yesterday': 'eile',
 			
-			'%next': 'Next',
-			'%previous': 'Previous',
+			'%next': 'Järgmine',
+			'%previous': 'Eelmine',
 			
 			/* Archived Web page template */
-			'%archived-page': 'This Web page has been archived on the Web.',
+			'%archived-page': 'See veebileht on arhiveeritud',
 			/* Menu bar */
-			'%sub-menu-help': '(open the submenu with the enter key and close with the escape key)',
+			'%sub-menu-help': '(ava alamenüü sisene klahviga ja sulge escape klahviga)',
 			/* Tabbed interface */
 			'%tab-rotation': {
-				'disable': 'Stop tab rotation',
-				'enable': 'Start tab rotation'
+				'disable': 'Seiska rotatsioon',
+				'enable': 'Alusta rotatsiooni'
 			},
 			'%tab-list': 'Tab list',
 			/* Multimedia player */
-			'%play': 'Play',
-			'%pause': 'Pause',
+			'%play': 'Mängi',
+			'%pause': 'Paus',
 			'%open': 'Open',
-			'%close': 'Close',
-			'%rewind': 'Rewind',
-			'%fast-forward': 'Fast forward ',
+			'%close': 'Sulge',
+			'%rewind': 'Tagasi',
+			'%fast-forward': 'Kiirelt edasi ',
 			'%mute': {
-				'enable': 'Mute',
-				'disable': 'Unmute'
+				'enable': 'Vaigista',
+				'disable': 'Heli tagasi'
 			},
 			'%closed-caption': {
-				'disable': 'Hide Closed captioning',
-				'enable': 'Show Closed captioning'
+				'disable': 'Peida subtiitrid',
+				'enable': 'Näita subtiitreid'
 			},
-			'%captionserror': 'Error loading closed captions',
+			'%captionserror': 'Viga subtiitrite avamisel',
 			'%audio-description': {
-				'enable': 'Enable Audio Description',
-				'disable': 'Disable Audio Description'
+				'enable': 'Luba audio kirjeldus',
+				'disable': 'Sulge audio kirjeldus'
 			},
-			'%progress-bar': 'use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media\'s progress',
-			'%no-video': 'Your browser does not appear to have the capabilities to play this video, please download the video below',
-			'%position': 'Current Position: ',
+			'%progress-bar': 'Kasuta vasakut nooleklahvi ja paremat nooleklahvi edasi ja tagasi liikumiseks',
+			'%no-video': 'Sinu brauser ei võimalda mängida seda videot, palun lae video alla',
+			'%position': 'Hetke asukoht ',
 			'%percentage': 'Playback Percentage: ',
-			'%duration': 'Total Time: ',
-			'%buffered': 'Buffered: ',
+			'%duration': 'Kogu kestvus: ',
+			'%buffered': 'Puhverdatud ',
 			/* Share widget */
-			'%favourite': 'Favourite',
-			'%email': 'Email',
-			'%share-text': 'Share this page',
-			'%share-hint': ' with {s}',
-			'%share-email-subject': 'Interesting page',
-			'%share-email-body': 'I thought you might find this page interesting:\n{t} ({u})',
+			'%favourite': 'Lemmik',
+			'%email': 'E-postl',
+			'%share-text': 'Jaga seda lehekülge',
+			'%share-hint': ' koos {s}',
+			'%share-email-subject': 'Huvitav lehekülg',
+			'%share-email-body': 'Ma arvasin, et sa leiad selle lehekülje huvitava olevat:\n{t} ({u})',
 			'%share-fav-title': ' (bookmark this page)',
-			'%share-manual': 'Please close this dialog and\npress Ctrl-D to bookmark this page.',
-			'%share-showall': 'Show all ({n})',
-			'%share-showall-title': 'All bookmarking sites',
+			'%share-manual': 'Palun sule see akne ja vajuta Ctrl-D märgistamaks seda lehekülge',
+			'%share-showall': 'Näita kõiki ({n})',
+			'%share-showall-title': 'Kõik märgitud leheküljed',
 			'%share-disclaimer' : 'No endorsement of any products or services is expressed or implied.',
 			/* Form validation */
-			'%form-not-submitted': 'The form could not be submitted because ',
-			'%errors-found': ' errors were found.',
-			'%error-found': ' error was found.',
+			'%form-not-submitted': 'Ankeeti ei saa esitada kuna ',
+			'%errors-found': ' vead leitud',
+			'%error-found': ' viga leitud',
 			/* Date picker */
-			'%datepicker-hide': 'Hide Calendar',
-			'%datepicker-show': 'Pick a date from a calendar for field: ',
-			'%datepicker-selected': 'Selected',
+			'%datepicker-hide': 'Peida kalender',
+			'%datepicker-show': 'Vali kuupäev kalendrist ',
+			'%datepicker-selected': 'Valitud',
 			/* Calendar */
-			'%calendar-weekDayNames': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-			'%calendar-monthNames': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-			'%calendar-currentDay': ' (Current Day)',
+			'%calendar-weekDayNames': ['Pühapäev', 'Esmaspäev', 'Teisipäev', 'Kolmapäev', 'Neljapäev', 'Reede', 'Laupäev'],
+			'%calendar-monthNames': ['Jaanuar', 'Veebruar', 'Märts', 'Aprill', 'Mai', 'Juuni', 'Juuli', 'August', 'September', 'Oktoober', 'November', 'Detsember'],
+			'%calendar-currentDay': ' (tänane päev)',
 			'%calendar-goToLink': 'Go To<span class="wb-invisible"> Month of Year</span>',
-			'%calendar-goToTitle': 'Go To Month of Year',
-			'%calendar-goToMonth': 'Month:',
-			'%calendar-goToYear': 'Year:',
-			'%calendar-goToButton': 'Go',
-			'%calendar-cancelButton': 'Cancel',
-			'%calendar-previousMonth': 'Previous Month: ',
-			'%calendar-nextMonth': 'Next Month: ',
+			'%calendar-goToTitle': 'Mine sellele kuule aastas',
+			'%calendar-goToMonth': 'Kuu',
+			'%calendar-goToYear': 'Aasta',
+			'%calendar-goToButton': 'Mine',
+			'%calendar-cancelButton': 'Tühista',
+			'%calendar-previousMonth': 'Eelmine kuu ',
+			'%calendar-nextMonth': 'Järgmine kuu ',
 			/* Slideout */
-			'%show-toc': 'Show',
+			'%show-toc': 'Näita',
 			'%show-image': 'show.png',
 			'%hide-image': 'hide.png',
-			'%table-contents': ' table of contents',
+			'%table-contents': ' sisukord',
 			/* Lightbox */
-			'%lb-current': 'Item {current} of {total}',
-			'%lb-next': 'Next item',
-			'%lb-prev': 'Previous item',
-			'%lb-xhr-error': 'This content failed to load.',
-			'%lb-img-error': 'This image failed to load.',
-			'%lb-slideshow': 'slideshow',
+			'%lb-current': 'Nimetus {current} kogu {total}',
+			'%lb-next': 'Järgmine',
+			'%lb-prev': 'Eelmine',
+			'%lb-xhr-error': 'Laadimine ebaõnnestus',
+			'%lb-img-error': 'Pildi laadimine ebaõnnestus',
+			'%lb-slideshow': 'slaidi esitlus',
 			/* jQuery Mobile */
-			'%jqm-expand': ' click to expand contents',
-			'%jqm-collapse': ' click to collapse contents',
-			'%jqm-clear-search': 'clear search',
-			'%jqm-filter': 'Filter items...',
+			'%jqm-expand': ' vajuta, et laiendada sisu',
+			'%jqm-collapse': ' vajuta, et kitsenada sisu',
+			'%jqm-clear-search': 'tühista otsing',
+			'%jqm-filter': 'Filtreeri',
 			/* Charts widget */
-			'%table-mention': 'Table',
-			'%table-following': 'Chart. Details in the following table.',
+			'%table-mention': 'Tabel',
+			'%table-following': 'Graafik. Andmed tabelis järgmised',
 			/* Session timeout */
 			'%st-timeout-msg': 'Your session is about to expire, you have until #expireTime# to activate the "OK" button below to extend your session.',
 			'%st-msgbox-title': 'Session timeout warning',
@@ -201,8 +201,8 @@
 			'%td-ttl-open': 'Expand all sections of content',
 			'%td-ttl-close': 'Collapse all sections of content',
 			/* Disable/enable PE */
-			'%pe-disable': 'Basic HTML version',
-			'%pe-enable': 'Standard version'
+			'%pe-disable': 'Lihtsustatud HTML versioon',
+			'%pe-enable': 'Standardversioon'
 		}
 	};
 	$(document).trigger('languageloaded');

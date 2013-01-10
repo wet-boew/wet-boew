@@ -64,132 +64,132 @@
 			return r;
 		},
 		ind: {
-			'%all': 'All',
-			'%home': 'Home',
+			'%all': '全部',
+			'%home': '首页',
 			'%main-page': 'Main page',
-			'%top-of-page': 'Top of Page',
-			'%you-are-in': 'You are in: ',
-			'%welcome-to': 'Welcome to: ' + $('#gcwu-title').text(),
-			'%loading': 'loading...',
-			'%search': 'Search',
-			'%search-for-terms': 'Search for term(s):',
-			'%no-match-found': 'No match found',
+			'%top-of-page': '页首',
+			'%you-are-in': '您在： ',
+			'%welcome-to': '欢迎到： ' + $('#gcwu-title').text(),
+			'%loading': '连接中……',
+			'%search': '搜索',
+			'%search-for-terms': '搜索短语',
+			'%no-match-found': '无匹配结果',
 			'%matches-found': {
-				'mixin': '[MIXIN] match(es) found'
+				'mixin': '[MIXIN] 搜索结果'
 			},
-			'%menu': 'Menu',
-			'%hide': 'Hide',
-			'%error': 'Error',
+			'%menu': '菜单',
+			'%hide': '隐藏',
+			'%error': '错误',
 			'%colon': ':',
-			'%start': 'Start',
-			'%stop': 'Stop',
-			'%back': 'Back',
-			'%new-window': ' (Opens in a new window)',
-			'%minute-ago': 'a minute ago',
-			'%couple-of-minutes': 'couple of minutes ago',
+			'%start': '开始',
+			'%stop': '停止',
+			'%back': '返回',
+			'%new-window': ' 以新窗口打开',
+			'%minute-ago': '一分钟前',
+			'%couple-of-minutes': '一两分钟前',
 			'%minutes-ago': {
-				'mixin': '[MIXIN] minutes ago'
+				'mixin': '[MIXIN] 数分钟前'
 			},
-			'%hour-ago': 'an hour ago',
+			'%hour-ago': '一小时前',
 			'%hours-ago': {
-				'mixin': '[MIXIN] hours ago'
+				'mixin': '[MIXIN] 数小时前'
 			},
 			'%days-ago': {
-				'mixin': '[MIXIN] days ago'
+				'mixin': '[MIXIN] 数天前'
 			},
-			'%yesterday': 'yesterday',
+			'%yesterday': '昨天',
 			
-			'%next': 'Next',
-			'%previous': 'Previous',
+			'%next': '下一个',
+			'%previous': '上一个',
 			
 			/* Archived Web page template */
-			'%archived-page': 'This Web page has been archived on the Web.',
+			'%archived-page': '该网页已过期',
 			/* Menu bar */
-			'%sub-menu-help': '(open the submenu with the enter key and close with the escape key)',
+			'%sub-menu-help': '（以输入键打开子菜单，退出键退出）',
 			/* Tabbed interface */
 			'%tab-rotation': {
-				'disable': 'Stop tab rotation',
-				'enable': 'Start tab rotation'
+				'disable': '停止标签旋转',
+				'enable': '开始标签旋转'
 			},
 			'%tab-list': 'Tab list',
 			/* Multimedia player */
-			'%play': 'Play',
-			'%pause': 'Pause',
+			'%play': '播放',
+			'%pause': '暂停',
 			'%open': 'Open',
-			'%close': 'Close',
-			'%rewind': 'Rewind',
-			'%fast-forward': 'Fast forward ',
+			'%close': '关闭',
+			'%rewind': '回放',
+			'%fast-forward': '快进 ',
 			'%mute': {
-				'enable': 'Mute',
-				'disable': 'Unmute'
+				'enable': '静音',
+				'disable': '打开声音'
 			},
 			'%closed-caption': {
-				'disable': 'Hide Closed captioning',
-				'enable': 'Show Closed captioning'
+				'disable': '隐藏字幕',
+				'enable': '打开字幕'
 			},
-			'%captionserror': 'Error loading closed captions',
+			'%captionserror': '加载字母错误',
 			'%audio-description': {
-				'enable': 'Enable Audio Description',
-				'disable': 'Disable Audio Description'
+				'enable': '使用音频描述',
+				'disable': '停止音频描述'
 			},
-			'%progress-bar': 'use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media\'s progress',
-			'%no-video': 'Your browser does not appear to have the capabilities to play this video, please download the video below',
-			'%position': 'Current Position: ',
+			'%progress-bar': '使用左和右箭头前进和后退',
+			'%no-video': '您的浏览器无法播放该视频，请下载。',
+			'%position': '现在位置 ',
 			'%percentage': 'Playback Percentage: ',
-			'%duration': 'Total Time: ',
-			'%buffered': 'Buffered: ',
+			'%duration': '总时间 ',
+			'%buffered': '缓冲 ',
 			/* Share widget */
-			'%favourite': 'Favourite',
-			'%email': 'Email',
-			'%share-text': 'Share this page',
-			'%share-hint': ' with {s}',
-			'%share-email-subject': 'Interesting page',
-			'%share-email-body': 'I thought you might find this page interesting:\n{t} ({u})',
+			'%favourite': '喜爱',
+			'%email': '电釉',
+			'%share-text': '分享该页面',
+			'%share-hint': ' 使用時 {s}',
+			'%share-email-subject': '有趣的页面',
+			'%share-email-body': '我认为您也许觉得这个页面不错\n{t} ({u})',
 			'%share-fav-title': ' (bookmark this page)',
-			'%share-manual': 'Please close this dialog and\npress Ctrl-D to bookmark this page.',
-			'%share-showall': 'Show all ({n})',
-			'%share-showall-title': 'All bookmarking sites',
+			'%share-manual': '请关闭对话框，并按Ctrl-D收藏此页面',
+			'%share-showall': '展示全部 ({n})',
+			'%share-showall-title': '所有收藏的页面',
 			'%share-disclaimer' : 'No endorsement of any products or services is expressed or implied.',
 			/* Form validation */
-			'%form-not-submitted': 'The form could not be submitted because ',
-			'%errors-found': ' errors were found.',
-			'%error-found': ' error was found.',
+			'%form-not-submitted': '表格无法提交，因为 ',
+			'%errors-found': ' 找到错误',
+			'%error-found': ' 找到错误',
 			/* Date picker */
-			'%datepicker-hide': 'Hide Calendar',
-			'%datepicker-show': 'Pick a date from a calendar for field: ',
-			'%datepicker-selected': 'Selected',
+			'%datepicker-hide': '隐藏日历',
+			'%datepicker-show': '从日历选择一个日期 ',
+			'%datepicker-selected': '选中',
 			/* Calendar */
-			'%calendar-weekDayNames': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-			'%calendar-monthNames': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-			'%calendar-currentDay': ' (Current Day)',
+			'%calendar-weekDayNames': ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+			'%calendar-monthNames': ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+			'%calendar-currentDay': ' 当天',
 			'%calendar-goToLink': 'Go To<span class="wb-invisible"> Month of Year</span>',
-			'%calendar-goToTitle': 'Go To Month of Year',
-			'%calendar-goToMonth': 'Month:',
-			'%calendar-goToYear': 'Year:',
-			'%calendar-goToButton': 'Go',
-			'%calendar-cancelButton': 'Cancel',
-			'%calendar-previousMonth': 'Previous Month: ',
-			'%calendar-nextMonth': 'Next Month: ',
+			'%calendar-goToTitle': '到月份',
+			'%calendar-goToMonth': '月份',
+			'%calendar-goToYear': '年份',
+			'%calendar-goToButton': '去',
+			'%calendar-cancelButton': '取消',
+			'%calendar-previousMonth': '上个月 ',
+			'%calendar-nextMonth': '下个月 ',
 			/* Slideout */
-			'%show-toc': 'Show',
+			'%show-toc': '展示',
 			'%show-image': 'show.png',
 			'%hide-image': 'hide.png',
-			'%table-contents': ' table of contents',
+			'%table-contents': ' 内容表',
 			/* Lightbox */
-			'%lb-current': 'Item {current} of {total}',
-			'%lb-next': 'Next item',
-			'%lb-prev': 'Previous item',
-			'%lb-xhr-error': 'This content failed to load.',
-			'%lb-img-error': 'This image failed to load.',
-			'%lb-slideshow': 'slideshow',
+			'%lb-current': '项目 {current} 的 {total}',
+			'%lb-next': '下一个项目',
+			'%lb-prev': '上一个项目',
+			'%lb-xhr-error': '该内容无法下载',
+			'%lb-img-error': '该图像无法下载',
+			'%lb-slideshow': '幻灯片',
 			/* jQuery Mobile */
-			'%jqm-expand': ' click to expand contents',
-			'%jqm-collapse': ' click to collapse contents',
-			'%jqm-clear-search': 'clear search',
-			'%jqm-filter': 'Filter items...',
+			'%jqm-expand': ' 点击打开更多',
+			'%jqm-collapse': ' 点击收回更多',
+			'%jqm-clear-search': '清除搜索历史',
+			'%jqm-filter': '过滤项目',
 			/* Charts widget */
-			'%table-mention': 'Table',
-			'%table-following': 'Chart. Details in the following table.',
+			'%table-mention': '表格',
+			'%table-following': '图表。详细资料表如下。',
 			/* Session timeout */
 			'%st-timeout-msg': 'Your session is about to expire, you have until #expireTime# to activate the "OK" button below to extend your session.',
 			'%st-msgbox-title': 'Session timeout warning',
@@ -201,8 +201,8 @@
 			'%td-ttl-open': 'Expand all sections of content',
 			'%td-ttl-close': 'Collapse all sections of content',
 			/* Disable/enable PE */
-			'%pe-disable': 'Basic HTML version',
-			'%pe-enable': 'Standard version'
+			'%pe-disable': '基本网页格式',
+			'%pe-enable': '标准格式'
 		}
 	};
 	$(document).trigger('languageloaded');
