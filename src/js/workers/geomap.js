@@ -257,6 +257,15 @@
 			feature.popup = null;
 		},
 		
+		getRandomColor: function() { 
+			var letters = '0123456789ABCDEF'.split('');
+			var color = '#';
+			for (var i = 0; i < 6; i++) {
+				color += letters[Math.round(Math.random() * 15)];
+			}			
+			return color;
+		},
+		
 		_exec: function (elm) {
 			
 			// Don't include this if statement if your plugin shouldn't run in mobile mode.
@@ -283,6 +292,7 @@
 					theme: null
 				},
 				features: [],
+				tables: [],
 				useLayerSwitcher: false,
 				useScaleLine: false,
 				useMousePosition: false
@@ -422,6 +432,31 @@
 				});
 			}
 			
+//			var style = $.extend(true, {}, OpenLayers.Feature.Vector.style['default']); // get a copy of the default style
+//			style.fillColor = "${getFillColor}";
+			
+			
+
+//			var myStyleMap = new OpenLayers.StyleMap({
+//				"default": new OpenLayers.Style(style, {
+//					context: {
+//						getFillColor: function (feature) {
+//							return getRandomColor();
+//						}
+//					}
+//				})
+//			}); 
+			
+			var randomColor = this.getRandomColor();
+			
+			var my_style = new OpenLayers.StyleMap({ 
+				"default": new OpenLayers.Style( 
+					{ 
+						strokeColor: "#990000", 
+						fillColor: "#990000"
+					}) 
+			});			
+			
 			/*
 			 * Add vector features
 			 * 
@@ -439,11 +474,38 @@
 				
 				vectorLayer.addFeatures([										 
 					wktParser.read(feature)															 
-				]);
+				]);				
 				
 			});			
 			
-			map.addLayer(vectorLayer);
+			map.addLayer(vectorLayer);			
+			
+			/*
+			 * Add tabluar data
+			 * 
+			 * TODO: turn this into a public function
+			 */	
+			
+			$.each(opts.tables, function(index, table) {				
+								
+				$table = $("table#" + table);
+				
+				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { /*styleMap: my_style*/ });
+												
+				var wktParser = new OpenLayers.Format.WKT({						
+					'internalProjection': projMap, 
+					'externalProjection': projLatLon
+				});
+						
+				$.each($("table#" + table + ' td.feature'), function(index, feature) {						
+					tableLayer.addFeatures([										 
+						wktParser.read($(feature).text())															 
+					]);				
+				});
+				
+				map.addLayer(tableLayer);
+				
+			});	
 			
 			/*
 			 * Load Controls
@@ -461,10 +523,7 @@
 			if(opts.useScaleLine) { map.addControl(new OpenLayers.Control.ScaleLine()) };					
 			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
 			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
-			map.addControl(new OpenLayers.Control.KeyboardDefaults());
-			
-			// TODO: enable TouchNavigation for mobile clients			
-			//map.addControl(new OpenLayers.Control.TouchNavigation();
+			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			
 			// add accessibility enhancements
 			this.accessibilize();					
@@ -475,7 +534,14 @@
 			
 			// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
 			$("#" + map.div.id).before((_pe.language == "en") ? '<p><strong>Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.</p>' : '<p><strong>Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.</p>');
-							
+			
+			// add a listener on the window to update map when resized
+			window.onresize = function() {				
+				$("#" + map.div.id).height($("#" + map.div.id).width() * 0.8);
+				map.updateSize();
+				map.zoomToMaxExtent();
+			}
+			
 			return elm;
 		} // end of exec
 	};
