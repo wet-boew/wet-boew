@@ -89,7 +89,6 @@
 	
 	<target name="call.sass">
 		<java fork="true" failonerror="true" jar="${lib.dir}/${jruby.jar}">
-			<arg value="--1.8"/>
 			<arg path="${tasks.basedir}/compile.rb"/>
 			<arg path="${lib.dir}/vendors-${jruby.depends}/gems/"/>
 			<arg value="${command}"/>
