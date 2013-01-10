@@ -4,14 +4,13 @@
  */
 .ie8 {
 	/* Right to left (RTL) CSS */
-	[dir="rtl"] {
+	&[dir="rtl"] {
 		#gcwu-tctr {
 			li {
 				&.gcwu-tc {
-					border: 0;
-				}
-				&.gcwu-tr {
-					border-left: 1px solid #999;
+					border-left: 1px solid #999999;
+					border-right: 0 none;
+					padding: 0 10px;
 				}
 			}
 		}

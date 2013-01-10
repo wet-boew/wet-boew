@@ -62,15 +62,25 @@
 	}
 
 	/* Right to left (RTL) CSS */
-	[dir="rtl"] {
+	&[dir="rtl"] {
+		#gcwu-wmms-in {
+			float: left;
+		}
+
 		#gcwu-date-mod {
 			float: left;
 		}
 
 		#gcwu-tctr {
-			li.gcwu-tr {
-				padding-left: 0;
-				padding-right: 10px;
+			li {
+				&.gcwu-tc {
+					border-right: 1px solid #999;
+					border-left: 0;
+					padding: 0 9px 0 10px;
+				}
+				&.gcwu-tr {
+					padding: 0 10px 0 6px;
+				}
 			}
 		}
 

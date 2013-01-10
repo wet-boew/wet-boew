@@ -25,7 +25,7 @@
 	}
 
 	/* Right to left (RTL) CSS */
-	[dir="rtl"] {
+	&[dir="rtl"] {
 		#base-bc {
 			li {
 				border-left: none;

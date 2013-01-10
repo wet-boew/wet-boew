@@ -47,7 +47,7 @@
 	}
 
 	/* Right to left (RTL) CSS */
-	[dir="rtl"] {
+	&[dir="rtl"] {
 		#base-date-mod {
 			float: left;
 		}

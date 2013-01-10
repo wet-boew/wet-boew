@@ -10,7 +10,7 @@
 	}
 
 	/* Right to left (RTL) CSS */
-	[dir="rtl"] {
+	&[dir="rtl"] {
 		#base-subsite a {
 			padding-left: 0;
 			padding-right: expression(this.previousSibling == null ? '0' : '-' );
