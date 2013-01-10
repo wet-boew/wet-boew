@@ -53,7 +53,7 @@
 			<get src="http://production.cf.rubygems.org/gems/${fssm.gem}" dest="${gem.dir}/${fssm.gem}" skipexisting="true"/>
 			<get src="http://production.cf.rubygems.org/gems/${compass.gem}" dest="${gem.dir}/${compass.gem}" skipexisting="true"/>
 		</parallel>
-		<parallel>
+		<sequential>
 			<java jar="${lib.dir}/${jruby.jar}" fork="true">
 				<arg line="-S gem install -i &quot;${lib.dir}/vendors-${jruby.depends}&quot; &quot;${gem.dir}/${sass.gem}&quot; --local -f"/>
 			</java>
@@ -66,7 +66,7 @@
 			<java jar="${lib.dir}/${jruby.jar}" fork="true">
 				<arg line="-S gem install -i &quot;${lib.dir}/vendors-${jruby.depends}&quot; &quot;${gem.dir}/${compass.gem}&quot; --local -f"/>
 			</java>
-		</parallel>
+		</sequential>
 	</target>
 
 	<target name="-jruby.jar.check">
