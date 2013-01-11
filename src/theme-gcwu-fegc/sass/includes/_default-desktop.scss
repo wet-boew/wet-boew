@@ -2,7 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#gcwu-psnb, #gcwu-srchbx {
+%gcwu-default-desktop-hidden-h2 {
 	h2 {
 		position: absolute;
 		clip: rect(1px, 1px, 1px, 1px);
@@ -11,6 +11,14 @@
 		overflow: hidden !important;
 		margin: 0 !important;
 	}
+}
+
+#gcwu-psnb {
+	@extend %gcwu-default-desktop-hidden-h2;
+}
+
+#gcwu-srchbx {
+	@extend %gcwu-default-desktop-hidden-h2;
 }
 
 #gcwu-bc {
@@ -47,6 +55,24 @@
 	margin: 0;
 }
 
-#gcwu-bnr .ui-navbar, #jqm-wb-mb, #jqm-wb-search, .ui-loader {
+%display-none-important {
 	display: none !important;
+}
+
+#gcwu-bnr {
+	.ui-navbar {
+		@extend %display-none-important;
+	}
+}
+//TODO: Is there a reason to have jQuery Mobile (jqm) classes in the desktop?
+#jqm-wb-mb {
+	@extend %display-none-important;
+}
+
+#jqm-wb-search {
+	@extend %display-none-important;
+}
+
+.ui-loader {
+	@extend %display-none-important;
 }
