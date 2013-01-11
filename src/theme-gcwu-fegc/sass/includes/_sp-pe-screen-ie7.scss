@@ -7,17 +7,41 @@
 		margin-top: 20px;
 		padding-bottom: 10px;
 	}
-	#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
+	%gcwu-sp-pe-screen-ie7-title-all {
 		padding-top: 12px;
 	}
-	#gcwu-ef-lang, #gcwu-other-lang {
+	#gcwu-title-left {
+		@extend %gcwu-sp-pe-screen-ie7-title-all;
+	}
+	#gcwu-title-right {
+		@extend %gcwu-sp-pe-screen-ie7-title-all;
+	}
+	.gcwu-alt-title-left {
+		@extend %gcwu-sp-pe-screen-ie7-title-all;
+	}
+	.gcwu-alt-title-right {
+		@extend %gcwu-sp-pe-screen-ie7-title-all;
+	}
+	%gcwu-sp-pe-screen-ie7-langs {
 		margin: 13px 0 0;
+	}
+	#gcwu-ef-lang {
+		@extend %gcwu-sp-pe-screen-ie7-langs;
+	}
+	#gcwu-other-lang {
+		@extend %gcwu-sp-pe-screen-ie7-langs;
 	}
 	#gcwu-tc {
 		margin-top: -1px;
 	}
-	#gcwu-ef-tc, #gcwu-other-tc {
+	%gcwu-sp-pe-screen-ie7-padding-top-8px {
 		padding-top: 8px;
+	}
+	#gcwu-ef-tc {
+		@extend %gcwu-sp-pe-screen-ie7-padding-top-8px;
+	}
+	#gcwu-other-tc {
+		@extend %gcwu-sp-pe-screen-ie7-padding-top-8px;
 	}
 	#wb-core {
 		margin-bottom: -20px;
