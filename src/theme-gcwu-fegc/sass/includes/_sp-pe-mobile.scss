@@ -2,9 +2,18 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#wb-foot {
-	background: #FFF;
 
+h1 {
+	@extend %gcwu-sp-pe-mobile-padding-sides-5px;
+}
+ 
+#wb-foot {
+	@extend %gcwu-sp-pe-mobile-lang-foot;
+	background: #FFF;		
+	.ui-footer {
+		border: 0;
+		background: none;
+	}
 	#gcwu-wmms {
 		img {
 			display: block;
@@ -25,17 +34,41 @@
 	width: 100%;
 }
 
-h1, #gcwu-title {
-    padding-left: 5px;
-    padding-right: 5px;
+%gcwu-sp-pe-mobile-padding-sides-5px {
+    padding: {
+		left: 5px;
+		right: 5px;
+	}
 }
 
-#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
+#gcwu-title {
+	@extend %gcwu-sp-pe-mobile-padding-sides-5px;
+}
+
+%gcwu-sp-pe-mobile-titles-all {
 	width: 50%;
 	float: left;
 }
 
-#gcwu-title-left, .gcwu-alt-title-left {
+#gcwu-title-left {
+	@extend %gcwu-sp-pe-mobile-titles-all;
+	@extend %gcwu-sp-pe-mobile-left-titles;
+}
+
+#gcwu-title-right {
+	@extend %gcwu-sp-pe-mobile-titles-all;
+}
+
+.gcwu-alt-title-left {
+	@extend %gcwu-sp-pe-mobile-titles-all;
+	@extend %gcwu-sp-pe-mobile-left-titles;
+}
+
+.gcwu-alt-title-right {
+	@extend %gcwu-sp-pe-mobile-titles-all;
+}
+
+%gcwu-sp-pe-mobile-left-titles {
 	clear: left;
 }
 
@@ -45,10 +78,7 @@ h1, #gcwu-title {
 }
 
 #gcwu-lang {
-	ul {
-		margin: 0;
-	}
-	//TODO: Is an empty href selector necessary?
+	@extend %gcwu-sp-pe-mobile-lang-foot;
 	a[href]{
 		&:hover, &:focus, &:active {
 			color: #FFF;
@@ -56,43 +86,56 @@ h1, #gcwu-title {
 	}
 }
 
-#gcwu-lang, #wb-foot {
+%gcwu-sp-pe-mobile-lang-foot {
 	display: none;
-	ul, a {
+	%gcwu-sp-pe-mobile-margin-0 {
 		margin: 0;
 	}
+	a {
+		@extend %gcwu-sp-pe-mobile-margin-0;
+	}
 	li {
-		a.ui-btn {
-			border-top-width: 0;
-		}
-		&:nth-child(1), &:nth-child(2) {
-			a.ui-btn {
-				border-top-width: 1px;
+		a {
+			&.ui-btn {
+				border-top-width: 0;
 			}
-		}
-		&:not(:last-child).ui-block-a {
-			a.ui-btn {
-				border-right-width: 0;
+			&:nth-child(1), &:nth-child(2) {
+				a {
+					&.ui-btn {
+						border-top-width: 1px;
+					}
+				}
+			}
+			&:not(:last-child) {
+				&.ui-block-a {
+					a {
+						&.ui-btn {
+							border-right-width: 0;
+						}
+					}
+				}
 			}
 		}
 	}
-}
-
-#wb-foot {
-	.ui-footer {
-		border: 0;
-		background: none;
+	ul {
+		@extend %gcwu-sp-pe-mobile-margin-0;
 	}
 }
 
 .ui-mobile {
-	#gcwu-lang, #wb-foot {
+	%gcwu-sp-pe-mobile-ui-mobile-display-block {
 		display: block;
+	}
+	#gcwu-lang {
+		@extend %gcwu-sp-pe-mobile-ui-mobile-display-block;
+	}
+	#wb-foot {
+		@extend %gcwu-sp-pe-mobile-ui-mobile-display-block;
 	}
 }
 
 .no-js  {
-	#gcwu-lang, #wb-foot {
+	%gcwu-sp-pe-mobile-no-js-block-li {
 		display: block;
 		padding: 0 5px;
 		li {
@@ -100,13 +143,16 @@ h1, #gcwu-title {
 			width: 108px;
 		}
 	}
+	#wb-foot {
+		@extend %gcwu-sp-pe-mobile-no-js-block-li;
+	}
 	#gcwu-lang {
+		@extend %gcwu-sp-pe-mobile-no-js-block-li;
 		a {
 			&:hover, &:focus, &:active {
 				color: #000;
 			}
 		}
-		//TODO: Move to grid system?
 		.span-6 {
 			width: 256px;
 			float: left;
