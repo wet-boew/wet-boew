@@ -2,6 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
 html {
 	overflow-y: scroll;
 }
@@ -16,26 +17,47 @@ h1 {
 	margin: 0;
 }
 
-#wb-head-in, #wb-core-in, #wb-foot-in  {
+%gcwu-serv-screen-margin-auto {
 	margin: auto;
 }
 
-#gcwu-title, #gcwu-tc {
+#wb-head-in {
+	@extend %gcwu-serv-screen-margin-auto;
+	@extend %gcwu-serv-screen-overflow-hidden;
+}
+
+#wb-foot-in {
+	@extend %gcwu-serv-screen-margin-auto;
+	@extend %gcwu-serv-screen-background-white;
+	@extend %gcwu-serv-screen-overflow-hidden;
+}
+
+%gcwu-serv-screen-block-element {
 	display: block;
 	float: none;
 	margin: auto;
 	line-height: normal;
 }
 
-#wb-head, #wb-head-in, #wb-foot, #wb-foot-in  {
+#gcwu-title {
+	@extend %gcwu-serv-screen-block-element;
+}
+
+%gcwu-serv-screen-overflow-hidden {
 	overflow: hidden;
 }
 
-#wb-foot-in, #wb-core-in {
+#wb-head {
+	@extend %gcwu-serv-screen-overflow-hidden;
+}
+
+%gcwu-serv-screen-background-white {
 	background: #fff;
 }
 
 #wb-core-in {
+	@extend %gcwu-serv-screen-margin-auto;
+	@extend %gcwu-serv-screen-background-white;
 	overflow: visible !important;
 	&:after {
 		content: ".";
@@ -75,8 +97,16 @@ h1 {
 	height: 20px;
 }
 
-#gcwu-title-right, .gcwu-alt-title-right {
+%gcwu-serv-screen-text-align-right {
 	text-align: right;
+}
+
+#gcwu-title-right {
+	@extend %gcwu-serv-screen-text-align-right;
+}
+
+.gcwu-alt-title-right {
+	@extend %gcwu-serv-screen-text-align-right;
 }
 
 .gcwu-tc-left {
@@ -88,6 +118,7 @@ h1 {
 }
 
 #gcwu-tc {
+	@extend %gcwu-serv-screen-block-element;
 	ul {
 		line-height: normal;
 		list-style: none;
