@@ -64,6 +64,9 @@
 	}
 	.mb-has-sm {
 		padding-right: 0.79em;
+		&:hover {
+			text-decoration: none;
+		}
 	}
 	.nav-current {
 		background: #242;
