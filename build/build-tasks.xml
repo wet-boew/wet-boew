@@ -95,7 +95,12 @@
 			<arg value="${command}"/>
 			<arg path="${src.dir}"/>
 			<arg value="${dist.dir}/css"/>
+			<arg value="${isdebugging}"/>
 		</java>
+	</target>
+	
+	<target name="usedebugging">
+		<property name="isdebugging" value="true"/>
 	</target>
 	
 	<!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
@@ -142,7 +147,7 @@
 	<property name="csslint.ignores" value="ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,floats,overqualified-elements,font-sizes,regex-selectors,duplicate-properties,box-sizing"/>
 	<property name="csslint.errors" value="outline-none"/>
 
-	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="prepare-files">
+	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="usedebugging, prepare-files">
 		<apply executable="java" failonerror="false" parallel="false">
 			<fileset dir="${dist.dir}/css">
 				<include name="*.css"/>

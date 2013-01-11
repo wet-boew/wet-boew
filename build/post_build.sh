@@ -2,16 +2,23 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 	export REPO="$(pwd | sed s,^/home/travis/builds/,,g)"
 	declare -a supported_branches=('master' 'v3.0') # List of branches to store build output for
 
+	#Set git user
+	git config --global user.email "travis@travis-ci.org"
+	git config --global user.name "Travis"
+
+	#Set upstream remote
+	git remote add upstream https://${GH_TOKEN}@github.com/${REPO}.git > /dev/null
+
 	#Copy result of build and demo in a temporary location
 	cp -R dist $HOME/dist
 	cp -R demos $HOME/demos
 
-	git fetch
+	git fetch upstream
 
 	if [ "$REPO" == "wet-boew/wet-boew" ]; then
 		#Update working example
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
-			echo "Updating working examples..."
+			echo -e "Updating working examples...\n"
 
 			git add -f dist/.
 			git stash
@@ -21,14 +28,14 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 			git stash pop
 			git add -f dist/.
 			git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
-			git push -fq https://${GH_TOKEN}@github.com/${REPO}.git gh-pages > /dev/null
+			git push -fq upstream gh-pages > /dev/null
 
-			echo "Finished updating the working examples"
+			echo -e "Finished updating the working examples\n"
 		fi
 
 		#Add the latest tags
 		case "${supported_branches[@]}" in  *"$TRAVIS_BRANCH"*)
-			echo "Tagging the latest build for branch $TRAVIS_BRANCH"
+			echo -e "Tagging the latest build for branch $TRAVIS_BRANCH\n"
 
 			build_branch="$TRAVIS_BRANCH-dist"
 
@@ -42,9 +49,9 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 			git add -f dist
 			git add -f demos
 			git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
-			git push -fq https://${GH_TOKEN}@github.com/${REPO}.git $build_branch > /dev/null
+			git push -fq upstream $build_branch > /dev/null
 
-			echo "Finished tagging the latest build for branch $TRAVIS_BRANCH"
+			echo -e "Finished tagging the latest build for branch $TRAVIS_BRANCH\n"
 		;; esac
 	fi
 fi
