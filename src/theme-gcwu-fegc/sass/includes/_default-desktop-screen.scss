@@ -37,7 +37,7 @@ a {
 	}
 }
 
-#gcwu-sig, #gcwu-wmms {
+%gcwu-default-desktop-screen-hidden-img {
 	img {
 		position: absolute;
 		clip: rect(1px, 1px, 1px, 1px);
@@ -48,13 +48,66 @@ a {
 	}
 }
 
-#wb-sec, #wb-sup {
+%gcwu-default-desktop-screen-inline-z1 {
 	z-index: 1;
 	display: inline;
 }
 
-#wb-head, #wb-head-in, #wb-foot, #wb-foot-in, #gcwu-gcnb, #gcwu-bnr, #gcwu-bc, #gcwu-gcft, #gcwu-sft, #gcwu-gcnb-in, #gcwu-bnr-in, #gcwu-bc-in, #gcwu-gcft-in, #gcwu-sft-in {
+#wb-sup {
+	@extend %gcwu-default-desktop-screen-inline-z1;
+	@extend %float-right-relative;
+}
+
+%overflow-hidden {
 	overflow: hidden;
+}
+
+#wb-head {
+	@extend %overflow-hidden;
+}
+
+#wb-head-in {
+	@extend %overflow-hidden;
+}
+
+#wb-foot {
+	@extend %overflow-hidden;
+	@extend %text-decoration-underline-a-psuedos;
+	#gcwu-wmms {
+		display: none;
+	}
+}
+
+#wb-foot-in {
+	@extend %overflow-hidden;
+}
+
+#gcwu-bc {
+	@extend %overflow-hidden;
+}
+
+#gcwu-gcft {
+	@extend %overflow-hidden;
+}
+
+#gcwu-sft {
+	@extend %overflow-hidden;
+}
+
+#gcwu-gcnb-in {
+	@extend %overflow-hidden;
+}
+
+#gcwu-bc-in {
+	@extend %overflow-hidden;
+}
+
+#gcwu-gcft-in {
+	@extend %overflow-hidden;
+}
+
+#gcwu-sft-in {
+	@extend %overflow-hidden;
 }
 
 #wb-core-in {
@@ -71,11 +124,13 @@ a {
 }
 
 #gcwu-bnr {
+	@extend %overflow-hidden;
 	position: relative;
 	z-index: 501 !important;
 }
 
 #gcwu-bnr-in {
+	@extend %overflow-hidden;
 	min-height: 6.5em;
 	position: relative;
 }
@@ -103,6 +158,9 @@ a {
 		float: left;
 		position: relative;
 	}
+	#wb-main {
+		@extend %float-left;
+	}
 }
 
 #gcwu-aside {
@@ -117,16 +175,29 @@ a {
 	right: 10px;
 }
 
-#wb-body #wb-main, #wb-body-sec-sup #wb-main, #wb-sec {
+%float-left {
 	float: left;
 }
 
-#wb-body-sec-sup #wb-main, #wb-sup {
+#wb-body-sec-sup {
+	#wb-main {
+		@extend %float-left;
+		@extend %float-right-relative;
+	}
+}
+
+#wb-sec {
+	@extend %float-left;
+	@extend %gcwu-default-desktop-screen-inline-z1;
+}
+
+%float-right-relative {
 	float: right;
 	position: relative;
 }
 
 #gcwu-sig {
+	@extend %gcwu-default-desktop-screen-hidden-img;
 	width: 247px;
 	float: left;
 	margin: 8px 0;
@@ -138,6 +209,8 @@ a {
 }
 
 #gcwu-gcnb {
+	@extend %overflow-hidden;
+	@extend %text-decoration-underline-a-psuedos;
 	background: #000;
 	font-size: 0.9em;
 	height: 3.6em;
@@ -199,6 +272,7 @@ a {
 }
 
 #gcwu-srchbx {
+	@extend %text-decoration-underline-a-psuedos;
 	position: absolute;
 	background: #146094;
 	border-top: 1px solid #87aec9;
@@ -206,8 +280,10 @@ a {
 	right: 0;
 	bottom: -1px;
 	width: auto;
-	border-left: 1px solid #15527D;
-	border-right: 1px solid #15527D;
+	border: {
+		right: 1px solid #15527D;
+		left: 1px solid #15527D;
+	}
 	z-index: 100;
 	padding: 11px 10px 6px 12px;
 	input {
@@ -224,7 +300,7 @@ a {
 		width: 1px;
 		overflow: hidden;
 	}
-	#gcwu-srch {
+	#gcwu-srch { //TODO: Does this need to be nested?
 		color: #444;
 		border: 1px solid #ccc;
 		@include border-radius(2px);
@@ -279,13 +355,8 @@ a {
 	}
 }
 
-#wb-foot {
-	#gcwu-wmms {
-		display: none;
-	}
-}
-
 #gcwu-wmms {
+	@extend %gcwu-default-desktop-screen-hidden-img;
 	position: absolute;
 	top: 36px;
 	right: 10px;
@@ -331,13 +402,14 @@ a {
 	}
 }
 
-#gcwu-gcnb, #gcwu-srchbx, #wb-foot {
+%text-decoration-underline-a-psuedos {
 	a {
 		&:hover, &:focus, &:active {
 			text-decoration: underline;
 		}
 	}
 }
+
 @if $experimental-support-for-mozilla {
 	@-moz-document url-prefix() {
 		#gcwu-srch-submit {
