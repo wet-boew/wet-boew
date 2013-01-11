@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
-/* Build time: 1-January-2013 02:46:05 */
+/* Build time: 11-January-2013 01:17:18 */
 var CSSLint = (function(){
 
 /*!
@@ -47,7 +47,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
-/* Version v0.2.1, Build time: 4-December-2012 11:58:48 */
+/* Version v0.2.1, Build time: 11-January-2013 01:15:29 */
 var parserlib = {};
 (function(){
 
@@ -957,7 +957,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
-/* Version v0.2.1, Build time: 4-December-2012 11:58:48 */
+/* Version v0.2.1, Build time: 11-January-2013 01:15:29 */
 (function(){
 var EventTarget = parserlib.util.EventTarget,
 TokenStreamBase = parserlib.util.TokenStreamBase,
@@ -2588,7 +2588,7 @@ Parser.prototype = function(){
                 while(tokenStream.match([Tokens.PLUS, Tokens.MINUS, Tokens.DIMENSION,
                         Tokens.NUMBER, Tokens.STRING, Tokens.IDENT, Tokens.LENGTH,
                         Tokens.FREQ, Tokens.ANGLE, Tokens.TIME,
-                        Tokens.RESOLUTION])){
+                        Tokens.RESOLUTION, Tokens.SLASH])){
                     
                     value += tokenStream.token().value;
                     value += this._readWhitespace();                        
@@ -3534,7 +3534,7 @@ var Properties = {
     "-o-animation-name"                : { multi: "none | <ident>", comma: true },
     "-o-animation-play-state"          : { multi: "running | paused", comma: true },        
     
-    "appearance"                    : "icon | window | desktop | workspace | document | tooltip | dialog | button | push-button | hyperlink | radio-button | checkbox | menu-item | tab | menu | menubar | pull-down-menu | pop-up-menu | list-menu | radio-group | checkbox-group | outline-tree | range | field | combo-box | signature | password | normal | inherit",
+    "appearance"                    : "icon | window | desktop | workspace | document | tooltip | dialog | button | push-button | hyperlink | radio-button | checkbox | menu-item | tab | menu | menubar | pull-down-menu | pop-up-menu | list-menu | radio-group | checkbox-group | outline-tree | range | field | combo-box | signature | password | normal | none | inherit",
     "azimuth"                       : function (expression) {
         var simple      = "<angle> | leftwards | rightwards | inherit",
             direction   = "left-side | far-left | left | center-left | center | center-right | right | far-right | right-side",
@@ -6393,7 +6393,7 @@ var CSSLint = (function(){
         formatters = [],
         api        = new parserlib.util.EventTarget();
         
-    api.version = "@VERSION@";
+    api.version = "0.9.9";
 
     //-------------------------------------------------------------------------
     // Rule Management
@@ -6973,72 +6973,6 @@ CSSLint.addRule({
         });       
     }
 
-});
-/*
- * Rule: Use the bulletproof @font-face syntax to avoid 404's in old IE
- * (http://www.fontspring.com/blog/the-new-bulletproof-font-face-syntax)
- */
-/*global CSSLint*/
-CSSLint.addRule({
-
-    //rule information
-    id: "bulletproof-font-face",
-    name: "Use the bulletproof @font-face syntax",
-    desc: "Use the bulletproof @font-face syntax to avoid 404's in old IE (http://www.fontspring.com/blog/the-new-bulletproof-font-face-syntax).",
-    browsers: "All",
-
-    //initialization
-    init: function(parser, reporter){
-        var rule = this,
-            count = 0,
-            fontFaceRule = false,
-            firstSrc     = true,
-            ruleFailed    = false,
-            line, col;
-
-        // Mark the start of a @font-face declaration so we only test properties inside it
-        parser.addListener("startfontface", function(event){
-            fontFaceRule = true;
-        });
-
-        parser.addListener("property", function(event){
-            // If we aren't inside an @font-face declaration then just return
-            if (!fontFaceRule) {
-                return;
-            }
-
-            var propertyName = event.property.toString().toLowerCase(),
-                value        = event.value.toString();
-
-            // Set the line and col numbers for use in the endfontface listener
-            line = event.line;
-            col  = event.col;
-
-            // This is the property that we care about, we can ignore the rest
-            if (propertyName === 'src') {
-                var regex = /^\s?url\(['"].+\.eot\?.*['"]\)\s*format\(['"]embedded-opentype['"]\).*$/i;
-
-                // We need to handle the advanced syntax with two src properties
-                if (!value.match(regex) && firstSrc) {
-                    ruleFailed = true;
-                    firstSrc = false;
-                } else if (value.match(regex) && !firstSrc) {
-                    ruleFailed = false;
-                }
-            }
-
-
-        });
-
-        // Back to normal rules that we don't need to test
-        parser.addListener("endfontface", function(event){
-            fontFaceRule = false;
-
-            if (ruleFailed) {
-                reporter.report("@font-face declaration doesn't follow the fontspring bulletproof syntax.", line, col, rule);
-            }
-        });
-    }
 });
 /*
  * Rule: Include all compatible vendor prefixes to reach a wider
