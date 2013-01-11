@@ -2,6 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
 h1 {
 	position: absolute;
 	clip: rect(1px, 1px, 1px, 1px);
@@ -16,22 +17,32 @@ h1 {
 	visibility: hidden;
 }
 
-#wb-body, #wb-core-in, #wb-head-in {
+%gcwu-serv-background-white {
 	background: #fff;
 }
 
+#wb-body {
+	@extend %gcwu-serv-background-white;
+}
+
+#wb-head-in {
+	@extend %gcwu-serv-background-white;
+}
+
 #gcwu-sig {
+	@extend %gcwu-serv-img-margin-bottom-0;
 	margin-top: 20px;
 	margin-bottom: 11px;
 }
 
 #gcwu-wmms {
+	@extend %gcwu-serv-img-margin-bottom-0;
 	text-align: right;
 	margin-top: 10px;
 	margin-bottom: 11px;
 }
 
-#gcwu-sig, #gcwu-wmms {
+%gcwu-serv-img-margin-bottom-0 {
 	img {
 		margin-bottom: 0;
 	}
@@ -40,7 +51,7 @@ h1 {
 #gcwu-title {
 	border-bottom: 1px solid #666;
 	a {
-		&, &:visited, &:hover, &:focus, &:active {
+		&, &:visited, &:hover, &:focus, &:active { //TODO: Conflicting text-decorations for hover, focus and active with next rule
 			color: #295376;
 			text-decoration: none;
 		}
@@ -50,14 +61,32 @@ h1 {
 	}
 }
 
-#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
+%gcwu-serv-title-right-left {
 	padding: 0;
 	color: #000;
 	font-size: 1.5em;
 	font-weight: bold;
 }
 
-.gcwu-alt-title-left, .gcwu-alt-title-right {
+#gcwu-title-left {
+	@extend %gcwu-serv-title-right-left;
+}
+
+#gcwu-title-right {
+	@extend %gcwu-serv-title-right-left;
+}
+
+.gcwu-alt-title-left {
+	@extend %gcwu-serv-title-right-left;
+	@extend %gcwu-serv-alt-title-right-left;
+}
+
+.gcwu-alt-title-right {
+	@extend %gcwu-serv-title-right-left;
+	@extend %gcwu-serv-alt-title-right-left;
+}
+
+%gcwu-serv-alt-title-right-left {
 	padding: 0;
 	color: #000;
 	font-size: 1.2em;
@@ -65,8 +94,15 @@ h1 {
 }
 
 #wb-core-in {
-	h2, p {
+	@extend %gcwu-serv-background-white;
+	%gcwu-serv-wb-core-margin-left-0 {
 		margin-left: 0;
+	}
+	h2 {
+		@extend %gcwu-serv-wb-core-margin-left-0;
+	}
+	p {
+		@extend %gcwu-serv-wb-core-margin-left-0;
 	}
 	li {
 		a {
