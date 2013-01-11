@@ -16,12 +16,6 @@ body {
 	color: #333;
 }
 
-img {
-	max-width: 100%;
-	height: auto;
-	display: block;
-}
-
 a {
 	color: #295376;
 	font-weight: bold;
@@ -30,8 +24,33 @@ a {
 	}
 }
 
+blockquote {
+	@extend %no-margin-no-shadow;
+}
+
+%no-margin-no-shadow {
+	margin-left: 0;
+	margin-right: 0;
+	@include text-shadow(none);
+}
+
+form {
+	@extend %no-margin-no-shadow;
+}
+
+#{headings(2,6)} {
+	@extend %no-margin-no-shadow;
+}
+
+img {
+	@extend %no-margin-no-shadow;
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
 li {
-	&#gcwu-gcft-ca {
+	&#gcwu-gcft-ca { //TODO: Is this ID ever outside an li?
 		a {
 			padding-left: 0;
 			padding-right: 0;
@@ -41,10 +60,22 @@ li {
 	}
 }
 
+p {
+	@extend %no-margin-no-shadow;
+}
+
+pre {
+	@extend %no-margin-no-shadow;
+}
+
+table {
+	@extend %no-margin-no-shadow;
+}
+
 /* Override jQuery Mobile hiding of content on mobile loading to eliminate white flicker */
 .ui-mobile-rendering {
 	> {
-		* {
+		* { //TODO: Why use child and wildchard selectors nested?
 			visibility: visible !important;
 		}
 	}
@@ -65,14 +96,8 @@ li {
 	}
 }
 
-#gcwu-psnb, #gcwu-srchbx {
-	h2 a {
-		color: #fff;
-		text-decoration: none;
-	}
-}
-
 #wb-head {
+	@extend %period-after-pseudo;
 	#gcwu-wmms {
 		clip: rect(1px, 1px, 1px, 1px);
 		height: 0 !important;
@@ -116,6 +141,7 @@ li {
 }
 
 #gcwu-date-mod {
+	@extend %period-after-pseudo;
 	float: right;
 	margin: 5px 0;
 }
@@ -123,6 +149,9 @@ li {
 #gcwu-priorities {
 	li {
 		text-align: center;
+	}
+	ul {
+		@extend %period-after-pseudo;
 	}
 }
 
@@ -147,12 +176,6 @@ li {
 	}
 }
 
-#{headings(2,6)}, p, blockquote, table, form, img, pre {
-	margin-left: 0;
-	margin-right: 0;
-	@include text-shadow(none);
-}
-
 .clear {
 	clear: both;
 	display: block;
@@ -173,8 +196,10 @@ li {
 	.ui-content {
 		padding: 0 15px;
 	}
-	.wet-boew-menubar a {
-		padding: 0;
+	.wet-boew-menubar {
+		a {
+			padding: 0;
+		}
 	}
 }
 
@@ -182,11 +207,12 @@ li {
 	padding: 5px;
 }
 
-#gcwu-sft, #gcwu-sft-in {
+%background-efefef {
 	background: #efefef;
 }
 
 #gcwu-sft {
+	@extend %background-efefef;
 	padding-bottom: 5px;
 	margin-top: 5px;
 	.ui-footer {
@@ -221,6 +247,8 @@ li {
 }
 
 #gcwu-sft-in {
+	@extend %period-after-pseudo;
+	@extend %background-efefef;
 	border-top: 1px solid #CCCCCC;
 	padding: 5px;
 	div {
@@ -252,11 +280,14 @@ li {
 		width: 50%;
 		float: left !important;
 		margin: 10px 0;
-		&#gcwu-gcft-ca {
+		&#gcwu-gcft-ca { //TODO: Overly specific? Would #gcwu-gcft-ca ever be outside #gcwu-gcft
 			div {
 				text-align: left;
 			}
 		}
+	}
+	ul {
+		@extend %period-after-pseudo;
 	}
 }
 
@@ -267,7 +298,7 @@ li {
 			display: none;
 			padding-top: 8px;
 		}
-		#gcwu-gcnb-lang {
+		#gcwu-gcnb-lang { //TODO: Overly specific? Should this be combined with the rule below?
 			display: inline;
 			float: right;
 			margin-bottom: 2px;
@@ -294,7 +325,7 @@ li {
 	margin: 0;
 }
 
-#gcwu-psnb, #gcwu-srchbx {
+%gcwu-default-mobile-monster { //TODO: better name
 	width: 50%;
 	float: right;
 	border-top: 1px solid #044062;
@@ -314,14 +345,21 @@ li {
 		font-weight: 700;
 		margin: 0;
 		padding: 0.7em 18px 0.8em 0;
-		border-top: 1px solid rgba(255, 255, 255, 0.3);
-		border-bottom: 1px solid #000;
-		border-left: 1px solid #000;
-		border-right: none;
+		border: {
+			top: 1px solid rgba(255, 255, 255, 0.3);
+			bottom: 1px solid #000;
+			left: 1px solid #000;
+			right: none;
+		}
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
 	}
 }
 
 #gcwu-bnr {
+	@extend %clear-both;
 	background: #4E7EB7;
 	.ui-navbar {
 		a {
@@ -336,14 +374,22 @@ li {
 }
 
 #gcwu-psnb {
+	@extend %gcwu-default-mobile-monster;
 	h2 {
 		span {
 			display: none;
 		}
 	}
+	#gcwu-psnb-in {
+		@extend %display-none;
+	}
 }
 
 #gcwu-srchbx {
+	@extend %gcwu-default-mobile-monster;
+	form {
+		@extend %display-none;
+	}
 	h2 {
 		padding-right: 20px;
 	}
@@ -359,24 +405,28 @@ li {
 
 .wet-boew-menubar {
 	a {
-		border-top: 1px solid #ccc;
-		border-bottom: 1px solid #ccc;
-		color: #222;
-		text-decoration: none;
-		display: block;
-		position: relative;
-		z-index: 200;
-		font-weight: 700;
-		text-align: center;
 		background: #eee;
+		border: {
+			top: 1px solid #ccc;
+			bottom: 1px solid #ccc;
+		}
+		color: #222;
+		display: block;
+		font-weight: 700;
 		padding: 0.8em 0 0.9em;
+		position: relative;
+		text: {
+			align: center;
+			decoration: none;
+		}
+		z-index: 200;
 	}
 	ul {
 		list-style-type: none;
-		position: relative;
-		z-index: 1;
 		margin: 0;
 		padding: 0;
+		position: relative;
+		z-index: 1;
 	}
 	li {
 		color: #333;
@@ -384,19 +434,31 @@ li {
 		position: relative;
 		z-index: 1;
 		h3 {
-			font-weight: 400;
-			font-size: 1em;
+			font: {
+				weight: 400;
+				size: 1em;
+			}
 			margin: 0;
 			padding: 0;
+		}
+		.mb-sm {
+			@extend %display-none;
+			* {
+				@extend %display-none;
+			}
 		}
 	}
 }
 
-#gcwu-bnr, #wb-core {
+%clear-both {
 	clear: both;
 }
 
-#gcwu-priorities ul, #gcwu-date-mod, #gcwu-gcft ul, #wb-head, #gcwu-sft-in, #jqm-wb-mb #gcwu-bc-in ol {
+#wb-core {
+	@extend %clear-both;
+}
+
+%period-after-pseudo {
 	&:after {
 		content: ".";
 		display: block;
@@ -406,12 +468,12 @@ li {
 	}
 }
 
-.wet-boew-menubar li .mb-sm, #gcwu-bc, #gcwu-psnb #gcwu-psnb-in, #gcwu-srchbx form, .wet-boew-menubar li .mb-sm *{
+%display-none {
 	display: none;
 }
 
-#gcwu-srch-submit {
-	min-height: 22px;
+#gcwu-bc {
+	@extend %display-none;
 }
 
 .ui-content {
@@ -420,18 +482,32 @@ li {
 	}
 }
 
-.ui-collapsible-heading, .ui-li-static {
+%font-1em-marning-0 {
 	font-size: 1em;
 	margin: 0;
 }
+.ui-collapsible-heading {
+	@extend %font-1em-marning-0;
+}
 
-.ui-dialog, .ui-popup {
+.ui-li-static {
+	@extend %font-1em-marning-0;
+}
+
+%h1-border-bottom-none {
 	h1 {
 		border-bottom: none;
 	}
 }
+.ui-dialog {
+	@extend %h1-border-bottom-none;
+}
 
-#jqm-wb-mb, #jqm-wb-search {
+.ui-popup {
+	@extend %h1-border-bottom-none;
+}
+
+%gcwu-default-mobile-ui-bar-a-h1-white {
 	.ui-bar-a {
 		h1 {
 			color: #fff;
@@ -439,7 +515,12 @@ li {
 	}
 }
 
+#jqm-wb-search {
+	@extend %gcwu-default-mobile-ui-bar-a-h1-white;
+}
+
 #jqm-wb-mb {
+	@extend %gcwu-default-mobile-ui-bar-a-h1-white;
 	a {
 		&:link {
 			text-decoration: none
@@ -523,6 +604,9 @@ li {
 		padding: 0;
 		a {
 			padding-left: 55px;
+			&.ui-btn-icon-left {
+				padding-left: 0px;
+			}
 		}
 		.ui-btn-icon-right {
 			.ui-btn-inner {
@@ -531,12 +615,6 @@ li {
 		}
 		.ui-collapsible-heading-toggle {
 			padding-left: 15px;
-		}
-		a {
-			padding-left: 55px;
-			&.ui-btn-icon-left {
-				padding-left: 0px;
-			}
 		}
 		.wb-nested-menu {
 			a {
@@ -558,8 +636,10 @@ li {
 				}
 			}
 		}
-		.wb-nested-li-heading a {
-			border-top: 0;
+		.wb-nested-li-heading {
+			a {
+				border-top: 0;
+			}
 		}
 	}
 	.ui-collapsible-content {
@@ -624,6 +704,7 @@ li {
 			}
 		}
 		ol {
+			@extend %period-after-pseudo;
 			line-height: 1.57em;
 			list-style-type: none;
 			margin: 0;
@@ -656,7 +737,6 @@ li {
 	}
 }
 
-//TODO: Should this be moved to default-mobile-ns.scss?
 .no-js {
 	#gcwu-srch {
 		margin-top: 3px;
