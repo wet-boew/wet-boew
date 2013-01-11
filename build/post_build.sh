@@ -13,12 +13,12 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 	cp -R dist $HOME/dist
 	cp -R demos $HOME/demos
 
-	git fetch
+	git fetch upstream
 
 	if [ "$REPO" == "wet-boew/wet-boew" ]; then
 		#Update working example
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
-			echo "Updating working examples...\n"
+			echo -e "Updating working examples...\n"
 
 			git add -f dist/.
 			git stash
@@ -30,12 +30,12 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 			git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
 			git push -fq upstream gh-pages > /dev/null
 
-			echo "Finished updating the working examples\n"
+			echo -e "Finished updating the working examples\n"
 		fi
 
 		#Add the latest tags
 		case "${supported_branches[@]}" in  *"$TRAVIS_BRANCH"*)
-			echo "Tagging the latest build for branch $TRAVIS_BRANCH\n"
+			echo -e "Tagging the latest build for branch $TRAVIS_BRANCH\n"
 
 			build_branch="$TRAVIS_BRANCH-dist"
 
@@ -51,7 +51,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 			git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
 			git push -fq upstream $build_branch > /dev/null
 
-			echo "Finished tagging the latest build for branch $TRAVIS_BRANCH\n"
+			echo -e "Finished tagging the latest build for branch $TRAVIS_BRANCH\n"
 		;; esac
 	fi
 fi
