@@ -45,20 +45,79 @@ li {
 	}
 }
 
-#wb-core-in, #gcwu-gcnb-in, #gcwu-bnr-in, #gcwu-psnb-in, #gcwu-bc-in, #gcwu-gcft-in, #gcwu-sft-in, #gcwu-psnb .mb-menu, #wb-body #wb-main {
+%width-1200px {
 	width: 1200px;
 }
 
-[id|="wb-body-sec"] [id|="wb-main"], #wb-body #gcwu-content {
+#wb-core-in {
+	@extend %width-1200px;
+}
+
+#gcwu-gcnb-in {
+	@extend %width-1200px;
+}
+
+#gcwu-bnr-in {
+	@extend %width-1200px;
+}
+
+#gcwu-psnb-in {
+	@extend %width-1200px;
+}
+
+#gcwu-bc-in {
+	@extend %width-1200px;
+}
+
+#gcwu-gcft-in {
+	@extend %width-1200px;
+}
+
+#gcwu-sft-in {
+	@extend %width-1200px;
+}
+
+#gcwu-psnb {
+	.mb-menu {
+		@extend %width-1200px;
+	}
+}
+
+#wb-body {
+	#wb-main {
+		@extend %width-1200px;
+	}
+	#gcwu-content {
+		@extend %width-900px;
+	}
+}
+
+%width-900px {
 	width: 900px;
 }
 
-#wb-body-sec #gcwu-content {
-	width: 580px;
+[id|="wb-body-sec"] {
+	[id|="wb-main"] {
+		@extend %width-900px;
+	}
 }
 
-#gcwu-aside, #gcwu-priorities {
+#wb-body-sec {
+	#gcwu-content {
+		width: 580px;
+	}
+}
+
+%width-280px {
 	width: 280px;
+}
+
+#gcwu-aside {
+	@extend %width-280px;
+}
+
+#gcwu-priorities {
+	@extend %width-280px;
 }
 
 /* Right to left (RTL) CSS */

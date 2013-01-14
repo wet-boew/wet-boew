@@ -17,7 +17,6 @@
 }
 
 #wb-main {
-	//TODO: Is an empty href selector necessary?
 	a[href] {
 		&:hover, &:focus, &:active {
 			color: #000;
@@ -26,7 +25,13 @@
 }
 
 .ui-mobile {
-	#gcwu-lang, #wb-foot {
+	%gcwu-sp-pe-desktop-screen-ui-mobile-display-none {
 		display: none;
+	}
+	#gcwu-lang {
+		@extend %gcwu-sp-pe-desktop-screen-ui-mobile-display-none;
+	}
+	#wb-foot {
+		@extend %gcwu-sp-pe-desktop-screen-ui-mobile-display-none;
 	}
 }

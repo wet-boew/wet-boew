@@ -2,6 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
 .ie7 {
 	#wb-core {
 		margin-bottom: -20px;
@@ -12,8 +13,20 @@
 	#gcwu-title {
 		margin-top: -1px;
 	}
-	#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
+	%gcwu-serv-screen-ie7-title-margin-2px {
 		margin-top: 2px;
+	}
+	#gcwu-title-left {
+		@extend %gcwu-serv-screen-ie7-title-margin-2px;
+	}
+	#gcwu-title-right {
+		@extend %gcwu-serv-screen-ie7-title-margin-2px;
+	}
+	.gcwu-alt-title-left {
+		@extend %gcwu-serv-screen-ie7-title-margin-2px;
+	}
+	.gcwu-alt-title-right {
+		@extend %gcwu-serv-screen-ie7-title-margin-2px;
 	}
 	#wb-core-in {
 		div {
