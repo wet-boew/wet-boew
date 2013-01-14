@@ -36,7 +36,7 @@
 	}
 
 	/* without line 29 the buttons would not be coloured in IE, move to fixes? */
-	input, button, a {
+	input, button, a, summary {
 		&.button-accent {
 			@include color-button($accent);
 		}
