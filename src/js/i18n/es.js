@@ -69,7 +69,7 @@
 			'%main-page': 'Página Principal',
 			'%top-of-page': 'Arriba',
 			'%you-are-in': 'Usted está en: ',
-			'%welcome-to': 'Bienvenido/a  a: ' + $('#gcwu-title').text(),
+			'%welcome-to': 'Bienvenido/a  a: ',
 			'%loading': 'cargando...',
 			'%search': 'Búsqueda',
 			'%search-for-terms': 'Buscar por palabra(s):',

@@ -69,7 +69,7 @@
 			'%main-page': 'Main page',
 			'%top-of-page': 'Top of Page',
 			'%you-are-in': 'You are in: ',
-			'%welcome-to': 'Welcome to: ' + $('#gcwu-title').text(),
+			'%welcome-to': 'Welcome to: ',
 			'%loading': 'loading...',
 			'%search': 'Search',
 			'%search-for-terms': 'Search for term(s):',
