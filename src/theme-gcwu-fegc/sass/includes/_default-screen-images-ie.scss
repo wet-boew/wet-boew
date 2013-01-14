@@ -2,13 +2,18 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-//TODO: Sheet is a duplicate of the IE7 version, can be merged
+
 @import "compass/css3/images";
-.ie8 {
-	[id|="wb-body-sec"], #wb-head-in {
+
+.ie7, .ie8 {
+	%gcwu-default-screen-images-ie8-header-background {
 		background: url(../images/header-bg-ie.jpg) repeat-x center 3.1em #fff;
 	}
+	[id|="wb-body-sec"] {
+		@extend %gcwu-default-screen-images-ie8-header-background;
+	}
 	#wb-head-in {
+		@extend %gcwu-default-screen-images-ie8-header-background;
 		background-color: #406C93;
 	}
 	#gcwu-psnb {
@@ -18,8 +23,14 @@
 			}
 		}
 	}
-	#wb-core-in, #gcwu-bc-in {
+	%gcwu-default-screen-images-ie8-deco-background {
 		background: url(../images/content-deco-ie.gif) center top repeat-y;
+	}
+	#wb-core-in {
+		@extend %gcwu-default-screen-images-ie8-deco-background;
+	}
+	#gcwu-bc-in {
+		@extend %gcwu-default-screen-images-ie8-deco-background;
 	}
 	#gcwu-sft-in {
 		background: url(../images/sft-deco-ie.gif) center top no-repeat;

@@ -2,6 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
 html {
 	overflow-y: scroll;
 }
@@ -18,33 +19,62 @@ h1 {
 	margin: 0;
 }
 
-#wb-head-in, #wb-core-in, #wb-foot-in {
+%gcwu-sp-pe-screen-margin-auto {
 	margin: auto;
 }
 
-#wb-head, #wb-head-in, #wb-foot, #wb-foot-in  {
+#wb-head-in {
+	@extend %gcwu-sp-pe-screen-margin-auto;
+	@extend %gcwu-sp-pe-screen-overflow-hidden;
+}
+
+#wb-foot-in {
+	@extend %gcwu-sp-pe-screen-margin-auto;
+	@extend %gcwu-sp-pe-screen-overflow-hidden;
+}
+
+%gcwu-sp-pe-screen-overflow-hidden  {
 	overflow: hidden;
 }
 
-#gcwu-sig, #gcwu-tc {
+#wb-head {
+	@extend %gcwu-sp-pe-screen-overflow-hidden;
+}
+
+#wb-foot {
+	@extend %gcwu-sp-pe-screen-overflow-hidden;
+}
+
+%gcwu-sp-pe-screen-display-block-auto-margins {
 	display: block;
 	float: none;
 	margin: auto;
 }
 
+#gcwu-tc {
+	@extend %gcwu-sp-pe-screen-display-block-auto-margins;
+}
+
 #gcwu-sig {
+	@extend %gcwu-sp-pe-screen-display-block-auto-margins;
+	@extend %gcwu-sp-pe-screen-img-margin-bottom-0;
 	margin-top: 20px;
 	margin-bottom: 7px;
 	line-height: normal;
 }
 
-#gcwu-sig, #gcwu-wmms {
+%gcwu-sp-pe-screen-img-margin-bottom-0 {
 	img {
 		margin-bottom: 0;
 	}
 }
 
+#gcwu-wmms {
+	@extend %gcwu-sp-pe-screen-img-margin-bottom-0;
+}
+
 #wb-core-in {
+	@extend %gcwu-sp-pe-screen-margin-auto;
 	overflow: visible !important;
 	&:after {
 		content: ".";
@@ -70,8 +100,16 @@ h1 {
 	min-height: 115px;
 }
 
-#gcwu-title-right, .gcwu-alt-title-right {
+%gcwu-sp-pe-screen-right-titles {
 	text-align: right;
+}
+
+#gcwu-title-right {
+	@extend %gcwu-sp-pe-screen-right-titles;
+}
+
+.gcwu-alt-title-right {
+	@extend %gcwu-sp-pe-screen-right-titles;
 }
 
 #gcwu-lang {

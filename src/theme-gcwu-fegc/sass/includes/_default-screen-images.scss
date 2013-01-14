@@ -3,9 +3,11 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .wb-sec-def {
-	h3.top-section {
-		a {
-			background: #23447e url(../images/menu-bg.gif) 0 -2px repeat-x;
+	h3 {
+		&.top-section {
+			a {
+				background: #23447e url(../images/menu-bg.gif) 0 -2px repeat-x;
+			}
 		}
 	}
 }

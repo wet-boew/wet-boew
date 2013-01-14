@@ -16,9 +16,12 @@
 
 /* Custom jquery.mobile icons */
 .ui-icon-site-menu {
+	@extend %gcwu-default-mobile-images-background-position;
 	background-image: url(../images/icons-18-white.png);
 }
+
 .ui-icon-alt {
+	@extend %gcwu-default-mobile-images-background-position;
 	background-image: url(../images/icons-18-black.png);
 }
 
@@ -37,7 +40,9 @@
 }
 
 /* Position and size the custom icon */
-.ui-icon-site-menu, .ui-icon-alt {
-	background-position: 0 50%;
-	background-size: 18px 18px;
+%gcwu-default-mobile-images-background-position {
+	background: {
+		position: 0 50%;
+		size: 18px 18px;
+	}
 }
