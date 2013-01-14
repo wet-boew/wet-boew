@@ -55,6 +55,12 @@
 					color: #333;
 					font-weight: 400;
 				}
+				&.nav-current{
+				color:#29527D !important;
+				padding-top:7px;
+				padding-bottom:7px;
+				border:none;
+				}	
 			}
 		}
 	}
