@@ -69,7 +69,7 @@
 			'%main-page': 'Main page',
 			'%top-of-page': 'Lehekülje algusesse',
 			'%you-are-in': 'Te olete ',
-			'%welcome-to': 'Tere tulemast ' + $('#gcwu-title').text(),
+			'%welcome-to': 'Tere tulemast ',
 			'%loading': 'laeb...',
 			'%search': 'Otsi',
 			'%search-for-terms': 'Otsi väjendit',

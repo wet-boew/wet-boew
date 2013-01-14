@@ -69,7 +69,7 @@
 			'%main-page': 'Main page',
 			'%top-of-page': 'Bovenkant pagina',
 			'%you-are-in': 'U bent hier:  ',
-			'%welcome-to': 'Welkom bij: ' + $('#gcwu-title').text(),
+			'%welcome-to': 'Welkom bij: ',
 			'%loading': 'aan het laden..',
 			'%search': 'Zoek',
 			'%search-for-terms': 'Zoekwoord(en):',

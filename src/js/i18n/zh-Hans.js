@@ -69,7 +69,7 @@
 			'%main-page': 'Main page',
 			'%top-of-page': '页首',
 			'%you-are-in': '您在： ',
-			'%welcome-to': '欢迎到： ' + $('#gcwu-title').text(),
+			'%welcome-to': '欢迎到： ',
 			'%loading': '连接中……',
 			'%search': '搜索',
 			'%search-for-terms': '搜索短语',

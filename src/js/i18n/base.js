@@ -115,6 +115,7 @@
 			/* Multimedia player */
 			'%play': '@%play@',
 			'%pause': '@%pause@',
+			'%open': '@%open@',
 			'%close': '@%close@',
 			'%rewind': '@%rewind@',
 			'%fast-forward': '@%fast-forward@',
@@ -195,6 +196,12 @@
 			'%st-timeout-msg': '@%st-timeout-msg@',
 			'%st-msgbox-title': '@%st-msgbox-title@',
 			'%st-already-timeout-msg': '@st-already-timeout-msg@',
+			/* Toggle details */
+			'%td-toggle': '@%td-toggle@',
+			'%td-open': '@%td-open@',
+			'%td-close': '@%td-close@',
+			'%td-ttl-open': '@%td-ttl-open@',
+			'%td-ttl-close': '@%td-ttl-close@',
 			/* Disable/enable PE */
 			'%pe-disable': '@%pe-disable@',
 			'%pe-enable': '@%pe-enable@'
