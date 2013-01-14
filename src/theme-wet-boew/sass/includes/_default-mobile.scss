@@ -200,7 +200,7 @@ img{
 	}
 }
 
-[id*="base-fullhd-lang"] a{
+[id*="base-fullhd-lang"] a {
 	color:#222;
 	text-decoration:none;
 	background:#eee;
@@ -209,6 +209,7 @@ img{
 	float:right;
 	font-weight:400;
 	padding:3px;
+	text-transform: capitalize;
 }
 
 #base-srch-submit{

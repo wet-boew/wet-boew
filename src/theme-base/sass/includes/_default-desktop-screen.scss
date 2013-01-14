@@ -137,9 +137,16 @@ a{
 	}
 }
 
-#base-fullhd ul li#base-fullhd-lang a{
-	padding-right:10px;
-	margin-right:1px;
+#base-fullhd {
+	ul {
+		li#base-fullhd-lang {
+			a {
+				padding-right: 10px;
+				margin-right: 1px;
+				text-transform: capitalize;
+			}
+		}
+	}
 }
 
 #base-fullhd-in{

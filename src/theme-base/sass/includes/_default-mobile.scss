@@ -193,15 +193,18 @@ img{
 	}
 }
 
-#base-fullhd-lang a{
-	color:#222;
-	text-decoration:none;
-	background:#eee;
-	border:1px solid #ddd;
-	border-radius:2px;
-	float:right;
-	font-weight:400;
-	padding:3px;
+#base-fullhd-lang {
+	a {
+		color:#222;
+		text-decoration:none;
+		background:#eee;
+		border:1px solid #ddd;
+		border-radius:2px;
+		float:right;
+		font-weight:400;
+		padding:3px;
+		text-transform: capitalize;
+	}
 }
 
 #base-srch-submit{
