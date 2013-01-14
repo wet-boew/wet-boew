@@ -10,7 +10,6 @@
 ----- @%lang-eng@ dictionary (il8n) ---
  */
 /*global jQuery: false, pe: false */
-/*jshint bitwise: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
