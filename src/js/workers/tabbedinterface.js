@@ -168,12 +168,9 @@
 			$tabs.off('click vclick').on('keydown click', function (e) {
 				var $target = $(e.target),
 					$panel,
-<<<<<<< HEAD
-					$link;
-=======
+					$link,
 					href,
 					hash;
->>>>>>> v3.0
 				if (e.type === 'keydown') {
 					if (e.keyCode === 13 || e.keyCode === 32) {
 						if (e.stopPropagation) {
@@ -185,13 +182,9 @@
 						if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
 							selectTab($target, $tabs, $panels, opts, false);
 						} else {
-<<<<<<< HEAD
-							_pe.focus($panels.filter($target.attr('href')));
-=======
 							href = $target.attr('href'),
 							hash = href.substring(href.indexOf('#'));
-							pe.focus($panels.filter(hash));
->>>>>>> v3.0
+							_pe.focus($panels.filter(hash));
 						}
 					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
 						selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
@@ -201,33 +194,23 @@
 						e.preventDefault();
 					}
 				} else {
-<<<<<<< HEAD
 					// Make sure working with a link since it's possible for an image to be the target of a mouse click
 					$link = (e.target.tagName.toLowerCase() !== 'a') ? $target.closest('a') : $target;
+					href = $link.attr('href'),
+					hash = href.substring(href.indexOf('#'));
 
 					// Shift focus to the panel if the tab is already active
 					if ($link.is($tabs.filter('.' + opts.tabActiveClass))) {
 						_pe.focus($panels.filter($link.attr('href')));
-=======
-					href = $target.attr('href'),
-					hash = href.substring(href.indexOf('#'));
-					if ($target.is($tabs.filter('.' + opts.tabActiveClass))) {
-						pe.focus($panels.filter(hash));
->>>>>>> v3.0
 					}
 
 					// Workaround for broken EasyTabs getHeightForHidden function where it misreports the panel height when the panel is first shown
 					// TODO: Issue should be fixed in EasyTabs
-<<<<<<< HEAD
 					$link.parents('a:first');		
 
 					// Get the panel to display
-					$panel = $panels.filter($link.attr('href'));
-					if ($panel.data('easytabs') && !$panel.data('easytabs').lastHeight) {
-=======
 					$panel = $panels.filter(hash);
-					if (!$panel.data('easytabs').lastHeight) {
->>>>>>> v3.0
+					if ($panel.data('easytabs') && !$panel.data('easytabs').lastHeight) {
 						$panel.data('easytabs').lastHeight = $panel.outerHeight();
 					}
 				}
@@ -249,10 +232,8 @@
 					hash = href.substring(href.indexOf('#'));
 				$panels.stop(true, true);
 				if (opts.animate) {
-<<<<<<< HEAD
-				
 					activePanel = $panels.filter('.' + opts.panelActiveClass).removeClass(opts.panelActiveClass).attr("aria-hidden", "true");
-					nextPanel = $panels.filter($selection.attr('href'));	
+					nextPanel = $panels.filter(hash);	
 					
 					if(isSlider()){
 						$panels.show();
@@ -266,13 +247,6 @@
 							return nextPanel.fadeIn(opts.animationSpeed, function () {
 								return $(this).addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
 							});
-=======
-					activePanel = $panels.filter('.' + opts.panelActiveClass).removeClass(opts.panelActiveClass).attr('aria-hidden', 'true');
-					nextPanel = $panels.filter(hash);
-					activePanel.fadeOut(opts.animationSpeed, function () {
-						return nextPanel.fadeIn(opts.animationSpeed, function () {
-							return $(this).addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
->>>>>>> v3.0
 						});
 					}
 					
