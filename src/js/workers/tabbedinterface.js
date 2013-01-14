@@ -145,8 +145,8 @@
 			$tabs.off('click vclick').on('keydown click', function (e) {
 				var $target = $(e.target),
 					$panel,
-					href = $target.attr('href'),
-					hash = href.substring(href.indexOf('#'));
+					href,
+					hash;
 				if (e.type === 'keydown') {
 					if (e.keyCode === 13 || e.keyCode === 32) {
 						if (e.stopPropagation) {
@@ -158,6 +158,8 @@
 						if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
 							selectTab($target, $tabs, $panels, opts, false);
 						} else {
+							href = $target.attr('href'),
+							hash = href.substring(href.indexOf('#'));
 							pe.focus($panels.filter(hash));
 						}
 					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
@@ -168,6 +170,8 @@
 						e.preventDefault();
 					}
 				} else {
+					href = $target.attr('href'),
+					hash = href.substring(href.indexOf('#'));
 					if ($target.is($tabs.filter('.' + opts.tabActiveClass))) {
 						pe.focus($panels.filter(hash));
 					}
@@ -191,7 +195,7 @@
 			selectTab = function ($selection, $tabs, $panels, opts, keepFocus) {
 				var cycleButton,
 					activePanel,
-					nextPanel
+					nextPanel,
 					href = $selection.attr('href'),
 					hash = href.substring(href.indexOf('#'));
 				$panels.stop(true, true);
@@ -309,7 +313,7 @@
 			elm.find('a').filter('[href^="#"]').each(function () {
 				var $this = $(this),
 					anchor,
-					href = $this.attr('href');
+					href = $this.attr('href'),
 					hash = href.substring(href.indexOf('#'));
 				if (hash.length > 1) {
 					anchor = $(hash, $panels);
