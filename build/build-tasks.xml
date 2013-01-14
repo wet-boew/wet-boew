@@ -192,6 +192,8 @@
 	
 	<extension-point name="build" depends="prepare-files, encode-images, compress, finalize" description="Core build task. Subprojects should subscrib to the 'prepare-files' and 'compress'" />
 	
+	<extension-point name="debug" depends="usedebugging, prepare-files, encode-images, fake-compress, finalize" description="Build that produces the CSS and JS files unminified but with the same file name as the production ones" />
+	
 	<extension-point name="prepare-files" depends="-init" />
 	
 	<extension-point name="encode-images" depends="prepare-files" />
@@ -199,6 +201,8 @@
 	<target name="encode-css" extensionOf="encode-images" depends="-base64-encode"/>
 
 	<extension-point name="compress" depends="encode-images, -minify" />
+	
+	<extension-point name="fake-compress" depends="encode-images, -rename-to-min" />
 	
 	<extension-point name="finalize"/>
 	
@@ -247,6 +251,25 @@
 				<exclude name="**/*.min.js" />
 			</fileset>
 		</delete>
+	</target>
+	
+	<target name="-rename-to-min">
+		<move todir="${dist.dir}">
+			<fileset dir="${dist.dir}">
+				<include name="**/*.js" />
+				<exclude name="**/settings.js" />
+				<exclude name="**/*-min.js" />
+				<exclude name="**/*.min.js" />
+			</fileset>
+			<globmapper from="*.js" to="*-min.js"/>
+		</move>	
+		<move todir="${dist.dir}">
+			<fileset dir="${dist.dir}">
+				<include name="**/*.css" />
+				<exclude name="**/*-min.css" />
+			</fileset>
+			<globmapper from="*.css" to="*-min.css"/>
+		</move>
 	</target>
 	
 	<target name="-copy-css" depends="compile.sass"/>
