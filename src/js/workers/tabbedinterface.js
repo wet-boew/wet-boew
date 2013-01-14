@@ -144,7 +144,9 @@
 
 			$tabs.off('click vclick').on('keydown click', function (e) {
 				var $target = $(e.target),
-					$panel;
+					$panel,
+					href = $target.attr('href'),
+					hash = href.substring(href.indexOf('#'));
 				if (e.type === 'keydown') {
 					if (e.keyCode === 13 || e.keyCode === 32) {
 						if (e.stopPropagation) {
@@ -156,7 +158,7 @@
 						if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
 							selectTab($target, $tabs, $panels, opts, false);
 						} else {
-							pe.focus($panels.filter($target.attr('href')));
+							pe.focus($panels.filter(hash));
 						}
 					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
 						selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
@@ -167,11 +169,11 @@
 					}
 				} else {
 					if ($target.is($tabs.filter('.' + opts.tabActiveClass))) {
-						pe.focus($panels.filter($target.attr('href')));
+						pe.focus($panels.filter(hash));
 					}
 					// Workaround for broken EasyTabs getHeightForHidden function where it misreports the panel height when the panel is first shown
 					// TODO: Issue should be fixed in EasyTabs
-					$panel = $panels.filter($target.attr('href'));
+					$panel = $panels.filter(hash);
 					if (!$panel.data('easytabs').lastHeight) {
 						$panel.data('easytabs').lastHeight = $panel.outerHeight();
 					}
@@ -187,11 +189,15 @@
 				return ($prev.length === 0 ? $tabs.last() : $prev.children('a'));
 			};
 			selectTab = function ($selection, $tabs, $panels, opts, keepFocus) {
-				var cycleButton, activePanel, nextPanel;
+				var cycleButton,
+					activePanel,
+					nextPanel
+					href = $selection.attr('href'),
+					hash = href.substring(href.indexOf('#'));
 				$panels.stop(true, true);
 				if (opts.animate) {
-					activePanel = $panels.filter('.' + opts.panelActiveClass).removeClass(opts.panelActiveClass).attr("aria-hidden", "true");
-					nextPanel = $panels.filter($selection.attr('href'));
+					activePanel = $panels.filter('.' + opts.panelActiveClass).removeClass(opts.panelActiveClass).attr('aria-hidden', 'true');
+					nextPanel = $panels.filter(hash);
 					activePanel.fadeOut(opts.animationSpeed, function () {
 						return nextPanel.fadeIn(opts.animationSpeed, function () {
 							return $(this).addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
@@ -199,7 +205,7 @@
 					});
 				} else {
 					$panels.removeClass(opts.panelActiveClass).attr('aria-hidden', 'true').hide();
-					$panels.filter($selection.attr('href')).show().addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
+					$panels.filter(hash).show().addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
 				}
 				$tabs.removeClass(opts.tabActiveClass).attr('aria-selected', 'false').parent().removeClass(opts.tabActiveClass);
 				$selection.addClass(opts.tabActiveClass).attr('aria-selected', 'true').parent().addClass(opts.tabActiveClass);
@@ -303,8 +309,8 @@
 			elm.find('a').filter('[href^="#"]').each(function () {
 				var $this = $(this),
 					anchor,
-					hash;
-				hash = $this.attr('href');
+					href = $this.attr('href');
+					hash = href.substring(href.indexOf('#'));
 				if (hash.length > 1) {
 					anchor = $(hash, $panels);
 					if (anchor.length) {
