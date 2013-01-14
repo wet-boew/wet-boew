@@ -10,6 +10,8 @@ body {
 
 .wb-sec-def {
 	h3 {
+		@extend %gcwu-default-screen-complex-border;
+		@extend %gcwu-default-screen-a-psuedo-underline;
 		&.top-section {
 			a {
 				color: #FFF;
@@ -29,7 +31,7 @@ body {
 			}
 		}
 	}
-	h3, h4, .top-level {
+	%gcwu-default-screen-complex-border {
 		font-size: 100%;
 		border-bottom: none;
 		@include border-radius(2px);
@@ -44,7 +46,12 @@ body {
 			}
 		}
 	}
+	h4 {
+		@extend %gcwu-default-screen-complex-border;
+		@extend %gcwu-default-screen-a-psuedo-underline;
+	}
 	li {
+		@extend %gcwu-default-screen-a-psuedo-underline;
 		a {
 			padding: 4px 5px;
 			&.nav-current {
@@ -66,7 +73,7 @@ body {
 		}
 	}
 	//TODO: Similar to rule on line 33 except for the li element. Could these be merged further.
-	h3, h4, .top-level, li {
+	%gcwu-default-screen-a-psuedo-underline {
 		a {
 			display: block;
 			color: #333;
@@ -88,14 +95,23 @@ body {
 			border-left: 1px solid #ccc;
 		}
 	}
+	.top-level {
+		@extend %gcwu-default-screen-complex-border;
+		@extend %gcwu-default-screen-a-psuedo-underline;
+	}
 }
 
 #wb-foot {
-	h4, .gcwu-col-head {
-		font-size: 110%;
+	%gcwu-default-screen-foot-border {
 		border: none;
-		font-weight: 700;
+		font: {
+			size: 110%;
+			weight: 700;
+		}
 		margin: 20px 0 5px;
+	}
+	h4 {
+		@extend %gcwu-default-screen-foot-border;
 	}
 	ul {
 		list-style-type: none;
@@ -113,24 +129,49 @@ body {
 	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
 		margin-bottom: 0;
 	}
+	.gcwu-col-head {
+		@extend %gcwu-default-screen-foot-border;
+	}
 }
 
 #gcwu-sft {
 	padding-bottom: 20px;
 	font-family: Arial, Helvetica, sans-serif;
-	a, span.link {
+	%gcwu-default-screen-color-222 {
 		color: #222;
 	}
-	li {
-		a, span.link {
-			line-height: 1.75em;
+	a {
+		@extend %gcwu-default-screen-color-222;
+	}
+	span {
+		&.link {
+			@extend %gcwu-default-screen-color-222;
 		}
 	}
-	h4, .gcwu-col-head {
+	li {
+		%gcwu-default-screen-line-height-175em {
+			line-height: 1.75em;
+		}
+		a {
+			@extend %gcwu-default-screen-line-height-175em;
+		}
+		span {
+			&.link {
+				@extend %gcwu-default-screen-line-height-175em;
+			}
+		}
+	}
+	%gcwu-default-screen-margin-top-10px {
 		margin-top: 10px;
+	}
+	h4 {
+		@extend %gcwu-default-screen-margin-top-10px;
 	}
 	address {
 		font-style: normal;
+	}
+	.gcwu-col-head {
+		@extend %gcwu-default-screen-margin-top-10px;
 	}
 }
 
