@@ -78,7 +78,7 @@
 			'disable': '@%closed-caption-disable@',
 			'enable': '@%closed-caption-enable@'
 		},
-		'%captionserror': '@%captionserror@',
+		'%closed-caption-error': '@%closed-caption-error@',
 		'%audio-description': {
 			'enable': '@%audio-description-enable@',
 			'disable': '@%audio-description-disable@'
@@ -107,7 +107,7 @@
 		'%error-found': '@%error-found@',
 		/* Date picker */
 		'%datepicker-hide': '@%datepicker-hide@',
-		'%datepicker-show': '@%date-picker-show@',
+		'%datepicker-show': '@%datepicker-show@',
 		'%datepicker-selected': '@%datepicker-selected@',
 		/* Calendar */
 		'%calendar-weekDayNames': ['@%calendar-weekDayNames-1@', '@%calendar-weekDayNames-2@', '@%calendar-weekDayNames-3@', '@%calendar-weekDayNames-4@', '@%calendar-weekDayNames-5@', '@%calendar-weekDayNames-6@', '@%calendar-weekDayNames-7@'],
@@ -132,7 +132,7 @@
 		'%lb-current': '@%lb-current@',
 		'%lb-next': '@%lb-next@',
 		'%lb-prev': '@%lb-prev@',
-		'%lb-xhr-error': '@%xhr-error@',
+		'%lb-xhr-error': '@%lb-xhr-error@',
 		'%lb-img-error': '@%lb-img-error@',
 		'%lb-slideshow': '@%lb-slideshow@',
 		/* jQuery Mobile */
@@ -146,7 +146,7 @@
 		/* Session timeout */
 		'%st-timeout-msg': '@%st-timeout-msg@',
 		'%st-msgbox-title': '@%st-msgbox-title@',
-		'%st-already-timeout-msg': '@st-already-timeout-msg@',
+		'%st-already-timeout-msg': '@%st-already-timeout-msg@',
 		/* Disable/enable PE */
 		'%pe-disable': '@%pe-disable@',
 		'%pe-enable': '@%pe-enable@'
