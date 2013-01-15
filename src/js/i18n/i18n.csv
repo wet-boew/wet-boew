@@ -1,210 +1,210 @@
-,String code,English,French
-Language code,%lang-code,en,fr
-Language name (English),%lang-eng,English,French
-Language name (French),%lang-fra,anglais,franÁais
-Language name (native),%lang-native,English,FranÁais
-General (i18n),%all,All,Tous
-,%home,Home,Accueil
-,%main-page,Main page,Page principale
-,%top-of-page,Top of page,Haut de la page
-,%you-are-in,You are in: ,Vous Ítes dans : 
-,%welcome-to,Welcome to: ,Bienvenue ‡ : 
-,%loading,loadingÖ,chargement...
-,%search,Search,Recherche
-,%search-for-terms,Search for term(s):,Recherche de terme(s) :
-,%no-match-found,No match found,Aucune correspondance trouvÈe
-,%matches-found,[MIXIN] match(es) found,[MIXIN] correspondance(s) trouvÈes
-,%menu,Menu,Menu
-,%hide,Hide,Masquer
-,%error,Error,Erreur
-,%colon,:, :
-,%start,Start,Lancer
-,%stop,Stop,ArrÍter
-,%back,Back,PrÈcÈdent
-,%new-window, (Opens in a new window), (Ouvre dans une nouvelle fenÍtre)
-,%minute-ago,a minute ago,il y a une minute
-,%couple-of-minutes,couple of minutes ago,il y a quelques minutes
-,%minutes-ago,[MIXIN] minutes ago,il y a [MIXIN] minutes
-,%hour-ago,an hour ago,il y a une heure
-,%hours-ago,[MIXIN] hours ago,il y a [MIXIN] heures
-,%days-ago,[MIXIN] days ago,il y a [MIXIN] jours
-,%yesterday,yesterday,hier
-,%next,Next,Suivant
-,%previous,Previous,PrÈcedent
-Archived Web page template,%archived-page,This Web page has been archived on the Web.,Cette page Web a ÈtÈ archivÈe dans le Web.
-Menu bar,%sub-menu-help,(open the submenu with the enter key and close with the escape key),(ouvrir le sous-menu avec la touche d\'entrÈe et le fermer avec la touche d\'Èchappement)
-Tabbed interface,%tab-rotation-disable,Stop tab rotation,ArrÍter la rotation d\'onglets
-,%tab-rotation-enable,Start tab rotation,Lancer la rotation d\'onglets
-,%tab-list,Tab list,Liste des onglets
-Multimedia player,%play,Play,Jouer
-,%pause,Pause,Pause
-,%open,Open,Ouvrir
-,%close,Close,Fermer
-,%rewind,Rewind,Reculer
-,%fast-forward,Fast forward,Avancer
-,%mute-enable,Mute,Activer le mode muet
-,%mute-disable,Unmute,DÈsactiver le mode muet
-,%closed-caption-disable,Hide Closed captioning,Masquer le sous-titrage
-,%closed-caption-enable,Show Closed captioning,Afficher le sous-titrage
-,%captions-error,Error loading closed captions,Erreur dans le chargement des sous-titres
-,%audio-description-enable,Enable audio description,Activer l\'audiodescription
-,%audio-description-disable,Disable audio description,DÈsactiver l\'audiodescription
-,%progress-bar,use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media\'s progress,utilisez les touches GAUCHE ou DROITE pour avancer ou reculer le progrËs des mÈdias
-,%no-video,Your browser does not appear to have the capabilities to play this video&#44; please download the video below,Votre navigateur ne semble pas avoir les capacitÈ nÈcessaires pour lire cette vidÈo&#44; s\'il vous plaÓt tÈlÈcharger la vidÈo ci-dessous
-,%position,Current position: ,Position actuelle : 
-,%percentage,Playback percentage: ,Pourcentage de lecture : 
-,%duration,Total time: ,Temps total : 
-,%buffered,Buffered: ,Mis en mÈmoire-tampon : 
-Share widget,%favourite,Favourite,Lien prÈfÈrÈ
-,%email,Email,Courriel
-,%share-text,Share this page,Partagez cette page
-,%share-hint, with {s}, avec {s}
-,%share-mail-subject,Interesting page,Page qui est intÈressante
-,%share-email-body,I thought you might find this page interesting:\n{t} ({u}),J\'espËre que cette page vous intÈresse :\n{t} ({u})
-,%share-fav-title, (bookmark this page), (ajouter cette page ‡ vos signets)
-,%share-manual,Please close this dialog and press Ctrl-D to bookmark this page.,S\'il vous plaÓt fermer ce dialogue et appuyer sur Ctrl-D pour ajouter cette page ‡ vos signets.
-,%share-showall,Show all ({n}),Tous montrer ({n})
-,%share-showall-title,All bookmarking sites,Tout les sites de mise en signet
-,%share-disclaimer,No endorsement of any products or services is expressed or implied.,Aucun appui níest accordÈ&#44; soit de faÁon expresse ou tacite&#44; ‡ aucun produit ou service.
-Form validation,%form-not-submitted,The form could not be submitted because ,Le formulaire n\'a pu Ítre soumis car 
-,%errors-found, errors were found., erreurs ont ÈtÈ trouvÈes.
-,%error-found, error was found., erreur a ÈtÈ trouvÈe.
-Date picker,%datepicker-hide,Hide calendar,Masquer le calendrier
-,%datepicker-show,Pick a date from a calendar for field: ,SÈlectionner une date ‡ partir d'un calendrier pour le champ: 
-,%datepicker-selected,Selected,SÈlectionnÈ
-Calendar,%calendar-weekDayNames-1,Sunday,Dimanche
-,%calendar-weekDayNames-2,Monday,Lundi
-,%calendar-weekDayNames-3,Tuesday,Mardi
-,%calendar-weekDayNames-4,Wednesday,Mercredi
-,%calendar-weekDayNames-5,Thursday,Jeudi
-,%calendar-weekDayNames-6,Friday,Vendredi
-,%calendar-weekDayNames-7,Saturday,Samedi
-,%calendar-monthNames-1,January,Janvier
-,%calendar-monthNames-2,February,FÈvrier
-,%calendar-monthNames-3,March,Mars
-,%calendar-monthNames-4,April,Avril
-,%calendar-monthNames-5,May,Mai
-,%calendar-monthNames-6,June,Juin
-,%calendar-monthNames-7,July,Juillet
-,%calendar-monthNames-8,August,Ao˚t
-,%calendar-monthNames-9,September,Septembre
-,%calendar-monthNames-10,October,Octobre
-,%calendar-monthNames-11,November,Novembre
-,%calendar-monthNames-12,December,DÈcembre
-,%calendar-currentDay, (Current day), (Jour courrant)
-,%calendar-goToLink,"Go to<span class=""wb-invisible""> month of year</span>","Aller au <span class=""wb-invisible""> mois de l\'annÈe</span>"
-,%calendar-goToTitle,Go to month of year,Aller au mois de l\'annÈe
-,%calendar-goToMonth,Month:,Mois :
-,%calendar-goToYear,Year:,AnnÈe :
-,%calendar-goToButton,Go,Aller
-,%calendar-cancelButton,Cancel,Annuler
-,%calendar-previousMonth,Previous Month: ,Mois prÈcÈdent : 
-,%calendar-nextMonth,Next Month: ,Mois suivant : 
-Slideout,%show-toc,Show,Afficher
-,%show-image,show.png,afficher.png
-,%hide-image,hide.png,cacher.png
-,%show-text,Show table of contents,Afficher la table des matiËres
-,%hide-text,Hide table of contents,Cacher la table des matiËres
-,%table-contents, table of contents, la table des matiËres
-Lightbox,%lb-current,Item {current} of {total},Article {current} de {total}
-,%lb-next,Next item,Article suivant
-,%lb-prev,Previous item,Article prÈcÈdent
-,%lb-xhr-error,This content failed to load.,Le chargement de ce contenu a ÈchouÈ.
-,%lb-img-error,This image failed to load.,Le chargement de cette image a ÈchouÈ.
-,%lb-slideshow,slideshow,la diaporama
-jQuery Mobile,%jqm-expand, click to expand contents, cliquer pour afficher le contenu
-,%jqm-collapse, click to collapse contents, cliquer pour masquer le contenu
-,%jqm-clear-search,clear search,effacer le texte
-,%jqm-filter,Filter itemsÖ,Filtrer des articles...
-Charts widget,%table-mention,Table,#NAME?
-,%table-following,Chart. Details in the following table.,#NAME?
-Session timeout ,%st-timeout-msg,Your session is about to expire&#44; you have until #expireTime# to activate the &#34;OK&#34; button below to extend your session.,"Votre session est sur le point d\'expirer&#44; vous avez jusqu\'a #expireTime# pour sÈlectionnez ´ OK ª ci-dessous pour prolonger votre session."""
-,%st-msgbox-title,Session timeout warning,Avertissement d\'expiration de la session
-,%st-already-timeout-msg,Sorry your session has already expired. Please login again.,DÈsolÈ&#44; votre session a dÈj‡ expirÈ. S\'il vous plaÓt vous connecter ‡ nouveau.
-Toggle details,%td-toggle,Toggle all,Basculer tout
-,%td-open,Expand all,Afficher tout
-,%td-close,Collapse all,RÈduire tout
-,%td-ttl-open,Expand all sections of content,Afficher toutes les sections de contenu
-,%td-ttl-close,Collapse all sections of content,RÈduire toutes les sections de contenu
-Disable/enable PE,%pe-disable,Basic HTML version,Version HTML simplifiÈe
-,%pe-enable,Standard version,Version standard
-Template strings (Generic),%tmpl-skip-main,Skip to main content,Passer au contenu principal
-,%tmpl-skip-sec,Skip to secondary menu,Passer au menu secondaire
-,%tmpl-skip-foot,Skip to footer,Passer au pied de page
-,%tmpl-search,Search,Recherche
-,%tmpl-search-site,Search website,Recherchez le site Web
-,%tmpl-bcrumb,Breadcrumb trail,Fil d'Ariane
-,%tmpl-home,Home,Accueil
-,%tmpl-sec-menu,Secondary menu,Menu secondaire
-,%tmpl-sup-cont,Supplementary content,Contenu supplÈmentaire
-,%tmpl-foot,Footer,Pied de page
-,%tmpl-date-mod,Date modified:,Date de modification&#160;:
-Template strings (GC Web Usability theme),%tmpl-gc-navbar,Government of Canada navigation bar,Barre de navigation du gouvernement du Canada
-,%tmpl-gc-ca,Canada.gc.ca,Canada.gc.ca
-,%tmpl-services,Services,Services
-,%tmpl-depts,Departments,MinistËres
-,%tmpl-priorities,Priorities,PrioritÈs
-,%tmpl-gc-foot,Government of Canada footer,Pied de page du gouvernement du Canada
-,%tmpl-site-foot,Site footer,Pied de page du site
-,%tmpl-terms,Terms and conditions,Avis
-,%tmpl-transparency,Transparency,Transparence
-Filler content (Generic),%tmpl-sub-site-name,Sub-site name,Nom du sous-site
-,%tmpl-fullwidth-head,Full-width header area,Secteur d'en-tÍte de plein-largeur
-,%tmpl-section,Section,Section
-,%tmpl-base-theme,Base theme,ThËme base
-,%tmpl-cont-page,Content page,Page de contenu
-,%tmpl-sub-site,Sub-site,Sous-site
-,%tmpl-site-menu,Site menu,Menu du site
-,%tmpl-work-examples,Working examples,Exemples pratiques
-,%tmpl-default-app,default appearance,apparence par dÈfaut
-,%tmpl-heading,Heading,En-tÍte
-,%tmpl-para,Paragraph,Paragraphe
-,%tmpl-link,Link,Lien
-,%tmpl-third-party,third party,tiers
-,%tmpl-file-downloads,file downloads based on file type,tÈlÈchargements des fichiers fondÈs sur le type de fichier
-,%tmpl-abbr,Abbreviation,AbrÈviation
-,%tmpl-ul,unordered list,liste ‡ puces
-,%tmpl-ol,ordered list,liste ordonnÈe
-,%tmpl-level,level,niveau
-,%tmpl-table-caption,Table caption,LÈgende de table
-,%tmpl-table-head,Table header,En-tÍte de table
-,%tmpl-table-data,Table data,DonnÈes de table
-,%tmpl-form,Form,Formulaire
-,%tmpl-option,Option,Option
-,%tmpl-and,and,et
-,%tmpl-submit,Submit,Soumettre
-,%tmpl-reset,Reset,RÈinitialiser
-,%tmpl-about-us,About us,¿ propos de nous
-,%tmpl-our-mandate,Our mandate,Notre mandat
-,%tmpl-our-history,Our history,Notre histoire
-,%tmpl-news,News,Nouvelles
-,%tmpl-news-rel,News releases,CommuniquÈs
-,%tmpl-media-avisories,Media advisories,Avix aux mÈdias
-,%tmpl-multimedia,Multimedia,MultimÈdia
-,%tmpl-contact-us,Contact us,Contactez-nous
-,%tmpl-phone-nums,Phone numbers,NumÈros de tÈlÈphone
-,%tmpl-office-loc,Office locations,Nos bureaux
-,%tmpl-stay-connected,Stay connected,Restez branchÈs
-,%tmpl-feeds,Feeds,Flux
-Filler content (GC Web Usability theme),%tmpl-headlines,Headlines,Nouvelles
-,%tmpl-sample-text,Sample text.,Texte modËle.
-,%tmpl-read-more,Read more,En&#160;plus
-,%tmpl-priority,Priority,PrioritÈ
-,%tmpl-videos,Videos,VidÈo
-,%tmpl-sample-player,Sample video player,Exemple d'un lecteur multimÈdia
-,%tmpl-video-title,Video title,Titre de la vidÈo
-,%tmpl-desc-video,Short description of the current video.,Description courte de la vidÈo actuelle.
-,%tmpl-multi-help,Multimedia help,Aide multimÈdia
+Ôªø,String code,English,French,Spanish
+Language code,%lang-code,en,fr,es
+Language name (English),%lang-eng,English,French,Spanish
+Language name (French),%lang-fra,anglais,fran√ßais,espagnol
+Language name (native),%lang-native,English,Fran√ßais,espa√±ol
+General (i18n),%all,All,Tous,Todo
+,%home,Home,Accueil,P√°gina de inicio
+,%main-page,Main page,Page principale,P√°gina principal
+,%top-of-page,Top of page,Haut de la page,Arriba
+,%you-are-in,You are in: ,Vous √™tes dans : ,Usted est√° en: 
+,%welcome-to,Welcome to: ,Bienvenue √† : ,Bienvenido a: 
+,%loading,loading‚Ä¶,chargement...,cargando‚Ä¶
+,%search,Search,Recherche,B√∫squeda
+,%search-for-terms,Search for term(s):,Recherche de terme(s) :,Buscar por palabra(s):
+,%no-match-found,No match found,Aucune correspondance trouv√©e,0 resultados encontrados
+,%matches-found,[MIXIN] match(es) found,[MIXIN] correspondance(s) trouv√©es,[MIXIN] resultado(s) encontrados
+,%menu,Menu,Menu,Men√∫
+,%hide,Hide,Masquer,Ocultar
+,%error,Error,Erreur,Error
+,%colon,:, :,:
+,%start,Start,Lancer,Iniciar
+,%stop,Stop,Arr√™ter,Detener
+,%back,Back,Pr√©c√©dent,Volver
+,%new-window, (Opens in a new window), (Ouvre dans une nouvelle fen√™tre), (Abre en una nueva ventana)
+,%minute-ago,a minute ago,il y a une minute,hace un minuto
+,%couple-of-minutes,couple of minutes ago,il y a quelques minutes,hace algunos minutos
+,%minutes-ago,[MIXIN] minutes ago,il y a [MIXIN] minutes,hace [MIXIN] minutos
+,%hour-ago,an hour ago,il y a une heure,hace una hora
+,%hours-ago,[MIXIN] hours ago,il y a [MIXIN] heures,hace [MIXIN] horas
+,%days-ago,[MIXIN] days ago,il y a [MIXIN] jours,hac√© [MIXIN] d√≠as
+,%yesterday,yesterday,hier,ayer
+,%next,Next,Suivant,Siguiente
+,%previous,Previous,Pr√©cedent,Previo
+Archived Web page template,%archived-page,This Web page has been archived on the Web.,Cette page Web a √©t√© archiv√©e dans le Web.,Esta p√°gina Web ha estado archivada en el Internet.
+Menu bar,%sub-menu-help,(open the submenu with the enter key and close with the escape key),(ouvrir le sous-menu avec la touche d\'entr√©e et le fermer avec la touche d\'√©chappement),
+Tabbed interface,%tab-rotation-disable,Stop tab rotation,Arr√™ter la rotation d\'onglets,Detener rotaci√≥n de tabs
+,%tab-rotation-enable,Start tab rotation,Lancer la rotation d\'onglets,Comenzar rotaci√≥n de tabs
+,%tab-list,Tab list,Liste des onglets,Lista de tabs
+Multimedia player,%play,Play,Jouer,Reproducir
+,%pause,Pause,Pause,Pausa
+,%open,Open,Ouvrir,Abrir
+,%close,Close,Fermer,Cerrar
+,%rewind,Rewind,Reculer,Retroceder
+,%fast-forward,Fast forward,Avancer,Avance r√°pido
+,%mute-enable,Mute,Activer le mode muet,Silenciar
+,%mute-disable,Unmute,D√©sactiver le mode muet,Habilitar sonido
+,%closed-caption-disable,Hide Closed captioning,Masquer le sous-titrage,Ocultar subt√≠tulos
+,%closed-caption-enable,Show Closed captioning,Afficher le sous-titrage,Mostrar subt√≠tulos
+,%captions-error,Error loading closed captions,Erreur dans le chargement des sous-titres,Error al cargar subt√≠tulos
+,%audio-description-enable,Enable audio description,Activer l\'audiodescription,Habilitar audio descripci√≥n
+,%audio-description-disable,Disable audio description,D√©sactiver l\'audiodescription,Eliminar descripci√≥n de audio
+,%progress-bar,use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media\'s progress,utilisez les touches GAUCHE ou DROITE pour avancer ou reculer le progr√®s des m√©dias,Usar las teclas de flechas IZQUIERDA y DERECHA para avanzar o retroceder la presentaci√≥n multimedia
+,%no-video,Your browser does not appear to have the capabilities to play this video&#44; please download the video below,Votre navigateur ne semble pas avoir les capacit√© n√©cessaires pour lire cette vid√©o&#44; s\'il vous pla√Æt t√©l√©charger la vid√©o ci-dessous,
+,%position,Current position: ,Position actuelle : ,Posici√≥n actual: 
+,%percentage,Playback percentage: ,Pourcentage de lecture : ,Porcentaje de playback: 
+,%duration,Total time: ,Temps total : ,Tiempo total: 
+,%buffered,Buffered: ,Mis en m√©moire-tampon : ,Almacenado en memoria intermedia: 
+Share widget,%favourite,Favourite,Lien pr√©f√©r√©,Favorito
+,%email,Email,Courriel,Correo electr√≥nico
+,%share-text,Share this page,Partagez cette page,Compartir esta p√°gina
+,%share-hint, with {s}, avec {s}, con {s}
+,%share-mail-subject,Interesting page,Page qui est int√©ressante,P√°gina de inter√©s
+,%share-email-body,I thought you might find this page interesting:\n{t} ({u}),J\'esp√®re que cette page vous int√©resse :\n{t} ({u}),Pienso que encontrar√°s interesante esta p√°gina:\n{t} ({u})
+,%share-fav-title, (bookmark this page), (ajouter cette page √† vos signets), (colocar esta p√°gina como bookmark)
+,%share-manual,Please close this dialog and press Ctrl-D to bookmark this page.,S\'il vous pla√Æt fermer ce dialogue et appuyer sur Ctrl-D pour ajouter cette page √† vos signets.,
+,%share-showall,Show all ({n}),Tous montrer ({n}),Mostrar todo ({?})
+,%share-showall-title,All bookmarking sites,Tout les sites de mise en signet,Todos los sitios marcados como bookmark
+,%share-disclaimer,No endorsement of any products or services is expressed or implied.,Aucun appui n‚Äôest accord√©&#44; soit de fa√ßon expresse ou tacite&#44; √† aucun produit ou service.,No implica la promoci√≥n ni recomendaci√≥n de ning√∫n producto o servicio.
+Form validation,%form-not-submitted,The form could not be submitted because ,Le formulaire n\'a pu √™tre soumis car ,
+,%errors-found, errors were found., erreurs ont √©t√© trouv√©es., errores encontrado.
+,%error-found, error was found., erreur a √©t√© trouv√©e., error encontrado.
+Date picker,%datepicker-hide,Hide calendar,Masquer le calendrier,Ocultar calendario
+,%datepicker-show,Pick a date from a calendar for field: ,S√©lectionner une date √† partir d'un calendrier pour le champ: ,Escoger una fecha de un calendario para el campo: 
+,%datepicker-selected,Selected,S√©lectionn√©,Seleccionado
+Calendar,%calendar-weekDayNames-1,Sunday,Dimanche,Domingo
+,%calendar-weekDayNames-2,Monday,Lundi,Lunes
+,%calendar-weekDayNames-3,Tuesday,Mardi,Martes
+,%calendar-weekDayNames-4,Wednesday,Mercredi,Mi√©rcoles
+,%calendar-weekDayNames-5,Thursday,Jeudi,Jueves
+,%calendar-weekDayNames-6,Friday,Vendredi,Viernes
+,%calendar-weekDayNames-7,Saturday,Samedi,S√°bado
+,%calendar-monthNames-1,January,Janvier,Enero
+,%calendar-monthNames-2,February,F√©vrier,Febrero
+,%calendar-monthNames-3,March,Mars,Marzo
+,%calendar-monthNames-4,April,Avril,Abril
+,%calendar-monthNames-5,May,Mai,Mayo
+,%calendar-monthNames-6,June,Juin,Junio
+,%calendar-monthNames-7,July,Juillet,Julio
+,%calendar-monthNames-8,August,Ao√ªt,Agosto
+,%calendar-monthNames-9,September,Septembre,Septiembre
+,%calendar-monthNames-10,October,Octobre,Octubre
+,%calendar-monthNames-11,November,Novembre,Noviembre
+,%calendar-monthNames-12,December,D√©cembre,Diciembre
+,%calendar-currentDay, (Current day), (Jour courrant), (Hoy)
+,%calendar-goToLink,"Go to<span class=""wb-invisible""> month of year</span>","Aller au <span class=""wb-invisible""> mois de l\'ann√©e</span>","Ir a<span class=""wb-invisible""> mes del a√±o</span>"
+,%calendar-goToTitle,Go to month of year,Aller au mois de l\'ann√©e,Ir al mes del a√±o
+,%calendar-goToMonth,Month:,Mois :,Mes:
+,%calendar-goToYear,Year:,Ann√©e :,A√±o:
+,%calendar-goToButton,Go,Aller,Ir
+,%calendar-cancelButton,Cancel,Annuler,Cancelar
+,%calendar-previousMonth,Previous Month: ,Mois pr√©c√©dent : ,Mes anterior: 
+,%calendar-nextMonth,Next Month: ,Mois suivant : ,Mes siguiente: 
+Slideout,%show-toc,Show,Afficher,Mostrar
+,%show-image,show.png,afficher.png,mostrar.png
+,%hide-image,hide.png,cacher.png,ocultar.png
+,%show-text,Show table of contents,Afficher la table des mati√®res,Mostrar el √≠ndice
+,%hide-text,Hide table of contents,Cacher la table des mati√®res,Ocultar el √≠ndice
+,%table-contents, table of contents, la table des mati√®res, √≠ndice
+Lightbox,%lb-current,Item {current} of {total},Article {current} de {total},Art√≠culo {current} de {total}
+,%lb-next,Next item,Article suivant,Art√≠culo siguiente
+,%lb-prev,Previous item,Article pr√©c√©dent,Art√≠culo previo
+,%lb-xhr-error,This content failed to load.,Le chargement de ce contenu a √©chou√©.,Este contenido no pudo ser cargado.
+,%lb-img-error,This image failed to load.,Le chargement de cette image a √©chou√©.,Esta imagen no pudo ser cargada.
+,%lb-slideshow,slideshow,la diaporama,show de diapositivas
+jQuery Mobile,%jqm-expand, click to expand contents, cliquer pour afficher le contenu, hacer clic para expandir el cotnenido
+,%jqm-collapse, click to collapse contents, cliquer pour masquer le contenu, hacer clic para colapsar los contenidos
+,%jqm-clear-search,clear search,effacer le texte,limbiar b√∫squeda
+,%jqm-filter,Filter items‚Ä¶,Filtrer des articles...,filtrar art√≠culos‚Ä¶
+Charts widget,%table-mention,Table,#NAME?,Tabla
+,%table-following,Chart. Details in the following table.,#NAME?,Cuadro. Los detalles aparecen en la siguiente tabla.
+Session timeout ,%st-timeout-msg,Your session is about to expire&#44; you have until #expireTime# to activate the &#34;OK&#34; button below to extend your session.,"Votre session est sur le point d\'expirer&#44; vous avez jusqu\'a #expireTime# pour s√©lectionnez ¬´ OK ¬ª ci-dessous pour prolonger votre session.""","Su sesi√≥n est√° pr√≥xima a expirar&#44; tiene hasta #expireTime# para activar el bot√≥n ""OK"" y as√≠ extender su sesi√≥n."
+,%st-msgbox-title,Session timeout warning,Avertissement d\'expiration de la session,Aviso de finalizaci√≥n de sesi√≥n
+,%st-already-timeout-msg,Sorry your session has already expired. Please login again.,D√©sol√©&#44; votre session a d√©j√† expir√©. S\'il vous pla√Æt vous connecter √† nouveau.,Lamentablemente su sesi√≥n ha expirado. Por favor ingrese nuevamente.
+Toggle details,%td-toggle,Toggle all,Basculer tout,Alternar todo
+,%td-open,Expand all,Afficher tout,Expandir todo
+,%td-close,Collapse all,R√©duire tout,Colapsar todo
+,%td-ttl-open,Expand all sections of content,Afficher toutes les sections de contenu,Expandir todas las secciones de contenido
+,%td-ttl-close,Collapse all sections of content,R√©duire toutes les sections de contenu,Colapsar todas las secciones de contenido
+Disable/enable PE,%pe-disable,Basic HTML version,Version HTML simplifi√©e,Versi√≥n HTML b√°sica
+,%pe-enable,Standard version,Version standard,Versi√≥n est√°ndar
+Template strings (Generic),%tmpl-skip-main,Skip to main content,Passer au contenu principal,Saltar al contenido principal
+,%tmpl-skip-sec,Skip to secondary menu,Passer au menu secondaire,Saltar al men√∫ secundaria
+,%tmpl-skip-foot,Skip to footer,Passer au pied de page,Saltar al pie de p√°gina
+,%tmpl-search,Search,Recherche,B√∫squeda
+,%tmpl-search-site,Search website,Recherchez le site Web,Buscar en este sitio Web
+,%tmpl-bcrumb,Breadcrumb trail,Fil d'Ariane,Hilo de Ariadna
+,%tmpl-home,Home,Accueil,P√°gina de inicio
+,%tmpl-sec-menu,Secondary menu,Menu secondaire,Men√∫ secundario
+,%tmpl-sup-cont,Supplementary content,Contenu suppl√©mentaire,
+,%tmpl-foot,Footer,Pied de page,Pie de p√°gina
+,%tmpl-date-mod,Date modified:,Date de modification&#160;:,Modificado el:
+Template strings (GC Web Usability theme),%tmpl-gc-navbar,Government of Canada navigation bar,Barre de navigation du gouvernement du Canada,
+,%tmpl-gc-ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca
+,%tmpl-services,Services,Services,
+,%tmpl-depts,Departments,Minist√®res,
+,%tmpl-priorities,Priorities,Priorit√©s,
+,%tmpl-gc-foot,Government of Canada footer,Pied de page du gouvernement du Canada,
+,%tmpl-site-foot,Site footer,Pied de page du site,Site pie de p√°gina
+,%tmpl-terms,Terms and conditions,Avis,T√©rminos y Condiciones
+,%tmpl-transparency,Transparency,Transparence,Transparencia
+Filler content (Generic),%tmpl-sub-site-name,Sub-site name,Nom du sous-site,Nombre de sitio secundario
+,%tmpl-fullwidth-head,Full-width header area,Secteur d'en-t√™te de plein-largeur,Area de encabezamiento de lleno-anchura
+,%tmpl-section,Section,Section,Secci√≥n
+,%tmpl-base-theme,Base theme,Th√®me base,Tema de base
+,%tmpl-cont-page,Content page,Page de contenu,P√°gina de contenido
+,%tmpl-sub-site,Sub-site,Sous-site,Sitio secundario
+,%tmpl-site-menu,Site menu,Menu du site,Men√∫ del sitio
+,%tmpl-work-examples,Working examples,Exemples pratiques,Ejemplos pr√°cticos
+,%tmpl-default-app,default appearance,apparence par d√©faut,apariencia predefinida
+,%tmpl-heading,Heading,En-t√™te,T√≠tulo
+,%tmpl-para,Paragraph,Paragraphe,P√°rrafo
+,%tmpl-link,Link,Lien,Enlace
+,%tmpl-third-party,third party,tiers,externos
+,%tmpl-file-downloads,file downloads based on file type,t√©l√©chargements des fichiers fond√©s sur le type de fichier,archivar descargas basadas en de tipo archivo
+,%tmpl-abbr,Abbreviation,Abr√©viation,Abreviaci√≥n
+,%tmpl-ul,unordered list,liste √† puces,
+,%tmpl-ol,ordered list,liste ordonn√©e,
+,%tmpl-level,level,niveau,nivel
+,%tmpl-table-caption,Table caption,L√©gende de table,T√≠tulo de tabla
+,%tmpl-table-head,Table header,En-t√™te de table,Encabezamiento de tabla
+,%tmpl-table-data,Table data,Donn√©es de table,Datos de tabla
+,%tmpl-form,Form,Formulaire,Forma
+,%tmpl-option,Option,Option,Opci√≥n
+,%tmpl-and,and,et,y
+,%tmpl-submit,Submit,Soumettre,Enviar
+,%tmpl-reset,Reset,R√©initialiser,Resetear
+,%tmpl-about-us,About us,√Ä propos de nous,Acerca de nosotros
+,%tmpl-our-mandate,Our mandate,Notre mandat,Nuestro mandato
+,%tmpl-our-history,Our history,Notre histoire,Nuestra historia
+,%tmpl-news,News,Nouvelles,Noticias
+,%tmpl-news-rel,News releases,Communiqu√©s,Noticias sueltan
+,%tmpl-media-avisories,Media advisories,Avix aux m√©dias,Medios consultor
+,%tmpl-multimedia,Multimedia,Multim√©dia,Multimedia
+,%tmpl-contact-us,Contact us,Contactez-nous,Cont√°ctenos
+,%tmpl-phone-nums,Phone numbers,Num√©ros de t√©l√©phone,N√∫meros de tel√©fono
+,%tmpl-office-loc,Office locations,Nos bureaux,Oficinas
+,%tmpl-stay-connected,Stay connected,Restez branch√©s,Estancia conect√≥
+,%tmpl-feeds,Feeds,Flux,Fuentes web
+Filler content (GC Web Usability theme),%tmpl-headlines,Headlines,Nouvelles,
+,%tmpl-sample-text,Sample text.,Texte mod√®le.,
+,%tmpl-read-more,Read more,En&#160;plus,
+,%tmpl-priority,Priority,Priorit√©,
+,%tmpl-videos,Videos,Vid√©o
+,%tmpl-sample-player,Sample video player,Exemple d'un lecteur multim√©dia
+,%tmpl-video-title,Video title,Titre de la vid√©o
+,%tmpl-desc-video,Short description of the current video.,Description courte de la vid√©o actuelle.
+,%tmpl-multi-help,Multimedia help,Aide multim√©dia
 ,%tmpl-transcripts,Transcripts and Alternative Formats,Formats de transcription et de remplacement
 ,%tmpl-meet-minister,Meet the Minister,Rencontrer le Ministre
 ,%tmpl-honourable,The Honourable,L'honorable
 ,%tmpl-minister-name,minister name,nom du ministre
 ,%tmpl-about-minister,About the minister,Le ministre
 ,%tmpl-portfolio,His portfolio,Son portefeuille
-"	%tmpl-multi-help	Multimedia help	Aide multimÈdia	",,,
-"	%tmpl-transcripts	Transcripts and Alternative Formats	Formats de transcription et de remplacement	",,,
-"	%tmpl-meet-minister	Meet the Minister	Rencontrer le Ministre	",,,
-"	%tmpl-honourable	The Honourable	L'honorable	",,,
-"	%tmpl-minister-name	minister name	nom du ministre	",,,
-"	%tmpl-about-minister	About the minister	Le ministre	",,,
-"	%tmpl-portfolio	His portfolio	Son portefeuille	",,,
+,%tmpl-multi-help,Multimedia help,Aide multim√©dia,
+,%tmpl-transcripts,Transcripts and Alternative Formats,Formats de transcription et de remplacement,
+,%tmpl-meet-minister,Meet the Minister,Rencontrer le Ministre,
+,%tmpl-honourable,The Honourable,L'honorable,
+,%tmpl-minister-name,minister name,nom du ministre,
+,%tmpl-about-minister,About the minister,Le ministre,
+,%tmpl-portfolio,His portfolio,Son portefeuille,
