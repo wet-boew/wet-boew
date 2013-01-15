@@ -19,14 +19,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <script src="@%dist-dir@/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="@%dist-dir@/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="@%dist-dir@/js/css/pe-ap-ie-min.css" />
-@%include-theme-css-ie@
+<link rel="stylesheet" href="@%dist-dir@/@%theme@/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
 <link rel="stylesheet" href="@%dist-dir@/grids/css/util-min.css" />
 <link rel="stylesheet" href="@%dist-dir@/js/css/pe-ap-min.css" />
-@%include-theme-css@
+<link rel="stylesheet" href="@%dist-dir@/@%theme@/css/theme-min.css" />
 <!--<![endif]-->
-@%include-theme-css-noscript@
+<noscript><link rel="stylesheet" href="@%dist-dir@/@%theme@/css/theme-ns-min.css" /></noscript>
 
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
@@ -36,33 +36,34 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-skip">
 <ul id="wb-tphp">
 <li id="wb-skip1"><a href="#wb-cont">@%tmpl-skip-main@</a></li>
-@%include-skip2@
+<li id="wb-skip2"><a href="#wb-nav">@%strings-skip2@</a></li>
 </ul>
 </div>
 
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
-@%include-header@
+@%include-theme-header@
 <!-- HeaderEnd -->
 </header></div></div>
 
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
+<h1 id="wb-cont">@%include-h1@</h1>
 @%include-content@
 <!-- MainContentEnd -->
 </div></div>@%include-sec-menu@
 </div></div>
 
-<div id="wb-foot"><div id="wb-foot-in"><footer><h2@%include-foot-id@>Footer</h2>
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2@%strings-footid@>Footer</h2>
 <!-- FooterStart -->
-@%include-footer@
+@%include-theme-footer@
 <!-- FooterEnd -->
 </footer>
 </div></div></div>
 
 <!-- ScriptsStart -->
-@%include-theme-js@
+<script src="@%dist-dir@/@%theme@/js/theme-min.js"></script>
 <script src="@%dist-dir@/js/settings.js"></script>
 <script src="@%dist-dir@/js/pe-ap-min.js"></script>
 <!-- ScriptsEnd -->
