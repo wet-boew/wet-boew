@@ -1,209 +1,210 @@
-ï»¿,String code,English,French,Spanish
-Language code,%lang-code,en,fr,es
-Language name (English),%lang-eng,English,French,Spanish
-Language name (French),%lang-fra,anglais,franÃ§ais,espagnol
-Language name (native),%lang-native,English,FranÃ§ais,espaÃ±ol
-General (i18n),%all,All,Tous,Todo
-,%home,Home,Accueil,PÃ¡gina de inicio
-,%main-page,Main page,Page principale,PÃ¡gina principal
-,%top-of-page,Top of page,Haut de la page,Arriba
-,%you-are-in,You are in: ,Vous Ãªtes dans : ,Usted estÃ¡ en: 
-,%welcome-to,Welcome to: ,Bienvenue Ã  : ,Bienvenido a: 
-,%loading,loadingâ€¦,chargement...,cargandoâ€¦
-,%search,Search,Recherche,BÃºsqueda
-,%search-for-terms,Search for term(s):,Recherche de terme(s) :,Buscar por palabra(s):
-,%no-match-found,No match found,Aucune correspondance trouvÃ©e,0 resultados encontrados
-,%matches-found,[MIXIN] match(es) found,[MIXIN] correspondance(s) trouvÃ©es,[MIXIN] resultado(s) encontrados
-,%menu,Menu,Menu,MenÃº
-,%hide,Hide,Masquer,Ocultar
-,%error,Error,Erreur,Error
-,%colon,:, :,:
-,%start,Start,Lancer,Iniciar
-,%stop,Stop,ArrÃªter,Detener
-,%back,Back,PrÃ©cÃ©dent,Volver
-,%new-window, (Opens in a new window), (Ouvre dans une nouvelle fenÃªtre), (Abre en una nueva ventana)
-,%minute-ago,a minute ago,il y a une minute,hace un minuto
-,%couple-of-minutes,couple of minutes ago,il y a quelques minutes,hace algunos minutos
-,%minutes-ago,[MIXIN] minutes ago,il y a [MIXIN] minutes,hace [MIXIN] minutos
-,%hour-ago,an hour ago,il y a une heure,hace una hora
-,%hours-ago,[MIXIN] hours ago,il y a [MIXIN] heures,hace [MIXIN] horas
-,%days-ago,[MIXIN] days ago,il y a [MIXIN] jours,hacÃ© [MIXIN] dÃ­as
-,%yesterday,yesterday,hier,ayer
-,%next,Next,Suivant,Siguiente
-,%previous,Previous,PrÃ©cedent,Previo
-Archived Web page template,%archived-page,This Web page has been archived on the Web.,Cette page Web a Ã©tÃ© archivÃ©e dans le Web.,Esta pÃ¡gina Web ha estado archivada en el Internet.
-Menu bar,%sub-menu-help,(open the submenu with the enter key and close with the escape key),(ouvrir le sous-menu avec la touche d\'entrÃ©e et le fermer avec la touche d\'Ã©chappement),(Aprete &#34;enter&#34; para abrir el sub-menÃº y ciÃ©rrelo con la tecla &#34;esc&#34;)
-Tabbed interface,%tab-rotation-disable,Stop tab rotation,ArrÃªter la rotation d\'onglets,Detener rotaciÃ³n de tabs
-,%tab-rotation-enable,Start tab rotation,Lancer la rotation d\'onglets,Comenzar rotaciÃ³n de tabs
-,%tab-list,Tab list,Liste des onglets,Lista de tabs
-Multimedia player,%play,Play,Jouer,Reproducir
-,%pause,Pause,Pause,Pausa
-,%open,Open,Ouvrir,Abrir
-,%close,Close,Fermer,Cerrar
-,%rewind,Rewind,Reculer,Retroceder
-,%fast-forward,Fast forward,Avancer,Avance rÃ¡pido
-,%mute-enable,Mute,Activer le mode muet,Silenciar
-,%mute-disable,Unmute,DÃ©sactiver le mode muet,Habilitar sonido
-,%closed-caption-disable,Hide Closed captioning,Masquer le sous-titrage,Ocultar subtÃ­tulos
-,%closed-caption-enable,Show Closed captioning,Afficher le sous-titrage,Mostrar subtÃ­tulos
-,%captions-error,Error loading closed captions,Erreur dans le chargement des sous-titres,Error al cargar subtÃ­tulos
-,%audio-description-enable,Enable audio description,Activer l\'audiodescription,Habilitar audio descripciÃ³n
-,%audio-description-disable,Disable audio description,DÃ©sactiver l\'audiodescription,Eliminar descripciÃ³n de audio
-,%progress-bar,use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media\'s progress,utilisez les touches GAUCHE ou DROITE pour avancer ou reculer le progrÃ¨s des mÃ©dias,Usar las teclas de flechas IZQUIERDA y DERECHA para avanzar o retroceder la presentaciÃ³n multimedia
-,%no-video,Your browser does not appear to have the capabilities to play this video&#44; please download the video below,Votre navigateur ne semble pas avoir les capacitÃ© nÃ©cessaires pour lire cette vidÃ©o&#44; s\'il vous plaÃ®t tÃ©lÃ©charger la vidÃ©o ci-dessous,Su browser no es compatible con este video&#44; por favor descargue el video que aparece abajo
-,%position,Current position: ,Position actuelle : ,PosiciÃ³n actual: 
-,%percentage,Playback percentage: ,Pourcentage de lecture : ,Porcentaje de playback: 
-,%duration,Total time: ,Temps total : ,Tiempo total: 
-,%buffered,Buffered: ,Mis en mÃ©moire-tampon : ,Almacenado en memoria intermedia: 
-Share widget,%favourite,Favourite,Lien prÃ©fÃ©rÃ©,Favorito
-,%email,Email,Courriel,Correo electrÃ³nico
-,%share-text,Share this page,Partagez cette page,Compartir esta pÃ¡gina
-,%share-hint, with {s}, avec {s}, con {s}
-,%share-mail-subject,Interesting page,Page qui est intÃ©ressante,PÃ¡gina de interÃ©s
-,%share-email-body,I thought you might find this page interesting:\n{t} ({u}),J\'espÃ¨re que cette page vous intÃ©resse :\n{t} ({u}),Pienso que encontrarÃ¡s interesante esta pÃ¡gina:\n{t} ({u})
-,%share-fav-title, (bookmark this page), (ajouter cette page Ã  vos signets), (colocar esta pÃ¡gina como bookmark)
-,%share-manual,Please close this dialog and press Ctrl-D to bookmark this page.,S\'il vous plaÃ®t fermer ce dialogue et appuyer sur Ctrl-D pour ajouter cette page Ã  vos signets.,SÃ­rvase cerrar esta notificaciÃ³n y presione Ctro-D para marcar esta pÃ¡gina.
-,%share-showall,Show all ({n}),Tous montrer ({n}),Mostrar todo ({Ð¿})
-,%share-showall-title,All bookmarking sites,Tout les sites de mise en signet,Todos los sitios marcados como bookmark
-,%share-disclaimer,No endorsement of any products or services is expressed or implied.,Aucun appui nâ€™est accordÃ©&#44; soit de faÃ§on expresse ou tacite&#44; Ã  aucun produit ou service.,No implica la promociÃ³n ni recomendaciÃ³n de ningÃºn producto o servicio.
-Form validation,%form-not-submitted,The form could not be submitted because ,Le formulaire n\'a pu Ãªtre soumis car ,El formulario no pudo ser enviado debido a 
-,%errors-found, errors were found., erreurs ont Ã©tÃ© trouvÃ©es., errores encontrado.
-,%error-found, error was found., erreur a Ã©tÃ© trouvÃ©e., error encontrado.
-Date picker,%datepicker-hide,Hide calendar,Masquer le calendrier,Ocultar calendario
-,%datepicker-show,Pick a date from a calendar for field: ,SÃ©lectionner une date Ã  partir d'un calendrier pour le champ: ,Escoger una fecha de un calendario para el campo: 
-,%datepicker-selected,Selected,SÃ©lectionnÃ©,Seleccionado
-Calendar,%calendar-weekDayNames-1,Sunday,Dimanche,Domingo
-,%calendar-weekDayNames-2,Monday,Lundi,Lunes
-,%calendar-weekDayNames-3,Tuesday,Mardi,Martes
-,%calendar-weekDayNames-4,Wednesday,Mercredi,MiÃ©rcoles
-,%calendar-weekDayNames-5,Thursday,Jeudi,Jueves
-,%calendar-weekDayNames-6,Friday,Vendredi,Viernes
-,%calendar-weekDayNames-7,Saturday,Samedi,SÃ¡bado
-,%calendar-monthNames-1,January,Janvier,Enero
-,%calendar-monthNames-2,February,FÃ©vrier,Febrero
-,%calendar-monthNames-3,March,Mars,Marzo
-,%calendar-monthNames-4,April,Avril,Abril
-,%calendar-monthNames-5,May,Mai,Mayo
-,%calendar-monthNames-6,June,Juin,Junio
-,%calendar-monthNames-7,July,Juillet,Julio
-,%calendar-monthNames-8,August,AoÃ»t,Agosto
-,%calendar-monthNames-9,September,Septembre,Septiembre
-,%calendar-monthNames-10,October,Octobre,Octubre
-,%calendar-monthNames-11,November,Novembre,Noviembre
-,%calendar-monthNames-12,December,DÃ©cembre,Diciembre
-,%calendar-currentDay, (Current day), (Jour courrant), (Hoy)
-,%calendar-goToLink,"Go to<span class=""wb-invisible""> month of year</span>","Aller au <span class=""wb-invisible""> mois de l\'annÃ©e</span>","Ir a<span class=""wb-invisible""> mes del aÃ±o</span>"
-,%calendar-goToTitle,Go to month of year,Aller au mois de l\'annÃ©e,Ir al mes del aÃ±o
-,%calendar-goToMonth,Month:,Mois :,Mes:
-,%calendar-goToYear,Year:,AnnÃ©e :,AÃ±o:
-,%calendar-goToButton,Go,Aller,Ir
-,%calendar-cancelButton,Cancel,Annuler,Cancelar
-,%calendar-previousMonth,Previous Month: ,Mois prÃ©cÃ©dent : ,Mes anterior: 
-,%calendar-nextMonth,Next Month: ,Mois suivant : ,Mes siguiente: 
-Slideout,%show-toc,Show,Afficher,Mostrar
-,%show-image,Show table of contents,Afficher la table des matiÃ¨res,Mostrar el Ã­ndice
-,%hide-image,Hide table of contents,Cacher la table des matiÃ¨res,Ocultar el Ã­ndice
-,%table-contents, table of contents, la table des matiÃ¨res, Ã­ndice
-Lightbox,%lb-current,Item {current} of {total},Article {current} de {total},ArtÃ­culo {current} de {total}
-,%lb-next,Next item,Article suivant,ArtÃ­culo siguiente
-,%lb-prev,Previous item,Article prÃ©cÃ©dent,ArtÃ­culo previo
-,%lb-xhr-error,This content failed to load.,Le chargement de ce contenu a Ã©chouÃ©.,Este contenido no pudo ser cargado.
-,%lb-img-error,This image failed to load.,Le chargement de cette image a Ã©chouÃ©.,Esta imagen no pudo ser cargada.
-,%lb-slideshow,slideshow,la diaporama,show de diapositivas
-jQuery Mobile,%jqm-expand, click to expand contents, cliquer pour afficher le contenu, hacer clic para expandir el cotnenido
-,%jqm-collapse, click to collapse contents, cliquer pour masquer le contenu, hacer clic para colapsar los contenidos
-,%jqm-clear-search,clear search,effacer le texte,limbiar bÃºsqueda
-,%jqm-filter,Filter itemsâ€¦,Filtrer des articles...,filtrar artÃ­culosâ€¦
-Charts widget,%table-mention,Table,#NAME?,Tabla
-,%table-following,Chart. Details in the following table.,- Graphique. Plus de dÃ©tails dans le tableau suivant.,Cuadro. Los detalles aparecen en la siguiente tabla.
-Session timeout ,%st-timeout-msg,Your session is about to expire&#44; you have until #expireTime# to activate the &#34;OK&#34; button below to extend your session.,"Votre session est sur le point d\'expirer&#44; vous avez jusqu\'a #expireTime# pour sÃ©lectionnez Â« OK Â» ci-dessous pour prolonger votre session.""","Su sesiÃ³n estÃ¡ prÃ³xima a expirar&#44; tiene hasta #expireTime# para activar el botÃ³n ""OK"" y asÃ­ extender su sesiÃ³n."
-,%st-msgbox-title,Session timeout warning,Avertissement d\'expiration de la session,Aviso de finalizaciÃ³n de sesiÃ³n
-,%st-already-timeout-msg,Sorry your session has already expired. Please login again.,DÃ©solÃ©&#44; votre session a dÃ©jÃ  expirÃ©. S\'il vous plaÃ®t vous connecter Ã  nouveau.,Lamentablemente su sesiÃ³n ha expirado. Por favor ingrese nuevamente.
-Toggle details,%td-toggle,Toggle all,Basculer tout,Alternar todo
-,%td-open,Expand all,Afficher tout,Expandir todo
-,%td-close,Collapse all,RÃ©duire tout,Colapsar todo
-,%td-ttl-open,Expand all sections of content,Afficher toutes les sections de contenu,Expandir todas las secciones de contenido
-,%td-ttl-close,Collapse all sections of content,RÃ©duire toutes les sections de contenu,Colapsar todas las secciones de contenido
-Disable/enable PE,%pe-disable,Basic HTML version,Version HTML simplifiÃ©e,VersiÃ³n HTML bÃ¡sica
-,%pe-enable,Standard version,Version standard,VersiÃ³n estÃ¡ndar
-Template strings (Generic),,Skip to main content,Passer au contenu principal,Saltar al contenido principal
-,,Skip to secondary navigation,Passer au menu secondaire,Saltar a la navegaciÃ³n secundaria
-,,Skip to footer,Passer au pied de page,Saltar al pie de pÃ¡gina
-,,Search,Recherche,BÃºsqueda
-,,Search website,Recherchez le site Web,Buscar en este sitio Web
-,,Breadcrumb trail,Fil d'Ariane,Hilo de Ariadna
-,,Home,Accueil,PÃ¡gina de inicio
-,,Secondary menu,Menu secondaire,MenÃº secundario
-,,Supplementary content,Contenu supplÃ©mentaire,
-,,Footer,Pied de page,Pie de pÃ¡gina
-,,Date modified:,Date de modification&#160;:,Modificado el:
-Template strings (GC Web Usability theme),,Government of Canada navigation bar,Barre de navigation du gouvernement du Canada,
-,,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca
-,,Services,Services,
-,,Departments,MinistÃ¨res,
-,,Priorities,PrioritÃ©s,
-,,Government of Canada footer,Pied de page du gouvernement du Canada,
-,,Site footer,Pied de page du site,Site pie de pÃ¡gina
-,,Terms and conditions,Avis,
-,,Transparency,Transparence,
-Filler content (Generic),,Sub-site name,Nom du sous-site,Nombre de sitio secundario
-,,Full-width header area,Secteur d'en-tÃªte de plein-largeur,Area de encabezamiento de lleno-anchura
-,,Section,Section,SecciÃ³n
-,,Home,Accueil,PÃ¡gina de inicio
-,,Base theme,ThÃ¨me base,Tema de base
-,,Content page,Page de contenu,PÃ¡gina de contenido
-,,Sub-site,Sous-site,Sitio secundario
-,,Site menu,Menu du site,MenÃº del sitio
-,,Working examples,Exemples pratiques,Ejemplos prÃ¡cticos
-,,default appearance,- apparence par dÃ©faut,apariencia predefinida
-,,Heading,En-tÃªte,TÃ­tulo
-,,Paragraph,Paragraphe,PÃ¡rrafo
-,,Link,Lien,Enlace
-,,Third party link,Tiers lien,Enlace externos
-,,Link to file downloads based on file type,Lien aux tÃ©lÃ©chargements des fichiers fondÃ©s sur le type de fichier,Enlace para archivar descargas basadas en de tipo archivo
-,,Abbreviation,AbrÃ©viation,AbreviaciÃ³n
-,,unordered list,liste Ã  puces,
-,,ordered list,liste ordonnÃ©e,
-,,first level,premier niveau,primer nivel
-,,second level,deuxiÃ¨me niveau,segundo nivel
-,,third level,troisiÃ¨me niveau,tercer nivel
-,,Table caption,LÃ©gende de table,TÃ­tulo de tabla
-,,Table header,En-tÃªte de table,Encabezamiento de tabla
-,,Table data,DonnÃ©es de table,Datos de tabla
-,,Form,Formulaire,Forma
-,,Option,Option,OpciÃ³n
-,,and,et,y
-,,Submit,Soumettre,Enviar
-,,Reset,RÃ©initialiser,Resetear
-,,About us,Ã€ propos de nous,Acerca de nosotros
-,,Our mandate,Notre mandat,Nuestro mandato
-,,Our history,Notre histoire,Nuestra historia
-,,News,Nouvelles,Noticias
-,,News releases,CommuniquÃ©s,Noticias sueltan
-,,Media advisories,Avix aux mÃ©dias,Medios consultor
-,,Multimedia,MultimÃ©dia,Multimedia
-,,Contact us,Contactez-nous,ContÃ¡ctenos
-,,Phone numbers,NumÃ©ros de tÃ©lÃ©phone,NÃºmeros de telÃ©fono
-,,Office locations,Nos bureaux,Oficinas
-,,Stay connected,Restez branchÃ©s,Estancia conectÃ³
-,,Feeds,Flux,Fuentes web
-Filler content (GC Web Usability theme),,Headlines,Nouvelles,
-,,Headlines 1,Nouvelle 1,
-,,Headlines 2,Nouvelle 2,
-,,Headlines 3,Nouvelle 3,
-,,Sample text.,Texte modÃ¨le.,
-,,Read more,En&#160;plus,
-,,Priority 1,PrioritÃ© 1,
-,,Priority 2,PrioritÃ© 2,
-,,Priority 3,PrioritÃ© 3,
-,,Videos,VidÃ©o,
-,,Sample video player,Exemple d'un lecteur multimÃ©dia,
-,,Video title,Titre de la vidÃ©o,
-,,Short description of the current video.,Description courte de la vidÃ©o actuelle.,
-,,Multimedia help,Aide multimÃ©dia,
-,,Transcripts and Alternative Formats,Formats de transcription et de remplacement,
-,,Meet the Minister,Rencontrer le Ministre,
-,,The Honourable,L'honorable,
-,,minister name,nom du ministre,
-,,About the minister,Le ministre,
-,,His portfolio,Son portefeuille,
+	String code	English	French	Spanish
+Language code	%lang-code	en	fr	es
+Language name (English)	%lang-eng	English	French	Spanish
+Language name (French)	%lang-fra	anglais	français	espagnol
+Language name (native)	%lang-native	English	Français	español
+General (i18n)	%all	All	Tous	Todo
+	%home	Home	Accueil	Página de inicio
+	%main-page	Main page	Page principale	Página principal
+	%top-of-page	Top of page	Haut de la page	Arriba
+	%you-are-in	You are in: 	Vous êtes dans : 	Usted está en: 
+	%welcome-to	Welcome to: 	Bienvenue à : 	Bienvenido a: 
+	%loading	loading…	chargement...	cargando…
+	%search	Search	Recherche	Búsqueda
+	%search-for-terms	Search for term(s):	Recherche de terme(s) :	Buscar por palabra(s):
+	%no-match-found	No match found	Aucune correspondance trouvée	0 resultados encontrados
+	%matches-found	[MIXIN] match(es) found	[MIXIN] correspondance(s) trouvées	[MIXIN] resultado(s) encontrados
+	%menu	Menu	Menu	Menú
+	%hide	Hide	Masquer	Ocultar
+	%error	Error	Erreur	Error
+	%colon	:	 :	:
+	%start	Start	Lancer	Iniciar
+	%stop	Stop	Arrêter	Detener
+	%back	Back	Précédent	Volver
+	%new-window	 (Opens in a new window)	 (Ouvre dans une nouvelle fenêtre)	 (Abre en una nueva ventana)
+	%minute-ago	a minute ago	il y a une minute	hace un minuto
+	%couple-of-minutes	couple of minutes ago	il y a quelques minutes	hace algunos minutos
+	%minutes-ago	[MIXIN] minutes ago	il y a [MIXIN] minutes	hace [MIXIN] minutos
+	%hour-ago	an hour ago	il y a une heure	hace una hora
+	%hours-ago	[MIXIN] hours ago	il y a [MIXIN] heures	hace [MIXIN] horas
+	%days-ago	[MIXIN] days ago	il y a [MIXIN] jours	hacé [MIXIN] días
+	%yesterday	yesterday	hier	ayer
+	%next	Next	Suivant	Siguiente
+	%previous	Previous	Précedent	Previo
+Archived Web page template	%archived-page	This Web page has been archived on the Web.	Cette page Web a été archivée dans le Web.	Esta página Web ha estado archivada en el Internet.
+Menu bar	%sub-menu-help	(open the submenu with the enter key and close with the escape key)	(ouvrir le sous-menu avec la touche d\'entrée et le fermer avec la touche d\'échappement)	(Aprete &#34;enter&#34; para abrir el sub-menú y ciérrelo con la tecla &#34;esc&#34;)
+Tabbed interface	%tab-rotation-disable	Stop tab rotation	Arrêter la rotation d\'onglets	Detener rotación de tabs
+	%tab-rotation-enable	Start tab rotation	Lancer la rotation d\'onglets	Comenzar rotación de tabs
+	%tab-list	Tab list	Liste des onglets	Lista de tabs
+Multimedia player	%play	Play	Jouer	Reproducir
+	%pause	Pause	Pause	Pausa
+	%open	Open	Ouvrir	Abrir
+	%close	Close	Fermer	Cerrar
+	%rewind	Rewind	Reculer	Retroceder
+	%fast-forward	Fast forward	Avancer	Avance rápido
+	%mute-enable	Mute	Activer le mode muet	Silenciar
+	%mute-disable	Unmute	Désactiver le mode muet	Habilitar sonido
+	%closed-caption-disable	Hide Closed captioning	Masquer le sous-titrage	Ocultar subtítulos
+	%closed-caption-enable	Show Closed captioning	Afficher le sous-titrage	Mostrar subtítulos
+	%captions-error	Error loading closed captions	Erreur dans le chargement des sous-titres	Error al cargar subtítulos
+	%audio-description-enable	Enable audio description	Activer l\'audiodescription	Habilitar audio descripción
+	%audio-description-disable	Disable audio description	Désactiver l\'audiodescription	Eliminar descripción de audio
+	%progress-bar	use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media\'s progress	utilisez les touches GAUCHE ou DROITE pour avancer ou reculer le progrès des médias	Usar las teclas de flechas IZQUIERDA y DERECHA para avanzar o retroceder la presentación multimedia
+	%no-video	Your browser does not appear to have the capabilities to play this video&#44; please download the video below	Votre navigateur ne semble pas avoir les capacité nécessaires pour lire cette vidéo&#44; s\'il vous plaît télécharger la vidéo ci-dessous	Su browser no es compatible con este video&#44; por favor descargue el video que aparece abajo
+	%position	Current position: 	Position actuelle : 	Posición actual: 
+	%percentage	Playback percentage: 	Pourcentage de lecture : 	Porcentaje de playback: 
+	%duration	Total time: 	Temps total : 	Tiempo total: 
+	%buffered	Buffered: 	Mis en mémoire-tampon : 	Almacenado en memoria intermedia: 
+Share widget	%favourite	Favourite	Lien préféré	Favorito
+	%email	Email	Courriel	Correo electrónico
+	%share-text	Share this page	Partagez cette page	Compartir esta página
+	%share-hint	 with {s}	 avec {s}	 con {s}
+	%share-mail-subject	Interesting page	Page qui est intéressante	Página de interés
+	%share-email-body	I thought you might find this page interesting:\n{t} ({u})	J\'espère que cette page vous intéresse :\n{t} ({u})	Pienso que encontrarás interesante esta página:\n{t} ({u})
+	%share-fav-title	 (bookmark this page)	 (ajouter cette page à vos signets)	 (colocar esta página como bookmark)
+	%share-manual	Please close this dialog and press Ctrl-D to bookmark this page.	S\'il vous plaît fermer ce dialogue et appuyer sur Ctrl-D pour ajouter cette page à vos signets.	Sírvase cerrar esta notificación y presione Ctro-D para marcar esta página.
+	%share-showall	Show all ({n})	Tous montrer ({n})	Mostrar todo ({?})
+	%share-showall-title	All bookmarking sites	Tout les sites de mise en signet	Todos los sitios marcados como bookmark
+	%share-disclaimer	No endorsement of any products or services is expressed or implied.	Aucun appui n’est accordé&#44; soit de façon expresse ou tacite&#44; à aucun produit ou service.	No implica la promoción ni recomendación de ningún producto o servicio.
+Form validation	%form-not-submitted	The form could not be submitted because 	Le formulaire n\'a pu être soumis car 	El formulario no pudo ser enviado debido a 
+	%errors-found	 errors were found.	 erreurs ont été trouvées.	 errores encontrado.
+	%error-found	 error was found.	 erreur a été trouvée.	 error encontrado.
+Date picker	%datepicker-hide	Hide calendar	Masquer le calendrier	Ocultar calendario
+	%datepicker-show	Pick a date from a calendar for field: 	Sélectionner une date à partir d'un calendrier pour le champ: 	Escoger una fecha de un calendario para el campo: 
+	%datepicker-selected	Selected	Sélectionné	Seleccionado
+Calendar	%calendar-weekDayNames-1	Sunday	Dimanche	Domingo
+	%calendar-weekDayNames-2	Monday	Lundi	Lunes
+	%calendar-weekDayNames-3	Tuesday	Mardi	Martes
+	%calendar-weekDayNames-4	Wednesday	Mercredi	Miércoles
+	%calendar-weekDayNames-5	Thursday	Jeudi	Jueves
+	%calendar-weekDayNames-6	Friday	Vendredi	Viernes
+	%calendar-weekDayNames-7	Saturday	Samedi	Sábado
+	%calendar-monthNames-1	January	Janvier	Enero
+	%calendar-monthNames-2	February	Février	Febrero
+	%calendar-monthNames-3	March	Mars	Marzo
+	%calendar-monthNames-4	April	Avril	Abril
+	%calendar-monthNames-5	May	Mai	Mayo
+	%calendar-monthNames-6	June	Juin	Junio
+	%calendar-monthNames-7	July	Juillet	Julio
+	%calendar-monthNames-8	August	Août	Agosto
+	%calendar-monthNames-9	September	Septembre	Septiembre
+	%calendar-monthNames-10	October	Octobre	Octubre
+	%calendar-monthNames-11	November	Novembre	Noviembre
+	%calendar-monthNames-12	December	Décembre	Diciembre
+	%calendar-currentDay	 (Current day)	 (Jour courrant)	 (Hoy)
+	%calendar-goToLink	"Go to<span class=""wb-invisible""> month of year</span>"	"Aller au <span class=""wb-invisible""> mois de l\'année</span>"	"Ir a<span class=""wb-invisible""> mes del año</span>"
+	%calendar-goToTitle	Go to month of year	Aller au mois de l\'année	Ir al mes del año
+	%calendar-goToMonth	Month:	Mois :	Mes:
+	%calendar-goToYear	Year:	Année :	Año:
+	%calendar-goToButton	Go	Aller	Ir
+	%calendar-cancelButton	Cancel	Annuler	Cancelar
+	%calendar-previousMonth	Previous Month: 	Mois précédent : 	Mes anterior: 
+	%calendar-nextMonth	Next Month: 	Mois suivant : 	Mes siguiente: 
+Slideout	%show-toc	Show	Afficher	Mostrar
+	%show-image	show.png	afficher.png	Mostrar el índice
+	%hide-image	hide.png	cacher.png	Ocultar el índice
+	%show-text	Show table of contents	Afficher la table des matières	 índice
+Lightbox	%hide-text	Hide table of contents	Cacher la table des matières	Artículo {current} de {total}
+	%table-contents	 table of contents	 la table des matières	Artículo siguiente
+	%lb-current	Item {current} of {total}	Article {current} de {total}	Artículo previo
+	%lb-next	Next item	Article suivant	Este contenido no pudo ser cargado.
+	%lb-prev	Previous item	Article précédent	Esta imagen no pudo ser cargada.
+	%lb-xhr-error	This content failed to load.	Le chargement de ce contenu a échoué.	show de diapositivas
+jQuery Mobile	%lb-img-error	This image failed to load.	Le chargement de cette image a échoué.	 hacer clic para expandir el cotnenido
+	%lb-slideshow	slideshow	la diaporama	 hacer clic para colapsar los contenidos
+	%jqm-expand	 click to expand contents	 cliquer pour afficher le contenu	limbiar búsqueda
+	%jqm-collapse	 click to collapse contents	 cliquer pour masquer le contenu	filtrar artículos…
+Charts widget	%jqm-clear-search	clear search	effacer le texte	Tabla
+	%jqm-filter	Filter items…	Filtrer des articles...	Cuadro. Los detalles aparecen en la siguiente tabla.
+Session timeout 	%table-mention	Table	#NAME?	"Su sesión está próxima a expirar&#44; tiene hasta #expireTime# para activar el botón ""OK"" y así extender su sesión."
+	%table-following	Chart. Details in the following table.	#NAME?	Aviso de finalización de sesión
+	%st-timeout-msg	Your session is about to expire&#44; you have until #expireTime# to activate the &#34;OK&#34; button below to extend your session.	"Votre session est sur le point d\'expirer&#44; vous avez jusqu\'a #expireTime# pour sélectionnez « OK » ci-dessous pour prolonger votre session."""	Lamentablemente su sesión ha expirado. Por favor ingrese nuevamente.
+Toggle details	%st-msgbox-title	Session timeout warning	Avertissement d\'expiration de la session	Alternar todo
+	%st-already-timeout-msg	Sorry your session has already expired. Please login again.	Désolé&#44; votre session a déjà expiré. S\'il vous plaît vous connecter à nouveau.	Expandir todo
+	%td-toggle	Toggle all	Basculer tout	Colapsar todo
+	%td-open	Expand all	Afficher tout	Expandir todas las secciones de contenido
+	%td-close	Collapse all	Réduire tout	Colapsar todas las secciones de contenido
+Disable/enable PE	%td-ttl-open	Expand all sections of content	Afficher toutes les sections de contenu	Versión HTML básica
+	%td-ttl-close	Collapse all sections of content	Réduire toutes les sections de contenu	Versión estándar
+Template strings (Generic)	%pe-disable	Basic HTML version	Version HTML simplifiée	Saltar al contenido principal
+	%pe-enable	Standard version	Version standard	Saltar a la navegación secundaria
+	%tmpl-skip-main	Skip to main content	Passer au contenu principal	Saltar al pie de página
+	%tmpl-skip-sec	Skip to secondary menu	Passer au menu secondaire	Búsqueda
+	%tmpl-skip-foot	Skip to footer	Passer au pied de page	Buscar en este sitio Web
+	%tmpl-search	Search	Recherche	Hilo de Ariadna
+	%tmpl-search-site	Search website	Recherchez le site Web	Página de inicio
+	%tmpl-bcrumb	Breadcrumb trail	Fil d'Ariane	Menú secundario
+	%tmpl-home	Home	Accueil	
+	%tmpl-sec-menu	Secondary menu	Menu secondaire	Pie de página
+	%tmpl-sup-cont	Supplementary content	Contenu supplémentaire	Modificado el:
+Template strings (GC Web Usability theme)	%tmpl-foot	Footer	Pied de page	
+	%tmpl-date-mod	Date modified:	Date de modification&#160;:	Canada.gc.ca
+	%tmpl-gc-navbar	Government of Canada navigation bar	Barre de navigation du gouvernement du Canada	
+	%tmpl-gc-ca	Canada.gc.ca	Canada.gc.ca	
+	%tmpl-services	Services	Services	
+	%tmpl-depts	Departments	Ministères	
+	%tmpl-priorities	Priorities	Priorités	Site pie de página
+	%tmpl-gc-foot	Government of Canada footer	Pied de page du gouvernement du Canada	
+	%tmpl-site-foot	Site footer	Pied de page du site	
+Filler content (Generic)	%tmpl-terms	Terms and conditions	Avis	Nombre de sitio secundario
+	%tmpl-transparency	Transparency	Transparence	Area de encabezamiento de lleno-anchura
+	%tmpl-sub-site-name	Sub-site name	Nom du sous-site	Sección
+	%tmpl-fullwidth-head	Full-width header area	Secteur d'en-tête de plein-largeur	Página de inicio
+	%tmpl-section	Section	Section	Tema de base
+	%tmpl-base-theme	Base theme	Thème base	Página de contenido
+	%tmpl-cont-page	Content page	Page de contenu	Sitio secundario
+	%tmpl-sub-site	Sub-site	Sous-site	Menú del sitio
+	%tmpl-site-menu	Site menu	Menu du site	Ejemplos prácticos
+	%tmpl-work-examples	Working examples	Exemples pratiques	apariencia predefinida
+	%tmpl-default-app	default appearance	#NAME?	Título
+	%tmpl-heading	Heading	En-tête	Párrafo
+	%tmpl-para	Paragraph	Paragraphe	Enlace
+	%tmpl-link	Link	Lien	Enlace externos
+	%tmpl-third-party-link	Third party link	Tiers lien	Enlace para archivar descargas basadas en de tipo archivo
+	%tmpl-link-downloads	Link to file downloads based on file type	Lien aux téléchargements des fichiers fondés sur le type de fichier	Abreviación
+	%tmpl-abbr	Abbreviation	Abréviation	
+	%tmpl-ul	unordered list	liste à puces	
+	%tmpl-ol	ordered list	liste ordonnée	primer nivel
+	%tmpl-level1	first level	premier niveau	segundo nivel
+	%tmpl-level2	second level	deuxième niveau	tercer nivel
+	%tmpl-level3	third level	troisième niveau	Título de tabla
+	%tmpl-table-caption	Table caption	Légende de table	Encabezamiento de tabla
+	%tmpl-table-head	Table header	En-tête de table	Datos de tabla
+	%tmpl-table-data	Table data	Données de table	Forma
+	%tmpl-form	Form	Formulaire	Opción
+	%tmpl-option	Option	Option	y
+	%tmpl-and	and	et	Enviar
+	%tmpl-submit	Submit	Soumettre	Resetear
+	%tmpl-reset	Reset	Réinitialiser	Acerca de nosotros
+	%tmpl-about-us	About us	À propos de nous	Nuestro mandato
+	%tmpl-our-mandate	Our mandate	Notre mandat	Nuestra historia
+	%tmpl-our-history	Our history	Notre histoire	Noticias
+	%tmpl-news	News	Nouvelles	Noticias sueltan
+	%tmpl-news-rel	News releases	Communiqués	Medios consultor
+	%tmpl-media-avisories	Media advisories	Avix aux médias	Multimedia
+	%tmpl-multimedia	Multimedia	Multimédia	Contáctenos
+	%tmpl-contact-us	Contact us	Contactez-nous	Números de teléfono
+	%tmpl-phone-nums	Phone numbers	Numéros de téléphone	Oficinas
+	%tmpl-office-loc	Office locations	Nos bureaux	Estancia conectó
+	%tmpl-stay-connected	Stay connected	Restez branchés	Fuentes web
+Filler content (GC Web Usability theme)	%tmpl-feeds	Feeds	Flux	
+	%tmpl-headlines	Headlines	Nouvelles	
+	%tmpl-headlines1	Headlines 1	Nouvelle 1	
+	%tmpl-headlines2	Headlines 2	Nouvelle 2	
+	%tmpl-headlines3	Headlines 3	Nouvelle 3	
+	%tmpl-sample-text	Sample text.	Texte modèle.	
+	%tmpl-read-more	Read more	En&#160;plus	
+	%tmpl-priority1	Priority 1	Priorité 1	
+	%tmpl-priority2	Priority 2	Priorité 2	
+	%tmpl-priority3	Priority 3	Priorité 3	
+	%tmpl-videos	Videos	Vidéo	
+	%tmpl-sample-player	Sample video player	Exemple d'un lecteur multimédia	
+	%tmpl-video-title	Video title	Titre de la vidéo	
+	%tmpl-desc-video	Short description of the current video.	Description courte de la vidéo actuelle.	
+	%tmpl-multi-help	Multimedia help	Aide multimédia	
+	%tmpl-transcripts	Transcripts and Alternative Formats	Formats de transcription et de remplacement	
+	%tmpl-meet-minister	Meet the Minister	Rencontrer le Ministre	
+	%tmpl-honourable	The Honourable	L'honorable	
+	%tmpl-minister-name	minister name	nom du ministre	
+	%tmpl-about-minister	About the minister	Le ministre	
+	%tmpl-portfolio	His portfolio	Son portefeuille	
