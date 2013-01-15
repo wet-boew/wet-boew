@@ -265,7 +265,7 @@
 						$.data(e.target, 'captions', e.captions);
 						break;
 					case 'captionsloadfailed':
-						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%captionserror') + '</p>');
+						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%closed-caption-error') + '</p>');
 						break;
 					// Determine when the loading icon should be shown. 
 					case 'waiting':

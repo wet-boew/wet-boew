@@ -46,7 +46,7 @@ Multimedia player,%play,Play,Jouer,Reproducir
 ,%mute-disable,Unmute,Désactiver le mode muet,Habilitar sonido
 ,%closed-caption-disable,Hide Closed captioning,Masquer le sous-titrage,Ocultar subtítulos
 ,%closed-caption-enable,Show Closed captioning,Afficher le sous-titrage,Mostrar subtítulos
-,%captions-error,Error loading closed captions,Erreur dans le chargement des sous-titres,Error al cargar subtítulos
+,%closed-caption-error,Error loading closed captions,Erreur dans le chargement des sous-titres,Error al cargar subtítulos
 ,%audio-description-enable,Enable audio description,Activer l\'audiodescription,Habilitar audio descripción
 ,%audio-description-disable,Disable audio description,Désactiver l\'audiodescription,Eliminar descripción de audio
 ,%progress-bar,use LEFT ARROW and RIGHT ARROW keys to advance and rewind the media\'s progress,utilisez les touches GAUCHE ou DROITE pour avancer ou reculer le progrès des médias,Usar las teclas de flechas IZQUIERDA y DERECHA para avanzar o retroceder la presentación multimedia
@@ -59,7 +59,7 @@ Share widget,%favourite,Favourite,Lien préféré,Favorito
 ,%email,Email,Courriel,Correo electrónico
 ,%share-text,Share this page,Partagez cette page,Compartir esta página
 ,%share-hint, with {s}, avec {s}, con {s}
-,%share-mail-subject,Interesting page,Page qui est intéressante,Página de interés
+,%share-email-subject,Interesting page,Page qui est intéressante,Página de interés
 ,%share-email-body,I thought you might find this page interesting:\n{t} ({u}),J\'espère que cette page vous intéresse :\n{t} ({u}),Pienso que encontrarás interesante esta página:\n{t} ({u})
 ,%share-fav-title, (bookmark this page), (ajouter cette page à vos signets), (colocar esta página como bookmark)
 ,%share-manual,Please close this dialog and press Ctrl-D to bookmark this page.,S\'il vous plaît fermer ce dialogue et appuyer sur Ctrl-D pour ajouter cette page à vos signets.,
