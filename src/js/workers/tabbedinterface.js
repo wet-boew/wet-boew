@@ -83,7 +83,8 @@
 				toggleCycle,
 				tabListCount = $tabbedInterfaces.length > 1 ? ' ' + ($tabbedInterfaces.index(elm) + 1) : '',
 				tabsPanelId,
-				tabSuffix = "-link";
+				tabSuffix = '-link',
+				href;
 
 			// Defaults
 			opts = {
@@ -140,7 +141,8 @@
 				$default_tab = $nav.find('li:first-child a');
 			}
 			$default_tab.attr('aria-selected', 'true');
-			$panels.filter(this.hash).attr('aria-hidden', 'false');
+			href = $default_tab.attr('href');
+			$panels.filter(href.substring(href.indexOf('#'))).attr('aria-hidden', 'false');
 
 			$tabs.off('click vclick').on('keydown click', function (e) {
 				var $target = $(e.target),
