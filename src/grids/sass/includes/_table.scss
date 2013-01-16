@@ -139,7 +139,7 @@
 			}
 
 			&.table-bordered {
-				border-right: 0;
+				/*border-right: 0;*/
 
 				thead, tbody {
 					&:first-child {
@@ -175,7 +175,7 @@
 				
 				th, td {
 					border: {
-						left: none;
+						/*left: none;*/
 					}
 				}
 			}
