@@ -518,6 +518,16 @@ table {
 
 #jqm-wb-search {
 	@extend %gcwu-default-mobile-ui-bar-a-h1-white;
+	label {
+		clip: rect(1px, 1px, 1px, 1px);
+		height: 1px;
+		overflow: hidden;
+		position: absolute;
+		width: 1px;
+	}
+	.ui-icon-searchfield:after, .ui-icon-search {
+		background: none;
+	}
 }
 
 #jqm-wb-mb {
