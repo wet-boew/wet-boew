@@ -368,6 +368,19 @@ img{
 	}
 }
 
+#jqm-wb-search {
+	label {
+		clip: rect(1px, 1px, 1px, 1px);
+		height: 1px;
+		overflow: hidden;
+		position: absolute;
+		width: 1px;
+	}
+	.ui-icon-searchfield:after, .ui-icon-search {
+		background: none;
+	}
+}
+
 #jqm-wb-mb {
 	a:link{
 		text-decoration: none

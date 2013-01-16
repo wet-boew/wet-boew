@@ -67,7 +67,7 @@
 				s_popup,
 				bodyAppend = '',
 				popup_role = 'data-role="popup" data-overlay-theme="a"',
-				popup_close = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">' + pe.dic.get('%close') + '</a>',
+				popup_close = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-' + ((pe.rtl) ? 'left' : 'right') + '">' + pe.dic.get('%close') + '</a>',
 				_list = '',
 				navbar,
 				links,
