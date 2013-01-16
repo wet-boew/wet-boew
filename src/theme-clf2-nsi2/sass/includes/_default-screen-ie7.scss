@@ -9,7 +9,7 @@
 	#cn-leaf {
 		margin-top: 5px;
 	}
-	#cn-psnb, #cn-psnb-2 {
+	%clf2-default-screen-ie7-all-psnb {
 		ul {
 			height: auto;
 			overflow: hidden;
@@ -18,13 +18,19 @@
 			}
 		}
 	}
+	#cn-psnb {
+		@extend %clf2-default-screen-ie7-all-psnb;
+	}
+	#cn-psnb-2 {
+		@extend %clf2-default-screen-ie7-all-psnb;
+	}
 	#wb-main-in {
 		#{headings(all)}, p, blockquote, table, form, img, pre {
 			margin-left: 0;
 			margin-right: 0;
 		}
 	}
-	.wb-sec-def, .wb-sup-def {
+	%clf2-default-screen-ie7-all-defs {
 		ul {
 			margin-left: 0;
 			ul {
@@ -42,18 +48,33 @@
 			}
 		}
 	}
-	.wb-sec-def #cn-search-box, .cn-search-box {
+	%clf2-default-screen-ie7-cn-search-box {
 		margin: -15px -10px 0 -10px;
 		a {
 			margin-bottom: -9px;
 		}
 	}
-	//TODO: cn-search-box is used as a class and an ID, which should it be
-	.wb-sec-def #cn-search-box #cn-search-submit, .cn-search-box .cn-search-submit {
+	.wb-sec-def {
+		@extend %clf2-default-screen-ie7-all-defs;
+		#cn-search-box {
+			@extend %clf2-default-screen-ie7-cn-search-box;
+			#cn-search-submit {
+				@extend %clf2-default-screen-ie7-cn-search-box-child-cn-search-submit;
+			}
+		}
+	}
+	.cn-search-box {
+		@extend %clf2-default-screen-ie7-cn-search-box;
+		.cn-search-submit {
+			@extend %clf2-default-screen-ie7-cn-search-box-child-cn-search-submit;
+		}
+	}
+	%clf2-default-screen-ie7-cn-search-box-child-cn-search-submit {
 		overflow: visible;
 		padding: 0 8px;
 	}
 	.wb-sup-def {
+		@extend %clf2-default-screen-ie7-all-defs;
 		margin-bottom: -10px;
 		h3 {
 			margin-left: 0;
