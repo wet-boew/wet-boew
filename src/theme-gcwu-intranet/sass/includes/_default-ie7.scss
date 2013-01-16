@@ -3,6 +3,9 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ie7 {
+	[id|="wb-body"] {
+		@extend %intranet-default-ie7-background-none;
+	}
 	#gcwu-title-in {
 		position: static !important;
 		a {
@@ -21,8 +24,11 @@
 			border-left: expression(this.previousSibling == null ? 'none' : '-' );
 		}
 	}
-	[id|="wb-body"], #wb-head-in {
+	%intranet-default-ie7-background-none {
 		background: none;
+	}
+	#wb-head-in {
+		@extend %intranet-default-ie7-background-none;
 	}
 	#gcwu-sft-in {
 		background: transparent url(../images/gcwu-sft-in.png) no-repeat right bottom;
