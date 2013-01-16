@@ -1065,8 +1065,11 @@
 			*/
 			correctmobile: function (menusrc) {
 				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
-					menus = original.find('.wb-nested-menu').get(0).parentNode.childNodes;
-				menus[menus.length - 1].getElementsByTagName('a')[0].className += ' ui-corner-bottom';
+					menus = original.find('.wb-nested-menu');
+				if (menus.length !== 0) {
+					menus = menus.get(0).parentNode.childNodes;
+					menus[menus.length - 1].getElementsByTagName('a')[0].className += ' ui-corner-bottom';
+				}
 			}
 		},
 		/**

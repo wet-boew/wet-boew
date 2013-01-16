@@ -611,55 +611,40 @@ table {
 			}
 		}
 	}
-	.ui-collapsible-content {
+	.wb-nested-menu {
 		padding: 0;
-		a {
-			padding-left: 55px;
-			&.ui-btn-icon-left {
-				padding-left: 0px;
-			}
+		h2, h3, h4, h5 {
+			margin: 0;
 		}
 		.ui-btn-icon-right {
 			.ui-btn-inner {
 				padding-left: 0;
 			}
 		}
-		.ui-collapsible-heading-toggle {
-			padding-left: 15px;
+		a {
+			padding-left: 55px;
+			&.ui-btn-icon-left {
+				padding-left: 0px;
+			}
 		}
 		.wb-nested-menu {
-			h3, h4, h5 {
-				margin-top: 0;
-				margin-bottom: 0;
-			}
 			a {
 				padding-left: 70px;
 				&.ui-btn-icon-left {
 					padding-left: 15px;
 				}
-				padding-left: 70px;
-			}
-			.ui-collapsible-heading-toggle {
-				padding-left: 30px;
 			}
 			.wb-nested-menu {
 				a {
 					padding-left: 85px;
-				}
-				.wb-nested-li-heading {
-					a {
+					&.ui-btn-icon-left {
 						padding-left: 30px;
 					}
 				}
-				.ui-collapsible-heading-toggle {
-					padding-left: 45px;
-				}
 			}
 		}
-		.wb-nested-li-heading {
-			a {
-				border-top: 0;
-			}
+		.wb-nested-li-heading a {
+			border-top: 0;
 		}
 	}
 	.ui-collapsible-content {
