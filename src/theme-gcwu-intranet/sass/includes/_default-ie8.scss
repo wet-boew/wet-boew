@@ -3,8 +3,14 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ie8 {
-	[id|="wb-body"], #wb-head-in {
+	%intranet-default-ie8-background-none {
 		background: none;
+	}
+	[id|="wb-body"] {
+		@extend %intranet-default-ie8-background-none;
+	}
+	#wb-head-in {
+		@extend %intranet-default-ie8-background-none;
 	}
 	#gcwu-sft-in {
 		background: transparent url(../images/gcwu-sft-in.png) no-repeat right bottom;
