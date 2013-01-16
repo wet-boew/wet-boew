@@ -618,6 +618,10 @@ table {
 			padding-left: 15px;
 		}
 		.wb-nested-menu {
+			h3, h4, h5 {
+				margin-top: 0;
+				margin-bottom: 0;
+			}
 			a {
 				padding-left: 70px;
 				&.ui-btn-icon-left {
@@ -631,6 +635,11 @@ table {
 			.wb-nested-menu {
 				a {
 					padding-left: 85px;
+				}
+				.wb-nested-li-heading {
+					a {
+						padding-left: 30px;
+					}
 				}
 				.ui-collapsible-heading-toggle {
 					padding-left: 45px;
