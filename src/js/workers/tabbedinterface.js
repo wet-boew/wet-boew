@@ -94,7 +94,7 @@
 				tabsPanelId,
 				tabSuffix = '-link',
 				href;				
-				
+
 			// Defaults
 			opts = {
 				panelActiveClass: 'active',
