@@ -6,49 +6,49 @@ body {
 	min-width: 780px;
 }
 
-%clf-default-responsive-fullwidth {
+%clf2-default-responsive-fullwidth {
 	width: 100%;
 }
 
-%clf-default-responsive-margin-auto {
+%clf2-default-responsive-margin-auto {
 	margin: auto;
 }
 
-%clf-default-responsive-width760 {
+%clf2-default-responsive-width760 {
 	width: 760px;
 }
 
 #wb-body {
 	#wb-main {
-		@extend %clf-default-responsive-width760;
+		@extend %clf2-default-responsive-width760;
 	}
 }
 
 #wb-core {
-	@extend %clf-default-responsive-margin-auto;
-	@extend %clf-default-responsive-width760;
+	@extend %clf2-default-responsive-margin-auto;
+	@extend %clf2-default-responsive-width760;
 }
 
 #wb-core-in {
-	@extend %clf-default-responsive-margin-auto;
-	@extend %clf-default-responsive-width760;
+	@extend %clf2-default-responsive-margin-auto;
+	@extend %clf2-default-responsive-width760;
 }
 
 #wb-head {
-	@extend %clf-default-responsive-fullwidth;
+	@extend %clf2-default-responsive-fullwidth;
 }
 
 #wb-head-in {
-	@extend %clf-default-responsive-margin-auto;
-	@extend %clf-default-responsive-width760;
+	@extend %clf2-default-responsive-margin-auto;
+	@extend %clf2-default-responsive-width760;
 }
 
 #wb-foot {
-	@extend %clf-default-responsive-fullwidth;
+	@extend %clf2-default-responsive-fullwidth;
 }
 #wb-foot-in {
-	@extend %clf-default-responsive-margin-auto;
-	@extend %clf-default-responsive-width760;
+	@extend %clf2-default-responsive-margin-auto;
+	@extend %clf2-default-responsive-width760;
 }
 
 #wb-body-sec {

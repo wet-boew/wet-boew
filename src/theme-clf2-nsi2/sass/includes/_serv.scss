@@ -21,18 +21,18 @@
 	visibility: hidden;
 }
 
-%clf-serv-width49pct {
+%clf2-serv-width49pct {
 	width: 49%;
 }
 
 #cn-left-msg {
 	float: left;
-	@extend %clf-serv-width49pct;
+	@extend %clf2-serv-width49pct;
 }
 
 #cn-right-msg {
 	float: right;
-	@extend %clf-serv-width49pct;
+	@extend %clf2-serv-width49pct;
 }
 
 #cn-in-pd {

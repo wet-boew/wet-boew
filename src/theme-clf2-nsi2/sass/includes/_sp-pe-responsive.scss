@@ -7,57 +7,57 @@ body {
 }
 
 /** Box model - centered **/
-%clf-sp-pe-responsive-width100pct {
+%clf2-sp-pe-responsive-width100pct {
 	width: 100%;
 }
 
 #wb-head {
-	@extend %clf-sp-pe-responsive-width100pct;
+	@extend %clf2-sp-pe-responsive-width100pct;
 }
 
 #wb-foot {
-	@extend %clf-sp-pe-responsive-width100pct;
+	@extend %clf2-sp-pe-responsive-width100pct;
 }
 
-%clf-sp-pe-responsive-margin-auto {
+%clf2-sp-pe-responsive-margin-auto {
 	margin: auto;
 }
 
-%clf-sp-pe-responsive-width600px {
+%clf2-sp-pe-responsive-width600px {
 	width: 600px;
 }
 
 #wb-core {
-	@extend %clf-sp-pe-responsive-width600px;
-	@extend %clf-sp-pe-responsive-margin-auto;
+	@extend %clf2-sp-pe-responsive-width600px;
+	@extend %clf2-sp-pe-responsive-margin-auto;
 }
 
 #wb-core-in {
-	@extend %clf-sp-pe-responsive-width600px;
-	@extend %clf-sp-pe-responsive-margin-auto;
+	@extend %clf2-sp-pe-responsive-width600px;
+	@extend %clf2-sp-pe-responsive-margin-auto;
 }
 
-%clf-sp-pe-responsive-width760px {
+%clf2-sp-pe-responsive-width760px {
 	width: 760px;
-	@extend %clf-sp-pe-responsive-margin-auto;
+	@extend %clf2-sp-pe-responsive-margin-auto;
 }
 
 #wb-head-in {
-	@extend %clf-sp-pe-responsive-width760px;
+	@extend %clf2-sp-pe-responsive-width760px;
 }
 
 #wb-foot-in {
-	@extend %clf-sp-pe-responsive-width760px;
+	@extend %clf2-sp-pe-responsive-width760px;
 }
 
 /** Centre column **/
 #wb-body {
-	@extend %clf-sp-pe-responsive-width600px;
+	@extend %clf2-sp-pe-responsive-width600px;
 	#wb-main {
 		//TODO: Is the nested ID selector important or can the above and below 600px rules be combined
-		@extend %clf-sp-pe-responsive-width600px;
+		@extend %clf2-sp-pe-responsive-width600px;
 	}
 }
 #cn-msg-space {
-	@extend %clf-sp-pe-responsive-width600px;
+	@extend %clf2-sp-pe-responsive-width600px;
 }
