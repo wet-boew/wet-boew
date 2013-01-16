@@ -6,6 +6,7 @@
 @import "compass/css3/box-sizing";
 @import "compass/typography/lists/bullets";
 @import "compass/css3/border-radius";
+@import 'compass/css3/transform';
 
 @mixin modules {
 
@@ -319,6 +320,12 @@
 
 	/* Right to left (RTL) CSS */
 	[dir="rtl"] {
+		.module-billboard, .module-related, .module-menu-section {
+			ul {
+				margin: 0;
+			}
+		}
+
 		.module-billboard ul {
 			li {		
 				a, a:link, a:visited {
@@ -349,13 +356,18 @@
 		}
 
 		.module-table-contents {
-			ul, ul[class*="column-"] {
-				li {
-					margin-left: auto;
-					margin-right: 25px;
+			ul {
+				&, &[class*="column-"] {
+					margin: 0;
+					padding: $margin-medium $margin-medium;
+					li {
+						margin-bottom: $margin-medium / 2;
+						margin-left: auto;
+						margin-right: 25px !important;
+					}
 				}
 			}
-		} 
+		}
 
 		.module-spotlight {
 			ul {
