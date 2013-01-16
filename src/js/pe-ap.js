@@ -1065,25 +1065,8 @@
 			*/
 			correctmobile: function (menusrc) {
 				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
-					menus = original.find('.ui-controlgroup-controls').children().get(),
-					menu,
-					menu_len = menus.length,
-					children,
-					child,
-					children_len;
-				while (menu_len--) {
-					menu = menus[menu_len];
-					menu.getElementsByTagName('a')[0].className += ' ui-corner-top';
-					children = menu.childNodes;
-					children_len = children.length;
-					while (children_len--) {
-						child = children[children_len];
-						if (child.nodeType === 1) {
-							child.getElementsByTagName('a')[0].className += ' ui-corner-bottom';
-							break;
-						}
-					}
-				}
+					menus = original.find('.wb-nested-menu').get(0).parentNode.childNodes;
+				menus[menus.length - 1].getElementsByTagName('a')[0].className += ' ui-corner-bottom';
 			}
 		},
 		/**
