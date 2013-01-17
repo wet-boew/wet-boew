@@ -1,6 +1,8 @@
 if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
-	export REPO="$(pwd | sed s,^/home/travis/builds/,,g)"
+	export REPO="$(pwd | sed s,^/home/travis/build/,,g)"
 	declare -a supported_branches=('master' 'v3.0') # List of branches to store build output for
+
+	echo -e "Current repo: $REPO\n"
 
 	#Set git user
 	git config --global user.email "travis@travis-ci.org"
@@ -14,7 +16,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 	cp -R dist $HOME/dist
 	cp -R demos $HOME/demos
 
-	git fetch upstream
+	git fetch upstream > /dev/null
 
 	if [ "$REPO" == "wet-boew/wet-boew" ]; then
 		#Update working example
