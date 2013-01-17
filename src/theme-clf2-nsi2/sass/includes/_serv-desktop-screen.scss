@@ -2,13 +2,16 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
 html {
 	overflow-y: scroll;
 }
+
 body {
 	margin: 0;
 	padding: 0;
 }
+
 #wb-body {
 	border: 10px solid #FFF;
 }
@@ -20,9 +23,26 @@ body {
 }
 
 /** Overflow restrict for background paintability control **/
-#wb-head, #wb-head-in, #cn-foot, #wb-foot-in {
+%clf2-serv-desktop-screen-overflow-hidden {
 	overflow: hidden;
 }
+
+#wb-head {
+	@extend %clf2-serv-desktop-screen-overflow-hidden;
+}
+
+#wb-head-in {
+	@extend %clf2-serv-desktop-screen-overflow-hidden;
+}
+
+#cn-foot {
+	@extend %clf2-serv-desktop-screen-overflow-hidden;
+}
+
+#wb-foot-in {
+	@extend %clf2-serv-desktop-screen-overflow-hidden;
+}
+
 #wb-core-in {
 	overflow: visible !important;
 	position: relative;
