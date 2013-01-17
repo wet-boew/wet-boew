@@ -31,3 +31,19 @@
 #gcwu-tc {
 	display: none;
 }
+
+[dir="rtl"] {
+	#gcwu-sig {
+		img {
+			left: auto;
+			right: 0;
+		}
+	}
+
+	#gcwu-wmms {
+		img {
+			right: auto;
+			left: 0;
+		}
+	}
+}

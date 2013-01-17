@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
-<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if IE 7]><html dir="rtl" lang="ar" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html dir="rtl" lang="ar" class="no-js ie8"><![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en" class="no-js">
+<html dir="rtl" lang="ar" class="no-js">
 <!--<![endif]-->
 <head>
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>GC Web Usability theme - Working examples - Web Experience Toolkit (WET)</title>
+<title>Images - CSS grid system - Working examples - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -36,14 +36,15 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
 
 <!-- CustomScriptsCSSStart -->
+
 <!-- CustomScriptsCSSEnd -->
 </head>
 
-<body><div id="wb-body">
+<body><div id="wb-body-sec">
 <div id="wb-skip">
 <ul id="wb-tphp">
 <li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
-<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to secondary menu</a></li>
 </ul>
 </div>
 
@@ -55,7 +56,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="index-fra.html" lang="fr">Français</a></li>
+<li><a href="#" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="#" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -73,7 +75,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
+<ul class="mb-menu" data-ajax-replace="../includes/menu-ara.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -88,7 +90,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ol>
 <li><a href="../../index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li>GC Web Usability theme</li>
+<li><a href="grid-base-eng.html">CSS Grid System</a></li>
+<li>Images</li>
 </ol>
 </div></div>
 </nav>
@@ -98,82 +101,94 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">GC Web Usability theme</h1>
+<h1 id="wb-cont">Images</h1>
 
-<ul class="button-group">
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/GC-Web-Usability-theme" class="button button-info">Documentation</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
-</ul>
-
-<div class="span-4">
-<section><h2 id="home">Home pages</h2>
+<div class="wet-boew-prettify all-pre linenums">
+<div class="span-4 module-table-contents">
+<h2>Table of contents</h2>
 <ul>
-<li><a href="home-accueil-eng.html"><span class="wb-invisible">Home pages - </span>English example</a></li>
-<li><a href="home-accueil-fra.html"><span class="wb-invisible">Home pages - </span>French example</a></li>
-<li><a href="home-accueil-ara.html"><span class="wb-invisible">Home pages - </span>Arabic example</a></li>
-</ul>
-</section>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#fluid">Fluid width images</a></li>
 
-<section><h2 id="content">Content pages</h2>
-<ul>
-<li><a href="cont-eng.html"><span class="wb-invisible">Content pages - </span>English example</a></li>
-<li><a href="cont-fra.html"><span class="wb-invisible">Content pages - </span>French example</a></li>
-<li><a href="cont-ara.html"><span class="wb-invisible">Content pages - </span>Arabic example</a></li>
-<li><a href="cont-secnav1-eng.html"><span class="wb-invisible">Content pages - </span>English example - Secondary menu 1</a></li>
-<li><a href="cont-secnav1-fra.html"><span class="wb-invisible">Content pages - </span>French example - Secondary menu 1</a></li>
-<li><a href="cont-secnav1-ara.html"><span class="wb-invisible">Content pages - </span>Arabic example - Secondary menu 1</a></li>
-<li><a href="cont-secnav2-eng.html"><span class="wb-invisible">Content pages - </span>English example - Secondary menu 2</a></li>
-<li><a href="cont-secnav2-fra.html"><span class="wb-invisible">Content pages - </span>French example - Secondary menu 2</a></li>
-<li><a href="cont-secnav2-ara.html"><span class="wb-invisible">Content pages - </span>Arabic example - Secondary menu 2</a></li>
+<li><a href="#fixed">Fixed width images</a></li>
 </ul>
-</section>
-
-<section><h2 id="webapp">Content pages - Web application template</h2>
-<ul>
-<li><a href="application-eng.html"><span class="wb-invisible">Content pages - Web application template - </span>English example</a></li>
-<li><a href="application-fra.html"><span class="wb-invisible">Content pages - Web application template - </span>French example</a></li>
-<li><a href="application-ara.html"><span class="wb-invisible">Content pages - Web application template - </span>Arabic example</a></li>
-<li><a href="application-nosearchlang-eng.html"><span class="wb-invisible">Content pages - Web application template - </span>English example - No search or language selection link</a></li>
-<li><a href="application-nosearchlang-fra.html"><span class="wb-invisible">Content pages - Web application template - </span>French example - No search or language selection link</a></li>
-<li><a href="application-nosearchlang-ara.html"><span class="wb-invisible">Content pages - Web application template - </span>Arabic example - No search or language selection link</a></li>
-<li><a href="application-secnav1-eng.html"><span class="wb-invisible">Content pages - Web application template - </span>English example - Secondary menu 1</a></li>
-<li><a href="application-secnav1-fra.html"><span class="wb-invisible">Content pages - Web application template - </span>French example - Secondary menu 1</a></li>
-<li><a href="application-secnav1-ara.html"><span class="wb-invisible">Content pages - Web application template - </span>Arabic example - Secondary menu 1</a></li>
-<li><a href="application-nosearchlang-secnav1-eng.html"><span class="wb-invisible">Content pages - Web application template - </span>English example - No search or language selection link - Secondary menu 1</a></li>
-<li><a href="application-nosearchlang-secnav1-fra.html"><span class="wb-invisible">Content pages - Web application template - </span>French example - No search or language selection link - Secondary menu 1</a></li>
-<li><a href="application-nosearchlang-secnav1-ara.html"><span class="wb-invisible">Content pages - Web application template - </span>Arabic example - No search or language selection link - Secondary menu 1</a></li>
-<li><a href="application-secnav2-eng.html"><span class="wb-invisible">Content pages - Web application template - </span>English example - Secondary menu 2</a></li>
-<li><a href="application-secnav2-fra.html"><span class="wb-invisible">Content pages - Web application template - </span>French example - Secondary menu 2</a></li>
-<li><a href="application-secnav2-ara.html"><span class="wb-invisible">Content pages - Web application template - </span>Arabic example - Secondary menu 2</a></li>
-<li><a href="application-nosearchlang-secnav2-eng.html"><span class="wb-invisible">Content pages - Web application template - </span>English example - No search or language selection link - Secondary menu 2</a></li>
-<li><a href="application-nosearchlang-secnav2-fra.html"><span class="wb-invisible">Content pages - Web application template - </span>French example - No search or language selection link - Secondary menu 2</a></li>
-<li><a href="application-nosearchlang-secnav2-ara.html"><span class="wb-invisible">Content pages - Web application template - </span>Arabic example - No search or language selection link - Secondary menu 2</a></li>
-</ul>
-</section>
 </div>
-<div class="span-4">
-<section><h2 id="splash">Splash pages</h2>
+	<div class="span-2 module-related margin-bottom-small">
+		
+		<h2 class="background-accent"><strong>Related module</strong></h2>
+		<ul>
+			<li><a href="grid-module-eng.html#poster">module-poster</a></li>
+		</ul>
+	</div>
+    <div class="span-2 module-related">
+<h2 class="background-accent">Related accessibility topic</h2>
 <ul>
-<li><a href="sp-pe-eng-fra.html"><span class="wb-invisible">Splash pages - </span>English/French example</a></li>
-<li><a href="sp-pe-fra-eng.html"><span class="wb-invisible">Splash pages - </span>French/English example</a></li>
-<li><a href="sp-pe-mult-eng-fra.html"><span class="wb-invisible">Splash pages - </span>English/French example - Multilingual</a></li>
-<li><a href="sp-pe-mult-fra-eng.html"><span class="wb-invisible">Splash pages - </span>French/English example - Multilingual</a></li>
+<li><a href="../opt-cont/img-eng.html">Images - Optimal Content Examples</a></li>
 </ul>
-</section>
-
-<section><h2 id="serv">Server message pages</h2>
-<ul>
-<li><a href="serv-eng.html"><span class="wb-invisible">Server message pages - </span>English example</a></li>
-<li><a href="serv-fra.html"><span class="wb-invisible">Server message pages - </span>French example</a></li>
-<li><a href="serv-ara.html"><span class="wb-invisible">Server message pages - </span>Arabic example</a></li>
-<li><a href="serv-eng-fra.html"><span class="wb-invisible">Server message pages - </span>English/French example</a></li>
-<li><a href="serv-fra-eng.html"><span class="wb-invisible">Server message pages - </span>French/English example</a></li>
-<li><a href="serv-mult-eng-fra.html"><span class="wb-invisible">Server message pages - </span>English/French example - Multilingual</a></li>
-<li><a href="serv-mult-fra-eng.html"><span class="wb-invisible">Server message pages - </span>French/English example - Multilingual</a></li>
-</ul>
-</section>
 </div>
+    <div class="clear"></div>
+<h2 id="overview">Overview</h2>
+<p>An image is a static two dimensional visual artifact that is a type of non-text content classified as decorative, simple, complex, or an image of text.</p>
+<p>In order to accommodate multiple resolutions, grids automatically resize themselves. Text automatically word-wraps, but images are typically a fixed size. This can cause problems within a responsive grid system. To avoid such problems, images within a grid cell expand to fill 100% of the particular grid's width.</p>
+<p>To override this feature, you may use the <code>image-actual</code> class.</p>
+
+<h2 id="fluid">Fluid width images</h2>
+<p>The examples provided use the same source file, which is a 220 pixels wide. The smallest <code>span-1</code> version pinches the image at the corners; the largest <code>span-3</code> version stretches, and blurs it. Therefore, the best grid to view the below sunflower image is within in a <code>span-2</code> at 1024x768 resolution, as it is a perfect fit (optimal size for its placement).</p>
+
+
+	<div class="span-1"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 1" width="220" height="168" /></div>
+	<div class="span-2"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 2" width="220" height="168" /></div>
+	<div class="span-3"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 3" width="220" height="168" /></div>
+	<div class="clear"></div>
+
+
+<details class="span-6">
+	<summary>View code</summary>
+	<pre>&lt;div class=&quot;span-1&quot;&gt;
+   &lt;img src=&quot;images/a7.jpg&quot; alt=&quot;&quot; width=&quot;224&quot; height=&quot;168&quot; /&gt;
+&lt;/div&gt;</pre>
+</details>
 <div class="clear"></div>
+
+<h2 id="fixed">Fixed width images</h2>
+<p>If you <strong>do not</strong> want an image to stretch to 100% of the cell width, apply the <code>image-actual</code> class to the image. For example, if you view the 20x20 pixel check-mark image at 100% of a grid cell, it appears pixilated. The <code>image-actual</code> class ensures the image retains its width and height properties, and never visually distorts.</p>
+<h3>Undesired effect</h3>
+<p>The small images are being stretched to fit the full width of the grid cell.</p>
+<div class="span-2">
+	
+	<div class="span-1 row-start"><img src="images/tick.gif" alt="Example of large distorted check mark" width="20" height="20" /></div>
+	<div class="span-1 row-end"><img src="images/x.gif" alt="Example of large distorted X" width="20" height="20" /></div>	
+</div>
+
+<details class="span-4">
+	<summary>View code</summary>
+	<pre>&lt;div class=&quot;span-1&quot;&gt;
+   &lt;img src=&quot;tick.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+&lt;/div&gt;
+&lt;div class=&quot;span-1&quot;&gt;      
+   &lt;img src=&quot;x.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+&lt;/div&gt;</pre>
+</details>
+<div class="clear"></div>
+<h3>Desired effect</h3>
+<p>The images retain their default size.</p>
+<div class="span-2">
+	
+	<div class="span-1 row-start"><img class="image-actual" src="images/tick.gif" alt="Example of large distorted check mark" width="20" height="20" /></div>
+<div class="span-1 row-end"><img class="image-actual" src="images/x.gif" alt="Example of large distorted X" width="20" height="20" /></div>
+</div>
+
+<details class="span-4">
+	<summary>View code</summary>
+	<pre>&lt;div class=&quot;span-1&quot;&gt;
+   &lt;img class=&quot;image-actual&quot; src=&quot;tick.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+&lt;/div&gt;
+&lt;div class=&quot;span-1&quot;&gt;   
+   &lt;img class=&quot;image-actual&quot; src=&quot;x.gif&quot; alt=&quot;___&quot; width=&quot;20&quot; height=&quot;20&quot; /&gt;
+&lt;/div&gt;</pre>
+</details>
+<div class="clear"></div>
+</div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
@@ -181,9 +196,46 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 <!-- MainContentEnd -->
 </div></div>
+
+<div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
+  <div class="wb-sec-def">
+    <!-- SecNavStart -->
+    <section>
+      <h3><a href="grid-structure-eng.html">Structure</a></h3>
+      <ul>
+        <li><a href="grid-base-eng.html">CSS Grid System</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-basic-eng.html">Basic effects</a></h3>
+      <ul>
+        <li><a href="grid-text-eng.html">Text</a></li>
+        <li><a href="grid-table-eng.html">Tables</a></li>
+        <li><a href="grid-form-eng.html">Forms</a></li>
+        <li><a href="grid-image-eng.html">Images</a></li>
+        <li><a href="grid-color-eng.html">Colour</a></li>
+        <li><a href="grid-button-eng.html">Buttons</a></li>
+        <li><a href="grid-border-eng.html">Borders</a></li>
+        <li><a href="grid-icon-eng.html">Icons</a></li>
+        <li><a href="grid-opacity-eng.html">Opacity</a></li>
+        <li><a href="grid-proximity-eng.html">Proximity</a></li>
+        <li><a href="grid-position-eng.html">Positioning and alignment</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-specialty-eng.html">Specialty effects</a></h3>
+      <ul>
+        <li><a href="grid-message-eng.html">Messages</a></li>
+        <li><a href="grid-module-eng.html">Modules</a></li>
+        <li><a href="grid-other-eng.html">Other</a></li>
+      </ul>
+    </section>
+    <!-- SecNavEnd -->
+  </div>
+</nav></div></div>
 </div></div>
 
-<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2>Footer</h2>
 <!-- FooterStart -->
 <nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
 <div id="gcwu-tctr">
