@@ -2,7 +2,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 	export REPO="$(pwd | sed s,^/home/travis/build/,,g)"
 	declare -a supported_branches=('master' 'v3.0') # List of branches to store build output for
 
-	echo -e "Current repo: $REPO\n"
+	echo -e "Current repo: $TRAVIS_REPO_SLUG\n"
 
 	#Set git user
 	git config --global user.email "travis@travis-ci.org"
