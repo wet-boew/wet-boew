@@ -11,13 +11,21 @@
 	}
 }
 
-#wb-core-in, #gcwu-bc-in {
+%intranet-default-desktop-screen-images-background-deco {
 	background: {
 		image: url(../images/content-deco-side.gif), url(../images/content-deco-side.gif);
 		position: left top, right top;
-		repeat: repeat-y;
+		repeat: repeat-y; //TODO: second repeat value since it is using multiple backgrounds
 		color: #fff;
 	}
+}
+
+#wb-core-in {
+	@extend %intranet-default-desktop-screen-images-background-deco;
+}
+
+#gcwu-bc-in {
+	@extend %intranet-default-desktop-screen-images-background-deco;
 }
 
 #gcwu-psnb {
