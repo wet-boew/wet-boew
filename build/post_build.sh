@@ -8,6 +8,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 
 	#Set upstream remote
 	git remote add upstream https://${GH_TOKEN}@github.com/${REPO}.git > /dev/null
+	git remote add experimental https://${GH_TOKEN}@github.com/LaurentGoderre/wet-boew.git > /dev/null
 
 	#Copy result of build and demo in a temporary location
 	cp -R dist $HOME/dist
@@ -31,6 +32,23 @@ if [ "$TRAVIS_PULL_REQUEST" != "true" ]; then
 			git push -fq upstream gh-pages > /dev/null
 
 			echo -e "Finished updating the working examples\n"
+		fi
+
+		#Update the experimental working example
+		if [ "$TRAVIS_BRANCH" == "experimental" ]; then
+			echo -e "Updating experimental working examples...\n"
+
+			git add -f dist/.
+			git stash
+			git checkout gh-pages
+			git rebase --committer-date-is-author-date master
+			git rm -r dist/.
+			git stash pop
+			git add -f dist/.
+			git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
+			git push -fq experimental gh-pages > /dev/null
+
+			echo -e "Finished updating the experimental working examples\n"
 		fi
 
 		#Add the latest tags
