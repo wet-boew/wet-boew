@@ -5,8 +5,10 @@
 .ie7 {
 	#cn-banner {
 		width: 100%;
-		margin-top: 20px;
-		margin-bottom: 20px;
+		margin: {
+			top: 20px;
+			bottom: 20px;
+		}
 	}
 	#cn-bc {
 		padding: 5px 0;
