@@ -139,8 +139,6 @@
 			}
 
 			&.table-bordered {
-				border-right: 0;
-
 				thead, tbody {
 					&:first-child {
 						tr {				
@@ -170,12 +168,6 @@
 								}
 							}
 						}
-					}
-				}
-				
-				th, td {
-					border: {
-						left: none;
 					}
 				}
 			}
