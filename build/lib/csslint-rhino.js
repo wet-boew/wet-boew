@@ -21,9 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
-/* Build time: 11-January-2013 01:17:18 */
+/* Build time: 17-January-2013 10:55:01 */
 var CSSLint = (function(){
-
 /*!
 Parser-Lib
 Copyright (c) 2009-2011 Nicholas C. Zakas. All rights reserved.
@@ -47,7 +46,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
-/* Version v0.2.1, Build time: 11-January-2013 01:15:29 */
+/* Version v0.2.2, Build time: 17-January-2013 10:26:34 */
 var parserlib = {};
 (function(){
 
@@ -957,7 +956,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
-/* Version v0.2.1, Build time: 11-January-2013 01:15:29 */
+/* Version v0.2.2, Build time: 17-January-2013 10:26:34 */
 (function(){
 var EventTarget = parserlib.util.EventTarget,
 TokenStreamBase = parserlib.util.TokenStreamBase,
@@ -6379,7 +6378,6 @@ ValidationError     :ValidationError
 })();
 
 
-
 /**
  * Main CSSLint object.
  * @class CSSLint
@@ -6389,11 +6387,12 @@ ValidationError     :ValidationError
 /*global parserlib, Reporter*/
 var CSSLint = (function(){
 
-    var rules      = [],
-        formatters = [],
-        api        = new parserlib.util.EventTarget();
-        
-    api.version = "0.9.9";
+    var rules           = [],
+        formatters      = [],
+        embeddedRuleset = /\/\*csslint([^\*]*)\*\//,
+        api             = new parserlib.util.EventTarget();
+
+    api.version = "0.9.10";
 
     //-------------------------------------------------------------------------
     // Rule Management
@@ -6416,18 +6415,18 @@ var CSSLint = (function(){
     api.clearRules = function(){
         rules = [];
     };
-    
+
     /**
      * Returns the rule objects.
      * @return An array of rule objects.
      * @method getRules
      */
     api.getRules = function(){
-        return [].concat(rules).sort(function(a,b){ 
+        return [].concat(rules).sort(function(a,b){
             return a.id > b.id ? 1 : 0;
         });
     };
-    
+
     /**
      * Returns a ruleset configuration object with all current rules.
      * @return A ruleset object.
@@ -6437,13 +6436,48 @@ var CSSLint = (function(){
         var ruleset = {},
             i = 0,
             len = rules.length;
-        
+
         while (i < len){
             ruleset[rules[i++].id] = 1;    //by default, everything is a warning
         }
-        
+
         return ruleset;
     };
+
+    /**
+     * Returns a ruleset object based on embedded rules.
+     * @param {String} text A string of css containing embedded rules.
+     * @param {Object} ruleset A ruleset object to modify.
+     * @return {Object} A ruleset object.
+     * @method getEmbeddedRuleset
+     */
+    function applyEmbeddedRuleset(text, ruleset){
+        var valueMap,
+            embedded = text && text.match(embeddedRuleset),
+            rules = embedded && embedded[1];
+
+        if (rules) {
+            valueMap = {
+                "true": 2,  // true is error
+                "": 1,      // blank is warning
+                "false": 0, // false is ignore
+
+                "2": 2,     // explicit error
+                "1": 1,     // explicit warning
+                "0": 0      // explicit ignore
+            };
+
+            rules.toLowerCase().split(",").forEach(function(rule){
+                var pair = rule.split(":"),
+                    property = pair[0] || "",
+                    value = pair[1] || "";
+
+                ruleset[property.trim()] = valueMap[value.trim()];
+            });
+        }
+
+        return ruleset;
+    }
 
     //-------------------------------------------------------------------------
     // Formatters
@@ -6458,7 +6492,7 @@ var CSSLint = (function(){
         // formatters.push(formatter);
         formatters[formatter.id] = formatter;
     };
-    
+
     /**
      * Retrieves a formatter for use.
      * @param {String} formatId The name of the format to retrieve.
@@ -6468,7 +6502,7 @@ var CSSLint = (function(){
     api.getFormatter = function(formatId){
         return formatters[formatId];
     };
-    
+
     /**
      * Formats the results in a particular format for a single file.
      * @param {Object} result The results returned from CSSLint.verify().
@@ -6481,16 +6515,16 @@ var CSSLint = (function(){
     api.format = function(results, filename, formatId, options) {
         var formatter = this.getFormatter(formatId),
             result = null;
-            
+
         if (formatter){
             result = formatter.startFormat();
             result += formatter.formatResults(results, filename, options || {});
             result += formatter.endFormat();
         }
-        
+
         return result;
     };
-    
+
     /**
      * Indicates if the given format is supported.
      * @param {String} formatId The ID of the format to check.
@@ -6526,16 +6560,20 @@ var CSSLint = (function(){
 
         // normalize line endings
         lines = text.replace(/\n\r?/g, "$split$").split('$split$');
-        
+
         if (!ruleset){
             ruleset = this.getRuleset();
         }
-        
+
+        if (embeddedRuleset.test(text)){
+            ruleset = applyEmbeddedRuleset(text, ruleset);
+        }
+
         reporter = new Reporter(lines, ruleset);
-        
+
         ruleset.errors = 2;       //always report parsing errors as errors
         for (i in ruleset){
-            if(ruleset.hasOwnProperty(i)){
+            if(ruleset.hasOwnProperty(i) && ruleset[i]){
                 if (rules[i]){
                     rules[i].init(parser, reporter);
                 }
@@ -6552,9 +6590,10 @@ var CSSLint = (function(){
 
         report = {
             messages    : reporter.messages,
-            stats       : reporter.stats
+            stats       : reporter.stats,
+            ruleset     : reporter.ruleset
         };
-        
+
         //sort by line numbers, rollups at the bottom
         report.messages.sort(function (a, b){
             if (a.rollup && !b.rollup){
@@ -6564,8 +6603,8 @@ var CSSLint = (function(){
             } else {
                 return a.line - b.line;
             }
-        });        
-        
+        });
+
         return report;
     };
 
@@ -6576,7 +6615,6 @@ var CSSLint = (function(){
     return api;
 
 })();
-
 /*global CSSLint*/
 /**
  * An instance of Report is used to report results of the
@@ -6975,6 +7013,72 @@ CSSLint.addRule({
 
 });
 /*
+ * Rule: Use the bulletproof @font-face syntax to avoid 404's in old IE
+ * (http://www.fontspring.com/blog/the-new-bulletproof-font-face-syntax)
+ */
+/*global CSSLint*/
+CSSLint.addRule({
+
+    //rule information
+    id: "bulletproof-font-face",
+    name: "Use the bulletproof @font-face syntax",
+    desc: "Use the bulletproof @font-face syntax to avoid 404's in old IE (http://www.fontspring.com/blog/the-new-bulletproof-font-face-syntax).",
+    browsers: "All",
+
+    //initialization
+    init: function(parser, reporter){
+        var rule = this,
+            count = 0,
+            fontFaceRule = false,
+            firstSrc     = true,
+            ruleFailed    = false,
+            line, col;
+
+        // Mark the start of a @font-face declaration so we only test properties inside it
+        parser.addListener("startfontface", function(event){
+            fontFaceRule = true;
+        });
+
+        parser.addListener("property", function(event){
+            // If we aren't inside an @font-face declaration then just return
+            if (!fontFaceRule) {
+                return;
+            }
+
+            var propertyName = event.property.toString().toLowerCase(),
+                value        = event.value.toString();
+
+            // Set the line and col numbers for use in the endfontface listener
+            line = event.line;
+            col  = event.col;
+
+            // This is the property that we care about, we can ignore the rest
+            if (propertyName === 'src') {
+                var regex = /^\s?url\(['"].+\.eot\?.*['"]\)\s*format\(['"]embedded-opentype['"]\).*$/i;
+
+                // We need to handle the advanced syntax with two src properties
+                if (!value.match(regex) && firstSrc) {
+                    ruleFailed = true;
+                    firstSrc = false;
+                } else if (value.match(regex) && !firstSrc) {
+                    ruleFailed = false;
+                }
+            }
+
+
+        });
+
+        // Back to normal rules that we don't need to test
+        parser.addListener("endfontface", function(event){
+            fontFaceRule = false;
+
+            if (ruleFailed) {
+                reporter.report("@font-face declaration doesn't follow the fontspring bulletproof syntax.", line, col, rule);
+            }
+        });
+    }
+});
+/*
  * Rule: Include all compatible vendor prefixes to reach a wider
  * range of users.
  */
@@ -7018,7 +7122,7 @@ CSSLint.addRule({
             "border-end-style"           : "webkit moz",
             "border-end-width"           : "webkit moz",
             "border-image"               : "webkit moz o",
-            "border-radius"              : "webkit moz",
+            "border-radius"              : "webkit",
             "border-start"               : "webkit moz",
             "border-start-color"         : "webkit moz",
             "border-start-style"         : "webkit moz",
@@ -7434,7 +7538,17 @@ CSSLint.addRule({
             propertiesToCheck = {
                 color: 1,
                 background: 1,
-                "background-color": 1                
+                "border-color": 1,
+                "border-top-color": 1,
+                "border-right-color": 1,
+                "border-bottom-color": 1,
+                "border-left-color": 1,
+                border: 1,
+                "border-top": 1,
+                "border-right": 1,
+                "border-bottom": 1,
+                "border-left": 1,
+                "background-color": 1
             },
             properties;
         
@@ -7649,7 +7763,6 @@ CSSLint.addRule({
     }
 
 });
-
 /*
  * Rule: Don't use IDs for selectors.
  */
@@ -8043,29 +8156,26 @@ CSSLint.addRule({
 
     //rule information
     id: "selector-max-approaching",
-    name: "Warn when approaching the 4095 limit for IE",
-    desc: "Will warn when selector count is >= 3800 rules.",
+    name: "Warn when approaching the 4095 selector limit for IE",
+    desc: "Will warn when selector count is >= 3800 selectors.",
     browsers: "IE",
 
     //initialization
-    init: function(parser, reporter){
-		var rule = this,
-			count = 0;
+    init: function(parser, reporter) {
+        var rule = this, count = 0;
 
-		parser.addListener('startrule',function(event){
-			count++;
-
-		});
-
-		parser.addListener("endstylesheet", function(){
-			if(count >= 3800){
-				reporter.report("You have "+count+" rules. Internet Explorer supports a maximum of 4095 rules. Consider refactoring.",0,0,rule);
-			}            
+        parser.addListener('startrule', function(event) {
+            count += event.selectors.length;
         });
-	}
+
+        parser.addListener("endstylesheet", function() {
+            if (count >= 3800) {
+                reporter.report("You have " + count + " selectors. Internet Explorer supports a maximum of 4095 selectors per stylesheet. Consider refactoring.",0,0,rule); 
+            }
+        });
+    }
 
 });
-
 /*
  * Rule: Warn people past the IE 4095 limit 
  */
@@ -8074,25 +8184,24 @@ CSSLint.addRule({
 
     //rule information
     id: "selector-max",
-    name: "Error when past the 4095 limit for IE",
+    name: "Error when past the 4095 selector limit for IE",
     desc: "Will error when selector count is > 4095.",
     browsers: "IE",
 
     //initialization
     init: function(parser, reporter){
-		var rule = this,
-			count = 0;
+        var rule = this, count = 0;
 
-		parser.addListener('startrule',function(event){
-			count++;
-		});
+        parser.addListener('startrule',function(event) {
+            count += event.selectors.length;
+        });
 
-		parser.addListener("endstylesheet", function(){
-			if(count>4095){
-				reporter.report("You have "+count+" rules. Internet Explorer supports a maximum of 4095 rules. All additional rules will be ignored by IE. Consider refactoring.",0,0,rule);	
-			}
-		});
-	}
+        parser.addListener("endstylesheet", function() {
+            if (count > 4095) {
+                reporter.report("You have " + count + " selectors. Internet Explorer supports a maximum of 4095 selectors per stylesheet. Consider refactoring.",0,0,rule); 
+            }
+        });
+    }
 
 });
 /*
@@ -9092,11 +9201,8 @@ CSSLint.addFormatter({
     }
 });
 
-
 return CSSLint;
 })();
-
-
 /*
  * Encapsulates all of the CLI functionality. The api argument simply
  * provides environment-specific functionality.
@@ -9158,7 +9264,7 @@ function cli(api){
         if (ignore) {
             ruleset = CSSLint.getRuleset();
             ignore.split(",").forEach(function(value){
-                delete ruleset[value];
+                ruleset[value] = 0;
             });
         }
 
@@ -9394,7 +9500,6 @@ function cli(api){
 
     api.quit(processFiles(options.files,options));
 }
-
 /*
  * CSSLint Rhino Command Line Interface
  */
