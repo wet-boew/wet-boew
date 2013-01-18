@@ -9,7 +9,7 @@
 		border-left:expression(this.previousSibling == null ? 'none' : '-' );
 	}
 
-	/* Right to left (RTL) CSS */
+	// Right to left (RTL) CSS
 	&[dir="rtl"] {
 		#base-subsite a {
 			padding-left: 0;
