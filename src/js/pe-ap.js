@@ -195,8 +195,8 @@
 						}
 					}
 				});
-				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
-				pe.add._load([pe.add.liblocation + 'jquerymobile/jquery.mobile.min.js']);
+				//	pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
+				//	pe.add._load([pe.add.liblocation + 'jquerymobile/jquery.mobile.min.js']);
 			} else {
 				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
 				hlinks_same.on('click vclick', function () {
