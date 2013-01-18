@@ -796,7 +796,7 @@
 				}
 			}
 
-			if ((((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== 'false') || disable === 'true') {
+			if (disable === 'true' || (((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== 'false')) {
 				$html.addClass('no-js pe-disable');
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
@@ -995,7 +995,7 @@
 								}
 								menu += (navCurrent ? ' nav-current' : '');
 								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
-								if (toplevel || !collapseTopOnly || collapsible) {
+								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
 								} else {
 									menu += sectionLinkOpen + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
@@ -1029,7 +1029,7 @@
 									}
 								}
 								// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
-								if (!menubar && hlink.length > 0 && (toplevel || !collapseTopOnly || collapsible)) {
+								if (!menubar && hlink.length > 0 && (toplevel || collapsible || !collapseTopOnly)) {
 									menu += link + hlinkDOM.href + '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
 								}
 								menu += '</div>';
@@ -1046,7 +1046,7 @@
 							}
 						}
 						// Is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
-						if (toplevel || !collapseTopOnly || collapsible) {
+						if (toplevel || collapsible || !collapseTopOnly) {
 							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '">' + menu + '</div>';
 						}
 					}
@@ -1441,7 +1441,7 @@
 							scriptdone = false;
 						pe.add.set(scriptElem, 'async', 'async');
 						scriptElem.onload = scriptElem.onreadystatechange = function () {
-							if ((scriptElem.readyState && scriptElem.readyState !== 'complete' && scriptElem.readyState !== 'loaded') || scriptdone) {
+							if (scriptdone || (scriptElem.readyState && scriptElem.readyState !== 'complete' && scriptElem.readyState !== 'loaded')) {
 								return false;
 							}
 							scriptElem.onload = scriptElem.onreadystatechange = null;
