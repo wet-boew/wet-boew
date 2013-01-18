@@ -296,7 +296,7 @@
 		* @return {jQuery object}
 		*/
 		pagecontainer: function () {
-			return $('#wb-body-sec-sup,#wb-body-sec,#wb-body').add('body').eq(0);
+			return $('#wb-body-sec-sup, #wb-body-sec, #wb-body-secr, #wb-body').add('body').eq(0);
 		},
 		/**
 		* Initializes the Resize dependency, and attaches a given function to various resize events.
