@@ -153,8 +153,7 @@
 			// Is this a mobile device?
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
-				pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
-
+				
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
 				if (test === 0) {
@@ -162,58 +161,41 @@
 				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
 					$html.addClass('bb-pre7');
 				}
+			}
+			
+			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 
-				pe.document.on('mobileinit', function () {
-					$.extend($.mobile, {
-						ajaxEnabled: false,
-						pushStateEnabled: false,
-						autoInitializePage: (init_on_mobileinit ? true : false)
-					});
-					if (init_on_mobileinit) {
-						pe.mobilelang();
-					}
+			pe.document.on('mobileinit', function () {
+				$.extend($.mobile, {
+					ajaxEnabled: false,
+					pushStateEnabled: false,
+					autoInitializePage: (init_on_mobileinit ? true : false)
 				});
+				if (init_on_mobileinit) {
+					pe.mobilelang();
+				}
+			});
 
-				pe.document.on('pageinit', function () {
-					// On click, puts focus on and scrolls to the target of same page links
-					hlinks_same.off('click vclick').on('click vclick', function () {
-						$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
-						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if ($this.length > 0) {
-							$.mobile.silentScroll(pe.focus($this).offset().top);
-						}
-					});
-
-					// If the page URL includes a hash upon page load, then focus on and scroll to the target
-					if (pe.urlhash.length !== 0) {
-						target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if (target.length > 0 && target.attr('data-role') !== 'page') {
-							setTimeout(function () {
-								$.mobile.silentScroll(pe.focus(target).offset().top);
-							}, 200);
-						}
-					}
-				});
-			} else {
-				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
-				hlinks_same.on('click vclick', function () {
+			pe.document.on('pageinit', function () {
+				// On click, puts focus on and scrolls to the target of same page links
+				hlinks_same.off('click vclick').on('click vclick', function () {
 					$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
-						pe.focus($this);
+						$.mobile.silentScroll(pe.focus($this).offset().top);
 					}
 				});
-
-				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
-				if (pe.urlhash.length > 0) {
-					$this = $('#' + pe.string.jqescape(pe.urlhash));
-					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if ($this.length > 0) {
-						pe.focus($this);
+				// If the page URL includes a hash upon page load, then focus on and scroll to the target
+				if (pe.urlhash.length !== 0) {
+					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					if (target.length > 0 && target.attr('data-role') !== 'page') {
+						setTimeout(function () {
+							$.mobile.silentScroll(pe.focus(target).offset().top);
+						}, 200);
 					}
 				}
-			}
+			});
 
 			// Load ajax content
 			$.when.apply($, $.map($('*[data-ajax-replace], *[data-ajax-append]'), function (o) {
@@ -254,8 +236,15 @@
 								}
 							});
 							wet_boew_theme.mobileview();
+						} else {
+							if (typeof $.mobile !== 'undefined') {
+								pe.mobilelang();
+								$.mobile.initializePage();
+							} else {
+								init_on_mobileinit = true;
+							}
 						}
-					} else if (pe.mobile) {
+					} else {
 						if (typeof $.mobile !== 'undefined') {
 							pe.mobilelang();
 							$.mobile.initializePage();
