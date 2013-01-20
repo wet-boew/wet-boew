@@ -20,14 +20,15 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <link rel="stylesheet" href="@%dist-dir@/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="@%dist-dir@/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="@%dist-dir@/@%theme@/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="@%dist-dir@/@%theme@/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
 <script src="@%dist-dir@/js/jquery.min.js"></script>
 <link rel="stylesheet" href="@%dist-dir@/grids/css/util-min.css" />
 <link rel="stylesheet" href="@%dist-dir@/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="@%dist-dir@/@%theme@/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="@%dist-dir@/@%theme@/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
@@ -64,9 +65,16 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
+<!--[if lte IE 8]>
+<script src="@%dist-dir@/@%theme@/js/theme-ie-min.js"></script>
+<script src="@%dist-dir@/js/settings-ie.js"></script>
+<script src="@%dist-dir@/js/pe-ap-ie-min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
 <script src="@%dist-dir@/@%theme@/js/theme-min.js"></script>
 <script src="@%dist-dir@/js/settings.js"></script>
 <script src="@%dist-dir@/js/pe-ap-min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
 </body>
 </html>
