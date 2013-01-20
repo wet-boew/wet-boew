@@ -57,6 +57,8 @@
 				wet_boew_theme.search.addClass('mobile-change');
 			}
 		},
+
+		/* Special handling for the mobile view */
 		mobileview: function () {
 			var mb_popup,
 				mb_header_html,
@@ -73,8 +75,6 @@
 				links,
 				link,
 				footer1,
-				lang_links,
-				lang_nav,
 				mb_li,
 				target,
 				i,
@@ -184,8 +184,24 @@
 			});
 			$(document).trigger('mobileviewloaded');
 			return;
+		},
+
+		/* Special handling for the desktop view */
+		desktopview: function () {
+			// Disable jQuery Mobile enhancement of the search field in the header
+			var searchbox = document.getElementById('base-srchbx'),
+				inputelms,
+				len;
+			if (searchbox.length !== 0) {
+				inputelms = searchbox.getElementsByTagName('input');
+				len = inputelms.length;
+				while (len--) {
+					inputelms[len].setAttribute('data-role', 'none');
+				}
+			}
 		}
 	};
+
 	/* window binding */
 	window.wet_boew_theme = $.extend(true, wet_boew_theme, _wet_boew_theme);
 	return window.wet_boew_theme;

@@ -225,24 +225,20 @@
 						// Initialize the theme
 						wet_boew_theme.init();
 
-						//Load the mobile view
-						if (pe.mobile) {
-							pe.document.one('mobileviewloaded', function () {
-								if (typeof $.mobile !== 'undefined') {
-									pe.mobilelang();
-									$.mobile.initializePage();
-								} else {
-									init_on_mobileinit = true;
-								}
-							});
-							wet_boew_theme.mobileview();
-						} else {
+						pe.document.one('mobileviewloaded', function () {
 							if (typeof $.mobile !== 'undefined') {
 								pe.mobilelang();
 								$.mobile.initializePage();
 							} else {
 								init_on_mobileinit = true;
 							}
+						});
+
+						//Load the mobile or desktop view
+						if (pe.mobile) {
+							wet_boew_theme.mobileview();
+						} else {
+							wet_boew_theme.desktopview();
 						}
 					} else {
 						if (typeof $.mobile !== 'undefined') {
