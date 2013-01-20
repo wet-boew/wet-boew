@@ -37,7 +37,7 @@
 		rtl: false,
 		touchscreen: 'ontouchstart' in document.documentElement,
 		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
-		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
+		suffix: $('body script[src*="/pe-ap-"]').attr('src').indexOf('-min') !== -1 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
 		bodydiv: $('body > div'),
 		main: $('#wb-main'),
