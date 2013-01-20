@@ -117,6 +117,7 @@
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
 			<exclude name="jquerymobile/jquery.mobile.js"/>
+			<exclude name="jquerymobile/jquery.mobile-ie.js"/>
 			<exclude name="polyfills/datalist.js"/>
 			<exclude name="polyfills/detailssummary.js"/>
 			<exclude name="polyfills/html5shiv.js"/>
@@ -152,6 +153,7 @@
 			<fileset dir="${dist.dir}/css">
 				<include name="*.css"/>
 				<exclude name="jquery.mobile.css"/>
+				<exclude name="jquery.mobile-ie.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -172,6 +174,7 @@
 			<fileset dir="${dist.dir}/css">
 				<include name="*.css"/>
 				<exclude name="jquery.mobile.css"/>
+				<exclude name="jquery.mobile-ie.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -239,6 +242,7 @@
 			<include name="**/*.js" />
 			<exclude name="**/*-min.css" />
 			<exclude name="**/settings.js" />
+			<exclude name="**/settings-ie.js" />
 			<exclude name="**/*-min.js" />
 			<exclude name="**/*.min.js" />
 		</yui-compressor>
@@ -247,6 +251,7 @@
 				<include name="**/*.css" />
 				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
+				<exclude name="**/settings-ie.js" />
 				<exclude name="**/*-min.css" />
 				<exclude name="**/*-min.js" />
 				<exclude name="**/*.min.js" />
@@ -259,6 +264,7 @@
 			<fileset dir="${dist.dir}">
 				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
+				<exclude name="**/settings-ie.js" />
 				<exclude name="**/*-min.js" />
 				<exclude name="**/*.min.js" />
 			</fileset>
@@ -280,6 +286,13 @@
 			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme.css"/>
 			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure.css"/>
 		</concat>
+		<concat dest="${dist.dir}/css/jquery.mobile-ie.css">
+			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme-ie.css"/>
+			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure-ie.css"/>
+		</concat>
+		<copy todir="${dist.dir}/images/jquerymobile-ie">
+			<fileset dir="${src.dir}/jquerymobile/images-ie"/>
+		</copy>
 	</target>
 	
 	<fileset id="jsfiles" dir="${src.dir}">
@@ -290,6 +303,8 @@
 		<copy todir="${dist.dir}" encoding="UTF-8">
 			<fileset refid="jsfiles" />
 		</copy>
+		<!-- Temporary fix - to be replaced by modern and old IE targeted output -->
+		<copy file="${dist.dir}/js/theme.js" tofile="${dist.dir}/js/theme-ie.js" failonerror="false"/>
 	</target>
 	
 	<target name="-copy-images">
