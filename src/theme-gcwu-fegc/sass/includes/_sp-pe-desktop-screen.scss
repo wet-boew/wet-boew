@@ -23,15 +23,3 @@
 		}
 	}
 }
-
-.ui-mobile {
-	%gcwu-sp-pe-desktop-screen-ui-mobile-display-none {
-		display: none;
-	}
-	#gcwu-lang {
-		@extend %gcwu-sp-pe-desktop-screen-ui-mobile-display-none;
-	}
-	#wb-foot {
-		@extend %gcwu-sp-pe-desktop-screen-ui-mobile-display-none;
-	}
-}
