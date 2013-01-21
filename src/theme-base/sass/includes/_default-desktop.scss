@@ -4,8 +4,8 @@
  */
 @import "compass/css3/text-shadow";
 
-#base-fullhd, #base-fullft {
-	.ui-link {
+#base-fullhd, #base-sft, #base-fullft {
+	&, &.ui-link {
 		@include text-shadow(none !important);
 	}
 }
