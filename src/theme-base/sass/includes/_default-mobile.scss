@@ -10,7 +10,7 @@ body{
 }
 
 #wb-skip {
-	a, a:link, a:visited {
+	.ui-link {
 		text-shadow: none !important;
 	}
 }
