@@ -3,6 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/border-radius";
+@import "compass/css3/text-shadow";
 
 body {
 	margin: 0;
@@ -14,19 +15,22 @@ body {
 		@extend %gcwu-default-screen-a-psuedo-underline;
 		&.top-section {
 			a {
-				color: #FFF;
-				padding-top: 5px;
-				padding-bottom: 5px;
-				font-size: 1.1em;
-				&:hover, &:focus, &:active {
+				&, &.ui-link {
 					color: #FFF;
-					text-decoration: underline;
-				}
-				&.nav-current {
-					color: #FFF;
-					padding-top: 4px;
-					padding-bottom: 4px;
-					background: #0f315b;
+					padding-top: 5px;
+					padding-bottom: 5px;
+					font-size: 1.1em;
+					@include text-shadow(none !important);
+					&:hover, &:focus, &:active {
+						color: #FFF;
+						text-decoration: underline;
+					}
+					&.nav-current {
+						color: #FFF;
+						padding-top: 4px;
+						padding-bottom: 4px;
+						background: #0f315b;
+					}
 				}
 			}
 		}
@@ -37,12 +41,14 @@ body {
 		@include border-radius(2px);
 		margin: 0 0 3px;
 		a {
-			font-weight: 700;
-			background: #DDD;
-			padding: 2px 4px;
-			&.nav-current {
-				color: #0F315B;
-				padding: 1px 3px;
+			&, &.ui-link {
+				font-weight: 700;
+				background: #DDD;
+				padding: 2px 4px;
+				&.nav-current {
+					color: #0F315B;
+					padding: 1px 3px;
+				}
 			}
 		}
 	}
@@ -75,12 +81,14 @@ body {
 	//TODO: Similar to rule on line 33 except for the li element. Could these be merged further.
 	%gcwu-default-screen-a-psuedo-underline {
 		a {
-			display: block;
-			color: #333;
-			text-decoration: none;
-			&:hover, &:focus, &:active {
+			&, &.ui-link {
+				display: block;
 				color: #333;
-				text-decoration: underline;
+				text-decoration: none;
+				&:hover, &:focus, &:active {
+					color: #333;
+					text-decoration: underline;
+				}
 			}
 		}
 	}

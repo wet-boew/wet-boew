@@ -3,6 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/border-radius";
+@import "compass/css3/text-shadow";
 
 body{
 	margin:0;
@@ -10,64 +11,73 @@ body{
 
 .wb-sec-def {
 	h3.top-section {
-		a{
-			background:#0B3048;
-			color:#FFF;
-			padding-top:8px;
-			padding-bottom:8px;
-			font-size:1.1em;
-			&:hover,&:focus,&:active{
-				color:#FFF;
-				text-decoration:underline;
-			}
-			&.nav-current{
-				color:#FFF;
-				padding-top:4px;
-				padding-bottom:4px;
-				background:#0F315B;
+		a {
+			&, &.ui-link {
+				background: #0B3048;
+				color: #FFF;
+				padding-top: 8px;
+				padding-bottom: 8px;
+				font-size: 1.1em;
+				@include text-shadow(none !important);
+				&:hover, &:focus, &:active {
+					color: #FFF;
+					text-decoration: underline;
+				}
+				&.nav-current {
+					color: #FFF;
+					padding-top: 4px;
+					padding-bottom: 4px;
+					background: #0F315B;
+				}
 			}
 		}
 	}
-	h3,h4,.top-level{
-		font-size:100%;
-		border-bottom:none;
+	h3, h4, .top-level {
+		font-size: 100%;
+		border-bottom: none;
 		@include border-radius(2px);
-		margin:0 0 3px;
-		a{
-			font-weight:700;
-			background:#DDD;
-			padding:2px 4px;
-			&.nav-current{
-				color:#0F315B;
-				padding:1px 3px;
+		margin: 0 0 3px;
+		a {
+			&, &.ui-link {
+				font-weight: 700;
+				background: #DDD;
+				padding: 2px 4px;
+				&.nav-current {
+					color: #0F315B;
+					padding: 1px 3px;
+				}
 			}
 		}
 	}
-	li{
-		a{
-			padding:4px 5px;
-			&.nav-current{
-				color:#0F315B;
-				padding:3px 4px;
+	li {
+		a {
+			&, &.ui-link {
+				padding: 4px 5px;
+				&.nav-current {
+					color: #0F315B;
+					padding: 3px 4px;
+				}
 			}
 		}
 	}
 	a.nav-current{
-		border:1px solid #777;
+		border: 1px solid #777;
 		@include border-radius(2px);
 	}
-	h3,h4,.top-level,li{
-		a{
-			display:block;
-			color:#333;
-			text-decoration:none;
-			&:hover,&:focus,&:active{
-				color:#333;
-				text-decoration:underline;
+	h3, h4, .top-level, li {
+		a {
+			&, &.ui-link {
+				display: block;
+				color: #333;
+				text-decoration: none;
+				&:hover, &:focus, &:active {
+					color: #333;
+					text-decoration: underline;
+				}
 			}
 		}
 	}
-	ul{
+	ul {
 		list-style-type:none;
 		margin:0 0 3px;
 		padding:0;
