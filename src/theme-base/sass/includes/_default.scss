@@ -2,6 +2,14 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3/text-shadow";
+
+#wb-skip {
+	.ui-link {
+		text-shadow: none !important;
+	}
+}
+
 #wb-head, #wb-foot, #wb-sec, #base-date-mod {
 	line-height: normal;
 }
