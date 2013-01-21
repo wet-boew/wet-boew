@@ -72,15 +72,6 @@ table {
 	@extend %no-margin-no-shadow;
 }
 
-/* Override jQuery Mobile hiding of content on mobile loading to eliminate white flicker */
-.ui-mobile-rendering {
-	> {
-		* { //TODO: Why use child and wildchard selectors nested?
-			visibility: visible !important;
-		}
-	}
-}
-
 #wb-skip {
 	a {
 		&, &:link, &:visited {
