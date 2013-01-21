@@ -1,5 +1,5 @@
 export REPO="$(pwd | sed s,^/home/travis/build/,,g)"
-if [ "$TRAVIS_PULL_REQUEST" != "true" ] &&  [ "$REPO" == "wet-boew/wet-boew" ]; then
+if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$REPO" == "wet-boew/wet-boew" ]; then
 	declare -a supported_branches=('master' 'v3.0') # List of branches to store build output for
 
 	echo -e "Current repo: $TRAVIS_REPO_SLUG\n"
