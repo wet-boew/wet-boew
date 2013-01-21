@@ -16,8 +16,7 @@
 @import 'includes/sp-pe';
 @import 'includes/sp-pe-responsive';
 @import 'includes/sp-pe-desktop';
-@import 'includes/sp-pe-ie7';
-@import 'includes/sp-pe-ie8';
+@import 'includes/sp-pe-ie';
 /* -----Build Include Section End----- */
 
 @media screen {
@@ -27,8 +26,7 @@
 @import '../../base/sass/base-screen-ie';
 @import 'includes/sp-pe-screen';
 @import 'includes/sp-pe-desktop-screen';
-@import 'includes/sp-pe-screen-ie7';
-@import 'includes/sp-pe-screen-ie8';
+@import 'includes/sp-pe-screen-ie';
 /* -----Build Include Section End----- */
 }
 
@@ -37,7 +35,6 @@
 @import '../../base/sass/base-print';
 @import '../../base/sass/base-print-ie';
 @import 'includes/sp-pe-print';
-@import 'includes/sp-pe-print-ie7';
-@import 'includes/sp-pe-print-ie8';
+@import 'includes/sp-pe-print-ie';
 /* -----Build Include Section End----- */
 }

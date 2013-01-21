@@ -15,8 +15,7 @@
 @import '../../base/sass/base-ie';
 @import 'includes/serv';
 @import 'includes/serv-desktop';
-@import 'includes/serv-ie7';
-@import 'includes/serv-ie8';
+@import 'includes/serv-ie';
 /* -----Build Include Section End----- */
 
 @media screen {
@@ -26,8 +25,7 @@
 @import '../../base/sass/base-screen-ie';
 @import 'includes/serv-screen';
 @import 'includes/serv-desktop-screen';
-@import 'includes/serv-screen-ie7';
-@import 'includes/serv-screen-ie8';
+@import 'includes/serv-screen-ie';
 @import 'includes/serv-responsive';
 /* -----Build Include Section End----- */
 }
@@ -37,7 +35,6 @@
 @import '../../base/sass/base-print';
 @import '../../base/sass/base-print-ie';
 @import 'includes/serv-print';
-@import 'includes/serv-print-ie7';
-@import 'includes/serv-print-ie8';
+@import 'includes/serv-print-ie';
 /* -----Build Include Section End----- */
 }
