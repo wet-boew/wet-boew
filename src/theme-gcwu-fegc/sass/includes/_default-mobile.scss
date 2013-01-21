@@ -73,10 +73,8 @@ table {
 }
 
 #wb-skip {
-	a {
-		&, &:link, &:visited {
-			@include text-shadow(none !important);
-		}
+	.ui-link {
+		text-shadow: none !important;
 	}
 }
 
