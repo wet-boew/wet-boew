@@ -22,11 +22,3 @@
 .mobile-change {
 	width: 100% !important;
 }
-
-#wb-skip {
-	a {
-		&, &:link, &:visited {
-			@include text-shadow(none !important);
-		}
-	}
-}
