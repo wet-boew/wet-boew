@@ -6,6 +6,7 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/opacity";
 @import "compass/css3/images";
+@import "compass/css3/text-shadow";
 
 .wet-boew-menubar {
 	background-color: #1A3D6C;
@@ -49,28 +50,31 @@
 		}
 	}
 	a {
-		font-weight: 700;
-		text-align: left;
-		white-space: nowrap;
-		display: block;
-		padding: 0.45em 1.72em 0.45em 0.79em;
-		&:link, &:visited {
-			text-decoration: none;
+		&, &.ui-link {
+			font-weight: 700;
+			text-align: left;
+			white-space: nowrap;
+			display: block;
+			padding: 0.45em 1.72em 0.45em 0.79em;
+			@include text-shadow(none !important);
+			&:link, &:visited {
+				text-decoration: none;
+				color: #fff;
+			}
+			&:hover, &:focus, &:active {
+				text-decoration: underline;
+			}
+		}
+		&.mb-has-sm {
+			padding-right: 0.79em;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+		&.nav-current {
+			background: #242;
 			color: #fff;
 		}
-		&:hover, &:focus, &:active {
-			text-decoration: underline;
-		}
-	}
-	.mb-has-sm {
-		padding-right: 0.79em;
-		&:hover {
-			text-decoration: none;
-		}
-	}
-	.nav-current {
-		background: #242;
-		color: #fff;
 	}
 	.mb-sm-open {
 		a {
@@ -91,7 +95,7 @@
 				border: none;
 				min-height: 0;
 			}
-			a {
+			a, .ui-link {
 				font-weight: 400;
 			}
 			&.top-level {
@@ -100,7 +104,7 @@
 				&:first-child {
 					margin-top: 0;
 				}
-				a {
+				a, .ui-link {
 					font-weight: 700;
 				}
 			}
@@ -118,6 +122,7 @@
 			&.mb-has-sm {
 				background-color: #CCC;
 				color: #000;
+				font-weight: 700;
 			}
 		}
 	}
@@ -135,6 +140,9 @@
 			font-size: 1.2em;
 			font-weight: 700;
 			margin: 0;
+			a, a.ui-link {
+				font-weight: 700;
+			}
 		}
 		ul {
 			margin: 0 0 0 1.2em;

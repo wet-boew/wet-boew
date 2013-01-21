@@ -131,6 +131,9 @@ body {
 	}
 	.gcwu-col-head {
 		@extend %gcwu-default-screen-foot-border;
+		.ui-link {
+			font-weight: 700;
+		}
 	}
 }
 

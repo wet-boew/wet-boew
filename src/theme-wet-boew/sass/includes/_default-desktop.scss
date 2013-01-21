@@ -9,6 +9,10 @@
 		@include text-shadow(none !important);
 	}
 }
+
+[class*="ui-body-"] .ui-link {
+	font-weight: normal;
+}
  
 #base-psnb, #base-srchbx {
 	h2 {
