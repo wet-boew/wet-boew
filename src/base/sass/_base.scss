@@ -11,6 +11,15 @@ body {
 	@extend %base-verdana-font;
 }
 
+/* Override jQuery Mobile hiding of content on mobile loading to eliminate white flicker (exact opposite of what jQuery Mobile does)
+.ui-mobile-rendering {
+	> {
+		* {
+			visibility: visible !important;
+		}
+	}
+}
+
 a {
 	&:hover, &:focus, &:active {
 		text-decoration: underline;
