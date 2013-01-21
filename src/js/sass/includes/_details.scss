@@ -60,12 +60,18 @@ details {
 	}
 }
 
-.pe-disable {
+.no-js {
 	details {
 		> {
 			* {
 				display: block;
 			}
+		}
+	}
+	summary {
+		cursor: auto;
+		&:hover, &:focus, &:active {
+			background: none;
 		}
 	}
 }
