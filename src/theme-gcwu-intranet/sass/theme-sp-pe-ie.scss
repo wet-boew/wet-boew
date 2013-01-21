@@ -16,8 +16,7 @@
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-images';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-desktop-screen';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-ie7';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-ie8';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-ie';
 /* -----Build Include Section End----- */
 
 @media screen {
@@ -30,8 +29,7 @@
 @import '../../theme-gcwu-fegc/sass/includes/default-responsive';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-desktop';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen-ie7';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen-ie8';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen-ie';
 @import 'includes/sp-pe-screen';
 /* -----Build Include Section End----- */
 }
@@ -41,7 +39,6 @@
 @import '../../base/sass/base-print';
 @import '../../base/sass/base-print-ie';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-print';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-print-ie7';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-print-ie8';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-print-ie';
 /* -----Build Include Section End----- */
 }
