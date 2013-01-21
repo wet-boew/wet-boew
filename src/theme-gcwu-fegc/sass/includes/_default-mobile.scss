@@ -72,6 +72,14 @@ table {
 	@extend %no-margin-no-shadow;
 }
 
+#wb-skip {
+	a {
+		&, &:link, &:visited {
+			@include text-shadow(none !important);
+		}
+	}
+}
+
 [id|="wb-body-sec"] {
 	#wb-skip2 {
 		display: none;
