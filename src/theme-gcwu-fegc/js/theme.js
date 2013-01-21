@@ -212,7 +212,7 @@
 				$.mobile.transitionHandlers.loadingTransition = loadingTransition;
 				$.mobile.defaultDialogTransition = 'loadingTransition';
 			});
-			$(document).trigger('mobileviewloaded');
+			$(document).trigger('themeviewloaded');
 			return;
 		},
 
@@ -229,6 +229,7 @@
 					inputelms[len].setAttribute('data-role', 'none');
 				}
 			}
+			$(document).trigger('themeviewloaded');
 		}
 	};
 	/* window binding */

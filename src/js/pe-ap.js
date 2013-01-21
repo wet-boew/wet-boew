@@ -225,7 +225,7 @@
 						// Initialize the theme
 						wet_boew_theme.init();
 
-						pe.document.one('mobileviewloaded', function () {
+						pe.document.one('themeviewloaded', function () {
 							if (typeof $.mobile !== 'undefined') {
 								pe.mobilelang();
 								$.mobile.initializePage();

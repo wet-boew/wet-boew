@@ -41,6 +41,7 @@
 
 		/* Special handling for the desktop view */
 		desktopview: function () {
+			$(document).trigger('themeviewloaded');
 		}
 	};
 	/* window binding */
