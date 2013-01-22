@@ -37,3 +37,12 @@
 		}
 	}
 }
+
+.ie8 {
+	.wb-show-onhover {
+		@include transparent;
+		&:hover, &:focus, &:active {
+			@include opaque;
+		}
+	}
+}

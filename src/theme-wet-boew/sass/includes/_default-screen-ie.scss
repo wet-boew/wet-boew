@@ -68,3 +68,14 @@
 		}
 	}
 }
+
+.ie8 {
+	#base-title-in{
+		background-image:  url(../images/logo.png)
+	}
+	#base-srch-submit{
+		padding:2px 5px;
+		position:relative;
+		top:1px;
+	}
+}
