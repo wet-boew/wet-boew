@@ -5,10 +5,10 @@
 .ie7 {
 	#gcwu-sig {
 		margin-top: 20px;
-		padding-bottom: 10px;
+		padding-bottom: 3px;
 	}
 	%gcwu-sp-pe-screen-ie7-title-all {
-		padding-top: 12px;
+		padding-top: 10px;
 	}
 	#gcwu-title-left {
 		@extend %gcwu-sp-pe-screen-ie7-title-all;
@@ -23,7 +23,7 @@
 		@extend %gcwu-sp-pe-screen-ie7-title-all;
 	}
 	%gcwu-sp-pe-screen-ie7-langs {
-		margin: 13px 0 0;
+		margin: 10px 0 0;
 	}
 	#gcwu-ef-lang {
 		@extend %gcwu-sp-pe-screen-ie7-langs;
@@ -31,17 +31,14 @@
 	#gcwu-other-lang {
 		@extend %gcwu-sp-pe-screen-ie7-langs;
 	}
-	#gcwu-tc {
-		margin-top: -1px;
-	}
-	%gcwu-sp-pe-screen-ie7-padding-top-8px {
-		padding-top: 8px;
+	%gcwu-sp-pe-screen-ie7-padding-top-7px {
+		padding-top: 7px;
 	}
 	#gcwu-ef-tc {
-		@extend %gcwu-sp-pe-screen-ie7-padding-top-8px;
+		@extend %gcwu-sp-pe-screen-ie7-padding-top-7px;
 	}
 	#gcwu-other-tc {
-		@extend %gcwu-sp-pe-screen-ie7-padding-top-8px;
+		@extend %gcwu-sp-pe-screen-ie7-padding-top-7px;
 	}
 	#wb-core {
 		margin-bottom: -20px;
