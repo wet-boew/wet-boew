@@ -188,17 +188,21 @@
 
 		/* Special handling for the desktop view */
 		desktopview: function () {
-			// Disable jQuery Mobile enhancement of the search field in the header
-			var searchbox = document.getElementById('base-srchbx'),
-				inputelms,
+			// Disable jQuery Mobile enhancement of the form fields
+			var elms,
 				len;
-			if (searchbox.length !== 0) {
-				inputelms = searchbox.getElementsByTagName('input');
-				len = inputelms.length;
-				while (len--) {
-					inputelms[len].setAttribute('data-role', 'none');
-				}
+
+			if (pe.ie > 0 && pe.ie < 9) {
+				elms = $('input, textarea, select, button').get();
+			} else {
+				elms = document.querySelectAll('input, textarea, select, button');
 			}
+
+			len = elms.length;
+			while (len--) {
+				elms[len].setAttribute('data-role', 'none');
+			}
+
 			$(document).trigger('themeviewloaded');
 		}
 	};
