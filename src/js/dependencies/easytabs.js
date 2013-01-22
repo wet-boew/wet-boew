@@ -350,7 +350,7 @@
 				// Find direct tab link that ends in the matching href (like 'a[href$="#panel-1"]', which would also match http://example.com/currentpage/#panel-1)
 				if ( ($tab = plugin.tabs.find("a[href$='" + tabSelector + "']")).length === 0 ) {
 
-				  $.error('Tab \'' + tabSelector + '\' does not exist in tab set');
+					error('Tab \'' + tabSelector + '\' does not exist in tab set');
 				}
 			  }
 			}
@@ -407,7 +407,7 @@
 		} else {
 		  $defaultTab = plugin.tabs.parent().find(settings.defaultTab);
 		  if ( $defaultTab.length === 0 ) {
-			$.error("The specified default tab ('" + settings.defaultTab + "') could not be found in the tab set.");
+			  error("The specified default tab ('" + settings.defaultTab + "') could not be found in the tab set.");
 		  }
 		}
 	  }
@@ -650,6 +650,14 @@
 	  }
 	};
 
+	// Logs a plugin error.  Attempts to log using the console with fallback to throwing an Exception.
+	var error = function(msg) {
+		if(window.console && console.error) {
+			console.error(msg);
+		} else {
+			throw new Error(msg);
+		}
+	};
 
 	plugin.init();
 
