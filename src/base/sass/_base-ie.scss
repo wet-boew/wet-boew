@@ -3,9 +3,6 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ie7 {
-	select, button {
-		font-size: 100%;
-	}
 	%base-ie7-clip-rect-1
 	{
 		clip: rect(1px 1px 1px 1px);
@@ -63,8 +60,14 @@
 
 	// Right to left (RTL) CSS
 	&[dir="rtl"] {
-		.wb-invisible,.wb-show-onfocus,#wb-foot h2 {
+		.wb-invisible, .wb-show-onfocus, #wb-foot h2 {
 			float: right;
 		}
+	}
+}
+
+.ie7, .ie8 {
+	select, button {
+		font-size: 100%
 	}
 }

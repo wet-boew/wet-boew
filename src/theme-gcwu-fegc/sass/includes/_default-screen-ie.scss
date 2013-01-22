@@ -101,3 +101,27 @@
 		}
 	}
 }
+
+.ie8 {
+	#gcwu-srch-submit {
+		padding: 2px 5px;
+		background-color: #cecece !important;
+		position: relative;
+		top: 1px;
+	}
+
+	&[dir="rtl"] {
+		#gcwu-tctr {
+			li {
+				&.gcwu-tc {
+					border-right: 1px solid #999;
+					border-left: 0;
+					padding: 0 9px 0 10px;
+				}
+				&.gcwu-tr {
+					padding: 0 10px 0 6px;
+				}
+			}
+		}
+	}
+}

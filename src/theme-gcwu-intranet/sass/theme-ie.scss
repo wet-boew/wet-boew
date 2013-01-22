@@ -12,50 +12,40 @@
 /* -----Build Include Section Start----- */
 @import '../../base/sass/base';
 @import '../../base/sass/base-desktop';
-@import '../../base/sass/base-ie7';
-@import '../../base/sass/base-ie8';
+@import '../../base/sass/base-ie';
 @import '../../theme-gcwu-fegc/sass/includes/default';
 @import '../../theme-gcwu-fegc/sass/includes/default-desktop';
 @import '../../theme-gcwu-fegc/sass/includes/default-desktop-images-ie';
-@import '../../theme-gcwu-fegc/sass/includes/default-ie7';
-@import '../../theme-gcwu-fegc/sass/includes/default-ie8';
-@import '../../theme-gcwu-fegc/sass/includes/default-desktop-ie7';
-@import '../../theme-gcwu-fegc/sass/includes/default-desktop-ie8';
+@import '../../theme-gcwu-fegc/sass/includes/default-ie';
+@import '../../theme-gcwu-fegc/sass/includes/default-desktop-ie';
 @import 'includes/default';
-@import 'includes/default-ie7';
-@import 'includes/default-ie8';
-
+@import 'includes/default-ie';
 /* -----Build Include Section End----- */
 
 @media screen {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/base-screen';
 @import '../../base/sass/base-desktop-screen';
-@import '../../base/sass/base-screen-ie7';
-@import '../../base/sass/base-screen-ie8';
+@import '../../base/sass/base-screen-ie';
 @import '../../grids/sass/responsive';
-@import '../../grids/sass/responsive-ie7';
+@import '../../grids/sass/responsive-ie';
 @import '../../theme-gcwu-fegc/sass/includes/default-responsive';
 @import '../../theme-gcwu-fegc/sass/includes/default-screen';
 @import '../../theme-gcwu-fegc/sass/includes/default-desktop-screen';
-@import '../../theme-gcwu-fegc/sass/includes/default-screen-ie7';
-@import '../../theme-gcwu-fegc/sass/includes/default-screen-ie8';
+@import '../../theme-gcwu-fegc/sass/includes/default-screen-ie';
 @import 'includes/default-screen-images-ie';
 @import 'includes/default-responsive';
 @import 'includes/default-desktop-screen';
 @import 'includes/default-desktop-screen-images';
-@import 'includes/default-screen-ie7';
-@import 'includes/default-screen-ie8';
+@import 'includes/default-screen-ie';
 /* -----Build Include Section End----- */
 }
 
 @media print {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/base-print';
-@import '../../base/sass/base-print-ie7';
-@import '../../base/sass/base-print-ie8';
+@import '../../base/sass/base-print-ie';
 @import '../../theme-gcwu-fegc/sass/includes/default-print';
-@import '../../theme-gcwu-fegc/sass/includes/default-print-ie7';
-@import '../../theme-gcwu-fegc/sass/includes/default-print-ie8';
+@import '../../theme-gcwu-fegc/sass/includes/default-print-ie';
 /* -----Build Include Section End----- */
 }
