@@ -8,7 +8,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	git config --global user.name "Travis"
 
 	#Set upstream remote
-	git remote add upstream https://${GH_TOKEN}@github.com/${REPO}.git > /dev/null
+	git remote add upstream https://${GH_TOKEN}@github.com/wet-boew/wet-boew.git > /dev/null
 	git remote add experimental https://${GH_TOKEN}@github.com/LaurentGoderre/wet-boew.git > /dev/null
 
 	#Copy result of build and demo in a temporary location
