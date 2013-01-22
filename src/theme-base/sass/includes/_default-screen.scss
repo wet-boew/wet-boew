@@ -121,7 +121,6 @@ body{
 		margin-bottom:0;
 	}
 	.base-col-head {
-		@extend %base-default-screen-foot-border;
 		.ui-link {
 			font-weight: 700;
 		}
