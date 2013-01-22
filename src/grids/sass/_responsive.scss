@@ -16,40 +16,7 @@
 	img {
 		@extend %bicubic-auto;
 	}
-	.span-1 {
-		@extend %no-margin;
-	}
-	.span-2 {
-		@extend %no-margin;
-	}
-	.span-3 {
-		@extend %no-margin;
-	}
-	.span-4 {
-		@extend %no-margin;
-	}
-	.span-5 {
-		@extend %no-margin;
-	}
-	.span-6 {
-		@extend %no-margin;
-	}
-	.span-7 {
-		@extend %no-margin;
-	}
-	.span-8 {
-		@extend %no-margin;
-	}
-	.span-9 {
-		@extend %no-margin;
-	}
-	.span-10 {
-		@extend %no-margin;
-	}
-	.span-11 {
-		@extend %no-margin;
-	}
-	.span-12 {
+	& & {
 		@extend %no-margin;
 	}
 }
