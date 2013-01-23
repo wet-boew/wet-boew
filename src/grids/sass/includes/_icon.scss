@@ -74,12 +74,20 @@ $second-row-sprite-y: 0;
 		background-position: 100% 0;
 		padding-left: 0;
 		padding-right: 19px;
+		&.button {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
 	}
 
 	[href$='.psd'],[href$='.zip'],[href$='.doc'],[href$='.pdf'],[href$='.xls'],[href$='.rtf'],[href$='.pot'],[href$='.ppt'],[href$='.pps'],[href$='.pptm'],[href$='.docx'],[href$='.xlsx'],[href$='.pptx']{
 		background-position: 100% 0;
 		padding-left: 0;
 		padding-right: 19px;
+		&.button {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
 	}
 
 	[class*=wb-icon-] {
