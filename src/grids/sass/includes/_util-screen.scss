@@ -225,6 +225,21 @@ pre {
 .margin-right-xlarge {
 	margin-right: $margin-xlarge !important;
 }
+.margin-left-none {
+	margin-left: 0 !important;
+}
+.margin-left-small {
+	margin-left: $margin-small !important;
+}
+.margin-left-medium {
+	margin-left: $margin-medium !important;
+}
+.margin-left-large {
+	margin-left: $margin-large !important;
+}
+.margin-left-xlarge {
+	margin-left: $margin-xlarge !important;
+}
 
 /*	 indentation	 */
 .indent-none {
