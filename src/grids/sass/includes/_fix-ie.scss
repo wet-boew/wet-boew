@@ -11,6 +11,9 @@
 	label {
 		@include inline-block;
 	}
+	.form-label-inline {
+	width: auto;
+	}
 	ol {
 		ul {
 			li {
