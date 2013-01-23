@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ie7 {
-	#base-subsite {
+	#wet-subsite {
 		a {
 			font-size:expression(this.previousSibling == null ? '100%' : '-' );
 			border-left:expression(this.previousSibling == null ? 'none' : '-' );
@@ -12,7 +12,7 @@
 
 	// Right to left (RTL) CSS
 	&[dir="rtl"] {
-		#base-subsite {
+		#wet-subsite {
 			a {
 				border-left: none;
 				border-right: expression(this.previousSibling == null ? 'none' : '-' );
