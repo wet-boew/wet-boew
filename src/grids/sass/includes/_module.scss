@@ -143,7 +143,7 @@
 		> ul, > nav, > section {
 			@include module-colorize($border: "border");
 		}
-		ul {
+		ul, ol {
 			&, &[class*="column-"] {
 				list-style-type: none;
 				margin: 0;
@@ -154,7 +154,7 @@
 					list-style-image: url("../images/bullet.png");
 				}
 			}
-			ul {
+			ul, ol {
 				padding-top: 5px;
 				padding-bottom: 0;
 			}
