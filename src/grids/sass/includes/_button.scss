@@ -9,7 +9,7 @@
 @import "compass/css3/transition";
 
 @mixin buttons {
-
+	
 	.button {
 		background-image: none;
 		@include button($light);
@@ -21,7 +21,15 @@
 			@include single-transition(background-position, 0.1s, linear);
 		}
 
-		&.button-disabled, &:disabled {
+		&.button-disabled { //TODO: merge the disabled items together as they are apart for now for IE8
+			background: none;
+			@include box-shadow(none);
+			cursor: default;
+			font-style: italic;
+			@include text-shadow(none);
+		}
+		
+		&:disabled {  //TODO: merge the disabled items together as they are apart for now for IE8
 			background: none;
 			@include box-shadow(none);
 			cursor: default;
@@ -68,7 +76,14 @@
 				color: $attention !important;
 			}
 
-			&.button-disabled, &:disabled {
+			&.button-disabled {  //TODO: merge the disabled items together as they are apart for now for IE8
+				text-decoration: none !important;
+				&:hover, &:focus, &:active {
+					color: $dark !important;
+				}
+			}
+			
+			&:disabled {  //TODO: merge the disabled items together as they are apart for now for IE8
 				text-decoration: none !important;
 				&:hover, &:focus, &:active {
 					color: $dark !important;
