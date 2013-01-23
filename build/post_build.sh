@@ -15,7 +15,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	cp -R dist $HOME/dist
 	cp -R demos $HOME/demos
 
-	git fetch upstream > /dev/null
+	git fetch -n upstream > /dev/null
 
 	#Update working example
 	if [ "$TRAVIS_BRANCH" == "master" ]; then
