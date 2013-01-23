@@ -219,7 +219,11 @@
 			border-color: $text;
 		}
 	}
-	&.button-disabled, &:disabled {
+	&.button-disabled { //TODO: merge the disabled items together as they are apart for now for IE8
+		background-color: $color;
+		border-color: darken($color, 5%);
+	}
+	&:disabled { //TODO: merge the disabled items together as they are apart for now for IE8
 		background-color: $color;
 		border-color: darken($color, 5%);
 	}
