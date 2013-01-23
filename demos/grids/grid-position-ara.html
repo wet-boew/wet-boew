@@ -140,13 +140,13 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <h4>Example 1: Regular text flows under the grid cell</h4>
   <p>Grid cells behave like fixed width columns, so content never freely floats in the available white space below or around a neighbouring cell. However, there are lots of situations where you want the dimensions and structure of a grid, but need the benefit of regular free-flowing content. For example, if you want a small floating box on the right side of your page, and you want the body text to fill the space around it. You need to do the following:</p>
 <ol>
-	<li>Create the grid cell you want to appear on the right. A <code>span-2</code> is ideal for this.</li>
-	<li>Apply the <code>float-right</code> class to this grid cell.</li>
+	<li>Create the grid cell you want to appear on the left. A <code>span-2</code> is ideal for this.</li>
+	<li>Apply the <code>float-left</code> class to this grid cell.</li>
 	<li>Do <strong>not</strong> put the rest of the content in a grid cell, like a <code>span-4</code>. Instead, treat it like regular body text. The result is <strong>non-restricted content that fills the available space.</strong></li>
 </ol>
 
 <div class="module background-highlight">
-	<div class="span-2 module-related float-right margin-top-medium">
+	<div class="span-2 module-related float-left margin-top-medium">
 		<h3>Related Links</h3>
 		<ul>
 			<li><a href="#">Lorem ipsum</a></li>
@@ -223,8 +223,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <h3>Float versus align</h3>
 <p><strong>Float <abbr title="Cascading Style Sheet">CSS</abbr> makes the grid cell float</strong>, but does not affect the content inside inside it. <strong>Align <abbr title="Cascading Style Sheet">CSS</abbr> affects only the content</strong> within the grid cell, but not the grid cell itself. For example:</p>
 <ul>
-	<li><code>&lt;div class=&quot;span-2 float-right&quot;&gt;content&lt;/div&gt;</code> moves the grid cell to the right side of the page, and</li>
-	<li><code>&lt;div class=&quot;span-2 align-right&quot;&gt;content&lt;/div&gt;</code> moves the content within the cell to the right side of the cell, but the cell itself does not move.</li>
+	<li><code>&lt;div class=&quot;span-2 float-left&quot;&gt;content&lt;/div&gt;</code> moves the grid cell to the left side of the page, and</li>
+	<li><code>&lt;div class=&quot;span-2 align-left&quot;&gt;content&lt;/div&gt;</code> moves the content within the cell to the left side of the cell, but the cell itself does not move.</li>
 </ul>
 
 
@@ -249,9 +249,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	</tr>
 	<tr>
 		<td class="align-center">Centre</td>
-		<td>Left</td>
+		<td>Right</td>
 		<td class="align-center">Centre</td>
-		<td>Left</td>
+		<td>Right</td>
 	</tr>
 	</table>
 
@@ -270,9 +270,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td class=&quot;align-center&quot;&gt;Centre&lt;/td&gt;
-		&lt;td&gt;Left&lt;/td&gt;
+		&lt;td&gt;Right&lt;/td&gt;
 		&lt;td class=&quot;align-center&quot;&gt;Centre&lt;/td&gt;
-		&lt;td&gt;Left&lt;/td&gt;
+		&lt;td&gt;Right&lt;/td&gt;
 	&lt;/tr&gt;
 &lt;/table&gt;</pre>
 </details>
@@ -402,7 +402,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 
 <h2 id="absolute">Absolute positioning</h2>
-<p>By default, grids cells float left and stack side-by-side, forming rows from left to right. However, you can use positional <abbr title="Cascading Style Sheet">CSS</abbr> to layer them on top of each other. The parent cell will act as the container, and the child cells can be layered horizontally and vertically within the container, on top of other cells.</p>
+<p>By default, grids cells float right and stack side-by-side, forming rows from right to left. However, you can use positional <abbr title="Cascading Style Sheet">CSS</abbr> to layer them on top of each other. The parent cell will act as the container, and the child cells can be layered horizontally and vertically within the container, on top of other cells.</p>
 <p>For example, here is a <code>span-6</code> (the parent) with a <code>span-3 position-top position-right</code> (the child). Inside the <code>span-3 position-top position-right</code> are three additional <code>span-1</code> children. <strong>Note:</strong> opacity <abbr title="Cascading Style Sheet">CSS</abbr> has been added to the below example, to further demonstrate the layering effect.</p>
 
 <div class="span-6 background-accent">
@@ -633,33 +633,33 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <div class="wb-sec-def">
     <!-- SecNavStart -->
     <section>
-      <h3><a href="grid-structure-eng.html">Structure</a></h3>
+      <h3><a href="grid-structure-ara.html">Structure</a></h3>
       <ul>
-        <li><a href="grid-base-eng.html">CSS Grid System</a></li>
+        <li><a href="grid-base-ara.html">CSS Grid System</a></li>
       </ul>
     </section>
     <section>
-      <h3><a href="grid-basic-eng.html">Basic effects</a></h3>
+      <h3><a href="grid-basic-ara.html">Basic effects</a></h3>
       <ul>
-        <li><a href="grid-text-eng.html">Text</a></li>
-        <li><a href="grid-table-eng.html">Tables</a></li>
-        <li><a href="grid-form-eng.html">Forms</a></li>
-        <li><a href="grid-image-eng.html">Images</a></li>
-        <li><a href="grid-color-eng.html">Colour</a></li>
-        <li><a href="grid-button-eng.html">Buttons</a></li>
-        <li><a href="grid-border-eng.html">Borders</a></li>
-        <li><a href="grid-icon-eng.html">Icons</a></li>
-        <li><a href="grid-opacity-eng.html">Opacity</a></li>
-        <li><a href="grid-proximity-eng.html">Proximity</a></li>
-        <li><a href="grid-position-eng.html">Positioning and alignment</a></li>
+        <li><a href="grid-text-ara.html">Text</a></li>
+        <li><a href="grid-table-ara.html">Tables</a></li>
+        <li><a href="grid-form-ara.html">Forms</a></li>
+        <li><a href="grid-image-ara.html">Images</a></li>
+        <li><a href="grid-color-ara.html">Colour</a></li>
+        <li><a href="grid-button-ara.html">Buttons</a></li>
+        <li><a href="grid-border-ara.html">Borders</a></li>
+        <li><a href="grid-icon-ara.html">Icons</a></li>
+        <li><a href="grid-opacity-ara.html">Opacity</a></li>
+        <li><a href="grid-proximity-ara.html">Proximity</a></li>
+        <li><a href="grid-position-ara.html">Positioning and alignment</a></li>
       </ul>
     </section>
     <section>
-      <h3><a href="grid-specialty-eng.html">Specialty effects</a></h3>
+      <h3><a href="grid-specialty-ara.html">Specialty effects</a></h3>
       <ul>
-        <li><a href="grid-message-eng.html">Messages</a></li>
-        <li><a href="grid-module-eng.html">Modules</a></li>
-        <li><a href="grid-other-eng.html">Other</a></li>
+        <li><a href="grid-message-ara.html">Messages</a></li>
+        <li><a href="grid-module-ara.html">Modules</a></li>
+        <li><a href="grid-other-ara.html">Other</a></li>
       </ul>
     </section>
     <!-- SecNavEnd -->
