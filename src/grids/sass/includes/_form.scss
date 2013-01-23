@@ -154,9 +154,12 @@
 
 	// Right to left (RTL) CSS
 	[dir="rtl"] {
-		label {
-			.form-horizontal & {
+		.form-horizontal {
+			label {
 				text-align: left;
+			}
+			br {
+				clear:both;
 			}
 		}
 	}
