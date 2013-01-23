@@ -225,7 +225,7 @@
 			if (pe.ie > 0 && pe.ie < 9) {
 				elms = $('input, textarea, select, button').get();
 			} else {
-				elms = document.querySelectAll('input, textarea, select, button');
+				elms = document.querySelectorAll('input, textarea, select, button');
 			}
 
 			len = elms.length;
