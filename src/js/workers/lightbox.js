@@ -127,7 +127,7 @@
 							pe.focus($lbClose);
 							e.preventDefault();
 						} else if (!e.shiftKey && target_id === 'cboxClose') {
-							pe.focus($lbLoadedContent);
+							pe.focus($lbContent.find('#cboxLoadedContent'));
 							e.preventDefault();
 						}
 					} else if (e.keyCode === 13 || e.keyCode === 32) {
