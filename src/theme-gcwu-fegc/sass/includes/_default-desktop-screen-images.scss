@@ -13,11 +13,7 @@
 	}
 }
 
-#wb-body {
-	@extend %gcwu-default-desktop-screen-images-header-background;
-}
-
-[id|="wb-body-sec"] { //TODO: Replace with individual IDs
+[id|="wb-body"] {
 	@extend %gcwu-default-desktop-screen-images-header-background;
 }
 
