@@ -195,6 +195,10 @@
 						}, 200);
 					}
 				}
+
+				if (pe.ie > 0 && pe.ie < 9) {
+					pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
+				}
 			});
 
 			// Load ajax content

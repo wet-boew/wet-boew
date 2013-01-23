@@ -290,7 +290,7 @@
 			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme-ie.css"/>
 			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure-ie.css"/>
 		</concat>
-		<copy todir="${dist.dir}/images/jquerymobile-ie">
+		<copy todir="${dist.dir}/css/images">
 			<fileset dir="${src.dir}/jquerymobile/images-ie"/>
 		</copy>
 	</target>

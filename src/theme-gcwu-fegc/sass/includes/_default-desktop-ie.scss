@@ -10,4 +10,19 @@
 			}
 		}
 	}
+	[data-theme="a"] {
+		.ui-icon {
+			background-color: #191919;
+		}
+	}
+	[data-theme="b"] {
+		.ui-icon {
+			background-color: #1B334D;
+		}
+	}
+	[data-theme="c"] {
+		.ui-icon {
+			background-color: #696969;
+		}
+	}
 }
