@@ -142,10 +142,9 @@
 		_init_colorbox : function(link, opts, group) {
 			var $link = $(link),
 				isInline = $link.attr('href').substring(0, 1) === '#',
-				isIframe = $link.hasClass('iframe'),
 				isGroup = (group !== undefined),
 				groupRel = (isGroup ? group : false);
-			$link.colorbox((isInline || isIframe || isGroup) ? $.extend({}, opts, {inline: isInline, iframe: isIframe, rel: groupRel}) : opts);
+			$link.colorbox((isInline || isGroup) ? $.extend({}, opts, {inline: isInline, rel: groupRel}) : opts);
 		}
 	};
 	window.pe = _pe;
