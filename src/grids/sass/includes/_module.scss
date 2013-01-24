@@ -160,6 +160,41 @@
 			}
 		}
 	}
+	
+	.module-table-contents {
+		background: none;
+		> [class*="span-"] {
+			margin-bottom: 0 !important;
+		}
+		> ul, > ol, > nav, > section {
+			@include module-colorize($border: "border");
+		}
+		ul, ol {
+			&, &[class*="column-"] {
+				margin: 0;
+				padding: $margin-medium $margin-medium;
+				li {
+					margin-bottom: $margin-medium / 2;
+					margin-left: 25px;
+				}
+			}
+			ul, ol {
+				padding-top: 5px;
+				padding-bottom: 0;
+			}
+		}
+	}
+	
+	.module-table-contents {
+		ul {
+			&, &[class*="column-"] {
+				list-style-type: none;
+				li {
+					list-style-image: url("../images/bullet.png");
+				}
+			}
+		}
+	}
 
 	.module-poster {
 		display: block;
