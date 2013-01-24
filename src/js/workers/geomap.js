@@ -255,8 +255,8 @@
 			map.removePopup(feature.popup);
 			feature.popup.destroy();
 			feature.popup = null;
-		},
-		
+		},		
+
 		getRandomColor: function() { 
 			var letters = '0123456789ABCDEF'.split('');
 			var color = '#';
@@ -269,6 +269,23 @@
 		getMap: function() {			
 			return map;
 		},
+
+		/* 
+		 * Create a table for vector features added in Load Overlays
+		 */
+		createTable: function(vectorLayer) {
+			
+			// create a table object
+			var $table = $('<table/>');
+						
+			// add a row for each feature
+			$.each(vectorLayer.features, function(index, layerFeature) {
+				$table.append( '<tr><td>' + layerFeature.attributes.name +	'</td><td>' + layerFeature.attributes.description +  '</td></tr>' );
+			});
+			
+			$('body').append($table);			
+		},		
+
 		
 		_exec: function (elm) {
 			
@@ -295,6 +312,7 @@
 					fractionalZoom: true,
 					theme: null
 				},
+				overlays: [],
 				features: [],
 				tables: [],
 				useLayerSwitcher: false,
@@ -364,15 +382,13 @@
 			var projMap = map.getProjectionObject();			
 			
 			console.log("WET-Geomap: using projection " + projMap.getCode());
-			
-			
-			
+
 			/*
 			 * Load overlays
 			 * 
 			 * TODO: turn this into a public function
-			 */
-			
+			 */			
+						
 			if(wet_boew_geomap.overlays){				
 				$.each(wet_boew_geomap.overlays, function(index, layer) {				
 					if(layer.type=='wms') {
@@ -402,6 +418,16 @@
 						olLayer.visibility=layer.visible;
 						map.addLayer(olLayer);
 						queryLayers.push(olLayer);
+						
+//						// create table
+//						var $table = $('<table>'); 
+//						// add a row for each feature
+//						$.each(olLayer.features, function(index, feature) {
+//							$table.append( '<tr><td>' + feature.attributes.name +	'</td><td>' + feature.attributes.description +	'</td></tr>' );
+//						});
+//						
+//						$('#wb-main-in').append($table);	
+						
 					} else if (layer.type=='atom') {
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
@@ -416,8 +442,8 @@
 							}
 						)
 						olLayer.visibility=layer.visible;
-						map.addLayer(olLayer);
 						queryLayers.push(olLayer);
+						pe.fn.geomap.createTable(olLayer);
 					} else if (layer.type=='georss') {
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
@@ -432,8 +458,8 @@
 							}
 						)
 						olLayer.visibility=layer.visible;
-						map.addLayer(olLayer);
 						queryLayers.push(olLayer);
+						pe.fn.geomap.createTable(olLayer);
 					}				
 				});
 			}
@@ -480,7 +506,7 @@
 				
 				vectorLayer.addFeatures([										 
 					wktParser.read(feature)															 
-				]);				
+				]);						
 				
 			});			
 			
