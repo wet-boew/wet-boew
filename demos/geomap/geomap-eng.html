@@ -21,6 +21,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script src="../../dist/js/jquery.min.js"></script>
+
 <!--[if lte IE 8]>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
@@ -34,6 +35,15 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
 
+<script>
+	$(document).ready(function(){
+		setTimeout(function() {
+			var myMap = pe.fn.geomap.getMap();}
+			
+	
+		,3000);
+	});
+</script>
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
 </head>
@@ -101,9 +111,15 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <div class="span-12">
     <div class="span-4 row-start">
+<<<<<<< HEAD
         <div class="wet-boew-geomap span-4 border-all position scaleline layerswitcher" data-wet-boew="{ tables: ['sample1', 'sample2'], features:[ 'POINT (-123.1119, 49.2505)', 'POLYGON ((-120 54, -111 54, -111 50, -120 50, -120 54))', 'LINESTRING (-110 63, -105 60, -100 63)' ] }"></div>
+=======
+        <div class="wet-boew-geomap span-4 border-all position scaleline layerswitcher" data-wet-boew="{ tables: ['cityE', 'cityW'], features:[ 'POINT (-123.1119, 49.2505)', 'POLYGON ((-120 54, -111 54, -111 50, -120 50, -120 54))', 'LINESTRING (-110 63, -105 60, -100 63)' ] }"></div>
+>>>>>>> Table functionnalities
     </div>
+    
     <div class="span-4 row-end">
+<<<<<<< HEAD
         <table id="sample1" aria-label="Maritime Cities">
             <caption>Maritime Cities</caption>
             <thead>
@@ -150,6 +166,75 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
         </table>        
        
 </div>
+=======
+    	<div class="wet-boew-tabbedinterface">
+			<ul class="tabs">
+				<li class="default"><a href="#tabs1_1">Tab 1</a></li>
+				<li><a href="#tabs1_2">Tab 2</a></li>
+			</ul>
+			<div class="tabs-panel">
+				<div id="tabs1_1">
+					<table id="cityE" aria-label="Maritime Cities">
+			            <caption>Maritime Cities</caption>
+			            <thead>
+			                <tr>                        
+			                    <th>Title</th>
+			                    <th>Description</th>
+			                    <th>Geometry</th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			                <tr class="background-white">
+			                    <td><a href="#" class="Table1Link" id="link1"><span id="linkCity1">St. John's</span></a></td>
+			                    <td>St. John's, the capital city of Newfoundland and Labrador, is the most easterly point in North America.</td>
+			                    <td class="feature">POINT (-52.7097, 47.5649)</td>                    
+			                </tr>
+			                <tr class="background-white">
+			                	<td><a href="#" class="Table1Link" id="link2"><span id="linkCity2">Charlottetown</span></a></td>
+			                    <td>The City of Charlottetown is a flourishing community of over 32000 people located on the south shore of Prince Edward Island.</td>
+			                    <td class="feature">POINT (-63.1283, 46.2336)</td>                                           
+			                </tr> 
+			                <tr class="background-white">
+			                	<td><a href="#" class="Table1Link" id="link2"><span id="linkCity3">Polygon</span></a></td>
+			                    <td>The City of Charlottetown is a flourishing community of over 32000 people located on the south shore of Prince Edward Island.</td>
+			                    <td class="feature">POLYGON ((-120 54, -111 54, -111 50, -120 50, -120 54))</td>                                           
+			                </tr>
+			                <tr class="background-white">
+			                	<td><a href="#" class="Table1Link" id="link2"><span id="linkCity4">Linestring</span></a></td>
+			                    <td>The City of Charlottetown is a flourishing community of over 32000 people located on the south shore of Prince Edward Island.</td>
+			                    <td class="feature">LINESTRING (-110 63, -105 60, -100 63)</td>                                           
+			                </tr>   
+			            </tbody>
+			        </table>
+				</div>
+				<div id="tabs1_2">
+					<table id="cityW" aria-label="Maritime Cities">
+			            <caption>Western Cities</caption>
+			            <thead>
+			                <tr>                        
+			                    <th>Title</th>
+			                    <th>Description</th>
+			                    <th>Geometry</th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			                <tr class="background-white">
+			                    <td><a href="#" class="Table1Link" id="link1"><span id="linkCity1">Vancouver</span></a></td>
+			                    <td>St. John's, the capital city of Newfoundland and Labrador, is the most easterly point in North America.</td>
+			                    <td class="feature">POINT (-123.1119, 49.2505)</td>                    
+			                </tr>
+			                <tr class="background-white">
+			                	<td><a href="#" class="Table1Link" id="link2"><span id="linkCity2">Calgary</span></a></td>
+			                    <td>The City of Charlottetown is a flourishing community of over 32000 people located on the south shore of Prince Edward Island.</td>
+			                    <td class="feature">POINT (-90.1283, 55.2336)</td>                                           
+			                </tr>                                           
+			            </tbody>
+			        </table>
+				</div>
+			</div>
+		</div>
+    </div>
+>>>>>>> Table functionnalities
 </div>
 <div class="clear"></div><div class="clear"></div>
 
@@ -219,10 +304,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script> 
-<!-- Debugging 
+<!-- Debugging  
 <script src="../../src/theme-gcwu-fegc/js/theme.js"></script>
 <script src="../../src/js/settings.js"></script>
-<script src="../../src/js/pe-ap.js"></script>-->
+<script src="../../src/js/pe-ap.js"></script>
+<script src="../../src/js/workers/geomap.js"></script>
+<script src="../../src/js/workers/tabbedinterface.js"></script>
 <!-- ScriptsEnd -->
 </body>
 </html>

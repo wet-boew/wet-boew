@@ -258,6 +258,10 @@
 		},		
 		
 		
+		getMap: function() {			
+			return map;
+		},
+		
 		_exec: function (elm) {
 			
 			// Don't include this if statement if your plugin shouldn't run in mobile mode.
@@ -352,6 +356,8 @@
 			var projMap = map.getProjectionObject();			
 			
 			console.log("WET-Geomap: using projection " + projMap.getCode());
+			
+			
 			
 			/*
 			 * Load overlays
@@ -490,14 +496,19 @@
 						}) 
 				});			
 								
-				$table = $("table#" + table);
+				var table_ = $("table#" + table);
 				
+<<<<<<< HEAD
 				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: my_style });
+=======
+				var tableLayer = new OpenLayers.Layer.Vector(table_.find('caption').text(), { /*styleMap: my_style*/ });
+>>>>>>> Table functionnalities
 												
 				var wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap, 
 					'externalProjection': projLatLon
 				});
+<<<<<<< HEAD
 				
 				$.each($("table#" + table + ' td.geometry'), function(index, feature) {		
 					
@@ -514,6 +525,10 @@
 						wktFeature = $(feature).text();
 					}
 					
+=======
+						
+			$.each($("table#" + table + ' td.feature'), function(index, feature) {						
+>>>>>>> Table functionnalities
 					tableLayer.addFeatures([										 
 						wktParser.read(wktFeature)															 
 					]);	
@@ -557,6 +572,65 @@
 				map.updateSize();
 				map.zoomToMaxExtent();
 			}
+			
+			// add a graphic layer
+			var styleBBOX=new OpenLayers.Style({'fillOpacity':0.2,'fillColor':'#008000','strokeColor':'#008000','strokeWidth':1,'pointRadius': 10})
+			var graphicLayer = new OpenLayers.Layer.Vector("graphicLayer", {styleMap:styleBBOX});
+			graphicLayer.id = "graphicLayer";
+			graphicLayer.displayInLayerSwitcher = false;
+			map.addLayer(graphicLayer);
+
+			// add a listener for mouse enter and mouse leave, focus and blur for keyboard on table feature
+			$(document).ready(function(){
+		
+				// add mouse event function
+				$(".Table1Link").mouseenter(function (){
+					
+					// get the parser
+					var wktParser = new OpenLayers.Format.WKT({						
+					'internalProjection': projMap, 
+					'externalProjection': projLatLon
+					});
+					
+					// get the feature fromt he table and add to the map
+					var $val = $(event.target).closest('tr').find('.feature');
+					map.getLayer("graphicLayer").addFeatures(wktParser.read($val.html()));
+					
+					// highlight the row
+					$(event.target).closest('tr').attr('class', 'background-highlight')	
+				});
+				$(".Table1Link").mouseleave(function (){
+					// remove feature from map
+					map.getLayer("graphicLayer").destroyFeatures();
+					
+					// set the row background white
+					$(event.target).closest('tr').attr('class', 'background-white')
+				});
+				
+				// add keyboard event function
+				$(".Table1Link").focus(function (){
+					
+					// get the parser
+					var wktParser = new OpenLayers.Format.WKT({						
+					'internalProjection': projMap, 
+					'externalProjection': projLatLon
+					});
+				
+					// get the feature fromt he table and add to the map
+					var $val = $(event.target).closest('tr').find('.feature');
+					map.getLayer("graphicLayer").addFeatures(wktParser.read($val.html()));	
+					
+					// highlight the row
+					$(event.target).closest('tr').attr('class', 'background-highlight')			
+				});
+				$(".Table1Link").blur(function (){
+					// remove feature from map
+					map.getLayer("graphicLayer").destroyFeatures();
+					
+					// set the row background white
+					$(event.target).closest('tr').attr('class', 'background-white')
+				});
+			});
 			
 			return elm;
 		} // end of exec
