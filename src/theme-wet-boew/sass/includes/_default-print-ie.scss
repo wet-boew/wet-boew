@@ -3,12 +3,12 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ie7 {
-	#base-bnr{
+	#wet-bnr{
 		width:100%;
 		margin-top:20px;
 		margin-bottom:20px;
 	}
-	#base-bc{
+	#wet-bc{
 		padding:5px 0;
 		ol{
 			line-height:normal;
@@ -26,7 +26,7 @@
 
 	// Right to left (RTL) CSS
 	&[dir="rtl"] {
-		#base-bc {
+		#wet-bc {
 			li {
 				border-left: none;
 				border-right: 1px solid #000;

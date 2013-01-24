@@ -19,7 +19,6 @@
 		_exec : function (elm) {
 			// Variables
 			var opts,
-				opts2 = {},
 				overrides,
 				$lb,
 				$lbContent,
@@ -93,21 +92,16 @@
 				$.colorbox.launch(this);
 			});
 
-			// Create options object for inline content
-			$.extend(opts2, opts, {inline: 'true'});
-
 			// Build single images, inline content and AJAXed content
 			$lb.filter('.lb-item').attr('aria-haspopup', 'true').each(function () {
-				pe.fn.lightbox._init_colorbox(this, opts, opts2);
+				pe.fn.lightbox._init_colorbox(this, opts);
 			});
 
 			// Build galleries
 			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () {
-				var group = {rel: 'group' + (pe.fn.lightbox.groupindex += 1)};
-				$.extend(opts, group);
-				$.extend(opts2, group);
+				var group = 'group' + (pe.fn.lightbox.groupindex += 1);
 				$(this).find('.lb-item-gal').attr('aria-haspopup', 'true').each(function () {
-					pe.fn.lightbox._init_colorbox(this, opts, opts2);
+					pe.fn.lightbox._init_colorbox(this, opts, group);
 				});
 			});
 
@@ -146,10 +140,13 @@
 			});
 		}, // end of exec
 
-		_init_colorbox : function(link, opts_default, opts_inline) {
-			var opts = link.getAttribute('href').substring(0, 1) !== '#' ? opts_default : opts_inline,
+		_init_colorbox : function(link, opts, group) {
+			var $link = $(link),
+				isInline = $link.attr('href').substring(0, 1) === '#',
+				isGroup = (group !== undefined),
+				groupRel = (isGroup ? group : false),
 				title = this._get_title(link);
-			$(link).colorbox(title ? $.extend({}, opts, title) : opts);
+			$link.colorbox((isInline || isIframe || isGroup || title) ? $.extend((title ? title : {}), opts, {inline: isInline, rel: groupRel}) : opts);
 		},
 
 		_get_title : function(link) {

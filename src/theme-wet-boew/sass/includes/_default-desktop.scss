@@ -2,6 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+<<<<<<< HEAD
 @import "compass/css3/text-shadow";
 
 #base-fullhd, #base-sft, #base-fullft {
@@ -13,8 +14,8 @@
 [class*="ui-body-"] .ui-link {
 	font-weight: normal;
 }
- 
-#base-psnb, #base-srchbx {
+
+#wet-psnb,#wet-srchbx{
 	h2 {
 		position:absolute;
 		clip:rect(1px, 1px, 1px, 1px);
@@ -25,7 +26,7 @@
 	}
 }
 
-#base-bc {
+#wet-bc {
 	font-size: 85%;
 	color: #555;
 	ol{
@@ -56,14 +57,14 @@
 	}
 }
 
-#base-bc-in {
+#wet-bc-in {
 	background: #FFF;
 }
 
-#base-date-mod {
+#wet-date-mod {
 	margin: 0;
 }
 
-#base-bnr .ui-navbar, #jqm-wb-mb, #jqm-wb-search, .ui-loader {
+#wet-bnr .ui-navbar, #jqm-wb-mb, #jqm-wb-search, .ui-loader {
 	display: none !important;
 }

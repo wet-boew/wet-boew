@@ -140,10 +140,10 @@
 		> [class*="span-"] {
 			margin-bottom: 0 !important;
 		}
-		> ul, > nav, > section {
+		> ul, > ol, > nav, > section {
 			@include module-colorize($border: "border");
 		}
-		ul, ol {
+		ul {
 			&, &[class*="column-"] {
 				list-style-type: none;
 				margin: 0;
@@ -154,7 +154,7 @@
 					list-style-image: url("../images/bullet.png");
 				}
 			}
-			ul, ol {
+			ul {
 				padding-top: 5px;
 				padding-bottom: 0;
 			}
