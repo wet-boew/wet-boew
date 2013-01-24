@@ -14,6 +14,9 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	#Copy result of build and demo in a temporary location
 	cp -R dist $HOME/dist
 	cp -R demos $HOME/demos
+	cp *.htm* $HOME
+	cp *.md $HOME
+	cp *.txt $HOME
 
 	git fetch -n upstream > /dev/null
 
@@ -59,9 +62,12 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 
 		git checkout -f "$build_branch"
 
-		#Replace the new dist and demo folders with the new ones
+		#Replace the new dist and demo folders and root files with the new ones
 		cp -Rf $HOME/dist .
 		cp -Rf $HOME/demos .
+		cp -f $HOME/*.htm* .
+		cp -f $HOME/*.md .
+		cp -f $HOME/*.txt .
 
 		#Commit the result
 		git add -f dist
