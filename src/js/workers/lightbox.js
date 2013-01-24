@@ -19,7 +19,6 @@
 		_exec : function (elm) {
 			// Variables
 			var opts,
-				opts2 = {},
 				overrides,
 				$lb,
 				$lbContent,
@@ -93,19 +92,16 @@
 				$.colorbox.launch(this);
 			});
 
-			// Create options object for inline content
-			$.extend(opts2, opts, {inline: 'true'});
-
 			// Build single images, inline content and AJAXed content
 			$lb.filter('.lb-item').attr('aria-haspopup', 'true').each(function () {
-				pe.fn.lightbox._init_colorbox(this, opts, opts2);
+				pe.fn.lightbox._init_colorbox(this, opts);
 			});
 
 			// Build galleries
 			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () {
-				var group = {rel: 'group' + (pe.fn.lightbox.groupindex += 1)};
+				var group = 'group' + (pe.fn.lightbox.groupindex += 1);
 				$(this).find('.lb-item-gal').attr('aria-haspopup', 'true').each(function () {
-					pe.fn.lightbox._init_colorbox(this, opts, opts2, group);
+					pe.fn.lightbox._init_colorbox(this, opts, group);
 				});
 			});
 
@@ -143,11 +139,13 @@
 				}
 			});
 		}, // end of exec
-		_init_colorbox : function(link, opts_default, opts_inline, opts_extra) {
+		_init_colorbox : function(link, opts, group) {
 			var $link = $(link),
-				opts = $link.attr('href').substring(0, 1) !== '#' ? opts_default : opts_inline;
-
-			$link.colorbox((opts_extra === undefined) ? opts : $.extend(opts, opts_extra));
+				isInline = $link.attr('href').substring(0, 1) === '#',
+				isIframe = $link.hasClass('iframe'),
+				isGroup = (group !== undefined),
+				groupRel = (isGroup ? group : false);
+			$link.colorbox((isInline || isIframe || isGroup) ? $.extend({}, opts, {inline: isInline, iframe: isIframe, rel: groupRel}) : opts);
 		}
 	};
 	window.pe = _pe;
