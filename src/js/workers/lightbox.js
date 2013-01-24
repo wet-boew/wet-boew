@@ -146,7 +146,7 @@
 				isGroup = (group !== undefined),
 				groupRel = (isGroup ? group : false),
 				title = this._get_title(link);
-			$link.colorbox((isInline || isIframe || isGroup || title) ? $.extend((title ? title : {}), opts, {inline: isInline, rel: groupRel}) : opts);
+			$link.colorbox((isInline || isGroup || title) ? $.extend((title ? title : {}), opts, {inline: isInline, rel: groupRel}) : opts);
 		},
 
 		_get_title : function(link) {
