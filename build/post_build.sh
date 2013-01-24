@@ -12,6 +12,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	git remote add experimental https://${GH_TOKEN}@github.com/LaurentGoderre/wet-boew.git > /dev/null
 
 	#Copy result of build and demo in a temporary location
+	mkdir $HOME/temp_wet-boew
 	cp -R dist $HOME/temp_wet-boew/dist
 	cp -R demos $HOME/temp_wet-boew/demos
 	cp *.htm* $HOME/temp_wet-boew
