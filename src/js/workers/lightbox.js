@@ -104,10 +104,8 @@
 			// Build galleries
 			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () {
 				var group = {rel: 'group' + (pe.fn.lightbox.groupindex += 1)};
-				$.extend(opts, group);
-				$.extend(opts2, group);
 				$(this).find('.lb-item-gal').attr('aria-haspopup', 'true').each(function () {
-					pe.fn.lightbox._init_colorbox(this, opts, opts2);
+					pe.fn.lightbox._init_colorbox(this, opts, opts2, group);
 				});
 			});
 
@@ -145,9 +143,11 @@
 				}
 			});
 		}, // end of exec
-		_init_colorbox : function(link, opts_default, opts_inline) {
-			var opts = link.getAttribute('href').substring(0, 1) !== '#' ? opts_default : opts_inline;
-			$(link).colorbox(opts);
+		_init_colorbox : function(link, opts_default, opts_inline, opts_extra) {
+			var $link = $(link),
+				opts = $link.attr('href').substring(0, 1) !== '#' ? opts_default : opts_inline;
+
+			$link.colorbox((opts_extra === undefined) ? opts : $.extend(opts, opts_extra));
 		}
 	};
 	window.pe = _pe;
