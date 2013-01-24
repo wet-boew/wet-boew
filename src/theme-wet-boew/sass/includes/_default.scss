@@ -2,11 +2,11 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#wb-head, #wb-foot, #wb-sec, #base-date-mod {
+#wb-head, #wb-foot, #wb-sec, #wet-date-mod {
 	line-height: normal;
 }
  
-#base-fullhd h2,#base-srchbx label,#base-sft h3,#base-bc h2,#base-fullft h3{
+#wet-fullhd h2,#wet-srchbx label,#wet-sft h3,#wet-bc h2,#wet-fullft h3{
 	clip:rect(1px, 1px, 1px, 1px);
 	height:0 !important;
 	overflow:hidden !important;
@@ -15,7 +15,7 @@
 	margin:0 !important;
 }
 
-#base-date-mod {
+#wet-date-mod {
 	dt,dd{
 		float:left;
 	}
@@ -24,11 +24,11 @@
 	}
 }
 
-#base-title a{
+#wet-title a{
 	text-decoration:none;
 }
 
-#base-subsite{
+#wet-subsite{
 	border-top:2px solid #114F7A;
 	clear:left;
 	font-size:130%;
@@ -54,7 +54,7 @@
 
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
-	#base-date-mod {
+	#wet-date-mod {
 		dt, dd {
 			float: right;
 		}
@@ -64,7 +64,7 @@
 		}
 	}
 
-	#base-subsite {
+	#wet-subsite {
 		clear: right;
 
 		a {

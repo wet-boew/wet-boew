@@ -6,74 +6,74 @@
 	#wb-core{
 		margin-bottom:-20px;
 	}
-	.base-minister ul{
+	.wet-minister ul{
 		padding-bottom:17px;
 	}
-	#base-srchbx{
+	#wet-srchbx{
 		padding-bottom:0;
 	}
-	#base-srch-submit{
+	#wet-srch-submit{
 		padding:2px 0;
 		position:relative;
 		top:1px;
 	}
-	#base-title{
+	#wet-title{
 		zoom:1;
 		position:relative;
 	}
-	#base-title-in{
+	#wet-title-in{
 		background-image:  url(../images/logo.png)
 	}
-	#base-date-mod{
+	#wet-date-mod{
 		position:relative;
 		float:right;
 		margin-bottom:-15px;
 		top:17px;
 	}
-	#base-tctr{
+	#wet-tctr{
 		padding:7px 0 6px;
-		li.base-tc{
+		li.wet-tc{
 			padding:0 10px;
 		}
-		li.base-tr{
+		li.wet-tr{
 			padding-left:10px;
 		}
 	}
-	#base-fullft li{
+	#wet-fullft li{
 		margin:13px 35px 14px 9px;
 	}
-	#base-bnr,#base-tctr li{
+	#wet-bnr,#wet-tctr li{
 		float:left;
 	}
 
 	// Right to left (RTL) CSS
 	&[dir="rtl"] {
-		#base-date-mod {
+		#wet-date-mod {
 			float: left;
 		}
 
-		#base-tctr {
-			li.base-tr {
+		#wet-tctr {
+			li.wet-tr {
 				padding-left: 0;
 				padding-right: 10px;
 			}
 		}
 
-		#base-fullft li {
+		#wet-fullft li {
 			margin: 13px 9px 14px 35px;
 		}
 
-		#base-bnr, #base-tctr li {
+		#wet-bnr, #wet-tctr li {
 			float: right;
 		}
 	}
 }
 
 .ie8 {
-	#base-title-in{
+	#wet-title-in{
 		background-image:  url(../images/logo.png)
 	}
-	#base-srch-submit{
+	#wet-srch-submit{
 		padding:2px 5px;
 		position:relative;
 		top:1px;

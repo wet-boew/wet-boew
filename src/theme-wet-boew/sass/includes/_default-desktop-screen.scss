@@ -19,7 +19,7 @@ body{
 	display:inline;
 }
 
-#wb-head,#wb-head-in,#wb-foot,#wb-foot-in,#base-fullhd,#base-bnr,#base-bc,#base-fullft,#base-sft,#base-fullhd-in,#base-bnr-in,#base-bc-in,#base-fullft-in,#base-sft-in{
+#wb-head,#wb-head-in,#wb-foot,#wb-foot-in,#wet-fullhd,#wet-bnr,#wet-bc,#wet-fullft,#wet-sft,#wet-fullhd-in,#wet-bnr-in,#wet-bc-in,#wet-fullft-in,#wet-sft-in{
 	overflow:hidden;
 }
 
@@ -29,14 +29,14 @@ body{
 	background:#FFF;
 }
 
-#base-bnr{
+#wet-bnr{
 	position:relative;
 	z-index:501 !important;
 	background:#114F7A url(../images/banner.png) repeat-x 0 0;
 	background-image:linear-gradient(#176CA7, #114F7A);
 }
 
-#base-bnr-in{
+#wet-bnr-in{
 	position:relative;
 }
 
@@ -53,13 +53,13 @@ body{
 	margin:7px 0 0 10px;
 }
 
-#base-title{
+#wet-title{
 	&:hover,&:focus,&:active{
 		text-decoration:underline;
 	}
 }
 
-#base-date-mod{
+#wet-date-mod{
 	position:absolute;
 	bottom:10px;
 	right:10px;
@@ -104,14 +104,14 @@ a{
 	}	
 }
 
-#base-fullhd{
+#wet-fullhd{
 	background:#474747;
 	font-size:0.9em;
 	color:#FFF;
 	border-bottom:1px solid #FFF;
 }
 
-#base-fullhd{
+#wet-fullhd{
 	ul{
 		list-style-type:none;
 		float:right;
@@ -120,7 +120,7 @@ a{
 		li{
 			float:left;
 			padding:13px 0;
-			&#base-fullhd-lang {
+			&#wet-fullhd-lang {
 				a {
 					padding:0;
 					text-transform: capitalize;
@@ -135,17 +135,17 @@ a{
 		padding: 0;
 	}
 	li {
-		&[id*="base-fullhd-lang"] {
+		&[id*="wet-fullhd-lang"] {
 			padding: 8px 10px;
 			border-left: 1px solid #777;
 		}
-		&#base-fullhd-lang-current{
+		&#wet-fullhd-lang-current{
 			margin-right: 1px;
 			padding-right: 10px;
 			background:url(../images/lang_current.png) no-repeat center bottom;
 			color: #CCC;
 		}
-		&:first-child[id*="base-fullhd-lang"] {
+		&:first-child[id*="wet-fullhd-lang"] {
 			border: none;
 		}
 		&:list-child {
@@ -154,7 +154,7 @@ a{
 	}
 }
 
-#base-title{
+#wet-title{
 	display:table-row;
 	a{
 		display:inline-block;
@@ -163,14 +163,14 @@ a{
 	}
 }
 
-#base-title,#base-title a{
+#wet-title,#wet-title a{
 	color:#FFF;
 	font-size:1.52em;
 	font-family:Arial, Helvetica, sans-serif;
 	text-shadow:#333 1px 1px 1px;
 }
 
-#base-title-in{
+#wet-title-in{
 	display:table-cell;
 	vertical-align:middle;
 	margin:0;
@@ -178,13 +178,13 @@ a{
 	background:  url(../images/logo.svg) no-repeat 0 center;
 }
 
-#base-title{
+#wet-title{
 	a:hover,a:focus,a:active{
 		text-decoration:underline;
 	}
 }
 
-#base-srchbx{
+#wet-srchbx{
 	top:24px;
 	padding:0;
 	background:#FFF;
@@ -213,7 +213,7 @@ a{
 		width:1px;
 		overflow:hidden;
 	}
-	#base-srch{
+	#wet-srch{
 		color:#444;
 		border:1px solid #FFF;
 		@include border-radius(3px);
@@ -237,19 +237,19 @@ a{
 	}	
 }
 
-#base-subsite{
+#wet-subsite{
 	a:hover,a:focus,a:active{
 		text-decoration:underline;
 	}
 }
 
-#base-fullhd,#base-srchbx,#wb-foot{
+#wet-fullhd,#wet-srchbx,#wb-foot{
 	a:hover,a:focus,a:active{
 		text-decoration:underline;
 	}
 }
 
-#base-psnb {
+#wet-psnb {
 	background:#0E4164;
 	border-top:1px solid #0B3048;
 	.mb-menu {
@@ -297,7 +297,7 @@ a{
 	}
 
 @-moz-document url-prefix() {
-	#base-srch-submit{
+	#wet-srch-submit{
 		min-height: 22px;
 	}
 }
@@ -310,7 +310,7 @@ a{
 		}
 	}
 
-	#base-title-in{
+	#wet-title-in{
 		padding:24px 0 24px 0;
 		background-position:  right center;
 	}
@@ -318,7 +318,7 @@ a{
 		margin: 7px 10px 0 0;
 	}
 
-	#base-date-mod {
+	#wet-date-mod {
 		right: auto;
 		left: 10px;
 	}
@@ -331,12 +331,12 @@ a{
 		float: left;
 	}
 
-	#base-fullhd {
+	#wet-fullhd {
 		ul {
 			float: left;
 			li {
 				float: right;
-				&#base-fullhd-lang a {
+				&#wet-fullhd-lang a {
 					padding-right: 0;
 					padding-left: 10px;
 					margin-right: auto;
@@ -349,18 +349,18 @@ a{
 			border-right: none;
 		}
 		
-		li[id*="base-fullhd-lang"] {
+		li[id*="wet-fullhd-lang"] {
 			padding-left: 0;
 			border-right: 1px solid #777;
 			border-left: 0;
 		}
 
-		li#base-fullhd-lang-current{
+		li#wet-fullhd-lang-current{
 			padding-left: 10px;
 		}
 	}
 
-	#base-title {
+	#wet-title {
 		a {
 			margin-left: auto;
 			margin-right: 10px;
@@ -369,18 +369,18 @@ a{
 		}
 	}
 
-	#base-srchbx {
+	#wet-srchbx {
 		text-align: left;
 		right: auto;
 		left: 0;
 
-		#base-srch {
+		#wet-srch {
 			margin-left: auto;
 			margin-right: 0;
 		}
 	}
 
-	#base-srch-submit {
+	#wet-srch-submit {
 		border: {
 			right: 1px solid #fff;
 			left: 1px solid #999;
