@@ -405,6 +405,11 @@
 
 		div {
 			.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
+				@include scaleX(-1);
+				> * {
+					@include scaleX(-1);
+				}
+
 				ul, ol {
 					margin: $margin-medium 40px $margin-medium $margin-medium;
 				}
