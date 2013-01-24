@@ -1,6 +1,7 @@
 /*
-	ColorBox v1.3.23
-	(c) 2013 Jack Moore - jacklmoore.com
+	jQuery ColorBox v1.3.27
+	(c) 2013 Jack Moore - jacklmoore.com/colorbox
+	updated: 2013-01-23
 	license: http://www.opensource.org/licenses/mit-license.php
 */
 (function ($, document, window) {
@@ -30,6 +31,7 @@
 		rel: false,
 		opacity: 0.9,
 		preloading: true,
+		className: false,
 
 		current: "image {current} of {total}",
 		previous: "previous",
@@ -118,6 +120,7 @@
 	loadingTimer,
 	publicMethod,
 	div = "div",
+	className,
 	init;
 
 	// ****************
@@ -288,8 +291,10 @@
 					});
 				}
 				
-				// +settings.opacity avoids a problem in IE when using non-zero-prefixed-string-values, like '.5'
-				$overlay.css({"opacity": +settings.opacity, "cursor": settings.overlayClose ? "pointer" : "auto"}).show();
+				$overlay.css({
+					opacity: parseFloat(settings.opacity),
+					cursor: settings.overlayClose ? "pointer" : "auto"
+				}).show();
 				
 				// Opens inital empty ColorBox prior to content being loaded.
 				settings.w = setSize(settings.initialWidth, 'x');
@@ -592,7 +597,8 @@
 		
 		var callback, speed = settings.transition === "none" ? 0 : settings.speed;
 		
-		$loaded.remove();
+		$loaded.empty().remove(); // Using empty first may prevent some IE7 issues.
+
 		$loaded = $tag(div, 'LoadedContent').append(object);
 		
 		function getWidth() {
@@ -758,6 +764,14 @@
 		if (!launched) {
 			makeSettings();
 		}
+
+		if (className) {
+			$box.add($overlay).removeClass(className);
+		}
+		if (settings.className) {
+			$box.add($overlay).addClass(settings.className);
+		}
+		className = settings.className;
 		
 		trigger(event_purge);
 		
@@ -815,10 +829,9 @@
 				settings.title = false;
 				prep($tag(div, 'Error').html(settings.imgError));
 			})
-			.load(function () {
+			.on('load', function () {
 				var percent;
-				photo.onload = null; //stops animated gifs from firing the onload repeatedly.
-				
+
 				if (settings.scalePhotos) {
 					setResize = function () {
 						photo.height -= photo.height * percent;
@@ -899,7 +912,7 @@
 				
 				trigger(event_purge);
 				
-				$loaded.remove();
+				$loaded.empty().remove(); // Using empty first may prevent some IE7 issues.
 				
 				setTimeout(function () {
 					closing = false;
