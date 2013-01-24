@@ -255,8 +255,16 @@
 			map.removePopup(feature.popup);
 			feature.popup.destroy();
 			feature.popup = null;
-		},		
+		},
 		
+		getRandomColor: function() { 
+			var letters = '0123456789ABCDEF'.split('');
+			var color = '#';
+			for (var i = 0; i < 6; i++) {
+				color += letters[Math.round(Math.random() * 15)];
+			}			
+			return color;
+		},
 		
 		getMap: function() {			
 			return map;
@@ -443,8 +451,17 @@
 //						}
 //					}
 //				})
-//			});			
+//			}); 
 			
+			var randomColor = this.getRandomColor();
+			
+			var my_style = new OpenLayers.StyleMap({ 
+				"default": new OpenLayers.Style( 
+					{ 
+						strokeColor: "#990000", 
+						fillColor: "#990000"
+					}) 
+			});			
 			
 			/*
 			 * Add vector features
@@ -475,63 +492,21 @@
 			 * TODO: turn this into a public function
 			 */	
 			
-			$.each(opts.tables, function(index, table) {	
-				
-				var randomColor = function() { 
-					var letters = '0123456789ABCDEF'.split('');
-					var color = '#';
-					for (var i = 0; i < 6; i++) {
-						color += letters[Math.round(Math.random() * 15)];
-					}			
-					return color;
-				};
-				
-				var my_style = new OpenLayers.StyleMap({ 
-					"default": new OpenLayers.Style( 
-						{ 
-							'strokeColor': randomColor, 
-							'fillColor': randomColor,
-							'fillOpacity': 0.5,
-							'pointRadius': 5
-						}) 
-				});			
+			$.each(opts.tables, function(index, table) {				
 								
 				var table_ = $("table#" + table);
 				
-<<<<<<< HEAD
-				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: my_style });
-=======
 				var tableLayer = new OpenLayers.Layer.Vector(table_.find('caption').text(), { /*styleMap: my_style*/ });
->>>>>>> Table functionnalities
 												
 				var wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap, 
 					'externalProjection': projLatLon
 				});
-<<<<<<< HEAD
-				
-				$.each($("table#" + table + ' td.geometry'), function(index, feature) {		
-					
-					if($(feature).hasClass('bbox')) {						
-						bbox = $(feature).text().split(',');
-						wktFeature = "POLYGON((" 
-							+ bbox[0] + " " + bbox[1] + ", " 
-							+ bbox[0] + " " + bbox[3] + ", " 
-							+ bbox[2] + " " + bbox[3] + ", " 
-							+ bbox[2] + " " + bbox[1] + ", " 
-							+ bbox[0] + " " + bbox[1] + 
-						"))";
-					} else { 
-						wktFeature = $(feature).text();
-					}
-					
-=======
 						
 			$.each($("table#" + table + ' td.feature'), function(index, feature) {						
->>>>>>> Table functionnalities
 					tableLayer.addFeatures([										 
-						wktParser.read(wktFeature)															 
-					]);	
+						wktParser.read($(feature).text())															 
+					]);				
 				});
 				
 				map.addLayer(tableLayer);
