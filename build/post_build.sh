@@ -12,10 +12,14 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	git remote add experimental https://${GH_TOKEN}@github.com/LaurentGoderre/wet-boew.git > /dev/null
 
 	#Copy result of build and demo in a temporary location
-	cp -R dist $HOME/dist
-	cp -R demos $HOME/demos
+	mkdir $HOME/temp_wet-boew
+	cp -R dist $HOME/temp_wet-boew/dist
+	cp -R demos $HOME/temp_wet-boew/demos
+	cp *.htm* $HOME/temp_wet-boew
+	cp *.md $HOME/temp_wet-boew
+	cp *.txt $HOME/temp_wet-boew
 
-	git fetch -n upstream > /dev/null
+	git fetch -qn upstream > /dev/null
 
 	#Update working example
 	if [ "$TRAVIS_BRANCH" == "master" ]; then
@@ -59,13 +63,13 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 
 		git checkout -f "$build_branch"
 
-		#Replace the new dist and demo folders with the new ones
-		cp -Rf $HOME/dist .
-		cp -Rf $HOME/demos .
+		#Replace the new dist and demo folders and root files with the new ones
+		cp -Rf $HOME/temp_wet-boew/* .
 
 		#Commit the result
 		git add -f dist
 		git add -f demos
+		git add -f *.*
 		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
 		git push -fq upstream $build_branch > /dev/null
 

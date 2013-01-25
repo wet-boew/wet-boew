@@ -30,14 +30,14 @@
 		fullft: null,
 		menu: null,
 		init: function () {
-			wet_boew_theme.fullhd = pe.header.find('#base-fullhd');
-			wet_boew_theme.psnb = pe.header.find('#base-psnb');
+			wet_boew_theme.fullhd = pe.header.find('#wet-fullhd');
+			wet_boew_theme.psnb = pe.header.find('#wet-psnb');
 			wet_boew_theme.menubar = wet_boew_theme.psnb.find('.wet-boew-menubar');
-			wet_boew_theme.search = pe.header.find('#base-srchbx');
-			wet_boew_theme.bcrumb = pe.header.find('#base-bc');
-			wet_boew_theme.title = pe.header.find('#base-title');
-			wet_boew_theme.sft = pe.footer.find('#base-sft');
-			wet_boew_theme.fullft = pe.footer.find('#base-fullft');
+			wet_boew_theme.search = pe.header.find('#wet-srchbx');
+			wet_boew_theme.bcrumb = pe.header.find('#wet-bc');
+			wet_boew_theme.title = pe.header.find('#wet-title');
+			wet_boew_theme.sft = pe.footer.find('#wet-sft');
+			wet_boew_theme.fullft = pe.footer.find('#wet-fullft');
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm');
@@ -126,8 +126,8 @@
 			}
 
 			if (wet_boew_theme.sft.length !== 0) {
-				links = wet_boew_theme.sft.find('.base-col-head a').get();
-				target = document.getElementById('base-sft-in');
+				links = wet_boew_theme.sft.find('.wet-col-head a').get();
+				target = document.getElementById('wet-sft-in');
 				if (wet_boew_theme.fullft.length !== 0) {
 					node = wet_boew_theme.fullft[0];
 					node.parentNode.removeChild(node);
