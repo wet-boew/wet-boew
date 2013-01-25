@@ -80,10 +80,9 @@
 		}
 
 		#gcwu-tctr {
+			padding-top: 15px;
 			li {
 				&.gcwu-tc {
-					border-right: 1px solid #999;
-					border-left: 0;
 					padding: 0 9px 0 10px;
 				}
 				&.gcwu-tr {
@@ -98,6 +97,14 @@
 
 		#gcwu-bnr, #gcwu-tctr li {
 			float: right;
+		}
+
+		#gcwu-gcft-fip ul li {
+			float: right;
+		}
+
+		#gcwu-gcft-fip ul li#gcwu-gcft-ca {
+			float: left !important;
 		}
 	}
 }
