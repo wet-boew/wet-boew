@@ -26,6 +26,17 @@
 				list-style-type: decimal !important;
 			}
 		}
+		ul {
+			li {
+				list-style-type: disc !important;
+				li {
+					list-style-type: circle !important;
+					li {
+						list-style-type: square !important;
+					}
+				}
+			}
+		}
 	}
 
 	.list-lower-alpha {
