@@ -70,13 +70,13 @@
 	}
 
 	// Right to left (RTL) CSS
-	&[dir="rtl"] {		
+	&[dir="rtl"] {
 		%gcwu-default-screen-ie7-rtl-float-fix {
 			zoom: 1;
 			float: none;
-			display: inline;		
-		}	
-		
+			display: inline;
+		}
+
 		#gcwu-gcnb {
 			ul {
 				li {
@@ -84,16 +84,16 @@
 				}
 			}
 		}
-			
+
 		#gcwu-wmms-in {
 			float: left;
 		}
-		
+
 		#gcwu-date-mod {
-			float: left;			
+			float: left;
 			dt, dd {
 				@extend %gcwu-default-screen-ie7-rtl-float-fix;
-			}					
+			}
 		}
 
 		#gcwu-tctr {
