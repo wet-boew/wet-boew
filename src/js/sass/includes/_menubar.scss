@@ -232,12 +232,15 @@
 		}
 
 		a {
-			text-align: right;
-			padding: 0.45em 0.79em 0.45em 1.72em;
+			&, &.ui-link {
+				text-align: right;
+				padding: 0.45em 0.79em 0.45em 1.72em;
+			}
 		}
 
 		.mb-has-sm {
 			padding-left: 0.79em;
+			padding-right: 0.79em;
 		}
 
 		.mb-sm-open {
