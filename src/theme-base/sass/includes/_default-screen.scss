@@ -17,7 +17,6 @@ body{
 				padding-top: 5px;
 				padding-bottom: 5px;
 				font-size: 1.1em;
-				@include text-shadow(none !important);
 				&:hover, &:focus, &:active {
 					color: #FFF;
 					text-decoration: underline;
@@ -125,7 +124,6 @@ body{
 			font-weight: 700;
 		}
 	}
-	@include text-shadow(none !important);
 }
 
 #base-sft{

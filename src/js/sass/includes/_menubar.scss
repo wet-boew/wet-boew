@@ -56,7 +56,6 @@
 			white-space: nowrap;
 			display: block;
 			padding: 0.45em 1.72em 0.45em 0.79em;
-			@include text-shadow(none !important);
 			&:link, &:visited {
 				text-decoration: none;
 				color: #fff;
