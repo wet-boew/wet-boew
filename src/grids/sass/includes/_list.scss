@@ -26,6 +26,17 @@
 				list-style-type: decimal !important;
 			}
 		}
+		ul {
+			li {
+				list-style-type: disc !important;
+				li {
+					list-style-type: circle !important;
+					li {
+						list-style-type: square !important;
+					}
+				}
+			}
+		}
 	}
 
 	.list-lower-alpha {
@@ -47,7 +58,7 @@
 	ul {
 		&.menu-horizontal {
 			@include horizontal-list(2px);
-			margin: 0 10px;
+			margin: $margin-medium;
 
 			li {
 				margin-bottom: 5px;

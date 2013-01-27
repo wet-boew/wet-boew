@@ -146,7 +146,7 @@
 
 	ul {
 		&.button-group {
-			margin: 0 10px 10px;
+			margin: $margin-medium;
 		}
 	}
 
@@ -176,6 +176,7 @@
 
 		p, ul {
 			margin-top: 0;
+			margin-bottom: 0;
 		}
 
 		.button-group {
