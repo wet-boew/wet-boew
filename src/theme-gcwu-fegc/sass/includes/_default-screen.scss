@@ -20,8 +20,10 @@ body {
 					padding-top: 5px;
 					padding-bottom: 5px;
 					font-size: 1.1em;
-					&:hover, &:focus, &:active {
+					&:visited, &:hover, &:focus, &:active {
 						color: #FFF;
+					}
+					&:hover, &:focus, &:active {
 						text-decoration: underline;
 					}
 					&.nav-current {
@@ -60,7 +62,6 @@ body {
 		a {
 			padding: 4px 5px;
 			&.nav-current {
-				color: #0F315B;
 				padding: 3px 4px;
 			}
 		}
@@ -84,9 +85,14 @@ body {
 				display: block;
 				color: #333;
 				text-decoration: none;
-				&:hover, &:focus, &:active {
+				&:visited, &:hover, &:focus, &:active {
 					color: #333;
+				}
+				&:hover, &:focus, &:active {
 					text-decoration: underline;
+				}
+				&.nav-current {
+					color: #0F315B;
 				}
 			}
 		}
