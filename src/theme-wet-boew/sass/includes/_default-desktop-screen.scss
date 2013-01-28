@@ -43,6 +43,9 @@ body{
 #wb-main-in{
 	padding-top:1px;
 	padding-bottom:2.5em;
+	a {
+		@extend %wet-default-link;
+	}
 }
 
 #wb-body-sec #wb-main{
@@ -95,13 +98,19 @@ h1{
 	position:relative;
 }
 
-a{
-	&:link{
-		color:#295376;
+%wet-default-link {
+	&, &.ui-link {
+		&:link {
+			color: #295376;
+		}
+		&:visited {
+			color: #5a306b;
+		}
 	}
-	&:visited{
-		color:#5A306B;
-	}	
+}
+
+a {
+	@extend %wet-default-link;
 }
 
 #wet-fullhd{
