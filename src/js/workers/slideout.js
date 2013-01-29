@@ -54,7 +54,7 @@
 					height: 147,
 					width: 30,
 					alt: hideText + tocText
-				}
+				}, startOpen: false
 			};
 			$.extend(opts, elm.metadata());
 
@@ -342,6 +342,11 @@
 			// Fix scrolling issue in some versions of IE (#4051)
 			if (ie7) {
 				$('html').css('overflowY', 'auto');
+			}
+
+			//If start Open is turned on then slide out the sidebar
+			if (opts.startOpen){
+				toggle();
 			}
 		} // end of exec
 	};
