@@ -16,6 +16,7 @@
 		type: 'plugin',
 		depends: ['resize', 'metadata'],
 		opened: false,
+		defaultOpen: false,
 		_exec: function (elm) {
 			var borderWidth = 10,
 				tocText = pe.dic.get('%table-contents'),
@@ -40,7 +41,8 @@
 				ie7 = pe.ie > 0 && pe.ie < 8,
 				$wbcorein = $('#wb-core-in'),
 				imagesDir = pe.add.liblocation + 'images/slideout/';
-
+				
+			defaultOpen = $(elm).hasClass('wet-boew-slideout-open');
 			$.metadata.setType('attr', 'data-wet-boew');
 			opts = {
 				imgShow: {
@@ -54,7 +56,7 @@
 					height: 147,
 					width: 30,
 					alt: hideText + tocText
-				}, startOpen: false
+				}
 			};
 			$.extend(opts, elm.metadata());
 
@@ -345,7 +347,7 @@
 			}
 
 			//If start Open is turned on then slide out the sidebar
-			if (opts.startOpen){
+			if (defaultOpen){
 				toggle();
 			}
 		} // end of exec
