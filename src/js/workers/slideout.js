@@ -347,7 +347,7 @@
 			}
 
 			//If start Open is turned on then slide out the sidebar
-			if (defaultOpen){
+			if (defaultOpen) {
 				toggle();
 			}
 		} // end of exec
