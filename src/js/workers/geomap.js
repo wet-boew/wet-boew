@@ -311,34 +311,88 @@
 			return color;
 		},
 		
-		/*
-		 * Create tabs
+
+		/* 
+		 * Add layer data
 		 */
-		createTabs: function(elm, enabled, olLayerId) {	
+		
+		addLayerData: function(featureTable, enabled, olLayerId) {			
 			
+			if ($('div#wet-boew-geomap-legend')) {
+				pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
+			};
+			
+			pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
+		},
+		
+		/* 
+		 * Create Legend
+		 */
+		
+		addToLegend: function(featureTable, enabled, olLayerId) {			
+			var $div = $("div#wet-boew-geomap-legend");
 			var $checked = enabled ? 'checked="checked"' : '';
-			var $div = $("div#wet-boew-geomap-layers");
-			var $tabs = $div.find("ul.tabs");
-			var $tabsPanel = $div.find("div.tabs-panel");			
+			var $ul;
+			if(!$div.find('ul').length) {
+				$ul = $('<ul>').appendTo($div);					
+			} else {
+				$ul = $div.find('ul');
+			}
+			
 			var $chkBox = $('<input type="checkbox" id="cb_' 
-					+ $(elm).attr('id') + '" value="' 
-					+ $(elm).attr('id') + '"' + $checked + ' />');
+					+ $(featureTable).attr('id') + '" value="' 
+					+ $(featureTable).attr('id') + '"' + $checked + ' />');
 			
 			$chkBox.change(function() {				
 				map = pe.fn.geomap.getMap();
 				layer = map.getLayer(olLayerId);				
-				visibility = $('#cb_' + $(elm).attr('id')).prop('checked') ? true : false;	
-				layer.setVisibility(visibility)
+				visibility = $('#cb_' + $(featureTable).attr('id')).prop('checked') ? true : false;	
+				layer.setVisibility(visibility);				
+				
+				$('#' + $(featureTable).attr('id')).fadeToggle();
+				$('a[href="#tabs_' + $(featureTable).attr('id') + '"]').fadeToggle();
+				
 			})
 			
-			var $link = $("<a>", {
-				text: $(elm).attr('aria-label'),			   
-				href: '#tabs_'	+ $(elm).attr('id')
+			var $label = $('<label>', {
+				'text': $(featureTable).attr('aria-label'),			   
+				'for': '#tabs_'	+ $(featureTable).attr('id')
 			});
 			
-			$tabs.append($("<li>").append($chkBox, $link));
+			$ul.append($("<li>").append($chkBox, $label));
+			
+			
+		},
+		
+		/*
+		 * Create tabs
+		 */
+		addToTabs: function(featureTable, enabled, olLayerId) {	
+			
+//			var $checked = enabled ? 'checked="checked"' : '';
+			var $div = $("div#wet-boew-geomap-layers");
+			var $tabs = $div.find("ul.tabs");
+			var $tabsPanel = $div.find("div.tabs-panel");			
+//			var $chkBox = $('<input type="checkbox" id="cb_' 
+//					+ $(featureTable).attr('id') + '" value="' 
+//					+ $(featureTable).attr('id') + '"' + $checked + ' />');
+//			
+//			$chkBox.change(function() {				
+//				map = pe.fn.geomap.getMap();
+//				layer = map.getLayer(olLayerId);				
+//				visibility = $('#cb_' + $(featureTable).attr('id')).prop('checked') ? true : false;	
+//				layer.setVisibility(visibility)
+//			})
+			
+			var $link = $("<a>", {
+				text: $(featureTable).attr('aria-label'),			   
+				href: '#tabs_'	+ $(featureTable).attr('id')
+			});
+			
+//			$tabs.append($("<li>").append($chkBox, $link));
+			$tabs.append($("<li>").append($link));
 						
-			$tabsPanel.append($("<div>").attr('id', 'tabs_' + $(elm).attr('id')).append(elm));			
+			$tabsPanel.append($("<div>").attr('id', 'tabs_' + $(featureTable).attr('id')).append(featureTable));			
 			
 		},
 		
@@ -499,7 +553,7 @@
 						map.addLayer(olLayer);
 						queryLayers.push(olLayer);
 						
-						pe.fn.geomap.createTabs($table, layer.visible, olLayer.id);
+						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
 						
 					} else if (layer.type=='atom') {
 						olLayer = new OpenLayers.Layer.Vector(
@@ -612,6 +666,8 @@
 				});
 				
 				map.addLayer(tableLayer);
+				
+				pe.fn.geomap.addToLegend($table, true, tableLayer.id);
 				
 			});	
 			
