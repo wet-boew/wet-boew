@@ -107,7 +107,7 @@
 				$(document).off('click vclick touchstart', documentToggle);
 
 				if (!opened) {
-					var position = wrapper.position();
+					var position = wrapper.offset();
 					if (pe.ie <= 0 || document.documentMode !== undefined) {
 						wrapper.removeClass('slideoutWrapper')
 							.addClass('slideoutWrapperRel')
