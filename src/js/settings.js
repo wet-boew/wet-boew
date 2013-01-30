@@ -52,7 +52,7 @@ var wet_boew_geomap = {
 				   title: 'KML Demo',
 				   type: 'kml',
 				   url: 'data/sample.kml',		   
-				   visible: false
+				   visible: true
 				},
 				{
 				   title: 'ATOM Demo',

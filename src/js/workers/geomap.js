@@ -26,7 +26,7 @@
 //			return elm;
 //		},
 	
-		accessibilize: function () {	
+		accessibilize: function (useLayerSwitcher) {	
 			
 			/*
 			 *	Add alt text to map controls and make tab-able
@@ -73,188 +73,195 @@
 				}
 			});
 		
+			
 			/*
 			 *	Configure OpenLayers LayerSwitcher control
 			 */ 
 			
-			OpenLayers.Control.LayerSwitcher.prototype.redraw = function() {
-				//if the state hasn't changed since last redraw, no need 
-				// to do anything. Just return the existing div.
-				if (!this.checkRedraw()) { 
-					return this.div; 
-				} 
-				// make LayerSwitcher expandable with the keyboard
-				this.maximizeDiv.tabIndex = 0;
-				var filterMax = function(evt) {
-					if (evt.keyCode == 13 || evt.keyCode == 32) {
-						this.maximizeControl(evt);
-						this.minimizeDiv.focus();
-					}
-				};
-				OpenLayers.Event.observe(this.maximizeDiv, "keydown", OpenLayers.Function.bindAsEventListener(filterMax, this));
-				this.minimizeDiv.tabIndex = 0;
-				var filterMin = function(evt) {
-					if (evt.keyCode == 13 || evt.keyCode == 32) {
-						this.minimizeControl(evt);
-						this.maximizeDiv.focus();
-					}
-				};
-				OpenLayers.Event.observe(this.minimizeDiv, "keydown", OpenLayers.Function.bindAsEventListener(filterMin, this));
-				// make the max/min divs focusable on click (ignores if IE since IE6 - IE8 throws an error)
-				if (!$.browser.msie) {
-					var that = this;
-					$(this.minimizeDiv).click(function(){that.maximizeDiv.focus()});
-					$(this.maximizeDiv).click(function(){that.minimizeDiv.focus()});
-				}
-				// add alt and title attributes to the min/max buttons
-				this.minimizeDiv.title = (pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
-				this.minimizeDiv.firstChild.alt = (pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
-				this.maximizeDiv.title = (pe.language==='en' ? "Open Layer Switcher" : "Ouvrir le sélecteur de couche");
-				this.maximizeDiv.firstChild.alt = (pe.language==='en' ? "Open Layer Switcher" : "Ouvrir le sélecteur de couche");
-				
-				// fix for the defect #3203 http://tbs-sct.ircan-rican.gc.ca/issues/3203
-				// change the label "Base layer" to French if needed. OpenLayer.js 2.10 does not have French translations. There are French translations in OpenLayer.js 2.11. No need to set the label manually after upgrading to 2.11.
-				this.baseLbl.innerHTML = (pe.language==='en' ? "Base Layer" : "Fond de carte");
-				this.dataLbl.innerHTML = (pe.language==='en' ? "Overlays" : "Couche thématique ");
-				
-				//clear out previous layers 
-				this.clearLayersArray("base");
-				this.clearLayersArray("data");
-				var containsOverlays = false;
-				var containsBaseLayers = false;
-				// Save state -- for checking layer if the map state changed.
-				// We save this before redrawing, because in the process of redrawing
-				// we will trigger more visibility changes, and we want to not redraw
-				// and enter an infinite loop.
-				var len = this.map.layers.length;
-				this.layerStates = new Array(len);
-				for (var i=0; i <len; i++) {
-					var layer = this.map.layers[i];
-					this.layerStates[i] = {
-						'name': layer.name, 
-						'visibility': layer.visibility,
-						'inRange': layer.inRange,
-						'id': layer.id
-					};
-				}	 
-				var layers = this.map.layers.slice();
-				if (!this.ascending) { layers.reverse(); }
-				for(var i=0, len=layers.length; i<len; i++) {
-					var layer = layers[i];
-					var baseLayer = layer.isBaseLayer;
-					if (layer.displayInLayerSwitcher) {
-						if (baseLayer) {
-							containsBaseLayers = true;
-						} else {
-							containsOverlays = true;
-						}
-						// only check a baselayer if it is *the* baselayer, check data
-						//	layers if they are visible
-						var checked = (baseLayer) ? (layer == this.map.baseLayer) : layer.getVisibility();
-						// create input element
-						var inputElem = document.createElement("input");
-						inputElem.id = this.id + "_input_" + layer.name;
-						inputElem.name = (baseLayer) ? this.id + "_baseLayers" : layer.name;
-						inputElem.type = (baseLayer) ? "radio" : "checkbox";
-						inputElem.value = layer.name;
-						inputElem.checked = checked;
-						inputElem.defaultChecked = checked;
-						if (!baseLayer && !layer.inRange) {
-							inputElem.disabled = true;
-						}
-						var context = {
-							'inputElem': inputElem,
-							'layer': layer,
-							'layerSwitcher': this
-						};
-						OpenLayers.Event.observe(inputElem, "mouseup", OpenLayers.Function.bindAsEventListener(this.onInputClick, context));
-						// make the radio buttons tab-able
-						inputElem.tabIndex = 0;
-						var filterInput = function(evt) {
-							if (evt.keyCode == 13 || evt.keyCode == 32) {
-								this.layerSwitcher.onInputClick.call(this, evt);
-							} else if (37 <= evt.keyCode && evt.keyCode <= 40) {
-								// prevent up/down/left/right keys from moving map while focus is on inputElem
-								evt.stopPropagation ? evt.stopPropagation() : evt.cancelBubble = true;
-							}
-						};
-						OpenLayers.Event.observe(inputElem, "keydown", OpenLayers.Function.bindAsEventListener(filterInput, context));
-						// create span
-						var labelSpan = document.createElement("span");
-						OpenLayers.Element.addClass(labelSpan, "labelSpan");
-						if (!baseLayer && !layer.inRange) {
-							labelSpan.style.color = "gray";
-						}
-						labelSpan.innerHTML = layer.name;
-						labelSpan.style.verticalAlign = (baseLayer) ? "bottom" : "baseline";
-						// create label
-						var label = document.createElement("label");
-						label.setAttribute("for", this.id + "_input_" + layer.name);
-						OpenLayers.Event.observe(label, "click", OpenLayers.Function.bindAsEventListener(this.onInputClick, context));
-						// create line break
-						var br = document.createElement("br");
-						var groupArray = (baseLayer) ? this.baseLayers : this.dataLayers;
-						groupArray.push({
-							'layer': layer,
-							'inputElem': inputElem,
-							'labelSpan': labelSpan
-						});
-						var groupDiv = (baseLayer) ? this.baseLayersDiv : this.dataLayersDiv;
-						groupDiv.appendChild(inputElem);
-						label.appendChild(labelSpan);
-						groupDiv.appendChild(label);
-						groupDiv.appendChild(br);
-					}
-				}
-				// if no overlays, dont display the overlay label
-				this.dataLbl.style.display = (containsOverlays) ? "" : "none";		  
-				// if no baselayers, dont display the baselayer label
-				this.baseLbl.style.display = (containsBaseLayers) ? "" : "none";		
-				
-				// move radio buttons after min/max buttons
-				$('.olControlLayerSwitcher > .minimizeDiv').detach().prependTo('.olControlLayerSwitcher');
-				$('.olControlLayerSwitcher > .maximizeDiv').detach().prependTo('.olControlLayerSwitcher');
-				
-				return this.div;
-			};
+			if(useLayerSwitcher) {
 			
-			OpenLayers.Control.LayerSwitcher.prototype.onInputClick = function(e) {
-				if (!this.inputElem.disabled) {
-					if (this.inputElem.type == "radio") {
-						this.inputElem.checked = true;
-						this.layer.map.setBaseLayer(this.layer);
-					} else {
-						this.inputElem.checked = !this.inputElem.checked;
-						this.layerSwitcher.updateMap();
+				OpenLayers.Control.LayerSwitcher.prototype.redraw = function() {
+					//if the state hasn't changed since last redraw, no need 
+					// to do anything. Just return the existing div.
+					if (!this.checkRedraw()) { 
+						return this.div; 
+					} 
+					// make LayerSwitcher expandable with the keyboard
+					this.maximizeDiv.tabIndex = 0;
+					var filterMax = function(evt) {
+						if (evt.keyCode == 13 || evt.keyCode == 32) {
+							this.maximizeControl(evt);
+							this.minimizeDiv.focus();
+						}
+					};
+					OpenLayers.Event.observe(this.maximizeDiv, "keydown", OpenLayers.Function.bindAsEventListener(filterMax, this));
+					this.minimizeDiv.tabIndex = 0;
+					var filterMin = function(evt) {
+						if (evt.keyCode == 13 || evt.keyCode == 32) {
+							this.minimizeControl(evt);
+							this.maximizeDiv.focus();
+						}
+					};
+					OpenLayers.Event.observe(this.minimizeDiv, "keydown", OpenLayers.Function.bindAsEventListener(filterMin, this));
+					// make the max/min divs focusable on click (ignores if IE since IE6 - IE8 throws an error)
+					if (!$.browser.msie) {
+						var that = this;
+						$(this.minimizeDiv).click(function(){that.maximizeDiv.focus()});
+						$(this.maximizeDiv).click(function(){that.minimizeDiv.focus()});
 					}
-					// keep the focus on the radio button after it's clicked/pressed
-					document.getElementById(this.inputElem.id).focus();
-				}
-				OpenLayers.Event.stop(e);
-			};
+					// add alt and title attributes to the min/max buttons
+					this.minimizeDiv.title = (pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
+					this.minimizeDiv.firstChild.alt = (pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
+					this.maximizeDiv.title = (pe.language==='en' ? "Open Layer Switcher" : "Ouvrir le sélecteur de couche");
+					this.maximizeDiv.firstChild.alt = (pe.language==='en' ? "Open Layer Switcher" : "Ouvrir le sélecteur de couche");
+					
+					// fix for the defect #3203 http://tbs-sct.ircan-rican.gc.ca/issues/3203
+					// change the label "Base layer" to French if needed. OpenLayer.js 2.10 does not have French translations. There are French translations in OpenLayer.js 2.11. No need to set the label manually after upgrading to 2.11.
+					this.baseLbl.innerHTML = (pe.language==='en' ? "Base Layer" : "Fond de carte");
+					this.dataLbl.innerHTML = (pe.language==='en' ? "Overlays" : "Couche thématique ");
+					
+					//clear out previous layers 
+					this.clearLayersArray("base");
+					this.clearLayersArray("data");
+					var containsOverlays = false;
+					var containsBaseLayers = false;
+					// Save state -- for checking layer if the map state changed.
+					// We save this before redrawing, because in the process of redrawing
+					// we will trigger more visibility changes, and we want to not redraw
+					// and enter an infinite loop.
+					var len = this.map.layers.length;
+					this.layerStates = new Array(len);
+					for (var i=0; i <len; i++) {
+						var layer = this.map.layers[i];
+						this.layerStates[i] = {
+							'name': layer.name, 
+							'visibility': layer.visibility,
+							'inRange': layer.inRange,
+							'id': layer.id
+						};
+					}	 
+					var layers = this.map.layers.slice();
+					if (!this.ascending) { layers.reverse(); }
+					for(var i=0, len=layers.length; i<len; i++) {
+						var layer = layers[i];
+						var baseLayer = layer.isBaseLayer;
+						if (layer.displayInLayerSwitcher) {
+							if (baseLayer) {
+								containsBaseLayers = true;
+							} else {
+								containsOverlays = true;
+							}
+							// only check a baselayer if it is *the* baselayer, check data
+							//	layers if they are visible
+							var checked = (baseLayer) ? (layer == this.map.baseLayer) : layer.getVisibility();
+							// create input element
+							var inputElem = document.createElement("input");
+							inputElem.id = this.id + "_input_" + layer.name;
+							inputElem.name = (baseLayer) ? this.id + "_baseLayers" : layer.name;
+							inputElem.type = (baseLayer) ? "radio" : "checkbox";
+							inputElem.value = layer.name;
+							inputElem.checked = checked;
+							inputElem.defaultChecked = checked;
+							if (!baseLayer && !layer.inRange) {
+								inputElem.disabled = true;
+							}
+							var context = {
+								'inputElem': inputElem,
+								'layer': layer,
+								'layerSwitcher': this
+							};
+							OpenLayers.Event.observe(inputElem, "mouseup", OpenLayers.Function.bindAsEventListener(this.onInputClick, context));
+							// make the radio buttons tab-able
+							inputElem.tabIndex = 0;
+							var filterInput = function(evt) {
+								if (evt.keyCode == 13 || evt.keyCode == 32) {
+									this.layerSwitcher.onInputClick.call(this, evt);
+								} else if (37 <= evt.keyCode && evt.keyCode <= 40) {
+									// prevent up/down/left/right keys from moving map while focus is on inputElem
+									evt.stopPropagation ? evt.stopPropagation() : evt.cancelBubble = true;
+								}
+							};
+							OpenLayers.Event.observe(inputElem, "keydown", OpenLayers.Function.bindAsEventListener(filterInput, context));
+							// create span
+							var labelSpan = document.createElement("span");
+							OpenLayers.Element.addClass(labelSpan, "labelSpan");
+							if (!baseLayer && !layer.inRange) {
+								labelSpan.style.color = "gray";
+							}
+							labelSpan.innerHTML = layer.name;
+							labelSpan.style.verticalAlign = (baseLayer) ? "bottom" : "baseline";
+							// create label
+							var label = document.createElement("label");
+							label.setAttribute("for", this.id + "_input_" + layer.name);
+							OpenLayers.Event.observe(label, "click", OpenLayers.Function.bindAsEventListener(this.onInputClick, context));
+							// create line break
+							var br = document.createElement("br");
+							var groupArray = (baseLayer) ? this.baseLayers : this.dataLayers;
+							groupArray.push({
+								'layer': layer,
+								'inputElem': inputElem,
+								'labelSpan': labelSpan
+							});
+							var groupDiv = (baseLayer) ? this.baseLayersDiv : this.dataLayersDiv;
+							groupDiv.appendChild(inputElem);
+							label.appendChild(labelSpan);
+							groupDiv.appendChild(label);
+							groupDiv.appendChild(br);
+						}
+					}
+					// if no overlays, dont display the overlay label
+					this.dataLbl.style.display = (containsOverlays) ? "" : "none";		  
+					// if no baselayers, dont display the baselayer label
+					this.baseLbl.style.display = (containsBaseLayers) ? "" : "none";		
+					
+					// move radio buttons after min/max buttons
+					$('.olControlLayerSwitcher > .minimizeDiv').detach().prependTo('.olControlLayerSwitcher');
+					$('.olControlLayerSwitcher > .maximizeDiv').detach().prependTo('.olControlLayerSwitcher');
+					
+					return this.div;
+				};
+				
+				OpenLayers.Control.LayerSwitcher.prototype.onInputClick = function(e) {
+					if (!this.inputElem.disabled) {
+						if (this.inputElem.type == "radio") {
+							this.inputElem.checked = true;
+							this.layer.map.setBaseLayer(this.layer);
+						} else {
+							this.inputElem.checked = !this.inputElem.checked;
+							this.layerSwitcher.updateMap();
+						}
+						// keep the focus on the radio button after it's clicked/pressed
+						document.getElementById(this.inputElem.id).focus();
+					}
+					OpenLayers.Event.stop(e);
+				};
+			}
 		}, // end accessibilize function		
 		
-		onPopupClose: function(evt) {
-			selectControl.unselect(selectedFeature);
-		},
+//		onPopupClose: function(evt) {
+//			selectControl.unselect(selectedFeature);
+//		},
  
-		onFeatureSelect: function(feature) {			
-			text = "<h4>"+feature.attributes.name + "</h4>" + feature.attributes.description;
-			popup = new OpenLayers.Popup("popup", 
-				feature.geometry.getBounds().getCenterLonLat(),
-				null,
-				text,
-				true, this.onPopupClose
-			);
-			feature.popup = popup;
-			popup.setOpacity(0.7);
-			map.addPopup(popup);
+		onFeatureSelect: function(feature) {					
+			$("tr#" + feature.id.replace(/\W/g, "_")).attr('class', 'background-highlight');
+			
+//			text = "<h4>"+feature.attributes.name + "</h4>" + feature.attributes.description;
+//			popup = new OpenLayers.Popup("popup", 
+//				feature.geometry.getBounds().getCenterLonLat(),
+//				null,
+//				text,
+//				true, this.onPopupClose
+//			);
+//			feature.popup = popup;
+//			popup.setOpacity(0.7);
+//			map.addPopup(popup);
 		},
  
 		onFeatureUnselect: function(feature) {
-			map.removePopup(feature.popup);
-			feature.popup.destroy();
-			feature.popup = null;
+			$("tr#" + feature.id.replace(/\W/g, "_")).attr('class', 'background-white');
+//			map.removePopup(feature.popup);
+//			feature.popup.destroy();
+//			feature.popup = null;
 		},
 		
 		getRandomColor: function() { 
@@ -273,17 +280,23 @@
 		/* 
 		 * Create a table for vector features added in Load Overlays
 		 */
-		createTable: function(vectorLayer) {
+		createTable: function(index, title) {
 			
 			// create a table object
-			var $table = $('<table/>');
+			var $table = $('<table>'); 
+			$table.attr('aria-label', title);
+			$table.attr('id', "overlay_" + index);
+			$table.append('<caption class="wb-invisible">' + title + '</caption>');
+			var $thead = $('<thead>');
+			var $row = $('<tr>');  
+			$row.append('<th>Title</th>');	  
+			$row.append('<th>Description</th>'); 
+			$row.append('<th class="wb-invisible">Geometry</th>');
+			//$row.append('<th>Geometry</th>');
+			$thead.append($row);
+			$table.append($thead);
 						
-			// add a row for each feature
-			$.each(vectorLayer.features, function(index, layerFeature) {
-				$table.append( '<tr><td>' + layerFeature.attributes.name +	'</td><td>' + layerFeature.attributes.description +  '</td></tr>' );
-			});
-			
-			$('body').append($table);			
+			return $table;	
 		},		
 		
 		/*
@@ -298,6 +311,37 @@
 			return color;
 		},
 		
+		/*
+		 * Create tabs
+		 */
+		createTabs: function(elm, enabled, olLayerId) {	
+			
+			var $checked = enabled ? 'checked="checked"' : '';
+			var $div = $("div#wet-boew-geomap-layers");
+			var $tabs = $div.find("ul.tabs");
+			var $tabsPanel = $div.find("div.tabs-panel");			
+			var $chkBox = $('<input type="checkbox" id="cb_' 
+					+ $(elm).attr('id') + '" value="' 
+					+ $(elm).attr('id') + '"' + $checked + ' />');
+			
+			$chkBox.change(function() {				
+				map = pe.fn.geomap.getMap();
+				layer = map.getLayer(olLayerId);				
+				visibility = $('#cb_' + $(elm).attr('id')).prop('checked') ? true : false;	
+				layer.setVisibility(visibility)
+			})
+			
+			var $link = $("<a>", {
+				text: $(elm).attr('aria-label'),			   
+				href: '#tabs_'	+ $(elm).attr('id')
+			});
+			
+			$tabs.append($("<li>").append($chkBox, $link));
+						
+			$tabsPanel.append($("<div>").attr('id', 'tabs_' + $(elm).attr('id')).append(elm));			
+			
+		},
+		
 		_exec: function (elm) {
 			
 			// Don't include this if statement if your plugin shouldn't run in mobile mode.
@@ -306,7 +350,8 @@
 //			}
 			var opts,
 				overrides,				
-				queryLayers = [];			
+				queryLayers = [],
+				selectControl;			
 			
 			// Defaults
 			opts = {
@@ -394,6 +439,7 @@
 			
 			console.log("WET-Geomap: using projection " + projMap.getCode());
 			
+			var selectControl = new OpenLayers.Control.SelectFeature();
 			
 			/*
 			 * Load overlays
@@ -402,7 +448,7 @@
 			 */			
 						
 			if(wet_boew_geomap.overlays){				
-				$.each(wet_boew_geomap.overlays, function(index, layer) {				
+				$.each(wet_boew_geomap.overlays, function(index, layer) {
 					if(layer.type=='wms') {
 						map.addLayer(
 							new OpenLayers.Layer.WMS(
@@ -412,7 +458,9 @@
 								{ visibility: layer.visible }
 							)
 						);
-					} else if (layer.type=='kml') {					
+					} else if (layer.type=='kml') {	
+						var $table = pe.fn.geomap.createTable(index, layer.title);
+						var i = 1;
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {							
 								strategies: [new OpenLayers.Strategy.Fixed()],
@@ -424,21 +472,34 @@
 									internalProjection: map.getProjectionObject(),
 									externalProjection: new OpenLayers.Projection('EPSG:4269')
 									})
-								})
+								}),
+								onFeatureInsert: function(feature) {
+									// add a row for each feature
+									var $row = $('<tr>');
+									// replace periods with underscores for jQuery!
+									$row.attr('id', feature.id.replace(/\W/g, "_"));
+//									$row.hover(function() {
+//										selectControl.select(olLayer.features[feature.id]);
+//									});
+									$row.append( 
+											'<td>'
+											+ feature.attributes.name 
+											+ '</td><td>' 
+											+ feature.attributes.description 
+											+ '</td><td class="wb-invisible">'
+											+ feature.geometry
+											+ '</td></tr>' 
+										);
+									$table.append($row);
+									i++;
+								}
 							}
 						)
-						olLayer.visibility=layer.visible;
+						olLayer.visibility=layer.visible;						
 						map.addLayer(olLayer);
 						queryLayers.push(olLayer);
 						
-//						// create table
-//						var $table = $('<table>'); 
-//						// add a row for each feature
-//						$.each(olLayer.features, function(index, feature) {
-//							$table.append( '<tr><td>' + feature.attributes.name +	'</td><td>' + feature.attributes.description +	'</td></tr>' );
-//						});
-//						
-//						$('#wb-main-in').append($table);	
+						pe.fn.geomap.createTabs($table, layer.visible, olLayer.id);
 						
 					} else if (layer.type=='atom') {
 						olLayer = new OpenLayers.Layer.Vector(
@@ -455,7 +516,6 @@
 						)
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
-						pe.fn.geomap.createTable(olLayer);
 					} else if (layer.type=='georss') {
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
@@ -472,35 +532,11 @@
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						pe.fn.geomap.createTable(olLayer);
-					}				
+					}
+					
 				});
 			}
-			
-//			var style = $.extend(true, {}, OpenLayers.Feature.Vector.style['default']); // get a copy of the default style
-//			style.fillColor = "${getFillColor}";
-			
-			
 
-//			var myStyleMap = new OpenLayers.StyleMap({
-//				"default": new OpenLayers.Style(style, {
-//					context: {
-//						getFillColor: function (feature) {
-//							return getRandomColor();
-//						}
-//					}
-//				})
-//			}); 
-			
-			var randomColor = this.getRandomColor();
-			
-			var my_style = new OpenLayers.StyleMap({ 
-				"default": new OpenLayers.Style( 
-					{ 
-						strokeColor: "#990000", 
-						fillColor: "#990000"
-					}) 
-			});			
-			
 			/*
 			 * Add vector features
 			 * 
@@ -522,10 +558,7 @@
 				
 			});			
 			
-			map.addLayer(vectorLayer);			
-			
-			
-			
+			map.addLayer(vectorLayer);		
 			
 			/*
 			 * Add tabluar data
@@ -535,7 +568,7 @@
 			
 			$.each(opts.tables, function(index, table) {					
 				
-				randomColor = pe.fn.geomap.randomColor();				
+				var randomColor = pe.fn.geomap.randomColor();				
 								
 				var my_style = new OpenLayers.StyleMap({ 
 					"default": new OpenLayers.Style( 
@@ -587,12 +620,13 @@
 			 */ 
 			
 			// TODO: ensure WCAG compliance before enabling			
-//			var selectControl = new OpenLayers.Control.SelectFeature(
-//				queryLayers,
-//				{ onSelect: this.onFeatureSelect, onUnselect: this.onFeatureUnselect }
-//			);			
-//			map.addControl(selectControl);
-//			selectControl.activate();			
+			selectControl = new OpenLayers.Control.SelectFeature(
+				queryLayers,
+				{ onSelect: this.onFeatureSelect, onUnselect: this.onFeatureUnselect }
+			);			
+			
+			map.addControl(selectControl);			
+			selectControl.activate();			
 			
 			if(opts.useMousePosition) { map.addControl(new OpenLayers.Control.MousePosition()) };
 			if(opts.useScaleLine) { map.addControl(new OpenLayers.Control.ScaleLine()) };					
@@ -601,7 +635,7 @@
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			
 			// add accessibility enhancements
-			this.accessibilize();					
+			this.accessibilize(opts.useLayerSwitcher);					
 			
 			if(opts.useLayerSwitcher) { map.addControl(new OpenLayers.Control.LayerSwitcher()) };	// needs to be added after accessibilize		
 
