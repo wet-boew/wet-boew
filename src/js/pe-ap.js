@@ -187,7 +187,7 @@
 					if ($this.length > 0) {
 						pe.focus($this);
 						role = $this.jqmData('role');
-						if(role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
+						if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
 							window.location.hash = hash;
 						}
 					}
