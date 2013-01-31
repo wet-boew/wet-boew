@@ -502,7 +502,7 @@
 			 */			
 						
 			if(wet_boew_geomap.overlays){				
-				$.each(wet_boew_geomap.overlays, function(index, layer) {
+				$.each(wet_boew_geomap.overlays, function(index, layer) {					
 					if(layer.type=='wms') {
 						map.addLayer(
 							new OpenLayers.Layer.WMS(
@@ -513,8 +513,7 @@
 							)
 						);
 					} else if (layer.type=='kml') {	
-						var $table = pe.fn.geomap.createTable(index, layer.title);
-						var i = 1;
+						var $table = pe.fn.geomap.createTable(index, layer.title);						
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {							
 								strategies: [new OpenLayers.Strategy.Fixed()],
@@ -544,48 +543,86 @@
 											+ feature.geometry
 											+ '</td></tr>' 
 										);
-									$table.append($row);
-									i++;
+									$table.append($row);									
 								}
 							}
 						)
 						olLayer.visibility=layer.visible;						
 						map.addLayer(olLayer);
-						queryLayers.push(olLayer);
-						
-						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
-						
+						queryLayers.push(olLayer);						
+						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);						
 					} else if (layer.type=='atom') {
+						var $table = pe.fn.geomap.createTable(index, layer.title);
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: map.displayProjection,
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
-								url: layer.url,
-								format: new OpenLayers.Format.Atom({
-									// TODO: extract data fields for query
-									})
-								})
+									url: layer.url,
+									format: new OpenLayers.Format.Atom()									
+								}),
+								onFeatureInsert: function(feature) {
+									// add a row for each feature
+									var $row = $('<tr>');
+									// replace periods with underscores for jQuery!
+									$row.attr('id', feature.id.replace(/\W/g, "_"));
+//									$row.hover(function() {
+//										selectControl.select(olLayer.features[feature.id]);
+//									});
+									$row.append( 
+											'<td>'
+											+ feature.attributes.title 
+											+ '</td><td>' 
+											+ feature.attributes.description 
+											+ '</td><td class="wb-invisible">'
+											+ feature.geometry
+											+ '</td></tr>' 
+										);
+									$table.append($row);									
+								}
 							}
 						)
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
-					} else if (layer.type=='georss') {
+						map.addLayer(olLayer);						
+						pe.fn.geomap.createTable(olLayer);						
+						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);						
+					} else if (layer.type=='georss') {						
+						var $table = pe.fn.geomap.createTable(index, layer.title);
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: map.displayProjection,
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
-								url: layer.url,
-								format: new OpenLayers.Format.GeoRSS({
-									// TODO: extract data fields for query
-									})
-								})
+									url: layer.url,
+									format: new OpenLayers.Format.GeoRSS()
+								}),
+								onFeatureInsert: function(feature) {
+									// add a row for each feature
+									var $row = $('<tr>');
+									// replace periods with underscores for jQuery!
+									$row.attr('id', feature.id.replace(/\W/g, "_"));
+//									$row.hover(function() {
+//										selectControl.select(olLayer.features[feature.id]);
+//									});
+									$row.append( 
+											'<td>'
+											+ feature.attributes.title 
+											+ '</td><td>' 
+											+ feature.attributes.description 
+											+ '</td><td class="wb-invisible">'
+											+ feature.geometry
+											+ '</td></tr>' 
+										);
+									$table.append($row);									
+								}
 							}
 						)
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
-						pe.fn.geomap.createTable(olLayer);
+						map.addLayer(olLayer);						
+						pe.fn.geomap.createTable(olLayer);						
+						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
 					}
 					
 				});
@@ -597,22 +634,22 @@
 			 * TODO: turn this into a public function
 			 */ 
 			
-			var vectorLayer = new OpenLayers.Layer.Vector('Features');			
-			
-			$.each(opts.features, function(index, feature) {
-								
-				var wktParser = new OpenLayers.Format.WKT({						
-					'internalProjection': projMap, 
-					'externalProjection': projLatLon
-				});
-				
-				vectorLayer.addFeatures([										 
-					wktParser.read(feature)															 
-				]);						
-				
-			});			
-			
-			map.addLayer(vectorLayer);		
+//			var vectorLayer = new OpenLayers.Layer.Vector('Features');			
+//			
+//			$.each(opts.features, function(index, feature) {
+//								
+//				var wktParser = new OpenLayers.Format.WKT({						
+//					'internalProjection': projMap, 
+//					'externalProjection': projLatLon
+//				});
+//				
+//				vectorLayer.addFeatures([										 
+//					wktParser.read(feature)															 
+//				]);						
+//				
+//			});			
+//			
+//			map.addLayer(vectorLayer);		
 			
 			/*
 			 * Add tabluar data
@@ -691,9 +728,11 @@
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			
 			// add accessibility enhancements
-			this.accessibilize(opts.useLayerSwitcher);					
+			//this.accessibilize(opts.useLayerSwitcher);					
+			this.accessibilize(true);	
+			//if(opts.useLayerSwitcher) { map.addControl(new OpenLayers.Control.LayerSwitcher()) };	// needs to be added after accessibilize		
+			map.addControl(new OpenLayers.Control.LayerSwitcher());
 			
-			if(opts.useLayerSwitcher) { map.addControl(new OpenLayers.Control.LayerSwitcher()) };	// needs to be added after accessibilize		
 
 			map.zoomToMaxExtent();			
 			

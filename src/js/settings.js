@@ -58,7 +58,7 @@ var wet_boew_geomap = {
 				   title: 'ATOM Demo',
 				   type: 'atom',
 				   url: 'data/sample.atom',		   
-				   visible: false
+				   visible: true
 				},
 				{
 				   title: 'GeoRSS Demo',
