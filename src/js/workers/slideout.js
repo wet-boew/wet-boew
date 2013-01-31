@@ -16,7 +16,6 @@
 		type: 'plugin',
 		depends: ['resize', 'metadata'],
 		opened: false,
-		defaultOpen: false,
 		_exec: function (elm) {
 			var borderWidth = 10,
 				tocText = pe.dic.get('%table-contents'),
@@ -40,9 +39,10 @@
 				opts,
 				ie7 = pe.ie > 0 && pe.ie < 8,
 				$wbcorein = $('#wb-core-in'),
+				defaultOpen = false,
 				imagesDir = pe.add.liblocation + 'images/slideout/';
 				
-			defaultOpen = $(elm).hasClass('wet-boew-slideout-open');
+			defaultOpen = elm.hasClass('wb-slideout-open');
 			$.metadata.setType('attr', 'data-wet-boew');
 			opts = {
 				imgShow: {
