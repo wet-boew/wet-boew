@@ -5,7 +5,12 @@
 		options: { singleTile: false, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true }
 };*/
 
+/*
+ * 
+ */
+/* JOOST's COMMENT! */
 alert("tets");
+
 var overlays = [
 		{
 		   title: 'WMS Demo',
