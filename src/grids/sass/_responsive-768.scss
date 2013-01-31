@@ -2,144 +2,28 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
+@import 'includes/_grid-mixins.scss';
+
+// Width for an 8 grid column
+$width-8: 76px;
+// Width for a standard 12 grid column
+$width-12: 44px;
+// Width for a smaller 12 grid column
+$width-12small: 28px;
+
 [id|="wb-body-sec"] {
 	#wb-core {
 		.grid-12 {
-			.span-1 {
-				width: 28px;
-			}
-			.span-2 {
-				@extend %responsive768-width76;
-			}
-			.span-3 {
-				width: 124px;
-			}
-			.span-4 {
-				@extend %responsive768-width172;
-			}
-			.span-5 {
-				width: 220px;
-			}
-			.span-6 {
-				@extend %responsive768-width268;
-			}
-			.span-7 {
-				width: 316px;
-			}
-			.span-8 {
-				@extend %responsive768-width364;
-			}
-			.span-9 {
-				width: 412px;
-			}
-			.span-10 {
-				@extend %responsive768-width460;
-			}
-			.span-11 {
-				width: 508px;
-			}
-			.span-12 {
-				@extend %responsive768-width556;
-			}
+			@include create_grid($width-12small, 12);
 		}
 	}
 }
 
 .grid-12 {
-	.span-1 {
-		width: 44px;
-	}
-	.span-2 {
-		width: 108px;
-	}
-	.span-3 {
-		@extend %responsive768-width172;
-	}
-	.span-4 {
-		width: 236px;
-	}
-	.span-5 {
-		width: 300px;
-	}
-	.span-6 {
-		@extend %responsive768-width364;
-	}
-	.span-7 {
-		width: 428px;
-	}
-	.span-8 {
-		width: 492px;
-	}
-	.span-9 {
-		@extend %responsive768-width556;
-	}
-	.span-10 {
-		width: 620px;
-	}
-	.span-11 {
-		width: 684px;
-	}
-	.span-12 {
-		@extend %responsive768-width748;
-	}
+	@include create_grid($width-12, 12);
 }
 
-%responsive768-width76 {
-	width: 76px;
-}
-
-.span-1 {
-	@extend %responsive768-width76;
-}
-
-%responsive768-width172 {
-	width: 172px;
-}
-
-.span-2 {
-	@extend %responsive768-width172;
-}
-
-%responsive768-width268 {
-	width: 268px;
-}
-
-.span-3 {
-	@extend %responsive768-width268;
-}
-
-%responsive768-width364 {
-	width: 364px;
-}
-
-.span-4 {
-	@extend %responsive768-width364;
-}
-
-%responsive768-width460 {
-	width: 460px;
-}
-
-.span-5 {
-	@extend %responsive768-width460;
-}
-
-%responsive768-width556 {
-	width: 556px;
-}
-
-.span-6 {
-	@extend %responsive768-width556;
-}
-
-.span-7 {
-	width: 652px;
-}
-
-%responsive768-width748 {
-	width: 748px;
-}
-
-.span-8 {
-	@extend %responsive768-width748;
+@for $i from 1 through 8 {
+	@include create_grid($width-8, 8);
 }
