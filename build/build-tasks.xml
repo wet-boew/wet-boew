@@ -249,8 +249,8 @@
 		</yui-compressor>
 		<delete>
 			<fileset dir="${dist.dir}">
-				<exclude name="**/*.css" /><!-- to include or exclude the unminified -->
-				<exclude name="**/*.js" /><!-- to include or exclude the unminified -->
+				<include name="**/*.css" />
+				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
 				<exclude name="**/settings-ie.js" />
 				<exclude name="**/*-min.css" />
