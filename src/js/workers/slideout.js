@@ -39,8 +39,10 @@
 				opts,
 				ie7 = pe.ie > 0 && pe.ie < 8,
 				$wbcorein = $('#wb-core-in'),
+				defaultOpen = false,
 				imagesDir = pe.add.liblocation + 'images/slideout/';
-
+				
+			defaultOpen = elm.hasClass('wb-slideout-open');
 			$.metadata.setType('attr', 'data-wet-boew');
 			opts = {
 				imgShow: {
@@ -342,6 +344,11 @@
 			// Fix scrolling issue in some versions of IE (#4051)
 			if (ie7) {
 				$('html').css('overflowY', 'auto');
+			}
+
+			//If start Open is turned on then slide out the sidebar
+			if (defaultOpen) {
+				toggle();
 			}
 		} // end of exec
 	};
