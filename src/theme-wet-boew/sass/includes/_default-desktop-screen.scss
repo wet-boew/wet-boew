@@ -3,6 +3,8 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/images";
 
 html{
 	overflow-y:scroll;
@@ -43,6 +45,9 @@ body{
 #wb-main-in{
 	padding-top:1px;
 	padding-bottom:2.5em;
+	a {
+		@extend %wet-default-link;
+	}
 }
 
 #wb-body-sec #wb-main{
@@ -95,13 +100,19 @@ h1{
 	position:relative;
 }
 
-a{
-	&:link{
-		color:#295376;
+%wet-default-link {
+	&, &.ui-link {
+		&:link {
+			color: #295376;
+		}
+		&:visited {
+			color: #5a306b;
+		}
 	}
-	&:visited{
-		color:#5A306B;
-	}	
+}
+
+a {
+	@extend %wet-default-link;
 }
 
 #wet-fullhd{
@@ -219,9 +230,7 @@ a{
 		@include border-radius(3px);
 		margin:0 0 0 3px;
 		width:218px;
-		box-shadow:none;
-		-moz-box-shadow:none;
-		-webkit-box-shadow:none;
+		@include box-shadow(none);
 		background:#FFF;
 		padding:4px;
 		&:focus,&:active{
@@ -254,12 +263,8 @@ a{
 	border-top:1px solid #0B3048;
 	.mb-menu {
 		.mb-sm-open {
-			box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.5), 5px 5px 5px -4px rgba(0, 0, 0, 0.5), -5px 5px 5px -4px rgba(0, 0, 0, 0.5);
-			background-image:-webkit-gradient(linear,50% 100%,50% 0,color-stop(0%,#EEE),color-stop(100%,#CCC));
-			background-image:-webkit-linear-gradient(bottom,#EEE,#CCC);
-			background-image:-moz-linear-gradient(bottom,#EEE,#CCC);
-			background-image:-o-linear-gradient(bottom,#EEE,#CCC);
-			background-image:linear-gradient(bottom,#EEE,#CCC);
+			@include box-shadow(0 5px 5px -4px rgba(0, 0, 0, 0.5), 5px 5px 5px -4px rgba(0, 0, 0, 0.5), -5px 5px 5px -4px rgba(0, 0, 0, 0.5));
+			@include background-image(linear-gradient(bottom,#EEE,#CCC));
 			@include border-radius(0);
 			li, .nav-current{
 				background:none;

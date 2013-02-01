@@ -178,11 +178,18 @@
 
 			pe.document.on('pageinit', function () {
 				// On click, puts focus on and scrolls to the target of same page links
+				// On click, puts focus on and scrolls to the target of same page links
 				hlinks_same.off('click vclick').on('click vclick', function () {
-					$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
+					var hash = $(this).attr('href'),
+						role;
+					$this = $('#' + pe.string.jqescape(hash.substring(1)));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
-						$.mobile.silentScroll(pe.focus($this).offset().top);
+						pe.focus($this);
+						role = $this.jqmData('role');
+						if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
+							window.location.hash = hash;
+						}
 					}
 				});
 				// If the page URL includes a hash upon page load, then focus on and scroll to the target
