@@ -4,31 +4,29 @@
 */
 // Based on code from https://gist.github.com/667320
 meter{
-	&.polyfill{
+	&.polyfill {
 		display: block;
 		border: 1px outset;
 		height: 20px;
 		width: 100px;
 		overflow: hidden;
-		div{
+		div {
 			display: block;
 			border-right:1px solid #000;
 			height: 20px;
 			background: #b4e391; /* old browsers */
-			background: -moz-linear-gradient(top, #b4e391 0%, #44AA00 35%, #b4e391 100%);
-			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b4e391), color-stop(35%,#44AA00), color-stop(100%,#b4e391));
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4e391', endColorstr='#b4e391',GradientType=0 );
+			@include filter-gradient(#b4e391, #b4e391);
+			@include background-image(linear-gradient(top, #b4e391 0, #44AA00 35%, #b4e391 100%));
 		}
 	}
-	&.meterValueTooHigh, &.meterValueTooLow{
-		div{
+	&.meterValueTooHigh, &.meterValueTooLow {
+		div {
 			background: #ffd65e;
-			background: -moz-linear-gradient(top, #ffd65e 0%, #FBFF47 35%, #febf04 100%);
-			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(35%,#FBFF47), color-stop(100%,#febf04));
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 );
+			@include filter-gradient(#ffd65e, #febf04);
+			@include background-image(linear-gradient(top, #ffd65e 0, #FBFF47 35%, #febf04 100%));
 		}
 	}
-	&.meterIsMaxed{
-		border-right: 0px none !important;
+	&.meterIsMaxed {
+		border-right: 0 none !important;
 	}
 }
