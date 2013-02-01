@@ -280,7 +280,7 @@
 	</target>
 	
 	<target name="-copy-css" depends="compile.sass"/>
-	
+
 	<target name="-copy-jquery-css">
 		<concat dest="${dist.dir}/css/jquery.mobile.css">
 			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme.css"/>
@@ -294,7 +294,16 @@
 			<fileset dir="${src.dir}/jquerymobile/images-ie"/>
 		</copy>
 	</target>
-	
+
+	<target name="-copy-depends">
+		<copy todir="${dist.dir}/dependencies/css">
+			<fileset dir="${src.dir}/dependencies/css"/>
+		</copy>
+		<copy todir="${dist.dir}/dependencies/images">
+			<fileset dir="${src.dir}/dependencies/images"/>
+		</copy>
+	</target>
+
 	<fileset id="jsfiles" dir="${src.dir}">
 		<include name="**/*.js"/>
 	</fileset>

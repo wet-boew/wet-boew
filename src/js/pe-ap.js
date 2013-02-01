@@ -1521,12 +1521,16 @@
 				* @memberof pe.add
 				* @function
 				* @param {string | string[]} d The path and filename of the dependency OR just the name (minus the path and extension).
+				* @param {boolean} css Optional. Is the dependency a CSS file? (default: false)
 				* @return {string[]} NOTE: If d is a string, this returns a string array with 8 copies of the transformed string. If d is a string array, this returns a string array with just one entry; the transformed string.
 				*/
-				depends: function (d) {
+				depends: function (d, css) {
 					var lib = pe.add.liblocation,
+						iscss = typeof css !== 'undefined' ? css : false, 
+						extension = pe.suffix + (iscss ? '.css' : '.js'),
+						dir = pe.add.liblocation + 'dependencies/' + (iscss ? 'css/' : ''),
 						c_d = $.map(d, function (a) {
-							return (/^http(s)?/i.test(a)) ? a : lib + 'dependencies/' + a + pe.suffix + '.js';
+							return (/^http(s)?/i.test(a)) ? a : dir + a + extension;
 						});
 					return c_d;
 				},
@@ -1588,6 +1592,7 @@
 				pcalls = typeof options.global !== 'undefined' ? options.global : [],
 				pcall,
 				dep = typeof options.dep !== 'undefined' ? options.dep : [],
+				depcss = typeof options.depcss !== 'undefined' ? options.depcss : [],
 				poly = typeof options.poly !== 'undefined' ? options.poly : [],
 				checkdom = typeof options.checkdom !== 'undefined' ? options.checkdom : false,
 				polycheckdom = typeof options.polycheckdom !== 'undefined' ? options.polycheckdom : false,
@@ -1635,6 +1640,9 @@
 					}
 					if (typeof pe.fn[pcall].depends !== 'undefined') {
 						dep.push.apply(dep, pe.fn[pcall].depends);
+						if (typeof pe.fn[pcall].dependscss !== 'undefined') {
+							dep.push.apply(depcss, pe.fn[pcall].dependscss);
+						}
 					}
 				}
 			}
@@ -1698,7 +1706,16 @@
 				});
 
 				// Load each of the dependencies (eliminating duplicates)
-				pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				if (dep.length !== 0) {
+					if (depcss.length > 0) {
+						depcss = pe.add.depends(pe.array.noduplicates(depcss), true);
+						_len = depcss.length;
+						while (_len--) {
+							pe.add.css(depcss[_len]);
+						}
+					}
+					pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				}
 			});
 
 			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)
