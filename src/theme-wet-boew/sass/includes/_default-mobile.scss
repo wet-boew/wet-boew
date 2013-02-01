@@ -4,6 +4,8 @@
  */
 
 @import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/box-shadow";
 
 body{
 	-webkit-text-size-adjust:none;
@@ -92,7 +94,7 @@ a {
 
 .ui-mobile {
 	#wet-srch{
-		box-shadow:none;
+		@include box-shadow(none);
 	}
 	#wb-sec{
 		display:none;
@@ -214,20 +216,10 @@ img{
 	h2 {
 		text-shadow:0 1px 0 #FFF;
 		background-color:#EEEEEE;
-		background-image:-webkit-gradient(linear,left top,left bottom,from(#FFFFFF),to(#F1F1F1));
-		background-image:-webkit-linear-gradient(#FFFFFF,#F1F1F1);
-		background-image:-moz-linear-gradient(#FFFFFF,#F1F1F1);
-		background-image:-ms-linear-gradient(#FFFFFF,#F1F1F1);
-		background-image:-o-linear-gradient(#FFFFFF,#F1F1F1);
-		background-image:linear-gradient(#FFFFFF,#F1F1F1);
+		@include background-image(linear-gradient(#FFFFFF,#F1F1F1));
 		&:hover, &:focus, &:active {
 			background-color:#DFDFDF;
-			background-image:-webkit-gradient(linear,left top,left bottom,from(#F6F6F6),to(#E0E0E0));
-			background-image:-webkit-linear-gradient(#F6F6F6,#E0E0E0);
-			background-image:-moz-linear-gradient(#F6F6F6,#E0E0E0);
-			background-image:-ms-linear-gradient(#F6F6F6,#E0E0E0);
-			background-image:-o-linear-gradient(#F6F6F6,#E0E0E0);
-			background-image:linear-gradient(#F6F6F6,#E0E0E0);
+			@include background-image(linear-gradient(#F6F6F6,#E0E0E0));
 		}
 		color:#222;
 		text-align:center;
@@ -246,12 +238,7 @@ img{
 
 #wet-bnr .ui-navbar a.ui-btn-active {
 	background-color:#DFDFDF;
-	background-image:-webkit-gradient(linear,left top,left bottom,from(#F6F6F6),to(#E0E0E0));
-	background-image:-webkit-linear-gradient(#F6F6F6,#E0E0E0);
-	background-image:-moz-linear-gradient(#F6F6F6,#E0E0E0);
-	background-image:-ms-linear-gradient(#F6F6F6,#E0E0E0);
-	background-image:-o-linear-gradient(#F6F6F6,#E0E0E0);
-	background-image:linear-gradient(#F6F6F6,#E0E0E0);
+	@include background-image(linear-gradient(#F6F6F6,#E0E0E0));
 	border:1px solid #CCC;
 	border-right:none;
 	color:#222;
@@ -411,12 +398,8 @@ img{
 		border-right-width: 1px;
 	}
 	.ui-collapsible-heading:not(.ui-collapsible-heading-collapsed) a {
-		-webkit-border-bottom-right-radius: 0;
-		-webkit-border-bottom-left-radius: 0;
-		-moz-border-radius-bottomright: 0;
-		-moz-border-radius-bottomleft: 0;
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
+		@include border-bottom-left-radius(0);
+		@include border-bottom-right-radius(0);
 	}
 	.wb-nested-menu {
 		padding: 0;
@@ -499,17 +482,12 @@ img{
 	}
 	#wet-bc-in {
 		background:#DFDFDD;
-		background-image:-webkit-gradient(linear,left top,left bottom,from(#F0EFEF),to(#DFDFDD));
-		background-image:-webkit-linear-gradient(#F0EFEF,#DFDFDD);
-		background-image:-moz-linear-gradient(#F0EFEF,#DFDFDD);
-		background-image:-ms-linear-gradient(#F0EFEF,#DFDFDD);
-		background-image:-o-linear-gradient(#F0EFEF,#DFDFDD);
-		background-image:linear-gradient(#F0EFEF,#DFDFDD);
+		@include background-image(linear-gradient(#F0EFEF,#DFDFDD));
 		color: #555;
 		@include border-radius(0);
 		text-shadow:0 1px 1px #fff;
 		border-bottom:1px solid #ccc;
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+		@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 		a {
 			color: #326CA6;
 			text-decoration: none;
