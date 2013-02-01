@@ -4,76 +4,46 @@
      version="2.0">
    <channel>
       <atom:link rel="self" type="application/rss+xml"
-                 href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=rss"/>
+                 href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=pingo&amp;alt=rss"/>
       <atom:link rel="next" type="application/rss+xml"
-                 href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?start-index=944099&amp;alt=rss"/>
+                 href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst?start-index=808032&amp;max-results=5&amp;q=pingo&amp;alt=rss"/>
       <title>GeoGratis Product Selection</title>
       <description>Natural Resources Canada</description>
-      <link>http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst</link>
+      <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=pingo</link>
       <language>en</language>
-      <pubDate>Mon, 19 Nov 2012 23:45:06 GMT</pubDate>
-      <lastBuildDate>Mon, 19 Nov 2012 23:45:06 GMT</lastBuildDate>
+      <pubDate>Mon, 10 Sep 2012 11:23:57 GMT</pubDate>
+      <lastBuildDate>Mon, 10 Sep 2012 11:23:57 GMT</lastBuildDate>
       <managingEditor>info@geogratis.gc.ca (GeoGratis)</managingEditor>
       <webMaster>info@geogratis.gc.ca (GeoGratis)</webMaster>
       <docs>http://geogratis.gc.ca</docs>
       <item>
-         <title>Surficial geology of north-central Manitoba</title>
-         <description><![CDATA[<p>Abstract not available. 
-
-These are comprehensive final reports on the geology of specific geographic areas.</p>]]></description>
-         <link>http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.html</link>
+         <title>An assessment of surficial geology, massive ice, and ground ice, Tuktoyaktuk Peninsula, Northwest Territories: application to the proposed Inuvik to Tuktoyaktuk all-weather highway</title>
+         <description><![CDATA[<p>This report utilizes seismic shothole drillers' lithostratigraphic logs as a basis for contrasting previously published maps and reports of surficial geology, massive ice and ground ice, on the Tuktoyaktuk Peninsula, Northwest Territories. Areas of glaciofluvial ice-contact and outwash deposits, and lacustrine sediments in thermokarst terrain are demonstrated to be less extensive, while areas of till cover are more widespread. Approximately 2% of all shotholes contain records of massive ice, it is most abundant between 4 and 14 m depth, and principally is situated at lithostratigraphic contacts (73%). On the Tuktoyaktuk Peninsula, half (52%) of the massive ice records occur in areas of surface till cover, and it is largely underlain by "sorted + sorted, fine" deposits (72%). Significant spatial, lithostratigraphic, and thickness differences are noted in other physiographic regions. Shothole ground ice records are more common (13% of all such records), particularly within the 15
+ km buffer area surrounding the proposed Inuvik to Tuktoyaktuk Highway (18.4%), although it is acknowledged that many such records may relate to massive ice deposits, and that drillers typically under-report ground ice occurrence. There is significant disagreement between shothole-based massive ice and ground ice occurrences with existing permafrost and ground ice maps that were constructed on the basis of surficial geology-related ground ice associations. Changes in surficial geology classification account for part, elsewhere, ground ice is simply found to be more abundant in different deposit types than previously surmised.
+ It is argued that integration of abundant shothole lithostratigraphic data provides a more reliable reconstruction of surficial geology, massive ice, and ground ice conditions in the Tuktoyaktuk Peninsula. The data and syntheses presented can better inform engineering and landscape stability assessments, and similarly identify areas wherein more detailed field-surveys and inspection are likely required as part of an infrastructure development proposal.</p>]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/dbd76aad-0f71-508d-91f3-0bca79af2dd4.html</link>
          <author>info@geogratis.gc.ca (GeoGratis)</author>
-         <pubDate>Wed, 14 Nov 2012 06:00:32 GMT</pubDate>
-         <guid isPermaLink="false">http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml</guid>
-         <georss:polygon>52 -102 60 -102 60 -90 52 -90 52 -102</georss:polygon>
+         <pubDate>Fri, 02 Nov 2012 05:01:38 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/dbd76aad-0f71-508d-91f3-0bca79af2dd4.xml</guid>
+         <georss:polygon>68.25 -134 69.5 -134 69.5 -132.5 68.25 -132.5 68.25 -134</georss:polygon>
       </item>
       <item>
-         <title>A preliminary tsunami hazard assessment of the Canadian Coastline</title>
-         <description><![CDATA[<p>The Canadian coastline is the longest of any country in the world, and is at risk from tsunamis generated in three oceans. The current state of knowledge precludes a complete probabilistic tsunami hazard assessment, which would require quantification of a wide range of possible scenarios for each tsunami source, coupled with modelling that incorporates fine-resolution bathymetry and onland topography to adequately assess potential runup at the coast. This preliminary assessment presents a first attempt to quantify the tsunami hazard on the Canadian Pacific, Atlantic and Arctic coastlines from local and far-field, earthquake and large landslide sources. For each source considered, we calculate the probability that tsunami runup at the coast will exceed 1.5 m (threshold for potential damage) and 3 m (significant damage potential), in a 50-year period. For each coastal region, we then combine the relative hazard from each source to calculate the overall probability that the
- coastline in question will experience tsunami runup exceeding 1.5 m (and 3 m) within a 50-year period, from any geological source. We also consider the maximum runup levels expected to occur within time periods of 100, 500, 1000, and 2500 years. 
- Our assessment indicates that the overall tsunami hazard (runup ? 1.5 m) of the outer Pacific coastline (~40-80% probability of exceedance in 50 y) is an order of magnitude greater than that of the outer Atlantic coastline (~1-15%), which in turn is an order of magnitude greater than the Arctic coastline (&lt; 1%). These probabilities are equivalent to an expected recurrence of runup exceeding 1.5 m of ~30-100 years for the outer Pacific coast, ~300-1700 for the Atlantic, and ~6500-17,000 years for the Arctic. For larger runup (? 3 m), the estimated Pacific hazard (~10-30% probability of exceedance in 50 y) is significantly larger than both the Atlantic (~1-5%) and the Arctic (&lt; 1%). Equivalent recurrence intervals are ~150-500 years for the Pacific, ~650-4000 years for the Atlantic, and ~7000-20,000 years for the Arctic. On the outer Pacific coastline, the 1.5 m runup hazard is dominated by far-field subduction zone sources, whereas the more severe 3 m runup hazard is almost entirely
- contributed by local subduction zone sources. The Cascadia subduction zone presents the highest tsunami hazard to the Pacific coast, with the most extreme potential runup; potential thrust sources along the Explorer and Queen Charlotte margins contribute a significant proportion of the estimated tsunami hazard for the northern BC coastline. For the more sheltered inner Pacific coasts of Juan de Fuca and Georgia Straits, the hazard at both levels is contributed mostly by Cascadia subduction zone events. Tsunami hazard on the Atlantic coastline is dominated by far-field subduction zone sources, but this hazard is poorly constrained. Significant tsunami hazard is also provided by near-field continental slope failures similar to the 1929 Grand Banks event. Tsunami hazard on the Arctic coastline remains poorly constrained, but these regions are assumed to be sheltered from far-field tsunamis, so the hazard is provided by local sources. A hypothetical earthquake source beneath the Mackenzie
- delta requires further study. 
- We discuss briefly but do not quantify the hazard of locally-damaging waves triggered by subaerial or submarine landslides, but we highlight susceptible areas. A probabilistic analysis of local landslide tsunamis would require (1) the identification of potential sources; (2) evidence for past tsunamigenic events to establish frequency-size relationships and/or slope stability analyses that incorporate expected earthquake shaking levels; (3) probabilistic tsunami modelling of a wide range of possible failures.</p>]]></description>
-         <link>http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.html</link>
+         <title>Surficial Geology, Inman River, District of Mackenzie, Northwest Territories</title>
+         <description><![CDATA[<p>Abstract not available.</p>]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/fe2f6bfa-adbc-5a3e-ade8-0d416dbb2bed.html</link>
          <author>info@geogratis.gc.ca (GeoGratis)</author>
-         <pubDate>Wed, 14 Nov 2012 06:00:32 GMT</pubDate>
-         <guid isPermaLink="false">http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.xml</guid>
-         <georss:polygon>42 -144 84 -144 84 -48 42 -48 42 -144</georss:polygon>
+         <pubDate>Fri, 06 Jan 2012 00:44:49 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/fe2f6bfa-adbc-5a3e-ade8-0d416dbb2bed.xml</guid>
+         <georss:polygon>68 -120 69.416700000000006 -120 69.416700000000006 -113.75 68 -113.75 68 -120</georss:polygon>
       </item>
       <item>
-         <title>Preliminary characterisation of metamorphism on Cumberland Peninsula, Baffin Island, Nunavut</title>
-         <description><![CDATA[<p>A metamorphic map of Cumberland Peninsula, Nunavut is presented based on field and petrographic observations of metapelite, metapsammite, and metabasite. Five metamorphic zones are recognized in metapelite: staurolite+muscovite (lower-amphibolite facies); andalusite+muscovite; sillimanite+muscovite (both middle-amphibolite facies); sillimanite±K-feldspar (upper-amphibolite facies); and cordierite+garnet±K-feldspar (granulite facies). These subfacies comprise approximately 1%, 5%, 15%, 70%, and 9% of Cumberland Peninsula's metamorphic rocks, respectively. Most amphibolite-facies assemblages developed during Paleoproterozoic regional metamorphism. Lower- and middle-amphibolite-facies rocks occur in a 120 km by 15 km, structurally controlled corridor. Sillimanite+muscovite zone rocks had sequential growth of staurolite, andalusite, then sillimanite. Both the sillimanite+muscovite prograde P-T path and the piezothermic array for the area transect the staurolite+andalusite stability
- field with a shallow P/T slope implying middle-amphibolite-facies metamorphism took place at low pressure (3.3- 4.1 kbar). Porphyroblasts in amphibolite-facies rocks are mostly intertectonic with respect to two phases of Paleoproterozoic deformation suggesting regional metamorphism was orogenic. Two styles of granulite-facies metamorphism occurred prior to regional metamorphism. The first comprises a southeastern domain of granulite-facies rocks variably overprinted by amphibolite-facies metamorphism. The second formed later in close proximity to widely dispersed charnockitic plutons, suggesting regional contact metamorphism.</p>]]></description>
-         <link>http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.html</link>
+         <title>Surficial Geology, Tuktoyaktuk Coastlands, District of Mackenzie, Northwest Territories</title>
+         <description><![CDATA[<p>Abstract not available.</p>]]></description>
+         <link>http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/5995a4b8-f36f-5cc9-a48a-44cc82edb068.html</link>
          <author>info@geogratis.gc.ca (GeoGratis)</author>
-         <pubDate>Fri, 23 Nov 2012 06:01:39 GMT</pubDate>
-         <guid isPermaLink="false">http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.xml</guid>
-         <georss:polygon>64.75 -66.5 67.5 -66.5 67.5 -60.5 64.75 -60.5 64.75 -66.5</georss:polygon>
-      </item>
-      <item>
-         <title>Structural model of the Greater Toronto and Oak Ridges Moraine areas, southern Ontario: Halton Till</title>
-         <description><![CDATA[<p>Abstract not available. 
-
-This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports.
-
-Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results.
-
-They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.</p>]]></description>
-         <link>http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.html</link>
-         <author>info@geogratis.gc.ca (GeoGratis)</author>
-         <pubDate>Thu, 05 Jan 2012 07:54:00 GMT</pubDate>
-         <guid isPermaLink="false">http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml</guid>
-         <georss:polygon>43.25 -80 44.5 -80 44.5 -78 43.25 -78 43.25 -80</georss:polygon>
-      </item>
-      <item>
-         <title>U-Pb ages of Archean basement and Paleoproterozoic plutonic rocks, southern Cumberland Peninsula, eastern Baffin Island, Nunavut</title>
-         <description><![CDATA[<p>Recent mapping coupled with geochronological and isotopic studies on the southern half of Cumberland Peninsula, Baffin Island, have identified and characterized four distinct plutonic suites. An extensive plutonic gneiss complex yields ages of 2991 ± 4 Ma, 2938 ± 4 Ma, and 2782 ± 4 Ma, whereas a second group of discrete plutons yields solely Neoarchean ages of 2772 ± 6 Ma, 2759 ± 3 Ma, and 2700 ± 4 Ma. These Archean rocks form the structural basement to a cover sequence, the Hoare Bay Group, both of which are cut by a charnockite-granodiorite-diorite suite with ages of 1894 ± 5 Ma and 1889 ± 3 Ma, informally designated the Qikiqtarjuaq plutonic suite. Mylonitic, high-K intrusive sheets, interpreted to have been emplaced syntectonically during regional deformation, yield ages of 1882 ± 13 Ma and 1873 ± 16 Ma.</p>]]></description>
-         <link>http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.html</link>
-         <author>info@geogratis.gc.ca (GeoGratis)</author>
-         <pubDate>Thu, 30 Aug 2012 14:31:00 GMT</pubDate>
-         <guid isPermaLink="false">http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.xml</guid>
-         <georss:polygon>64.75 -66.5 67.5 -66.5 67.5 -60.5 64.75 -60.5 64.75 -66.5</georss:polygon>
-      </item>     
+         <pubDate>Fri, 06 Jan 2012 02:11:55 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/5995a4b8-f36f-5cc9-a48a-44cc82edb068.xml</guid>
+         <georss:polygon>68 -136 70.666700000000006 -136 70.666700000000006 -126.5 68 -126.5 68 -136</georss:polygon>
+      </item>      
    </channel>
 </rss>

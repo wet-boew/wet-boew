@@ -237,40 +237,13 @@
 				};
 			}
 		}, // end accessibilize function		
-		
-//		onPopupClose: function(evt) {
-//			selectControl.unselect(selectedFeature);
-//		},
- 
+	 
 		onFeatureSelect: function(feature) {					
 			$("tr#" + feature.id.replace(/\W/g, "_")).attr('class', 'background-highlight');
-			
-//			text = "<h4>"+feature.attributes.name + "</h4>" + feature.attributes.description;
-//			popup = new OpenLayers.Popup("popup", 
-//				feature.geometry.getBounds().getCenterLonLat(),
-//				null,
-//				text,
-//				true, this.onPopupClose
-//			);
-//			feature.popup = popup;
-//			popup.setOpacity(0.7);
-//			map.addPopup(popup);
 		},
  
 		onFeatureUnselect: function(feature) {
 			$("tr#" + feature.id.replace(/\W/g, "_")).attr('class', 'background-white');
-//			map.removePopup(feature.popup);
-//			feature.popup.destroy();
-//			feature.popup = null;
-		},
-		
-		getRandomColor: function() { 
-			var letters = '0123456789ABCDEF'.split('');
-			var color = '#';
-			for (var i = 0; i < 6; i++) {
-				color += letters[Math.round(Math.random() * 15)];
-			}			
-			return color;
 		},
 		
 		getMap: function() {			
@@ -334,7 +307,7 @@
 			var $checked = enabled ? 'checked="checked"' : '';
 			var $ul;
 			if(!$div.find('ul').length) {
-				$ul = $('<ul>').appendTo($div);					
+				$ul = $('<ul>', { 'class': 'list-bullet-none' }).appendTo($div);					
 			} else {
 				$ul = $div.find('ul');
 			}
@@ -355,11 +328,12 @@
 			})
 			
 			var $label = $('<label>', {
-				'text': $(featureTable).attr('aria-label'),			   
-				'for': '#tabs_'	+ $(featureTable).attr('id')
-			});
+				'html': $(featureTable).attr('aria-label'),			   
+				'for': '#tabs_'	+ $(featureTable).attr('id'),
+				'class': 'form-checkbox'
+			}).append($chkBox);
 			
-			$ul.append($("<li>").append($chkBox, $label));
+			$ul.append($("<li>").append($label));
 			
 			
 		},
@@ -367,12 +341,12 @@
 		/*
 		 * Create tabs
 		 */
-		addToTabs: function(featureTable, enabled, olLayerId) {	
-			
-//			var $checked = enabled ? 'checked="checked"' : '';
+		addToTabs: function(featureTable, enabled, olLayerId) {				
+
 			var $div = $("div#wet-boew-geomap-layers");
 			var $tabs = $div.find("ul.tabs");
-			var $tabsPanel = $div.find("div.tabs-panel");			
+			var $tabsPanel = $div.find("div.tabs-panel");	
+//			var $checked = enabled ? 'checked="checked"' : '';
 //			var $chkBox = $('<input type="checkbox" id="cb_' 
 //					+ $(featureTable).attr('id') + '" value="' 
 //					+ $(featureTable).attr('id') + '"' + $checked + ' />');
@@ -385,14 +359,73 @@
 //			})
 			
 			var $link = $("<a>", {
-				text: $(featureTable).attr('aria-label'),			   
-				href: '#tabs_'	+ $(featureTable).attr('id')
+				'text': $(featureTable).attr('aria-label'),			   
+				'href': '#tabs_'	+ $(featureTable).attr('id')
 			});
 			
 //			$tabs.append($("<li>").append($chkBox, $link));
 			$tabs.append($("<li>").append($link));
 						
 			$tabsPanel.append($("<div>").attr('id', 'tabs_' + $(featureTable).attr('id')).append(featureTable));			
+			
+		},
+		/*
+		 * Generate StyleMap
+		 */
+		
+		getStyleMap: function() {
+			var randomColor = pe.fn.geomap.randomColor();				
+			
+			var my_style = new OpenLayers.StyleMap({ 
+				"default": new OpenLayers.Style( 
+					{ 
+						'strokeColor': randomColor, 
+						'fillColor': randomColor,
+						'fillOpacity': 0.5,
+						'pointRadius': 5,
+						'strokeWidth': 0.5
+					}),
+				"select": new OpenLayers.Style( 
+					{ 
+						'strokeColor': "#0000ff", 
+						'fillColor': "#0000ff",
+						'fillOpacity': 0.4,
+						'pointRadius': 5,
+						'strokeWidth': 2.0
+					})
+			});
+
+			return my_style;
+		},
+		
+		createRow: function(context) {			
+			// add a row for each feature
+			var $row = $('<tr>');
+			// replace periods with underscores for jQuery!
+			$row.attr('id', context.id.replace(/\W/g, "_"));										
+			$tdTitle = $('<td>', { 'class': 'select' });
+			$tdDesc = $('<td>', { 'html': context.description });
+			$tdGeom = $('<td>', { 'class': 'geometry wb-invisible', 'html': context.geometry });
+			$link = $('<a>', {				
+				'html': context.title,
+				'href': '#'
+			}).appendTo($tdTitle);		
+			
+			$link.hover(
+				function(){
+					$(this).closest('tr').attr('class', 'background-highlight');
+					context.selectControl.unselectAll();
+					context.selectControl.select(context.feature);
+				}, 
+				function(){
+					$(this).closest('tr').attr('class', 'background-white');
+					context.selectControl.unselectAll();
+					context.selectControl.unselect(context.feature);
+				}
+			);											
+			$row.append($tdTitle, $tdDesc, $tdGeom);
+			
+			return $row;	
 			
 		},
 		
@@ -493,7 +526,8 @@
 			
 			console.log("WET-Geomap: using projection " + projMap.getCode());
 			
-			var selectControl = new OpenLayers.Control.SelectFeature();
+			var selectControl = new OpenLayers.Control.SelectFeature();			
+			
 			
 			/*
 			 * Load overlays
@@ -502,7 +536,10 @@
 			 */			
 						
 			if(wet_boew_geomap.overlays){				
-				$.each(wet_boew_geomap.overlays, function(index, layer) {					
+				$.each(wet_boew_geomap.overlays, function(index, layer) {	
+					
+					var $table = pe.fn.geomap.createTable(index, layer.title);
+					
 					if(layer.type=='wms') {
 						map.addLayer(
 							new OpenLayers.Layer.WMS(
@@ -513,38 +550,31 @@
 							)
 						);
 					} else if (layer.type=='kml') {	
-						var $table = pe.fn.geomap.createTable(index, layer.title);						
-						olLayer = new OpenLayers.Layer.Vector(
+						var olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {							
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
 								url: layer.url,
 								format: new OpenLayers.Format.KML({
-									extractStyles: true, 
+									//extractStyles: true,									
 									extractAttributes: true,
 									internalProjection: map.getProjectionObject(),
 									externalProjection: new OpenLayers.Projection('EPSG:4269')
 									})
 								}),
-								onFeatureInsert: function(feature) {
-									// add a row for each feature
-									var $row = $('<tr>');
-									// replace periods with underscores for jQuery!
-									$row.attr('id', feature.id.replace(/\W/g, "_"));
-//									$row.hover(function() {
-//										selectControl.select(olLayer.features[feature.id]);
-//									});
-									$row.append( 
-											'<td>'
-											+ feature.attributes.name 
-											+ '</td><td>' 
-											+ feature.attributes.description 
-											+ '</td><td class="wb-invisible">'
-											+ feature.geometry
-											+ '</td></tr>' 
-										);
+								onFeatureInsert: function(feature) {									
+									var context = {
+										'id': feature.id.replace(/\W/g, "_"),
+										'title': feature.attributes.name,
+										'description': feature.attributes.description,
+										'geometry': feature.attributes.geometry,
+										'feature': feature,
+										'selectControl': selectControl
+									};									
+									$row = pe.fn.geomap.createRow(context);									
 									$table.append($row);									
-								}
+								},
+								styleMap: pe.fn.geomap.getStyleMap()
 							}
 						)
 						olLayer.visibility=layer.visible;						
@@ -552,8 +582,7 @@
 						queryLayers.push(olLayer);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);						
 					} else if (layer.type=='atom') {
-						var $table = pe.fn.geomap.createTable(index, layer.title);
-						olLayer = new OpenLayers.Layer.Vector(
+						var olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: map.displayProjection,
 								strategies: [new OpenLayers.Strategy.Fixed()],
@@ -561,25 +590,19 @@
 									url: layer.url,
 									format: new OpenLayers.Format.Atom()									
 								}),
-								onFeatureInsert: function(feature) {
-									// add a row for each feature
-									var $row = $('<tr>');
-									// replace periods with underscores for jQuery!
-									$row.attr('id', feature.id.replace(/\W/g, "_"));
-//									$row.hover(function() {
-//										selectControl.select(olLayer.features[feature.id]);
-//									});
-									$row.append( 
-											'<td>'
-											+ feature.attributes.title 
-											+ '</td><td>' 
-											+ feature.attributes.description 
-											+ '</td><td class="wb-invisible">'
-											+ feature.geometry
-											+ '</td></tr>' 
-										);
+								onFeatureInsert: function(feature) {									
+									var context = {
+										'id': feature.id.replace(/\W/g, "_"),
+										'title': feature.attributes.title,
+										'description': feature.attributes.description,
+										'geometry': feature.attributes.geometry,
+										'feature': feature,
+										'selectControl': selectControl
+									};									
+									$row = pe.fn.geomap.createRow(context);									
 									$table.append($row);									
-								}
+								},
+								styleMap: pe.fn.geomap.getStyleMap()
 							}
 						)
 						olLayer.visibility=layer.visible;
@@ -587,9 +610,8 @@
 						map.addLayer(olLayer);						
 						pe.fn.geomap.createTable(olLayer);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);						
-					} else if (layer.type=='georss') {						
-						var $table = pe.fn.geomap.createTable(index, layer.title);
-						olLayer = new OpenLayers.Layer.Vector(
+					} else if (layer.type=='georss') {
+						var olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: map.displayProjection,
 								strategies: [new OpenLayers.Strategy.Fixed()],
@@ -597,25 +619,19 @@
 									url: layer.url,
 									format: new OpenLayers.Format.GeoRSS()
 								}),
-								onFeatureInsert: function(feature) {
-									// add a row for each feature
-									var $row = $('<tr>');
-									// replace periods with underscores for jQuery!
-									$row.attr('id', feature.id.replace(/\W/g, "_"));
-//									$row.hover(function() {
-//										selectControl.select(olLayer.features[feature.id]);
-//									});
-									$row.append( 
-											'<td>'
-											+ feature.attributes.title 
-											+ '</td><td>' 
-											+ feature.attributes.description 
-											+ '</td><td class="wb-invisible">'
-											+ feature.geometry
-											+ '</td></tr>' 
-										);
+								onFeatureInsert: function(feature) {									
+									var context = {
+										'id': feature.id.replace(/\W/g, "_"),
+										'title': feature.attributes.title,
+										'description': feature.attributes.description,
+										'geometry': feature.attributes.geometry,
+										'feature': feature,
+										'selectControl': selectControl
+									};									
+									$row = pe.fn.geomap.createRow(context);									
 									$table.append($row);									
-								}
+								},
+								styleMap: pe.fn.geomap.getStyleMap()
 							}
 						)
 						olLayer.visibility=layer.visible;
@@ -631,25 +647,25 @@
 			/*
 			 * Add vector features
 			 * 
-			 * TODO: turn this into a public function
+			 * TODO: turn this into a public function and add associated markup
 			 */ 
 			
-//			var vectorLayer = new OpenLayers.Layer.Vector('Features');			
-//			
-//			$.each(opts.features, function(index, feature) {
-//								
-//				var wktParser = new OpenLayers.Format.WKT({						
-//					'internalProjection': projMap, 
-//					'externalProjection': projLatLon
-//				});
-//				
-//				vectorLayer.addFeatures([										 
-//					wktParser.read(feature)															 
-//				]);						
-//				
-//			});			
-//			
-//			map.addLayer(vectorLayer);		
+			var vectorLayer = new OpenLayers.Layer.Vector('Features');			
+			
+			$.each(opts.features, function(index, feature) {
+								
+				var wktParser = new OpenLayers.Format.WKT({						
+					'internalProjection': projMap, 
+					'externalProjection': projLatLon
+				});
+				
+				vectorLayer.addFeatures([										 
+					wktParser.read(feature)															 
+				]);						
+				
+			});			
+			
+			map.addLayer(vectorLayer);		
 			
 			/*
 			 * Add tabluar data
@@ -657,32 +673,11 @@
 			 * TODO: turn this into a public function
 			 */	
 			
-			$.each(opts.tables, function(index, table) {					
-				
-				var randomColor = pe.fn.geomap.randomColor();				
-								
-				var my_style = new OpenLayers.StyleMap({ 
-					"default": new OpenLayers.Style( 
-						{ 
-							'strokeColor': randomColor, 
-							'fillColor': randomColor,
-							'fillOpacity': 0.5,
-							'pointRadius': 5,
-							'strokeWidth': 0.5
-						}),
-					"select": new OpenLayers.Style( 
-						{ 
-							'strokeColor': "#0000ff", 
-							'fillColor': "#0000ff",
-							'fillOpacity': 0.4,
-							'pointRadius': 5,
-							'strokeWidth': 2.0
-						})
-				});			
-								
+			$.each(opts.tables, function(index, table) {
+
 				$table = $("table#" + table);
 				
-				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: my_style });
+				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: pe.fn.geomap.getStyleMap() });
 												
 				var wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap, 
@@ -707,7 +702,30 @@
 					
 					var vectorFeatures = wktParser.read(wktFeature);
 					
-					$(this).parent().attr('id', vectorFeatures.id.replace(/\W/g, "_"));
+					var $tr = $(this).parent();
+					
+					$tr.attr('id', vectorFeatures.id.replace(/\W/g, "_"));
+					
+					$select = $tr.find('td.select');
+					
+					if($select.length) {
+						$link = $select.find('a');
+						if($link.length) {
+							$link.hover(function(){
+									$tr.attr('class', 'background-highlight');
+									selectControl.select(vectorFeatures);
+								}, 
+								function(){
+									$tr.attr('class', 'background-white');
+									selectControl.unselect(vectorFeatures);
+								}
+							);
+						} else { 
+							$select.append('<div style="color:red">WET-Geomap ERROR: This cell has the select class but no link was found. Please add a link to this cell.</div>');						
+						}
+					} else {
+						$tr.closest('table').before('<div style="color:red">WET-Geomap ERROR: This table contains rows that do not have a cell with the select class. Please ensure that each row has exactly one cell with the select class and that the cell includes a link.</div>');						
+					}
 										
 					tableLayer.addFeatures([vectorFeatures]);	
 				});
@@ -739,11 +757,8 @@
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			
 			// add accessibility enhancements
-			//this.accessibilize(opts.useLayerSwitcher);					
-			this.accessibilize(true);	
-			//if(opts.useLayerSwitcher) { map.addControl(new OpenLayers.Control.LayerSwitcher()) };	// needs to be added after accessibilize		
-			map.addControl(new OpenLayers.Control.LayerSwitcher());
-			
+			this.accessibilize(opts.useLayerSwitcher);					
+			if(opts.useLayerSwitcher) { map.addControl(new OpenLayers.Control.LayerSwitcher()) };
 
 			map.zoomToMaxExtent();			
 			
@@ -756,72 +771,6 @@
 				map.updateSize();
 				map.zoomToMaxExtent();
 			}
-			
-			// add a graphic layer to highlight features
-			var styleBBOX=new OpenLayers.Style({
-				'fillOpacity':0.2,
-				'fillColor':'#008000',
-				'strokeColor':'#008000',
-				'strokeWidth':1,
-				'pointRadius': 10
-			});
-			
-			var graphicLayer = new OpenLayers.Layer.Vector("graphicLayer", { styleMap:styleBBOX });
-			graphicLayer.id = "graphicLayer";
-			graphicLayer.displayInLayerSwitcher = false;
-			map.addLayer(graphicLayer);
-
-			// add a listener for mouse enter and mouse leave, focus and blur for keyboard on table feature
-			$(document).ready(function(){
-		
-				// add mouse event function
-				$(".link-hover").mouseenter(function (){
-					
-					// get the parser
-					var wktParser = new OpenLayers.Format.WKT({						
-					'internalProjection': projMap, 
-					'externalProjection': projLatLon
-					});
-					
-					// get the feature from the table and add to the map
-					var $val = $(event.target).closest('tr').find('.geometry');
-					map.getLayer("graphicLayer").addFeatures(wktParser.read($val.html()));
-					
-					// highlight the row
-					$(event.target).closest('tr').attr('class', 'background-highlight')	
-				});
-				$(".link-hover").mouseleave(function (){
-					// remove feature from map
-					map.getLayer("graphicLayer").destroyFeatures();
-					
-					// set the row background white
-					$(event.target).closest('tr').attr('class', 'background-white')
-				});
-				
-				// add keyboard event function
-				$(".link-hover").focus(function (){
-					
-					// get the parser
-					var wktParser = new OpenLayers.Format.WKT({						
-					'internalProjection': projMap, 
-					'externalProjection': projLatLon
-					});
-				
-					// get the feature fromt he table and add to the map
-					var $val = $(event.target).closest('tr').find('.geometry');
-					map.getLayer("graphicLayer").addFeatures(wktParser.read($val.html()));	
-					
-					// highlight the row
-					$(event.target).closest('tr').attr('class', 'background-highlight')			
-				});
-				$(".link-hover").blur(function (){
-					// remove feature from map
-					map.getLayer("graphicLayer").destroyFeatures();
-					
-					// set the row background white
-					$(event.target).closest('tr').attr('class', 'background-white')
-				});
-			});
 			
 			return elm;
 		} // end of exec
