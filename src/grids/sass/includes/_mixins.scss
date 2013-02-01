@@ -69,7 +69,19 @@ $default-color-gradient: true;
 $default-color-shadow: true;
 $default-color-border: false;
 
-
+$accent-1: #8d201c;
+$accent-2: #EE8310;
+$accent-3: #2a7da6;
+$accent-4: #5a306b;
+$accent-5: #285228;
+$accent-6: #154055;
+$accent-7: #555555;
+$accent-8: #f6d200;
+$accent-9: #d73d38;
+$accent-10: #418541;
+$accent-11: #87aec9;
+$accent-12: #23447e;
+$accent-13: #999999;
 
 
 @mixin colorize-base($color: $default-color, $important: false) {
