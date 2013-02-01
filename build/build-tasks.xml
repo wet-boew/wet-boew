@@ -127,6 +127,7 @@
 			<exclude name="dependencies/bookmark.js"/>
 			<exclude name="dependencies/browsertweaks.js"/>
 			<exclude name="dependencies/colorbox.js"/>
+			<exclude name="dependencies/datatables.js"/>
 			<exclude name="dependencies/easytabs.js"/>
 			<exclude name="dependencies/hashchange.js"/>
 			<exclude name="dependencies/hoverintent.js"/>

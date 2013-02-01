@@ -129,7 +129,7 @@ Toggle details,%td-toggle,Toggle all,Basculer tout,,,,,,,,,,,,,,,,,,,,,,,Alterna
 ,%td-close,Collapse all,Réduire tout,,,,,,,,,,,,,,,,,,,,,,,Colapsar todo,,,,
 ,%td-ttl-open,Expand all sections of content,Afficher toutes les sections de contenu,,,,,,,,,,,,,,,,,,,,,,,Expandir todas las secciones de contenido,,,,
 ,%td-ttl-close,Collapse all sections of content,Réduire toutes les sections de contenu,,,,,,,,,,,,,,,,,,,,,,,Colapsar todas las secciones de contenido,,,,
-DataTables,%sSortAscending,: activate to sort column ascending,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Table enhancement,%sSortAscending,: activate to sort column ascending,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,%sSortDescending,: activate to sort column descending,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,%sEmptyTable,No data available in table,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,%sInfo,Showing _START_ to _END_ of _TOTAL_ entries,,,,,,,,,,,,,,,,,,,,,,,,,,,,
