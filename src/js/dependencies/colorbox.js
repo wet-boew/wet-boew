@@ -1,4 +1,4 @@
-/*
+/*!
 	jQuery ColorBox v1.3.27
 	(c) 2013 Jack Moore - jacklmoore.com/colorbox
 	updated: 2013-01-23
