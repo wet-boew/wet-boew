@@ -669,7 +669,15 @@
 							'fillOpacity': 0.5,
 							'pointRadius': 5,
 							'strokeWidth': 0.5
-						}) 
+						}),
+					"select": new OpenLayers.Style( 
+						{ 
+							'strokeColor': "#0000ff", 
+							'fillColor': "#0000ff",
+							'fillOpacity': 0.4,
+							'pointRadius': 5,
+							'strokeWidth': 2.0
+						})
 				});			
 								
 				$table = $("table#" + table);
@@ -697,12 +705,15 @@
 						wktFeature = $(feature).text();
 					}
 					
-					tableLayer.addFeatures([										 
-						wktParser.read(wktFeature)															 
-					]);	
+					var vectorFeatures = wktParser.read(wktFeature);
+					
+					$(this).parent().attr('id', vectorFeatures.id.replace(/\W/g, "_"));
+										
+					tableLayer.addFeatures([vectorFeatures]);	
 				});
 				
 				map.addLayer(tableLayer);
+				queryLayers.push(tableLayer);
 				
 				pe.fn.geomap.addToLegend($table, true, tableLayer.id);
 				
