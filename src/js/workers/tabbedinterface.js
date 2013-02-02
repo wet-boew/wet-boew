@@ -335,6 +335,26 @@
 				}
 			});
 
+			// Trigger panel change if a link within a panel is clicked and matches a tab
+			$panels.find('a').filter('[href^="#"]').each(function () {
+				var $tab,
+					$this = $(this),
+					href = $this.attr('href'),
+					hash = href.substring(href.indexOf('#'));
+				if (hash.length > 1) {
+					$tab = $tabs.filter('[href="' + hash + '"]');
+					if ($tab.length) {
+						$this.off('click.hlinks vclick.hlinks').on('click vclick', function (e) {
+							$tab.trigger('click');
+							if (opts.cycle) {
+								stopCycle();
+							}
+							return false;
+						});
+					}
+				}
+			});
+
 			return elm.attr('class', elm.attr('class').replace(/\bwidget-style-/, "style-"));
 		}, // end of exec
 
