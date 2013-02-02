@@ -25,7 +25,7 @@
 
 #base-bc {
 	font-size: 85%;
-	color:#555;
+	color: #555;
 	ol {
 		line-height: 1.57em;
 		list-style-type: none;
@@ -45,17 +45,17 @@
 		white-space: nowrap;
 	}
 	a {
-		color:#295376;
+		color: #295376;
 		text-decoration: none;
 		&:hover,&:focus,&:active {
-			color:#295376;
+			color: #295376;
 			text-decoration: underline;
 		}
 	}
 }
 
 #base-bc-in {
-	background:#FFF;
+	background: #FFF;
 }
 
 #base-date-mod {

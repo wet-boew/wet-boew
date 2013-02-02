@@ -10,7 +10,7 @@ body {
 	-webkit-text-size-adjust: none;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 80%;
-	color:#333;
+	color: #333;
 }
 
 [id|="wb-body-sec"] {
@@ -22,23 +22,23 @@ body {
 
 #base-psnb, #base-srchbx {
 	h2 a {
-		color:#000;
+		color: #000;
 		text-decoration: none;
 	}
 }
 
 [id|="wb-body"] {
-	background:#fff !important;
+	background: #fff !important;
 }
 
 #base-title {
-	background:#CF3F0E;
+	background: #CF3F0E;
 	min-height: 40px;
 	font-weight: 700;
 	padding: 2px 5px;
 	a {
 		font-size: 1.5em;
-		color:#fff !important;
+		color: #fff !important;
 		text-shadow: 0 1px 1px #044062;
 		text-decoration: none;
 	}
@@ -188,9 +188,9 @@ img {
 
 #base-fullhd-lang {
 	a {
-		color:#222;
+		color: #222;
 		text-decoration: none;
-		background:#eee;
+		background: #eee;
 		border: 1px solid #ddd;
 		@include border-radius(2px);
 		float: right;
@@ -212,13 +212,13 @@ img {
 	border-top: 1px solid #CCC;
 	h2 {
 		text-shadow: 0 1px 0 #FFF;
-		background-color:#EEEEEE;
+		background-color: #EEEEEE;
 		@include background-image(linear-gradient(#FFFFFF, #F1F1F1));
 		&:hover, &:focus, &:active {
-			background-color:#DFDFDF;
+			background-color: #DFDFDF;
 			@include background-image(linear-gradient(#F6F6F6, #E0E0E0));
 		}
-		color:#222;
+		color: #222;
 		text-align: center;
 		font-size: 1em;
 		text-transform: capitalize;
@@ -234,11 +234,11 @@ img {
 }
 
 #base-bnr .ui-navbar a.ui-btn-active {
-	background-color:#DFDFDF;
+	background-color: #DFDFDF;
 	@include background-image(linear-gradient(#F6F6F6, #E0E0E0));
 	border: 1px solid #CCC;
 	border-right: none;
-	color:#222;
+	color: #222;
 	text-shadow: none;
 }
 
@@ -269,14 +269,14 @@ img {
 	a {
 		border-top: 1px solid #ccc;
 		border-bottom: 1px solid #ccc;
-		color:#222;
+		color: #222;
 		text-decoration: none;
 		display: block;
 		position: relative;
 		z-index: 200;
 		font-weight: 700;
 		text-align: center;
-		background:#eee;
+		background: #eee;
 		padding: 0.8em 0 0.9em;
 	}
 	ul {
@@ -287,7 +287,7 @@ img {
 		padding: 0;
 	}
 	li {
-		color:#333;
+		color: #333;
 		text-shadow: 0 1px 0 #fff;
 		position: relative;
 		z-index: 1;
@@ -305,7 +305,7 @@ img {
 }
 
 #base-bnr {
-	background:#4E7EB7;
+	background: #4E7EB7;
 }
 
 #base-date-mod, #wb-head, #base-sft-in, #jqm-wb-mb #base-bc-in ol {
@@ -460,7 +460,7 @@ img {
 		border-bottom: none;
 	}
 	h2 {
-		color:#555;
+		color: #555;
 	}
 	div.ui-collapsible-set + h2 {
 		border-top: 3px groove #fff;
@@ -478,7 +478,7 @@ img {
 		@include border-radius(0.6em);//TODO: Rest of the border-radius declarations are px, why is this in ems
 	}
 	#base-bc-in {
-		background:#DFDFDD;
+		background: #DFDFDD;
 		@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
 		color: #555;
 		@include border-radius(0);
@@ -578,7 +578,7 @@ a:active {
 			border: 1px solid #222;
 		}
 		a {
-			color:#222;
+			color: #222;
 			padding: 0.45em 0.79em;
 		}
 	}
@@ -606,7 +606,7 @@ a:active {
 	#base-srchbx form {
 		border-bottom: 1px solid #999;
 		text-align: center;
-		background:#1A3D6C;
+		background: #1A3D6C;
 		padding: 10px 0;
 	}
 }

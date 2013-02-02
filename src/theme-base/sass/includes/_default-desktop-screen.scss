@@ -23,18 +23,18 @@ body {
 }
 
 #wb-head-in {
-	background-color:#ccc;
+	background-color: #ccc;
 }
 
 #wb-core {
-	background:#eee;
+	background: #eee;
 }
 
 #wb-core-in {
 	overflow: visible !important;
 	position: relative;
 	padding-top: 5px;
-	background:#FFF;
+	background: #FFF;
 }
 
 #base-bnr {
@@ -44,7 +44,7 @@ body {
 
 #base-bnr-in {
 	position: relative;
-	background:#cf3f0e;
+	background: #cf3f0e;
 }
 
 #wb-main-in {
@@ -80,7 +80,7 @@ img {
 }
 
 h1 {
-	color:#333;
+	color: #333;
 	font-weight: 400;
 	border-bottom: 1px solid #333;
 	font-size: 1.8em;
@@ -121,9 +121,9 @@ a {
 }
 
 #base-fullhd {
-	background:#555;
+	background: #555;
 	font-size: 0.9em;
-	color:#FFF;
+	color: #FFF;
 }
 
 #base-fullhd {
@@ -139,7 +139,7 @@ a {
 	}
 	a {
 		border-left: 1px solid #fff;
-		color:#fff;
+		color: #fff;
 		display: block;
 		text-decoration: none;
 		padding: 0 1em;
@@ -162,7 +162,7 @@ a {
 }
 
 #base-fullhd-in {
-	background:#333;
+	background: #333;
 }
 
 #base-title {
@@ -174,10 +174,10 @@ a {
 }
 
 #base-title, #base-title a {
-	color:#fff;
+	color: #fff;
 	font-size: 1.52em;
 	font-family: Arial, Helvetica, sans-serif;
-	text-shadow:#333 1px 1px 1px;
+	text-shadow: #333 1px 1px 1px;
 }
 
 #base-title-in {
@@ -210,20 +210,20 @@ a {
 		overflow: hidden;
 	}
 	#base-srch {
-		color:#444;
+		color: #444;
 		border: 1px solid #ccc;
 		@include border-radius(2px);
 		margin-left: 0;
 		width: 218px;
 		@include box-shadow(none);
-		background:#fff;
+		background: #fff;
 		padding: 2px 0;
 		&:focus,&:active {
-			background:#f0fcff;
+			background: #f0fcff;
 		}
 	}
 	a, a:visited {
-		color:#fff;
+		color: #fff;
 		text-decoration: none;
 		font-size: 80%;
 		padding: 2px;
@@ -231,7 +231,7 @@ a {
 }
 
 #base-srch-submit {
-	background:#ccc url(../images/search-button.gif) 0 0 repeat-x;
+	background: #ccc url(../images/search-button.gif) 0 0 repeat-x;
 	-webkit-appearance: none;
 	min-height: 24px;
 	border:{
@@ -241,14 +241,14 @@ a {
 		left: 1px solid #fff;
 	}
 	@include border-radius(2px);
-	color:#333;
+	color: #333;
 	text-shadow: 0 1px 0 #eee;
 	font-weight: 400;
 	@include box-shadow(none);
 	padding: 2px 6px;
 	display: inline;
 	&:focus,&:hover {
-		background:#ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
+		background: #ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
 		text-shadow: 0 1px 0 #ddd;
 		@include box-shadow(none);
 		border:{
@@ -284,7 +284,7 @@ a {
 			}
 		}
 		.nav-current {
-			background:#333;
+			background: #333;
 		}
 		.mb-active a.mb-has-sm {
 			&:hover, &:link, &:visited {
@@ -294,7 +294,7 @@ a {
 		}
 	}
 	.mb-menu, .mb-menu li {
-		background:#555;
+		background: #555;
 	}
 	.mb-menu {
 

@@ -54,7 +54,7 @@ body {
 			&, &.ui-link {
 				padding: 4px 5px;
 				&.nav-current {
-					color:#0F315B;
+					color: #0F315B;
 					padding: 3px 4px;
 				}
 			}
@@ -125,10 +125,10 @@ body {
 }
 
 #base-sft {
-	background:#cf3f0e;
+	background: #cf3f0e;
 	font-family: Arial, Helvetica, sans-serif;
 	a, span.link {
-		color:#222;
+		color: #222;
 	}
 	li a, li span.link {
 		line-height: 1.75em;
@@ -142,7 +142,7 @@ body {
 }
 
 #base-sft-in {
-	background:#CCC;
+	background: #CCC;
 	padding: 20px 0;
 	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
 		position: static;
@@ -150,12 +150,12 @@ body {
 }
 
 #base-fullft {
-	background:#333;
-	color:#FFF;
+	background: #333;
+	color: #FFF;
 }
 
 #base-fullft-in {
-	background:#666;
+	background: #666;
 }
 
 /* Right to left (RTL) CSS */
