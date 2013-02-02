@@ -13,16 +13,88 @@ body {
 	padding: 0;
 }
 
-#wb-sec, #wb-sup {
+img {
+	border: none;
+}
+
+h1 {
+	color: #333;
+	border-bottom: 1px solid #333;
+	font: {
+		weight: 400;
+		size: 1.8em;
+	}
+	margin: {
+		bottom: 10px !important;
+		top: 0;
+	}
+}
+
+a {
+	@extend %base-default-desktop-screen-link;
+}
+
+%base-default-desktop-screen-inline-z-index1 {
 	z-index: 1;
 	display: inline;
 }
 
-#wb-head, #wb-head-in, #wb-foot, #wb-foot-in, #base-fullhd, #base-bnr, #base-bc, #base-fullft, #base-sft, #base-fullhd-in, #base-bnr-in, #base-bc-in, #base-fullft-in, #base-sft-in {
+#wb-sec {
+	@extend %base-default-desktop-screen-inline-z-index1;
+	@extend %base-default-desktop-screen-float-left;
+}
+
+#wb-sup {
+	@extend %base-default-desktop-screen-inline-z-index1;
+	@extend %base-default-desktop-screen-float-right;
+	@extend %base-default-desktop-screen-position-relative;
+}
+
+%base-default-desktop-screen-overflow-hidden {
 	overflow: hidden;
 }
 
+#wb-head {
+	@extend %base-default-desktop-screen-overflow-hidden;
+}
+
+#wb-foot {
+	@extend %base-default-desktop-screen-overflow-hidden;
+	a {
+		@extend %base-default-desktop-screen-psuedo-underline;
+	}
+}
+
+#wb-foot-in {
+	@extend %base-default-desktop-screen-overflow-hidden;
+}
+
+#base-bc {
+	@extend %base-default-desktop-screen-overflow-hidden;
+}
+
+#base-fullft {
+	@extend %base-default-desktop-screen-overflow-hidden;
+}
+
+#base-sft {
+	@extend %base-default-desktop-screen-overflow-hidden;
+}
+
+#base-bc-in {
+	@extend %base-default-desktop-screen-overflow-hidden;
+}
+
+#base-fullft-in {
+	@extend %base-default-desktop-screen-overflow-hidden;
+}
+
+#base-sft-in {
+	@extend %base-default-desktop-screen-overflow-hidden;
+}
+
 #wb-head-in {
+	@extend %base-default-desktop-screen-overflow-hidden;
 	background-color: #ccc;
 }
 
@@ -31,32 +103,54 @@ body {
 }
 
 #wb-core-in {
-	overflow: visible !important;
-	position: relative;
-	padding-top: 5px;
+	@extend %base-default-desktop-screen-position-relative;
 	background: #FFF;
+	overflow: visible !important;
+	padding-top: 5px;
+	&:after {
+		content:".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+
+%base-default-desktop-screen-position-relative {
+	position: relative;
 }
 
 #base-bnr {
-	position: relative;
+	@extend %base-default-desktop-screen-position-relative;
+	@extend %base-default-desktop-screen-overflow-hidden;
 	z-index: 501 !important;
 }
 
 #base-bnr-in {
-	position: relative;
+	@extend %base-default-desktop-screen-position-relative;
+	@extend %base-default-desktop-screen-overflow-hidden;
 	background: #cf3f0e;
 }
 
 #wb-main-in {
-	padding-top: 1px;
-	padding-bottom: 2.5em;
+	padding: {
+		top: 1px;
+		bottom: 2.5em; //TODO: mixed px and ems
+	}
 	a {
-		@extend %base-default-link;
+		@extend %base-default-desktop-screen-link;
 	}
 }
 
-#wb-body-sec #wb-main {
+%base-default-desktop-screen-float-right {
 	float: right;
+}
+
+
+#wb-body-sec {
+	#wb-main {
+		@extend %base-default-desktop-screen-float-right;
+	}
 }
 
 #wb-sec-in {
@@ -64,7 +158,14 @@ body {
 }
 
 #base-title {
-	&:hover,&:focus,&:active {
+	@extend %base-default-desktop-screen-title-font;
+	display: table-row;
+	a {
+		@extend %base-default-desktop-screen-title-font;
+		display: inline-block;
+		margin-left: 10px;
+	}
+	&:hover, &:focus, &:active {
 		text-decoration: underline;
 	}
 }
@@ -75,37 +176,24 @@ body {
 	right: 10px;
 }
 
-img {
-	border: none;
-}
-
-h1 {
-	color: #333;
-	font-weight: 400;
-	border-bottom: 1px solid #333;
-	font-size: 1.8em;
-	margin-bottom: 10px !important;
-	margin-top: 0;
-}
-
-#wb-core-in:after {
-	content:".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-}
-
-#wb-body #wb-main, #wb-body-sec-sup #wb-main, #wb-sec {
+%base-default-desktop-screen-float-left {
 	float: left;
 }
 
-#wb-body-sec-sup #wb-main, #wb-sup {
-	float: right;
-	position: relative;
+#wb-body {
+	#wb-main {
+		@extend %base-default-desktop-screen-float-left;
+	}
 }
 
-%base-default-link {
+#wb-body-sec-sup {
+	#wb-main {
+		@extend %base-default-desktop-screen-float-right;
+		@extend %base-default-desktop-screen-position-relative;
+	}
+}
+
+%base-default-desktop-screen-link {
 	&, &.ui-link {
 		&:link {
 			color: #295376;
@@ -116,17 +204,11 @@ h1 {
 	}
 }
 
-a {
-	@extend %base-default-link;
-}
-
 #base-fullhd {
+	@extend %base-default-desktop-screen-overflow-hidden;
 	background: #555;
 	font-size: 0.9em;
 	color: #FFF;
-}
-
-#base-fullhd {
 	ul {
 		list-style-type: none;
 		float: right;
@@ -135,45 +217,38 @@ a {
 		li {
 			float: left;
 			padding: 13px 0;
+			&#base-fullhd-lang {
+				a {
+					padding-right: 10px;
+					margin-right: 1px;
+					text-transform: capitalize;
+				}
+			}
 		}
 	}
 	a {
+		@extend %base-default-desktop-screen-psuedo-underline;
 		border-left: 1px solid #fff;
 		color: #fff;
 		display: block;
 		text-decoration: none;
 		padding: 0 1em;
 	}
-	li:first-child a {
-		border-left: none;
-	}
-}
-
-#base-fullhd {
-	ul {
-		li#base-fullhd-lang {
+	li {
+		&:first-child {
 			a {
-				padding-right: 10px;
-				margin-right: 1px;
-				text-transform: capitalize;
+				border-left: none;
 			}
 		}
 	}
 }
 
 #base-fullhd-in {
+	@extend %base-default-desktop-screen-overflow-hidden;
 	background: #333;
 }
 
-#base-title {
-	display: table-row;
-	a {
-		display: inline-block;
-		margin-left: 10px;
-	}
-}
-
-#base-title, #base-title a {
+%base-default-desktop-screen-title-font {
 	color: #fff;
 	font-size: 1.52em;
 	font-family: Arial, Helvetica, sans-serif;
@@ -187,14 +262,31 @@ a {
 	padding: 3px 0;
 }
 
+%base-default-desktop-screen-border-radius-2px {
+	@include border-radius(2px);
+}
+
+%base-default-desktop-screen-box-shadow-none {
+	@include box-shadow(none);
+}
+
 #base-srchbx {
 	position: absolute;
 	text-align: right;
 	right: 0;
-	bottom:-1px;
+	bottom: -1px;
 	width: auto;
 	z-index: 100;
 	padding: 11px 5px 6px 12px;
+	a {
+		@extend %base-default-desktop-screen-psuedo-underline;
+		&, &:visited {
+			color: #fff;
+			text-decoration: none;
+			font-size: 80%;
+			padding: 2px;
+		}
+	}
 	input {
 		margin: 0 0 1px;
 		min-height: 0;
@@ -204,30 +296,24 @@ a {
 	}
 	label {
 		position: absolute;
-		clip: rect(1px, 1px, 1px, 1px);
+		clip: rect(1px, 1px, 1px, 1px);//TODO: Should have an IE equivalant without commas
 		height: 1px;
 		width: 1px;
 		overflow: hidden;
 	}
 	#base-srch {
-		color: #444;
-		border: 1px solid #ccc;
-		@include border-radius(2px);
-		margin-left: 0;
-		width: 218px;
-		@include box-shadow(none);
 		background: #fff;
+		border: 1px solid #ccc;
+		@extend %base-default-desktop-screen-border-radius-2px;
+		@extend %base-default-desktop-screen-box-shadow-none;
+		color: #444;
+		margin-left: 0;
 		padding: 2px 0;
-		&:focus,&:active {
+		width: 218px;
+		&:focus, &:active {
 			background: #f0fcff;
 		}
 	}
-	a, a:visited {
-		color: #fff;
-		text-decoration: none;
-		font-size: 80%;
-		padding: 2px;
-	}	
 }
 
 #base-srch-submit {
@@ -240,17 +326,17 @@ a {
 		top: 1px solid #fff;
 		left: 1px solid #fff;
 	}
-	@include border-radius(2px);
+	@extend %base-default-desktop-screen-border-radius-2px;
+	@extend %base-default-desktop-screen-box-shadow-none;
 	color: #333;
-	text-shadow: 0 1px 0 #eee;
+	text-shadow: 0 1px 0 #eee;//TODO: Use mixin
 	font-weight: 400;
-	@include box-shadow(none);
 	padding: 2px 6px;
 	display: inline;
-	&:focus,&:hover {
+	&:focus, &:hover {
 		background: #ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
-		text-shadow: 0 1px 0 #ddd;
-		@include box-shadow(none);
+		text-shadow: 0 1px 0 #ddd;//TODO: Use mixin
+		@extend %base-default-desktop-screen-box-shadow-none;
 		border:{
 			bottom: 1px solid #999;
 			right: 1px solid #999;
@@ -264,15 +350,15 @@ a {
 	}
 }
 
-#base-subsite {
-	a:hover, a:focus, a:active {
+%base-default-desktop-screen-psuedo-underline {
+	&:hover, &:focus, &:active {
 		text-decoration: underline;
 	}
 }
 
-#base-fullhd, #base-srchbx, #wb-foot {
-	a:hover, a:focus, a:active {
-		text-decoration: underline;
+#base-subsite {
+	a {
+		@extend %base-default-desktop-screen-psuedo-underline;
 	}
 }
 
@@ -286,18 +372,21 @@ a {
 		.nav-current {
 			background: #333;
 		}
-		.mb-active a.mb-has-sm {
-			&:hover, &:link, &:visited {
-			    background-color: #AAAAAA;
-				color: #000000;
+		.mb-active {
+			a {
+				&.mb-has-sm {
+					&:hover, &:link, &:visited {
+						background-color: #AAAAAA;
+						color: #000000;
+					}
+				}
 			}
 		}
 	}
-	.mb-menu, .mb-menu li {
-		background: #555;
-	}
 	.mb-menu {
-
+		&, & li {
+			background: #555;
+		}
 	}
 }
 
@@ -309,9 +398,15 @@ a {
 
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
-	#wb-body, #wb-body-sec {
+	#wb-body {
 		#wb-main {
-			float: left;
+			@extend %base-default-desktop-screen-float-left;
+		}
+	}
+	
+	#wb-body-sec {
+		#wb-main {
+			@extend %base-default-desktop-screen-float-left;
 		}
 	}
 
@@ -325,34 +420,51 @@ a {
 	}
 
 	#wb-sec {
-		float: right;
+		@extend %base-default-desktop-screen-float-right;
 	}
 
-	#wb-body-sec-sup #wb-main, #wb-sup {
-		float: left;
+	#wb-body-sec-sup {
+		#wb-main {
+			@extend %base-default-desktop-screen-float-left;
+		}
+	}
+	#wb-sup {
+		@extend %base-default-desktop-screen-float-left;
 	}
 
 	#base-fullhd {
 		ul {
-			float: left;
+			@extend %base-default-desktop-screen-float-left;
 			li {
 				float: right;
-				&#base-fullhd-lang a {
-					padding-right: 0;
-					padding-left: 10px;
-					margin-right: auto;
-					margin-left: 1px;
+				&#base-fullhd-lang {
+					a {
+						padding: {
+							right: 0;
+							left: 10px;
+						}
+						margin: {
+							right: auto;
+							left: 1px;
+						}
+					}
 				}
 			}
 		}
 
 		a {
-			border-left: none;
-			border-right: 1px solid #fff;
+			border: {
+				left: none;
+				right: 1px solid #fff;
+			}
 		}
 
-		li:first-child a {
-			border-right: none;
+		li {
+			&:first-child {
+				a {
+					border-right: none;
+				}
+			}
 		}
 	}
 
