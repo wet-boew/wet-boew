@@ -2,7 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#base-title, #base-title a{
+#base-title, #base-title a {
 	font-size: 16pt;
 	text-decoration: none;
 	color:#000;
@@ -11,70 +11,70 @@
 	top: 9px;
 }
 
-#wb-main-in{
+#wb-main-in {
 	border-top: 3px outset #666;
 	padding-top: 5px;
 }
 
-h1{
+h1 {
 	font-size: 140%;
 	margin: 0 !important;
 }
 
-h2{
+h2 {
 	font-size: 125%;
 }
 
-h3{
+h3 {
 	font-size: 120%;
 }
 
-h4{
+h4 {
 	font-size: 115%;
 }
 
-h5{
+h5 {
 	font-size: 110%;
 }
 
-h6{
+h6 {
 	font-size: 100%;
 }
 
-#base-bc{
+#base-bc {
 	min-height: inherit;
 	height: auto;
-	ol{
+	ol {
 		width: 100%;
 		margin: 0;
 		padding: 0;
 	}
-	li{
+	li {
 		background: none;
 		padding: 0;
-		&:before{
+		&:before {
 			content:" > ";
 		}
-		&:first-child:before{
+		&:first-child:before {
 			content:"";
 		}
 	}
-	a{
+	a {
 		padding-left: 0;
 		background: none;
 	}
 }
 
-#wb-sec, #wb-sup, #wb-fullhd ul, #base-srchbx, #base-psnb, #wb-foot{
+#wb-sec, #wb-sup, #wb-fullhd ul, #base-srchbx, #base-psnb, #wb-foot {
 	display: none;
 }
 
-#base-date-mod{
+#base-date-mod {
 	float: right;
 	display: inline;
 }
 
-.clear{
+.clear {
 	clear: both;
 	display: block;
 	height: 0 !important;

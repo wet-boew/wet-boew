@@ -5,49 +5,49 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 
-html{
+html {
 	overflow-y: scroll;
 }
 
-body{
+body {
 	padding: 0;
 }
 
-#wb-sec, #wb-sup{
+#wb-sec, #wb-sup {
 	z-index: 1;
 	display: inline;
 }
 
-#wb-head, #wb-head-in, #wb-foot, #wb-foot-in, #base-fullhd, #base-bnr, #base-bc, #base-fullft, #base-sft, #base-fullhd-in, #base-bnr-in, #base-bc-in, #base-fullft-in, #base-sft-in{
+#wb-head, #wb-head-in, #wb-foot, #wb-foot-in, #base-fullhd, #base-bnr, #base-bc, #base-fullft, #base-sft, #base-fullhd-in, #base-bnr-in, #base-bc-in, #base-fullft-in, #base-sft-in {
 	overflow: hidden;
 }
 
-#wb-head-in{
+#wb-head-in {
 	background-color:#ccc;
 }
 
-#wb-core{
+#wb-core {
 	background:#eee;
 }
 
-#wb-core-in{
+#wb-core-in {
 	overflow: visible !important;
 	position: relative;
 	padding-top: 5px;
 	background:#FFF;
 }
 
-#base-bnr{
+#base-bnr {
 	position: relative;
 	z-index: 501 !important;
 }
 
-#base-bnr-in{
+#base-bnr-in {
 	position: relative;
 	background:#cf3f0e;
 }
 
-#wb-main-in{
+#wb-main-in {
 	padding-top: 1px;
 	padding-bottom: 2.5em;
 	a {
@@ -55,31 +55,31 @@ body{
 	}
 }
 
-#wb-body-sec #wb-main{
+#wb-body-sec #wb-main {
 	float: right;
 }
 
-#wb-sec-in{
+#wb-sec-in {
 	margin: 7px 0 0 10px;
 }
 
-#base-title{
-	&:hover,&:focus,&:active{
+#base-title {
+	&:hover,&:focus,&:active {
 		text-decoration: underline;
 	}
 }
 
-#base-date-mod{
+#base-date-mod {
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
 }
 
-img{
+img {
 	border: none;
 }
 
-h1{
+h1 {
 	color:#333;
 	font-weight: 400;
 	border-bottom: 1px solid #333;
@@ -88,7 +88,7 @@ h1{
 	margin-top: 0;
 }
 
-#wb-core-in:after{
+#wb-core-in:after {
 	content:".";
 	display: block;
 	height: 0;
@@ -96,11 +96,11 @@ h1{
 	visibility: hidden;
 }
 
-#wb-body #wb-main, #wb-body-sec-sup #wb-main, #wb-sec{
+#wb-body #wb-main, #wb-body-sec-sup #wb-main, #wb-sec {
 	float: left;
 }
 
-#wb-body-sec-sup #wb-main, #wb-sup{
+#wb-body-sec-sup #wb-main, #wb-sup {
 	float: right;
 	position: relative;
 }
@@ -120,31 +120,31 @@ a {
 	@extend %base-default-link;
 }
 
-#base-fullhd{
+#base-fullhd {
 	background:#555;
 	font-size: 0.9em;
 	color:#FFF;
 }
 
-#base-fullhd{
-	ul{
+#base-fullhd {
+	ul {
 		list-style-type: none;
 		float: right;
 		margin: 0;
 		padding: 0;
-		li{
+		li {
 			float: left;
 			padding: 13px 0;
 		}
 	}
-	a{
+	a {
 		border-left: 1px solid #fff;
 		color:#fff;
 		display: block;
 		text-decoration: none;
 		padding: 0 1em;
 	}
-	li:first-child a{
+	li:first-child a {
 		border-left: none;
 	}
 }
@@ -161,33 +161,33 @@ a {
 	}
 }
 
-#base-fullhd-in{
+#base-fullhd-in {
 	background:#333;
 }
 
-#base-title{
+#base-title {
 	display: table-row;
-	a{
+	a {
 		display: inline-block;
 		margin-left: 10px;
 	}
 }
 
-#base-title, #base-title a{
+#base-title, #base-title a {
 	color:#fff;
 	font-size: 1.52em;
 	font-family: Arial, Helvetica, sans-serif;
 	text-shadow:#333 1px 1px 1px;
 }
 
-#base-title-in{
+#base-title-in {
 	display: table-cell;
 	vertical-align: middle;
 	margin: 0;
 	padding: 3px 0;
 }
 
-#base-srchbx{
+#base-srchbx {
 	position: absolute;
 	text-align: right;
 	right: 0;
@@ -195,21 +195,21 @@ a {
 	width: auto;
 	z-index: 100;
 	padding: 11px 5px 6px 12px;
-	input{
+	input {
 		margin: 0 0 1px;
 		min-height: 0;
 	}
-	form{
+	form {
 		margin: 0;
 	}
-	label{
+	label {
 		position: absolute;
 		clip: rect(1px, 1px, 1px, 1px);
 		height: 1px;
 		width: 1px;
 		overflow: hidden;
 	}
-	#base-srch{
+	#base-srch {
 		color:#444;
 		border: 1px solid #ccc;
 		@include border-radius(2px);
@@ -218,11 +218,11 @@ a {
 		@include box-shadow(none);
 		background:#fff;
 		padding: 2px 0;
-		&:focus,&:active{
+		&:focus,&:active {
 			background:#f0fcff;
 		}
 	}
-	a, a:visited{
+	a, a:visited {
 		color:#fff;
 		text-decoration: none;
 		font-size: 80%;
@@ -230,7 +230,7 @@ a {
 	}	
 }
 
-#base-srch-submit{
+#base-srch-submit {
 	background:#ccc url(../images/search-button.gif) 0 0 repeat-x;
 	-webkit-appearance: none;
 	min-height: 24px;
@@ -247,7 +247,7 @@ a {
 	@include box-shadow(none);
 	padding: 2px 6px;
 	display: inline;
-	&:focus,&:hover{
+	&:focus,&:hover {
 		background:#ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
 		text-shadow: 0 1px 0 #ddd;
 		@include box-shadow(none);
@@ -258,20 +258,20 @@ a {
 			left: 1px solid #fff;
 		}
 	}
-	&:active{
+	&:active {
 		@include box-shadow(inset 0 0 5px 2px #999, 0 0 0 0 #eee);
 		border: 1px solid #999;
 	}
 }
 
-#base-subsite{
-	a:hover, a:focus, a:active{
+#base-subsite {
+	a:hover, a:focus, a:active {
 		text-decoration: underline;
 	}
 }
 
-#base-fullhd, #base-srchbx, #wb-foot{
-	a:hover, a:focus, a:active{
+#base-fullhd, #base-srchbx, #wb-foot {
+	a:hover, a:focus, a:active {
 		text-decoration: underline;
 	}
 }
@@ -279,7 +279,7 @@ a {
 #base-psnb {
 	.mb-menu {
 		.mb-sm-open {
-			li, .nav-current{
+			li, .nav-current {
 				background: none;
 			}
 		}
@@ -302,7 +302,7 @@ a {
 }
 
 @-moz-document url-prefix() {
-	#base-srch-submit{
+	#base-srch-submit {
 		min-height: 22px;
 	}
 }
