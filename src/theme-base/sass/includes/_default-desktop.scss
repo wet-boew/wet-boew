@@ -4,22 +4,39 @@
  */
 @import "compass/css3/text-shadow";
 
-[class*="ui-body-"], [class*="ui-overlay-"] {
+%base-default-desktop-text-shadow-none {
 	@include text-shadow(none);
 }
 
-[class*="ui-body-"] .ui-link {
-	font-weight: normal;
+[class*="ui-overlay-"] {
+	@extend %base-default-desktop-text-shadow-none;
 }
- 
-#base-psnb, #base-srchbx {
-	h2 {
+
+[class*="ui-body-"] {
+	@extend %base-default-desktop-text-shadow-none;
+	.ui-link {
+		font-weight: normal;
+	}
+}
+
+%base-default-desktop-hidden-clip {
 		position: absolute;
-		clip: rect(1px, 1px, 1px, 1px);
+		clip: rect(1px, 1px, 1px, 1px);//TODO: Should have old IE class withouth commas
 		height: 0 !important;
 		width: 0 !important;
 		overflow: hidden !important;
 		margin: 0 !important;
+}
+		
+#base-psnb {
+	h2 {
+		@extend %base-default-desktop-hidden-clip;
+	}
+}
+
+#base-srchbx {
+	h2 {
+		@extend %base-default-desktop-hidden-clip;
 	}
 }
 
@@ -47,7 +64,7 @@
 	a {
 		color: #295376;
 		text-decoration: none;
-		&:hover,&:focus,&:active {
+		&:hover, &:focus, &:active {
 			color: #295376;
 			text-decoration: underline;
 		}
@@ -62,6 +79,24 @@
 	margin: 0;
 }
 
-#base-bnr .ui-navbar, #jqm-wb-mb, #jqm-wb-search, .ui-loader {
+%base-default-desktop-display-none {
 	display: none !important;
+}
+
+#base-bnr {
+	.ui-navbar {
+		@extend %base-default-desktop-display-none;
+	}
+}
+
+#jqm-wb-mb {
+	@extend %base-default-desktop-display-none;
+}
+
+#jqm-wb-search {
+	@extend %base-default-desktop-display-none;
+}
+
+.ui-loader {
+	@extend %base-default-desktop-display-none;
 }
