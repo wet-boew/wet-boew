@@ -10,29 +10,39 @@ body {
 	margin: 0;
 }
 
-.wb-sec-def {
-	h3.top-section {
-		a {
-			&, &.ui-link {
-				background: #333;
-				color: #FFF;
-				padding-top: 5px;
-				padding-bottom: 5px;
-				font-size: 1.1em;
-				&:hover, &:focus, &:active {
+.wb-sec-def {//TODO: Highly nested class, any cleanup possible?
+	a {
+		&.nav-current {
+			border: 1px solid #777;
+			@include border-radius(2px);
+		}
+	}
+	h3 {
+		@extend %base-default-screen-wb-sec-def-child-a-plus-ui-link;
+		@extend %base-default-screen-wb-sec-def-child-fonts-a-plus-ui-link;
+		&.top-section {
+			a {
+				&, &.ui-link {
+					background: #333;
 					color: #FFF;
-					text-decoration: underline;
-				}
-				&.nav-current {
-					color: #FFF;
-					padding-top: 4px;
-					padding-bottom: 4px;
-					background: #0f315b;
+					padding-top: 5px;
+					padding-bottom: 5px;
+					font-size: 1.1em;
+					&:hover, &:focus, &:active {
+						color: #FFF;
+						text-decoration: underline;
+					}
+					&.nav-current {
+						color: #FFF;
+						padding-top: 4px;
+						padding-bottom: 4px;
+						background: #0f315b;
+					}
 				}
 			}
 		}
 	}
-	h3, h4, .top-level {
+	%base-default-screen-wb-sec-def-child-fonts-a-plus-ui-link {
 		font-size: 100%;
 		border-bottom: none;
 		@include border-radius(2px);
@@ -49,7 +59,12 @@ body {
 			}
 		}
 	}
+	h4 {
+		@extend %base-default-screen-wb-sec-def-child-fonts-a-plus-ui-link;
+		@extend %base-default-screen-wb-sec-def-child-a-plus-ui-link;
+	}
 	li {
+		@extend %base-default-screen-wb-sec-def-child-a-plus-ui-link;
 		a {
 			&, &.ui-link {
 				padding: 4px 5px;
@@ -59,12 +74,14 @@ body {
 				}
 			}
 		}
+		li {
+			margin-left: 0;
+			border: none;
+			list-style-type: none;
+			padding: 0;
+		}
 	}
-	a.nav-current {
-		border: 1px solid #777;
-		@include border-radius(2px);
-	}
-	h3, h4, .top-level, li {
+	%base-default-screen-wb-sec-def-child-a-plus-ui-link {
 		a {
 			&, &.ui-link {
 				display: block;
@@ -88,36 +105,42 @@ body {
 			border-left: 1px solid #ccc;
 		}
 	}
-	li li {
-		margin-left: 0;
-		border: none;
-		list-style-type: none;
-		padding: 0;
+	.top-level {
+		@extend %base-default-screen-wb-sec-def-child-a-plus-ui-link;
+		@extend %base-default-screen-wb-sec-def-child-fonts-a-plus-ui-link;
 	}
 }
 
 #wb-foot {
-	h4, .base-col-head {
-		font-size: 110%;
+	%base-default-screen-wb-foot-font-border {
 		border: none;
-		font-weight: 700;
+		font: {
+			size: 110%;
+			weight: 700;
+		}
 		margin: 20px 0 5px;
+	}
+	h4 {
+		@extend %base-default-screen-wb-foot-font-border;
 	}
 	ul {
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
 	}
-	li a {
-		font-weight: 400;
+	li {
+		a {
+			font-weight: 400;
+		}
 	}
 	a {
 		text-decoration: none;
 	}
-	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
+	[class*="span-"] {
 		margin-bottom: 0;
 	}
 	.base-col-head {
+		@extend %base-default-screen-wb-foot-font-border;
 		.ui-link {
 			font-weight: 700;
 		}
@@ -127,24 +150,48 @@ body {
 #base-sft {
 	background: #cf3f0e;
 	font-family: Arial, Helvetica, sans-serif;
-	a, span.link {
+	%base-default-screen-base-sft-color222 {
 		color: #222;
 	}
-	li a, li span.link {
-		line-height: 1.75em;
+	a {
+		@extend %base-default-screen-base-sft-color222;
 	}
-	h4, .base-col-head {
+	span {
+		&.link {
+			@extend %base-default-screen-base-sft-color222;
+		}
+	}
+	li {
+		%base-default-screen-base-sft-li-line-height175em {
+			line-height: 1.75em;
+		}
+		a {
+			@extend %base-default-screen-base-sft-li-line-height175em;
+		}
+		span {
+			&.link {
+				@extend %base-default-screen-base-sft-li-line-height175em;
+			}
+		}
+	}
+	%base-default-screen-base-sft-margin-top10px {
 		margin-top: 10px;
+	}
+	h4 {
+		@extend %base-default-screen-base-sft-margin-top10px;
 	}
 	address {
 		font-style: normal;
+	}
+	.base-col-head {
+		@extend %base-default-screen-base-sft-margin-top10px;
 	}
 }
 
 #base-sft-in {
 	background: #CCC;
 	padding: 20px 0;
-	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
+	[class*="span-"] {
 		position: static;
 	}
 }
@@ -163,18 +210,28 @@ body {
 	.wb-sec-def {
 		ul {
 			ul {
-				margin-left: auto;
-				margin-right: 10px;
-				padding-left: 0;
-				padding-right: 5px;
-				border-left: none;
-				border-right: 1px solid #ccc;
+				margin: {
+					left: auto;
+					right: 10px;
+				}
+				padding: {
+					left: 0;
+					right: 5px;
+				}
+				border: {
+					left: none;
+					right: 1px solid #ccc;
+				}
 			}
 		}
 
-		li li {
-			margin-left: auto;
-			margin-right: 0;
+		li {
+			li {
+				margin: {
+					left: auto;
+					right: 0;
+				}
+			}
 		}
 	}
 }
