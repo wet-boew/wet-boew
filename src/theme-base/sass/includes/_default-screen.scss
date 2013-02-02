@@ -97,7 +97,7 @@ body{
 }
 
 #wb-foot {
-	h4,.base-col-head{
+	h4, .base-col-head{
 		font-size: 110%;
 		border: none;
 		font-weight: 700;
@@ -114,7 +114,7 @@ body{
 	a{
 		text-decoration: none;
 	}
-	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
+	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12{
 		margin-bottom: 0;
 	}
 	.base-col-head {
@@ -127,13 +127,13 @@ body{
 #base-sft{
 	background:#cf3f0e;
 	font-family: Arial, Helvetica, sans-serif;
-	a,span.link{
+	a, span.link{
 		color:#222;
 	}
-	li a,li span.link{
+	li a, li span.link{
 		line-height: 1.75em;
 	}
-	h4,.base-col-head{
+	h4, .base-col-head{
 		margin-top: 10px;
 	}
 	address{
@@ -144,7 +144,7 @@ body{
 #base-sft-in{
 	background:#CCC;
 	padding: 20px 0;
-	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12{
+	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12{
 		position: static;
 	}
 }

@@ -13,12 +13,12 @@ body{
 	padding: 0;
 }
 
-#wb-sec,#wb-sup{
+#wb-sec, #wb-sup{
 	z-index: 1;
 	display: inline;
 }
 
-#wb-head,#wb-head-in,#wb-foot,#wb-foot-in,#base-fullhd,#base-bnr,#base-bc,#base-fullft,#base-sft,#base-fullhd-in,#base-bnr-in,#base-bc-in,#base-fullft-in,#base-sft-in{
+#wb-head, #wb-head-in, #wb-foot, #wb-foot-in, #base-fullhd, #base-bnr, #base-bc, #base-fullft, #base-sft, #base-fullhd-in, #base-bnr-in, #base-bc-in, #base-fullft-in, #base-sft-in{
 	overflow: hidden;
 }
 
@@ -96,11 +96,11 @@ h1{
 	visibility: hidden;
 }
 
-#wb-body #wb-main,#wb-body-sec-sup #wb-main,#wb-sec{
+#wb-body #wb-main, #wb-body-sec-sup #wb-main, #wb-sec{
 	float: left;
 }
 
-#wb-body-sec-sup #wb-main,#wb-sup{
+#wb-body-sec-sup #wb-main, #wb-sup{
 	float: right;
 	position: relative;
 }
@@ -173,7 +173,7 @@ a {
 	}
 }
 
-#base-title,#base-title a{
+#base-title, #base-title a{
 	color:#fff;
 	font-size: 1.52em;
 	font-family: Arial, Helvetica, sans-serif;
@@ -222,7 +222,7 @@ a {
 			background:#f0fcff;
 		}
 	}
-	a,a:visited{
+	a, a:visited{
 		color:#fff;
 		text-decoration: none;
 		font-size: 80%;
@@ -265,13 +265,13 @@ a {
 }
 
 #base-subsite{
-	a:hover,a:focus,a:active{
+	a:hover, a:focus, a:active{
 		text-decoration: underline;
 	}
 }
 
-#base-fullhd,#base-srchbx,#wb-foot{
-	a:hover,a:focus,a:active{
+#base-fullhd, #base-srchbx, #wb-foot{
+	a:hover, a:focus, a:active{
 		text-decoration: underline;
 	}
 }
@@ -293,7 +293,7 @@ a {
 			}
 		}
 	}
-	.mb-menu,.mb-menu li {
+	.mb-menu, .mb-menu li {
 		background:#555;
 	}
 	.mb-menu {
