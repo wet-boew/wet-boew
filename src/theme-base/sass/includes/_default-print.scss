@@ -2,13 +2,16 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#base-title, #base-title a {
-	font-size: 16pt;
-	text-decoration: none;
-	color: #000;
-	width: 100%;
-	position: relative;
-	top: 9px;
+
+#base-title {
+	&, & a {
+		font-size: 16pt;
+		text-decoration: none;
+		color: #000;
+		width: 100%;
+		position: relative;
+		top: 9px;
+	}
 }
 
 #wb-main-in {
@@ -65,8 +68,34 @@ h6 {
 	}
 }
 
-#wb-sec, #wb-sup, #wb-fullhd ul, #base-srchbx, #base-psnb, #wb-foot {
+%base-default-print-display-none {
 	display: none;
+}
+
+#wb-sec {
+	@extende %base-default-print-display-none;
+}
+
+#wb-sup {
+	@extende %base-default-print-display-none;
+}
+
+#wb-fullhd {
+	ul {
+		@extende %base-default-print-display-none;
+	}
+}
+
+#base-srchbx {
+	@extende %base-default-print-display-none;
+}
+
+#base-psnb {
+	@extende %base-default-print-display-none;
+}
+
+#wb-foot {
+	@extende %base-default-print-display-none;
 }
 
 #base-date-mod {
