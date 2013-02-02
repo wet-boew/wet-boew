@@ -20,32 +20,32 @@
 }
 
 /* Desktop view */
-@media screen and (min-width:768px) and (min-device-width:768px) {
+@media screen and (min-width: 768px) and (min-device-width: 768px) {
 /* -----Build Include Section Start----- */
 @import '../../grids/sass/responsive';
 @import 'includes/default-responsive';
 /* -----Build Include Section End----- */
 }
-@media screen and (min-width:768px) and (max-width:959px) and (min-device-width:768px) {
+@media screen and (min-width: 768px) and (max-width: 959px) and (min-device-width: 768px) {
 /* -----Build Include Section Start----- */
 @import '../../grids/sass/responsive-768';
 @import 'includes/default-responsive-768';
 /* -----Build Include Section End----- */
 }
-@media screen and (min-width:1200px) and (min-device-width:768px) {
+@media screen and (min-width: 1200px) and (min-device-width: 768px) {
 /* -----Build Include Section Start----- */
 @import '../../grids/sass/responsive-1200';
 @import 'includes/default-responsive-1200';
 /* -----Build Include Section End----- */
 }
-@media (min-width:768px) and (min-device-width:768px) {
+@media (min-width: 768px) and (min-device-width: 768px) {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/base-desktop';
 @import 'includes/default-desktop';
 @import 'includes/default-desktop-images';
 /* -----Build Include Section End----- */
 }
-@media screen and (min-width:768px) and (min-device-width:768px) {
+@media screen and (min-width: 768px) and (min-device-width: 768px) {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/base-desktop-screen';
 @import 'includes/default-desktop-screen';
@@ -53,7 +53,7 @@
 }
 
 /* Mobile view */
-@media screen and (max-width:767px), screen and (max-device-width:767px) {
+@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/base-mobile';
 @import 'includes/default-mobile';

@@ -3,55 +3,55 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 #base-title,#base-title a{
-	font-size:16pt;
-	text-decoration:none;
+	font-size: 16pt;
+	text-decoration: none;
 	color:#000;
-	width:100%;
-	position:relative;
-	top:9px;
+	width: 100%;
+	position: relative;
+	top: 9px;
 }
 
 #wb-main-in{
-	border-top:3px outset #666;
-	padding-top:5px;
+	border-top: 3px outset #666;
+	padding-top: 5px;
 }
 
 h1{
-	font-size:140%;
-	margin:0 !important;
+	font-size: 140%;
+	margin: 0 !important;
 }
 
 h2{
-	font-size:125%;
+	font-size: 125%;
 }
 
 h3{
-	font-size:120%;
+	font-size: 120%;
 }
 
 h4{
-	font-size:115%;
+	font-size: 115%;
 }
 
 h5{
-	font-size:110%;
+	font-size: 110%;
 }
 
 h6{
-	font-size:100%;
+	font-size: 100%;
 }
 
 #base-bc{
-	min-height:inherit;
-	height:auto;
+	min-height: inherit;
+	height: auto;
 	ol{
-		width:100%;
-		margin:0;
-		padding:0;
+		width: 100%;
+		margin: 0;
+		padding: 0;
 	}
 	li{
-		background:none;
-		padding:0;
+		background: none;
+		padding: 0;
 		&:before{
 			content:" > ";
 		}
@@ -60,29 +60,29 @@ h6{
 		}
 	}
 	a{
-		padding-left:0;
-		background:none;
+		padding-left: 0;
+		background: none;
 	}
 }
 
 #wb-sec,#wb-sup,#wb-fullhd ul,#base-srchbx,#base-psnb,#wb-foot{
-	display:none;
+	display: none;
 }
 
 #base-date-mod{
-	float:right;
-	display:inline;
+	float: right;
+	display: inline;
 }
 
 .clear{
-	clear:both;
-	display:block;
-	height:0 !important;
-	min-height:0 !important;
-	overflow:hidden;
-	visibility:hidden;
-	width:0;
-	margin:0;
+	clear: both;
+	display: block;
+	height: 0 !important;
+	min-height: 0 !important;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	margin: 0;
 }
 
 /* Right to left (RTL) CSS */
