@@ -94,7 +94,7 @@
 
 				if (!opened) {
 					var position = wrapper.offset();
-					if (pe.ie <= 0 || document.documentMode !== undefined) {
+					if (pe.ie <= 0 || document.documentMode !== undefined) { // IE8 compat. and up
 						wrapper.removeClass('slideoutWrapper')
 							.addClass('slideoutWrapperRel')
 							.css({'top': position.top - $wbcorein.offset().top, 'right': borderWidth - 10});
@@ -107,19 +107,27 @@
 				}
 
 				opened = !opened;
+				
+				var tabWidth;
+				if (pe.ie <= 0 || pe.ie > 8) { // IE 9 and other browsers
+					tabWidth = tab.width();
+				} else {
+					// tabWidth = tab.height();
+					tabWidth = 0;
+				}
 
 				wrapper.animate({
-					width: opened ? elm.outerWidth() + (tab.width() + focusOutlineAllowance) : (tab.width() + focusOutlineAllowance) + 'px'
+					width: opened ? elm.outerWidth() + (tabWidth + focusOutlineAllowance) : (tabWidth + focusOutlineAllowance) + 'px'
 				}, function () {
 					// Animation complete.
 					if (!opened) {
 						elm.hide(); // Hide the widget content if the widget was just closed
 						wrapper.find('#slideoutInnerWrapper').css('width', tab.height());
 
-						if (pe.ie <= 0 || document.documentMode !== undefined) {
+						if (pe.ie <= 0 || document.documentMode !== undefined) { // IE8 compat. and up
 							wrapper.addClass('slideoutWrapper');
 							wrapper.removeClass('slideoutWrapperRel');
-							wrapper.css('width', (tab.width() + focusOutlineAllowance) + 'px').css('top', $wbcorein.offset().top);
+							wrapper.css('width', (tabWidth + focusOutlineAllowance) + 'px').css('top', $wbcorein.offset().top);
 							reposition();
 						}
 					} else { // Slideout just opened
@@ -316,13 +324,25 @@
 			container.append(wrapper);
 			wrapper.unwrap();
 
-			tab.css({
-				'height': toggleLink.width() + 'px',
-				'width': toggleLink.height() + 'px'
-			});
+			if (pe.ie <= 0 || pe.ie > 8) { // IE 9 and other browsers
+				tab.css({
+					'height': toggleLink.outerWidth() + 'px',
+					'width': toggleLink.outerHeight() + 'px'
+				});
+			} else {
+				tab.css({
+					'height': toggleLink.outerHeight() + 'px',
+					'width': toggleLink.outerWidth() + 'px'
+				});
+			}
+			
+			if (pe.ie > 7 && pe.ie < 9) { // IE 8
+				toggleLink.width(toggleLink.width() + 'px');
+				toggleLink.height(toggleLink.height() + 'px');
+			}
 
 			// Set vertical position and hide the slideout on load -- we don't want it to animate so we can't call slideout.toggle()
-			wrapper.css('width', (tab.width() + focusOutlineAllowance) + 'px').css('top', $wbcorein.offset().top);
+			wrapper.css('width', (tab.outerWidth() + focusOutlineAllowance) + 'px').css('top', $wbcorein.offset().top);
 
 			// Fix scrolling issue in some versions of IE (#4051)
 			if (ie7) {
