@@ -94,7 +94,7 @@ h6 {
 	display: none;
 }
 
-.wb-invisible {
+%base-clip-hidden {
 	position: absolute;
 	clip: rect(1px, 1px, 1px, 1px);
 	height: 1px !important;
@@ -103,14 +103,18 @@ h6 {
 	margin: 0 !important;
 }
 
+.wb-invisible {
+	@extend %base-clip-hidden;
+}
+
 #wb-sec, #wb-sup, #wb-foot {
 	h2 {
-		@extend .wb-invisible !optional;
+		@extend %base-clip-hidden;
 	}
 }
 
-.wb-show-onfocus {
-	@extend .wb-invisible;
+%base-clip-focus-active {
+	@extend %base-clip-hidden;
 	&:focus, &:active {
 		position: static;
 		clip: auto;
@@ -121,11 +125,15 @@ h6 {
 	}
 }
 
+.wb-show-onfocus {
+	@extend %base-clip-focus-active;
+}
+
 #wb-skip {
 	a {
-		@extend .wb-show-onfocus !optional;
+		@extend %base-clip-focus-active;
 		&, &:link, &:visited {
-			@extend .wb-invisible !optional;
+			@extend %base-clip-hidden;
 		}
 	}
 }
