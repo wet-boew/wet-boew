@@ -4,12 +4,12 @@
  */
 #base-bc {
 	li {
-		background:url(../images/bcrumb.gif) left center no-repeat;
-		margin:0 5px 0 0;
-		padding:0 0 0 11px;
+		background: url(../images/bcrumb.gif) left center no-repeat;
+		margin: 0 5px 0 0;
+		padding: 0 0 0 11px;
 		&:first-child {
-			background-image:none;
-			padding-left:0;
+			background-image: none;
+			padding-left: 0;
 		}
 	}
 }
@@ -17,12 +17,12 @@
 [dir="rtl"] {
 	#base-bc {
 		li {
-			background:url(../images/bcrumb-rtl.gif) right center no-repeat;
-			margin:0 0 0 5px;
-			padding:0 11px 0 0;
+			background: url(../images/bcrumb-rtl.gif) right center no-repeat;
+			margin: 0 0 0 5px;
+			padding: 0 11px 0 0;
 			&:first-child {
-				background-image:none;
-				padding-right:0;
+				background-image: none;
+				padding-right: 0;
 			}
 		}
 	}
