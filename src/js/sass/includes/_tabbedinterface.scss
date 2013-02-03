@@ -513,7 +513,7 @@
 		padding: 0;
 		display: inline-block;
 		background: #eee;
-		box-shadow: 0 15px 15px -10px #999, 0 1px 1px #aaa;
+		@include box-shadow(0 15px 15px -10px #999, 0 1px 1px #aaa);
 	}
 	&.slide-vert, &.slide-horz {
 		.tabs-panel {
@@ -535,7 +535,7 @@
 					padding: 2px 4px;
 					background: 0;
 					border: 1px solid #999;
-					border-radius: 2px;
+					@include border-radius(2px);
 				}
 				&:hover, &:focus, &:active, &.active {
 					text-decoration: none;
@@ -551,7 +551,7 @@
 					margin: -1px 0 0 0;
 					padding: 0;
 					border: 0;
-					border-radius: 0;
+					@include border-radius(0);
 					&:hover, &:focus, &:active, &.active {
 						opacity: 1;
 						color: #000;
