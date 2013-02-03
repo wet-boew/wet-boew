@@ -18,7 +18,7 @@
 @import 'includes/default-desktop-ie';
 /* -----Build Include Section End----- */
 
-@media screen{
+@media screen {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/base-screen';
 @import '../../base/sass/base-desktop-screen';
@@ -32,7 +32,7 @@
 /* -----Build Include Section End----- */
 }
 
-@media print{
+@media print {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/base-print';
 @import '../../base/sass/base-print-ie';
