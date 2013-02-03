@@ -178,8 +178,7 @@
 
 			pe.document.on('pageinit', function () {
 				// On click, puts focus on and scrolls to the target of same page links
-				// On click, puts focus on and scrolls to the target of same page links
-				hlinks_same.off('click vclick').on('click vclick', function () {
+				hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
 					var hash = $(this).attr('href'),
 						role;
 					$this = $('#' + pe.string.jqescape(hash.substring(1)));
