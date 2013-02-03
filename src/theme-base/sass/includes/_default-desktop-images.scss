@@ -6,22 +6,53 @@
 
 #base-bc {
 	li {
-		background:url(../images/bcrumb.gif) right center no-repeat;
-		margin:0 5px 0 0;
-		padding:0 11px 0 0;
+		background: url(../images/bcrumb.gif) right center no-repeat;
+		margin: 0 5px 0 0;
+		padding: 0 11px 0 0;
 		&:last-child {
-			background-image:none;
-			padding-right:0;
+			background-image: none;
+			padding-right: 0;
 		}
 	}
 }
 
+%base-default-desktop-images-scaleX--1{
+	@include scaleX(-1);
+}
 [dir="rtl"] {
-	#base-bc a {
-		display: inline-block;
+	#base-bc {
+		a {
+			@extend %base-default-desktop-images-scaleX--1;
+			display: inline-block;
+		}
+		li {
+			&:last-child {
+				@extend %base-default-desktop-images-scaleX--1;
+			}
+		}
 	}
 
-	[id|="wb-body"], #wb-skip, #base-fullhd, #base-bnr, #base-psnb .mb-menu, #base-bc li:last-child, #base-bc a, #wb-core, #wb-foot {
-		@include scaleX(-1);
+	[id|="wb-body"] {
+		@extend %base-default-desktop-images-scaleX--1;
+	}
+	#wb-skip {
+		@extend %base-default-desktop-images-scaleX--1;
+	}
+	#base-fullhd {
+		@extend %base-default-desktop-images-scaleX--1;
+	}
+	#base-bnr {
+		@extend %base-default-desktop-images-scaleX--1;
+	}
+	#base-psnb {
+		.mb-menu {
+			@extend %base-default-desktop-images-scaleX--1;
+		}
+	}
+	#wb-core {
+		@extend %base-default-desktop-images-scaleX--1;
+	}
+	#wb-foot {
+		@extend %base-default-desktop-images-scaleX--1;
 	}
 }

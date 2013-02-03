@@ -3,23 +3,25 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ie7 {
-	#base-bnr{
-		width:100%;
-		margin-top:20px;
-		margin-bottom:20px;
-	}
-	#base-bc{
-		padding:5px 0;
-		ol{
-			line-height:normal;
+	#base-bnr {
+		width: 100%;
+		margin: {
+			top: 20px;
+			bottom: 20px;
 		}
-		li{
-			border-left:1px solid #000;
-			margin:0;
-			padding:0 10px;
-			&:first-child{
-				border-left:none;
-				padding-left:0;
+	}
+	#base-bc {
+		padding: 5px 0;
+		ol {
+			line-height: normal;
+		}
+		li {
+			border-left: 1px solid #000;
+			margin: 0;
+			padding: 0 10px;
+			&:first-child {
+				border-left: none;
+				padding-left: 0;
 			}
 		}
 	}
@@ -28,9 +30,10 @@
 	[dir="rtl"] {
 		#base-bc {
 			li {
-				border-left: none;
-				border-right: 1px solid #000;
-
+				border: {
+					left: none;
+					right: 1px solid #000;
+				}
 				&:first-child {
 					border-right: none;
 					padding-right: 0;

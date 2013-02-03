@@ -22,9 +22,6 @@ p, table {
 }
 
 pre {
-	@if $legacy-support-for-mozilla { //TODO: Do we still need to support this version when Mozilla no longer does
-		overflow-x: auto;  /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */
-	}
 	white-space: pre-wrap;
 }
 
@@ -53,6 +50,26 @@ blockquote, form, img, pre {
 
 	.float-right {
 		margin-right: 0;
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	p, table {
+		img {
+			margin-left: auto;
+			margin-right: 0;
+		}
+	}
+
+	// reset elements in grid system
+	[class*="span-"] {
+		ul, ol, dl {
+			margin: 5px 40px 10px 5px;
+		}
+		.float-left {
+			margin-left: 0;
+		}
 	}
 }
 
