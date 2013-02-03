@@ -22,9 +22,6 @@ p, table {
 }
 
 pre {
-	@if $legacy-support-for-mozilla { //TODO: Do we still need to support this version when Mozilla no longer does
-		overflow-x: auto;  /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */
-	}
 	white-space: pre-wrap;
 }
 
