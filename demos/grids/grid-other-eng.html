@@ -113,7 +113,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<li><a href="#display">Display options</a></li>
     <li><a href="#print">Print</a></li>
     <li><a href="#thermometer">Thermometer</a></li>
-    <li><a href="#date">Date</a></li>
+    <li><a href="#date">Date</a></li> 
+	<li><a href="#columns">Columns</a></li>
     </ul>
     </div>
 
@@ -294,7 +295,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <p>25</p>
 </div>
 </div>
-</div>
+
 <div class="date-container">
 <div class="date-month">
 <p><a href="#">August</a></p>
@@ -352,6 +353,43 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   
   </pre></details>
   <div class="clear"></div>
+  <h2 id="columns">Columns</h2>
+   <p>The ability to spread content over multiple columns is achieved using the CSS3 <code>column-count</code> attribute.  IE9 and lower will display the content in a single column, as these browsers do not support column-count. The options are <code>column-two</code>, <code>column-three</code> and <code>column-four</code>.</p>
+<p>	For example, the list in the below table of contents is split into two columns.  From an accessibility stance, this is a better approach as the table of contents  should be represented by a single list and not carved up over serveral lists for display purposes.  This ensures that the list is symantcially correct and inline with accessibility. As previously mentioned, this is column feature is only visible in modern browsers:</p>
+	<div class="span-4 module-table-contents">
+		<h2>Table of contents</h2>
+		<ul class="column-two">
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+			<li><a href="#toc">Fake link</a></li>
+		</ul>
+	</div>
+    <div class="clear"></div>
+    <details class="span-6">
+	<summary>View code</summary>
+<pre>
+&lt;div class=&quot;span-4 module-table-contents&quot;&gt;
+	&lt;h2&gt;Table of contents&lt;/h2&gt;
+	&lt;ul class=&quot;column-two&quot;&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#toc&quot;&gt;Fake link&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+</details>
+<div class="clear"></div>
+</div>
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
 </dl>
