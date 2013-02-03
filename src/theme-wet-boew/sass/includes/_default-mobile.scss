@@ -259,8 +259,8 @@ img{
 	font-size:130%;
 	text-shadow:1px 1px 1px #333;
 	p {
-		margin-top:0px;
-		margin-bottom:0px;
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 }
 
@@ -567,7 +567,7 @@ a:active{
 
 /* Position and size the custom icon */
 .ui-icon-site-menu,.ui-icon-alt {
-	background-position: 0px 50%;
+	background-position: 0 50%;
 	background-size: 18px 18px;
 }
 
@@ -707,7 +707,7 @@ a:active{
 				padding-right: 55px;
 
 				&.ui-btn-icon-left {
-					padding-right: 0px;
+					padding-right: 0;
 				}
 			}
 
