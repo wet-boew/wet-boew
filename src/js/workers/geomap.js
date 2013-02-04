@@ -494,6 +494,17 @@
 			
 			map = new OpenLayers.Map('geomap', opts.mapOptions);			
 			
+			// Read the layer file
+			$.ajax({
+				url: opts.layersFile,
+				dataType: "script",
+				async: false,
+				success: function (data) {
+					console.log('WET-Geomap: overlays load was performed.');},
+				error: function (data){
+					console.log('WET-Geomap: overlays was not loaded!');}	
+			});
+			
 			// Check to see if a base map has been configured. If not add the
 			// default base map (the Canada Transportation Base Map (CBMT))
 			if(wet_boew_geomap.basemap){
