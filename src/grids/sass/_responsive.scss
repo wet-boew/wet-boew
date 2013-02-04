@@ -41,14 +41,28 @@
 	margin-right: 0  !important;
 }
 
-.clear {
-	clear: both;
+%clear-invisible {
 	display: block;
 	height: 0;
 	margin: 0;
 	overflow: hidden;
 	visibility: hidden;
 	width: 0;
+}
+
+.clear {
+	clear: both;
+	@extend %clear-invisible;
+}
+
+.clear-left {
+	clear: left;
+	@extend %clear-invisible;
+}
+
+.clear-right {
+	clear: right;
+	@extend %clear-invisible;
 }
 
 %no-margin {
