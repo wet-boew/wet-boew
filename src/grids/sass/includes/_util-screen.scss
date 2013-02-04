@@ -103,41 +103,41 @@ blockquote, form, img, pre {
 		line-height: 150%;
 		vertical-align: bottom;
 	}
-}
-h1 {
-	color: $dark;
-	border-bottom: 1px dotted $silver;
-	font-size: 200%;
-	padding: 0;
-}
+	h1 {
+		color: $dark;
+		border-bottom: 1px dotted $silver;
+		font-size: 200%;
+		padding: 0;
+	}
 
-h2 {
-	color: lighten($dark, 20%);
-	font-size: 185%;
-}
+	h2 {
+		color: lighten($dark, 20%);
+		font-size: 185%;
+	}
 
-h3 {
-	color: $medium;
-	font-size: 170%;
-}
+	h3 {
+		color: $medium;
+		font-size: 170%;
+	}
 
-h4 {
-	color: $dark;
-	font-size: 155%;
-}
+	h4 {
+		color: $dark;
+		font-size: 155%;
+	}
 
-h5 {
-	color: lighten($dark, 20%);
-	font-size: 140%;
-}
+	h5 {
+		color: lighten($dark, 20%);
+		font-size: 140%;
+	}
 
-h6 {
-	color: $medium;
-	font-size: 125%;
-}
+	h6 {
+		color: $medium;
+		font-size: 125%;
+	}
 
-h5, h6 {
-	font-weight: 700;
+	h5, h6 {
+		font-weight: 700;
+	}
 }
 
 [class*="span-"] {

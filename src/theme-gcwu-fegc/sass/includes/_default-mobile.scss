@@ -274,33 +274,8 @@ table {
 	}
 }
 
-#gcwu-gcnb {
-	ul {
-		margin: 0 5px 0 0;
-		li {
-			display: none;
-			padding-top: 8px;
-		}
-		#gcwu-gcnb-lang { //TODO: Overly specific? Should this be combined with the rule below?
-			display: inline;
-			float: right;
-			margin-bottom: 2px;
-		}
-	}
-}
-
-#gcwu-gcnb-lang {
-	a {
-		color: #222;
-		text-decoration: none;
-		background: #eee;
-		border: 1px solid #ddd;
-		@include border-radius(2px);
-		float: right;
-		font-weight: 400;
-		padding: 3px;
-		text-transform: capitalize;
-	}
+#gcwu-gcnb ul {
+	display: none;
 }
 
 #gcwu-srch-submit {
@@ -491,16 +466,7 @@ table {
 	@extend %h1-border-bottom-none;
 }
 
-%gcwu-default-mobile-ui-bar-a-h1-white {
-	.ui-bar-a {
-		h1 {
-			color: #fff;
-		}
-	}
-}
-
 #jqm-wb-search {
-	@extend %gcwu-default-mobile-ui-bar-a-h1-white;
 	label {
 		clip: rect(1px, 1px, 1px, 1px);
 		height: 1px;
@@ -514,17 +480,10 @@ table {
 }
 
 #jqm-wb-mb {
-	@extend %gcwu-default-mobile-ui-bar-a-h1-white;
 	a {
 		&:link {
 			text-decoration: none
 		}
-	}
-	h1 {
-		border-bottom: none;
-	}
-	h2 {
-		color: #555;
 	}
 	h3 {
 		&.top-section {

@@ -31,6 +31,7 @@
 		wmms: $('#gcwu-wmms'),
 		menu: null,
 		init: function () {
+			wet_boew_theme.gcnb = pe.header.find('#gcwu-gcnb');
 			wet_boew_theme.psnb = pe.header.find('#gcwu-psnb');
 			wet_boew_theme.menubar = wet_boew_theme.psnb.find('.wet-boew-menubar');
 			wet_boew_theme.search = pe.header.find('#gcwu-srchbx');
@@ -63,16 +64,29 @@
 			var mb_popup,
 				mb_header_html,
 				mb_menu = '',
-				mb_btn_txt = pe.dic.get('%menu'),
-				srch_btn_txt = pe.dic.get('%search'),
+				mb_btn_txt,
+				srch_btn_txt,
+				settings_txt = pe.dic.get('%settings'),
+				settings_popup,
 				secnav_h2,
 				s_form,
 				s_popup,
 				bodyAppend = '',
-				popup_role = 'data-role="popup" data-overlay-theme="a"',
-				popup_close = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-' + ((pe.rtl) ? 'left' : 'right') + '">' + pe.dic.get('%close') + '</a>',
+				button = '<a data-role="button" data-iconpos="notext"',
+				button_position = pe.rtl ? 'left' : 'right',
+				popup_link = ' data-rel="popup" data-position-to="window"',
+				popup_button = button + popup_link,
+				popup = '<div data-role="popup" data-overlay-theme="a"',
+				popup_header_open = '<div data-role="header"',
+				popup_default_header_open = popup_header_open + '><h1>',
+				popup_settings = ' data-theme="c" class="ui-corner-all">',
+				popup_settings_header_open = popup_header_open + ' class="ui-corner-top"><h1>',
+				popup_settings_content_open = '<div data-role="content" data-theme="c" class="ui-corner-bottom ui-content">',
+				popup_close_btn = button + ' href="javascript:;" data-icon="delete" data-rel="back" class="ui-btn-' + button_position + '">' + pe.dic.get('%close') + '</a>',
+				popup_back_btn_open = popup_button + ' data-icon="back" class="ui-btn-' + button_position + '"',
+				popup_back_btn_close = '>' + pe.dic.get('%back') + '</a>',
+				popup_close = '</div></div>',
 				_list = '',
-				navbar,
 				links,
 				link,
 				footer1,
@@ -82,18 +96,23 @@
 				target,
 				i,
 				len,
-				node;
+				nodes,
+				node,
+				home_href,
+				header;
 
+			// Build the menu popup (content pages only)
 			if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
 				// Transform the menu to a popup
+				mb_btn_txt = pe.dic.get('%menu');
 				mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
-				mb_popup = '<div ' + popup_role + ' id="jqm-wb-mb"><div data-role="header">';
 				secnav_h2 = (pe.secnav.length !== 0 ? pe.secnav[0].getElementsByTagName('h2')[0] : '');
 				mb_header_html = (wet_boew_theme.menubar.length !== 0 ? wet_boew_theme.psnb.children(':header')[0] : (pe.secnav.length !== 0 ? secnav_h2 : wet_boew_theme.bcrumb.children(':header')[0])).innerHTML;
-				mb_popup += '<h1>' + mb_btn_txt + '</h1>' + popup_close + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
+				mb_popup = popup + ' id="jqm-wb-mb">' + popup_default_header_open + mb_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
 
 				if (wet_boew_theme.bcrumb.length !== 0) {
 					node = wet_boew_theme.bcrumb[0];
+					home_href = node.getElementsByTagName('a')[0].href;
 					mb_popup += '<section><div id="jqm-mb-location-text">' + node.innerHTML + '</div></section>';
 					node.parentNode.removeChild(node);
 				} else {
@@ -114,22 +133,80 @@
 				mb_popup += '<div id="jqm-mb-menu"></div></nav></div></div></div>';
 				bodyAppend += mb_popup;
 				wet_boew_theme.menu = mb_menu;
-				_list += '<li><a data-rel="popup" data-theme="a" data-icon="site-menu" href="#jqm-wb-mb">' + mb_btn_txt + '</a></li>';
+				_list += popup_button + ' data-icon="site-menu" href="#jqm-wb-mb">' + mb_btn_txt + '</a>';
 			}
+			
+			// Build the search popup (content pages only)
 			if (wet_boew_theme.search.length !== 0) {
 				// :: Search box transform lets transform the search box to a popup
+				srch_btn_txt = pe.dic.get('%search');
 				s_form = wet_boew_theme.search[0].innerHTML;
-				s_popup = '<div ' + popup_role + ' id="jqm-wb-search"><div data-role="header"><h1>' + srch_btn_txt + '</h1>' + popup_close + '</div><div data-role="content"><div>' + s_form.substring(s_form.indexOf('<form')) + '</div></div></div>';
+				s_popup = popup + ' id="jqm-wb-search">' + popup_default_header_open + srch_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content"><div>' + s_form.substring(s_form.indexOf('<form')) + '</div></div></div>';
 				bodyAppend += s_popup;
-				_list += '<li><a data-rel="popup" data-theme="a" data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a></li>';
-			}
-			pe.bodydiv.append(bodyAppend);
-			
-			if (_list.length !== 0) {
-				navbar = $('<div data-role="navbar" data-iconpos="right"><ul class="wb-hide">' + _list + '</ul></div>');
-				wet_boew_theme.title.after(navbar);
+				_list += popup_button + ' data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a>';
 			}
 
+			// Build the header bar
+			header = '<div data-role="header">';
+			if (typeof home_href !== 'undefined') { // Home button needed
+				header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';
+			} else if (typeof home_href === 'undefined') { // Back button needed (TODO: need better condition, back link exists?)
+				// TODO: Determine source of back href (link?)
+				header += button + ' href="' + '#back-href' + '" data-icon="back">' + pe.dic.get('%back') + '</a>';
+			}
+			header += '<div class="ui-title"></div><map id="wb-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
+			if (_list.length !== 0) {
+				header += _list;
+			}
+			header += popup_button + ' href="#popupSettings" data-icon="gear">' + settings_txt + '</a></map></div>';
+			wet_boew_theme.gcnb.children('#gcwu-gcnb-in').before(header);
+			
+			// Build the settings popup
+			lang_links = wet_boew_theme.gcnb.find('li[id*="-lang"]');
+			settings_popup = popup + ' id="popupSettings"' + popup_settings;
+			settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
+			settings_popup += popup_settings_content_open + '<ul data-role="listview">';
+			if (lang_links.length > 0) {
+				settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
+			}
+			settings_popup += '<li class="ui-corner-bottom"><a href="#popupAbout"' + popup_link + '>' + pe.dic.get('%about') + '</a></li>';
+			settings_popup += '</ul>' + popup_close;
+
+			// Build the languages sub-popup
+			if (lang_links.length > 0) {
+				settings_popup += popup + ' id="popupLanguages"' + popup_settings;
+				settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';
+				settings_popup += popup_settings_content_open + '<ul data-role="listview">';
+				if (lang_links.filter('[id*="-lang-current"]').length === 0) {
+					settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
+				}
+				nodes = lang_links.get();
+				for (i = 0, len = nodes.length; i !== len; i += 1) {
+					node = nodes[i];
+					link = node.childNodes[0];
+					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '');
+					if (node.id.indexOf('-lang-current') !== -1) {
+						settings_popup += '><a href="javascript:;" class="ui-disabled">' + link.innerHTML + pe.dic.get('%current') + '</a></li>';
+					} else {
+						settings_popup += '><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
+					}				
+				}
+				settings_popup += '</ul>' + popup_close;
+			}
+
+			// Build the about sub-popup	
+			settings_popup += popup + ' id="popupAbout"' + popup_settings;
+			settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';			
+			settings_popup += popup_settings_content_open + '<ul data-role="listview">';
+			settings_popup += '<li>' + wet_boew_theme.title.text() + '</li>';
+			// TODO: Get relevant about information
+			settings_popup += '<li class="ui-corner-bottom">Relevant information</li>';
+			settings_popup += '</ul>' + popup_close;
+
+			// Append all the popups to the body
+			pe.bodydiv.append(bodyAppend + settings_popup);
+
+			// Handling for splash page language buttons
 			lang_links = document.getElementById('gcwu-lang');
 			if (lang_links !== null) {
 				links = lang_links.getElementsByTagName('a');
@@ -145,14 +222,16 @@
 					lang_links.parentNode.removeChild(lang_links);
 				}
 			}
-			if (wet_boew_theme.sft.length !== 0) {
+
+			// Handling for the footer
+			if (wet_boew_theme.sft.length !== 0) { // Handling for the content page site footer
 				links = wet_boew_theme.sft.find('#gcwu-tctr a, .gcwu-col-head a').get();
 				target = document.getElementById('gcwu-sft-in');
 				if (wet_boew_theme.gcft.length !== 0) {
 					node = wet_boew_theme.gcft[0];
 					node.parentNode.removeChild(node);
 				}
-			} else {
+			} else { // Handling for the splash page terms and conditions links
 				target = document.getElementById('gcwu-tc');
 				if (target !== null) {
 					links = target.getElementsByTagName('a');
@@ -171,6 +250,8 @@
 				target.setAttribute('data-role', 'footer');
 				target.innerHTML = footer1;
 			}
+
+			// Handling for the Canada Wordmark
 			if (wet_boew_theme.wmms.length !== 0) {
 				node = wet_boew_theme.wmms[0];
 				pe.footer[0].getElementsByTagName('footer')[0].appendChild(node.cloneNode(true));
@@ -188,7 +269,8 @@
 					node.parentNode.removeChild(node);
 				}
 				if (_list.length !== 0) {
-					navbar.children().removeClass('wb-hide');
+					var navbar = wet_boew_theme.gcnb.find('#wb-mnavbar');
+					navbar.removeClass('wb-hide');
 
 					// Defer appending of menu until after page is enhanced by jQuery Mobile, and
 					// defer enhancing of menu until it is opened the first time (all to reduce initial page load time)
