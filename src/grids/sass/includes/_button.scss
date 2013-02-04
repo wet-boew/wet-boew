@@ -184,6 +184,39 @@
 		}
 	}
 
+	// Right to left (RTL) CSS
+	[dir="rtl"] {
+		.button-group {
+			.button {
+				float: right;
+				margin-left: auto;
+				margin-right: -1px;
+			}
+
+			li {
+				float: right;
+			}
+		}
+
+		ul {
+			&.button-group {
+				margin: 0 10px 10px;
+			}
+		}
+
+		p.button-group .button:nth-child(1):nth-last-child(1), ul.button-group li:nth-child(1):nth-last-child(1) .button{
+			margin-right: auto;
+			margin-left: 4px;
+		}
+		[class*="span-"] {
+			 ul {
+				 &.button-group, &.menu-horizontal {
+					margin-left: 0;
+					margin-right: 0;
+				}
+			}
+		}
+	}
 }
 
 @mixin button($color) {

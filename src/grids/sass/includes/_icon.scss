@@ -43,7 +43,9 @@
 	margin-right: 0;
 }
 /* Start the sprite positioning */
-.wb-icon-alarm {	@extend %wb-icon;}
+.wb-icon-alarm {
+	@extend %wb-icon;
+}
 $first-row-sprite-x: -18px; // Because the alarm icon is the first in the series, but is omitted
 @each $first-row-sprite in bank, book-address, book-alt, book-open, book, box, briefcase, bulb-off, bulb, calculator-arrow, calculator-exclamation, calculator-minus, calculator-plus, calculator, calendar-day, calendar-list, calendar-month, calendar, car, chart-down, chart-pie, chart-up, chart, clip, clipboard-exclamation, clipboard, clock, comment, compass, cone, construction, currency, desktop, direction, disk, document-zip, document, documents, door-open, door, drive-arrow, drive-download, drive-network, drive-upload, envelope-arrow, envelope-share, envelope, eraser, exclamation-alt, exclamation-alt2, exclamation, film, folder-alt, folder-open, folder, gavel, gear, globe, home, hourglass, image, info-alt, info, key, light-exclamation, light-green, light-red, light-yellow, light, lock-unlock, lock, luggage, magnet, magnifier, mail-open, mail, marker, megaphone, microphone, monitor, nav-090-alt, nav-090, nav-180-alt, nav-180, nav-270-alt, nav-270, nav-alt, nav, newspaper, note-pencil, note, paper-pencil, paper-share, paper, pencil, picture, printer, prohibit, question-alt, question, report-pencil, report, reports, rss, safe, scale, server-network, server, service-bell, sitemap {
 	.wb-icon-#{$first-row-sprite} {
@@ -60,4 +62,42 @@ $second-row-sprite-y: 0;
 		@extend %wb-icon;
 	}
 	$second-row-sprite-y: $second-row-sprite-y - 18px;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.wb-icon {
+		background-position: top right;
+	}
+
+	[href^='mailto:']{
+		background-position: 100% 0;
+		padding-left: 0;
+		padding-right: 19px;
+		&.button {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+
+	[href$='.psd'],[href$='.zip'],[href$='.doc'],[href$='.pdf'],[href$='.xls'],[href$='.rtf'],[href$='.pot'],[href$='.ppt'],[href$='.pps'],[href$='.pptm'],[href$='.docx'],[href$='.xlsx'],[href$='.pptx']{
+		background-position: 100% 0;
+		padding-left: 0;
+		padding-right: 19px;
+		&.button {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+
+	[class*=wb-icon-] {
+		margin-right: auto;
+		margin-left: 4px;
+	}
+
+	.wb-icon-none {
+		padding-right: 0;
+		margin-right: auto;
+		margin-left: 0;
+	}
 }

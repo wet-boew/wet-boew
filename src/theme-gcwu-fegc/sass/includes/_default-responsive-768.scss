@@ -128,3 +128,16 @@ li {
 #gcwu-priorities {
 	@extend %width-172px;
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-body-sec-sup #wb-main {
+		right: auto;
+		left: 192px;
+	}
+
+	#wb-sup {
+		left: auto;
+		right: 384px;
+	}
+}

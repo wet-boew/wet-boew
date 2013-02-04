@@ -72,12 +72,6 @@ table {
 	@extend %no-margin-no-shadow;
 }
 
-#wb-skip {
-	.ui-link {
-		text-shadow: none !important;
-	}
-}
-
 [id|="wb-body-sec"] {
 	#wb-skip2 {
 		display: none;
@@ -772,6 +766,137 @@ table {
 			text-align: center;
 			background: #1A3D6C;
 			padding: 10px 0;
+		}
+	}
+}
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#gcwu-date-mod {
+		float: left;
+	}
+
+	#gcwu-sft {
+		li {
+			&.ui-block-a a.ui-btn {
+				border-left-width: 0;
+			}
+		}
+	}
+
+	#gcwu-sft-in {
+		div {
+			float: right;
+		}
+	}
+
+	#gcwu-gcft {
+		li {
+			float: right !important;
+
+			&#base-fullft-ca div {
+				text-align: right;
+			}
+		}
+	}
+
+	#gcwu-gcnb {
+		ul {
+			margin: 0 0 0 5px;
+
+			#gcwu-gcnb-lang {
+				float: left;
+			}
+		}
+	}
+
+	#gcwu-gcnb-lang a {
+		float: left;
+	}
+
+	#gcwu-psnb, #gcwu-srchbx {
+		float: left;
+
+		h2 {
+			padding: 0.7em 0 0.8em 18px;
+			border-right: 1px solid #CCC;
+			border-left: none;
+		}
+	}
+
+	#gcwu-bnr .ui-navbar a.ui-btn-active {
+		border: 1px solid #CCC;
+		border-left: none;
+	}
+
+	#gcwu-srchbx h2 {
+		padding-right: 0;
+		padding-left: 20px;
+	}
+
+	#jqm-wb-mb {
+		.ui-btn-icon-top .ui-btn-inner {
+			padding: 0.6em 10px 0.7em 33px;
+		}
+
+		.ui-btn-icon-right {
+			span.ui-btn-inner {
+				padding-left: 0;
+				padding-right: 40px;
+			}
+
+			div.ui-btn-inner {
+				padding-left: 0;
+				padding-right: 25px;
+			}
+		}
+
+		.wb-nested-menu {
+			.ui-btn-icon-right {
+				.ui-btn-inner {
+					padding-right: 0;
+				}
+			}
+
+			a {
+				padding-left: 0;
+				padding-right: 55px;
+
+				&.ui-btn-icon-left {
+					padding-right: 0;
+				}
+			}
+
+			.wb-nested-menu {
+				a {
+					padding-left: 0;
+					padding-right: 70px;
+
+					&.ui-btn-icon-left {
+						padding-left: 0;
+						padding-right: 15px;
+					}
+				}
+
+				.wb-nested-menu {
+					a {
+						padding-left: 0;
+						padding-right: 85px;
+
+						&.ui-btn-icon-left {
+							padding-left: 0;
+							padding-right: 30px;
+						}
+					}
+				}
+			}
+		}
+
+		.ui-btn {
+			text-align: right;
+		}
+
+		.ui-icon-site-menu, .ui-icon-alt {
+			background-position: 100% 50%;
 		}
 	}
 }

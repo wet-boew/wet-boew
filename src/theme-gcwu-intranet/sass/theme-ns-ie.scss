@@ -1,0 +1,25 @@
+@charset "utf-8";
+/*!!
+ *
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ *
+ * Version: @wet-boew-build.version@
+ *
+ */
+@import '../../base/sass/modern-vendor-prefix';
+
+/* -----Build Include Section Start----- */
+@import '../../base/sass/base-ns';
+@import '../../grids/sass/responsive-ns';
+@import '../../grids/sass/util-ns';
+@import '../../js/sass/pe-ap-ns';
+@import '../../theme-gcwu-fegc/sass/includes/default-ns';
+/* -----Build Include Section End----- */
+
+/* Mobile view */
+@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
+/* -----Build Include Section Start----- */
+@import '../../theme-gcwu-fegc/sass/includes/default-mobile-ns';
+/* -----Build Include Section End----- */
+}

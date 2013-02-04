@@ -83,3 +83,20 @@
 		}
 	}
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#gcwu-subsite {
+		clear: right;
+
+		a {
+			padding: 0 10px 0 5px;
+			border-left: none;
+			border-right: 1px solid #ccc;
+
+			&:first-child {
+				border-right: none;
+			}
+		}
+	}
+}

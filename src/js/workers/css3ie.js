@@ -20,11 +20,11 @@
 				return;
 			}
 
-			var $enhance = $(".rounded, .pie-enhance"),
+			var $enhance = $('.rounded, .pie-enhance, .ui-icon'),
 				pieEnabled = false,
-				$wbcore = $("#wb-core"),
-				$wbcorein = $wbcore.children("#wb-core-in"),
-				wbcoremb = $wbcore.css("margin-bottom"),
+				$wbcore = $('#wb-core'),
+				$wbcorein = $wbcore.children('#wb-core-in'),
+				wbcoremb = $wbcore.css('margin-bottom'),
 				body,
 				r,
 				setupPIE,
@@ -46,8 +46,8 @@
 			// now attach PIE to bound objects
 			if (window.PIE) {
 				$enhance.filter(function () {
-					return $(this).css("position") === "static";
-				}).css("position", "relative");
+					return $(this).css('position') === 'static';
+				}).css('position', 'relative');
 
 				if (pe.ie === 7) {
 					body = document.body;
@@ -55,11 +55,8 @@
 					if ((r.left - r.right) / body.offsetWidth === -1) {
 						pieEnabled = setupPIE();
 					} else {
-						$wbcore.css("margin-bottom", ($wbcorein.offset().top + $wbcorein.height()) - ($wbcore.offset().top + $wbcore.height()));
+						$wbcore.css('margin-bottom', ($wbcorein.offset().top + $wbcorein.height()) - ($wbcore.offset().top + $wbcore.height()));
 					}
-				} else if (pe.ie === 8) {
-					/*if (screen.deviceXDPI / screen.logicalXDPI === 1) {}*/
-					pieEnabled = setupPIE();
 				} else {
 					pieEnabled = setupPIE();
 				}
@@ -70,21 +67,14 @@
 							r = body.getBoundingClientRect();
 						if ((r.left - r.right) / body.offsetWidth !== -1) {
 							pieEnabled = cleanup($enhance);
-							$wbcore.css("margin-bottom", ($wbcorein.offset().top + $wbcorein.height()) - ($wbcore.offset().top + $wbcore.height()));
+							$wbcore.css('margin-bottom', ($wbcorein.offset().top + $wbcorein.height()) - ($wbcore.offset().top + $wbcore.height()));
 						} else {
 							if (!pieEnabled) {
 								setupPIE();
 							}
-							$wbcore.css("margin-bottom", wbcoremb);
+							$wbcore.css('margin-bottom', wbcoremb);
 						}
-					} /*else if (pe.ie === 8)) {
-						if (screen.deviceXDPI / screen.logicalXDPI !== 1) {
-							pieEnabled = cleanup();
-						}
-						else if (!pieEnabled) {
-							pieEnabled = setupPIE();
-						}
-					}*/
+					}
 				});
 			}
 

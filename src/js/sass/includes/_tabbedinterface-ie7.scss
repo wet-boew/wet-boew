@@ -75,4 +75,12 @@
 			}
 		}
 	}
+	.tabs-style-6 {
+		.tabs-panel {
+			height: 1px;
+		}
+		.tabs-roller {
+			filter:alpha(opacity=50);
+		}
+	}	
 }

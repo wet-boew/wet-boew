@@ -3,6 +3,13 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/inline-block";
+@import "compass/css3/text-shadow";
+
+#wb-skip {
+	.ui-link {
+		text-shadow: none !important;
+	}
+}
 
 %line-height-normal {
 	line-height: normal;
@@ -235,3 +242,16 @@ div {
 	margin-right: 0;
 }
 
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#gcwu-date-mod {
+		dt, dd {
+			float: right;
+		}
+
+		dd {
+			margin: 0 10px 0 0;
+		}
+	}
+}

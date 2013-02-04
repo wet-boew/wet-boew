@@ -122,7 +122,7 @@
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.language = test;
 			}
-			test = $('head').attr('dir');
+			test = $html.attr('dir');
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
@@ -153,8 +153,7 @@
 			// Is this a mobile device?
 			if (pe.mobilecheck()) {
 				pe.mobile = true;
-				pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
-
+				
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
 				if (test === 0) {
@@ -162,60 +161,51 @@
 				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
 					$html.addClass('bb-pre7');
 				}
+			}
+			
+			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 
-				pe.document.on('mobileinit', function () {
-					$.extend($.mobile, {
-						ajaxEnabled: false,
-						pushStateEnabled: false,
-						autoInitializePage: (init_on_mobileinit ? true : false)
-					});
-					if (init_on_mobileinit) {
-						pe.mobilelang();
-					}
+			pe.document.on('mobileinit', function () {
+				$.extend($.mobile, {
+					ajaxEnabled: false,
+					pushStateEnabled: false,
+					autoInitializePage: (init_on_mobileinit ? true : false)
 				});
+				if (init_on_mobileinit) {
+					pe.mobilelang();
+				}
+			});
 
-				pe.document.on('pageinit', function () {
-					// On click, puts focus on and scrolls to the target of same page links
-					hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
-						$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
-						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if ($this.length > 0) {
-							$.mobile.silentScroll(pe.focus($this).offset().top);
-						}
-					});
-
-					// If the page URL includes a hash upon page load, then focus on and scroll to the target
-					if (pe.urlhash.length !== 0) {
-						target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if (target.length > 0 && target.attr('data-role') !== 'page') {
-							setTimeout(function () {
-								$.mobile.silentScroll(pe.focus(target).offset().top);
-							}, 200);
-						}
-					}
-				});
-				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
-				pe.add._load([pe.add.liblocation + 'jquerymobile/jquery.mobile.min.js']);
-			} else {
-				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
-				hlinks_same.on('click vclick', function () {
-					$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
+			pe.document.on('pageinit', function () {
+				// On click, puts focus on and scrolls to the target of same page links
+				hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
+					var hash = $(this).attr('href'),
+						role;
+					$this = $('#' + pe.string.jqescape(hash.substring(1)));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
+						role = $this.jqmData('role');
+						if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
+							window.location.hash = hash;
+						}
 					}
 				});
-
-				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
-				if (pe.urlhash.length > 0) {
-					$this = $('#' + pe.string.jqescape(pe.urlhash));
-					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if ($this.length > 0) {
-						pe.focus($this);
+				// If the page URL includes a hash upon page load, then focus on and scroll to the target
+				if (pe.urlhash.length !== 0) {
+					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					if (target.length > 0 && target.attr('data-role') !== 'page') {
+						setTimeout(function () {
+							$.mobile.silentScroll(pe.focus(target).offset().top);
+						}, 200);
 					}
 				}
-			}
+
+				if (pe.ie > 0 && pe.ie < 9) {
+					pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
+				}
+			});
 
 			// Load ajax content
 			$.when.apply($, $.map($('*[data-ajax-replace], *[data-ajax-append]'), function (o) {
@@ -245,19 +235,22 @@
 						// Initialize the theme
 						wet_boew_theme.init();
 
-						//Load the mobile view
+						pe.document.one('themeviewloaded', function () {
+							if (typeof $.mobile !== 'undefined') {
+								pe.mobilelang();
+								$.mobile.initializePage();
+							} else {
+								init_on_mobileinit = true;
+							}
+						});
+
+						//Load the mobile or desktop view
 						if (pe.mobile) {
-							pe.document.one('mobileviewloaded', function () {
-								if (typeof $.mobile !== 'undefined') {
-									pe.mobilelang();
-									$.mobile.initializePage();
-								} else {
-									init_on_mobileinit = true;
-								}
-							});
 							wet_boew_theme.mobileview();
+						} else {
+							wet_boew_theme.desktopview();
 						}
-					} else if (pe.mobile) {
+					} else {
 						if (typeof $.mobile !== 'undefined') {
 							pe.mobilelang();
 							$.mobile.initializePage();
@@ -1093,6 +1086,14 @@
 				} else {
 					$html.addClass('localstorage');
 				}
+
+				// sessionStorage
+				if (!window.sessionStorage) {
+					pe.add._load(lib + 'polyfills/sessionstorage' + pe.suffix + '.js', 'sessionstorage-loaded');
+					$html.addClass('polyfill-sessionstorage');
+				} else {
+					$html.addClass('sessionstorage');
+				}
 			},
 			/**
 			* Determines which polyfills need to be loaded then loads them if they don't have dependencies
@@ -1526,12 +1527,16 @@
 				* @memberof pe.add
 				* @function
 				* @param {string | string[]} d The path and filename of the dependency OR just the name (minus the path and extension).
+				* @param {boolean} css Optional. Is the dependency a CSS file? (default: false)
 				* @return {string[]} NOTE: If d is a string, this returns a string array with 8 copies of the transformed string. If d is a string array, this returns a string array with just one entry; the transformed string.
 				*/
-				depends: function (d) {
+				depends: function (d, css) {
 					var lib = pe.add.liblocation,
+						iscss = typeof css !== 'undefined' ? css : false, 
+						extension = pe.suffix + (iscss ? '.css' : '.js'),
+						dir = pe.add.liblocation + 'dependencies/' + (iscss ? 'css/' : ''),
 						c_d = $.map(d, function (a) {
-							return (/^http(s)?/i.test(a)) ? a : lib + 'dependencies/' + a + pe.suffix + '.js';
+							return (/^http(s)?/i.test(a)) ? a : dir + a + extension;
 						});
 					return c_d;
 				},
@@ -1593,6 +1598,7 @@
 				pcalls = typeof options.global !== 'undefined' ? options.global : [],
 				pcall,
 				dep = typeof options.dep !== 'undefined' ? options.dep : [],
+				depcss = typeof options.depcss !== 'undefined' ? options.depcss : [],
 				poly = typeof options.poly !== 'undefined' ? options.poly : [],
 				checkdom = typeof options.checkdom !== 'undefined' ? options.checkdom : false,
 				polycheckdom = typeof options.polycheckdom !== 'undefined' ? options.polycheckdom : false,
@@ -1640,6 +1646,9 @@
 					}
 					if (typeof pe.fn[pcall].depends !== 'undefined') {
 						dep.push.apply(dep, pe.fn[pcall].depends);
+						if (typeof pe.fn[pcall].dependscss !== 'undefined') {
+							dep.push.apply(depcss, pe.fn[pcall].dependscss);
+						}
 					}
 				}
 			}
@@ -1703,7 +1712,16 @@
 				});
 
 				// Load each of the dependencies (eliminating duplicates)
-				pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				if (dep.length !== 0) {
+					if (depcss.length > 0) {
+						depcss = pe.add.depends(pe.array.noduplicates(depcss), true);
+						_len = depcss.length;
+						while (_len--) {
+							pe.add.css(depcss[_len]);
+						}
+					}
+					pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				}
 			});
 
 			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)

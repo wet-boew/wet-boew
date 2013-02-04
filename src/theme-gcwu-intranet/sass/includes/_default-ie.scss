@@ -21,6 +21,15 @@
 			border-left: expression(this.previousSibling == null ? 'none' : '-' );
 		}
 	}
+	// Right to left (RTL) CSS
+	&[dir="rtl"] {
+		#gcwu-subsite {
+			a {
+				border-left: none;
+				border-right: expression(this.previousSibling == null ? 'none' : '-' );
+			}
+		}
+	}
 }
 
 .ie8 {

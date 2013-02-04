@@ -37,6 +37,11 @@
 			if (pe.secnav.length > 0) {
 				pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
 			}
+		},
+
+		/* Special handling for the desktop view */
+		desktopview: function () {
+			$(document).trigger('themeviewloaded');
 		}
 	};
 	/* window binding */

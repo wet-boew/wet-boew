@@ -13,8 +13,8 @@
 	}
 
 	.badge-new {
-		@include colorize-base($attention);
-		@include colorize($attention, false, $border: "border");
+		@include colorize-base($red);
+		@include colorize($red, false, $border: "border");
 		@extend %badge-small-font;
 		@extend %badge-border-radius-100;
 	}
@@ -52,4 +52,15 @@
 		}
 	}
 
+	// Right to left (RTL) CSS
+	[dir="rtl"] {
+		.badge-intro {
+			margin-right: auto;
+			margin-left: $margin-medium / 2;
+
+			a & {
+				float: right;
+			}
+		}
+	}
 }

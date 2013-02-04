@@ -6,6 +6,7 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 @import "compass/css3/appearance";
+@import 'compass/css3/transform';
 
 html {
 	overflow-y: scroll;
@@ -28,13 +29,19 @@ h1 {
 	margin-top: 0;
 }
 
+%gcwu-default-link {
+	&, &.ui-link {
+		&:link {
+			color: #295376;
+		}
+		&:visited {
+			color: #5a306b;
+		}
+	}
+}
+
 a {
-	&:link {
-		color: #295376;
-	}
-	&:visited {
-		color: #5a306b;
-	}
+	@extend %gcwu-default-link;
 }
 
 %gcwu-default-desktop-screen-hidden-img {
@@ -138,6 +145,9 @@ a {
 #wb-main-in {
 	padding-top: 1px;
 	padding-bottom: 2.5em;
+	a {
+		@extend %gcwu-default-link;
+	}
 }
 
 #wb-body-sec {
@@ -416,5 +426,150 @@ a {
 		#gcwu-srch-submit {
 			min-height: 22px;
 		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-body, #wb-body-sec {
+		#wb-main {
+			float: left;
+		}
+	}
+
+	#wb-sec-in {
+		margin: 7px 10px 0 0;
+	}
+
+	#gcwu-date-mod {
+		right: auto;
+		left: 10px;
+	}
+
+	#wb-sec {
+		float: right;
+	}
+
+	#wb-body-sec-sup #wb-main, #wb-sup {
+		float: left;
+	}
+
+	#gcwu-sig {
+		float: right;
+	}
+
+	#gcwu-sig-in {
+		margin-right: 10px;
+		margin-left: 0;
+	}
+
+	#gcwu-gcnb {
+		ul {
+			float: left;
+			li {
+				float: right;
+				&#gcwu-gcnb-lang a {
+					padding-right: 10px;
+					padding-left: 0;
+					margin-right: auto;
+					margin-left: 1px;
+				}
+			}
+		}
+
+		a {
+			border-left: none;
+			border-right: 1px solid #fff;
+		}
+
+		li:first-child a {
+			border-right: none;
+		}
+	}
+	
+	#gcwu-title {
+		a {
+			margin-left: auto;
+			margin-right: 10px;
+		}
+	}
+
+	#gcwu-srchbx {
+		text-align: left;
+		right: auto;
+		left: 0;
+		padding: 11px 12px 6px 10px;
+
+		#gcwu-srch {
+			margin-left: auto;
+			margin-right: 0;
+		}
+	}
+
+	#gcwu-srch-submit {
+		border: {
+			right: 1px solid #fff;
+			left: 1px solid #999;
+		}
+
+		&:focus, &:hover {
+			border: {
+				right: 1px solid #fff;
+				left: 1px solid #999;
+			}
+		}
+	}
+
+	#gcwu-wmms {
+		left: 0;
+		right: auto;
+	}
+
+	#gcwu-psnb {
+		.mb-menu {
+			a {
+				padding: 0.45em 0.79em 0.45em 1.17em;
+			}
+			.mb-has-sm {
+				padding-left: 0.38em;
+				padding-right: 0.79em;
+			}
+		}
+	}
+
+	#gcwu-tctr {
+		padding: 11px 0 25px;
+
+		li {
+			float: right;
+
+			&.gcwu-tc {
+				border-left: 1px solid #999;
+				border-right: 0;
+			}
+
+			&.gcwu-tr {
+				padding: 0 9px;
+			}
+
+			a {
+				line-height: 1em;
+			}
+		}
+	}
+
+	#gcwu-gcft {
+		@include scaleX(-1);
+
+		#gcwu-gcft-fip li {
+			@include scaleX(-1);
+		}
+	}
+
+	#gcwu-gcft-ca a {
+		border-left: none;
+		border-right: 1px solid #666;
+		padding-left: 0;
+		padding-right: 44px;
 	}
 }

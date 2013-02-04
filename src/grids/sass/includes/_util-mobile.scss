@@ -87,3 +87,17 @@ input[type="image"], input[type="checkbox"], input[type="radio"] {
 		color: #f9f9f9 !important;
 	}
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.form-inline {
+		& > * {
+			margin-right: auto;
+			margin-left: 0;
+		}
+	}
+
+	.form-horizontal label {
+		text-align: right;
+	}
+}

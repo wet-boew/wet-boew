@@ -57,6 +57,8 @@
 				wet_boew_theme.search.addClass('mobile-change');
 			}
 		},
+
+		/* Special handling for the mobile view */
 		mobileview: function () {
 			var mb_popup,
 				mb_header_html,
@@ -68,7 +70,7 @@
 				s_popup,
 				bodyAppend = '',
 				popup_role = 'data-role="popup" data-overlay-theme="a"',
-				popup_close = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">' + pe.dic.get('%close') + '</a>',
+				popup_close = '<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-' + ((pe.rtl) ? 'left' : 'right') + '">' + pe.dic.get('%close') + '</a>',
 				_list = '',
 				navbar,
 				links,
@@ -212,8 +214,28 @@
 				$.mobile.transitionHandlers.loadingTransition = loadingTransition;
 				$.mobile.defaultDialogTransition = 'loadingTransition';
 			});
-			$(document).trigger('mobileviewloaded');
+			$(document).trigger('themeviewloaded');
 			return;
+		},
+
+		/* Special handling for the desktop view */
+		desktopview: function () {
+			// Disable jQuery Mobile enhancement of the form fields
+			var elms,
+				len;
+
+			if (pe.ie > 0 && pe.ie < 9) {
+				elms = $('input, textarea, select, button').get();
+			} else {
+				elms = document.querySelectorAll('input, textarea, select, button');
+			}
+
+			len = elms.length;
+			while (len--) {
+				elms[len].setAttribute('data-role', 'none');
+			}
+
+			$(document).trigger('themeviewloaded');
 		}
 	};
 	/* window binding */

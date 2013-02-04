@@ -6,4 +6,18 @@
 	.mb-menu {
 		position: relative;
 	}
+
+	&[dir="rtl"] {
+
+		.mb-sm-open {
+			left: auto;
+			right: 0;
+			[class*="span-"] {
+				zoom: 1;
+				vertical-align: top;
+				float: none !important;
+				display: inline !important;
+			}
+		}
+	}
 }

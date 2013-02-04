@@ -346,3 +346,53 @@
 	padding: 20px 0 0;
 	clear: both !important;
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#gcwu-gcnb {
+		ul {
+			li {
+				&#gcwu-gcnb-lang a {
+					padding-left: 10px;
+				}
+			}
+		}
+	}
+
+	#gcwu-wmms {
+		right: auto;
+	}
+
+	#gcwu-sig-in {
+		margin-left: 10px;
+		margin-right: 0;
+	}
+
+	#gcwu-srchbx {
+		padding-left: 0;
+		padding-right: 10px;
+	}
+
+	#gcwu-intranetnb {
+		left: 0;
+		right: auto;
+		float: left;
+	}
+
+	#gcwu-psnb {
+		.mb-menu {
+			a {
+				padding-top: 8px;
+				padding-bottom: 8px;
+			}
+		}
+	}
+
+	.wb-sec-def {
+		h3 {
+			&.top-section {
+				margin: 0 -10px 2px 0;
+			}
+		}
+	}
+}

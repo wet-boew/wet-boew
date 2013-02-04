@@ -4,7 +4,7 @@
 	<property file="${tasks.basedir}/build-tasks.properties"/>
 	
 	<!-- Version and build time-->
-	<property name="wet-boew-build.version" value="v3.0.5-a1"/>
+	<property name="wet-boew-build.version" value="v3.1.0-b2"/>
 	<tstamp>
 		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
 	</tstamp>
@@ -117,16 +117,18 @@
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
 			<exclude name="jquerymobile/jquery.mobile.js"/>
+			<exclude name="jquerymobile/jquery.mobile-ie.js"/>
 			<exclude name="polyfills/datalist.js"/>
 			<exclude name="polyfills/detailssummary.js"/>
 			<exclude name="polyfills/html5shiv.js"/>
 			<exclude name="polyfills/localstorage.js"/>
+			<exclude name="polyfills/sessionstorage.js"/>
 			<exclude name="polyfills/slider.js"/>
 			<exclude name="dependencies/bookmark.js"/>
 			<exclude name="dependencies/browsertweaks.js"/>
 			<exclude name="dependencies/colorbox.js"/>
+			<exclude name="dependencies/datatables.js"/>
 			<exclude name="dependencies/easytabs.js"/>
-			<exclude name="dependencies/hashchange.js"/>
 			<exclude name="dependencies/hoverintent.js"/>
 			<exclude name="dependencies/json.js"/>
 			<exclude name="dependencies/matchMedia.js"/>
@@ -151,6 +153,7 @@
 			<fileset dir="${dist.dir}/css">
 				<include name="*.css"/>
 				<exclude name="jquery.mobile.css"/>
+				<exclude name="jquery.mobile-ie.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -171,6 +174,7 @@
 			<fileset dir="${dist.dir}/css">
 				<include name="*.css"/>
 				<exclude name="jquery.mobile.css"/>
+				<exclude name="jquery.mobile-ie.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -238,6 +242,7 @@
 			<include name="**/*.js" />
 			<exclude name="**/*-min.css" />
 			<exclude name="**/settings.js" />
+			<exclude name="**/settings-ie.js" />
 			<exclude name="**/*-min.js" />
 			<exclude name="**/*.min.js" />
 		</yui-compressor>
@@ -246,6 +251,7 @@
 				<include name="**/*.css" />
 				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
+				<exclude name="**/settings-ie.js" />
 				<exclude name="**/*-min.css" />
 				<exclude name="**/*-min.js" />
 				<exclude name="**/*.min.js" />
@@ -258,6 +264,7 @@
 			<fileset dir="${dist.dir}">
 				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
+				<exclude name="**/settings-ie.js" />
 				<exclude name="**/*-min.js" />
 				<exclude name="**/*.min.js" />
 			</fileset>
@@ -273,14 +280,30 @@
 	</target>
 	
 	<target name="-copy-css" depends="compile.sass"/>
-	
+
 	<target name="-copy-jquery-css">
 		<concat dest="${dist.dir}/css/jquery.mobile.css">
 			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme.css"/>
 			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure.css"/>
 		</concat>
+		<concat dest="${dist.dir}/css/jquery.mobile-ie.css">
+			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme-ie.css"/>
+			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure-ie.css"/>
+		</concat>
+		<copy todir="${dist.dir}/css/images">
+			<fileset dir="${src.dir}/jquerymobile/images-ie"/>
+		</copy>
 	</target>
-	
+
+	<target name="-copy-depends">
+		<copy todir="${dist.dir}/dependencies/css">
+			<fileset dir="${src.dir}/dependencies/css"/>
+		</copy>
+		<copy todir="${dist.dir}/dependencies/images">
+			<fileset dir="${src.dir}/dependencies/images"/>
+		</copy>
+	</target>
+
 	<fileset id="jsfiles" dir="${src.dir}">
 		<include name="**/*.js"/>
 	</fileset>
@@ -289,6 +312,8 @@
 		<copy todir="${dist.dir}" encoding="UTF-8">
 			<fileset refid="jsfiles" />
 		</copy>
+		<!-- Temporary fix - to be replaced by modern and old IE targeted output -->
+		<copy file="${dist.dir}/js/theme.js" tofile="${dist.dir}/js/theme-ie.js" failonerror="false"/>
 	</target>
 	
 	<target name="-copy-images">

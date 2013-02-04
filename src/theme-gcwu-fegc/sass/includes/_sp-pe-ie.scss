@@ -12,3 +12,12 @@
 		margin: 0 !important;
 	}
 }
+.ie7, .ie8 {
+	#gcwu-tc {
+		a {
+			&, &.ui-link {
+				font-weight: normal;
+			}
+		}
+	}
+}
