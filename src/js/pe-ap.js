@@ -176,7 +176,7 @@
 
 				pe.document.on('pageinit', function () {
 					// On click, puts focus on and scrolls to the target of same page links
-					hlinks_same.off('click vclick').on('click vclick', function () {
+					hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
 						$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
 						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 						if ($this.length > 0) {

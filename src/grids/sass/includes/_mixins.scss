@@ -32,7 +32,6 @@ $font-weight-normal:	400;
 $font-weight-bold:		700;
 
 $highlight:		#ffffc9;
-$attention:		#cc0000;
 $accent:		#176ca7; //#176ca7; //#1a7abd; // #cc0000;
 $black:			#000000;
 $dark:			#222222;
@@ -41,8 +40,12 @@ $light:			#eeeeee;
 $white:			#ffffff;
 $silver:		#cccccc;
 
-$alert:			#ffe75d;
-$attention:		#d73d38;
+$red: 			#d73d38;
+$yellow:		#ffe75d;
+
+
+$alert:			$red;
+$attention:		$yellow;
 $note:			#555555;
 $info:			#2a7da6;
 $question:		#888888;
@@ -132,55 +135,4 @@ $default-color-border: false;
 		}
 	}
 
-}
-
-//TODO: Move non-mixins to appropriate sheet
-/*   base appearance   */
-body {
-	font-size: 13px;
-	line-height: 1.5em;
-}
-
-p, table {
-	margin-bottom: $margin-medium;
-	margin-top: $margin-medium;
-
-	img {
-		margin-left: 0;
-	}
-}
-
-pre {
-	@if $legacy-support-for-mozilla {
-		overflow-x: auto;  /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */
-	}
-	white-space: pre-wrap;
-}
-
-blockquote, form, img, pre {
-	margin-bottom: $margin-medium;
-}
-
-// reset elements in grid system
-[class*="span-"] {
-
-	// reset margin left and right to elements that are used inside a grid cell
-	#{headings(all)}, p, blockquote, table, form, img, pre, details {
-		margin-left: 0;
-		margin-right: 0;
-	}
-
-	p {
-		margin-bottom: $margin-medium;
-		margin-top: $margin-medium;
-	}
-
-	ul, ol, dl {
-		margin: 5px 5px 10px 40px;
-		padding: 0;
-	}
-
-	.float-right {
-		margin-right: 0;
-	}
 }

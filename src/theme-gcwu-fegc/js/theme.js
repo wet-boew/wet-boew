@@ -64,6 +64,7 @@
 				mb_btn_txt = pe.dic.get('%menu'),
 				srch_btn_txt = pe.dic.get('%search'),
 				secnav_h2,
+				s_form,
 				s_popup,
 				bodyAppend = '',
 				popup_role = 'data-role="popup" data-overlay-theme="a"',
@@ -115,7 +116,8 @@
 			}
 			if (wet_boew_theme.search.length !== 0) {
 				// :: Search box transform lets transform the search box to a popup
-				s_popup = '<div ' + popup_role + ' id="jqm-wb-search"><div data-role="header"><h1>' + srch_btn_txt + '</h1>' + popup_close + '</div><div data-role="content"><div>' + wet_boew_theme.search[0].getElementsByTagName('form')[0].innerHTML + '</div></div></div>';
+				s_form = wet_boew_theme.search[0].innerHTML;
+				s_popup = '<div ' + popup_role + ' id="jqm-wb-search"><div data-role="header"><h1>' + srch_btn_txt + '</h1>' + popup_close + '</div><div data-role="content"><div>' + s_form.substring(s_form.indexOf('<form')) + '</div></div></div>';
 				bodyAppend += s_popup;
 				_list += '<li><a data-rel="popup" data-theme="a" data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a></li>';
 			}
