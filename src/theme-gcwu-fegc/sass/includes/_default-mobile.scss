@@ -146,12 +146,15 @@ table {
 }
 
 #wb-main-in {
-	padding-left: 5px;
-	padding-right: 5px;
+	padding: 3px;
 	h1 {
-		border-bottom: 1px solid #e5e5e5;
+		border-bottom: 0;
+		background: #c3c3c3;
+		font-size: 1.5em;
 		font-weight: 400;
-		margin-top: 5px;
+		margin: -3px;
+		padding: 0 3px;
+		@include text-shadow(none);
 		position: static !important;
 		&.wb-invisible {
 			position: absolute !important;
