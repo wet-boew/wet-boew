@@ -41,7 +41,7 @@
 	margin-right: 0  !important;
 }
 
-%clear-invisible {
+%grid-responsive-clear-invisible {
 	display: block;
 	height: 0;
 	margin: 0;
@@ -52,17 +52,17 @@
 
 .clear {
 	clear: both;
-	@extend %clear-invisible;
+	@extend %grid-responsive-clear-invisible;
 }
 
 .clear-left {
 	clear: left;
-	@extend %clear-invisible;
+	@extend %grid-responsive-clear-invisible;
 }
 
 .clear-right {
 	clear: right;
-	@extend %clear-invisible;
+	@extend %grid-responsive-clear-invisible;
 }
 
 %no-margin {
