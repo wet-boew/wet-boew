@@ -21,7 +21,7 @@
 
 	.badge-update {
 		@include colorize-base($light);
-		@include colorize($light, false, $border: "border"d);
+		@include colorize($light, false, $border: "border");
 		@extend %badge-small-font;
 		@extend %badge-border-radius-100;
 	}
