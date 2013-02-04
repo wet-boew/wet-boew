@@ -4,7 +4,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	declare -a supported_branches=('master' 'v3.0') # List of branches to store build output for
 
 	#Set git user
-	git config --global user.email "travis@travis-ci.org"
+	git config --global user.email "laurent.goderre@gmail.com"
 	git config --global user.name "Travis"
 
 	#Set upstream remote
