@@ -25,3 +25,4 @@ var wet_boew_share = {
 
 // Charts widget 
 // var wet_boew_charts = { };
+

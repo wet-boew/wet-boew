@@ -39,6 +39,20 @@ var wet_boew_geomap = {
 		   visible: true,
 		   strokeColor: '#000000',
 		   fillColor: '#000000'
-		}			
+		},			
+		{
+			title: 'JSON Demo',
+			type: 'json',					
+			url: 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst',
+			params: {
+				'alt': 'json'
+			},
+			visible: 'true',
+			root: 'products',
+			mappings: {
+				'title': 'title',
+				'description': 'summary'
+			}
+		}
 	]
 };
