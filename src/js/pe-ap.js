@@ -935,11 +935,8 @@
 					nested,
 					nested_i,
 					nested_len,
-					hnest,
 					hnestDOM,
 					hnestTag,
-					hnestLevel,
-					hnestLink,
 					hnestLinkDOM,
 					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
@@ -949,6 +946,8 @@
 					theme2 = (theme_2 !== undefined ? theme_2 : theme_1),
 					theme1 = (toplevel ? theme_1 : theme_2),
 					listView = '<ul data-role="listview" data-theme="' + theme2 + '">',
+					listItems,
+					listItem,
 					sectionOpen = '<div data-theme="' + theme1 + '"' + ' class="wb-nested-menu',
 					sectionLink = '<a data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
 					sectionLinkOpen = '">' + headingOpen + sectionLink,
@@ -996,24 +995,23 @@
 								next = mItem.next();
 								nextDOM = next[0];
 								if (nextDOM.tagName.toLowerCase() === 'ul') {
-									// Find nested lists
-									nested = next.find('li ul').get();
-									for (nested_i = 0, nested_len = nested.length; nested_i < nested_len; nested_i += 1) {
-										hnestDOM = nested[nested_i];
-										hnestDOM.setAttribute('data-role', 'listview');
-										hnestDOM.setAttribute('data-theme', theme2);
-										hnestLevel = hlevel + 1 + nested_i;
-										if (hnestLevel < 7) {
-											hnestTag = 'h' + hnestLevel;
-											hnest = $(hnestDOM);
-											hnestLink = hnest.prev('a');
-											hnestLinkDOM = hnestLink[0];
-											hnest.wrap(sectionOpen + '"></div>');
-											hnest.parent().prepend('<' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>');
-											hnestLinkDOM.parentNode.removeChild(hnestLinkDOM);
+									menu += listView;
+									// Special handling for a nested list
+									nested = next.find('li ul');
+									if (nested.length !== 0) {
+										hnestTag = 'h' + (hlevel + 1);
+										hnestDOM = nested[0];
+										hnestLinkDOM = nested.prev('a')[0];
+										menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+										listItems = hnestDOM.getElementsByTagName('li');
+										for (nested_i = 0, nested_len = listItems.length; nested_i !== nested_len; nested_i += 1) {
+											listItem = listItems[nested_i];
+											hlinkDOM = listItem.getElementsByTagName('a')[0];
+											menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
 										}
+										menu += '</ul></div>';
 									}
-									menu += listView + nextDOM.innerHTML + '</ul>';
+									menu += '</ul>';
 								} else { // If the section contains sub-sections
 									if (menubar) {
 										menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
@@ -1040,7 +1038,7 @@
 						}
 						// Is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
 						if (toplevel || collapsible || !collapseTopOnly) {
-							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '">' + menu + '</div>';
+							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"' + (toplevel ? ' class="ui-corner-all"' : '') + '>' + menu + '</div>';
 						}
 					}
 				}
@@ -1048,21 +1046,6 @@
 					menu = '<div data-role="controlgroup" data-theme="' + theme1 + '">' + menu + '</div>';
 				}
 				return returnString ? menu : $(menu);
-			},
-			/**
-			* Correct the corners for each sections and sub-section in the menu build by pe.menu.buildmobile
-			* @memberof pe.menu
-			* @param {jQuery object | DOM object} menusrc Mobile menu to correct
-			* @function
-			* @return {void}
-			*/
-			correctmobile: function (menusrc) {
-				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
-					menus = original.find('.wb-nested-menu');
-				if (menus.length !== 0) {
-					menus = menus.get(0).parentNode.childNodes;
-					menus[menus.length - 1].getElementsByTagName('a')[0].className += ' ui-corner-bottom';
-				}
 			}
 		},
 		/**
@@ -1531,8 +1514,7 @@
 				* @return {string[]} NOTE: If d is a string, this returns a string array with 8 copies of the transformed string. If d is a string array, this returns a string array with just one entry; the transformed string.
 				*/
 				depends: function (d, css) {
-					var lib = pe.add.liblocation,
-						iscss = typeof css !== 'undefined' ? css : false, 
+					var iscss = typeof css !== 'undefined' ? css : false, 
 						extension = pe.suffix + (iscss ? '.css' : '.js'),
 						dir = pe.add.liblocation + 'dependencies/' + (iscss ? 'css/' : ''),
 						c_d = $.map(d, function (a) {

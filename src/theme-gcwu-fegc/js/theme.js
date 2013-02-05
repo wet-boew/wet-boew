@@ -133,7 +133,7 @@
 				mb_popup += '<div id="jqm-mb-menu"></div></nav></div></div></div>';
 				bodyAppend += mb_popup;
 				wet_boew_theme.menu = mb_menu;
-				_list += popup_button + ' data-icon="site-menu" href="#jqm-wb-mb">' + mb_btn_txt + '</a>';
+				_list += popup_button + ' data-icon="bars" href="#jqm-wb-mb">' + mb_btn_txt + '</a>';
 			}
 			
 			// Build the search popup (content pages only)
@@ -278,8 +278,11 @@
 					if (menu.length !== 0) {
 						menu.append(wet_boew_theme.menu);
 						navbar.find('a[href="#jqm-wb-mb"]').one('click vclick', function () {
+							// Enhance the menu
 							menu.trigger('create');
-							pe.menu.correctmobile(menu);
+							// Fix the bottom corners
+							nodes = menu[0].getElementsByTagName('li');
+							nodes[nodes.length - 1].className += ' ui-corner-bottom';
 						});
 					}
 				}
