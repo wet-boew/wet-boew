@@ -38,7 +38,7 @@ var wet_boew_geomap = {
 		   url: 'data/sample.rss',		   
 		   visible: true,
 		   strokeColor: '#000000',
-		   fillColor: '#000000'
+		   fillColor: '#000000',
 		   visible: false
 		},
 		{
