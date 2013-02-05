@@ -653,6 +653,7 @@ table {
 	}
 	.ui-corner-bottom {
 		border-bottom-width: 1px;
+		@include border-radius(0 0 0.6em 0.6em);
 	}
 	.top-section {
 		a {

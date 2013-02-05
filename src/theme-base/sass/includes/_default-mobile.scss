@@ -742,36 +742,6 @@ img {
 	}
 }
 
-/* Custom jquery.mobile icons */
-.ui-icon-site-menu {
-	@extend %base-default-mobile-icon-background-positioning;
-	background-image: url(../images/icons-18-white.png);
-}
-.ui-icon-alt {
-	@extend %base-default-mobile-icon-background-positioning;
-	background-image: url(../images/icons-18-black.png);
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-	only screen and (min--moz-device-pixel-ratio: 1.5), 
-	only screen and (-o-min-device-pixel-ratio: 3/2), 
-	only screen and (min-device-pixel-ratio: 1.5), 
-	only screen and (min-resolution: 240dpi), 
-	only screen and (min-resolution: 1.5dppx) {
-	.ui-icon-site-menu {
-		background-image: url(../images/icons-36-white.png);
-	}
-	.ui-icon-alt {
-		background-image: url(../images/icons-36-black.png);
-	}
-}
-
-/* Position and size the custom icon */
-%base-default-mobile-icon-background-positioning {
-	background-position: 0 50%;
-	background-size: 18px 18px;
-}
-
 .no-js {
 	#base-srch {
 		margin-top: 3px;
