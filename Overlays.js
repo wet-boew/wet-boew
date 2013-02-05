@@ -39,7 +39,8 @@ var wet_boew_geomap = {
 		   visible: true,
 		   strokeColor: '#000000',
 		   fillColor: '#000000'
-		},			
+		   visible: false
+		},
 		{
 			title: 'JSON Demo',
 			type: 'json',					
