@@ -304,38 +304,52 @@
 		
 		addToLegend: function(featureTable, enabled, olLayerId) {			
 			var $div = $("div#wet-boew-geomap-legend");
-			var $checked = enabled ? 'checked="checked"' : '';
-			var $ul;
-			if(!$div.find('ul').length) {
-				$ul = $('<ul>', { 'class': 'list-bullet-none' }).appendTo($div);					
+			
+			if($div) {
+				var $checked = enabled ? 'checked="checked"' : '';
+				var $ul;
+				if(!$div.find('ul').length) {
+					$ul = $('<ul>', { 'class': 'list-bullet-none' }).appendTo($div);					
+				} else {
+					$ul = $div.find('ul');
+				}
+				
+				var $chkBox = $('<input type="checkbox" id="cb_' 
+						+ $(featureTable).attr('id') + '" value="' 
+						+ $(featureTable).attr('id') + '"' + $checked + ' />');
+				
+				$chkBox.change(function() {				
+					map = pe.fn.geomap.getMap();
+					layer = map.getLayer(olLayerId);				
+					visibility = $('#cb_' + $(featureTable).attr('id')).prop('checked') ? true : false;	
+					layer.setVisibility(visibility);	
+					
+					var $table = $('#' + $(featureTable).attr('id'));		
+					var $div = $table.parent();
+					var $alert = $div.find("div.module-alert");
+					
+					if($alert.length != 0) { 
+						$alert.fadeToggle();
+					} else { 
+						$div.append('<div class="module-alert module-simplify"><p>This layer is currently hidden.</p></div>');				
+					}					
+					
+					$table.fadeToggle();
+					//$('a[href="#tabs_' + $(featureTable).attr('id') + '"]').fadeToggle();					
+				})
+				
+				var $label = $('<label>', {
+					'html': $(featureTable).attr('aria-label'),			   
+					'for': '#tabs_'	+ $(featureTable).attr('id'),
+					'class': 'form-checkbox'
+				}).append($chkBox);
+				
+				$ul.append($("<li>").append($label));
 			} else {
-				$ul = $div.find('ul');
-			}
-			
-			var $chkBox = $('<input type="checkbox" id="cb_' 
-					+ $(featureTable).attr('id') + '" value="' 
-					+ $(featureTable).attr('id') + '"' + $checked + ' />');
-			
-			$chkBox.change(function() {				
-				map = pe.fn.geomap.getMap();
-				layer = map.getLayer(olLayerId);				
-				visibility = $('#cb_' + $(featureTable).attr('id')).prop('checked') ? true : false;	
-				layer.setVisibility(visibility);				
-				
-				$('#' + $(featureTable).attr('id')).fadeToggle();
-				$('a[href="#tabs_' + $(featureTable).attr('id') + '"]').fadeToggle();
-				
-			})
-			
-			var $label = $('<label>', {
-				'html': $(featureTable).attr('aria-label'),			   
-				'for': '#tabs_'	+ $(featureTable).attr('id'),
-				'class': 'form-checkbox'
-			}).append($chkBox);
-			
-			$ul.append($("<li>").append($label));
-			
-			
+				if(opts.debug){
+					$("div#wb-main-in").append('<div class="module-attention"><h3>WET-Geomap ERROR</h3><p>No div element with an id of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with an id of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.</p></div>');	
+				}
+			}	
 		},
 		
 		/*
@@ -460,15 +474,17 @@
 				tables: [],
 				useLayerSwitcher: false,
 				useScaleLine: false,
-				useMousePosition: false
+				useMousePosition: false,
+				debug: false
 			};			
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
 			overrides = {
 				useLayerSwitcher: elm.hasClass('layerswitcher') ? true : undefined,
 				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
-				useMousePosition: elm.hasClass('position') ? true : undefined					
-			};
+				useMousePosition: elm.hasClass('position') ? true : undefined,
+				debug: elm.hasClass('debug') ? true : false
+			};			
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
 			// Only needed if there are configurable options (has 'metadata' dependency)
@@ -533,8 +549,11 @@
 			
 			// Create projection objects
 			var projLatLon = new OpenLayers.Projection('EPSG:4326');
-			var projMap = map.getProjectionObject();			
-			
+			var projMap = map.getProjectionObject();						
+
+			if(opts.debug) {
+				console.log("WET-Geomap: running in DEBUG mode");
+			}
 			console.log("WET-Geomap: using projection " + projMap.getCode());
 			
 			var selectControl = new OpenLayers.Control.SelectFeature();			
@@ -650,7 +669,29 @@
 						map.addLayer(olLayer);						
 						pe.fn.geomap.createTable(olLayer);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
-					}
+					} else if (layer.type=='json') {						
+						var olLayer = new OpenLayers.Layer.Vector(
+								layer.title, {
+									projection: map.displayProjection,
+									strategies: [new OpenLayers.Strategy.Fixed()],
+									protocol: new OpenLayers.Protocol.Script({
+										url: layer.url,
+										params: {
+											alt: "json",
+											q: "binta"
+										},
+										callback: function(response) {
+											alert("read completed!");
+										}
+									})
+								}
+							)
+							olLayer.visibility=layer.visible;
+							queryLayers.push(olLayer);
+							map.addLayer(olLayer);						
+							pe.fn.geomap.createTable(olLayer);						
+							pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
+						}
 					
 				});
 			}
@@ -732,12 +773,15 @@
 								}
 							);
 						} else { 
-							$select.append('<div style="color:red">WET-Geomap ERROR: This cell has the select class but no link was found. Please add a link to this cell.</div>');						
+							if(opts.debug) {
+								$select.append('<div class="module-attention"><h3>WET-Geomap ERROR</h3><p>This cell has the <em>select</em> class but no link was found. Please add a link to this cell.</p></div>');		
+							}
 						}
 					} else {
-						$tr.closest('table').before('<div style="color:red">WET-Geomap ERROR: This table contains rows that do not have a cell with the select class. Please ensure that each row has exactly one cell with the select class and that the cell includes a link.</div>');						
-					}
-										
+						if(opts.debug) {
+							$tr.closest('table').before('<div class="module-attention"><h3>WET-Geomap ERROR</h3><p>This table contains rows that do not have a cell with the <em>select</em> class. Please ensure that each row has exactly one cell with the <em>select</em> class and that the cell includes a link.</p></div>');
+						}
+					}										
 					tableLayer.addFeatures([vectorFeatures]);	
 				});
 				
@@ -789,3 +833,4 @@
 	window.pe = _pe;
 	return _pe;
 }(jQuery));
+
