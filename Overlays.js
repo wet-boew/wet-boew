@@ -1,17 +1,15 @@
-/*var Ellipses = {
+var wet_boew_geomap = {
+	// OPTIONAL: note that geomap will provide a default basemap if not specified here.
+	/* basemap : {
 		title: 'CBMT',
-		type: 'ArcGISRest',
-		url: 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Specialty/ESRI_StateCityHighway_USA/MapServer/export',
+		type: 'wms',
+		url: 'http://geogratis.gc.ca/maps/CBMT',
+		layers: 'CBMT',
+		format: 'image/png',
+		version: '1.1.1',
 		options: { singleTile: false, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true }
-};*/
-
-/*
- * 
- */
-/* JOOST's COMMENT! */
-alert("tets");
-
-var overlays = [
+	*/
+	overlays : [
 		{
 		   title: 'WMS Demo',
 		   type: 'wms',
@@ -24,7 +22,7 @@ var overlays = [
 		   title: 'KML Demo',
 		   type: 'kml',
 		   url: 'data/sample.kml',		   
-		   visible: false
+		   visible: true
 		},
 		{
 		   title: 'ATOM Demo',
@@ -36,6 +34,7 @@ var overlays = [
 		   title: 'GeoRSS Demo',
 		   type: 'georss',
 		   url: 'data/sample.rss',		   
-		   visible: true
-		}				
-	];
+		   visible: false
+		}			
+	]
+};
