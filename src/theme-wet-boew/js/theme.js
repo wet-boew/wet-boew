@@ -80,6 +80,7 @@
 				target,
 				i,
 				len,
+				nodes,
 				node;
 
 			if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
