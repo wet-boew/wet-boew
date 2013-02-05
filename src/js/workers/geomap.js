@@ -373,14 +373,24 @@
 		 * Generate StyleMap
 		 */
 		
-		getStyleMap: function() {
-			var randomColor = pe.fn.geomap.randomColor();				
+		getStyleMap: function(style) {
+							
+			// set random color, if color suplied, overrides them.
+			var strokeColor = pe.fn.geomap.randomColor();
+			var fillColor = strokeColor
+			
+			if (typeof(style) != "undefined"){
+				if (typeof(style.strokeColor) != "undefined" && typeof(style.fillColor) != "undefined"){
+				strokeColor = style.strokeColor;
+				fillColor = style.fillColor;
+				}
+			}
 			
 			var my_style = new OpenLayers.StyleMap({ 
 				"default": new OpenLayers.Style( 
 					{ 
-						'strokeColor': randomColor, 
-						'fillColor': randomColor,
+						'strokeColor': strokeColor, 
+						'fillColor': fillColor,
 						'fillOpacity': 0.5,
 						'pointRadius': 5,
 						'strokeWidth': 0.5
@@ -422,7 +432,22 @@
 					context.selectControl.unselectAll();
 					context.selectControl.unselect(context.feature);
 				}
-			);											
+			);	
+			
+			// Keybord events
+			$link.focus(function(){
+						$(this).closest('tr').attr('class', 'background-highlight');
+						context.selectControl.unselectAll();
+						context.selectControl.select(context.feature);
+				}	
+			);
+			$link.blur(function(){
+						$(this).closest('tr').attr('class', 'background-white');
+						context.selectControl.unselectAll();
+						context.selectControl.select(context.feature);
+				}	
+			);
+			
 			$row.append($tdTitle, $tdDesc, $tdGeom);
 			
 			return $row;	
@@ -585,7 +610,7 @@
 									$row = pe.fn.geomap.createRow(context);									
 									$table.append($row);									
 								},
-								styleMap: pe.fn.geomap.getStyleMap()
+								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
 						)
 						olLayer.visibility=layer.visible;						
@@ -613,7 +638,7 @@
 									$row = pe.fn.geomap.createRow(context);									
 									$table.append($row);									
 								},
-								styleMap: pe.fn.geomap.getStyleMap()
+								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
 						)
 						olLayer.visibility=layer.visible;
@@ -642,7 +667,7 @@
 									$row = pe.fn.geomap.createRow(context);									
 									$table.append($row);									
 								},
-								styleMap: pe.fn.geomap.getStyleMap()
+								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
 						)
 						olLayer.visibility=layer.visible;
@@ -688,7 +713,13 @@
 
 				$table = $("table#" + table);
 				
-				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: pe.fn.geomap.getStyleMap() });
+				var colorAr;
+				var $color = $table.attr('style-feature');	
+				if (typeof($color) != "undefined"){
+					colorAr = {strokeColor: $color.substr($color.indexOf("strokeColor:") + 14 ,7), fillColor: $color.substr($color.indexOf("fillColor:") + 12, 7)};
+				}			
+				
+				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: pe.fn.geomap.getStyleMap(colorAr) });
 												
 				var wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap, 
@@ -730,6 +761,18 @@
 									$tr.attr('class', 'background-white');
 									selectControl.unselect(vectorFeatures);
 								}
+							);
+							
+							// Keybord events
+							$link.focus(function(){
+									$tr.attr('class', 'background-highlight');
+									selectControl.select(vectorFeatures);
+								}	
+							);
+							$link.blur(function(){
+									$tr.attr('class', 'background-white');
+									selectControl.unselect(vectorFeatures);
+								}	
 							);
 						} else { 
 							$select.append('<div style="color:red">WET-Geomap ERROR: This cell has the select class but no link was found. Please add a link to this cell.</div>');						

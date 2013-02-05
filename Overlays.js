@@ -22,19 +22,23 @@ var wet_boew_geomap = {
 		   title: 'KML Demo',
 		   type: 'kml',
 		   url: 'data/sample.kml',		   
-		   visible: true
+		   visible: true,
+		   strokeColor: '#FF00FF',
+		   fillColor: '#FF00FF'
 		},
 		{
 		   title: 'ATOM Demo',
 		   type: 'atom',
 		   url: 'data/sample.atom',		   
-		   visible: false
+		   visible: true
 		},
 		{
 		   title: 'GeoRSS Demo',
 		   type: 'georss',
 		   url: 'data/sample.rss',		   
-		   visible: false
+		   visible: true,
+		   strokeColor: '#000000',
+		   fillColor: '#000000'
 		}			
 	]
 };
