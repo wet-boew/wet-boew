@@ -96,9 +96,12 @@ table {
 }
 
 #gcwu-title {
-	min-height: 40px;
+	background: #146094;
 	font-weight: 700;
-	padding: 2px 5px;
+	p {
+		padding: 3px;
+		margin: 0;
+	}
 	a {
 		font-size: 1.5em;
 		color: #fff !important;
@@ -117,7 +120,7 @@ table {
 
 #gcwu-sig {
 	float: left;
-	margin: 10px 0 10px 5px;
+	margin: 3px;
 	img {
 		margin-bottom: 0;
 	}
@@ -143,12 +146,15 @@ table {
 }
 
 #wb-main-in {
-	padding-left: 5px;
-	padding-right: 5px;
+	padding: 3px;
 	h1 {
-		border-bottom: 1px solid #e5e5e5;
+		border-bottom: 0;
+		background: #c3c3c3;
+		font-size: 1.5em;
 		font-weight: 400;
-		margin-top: 5px;
+		margin: -3px;
+		padding: 0 3px;
+		@include text-shadow(none);
 		position: static !important;
 		&.wb-invisible {
 			position: absolute !important;
@@ -284,39 +290,6 @@ table {
 	margin: 0;
 }
 
-%gcwu-default-mobile-monster { //TODO: better name
-	width: 50%;
-	float: right;
-	border-top: 1px solid #044062;
-	h2 {
-		@include text-shadow(0 1px 1px #044062);
-		background-color: #333333;
-		@include background-image(linear-gradient(#444444, #2D2D2D));
-		&:hover, &:focus, &:active {
-			background-color: #444444;
-			@include background-image(linear-gradient(#606060, #333333));
-		}
-		color: #fff;
-		text-align: center;
-		font-size: 1em;
-		text-transform: capitalize;
-		position: relative;
-		font-weight: 700;
-		margin: 0;
-		padding: 0.7em 18px 0.8em 0;
-		border: {
-			top: 1px solid rgba(255, 255, 255, 0.3);
-			bottom: 1px solid #000;
-			left: 1px solid #000;
-			right: none;
-		}
-		a {
-			color: #fff;
-			text-decoration: none;
-		}
-	}
-}
-
 #gcwu-bnr {
 	@extend %clear-both;
 	background: #4E7EB7;
@@ -332,79 +305,14 @@ table {
 	}
 }
 
-#gcwu-psnb {
-	@extend %gcwu-default-mobile-monster;
-	h2 {
-		span {
-			display: none;
-		}
-	}
-	#gcwu-psnb-in {
-		@extend %display-none;
-	}
-}
-
-#gcwu-srchbx {
-	@extend %gcwu-default-mobile-monster;
-	form {
-		@extend %display-none;
-	}
-	h2 {
-		padding-right: 20px;
-	}
+#gcwu-psnb, #gcwu-srchbx {
+	@extend %display-none;
 }
 
 #gcwu-bnr-in {
 	.ui-mini {
 		.ui-btn-inner {
 			font-size: 1em;
-		}
-	}
-}
-
-.wet-boew-menubar {
-	a {
-		background: #eee;
-		border: {
-			top: 1px solid #ccc;
-			bottom: 1px solid #ccc;
-		}
-		color: #222;
-		display: block;
-		font-weight: 700;
-		padding: 0.8em 0 0.9em;
-		position: relative;
-		text: {
-			align: center;
-			decoration: none;
-		}
-		z-index: 200;
-	}
-	ul {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		position: relative;
-		z-index: 1;
-	}
-	li {
-		color: #333;
-		@include text-shadow(0 1px 0 #fff);
-		position: relative;
-		z-index: 1;
-		h3 {
-			font: {
-				weight: 400;
-				size: 1em;
-			}
-			margin: 0;
-			padding: 0;
-		}
-		.mb-sm {
-			@extend %display-none;
-			* {
-				@extend %display-none;
-			}
 		}
 	}
 }
