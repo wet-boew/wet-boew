@@ -201,7 +201,9 @@
 							menu.trigger('create');
 							// Fix the bottom corners
 							nodes = menu[0].getElementsByTagName('li');
-							nodes[nodes.length - 1].className += ' ui-corner-bottom';
+							if (node.className.indexOf('ui-corner-bottom') === -1) {
+								node.className += ' ui-corner-bottom';
+							}
 						});
 					}
 				}
