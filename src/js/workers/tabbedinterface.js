@@ -520,17 +520,11 @@
 		 * Track the currently active tab for the user's session
 		 */
 		_set_active_panel : function(id, tabListIdx) {
-			if (this._is_session_storage()) {
-				sessionStorage.setItem('activePanel-' + tabListIdx, id);
-			}
+			window.sessionStorage.setItem('activePanel-' + tabListIdx, id);
 		},
 
 		_get_active_panel : function(tabListIdx) {
-			return this._is_session_storage() ? sessionStorage.getItem('activePanel-' + tabListIdx) : null;
-		},
-
-		_is_session_storage : function() {
-			return typeof window.sessionStorage !== 'undefined'  && !sessionStorage.disabled;
+			return window.sessionStorage.getItem('activePanel-' + tabListIdx);
 		},
 
 		/**
