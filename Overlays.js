@@ -35,6 +35,20 @@ var wet_boew_geomap = {
 		   type: 'georss',
 		   url: 'data/sample.rss',		   
 		   visible: false
-		}			
+		},
+		{
+			title: 'JSON Demo',
+			type: 'json',					
+			url: 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst',
+			params: {
+				'alt': 'json'
+			},
+			visible: 'true',
+			root: 'products',
+			mappings: {
+				'title': 'title',
+				'description': 'summary'
+			}
+		}
 	]
 };
