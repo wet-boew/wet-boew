@@ -99,7 +99,8 @@
 				nodes,
 				node,
 				home_href,
-				header;
+				header,
+				homeBack = false;
 
 			// Build the menu popup (content pages only)
 			if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
@@ -150,16 +151,27 @@
 			header = '<div data-role="header">';
 			if (typeof home_href !== 'undefined') { // Home button needed
 				header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';
-			} else if (typeof home_href === 'undefined') { // Back button needed (TODO: need better condition, back link exists?)
+				homeBack = true;
+			} else if (true === false) { // Back button needed (TODO: need better condition, back link exists?)
 				// TODO: Determine source of back href (link?)
 				header += button + ' href="' + '#back-href' + '" data-icon="back">' + pe.dic.get('%back') + '</a>';
+				homeBack = true;
 			}
-			header += '<div class="ui-title"></div><map id="wb-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
+			// Handling for the Canada Wordmark
+			if (wet_boew_theme.wmms.length !== 0) {
+				node = wet_boew_theme.wmms[0].getElementsByTagName('img')[0];
+				header += '<div class="ui-title"><img src="' + node.getAttribute('src').replace('.gif', '-bg.gif') + '" width="90"' + (homeBack ? ' class="home-back"' : '') + ' alt="' + node.getAttribute('alt') + '" /></div>';
+			} else {
+				header += '<div class="ui-title"></div>';
+			}
+			header += '<map id="wb-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 			if (_list.length !== 0) {
 				header += _list;
 			}
 			header += popup_button + ' href="#popupSettings" data-icon="gear">' + settings_txt + '</a></map></div>';
 			wet_boew_theme.gcnb.children('#gcwu-gcnb-in').before(header);
+			wet_boew_theme.title.className += ' ui-bar-b';
+			pe.main[0].getElementsByTagName('h1')[0].className += ' ui-bar-c';
 			
 			// Build the settings popup
 			lang_links = wet_boew_theme.gcnb.find('li[id*="-lang"]');
@@ -249,13 +261,6 @@
 				target.className = '';
 				target.setAttribute('data-role', 'footer');
 				target.innerHTML = footer1;
-			}
-
-			// Handling for the Canada Wordmark
-			if (wet_boew_theme.wmms.length !== 0) {
-				node = wet_boew_theme.wmms[0];
-				pe.footer[0].getElementsByTagName('footer')[0].appendChild(node.cloneNode(true));
-				node.parentNode.removeChild(node);
 			}
 
 			// jQuery mobile has loaded

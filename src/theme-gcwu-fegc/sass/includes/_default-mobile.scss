@@ -96,10 +96,8 @@ table {
 }
 
 #gcwu-title {
-	background: #146094;
-	font-weight: 700;
 	p {
-		padding: 3px;
+		padding: 2px;
 		margin: 0;
 	}
 	a {
@@ -119,11 +117,7 @@ table {
 }
 
 #gcwu-sig {
-	float: left;
-	margin: 3px;
-	img {
-		margin-bottom: 0;
-	}
+	display: none;
 }
 
 #gcwu-date-mod {
@@ -188,6 +182,12 @@ table {
 	.wet-boew-menubar {
 		a {
 			padding: 0;
+		}
+	}
+	.ui-li {
+		&.ui-corner-bottom {
+			border-bottom-width: 1px;
+			@include border-radius(0 0 0.6em 0.6em);
 		}
 	}
 }
@@ -341,6 +341,17 @@ table {
 
 #gcwu-bc {
 	@extend %display-none;
+}
+
+.ui-title {
+	img {
+		position: absolute;
+		left: 3px;
+		top: 7px;
+		&.home-back {
+			left: 40px;
+		}
+	}
 }
 
 .ui-content {
@@ -517,10 +528,9 @@ table {
 				margin-top: -1px;
 			}
 		}
-	}
-	.ui-corner-bottom {
-		border-bottom-width: 1px;
-		@include border-radius(0 0 0.6em 0.6em);
+		&.ui-corner-bottom {
+			border-bottom-width: 1px;
+		}
 	}
 	.top-section {
 		a {
