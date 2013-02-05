@@ -1,4 +1,4 @@
-/*!
+/*
  * Translated default messages for the jQuery validation plugin.
  * Language: SL (Slovenian; slovenski jezik)
  */

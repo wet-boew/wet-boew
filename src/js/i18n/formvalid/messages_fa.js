@@ -1,4 +1,4 @@
-/*!
+/*
  * Translated default messages for the jQuery validation plugin.
  * Locale: FA (Persian; فارسی)
  */
@@ -21,5 +21,5 @@
 		range: $.validator.format("لطفا مقداری بین {0} تا {1} حرف وارد کنید."),
 		max: $.validator.format("لطفا مقداری کمتر از {0} حرف وارد کنید."),
 		min: $.validator.format("لطفا مقداری بیشتر از {0} حرف وارد کنید.")
-	}); 
+	});
 }(jQuery));
