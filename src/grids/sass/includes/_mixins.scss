@@ -69,7 +69,9 @@ $default-color-gradient: true;
 $default-color-shadow: true;
 $default-color-border: false;
 
-
+//override the compass zero values with unitless values
+$default-box-shadow-h-offset: 0;
+$default-box-shadow-v-offset: 0;
 
 @mixin colorize-base($color: $default-color, $important: false) {
 
