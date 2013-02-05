@@ -996,9 +996,8 @@
 								nextDOM = next[0];
 								if (nextDOM.tagName.toLowerCase() === 'ul') {
 									menu += listView;
-									// Special handling for a nested list
 									nested = next.find('li ul');
-									if (nested.length !== 0) {
+									if (nested.length !== 0) { // Special handling for a nested list
 										hnestTag = 'h' + (hlevel + 1);
 										hnestDOM = nested[0];
 										hnestLinkDOM = nested.prev('a')[0];
@@ -1010,6 +1009,8 @@
 											menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
 										}
 										menu += '</ul></div>';
+									} else {
+										menu += nextDOM.innerHTML;
 									}
 									menu += '</ul>';
 								} else { // If the section contains sub-sections
