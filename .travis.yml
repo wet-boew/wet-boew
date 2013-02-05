@@ -9,9 +9,7 @@ branches:
     - v3.0-dist
     - master-dist
 
-before_script: 
-  - ant test -Djshint.failbuild=true
-
 script:
+  - ant test -Djshint.failbuild=true
   - ant
   - ./build/post_build.sh
