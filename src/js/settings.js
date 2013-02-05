@@ -25,8 +25,6 @@ var wet_boew_share = {
 
 // Charts widget 
 // var wet_boew_charts = { };
-<<<<<<< HEAD
-=======
 
 // Geomap widget
 var wet_boew_geomap = {
@@ -84,4 +82,3 @@ var wet_boew_geomap = {
 				}
 			]
 };
->>>>>>> Added hooks for JSON layer, Debug mode and layer tab enhancements.

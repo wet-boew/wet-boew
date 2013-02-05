@@ -291,7 +291,7 @@
 		
 		addLayerData: function(featureTable, enabled, olLayerId) {			
 			
-			if ($('div#wet-boew-geomap-legend')) {
+			if ($('.wet-boew-geomap-legend')) {
 				pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
 			};
 			
@@ -303,9 +303,9 @@
 		 */
 		
 		addToLegend: function(featureTable, enabled, olLayerId) {			
-			var $div = $("div#wet-boew-geomap-legend");
+			var $div = $(".wet-boew-geomap-legend");
 			
-			if($div) {
+			if($div.length != 0) {
 				var $checked = enabled ? 'checked="checked"' : '';
 				var $ul;
 				if(!$div.find('ul').length) {
@@ -344,11 +344,7 @@
 					'class': 'form-checkbox'
 				}).append($chkBox);
 				
-				$ul.append($("<li>").append($label));
-			} else {
-				if(opts.debug){
-					$("div#wb-main-in").append('<div class="module-attention"><h3>WET-Geomap ERROR</h3><p>No div element with an id of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with an id of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.</p></div>');	
-				}
+				$ul.append($("<li>").append($label));			
 			}	
 		},
 		
@@ -826,6 +822,15 @@
 				map.updateSize();
 				map.zoomToMaxExtent();
 			}
+			
+			/*
+			 * General debug and warning messages - only shown if debug class is found
+			 */
+			
+			// Check to see if a legend container is provided			
+			if($(".wet-boew-geomap-legend").length == 0 && $(".wet-boew-geomap").hasClass("debug")) {		
+				$("div#wb-main-in").prepend('<div class="module-alert span-8"><h3>WET-Geomap WARNING</h3><p>No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.</p></div>');	
+			}	
 			
 			return elm;
 		} // end of exec
