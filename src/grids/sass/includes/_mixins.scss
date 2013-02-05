@@ -83,6 +83,9 @@ $accent-11: #87aec9;
 $accent-12: #23447e;
 $accent-13: #999999;
 
+//override the compass zero values with unitless values
+$default-box-shadow-h-offset: 0;
+$default-box-shadow-v-offset: 0;
 
 @mixin colorize-base($color: $default-color, $important: false) {
 
