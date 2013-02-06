@@ -11,33 +11,37 @@ var wet_boew_geomap = {
 	*/
 	overlays : [
 		{
-		   title: 'WMS Demo',
-		   type: 'wms',
-		   url: 'http://www2.dmsolutions.ca/cgi-bin/mswms_gmap',
-		   layers: 'bathymetry,land_fn,park,drain_fn,drainage,prov_bound,fedlimit,rail,road,popplace',		   
-		   format: 'image/png',
-		   visible: false
+		    title: 'WMS Demo',
+		    type: 'wms',
+		    url: 'http://www2.dmsolutions.ca/cgi-bin/mswms_gmap',
+		    layers: 'bathymetry,land_fn,park,drain_fn,drainage,prov_bound,fedlimit,rail,road,popplace',		   
+		    format: 'image/png',
+		    visible: false
 		},
 		{
-		   title: 'KML Demo',
-		   caption: 'This is a sample KML file loaded locally by Geomap.',
-		   type: 'kml',
-		   url: 'data/sample.kml',		   
-		   visible: true
+		    title: 'KML Demo',
+		    caption: 'This is a sample KML file loaded locally by Geomap.',
+		    type: 'kml',
+		    url: 'data/sample.kml',		   
+		    visible: true,
+		    strokeColor: '#FF00FF',
+		    fillColor: '#FF00FF'
 		},
 		{
-		   title: 'ATOM Demo',
-		   caption: 'This is a sample ATOM feed loaded locally by Geomap.',
-		   type: 'atom',
-		   url: 'data/sample.atom',		   
-		   visible: false
+		    title: 'ATOM Demo',
+		    caption: 'This is a sample ATOM feed loaded locally by Geomap.',
+		    type: 'atom',
+		    url: 'data/sample.atom',		   
+		    visible: false
 		},
 		{
-		   title: 'GeoRSS Demo',
-		   caption: 'This is a sample GeoRSS feed loaded locally by Geomap.',
-		   type: 'georss',
-		   url: 'data/sample.rss',		   
-		   visible: false
+			title: 'GeoRSS Demo',
+			caption: 'This is a sample GeoRSS feed loaded locally by Geomap.',
+			type: 'georss',
+			url: 'data/sample.rss',		   
+			visible: false,
+			strokeColor: '#000000',
+			fillColor: '#000000'
 		},
 		{
 			title: 'JSON Demo',
@@ -49,9 +53,12 @@ var wet_boew_geomap = {
 			},
 			visible: 'true',
 			root: 'products',
-			mappings: {
-				'title': 'title',
-				'description': 'summary'
+			attributes: {
+				foo: 'bar',
+				title: 'title',
+				description: 'summary',
+				geometry: 'geometry',
+				author: 'author'
 			}
 		}
 	]
