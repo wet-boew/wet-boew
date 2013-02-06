@@ -20,26 +20,30 @@ var wet_boew_geomap = {
 		},
 		{
 		   title: 'KML Demo',
+		   caption: 'This is a sample KML file loaded locally by Geomap.',
 		   type: 'kml',
 		   url: 'data/sample.kml',		   
 		   visible: true
 		},
 		{
 		   title: 'ATOM Demo',
+		   caption: 'This is a sample ATOM feed loaded locally by Geomap.',
 		   type: 'atom',
 		   url: 'data/sample.atom',		   
 		   visible: false
 		},
 		{
 		   title: 'GeoRSS Demo',
+		   caption: 'This is a sample GeoRSS feed loaded locally by Geomap.',
 		   type: 'georss',
 		   url: 'data/sample.rss',		   
 		   visible: false
 		},
 		{
 			title: 'JSON Demo',
+			caption: 'This is a sample dataset loaded from a remote JSON resource, in this case the GeoGratis API.',
 			type: 'json',					
-			url: 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst',
+			url: 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst?alt=json',
 			params: {
 				'alt': 'json'
 			},

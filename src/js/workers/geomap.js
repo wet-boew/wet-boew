@@ -253,19 +253,18 @@
 		/* 
 		 * Create a table for vector features added in Load Overlays
 		 */
-		createTable: function(index, title) {
+		createTable: function(index, title, caption) {
 			
 			// create a table object
 			var $table = $('<table>'); 
 			$table.attr('aria-label', title);
 			$table.attr('id', "overlay_" + index);
-			$table.append('<caption class="wb-invisible">' + title + '</caption>');
+			$table.append('<caption>' + caption + '</caption>');
 			var $thead = $('<thead>');
 			var $row = $('<tr>');  
 			$row.append('<th>Title</th>');	  
 			$row.append('<th>Description</th>'); 
-			$row.append('<th class="wb-invisible">Geometry</th>');
-			//$row.append('<th>Geometry</th>');
+			//$row.append('<th>Geometry</th>');			
 			$thead.append($row);
 			$table.append($thead);
 						
@@ -325,17 +324,16 @@
 					layer.setVisibility(visibility);	
 					
 					var $table = $('#' + $(featureTable).attr('id'));		
-					var $div = $table.parent();
-					var $alert = $div.find("div.module-alert");
+					var $tableContainer = $table.parent();
+					var $alert = $tableContainer.find("div.module-alert");
 					
 					if($alert.length != 0) { 
 						$alert.fadeToggle();
 					} else { 
-						$div.append('<div class="module-alert module-simplify"><p>This layer is currently hidden.</p></div>');				
+						$tableContainer.append('<div class="module-alert module-simplify"><p>This layer is currently hidden.</p></div>');				
 					}					
 					
-					$table.fadeToggle();
-					//$('a[href="#tabs_' + $(featureTable).attr('id') + '"]').fadeToggle();					
+					$table.fadeToggle();									
 				})
 				
 				var $label = $('<label>', {
@@ -344,7 +342,7 @@
 					'class': 'form-checkbox'
 				}).append($chkBox);
 				
-				$ul.append($("<li>").append($label));			
+				$ul.append($("<li>", {'class': 'margin-right-small'}).append($label));			
 			}	
 		},
 		
@@ -352,33 +350,27 @@
 		 * Create tabs
 		 */
 		addToTabs: function(featureTable, enabled, olLayerId) {				
-
+			
 			var $div = $("div#wet-boew-geomap-layers");
 			var $tabs = $div.find("ul.tabs");
-			var $tabsPanel = $div.find("div.tabs-panel");	
-//			var $checked = enabled ? 'checked="checked"' : '';
-//			var $chkBox = $('<input type="checkbox" id="cb_' 
-//					+ $(featureTable).attr('id') + '" value="' 
-//					+ $(featureTable).attr('id') + '"' + $checked + ' />');
-//			
-//			$chkBox.change(function() {				
-//				map = pe.fn.geomap.getMap();
-//				layer = map.getLayer(olLayerId);				
-//				visibility = $('#cb_' + $(featureTable).attr('id')).prop('checked') ? true : false;	
-//				layer.setVisibility(visibility)
-//			})
-			
+			var $tabsPanel = $div.find("div.tabs-panel");			
 			var $link = $("<a>", {
 				'text': $(featureTable).attr('aria-label'),			   
 				'href': '#tabs_'	+ $(featureTable).attr('id')
 			});
-			
-//			$tabs.append($("<li>").append($chkBox, $link));
+
 			$tabs.append($("<li>").append($link));
-						
-			$tabsPanel.append($("<div>").attr('id', 'tabs_' + $(featureTable).attr('id')).append(featureTable));			
 			
+			$layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
+			$layerTab.append(featureTable);		
+			$tabsPanel.append($layerTab);		
+			
+			if(enabled === false) {				
+				$layerTab.append('<div class="module-alert module-simplify"><p>This layer is currently hidden!</p></div>');	
+				featureTable.fadeOut();
+			}			
 		},
+		
 		/*
 		 * Generate StyleMap
 		 */
@@ -415,7 +407,6 @@
 			$row.attr('id', context.id.replace(/\W/g, "_"));										
 			$tdTitle = $('<td>', { 'class': 'select' });
 			$tdDesc = $('<td>', { 'html': context.description });
-			$tdGeom = $('<td>', { 'class': 'geometry wb-invisible', 'html': context.geometry });
 			$link = $('<a>', {				
 				'html': context.title,
 				'href': '#'
@@ -433,7 +424,7 @@
 					context.selectControl.unselect(context.feature);
 				}
 			);											
-			$row.append($tdTitle, $tdDesc, $tdGeom);
+			$row.append($tdTitle, $tdDesc);
 			
 			return $row;	
 			
@@ -564,7 +555,7 @@
 			if(wet_boew_geomap.overlays){				
 				$.each(wet_boew_geomap.overlays, function(index, layer) {	
 					
-					var $table = pe.fn.geomap.createTable(index, layer.title);
+					var $table = pe.fn.geomap.createTable(index, layer.title, layer.caption);
 					
 					if(layer.type=='wms') {
 						map.addLayer(
@@ -593,7 +584,7 @@
 										'id': feature.id.replace(/\W/g, "_"),
 										'title': feature.attributes.name,
 										'description': feature.attributes.description,
-										'geometry': feature.attributes.geometry,
+										//'geometry': feature.attributes.geometry,
 										'feature': feature,
 										'selectControl': selectControl
 									};									
@@ -621,7 +612,6 @@
 										'id': feature.id.replace(/\W/g, "_"),
 										'title': feature.attributes.title,
 										'description': feature.attributes.description,
-										'geometry': feature.attributes.geometry,
 										'feature': feature,
 										'selectControl': selectControl
 									};									
@@ -650,7 +640,6 @@
 										'id': feature.id.replace(/\W/g, "_"),
 										'title': feature.attributes.title,
 										'description': feature.attributes.description,
-										'geometry': feature.attributes.geometry,
 										'feature': feature,
 										'selectControl': selectControl
 									};									
@@ -665,29 +654,30 @@
 						map.addLayer(olLayer);						
 						pe.fn.geomap.createTable(olLayer);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
-					} else if (layer.type=='json') {						
+					} else if (layer.type=='json') {
 						var olLayer = new OpenLayers.Layer.Vector(
 								layer.title, {
-									projection: map.displayProjection,
-									strategies: [new OpenLayers.Strategy.Fixed()],
-									protocol: new OpenLayers.Protocol.Script({
-										url: layer.url,
-										params: {
-											alt: "json",
-											q: "binta"
-										},
-										callback: function(response) {
-											alert("read completed!");
-										}
-									})
+									projection: map.displayProjection,									
+									styleMap: pe.fn.geomap.getStyleMap()
 								}
-							)
-							olLayer.visibility=layer.visible;
-							queryLayers.push(olLayer);
-							map.addLayer(olLayer);						
-							pe.fn.geomap.createTable(olLayer);						
-							pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
-						}
+						)
+						
+						$.ajax({
+							  url: layer.url,
+							  dataType: 'jsonp',
+							  success: function(data) { 
+								  $.each(data.products, function(index, feature) {
+									  console.log(feature.title);
+								  });
+							  }
+						});
+						
+						olLayer.visibility=layer.visible;
+						queryLayers.push(olLayer);
+						map.addLayer(olLayer);						
+						pe.fn.geomap.createTable(olLayer);						
+						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
+					}
 					
 				});
 			}
