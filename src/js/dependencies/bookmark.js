@@ -263,7 +263,7 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 	$.extend(Bookmark.prototype, {
 		/* Class name added to elements to indicate already configured with bookmarking. */
 		markerClassName : 'hasBookmark',
-		
+
 		/* Override the default settings for all bookmarking instances.
 		@param	settings  (object) the new settings to use as defaults
 		@return void */
@@ -467,18 +467,9 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 						'style="' + (settings.iconsStyle ? 'background-position: ' :
 								'background: transparent url(' + settings.icons + ') no-repeat ') + '-' +
 						((icon % settings.iconCols) * settings.iconSize) + 'px -' +
-						(Math.floor(icon / settings.iconCols) * settings.iconSize) + 'px;' +
-						($.browser.mozilla && $.browser.version < '1.9' ?
-								' padding-left: ' + settings.iconSize + 'px; padding-bottom: ' +
-								(Math.max(0, settings.iconSize - 16)) + 'px;' : '') + '"></span>';
+						(Math.floor(icon / settings.iconCols) * settings.iconSize) + 'px;"></span>';
 				} else {
-					html += '<img src="' + icon + '" alt="' + title + '" title="' +
-								title + '"' + (($.browser.mozilla && $.browser.version < '1.9') ||
-									($.browser.msie && $.browser.version < '7.0') ?
-										' style="vertical-align: bottom;"' :
-											($.browser.msie ? ' style="vertical-align: middle;"' :
-												($.browser.opera || $.browser.safari ?
-													' style="vertical-align: baseline;"' : ''))) + '/>';
+					html += '<img src="' + icon + '" alt="' + title + '" title="' + title + '"/>';
 				}
 				html += (settings.compact ? '' : '&#xa0;');
 			}
@@ -513,8 +504,8 @@ $('div selector').bookmark({sites: ['delicious', 'digg']});
 		@param	url    (string) the URL to bookmark
 		@param	title  (string) the title to bookmark */
 		_addFavourite : function (url, title) {
-			if ($.browser.msie) {
-				window.external.addFavorite(url, title);
+			if (typeof window.external.AddFavorite !== 'undefined') {
+				window.external.AddFavorite(url, title);
 			} else {
 				alert(this._defaults.manualBookmark);
 			}
