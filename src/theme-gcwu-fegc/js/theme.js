@@ -170,7 +170,7 @@
 			// Append the header
 			wet_boew_theme.gcnb.children('#gcwu-gcnb-in').before(header);
 			// Apply a theme to the site title
-			wet_boew_theme.title.className += ' ui-bar-b';
+			wet_boew_theme.title[0].className += ' ui-bar-b';
 			// Apply a theme to the h1
 			pe.main[0].getElementsByTagName('h1')[0].className += ' ui-bar-c';
 			

@@ -134,12 +134,12 @@ table {
 #wb-main-in {
 	padding: 3px;
 	h1 {
-		border: 1px solid #999;
-		background: #c3c3c3;
 		font-size: 1.5em;
 		font-weight: 400;
 		margin: -3px;
 		padding: 0 3px;
+		border: 1px solid #999;
+		border-bottom: none;
 		@include text-shadow(none);
 		position: static !important;
 		&.wb-invisible {
@@ -216,7 +216,7 @@ table {
 }
 
 #gcwu-bnr {
-	background: #4E7EB7;
+	background: #225C96;
 }
 
 #gcwu-bnr-in {
@@ -513,6 +513,11 @@ table {
 			color: #222;
 			background: #eee;
 			padding: 0.45em 0.79em;
+		}
+	}
+	#wb-main-in {
+		h1 {
+			background: #eee;
 		}
 	}
 	#gcwu-tctr {
