@@ -7,12 +7,6 @@
 #gcwu-bc {
 	li {
 		background: url(../images/bcrumb.gif) right center no-repeat;
-		margin:0 5px 0 0;
-		padding:0 11px 0 0;
-		&:last-child {
-			background-image:none;
-			padding-right:0;
-		}
 	}
 }
 

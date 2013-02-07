@@ -37,6 +37,7 @@
 			wet_boew_theme.search = pe.header.find('#gcwu-srchbx');
 			wet_boew_theme.bcrumb = pe.header.find('#gcwu-bc');
 			wet_boew_theme.title = pe.header.find('#gcwu-title');
+			wet_boew_theme.mainh1 = pe.main[0].getElementsByTagName('h1')[0];
 			wet_boew_theme.sft = pe.footer.find('#gcwu-sft');
 			wet_boew_theme.gcft = pe.footer.find('#gcwu-gcft');
 
@@ -73,7 +74,6 @@
 				s_popup,
 				bodyAppend = '',
 				button = '<a data-role="button" data-iconpos="notext"',
-				button_position = pe.rtl ? 'left' : 'right',
 				popup_link = ' data-rel="popup" data-position-to="window"',
 				popup_button = button + popup_link,
 				popup = '<div data-role="popup" data-overlay-theme="a"',
@@ -82,10 +82,11 @@
 				popup_settings = ' data-theme="c" class="ui-corner-all">',
 				popup_settings_header_open = popup_header_open + ' class="ui-corner-top"><h1>',
 				popup_settings_content_open = '<div data-role="content" data-theme="c" class="ui-corner-bottom ui-content">',
-				popup_close_btn = button + ' href="javascript:;" data-icon="delete" data-rel="back" class="ui-btn-' + button_position + '">' + pe.dic.get('%close') + '</a>',
-				popup_back_btn_open = popup_button + ' data-icon="back" class="ui-btn-' + button_position + '"',
+				popup_close_btn = button + ' href="javascript:;" data-icon="delete" data-rel="back" class="ui-btn-left">' + pe.dic.get('%close') + '</a>',
+				popup_back_btn_open = popup_button + ' data-icon="back" class="ui-btn-left"',
 				popup_back_btn_close = '>' + pe.dic.get('%back') + '</a>',
 				popup_close = '</div></div>',
+				listView = '<ul data-role="listview">',
 				_list = '',
 				links,
 				link,
@@ -99,7 +100,9 @@
 				nodes,
 				node,
 				home_href,
-				header;
+				header,
+				about,
+				contact;
 
 			// Build the menu popup (content pages only)
 			if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
@@ -114,7 +117,6 @@
 					node = wet_boew_theme.bcrumb[0];
 					home_href = node.getElementsByTagName('a')[0].href;
 					mb_popup += '<section><div id="jqm-mb-location-text">' + node.innerHTML + '</div></section>';
-					node.parentNode.removeChild(node);
 				} else {
 					mb_popup += '<div id="jqm-mb-location-text"></div>';
 				}
@@ -123,7 +125,6 @@
 				if (pe.secnav.length !== 0) {
 					mb_menu += '<section><div><h2>' + secnav_h2.innerHTML + '</h2><div data-role="controlgroup">' + pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'b', false, true, 'c', true, true) + '</div></div></section>';
 					node = pe.secnav[0];
-					node.parentNode.removeChild(node);
 				}
 				if (wet_boew_theme.menubar.length !== 0) {
 					mb_menu += '<section><div><h2>' + mb_header_html + '</h2><div data-role="controlgroup">' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></div></section>';
@@ -174,13 +175,13 @@
 			// Apply a theme to the site title
 			wet_boew_theme.title.className += ' ui-bar-b';
 			// Apply a theme to the h1
-			pe.main[0].getElementsByTagName('h1')[0].className += ' ui-bar-c';
+			wet_boew_theme.mainh1.className += ' ui-bar-c';
 			
 			// Build the settings popup
 			lang_links = wet_boew_theme.gcnb.find('li[id*="-lang"]');
 			settings_popup = popup + ' id="popupSettings"' + popup_settings;
 			settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
-			settings_popup += popup_settings_content_open + '<ul data-role="listview">';
+			settings_popup += popup_settings_content_open + listView;
 			if (lang_links.length > 0) {
 				settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
 			}
@@ -191,7 +192,7 @@
 			if (lang_links.length > 0) {
 				settings_popup += popup + ' id="popupLanguages"' + popup_settings;
 				settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';
-				settings_popup += popup_settings_content_open + '<ul data-role="listview">';
+				settings_popup += popup_settings_content_open + listView;
 				if (lang_links.filter('[id*="-lang-current"]').length === 0) {
 					settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
 				}
@@ -212,10 +213,33 @@
 			// Build the about sub-popup	
 			settings_popup += popup + ' id="popupAbout"' + popup_settings;
 			settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';			
-			settings_popup += popup_settings_content_open + '<ul data-role="listview">';
-			settings_popup += '<li>' + wet_boew_theme.title.text() + '</li>';
-			// TODO: Get relevant about information
-			settings_popup += '<li class="ui-corner-bottom">Relevant information</li>';
+			settings_popup += popup_settings_content_open + listView;
+			settings_popup += '<li>' + wet_boew_theme.title.text() + '</li><li>' + wet_boew_theme.mainh1.innerHTML + '</li>';
+			// Add the Date modified/Version
+			node = pe.main.find('#gcwu-date-mod').children();
+			if (node.length !== 0) {
+				settings_popup += '<li>' + node[0].innerHTML + ' ' + node.eq(1).text() + '</li>';	
+			}
+			if (wet_boew_theme.sft.length !== 0) { 
+				// Add the terms and conditions and transparency links
+				links = document.getElementById('gcwu-tctr').getElementsByTagName('a');
+				for (i = 0, len = links.length; i !== len; i += 1) {
+					link = links[i];
+					settings_popup += '<li><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
+				}
+				// Add the About Us and Contact Us links
+				about = pe.dic.get('%tmpl-about-us').toLowerCase();
+				contact = pe.dic.get('%tmpl-contact-us').toLowerCase();
+				links = wet_boew_theme.sft.find('.gcwu-col-head a').get();
+				for (i = 0, len = links.length; i !== len; i += 1) {
+					link = links[i];
+					node = link.innerHTML;
+					target = node.toLowerCase();
+					if (target.indexOf(about) !== -1 || target.indexOf(contact) !== -1) {
+						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';	
+					}
+				}
+			}
 			settings_popup += '</ul>' + popup_close;
 
 			// Append all the popups to the body
@@ -238,32 +262,24 @@
 				}
 			}
 
-			// Handling for the footer
-			if (wet_boew_theme.sft.length !== 0) { // Handling for the content page site footer
-				links = wet_boew_theme.sft.find('#gcwu-tctr a, .gcwu-col-head a').get();
-				target = document.getElementById('gcwu-sft-in');
-				if (wet_boew_theme.gcft.length !== 0) {
-					node = wet_boew_theme.gcft[0];
-					node.parentNode.removeChild(node);
-				}
-			} else { // Handling for the splash page terms and conditions links
+			// Handling for the splash page terms and conditions links
+			if (wet_boew_theme.sft.length === 0) { 
 				target = document.getElementById('gcwu-tc');
 				if (target !== null) {
 					links = target.getElementsByTagName('a');
+
+					// transform the footer into mobile nav bar
+					footer1 = '<ul class="ui-grid-a">';
+					for (i = 0, len = links.length; i < len; i += 1) {
+						link = links[i];
+						footer1 += '<li class="ui-block-' + (i % 2 !== 0 ? 'b' : 'a') + '"><a href="' + link.href + '" data-role="button" data-theme="c" data-corners="false">' + link.innerHTML + '</a></li>';
+					}
+					footer1 += '</ul>';
+					target.id = '';
+					target.className = '';
+					target.setAttribute('data-role', 'footer');
+					target.innerHTML = footer1;
 				}
-			}
-			if (target !== null) {
-				// transform the footer into mobile nav bar
-				footer1 = '<ul class="ui-grid-a">';
-				for (i = 0, len = links.length; i < len; i += 1) {
-					link = links[i];
-					footer1 += '<li class="ui-block-' + (i % 2 !== 0 ? 'b' : 'a') + '"><a href="' + link.href + '" data-role="button" data-theme="c" data-corners="false">' + link.innerHTML + '</a></li>';
-				}
-				footer1 += '</ul>';
-				target.id = '';
-				target.className = '';
-				target.setAttribute('data-role', 'footer');
-				target.innerHTML = footer1;
 			}
 
 			// jQuery mobile has loaded
@@ -290,6 +306,10 @@
 							menu.trigger('create');
 							// Fix the bottom corners
 							nodes = menu[0].getElementsByTagName('li');
+							node = nodes[0];
+							if (node.className.indexOf('ui-corner-top') === -1) {
+								node.className += ' ui-corner-top';
+							}
 							node = nodes[nodes.length - 1];
 							if (node.className.indexOf('ui-corner-bottom') === -1) {
 								node.className += ' ui-corner-bottom';

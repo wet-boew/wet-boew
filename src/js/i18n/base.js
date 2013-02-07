@@ -176,7 +176,10 @@
 		'%sLengthMenu': '@%sLengthMenu@',
 		/* Disable/enable PE */
 		'%pe-disable': '@%pe-disable@',
-		'%pe-enable': '@%pe-enable@'
+		'%pe-enable': '@%pe-enable@',
+		/* Template strings needed for scripting */
+		'%tmpl-about-us': '@%tmpl-about-us@',
+		'%tmpl-contact-us': '@%tmpl-contact-us@'
 	};
 	$(document).trigger('languageloaded');
 	window.pe = _pe;
