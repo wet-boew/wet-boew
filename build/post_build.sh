@@ -25,12 +25,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	if [ "$TRAVIS_BRANCH" == "master" ]; then
 		echo -e "Updating working examples...\n"
 
-		git add -f dist/.
-		git stash
-		git checkout gh-pages
-		git rebase --committer-date-is-author-date master
-		git rm -r dist/.
-		git stash pop
+		git checkout -B gh-pages
 		git add -f dist/.
 		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
 		git push -fq upstream gh-pages > /dev/null
@@ -39,15 +34,10 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	fi
 
 	#Update the experimental working example
-	if [ "$TRAVIS_BRANCH" == "experimental" ]; then
+	if [[ "$TRAVIS_BRANCH" == "experimental*" ]]; then
 		echo -e "Updating experimental working examples...\n"
 
-		git add -f dist/.
-		git stash
-		git checkout gh-pages
-		git rebase --committer-date-is-author-date master
-		git rm -r dist/.
-		git stash pop
+		git checkout -B gh-pages
 		git add -f dist/.
 		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
 		git push -fq experimental gh-pages > /dev/null
