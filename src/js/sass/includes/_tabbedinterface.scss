@@ -28,7 +28,7 @@
 		a {
 			display: block;
 			text-decoration: none;
-			color: #333;
+			color: #333 !important;
 			font-weight: 400;
 			padding: 4px;
 			position: relative;
@@ -36,7 +36,7 @@
 			margin-top: -1px;
 			&.active {
 				&, &:hover, &:focus, &:active {
-					color: #333;
+					color: #333 !important;
 					padding-top: 5px;
 					background: #fff;
 					cursor: text;
@@ -55,7 +55,7 @@
 				margin-right: 2px;
 				&:hover, &:focus, &:active {
 					text-decoration: underline;
-					color: #000;
+					color: #000 !important;
 				}
 				&.tabs-next, &.tabs-prev {
 					padding: 2px 5px !important;
@@ -189,37 +189,37 @@
 			a {
 				background: #555 url(../images/tabs/gradient2.png) repeat-x  0 bottom;
 				border-top: none;
-				color: #fff;
+				color: #fff !important;
 				padding: 3px 4px 4px;
 				&:hover, &:focus, &:active {
-					color: #000;
+					color: #000 !important;
 					border-top: 1px solid #fff;
 					padding-top: 1px;
 				}
 				&.active {
 					&, &:hover, &:focus, &:active {
-						color: #000;
+						color: #000 !important;
 						background: #fff;
 						border-top: none;
 						padding: 4px;
 					}
 				}
 				&.tabs-start, &.tabs-stop {
-					color: #000;
+					color: #000 !important;
 				}
 			}
 		}
 		li {
 			&.tabs-toggle {
 				a {
-					color: #000;
+					color: #000 !important;
 					&, &:active, &:hover, &:active {
 						background-repeat: no-repeat;
 						background-position: -1px 0;
 						border: 1px solid #999;
 					}
 					&:active, &:hover, &:active {
-						color: #c00;
+						color: #c00 !important;
 					}
 					&.tabs-prev, &.tabs-next {
 						background-position: center 5px;
@@ -263,7 +263,7 @@
 				@include border-radius(2px);
 				&.active, &:hover, &:focus, &:active {
 					background: #333;
-					color: #fff;
+					color: #fff !important;
 					outline-color: #000;
 					padding-top: 2px;
 				}
@@ -271,7 +271,7 @@
 			&.active {
 				border: none;
 				top: auto;
-				color: #fff;
+				color: #fff !important;
 			}
 			&.tabs-toggle {
 				margin-left: 6px;
@@ -279,7 +279,7 @@
 				a {
 					background-color: transparent !important;
 					&:hover, &:focus, &:active {
-						color: #000;
+						color: #000 !important;
 					}
 				}
 			}
@@ -293,7 +293,7 @@
 		margin: 0;
 		padding: 0;
 		a, a:visited, #{headings(2,6)} {
-			color: #fff;
+			color: #fff !important;
 		}
 	}
 	.tabs-content-pad {
@@ -334,7 +334,7 @@
 				padding: 5px 5px 5px 25px;
 				&.active, &:hover, &:focus, &:active {
 					background: #000;
-					color: #fff;
+					color: #fff !important;
 					outline-color: #000;
 					margin-right: 0;
 					padding: 5px 5px 5px 25px;
@@ -344,7 +344,7 @@
 			}
 			&.active {
 				border: none;
-				color: #fff;
+				color: #fff !important;
 			}
 			&.tabs-toggle {
 				width: auto;
@@ -354,7 +354,7 @@
 					border: 1px solid #ccc;
 					&:hover, &:focus, &:active {
 						@include opaque;
-						color: #000;
+						color: #000 !important;
 						margin-right: 2px;
 					}
 				}
@@ -401,12 +401,12 @@
 			a {
 				background: url(../images/tabs/gradient2-style4.png) repeat-x scroll 50% 50% #000;
 				border-top: 1px solid #000000;
-				color: #FFF;
+				color: #FFF !important;
 				font-size: 80%;
 				margin: 0;
 				padding: 2px;
 				&:hover, &:focus, &:active {
-					color: #000;
+					color: #000 !important;
 				}
 				&.active {
 					&, &:hover {
@@ -539,7 +539,7 @@
 				}
 				&:hover, &:focus, &:active, &.active {
 					text-decoration: none;
-					color: #fff;
+					color: #fff !important;
 					background: #333;
 					border-color: #000;
 				}
@@ -554,14 +554,14 @@
 					@include border-radius(0);
 					&:hover, &:focus, &:active, &.active {
 						opacity: 1;
-						color: #000;
+						color: #000 !important;
 					}
 				}				
 			}
 			&.tabs-toggle {
 				a:hover, a:focus, a:active {
 					text-decoration: underline;
-					color: #000;
+					color: #000 !important;
 					background: 0;
 					border-color: #999;
 				}
