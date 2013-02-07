@@ -156,7 +156,7 @@
 			} else {
 				header += '<div class="ui-title"></div>';
 			}
-			header += '<map id="wb-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
+			header += '<map id="gcwu-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 			// Handling for the home/back button if it exists
 			if (typeof home_href !== 'undefined') { // Home button needed
 				header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';
@@ -293,7 +293,7 @@
 					node.parentNode.removeChild(node);
 				}
 				if (_list.length !== 0) {
-					var navbar = wet_boew_theme.gcnb.find('#wb-mnavbar');
+					var navbar = wet_boew_theme.gcnb.find('#gcwu-mnavbar');
 					navbar.removeClass('wb-hide');
 
 					// Defer appending of menu until after page is enhanced by jQuery Mobile, and

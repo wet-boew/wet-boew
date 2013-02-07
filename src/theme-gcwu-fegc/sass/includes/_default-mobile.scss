@@ -189,11 +189,19 @@ table {
 }
 
 #gcwu-gcnb {
+	min-height: 41px;
 	li {
 		display: none;
 	}
 	[id*="-lang"] {
 		display: block;
+	}
+}
+
+#gcwu-mnavbar {
+	right: 3px;
+	.ui-btn-inner {
+		padding: 0.6em 14px;
 	}
 }
 
@@ -265,7 +273,7 @@ table {
 	img {
 		position: absolute;
 		left: 3px;
-		top: 7px;
+		top: 8px;
 	}
 }
 
@@ -552,23 +560,41 @@ table {
 	}
 }
 /* Right to left (RTL) CSS */
+/* Right to left (RTL) CSS */
+%rtl-scalex {
+	@include scaleX(-1);
+	display: block;
+}
 [dir="rtl"] {
 	#gcwu-date-mod {
 		float: left;
 	}
 
+	#gcwu-gcnb {
+		.ui-title {
+			img {
+				right: 3px;
+				left: auto;
+			}
+		}
+	}
+	
+	#gcwu-mnavbar {
+		@extend %rtl-scalex;
+		left: 3px;
+		right: auto;
+	}
+
 	#gcwu-bc-in {
 		&, li:last-child, a {
-			@include scaleX(-1);
-			display: block;
+			@extend %rtl-scalex;
 		}
 	}
 
 	.ui-popup-container, #wb-main {
 		.ui-btn, .ui-btn-text {
-			@include scaleX(-1);
+			@extend %rtl-scalex;
 			text-align: right;
-			display: block;
 		}
 		.ui-submit, .ui-select {
 			.ui-btn, .ui-btn-text {
@@ -653,11 +679,6 @@ table {
 
 	.ui-title img {
 		right: 3px;
-	}
-
-	.ui-header .ui-btn-right, .ui-footer .ui-btn-right {
-		left: 5px;
-		right: auto;
 	}
 
 	.ul-li {
