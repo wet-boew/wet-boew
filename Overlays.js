@@ -52,7 +52,7 @@ var wet_boew_geomap = {
 				'alt': 'json',
 				'q': 'alluvial'
 			},
-			visible: 'true',
+			visible: true,
 			root: 'products',
 			attributes: {
 				title: 'title',
