@@ -99,8 +99,7 @@
 				nodes,
 				node,
 				home_href,
-				header,
-				homeBack = false;
+				header;
 
 			// Build the menu popup (content pages only)
 			if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
@@ -149,28 +148,32 @@
 
 			// Build the header bar
 			header = '<div data-role="header">';
-			if (typeof home_href !== 'undefined') { // Home button needed
-				header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';
-				homeBack = true;
-			} else if (true === false) { // Back button needed (TODO: need better condition, back link exists?)
-				// TODO: Determine source of back href (link?)
-				header += button + ' href="' + '#back-href' + '" data-icon="back">' + pe.dic.get('%back') + '</a>';
-				homeBack = true;
-			}
-			// Handling for the Canada Wordmark
+			// Handling for the Canada Wordmark if it exists
 			if (wet_boew_theme.wmms.length !== 0) {
 				node = wet_boew_theme.wmms[0].getElementsByTagName('img')[0];
-				header += '<div class="ui-title"><img src="' + node.getAttribute('src').replace('.gif', '-bg.gif') + '" width="90"' + (homeBack ? ' class="home-back"' : '') + ' alt="' + node.getAttribute('alt') + '" /></div>';
+				header += '<div class="ui-title"><img src="' + node.getAttribute('src').replace('.gif', '-bg.gif') + '" width="90" alt="' + node.getAttribute('alt') + '" /></div>';
 			} else {
 				header += '<div class="ui-title"></div>';
 			}
 			header += '<map id="wb-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
+			// Handling for the home/back button if it exists
+			if (typeof home_href !== 'undefined') { // Home button needed
+				header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';
+			} else if (true === false) { // Back button needed (TODO: need better condition, back link exists?)
+				// TODO: Determine source of back href (link?)
+				header += button + ' href="' + '#back-href' + '" data-icon="back">' + pe.dic.get('%back') + '</a>';
+			}
+			// Append the Menu and Search buttons if they exist
 			if (_list.length !== 0) {
 				header += _list;
 			}
+			// Append the Settings button
 			header += popup_button + ' href="#popupSettings" data-icon="gear">' + settings_txt + '</a></map></div>';
+			// Append the header
 			wet_boew_theme.gcnb.children('#gcwu-gcnb-in').before(header);
+			// Apply a theme to the site title
 			wet_boew_theme.title.className += ' ui-bar-b';
+			// Apply a theme to the h1
 			pe.main[0].getElementsByTagName('h1')[0].className += ' ui-bar-c';
 			
 			// Build the settings popup
