@@ -37,7 +37,6 @@
 			wet_boew_theme.search = pe.header.find('#gcwu-srchbx');
 			wet_boew_theme.bcrumb = pe.header.find('#gcwu-bc');
 			wet_boew_theme.title = pe.header.find('#gcwu-title');
-			wet_boew_theme.mainh1 = pe.main[0].getElementsByTagName('h1')[0];
 			wet_boew_theme.sft = pe.footer.find('#gcwu-sft');
 			wet_boew_theme.gcft = pe.footer.find('#gcwu-gcft');
 
@@ -100,9 +99,7 @@
 				nodes,
 				node,
 				home_href,
-				header,
-				about,
-				contact;
+				header;
 
 			// Build the menu popup (content pages only)
 			if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
@@ -175,7 +172,7 @@
 			// Apply a theme to the site title
 			wet_boew_theme.title.className += ' ui-bar-b';
 			// Apply a theme to the h1
-			wet_boew_theme.mainh1.className += ' ui-bar-c';
+			pe.main[0].getElementsByTagName('h1')[0].className += ' ui-bar-c';
 			
 			// Build the settings popup
 			lang_links = wet_boew_theme.gcnb.find('li[id*="-lang"]');
@@ -214,11 +211,14 @@
 			settings_popup += popup + ' id="popupAbout"' + popup_settings;
 			settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';			
 			settings_popup += popup_settings_content_open + listView;
-			settings_popup += '<li>' + wet_boew_theme.title.text() + '</li><li>' + wet_boew_theme.mainh1.innerHTML + '</li>';
+			settings_popup += '<li>' + wet_boew_theme.title.text() + '</li>';
 			// Add the Date modified/Version
 			node = pe.main.find('#gcwu-date-mod').children();
 			if (node.length !== 0) {
-				settings_popup += '<li>' + node[0].innerHTML + ' ' + node.eq(1).text() + '</li>';	
+				target = node[1];
+				if (target.getElementsByTagName('time').length === 0) {
+					settings_popup += '<li>' + node[0].innerHTML + ' ' + target.innerHTML + '</li>';
+				}
 			}
 			if (wet_boew_theme.sft.length !== 0) { 
 				// Add the terms and conditions and transparency links
@@ -227,17 +227,13 @@
 					link = links[i];
 					settings_popup += '<li><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
 				}
-				// Add the About Us and Contact Us links
-				about = pe.dic.get('%tmpl-about-us').toLowerCase();
-				contact = pe.dic.get('%tmpl-contact-us').toLowerCase();
+				// Add the footer links
 				links = wet_boew_theme.sft.find('.gcwu-col-head a').get();
 				for (i = 0, len = links.length; i !== len; i += 1) {
 					link = links[i];
 					node = link.innerHTML;
 					target = node.toLowerCase();
-					if (target.indexOf(about) !== -1 || target.indexOf(contact) !== -1) {
-						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';	
-					}
+					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';	
 				}
 			}
 			settings_popup += '</ul>' + popup_close;
