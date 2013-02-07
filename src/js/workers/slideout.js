@@ -335,14 +335,17 @@
 					'width': toggleLink.outerWidth() + 'px'
 				});
 			}
-			
-			if (pe.ie > 7 && pe.ie < 9) { // IE 8
-				toggleLink.width(toggleLink.width() + 'px');
-				toggleLink.height(toggleLink.height() + 'px');
-			}
 
-			// Set vertical position and hide the slideout on load -- we don't want it to animate so we can't call slideout.toggle()
-			wrapper.css('width', (tab.outerWidth() + focusOutlineAllowance) + 'px').css('top', $wbcorein.offset().top);
+			if (pe.ie > 7 && pe.ie < 9) {  // IE 8
+				$('#slideoutToggle').css({
+					'left': -($('#slideoutToggle').width()) + 'px',
+					'top': $('#slideoutToggle').width() + 'px'
+				});
+				wrapper.width(focusOutlineAllowance);
+			} else {
+				// Set vertical position and hide the slideout on load -- we don't want it to animate so we can't call slideout.toggle()
+				wrapper.css('width', (tab.outerWidth() + focusOutlineAllowance) + 'px').css('top', $wbcorein.offset().top);
+			}
 
 			// Fix scrolling issue in some versions of IE (#4051)
 			if (ie7) {

@@ -5,10 +5,12 @@
 
 .ie8 {
 	#toggleLink {
-		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-		right: 0;
+		position: static;
 	}
 	#slideoutInnerWrapper {
 		width: auto;
+	}
+	#slideoutToggle {
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 	}
 }
