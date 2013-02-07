@@ -34,7 +34,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	fi
 
 	#Update the experimental working example
-	if [[ "$TRAVIS_BRANCH" == "experimental*" ]]; then
+	if [[ "$TRAVIS_BRANCH" == experimental* ]]; then
 		echo -e "Updating experimental working examples...\n"
 
 		git checkout -B gh-pages
