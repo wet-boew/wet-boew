@@ -697,12 +697,12 @@
 									url: layer.url,
 									params: layer.params,
 									format: new OpenLayers.Format.GeoJSON({										
-										read: function(json) {
-											var features = [];
+										read: function(json) {											
+											var items = json[layer.root] ? json[layer.root] : json;
 											var row, feature, atts = {}, features = [];
 											
-											for (var i = 0; i < json.products.length; i++) {												
-												row = json.products[i];				
+											for (var i = 0; i < items.length; i++) {												
+												row = items[i];												
 												feature = new OpenLayers.Feature.Vector();												
 												feature.geometry = this.parseGeometry(row.geometry);
 												
