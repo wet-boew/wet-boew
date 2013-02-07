@@ -101,6 +101,11 @@ div {
 				background: 0 !important;
 				padding-left: 0 !important;
 			}
+			img {
+				width: auto;
+				margin-bottom: 0;
+				vertical-align: text-top;
+			}
 		}
 		span {
 			@include inline-block;
