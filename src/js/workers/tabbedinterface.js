@@ -25,6 +25,8 @@
 
 			var $tabs = elm.children('.tabs').children('li'),
 				$panels = elm.children('.tabs-panel').children('div'),
+				$activeTab,
+				tabListIdx = $('.wet-boew-tabbedinterface').index(elm),
 				defaultTab = 0,
 				accordion = '<div data-role="collapsible-set" data-mini="true" data-content-theme="b" data-theme="b">',
 				hlevel,
@@ -32,6 +34,13 @@
 				hclose,
 				index,
 				len;
+
+			// Check if there's an active tab from the user's session
+			$activeTab = $tabs.find('a[href="' + this._get_active_panel(tabListIdx) + '"]');
+			if ($activeTab.length) {
+				$tabs.removeClass('default');
+				$activeTab.parent('li').addClass('default');
+			}
 
 			// Find the default tab
 			for (index = 0, len = $tabs.length; index < len; index += 1) {
@@ -49,14 +58,20 @@
 			hclose = '</h' + hlevel + '>';
 
 			$panels.each(function (index) {
-				var text = $tabs.eq(index).children('a').text();
+				var $link = $tabs.eq(index).children('a'),
+					text = $link.text();
 				if (text === ''){
 					text = $tabs.eq(index).find('span').text();					
 				}
-				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + '>' + hopen + text + hclose + this.innerHTML + '</div>';
+				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + _pe.fn.tabbedinterface._get_hash($link.attr('href')) + '">' + hopen + text + hclose + this.innerHTML + '</div>';
 			});
 			accordion += '</div>';
 			elm.html(accordion);
+
+			// Track the active panel during the user's session
+			elm.find('[data-role="collapsible"]').on('expand', function () {
+				_pe.fn.tabbedinterface._set_active_panel($(this).data('tab'), tabListIdx);
+			});
 
 			return elm;
 		},
@@ -90,7 +105,8 @@
 				startHiddenText = _pe.dic.get('%tab-rotation', 'enable'),
 				stopCycle,
 				toggleCycle,
-				tabListCount = $tabbedInterfaces.length > 1 ? ' ' + ($tabbedInterfaces.index(elm) + 1) : '',
+				tabListIdx = $tabbedInterfaces.index(elm),
+				tabListCount = $tabbedInterfaces.length > 1 ? ' ' + (tabListIdx + 1) : '',
 				tabsPanelId,
 				tabSuffix = '-link',
 				href;				
@@ -146,12 +162,19 @@
 				}
 			});
 
-			// Find the default tab: give precedence to the URL hash
-			$default_tab = $tabs.filter('[href="*#'+_pe.urlhash+'"]');
-			if ($default_tab.length === 0) {
-				$default_tab = $nav.find('.default a');
+			// Find the default tab: precendence given to the active tab from sessionStorage
+			$default_tab = $tabs.filter('[href="' + this._get_active_panel(tabListIdx) + '"]');
+			if ($default_tab.length > 0) {
+				opts.defaultTab = '.default';
+				$nav.find('li').removeClass('default');
+				$default_tab.parent('li').addClass('default');
+			} else {
+				$default_tab = $tabs.filter('[href="*#'+_pe.urlhash+'"]');
 				if ($default_tab.length === 0) {
-					$default_tab = $nav.find('li:first-child a');
+					$default_tab = $nav.find('.default a');
+					if ($default_tab.length === 0) {
+						$default_tab = $nav.find('li:first-child a');
+					}
 				}
 			}
 			$default_tab.attr('aria-selected', 'true');
@@ -171,7 +194,6 @@
 				var $target = $(e.target),
 					$panel,
 					$link,
-					href,
 					hash;
 				if (e.type === 'keydown') {
 					if (e.keyCode === 13 || e.keyCode === 32) {
@@ -184,8 +206,7 @@
 						if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
 							selectTab($target, $tabs, $panels, opts, false);
 						} else {
-							href = $target.attr('href'),
-							hash = href.substring(href.indexOf('#'));
+							hash = _pe.fn.tabbedinterface._get_hash($target.attr('href'));
 							_pe.focus($panels.filter(hash));
 						}
 					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
@@ -198,8 +219,7 @@
 				} else {
 					// Make sure working with a link since it's possible for an image to be the target of a mouse click
 					$link = (e.target.tagName.toLowerCase() !== 'a') ? $target.closest('a') : $target;
-					href = $link.attr('href'),
-					hash = href.substring(href.indexOf('#'));
+					hash = _pe.fn.tabbedinterface._get_hash($link.attr('href'));
 
 					// Shift focus to the panel if the tab is already active
 					if ($link.is($tabs.filter('.' + opts.tabActiveClass))) {
@@ -216,6 +236,10 @@
 						$panel.data('easytabs').lastHeight = $panel.outerHeight();
 					}
 				}
+
+				if (hash !== undefined) {
+					_pe.fn.tabbedinterface._set_active_panel(hash, tabListIdx);
+				}
 			});
 
 			getNextTab = function ($tabs) {
@@ -230,8 +254,7 @@
 				var cycleButton,
 					activePanel,
 					nextPanel,
-					href = $selection.attr('href'),
-					hash = href.substring(href.indexOf('#'));
+					hash = _pe.fn.tabbedinterface._get_hash($selection.attr('href'));
 				$panels.stop(true, true);
 				if (opts.animate) {
 					activePanel = $panels.filter('.' + opts.panelActiveClass).removeClass(opts.panelActiveClass).attr('aria-hidden', 'true');
@@ -254,6 +277,7 @@
 					$panels.removeClass(opts.panelActiveClass).attr('aria-hidden', 'true').hide();
 					$panels.filter(hash).show().addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
 				}
+				_pe.fn.tabbedinterface._set_active_panel(hash, tabListIdx);
 				$tabs.removeClass(opts.tabActiveClass).attr('aria-selected', 'false').parent().removeClass(opts.tabActiveClass);
 				$selection.addClass(opts.tabActiveClass).attr('aria-selected', 'true').parent().addClass(opts.tabActiveClass);
 				cycleButton = $selection.parent().siblings('.tabs-toggle');
@@ -416,8 +440,7 @@
 			elm.find('a').filter('[href^="#"]').each(function () {
 				var $this = $(this),
 					anchor,
-					href = $this.attr('href'),
-					hash = href.substring(href.indexOf('#'));
+					hash = _pe.fn.tabbedinterface._get_hash($this.attr('href'));
 				if (hash.length > 1) {
 					anchor = $(hash, $panels);
 					if (anchor.length) {
@@ -442,13 +465,6 @@
 				$(window).resize(positionPanels);
 				positionPanels();
 
-				// Prevent focus event from prematurely showing the active panel
-				$panels.on('focus', function(e) {
-					if (!$(this).hasClass(opts.panelActiveClass)) {
-						e.preventDefault();
-					}
-				});					
-
 				// Override the tab transition with our slide animation
 				// TODO: slide transitions should be added to easytabs lib
 				elm.on('easytabs:before', function(e, $tab) {
@@ -461,12 +477,11 @@
 			$panels.find('a').filter('[href^="#"]').each(function () {
 				var $tab,
 					$this = $(this),
-					href = $this.attr('href'),
-					hash = href.substring(href.indexOf('#'));
+					hash = _pe.fn.tabbedinterface._get_hash($this.attr('href'));
 				if (hash.length > 1) {
 					$tab = $tabs.filter('[href="' + hash + '"]');
 					if ($tab.length) {
-						$this.off('click.hlinks vclick.hlinks').on('click vclick', function (e) {
+						$this.off('click.hlinks vclick.hlinks').on('click vclick', function () {
 							$tab.trigger('click');
 							if (opts.cycle) {
 								stopCycle();
@@ -499,7 +514,26 @@
 				hlevel = parseInt(heading.prop('tagName').substr(1), 10) + 1;
 			}
 			return hlevel;
+		},
+
+		/**
+		 * Track the currently active tab for the user's session
+		 */
+		_set_active_panel : function(id, tabListIdx) {
+			window.sessionStorage.setItem('activePanel-' + tabListIdx, id);
+		},
+
+		_get_active_panel : function(tabListIdx) {
+			return window.sessionStorage.getItem('activePanel-' + tabListIdx);
+		},
+
+		/**
+		 * Returns the URL hash given a link's href attribute
+		 */
+		_get_hash : function(href) {
+			return href !== null ? href.substring(href.indexOf('#')) : '';
 		}
+
 	};
 	window.pe = _pe;
 	return _pe;
