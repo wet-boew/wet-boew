@@ -44,7 +44,7 @@ var wet_boew_geomap = {
 			fillColor: '#999999'
 		},
 		{
-			title: 'JSON Demo',
+			title: 'JSON (GeoGratis)',
 			caption: 'This is a sample dataset loaded from a remote JSON resource, in this case the GeoGratis API.',
 			type: 'json',					
 			url: 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst',
@@ -56,12 +56,26 @@ var wet_boew_geomap = {
 			root: 'products',
 			attributes: {
 				title: 'title',
-				description: 'summary',
-				geometry: 'geometry',
+				description: 'summary'
 				author: 'author'
 			},
 			strokeColor: '#336600',
 			fillColor: '#00CC00'
-		}
+		},
+		{
+			title: 'GeoJSON (CartoDB)',
+			caption: 'This is a sample dataset loaded from a remote JSON resource, in this case the CartoDB API.',
+			type: 'geojson',					
+			url: 'http://stephenott.cartodb.com/api/v2/sql',
+			params: {
+				'format': 'GeoJSON',
+				'q': 'SELECT * FROM traffic_cameras LIMIT 10'
+			},
+			visible: true,
+			attributes: {
+				title: 'cartodb_id',
+				description: 'location_desc'
+			}
+		}		
 	]
 };

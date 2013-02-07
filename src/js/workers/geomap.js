@@ -704,7 +704,7 @@
 											for (var i = 0; i < items.length; i++) {												
 												row = items[i];												
 												feature = new OpenLayers.Feature.Vector();												
-												feature.geometry = this.parseGeometry(row.geometry);
+												feature.geometry =	this.parseGeometry(row.geometry);
 												
 												// parse and store the attributes
 												atts = {};
@@ -731,14 +731,14 @@
 									"featuresadded": function (evt) {										
 										$.each(evt.features, function(index, feature) {											
 											var context = {
-													'id': feature.id.replace(/\W/g, "_"),
-													'title': feature.attributes.title,
-													'description': feature.attributes.description,
-													'feature': feature,
-													'selectControl': selectControl
-												};									
-												$row = pe.fn.geomap.createRow(context);									
-												$table.append($row);
+												'id': feature.id.replace(/\W/g, "_"),
+												'title': feature.attributes.title,
+												'description': feature.attributes.description,
+												'feature': feature,
+												'selectControl': selectControl
+											};									
+											$row = pe.fn.geomap.createRow(context);									
+											$table.append($row);
 										});
 									}
 									
@@ -750,9 +750,41 @@
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
 						pe.fn.geomap.createTable(olLayer);						
+						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);					
+					} else if (layer.type=='geojson') {						
+						var olLayer = new OpenLayers.Layer.Vector( 
+							layer.title, { 
+								projection: map.displayProjection, 
+								strategies: [new OpenLayers.Strategy.Fixed()], 
+								protocol: new OpenLayers.Protocol.Script({ 
+									url: layer.url,
+									params: layer.params,
+									format: new OpenLayers.Format.GeoJSON()
+								}),
+								eventListeners: {
+									"featuresadded": function (evt) {										
+										$.each(evt.features, function(index, feature) {												
+											var context = {
+												'id': feature.id.replace(/\W/g, "_"),
+												'title': feature.attributes.cartodb_id,
+												'description': feature.attributes.location_desc,
+												'feature': feature,
+												'selectControl': selectControl
+											};									
+											$row = pe.fn.geomap.createRow(context);									
+											$table.append($row);
+										});
+									}
+								},
+								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
+							}
+						)						
+						olLayer.visibility=layer.visible;
+						queryLayers.push(olLayer);
+						map.addLayer(olLayer);						
+						pe.fn.geomap.createTable(olLayer);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
-					}
-					
+					}					
 				});
 			}
 
