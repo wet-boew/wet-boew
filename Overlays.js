@@ -60,8 +60,8 @@ var wet_boew_geomap = {
 				geometry: 'geometry',
 				author: 'author'
 			},
-			strokeColor: '#FF0000',
-			fillColor: '#FF0000'
+			strokeColor: '#336600',
+			fillColor: '#00CC00'
 		}
 	]
 };

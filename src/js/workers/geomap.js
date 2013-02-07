@@ -741,9 +741,11 @@
 												$table.append($row);
 										});
 									}
-								}						
-
-						});						
+									
+								},
+								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
+							}
+						)						
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
