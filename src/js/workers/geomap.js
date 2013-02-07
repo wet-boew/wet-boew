@@ -347,7 +347,7 @@
 		},
 		
 		/*
-		 * Create tabs
+		 * Create tabs - one for each layer added
 		 */
 		addToTabs: function(featureTable, enabled, olLayerId) {				
 			
@@ -409,6 +409,11 @@
 			return my_style;
 		},
 		
+		/*
+		 * Create a linked table row
+		 * 
+		 * TODO: provide for an array of configured table columns.
+		 */
 		createRow: function(context) {			
 			// add a row for each feature
 			var $row = $('<tr>');
@@ -437,15 +442,15 @@
 
 			// Keybord events
 			$link.focus(function(){
-						$(this).closest('tr').attr('class', 'background-highlight');
-						context.selectControl.unselectAll();
-						context.selectControl.select(context.feature);
+					$(this).closest('tr').attr('class', 'background-highlight');
+					context.selectControl.unselectAll();
+					context.selectControl.select(context.feature);
 				}	
 			);
 			$link.blur(function(){
-						$(this).closest('tr').attr('class', 'background-white');
-						context.selectControl.unselectAll();
-						context.selectControl.select(context.feature);
+					$(this).closest('tr').attr('class', 'background-white');
+					context.selectControl.unselectAll();
+					context.selectControl.select(context.feature);
 				}	
 			);
 			
@@ -505,7 +510,11 @@
 				$.extend(opts, wet_boew_geomap, overrides, elm.metadata());
 			} else {
 				$.extend(opts, overrides, elm.metadata());
-			}		
+			}
+
+			if(opts.debug) {
+				console.log("WET-Geomap: running in DEBUG mode");
+			}	
 						
 			// Set the language for OpenLayers
 			_pe.language === 'fr' ? OpenLayers.Lang.setCode('fr') : OpenLayers.Lang.setCode('en');
@@ -544,7 +553,10 @@
 					basemap.options 
 				));					
 			} else {
-				console.log("WET-Geomap: using default basemap");
+				if(opts.debug) {
+					console.log("WET-Geomap: using default basemap");
+				}
+				
 				// Add the Canada Transportation Base Map (CBMT)			
 				map.addLayer(new OpenLayers.Layer.WMS(
 					"CBMT", 
@@ -564,16 +576,13 @@
 			var projMap = map.getProjectionObject();						
 
 			if(opts.debug) {
-				console.log("WET-Geomap: running in DEBUG mode");
-			}
-			console.log("WET-Geomap: using projection " + projMap.getCode());
+				console.log("WET-Geomap: using projection " + projMap.getCode());
+			}			
 			
 			var selectControl = new OpenLayers.Control.SelectFeature();			
 			
-			
 			/*
-			 * Load overlays
-			 * 
+			 * Load overlays			 * 
 			 * TODO: turn this into a public function
 			 */			
 						
@@ -685,18 +694,16 @@
 								projection: map.displayProjection, 
 								strategies: [new OpenLayers.Strategy.Fixed()], 
 								protocol: new OpenLayers.Protocol.Script({ 
-									url: layer.url, 
+									url: layer.url,
+									params: layer.params,
 									format: new OpenLayers.Format.GeoJSON({										
 										read: function(json) {
 											var features = [];
 											var row, feature, atts = {}, features = [];
 											
-											for (var i = 0; i < json.products.length; i++) {
-												
-												row = json.products[i];
-				
-												feature = new OpenLayers.Feature.Vector();										
-												
+											for (var i = 0; i < json.products.length; i++) {												
+												row = json.products[i];				
+												feature = new OpenLayers.Feature.Vector();												
 												feature.geometry = this.parseGeometry(row.geometry);
 												
 												// parse and store the attributes
@@ -748,7 +755,7 @@
 			}
 
 			/*
-			 * Add vector features
+			 * Add vector features (consider removing - not used) 
 			 * 
 			 * TODO: turn this into a public function and add associated markup
 			 */ 
@@ -772,19 +779,25 @@
 			
 			/*
 			 * Add tabluar data
-			 * 
+			 *			  
 			 * TODO: turn this into a public function
+			 * 
+			 * Sample tables object:
+			 * 
+			 *	tables: [ 
+			 *		{ id: 'cityE' }, 
+			 *		{ id: 'bbox', strokeColor: '#FF0000', fillcolor: '#FF0000' } 
+			 *	] 
 			 */	
 			
 			$.each(opts.tables, function(index, table) {
 				
-				$table = $("table#" + table);
+				$table = $("table#" + table.id);
 				
-				// get color if specified for in the HTML table.
-				var colorAr;
-				var $color = $table.attr('style-feature');	
-				if (typeof($color) != "undefined"){
-					colorAr = {strokeColor: $color.substr($color.indexOf("strokeColor:") + 14 ,7), fillColor: $color.substr($color.indexOf("fillColor:") + 12, 7)};
+				// get color if specified
+				var colorAr;				
+				if (table.fillColor != "undefined" || table.strokeColor!= "undefined"){
+					colorAr = { strokeColor: table.strokeColor, fillColor: table.fillColor };
 				}			
 
 				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: pe.fn.geomap.getStyleMap(colorAr) });
@@ -794,7 +807,7 @@
 					'externalProjection': projLatLon
 				});
 
-				$.each($("table#" + table + ' td.geometry'), function(index, feature) {		
+				$.each($("table#" + table.id + ' td.geometry'), function(index, feature) {		
 
 					if($(feature).hasClass('bbox')) {								
 

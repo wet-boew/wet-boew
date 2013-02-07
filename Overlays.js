@@ -41,25 +41,27 @@ var wet_boew_geomap = {
 			url: 'data/sample.rss',		   
 			visible: false,
 			strokeColor: '#000000',
-			fillColor: '#000000'
+			fillColor: '#999999'
 		},
 		{
 			title: 'JSON Demo',
 			caption: 'This is a sample dataset loaded from a remote JSON resource, in this case the GeoGratis API.',
 			type: 'json',					
-			url: 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst?alt=json',
+			url: 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst',
 			params: {
-				'alt': 'json'
+				'alt': 'json',
+				'q': 'alluvial'
 			},
 			visible: 'true',
 			root: 'products',
 			attributes: {
-				foo: 'bar',
 				title: 'title',
 				description: 'summary',
 				geometry: 'geometry',
 				author: 'author'
-			}
+			},
+			strokeColor: '#FF0000',
+			fillColor: '#FF0000'
 		}
 	]
 };
