@@ -102,7 +102,7 @@
 				header;
 
 			// Content pages only
-			if (wet_boew_theme.search.length !== 0) {
+			if (wet_boew_theme.sft.length !== 0) {
 				// Build the menu popup
 				if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
 					// Transform the menu to a popup
