@@ -95,6 +95,9 @@ blockquote, form, img, pre {
 
 // fixes
 
+%font-weight-700 {
+	font-weight: 700;
+}
 
 /* ---- Headings ---- */
 #wb-main {
@@ -103,40 +106,51 @@ blockquote, form, img, pre {
 		line-height: 150%;
 		vertical-align: bottom;
 	}
-	h1 {
+}
+
+h1 {
+	&:not(.ui-title) {
 		color: $dark;
 		border-bottom: 1px dotted $silver;
 		font-size: 200%;
 		padding: 0;
 	}
+}
 
-	h2 {
+h2 {
+	&:not(.ui-title) {
 		color: lighten($dark, 20%);
 		font-size: 185%;
 	}
+}
 
-	h3 {
+h3 {
+	&:not(.ui-title) {
 		color: $medium;
 		font-size: 170%;
 	}
+}
 
-	h4 {
+h4 {
+	&:not(.ui-title) {
 		color: $dark;
 		font-size: 155%;
 	}
+}
 
-	h5 {
+h5 {
+	&:not(.ui-title) {
 		color: lighten($dark, 20%);
 		font-size: 140%;
+		@extend %font-weight-700;
 	}
+}
 
-	h6 {
+h6 {
+	&:not(.ui-title) {
 		color: $medium;
 		font-size: 125%;
-	}
-
-	h5, h6 {
-		font-weight: 700;
+		@extend %font-weight-700;
 	}
 }
 

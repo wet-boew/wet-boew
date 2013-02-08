@@ -8,12 +8,17 @@
 @import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
 
+%no-text-shadow {
+	@include text-shadow(none);
+}
+
 h1 {
 	font-size: 2em;
 	color: #222;
 	border: none;
 	font-weight: bold;
 	margin-bottom: 0 !important;
+	@extend %no-text-shadow;
 }
 
 h2 {
@@ -23,6 +28,10 @@ h2 {
 	width: 0 !important;
 	overflow: hidden !important;
 	margin: 0 !important;
+}
+
+#gcwu-title {
+	@extend %no-text-shadow;
 }
 
 #wb-body {
