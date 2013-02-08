@@ -12,15 +12,37 @@
 		width: 100%;
 		z-index: 100;
 	}
+	%gcwu-default-mobile-ns-display-block {
+		display: block;
+	}
+	#gcwu-gcnb {
+		ul {
+			@extend %gcwu-default-mobile-ns-display-block;
+		}
+	}
+	#gcwu-wmms {
+		@extend %gcwu-default-mobile-ns-display-block;
+	}
+	#gcwu-bc {
+		@extend %gcwu-default-mobile-ns-display-block;
+	}
+	#wb-sec {
+		@extend %gcwu-default-mobile-ns-display-block;
+	}
+	#wb-foot {
+		@extend %gcwu-default-mobile-ns-display-block;
+	}
 	#gcwu-psnb {
 		margin-top: -11px;
 		@extend %gcwu-default-mobile-ns-positioning;
+		@extend %gcwu-default-mobile-ns-display-block;
 		#gcwu-psnb-in {
 			@extend %gcwu-default-mobile-ns-display-block;
 		}
 	}
 	#gcwu-srchbx {
 		@extend %gcwu-default-mobile-ns-positioning;
+		@extend %gcwu-default-mobile-ns-display-block;
 		form {
 			border-bottom: 1px solid #999;
 			text-align: center;

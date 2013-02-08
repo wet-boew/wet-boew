@@ -86,6 +86,22 @@ h1 {
 	}
 }
 
+%gcwu-sp-pe-mobile-margin-right-0 {
+	margin-right: 0;
+}
+
+#gcwu-lang {
+	li {
+		@extend %gcwu-sp-pe-mobile-margin-right-0;
+	}
+}
+
+#gcwu-tc {
+	li {
+		@extend %gcwu-sp-pe-mobile-margin-right-0;
+	}
+}
+
 %gcwu-sp-pe-mobile-lang-foot {
 	display: none;
 	%gcwu-sp-pe-mobile-margin-0 {

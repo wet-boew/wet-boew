@@ -42,9 +42,47 @@
 	}
 }
 
-#gcwu-srchbx {
-	label {
+#gcwu-psnb {
+	h2 {
 		@extend %gcwu-default-hidden;
+	}
+}
+
+#gcwu-srchbx {
+	h2, label {
+		@extend %gcwu-default-hidden;
+	}
+}
+
+#gcwu-bc-in {
+	color: #555;
+	ol {
+		line-height: 1.57em;
+		list-style-type: none;
+		padding: 0;
+		&:after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+	}
+	li {
+		float: left;
+		white-space: nowrap;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
+		}
+	}
+	a {
+		color: #295376;
+		text-decoration: none;
+		&:hover, &:focus, &:active {
+			color: #295376;
+			text-decoration: underline;
+		}
 	}
 }
 
@@ -135,7 +173,7 @@
 		float: left;
 	}
 	dd {
-		margin: 0 0 0 10px;
+		margin: 0 0 0 0.39em;
 	}
 }
 
@@ -251,7 +289,7 @@ div {
 		}
 
 		dd {
-			margin: 0 10px 0 0;
+			margin: 0 0.39em 0 0;
 		}
 	}
 }
