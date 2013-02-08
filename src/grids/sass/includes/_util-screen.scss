@@ -95,6 +95,9 @@ blockquote, form, img, pre {
 
 // fixes
 
+%font-weight-700 {
+	font-weight: 700;
+}
 
 /* ---- Headings ---- */
 #wb-main {
@@ -104,40 +107,51 @@ blockquote, form, img, pre {
 		vertical-align: bottom;
 	}
 }
+
 h1 {
-	color: $dark;
-	border-bottom: 1px dotted $silver;
-	font-size: 200%;
-	padding: 0;
+	&:not(.ui-title) {
+		color: $dark;
+		border-bottom: 1px dotted $silver;
+		font-size: 200%;
+		padding: 0;
+	}
 }
 
 h2 {
-	color: lighten($dark, 20%);
-	font-size: 185%;
+	&:not(.ui-title) {
+		color: lighten($dark, 20%);
+		font-size: 185%;
+	}
 }
 
 h3 {
-	color: $medium;
-	font-size: 170%;
+	&:not(.ui-title) {
+		color: $medium;
+		font-size: 170%;
+	}
 }
 
 h4 {
-	color: $dark;
-	font-size: 155%;
+	&:not(.ui-title) {
+		color: $dark;
+		font-size: 155%;
+	}
 }
 
 h5 {
-	color: lighten($dark, 20%);
-	font-size: 140%;
+	&:not(.ui-title) {
+		color: lighten($dark, 20%);
+		font-size: 140%;
+		@extend %font-weight-700;
+	}
 }
 
 h6 {
-	color: $medium;
-	font-size: 125%;
-}
-
-h5, h6 {
-	font-weight: 700;
+	&:not(.ui-title) {
+		color: $medium;
+		font-size: 125%;
+		@extend %font-weight-700;
+	}
 }
 
 [class*="span-"] {

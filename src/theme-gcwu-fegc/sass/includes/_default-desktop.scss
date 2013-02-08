@@ -31,32 +31,17 @@
 	@extend %gcwu-default-desktop-hidden-h2;
 }
 
-#gcwu-bc {
+#gcwu-bc-in {
 	font-size: 85%;
-	color: #555;
 	ol {
-		line-height: 1.57em;
-		list-style-type: none;
 		margin: 2px 10px 0;
-		padding: 0;
-		&:after {
-			content: ".";
-			display: block;
-			height: 0;
-			clear: both;
-			visibility: hidden;
-		}
 	}
 	li {
-		float: left;
 		white-space: nowrap;
-	}
-	a {
-		color: #295376;
-		text-decoration: none;
-		&:hover, &:focus, &:active {
-			color: #295376;
-			text-decoration: underline;
+		margin:0 5px 0 0;
+		padding:0 11px 0 0;
+		&:last-child {
+			background-image:none;
 		}
 	}
 }

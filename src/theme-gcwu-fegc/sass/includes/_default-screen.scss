@@ -9,6 +9,33 @@ body {
 	margin: 0;
 }
 
+#gcwu-gcnb {
+	overflow: hidden;
+	background: #000;
+	font-size: 0.9em;
+	ul {
+		list-style-type: none;
+		float: right;
+		margin: 0;
+		padding: 0;
+		li {
+			float: left;
+			padding: 13px 0;
+			&#gcwu-gcnb-lang {
+				a {
+					text-transform: capitalize;
+					padding-right: 10px;
+					margin-right: 1px;
+				}
+			}
+		}
+	}
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+}
+
 .wb-sec-def {
 	h3 {
 		@extend %gcwu-default-screen-complex-border;
@@ -265,5 +292,28 @@ body {
 		line-height: 1.45em;
 		padding-right: 10px;
 		font-size: 0.95em;
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#gcwu-tctr {
+		padding: 11px 0 25px;
+		li {
+			float: right;
+
+			&.gcwu-tc {
+				border-left: 1px solid #999;
+				border-right: 0;
+			}
+
+			&.gcwu-tr {
+				padding: 0 9px;
+			}
+
+			a {
+				line-height: 1em;
+			}
+		}
 	}
 }

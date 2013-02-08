@@ -12,6 +12,9 @@
 		width: 100%;
 		z-index: 100;
 	}
+	#gcwu-gcnb ul, #gcwu-wmms, #gcwu-bc, #gcwu-psnb, #gcwu-srchbx, #wb-sec, #wb-foot {
+		display: block;
+	}
 	#gcwu-psnb {
 		margin-top: -11px;
 		@extend %gcwu-default-mobile-ns-positioning;

@@ -9,13 +9,17 @@
 /*
 ----- @%lang-eng@ dictionary (il8n) ---
  */
-/*global jQuery: false, pe: false */
+/*global jQuery: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {}
 	};
 	_pe.dic.ind = {
+		'%lang-code': '@%lang-code@',
+		'%lang-eng': '@%lang-eng@',
+		'%lang-fra': '@%lang-fra@',
+		'%lang-native': '@%lang-native@',
 		'%all': '@%all@',
 		'%home': '@%home@',
 		'%main-page': '@%main-page@',
@@ -23,6 +27,7 @@
 		'%you-are-in': '@%you-are-in@',
 		'%welcome-to': '@%welcome-to@',
 		'%loading': '@%loading@',
+		'%processing': '@%processing@',
 		'%search': '@%search@',
 		'%search-for-terms': '@%search-for-terms@',
 		'%no-match-found': '@%no-match-found@',
@@ -30,6 +35,10 @@
 			'mixin': '@%matches-found@'
 		},
 		'%menu': '@%menu@',
+		'%settings': '@%settings@',
+		'%languages': '@%languages@',
+		'%about': '@%about@',
+		'%current': '@%current@',
 		'%hide': '@%hide@',
 		'%error': '@%error@',
 		'%colon': '@%colon@',
@@ -53,6 +62,8 @@
 		
 		'%next': '@%next@',
 		'%previous': '@%previous@',
+		'%first': '@%first@',
+		'%last': '@%last@',
 		
 		/* Archived Web page template */
 		'%archived-page': '@%archived-page@',
@@ -154,6 +165,15 @@
 		'%td-close': '@%td-close@',
 		'%td-ttl-open': '@%td-ttl-open@',
 		'%td-ttl-close': '@%td-ttl-close@',
+		/* Table enhancement */
+		'%sSortAscending': '@%sSortAscending@',
+		'%sSortDescending': '@%sSortDescending@',
+		'%sEmptyTable': '@%sEmptyTable@',
+		'%sInfo': '@%sInfo@',
+		'%sInfoEmpty': '@%sInfoEmpty@',
+		'%sInfoFiltered': '@%sInfoFiltered@',
+		'%sInfoThousands': '@%sInfoThousands@',
+		'%sLengthMenu': '@%sLengthMenu@',
 		/* Disable/enable PE */
 		'%pe-disable': '@%pe-disable@',
 		'%pe-enable': '@%pe-enable@'

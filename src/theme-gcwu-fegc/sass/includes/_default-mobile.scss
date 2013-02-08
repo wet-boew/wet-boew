@@ -6,6 +6,35 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
+@import 'compass/css3/transform';
+
+%no-rounded-corners {
+	@include border-radius(0);
+}
+
+%all-rounded-corners {
+	@include border-radius(0.6em);
+}
+
+%no-bottom-rounded-corners {
+	@include border-bottom-left-radius(0);
+	@include border-bottom-right-radius(0);
+}
+
+%no-top-rounded-corners {
+	@include border-top-left-radius(0);
+	@include border-top-right-radius(0);
+}
+
+%bottom-rounded-corners {
+	@include border-bottom-left-radius(0.6em);
+	@include border-bottom-right-radius(0.6em);
+}
+
+%top-rounded-corners {
+	@include border-top-left-radius(0.6em);
+	@include border-top-right-radius(0.6em);
+}
 
 body {
 	@if $experimental-support-for-webkit {
@@ -46,7 +75,7 @@ img {
 	@extend %no-margin-no-shadow;
 	max-width: 100%;
 	height: auto;
-	display: block;
+	@extend %display-block;
 }
 
 li {
@@ -74,21 +103,13 @@ table {
 
 [id|="wb-body-sec"] {
 	#wb-skip2 {
-		display: none;
+		@extend %display-none;
 		visibility: hidden;
 	}
 }
 
 #wb-head {
 	@extend %period-after-pseudo;
-	#gcwu-wmms {
-		clip: rect(1px, 1px, 1px, 1px);
-		height: 0 !important;
-		overflow: hidden !important;
-		position: absolute;
-		width: 0 !important;
-		margin: 0 !important;
-	}
 }
 
 [id|="wb-body"] {
@@ -96,9 +117,11 @@ table {
 }
 
 #gcwu-title {
-	min-height: 40px;
-	font-weight: 700;
-	padding: 2px 5px;
+	border: 1px solid #456F9A;
+	p {
+		padding: 3px;
+		margin: 0;
+	}
 	a {
 		font-size: 1.5em;
 		color: #fff !important;
@@ -107,19 +130,14 @@ table {
 	}
 }
 
-#wb-foot {
-	#gcwu-wmms {
-		img {
-			margin: 5px auto;
-		}
-	}
-}
-
-#gcwu-sig {
-	float: left;
-	margin: 10px 0 10px 5px;
+#gcwu-wmms {
+	@extend %position-absolute;
+	top: 0;
+	left: 0;
 	img {
-		margin-bottom: 0;
+		padding: 5px 3px;
+		margin: 0;
+		background: #fff;
 	}
 }
 
@@ -143,12 +161,15 @@ table {
 }
 
 #wb-main-in {
-	padding-left: 5px;
-	padding-right: 5px;
+	padding: 3px;
 	h1 {
-		border-bottom: 1px solid #e5e5e5;
+		font-size: 1.5em;
 		font-weight: 400;
-		margin-top: 5px;
+		margin: -3px;
+		padding: 0 3px;
+		border: 1px solid #999;
+		border-width: 1px 0 0 0;
+		@include text-shadow(none);
 		position: static !important;
 		&.wb-invisible {
 			position: absolute !important;
@@ -161,7 +182,7 @@ table {
 
 .clear {
 	clear: both;
-	display: block;
+	@extend %display-block;
 	height: 0;
 	overflow: hidden;
 	visibility: hidden;
@@ -173,9 +194,6 @@ table {
 	#gcwu-srch {
 		@include box-shadow(none);
 	}
-	#wb-sec {
-		display: none;
-	}
 	.ui-content {
 		padding: 0 15px;
 	}
@@ -184,122 +202,38 @@ table {
 			padding: 0;
 		}
 	}
-}
-
-#wb-sec {
-	padding: 5px;
+	.ui-li, a {
+		&.ui-corner-top {
+			@extend %top-rounded-corners;
+		}
+		&.ui-corner-bottom {
+			border-bottom-width: 1px;
+			@extend %bottom-rounded-corners;
+		}
+	}
 }
 
 %background-efefef {
 	background: #efefef;
 }
 
-#gcwu-sft {
-	@extend %background-efefef;
-	padding-bottom: 5px;
-	margin-top: 5px;
-	.ui-footer {
-		border: 0;
-	}
-	li {
-		a {
-			&.ui-btn {
-				font-weight: 700;
-				margin: 0;
-				border-top-width: 0;
-			}
-			&.ui-btn-active {
-				color: #fff;
-			}
-		}
-		&:nth-child(1), &:nth-child(2) {
-			a {
-				&.ui-btn {
-					border-top-width: 1px;
-				}
-			}
-		}
-		&.ui-block-a {
-			a {
-				&.ui-btn {
-					border-right-width: 0;
-				}
-			}
-		}
-	}
-}
-
-#gcwu-sft-in {
-	@extend %period-after-pseudo;
-	@extend %background-efefef;
-	border-top: 1px solid #CCCCCC;
-	padding: 5px;
-	div {
-		width: 50%;
-		float: left;
-	}
-}
-
-#gcwu-tctr {
-	width: auto;
-	padding: 0;
-	li {
-		display: inline;
-		&.gcwu-tc {
-			border-right: 1px solid #999;
-			padding: 0 9px 0 0;
-		}
-	}
-	.gcwu-tr {
-		padding-left: 6px;
-	}
-}
-
-#gcwu-gcft {
-	clear: both;
-	margin: 0;
-	padding: 5px;
-	li {
-		width: 50%;
-		float: left !important;
-		margin: 10px 0;
-		&#gcwu-gcft-ca { //TODO: Overly specific? Would #gcwu-gcft-ca ever be outside #gcwu-gcft
-			div {
-				text-align: left;
-			}
-		}
-	}
-	ul {
-		@extend %period-after-pseudo;
-	}
-}
-
 #gcwu-gcnb {
-	ul {
-		margin: 0 5px 0 0;
-		li {
-			display: none;
-			padding-top: 8px;
-		}
-		#gcwu-gcnb-lang { //TODO: Overly specific? Should this be combined with the rule below?
-			display: inline;
-			float: right;
-			margin-bottom: 2px;
-		}
+	min-height: 41px;
+	.ui-header {
+		border: 1px solid #333;
+	}
+	li {
+		@extend %display-none;
+	}
+	[id*="-lang"] {
+		@extend %display-block;
 	}
 }
 
-#gcwu-gcnb-lang {
-	a {
-		color: #222;
-		text-decoration: none;
-		background: #eee;
-		border: 1px solid #ddd;
-		@include border-radius(2px);
-		float: right;
-		font-weight: 400;
-		padding: 3px;
-		text-transform: capitalize;
+#gcwu-mnavbar {
+	right: 3px;
+	.ui-btn-inner {
+		padding: 0.6em 14px;
 	}
 }
 
@@ -309,74 +243,12 @@ table {
 	margin: 0;
 }
 
-%gcwu-default-mobile-monster { //TODO: better name
-	width: 50%;
-	float: right;
-	border-top: 1px solid #044062;
-	h2 {
-		@include text-shadow(0 1px 1px #044062);
-		background-color: #333333;
-		@include background-image(linear-gradient(#444444, #2D2D2D));
-		&:hover, &:focus, &:active {
-			background-color: #444444;
-			@include background-image(linear-gradient(#606060, #333333));
-		}
-		color: #fff;
-		text-align: center;
-		font-size: 1em;
-		text-transform: capitalize;
-		position: relative;
-		font-weight: 700;
-		margin: 0;
-		padding: 0.7em 18px 0.8em 0;
-		border: {
-			top: 1px solid rgba(255, 255, 255, 0.3);
-			bottom: 1px solid #000;
-			left: 1px solid #000;
-			right: none;
-		}
-		a {
-			color: #fff;
-			text-decoration: none;
-		}
-	}
+#gcwu-sig, #gcwu-wmms, #gcwu-gcnb ul, #gcwu-bc, #gcwu-psnb, #gcwu-srchbx, #wb-sec, #wb-foot, #gcwu-gcft {
+	@extend %display-none;
 }
 
 #gcwu-bnr {
-	@extend %clear-both;
-	background: #4E7EB7;
-	.ui-navbar {
-		a {
-			&.ui-btn-active {
-				background-color: #444444;
-				@include background-image(linear-gradient(#606060, #333333));
-				border: 1px solid #000;
-				border-right: none;
-			}
-		}
-	}
-}
-
-#gcwu-psnb {
-	@extend %gcwu-default-mobile-monster;
-	h2 {
-		span {
-			display: none;
-		}
-	}
-	#gcwu-psnb-in {
-		@extend %display-none;
-	}
-}
-
-#gcwu-srchbx {
-	@extend %gcwu-default-mobile-monster;
-	form {
-		@extend %display-none;
-	}
-	h2 {
-		padding-right: 20px;
-	}
+	background: #225C96;
 }
 
 #gcwu-bnr-in {
@@ -387,65 +259,38 @@ table {
 	}
 }
 
-.wet-boew-menubar {
-	a {
-		background: #eee;
-		border: {
-			top: 1px solid #ccc;
-			bottom: 1px solid #ccc;
-		}
-		color: #222;
-		display: block;
-		font-weight: 700;
-		padding: 0.8em 0 0.9em;
-		position: relative;
-		text: {
-			align: center;
-			decoration: none;
-		}
-		z-index: 200;
-	}
-	ul {
-		list-style-type: none;
+#gcwu-bc-in {
+	background: #DFDFDD;
+	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
+	@extend %no-rounded-corners;
+	@include text-shadow(0 1px 1px #fff);
+	border-bottom: 1px solid #ccc;
+	@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+	ol {
 		margin: 0;
-		padding: 0;
-		position: relative;
-		z-index: 1;
+		font-size: 90%;
 	}
 	li {
-		color: #333;
-		@include text-shadow(0 1px 0 #fff);
-		position: relative;
-		z-index: 1;
-		h3 {
-			font: {
-				weight: 400;
-				size: 1em;
-			}
-			margin: 0;
-			padding: 0;
-		}
-		.mb-sm {
-			@extend %display-none;
-			* {
-				@extend %display-none;
-			}
+		margin: 0;
+		padding: 5px 12px 5px 5px;
+		@extend %no-rounded-corners;
+		&:last-child {
+			padding-left: 5px;
 		}
 	}
-}
-
-%clear-both {
-	clear: both;
+	a {
+		@extend %no-rounded-corners;
+	}
 }
 
 #wb-core {
-	@extend %clear-both;
+	clear: both;
 }
 
 %period-after-pseudo {
 	&:after {
 		content: ".";
-		display: block;
+		@extend %display-block;
 		height: 0;
 		clear: both;
 		visibility: hidden;
@@ -456,8 +301,24 @@ table {
 	display: none;
 }
 
-#gcwu-bc {
-	@extend %display-none;
+%display-block {
+	display: block;
+}
+
+%white-space-normal {
+	white-space: normal;
+}
+
+%position-absolute {
+	position: absolute;
+}
+
+.ui-title {
+	img {
+		@extend %position-absolute;
+		left: 3px;
+		top: 8px;
+	}
 }
 
 .ui-content {
@@ -466,16 +327,13 @@ table {
 	}
 }
 
-%font-1em-marning-0 {
+.ui-collapsible-heading, .ui-li-static, .wb-nested-menu h4 {
 	font-size: 1em;
 	margin: 0;
 }
-.ui-collapsible-heading {
-	@extend %font-1em-marning-0;
-}
 
-.ui-li-static {
-	@extend %font-1em-marning-0;
+.ui-btn-inner, .ui-li-static, legend, label.ui-select, label.ui-input-text, input.ui-input-text, textarea.ui-input-text, select {
+	font-size: 1.25em;
 }
 
 %h1-border-bottom-none {
@@ -491,21 +349,12 @@ table {
 	@extend %h1-border-bottom-none;
 }
 
-%gcwu-default-mobile-ui-bar-a-h1-white {
-	.ui-bar-a {
-		h1 {
-			color: #fff;
-		}
-	}
-}
-
 #jqm-wb-search {
-	@extend %gcwu-default-mobile-ui-bar-a-h1-white;
 	label {
 		clip: rect(1px, 1px, 1px, 1px);
 		height: 1px;
 		overflow: hidden;
-		position: absolute;
+		@extend %position-absolute;
 		width: 1px;
 	}
 	.ui-icon-searchfield:after, .ui-icon-search {
@@ -514,17 +363,10 @@ table {
 }
 
 #jqm-wb-mb {
-	@extend %gcwu-default-mobile-ui-bar-a-h1-white;
 	a {
 		&:link {
 			text-decoration: none
 		}
-	}
-	h1 {
-		border-bottom: none;
-	}
-	h2 {
-		color: #555;
 	}
 	h3 {
 		&.top-section {
@@ -554,7 +396,7 @@ table {
 		}
 	}
 	.ui-btn-inner {
-		white-space: normal;
+		@extend %white-space-normal;
 	}
 	.ui-btn-icon-top {
 		.ui-btn-inner {
@@ -579,7 +421,15 @@ table {
 	.ui-collapsible-set {
 		margin: 0;
 		a {
-			white-space: normal;
+			@extend %white-space-normal;
+		}
+		.ui-collapsible:not(:first-child) {
+			@extend %no-top-rounded-corners;
+		}
+		.ui-collapsible:last-child {
+			.ui-collapsible-content > :not(:last-child) {
+				@extend %no-bottom-rounded-corners;
+			}
 		}
 	}
 	.ui-collapsible-heading {
@@ -589,8 +439,7 @@ table {
 		}
 		&:not(.ui-collapsible-heading-collapsed) {
 			a {
-				@include border-bottom-left-radius(0);
-				@include border-bottom-right-radius(0);
+				@extend %no-bottom-rounded-corners;
 			}
 		}
 	}
@@ -650,55 +499,19 @@ table {
 				margin-top: -1px;
 			}
 		}
-	}
-	.ui-corner-bottom {
-		border-bottom-width: 1px;
-		@include border-radius(0 0 0.6em 0.6em);
+		&.ui-corner-bottom {
+			border-bottom-width: 1px;
+		}
 	}
 	.top-section {
 		a {
 			margin: 0 0 5px;
-			@include border-radius(0);
+			@extend %no-rounded-corners;
 		}
 	}
 	.top-level {
 		&.ui-btn-corner-all {
-			@include border-radius(0.6em);
-		}
-	}
-	#gcwu-bc-in {
-		background: #DFDFDD;
-		@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
-		color: #555;
-		@include border-radius(0);
-		@include text-shadow(0 1px 1px #fff);
-		border-bottom: 1px solid #ccc;
-		@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
-		a {
-			color: #295376;
-			text-decoration: none;
-			@include border-radius(0);
-			&:hover, &:active {
-				text-decoration: underline;
-			}
-		}
-		li {
-			float: left;
-			margin: 0;
-			padding: 5px 12px 5px 5px;
-			@include border-radius(0);
-			&:last-child {
-				background-image: none;
-				padding-left: 5px;
-			}
-		}
-		ol {
-			@extend %period-after-pseudo;
-			line-height: 1.57em;
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			font-size: 90%;
+			@extend %all-rounded-corners;
 		}
 	}
 }
@@ -706,7 +519,7 @@ table {
 #jqm-mb-location-text {
 	margin: 0 -15px 10px;
 	h2 {
-		display: none;
+		@extend %display-none;
 	}
 }
 
@@ -727,18 +540,44 @@ table {
 }
 
 .no-js {
+	#gcwu-gcnb {
+		a {
+			border-left: none;
+			padding: 0 5px !important;
+		}
+	}
 	#gcwu-srch {
 		margin-top: 3px;
 		padding: 3px 0;
 	}
 	#gcwu-psnb {
+		.mb-menu {
+			position: static;
+		}
 		li {
 			border: 1px solid #222;
 		}
 		a {
 			color: #222;
+			background: #eee;
 			padding: 0.45em 0.79em;
 		}
+	}
+	#wb-main-in {
+		h1 {
+			background: #eee;
+		}
+	}
+	#gcwu-tctr {
+		li {
+			&.gcwu-tc {
+				padding-left: 0;
+			}
+		}
+	}
+	#gcwu-sft-in {
+		background: none;
+		padding-left: 5px;
 	}
 	.ui-content {
 		padding: 0;
@@ -756,8 +595,11 @@ table {
 		width: 100% !important;
 		float: none;
 	}
+	#gcwu-gcnb ul, #gcwu-wmms, #gcwu-bc, #gcwu-psnb, #gcwu-srchbx, #wb-sec, #wb-foot {
+		@extend %display-block;
+	}
 	#gcwu-psnb #gcwu-psnb-in, #gcwu-srchbx form {
-		display: block;
+		@extend %display-block;
 		width: 100%;
 		z-index: 100;
 	}
@@ -771,9 +613,103 @@ table {
 	}
 }
 /* Right to left (RTL) CSS */
+/* Right to left (RTL) CSS */
+%rtl-scalex {
+	@include scaleX(-1);
+	@extend %display-block;
+}
 [dir="rtl"] {
 	#gcwu-date-mod {
 		float: left;
+	}
+
+	#gcwu-gcnb {
+		.ui-title {
+			img {
+				right: 3px;
+				left: auto;
+			}
+		}
+	}
+	
+	#gcwu-mnavbar {
+		@extend %rtl-scalex;
+		left: 3px;
+		right: auto;
+	}
+
+	#gcwu-bc-in {
+		&, li:last-child, a {
+			@extend %rtl-scalex;
+		}
+	}
+
+	.ui-popup-container, #wb-main {
+		.ui-btn, .ui-btn-text {
+			@extend %rtl-scalex;
+			text-align: right;
+		}
+		.ui-submit, .ui-select {
+			.ui-btn, .ui-btn-text {
+				text-align: center;
+			}
+		}
+		.ui-li-has-arrow {
+			.ui-btn-inner {
+				a.ui-link-inherit {
+					padding-right: 12px;
+				}
+			}
+		}
+	}
+	
+	.ul-li {
+		text-align: right;
+	}
+
+	#jqm-wb-mb {
+		.wb-nested-menu {
+			.ui-btn-icon-right {
+				.ui-btn-inner {
+					padding-right: 0;
+				}
+			}
+
+			a {
+				padding-right: 55px;
+
+				&.ui-btn-icon-left {
+					padding-right: 0;
+				}
+			}
+
+			.wb-nested-menu {
+				a {
+					padding-right: 70px;
+
+					&.ui-btn-icon-left {
+						padding-left: 15px;
+						padding-right: 15px;
+					}
+				}
+
+				.wb-nested-menu {
+					a {
+						padding-left: 0;
+						padding-right: 85px;
+
+						&.ui-btn-icon-left {
+							padding-left: 30px;
+							padding-right: 30px;
+						}
+					}
+				}
+			}
+		}
+
+		.ui-collapsible-content > a {
+			padding-right: 0;
+		}
 	}
 
 	#gcwu-sft {
@@ -781,12 +717,6 @@ table {
 			&.ui-block-a a.ui-btn {
 				border-left-width: 0;
 			}
-		}
-	}
-
-	#gcwu-sft-in {
-		div {
-			float: right;
 		}
 	}
 
@@ -800,10 +730,17 @@ table {
 		}
 	}
 
+	.ui-title img {
+		right: 3px;
+	}
+
+	.ul-li {
+		text-align: right !important;
+	}
+
 	#gcwu-gcnb {
 		ul {
 			margin: 0 0 0 5px;
-
 			#gcwu-gcnb-lang {
 				float: left;
 			}
@@ -834,70 +771,17 @@ table {
 		padding-left: 20px;
 	}
 
-	#jqm-wb-mb {
-		.ui-btn-icon-top .ui-btn-inner {
-			padding: 0.6em 10px 0.7em 33px;
+	&.no-js {
+		#gcwu-sft-in {
+			padding-right: 5px;
 		}
-
-		.ui-btn-icon-right {
-			span.ui-btn-inner {
-				padding-left: 0;
-				padding-right: 40px;
-			}
-
-			div.ui-btn-inner {
-				padding-left: 0;
-				padding-right: 25px;
-			}
-		}
-
-		.wb-nested-menu {
-			.ui-btn-icon-right {
-				.ui-btn-inner {
+		#gcwu-tctr {
+			li {
+				&.gcwu-tc {
+					padding-left: 9px;
 					padding-right: 0;
 				}
 			}
-
-			a {
-				padding-left: 0;
-				padding-right: 55px;
-
-				&.ui-btn-icon-left {
-					padding-right: 0;
-				}
-			}
-
-			.wb-nested-menu {
-				a {
-					padding-left: 0;
-					padding-right: 70px;
-
-					&.ui-btn-icon-left {
-						padding-left: 0;
-						padding-right: 15px;
-					}
-				}
-
-				.wb-nested-menu {
-					a {
-						padding-left: 0;
-						padding-right: 85px;
-
-						&.ui-btn-icon-left {
-							padding-left: 0;
-							padding-right: 30px;
-						}
-					}
-				}
-			}
-		}
-
-		.ui-btn {
-			text-align: right;
-		}
-
-		.ui-icon-site-menu, .ui-icon-alt {
-			background-position: 100% 50%;
 		}
 	}
 }

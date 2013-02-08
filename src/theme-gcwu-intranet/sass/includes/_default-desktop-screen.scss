@@ -111,6 +111,16 @@
 	}
 }
 
+#gcwu-bnr-in {
+	min-height: 52px !important;
+}
+
+#gcwu-bnr {
+	border-top: 1px solid #eee;
+	clear: both;
+	position: static;
+}
+
 #gcwu-wmms {
 	@extend %intranet-default-desktop-screen-clip-auto;
 	height: 30px;
