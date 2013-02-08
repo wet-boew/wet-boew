@@ -8,6 +8,34 @@
 @import "compass/css3/images";
 @import 'compass/css3/transform';
 
+%no-rounded-corners {
+	@include border-radius(0);
+}
+
+%all-rounded-corners {
+	@include border-radius(0.6em);
+}
+
+%no-bottom-rounded-corners {
+	@include border-bottom-left-radius(0);
+	@include border-bottom-right-radius(0);
+}
+
+%no-top-rounded-corners {
+	@include border-top-left-radius(0);
+	@include border-top-right-radius(0);
+}
+
+%bottom-rounded-corners {
+	@include border-bottom-left-radius(0.6em);
+	@include border-bottom-right-radius(0.6em);
+}
+
+%top-rounded-corners {
+	@include border-top-left-radius(0.6em);
+	@include border-top-right-radius(0.6em);
+}
+
 body {
 	@if $experimental-support-for-webkit {
 		-webkit-text-size-adjust: none;
@@ -47,7 +75,7 @@ img {
 	@extend %no-margin-no-shadow;
 	max-width: 100%;
 	height: auto;
-	display: block;
+	@extend %display-block;
 }
 
 li {
@@ -75,7 +103,7 @@ table {
 
 [id|="wb-body-sec"] {
 	#wb-skip2 {
-		display: none;
+		@extend %display-none;
 		visibility: hidden;
 	}
 }
@@ -89,6 +117,7 @@ table {
 }
 
 #gcwu-title {
+	border: 1px solid #456F9A;
 	p {
 		padding: 3px;
 		margin: 0;
@@ -102,7 +131,7 @@ table {
 }
 
 #gcwu-wmms {
-	position: absolute;
+	@extend %position-absolute;
 	top: 0;
 	left: 0;
 	img {
@@ -139,7 +168,7 @@ table {
 		margin: -3px;
 		padding: 0 3px;
 		border: 1px solid #999;
-		border-bottom: none;
+		border-width: 1px 0 0 0;
 		@include text-shadow(none);
 		position: static !important;
 		&.wb-invisible {
@@ -153,7 +182,7 @@ table {
 
 .clear {
 	clear: both;
-	display: block;
+	@extend %display-block;
 	height: 0;
 	overflow: hidden;
 	visibility: hidden;
@@ -173,13 +202,13 @@ table {
 			padding: 0;
 		}
 	}
-	.ui-li {
+	.ui-li, a {
 		&.ui-corner-top {
-			@include border-radius(0.6em 0.6em 0 0);
+			@extend %top-rounded-corners;
 		}
 		&.ui-corner-bottom {
 			border-bottom-width: 1px;
-			@include border-radius(0 0 0.6em 0.6em);
+			@extend %bottom-rounded-corners;
 		}
 	}
 }
@@ -190,11 +219,14 @@ table {
 
 #gcwu-gcnb {
 	min-height: 41px;
+	.ui-header {
+		border: 1px solid #333;
+	}
 	li {
-		display: none;
+		@extend %display-none;
 	}
 	[id*="-lang"] {
-		display: block;
+		@extend %display-block;
 	}
 }
 
@@ -230,7 +262,7 @@ table {
 #gcwu-bc-in {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
-	@include border-radius(0);
+	@extend %no-rounded-corners;
 	@include text-shadow(0 1px 1px #fff);
 	border-bottom: 1px solid #ccc;
 	@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
@@ -241,13 +273,13 @@ table {
 	li {
 		margin: 0;
 		padding: 5px 12px 5px 5px;
-		@include border-radius(0);
+		@extend %no-rounded-corners;
 		&:last-child {
 			padding-left: 5px;
 		}
 	}
 	a {
-		@include border-radius(0);
+		@extend %no-rounded-corners;
 	}
 }
 
@@ -258,7 +290,7 @@ table {
 %period-after-pseudo {
 	&:after {
 		content: ".";
-		display: block;
+		@extend %display-block;
 		height: 0;
 		clear: both;
 		visibility: hidden;
@@ -269,9 +301,21 @@ table {
 	display: none;
 }
 
+%display-block {
+	display: block;
+}
+
+%white-space-normal {
+	white-space: normal;
+}
+
+%position-absolute {
+	position: absolute;
+}
+
 .ui-title {
 	img {
-		position: absolute;
+		@extend %position-absolute;
 		left: 3px;
 		top: 8px;
 	}
@@ -283,16 +327,13 @@ table {
 	}
 }
 
-%font-12em-marning-0 {
-	font-size: 1.2em;
+.ui-collapsible-heading, .ui-li-static, .wb-nested-menu h4 {
+	font-size: 1em;
 	margin: 0;
 }
-.ui-collapsible-heading {
-	@extend %font-12em-marning-0;
-}
 
-.ui-li-static {
-	@extend %font-12em-marning-0;
+.ui-btn-inner, .ui-li-static, legend, label.ui-select, label.ui-input-text, input.ui-input-text, textarea.ui-input-text, select {
+	font-size: 1.25em;
 }
 
 %h1-border-bottom-none {
@@ -313,7 +354,7 @@ table {
 		clip: rect(1px, 1px, 1px, 1px);
 		height: 1px;
 		overflow: hidden;
-		position: absolute;
+		@extend %position-absolute;
 		width: 1px;
 	}
 	.ui-icon-searchfield:after, .ui-icon-search {
@@ -355,7 +396,7 @@ table {
 		}
 	}
 	.ui-btn-inner {
-		white-space: normal;
+		@extend %white-space-normal;
 	}
 	.ui-btn-icon-top {
 		.ui-btn-inner {
@@ -380,7 +421,15 @@ table {
 	.ui-collapsible-set {
 		margin: 0;
 		a {
-			white-space: normal;
+			@extend %white-space-normal;
+		}
+		.ui-collapsible:not(:first-child) {
+			@extend %no-top-rounded-corners;
+		}
+		.ui-collapsible:last-child {
+			.ui-collapsible-content > :not(:last-child) {
+				@extend %no-bottom-rounded-corners;
+			}
 		}
 	}
 	.ui-collapsible-heading {
@@ -390,8 +439,7 @@ table {
 		}
 		&:not(.ui-collapsible-heading-collapsed) {
 			a {
-				@include border-bottom-left-radius(0);
-				@include border-bottom-right-radius(0);
+				@extend %no-bottom-rounded-corners;
 			}
 		}
 	}
@@ -458,12 +506,12 @@ table {
 	.top-section {
 		a {
 			margin: 0 0 5px;
-			@include border-radius(0);
+			@extend %no-rounded-corners;
 		}
 	}
 	.top-level {
 		&.ui-btn-corner-all {
-			@include border-radius(0.6em);
+			@extend %all-rounded-corners;
 		}
 	}
 }
@@ -471,7 +519,7 @@ table {
 #jqm-mb-location-text {
 	margin: 0 -15px 10px;
 	h2 {
-		display: none;
+		@extend %display-none;
 	}
 }
 
@@ -548,10 +596,10 @@ table {
 		float: none;
 	}
 	#gcwu-gcnb ul, #gcwu-wmms, #gcwu-bc, #gcwu-psnb, #gcwu-srchbx, #wb-sec, #wb-foot {
-		display: block;
+		@extend %display-block;
 	}
 	#gcwu-psnb #gcwu-psnb-in, #gcwu-srchbx form {
-		display: block;
+		@extend %display-block;
 		width: 100%;
 		z-index: 100;
 	}
@@ -568,7 +616,7 @@ table {
 /* Right to left (RTL) CSS */
 %rtl-scalex {
 	@include scaleX(-1);
-	display: block;
+	@extend %display-block;
 }
 [dir="rtl"] {
 	#gcwu-date-mod {

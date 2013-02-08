@@ -120,11 +120,11 @@
 
 				// Build the menu
 				if (pe.secnav.length !== 0) {
-					mb_menu += '<section><div><h2>' + secnav_h2.innerHTML + '</h2><div data-role="controlgroup">' + pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'b', false, true, 'c', true, true) + '</div></div></section>';
+					mb_menu += '<section><div><h2>' + secnav_h2.innerHTML + '</h2>' + pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'b', false, true, 'c', true, true) + '</div></section>';
 					node = pe.secnav[0];
 				}
 				if (wet_boew_theme.menubar.length !== 0) {
-					mb_menu += '<section><div><h2>' + mb_header_html + '</h2><div data-role="controlgroup">' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></div></section>';
+					mb_menu += '<section><div><h2>' + mb_header_html + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
 				}
 				
 				// Append the popup/dialog container and store the menu for appending later
@@ -289,26 +289,38 @@
 					node.parentNode.removeChild(node);
 				}
 				if (_list.length !== 0) {
-					var navbar = wet_boew_theme.gcnb.find('#gcwu-mnavbar');
+					var navbar = wet_boew_theme.gcnb.find('#gcwu-mnavbar'),
+						menu = pe.bodydiv.find('#jqm-mb-menu'),
+						menus,
+						nodes,
+						nodes2,
+						node;
 					navbar.removeClass('wb-hide');
 
 					// Defer appending of menu until after page is enhanced by jQuery Mobile, and
 					// defer enhancing of menu until it is opened the first time (all to reduce initial page load time)
-					var menu = pe.bodydiv.find('#jqm-mb-menu');
 					if (menu.length !== 0) {
 						menu.append(wet_boew_theme.menu);
 						navbar.find('a[href="#jqm-wb-mb"]').one('click vclick', function () {
 							// Enhance the menu
 							menu.trigger('create');
-							// Fix the bottom corners
-							nodes = menu[0].getElementsByTagName('li');
-							node = nodes[0];
-							if (node.className.indexOf('ui-corner-top') === -1) {
-								node.className += ' ui-corner-top';
-							}
-							node = nodes[nodes.length - 1];
-							if (node.className.indexOf('ui-corner-bottom') === -1) {
-								node.className += ' ui-corner-bottom';
+							menus = menu.find('.ui-controlgroup');
+							nodes = menus.get();
+							len = nodes.length;
+							while (len--) {
+								node = nodes[len];
+								// Fix the top corners
+								node2 = node.getElementsByTagName('li')[0];
+								if (node2.className.indexOf('ui-corner-top') === -1) {
+									node2.className += ' ui-corner-top';
+								}
+
+								// Fix the bottom corners
+								nodes2 = menus.eq(len).find('.ui-btn').get();
+								node = nodes2[nodes2.length - 1];
+								if (node.className.indexOf('ui-corner-bottom') === -1) {
+									node.className += ' ui-corner-bottom';
+								}
 							}
 						});
 					}
