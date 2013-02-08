@@ -256,17 +256,17 @@
 		createTable: function(index, title, caption) {
 			
 			// create a table object
-			var $table = $('<table>'); 
+			var $table = $('<table>', { 'style': 'width:100%' }); 
 			$table.attr('aria-label', title);
 			$table.attr('id', "overlay_" + index);
 			$table.append('<caption>' + caption + '</caption>');
-			var $thead = $('<thead>');
-			var $row = $('<tr>');  
-			$row.append('<th>Title</th>');	  
-			$row.append('<th>Description</th>'); 
-			//$row.append('<th>Geometry</th>');			
-			$thead.append($row);
-			$table.append($thead);
+//			var $thead = $('<thead>');
+//			var $row = $('<tr>');  
+//			$row.append('<th>Title</th>');	  
+//			$row.append('<th>Description</th>'); 
+//			//$row.append('<th>Geometry</th>');			
+//			$thead.append($row);
+//			$table.append($thead);
 						
 			return $table;	
 		},		
@@ -359,7 +359,7 @@
 				'href': '#tabs_'	+ $(featureTable).attr('id')
 			});
 
-			$tabs.append($("<li>").append($link));
+			$tabs.append($("<li>", { 'style': 'margin-right: 5px' }).append($link));
 			
 			$layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
 			$layerTab.append(featureTable);		
@@ -414,50 +414,96 @@
 		 * 
 		 * TODO: provide for an array of configured table columns.
 		 */
-		createRow: function(context) {			
+		createRow: function(context) {
+			
 			// add a row for each feature
 			var $row = $('<tr>');
+			
 			// replace periods with underscores for jQuery!
-			$row.attr('id', context.id.replace(/\W/g, "_"));										
-			$tdTitle = $('<td>', { 'class': 'select' });
-			$tdDesc = $('<td>', { 'html': context.description });
-			$link = $('<a>', {				
-				'html': context.title,
-				'href': '#'
-			}).appendTo($tdTitle);		
+			if(context.type != 'head') $row.attr('id', context.id.replace(/\W/g, "_"));
 			
-			// Hover events
-			$link.hover(
-				function(){
-					$(this).closest('tr').attr('class', 'background-highlight');
-					context.selectControl.unselectAll();
-					context.selectControl.select(context.feature);
-				}, 
-				function(){
-					$(this).closest('tr').attr('class', 'background-white');
-					context.selectControl.unselectAll();
-					context.selectControl.unselect(context.feature);
-				}
-			);
+			var cols = [];
+			var a = context.feature.attributes;
 
-			// Keybord events
-			$link.focus(function(){
-					$(this).closest('tr').attr('class', 'background-highlight');
-					context.selectControl.unselectAll();
-					context.selectControl.select(context.feature);
-				}	
-			);
-			$link.blur(function(){
-					$(this).closest('tr').attr('class', 'background-white');
-					context.selectControl.unselectAll();
-					context.selectControl.select(context.feature);
-				}	
-			);
-			
-			$row.append($tdTitle, $tdDesc);
+			for (var name in a) {
+				
+				// TODO: add regex to replace text links with hrefs.
+				//var regex = new RegExp('var match = (?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))');
+				
+				if (a.hasOwnProperty(name)) {
+					if(context.type == 'head') {
+						var $col = $('<th>', { 'html': name });
+						//var $col = $('<td>', { 'html': regex.exec(a[name]) });
+					} else {
+						var $col = $('<td>', { 'html': a[name] });
+					}
+					cols.push($col);
+				}
+			}			
+
+			if(context.type != 'head') {
+				
+				// TODO: support user configured column for link, currently defaults to first column.
+				$link = $('<a>', {				
+					'html': $(cols[0]).html(),
+					'href': '#'
+				});
+				
+				$(cols[0]).empty().append($link);
+				
+				// Hover events
+				$link.hover(
+					function(){
+						$(this).closest('tr').attr('class', 'background-highlight');
+						context.selectControl.unselectAll();
+						context.selectControl.select(context.feature);
+					}, 
+					function(){
+						$(this).closest('tr').attr('class', 'background-white');
+						context.selectControl.unselectAll();
+						context.selectControl.unselect(context.feature);
+					}
+				);
+	
+				// Keybord events
+				$link.focus(function(){
+						$(this).closest('tr').attr('class', 'background-highlight');
+						context.selectControl.unselectAll();
+						context.selectControl.select(context.feature);
+					}	
+				);
+				$link.blur(function(){
+						$(this).closest('tr').attr('class', 'background-white');
+						context.selectControl.unselectAll();
+						context.selectControl.select(context.feature);
+					}	
+				);
+			}
+
+			$row.append(cols);
 			
 			return $row;	
 			
+		},
+		
+		/*
+		 * Handle features once they have been added to the map
+		 * 
+		 * TODO: selectControl should be a global variable
+		 */
+		onFeaturesAdded: function($table, evt, selectCtrl) {
+			$head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
+			$table.append($head);
+			$.each(evt.features, function(index, feature) {												
+				var context = {
+					'type': 'body',
+					'id': feature.id.replace(/\W/g, "_"),
+					'feature': feature,
+					'selectControl': selectCtrl
+				};											
+				$row = pe.fn.geomap.createRow(context);									
+				$table.append($row);
+			});
 		},
 		
 		_exec: function (elm) {
@@ -613,17 +659,11 @@
 									externalProjection: new OpenLayers.Projection('EPSG:4269')
 									})
 								}),
-								onFeatureInsert: function(feature) {									
-									var context = {
-										'id': feature.id.replace(/\W/g, "_"),
-										'title': feature.attributes.name,
-										'description': feature.attributes.description,
-										//'geometry': feature.attributes.geometry,
-										'feature': feature,
-										'selectControl': selectControl
-									};									
-									$row = pe.fn.geomap.createRow(context);									
-									$table.append($row);									
+								eventListeners: {
+									"featuresadded": function (evt) {	
+										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
+									}
+									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
@@ -641,16 +681,10 @@
 									url: layer.url,
 									format: new OpenLayers.Format.Atom()									
 								}),
-								onFeatureInsert: function(feature) {									
-									var context = {
-										'id': feature.id.replace(/\W/g, "_"),
-										'title': feature.attributes.title,
-										'description': feature.attributes.description,
-										'feature': feature,
-										'selectControl': selectControl
-									};									
-									$row = pe.fn.geomap.createRow(context);									
-									$table.append($row);									
+								eventListeners: {
+									"featuresadded": function (evt) {	
+										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
+									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
@@ -668,17 +702,11 @@
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
 									format: new OpenLayers.Format.GeoRSS()
-								}),
-								onFeatureInsert: function(feature) {									
-									var context = {
-										'id': feature.id.replace(/\W/g, "_"),
-										'title': feature.attributes.title,
-										'description': feature.attributes.description,
-										'feature': feature,
-										'selectControl': selectControl
-									};									
-									$row = pe.fn.geomap.createRow(context);									
-									$table.append($row);									
+								}),								
+								eventListeners: {
+									"featuresadded": function (evt) {	
+										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
+									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
@@ -728,20 +756,9 @@
 									})
 								}),
 								eventListeners: {
-									"featuresadded": function (evt) {										
-										$.each(evt.features, function(index, feature) {											
-											var context = {
-												'id': feature.id.replace(/\W/g, "_"),
-												'title': feature.attributes.title,
-												'description': feature.attributes.description,
-												'feature': feature,
-												'selectControl': selectControl
-											};									
-											$row = pe.fn.geomap.createRow(context);									
-											$table.append($row);
-										});
-									}
-									
+									"featuresadded": function (evt) {	
+										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
+									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
@@ -762,18 +779,8 @@
 									format: new OpenLayers.Format.GeoJSON()
 								}),
 								eventListeners: {
-									"featuresadded": function (evt) {										
-										$.each(evt.features, function(index, feature) {												
-											var context = {
-												'id': feature.id.replace(/\W/g, "_"),
-												'title': feature.attributes.cartodb_id,
-												'description': feature.attributes.location_desc,
-												'feature': feature,
-												'selectControl': selectControl
-											};									
-											$row = pe.fn.geomap.createRow(context);									
-											$table.append($row);
-										});
+									"featuresadded": function (evt) {
+										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
 									}
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -787,6 +794,8 @@
 					}					
 				});
 			}
+			
+			
 
 			/*
 			 * Add vector features (consider removing - not used) 

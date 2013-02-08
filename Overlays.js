@@ -56,7 +56,8 @@ var wet_boew_geomap = {
 			root: 'products',
 			attributes: {
 				title: 'title',
-				description: 'summary'
+				description: 'summary',
+				geometry: 'geometry',
 				author: 'author'
 			},
 			strokeColor: '#336600',
