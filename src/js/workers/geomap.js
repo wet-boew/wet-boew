@@ -729,9 +729,10 @@
 												atts = {};
 												var a = layer.attributes;
 												
+												// TODO: test on nested attributes
 												for (var name in a) {
 													if (a.hasOwnProperty(name)) {
-														atts[name] = row[a[name]];
+														 atts[a[name]] = row[name];														
 													}
 												}
 												

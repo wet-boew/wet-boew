@@ -53,7 +53,7 @@ var wet_boew_geomap = {
 				'q': 'alluvial'
 			},
 			visible: true,
-			root: 'products',
+			root: 'products',			
 			attributes: {
 				title: 'Title',
 				summary: 'Abstract',				
@@ -70,6 +70,12 @@ var wet_boew_geomap = {
 			params: {
 				'format': 'GeoJSON',
 				'q': 'SELECT * FROM traffic_cameras LIMIT 10'
+			},
+			attributes: {
+				location_desc: 'Location',
+				longitude: 'Latitude',
+				latitude: 'Longitude',				
+				updated_at: 'Last updated'
 			},
 			visible: true,
 			attributes: {
