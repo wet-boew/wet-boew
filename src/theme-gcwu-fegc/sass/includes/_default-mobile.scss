@@ -75,7 +75,7 @@ img {
 	@extend %no-margin-no-shadow;
 	max-width: 100%;
 	height: auto;
-	@extend %display-block;
+	@extend %gcwu-default-mobile-display-block;
 }
 
 li {
@@ -103,7 +103,7 @@ table {
 
 [id|="wb-body-sec"] {
 	#wb-skip2 {
-		@extend %display-none;
+		@extend %gcwu-default-mobile-display-none;
 		visibility: hidden;
 	}
 }
@@ -182,7 +182,7 @@ table {
 
 .clear {
 	clear: both;
-	@extend %display-block;
+	@extend %gcwu-default-mobile-display-block;
 	height: 0;
 	overflow: hidden;
 	visibility: hidden;
@@ -223,10 +223,10 @@ table {
 		border: 1px solid #333;
 	}
 	li {
-		@extend %display-none;
+		@extend %gcwu-default-mobile-display-none;
 	}
 	[id*="-lang"] {
-		@extend %display-block;
+		@extend %gcwu-default-mobile-display-block;
 	}
 }
 
@@ -244,41 +244,41 @@ table {
 }
 
 #gcwu-sig {
-	@extend %display-none;
+	@extend %gcwu-default-mobile-display-none;
 }
 
 #gcwu-wmms {
-	@extend %display-none;
+	@extend %gcwu-default-mobile-display-none;
 }
 
 #gcwu-gcnb {
 	ul {
-		@extend %display-none;
+		@extend %gcwu-default-mobile-display-none;
 	}
 }
 
 #gcwu-bc {
-	@extend %display-none;
+	@extend %gcwu-default-mobile-display-none;
 }
 
 #gcwu-psnb {
-	@extend %display-none;
+	@extend %gcwu-default-mobile-display-none;
 }
 
 #gcwu-srchbx {
-	@extend %display-none;
+	@extend %gcwu-default-mobile-display-none;
 }
 
 #wb-sec {
-	@extend %display-none;
+	@extend %gcwu-default-mobile-display-none;
 }
 
 #wb-foot {
-	@extend %display-none;
+	@extend %gcwu-default-mobile-display-none;
 }
 
 #gcwu-gcft {
-	@extend %display-none;
+	@extend %gcwu-default-mobile-display-none;
 }
 
 #gcwu-bnr {
@@ -324,18 +324,18 @@ table {
 %period-after-pseudo {
 	&:after {
 		content: ".";
-		@extend %display-block;
+		@extend %gcwu-default-mobile-display-block;
 		height: 0;
 		clear: both;
 		visibility: hidden;
 	}
 }
 
-%display-none {
+%gcwu-default-mobile-display-none {
 	display: none;
 }
 
-%display-block {
+%gcwu-default-mobile-display-block {
 	display: block;
 }
 
@@ -605,7 +605,7 @@ select {
 #jqm-mb-location-text {
 	margin: 0 -15px 10px;
 	h2 {
-		@extend %display-none;
+		@extend %gcwu-default-mobile-display-none;
 	}
 }
 
@@ -683,29 +683,29 @@ select {
 	}
 	#gcwu-gcnb { 
 		ul {
-			@extend %display-block;
+			@extend %gcwu-default-mobile-display-block;
 		}
 	}
 	#gcwu-wmms {
-		@extend %display-block;
+		@extend %gcwu-default-mobile-display-block;
 	}
 	#gcwu-bc {
-		@extend %display-block;
+		@extend %gcwu-default-mobile-display-block;
 	}
 	#gcwu-psnb {
-		@extend %display-block;
+		@extend %gcwu-default-mobile-display-block;
 	}
 	#gcwu-srchbx {
-		@extend %display-block;
+		@extend %gcwu-default-mobile-display-block;
 	}
 	#wb-sec {
-		@extend %display-block;
+		@extend %gcwu-default-mobile-display-block;
 	}
 	#wb-foot {
-		@extend %display-block;
+		@extend %gcwu-default-mobile-display-block;
 	}
 	#gcwu-psnb #gcwu-psnb-in, #gcwu-srchbx form {
-		@extend %display-block;
+		@extend %gcwu-default-mobile-display-block;
 		width: 100%;
 		z-index: 100;
 	}
@@ -722,7 +722,7 @@ select {
 /* Right to left (RTL) CSS */
 %rtl-scalex {
 	@include scaleX(-1);
-	@extend %display-block;
+	@extend %gcwu-default-mobile-display-block;
 }
 %gcwu-default-mobile-padding-right-0 {
 	padding-right: 0;
