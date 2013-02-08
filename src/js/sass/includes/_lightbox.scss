@@ -4,6 +4,7 @@
  */
 @import "compass/css3/box-sizing";
 
+//WET: This CSS is based off https://github.com/jackmoore/colorbox/blob/master/example3/colorbox.css
 /*
     ColorBox Core Style:
     The following CSS is consistent between example themes and should not be altered.
@@ -15,23 +16,30 @@
 	z-index: 9999;
 	overflow: hidden;
 }
+
 #cboxOverlay {
 	position: fixed;
 	width: 100%;
 	height: 100%;
 }
+
 #cboxMiddleLeft, #cboxBottomLeft {
 	clear: left;
 }
+
 #cboxContent {
 	position: relative;
 }
+
 #cboxLoadedContent {
 	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 }
+
 #cboxTitle {
 	margin: 0;
 }
+
 #cboxLoadingOverlay, #cboxLoadingGraphic {
 	position: absolute;
 	top: 0;
@@ -39,9 +47,11 @@
 	width: 100%;
 	height: 100%;
 }
+
 #cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow {
 	cursor: pointer;
 }
+
 .cboxPhoto {
 	float: left;
 	margin: auto;
@@ -49,12 +59,14 @@
 	display: block;
 	max-width: none;
 }
+
 .cboxIframe {
 	width: 100%;
 	height: 100%;
 	display: block;
 	border: 0;
 }
+//WET: Do not replace when upgrading, this has been updated to use Compass Mixin
 #colorbox, #cboxContent, #cboxLoadedContent {
 	@include box-sizing(content-box);
 }
