@@ -12,18 +12,18 @@
 	font-weight: normal;
 }
 
-#wet-psnb,#wet-srchbx{
+#wet-psnb, #wet-srchbx{
 	h2 {
-		position:absolute;
-		clip:rect(1px, 1px, 1px, 1px);
-		height:0 !important;
-		width:0 !important;
-		overflow:hidden !important;
-		margin:0 !important;
+		position: absolute;
+		clip: rect(1px, 1px, 1px, 1px);
+		height: 0 !important;
+		width: 0 !important;
+		overflow: hidden !important;
+		margin: 0 !important;
 	}
 }
 
-#wet-bc {
+#wet-bc-in {
 	font-size: 85%;
 	color: #555;
 	ol{
@@ -43,6 +43,12 @@
 		display: inline;
 		float: left;
 		white-space: nowrap;
+		margin: 0 5px 0 0;
+		padding: 0 11px 0 0;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
+		}
 	}
 	a {
 		color: #295376;

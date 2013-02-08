@@ -40,7 +40,7 @@
 	}
 }
 
-#base-bc {
+#base-bc-in {
 	font-size: 85%;
 	color: #555;
 	ol {
@@ -49,7 +49,7 @@
 		margin: 2px 10px 0;
 		padding: 0;
 		&:after {
-			content:".";
+			content: ".";
 			display: block;
 			height: 0;
 			clear: both;
@@ -60,6 +60,12 @@
 		display: inline;
 		float: left;
 		white-space: nowrap;
+		margin: 0 5px 0 0;
+		padding: 0 11px 0 0;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
+		}
 	}
 	a {
 		color: #295376;

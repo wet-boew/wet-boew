@@ -205,33 +205,10 @@ a {
 }
 
 #base-fullhd {
-	@extend %base-default-desktop-screen-overflow-hidden;
-	background: #555;
-	font-size: 0.9em;
-	color: #FFF;
-	ul {
-		list-style-type: none;
-		float: right;
-		margin: 0;
-		padding: 0;
-		li {
-			float: left;
-			padding: 13px 0;
-			&#base-fullhd-lang {
-				a {
-					padding-right: 10px;
-					margin-right: 1px;
-					text-transform: capitalize;
-				}
-			}
-		}
-	}
 	a {
 		@extend %base-default-desktop-screen-psuedo-underline;
 		border-left: 1px solid #fff;
-		color: #fff;
 		display: block;
-		text-decoration: none;
 		padding: 0 1em;
 	}
 	li {

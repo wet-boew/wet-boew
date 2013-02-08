@@ -10,6 +10,34 @@ body {
 	margin: 0;
 }
 
+#wet-fullhd {
+	overflow: hidden;
+	background: #555;
+	font-size: 0.9em;
+	color: #FFF;
+	ul {
+		list-style-type: none;
+		float: right;
+		margin: 0;
+		padding: 0;
+		li {
+			float: left;
+			padding: 13px 0;
+			&#base-fullhd-lang {
+				a {
+					padding-right: 10px;
+					margin-right: 1px;
+					text-transform: capitalize;
+				}
+			}
+		}
+	}
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+}
+
 .wb-sec-def {//TODO: Highly nested class, any cleanup possible?
 	a {
 		&.nav-current {

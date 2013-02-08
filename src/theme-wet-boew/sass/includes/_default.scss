@@ -14,17 +14,88 @@
 	line-height: normal;
 }
  
-#wet-fullhd h2, #wet-srchbx label, #wet-sft h3, #wet-bc h2, #wet-fullft h3 {
-	clip: rect(1px, 1px, 1px, 1px);
+%wet-default-hidden-clip {
+	clip: rect(1px, 1px, 1px, 1px);//TODO: Should have old IE class withouth commas
 	height: 0 !important;
 	overflow: hidden !important;
 	position: absolute;
 	width: 0 !important;
 	margin: 0 !important;
 }
+ 
+#wet-fullhd {
+	h2 {
+		@extend %wet-default-hidden-clip;
+	}
+}
+
+#wet-psnb {
+	h2 {
+		@extend %wet-default-hidden-clip;
+	}
+}
+
+#wet-srchbx {
+	h2 {
+		@extend %wet-default-hidden-clip;
+	}
+	label {
+		@extend %wet-default-hidden-clip;
+	}
+}
+
+#wet-sft {
+	h3 {
+		@extend %wet-default-hidden-clip;
+	}
+}
+
+#wet-bc {
+	h2 {
+		@extend %wet-default-hidden-clip;
+	}
+}
+
+#base-bc-in {
+	color: #555;
+	ol {
+		line-height: 1.57em;
+		list-style-type: none;
+		padding: 0;
+		&:after {
+			content:".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+	}
+	li {
+		float: left;
+		white-space: nowrap;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
+		}
+	}
+	a {
+		color: #295376;
+		text-decoration: none;
+		&:hover, &:focus, &:active {
+			color: #295376;
+			text-decoration: underline;
+		}
+	}
+}
+
+#wet-fullft {
+	h3 {
+		@extend %wet-default-hidden-clip;
+	}
+}
 
 #wet-date-mod {
-	dt,dd{
+	dt,dd {
 		float: left;
 	}
 	dd {
@@ -48,7 +119,7 @@
 		padding-top: 1px;
 		padding-bottom: 5px;
 	}
-	a{
+	a {
 		color: #fff;
 		text-decoration: none;
 		padding: 0 5px 0 10px;

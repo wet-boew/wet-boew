@@ -9,6 +9,29 @@ body{
 	margin:0;
 }
 
+#wet-fullhd {
+	ul {
+		list-style-type: none;
+		float: right;
+		margin: 0 0 0 10px;
+		padding: 0;
+		li {
+			float: left;
+			padding: 13px 0;
+			&#wet-fullhd-lang {
+				a {
+					padding: 0;
+					text-transform: capitalize;
+				}
+			}
+		}
+	}
+	a {
+		color: #FFF;
+		text-decoration: none;
+	}
+}
+
 .wb-sec-def {
 	h3.top-section {
 		a {
