@@ -356,7 +356,7 @@ table {
 }
 
 .ui-title {
-	img {
+	object, object img {
 		@extend %position-absolute;
 		left: 3px;
 		top: 8px;

@@ -151,7 +151,7 @@
 				// Handling for the Canada Wordmark if it exists
 				if (wet_boew_theme.wmms.length !== 0) {
 					node = wet_boew_theme.wmms[0].getElementsByTagName('img')[0];
-					header += '<div class="ui-title"><img src="' + node.getAttribute('src').replace('.gif', '-bg.gif') + '" width="90" alt="' + node.getAttribute('alt') + '" /></div>';
+					header += '<div class="ui-title"><object type="image/svg+xml" width="90" data="' + node.getAttribute('src').replace('.gif', '.svg') + '"><img src="' + node.getAttribute('src').replace('.gif', '-bgb.gif') + '" width="90" alt="' + node.getAttribute('alt') + '" /></object></div>';
 				} else {
 					header += '<div class="ui-title"></div>';
 				}
