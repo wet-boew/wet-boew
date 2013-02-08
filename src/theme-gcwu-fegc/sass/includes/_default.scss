@@ -36,15 +36,47 @@
 	margin: 0 !important;
 }
 
-#gcwu-gcnb {
+#gcwu-gcnb, #gcwu-psnb {
 	h2 {
 		@extend %gcwu-default-hidden;
 	}
 }
 
 #gcwu-srchbx {
-	label {
+	h2, label {
 		@extend %gcwu-default-hidden;
+	}
+}
+
+#gcwu-bc-in {
+	color: #555;
+	ol {
+		line-height: 1.57em;
+		list-style-type: none;
+		padding: 0;
+		&:after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+	}
+	li {
+		float: left;
+		white-space: nowrap;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
+		}
+	}
+	a {
+		color: #295376;
+		text-decoration: none;
+		&:hover, &:focus, &:active {
+			color: #295376;
+			text-decoration: underline;
+		}
 	}
 }
 
