@@ -76,26 +76,42 @@
     Change the following styles to modify the appearance of ColorBox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
 */
+//WET: Custom CSS
 #colorbox, #cboxOverlay, #cboxWrapper {
 	overflow: visible;
 }
+
 #cboxOverlay {
 	background: #000;
 }
+
+//WET: Custom CSS original margin-top: 20px;
 #cboxContent {
 	margin: 19px 28px 1.5em 28px;
 }
+
 .cboxIframe {
 	background: #fff;
 }
+
 #cboxError {
 	padding: 50px;
 	border: 1px solid #ccc;
 }
+
 #cboxLoadedContent {
 	border: 5px solid #000;
 	background: #fff;
 }
+
+/* Original Rule
+#cboxTitle {
+	position: absolute;
+	top: -20px;
+	left: 0;
+	color: #ccc;
+}
+*/
 #cboxTitle {
 	position: absolute;
 	padding-top: 3px;
@@ -103,6 +119,15 @@
 	color: #ccc;
 	width: 70%;
 }
+
+/* Original rule
+#cboxCurrent {
+	position: absolute;
+	top: -20px;
+	right: 0px;
+	color: #ccc;
+}
+*/
 #cboxCurrent {
 	position: absolute;
 	padding-top: 3px;
@@ -111,18 +136,21 @@
 	width: 26%;
 	text-align: right;
 }
+
 #cboxSlideshow {
 	position: absolute;
 	top: -20px;
 	right: 90px;
 	color: #fff;
 }
+
 #cboxPrevious, #cboxNext {
 	position: absolute;
 	top: 50%;
 	width: 28px;
 	height: 65px;
 }
+
 #cboxPrevious {
 	left: -28px;
 	margin-top: -32px;
@@ -131,13 +159,20 @@
 		background-position: 100% 100%; //bottom right
 	}
 }
+/* Original
+#cboxPrevious:hover {
+	background-position: bottom left;
+}
+*/
 
+//WET: Combined for single call to sprite
 #cboxNext, #cboxClose, #cboxPrevious {
 	background-image: url(../images/lightbox/controls.png);
 	background-repeat: no-repeat;
 	direction: ltr;
 	text-indent: -9999px;
 }
+
 #cboxNext {
 	right: -28px;
 	margin-top: -32px;
@@ -146,12 +181,32 @@
 		background-position: 0 100%;
 	}
 }
+/* Original
+#cboxNext:hover {
+	background-position: bottom right;
+}
+*/
+
 #cboxLoadingOverlay {
 	background: #000;
 }
+
 #cboxLoadingGraphic {
 	background: url(../images/lightbox/loading.gif) no-repeat center center;
 }
+
+/* Original rule
+#cboxClose {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	display: block;
+	background: url(images/controls.png) no-repeat top center;
+	width: 38px;
+	height: 19px;
+	text-indent: -9999px;
+}
+*/
 #cboxClose {
 	position: absolute;
 	top: -19px;
@@ -164,6 +219,12 @@
 		background-position: 50% 100%;
 	}
 }
+/* Original
+#cboxClose:hover {
+	background-position: bottom center;
+}
+*/
+
 #cboxNext, #cboxPrevious, #cboxClose {
 	&:focus, &:active {
 		outline: 0;
@@ -171,10 +232,12 @@
 	}
 }
 
+/* Start custom WET Rules */
 .lb-inline, .lb-hidden-gallery a {
 	display: none;
 	visibility: hidden;
 }
+
 .lb-hidden-gallery {
 	li {
 		&:first-child {
