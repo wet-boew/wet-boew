@@ -574,9 +574,9 @@
 				dataType: "script",
 				async: false,
 				success: function (data) {
-					console.log('WET-Geomap: overlays load was performed.');},
+					console.log('WET-Geomap: overlays were loaded successfully');},
 				error: function (data){
-					console.log('WET-Geomap: overlays was not loaded!');}	
+					console.log('WET-Geomap: an error occurred while loading overlays');}	
 			});
 			
 			// Check to see if a base map has been configured. If not add the
@@ -768,7 +768,37 @@
 								protocol: new OpenLayers.Protocol.Script({ 
 									url: layer.url,
 									params: layer.params,
-									format: new OpenLayers.Format.GeoJSON()
+									format: new OpenLayers.Format.GeoJSON({
+										read: function(json) {
+											var items = json.features;
+											var row, feature, atts = {}, features = [];
+											
+											for (var i = 0; i < items.length; i++) {												
+												row = items[i];												
+												feature = new OpenLayers.Feature.Vector();												
+												feature.geometry =	this.parseGeometry(row.geometry);
+												
+												// parse and store the attributes
+												atts = {};
+												var a = layer.attributes;
+												
+												// TODO: test on nested attributes
+												for (var name in a) {
+													if (a.hasOwnProperty(name)) {
+														 atts[a[name]] = row.properties[name];														
+													}
+												}
+												
+												feature.attributes = atts;												
+											
+												// if no geometry, don't add it
+												if (feature.geometry) {
+													features.push(feature);
+												}
+											} 
+											return features;
+										}
+									})
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {

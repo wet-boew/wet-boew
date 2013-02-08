@@ -24,6 +24,10 @@ var wet_boew_geomap = {
 		    type: 'kml',
 		    url: 'data/sample.kml',		   
 		    visible: true,
+		    attributes: {
+		    	name: 'Product Title',
+		    	description: 'Description'
+		    },
 		    strokeColor: '#FF00FF',
 		    fillColor: '#FF00FF'
 		},
@@ -64,24 +68,22 @@ var wet_boew_geomap = {
 		},
 		{
 			title: 'GeoJSON (CartoDB)',
-			caption: 'This is a sample dataset loaded from a remote JSON resource, in this case the CartoDB API.',
+			caption: 'This is a sample dataset loaded from a remote GeoJSON resource, in this case traffic cameras in the city of Ottawa from the CartoDB API.',
 			type: 'geojson',					
 			url: 'http://stephenott.cartodb.com/api/v2/sql',
 			params: {
 				'format': 'GeoJSON',
 				'q': 'SELECT * FROM traffic_cameras LIMIT 10'
 			},
-			attributes: {
+			attributes: {				
 				location_desc: 'Location',
 				longitude: 'Latitude',
 				latitude: 'Longitude',				
 				updated_at: 'Last updated'
 			},
-			visible: true,
-			attributes: {
-				title: 'cartodb_id',
-				description: 'location_desc'
-			}
+			visible: true,			
+			strokeColor: '#800080',
+			fillColor: '#FF00FF'
 		}		
 	]
 };
