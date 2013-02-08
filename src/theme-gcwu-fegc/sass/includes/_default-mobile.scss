@@ -8,30 +8,30 @@
 @import "compass/css3/images";
 @import 'compass/css3/transform';
 
-%no-rounded-corners {
+%gcwu-default-mobile-no-rounded-corners {
 	@include border-radius(0);
 }
 
-%all-rounded-corners {
+%gcwu-default-mobile-all-rounded-corners {
 	@include border-radius(0.6em);
 }
 
-%no-bottom-rounded-corners {
+%gcwu-default-mobile-no-bottom-rounded-corners {
 	@include border-bottom-left-radius(0);
 	@include border-bottom-right-radius(0);
 }
 
-%no-top-rounded-corners {
+%gcwu-default-mobile-no-top-rounded-corners {
 	@include border-top-left-radius(0);
 	@include border-top-right-radius(0);
 }
 
-%bottom-rounded-corners {
+%gcwu-default-mobile-bottom-rounded-corners {
 	@include border-bottom-left-radius(0.6em);
 	@include border-bottom-right-radius(0.6em);
 }
 
-%top-rounded-corners {
+%gcwu-default-mobile-top-rounded-corners {
 	@include border-top-left-radius(0.6em);
 	@include border-top-right-radius(0.6em);
 }
@@ -204,11 +204,11 @@ table {
 	}
 	.ui-li, a {
 		&.ui-corner-top {
-			@extend %top-rounded-corners;
+			@extend %gcwu-default-mobile-top-rounded-corners;
 		}
 		&.ui-corner-bottom {
 			border-bottom-width: 1px;
-			@extend %bottom-rounded-corners;
+			@extend %gcwu-default-mobile-bottom-rounded-corners;
 		}
 	}
 }
@@ -243,7 +243,41 @@ table {
 	margin: 0;
 }
 
-#gcwu-sig, #gcwu-wmms, #gcwu-gcnb ul, #gcwu-bc, #gcwu-psnb, #gcwu-srchbx, #wb-sec, #wb-foot, #gcwu-gcft {
+#gcwu-sig {
+	@extend %display-none;
+}
+
+#gcwu-wmms {
+	@extend %display-none;
+}
+
+#gcwu-gcnb {
+	ul {
+		@extend %display-none;
+	}
+}
+
+#gcwu-bc {
+	@extend %display-none;
+}
+
+#gcwu-psnb {
+	@extend %display-none;
+}
+
+#gcwu-srchbx {
+	@extend %display-none;
+}
+
+#wb-sec {
+	@extend %display-none;
+}
+
+#wb-foot {
+	@extend %display-none;
+}
+
+#gcwu-gcft {
 	@extend %display-none;
 }
 
@@ -262,7 +296,7 @@ table {
 #gcwu-bc-in {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
-	@extend %no-rounded-corners;
+	@extend %gcwu-default-mobile-no-rounded-corners;
 	@include text-shadow(0 1px 1px #fff);
 	border-bottom: 1px solid #ccc;
 	@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
@@ -273,13 +307,13 @@ table {
 	li {
 		margin: 0;
 		padding: 5px 12px 5px 5px;
-		@extend %no-rounded-corners;
+		@extend %gcwu-default-mobile-no-rounded-corners;
 		&:last-child {
 			padding-left: 5px;
 		}
 	}
 	a {
-		@extend %no-rounded-corners;
+		@extend %gcwu-default-mobile-no-rounded-corners;
 	}
 }
 
@@ -327,13 +361,63 @@ table {
 	}
 }
 
-.ui-collapsible-heading, .ui-li-static, .wb-nested-menu h4 {
+%gcwu-default-mobile-font-1em-margin-0 {
 	font-size: 1em;
 	margin: 0;
 }
 
-.ui-btn-inner, .ui-li-static, legend, label.ui-select, label.ui-input-text, input.ui-input-text, textarea.ui-input-text, select {
+%gcwu-default-mobile-font-125em {
 	font-size: 1.25em;
+}
+
+h3 {
+	&.ui-collapsible-heading {
+		@extend %gcwu-default-mobile-font-1em-margin-0;
+	}
+}
+
+.ui-li-static {
+	@extend %gcwu-default-mobile-font-1em-margin-0;
+	@extend %gcwu-default-mobile-font-125em;
+}
+
+.wb-nested-menu {
+	h4 {
+		@extend %gcwu-default-mobile-font-1em-margin-0;
+	}
+}
+
+.ui-btn-inner {
+	@extend %gcwu-default-mobile-font-125em;
+}
+
+legend {
+	@extend %gcwu-default-mobile-font-125em;
+}
+
+label {
+	&.ui-select {
+		@extend %gcwu-default-mobile-font-125em;
+	}
+	&.ui-input-text {
+		@extend %gcwu-default-mobile-font-125em;
+	}
+}
+
+input {
+	&.ui-input-text {
+		@extend %gcwu-default-mobile-font-125em;
+	}
+}
+
+textarea {
+	&.ui-input-text {
+		@extend %gcwu-default-mobile-font-125em;
+	}
+}
+
+select {
+	@extend %gcwu-default-mobile-font-125em;
 }
 
 %h1-border-bottom-none {
@@ -424,11 +508,13 @@ table {
 			@extend %white-space-normal;
 		}
 		.ui-collapsible:not(:first-child) {
-			@extend %no-top-rounded-corners;
+			@extend %gcwu-default-mobile-no-top-rounded-corners;
 		}
 		.ui-collapsible:last-child {
-			.ui-collapsible-content > :not(:last-child) {
-				@extend %no-bottom-rounded-corners;
+			.ui-collapsible-content {
+				> :not(:last-child) {
+					@extend %gcwu-default-mobile-no-bottom-rounded-corners;
+				}
 			}
 		}
 	}
@@ -439,7 +525,7 @@ table {
 		}
 		&:not(.ui-collapsible-heading-collapsed) {
 			a {
-				@extend %no-bottom-rounded-corners;
+				@extend %gcwu-default-mobile-no-bottom-rounded-corners;
 			}
 		}
 	}
@@ -506,12 +592,12 @@ table {
 	.top-section {
 		a {
 			margin: 0 0 5px;
-			@extend %no-rounded-corners;
+			@extend %gcwu-default-mobile-no-rounded-corners;
 		}
 	}
 	.top-level {
 		&.ui-btn-corner-all {
-			@extend %all-rounded-corners;
+			@extend %gcwu-default-mobile-all-rounded-corners;
 		}
 	}
 }
@@ -595,7 +681,27 @@ table {
 		width: 100% !important;
 		float: none;
 	}
-	#gcwu-gcnb ul, #gcwu-wmms, #gcwu-bc, #gcwu-psnb, #gcwu-srchbx, #wb-sec, #wb-foot {
+	#gcwu-gcnb { 
+		ul {
+			@extend %display-block;
+		}
+	}
+	#gcwu-wmms {
+		@extend %display-block;
+	}
+	#gcwu-bc {
+		@extend %display-block;
+	}
+	#gcwu-psnb {
+		@extend %display-block;
+	}
+	#gcwu-srchbx {
+		@extend %display-block;
+	}
+	#wb-sec {
+		@extend %display-block;
+	}
+	#wb-foot {
 		@extend %display-block;
 	}
 	#gcwu-psnb #gcwu-psnb-in, #gcwu-srchbx form {
@@ -617,6 +723,9 @@ table {
 %rtl-scalex {
 	@include scaleX(-1);
 	@extend %display-block;
+}
+%gcwu-default-mobile-padding-right-0 {
+	padding-right: 0;
 }
 [dir="rtl"] {
 	#gcwu-date-mod {
@@ -671,7 +780,7 @@ table {
 		.wb-nested-menu {
 			.ui-btn-icon-right {
 				.ui-btn-inner {
-					padding-right: 0;
+					@extend %gcwu-default-mobile-padding-right-0;
 				}
 			}
 
@@ -679,7 +788,7 @@ table {
 				padding-right: 55px;
 
 				&.ui-btn-icon-left {
-					padding-right: 0;
+					@extend %gcwu-default-mobile-padding-right-0;
 				}
 			}
 
@@ -707,8 +816,10 @@ table {
 			}
 		}
 
-		.ui-collapsible-content > a {
-			padding-right: 0;
+		.ui-collapsible-content {
+			> a {
+				@extend %gcwu-default-mobile-padding-right-0;
+			}
 		}
 	}
 
@@ -730,8 +841,10 @@ table {
 		}
 	}
 
-	.ui-title img {
-		right: 3px;
+	.ui-title {
+		img {
+			right: 3px;
+		}
 	}
 
 	.ul-li {
