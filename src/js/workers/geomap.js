@@ -254,20 +254,13 @@
 		 * Create a table for vector features added in Load Overlays
 		 */
 		createTable: function(index, title, caption) {
-			
-			// create a table object
+
 			var $table = $('<table>', { 'style': 'width:100%' }); 
+			
 			$table.attr('aria-label', title);
 			$table.attr('id', "overlay_" + index);
-			$table.append('<caption>' + caption + '</caption>');
-//			var $thead = $('<thead>');
-//			var $row = $('<tr>');  
-//			$row.append('<th>Title</th>');	  
-//			$row.append('<th>Description</th>'); 
-//			//$row.append('<th>Geometry</th>');			
-//			$thead.append($row);
-//			$table.append($thead);
-						
+			$table.append('<caption>' + caption + '</caption>', '<thead>', '<tbody>');						
+			
 			return $table;	
 		},		
 		
@@ -286,8 +279,7 @@
 
 		/* 
 		 * Add layer data
-		 */
-		
+		 */		
 		addLayerData: function(featureTable, enabled, olLayerId) {			
 			
 			if ($('.wet-boew-geomap-legend')) {
@@ -299,8 +291,7 @@
 		
 		/* 
 		 * Create Legend
-		 */
-		
+		 */		
 		addToLegend: function(featureTable, enabled, olLayerId) {			
 			var $div = $(".wet-boew-geomap-legend");
 			
@@ -493,7 +484,7 @@
 		 */
 		onFeaturesAdded: function($table, evt, selectCtrl) {
 			$head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
-			$table.append($head);
+			$table.find('thead').append($head);
 			$.each(evt.features, function(index, feature) {												
 				var context = {
 					'type': 'body',
@@ -502,7 +493,7 @@
 					'selectControl': selectCtrl
 				};											
 				$row = pe.fn.geomap.createRow(context);									
-				$table.append($row);
+				$table.find('tbody').append($row);
 			});
 		},
 		
