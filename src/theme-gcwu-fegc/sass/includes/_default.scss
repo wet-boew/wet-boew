@@ -36,7 +36,13 @@
 	margin: 0 !important;
 }
 
-#gcwu-gcnb, #gcwu-psnb {
+#gcwu-gcnb {
+	h2 {
+		@extend %gcwu-default-hidden;
+	}
+}
+
+#gcwu-psnb {
 	h2 {
 		@extend %gcwu-default-hidden;
 	}
