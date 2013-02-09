@@ -143,14 +143,7 @@
 				}
 			
 				// Build the header bar
-				header = '<div data-role="header">';
-				// Handling for the Canada Wordmark if it exists
-				if (wet_boew_theme.wmms.length !== 0) {
-					node = wet_boew_theme.wmms[0].getElementsByTagName('img')[0];
-					header += '<div class="ui-title"><img src="' + node.getAttribute('src').replace('.gif', '-bg.gif') + '" width="90" alt="' + node.getAttribute('alt') + '" /></div>';
-				} else {
-					header += '<div class="ui-title"></div>';
-				}
+				header = '<div data-role="header"><div class="ui-title"></div>';
 				header += '<map id="base-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 				// Handling for the home/back button if it exists
 				if (typeof home_href !== 'undefined') { // Home button needed
@@ -166,14 +159,14 @@
 				// Append the Settings button
 				header += popup_button + ' href="#popupSettings" data-icon="gear">' + settings_txt + '</a></map></div>';
 				// Append the header
-				wet_boew_theme.gcnb.children('#base-gcnb-in').before(header);
+				wet_boew_theme.fullhd.children('#base-fullhd-in').before(header);
 				// Apply a theme to the site title
 				wet_boew_theme.title[0].className += ' ui-bar-b';
 				// Apply a theme to the h1
 				pe.main[0].getElementsByTagName('h1')[0].className += ' ui-bar-c';
 			
 				// Build the settings popup
-				lang_links = wet_boew_theme.gcnb.find('li[id*="-lang"]');
+				lang_links = wet_boew_theme.fullhd.find('li[id*="-lang"]');
 				settings_popup = popup + ' id="popupSettings"' + popup_settings;
 				settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open + listView;
@@ -197,7 +190,7 @@
 						link = node.childNodes[0];
 						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '');
 						if (node.id.indexOf('-lang-current') !== -1) {
-							settings_popup += '><a href="javascript:;" class="ui-disabled">' + link.innerHTML + pe.dic.get('%current') + '</a></li>';
+							settings_popup += '><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
 						} else {
 							settings_popup += '><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
 						}				
@@ -217,12 +210,6 @@
 					if (target.getElementsByTagName('time').length === 0) {
 						settings_popup += '<li>' + node[0].innerHTML + ' ' + target.innerHTML + '</li>';
 					}
-				}
-				// Add the terms and conditions and transparency links
-				links = document.getElementById('base-tctr').getElementsByTagName('a');
-				for (i = 0, len = links.length; i !== len; i += 1) {
-					link = links[i];
-					settings_popup += '<li><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
 				}
 				// Add the footer links
 				links = wet_boew_theme.sft.find('.base-col-head a').get();
@@ -251,7 +238,7 @@
 					node.parentNode.removeChild(node);
 				}
 				if (_list.length !== 0) {
-					var navbar = wet_boew_theme.gcnb.find('#base-mnavbar'),
+					var navbar = wet_boew_theme.fullhd.find('#base-mnavbar'),
 						menu = pe.bodydiv.find('#jqm-mb-menu'),
 						menus,
 						nodes,

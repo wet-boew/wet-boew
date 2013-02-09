@@ -233,9 +233,6 @@ table {
 	li {
 		@extend %gcwu-default-mobile-display-none;
 	}
-	[id*="-lang"] {
-		@extend %gcwu-default-mobile-display-block;
-	}
 }
 
 #gcwu-mnavbar {
@@ -662,13 +659,6 @@ select {
 			background: #eee;
 		}
 	}
-	#gcwu-tctr {
-		li {
-			&.gcwu-tc {
-				padding-left: 0;
-			}
-		}
-	}
 	#gcwu-sft-in {
 		background: none;
 		padding-left: 5px;
@@ -895,14 +885,6 @@ select {
 	&.no-js {
 		#gcwu-sft-in {
 			padding-right: 5px;
-		}
-		#gcwu-tctr {
-			li {
-				&.gcwu-tc {
-					padding-left: 9px;
-					padding-right: 0;
-				}
-			}
 		}
 	}
 }
