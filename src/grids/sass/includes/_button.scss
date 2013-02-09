@@ -38,15 +38,18 @@
 		}
 	}
 
+	%grid-button-color-button-accent {
+		@include color-button($accent);
+	}
 	/* added for Firefox, Chrome, Safari to default submit buttons to blue */
 	input[type="button"] {
-		@include color-button($accent);
+		@extend %grid-button-color-button-accent;
 	}
 
 	/* without line 29 the buttons would not be coloured in IE, move to fixes? */
 	input, button, a, summary {
 		&.button-accent {
-			@include color-button($accent);
+			@extend %grid-button-color-button-accent;
 		}
 		&.button-dark {
 			@include color-button($dark);
