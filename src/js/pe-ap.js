@@ -208,7 +208,7 @@
 				}
 
 				if (pe.ie > 0) {
-					if (pe.id < 9) {
+					if (pe.ie < 9) {
 						pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
 					} else {
 						pe.wb_load({'plugins': {'equalize': pe.main}}, 'equalize-loaded');
