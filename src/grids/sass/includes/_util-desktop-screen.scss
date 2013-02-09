@@ -4,6 +4,10 @@
  */
 @import "compass/css3/columns";
 
+@import "equalize";
+
+@include equalize;
+
 /*	 columns	 */
 .column-two {
 	@include column-count(2);
