@@ -143,6 +143,11 @@
 			// Identify whether or not the device supports JavaScript and has a touchscreen
 			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
 
+			// Identify IE9+ browser
+			if (pe.ie > 8) {
+				$html.addClass('ie' + parseInt(pe.ie, 10));
+			}
+
 			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
 				return this.href.indexOf('#') !== -1;
 			});
@@ -202,8 +207,12 @@
 					}
 				}
 
-				if (pe.ie > 0 && pe.ie < 9) {
-					pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
+				if (pe.ie > 0) {
+					if (pe.ie < 9) {
+						pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
+					} else {
+						pe.wb_load({'plugins': {'equalize': pe.main}}, 'equalize-loaded');
+					}
 				}
 			});
 
