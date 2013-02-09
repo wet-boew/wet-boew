@@ -15,6 +15,11 @@
 	height: 20px;
 	margin: 0 0 10px 0
 }
+
+%slider-gradient-left-89A5BD-165C91 {
+	@include background-image(linear-gradient(left, #89A5BD, #165c91));
+}
+
 .fd-slider-vertical {
 	width: 20px;
 	height: 100%;
@@ -37,7 +42,7 @@
 		bottom: 11px;
 		left: 9px;
 		background-color: #165c91;
-		@include background-image(linear-gradient(left, #89A5BD, #165c91));
+		@extend %slider-gradient-left-89A5BD-165C91;
 	}
 	.fd-slider-disabled {
 		.fd-slider-bar {
@@ -111,7 +116,7 @@
 	overflow: hidden;
 	line-height: 2px;
 	background-color: #165c91;
-	@include background-image(linear-gradient(left, #89A5BD, #165c91));
+	@extend %slider-gradient-left-89A5BD-165C91;
 	@include border-radius(2px);
 	@include background-clip(padding-box);
 }
