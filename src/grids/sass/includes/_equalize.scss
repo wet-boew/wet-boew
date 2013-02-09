@@ -1,0 +1,128 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+
+@import "compass/css3/box-sizing";
+@import "compass/css3/background-clip";
+@import "compass/css3/background-origin";
+
+@mixin equalize {
+	@if not $legacy-support-for-ie {
+
+		// TODO: switch to 'display: flex' when support improves (see issue #907)
+		.equalize {
+			margin-bottom: 0 !important;
+			display: table !important;
+			table-layout: fixed;
+			> {
+				* {
+					float: none !important;
+					display: table-cell !important;
+					vertical-align: top !important;
+				}
+				[class*="span-"] {
+					border: 0 solid transparent;
+					border-width: 0 10px 20px 10px;
+					@include background-clip(padding-box);
+					@include background-origin(padding-box);
+					&.row-start {
+						border-left: 0;
+					}
+					&.row-end {
+						border-right: 0;
+					}
+				}
+				[class*="module-"] {
+					border: 10px solid transparent;
+					outline-offset: -10px;
+					@include box-sizing(content-box);
+				}
+			}
+			&.module-gutter-bottom {
+				border-bottom: 10px solid transparent;
+			}
+		}
+
+		.ie9 {
+		    @extend %grids-equalize-all-modern-ie;
+		}
+
+		.ie10 {
+		    @extend %grids-equalize-all-modern-ie;
+		}
+
+		#wb-core-in {
+			&.equalize {
+				direction: rtl;
+				> {
+					* {
+						direction: ltr;
+					}
+				}
+			}
+		}
+
+		/* Right to left (RTL) CSS */
+		[dir="rtl"] {
+			.equalize {
+				> {
+					[class*="span-"] {
+						&.row-start {
+							border-left-width: 10px;
+							border-right: 0;
+						}
+						&.row-end {
+							border-left: 0;
+							border-right-width: 10px;
+						}
+					}
+				}
+			}
+			#wb-core-in {
+				&.equalize {
+					direction: ltr;
+					> {
+						* {
+							direction: rtl;
+						}
+					}
+				}
+			}
+
+			&.ie9 {
+				@extend %grids-equalize-all-modern-ie-rtl;
+			}
+
+			&.ie10 {
+				@extend %grids-equalize-all-modern-ie-rtl;
+			}
+		}
+
+		// IE9/10 don't support outline-offset, so equalize.js provides the equal height
+		%grids-equalize-all-modern-ie {
+		    .equalize {
+		        > {
+		            [class*="module-"] {
+		                border: 0;
+		                float: left !important;
+		                display: block !important;
+		            }
+		        }
+		        &.module-gutter-bottom {
+		            border-bottom: 0;
+		        }
+		    }
+		}
+
+		%grids-equalize-all-modern-ie-rtl {
+			.equalize {
+				> {
+					[class*="module-"] {
+						float: right !important;
+					}
+				}
+			}
+		}
+	}
+}
