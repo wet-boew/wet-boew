@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
@@ -60,7 +59,7 @@ blockquote {
 %no-margin-no-shadow {
 	margin-left: 0;
 	margin-right: 0;
-	@include text-shadow(none);
+	text-shadow: none;
 }
 
 form {
@@ -125,7 +124,7 @@ table {
 	a {
 		font-size: 1.5em;
 		color: #fff !important;
-		@include text-shadow(0 1px 1px #044062);
+		text-shadow: 0 1px 1px #044062;
 		text-decoration: none;
 	}
 }
@@ -716,7 +715,7 @@ select {
 		}
 	}
 }
-/* Right to left (RTL) CSS */
+
 /* Right to left (RTL) CSS */
 %rtl-scalex {
 	@include scaleX(-1);
