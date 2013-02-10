@@ -4,8 +4,50 @@
  */
 @import "compass/css3/border-radius";
 
-body{
+%wet-default-font-body {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+body {
+	@extend %wet-default-font-body;
 	margin:0;
+}
+
+textarea {
+	@extend %wet-default-font-body;
+}
+
+input {
+	@extend %wet-default-font-body;
+}
+
+.button {
+	@extend %wet-default-font-body;
+}
+
+#wet-fullhd {
+	background: #474747;
+	color: #FFF;
+	ul {
+		list-style-type: none;
+		float: right;
+		margin: 0 0 0 10px;
+		padding: 0;
+		li {
+			float: left;
+			padding: 13px 0;
+			&#wet-fullhd-lang {
+				a {
+					padding: 0;
+					text-transform: capitalize;
+				}
+			}
+		}
+	}
+	a {
+		color: #FFF;
+		text-decoration: none;
+	}
 }
 
 .wb-sec-def {
