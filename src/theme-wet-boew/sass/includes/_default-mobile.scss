@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
@@ -60,7 +59,7 @@ blockquote {
 %wet-default-mobile-no-margin-no-shadow {
 	margin-left: 0;
 	margin-right: 0;
-	@include text-shadow(none);
+	text-shadow: none;
 }
 
 form {
@@ -125,7 +124,7 @@ table {
 	a {
 		font-size: 1.5em;
 		color: #fff !important;
-		@include text-shadow(0 1px 1px #044062);
+		text-shadow: 0 1px 1px #044062;
 		text-decoration: none;
 	}
 }
@@ -149,7 +148,7 @@ table {
 		padding: 0 3px;
 		border: 1px solid #999;
 		border-width: 1px 0 0 0;
-		@include text-shadow(none);
+		text-shadow: none;
 		position: static !important;
 		&.wb-invisible {
 			position: absolute !important;
@@ -278,7 +277,7 @@ table {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
 	@extend %wet-default-mobile-no-rounded-corners;
-	@include text-shadow(0 1px 1px #fff);
+	text-shadow: 0 1px 1px #fff;
 	border-bottom: 1px solid #ccc;
 	@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 	ol {

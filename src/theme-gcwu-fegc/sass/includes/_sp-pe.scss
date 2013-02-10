@@ -8,7 +8,7 @@
 @import "compass/css3/box-shadow";
 
 %gcwu-sp-pe-no-text-shadow {
-	@include text-shadow(none);
+	text-shadow: none;
 }
 
 h1 {
