@@ -21,15 +21,7 @@
 			@include single-transition(background-position, 0.1s, linear);
 		}
 
-		&.button-disabled { //TODO: merge the disabled items together as they are apart for now for IE8
-			background: none;
-			@include box-shadow(none);
-			cursor: default;
-			font-style: italic;
-			@include text-shadow(none);
-		}
-		
-		&:disabled {  //TODO: merge the disabled items together as they are apart for now for IE8
+		@include button-disabled {
 			background: none;
 			@include box-shadow(none);
 			cursor: default;
@@ -79,14 +71,7 @@
 				color: $attention !important;
 			}
 
-			&.button-disabled {  //TODO: merge the disabled items together as they are apart for now for IE8
-				text-decoration: none !important;
-				&:hover, &:focus, &:active {
-					color: $dark !important;
-				}
-			}
-			
-			&:disabled {  //TODO: merge the disabled items together as they are apart for now for IE8
+			@include button-disabled {
 				text-decoration: none !important;
 				&:hover, &:focus, &:active {
 					color: $dark !important;
@@ -223,11 +208,7 @@
 			border-color: $text;
 		}
 	}
-	&.button-disabled { //TODO: merge the disabled items together as they are apart for now for IE8
-		background-color: $color;
-		border-color: darken($color, 5%);
-	}
-	&:disabled { //TODO: merge the disabled items together as they are apart for now for IE8
+	@include button-disabled {
 		background-color: $color;
 		border-color: darken($color, 5%);
 	}
@@ -237,4 +218,20 @@
 	font-size: $size;
 	line-height: $height;
 	padding: $padding;
+}
+
+@mixin button-disabled() {
+	@if $legacy-support-for-ie8 {
+		&.button-disabled {
+			@content;
+		}
+		
+		&:disabled {
+			@content;
+		}
+	} @else {
+		&.button-disabled, &:disabled {
+			@content;
+		}
+	}
 }
