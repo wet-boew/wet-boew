@@ -17,7 +17,7 @@
 	h3 {
 		&.top-section {
 			margin: 0 0 2px -10px;
-			@include text-shadow(1px 1px 1px #fff);
+			text-shadow: 1px 1px 1px #fff;
 			background: #bbb url(../images/core/top-section.png) repeat-x 0 0 !important;
 			@include border-radius(0 2px 2px 0);
 			border: medium none;
@@ -86,7 +86,7 @@
 		repeat: repeat-x;
 		position: 0 -170px;
 	}
-	@include text-shadow(1px 1px 1px #333);
+	text-shadow: 1px 1px 1px #333;
 	a {
 		&:hover, &:focus {
 			text-decoration: underline;

@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/utilities/color";
 
 $sans-serif:		Verdana, Arial, Helvetica, sans-serif;
@@ -136,7 +135,7 @@ $default-box-shadow-v-offset: 0;
 
 	// add text shadow
 	@if $shadow == true {
-		@include text-shadow(contrast-color($text, $dark, $white, 50%) 0 1px 1px);
+		text-shadow: 0 1px 1px contrast-color($text, $dark, $white, 50%);
 	}
 
 	// add gradient

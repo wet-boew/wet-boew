@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/css3/box-sizing";
 @import "compass/typography/lists/bullets";
 @import "compass/css3/border-radius";
@@ -75,7 +74,7 @@
 						text-decoration: none;
 						background-repeat: no-repeat;
 						background-position: 100% 0; //top right;
-						@include text-shadow(-1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #555, 1px 1px 0 #000);
+						text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #555, 1px 1px 0 #000;
 						font-weight: 700;
 						@include colorize-base($accent);
 					}
