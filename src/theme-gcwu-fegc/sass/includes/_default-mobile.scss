@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
@@ -31,7 +30,7 @@ blockquote {
 %no-margin-no-shadow {
 	margin-left: 0;
 	margin-right: 0;
-	@include text-shadow(none);
+	text-shadow: none;
 }
 
 form {
@@ -108,7 +107,7 @@ table {
 	a {
 		font-size: 1.5em;
 		color: #fff !important;
-		@include text-shadow(0 1px 1px #044062);
+		text-shadow: 0 1px 1px #044062;
 		text-decoration: none;
 	}
 }
@@ -324,7 +323,7 @@ table {
 	float: right;
 	border-top: 1px solid #044062;
 	h2 {
-		@include text-shadow(0 1px 1px #044062);
+		text-shadow: 0 1px 1px #044062;
 		background-color: #333333;
 		@include background-image(linear-gradient(#444444, #2D2D2D));
 		&:hover, &:focus, &:active {
@@ -424,7 +423,7 @@ table {
 	}
 	li {
 		color: #333;
-		@include text-shadow(0 1px 0 #fff);
+		text-shadow: 0 1px 0 #fff;
 		position: relative;
 		z-index: 1;
 		h3 {
@@ -680,7 +679,7 @@ table {
 		@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
 		color: #555;
 		@include border-radius(0);
-		@include text-shadow(0 1px 1px #fff);
+		text-shadow: 0 1px 1px #fff;
 		border-bottom: 1px solid #ccc;
 		@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 		a {

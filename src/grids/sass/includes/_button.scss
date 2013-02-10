@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
@@ -26,7 +25,7 @@
 			@include box-shadow(none);
 			cursor: default;
 			font-style: italic;
-			@include text-shadow(none);
+			text-shadow: none;
 		}
 	}
 
@@ -65,7 +64,7 @@
 				@include box-shadow(none);
 				outline-color: transparent;
 				text-decoration: underline;
-				@include text-shadow(none);
+				text-shadow: none;
 			}
 			&:hover, &:focus, &:active {
 				color: $attention !important;
@@ -197,7 +196,7 @@
 
 	$text: contrast-color($color, $dark, $white, 55%);
 	color: $text !important;
-	@include text-shadow(contrast-color($text, $dark, $white, 50%) 0 1px 1px);
+	text-shadow: 0 1px 1px contrast-color($text, $dark, $white, 50%);
 
 	@include background-image(linear-gradient($color, darken($color, 10%)));
 	&:hover, &:focus, &:active {
