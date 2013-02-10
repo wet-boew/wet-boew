@@ -168,7 +168,7 @@ table {
 		padding: 0 3px;
 		border: 1px solid #999;
 		border-width: 1px 0 0 0;
-		@include text-shadow(none);
+		text-shadow: none;
 		position: static !important;
 		&.wb-invisible {
 			position: absolute !important;
@@ -304,7 +304,7 @@ table {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
 	@extend %gcwu-default-mobile-no-rounded-corners;
-	@include text-shadow(0 1px 1px #fff);
+	text-shadow: 0 1px 1px #fff;
 	border-bottom: 1px solid #ccc;
 	@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 	ol {
