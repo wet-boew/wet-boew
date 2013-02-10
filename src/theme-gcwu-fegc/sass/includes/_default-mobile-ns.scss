@@ -33,7 +33,6 @@
 		@extend %gcwu-default-mobile-ns-display-block;
 	}
 	#gcwu-psnb {
-		margin-top: -11px;
 		@extend %gcwu-default-mobile-ns-positioning;
 		@extend %gcwu-default-mobile-ns-display-block;
 		#gcwu-psnb-in {
@@ -48,6 +47,7 @@
 			text-align: center;
 			background: #1A3D6C;
 			padding: 10px 0;
+			margin-bottom: 0;
 			@extend %gcwu-default-mobile-ns-display-block;
 		}
 	}

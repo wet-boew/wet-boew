@@ -201,7 +201,7 @@
 						link = node.childNodes[0];
 						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '');
 						if (node.id.indexOf('-lang-current') !== -1) {
-							settings_popup += '><a href="javascript:;" class="ui-disabled">' + link.innerHTML + pe.dic.get('%current') + '</a></li>';
+							settings_popup += '><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
 						} else {
 							settings_popup += '><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
 						}				

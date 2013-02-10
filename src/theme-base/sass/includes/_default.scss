@@ -7,7 +7,6 @@
 		text-shadow: none !important;
 	}
 }
-
 %base-default-line-height-normal {
 	line-height: normal;
 }
@@ -39,7 +38,16 @@
 	}
 }
 
+#base-psnb {
+	h2 {
+		@extend %base-default-hidden-clip;
+	}
+}
+
 #base-srchbx {
+	h2 {
+		@extend %base-default-hidden-clip;
+	}
 	label {
 		@extend %base-default-hidden-clip;
 	}
@@ -54,6 +62,38 @@
 #base-bc {
 	h2 {
 		@extend %base-default-hidden-clip;
+	}
+}
+
+#base-bc-in {
+	color: #555;
+	ol {
+		line-height: 1.57em;
+		list-style-type: none;
+		padding: 0;
+		&:after {
+			content:".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+	}
+	li {
+		float: left;
+		white-space: nowrap;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
+		}
+	}
+	a {
+		color: #295376;
+		text-decoration: none;
+		&:hover, &:focus, &:active {
+			color: #295376;
+			text-decoration: underline;
+		}
 	}
 }
 
