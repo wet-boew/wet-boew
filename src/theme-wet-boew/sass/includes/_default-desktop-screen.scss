@@ -115,34 +115,11 @@ a {
 	@extend %wet-default-link;
 }
 
-#wet-fullhd{
-	background:#474747;
-	font-size:0.9em;
-	color:#FFF;
-	border-bottom:1px solid #FFF;
-}
-
-#wet-fullhd{
-	ul{
-		list-style-type:none;
-		float:right;
-		margin:0 0 0 10px;
-		padding:0;
-		li{
-			float:left;
-			padding:13px 0;
-			&#wet-fullhd-lang {
-				a {
-					padding:0;
-					text-transform: capitalize;
-				}
-			}
-		}
-	}
+#wet-fullhd {
+	font-size: 0.9em;
+	border-bottom: 1px solid #FFF;
 	a {
-		color: #FFF;
 		display: block;
-		text-decoration: none;
 		padding: 0;
 	}
 	li {
