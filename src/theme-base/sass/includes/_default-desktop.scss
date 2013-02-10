@@ -2,16 +2,13 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-%base-default-desktop-text-shadow-none {
+
+[class*="ui-overlay-"] {
 	text-shadow: none;
 }
 
-[class*="ui-overlay-"] {
-	@extend %base-default-desktop-text-shadow-none;
-}
-
 [class*="ui-body-"] {
-	@extend %base-default-desktop-text-shadow-none;
+	text-shadow: none;
 	.ui-link {
 		font-weight: normal;
 	}
