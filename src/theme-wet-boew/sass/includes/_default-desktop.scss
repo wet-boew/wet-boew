@@ -9,14 +9,45 @@
 	font-weight: normal;
 }
 
-#wet-psnb, #wet-srchbx{
-	h2 {
+%wet-default-desktop-background-none {
+	background: none;
+}
+
+#wet-title {
+	@extend %wet-default-desktop-background-none;
+}
+
+h1 {
+	&.ui-bar-c {
+		@extend %wet-default-desktop-background-none;
+		border: 0;
+	}
+}
+
+#wet-fullhd {
+	.ui-header {
+		display: none !important;
+	}
+}
+
+%wet-default-desktop-hidden-clip {
 		position: absolute;
-		clip: rect(1px, 1px, 1px, 1px);
+		clip: rect(1px, 1px, 1px, 1px);//TODO: Should have old IE class withouth commas
 		height: 0 !important;
 		width: 0 !important;
 		overflow: hidden !important;
 		margin: 0 !important;
+}
+
+#wet-psnb {
+	h2 {
+		@extend %wet-default-desktop-hidden-clip;
+	}
+}
+
+#wet-srchbx {
+	h2 {
+		@extend %wet-default-desktop-hidden-clip;
 	}
 }
 

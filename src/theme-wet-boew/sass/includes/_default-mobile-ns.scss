@@ -18,7 +18,6 @@
 	}
 
 	#wet-psnb {
-		margin-top: -11px;
 		@extend %wet-default-mobile-ns-display-block;
 		@extend %wet-default-mobile-ns-width-100-important-float-none;
 		#wet-psnb-in {
@@ -55,6 +54,7 @@
 			text-align: center;
 			background: #1A3D6C;
 			padding: 10px 0;
+			margin-bottom: 0;
 		}
 	}
 }

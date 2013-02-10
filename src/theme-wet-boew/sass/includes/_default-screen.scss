@@ -4,11 +4,30 @@
  */
 @import "compass/css3/border-radius";
 
-body{
+%wet-default-font-body {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+body {
+	@extend %wet-default-font-body;
 	margin:0;
 }
 
+textarea {
+	@extend %wet-default-font-body;
+}
+
+input {
+	@extend %wet-default-font-body;
+}
+
+.button {
+	@extend %wet-default-font-body;
+}
+
 #wet-fullhd {
+	background: #474747;
+	color: #FFF;
 	ul {
 		list-style-type: none;
 		float: right;

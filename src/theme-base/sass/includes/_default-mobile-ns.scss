@@ -20,9 +20,11 @@
 	#base-psnb {
 		@extend %base-default-mobile-ns-width100pct-float-none;
 		@extend %base-default-mobile-ns-display-block;
-		margin-top: -11px;
 		#base-psnb-in {
 			@extend %base-default-mobile-ns-display-block-width100pct-z-index100;
+		}
+		.mb-menu {
+			background: #555;
 		}
 	}
 
@@ -42,8 +44,9 @@
 			@extend %base-default-mobile-ns-display-block-width100pct-z-index100;
 			border-bottom: 1px solid #999;
 			text-align: center;
-			background: #1A3D6C;
+			background: #555;
 			padding: 10px 0;
+			margin-bottom: 0;
 		}
 	}
 

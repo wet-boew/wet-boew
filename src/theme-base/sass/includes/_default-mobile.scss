@@ -7,30 +7,30 @@
 @import "compass/css3/images";
 @import 'compass/css3/transform';
 
-%wet-default-mobile-no-rounded-corners {
+%base-default-mobile-no-rounded-corners {
 	@include border-radius(0);
 }
 
-%wet-default-mobile-all-rounded-corners {
+%base-default-mobile-all-rounded-corners {
 	@include border-radius(0.6em);
 }
 
-%wet-default-mobile-no-bottom-rounded-corners {
+%base-default-mobile-no-bottom-rounded-corners {
 	@include border-bottom-left-radius(0);
 	@include border-bottom-right-radius(0);
 }
 
-%wet-default-mobile-no-top-rounded-corners {
+%base-default-mobile-no-top-rounded-corners {
 	@include border-top-left-radius(0);
 	@include border-top-right-radius(0);
 }
 
-%wet-default-mobile-bottom-rounded-corners {
+%base-default-mobile-bottom-rounded-corners {
 	@include border-bottom-left-radius(0.6em);
 	@include border-bottom-right-radius(0.6em);
 }
 
-%wet-default-mobile-top-rounded-corners {
+%base-default-mobile-top-rounded-corners {
 	@include border-top-left-radius(0.6em);
 	@include border-top-right-radius(0.6em);
 }
@@ -53,28 +53,28 @@ a {
 }
 
 blockquote {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-margin-no-shadow;
 }
 
-%wet-default-mobile-no-margin-no-shadow {
+%base-default-mobile-no-margin-no-shadow {
 	margin-left: 0;
 	margin-right: 0;
 	text-shadow: none;
 }
 
 form {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-margin-no-shadow;
 }
 
 #{headings(2,6)} {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-margin-no-shadow;
 }
 
 img {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-margin-no-shadow;
 	max-width: 100%;
 	height: auto;
-	@extend %wet-default-mobile-display-block;
+	@extend %base-default-mobile-display-block;
 }
 
 li {
@@ -89,20 +89,20 @@ li {
 }
 
 p {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-margin-no-shadow;
 }
 
 pre {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-margin-no-shadow;
 }
 
 table {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-margin-no-shadow;
 }
 
 [id|="wb-body-sec"] {
 	#wb-skip2 {
-		@extend %wet-default-mobile-display-none;
+		@extend %base-default-mobile-display-none;
 		visibility: hidden;
 	}
 }
@@ -116,7 +116,7 @@ table {
 }
 
 #base-title {
-	border: 1px solid #456F9A;
+	border: none;
 	p {
 		padding: 3px;
 		margin: 0;
@@ -161,7 +161,7 @@ table {
 
 .clear {
 	clear: both;
-	@extend %wet-default-mobile-display-block;
+	@extend %base-default-mobile-display-block;
 	height: 0;
 	overflow: hidden;
 	visibility: hidden;
@@ -183,11 +183,11 @@ table {
 	}
 	.ui-li, a {
 		&.ui-corner-top {
-			@extend %wet-default-mobile-top-rounded-corners;
+			@extend %base-default-mobile-top-rounded-corners;
 		}
 		&.ui-corner-bottom {
 			border-bottom-width: 1px;
-			@extend %wet-default-mobile-bottom-rounded-corners;
+			@extend %base-default-mobile-bottom-rounded-corners;
 		}
 	}
 }
@@ -197,20 +197,17 @@ table {
 		min-width: 180px;
 		margin-left: 35px;
 		margin-right: 35px;
+		text-shadow: none;
 	}
-}
-
-%background-efefef {
-	background: #efefef;
 }
 
 #base-fullhd {
 	min-height: 41px;
 	.ui-header {
-		border: 1px solid #333;
+		border: 1px solid #666;
 	}
 	li {
-		@extend %wet-default-mobile-display-none;
+		@extend %base-default-mobile-display-none;
 	}
 }
 
@@ -228,41 +225,56 @@ table {
 }
 
 #base-sig {
-	@extend %wet-default-mobile-display-none;
+	@extend %base-default-mobile-display-none;
 }
 
 #base-fullhd {
 	ul {
-		@extend %wet-default-mobile-display-none;
+		@extend %base-default-mobile-display-none;
+	}
+}
+
+#base-subsite {
+	font-size: 130%;
+	text-shadow: none;
+	p {
+		margin: {
+			top: 0;
+			bottom: 0;
+		}
+	}
+	a {
+		padding: 3px;
+		white-space: normal;
 	}
 }
 
 #base-bc {
-	@extend %wet-default-mobile-display-none;
+	@extend %base-default-mobile-display-none;
 }
 
 #base-psnb {
-	@extend %wet-default-mobile-display-none;
+	@extend %base-default-mobile-display-none;
 }
 
 #base-srchbx {
-	@extend %wet-default-mobile-display-none;
+	@extend %base-default-mobile-display-none;
 }
 
 #wb-sec {
-	@extend %wet-default-mobile-display-none;
+	@extend %base-default-mobile-display-none;
 }
 
 #wb-foot {
-	@extend %wet-default-mobile-display-none;
+	@extend %base-default-mobile-display-none;
 }
 
 #base-fullft {
-	@extend %wet-default-mobile-display-none;
+	@extend %base-default-mobile-display-none;
 }
 
 #base-bnr {
-	background: #225C96;
+	background: #CF3F0E;
 }
 
 #base-bnr-in {
@@ -276,7 +288,7 @@ table {
 #base-bc-in {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
-	@extend %wet-default-mobile-no-rounded-corners;
+	@extend %base-default-mobile-no-rounded-corners;
 	text-shadow: 0 1px 1px #fff;
 	border-bottom: 1px solid #ccc;
 	@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
@@ -285,15 +297,16 @@ table {
 		font-size: 90%;
 	}
 	li {
+		background: url(../images/bcrumb-mobile.png) no-repeat right center;
 		margin: 0;
 		padding: 5px 12px 5px 5px;
-		@extend %wet-default-mobile-no-rounded-corners;
+		@extend %base-default-mobile-no-rounded-corners;
 		&:last-child {
 			padding-left: 5px;
 		}
 	}
 	a {
-		@extend %wet-default-mobile-no-rounded-corners;
+		@extend %base-default-mobile-no-rounded-corners;
 	}
 }
 
@@ -304,18 +317,18 @@ table {
 %period-after-pseudo {
 	&:after {
 		content: ".";
-		@extend %wet-default-mobile-display-block;
+		@extend %base-default-mobile-display-block;
 		height: 0;
 		clear: both;
 		visibility: hidden;
 	}
 }
 
-%wet-default-mobile-display-none {
+%base-default-mobile-display-none {
 	display: none;
 }
 
-%wet-default-mobile-display-block {
+%base-default-mobile-display-block {
 	display: block;
 }
 
@@ -341,63 +354,63 @@ table {
 	}
 }
 
-%wet-default-mobile-font-1em-margin-0 {
+%base-default-mobile-font-1em-margin-0 {
 	font-size: 1em;
 	margin: 0;
 }
 
-%wet-default-mobile-font-125em {
+%base-default-mobile-font-125em {
 	font-size: 1.25em;
 }
 
 h3 {
 	&.ui-collapsible-heading {
-		@extend %wet-default-mobile-font-1em-margin-0;
+		@extend %base-default-mobile-font-1em-margin-0;
 	}
 }
 
 .ui-li-static {
-	@extend %wet-default-mobile-font-1em-margin-0;
-	@extend %wet-default-mobile-font-125em;
+	@extend %base-default-mobile-font-1em-margin-0;
+	@extend %base-default-mobile-font-125em;
 }
 
 .wb-nested-menu {
 	h4 {
-		@extend %wet-default-mobile-font-1em-margin-0;
+		@extend %base-default-mobile-font-1em-margin-0;
 	}
 }
 
 .ui-btn-inner {
-	@extend %wet-default-mobile-font-125em;
+	@extend %base-default-mobile-font-125em;
 }
 
 legend {
-	@extend %wet-default-mobile-font-125em;
+	@extend %base-default-mobile-font-125em;
 }
 
 label {
 	&.ui-select {
-		@extend %wet-default-mobile-font-125em;
+		@extend %base-default-mobile-font-125em;
 	}
 	&.ui-input-text {
-		@extend %wet-default-mobile-font-125em;
+		@extend %base-default-mobile-font-125em;
 	}
 }
 
 input {
 	&.ui-input-text {
-		@extend %wet-default-mobile-font-125em;
+		@extend %base-default-mobile-font-125em;
 	}
 }
 
 textarea {
 	&.ui-input-text {
-		@extend %wet-default-mobile-font-125em;
+		@extend %base-default-mobile-font-125em;
 	}
 }
 
 select {
-	@extend %wet-default-mobile-font-125em;
+	@extend %base-default-mobile-font-125em;
 }
 
 %h1-border-bottom-none {
@@ -488,12 +501,12 @@ select {
 			@extend %white-space-normal;
 		}
 		.ui-collapsible:not(:first-child) {
-			@extend %wet-default-mobile-no-top-rounded-corners;
+			@extend %base-default-mobile-no-top-rounded-corners;
 		}
 		.ui-collapsible:last-child {
 			.ui-collapsible-content {
 				> :not(:last-child) {
-					@extend %wet-default-mobile-no-bottom-rounded-corners;
+					@extend %base-default-mobile-no-bottom-rounded-corners;
 				}
 			}
 		}
@@ -505,7 +518,7 @@ select {
 		}
 		&:not(.ui-collapsible-heading-collapsed) {
 			a {
-				@extend %wet-default-mobile-no-bottom-rounded-corners;
+				@extend %base-default-mobile-no-bottom-rounded-corners;
 			}
 		}
 	}
@@ -572,12 +585,12 @@ select {
 	.top-section {
 		a {
 			margin: 0 0 5px;
-			@extend %wet-default-mobile-no-rounded-corners;
+			@extend %base-default-mobile-no-rounded-corners;
 		}
 	}
 	.top-level {
 		&.ui-btn-corner-all {
-			@extend %wet-default-mobile-all-rounded-corners;
+			@extend %base-default-mobile-all-rounded-corners;
 		}
 	}
 }
@@ -585,16 +598,8 @@ select {
 #jqm-mb-location-text {
 	margin: 0 -15px 10px;
 	h2 {
-		@extend %wet-default-mobile-display-none;
+		@extend %base-default-mobile-display-none;
 	}
-}
-
-.mobile-hide {
-	display: none !important;
-}
-
-.mobile-show {
-	display: block !important;
 }
 
 .ui-loader-default {
@@ -636,7 +641,6 @@ select {
 	}
 
 	#base-sft-in {
-		background: none;
 		padding-left: 5px;
 	}
 	.ui-content {
@@ -648,38 +652,41 @@ select {
 }
 
 .pe-disable {
-	#base-psnb {
-		margin-top: -11px;
-	}
 	#base-psnb, #base-srchbx {
 		width: 100% !important;
 		float: none;
 	}
 	#base-fullhd { 
 		ul {
-			@extend %wet-default-mobile-display-block;
+			@extend %base-default-mobile-display-block;
 		}
 	}
 	#base-wmms {
-		@extend %wet-default-mobile-display-block;
+		@extend %base-default-mobile-display-block;
 	}
 	#base-bc {
-		@extend %wet-default-mobile-display-block;
+		@extend %base-default-mobile-display-block;
 	}
 	#base-psnb {
-		@extend %wet-default-mobile-display-block;
+		@extend %base-default-mobile-display-block;
+		.mb-menu {
+			background: #555;
+		}
 	}
 	#base-srchbx {
-		@extend %wet-default-mobile-display-block;
+		@extend %base-default-mobile-display-block;
+		form {
+			margin-bottom: 0;
+		}
 	}
 	#wb-sec {
-		@extend %wet-default-mobile-display-block;
+		@extend %base-default-mobile-display-block;
 	}
 	#wb-foot {
-		@extend %wet-default-mobile-display-block;
+		@extend %base-default-mobile-display-block;
 	}
 	#base-psnb #base-psnb-in, #base-srchbx form {
-		@extend %wet-default-mobile-display-block;
+		@extend %base-default-mobile-display-block;
 		width: 100%;
 		z-index: 100;
 	}
@@ -687,7 +694,7 @@ select {
 		form {
 			border-bottom: 1px solid #999;
 			text-align: center;
-			background: #1A3D6C;
+			background: #555;
 			padding: 10px 0;
 		}
 	}
@@ -696,9 +703,9 @@ select {
 /* Right to left (RTL) CSS */
 %rtl-scalex {
 	@include scaleX(-1);
-	@extend %wet-default-mobile-display-block;
+	@extend %base-default-mobile-display-block;
 }
-%wet-default-mobile-padding-right-0 {
+%base-default-mobile-padding-right-0 {
 	padding-right: 0;
 }
 [dir="rtl"] {
@@ -754,7 +761,7 @@ select {
 		.wb-nested-menu {
 			.ui-btn-icon-right {
 				.ui-btn-inner {
-					@extend %wet-default-mobile-padding-right-0;
+					@extend %base-default-mobile-padding-right-0;
 				}
 			}
 
@@ -762,7 +769,7 @@ select {
 				padding-right: 55px;
 
 				&.ui-btn-icon-left {
-					@extend %wet-default-mobile-padding-right-0;
+					@extend %base-default-mobile-padding-right-0;
 				}
 			}
 
@@ -792,7 +799,7 @@ select {
 
 		.ui-collapsible-content {
 			> a {
-				@extend %wet-default-mobile-padding-right-0;
+				@extend %base-default-mobile-padding-right-0;
 			}
 		}
 	}
@@ -864,4 +871,3 @@ select {
 		}
 	}
 }
-

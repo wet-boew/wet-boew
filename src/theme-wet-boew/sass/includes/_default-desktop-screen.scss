@@ -115,14 +115,9 @@ a {
 	@extend %wet-default-link;
 }
 
-#wet-fullhd{
-	background:#474747;
-	font-size:0.9em;
-	color:#FFF;
-	border-bottom:1px solid #FFF;
-}
-
 #wet-fullhd {
+	font-size: 0.9em;
+	border-bottom: 1px solid #FFF;
 	a {
 		display: block;
 		padding: 0;

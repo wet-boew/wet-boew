@@ -115,7 +115,7 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = $('html'), hlinks, hlinks_same, $this, target, test, init_on_mobileinit = false;
+			var $html = $('html'), hlinks, hlinks_same, $this, target, classes, test, init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
@@ -140,8 +140,11 @@
 			pe.urlhash = pe.urlpage.hash;
 			pe.urlquery = pe.urlpage.params;
 
-			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
+			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
+			pe.mobile = pe.mobilecheck();
+			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? ' mobile-view' : ' desktop-view')) : '';
+			classes += (pe.touchscreen ? ' touchscreen' : '');
+			$html.removeClass('no-js').addClass(classes);
 
 			// Identify IE9+ browser
 			if (pe.ie > 8) {
@@ -156,9 +159,7 @@
 			});
 
 			// Is this a mobile device?
-			if (pe.mobilecheck()) {
-				pe.mobile = true;
-				
+			if (pe.mobile) {
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
 				if (test === 0) {
@@ -253,7 +254,7 @@
 							}
 						});
 
-						//Load the mobile or desktop view
+						// Load the mobile or desktop view
 						if (pe.mobile) {
 							wet_boew_theme.mobileview();
 						} else {
