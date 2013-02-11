@@ -164,6 +164,13 @@ table {
 	position: relative;
 }
 
+#wb-main-in {
+	padding: 0 3px;
+	h1 {
+		margin-top: 0.5em;
+	}
+}
+
 .clear {
 	clear: both;
 	@extend %gcwu-default-mobile-display-block;
@@ -568,6 +575,11 @@ select {
 		border-left: none;
 		border-right: none;
 		background: #F4F4F4;
+		.wb-nested-menu {
+			a {
+				font-size: 0.8em;
+			}
+		}
 	}
 	.ui-btn {
 		margin: 0;

@@ -958,12 +958,15 @@
 					listView = '<ul data-role="listview" data-theme="' + theme2 + '">',
 					listItems,
 					listItem,
+					listItem2,
 					sectionOpen = '<div data-theme="' + theme1 + '"' + ' class="wb-nested-menu',
 					sectionLink = '<a data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
 					sectionLinkOpen = '">' + headingOpen + sectionLink,
 					sectionLinkClose = '</a>' + headingClose,
 					link = '<a data-role="button" data-icon="arrow-r" data-iconpos="right" data-corners="false" href="',
-					menu;
+					menu,
+					i,
+					len;
 				collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true);
 				collapsible = (collapsible !== undefined ? collapsible : false);
 				returnString = (returnString !== undefined ? returnString : false);
@@ -1006,19 +1009,28 @@
 								nextDOM = next[0];
 								if (nextDOM.tagName.toLowerCase() === 'ul') {
 									menu += listView;
-									nested = next.find('li ul');
-									if (nested.length !== 0) { // Special handling for a nested list
+									nested = nextDOM.querySelector('li ul');
+									if (nested !== null && nested.length !== 0) { // Special handling for a nested list
 										hnestTag = 'h' + (hlevel + 1);
-										hnestDOM = nested[0];
-										hnestLinkDOM = nested.prev('a')[0];
-										menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
-										listItems = hnestDOM.getElementsByTagName('li');
-										for (nested_i = 0, nested_len = listItems.length; nested_i !== nested_len; nested_i += 1) {
-											listItem = listItems[nested_i];
-											hlinkDOM = listItem.getElementsByTagName('a')[0];
-											menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
+										listItems = nextDOM.children;
+										for (i = 0, len = listItems.length; i !== len; i += 1) {
+											listItem = listItems[i];
+											hnestDOM = listItem.getElementsByTagName('li');
+											menu += '<li>';
+											if (hnestDOM.length !== 0) {
+												hnestLinkDOM = listItem.children[0];
+												menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+												for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
+													listItem2 = hnestDOM[nested_i];
+													hlinkDOM = listItem2.querySelector('a');
+													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
+												}
+												menu += '</ul></div>';
+											} else {
+												menu += listItem.innerHTML;
+											}
+											menu += '</li>';
 										}
-										menu += '</ul></div>';
 									} else {
 										menu += nextDOM.innerHTML;
 									}
