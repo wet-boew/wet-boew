@@ -10,17 +10,17 @@
 @import '../../base/sass/modern-vendor-prefix';
 
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base';
+@import '../../base/sass/default';
 @import 'includes/default';
-@import '../../base/sass/base-desktop';
+@import '../../base/sass/default-desktop';
 @import 'includes/default-desktop';
 /* -----Build Include Section End----- */
 
 @media screen {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-screen';
+@import '../../base/sass/default-screen';
 @import 'includes/default-screen';
-@import '../../base/sass/base-desktop-screen';
+@import '../../base/sass/default-desktop-screen';
 @import 'includes/default-desktop-screen';
 @import 'includes/default-responsive';
 /* -----Build Include Section End----- */
@@ -28,7 +28,7 @@
 
 @media print {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-print';
+@import '../../base/sass/default-print';
 @import 'includes/default-print';
 /* -----Build Include Section End----- */
 }

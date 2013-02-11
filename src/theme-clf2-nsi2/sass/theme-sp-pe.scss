@@ -10,25 +10,25 @@
 @import '../../base/sass/modern-vendor-prefix';
 
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base';
+@import '../../base/sass/default';
 @import 'includes/sp-pe';
 @import 'includes/sp-pe-responsive';
-@import '../../base/sass/base-desktop';
+@import '../../base/sass/default-desktop';
 @import 'includes/sp-pe-desktop';
 /* -----Build Include Section End----- */
 
 @media screen {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-desktop-screen';
+@import '../../base/sass/default-desktop-screen';
 @import 'includes/sp-pe-desktop-screen';
-@import '../../base/sass/base-screen';
+@import '../../base/sass/default-screen';
 @import 'includes/sp-pe-screen';
 /* -----Build Include Section End----- */
 }
 
 @media print {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-print';
+@import '../../base/sass/default-print';
 @import 'includes/sp-pe-print';
 /* -----Build Include Section End----- */
 }
