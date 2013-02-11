@@ -10,14 +10,13 @@
 @import '../../base/sass/oldie-vendor-prefix';
 
 /*!!
- * Icons by Yusuke Kamiyamane (http://p.yusukekamiyamane.com/) - Creative Commons Attribution 3.0 License (http://creativecommons.org/licenses/by/3.0/)
+ * Icons by Yusuke Kamiyamane (http: //p.yusukekamiyamane.com/) - Creative Commons Attribution 3.0 License (http: //creativecommons.org/licenses/by/3.0/)
  */
 @media screen {
 /* -----Build Include Section Start----- */
 @import 'includes/util-screen';
 @import 'includes/util-desktop-screen';
-@import 'includes/fix-ie7';
-@import 'includes/fix-ie8';
+@import 'includes/fix-ie';
 /* -----Build Include Section End----- */
 }
 

@@ -4,14 +4,39 @@
  */
 
 /** From branding.css **/
-#gcwu-sig,#gcwu-sig-in,#gcwu-sig img {
-	height:20px !important;
+%intranet-serv-height-20px {
+	height: 20px !important;
 }
-#wb-core-in div #gcwu-bar {
-	background:#28507a;
-}
-#gcwu-title-left,#gcwu-title-right {
-	a {
-		color:#28507a;
+
+#gcwu-sig {
+	@extend %intranet-serv-height-20px;
+	img {
+		@extend %intranet-serv-height-20px;
 	}
+}
+
+#gcwu-sig-in {
+	@extend %intranet-serv-height-20px;
+}
+
+#wb-core-in {
+	div {
+		#gcwu-bar {
+			background: #28507a;
+		}
+	}
+}
+
+%intranet-serv-a-color-28507a {
+	a {
+		color: #28507a;
+	}
+}
+
+#gcwu-title-left {
+	@extend %intranet-serv-a-color-28507a;
+}
+
+#gcwu-title-right {
+	@extend %intranet-serv-a-color-28507a;
 }

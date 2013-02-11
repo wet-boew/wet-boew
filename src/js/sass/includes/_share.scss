@@ -3,19 +3,23 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .ui-mobile {
-	div.wet-boew-share {
-		width:100%;
-		max-width:39em;
+	div {
+		&.wet-boew-share {
+			width: 100%;
+			max-width: 39em;
+		}
 	}
 }
 
-div.wet-boew-share {
-	float:right;
+div {
+	&.wet-boew-share {
+		float: right;
+	}
 }
 
 #wb-main {
 	.wet-boew-share {
-		h2, h3 {
+		#{headings(2,3)} {
 			font-size: 1em;
 			margin: 0;
 			font-weight: normal;
@@ -24,106 +28,121 @@ div.wet-boew-share {
 }
 
 .wet-boew-share {
-	text-align:right;
+	text-align: right;
 	.bookmark_popup_text {
-		background:url(../images/share/icons-share.gif) left 3px no-repeat;
-		color:#3c6783;
-		cursor:pointer;
-		font-family:Tahoma,Verdana,Helvetica,sans-serif;
-		letter-spacing:-.0004em;
+		background: url(../images/share/icons-share.gif) left 3px no-repeat;
+		color: #3c6783;
+		cursor: pointer;
+		font-family: Tahoma, Verdana, Helvetica, sans-serif;
+		letter-spacing: -.0004em;
 		@include inline-block;
-		padding:0 0 2px 18px;
+		padding: 0 0 2px 18px;
 		&.alt {
-			margin:5px;
+			margin: 5px;
 		}
 		img {
-			border:0;
-			vertical-align:bottom;
+			border: 0;
+			vertical-align: bottom;
 		}
 	}
 	.bookmark_popup {
-		display:none;
-		position:absolute;
-		z-index:99;
-		background:#fff;
-		border:1px solid #000;
+		display: none;
+		position: absolute;
+		z-index: 99;
+		background: #fff;
+		border: 1px solid #000;
 		p {
-			font-size:.85em;
-			margin:10px 0;
+			font-size: .85em;
+			margin: 10px 0;
 		}
-		.popup_title,.popup_disclaimer {
-			margin:0;
-			padding:5px;
-			text-align:left;
+		.popup_title, .popup_disclaimer {
+			margin: 0;
+			padding: 5px;
+			text-align: left;
 		}
 		.popup_title {
-			font-size:.95em;
-			font-weight:700;
-			background:#23447E;
-			color:#FFF;
+			font-size: .95em;
+			font-weight: 700;
+			background: #23447E;
+			color: #FFF;
 		}
 		.popup_disclaimer {
-			font-size:.85em;
-			background:#efefef;
-			color:#555;
+			font-size: .85em;
+			background: #efefef;
+			color: #555;
 		}
 		.bookmark_compact {
-			border:0;
-			margin-bottom:-3px;
+			border: 0;
+			margin-bottom: -3px;
 		}
 	}
 	.bookmark_list {
 		@include inline-block;
-		list-style-type:none;
-		margin:0;
-		padding:5px 5px 0;
-		text-align:left;
+		list-style-type: none;
+		margin: 0;
+		padding: 5px 5px 0;
+		text-align: left;
 		li {
-			float:left;
-			width:12em;
-			font-size:.85em;
-			margin:0;
-			padding:0 0 5px;
+			float: left;
+			width: 12em;
+			font-size: .85em;
+			margin: 0;
+			padding: 0 0 5px;
 		}
 		a {
-			width:100%;
-			text-decoration:none;
-			cursor:pointer;
-			font-size:1em;
-			color:#036;
-			margin:0;
-			padding:0;
-			&[href^="mailto:"] {
+			width: 100%;
+			text-decoration: none;
+			cursor: pointer;
+			font-size: 1em;
+			color: #036;
+			margin: 0;
+			padding: 0;
+			&[href^="mailto: "] {
 				background: 0 !important;
 				padding-left: 0 !important;
+			}
+			img {
+				width: auto;
+				margin-bottom: 0;
+				vertical-align: text-top;
 			}
 		}
 		span {
 			@include inline-block;
-			width:16px;
-			height:16px;
+			width: 16px;
+			height: 16px;
 			&.bookmark_icons {
-				background:url(../images/share/bookmarks.png) no-repeat center;
+				background: url(../images/share/bookmarks.png) no-repeat center;
 			}
 		}
 	}
-	.no-icons .bookmark_list span.bookmark_icons {
-		display: none;
+	.no-icons {
+		.bookmark_list {
+			span {
+				&.bookmark_icons {
+					display: none;
+				}
+			}
+		}
 	}
 	.bookmark_compact {
-		background-color:#efefef;
-		border:1px outset;
+		background-color: #efefef;
+		border: 1px outset;
 		li {
-			width:16px;
-			height:16px;
-			background-color:transparent;
-			border:0;
-			margin:0;
-			padding:2px;
+			width: 16px;
+			height: 16px;
+			background-color: transparent;
+			border: 0;
+			margin: 0;
+			padding: 2px;
 		}
 	}
 }
 
-html:first-child .bookmark_list {
-    font-size:80%;
+html {
+	&:first-child {
+		.bookmark_list {
+			font-size: 80%;
+		}
+	}
 }

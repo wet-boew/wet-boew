@@ -16,6 +16,7 @@
 	_pe.fn.menubar = {
 		type : 'plugin',
 		depends : (_pe.mobile ? [] : ['resize', 'equalheights', 'hoverintent', 'outside']),
+		ignoreMenuBarClicks : false,
 		_exec : function (elm) {
 			/*
 			@notes: the mega menu will use custom events to better manage its events.
@@ -49,9 +50,16 @@
 					_sm = _node.find('.mb-sm');
 				_sm.attr({'aria-expanded':'true', 'aria-hidden':'false'}).toggleClass('mb-sm mb-sm-open');
 
-				if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
-					_sm.css('right', '0px');
+				if (pe.rtl) {
+					if ((Math.floor(_sm.offset().left) - Math.floor($menuBoundary.offset().left)) <= 0) {
+						_sm.css('left', '0');
+					}
+				} else {
+					if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
+						_sm.css('right', '0');
+					}
 				}
+
 				_node.addClass('mb-active');
 				return;
 			};
@@ -168,13 +176,22 @@
 				} else {
 					event.cancelBubble = true;
 				}
-			}).parent().on('click vclick touchstart', '> :header a', function () {
-				if ($(this).closest('li').hasClass('mb-active')) {
-					hidesubmenu(this);
+			}).parent().on('click vclick touchstart mouseenter mouseleave', '> :header a', function (e) {
+				var type = e.type;
+				if (type === 'mouseenter') {
+					_pe.fn.menubar.ignoreMenuBarClicks = true;
+				} else if (type === 'mouseleave') {
+					_pe.fn.menubar.ignoreMenuBarClicks = false;
 				} else {
-					showsubmenu(this);
+					if ($(this).closest('li').hasClass('mb-active')) {
+						if (type !== 'click' || !_pe.fn.menubar.ignoreMenuBarClicks) { // Ignore clicks on the menu bar if menu opened by hover
+							hidesubmenu(this);
+						}
+					} else {
+						showsubmenu(this);
+					}
+					return false;
 				}
-				return false;
 			});
 
 			/* bind all custom events and triggers to menu */

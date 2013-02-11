@@ -3,22 +3,71 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .no-js {
-	#base-psnb{
-		margin-top: -11px;
+	%wet-default-mobile-ns-display-block {
+		display: block;
 	}
-	#base-psnb, #base-srchbx {
-		width:100% !important;
-		float:none;
+
+	%wet-default-mobile-ns-width-100-zindex-100 {
+		width: 100%;
+		z-index: 100;
 	}
-	#base-psnb #base-psnb-in,#base-srchbx form{
-		display:block;
-		width:100%;
-		z-index:100;
+
+	%wet-default-mobile-ns-width-100-important-float-none {
+		width: 100% !important;
+		float: none;
 	}
-	#base-srchbx form{
-		border-bottom:1px solid #999;
-		text-align:center;
-		background:#1A3D6C;
-		padding:10px 0;
+
+	%wet-default-mobile-ns-margin-top-10 {
+		margin-top: 10px;
+	}
+
+	#wet-psnb {
+		@extend %wet-default-mobile-ns-display-block;
+		@extend %wet-default-mobile-ns-width-100-important-float-none;
+		#wet-psnb-in {
+			@extend %wet-default-mobile-ns-display-block;
+			@extend %wet-default-mobile-ns-width-100-zindex-100;
+		}
+	}
+
+	#wet-fullhd {
+		ul {
+			@extend %wet-default-mobile-ns-display-block;
+		}
+	}
+
+	#wet-bc {
+		@extend %wet-default-mobile-ns-display-block;
+	}
+
+	#wb-sec {
+		@extend %wet-default-mobile-ns-display-block;
+	}
+
+	#wb-foot {
+		@extend %wet-default-mobile-ns-display-block;
+	}
+
+	#wet-sft {
+		h4 {
+			@extend %wet-default-mobile-ns-margin-top-10;
+		}
+		.wet-col-head {
+			@extend %wet-default-mobile-ns-margin-top-10;
+		}
+	}
+
+	#wet-srchbx {
+		@extend %wet-default-mobile-ns-display-block;
+		@extend %wet-default-mobile-ns-width-100-important-float-none;
+		form {
+			@extend %wet-default-mobile-ns-display-block;
+			@extend %wet-default-mobile-ns-width-100-zindex-100;
+			border-bottom: 1px solid #999;
+			text-align: center;
+			background: #1A3D6C;
+			padding: 10px 0;
+			margin-bottom: 0;
+		}
 	}
 }

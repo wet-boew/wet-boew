@@ -15,6 +15,7 @@
  * pe, a progressive javascript library agnostic framework
  */
 /*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false*/
+/*jshint bitwise: false */
 (function ($) {
 	"use strict";
 	var pe, _pe;
@@ -36,7 +37,7 @@
 		rtl: false,
 		touchscreen: 'ontouchstart' in document.documentElement,
 		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
-		suffix: $('body script[src*="/pe-ap-min.js"]').length > 0 ? '-min' : '', // determine if pe is minified
+		suffix: $('body script[src*="/pe-ap-"]').attr('src').indexOf('-min') !== -1 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
 		bodydiv: $('body > div'),
 		main: $('#wb-main'),
@@ -51,6 +52,58 @@
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 
 		/**
+		* @namespace pe.dic
+		*/
+		dic: {
+			get: function (key, state, mixin) {
+				var truthiness = (typeof key === 'string' && key !== '') | // eg. 000 or 001 ie. 0 or 1
+					(typeof state === 'string' && state !== '') << 1 | // eg. 000 or 010 ie. 0 or 2
+					(typeof mixin === 'string' && mixin !== '') << 2; // eg. 000 or 100 ie. 0 or 4
+				switch (truthiness) {
+					case 1:
+						return this.ind[key]; // only key was provided.
+					case 3:
+						return this.ind[key][state]; // key and state were provided.
+					case 7:
+						return this.ind[key][state].replace('[MIXIN]', mixin); // key, state, and mixin were provided.
+					default:
+						return '';
+				}
+			},
+			/*
+			@dictionary function : pe.dic.ago()
+			@returns: a human readable time difference text
+			*/
+			ago: function (time_value) {
+				var delta,
+					parsed_date,
+					r,
+					relative_to;
+				parsed_date = pe.date.convert(time_value);
+				relative_to = (arguments.length > 1 ? arguments[1] : new Date());
+				delta = parseInt((relative_to.getTime() - parsed_date) / 1000, 10);
+				delta = delta + (relative_to.getTimezoneOffset() * 60);
+				r = '';
+				if (delta < 60) {
+					r = this.get('%minute-ago');
+				} else if (delta < 120) {
+					r = this.get('%couple-of-minutes');
+				} else if (delta < (45 * 60)) {
+					r = this.get('%minutes-ago', 'mixin', (parseInt(delta / 60, 10)).toString());
+				} else if (delta < (90 * 60)) {
+					r = this.get('%hour-ago');
+				} else if (delta < (24 * 60 * 60)) {
+					r = this.get('%hours-ago', 'mixin', (parseInt(delta / 3600, 10)).toString());
+				} else if (delta < (48 * 60 * 60)) {
+					r = this.get('%yesterday');
+				} else {
+					r = this.get('%days-ago', 'mixin', (parseInt(delta / 86400, 10)).toString());
+				}
+				return r;
+			}
+		},
+
+		/**
 		* @memberof pe
 		* @type {number} - IE major number if browser is IE, 0 otherwise
 		*/
@@ -62,14 +115,14 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = $('html'), hlinks, hlinks_same, $this, target, test, init_on_mobileinit = false;
+			var $html = $('html'), hlinks, hlinks_same, $this, target, classes, test, init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.language = test;
 			}
-			test = $('head').attr('dir');
+			test = $html.attr('dir');
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
@@ -87,8 +140,16 @@
 			pe.urlhash = pe.urlpage.hash;
 			pe.urlquery = pe.urlpage.params;
 
-			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
+			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
+			pe.mobile = pe.mobilecheck();
+			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? ' mobile-view' : ' desktop-view')) : '';
+			classes += (pe.touchscreen ? ' touchscreen' : '');
+			$html.removeClass('no-js').addClass(classes);
+
+			// Identify IE9+ browser
+			if (pe.ie > 8) {
+				$html.addClass('ie' + parseInt(pe.ie, 10));
+			}
 
 			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
 				return this.href.indexOf('#') !== -1;
@@ -98,10 +159,7 @@
 			});
 
 			// Is this a mobile device?
-			if (pe.mobilecheck()) {
-				pe.mobile = true;
-				pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
-
+			if (pe.mobile) {
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
 				if (test === 0) {
@@ -109,60 +167,55 @@
 				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
 					$html.addClass('bb-pre7');
 				}
+			}
+			
+			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 
-				pe.document.on('mobileinit', function () {
-					$.extend($.mobile, {
-						ajaxEnabled: false,
-						pushStateEnabled: false,
-						autoInitializePage: (init_on_mobileinit ? true : false)
-					});
-					if (init_on_mobileinit) {
-						pe.mobilelang();
-					}
+			pe.document.on('mobileinit', function () {
+				$.extend($.mobile, {
+					ajaxEnabled: false,
+					pushStateEnabled: false,
+					autoInitializePage: (init_on_mobileinit ? true : false)
 				});
+				if (init_on_mobileinit) {
+					pe.mobilelang();
+				}
+			});
 
-				pe.document.on('pageinit', function () {
-					// On click, puts focus on and scrolls to the target of same page links
-					hlinks_same.off('click vclick').on('click vclick', function () {
-						$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
-						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if ($this.length > 0) {
-							$.mobile.silentScroll(pe.focus($this).offset().top);
-						}
-					});
-
-					// If the page URL includes a hash upon page load, then focus on and scroll to the target
-					if (pe.urlhash.length !== 0) {
-						target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if (target.length > 0 && target.attr('data-role') !== 'page') {
-							setTimeout(function () {
-								$.mobile.silentScroll(pe.focus(target).offset().top);
-							}, 200);
-						}
-					}
-				});
-				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
-				pe.add._load([pe.add.liblocation + 'jquerymobile/jquery.mobile.min.js']);
-			} else {
-				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
-				hlinks_same.on('click vclick', function () {
-					$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
+			pe.document.on('pageinit', function () {
+				// On click, puts focus on and scrolls to the target of same page links
+				hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
+					var hash = $(this).attr('href'),
+						role;
+					$this = $('#' + pe.string.jqescape(hash.substring(1)));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
+						role = $this.jqmData('role');
+						if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
+							window.location.hash = hash;
+						}
 					}
 				});
-
-				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
-				if (pe.urlhash.length > 0) {
-					$this = $('#' + pe.string.jqescape(pe.urlhash));
-					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if ($this.length > 0) {
-						pe.focus($this);
+				// If the page URL includes a hash upon page load, then focus on and scroll to the target
+				if (pe.urlhash.length !== 0) {
+					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					if (target.length > 0 && target.attr('data-role') !== 'page') {
+						setTimeout(function () {
+							$.mobile.silentScroll(pe.focus(target).offset().top);
+						}, 200);
 					}
 				}
-			}
+
+				if (pe.ie > 0) {
+					if (pe.ie < 9) {
+						pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
+					} else {
+						pe.wb_load({'plugins': {'equalize': pe.main}}, 'equalize-loaded');
+					}
+				}
+			});
 
 			// Load ajax content
 			$.when.apply($, $.map($('*[data-ajax-replace], *[data-ajax-append]'), function (o) {
@@ -192,19 +245,22 @@
 						// Initialize the theme
 						wet_boew_theme.init();
 
-						//Load the mobile view
+						pe.document.one('themeviewloaded', function () {
+							if (typeof $.mobile !== 'undefined') {
+								pe.mobilelang();
+								$.mobile.initializePage();
+							} else {
+								init_on_mobileinit = true;
+							}
+						});
+
+						// Load the mobile or desktop view
 						if (pe.mobile) {
-							pe.document.one('mobileviewloaded', function () {
-								if (typeof $.mobile !== 'undefined') {
-									pe.mobilelang();
-									$.mobile.initializePage();
-								} else {
-									init_on_mobileinit = true;
-								}
-							});
 							wet_boew_theme.mobileview();
+						} else {
+							wet_boew_theme.desktopview();
 						}
-					} else if (pe.mobile) {
+					} else {
 						if (typeof $.mobile !== 'undefined') {
 							pe.mobilelang();
 							$.mobile.initializePage();
@@ -243,7 +299,7 @@
 		* @return {jQuery object}
 		*/
 		pagecontainer: function () {
-			return $('#wb-body-sec-sup,#wb-body-sec,#wb-body').add('body').eq(0);
+			return $('#wb-body-sec-sup, #wb-body-sec, #wb-body-secr, #wb-body').add('body').eq(0);
 		},
 		/**
 		* Initializes the Resize dependency, and attaches a given function to various resize events.
@@ -743,7 +799,7 @@
 				}
 			}
 
-			if ((((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== 'false') || disable === 'true') {
+			if (disable === 'true' || (((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== 'false')) {
 				$html.addClass('no-js pe-disable');
 				if (lsenabled) {
 					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
@@ -889,11 +945,8 @@
 					nested,
 					nested_i,
 					nested_len,
-					hnest,
 					hnestDOM,
 					hnestTag,
-					hnestLevel,
-					hnestLink,
 					hnestLinkDOM,
 					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
@@ -903,6 +956,8 @@
 					theme2 = (theme_2 !== undefined ? theme_2 : theme_1),
 					theme1 = (toplevel ? theme_1 : theme_2),
 					listView = '<ul data-role="listview" data-theme="' + theme2 + '">',
+					listItems,
+					listItem,
 					sectionOpen = '<div data-theme="' + theme1 + '"' + ' class="wb-nested-menu',
 					sectionLink = '<a data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
 					sectionLinkOpen = '">' + headingOpen + sectionLink,
@@ -942,7 +997,7 @@
 								}
 								menu += (navCurrent ? ' nav-current' : '');
 								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
-								if (toplevel || !collapseTopOnly || collapsible) {
+								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
 								} else {
 									menu += sectionLinkOpen + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
@@ -950,24 +1005,24 @@
 								next = mItem.next();
 								nextDOM = next[0];
 								if (nextDOM.tagName.toLowerCase() === 'ul') {
-									// Find nested lists
-									nested = next.find('li ul').get();
-									for (nested_i = 0, nested_len = nested.length; nested_i < nested_len; nested_i += 1) {
-										hnestDOM = nested[nested_i];
-										hnestDOM.setAttribute('data-role', 'listview');
-										hnestDOM.setAttribute('data-theme', theme2);
-										hnestLevel = hlevel + 1 + nested_i;
-										if (hnestLevel < 7) {
-											hnestTag = 'h' + hnestLevel;
-											hnest = $(hnestDOM);
-											hnestLink = hnest.prev('a');
-											hnestLinkDOM = hnestLink[0];
-											hnest.wrap(sectionOpen + '"></div>');
-											hnest.parent().prepend('<' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>');
-											hnestLinkDOM.parentNode.removeChild(hnestLinkDOM);
+									menu += listView;
+									nested = next.find('li ul');
+									if (nested.length !== 0) { // Special handling for a nested list
+										hnestTag = 'h' + (hlevel + 1);
+										hnestDOM = nested[0];
+										hnestLinkDOM = nested.prev('a')[0];
+										menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+										listItems = hnestDOM.getElementsByTagName('li');
+										for (nested_i = 0, nested_len = listItems.length; nested_i !== nested_len; nested_i += 1) {
+											listItem = listItems[nested_i];
+											hlinkDOM = listItem.getElementsByTagName('a')[0];
+											menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
 										}
+										menu += '</ul></div>';
+									} else {
+										menu += nextDOM.innerHTML;
 									}
-									menu += listView + nextDOM.innerHTML + '</ul>';
+									menu += '</ul>';
 								} else { // If the section contains sub-sections
 									if (menubar) {
 										menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
@@ -976,7 +1031,7 @@
 									}
 								}
 								// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
-								if (!menubar && hlink.length > 0 && (toplevel || !collapseTopOnly || collapsible)) {
+								if (!menubar && hlink.length > 0 && (toplevel || collapsible || !collapseTopOnly)) {
 									menu += link + hlinkDOM.href + '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
 								}
 								menu += '</div>';
@@ -993,8 +1048,8 @@
 							}
 						}
 						// Is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
-						if (toplevel || !collapseTopOnly || collapsible) {
-							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '">' + menu + '</div>';
+						if (toplevel || collapsible || !collapseTopOnly) {
+							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"' + (toplevel ? ' class="ui-corner-all"' : '') + '>' + menu + '</div>';
 						}
 					}
 				}
@@ -1002,35 +1057,6 @@
 					menu = '<div data-role="controlgroup" data-theme="' + theme1 + '">' + menu + '</div>';
 				}
 				return returnString ? menu : $(menu);
-			},
-			/**
-			* Correct the corners for each sections and sub-section in the menu build by pe.menu.buildmobile
-			* @memberof pe.menu
-			* @param {jQuery object | DOM object} menusrc Mobile menu to correct
-			* @function
-			* @return {void}
-			*/
-			correctmobile: function (menusrc) {
-				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
-					menus = original.find('.ui-controlgroup-controls').children().get(),
-					menu,
-					menu_len = menus.length,
-					children,
-					child,
-					children_len;
-				while (menu_len--) {
-					menu = menus[menu_len];
-					menu.getElementsByTagName('a')[0].className += ' ui-corner-top';
-					children = menu.childNodes;
-					children_len = children.length;
-					while (children_len--) {
-						child = children[children_len];
-						if (child.nodeType === 1) {
-							child.getElementsByTagName('a')[0].className += ' ui-corner-bottom';
-							break;
-						}
-					}
-				}
 			}
 		},
 		/**
@@ -1410,7 +1436,7 @@
 							scriptdone = false;
 						pe.add.set(scriptElem, 'async', 'async');
 						scriptElem.onload = scriptElem.onreadystatechange = function () {
-							if ((scriptElem.readyState && scriptElem.readyState !== 'complete' && scriptElem.readyState !== 'loaded') || scriptdone) {
+							if (scriptdone || (scriptElem.readyState && scriptElem.readyState !== 'complete' && scriptElem.readyState !== 'loaded')) {
 								return false;
 							}
 							scriptElem.onload = scriptElem.onreadystatechange = null;
@@ -1495,12 +1521,15 @@
 				* @memberof pe.add
 				* @function
 				* @param {string | string[]} d The path and filename of the dependency OR just the name (minus the path and extension).
+				* @param {boolean} css Optional. Is the dependency a CSS file? (default: false)
 				* @return {string[]} NOTE: If d is a string, this returns a string array with 8 copies of the transformed string. If d is a string array, this returns a string array with just one entry; the transformed string.
 				*/
-				depends: function (d) {
-					var lib = pe.add.liblocation,
+				depends: function (d, css) {
+					var iscss = typeof css !== 'undefined' ? css : false, 
+						extension = pe.suffix + (iscss ? '.css' : '.js'),
+						dir = pe.add.liblocation + 'dependencies/' + (iscss ? 'css/' : ''),
 						c_d = $.map(d, function (a) {
-							return (/^http(s)?/i.test(a)) ? a : lib + 'dependencies/' + a + pe.suffix + '.js';
+							return (/^http(s)?/i.test(a)) ? a : dir + a + extension;
 						});
 					return c_d;
 				},
@@ -1562,6 +1591,7 @@
 				pcalls = typeof options.global !== 'undefined' ? options.global : [],
 				pcall,
 				dep = typeof options.dep !== 'undefined' ? options.dep : [],
+				depcss = typeof options.depcss !== 'undefined' ? options.depcss : [],
 				poly = typeof options.poly !== 'undefined' ? options.poly : [],
 				checkdom = typeof options.checkdom !== 'undefined' ? options.checkdom : false,
 				polycheckdom = typeof options.polycheckdom !== 'undefined' ? options.polycheckdom : false,
@@ -1609,6 +1639,9 @@
 					}
 					if (typeof pe.fn[pcall].depends !== 'undefined') {
 						dep.push.apply(dep, pe.fn[pcall].depends);
+						if (typeof pe.fn[pcall].dependscss !== 'undefined') {
+							dep.push.apply(depcss, pe.fn[pcall].dependscss);
+						}
 					}
 				}
 			}
@@ -1672,7 +1705,16 @@
 				});
 
 				// Load each of the dependencies (eliminating duplicates)
-				pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				if (dep.length !== 0) {
+					if (depcss.length > 0) {
+						depcss = pe.add.depends(pe.array.noduplicates(depcss), true);
+						_len = depcss.length;
+						while (_len--) {
+							pe.add.css(depcss[_len]);
+						}
+					}
+					pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				}
 			});
 
 			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)

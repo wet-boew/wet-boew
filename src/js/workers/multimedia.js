@@ -115,15 +115,24 @@
 
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
-				if (!elm.hasClass('wb-mm-no-ui')) {
-					if (media_type === 'video') {
-						media.before($('<button class="wb-mm-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
-					}
-					media.after(_pe.fn.multimedia._get_ui(media_id, media_type === 'video' ? true : false));
-					if ($('html').hasClass('polyfill-progress')) {
-						elm.find('progress').progress();
-					}
+				if (media_type === 'video') {
+					media.before($('<button class="wb-mm-overlay" type="button"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
+				}
+				media.after(_pe.fn.multimedia._get_ui(media_id, media_type === 'video' ? true : false));
+				if ($('html').hasClass('polyfill-progress')) {
+					elm.find('progress').progress();
+				}
 
+				//Scale the UI when the video scales
+				$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
+					var h = e.data.media.parent().width() * e.data.ratio;
+					e.data.media.height(h);
+					media.parent().find('.wb-mm-overlay').height(h);
+				});
+				$(window).trigger('resize');
+
+				//Map UI mouse events
+				elm.on('click', function () {
 					//Scale the UI when the video scales
 					$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
 						var h = e.data.media.parent().width() * e.data.ratio;
@@ -200,7 +209,7 @@
 
 						return true;
 					});
-				}
+				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
 				evtmgr.on('timeupdate seeked canplay play volumechange pause ended waiting captionsloaded captionsloadfailed captionsvisiblechange progress', $.proxy(function (e) {
@@ -267,7 +276,7 @@
 						$.data(e.target, 'captions', e.captions);
 						break;
 					case 'captionsloadfailed':
-						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%captionserror') + '</p>');
+						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%closed-caption-error') + '</p>');
 						break;
 					// Determine when the loading icon should be shown. 
 					case 'waiting':
@@ -296,7 +305,7 @@
 							if (this.getBuffering() === false) {
 								this.setBuffering(true);
 								evtmgr.trigger('waiting');								
-							}								
+							}				
 						// Waiting has ended, but icon is still visible - remove it.
 						} else if (this.getBuffering() === true) {							
 							this.setBuffering(false);

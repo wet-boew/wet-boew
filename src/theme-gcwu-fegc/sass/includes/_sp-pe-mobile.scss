@@ -2,20 +2,31 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#wb-foot {
-	background: #FFF;
-}
 
-#wb-foot #gcwu-wmms img {
-	display: block;
-	margin: 5px auto;
+h1 {
+	@extend %gcwu-sp-pe-mobile-padding-sides-5px;
+}
+ 
+#wb-foot {
+	@extend %gcwu-sp-pe-mobile-lang-foot;
+	background: #FFF;		
+	.ui-footer {
+		border: 0;
+		background: none;
+	}
+	#gcwu-wmms {
+		img {
+			display: block;
+			margin: 5px auto;
+		}
+	}
 }
 
 #gcwu-sig {
-	float:left;
-	margin:10px 0 10px 5px;
+	float: left;
+	margin: 10px 0 10px 5px;
 	img {
-		margin-bottom:0;
+		margin-bottom: 0;
 	}
 }
 
@@ -23,17 +34,41 @@
 	width: 100%;
 }
 
-h1, #gcwu-title {
-    padding-left: 5px;
-    padding-right: 5px;
+%gcwu-sp-pe-mobile-padding-sides-5px {
+    padding: {
+		left: 5px;
+		right: 5px;
+	}
 }
 
-#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
+#gcwu-title {
+	@extend %gcwu-sp-pe-mobile-padding-sides-5px;
+}
+
+%gcwu-sp-pe-mobile-titles-all {
 	width: 50%;
 	float: left;
 }
 
-#gcwu-title-left, .gcwu-alt-title-left {
+#gcwu-title-left {
+	@extend %gcwu-sp-pe-mobile-titles-all;
+	@extend %gcwu-sp-pe-mobile-left-titles;
+}
+
+#gcwu-title-right {
+	@extend %gcwu-sp-pe-mobile-titles-all;
+}
+
+.gcwu-alt-title-left {
+	@extend %gcwu-sp-pe-mobile-titles-all;
+	@extend %gcwu-sp-pe-mobile-left-titles;
+}
+
+.gcwu-alt-title-right {
+	@extend %gcwu-sp-pe-mobile-titles-all;
+}
+
+%gcwu-sp-pe-mobile-left-titles {
 	clear: left;
 }
 
@@ -43,6 +78,7 @@ h1, #gcwu-title {
 }
 
 #gcwu-lang {
+	@extend %gcwu-sp-pe-mobile-lang-foot;
 	a[href]{
 		&:hover, &:focus, &:active {
 			color: #FFF;
@@ -50,43 +86,72 @@ h1, #gcwu-title {
 	}
 }
 
-#gcwu-lang, #wb-foot {
-	display: none;
-	ul, a {
-		margin: 0;
-	}
+%gcwu-sp-pe-mobile-margin-right-0 {
+	margin-right: 0;
+}
+
+#gcwu-lang {
 	li {
-		a.ui-btn {
-			border-top-width: 0;
-		}
-		&:nth-child(1), &:nth-child(2) {
-			a.ui-btn {
-				border-top-width: 1px;
-			}
-		}
-		&:not(:last-child).ui-block-a {
-			a.ui-btn {
-				border-right-width: 0;
-			}
-		}
+		@extend %gcwu-sp-pe-mobile-margin-right-0;
 	}
 }
 
-#wb-foot {
-	.ui-footer {
-		border: 0;
-		background: none;
+#gcwu-tc {
+	li {
+		@extend %gcwu-sp-pe-mobile-margin-right-0;
+	}
+}
+
+%gcwu-sp-pe-mobile-lang-foot {
+	display: none;
+	%gcwu-sp-pe-mobile-margin-0 {
+		margin: 0;
+	}
+	a {
+		@extend %gcwu-sp-pe-mobile-margin-0;
+	}
+	li {
+		a {
+			&.ui-btn {
+				border-top-width: 0;
+			}
+			&:nth-child(1), &:nth-child(2) {
+				a {
+					&.ui-btn {
+						border-top-width: 1px;
+					}
+				}
+			}
+			&:not(:last-child) {
+				&.ui-block-a {
+					a {
+						&.ui-btn {
+							border-right-width: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+	ul {
+		@extend %gcwu-sp-pe-mobile-margin-0;
 	}
 }
 
 .ui-mobile {
-	#gcwu-lang, #wb-foot {
+	%gcwu-sp-pe-mobile-ui-mobile-display-block {
 		display: block;
+	}
+	#gcwu-lang {
+		@extend %gcwu-sp-pe-mobile-ui-mobile-display-block;
+	}
+	#wb-foot {
+		@extend %gcwu-sp-pe-mobile-ui-mobile-display-block;
 	}
 }
 
 .no-js  {
-	#gcwu-lang, #wb-foot {
+	%gcwu-sp-pe-mobile-no-js-block-li {
 		display: block;
 		padding: 0 5px;
 		li {
@@ -94,9 +159,15 @@ h1, #gcwu-title {
 			width: 108px;
 		}
 	}
+	#wb-foot {
+		@extend %gcwu-sp-pe-mobile-no-js-block-li;
+	}
 	#gcwu-lang {
-		a:hover, a:focus, a:active {
-			color: #000;
+		@extend %gcwu-sp-pe-mobile-no-js-block-li;
+		a {
+			&:hover, &:focus, &:active {
+				color: #000;
+			}
 		}
 		.span-6 {
 			width: 256px;

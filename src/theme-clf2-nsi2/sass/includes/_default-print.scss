@@ -2,22 +2,74 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#wb-sec,#wb-sup,#cn-leaf, .cn-toppage, #cn-banner p, #cn-banner-eng p, #cn-banner-fra p, #cn-psnb, #cn-psnb-2, #cn-toppage-foot, #cn-in-pd-links {
+%clf2-default-print-display-none {
 	display: none;
 }
+
+#wb-sec {
+	@extend %clf2-default-print-display-none;
+}
+
+#wb-sup {
+	@extend %clf2-default-print-display-none;
+}
+
+#cn-leaf {
+	@extend %clf2-default-print-display-none;
+}
+
+.cn-toppage {
+	@extend %clf2-default-print-display-none;
+}
+
+#cn-banner {
+	@extend %clf2-default-print-all-banners;
+}
+
+#cn-banner-eng {
+	@extend %clf2-default-print-all-banners;
+}
+
+#cn-banner-fra {
+	@extend %clf2-default-print-all-banners;
+}
+
+#cn-psnb {
+	@extend %clf2-default-print-display-none;
+}
+
+#cn-psnb-2 {
+	@extend %clf2-default-print-display-none;
+}
+
+#cn-toppage-foot {
+	@extend %clf2-default-print-display-none;
+}
+
+#cn-in-pd-links {
+	@extend %clf2-default-print-display-none;
+}
+
 #wb-head {
 	width: 100%;
 }
+
 #cn-sig {
 	position: absolute;
-	top: 0;left: 0;
+	top: 0;
+	left: 0;
 }
+
 #cn-wmms {
 	position: absolute;
 	top: 0;
 	right: 0;
 }
-#cn-banner, #cn-banner-eng, #cn-banner-fr {
+
+%clf2-default-print-all-banners {
+	p {
+		@extend %clf2-default-print-display-none;
+	}
 	#cn-banner-text {
 		display: block;
 		font-size: 14pt;
@@ -28,16 +80,27 @@
 		text-align: center;
 	}
 }
-#cn-bc, #cn-bc2 {
+
+%clf2-default-print-all-cn-bc-ol {
 	ol {
 		border-top: 1px solid #000;
 		padding-top: 5px;
 		margin-bottom: 5px;
 	}
 }
+
+#cn-bc {
+	@extend %clf2-default-print-all-cn-bc-ol;
+}
+
+#cn-bc2 {
+	@extend %clf2-default-print-all-cn-bc-ol;
+}
+
 #wb-foot {
 	border-top: 1px solid #000;
 }
+
 #cn-doc-dates {
 	width: 100%;
 }

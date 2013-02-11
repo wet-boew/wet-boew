@@ -6,7 +6,7 @@
 <!--<![endif]-->
 <head>
 <meta charset="utf-8" />
-<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+<!-- Web Experience Toolkit (WET) / Boï¿½te ï¿½ outils de l'expï¿½rience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
 <title>Simple Grouping Table - Zebra striping - Working examples - Web Experience Toolkit (WET)</title>
 
@@ -20,19 +20,23 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/jquery.mobile-ie-min.css" />
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/jquery.mobile-min.css" />
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
@@ -54,7 +58,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="zebra-fra.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="zebra-fra.html" lang="fr">Franï¿½ais</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -65,7 +69,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
 </div></form>
 </div></section>
 </div></div>
@@ -99,10 +103,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!-- MainContentStart -->
 <h1 id="wb-cont">Simple Grouping Table - Zebra striping - Web Experience Toolkit (WET)</h1>
 
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Zebra-striping" class="button button-info">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
 
 <h2>Example without any headers</h2>
 
-<p>The following Sudoku table example was taken from the <a href="http://www.w3.org/TR/html5/the-table-element.html" rel="external">HTLM5 Specification - 4.9.1 The table element - revision 1.5697</a>.</p>
+<p>The following Sudoku table example was taken from the <a href="http://www.w3.org/TR/html5/tabular-data.html#the-table-element" rel="external">HTLM5 Specification - 4.9.1 The table element - revision 1.5697</a>.</p>
 
 <p>The class <code>columnhighlight</code> is used in combinaison of the class <code>wet-boew-zebra</code></p>
 
@@ -722,9 +730,18 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/settings-ie.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
 <script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
 </body>
 </html>

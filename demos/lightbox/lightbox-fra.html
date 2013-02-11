@@ -20,19 +20,23 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.language" title="ISO639-2" content="fra" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/jquery.mobile-ie-min.css" />
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/jquery.mobile-min.css" />
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
 <style>
@@ -75,7 +79,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" />
 </div></form>
 </div></section>
 </div></div>
@@ -107,6 +111,11 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
 <h1 id="wb-cont">Lightbox</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Lightbox" class="button button-info">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
 
 <section>
 	<div class="span-4 module-table-contents">
@@ -289,7 +298,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<h4 class="background-dark margin-bottom-medium">Exemple</h4>
 			<section>
 				<div class="wet-boew-lightbox">
-					<ul class="lb-hidden-gallery-inline">
+					<ul class="lb-hidden-gallery">
 						<li>
 							<a class="lb-item-gal" href="images/1_b.jpg" title="Image 1">
 								<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
@@ -465,9 +474,18 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/settings-ie.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
 <script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
 </body>
 </html>

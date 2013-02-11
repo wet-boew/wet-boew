@@ -14,19 +14,23 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="description" content="English description / Description en anglais" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/theme-base/css/jquery.mobile-ie-min.css" />
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-base/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-base/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/theme-base/css/jquery.mobile-min.css" />
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-base/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-base/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
@@ -43,9 +47,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <section><div id="base-fullhd"><h2>Full-width header area</h2>
-<p>id="base-fullhd"</p>
+<p class="mobile-hide">id="base-fullhd"</p>
 <div id="base-fullhd-in">
-<p class="float-left">id="base-fullhd-in"</p>
+<p class="float-left mobile-hide">id="base-fullhd-in"</p>
 <ul>
 <li id="base-fullhd-lang"><a href="cont-secnav2-fra.html" lang="fr">Français</a></li>
 </ul>
@@ -59,7 +63,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <section role="search"><div id="base-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="base-srchbx-in">
 <label for="base-srch">Search website</label><input id="base-srch" name="base-srch" type="search" value="" size="27" maxlength="150" />
-<input id="base-srch-submit" name="base-srch-submit" type="submit" value="Search" data-icon="search" />
+<input id="base-srch-submit" name="base-srch-submit" type="submit" value="Search" />
 </div></form>
 </div></section>
 </div></div>
@@ -254,17 +258,26 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></nav>
 
 <section><div id="base-fullft"><h3>Full-width footer area</h3>
-<p>id="base-fullft"</p>
-<div id="base-fullft-in"><p>id="base-fullft-in"</p></div>
+<p class="mobile-hide">id="base-fullft"</p>
+<div id="base-fullft-in"><p class="mobile-hide">id="base-fullft-in"</p></div>
 </div></section>
 <!-- FooterEnd -->
 </footer>
 </div></div></div>
 
 <!-- ScriptsStart -->
+<!--[if lte IE 8]>
+<script src="../../dist/theme-base/js/theme-ie-min.js"></script>
+<script src="../../dist/js/settings-ie.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
 <script src="../../dist/theme-base/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
 </body>
 </html>

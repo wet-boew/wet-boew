@@ -3,22 +3,58 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .no-js {
-	#base-psnb{
-		margin-top: -11px;
+	%base-default-mobile-ns-display-block {
+		display: block;
 	}
-	#base-psnb, #base-srchbx {
-		width:100% !important;
-		float:none;
+
+	#base-fullhd {
+		ul {
+			@extend %base-default-mobile-ns-display-block;
+		}
 	}
-	#base-psnb #base-psnb-in,#base-srchbx form{
-		display:block;
-		width:100%;
-		z-index:100;
+
+	#base-bc {
+		@extend %base-default-mobile-ns-display-block;
 	}
-	#base-srchbx form{
-		border-bottom:1px solid #999;
-		text-align:center;
-		background:#1A3D6C;
-		padding:10px 0;
+
+	#base-psnb {
+		@extend %base-default-mobile-ns-width100pct-float-none;
+		@extend %base-default-mobile-ns-display-block;
+		#base-psnb-in {
+			@extend %base-default-mobile-ns-display-block-width100pct-z-index100;
+		}
+		.mb-menu {
+			background: #555;
+		}
+	}
+
+	%base-default-mobile-ns-width100pct-float-none {
+		width: 100% !important;
+		float: none;
+	}
+	%base-default-mobile-ns-display-block-width100pct-z-index100 {
+		display: block;
+		width: 100%;
+		z-index: 100;
+	}
+	#base-srchbx {
+		@extend %base-default-mobile-ns-width100pct-float-none;
+		@extend %base-default-mobile-ns-display-block;
+		form {
+			@extend %base-default-mobile-ns-display-block-width100pct-z-index100;
+			border-bottom: 1px solid #999;
+			text-align: center;
+			background: #555;
+			padding: 10px 0;
+			margin-bottom: 0;
+		}
+	}
+
+	#wb-sec {
+		@extend %base-default-mobile-ns-display-block;
+	}
+
+	#wb-foot {
+		@extend %base-default-mobile-ns-display-block;
 	}
 }

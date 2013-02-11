@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/utilities/color";
 
 $sans-serif:		Verdana, Arial, Helvetica, sans-serif;
@@ -14,7 +13,7 @@ $margin-medium:		10px;
 $margin-large:		20px;
 $margin-xlarge:		50px;
 
-$spacing-xsmall:	1px; 
+$spacing-xsmall:	1px;
 $spacing-small:		5px;
 $spacing-medium:	10px;
 $spacing-large:		20px;
@@ -32,7 +31,6 @@ $font-weight-normal:	400;
 $font-weight-bold:		700;
 
 $highlight:		#ffffc9;
-$attention:		#cc0000;
 $accent:		#176ca7; //#176ca7; //#1a7abd; // #cc0000;
 $black:			#000000;
 $dark:			#222222;
@@ -41,8 +39,12 @@ $light:			#eeeeee;
 $white:			#ffffff;
 $silver:		#cccccc;
 
-$alert:			#ffe75d;
-$attention:		#d73d38;
+$red: 			#d73d38;
+$yellow:		#ffe75d;
+
+
+$alert:			$red;
+$attention:		$yellow;
 $note:			#555555;
 $info:			#2a7da6;
 $question:		#888888;
@@ -66,10 +68,26 @@ $default-color-gradient: true;
 $default-color-shadow: true;
 $default-color-border: false;
 
+$accent-1: #8d201c;
+$accent-2: #EE8310;
+$accent-3: #2a7da6;
+$accent-4: #5a306b;
+$accent-5: #285228;
+$accent-6: #154055;
+$accent-7: #555555;
+$accent-8: #f6d200;
+$accent-9: #d73d38;
+$accent-10: #418541;
+$accent-11: #87aec9;
+$accent-12: #23447e;
+$accent-13: #999999;
 
+//override the compass zero values with unitless values
+$default-box-shadow-h-offset: 0;
+$default-box-shadow-v-offset: 0;
 
 @mixin colorize-base($color: $default-color, $important: false) {
-	
+
 	// set default colors
 	$text: contrast-color($color, $dark, $white, 75%);
 	@if $important {
@@ -80,9 +98,9 @@ $default-color-border: false;
 	color: $text !important;
 
 	// apply link colors to base only
-	a { 
+	a {
 		&, &:link, &:visited {
-			color: $text; 
+			color: $text;
 		}
 
 		&:hover, &:focus, &:active {
@@ -97,7 +115,7 @@ $default-color-border: false;
 }
 
 @mixin colorize-border($color: $default-color, $border: "border") {
-	
+
 	@if $border == "border" {
 		border: 1px solid darken($color, 10%);
 	} @else if $border == "outline" {
@@ -108,23 +126,23 @@ $default-color-border: false;
 
 @mixin colorize($color: $default-color, $gradient: $default-color-gradient, $shadow: $default-color-shadow, $border: $default-color-border, $important: false) {
 
-	// used to set text shadow 
+	// used to set text shadow
 	$text: contrast-color($color, $dark, $white, 75%);
 
 	@if $border {
 		@include colorize-border($color, $border)
 	}
-	
+
 	// add text shadow
 	@if $shadow == true {
-		@include text-shadow(contrast-color($text, $dark, $white, 50%) 0 1px 1px);
+		text-shadow: 0 1px 1px contrast-color($text, $dark, $white, 50%);
 	}
-	
+
 	// add gradient
 	@if $gradient == true {
-	
+
 		background-repeat: repeat-x;
-		
+
 		@if $important {
 			@include background-image(linear-gradient($color, darken($color, 7%)) !important);
 		} @else {
@@ -134,48 +152,3 @@ $default-color-border: false;
 
 }
 
-/*   base appearance   */
-body {
-	font-size: 13px;
-	line-height: 1.5em;
-}
-
-p, table {
-	margin-bottom: $margin-medium;
-	margin-top: $margin-medium;
-	
-	img { margin-left: 0; }
-}
-
-pre { 
-	@if $legacy-support-for-mozilla {
-		overflow-x: auto;  /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */
-	}
-	white-space: pre-wrap;
-}
-
-p, blockquote, table, form, img, pre {
-	margin-bottom: $margin-medium;
-}
-
-// reset elements in grid system
-[class*="span-"] {
-
-	// reset margin left and right to elements that are used inside a grid cell
-	#{headings(all)}, p, blockquote, table, form, img, pre, details {
-		margin-left: 0;
-		margin-right: 0;
-	}
-	
-	p {
-		margin-bottom: $margin-medium;
-		margin-top: $margin-medium;
-	}
-	
-	ul, ol, dl {
-		margin: 5px 5px 10px 40px;
-		padding: 0;
-	}
-	
-	.float-right { margin-right: 0; }
-}

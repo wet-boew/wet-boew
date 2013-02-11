@@ -4,20 +4,22 @@
  */
 .ie7 {
 	.wb-al-container {
-		position:relative;
-		display:inline;
+		position: relative;
+		display: inline;
 	}
-	ul.wb-autolist {
-		left:0;
-		li {
-			a {
-				.al-value {
-					float: left;
-				}
-				.al-label {
-					clear: right;
+	ul {
+		&.wb-autolist {
+			left: 0;
+			li {
+				a {
+					.al-value {
+						float: left;
+					}
+					.al-label {
+						clear: right;
+					}
 				}
 			}
-		}	
+		}
 	}
 }

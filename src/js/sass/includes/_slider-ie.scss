@@ -5,74 +5,74 @@
 /* fd-slider.min.css referencing individual .png images for IE7 */
 .ie7, .ie8 {
 	.fd-slider, .fd-slider-vertical {
-		*background:transparent url(../images/slider/blank.gif) repeat
+		*background: transparent url(../images/slider/blank.gif) repeat
 	}
 	.fd-slider-vertical {
 		.fd-slider-wrapper {
-			*clear:expression(style.height=parentNode.offsetHeight+'px',style.clear='none', 0);
+			*clear: expression(style.height=parentNode.offsetHeight+'px', style.clear='none', 0);
 		}
 		.fd-slider-inner {
-			width:2px;
-			height:auto;
-			top:4px;
-			bottom:12px;
-			left:4px;
-			right:auto;
-			*clear:expression(style.height=(parentNode.offsetHeight - 8)+'px',style.clear='none',0)
+			width: 2px;
+			height: auto;
+			top: 4px;
+			bottom: 12px;
+			left: 4px;
+			right: auto;
+			*clear: expression(style.height=(parentNode.offsetHeight - 8)+'px', style.clear='none', 0)
 		}
 		.fd-slider-bar {
-			*clear:expression(style.height=(parentNode.offsetHeight - 20)+'px',style.clear='none',0);
-			@include filter-gradient(#ECECEC,#CCC,vertical);
+			*clear: expression(style.height=(parentNode.offsetHeight - 20)+'px', style.clear='none', 0);
+			@include filter-gradient(#ECECEC, #CCC, vertical);
 		}
 		.fd-slider-range {
-			@include filter-gradient(#89A5BD,#165C91,vertical);
+			@include filter-gradient(#89A5BD, #165C91, vertical);
 		}
 		.fd-slider-disabled {
 			.fd-slider-bar {
-				@include filter-gradient(#666,#333,horizontal);
+				@include filter-gradient(#666, #333, horizontal);
 			}
 			.fd-slider-range {
-				@include filter-gradient(#222,#000,horizontal);
+				@include filter-gradient(#222, #000, horizontal);
 			}
 		}
 	}
 	.fd-slider-inner {
-		position:absolute;
-		height:2px;
-		border:1px solid #bbf;
-		background:#bbf;
-		top:4px;
-		bottom:none;
-		left:4px;
-		right:12px;
-		z-index:2;
-		margin:0;
-		padding:0;
-		overflow:hidden;
-		line-height:4px;
+		position: absolute;
+		height: 2px;
+		border: 1px solid #bbf;
+		background: #bbf;
+		top: 4px;
+		bottom: none;
+		left: 4px;
+		right: 12px;
+		z-index: 2;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		line-height: 4px;
 		filter:progid:DXImageTransform.Microsoft.Blur(pixelradius=3.5)
 	}
 	.fd-slider-focused {
 		.fd-slider-inner {
-			display:block
+			display: block
 		}
 	}
 	.fd-slider-bar {
-		@include filter-gradient(#ECECEC,#CCC,horizontal);
+		@include filter-gradient(#ECECEC, #CCC, horizontal);
 	}
 	.fd-slider-range {
-		@include filter-gradient(#89A5BD,#165C91,horizontal);
+		@include filter-gradient(#89A5BD, #165C91, horizontal);
 	}
 	.fd-slider-handle {
-		*background-image:url(../images/slider/fd-slider-sprite.png);
-		outline:expression(hideFocus='true')
+		*background-image: url(../images/slider/fd-slider-sprite.png);
+		outline: expression(hideFocus='true')
 	}
 	.fd-slider-disabled {
 		.fd-slider-bar {
-			@include filter-gradient(#666,#333,vertical);
+			@include filter-gradient(#666, #333, vertical);
 		}
 		.fd-slider-range {
-			@include filter-gradient(#222,#000,vertical);
+			@include filter-gradient(#222, #000, vertical);
 		}
 	}
 }

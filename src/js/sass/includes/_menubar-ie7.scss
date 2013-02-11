@@ -4,6 +4,20 @@
  */
 .ie7 {
 	.mb-menu {
-		position:relative;
+		position: relative;
+	}
+
+	&[dir="rtl"] {
+
+		.mb-sm-open {
+			left: auto;
+			right: 0;
+			[class*="span-"] {
+				zoom: 1;
+				vertical-align: top;
+				float: none !important;
+				display: inline !important;
+			}
+		}
 	}
 }

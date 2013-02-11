@@ -2,7 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#gcwu-bc {
+#gcwu-bc { //Should this be wrapped in ie7, ie8 as it is IE specific?
 	li {
 		background:url(../images/bcrumb.gif) left center no-repeat;
 		margin:0 5px 0 0;
@@ -10,6 +10,20 @@
 		&:first-child {
 			background-image:none;
 			padding-left:0;
+		}
+	}
+}
+
+[dir="rtl"] {
+	#gcwu-bc {
+		li {
+			background:url(../images/bcrumb-rtl.gif) right center no-repeat;
+			margin:0 0 0 5px;
+			padding:0 11px 0 0;
+			&:first-child {
+				background-image:none;
+				padding-right:0;
+			}
 		}
 	}
 }

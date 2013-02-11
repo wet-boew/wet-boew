@@ -2,18 +2,14 @@ language: java
 
 env:
   global:
-    - secure: "qSXbG59qPwiF3NccMohXgkOQIm17ZgclLoqwSD/vFM5Hf6fbhH/Kmks7S7N5\nlVfk0c6q11BDVXOspQF86a07/VmKNMlkb+BhpePvMZAwx9IPYE9eFzTqPkRB\ncUbiPOLZUvaPaVDkoJrjYnawQTkaOwm3oYSMBXQTTI9lXrqs6Xo="
+    - secure: "lyMMmGvleOhoAD+T/UQqFfjjiAW+WWU+9YqZjLEfVQxgOQKxB1/GXs45WXko\nB6sQ/U6+b5V202h3RwKuxUUgWZ1TMSrfWjy5NTX+tM8y5IJaVGh4Dl+9p51o\nekfMtEQ6TUHTFpLFwouaGpf4DUCpJHUtoh8HoI/kuAdnIpVmpMY="
 
 branches:
   except:
     - v3.0-dist
     - master-dist
 
-before_script: 
-  - ant test -Djshint.failbuild=true
-
 script:
+  - ant test -Djshint.failbuild=true
   - ant
-
-after_success:
   - ./build/post_build.sh

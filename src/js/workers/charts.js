@@ -1,10 +1,10 @@
 /*
-* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-* wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
-*/
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
 /*
-* Chart for WET 3.0
-*/
+ * Charts and graphs
+ */
 /*global jQuery: false, pe:false, wet_boew_charts: false, Raphael: false*/
 (function ($) {
 	"use strict";

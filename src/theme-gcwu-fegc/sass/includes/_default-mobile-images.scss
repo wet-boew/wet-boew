@@ -2,42 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#gcwu-title {
-	background:#146094 url(../images/bg-waves.jpg);
-}
-
-#jqm-wb-mb {
-	#gcwu-bc-in {
-		li {
-			background: url(../images/bcrumb-mobile.png) no-repeat right center;
-		}
+#gcwu-bc-in {
+	li {
+		background: url(../images/bcrumb-mobile.png) no-repeat right center;
 	}
-}
-
-/* Custom jquery.mobile icons */
-.ui-icon-site-menu {
-	background-image: url(../images/icons-18-white.png);
-}
-.ui-icon-alt {
-	background-image: url(../images/icons-18-black.png);
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio:1.5),
-	only screen and (min--moz-device-pixel-ratio:1.5), 
-	only screen and (-o-min-device-pixel-ratio: 3/2), 
-	only screen and (min-device-pixel-ratio:1.5), 
-	only screen and (min-resolution:240dpi), 
-	only screen and (min-resolution:1.5dppx) {
-	.ui-icon-site-menu {
-		background-image: url(../images/icons-36-white.png);
-	}
-	.ui-icon-alt {
-		background-image: url(../images/icons-36-black.png);
-	}
-}
-
-/* Position and size the custom icon */
-.ui-icon-site-menu,.ui-icon-alt {
-	background-position: 0 50%;
-	background-size: 18px 18px;
 }

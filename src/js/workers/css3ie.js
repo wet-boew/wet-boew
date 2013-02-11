@@ -20,7 +20,7 @@
 				return;
 			}
 
-			var $enhance = $('.rounded, .pie-enhance'),
+			var $enhance = $('.rounded, .pie-enhance, .ui-icon'),
 				pieEnabled = false,
 				$wbcore = $('#wb-core'),
 				$wbcorein = $wbcore.children('#wb-core-in'),

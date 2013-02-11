@@ -20,19 +20,23 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="dist/js/jquery-ie.min.js"></script>
 <script src="dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="dist/theme-gcwu-fegc/css/jquery.mobile-ie-min.css" />
 <link rel="stylesheet" href="dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="dist/theme-gcwu-fegc/css/jquery.mobile-min.css" />
 <link rel="stylesheet" href="dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="dist/theme-gcwu-fegc/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
@@ -65,7 +69,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
 </div></form>
 </div></section>
 </div></div>
@@ -92,6 +96,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <h1 id="wb-cont">Web Experience Toolkit (WET)</h1>
 
 <ul>
+<li><strong>WET v3.0.4 was released on January 24, 2013</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/v3.0.4-release-notes">v3.0.4 release notes</a>)</li>
 <li><strong>WET v3.1.0 Beta 1 was released on December 21, 2012</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-1-release-notes">v3.1.0 Beta 1 release notes</a>)</li>
 <li><strong>WET v3.0.3 was released on December 21, 2012</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/v3.0.3-release-notes">v3.0.3 release notes</a>)</li>
 <li><strong>WET v3.0.2 was released on November 15, 2012</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/v3.0.2-release-notes">v3.0.2 release notes</a>)</li>
@@ -192,9 +197,17 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
+<!--[if lte IE 8]>
+<script src="dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="dist/js/settings-ie.js"></script>
+<script src="dist/js/pe-ap-ie-min.js"></script>
+<script src="dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
 <script src="dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="dist/js/settings.js"></script>
 <script src="dist/js/pe-ap-min.js"></script>
-<!-- ScriptsEnd -->
+<script src="dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 </body>
 </html>
