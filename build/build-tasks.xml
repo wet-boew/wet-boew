@@ -136,7 +136,6 @@
 			<exclude name="dependencies/pie.js"/>
 			<exclude name="dependencies/prettify.js"/>
 			<exclude name="dependencies/prettify/**/*.js"/>
-			<exclude name="dependencies/raphael.js"/>
 			<exclude name="dependencies/excanvas.js"/>
 			<exclude name="dependencies/flot.js"/>
 			<exclude name="dependencies/flotPie.js"/>
