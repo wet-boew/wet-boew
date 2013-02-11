@@ -88,10 +88,11 @@
 				_list = '',
 				links,
 				link,
-				footer1,
+				lang_links,
 				mb_li,
 				target,
 				i,
+				len,
 				nodes,
 				node,
 				home_href,
@@ -143,7 +144,8 @@
 				}
 			
 				// Build the header bar
-				header = '<div data-role="header"><div class="ui-title"></div>';
+				node = wet_boew_theme.title[0];
+				header = '<div data-role="header"><div class="ui-title"><div><span class="wb-invisible">' + node.getElementsByTagName('a')[0].innerHTML + '</span></div></div>';
 				header += '<map id="wet-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 				// Handling for the home/back button if it exists
 				if (typeof home_href !== 'undefined') { // Home button needed
@@ -161,7 +163,7 @@
 				// Append the header
 				wet_boew_theme.fullhd.children('#wet-fullhd-in').before(header);
 				// Apply a theme to the site title
-				wet_boew_theme.title[0].className += ' ui-bar-b';
+				node.className += ' ui-bar-b';
 				// Apply a theme to the h1
 				pe.main[0].getElementsByTagName('h1')[0].className += ' ui-bar-c';
 			
