@@ -361,6 +361,16 @@ table {
 	}
 }
 
+#popupLanguages {
+	li {
+		.ui-btn-text {
+			&:first-letter {
+				text-transform: capitalize;
+			}
+		}
+	}
+}
+
 %gcwu-default-mobile-font-1em-margin-0 {
 	font-size: 1em;
 	margin: 0;

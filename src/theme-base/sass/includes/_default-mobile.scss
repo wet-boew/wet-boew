@@ -190,6 +190,9 @@ table {
 			@extend %base-default-mobile-bottom-rounded-corners;
 		}
 	}
+	.mobile-lang-current {
+		text-transform: capitalize;
+	}
 }
 
 .ui-header {
@@ -351,6 +354,16 @@ table {
 .ui-content {
 	.ui-listview {
 		margin: 0 -15px;
+	}
+}
+
+#popupLanguages {
+	li {
+		.ui-btn-text {
+			&:first-letter {
+				text-transform: capitalize;
+			}
+		}
 	}
 }
 
