@@ -5,6 +5,7 @@ www.tbs.gc.ca/ws-nw/wet-boew/terms / www.sct.gc.ca/ws-nw/wet-boew/conditions -->
 	<defs>
 		<style type="text/css">
 			.fip_text {fill:#000;}.fip_flag {fill:#ED1F24;}
+			@media screen {.fip_text, .fip_flag {fill: #FFF;}}
 		</style>
 	</defs>
 	<g id="sig" transform="translate(-2,-2)">
