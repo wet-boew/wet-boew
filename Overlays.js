@@ -23,7 +23,7 @@ var wet_boew_geomap = {
 		    caption: 'This is a sample KML file loaded locally by Geomap.',
 		    type: 'kml',
 		    url: 'data/sample.kml',		   
-		    visible: true,
+		    visible: false,
 		    attributes: {
 		    	name: 'Product Title',
 		    	description: 'Description'
@@ -42,8 +42,13 @@ var wet_boew_geomap = {
 			title: 'GeoRSS Demo',
 			caption: 'This is a sample GeoRSS feed loaded locally by Geomap.',
 			type: 'georss',
-			url: 'data/sample.rss',		   
-			visible: false,
+			url: 'data/sample.rss',	
+			attributes: {
+				title: 'Title',
+				description: 'Description',
+				link: 'More Info'
+			},
+			visible: true,
 			strokeColor: '#000000',
 			fillColor: '#999999'
 		},
@@ -56,7 +61,7 @@ var wet_boew_geomap = {
 				'alt': 'json',
 				'q': 'alluvial'
 			},
-			visible: true,
+			visible: false,
 			root: 'products',			
 			attributes: {
 				title: 'Title',
@@ -81,7 +86,7 @@ var wet_boew_geomap = {
 				latitude: 'Longitude',				
 				updated_at: 'Last updated'
 			},
-			visible: true,			
+			visible: false,			
 			strokeColor: '#800080',
 			fillColor: '#FF00FF'
 		}		

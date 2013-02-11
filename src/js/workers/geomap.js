@@ -415,13 +415,15 @@
 			
 			var cols = [];
 			var a = context.feature.attributes;
+			
+			
 
 			for (var name in a) {
 				
 				// TODO: add regex to replace text links with hrefs.
 				//var regex = new RegExp('var match = (?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))');
 				
-				if (a.hasOwnProperty(name)) {
+				if (a.hasOwnProperty(name)) {					
 					if(context.type == 'head') {
 						var $col = $('<th>', { 'html': name });
 						//var $col = $('<td>', { 'html': regex.exec(a[name]) });
@@ -692,10 +694,52 @@
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
-									format: new OpenLayers.Format.GeoRSS()
+									format: new OpenLayers.Format.GeoRSS({
+//									{
+//										// adds the thumbnail attribute to the feature
+//										createFeatureFromItem: function(item) {
+//											var feature = OpenLayers.Format.GeoRSS.prototype.createFeatureFromItem.apply(this, arguments);	
+//											var node = this.getElementsByTagNameNS(item, "*", "author");											
+//											feature.attributes.author = $(node).text();
+//											return feature;
+//										}
+//									}																					
+										read: function(data) {											
+											var items = this.getElementsByTagNameNS(data, "*", "item");
+											
+											var row, feature, atts = {}, features = [];
+											
+											for (var i = 0; i < items.length; i++) {												
+												row = items[i];			
+																								
+												feature = new OpenLayers.Feature.Vector();											
+												
+												feature.geometry = this.createGeometryFromItem(row);
+												
+												// parse and store the attributes
+												atts = {};
+												var a = layer.attributes;
+												
+												// TODO: test on nested attributes
+												for (var name in a) {
+													if (a.hasOwnProperty(name)) {
+														 atts[a[name]] = $(row).find(name).text();														
+													}
+												}
+												
+												feature.attributes = atts;												
+											
+												// if no geometry, don't add it
+												if (feature.geometry) {
+													features.push(feature);
+												}
+											} 
+											return features;
+										}
+									})
 								}),								
 								eventListeners: {
-									"featuresadded": function (evt) {	
+									"featuresadded": function (evt) {
 										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
 									}									
 								},
@@ -716,8 +760,8 @@
 									url: layer.url,
 									params: layer.params,
 									format: new OpenLayers.Format.GeoJSON({										
-										read: function(json) {											
-											var items = json[layer.root] ? json[layer.root] : json;
+										read: function(data) {											
+											var items = data[layer.root] ? data[layer.root] : data;
 											var row, feature, atts = {}, features = [];
 											
 											for (var i = 0; i < items.length; i++) {												
@@ -769,8 +813,8 @@
 									url: layer.url,
 									params: layer.params,
 									format: new OpenLayers.Format.GeoJSON({
-										read: function(json) {
-											var items = json.features;
+										read: function(data) {
+											var items = data.features;
 											var row, feature, atts = {}, features = [];
 											
 											for (var i = 0; i < items.length; i++) {												
