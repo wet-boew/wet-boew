@@ -305,7 +305,7 @@
 							if (this.getBuffering() === false) {
 								this.setBuffering(true);
 								evtmgr.trigger('waiting');								
-							}								
+							}				
 						// Waiting has ended, but icon is still visible - remove it.
 						} else if (this.getBuffering() === true) {							
 							this.setBuffering(false);

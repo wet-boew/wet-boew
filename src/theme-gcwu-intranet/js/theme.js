@@ -171,6 +171,8 @@
 				header += popup_button + ' href="#popupSettings" data-icon="gear">' + settings_txt + '</a></map></div>';
 				// Append the header
 				wet_boew_theme.gcnb.children('#gcwu-gcnb-in').before(header);
+				// Apply a theme to the site title
+				wet_boew_theme.title[0].className += ' ui-bar-b';
 				// Apply a theme to the h1
 				pe.main[0].getElementsByTagName('h1')[0].className += ' ui-bar-c';
 			
@@ -199,10 +201,10 @@
 						link = node.childNodes[0];
 						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '');
 						if (node.id.indexOf('-lang-current') !== -1) {
-							settings_popup += '><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
+							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + pe.dic.get('%current') + '</a></li>';
 						} else {
 							settings_popup += '><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
-						}				
+						}
 					}
 					settings_popup += '</ul>' + popup_close;
 				}
