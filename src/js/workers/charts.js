@@ -13,7 +13,7 @@
 	}; /* local reference */
 	_pe.fn.charts = {
 		type: 'plugin',
-		depends: ['raphael', 'parserTable', 'charts'],
+		depends: ['parserTable', 'flot', 'flotPie', 'charts'],
 		polyfills: ['detailssummary'],
 		_exec: function (elm) {
 			_pe.fn.chartsGraph.generate(elm);
