@@ -684,6 +684,9 @@ select {
 	width: 100% !important;
 	float: none;
 }
+%wet-default-mobile-margin-top-10 {
+	margin-top: 10px;
+}
 .pe-disable {
 	#wet-fullhd { 
 		ul {
@@ -714,8 +717,13 @@ select {
 	#wb-foot {
 		@extend %wet-default-mobile-display-block;
 	}
-	#wet-sft h4, #wet-sft .wet-col-head {
-		margin-top: 10px;
+	#wet-sft {
+		h4 {
+			@extend %wet-default-mobile-margin-top-10;
+		}
+		.wet-col-head {
+			@extend %wet-default-mobile-margin-top-10;
+		}
 	}
 	#wet-srchbx {
 		@extend %wet-default-mobile-width-100-important-float-none;
