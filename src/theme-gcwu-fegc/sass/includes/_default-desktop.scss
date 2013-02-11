@@ -29,13 +29,6 @@
 	@extend %gcwu-default-desktop-background-none;
 }
 
-h1 {
-	&.ui-bar-c {
-		@extend %gcwu-default-desktop-background-none;
-		border: 0;
-	}
-}
-
 #gcwu-gcnb {
 	.ui-header {
 		@extend %display-none-important;

@@ -311,7 +311,7 @@
 				if(panel && typeof panel.jquery !== 'undefined'){
 					pos = panel.parent().position();
 					slideTo = {left: pos.left * -1, top: pos.top * -1};
-				}				
+				}
 				return slideTo;
 			};
 			isSlider = function () { 
@@ -325,7 +325,7 @@
 				if($viewport === undefined) {					
 					$panels.wrapAll('<div class="viewport">').wrap('<div class="panel">');
 					$viewport = $('.viewport', $tabsPanel);
-				}				
+				}
 				
 				panelSize = getMaxPanelSize();
 				$panels.each(function() {
@@ -471,7 +471,7 @@
 					selectTab($tab, $tabs, $panels, opts, true);
 					return false;
 				});					
-			}				
+			}
 
 			// Trigger panel change if a link within a panel is clicked and matches a tab
 			$panels.find('a').filter('[href^="#"]').each(function () {

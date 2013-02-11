@@ -2,43 +2,53 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-body{
-	min-width:1200px;
+body {
+	min-width: 1200px;
 }
 
-#wet-title-in{
-	width:800px;
+#wet-title-in {
+	width: 800px;
 }
 
+%wet-default-responsive-1200-width-600 {
+	width: 600px;
+}
+%wet-default-responsive-1200-width-300 {
+	width: 300px;
+}
 #wb-body-sec-sup {
-	#wb-main{
-		width:600px;
-		left:300px;
+	#wb-main {
+		@extend %wet-default-responsive-1200-width-600;
+		left: 300px;
 	}
-	#wb-main-in{
-		width:600px;
+	#wb-main-in {
+		@extend %wet-default-responsive-1200-width-600;
 	}
 }
 
-#wb-sec{
-	width:300px;
+#wb-sec {
+	@extend %wet-default-responsive-1200-width-600;
 }
 
-#wb-sup{
-	width:300px;
+#wb-sup {
+	@extend %wet-default-responsive-1200-width-300;
 	left:600px;
 }
 
-#wb-core-in,#wet-fullhd-in,#wet-bnr-in,#wet-psnb-in,#wet-bc-in,#wet-fullft-in,#wet-sft-in,#wet-bnr-in,#wet-psnb .mb-menu,#wb-body #wb-main,#wet-subsite p{
-	width:1200px;
+#wb-core-in, #wet-fullhd-in, #wet-bnr-in, #wet-psnb-in, #wet-bc-in, #wet-fullft-in, #wet-sft-in, #wet-bnr-in, #wet-psnb .mb-menu, #wb-body #wb-main, #wet-subsite p {
+	width: 1200px;
 }
 
-[id|="wb-body-sec"] [id|="wb-main"] {
-	width:900px;
+[id|="wb-body-sec"] {
+	[id|="wb-main"] {
+		width:900px;
+	}
 }
 
-#wet-subsite p{
-	margin:0 auto;
+#wet-subsite {
+	p {
+		margin: 0 auto;
+	}
 }
 
 /* Right to left (RTL) CSS */
@@ -49,7 +59,6 @@ body{
 			right: 300px;
 		}
 	}
-
 	#wb-sup {
 		left: auto;
 		right: 600px;

@@ -22,13 +22,6 @@
 	@extend %base-default-desktop-background-none;
 }
 
-h1 {
-	&.ui-bar-c {
-		@extend %base-default-desktop-background-none;
-		border: 0;
-	}
-}
-
 #base-fullhd {
 	.ui-header {
 		display: none !important;

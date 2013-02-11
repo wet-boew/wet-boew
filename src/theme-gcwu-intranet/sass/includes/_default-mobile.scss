@@ -7,12 +7,13 @@
 	text-shadow: 1px 1px 1px #333;
 	p {
 		margin: {
-			top: 3px;
-			bottom: 3px;
+			top: 0;
+			bottom: 0;
 		}
 	}
 	a {
 		padding: 3px;
 		white-space: normal;
+		font-weight: normal;
 	}
 }
