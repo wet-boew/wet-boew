@@ -2,23 +2,23 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-%base-desktop-display-block-important {
+%wb-desktop-display-block-important {
 	display: block !important;
 }
-%base-desktop-display-none-important {
+%wb-desktop-display-none-important {
 	display: none !important;
 }
 
 .mobile-hide {
-	@extend %base-desktop-display-block-important;
+	@extend %wb-desktop-display-block-important;
 }
 .mobile-view {
 	.mobile-hide {
-		@extend %base-desktop-display-none-important;
+		@extend %wb-desktop-display-none-important;
 	}
 }
 .mobile-show {
-	@extend %base-desktop-display-none-important;
+	@extend %wb-desktop-display-none-important;
 }
 
 #mobiletest {

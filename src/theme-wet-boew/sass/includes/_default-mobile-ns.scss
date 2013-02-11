@@ -17,6 +17,10 @@
 		float: none;
 	}
 
+	%wet-default-mobile-ns-margin-top-10 {
+		margin-top: 10px;
+	}
+
 	#wet-psnb {
 		@extend %wet-default-mobile-ns-display-block;
 		@extend %wet-default-mobile-ns-width-100-important-float-none;
@@ -44,8 +48,13 @@
 		@extend %wet-default-mobile-ns-display-block;
 	}
 
-	#wet-sft h4, #wet-sft .wet-col-head {
-		margin-top: 10px;
+	#wet-sft {
+		h4 {
+			@extend %wet-default-mobile-ns-margin-top-10;
+		}
+		.wet-col-head {
+			@extend %wet-default-mobile-ns-margin-top-10;
+		}
 	}
 
 	#wet-srchbx {

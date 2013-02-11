@@ -92,7 +92,7 @@
 }
 
 #wet-date-mod {
-	dt,dd {
+	dt, dd {
 		float: left;
 	}
 	dd {
@@ -111,7 +111,7 @@
 	clear: left;
 	font-size: 130%;
 	text-shadow: 1px 1px 1px #333;
-	p{
+	p {
 		margin: 0 auto;
 		padding-top: 1px;
 		padding-bottom: 5px;
@@ -136,7 +136,6 @@
 		dt, dd {
 			float: right;
 		}
-
 		dd {
 			margin: 0 0.39em 0 0;
 		}
@@ -144,12 +143,10 @@
 
 	#wet-subsite {
 		clear: right;
-
 		a {
 			padding: 0 10px 0 5px;
 			border-left: none;
 			border-right: 1px solid #ccc;
-
 			&:first-child {
 				border-right: none;
 			}

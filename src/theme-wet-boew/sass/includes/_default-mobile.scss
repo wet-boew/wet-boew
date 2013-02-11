@@ -5,7 +5,7 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
-@import 'compass/css3/transform';
+@import "compass/css3/transform";
 
 %wet-default-mobile-no-rounded-corners {
 	@include border-radius(0);
@@ -107,7 +107,7 @@ table {
 }
 
 #wb-head {
-	@extend %period-after-pseudo;
+	@extend %wet-default-mobile-period-after-pseudo;
 }
 
 [id|="wb-body"] {
@@ -129,12 +129,12 @@ table {
 }
 
 #wet-date-mod {
-	@extend %period-after-pseudo;
+	@extend %wet-default-mobile-period-after-pseudo;
 	float: right;
 	margin: 5px 0;
 }
 
-[class*="span-"]{
+[class*="span-"] {
 	position: relative;
 }
 
@@ -312,7 +312,7 @@ table {
 	clear: both;
 }
 
-%period-after-pseudo {
+%wet-default-mobile-period-after-pseudo {
 	&:after {
 		content: ".";
 		@extend %wet-default-mobile-display-block;
@@ -334,14 +334,14 @@ table {
 	white-space: normal;
 }
 
-%position-absolute {
+%wet-default-mobile-position-absolute {
 	position: absolute;
 }
 
 .ui-title {
 	> {
 		div {
-			@extend %position-absolute;
+			@extend %wet-default-mobile-position-absolute;
 			left: 3px;
 			top: 4px;
 			height: 32px;
@@ -416,17 +416,21 @@ select {
 	@extend %wet-default-mobile-font-125em;
 }
 
-%h1-border-bottom-none {
+%wet-default-mobile-h1-border-bottom-none {
 	h1 {
 		border-bottom: none;
 	}
 }
 .ui-dialog {
-	@extend %h1-border-bottom-none;
+	@extend %wet-default-mobile-h1-border-bottom-none;
 }
 
 .ui-popup {
-	@extend %h1-border-bottom-none;
+	@extend %wet-default-mobile-h1-border-bottom-none;
+}
+
+%wet-default-mobile-background-none {
+	background: none;
 }
 
 #jqm-wb-search {
@@ -434,14 +438,22 @@ select {
 		clip: rect(1px, 1px, 1px, 1px);
 		height: 1px;
 		overflow: hidden;
-		@extend %position-absolute;
+		@extend %wet-default-mobile-position-absolute;
 		width: 1px;
 	}
-	.ui-icon-searchfield:after, .ui-icon-search {
-		background: none;
+	.ui-icon-searchfield {
+		&:after {
+			@extend %wet-default-mobile-background-none;
+		}
+	}
+	.ui-icon-search {
+		@extend %wet-default-mobile-background-none;
 	}
 }
 
+%wet-default-mobile-margin-0 {
+	margin: 0;
+}
 #jqm-wb-mb {
 	a {
 		&:link {
@@ -454,10 +466,14 @@ select {
 		}
 	}
 	div {
-		&.ui-collapsible-set + h2 {
-			border-top: 3px groove #fff;
-			padding-top: 8px;
-			margin-top: 23px;
+		&.ui-collapsible-set {
+			+ {
+				h2 {
+					border-top: 3px groove #fff;
+					padding-top: 8px;
+					margin-top: 23px;
+				}
+			}
 		}
 	}
 	.ui-content {
@@ -503,13 +519,17 @@ select {
 		a {
 			@extend %white-space-normal;
 		}
-		.ui-collapsible:not(:first-child) {
-			@extend %wet-default-mobile-no-top-rounded-corners;
-		}
-		.ui-collapsible:last-child {
-			.ui-collapsible-content {
-				> :not(:last-child) {
-					@extend %wet-default-mobile-no-bottom-rounded-corners;
+		.ui-collapsible {
+			&:not(:first-child) {
+				@extend %wet-default-mobile-no-top-rounded-corners;
+			}
+			&:last-child {
+				.ui-collapsible-content {
+					> {
+						:not(:last-child) {
+							@extend %wet-default-mobile-no-bottom-rounded-corners;
+						}
+					}
 				}
 			}
 		}
@@ -527,8 +547,17 @@ select {
 	}
 	.wb-nested-menu {
 		padding: 0;
-		h2, h3, h4, h5 {
-			margin: 0;
+		h2 {
+			@extend %wet-default-mobile-margin-0;
+		}
+		h3 {
+			@extend %wet-default-mobile-margin-0;
+		}
+		h4 {
+			@extend %wet-default-mobile-margin-0;
+		}
+		h5 {
+			@extend %wet-default-mobile-margin-0;
 		}
 		.ui-btn-icon-right {
 			.ui-btn-inner {
@@ -653,11 +682,15 @@ select {
 	}
 }
 
+%wet-default-mobile-width-100-z-index-100 {
+	width: 100%;
+	z-index: 100;
+}
+%wet-default-mobile-width-100-important-float-none {
+	width: 100% !important;
+	float: none;
+}
 .pe-disable {
-	#wet-psnb, #wet-srchbx {
-		width: 100% !important;
-		float: none;
-	}
 	#wet-fullhd { 
 		ul {
 			@extend %wet-default-mobile-display-block;
@@ -671,6 +704,11 @@ select {
 	}
 	#wet-psnb {
 		@extend %wet-default-mobile-display-block;
+		@extend %wet-default-mobile-width-100-important-float-none;
+		#wet-psnb-in {
+			@extend %wet-default-mobile-display-block;
+			@extend %wet-default-mobile-width-100-z-index-100;
+		}
 	}
 	#wet-srchbx {
 		@extend %wet-default-mobile-display-block;
@@ -685,32 +723,39 @@ select {
 	#wet-sft h4, #wet-sft .wet-col-head {
 		margin-top: 10px;
 	}
-	#wet-psnb #wet-psnb-in, #wet-srchbx form {
-		@extend %wet-default-mobile-display-block;
-		width: 100%;
-		z-index: 100;
-	}
 	#wet-srchbx {
+		@extend %wet-default-mobile-width-100-important-float-none;
 		form {
 			border-bottom: 1px solid #999;
 			text-align: center;
 			background: #1A3D6C;
 			padding: 10px 0;
+			@extend %wet-default-mobile-display-block;
+			@extend %wet-default-mobile-width-100-z-index-100;
 		}
 	}
 }
+
 /* Right to left (RTL) CSS */
-/* Right to left (RTL) CSS */
-%rtl-scalex {
+%wet-default-mobile-rtl-scalex {
 	@include scaleX(-1);
 	@extend %wet-default-mobile-display-block;
 }
 %wet-default-mobile-padding-right-0 {
 	padding-right: 0;
 }
+%wet-default-mobile-text-align-right {
+	text-align: right;
+}
+%wet-default-mobile-text-align-center {
+	text-align: center;
+}
+%wet-default-mobile-float-left {
+	float: left;
+}
 [dir="rtl"] {
 	#wet-date-mod {
-		float: left;
+		@extend %wet-default-mobile-float-left;
 	}
 
 	#wet-fullhd {
@@ -723,38 +768,53 @@ select {
 	}
 	
 	#wet-mnavbar {
-		@extend %rtl-scalex;
+		@extend %wet-default-mobile-rtl-scalex;
 		left: 3px;
 		right: auto;
 	}
 
 	#wet-bc-in {
-		&, li:last-child, a {
-			@extend %rtl-scalex;
+		@extend %wet-default-mobile-rtl-scalex;
+		li {
+			&:last-child {
+				@extend %wet-default-mobile-rtl-scalex;
+			}
+		}
+		a {
+			@extend %wet-default-mobile-rtl-scalex;
 		}
 	}
 
 	.ui-popup-container, #wb-main {
-		.ui-btn, .ui-btn-text {
-			@extend %rtl-scalex;
-			text-align: right;
+		.ui-btn {
+			@extend %wet-default-mobile-rtl-scalex;
+			@extend %wet-default-mobile-text-align-right;
+		}
+		.ui-btn-text {
+			@extend %wet-default-mobile-rtl-scalex;
+			@extend %wet-default-mobile-text-align-right;
 		}
 		.ui-submit, .ui-select {
-			.ui-btn, .ui-btn-text {
-				text-align: center;
+			.ui-btn {
+				@extend %wet-default-mobile-text-align-center;
+			}
+			.ui-btn-text {
+				@extend %wet-default-mobile-text-align-center;
 			}
 		}
 		.ui-li-has-arrow {
 			.ui-btn-inner {
-				a.ui-link-inherit {
-					padding-right: 12px;
+				a {
+					&.ui-link-inherit {
+						padding-right: 12px;
+					}
 				}
 			}
 		}
 	}
 	
 	.ul-li {
-		text-align: right;
+		@extend %wet-default-mobile-text-align-right;
 	}
 
 	#jqm-wb-mb {
@@ -767,7 +827,6 @@ select {
 
 			a {
 				padding-right: 55px;
-
 				&.ui-btn-icon-left {
 					@extend %wet-default-mobile-padding-right-0;
 				}
@@ -776,7 +835,6 @@ select {
 			.wb-nested-menu {
 				a {
 					padding-right: 70px;
-
 					&.ui-btn-icon-left {
 						padding-left: 15px;
 						padding-right: 15px;
@@ -787,7 +845,6 @@ select {
 					a {
 						padding-left: 0;
 						padding-right: 85px;
-
 						&.ui-btn-icon-left {
 							padding-left: 30px;
 							padding-right: 30px;
@@ -798,8 +855,10 @@ select {
 		}
 
 		.ui-collapsible-content {
-			> a {
-				@extend %wet-default-mobile-padding-right-0;
+			> {
+				a {
+					@extend %wet-default-mobile-padding-right-0;
+				}
 			}
 		}
 	}
@@ -816,8 +875,10 @@ select {
 		li {
 			float: right !important;
 
-			&#wet-fullft-ca div {
-				text-align: right;
+			&#wet-fullft-ca {
+				div {
+					@extend %wet-default-mobile-text-align-right;
+				}
 			}
 		}
 	}
@@ -838,17 +899,19 @@ select {
 		ul {
 			margin: 0 0 0 5px;
 			#wet-fullhd-lang {
-				float: left;
+				@extend %wet-default-mobile-float-left;
 			}
 		}
 	}
 
-	#wet-fullhd-lang a {
-		float: left;
+	#wet-fullhd-lang {
+		a {
+			@extend %wet-default-mobile-float-left;
+		}
 	}
 
 	#wet-psnb, #wet-srchbx {
-		float: left;
+		@extend %wet-default-mobile-float-left;
 		h2 {
 			padding: 0.7em 0 0.8em 18px;
 			border-right: 1px solid #CCC;
@@ -856,14 +919,22 @@ select {
 		}
 	}
 
-	#wet-bnr .ui-navbar a.ui-btn-active {
-		border: 1px solid #CCC;
-		border-left: none;
+	#wet-bnr {
+		.ui-navbar {
+			a {
+				&.ui-btn-active {
+					border: 1px solid #CCC;
+					border-left: none;
+				}
+			}
+		}
 	}
 
-	#wet-srchbx h2 {
-		padding-right: 0;
-		padding-left: 20px;
+	#wet-srchbx {
+		h2 {
+			padding-right: 0;
+			padding-left: 20px;
+		}
 	}
 
 	&.no-js {
