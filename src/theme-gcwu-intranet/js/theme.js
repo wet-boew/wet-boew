@@ -201,7 +201,7 @@
 						if (node.id.indexOf('-lang-current') !== -1) {
 							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + pe.dic.get('%current') + '</a></li>';
 						} else {
-							settings_popup += '><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
+							settings_popup += '><a href="' + link.href + '" lang="' + link.getAttribute('lang') + '">' + link.innerHTML + '</a></li>';
 						}
 					}
 					settings_popup += '</ul>' + popup_close;
@@ -244,14 +244,15 @@
 				// Handling for splash page language buttons
 				lang_links = document.getElementById('gcwu-lang');
 				if (lang_links !== null) {
-					links = lang_links.getElementsByTagName('a');
+					nodes = lang_links.getElementsByTagName('li');
 					lang_nav = '<div data-role="navbar"><ul>';
-					for (i = 0, len = links.length; i < len; i += 1) {
-						link = links[i];
-						lang_nav += '<li><a href="' + link.href + '" data-theme="a">' + link.innerHTML + '</a></li>';
+					for (i = 0, len = nodes.length; i < len; i += 1) {
+						node = nodes[i];
+						link = node.getElementsByTagName('a')[0];
+						lang_nav += '<li><a href="' + link.href + '"' + (node.hasAttribute('lang') ? ' lang="' + node.getAttribute('lang') + '"' : '') + ' data-theme="a">' + link.innerHTML + '</a></li>';
 					}
 					lang_nav += '</ul></div>';
-					lang_links = document.getElementById('gcwu-ef-lang').parentNode.innerHTML = lang_nav;
+					document.getElementById('gcwu-ef-lang').parentNode.innerHTML = lang_nav;
 					lang_links = document.getElementById('gcwu-other-lang');
 					if (lang_links !== null) {
 						lang_links.parentNode.removeChild(lang_links);
@@ -261,13 +262,14 @@
 				// Handling for the terms and conditions links
 				target = document.getElementById('gcwu-tc');
 				if (target !== null) {
-					links = target.getElementsByTagName('a');
+					nodes = target.getElementsByTagName('li');
 
 					// Transform the footer into a nav bar
 					footer1 = '<ul class="ui-grid-a">';
-					for (i = 0, len = links.length; i < len; i += 1) {
-						link = links[i];
-						footer1 += '<li class="ui-block-' + (i % 2 !== 0 ? 'b' : 'a') + '"><a href="' + link.href + '" data-role="button" data-theme="c" data-corners="false">' + link.innerHTML + '</a></li>';
+					for (i = 0, len = nodes.length; i < len; i += 1) {
+						node = nodes[i];
+						link = node.getElementsByTagName('a')[0];
+						footer1 += '<li class="ui-block-' + (i % 2 !== 0 ? 'b' : 'a') + '"><a href="' + link.href + '"' + (node.hasAttribute('lang') ? ' lang="' + node.getAttribute('lang') + '"' : '') + ' data-role="button" data-theme="c" data-corners="false">' + link.innerHTML + '</a></li>';
 					}
 					footer1 += '</ul>';
 					target.id = '';

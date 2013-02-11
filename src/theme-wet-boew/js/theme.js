@@ -192,7 +192,7 @@
 						if (node.id.indexOf('-lang-current') !== -1) {
 							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + pe.dic.get('%current') + '</a></li>';
 						} else {
-							settings_popup += '><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
+							settings_popup += '><a href="' + link.href + '" lang="' + link.getAttribute('lang') + '">' + link.innerHTML + '</a></li>';
 						}
 					}
 					settings_popup += '</ul>' + popup_close;
