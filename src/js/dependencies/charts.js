@@ -883,7 +883,7 @@
 				
 				o.labeltheadrownum = 2;
 				
-				var UseHeadRow = (!o.labeltheadrownum ? parsedData.theadRowStack.length : o.labeltheadrownum) - 1;
+				var UseHeadRow = (!o.labeltheadrownum || (o.labeltheadrownum && o.labeltheadrownum > parsedData.theadRowStack.length) ? parsedData.theadRowStack.length : o.labeltheadrownum) - 1;
 				
 				
 				var calcTick = [];
@@ -1001,6 +1001,7 @@
 				
 				$(placeHolder).css('height', o.height);
 				$(placeHolder).css('width', o.width);
+				
 				
 				// Add an id
 				// var GraphUniqueID = 'graphid' + new Date().getTime(); // Generate a new ID

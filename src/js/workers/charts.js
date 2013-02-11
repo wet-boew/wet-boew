@@ -14,7 +14,7 @@
 	_pe.fn.charts = {
 		type: 'plugin',
 		depends: ['parserTable', 'flot', 'flotPie', 'charts'],
-		polyfills: ['detailssummary'],
+		polyfills: ['detailssummary', 'canvas'],
 		_exec: function (elm) {
 			_pe.fn.chartsGraph.generate(elm);
 		} // end of exec
