@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
@@ -36,6 +35,10 @@
 	@include border-top-right-radius(0.6em);
 }
 
+%gcwu-default-mobile-font-weight-normal {
+	font-weight: normal;
+}
+
 body {
 	@if $experimental-support-for-webkit {
 		-webkit-text-size-adjust: none;
@@ -60,7 +63,7 @@ blockquote {
 %no-margin-no-shadow {
 	margin-left: 0;
 	margin-right: 0;
-	@include text-shadow(none);
+	text-shadow: none;
 }
 
 form {
@@ -124,8 +127,9 @@ table {
 	}
 	a {
 		font-size: 1.5em;
+		@extend %gcwu-default-mobile-font-weight-normal;
 		color: #fff !important;
-		@include text-shadow(0 1px 1px #044062);
+		text-shadow: 0 1px 1px #044062;
 		text-decoration: none;
 	}
 }
@@ -161,22 +165,9 @@ table {
 }
 
 #wb-main-in {
-	padding: 3px;
+	padding: 0 3px;
 	h1 {
-		font-size: 1.5em;
-		font-weight: 400;
-		margin: -3px;
-		padding: 0 3px;
-		border: 1px solid #999;
-		border-width: 1px 0 0 0;
-		@include text-shadow(none);
-		position: static !important;
-		&.wb-invisible {
-			position: absolute !important;
-		}
-	}
-	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
-		margin-bottom: 20px;
+		margin-top: 0.5em;
 	}
 }
 
@@ -221,10 +212,6 @@ table {
 	}
 }
 
-%background-efefef {
-	background: #efefef;
-}
-
 #gcwu-gcnb {
 	min-height: 41px;
 	.ui-header {
@@ -232,9 +219,6 @@ table {
 	}
 	li {
 		@extend %gcwu-default-mobile-display-none;
-	}
-	[id*="-lang"] {
-		@extend %gcwu-default-mobile-display-block;
 	}
 }
 
@@ -305,7 +289,7 @@ table {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
 	@extend %gcwu-default-mobile-no-rounded-corners;
-	@include text-shadow(0 1px 1px #fff);
+	text-shadow: 0 1px 1px #fff;
 	border-bottom: 1px solid #ccc;
 	@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 	ol {
@@ -347,7 +331,7 @@ table {
 	display: block;
 }
 
-%white-space-normal {
+%gcwu-default-mobile-white-space-normal {
 	white-space: normal;
 }
 
@@ -366,6 +350,16 @@ table {
 .ui-content {
 	.ui-listview {
 		margin: 0 -15px;
+	}
+}
+
+#popupLanguages {
+	li {
+		.ui-btn-text {
+			&:first-letter {
+				text-transform: capitalize;
+			}
+		}
 	}
 }
 
@@ -456,6 +450,7 @@ select {
 
 #jqm-wb-mb {
 	a {
+		text-shadow: none;
 		&:link {
 			text-decoration: none
 		}
@@ -488,7 +483,7 @@ select {
 		}
 	}
 	.ui-btn-inner {
-		@extend %white-space-normal;
+		@extend %gcwu-default-mobile-white-space-normal;
 	}
 	.ui-btn-icon-top {
 		.ui-btn-inner {
@@ -513,7 +508,7 @@ select {
 	.ui-collapsible-set {
 		margin: 0;
 		a {
-			@extend %white-space-normal;
+			@extend %gcwu-default-mobile-white-space-normal;
 		}
 		.ui-collapsible:not(:first-child) {
 			@extend %gcwu-default-mobile-no-top-rounded-corners;
@@ -580,6 +575,11 @@ select {
 		border-left: none;
 		border-right: none;
 		background: #F4F4F4;
+		.wb-nested-menu {
+			a {
+				font-size: 0.8em;
+			}
+		}
 	}
 	.ui-btn {
 		margin: 0;
@@ -617,14 +617,6 @@ select {
 	}
 }
 
-.mobile-hide {
-	display: none !important;
-}
-
-.mobile-show {
-	display: block !important;
-}
-
 .ui-loader-default {
 	h1 {
 		margin: 0;
@@ -657,18 +649,6 @@ select {
 			padding: 0.45em 0.79em;
 		}
 	}
-	#wb-main-in {
-		h1 {
-			background: #eee;
-		}
-	}
-	#gcwu-tctr {
-		li {
-			&.gcwu-tc {
-				padding-left: 0;
-			}
-		}
-	}
 	#gcwu-sft-in {
 		background: none;
 		padding-left: 5px;
@@ -682,9 +662,6 @@ select {
 }
 
 .pe-disable {
-	#gcwu-psnb {
-		margin-top: -11px;
-	}
 	#gcwu-psnb, #gcwu-srchbx {
 		width: 100% !important;
 		float: none;
@@ -705,6 +682,7 @@ select {
 	}
 	#gcwu-srchbx {
 		@extend %gcwu-default-mobile-display-block;
+		margin-bottom: 0;
 	}
 	#wb-sec {
 		@extend %gcwu-default-mobile-display-block;
@@ -726,7 +704,7 @@ select {
 		}
 	}
 }
-/* Right to left (RTL) CSS */
+
 /* Right to left (RTL) CSS */
 %rtl-scalex {
 	@include scaleX(-1);
@@ -895,14 +873,6 @@ select {
 	&.no-js {
 		#gcwu-sft-in {
 			padding-right: 5px;
-		}
-		#gcwu-tctr {
-			li {
-				&.gcwu-tc {
-					padding-left: 9px;
-					padding-right: 0;
-				}
-			}
 		}
 	}
 }

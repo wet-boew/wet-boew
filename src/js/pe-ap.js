@@ -115,7 +115,7 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = $('html'), hlinks, hlinks_same, $this, target, test, init_on_mobileinit = false;
+			var $html = $('html'), hlinks, hlinks_same, $this, target, classes, test, init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
@@ -140,8 +140,16 @@
 			pe.urlhash = pe.urlpage.hash;
 			pe.urlquery = pe.urlpage.params;
 
-			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
+			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
+			pe.mobile = pe.mobilecheck();
+			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? ' mobile-view' : ' desktop-view')) : '';
+			classes += (pe.touchscreen ? ' touchscreen' : '');
+			$html.removeClass('no-js').addClass(classes);
+
+			// Identify IE9+ browser
+			if (pe.ie > 8) {
+				$html.addClass('ie' + parseInt(pe.ie, 10));
+			}
 
 			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
 				return this.href.indexOf('#') !== -1;
@@ -151,9 +159,7 @@
 			});
 
 			// Is this a mobile device?
-			if (pe.mobilecheck()) {
-				pe.mobile = true;
-				
+			if (pe.mobile) {
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
 				if (test === 0) {
@@ -202,8 +208,12 @@
 					}
 				}
 
-				if (pe.ie > 0 && pe.ie < 9) {
-					pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
+				if (pe.ie > 0) {
+					if (pe.ie < 9) {
+						pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
+					} else {
+						pe.wb_load({'plugins': {'equalize': pe.main}}, 'equalize-loaded');
+					}
 				}
 			});
 
@@ -244,7 +254,7 @@
 							}
 						});
 
-						//Load the mobile or desktop view
+						// Load the mobile or desktop view
 						if (pe.mobile) {
 							wet_boew_theme.mobileview();
 						} else {
@@ -948,12 +958,15 @@
 					listView = '<ul data-role="listview" data-theme="' + theme2 + '">',
 					listItems,
 					listItem,
+					listItem2,
 					sectionOpen = '<div data-theme="' + theme1 + '"' + ' class="wb-nested-menu',
 					sectionLink = '<a data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
 					sectionLinkOpen = '">' + headingOpen + sectionLink,
 					sectionLinkClose = '</a>' + headingClose,
 					link = '<a data-role="button" data-icon="arrow-r" data-iconpos="right" data-corners="false" href="',
-					menu;
+					menu,
+					i,
+					len;
 				collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true);
 				collapsible = (collapsible !== undefined ? collapsible : false);
 				returnString = (returnString !== undefined ? returnString : false);
@@ -996,19 +1009,28 @@
 								nextDOM = next[0];
 								if (nextDOM.tagName.toLowerCase() === 'ul') {
 									menu += listView;
-									nested = next.find('li ul');
-									if (nested.length !== 0) { // Special handling for a nested list
+									nested = nextDOM.querySelector('li ul');
+									if (nested !== null && nested.length !== 0) { // Special handling for a nested list
 										hnestTag = 'h' + (hlevel + 1);
-										hnestDOM = nested[0];
-										hnestLinkDOM = nested.prev('a')[0];
-										menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
-										listItems = hnestDOM.getElementsByTagName('li');
-										for (nested_i = 0, nested_len = listItems.length; nested_i !== nested_len; nested_i += 1) {
-											listItem = listItems[nested_i];
-											hlinkDOM = listItem.getElementsByTagName('a')[0];
-											menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
+										listItems = nextDOM.children;
+										for (i = 0, len = listItems.length; i !== len; i += 1) {
+											listItem = listItems[i];
+											hnestDOM = listItem.getElementsByTagName('li');
+											menu += '<li>';
+											if (hnestDOM.length !== 0) {
+												hnestLinkDOM = listItem.children[0];
+												menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+												for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
+													listItem2 = hnestDOM[nested_i];
+													hlinkDOM = listItem2.querySelector('a');
+													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
+												}
+												menu += '</ul></div>';
+											} else {
+												menu += listItem.innerHTML;
+											}
+											menu += '</li>';
 										}
-										menu += '</ul></div>';
 									} else {
 										menu += nextDOM.innerHTML;
 									}

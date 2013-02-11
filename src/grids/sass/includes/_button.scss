@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
@@ -21,32 +20,27 @@
 			@include single-transition(background-position, 0.1s, linear);
 		}
 
-		&.button-disabled { //TODO: merge the disabled items together as they are apart for now for IE8
+		@include button-disabled {
 			background: none;
 			@include box-shadow(none);
 			cursor: default;
 			font-style: italic;
-			@include text-shadow(none);
-		}
-		
-		&:disabled {  //TODO: merge the disabled items together as they are apart for now for IE8
-			background: none;
-			@include box-shadow(none);
-			cursor: default;
-			font-style: italic;
-			@include text-shadow(none);
+			text-shadow: none;
 		}
 	}
 
+	%grid-button-color-button-accent {
+		@include color-button($accent);
+	}
 	/* added for Firefox, Chrome, Safari to default submit buttons to blue */
 	input[type="button"] {
-		@include color-button($accent);
+		@extend %grid-button-color-button-accent;
 	}
 
 	/* without line 29 the buttons would not be coloured in IE, move to fixes? */
 	input, button, a, summary {
 		&.button-accent {
-			@include color-button($accent);
+			@extend %grid-button-color-button-accent;
 		}
 		&.button-dark {
 			@include color-button($dark);
@@ -70,20 +64,13 @@
 				@include box-shadow(none);
 				outline-color: transparent;
 				text-decoration: underline;
-				@include text-shadow(none);
+				text-shadow: none;
 			}
 			&:hover, &:focus, &:active {
 				color: $attention !important;
 			}
 
-			&.button-disabled {  //TODO: merge the disabled items together as they are apart for now for IE8
-				text-decoration: none !important;
-				&:hover, &:focus, &:active {
-					color: $dark !important;
-				}
-			}
-			
-			&:disabled {  //TODO: merge the disabled items together as they are apart for now for IE8
+			@include button-disabled {
 				text-decoration: none !important;
 				&:hover, &:focus, &:active {
 					color: $dark !important;
@@ -242,7 +229,7 @@
 
 	$text: contrast-color($color, $dark, $white, 55%);
 	color: $text !important;
-	@include text-shadow(contrast-color($text, $dark, $white, 50%) 0 1px 1px);
+	text-shadow: 0 1px 1px contrast-color($text, $dark, $white, 50%);
 
 	@include background-image(linear-gradient($color, darken($color, 10%)));
 	&:hover, &:focus, &:active {
@@ -253,11 +240,7 @@
 			border-color: $text;
 		}
 	}
-	&.button-disabled { //TODO: merge the disabled items together as they are apart for now for IE8
-		background-color: $color;
-		border-color: darken($color, 5%);
-	}
-	&:disabled { //TODO: merge the disabled items together as they are apart for now for IE8
+	@include button-disabled {
 		background-color: $color;
 		border-color: darken($color, 5%);
 	}
@@ -267,4 +250,20 @@
 	font-size: $size;
 	line-height: $height;
 	padding: $padding;
+}
+
+@mixin button-disabled() {
+	@if $legacy-support-for-ie8 {
+		&.button-disabled {
+			@content;
+		}
+		
+		&:disabled {
+			@content;
+		}
+	} @else {
+		&.button-disabled, &:disabled {
+			@content;
+		}
+	}
 }

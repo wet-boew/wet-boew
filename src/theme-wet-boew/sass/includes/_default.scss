@@ -2,29 +2,97 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
-
 #wb-skip {
 	.ui-link {
 		text-shadow: none !important;
 	}
 }
-
 #wb-head, #wb-foot, #wb-sec, #wet-date-mod {
 	line-height: normal;
 }
  
-#wet-fullhd h2, #wet-srchbx label, #wet-sft h3, #wet-bc h2, #wet-fullft h3 {
-	clip: rect(1px, 1px, 1px, 1px);
+%wet-default-hidden-clip {
+	clip: rect(1px, 1px, 1px, 1px);//TODO: Should have old IE class withouth commas
 	height: 0 !important;
 	overflow: hidden !important;
 	position: absolute;
 	width: 0 !important;
 	margin: 0 !important;
 }
+ 
+#wet-fullhd {
+	h2 {
+		@extend %wet-default-hidden-clip;
+	}
+}
+
+#wet-psnb {
+	h2 {
+		@extend %wet-default-hidden-clip;
+	}
+}
+
+#wet-srchbx {
+	h2 {
+		@extend %wet-default-hidden-clip;
+	}
+	label {
+		@extend %wet-default-hidden-clip;
+	}
+}
+
+#wet-sft {
+	h3 {
+		@extend %wet-default-hidden-clip;
+	}
+}
+
+#wet-bc {
+	h2 {
+		@extend %wet-default-hidden-clip;
+	}
+}
+
+#wet-bc-in {
+	color: #555;
+	ol {
+		line-height: 1.57em;
+		list-style-type: none;
+		padding: 0;
+		&:after {
+			content:".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+	}
+	li {
+		float: left;
+		white-space: nowrap;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
+		}
+	}
+	a {
+		color: #295376;
+		text-decoration: none;
+		&:hover, &:focus, &:active {
+			color: #295376;
+			text-decoration: underline;
+		}
+	}
+}
+
+#wet-fullft {
+	h3 {
+		@extend %wet-default-hidden-clip;
+	}
+}
 
 #wet-date-mod {
-	dt,dd{
+	dt, dd {
 		float: left;
 	}
 	dd {
@@ -43,12 +111,12 @@
 	clear: left;
 	font-size: 130%;
 	text-shadow: 1px 1px 1px #333;
-	p{
+	p {
 		margin: 0 auto;
 		padding-top: 1px;
 		padding-bottom: 5px;
 	}
-	a{
+	a {
 		color: #fff;
 		text-decoration: none;
 		padding: 0 5px 0 10px;
@@ -57,7 +125,7 @@
 		font-size: 90%;
 		&:first-child {
 			border-left: none;
-			font-size: 120%;
+			font-size: 100%;
 		}
 	}
 }
@@ -68,7 +136,6 @@
 		dt, dd {
 			float: right;
 		}
-
 		dd {
 			margin: 0 0.39em 0 0;
 		}
@@ -76,12 +143,10 @@
 
 	#wet-subsite {
 		clear: right;
-
 		a {
 			padding: 0 10px 0 5px;
 			border-left: none;
 			border-right: 1px solid #ccc;
-
 			&:first-child {
 				border-right: none;
 			}

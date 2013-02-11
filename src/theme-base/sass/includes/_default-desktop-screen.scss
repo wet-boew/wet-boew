@@ -205,33 +205,10 @@ a {
 }
 
 #base-fullhd {
-	@extend %base-default-desktop-screen-overflow-hidden;
-	background: #555;
-	font-size: 0.9em;
-	color: #FFF;
-	ul {
-		list-style-type: none;
-		float: right;
-		margin: 0;
-		padding: 0;
-		li {
-			float: left;
-			padding: 13px 0;
-			&#base-fullhd-lang {
-				a {
-					padding-right: 10px;
-					margin-right: 1px;
-					text-transform: capitalize;
-				}
-			}
-		}
-	}
 	a {
 		@extend %base-default-desktop-screen-psuedo-underline;
 		border-left: 1px solid #fff;
-		color: #fff;
 		display: block;
-		text-decoration: none;
 		padding: 0 1em;
 	}
 	li {
@@ -252,7 +229,7 @@ a {
 	color: #fff;
 	font-size: 1.52em;
 	font-family: Arial, Helvetica, sans-serif;
-	text-shadow: #333 1px 1px 1px;
+	text-shadow: 1px 1px 1px #333;
 }
 
 #base-title-in {
@@ -329,13 +306,13 @@ a {
 	@extend %base-default-desktop-screen-border-radius-2px;
 	@extend %base-default-desktop-screen-box-shadow-none;
 	color: #333;
-	text-shadow: 0 1px 0 #eee;//TODO: Use mixin
+	text-shadow: 0 1px 0 #eee;
 	font-weight: 400;
 	padding: 2px 6px;
 	display: inline;
 	&:focus, &:hover {
 		background: #ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
-		text-shadow: 0 1px 0 #ddd;//TODO: Use mixin
+		text-shadow: 0 1px 0 #ddd;
 		@extend %base-default-desktop-screen-box-shadow-none;
 		border:{
 			bottom: 1px solid #999;

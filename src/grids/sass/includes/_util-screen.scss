@@ -8,7 +8,6 @@
 @import "mixins";
 /*   base appearance   */
 body {
-	font-size: 13px;
 	line-height: 1.5em;
 }
 
@@ -112,7 +111,6 @@ h1 {
 	&:not(.ui-title) {
 		color: $dark;
 		border-bottom: 1px dotted $silver;
-		font-size: 200%;
 		padding: 0;
 	}
 }
@@ -120,28 +118,24 @@ h1 {
 h2 {
 	&:not(.ui-title) {
 		color: lighten($dark, 20%);
-		font-size: 185%;
 	}
 }
 
 h3 {
 	&:not(.ui-title) {
 		color: $medium;
-		font-size: 170%;
 	}
 }
 
 h4 {
 	&:not(.ui-title) {
 		color: $dark;
-		font-size: 155%;
 	}
 }
 
 h5 {
 	&:not(.ui-title) {
 		color: lighten($dark, 20%);
-		font-size: 140%;
 		@extend %font-weight-700;
 	}
 }
@@ -149,7 +143,6 @@ h5 {
 h6 {
 	&:not(.ui-title) {
 		color: $medium;
-		font-size: 125%;
 		@extend %font-weight-700;
 	}
 }
@@ -246,7 +239,7 @@ code {
 		weight: $font-weight-normal;
 	}
 	padding: 0 2px !important;
-	@include text-shadow(none);
+	text-shadow: none;
 
 	@include colorize-base($light);
 	@include colorize-border($light);
@@ -561,7 +554,7 @@ table {
 		text-align: center;
 		color: #fff;
 		font-size: 85%;
-		@include text-shadow(0 1px 0 #111);
+		text-shadow: 0 1px 0 #111;
 		margin: 5px 0 0 0;
 		margin: 0 8px;
 		padding: 0 0 1px 0;
@@ -587,7 +580,7 @@ table {
 		color: $dark;
 		letter-spacing: -0.1em;
 		line-height: 55px;
-		@include text-shadow(1px 1px 0 $white);
+		text-shadow: 1px 1px 0 $white;
 		margin: 0 !important;
 		width: 100%;
 	}

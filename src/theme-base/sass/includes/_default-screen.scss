@@ -2,12 +2,39 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 
 body {
 	margin: 0;
+}
+
+#base-fullhd {
+	overflow: hidden;
+	background: #555;
+	font-size: 0.9em;
+	color: #fff;
+	ul {
+		list-style-type: none;
+		float: right;
+		margin: 0;
+		padding: 0;
+		li {
+			float: left;
+			padding: 13px 0;
+			&#base-fullhd-lang {
+				a {
+					padding-right: 10px;
+					margin-right: 1px;
+					text-transform: capitalize;
+				}
+			}
+		}
+	}
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
 }
 
 .wb-sec-def {//TODO: Highly nested class, any cleanup possible?

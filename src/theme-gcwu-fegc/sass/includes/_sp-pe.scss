@@ -5,12 +5,7 @@
 @import "compass/css3/inline-block";
 @import "compass/css3/appearance";
 @import "compass/css3/border-radius";
-@import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
-
-%gcwu-sp-pe-no-text-shadow {
-	@include text-shadow(none);
-}
 
 h1 {
 	font-size: 2em;
@@ -18,7 +13,7 @@ h1 {
 	border: none;
 	font-weight: bold;
 	margin-bottom: 0 !important;
-	@extend %gcwu-sp-pe-no-text-shadow;
+	text-shadow: none;
 }
 
 h2 {
@@ -31,7 +26,7 @@ h2 {
 }
 
 #gcwu-title {
-	@extend %gcwu-sp-pe-no-text-shadow;
+	text-shadow: none;
 }
 
 #wb-body {
@@ -98,7 +93,7 @@ h2 {
 			color: #333;
 			padding: 10px 0;
 			@include border-radius(2px);
-			@include text-shadow(0 1px 0 #eee);
+			text-shadow: 0 1px 0 #eee;
 			font: {
 				weight: 700;
 				size: 120%;
@@ -108,7 +103,7 @@ h2 {
 			text-decoration: none;
 			text-transform: capitalize;
 			&:hover, &:focus, &:active {
-				@include text-shadow(0 1px 0 #ddd);
+				text-shadow: 0 1px 0 #ddd;
 				@include box-shadow(none);
 				border: 1px solid #999;
 			}
