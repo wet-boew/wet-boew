@@ -14,21 +14,21 @@
 	width: 100% !important;
 }
 
-%base-mobile-display-none-important {
+%wb-mobile-display-none-important {
 	display: none !important;
 }
-%base-mobile-display-block-important {
+%wb-mobile-display-block-important {
 	display: block !important;
 }
 
 .mobile-hide {
-	@extend %base-mobile-display-none-important;
+	@extend %wb-mobile-display-none-important;
 }
 .mobile-show {
-	@extend %base-mobile-display-block-important;
+	@extend %wb-mobile-display-block-important;
 }
 .desktop-view {
 	.mobile-show {
-		@extend %base-mobile-display-none-important;
+		@extend %wb-mobile-display-none-important;
 	}
 }
