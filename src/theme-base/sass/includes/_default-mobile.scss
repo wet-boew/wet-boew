@@ -108,7 +108,7 @@ table {
 }
 
 #wb-head {
-	@extend %period-after-pseudo;
+	@extend %base-default-mobile-period-after-pseudo;
 }
 
 [id|="wb-body"] {
@@ -130,7 +130,7 @@ table {
 }
 
 #base-date-mod {
-	@extend %period-after-pseudo;
+	@extend %base-default-mobile-period-after-pseudo;
 	float: right;
 	margin: 5px 0;
 }
@@ -140,11 +140,11 @@ table {
 }
 
 #wb-main-in {
-	padding: 3px;
+	padding: 0 3px;
 	h1 {
 		font-size: 1.5em;
 		font-weight: 400;
-		margin: -3px;
+		margin: 0 -3px 10px -3px;
 		padding: 0 3px;
 		border: 1px solid #999;
 		border-width: 1px 0 0 0;
@@ -189,6 +189,9 @@ table {
 			border-bottom-width: 1px;
 			@extend %base-default-mobile-bottom-rounded-corners;
 		}
+	}
+	.mobile-lang-current {
+		text-transform: capitalize;
 	}
 }
 
@@ -314,7 +317,7 @@ table {
 	clear: both;
 }
 
-%period-after-pseudo {
+%base-default-mobile-period-after-pseudo {
 	&:after {
 		content: ".";
 		@extend %base-default-mobile-display-block;
@@ -332,7 +335,7 @@ table {
 	display: block;
 }
 
-%white-space-normal {
+%base-default-mobile-white-space-normal {
 	white-space: normal;
 }
 
@@ -351,6 +354,16 @@ table {
 .ui-content {
 	.ui-listview {
 		margin: 0 -15px;
+	}
+}
+
+#popupLanguages {
+	li {
+		.ui-btn-text {
+			&:first-letter {
+				text-transform: capitalize;
+			}
+		}
 	}
 }
 
@@ -439,6 +452,9 @@ select {
 	}
 }
 
+%base-default-mobile-margin-0 {
+	margin: 0;
+}
 #jqm-wb-mb {
 	a {
 		&:link {
@@ -451,10 +467,14 @@ select {
 		}
 	}
 	div {
-		&.ui-collapsible-set + h2 {
-			border-top: 3px groove #fff;
-			padding-top: 8px;
-			margin-top: 23px;
+		&.ui-collapsible-set {
+			+ {
+				h2 {
+					border-top: 3px groove #fff;
+					padding-top: 8px;
+					margin-top: 23px;
+				}
+			}
 		}
 	}
 	.ui-content {
@@ -473,7 +493,7 @@ select {
 		}
 	}
 	.ui-btn-inner {
-		@extend %white-space-normal;
+		@extend %base-default-mobile-white-space-normal;
 	}
 	.ui-btn-icon-top {
 		.ui-btn-inner {
@@ -498,15 +518,19 @@ select {
 	.ui-collapsible-set {
 		margin: 0;
 		a {
-			@extend %white-space-normal;
+			@extend %base-default-mobile-white-space-normal;
 		}
-		.ui-collapsible:not(:first-child) {
-			@extend %base-default-mobile-no-top-rounded-corners;
-		}
-		.ui-collapsible:last-child {
-			.ui-collapsible-content {
-				> :not(:last-child) {
-					@extend %base-default-mobile-no-bottom-rounded-corners;
+		.ui-collapsible {
+			:not(:first-child) {
+				@extend %base-default-mobile-no-top-rounded-corners;
+			}
+			:last-child {
+				.ui-collapsible-content {
+					> {
+						:not(:last-child) {
+							@extend %base-default-mobile-no-bottom-rounded-corners;
+						}
+					}
 				}
 			}
 		}
@@ -524,8 +548,17 @@ select {
 	}
 	.wb-nested-menu {
 		padding: 0;
-		h2, h3, h4, h5 {
-			margin: 0;
+		h2 {
+			@extend %base-default-mobile-margin-0;
+		}
+		h3 {
+			@extend %base-default-mobile-margin-0;
+		}
+		h4 {
+			@extend %base-default-mobile-margin-0;
+		}
+		h5 {
+			@extend %base-default-mobile-margin-0;
 		}
 		.ui-btn-icon-right {
 			.ui-btn-inner {
@@ -651,11 +684,15 @@ select {
 	}
 }
 
+%base-default-mobile-width-100-z-index-100 {
+	width: 100%;
+	z-index: 100;
+}
+%base-default-mobile-width-100-important-float-none {
+	width: 100% !important;
+	float: none;
+}
 .pe-disable {
-	#base-psnb, #base-srchbx {
-		width: 100% !important;
-		float: none;
-	}
 	#base-fullhd { 
 		ul {
 			@extend %base-default-mobile-display-block;
@@ -669,8 +706,13 @@ select {
 	}
 	#base-psnb {
 		@extend %base-default-mobile-display-block;
+		@extend %base-default-mobile-width-100-important-float-none;
 		.mb-menu {
 			background: #555;
+		}
+		#base-psnb-in {
+			@extend %base-default-mobile-display-block;
+			@extend %base-default-mobile-width-100-z-index-100;
 		}
 	}
 	#base-srchbx {
@@ -685,28 +727,35 @@ select {
 	#wb-foot {
 		@extend %base-default-mobile-display-block;
 	}
-	#base-psnb #base-psnb-in, #base-srchbx form {
-		@extend %base-default-mobile-display-block;
-		width: 100%;
-		z-index: 100;
-	}
 	#base-srchbx {
+		@extend %base-default-mobile-width-100-important-float-none;
 		form {
 			border-bottom: 1px solid #999;
 			text-align: center;
 			background: #555;
 			padding: 10px 0;
+			@extend %base-default-mobile-display-block;
+			@extend %base-default-mobile-width-100-z-index-100;
 		}
 	}
 }
+
 /* Right to left (RTL) CSS */
-/* Right to left (RTL) CSS */
-%rtl-scalex {
+%base-default-mobile-rtl-scalex {
 	@include scaleX(-1);
 	@extend %base-default-mobile-display-block;
 }
 %base-default-mobile-padding-right-0 {
 	padding-right: 0;
+}
+%base-default-mobile-text-align-right {
+	text-align: right;
+}
+%base-default-mobile-text-align-center {
+	text-align: center;
+}
+%base-default-mobile-float-left {
+	float: left;
 }
 [dir="rtl"] {
 	#base-date-mod {
@@ -723,38 +772,53 @@ select {
 	}
 	
 	#base-mnavbar {
-		@extend %rtl-scalex;
+		@extend %base-default-mobile-rtl-scalex;
 		left: 3px;
 		right: auto;
 	}
 
 	#base-bc-in {
-		&, li:last-child, a {
-			@extend %rtl-scalex;
+		@extend %base-default-mobile-rtl-scalex;
+		li {
+			&:last-child {
+				@extend %base-default-mobile-rtl-scalex;
+			}
+		}
+		a {
+			@extend %base-default-mobile-rtl-scalex;
 		}
 	}
 
 	.ui-popup-container, #wb-main {
-		.ui-btn, .ui-btn-text {
-			@extend %rtl-scalex;
-			text-align: right;
+		.ui-btn {
+			@extend %base-default-mobile-rtl-scalex;
+			@extend %base-default-mobile-text-align-right;
+		}
+		.ui-btn-text {
+			@extend %base-default-mobile-rtl-scalex;
+			@extend %base-default-mobile-text-align-right;
 		}
 		.ui-submit, .ui-select {
-			.ui-btn, .ui-btn-text {
-				text-align: center;
+			.ui-btn {
+				@extend %base-default-mobile-text-align-center;
+			}
+			.ui-btn-text {
+				@extend %base-default-mobile-text-align-center;
 			}
 		}
 		.ui-li-has-arrow {
 			.ui-btn-inner {
-				a.ui-link-inherit {
-					padding-right: 12px;
+				a {
+					&.ui-link-inherit {
+						padding-right: 12px;
+					}
 				}
 			}
 		}
 	}
 	
 	.ul-li {
-		text-align: right;
+		@extend %base-default-mobile-text-align-right;
 	}
 
 	#jqm-wb-mb {
@@ -767,7 +831,6 @@ select {
 
 			a {
 				padding-right: 55px;
-
 				&.ui-btn-icon-left {
 					@extend %base-default-mobile-padding-right-0;
 				}
@@ -776,7 +839,6 @@ select {
 			.wb-nested-menu {
 				a {
 					padding-right: 70px;
-
 					&.ui-btn-icon-left {
 						padding-left: 15px;
 						padding-right: 15px;
@@ -787,7 +849,6 @@ select {
 					a {
 						padding-left: 0;
 						padding-right: 85px;
-
 						&.ui-btn-icon-left {
 							padding-left: 30px;
 							padding-right: 30px;
@@ -798,16 +859,22 @@ select {
 		}
 
 		.ui-collapsible-content {
-			> a {
-				@extend %base-default-mobile-padding-right-0;
+			> {
+				a {
+					@extend %base-default-mobile-padding-right-0;
+				}
 			}
 		}
 	}
 
 	#base-sft {
 		li {
-			&.ui-block-a a.ui-btn {
-				border-left-width: 0;
+			&.ui-block-a {
+				a {
+					&.ui-btn {
+						border-left-width: 0;
+					}
+				}
 			}
 		}
 	}
@@ -815,9 +882,10 @@ select {
 	#base-fullft {
 		li {
 			float: right !important;
-
-			&#base-fullft-ca div {
-				text-align: right;
+			&#base-fullft-ca {
+				div {
+					@extend %base-default-mobile-text-align-right;
+				}
 			}
 		}
 	}
@@ -836,18 +904,19 @@ select {
 		ul {
 			margin: 0 0 0 5px;
 			#base-fullhd-lang {
-				float: left;
+				@extend %base-default-mobile-float-left;
 			}
 		}
 	}
 
-	#base-fullhd-lang a {
-		float: left;
+	#base-fullhd-lang {
+		a {
+			@extend %base-default-mobile-float-left;
+		}
 	}
 
 	#base-psnb, #base-srchbx {
-		float: left;
-
+		@extend %base-default-mobile-float-left;
 		h2 {
 			padding: 0.7em 0 0.8em 18px;
 			border-right: 1px solid #CCC;
@@ -855,14 +924,22 @@ select {
 		}
 	}
 
-	#base-bnr .ui-navbar a.ui-btn-active {
-		border: 1px solid #CCC;
-		border-left: none;
+	#base-bnr {
+		.ui-navbar {
+			a {
+				&.ui-btn-active {
+					border: 1px solid #CCC;
+					border-left: none;
+				}
+			}
+		}
 	}
 
-	#base-srchbx h2 {
-		padding-right: 0;
-		padding-left: 20px;
+	#base-srchbx {
+		h2 {
+			padding-right: 0;
+			padding-left: 20px;
+		}
 	}
 
 	&.no-js {

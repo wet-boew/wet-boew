@@ -5,8 +5,10 @@
 [class*="ui-body-"], [class*="ui-overlay-"] {
 	text-shadow: none;
 }
-[class*="ui-body-"] .ui-link {
-	font-weight: normal;
+[class*="ui-body-"] {
+	.ui-link {
+		font-weight: normal;
+	}
 }
 
 %wet-default-desktop-background-none {
@@ -54,7 +56,7 @@ h1 {
 #wet-bc-in {
 	font-size: 85%;
 	color: #555;
-	ol{
+	ol {
 		line-height: 1.57em;
 		list-style-type: none;
 		margin: 6px 10px 2px;

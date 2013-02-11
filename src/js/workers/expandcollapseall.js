@@ -117,7 +117,7 @@
 			// Make sure there is at least one toggle control 
 			if(!opts.togglers || (!opts.togglers.toggle && !opts.togglers.open && !opts.togglers.close)){
 				opts.togglers.toggle = true;
-			}				
+			}
 							
 			// Create the requested togglers and add to the page
 			types = _pe.array.keys(opts.togglers);
