@@ -164,8 +164,6 @@
 				wet_boew_theme.fullhd.children('#wet-fullhd-in').before(header);
 				// Apply a theme to the site title
 				node.className += ' ui-bar-b';
-				// Apply a theme to the h1
-				pe.main[0].getElementsByTagName('h1')[0].className += ' ui-bar-c';
 			
 				// Build the settings popup
 				lang_links = wet_boew_theme.fullhd.find('li[id*="-lang"]');

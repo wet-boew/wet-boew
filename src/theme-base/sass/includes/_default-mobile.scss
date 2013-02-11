@@ -35,6 +35,10 @@
 	@include border-top-right-radius(0.6em);
 }
 
+%base-default-mobile-font-weight-normal {
+	font-weight: normal;
+}
+
 body {
 	@if $experimental-support-for-webkit {
 		-webkit-text-size-adjust: none;
@@ -123,6 +127,7 @@ table {
 	}
 	a {
 		font-size: 1.5em;
+		@extend %base-default-mobile-font-weight-normal;
 		color: #fff !important;
 		text-shadow: 0 1px 1px #044062;
 		text-decoration: none;
@@ -137,26 +142,6 @@ table {
 
 [class*="span-"]{
 	position: relative;
-}
-
-#wb-main-in {
-	padding: 0 3px;
-	h1 {
-		font-size: 1.5em;
-		font-weight: 400;
-		margin: 0 -3px 10px -3px;
-		padding: 0 3px;
-		border: 1px solid #999;
-		border-width: 1px 0 0 0;
-		text-shadow: none;
-		position: static !important;
-		&.wb-invisible {
-			position: absolute !important;
-		}
-	}
-	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
-		margin-bottom: 20px;
-	}
 }
 
 .clear {
@@ -248,7 +233,8 @@ table {
 	}
 	a {
 		padding: 3px;
-		white-space: normal;
+		@extend %base-default-mobile-white-space-normal;
+		@extend %base-default-mobile-font-weight-normal;
 	}
 }
 
@@ -667,12 +653,6 @@ select {
 			padding: 0.45em 0.79em;
 		}
 	}
-	#wb-main-in {
-		h1 {
-			background: #eee;
-		}
-	}
-
 	#base-sft-in {
 		padding-left: 5px;
 	}
