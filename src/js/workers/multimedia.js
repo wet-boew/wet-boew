@@ -629,6 +629,7 @@
 					success : function (data) {
 						var eventObj = {type: 'captionsloaded'};
 						if (data.indexOf('<html') > -1) {
+							data = data.replace(/<img [^>]*>/gi, ''); //Remove images to prevent them from being loaded
 							eventObj.captions = parse_html($(data));
 						} else {
 							eventObj.captions = parse_xml($(data));
