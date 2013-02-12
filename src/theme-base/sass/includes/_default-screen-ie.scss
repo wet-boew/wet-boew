@@ -64,7 +64,7 @@
 			display: inline;
 		}
 		#base-date-mod {
-			float: left;
+			@extend %base-default-screen-ie-float-left;
 			dt, dd {
 				@extend %base-default-screen-ie7-rtl-float-fix;
 			}

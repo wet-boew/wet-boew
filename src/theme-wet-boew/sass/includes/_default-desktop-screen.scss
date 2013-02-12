@@ -330,7 +330,7 @@ a {
 	}
 }
 
-%wet-default-desktop-scree-float-left {
+%wet-default-desktop-screen-float-left {
 	float: left;
 }
 %wet-default-desktop-scree-float-right {
@@ -340,7 +340,7 @@ a {
 [dir="rtl"] {
 	#wb-body, #wb-body-sec {
 		#wb-main {
-			@extend %wet-default-desktop-scree-float-left;
+			@extend %wet-default-desktop-screen-float-left;
 		}
 	}
 
@@ -363,19 +363,27 @@ a {
 
 	#wb-body-sec-sup {
 		#wb-main {
-			@extend %wet-default-desktop-scree-float-left;
+			@extend %wet-default-desktop-screen-float-left;
 		}
 	}
 	#wb-sup {
-		@extend %wet-default-desktop-scree-float-left;
+		@extend %wet-default-desktop-screen-float-left;
 	}
 
 	#wet-fullhd {
 		ul {
-			@extend %wet-default-desktop-scree-float-left;
+			@extend %wet-default-desktop-screen-float-left;
 			li {
 				float: right;
-				&#wet-fullhd-lang {
+				padding-left: 0;
+				border-right: 1px solid #777;
+				border-left: 0;
+				&:first-child {
+					a {
+						border-right: none;
+					}
+				}
+				&[id*="wet-fullhd-lang"] {
 					a {
 						padding-right: 0;
 						padding-left: 10px;
@@ -383,22 +391,9 @@ a {
 						margin-left: 1px;
 					}
 				}
-			}
-		}
-
-		li {
-			&:first-child {
-				a {
-					border-right: none;
+				&#wet-fullhd-lang-current {
+					padding-left: 10px;
 				}
-			}
-			&[id*="wet-fullhd-lang"] {
-				padding-left: 0;
-				border-right: 1px solid #777;
-				border-left: 0;
-			}
-			&#wet-fullhd-lang-current {
-				padding-left: 10px;
 			}
 		}
 	}
@@ -419,6 +414,10 @@ a {
 		#wet-srch {
 			margin-left: auto;
 			margin-right: 0;
+		}
+		input {
+			margin: 0 2px 2px 3px;
+			float: right;
 		}
 	}
 

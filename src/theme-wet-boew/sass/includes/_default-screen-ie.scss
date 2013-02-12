@@ -72,8 +72,40 @@
 
 	// Right to left (RTL) CSS
 	&[dir="rtl"] {
+		%wet-default-screen-ie7-rtl-float-fix {
+			zoom: 1;
+			float: none;
+			display: inline;
+		}
+
+		#wet-fullhd {
+			ul {
+				margin: 0;
+				@extend %wet-default-screen-ie-float-left;
+				li {
+					@extend %wet-default-screen-ie-float-left;
+					border-left: 1px solid #777;
+					border-right: none;
+					padding-left: 10px;
+					&:first-child {
+						border-left: none;
+						padding-left: 0;
+					}
+				}
+			}
+		}
+
+		#wet-srchbx {
+			input {
+				float: left;
+			}
+		}
+
 		#wet-date-mod {
 			@extend %wet-default-screen-ie-float-left;
+			dt, dd {
+				@extend %wet-default-screen-ie7-rtl-float-fix;
+			}
 		}
 
 		#wet-tctr {
