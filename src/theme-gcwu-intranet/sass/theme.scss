@@ -10,14 +10,14 @@
 @import '../../base/sass/modern-vendor-prefix';
 
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base';
+@import '../../base/sass/default';
 @import '../../theme-gcwu-fegc/sass/includes/default';
 @import 'includes/default';
 /* -----Build Include Section End----- */
 
 @media screen {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-screen';
+@import '../../base/sass/default-screen';
 @import '../../theme-gcwu-fegc/sass/includes/default-screen';
 /* -----Build Include Section End----- */
 }
@@ -46,14 +46,14 @@
 }
 @media (min-width: 768px) and (min-device-width: 768px) {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-desktop';
+@import '../../base/sass/default-desktop';
 @import '../../theme-gcwu-fegc/sass/includes/default-desktop';
 @import '../../theme-gcwu-fegc/sass/includes/default-desktop-images';
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width: 768px) and (min-device-width: 768px) {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-desktop-screen';
+@import '../../base/sass/default-desktop-screen';
 @import '../../theme-gcwu-fegc/sass/includes/default-desktop-screen';
 @import 'includes/default-desktop-screen';
 @import 'includes/default-desktop-screen-images';
@@ -63,7 +63,7 @@
 /* Mobile view */
 @media screen and (max-width: 767px), screen and (max-device-width: 767px) {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-mobile';
+@import '../../base/sass/default-mobile';
 @import '../../theme-gcwu-fegc/sass/includes/default-mobile';
 @import '../../theme-gcwu-fegc/sass/includes/default-mobile-images';
 @import 'includes/default-mobile';
@@ -72,7 +72,7 @@
 
 @media print {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-print';
+@import '../../base/sass/default-print';
 @import '../../theme-gcwu-fegc/sass/includes/default-print';
 /* -----Build Include Section End----- */
 }

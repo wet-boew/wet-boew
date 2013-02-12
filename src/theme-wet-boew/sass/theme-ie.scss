@@ -8,9 +8,9 @@
  *
  */
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base';
-@import '../../base/sass/base-desktop';
-@import '../../base/sass/base-ie';
+@import '../../base/sass/default';
+@import '../../base/sass/default-desktop';
+@import '../../base/sass/default-ie';
 @import 'includes/default';
 @import 'includes/default-desktop';
 @import 'includes/default-desktop-images-ie';
@@ -20,9 +20,9 @@
 
 @media screen{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-screen';
-@import '../../base/sass/base-desktop-screen';
-@import '../../base/sass/base-screen-ie';
+@import '../../base/sass/default-screen';
+@import '../../base/sass/default-desktop-screen';
+@import '../../base/sass/default-screen-ie';
 @import '../../grids/sass/responsive';
 @import '../../grids/sass/responsive-ie';
 @import 'includes/default-responsive';
@@ -34,8 +34,8 @@
 
 @media print{
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-print';
-@import '../../base/sass/base-print-ie';
+@import '../../base/sass/default-print';
+@import '../../base/sass/default-print-ie';
 @import 'includes/default-print';
 @import 'includes/default-print-ie';
 /* -----Build Include Section End----- */
