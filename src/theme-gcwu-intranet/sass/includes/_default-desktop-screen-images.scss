@@ -28,6 +28,14 @@
 	@extend %intranet-default-desktop-screen-images-background-deco;
 }
 
+#gcwu-bnr-in {
+	background: transparent url(../images/gcwu-bnr-in.png) no-repeat center 0;
+}
+
+#gcwu-bnr {
+	background: #29527D url(../images/gcwu-bnr.png) repeat-x 0 0;
+}
+
 #gcwu-psnb {
 	.mb-menu {
 		.nav-current {
