@@ -58,8 +58,16 @@
 	}
 	// Right to left (RTL) CSS
 	&[dir="rtl"] {
+		%base-default-screen-ie7-rtl-float-fix {
+			zoom: 1;
+			float: none;
+			display: inline;
+		}
 		#base-date-mod {
-			@extend %base-default-screen-ie-float-left;
+			float: left;
+			dt, dd {
+				@extend %base-default-screen-ie7-rtl-float-fix;
+			}
 		}
 		#base-tctr {
 			li {
@@ -67,6 +75,14 @@
 				&.base-tr {
 					padding-left: 0;
 					padding-right: 10px;
+				}
+			}
+		}
+		#base-fullhd {
+			ul {
+				@extend %base-default-screen-ie-float-left;
+				li {
+					@extend %base-default-screen-ie-float-left;
 				}
 			}
 		}

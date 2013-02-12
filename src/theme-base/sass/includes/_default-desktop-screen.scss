@@ -204,7 +204,7 @@ a {
 	}
 }
 
-#base-fullhd {
+#base-fullhd-in {
 	a {
 		@extend %base-default-desktop-screen-psuedo-underline;
 		border-left: 1px solid #fff;
@@ -217,6 +217,9 @@ a {
 				border-left: none;
 			}
 		}
+	}
+	p {
+		@extend %base-default-desktop-screen-float-left;
 	}
 }
 
@@ -353,7 +356,7 @@ a {
 			a {
 				&.mb-has-sm {
 					&:hover, &:link, &:visited {
-						background-color: #AAAAAA;
+						background-color: #CCCCCC;
 						color: #000000;
 					}
 				}
@@ -413,7 +416,7 @@ a {
 		ul {
 			@extend %base-default-desktop-screen-float-left;
 			li {
-				float: right;
+				@extend %base-default-desktop-screen-float-right;
 				&#base-fullhd-lang {
 					a {
 						padding: {
@@ -442,6 +445,13 @@ a {
 					border-right: none;
 				}
 			}
+		}
+		
+	}
+	
+	#base-fullhd-in {
+		p {
+			@extend %base-default-desktop-screen-float-right;
 		}
 	}
 
