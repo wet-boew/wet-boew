@@ -8,12 +8,22 @@
 	float: none !important;
 }
 
+[class*=span-] {
+	margin-bottom: 10px;
+}
+
+%grids-util-mobile-margin-0-important {
+	margin: 0 !important;
+}
 form {
 	[class*=width-] {
 		width: 100% !important;
 	}
-	[class*=margin-], [class*=span-]{
-		margin: 0 !important;
+	[class*=margin-] {
+		@extend %grids-util-mobile-margin-0-important;
+	}
+	[class*=span-]{
+		@extend %grids-util-mobile-margin-0-important;
 	}
 
 	&.background-light > * {
