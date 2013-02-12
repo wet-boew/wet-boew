@@ -138,11 +138,13 @@
 		#gcwu-gcft-fip {
 			ul {
 				li {
+					float: right;
 					&#gcwu-gcft-ca {
 						float: left !important;
 					}
 				}
 			}
+			margin-bottom: 10px;
 		}
 	}
 }
@@ -159,12 +161,22 @@
 		#gcwu-tctr {
 			li {
 				&.gcwu-tc {
-					border-right: 1px solid #999;
-					border-left: 0;
-					padding: 0 9px 0 10px;
+					border-left: 1px solid #999;
+					padding: 0 10px 0 9px;
 				}
 				&.gcwu-tr {
 					padding: 0 10px 0 6px;
+				}
+			}
+		}
+
+		#gcwu-gcft-fip {
+			ul {
+				li {
+					float: right;
+					&#gcwu-gcft-ca {
+						float: left !important;
+					}
 				}
 			}
 		}
