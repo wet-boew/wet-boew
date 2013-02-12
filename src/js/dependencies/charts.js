@@ -47,6 +47,11 @@
 				"labeltheadrownum-typeof": "number",
 				"labeltheadrownum-autocreate": true,
 				
+				// Legend Management
+				"legendinline-typeof": "boolean",
+				"legendinline-autocreate": true,
+				"nolegend-typeof": "boolean",
+				"nolegend-autocreate": true,
 				
 				// Force the Top and Bottom Value for a graph
 				"topvalue-autocreate": true,
@@ -1171,6 +1176,7 @@
 					// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
 					$(placeHolder).attr('aria-label', pieChartLabelText + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
 					
+					// Create the graphic
 					$.plot(placeHolder, allSeries, {
 						series: {
 							pie: {
@@ -1179,6 +1185,17 @@
 						}
 					});
 					
+					if (!o.legendinline) {
+						// Move the legend under the graphic
+						$('.legend > div', placeHolder).remove();
+						$('.legend > table', placeHolder).removeAttr('style').addClass('font-small');
+						$(placeHolder).css('height', 'auto');
+					}
+					if (o.nolegend) {
+						// Remove the legend
+						$('.legend', placeHolder).remove();
+					}
+			
 					/*
 					chartPlacement(allSeries, {
 						series: {
@@ -1403,10 +1420,21 @@
 				$(self).appendTo(figureElem);
 			}
 	
-			
+			// Create the graphic
 			$.plot(placeHolder, allSeries, {xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })});
 			
 			
+			if (!o.legendinline) {
+				// Move the legend under the graphic
+				$('.legend > div', placeHolder).remove();
+				$('.legend > table', placeHolder).removeAttr('style').addClass('font-small');
+				$(placeHolder).css('height', 'auto');
+			}
+			if (o.nolegend) {
+				// Remove the legend
+				$('.legend', placeHolder).remove();
+			}
+				
 		} // end of exec
 	};
 	window.pe = _pe;
