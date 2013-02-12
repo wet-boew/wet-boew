@@ -626,6 +626,9 @@
 					url : url,
 					context : evtmgr,
 					dataType : 'html',
+					dataFilter: function(data){
+						return data.replace(/<img [^>]*>/gi, ''); //Remove images to prevent them from being loaded
+					},
 					success : function (data) {
 						var eventObj = {type: 'captionsloaded'};
 						if (data.indexOf('<html') > -1) {
