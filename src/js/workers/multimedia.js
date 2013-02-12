@@ -270,7 +270,7 @@
 					// Determine when the loading icon should be shown. 
 					case 'waiting':
 						//Prevents the loading icon to show up when waiting for less than half a second
-						if(this.getPaused() === false && !this.loading){
+						if (this.getPaused() === false && !this.loading) {
 							this.loading = setTimeout(function () {
 								o = $w.find('.wb-mm-overlay');
 								o.empty().append(_pe.fn.multimedia._get_loading_ind(this, 'loading', _pe.dic.get('%loading'), 100, 100));
@@ -626,7 +626,7 @@
 					url : url,
 					context : evtmgr,
 					dataType : 'html',
-					dataFilter: function(data){
+					dataFilter: function(data) {
 						return data.replace(/<img [^>]*>/gi, ''); //Remove images to prevent them from being loaded
 					},
 					success : function (data) {
