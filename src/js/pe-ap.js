@@ -851,14 +851,13 @@
 					bclink,
 					bclinkslen,
 					bcindex,
-					h1text = pe.main.find('h1').text(),
 					match = false,
 					hrefBug = pe.ie !== 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
 				menulinks = menusrc.find('a').get();
 				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;
 
-				// Try to find a match with the page URL or h1
+				// Try to find a match with the page URL
 				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
 					menulink = menulinks[menulinkslen];
@@ -868,7 +867,7 @@
 						menulinkurllen = menulinkurl.length;
 						menulinkquery = menulink.search;
 						menulinkquerylen = menulinkquery.length;
-						if ((pageurl.slice(-menulinkurllen) === menulinkurl && (menulinkquerylen === 0 || pageurlquery.slice(-menulinkquerylen) === menulinkquery)) || menulink.innerHTML === h1text) {
+						if ((pageurl.slice(-menulinkurllen) === menulinkurl && (menulinkquerylen === 0 || pageurlquery.slice(-menulinkquerylen) === menulinkquery))) {
 							match = true;
 							break;
 						}
