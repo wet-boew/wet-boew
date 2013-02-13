@@ -1215,12 +1215,18 @@
 				'datalist': {
 					selector: 'input[list]',
 					depends: ['resize', 'outside'],
+					update: function (elms) {
+						elms.datalist();
+					},
 					/* Based on check from Modernizr 2.6.1 | MIT & BSD */
 					support_check: !!(document.createElement('datalist') && window.HTMLDataListElement)
 				},
 				'datepicker': {
 					selector: 'input[type="date"]',
 					depends: ['calendar', 'xregexp', 'outside'],
+					update: function (elms) {
+						elms.datepicker();
+					},
 					support_check: function () {
 						/* Based on check from Modernizr 2.6.1 | MIT & BSD */
 						var el = document.createElement('input'),
@@ -1238,6 +1244,9 @@
 					selector: 'details',
 					init: function () { // Needs to be initialized manually
 						$('details').details();
+					},
+					update: function (elms) {
+						elms.details();
 					},
 					support_check: function () {
 						// By @mathias, based on http://mths.be/axh
@@ -1330,6 +1339,9 @@
 					selector: 'input[type="range"]',
 					depends: ['metadata'],
 					init: function () { // Needs to be initialized manually
+						fdSlider.onDomReady();
+					},
+					update: function () {
 						fdSlider.onDomReady();
 					},
 					support_check: function () {
