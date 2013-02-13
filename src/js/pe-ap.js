@@ -1313,6 +1313,11 @@
 						return hasMathML;
 					}
 				},
+				'meter': {
+					selector: 'meter',
+					/* Based on check from Modernizr 2.6.1 | MIT & BSD */
+					support_check: document.createElement('meter').max !== undefined
+				},
 				'progress': {
 					selector: 'progress',
 					update: function (elms) {
