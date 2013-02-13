@@ -35,7 +35,11 @@ var wet_boew_geomap = {
 		    title: 'ATOM Demo',
 		    caption: 'This is a sample ATOM feed loaded locally by Geomap.',
 		    type: 'atom',
-		    url: 'data/sample.atom',		   
+		    url: 'data/sample.atom',
+		    attributes: {
+		    	title: 'Title',
+		    	summary: 'About this dataset'
+		    },
 		    visible: false
 		},
 		{
@@ -48,7 +52,7 @@ var wet_boew_geomap = {
 				description: 'Description',
 				link: 'More Info'
 			},
-			visible: true,
+			visible: false,
 			strokeColor: '#000000',
 			fillColor: '#999999'
 		},
