@@ -59,8 +59,6 @@
 					} else {
 						$lbLoadedContent.children().attr('alt', $lbTitle.text());
 					}
-					$lbTitle.removeClass('wb-hide');
-					$lbCurrent.removeClass('wb-hide');
 					pe.focus($lbLoadedContent);
 					open = true;
 				},
