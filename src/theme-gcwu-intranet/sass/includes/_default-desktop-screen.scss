@@ -102,7 +102,7 @@
 #gcwu-sig {
 	@extend %intranet-default-desktop-screen-clip-auto;
 	@extend %intranet-default-desktop-screen-height20px-overflow-visible;
-	bottom: 10px;
+	bottom: 11px;
 	position: absolute;
 	z-index: 3;
 	margin: 0;
@@ -124,7 +124,7 @@
 #gcwu-wmms {
 	@extend %intranet-default-desktop-screen-clip-auto;
 	height: 30px;
-	bottom: 10px;
+	bottom: 11px;
 	top: auto;
 	right: 0;
 	width: 126px;
