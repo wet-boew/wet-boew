@@ -47,8 +47,6 @@
 				onLoad : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
 						$lbCurrent = $lbTitle.next();
-					$lbTitle.addClass('wb-hide');
-					$lbCurrent.addClass('wb-hide');
 				},
 				onComplete : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
@@ -139,12 +137,19 @@
 				}
 			});
 		}, // end of exec
+
 		_init_colorbox : function(link, opts, group) {
 			var $link = $(link),
 				isInline = $link.attr('href').substring(0, 1) === '#',
 				isGroup = (group !== undefined),
-				groupRel = (isGroup ? group : false);
-			$link.colorbox((isInline || isGroup) ? $.extend({}, opts, {inline: isInline, rel: groupRel}) : opts);
+				groupRel = (isGroup ? group : false),
+				title = this._get_title(link);
+			$link.colorbox((isInline || isGroup || title) ? $.extend((title ? title : {}), opts, {inline: isInline, rel: groupRel}) : opts);
+		},
+
+		_get_title : function(link) {
+			var	title = document.getElementById(link.getAttribute('data-title'));
+			return (title && title.innerHTML.length > 0) ? {title: title.innerHTML} : false;
 		}
 	};
 	window.pe = _pe;
