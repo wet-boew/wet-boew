@@ -515,10 +515,10 @@ select {
 			@extend %base-default-mobile-white-space-normal;
 		}
 		.ui-collapsible {
-			:not(:first-child) {
+			&:not(:first-child) {
 				@extend %base-default-mobile-no-top-rounded-corners;
 			}
-			:last-child {
+			&:last-child {
 				.ui-collapsible-content {
 					> {
 						:not(:last-child) {

@@ -137,7 +137,7 @@
 				hooks: {}
 			},
 		canvas = null,		// the canvas for the plot itself
-		overlay = null, 	// canvas for interactive stuff on top of plot
+		overlay = null,	// canvas for interactive stuff on top of plot
 		eventHolder = null, // jQuery object that events should be bound to
 		ctx = null, octx = null,
 		xaxes = [], yaxes = [],

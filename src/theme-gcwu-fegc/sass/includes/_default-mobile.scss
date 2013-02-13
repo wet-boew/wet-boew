@@ -510,13 +510,17 @@ select {
 		a {
 			@extend %gcwu-default-mobile-white-space-normal;
 		}
-		.ui-collapsible:not(:first-child) {
-			@extend %gcwu-default-mobile-no-top-rounded-corners;
-		}
-		.ui-collapsible:last-child {
-			.ui-collapsible-content {
-				> :not(:last-child) {
-					@extend %gcwu-default-mobile-no-bottom-rounded-corners;
+		.ui-collapsible {
+			&:not(:first-child) {
+				@extend %gcwu-default-mobile-no-top-rounded-corners;
+			}
+			&:last-child {
+				.ui-collapsible-content {
+					> {
+						:not(:last-child) {
+							@extend %gcwu-default-mobile-no-bottom-rounded-corners;
+						}
+					}
 				}
 			}
 		}
