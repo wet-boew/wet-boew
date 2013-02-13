@@ -2,48 +2,48 @@
 ;(function(document, $) {
 
 	var proto = $.fn,
-	    details,
-	    // :'(
-	    isOpera = Object.prototype.toString.call(window.opera) == '[object Opera]',
-	    // Feature test for native `<details>` support
-	    isDetailsSupported = (function(doc) {
-	    	var el = doc.createElement('details'),
-	    	    fake,
-	    	    root,
-	    	    diff;
-	    	if (!('open' in el)) {
-	    		return false;
-	    	}
-	    	root = doc.body || (function() {
-	    		var de = doc.documentElement;
-	    		fake = true;
-	    		return de.insertBefore(doc.createElement('body'), de.firstElementChild || de.firstChild);
-	    	}());
-	    	el.innerHTML = '<summary>a</summary>b';
-	    	el.style.display = 'block';
-	    	root.appendChild(el);
-	    	diff = el.offsetHeight;
-	    	el.open = true;
-	    	diff = diff != el.offsetHeight;
-	    	root.removeChild(el);
-	    	if (fake) {
-	    		root.parentNode.removeChild(root);
-	    	}
-	    	return diff;
-	    }(document)),
-	    toggleOpen = function($details, $detailsSummary, $detailsNotSummary, toggle) {
-	    	var isOpen = $details.prop('open'),
-	    	    close = isOpen && toggle || !isOpen && !toggle;
-	    	if (close) {
-	    		$details.removeClass('open').prop('open', false).triggerHandler('close.details');
-	    		$detailsSummary.attr('aria-expanded', false);
-	    		$detailsNotSummary.hide();
-	    	} else {
-	    		$details.addClass('open').prop('open', true).triggerHandler('open.details');
-	    		$detailsSummary.attr('aria-expanded', true);
-	    		$detailsNotSummary.show();
-	    	}
-	    };
+		details,
+		// :'(
+		isOpera = Object.prototype.toString.call(window.opera) == '[object Opera]',
+		// Feature test for native `<details>` support
+		isDetailsSupported = (function(doc) {
+			var el = doc.createElement('details'),
+				fake,
+				root,
+				diff;
+			if (!('open' in el)) {
+				return false;
+			}
+			root = doc.body || (function() {
+				var de = doc.documentElement;
+				fake = true;
+				return de.insertBefore(doc.createElement('body'), de.firstElementChild || de.firstChild);
+			}());
+			el.innerHTML = '<summary>a</summary>b';
+			el.style.display = 'block';
+			root.appendChild(el);
+			diff = el.offsetHeight;
+			el.open = true;
+			diff = diff != el.offsetHeight;
+			root.removeChild(el);
+			if (fake) {
+				root.parentNode.removeChild(root);
+			}
+			return diff;
+		}(document)),
+		toggleOpen = function($details, $detailsSummary, $detailsNotSummary, toggle) {
+			var isOpen = $details.prop('open'),
+				close = isOpen && toggle || !isOpen && !toggle;
+			if (close) {
+				$details.removeClass('open').prop('open', false).triggerHandler('close.details');
+				$detailsSummary.attr('aria-expanded', false);
+				$detailsNotSummary.hide();
+			} else {
+				$details.addClass('open').prop('open', true).triggerHandler('open.details');
+				$detailsSummary.attr('aria-expanded', true);
+				$detailsNotSummary.show();
+			}
+		};
 
 	/* http://mths.be/noselect v1.0.3 */
 	proto.noSelect = function() {
@@ -71,7 +71,7 @@
 
 			return this.each(function() {
 				var $details = $(this),
-				    $summary = $('summary', $details).first();
+					$summary = $('summary', $details).first();
 				$summary.attr({
 					'role': 'button',
 					'aria-expanded': $details.prop('open')
@@ -96,12 +96,12 @@
 
 				// Store a reference to the current `details` element in a variable
 				var $details = $(this),
-				    // Store a reference to the `summary` element of the current `details` element (if any) in a variable
-				    $detailsSummary = $('summary', $details).first(),
-				    // Do the same for the info within the `details` element
-				    $detailsNotSummary = $details.children(':not(summary)'),
-				    // This will be used later to look for direct child text nodes
-				    $detailsNotSummaryContents = $details.contents(':not(summary)');
+					// Store a reference to the `summary` element of the current `details` element (if any) in a variable
+					$detailsSummary = $('summary', $details).first(),
+					// Do the same for the info within the `details` element
+					$detailsNotSummary = $details.children(':not(summary)'),
+					// This will be used later to look for direct child text nodes
+					$detailsNotSummaryContents = $details.contents(':not(summary)');
 
 				// If there is no `summary` in the current `details` element…
 				if (!$detailsSummary.length) {
