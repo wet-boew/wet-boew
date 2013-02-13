@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/css3/inline-block";
 
 /*SCSS Variables*/
@@ -18,7 +17,7 @@ $clrDark: #555;
 	color: $clrWhite !important;
 	background-color: $clrDark;
 	border-color: $clrDark;
-	@include text-shadow(none !important);
+	text-shadow: none !important;
 }
 %footnote-link-background-white {
 	background-color: $clrWhite;
@@ -50,7 +49,7 @@ table {
 			a {
 				&.footnote-link {
 					@extend %footnote-link-background-white;
-					@include text-shadow(none);
+					text-shadow: none;
 				}
 			}
 		}

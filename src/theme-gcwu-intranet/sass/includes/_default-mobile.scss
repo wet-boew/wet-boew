@@ -7,7 +7,7 @@
 		border-top: 1px solid #CCC;
 		clear: both;
 		font-size: 130%;
-		@include text-shadow(1px 1px 1px #333);
+		text-shadow: 1px 1px 1px #333;
 		background: url(../images/gcwu-subsite-1.gif) repeat-x scroll 0 top #618000;
 		p {
 			margin: 0;
@@ -54,7 +54,7 @@
 
 #gcwu-subsite {
 	font-size: 130%;
-	@include text-shadow(1px 1px 1px #333);
+	text-shadow: 1px 1px 1px #333;
 	p {
 		margin: {
 			top: 0;

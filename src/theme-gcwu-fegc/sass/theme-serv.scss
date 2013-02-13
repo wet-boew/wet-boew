@@ -10,7 +10,7 @@
 @import '../../base/sass/modern-vendor-prefix';
 
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base';
+@import '../../base/sass/default';
 @import 'includes/serv';
 /* -----Build Include Section End----- */
 
@@ -35,20 +35,20 @@
 }
 @media (min-width: 768px) and (min-device-width: 768px) {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-desktop';
+@import '../../base/sass/default-desktop';
 @import 'includes/serv-desktop';
 /* -----Build Include Section End----- */
 }
 @media screen and (min-width: 768px) and (min-device-width: 768px) {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-desktop-screen';
+@import '../../base/sass/default-desktop-screen';
 @import 'includes/serv-desktop-screen';
 /* -----Build Include Section End----- */
 }
 
 @media screen {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-screen';
+@import '../../base/sass/default-screen';
 @import 'includes/serv-screen';
 /* -----Build Include Section End----- */
 }
@@ -56,14 +56,14 @@
 /* Mobile view */
 @media screen and (max-width: 767px), screen and (max-device-width: 767px) {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-mobile';
+@import '../../base/sass/default-mobile';
 @import 'includes/serv-mobile';
 /* -----Build Include Section End----- */
 }
 
 @media print {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-print';
+@import '../../base/sass/default-print';
 @import 'includes/serv-print';
 /* -----Build Include Section End----- */
 }
