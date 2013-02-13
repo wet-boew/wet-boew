@@ -59,6 +59,13 @@ input[type="image"], input[type="checkbox"], input[type="radio"] {
 	}
 }
 
+ul {
+	&.button-group {
+		margin-left:0;
+		margin-right:0;
+	}
+}
+
 .border-top, .border-right, .border-bottom, .border-left, .border-all {
 	float: none !important;
 	display: block;
