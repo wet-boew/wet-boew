@@ -115,14 +115,14 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = $('html'), hlinks, hlinks_same, $this, target, classes, test, init_on_mobileinit = false;
+			var $html = $('html'), hlinks, hlinks_same, $this, target, test, init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.language = test;
 			}
-			test = $html.attr('dir');
+			test = $('head').attr('dir');
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
@@ -140,16 +140,8 @@
 			pe.urlhash = pe.urlpage.hash;
 			pe.urlquery = pe.urlpage.params;
 
-			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
-			pe.mobile = pe.mobilecheck();
-			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? ' mobile-view' : ' desktop-view')) : '';
-			classes += (pe.touchscreen ? ' touchscreen' : '');
-			$html.removeClass('no-js').addClass(classes);
-
-			// Identify IE9+ browser
-			if (pe.ie > 8) {
-				$html.addClass('ie' + parseInt(pe.ie, 10));
-			}
+			// Identify whether or not the device supports JavaScript and has a touchscreen
+			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
 
 			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
 				return this.href.indexOf('#') !== -1;
@@ -159,7 +151,10 @@
 			});
 
 			// Is this a mobile device?
-			if (pe.mobile) {
+			if (pe.mobilecheck()) {
+				pe.mobile = true;
+				pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
+
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
 				if (test === 0) {
@@ -167,55 +162,60 @@
 				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
 					$html.addClass('bb-pre7');
 				}
-			}
-			
-			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 
-			pe.document.on('mobileinit', function () {
-				$.extend($.mobile, {
-					ajaxEnabled: false,
-					pushStateEnabled: false,
-					autoInitializePage: (init_on_mobileinit ? true : false)
+				pe.document.on('mobileinit', function () {
+					$.extend($.mobile, {
+						ajaxEnabled: false,
+						pushStateEnabled: false,
+						autoInitializePage: (init_on_mobileinit ? true : false)
+					});
+					if (init_on_mobileinit) {
+						pe.mobilelang();
+					}
 				});
-				if (init_on_mobileinit) {
-					pe.mobilelang();
-				}
-			});
 
-			pe.document.on('pageinit', function () {
-				// On click, puts focus on and scrolls to the target of same page links
-				hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
-					var hash = $(this).attr('href'),
-						role;
-					$this = $('#' + pe.string.jqescape(hash.substring(1)));
-					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if ($this.length > 0) {
-						pe.focus($this);
-						role = $this.jqmData('role');
-						if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
-							window.location.hash = hash;
+				pe.document.on('pageinit', function () {
+					// On click, puts focus on and scrolls to the target of same page links
+					hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
+						$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
+						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+						if ($this.length > 0) {
+							$.mobile.silentScroll(pe.focus($this).offset().top);
+						}
+					});
+
+					// If the page URL includes a hash upon page load, then focus on and scroll to the target
+					if (pe.urlhash.length !== 0) {
+						target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+						if (target.length > 0 && target.attr('data-role') !== 'page') {
+							setTimeout(function () {
+								$.mobile.silentScroll(pe.focus(target).offset().top);
+							}, 200);
 						}
 					}
 				});
-				// If the page URL includes a hash upon page load, then focus on and scroll to the target
-				if (pe.urlhash.length !== 0) {
-					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if (target.length > 0 && target.attr('data-role') !== 'page') {
-						setTimeout(function () {
-							$.mobile.silentScroll(pe.focus(target).offset().top);
-						}, 200);
+				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
+				pe.add._load([pe.add.liblocation + 'jquerymobile/jquery.mobile.min.js']);
+			} else {
+				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
+				hlinks_same.on('click vclick', function () {
+					$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
+					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					if ($this.length > 0) {
+						pe.focus($this);
 					}
-				}
+				});
 
-				if (pe.ie > 0) {
-					if (pe.ie < 9) {
-						pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
-					} else {
-						pe.wb_load({'plugins': {'equalize': pe.main}}, 'equalize-loaded');
+				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
+				if (pe.urlhash.length > 0) {
+					$this = $('#' + pe.string.jqescape(pe.urlhash));
+					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					if ($this.length > 0) {
+						pe.focus($this);
 					}
 				}
-			});
+			}
 
 			// Load ajax content
 			$.when.apply($, $.map($('*[data-ajax-replace], *[data-ajax-append]'), function (o) {
@@ -245,22 +245,19 @@
 						// Initialize the theme
 						wet_boew_theme.init();
 
-						pe.document.one('themeviewloaded', function () {
-							if (typeof $.mobile !== 'undefined') {
-								pe.mobilelang();
-								$.mobile.initializePage();
-							} else {
-								init_on_mobileinit = true;
-							}
-						});
-
-						// Load the mobile or desktop view
+						//Load the mobile view
 						if (pe.mobile) {
+							pe.document.one('mobileviewloaded', function () {
+								if (typeof $.mobile !== 'undefined') {
+									pe.mobilelang();
+									$.mobile.initializePage();
+								} else {
+									init_on_mobileinit = true;
+								}
+							});
 							wet_boew_theme.mobileview();
-						} else {
-							wet_boew_theme.desktopview();
 						}
-					} else {
+					} else if (pe.mobile) {
 						if (typeof $.mobile !== 'undefined') {
 							pe.mobilelang();
 							$.mobile.initializePage();
@@ -857,7 +854,7 @@
 				menulinks = menusrc.find('a').get();
 				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;
 
-				// Try to find a match with the page URL
+				// Try to find a match with the page URL or h1
 				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
 					menulink = menulinks[menulinkslen];
@@ -944,8 +941,11 @@
 					nested,
 					nested_i,
 					nested_len,
+					hnest,
 					hnestDOM,
 					hnestTag,
+					hnestLevel,
+					hnestLink,
 					hnestLinkDOM,
 					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
@@ -955,17 +955,12 @@
 					theme2 = (theme_2 !== undefined ? theme_2 : theme_1),
 					theme1 = (toplevel ? theme_1 : theme_2),
 					listView = '<ul data-role="listview" data-theme="' + theme2 + '">',
-					listItems,
-					listItem,
-					listItem2,
 					sectionOpen = '<div data-theme="' + theme1 + '"' + ' class="wb-nested-menu',
 					sectionLink = '<a data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
 					sectionLinkOpen = '">' + headingOpen + sectionLink,
 					sectionLinkClose = '</a>' + headingClose,
 					link = '<a data-role="button" data-icon="arrow-r" data-iconpos="right" data-corners="false" href="',
-					menu,
-					i,
-					len;
+					menu;
 				collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true);
 				collapsible = (collapsible !== undefined ? collapsible : false);
 				returnString = (returnString !== undefined ? returnString : false);
@@ -1007,33 +1002,24 @@
 								next = mItem.next();
 								nextDOM = next[0];
 								if (nextDOM.tagName.toLowerCase() === 'ul') {
-									menu += listView;
-									nested = nextDOM.querySelector('li ul');
-									if (nested !== null && nested.length !== 0) { // Special handling for a nested list
-										hnestTag = 'h' + (hlevel + 1);
-										listItems = nextDOM.children;
-										for (i = 0, len = listItems.length; i !== len; i += 1) {
-											listItem = listItems[i];
-											hnestDOM = listItem.getElementsByTagName('li');
-											menu += '<li>';
-											if (hnestDOM.length !== 0) {
-												hnestLinkDOM = listItem.children[0];
-												menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
-												for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
-													listItem2 = hnestDOM[nested_i];
-													hlinkDOM = listItem2.querySelector('a');
-													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
-												}
-												menu += '</ul></div>';
-											} else {
-												menu += listItem.innerHTML;
-											}
-											menu += '</li>';
+									// Find nested lists
+									nested = next.find('li ul').get();
+									for (nested_i = 0, nested_len = nested.length; nested_i < nested_len; nested_i += 1) {
+										hnestDOM = nested[nested_i];
+										hnestDOM.setAttribute('data-role', 'listview');
+										hnestDOM.setAttribute('data-theme', theme2);
+										hnestLevel = hlevel + 1 + nested_i;
+										if (hnestLevel < 7) {
+											hnestTag = 'h' + hnestLevel;
+											hnest = $(hnestDOM);
+											hnestLink = hnest.prev('a');
+											hnestLinkDOM = hnestLink[0];
+											hnest.wrap(sectionOpen + '"></div>');
+											hnest.parent().prepend('<' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>');
+											hnestLinkDOM.parentNode.removeChild(hnestLinkDOM);
 										}
-									} else {
-										menu += nextDOM.innerHTML;
 									}
-									menu += '</ul>';
+									menu += listView + nextDOM.innerHTML + '</ul>';
 								} else { // If the section contains sub-sections
 									if (menubar) {
 										menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
@@ -1060,7 +1046,7 @@
 						}
 						// Is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
 						if (toplevel || collapsible || !collapseTopOnly) {
-							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"' + (toplevel ? ' class="ui-corner-all"' : '') + '>' + menu + '</div>';
+							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '">' + menu + '</div>';
 						}
 					}
 				}
@@ -1068,6 +1054,21 @@
 					menu = '<div data-role="controlgroup" data-theme="' + theme1 + '">' + menu + '</div>';
 				}
 				return returnString ? menu : $(menu);
+			},
+			/**
+			* Correct the corners for each sections and sub-section in the menu build by pe.menu.buildmobile
+			* @memberof pe.menu
+			* @param {jQuery object | DOM object} menusrc Mobile menu to correct
+			* @function
+			* @return {void}
+			*/
+			correctmobile: function (menusrc) {
+				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
+					menus = original.find('.wb-nested-menu');
+				if (menus.length !== 0) {
+					menus = menus.get(0).parentNode.childNodes;
+					menus[menus.length - 1].getElementsByTagName('a')[0].className += ' ui-corner-bottom';
+				}
 			}
 		},
 		/**
@@ -1090,14 +1091,6 @@
 					$html.addClass('polyfill-localstorage');
 				} else {
 					$html.addClass('localstorage');
-				}
-
-				// sessionStorage
-				if (!window.sessionStorage) {
-					pe.add._load(lib + 'polyfills/sessionstorage' + pe.suffix + '.js', 'sessionstorage-loaded');
-					$html.addClass('polyfill-sessionstorage');
-				} else {
-					$html.addClass('sessionstorage');
 				}
 			},
 			/**
@@ -1242,9 +1235,6 @@
 				},
 				'detailssummary': {
 					selector: 'details',
-					init: function () { // Needs to be initialized manually
-						$('details').details();
-					},
 					update: function (elms) {
 						elms.details();
 					},
@@ -1321,6 +1311,11 @@
 						}
 						return hasMathML;
 					}
+				},
+				'meter': {
+					selector: 'meter',
+					/* Based on check from Modernizr 2.6.1 | MIT & BSD */
+					support_check: document.createElement('meter').max !== undefined
 				},
 				'progress': {
 					selector: 'progress',
@@ -1530,15 +1525,12 @@
 				* @memberof pe.add
 				* @function
 				* @param {string | string[]} d The path and filename of the dependency OR just the name (minus the path and extension).
-				* @param {boolean} css Optional. Is the dependency a CSS file? (default: false)
 				* @return {string[]} NOTE: If d is a string, this returns a string array with 8 copies of the transformed string. If d is a string array, this returns a string array with just one entry; the transformed string.
 				*/
-				depends: function (d, css) {
-					var iscss = typeof css !== 'undefined' ? css : false, 
-						extension = pe.suffix + (iscss ? '.css' : '.js'),
-						dir = pe.add.liblocation + 'dependencies/' + (iscss ? 'css/' : ''),
+				depends: function (d) {
+					var lib = pe.add.liblocation,
 						c_d = $.map(d, function (a) {
-							return (/^http(s)?/i.test(a)) ? a : dir + a + extension;
+							return (/^http(s)?/i.test(a)) ? a : lib + 'dependencies/' + a + pe.suffix + '.js';
 						});
 					return c_d;
 				},
@@ -1600,7 +1592,6 @@
 				pcalls = typeof options.global !== 'undefined' ? options.global : [],
 				pcall,
 				dep = typeof options.dep !== 'undefined' ? options.dep : [],
-				depcss = typeof options.depcss !== 'undefined' ? options.depcss : [],
 				poly = typeof options.poly !== 'undefined' ? options.poly : [],
 				checkdom = typeof options.checkdom !== 'undefined' ? options.checkdom : false,
 				polycheckdom = typeof options.polycheckdom !== 'undefined' ? options.polycheckdom : false,
@@ -1648,9 +1639,6 @@
 					}
 					if (typeof pe.fn[pcall].depends !== 'undefined') {
 						dep.push.apply(dep, pe.fn[pcall].depends);
-						if (typeof pe.fn[pcall].dependscss !== 'undefined') {
-							dep.push.apply(depcss, pe.fn[pcall].dependscss);
-						}
 					}
 				}
 			}
@@ -1714,16 +1702,7 @@
 				});
 
 				// Load each of the dependencies (eliminating duplicates)
-				if (dep.length !== 0) {
-					if (depcss.length > 0) {
-						depcss = pe.add.depends(pe.array.noduplicates(depcss), true);
-						_len = depcss.length;
-						while (_len--) {
-							pe.add.css(depcss[_len]);
-						}
-					}
-					pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
-				}
+				pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
 			});
 
 			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)
