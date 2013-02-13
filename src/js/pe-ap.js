@@ -14,7 +14,7 @@
 /*
  * pe, a progressive javascript library agnostic framework
  */
-/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false*/
+/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
 /*jshint bitwise: false */
 (function ($) {
 	"use strict";
@@ -1325,6 +1325,14 @@
 				'meter': {
 					selector: 'meter',
 					/* Based on check from Modernizr 2.6.1 | MIT & BSD */
+					update: function (elms) {
+						var meters = elms.get(),
+							i = meters.length;
+
+						while (i--) {
+							makeMeter(meters[i]);
+						}
+					},
 					support_check: document.createElement('meter').max !== undefined
 				},
 				'progress': {
