@@ -210,7 +210,7 @@
 				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';			
 				settings_popup += popup_settings_content_open;
 				settings_popup += '<div class="ui-bar-b site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
-				// Add the Date modified/Version
+				// Add the version
 				node = pe.main.find('#wet-date-mod').children();
 				if (node.length !== 0) {
 					target = node[1];
