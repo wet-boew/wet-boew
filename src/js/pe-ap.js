@@ -790,33 +790,35 @@
 				$html = $('html'),
 				pedisable_link = (settings && typeof settings.pedisable_link === 'boolean' ? settings.pedisable_link : true);
 
-			for (qparam in qparams) { // Rebuild the query string
-				if (qparams.hasOwnProperty(qparam) && qparam !== 'pedisable') {
-					newquery += qparam + '=' + qparams[qparam] + '&amp;';
+			if (tphp !== null) {
+				for (qparam in qparams) { // Rebuild the query string
+					if (qparams.hasOwnProperty(qparam) && qparam !== 'pedisable') {
+						newquery += qparam + '=' + qparams[qparam] + '&amp;';
+					}
 				}
-			}
 
-			if (disable === 'true' || (((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== 'false')) {
-				$html.addClass('no-js pe-disable');
-				if (lsenabled) {
-					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
+				if (disable === 'true' || (((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== 'false')) {
+					$html.addClass('no-js pe-disable');
+					if (lsenabled) {
+						localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
+					}
+					// Append the Standard version link version unless explicitly disabled in settings.js
+					if (pedisable_link) {
+						li.innerHTML = '<a href="' + newquery + 'pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
+						tphp.appendChild(li); // Add link to re-enable PE
+					}
+					return true;
+				} else if (disable === 'false' || disablels !== null) {
+					if (lsenabled) {
+						localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
+					}
 				}
-				// Append the Standard version link version unless explicitly disabled in settings.js
+
+				// Append the Basic HTML version link version unless explicitly disabled in settings.js
 				if (pedisable_link) {
-					li.innerHTML = '<a href="' + newquery + 'pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
-					tphp.appendChild(li); // Add link to re-enable PE
+					li.innerHTML = '<a href="' + newquery + 'pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
+					tphp.appendChild(li); // Add link to disable PE
 				}
-				return true;
-			} else if (disable === 'false' || disablels !== null) {
-				if (lsenabled) {
-					localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
-				}
-			}
-
-			// Append the Basic HTML version link version unless explicitly disabled in settings.js
-			if (pedisable_link) {
-				li.innerHTML = '<a href="' + newquery + 'pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
-				tphp.appendChild(li); // Add link to disable PE
 			}
 			return false;
 		},

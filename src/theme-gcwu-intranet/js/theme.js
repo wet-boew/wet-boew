@@ -47,7 +47,9 @@
 				submenu.prev().children('a').addClass('nav-current');
 			}
 			if (pe.secnav.length !== 0) {
-				pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
+				current = pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
+				submenu = current.parents('ul');
+				submenu.prev().children('a').addClass('nav-current');
 			}
 
 			// If no search is provided, then make the site menu link 100% wide
