@@ -142,7 +142,8 @@
 
 			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
 			pe.mobile = pe.mobilecheck();
-			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? ' mobile-view' : ' desktop-view')) : '';
+			pe.tablet = pe.tabletcheck();
+			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' mobile-view' : ' desktop-view')) : ' desktop-view')) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			$html.removeClass('no-js').addClass(classes);
 
@@ -280,7 +281,11 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return pe.mobiletest.offsetWidth === 1; // CSS (through media queries) sets to offsetWidth = 0 in desktop view and offsetWidth = 1 in mobile view
+			return pe.mobiletest.offsetWidth !== 0; // CSS (through media queries) sets to offsetWidth = 0 in desktop view, offsetWidth = 1 in mobile view and offsetWidth = 2 in tablet view
+		},
+		tablet: false,
+		tabletcheck: function () {
+			return pe.mobiletest.offsetWidth === 2; // CSS (through media queries) sets to offsetWidth = 2 in tablet view
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -1753,10 +1758,18 @@
 			var loading_finished = 'wb-init-loaded';
 			pe.document.one(loading_finished, function () {
 				pe.resize(function () {
-					var mobilecheck = pe.mobilecheck();
+					var mobilecheck = pe.mobilecheck(),
+						tabletcheck;
 					if (pe.mobile !== mobilecheck) {
 						pe.mobile = mobilecheck;
 						window.location.href = decodeURI(pe.url(window.location.href).removehash());
+					} else {
+						tabletcheck = pe.tabletcheck();
+						if (pe.tablet && !tabletcheck) {
+							$('html').removeClass('tablet-view');
+						} else if (!pe.tablet && tabletcheck) {
+							$('html').addClass('tablet-view');
+						}
 					}
 				});
 			});
