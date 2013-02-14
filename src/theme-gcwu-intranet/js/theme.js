@@ -48,7 +48,9 @@
 				submenu.prev().children('a').addClass('nav-current');
 			}
 			if (pe.secnav.length !== 0) {
-				pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
+				current = pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
+				submenu = current.parents('ul');
+				submenu.prev().children('a').addClass('nav-current');
 			}
 
 			// If no search is provided, then make the site menu link 100% wide
@@ -82,11 +84,11 @@
 				popup_settings = ' data-theme="c" class="ui-corner-all">',
 				popup_settings_header_open = popup_header_open + ' class="ui-corner-top"><h1>',
 				popup_settings_content_open = '<div data-role="content" data-theme="c" class="ui-corner-bottom ui-content">',
-				popup_close_btn = button + ' href="javascript:;" data-icon="delete" data-rel="back" class="ui-btn-left">' + pe.dic.get('%close') + '</a>',
+				popup_close_btn = button + ' href="javascript:;" data-icon="delete" data-rel="back" class="ui-btn-right">' + pe.dic.get('%close') + '</a>',
 				popup_back_btn_open = popup_button + ' data-icon="back" class="ui-btn-left"',
 				popup_back_btn_close = '>' + pe.dic.get('%back') + '</a>',
 				popup_close = '</div></div>',
-				listView = '<ul data-role="listview">',
+				listView = '<ul data-role="listview"',
 				_list = '',
 				links,
 				link,
@@ -192,7 +194,7 @@
 				lang_links = wet_boew_theme.gcnb.find('li[id*="-lang"]');
 				settings_popup = popup + ' id="popupSettings"' + popup_settings;
 				settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
-				settings_popup += popup_settings_content_open + listView;
+				settings_popup += popup_settings_content_open + listView + '>';
 				if (lang_links.length > 0) {
 					settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
 				}
@@ -202,8 +204,8 @@
 				// Build the languages sub-popup
 				if (lang_links.length > 0) {
 					settings_popup += popup + ' id="popupLanguages"' + popup_settings;
-					settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';
-					settings_popup += popup_settings_content_open + listView;
+					settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
+					settings_popup += popup_settings_content_open + listView + '>';
 					if (lang_links.filter('[id*="-lang-current"]').length === 0) {
 						settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
 					}
@@ -223,18 +225,18 @@
 
 				// Build the about sub-popup	
 				settings_popup += popup + ' id="popupAbout"' + popup_settings;
-				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';			
+				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';			
 				settings_popup += popup_settings_content_open;
-				settings_popup += '<div class="ui-bar-b site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
+				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
 				// Add the version
 				node = pe.main.find('#gcwu-date-mod').children();
 				if (node.length !== 0) {
 					target = node[1];
 					if (target.getElementsByTagName('time').length === 0) {
-						settings_popup += '<div class="ui-bar-c app-version">' + node[0].innerHTML + ' ' + target.innerHTML + '</div>';
+						settings_popup += '<div class="app-version">' + node[0].innerHTML + ' ' + target.innerHTML + '</div>';
 					}
 				}
-				settings_popup += listView;
+				settings_popup += listView + ' data-inset="true">';
 				// Add the terms and conditions and transparency links
 				links = document.getElementById('gcwu-tctr').getElementsByTagName('a');
 				for (i = 0, len = links.length; i !== len; i += 1) {

@@ -354,6 +354,9 @@ table {
 .ui-content {
 	.ui-listview {
 		margin: 0 -15px;
+		&.ui-listview-inset {
+			margin: 15px 0;
+		}
 	}
 }
 
@@ -373,12 +376,11 @@ table {
 #popupAbout {
 	.site-app-title {
 		@extend %wet-default-mobile-margin-left-right--15;
-		padding: 0 15px;
+		padding: 5px 15px 0 15px;
 	}
 	.app-version {
 		@extend %wet-default-mobile-margin-left-right--15;
-		@extend %wet-default-mobile-border-none;
-		padding: 5px 15px;
+		padding: 0 15px;
 	}
 }
 
