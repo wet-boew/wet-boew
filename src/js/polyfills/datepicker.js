@@ -192,7 +192,7 @@
 			};
 
 			addSelectedDateToField = function (fieldid, year, month, day, format) {
-				wrapper.find('#' + fieldid).attr('value', formatDate(year, month, day, format));
+				wrapper.find('#' + fieldid).val(formatDate(year, month, day, format));
 			};
 
 			toggle = function (fieldid, containerid) {
