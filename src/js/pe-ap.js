@@ -143,7 +143,7 @@
 			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
 			pe.mobile = pe.mobilecheck();
 			pe.tablet = pe.tabletcheck();
-			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' mobile-view' : ' desktop-view')) : ' desktop-view')) : '';
+			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : '')) : ' desktop-view')) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			$html.removeClass('no-js').addClass(classes);
 
@@ -1770,6 +1770,7 @@
 						} else if (!pe.tablet && tabletcheck) {
 							$('html').addClass('tablet-view');
 						}
+						pe.tablet = tabletcheck;
 					}
 				});
 			});

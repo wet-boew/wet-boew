@@ -69,6 +69,7 @@
 				settings_popup,
 				secnav_h2,
 				s_form,
+				s_form_html,
 				s_popup,
 				bodyAppend = '',
 				button = '<a data-role="button" data-iconpos="notext"',

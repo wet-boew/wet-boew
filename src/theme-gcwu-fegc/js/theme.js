@@ -70,6 +70,7 @@
 				settings_popup,
 				secnav_h2,
 				s_form,
+				s_form_html,
 				s_popup,
 				bodyAppend = '',
 				button = '<a data-role="button" data-iconpos="notext"',
@@ -160,7 +161,7 @@
 					node = wet_boew_theme.wmms[0].getElementsByTagName('img')[0];
 					//Fix for old webkit versions (BB OS6 & iOS 4.3)
 					test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
-					if (test === null || parseInt(test[1]) > 4 || (parseInt(test[1]) == 4 && parseInt(test[2]) >= 46)) {
+					if (test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46)) {
 						header += '<div class="ui-title"><object type="image/svg+xml" width="90" height="22" data="' + node.getAttribute('src').replace('.gif', '-r.svg') + '"><img src="' + node.getAttribute('src').replace('.gif', '-wm.gif') + '" width="90" alt="' + node.getAttribute('alt') + '" /></object></div>';
 					} else {
 						header += '<div class="ui-title"><img src="' + node.getAttribute('src').replace('.gif', '-wm.gif') + '" width="90" alt="' + node.getAttribute('alt') + '" /></div>';
