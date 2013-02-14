@@ -97,7 +97,7 @@
 
 		#wet-srchbx {
 			input {
-				float: left;
+				@extend %wet-default-screen-ie7-rtl-float-fix;
 			}
 		}
 

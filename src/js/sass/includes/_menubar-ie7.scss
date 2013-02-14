@@ -8,6 +8,12 @@
 	}
 
 	&[dir="rtl"] {
+		%menubar-ie7-rtl-float-fix {
+			zoom: 1;
+			float: none !important;
+			display: inline;
+		}
+
 		.mb-sm-open {
 			left: auto;
 			right: 0;
@@ -17,6 +23,18 @@
 				float: none !important;
 				display: inline !important;
 				padding-right: 10px;
+			}
+		}
+
+		.mb-highlight {
+			h4 {
+				@extend %menubar-ie7-rtl-float-fix;
+			}
+			ul {
+				@extend %menubar-ie7-rtl-float-fix;
+			}
+			li {
+				@extend %menubar-ie7-rtl-float-fix;
 			}
 		}
 	}
