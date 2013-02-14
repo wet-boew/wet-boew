@@ -22,34 +22,24 @@
 /* -----Build Include Section End----- */
 
 /* Desktop view */
-@media screen and (min-width: 768px) and (min-device-width: 768px) {
-/* -----Build Include Section Start----- */
-@import '../../grids/sass/responsive';
-@import '../../theme-gcwu-fegc/sass/includes/default-responsive';
-/* -----Build Include Section End----- */
-}
-@media screen and (min-width: 768px) and (max-width: 959px) and (min-device-width: 768px) {
-/* -----Build Include Section Start----- */
-@import '../../grids/sass/responsive-768';
-@import '../../theme-gcwu-fegc/sass/includes/default-responsive-768';
-/* -----Build Include Section End----- */
-}
-@media screen and (min-width: 1200px) and (min-device-width: 768px) {
-/* -----Build Include Section Start----- */
-@import '../../grids/sass/responsive-1200';
-@import '../../theme-gcwu-fegc/sass/includes/default-responsive-1200';
-/* -----Build Include Section End----- */
-}
-@media (min-width: 768px) and (min-device-width: 768px) {
+@media (min-width: 960px) and (min-device-width: 1024px) {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/default-desktop';
 @import '../../theme-gcwu-fegc/sass/includes/serv-desktop';
 /* -----Build Include Section End----- */
 }
-@media screen and (min-width: 768px) and (min-device-width: 768px) {
+@media screen and (min-width: 960px) and (min-device-width: 1024px) {
 /* -----Build Include Section Start----- */
+@import '../../grids/sass/responsive';
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive';
 @import '../../base/sass/default-desktop-screen';
 @import '../../theme-gcwu-fegc/sass/includes/serv-desktop-screen';
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width: 1200px) and (min-device-width: 1024px) {
+/* -----Build Include Section Start----- */
+@import '../../grids/sass/responsive-1200';
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive-1200';
 /* -----Build Include Section End----- */
 }
 
@@ -61,10 +51,17 @@
 }
 
 /* Mobile view */
-@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
+@media screen and (max-width: 959px), screen and (max-device-width:1023px) {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/default-mobile';
 @import '../../theme-gcwu-fegc/sass/includes/serv-mobile';
+/* -----Build Include Section End----- */
+}
+
+/* Tablet view */
+@media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+/* -----Build Include Section Start----- */
+@import '../../base/sass/default-tablet';
 /* -----Build Include Section End----- */
 }
 
