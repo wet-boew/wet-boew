@@ -179,9 +179,28 @@
 				margin-left: auto;
 				margin-right: -1px;
 			}
-
+			> {
+				.button {
+					&:first-child {
+						@include border-radius(0 4px 4px 0);
+					}
+					&:last-child {
+						@include border-radius(4px 0 0 4px);
+					}
+				}
+			}
 			li {
 				float: right;
+				&:first-child {
+					.button {
+						@include border-radius(0 4px 4px 0);
+					}
+				}
+				&:last-child {
+					.button {
+						@include border-radius(4px 0 0 4px);
+					}
+				}
 			}
 		}
 
