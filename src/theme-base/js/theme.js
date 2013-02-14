@@ -69,6 +69,7 @@
 				settings_popup,
 				secnav_h2,
 				s_form,
+				s_form_html,
 				s_popup,
 				bodyAppend = '',
 				button = '<a data-role="button" data-iconpos="notext"',
@@ -137,8 +138,14 @@
 				if (wet_boew_theme.search.length !== 0) {
 					// :: Search box transform lets transform the search box to a popup
 					srch_btn_txt = pe.dic.get('%search');
-					s_form = wet_boew_theme.search[0].innerHTML;
-					s_popup = popup + ' id="jqm-wb-search">' + popup_default_header_open + srch_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content"><div>' + s_form.substring(s_form.indexOf('<form')) + '</div></div></div>';
+					s_form = wet_boew_theme.search[0];
+					s_form_html = s_form.innerHTML;
+					s_form = s_form.getElementsByTagName('input');
+					len = s_form.length;
+					while (len--) {
+						s_form[len].setAttribute('data-role', 'none');
+					}
+					s_popup = popup + ' id="jqm-wb-search">' + popup_default_header_open + srch_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content"><div>' + s_form_html.substring(s_form_html.indexOf('<form')) + '</div></div></div>';
 					bodyAppend += s_popup;
 					_list += popup_button + ' data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a>';
 				}
@@ -200,16 +207,17 @@
 				// Build the about sub-popup	
 				settings_popup += popup + ' id="popupAbout"' + popup_settings;
 				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';			
-				settings_popup += popup_settings_content_open + listView;
-				settings_popup += '<li>' + wet_boew_theme.title.text() + '</li>';
-				// Add the Date modified/Version
-				node = pe.main.find('#basedate-mod').children();
+				settings_popup += popup_settings_content_open;
+				settings_popup += '<div class="ui-bar-b site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
+				// Add the version
+				node = pe.main.find('#base-date-mod').children();
 				if (node.length !== 0) {
 					target = node[1];
 					if (target.getElementsByTagName('time').length === 0) {
-						settings_popup += '<li>' + node[0].innerHTML + ' ' + target.innerHTML + '</li>';
+						settings_popup += '<div class="ui-bar-c app-version">' + node[0].innerHTML + ' ' + target.innerHTML + '</div>';
 					}
 				}
+				settings_popup += listView;
 				// Add the footer links
 				links = wet_boew_theme.sft.find('.base-col-head a').get();
 				for (i = 0, len = links.length; i !== len; i += 1) {
@@ -228,14 +236,6 @@
 
 			// jQuery mobile has loaded
 			$(document).on('pagecreate', function () {
-				if (wet_boew_theme.menubar.length !== 0) {
-					node = wet_boew_theme.psnb[0];
-					node.parentNode.removeChild(node);
-				}
-				if (wet_boew_theme.search.length !== 0) {
-					node = wet_boew_theme.search[0];
-					node.parentNode.removeChild(node);
-				}
 				if (_list.length !== 0) {
 					var navbar = wet_boew_theme.fullhd.find('#base-mnavbar'),
 						menu = pe.bodydiv.find('#jqm-mb-menu'),

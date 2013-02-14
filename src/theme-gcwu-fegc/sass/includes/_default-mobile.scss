@@ -39,6 +39,10 @@
 	font-weight: normal;
 }
 
+%gcwu-default-mobile-border-none {
+	border: none;
+}
+
 body {
 	@if $experimental-support-for-webkit {
 		-webkit-text-size-adjust: none;
@@ -87,7 +91,7 @@ li {
 			padding-left: 0;
 			padding-right: 0;
 			font-size: 0.7em;
-			border: none;
+			@extend %gcwu-default-mobile-border-none;
 		}
 	}
 }
@@ -360,6 +364,21 @@ table {
 				text-transform: capitalize;
 			}
 		}
+	}
+}
+
+%gcwu-default-mobile-margin-left-right--15 {
+	margin: 0 -15px;
+}
+#popupAbout {
+	.site-app-title {
+		@extend %gcwu-default-mobile-margin-left-right--15;
+		padding: 0 15px;
+	}
+	.app-version {
+		@extend %gcwu-default-mobile-margin-left-right--15;
+		@extend %gcwu-default-mobile-border-none;
+		padding: 5px 15px;
 	}
 }
 

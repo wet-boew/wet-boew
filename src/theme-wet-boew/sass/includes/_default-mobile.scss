@@ -39,6 +39,10 @@
 	font-weight: normal;
 }
 
+%wet-default-mobile-border-none {
+	border: none;
+}
+
 body {
 	@if $experimental-support-for-webkit {
 		-webkit-text-size-adjust: none;
@@ -360,6 +364,21 @@ table {
 				text-transform: capitalize;
 			}
 		}
+	}
+}
+
+%wet-default-mobile-margin-left-right--15 {
+	margin: 0 -15px;
+}
+#popupAbout {
+	.site-app-title {
+		@extend %wet-default-mobile-margin-left-right--15;
+		padding: 0 15px;
+	}
+	.app-version {
+		@extend %wet-default-mobile-margin-left-right--15;
+		@extend %wet-default-mobile-border-none;
+		padding: 5px 15px;
 	}
 }
 

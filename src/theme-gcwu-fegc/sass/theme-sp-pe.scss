@@ -7,6 +7,12 @@
  * Version: @wet-boew-build.version@
  *
  */
+
+/* -----Include jQuery Mobile CSS Start----- */
+@import '../jquerymobile/jquery.mobile.theme';
+@import '../../js/jquerymobile/jquery.mobile.structure';
+/* -----Include jQuery Mobile CSS End----- */
+
 @import '../../base/sass/modern-vendor-prefix';
 
 /* -----Build Include Section Start----- */
@@ -16,13 +22,13 @@
 /* -----Build Include Section End----- */
 
 /* Desktop view */
-@media (min-width: 768px) and (min-device-width: 768px) {
+@media (min-width: 960px) and (min-device-width: 1024px) {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/default-desktop';
 @import 'includes/sp-pe-desktop';
 /* -----Build Include Section End----- */
 }
-@media screen and (min-width: 768px) and (min-device-width: 768px) {
+@media screen and (min-width: 960px) and (min-device-width: 1024px) {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/default-desktop-screen';
 @import 'includes/sp-pe-desktop-screen';
@@ -30,13 +36,7 @@
 @import 'includes/default-responsive';
 /* -----Build Include Section End----- */
 }
-@media screen and (min-width: 768px) and (max-width: 959px) and (min-device-width: 768px) {
-/* -----Build Include Section Start----- */
-@import '../../grids/sass/responsive-768';
-@import 'includes/default-responsive-768';
-/* -----Build Include Section End----- */
-}
-@media screen and (min-width: 1200px) and (min-device-width: 768px) {
+@media screen and (min-width: 1200px) and (min-device-width: 1024px) {
 /* -----Build Include Section Start----- */
 @import '../../grids/sass/responsive-1200';
 @import 'includes/default-responsive-1200';
@@ -52,10 +52,18 @@
 }
 
 /* Mobile view */
-@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
+@media screen and (max-width: 959px), screen and (max-device-width:1023px) {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/default-mobile';
 @import 'includes/sp-pe-mobile';
+/* -----Build Include Section End----- */
+}
+
+/* Tablet view */
+@media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+/* -----Build Include Section Start----- */
+@import '../../base/sass/default-tablet';
+@import 'includes/sp-pe-tablet';
 /* -----Build Include Section End----- */
 }
 
