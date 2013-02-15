@@ -709,9 +709,8 @@
 			}
 
 			if(opts.debug) {
-
 				console.log("WET-Geomap: running in DEBUG mode");
-				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('debugMess') + '</h3><p></p></div>');
+				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
 			}	
 						
 			// Set the language for OpenLayers
