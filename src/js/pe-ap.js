@@ -1759,7 +1759,7 @@
 		dance: function () {
 			var loading_finished = 'wb-init-loaded';
 			pe.document.one(loading_finished, function () {
-				if (pe.ie === 0 || pe.ie > 8) {
+				if (!(pe.ie > 0 && pe.ie < 9)) {
 					pe.resize(function () {
 						var mobilecheck = pe.mobilecheck(),
 							tabletcheck;
