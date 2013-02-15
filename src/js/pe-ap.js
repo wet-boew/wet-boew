@@ -1720,13 +1720,15 @@
 		dance: function () {
 			var loading_finished = 'wb-init-loaded';
 			pe.document.one(loading_finished, function () {
-				pe.resize(function () {
-					var mobilecheck = pe.mobilecheck();
-					if (pe.mobile !== mobilecheck) {
-						pe.mobile = mobilecheck;
-						window.location.href = decodeURI(pe.url(window.location.href).removehash());
-					}
-				});
+				if (!(pe.ie > 0 && pe.ie < 9)) {
+					pe.resize(function () {
+						var mobilecheck = pe.mobilecheck();
+						if (pe.mobile !== mobilecheck) {
+							pe.mobile = mobilecheck;
+							window.location.href = decodeURI(pe.url(window.location.href).removehash());
+						}
+					});
+				}
 			});
 			pe.wb_load({'dep': ['resize', 'equalheights'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
 		}
