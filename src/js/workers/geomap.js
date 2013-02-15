@@ -404,7 +404,7 @@
 			var fillColor = strokeColor;
 			
 
-			var defaultStyle = { 				
+			var defaultStyle = {				
 				'strokeColor': strokeColor, 
 				'fillColor': fillColor,
 				'fillOpacity': 0.5,
