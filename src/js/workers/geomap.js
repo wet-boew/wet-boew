@@ -678,7 +678,7 @@
 								protocol: new OpenLayers.Protocol.HTTP({
 								url: layer.url,
 								format: new OpenLayers.Format.KML({
-									//extractStyles: true,									
+									extractStyles: !layer.style,									
 									extractAttributes: true,
 									internalProjection: map.getProjectionObject(),
 									externalProjection: new OpenLayers.Projection('EPSG:4269')

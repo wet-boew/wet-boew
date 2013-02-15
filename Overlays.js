@@ -28,6 +28,7 @@ var wet_boew_geomap = {
 		    	name: 'Product Title',
 		    	description: 'Description'
 		    },
+		    style: 'null',
 		    strokeColor: '#FF00FF',
 		    fillColor: '#FF00FF'
 		},
