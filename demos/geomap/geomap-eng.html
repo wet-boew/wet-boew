@@ -112,7 +112,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="span-8">
     <div class="span-6 row-start">
         <!--<div class="wet-boew-geomap span-4 border-all position scaleline" data-wet-boew="{ tables: ['cityE', 'cityW', 'bbox'], features:[ 'POINT (-100, 50)', 'POLYGON ((-120 54, -111 54, -111 50, -120 50, -120 54))', 'LINESTRING (-110 63, -105 60, -100 63)' ] }"></div>-->
-        <div class="wet-boew-geomap span-6 border-all position scaleline debug" data-wet-boew="{ layersFile: '../../Overlays.js', tables: [ { id: 'cityE' }, { id: 'bbox', strokeColor: '#990000', fillColor: '#FF0000' } ] }"></div>
+        <!--<div class="wet-boew-geomap span-6 border-all position scaleline" data-wet-boew="{ layersFile: '../../Overlays.js', tables: [ { id: 'cityE' }, { id: 'bbox', strokeColor: '#990000', fillColor: '#FF0000' } ] }"></div>-->
+        <div 
+            class="wet-boew-geomap span-6 border-all position scaleline" 
+            data-wet-boew="{ 
+                layersFile: '../../Overlays.js', 
+                tables: [ { id: 'cityE', strokeColor: '#990000', fillColor: '#FF0000' }, { id: 'bbox' } ] 
+            }">
+        </div>
     </div>
     <div class="span-2 row-end">
         <h2 class="background-accent">Legend</h2>
@@ -122,61 +129,65 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     </div>
     <div class="clear"></div>
 	<div id="wet-boew-geomap-layers" class="wet-boew-tabbedinterface">
-			<ul class="tabs">
-				<li class="default"><a href="#tabs1_1">Maritime Cities</a></li>				
-				<li><a href="#tabs1_2">Search Results</a></li>
-			</ul>
-			<div class="tabs-panel">
-				<div id="tabs1_1">
-					<table id="cityE" aria-label="Maritime Cities">
-			            <caption class="wb-invisible">Maritime Cities</caption>
-			            <thead>
-			                <tr>                        
-			                    <th>Title</th>
-			                    <th>Description</th>
-			                    <th class="wb-invisible">Geometry</th>
-			                </tr>
-			            </thead>
-			            <tbody>
-			                <tr>
-			                    <td><a href="#">St. John's</a></td>
-			                    <td>St. John's, the capital city of Newfoundland and Labrador, is the most easterly point in North America.</td>
-			                    <td class="geometry wb-invisible">POINT (-52.7097, 47.5649)</td>                    
-			                </tr>
-			                <tr>
-			                	<td class="select"><a href="#">Charlottetown</a></td>
-			                    <td>The City of Charlottetown is a flourishing community of over 32000 people located on the south shore of Prince Edward Island.</td>
-			                    <td class="geometry wb-invisible">POINT (-63.1283, 46.2336)</td>                                           
-			                </tr> 			                
-			            </tbody>
-			        </table>
-				</div>				
-				<div id="tabs1_2">
-					<table id="bbox" aria-label="Search Results">
-			            <caption class="wb-invisible">Search Results</caption>
-			            <thead>
-			                <tr>                        
-			                    <th></th>
-			                    <th>Title</th>
-			                    <th>Geometry</th>
-			                </tr>
-			            </thead>
-			            <tbody>
-			                <tr>
-			                    <td>1</td>
-			                    <td class="select">Report on 2011 field activities and collection of ground thermal and active layer data in the Mackenzie Corridor completed under Northwest Territories science licence #14918</td>
-			                    <td class="geometry bbox">-136, 61, -118, 70</td>
-			                </tr>
-			                <tr>
-			                    <td>2</td>
-			                    <td class="select">Dinoflagellate cysts from upper cretaceous-lower tertiary sections, Bylot and Devon Islands, Arctic Archipelago</td>
-			                    <td class="geometry bbox">-92.5, 72.75, -79, 75.5</td>                                           
-			                </tr>    
-			            </tbody>
-        			</table>      
-				</div>
+		<ul class="tabs">
+			<li class="default"><a href="#tabs1_1">Maritime Cities</a></li>				
+			<li><a href="#tabs1_2">Search Results</a></li>
+		</ul>
+		<div class="tabs-panel">
+			<div id="tabs1_1">
+				<table id="cityE" aria-label="Maritime Cities">
+		            <caption>This is a sample layer created from a table in the current document. A column with cells containing geometry encoded in WKT and marked up with a class named <em>geometry</em> is required. To link the layer features in the table to the map a column containing cells marked up with a class named <em>select</em> is required.</caption>
+		            <thead>
+		                <tr>                        
+		                    <th>Title</th>
+		                    <th>Description</th>
+		                    <th class="wb-invisible">Geometry</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <tr>
+		                    <td><a href="#">St. John's</a></td>
+		                    <td>St. John's, the capital city of Newfoundland and Labrador, is the most easterly point in North America.</td>
+		                    <td class="geometry wb-invisible">POINT (-52.7097, 47.5649)</td>                    
+		                </tr>
+		                <tr>
+		                	<td class="select"><a href="#">Charlottetown</a></td>
+		                    <td>The City of Charlottetown is a flourishing community of over 32000 people located on the south shore of Prince Edward Island.</td>
+		                    <td class="geometry wb-invisible">POINT (-63.1283, 46.2336)</td>                                           
+		                </tr> 			                
+		            </tbody>
+		        </table>
+			</div>			
 		</div>
     </div>
+    <div class="clear"></div>
+    <div>
+        <h2>Search Results</h2>
+        <p>Demonstration of inline table outside of tabbed interface.</p>
+        <table id="bbox" aria-label="Search Results">
+            <caption class="wb-invisible">Table of search results containing bounding box geometries.</caption>
+            <thead>
+                <tr>                        
+                    <th></th>
+                    <th>Title</th>
+                    <th>Geometry</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="select">Report on 2011 field activities and collection of ground thermal and active layer data in the Mackenzie Corridor completed under Northwest Territories science licence #14918</td>
+                    <td class="geometry bbox">-136, 61, -118, 70</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="select">Dinoflagellate cysts from upper cretaceous-lower tertiary sections, Bylot and Devon Islands, Arctic Archipelago</td>
+                    <td class="geometry bbox">-92.5, 72.75, -79, 75.5</td>                                           
+                </tr>    
+            </tbody>
+        </table>     
+    </div> 
+    <div class="clear"></div>
 </div>
 <div class="clear"></div>
 <dl id="gcwu-date-mod" role="contentinfo">
@@ -242,17 +253,17 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<!-- <script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
-<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script> -->
 
-<!-- Debugging 
+<!-- Debugging -->
 <script src="../../src/js/jquery.min.js"></script>
 <script src="../../src/theme-gcwu-fegc/js/theme.js"></script>
 <script src="../../src/js/settings.js"></script>
 <script src="../../src/js/pe-ap.js"></script>
 <script src="../../src/js/workers/geomap.js"></script>
-<script src="../../src/js/workers/tabbedinterface.js"></script>-->
+<script src="../../src/js/workers/tabbedinterface.js"></script>
 <!-- ScriptsEnd -->
 </body>
 </html>

@@ -294,7 +294,29 @@
 				pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
 			};
 			
-			pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
+			var $div = $("div#wet-boew-geomap-layers");
+			
+			// TODO: add debug message for div with id 'wet-boew-geomap-layers' can't be found and prompt to have it added
+			
+			if ($div.hasClass('wet-boew-tabbedinterface')) {
+				pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
+			} else {				
+				var $layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
+				
+				$layerTab.append(featureTable);		
+				
+				var title = featureTable[0].attributes['aria-label'].value;
+				
+				console.log(title);
+				$div.append($layerTab);	
+				var $alert = $('<div class="module-alert module-simplify margin-top-medium"><h3>' + title + '</h3><p>This layer is currently hidden!</p></div>');
+				
+				if(enabled === false) {				
+					$layerTab.append($alert);	
+					featureTable.fadeOut();
+				}			
+			}
+			
 		},
 		
 		/* 
@@ -327,7 +349,7 @@
 					var $alert = $tableContainer.find("div.module-alert");
 					
 					if($alert.length != 0) { 
-						$alert.fadeToggle();
+						$alert.fadeToggle();					
 					} else { 
 						$tableContainer.append('<div class="module-alert module-simplify"><p>This layer is currently hidden.</p></div>');				
 					}					
@@ -578,9 +600,15 @@
 				dataType: "script",
 				async: false,
 				success: function (data) {
-					console.log('WET-Geomap: overlays were loaded successfully');},
+					if(opts.debug) {
+						console.log('WET-Geomap: overlays were loaded successfully');
+					}
+				},
 				error: function (data){
-					console.log('WET-Geomap: an error occurred while loading overlays');}	
+					if(opts.debug) {
+						console.log('WET-Geomap: an error occurred while loading overlays');
+					}
+				}
 			});
 			
 			// Check to see if a base map has been configured. If not add the
