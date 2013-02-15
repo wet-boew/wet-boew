@@ -1759,22 +1759,24 @@
 		dance: function () {
 			var loading_finished = 'wb-init-loaded';
 			pe.document.one(loading_finished, function () {
-				pe.resize(function () {
-					var mobilecheck = pe.mobilecheck(),
-						tabletcheck;
-					if (pe.mobile !== mobilecheck) {
-						pe.mobile = mobilecheck;
-						window.location.href = decodeURI(pe.url(window.location.href).removehash());
-					} else {
-						tabletcheck = pe.tabletcheck();
-						if (pe.tablet && !tabletcheck) {
-							$('html').removeClass('tablet-view');
-						} else if (!pe.tablet && tabletcheck) {
-							$('html').addClass('tablet-view');
+				if (pe.ie === 0 || pe.ie > 8) {
+					pe.resize(function () {
+						var mobilecheck = pe.mobilecheck(),
+							tabletcheck;
+						if (pe.mobile !== mobilecheck) {
+							pe.mobile = mobilecheck;
+							window.location.href = decodeURI(pe.url(window.location.href).removehash());
+						} else {
+							tabletcheck = pe.tabletcheck();
+							if (pe.tablet && !tabletcheck) {
+								$('html').removeClass('tablet-view');
+							} else if (!pe.tablet && tabletcheck) {
+								$('html').addClass('tablet-view');
+							}
+							pe.tablet = tabletcheck;
 						}
-						pe.tablet = tabletcheck;
-					}
-				});
+					});
+				}
 			});
 			pe.wb_load({'dep': ['resize', 'equalheights'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
 		}
