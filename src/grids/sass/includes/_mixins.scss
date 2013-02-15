@@ -137,3 +137,18 @@ $default-box-shadow-v-offset: 0;
 	}
 
 }
+
+//Based off of Bourbon, but inlined for specific use https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/functions/_modular-scale.scss
+@function golden-ratio($value, $increment) {
+  @if $increment > 0 {
+    @for $i from 1 through $increment {
+      $value: ($value * 1.618);
+    }
+  } @else if $increment < 0 {
+    $increment: abs($increment);
+    @for $i from 1 through $increment {
+      $value: ($value / 1.618);
+    }
+  }
+  @return $value;
+}
