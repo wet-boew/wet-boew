@@ -25,17 +25,3 @@ var wet_boew_share = {
 
 // Charts widget 
 // var wet_boew_charts = { };
-
-// Geomap widget
-var wet_boew_geomap = {
-	// OPTIONAL: note that geomap will provide a default basemap if not specified here.
-	/* basemap : {
-		title: 'CBMT',
-		type: 'wms',
-		url: 'http://geogratis.gc.ca/maps/CBMT',
-		layers: 'CBMT',
-		format: 'image/png',
-		version: '1.1.1',
-		options: { singleTile: false, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true }
-	}*/	
-};

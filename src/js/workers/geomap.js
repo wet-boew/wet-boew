@@ -309,7 +309,7 @@
 				
 				console.log(title);
 				$div.append($layerTab);	
-				var $alert = $('<div class="module-alert module-simplify margin-top-medium"><h3>' + title + '</h3><p>This layer is currently hidden!</p></div>');
+				var $alert = $('<div class="module-alert module-simplify margin-top-medium"><h3>' + title + '</h3><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');
 				
 				if(enabled === false) {				
 					$layerTab.append($alert);	
@@ -351,7 +351,7 @@
 					if($alert.length != 0) { 
 						$alert.fadeToggle();					
 					} else { 
-						$tableContainer.append('<div class="module-alert module-simplify"><p>This layer is currently hidden.</p></div>');				
+						$tableContainer.append('<div class="module-alert module-simplify"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');				
 					}					
 					
 					$table.fadeToggle();									
@@ -387,7 +387,7 @@
 			$tabsPanel.append($layerTab);		
 			
 			if(enabled === false) {				
-				$layerTab.append('<div class="module-alert module-simplify"><p>This layer is currently hidden!</p></div>');	
+				$layerTab.append('<div class="module-alert module-simplify"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');	
 				featureTable.fadeOut();
 			}			
 		},
@@ -547,7 +547,7 @@
 			}			
 
 			if(context.type != 'head') {
-				
+
 				// TODO: support user configured column for link, currently defaults to first column.
 				var $link = $('<a>', {				
 					'html': $(cols[0]).html(),
@@ -597,7 +597,9 @@
 		 * TODO: selectControl should be a global variable
 		 */
 		onFeaturesAdded: function($table, evt, selectCtrl) {
+
 			var $head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
+
 			$table.find('thead').append($head);
 			$.each(evt.features, function(index, feature) {												
 				var context = {
@@ -605,10 +607,54 @@
 					'id': feature.id.replace(/\W/g, "_"),
 					'feature': feature,
 					'selectControl': selectCtrl
+
 				};											
 				var $row = pe.fn.geomap.createRow(context);									
 				$table.find('tbody').append($row);
 			});
+		},
+		
+		/*
+		 *	Localization for debug message
+		 * 
+		 * TODO: do it for accessibilize function after new icon
+		 */
+		getLocalization: function(mess) {
+			
+			var english = {
+							debugMode: 'WET-Geomap: running in DEBUG mode',
+							debugMess:'When running in debug mode Geomap will provide inline error and help messages and write useful debugging information into the console. Disable debug mode by removing the <em>debug</em> class.',
+							overlayLoad: 'WET-Geomap: overlays were loaded successfully',
+							overlayNotLoad: 'WET-Geomap: an error occurred while loading overlays',
+							basemapDefault: 'WET-Geomap: using default basemap',
+							projection: 'WET-Geomap: using projection',
+							error: 'WET-Geomap ERROR',
+							errorSelect: 'This cell has the <em>select</em> class but no link was found. Please add a link to this cell.',
+							errorNoSelect: 'This table contains rows that do not have a cell with the <em>select</em> class. Please ensure that each row has exactly one cell with the <em>select</em> class and that the cell includes a link.',
+							accessibilize: 'Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.',
+							warning: 'WET-Geomap WARNING',
+							warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.',
+							hiddenLayer: 'This layer is currently hidden!'
+			};
+			
+			var french = {
+							debugMode: 'BOEW-Geomap: mode débogage activé',
+							debugMess:'Lors de l\'exécution en mode débogage Geomap donne des messages d\'erreur, des messages d\'aide et donneras de l\'information utile dansla console de débogage. Désactiver le mode débogage en supprimant la classe <em>debug</em>.',
+							overlayLoad: 'BOEW-Geomap: Les couches de superpositions ont été chargées avec succès',
+							overlayNotLoad: 'BOEW-Geomap: une erreur est survenue lors du chargement des couches de superpositions',
+							basemapDefault: 'BOEW-Geomap: la carte de base par défaut est utilisée',
+							projection: 'BOEW-Geomap: la projection utilisée est',
+							error: 'BOEW-Geomap ERREUR',
+							errorSelect: 'Cette cellule a la classe <em>select</em> mais aucun lien n\'a été trouvé. S\'il vous plaît, ajouter un lien à cette cellule.',
+							errorNoSelect: 'Cette table contient des lignes qui n\'ont pas de cellule avec la classe <em>select</em>. S\'il vous plaît, assurer vous que chaque ligne a exactement une cellule avec la classe <em>select</em> et celle-ci doit contenir un lien.',
+							accessibilize: 'Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.',
+							warning: 'BOEW-Geomap AVERTISSEMENT',
+							warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> ou bien activer la légende par défaut de <em>OpenLayers</em> en ajoutant le paremètre <em>layerswitcher</em> à la classe <em>wet-boew-geomap</em> du div.',
+							hiddenLayer: 'Cette couche est présentement cachée!'
+			};
+			
+			var message = (_pe.language == "en") ? english[mess] : french[mess];
+			return message;
 		},
 		
 		_exec: function (elm) {
@@ -663,8 +709,9 @@
 			}
 
 			if(opts.debug) {
+
 				console.log("WET-Geomap: running in DEBUG mode");
-				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>Geomap is running in DEBUG mode!</h3><p>When running in debug mode Geomap will provide inline error and help messages and write useful debugging information into the console. Disable debug mode by removing the <em>debug</em> class.</p></div>');
+				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('debugMess') + '</h3><p></p></div>');
 			}	
 						
 			// Set the language for OpenLayers
@@ -689,12 +736,12 @@
 				async: false,
 				success: function (data) {
 					if(opts.debug) {
-						console.log('WET-Geomap: overlays were loaded successfully');
+						console.log(pe.fn.geomap.getLocalization('overlayLoad'));
 					}
 				},
 				error: function (data){
 					if(opts.debug) {
-						console.log('WET-Geomap: an error occurred while loading overlays');
+						console.log(pe.fn.geomap.getLocalization('overlayNotLoad'));
 					}
 				}
 			});
@@ -711,7 +758,7 @@
 				));					
 			} else {
 				if(opts.debug) {
-					console.log("WET-Geomap: using default basemap");
+					console.log(pe.fn.geomap.getLocalization('basemapDefault'));
 				}
 				
 				// Add the Canada Transportation Base Map (CBMT)			
@@ -735,7 +782,7 @@
 			var projMap = map.getProjectionObject();						
 
 			if(opts.debug) {
-				console.log("WET-Geomap: using projection " + projMap.getCode());
+				console.log(pe.fn.geomap.getLocalization('projection') + ' ' + projMap.getCode());
 			}			
 			
 			var selectControl = new OpenLayers.Control.SelectFeature();			
@@ -1057,7 +1104,7 @@
 				var $table = $("table#" + table.id);
 				var wktFeature;		
 				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: pe.fn.geomap.getStyleMap(opts.tables[index]) });
-			
+
 				var wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap, 
 					'externalProjection': projLatLon
@@ -1113,12 +1160,12 @@
 							);
 						} else { 
 							if(opts.debug) {
-								$select.append('<div class="module-attention"><h3>WET-Geomap ERROR</h3><p>This cell has the <em>select</em> class but no link was found. Please add a link to this cell.</p></div>');		
+								$select.append('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorSelect') + '</p></div>');		
 							}
 						}
 					} else {
 						if(opts.debug) {
-							$tr.closest('table').before('<div class="module-attention"><h3>WET-Geomap ERROR</h3><p>This table contains rows that do not have a cell with the <em>select</em> class. Please ensure that each row has exactly one cell with the <em>select</em> class and that the cell includes a link.</p></div>');
+							$tr.closest('table').before('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorNoSelect') + '</p></div>');
 						}
 					}										
 					tableLayer.addFeatures([vectorFeatures]);	
@@ -1157,7 +1204,7 @@
 			map.zoomToMaxExtent();			
 			
 			// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
-			$("#" + map.div.id).before((_pe.language == "en") ? '<p><strong>Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.</p>' : '<p><strong>Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.</p>');
+			$("#" + map.div.id).before((_pe.language == "en") ? '<p><strong>' + pe.fn.geomap.getLocalization('accessibilize') + '</p>' : '<p><strong>' + pe.fn.geomap.getLocalization('accessibilize') + '</p>');
 			
 			// add a listener on the window to update map when resized
 			window.onresize = function() {				
@@ -1172,7 +1219,7 @@
 			
 			// Check to see if a legend container is provided			
 			if($(".wet-boew-geomap-legend").length == 0 && $(".wet-boew-geomap").hasClass("debug")) {		
-				$("div#wb-main-in").prepend('<div class="module-alert span-8"><h3>WET-Geomap WARNING</h3><p>No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.</p></div>');	
+				$("div#wb-main-in").prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
 			}	
 			
 			return elm;

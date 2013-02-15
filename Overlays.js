@@ -125,7 +125,6 @@ var wet_boew_geomap = {
 						value: [45.42],
 						filter: 'GREATER_THAN',
 						init: {'pointRadius': '10', 'strokeColor': '#800080','fillColor': '#800080'}
-
 				}],
 				select: {'pointRadius': '30', 'externalGraphic': '../../OverIcon.png', 'label': "Selected", 'fillOpacity': 0.90}
 			}
