@@ -13,10 +13,40 @@
 	}; /* local reference */
 	_pe.fn.tables = {
 		type: 'plugin',
-		depends: ['datatables'],
+		depends: ['metadata','datatables'],
 		dependscss: ['datatables'],
 		_exec: function (elm) {
+			var opts;
+			
+			//Defaults
+			opts = {
+				paginate: true,
+				search: true,
+				sort: true,
+				vColumns: [],
+				visible: true,
+				zebra: false
+			};
+			
+			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
+			overrides = {
+				
+			};
+			
+			// Extend the defaults with settings passed through settings.js (wet_boew_tables), class-based overrides and the data attribute
+			$.metadata.setType('attr', 'data-wet-boew');
+			if (typeof wet_boew_tables !== 'undefined' && wet_boew_tables !== null) {
+				$.extend(opts, wet_boew_tables, overrides, elm.metadata());
+			} else {
+				$.extend(opts, overrides, elm.metadata());
+			}
+			
 			elm.dataTable({
+				'aoColumnDefs': [ { 'bVisible': (opts.visible == true), 'aTargets': opts.vColumns } ],
+				'asStripeClasses': ((opts.zebra == true) ? ['odd', 'even'] : []),
+				'bFilter': (opts.search == true),
+				'bPaginate': (opts.paginate == true),
+				'bSort': (opts.sort == true),
 				'oLanguage': {
 					'oAria': {
 						'sSortAscending': pe.dic.get('%sSortAscending'),
@@ -38,7 +68,7 @@
 					'sProcessing': pe.dic.get('%processing'),
 					'sSearch': pe.dic.get('%search') + pe.dic.get('%colon'),
 					'sZeroRecords': pe.dic.get('%no-match-found')
-				}
+				}				
 			});
 		} // end of exec
 	};
