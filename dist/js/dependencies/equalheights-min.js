@@ -14,4 +14,4 @@ http://www.filamentgroup.com/lab/retaining_scalable_interfaces_with_pixel_to_em_
 Optional: to set min-height in px, pass a true argument: $(element).equalHeights(true);
 * Version: 2.0, 08.01.2008
 --------------------------------------------------------------------*/
-(function(a){a.fn.equalHeights=function(b){a(this).each(function(){var c=0;a(this).children().each(function(){if(a(this).height()>c){c=a(this).height()}});if(!b&&typeof Number.prototype.pxToEm!=="undefined"){c=c.pxToEm()}if(a.browser.msie&&a.browser.version==="6.0"){a(this).children().css({height:c})}a(this).children().css({"min-height":c})});return this}}(jQuery));
+(function(a){a.fn.equalHeights=function(b){a(this).each(function(){var c=0;a(this).children().each(function(){if(a(this).height()>c){c=a(this).height()}});if(!b&&typeof Number.prototype.pxToEm!=="undefined"){c=c.pxToEm()}a(this).children().css({"min-height":c})});return this}}(jQuery));

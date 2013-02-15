@@ -3,7 +3,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  *
- * Version: v3.0.5-a1 Build: 2013-02-15 07:27 PM
+ * Version: v3.1.0-b2 Build: 2013-02-15 08:06 PM
  *
  */
 /*
@@ -11,7 +11,7 @@ WET-BOEW-Settings
  */
 var wet_boew_properties = {
 	/** global plugins are called via a array of dependency names **/
-	globals : ['equalize', 'deselectradio', 'css3ie']
+	globals : ['deselectradio', 'css3ie', 'datemodified']
 };
 
 /*
