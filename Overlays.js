@@ -86,9 +86,44 @@ var wet_boew_geomap = {
 				latitude: 'Longitude',				
 				updated_at: 'Last updated'
 			},
-			visible: false,			
-			strokeColor: '#800080',
-			fillColor: '#FF00FF'
+			visible: true,
+			// default style			
+			// style: {
+				// type: 'symbol',
+				// init: {'pointRadius': '10', 'externalGraphic': '../../OverIcon.png','label': "${Location}",'fontSize': '12px'}, 
+				// select: {'pointRadius': '30', 'externalGraphic': '../../OverIcon.png', 'label': "Selected", 'fillOpacity': 0.90}
+			// }
+		    // unique value style
+			// style: {
+				// type: 'unique',
+				// field: 'Location',
+				// init: {'Bayshore & Richmond': {'pointRadius':'25', 'strokeWidth':'20', 'strokeColor': '#800080'},'Baseline & Greenbank': {'pointRadius':'25', 'strokeWidth':'10', 'fillColor': '#800080'}},
+				// select: {'pointRadius': 30, 'externalGraphic': '../../OverIcon.png', 'label': "Selected", 'fillOpacity': 0.90} 
+			// }
+			// rule style
+			style: {
+				type: 'rule',
+				rule: [{
+						field: 'Longitude',
+						value: [45.36],
+						filter: 'LESS_THAN',
+						init: {'pointRadius': '15', 'strokeColor': '#800000','fillColor': '#FFFFFF', 'fillOpacity': 0.90}
+				},
+						{
+						field: 'Longitude',
+						value: [45.37, 45.42],
+						filter: 'BETWEEN',
+						init: {'pointRadius': '25', 'strokeColor': '#000000','fillColor': '#222222', 'fillOpacity': 0.90}
+				},
+						{
+						field: 'Longitude',
+						value: [45.42],
+						filter: 'GREATER_THAN',
+						init: {'pointRadius': '10', 'strokeColor': '#800080','fillColor': '#800080'}
+						
+				}],
+				select: {'pointRadius': '30', 'externalGraphic': '../../OverIcon.png', 'label': "Selected", 'fillOpacity': 0.90}
+			}
 		}		
 	]
 };

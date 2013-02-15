@@ -365,39 +365,119 @@
 		/*
 		 * Generate StyleMap
 		 */
-		getStyleMap: function(style) {
+		getStyleMap: function(elm) {
 
-			// set random color, if color suplied, overrides them.
+			// set random style.
 			var strokeColor = pe.fn.geomap.randomColor();
-			var fillColor = strokeColor
-
-			if (typeof(style) != "undefined"){
-				if (typeof(style.strokeColor) != "undefined" && typeof(style.fillColor) != "undefined"){
-				strokeColor = style.strokeColor;
-				fillColor = style.fillColor;
-				}
-			}
-
-			var my_style = new OpenLayers.StyleMap({ 
-				"default": new OpenLayers.Style( 
-					{ 
+			var fillColor = strokeColor;
+			var defaultStyle = { 
 						'strokeColor': strokeColor, 
 						'fillColor': fillColor,
 						'fillOpacity': 0.5,
 						'pointRadius': 5,
 						'strokeWidth': 0.5
-					}),
-				"select": new OpenLayers.Style( 
-					{ 
+				};
+			var selectStyle = { 
 						'strokeColor': "#0000ff", 
 						'fillColor': "#0000ff",
 						'fillOpacity': 0.4,
 						'pointRadius': 5,
 						'strokeWidth': 2.0
-					})
-			});
+				};
 
-			return my_style;
+			// if style is supplied, create it. If not, create the default one.
+			if (typeof(elm.style) != "undefined"){
+				
+				// Check the style type (by default, no type are supplied).
+				switch(elm.style.type) {
+				case 'unique':
+				
+					// set the select style then the unique value.
+					var select = ((typeof(elm.style.select) != "undefined") ? elm.style.select : selectStyle);
+					var styleMap = new OpenLayers.StyleMap({"select": new OpenLayers.Style(select)});
+					styleMap.addUniqueValueRules("default", elm.style.field, elm.style.init);
+					break;
+					
+				case 'rule':
+				
+					// set the rules and add to the style
+					var rules = [];
+					for (var i=0; i < elm.style.rule.length; i++){
+
+						// set the filter.
+						var filter;
+						switch(elm.style.rule[i].filter){
+						case 'LESS_THAN':
+							filter = OpenLayers.Filter.Comparison.LESS_THAN;
+							break;
+						case 'LESS_THAN_OR_EQUAL_TO':
+							filter = OpenLayers.Filter.Comparison.LESS_THAN_OR_EQUAL_TO;
+							break;
+						case 'GREATER_THAN_OR_EQUAL_TO':
+							filter = OpenLayers.Filter.Comparison.GREATER_THAN_OR_EQUAL_TO;
+							break;
+						case 'GREATER_THAN':
+							filter = OpenLayers.Filter.Comparison.GREATER_THAN;
+							break;
+						case 'BETWEEN':
+							filter = OpenLayers.Filter.Comparison.BETWEEN;
+							break;
+						case 'EQUAL_TO':
+							filter = OpenLayers.Filter.Comparison.EQUAL_TO;
+							break;
+						case 'NOT_EQUAL_TO':
+							filter = OpenLayers.Filter.Comparison.NOT_EQUAL_TO;
+							break;
+						case 'LIKE':
+							filter = OpenLayers.Filter.Comparison.LIKE;
+							break;
+						}
+						
+						if (elm.style.rule[i].filter != "BETWEEN"){
+							rules.push(new OpenLayers.Rule({
+															filter: new OpenLayers.Filter.Comparison({
+															type: filter,
+															property: elm.style.rule[i].field,
+															value: elm.style.rule[i].value[0]}),
+															symbolizer: elm.style.rule[i].init}));
+						} else {
+							rules.push(new OpenLayers.Rule({
+															filter: new OpenLayers.Filter.Comparison({
+															type: filter,
+															property: elm.style.rule[i].field,
+															lowerBoundary:elm.style.rule[i].value[0],
+															upperBoundary:elm.style.rule[i].value[1]}),
+															symbolizer: elm.style.rule[i].init}));
+						}
+						
+					}
+					var style = new OpenLayers.Style();
+					style.addRules(rules);
+					
+					// set the select style then the rules.
+					var select = ((typeof(elm.style.select) != "undefined") ? elm.style.select : selectStyle);
+					var styleMap = new OpenLayers.StyleMap({
+											"default": style, 
+											"select": new OpenLayers.Style(select)});
+					break;
+					
+				default:
+				
+					// set the select style then the default.
+					var select = ((typeof(elm.style.select) != "undefined") ? elm.style.select : selectStyle);
+					var styleMap = new OpenLayers.StyleMap({ 
+						"default": new OpenLayers.Style(elm.style.init),
+						"select": new OpenLayers.Style(select)});
+					break;
+				}
+			} // end of (typeof(elm.style) != "undefined"
+			else {
+				var styleMap = new OpenLayers.StyleMap({ 
+				"default": new OpenLayers.Style(defaultStyle),
+				"select": new OpenLayers.Style(selectStyle)});
+			}
+
+			return styleMap;
 		},
 		
 		/*
@@ -435,7 +515,7 @@
 			}			
 
 			if(context.type != 'head') {
-				
+
 				// TODO: support user configured column for link, currently defaults to first column.
 				$link = $('<a>', {				
 					'html': $(cols[0]).html(),
@@ -485,6 +565,7 @@
 		 * TODO: selectControl should be a global variable
 		 */
 		onFeaturesAdded: function($table, evt, selectCtrl) {
+
 			$head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
 			$table.find('thead').append($head);
 			$.each(evt.features, function(index, feature) {												
@@ -493,7 +574,8 @@
 					'id': feature.id.replace(/\W/g, "_"),
 					'feature': feature,
 					'selectControl': selectCtrl
-				};											
+				};
+											
 				$row = pe.fn.geomap.createRow(context);									
 				$table.find('tbody').append($row);
 			});
@@ -900,16 +982,10 @@
 			 */	
 			
 			$.each(opts.tables, function(index, table) {
-				
+
 				$table = $("table#" + table.id);
 				
-				// get color if specified
-				var colorAr;				
-				if (table.fillColor != "undefined" || table.strokeColor!= "undefined"){
-					colorAr = { strokeColor: table.strokeColor, fillColor: table.fillColor };
-				}			
-
-				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: pe.fn.geomap.getStyleMap(colorAr) });
+				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: pe.fn.geomap.getStyleMap(opts.tables[index]) });
 
 				var wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap, 
