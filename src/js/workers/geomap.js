@@ -106,8 +106,8 @@
 					// make the max/min divs focusable on click (ignores if IE since IE6 - IE8 throws an error)
 					if (!$.browser.msie) {
 						var that = this;
-						$(this.minimizeDiv).click(function(){that.maximizeDiv.focus()});
-						$(this.maximizeDiv).click(function(){that.minimizeDiv.focus()});
+						$(this.minimizeDiv).click(function(){ that.maximizeDiv.focus(); });
+						$(this.maximizeDiv).click(function(){ that.minimizeDiv.focus(); });
 					}
 					// add alt and title attributes to the min/max buttons
 					this.minimizeDiv.title = (pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
@@ -238,14 +238,23 @@
 			}
 		}, // end accessibilize function		
 	 
+		/* 
+		 * Map feature select
+		 */
 		onFeatureSelect: function(feature) {					
 			$("tr#" + feature.id.replace(/\W/g, "_")).attr('class', 'background-highlight');
 		},
- 
+		
+		/*
+		 *	Map feature unselect
+		 */
 		onFeatureUnselect: function(feature) {
 			$("tr#" + feature.id.replace(/\W/g, "_")).attr('class', 'background-white');
 		},
 		
+		/*
+		 * Get the OpenLayers map object
+		 */
 		getMap: function() {			
 			return map;
 		},
@@ -276,7 +285,6 @@
 			return color;
 		},
 		
-
 		/* 
 		 * Add layer data
 		 */		
@@ -286,7 +294,29 @@
 				pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
 			};
 			
-			pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
+			var $div = $("div#wet-boew-geomap-layers");
+			
+			// TODO: add debug message for div with id 'wet-boew-geomap-layers' can't be found and prompt to have it added
+			
+			if ($div.hasClass('wet-boew-tabbedinterface')) {
+				pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
+			} else {				
+				var $layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
+				
+				$layerTab.append(featureTable);		
+				
+				var title = featureTable[0].attributes['aria-label'].value;
+				
+				console.log(title);
+				$div.append($layerTab);	
+				var $alert = $('<div class="module-alert module-simplify margin-top-medium"><h3>' + title + '</h3><p>This layer is currently hidden!</p></div>');
+				
+				if(enabled === false) {				
+					$layerTab.append($alert);	
+					featureTable.fadeOut();
+				}			
+			}
+			
 		},
 		
 		/* 
@@ -310,8 +340,8 @@
 				
 				$chkBox.change(function() {				
 					map = pe.fn.geomap.getMap();
-					layer = map.getLayer(olLayerId);				
-					visibility = $('#cb_' + $(featureTable).attr('id')).prop('checked') ? true : false;	
+					var layer = map.getLayer(olLayerId);				
+					var visibility = $('#cb_' + $(featureTable).attr('id')).prop('checked') ? true : false;	
 					layer.setVisibility(visibility);	
 					
 					var $table = $('#' + $(featureTable).attr('id'));		
@@ -319,13 +349,13 @@
 					var $alert = $tableContainer.find("div.module-alert");
 					
 					if($alert.length != 0) { 
-						$alert.fadeToggle();
+						$alert.fadeToggle();					
 					} else { 
 						$tableContainer.append('<div class="module-alert module-simplify"><p>This layer is currently hidden.</p></div>');				
 					}					
 					
 					$table.fadeToggle();									
-				})
+				});
 				
 				var $label = $('<label>', {
 					'html': $(featureTable).attr('aria-label'),			   
@@ -352,7 +382,7 @@
 
 			$tabs.append($("<li>", { 'style': 'margin-right: 5px' }).append($link));
 			
-			$layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
+			var $layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
 			$layerTab.append(featureTable);		
 			$tabsPanel.append($layerTab);		
 			
@@ -370,6 +400,7 @@
 			// set random style.
 			var strokeColor = pe.fn.geomap.randomColor();
 			var fillColor = strokeColor;
+
 			var defaultStyle = { 
 						'strokeColor': strokeColor, 
 						'fillColor': fillColor,
@@ -495,20 +526,15 @@
 			
 			var cols = [];
 			var a = context.feature.attributes;
-			
-			
 
 			for (var name in a) {
-				
-				// TODO: add regex to replace text links with hrefs.
-				//var regex = new RegExp('var match = (?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))');
-				
+				var $col;
+				// TODO: add regex to replace text links with hrefs.				
 				if (a.hasOwnProperty(name)) {					
 					if(context.type == 'head') {
-						var $col = $('<th>', { 'html': name });
-						//var $col = $('<td>', { 'html': regex.exec(a[name]) });
+						$col = $('<th>', { 'html': name });
 					} else {
-						var $col = $('<td>', { 'html': a[name] });
+						$col = $('<td>', { 'html': a[name] });
 					}
 					cols.push($col);
 				}
@@ -517,7 +543,7 @@
 			if(context.type != 'head') {
 
 				// TODO: support user configured column for link, currently defaults to first column.
-				$link = $('<a>', {				
+				var $link = $('<a>', {				
 					'html': $(cols[0]).html(),
 					'href': '#'
 				});
@@ -566,7 +592,8 @@
 		 */
 		onFeaturesAdded: function($table, evt, selectCtrl) {
 
-			$head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
+			var $head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
+
 			$table.find('thead').append($head);
 			$.each(evt.features, function(index, feature) {												
 				var context = {
@@ -574,9 +601,9 @@
 					'id': feature.id.replace(/\W/g, "_"),
 					'feature': feature,
 					'selectControl': selectCtrl
-				};
-											
-				$row = pe.fn.geomap.createRow(context);									
+
+				};											
+				var $row = pe.fn.geomap.createRow(context);									
 				$table.find('tbody').append($row);
 			});
 		},
@@ -589,8 +616,7 @@
 //			}
 			var opts,
 				overrides,				
-				queryLayers = [],
-				selectControl;			
+				queryLayers = [];			
 			
 			// Defaults
 			opts = {
@@ -658,9 +684,15 @@
 				dataType: "script",
 				async: false,
 				success: function (data) {
-					console.log('WET-Geomap: overlays were loaded successfully');},
+					if(opts.debug) {
+						console.log('WET-Geomap: overlays were loaded successfully');
+					}
+				},
 				error: function (data){
-					console.log('WET-Geomap: an error occurred while loading overlays');}	
+					if(opts.debug) {
+						console.log('WET-Geomap: an error occurred while loading overlays');
+					}
+				}
 			});
 			
 			// Check to see if a base map has been configured. If not add the
@@ -692,6 +724,8 @@
 				));			
 			}
 			
+			
+			
 			// Create projection objects
 			var projLatLon = new OpenLayers.Projection('EPSG:4326');
 			var projMap = map.getProjectionObject();						
@@ -703,7 +737,7 @@
 			var selectControl = new OpenLayers.Control.SelectFeature();			
 			
 			/*
-			 * Load overlays			 * 
+			 * Load overlays 
 			 * TODO: turn this into a public function
 			 */			
 						
@@ -742,7 +776,7 @@
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
-						)
+						);
 						olLayer.visibility=layer.visible;						
 						map.addLayer(olLayer);
 						queryLayers.push(olLayer);						
@@ -754,16 +788,49 @@
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
-									format: new OpenLayers.Format.Atom()									
-								}),
+									format: new OpenLayers.Format.Atom({
+											read: function(data) {											
+												var items = this.getElementsByTagNameNS(data, "*", "entry");
+												
+												var row, feature, atts = {}, features = [];
+												
+												for (var i = 0; i < items.length; i++) {												
+													row = items[i];			
+																									
+													feature = new OpenLayers.Feature.Vector();														
+																									
+													feature.geometry = this.parseFeature(row).geometry;
+													
+													// parse and store the attributes
+													atts = {};
+													var a = layer.attributes;
+													
+													// TODO: test on nested attributes
+													for (var name in a) {
+														if (a.hasOwnProperty(name)) {
+															 atts[a[name]] = $(row).find(name).text();														
+														}
+													}
+													
+													feature.attributes = atts;												
+												
+													// if no geometry, don't add it
+													//if (feature.geometry) {
+														features.push(feature);
+													//}
+												} 
+												return features;
+											}
+										})
+									}),						
 								eventListeners: {
-									"featuresadded": function (evt) {	
+									"featuresadded": function (evt) {											
 										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
-						)
+						);
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
@@ -778,7 +845,7 @@
 									url: layer.url,
 									format: new OpenLayers.Format.GeoRSS({
 //									{
-//										// adds the thumbnail attribute to the feature
+//										// adds the author attribute to the feature
 //										createFeatureFromItem: function(item) {
 //											var feature = OpenLayers.Format.GeoRSS.prototype.createFeatureFromItem.apply(this, arguments);	
 //											var node = this.getElementsByTagNameNS(item, "*", "author");											
@@ -827,7 +894,7 @@
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
-						)
+						);
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
@@ -880,7 +947,7 @@
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
-						)						
+						);						
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
@@ -933,7 +1000,7 @@
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
-						)						
+						);
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
@@ -982,9 +1049,9 @@
 			 */	
 			
 			$.each(opts.tables, function(index, table) {
-
-				$table = $("table#" + table.id);
 				
+				var $table = $("table#" + table.id);
+				var wktFeature;		
 				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: pe.fn.geomap.getStyleMap(opts.tables[index]) });
 
 				var wktParser = new OpenLayers.Format.WKT({						
@@ -996,7 +1063,7 @@
 
 					if($(feature).hasClass('bbox')) {								
 
-						bbox = $(feature).text().split(',');
+						var bbox = $(feature).text().split(',');
 						wktFeature = "POLYGON((" 
 							+ bbox[0] + " " + bbox[1] + ", " 
 							+ bbox[0] + " " + bbox[3] + ", " 
@@ -1014,10 +1081,10 @@
 
 					$tr.attr('id', vectorFeatures.id.replace(/\W/g, "_"));
 
-					$select = $tr.find('td.select');
+					var $select = $tr.find('td.select');
 
 					if($select.length) {
-						$link = $select.find('a');
+						var $link = $select.find('a');
 						if($link.length) {
 							$link.hover(function(){
 									$tr.attr('class', 'background-highlight');
@@ -1073,15 +1140,15 @@
 			map.addControl(selectControl);			
 			selectControl.activate();			
 			
-			if(opts.useMousePosition) { map.addControl(new OpenLayers.Control.MousePosition()) };
-			if(opts.useScaleLine) { map.addControl(new OpenLayers.Control.ScaleLine()) };					
+			if(opts.useMousePosition) { map.addControl(new OpenLayers.Control.MousePosition()); }
+			if(opts.useScaleLine) { map.addControl(new OpenLayers.Control.ScaleLine()); }					
 			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
 			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			
 			// add accessibility enhancements
 			this.accessibilize(opts.useLayerSwitcher);					
-			if(opts.useLayerSwitcher) { map.addControl(new OpenLayers.Control.LayerSwitcher()) };
+			if(opts.useLayerSwitcher) { map.addControl(new OpenLayers.Control.LayerSwitcher()); }
 
 			map.zoomToMaxExtent();			
 			
@@ -1093,7 +1160,7 @@
 				$("#" + map.div.id).height($("#" + map.div.id).width() * 0.8);
 				map.updateSize();
 				map.zoomToMaxExtent();
-			}
+			};
 			
 			/*
 			 * General debug and warning messages - only shown if debug class is found
