@@ -397,46 +397,47 @@
 		 */
 		getStyleMap: function(elm) {
 
-			// set random style.
+			var styleMap, filter;
+			
+			// set random color
 			var strokeColor = pe.fn.geomap.randomColor();
 			var fillColor = strokeColor;
+			
 
-			var defaultStyle = { 
-						'strokeColor': strokeColor, 
-						'fillColor': fillColor,
-						'fillOpacity': 0.5,
-						'pointRadius': 5,
-						'strokeWidth': 0.5
-				};
+			var defaultStyle = { 				
+				'strokeColor': strokeColor, 
+				'fillColor': fillColor,
+				'fillOpacity': 0.5,
+				'pointRadius': 5,
+				'strokeWidth': 0.5
+			};
+			
 			var selectStyle = { 
-						'strokeColor': "#0000ff", 
-						'fillColor': "#0000ff",
-						'fillOpacity': 0.4,
-						'pointRadius': 5,
-						'strokeWidth': 2.0
-				};
+				'strokeColor': "#0000ff", 
+				'fillColor': "#0000ff",
+				'fillOpacity': 0.4,
+				'pointRadius': 5,
+				'strokeWidth': 2.0
+			};
+			
 
 			// if style is supplied, create it. If not, create the default one.
-			if (typeof(elm.style) != "undefined"){
-				
+			if (typeof(elm.style) != "undefined") {
 				// Check the style type (by default, no type are supplied).
 				switch(elm.style.type) {
 				case 'unique':
-				
 					// set the select style then the unique value.
 					var select = ((typeof(elm.style.select) != "undefined") ? elm.style.select : selectStyle);
 					var styleMap = new OpenLayers.StyleMap({"select": new OpenLayers.Style(select)});
 					styleMap.addUniqueValueRules("default", elm.style.field, elm.style.init);
 					break;
-					
+
 				case 'rule':
-				
 					// set the rules and add to the style
 					var rules = [];
 					for (var i=0; i < elm.style.rule.length; i++){
 
-						// set the filter.
-						var filter;
+						// set the filter						
 						switch(elm.style.rule[i].filter){
 						case 'LESS_THAN':
 							filter = OpenLayers.Filter.Comparison.LESS_THAN;
@@ -463,49 +464,54 @@
 							filter = OpenLayers.Filter.Comparison.LIKE;
 							break;
 						}
-						
+
 						if (elm.style.rule[i].filter != "BETWEEN"){
 							rules.push(new OpenLayers.Rule({
-															filter: new OpenLayers.Filter.Comparison({
-															type: filter,
-															property: elm.style.rule[i].field,
-															value: elm.style.rule[i].value[0]}),
-															symbolizer: elm.style.rule[i].init}));
+								filter: new OpenLayers.Filter.Comparison({
+									type: filter,
+									property: elm.style.rule[i].field,
+									value: elm.style.rule[i].value[0]}),
+									symbolizer: elm.style.rule[i].init
+								})
+							);
 						} else {
 							rules.push(new OpenLayers.Rule({
-															filter: new OpenLayers.Filter.Comparison({
-															type: filter,
-															property: elm.style.rule[i].field,
-															lowerBoundary:elm.style.rule[i].value[0],
-															upperBoundary:elm.style.rule[i].value[1]}),
-															symbolizer: elm.style.rule[i].init}));
+								filter: new OpenLayers.Filter.Comparison({
+									type: filter,
+									property: elm.style.rule[i].field,
+									lowerBoundary:elm.style.rule[i].value[0],
+									upperBoundary:elm.style.rule[i].value[1]}),
+									symbolizer: elm.style.rule[i].init
+								})
+							);
 						}
-						
 					}
+					
 					var style = new OpenLayers.Style();
 					style.addRules(rules);
-					
+
 					// set the select style then the rules.
-					var select = ((typeof(elm.style.select) != "undefined") ? elm.style.select : selectStyle);
-					var styleMap = new OpenLayers.StyleMap({
-											"default": style, 
-											"select": new OpenLayers.Style(select)});
+					var select = ((typeof(elm.style.select) != "undefined") ? elm.style.select : selectStyle);					
+					styleMap = new OpenLayers.StyleMap({
+						"default": style, 
+						"select": new OpenLayers.Style(select)
+					});					
 					break;
-					
 				default:
-				
 					// set the select style then the default.
 					var select = ((typeof(elm.style.select) != "undefined") ? elm.style.select : selectStyle);
-					var styleMap = new OpenLayers.StyleMap({ 
+					styleMap = new OpenLayers.StyleMap({ 
 						"default": new OpenLayers.Style(elm.style.init),
-						"select": new OpenLayers.Style(select)});
+						"select": new OpenLayers.Style(select)
+					});
 					break;
 				}
 			} // end of (typeof(elm.style) != "undefined"
 			else {
 				var styleMap = new OpenLayers.StyleMap({ 
-				"default": new OpenLayers.Style(defaultStyle),
-				"select": new OpenLayers.Style(selectStyle)});
+					"default": new OpenLayers.Style(defaultStyle),
+					"select": new OpenLayers.Style(selectStyle)
+				});
 			}
 
 			return styleMap;
@@ -617,6 +623,7 @@
 			
 			var english = {
 							debugMode: 'WET-Geomap: running in DEBUG mode',
+							debugMess:'When running in debug mode Geomap will provide inline error and help messages and write useful debugging information into the console. Disable debug mode by removing the <em>debug</em> class.',
 							overlayLoad: 'WET-Geomap: overlays were loaded successfully',
 							overlayNotLoad: 'WET-Geomap: an error occurred while loading overlays',
 							basemapDefault: 'WET-Geomap: using default basemap',
@@ -631,7 +638,8 @@
 			};
 			
 			var french = {
-							debugMode: 'BOEW-Geomap: mode développeur activé',
+							debugMode: 'BOEW-Geomap: mode débogage activé',
+							debugMess:'Lors de l\'exécution en mode débogage Geomap donne des messages d\'erreur, des messages d\'aide et donneras de l\'information utile dansla console de débogage. Désactiver le mode débogage en supprimant la classe <em>debug</em>.',
 							overlayLoad: 'BOEW-Geomap: Les couches de superpositions ont été chargées avec succès',
 							overlayNotLoad: 'BOEW-Geomap: une erreur est survenue lors du chargement des couches de superpositions',
 							basemapDefault: 'BOEW-Geomap: la carte de base par défaut est utilisée',
@@ -701,7 +709,9 @@
 			}
 
 			if(opts.debug) {
-				console.log(pe.fn.geomap.getLocalization('debugMode'));
+
+				console.log("WET-Geomap: running in DEBUG mode");
+				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('debugMess') + '</h3><p></p></div>');
 			}	
 						
 			// Set the language for OpenLayers
@@ -803,7 +813,7 @@
 								protocol: new OpenLayers.Protocol.HTTP({
 								url: layer.url,
 								format: new OpenLayers.Format.KML({
-									//extractStyles: true,									
+									extractStyles: !layer.style,									
 									extractAttributes: true,
 									internalProjection: map.getProjectionObject(),
 									externalProjection: new OpenLayers.Projection('EPSG:4269')

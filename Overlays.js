@@ -28,6 +28,7 @@ var wet_boew_geomap = {
 		    	name: 'Product Title',
 		    	description: 'Description'
 		    },
+		    style: 'null',
 		    strokeColor: '#FF00FF',
 		    fillColor: '#FF00FF'
 		},
@@ -90,7 +91,7 @@ var wet_boew_geomap = {
 				latitude: 'Longitude',				
 				updated_at: 'Last updated'
 			},
-			visible: true,
+			visible: true,			
 			// default style			
 			// style: {
 				// type: 'symbol',
@@ -124,7 +125,6 @@ var wet_boew_geomap = {
 						value: [45.42],
 						filter: 'GREATER_THAN',
 						init: {'pointRadius': '10', 'strokeColor': '#800080','fillColor': '#800080'}
-						
 				}],
 				select: {'pointRadius': '30', 'externalGraphic': '../../OverIcon.png', 'label': "Selected", 'fillOpacity': 0.90}
 			}
