@@ -87,7 +87,7 @@ table {
 #wb-head {
 	@extend %period-after-pseudo;
 	#gcwu-wmms {
-		clip: rect(1px, 1px, 1px, 1px);
+		@include clip-rect;
 		height: 0 !important;
 		overflow: hidden !important;
 		position: absolute;
@@ -511,7 +511,7 @@ table {
 #jqm-wb-search {
 	@extend %gcwu-default-mobile-ui-bar-a-h1-white;
 	label {
-		clip: rect(1px, 1px, 1px, 1px);
+		@include clip-rect;
 		height: 1px;
 		overflow: hidden;
 		position: absolute;
