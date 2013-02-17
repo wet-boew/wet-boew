@@ -289,6 +289,11 @@ table {
 	}
 }
 
+%gcwu-default-mobile-last-child-padding-5-3 {
+	&:last-child {
+		padding: 5px 3px;
+	}
+}
 #gcwu-bc-in {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
@@ -304,9 +309,7 @@ table {
 		margin: 0;
 		padding: 5px 10px 5px 3px;
 		@extend %gcwu-default-mobile-no-rounded-corners;
-		&:last-child {
-			padding-left: 3px;
-		}
+		@extend %gcwu-default-mobile-last-child-padding-5-3;
 	}
 	a {
 		@extend %gcwu-default-mobile-no-rounded-corners;
@@ -732,7 +735,7 @@ select {
 }
 
 /* Right to left (RTL) CSS */
-%rtl-scalex {
+%gcwu-default-mobile-rtl-scalex {
 	@include scaleX(-1);
 	@extend %gcwu-default-mobile-display-block;
 }
@@ -754,20 +757,28 @@ select {
 	}
 	
 	#gcwu-mnavbar {
-		@extend %rtl-scalex;
+		@extend %gcwu-default-mobile-rtl-scalex;
 		left: 3px;
 		right: auto;
 	}
 
 	#gcwu-bc-in {
-		&, li:last-child, a {
-			@extend %rtl-scalex;
+		@extend %gcwu-default-mobile-rtl-scalex;
+		li:last-child {
+			@extend %gcwu-default-mobile-rtl-scalex;
+		}
+		a {
+			@extend %gcwu-default-mobile-rtl-scalex;
+		}
+		li {
+			padding: 5px 3px 5px 10px;
+			@extend %gcwu-default-mobile-last-child-padding-5-3;
 		}
 	}
 
 	.ui-popup-container, #wb-main {
 		.ui-btn, .ui-btn-text {
-			@extend %rtl-scalex;
+			@extend %gcwu-default-mobile-rtl-scalex;
 			text-align: right;
 		}
 		.ui-submit, .ui-select {
