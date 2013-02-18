@@ -522,7 +522,7 @@
 		 * 
 		 * TODO: provide for an array of configured table columns.
 		 */
-		createRow: function(context) {
+		createRow: function(context, zoomTo) {
 			
 			// add a row for each feature
 			var $row = $('<tr>');
@@ -546,6 +546,8 @@
 				}
 			}			
 
+			if (zoomTo == true) { pe.fn.geomap.addZoomTo(cols, context); }
+				
 			if(context.type != 'head') {
 
 				// TODO: support user configured column for link, currently defaults to first column.
@@ -596,7 +598,7 @@
 		 * 
 		 * TODO: selectControl should be a global variable
 		 */
-		onFeaturesAdded: function($table, evt, selectCtrl) {
+		onFeaturesAdded: function($table, evt, selectCtrl, zoomTo) {
 
 			var $head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
 
@@ -609,8 +611,33 @@
 					'selectControl': selectCtrl
 
 				};											
-				var $row = pe.fn.geomap.createRow(context);									
+				var $row = pe.fn.geomap.createRow(context, zoomTo);									
 				$table.find('tbody').append($row);
+			});
+		},
+		
+		/*
+		 *  Add the zoom to column
+		 * 
+		 */
+		addZoomTo: function(cols, context){
+			
+			var $zoom = $('<td>');
+			cols.push($zoom);
+			
+			var $img = $('<img>', {				
+					'src': '../../src/js/images/geomap/zoom_feature.png',
+					'height': '15',
+					'width': '15'				
+				});
+				
+			$(cols[cols.length -1]).empty().append($img);
+				
+			$img.click(function (){
+				map.zoomToExtent(context.feature.geometry.bounds);
+				$(this).closest('tr').attr('class', 'background-highlight');
+				context.selectControl.unselectAll();
+				context.selectControl.select(context.feature);
 			});
 		},
 		
@@ -821,7 +848,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {	
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
+										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
 									}
 									
 								},
@@ -876,7 +903,7 @@
 									}),						
 								eventListeners: {
 									"featuresadded": function (evt) {											
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
+										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -940,7 +967,7 @@
 								}),								
 								eventListeners: {
 									"featuresadded": function (evt) {
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
+										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -993,7 +1020,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {	
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
+										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1046,7 +1073,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl);
+										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
 									}
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1104,6 +1131,7 @@
 				var $table = $("table#" + table.id);
 				var wktFeature;		
 				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: pe.fn.geomap.getStyleMap(opts.tables[index]) });
+				var zoomColumn = opts.tables[index].zoom;
 
 				var wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap, 
@@ -1129,6 +1157,27 @@
 					var vectorFeatures = wktParser.read(wktFeature);
 
 					var $tr = $(this).parent();
+
+					// add zoom column
+					if ( zoomColumn == true) {
+						
+						var $img = $('<img>', {				
+						'src': '../../src/js/images/geomap/zoom_feature.png',
+						'height': '15',
+						'width': '15'				
+						});
+						
+						$img.click(function (){
+							map.zoomToExtent(vectorFeatures.geometry.bounds);
+							$(this).closest('tr').attr('class', 'background-highlight');
+							selectControl.unselectAll();
+							selectControl.select(vectorFeatures);
+						});
+						
+						var temp = $(this).after('<td></td>');
+						$tr.find("td:last").append($img);
+						
+					}
 
 					$tr.attr('id', vectorFeatures.id.replace(/\W/g, "_"));
 

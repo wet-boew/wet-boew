@@ -1,4 +1,4 @@
-var wet_boew_geomap = {
+ var wet_boew_geomap = {
 	// OPTIONAL: note that geomap will provide a default basemap if not specified here.
 	/* basemap : {
 		title: 'CBMT',
@@ -91,7 +91,8 @@ var wet_boew_geomap = {
 				latitude: 'Longitude',				
 				updated_at: 'Last updated'
 			},
-			visible: true,			
+			visible: true,
+			zoom:  true,			
 			// default style			
 			// style: {
 				// type: 'symbol',
