@@ -404,7 +404,7 @@
 			var fillColor = strokeColor;
 			
 
-			var defaultStyle = { 				
+			var defaultStyle = {				
 				'strokeColor': strokeColor, 
 				'fillColor': fillColor,
 				'fillOpacity': 0.5,
@@ -622,35 +622,35 @@
 		getLocalization: function(mess) {
 			
 			var english = {
-							debugMode: 'WET-Geomap: running in DEBUG mode',
-							debugMess:'When running in debug mode Geomap will provide inline error and help messages and write useful debugging information into the console. Disable debug mode by removing the <em>debug</em> class.',
-							overlayLoad: 'WET-Geomap: overlays were loaded successfully',
-							overlayNotLoad: 'WET-Geomap: an error occurred while loading overlays',
-							basemapDefault: 'WET-Geomap: using default basemap',
-							projection: 'WET-Geomap: using projection',
-							error: 'WET-Geomap ERROR',
-							errorSelect: 'This cell has the <em>select</em> class but no link was found. Please add a link to this cell.',
-							errorNoSelect: 'This table contains rows that do not have a cell with the <em>select</em> class. Please ensure that each row has exactly one cell with the <em>select</em> class and that the cell includes a link.',
-							accessibilize: 'Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.',
-							warning: 'WET-Geomap WARNING',
-							warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.',
-							hiddenLayer: 'This layer is currently hidden!'
+				debugMode: 'WET-Geomap: running in DEBUG mode',
+				debugMess:'When running in debug mode Geomap will provide inline error and help messages and write useful debugging information into the console. Disable debug mode by removing the <em>debug</em> class.',
+				overlayLoad: 'WET-Geomap: overlays were loaded successfully',
+				overlayNotLoad: 'WET-Geomap: an error occurred while loading overlays',
+				basemapDefault: 'WET-Geomap: using default basemap',
+				projection: 'WET-Geomap: using projection',
+				error: 'WET-Geomap ERROR',
+				errorSelect: 'This cell has the <em>select</em> class but no link was found. Please add a link to this cell.',
+				errorNoSelect: 'This table contains rows that do not have a cell with the <em>select</em> class. Please ensure that each row has exactly one cell with the <em>select</em> class and that the cell includes a link.',
+				accessibilize: 'Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.',
+				warning: 'WET-Geomap WARNING',
+				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.',
+				hiddenLayer: 'This layer is currently hidden!'
 			};
 			
 			var french = {
-							debugMode: 'BOEW-Geomap: mode débogage activé',
-							debugMess:'Lors de l\'exécution en mode débogage Geomap donne des messages d\'erreur, des messages d\'aide et donneras de l\'information utile dansla console de débogage. Désactiver le mode débogage en supprimant la classe <em>debug</em>.',
-							overlayLoad: 'BOEW-Geomap: Les couches de superpositions ont été chargées avec succès',
-							overlayNotLoad: 'BOEW-Geomap: une erreur est survenue lors du chargement des couches de superpositions',
-							basemapDefault: 'BOEW-Geomap: la carte de base par défaut est utilisée',
-							projection: 'BOEW-Geomap: la projection utilisée est',
-							error: 'BOEW-Geomap ERREUR',
-							errorSelect: 'Cette cellule a la classe <em>select</em> mais aucun lien n\'a été trouvé. S\'il vous plaît, ajouter un lien à cette cellule.',
-							errorNoSelect: 'Cette table contient des lignes qui n\'ont pas de cellule avec la classe <em>select</em>. S\'il vous plaît, assurer vous que chaque ligne a exactement une cellule avec la classe <em>select</em> et celle-ci doit contenir un lien.',
-							accessibilize: 'Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.',
-							warning: 'BOEW-Geomap AVERTISSEMENT',
-							warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> ou bien activer la légende par défaut de <em>OpenLayers</em> en ajoutant le paremètre <em>layerswitcher</em> à la classe <em>wet-boew-geomap</em> du div.',
-							hiddenLayer: 'Cette couche est présentement cachée!'
+				debugMode: 'BOEW-Geomap: mode débogage activé',
+				debugMess:'Lors de l\'exécution en mode débogage Geomap donne des messages d\'erreur, des messages d\'aide et donneras de l\'information utile dansla console de débogage. Désactiver le mode débogage en supprimant la classe <em>debug</em>.',
+				overlayLoad: 'BOEW-Geomap: Les couches de superpositions ont été chargées avec succès',
+				overlayNotLoad: 'BOEW-Geomap: une erreur est survenue lors du chargement des couches de superpositions',
+				basemapDefault: 'BOEW-Geomap: la carte de base par défaut est utilisée',
+				projection: 'BOEW-Geomap: la projection utilisée est',
+				error: 'BOEW-Geomap ERREUR',
+				errorSelect: 'Cette cellule a la classe <em>select</em> mais aucun lien n\'a été trouvé. S\'il vous plaît, ajouter un lien à cette cellule.',
+				errorNoSelect: 'Cette table contient des lignes qui n\'ont pas de cellule avec la classe <em>select</em>. S\'il vous plaît, assurer vous que chaque ligne a exactement une cellule avec la classe <em>select</em> et celle-ci doit contenir un lien.',
+				accessibilize: 'Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.',
+				warning: 'BOEW-Geomap AVERTISSEMENT',
+				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> ou bien activer la légende par défaut de <em>OpenLayers</em> en ajoutant le paremètre <em>layerswitcher</em> à la classe <em>wet-boew-geomap</em> du div.',
+				hiddenLayer: 'Cette couche est présentement cachée!'
 			};
 			
 			var message = (_pe.language == "en") ? english[mess] : french[mess];
@@ -709,9 +709,8 @@
 			}
 
 			if(opts.debug) {
-
 				console.log("WET-Geomap: running in DEBUG mode");
-				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('debugMess') + '</h3><p></p></div>');
+				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
 			}	
 						
 			// Set the language for OpenLayers
