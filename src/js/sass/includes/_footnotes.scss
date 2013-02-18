@@ -3,6 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/inline-block";
+@import '../../grids/sass/includes/mixins';
 
 /*SCSS Variables*/
 $spacing: .375em;
@@ -73,7 +74,7 @@ table {
 		margin: 0;
 		dt {
 			position: absolute;
-			clip: rect(1px, 1px, 1px, 1px);
+			@include clip-rect;
 			height: 1px;
 			width: 1px;
 			overflow: hidden;

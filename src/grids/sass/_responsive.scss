@@ -14,10 +14,10 @@
 	margin-left: 10px;
 	margin-right: 10px;
 	img {
-		@extend %bicubic-auto;
+		@extend %grids-responsive-bicubic-auto;
 	}
 	& & {
-		@extend %no-margin;
+		@extend %grids-responsive-no-margin;
 	}
 }
 
@@ -51,7 +51,7 @@
 	width: 0;
 }
 
-%no-margin {
+%grids-responsive-no-margin {
 	margin-left: 0 !important;
 	margin-right: 0 !important;
 }
@@ -61,7 +61,7 @@
 	height: auto;
 }
 
-%bicubic-auto {
+%grids-responsive-bicubic-auto {
 	width: 100%;
 	height: auto;
 	-ms-interpolation-mode: bicubic;
@@ -69,7 +69,7 @@
 
 #gcwu-aside {
 	img {
-		@extend %bicubic-auto;
+		@extend %grids-responsive-bicubic-auto;
 	}
 	.gcwu-minister-img {
 		img {
@@ -89,37 +89,37 @@
 				width: 40px;
 			}
 			.span-2 {
-				@extend %responsive-width100;
+				@extend %grids-responsive-width100;
 			}
 			.span-3 {
 				width: 160px;
 			}
 			.span-4 {
-				@extend %responsive-width220;
+				@extend %grids-responsive-width220;
 			}
 			.span-5 {
 				width: 280px;
 			}
 			.span-6 {
-				@extend %responsive-width340;
+				@extend %grids-responsive-width340;
 			}
 			.span-7 {
 				width: 400px;
 			}
 			.span-8 {
-				@extend %responsive-width460;
+				@extend %grids-responsive-width460;
 			}
 			.span-9 {
 				width: 520px;
 			}
 			.span-10 {
-				@extend %responsive-width580;
+				@extend %grids-responsive-width580;
 			}
 			.span-11 {
 				width: 640px;
 			}
 			.span-12 {
-				@extend %responsive-width700;
+				@extend %grids-responsive-width700;
 			}
 		}
 	}
@@ -133,7 +133,7 @@
 		width: 140px;
 	}
 	.span-3 {
-		@extend %responsive-width220;
+		@extend %grids-responsive-width220;
 	}
 	.span-4 {
 		width: 300px;
@@ -142,7 +142,7 @@
 		width: 380px;
 	}
 	.span-6 {
-		@extend %responsive-width460;
+		@extend %grids-responsive-width460;
 	}
 	.span-7 {
 		width: 540px;
@@ -151,7 +151,7 @@
 		width: 620px;
 	}
 	.span-9 {
-		@extend %responsive-width700;
+		@extend %grids-responsive-width700;
 	}
 	.span-10 {
 		width: 780px;
@@ -160,66 +160,66 @@
 		width: 860px;
 	}
 	.span-12 {
-		@extend %responsive-width940;
+		@extend %grids-responsive-width940;
 	}
 }
 
-%responsive-width100 {
+%grids-responsive-width100 {
 	width: 100px;
 }
 
 .span-1 {
-	@extend %responsive-width100;
+	@extend %grids-responsive-width100;
 }
 
-%responsive-width220 {
+%grids-responsive-width220 {
 	width: 220px;
 }
 
 .span-2 {
-	@extend %responsive-width220;
+	@extend %grids-responsive-width220;
 }
 
-%responsive-width340 {
+%grids-responsive-width340 {
 	width: 340px;
 }
 
 .span-3 {
-	@extend %responsive-width340;
+	@extend %grids-responsive-width340;
 }
 
-%responsive-width460 {
+%grids-responsive-width460 {
 	width: 460px;
 }
 
 .span-4 {
-	@extend %responsive-width460;
+	@extend %grids-responsive-width460;
 }
 
-%responsive-width580 {
+%grids-responsive-width580 {
 	width: 580px;
 }
 
 .span-5 {
-	@extend %responsive-width580;
+	@extend %grids-responsive-width580;
 }
 
-%responsive-width700 {
+%grids-responsive-width700 {
 	width: 700px;
 }
 
 .span-6 {
-	@extend %responsive-width700;
+	@extend %grids-responsive-width700;
 }
 
 .span-7 {
 	width: 820px;
 }
 
-%responsive-width940 {
+%grids-responsive-width940 {
 	width: 940px;
 }
 
 .span-8 {
-	@extend %responsive-width940;
+	@extend %grids-responsive-width940;
 }

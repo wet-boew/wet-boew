@@ -2,14 +2,17 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
-.ie7 {
 
+%multimedia-ie-backbround-overlay {
+	background: url('../images/multimedia/background-overlay.png') repeat 0 0;
+}
+
+.ie7 {
 	.wet-boew-multimedia {
 		.wb-mm-overlay {
-			background: url('../images/multimedia/background-overlay.png') repeat 0 0;
+			@extend %multimedia-ie-backbround-overlay;
 		}
 	}
-
 	.wb-mm-controls {
 		button {
 			img {
@@ -22,6 +25,14 @@
 			progress {
 				margin-top: -21px;
 			}
+		}
+	}
+}
+
+.ie8 {
+	.wet-boew-multimedia {
+		.wb-mm-overlay {
+			@extend %multimedia-ie-backbround-overlay;
 		}
 	}
 }

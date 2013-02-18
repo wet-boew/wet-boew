@@ -2,6 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
+@import '../../grids/sass/includes/mixins';
+
 .wb-sec-def {
 	h3 {
 		margin: {
@@ -16,7 +19,7 @@
 
 %clf2-default-hidden {
 	position: absolute;
-	clip: rect(1px, 1px, 1px, 1px);
+	@include clip-rect;
 	height: 1px !important;
 	width: 1px !important;
 	overflow: hidden !important;
