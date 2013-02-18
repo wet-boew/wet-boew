@@ -314,8 +314,8 @@ table {
 	margin: 0;
 }
 
-%gcwu-default-linear-gradient-606060-333333 {
-	@include background-image(linear-gradient(#606060, #333333));
+%gcwu-default-linear-gradient-606060-333 {
+	@include background-image(linear-gradient(#606060, #333));
 }
 
 %gcwu-default-mobile-monster { //TODO: better name
@@ -324,11 +324,11 @@ table {
 	border-top: 1px solid #044062;
 	h2 {
 		text-shadow: 0 1px 1px #044062;
-		background-color: #333333;
-		@include background-image(linear-gradient(#444444, #2D2D2D));
+		background-color: #333;
+		@include background-image(linear-gradient(#444, #2D2D2D));
 		&:hover, &:focus, &:active {
-			background-color: #444444;
-			@extend %gcwu-default-linear-gradient-606060-333333;
+			background-color: #444;
+			@extend %gcwu-default-linear-gradient-606060-333;
 		}
 		color: #fff;
 		text-align: center;
@@ -357,8 +357,8 @@ table {
 	.ui-navbar {
 		a {
 			&.ui-btn-active {
-				background-color: #444444;
-				@extend %gcwu-default-linear-gradient-606060-333333;
+				background-color: #444;
+				@extend %gcwu-default-linear-gradient-606060-333;
 				border: 1px solid #000;
 				border-right: none;
 			}
