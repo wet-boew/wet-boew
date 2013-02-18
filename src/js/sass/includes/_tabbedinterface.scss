@@ -3,16 +3,14 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 
-//TODO: Use extend for the gradient
+
 /* Gradient (avoid encoding duplication) */
-.tabs li a, .tabs-style-1 .tabs, .tabs-style-1 .tabs li a:hover, .tabs-style-1 .tabs li a:focus, .tabs-style-1 .tabs li a:active, .tabs-style-2 .tabs li.tabs-toggle, .tabs-style-3 .tabs-panel, .tabs-style-4 .tabs li a:hover,  .tabs-style-4 .tabs li a:focus,  .tabs-style-4 .tabs li a:active {
+%tabbedinterface-gradient-background {
 	background: url(../images/tabs/gradient.png) repeat-x 0 0 #eee;
 }
 
-.tabs.started a.active {
-	&,&:hover,&:focus,&:active {
-		cursor: pointer;
-	}
+%tabbedinterface-cursor-pointer {
+	cursor: pointer;
 }
 
 %tabbedinterface-tabs-active {
@@ -33,6 +31,7 @@
 		border-bottom: none;
 		@include border-radius(2px 2px 0 0);
 		a {
+			@extend %tabbedinterface-gradient-background;
 			display: block;
 			text-decoration: none;
 			color: #333;
@@ -89,6 +88,16 @@
 	.tabs-toggle {
 		border: none;
 		background: none;
+	}
+	&.started {
+		a {
+			&.active {
+				@extend %tabbedinterface-cursor-pointer;
+				@include pseudo-focus {
+					@extend %tabbedinterface-cursor-pointer;
+				}
+			}
+		}
 	}
 }
 
@@ -164,11 +173,19 @@
 	border-top: none;
 	padding: 4px;
 }
+
+%tabbedinterface-no-repeat-border999 {
+	background-repeat: no-repeat;
+	background-position: -1px 0;
+	border: 1px solid #999;
+}
+
 /* style 1 */
 .tabs-style-1 {
     border: solid 1px #ccc;
     padding: 2px;
 	.tabs {
+		@extend %tabbedinterface-gradient-background;
 		border: 1px solid silver;
 		color: #222;
 		font-weight: 700;
@@ -180,6 +197,7 @@
 				color: #fff;
 				padding: 3px 4px 4px;
 				@include pseudo-focus {
+					@extend %tabbedinterface-gradient-background;
 					color: #000;
 					border-top: 1px solid #fff;
 					padding-top: 1px;
@@ -199,12 +217,9 @@
 			&.tabs-toggle {
 				a {
 					color: #000;
-					&, &:active, &:hover, &:active {
-						background-repeat: no-repeat;
-						background-position: -1px 0;
-						border: 1px solid #999;
-					}
-					&:active, &:hover, &:active {
+					@extend %tabbedinterface-no-repeat-border999;
+					@include pseudo-focus {
+						@extend %tabbedinterface-no-repeat-border999;
 						color: #c00;
 					}
 					&.tabs-prev, &.tabs-next {
@@ -266,6 +281,7 @@
 				color: #fff;
 			}
 			&.tabs-toggle {
+				@extend %tabbedinterface-gradient-background;
 				margin-left: 6px;
 				margin-right: -6px;
 				a {
@@ -360,6 +376,7 @@
 		}
 	}
 	.tabs-panel {
+		@extend %tabbedinterface-gradient-background;
 		width: 66%;
 		z-index: 1;
 		border: none;
@@ -404,6 +421,7 @@
 				margin: 0;
 				padding: 2px;
 				@include pseudo-focus {
+					@extend %tabbedinterface-gradient-background;
 					color: #000;
 				}
 				&.active {
