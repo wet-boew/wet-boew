@@ -3,7 +3,6 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 
-//TODO: Remove @include opacity calls that are present for the same selector in master. The mixin is already emitting the IE filters
 .ie7 {
 	.tabs {
 		li {
@@ -11,12 +10,8 @@
 			margin-right: 5px;
 		}
 	}
-	.tabs-roller {
-		@include opacity(0.1);;
-	}
 	.tabs-style-2 {
 		.tabs {
-			@include opacity(0.95);
 			li {
 				margin-right: 2px;
 				margin-bottom: -6px;
@@ -25,34 +20,20 @@
 				}
 			}
 		}
-		.tabs-roller {
-			@include opacity(0.25);
-		}
 	}
 	.tabs-style-3 {
 		.tabs {
 			li {
-				a {
-					&.active, &:hover, &:focus, &:active {
-						@include opacity(0.75);
-					}
-				}
 				&.tabs-toggle {
 					width: 29px;
 					margin-right: 15px;
 					a {
-						&:hover, &:focus, &:active {
-							@include opaque;
-						}
 						&.tabs-start {
 							margin-left: -15px;
 						}
 					}
 				}
 			}
-		}
-		.tabs-roller {
-			@include opacity(0.2);
 		}
 	}
 	.tabs-style-4 {
@@ -80,42 +61,14 @@
 }
 
 .ie8 {
-	.tabs-roller {
-		@include opacity(0.1);
-	}
 	.tabs-style-2 {
 		.tabs {
-			@include opacity(0.95);
 			li {
 				margin-right: -2px !important;
 				&.tabs-toggle {
 					margin-right: -5px !important;
 				}
 			}
-		}
-		.tabs-roller {
-			@include opacity(0.25);
-		}
-	}
-	.tabs-style-3 {
-		.tabs {
-			li {
-				a {
-					&.active, &:hover, &:focus, &:active {
-						@include opacity(0.75);
-					}
-				}
-				&.tabs-toggle {
-					a {
-						&:hover, &:focus, &:active {
-							@include opaque;
-						}
-					}
-				}
-			}
-		}
-		.tabs-roller {
-			@include opacity(0.2);
 		}
 	}
 }
