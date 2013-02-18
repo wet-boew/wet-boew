@@ -6,8 +6,9 @@ env:
 
 branches:
   except:
-    - v3.0-dist
-    - master-dist
+    - /^.*-dist$/
+    - gh-pages
+
 
 script:
   - ant test -Djshint.failbuild=true
