@@ -89,7 +89,7 @@ $default-box-shadow-v-offset: 0;
 			color: $text;
 		}
 
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			@if $text == white {
 				color: darken($text, 10%);
 			} @else {
@@ -159,4 +159,27 @@ $default-box-shadow-v-offset: 0;
 	} @else {
 		clip: rect($top, $right, $bottom, $left);
 	}
+}
+
+//Used to work around an IE7 bug with focus
+@mixin pseudo-focus($hover: true) {
+    @if $legacy-support-for-ie7 {
+        @if $hover {
+            &:hover, &:active {
+                @content;
+            }
+        } @else {
+            &:active {
+                @content;
+            }
+        }        
+    } @else if $hover {
+		&:hover, &:focus {
+			@content;
+		}
+	} @else {
+		&:focus {
+			@content;
+		}
+    }
 }

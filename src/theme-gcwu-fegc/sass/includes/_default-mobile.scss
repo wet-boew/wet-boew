@@ -326,7 +326,7 @@ table {
 		text-shadow: 0 1px 1px #044062;
 		background-color: #333;
 		@include background-image(linear-gradient(#444, #2D2D2D));
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			background-color: #444;
 			@extend %gcwu-default-linear-gradient-606060-333;
 		}

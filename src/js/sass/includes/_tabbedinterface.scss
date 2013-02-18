@@ -15,6 +15,13 @@
 	}
 }
 
+%tabbedinterface-tabs-active {
+	color: #333;
+	padding-top: 5px;
+	background: #fff;
+	cursor: text;
+}
+
 .tabs {
     border-bottom: solid 1px #ccc;
     margin: 0;
@@ -35,11 +42,9 @@
 			top: 1px;
 			margin-top: -1px;
 			&.active {
-				&, &:hover, &:focus, &:active {
-					color: #333;
-					padding-top: 5px;
-					background: #fff;
-					cursor: text;
+				@extend %tabbedinterface-tabs-active;
+				@include pseudo-focus {
+					@extend %tabbedinterface-tabs-active;
 				}
 			}
 		}
@@ -53,7 +58,7 @@
 				@include border-radius(2px);
 				border: 1px solid #999;
 				margin-right: 2px;
-				&:hover, &:focus, &:active {
+				@include pseudo-focus {
 					text-decoration: underline;
 					color: #000;
 				}
@@ -153,6 +158,12 @@
 	}
 }
 
+%tabbedinterface-tab-style-1-active {
+	color: #000;
+	background: #fff;
+	border-top: none;
+	padding: 4px;
+}
 /* style 1 */
 .tabs-style-1 {
     border: solid 1px #ccc;
@@ -168,17 +179,15 @@
 				border-top: none;
 				color: #fff;
 				padding: 3px 4px 4px;
-				&:hover, &:focus, &:active {
+				@include pseudo-focus {
 					color: #000;
 					border-top: 1px solid #fff;
 					padding-top: 1px;
 				}
 				&.active {
-					&, &:hover, &:focus, &:active {
-						color: #000;
-						background: #fff;
-						border-top: none;
-						padding: 4px;
+					@extend %tabbedinterface-tab-style-1-active;
+					@include pseudo-focus {
+						@extend %tabbedinterface-tab-style-1-active;
 					}
 				}
 				&.tabs-start, &.tabs-stop {
@@ -210,6 +219,12 @@
 	}
 }
 
+%tabbedinterface-tab-style-2-active {
+	background: #333;
+	color: #fff;
+	outline-color: #000;
+	padding-top: 2px;
+}
 
 /* style 2 */
 .tabs-style-2 {
@@ -238,11 +253,11 @@
 				border: 1px solid #999;
 				padding: 2px 5px;
 				@include border-radius(2px);
-				&.active, &:hover, &:focus, &:active {
-					background: #333;
-					color: #fff;
-					outline-color: #000;
-					padding-top: 2px;
+				&.active {
+					@extend %tabbedinterface-tab-style-2-active;
+					@include pseudo-focus {
+						@extend %tabbedinterface-tab-style-2-active;
+					}
 				}
 			}
 			&.active {
@@ -255,7 +270,7 @@
 				margin-right: -6px;
 				a {
 					background-color: transparent !important;
-					&:hover, &:focus, &:active {
+					@include pseudo-focus {
 						color: #000;
 					}
 				}
@@ -282,6 +297,15 @@
 	}
 }
 
+%tabbedinterface-tab-style-3-active {
+	background: #000;
+	color: #fff;
+	outline-color: #000;
+	margin-right: 0;
+	padding: 5px 5px 5px 25px;
+	@include opacity(0.75);
+	@include border-radius(3px 0 0 3px);
+}
 
 /* style 3 */
 .tabs-style-3 {
@@ -309,14 +333,11 @@
 				text-decoration: none;
 				background: transparent;
 				padding: 5px 5px 5px 25px;
-				&.active, &:hover, &:focus, &:active {
-					background: #000;
-					color: #fff;
-					outline-color: #000;
-					margin-right: 0;
-					padding: 5px 5px 5px 25px;
-					@include opacity(0.75);
-					@include border-radius(3px 0 0 3px);
+				&.active {
+					@extend %tabbedinterface-tab-style-3-active;
+					@include pseudo-focus {
+						@extend %tabbedinterface-tab-style-3-active;
+					}
 				}
 			}
 			&.active {
@@ -329,7 +350,7 @@
 					float: right;
 					margin-top: 10px;
 					border: 1px solid #ccc;
-					&:hover, &:focus, &:active {
+					@include pseudo-focus {
 						@include opaque;
 						color: #000;
 						margin-right: 2px;
@@ -382,7 +403,7 @@
 				font-size: 80%;
 				margin: 0;
 				padding: 2px;
-				&:hover, &:focus, &:active {
+				@include pseudo-focus {
 					color: #000;
 				}
 				&.active {

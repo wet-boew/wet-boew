@@ -13,7 +13,7 @@ body {
 }
 
 a {
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		text-decoration: underline;
 	}
 }
@@ -116,7 +116,7 @@ h6 {
 
 %base-clip-focus-active {
 	@extend %base-clip-hidden;
-	&:focus, &:active {
+	@include pseudo-focus(false) {
 		position: static;
 		clip: auto;
 		height: inherit !important;
@@ -141,7 +141,7 @@ h6 {
 
 .wb-show-onhover {
 	@include transparent;
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		@include opaque;
 	}
 }
