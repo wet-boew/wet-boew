@@ -764,17 +764,15 @@ select {
 
 	#gcwu-bc-in {
 		@extend %gcwu-default-mobile-rtl-scalex;
-		li {
-			&:last-child {
-				@extend %gcwu-default-mobile-rtl-scalex;
-			}
-		}
 		a {
 			@extend %gcwu-default-mobile-rtl-scalex;
 		}
 		li {
 			padding: 5px 3px 5px 10px;
 			@extend %gcwu-default-mobile-last-child-padding-5-3;
+			&:last-child {
+				@extend %gcwu-default-mobile-rtl-scalex;
+			}
 		}
 	}
 
