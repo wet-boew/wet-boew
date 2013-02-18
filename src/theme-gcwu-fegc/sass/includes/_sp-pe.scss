@@ -18,7 +18,7 @@ h1 {
 
 h2 {
 	position: absolute;
-	clip: rect(1px, 1px, 1px, 1px);
+	@include clip-rect;
 	height: 0 !important;
 	width: 0 !important;
 	overflow: hidden !important;

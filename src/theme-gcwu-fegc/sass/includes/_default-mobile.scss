@@ -462,7 +462,7 @@ select {
 
 #jqm-wb-search {
 	label {
-		clip: rect(1px, 1px, 1px, 1px);
+		@include clip-rect;
 		height: 1px;
 		overflow: hidden;
 		@extend %position-absolute;

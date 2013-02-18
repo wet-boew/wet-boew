@@ -4,12 +4,8 @@
  */
 .ie7 {
 	h2 {
-		position: absolute;
-		clip: rect(1px 1px 1px 1px);
 		height: 1px !important;
 		width: 1px !important;
-		overflow: hidden !important;
-		margin: 0 !important;
 	}
 }
 .ie7, .ie8 {

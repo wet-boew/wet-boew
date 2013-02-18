@@ -400,7 +400,7 @@
 			display: block;
 			a {
 				background: url(../images/tabs/gradient2-style4.png) repeat-x scroll 50% 50% #000;
-				border-top: 1px solid #000000;
+				border-top: 1px solid #000;
 				color: #FFF !important;
 				font-size: 80%;
 				margin: 0;
@@ -547,13 +547,13 @@
 			&.img {
 				margin-right: 10px;
 				a {
-					opacity: 0.5;
+					@include opacity(0.5);
 					margin: -1px 0 0 0;
 					padding: 0;
 					border: 0;
 					@include border-radius(0);
 					&:hover, &:focus, &:active, &.active {
-						opacity: 1;
+						@include opacity(1);
 						color: #000 !important;
 					}
 				}				
@@ -573,7 +573,7 @@
 		}
 	}
 	.tabs-roller {
-		opacity: 0.5;
+		@include opacity(0.5);
 	}
 }
 

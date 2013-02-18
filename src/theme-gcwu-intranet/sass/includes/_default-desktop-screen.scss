@@ -142,7 +142,7 @@
 %intranet-default-desktop-screen-clip-auto {
 	img {
 		position: absolute;
-		clip: rect(auto, auto, auto, auto);
+		@include clip-rect(auto, auto, auto, auto);
 		width: auto !important;
 	}
 }

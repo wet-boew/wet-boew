@@ -57,4 +57,19 @@ $clrDark: #555;
 			}
 		}
 	}
+	.ie8 {
+		.wet-boew-footnotes {
+			dl {
+				dd {
+					display: block;
+					p {
+						@include inline-block;
+						&.footnote-return {
+							display: block;
+						}
+					}
+				}
+			}
+		}
+	}
 }

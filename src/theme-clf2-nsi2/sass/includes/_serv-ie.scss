@@ -2,21 +2,3 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-.ie8 {
- 	%clf2-serv-ie8-clip {
-		clip: rect(1px 1px 1px 1px);
-		height: 1px !important;
-		width: 1px !important;
-		overflow: hidden !important;
-	}
-	#wb-body {
-		h1 {
-			@extend %clf2-serv-ie8-clip;
-		}
-	}
-	#cn-in-pd {
-		h3 {
-			@extend %clf2-serv-ie8-clip;
-		}
-	}
-}
