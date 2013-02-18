@@ -152,3 +152,11 @@ $default-box-shadow-v-offset: 0;
   }
   @return $value;
 }
+
+@mixin clip-rect($top: 1px, $right: 1px, $bottom: 1px, $left: 1px) {
+	@if $legacy-support-for-ie {
+		clip: rect($top $right $bottom $left);
+	} @else {
+		clip: rect($top, $right, $bottom, $left);
+	}
+}
