@@ -3,6 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @import "compass/typography/lists/horizontal-list";
+@import "mixins";
 
 @mixin lists {
 	ul, dl, ol {
