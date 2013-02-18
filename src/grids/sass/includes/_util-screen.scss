@@ -388,7 +388,7 @@ table {
 	border: 1px solid $silver;
 	height: 55px;
 	width: 100%;
-	@include background(top, rgba(255, 255, 255, 1) 0, rgba(247, 247, 247, 1) 100%);
+	@include background-image(linear-gradient(top, rgba(255, 255, 255, 1) 0, rgba(247, 247, 247, 1) 100%));
 	@include border-bottom-radius($default-border-radius);
 	@include box-shadow(0 1px 0 0 $light, 0 2px 0 0 $silver, 0 3px 0 0 $light, 0 4px 0 0 $silver);
 	p {
