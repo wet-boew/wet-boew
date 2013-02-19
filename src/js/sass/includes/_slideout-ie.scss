@@ -15,3 +15,14 @@
 		position: relative;
 	}
 }
+.ie8 {
+	#toggleLink {
+		position: static;
+	}
+	#slideoutInnerWrapper {
+		width: auto;
+	}
+	#slideoutToggle {
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	}
+}
