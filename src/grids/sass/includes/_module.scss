@@ -24,7 +24,7 @@
 		}
 		a {
 			text-decoration: none;
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				text-decoration: underline;
 			}
 		}
@@ -77,7 +77,7 @@
 						font-weight: 700;
 						@include colorize-base($accent);
 					}
-					&:hover, &:focus, &:active {
+					@include pseudo-focus {
 						text-decoration: underline;
 					}
 				}
@@ -109,7 +109,7 @@
 				a {
 					display: block;
 					text-decoration: none;
-					&:hover, &:focus, &:active {
+					@include pseudo-focus {
 						background-color: darken($light, 3%);
 						text-decoration: underline;
 					}

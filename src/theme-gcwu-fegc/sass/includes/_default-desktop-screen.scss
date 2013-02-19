@@ -253,7 +253,7 @@ a {
 	a {
 		display: inline-block;
 		margin-left: 10px;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			text-decoration: underline;
 		}
 	}
@@ -309,7 +309,7 @@ a {
 		@include box-shadow(none);
 		background: #fff;
 		padding: 2px 0;
-		&:focus, &:active {
+		@include pseudo-focus(false) {
 			background: #f0fcff;
 		}
 	}
@@ -339,7 +339,7 @@ a {
 	@include box-shadow(none);
 	padding: 2px 6px;
 	display: inline;
-	&:focus, &:hover {
+	@include pseudo-focus {
 		text-shadow: 0 1px 0 #ddd;
 		@include box-shadow(none);
 		border: {
@@ -404,7 +404,7 @@ a {
 
 %text-decoration-underline-a-psuedos {
 	a {
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			text-decoration: underline;
 		}
 	}

@@ -18,7 +18,7 @@
 
 #wb-main {
 	a[href] {
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			color: #000;
 		}
 	}

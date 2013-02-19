@@ -42,7 +42,7 @@
 		}
 		h3 {
 			a {
-				&:hover, &:focus, &:active {
+				@include pseudo-focus {
 					zoom: 1;
 				}
 			}
