@@ -3,6 +3,8 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 
+@import '../../../grids/sass/includes/mixins';
+
 #archived {
 	background-color: #FFC;
 	border: 1px solid #C00;
@@ -16,6 +18,10 @@
 		margin-left: 10px !important;
 		margin-right: 10px !important;
 	}
+}
+
+%archived-color-FFF {
+	color: #FFF;
 }
 
 .archived {
@@ -36,8 +42,11 @@
 		position: relative;
 		text-shadow: none;
 		&[href] {
-			&:link, &:hover, &:focus, &:active {
-				color: #FFF;
+			&:link {
+				@extend %archived-color-FFF;
+			}
+			@include pseudo-focus {
+				@extend %archived-color-FFF;
 			}
 		}
 	}

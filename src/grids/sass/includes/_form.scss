@@ -208,7 +208,7 @@
 			position: relative;
 			vertical-align: middle;
 
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				z-index: 2;
 			}
 		}
@@ -332,7 +332,7 @@
 		border-color: darken($light, 15%);
 		@include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.05));
 
-		&:focus, &:active {
+		@include pseudo-focus(false) {
 			border-color: $accent;
 
 			@include transition(border 0.2s linear 0s, box-shadow 0.2s linear 0s);
@@ -345,7 +345,7 @@
 			color: $medium;
 			cursor: not-allowed;
 
-			&:focus, &:active {
+			@include pseudo-focus(false) {
 				@include box-shadow(none);
 			}
 		}
@@ -357,19 +357,19 @@
 		// apply color to the form element
 		.form-confirm & {
 			border-color: $summary;
-			&:focus, &:active {
+			@include pseudo-focus(false) {
 				@include single-box-shadow($summary);
 			}
 		}
 		.form-attention & {
 			border-color: $red;
-			&:focus, &:active {
+			@include pseudo-focus(false) {
 				@include single-box-shadow($red);
 			}
 		}
 		.form-alert & {
 			border-color: darken($alert, 37%);
-			&:focus, &:active {
+			@include pseudo-focus(false) {
 				@include single-box-shadow(darken($alert, 37%));
 			}
 		}

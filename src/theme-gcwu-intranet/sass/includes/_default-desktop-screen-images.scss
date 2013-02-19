@@ -6,7 +6,7 @@
 
 #gcwu-srch-submit {
 	background: #ccc url(../images/search-button.gif) 0 0 repeat-x;
-	&:focus, &:hover {
+	@include pseudo-focus {
 		background: #ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
 	}
 }

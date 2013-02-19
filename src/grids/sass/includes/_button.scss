@@ -13,7 +13,7 @@
 		background-image: none;
 		@include button($light);
 
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			background-position: 0 -15px;
 			text-decoration: none;
 			outline-offset: -6px;
@@ -37,6 +37,14 @@
 		@extend %grid-button-color-button-accent;
 	}
 
+	%button-none-style {
+		background: none;
+		border-color: transparent !important;
+		@include box-shadow(none);
+		outline-color: transparent;
+		text-decoration: underline;
+		text-shadow: none;
+	}
 	/* without line 29 the buttons would not be coloured in IE, move to fixes? */
 	input, button, a, summary {
 		&.button-accent {
@@ -58,21 +66,17 @@
 			@include color-button($attention);
 		}
 		&.button-none {
-			&, &:hover, &:focus, &:active {
-				background: none;
-				border-color: transparent !important;
-				@include box-shadow(none);
-				outline-color: transparent;
-				text-decoration: underline;
-				text-shadow: none;
+			@extend %button-none-style;
+			@include pseudo-focus {
+				@extend %button-none-style;
 			}
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				color: $attention !important;
 			}
 
 			@include button-disabled {
 				text-decoration: none !important;
-				&:hover, &:focus, &:active {
+				@include pseudo-focus {
 					color: $dark !important;
 				}
 			}
@@ -107,7 +111,7 @@
 			margin-left: -1px;
 			@include border-radius(0);
 
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				z-index: 2;
 			}
 		}
@@ -304,7 +308,7 @@
 	text-shadow: 0 1px 1px contrast-color($text, $dark, $white, 50%);
 
 	@include background-image(linear-gradient($color, darken($color, 10%)));
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		background-color: darken($color, 10%);
 	}
 	@if $experimental-support-for-mozilla {

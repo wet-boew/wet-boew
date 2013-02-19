@@ -38,11 +38,12 @@
 
 #gcwu-title {
 	a {
-		&, &:visited, &:hover, &:focus, &:active { //TODO: Conflicting text-decorations for hover, focus and active with next rule
+		&, &:visited {
 			color: #295376;
 			text-decoration: none;
 		}
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
+			color: #295376;
 			text-decoration: underline;
 		}
 	}

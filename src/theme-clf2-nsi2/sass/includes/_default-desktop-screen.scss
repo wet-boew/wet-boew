@@ -127,7 +127,7 @@ body {
 
 #wb-skip {
 	a {
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			background-color: #363;
 		}
 	}
@@ -241,7 +241,7 @@ body {
 					color: #FFF;
 					text-decoration: none;
 				}
-				&:hover, &:active, &:focus {
+				@include pseudo-focus {
 					color: #000;
 					background-color: #CCC;
 				}
@@ -265,7 +265,7 @@ body {
 
 %cfl2-default-desktop-screen-a-pseudo-width120pct {
 	a {
-		&:hover, &:active, &:focus {
+		@include pseudo-focus {
 			width: 120%;
 		}
 	}
@@ -400,7 +400,7 @@ body {
 			color: #636;
 			text-decoration: none;
 		}
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			color: #CC9;
 			background-color: #030;
 			outline: none;
@@ -470,7 +470,7 @@ body {
 			margin: -2px -5px;
 			padding: 2px 5px;
 			width: 100%;
-			&:hover, &:active, &:focus {
+			@include pseudo-focus {
 				background-color: #030;
 				color: #CC9;
 			}
@@ -530,7 +530,7 @@ body {
 				color: #636;
 				text-decoration: none;
 			}
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				color: #CC9;
 				background-color: #030;
 				outline: none;
