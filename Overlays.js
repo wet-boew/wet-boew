@@ -1,4 +1,4 @@
-var wet_boew_geomap = {
+ var wet_boew_geomap = {
 	// OPTIONAL: note that geomap will provide a default basemap if not specified here.
 	/* basemap : {
 		title: 'CBMT',
@@ -10,7 +10,7 @@ var wet_boew_geomap = {
 		options: { singleTile: false, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true }
 	*/
 	overlays : [
-		/*{
+		{
 		    title: 'WMS Demo',
 		    type: 'wms',
 		    url: 'http://www2.dmsolutions.ca/cgi-bin/mswms_gmap',
@@ -75,7 +75,7 @@ var wet_boew_geomap = {
 			},
 			strokeColor: '#336600',
 			fillColor: '#00CC00'
-		},*/
+		},
 		{
 			title: 'GeoJSON (CartoDB)',
 			caption: 'This is a sample dataset loaded from a remote GeoJSON resource, in this case traffic cameras in the city of Ottawa from the CartoDB API.',
@@ -91,7 +91,8 @@ var wet_boew_geomap = {
 				latitude: 'Longitude',				
 				updated_at: 'Last updated'
 			},
-			visible: true,			
+			visible: true,
+			zoom:  true,			
 			// default style			
 			// style: {
 				// type: 'symbol',
