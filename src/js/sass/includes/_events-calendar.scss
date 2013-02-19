@@ -34,7 +34,7 @@ div {
 									color: #000 !important;
 									width: auto;
 								}
-								&:hover, &:focus, &:active {
+								@include pseudo-focus {
 									color: #FFF !important;
 								}
 							}

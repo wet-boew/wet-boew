@@ -85,7 +85,7 @@
 }
 
 %wb-lightbox-focus-active-outline-0-border-1-dotted-000 {
-	&:focus, &:active {
+	@include pseudo-focus(false) {
 		outline: 0;
 		border: 1px dotted #000;
 	}
@@ -231,7 +231,7 @@
 	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
 	left: -28px;
 	background-position: 100% 0;
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		background-position: 100% 100%; //bottom right
 	}
 }
@@ -245,7 +245,7 @@
 	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
 	right: -28px;
 	background-position: 0 0;
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		background-position: 0 100%;
 	}
 }
@@ -261,7 +261,7 @@
 	background-position: 50% 0;
 	width: 38px;
 	height: 19px;
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		background-position: 50% 100%;
 	}
 }

@@ -97,7 +97,7 @@
 	li {
 		padding-bottom: 8px;
 		a {
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				text-decoration: none;
 			}
 		}
