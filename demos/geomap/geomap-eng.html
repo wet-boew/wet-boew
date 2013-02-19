@@ -35,17 +35,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
 
-<!-- <script>
-	$(document).ready(function(){
-		setTimeout(function() {
-			var myMap = pe.fn.geomap.getMap();}
-			
-	
-		,3000);
-	});
-</script> -->
-<!-- CustomScriptsCSSStart -->
-<!-- CustomScriptsCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -111,13 +100,11 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <div class="span-8">
     <div class="span-6 row-start">
-        <!--<div class="wet-boew-geomap span-4 border-all position scaleline" data-wet-boew="{ tables: ['cityE', 'cityW', 'bbox'], features:[ 'POINT (-100, 50)', 'POLYGON ((-120 54, -111 54, -111 50, -120 50, -120 54))', 'LINESTRING (-110 63, -105 60, -100 63)' ] }"></div>-->
-        <!--<div class="wet-boew-geomap span-6 border-all position scaleline" data-wet-boew="{ layersFile: '../../Overlays.js', tables: [ { id: 'cityE' }, { id: 'bbox', strokeColor: '#990000', fillColor: '#FF0000' } ] }"></div>-->
         <div 
             class="wet-boew-geomap span-6 border-all position scaleline debug" 
             data-wet-boew="{ 
-                layersFile: '../../Overlays.js', 
-                tables: [ { id: 'cityE', zoom: true, style: {init: {'strokeColor': '#800080', 'fillColor': '#FF00FF', 'pointRadius': '10'}} }, { id: 'bbox' } ] 
+                layersFile: 'data/overlays.js', 
+                tables: [ { id: 'cities', zoom: true, style: { init: {'strokeColor': '#0083f5', 'fillColor': '#57a8f0', 'pointRadius': '6', 'fillOpacity': 0.80, 'strokeWidth': 1.0 } } }, { id: 'bbox' } ] 
             }">
         </div>
     </div>
@@ -134,28 +121,80 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 		</ul>
 		<div class="tabs-panel">
 			<div id="tabs1_1">
-				<table id="cityE" aria-label="Maritime Cities">
-		            <caption>This is a sample layer created from a table in the current document. A column with cells containing geometry encoded in WKT and marked up with a class named <em>geometry</em> is required. To link the layer features in the table to the map a column containing cells marked up with a class named <em>select</em> is required.</caption>
-		            <thead>
-		                <tr>                        
-		                    <th>Title</th>
-		                    <th>Description</th>
-		                    <th class="wb-invisible">Geometry</th>
-		                </tr>
-		            </thead>
-		            <tbody>
-		                <tr>
-		                    <td><a href="#">St. John's</a></td>
-		                    <td>St. John's, the capital city of Newfoundland and Labrador, is the most easterly point in North America.</td>
-		                    <td class="geometry wb-invisible">POINT (-52.7097, 47.5649)</td>                    
-		                </tr>
-		                <tr>
-		                	<td class="select"><a href="#">Charlottetown</a></td>
-		                    <td>The City of Charlottetown is a flourishing community of over 32000 people located on the south shore of Prince Edward Island.</td>
-		                    <td class="geometry wb-invisible">POINT (-63.1283, 46.2336)</td>                                           
-		                </tr> 			                
-		            </tbody>
-		        </table>
+                <table id="cities" aria-label="Cities" class="span-8">
+                    <caption>This is a sample layer created from a table in the current document. A column with cells containing geometry encoded in WKT and marked up with a class named <em>geometry</em> is required. To link the layer features in the table to the map a column containing cells marked up with a class named <em>select</em> is required.</caption>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Census subdivision</th>                            
+                            <th>Population 2011</th>
+                            <th class="wb-invisible">Geometry</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="select"><a href="http://www.wikipedia.org/wiki/Toronto" title="Toronto">Toronto</a></td>
+                            <td>2,615,060</td>
+                            <td class="geometry wb-invisible">POINT (-79.3847, 43.6476)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="select"><a href="http://www.wikipedia.org/wiki/Montreal" title="Montreal">Montreal</a></td>
+                            <td>1,649,519</td>
+                            <td class="geometry wb-invisible">POINT (-73.56123, 45.52927)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="select"><a href="http://www.wikipedia.org/wiki/Calgary" title="Calgary">Calgary</a></td>
+                            <td>1,096,833</td>
+                            <td class="geometry wb-invisible">POINT (-114.05879, 51.04668)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="select"><a href="http://www.wikipedia.org/wiki/Ottawa" title="Ottawa">Ottawa</a></td>
+                            <td>883,391</td>
+                            <td class="geometry wb-invisible">POINT (-75.68937, 45.41072)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td class="select"><a href="http://www.wikipedia.org/wiki/Edmonton" title="Edmonton">Edmonton</a></td>
+                            <td>812,201</td>
+                            <td class="geometry wb-invisible">POINT (-113.49590, 53.53398)</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td class="select"><a href="http://www.wikipedia.org/wiki/Mississauga" title="Mississauga">Mississauga</a></td>
+                            <td>713,443</td>
+                            <td class="geometry wb-invisible">POINT ()</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td class="select"><a href="http://www.wikipedia.org/wiki/Winnipeg" title="Winnipeg">Winnipeg</a></td>
+                            <td>663,617</td>
+                            <td class="geometry wb-invisible">POINT (-97.14352, 49.89375)</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td class="select"><a href="http://www.wikipedia.org/wiki/Vancouver" title="Vancouver">Vancouver</a></td>
+                            <td>603,502</td>
+                            <td class="geometry wb-invisible">POINT (-123.10091, 49.26428)</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td class="select"><a href="/wiki/Brampton" title="Brampton">Brampton</a></td>
+                            <td>523,911</td>
+                            <td class="geometry wb-invisible">POINT (-79.76181, 43.68686)</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td class="select"><a href="/wiki/Hamilton,_Ontario" title="Hamilton, Ontario">Hamilton</a></td>
+                            <td>519,949</td>
+                            <td class="geometry wb-invisible">POINT (-79.86788, 43.25717)</td>
+                        </tr>
+                    </tbody
+                    <tfoot></tfoot>
+                </table>
 			</div>			
 		</div>
     </div>
@@ -175,12 +214,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td class="select">Report on 2011 field activities and collection of ground thermal and active layer data in the Mackenzie Corridor completed under Northwest Territories science licence #14918</td>
+                    <td class="select"><a href="#">Report on 2011 field activities and collection of ground thermal and active layer data in the Mackenzie Corridor completed under Northwest Territories science licence #14918</a></td>
                     <td class="geometry bbox">-136, 61, -118, 70</td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td class="select">Dinoflagellate cysts from upper cretaceous-lower tertiary sections, Bylot and Devon Islands, Arctic Archipelago</td>
+                    <td class="select"><a href="#">Dinoflagellate cysts from upper cretaceous-lower tertiary sections, Bylot and Devon Islands, Arctic Archipelago</a></td>
                     <td class="geometry bbox">-92.5, 72.75, -79, 75.5</td>                                           
                 </tr>    
             </tbody>
@@ -261,7 +300,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <script src="../../src/js/settings.js"></script>
 <script src="../../src/js/pe-ap.js"></script>
 <script src="../../src/js/workers/geomap.js"></script>
-<script src="../../src/js/workers/tabbedinterface.js"></script> 
+<script src="../../src/js/workers/tabbedinterface.js"></script>
 <!-- ScriptsEnd -->
 </body>
 </html>
