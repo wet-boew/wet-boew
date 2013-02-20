@@ -5,10 +5,6 @@
 /*
  * DataTables
  */
-<<<<<<< HEAD
-/*global jQuery: false, pe:false*/
-( function($) {
-=======
 /*global jQuery: false, pe:false, wet_boew_tables: false*/
 (function ($) {
 	"use strict";
