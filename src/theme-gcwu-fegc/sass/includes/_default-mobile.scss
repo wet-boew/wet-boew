@@ -127,7 +127,7 @@ table {
 	@include background-image(linear-gradient(#4474AD, #174F88));
 	border: 1px solid #456F9A;
 	p {
-		padding: 3px;
+		padding: 3px 5px;
 		margin: 0;
 	}
 	a {
@@ -145,7 +145,7 @@ table {
 #gcwu-wmms {
 	@extend %position-absolute;
 	top: 9px;
-	left: 3px;
+	left: 5px;
 	object {
 		@extend %gcwu-default-mobile-width-90;
 	}
@@ -174,7 +174,7 @@ table {
 }
 
 #wb-main-in {
-	padding: 0 3px;
+	padding: 0 5px;
 	h1 {
 		margin-top: 0.5em;
 	}
@@ -215,7 +215,7 @@ table {
 
 #gcwu-gcnb {
 	min-height: 42px;
-	@include background-image(linear-gradient(#3C3C3C, #111111));
+	@include background-image(linear-gradient(#3C3C3C, #111));
 	ul {
 		@extend %gcwu-default-mobile-display-none;
 	}
@@ -225,7 +225,7 @@ table {
 }
 
 #gcwu-mnavbar {
-	right: 3px;
+	right: 5px;
 	.ui-btn-inner {
 		padding: 0.6em 14px;
 	}
@@ -277,9 +277,9 @@ table {
 	}
 }
 
-%gcwu-default-mobile-last-child-padding-5-3 {
+%gcwu-default-mobile-last-child-padding-5 {
 	&:last-child {
-		padding: 5px 3px;
+		padding: 5px;
 	}
 }
 #gcwu-bc-in {
@@ -295,9 +295,9 @@ table {
 	}
 	li {
 		margin: 0;
-		padding: 5px 10px 5px 3px;
+		padding: 5px 12px 5px 5px;
 		@extend %gcwu-default-mobile-no-rounded-corners;
-		@extend %gcwu-default-mobile-last-child-padding-5-3;
+		@extend %gcwu-default-mobile-last-child-padding-5;
 	}
 	a {
 		@extend %gcwu-default-mobile-no-rounded-corners;
@@ -726,12 +726,12 @@ select {
 
 	#gcwu-wmms {
 		left: auto;
-		right: 3px;
+		right: 5px;
 	}
 	
 	#gcwu-mnavbar {
 		@extend %gcwu-default-mobile-rtl-scalex;
-		left: 3px;
+		left: 5px;
 		right: auto;
 	}
 
@@ -741,8 +741,8 @@ select {
 			@extend %gcwu-default-mobile-rtl-scalex;
 		}
 		li {
-			padding: 5px 3px 5px 10px;
-			@extend %gcwu-default-mobile-last-child-padding-5-3;
+			padding: 5px 5px 5px 12px;
+			@extend %gcwu-default-mobile-last-child-padding-5;
 			&:last-child {
 				@extend %gcwu-default-mobile-rtl-scalex;
 			}

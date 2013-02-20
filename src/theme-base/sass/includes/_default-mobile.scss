@@ -124,9 +124,10 @@ table {
 }
 
 #base-title {
+	@include background-image(linear-gradient(#BA380C, #E3450F));
 	border: none;
 	p {
-		padding: 3px;
+		padding: 3px 5px;
 		margin: 0;
 	}
 	a {
@@ -149,7 +150,7 @@ table {
 }
 	
 #wb-main-in {
-	padding: 0 3px;
+	padding: 0 5px;
 	h1 {
 		margin-top: 0.5em;
 	}
@@ -201,9 +202,10 @@ table {
 }
 
 #base-fullhd {
-	min-height: 41px;
-	.ui-header {
-		border: 1px solid #666;
+	min-height: 42px;
+	@include background-image(linear-gradient(#4C4C4C, #5D5D5D));
+	ul {
+		@extend %base-default-mobile-display-none;
 	}
 	li {
 		@extend %base-default-mobile-display-none;
@@ -211,7 +213,7 @@ table {
 }
 
 #base-mnavbar {
-	right: 3px;
+	right: 5px;
 	.ui-btn-inner {
 		padding: 0.6em 14px;
 	}
@@ -227,14 +229,8 @@ table {
 	@extend %base-default-mobile-display-none;
 }
 
-#base-fullhd {
-	ul {
-		@extend %base-default-mobile-display-none;
-	}
-}
-
-%base-default-mobile-padding-3 {
-	padding: 3px;
+%base-default-mobile-padding-3-5 {
+	padding: 3px 5px;
 }
 #base-subsite {
 	font-size: 130%;
@@ -246,7 +242,7 @@ table {
 		}
 	}
 	a {
-		@extend %base-default-mobile-padding-3;
+		@extend %base-default-mobile-padding-3-5;
 		@extend %base-default-mobile-white-space-normal;
 		@extend %base-default-mobile-font-weight-normal;
 	}
@@ -288,9 +284,9 @@ table {
 	}
 }
 
-%base-default-mobile-last-child-padding-5-3 {
+%base-default-mobile-last-child-padding-5 {
 	&:last-child {
-		padding: 5px 3px;
+		padding: 5px;
 	}
 }
 #base-bc-in {
@@ -307,9 +303,9 @@ table {
 	li {
 		background: url(../images/bcrumb-mobile.png) no-repeat right center;
 		margin: 0;
-		padding: 5px 10px 5px 3px;
+		padding: 5px 12px 5px 5px;
 		@extend %base-default-mobile-no-rounded-corners;
-		@extend %base-default-mobile-last-child-padding-5-3;
+		@extend %base-default-mobile-last-child-padding-5;
 	}
 	a {
 		@extend %base-default-mobile-no-rounded-corners;
@@ -349,7 +345,7 @@ table {
 .ui-title {
 	img {
 		@extend %position-absolute;
-		left: 3px;
+		left: 5px;
 		top: 8px;
 	}
 }
@@ -786,7 +782,7 @@ select {
 	#base-fullhd {
 		.ui-title {
 			img {
-				right: 3px;
+				right: 5px;
 				left: auto;
 			}
 		}
@@ -794,7 +790,7 @@ select {
 	
 	#base-mnavbar {
 		@extend %base-default-mobile-rtl-scalex;
-		left: 3px;
+		left: 5px;
 		right: auto;
 	}
 
@@ -809,8 +805,8 @@ select {
 			@extend %base-default-mobile-rtl-scalex;
 		}
 		li {
-			padding: 5px 3px 5px 10px;
-			@extend %base-default-mobile-last-child-padding-5-3;
+			padding: 5px 5px 5px 12px;
+			@extend %base-default-mobile-last-child-padding-5;
 		}
 	}
 
@@ -917,7 +913,7 @@ select {
 
 	.ui-title {
 		img {
-			right: 3px;
+			right: 5px;
 		}
 	}
 
@@ -969,7 +965,7 @@ select {
 
 	#base-subsite {
 		a {
-			@extend %base-default-mobile-padding-3;
+			@extend %base-default-mobile-padding-3-5;
 		}
 	}
 
