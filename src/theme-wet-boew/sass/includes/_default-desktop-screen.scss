@@ -189,7 +189,7 @@ a {
 }
 
 %wet-default-desktop-screen-hover-focus-active-text-decoration-underline {
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		text-decoration:underline;
 	}
 }
@@ -242,7 +242,7 @@ a {
 		@include box-shadow(none);
 		background: #FFF;
 		padding: 4px;
-		&:focus, &:active {
+		@include pseudo-focus(false) {
 			background: #EEE;
 			border-color: #CCC;
 		}

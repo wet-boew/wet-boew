@@ -69,7 +69,7 @@ div {
 						&, &:link {
 							color: #111 !important;
 						}
-						&:hover, &:focus, &:active {
+						@include pseudo-focus {
 							color: #FFF !important;
 						}
 					}
