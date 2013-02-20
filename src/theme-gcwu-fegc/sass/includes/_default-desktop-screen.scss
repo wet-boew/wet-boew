@@ -518,6 +518,11 @@ a {
 
 	#gcwu-psnb {
 		.mb-menu {
+			li {
+				&.mb-active {
+					border-right: 1px solid #CCC;
+				}
+			}
 			a {
 				padding: 0.45em 0.79em 0.45em 1.17em;
 				&.mb-has-sm {
