@@ -145,6 +145,7 @@
 			pe.tablet = pe.tabletcheck();
 			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : '')) : ' desktop-view')) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
+			classes += (pe.svg ? ' svg' : ' no-svg');
 			$html.removeClass('no-js').addClass(classes);
 
 			// Identify IE9+ browser
@@ -161,12 +162,24 @@
 
 			// Is this a mobile device?
 			if (pe.mobile) {
+				classes = '';
+
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
 				if (test === 0) {
-					$html.addClass('bb-pre6 bb-pre7');
+					classes += 'bb-pre6 bb-pre7';
 				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
-					$html.addClass('bb-pre7');
+					classes += 'bb-pre7';
+				}
+
+				// Detect if iOS 4.3 is being used
+				test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
+				if (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46))) {
+					classes += 'ios43';
+				}
+
+				if (classes.length !== 0) {
+					$html.addClass(classes);
 				}
 			}
 			

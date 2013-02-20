@@ -154,6 +154,17 @@ table {
 	}
 }
 
+.bb-pre7, .ios43, .no-svg {
+	#gcwu-wmms {
+		display: none;
+	}
+	.ui-mobile {
+		#gcwu-wmms {
+			display: block;
+		}
+	}
+}
+
 #gcwu-date-mod {
 	@extend %period-after-pseudo;
 	float: right;
