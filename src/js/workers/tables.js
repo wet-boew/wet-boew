@@ -18,7 +18,7 @@
 		dependscss : ['datatables'],
 		_exec : function(elm) {
 			var opts, overrides;
-				//Defaults
+			//Defaults
 			opts = {
 				paginate : true,
 				pMenu : [10, 25, 50, 100],
@@ -30,11 +30,9 @@
 				visible : true,
 				zebra : false
 			};
-
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
 			overrides = {
 			};
-
 			// Extend the defaults with settings passed through settings.js (wet_boew_tables), class-based overrides and the data attribute
 			$.metadata.setType('attr', 'data-wet-boew');
 			if ( typeof wet_boew_tables !== 'undefined' && wet_boew_tables !== null) {
@@ -42,7 +40,6 @@
 			} else {
 				$.extend(opts, overrides, elm.metadata());
 			}
-
 			elm.dataTable({
 				'aoColumnDefs' : [{
 					'bVisible' : (opts.visible === true),
