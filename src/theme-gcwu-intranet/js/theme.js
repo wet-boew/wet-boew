@@ -100,14 +100,14 @@
 				len,
 				nodes,
 				node,
-				test,
 				home_href,
 				header,
+				$html = $('html'),
+				svgfix = ($html.hasClass('bb-pre7') || $html.hasClass('ios43')),
 				wmms = document.getElementById('gcwu-wmms');
 
 			// Fix for old webkit versions (BB OS6 & iOS 4.3)
-			test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
-			if (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46))) {
+			if ($html.hasClass('bb-pre7') || $html.hasClass('ios43')) {
 				nodes = document.querySelectorAll('#gcwu-wmms object, #gcwu-sig object');
 				len = nodes.length;
 				while (len--) {
@@ -174,10 +174,11 @@
 					node = wmms.getElementsByTagName('object')[0];
 					node.setAttribute('data', node.getAttribute('data').replace('.svg', '-r.svg'));
 					node.setAttribute('style', 'display: block');
-					// Correct the source of the Canada Wordmark fallback image for browsers that don't support SVG
-					if (!pe.svg) {
-						node = wmms.getElementsByTagName('img')[0];
-						node.setAttribute('src', node.getAttribute('src').replace('.gif', '-wm.gif'));
+					// Correct the source of the Canada Wordmark fallback image
+					node = wmms.getElementsByTagName('img')[0];
+					node.setAttribute('src', node.getAttribute('src').replace('.gif', '-wm.gif'));
+					if (svgfix) {
+						wmms.setAttribute('style', 'display: block');
 					}
 				}
 				// Handling for the home/back button if it exists
