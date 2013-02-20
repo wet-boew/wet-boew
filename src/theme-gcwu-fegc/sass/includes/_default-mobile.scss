@@ -124,6 +124,7 @@ table {
 }
 
 #gcwu-title {
+	@include background-image(linear-gradient(#4474AD, #174F88));
 	border: 1px solid #456F9A;
 	p {
 		padding: 3px;
@@ -138,14 +139,18 @@ table {
 	}
 }
 
+%gcwu-default-mobile-width-90 {
+	width: 90px;
+}
 #gcwu-wmms {
 	@extend %position-absolute;
-	top: 0;
-	left: 0;
+	top: 9px;
+	left: 3px;
+	object {
+		@extend %gcwu-default-mobile-width-90;
+	}
 	img {
-		padding: 5px 3px;
-		margin: 0;
-		background: #fff;
+		@extend %gcwu-default-mobile-width-90;
 	}
 }
 
@@ -208,18 +213,11 @@ table {
 	}
 }
 
-.ui-header {
-	.ui-title {
-		min-width: 180px;
-		margin-left: 35px;
-		margin-right: 35px;
-	}
-}
-
 #gcwu-gcnb {
-	min-height: 41px;
-	.ui-header {
-		border: 1px solid #333;
+	min-height: 42px;
+	@include background-image(linear-gradient(#3C3C3C, #111111));
+	ul {
+		@extend %gcwu-default-mobile-display-none;
 	}
 	li {
 		@extend %gcwu-default-mobile-display-none;
@@ -241,16 +239,6 @@ table {
 
 #gcwu-sig {
 	@extend %gcwu-default-mobile-display-none;
-}
-
-#gcwu-wmms {
-	@extend %gcwu-default-mobile-display-none;
-}
-
-#gcwu-gcnb {
-	ul {
-		@extend %gcwu-default-mobile-display-none;
-	}
 }
 
 #gcwu-bc {
@@ -344,14 +332,6 @@ table {
 
 %position-absolute {
 	position: absolute;
-}
-
-.ui-title {
-	object, & > img {
-		@extend %position-absolute;
-		left: 3px;
-		top: 8px;
-	}
 }
 
 .ui-content {
@@ -700,9 +680,6 @@ select {
 			@extend %gcwu-default-mobile-display-block;
 		}
 	}
-	#gcwu-wmms {
-		@extend %gcwu-default-mobile-display-block;
-	}
 	#gcwu-bc {
 		@extend %gcwu-default-mobile-display-block;
 	}
@@ -747,13 +724,9 @@ select {
 		float: left;
 	}
 
-	#gcwu-gcnb {
-		.ui-title {
-			img {
-				right: 3px;
-				left: auto;
-			}
-		}
+	#gcwu-wmms {
+		left: auto;
+		right: 3px;
 	}
 	
 	#gcwu-mnavbar {
@@ -861,12 +834,6 @@ select {
 			&#base-fullft-ca div {
 				text-align: right;
 			}
-		}
-	}
-
-	.ui-title {
-		img {
-			right: 3px;
 		}
 	}
 
