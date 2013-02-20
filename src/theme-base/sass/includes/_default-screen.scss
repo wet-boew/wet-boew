@@ -55,7 +55,7 @@ body {
 					padding-top: 5px;
 					padding-bottom: 5px;
 					font-size: 1.1em;
-					&:hover, &:focus, &:active {
+					@include pseudo-focus {
 						color: #FFF;
 						text-decoration: underline;
 					}
@@ -114,7 +114,7 @@ body {
 				display: block;
 				color: #333;
 				text-decoration: none;
-				&:hover, &:focus, &:active {
+				@include pseudo-focus {
 					color: #333;
 					text-decoration: underline;
 				}

@@ -20,6 +20,14 @@
 	cursor: text;
 }
 
+%tabbedinterface-color-000-important {
+	color: #000 !important;
+}
+
+%tabbedinterface-text-decoration-underline {
+	text-decoration: underline;
+}
+
 .tabs {
     border-bottom: solid 1px #ccc;
     margin: 0;
@@ -58,8 +66,8 @@
 				border: 1px solid #999;
 				margin-right: 2px;
 				@include pseudo-focus {
-					text-decoration: underline;
-					color: #000 !important;
+					@extend %tabbedinterface-text-decoration-underline;
+					@extend %tabbedinterface-color-000-important;
 				}
 				&.tabs-next, &.tabs-prev {
 					padding: 2px 5px !important;
@@ -192,7 +200,7 @@
 }
 
 %tabbedinterface-tab-style-1-active {
-	color: #000 !important;
+	@extend %tabbedinterface-color-000-important;
 	background: #fff;
 	border-top: none;
 	padding: 4px;
@@ -221,7 +229,7 @@
 				color: #fff !important;
 				padding: 3px 4px 4px;
 				@include pseudo-focus {
-					color: #000 !important;
+					@extend %tabbedinterface-color-000-important;
 					border-top: 1px solid #fff;
 					padding-top: 1px;
 				}
@@ -231,15 +239,18 @@
 						@extend %tabbedinterface-tab-style-1-active;
 					}
 				}
-				&.tabs-start, &.tabs-stop {
-					color: #000 !important;
+				&.tabs-start {
+					@extend %tabbedinterface-color-000-important;
+				}
+				&.tabs-stop {
+					@extend %tabbedinterface-color-000-important;
 				}
 			}
 		}
 		li {
 			&.tabs-toggle {
 				a {
-					color: #000 !important;
+					@extend %tabbedinterface-color-000-important;
 					@extend %tabbedinterface-no-repeat-border999;
 					@include pseudo-focus {
 						@extend %tabbedinterface-no-repeat-border999;
@@ -310,7 +321,7 @@
 				a {
 					background-color: transparent !important;
 					@include pseudo-focus {
-						color: #000 !important;
+						@extend %tabbedinterface-color-000-important;
 					}
 				}
 			}
@@ -391,7 +402,7 @@
 					border: 1px solid #ccc;
 					@include pseudo-focus {
 						@include opaque;
-						color: #000 !important;
+						@extend %tabbedinterface-color-000-important;
 						margin-right: 2px;
 					}
 				}
@@ -426,6 +437,12 @@
 
 
 /* style 4 */
+%tabbedinterface-tab-style-4-active-hover {
+	background: none repeat scroll 0 0 #FFF;
+	border: none;
+	@extend %tabbedinterface-color-000-important;
+	padding-top: 2px;
+}
 .tabs-style-4 {
     padding: 0;
 	.tabs {
@@ -444,14 +461,12 @@
 				margin: 0;
 				padding: 2px;
 				@include pseudo-focus {
-					color: #000 !important;
+					@extend %tabbedinterface-color-000-important;
 				}
 				&.active {
-					&, &:hover {
-						background: none repeat scroll 0 0 #FFF;
-						border: none;
-						color: #000 !important;
-						padding-top: 2px;
+					@extend %tabbedinterface-tab-style-4-active-hover;
+					&:hover {
+						@extend %tabbedinterface-tab-style-4-active-hover;
 					}
 				}
 			}
@@ -461,7 +476,7 @@
 				a {
 					font-size: 100%;
 					width: auto !important;
-					color: #000 !important;
+					@extend %tabbedinterface-color-000-important;
 					border-top: 1px solid #999 !important;
 					margin-right: 2px;
 				}
@@ -504,8 +519,9 @@
 		}
 		a {
 			&.active {
-				&, &:hover {
-					color: #000 !important;
+				@extend %tabbedinterface-color-000-important;
+				&:hover {
+					@extend %tabbedinterface-color-000-important;
 				}
 			}
 		}
@@ -556,8 +572,23 @@
 	}
 }
 
-
 /* style 6 */
+%tabbedinterface-tab-style-6-link {
+	padding: 2px 4px;
+	background: 0;
+	border: 1px solid #999;
+	@include border-radius(2px);
+}
+%tabbedinterface-tab-style-6-active {
+	text-decoration: none;
+	color: #fff !important;
+	background: #333;
+	border-color: #000;
+}
+%tabbedinterface-tab-style-6-opacity-1-color-000-important {
+	@include opacity(1);
+	@extend %tabbedinterface-color-000-important;
+}
 .tabs-style-6 {
 	.tabs-panel {
 		padding: 0;
@@ -581,17 +612,13 @@
 			background: 0;
 			border: 0;
 			a {
-				&, &.active {
-					padding: 2px 4px;
-					background: 0;
-					border: 1px solid #999;
-					@include border-radius(2px);
+				@extend %tabbedinterface-tab-style-6-link;
+				&.active {
+					@extend %tabbedinterface-tab-style-6-link;
+					@extend %tabbedinterface-tab-style-6-active;
 				}
-				&:hover, &:focus, &:active, &.active {
-					text-decoration: none;
-					color: #fff !important;
-					background: #333;
-					border-color: #000;
+				@include pseudo-focus {
+					@extend %tabbedinterface-tab-style-6-active;
 				}
 			}
 			&.img {
@@ -602,16 +629,18 @@
 					padding: 0;
 					border: 0;
 					@include border-radius(0);
-					&:hover, &:focus, &:active, &.active {
-						@include opacity(1);
-						color: #000 !important;
+					&.active {
+						@extend %tabbedinterface-tab-style-6-opacity-1-color-000-important;
+					}
+					@include pseudo-focus {
+						@extend %tabbedinterface-tab-style-6-opacity-1-color-000-important;
 					}
 				}				
 			}
 			&.tabs-toggle {
-				a:hover, a:focus, a:active {
-					text-decoration: underline;
-					color: #000 !important;
+				@include pseudo-focus {
+					@extend %tabbedinterface-text-decoration-underline;
+					@extend %tabbedinterface-color-000-important;
 					background: 0;
 					border-color: #999;
 				}
