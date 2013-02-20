@@ -40,7 +40,7 @@ ul {
 				color: #000;
 				display: block;
 				padding: 0 5px;
-				&:hover, &:focus, &:active {
+				@include pseudo-focus {
 					background: #406C93;
 					color: #fff;
 				}

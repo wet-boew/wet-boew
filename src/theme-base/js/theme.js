@@ -47,7 +47,9 @@
 				submenu.prev().children('a').addClass('nav-current');
 			}
 			if (pe.secnav.length !== 0) {
-				pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
+				current = pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
+				submenu = current.parents('ul');
+				submenu.prev().children('a').addClass('nav-current');
 			}
 
 			// If no search is provided, then make the site menu link 100% wide
@@ -69,6 +71,7 @@
 				settings_popup,
 				secnav_h2,
 				s_form,
+				s_form_html,
 				s_popup,
 				bodyAppend = '',
 				button = '<a data-role="button" data-iconpos="notext"',
@@ -80,11 +83,11 @@
 				popup_settings = ' data-theme="c" class="ui-corner-all">',
 				popup_settings_header_open = popup_header_open + ' class="ui-corner-top"><h1>',
 				popup_settings_content_open = '<div data-role="content" data-theme="c" class="ui-corner-bottom ui-content">',
-				popup_close_btn = button + ' href="javascript:;" data-icon="delete" data-rel="back" class="ui-btn-left">' + pe.dic.get('%close') + '</a>',
+				popup_close_btn = button + ' href="javascript:;" data-icon="delete" data-rel="back" class="ui-btn-right">' + pe.dic.get('%close') + '</a>',
 				popup_back_btn_open = popup_button + ' data-icon="back" class="ui-btn-left"',
 				popup_back_btn_close = '>' + pe.dic.get('%back') + '</a>',
 				popup_close = '</div></div>',
-				listView = '<ul data-role="listview">',
+				listView = '<ul data-role="listview"',
 				_list = '',
 				links,
 				link,
@@ -137,8 +140,14 @@
 				if (wet_boew_theme.search.length !== 0) {
 					// :: Search box transform lets transform the search box to a popup
 					srch_btn_txt = pe.dic.get('%search');
-					s_form = wet_boew_theme.search[0].innerHTML;
-					s_popup = popup + ' id="jqm-wb-search">' + popup_default_header_open + srch_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content"><div>' + s_form.substring(s_form.indexOf('<form')) + '</div></div></div>';
+					s_form = wet_boew_theme.search[0];
+					s_form_html = s_form.innerHTML;
+					s_form = s_form.getElementsByTagName('input');
+					len = s_form.length;
+					while (len--) {
+						s_form[len].setAttribute('data-role', 'none');
+					}
+					s_popup = popup + ' id="jqm-wb-search">' + popup_default_header_open + srch_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content"><div>' + s_form_html.substring(s_form_html.indexOf('<form')) + '</div></div></div>';
 					bodyAppend += s_popup;
 					_list += popup_button + ' data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a>';
 				}
@@ -163,14 +172,12 @@
 				wet_boew_theme.fullhd.children('#base-fullhd-in').before(header);
 				// Apply a theme to the site title
 				wet_boew_theme.title[0].className += ' ui-bar-b';
-				// Apply a theme to the h1
-				pe.main[0].getElementsByTagName('h1')[0].className += ' ui-bar-c';
 			
 				// Build the settings popup
 				lang_links = wet_boew_theme.fullhd.find('li[id*="-lang"]');
 				settings_popup = popup + ' id="popupSettings"' + popup_settings;
 				settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
-				settings_popup += popup_settings_content_open + listView;
+				settings_popup += popup_settings_content_open + listView + '>';
 				if (lang_links.length > 0) {
 					settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
 				}
@@ -180,8 +187,8 @@
 				// Build the languages sub-popup
 				if (lang_links.length > 0) {
 					settings_popup += popup + ' id="popupLanguages"' + popup_settings;
-					settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';
-					settings_popup += popup_settings_content_open + listView;
+					settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
+					settings_popup += popup_settings_content_open + listView + '>';
 					if (lang_links.filter('[id*="-lang-current"]').length === 0) {
 						settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
 					}
@@ -193,7 +200,7 @@
 						if (node.id.indexOf('-lang-current') !== -1) {
 							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + pe.dic.get('%current') + '</a></li>';
 						} else {
-							settings_popup += '><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
+							settings_popup += '><a href="' + link.href + '" lang="' + link.getAttribute('lang') + '">' + link.innerHTML + '</a></li>';
 						}
 					}
 					settings_popup += '</ul>' + popup_close;
@@ -201,17 +208,18 @@
 
 				// Build the about sub-popup	
 				settings_popup += popup + ' id="popupAbout"' + popup_settings;
-				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';			
-				settings_popup += popup_settings_content_open + listView;
-				settings_popup += '<li>' + wet_boew_theme.title.text() + '</li>';
-				// Add the Date modified/Version
-				node = pe.main.find('#basedate-mod').children();
+				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';			
+				settings_popup += popup_settings_content_open;
+				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
+				// Add the version
+				node = pe.main.find('#base-date-mod').children();
 				if (node.length !== 0) {
 					target = node[1];
 					if (target.getElementsByTagName('time').length === 0) {
-						settings_popup += '<li>' + node[0].innerHTML + ' ' + target.innerHTML + '</li>';
+						settings_popup += '<div class="app-version">' + node[0].innerHTML + ' ' + target.innerHTML + '</div>';
 					}
 				}
+				settings_popup += listView + ' data-inset="true">';
 				// Add the footer links
 				links = wet_boew_theme.sft.find('.base-col-head a').get();
 				for (i = 0, len = links.length; i !== len; i += 1) {
@@ -230,14 +238,6 @@
 
 			// jQuery mobile has loaded
 			$(document).on('pagecreate', function () {
-				if (wet_boew_theme.menubar.length !== 0) {
-					node = wet_boew_theme.psnb[0];
-					node.parentNode.removeChild(node);
-				}
-				if (wet_boew_theme.search.length !== 0) {
-					node = wet_boew_theme.search[0];
-					node.parentNode.removeChild(node);
-				}
 				if (_list.length !== 0) {
 					var navbar = wet_boew_theme.fullhd.find('#base-mnavbar'),
 						menu = pe.bodydiv.find('#jqm-mb-menu'),
@@ -261,7 +261,7 @@
 								node = nodes[len];
 								// Fix the top corners
 								node2 = node.getElementsByTagName('li')[0];
-								if (node2.parentNode.parentNode.className.indexOf('ui-collapsible-content') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
+								if (node2.parentNode.parentNode.className.indexOf('ui-collapsible') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
 									node2.className += ' ui-corner-top';
 								}
 

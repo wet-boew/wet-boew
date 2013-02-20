@@ -65,6 +65,14 @@ div {
 							background-color: #333;
 						}
 					}
+					a {
+						&, &:link {
+							color: #111 !important;
+						}
+						@include pseudo-focus {
+							color: #FFF !important;
+						}
+					}
 				}
 			}
 		}

@@ -7,63 +7,67 @@
  * Version: @wet-boew-build.version@
  *
  */
+
+/* -----Include jQuery Mobile CSS Start----- */
+@import '../jquerymobile/jquery.mobile.theme';
+@import '../../js/jquerymobile/jquery.mobile.structure';
+/* -----Include jQuery Mobile CSS End----- */
+
 @import '../../base/sass/modern-vendor-prefix';
 
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base';
+@import '../../base/sass/default';
 @import 'includes/serv';
 /* -----Build Include Section End----- */
 
 /* Desktop view */
-@media screen and (min-width: 768px) and (min-device-width: 768px) {
+@media (min-width: 960px) and (min-device-width: 1024px) {
+/* -----Build Include Section Start----- */
+@import '../../base/sass/default-desktop';
+@import 'includes/serv-desktop';
+/* -----Build Include Section End----- */
+}
+@media screen and (min-width: 960px) and (min-device-width: 1024px) {
 /* -----Build Include Section Start----- */
 @import '../../grids/sass/responsive';
 @import 'includes/default-responsive';
+@import '../../base/sass/default-desktop-screen';
+@import 'includes/serv-desktop-screen';
 /* -----Build Include Section End----- */
 }
-@media screen and (min-width: 768px) and (max-width: 959px) and (min-device-width: 768px) {
-/* -----Build Include Section Start----- */
-@import '../../grids/sass/responsive-768';
-@import 'includes/default-responsive-768';
-/* -----Build Include Section End----- */
-}
-@media screen and (min-width: 1200px) and (min-device-width: 768px) {
+@media screen and (min-width: 1200px) and (min-device-width: 1024px) {
 /* -----Build Include Section Start----- */
 @import '../../grids/sass/responsive-1200';
 @import 'includes/default-responsive-1200';
 /* -----Build Include Section End----- */
 }
-@media (min-width: 768px) and (min-device-width: 768px) {
-/* -----Build Include Section Start----- */
-@import '../../base/sass/base-desktop';
-@import 'includes/serv-desktop';
-/* -----Build Include Section End----- */
-}
-@media screen and (min-width: 768px) and (min-device-width: 768px) {
-/* -----Build Include Section Start----- */
-@import '../../base/sass/base-desktop-screen';
-@import 'includes/serv-desktop-screen';
-/* -----Build Include Section End----- */
-}
 
 @media screen {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-screen';
+@import '../../base/sass/default-screen';
 @import 'includes/serv-screen';
 /* -----Build Include Section End----- */
 }
 
 /* Mobile view */
-@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
+@media screen and (max-width: 959px), screen and (max-device-width:1023px) {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-mobile';
+@import '../../base/sass/default-mobile';
 @import 'includes/serv-mobile';
+/* -----Build Include Section End----- */
+}
+
+/* Tablet view */
+@media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+/* -----Build Include Section Start----- */
+@import '../../base/sass/default-tablet';
+@import 'includes/serv-tablet';
 /* -----Build Include Section End----- */
 }
 
 @media print {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-print';
+@import '../../base/sass/default-print';
 @import 'includes/serv-print';
 /* -----Build Include Section End----- */
 }

@@ -22,13 +22,6 @@
 	@extend %base-default-desktop-background-none;
 }
 
-h1 {
-	&.ui-bar-c {
-		@extend %base-default-desktop-background-none;
-		border: 0;
-	}
-}
-
 #base-fullhd {
 	.ui-header {
 		display: none !important;
@@ -86,7 +79,7 @@ h1 {
 	a {
 		color: #295376;
 		text-decoration: none;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			color: #295376;
 			text-decoration: underline;
 		}

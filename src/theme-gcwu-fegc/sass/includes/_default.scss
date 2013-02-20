@@ -27,7 +27,7 @@
 }
 
 %gcwu-default-hidden {
-	clip: rect(1px, 1px, 1px, 1px);
+	@include clip-rect;
 	height: 0 !important;
 	overflow: hidden !important;
 	position: absolute;
@@ -78,7 +78,7 @@
 	a {
 		color: #295376;
 		text-decoration: none;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			color: #295376;
 			text-decoration: underline;
 		}
@@ -141,7 +141,7 @@
 	li {
 		padding-bottom: 8px;
 		a {
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				text-decoration: none;
 			}
 		}

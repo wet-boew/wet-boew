@@ -74,7 +74,7 @@ body {
 
 %clf2-sp-pe-clip {
 	position: absolute;
-	clip: rect(1px, 1px, 1px, 1px);
+	@include clip-rect;
 	height: 1px !important;
 	width: 1px !important;
 	overflow: hidden !important;
@@ -187,7 +187,7 @@ body {
 				color: #000;
 				background-color: #FFF;
 			}
-			&:active, &:focus, &:hover {
+			@include pseudo-focus {
 				color: #FFF;
 				background-color: #000;
 			}
@@ -204,7 +204,7 @@ body {
 				color: #FFF;
 				background-color: #000;
 			}
-			&:active, &:focus, &:hover {
+			@include pseudo-focus {
 				color: #000;
 				background-color: #FFF;
 			}

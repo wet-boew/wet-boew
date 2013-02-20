@@ -68,6 +68,9 @@
 	%gcwu-default-screen-ie7-float-left {
 		float: left;
 	}
+	%gcwu-default-screen-ie7-float-right {
+		float: right;
+	}
 
 	// Right to left (RTL) CSS
 	&[dir="rtl"] {
@@ -86,11 +89,11 @@
 		}
 
 		#gcwu-wmms-in {
-			float: left;
+			@extend %gcwu-default-screen-ie7-float-left;
 		}
 
 		#gcwu-date-mod {
-			float: left;
+			@extend %gcwu-default-screen-ie7-float-left;
 			dt, dd {
 				@extend %gcwu-default-screen-ie7-rtl-float-fix;
 			}
@@ -108,20 +111,40 @@
 			}
 		}
 
-		#gcwu-gcft li {
-			margin: 13px 9px 14px 35px;
+		#gcwu-gcft {
+			li {
+				margin: 13px 9px 14px 35px;
+			}
 		}
 
-		#gcwu-bnr, #gcwu-tctr li {
-			float: right;
+		#gcwu-bnr {
+			@extend %gcwu-default-screen-ie7-float-right;
+		}
+		
+		#gcwu-tctr {
+			li {
+				@extend %gcwu-default-screen-ie7-float-right;
+			}
 		}
 
-		#gcwu-gcft-fip ul li {
-			float: right;
+		#gcwu-gcft-fip {
+			ul {
+				li {
+					@extend %gcwu-default-screen-ie7-float-left;
+				}
+			}
 		}
 
-		#gcwu-gcft-fip ul li#gcwu-gcft-ca {
-			float: left !important;
+		#gcwu-gcft-fip {
+			ul {
+				li {
+					float: right;
+					&#gcwu-gcft-ca {
+						float: left !important;
+					}
+				}
+			}
+			margin-bottom: 10px;
 		}
 	}
 }
@@ -138,12 +161,22 @@
 		#gcwu-tctr {
 			li {
 				&.gcwu-tc {
-					border-right: 1px solid #999;
-					border-left: 0;
-					padding: 0 9px 0 10px;
+					border-left: 1px solid #999;
+					padding: 0 10px 0 9px;
 				}
 				&.gcwu-tr {
 					padding: 0 10px 0 6px;
+				}
+			}
+		}
+
+		#gcwu-gcft-fip {
+			ul {
+				li {
+					float: right;
+					&#gcwu-gcft-ca {
+						float: left !important;
+					}
 				}
 			}
 		}

@@ -28,7 +28,6 @@
 		title: null,
 		sft: null,
 		gcft: null,
-		wmms: $('#gcwu-wmms'),
 		menu: null,
 		init: function () {
 			wet_boew_theme.gcnb = pe.header.find('#gcwu-gcnb');
@@ -48,7 +47,9 @@
 				submenu.prev().children('a').addClass('nav-current');
 			}
 			if (pe.secnav.length !== 0) {
-				pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
+				current = pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
+				submenu = current.parents('ul');
+				submenu.prev().children('a').addClass('nav-current');
 			}
 
 			// If no search is provided, then make the site menu link 100% wide
@@ -70,6 +71,7 @@
 				settings_popup,
 				secnav_h2,
 				s_form,
+				s_form_html,
 				s_popup,
 				bodyAppend = '',
 				button = '<a data-role="button" data-iconpos="notext"',
@@ -81,11 +83,11 @@
 				popup_settings = ' data-theme="c" class="ui-corner-all">',
 				popup_settings_header_open = popup_header_open + ' class="ui-corner-top"><h1>',
 				popup_settings_content_open = '<div data-role="content" data-theme="c" class="ui-corner-bottom ui-content">',
-				popup_close_btn = button + ' href="javascript:;" data-icon="delete" data-rel="back" class="ui-btn-left">' + pe.dic.get('%close') + '</a>',
+				popup_close_btn = button + ' href="javascript:;" data-icon="delete" data-rel="back" class="ui-btn-right">' + pe.dic.get('%close') + '</a>',
 				popup_back_btn_open = popup_button + ' data-icon="back" class="ui-btn-left"',
 				popup_back_btn_close = '>' + pe.dic.get('%back') + '</a>',
 				popup_close = '</div></div>',
-				listView = '<ul data-role="listview">',
+				listView = '<ul data-role="listview"',
 				_list = '',
 				links,
 				link,
@@ -99,7 +101,20 @@
 				nodes,
 				node,
 				home_href,
-				header;
+				header,
+				$html = $('html'),
+				svgfix = ($html.hasClass('bb-pre7') || $html.hasClass('ios43')),
+				wmms = document.getElementById('gcwu-wmms');
+
+			// Fix for old webkit versions (BB OS6 & iOS 4.3)
+			if ($html.hasClass('bb-pre7') || $html.hasClass('ios43')) {
+				nodes = document.querySelectorAll('#gcwu-wmms object, #gcwu-sig object');
+				len = nodes.length;
+				while (len--) {
+					node = nodes[len];
+					node.parentNode.replaceChild(node.getElementsByTagName('img')[0], node);
+				}
+			}
 
 			// Content pages only
 			if (wet_boew_theme.sft.length !== 0) {
@@ -140,22 +155,32 @@
 				if (wet_boew_theme.search.length !== 0) {
 					// :: Search box transform lets transform the search box to a popup
 					srch_btn_txt = pe.dic.get('%search');
-					s_form = wet_boew_theme.search[0].innerHTML;
-					s_popup = popup + ' id="jqm-wb-search">' + popup_default_header_open + srch_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content"><div>' + s_form.substring(s_form.indexOf('<form')) + '</div></div></div>';
+					s_form = wet_boew_theme.search[0];
+					s_form_html = s_form.innerHTML;
+					s_form = s_form.getElementsByTagName('input');
+					len = s_form.length;
+					while (len--) {
+						s_form[len].setAttribute('data-role', 'none');
+					}
+					s_popup = popup + ' id="jqm-wb-search">' + popup_default_header_open + srch_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content"><div>' + s_form_html.substring(s_form_html.indexOf('<form')) + '</div></div></div>';
 					bodyAppend += s_popup;
 					_list += popup_button + ' data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a>';
 				}
 			
 				// Build the header bar
-				header = '<div data-role="header">';
-				// Handling for the Canada Wordmark if it exists
-				if (wet_boew_theme.wmms.length !== 0) {
-					node = wet_boew_theme.wmms[0].getElementsByTagName('img')[0];
-					header += '<div class="ui-title"><img src="' + node.getAttribute('src').replace('.gif', '-bg.gif') + '" width="90" alt="' + node.getAttribute('alt') + '" /></div>';
-				} else {
-					header += '<div class="ui-title"></div>';
+				header = '<div data-role="header"><div class="ui-title"></div><map id="gcwu-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
+				if (wmms !== null) {
+					// TODO: Find way of changing colour to white without JavaScript
+					node = wmms.getElementsByTagName('object')[0];
+					node.setAttribute('data', node.getAttribute('data').replace('.svg', '-r.svg'));
+					node.setAttribute('style', 'display: block');
+					// Correct the source of the Canada Wordmark fallback image
+					node = wmms.getElementsByTagName('img')[0];
+					node.setAttribute('src', node.getAttribute('src').replace('.gif', '-wm.gif'));
+					if (svgfix) {
+						wmms.setAttribute('style', 'display: block');
+					}
 				}
-				header += '<map id="gcwu-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 				// Handling for the home/back button if it exists
 				if (typeof home_href !== 'undefined') { // Home button needed
 					header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';
@@ -173,14 +198,12 @@
 				wet_boew_theme.gcnb.children('#gcwu-gcnb-in').before(header);
 				// Apply a theme to the site title
 				wet_boew_theme.title[0].className += ' ui-bar-b';
-				// Apply a theme to the h1
-				pe.main[0].getElementsByTagName('h1')[0].className += ' ui-bar-c';
 			
 				// Build the settings popup
 				lang_links = wet_boew_theme.gcnb.find('li[id*="-lang"]');
 				settings_popup = popup + ' id="popupSettings"' + popup_settings;
 				settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
-				settings_popup += popup_settings_content_open + listView;
+				settings_popup += popup_settings_content_open + listView + '>';
 				if (lang_links.length > 0) {
 					settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
 				}
@@ -190,8 +213,8 @@
 				// Build the languages sub-popup
 				if (lang_links.length > 0) {
 					settings_popup += popup + ' id="popupLanguages"' + popup_settings;
-					settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';
-					settings_popup += popup_settings_content_open + listView;
+					settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
+					settings_popup += popup_settings_content_open + listView + '>';
 					if (lang_links.filter('[id*="-lang-current"]').length === 0) {
 						settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
 					}
@@ -203,7 +226,7 @@
 						if (node.id.indexOf('-lang-current') !== -1) {
 							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + pe.dic.get('%current') + '</a></li>';
 						} else {
-							settings_popup += '><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
+							settings_popup += '><a href="' + link.href + '" lang="' + link.getAttribute('lang') + '">' + link.innerHTML + '</a></li>';
 						}
 					}
 					settings_popup += '</ul>' + popup_close;
@@ -211,17 +234,18 @@
 
 				// Build the about sub-popup	
 				settings_popup += popup + ' id="popupAbout"' + popup_settings;
-				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + '</div>';			
-				settings_popup += popup_settings_content_open + listView;
-				settings_popup += '<li>' + wet_boew_theme.title.text() + '</li>';
-				// Add the Date modified/Version
+				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';			
+				settings_popup += popup_settings_content_open;
+				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
+				// Add the version
 				node = pe.main.find('#gcwu-date-mod').children();
 				if (node.length !== 0) {
 					target = node[1];
 					if (target.getElementsByTagName('time').length === 0) {
-						settings_popup += '<li>' + node[0].innerHTML + ' ' + target.innerHTML + '</li>';
+						settings_popup += '<div class="app-version">' + node[0].innerHTML + ' ' + target.innerHTML + '</div>';
 					}
 				}
+				settings_popup += listView + ' data-inset="true">';
 				// Add the terms and conditions and transparency links
 				links = document.getElementById('gcwu-tctr').getElementsByTagName('a');
 				for (i = 0, len = links.length; i !== len; i += 1) {
@@ -246,14 +270,15 @@
 				// Handling for splash page language buttons
 				lang_links = document.getElementById('gcwu-lang');
 				if (lang_links !== null) {
-					links = lang_links.getElementsByTagName('a');
+					nodes = lang_links.getElementsByTagName('li');
 					lang_nav = '<div data-role="navbar"><ul>';
-					for (i = 0, len = links.length; i < len; i += 1) {
-						link = links[i];
-						lang_nav += '<li><a href="' + link.href + '" data-theme="a">' + link.innerHTML + '</a></li>';
+					for (i = 0, len = nodes.length; i < len; i += 1) {
+						node = nodes[i];
+						link = node.getElementsByTagName('a')[0];
+						lang_nav += '<li><a href="' + link.href + '"' + (node.hasAttribute('lang') ? ' lang="' + node.getAttribute('lang') + '"' : '') + ' data-theme="a">' + link.innerHTML + '</a></li>';
 					}
 					lang_nav += '</ul></div>';
-					lang_links = document.getElementById('gcwu-ef-lang').parentNode.innerHTML = lang_nav;
+					document.getElementById('gcwu-ef-lang').parentNode.innerHTML = lang_nav;
 					lang_links = document.getElementById('gcwu-other-lang');
 					if (lang_links !== null) {
 						lang_links.parentNode.removeChild(lang_links);
@@ -263,13 +288,14 @@
 				// Handling for the terms and conditions links
 				target = document.getElementById('gcwu-tc');
 				if (target !== null) {
-					links = target.getElementsByTagName('a');
+					nodes = target.getElementsByTagName('li');
 
 					// Transform the footer into a nav bar
 					footer1 = '<ul class="ui-grid-a">';
-					for (i = 0, len = links.length; i < len; i += 1) {
-						link = links[i];
-						footer1 += '<li class="ui-block-' + (i % 2 !== 0 ? 'b' : 'a') + '"><a href="' + link.href + '" data-role="button" data-theme="c" data-corners="false">' + link.innerHTML + '</a></li>';
+					for (i = 0, len = nodes.length; i < len; i += 1) {
+						node = nodes[i];
+						link = node.getElementsByTagName('a')[0];
+						footer1 += '<li class="ui-block-' + (i % 2 !== 0 ? 'b' : 'a') + '"><a href="' + link.href + '"' + (node.hasAttribute('lang') ? ' lang="' + node.getAttribute('lang') + '"' : '') + ' data-role="button" data-theme="c" data-corners="false">' + link.innerHTML + '</a></li>';
 					}
 					footer1 += '</ul>';
 					target.id = '';
@@ -279,23 +305,15 @@
 				}
 
 				// Move the Canada Wordmark to the footer
-				if (wet_boew_theme.wmms.length !== 0) {
-					node = wet_boew_theme.wmms[0];
-					pe.footer[0].getElementsByTagName('footer')[0].appendChild(node.cloneNode(true));
-					node.parentNode.removeChild(node);
+				wmms = document.getElementById('wmms');
+				if (wmms !== null) {
+					pe.footer[0].getElementsByTagName('footer')[0].appendChild(wmms.cloneNode(true));
+					wmms.parentNode.removeChild(wmms);
 				}
 			}
 
 			// jQuery mobile has loaded
 			$(document).on('pagecreate', function () {
-				if (wet_boew_theme.menubar.length !== 0) {
-					node = wet_boew_theme.psnb[0];
-					node.parentNode.removeChild(node);
-				}
-				if (wet_boew_theme.search.length !== 0) {
-					node = wet_boew_theme.search[0];
-					node.parentNode.removeChild(node);
-				}
 				if (_list.length !== 0) {
 					var navbar = wet_boew_theme.gcnb.find('#gcwu-mnavbar'),
 						menu = pe.bodydiv.find('#jqm-mb-menu'),
@@ -319,7 +337,7 @@
 								node = nodes[len];
 								// Fix the top corners
 								node2 = node.getElementsByTagName('li')[0];
-								if (node2.parentNode.parentNode.className.indexOf('ui-collapsible-content') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
+								if (node2.parentNode.parentNode.className.indexOf('ui-collapsible') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
 									node2.className += ' ui-corner-top';
 								}
 

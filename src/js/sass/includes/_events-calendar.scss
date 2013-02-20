@@ -28,13 +28,13 @@ div {
 						li {
 							border: 0;
 							width: 100%;
-							list-style-type: none;
+							list-style-type: none !important;
 							a {
 								&, &:link {
 									color: #000 !important;
 									width: auto;
 								}
-								&:hover, &:focus, &:active {
+								@include pseudo-focus {
 									color: #FFF !important;
 								}
 							}

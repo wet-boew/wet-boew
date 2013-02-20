@@ -2,6 +2,8 @@
 
 [![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.png?branch=master)](http://travis-ci.org/wet-boew/wet-boew)
 
+* **WET v3.1.0 Beta 2 was released on February 15, 2013** ([v3.1.0 Beta 2 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-2-release-notes))
+* **WET v3.0.5 was released on February 15, 2013** ([v3.0.5 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.5-release-notes))
 * **WET v3.0.4 was released on January 24, 2013** ([v3.0.4 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.4-release-notes))
 * **WET v3.1.0 Beta 1 was released on December 21, 2012** ([v3.1.0 Beta 1 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-1-release-notes))
 * **WET v3.0.3 was released on December 21, 2012** ([v3.0.3 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.3-release-notes))
@@ -38,6 +40,8 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 # Boîte à outils de l’expérience Web (BOEW)
 
+* **La version v3.1.0 Bêta 2 de la BOEW a été lancée le 15 février 2013** ([v3.1.0 Bêta 2 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-2-release-notes))
+* **La version v3.0.5 de la BOEW a été lancée le 15 février 2013** ([v3.0.5 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.5-release-notes))
 * **La version v3.0.4 de la BOEW a été lancée le 24 janvier 2013** ([v3.0.4 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.4-release-notes))
 * **La version v3.1.0 Bêta 1 de la BOEW a été lancée le 21 décembre 2012** ([v3.1.0 Bêta 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-1-release-notes))
 * **La version v3.0.3 de la BOEW a été lancée le 21 décembre 2012** ([v3.0.3 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.3-release-notes))

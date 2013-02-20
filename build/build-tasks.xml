@@ -4,7 +4,7 @@
 	<property file="${tasks.basedir}/build-tasks.properties"/>
 	
 	<!-- Version and build time-->
-	<property name="wet-boew-build.version" value="v3.1.0-b2"/>
+	<property name="wet-boew-build.version" value="v3.1.0-rc1-development"/>
 	<tstamp>
 		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
 	</tstamp>
@@ -136,7 +136,9 @@
 			<exclude name="dependencies/pie.js"/>
 			<exclude name="dependencies/prettify.js"/>
 			<exclude name="dependencies/prettify/**/*.js"/>
-			<exclude name="dependencies/raphael.js"/>
+			<exclude name="dependencies/excanvas.js"/>
+			<exclude name="dependencies/flot.js"/>
+			<exclude name="dependencies/flotPie.js"/>
 			<exclude name="dependencies/resize.js"/>
 			<exclude name="dependencies/validate.js"/>
 			<exclude name="dependencies/validateAdditional.js"/>
@@ -151,8 +153,6 @@
 		<apply executable="java" failonerror="false" parallel="false">
 			<fileset dir="${dist.dir}/css">
 				<include name="*.css"/>
-				<exclude name="jquery.mobile.css"/>
-				<exclude name="jquery.mobile-ie.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -167,28 +167,7 @@
 			<srcfile/>
 		</apply>
 	</target>
-	
-	<target name="csslint-report" description="Produceds CSSLint XML report in the build directory for selected project" depends="prepare-files">
-		<apply executable="java" failonerror="false" parallel="true" output="${src.dir}/csslint.out.xml">
-			<fileset dir="${dist.dir}/css">
-				<include name="*.css"/>
-				<exclude name="jquery.mobile.css"/>
-				<exclude name="jquery.mobile-ie.css"/>
-				<exclude name="*.min.css"/>
-				<exclude name="*-min.css"/>
-			</fileset>
-			<arg value="-jar"/>
-			<arg path="${lib.dir}/js.jar"/>
-			<arg path="${lib.dir}/csslint-rhino.js" />      
-
-			<!-- your customized arguments go here -->
-			<arg value="--format=lint-xml"/>
-			<arg value="--ignore=${csslint.ignores}"/>
-			<arg value="--error=${csslint.errors}"/>
-			<srcfile/>
-		</apply>
-	</target>
-  
+	  
 	<target name="clean">
 		<delete dir="${dist.dir}" />
 	</target>
@@ -224,17 +203,18 @@
 				<exclude name="util.css"/>
 			</fileset>
 		</cssurlembed>
-	</target>
-	
-	<target name="-base64-encode-jquery">
+		
 		<property name="jquerymobile.dir" location="${src.dir}/jquerymobile"/>
-		<cssurlembed skipMissing="false" root="${jquerymobile.dir}">
+		<cssurlembed skipMissing="true" root="${jquerymobile.dir}">
 			<fileset dir="${dist.dir}/css">
-				<include name="jquery.mobile.css"/>
+				<include name="*.css"/>
+				<exclude name="*ie.css"/>
+				<!-- Because of themometer images -->
+				<exclude name="util.css"/>
 			</fileset>
 		</cssurlembed>
 	</target>
-	
+		
 	<target name="-minify">
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${dist.dir}" toDir="${dist.dir}" charset="utf-8">
 			<include name="**/*.css" />
@@ -280,15 +260,7 @@
 	
 	<target name="-copy-css" depends="compile.sass"/>
 
-	<target name="-copy-jquery-css">
-		<concat dest="${dist.dir}/css/jquery.mobile.css">
-			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme.css"/>
-			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure.css"/>
-		</concat>
-		<concat dest="${dist.dir}/css/jquery.mobile-ie.css">
-			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme-ie.css"/>
-			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure-ie.css"/>
-		</concat>
+	<target name="-copy-jquery-mobile">
 		<copy todir="${dist.dir}/css/images">
 			<fileset dir="${src.dir}/jquerymobile/images-ie"/>
 		</copy>

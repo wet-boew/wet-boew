@@ -5,7 +5,7 @@
 .ie7 {
 	h1 {
 		position: absolute;
-		clip: rect(1px 1px 1px 1px);
+		@include clip-rect;
 		height: 1px !important;
 		width: 1px !important;
 		overflow: hidden !important;

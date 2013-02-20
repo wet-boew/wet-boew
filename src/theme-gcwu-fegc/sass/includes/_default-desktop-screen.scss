@@ -46,7 +46,7 @@ a {
 %gcwu-default-desktop-screen-hidden-img {
 	img {
 		position: absolute;
-		clip: rect(1px, 1px, 1px, 1px);
+		@include clip-rect;
 		height: 0 !important;
 		width: 0 !important;
 		overflow: hidden !important;
@@ -61,7 +61,7 @@ a {
 
 #wb-sup {
 	@extend %gcwu-default-desktop-screen-inline-z1;
-	@extend %float-right-relative;
+	@extend %gcwu-default-desktop-screen-float-right-relative;
 }
 
 %overflow-hidden {
@@ -151,10 +151,10 @@ a {
 
 #wb-body-sec {
 	#wb-main {
-		float: right;
+		@extend %gcwu-default-desktop-screen-float-right;
 	}
 	#gcwu-content {
-		float: left;
+		@extend %gcwu-default-desktop-screen-float-left;
 	}
 }
 
@@ -164,16 +164,16 @@ a {
 
 #wb-body {
 	#gcwu-content {
-		float: left;
+		@extend %gcwu-default-desktop-screen-float-left;
 		position: relative;
 	}
 	#wb-main {
-		@extend %float-left;
+		@extend %gcwu-default-desktop-screen-float-left;
 	}
 }
 
 #gcwu-aside {
-	float: right;
+	@extend %gcwu-default-desktop-screen-float-right;
 	margin-left: 10px;
 	margin-right: 10px;
 }
@@ -184,23 +184,27 @@ a {
 	right: 10px;
 }
 
-%float-left {
+%gcwu-default-desktop-screen-float-left {
 	float: left;
+}
+
+%gcwu-default-desktop-screen-float-right {
+	float: right;
 }
 
 #wb-body-sec-sup {
 	#wb-main {
-		@extend %float-left;
-		@extend %float-right-relative;
+		@extend %gcwu-default-desktop-screen-float-left;
+		@extend %gcwu-default-desktop-screen-float-right-relative;
 	}
 }
 
 #wb-sec {
-	@extend %float-left;
+	@extend %gcwu-default-desktop-screen-float-left;
 	@extend %gcwu-default-desktop-screen-inline-z1;
 }
 
-%float-right-relative {
+%gcwu-default-desktop-screen-float-right-relative {
 	float: right;
 	position: relative;
 }
@@ -208,7 +212,7 @@ a {
 #gcwu-sig {
 	@extend %gcwu-default-desktop-screen-hidden-img;
 	width: 247px;
-	float: left;
+	@extend %gcwu-default-desktop-screen-float-left;
 	margin: 8px 0;
 }
 
@@ -240,7 +244,7 @@ a {
 	a {
 		display: inline-block;
 		margin-left: 10px;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			text-decoration: underline;
 		}
 	}
@@ -282,7 +286,7 @@ a {
 	}
 	label {
 		position: absolute;
-		clip: rect(1px, 1px, 1px, 1px);
+		@include clip-rect;
 		height: 1px;
 		width: 1px;
 		overflow: hidden;
@@ -296,7 +300,7 @@ a {
 		@include box-shadow(none);
 		background: #fff;
 		padding: 2px 0;
-		&:focus, &:active {
+		@include pseudo-focus(false) {
 			background: #f0fcff;
 		}
 	}
@@ -326,7 +330,7 @@ a {
 	@include box-shadow(none);
 	padding: 2px 6px;
 	display: inline;
-	&:focus, &:hover {
+	@include pseudo-focus {
 		text-shadow: 0 1px 0 #ddd;
 		@include box-shadow(none);
 		border: {
@@ -345,12 +349,12 @@ a {
 #gcwu-wmms {
 	@extend %gcwu-default-desktop-screen-hidden-img;
 	position: absolute;
-	top: 36px;
-	right: 10px;
+	top: 38px;
+	right: 4px;
 }
 
 #gcwu-wmms-in {
-	float: right;
+	@extend %gcwu-default-desktop-screen-float-right;
 	height: 39px;
 	width: 147px;
 }
@@ -376,9 +380,9 @@ a {
 		}
 		a {
 			padding: 0.45em 1.17em 0.45em 0.79em;
-		}
-		.mb-has-sm {
-			padding-right: 0.38em;
+			&.mb-has-sm {
+				padding-right: 0.38em;
+			}
 		}
 		.mb-sm-open {
 			@include box-shadow(0 5px 5px -4px rgba(0, 0, 0, 0.5), 5px 5px 5px -4px rgba(0, 0, 0, 0.5), -5px 5px 5px -4px rgba(0, 0, 0, 0.5));
@@ -391,7 +395,7 @@ a {
 
 %text-decoration-underline-a-psuedos {
 	a {
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			text-decoration: underline;
 		}
 	}
@@ -409,7 +413,7 @@ a {
 [dir="rtl"] {
 	#wb-body, #wb-body-sec {
 		#wb-main {
-			float: left;
+			@extend %gcwu-default-desktop-screen-float-left;
 		}
 	}
 
@@ -423,15 +427,20 @@ a {
 	}
 
 	#wb-sec {
-		float: right;
+		@extend %gcwu-default-desktop-screen-float-right;
 	}
 
-	#wb-body-sec-sup #wb-main, #wb-sup {
-		float: left;
+	#wb-body-sec-sup {
+		#wb-main {
+			@extend %gcwu-default-desktop-screen-float-left;
+		}
+	}
+	#wb-sup {
+		@extend %gcwu-default-desktop-screen-float-left;
 	}
 
 	#gcwu-sig {
-		float: right;
+		@extend %gcwu-default-desktop-screen-float-right;
 	}
 
 	#gcwu-sig-in {
@@ -441,14 +450,16 @@ a {
 
 	#gcwu-gcnb {
 		ul {
-			float: left;
+			@extend %gcwu-default-desktop-screen-float-left;
 			li {
-				float: right;
-				&#gcwu-gcnb-lang a {
-					padding-right: 10px;
-					padding-left: 0;
-					margin-right: auto;
-					margin-left: 1px;
+				@extend %gcwu-default-desktop-screen-float-right;
+				&#gcwu-gcnb-lang {
+					a {
+						padding-right: 10px;
+						padding-left: 0;
+						margin-right: auto;
+						margin-left: 1px;
+					}
 				}
 			}
 		}
@@ -458,8 +469,12 @@ a {
 			border-right: 1px solid #fff;
 		}
 
-		li:first-child a {
-			border-right: none;
+		li {
+			&:first-child {
+				a {
+					border-right: none;
+				}
+			}
 		}
 	}
 	
@@ -505,26 +520,29 @@ a {
 		.mb-menu {
 			a {
 				padding: 0.45em 0.79em 0.45em 1.17em;
-			}
-			.mb-has-sm {
-				padding-left: 0.38em;
-				padding-right: 0.79em;
+				&.mb-has-sm {
+					padding-left: 0.38em;
+					padding-right: 0.79em;
+				}
 			}
 		}
 	}
 
 	#gcwu-gcft {
 		@include scaleX(-1);
-
-		#gcwu-gcft-fip li {
-			@include scaleX(-1);
+		#gcwu-gcft-fip {
+			li {
+				@include scaleX(-1);
+			}
 		}
 	}
 
-	#gcwu-gcft-ca a {
-		border-left: none;
-		border-right: 1px solid #666;
-		padding-left: 0;
-		padding-right: 44px;
+	#gcwu-gcft-ca {
+		a {
+			border-left: none;
+			border-right: 1px solid #666;
+			padding-left: 0;
+			padding-right: 44px;
+		}
 	}
 }

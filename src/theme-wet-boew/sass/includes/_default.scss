@@ -78,7 +78,7 @@
 	a {
 		color: #295376;
 		text-decoration: none;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			color: #295376;
 			text-decoration: underline;
 		}

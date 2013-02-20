@@ -7,12 +7,18 @@
  * Version: @wet-boew-build.version@
  *
  */
+
+/* -----Include jQuery Mobile CSS Start----- */
+@import '../jquerymobile/jquery.mobile.theme-ie';
+@import '../../js/jquerymobile/jquery.mobile.structure-ie';
+/* -----Include jQuery Mobile CSS End----- */
+
 @import '../../base/sass/oldie-vendor-prefix';
 
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base';
-@import '../../base/sass/base-desktop';
-@import '../../base/sass/base-ie';
+@import '../../base/sass/default';
+@import '../../base/sass/default-desktop';
+@import '../../base/sass/default-ie';
 @import 'includes/sp-pe';
 @import 'includes/sp-pe-images';
 @import 'includes/sp-pe-desktop-screen';
@@ -21,9 +27,9 @@
 
 @media screen {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-screen';
-@import '../../base/sass/base-desktop-screen';
-@import '../../base/sass/base-screen-ie';
+@import '../../base/sass/default-screen';
+@import '../../base/sass/default-desktop-screen';
+@import '../../base/sass/default-screen-ie';
 @import '../../grids/sass/responsive';
 @import '../../grids/sass/responsive-ie';
 @import 'includes/default-responsive';
@@ -36,8 +42,8 @@
 
 @media print {
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-print';
-@import '../../base/sass/base-print-ie';
+@import '../../base/sass/default-print';
+@import '../../base/sass/default-print-ie';
 @import 'includes/sp-pe-print';
 @import 'includes/sp-pe-print-ie';
 /* -----Build Include Section End----- */

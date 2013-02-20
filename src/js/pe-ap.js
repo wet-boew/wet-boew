@@ -14,7 +14,7 @@
 /*
  * pe, a progressive javascript library agnostic framework
  */
-/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false*/
+/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
 /*jshint bitwise: false */
 (function ($) {
 	"use strict";
@@ -142,8 +142,10 @@
 
 			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
 			pe.mobile = pe.mobilecheck();
-			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? ' mobile-view' : ' desktop-view')) : '';
+			pe.tablet = pe.tabletcheck();
+			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : '')) : ' desktop-view')) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
+			classes += (pe.svg ? ' svg' : ' no-svg');
 			$html.removeClass('no-js').addClass(classes);
 
 			// Identify IE9+ browser
@@ -160,12 +162,24 @@
 
 			// Is this a mobile device?
 			if (pe.mobile) {
+				classes = '';
+
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
 				if (test === 0) {
-					$html.addClass('bb-pre6 bb-pre7');
+					classes += 'bb-pre6 bb-pre7';
 				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
-					$html.addClass('bb-pre7');
+					classes += 'bb-pre7';
+				}
+
+				// Detect if iOS 4.3 is being used
+				test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
+				if (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46))) {
+					classes += 'ios43';
+				}
+
+				if (classes.length !== 0) {
+					$html.addClass(classes);
 				}
 			}
 			
@@ -201,7 +215,7 @@
 				if (pe.urlhash.length !== 0) {
 					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
 					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if (target.length > 0 && target.attr('data-role') !== 'page') {
+					if (target.length > 0 && target.attr('data-role') !== 'page' && (pe.ie === '0' || pe.ie > 7)) {
 						setTimeout(function () {
 							$.mobile.silentScroll(pe.focus(target).offset().top);
 						}, 200);
@@ -280,7 +294,11 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return pe.mobiletest.offsetWidth === 1; // CSS (through media queries) sets to offsetWidth = 0 in desktop view and offsetWidth = 1 in mobile view
+			return pe.mobiletest.offsetWidth !== 0; // CSS (through media queries) sets to offsetWidth = 0 in desktop view, offsetWidth = 1 in mobile view and offsetWidth = 2 in tablet view
+		},
+		tablet: false,
+		tabletcheck: function () {
+			return pe.mobiletest.offsetWidth === 2; // CSS (through media queries) sets to offsetWidth = 2 in tablet view
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -793,33 +811,35 @@
 				$html = $('html'),
 				pedisable_link = (settings && typeof settings.pedisable_link === 'boolean' ? settings.pedisable_link : true);
 
-			for (qparam in qparams) { // Rebuild the query string
-				if (qparams.hasOwnProperty(qparam) && qparam !== 'pedisable') {
-					newquery += qparam + '=' + qparams[qparam] + '&amp;';
+			if (tphp !== null) {
+				for (qparam in qparams) { // Rebuild the query string
+					if (qparams.hasOwnProperty(qparam) && qparam !== 'pedisable') {
+						newquery += qparam + '=' + qparams[qparam] + '&amp;';
+					}
 				}
-			}
 
-			if (disable === 'true' || (((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== 'false')) {
-				$html.addClass('no-js pe-disable');
-				if (lsenabled) {
-					localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
+				if (disable === 'true' || (((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== 'false')) {
+					$html.addClass('no-js pe-disable');
+					if (lsenabled) {
+						localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
+					}
+					// Append the Standard version link version unless explicitly disabled in settings.js
+					if (pedisable_link) {
+						li.innerHTML = '<a href="' + newquery + 'pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
+						tphp.appendChild(li); // Add link to re-enable PE
+					}
+					return true;
+				} else if (disable === 'false' || disablels !== null) {
+					if (lsenabled) {
+						localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
+					}
 				}
-				// Append the Standard version link version unless explicitly disabled in settings.js
+
+				// Append the Basic HTML version link version unless explicitly disabled in settings.js
 				if (pedisable_link) {
-					li.innerHTML = '<a href="' + newquery + 'pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
-					tphp.appendChild(li); // Add link to re-enable PE
+					li.innerHTML = '<a href="' + newquery + 'pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
+					tphp.appendChild(li); // Add link to disable PE
 				}
-				return true;
-			} else if (disable === 'false' || disablels !== null) {
-				if (lsenabled) {
-					localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
-				}
-			}
-
-			// Append the Basic HTML version link version unless explicitly disabled in settings.js
-			if (pedisable_link) {
-				li.innerHTML = '<a href="' + newquery + 'pedisable=true">' + pe.dic.get('%pe-disable') + '</a>';
-				tphp.appendChild(li); // Add link to disable PE
 			}
 			return false;
 		},
@@ -851,14 +871,13 @@
 					bclink,
 					bclinkslen,
 					bcindex,
-					h1text = pe.main.find('h1').text(),
 					match = false,
 					hrefBug = pe.ie !== 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
 				menulinks = menusrc.find('a').get();
 				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;
 
-				// Try to find a match with the page URL or h1
+				// Try to find a match with the page URL
 				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
 					menulink = menulinks[menulinkslen];
@@ -868,7 +887,7 @@
 						menulinkurllen = menulinkurl.length;
 						menulinkquery = menulink.search;
 						menulinkquerylen = menulinkquery.length;
-						if ((pageurl.slice(-menulinkurllen) === menulinkurl && (menulinkquerylen === 0 || pageurlquery.slice(-menulinkquerylen) === menulinkquery)) || menulink.innerHTML === h1text) {
+						if ((pageurl.slice(-menulinkurllen) === menulinkurl && (menulinkquerylen === 0 || pageurlquery.slice(-menulinkquerylen) === menulinkquery))) {
 							match = true;
 							break;
 						}
@@ -958,12 +977,15 @@
 					listView = '<ul data-role="listview" data-theme="' + theme2 + '">',
 					listItems,
 					listItem,
+					listItem2,
 					sectionOpen = '<div data-theme="' + theme1 + '"' + ' class="wb-nested-menu',
 					sectionLink = '<a data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
 					sectionLinkOpen = '">' + headingOpen + sectionLink,
 					sectionLinkClose = '</a>' + headingClose,
 					link = '<a data-role="button" data-icon="arrow-r" data-iconpos="right" data-corners="false" href="',
-					menu;
+					menu,
+					i,
+					len;
 				collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true);
 				collapsible = (collapsible !== undefined ? collapsible : false);
 				returnString = (returnString !== undefined ? returnString : false);
@@ -1006,19 +1028,28 @@
 								nextDOM = next[0];
 								if (nextDOM.tagName.toLowerCase() === 'ul') {
 									menu += listView;
-									nested = next.find('li ul');
-									if (nested.length !== 0) { // Special handling for a nested list
+									nested = nextDOM.querySelector('li ul');
+									if (nested !== null && nested.length !== 0) { // Special handling for a nested list
 										hnestTag = 'h' + (hlevel + 1);
-										hnestDOM = nested[0];
-										hnestLinkDOM = nested.prev('a')[0];
-										menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
-										listItems = hnestDOM.getElementsByTagName('li');
-										for (nested_i = 0, nested_len = listItems.length; nested_i !== nested_len; nested_i += 1) {
-											listItem = listItems[nested_i];
-											hlinkDOM = listItem.getElementsByTagName('a')[0];
-											menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
+										listItems = nextDOM.children;
+										for (i = 0, len = listItems.length; i !== len; i += 1) {
+											listItem = listItems[i];
+											hnestDOM = listItem.getElementsByTagName('li');
+											menu += '<li>';
+											if (hnestDOM.length !== 0) {
+												hnestLinkDOM = listItem.children[0];
+												menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+												for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
+													listItem2 = hnestDOM[nested_i];
+													hlinkDOM = listItem2.querySelector('a');
+													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
+												}
+												menu += '</ul></div>';
+											} else {
+												menu += listItem.innerHTML;
+											}
+											menu += '</li>';
 										}
-										menu += '</ul></div>';
 									} else {
 										menu += nextDOM.innerHTML;
 									}
@@ -1231,6 +1262,9 @@
 				},
 				'detailssummary': {
 					selector: 'details',
+					init: function () { // Needs to be initialized manually
+						$('details').details();
+					},
 					update: function (elms) {
 						elms.details();
 					},
@@ -1311,6 +1345,14 @@
 				'meter': {
 					selector: 'meter',
 					/* Based on check from Modernizr 2.6.1 | MIT & BSD */
+					update: function (elms) {
+						var meters = elms.get(),
+							i = meters.length;
+
+						while (i--) {
+							makeMeter(meters[i]);
+						}
+					},
 					support_check: document.createElement('meter').max !== undefined
 				},
 				'progress': {
@@ -1730,13 +1772,24 @@
 		dance: function () {
 			var loading_finished = 'wb-init-loaded';
 			pe.document.one(loading_finished, function () {
-				pe.resize(function () {
-					var mobilecheck = pe.mobilecheck();
-					if (pe.mobile !== mobilecheck) {
-						pe.mobile = mobilecheck;
-						window.location.href = decodeURI(pe.url(window.location.href).removehash());
-					}
-				});
+				if (!(pe.ie > 0 && pe.ie < 9)) {
+					pe.resize(function () {
+						var mobilecheck = pe.mobilecheck(),
+							tabletcheck;
+						if (pe.mobile !== mobilecheck) {
+							pe.mobile = mobilecheck;
+							window.location.href = decodeURI(pe.url(window.location.href).removehash());
+						} else {
+							tabletcheck = pe.tabletcheck();
+							if (pe.tablet && !tabletcheck) {
+								$('html').removeClass('tablet-view');
+							} else if (!pe.tablet && tabletcheck) {
+								$('html').addClass('tablet-view');
+							}
+							pe.tablet = tabletcheck;
+						}
+					});
+				}
 			});
 			pe.wb_load({'dep': ['resize', 'equalheights'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
 		}

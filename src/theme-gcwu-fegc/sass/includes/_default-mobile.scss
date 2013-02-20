@@ -35,6 +35,14 @@
 	@include border-top-right-radius(0.6em);
 }
 
+%gcwu-default-mobile-font-weight-normal {
+	font-weight: normal;
+}
+
+%gcwu-default-mobile-border-none {
+	border: none;
+}
+
 body {
 	@if $experimental-support-for-webkit {
 		-webkit-text-size-adjust: none;
@@ -83,7 +91,7 @@ li {
 			padding-left: 0;
 			padding-right: 0;
 			font-size: 0.7em;
-			border: none;
+			@extend %gcwu-default-mobile-border-none;
 		}
 	}
 }
@@ -116,27 +124,44 @@ table {
 }
 
 #gcwu-title {
+	@include background-image(linear-gradient(#4474AD, #174F88));
 	border: 1px solid #456F9A;
 	p {
-		padding: 3px;
+		padding: 3px 5px;
 		margin: 0;
 	}
 	a {
 		font-size: 1.5em;
+		@extend %gcwu-default-mobile-font-weight-normal;
 		color: #fff !important;
 		text-shadow: 0 1px 1px #044062;
 		text-decoration: none;
 	}
 }
 
+%gcwu-default-mobile-width-90 {
+	width: 90px;
+}
 #gcwu-wmms {
 	@extend %position-absolute;
-	top: 0;
-	left: 0;
+	top: 9px;
+	left: 5px;
+	object {
+		@extend %gcwu-default-mobile-width-90;
+	}
 	img {
-		padding: 5px 3px;
-		margin: 0;
-		background: #fff;
+		@extend %gcwu-default-mobile-width-90;
+	}
+}
+
+.bb-pre7, .ios43, .no-svg {
+	#gcwu-wmms {
+		display: none;
+	}
+	.ui-mobile {
+		#gcwu-wmms {
+			display: block;
+		}
 	}
 }
 
@@ -160,22 +185,9 @@ table {
 }
 
 #wb-main-in {
-	padding: 0 3px;
+	padding: 0 5px;
 	h1 {
-		font-size: 1.5em;
-		font-weight: 400;
-		margin: 0 -3px 10px -3px;
-		padding: 0 3px;
-		border: 1px solid #999;
-		border-width: 1px 0 0 0;
-		text-shadow: none;
-		position: static !important;
-		&.wb-invisible {
-			position: absolute !important;
-		}
-	}
-	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
-		margin-bottom: 20px;
+		margin-top: 0.5em;
 	}
 }
 
@@ -212,18 +224,11 @@ table {
 	}
 }
 
-.ui-header {
-	.ui-title {
-		min-width: 180px;
-		margin-left: 35px;
-		margin-right: 35px;
-	}
-}
-
 #gcwu-gcnb {
-	min-height: 41px;
-	.ui-header {
-		border: 1px solid #333;
+	min-height: 42px;
+	@include background-image(linear-gradient(#3C3C3C, #111));
+	ul {
+		@extend %gcwu-default-mobile-display-none;
 	}
 	li {
 		@extend %gcwu-default-mobile-display-none;
@@ -231,7 +236,7 @@ table {
 }
 
 #gcwu-mnavbar {
-	right: 3px;
+	right: 5px;
 	.ui-btn-inner {
 		padding: 0.6em 14px;
 	}
@@ -245,16 +250,6 @@ table {
 
 #gcwu-sig {
 	@extend %gcwu-default-mobile-display-none;
-}
-
-#gcwu-wmms {
-	@extend %gcwu-default-mobile-display-none;
-}
-
-#gcwu-gcnb {
-	ul {
-		@extend %gcwu-default-mobile-display-none;
-	}
 }
 
 #gcwu-bc {
@@ -293,6 +288,11 @@ table {
 	}
 }
 
+%gcwu-default-mobile-last-child-padding-5 {
+	&:last-child {
+		padding: 5px;
+	}
+}
 #gcwu-bc-in {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
@@ -308,9 +308,7 @@ table {
 		margin: 0;
 		padding: 5px 12px 5px 5px;
 		@extend %gcwu-default-mobile-no-rounded-corners;
-		&:last-child {
-			padding-left: 5px;
-		}
+		@extend %gcwu-default-mobile-last-child-padding-5;
 	}
 	a {
 		@extend %gcwu-default-mobile-no-rounded-corners;
@@ -339,7 +337,7 @@ table {
 	display: block;
 }
 
-%white-space-normal {
+%gcwu-default-mobile-white-space-normal {
 	white-space: normal;
 }
 
@@ -347,17 +345,12 @@ table {
 	position: absolute;
 }
 
-.ui-title {
-	img {
-		@extend %position-absolute;
-		left: 3px;
-		top: 8px;
-	}
-}
-
 .ui-content {
 	.ui-listview {
 		margin: 0 -15px;
+		&.ui-listview-inset {
+			margin: 15px 0;
+		}
 	}
 }
 
@@ -368,6 +361,21 @@ table {
 				text-transform: capitalize;
 			}
 		}
+	}
+}
+
+%gcwu-default-mobile-margin-left-right--15 {
+	margin: 0 -15px;
+}
+#popupAbout {
+	.site-app-title {
+		@extend %gcwu-default-mobile-margin-left-right--15;
+		padding: 5px 15px 0 15px;
+	}
+	.app-version {
+		@extend %gcwu-default-mobile-margin-left-right--15;
+		@extend %gcwu-default-mobile-border-none;
+		padding: 0 15px;
 	}
 }
 
@@ -445,7 +453,7 @@ select {
 
 #jqm-wb-search {
 	label {
-		clip: rect(1px, 1px, 1px, 1px);
+		@include clip-rect;
 		height: 1px;
 		overflow: hidden;
 		@extend %position-absolute;
@@ -458,6 +466,7 @@ select {
 
 #jqm-wb-mb {
 	a {
+		text-shadow: none;
 		&:link {
 			text-decoration: none
 		}
@@ -490,7 +499,7 @@ select {
 		}
 	}
 	.ui-btn-inner {
-		@extend %white-space-normal;
+		@extend %gcwu-default-mobile-white-space-normal;
 	}
 	.ui-btn-icon-top {
 		.ui-btn-inner {
@@ -515,15 +524,19 @@ select {
 	.ui-collapsible-set {
 		margin: 0;
 		a {
-			@extend %white-space-normal;
+			@extend %gcwu-default-mobile-white-space-normal;
 		}
-		.ui-collapsible:not(:first-child) {
-			@extend %gcwu-default-mobile-no-top-rounded-corners;
-		}
-		.ui-collapsible:last-child {
-			.ui-collapsible-content {
-				> :not(:last-child) {
-					@extend %gcwu-default-mobile-no-bottom-rounded-corners;
+		.ui-collapsible {
+			&:not(:first-child) {
+				@extend %gcwu-default-mobile-no-top-rounded-corners;
+			}
+			&:last-child {
+				.ui-collapsible-content {
+					> {
+						:not(:last-child) {
+							@extend %gcwu-default-mobile-no-bottom-rounded-corners;
+						}
+					}
 				}
 			}
 		}
@@ -582,6 +595,11 @@ select {
 		border-left: none;
 		border-right: none;
 		background: #F4F4F4;
+		.wb-nested-menu {
+			a {
+				font-size: 0.8em;
+			}
+		}
 	}
 	.ui-btn {
 		margin: 0;
@@ -651,11 +669,6 @@ select {
 			padding: 0.45em 0.79em;
 		}
 	}
-	#wb-main-in {
-		h1 {
-			background: #eee;
-		}
-	}
 	#gcwu-sft-in {
 		background: none;
 		padding-left: 5px;
@@ -677,9 +690,6 @@ select {
 		ul {
 			@extend %gcwu-default-mobile-display-block;
 		}
-	}
-	#gcwu-wmms {
-		@extend %gcwu-default-mobile-display-block;
 	}
 	#gcwu-bc {
 		@extend %gcwu-default-mobile-display-block;
@@ -713,7 +723,7 @@ select {
 }
 
 /* Right to left (RTL) CSS */
-%rtl-scalex {
+%gcwu-default-mobile-rtl-scalex {
 	@include scaleX(-1);
 	@extend %gcwu-default-mobile-display-block;
 }
@@ -725,30 +735,34 @@ select {
 		float: left;
 	}
 
-	#gcwu-gcnb {
-		.ui-title {
-			img {
-				right: 3px;
-				left: auto;
-			}
-		}
+	#gcwu-wmms {
+		left: auto;
+		right: 5px;
 	}
 	
 	#gcwu-mnavbar {
-		@extend %rtl-scalex;
-		left: 3px;
+		@extend %gcwu-default-mobile-rtl-scalex;
+		left: 5px;
 		right: auto;
 	}
 
 	#gcwu-bc-in {
-		&, li:last-child, a {
-			@extend %rtl-scalex;
+		@extend %gcwu-default-mobile-rtl-scalex;
+		a {
+			@extend %gcwu-default-mobile-rtl-scalex;
+		}
+		li {
+			padding: 5px 5px 5px 12px;
+			@extend %gcwu-default-mobile-last-child-padding-5;
+			&:last-child {
+				@extend %gcwu-default-mobile-rtl-scalex;
+			}
 		}
 	}
 
 	.ui-popup-container, #wb-main {
 		.ui-btn, .ui-btn-text {
-			@extend %rtl-scalex;
+			@extend %gcwu-default-mobile-rtl-scalex;
 			text-align: right;
 		}
 		.ui-submit, .ui-select {
@@ -831,12 +845,6 @@ select {
 			&#base-fullft-ca div {
 				text-align: right;
 			}
-		}
-	}
-
-	.ui-title {
-		img {
-			right: 3px;
 		}
 	}
 

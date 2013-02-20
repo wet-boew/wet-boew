@@ -7,10 +7,22 @@
  * Version: @wet-boew-build.version@
  *
  */
+
+/* -----Include jQuery Mobile CSS Start----- */
+@import '../jquerymobile/jquery.mobile.theme';
+@import '../../js/jquerymobile/jquery.mobile.structure';
+/* -----Include jQuery Mobile CSS End----- */
+
+
+/* -----Include jQuery Mobile CSS Start----- */
+@import '../jquerymobile/jquery.mobile.theme';
+@import '../../js/jquerymobile/jquery.mobile.structure';
+/* -----Include jQuery Mobile CSS End----- */
+
 @import '../../base/sass/modern-vendor-prefix';
 
 /* -----Build Include Section Start----- */
-@import '../../base/sass/base-ns';
+@import '../../base/sass/default-ns';
 @import '../../grids/sass/responsive-ns';
 @import '../../grids/sass/util-ns';
 @import '../../js/sass/pe-ap-ns';

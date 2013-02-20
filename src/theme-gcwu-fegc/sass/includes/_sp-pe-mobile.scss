@@ -15,7 +15,7 @@ h1 {
 		background: none;
 	}
 	#gcwu-wmms {
-		img {
+		object {
 			display: block;
 			margin: 5px auto;
 		}
@@ -80,7 +80,7 @@ h1 {
 #gcwu-lang {
 	@extend %gcwu-sp-pe-mobile-lang-foot;
 	a[href]{
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			color: #FFF;
 		}
 	}
@@ -165,7 +165,7 @@ h1 {
 	#gcwu-lang {
 		@extend %gcwu-sp-pe-mobile-no-js-block-li;
 		a {
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				color: #000;
 			}
 		}

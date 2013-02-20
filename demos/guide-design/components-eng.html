@@ -23,7 +23,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!--[if lte IE 8]>
 <script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
-<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/jquery.mobile-ie-min.css" />
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
@@ -31,7 +30,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <![endif]-->
 <!--[if gt IE 8]><!-->
 <script src="../../dist/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/jquery.mobile-min.css" />
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
@@ -58,7 +56,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng-r.svg" role="img" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
+	<div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div>
+</object></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
@@ -68,7 +68,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms-r.svg" role="img" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
+	<div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
+</object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
@@ -130,6 +132,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     <li> <a href="#borders">Borders</a></li>
     <li> <a href="#margins">Margins and indents</a></li>
     <li> <a href="#floats">Floats</a></li>
+	<li> <a href="#clearing">Clearing floats</a></li>
     <li> <a href="#horizontal">Horizontal alignment</a></li>
     <li> <a href="#vertical">Vertical alignment</a></li>
     <li> <a href="#lineheight">Line height</a></li>
@@ -489,6 +492,26 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     <p class="float-left background-light">Float left</p>
     <div class="clear"></div>
     <p class="float-right"><a href="../grids/grid-position-eng.html#floats" class="button">View all float options</a></p>
+  </div>
+</div>
+<div class="clear"></div>
+<h2 id="clearing" class="margin-bottom-none color-dark">Clearing floats</h2>
+<div class="span-4">
+  <p>Prevent subsequent content from floating.</p>
+  <h3 class="margin-bottom-none">Correct use</h3>
+  <ul>
+    <li>To prevent elements from floating.</li>
+    <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
+  </ul>
+</div>
+<div class="border-left float-right">
+  <div class="span-2 margin-bottom-none">
+    <h3 class="margin-top-none margin-bottom-none">Demo</h3>
+    <p class="float-right background-light">Float right</p>
+	<div class="clear"></div>
+    <p class="float-left background-light">Float left</p>
+    <div class="clear"></div>
+    <p class="float-right"><a href="../grids/grid-position-eng.html#clearing" class="button">View all clearing float options</a></p>
   </div>
 </div>
 <div class="clear"></div>
@@ -1413,15 +1436,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
 <!--[if lte IE 8]>
 <script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
-<script src="../../dist/js/settings-ie.js"></script>
 <script src="../../dist/js/pe-ap-ie-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
 <![endif]-->
 <!--[if gt IE 8]><!-->
 <script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
-<script src="../../dist/js/settings.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
 <!--<![endif]-->

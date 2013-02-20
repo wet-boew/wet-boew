@@ -8,18 +8,30 @@
 	float: none !important;
 }
 
+[class*=span-] {
+	margin-bottom: 10px;
+}
+
+%grids-util-mobile-margin-0-important {
+	margin: 0 !important;
+}
 form {
 	[class*=width-] {
 		width: 100% !important;
 	}
-	[class*=margin-], [class*=span-]{
-		margin: 0 !important;
+	[class*=margin-] {
+		@extend %grids-util-mobile-margin-0-important;
 	}
-
+	[class*=span-]{
+		@extend %grids-util-mobile-margin-0-important;
+	}
 	&.background-light > * {
 		outline: none;
 		margin-left: 0;
 		margin-right: 0;
+	}
+	.align-right {
+		text-align: left !important;
 	}
 }
 
@@ -59,6 +71,13 @@ input[type="image"], input[type="checkbox"], input[type="radio"] {
 	}
 }
 
+ul {
+	&.button-group {
+		margin-left:0;
+		margin-right:0;
+	}
+}
+
 .border-top, .border-right, .border-bottom, .border-left, .border-all {
 	float: none !important;
 	display: block;
@@ -81,10 +100,20 @@ input[type="image"], input[type="checkbox"], input[type="radio"] {
 	}
 }
 
+%util-mobile-bb-pre7-background-333-important-color-f9f9f9-important {
+	background: #333 !important;
+	color: #f9f9f9 !important;
+}
 .bb-pre7 {
-	input:focus, input:active, textarea:focus, textarea:active, select:focus, select:active, .ui-input-text.ui-focus, .ui-input-search.ui-focus {
-		background: #333 !important;
-		color: #f9f9f9 !important;
+	input, textarea, select {
+		&:focus, &:active { /* Can't use pseudo-focus since fix is needed for both focused and activated states */
+			@extend %util-mobile-bb-pre7-background-333-important-color-f9f9f9-important;
+		}
+	}
+	.ui-input-text, .ui-input-search {
+		&.ui-focus {
+			@extend %util-mobile-bb-pre7-background-333-important-color-f9f9f9-important;
+		}
 	}
 }
 

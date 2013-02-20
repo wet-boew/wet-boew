@@ -47,8 +47,6 @@
 				onLoad : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
 						$lbCurrent = $lbTitle.next();
-					$lbTitle.addClass('wb-hide');
-					$lbCurrent.addClass('wb-hide');
 				},
 				onComplete : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
@@ -61,8 +59,6 @@
 					} else {
 						$lbLoadedContent.children().attr('alt', $lbTitle.text());
 					}
-					$lbTitle.removeClass('wb-hide');
-					$lbCurrent.removeClass('wb-hide');
 					pe.focus($lbLoadedContent);
 					open = true;
 				},

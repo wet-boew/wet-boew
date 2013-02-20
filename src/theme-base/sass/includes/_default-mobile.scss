@@ -35,6 +35,14 @@
 	@include border-top-right-radius(0.6em);
 }
 
+%base-default-mobile-font-weight-normal {
+	font-weight: normal;
+}
+
+%base-default-mobile-border-none {
+	border: none;
+}
+
 body {
 	@if $experimental-support-for-webkit {
 		-webkit-text-size-adjust: none;
@@ -116,13 +124,15 @@ table {
 }
 
 #base-title {
+	@include background-image(linear-gradient(#BA380C, #E3450F));
 	border: none;
 	p {
-		padding: 3px;
+		padding: 3px 5px;
 		margin: 0;
 	}
 	a {
 		font-size: 1.5em;
+		@extend %base-default-mobile-font-weight-normal;
 		color: #fff !important;
 		text-shadow: 0 1px 1px #044062;
 		text-decoration: none;
@@ -138,24 +148,11 @@ table {
 [class*="span-"]{
 	position: relative;
 }
-
+	
 #wb-main-in {
-	padding: 0 3px;
+	padding: 0 5px;
 	h1 {
-		font-size: 1.5em;
-		font-weight: 400;
-		margin: 0 -3px 10px -3px;
-		padding: 0 3px;
-		border: 1px solid #999;
-		border-width: 1px 0 0 0;
-		text-shadow: none;
-		position: static !important;
-		&.wb-invisible {
-			position: absolute !important;
-		}
-	}
-	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
-		margin-bottom: 20px;
+		margin-top: 0.5em;
 	}
 }
 
@@ -205,9 +202,10 @@ table {
 }
 
 #base-fullhd {
-	min-height: 41px;
-	.ui-header {
-		border: 1px solid #666;
+	min-height: 42px;
+	@include background-image(linear-gradient(#4C4C4C, #5D5D5D));
+	ul {
+		@extend %base-default-mobile-display-none;
 	}
 	li {
 		@extend %base-default-mobile-display-none;
@@ -215,7 +213,7 @@ table {
 }
 
 #base-mnavbar {
-	right: 3px;
+	right: 5px;
 	.ui-btn-inner {
 		padding: 0.6em 14px;
 	}
@@ -231,12 +229,9 @@ table {
 	@extend %base-default-mobile-display-none;
 }
 
-#base-fullhd {
-	ul {
-		@extend %base-default-mobile-display-none;
-	}
+%base-default-mobile-padding-3-5 {
+	padding: 3px 5px;
 }
-
 #base-subsite {
 	font-size: 130%;
 	text-shadow: none;
@@ -247,8 +242,9 @@ table {
 		}
 	}
 	a {
-		padding: 3px;
-		white-space: normal;
+		@extend %base-default-mobile-padding-3-5;
+		@extend %base-default-mobile-white-space-normal;
+		@extend %base-default-mobile-font-weight-normal;
 	}
 }
 
@@ -288,6 +284,11 @@ table {
 	}
 }
 
+%base-default-mobile-last-child-padding-5 {
+	&:last-child {
+		padding: 5px;
+	}
+}
 #base-bc-in {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
@@ -304,9 +305,7 @@ table {
 		margin: 0;
 		padding: 5px 12px 5px 5px;
 		@extend %base-default-mobile-no-rounded-corners;
-		&:last-child {
-			padding-left: 5px;
-		}
+		@extend %base-default-mobile-last-child-padding-5;
 	}
 	a {
 		@extend %base-default-mobile-no-rounded-corners;
@@ -346,7 +345,7 @@ table {
 .ui-title {
 	img {
 		@extend %position-absolute;
-		left: 3px;
+		left: 5px;
 		top: 8px;
 	}
 }
@@ -354,6 +353,9 @@ table {
 .ui-content {
 	.ui-listview {
 		margin: 0 -15px;
+		&.ui-listview-inset {
+			margin: 15px 0;
+		}
 	}
 }
 
@@ -364,6 +366,21 @@ table {
 				text-transform: capitalize;
 			}
 		}
+	}
+}
+
+%base-default-mobile-margin-left-right--15 {
+	margin: 0 -15px;
+}
+#popupAbout {
+	.site-app-title {
+		@extend %base-default-mobile-margin-left-right--15;
+		padding: 5px 15px 0 15px;
+	}
+	.app-version {
+		@extend %base-default-mobile-margin-left-right--15;
+		@extend %base-default-mobile-border-none;
+		padding: 0 15px;
 	}
 }
 
@@ -457,6 +474,7 @@ select {
 }
 #jqm-wb-mb {
 	a {
+		text-shadow: none;
 		&:link {
 			text-decoration: none
 		}
@@ -521,10 +539,10 @@ select {
 			@extend %base-default-mobile-white-space-normal;
 		}
 		.ui-collapsible {
-			:not(:first-child) {
+			&:not(:first-child) {
 				@extend %base-default-mobile-no-top-rounded-corners;
 			}
-			:last-child {
+			&:last-child {
 				.ui-collapsible-content {
 					> {
 						:not(:last-child) {
@@ -598,6 +616,11 @@ select {
 		border-left: none;
 		border-right: none;
 		background: #F4F4F4;
+		.wb-nested-menu {
+			a {
+				font-size: 0.8em;
+			}
+		}
 	}
 	.ui-btn {
 		margin: 0;
@@ -667,12 +690,6 @@ select {
 			padding: 0.45em 0.79em;
 		}
 	}
-	#wb-main-in {
-		h1 {
-			background: #eee;
-		}
-	}
-
 	#base-sft-in {
 		padding-left: 5px;
 	}
@@ -765,7 +782,7 @@ select {
 	#base-fullhd {
 		.ui-title {
 			img {
-				right: 3px;
+				right: 5px;
 				left: auto;
 			}
 		}
@@ -773,7 +790,7 @@ select {
 	
 	#base-mnavbar {
 		@extend %base-default-mobile-rtl-scalex;
-		left: 3px;
+		left: 5px;
 		right: auto;
 	}
 
@@ -786,6 +803,10 @@ select {
 		}
 		a {
 			@extend %base-default-mobile-rtl-scalex;
+		}
+		li {
+			padding: 5px 5px 5px 12px;
+			@extend %base-default-mobile-last-child-padding-5;
 		}
 	}
 
@@ -892,7 +913,7 @@ select {
 
 	.ui-title {
 		img {
-			right: 3px;
+			right: 5px;
 		}
 	}
 
@@ -939,6 +960,12 @@ select {
 		h2 {
 			padding-right: 0;
 			padding-left: 20px;
+		}
+	}
+
+	#base-subsite {
+		a {
+			@extend %base-default-mobile-padding-3-5;
 		}
 	}
 

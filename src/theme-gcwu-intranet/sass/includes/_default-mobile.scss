@@ -2,6 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%gcwu-default-mobile-padding-3-5 {
+	padding: 3px 5px;
+}
 #gcwu-subsite {
 	font-size: 130%;
 	text-shadow: 1px 1px 1px #333;
@@ -12,7 +15,28 @@
 		}
 	}
 	a {
-		padding: 3px;
+		@extend %gcwu-default-mobile-padding-3-5;
 		white-space: normal;
+		font-weight: normal;
+	}
+}
+
+#gcwu-wmms {
+	object {
+		display: none;
+	}
+}
+
+.ui-mobile {
+	#gcwu-wmms-in {
+		display: block;
+	}
+}
+
+[dir="rtl"] {
+	#gcwu-subsite {
+		a {
+			@extend %gcwu-default-mobile-padding-3-5;
+		}
 	}
 }
