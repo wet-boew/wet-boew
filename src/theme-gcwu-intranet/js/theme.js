@@ -176,7 +176,7 @@
 					node.setAttribute('style', 'display: block');
 					// Correct the source of the Canada Wordmark fallback image
 					node = wmms.getElementsByTagName('img')[0];
-					node.setAttribute('src', node.getAttribute('src').replace('.gif', '-wm.gif'));
+					node.setAttribute('src', node.getAttribute('src').replace('.png', '-w.png'));
 					if (svgfix) {
 						wmms.setAttribute('style', 'display: block');
 					}
