@@ -150,6 +150,8 @@
 			// Identify IE9+ browser
 			if (pe.ie > 8) {
 				classes += ' ie' + parseInt(pe.ie, 10);
+			} else if (pe.ie < 1) {
+				classes += ' no-ie';
 			}
 
 			// Is this a mobile device?
