@@ -139,29 +139,19 @@ table {
 	}
 }
 
-%gcwu-default-mobile-width-90 {
+%gcwu-default-mobile-width-90-height-22 {
 	width: 90px;
+	height: 22px;
 }
 #gcwu-wmms {
 	@extend %position-absolute;
 	top: 9px;
 	left: 5px;
 	object {
-		@extend %gcwu-default-mobile-width-90;
+		@extend %gcwu-default-mobile-width-90-height-22;
 	}
 	img {
-		@extend %gcwu-default-mobile-width-90;
-	}
-}
-
-.bb-pre7, .ios43, .no-svg {
-	#gcwu-wmms {
-		display: none;
-	}
-	.ui-mobile {
-		#gcwu-wmms {
-			display: block;
-		}
+		@extend %gcwu-default-mobile-width-90-height-22;
 	}
 }
 
