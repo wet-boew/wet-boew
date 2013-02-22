@@ -5,7 +5,7 @@
 %gcwu-default-screen-ie-display-none {
 	display: none;
 }
-.ie7, ie8 {
+.ie7, .ie8 {
 	.ui-mobile-rendering {
 		#gcwu-wmms-in {
 			@extend %gcwu-default-screen-ie-display-none;
