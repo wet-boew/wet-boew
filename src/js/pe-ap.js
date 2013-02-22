@@ -163,7 +163,7 @@
 				}
 			}
 
-			// Remove the "no-js" clas and add the identification classes to the HTML element.
+			// Remove the "no-js" class and add the identification classes to the HTML element.
 			$html.removeClass('no-js').addClass(classes);
 
 			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
