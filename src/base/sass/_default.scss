@@ -9,7 +9,7 @@ body {
 	font-size: 80%;
 	margin: 0;
 	padding: 0;
-	@extend %base-verdana-font;
+	@extend %wb-verdana-font;
 }
 
 a {
@@ -38,13 +38,17 @@ table {
 	border-spacing: 0;
 }
 
-%base-verdana-font {
+%wb-verdana-font {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 textarea, input {
-	@extend %base-verdana-font;
+	@extend %wb-verdana-font;
 	font-size: 100%;
+}
+
+select {
+	@extend %wb-verdana-font;
 }
 
 pre, code, kbd, samp, tt {
@@ -95,7 +99,7 @@ h6 {
 	display: none;
 }
 
-%base-clip-hidden {
+%wb-clip-hidden {
 	position: absolute;
 	@include clip-rect;
 	height: 1px !important;
@@ -105,17 +109,17 @@ h6 {
 }
 
 .wb-invisible {
-	@extend %base-clip-hidden;
+	@extend %wb-clip-hidden;
 }
 
 #wb-sec, #wb-sup, #wb-foot {
 	h2 {
-		@extend %base-clip-hidden;
+		@extend %wb-clip-hidden;
 	}
 }
 
-%base-clip-focus-active {
-	@extend %base-clip-hidden;
+%wb-clip-focus-active {
+	@extend %wb-clip-hidden;
 	@include pseudo-focus(false) {
 		position: static;
 		clip: auto;
@@ -127,14 +131,14 @@ h6 {
 }
 
 .wb-show-onfocus {
-	@extend %base-clip-focus-active;
+	@extend %wb-clip-focus-active;
 }
 
 #wb-skip {
 	a {
-		@extend %base-clip-focus-active;
+		@extend %wb-clip-focus-active;
 		&, &:link, &:visited {
-			@extend %base-clip-hidden;
+			@extend %wb-clip-hidden;
 		}
 	}
 }

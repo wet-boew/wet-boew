@@ -5,19 +5,19 @@
 .ie7 {
 	#wb-skip {
 		a {
-			@extend %base-default-ie7-relative-float-left;
-			@extend %base-default-ie7-show-focus;
+			@extend %wb-default-ie7-relative-float-left;
+			@extend %wb-default-ie7-show-focus;
 		}
 	}
-	%base-default-ie7-relative-float-left {
+	%wb-default-ie7-relative-float-left {
 		position: relative;
 		float: left;
 		margin-bottom: -1px !important;
 	}
 	.wb-invisible {
-		@extend %base-default-ie7-relative-float-left;
+		@extend %wb-default-ie7-relative-float-left;
 	}
-	%base-default-ie7-show-focus {
+	%wb-default-ie7-show-focus {
 		@include pseudo-focus(false) {
 			width: auto !important;
 			height: auto !important;
@@ -26,24 +26,24 @@
 		}
 	}
 	.wb-show-onfocus {
-		@extend %base-default-ie7-relative-float-left;
-		@extend %base-default-ie7-show-focus;
+		@extend %wb-default-ie7-relative-float-left;
+		@extend %wb-default-ie7-show-focus;
 	}
-	%base-default-ie7-transparent {
+	%wb-default-ie7-transparent {
 		@include transparent;
 		@include pseudo-focus {
 			@include opaque;
 		}
 	}
 	.wb-show-onhover {
-		@extend %base-default-ie7-transparent;
+		@extend %wb-default-ie7-transparent;
 	}
 
 	a {
 		&.wb-linkdesc {
 			span {
 				span {
-					@extend %base-default-ie7-transparent;
+					@extend %wb-default-ie7-transparent;
 				}
 			}
 		}
