@@ -56,6 +56,10 @@ textarea, input {
 	font-size: 100%;
 }
 
+select {
+	@extend %wb-verdana-font;
+}
+
 pre, code, kbd, samp, tt {
 	font-family: "Courier New", Courier, monospace;
 	font-size: 112%;
