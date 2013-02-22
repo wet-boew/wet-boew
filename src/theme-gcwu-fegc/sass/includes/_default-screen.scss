@@ -22,12 +22,28 @@
 %gcwu-default-screen-display-block {
 	display: block;
 }
+%gcwu-default-screen-wmms-sig-display-none {
+	#gcwu-wmms-in {
+		@extend %gcwu-default-screen-display-none;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-default-screen-display-none;
+	}
+}
 %gcwu-default-screen-wmms-sig-display-block {
 	#gcwu-wmms-in {
 		@extend %gcwu-default-screen-display-block;
 	}
 	#gcwu-sig-in {
 		@extend %gcwu-default-screen-display-block;
+	}
+}
+%gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none {
+	&.ui-mobile {
+		@extend %gcwu-default-screen-wmms-sig-display-block;
+		&.ui-mobile-rendering {
+			@extend %gcwu-default-screen-wmms-sig-display-none;
+		}
 	}
 }
 
@@ -68,19 +84,17 @@ body {
 #gcwu-sig-in {
 	@extend %gcwu-default-screen-display-none;
 }
-.ui-mobile {
-	&:not(.ui-mobile-rendering) {
-		@extend %gcwu-default-screen-wmms-sig-display-block;
-	}
-	&.no-ie:not(.no-svg) {
-		@extend %gcwu-default-screen-wmms-sig-display-block;
-	}
-	&[class*=ie1] {
-		@extend %gcwu-default-screen-wmms-sig-display-block;
-	}
+.svg {
+	@extend %gcwu-default-screen-wmms-sig-display-block;
 }
 .pe-disable {
 	@extend %gcwu-default-screen-wmms-sig-display-block;
+}
+.no-svg {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie9 {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
 }
 
 .wb-sec-def {
