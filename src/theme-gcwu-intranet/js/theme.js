@@ -102,12 +102,12 @@
 				node,
 				home_href,
 				header,
-				$html = $('html'),
-				svgfix = ($html.hasClass('bb-pre7') || $html.hasClass('ios43')),
+				test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i),
+				svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46))),
 				wmms = document.getElementById('gcwu-wmms');
 
 			// Fix for old webkit versions (BB OS6 & iOS 4.3)
-			if ($html.hasClass('bb-pre7') || $html.hasClass('ios43')) {
+			if (svgfix) {
 				nodes = document.querySelectorAll('#gcwu-wmms object, #gcwu-sig object');
 				len = nodes.length;
 				while (len--) {
@@ -173,12 +173,10 @@
 					// TODO: Find way of changing colour to white without JavaScript
 					node = wmms.getElementsByTagName('object')[0];
 					node.setAttribute('data', node.getAttribute('data').replace('.svg', '-r.svg'));
-					node.setAttribute('style', 'display: block');
-					// Correct the source of the Canada Wordmark fallback image
-					node = wmms.getElementsByTagName('img')[0];
-					node.setAttribute('src', node.getAttribute('src').replace('.png', '-w.png'));
-					if (svgfix) {
-						wmms.setAttribute('style', 'display: block');
+					if (!pe.svg) {
+						// Correct the source of the Canada Wordmark fallback image
+						node = wmms.getElementsByTagName('img')[0];
+						node.setAttribute('src', node.getAttribute('src').replace('.png', '-w.png'));
 					}
 				}
 				// Handling for the home/back button if it exists
