@@ -23,13 +23,20 @@
 
 #gcwu-wmms {
 	object {
-		display: none;
+		&[data*="wmms.svg"] {
+			display: none;
+		}
 	}
 }
 
-.ui-mobile {
-	#gcwu-wmms-in {
-		display: block;
+.pe-disable {
+	#gcwu-wmms {
+		object {
+			&[data*="wmms.svg"] {
+				display: block;
+			}
+		}
+		background: #fff;
 	}
 }
 
