@@ -112,7 +112,7 @@
 				len = nodes.length;
 				while (len--) {
 					node = nodes[len];
-					node.parentNode.innerHTML(node.innerHTML);
+					node.parentNode.replaceChild(node.getElementsByTagName('img')[0], node);
 				}
 			}
 
