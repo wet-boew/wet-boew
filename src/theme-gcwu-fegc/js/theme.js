@@ -102,8 +102,8 @@
 				node,
 				home_href,
 				header,
-				$html = $('html'),
-				svgfix = ($html.hasClass('bb-pre7') || $html.hasClass('ios43')),
+				test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i),
+				svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46))),
 				wmms = document.getElementById('gcwu-wmms');
 
 			// Fix for old webkit versions (BB OS6 & iOS 4.3)
