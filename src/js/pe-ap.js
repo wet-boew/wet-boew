@@ -146,12 +146,25 @@
 			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : '')) : ' desktop-view')) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			classes += (pe.svg ? ' svg' : ' no-svg');
-			$html.removeClass('no-js').addClass(classes);
-
+			
 			// Identify IE9+ browser
 			if (pe.ie > 8) {
-				$html.addClass('ie' + parseInt(pe.ie, 10));
+				classes += ' ie' + parseInt(pe.ie, 10);
 			}
+
+			// Is this a mobile device?
+			if (pe.mobile) {
+				// Detect if pre-OS7 BlackBerry device is being used
+				test = navigator.userAgent.indexOf('BlackBerry');
+				if (test === 0) {
+					classes += ' bb-pre6 bb-pre7';
+				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
+					classes += ' bb-pre7';
+				}
+			}
+
+			// Remove the "no-js" clas and add the identification classes to the HTML element.
+			$html.removeClass('no-js').addClass(classes);
 
 			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
 				return this.href.indexOf('#') !== -1;
@@ -159,29 +172,6 @@
 			hlinks_same = hlinks.filter(function () {
 				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
 			});
-
-			// Is this a mobile device?
-			if (pe.mobile) {
-				classes = '';
-
-				// Detect if pre-OS7 BlackBerry device is being used
-				test = navigator.userAgent.indexOf('BlackBerry');
-				if (test === 0) {
-					classes += 'bb-pre6 bb-pre7';
-				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
-					classes += 'bb-pre7';
-				}
-
-				// Detect if iOS 4.3 is being used
-				test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
-				if (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46))) {
-					classes += 'ios43';
-				}
-
-				if (classes.length !== 0) {
-					$html.addClass(classes);
-				}
-			}
 			
 			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 
