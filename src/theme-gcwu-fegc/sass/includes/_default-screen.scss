@@ -60,7 +60,7 @@ body {
 #gcwu-sig-in {
 	@extend %gcwu-default-screen-display-none;
 }
-.ui-mobile {
+.ui-mobile, .pe-disable {
 	#gcwu-wmms-in {
 		@extend %gcwu-default-screen-display-block;
 	}
