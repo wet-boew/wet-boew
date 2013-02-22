@@ -53,7 +53,7 @@
 }
 
 /* Mobile view */
-@media screen and (max-width: 959px), screen and (max-device-width:1023px) {
+@media screen and (max-width: 959px), screen and (max-device-width: 1023px) {
 /* -----Build Include Section Start----- */
 @import '../../base/sass/default-mobile';
 @import 'includes/default-mobile';
