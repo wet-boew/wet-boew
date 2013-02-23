@@ -306,6 +306,11 @@ a {
 			@extend %wet-default-desktop-screen-background-0E4164;
 			border-left-color: #0B3048;
 			border-right-color: #135480;
+			&:first-child {
+				&.mb-active {
+					border-left: 1px solid #CCC;
+				}
+			}
 		}
 		a {
 			padding-bottom: 0.65em;

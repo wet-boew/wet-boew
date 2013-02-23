@@ -39,6 +39,11 @@
 		&:first-child {
 			&.mb-active {
 				border-left: 1px solid #CCC;
+				div {
+					&.mb-sm-open {
+					margin-left: -1px;
+					}
+				}
 			}
 		}
 		div {
@@ -224,9 +229,15 @@
 		float: right;
 		li {
 			float: right;
-
-			&:first-child.mb-active {
-				border-right: 1px solid #CCC;
+			&:first-child {
+				&.mb-active {
+					border-right: 1px solid #CCC;
+					div {
+						&.mb-sm-open {
+						margin-right: -1px;
+						}
+					}
+				}
 			}
 		}
 
