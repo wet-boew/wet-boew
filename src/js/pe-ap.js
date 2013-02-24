@@ -213,14 +213,6 @@
 						}, 200);
 					}
 				}
-
-				if (pe.ie > 0) {
-					if (pe.ie < 9) {
-						pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
-					} else {
-						pe.wb_load({'plugins': {'equalize': pe.main}}, 'equalize-loaded');
-					}
-				}
 			});
 
 			// Load ajax content
@@ -1762,7 +1754,8 @@
 		* @todo pass an element as the context for the recursion.
 		*/
 		dance: function () {
-			var loading_finished = 'wb-init-loaded';
+			var loading_finished = 'wb-init-loaded',
+				plugins = {};
 			pe.document.one(loading_finished, function () {
 				if (!(pe.ie > 0 && pe.ie < 9)) {
 					pe.resize(function () {
@@ -1781,7 +1774,15 @@
 					});
 				}
 			});
-			pe.wb_load({'dep': ['resize', 'equalheights'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
+
+			// Figure out if we need to load plugins for IE
+			if (pe.ie > 0 && pe.ie < 11) {
+				plugins.equalize = pe.main;
+				if (pe.ie < 9) {
+					plugins.css3ie = pe.main;
+				}
+			}
+			pe.wb_load({'plugins': plugins, 'dep': ['resize', 'equalheights'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
 		}
 	};
 	/* window binding */
