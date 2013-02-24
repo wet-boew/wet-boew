@@ -143,7 +143,7 @@
 			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
 			pe.mobile = pe.mobilecheck();
 			pe.tablet = pe.tabletcheck();
-			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : '')) : ' desktop-view')) : '';
+			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : ' smartphone-view')) : ' desktop-view')) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			classes += (pe.svg ? ' svg' : ' no-svg');
 			
@@ -1773,10 +1773,8 @@
 							window.location.href = decodeURI(pe.url(window.location.href).removehash());
 						} else {
 							tabletcheck = pe.tabletcheck();
-							if (pe.tablet && !tabletcheck) {
-								$('html').removeClass('tablet-view');
-							} else if (!pe.tablet && tabletcheck) {
-								$('html').addClass('tablet-view');
+							if (pe.tablet !== tabletcheck) {
+								$('html').toggleClass('tablet-view smartphone-view');
 							}
 							pe.tablet = tabletcheck;
 						}

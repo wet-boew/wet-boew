@@ -1,0 +1,13 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+%gcwu-sp-pe-mobile-tablet-display-block-important {
+	display: block !important;
+}
+#wb-core-in {
+	@extend %gcwu-sp-pe-mobile-tablet-display-block-important;
+}
+#wb-main {
+	@extend %gcwu-sp-pe-mobile-tablet-display-block-important;
+}
