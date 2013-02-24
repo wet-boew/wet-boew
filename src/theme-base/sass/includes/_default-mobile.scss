@@ -60,26 +60,24 @@ a {
 	}
 }
 
-blockquote {
-	@extend %base-default-mobile-no-margin-no-shadow;
-}
-
-%base-default-mobile-no-margin-no-shadow {
-	margin-left: 0;
-	margin-right: 0;
+%base-default-mobile-no-shadow {
 	text-shadow: none;
 }
 
+blockquote {
+	@extend %base-default-mobile-no-shadow;
+}
+
 form {
-	@extend %base-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-shadow;
 }
 
 #{headings(2,6)} {
-	@extend %base-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-shadow;
 }
 
 img {
-	@extend %base-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-shadow;
 	max-width: 100%;
 	height: auto;
 	@extend %base-default-mobile-display-block;
@@ -97,15 +95,15 @@ li {
 }
 
 p {
-	@extend %base-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-shadow;
 }
 
 pre {
-	@extend %base-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-shadow;
 }
 
 table {
-	@extend %base-default-mobile-no-margin-no-shadow;
+	@extend %base-default-mobile-no-shadow;
 }
 
 .mobile-view {
@@ -144,26 +142,12 @@ table {
 	float: right;
 	margin: 5px 0;
 }
-
-[class*="span-"]{
-	position: relative;
-}
 	
 #wb-main-in {
 	padding: 0 5px;
 	h1 {
 		margin-top: 0.5em;
 	}
-}
-
-.clear {
-	clear: both;
-	@extend %base-default-mobile-display-block;
-	height: 0;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	margin: 0;
 }
 
 .ui-mobile {
@@ -261,7 +245,7 @@ table {
 }
 
 #wb-sec {
-	@extend %base-default-mobile-display-none;
+	@extend %base-default-mobile-display-none-important;
 }
 
 #wb-foot {
@@ -330,8 +314,16 @@ table {
 	display: none;
 }
 
+%base-default-mobile-display-none-important {
+	display: none !important;
+}
+
 %base-default-mobile-display-block {
 	display: block;
+}
+
+%base-default-mobile-display-block-important {
+	display: block !important;
 }
 
 %base-default-mobile-white-space-normal {
@@ -443,17 +435,17 @@ select {
 	@extend %base-default-mobile-font-125em;
 }
 
-%h1-border-bottom-none {
+%base-default-mobile-h1-border-bottom-none {
 	h1 {
 		border-bottom: none;
 	}
 }
 .ui-dialog {
-	@extend %h1-border-bottom-none;
+	@extend %base-default-mobile-h1-border-bottom-none;
 }
 
 .ui-popup {
-	@extend %h1-border-bottom-none;
+	@extend %base-default-mobile-h1-border-bottom-none;
 }
 
 #jqm-wb-search {
@@ -697,7 +689,7 @@ select {
 		padding: 0;
 	}
 	.mobile-pe {
-		display: none !important;
+		@extend %base-default-mobile-display-none-important;
 	}
 }
 
@@ -739,7 +731,7 @@ select {
 		}
 	}
 	#wb-sec {
-		@extend %base-default-mobile-display-block;
+		@extend %base-default-mobile-display-block-important;
 	}
 	#wb-foot {
 		@extend %base-default-mobile-display-block;
