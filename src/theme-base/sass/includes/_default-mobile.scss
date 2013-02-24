@@ -108,7 +108,7 @@ table {
 	@extend %base-default-mobile-no-margin-no-shadow;
 }
 
-[id|="wb-body-sec"] {
+.mobile-view {
 	#wb-skip2 {
 		@extend %base-default-mobile-display-none;
 		visibility: hidden;

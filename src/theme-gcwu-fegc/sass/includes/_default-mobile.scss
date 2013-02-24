@@ -108,7 +108,7 @@ table {
 	@extend %no-margin-no-shadow;
 }
 
-[id|="wb-body-sec"] {
+.mobile-view {
 	#wb-skip2 {
 		@extend %gcwu-default-mobile-display-none;
 		visibility: hidden;
