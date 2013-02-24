@@ -8,24 +8,24 @@
  *
  */
 
-/* -----Include jQuery Mobile CSS Start----- */
+/* ----- jQuery Mobile CSS - Start of build includes ----- */
 @import '../jquerymobile/jquery.mobile.theme-ie';
 @import '../../js/jquerymobile/jquery.mobile.structure-ie';
-/* -----Include jQuery Mobile CSS End----- */
+/* ----- jQuery Mobile CSS - End of build includes ----- */
 
 @import '../../base/sass/oldie-vendor-prefix';
 
-/* -----Build Include Section Start----- */
+/* ----- All media types - Start of build includes ----- */
 @import '../../base/sass/default';
 @import '../../base/sass/default-desktop';
 @import '../../base/sass/default-ie';
 @import 'includes/serv';
 @import 'includes/serv-desktop-screen';
 @import 'includes/serv-ie';
-/* -----Build Include Section End----- */
+/* ----- All media types - End of build includes ----- */
 
 @media screen {
-/* -----Build Include Section Start----- */
+/* ----- Screen media type only - Start of build includes ----- */
 @import '../../base/sass/default-screen';
 @import '../../base/sass/default-desktop-screen';
 @import '../../base/sass/default-screen-ie';
@@ -35,14 +35,14 @@
 @import 'includes/serv-screen';
 @import 'includes/serv-desktop';
 @import 'includes/serv-screen-ie';
-/* -----Build Include Section End----- */
+/* ----- Screen media type only - End of build includes ----- */
 }
 
 @media print {
-/* -----Build Include Section Start----- */
+/* ----- Print media type only - Start of build includes ----- */
 @import '../../base/sass/default-print';
 @import '../../base/sass/default-print-ie';
 @import 'includes/serv-print';
 @import 'includes/serv-print-ie';
-/* -----Build Include Section End----- */
+/* ----- Print media type only - End of build includes ----- */
 }

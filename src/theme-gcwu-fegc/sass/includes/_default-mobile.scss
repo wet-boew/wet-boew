@@ -60,26 +60,24 @@ a {
 	}
 }
 
-blockquote {
-	@extend %no-margin-no-shadow;
-}
-
-%no-margin-no-shadow {
-	margin-left: 0;
-	margin-right: 0;
+%gcwu-default-mobile-no-shadow {
 	text-shadow: none;
 }
 
+blockquote {
+	@extend %gcwu-default-mobile-no-shadow;
+}
+
 form {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-shadow;
 }
 
 #{headings(2,6)} {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-shadow;
 }
 
 img {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-shadow;
 	max-width: 100%;
 	height: auto;
 	@extend %gcwu-default-mobile-display-block;
@@ -97,15 +95,24 @@ li {
 }
 
 p {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-shadow;
 }
 
 pre {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-shadow;
 }
 
 table {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-shadow;
+}
+
+#gcwu-priorities {
+	li {
+		text-align: center;
+	}
+	ul {
+		@extend %gcwu-default-mobile-period-after-pseudo;
+	}
 }
 
 .mobile-view {
@@ -116,7 +123,7 @@ table {
 }
 
 #wb-head {
-	@extend %period-after-pseudo;
+	@extend %gcwu-default-mobile-period-after-pseudo;
 }
 
 [id|="wb-body"] {
@@ -144,7 +151,7 @@ table {
 	height: 22px;
 }
 #gcwu-wmms {
-	@extend %position-absolute;
+	@extend %gcwu-default-mobile-position-absolute;
 	top: 9px;
 	left: 5px;
 	object {
@@ -156,22 +163,9 @@ table {
 }
 
 #gcwu-date-mod {
-	@extend %period-after-pseudo;
+	@extend %gcwu-default-mobile-period-after-pseudo;
 	float: right;
 	margin: 5px 0;
-}
-
-#gcwu-priorities {
-	li {
-		text-align: center;
-	}
-	ul {
-		@extend %period-after-pseudo;
-	}
-}
-
-[class*="span-"]{
-	position: relative;
 }
 
 #wb-main-in {
@@ -179,16 +173,6 @@ table {
 	h1 {
 		margin-top: 0.5em;
 	}
-}
-
-.clear {
-	clear: both;
-	@extend %gcwu-default-mobile-display-block;
-	height: 0;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	margin: 0;
 }
 
 .ui-mobile {
@@ -255,7 +239,7 @@ table {
 }
 
 #wb-sec {
-	@extend %gcwu-default-mobile-display-none;
+	@extend %gcwu-default-mobile-display-none-important;
 }
 
 #wb-foot {
@@ -309,7 +293,7 @@ table {
 	clear: both;
 }
 
-%period-after-pseudo {
+%gcwu-default-mobile-period-after-pseudo {
 	&:after {
 		content: ".";
 		@extend %gcwu-default-mobile-display-block;
@@ -323,15 +307,23 @@ table {
 	display: none;
 }
 
+%gcwu-default-mobile-display-none-important {
+	display: none !important;
+}
+
 %gcwu-default-mobile-display-block {
 	display: block;
+}
+
+%gcwu-default-mobile-display-block-important {
+	display: block !important;
 }
 
 %gcwu-default-mobile-white-space-normal {
 	white-space: normal;
 }
 
-%position-absolute {
+%gcwu-default-mobile-position-absolute {
 	position: absolute;
 }
 
@@ -428,17 +420,17 @@ select {
 	@extend %gcwu-default-mobile-font-125em;
 }
 
-%h1-border-bottom-none {
+%gcwu-default-mobile-h1-border-bottom-none {
 	h1 {
 		border-bottom: none;
 	}
 }
 .ui-dialog {
-	@extend %h1-border-bottom-none;
+	@extend %gcwu-default-mobile-h1-border-bottom-none;
 }
 
 .ui-popup {
-	@extend %h1-border-bottom-none;
+	@extend %gcwu-default-mobile-h1-border-bottom-none;
 }
 
 #jqm-wb-search {
@@ -446,7 +438,7 @@ select {
 		@include clip-rect;
 		height: 1px;
 		overflow: hidden;
-		@extend %position-absolute;
+		@extend %gcwu-default-mobile-position-absolute;
 		width: 1px;
 	}
 	.ui-icon-searchfield:after, .ui-icon-search {
@@ -667,7 +659,7 @@ select {
 		padding: 0;
 	}
 	.mobile-pe {
-		display: none !important;
+		@extend %gcwu-default-mobile-display-none-important;
 	}
 }
 
@@ -692,7 +684,7 @@ select {
 		margin-bottom: 0;
 	}
 	#wb-sec {
-		@extend %gcwu-default-mobile-display-block;
+		@extend %gcwu-default-mobile-display-block-important;
 	}
 	#wb-foot {
 		@extend %gcwu-default-mobile-display-block;
