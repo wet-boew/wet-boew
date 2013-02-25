@@ -142,6 +142,7 @@ li {
 }
 
 #gcwu-bnr-in {
+  @extend %gcwu-default-responsive-margin-auto;
 	@extend %gcwu-default-responsive-width-960;
 }
 
