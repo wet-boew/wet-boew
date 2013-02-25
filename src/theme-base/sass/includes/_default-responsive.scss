@@ -9,6 +9,12 @@ body {
 %base-default-responsive-width100pct {
 	width: 100%;
 }
+%base-default-responsive-width-480 {
+	width: 480px;
+}
+%base-default-responsive-width-240 {
+	width: 240px;
+}
 
 #wb-head {
 	@extend %base-default-responsive-width100pct;
@@ -100,20 +106,20 @@ body {
 
 #wb-body-sec-sup {
 	#wb-main {
-		width: 480px;
+		@extend %base-default-responsive-width-480;
 		right: 240px;
 	}
 	#wb-main-in {
-		width: 480px;
+		@extend %base-default-responsive-width-480;
 	}
 }
 
 #wb-sec {
-	width: 240px;
+	@extend %base-default-responsive-width-240;
 }
 
 #wb-sup {
-	width: 240px;
+	@extend %base-default-responsive-width-240;
 	left: 480px;
 }
 
