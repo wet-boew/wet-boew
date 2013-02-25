@@ -42,8 +42,8 @@
 		/* Special handling for the desktop view */
 		desktopview: function () {
 			pe.document.one('wb-init-loaded', function(){
-				if($('#wb-body-sec-sup').length) {
-					pe.wb_load({'plugins': {'equalize': $('#wb-core-in')}});
+				if($('#wb-body-sec-sup').length && !pe.main.hasClass('wet-boew-equalize')) {
+					pe.wb_load({'plugins': {'equalize': pe.main}});
 				}
 			});
 			pe.document.trigger('themeviewloaded');
