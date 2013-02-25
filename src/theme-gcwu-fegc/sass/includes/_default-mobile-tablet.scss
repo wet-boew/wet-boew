@@ -12,14 +12,24 @@
 	}
 }
 
-#wb-body #gcwu-content {
-	width: 720px;
+#wb-body {
+	#gcwu-content {
+		width: 720px;
+	}
 }
 
-#wb-body-sec #gcwu-content {
-	width: 480px;
+#wb-body-sec {
+	#gcwu-content {
+		width: 480px;
+	}
 }
 
-#gcwu-aside, #gcwu-priorities {
+%gcwu-default-mobile-tablet-width-172 {
 	width: 172px;
+}
+#gcwu-aside {
+	@extend %gcwu-default-mobile-tablet-width-172;
+}
+#gcwu-priorities {
+	@extend %gcwu-default-mobile-tablet-width-172;
 }
