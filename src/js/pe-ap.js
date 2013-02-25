@@ -1776,7 +1776,7 @@
 			});
 
 			// Figure out if we need to load plugins for IE
-			if (pe.ie > 0 && pe.ie < 11) {
+			if (pe.ie > 0) {
 				plugins.equalize = pe.main;
 				if (pe.ie < 9) {
 					plugins.css3ie = pe.main;
