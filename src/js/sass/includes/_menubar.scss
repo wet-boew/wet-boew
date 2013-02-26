@@ -135,6 +135,12 @@
 			font-size: 1.2em;
 			font-weight: 700;
 			margin: 0;
+			a {
+				text-decoration: underline;
+				@include pseudo-focus {
+					text-decoration: none;
+				}
+			}
 		}
 		ul {
 			margin: 0 0 0 1.2em;
