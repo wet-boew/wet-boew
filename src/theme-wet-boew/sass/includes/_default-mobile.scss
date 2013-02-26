@@ -43,6 +43,10 @@
 	border: none;
 }
 
+%wet-default-mobile-text-shadow-none {
+	text-shadow: none;
+}
+
 body {
 	@if $experimental-support-for-webkit {
 		-webkit-text-size-adjust: none;
@@ -59,24 +63,20 @@ a {
 	}
 }
 
-%wet-default-mobile-no-shadow {
-	text-shadow: none;
-}
-
 blockquote {
-	@extend %wet-default-mobile-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
 form {
-	@extend %wet-default-mobile-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
 #{headings(2,6)} {
-	@extend %wet-default-mobile-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
 img {
-	@extend %wet-default-mobile-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 	max-width: 100%;
 	height: auto;
 	@extend %wet-default-mobile-display-block;
@@ -94,15 +94,15 @@ li {
 }
 
 p {
-	@extend %wet-default-mobile-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
 pre {
-	@extend %wet-default-mobile-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
 table {
-	@extend %wet-default-mobile-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
 .mobile-view {
@@ -180,6 +180,7 @@ table {
 		min-width: 180px;
 		margin-left: 35px;
 		margin-right: 35px;
+		@extend %wet-default-mobile-text-shadow-none;
 	}
 }
 
@@ -216,7 +217,7 @@ table {
 }
 #wet-subsite {
 	font-size: 130%;
-	text-shadow: none;
+	@extend %wet-default-mobile-text-shadow-none;
 	p {
 		margin: {
 			top: 0;
@@ -477,7 +478,7 @@ select {
 }
 #jqm-wb-mb {
 	a {
-		text-shadow: none;
+		@extend %wet-default-mobile-text-shadow-none;
 		&:link {
 			text-decoration: none
 		}
