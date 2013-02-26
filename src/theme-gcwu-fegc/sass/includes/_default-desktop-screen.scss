@@ -565,15 +565,6 @@ a {
 		}
 	}
 
-	#gcwu-gcft {
-		@include scaleX(-1);
-		#gcwu-gcft-fip {
-			li {
-				@include scaleX(-1);
-			}
-		}
-	}
-
 	#gcwu-gcft-ca {
 		a {
 			@extend %gcwu-default-desktop-screen-border-left-none;
