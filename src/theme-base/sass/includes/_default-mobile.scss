@@ -43,6 +43,10 @@
 	border: none;
 }
 
+%base-default-mobile-text-decoration-none {
+	text-decoration: none;
+}
+
 body {
 	@if $experimental-support-for-webkit {
 		-webkit-text-size-adjust: none;
@@ -60,24 +64,24 @@ a {
 	}
 }
 
-%base-default-mobile-no-shadow {
+%base-default-mobile-text-shadow-none {
 	text-shadow: none;
 }
 
 blockquote {
-	@extend %base-default-mobile-no-shadow;
+	@extend %base-default-mobile-text-shadow-none;
 }
 
 form {
-	@extend %base-default-mobile-no-shadow;
+	@extend %base-default-mobile-text-shadow-none;
 }
 
 #{headings(2,6)} {
-	@extend %base-default-mobile-no-shadow;
+	@extend %base-default-mobile-text-shadow-none;
 }
 
 img {
-	@extend %base-default-mobile-no-shadow;
+	@extend %base-default-mobile-text-shadow-none;
 	max-width: 100%;
 	height: auto;
 	@extend %base-default-mobile-display-block;
@@ -95,15 +99,15 @@ li {
 }
 
 p {
-	@extend %base-default-mobile-no-shadow;
+	@extend %base-default-mobile-text-shadow-none;
 }
 
 pre {
-	@extend %base-default-mobile-no-shadow;
+	@extend %base-default-mobile-text-shadow-none;
 }
 
 table {
-	@extend %base-default-mobile-no-shadow;
+	@extend %base-default-mobile-text-shadow-none;
 }
 
 .mobile-view {
@@ -133,7 +137,7 @@ table {
 		@extend %base-default-mobile-font-weight-normal;
 		color: #fff !important;
 		text-shadow: 0 1px 1px #044062;
-		text-decoration: none;
+		@extend %base-default-mobile-text-decoration-none;
 	}
 }
 
@@ -181,7 +185,7 @@ table {
 		min-width: 180px;
 		margin-left: 35px;
 		margin-right: 35px;
-		text-shadow: none;
+		@extend %base-default-mobile-text-shadow-none;
 	}
 }
 
@@ -218,7 +222,7 @@ table {
 }
 #base-subsite {
 	font-size: 130%;
-	text-shadow: none;
+	@extend %base-default-mobile-text-shadow-none;
 	p {
 		margin: {
 			top: 0;
@@ -466,9 +470,9 @@ select {
 }
 #jqm-wb-mb {
 	a {
-		text-shadow: none;
+		@extend %base-default-mobile-text-shadow-none;
 		&:link {
-			text-decoration: none
+			@extend %base-default-mobile-text-decoration-none;
 		}
 	}
 	h3 {
