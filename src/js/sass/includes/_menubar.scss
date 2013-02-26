@@ -140,6 +140,10 @@
 			margin: 0;
 			a, a.ui-link {
 				font-weight: 700;
+				text-decoration: underline;
+				@include pseudo-focus {
+					text-decoration: none;
+				}
 			}
 		}
 		ul {
