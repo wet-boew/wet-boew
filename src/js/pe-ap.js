@@ -951,6 +951,7 @@
 					hnestDOM,
 					hnestTag,
 					hnestLinkDOM,
+					hnestLinkDOM2,
 					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
 					mainText = pe.dic.get('%main-page'),
@@ -962,9 +963,14 @@
 					listItems,
 					listItem,
 					listItem2,
-					sectionOpen = '<div data-theme="' + theme1 + '"' + ' class="wb-nested-menu',
-					sectionLink = '<a data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
-					sectionLinkOpen = '">' + headingOpen + sectionLink,
+					sectionOpenStart = '<div data-theme="',
+					sectionOpenEnd = '" class="wb-nested-menu',
+					sectionOpen1 = sectionOpenStart + theme1 + sectionOpenEnd,
+					sectionOpen2 = sectionOpenStart + theme2 + sectionOpenEnd,
+					sectionLinkStart = '<a data-role="button" data-theme="',
+					sectionLinkEnd = '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
+					sectionLinkOpen1 = '">' + headingOpen + sectionLinkStart + theme1 + sectionLinkEnd,
+					sectionLinkOpen2 = sectionLinkStart + theme2 + sectionLinkEnd,
 					sectionLinkClose = '</a>' + headingClose,
 					link = '<a data-role="button" data-icon="arrow-r" data-iconpos="right" data-corners="false" href="',
 					menu,
@@ -978,7 +984,7 @@
 				} else {
 					hasHeading = mDOM.getElementsByTagName(heading).length !== 0;
 					if (menubar && !hasHeading) { // Menu bar without a mega menu
-						menu = sectionOpen + '"><ul data-role="listview" data-theme="' + theme1 + '">';
+						menu = sectionOpen1 + '"><ul data-role="listview" data-theme="' + theme1 + '">';
 						mItemsDOM = mDOM.getElementsByTagName('a');
 						for (mItems_i = 0, mItems_len = mItemsDOM.length; mItems_i < mItems_len; mItems_i += 1) {
 							mItemDOM = mItemsDOM[mItems_i];
@@ -994,7 +1000,7 @@
 
 							// If the menu item is a heading
 							if (mItemTag === heading) {
-								menu += sectionOpen;
+								menu += sectionOpen1;
 								hlink = mItem.children('a');
 								hlinkDOM = hlink[0];
 								navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
@@ -1006,7 +1012,7 @@
 								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
 								} else {
-									menu += sectionLinkOpen + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
+									menu += sectionLinkOpen1 + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
 								}
 								next = mItem.next();
 								nextDOM = next[0];
@@ -1022,11 +1028,11 @@
 											menu += '<li>';
 											if (hnestDOM.length !== 0) {
 												hnestLinkDOM = listItem.children[0];
-												menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+												menu += sectionOpen2 + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLinkOpen2 + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
 												for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
 													listItem2 = hnestDOM[nested_i];
-													hlinkDOM = listItem2.querySelector('a');
-													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
+													hnestLinkDOM2 = listItem2.querySelector('a');
+													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hnestLinkDOM2.href + '">' + hnestLinkDOM2.innerHTML + '</a></li>';
 												}
 												menu += '</ul></div>';
 											} else {
