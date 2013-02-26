@@ -10,7 +10,7 @@
 	}
 }
 
-%base-default-desktop-images-scaleX--1{
+%base-default-desktop-images-scaleX--1 {
 	@include scaleX(-1);
 }
 [dir="rtl"] {
@@ -26,10 +26,13 @@
 		}
 	}
 
-	[id|="wb-body"] {
+	#wb-head {
 		@extend %base-default-desktop-images-scaleX--1;
 	}
-	#wb-skip {
+	#wb-core {
+		@extend %base-default-desktop-images-scaleX--1;
+	}
+	#wb-foot {
 		@extend %base-default-desktop-images-scaleX--1;
 	}
 	#base-fullhd {
@@ -43,10 +46,10 @@
 			@extend %base-default-desktop-images-scaleX--1;
 		}
 	}
-	#wb-core {
+	#wb-core-in {
 		@extend %base-default-desktop-images-scaleX--1;
 	}
-	#wb-foot {
+	#wb-foot-in {
 		@extend %base-default-desktop-images-scaleX--1;
 	}
 }
