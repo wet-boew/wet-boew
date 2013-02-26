@@ -278,7 +278,7 @@
 				// * n col element
 				// * 0-1 tfoot row group
 
-				if (opts.complextableparsing || opts.noheaderhighlight || opts.norowheaderhighlight || opts.nocolheaderhighlight || opts.nohover || opts.vectorstripe) {
+				if (opts.complextableparsing || opts.noheaderhighlight || opts.norowheaderhighlight || opts.nocolheaderhighlight || opts.vectorstripe) {
 					isSimpleTable = false;
 				}
 
@@ -319,34 +319,64 @@
 
 
 				if (isSimpleTable) {
-					// Default Zebra
-					$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
-						return $(this).children('td').length > 0;
-					});
-
-					$trs.on('mouseleave focusout', function (e) {
-						e.stopPropagation();
-						$(this).removeClass('table-hover');
-					});
-					$trs.on('mouseenter focusin', function (e) {
-						e.stopPropagation();
-						$(this).addClass('table-hover');
-					});
-
-
-					if (!opts.columnhighlight) {
-						// note: even/odd's indices start at 0
-						$trs.filter(':odd').addClass('table-even');
-						$trs.filter(':even').addClass('table-odd');
-					} else {
-						$cols = elem.children('colgroup:last').children('col');
-
-						$($cols).filter(':odd').addClass('table-even');
-						$($cols).filter(':even').addClass('table-odd');
-
+					
+					
+					// Check if the first row is an header row, move it in a thead section
+					domTable = elem.get(0);
+					if (!domTable.tHead && domTable.rows[0].cells[domTable.rows[0].cells.length - 1].nodeName === "TH") {
+						
+						
+						$('tr:first()', elem).appendTo($(domTable.createTHead()));
+						
+						// $('tr:first()', elem).appendTo($('<thead />').prependTo(elem));
 					}
 					
-					return; // Simple Table Zebra Striping done
+					if (!(0 < pe.ie && pe.ie < 9)) {
+						
+						if (!opts.columnhighlight) {
+							elem.addClass('rowzebra');
+						} else {
+							elem.addClass('colzebra');
+						}
+						
+						if (!opts.nohover) {
+							elem.addClass('rowhover');
+						}
+						
+						return;  // Simple Table Zebra Striping done
+					} else {
+
+	
+						
+						// Default Zebra
+						$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
+							return $(this).children('td').length > 0;
+						});
+	
+						$trs.on('mouseleave focusout', function (e) {
+							e.stopPropagation();
+							$(this).removeClass('table-hover');
+						});
+						$trs.on('mouseenter focusin', function (e) {
+							e.stopPropagation();
+							$(this).addClass('table-hover');
+						});
+	
+	
+						if (!opts.columnhighlight) {
+							// note: even/odd's indices start at 0
+							$trs.filter(':odd').addClass('table-even');
+							$trs.filter(':even').addClass('table-odd');
+						} else {
+							$cols = elem.children('colgroup:last').children('col');
+	
+							$($cols).filter(':odd').addClass('table-even');
+							$($cols).filter(':even').addClass('table-odd');
+	
+						}
+						
+						return; // Simple Table Zebra Striping done
+					}
 				}
 
 
@@ -412,6 +442,7 @@
 					}
 				});
 
+				//if (0 < pe.ie && pe.ie < 9) {
 				if (!opts.nohover) {
 					$(lstDlItems).on('mouseleave focusout', function (e) {
 						e.stopPropagation();
@@ -422,20 +453,25 @@
 						$($(this).data().dlitem).addClass('list-hover');
 					});
 				}
+				//}
 			} else {
-				$lis = elem.children('li');
-				parity = (elem.parents('li').length + 1) % 2;
-				$lis.filter(':odd').addClass(parity === 0 ? 'list-odd' : 'list-even');
-				$lis.filter(':even').addClass(parity === 1 ? 'list-odd' : 'list-even');
-				if (!opts.nohover) {
-					$lis.on('mouseleave focusout', function (e) {
-						e.stopPropagation();
-						$(this).removeClass('list-hover');
-					});
-					$lis.on('mouseenter focusin', function (e) {
-						e.stopPropagation();
-						$(this).addClass('list-hover');
-					});
+				
+				if (0 < pe.ie && pe.ie < 9) {
+					
+					$lis = elem.children('li');
+					parity = (elem.parents('li').length + 1) % 2;
+					$lis.filter(':odd').addClass(parity === 0 ? 'list-odd' : 'list-even');
+					$lis.filter(':even').addClass(parity === 1 ? 'list-odd' : 'list-even');
+					if (!opts.nohover) {
+						$lis.on('mouseleave focusout', function (e) {
+							e.stopPropagation();
+							$(this).removeClass('list-hover');
+						});
+						$lis.on('mouseenter focusin', function (e) {
+							e.stopPropagation();
+							$(this).addClass('list-hover');
+						});
+					}
 				}
 			}
 		} // end of exec

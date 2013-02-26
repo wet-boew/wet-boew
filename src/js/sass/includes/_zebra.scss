@@ -95,7 +95,7 @@ dl {
 }
 
 .wet-boew-zebra {
-	li, dt, dd {
+	/*li, dt, dd {
 		&.list-odd {
 			background-color: #ddd;
 			border: 1px solid #ccc;
@@ -122,15 +122,10 @@ dl {
 				background-color: #f0fcff;
 			}
 		}
-	}
+	}*/
 	dt, dd {
 		padding: 10px;
-		&.list-odd {
-			border: none;
-		}
-		&.list-even {
-			border: none;
-		}
+		border: none;
 	}
 	dl, dd {
 		margin-left: 0;
@@ -251,4 +246,88 @@ dl {
 			background-color: #eee;
 		}
 	}
+	
+	li {
+		&.list-odd, &:nth-child(2n) {
+			background-color: #ddd;
+			border: 1px solid #ccc;
+		}
+		&.list-even, &:nth-child(2n + 1) {
+			background-color: #eee;
+			border: 1px solid #ccc;
+		}
+		&.list-hover, &:hover {
+			background-color: #f0fcff;
+		}
+	}
+	dt, dd {
+		&.list-odd {
+			background-color: #ddd;
+			border: 1px solid #ccc;
+		}
+		&.list-even {
+			background-color: #eee;
+			border: 1px solid #ccc;
+		}
+		&.list-hover, &:hover {
+			background-color: #f0fcff;
+		}
+	}
+	
+	
+	
+	&.colzebra {
+	  colgroup {
+	     col { 
+		    &.odd, &:nth-child(2n)  {
+			 background-color: #f0fcff;
+		   } 
+			
+		 }
+	  }
+    }
+	
+	&.rowzebra {
+		tbody {
+			tr { 
+				&.odd, &:nth-child(2n)  {
+					background-color: #f0fcff;
+				}
+			}
+		}
+	  
+	
+    }
+	
+	&.rowhover	tbody tr:hover {
+		background-color: #eee;
+	}
+	
+	&.rowhover tbody tr:hover th {
+		background-color: #CCCCCC;
+	}
+	
+	&.rowhover.table-accent tbody tr:hover th {
+		background-color: #2222AA;
+	}
+	
+	&.rowhover.table-medium tbody tr:hover th {
+		background-color: #222222
+	}
+
+	&.rowhover.table-dark tbody tr:hover th {
+		background-color: #666666;
+	}
+
+	/*
+	&.rowhover.table-simplify tbody tr:hover th {
+		background-color: transparent;
+	}
+	*/
+	
+	&.rowhover.table-simplify tbody tr th {
+		background-color: transparent;
+	}
+	
+
 }
