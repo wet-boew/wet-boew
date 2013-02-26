@@ -18,4 +18,20 @@
 			margin-top: -3px;
 		}
 	}
+	@extend %clf2-equalize-fix;
+}
+
+.ie8 {
+  @extend %clf2-equalize-fix;
+}
+
+%clf2-equalize-fix {
+  .equalize {
+    > {
+      #wb-main {
+        border-left: 0;
+        border-right: 0;
+      }
+    }
+  }
 }
