@@ -943,12 +943,10 @@
 					nested,
 					nested_i,
 					nested_len,
-					hnest,
 					hnestDOM,
 					hnestTag,
-					hnestLevel,
-					hnestLink,
 					hnestLinkDOM,
+					hnestLinkDOM2,
 					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
 					mainText = pe.dic.get('%main-page'),
@@ -957,12 +955,22 @@
 					theme2 = (theme_2 !== undefined ? theme_2 : theme_1),
 					theme1 = (toplevel ? theme_1 : theme_2),
 					listView = '<ul data-role="listview" data-theme="' + theme2 + '">',
-					sectionOpen = '<div data-theme="' + theme1 + '"' + ' class="wb-nested-menu',
-					sectionLink = '<a data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
-					sectionLinkOpen = '">' + headingOpen + sectionLink,
+					listItems,
+					listItem,
+					listItem2,
+					sectionOpenStart = '<div data-theme="',
+					sectionOpenEnd = '" class="wb-nested-menu',
+					sectionOpen1 = sectionOpenStart + theme1 + sectionOpenEnd,
+					sectionOpen2 = sectionOpenStart + theme2 + sectionOpenEnd,
+					sectionLinkStart = '<a data-role="button" data-theme="',
+					sectionLinkEnd = '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
+					sectionLinkOpen1 = '">' + headingOpen + sectionLinkStart + theme1 + sectionLinkEnd,
+					sectionLinkOpen2 = sectionLinkStart + theme2 + sectionLinkEnd,
 					sectionLinkClose = '</a>' + headingClose,
 					link = '<a data-role="button" data-icon="arrow-r" data-iconpos="right" data-corners="false" href="',
-					menu;
+					menu,
+					i,
+					len;
 				collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true);
 				collapsible = (collapsible !== undefined ? collapsible : false);
 				returnString = (returnString !== undefined ? returnString : false);
@@ -971,7 +979,7 @@
 				} else {
 					hasHeading = mDOM.getElementsByTagName(heading).length !== 0;
 					if (menubar && !hasHeading) { // Menu bar without a mega menu
-						menu = sectionOpen + '"><ul data-role="listview" data-theme="' + theme1 + '">';
+						menu = sectionOpen1 + '"><ul data-role="listview" data-theme="' + theme1 + '">';
 						mItemsDOM = mDOM.getElementsByTagName('a');
 						for (mItems_i = 0, mItems_len = mItemsDOM.length; mItems_i < mItems_len; mItems_i += 1) {
 							mItemDOM = mItemsDOM[mItems_i];
@@ -987,7 +995,7 @@
 
 							// If the menu item is a heading
 							if (mItemTag === heading) {
-								menu += sectionOpen;
+								menu += sectionOpen1;
 								hlink = mItem.children('a');
 								hlinkDOM = hlink[0];
 								navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
@@ -999,29 +1007,38 @@
 								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
 								} else {
-									menu += sectionLinkOpen + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
+									menu += sectionLinkOpen1 + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
 								}
 								next = mItem.next();
 								nextDOM = next[0];
 								if (nextDOM.tagName.toLowerCase() === 'ul') {
-									// Find nested lists
-									nested = next.find('li ul').get();
-									for (nested_i = 0, nested_len = nested.length; nested_i < nested_len; nested_i += 1) {
-										hnestDOM = nested[nested_i];
-										hnestDOM.setAttribute('data-role', 'listview');
-										hnestDOM.setAttribute('data-theme', theme2);
-										hnestLevel = hlevel + 1 + nested_i;
-										if (hnestLevel < 7) {
-											hnestTag = 'h' + hnestLevel;
-											hnest = $(hnestDOM);
-											hnestLink = hnest.prev('a');
-											hnestLinkDOM = hnestLink[0];
-											hnest.wrap(sectionOpen + '"></div>');
-											hnest.parent().prepend('<' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>');
-											hnestLinkDOM.parentNode.removeChild(hnestLinkDOM);
+									menu += listView;
+									nested = nextDOM.querySelector('li ul');
+									if (nested !== null && nested.length !== 0) { // Special handling for a nested list
+										hnestTag = 'h' + (hlevel + 1);
+										listItems = nextDOM.children;
+										for (i = 0, len = listItems.length; i !== len; i += 1) {
+											listItem = listItems[i];
+											hnestDOM = listItem.getElementsByTagName('li');
+											menu += '<li>';
+											if (hnestDOM.length !== 0) {
+												hnestLinkDOM = listItem.children[0];
+												menu += sectionOpen2 + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLinkOpen2 + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+												for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
+													listItem2 = hnestDOM[nested_i];
+													hnestLinkDOM2 = listItem2.querySelector('a');
+													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hnestLinkDOM2.href + '">' + hnestLinkDOM2.innerHTML + '</a></li>';
+												}
+												menu += '</ul></div>';
+											} else {
+												menu += listItem.innerHTML;
+											}
+											menu += '</li>';
 										}
+									} else {
+										menu += nextDOM.innerHTML;
 									}
-									menu += listView + nextDOM.innerHTML + '</ul>';
+									menu += '</ul>';
 								} else { // If the section contains sub-sections
 									if (menubar) {
 										menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
@@ -1048,7 +1065,7 @@
 						}
 						// Is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
 						if (toplevel || collapsible || !collapseTopOnly) {
-							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '">' + menu + '</div>';
+							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"' + (toplevel ? ' class="ui-corner-all"' : '') + '>' + menu + '</div>';
 						}
 					}
 				}
