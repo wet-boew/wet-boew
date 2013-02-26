@@ -69,19 +69,19 @@ a {
 }
 
 blockquote {
-	@extend %gcwu-default-mobile-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 form {
-	@extend %gcwu-default-mobile-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 #{headings(2,6)} {
-	@extend %gcwu-default-mobile-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 img {
-	@extend %gcwu-default-mobile-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 	max-width: 100%;
 	height: auto;
 	@extend %gcwu-default-mobile-display-block;
@@ -99,15 +99,15 @@ li {
 }
 
 p {
-	@extend %gcwu-default-mobile-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 pre {
-	@extend %gcwu-default-mobile-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 table {
-	@extend %gcwu-default-mobile-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 #gcwu-priorities {
