@@ -2,6 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import 'compass/css3/transform';
+
 %gcwu-default-print-position-absolute {
 	position: absolute;
 }
@@ -16,9 +18,6 @@
 	position: relative;
 	top: 9px;
 }
-%gcwu-default-print-padding-0 {
-	padding: 0;
-}
 %gcwu-default-print-margin-0 {
 	margin: 0;
 }
@@ -27,6 +26,9 @@
 }
 %gcwu-default-print-right-0 {
 	right: 0;
+}
+%gcwu-default-print-scaleX--1 {
+	@include scaleX(-1);
 }
 
 h1 {
@@ -84,11 +86,10 @@ h6 {
 	ol {
 		@extend %gcwu-default-print-width-100perc;
 		@extend %gcwu-default-print-margin-0;
-		@extend %gcwu-default-print-padding-0;
+		padding: 0;
 	}
 	li {
 		background: none;
-		@extend %gcwu-default-print-padding-0;
 		&:before {
 			content: " > ";
 		}
@@ -97,7 +98,7 @@ h6 {
 		}
 	}
 	a {
-		padding-left: 0;
+		padding: 0 5px 0 0;
 		background: none;
 	}
 }
@@ -150,8 +151,12 @@ h6 {
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	#gcwu-bc {
+		@extend %gcwu-default-print-scaleX--1;
+		li {
+			@extend %gcwu-default-print-scaleX--1;
+		}
 		a {
-			padding-right: 0;
+			padding: 0 0 0 5px;
 		}
 	}
 
