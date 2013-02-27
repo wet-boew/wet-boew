@@ -41,7 +41,6 @@
 				$wbcorein = $('#wb-core-in'),
 				imagesDir = pe.add.liblocation + 'images/slideout/';
 
-			$.metadata.setType('attr', 'data-wet-boew');
 			opts = {
 				imgShow: {
 					src: imagesDir + pe.dic.get('%show-image'),
@@ -56,7 +55,7 @@
 					alt: hideText + tocText
 				}
 			};
-			$.extend(opts, elm.metadata());
+			$.extend(opts, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 
 			// Don't do anything if CSS is disabled
 			if (!pe.cssenabled()) {
