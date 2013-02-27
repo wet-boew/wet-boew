@@ -8,6 +8,10 @@
 	float: none !important;
 }
 
+[class*=width-] {
+	width: auto !important;
+}
+
 form {
 	[class*=width-] {
 		width: 100% !important;
