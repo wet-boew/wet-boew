@@ -2,6 +2,34 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import 'compass/css3/transform';
+
+%gcwu-default-print-position-absolute {
+	position: absolute;
+}
+%gcwu-default-print-width-100perc {
+	width: 100%;
+}
+%gcwu-default-print-gcwu-title-styles {
+	font-size: 16pt;
+	text-decoration: none;
+	color: #000;
+	@extend %gcwu-default-print-width-100perc;
+	position: relative;
+	top: 9px;
+}
+%gcwu-default-print-margin-0 {
+	margin: 0;
+}
+%gcwu-default-print-left-0 {
+	left: 0;
+}
+%gcwu-default-print-right-0 {
+	right: 0;
+}
+%gcwu-default-print-scaleX--1 {
+	@include scaleX(-1);
+}
 
 h1 {
 	font-size: 140%;
@@ -29,29 +57,21 @@ h6 {
 }
 
 #gcwu-sig {
-	img {
-		position: absolute;
-		top: 10px;
-		left: 0;
-	}
+	@extend %gcwu-default-print-position-absolute;
+	top: 10px;
+	@extend %gcwu-default-print-left-0;
 }
 
 #gcwu-wmms {
-	img {
-		position: absolute;
-		top: 0;
-		right: 0;
-	}
+	@extend %gcwu-default-print-position-absolute;
+	top: 0;
+	@extend %gcwu-default-print-right-0;
 }
 
 #gcwu-title {
-	&, a {
-		font-size: 16pt;
-		text-decoration: none;
-		color: #000;
-		width: 100%;
-		position: relative;
-		top: 9px;
+	@extend %gcwu-default-print-gcwu-title-styles;
+	a {
+		@extend %gcwu-default-print-gcwu-title-styles;
 	}
 }
 
@@ -64,13 +84,12 @@ h6 {
 	min-height: inherit;
 	height: auto;
 	ol {
-		width: 100%;
-		margin: 0;
+		@extend %gcwu-default-print-width-100perc;
+		@extend %gcwu-default-print-margin-0;
 		padding: 0;
 	}
 	li {
 		background: none;
-		padding: 0;
 		&:before {
 			content: " > ";
 		}
@@ -79,7 +98,7 @@ h6 {
 		}
 	}
 	a {
-		padding-left: 0;
+		padding: 0 5px 0 0;
 		background: none;
 	}
 }
@@ -126,18 +145,32 @@ h6 {
 	overflow: hidden;
 	visibility: hidden;
 	width: 0;
-	margin: 0;
+	@extend %gcwu-default-print-margin-0;
 }
 
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	#gcwu-bc {
+		@extend %gcwu-default-print-scaleX--1;
+		li {
+			@extend %gcwu-default-print-scaleX--1;
+		}
 		a {
-			padding-right: 0;
+			padding: 0 0 0 5px;
 		}
 	}
 
 	#gcwu-date-mod {
 		float: left;
+	}
+
+	#gcwu-sig {
+		left: auto;
+		@extend %gcwu-default-print-right-0;
+	}
+
+	#gcwu-wmms {
+		right: auto;
+		@extend %gcwu-default-print-left-0;
 	}
 }

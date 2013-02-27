@@ -2,6 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import 'compass/css3/transform';
+
 %wet-default-print-width-100 {
 	width: 100%;
 }
@@ -14,12 +16,19 @@
 %wet-default-print-background-none {
 	background: none;
 }
+%wet-default-print-scaleX--1 {
+	@include scaleX(-1);
+}
+%wet-default-print-base-title-styles {
+	font-size: 16pt;
+	text-decoration: none;
+	color: #000;
+	@extend %wet-default-print-width-100;
+}
 #wet-title {
-	&, a {
-		font-size: 16pt;
-		text-decoration: none;
-		color: #000;
-		@extend %wet-default-print-width-100;
+	@extend %wet-default-print-base-title-styles;
+	a {
+		@extend %wet-default-print-base-title-styles;
 	}
 }
 
@@ -72,7 +81,7 @@ h6 {
 		}
 	}
 	a {
-		padding-left: 0;
+		padding: 0 5px 0 0;
 		@extend %wet-default-print-background-none;
 	}
 }
@@ -120,8 +129,12 @@ h6 {
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	#wet-bc {
+		@extend %wet-default-print-scaleX--1;
+		li {
+			@extend %wet-default-print-scaleX--1;
+		}
 		a {
-			padding-right: 0;
+			padding: 0 0 0 5px;
 		}
 	}
 	#wet-date-mod {
