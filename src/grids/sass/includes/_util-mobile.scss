@@ -2,103 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
-@import "compass/css3/inline-block";
-
-.float-right, .float-left {
-	float: none !important;
-}
-
-[class*=span-] {
-	margin-bottom: 10px;
-}
-
-%grids-util-mobile-margin-0-important {
-	margin: 0 !important;
-}
-
-[class*=width-] {
-	width: auto !important;
-}
-
-form {
-	[class*=width-] {
-		width: 100% !important;
-	}
-	[class*=margin-] {
-		@extend %grids-util-mobile-margin-0-important;
-	}
-	[class*=span-]{
-		@extend %grids-util-mobile-margin-0-important;
-	}
-	&.background-light > * {
-		outline: none;
-		margin-left: 0;
-		margin-right: 0;
-	}
-	.align-right {
-		text-align: left !important;
-	}
-}
-
-.form-inline {
-		& > * {
-			margin-right: 0;
-		}
-
-		label {
-			display: block;
-		}
-}
-
-.form-radio, .form-checkbox {
-	padding: 0;
-	&.form-label-inline {
-		display: block;
-		padding: 0;
-	}
-}
-
-.form-horizontal {
-	label {
-		text-align: left;
-	}
-}
-
-.form-input-append {
-	button {
-		position: absolute;
-	}
-}
-
-input[type="image"], input[type="checkbox"], input[type="radio"] {
-	+ label {
-		display: block;
-	}
-}
-
-ul {
-	&.button-group {
-		margin-left:0;
-		margin-right:0;
-	}
-}
-
-.border-top, .border-right, .border-bottom, .border-left, .border-all {
-	float: none !important;
-	display: block;
-	outline: none;
-	position: static !important;
-	background: none;
-}
-
-.module-billboard {
-	max-width: 280px;
-}
-
-.module-poster {
-	@include inline-block;
-}
-
 .date-month {
 	a {
 		color: #fff !important;
@@ -119,19 +22,5 @@ ul {
 		&.ui-focus {
 			@extend %util-mobile-bb-pre7-background-333-important-color-f9f9f9-important;
 		}
-	}
-}
-
-/* Right to left (RTL) CSS */
-[dir="rtl"] {
-	.form-inline {
-		& > * {
-			margin-right: auto;
-			margin-left: 0;
-		}
-	}
-
-	.form-horizontal label {
-		text-align: right;
 	}
 }
