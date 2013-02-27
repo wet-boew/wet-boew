@@ -173,7 +173,7 @@
 					// TODO: Find way of changing colour to white without JavaScript
 					node = wmms.getElementsByTagName('object')[0];
 					node.setAttribute('data', node.getAttribute('data').replace('.svg', '-r.svg'));
-					if (!pe.svg) {
+					if (!pe.svg || svgfix) {
 						// Correct the source of the Canada Wordmark fallback image
 						node = wmms.getElementsByTagName('img')[0];
 						node.setAttribute('src', node.getAttribute('src').replace('.png', '-w.png'));

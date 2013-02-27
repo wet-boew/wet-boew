@@ -170,7 +170,7 @@
 				// Build the header bar
 				header = '<div data-role="header"><div class="ui-title"></div><map id="gcwu-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 				// Correct the source of the Canada Wordmark fallback image
-				if (wmms !== null && !pe.svg && !svgfix) {
+				if (wmms !== null && (!pe.svg || svgfix)) {
 					node = wmms.getElementsByTagName('img')[0];
 					node.setAttribute('src', node.getAttribute('src').replace('.png', '-w.png'));
 				}
