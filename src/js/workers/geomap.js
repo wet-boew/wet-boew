@@ -661,7 +661,8 @@
 				accessibilize: 'Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.',
 				warning: 'WET-Geomap WARNING',
 				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.',
-				hiddenLayer: 'This layer is currently hidden!'
+				hiddenLayer: 'This layer is currently hidden!',
+				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12)."
 			};
 			
 			var french = {
@@ -677,7 +678,8 @@
 				accessibilize: 'Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.',
 				warning: 'BOEW-Geomap AVERTISSEMENT',
 				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> ou bien activer la légende par défaut de <em>OpenLayers</em> en ajoutant le paremètre <em>layerswitcher</em> à la classe <em>wet-boew-geomap</em> du div.',
-				hiddenLayer: 'Cette couche est présentement cachée!'
+				hiddenLayer: 'Cette couche est présentement cachée!',
+				baseMapMapOptionsLoadError: "BOEW-Geomap: TRANSLATE: WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12)."
 			};
 			
 			var message = (_pe.language == "en") ? english[mess] : french[mess];
@@ -696,15 +698,8 @@
 			
 			// Defaults
 			opts = {
-				mapOptions: {
-					controls: [],
-					maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
-					maxResolution: 'auto',
-					projection: 'EPSG:3978', 
-					restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
-					units: 'm',
-					displayProjection: new OpenLayers.Projection('EPSG:4269') /* only used by specific controls (i.e. MousePosition) */ ,
-					numZoomLevels: 12,
+				config: {
+					controls: [],					
 					autoUpdateSize: true,
 					fractionalZoom: true,
 					theme: null
@@ -736,7 +731,7 @@
 			}
 
 			if(opts.debug) {
-				console.log("WET-Geomap: running in DEBUG mode");
+				console.log(pe.fn.geomap.getLocalization('WET-Geomap: running in DEBUG mode'));
 				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
 			}	
 						
@@ -751,9 +746,7 @@
 					
 			// Initiate the map
 			elm.attr('id', 'geomap');
-			elm.height(elm.width() * 0.8);			
-			
-			map = new OpenLayers.Map('geomap', opts.mapOptions);			
+			elm.height(elm.width() * 0.8);
 			
 			// Read the layer file
 			$.ajax({
@@ -772,16 +765,66 @@
 				}
 			});
 			
+			var mapOptions = {};
+			if(wet_boew_geomap.basemap && wet_boew_geomap.basemap.mapOptions) {				
+				var mapOpts = wet_boew_geomap.basemap.mapOptions;
+				
+				try {
+					mapOptions['maxExtent'] =  new OpenLayers.Bounds(mapOpts.maxExtent.split(','));
+					mapOptions['maxResolution'] = mapOpts.maxResolution;
+					mapOptions['projection'] = mapOpts.projection; 
+					mapOptions['restrictedExtent'] = new OpenLayers.Bounds(mapOpts.restrictedExtent.split(','));
+					mapOptions['units'] = mapOpts.units;
+					mapOptions['displayProjection'] = new OpenLayers.Projection(mapOpts.displayProjection);
+					mapOptions['numZoomLevels'] = mapOpts.numZoomLevels;
+				} catch (err) {
+					if(opts.debug) {
+						console.log(pe.fn.geomap.getLocalization('baseMapMapOptionsLoadError'));
+					}
+				}
+				
+			} else if(!wet_boew_geomap.basemap) {
+				// use map options for the Canada Transportation Base Map (CBMT)
+				mapOptions = {
+					maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),			
+					maxResolution: 'auto',
+					projection: 'EPSG:3978', 
+					restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
+					units: 'm',
+					displayProjection: new OpenLayers.Projection('EPSG:4269') /* only used by specific controls (i.e. MousePosition) */ ,
+					numZoomLevels: 12
+				};
+			}
+			
+			map = new OpenLayers.Map('geomap', $.extend(opts.config, mapOptions));		
+			
 			// Check to see if a base map has been configured. If not add the
 			// default base map (the Canada Transportation Base Map (CBMT))
-			if(wet_boew_geomap.basemap){
-				var basemap = wet_boew_geomap.basemap;				
-				map.addLayer(new OpenLayers.Layer.WMS(
-					basemap.title, 
-					basemap.url, 
-					{ layers: basemap.layers, version: basemap.version, format: basemap.format },
-					basemap.options 
-				));					
+			if(wet_boew_geomap.basemap) {
+				var basemap = wet_boew_geomap.basemap;
+				
+				if(!basemap.options) basemap.options = {}; //projection: 'EPSG:4326' };
+				
+				basemap.options['isBaseLayer'] = true;
+				basemap.options['displayInLayerSwitcher'] = false;
+				
+				if(basemap.type=='wms') {
+					map.addLayer(
+						new OpenLayers.Layer.WMS(
+							basemap.title, 
+							basemap.url, 
+							{ layers: basemap.layers, version: basemap.version, format: basemap.format },
+							basemap.options
+						)
+					);
+				} else if (basemap.type=='esri') {						
+					map.addLayer(
+						new OpenLayers.Layer.ArcGIS93Rest(
+							basemap.title, 
+							basemap.url
+						)
+					);									
+				}
 			} else {
 				if(opts.debug) {
 					console.log(pe.fn.geomap.getLocalization('basemapDefault'));
@@ -823,16 +866,7 @@
 					
 					var $table = pe.fn.geomap.createTable(index, layer.title, layer.caption);
 					
-					if(layer.type=='wms') {
-						map.addLayer(
-							new OpenLayers.Layer.WMS(
-								layer.title, 
-								layer.url, 
-								{ layers: layer.layers, transparent: 'true', format: layer.format },
-								{ visibility: layer.visible }
-							)
-						);
-					} else if (layer.type=='kml') {	
+					if (layer.type=='kml') {	
 						var olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {							
 								strategies: [new OpenLayers.Strategy.Fixed()],
@@ -1090,27 +1124,27 @@
 			
 
 			/*
-			 * Add vector features (consider removing - not used) 
+			 * Add vector features (consider removing - DEPRECATED) 
 			 * 
 			 * TODO: turn this into a public function and add associated markup
 			 */ 
 			
-			var vectorLayer = new OpenLayers.Layer.Vector('Features');			
-			
-			$.each(opts.features, function(index, feature) {
-								
-				var wktParser = new OpenLayers.Format.WKT({						
-					'internalProjection': projMap, 
-					'externalProjection': projLatLon
-				});
-				
-				vectorLayer.addFeatures([										 
-					wktParser.read(feature)															 
-				]);						
-				
-			});			
-			
-			map.addLayer(vectorLayer);		
+//			var vectorLayer = new OpenLayers.Layer.Vector('Features');			
+//			
+//			$.each(opts.features, function(index, feature) {
+//								
+//				var wktParser = new OpenLayers.Format.WKT({						
+//					'internalProjection': projMap, 
+//					'externalProjection': projLatLon
+//				});
+//				
+//				vectorLayer.addFeatures([										 
+//					wktParser.read(feature)															 
+//				]);						
+//				
+//			});			
+//			
+//			map.addLayer(vectorLayer);		
 			
 			/*
 			 * Add tabluar data

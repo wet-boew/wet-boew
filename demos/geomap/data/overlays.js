@@ -1,23 +1,34 @@
  var wet_boew_geomap = {
 	// OPTIONAL: note that geomap will provide a default basemap if not specified here.
-	/* basemap : {
+	/*
+	basemap : {
 		title: 'CBMT',
 		type: 'wms',
 		url: 'http://geogratis.gc.ca/maps/CBMT',
 		layers: 'CBMT',
 		format: 'image/png',
 		version: '1.1.1',
-		options: { singleTile: false, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true }
-	*/
-	overlays : [
-		{
-		    title: 'WMS Demo',
-		    type: 'wms',
-		    url: 'http://www2.dmsolutions.ca/cgi-bin/mswms_gmap',
-		    layers: 'bathymetry,land_fn,park,drain_fn,drainage,prov_bound,fedlimit,rail,road,popplace',		   
-		    format: 'image/png',
-		    visible: false
-		},
+		options: { singleTile: false, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true },
+		mapOptions: {
+			maxExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',			
+			maxResolution: 'auto',
+			projection: 'EPSG:3978', 
+			restrictedExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
+			units: 'm',
+			displayProjection: 'EPSG:4269',
+			numZoomLevels: 12
+		}
+	},
+	*/	
+	/*
+	basemap : {
+		title: 'WMS Demo',
+	    type: 'wms',	   
+	    url: 'http://vmap0.tiles.osgeo.org/wms/vmap0',
+	    layers: 'basic'
+	},
+	*/	
+	overlays : [		
 		{
 		    title: 'KML Demo',
 		    caption: 'This is a sample KML file loaded locally by Geomap.',
