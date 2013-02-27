@@ -23,7 +23,8 @@ on top, and so on).
 
 Note that the basemap is set globally in settings.js.
  */
-var	overlays = [
+var wet_boew_geomap = {
+overlays : [
 	{
 	   title: 'WMS Demo EN',
 	   type: 'wms',
@@ -33,21 +34,22 @@ var	overlays = [
 	   visible: false
 	},
 	{
-	   title: 'KML Demo',
+	   title: 'KML Demo EN',
 	   type: 'kml',
 	   url: 'data/sample.kml',		   
 	   visible: false
 	},
 	{
-	   title: 'ATOM Demo',
+	   title: 'ATOM Demo EN',
 	   type: 'atom',
 	   url: 'data/sample.atom',		   
 	   visible: true
 	},
 	{
-	   title: 'GeoRSS Demo',
+	   title: 'GeoRSS Demo EN',
 	   type: 'georss',
 	   url: 'data/sample.rss',		   
 	   visible: true
 	}				
-];
+]
+};

@@ -100,10 +100,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <div class="span-8">
     <div class="span-6 row-start">
-        <div 
+        <div
             class="wet-boew-geomap span-6 border-all position scaleline debug" 
             data-wet-boew="{ 
-                layersFile: 'data/overlays.js', 
+                layersFile: { en: 'data/config-en.js', fr: 'data/config-fr.js'}, 
                 tables: [ { id: 'cities', zoom: true, style: { init: {'strokeColor': '#0083f5', 'fillColor': '#57a8f0', 'pointRadius': '6', 'fillOpacity': 0.80, 'strokeWidth': 1.0 } } }, { id: 'bbox' } ] 
             }">
         </div>
@@ -290,12 +290,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </footer>
 </div></div></div>
 
-<!-- ScriptsStart -->
+<!-- ScriptsStart 
 <script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script> 
 
-<!-- Debugging 
+<!-- Debugging -->
 <script src="../../src/theme-gcwu-fegc/js/theme.js"></script>
 <script src="../../src/js/settings.js"></script>
 <script src="../../src/js/pe-ap.js"></script>

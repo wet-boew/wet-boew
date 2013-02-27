@@ -28,9 +28,7 @@
 		    	name: 'Product Title',
 		    	description: 'Description'
 		    },
-		    style: 'null',
-		    strokeColor: '#FF00FF',
-		    fillColor: '#FF00FF'
+		    style: 'null'
 		},
 		{
 		    title: 'ATOM Demo',
@@ -54,8 +52,6 @@
 				link: 'More Info'
 			},
 			visible: false,
-			strokeColor: '#000000',
-			fillColor: '#999999'
 		},
 		{
 			title: 'JSON (GeoGratis)',
@@ -73,8 +69,6 @@
 				summary: 'Abstract',				
 				author: 'Author'
 			},
-			strokeColor: '#336600',
-			fillColor: '#00CC00'
 		},
 		{
 			title: 'GeoJSON (CartoDB)',

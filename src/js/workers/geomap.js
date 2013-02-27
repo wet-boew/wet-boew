@@ -559,7 +559,7 @@
 				$(cols[0]).empty().append($link);
 				
 				// Hover events
-				$link.hover(
+				$row.hover(
 					function(){
 						$(this).closest('tr').attr('class', 'background-highlight');
 						context.selectControl.unselectAll();
@@ -574,13 +574,13 @@
 	
 				// Keybord events
 				$link.focus(function(){
-						$(this).closest('tr').attr('class', 'background-highlight');
+						$row.attr('class', 'background-highlight');
 						context.selectControl.unselectAll();
 						context.selectControl.select(context.feature);
 					}	
 				);
 				$link.blur(function(){
-						$(this).closest('tr').attr('class', 'background-white');
+						$row.attr('class', 'background-white');
 						context.selectControl.unselectAll();
 						context.selectControl.select(context.feature);
 					}	
@@ -625,8 +625,10 @@
 			var $zoom = $('<td>');
 			cols.push($zoom);
 			
-			var $img = $('<img>', {				
+			var $img = $('<input>', {
+					'type': 'image',				
 					'src': '../../src/js/images/geomap/zoom_feature.png',
+					'alt': pe.fn.geomap.getLocalization('zoomFeatButton'),
 					'height': '15',
 					'width': '15'				
 				});
@@ -639,6 +641,43 @@
 				context.selectControl.unselectAll();
 				context.selectControl.select(context.feature);
 			});
+			
+			// Keybord events
+			$img.focus(function(){
+					$(this).closest('tr').attr('class', 'background-highlight');
+					context.selectControl.unselectAll();
+					context.selectControl.select(context.feature);
+				}	
+			);
+			$img.blur(function(){
+					$(this).closest('tr').attr('class', 'background-white');
+					context.selectControl.unselectAll();
+					context.selectControl.select(context.feature);
+				}	
+			);
+		},
+		
+		/*
+		 *  Add default basemap if no basemap is provided
+		 */
+		setDefaultBasemap: function(opts){
+			
+			if(opts.debug) {
+				console.log(pe.fn.geomap.getLocalization('basemapDefault'));
+			}
+					
+			// Add the Canada Transportation Base Map (CBMT)			
+			map.addLayer(new OpenLayers.Layer.WMS(
+				"CBMT", 
+				"http://geogratis.gc.ca/maps/CBMT", 
+				{ layers: 'CBMT', version: '1.1.1', format: 'image/png' },
+				{ isBaseLayer: true, 
+					singleTile: true, 
+					ratio: 1.0, 
+					displayInLayerSwitcher: false,
+					projection: 'EPSG:3978' 
+				} 
+			));	
 		},
 		
 		/*
@@ -661,7 +700,8 @@
 				accessibilize: 'Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.',
 				warning: 'WET-Geomap WARNING',
 				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.',
-				hiddenLayer: 'This layer is currently hidden!'
+				hiddenLayer: 'This layer is currently hidden!',
+				overlayNotSpecify: 'WET-Geomap: overlays file not specified'
 			};
 			
 			var french = {
@@ -677,7 +717,8 @@
 				accessibilize: 'Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.',
 				warning: 'BOEW-Geomap AVERTISSEMENT',
 				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> ou bien activer la légende par défaut de <em>OpenLayers</em> en ajoutant le paremètre <em>layerswitcher</em> à la classe <em>wet-boew-geomap</em> du div.',
-				hiddenLayer: 'Cette couche est présentement cachée!'
+				hiddenLayer: 'Cette couche est présentement cachée!',
+				overlayNotSpecify: 'BOEW-Geomap: fichier des couches de superpositions non spécifié'
 			};
 			
 			var message = (_pe.language == "en") ? english[mess] : french[mess];
@@ -756,53 +797,45 @@
 			map = new OpenLayers.Map('geomap', opts.mapOptions);			
 			
 			// Read the layer file
-			$.ajax({
-				url: opts.layersFile,
-				dataType: "script",
-				async: false,
-				success: function (data) {
-					if(opts.debug) {
-						console.log(pe.fn.geomap.getLocalization('overlayLoad'));
+			if (typeof(opts.layersFile) != "undefined")
+			{
+				var urlConfig = (_pe.language == "en") ? opts.layersFile.en : opts.layersFile.fr;
+				$.ajax({
+					url: urlConfig,
+					dataType: "script",
+					async: false,
+					success: function (data) {
+						if(opts.debug) {
+							console.log(pe.fn.geomap.getLocalization('overlayLoad'));
+						}
+					},
+					error: function (data){
+						if(opts.debug) {
+							console.log(pe.fn.geomap.getLocalization('overlayNotLoad'));
+						}
 					}
-				},
-				error: function (data){
-					if(opts.debug) {
-						console.log(pe.fn.geomap.getLocalization('overlayNotLoad'));
-					}
-				}
-			});
+				});
+			} else {
+				if(opts.debug) {
+							console.log(pe.fn.geomap.getLocalization('overlayNotSpecify'));
+						}	
+			}
 			
 			// Check to see if a base map has been configured. If not add the
 			// default base map (the Canada Transportation Base Map (CBMT))
-			if(wet_boew_geomap.basemap){
-				var basemap = wet_boew_geomap.basemap;				
-				map.addLayer(new OpenLayers.Layer.WMS(
-					basemap.title, 
-					basemap.url, 
-					{ layers: basemap.layers, version: basemap.version, format: basemap.format },
-					basemap.options 
-				));					
-			} else {
-				if(opts.debug) {
-					console.log(pe.fn.geomap.getLocalization('basemapDefault'));
-				}
+			if (typeof(wet_boew_geomap) != "undefined")
+			{
+				if(wet_boew_geomap.basemap){
+					var basemap = wet_boew_geomap.basemap;				
+					map.addLayer(new OpenLayers.Layer.WMS(
+						basemap.title, 
+						basemap.url, 
+						{ layers: basemap.layers, version: basemap.version, format: basemap.format },
+						basemap.options 
+					));					
+				} else { pe.fn.geomap.setDefaultBasemap(opts); }
+			} else { pe.fn.geomap.setDefaultBasemap(opts); }
 				
-				// Add the Canada Transportation Base Map (CBMT)			
-				map.addLayer(new OpenLayers.Layer.WMS(
-					"CBMT", 
-					"http://geogratis.gc.ca/maps/CBMT", 
-					{ layers: 'CBMT', version: '1.1.1', format: 'image/png' },
-					{ isBaseLayer: true, 
-						singleTile: true, 
-						ratio: 1.0, 
-						displayInLayerSwitcher: false,
-						projection: 'EPSG:3978' 
-					} 
-				));			
-			}
-			
-			
-			
 			// Create projection objects
 			var projLatLon = new OpenLayers.Projection('EPSG:4326');
 			var projMap = map.getProjectionObject();						
@@ -817,7 +850,8 @@
 			 * Load overlays 
 			 * TODO: turn this into a public function
 			 */			
-						
+			if (typeof(wet_boew_geomap) != "undefined")
+			{			
 			if(wet_boew_geomap.overlays){				
 				$.each(wet_boew_geomap.overlays, function(index, layer) {	
 					
@@ -1086,7 +1120,7 @@
 					}					
 				});
 			}
-			
+			}
 			
 
 			/*
@@ -1160,11 +1194,16 @@
 					// add zoom column
 					if ( zoomColumn == true) {
 						
-						var $img = $('<img>', {				
-						'src': '../../src/js/images/geomap/zoom_feature.png',
-						'height': '15',
-						'width': '15'				
+						var $img = $('<input>', {
+							'type': 'image',				
+							'src': '../../src/js/images/geomap/zoom_feature.png',
+							'alt': pe.fn.geomap.getLocalization('zoomFeatButton'),
+							'height': '15',
+							'width': '15'				
 						});
+						
+						var temp = $(this).after('<td></td>');
+						$tr.find("td:last").append($img);
 						
 						$img.click(function (){
 							map.zoomToExtent(vectorFeatures.geometry.bounds);
@@ -1173,9 +1212,17 @@
 							selectControl.select(vectorFeatures);
 						});
 						
-						var temp = $(this).after('<td></td>');
-						$tr.find("td:last").append($img);
-						
+						// Keybord events
+						$img.focus(function(){
+									$tr.attr('class', 'background-highlight');
+									selectControl.select(vectorFeatures);
+								}	
+							);
+						$img.blur(function(){
+									$tr.attr('class', 'background-white');
+									selectControl.unselect(vectorFeatures);
+								}	
+							);
 					}
 
 					$tr.attr('id', vectorFeatures.id.replace(/\W/g, "_"));
@@ -1185,7 +1232,7 @@
 					if($select.length) {
 						var $link = $select.find('a');
 						if($link.length) {
-							$link.hover(function(){
+							$tr.hover(function(){
 									$tr.attr('class', 'background-highlight');
 									selectControl.select(vectorFeatures);
 								}, 
@@ -1244,6 +1291,24 @@
 			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
 			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
+			var c=map.getControlsByClass('OpenLayers.Control.KeyboardDefaults');
+					c[0].deactivate();
+					
+			// enable the keyboard navigation when map div has focus. Disable when blur
+			$('.wet-boew-geomap').attr('tabindex', '0');
+			$('.wet-boew-geomap').css("border", "solid 2px white");
+			$('.wet-boew-geomap').focus(function(){
+					var c=map.getControlsByClass('OpenLayers.Control.KeyboardDefaults');
+					c[0].activate();
+					$(this).css("border", "solid 2px blue");
+				}	
+			);
+			$('.wet-boew-geomap').blur(function(){
+					var c=map.getControlsByClass('OpenLayers.Control.KeyboardDefaults');
+					c[0].deactivate();
+					$(this).css("border", "solid 2px white");
+				}	
+			);
 			
 			// add accessibility enhancements
 			this.accessibilize(opts.useLayerSwitcher);					

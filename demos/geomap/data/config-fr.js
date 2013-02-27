@@ -21,7 +21,8 @@ Overlays will be added in the order that they are provided
 (i.e. the first overlay will be added first, then the next 
 on top, and so on) using the painters model.
  */
-var	overlays = [
+var wet_boew_geomap = {
+overlays : [
 	{
 	   title: 'WMS Demo FR',
 	   type: 'wms',
@@ -31,21 +32,22 @@ var	overlays = [
 	   visible: false
 	},
 	{
-	   title: 'KML Demo',
+	   title: 'KML Demo FR',
 	   type: 'kml',
 	   url: 'data/sample.kml',		   
 	   visible: false
 	},
 	{
-	   title: 'ATOM Demo',
+	   title: 'ATOM Demo FR',
 	   type: 'atom',
 	   url: 'data/sample.atom',		   
 	   visible: true
 	},
 	{
-	   title: 'GeoRSS Demo',
+	   title: 'GeoRSS Demo FR',
 	   type: 'georss',
 	   url: 'data/sample.rss',		   
 	   visible: true
 	}				
-];
+]
+};
