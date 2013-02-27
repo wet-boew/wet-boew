@@ -2,7 +2,7 @@
 Language code,%lang-code,en,fr,ar,bg,zh,zh-Hans,cs,nl,et,de,el,hu,is,id,it,ja,ko,lv,lt,pl,pt,pt-BR,ru,sk,es,th,tr,uk,vi
 Language name (English),%lang-eng,English,French,Arabic,Bulgarian,Chinese,Chinese (Simplified),Czech,Dutch,Estonian,German,Greek,Hungarian,Icelandic,Indonesian,Italian,Japanese,Korean,Latvian,Lithuanian,Polish,Portuguese,Portuguese (Brazilian),Russian,Slovak,Spanish,Thai,Turkish,Ukrainian,Vietnamese
 Language name (French),%lang-fra,anglais,français,arabe,bulgare,chinois,chinois (simplifié),tchèque,néerlandais,estonien,allemand,grec,hongrois,islandais,indonésien,italien,japonais,coréen,letton,lituanien,polonais,portugais,portugais (brésilien),russe,slovaque,espagnol,thaï,turc,ukrainien,vietnamien
-Language name (native),%lang-native,English,Français,العَرَبِيَّةُ,български език,繁體字,繁体字,čeština,Nederlands,eesti keel,Deutsch,ελληνικά,magyar,íslenska,Bahasa Indonesia,Italiano,日本語,한국어,latviešu valoda,lietuvių kalba,język polski,português,português do Brasil,русский язык,slovenčina,español,ภาษาไทย,Türkçe,Українська мова,tiếng Việt
+Language name (native),%lang-native,English,Français,العربية,български език,繁體字,繁体字,čeština,Nederlands,eesti keel,Deutsch,ελληνικά,magyar,íslenska,Bahasa Indonesia,Italiano,日本語,한국어,latviešu valoda,lietuvių kalba,język polski,português,português do Brasil,русский язык,slovenčina,español,ภาษาไทย,Türkçe,Українська мова,tiếng Việt
 General (i18n),%all,All,Tous,,,全部,全部,,Allen,Kõik,,,Mind,,Semua,,すべて,,Visi,Visi,Wszystko,Todos,,Все,,Todo,,Tüm,Все,
 ,%home,Home,Accueil,,,首頁,首页,,Home,Kodu,,,Honlap,,Halaman Awal,,ホーム,,Sākums,Pradžia,Strona główna,Página inicial,,На главную,,Página de inicio,,Ev,Додому ,
 ,%main-page,Main page,Page principale,,,,,,,,,,,,,,,,,,,,,,,Página principal,,,,
