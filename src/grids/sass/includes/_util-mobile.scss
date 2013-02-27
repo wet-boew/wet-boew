@@ -15,6 +15,11 @@
 %grids-util-mobile-margin-0-important {
 	margin: 0 !important;
 }
+
+[class*=width-] {
+	width: auto !important;
+}
+
 form {
 	[class*=width-] {
 		width: 100% !important;
