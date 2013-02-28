@@ -83,7 +83,9 @@ a.wb-linkdesc {
 [dir="rtl"] {
 	#wb-skip {
 		float: right;
-
+		position: absolute;
+		width: 100%;
+		z-index: 1;
 		li {
 			left: auto;
 			right: 0;

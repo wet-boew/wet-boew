@@ -26,13 +26,10 @@
 		}
 	}
 
-	#wb-head {
+	[id|="wb-body"] {
 		@extend %base-default-desktop-images-scaleX--1;
 	}
-	#wb-core {
-		@extend %base-default-desktop-images-scaleX--1;
-	}
-	#wb-foot {
+	#wb-skip {
 		@extend %base-default-desktop-images-scaleX--1;
 	}
 	#base-fullhd {
@@ -46,10 +43,10 @@
 			@extend %base-default-desktop-images-scaleX--1;
 		}
 	}
-	#wb-core-in {
+	#wb-core {
 		@extend %base-default-desktop-images-scaleX--1;
 	}
-	#wb-foot-in {
+	#wb-foot {
 		@extend %base-default-desktop-images-scaleX--1;
 	}
 }
