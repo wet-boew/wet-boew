@@ -401,8 +401,7 @@
 			
 			// set random color
 			var strokeColor = pe.fn.geomap.randomColor();
-			var fillColor = strokeColor;
-			
+			var fillColor = strokeColor;			
 
 			var defaultStyle = {				
 				'strokeColor': strokeColor, 
@@ -418,8 +417,7 @@
 				'fillOpacity': 0.4,
 				'pointRadius': 5,
 				'strokeWidth': 2.0
-			};
-			
+			};			
 
 			// if style is supplied, create it. If not, create the default one.
 			if (typeof(elm.style) != "undefined") {
@@ -1354,7 +1352,7 @@
 			$("#" + map.div.id).before((_pe.language == "en") ? '<p><strong>' + pe.fn.geomap.getLocalization('accessibilize') + '</p>' : '<p><strong>' + pe.fn.geomap.getLocalization('accessibilize') + '</p>');
 			
 			// add a listener on the window to update map when resized
-			window.onresize = function() {				
+			window.onresize = function() {			
 				$("#" + map.div.id).height($("#" + map.div.id).width() * 0.8);
 				map.updateSize();
 				map.zoomToMaxExtent();
