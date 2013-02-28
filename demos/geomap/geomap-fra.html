@@ -100,11 +100,11 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <div class="span-8">
     <div class="span-6 row-start">
-        <div 
+        <div
             class="wet-boew-geomap span-6 border-all position scaleline debug" 
             data-wet-boew="{ 
-                layersFile: 'data/overlays.js', 
-                tables: [ { id: 'cities', style: { init: {'strokeColor': '#0083f5', 'fillColor': '#57a8f0', 'pointRadius': '6', 'fillOpacity': 0.80, 'strokeWidth': 1.0 } } }, { id: 'bbox' } ] 
+                layersFile: 'data/config-fr.js', 
+                tables: [ { id: 'cities', zoom: true, style: { init: {'strokeColor': '#0083f5', 'fillColor': '#57a8f0', 'pointRadius': '6', 'fillOpacity': 0.80, 'strokeWidth': 1.0 } } }, { id: 'bbox' } ] 
             }">
         </div>
     </div>
@@ -117,17 +117,17 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     <div class="clear"></div>
 	<div id="wet-boew-geomap-layers" class="wet-boew-tabbedinterface">
 		<ul class="tabs">
-			<li class="default"><a href="#tabs1_1">Maritime Cities</a></li>
+			<li class="default"><a href="#tabs1_1">Cities</a></li>
 		</ul>
 		<div class="tabs-panel">
 			<div id="tabs1_1">
-				<table id="cities" aria-label="Cities" class="span-8">
-                    <caption>This is a sample layer created from a table in the current document. A column with cells containing geometry encoded in WKT and marked up with a class named <em>geometry</em> is required. To link the layer features in the table to the map a column containing cells marked up with a class named <em>select</em> is required.</caption>
+                <table id="cities" aria-label="Villes" class="span-8">
+                    <caption>Ceci est un exemple créé à partir d'une table dans le présent document. Une colonne avec des cellules contenant une géométrie codée en WKT et contenant une classe nommée <em>geometry</em> est obligatoire. Pour relier les éléments de la table à la carte une colonne avec des cellules contenant une classe nommée <em>select</em> est obligatoire.</ Caption>
                     <thead>
                         <tr>
-                            <th>Rank</th>
-                            <th>Census subdivision</th>                            
-                            <th>Population 2011</th>
+                            <th>Rang</th>
+                            <th>Subdivision de recensement</th>                            
+                            <th>Population de 2011</th>
                             <th class="wb-invisible">Geometry</th>
                         </tr>
                     </thead>
@@ -192,33 +192,34 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
                             <td>519,949</td>
                             <td class="geometry wb-invisible">POINT (-79.86788, 43.25717)</td>
                         </tr>
-                    </tbody>
+                    </tbody
+                    <tfoot></tfoot>
                 </table>
 			</div>			
 		</div>
     </div>
     <div class="clear"></div>
     <div>
-        <h2>Search Results</h2>
-        <p>Demonstration of inline table outside of tabbed interface.</p>
+        <h2>Résultat de la recherche</h2>
+        <p>Démonstration d'une table dans le présent document et en dehors de l'interface à onglets.</p>
         <table id="bbox" aria-label="Search Results">
-            <caption class="wb-invisible">Table of search results containing bounding box geometries.</caption>
+            <caption class="wb-invisible">Tableau des résultats de recherche contenant la géométries des étendues de éléments.</caption>
             <thead>
                 <tr>                        
                     <th></th>
-                    <th>Title</th>
-                    <th>Geometry</th>
+                    <th>Titre</th>
+                    <th>Géometrie</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td class="select">Report on 2011 field activities and collection of ground thermal and active layer data in the Mackenzie Corridor completed under Northwest Territories science licence #14918</td>
+                    <td class="select"><a href="#">Rapport de 2011 sur les activités terrain et la collecte de données terrain dont les couches thermiques et active dans le corridor du Mackenzie, Territoires du Nord, n ° de licence 14918</a></td>
                     <td class="geometry bbox">-136, 61, -118, 70</td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td class="select">Dinoflagellate cysts from upper cretaceous-lower tertiary sections, Bylot and Devon Islands, Arctic Archipelago</td>
+                    <td class="select"><a href="#">Dinokystes du Crétacé supérieur-inférieur tertiaire, îles de Bylot et Devon, archipel arctique</a></td>
                     <td class="geometry bbox">-92.5, 72.75, -79, 75.5</td>                                           
                 </tr>    
             </tbody>
@@ -226,10 +227,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     </div> 
     <div class="clear"></div>
 </div>
-<div class="clear"></div>
 
+<div class="clear"></div>
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date de modification&#160;:</dt><dd><span><time>2012-10-10</time></span></dd>
+<dt>Date de modification:</dt><dd><span><time>2012-10-10</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
