@@ -544,7 +544,11 @@
 				}
 			}			
 
-			if (zoomTo == true) { pe.fn.geomap.addZoomTo(cols, context); }
+			if (zoomTo == true) {
+				var $zoom = $('<td>');
+				cols.push($zoom);
+				$(cols[cols.length -1]).empty().append(pe.fn.geomap.addZoomTo($row, context.feature, context.selectControl)); 
+				}
 				
 			if(context.type != 'head') {
 
@@ -557,7 +561,7 @@
 				$(cols[0]).empty().append($link);
 				
 				// Hover events
-				$link.hover(
+				$row.hover(
 					function(){
 						$(this).closest('tr').attr('class', 'background-highlight');
 						context.selectControl.unselectAll();
@@ -572,13 +576,13 @@
 	
 				// Keybord events
 				$link.focus(function(){
-						$(this).closest('tr').attr('class', 'background-highlight');
+						$row.attr('class', 'background-highlight');
 						context.selectControl.unselectAll();
 						context.selectControl.select(context.feature);
 					}	
 				);
 				$link.blur(function(){
-						$(this).closest('tr').attr('class', 'background-white');
+						$row.attr('class', 'background-white');
 						context.selectControl.unselectAll();
 						context.selectControl.select(context.feature);
 					}	
@@ -618,25 +622,41 @@
 		 *	Add the zoom to column
 		 * 
 		 */
-		addZoomTo: function(cols, context){
+		addZoomTo: function(row, feature, selectCtrl){
 			
-			var $zoom = $('<td>');
-			cols.push($zoom);
-			
-			var $img = $('<img>', {				
-					'src': '../../src/js/images/geomap/zoom_feature.png',
-					'height': '15',
-					'width': '15'				
-				});
-				
-			$(cols[cols.length -1]).empty().append($img);
-				
-			$img.click(function (){
-				map.zoomToExtent(context.feature.geometry.bounds);
-				$(this).closest('tr').attr('class', 'background-highlight');
-				context.selectControl.unselectAll();
-				context.selectControl.select(context.feature);
+			var $ref = $('<a>', {
+				'click':function(e) { 
+					e.preventDefault();			
+					map.zoomToExtent(feature.geometry.bounds);	
+					row.closest('tr').attr('class', 'background-highlight');
+					selectCtrl.unselectAll();
+					selectCtrl.select(vectorFeatures);	
+			 },
+				'href': '#',
+				'class': 'button',
 			});
+					
+			// Add icon	
+			$('<span>', {
+				'class': 'wb-icon-target',	
+			}).appendTo($ref);
+
+			// Add text
+			$ref.append(document.createTextNode(pe.fn.geomap.getLocalization('zoomFeature')));
+			
+			// Keybord events
+			$ref.focus(function(){
+				row.attr('class', 'background-highlight');
+				selectCtrl.unselectAll();
+				selectCtrl.select(feature);
+			});
+			$ref.blur(function(){
+				row.attr('class', 'background-white');
+				selectCtrl.unselectAll();
+				selectCtrl.unselect(feature);
+			});
+			
+			return $ref;
 		},
 		
 		/*
@@ -660,7 +680,9 @@
 				warning: 'WET-Geomap WARNING',
 				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.',
 				hiddenLayer: 'This layer is currently hidden!',
-				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12)."
+				overlayNotSpecify: 'WET-Geomap: overlays file not specified',
+				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12).",
+				zoomFeature: 'Zoom to feature'
 			};
 			
 			var french = {
@@ -677,7 +699,9 @@
 				warning: 'BOEW-Geomap AVERTISSEMENT',
 				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> ou bien activer la légende par défaut de <em>OpenLayers</em> en ajoutant le paremètre <em>layerswitcher</em> à la classe <em>wet-boew-geomap</em> du div.',
 				hiddenLayer: 'Cette couche est présentement cachée!',
-				baseMapMapOptionsLoadError: "BOEW-Geomap: TRANSLATE: WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12)."
+				overlayNotSpecify: 'BOEW-Geomap: fichier des couches de superpositions non spécifié',
+				baseMapMapOptionsLoadError: 'BOEW-Geomap: une erreur est survenue lors du chargement des options de configuration de votre carte de base. S\'il vous plaît, vérifiez que vous avez l\'ensemble des options suivantes: maxExtent (ex: \'-3000000,0, -800000,0, 4000000,0, 3900000,0\'), maxResolution (ex: \'auto\'), projection (ex: \'EPSG: 3978\'), restrictedExtent (ex: \'-3000000,0 , -800000,0, 4000000,0, 3900000,0\'), units (ex: \'m\'), displayProjection (ex: \'EPSG: 4269\'), numZoomLevels (ex: 12).',	
+				zoomFeature: 'Zoom à l\'élément'
 			};
 			
 			var message = (_pe.language == "en") ? english[mess] : french[mess];
@@ -747,21 +771,27 @@
 			elm.height(elm.width() * 0.8);
 			
 			// Read the layer file
-			$.ajax({
-				url: opts.layersFile,
-				dataType: "script",
-				async: false,
-				success: function (data) {
-					if(opts.debug) {
-						console.log(pe.fn.geomap.getLocalization('overlayLoad'));
+			if (typeof(opts.layersFile) != "undefined") {
+				$.ajax({
+					url: opts.layersFile,
+					dataType: "script",
+					async: false,
+					success: function (data) {
+						if(opts.debug) {
+							console.log(pe.fn.geomap.getLocalization('overlayLoad'));
+						}
+					},
+					error: function (data){
+						if(opts.debug) {
+							console.log(pe.fn.geomap.getLocalization('overlayNotLoad'));
+						}
 					}
-				},
-				error: function (data){
-					if(opts.debug) {
-						console.log(pe.fn.geomap.getLocalization('overlayNotLoad'));
-					}
-				}
-			});
+				}); // end ajax
+			} else {
+				if(opts.debug) {
+							console.log(pe.fn.geomap.getLocalization('overlayNotSpecify'));
+						}	
+			} // end load configuration file
 			
 			var mapOptions = {};
 			if(wet_boew_geomap.basemap && wet_boew_geomap.basemap.mapOptions) {				
@@ -827,7 +857,7 @@
 				if(opts.debug) {
 					console.log(pe.fn.geomap.getLocalization('basemapDefault'));
 				}
-				
+
 				// Add the Canada Transportation Base Map (CBMT)			
 				map.addLayer(new OpenLayers.Layer.WMS(
 					"CBMT", 
@@ -841,9 +871,7 @@
 					} 
 				));			
 			}
-			
-			
-			
+					
 			// Create projection objects
 			var projLatLon = new OpenLayers.Projection('EPSG:4326');
 			var projMap = map.getProjectionObject();						
@@ -858,7 +886,8 @@
 			 * Load overlays 
 			 * TODO: turn this into a public function
 			 */			
-						
+			if (typeof(wet_boew_geomap) != "undefined")
+			{			
 			if(wet_boew_geomap.overlays){				
 				$.each(wet_boew_geomap.overlays, function(index, layer) {	
 					
@@ -874,7 +903,40 @@
 									extractStyles: !layer.style,									
 									extractAttributes: true,
 									internalProjection: map.getProjectionObject(),
-									externalProjection: new OpenLayers.Projection('EPSG:4269')
+									externalProjection: new OpenLayers.Projection('EPSG:4269'),
+									
+									read: function(data) {
+										var items = this.getElementsByTagNameNS(data, "*", "Placemark");
+										
+										var row, feature, atts = {}, features = [];
+												
+												for (var i = 0; i < items.length; i++) {												
+													row = items[i];			
+																									
+													feature = new OpenLayers.Feature.Vector();														
+																									
+													feature.geometry = this.parseFeature(row).geometry;
+													
+													// parse and store the attributes
+													atts = {};
+													var a = layer.attributes;
+													
+													// TODO: test on nested attributes
+													for (var name in a) {
+														if (a.hasOwnProperty(name)) {
+															 atts[a[name]] = $(row).find(name).text();														
+														}
+													}
+													
+													feature.attributes = atts;												
+												
+													// if no geometry, don't add it
+													//if (feature.geometry) {
+														features.push(feature);
+													//}
+												} 
+												return features;
+									}
 									})
 								}),
 								eventListeners: {
@@ -1118,7 +1180,7 @@
 					}					
 				});
 			}
-			
+			}
 			
 
 			/*
@@ -1190,24 +1252,9 @@
 					var $tr = $(this).parent();
 
 					// add zoom column
-					if ( zoomColumn == true) {
-						
-						var $img = $('<img>', {				
-						'src': '../../src/js/images/geomap/zoom_feature.png',
-						'height': '15',
-						'width': '15'				
-						});
-						
-						$img.click(function (){
-							map.zoomToExtent(vectorFeatures.geometry.bounds);
-							$(this).closest('tr').attr('class', 'background-highlight');
-							selectControl.unselectAll();
-							selectControl.select(vectorFeatures);
-						});
-						
+					if ( zoomColumn == true) {						
 						var temp = $(this).after('<td></td>');
-						$tr.find("td:last").append($img);
-						
+						$tr.find("td:last").append(pe.fn.geomap.addZoomTo($tr, vectorFeatures, selectControl));
 					}
 
 					$tr.attr('id', vectorFeatures.id.replace(/\W/g, "_"));
@@ -1217,7 +1264,7 @@
 					if($select.length) {
 						var $link = $select.find('a');
 						if($link.length) {
-							$link.hover(function(){
+							$tr.hover(function(){
 									$tr.attr('class', 'background-highlight');
 									selectControl.select(vectorFeatures);
 								}, 
@@ -1276,6 +1323,24 @@
 			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
 			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
+			var c=map.getControlsByClass('OpenLayers.Control.KeyboardDefaults');
+					c[0].deactivate();
+					
+			// enable the keyboard navigation when map div has focus. Disable when blur
+			$('.wet-boew-geomap').attr('tabindex', '0');
+			$('.wet-boew-geomap').css("border", "solid 2px white");
+			$('.wet-boew-geomap').focus(function(){
+					var c=map.getControlsByClass('OpenLayers.Control.KeyboardDefaults');
+					c[0].activate();
+					$(this).css("border", "solid 2px blue");
+				}	
+			);
+			$('.wet-boew-geomap').blur(function(){
+					var c=map.getControlsByClass('OpenLayers.Control.KeyboardDefaults');
+					c[0].deactivate();
+					$(this).css("border", "solid 2px white");
+				}	
+			);
 			
 			// add accessibility enhancements
 			this.accessibilize(opts.useLayerSwitcher);					

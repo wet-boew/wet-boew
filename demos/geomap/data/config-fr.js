@@ -1,5 +1,26 @@
+/*
+ *
+ * Boîte à outils de l'expérience Web (BOEW) / Web Experience Toolkit (WET)
+ * wet-boew.github.com/wet-boew/Licence-fra.txt / wet-boew.github.com/wet-boew/License-eng.txt
+ *
+ * Version: @wet-boew-build.version@
+ *
+ *
+ *
+ * BOEW-WET-Geomap-Configuration
+*/
+
+/*
+ * Les composantes individuelles seront substituées par les compasantes globales
+ *
+ * Les couche de superpositions seront ajoutés dans l'ordre où ils sont fournis
+ * (c'est à dire la première couche sera ajouté en premier, puis la suivante
+ * sur le dessus, et ainsi de suite). 
+ * 
+ * Prennez note, la carte de base peut être définie globalement dans le fichier settings.js.
+*/
  var wet_boew_geomap = {
-	// OPTIONAL: note that geomap will provide a default basemap if not specified here.
+	// OPTIONNEL: Géomap va fournir une carte de base par défaut si aucune carte de base n'est spécifié ici.
 	/*
 	basemap : {
 		title: 'CBMT',
@@ -30,43 +51,42 @@
 	*/	
 	overlays : [		
 		{
-		    title: 'KML Demo',
-		    caption: 'This is a sample KML file loaded locally by Geomap.',
+		    title: 'KML Demo FR',
+		    caption: 'Ceci est un exemple de fichier KML chargé localement par Géomap.',
 		    type: 'kml',
 		    url: 'data/sample.kml',		   
 		    visible: false,
 		    attributes: {
-		    	name: 'Product Title',
+		    	name: 'Titre du produit',
 		    	description: 'Description'
 		    },
-		    style: 'null'
 		},
 		{
-		    title: 'ATOM Demo',
-		    caption: 'This is a sample ATOM feed loaded locally by Geomap.',
+		    title: 'ATOM Demo FR',
+		    caption: 'Ceci est un exemple de fil ATOM chargé localement par Géomap.',
 		    type: 'atom',
 		    url: 'data/sample.atom',
 		    attributes: {
-		    	title: 'Title',
-		    	summary: 'About this dataset'
+		    	title: 'Titre',
+		    	summary: 'À propos de ce jeux de données'
 		    },
 		    visible: false
 		},
 		{
-			title: 'GeoRSS Demo',
-			caption: 'This is a sample GeoRSS feed loaded locally by Geomap.',
+			title: 'GeoRSS Demo FR',
+			caption: 'Ceci est un exemple de fil GeoRSS chargé localement par Géomap.',
 			type: 'georss',
 			url: 'data/sample.rss',	
 			attributes: {
-				title: 'Title',
+				title: 'Titre',
 				description: 'Description',
-				link: 'More Info'
+				link: 'Pour plus d\'information'
 			},
 			visible: false,
 		},
 		{
-			title: 'JSON (GeoGratis)',
-			caption: 'This is a sample dataset loaded from a remote JSON resource, in this case the GeoGratis API.',
+			title: 'JSON (GeoGratis) FR',
+			caption: 'Ceci est un exemple d\'un jeu de données JSON chargé à partir d\'un site externe, dans ce cas-ci Géogratis.',
 			type: 'json',					
 			url: 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst',
 			params: {
@@ -76,14 +96,14 @@
 			visible: false,
 			root: 'products',			
 			attributes: {
-				title: 'Title',
-				summary: 'Abstract',				
-				author: 'Author'
+				title: 'Titre',
+				summary: 'Résumé',				
+				author: 'Autheur'
 			},
 		},
 		{
-			title: 'GeoJSON (CartoDB)',
-			caption: 'This is a sample dataset loaded from a remote GeoJSON resource, in this case traffic cameras in the city of Ottawa from the CartoDB API.',
+			title: 'GeoJSON (CartoDB) FR',
+			caption: 'Ceci est un exemple d\'un jeu de données JSON chargé à partir d\'un site externe, dans ce cas-ci les caméras de circulation de la ville d\'Ottawa à partir du site Carto DB.',
 			type: 'geojson',					
 			url: 'http://stephenott.cartodb.com/api/v2/sql',
 			params: {
@@ -91,25 +111,25 @@
 				'q': 'SELECT * FROM traffic_cameras LIMIT 25'
 			},
 			attributes: {				
-				location_desc: 'Location',
+				location_desc: 'Emplacement',
 				longitude: 'Latitude',
 				latitude: 'Longitude',				
-				updated_at: 'Last updated'
+				updated_at: 'Dernière mise à jour'
 			},
 			visible: true,	
 			zoom:  true,		
 			 // default style			
 			 style: {
 				 type: 'symbol',
-				 init: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera.png',/*'label': "${Location}",'fontSize': '12px',*/ 'fillOpacity': 1.0 }, 
-				 select: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera_active.png', /*'label': "Selected",*/ 'fillOpacity': 1.0 }
+				 init: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera.png', 'fillOpacity': 1.0 }, 
+				 select: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera_active.png', 'fillOpacity': 1.0 }
 			 }
 //		     // unique value style
 //			 style: {
 //				 type: 'unique',
 //				 field: 'Location',
 //				 init: {'Bayshore & Richmond': {'pointRadius':'25', 'strokeWidth':'20', 'strokeColor': '#800080'},'Baseline & Greenbank': {'pointRadius':'25', 'strokeWidth':'10', 'fillColor': '#800080'}},
-//				 select: {'pointRadius': 30, 'externalGraphic': '../../OverIcon.png', 'label': "Selected", 'fillOpacity': 0.90} 
+//				 select: {'pointRadius': 30, 'externalGraphic': '../../OverIcon.png', 'label': "${Location}", 'fillOpacity': 0.90} 
 //			 }
 //			// rule style
 //			style: {
@@ -134,6 +154,6 @@
 //				}],
 //				select: {'pointRadius': '30', 'externalGraphic': '../../OverIcon.png', 'label': "Selected", 'fillOpacity': 0.90}
 //			}
-		}		
+		}	
 	]
 };
