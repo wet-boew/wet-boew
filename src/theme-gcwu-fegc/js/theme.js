@@ -213,7 +213,8 @@
 					}
 					nodes = lang_links.get();
 					len = nodes.length;
-					while (len--) {
+					i = len;
+					while (i--) {
 						node = nodes[i];
 						link = node.childNodes[0];
 						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '');
