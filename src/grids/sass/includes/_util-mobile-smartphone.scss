@@ -8,6 +8,14 @@
 	float: none !important;
 }
 
+blockquote {
+	.float-right, .float-left {
+		width: auto;
+		float: none;
+		margin-left: 0;
+	}
+}
+
 [class*=span-] {
 	margin-bottom: 10px;
 }
