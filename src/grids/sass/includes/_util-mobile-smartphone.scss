@@ -4,15 +4,44 @@
 */
 @import "compass/css3/inline-block";
 
-.float-right, .float-left {
+%grids-util-mobile-smartphone-float-none-important {
 	float: none !important;
+}
+%grids-util-mobile-smartphone-display-block {
+	display: block;
+}
+%grids-util-mobile-smartphone-padding-0 {
+	padding: 0;
+}
+%grids-util-mobile-smartphone-margin-left-0 {
+	margin-left: 0;
+}
+%grids-util-mobile-smartphone-margin-right-0 {
+	margin-right: 0;
+}
+%grids-util-mobile-smartphone-outline-none {
+	outline: none;
+}
+%grids-util-mobile-smartphone-blockquote-floats {
+	width: auto;
+	float: none;
+	@extend %grids-util-mobile-smartphone-margin-left-0;
+}
+
+.float-right {
+	@extend %grids-util-mobile-smartphone-float-none-important;
+}
+
+.float-left {
+	@extend %grids-util-mobile-smartphone-float-none-important;
 }
 
 blockquote {
-	.float-right, .float-left {
-		width: auto;
-		float: none;
-		margin-left: 0;
+	.float-right {
+		@extend %grids-util-mobile-smartphone-blockquote-floats;
+	}
+	.float-left {
+		@extend %grids-util-mobile-smartphone-blockquote-floats;
 	}
 }
 
@@ -20,7 +49,7 @@ blockquote {
 	margin-bottom: 10px;
 }
 
-%grids-util-mobile-margin-0-important {
+%grids-util-mobile-smartphone-margin-0-important {
 	margin: 0 !important;
 }
 
@@ -33,15 +62,19 @@ form {
 		width: 100% !important;
 	}
 	[class*=margin-] {
-		@extend %grids-util-mobile-margin-0-important;
+		@extend %grids-util-mobile-smartphone-margin-0-important;
 	}
 	[class*=span-]{
-		@extend %grids-util-mobile-margin-0-important;
+		@extend %grids-util-mobile-smartphone-margin-0-important;
 	}
-	&.background-light > * {
-		outline: none;
-		margin-left: 0;
-		margin-right: 0;
+	&.background-light {
+		> {
+			* {
+				@extend %grids-util-mobile-smartphone-outline-none;
+				@extend %grids-util-mobile-smartphone-margin-left-0;
+				@extend %grids-util-mobile-smartphone-margin-right-0;
+			}
+		}
 	}
 	.align-right {
 		text-align: left !important;
@@ -49,21 +82,28 @@ form {
 }
 
 .form-inline {
-		& > * {
-			margin-right: 0;
+		> {
+			* {
+				@extend %grids-util-mobile-smartphone-margin-right-0;
+			}
 		}
-
 		label {
-			display: block;
+			@extend %grids-util-mobile-smartphone-display-block;
 		}
 }
 
-.form-radio, .form-checkbox {
-	padding: 0;
+%grids-util-mobile-smartphone-form-radio-form-label-inline {
+	@extend %grids-util-mobile-smartphone-padding-0;
 	&.form-label-inline {
-		display: block;
-		padding: 0;
+		@extend %grids-util-mobile-smartphone-display-block;
+		@extend %grids-util-mobile-smartphone-padding-0;
 	}
+}
+.form-radio {
+	@extend %grids-util-mobile-smartphone-form-radio-form-label-inline;
+}
+.form-checkbox {
+	@extend %grids-util-mobile-smartphone-form-radio-form-label-inline;
 }
 
 .form-horizontal {
@@ -78,25 +118,53 @@ form {
 	}
 }
 
-input[type="image"], input[type="checkbox"], input[type="radio"] {
-	+ label {
-		display: block;
+%grids-util-mobile-smartphone-input-type-label-display-block {
+	+ {
+		label {
+			@extend %grids-util-mobile-smartphone-display-block;
+		}
+	}
+}
+input {
+	&[type="image"] {
+		@extend %grids-util-mobile-smartphone-input-type-label-display-block;
+	}
+	&[type="checkbox"] {
+		@extend %grids-util-mobile-smartphone-input-type-label-display-block;
+	}
+	&[type="radio"] {
+		@extend %grids-util-mobile-smartphone-input-type-label-display-block;
 	}
 }
 
 ul {
 	&.button-group {
-		margin-left:0;
-		margin-right:0;
+		@extend %grids-util-mobile-smartphone-margin-left-0;
+		@extend %grids-util-mobile-smartphone-margin-right-0;
 	}
 }
 
-.border-top, .border-right, .border-bottom, .border-left, .border-all {
-	float: none !important;
-	display: block;
-	outline: none;
+%grids-util-mobile-smartphone-borders-css {
+	@extend %grids-util-mobile-smartphone-float-none-important;
+	@extend %grids-util-mobile-smartphone-display-block;
+	@extend %grids-util-mobile-smartphone-outline-none;
 	position: static !important;
 	background: none;
+}
+.border-top {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-right {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-bottom {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-left {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-all {
+	@extend %grids-util-mobile-smartphone-borders-css;
 }
 
 .module-billboard {
@@ -110,13 +178,17 @@ ul {
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	.form-inline {
-		& > * {
-			margin-right: auto;
-			margin-left: 0;
+		> {
+			* {
+				margin-right: auto;
+				@extend %grids-util-mobile-smartphone-margin-left-0;
+			}
 		}
 	}
 
-	.form-horizontal label {
-		text-align: right;
+	.form-horizontal {
+		label {
+			text-align: right;
+		}
 	}
 }
