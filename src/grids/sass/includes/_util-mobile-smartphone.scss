@@ -22,6 +22,11 @@
 %grids-util-mobile-smartphone-outline-none {
 	outline: none;
 }
+%grids-util-mobile-smartphone-blockquote-floats {
+	width: auto;
+	float: none;
+	@extend %grids-util-mobile-smartphone-margin-left-0;
+}
 
 .float-right {
 	@extend %grids-util-mobile-smartphone-float-none-important;
@@ -32,18 +37,11 @@
 }
 
 blockquote {
-	.float-right, .float-left {
-		width: auto;
-		float: none;
-		@extend %grids-util-mobile-smartphone-margin-left-0;
+	.float-right {
+		@extend %grids-util-mobile-smartphone-blockquote-floats;
 	}
-}
-
-blockquote {
-	.float-right, .float-left {
-		width: auto;
-		float: none;
-		margin-left: 0;
+	.float-left {
+		@extend %grids-util-mobile-smartphone-blockquote-floats;
 	}
 }
 
@@ -89,18 +87,23 @@ form {
 				@extend %grids-util-mobile-smartphone-margin-right-0;
 			}
 		}
-
 		label {
 			@extend %grids-util-mobile-smartphone-display-block;
 		}
 }
 
-.form-radio, .form-checkbox {
+%grids-util-mobile-smartphone-form-radio-form-label-inline {
 	@extend %grids-util-mobile-smartphone-padding-0;
 	&.form-label-inline {
 		@extend %grids-util-mobile-smartphone-display-block;
 		@extend %grids-util-mobile-smartphone-padding-0;
 	}
+}
+.form-radio {
+	@extend %grids-util-mobile-smartphone-form-radio-form-label-inline;
+}
+.form-checkbox {
+	@extend %grids-util-mobile-smartphone-form-radio-form-label-inline;
 }
 
 .form-horizontal {
@@ -115,13 +118,22 @@ form {
 	}
 }
 
-input {
-	&[type="image"], &[type="checkbox"], &[type="radio"] {
-		+ {
-			label {
-				@extend %grids-util-mobile-smartphone-display-block;
-			}
+%grids-util-mobile-smartphone-input-type-label-display-block {
+	+ {
+		label {
+			@extend %grids-util-mobile-smartphone-display-block;
 		}
+	}
+}
+input {
+	&[type="image"] {
+		@extend %grids-util-mobile-smartphone-input-type-label-display-block;
+	}
+	&[type="checkbox"] {
+		@extend %grids-util-mobile-smartphone-input-type-label-display-block;
+	}
+	&[type="radio"] {
+		@extend %grids-util-mobile-smartphone-input-type-label-display-block;
 	}
 }
 
@@ -132,12 +144,27 @@ ul {
 	}
 }
 
-.border-top, .border-right, .border-bottom, .border-left, .border-all {
+%grids-util-mobile-smartphone-borders-css {
 	@extend %grids-util-mobile-smartphone-float-none-important;
 	@extend %grids-util-mobile-smartphone-display-block;
 	@extend %grids-util-mobile-smartphone-outline-none;
 	position: static !important;
 	background: none;
+}
+.border-top {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-right {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-bottom {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-left {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-all {
+	@extend %grids-util-mobile-smartphone-borders-css;
 }
 
 .module-billboard {
@@ -159,7 +186,9 @@ ul {
 		}
 	}
 
-	.form-horizontal label {
-		text-align: right;
+	.form-horizontal {
+		label {
+			text-align: right;
+		}
 	}
 }
