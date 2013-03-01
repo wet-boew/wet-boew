@@ -357,9 +357,10 @@ table {
 
 #popupLanguages {
 	li {
-		.ui-btn-text {
-			&:first-letter {
-				text-transform: capitalize;
+		a {
+			text-transform: capitalize;
+			.current {
+				text-transform: lowercase;
 			}
 		}
 	}
