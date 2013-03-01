@@ -8,6 +8,14 @@
 	float: none !important;
 }
 
+blockquote {
+	.float-right, .float-left {
+		width: auto;
+		float: none;
+		margin-left: 0;
+	}
+}
+
 [class*=width-] {
 	width: auto !important;
 }
@@ -16,13 +24,17 @@ form {
 	[class*=width-] {
 		width: 100% !important;
 	}
-	[class*=margin-], [class*=span-]{
+	[class*=margin-], [class*=span-] {
 		margin: 0 !important;
 	}
-	&.background-light > * {
-		outline: none;
-		margin-left: 0;
-		margin-right: 0;
+	&.background-light {
+		> {
+			* {
+				outline: none;
+				margin-left: 0;
+				margin-right: 0;
+			}
+		}
 	}
 	.align-right {
 		text-align: left !important;
@@ -30,8 +42,10 @@ form {
 }
 
 .form-inline {
-		& > * {
-			margin-right: 0;
+		> {
+			* {
+				margin-right: 0;
+			}
 		}
 
 		label {
@@ -67,8 +81,8 @@ input[type="image"], input[type="checkbox"], input[type="radio"] {
 
 ul {
 	&.button-group {
-		margin-left:0;
-		margin-right:0;
+		margin-left: 0;
+		margin-right: 0;
 	}
 }
 
