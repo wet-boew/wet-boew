@@ -40,14 +40,13 @@
 				$wbcorein = $('#wb-core-in'),
 				defaultOpen = false,
 				tab;
-				
+
 			defaultOpen = elm.hasClass('wb-slideout-open');
-			$.metadata.setType('attr', 'data-wet-boew');
 			opts = {
 				txtShow: pe.dic.get('%show-toc') + tocText,
 				txtHide: hideText + tocText
 			};
-			$.extend(opts, elm.metadata());
+			$.extend(opts, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 
 			// Don't do anything if CSS is disabled
 			if (!pe.cssenabled()) {
