@@ -194,7 +194,8 @@
 						settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
 					}
 					nodes = lang_links.get();
-					for (i = 0, len = nodes.length; i !== len; i += 1) {
+					len = nodes.length;
+					while (len--) {
 						node = nodes[i];
 						link = node.childNodes[0];
 						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '');
