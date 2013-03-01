@@ -30,14 +30,10 @@ form {
 	[class*=span-]{
 		@extend %grids-util-mobile-margin-0-important;
 	}
-	&.background-light {
-		> {
-			* {
-				outline: none;
-				margin-left: 0;
-				margin-right: 0;
-			}
-		}
+	&.background-light > * {
+		outline: none;
+		margin-left: 0;
+		margin-right: 0;
 	}
 	.align-right {
 		text-align: left !important;
@@ -45,10 +41,8 @@ form {
 }
 
 .form-inline {
-		> {
-			* {
-				margin-right: 0;
-			}
+		& > * {
+			margin-right: 0;
 		}
 
 		label {
@@ -84,8 +78,8 @@ input[type="image"], input[type="checkbox"], input[type="radio"] {
 
 ul {
 	&.button-group {
-		margin-left: 0;
-		margin-right: 0;
+		margin-left:0;
+		margin-right:0;
 	}
 }
 
@@ -103,29 +97,6 @@ ul {
 
 .module-poster {
 	@include inline-block;
-}
-
-.date-month {
-	a {
-		color: #fff !important;
-	}
-}
-
-%util-mobile-bb-pre7-background-333-important-color-f9f9f9-important {
-	background: #333 !important;
-	color: #f9f9f9 !important;
-}
-.bb-pre7 {
-	input, textarea, select {
-		&:focus, &:active { /* Can't use pseudo-focus since fix is needed for both focused and activated states */
-			@extend %util-mobile-bb-pre7-background-333-important-color-f9f9f9-important;
-		}
-	}
-	.ui-input-text, .ui-input-search {
-		&.ui-focus {
-			@extend %util-mobile-bb-pre7-background-333-important-color-f9f9f9-important;
-		}
-	}
 }
 
 /* Right to left (RTL) CSS */
