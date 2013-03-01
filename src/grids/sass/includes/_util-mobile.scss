@@ -16,6 +16,14 @@
 	margin: 0 !important;
 }
 
+blockquote {
+	.float-right, .float-left {
+		width: auto;
+		float: none;
+		margin-left: 0;
+	}
+}
+
 [class*=width-] {
 	width: auto !important;
 }
