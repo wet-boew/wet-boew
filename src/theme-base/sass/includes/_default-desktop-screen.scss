@@ -137,9 +137,6 @@ a {
 		top: 1px;
 		bottom: 2.5em; //TODO: mixed px and ems
 	}
-	a {
-		@extend %base-default-desktop-screen-link;
-	}
 }
 
 %base-default-desktop-screen-float-right {
