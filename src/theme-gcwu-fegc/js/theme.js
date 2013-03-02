@@ -197,19 +197,19 @@
 				settings_popup = popup + ' id="popupSettings"' + popup_settings;
 				settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open + listView + '>';
-				if (lang_links.length > 0) {
+				if (lang_links.length !== 0) {
 					settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
 				}
 				settings_popup += '<li class="ui-corner-bottom"><a href="#popupAbout"' + popup_link + '>' + pe.dic.get('%about') + '</a></li>';
 				settings_popup += '</ul>' + popup_close;
 
 				// Build the languages sub-popup
-				if (lang_links.length > 0) {
+				if (lang_links.length !== 0) {
 					settings_popup += popup + ' id="popupLanguages"' + popup_settings;
 					settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
 					settings_popup += popup_settings_content_open + listView + '>';
 					if (lang_links.filter('[id*="-lang-current"]').length === 0) {
-						settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + '<span class="current">' + pe.dic.get('%current') + '</span></a></li>';
+						settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
 					}
 					nodes = lang_links.get();
 					len = nodes.length;
@@ -217,9 +217,9 @@
 					while (i--) {
 						node = nodes[i];
 						link = node.childNodes[0];
-						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '');
+						settings_popup += '<li' + (i === 0 ? ' class="ui-corner-bottom"' : '');
 						if (node.id.indexOf('-lang-current') !== -1) {
-							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + '<span class="current">' + pe.dic.get('%current') + '</span></a></li>';
+							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
 						} else {
 							settings_popup += '><a href="' + link.href + '" lang="' + link.getAttribute('lang') + '">' + link.innerHTML + '</a></li>';
 						}
