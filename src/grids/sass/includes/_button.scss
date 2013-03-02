@@ -73,7 +73,7 @@
 				@include text-shadow(none);
 			}
 			&:hover, &:focus, &:active {
-				color: $attention !important;
+				color: $red !important;
 			}
 
 			&.button-disabled {  //TODO: merge the disabled items together as they are apart for now for IE8
