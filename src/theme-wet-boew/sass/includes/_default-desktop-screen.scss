@@ -385,10 +385,11 @@ a {
 				}
 				&[id*="wet-fullhd-lang"] {
 					a {
-						padding-right: 0;
-						padding-left: 10px;
-						margin-right: auto;
-						margin-left: 1px;
+						padding: 0 10px;
+						margin: {
+							right: auto;
+							left: 1px;
+						}
 					}
 				}
 				&#wet-fullhd-lang-current {
