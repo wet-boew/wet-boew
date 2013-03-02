@@ -37,10 +37,10 @@
 }
 
 blockquote {
-	.float-right {
+	&.float-right {
 		@extend %grids-util-mobile-smartphone-blockquote-floats;
 	}
-	.float-left {
+	&.float-left {
 		@extend %grids-util-mobile-smartphone-blockquote-floats;
 	}
 }
