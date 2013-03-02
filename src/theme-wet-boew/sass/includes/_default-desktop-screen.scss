@@ -54,9 +54,6 @@ body {
 #wb-main-in {
 	padding-top: 1px;
 	padding-bottom: 2.5em;
-	a {
-		@extend %wet-default-link;
-	}
 }
 
 #wb-body-sec {
@@ -419,20 +416,6 @@ a {
 		input {
 			margin: 0 2px 2px 3px;
 			float: right;
-		}
-	}
-
-	#wet-srch-submit {
-		border: {
-			right: 1px solid #fff;
-			left: 1px solid #999;
-		}
-
-		&:focus, &:hover {
-			border: {
-				right: 1px solid #fff;
-				left: 1px solid #999;
-			}
 		}
 	}
 }
