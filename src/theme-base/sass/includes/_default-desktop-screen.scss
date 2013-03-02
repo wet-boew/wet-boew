@@ -419,10 +419,7 @@ a {
 				@extend %base-default-desktop-screen-float-right;
 				&#base-fullhd-lang {
 					a {
-						padding: {
-							right: 0;
-							left: 10px;
-						}
+						padding: 0 10px;
 						margin: {
 							right: auto;
 							left: 1px;

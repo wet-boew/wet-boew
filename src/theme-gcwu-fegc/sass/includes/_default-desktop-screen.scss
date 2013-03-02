@@ -490,10 +490,11 @@ a {
 				@extend %gcwu-default-desktop-screen-float-right;
 				&#gcwu-gcnb-lang {
 					a {
-						padding-right: 10px;
-						@extend %gcwu-default-desktop-screen-padding-left-0;
-						margin-right: auto;
-						margin-left: 1px;
+						padding: 0 10px;
+						margin: {
+							right: auto;
+							left: 1px;
+						}
 					}
 				}
 			}
