@@ -293,6 +293,7 @@
 			$.mobile.textinput.prototype.options.clearSearchButtonText = pe.dic.get('%jqm-clear-search');
 			$.mobile.selectmenu.prototype.options.closeText = pe.dic.get('%close');
 			$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
+			$.mobile.table.prototype.options.columnBtnText = pe.dic.get('%jqm-tbl-col-toggle');
 		},
 		/**
 		* The pe aware page query to append items to

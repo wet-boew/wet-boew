@@ -152,6 +152,7 @@
 		'%jqm-collapse': '@%jqm-collapse@',
 		'%jqm-clear-search': '@%jqm-clear-search@',
 		'%jqm-filter': '@%jqm-filter@',
+		'%jqm-tbl-col-toggle': '@%jqm-tbl-col-toggle@',
 		/* Charts widget */
 		'%table-mention': '@%table-mention@',
 		'%table-following': '@%table-following@',
