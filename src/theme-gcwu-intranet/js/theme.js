@@ -61,7 +61,6 @@
 		},
 		mobileview: function () {
 			var mb_popup,
-				mb_header_html,
 				mb_menu = '',
 				mb_btn_txt = pe.dic.get('%menu'),
 				srch_btn_txt = pe.dic.get('%search'),
@@ -84,12 +83,11 @@
 				len,
 				node;
 
-			if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
+			if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.bcrumb.length !== 0) {
 				// Transform the menu to a popup
 				mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
 				mb_popup = '<div ' + popup_role + ' id="jqm-wb-mb"><div data-role="header">';
 				secnav_h2 = (pe.secnav.length !== 0 ? pe.secnav[0].getElementsByTagName('h2')[0] : '');
-				mb_header_html = (wet_boew_theme.menubar.length !== 0 ? wet_boew_theme.psnb.children(':header')[0] : (pe.secnav.length !== 0 ? secnav_h2 : wet_boew_theme.bcrumb.children(':header')[0])).innerHTML;
 				mb_popup += '<h1>' + mb_btn_txt + '</h1>' + popup_close + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
 
 				if (wet_boew_theme.bcrumb.length !== 0) {
@@ -107,7 +105,7 @@
 					node.parentNode.removeChild(node);
 				}
 				if (wet_boew_theme.menubar.length !== 0) {
-					mb_menu += '<section><div><h2>' + mb_header_html + '</h2><div data-role="controlgroup">' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></div></section>';
+					mb_menu += '<section><div><h2>' + wet_boew_theme.psnb.children(':header')[0] + '</h2><div data-role="controlgroup">' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></div></section>';
 				}
 				
 				// Append the popup/dialog container and store the menu for appending later
