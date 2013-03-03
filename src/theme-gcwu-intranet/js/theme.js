@@ -63,7 +63,6 @@
 		/* Special handling for the mobile view */
 		mobileview: function () {
 			var mb_popup,
-				mb_header_html,
 				mb_menu = '',
 				mb_btn_txt,
 				srch_btn_txt,
@@ -119,12 +118,11 @@
 			// Content pages only
 			if (wet_boew_theme.sft.length !== 0) {
 				// Build the menu popup
-				if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
+				if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.bcrumb.length !== 0) {
 					// Transform the menu to a popup
 					mb_btn_txt = pe.dic.get('%menu');
 					mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
 					secnav_h2 = (pe.secnav.length !== 0 ? pe.secnav[0].getElementsByTagName('h2')[0] : '');
-					mb_header_html = (wet_boew_theme.menubar.length !== 0 ? wet_boew_theme.psnb.children(':header')[0] : (pe.secnav.length !== 0 ? secnav_h2 : wet_boew_theme.bcrumb.children(':header')[0])).innerHTML;
 					mb_popup = popup + ' id="jqm-wb-mb">' + popup_default_header_open + mb_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
 
 					if (wet_boew_theme.bcrumb.length !== 0) {
@@ -138,10 +136,9 @@
 					// Build the menu
 					if (pe.secnav.length !== 0) {
 						mb_menu += '<section><div><h2>' + secnav_h2.innerHTML + '</h2>' + pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'b', false, true, 'c', true, true) + '</div></section>';
-						node = pe.secnav[0];
 					}
 					if (wet_boew_theme.menubar.length !== 0) {
-						mb_menu += '<section><div><h2>' + mb_header_html + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
+						mb_menu += '<section><div><h2>' + wet_boew_theme.psnb.children(':header')[0] + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
 					}
 					
 					// Append the popup/dialog container and store the menu for appending later
@@ -314,13 +311,13 @@
 
 			// jQuery mobile has loaded
 			$(document).on('pagecreate', function () {
-				if (_list.length !== 0) {
-					var navbar = wet_boew_theme.gcnb.find('#gcwu-mnavbar'),
-						menu = pe.bodydiv.find('#jqm-mb-menu'),
-						menus,
-						nodes,
-						nodes2,
-						node2;
+				var navbar = wet_boew_theme.gcnb.find('#gcwu-mnavbar'),
+					menu = pe.bodydiv.find('#jqm-mb-menu'),
+					menus,
+					nodes,
+					nodes2,
+					node2;
+				if (navbar.length !== 0) {
 					navbar.removeClass('wb-hide');
 
 					// Defer appending of menu until after page is enhanced by jQuery Mobile, and
