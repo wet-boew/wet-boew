@@ -105,7 +105,7 @@
 					node.parentNode.removeChild(node);
 				}
 				if (wet_boew_theme.menubar.length !== 0) {
-					mb_menu += '<section><div><h2>' + wet_boew_theme.psnb.children(':header')[0] + '</h2><div data-role="controlgroup">' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></div></section>';
+					mb_menu += '<section><div><h2>' + wet_boew_theme.psnb.children(':header')[0].innerHTML + '</h2><div data-role="controlgroup">' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></div></section>';
 				}
 				
 				// Append the popup/dialog container and store the menu for appending later
