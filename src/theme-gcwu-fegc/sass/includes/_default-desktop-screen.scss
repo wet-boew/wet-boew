@@ -106,10 +106,6 @@ a {
 	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
-#gcwu-gcnb-in {
-	@extend %gcwu-default-desktop-screen-overflow-hidden;
-}
-
 #gcwu-bc-in {
 	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
@@ -246,8 +242,7 @@ a {
 }
 
 #gcwu-gcnb {
-	height: 3.6em;
-	min-height: 41px;
+	min-height: 3.6em;
 	a {
 		border-left: 1px solid #fff;
 		@extend %gcwu-default-desktop-screen-display-block;
@@ -260,6 +255,11 @@ a {
 			}
 		}
 	}
+}
+
+#gcwu-gcnb-in {
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
+	min-height: 41px;
 }
 
 #gcwu-title {
