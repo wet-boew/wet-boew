@@ -1747,6 +1747,8 @@
 						}
 					}
 					pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				} else {
+					pe.document.trigger(event_pcalldeps);
 				}
 			});
 
