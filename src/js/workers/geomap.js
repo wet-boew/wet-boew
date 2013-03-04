@@ -12,6 +12,7 @@
 		fn: {}
 	};
 	var map;
+	var selectControl;
 	/* local reference */
 	_pe.fn.geomap = {
 		type: 'plugin',
@@ -401,7 +402,7 @@
 			
 			// set random color
 			var strokeColor = pe.fn.geomap.randomColor();
-			var fillColor = strokeColor;			
+			var fillColor = strokeColor;		
 
 			var defaultStyle = {				
 				'strokeColor': strokeColor, 
@@ -417,8 +418,8 @@
 				'fillOpacity': 0.4,
 				'pointRadius': 5,
 				'strokeWidth': 2.0
-			};			
-
+			};
+			
 			// if style is supplied, create it. If not, create the default one.
 			if (typeof(elm.style) != "undefined") {
 				// Check the style type (by default, no type are supplied).
@@ -598,9 +599,8 @@
 		/*
 		 * Handle features once they have been added to the map
 		 * 
-		 * TODO: selectControl should be a global variable
 		 */
-		onFeaturesAdded: function($table, evt, selectCtrl, zoomTo) {
+		onFeaturesAdded: function($table, evt, zoomTo) {
 
 			var $head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
 
@@ -610,7 +610,7 @@
 					'type': 'body',
 					'id': feature.id.replace(/\W/g, "_"),
 					'feature': feature,
-					'selectControl': selectCtrl
+					'selectControl': selectControl
 
 				};											
 				var $row = pe.fn.geomap.createRow(context, zoomTo);									
@@ -619,18 +619,69 @@
 		},
 		
 		/*
+		 * Handle features once they have been added to the map for tabular data
+		 * 
+		 */
+		onTabularFeaturesAdded: function(feature, zoomColumn) {
+
+			// Find the row
+			var $tr = $('tr#' + feature.id.replace(/\W/g, "_"));
+				
+			// add zoom column
+			if ( zoomColumn == true) {						
+				$tr.append('<td></td>').find('td:last').append(pe.fn.geomap.addZoomTo($tr, feature))
+			}
+																					
+			var $select = $tr.find('td.select');						
+			if($select.length) {
+				var $link = $select.find('a');
+				if($link.length) {
+					$tr.hover(function(){
+						$tr.attr('class', 'background-highlight');
+						selectControl.select(feature);
+					}, 
+					function(){
+						$tr.attr('class', 'background-white');
+						selectControl.unselect(feature);
+						}
+					);
+									
+					// Keybord events
+					$link.focus(function(){
+						$tr.attr('class', 'background-highlight');
+						selectControl.select(feature);
+						}	
+					);
+					$link.blur(function(){
+						$tr.attr('class', 'background-white');
+						selectControl.unselect(feature);
+						}	
+					);
+				} else { 
+					if(opts.debug) {
+						$select.append('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorSelect') + '</p></div>');		
+					}
+				}
+				} else {
+					if(opts.debug) {
+						$tr.closest('table').before('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorNoSelect') + '</p></div>');
+					}
+				}
+		},
+		
+		/*
 		 *	Add the zoom to column
 		 * 
 		 */
-		addZoomTo: function(row, feature, selectCtrl){
+		addZoomTo: function(row, feature){
 			
 			var $ref = $('<a>', {
 				'click':function(e) { 
-					e.preventDefault();			
-					map.zoomToExtent(feature.geometry.bounds);	
-					row.closest('tr').attr('class', 'background-highlight');
-					selectCtrl.unselectAll();
-					selectCtrl.select(vectorFeatures);	
+						e.preventDefault();			
+						map.zoomToExtent(feature.geometry.bounds);	
+						row.closest('tr').attr('class', 'background-highlight');
+						selectControl.unselectAll();
+						selectControl.select(feature);  
 			 },
 				'href': '#',
 				'class': 'button',
@@ -647,13 +698,13 @@
 			// Keybord events
 			$ref.focus(function(){
 				row.attr('class', 'background-highlight');
-				selectCtrl.unselectAll();
-				selectCtrl.select(feature);
+				selectControl.unselectAll();
+				selectControl.select(feature);
 			});
 			$ref.blur(function(){
 				row.attr('class', 'background-white');
-				selectCtrl.unselectAll();
-				selectCtrl.unselect(feature);
+				selectControl.unselectAll();
+				selectControl.unselect(feature);
 			});
 			
 			return $ref;
@@ -900,7 +951,8 @@
 				console.log(pe.fn.geomap.getLocalization('projection') + ' ' + projMap.getCode());
 			}			
 			
-			var selectControl = new OpenLayers.Control.SelectFeature();			
+			// Global variable
+			selectControl = new OpenLayers.Control.SelectFeature();			
 			
 			/*
 			 * Load overlays 
@@ -961,7 +1013,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {	
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
 									}
 									
 								},
@@ -1016,7 +1068,7 @@
 									}),						
 								eventListeners: {
 									"featuresadded": function (evt) {											
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1080,7 +1132,7 @@
 								}),								
 								eventListeners: {
 									"featuresadded": function (evt) {
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1133,7 +1185,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {	
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1186,7 +1238,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
 									}
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1201,30 +1253,7 @@
 				});
 			}
 			}
-			
 
-			/*
-			 * Add vector features (consider removing - DEPRECATED) 
-			 * 
-			 * TODO: turn this into a public function and add associated markup
-			 */ 
-			
-//			var vectorLayer = new OpenLayers.Layer.Vector('Features');			
-//			
-//			$.each(opts.features, function(index, feature) {
-//								
-//				var wktParser = new OpenLayers.Format.WKT({						
-//					'internalProjection': projMap, 
-//					'externalProjection': projLatLon
-//				});
-//				
-//				vectorLayer.addFeatures([										 
-//					wktParser.read(feature)															 
-//				]);						
-//				
-//			});			
-//			
-//			map.addLayer(vectorLayer);		
 			
 			/*
 			 * Add tabluar data
@@ -1243,7 +1272,14 @@
 				
 				var $table = $("table#" + table.id);
 				var wktFeature;		
-				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: pe.fn.geomap.getStyleMap(opts.tables[index]) });
+				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { eventListeners: {
+									"featuresadded": function (evt) {
+										// This timeout function let time to select control to initialize itself before adding the feature
+										setTimeout(function() {
+											pe.fn.geomap.onTabularFeaturesAdded(evt.features[0], zoomColumn)},500);
+									}
+								},styleMap: pe.fn.geomap.getStyleMap(opts.tables[index]) });
+				
 				var zoomColumn = opts.tables[index].zoom;
 
 				var wktParser = new OpenLayers.Format.WKT({						
@@ -1289,52 +1325,9 @@
 	
 						var vectorFeatures = wktParser.read(wktFeature);
 	
+						// Set the table row id
 						var $tr = $(this).parent();
-	
-						// add zoom column
-						if ( zoomColumn == true) {						
-							var temp = $(this).after('<td></td>');
-							$tr.find("td:last").append(pe.fn.geomap.addZoomTo($tr, vectorFeatures, selectControl));
-						}
-	
 						$tr.attr('id', vectorFeatures.id.replace(/\W/g, "_"));
-					
-						var $select = $tr.find('td.select');
-	
-						if($select.length) {
-							var $link = $select.find('a');
-							if($link.length) {
-								$tr.hover(function(){
-										$tr.attr('class', 'background-highlight');
-										selectControl.select(vectorFeatures);
-									}, 
-									function(){
-										$tr.attr('class', 'background-white');
-										selectControl.unselect(vectorFeatures);
-									}
-								);
-	
-								// Keybord events
-								$link.focus(function(){
-										$tr.attr('class', 'background-highlight');
-										selectControl.select(vectorFeatures);
-									}	
-								);
-								$link.blur(function(){
-										$tr.attr('class', 'background-white');
-										selectControl.unselect(vectorFeatures);
-									}	
-								);
-							} else { 
-								if(opts.debug) {
-									$select.append('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorSelect') + '</p></div>');		
-								}
-							}
-						} else {
-							if(opts.debug) {
-								$tr.closest('table').before('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorNoSelect') + '</p></div>');
-							}
-						}
 						
 						// Add the attributes to the feature then add it to the map
 						vectorFeatures.attributes = attrMap;										
@@ -1346,8 +1339,7 @@
 				map.addLayer(tableLayer);
 				queryLayers.push(tableLayer);
 				
-				pe.fn.geomap.addToLegend($table, true, tableLayer.id);
-				
+				pe.fn.geomap.addToLegend($table, true, tableLayer.id);		
 			});	
 			
 			/*
@@ -1397,7 +1389,7 @@
 			$("#" + map.div.id).before((_pe.language == "en") ? '<p><strong>' + pe.fn.geomap.getLocalization('accessibilize') + '</p>' : '<p><strong>' + pe.fn.geomap.getLocalization('accessibilize') + '</p>');
 			
 			// add a listener on the window to update map when resized
-			window.onresize = function() {			
+			window.onresize = function() {				
 				$("#" + map.div.id).height($("#" + map.div.id).width() * 0.8);
 				map.updateSize();
 				map.zoomToMaxExtent();
