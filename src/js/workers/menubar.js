@@ -15,7 +15,7 @@
 	/* local reference */
 	_pe.fn.menubar = {
 		type : 'plugin',
-		depends : (_pe.mobile ? [] : ['resize', 'equalheights', 'hoverintent', 'outside']),
+		depends : (_pe.mobile ? [] : ['resize', 'hoverintent', 'outside']),
 		ignoreMenuBarClicks : false,
 		_exec : function (elm) {
 			/*
@@ -85,7 +85,7 @@
 				});
 				return;
 			};
-			/* function to correct the hieght of the menu on resize */
+			/* function to correct the height of the menu on resize */
 			correctheight = function () {
 				var _lastmenuli = $menu.children('li:last'),
 					newouterheight = (_lastmenuli.offset().top + _lastmenuli.outerHeight()) - $scope.offset().top;
