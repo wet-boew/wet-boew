@@ -28,6 +28,7 @@
 		title: null,
 		sft: null,
 		gcft: null,
+		gridsmenu: null,
 		wmms: $('#gcwu-wmms'),
 		menu: null,
 		init: function () {
@@ -38,6 +39,7 @@
 			wet_boew_theme.title = pe.header.find('#gcwu-title');
 			wet_boew_theme.sft = pe.footer.find('#gcwu-sft');
 			wet_boew_theme.gcft = pe.footer.find('#gcwu-gcft');
+			wet_boew_theme.gridsmenu = pe.main.find('.module-menu-section');
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm');
@@ -50,6 +52,9 @@
 				current = pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
 				submenu = current.parents('ul');
 				submenu.prev().children('a').addClass('nav-current');
+			}
+			if (wet_boew_theme.gridsmenu.length !== 0) {
+				current = pe.menu.navcurrent(wet_boew_theme.gridsmenu, wet_boew_theme.bcrumb);
 			}
 
 			// If no search is provided, then make the site menu link 100% wide
