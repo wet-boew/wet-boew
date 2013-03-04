@@ -28,6 +28,7 @@
 		title: null,
 		sft: null,
 		fullft: null,
+		gridsmenu: null,
 		menu: null,
 		init: function () {
 			wet_boew_theme.fullhd = pe.header.find('#wet-fullhd');
@@ -38,6 +39,7 @@
 			wet_boew_theme.title = pe.header.find('#wet-title');
 			wet_boew_theme.sft = pe.footer.find('#wet-sft');
 			wet_boew_theme.fullft = pe.footer.find('#wet-fullft');
+			wet_boew_theme.gridsmenu = pe.main.find('.module-menu-section');
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm');
@@ -50,6 +52,9 @@
 				current = pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
 				submenu = current.parents('ul');
 				submenu.prev().children('a').addClass('nav-current');
+			}
+			if (wet_boew_theme.gridsmenu.length !== 0) {
+				current = pe.menu.navcurrent(wet_boew_theme.gridsmenu, wet_boew_theme.bcrumb);
 			}
 
 			// If no search is provided, then make the site menu link 100% wide
