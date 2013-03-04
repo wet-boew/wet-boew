@@ -20,19 +20,21 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.language" title="ISO639-2" content="fra" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
@@ -49,7 +51,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation du gouvernement du Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-fra-r.svg" role="img" aria-label="Gouvernement du Canada" type="image/svg+xml" width="237" height="24">
+	<div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-fra.png" width="214" height="20" alt="Gouvernement du Canada" /></div>
+</object></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/accueil.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
@@ -59,19 +63,21 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div></div></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms-r.svg" role="img" aria-label="Symbole du gouvernement du Canada" type="image/svg+xml" width="144" height="34">
+	<div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div>
+</object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-fra.html">Boîte à outils de l'expérience Web&#160;(BOEW)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2>Menu<span> du site</span></h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="gcwu-psnb"><h2>Menu du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-fra.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
@@ -98,34 +104,15 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!-- MainContentStart -->
 <h1 id="wb-cont">Remplissage automatique des champs de saisie (correctif pour datalist)</h1>
 
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Remplissage-automatique-des-champs-de-saisie-%28correctif-pour-l%E2%80%99%C3%A9l%C3%A9ment-input-list---datalist%29" class="button button-info">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
 <p>La balise <code lang="en">datalist</code> spécifie une liste d'options pré-définis pour un élément <code lang="en">input</code>.</p>
 
 <!-- Start of Datalist content -->
-<div class="span-8">
-<div class="span-4 row-start">
-	<section>
-		<h2 class="background-dark margin-bottom-medium">Usage</h2>
-		<pre class="wet-boew-prettify prettyprint linenums"><code>&lt;label for="city"&gt;Ville&lt;/label&gt;
-&lt;input type="text" id="city" name="city" list="suggestions" /&gt;
-&lt;datalist id="suggestions"&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
-	&lt;option label="" value="Calgary"&gt;&lt;/option&gt;
-	&lt;option label="" value="Edmonton"&gt;&lt;/option&gt;
-	&lt;option label="" value="Iqualuit"&gt;&lt;/option&gt;
-	&lt;option label="" value="Ottawa"&gt;&lt;/option&gt;
-	&lt;option label="" value="Montréal"&gt;&lt;/option&gt;
-	&lt;option label="" value="St. John"&gt;&lt;/option&gt;
-	&lt;option label="" value="St. John's"&gt;&lt;/option&gt;
-	&lt;option label="" value="Toronto"&gt;&lt;/option&gt;
-	&lt;option label="" value="Vancouver"&gt;&lt;/option&gt;
-	&lt;option label="" value="Whitehorse"&gt;&lt;/option&gt;
-	&lt;option label="" value="Winnipeg"&gt;&lt;/option&gt;
-	&lt;option label="" value="Yellowknife"&gt;&lt;/option&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
-&lt;/datalist&gt;</code></pre>
-	</section>
-</div>
-<div class="span-4 row-end">
+<div class="span-3">
 	<section>
 		<h2 class="background-dark margin-bottom-medium">Exemple</h2>
 		<form action="#" method="get">
@@ -133,11 +120,21 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     		<input id="city" name="city" list="suggestions" />
     		<datalist id="suggestions">
 				<!--[if lte IE 9]><select><![endif]-->
-        		<option label="" value="Calgary"></option>
-        		<option label="" value="Edmonton"></option>
-        		<option label="" value="Iqualuit"></option>
-        		<option label="" value="Ottawa"></option>
-				<option label="" value="Montréal"></option>
+				<option label="" value="Barrie"></option>
+				<option label="" value="Calgary"></option>
+				<option label="" value="Charlottetown"></option>
+				<option label="" value="Chibougamau"></option>
+				<option label="" value="Chilliwack"></option>
+				<option label="" value="Cold Lake"></option>
+				<option label="" value="Dorval"></option>
+				<option label="" value="Edmonton"></option>
+				<option label="" value="Flin Flon"></option>
+				<option label="" value="Hamilton"></option>
+				<option label="" value="Iqualuit"></option>
+				<option label="" value="Ottawa"></option>
+				<option label="" value="Miramichi"></option>
+				<option label="" value="Montreal"></option>
+				<option label="" value="Red Deer"></option>
 				<option label="" value="St. John"></option>
 				<option label="" value="St. John's"></option>
 				<option label="" value="Toronto"></option>
@@ -150,6 +147,38 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 		</form>
 	</section>
 </div>
+<div class="span-5">
+	<section>
+		<h2 class="background-dark margin-bottom-medium">Usage</h2>
+		<pre class="wet-boew-prettify prettyprint linenums"><code>&lt;label for="city"&gt;Ville&lt;/label&gt;
+&lt;input type="text" id="city" name="city" list="suggestions" /&gt;
+&lt;datalist id="suggestions"&gt;
+   &lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
+   &lt;option label="" value="Barrie"&gt;&lt;/option&gt;
+   &lt;option label="" value="Calgary"&gt;&lt;/option&gt;
+   &lt;option label="" value="Charlottetown"&gt;&lt;/option&gt;
+   &lt;option label="" value="Chibougamau"&gt;&lt;/option&gt;
+   &lt;option label="" value="Chilliwack"&gt;&lt;/option&gt;
+   &lt;option label="" value="Cold Lake"&gt;&lt;/option&gt;
+   &lt;option label="" value="Dorval"&gt;&lt;/option&gt;
+   &lt;option label="" value="Edmonton"&gt;&lt;/option&gt;
+   &lt;option label="" value="Flin Flon"&gt;&lt;/option&gt;
+   &lt;option label="" value="Hamilton"&gt;&lt;/option&gt;
+   &lt;option label="" value="Iqualuit"&gt;&lt;/option&gt;
+   &lt;option label="" value="Ottawa"&gt;&lt;/option&gt;
+   &lt;option label="" value="Miramichi"&gt;&lt;/option&gt;
+   &lt;option label="" value="Montreal"&gt;&lt;/option&gt;
+   &lt;option label="" value="Red Deer"&gt;&lt;/option&gt;
+   &lt;option label="" value="St. John"&gt;&lt;/option&gt;
+   &lt;option label="" value="St. John's"&gt;&lt;/option&gt;
+   &lt;option label="" value="Toronto"&gt;&lt;/option&gt;
+   &lt;option label="" value="Vancouver"&gt;&lt;/option&gt;
+   &lt;option label="" value="Whitehorse"&gt;&lt;/option&gt;
+   &lt;option label="" value="Winnipeg"&gt;&lt;/option&gt;
+   &lt;option label="" value="Yellowknife"&gt;&lt;/option&gt;
+   &lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
+&lt;/datalist&gt;</code></pre>
+	</section>
 </div>
 <!-- End of Datalist content -->
 
@@ -216,9 +245,17 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
 </body>
 </html>

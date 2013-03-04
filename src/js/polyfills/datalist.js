@@ -120,8 +120,6 @@
 				} else if (type === 'click' || type === 'vclick') {
 					if (!autolist.hasClass('al-hide')) {
 						closeOptions();
-					} else {
-						showOptions('');
 					}
 					return false;
 				} else if (type === 'focus' && pe.ie > 0 && pe.ie < 8) {
@@ -194,10 +192,6 @@
 					pe.focus(elm);
 					closeOptions();
 				}
-			});
-
-			$(container).on("focusoutside", function () {
-				closeOptions();
 			});
 
 			$(document).on("click vclick touchstart", function (e) {

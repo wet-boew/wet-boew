@@ -3,30 +3,61 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 body {
-	min-width:600px;
+	min-width: 600px;
 }
 
 /** Box model - centered **/
-#wb-head, #wb-foot {
+%clf2-sp-pe-responsive-width100pct {
 	width: 100%;
 }
-#wb-core, #wb-core-in, #wb-head-in, #wb-foot-in {
-	margin:auto;
+
+#wb-head {
+	@extend %clf2-sp-pe-responsive-width100pct;
 }
-#wb-core, #wb-core-in {
-	width:600px;
+
+#wb-foot {
+	@extend %clf2-sp-pe-responsive-width100pct;
 }
-#wb-head-in, #wb-foot-in {
-	width:760px;
+
+%clf2-sp-pe-responsive-margin-auto {
+	margin: auto;
+}
+
+%clf2-sp-pe-responsive-width600px {
+	width: 600px;
+}
+
+#wb-core {
+	@extend %clf2-sp-pe-responsive-width600px;
+	@extend %clf2-sp-pe-responsive-margin-auto;
+}
+
+#wb-core-in {
+	@extend %clf2-sp-pe-responsive-width600px;
+	@extend %clf2-sp-pe-responsive-margin-auto;
+}
+
+%clf2-sp-pe-responsive-width760px {
+	width: 760px;
+	@extend %clf2-sp-pe-responsive-margin-auto;
+}
+
+#wb-head-in {
+	@extend %clf2-sp-pe-responsive-width760px;
+}
+
+#wb-foot-in {
+	@extend %clf2-sp-pe-responsive-width760px;
 }
 
 /** Centre column **/
 #wb-body {
-	width: 600px;
+	@extend %clf2-sp-pe-responsive-width600px;
 	#wb-main {
-		width:600px;
+		//TODO: Is the nested ID selector important or can the above and below 600px rules be combined
+		@extend %clf2-sp-pe-responsive-width600px;
 	}
 }
 #cn-msg-space {
-	width: 600px;
+	@extend %clf2-sp-pe-responsive-width600px;
 }

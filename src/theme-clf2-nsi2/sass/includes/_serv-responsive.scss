@@ -3,14 +3,39 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 body {
-	min-width:780px;
+	min-width: 780px;
 }
 
 /** Box model - centered **/
-#wb-head, #cn-foot {
+%clf2-serv-responsive-width100pct {
 	width: 100%;
 }
-#wb-core, #wb-core-in, #wb-head-in, #wb-foot-in {
-	width:760px;
-	margin:auto;
+
+#wb-head {
+	@extend %clf2-serv-responsive-width100pct;
+}
+
+#cn-foot {
+	@extend %clf2-serv-responsive-width100pct;
+}
+
+%clf2-serv-responsive-width760px {
+	width: 760px;
+	margin: auto;
+}
+
+#wb-core {
+	@extend %clf2-serv-responsive-width760px;
+}
+
+#wb-core-in {
+	@extend %clf2-serv-responsive-width760px;
+}
+
+#wb-head-in {
+	@extend %clf2-serv-responsive-width760px;
+}
+
+#wb-foot-in {
+	@extend %clf2-serv-responsive-width760px;
 }

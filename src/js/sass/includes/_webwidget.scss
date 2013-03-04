@@ -2,125 +2,136 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
- 
+
 @import "compass/css3/border-radius";
- 
-.no-js .wet-boew-webwidget li {
-		display: block;
+
+.no-js {
+	.wet-boew-webwidget {
+		li {
+				display: block;
+		}
+	}
 }
 .wet-boew-webwidget {
-	background:{
-		repeat:repeat-x;
-		position:0 0;
-		color:#e0e2e4!important;
-		image:url(../images/webfeeds/gradient.png)!important;
+	background: {
+		repeat: repeat-x;
+		position: 0 0;
+		color: #e0e2e4 !important;
+		image: url(../images/webfeeds/gradient.png) !important;
 	}
-	color:#555;
-	li.widget-state-loading {
-		display:block!important;
-		margin:auto;
-		width:100%;
-		line-height:60px;
-		text-align:center;
-		img {
-			margin:auto;
-			height:auto!important;
-			width:auto!important;
-			vertical-align:middle;
+	color: #555;
+	li {
+		display: none;
+		margin: 0 !important;
+		padding: 0 0 10px 0 !important;
+		float: none;
+		a {
+			img {
+				margin-right: 5px;
+			}
+		}
+		&.widget-state-loading {
+			display: block !important;
+			margin: auto;
+			width: 100%;
+			line-height: 60px;
+			text-align: center;
+			img {
+				margin: auto;
+				height: auto !important;
+				width: auto !important;
+				vertical-align: middle;
+			}
 		}
 	}
 	a {
-		text-decoration:none;
-		font-weight:700;
-		background-image:none!important;
-		margin-right:auto!important;
+		text-decoration: none;
+		font-weight: 700;
+		background-image: none !important;
+		margin-right: auto !important;
 		@include inline-block;
 		&.widget-notice {
-			text-decoration:underline;
+			text-decoration: underline;
 		}
 	}
 	.widget-container {
-		border:1px solid #ccc;
-		padding:10px!important;
+		border: 1px solid #ccc;
+		padding: 10px !important;
 	}
-	 h2, h3, h4, h5, h6 {
-		font-weight:700;
-		font-size:100%;
-		margin:4px 0 0 0;
-		padding:4px;
-		@include border-radius(0); 
+	#{headings(2,6)} {
+		font-weight: 700;
+		font-size: 100%;
+		margin: 4px 0 0 0;
+		padding: 4px;
+		@include border-radius(0);
 	}
 	ul {
-		list-style-type:none!important;
-		font-size:90%;
-		min-height:50px;
-		overflow:auto;
-		background:#fff;
-		border:1px solid #ccc;
-		margin:0!important;
-		padding:5px 2px 2px 5px!important;
+		list-style-type: none !important;
+		font-size: 90%;
+		min-height: 50px;
+		overflow: auto;
+		background: #fff;
+		border: 1px solid #ccc;
+		margin: 0 !important;
+		padding: 5px 2px 2px 5px !important;
 	}
-	li {
-		display: none;
-		margin:0!important;
-		padding:0 0 10px 0!important;
-		float:none;
-		a img {
-			margin-right:5px;
+	p {
+		&.widget-lang {
+			margin: 0;
 		}
-		
-	}
-	p.widget-lang {
-		margin:0;
 	}
 	.widget-lang {
-		a,a:visited,a:hover {
-			color:#000;
-			font-weight:400;
-			text-align:center;
-			background:#fff;
-			font-size:90%;
-			float:right;
-			border:1px solid #ccc;
-			border-top:0;
-			margin:0;
-			padding:2px 4px!important;
+		a {
+			&, &:visited, &:hover {
+				color: #000;
+				font-weight: 400;
+				text-align: center;
+				background: #fff;
+				font-size: 90%;
+				float: right;
+				border: 1px solid #ccc;
+				border-top: 0;
+				margin: 0;
+				padding: 2px 4px !important;
+			}
 		}
 	}
 	.widget-add {
-		background:#fff;
-		padding:0 10px;
+		background: #fff;
+		padding: 0 10px;
 		p {
-			text-align:center;
-			margin:0;
+			text-align: center;
+			margin: 0;
 		}
 		a {
-			color:#333;
-			border:3px double #ccc;
-			border-top:0;
-			padding:3px;
+			color: #333;
+			border: 3px double #ccc;
+			border-top: 0;
+			padding: 3px;
 		}
 	}
-	.widget-add,.widget-lang {
-		a:hover {
-			color:#c00;
+	.widget-add, .widget-lang {
+		a {
+			&:hover {
+				color: #c00;
+			}
 		}
 	}
 	.widget-avatar {
-		margin-right:5px !important;
-		height:auto!important;
-		width:auto!important;
-		border:1px solid #ccc !important;
-		background:#EEE;
-		padding:2px;
-		vertical-align:middle;
+		margin-right: 5px !important;
+		height: auto !important;
+		width: auto !important;
+		border: 1px solid #ccc !important;
+		background: #EEE;
+		padding: 2px;
+		vertical-align: middle;
 	}
 	.widget-datestamp {
-		font-size:90%;
+		font-size: 90%;
 	}
 	.widget-datestamp-accent {
-		font-size:90%;
-		color:#781a21!important;
-		white-space:nowrap;
+		font-size: 90%;
+		color: #781a21 !important;
+		white-space: nowrap;
 	}
 }

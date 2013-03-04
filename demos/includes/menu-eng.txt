@@ -9,7 +9,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li><a href="https://github.com/wet-boew/wet-boew/">Main project page</a></li>
 <li><a href="http://wet-boew.github.com/wet-boew/demos/index-eng.html">Working examples</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Documentation</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">Download</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Downloads">Downloads</a></li>
 <li><a href="http://wet-boew.github.com/wet-boew/License-eng.txt">Terms and conditions</a></li>
 </ul>
 </div>
@@ -48,7 +48,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="section2/index-eng.html">Section 2 - Main page</a></div>
 </div></section></li>
 <li><section><h3><a href="#">Section 3</a></h3><div class="mb-sm">
 <div class="mb-highlight">
@@ -122,7 +121,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="#">Section 4 - Main page</a></div>
 </div></section></li>
 <li><div><a href="#">Section 5</a></div></li>
 <li><section><h3><a href="#">Section 6</a></h3><div class="mb-sm">
@@ -203,7 +201,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="#">Section 7 - Main page</a></div>
 </div></section></li>
 <!-- DataAjaxFragmentEnd -->
 </html>

@@ -2,8 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/text-shadow";
 @import "compass/css3/inline-block";
+@import '../../grids/sass/includes/mixins';
 
 /*SCSS Variables*/
 $spacing: .375em;
@@ -14,21 +14,46 @@ $clrMedium: #CCC;
 $clrDark: #555;
 
 /*Default SCSS*/
+%footnote-link-highlight {
+	color: $clrWhite !important;
+	background-color: $clrDark;
+	border-color: $clrDark;
+}
+%footnote-link-background-white {
+	background-color: $clrWhite;
+}
 sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 	background-color: $clrLight;
 	border: 1px solid $clrMedium;
 	padding: 0 4px 1px;
 	white-space: nowrap;
-	&:hover, &:focus, &:active {
-		color: $clrWhite !important;
-		background-color: $clrDark;
-		border-color: $clrDark;
-		@include text-shadow(none !important);
+	@include pseudo-focus {
+		@extend %footnote-link-highlight;
 	}
 }
-table th sup a.footnote-link {
-	background-color: $clrWhite;
-	@include text-shadow(none);
+.background-light {
+	sup {
+		a {
+			&.footnote-link {
+				@extend %footnote-link-background-white;
+				@include pseudo-focus {
+					@extend %footnote-link-highlight;
+				}
+			}
+		}
+	}
+}
+table {
+	th {
+		sup {
+			a {
+				&.footnote-link {
+					@extend %footnote-link-background-white;
+					text-shadow: none;
+				}
+			}
+		}
+	}
 }
 .wet-boew-footnotes {
 	margin: 2em 10px 0 10px;
@@ -48,7 +73,7 @@ table th sup a.footnote-link {
 		margin: 0;
 		dt {
 			position: absolute;
-			clip: rect(1px, 1px, 1px, 1px);
+			@include clip-rect;
 			height: 1px;
 			width: 1px;
 			overflow: hidden;
@@ -58,15 +83,15 @@ table th sup a.footnote-link {
 			position: relative;
 			margin: $spacing 0;
 			border: 1px solid transparent;
-			&:focus {
+			@include pseudo-focus(false) {
 				background-color: $clrLight;
 				border-color: $clrDark;
-				p.footnote-return a {
-					/*Re-uses the same properties as regular footnote links in hover/focus/active states... leverage placeholder selectors (i.e. %foo) once SASS 3.2.1 or higher gets implemented*/
-					color: $clrWhite !important;
-					background-color: $clrDark;
-					border-color: $clrDark;
-					@include text-shadow(none !important);
+				p {
+					&.footnote-return {
+						a {
+							@extend %footnote-link-highlight;
+						}
+					}
 				}
 			}
 			p {
@@ -95,13 +120,33 @@ table th sup a.footnote-link {
 
 /*Print SCSS*/
 @media print {
+	%footnote-link-background-transparent {
+		background-color: transparent;
+	}
 	sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 		background-color: transparent;
 		border: 0;
 		padding: 0;
 	}
-	table th sup a.footnote-link {
-		background-color: transparent;
+	.background-light {
+		sup {
+			a {
+				&.footnote-link {
+					@extend %footnote-link-background-transparent;
+				}
+			}
+		}
+	}
+	table {
+		th {
+			sup {
+				a {
+					&.footnote-link {
+						@extend %footnote-link-background-transparent;
+					}
+				}
+			}
+		}
 	}
 	.wet-boew-footnotes {
 		border {
@@ -113,11 +158,15 @@ table th sup a.footnote-link {
 			right: 0;
 			bottom: 1em;
 		}
-		dl dd {
-			border: 0;
-			@include inline-block;
-			p.footnote-return {
-				overflow: visible;
+		dl {
+			dd {
+				border: 0;
+				@include inline-block;
+				p {
+					&.footnote-return {
+						overflow: visible;
+					}
+				}
 			}
 		}
 	}

@@ -3,10 +3,14 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 #wb-skip {
-	li span {
-		display: block;
+	li {
+		span {
+			display: block;
+		}
 	}
-	a:hover, a:focus, a:active {
-		background-color: #363;
+	a {
+		@include pseudo-focus {
+			background-color: #363;
+		}
 	}
 }

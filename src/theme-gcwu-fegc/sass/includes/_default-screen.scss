@@ -4,199 +4,379 @@
  */
 @import "compass/css3/border-radius";
 
+%gcwu-default-screen-color-fff {
+	color: #fff;
+}
+%gcwu-default-screen-color-333 {
+	color: #333;
+}
+%gcwu-default-screen-text-decoration-underline {
+	text-decoration: underline;
+}
+%gcwu-default-screen-text-decoration-none {
+	text-decoration: none;
+}
+%gcwu-default-screen-display-none {
+	display: none;
+}
+%gcwu-default-screen-display-block {
+	display: block;
+}
+%gcwu-default-screen-wmms-sig-display-none {
+	#gcwu-wmms-in {
+		@extend %gcwu-default-screen-display-none;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-default-screen-display-none;
+	}
+}
+%gcwu-default-screen-wmms-sig-display-block {
+	#gcwu-wmms-in {
+		@extend %gcwu-default-screen-display-block;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-default-screen-display-block;
+	}
+}
+%gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none {
+	&.ui-mobile {
+		@extend %gcwu-default-screen-wmms-sig-display-block;
+		&.ui-mobile-rendering {
+			@extend %gcwu-default-screen-wmms-sig-display-none;
+		}
+	}
+}
+
 body {
-	margin:0;
+	margin: 0;
+}
+
+#gcwu-gcnb {
+	overflow: hidden;
+	background: #000;
+	font-size: 0.9em;
+	ul {
+		list-style-type: none;
+		float: right;
+		margin: 0;
+		padding: 0;
+		li {
+			float: left;
+			padding: 13px 0;
+			&#gcwu-gcnb-lang {
+				a {
+					text-transform: capitalize;
+					padding-right: 10px;
+					margin-right: 1px;
+				}
+			}
+		}
+	}
+	a {
+		@extend %gcwu-default-screen-color-fff;
+		@extend %gcwu-default-screen-text-decoration-none;
+	}
+}
+
+#gcwu-wmms-in {
+	@extend %gcwu-default-screen-display-none;
+}
+#gcwu-sig-in {
+	@extend %gcwu-default-screen-display-none;
+}
+.svg {
+	@extend %gcwu-default-screen-wmms-sig-display-block;
+}
+.pe-disable {
+	@extend %gcwu-default-screen-wmms-sig-display-block;
+}
+.no-svg {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie9 {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
 }
 
 .wb-sec-def {
-	h3.top-section {
-		a {
-			color:#FFF;
-			padding-top:5px;
-			padding-bottom:5px;
-			font-size:1.1em;
-			&:hover,&:focus,&:active {
-				color:#FFF;
-				text-decoration:underline;
-			}
-			&.nav-current {
-				color:#FFF;
-				padding-top:4px;
-				padding-bottom:4px;
-				background:#0f315b;
+	h3 {
+		@extend %gcwu-default-screen-complex-border;
+		@extend %gcwu-default-screen-a-psuedo-underline;
+		&.top-section {
+			a {
+				&, &.ui-link {
+					@extend %gcwu-default-screen-color-fff;
+					padding-top: 5px;
+					padding-bottom: 5px;
+					font-size: 1.1em;
+					&:visited {
+						@extend %gcwu-default-screen-color-fff;
+					}
+					@include pseudo-focus {
+						@extend %gcwu-default-screen-color-fff;
+						@extend %gcwu-default-screen-text-decoration-underline;
+					}
+					&.nav-current {
+						@extend %gcwu-default-screen-color-fff;
+						padding-top: 4px;
+						padding-bottom: 4px;
+						background: #0f315b;
+					}
+				}
 			}
 		}
 	}
-	h3,h4,.top-level {
-		font-size:100%;
-		border-bottom:none;
+	%gcwu-default-screen-complex-border {
+		font-size: 100%;
+		border-bottom: none;
 		@include border-radius(2px);
-		margin:0 0 3px;
+		margin: 0 0 3px;
 		a {
-			font-weight:700;
-			background:#DDD;
-			padding:2px 4px;
-			&.nav-current {
-				color:#0F315B;
-				padding:1px 3px;
+			&, &.ui-link {
+				font-weight: 700;
+				background: #DDD;
+				padding: 2px 4px;
+				&.nav-current {
+					color: #0F315B;
+					padding: 1px 3px;
+				}
 			}
 		}
+	}
+	h4 {
+		@extend %gcwu-default-screen-complex-border;
+		@extend %gcwu-default-screen-a-psuedo-underline;
 	}
 	li {
+		@extend %gcwu-default-screen-a-psuedo-underline;
 		a {
-			padding:4px 5px;
+			padding: 4px 5px;
 			&.nav-current {
-				color:#0F315B;
-				padding:3px 4px;
+				padding: 3px 4px;
 			}
 		}
+		li {
+			margin-left: 0;
+			border: none;
+			list-style-type: none;
+			padding: 0;
+		}
 	}
-	a.nav-current {
-		border:1px solid #777;
-		@include border-radius(2px);
+	a {
+		&.nav-current {
+			border: 1px solid #777;
+			@include border-radius(2px);
+		}
 	}
-	h3,h4,.top-level,li {
+	//TODO: Similar to rule on line 33 except for the li element. Could these be merged further.
+	%gcwu-default-screen-a-psuedo-underline {
 		a {
-			display:block;
-			color:#333;
-			text-decoration:none;
-			&:hover,&:focus,&:active {
-				color:#333;
-				text-decoration:underline;
+			&, &.ui-link {
+				@extend %gcwu-default-screen-display-block;
+				@extend %gcwu-default-screen-color-333;
+				@extend %gcwu-default-screen-text-decoration-none;
+				&:visited {
+					@extend %gcwu-default-screen-color-333;
+				}
+				@include pseudo-focus {
+					@extend %gcwu-default-screen-color-333;
+					@extend %gcwu-default-screen-text-decoration-underline;
+				}
+				&.nav-current {
+					color: #0F315B;
+				}
 			}
 		}
 	}
 	ul {
-		list-style-type:none;
-		margin:0 0 3px;
-		padding:0;
+		list-style-type: none;
+		margin: 0 0 3px;
+		padding: 0;
 		ul {
-			list-style-type:none;
-			margin-left:10px;
-			padding-left:5px;
-			border-left:1px solid #ccc;
+			list-style-type: none;
+			margin-left: 10px;
+			padding-left: 5px;
+			border-left: 1px solid #ccc;
 		}
 	}
-	li li {
-		margin-left:0;
-		border:none;
-		list-style-type:none;
-		padding:0;
+	.top-level {
+		@extend %gcwu-default-screen-complex-border;
+		@extend %gcwu-default-screen-a-psuedo-underline;
 	}
 }
 
 #wb-foot {
-	h4,.gcwu-col-head {
-		font-size:110%;
-		border:none;
-		font-weight:700;
-		margin:20px 0 5px;
+	%gcwu-default-screen-foot-border {
+		border: none;
+		font: {
+			size: 110%;
+			weight: 700;
+		}
+		margin: 20px 0 5px;
+	}
+	h4 {
+		@extend %gcwu-default-screen-foot-border;
 	}
 	ul {
-		list-style-type:none;
-		margin:0;
-		padding:0;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
 	}
-	li a {
-		font-weight:400;
+	li {
+		a {
+			font-weight: 400;
+		}
 	}
 	a {
-		text-decoration:none;
+		@extend %gcwu-default-screen-text-decoration-none;
 	}
-	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12 {
-		margin-bottom:0;
+	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
+		margin-bottom: 0;
+	}
+	.gcwu-col-head {
+		@extend %gcwu-default-screen-foot-border;
+		.ui-link {
+			font-weight: 700;
+		}
 	}
 }
 
 #gcwu-sft {
-	padding-bottom:20px;
-	font-family:Arial, Helvetica, sans-serif;
-	a,span.link {
-		color:#222;
+	padding-bottom: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	%gcwu-default-screen-color-222 {
+		color: #222;
 	}
-	li a,li span.link {
-		line-height:1.75em;
+	a {
+		@extend %gcwu-default-screen-color-222;
 	}
-	h4,.gcwu-col-head {
-		margin-top:10px;
+	span {
+		&.link {
+			@extend %gcwu-default-screen-color-222;
+		}
+	}
+	li {
+		%gcwu-default-screen-line-height-175em {
+			line-height: 1.75em;
+		}
+		a {
+			@extend %gcwu-default-screen-line-height-175em;
+		}
+		span {
+			&.link {
+				@extend %gcwu-default-screen-line-height-175em;
+			}
+		}
+	}
+	%gcwu-default-screen-margin-top-10px {
+		margin-top: 10px;
+	}
+	h4 {
+		@extend %gcwu-default-screen-margin-top-10px;
 	}
 	address {
-		font-style:normal;
+		font-style: normal;
+	}
+	.gcwu-col-head {
+		@extend %gcwu-default-screen-margin-top-10px;
 	}
 }
 
 #gcwu-sft-in {
-	padding-top:20px;
-	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12 {
-		position:static;
+	padding-top: 20px;
+	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
+		position: static;
 	}
 }
 
 #gcwu-tctr {
-	margin:0;
-	padding:8px 0 6px;
+	margin: 0;
+	padding: 8px 0 6px;
 	li {
-		display:inline;
+		display: inline;
 		&.gcwu-tc {
-			border-right:1px solid #999;
-			padding:0 9px 0 10px;
+			border-right: 1px solid #999;
+			padding: 0 9px 0 10px;
 		}
 		&.gcwu-tr {
-			padding-left:6px;
+			padding-left: 6px;
 		}
 	}
 }
 
 #gcwu-gcft {
-	background:#040707;
-	font-family:Arial, Helvetica, sans-serif;
+	background: #040707;
+	font-family: Arial, Helvetica, sans-serif;
 	ul {
-		list-style-type:none;
-		margin:0;
+		list-style-type: none;
+		margin: 0;
 	}
 	li {
-		float:left;
+		float: left;
 		span {
-			text-transform:uppercase;
-			font-weight:700;
+			text-transform: uppercase;
+			font-weight: 700;
 		}
+		//TODO: Is child selector nessessary with ID selector?
 		&#gcwu-gcft-ca {
-			float:right;
-			padding-left:0;
-			margin-right:0;
+			float: right;
+			padding-left: 0;
+			margin-right: 0;
 			div {
-				font-size:170%;
-				text-align:right;
-				font-weight:400;
-				margin:0;
+				font-size: 170%;
+				text-align: right;
+				font-weight: 400;
+				margin: 0;
 			}
 		}
 	}
 	a {
-		text-decoration:none;
-		color:#fff;
-		font-size:90%;
+		@extend %gcwu-default-screen-text-decoration-none;
+		@extend %gcwu-default-screen-color-fff;
+		font-size: 90%;
 	}
 }
 
 #gcwu-gcft-ca {
-	font-family:Arial, Helvetica, sans-serif;
-	float:right !important;
-	padding-left:0;
-	margin-right:0;
+	font-family: Arial, Helvetica, sans-serif;
+	float: right !important;
+	padding-left: 0;
+	margin-right: 0;
 	div {
-		font-size:170%;
-		text-align:right;
-		font-weight:400;
-		margin:0;
+		font-size: 170%;
+		text-align: right;
+		font-weight: 400;
+		margin: 0;
 	}
 	a {
 		@include inline-block;
-		color:#fff;
-		text-decoration:none;
-		border-left:1px solid #666;
-		line-height:1.45em;
-		padding-right:10px;
-		font-size:0.95em;
+		@extend %gcwu-default-screen-color-fff;
+		@extend %gcwu-default-screen-text-decoration-none;
+		border-left: 1px solid #666;
+		line-height: 1.45em;
+		padding-right: 10px;
+		font-size: 0.95em;
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#gcwu-tctr {
+		padding: 11px 0 25px;
+		li {
+			float: right;
+
+			&.gcwu-tc {
+				border-left: 1px solid #999;
+				border-right: 0;
+			}
+
+			&.gcwu-tr {
+				padding: 0 9px;
+			}
+
+			a {
+				line-height: 1em;
+			}
+		}
 	}
 }

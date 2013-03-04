@@ -3,45 +3,80 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 body {
-	min-width:780px;
+	min-width: 780px;
 }
 
-#wb-head, #wb-foot {
+%clf2-default-responsive-fullwidth {
 	width: 100%;
 }
 
-#wb-core, #wb-core-in, #wb-head-in, #wb-foot-in {
-	margin:auto;
+%clf2-default-responsive-margin-auto {
+	margin: auto;
 }
 
-#wb-core, #wb-core-in, #wb-head-in, #wb-foot-in,#wb-body #wb-main {
-	width:760px;
+%clf2-default-responsive-width760 {
+	width: 760px;
 }
 
-#wb-body-sec #wb-main {
-	width:605px;
+#wb-body {
+	#wb-main {
+		@extend %clf2-default-responsive-width760;
+	}
 }
 
-#cn-body-in-3col #wb-main {
-	width:405px;
-	right:200px;
+#wb-core {
+	@extend %clf2-default-responsive-margin-auto;
+	@extend %clf2-default-responsive-width760;
 }
 
-#wb-body-sec #wb-main-in {
-	width:600px;
+#wb-core-in {
+	@extend %clf2-default-responsive-margin-auto;
+	@extend %clf2-default-responsive-width760;
 }
 
-#cn-body-in-3col #wb-main-in {
-	width:395px;
+#wb-head {
+	@extend %clf2-default-responsive-fullwidth;
+}
+
+#wb-head-in {
+	@extend %clf2-default-responsive-margin-auto;
+	@extend %clf2-default-responsive-width760;
+}
+
+#wb-foot {
+	@extend %clf2-default-responsive-fullwidth;
+}
+#wb-foot-in {
+	@extend %clf2-default-responsive-margin-auto;
+	@extend %clf2-default-responsive-width760;
+}
+
+#wb-body-sec {
+	#wb-main {
+		width: 605px;
+	}
+	#wb-main-in {
+		width: 600px;
+	}
+}
+
+#wb-body-sec-sup {
+	#wb-main {
+		width: 405px;
+		right: 200px;
+	}
+	#wb-main-in {
+		width: 395px;
+	}
 }
 
 /** Left column **/
 #wb-sec {
-	width:150px;
+	width: 150px;
 }
 
 /** Right column **/
 #wb-sup {
-	width:195px;
-	left:405px;
+	width: 195px;
+	left: 405px;
 }

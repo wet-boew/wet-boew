@@ -1,0 +1,174 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+@import 'compass/css3/opacity';
+@import '../../grids/sass/includes/mixins';
+
+body {
+	font-size: 80%;
+	margin: 0;
+	padding: 0;
+	@extend %wb-verdana-font;
+}
+
+/* Override jQuery Mobile hiding of content on mobile loading to eliminate white flicker (exact opposite of what jQuery Mobile does) */
+.ui-mobile-rendering {
+	> {
+		* {
+			visibility: visible !important;
+		}
+	}
+}
+
+a {
+	@include pseudo-focus {
+		text-decoration: underline;
+	}
+}
+
+img, a img {
+	border: none;
+}
+
+q {
+	&:before, &:after {
+		content: "";
+	}
+}
+
+dl, ol, ul {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+%wb-verdana-font {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+textarea, input {
+	@extend %wb-verdana-font;
+	font-size: 100%;
+}
+
+select {
+	@extend %wb-verdana-font;
+}
+
+pre, code, kbd, samp, tt {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 112%;
+}
+
+address {
+	font-style: normal;
+}
+
+#{headings(all)} {
+	font-weight: 700;
+	margin: 1em 0 0.25em;
+}
+
+#wb-main {
+	#{headings(all)} {
+		font-family: sans-serif;
+	}
+}
+
+h1 {
+	font-size: 170%;
+}
+
+h2 {
+	font-size: 155%;
+}
+
+h3 {
+	font-size: 140%;
+}
+
+h4 {
+	font-size: 130%;
+}
+
+h5 {
+	font-size: 120%;
+}
+
+h6 {
+	font-size: 110%;
+}
+
+.wb-hide {
+	display: none;
+}
+
+%wb-clip-hidden {
+	position: absolute;
+	@include clip-rect;
+	height: 1px !important;
+	width: 1px !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+}
+
+.wb-invisible {
+	@extend %wb-clip-hidden;
+}
+
+#wb-sec, #wb-sup, #wb-foot {
+	h2 {
+		@extend %wb-clip-hidden;
+	}
+}
+
+%wb-clip-focus-active {
+	@extend %wb-clip-hidden;
+	@include pseudo-focus(false) {
+		position: static;
+		clip: auto;
+		height: inherit !important;
+		width: inherit !important;
+		overflow: inherit !important;
+		margin: inherit !important;
+	}
+}
+
+.wb-show-onfocus {
+	@extend %wb-clip-focus-active;
+}
+
+#wb-skip {
+	a {
+		@extend %wb-clip-focus-active;
+		&, &:link, &:visited {
+			@extend %wb-clip-hidden;
+		}
+	}
+}
+
+.wb-show-onhover {
+	@include transparent;
+	@include pseudo-focus {
+		@include opaque;
+	}
+}
+
+#mobiletest {
+	position: absolute;
+	height: 0;
+	left: -9999px;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#mobiletest {
+		left: auto;
+		right: -9999px;
+	}
+}

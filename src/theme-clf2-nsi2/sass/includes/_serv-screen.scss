@@ -2,70 +2,103 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
 html {
 	overflow-y: scroll;
 }
+
 body {
-	min-width:780px;
-	margin:0;
-	padding:0;
+	min-width: 780px;
+	margin: 0;
+	padding: 0;
 }
+
 #wb-body {
 	border: 10px solid #FFF;
+	#wb-main {
+		width: 760px;
+		float: left;
+	}
 }
-	
+
 /** Box model - centered **/
-#wb-head, #cn-foot {
+%clf2-serv-screen-width100pct {
 	width: 100%;
 }
-#wb-core, #wb-core-in {
-	width:760px;
-	margin:auto;
+
+#wb-head {
+	@extend %clf2-serv-screen-width100pct;
+	@extend %clf2-serv-screen-overflow-hidden;
 }
-#wb-head-in, #wb-foot-in {
-	width:760px;
-	margin:auto;
+
+#cn-foot {
+	@extend %clf2-serv-screen-width100pct;
+	@extend %clf2-serv-screen-overflow-hidden;
 }
+
+%clf2-serv-screen-width760px {
+	width: 760px;
+	margin: auto;
+}
+
+#wb-core {
+	@extend %clf2-serv-screen-width760px;
+}
+
+#wb-head-in {
+	@extend %clf2-serv-screen-width760px;
+	@extend %clf2-serv-screen-overflow-hidden;
+}
+
+#wb-foot-in {
+	@extend %clf2-serv-screen-width760px;
+	@extend %clf2-serv-screen-overflow-hidden;
+}
+
 #wb-main {
-	z-index:1;
-	display:inline;
+	z-index: 1;
+	display: inline;
 }
 
 /** Overflow restrict for background paintability control **/
-#wb-head, #wb-head-in, #cn-foot, #wb-foot-in {
-	overflow:hidden;
+%clf2-serv-screen-overflow-hidden {
+	overflow: hidden;
 }
+
 #wb-core-in {
-	overflow:visible !important;
-	position:relative;
+	@extend %clf2-serv-screen-width760px;
+	overflow: visible !important;
+	position: relative;
 	&:after {
-		content:".";
-		display:block;
-		height:0;
-		clear:both;
-		visibility:hidden;
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
 	}
 }
 
 /** Centre column **/
 #wb-main-in {
-	padding-top:1px;
-	padding-bottom:1px;
+	padding: {
+		top: 1px;
+		bottom: 1px;
+	}
 	h1 {
 		margin-top: 0;
 	}
 }
-#wb-body #wb-main {
-	width:760px;
-	float:left;
-}
 
 #wb-skip {
-	li span {
-		display: block;
+	li {
+		span {
+			display: block;
+		}
 	}
-	a:hover, a:focus, a:active {
-		background-color: #363;
+	a {
+		@include pseudo-focus {
+			background-color: #363;
+		}
 	}
 }
 
@@ -74,6 +107,7 @@ body {
 	width: 50%;
 	min-width: 300px;
 }
+
 #cn-wmms {
 	float: right;
 	text-align: right;

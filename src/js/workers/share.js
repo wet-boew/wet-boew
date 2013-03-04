@@ -15,8 +15,9 @@
 	_pe.fn.share = {
 		type : 'plugin',
 		depends : ['metadata', 'bookmark', 'outside'],
+		ignoreFocusoutside : false,
 		_exec : function (elm) {
-			var opts, overrides, $popup, $popupText, $popupLinks, popupLink, popupLinksLen, popupLinkSpan, target, leftoffset, keychar, elmtext, matches, match;
+			var opts, overrides, $popup, popupDOM, $popupText, $popupLinks, popupLink, popupLinksLen, popupLinkSpan, leftoffset, keychar, elmtext, matches, match;
 
 			// Defaults
 			opts = {
@@ -64,11 +65,10 @@
 			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_share), class-based overrides and the data attribute
-			$.metadata.setType('attr', 'data-wet-boew');
 			if (typeof wet_boew_share !== 'undefined' && wet_boew_share !== null) {
-				$.extend(opts, wet_boew_share, overrides, elm.metadata());
+				$.extend(opts, wet_boew_share, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 			} else {
-				$.extend(opts, overrides, elm.metadata());
+				$.extend(opts, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 			}
 
 			elm.bookmark(opts);
@@ -88,7 +88,7 @@
 					popupLink.parentNode.setAttribute('role', 'presentation');
 					// TODO: Should work with author to fix in bookmark.js rather than maintain this workaround (fix needed otherwise some screen readers read the link twice)
 					popupLinkSpan = popupLink.getElementsByTagName('span');
-					if (popupLinkSpan.length > 0) {
+					if (popupLinkSpan.length !== 0) {
 						popupLinkSpan = popupLinkSpan[0];
 						popupLink.title = popupLinkSpan.title;
 						popupLinkSpan.removeAttribute('title');
@@ -106,30 +106,19 @@
 				}
 				elm.append($popup);
 
-				$popup.on('click vclick touchstart', function (e) {
-					if (e.stopPropagation) {
-						e.stopImmediatePropagation();
-					} else {
-						e.cancelBubble = true;
-					}
-				}).on('click vclick touchstart', 'a', function () { // Workaround for some touchscreen devices that don't 
-					window.open(this.href, '_blank');
-					$popup.trigger('close');
-					return false;
-				});
-
 				$popupText = elm.find('.bookmark_popup_text').off('click vclick touchstart keydown').wrap('<' + opts.popupTag + ' />');
 				$popupText.attr({'role': 'button', 'aria-controls': 'bookmark_popup'}).on('click vclick touchstart keydown', function (e) {
-					if (e.type === "keydown") {
+					var keyCode = e.keyCode;
+					if (e.type === 'keydown') {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-							if (e.keyCode === 13 || e.keyCode === 32) { // enter or space
+							if (keyCode === 13 || keyCode === 32) { // enter or space
 								e.preventDefault();
 								if ($popup.attr('aria-hidden') === 'true') {
 									$popup.trigger('open');
 								} else {
 									$popup.trigger('close');
 								}
-							} else if (e.keyCode === 38 || e.keyCode === 40) { // up or down arrow
+							} else if (keyCode === 38 || keyCode === 40) { // up or down arrow
 								e.preventDefault();
 								$popup.trigger('open');
 							}
@@ -143,23 +132,26 @@
 						return false;
 					}
 				});
-				$popup.on('keydown focusoutside open close closenofocus', function (e) {
-					if (e.type === 'keydown') {
+				$popup.on('keydown focusoutside open close closenofocus mouseenter mouseleave', function (e) {
+					var type = e.type,
+						keyCode = e.keyCode,
+						target;
+					if (type === 'keydown') {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-							switch (e.keyCode) {
-							case 27: // escape key (close the popup)
-								$popup.trigger("close");
+							target = $(e.target);
+							if (keyCode === 27) { // escape key (close the popup)
+								$popup.trigger('close');
 								return false;
-							case 37: // left arrow (go on link left, or to the right-most link in the previous row, or to the right-most link in the last row)
-								target = $(e.target).closest('li').prev().find('a');
+							} else if (keyCode === 37) { // left arrow (go on link left, or to the right-most link in the previous row, or to the right-most link in the last row)
+								target = target.closest('li').prev().find('a');
 								if (target.length === 0) {
 									target = $popupLinks;
 								}
 								pe.focus(target.last());
 								return false;
-							case 38: // up arrow (go one link up, or to the bottom-most link in the previous column, or to the bottom-most link of the last column)
-								leftoffset = $(e.target).offset().left;
-								target = $(e.target).closest('li').prevAll().find('a').filter(function () {
+							} else if (keyCode === 38) { // up arrow (go one link up, or to the bottom-most link in the previous column, or to the bottom-most link of the last column)
+								leftoffset = target.offset().left;
+								target = target.closest('li').prevAll().find('a').filter(function () {
 									return ($(this).offset().left === leftoffset);
 								});
 								if (target.length > 0) {
@@ -183,41 +175,42 @@
 									}
 								}
 								return false;
-							case 39: // right arrow (go one link right, or to the left-most link in the next row, or to the left-most link in the first row)
-								target = $(e.target).closest('li').next().find('a');
+							} else if (keyCode === 39) { // right arrow (go one link right, or to the left-most link in the next row, or to the left-most link in the first row)
+								target = target.closest('li').next().find('a');
 								if (target.length === 0) {
 									target = $popupLinks;
 								}
 								pe.focus(target.first());
 								return false;
-							case 40: // down arrow (go one link down, or to the top-most link in the next column, or to the top-most link of the first column)
-								leftoffset = $(e.target).offset().left;
-								target = $(e.target).closest('li').nextAll().find('a').filter(function () {
+							} else if (keyCode === 40) { // down arrow (go one link down, or to the top-most link in the next column, or to the top-most link of the first column)
+								leftoffset = target.offset().left;
+								target = target.closest('li').nextAll().find('a').filter(function () {
 									return ($(this).offset().left === leftoffset);
 								});
-								if (target.length > 0) {
+								if (target.length !== 0) {
 									pe.focus(target.first());
 								} else {
 									target = $popupLinks.filter(function () {
 										return ($(this).offset().left > leftoffset);
 									});
-									if (target.length > 0) {
+									if (target.length !== 0) {
 										pe.focus(target.first());
 									} else {
 										pe.focus($popupLinks.first());
 									}
 								}
 								return false;
-							default:
+							} else {
 								// 0 - 9 and a - z keys (go to the next link that starts with that key)
-								if ((e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91)) {
-									keychar = String.fromCharCode(e.keyCode).toLowerCase();
-									elmtext = $(e.target).text();
+								if ((keyCode > 47 && keyCode < 58) || (keyCode > 64 && keyCode < 91)) {
+									keychar = String.fromCharCode(keyCode).toLowerCase();
+									elmtext = target.text();
 									matches = $popupLinks.filter(function () {
-										return ($(this).text().substring(1, 2).toLowerCase() === keychar || $(this).text() === elmtext);
+										var $this = $(this);
+										return ($this.text().substring(1, 2).toLowerCase() === keychar || $this.text() === elmtext);
 									});
-									if (matches.length > 0) {
-										if ($(e.target).hasClass('bookmark_popup_text')) {
+									if (matches.length !== 0) {
+										if (target.hasClass('bookmark_popup_text')) {
 											pe.focus(matches.eq(0));
 										} else {
 											matches.each(function (index) {
@@ -237,21 +230,35 @@
 								}
 							}
 						}
-					} else if (e.type === 'focusoutside' && !$(e.target).is($popupText)) { // Close the popup menu if focus goes outside
-						if ($popup.attr('aria-hidden') === 'false') {
-							$popup.trigger('closenofocus');
+					} else if (type === 'click' || type === 'vclick' || type === 'touchstart') {
+						if (e.stopPropagation) {
+							e.stopImmediatePropagation();
+						} else {
+							e.cancelBubble = true;
 						}
-					} else if (e.type === 'open') { // Open the popup menu an put the focus on the first link
+					} else if (type === 'open') { // Open the popup menu an put the focus on the first link
 						$popupText.text(opts.hideText + opts.popupText);
 						$popup.attr('aria-hidden', 'false').show();
 						pe.focus($popup.show().find('li a').first());
-					} else if (e.type === 'close' || e.type === 'closenofocus') { // Close the popup menu
+					} else if (type === 'close' || type === 'closenofocus') { // Close the popup menu
 						$popupText.text(opts.popupText);
 						$popup.attr('aria-hidden', 'true').hide();
-						if (e.type === 'close') {
+						if (type === 'close') {
 							pe.focus($popupText.first());
 						}
+					} else if (type === 'mouseenter') { // Mouse hover so ignore focusoutside event
+						_pe.fn.share.ignoreFocusoutside = true;
+					} else if (type === 'mouseleave') {
+						_pe.fn.share.ignoreFocusoutside = false;
+					} else if (type === 'focusoutside' && !$(e.target).is($popupText)) { // Close the popup menu if focus goes outside
+						if (!_pe.fn.share.ignoreFocusoutside && $popup.attr('aria-hidden') === 'false') {
+							$popup.trigger('closenofocus');
+						}
 					}
+				}).on('click vclick touchstart', 'a', function () { // Workaround for some touchscreen devices that don't 
+					window.open(this.href, '_blank');
+					$popup.trigger('close');
+					return false;
 				});
 
 				$(document).on('click vclick touchstart', function () {

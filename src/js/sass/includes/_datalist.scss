@@ -6,41 +6,44 @@ datalist {
 	display: none;
 }
 .wb-al-container {
-	z-index:50;
-	display:inline;
-	position:relative;
+	z-index: 50;
+	display: inline;
+	position: relative;
 }
-ul.wb-autolist {
-	position:absolute;
-	margin-top:-10px;
-	margin-left:0;
-	padding-left:0;
-	z-index:50;
-	background:#fff;
-	width:100%;
-	border: {
-		width: 0 1px 1px;
-		style: solid;
-		color: #000;
-	}
-	overflow: auto;
-	&.al-hide {
-		display: none;
-	}
-	li {
-		list-style-type: none;
-		.al-label {
-			padding-left: 10px;
-			float: right;
-		}
-		a {
-			text-decoration: none;
+ul {
+	&.wb-autolist {
+		position: absolute;
+		margin-top: -10px;
+		margin-left: 0;
+		padding-left: 0;
+		z-index: 50;
+		background: #fff;
+		max-height: 18em;
+		width: 100%;
+		border: {
+			width: 0 1px 1px;
+			style: solid;
 			color: #000;
-			display: block;
-			padding: 0 5px;
-			&:hover, &:focus, &:active {
-				background: #406C93;
-				color: #fff;
+		}
+		overflow: auto;
+		&.al-hide {
+			display: none;
+		}
+		li {
+			list-style-type: none;
+			.al-label {
+				padding-left: 10px;
+				float: right;
+			}
+			a {
+				text-decoration: none;
+				color: #000;
+				display: block;
+				padding: 0 5px;
+				@include pseudo-focus {
+					background: #406C93;
+					color: #fff;
+				}
 			}
 		}
 	}

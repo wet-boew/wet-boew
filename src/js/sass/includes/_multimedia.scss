@@ -3,122 +3,106 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
 */
 video, object.video {
-	width:100%;
+	width: 100%;
 	background-color: #000;
-	margin-bottom:-4px;
+	margin-bottom: -4px;
 }
 
 .wb-mm-captionsarea {
-	background-color:#000;
-	color:#FFF;
-	text-align:center;
-	padding:0.5em;
-	min-height:1.5em;
+	background-color: #000;
+	color: #FFF;
+	text-align: center;
+	padding: 0.5em;
+	min-height: 1.5em;
 }
 
 .wet-boew-multimedia {
 
 	.wb-mm-overlay {
-		position:absolute;
-		background:rgba(0,0,0,0.001);
-		border:0;
-		width:100%;
+		position: absolute;
+		background: transparent;
+		background: rgba(0, 0, 0, 0.001);
+		border: 0;
+		width: 100%;
 		* {
-			display:block;
-			margin:auto;
+			display: block;
+			margin: auto;
 		}
-		
+
 		img {
-			width:100px;
-			height:100px;
+			width: 100px;
+			height: 100px;
 		}
 	}
 
 	svg {
 		* {
-	 		pointer-events:none;
+	 		pointer-events: none;
 	 	}
 	}
 }
 
-@mixin border {
-	border:1px solid #BBB;
+%multimedia-border-1px-solid-BBB {
+	border: 1px solid #BBB;
 }
 
 .wb-mm-toolbar {
-	@include border;
-	background:#DADADA url('../images/multimedia/background-toolbar.png') repeat-x 0 0;
+	@extend %multimedia-border-1px-solid-BBB;
+	background: #DADADA url('../images/multimedia/background-toolbar.png') repeat-x 0 0;
 }
 
 $progress-color: #000;
 
 .wb-mm-controls {
-	position:relative;
-	width:100%;
-	padding:0;
-
 	button {
 		@extend .wb-mm-toolbar;
-		padding:0;
-		
+		padding: 0;
+
 		svg, img {
-			display:block;
-			margin:0;
-			padding:0;
+			display: block;
+			margin: 0;
+			padding: 0;
 		}
-		
+
 		img {
-			width:20px;
-			height:20px;
+			width: 20px;
+			height: 20px;
 		}
-	}
-	
-	.wb-mm-controls-start, .wb-mm-timeline-current {
-		float:left;
 	}
 
-	.wb-mm-timeline-total {
-		float:right;
+	.wb-mm-controls-start, .wb-mm-timeline-current {
+		float: left;
+		padding-right: 0.2em;
 	}
-	
-	.wb-mm-controls-end {
-		position:absolute;
-		top:0;
-		right:0;
-	}	
-	
+
+	.wb-mm-controls-end, .wb-mm-timeline-total {
+		float: right;
+		padding-left: 0.2em;
+	}
+
 	.wb-mm-timeline {
-		position:relative;
 		@extend .wb-mm-toolbar;
-		margin-left:83px;
-		margin-right:55px;
-		height:18px;
 		padding: 2px 4px;
-		
+
 		p {
-			margin:0;
+			margin: 0;
 		}
-		
-		.wb-mm-timeline-inner {
-			margin:0 70px;
+	}
+
+	&.wb-mm-no-cc {
+		.wb-mm-timeline {
+			margin-right: 25px;
 		}
-	
 	}
-	
-	&.wb-mm-no-cc .wb-mm-timeline {
-		margin-right:25px;
-	}
-	
+
 	progress {
-		@include border;
-		color:$progress-color;
-		width:100%;
-		height:14px;
-		margin:2px 0;
+		@extend %multimedia-border-1px-solid-BBB;
+		color: $progress-color;
+		width: 100%;
 		@if $experimental-support-for-mozilla {
 			&::-moz-progress-bar {
 				background: $progress-color;
-				display:block;
+				display: block;
 			}
 		}
 		@if $experimental-support-for-webkit {
@@ -127,14 +111,16 @@ $progress-color: #000;
 			}
 		}
 		/* Polyfill */
-		div.wb-progress-outer {
-			border:none;
-			background-color:transparent!important;
-			padding:0;
-		}
-		div.wb-progress-inner {
-			background-color:$progress-color!important;
-			padding:0;
+		div {
+			&.wb-progress-outer {
+				border: none;
+				background-color: transparent !important;
+				padding: 0;
+			}
+			&.wb-progress-inner {
+				background-color: $progress-color !important;
+				padding: 0;
+			}
 		}
 	}
 }
@@ -142,6 +128,6 @@ $progress-color: #000;
 @media print {
 	.wb-mm-controls, .wb-mm-overlay
 	{
-		display:none;
+		display: none;
 	}
 }

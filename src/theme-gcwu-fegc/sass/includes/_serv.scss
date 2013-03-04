@@ -2,9 +2,10 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
 h1 {
 	position: absolute;
-	clip: rect(1px, 1px, 1px, 1px);
+	@include clip-rect;
 	height: 0 !important;
 	width: 0 !important;
 	overflow: hidden !important;
@@ -12,30 +13,36 @@ h1 {
 }
 
 #wb-skip {
-	display:none;
-	visibility:hidden;
+	display: none;
+	visibility: hidden;
 }
 
-#wb-body {
-	background:#fff;
-}
-
-#wb-core-in,#wb-head-in {
+%gcwu-serv-background-white {
 	background: #fff;
 }
 
+#wb-body {
+	@extend %gcwu-serv-background-white;
+}
+
+#wb-head-in {
+	@extend %gcwu-serv-background-white;
+}
+
 #gcwu-sig {
+	@extend %gcwu-serv-img-margin-bottom-0;
 	margin-top: 20px;
 	margin-bottom: 11px;
 }
 
 #gcwu-wmms {
+	@extend %gcwu-serv-img-margin-bottom-0;
 	text-align: right;
 	margin-top: 10px;
 	margin-bottom: 11px;
 }
 
-#gcwu-sig, #gcwu-wmms {
+%gcwu-serv-img-margin-bottom-0 {
 	img {
 		margin-bottom: 0;
 	}
@@ -43,23 +50,44 @@ h1 {
 
 #gcwu-title {
 	border-bottom: 1px solid #666;
-	a,a:visited,a:hover,a:focus,a:active {
-		color:#295376;
-		text-decoration:none;
-	}
-	a:hover,a:focus,a:active {
-		text-decoration:underline;
+	a {
+		&, &:visited {
+			color: #295376;
+			text-decoration: none;
+		}
+		@include pseudo-focus {
+			color: #295376;
+			text-decoration: underline;
+		}
 	}
 }
 
-#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
+%gcwu-serv-title-right-left {
 	padding: 0;
 	color: #000;
 	font-size: 1.5em;
 	font-weight: bold;
 }
 
-.gcwu-alt-title-left, .gcwu-alt-title-right {
+#gcwu-title-left {
+	@extend %gcwu-serv-title-right-left;
+}
+
+#gcwu-title-right {
+	@extend %gcwu-serv-title-right-left;
+}
+
+.gcwu-alt-title-left {
+	@extend %gcwu-serv-title-right-left;
+	@extend %gcwu-serv-alt-title-right-left;
+}
+
+.gcwu-alt-title-right {
+	@extend %gcwu-serv-title-right-left;
+	@extend %gcwu-serv-alt-title-right-left;
+}
+
+%gcwu-serv-alt-title-right-left {
 	padding: 0;
 	color: #000;
 	font-size: 1.2em;
@@ -67,15 +95,28 @@ h1 {
 }
 
 #wb-core-in {
-	h2,p {
+	@extend %gcwu-serv-background-white;
+	%gcwu-serv-wb-core-margin-left-0 {
 		margin-left: 0;
+	}
+	h2 {
+		@extend %gcwu-serv-wb-core-margin-left-0;
+	}
+	p {
+		@extend %gcwu-serv-wb-core-margin-left-0;
 	}
 	li {
 		a {
 			text-decoration: none;
-			&:hover,&:focus,&:active {
+			@include pseudo-focus {
 				text-decoration: underline;
 			}
 		}
+	}
+}
+
+[dir="rtl"] {
+	#gcwu-wmms {
+		text-align: left;
 	}
 }

@@ -1303,6 +1303,6 @@ var test = (new Date()).getTime();
 				getValueSet:			function() { return getValueSet(); },
 				setValueSet:			function(a, tf) { if(!sliderExists(id)) { return false; }; setValueSet(a, tf); },
 				setGlobalVariables:	function(json) { affectJSON(json); },
-				removeOnload:			function() { removeOnLoadEvent(); }					 
+				removeOnload:			function() { removeOnLoadEvent(); }	 
 		};
 })();	  

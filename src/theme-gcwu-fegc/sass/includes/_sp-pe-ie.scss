@@ -1,0 +1,19 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+.ie7 {
+	h2 {
+		height: 1px !important;
+		width: 1px !important;
+	}
+}
+.ie7, .ie8 {
+	#gcwu-tc {
+		a {
+			&, &.ui-link {
+				font-weight: normal;
+			}
+		}
+	}
+}

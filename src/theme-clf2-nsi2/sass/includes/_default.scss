@@ -2,9 +2,12 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
+@import '../../grids/sass/includes/mixins';
+
 .wb-sec-def {
 	h3 {
-		margin:{
+		margin: {
 			left: 0;
 			right: 0;
 		}
@@ -14,15 +17,44 @@
 	}
 }
 
-#cn-bc h2, #cn-bc2 h2, #cn-psnb h2, #cn-psnb-2 h2, #cn-in-pd h3 {
-	position: absolute; 
-	clip: rect(1px, 1px, 1px, 1px); 
-	height: 1px !important; 
-	width: 1px !important; 
+%clf2-default-hidden {
+	position: absolute;
+	@include clip-rect;
+	height: 1px !important;
+	width: 1px !important;
 	overflow: hidden !important;
 }
 
-#cn-bc, #cn-bc2 {
+#cn-bc {
+	@extend %clf2-default-bc-all;
+}
+
+#cn-bc2 {
+	@extend %clf2-default-bc-all;
+}
+
+#cn-psnb {
+	h2 {
+		@extend %clf2-default-hidden;
+	}
+}
+
+#cn-psnb-2 {
+	h2 {
+		@extend %clf2-default-hidden;
+	}
+}
+
+#cn-in-pd {
+	h3 {
+		@extend %clf2-default-hidden;
+	}
+}
+
+%clf2-default-bc-all {
+	h2 {
+		@extend %clf2-default-hidden;
+	}
 	ol {
 		padding-top: 0;
 		line-height: 1.57em;
@@ -42,12 +74,21 @@
 	}
 }
 
-#cn-doc-dates, #cn-toppage-foot, #cn-in-pd-links {
+%clf2-default-width-33pct {
 	margin: 10px 0;
 	width: 33%;
 }
 
+#cn-toppage-foot {
+	@extend %clf2-default-width-33pct;
+}
+
+#cn-in-pd-links {
+	@extend %clf2-default-width-33pct;
+}
+
 #cn-doc-dates {
+	@extend %clf2-default-width-33pct;
 	float: left;
 	clear: left;
 	min-width: 6em;
@@ -59,6 +100,8 @@
 	}
 	dd {
 		margin-left: 0;
-		span {white-space: nowrap;}
+		span {
+			white-space: nowrap;
+		}
 	}
 }

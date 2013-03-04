@@ -19,7 +19,6 @@
 		_exec : function (elm) {
 			// Variables
 			var opts,
-				opts2 = {},
 				overrides,
 				$lb,
 				$lbContent,
@@ -48,8 +47,6 @@
 				onLoad : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
 						$lbCurrent = $lbTitle.next();
-					$lbTitle.addClass('wb-hide');
-					$lbCurrent.addClass('wb-hide');
 				},
 				onComplete : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
@@ -62,8 +59,6 @@
 					} else {
 						$lbLoadedContent.children().attr('alt', $lbTitle.text());
 					}
-					$lbTitle.removeClass('wb-hide');
-					$lbCurrent.removeClass('wb-hide');
 					pe.focus($lbLoadedContent);
 					open = true;
 				},
@@ -81,11 +76,10 @@
 			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data attribute
-			$.metadata.setType('attr', 'data-wet-boew');
 			if (typeof wet_boew_lightbox !== 'undefined' && wet_boew_lightbox !== null) {
-				$.extend(opts, wet_boew_lightbox, overrides, elm.metadata());
+				$.extend(opts, wet_boew_lightbox, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 			} else {
-				$.extend(opts, overrides, elm.metadata());
+				$.extend(opts, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 			}
 
 			// Add touchscreen support for launching the lightbox
@@ -93,21 +87,16 @@
 				$.colorbox.launch(this);
 			});
 
-			// Create options object for inline content
-			$.extend(opts2, opts, {inline: 'true'});
-
 			// Build single images, inline content and AJAXed content
 			$lb.filter('.lb-item').attr('aria-haspopup', 'true').each(function () {
-				pe.fn.lightbox._init_colorbox(this, opts, opts2);
+				pe.fn.lightbox._init_colorbox(this, opts);
 			});
 
 			// Build galleries
 			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () {
-				var group = {rel: 'group' + (pe.fn.lightbox.groupindex += 1)};
-				$.extend(opts, group);
-				$.extend(opts2, group);
+				var group = 'group' + (pe.fn.lightbox.groupindex += 1);
 				$(this).find('.lb-item-gal').attr('aria-haspopup', 'true').each(function () {
-					pe.fn.lightbox._init_colorbox(this, opts, opts2);
+					pe.fn.lightbox._init_colorbox(this, opts, group);
 				});
 			});
 
@@ -127,7 +116,7 @@
 							pe.focus($lbClose);
 							e.preventDefault();
 						} else if (!e.shiftKey && target_id === 'cboxClose') {
-							pe.focus($lbLoadedContent);
+							pe.focus($lbContent.find('#cboxLoadedContent'));
 							e.preventDefault();
 						}
 					} else if (e.keyCode === 13 || e.keyCode === 32) {
@@ -146,10 +135,13 @@
 			});
 		}, // end of exec
 
-		_init_colorbox : function(link, opts_default, opts_inline) {
-			var opts = link.getAttribute('href').substring(0, 1) !== '#' ? opts_default : opts_inline,
+		_init_colorbox : function(link, opts, group) {
+			var $link = $(link),
+				isInline = $link.attr('href').substring(0, 1) === '#',
+				isGroup = (group !== undefined),
+				groupRel = (isGroup ? group : false),
 				title = this._get_title(link);
-			$(link).colorbox(title ? $.extend({}, opts, title) : opts);
+			$link.colorbox((isInline || isGroup || title) ? $.extend((title ? title : {}), opts, {inline: isInline, rel: groupRel}) : opts);
 		},
 
 		_get_title : function(link) {

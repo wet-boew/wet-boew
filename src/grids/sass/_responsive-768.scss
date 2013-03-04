@@ -2,90 +2,26 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#wb-body-sec #wb-core .grid-12 .span-1 {
-	width:28px;
+
+@import 'includes/_grid-mixins.scss';
+
+// Width for an 8 grid column
+$width-8: 76px;
+// Width for a standard 12 grid column
+$width-12: 44px;
+// Width for a smaller 12 grid column
+$width-12small: 28px;
+
+[id|="wb-body-sec"] {
+	#wb-core {
+		.grid-12 {
+			@include create_grid($width-12small, 12);
+		}
+	}
 }
 
-.grid-12 .span-1 {
-	width:44px;
+.grid-12 {
+	@include create_grid($width-12, 12);
 }
 
-.span-1,#wb-body-sec #wb-core .grid-12 .span-2 {
-	width:76px;
-}
-
-.grid-12 .span-2 {
-	width:108px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-3 {
-	width:124px;
-}
-
-.span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3 {
-	width:172px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-5 {
-	width:220px;
-}
-
-.grid-12 .span-4 {
-	width:236px;
-}
-
-.span-3,#wb-body-sec #wb-core .grid-12 .span-6 {
-	width:268px;
-}
-
-.grid-12 .span-5 {
-	width:300px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-7 {
-	width:316px;
-}
-
-.span-4,#wb-body-sec #wb-core .grid-12 .span-8,.grid-12 .span-6 {
-	width:364px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-9 {
-	width:412px;
-}
-
-.grid-12 .span-7 {
-	width:428px;
-}
-
-.span-5,#wb-body-sec #wb-core .grid-12 .span-10 {
-	width:460px;
-}
-
-.grid-12 .span-8 {
-	width:492px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-11 {
-	width:508px;
-}
-
-.span-6,#wb-body-sec #wb-core .grid-12 .span-12,.grid-12 .span-9 {
-	width:556px;
-}
-
-.grid-12 .span-10 {
-	width:620px;
-}
-
-.span-7 {
-	width:652px;
-}
-
-.grid-12 .span-11 {
-	width:684px;
-}
-
-.span-8,.grid-12 .span-12 {
-	width:748px;
-}
+@include create_grid($width-8, 8);

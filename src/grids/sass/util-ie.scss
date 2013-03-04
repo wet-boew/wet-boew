@@ -10,19 +10,19 @@
 @import '../../base/sass/oldie-vendor-prefix';
 
 /*!!
- * Icons by Yusuke Kamiyamane (http://p.yusukekamiyamane.com/) - Creative Commons Attribution 3.0 License (http://creativecommons.org/licenses/by/3.0/)
+ * Icons by Yusuke Kamiyamane (http: //p.yusukekamiyamane.com/) - Creative Commons Attribution 3.0 License (http: //creativecommons.org/licenses/by/3.0/)
  */
+
 @media screen {
-/* -----Build Include Section Start----- */
+/* ----- Screen media type only - Start of build includes ----- */
 @import 'includes/util-screen';
 @import 'includes/util-desktop-screen';
-@import 'includes/fix-ie7';
-@import 'includes/fix-ie8';
-/* -----Build Include Section End----- */
+@import 'includes/fix-ie';
+/* ----- Screen media type only - End of build includes ----- */
 }
 
 @media print {
-/* -----Build Include Section Start----- */
+/* ----- Print media type only - Start of build includes ----- */
 @import 'includes/util-print';
-/* -----Build Include Section End----- */
+/* ----- Print media type only - End of build includes ----- */
 }

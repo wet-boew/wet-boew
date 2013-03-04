@@ -7,10 +7,18 @@
 		display: block;
 		visibility: visible;
 	}
-	.tabs-panel > div {
-		display: block;
+	.tabs-panel {
+		> {
+			div {
+				display: block;
+			}
+		}
 	}
-	details > * {
-		display: block;
+	details {
+		> {
+			* {
+				display: block;
+			}
+		}
 	}
 }

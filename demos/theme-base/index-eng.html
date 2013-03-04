@@ -14,19 +14,21 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="description" content="English description / Description en anglais" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-base/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-base/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-base/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-base/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
@@ -43,9 +45,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <section><div id="base-fullhd"><h2>Full-width header area</h2>
-<p>id="base-fullhd"</p>
+<p class="mobile-hide">id="base-fullhd"</p>
 <div id="base-fullhd-in">
-<p class="float-left">id="base-fullhd-in"</p>
+<p class="float-left mobile-hide">id="base-fullhd-in"</p>
 <ul>
 <li id="base-fullhd-lang"><a href="index-fra.html" lang="fr">Français</a></li>
 </ul>
@@ -58,13 +60,13 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <section role="search"><div id="base-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="base-srchbx-in">
 <label for="base-srch">Search website</label><input id="base-srch" name="base-srch" type="search" value="" size="27" maxlength="150" />
-<input id="base-srch-submit" name="base-srch-submit" type="submit" value="Search" data-icon="search" />
+<input id="base-srch-submit" name="base-srch-submit" type="submit" value="Search" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="base-psnb"><h2><span>Site </span>menu</h2><div id="base-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="base-psnb"><h2>Site menu</h2><div id="base-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
@@ -95,182 +97,64 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ul>
 <li><a href="#en">English examples</a></li>
 <li><a href="#fr">French examples</a></li>
-<!--<li><a href="#bg">Bulgarian examples</a></li>-->
 <li><a href="#es">Spanish examples</a></li>
-<!--<li><a href="#pt">Portuguese examples</a></li>
-<li><a href="#pt-BR">Portuguese (Brazilian) examples</a></li>-->
+<li><a href="#ar">Arabic examples</a></li>
 </ul>
 
 <div class="span-4">
-<section><h2 id="en">English examples</h3>
+<section><h2 id="en">English examples</h2>
 <ul>
 <li><a href="cont-eng.html"><span class="wb-invisible">English examples - </span>Content page</a></li>
+<li><a href="cont-secnav1-eng.html"><span class="wb-invisible">English examples - </span>Content page - Secondary menu 1</a></li>
+<li><a href="cont-secnav2-eng.html"><span class="wb-invisible">English examples - </span>Content page - Secondary menu 2</a></li>
 <li><a href="cont-subsite-eng.html"><span class="wb-invisible">English examples - </span>Content page - Sub-site</a></li>
-<li><a href="cont-sitemenu-eng.html"><span class="wb-invisible">English examples - </span>Content page - Site menu</a></li>
-<li><a href="cont-subsite-sitemenu-eng.html"><span class="wb-invisible">English examples - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-
-<section><h3>Secondary menu 1</h4>
-<ul>
-<li><a href="cont-secnav1-eng.html"><span class="wb-invisible">English examples - Secondary menu 1 - </span>Content page</a></li>
-<li><a href="cont-secnav1-subsite-eng.html"><span class="wb-invisible">English examples - Secondary menu 1 - </span>Content page - Sub-site</a></li>
-<li><a href="cont-secnav1-sitemenu-eng.html"><span class="wb-invisible">English examples - Secondary menu 1 - </span>Content page - Site menu</a></li>
-<li><a href="cont-secnav1-subsite-sitemenu-eng.html"><span class="wb-invisible">English examples - Secondary menu 1 - </span>Content page - Sub-site + Site menu</a></li>
+<li><a href="cont-nosearchlang-eng.html"><span class="wb-invisible">English examples - </span>Content page - No search or language selection link</a></li>
+<li><a href="cont-nositemenubc-eng.html"><span class="wb-invisible">English examples - </span>Content page - No site menu or breadcrumb trail</a></li>
+<li><a href="cont-nosearchlangsitemenubc-eng.html"><span class="wb-invisible">English examples - </span>Content page - No search, language selection link, site menu or breadcrumb trail</a></li>
 </ul>
 </section>
 
-<section><h3>Secondary menu 2</h4>
-<ul>
-<li><a href="cont-secnav2-eng.html"><span class="wb-invisible">English examples - Secondary menu 2 - </span>Content page</a></li>
-<li><a href="cont-secnav2-subsite-eng.html"><span class="wb-invisible">English examples - Secondary menu 2 - </span>Content page - Sub-site</a></li>
-<li><a href="cont-secnav2-sitemenu-eng.html"><span class="wb-invisible">English examples - Secondary menu 2 - </span>Content page - Site menu</a></li>
-<li><a href="cont-secnav2-subsite-sitemenu-eng.html"><span class="wb-invisible">English examples - Secondary menu 2 - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-</section>
-</section>
-
-<section><h2 id="fr">French examples</h3>
+<section><h2 id="fr">French examples</h2>
 <ul>
 <li><a href="cont-fra.html"><span class="wb-invisible">French examples - </span>Content page</a></li>
+<li><a href="cont-secnav1-fra.html"><span class="wb-invisible">French examples - </span>Content page - Secondary menu 1</a></li>
+<li><a href="cont-secnav2-fra.html"><span class="wb-invisible">French examples - </span>Content page - Secondary menu 2</a></li>
 <li><a href="cont-subsite-fra.html"><span class="wb-invisible">French examples - </span>Content page - Sub-site</a></li>
-<li><a href="cont-sitemenu-fra.html"><span class="wb-invisible">French examples - </span>Content page - Site menu</a></li>
-<li><a href="cont-subsite-sitemenu-fra.html"><span class="wb-invisible">French examples - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-
-<section><h3>Secondary menu 1</h4>
-<ul>
-<li><a href="cont-secnav1-fra.html"><span class="wb-invisible">French examples - Secondary menu 1 - </span>Content page</a></li>
-<li><a href="cont-secnav1-subsite-fra.html"><span class="wb-invisible">French examples - Secondary menu 1 - </span>Content page - Sub-site</a></li>
-<li><a href="cont-secnav1-sitemenu-fra.html"><span class="wb-invisible">French examples - Secondary menu 1 - </span>Content page - Site menu</a></li>
-<li><a href="cont-secnav1-subsite-sitemenu-fra.html"><span class="wb-invisible">French examples - Secondary menu 1 - </span>Content page - Sub-site + Site menu</a></li>
+<li><a href="cont-nosearchlang-fra.html"><span class="wb-invisible">French examples - </span>Content page - No search or language selection link</a></li>
+<li><a href="cont-nositemenubc-fra.html"><span class="wb-invisible">French examples - </span>Content page - No site menu or breadcrumb trail</a></li>
+<li><a href="cont-nosearchlangsitemenubc-fra.html"><span class="wb-invisible">French examples - </span>Content page - No search, language selection link, site menu or breadcrumb trail</a></li>
 </ul>
 </section>
-
-<section><h3>Secondary menu 2</h4>
-<ul>
-<li><a href="cont-secnav2-fra.html"><span class="wb-invisible">French examples - Secondary menu 2 - </span>Content page</a></li>
-<li><a href="cont-secnav2-subsite-fra.html"><span class="wb-invisible">French examples - Secondary menu 2 - </span>Content page - Sub-site</a></li>
-<li><a href="cont-secnav2-sitemenu-fra.html"><span class="wb-invisible">French examples - Secondary menu 2 - </span>Content page - Site menu</a></li>
-<li><a href="cont-secnav2-subsite-sitemenu-fra.html"><span class="wb-invisible">French examples - Secondary menu 2 - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-</section>
-</section>
-<!--
-<section><h2 id="bg">Bulgarian examples</h3>
-<ul>
-<li><a href="bg/cont-bg.html"><span class="wb-invisible">Bulgarian examples - </span>Content page</a></li>
-<li><a href="bg/cont-subsite-bg.html"><span class="wb-invisible">Bulgarian examples - </span>Content page - Sub-site</a></li>
-<li><a href="bg/cont-sitemenu-bg.html"><span class="wb-invisible">Bulgarian examples - </span>Content page - Site menu</a></li>
-<li><a href="bg/cont-subsite-sitemenu-bg.html"><span class="wb-invisible">Bulgarian examples - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-
-<section><h3>Secondary menu 1</h4>
-<ul>
-<li><a href="bg/cont-secnav1-bg.html"><span class="wb-invisible">Bulgarian examples - Secondary menu 1 - </span>Content page</a></li>
-<li><a href="bg/cont-secnav1-subsite-bg.html"><span class="wb-invisible">Bulgarian examples - Secondary menu 1 - </span>Content page - Sub-site</a></li>
-<li><a href="bg/cont-secnav1-sitemenu-bg.html"><span class="wb-invisible">Bulgarian examples - Secondary menu 1 - </span>Content page - Site menu</a></li>
-<li><a href="bg/cont-secnav1-subsite-sitemenu-bg.html"><span class="wb-invisible">Bulgarian examples - Secondary menu 1 - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-</section>
-
-<section><h3>Secondary menu 2</h4>
-<ul>
-<li><a href="bg/cont-secnav2-bg.html"><span class="wb-invisible">Bulgarian examples - Secondary menu 2 - </span>Content page</a></li>
-<li><a href="bg/cont-secnav2-subsite-bg.html"><span class="wb-invisible">Bulgarian examples - Secondary menu 2 - </span>Content page - Sub-site</a></li>
-<li><a href="bg/cont-secnav2-sitemenu-bg.html"><span class="wb-invisible">Bulgarian examples - Secondary menu 2 - </span>Content page - Site menu</a></li>
-<li><a href="bg/cont-secnav2-subsite-sitemenu-bg.html"><span class="wb-invisible">Bulgarian examples - Secondary menu 2 - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-</section>
-</section>
--->
 </div>
 
 <div class="span-4">
-<section><h2 id="es">Spanish examples</h3>
+<section><h2 id="es">Spanish examples</h2>
 <ul>
 <li><a href="es/cont-es.html"><span class="wb-invisible">Spanish examples - </span>Content page</a></li>
+<li><a href="es/cont-secnav1-es.html"><span class="wb-invisible">Spanish examples - </span>Content page - Secondary menu 1</a></li>
+<li><a href="es/cont-secnav2-es.html"><span class="wb-invisible">Spanish examples - </span>Content page - Secondary menu 2</a></li>
 <li><a href="es/cont-subsite-es.html"><span class="wb-invisible">Spanish examples - </span>Content page - Sub-site</a></li>
-<li><a href="es/cont-sitemenu-es.html"><span class="wb-invisible">Spanish examples - </span>Content page - Site menu</a></li>
-<li><a href="es/cont-subsite-sitemenu-es.html"><span class="wb-invisible">Spanish examples - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-
-<section><h3>Secondary menu 1</h4>
-<ul>
-<li><a href="es/cont-secnav1-es.html"><span class="wb-invisible">Spanish examples - Secondary menu 1 - </span>Content page</a></li>
-<li><a href="es/cont-secnav1-subsite-es.html"><span class="wb-invisible">Spanish examples - Secondary menu 1 - </span>Content page - Sub-site</a></li>
-<li><a href="es/cont-secnav1-sitemenu-es.html"><span class="wb-invisible">Spanish examples - Secondary menu 1 - </span>Content page - Site menu</a></li>
-<li><a href="es/cont-secnav1-subsite-sitemenu-es.html"><span class="wb-invisible">Spanish examples - Secondary menu 1 - </span>Content page - Sub-site + Site menu</a></li>
+<li><a href="es/cont-nosearchlang-es.html"><span class="wb-invisible">Spanish examples - </span>Content page - No search or language selection link</a></li>
+<li><a href="es/cont-nositemenubc-es.html"><span class="wb-invisible">Spanish examples - </span>Content page - No site menu or breadcrumb trail</a></li>
+<li><a href="es/cont-nosearchlangsitemenubc-es.html"><span class="wb-invisible">Spanish examples - </span>Content page - No search, language selection link, site menu or breadcrumb trail</a></li>
 </ul>
 </section>
 
-<section><h3>Secondary menu 2</h4>
+<section><h2 id="ar">Arabic examples</h2>
 <ul>
-<li><a href="es/cont-secnav2-es.html"><span class="wb-invisible">Spanish examples - Secondary menu 2 - </span>Content page</a></li>
-<li><a href="es/cont-secnav2-subsite-es.html"><span class="wb-invisible">Spanish examples - Secondary menu 2 - </span>Content page - Sub-site</a></li>
-<li><a href="es/cont-secnav2-sitemenu-es.html"><span class="wb-invisible">Spanish examples - Secondary menu 2 - </span>Content page - Site menu</a></li>
-<li><a href="es/cont-secnav2-subsite-sitemenu-es.html"><span class="wb-invisible">Spanish examples - Secondary menu 2 - </span>Content page - Sub-site + Site menu</a></li>
+<li><a href="ar/cont-ar.html"><span class="wb-invisible">Arabic examples - </span>Content page</a></li>
+<li><a href="ar/cont-secnav1-ar.html"><span class="wb-invisible">Arabic examples - </span>Content page - Secondary menu 1</a></li>
+<li><a href="ar/cont-secnav2-ar.html"><span class="wb-invisible">Arabic examples - </span>Content page - Secondary menu 2</a></li>
+<li><a href="ar/cont-subsite-ar.html"><span class="wb-invisible">Arabic examples - </span>Content page - Sub-site</a></li>
+<li><a href="ar/cont-nosearchlang-ar.html"><span class="wb-invisible">Arabic examples - </span>Content page - No search or language selection link</a></li>
+<li><a href="ar/cont-nositemenubc-ar.html"><span class="wb-invisible">Arabic examples - </span>Content page - No site menu or breadcrumb trail</a></li>
+<li><a href="ar/cont-nosearchlangsitemenubc-ar.html"><span class="wb-invisible">Arabic examples - </span>Content page - No search, language selection link, site menu or breadcrumb trail</a></li>
 </ul>
 </section>
-</section>
-<!--
-<section><h2 id="pt">Portuguese examples</h3>
-<ul>
-<li><a href="pt/cont-pt.html"><span class="wb-invisible">Portuguese examples - </span>Content page</a></li>
-<li><a href="pt/cont-subsite-pt.html"><span class="wb-invisible">Portuguese examples - </span>Content page - Sub-site</a></li>
-<li><a href="pt/cont-sitemenu-pt.html"><span class="wb-invisible">Portuguese examples - </span>Content page - Site menu</a></li>
-<li><a href="pt/cont-subsite-sitemenu-pt.html"><span class="wb-invisible">Portuguese examples - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-
-<section><h3>Secondary menu 1</h4>
-<ul>
-<li><a href="pt/cont-secnav1-pt.html"><span class="wb-invisible">Portuguese examples - Secondary menu 1 - </span>Content page</a></li>
-<li><a href="pt/cont-secnav1-subsite-pt.html"><span class="wb-invisible">Portuguese examples - Secondary menu 1 - </span>Content page - Sub-site</a></li>
-<li><a href="pt/cont-secnav1-sitemenu-pt.html"><span class="wb-invisible">Portuguese examples - Secondary menu 1 - </span>Content page - Site menu</a></li>
-<li><a href="pt/cont-secnav1-subsite-sitemenu-pt.html"><span class="wb-invisible">Portuguese examples - Secondary menu 1 - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-</section>
-
-<section><h3>Secondary menu 2</h4>
-<ul>
-<li><a href="pt/cont-secnav2-pt.html"><span class="wb-invisible">Portuguese examples - Secondary menu 2 - </span>Content page</a></li>
-<li><a href="pt/cont-secnav2-subsite-pt.html"><span class="wb-invisible">Portuguese examples - Secondary menu 2 - </span>Content page - Sub-site</a></li>
-<li><a href="pt/cont-secnav2-sitemenu-pt.html"><span class="wb-invisible">Portuguese examples - Secondary menu 2 - </span>Content page - Site menu</a></li>
-<li><a href="pt/cont-secnav2-subsite-sitemenu-pt.html"><span class="wb-invisible">Portuguese examples - Secondary menu 2 - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-</section>
-</section>
-
-<section><h2 id="pt-BR">Portuguese (Brazilian) examples</h3>
-<ul>
-<li><a href="pt-BR/cont-pt-BR.html"><span class="wb-invisible">Portuguese (Brazilian) examples - </span>Content page</a></li>
-<li><a href="pt-BR/cont-subsite-pt-BR.html"><span class="wb-invisible">Portuguese (Brazilian) examples - </span>Content page - Sub-site</a></li>
-<li><a href="pt-BR/cont-sitemenu-pt-BR.html"><span class="wb-invisible">Portuguese (Brazilian) examples - </span>Content page - Site menu</a></li>
-<li><a href="pt-BR/cont-subsite-sitemenu-pt-BR.html"><span class="wb-invisible">Portuguese (Brazilian) examples - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-
-<section><h3>Secondary menu 1</h4>
-<ul>
-<li><a href="pt-BR/cont-secnav1-pt-BR.html"><span class="wb-invisible">Portuguese (Brazilian) examples - Secondary menu 1 - </span>Content page</a></li>
-<li><a href="pt-BR/cont-secnav1-subsite-pt-BR.html"><span class="wb-invisible">Portuguese (Brazilian) examples - Secondary menu 1 - </span>Content page - Sub-site</a></li>
-<li><a href="pt-BR/cont-secnav1-sitemenu-pt-BR.html"><span class="wb-invisible">Portuguese (Brazilian) examples - Secondary menu 1 - </span>Content page - Site menu</a></li>
-<li><a href="pt-BR/cont-secnav1-subsite-sitemenu-pt-BR.html"><span class="wb-invisible">Portuguese (Brazilian) examples - Secondary menu 1 - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-</section>
-
-<section><h3>Secondary menu 2</h4>
-<ul>
-<li><a href="pt/cont-secnav2-pt.html"><span class="wb-invisible">Portuguese (Brazilian) examples - Secondary menu 2 - </span>Content page</a></li>
-<li><a href="pt/cont-secnav2-subsite-pt.html"><span class="wb-invisible">Portuguese (Brazilian) examples - Secondary menu 2 - </span>Content page - Sub-site</a></li>
-<li><a href="pt/cont-secnav2-sitemenu-pt.html"><span class="wb-invisible">Portuguese (Brazilian) examples - Secondary menu 2 - </span>Content page - Site menu</a></li>
-<li><a href="pt/cont-secnav2-subsite-sitemenu-pt.html"><span class="wb-invisible">Portuguese (Brazilian) examples - Secondary menu 2 - </span>Content page - Sub-site + Site menu</a></li>
-</ul>
-</section>
-</section>
--->
 </div>
 
 <dl id="base-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-11-29</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2013-03-02</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
@@ -311,17 +195,25 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></nav>
 
 <section><div id="base-fullft"><h3>Full-width footer area</h3>
-<p>id="base-fullft"</p>
-<div id="base-fullft-in"><p>id="base-fullft-in"</p></div>
+<p class="mobile-hide">id="base-fullft"</p>
+<div id="base-fullft-in"><p class="mobile-hide">id="base-fullft-in"</p></div>
 </div></section>
 <!-- FooterEnd -->
 </footer>
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../../dist/theme-base/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-base/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-base/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
 </body>
 </html>

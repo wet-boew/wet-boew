@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>Page de contenu + menu secondaire 1 - Thème d'intranet de la facilité d'emploi Web GC - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Page de contenu - Menu secondaire 1 - Thème d'intranet de la facilité d'emploi Web GC - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../dist/theme-gcwu-intranet/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -20,19 +20,21 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.language" title="ISO639-2" content="fra" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-intranet/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-intranet/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-intranet/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-intranet/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
@@ -57,8 +59,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </ul>
 </div></div>
 <div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../../dist/theme-gcwu-intranet/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../../dist/theme-gcwu-intranet/images/wmms.gif" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div></div></div>
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-intranet/images/sig-fra.svg" role="img" aria-label="Gouvernement du Canada" type="image/svg+xml" width="217" height="24">
+	<div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../../dist/theme-gcwu-intranet/images/sig-fra.png" width="214" height="20" alt="Gouvernement du Canada" /></div>
+</object></div></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-intranet/images/wmms.svg" role="img" aria-label="Symbole du gouvernement du Canada" type="image/svg+xml" width="128" height="32">
+	<div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../../dist/theme-gcwu-intranet/images/wmms.png" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div>
+</object></div></div>
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
@@ -67,12 +73,24 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
+<div id="gcwu-psnb"><h2>Menu du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-fra.txt">
+<li><div><a href="http://wet-boew.github.com/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
+<li><div><a href="section2/index-fra.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
 <div id="gcwu-bc"><h2>Fil d'Ariane</h2><div id="gcwu-bc-in">
 <ol>
 <li><a href="../../index-fra.html">Accueil</a></li>
@@ -80,7 +98,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li><a href="index-fra.html">Thème d'intranet de la facilité d'emploi Web GC</a></li>
 <li><a href="section4/index-fra.html">Section 4</a></li>
 <li><a href="section4/section43/index-fra.html">Section 4.3</a></li>
-<li>Page de contenu + menu secondaire 1</li>
+<li>Page de contenu - Menu secondaire 1</li>
 </ol>
 </div></div>
 </nav>
@@ -90,7 +108,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Page de contenu + menu secondaire 1 - Thème d'intranet de la facilité d'emploi Web GC</h1>
+<h1 id="wb-cont">Page de contenu - Menu secondaire 1 - Thème d'intranet de la facilité d'emploi Web GC</h1>
 
 <section><h2>En-tête 2 (<code>h2</code>) - apparence par défaut</h2>
 	<section><h3>En-tête 3 (<code>h3</code>) - apparence par défaut</h3>
@@ -269,9 +287,17 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../../dist/theme-gcwu-intranet/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-intranet/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-intranet/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
 </body>
 </html>

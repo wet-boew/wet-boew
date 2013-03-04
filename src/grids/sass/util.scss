@@ -10,28 +10,41 @@
 @import '../../base/sass/modern-vendor-prefix';
 
 /*!!
- * Icons by Yusuke Kamiyamane (http://p.yusukekamiyamane.com/) - Creative Commons Attribution 3.0 License (http://creativecommons.org/licenses/by/3.0/)
+ * Icons by Yusuke Kamiyamane (http: //p.yusukekamiyamane.com/) - Creative Commons Attribution 3.0 License (http: //creativecommons.org/licenses/by/3.0/)
  */
+
 @media screen {
-/* -----Build Include Section Start----- */
+/* ----- Screen media type only - Start of build includes ----- */
 @import 'includes/util-screen';
-/* -----Build Include Section End----- */
-}
-@media screen and (min-width:768px) and (min-device-width:768px) {
-/* -----Build Include Section Start----- */
-@import 'includes/util-desktop-screen';
-/* -----Build Include Section End----- */
+/* ----- Screen media type only - End of build includes ----- */
 }
 
-/* Mobile view */
-@media screen and (max-width:767px), screen and (max-device-width:767px) {
-/* -----Build Include Section Start----- */
+@media screen and (min-width: 768px) and (min-device-width: 768px) {
+/* ----- Desktop view (including Mobile view (Tablet)) - Screen media type only - Start of build includes ----- */
+@import 'includes/util-desktop-screen';
+/* ----- Desktop view (including Mobile view (Tablet)) - Screen media type only - End of build includes ----- */
+}
+
+@media screen and (max-width: 959px), screen and (max-device-width: 1023px) {
+/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - Start of build includes ----- */
 @import 'includes/util-mobile';
-/* -----Build Include Section End----- */
+/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - End of build includes ----- */
+}
+
+@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
+/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - Start of build includes ----- */
+@import 'includes/util-mobile-smartphone';
+/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - End of build includes ----- */
+}
+
+@media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+/* ----- Mobile view (Tablet) - Screen media type only - Start of build includes ----- */
+@import 'includes/util-mobile-tablet';
+/* ----- Mobile view (Tablet) - Screen media type only - End of build includes ----- */
 }
 
 @media print {
-/* -----Build Include Section Start----- */
+/* ----- Print media type only - Start of build includes ----- */
 @import 'includes/util-print';
-/* -----Build Include Section End----- */
+/* ----- Print media type only - End of build includes ----- */
 }
