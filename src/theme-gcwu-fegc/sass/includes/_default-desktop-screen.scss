@@ -54,23 +54,23 @@ a {
 
 #wb-sup {
 	@extend %gcwu-default-desktop-screen-inline-z1;
-	@extend %float-right-relative;
+	@extend %gcwu-default-desktop-screen-float-right-relative;
 }
 
-%overflow-hidden {
+%gcwu-default-desktop-screen-overflow-hidden {
 	overflow: hidden;
 }
 
 #wb-head {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #wb-head-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #wb-foot {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 	@extend %text-decoration-underline-a-psuedos;
 	#gcwu-wmms {
 		display: none;
@@ -78,35 +78,31 @@ a {
 }
 
 #wb-foot-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-bc {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-gcft {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-sft {
-	@extend %overflow-hidden;
-}
-
-#gcwu-gcnb-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-bc-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-gcft-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-sft-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #wb-core-in {
@@ -123,13 +119,13 @@ a {
 }
 
 #gcwu-bnr {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 	position: relative;
 	z-index: 501 !important;
 }
 
 #gcwu-bnr-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 	min-height: 6.5em;
 	position: relative;
 }
@@ -181,7 +177,7 @@ a {
 #wb-body-sec-sup {
 	#wb-main {
 		@extend %float-left;
-		@extend %float-right-relative;
+		@extend %gcwu-default-desktop-screen-float-right-relative;
 	}
 }
 
@@ -190,7 +186,7 @@ a {
 	@extend %gcwu-default-desktop-screen-inline-z1;
 }
 
-%float-right-relative {
+%gcwu-default-desktop-screen-float-right-relative {
 	float: right;
 	position: relative;
 }
@@ -208,11 +204,11 @@ a {
 }
 
 #gcwu-gcnb {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 	@extend %text-decoration-underline-a-psuedos;
 	background: #000;
 	font-size: 0.9em;
-	height: 3.6em;
+	min-height: 3.6em;
 	min-height: 41px;
 	ul {
 		list-style-type: none;
@@ -245,6 +241,11 @@ a {
 			}
 		}
 	}
+}
+
+#gcwu-gcnb-in {
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
+	min-height: 41px;
 }
 
 #gcwu-title {
