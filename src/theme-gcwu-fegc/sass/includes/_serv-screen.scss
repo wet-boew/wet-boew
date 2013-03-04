@@ -2,40 +2,62 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
 html {
 	overflow-y: scroll;
 }
 
 body {
-	width:100%;
-	margin:0;
-	padding:0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 h1 {
 	margin: 0;
 }
 
-#wb-head-in, #wb-core-in, #wb-foot-in  {
+%gcwu-serv-screen-margin-auto {
 	margin: auto;
 }
 
-#gcwu-title,#gcwu-tc {
-	display:block;
-	float:none;
-	margin:auto;
-	line-height:normal;
+#wb-head-in {
+	@extend %gcwu-serv-screen-margin-auto;
+	@extend %gcwu-serv-screen-overflow-hidden;
 }
 
-#wb-head, #wb-head-in, #wb-foot, #wb-foot-in  {
+#wb-foot-in {
+	@extend %gcwu-serv-screen-margin-auto;
+	@extend %gcwu-serv-screen-background-white;
+	@extend %gcwu-serv-screen-overflow-hidden;
+}
+
+%gcwu-serv-screen-block-element {
+	display: block;
+	float: none;
+	margin: auto;
+	line-height: normal;
+}
+
+#gcwu-title {
+	@extend %gcwu-serv-screen-block-element;
+}
+
+%gcwu-serv-screen-overflow-hidden {
 	overflow: hidden;
 }
 
-#wb-foot-in, #wb-core-in {
+#wb-head {
+	@extend %gcwu-serv-screen-overflow-hidden;
+}
+
+%gcwu-serv-screen-background-white {
 	background: #fff;
 }
 
 #wb-core-in {
+	@extend %gcwu-serv-screen-margin-auto;
+	@extend %gcwu-serv-screen-background-white;
 	overflow: visible !important;
 	&:after {
 		content: ".";
@@ -44,22 +66,26 @@ h1 {
 		clear: both;
 		visibility: hidden;
 	}
-	div #gcwu-bar {
-		height: 10px;
-		background:#28507a;
-		margin-bottom: 12px;
-		padding-bottom: 0;
+	div { //TODO: Is the div precondition needed when the child selector is an ID?
+		#gcwu-bar {
+			height: 10px;
+			background: #28507a;
+			margin-bottom: 12px;
+			padding-bottom: 0;
+		}
 	}
 }
 
 #wb-main-in {
 	position: relative;
-	padding-top:1px;
-	padding-bottom:1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 }
 
-#wb-body #wb-main {
-	float:left;
+#wb-body {
+	#wb-main {
+		float: left;
+	}
 }
 
 #gcwu-bnr {
@@ -71,8 +97,16 @@ h1 {
 	height: 20px;
 }
 
-#gcwu-title-right, .gcwu-alt-title-right {
+%gcwu-serv-screen-text-align-right {
 	text-align: right;
+}
+
+#gcwu-title-right {
+	@extend %gcwu-serv-screen-text-align-right;
+}
+
+.gcwu-alt-title-right {
+	@extend %gcwu-serv-screen-text-align-right;
 }
 
 .gcwu-tc-left {
@@ -84,9 +118,10 @@ h1 {
 }
 
 #gcwu-tc {
+	@extend %gcwu-serv-screen-block-element;
 	ul {
-		line-height:normal;
-		list-style:none;
+		line-height: normal;
+		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
@@ -96,9 +131,30 @@ h1 {
 		a {
 			text-decoration: none;
 			font-size: 0.9em;
+			@include pseudo-focus {
+				text-decoration: underline;
+			}
 		}
-		a:hover,a:focus,a:active {
-			text-decoration: underline;
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.wb-sec-def {
+		ul {
+			ul {
+				margin-left: auto;
+				margin-right: 10px;
+				padding-left: 0;
+				padding-right: 5px;
+				border-left: none;
+				border-right: 1px solid #ccc;
+			}
+		}
+
+		li li {
+			margin-left: auto;
+			margin-right: 0;
 		}
 	}
 }

@@ -1,0 +1,146 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+%wet-default-screen-ie-float-left {
+	float: left;
+}
+%wet-default-screen-ie-position-relative {
+	position: relative;
+}
+%wet-default-screen-ie-top-1px {
+	top: 1px;
+}
+%wet-default-screen-ie-float-right {
+	float: right;
+}
+%wet-default-screen-ie-background-image-logo {
+	background-image: url(../images/logo.png);
+}
+.ie7 {
+	#wb-core {
+		margin-bottom: -20px;
+	}
+	.wet-minister {
+		ul {
+			padding-bottom: 17px;
+		}
+	}
+	#wet-srchbx {
+		padding-bottom: 0;
+	}
+	#wet-srch-submit {
+		padding: 2px 0;
+		@extend %wet-default-screen-ie-position-relative;
+		@extend %wet-default-screen-ie-top-1px;
+	}
+	#wet-title {
+		zoom: 1;
+		@extend %wet-default-screen-ie-position-relative;
+	}
+	#wet-title-in {
+		@extend %wet-default-screen-ie-background-image-logo;
+	}
+	#wet-date-mod {
+		@extend %wet-default-screen-ie-position-relative;
+		@extend %wet-default-screen-ie-float-right;
+		margin-bottom: -15px;
+		top: 17px;
+	}
+	#wet-tctr {
+		padding: 7px 0 6px;
+		li.wet-tc {
+			padding: 0 10px;
+		}
+		li.wet-tr {
+			padding-left: 10px;
+		}
+	}
+	#wet-fullft {
+		li {
+			margin: 13px 35px 14px 9px;
+		}
+	}
+	#wet-bnr {
+		@extend %wet-default-screen-ie-float-left;
+	}
+	#wet-tctr {
+		li {
+			@extend %wet-default-screen-ie-float-left;
+		}
+	}
+
+	// Right to left (RTL) CSS
+	&[dir="rtl"] {
+		%wet-default-screen-ie7-rtl-float-fix {
+			zoom: 1;
+			float: none;
+			display: inline;
+		}
+
+		#wet-fullhd {
+			ul {
+				margin: 0;
+				@extend %wet-default-screen-ie-float-left;
+				li {
+					@extend %wet-default-screen-ie-float-left;
+					border-left: 1px solid #777;
+					border-right: none;
+					padding-left: 10px;
+					&:first-child {
+						border-left: none;
+						padding-left: 0;
+					}
+				}
+			}
+		}
+
+		#wet-srchbx {
+			input {
+				@extend %wet-default-screen-ie7-rtl-float-fix;
+			}
+		}
+
+		#wet-date-mod {
+			@extend %wet-default-screen-ie-float-left;
+			dt, dd {
+				@extend %wet-default-screen-ie7-rtl-float-fix;
+			}
+		}
+
+		#wet-tctr {
+			li {
+				&.wet-tr {
+					padding-left: 0;
+					padding-right: 10px;
+				}
+			}
+		}
+
+		#wet-fullft {
+			li {
+				margin: 13px 9px 14px 35px;
+			}
+		}
+
+		#wet-bnr {
+			@extend %wet-default-screen-ie-float-right;
+		}
+		#wet-tctr {
+			li {
+				@extend %wet-default-screen-ie-float-right;
+			}
+		}
+	}
+}
+
+.ie8 {
+	#wet-title-in {
+		@extend %wet-default-screen-ie-background-image-logo;
+	}
+	#wet-srch-submit {
+		padding: 2px 5px;
+		@extend %wet-default-screen-ie-position-relative;
+		@extend %wet-default-screen-ie-top-1px;
+	}
+}

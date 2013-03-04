@@ -8,189 +8,194 @@
 @import "compass/css3/appearance";
 
 .fd-form-element-hidden {
-	display:none
+	display: none
 }
 .fd-slider {
-	width:100%;
-	height:20px;
-	margin:0 0 10px 0
+	width: 100%;
+	height: 20px;
+	margin: 0 0 10px 0
 }
+
+%slider-gradient-left-89A5BD-165C91 {
+	@include background-image(linear-gradient(left, #89A5BD, #165c91));
+}
+
 .fd-slider-vertical {
-	width:20px;
-	height:100%;
-	margin:0 10px 10px 0;	
+	width: 20px;
+	height: 100%;
+	margin: 0 10px 10px 0;
 	.fd-slider-bar {
-		width:2px;
-		top:10px;
-		right:auto;
-		bottom:10px;
-		left:8px;
-		height:auto;
-		background-color:#ddd;
-		@include background-image(linear-gradient(left,#ececec,#ccc));
+		width: 2px;
+		top: 10px;
+		right: auto;
+		bottom: 10px;
+		left: 8px;
+		height: auto;
+		background-color: #ddd;
+		@include background-image(linear-gradient(left, #ececec, #ccc));
 	}
 	.fd-slider-range {
-		height:auto;
-		width:2px;
-		top:auto;
-		right:auto;
-		bottom:11px;
-		left:9px;
-		background-color:#165c91;
-		@include background-image(linear-gradient(left,#89A5BD,#165c91));
+		height: auto;
+		width: 2px;
+		top: auto;
+		right: auto;
+		bottom: 11px;
+		left: 9px;
+		background-color: #165c91;
+		@extend %slider-gradient-left-89A5BD-165C91;
 	}
 	.fd-slider-disabled {
 		.fd-slider-bar {
-			@include background-image(linear-gradient(top,#333,#666));
+			@include background-image(linear-gradient(#333, #666));
 		}
 		.fd-slider-range {
-			@include background-image(linear-gradient(top,#000,#222));
+			@include background-image(linear-gradient(#000, #222));
 		}
 	}
 	.fd-slider-handle {
-		cursor:N-resize
+		cursor: N-resize
 	}
 }
-.fd-slider,.fd-slider-vertical {
-	text-align:center;
-	display:block;
-	position:relative;
-	cursor:pointer;
-	text-decoration:none;
-	border:0 none;
+.fd-slider, .fd-slider-vertical {
+	text-align: center;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	text-decoration: none;
+	border: 0 none;
 	@include user-select(none);
 }
 .fd-slider-wrapper {
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%
 }
 .fd-slider-inner {
-	display:none
+	display: none
 }
 .fd-slider-bar {
-	display:block;
-	position:absolute;
-	top:8px;
-	right:10px;
-	left:10px;
-	z-index:2;
-	height:2px;
-	margin:0;
-	padding:0;
-	overflow:hidden;
-	border:1px solid #606060;
-	border-bottom:1px solid #aaa;
-	border-right:1px solid #aaa;
-	border:1px solid rgba(187,187,187,.8);
-	border-bottom:1px solid rgba(170,170,170,.8);
-	border-right:1px solid rgba(170,170,170,.8);
-	line-height:4px;
-	background-color:#ddd;
-	@include background-image(linear-gradient(top,#ececec,#ccc));
+	display: block;
+	position: absolute;
+	top: 8px;
+	right: 10px;
+	left: 10px;
+	z-index: 2;
+	height: 2px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 1px solid #606060;
+	border-bottom: 1px solid #aaa;
+	border-right: 1px solid #aaa;
+	border: 1px solid rgba(187, 187, 187, .8);
+	border-bottom: 1px solid rgba(170, 170, 170, .8);
+	border-right: 1px solid rgba(170, 170, 170, .8);
+	line-height: 4px;
+	background-color: #ddd;
+	@include background-image(linear-gradient(#ececec, #ccc));
 	@include border-radius(2px);
 	@include background-clip(padding-box);
 }
 .fd-slider-focused {
 	.fd-slider-bar {
-		@include box-shadow(0 0 6px rgba(10,130,170,0.7));
-		@include experimental(animation,fd-pulse 2s infinite,-moz, -webkit, -o, not -ms, not -khtml, official);
+		@include box-shadow(0 0 6px rgba(10, 130, 170, 0.7));
+		@include experimental(animation, fd-pulse 2s infinite, -moz, -webkit, -o, not -ms, not -khtml, official);
 	}
 }
 .fd-slider-range {
-	display:block;
-	position:absolute;
-	top:9px;
-	left:11px;
-	z-index:3;
-	height:2px;
-	margin:0;
-	padding:0;
-	overflow:hidden;
-	line-height:2px;
-	background-color:#165c91;
-	@include background-image(linear-gradient(left,#89A5BD,#165c91));
+	display: block;
+	position: absolute;
+	top: 9px;
+	left: 11px;
+	z-index: 3;
+	height: 2px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	line-height: 2px;
+	background-color: #165c91;
+	@extend %slider-gradient-left-89A5BD-165C91;
 	@include border-radius(2px);
 	@include background-clip(padding-box);
 }
 .fd-slider-handle {
-	position:absolute;
-	display:block;
-	padding:0;
-	border:0 none;
-	margin:0;
-	z-index:3;
-	top:0;
-	left:0;
-	width:20px;
-	height:20px;
-	outline:0 none;
+	position: absolute;
+	display: block;
+	padding: 0;
+	border: 0 none;
+	margin: 0;
+	z-index: 3;
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	outline: 0 none;
 	background: {
-		color:transparent;
-		image:url(../images/slider/fd-slider-sprite.png);
-		position:0 0;
+		color: transparent;
+		image: url(../images/slider/fd-slider-sprite.png);
+		position: 0 0;
 	}
-	cursor:W-resize;
-	line-height:20px;
-	font-size:10px;
-	@if $experimental-support-for-mozilla {-moz-outline:0 none;}
-	@if $experimental-support-for-webkit {-webkit-touch-callout:none;}
+	cursor: W-resize;
+	line-height: 20px;
+	font-size: 10px;
+	@if $experimental-support-for-mozilla {-moz-outline: 0 none;}
+	@if $experimental-support-for-webkit {-webkit-touch-callout: none;}
 	@include user-select(none);
 	&:focus {
-		outline:0 none;
-		border:0 none;
-		@if $experimental-support-for-mozilla {-moz-user-focus:normal;}
+		outline: 0 none;
+		border: 0 none;
+		@if $experimental-support-for-mozilla {-moz-user-focus: normal;}
 	}
 }
 @if $experimental-support-for-mozilla {
 	.fd-slider-handle:focus::-moz-focus-inner {
-		border-color:transparent
+		border-color: transparent
 	}
 }
-.fd-slider-focused,.fd-slider-hover,.fd-slider-active {
+.fd-slider-focused, .fd-slider-hover, .fd-slider-active {
 	.fd-slider-handle {
-		background-position:0 -20px
+		background-position: 0 -20px
 	}
 }
 .fd-slider-no-value {
 	.fd-slider-handle {
-		background-position:0 -59px
+		background-position: 0 -59px
 	}
 }
 body {
-	&.fd-slider-drag-horizontal,&.fd-slider-drag-horizontal *,&.fd-slider-drag-vertical,&.fd-slider-drag-vertical * {
-		cursor:N-resize!important;
+	&.fd-slider-drag-horizontal, &.fd-slider-drag-horizontal *, &.fd-slider-drag-vertical, &.fd-slider-drag-vertical * {
+		cursor: N-resize !important;
 		@include user-select(none);
 	}
-	&.fd-slider-drag-horizontal,&.fd-slider-drag-horizontal * {
-		cursor:W-resize!important
+	&.fd-slider-drag-horizontal, &.fd-slider-drag-horizontal * {
+		cursor: W-resize !important
 	}
 }
 .fd-slider-disabled {
 	@include opacity(0.8);
-	cursor:default
+	cursor: default;
 	.fd-slider-handle {
-		cursor:default!important;
-		background-position:0 -40px;
+		cursor: default !important;
+		background-position: 0 -40px;
 		@include opaque;
 	}
 	.fd-slider-bar {
-		cursor:auto!important;
-		border:1px solid #888;
-		border-bottom:1px solid #999;
-		border-right:1px solid #999;
-		border:1px solid rgba(136,136,136,.8);
-		border-bottom:1px solid rgba(153,153,153,.8);
-		border-right:1px solid rgba(153,153,153,.8);
-		background-color:#555;
-		@include background-image(linear-gradient(left,#666,#333));
+		cursor: auto !important;
+		border: 1px solid #888;
+		border-bottom: 1px solid #999;
+		border-right: 1px solid #999;
+		border: 1px solid rgba(136, 136, 136, .8);
+		border-bottom: 1px solid rgba(153, 153, 153, .8);
+		border-right: 1px solid rgba(153, 153, 153, .8);
+		background-color: #555;
+		@include background-image(linear-gradient(left, #666, #333));
 	}
 	.fd-slider-range {
-		cursor:auto!important;
-		background-color:#222;
-		@include background-image(linear-gradient(left,#222,#000));
+		cursor: auto !important;
+		background-color: #222;
+		@include background-image(linear-gradient(left, #222, #000));
 	}
 }
 
@@ -210,49 +215,55 @@ body {
 }
 
 @include keyframes(fd-pulse) {
-	0%{box-shadow:0 0 3px rgba(100,130,170,0.55)}
-	20%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
-	40%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
-	60%{box-shadow:0 0 6px rgba(10,130,170,0.7)}
-	80%{box-shadow:0 0 5px rgba(40,130,170,0.65)}
-	100%{box-shadow:0 0 4px rgba(70,130,170,0.6)}
+	0%{box-shadow: 0 0 3px rgba(100, 130, 170, 0.55)}
+	20%{box-shadow: 0 0 4px rgba(70, 130, 170, 0.6)}
+	40%{box-shadow: 0 0 5px rgba(40, 130, 170, 0.65)}
+	60%{box-shadow: 0 0 6px rgba(10, 130, 170, 0.7)}
+	80%{box-shadow: 0 0 5px rgba(40, 130, 170, 0.65)}
+	100%{box-shadow: 0 0 4px rgba(70, 130, 170, 0.6)}
 }
 
 #fd-slider-describedby {
-	padding:1em;
-	border:3px solid #a84444;
-	background:#fff;
+	padding: 1em;
+	border: 3px solid #a84444;
+	background: #fff;
 	@include border-radius(8px);
 }
 input[type="range"] {
-	width:100%;
+	width: 100%;
 }
-html:not(.ui-mobile) input[data-fd-slider-vertical="v-s"] {
-	@include appearance(slider-vertical);
-	width: 20px;
-	height: 300px;
-}
-html:not(.ui-mobile) input[data-fd-slider-vertical="v-s2"] {
-	@include appearance(slider-vertical);
-	width: 20px;
-	height: 160px;
+html {
+	&:not(.ui-mobile) {
+		input[data-fd-slider-vertical="v-s"] {
+			@include appearance(slider-vertical);
+			width: 20px;
+			height: 300px;
+		}
+		input[data-fd-slider-vertical="v-s2"] {
+			@include appearance(slider-vertical);
+			width: 20px;
+			height: 160px;
+		}
+	}
 }
 #html5shim-2-out {
-	font-weight:normal;
-	font-style:italic;
+	font-weight: normal;
+	font-style: italic;
 }
-/* The following classes are given to the vertical sliders to set their height */        
-span.v-s {
-	height:300px;
-}
-span.v-s2 {
-	height:160px;
+/* The following classes are given to the vertical sliders to set their height */
+span {
+	&.v-s {
+		height: 300px;
+	}
+	&.v-s2 {
+		height: 160px;
+	}
 }
 #html5shim-4 {
-	width:20px;
-	height:400px;
+	width: 20px;
+	height: 400px;
 }
 .visu {
-	font:normal 3em impact, helvetica, sans serif;
-	color:#6cc;
+	font: normal 3em impact, helvetica, sans serif;
+	color: #6cc;
 }

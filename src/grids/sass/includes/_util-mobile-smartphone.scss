@@ -1,0 +1,194 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+*/
+@import "compass/css3/inline-block";
+
+%grids-util-mobile-smartphone-float-none-important {
+	float: none !important;
+}
+%grids-util-mobile-smartphone-display-block {
+	display: block;
+}
+%grids-util-mobile-smartphone-padding-0 {
+	padding: 0;
+}
+%grids-util-mobile-smartphone-margin-left-0 {
+	margin-left: 0;
+}
+%grids-util-mobile-smartphone-margin-right-0 {
+	margin-right: 0;
+}
+%grids-util-mobile-smartphone-outline-none {
+	outline: none;
+}
+%grids-util-mobile-smartphone-blockquote-floats {
+	width: auto;
+	float: none;
+	@extend %grids-util-mobile-smartphone-margin-left-0;
+}
+
+.float-right {
+	@extend %grids-util-mobile-smartphone-float-none-important;
+}
+
+.float-left {
+	@extend %grids-util-mobile-smartphone-float-none-important;
+}
+
+blockquote {
+	&.float-right {
+		@extend %grids-util-mobile-smartphone-blockquote-floats;
+	}
+	&.float-left {
+		@extend %grids-util-mobile-smartphone-blockquote-floats;
+	}
+}
+
+[class*=span-] {
+	margin-bottom: 10px;
+}
+
+%grids-util-mobile-smartphone-margin-0-important {
+	margin: 0 !important;
+}
+
+[class*=width-] {
+	width: auto !important;
+}
+
+form {
+	[class*=width-] {
+		width: 100% !important;
+	}
+	[class*=margin-] {
+		@extend %grids-util-mobile-smartphone-margin-0-important;
+	}
+	[class*=span-]{
+		@extend %grids-util-mobile-smartphone-margin-0-important;
+	}
+	&.background-light {
+		> {
+			* {
+				@extend %grids-util-mobile-smartphone-outline-none;
+				@extend %grids-util-mobile-smartphone-margin-left-0;
+				@extend %grids-util-mobile-smartphone-margin-right-0;
+			}
+		}
+	}
+	.align-right {
+		text-align: left !important;
+	}
+}
+
+.form-inline {
+		> {
+			* {
+				@extend %grids-util-mobile-smartphone-margin-right-0;
+			}
+		}
+		label {
+			@extend %grids-util-mobile-smartphone-display-block;
+		}
+}
+
+%grids-util-mobile-smartphone-form-radio-form-label-inline {
+	@extend %grids-util-mobile-smartphone-padding-0;
+	&.form-label-inline {
+		@extend %grids-util-mobile-smartphone-display-block;
+		@extend %grids-util-mobile-smartphone-padding-0;
+	}
+}
+.form-radio {
+	@extend %grids-util-mobile-smartphone-form-radio-form-label-inline;
+}
+.form-checkbox {
+	@extend %grids-util-mobile-smartphone-form-radio-form-label-inline;
+}
+
+.form-horizontal {
+	label {
+		text-align: left;
+	}
+}
+
+.form-input-append {
+	button {
+		position: absolute;
+	}
+}
+
+%grids-util-mobile-smartphone-input-type-label-display-block {
+	+ {
+		label {
+			@extend %grids-util-mobile-smartphone-display-block;
+		}
+	}
+}
+input {
+	&[type="image"] {
+		@extend %grids-util-mobile-smartphone-input-type-label-display-block;
+	}
+	&[type="checkbox"] {
+		@extend %grids-util-mobile-smartphone-input-type-label-display-block;
+	}
+	&[type="radio"] {
+		@extend %grids-util-mobile-smartphone-input-type-label-display-block;
+	}
+}
+
+ul {
+	&.button-group {
+		@extend %grids-util-mobile-smartphone-margin-left-0;
+		@extend %grids-util-mobile-smartphone-margin-right-0;
+	}
+}
+
+%grids-util-mobile-smartphone-borders-css {
+	@extend %grids-util-mobile-smartphone-float-none-important;
+	@extend %grids-util-mobile-smartphone-display-block;
+	@extend %grids-util-mobile-smartphone-outline-none;
+	position: static !important;
+	background: none;
+}
+.border-top {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-right {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-bottom {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-left {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+.border-all {
+	@extend %grids-util-mobile-smartphone-borders-css;
+}
+
+.module-billboard {
+	max-width: 280px;
+}
+
+.module-poster {
+	@include inline-block;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.form-inline {
+		> {
+			* {
+				margin-right: auto;
+				@extend %grids-util-mobile-smartphone-margin-left-0;
+			}
+		}
+	}
+
+	.form-horizontal {
+		label {
+			text-align: right;
+		}
+	}
+}

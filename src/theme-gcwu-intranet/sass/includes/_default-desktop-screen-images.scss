@@ -4,55 +4,69 @@
  */
 @import "compass/css3/images";
 
-#wb-body,#wb-body-sec,#wb-body-sec-sup,#wb-body-sec-sup,#wb-head-in {
-	background:{
-		repeat: no-repeat, repeat-x;
-		position: center 3.08em;
+#gcwu-srch-submit {
+	background: #ccc url(../images/search-button.gif) 0 0 repeat-x;
+	@include pseudo-focus {
+		background: #ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
+	}
+}
+
+%intranet-default-desktop-screen-images-background-deco {
+	background: {
+		image: url(../images/content-deco-side.gif), url(../images/content-deco-side.gif);
+		position: left top, right top;
+		repeat: repeat-y; //TODO: second repeat value since it is using multiple backgrounds
 		color: #fff;
 	}
 }
 
-#gcwu-srch-submit {
-	background:#ccc url(../images/search-button.gif) 0 0 repeat-x;
-	&:focus,&:hover {
-		background:#ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
-	}
+#wb-core-in {
+	@extend %intranet-default-desktop-screen-images-background-deco;
 }
 
-#wb-core-in,#gcwu-bc-in {
-	background:{
-		image:url(../images/content-deco-side.gif), url(../images/content-deco-side.gif);
-		position:left top, right top;
-		repeat:repeat-y;
-		color:#fff;
-	}
+#gcwu-bc-in {
+	@extend %intranet-default-desktop-screen-images-background-deco;
+}
+
+#gcwu-bnr-in {
+	background: transparent url(../images/gcwu-bnr-in.png) no-repeat center 0;
+}
+
+#gcwu-bnr {
+	background: #29527D url(../images/gcwu-bnr.png) repeat-x 0 0;
 }
 
 #gcwu-psnb {
 	.mb-menu {
 		.nav-current {
-			background:#0f315b url(../images/menu-border.gif) repeat-x scroll 0 0;
+			background: #0f315b url(../images/menu-border.gif) repeat-x scroll 0 0;
 		}
 		.mb-sm-open {
-			border-bottom:4px solid #0F315B;
+			border-bottom: 4px solid #0F315B;
 			@include background-image(linear-gradient(bottom, #EEE, #CCC));
 			li {
-				background:transparent;
-				min-height:0;
-				border:none;
+				background: transparent;
+				min-height: 0;
+				border: none;
 			}
 			.nav-current {
-				background:none;
+				background: none;
 			}
 		}
 	}
 	.mb-active {
-		a:hover.mb-has-sm,a:link.mb-has-sm,a:visited.mb-has-sm {
-			background-color:#CCC;
-			color:#000;
+		a {
+			&:hover, &:link, &:visited {
+				&.mb-has-sm {
+					background-color: #CCC;
+					color: #000;
+				}
+			}
 		}
 	}
-}
-#gcwu-psnb .mb-sm-open li {
-	background:transparent;
+	.mb-sm-open {
+		li {
+			background: transparent;
+		}
+	}
 }

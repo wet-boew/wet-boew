@@ -2,65 +2,194 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%gcwu-default-responsive-width-100perc {
+	width: 100%;
+}
+%gcwu-default-responsive-width-960 {
+	width: 960px;
+}
+%gcwu-default-responsive-width-720 {
+	width: 720px;
+}
+%gcwu-default-responsive-width-480 {
+	width: 480px;
+}
+%gcwu-default-responsive-width-240 {
+	width: 240px;
+}
+%gcwu-default-responsive-width-220 {
+	width: 220px;
+}
+%gcwu-default-responsive-margin-auto {
+	margin: auto;
+}
+
 body {
-	min-width:960px;
+	min-width: 960px;
 }
 
-#wb-head,#wb-core,#wb-foot,#wb-head-in,#gcwu-gcnb,#gcwu-bnr,#gcwu-psnb,#gcwu-bc,#wb-foot-in,#gcwu-gcft,#gcwu-sft {
-	width:100%;
+#wb-head {
+	@extend %gcwu-default-responsive-width-100perc;
 }
 
-#wb-core-in,#gcwu-gcnb-in,#gcwu-bnr-in,#gcwu-psnb-in,#gcwu-bc-in,#gcwu-gcft-in,#gcwu-sft-in {
-	margin:auto;
+#wb-core {
+	@extend %gcwu-default-responsive-width-100perc;
 }
 
-#gcwu-title-in {
-	width:360px;
+#wb-foot {
+	@extend %gcwu-default-responsive-width-100perc;
 }
 
-#wb-body-sec-sup #wb-main {
-	width:480px;
-	right:240px;
+#wb-head-in {
+	@extend %gcwu-default-responsive-width-100perc;
 }
 
-#wb-sec {
-	width:240px;
+#gcwu-gcnb {
+	@extend %gcwu-default-responsive-width-100perc;
 }
 
-#wb-sup {
-	width:240px;
-	left:480px;
+#gcwu-bnr {
+	@extend %gcwu-default-responsive-width-100perc;
+}
+
+#gcwu-psnb {
+	@extend %gcwu-default-responsive-width-100perc;
+	.mb-menu {
+		@extend %gcwu-default-responsive-width-960;
+	}
+}
+
+#gcwu-bc {
+	@extend %gcwu-default-responsive-width-100perc;
+}
+
+#wb-foot-in {
+	@extend %gcwu-default-responsive-width-100perc;
 }
 
 #gcwu-gcft {
+	@extend %gcwu-default-responsive-width-100perc;
 	li {
-		margin:12px 0 13px 44px;
+		margin: 12px 0 13px 44px;
 		&:first-child {
-			margin-left:10px;
+			margin-left: 10px;
 		}
 	}
 }
 
-li#gcwu-gcft-ca a {
-	padding-left:44px;
+#gcwu-sft {
+	@extend %gcwu-default-responsive-width-100perc;
 }
 
-#wb-core-in,#gcwu-gcnb-in,#gcwu-bnr-in,#gcwu-psnb-in,#gcwu-bc-in,#gcwu-gcft-in,#gcwu-sft-in,#gcwu-psnb .mb-menu,#wb-body #wb-main {
-	width:960px;
+#wb-core-in {
+	@extend %gcwu-default-responsive-margin-auto;
+	@extend %gcwu-default-responsive-width-960;
 }
 
-#wb-body-sec #wb-main,#wb-body-sec-sup #wb-main,#wb-body-sec #wb-main-in,#wb-body-sec-sup #wb-main-in,#wb-body #gcwu-content {
-	width:720px;
+#gcwu-gcnb-in {
+	@extend %gcwu-default-responsive-margin-auto;
+	@extend %gcwu-default-responsive-width-960;
 }
 
-#wb-body-sec-sup #wb-main-in,#wb-body-sec #gcwu-content {
-	width:480px;
+#gcwu-psnb-in {
+	@extend %gcwu-default-responsive-margin-auto;
+	@extend %gcwu-default-responsive-width-960;
 }
 
-#gcwu-aside,#gcwu-priorities {
-	width:220px;
+#gcwu-bc-in {
+	@extend %gcwu-default-responsive-margin-auto;
+	@extend %gcwu-default-responsive-width-960;
 }
 
-li#gcwu-gcft-ca {
-	margin-left:0 !important;
+#gcwu-gcft-in {
+	@extend %gcwu-default-responsive-margin-auto;
+	@extend %gcwu-default-responsive-width-960;
+}
+
+#gcwu-sft-in {
+	@extend %gcwu-default-responsive-margin-auto;
+	@extend %gcwu-default-responsive-width-960;
+}
+
+#gcwu-title-in {
+	width: 360px;
+}
+
+#wb-body-sec-sup {
+	#wb-main {
+		@extend %gcwu-default-responsive-width-480;
+		right: 240px;
+	}
+}
+
+#wb-sec {
+	@extend %gcwu-default-responsive-width-240;
+}
+
+#wb-sup {
+	@extend %gcwu-default-responsive-width-240;
+	left: 480px;
+}
+
+//TODO: Is li parent nessessary?
+li {
+	&#gcwu-gcft-ca {
+		margin-left: 0 !important;
+		a {
+			padding-left: 44px;
+		}
+	}
+}
+
+#gcwu-bnr-in {
+  @extend %gcwu-default-responsive-margin-auto;
+	@extend %gcwu-default-responsive-width-960;
+}
+
+[id|="wb-body-sec"] {
+	[id|="wb-main"] {
+		@extend %gcwu-default-responsive-width-720;
+	}
+}
+
+#wb-body {
+	#wb-main {
+		@extend %gcwu-default-responsive-width-960;
+	}
+	#gcwu-content {
+		@extend %gcwu-default-responsive-width-720;
+	}
+}
+
+#wb-body-sec-sup {
+	#wb-main-in {
+		@extend %gcwu-default-responsive-width-480;
+	}
+}
+#wb-body-sec {
+	#gcwu-content {
+		@extend %gcwu-default-responsive-width-480;
+	}
+}
+
+#gcwu-aside {
+	@extend %gcwu-default-responsive-width-220;
+}
+#gcwu-priorities {
+	@extend %gcwu-default-responsive-width-220;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-body-sec-sup {
+		#wb-main {
+			right: auto;
+			left: 240px;
+		}
+	}
+
+	#wb-sup {
+		left: auto;
+		right: 480px;
+	}
 }

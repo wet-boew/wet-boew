@@ -25,15 +25,22 @@
 
 			var $tabs = elm.children('.tabs').children('li'),
 				$panels = elm.children('.tabs-panel').children('div'),
+				$activeTab,
+				tabListIdx = $('.wet-boew-tabbedinterface').index(elm),
 				defaultTab = 0,
 				accordion = '<div data-role="collapsible-set" data-mini="true" data-content-theme="b" data-theme="b">',
-				heading,
-				parent,
 				hlevel,
 				hopen,
 				hclose,
 				index,
 				len;
+
+			// Check if there's an active tab from the user's session
+			$activeTab = $tabs.find('a[href="' + this._get_active_panel(tabListIdx) + '"]');
+			if ($activeTab.length) {
+				$tabs.removeClass('default');
+				$activeTab.parent('li').addClass('default');
+			}
 
 			// Find the default tab
 			for (index = 0, len = $tabs.length; index < len; index += 1) {
@@ -46,29 +53,25 @@
 			// Convert html elements and attributes into the format the jQuery mobile accordian plugin expects.
 			// Get the content out of the html structure tabbedinterface usually expects.
 			// Create the accordion structure to move the content to.
-			heading = elm.find(':header');
-			if (heading.length !== 0) {
-				hlevel = parseInt(heading.prop('tagName').substr(1), 10);
-			} else {
-				parent = elm;
-				while (heading.length === 0) {
-					parent = parent.parent();
-					heading = parent.find(':header');
-				}
-				hlevel = parseInt(heading.prop('tagName').substr(1), 10) + 1;
-			}
+			hlevel = this._get_heading_level(elm);
 			hopen = '<h' + hlevel + '>';
 			hclose = '</h' + hlevel + '>';
 
 			$panels.each(function (index) {
-				var text = $tabs.eq(index).children('a').text();
-				if(text === ''){
+				var $link = $tabs.eq(index).children('a'),
+					text = $link.text();
+				if (text === ''){
 					text = $tabs.eq(index).find('span').text();					
 				}
-				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + '>' + hopen + text + hclose + this.innerHTML + '</div>';
+				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + _pe.fn.tabbedinterface._get_hash($link.attr('href')) + '">' + hopen + text + hclose + this.innerHTML + '</div>';
 			});
 			accordion += '</div>';
 			elm.html(accordion);
+
+			// Track the active panel during the user's session
+			elm.find('[data-role="collapsible"]').on('expand', function () {
+				_pe.fn.tabbedinterface._set_active_panel($(this).data('tab'), tabListIdx);
+			});
 
 			return elm;
 		},
@@ -80,6 +83,8 @@
 				$nav = elm.children('.tabs'),
 				$tabs = $nav.find('a').filter(':not(.tabs-toggle)'),
 				$tabsPanel = elm.children('.tabs-panel'),
+				$tabbedInterfaces = $('.wet-boew-tabbedinterface'),
+				$tabListHeading,
 				$panels = $tabsPanel.children(),
 				$toggleButton,
 				$toggleRow,
@@ -100,9 +105,12 @@
 				startHiddenText = _pe.dic.get('%tab-rotation', 'enable'),
 				stopCycle,
 				toggleCycle,
+				tabListIdx = $tabbedInterfaces.index(elm),
+				tabListCount = $tabbedInterfaces.length > 1 ? ' ' + (tabListIdx + 1) : '',
 				tabsPanelId,
-				tabSuffix = '-link';				
-				
+				tabSuffix = '-link',
+				href;				
+
 			// Defaults
 			opts = {
 				panelActiveClass: 'active',
@@ -131,12 +139,18 @@
 			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_tabbedinterface), class-based overrides and the data attribute
-			$.metadata.setType('attr', 'data-wet-boew');
 			if (typeof wet_boew_tabbedinterface !== 'undefined' && wet_boew_tabbedinterface !== null) {
-				$.extend(opts, wet_boew_tabbedinterface, overrides, elm.metadata());
+				$.extend(opts, wet_boew_tabbedinterface, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 			} else {
-				$.extend(opts, overrides, elm.metadata());
+				$.extend(opts, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 			}
+
+			// Add hidden tab list heading
+			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(_pe.dic.get('%tab-list') + tabListCount);
+			if (_pe.ie > 0 && _pe.ie < 9) {
+				$tabListHeading.wrap('<div>'); // Stop empty text nodes from moving the tabs around
+			}
+			$tabListHeading.insertBefore($nav);
 
 			$nav.attr('role', 'tablist').children('li').attr('role', 'presentation');
 			$tabs.attr({'role': 'tab', 'aria-selected': 'false'});
@@ -147,20 +161,28 @@
 				}
 			});
 
-			// Find the default tab: give precedence to the URL hash
-			$default_tab = $tabs.filter('[href="#'+_pe.urlhash+'"]');
-			if ($default_tab.length === 0) {
-				$default_tab = $nav.find('.default a');
-				if($default_tab.length === 0) {
-					$default_tab = $nav.find('li:first-child a');
+			// Find the default tab: precendence given to the active tab from sessionStorage
+			$default_tab = $tabs.filter('[href="' + this._get_active_panel(tabListIdx) + '"]');
+			if ($default_tab.length > 0) {
+				opts.defaultTab = '.default';
+				$nav.find('li').removeClass('default');
+				$default_tab.parent('li').addClass('default');
+			} else {
+				$default_tab = $tabs.filter('[href="*#'+_pe.urlhash+'"]');
+				if ($default_tab.length === 0) {
+					$default_tab = $nav.find('.default a');
+					if ($default_tab.length === 0) {
+						$default_tab = $nav.find('li:first-child a');
+					}
 				}
 			}
 			$default_tab.attr('aria-selected', 'true');
-			$panels.filter($default_tab.attr('href')).attr('aria-hidden', 'false');
+			href = $default_tab.attr('href');
+			$panels.filter(href.substring(href.indexOf('#'))).attr('aria-hidden', 'false');
 
 			// easytabs IE7 bug: using images as tabs breaks easytabs.activateDefaultTab().
-			if(_pe.ie > 0 && _pe.ie < 8) {
-				if($tabs.parent().hasClass('img')) {
+			if (_pe.ie > 0 && _pe.ie < 8) {
+				if ($tabs.parent().hasClass('img')) {
 					$tabs.parent().removeClass('img');
 					$tabs.find('span').removeClass('wb-invisible');
 					$tabs.find('img').remove();
@@ -170,7 +192,8 @@
 			$tabs.off('click vclick').on('keydown click', function (e) {
 				var $target = $(e.target),
 					$panel,
-					$link;
+					$link,
+					hash;
 				if (e.type === 'keydown') {
 					if (e.keyCode === 13 || e.keyCode === 32) {
 						if (e.stopPropagation) {
@@ -182,7 +205,8 @@
 						if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
 							selectTab($target, $tabs, $panels, opts, false);
 						} else {
-							_pe.focus($panels.filter($target.attr('href')));
+							hash = _pe.fn.tabbedinterface._get_hash($target.attr('href'));
+							_pe.focus($panels.filter(hash));
 						}
 					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
 						selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
@@ -194,6 +218,7 @@
 				} else {
 					// Make sure working with a link since it's possible for an image to be the target of a mouse click
 					$link = (e.target.tagName.toLowerCase() !== 'a') ? $target.closest('a') : $target;
+					hash = _pe.fn.tabbedinterface._get_hash($link.attr('href'));
 
 					// Shift focus to the panel if the tab is already active
 					if ($link.is($tabs.filter('.' + opts.tabActiveClass))) {
@@ -205,10 +230,14 @@
 					$link.parents('a:first');		
 
 					// Get the panel to display
-					$panel = $panels.filter($link.attr('href'));
+					$panel = $panels.filter(hash);
 					if ($panel.data('easytabs') && !$panel.data('easytabs').lastHeight) {
 						$panel.data('easytabs').lastHeight = $panel.outerHeight();
 					}
+				}
+
+				if (hash !== undefined) {
+					_pe.fn.tabbedinterface._set_active_panel(hash, tabListIdx);
 				}
 			});
 
@@ -221,20 +250,21 @@
 				return ($prev.length === 0 ? $tabs.last() : $prev.children('a'));
 			};
 			selectTab = function ($selection, $tabs, $panels, opts, keepFocus) {
-				var cycleButton, activePanel, nextPanel;
+				var cycleButton,
+					activePanel,
+					nextPanel,
+					hash = _pe.fn.tabbedinterface._get_hash($selection.attr('href'));
 				$panels.stop(true, true);
 				if (opts.animate) {
-				
-					activePanel = $panels.filter('.' + opts.panelActiveClass).removeClass(opts.panelActiveClass).attr("aria-hidden", "true");
-					nextPanel = $panels.filter($selection.attr('href'));	
+					activePanel = $panels.filter('.' + opts.panelActiveClass).removeClass(opts.panelActiveClass).attr('aria-hidden', 'true');
+					nextPanel = $panels.filter(hash);	
 					
-					if(isSlider()){
+					if (isSlider()){
 						$panels.show();
-						$viewport.stop().animate(getSlideTo(nextPanel), opts.animationSpeed, function(){							
+						$viewport.stop().animate(getSlideTo(nextPanel), opts.animationSpeed, function () {							
 							nextPanel.addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
 							$panels.filter(':not(.'+opts.panelActiveClass+')').hide();							
-						});		
-						
+						});
 					} else {					
 						activePanel.fadeOut(opts.animationSpeed, function () {
 							return nextPanel.fadeIn(opts.animationSpeed, function () {
@@ -242,11 +272,11 @@
 							});
 						});
 					}
-					
 				} else {
 					$panels.removeClass(opts.panelActiveClass).attr('aria-hidden', 'true').hide();
-					$panels.filter($selection.attr('href')).show().addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
+					$panels.filter(hash).show().addClass(opts.panelActiveClass).attr('aria-hidden', 'false');
 				}
+				_pe.fn.tabbedinterface._set_active_panel(hash, tabListIdx);
 				$tabs.removeClass(opts.tabActiveClass).attr('aria-selected', 'false').parent().removeClass(opts.tabActiveClass);
 				$selection.addClass(opts.tabActiveClass).attr('aria-selected', 'true').parent().addClass(opts.tabActiveClass);
 				cycleButton = $selection.parent().siblings('.tabs-toggle');
@@ -264,9 +294,9 @@
 					return stopCycle();
 				}
 			};
-			getMaxPanelSize = function() {
+			getMaxPanelSize = function () {
 				var maxHeight = 0;
-				
+
 				// Remove position and size to allow content to determine max size of panels
 				$tabsPanel.css({width: '', height: ''});
 				$panels.css({width: '', height: ''});
@@ -275,19 +305,18 @@
 				});
 				return {width: $tabsPanel.width(), height: maxHeight};
 			};
-			getSlideTo = function(panel) {
+			getSlideTo = function (panel) {
 				var slideTo = {left: 0, top: 0}, pos;
 				if(panel && typeof panel.jquery !== 'undefined'){
 					pos = panel.parent().position();
 					slideTo = {left: pos.left * -1, top: pos.top * -1};
-				}				
+				}
 				return slideTo;
 			};
-			isSlider = function(){
+			isSlider = function () { 
 				return opts.transition === 'slide-horz' || opts.transition === 'slide-vert';
 			};
 			positionPanels = function() {			
-
 				var isSlideHorz = opts.transition === 'slide-horz',
 					viewportSize = {width: 0, height: 0},
 					panelSize;		
@@ -295,7 +324,7 @@
 				if($viewport === undefined) {					
 					$panels.wrapAll('<div class="viewport">').wrap('<div class="panel">');
 					$viewport = $('.viewport', $tabsPanel);
-				}				
+				}
 				
 				panelSize = getMaxPanelSize();
 				$panels.each(function() {
@@ -313,7 +342,6 @@
 				} else {
 					$viewport.css($.extend({width: panelSize.width, height: viewportSize.height}, getSlideTo($panels.filter('.' + opts.panelActiveClass))));
 				}
-		
 			};
 			if (isSlider() || (opts.autoHeight && !elm.hasClass('tabs-style-4') && !elm.hasClass('tabs-style-5'))) {
 				$panels.show();
@@ -330,6 +358,7 @@
 						$pbar;
 					$current = $tabs.filter('.' + opts.tabActiveClass);
 					$pbar = $current.siblings('.tabs-roller');
+					$nav.addClass('started');
 					elm.find('.tabs-toggle').data('state', 'started');
 					return $pbar.show().animate({
 						width : $current.parent().width()
@@ -345,6 +374,7 @@
 					clearTimeout(elm.data('interval'));
 					elm.find('.tabs-roller').width(0).hide().stop();
 					elm.find('.tabs-toggle').data('state', 'stopped');
+					$nav.removeClass('started');
 					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + startHiddenText + '</span>');
 					return $('.wb-invisible', $toggleButton).text(startHiddenText);
 				};
@@ -385,8 +415,6 @@
 					var $pbar;
 					$pbar = $('<div class="tabs-roller">').hide().on('click', function () {
 						return $(this).siblings('a').trigger('click');
-					}).on('hover', function () {
-						return $(this).css('cursor', 'text');
 					});
 					if (_pe.ie > 0 && _pe.ie < 8) {
 						$('.tabs-style-2 .tabs, .tabs-style-2 .tabs li').css('filter', '');
@@ -398,21 +426,20 @@
 					stopCycle();
 				}
 				
-				$(document).keyup(function(e) {
+				$(document).keyup(function (e) {
 					if (e.keyCode === 27) { // Escape	
-						if(elm.find('.tabs-toggle').data('state') === 'started') {
+						if (elm.find('.tabs-toggle').data('state') === 'started') {
 							elm.find('.tabs .' + opts.tabActiveClass).focus();
 						}
 						stopCycle();						
 					}
 				});	
 			}
-						
+
 			elm.find('a').filter('[href^="#"]').each(function () {
 				var $this = $(this),
 					anchor,
-					hash;
-				hash = $this.attr('href');
+					hash = _pe.fn.tabbedinterface._get_hash($this.attr('href'));
 				if (hash.length > 1) {
 					anchor = $(hash, $panels);
 					if (anchor.length) {
@@ -434,27 +461,78 @@
 			
 			// Setup sliding panel behaviour
 			if (isSlider()) {	
-			
 				$(window).resize(positionPanels);
 				positionPanels();
-				
-				// Prevent focus event from prematurely showing the active panel
-				$panels.on('focus', function(e) {
-					if (!$(this).hasClass(opts.panelActiveClass)) {
-						e.preventDefault();
-					}
-				});					
-				
+
 				// Override the tab transition with our slide animation
 				// TODO: slide transitions should be added to easytabs lib
 				elm.on('easytabs:before', function(e, $tab) {
 					selectTab($tab, $tabs, $panels, opts, true);
 					return false;
 				});					
-			}				
+			}
+
+			// Trigger panel change if a link within a panel is clicked and matches a tab
+			$panels.find('a').filter('[href^="#"]').each(function () {
+				var $tab,
+					$this = $(this),
+					hash = _pe.fn.tabbedinterface._get_hash($this.attr('href'));
+				if (hash.length > 1) {
+					$tab = $tabs.filter('[href="' + hash + '"]');
+					if ($tab.length) {
+						$this.off('click.hlinks vclick.hlinks').on('click vclick', function () {
+							$tab.trigger('click');
+							if (opts.cycle) {
+								stopCycle();
+							}
+							return false;
+						});
+					}
+				}
+			});
 
 			return elm.attr('class', elm.attr('class').replace(/\bwidget-style-/, "style-"));
-		} // end of exec
+		}, // end of exec
+
+		/**
+		 * Given an element, find the appropriate heading level for its content
+		 */
+		_get_heading_level : function(elm) {
+			var heading = elm.find(':header'),
+				hlevel,
+				parent;
+
+			if (heading.length !== 0) {
+				hlevel = parseInt(heading.prop('tagName').substr(1), 10);
+			} else {
+				parent = elm;
+				while (heading.length === 0) {
+					parent = parent.parent();
+					heading = parent.find(':header');
+				}
+				hlevel = parseInt(heading.prop('tagName').substr(1), 10) + 1;
+			}
+			return hlevel;
+		},
+
+		/**
+		 * Track the currently active tab for the user's session
+		 */
+		_set_active_panel : function(id, tabListIdx) {
+			window.sessionStorage.setItem('activePanel-' + tabListIdx, id);
+		},
+
+		_get_active_panel : function(tabListIdx) {
+			return window.sessionStorage.getItem('activePanel-' + tabListIdx);
+		},
+
+		/**
+		 * Returns the URL hash given a link's href attribute
+		 */
+		_get_hash : function(href) {
+			return href !== null ? href.substring(href.indexOf('#')) : '';
+		}
+
 	};
 	window.pe = _pe;
 	return _pe;

@@ -1,0 +1,198 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+%gcwu-default-screen-ie-display-none {
+	display: none;
+}
+.ie7, .ie8 {
+	.ui-mobile-rendering {
+		#gcwu-wmms-in {
+			@extend %gcwu-default-screen-ie-display-none;
+		}
+		#gcwu-sig-in {
+			@extend %gcwu-default-screen-ie-display-none;
+		}
+	}
+}
+
+.ie7 {
+	#wb-core {
+		margin-bottom: -20px;
+	}
+	.gcwu-minister {
+		ul {
+			padding-bottom: 17px;
+		}
+	}
+	#gcwu-srchbx {
+		padding-bottom: 0;
+		height: 36px;
+	}
+	#gcwu-srch-submit {
+		padding: 2px 0;
+		position: relative;
+		top: 1px;
+	}
+	%gcwu-default-screen-ie7-overflow-visible {
+		overflow: visible;
+	}
+	#gcwu-bnr {
+		@extend %gcwu-default-screen-ie7-float-left;
+		@extend %gcwu-default-screen-ie7-overflow-visible;
+	}
+	#gcwu-bnr-in {
+		@extend %gcwu-default-screen-ie7-overflow-visible;
+	}
+	#gcwu-title {
+		zoom: 1;
+		position: relative;
+	}
+	#gcwu-title-in {
+		position: absolute;
+		top: 50%;
+		a {
+			position: relative;
+			top: -50%;
+		}
+	} 
+	#gcwu-date-mod {
+		position: relative;
+		float: right;
+		margin-bottom: -15px;
+		top: 17px;
+	}
+	#gcwu-tctr {
+		padding: 7px 0 6px;
+		li {
+			@extend %gcwu-default-screen-ie7-float-left;
+			&.gcwu-tc {
+				padding: 0 10px;
+			}
+			&.gcwu-tr {
+				padding-left: 10px;
+			}
+		}
+	}
+	#gcwu-gcft {
+		li {
+			margin: 13px 35px 14px 9px;
+		}
+	}
+	%gcwu-default-screen-ie7-float-left {
+		float: left;
+	}
+	%gcwu-default-screen-ie7-float-right {
+		float: right;
+	}
+
+	// Right to left (RTL) CSS
+	&[dir="rtl"] {
+		%gcwu-default-screen-ie7-rtl-float-fix {
+			zoom: 1;
+			float: none;
+			display: inline;
+		}
+
+		#gcwu-gcnb {
+			ul {
+				li {
+					@extend %gcwu-default-screen-ie7-rtl-float-fix;
+				}
+			}
+		}
+
+		#gcwu-wmms-in {
+			@extend %gcwu-default-screen-ie7-float-left;
+		}
+
+		#gcwu-date-mod {
+			@extend %gcwu-default-screen-ie7-float-left;
+			dt, dd {
+				@extend %gcwu-default-screen-ie7-rtl-float-fix;
+			}
+		}
+
+		#gcwu-tctr {
+			padding-top: 15px;
+			li {
+				&.gcwu-tc {
+					padding: 0 9px 0 10px;
+				}
+				&.gcwu-tr {
+					padding: 0 10px 0 6px;
+				}
+			}
+		}
+
+		#gcwu-gcft {
+			li {
+				margin: 13px 9px 14px 35px;
+			}
+		}
+
+		#gcwu-bnr {
+			@extend %gcwu-default-screen-ie7-float-right;
+		}
+		
+		#gcwu-tctr {
+			li {
+				@extend %gcwu-default-screen-ie7-float-right;
+			}
+		}
+
+		#gcwu-gcft-fip {
+			ul {
+				li {
+					@extend %gcwu-default-screen-ie7-float-left;
+				}
+			}
+		}
+
+		#gcwu-gcft-fip {
+			ul {
+				li {
+					float: right;
+					&#gcwu-gcft-ca {
+						float: left !important;
+					}
+				}
+			}
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.ie8 {
+	#gcwu-srch-submit {
+		padding: 2px 5px;
+		background-color: #cecece !important;
+		position: relative;
+		top: 1px;
+	}
+
+	&[dir="rtl"] {
+		#gcwu-tctr {
+			li {
+				&.gcwu-tc {
+					border-left: 1px solid #999;
+					padding: 0 10px 0 9px;
+				}
+				&.gcwu-tr {
+					padding: 0 10px 0 6px;
+				}
+			}
+		}
+
+		#gcwu-gcft-fip {
+			ul {
+				li {
+					float: right;
+					&#gcwu-gcft-ca {
+						float: left !important;
+					}
+				}
+			}
+		}
+	}
+}

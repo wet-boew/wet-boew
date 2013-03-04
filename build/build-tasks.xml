@@ -4,7 +4,7 @@
 	<property file="${tasks.basedir}/build-tasks.properties"/>
 	
 	<!-- Version and build time-->
-	<property name="wet-boew-build.version" value="v3.1.0-b1"/>
+	<property name="wet-boew-build.version" value="v3.1.0-rc1-development"/>
 	<tstamp>
 		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
 	</tstamp>
@@ -95,7 +95,12 @@
 			<arg value="${command}"/>
 			<arg path="${src.dir}"/>
 			<arg value="${dist.dir}/css"/>
+			<arg value="${isdebugging}"/>
 		</java>
+	</target>
+	
+	<target name="usedebugging">
+		<property name="isdebugging" value="true"/>
 	</target>
 	
 	<!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
@@ -112,17 +117,17 @@
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
 			<exclude name="jquerymobile/jquery.mobile.js"/>
+			<exclude name="jquerymobile/jquery.mobile-ie.js"/>
 			<exclude name="polyfills/datalist.js"/>
 			<exclude name="polyfills/detailssummary.js"/>
 			<exclude name="polyfills/html5shiv.js"/>
 			<exclude name="polyfills/localstorage.js"/>
 			<exclude name="polyfills/sessionstorage.js"/>
 			<exclude name="polyfills/slider.js"/>
-			<exclude name="dependencies/bookmark.js"/>
 			<exclude name="dependencies/browsertweaks.js"/>
 			<exclude name="dependencies/colorbox.js"/>
+			<exclude name="dependencies/datatables.js"/>
 			<exclude name="dependencies/easytabs.js"/>
-			<exclude name="dependencies/hashchange.js"/>
 			<exclude name="dependencies/hoverintent.js"/>
 			<exclude name="dependencies/json.js"/>
 			<exclude name="dependencies/matchMedia.js"/>
@@ -131,7 +136,9 @@
 			<exclude name="dependencies/pie.js"/>
 			<exclude name="dependencies/prettify.js"/>
 			<exclude name="dependencies/prettify/**/*.js"/>
-			<exclude name="dependencies/raphael.js"/>
+			<exclude name="dependencies/excanvas.js"/>
+			<exclude name="dependencies/flot.js"/>
+			<exclude name="dependencies/flotPie.js"/>
 			<exclude name="dependencies/resize.js"/>
 			<exclude name="dependencies/validate.js"/>
 			<exclude name="dependencies/validateAdditional.js"/>
@@ -139,14 +146,13 @@
 		</jshint>
 	</target>
 
-	<property name="csslint.ignores" value="ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,float,overqualified-elements,font-sizes,regex-selectors,duplicate-properties,box-sizing"/>
+	<property name="csslint.ignores" value="ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,floats,overqualified-elements,font-sizes,regex-selectors,duplicate-properties,box-sizing"/>
 	<property name="csslint.errors" value="outline-none"/>
 
-	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="prepare-files">
+	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="usedebugging, prepare-files">
 		<apply executable="java" failonerror="false" parallel="false">
 			<fileset dir="${dist.dir}/css">
 				<include name="*.css"/>
-				<exclude name="jquery.mobile.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -161,32 +167,14 @@
 			<srcfile/>
 		</apply>
 	</target>
-	
-	<target name="csslint-report" description="Produceds CSSLint XML report in the build directory for selected project" depends="prepare-files">
-		<apply executable="java" failonerror="false" parallel="true" output="${src.dir}/csslint.out.xml">
-			<fileset dir="${dist.dir}/css">
-				<include name="*.css"/>
-				<exclude name="jquery.mobile.css"/>
-				<exclude name="*.min.css"/>
-				<exclude name="*-min.css"/>
-			</fileset>
-			<arg value="-jar"/>
-			<arg path="${lib.dir}/js.jar"/>
-			<arg path="${lib.dir}/csslint-rhino.js" />      
-
-			<!-- your customized arguments go here -->
-			<arg value="--format=lint-xml"/>
-			<arg value="--ignore=${csslint.ignores}"/>
-			<arg value="--error=${csslint.errors}"/>
-			<srcfile/>
-		</apply>
-	</target>
-  
+	  
 	<target name="clean">
 		<delete dir="${dist.dir}" />
 	</target>
 	
 	<extension-point name="build" depends="prepare-files, encode-images, compress, finalize" description="Core build task. Subprojects should subscrib to the 'prepare-files' and 'compress'" />
+	
+	<extension-point name="debug" depends="usedebugging, prepare-files, encode-images, fake-compress, finalize" description="Build that produces the CSS and JS files unminified but with the same file name as the production ones" />
 	
 	<extension-point name="prepare-files" depends="-init" />
 	
@@ -195,6 +183,8 @@
 	<target name="encode-css" extensionOf="encode-images" depends="-base64-encode"/>
 
 	<extension-point name="compress" depends="encode-images, -minify" />
+	
+	<extension-point name="fake-compress" depends="encode-images, -rename-to-min" />
 	
 	<extension-point name="finalize"/>
 	
@@ -213,23 +203,25 @@
 				<exclude name="util.css"/>
 			</fileset>
 		</cssurlembed>
-	</target>
-	
-	<target name="-base64-encode-jquery">
+		
 		<property name="jquerymobile.dir" location="${src.dir}/jquerymobile"/>
-		<cssurlembed skipMissing="false" root="${jquerymobile.dir}">
+		<cssurlembed skipMissing="true" root="${jquerymobile.dir}">
 			<fileset dir="${dist.dir}/css">
-				<include name="jquery.mobile.css"/>
+				<include name="*.css"/>
+				<exclude name="*ie.css"/>
+				<!-- Because of themometer images -->
+				<exclude name="util.css"/>
 			</fileset>
 		</cssurlembed>
 	</target>
-	
+		
 	<target name="-minify">
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${dist.dir}" toDir="${dist.dir}" charset="utf-8">
 			<include name="**/*.css" />
 			<include name="**/*.js" />
 			<exclude name="**/*-min.css" />
 			<exclude name="**/settings.js" />
+			<exclude name="**/settings-ie.js" />
 			<exclude name="**/*-min.js" />
 			<exclude name="**/*.min.js" />
 		</yui-compressor>
@@ -238,6 +230,7 @@
 				<include name="**/*.css" />
 				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
+				<exclude name="**/settings-ie.js" />
 				<exclude name="**/*-min.css" />
 				<exclude name="**/*-min.js" />
 				<exclude name="**/*.min.js" />
@@ -245,24 +238,53 @@
 		</delete>
 	</target>
 	
-	<target name="-copy-css" depends="compile.sass"/>
-	
-	<target name="-copy-jquery-css">
-		<concat dest="${dist.dir}/css/jquery.mobile.css">
-			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme.css"/>
-			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure.css"/>
-		</concat>
+	<target name="-rename-to-min">
+		<move todir="${dist.dir}">
+			<fileset dir="${dist.dir}">
+				<include name="**/*.js" />
+				<exclude name="**/settings.js" />
+				<exclude name="**/settings-ie.js" />
+				<exclude name="**/*-min.js" />
+				<exclude name="**/*.min.js" />
+			</fileset>
+			<globmapper from="*.js" to="*-min.js"/>
+		</move>	
+		<move todir="${dist.dir}">
+			<fileset dir="${dist.dir}">
+				<include name="**/*.css" />
+				<exclude name="**/*-min.css" />
+			</fileset>
+			<globmapper from="*.css" to="*-min.css"/>
+		</move>
 	</target>
 	
+	<target name="-copy-css" depends="compile.sass"/>
+
+	<target name="-copy-jquery-mobile">
+		<copy todir="${dist.dir}/css/images">
+			<fileset dir="${src.dir}/jquerymobile/images-ie"/>
+		</copy>
+	</target>
+
+	<target name="-copy-depends">
+		<copy todir="${dist.dir}/dependencies/css">
+			<fileset dir="${src.dir}/dependencies/css"/>
+		</copy>
+		<copy todir="${dist.dir}/dependencies/images">
+			<fileset dir="${src.dir}/dependencies/images"/>
+		</copy>
+	</target>
+
+	<fileset id="jsfiles" dir="${src.dir}">
+		<include name="**/*.js"/>
+	</fileset>
 	<target name="-copy-js">
 		<fixcrlf srcdir="${src.dir}" includes="**/*.js" encoding="UTF-8" outputencoding="UTF-8" tab="add" tablength="4" fixlast="false"/>
 		<copy todir="${dist.dir}" encoding="UTF-8">
-			<fileset dir="${src.dir}">
-				<include name="**/*.js"/>
-				<exclude name="workers/**"/> 
-				<exclude name="pe-ap.js"/> 
-			</fileset>
+			<fileset refid="jsfiles" />
 		</copy>
+		<!-- Temporary fix - to be replaced by modern and old IE targeted output -->
+		<copy file="${dist.dir}/js/theme.js" tofile="${dist.dir}/js/theme-ie.js" failonerror="false"/>
 	</target>
 	
 	<target name="-copy-images">

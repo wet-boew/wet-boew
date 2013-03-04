@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+	<nosec>
+		<skip2>@%tmpl-skip-foot@</skip2>
+		<footid> id="wb-nav"</footid>
+	</nosec>
+	<sec>
+		<skip2>@%tmpl-skip-sec@</skip2>
+		<footid/>
+	</sec>
+</strings>

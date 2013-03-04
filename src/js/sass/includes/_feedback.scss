@@ -3,8 +3,10 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 .wet-boew-feedback {
-	#web label[for=otherprob] {
-		display: inline;
+	#web {
+		label[for=otherprob] {
+			display: inline;
+		}
 	}
 	#web, #mobile, #computer, #info {
 		display: none;

@@ -4,138 +4,309 @@
  */
 @import "compass/css3/box-sizing";
 
-/*
-    ColorBox Core Style:
-    The following CSS is consistent between example themes and should not be altered.
-*/
-#colorbox, #cboxOverlay, #cboxWrapper {position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
-#cboxOverlay {position:fixed; width:100%; height:100%;}
-#cboxMiddleLeft, #cboxBottomLeft {clear:left;}
-#cboxContent {position:relative;}
-#cboxLoadedContent {overflow:auto;}
-#cboxTitle {margin:0;}
-#cboxLoadingOverlay, #cboxLoadingGraphic {position:absolute; top:0; left:0; width:100%; height:100%;}
-#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow {cursor:pointer;}
-.cboxPhoto {float:left; margin:auto; border:0; display:block; max-width:none;}
-.cboxIframe {width:100%; height:100%; display:block; border:0;}
-#colorbox, #cboxContent, #cboxLoadedContent {
+//WET: This CSS is based off https://github.com/jackmoore/colorbox/blob/master/example3/colorbox.css
+%wb-lightbox-position-absolute {
+	position: absolute;
+}
+
+%wb-lightbox-top-0 {
+	top: 0;
+}
+
+%wb-lightbox-left-0 {
+	left: 0;
+}
+
+%wb-lightbox-right-5 {
+	right: 5px;
+}
+
+%wb-lightbox-width-100-height-100 {
+	width: 100%;
+	height: 100%;
+}
+
+%wb-lightbox-z-index-9999-overflow-hidden {
+	z-index: 9999;
+	overflow: hidden;
+}
+
+%wb-lightbox-display-block {
+	display: block;
+}
+
+%wb-lightbox-visibility-visible {
+	visibility: visible;
+}
+
+%wb-lightbox-curson-pointer {
+	cursor: pointer;
+}
+
+%wb-lightbox-clear-left {
+	clear: left;
+}
+
+%wb-lightbox-border-0 {
+	border: 0;
+}
+
+%wb-lightbox-box-sizing-content-box {
 	@include box-sizing(content-box);
 }
 
-/* 
-    User Style:
-    Change the following styles to modify the appearance of ColorBox.  They are
-    ordered & tabbed in a way that represents the nesting of the generated HTML.
-*/
-#colorbox, #cboxOverlay, #cboxWrapper {
-	overflow:visible;
+%wb-lightbox-overflow-visible {
+	overflow: visible;
 }
-#cboxOverlay {
-	background:#000;
+
+%wb-lightbox-padding-top-3 {
+	padding-top: 3px;
 }
+
+%wb-lightbox-display-none {
+	display: none;
+}
+
+%wb-lightbox-controls {
+	background-image: url(../images/lightbox/controls.png);
+	background-repeat: no-repeat;
+	direction: ltr;
+	text-indent: -9999px;
+}
+
+%wb-lightbox-top-50-width-28-height-65 {
+	top: 50%;
+	width: 28px;
+	height: 65px;
+}
+
+%wb-lightbox-margin-top--32 {
+	margin-top: -32px;
+}
+
+%wb-lightbox-focus-active-outline-0-border-1-dotted-000 {
+	@include pseudo-focus(false) {
+		outline: 0;
+		border: 1px dotted #000;
+	}
+}
+
+%wb-lightbox-color-ccc-text-shadow-none {
+	color: #ccc;
+	text-shadow: none;
+}
+
+%wb-lightbox-background-000 {
+	background: #000;
+}
+	
 #colorbox {
+	@extend %wb-lightbox-position-absolute;
+	@extend %wb-lightbox-top-0;
+	@extend %wb-lightbox-left-0;
+	@extend %wb-lightbox-z-index-9999-overflow-hidden;
+	@extend %wb-lightbox-box-sizing-content-box;
+	@extend %wb-lightbox-overflow-visible;
 }
+
+#cboxOverlay {
+	@extend %wb-lightbox-position-absolute;
+	@extend %wb-lightbox-top-0;
+	@extend %wb-lightbox-left-0;
+	@extend %wb-lightbox-z-index-9999-overflow-hidden;
+	@extend %wb-lightbox-width-100-height-100;
+	@extend %wb-lightbox-overflow-visible;
+	@extend %wb-lightbox-background-000;
+	position: fixed;
+}
+
+#cboxWrapper {
+	@extend %wb-lightbox-position-absolute;
+	@extend %wb-lightbox-top-0;
+	@extend %wb-lightbox-left-0;
+	@extend %wb-lightbox-z-index-9999-overflow-hidden;
+	@extend %wb-lightbox-overflow-visible;
+}
+
+#cboxMiddleLeft {
+	@extend %wb-lightbox-clear-left;
+}
+
+#cboxBottomLeft {
+	@extend %wb-lightbox-clear-left;
+}
+
 #cboxContent {
+	@extend %wb-lightbox-box-sizing-content-box;
+	position: relative;
 	margin: 19px 28px 1.5em 28px;
 }
-.cboxIframe {
-	background:#fff;
-}
-#cboxError {
-	padding:50px;
-	border:1px solid #ccc;
-}
+
 #cboxLoadedContent {
-	border:5px solid #000;
-	background:#fff;
+	@extend %wb-lightbox-box-sizing-content-box;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	border: 5px solid #000;
+	background: #fff;
+	+ {
+		.cboxTitle {
+			@extend %wb-lightbox-display-block;
+		}
+		.cboxCurrent {
+			@extend %wb-lightbox-display-block;
+		}
+	}
 }
+
+#cboxLoadingOverlay {
+	@extend %wb-lightbox-position-absolute;
+	@extend %wb-lightbox-top-0;
+	@extend %wb-lightbox-left-0;
+	@extend %wb-lightbox-width-100-height-100;
+	@extend %wb-lightbox-background-000;
+}
+
+#cboxLoadingGraphic {
+	@extend %wb-lightbox-position-absolute;
+	@extend %wb-lightbox-top-0;
+	@extend %wb-lightbox-left-0;
+	@extend %wb-lightbox-width-100-height-100;
+	background: url(../images/lightbox/loading.gif) no-repeat center center;
+}
+
+.cboxPhoto {
+	@extend %wb-lightbox-border-0;
+	@extend %wb-lightbox-display-block;
+	float: left;
+	margin: auto;
+	max-width: none;
+}
+
+.cboxIframe {
+	@extend %wb-lightbox-width-100-height-100;
+	@extend %wb-lightbox-display-block;
+	@extend %wb-lightbox-border-0;
+	background: #fff;
+}
+
+#cboxError {
+	padding: 50px;
+	border: 1px solid #ccc;
+}
+
 #cboxTitle {
-	position:absolute;
-	padding-top:3px;
-	left:5px;
-	color:#ccc;
-	width:70%;
+	@extend %wb-lightbox-position-absolute;
+	@extend %wb-lightbox-padding-top-3;
+	@extend %wb-lightbox-color-ccc-text-shadow-none;
+	@extend %wb-lightbox-display-none;
+	margin: 0;
+	left: 5px;
+	width: 70%;
 }
+
 #cboxCurrent {
-	position:absolute;
-	padding-top:3px;
-	right:5px;
-	color:#ccc;
-	width:26%;
+	@extend %wb-lightbox-position-absolute;
+	@extend %wb-lightbox-padding-top-3;
+	@extend %wb-lightbox-right-5;
+	@extend %wb-lightbox-color-ccc-text-shadow-none;
+	@extend %wb-lightbox-display-none;
+	width: 26%;
 	text-align: right;
 }
+
 #cboxSlideshow {
-	position:absolute;
-	top:-20px;
-	right:90px;
-	color:#fff;
+	@extend %wb-lightbox-curson-pointer;
+	@extend %wb-lightbox-position-absolute;
+	top: -20px;
+	right: 90px;
+	color: #fff;
 }
-#cboxPrevious, #cboxNext {
-	position:absolute;
-	top:50%;
-	width:28px;
-	height:65px;
-}
+
 #cboxPrevious {
-	left:-28px;
-	margin-top:-32px;
+	@extend %wb-lightbox-curson-pointer;
+	@extend %wb-lightbox-controls;
+	@extend %wb-lightbox-position-absolute;
+	@extend %wb-lightbox-top-50-width-28-height-65;
+	@extend %wb-lightbox-margin-top--32;
+	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
+	left: -28px;
 	background-position: 100% 0;
-	&:hover,&:focus,&:active {
+	@include pseudo-focus {
 		background-position: 100% 100%; //bottom right
 	}
 }
 
-#cboxNext, #cboxClose, #cboxPrevious {
-	background-image: url(../images/lightbox/controls.png);
-	background-repeat: no-repeat;
-	direction: ltr;
-	text-indent:-9999px;
-}
 #cboxNext {
-	right:-28px;
-	margin-top:-32px;
+	@extend %wb-lightbox-curson-pointer;
+	@extend %wb-lightbox-controls;
+	@extend %wb-lightbox-position-absolute;
+	@extend %wb-lightbox-top-50-width-28-height-65;
+	@extend %wb-lightbox-margin-top--32;
+	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
+	right: -28px;
 	background-position: 0 0;
-	&:hover,&:focus,&:active {
-		background-position:0 100%;
-	}
-}
-#cboxLoadingOverlay {
-	background:#000;
-}
-#cboxLoadingGraphic {
-	background:url(../images/lightbox/loading.gif) no-repeat center center;
-}
-#cboxClose {
-	position:absolute;
-	top:-19px;
-	right:5px;
-	display:block;
-	background-position: 50% 0;
-	width:38px;
-	height:19px;
-	&:hover,&:focus,&:active {
-		background-position:50% 100%;
-	}
-}
-#cboxNext,#cboxPrevious,#cboxClose {
-	&:focus,&:active {
-		outline:0;
-		border:1px dotted #000;
+	@include pseudo-focus {
+		background-position: 0 100%;
 	}
 }
 
-.lb-inline, .lb-hidden-gallery a {
-	display: none;
-	visibility: hidden;
+#cboxClose {
+	@extend %wb-lightbox-curson-pointer;
+	@extend %wb-lightbox-position-absolute;
+	@extend %wb-lightbox-controls;
+	@extend %wb-lightbox-right-5;
+	@extend %wb-lightbox-display-block;
+	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
+	top: -19px;
+	background-position: 50% 0;
+	width: 38px;
+	height: 19px;
+	@include pseudo-focus {
+		background-position: 50% 100%;
+	}
 }
-.lb-hidden-gallery li:first-child a {
-	display: inline;
-	visibility: visible;
+
+.lb-inline {
+	@extend %wb-lightbox-display-none;
+	@extend %wb-lightbox-visibility-visible;
+}
+
+.lb-hidden-gallery {
+	a {
+		@extend %wb-lightbox-display-none;
+		@extend %wb-lightbox-visibility-visible;
+	}
+	li {
+		&:first-child {
+			a {
+				display: inline;
+				@extend %wb-lightbox-visibility-visible;
+			}
+		}
+	}
+}
+
+.mobile-view {
+	#cboxLoadedContent {
+		> {
+			*:not(img) {
+				margin-left: 3px;
+				margin-right: 3px;
+			}
+		}
+	}
 }
 
 .pe-disable {
-	.lb-inline, .lb-hidden-gallery a {
-		display: block;
-		visibility: visible;
+	.lb-inline {
+		@extend %wb-lightbox-display-block;
+		@extend %wb-lightbox-visibility-visible;
+	}
+
+	.lb-hidden-gallery {
+		a {
+			@extend %wb-lightbox-display-block;
+			@extend %wb-lightbox-visibility-visible;
+		}
 	}
 }

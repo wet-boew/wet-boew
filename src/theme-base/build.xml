@@ -7,9 +7,7 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="encode-jquery" extensionOf="encode-images" depends="-base64-encode-jquery"/>
-
 	<target name="compress-all" extensionOf="compress" depends="-minify"/>
   	
-	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-copy-jquery-css"/>
+	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-copy-jquery-mobile"/>
 </project>

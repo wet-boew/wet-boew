@@ -2,155 +2,259 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-h1,h2,h3,h4,h5,h6,p,blockquote,table,form,img,pre,details {
-	margin-left:10px;
-	margin-right:10px;
+#{headings(all)}, p, blockquote, table, form, img, pre, details {
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
-.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12 {
-	position:relative;
-	float:left;
-	min-height:1px;
-	margin-left:10px;
-	margin-right:10px;
+.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
+	position: relative;
+	float: left;
+	min-height: 1px;
+	margin-left: 10px;
+	margin-right: 10px;
+	img {
+		@extend %grids-responsive-bicubic-auto;
+	}
+	& & {
+		@extend %grids-responsive-no-margin;
+	}
 }
 
-.border-top,.border-right,.border-bottom,.border-left {
-	position:relative;
-	float:left;
-	min-height:1px;
+.border-top, .border-right, .border-bottom, .border-left {
+	position: relative;
+	float: left;
+	min-height: 1px;
 }
 
 #wb-main-in {
-	.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12 {
-		margin-bottom:20px;
+	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
+		margin-bottom: 20px;
 	}
 }
 
 .row-start {
-	margin-left:0 !important;
+	margin-left: 0 !important;
 }
 
 .row-end {
-	margin-right:0  !important;
+	margin-right: 0  !important;
+}
+
+%grid-responsive-clear-invisible {
+	display: block;
+	height: 0;
+	margin: 0;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
 }
 
 .clear {
-	clear:both;
-	display:block;
-	height:0;
-	margin:0;
-	overflow:hidden;
-	visibility:hidden;
-	width:0;
+	clear: both;
+	@extend %grid-responsive-clear-invisible;
 }
 
-.span-1 .span-1,.span-2 .span-2,.span-3 .span-3,.span-4 .span-4,.span-5 .span-5,.span-6 .span-6,.span-7 .span-7,.span-8 .span-8,.span-9 .span-9,.span-10 .span-10,.span-11 .span-11,.span-12 .span-12 {
-	margin-left:0 !important;
-	margin-right:0 !important;
+.clear-left {
+	clear: left;
+	@extend %grid-responsive-clear-invisible;
 }
 
-img.image-actual,#gcwu-aside .gcwu-minister-img img {
-	width:auto !important;
-	height:auto;
+.clear-right {
+	clear: right;
+	@extend %grid-responsive-clear-invisible;
 }
 
-.span-1,.span-2,.span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-9,.span-10,.span-11,.span-12,#gcwu-aside {
+%grids-responsive-no-margin {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.image-actual {
+	width: auto !important;
+	height: auto;
+}
+
+%grids-responsive-bicubic-auto {
+	width: 100%;
+	height: auto;
+	-ms-interpolation-mode: bicubic;
+}
+
+#gcwu-aside {
 	img {
-		width:100%;
-		height:auto;
-		-ms-interpolation-mode:bicubic;
+		@extend %grids-responsive-bicubic-auto;
+	}
+	.gcwu-minister-img {
+		img {
+			@extend .image-actual;
+		}
 	}
 }
 
 .equalize {
-	margin-bottom:0 !important;
+	margin-bottom: 0 !important;
 }
 
-#wb-body-sec #wb-core .grid-12 .span-1 {
-	width:40px;
+[id|="wb-body-sec"] {
+	#wb-core {
+		.grid-12 {
+			.span-1 {
+				width: 40px;
+			}
+			.span-2 {
+				@extend %grids-responsive-width100;
+			}
+			.span-3 {
+				width: 160px;
+			}
+			.span-4 {
+				@extend %grids-responsive-width220;
+			}
+			.span-5 {
+				width: 280px;
+			}
+			.span-6 {
+				@extend %grids-responsive-width340;
+			}
+			.span-7 {
+				width: 400px;
+			}
+			.span-8 {
+				@extend %grids-responsive-width460;
+			}
+			.span-9 {
+				width: 520px;
+			}
+			.span-10 {
+				@extend %grids-responsive-width580;
+			}
+			.span-11 {
+				width: 640px;
+			}
+			.span-12 {
+				@extend %grids-responsive-width700;
+			}
+		}
+	}
 }
 
-.grid-12 .span-1 {
-	width:60px;
+.grid-12 {
+	.span-1 {
+		width: 60px;
+	}
+	.span-2 {
+		width: 140px;
+	}
+	.span-3 {
+		@extend %grids-responsive-width220;
+	}
+	.span-4 {
+		width: 300px;
+	}
+	.span-5 {
+		width: 380px;
+	}
+	.span-6 {
+		@extend %grids-responsive-width460;
+	}
+	.span-7 {
+		width: 540px;
+	}
+	.span-8 {
+		width: 620px;
+	}
+	.span-9 {
+		@extend %grids-responsive-width700;
+	}
+	.span-10 {
+		width: 780px;
+	}
+	.span-11 {
+		width: 860px;
+	}
+	.span-12 {
+		@extend %grids-responsive-width940;
+	}
 }
 
-.span-1,#wb-body-sec #wb-core .grid-12 .span-2 {
-	width:100px;
+%grids-responsive-width100 {
+	width: 100px;
 }
 
-.grid-12 .span-2 {
-	width:140px;
+.span-1 {
+	@extend %grids-responsive-width100;
 }
 
-#wb-body-sec #wb-core .grid-12 .span-3 {
-	width:160px;
+%grids-responsive-width220 {
+	width: 220px;
 }
 
-.span-2,#wb-body-sec #wb-core .grid-12 .span-4,.grid-12 .span-3 {
-	width:220px;
+.span-2 {
+	@extend %grids-responsive-width220;
 }
 
-#wb-body-sec #wb-core .grid-12 .span-5 {
-	width:280px;
+%grids-responsive-width340 {
+	width: 340px;
 }
 
-.grid-12 .span-4 {
-	width:300px;
+.span-3 {
+	@extend %grids-responsive-width340;
 }
 
-.span-3,#wb-body-sec #wb-core .grid-12 .span-6 {
-	width:340px;
+%grids-responsive-width460 {
+	width: 460px;
 }
 
-.grid-12 .span-5 {
-	width:380px;
+.span-4 {
+	@extend %grids-responsive-width460;
 }
 
-#wb-body-sec #wb-core .grid-12 .span-7 {
-	width:400px;
+%grids-responsive-width580 {
+	width: 580px;
 }
 
-.span-4,#wb-body-sec #wb-core .grid-12 .span-8,.grid-12 .span-6 {
-	width:460px;
+.span-5 {
+	@extend %grids-responsive-width580;
 }
 
-#wb-body-sec #wb-core .grid-12 .span-9 {
-	width:520px;
+%grids-responsive-width700 {
+	width: 700px;
 }
 
-.grid-12 .span-7 {
-	width:540px;
-}
-
-.span-5,#wb-body-sec #wb-core .grid-12 .span-10 {
-	width:580px;
-}
-
-.grid-12 .span-8 {
-	width:620px;
-}
-
-#wb-body-sec #wb-core .grid-12 .span-11 {
-	width:640px;
-}
-
-.span-6,#wb-body-sec #wb-core .grid-12 .span-12,.grid-12 .span-9 {
-	width:700px;
-}
-
-.grid-12 .span-10 {
-	width:780px;
+.span-6 {
+	@extend %grids-responsive-width700;
 }
 
 .span-7 {
-	width:820px;
+	width: 820px;
 }
 
-.grid-12 .span-11 {
-	width:860px;
+%grids-responsive-width940 {
+	width: 940px;
 }
 
-.span-8,.grid-12 .span-12 {
-	width:940px;
+.span-8 {
+	@extend %grids-responsive-width940;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
+		float: right;
+	}
+
+	.border-top, .border-right, .border-bottom, .border-left {
+		float: right;
+	}
+
+	.row-start {
+		margin-left: 10px !important;
+		margin-right: 0 !important;
+	}
+
+	.row-end {
+		margin-right: 10px !important;
+		margin-left: 0  !important;
+	}
 }

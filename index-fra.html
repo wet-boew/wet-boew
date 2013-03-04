@@ -15,24 +15,26 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.creator" content="Gouvernement du Canada, Secrétariat du Conseil du Trésor du Canada, Direction du dirigeant principal de l'information, Division de l'examen et de la supervision de projets de TI, Bureau des normes Web" />
 <meta name="dcterms.title" content="Boîte à outils de l’expérience Web (BOEW)" />
 <meta name="dcterms.issued" title="W3CDTF" content="2012-05-11" />
-<meta name="dcterms.modified" title="W3CDTF" content="2012-11-15" />
+<meta name="dcterms.modified" title="W3CDTF" content="2012-12-21" />
 <meta name="dcterms.subject" title="scheme" content="Internet;Normes;Conception" />
 <meta name="dcterms.language" title="ISO639-2" content="fra" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="dist/js/jquery-ie.min.js"></script>
 <script src="dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="dist/theme-gcwu-fegc/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
 <!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
@@ -49,7 +51,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation du gouvernement du Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="dist/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="dist/theme-gcwu-fegc/images/sig-fra-r.svg" role="img" aria-label="Gouvernement du Canada" type="image/svg+xml" width="237" height="24">
+	<div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="dist/theme-gcwu-fegc/images/sig-fra.png" width="214" height="20" alt="Gouvernement du Canada" /></div>
+</object></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
@@ -59,19 +63,21 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div></div></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="dist/theme-gcwu-fegc/images/wmms-r.svg" role="img" aria-label="Symbole du gouvernement du Canada" type="image/svg+xml" width="144" height="34">
+	<div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div>
+</object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="index-fra.html">Boîte à outils de l’expérience Web (BOEW)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2>Menu<span> du site</span></h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="gcwu-psnb"><h2>Menu du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="demos/includes/menu-fra.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
@@ -92,6 +98,11 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <h1 id="wb-cont">Boîte à outils de l’expérience Web (BOEW)</h1>
 
 <ul>
+<li><strong>La version v3.1.0 Bêta 2 de la BOEW a été lancée le 15 février 2013</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-2-release-notes">v3.1.0 Bêta 2 - notes d'utilisation</a>)</li>
+<li><strong>La version v3.0.5 de la BOEW a été lancée le 15 février 2013</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/v3.0.5-release-notes">v3.0.5 - notes d'utilisation</a>)</li>
+<li><strong>La version v3.0.4 de la BOEW a été lancée le 24 janvier 2013</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/v3.0.4-release-notes">v3.0.4 - notes d'utilisation</a>)</li>
+<li><strong>La version v3.1.0 Bêta 1 de la BOEW a été lancée le 21 décembre 2012</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-1-release-notes">v3.1.0 Bêta 1 - notes d'utilisation</a>)</li>
+<li><strong>La version v3.0.3 de la BOEW a été lancée le 21 décembre 2012</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/v3.0.3-release-notes">v3.0.3 - notes d'utilisation</a>)</li>
 <li><strong>La version v3.0.2 de la BOEW a été lancée le 15 novembre 2012</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/v3.0.2-release-notes">v3.0.2 - notes d'utilisation</a>)</li>
 <li><strong>La version v3.0.1 de la BOEW a été lancée le 9 octobre 2012</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/v3.0.1-release-notes">v3.0.1 - notes d'utilisation</a>)</li>
 <li><strong>La version v3.0 de la BOEW a été lancée le 17 septembre 2012</strong> (<a href="https://github.com/wet-boew/wet-boew/wiki/V3.0-release-notes">v3.0 - notes d'utilisation</a>)</li>
@@ -122,7 +133,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ul>
 <li><a href="demos/index-fra.html">Exemples pratiques</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation">Documentation</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">Télécharger</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Versions-de-t%C3%A9l%C3%A9chargement">Versions à télécharger</a></li>
 <li><a href="Licence-fra.txt">Conditions régissant l'utilisation</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Développer-pour-la-boew#wiki-Lignes_directrices_pour_les_contributeurs">Lignes directrices pour les contributeurs</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route">Feuille de route</a></li>
@@ -130,7 +141,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </section>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date de modification&#160;:</dt><dd><span><time>2012-11-15</time></span></dd>
+<dt>Date de modification&#160;:</dt><dd><span><time>2012-12-21</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
@@ -192,9 +203,17 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="dist/js/pe-ap-ie-min.js"></script>
+<script src="dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="dist/js/pe-ap-min.js"></script>
+<script src="dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
 </body>
 </html>

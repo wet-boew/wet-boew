@@ -4,178 +4,100 @@
  */
 @import "compass/css3/inline-block";
 
-.wb-icon {
-	background-image: url(../images/icons.png);
-	background-repeat: no-repeat;
-	background-position: top left;
-}
-
-[href^='mailto:']{
-	background-image: url(../images/mail.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
-	padding-left:19px;
-}
-
-[href$='.psd'],[href$='.zip'],[href$='.doc'],[href$='.pdf'],[href$='.xls'],[href$='.rtf'],[href$='.pot'],[href$='.ppt'],[href$='.pps'],[href$='.pptm'],[href$='.docx'],[href$='.xlsx'],[href$='.pptx']{
-	background-image: url(../images/download.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
-	padding-left:19px;
-}
-
-[class*=wb-icon-] {
-	@extend .wb-icon;
-	width:16px;
-	height:16px;
-	margin-right:4px;
+%wb-icon {
+	background: {
+		image: url(../images/icons.png);
+		repeat: no-repeat;
+	}
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
 	@include inline-block(text-top);
 }
 
-.wb-icon-none {
-	background-image:none;
-	padding-left:0;
-	display:inline;
-	height:auto;
-	margin-right:0;
-	width:auto;
+[href^='mailto:']{
+	background: {
+		image: url(../images/mail.png);
+		repeat: no-repeat;
+	}
+	padding-left: 19px;
 }
 
-.wb-icon-alarm {background-position: 0 0;} 
-.wb-icon-bank {background-position: 0 -18px;} 
-.wb-icon-book-address {background-position: 0 -36px;} 
-.wb-icon-book-alt {background-position: 0 -54px;} 
-.wb-icon-book-open {background-position: 0 -72px;} 
-.wb-icon-book {background-position: 0 -90px;} 
-.wb-icon-box {background-position: 0 -108px;} 
-.wb-icon-briefcase {background-position: 0 -126px;} 
-.wb-icon-bulb-off {background-position: 0 -144px;} 
-.wb-icon-bulb {background-position: 0 -162px;} 
-.wb-icon-calculator-arrow {background-position: 0 -180px;} 
-.wb-icon-calculator-exclamation {background-position: 0 -198px;} 
-.wb-icon-calculator-minus {background-position: 0 -216px;} 
-.wb-icon-calculator-plus {background-position: 0 -234px;} 
-.wb-icon-calculator {background-position: 0 -252px;} 
-.wb-icon-calendar-day {background-position: 0 -270px;} 
-.wb-icon-calendar-list {background-position: 0 -288px;} 
-.wb-icon-calendar-month {background-position: 0 -306px;} 
-.wb-icon-calendar {background-position: 0 -324px;} 
-.wb-icon-car {background-position: 0 -342px;} 
-.wb-icon-chart-down {background-position: 0 -360px;} 
-.wb-icon-chart-pie {background-position: 0 -378px;} 
-.wb-icon-chart-up {background-position: 0 -396px;} 
-.wb-icon-chart {background-position: 0 -414px;} 
-.wb-icon-clip {background-position: 0 -432px;} 
-.wb-icon-clipboard-exclamation {background-position: 0 -450px;} 
-.wb-icon-clipboard {background-position: 0 -468px;} 
-.wb-icon-clock {background-position: 0 -486px;} 
-.wb-icon-comment {background-position: 0 -504px;} 
-.wb-icon-compass {background-position: 0 -522px;} 
-.wb-icon-cone {background-position: 0 -540px;} 
-.wb-icon-construction {background-position: 0 -558px;} 
-.wb-icon-currency {background-position: 0 -576px;} 
-.wb-icon-desktop {background-position: 0 -594px;} 
-.wb-icon-direction {background-position: 0 -612px;} 
-.wb-icon-disk {background-position: 0 -630px;} 
-.wb-icon-document-zip {background-position: 0 -648px;} 
-.wb-icon-document {background-position: 0 -666px;} 
-.wb-icon-documents {background-position: 0 -684px;} 
-.wb-icon-door-open {background-position: 0 -702px;} 
-.wb-icon-door {background-position: 0 -720px;} 
-.wb-icon-drive-arrow {background-position: 0 -738px;} 
-.wb-icon-drive-download {background-position: 0 -756px;} 
-.wb-icon-drive-network {background-position: 0 -774px;} 
-.wb-icon-drive-upload {background-position: 0 -792px;} 
-.wb-icon-envelope-arrow {background-position: 0 -810px;} 
-.wb-icon-envelope-share {background-position: 0 -828px;} 
-.wb-icon-envelope {background-position: 0 -846px;} 
-.wb-icon-eraser {background-position: 0 -864px;} 
-.wb-icon-exclamation-alt {background-position: 0 -882px;} 
-.wb-icon-exclamation-alt2 {background-position: 0 -900px;} 
-.wb-icon-exclamation {background-position: 0 -918px;} 
-.wb-icon-film {background-position: 0 -936px;} 
-.wb-icon-folder-alt {background-position: 0 -954px;} 
-.wb-icon-folder-open {background-position: 0 -972px;} 
-.wb-icon-folder {background-position: 0 -990px;} 
-.wb-icon-gavel {background-position: 0 -1008px;} 
-.wb-icon-gear {background-position: 0 -1026px;} 
-.wb-icon-globe {background-position: 0 -1044px;} 
-.wb-icon-home {background-position: 0 -1062px;} 
-.wb-icon-hourglass {background-position: 0 -1080px;} 
-.wb-icon-image {background-position: 0 -1098px;} 
-.wb-icon-info-alt {background-position: 0 -1116px;} 
-.wb-icon-info {background-position: 0 -1134px;} 
-.wb-icon-key {background-position: 0 -1152px;} 
-.wb-icon-light-exclamation {background-position: 0 -1170px;} 
-.wb-icon-light-green {background-position: 0 -1188px;} 
-.wb-icon-light-red {background-position: 0 -1206px;} 
-.wb-icon-light-yellow {background-position: 0 -1224px;} 
-.wb-icon-light {background-position: 0 -1242px;} 
-.wb-icon-lock-unlock {background-position: 0 -1260px;} 
-.wb-icon-lock {background-position: 0 -1278px;} 
-.wb-icon-luggage {background-position: 0 -1296px;} 
-.wb-icon-magnet {background-position: 0 -1314px;} 
-.wb-icon-magnifier {background-position: 0 -1332px;} 
-.wb-icon-mail-open {background-position: 0 -1350px;} 
-.wb-icon-mail {background-position: 0 -1368px;} 
-.wb-icon-marker {background-position: 0 -1386px;} 
-.wb-icon-megaphone {background-position: 0 -1404px;} 
-.wb-icon-microphone {background-position: 0 -1422px;} 
-.wb-icon-monitor {background-position: 0 -1440px;} 
-.wb-icon-nav-090-alt {background-position: 0 -1458px;} 
-.wb-icon-nav-090 {background-position: 0 -1476px;} 
-.wb-icon-nav-180-alt {background-position: 0 -1494px;} 
-.wb-icon-nav-180 {background-position: 0 -1512px;} 
-.wb-icon-nav-270-alt {background-position: 0 -1530px;} 
-.wb-icon-nav-270 {background-position: 0 -1548px;} 
-.wb-icon-nav-alt {background-position: 0 -1566px;} 
-.wb-icon-nav {background-position: 0 -1584px;} 
-.wb-icon-newspaper {background-position: 0 -1602px;} 
-.wb-icon-note-pencil {background-position: 0 -1620px;} 
-.wb-icon-note {background-position: 0 -1638px;} 
-.wb-icon-paper-pencil {background-position: 0 -1656px;} 
-.wb-icon-paper-share {background-position: 0 -1674px;} 
-.wb-icon-paper {background-position: 0 -1692px;} 
-.wb-icon-pencil {background-position: 0 -1710px;} 
-.wb-icon-picture {background-position: 0 -1728px;} 
-.wb-icon-printer {background-position: 0 -1746px;} 
-.wb-icon-prohibit {background-position: 0 -1764px;} 
-.wb-icon-question-alt {background-position: 0 -1782px;} 
-.wb-icon-question {background-position: 0 -1800px;} 
-.wb-icon-report-pencil {background-position: 0 -1818px;} 
-.wb-icon-report {background-position: 0 -1836px;} 
-.wb-icon-reports {background-position: 0 -1854px;} 
-.wb-icon-rss {background-position: 0 -1872px;} 
-.wb-icon-safe {background-position: 0 -1890px;} 
-.wb-icon-scale {background-position: 0 -1908px;} 
-.wb-icon-server-network {background-position: 0 -1926px;} 
-.wb-icon-server {background-position: 0 -1944px;} 
-.wb-icon-service-bell {background-position: 0 -1962px;} 
-.wb-icon-sitemap {background-position: 0 -1980px;} 
-.wb-icon-table {background-position: -18px 0;} 
-.wb-icon-target {background-position: -18px -18px;} 
-.wb-icon-telephone-fax {background-position: -18px -36px;} 
-.wb-icon-telephone {background-position: -18px -54px;} 
-.wb-icon-thermometer-high {background-position: -18px -72px;} 
-.wb-icon-thermometer-low {background-position: -18px -90px;} 
-.wb-icon-thermometer {background-position: -18px -108px;} 
-.wb-icon-tick-alt {background-position: -18px -126px;} 
-.wb-icon-tick-alt2 {background-position: -18px -144px;} 
-.wb-icon-tick {background-position: -18px -162px;} 
-.wb-icon-tool {background-position: -18px -180px;} 
-.wb-icon-toolbox {background-position: -18px -198px;} 
-.wb-icon-tshirt {background-position: -18px -216px;} 
-.wb-icon-usb-arrow {background-position: -18px -234px;} 
-.wb-icon-usb-logo {background-position: -18px -252px;} 
-.wb-icon-usb {background-position: -18px -270px;} 
-.wb-icon-user {background-position: -18px -288px;} 
-.wb-icon-users {background-position: -18px -306px;} 
-.wb-icon-weather-cloud {background-position: -18px -324px;} 
-.wb-icon-weather-lightning {background-position: -18px -342px;} 
-.wb-icon-weather-rain {background-position: -18px -360px;} 
-.wb-icon-weather-snow {background-position: -18px -378px;} 
-.wb-icon-weather-sun-cloud {background-position: -18px -396px;} 
-.wb-icon-weather-sun {background-position: -18px -414px;} 
-.wb-icon-x-alt {background-position: -18px -432px;} 
-.wb-icon-x-alt2 {background-position: -18px -450px;} 
-.wb-icon-x {background-position: -18px -468px;} 
+%download-icon {
+	background: {
+			image: url(../images/download.png);
+			repeat: no-repeat;
+		}
+	padding-left: 19px;
+}
+@each $downloadable-file-type in psd, zip, egret, doc, pdf, xls, rtf, pot, ppt, pps, pptm, docx, xlsx, pptx {
+	[href$='.#{$downloadable-file-type}'] {
+		@extend %download-icon;
+	}
+}
+
+.wb-icon-none {
+	background-image: none;
+	padding-left: 0;
+	display: inline;
+	margin-right: 0;
+}
+/* Start the sprite positioning */
+.wb-icon-alarm {
+	@extend %wb-icon;
+}
+$first-row-sprite-x: -18px; // Because the alarm icon is the first in the series, but is omitted
+@each $first-row-sprite in bank, book-address, book-alt, book-open, book, box, briefcase, bulb-off, bulb, calculator-arrow, calculator-exclamation, calculator-minus, calculator-plus, calculator, calendar-day, calendar-list, calendar-month, calendar, car, chart-down, chart-pie, chart-up, chart, clip, clipboard-exclamation, clipboard, clock, comment, compass, cone, construction, currency, desktop, direction, disk, document-zip, document, documents, door-open, door, drive-arrow, drive-download, drive-network, drive-upload, envelope-arrow, envelope-share, envelope, eraser, exclamation-alt, exclamation-alt2, exclamation, film, folder-alt, folder-open, folder, gavel, gear, globe, home, hourglass, image, info-alt, info, key, light-exclamation, light-green, light-red, light-yellow, light, lock-unlock, lock, luggage, magnet, magnifier, mail-open, mail, marker, megaphone, microphone, monitor, nav-090-alt, nav-090, nav-180-alt, nav-180, nav-270-alt, nav-270, nav-alt, nav, newspaper, note-pencil, note, paper-pencil, paper-share, paper, pencil, picture, printer, prohibit, question-alt, question, report-pencil, report, reports, rss, safe, scale, server-network, server, service-bell, sitemap {
+	.wb-icon-#{$first-row-sprite} {
+		background-position: 0 $first-row-sprite-x;
+		@extend %wb-icon;
+	}
+	$first-row-sprite-x: $first-row-sprite-x - 18px;
+}
+//TODO: Make sprite single column and add the rest of the iterator values to the first array at the end.
+$second-row-sprite-y: 0;
+@each $second-row-sprite in table, target, fax, telephone, thermometer-high, thermometer-low, thermometer, tick-alt, tick-alt2, tick, tool, toolbox, tshirt, usb-arrow, usb-logo, usb, user, users, weather-cloud, weather-lightning, weather-rain, weather-snow, weather-sun-cloud, weather-sun, x-alt, x-alt2, x {
+	.wb-icon-#{$second-row-sprite} {
+		background-position: -18px $second-row-sprite-y;
+		@extend %wb-icon;
+	}
+	$second-row-sprite-y: $second-row-sprite-y - 18px;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.wb-icon {
+		background-position: top right;
+	}
+
+	[href^='mailto:']{
+		background-position: 100% 0;
+		padding-left: 0;
+		padding-right: 19px;
+		&.button {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+
+	[href$='.psd'],[href$='.zip'],[href$='.doc'],[href$='.pdf'],[href$='.xls'],[href$='.rtf'],[href$='.pot'],[href$='.ppt'],[href$='.pps'],[href$='.pptm'],[href$='.docx'],[href$='.xlsx'],[href$='.pptx']{
+		background-position: 100% 0;
+		padding-left: 0;
+		padding-right: 19px;
+		&.button {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+
+	[class*=wb-icon-] {
+		margin-right: auto;
+		margin-left: 4px;
+	}
+
+	.wb-icon-none {
+		padding-right: 0;
+		margin-right: auto;
+		margin-left: 0;
+	}
+}

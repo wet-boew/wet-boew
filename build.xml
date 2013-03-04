@@ -23,4 +23,10 @@
 			<fileset dir="${src.dir}" includes="**/**/build.xml"/>
 		</subant>
 	</target>
+	
+	<target name="debug">
+		<subant target="debug">
+			<fileset dir="${src.dir}" includes="**/**/build.xml"/>
+		</subant>
+	</target>
 </project>

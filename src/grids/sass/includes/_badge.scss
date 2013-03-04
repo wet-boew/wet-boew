@@ -3,25 +3,31 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @mixin badges {
-
-	.badge-new, .badge-update, .badge-intro {
+	%badge-border-radius-100 {
 		padding: ($spacing-small - 2) $spacing-small + 1;
-		@include badge;
+		@include border-radius(100px);
 	}
-	
-	.badge-new, .badge-update { font-size: $font-small; }
-	
+
+	%badge-small-font {
+		font-size: $font-small;
+	}
+
 	.badge-new {
-		@include colorize-base($attention);
-		@include colorize($attention, false, $border:"border");
+		@include colorize-base($red);
+		@include colorize($red, false, $border: "border");
+		@extend %badge-small-font;
+		@extend %badge-border-radius-100;
 	}
-	
+
 	.badge-update {
 		@include colorize-base($light);
-		@include colorize($light, false, $border:"border");
+		@include colorize($light, false, $border: "border");
+		@extend %badge-small-font;
+		@extend %badge-border-radius-100;
 	}
-	
+
 	.badge-intro {
+		font-size: 100%;
 		@include inline-block;
 		margin-right: $margin-medium / 2;
 		margin-top: -($margin-medium / 2);
@@ -30,7 +36,9 @@
 
 		@include colorize-base($medium);
 		@include colorize($medium);
-		
+
+		@extend %badge-border-radius-100;
+
 		a & {
 			float: left;
 			text-decoration: underline;
@@ -38,14 +46,21 @@
 	}
 
 	#{headings(all)} {
-		.badge-intro { font-size: $font-small; line-height: 1em; }
+		.badge-intro {
+			font-size: $font-small;
+			line-height: 1em;
+		}
 	}
 
-}
+	// Right to left (RTL) CSS
+	[dir="rtl"] {
+		.badge-intro {
+			margin-right: auto;
+			margin-left: $margin-medium / 2;
 
-@mixin badge {
-
-	font-size: 100%;
-	@include border-radius(100px);
-
+			a & {
+				float: right;
+			}
+		}
+	}
 }

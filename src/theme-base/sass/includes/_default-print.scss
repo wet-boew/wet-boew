@@ -2,85 +2,141 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#base-title,#base-title a{
-	font-size:16pt;
-	text-decoration:none;
-	color:#000;
-	width:100%;
-	position:relative;
-	top:9px;
-}
+@import 'compass/css3/transform';
 
-#wb-main-in{
-	border-top:3px outset #666;
-	padding-top:5px;
+%base-default-print-scaleX--1 {
+	@include scaleX(-1);
 }
-
-h1{
-	font-size:140%;
-	margin:0 !important;
+%base-default-print-width-100perc {
+	width: 100%;
 }
-
-h2{
-	font-size:125%;
+%base-default-print-base-title-styles {
+	font-size: 16pt;
+	text-decoration: none;
+	color: #000;
+	@extend %base-default-print-width-100perc;
+	position: relative;
+	top: 9px;
 }
-
-h3{
-	font-size:120%;
-}
-
-h4{
-	font-size:115%;
-}
-
-h5{
-	font-size:110%;
-}
-
-h6{
-	font-size:100%;
-}
-
-#base-bc{
-	min-height:inherit;
-	height:auto;
-	ol{
-		width:100%;
-		margin:0;
-		padding:0;
+#base-title {
+	@extend %base-default-print-base-title-styles;
+	a {
+		@extend %base-default-print-base-title-styles;
 	}
-	li{
-		background:none;
-		padding:0;
-		&:before{
-			content:" > ";
+}
+
+#wb-main-in {
+	border-top: 3px outset #666;
+	padding-top: 5px;
+}
+
+h1 {
+	font-size: 140%;
+	margin: 0 !important;
+}
+
+h2 {
+	font-size: 125%;
+}
+
+h3 {
+	font-size: 120%;
+}
+
+h4 {
+	font-size: 115%;
+}
+
+h5 {
+	font-size: 110%;
+}
+
+h6 {
+	font-size: 100%;
+}
+
+#base-bc {
+	min-height: inherit;
+	height: auto;
+	ol {
+		@extend %base-default-print-width-100perc;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		background: none;
+		&:before {
+			content: " > ";
 		}
-		&:first-child:before{
-			content:"";
+		&:first-child:before {
+			content: "";
 		}
 	}
-	a{
-		padding-left:0;
-		background:none;
+	a {
+		padding: 0 5px 0 0;
+		background: none;
 	}
 }
 
-#wb-sec,#wb-sup,#wb-fullhd ul,#base-srchbx,#base-psnb,#wb-foot{
-	display:none;
+%base-default-print-display-none {
+	display: none;
 }
 
-#base-date-mod{
-	float:right;
-	display:inline;
+#wb-sec {
+	@extend %base-default-print-display-none;
 }
 
-.clear{
-	clear:both;
-	display:block;
-	height:0 !important;
-	min-height:0 !important;
-	overflow:hidden;
-	visibility:hidden;
-	width:0;
-	margin:0;
+#wb-sup {
+	@extend %base-default-print-display-none;
+}
+
+#wb-fullhd {
+	ul {
+		@extend %base-default-print-display-none;
+	}
+}
+
+#base-srchbx {
+	@extend %base-default-print-display-none;
+}
+
+#base-psnb {
+	@extend %base-default-print-display-none;
+}
+
+#wb-foot {
+	@extend %base-default-print-display-none;
+}
+
+#base-date-mod {
+	float: right;
+	display: inline;
+}
+
+.clear {
+	clear: both;
+	display: block;
+	height: 0 !important;
+	min-height: 0 !important;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	margin: 0;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#base-bc {
+		@extend %base-default-print-scaleX--1;
+		li {
+			@extend %base-default-print-scaleX--1;
+		}
+		a {
+			padding: 0 0 0 5px;
+		}
+	}
+
+	#base-date-mod {
+		float: left;
+	}
 }

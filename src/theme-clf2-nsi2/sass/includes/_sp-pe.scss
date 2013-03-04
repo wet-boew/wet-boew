@@ -2,76 +2,106 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+
 html {
 	overflow-y: scroll;
 }
+
 body {
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 }
-#wb-body {
-	border: 10px solid #FFF;
-}
+
 #wb-skip {
-	display:none;
-	visibility:hidden;
+	display: none;
+	visibility: hidden;
 }
 
 /** Box model - centered **/
 #wb-main {
-	z-index:1;
-	display:inline;
+	z-index: 1;
+	display: inline;
 }
 
 /** Overflow restrict for background paintability control **/
-#wb-head, #wb-head-in, #wb-foot, #wb-foot-in {
-	overflow:hidden;
+%clf2-sp-pe-overflow-hidden {
+	overflow: hidden;
 }
+
+#wb-head {
+	@extend %clf2-sp-pe-overflow-hidden;
+}
+
+#wb-head-in {
+	@extend %clf2-sp-pe-overflow-hidden;
+}
+
+#wb-foot-in {
+	@extend %clf2-sp-pe-overflow-hidden;
+}
+
 #wb-core-in {
-	overflow:visible !important;
-	position:relative;
+	overflow: visible !important;
+	position: relative;
 	&:after {
-		content:".";
-		display:block;
-		height:0;
-		clear:both;
-		visibility:hidden;
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
 	}
 }
 
 /** Centre column **/
 #wb-main-in {
-	padding-top:1px;
-	padding-bottom:1px;
-}
-#wb-body {
-	margin: 0 auto;
-	border-top: 20px solid #FFFFFF;
-	#wb-main {
-		float:left;
+	padding: {
+		top: 1px;
+		bottom: 1px;
+	}
+	h1, h2 {
+		@extend %clf2-sp-pe-clip;
 	}
 }
-#wb-main-in h1, #wb-main-in h2, #cn-in-pd h3 {
+
+#wb-body {
+	margin: 0 auto;
+	border: 10px solid #FFF;
+	border-top-width: 20px;
+	#wb-main {
+		float: left;
+	}
+}
+
+%clf2-sp-pe-clip {
 	position: absolute;
-	clip: rect(1px, 1px, 1px, 1px);
+	@include clip-rect;
 	height: 1px !important;
 	width: 1px !important;
 	overflow: hidden !important;
 }
 
+#cn-in-pd {
+	h3 {
+		@extend %clf2-sp-pe-clip;
+	}
+}
+
 #cn-sig {
 	margin-bottom: 6px;
 }
+
 #cn-msg-space {
 	float: left;
 	margin-bottom: 30px;
 	min-height: 250px;
 	color: #000;
 }
+
 #cn-upper-msg {
 	height: 130px;
 	background: #363;
 }
+
 #cn-lower-msg {
 	min-height: 120px;
 	background: #CCC;
@@ -83,16 +113,21 @@ body {
 		padding: 0 5px;
 	}
 }
+
 #cn-left-msg {
 	float: left;
 }
+
 #cn-right-msg {
 	float: right;
 	text-align: right;
 }
+
 #wb-foot {
+	@extend %clf2-sp-pe-overflow-hidden;
 	height: 4.2em;
 }
+
 #cn-wmms {
 	float: right;
 	text-align: right;
@@ -100,35 +135,49 @@ body {
 		margin: 0;
 	}
 }
-#cn-ef-lang-links, #cn-other-lang-links {
+
+%clf2-sp-pe-all-lang-links {
 	list-style-type: none;
 	float: left;
 	margin: 0;
-	padding-left: 0;
-	padding-right: 30px;
+	padding: {
+		left: 0;
+		right: 30px;
+	}
 	clear: left;
 	li {
 		float: left;
-		font-size: 125%;
+		font: {
+			size: 125%;
+			weight: bold;
+		}
 		width: 7.5em;
 		height: 1.65em;
 		text-align: center;
-		font-weight: bold;
-		margin-bottom: 10px;
-		margin-right: 30px;
-		border-top: #CCC 2px solid;
-		border-left: #CCC 2px solid;
-		border-bottom: #666 2px solid;
-		border-right: #666 2px solid;
+		margin: {
+			bottom: 10px;
+			right: 30px;
+		}
+		border: {
+			top: #CCC 2px solid;
+			left: #CCC 2px solid;
+			bottom: #666 2px solid;
+			right: #666 2px solid;
+		}
 		a {
 			display: block;
 			height: 100%;
-			text-decoration: none;
+			text: {
+				decoration: none;
+				transform: capitalize;
+			}
 			line-height: 1.6em;
 		}
 	}
 }
+
 #cn-other-lang-links {
+	@extend %clf2-sp-pe-all-lang-links;
 	width: 95%;
 	li {
 		background-color: #FFF;
@@ -138,14 +187,16 @@ body {
 				color: #000;
 				background-color: #FFF;
 			}
-			&:active, &:focus, &:hover {
+			@include pseudo-focus {
 				color: #FFF;
 				background-color: #000;
 			}
 		}
 	}
 }
+
 #cn-ef-lang-links {
+	@extend %clf2-sp-pe-all-lang-links;
 	li {
 		background-color: #000;
 		a {
@@ -153,7 +204,7 @@ body {
 				color: #FFF;
 				background-color: #000;
 			}
-			&:active, &:focus, &:hover {
+			@include pseudo-focus {
 				color: #000;
 				background-color: #FFF;
 			}
@@ -162,14 +213,16 @@ body {
 }
 
 #cn-in-links {
+	list-style-type: none;
+	float: left;
+	margin: 0;
+	padding: {
+		left: 0;
+		right: 30px;
+	}
 	li {
 		float: left;
 		width: 9.7em;
 		margin-right: 30px;
 	}
-	list-style-type: none;
-	float: left;
-	margin: 0;
-	padding-left: 0;
-	padding-right: 30px;
 }

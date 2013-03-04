@@ -2,44 +2,154 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-body{
-	min-width:960px;
+body {
+	min-width: 960px;
 }
 
-#wb-head,#wb-core,#wb-foot,#wb-head-in,#base-fullhd,#base-bnr,#base-psnb,#base-bc,#wb-foot-in,#base-fullft,#base-sft{
-	width:100%;
+%base-default-responsive-width100pct {
+	width: 100%;
+}
+%base-default-responsive-width-480 {
+	width: 480px;
+}
+%base-default-responsive-width-240 {
+	width: 240px;
 }
 
-#wb-core-in,#base-fullhd-in,#base-bnr-in,#base-psnb-in,#base-bc-in,#base-fullft-in,#base-sft-in,#base-subsite{
-	margin:auto;
+#wb-head {
+	@extend %base-default-responsive-width100pct;
 }
 
-#base-title-in{
-	width:360px;
+#wb-core {
+	@extend %base-default-responsive-width100pct;
 }
 
-#wb-body-sec-sup #wb-main{
-	width:480px;
-	right:240px;
+#wb-foot {
+	@extend %base-default-responsive-width100pct;
 }
 
-#wb-sec{
-	width:240px;
+#wb-head-in {
+	@extend %base-default-responsive-width100pct;
 }
 
-#wb-sup{
-	width:240px;
-	left:480px;
+#base-fullhd {
+	@extend %base-default-responsive-width100pct;
 }
 
-#wb-core-in,#base-fullhd-in,#base-bnr-in,#base-psnb-in,#base-bc-in,#base-fullft-in,#base-sft-in,#base-bnr-in,#base-psnb .mb-menu,#wb-body #wb-main,#base-subsite{
-	width:960px;
+#base-bnr {
+	@extend %base-default-responsive-width100pct;
 }
 
-#wb-body-sec #wb-main,#wb-body-sec-sup #wb-main,#wb-body-sec #wb-main-in,#wb-body-sec-sup #wb-main-in{
-	width:720px;
+#base-psnb {
+	@extend %base-default-responsive-width100pct;
+	.mb-menu {
+		@extend %base-default-responsive-width960px;
+	}
 }
 
-#wb-body-sec-sup #wb-main-in{
-	width:480px;
+#base-bc {
+	@extend %base-default-responsive-width100pct;
+}
+
+#wb-foot-in {
+	@extend %base-default-responsive-width100pct;
+}
+
+#base-fullft {
+	@extend %base-default-responsive-width100pct;
+}
+
+#base-sft {
+	@extend %base-default-responsive-width100pct;
+}
+
+%base-default-responsive-margin-auto-width960px {
+	@extend %base-default-responsive-width960px;
+	margin: auto;
+}
+
+#wb-core-in {
+	@extend %base-default-responsive-margin-auto-width960px;
+}
+
+#base-fullhd-in {
+	@extend %base-default-responsive-margin-auto-width960px;
+}
+
+#base-bnr-in {
+	@extend %base-default-responsive-margin-auto-width960px;
+}
+
+#base-psnb-in {
+	@extend %base-default-responsive-margin-auto-width960px;
+}
+
+#base-bc-in {
+	@extend %base-default-responsive-margin-auto-width960px;
+}
+
+#base-fullft-in {
+	@extend %base-default-responsive-margin-auto-width960px;
+}
+
+#base-sft-in {
+	@extend %base-default-responsive-margin-auto-width960px;
+}
+
+#base-subsite {
+	@extend %base-default-responsive-margin-auto-width960px;
+}
+
+#base-title-in {
+	width: 360px;
+}
+
+#wb-body-sec-sup {
+	#wb-main {
+		@extend %base-default-responsive-width-480;
+		right: 240px;
+	}
+	#wb-main-in {
+		@extend %base-default-responsive-width-480;
+	}
+}
+
+#wb-sec {
+	@extend %base-default-responsive-width-240;
+}
+
+#wb-sup {
+	@extend %base-default-responsive-width-240;
+	left: 480px;
+}
+
+%base-default-responsive-width960px {
+	width: 960px;
+}
+
+#wb-body {
+	#wb-main {
+		@extend %base-default-responsive-width960px;
+	}
+}
+
+[id|="wb-body-sec"] {
+	[id|="wb-main"] {
+		width: 720px;
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-body-sec-sup {
+		#wb-main {
+			right: auto;
+			left: 240px;
+		}
+	}
+
+	#wb-sup {
+		left: auto;
+		right: 480px;
+	}
 }

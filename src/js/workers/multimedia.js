@@ -115,15 +115,24 @@
 
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
-				if (!elm.hasClass('wb-mm-no-ui')) {
-					if (media_type === 'video') {
-						media.before($('<button class="wb-mm-overlay"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
-					}
-					media.after(_pe.fn.multimedia._get_ui(media_id, media_type === 'video' ? true : false));
-					if ($('html').hasClass('polyfill-progress')) {
-						elm.find('progress').progress();
-					}
+				if (media_type === 'video') {
+					media.before($('<button class="wb-mm-overlay" type="button"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
+				}
+				media.after(_pe.fn.multimedia._get_ui(media_id, media_type === 'video' ? true : false));
+				if ($('html').hasClass('polyfill-progress')) {
+					elm.find('progress').progress();
+				}
 
+				//Scale the UI when the video scales
+				$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
+					var h = e.data.media.parent().width() * e.data.ratio;
+					e.data.media.height(h);
+					media.parent().find('.wb-mm-overlay').height(h);
+				});
+				$(window).trigger('resize');
+
+				//Map UI mouse events
+				elm.on('click', function () {
 					//Scale the UI when the video scales
 					$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
 						var h = e.data.media.parent().width() * e.data.ratio;
@@ -200,7 +209,7 @@
 
 						return true;
 					});
-				}
+				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
 				evtmgr.on('timeupdate seeked canplay play volumechange pause ended waiting captionsloaded captionsloadfailed captionsvisiblechange progress', $.proxy(function (e) {
@@ -267,12 +276,12 @@
 						$.data(e.target, 'captions', e.captions);
 						break;
 					case 'captionsloadfailed':
-						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%captionserror') + '</p>');
+						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%closed-caption-error') + '</p>');
 						break;
 					// Determine when the loading icon should be shown. 
 					case 'waiting':
 						//Prevents the loading icon to show up when waiting for less than half a second
-						if(this.getPaused() === false && !this.loading){
+						if (this.getPaused() === false && !this.loading) {
 							this.loading = setTimeout(function () {
 								o = $w.find('.wb-mm-overlay');
 								o.empty().append(_pe.fn.multimedia._get_loading_ind(this, 'loading', _pe.dic.get('%loading'), 100, 100));
@@ -296,7 +305,7 @@
 							if (this.getBuffering() === false) {
 								this.setBuffering(true);
 								evtmgr.trigger('waiting');								
-							}								
+							}				
 						// Waiting has ended, but icon is still visible - remove it.
 						} else if (this.getBuffering() === true) {							
 							this.setBuffering(false);
@@ -388,7 +397,7 @@
 				}).append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')))
 			);
 
-			ui.append(ui_start).append(ui_timeline).append(ui_end);
+			ui.append(ui_start).append(ui_end).append(ui_timeline);
 
 			return ui;
 		},
@@ -628,6 +637,9 @@
 					url : url,
 					context : evtmgr,
 					dataType : 'html',
+					dataFilter: function(data) {
+						return data.replace(/<img [^>]*>/gi, ''); //Remove images to prevent them from being loaded
+					},
 					success : function (data) {
 						var eventObj = {type: 'captionsloaded'};
 						if (data.indexOf('<html') > -1) {
