@@ -12,7 +12,7 @@
 		fn: {}
 	};
 	var map;
-	
+	var selectControl;
 	/* local reference */
 	_pe.fn.geomap = {
 		type: 'plugin',
@@ -599,9 +599,8 @@
 		/*
 		 * Handle features once they have been added to the map
 		 * 
-		 * TODO: selectControl should be a global variable
 		 */
-		onFeaturesAdded: function($table, evt, selectCtrl, zoomTo) {
+		onFeaturesAdded: function($table, evt, zoomTo) {
 
 			var $head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
 
@@ -611,7 +610,7 @@
 					'type': 'body',
 					'id': feature.id.replace(/\W/g, "_"),
 					'feature': feature,
-					'selectControl': selectCtrl
+					'selectControl': selectControl
 
 				};											
 				var $row = pe.fn.geomap.createRow(context, zoomTo);									
@@ -622,16 +621,15 @@
 		/*
 		 * Handle features once they have been added to the map for tabular data
 		 * 
-		 * TODO: selectControl should be a global variable
 		 */
-		onTabularFeaturesAdded: function(feature, selectControl, zoomColumn) {
+		onTabularFeaturesAdded: function(feature, zoomColumn) {
 
 			// Find the row
 			var $tr = $('tr#' + feature.id.replace(/\W/g, "_"));
 				
 			// add zoom column
 			if ( zoomColumn == true) {						
-				$tr.append('<td></td>').find('td:last').append(pe.fn.geomap.addZoomTo($tr, feature, selectControl))
+				$tr.append('<td></td>').find('td:last').append(pe.fn.geomap.addZoomTo($tr, feature))
 			}
 																					
 			var $select = $tr.find('td.select');						
@@ -675,15 +673,15 @@
 		 *	Add the zoom to column
 		 * 
 		 */
-		addZoomTo: function(row, feature, selectCtrl){
+		addZoomTo: function(row, feature){
 			
 			var $ref = $('<a>', {
 				'click':function(e) { 
 						e.preventDefault();			
 						map.zoomToExtent(feature.geometry.bounds);	
 						row.closest('tr').attr('class', 'background-highlight');
-						selectCtrl.unselectAll();
-						selectCtrl.select(feature);  
+						selectControl.unselectAll();
+						selectControl.select(feature);  
 			 },
 				'href': '#',
 				'class': 'button',
@@ -700,13 +698,13 @@
 			// Keybord events
 			$ref.focus(function(){
 				row.attr('class', 'background-highlight');
-				selectCtrl.unselectAll();
-				selectCtrl.select(feature);
+				selectControl.unselectAll();
+				selectControl.select(feature);
 			});
 			$ref.blur(function(){
 				row.attr('class', 'background-white');
-				selectCtrl.unselectAll();
-				selectCtrl.unselect(feature);
+				selectControl.unselectAll();
+				selectControl.unselect(feature);
 			});
 			
 			return $ref;
@@ -953,7 +951,8 @@
 				console.log(pe.fn.geomap.getLocalization('projection') + ' ' + projMap.getCode());
 			}			
 			
-			var selectControl = new OpenLayers.Control.SelectFeature();			
+			// Global variable
+			selectControl = new OpenLayers.Control.SelectFeature();			
 			
 			/*
 			 * Load overlays 
@@ -1014,7 +1013,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {	
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
 									}
 									
 								},
@@ -1069,7 +1068,7 @@
 									}),						
 								eventListeners: {
 									"featuresadded": function (evt) {											
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1133,7 +1132,7 @@
 								}),								
 								eventListeners: {
 									"featuresadded": function (evt) {
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1186,7 +1185,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {	
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1239,7 +1238,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {
-										pe.fn.geomap.onFeaturesAdded($table, evt, selectControl, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
 									}
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1277,7 +1276,7 @@
 									"featuresadded": function (evt) {
 										// This timeout function let time to select control to initialize itself before adding the feature
 										setTimeout(function() {
-											pe.fn.geomap.onTabularFeaturesAdded(evt.features[0], selectControl, zoomColumn)},500);
+											pe.fn.geomap.onTabularFeaturesAdded(evt.features[0], zoomColumn)},500);
 									}
 								},styleMap: pe.fn.geomap.getStyleMap(opts.tables[index]) });
 				
