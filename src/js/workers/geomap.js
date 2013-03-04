@@ -13,6 +13,7 @@
 	};
 	var map;
 	var selectControl;
+	var queryLayers = [];
 	/* local reference */
 	_pe.fn.geomap = {
 		type: 'plugin',
@@ -347,12 +348,12 @@
 					
 					var $table = $('#' + $(featureTable).attr('id'));		
 					var $tableContainer = $table.parent();
-					var $alert = $tableContainer.find("div.module-alert");
+					var $alert = $tableContainer.find("div.module-attention");
 					
 					if($alert.length != 0) { 
 						$alert.fadeToggle();					
 					} else { 
-						$tableContainer.append('<div class="module-alert module-simplify"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');				
+						$tableContainer.append('<div class="module-attention module-simplify"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');				
 					}					
 					
 					$table.fadeToggle();									
@@ -713,8 +714,7 @@
 		/*
 		 *	Set the default basemap
 		 */
-		setDefaultBaseMap: function(opts){
-			
+		setDefaultBaseMap: function(opts) {			
 			if(opts.debug) {
 				console.log(pe.fn.geomap.getLocalization('basemapDefault'));
 			}
@@ -752,139 +752,9 @@
 		},
 		
 		/*
-		 *	Localization for debug message
-		 * 
-		 * TODO: do it for accessibilize function after new icon
-		 */
-		getLocalization: function(mess) {
-			
-			var english = {
-				debugMode: 'WET-Geomap: running in DEBUG mode',
-				debugMess:'When running in debug mode Geomap will provide inline error and help messages and write useful debugging information into the console. Disable debug mode by removing the <em>debug</em> class.',
-				overlayLoad: 'WET-Geomap: overlays were loaded successfully',
-				overlayNotLoad: 'WET-Geomap: an error occurred while loading overlays',
-				basemapDefault: 'WET-Geomap: using default basemap',
-				projection: 'WET-Geomap: using projection',
-				error: 'WET-Geomap ERROR',
-				errorSelect: 'This cell has the <em>select</em> class but no link was found. Please add a link to this cell.',
-				errorNoSelect: 'This table contains rows that do not have a cell with the <em>select</em> class. Please ensure that each row has exactly one cell with the <em>select</em> class and that the cell includes a link.',
-				accessibilize: 'Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.',
-				warning: 'WET-Geomap WARNING',
-				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.',
-				hiddenLayer: 'This layer is currently hidden!',
-				overlayNotSpecify: 'WET-Geomap: overlays file not specified',
-				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12).",
-				zoomFeature: 'Zoom to feature'
-			};
-			
-			var french = {
-				debugMode: 'BOEW-Geomap: mode débogage activé',
-				debugMess:'Lors de l\'exécution en mode débogage Geomap donne des messages d\'erreur, des messages d\'aide et donneras de l\'information utile dansla console de débogage. Désactiver le mode débogage en supprimant la classe <em>debug</em>.',
-				overlayLoad: 'BOEW-Geomap: Les couches de superpositions ont été chargées avec succès',
-				overlayNotLoad: 'BOEW-Geomap: une erreur est survenue lors du chargement des couches de superpositions',
-				basemapDefault: 'BOEW-Geomap: la carte de base par défaut est utilisée',
-				projection: 'BOEW-Geomap: la projection utilisée est',
-				error: 'BOEW-Geomap ERREUR',
-				errorSelect: 'Cette cellule a la classe <em>select</em> mais aucun lien n\'a été trouvé. S\'il vous plaît, ajouter un lien à cette cellule.',
-				errorNoSelect: 'Cette table contient des lignes qui n\'ont pas de cellule avec la classe <em>select</em>. S\'il vous plaît, assurer vous que chaque ligne a exactement une cellule avec la classe <em>select</em> et celle-ci doit contenir un lien.',
-				accessibilize: 'Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.',
-				warning: 'BOEW-Geomap AVERTISSEMENT',
-				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> ou bien activer la légende par défaut de <em>OpenLayers</em> en ajoutant le paremètre <em>layerswitcher</em> à la classe <em>wet-boew-geomap</em> du div.',
-				hiddenLayer: 'Cette couche est présentement cachée!',
-				overlayNotSpecify: 'BOEW-Geomap: fichier des couches de superpositions non spécifié',
-				baseMapMapOptionsLoadError: 'BOEW-Geomap: une erreur est survenue lors du chargement des options de configuration de votre carte de base. S\'il vous plaît, vérifiez que vous avez l\'ensemble des options suivantes: maxExtent (ex: \'-3000000,0, -800000,0, 4000000,0, 3900000,0\'), maxResolution (ex: \'auto\'), projection (ex: \'EPSG: 3978\'), restrictedExtent (ex: \'-3000000,0 , -800000,0, 4000000,0, 3900000,0\'), units (ex: \'m\'), displayProjection (ex: \'EPSG: 4269\'), numZoomLevels (ex: 12).',	
-				zoomFeature: 'Zoom à l\'élément'
-			};
-			
-			var message = (_pe.language == "en") ? english[mess] : french[mess];
-			return message;
-		},
-		
-		_exec: function (elm) {
-			
-			// Don't include this if statement if your plugin shouldn't run in mobile mode.
-//			if (pe.mobile) {
-//				return _pe.fn.geomap.mobile(elm).trigger('create');
-//			}
-			var opts,
-				overrides,				
-				queryLayers = [];			
-			
-			// Defaults
-			opts = {
-				config: {
-					controls: [],					
-					autoUpdateSize: true,
-					fractionalZoom: true,
-					theme: null
-				},
-				overlays: [],
-				features: [],
-				tables: [],
-				useLayerSwitcher: false,
-				useScaleLine: false,
-				useMousePosition: false,
-				debug: false
-			};			
-
-			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
-			overrides = {
-				useLayerSwitcher: elm.hasClass('layerswitcher') ? true : undefined,
-				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
-				useMousePosition: elm.hasClass('position') ? true : undefined,
-				debug: elm.hasClass('debug') ? true : false
-			};			
-
-			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
-			// Only needed if there are configurable options (has 'metadata' dependency)
-			$.metadata.setType("attr", "data-wet-boew");
-			if (typeof wet_boew_geomap !== 'undefined' && wet_boew_geomap !== null) {
-				$.extend(opts, wet_boew_geomap, overrides, elm.metadata());
-			} else {
-				$.extend(opts, overrides, elm.metadata());
-			}
-
-			if(opts.debug) {
-				console.log(pe.fn.geomap.getLocalization('WET-Geomap: running in DEBUG mode'));
-				$('#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
-			}	
-						
-			// Set the language for OpenLayers
-			_pe.language === 'fr' ? OpenLayers.Lang.setCode('fr') : OpenLayers.Lang.setCode('en');
-			
-			// Set the image path for OpenLayers
-			OpenLayers.ImgPath = pe.add.liblocation + "/images/geomap/";
-			
-			// Add projection for default base map
-			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
-					
-			// Initiate the map
-			elm.attr('id', 'geomap');
-			elm.height(elm.width() * 0.8);
-			
-			// Read the layer file
-			if (typeof(opts.layersFile) != "undefined") {
-				$.ajax({
-					url: opts.layersFile,
-					dataType: "script",
-					async: false,
-					success: function (data) {
-						if(opts.debug) {
-							console.log(pe.fn.geomap.getLocalization('overlayLoad'));
-						}
-					},
-					error: function (data){
-						if(opts.debug) {
-							console.log(pe.fn.geomap.getLocalization('overlayNotLoad'));
-						}
-					}
-				}); // end ajax
-			} else {
-				if(opts.debug) {
-							console.log(pe.fn.geomap.getLocalization('overlayNotSpecify'));
-						}	
-			} // end load configuration file
-			
+		 *	Add baseMap data
+		 */		
+		addBasemapData: function(wet_boew_geomap, opts) {			
 			var mapOptions = {};
 			if (typeof(wet_boew_geomap) != "undefined"){
 				if(wet_boew_geomap.basemap && wet_boew_geomap.basemap.mapOptions) {				
@@ -942,22 +812,13 @@
 					}
 				} else { pe.fn.geomap.setDefaultBaseMap(opts); }
 			} else { pe.fn.geomap.setDefaultBaseMap(opts); }
-					
-			// Create projection objects
-			var projLatLon = new OpenLayers.Projection('EPSG:4326');
-			var projMap = map.getProjectionObject();						
-
-			if(opts.debug) {
-				console.log(pe.fn.geomap.getLocalization('projection') + ' ' + projMap.getCode());
-			}			
+		},
+		
+		/*
+		 *	Add overlay data
+		 */
+		addOverlayData: function(wet_boew_geomap){
 			
-			// Global variable
-			selectControl = new OpenLayers.Control.SelectFeature();			
-			
-			/*
-			 * Load overlays 
-			 * TODO: turn this into a public function
-			 */			
 			if (typeof(wet_boew_geomap) != "undefined")
 			{			
 			if(wet_boew_geomap.overlays){				
@@ -982,40 +843,35 @@
 										
 										var row, feature, atts = {}, features = [];
 												
-												for (var i = 0; i < items.length; i++) {												
-													row = items[i];			
-																									
-													feature = new OpenLayers.Feature.Vector();														
-																									
-													feature.geometry = this.parseFeature(row).geometry;
-													
-													// parse and store the attributes
-													atts = {};
-													var a = layer.attributes;
-													
-													// TODO: test on nested attributes
-													for (var name in a) {
-														if (a.hasOwnProperty(name)) {
-															 atts[a[name]] = $(row).find(name).text();														
-														}
-													}
-													
-													feature.attributes = atts;												
+											for (var i = 0; i < items.length; i++) {												
+												row = items[i];			
+																								
+												feature = new OpenLayers.Feature.Vector();														
+																								
+												feature.geometry = this.parseFeature(row).geometry;
 												
-													// if no geometry, don't add it
-													//if (feature.geometry) {
-														features.push(feature);
-													//}
-												} 
-												return features;
-									}
+												// parse and store the attributes
+												atts = {};
+												var a = layer.attributes;
+												
+												// TODO: test on nested attributes
+												for (var name in a) {
+													if (a.hasOwnProperty(name)) {
+														 atts[a[name]] = $(row).find(name).text();														
+													}
+												}
+												
+												feature.attributes = atts;
+												features.push(feature);
+											} 
+											return features;
+										}
 									})
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {	
 										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
-									}
-									
+									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
@@ -1055,12 +911,8 @@
 														}
 													}
 													
-													feature.attributes = atts;												
-												
-													// if no geometry, don't add it
-													//if (feature.geometry) {
-														features.push(feature);
-													//}
+													feature.attributes = atts;
+													features.push(feature);
 												} 
 												return features;
 											}
@@ -1253,35 +1105,26 @@
 				});
 			}
 			}
-
-			
-			/*
-			 * Add tabluar data
-			 *			  
-			 * TODO: turn this into a public function
-			 * 
-			 * Sample tables object:
-			 * 
-			 *	tables: [ 
-			 *		{ id: 'cityE' }, 
-			 *		{ id: 'bbox', strokeColor: '#FF0000', fillcolor: '#FF0000' } 
-			 *	] 
-			 */	
+		},
+		
+		/*
+		* Add tabluar data
+		* 
+		* Sample tables object:
+		* 
+		*	tables: [ 
+		*		{ id: 'cityE' }, 
+		*		{ id: 'bbox', strokeColor: '#FF0000', fillcolor: '#FF0000' } 
+		*	] 
+		*/	
+		addTabularData: function(opts, projLatLon, projMap){
 			
 			$.each(opts.tables, function(index, table) {
 				
 				var $table = $("table#" + table.id);
 				var wktFeature;		
-				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { eventListeners: {
-									"featuresadded": function (evt) {
-										// This timeout function let time to select control to initialize itself before adding the feature
-										setTimeout(function() {
-											pe.fn.geomap.onTabularFeaturesAdded(evt.features[0], zoomColumn)},500);
-									}
-								},styleMap: pe.fn.geomap.getStyleMap(opts.tables[index]) });
+				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), {styleMap: pe.fn.geomap.getStyleMap(opts.tables[index])} );
 				
-				var zoomColumn = opts.tables[index].zoom;
-
 				var wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap, 
 					'externalProjection': projLatLon
@@ -1336,15 +1179,18 @@
 					});
 				}); 
 				
+				tableLayer.id = "table#" + table.id;
 				map.addLayer(tableLayer);
 				queryLayers.push(tableLayer);
 				
 				pe.fn.geomap.addToLegend($table, true, tableLayer.id);		
-			});	
-			
-			/*
-			 * Load Controls
-			 */ 
+			});		
+		},
+		
+		/*
+		 *	Load controls
+		 */
+		loadControls: function(opts){
 			
 			// TODO: ensure WCAG compliance before enabling			
 			selectControl = new OpenLayers.Control.SelectFeature(
@@ -1355,6 +1201,18 @@
 			map.addControl(selectControl);			
 			selectControl.activate();			
 			
+			// Add the select control to every tabular feature. We need to this now because the select control needs to be set.
+			$.each(opts.tables, function(index, table) {
+				var zoomColumn = opts.tables[index].zoom;
+				for (var i=0; i<queryLayers.length; i++){
+					if (queryLayers[i].id == "table#" + table.id){
+						$.each(queryLayers[i].features, function(index, feature) {
+							pe.fn.geomap.onTabularFeaturesAdded(feature, zoomColumn);
+						});
+					}
+				}
+			});
+				
 			if(opts.useMousePosition) { map.addControl(new OpenLayers.Control.MousePosition()); }
 			if(opts.useScaleLine) { map.addControl(new OpenLayers.Control.ScaleLine()); }					
 			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
@@ -1403,6 +1261,162 @@
 			if($(".wet-boew-geomap-legend").length == 0 && $(".wet-boew-geomap").hasClass("debug")) {		
 				$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
 			}	
+		},
+		
+		/*
+		 *	Localization for debug message
+		 * 
+		 * TODO: do it for accessibilize function after new icon
+		 */
+		getLocalization: function(mess) {
+			
+			var english = {
+				debugMode: 'WET-Geomap: running in DEBUG mode',
+				debugMess:'When running in debug mode Geomap will provide inline error and help messages and write useful debugging information into the console. Disable debug mode by removing the <em>debug</em> class.',
+				overlayLoad: 'WET-Geomap: overlays were loaded successfully',
+				overlayNotLoad: 'WET-Geomap: an error occurred while loading overlays',
+				basemapDefault: 'WET-Geomap: using default basemap',
+				projection: 'WET-Geomap: using projection',
+				error: 'WET-Geomap ERROR',
+				errorSelect: 'This cell has the <em>select</em> class but no link was found. Please add a link to this cell.',
+				errorNoSelect: 'This table contains rows that do not have a cell with the <em>select</em> class. Please ensure that each row has exactly one cell with the <em>select</em> class and that the cell includes a link.',
+				accessibilize: 'Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.',
+				warning: 'WET-Geomap WARNING',
+				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.',
+				hiddenLayer: 'This layer is currently hidden!',
+				overlayNotSpecify: 'WET-Geomap: overlays file not specified',
+				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12).",
+				zoomFeature: 'Zoom to feature'
+			};
+			
+			var french = {
+				debugMode: 'BOEW-Geomap: mode débogage activé',
+				debugMess:'Lors de l\'exécution en mode débogage Geomap donne des messages d\'erreur, des messages d\'aide et donneras de l\'information utile dansla console de débogage. Désactiver le mode débogage en supprimant la classe <em>debug</em>.',
+				overlayLoad: 'BOEW-Geomap: Les couches de superpositions ont été chargées avec succès',
+				overlayNotLoad: 'BOEW-Geomap: une erreur est survenue lors du chargement des couches de superpositions',
+				basemapDefault: 'BOEW-Geomap: la carte de base par défaut est utilisée',
+				projection: 'BOEW-Geomap: la projection utilisée est',
+				error: 'BOEW-Geomap ERREUR',
+				errorSelect: 'Cette cellule a la classe <em>select</em> mais aucun lien n\'a été trouvé. S\'il vous plaît, ajouter un lien à cette cellule.',
+				errorNoSelect: 'Cette table contient des lignes qui n\'ont pas de cellule avec la classe <em>select</em>. S\'il vous plaît, assurer vous que chaque ligne a exactement une cellule avec la classe <em>select</em> et celle-ci doit contenir un lien.',
+				accessibilize: 'Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.',
+				warning: 'BOEW-Geomap AVERTISSEMENT',
+				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> ou bien activer la légende par défaut de <em>OpenLayers</em> en ajoutant le paremètre <em>layerswitcher</em> à la classe <em>wet-boew-geomap</em> du div.',
+				hiddenLayer: 'Cette couche est présentement cachée!',
+				overlayNotSpecify: 'BOEW-Geomap: fichier des couches de superpositions non spécifié',
+				baseMapMapOptionsLoadError: 'BOEW-Geomap: une erreur est survenue lors du chargement des options de configuration de votre carte de base. S\'il vous plaît, vérifiez que vous avez l\'ensemble des options suivantes: maxExtent (ex: \'-3000000,0, -800000,0, 4000000,0, 3900000,0\'), maxResolution (ex: \'auto\'), projection (ex: \'EPSG: 3978\'), restrictedExtent (ex: \'-3000000,0 , -800000,0, 4000000,0, 3900000,0\'), units (ex: \'m\'), displayProjection (ex: \'EPSG: 4269\'), numZoomLevels (ex: 12).',	
+				zoomFeature: 'Zoom à l\'élément'
+			};
+			
+			var message = (_pe.language == "en") ? english[mess] : french[mess];
+			return message;
+		},
+		
+		_exec: function (elm) {
+			
+			// Don't include this if statement if your plugin shouldn't run in mobile mode.
+//			if (pe.mobile) {
+//				return _pe.fn.geomap.mobile(elm).trigger('create');
+//			}
+			var opts, overrides;	
+			
+			// Defaults
+			opts = {
+				config: {
+					controls: [],					
+					autoUpdateSize: true,
+					fractionalZoom: true,
+					theme: null
+				},
+				overlays: [],
+				features: [],
+				tables: [],
+				useLayerSwitcher: false,
+				useScaleLine: false,
+				useMousePosition: false,
+				debug: false
+			};			
+
+			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
+			overrides = {
+				useLayerSwitcher: elm.hasClass('layerswitcher') ? true : undefined,
+				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
+				useMousePosition: elm.hasClass('position') ? true : undefined,
+				debug: elm.hasClass('debug') ? true : false
+			};			
+
+			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
+			// Only needed if there are configurable options (has 'metadata' dependency)
+			$.metadata.setType("attr", "data-wet-boew");
+			if (typeof wet_boew_geomap !== 'undefined' && wet_boew_geomap !== null) {
+				$.extend(opts, wet_boew_geomap, overrides, elm.metadata());
+			} else {
+				$.extend(opts, overrides, elm.metadata());
+			}
+
+			if(opts.debug) {
+				console.log(pe.fn.geomap.getLocalization('WET-Geomap: running in DEBUG mode'));
+				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
+			}	
+						
+			// Set the language for OpenLayers
+			_pe.language === 'fr' ? OpenLayers.Lang.setCode('fr') : OpenLayers.Lang.setCode('en');
+			
+			// Set the image path for OpenLayers
+			OpenLayers.ImgPath = pe.add.liblocation + "/images/geomap/";
+			
+			// Add projection for default base map
+			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
+					
+			// Initiate the map
+			elm.attr('id', 'geomap');
+			elm.height(elm.width() * 0.8);
+			
+			// Read the layer file
+			if (typeof(opts.layersFile) != "undefined") {
+				$.ajax({
+					url: opts.layersFile,
+					dataType: "script",
+					async: false,
+					success: function (data) {
+						if(opts.debug) {
+							console.log(pe.fn.geomap.getLocalization('overlayLoad'));
+						}
+					},
+					error: function (data){
+						if(opts.debug) {
+							console.log(pe.fn.geomap.getLocalization('overlayNotLoad'));
+						}
+					}
+				}); // end ajax
+			} else {
+				if(opts.debug) {
+							console.log(pe.fn.geomap.getLocalization('overlayNotSpecify'));
+						}	
+			} // end load configuration file
+			
+			// Add basemap data
+			pe.fn.geomap.addBasemapData(wet_boew_geomap, opts);
+					
+			// Create projection objects
+			var projLatLon = new OpenLayers.Projection('EPSG:4326');
+			var projMap = map.getProjectionObject();						
+
+			if(opts.debug) {
+				console.log(pe.fn.geomap.getLocalization('projection') + ' ' + projMap.getCode());
+			}			
+			
+			// Global variable
+			selectControl = new OpenLayers.Control.SelectFeature();			
+			
+			// Add overlay data
+			pe.fn.geomap.addOverlayData(wet_boew_geomap);		
+						
+			// Add tabular data
+			pe.fn.geomap.addTabularData(opts, projLatLon, projMap);
+			
+			// Load Controls
+			pe.fn.geomap.loadControls(opts);
 			
 			return elm;
 		} // end of exec
