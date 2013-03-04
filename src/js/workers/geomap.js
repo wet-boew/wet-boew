@@ -330,7 +330,7 @@
 				var $checked = enabled ? 'checked="checked"' : '';
 				var $ul;
 				if(!$div.find('ul').length) {
-					$ul = $('<ul>', { 'class': 'list-bullet-none' }).appendTo($div);					
+					$ul = $('<ul>', { 'class': 'list-bullet-none margin-left-none' }).appendTo($div);					
 				} else {
 					$ul = $div.find('ul');
 				}
