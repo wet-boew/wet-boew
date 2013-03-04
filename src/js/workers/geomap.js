@@ -12,6 +12,7 @@
 		fn: {}
 	};
 	var map;
+	
 	/* local reference */
 	_pe.fn.geomap = {
 		type: 'plugin',
@@ -619,6 +620,58 @@
 		},
 		
 		/*
+		 * Handle features once they have been added to the map for tabular data
+		 * 
+		 * TODO: selectControl should be a global variable
+		 */
+		onTabularFeaturesAdded: function(feature, selectControl, zoomColumn) {
+
+			// Find the row
+			var $tr = $('tr#' + feature.id.replace(/\W/g, "_"));
+				
+			// add zoom column
+			if ( zoomColumn == true) {						
+				$tr.append('<td></td>').find('td:last').append(pe.fn.geomap.addZoomTo($tr, feature, selectControl))
+			}
+																					
+			var $select = $tr.find('td.select');						
+			if($select.length) {
+				var $link = $select.find('a');
+				if($link.length) {
+					$tr.hover(function(){
+						$tr.attr('class', 'background-highlight');
+						selectControl.select(feature);
+					}, 
+					function(){
+						$tr.attr('class', 'background-white');
+						selectControl.unselect(feature);
+						}
+					);
+									
+					// Keybord events
+					$link.focus(function(){
+						$tr.attr('class', 'background-highlight');
+						selectControl.select(feature);
+						}	
+					);
+					$link.blur(function(){
+						$tr.attr('class', 'background-white');
+						selectControl.unselect(feature);
+						}	
+					);
+				} else { 
+					if(opts.debug) {
+						$select.append('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorSelect') + '</p></div>');		
+					}
+				}
+				} else {
+					if(opts.debug) {
+						$tr.closest('table').before('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorNoSelect') + '</p></div>');
+					}
+				}
+		},
+		
+		/*
 		 *	Add the zoom to column
 		 * 
 		 */
@@ -626,14 +679,14 @@
 			
 			var $ref = $('<a>', {
 				'click':function(e) { 
-			 			e.preventDefault(); 			
+						e.preventDefault();			
 						map.zoomToExtent(feature.geometry.bounds);	
-			     		row.closest('tr').attr('class', 'background-highlight');
-			     		selectCtrl.unselectAll();
-			    		selectCtrl.select(vectorFeatures);  
+						row.closest('tr').attr('class', 'background-highlight');
+						selectCtrl.unselectAll();
+						selectCtrl.select(feature);  
 			 },
-			    'href': '#',
-			    'class': 'button',
+				'href': '#',
+				'class': 'button',
 			});
 					
 			// Add icon	
@@ -657,6 +710,47 @@
 			});
 			
 			return $ref;
+		},
+		
+		/*
+		 *	Set the default basemap
+		 */
+		setDefaultBaseMap: function(opts){
+			
+			if(opts.debug) {
+				console.log(pe.fn.geomap.getLocalization('basemapDefault'));
+			}
+	
+			// Add the Canada Transportation Base Map (CBMT)			
+			map.addLayer(new OpenLayers.Layer.WMS(
+				"CBMT", 
+				"http://geogratis.gc.ca/maps/CBMT", 
+				{ layers: 'CBMT', version: '1.1.1', format: 'image/png' },
+				{ isBaseLayer: true, 
+					singleTile: true, 
+					ratio: 1.0, 
+					displayInLayerSwitcher: false,
+					projection: 'EPSG:3978' 
+				} 
+			));		
+		},
+		
+		/*
+		 * Set default map option
+		 */
+		setDefaultMapOptions: function(){
+			// use map options for the Canada Transportation Base Map (CBMT)
+			var mapOptions = {
+				maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),			
+				maxResolution: 'auto',
+				projection: 'EPSG:3978', 
+				restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
+				units: 'm',
+				displayProjection: new OpenLayers.Projection('EPSG:4269') /* only used by specific controls (i.e. MousePosition) */ ,
+				numZoomLevels: 12
+			};
+			
+			return mapOptions;
 		},
 		
 		/*
@@ -794,83 +888,62 @@
 			} // end load configuration file
 			
 			var mapOptions = {};
-			if(wet_boew_geomap.basemap && wet_boew_geomap.basemap.mapOptions) {				
-				var mapOpts = wet_boew_geomap.basemap.mapOptions;
-				
-				try {
-					mapOptions['maxExtent'] =  new OpenLayers.Bounds(mapOpts.maxExtent.split(','));
-					mapOptions['maxResolution'] = mapOpts.maxResolution;
-					mapOptions['projection'] = mapOpts.projection; 
-					mapOptions['restrictedExtent'] = new OpenLayers.Bounds(mapOpts.restrictedExtent.split(','));
-					mapOptions['units'] = mapOpts.units;
-					mapOptions['displayProjection'] = new OpenLayers.Projection(mapOpts.displayProjection);
-					mapOptions['numZoomLevels'] = mapOpts.numZoomLevels;
-				} catch (err) {
-					if(opts.debug) {
-						console.log(pe.fn.geomap.getLocalization('baseMapMapOptionsLoadError'));
+			if (typeof(wet_boew_geomap) != "undefined"){
+				if(wet_boew_geomap.basemap && wet_boew_geomap.basemap.mapOptions) {				
+					var mapOpts = wet_boew_geomap.basemap.mapOptions;
+					
+					try {
+						mapOptions['maxExtent'] =  new OpenLayers.Bounds(mapOpts.maxExtent.split(','));
+						mapOptions['maxResolution'] = mapOpts.maxResolution;
+						mapOptions['projection'] = mapOpts.projection; 
+						mapOptions['restrictedExtent'] = new OpenLayers.Bounds(mapOpts.restrictedExtent.split(','));
+						mapOptions['units'] = mapOpts.units;
+						mapOptions['displayProjection'] = new OpenLayers.Projection(mapOpts.displayProjection);
+						mapOptions['numZoomLevels'] = mapOpts.numZoomLevels;
+					} catch (err) {
+						if(opts.debug) {
+							console.log(pe.fn.geomap.getLocalization('baseMapMapOptionsLoadError'));
+						}
 					}
+					
+				} else if(!wet_boew_geomap.basemap) {
+					// use map options for the Canada Transportation Base Map (CBMT)
+					mapOptions = mapOptions = pe.fn.geomap.setDefaultMapOptions();
 				}
-				
-			} else if(!wet_boew_geomap.basemap) {
-				// use map options for the Canada Transportation Base Map (CBMT)
-				mapOptions = {
-					maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),			
-					maxResolution: 'auto',
-					projection: 'EPSG:3978', 
-					restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
-					units: 'm',
-					displayProjection: new OpenLayers.Projection('EPSG:4269') /* only used by specific controls (i.e. MousePosition) */ ,
-					numZoomLevels: 12
-				};
-			}
+			} else { mapOptions = pe.fn.geomap.setDefaultMapOptions(); }
 			
 			map = new OpenLayers.Map('geomap', $.extend(opts.config, mapOptions));		
 			
 			// Check to see if a base map has been configured. If not add the
 			// default base map (the Canada Transportation Base Map (CBMT))
-			if(wet_boew_geomap.basemap) {
-				var basemap = wet_boew_geomap.basemap;
-				
-				if(!basemap.options) basemap.options = {}; //projection: 'EPSG:4326' };
-				
-				basemap.options['isBaseLayer'] = true;
-				basemap.options['displayInLayerSwitcher'] = false;
-				
-				if(basemap.type=='wms') {
-					map.addLayer(
-						new OpenLayers.Layer.WMS(
-							basemap.title, 
-							basemap.url, 
-							{ layers: basemap.layers, version: basemap.version, format: basemap.format },
-							basemap.options
-						)
-					);
-				} else if (basemap.type=='esri') {						
-					map.addLayer(
-						new OpenLayers.Layer.ArcGIS93Rest(
-							basemap.title, 
-							basemap.url
-						)
-					);									
-				}
-			} else {
-				if(opts.debug) {
-					console.log(pe.fn.geomap.getLocalization('basemapDefault'));
-				}
-
-				// Add the Canada Transportation Base Map (CBMT)			
-				map.addLayer(new OpenLayers.Layer.WMS(
-					"CBMT", 
-					"http://geogratis.gc.ca/maps/CBMT", 
-					{ layers: 'CBMT', version: '1.1.1', format: 'image/png' },
-					{ isBaseLayer: true, 
-						singleTile: true, 
-						ratio: 1.0, 
-						displayInLayerSwitcher: false,
-						projection: 'EPSG:3978' 
-					} 
-				));			
-			}
+			if (typeof(wet_boew_geomap) != "undefined"){
+				if(wet_boew_geomap.basemap) {
+					var basemap = wet_boew_geomap.basemap;
+					
+					if(!basemap.options) basemap.options = {}; //projection: 'EPSG:4326' };
+					
+					basemap.options['isBaseLayer'] = true;
+					basemap.options['displayInLayerSwitcher'] = false;
+					
+					if(basemap.type=='wms') {
+						map.addLayer(
+							new OpenLayers.Layer.WMS(
+								basemap.title, 
+								basemap.url, 
+								{ layers: basemap.layers, version: basemap.version, format: basemap.format },
+								basemap.options
+							)
+						);
+					} else if (basemap.type=='esri') {						
+						map.addLayer(
+							new OpenLayers.Layer.ArcGIS93Rest(
+								basemap.title, 
+								basemap.url
+							)
+						);									
+					}
+				} else { pe.fn.geomap.setDefaultBaseMap(opts); }
+			} else { pe.fn.geomap.setDefaultBaseMap(opts); }
 					
 			// Create projection objects
 			var projLatLon = new OpenLayers.Projection('EPSG:4326');
@@ -1181,30 +1254,7 @@
 				});
 			}
 			}
-			
 
-			/*
-			 * Add vector features (consider removing - DEPRECATED) 
-			 * 
-			 * TODO: turn this into a public function and add associated markup
-			 */ 
-			
-//			var vectorLayer = new OpenLayers.Layer.Vector('Features');			
-//			
-//			$.each(opts.features, function(index, feature) {
-//								
-//				var wktParser = new OpenLayers.Format.WKT({						
-//					'internalProjection': projMap, 
-//					'externalProjection': projLatLon
-//				});
-//				
-//				vectorLayer.addFeatures([										 
-//					wktParser.read(feature)															 
-//				]);						
-//				
-//			});			
-//			
-//			map.addLayer(vectorLayer);		
 			
 			/*
 			 * Add tabluar data
@@ -1223,86 +1273,74 @@
 				
 				var $table = $("table#" + table.id);
 				var wktFeature;		
-				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { styleMap: pe.fn.geomap.getStyleMap(opts.tables[index]) });
+				var tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), { eventListeners: {
+									"featuresadded": function (evt) {
+										// This timeout function let time to select control to initialize itself before adding the feature
+										setTimeout(function() {
+											pe.fn.geomap.onTabularFeaturesAdded(evt.features[0], selectControl, zoomColumn)},500);
+									}
+								},styleMap: pe.fn.geomap.getStyleMap(opts.tables[index]) });
+				
 				var zoomColumn = opts.tables[index].zoom;
 
 				var wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap, 
 					'externalProjection': projLatLon
 				});
-
-				$.each($("table#" + table.id + ' td.geometry'), function(index, feature) {		
-
-					if($(feature).hasClass('bbox')) {								
-
-						var bbox = $(feature).text().split(',');
-						wktFeature = "POLYGON((" 
-							+ bbox[0] + " " + bbox[1] + ", " 
-							+ bbox[0] + " " + bbox[3] + ", " 
-							+ bbox[2] + " " + bbox[3] + ", " 
-							+ bbox[2] + " " + bbox[1] + ", " 
-							+ bbox[0] + " " + bbox[1] + 
-						"))";
-					} else {						
-						wktFeature = $(feature).text();
+				
+				// Get the attributes from table header
+				var attr = [];
+				$.each($("table#" + table.id + ' th'), function(index, attribute) {
+					if (attribute.textContent.toLowerCase() != 'geometry'){
+						attr[index] = attribute.textContent;
 					}
-
-					var vectorFeatures = wktParser.read(wktFeature);
-
-					var $tr = $(this).parent();
-
-					// add zoom column
-					if ( zoomColumn == true) {						
-						var temp = $(this).after('<td></td>');
-						$tr.find("td:last").append(pe.fn.geomap.addZoomTo($tr, vectorFeatures, selectControl));
-					}
-
-					$tr.attr('id', vectorFeatures.id.replace(/\W/g, "_"));
-
-					var $select = $tr.find('td.select');
-
-					if($select.length) {
-						var $link = $select.find('a');
-						if($link.length) {
-							$tr.hover(function(){
-									$tr.attr('class', 'background-highlight');
-									selectControl.select(vectorFeatures);
-								}, 
-								function(){
-									$tr.attr('class', 'background-white');
-									selectControl.unselect(vectorFeatures);
-								}
-							);
-
-							// Keybord events
-							$link.focus(function(){
-									$tr.attr('class', 'background-highlight');
-									selectControl.select(vectorFeatures);
-								}	
-							);
-							$link.blur(function(){
-									$tr.attr('class', 'background-white');
-									selectControl.unselect(vectorFeatures);
-								}	
-							);
-						} else { 
-							if(opts.debug) {
-								$select.append('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorSelect') + '</p></div>');		
-							}
-						}
-					} else {
-						if(opts.debug) {
-							$tr.closest('table').before('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorNoSelect') + '</p></div>');
-						}
-					}										
-					tableLayer.addFeatures([vectorFeatures]);	
 				});
+				
+				// Loop trought each row
+				$.each($("table#" + table.id + ' tr'), function(index, row) {
+					
+					// Create an array of attributes: value
+					var attrMap = {};
+					$(row).find('td').each(function(index, feature) {	
+						if (!($(feature).hasClass('geometry'))) {
+							attrMap[attr[index]] = feature.lastChild.textContent;
+						}
+					});
+				
+					$(row).find('td').each(function(index, feature) {		
+						
+						if ($(feature).hasClass('geometry')) {
+							if($(feature).hasClass('bbox')) {								
+		
+								var bbox = $(feature).text().split(',');
+								wktFeature = "POLYGON((" 
+									+ bbox[0] + " " + bbox[1] + ", " 
+									+ bbox[0] + " " + bbox[3] + ", " 
+									+ bbox[2] + " " + bbox[3] + ", " 
+									+ bbox[2] + " " + bbox[1] + ", " 
+									+ bbox[0] + " " + bbox[1] + 
+								"))";
+							} else {						
+								wktFeature = $(feature).text();
+							}
+	
+						var vectorFeatures = wktParser.read(wktFeature);
+	
+						// Set the table row id
+						var $tr = $(this).parent();
+						$tr.attr('id', vectorFeatures.id.replace(/\W/g, "_"));
+						
+						// Add the attributes to the feature then add it to the map
+						vectorFeatures.attributes = attrMap;										
+						tableLayer.addFeatures([vectorFeatures]);
+						}	
+					});
+				}); 
 				
 				map.addLayer(tableLayer);
 				queryLayers.push(tableLayer);
 				
-				pe.fn.geomap.addToLegend($table, true, tableLayer.id);
-				
+				pe.fn.geomap.addToLegend($table, true, tableLayer.id);		
 			});	
 			
 			/*
