@@ -1789,7 +1789,7 @@
 					plugins.css3ie = pe.main;
 				}
 			}
-			pe.wb_load({'plugins': plugins, 'dep': ['resize', 'equalheights'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
+			pe.wb_load({'plugins': plugins, 'dep': ['resize'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
 		}
 	};
 	/* window binding */
