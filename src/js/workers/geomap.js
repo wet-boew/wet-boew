@@ -388,7 +388,7 @@
 			$tabsPanel.append($layerTab);		
 			
 			if(enabled === false) {				
-				$layerTab.append('<div class="module-alert module-simplify"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');	
+				$layerTab.append('<div class="module-attention module-simplify"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');	
 				featureTable.fadeOut();
 			}			
 		},
@@ -659,12 +659,12 @@
 					);
 				} else { 
 					if(opts.debug) {
-						$select.append('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorSelect') + '</p></div>');		
+						$select.append('<div class="module-alert"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorSelect') + '</p></div>');		
 					}
 				}
 				} else {
 					if(opts.debug) {
-						$tr.closest('table').before('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorNoSelect') + '</p></div>');
+						$tr.closest('table').before('<div class="module-alert"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorNoSelect') + '</p></div>');
 					}
 				}
 		},
@@ -846,7 +846,7 @@
 
 			if(opts.debug) {
 				console.log(pe.fn.geomap.getLocalization('WET-Geomap: running in DEBUG mode'));
-				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
+				$('#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
 			}	
 						
 			// Set the language for OpenLayers
@@ -1401,7 +1401,7 @@
 			
 			// Check to see if a legend container is provided			
 			if($(".wet-boew-geomap-legend").length == 0 && $(".wet-boew-geomap").hasClass("debug")) {		
-				$("div#wb-main-in").prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
+				$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
 			}	
 			
 			return elm;
