@@ -681,7 +681,7 @@
 						map.zoomToExtent(feature.geometry.bounds);	
 						row.closest('tr').attr('class', 'background-highlight');
 						selectControl.unselectAll();
-						selectControl.select(feature);  
+						selectControl.select(feature);	
 			 },
 				'href': '#',
 				'class': 'button',
