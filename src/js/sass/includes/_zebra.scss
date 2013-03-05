@@ -137,7 +137,7 @@ dl {
 
 	&.nomargin {
 		margin: 0;
-	}
+	}/*
 	tr {
 		&.table-odd, &.table-even tr.table-odd {
 			background-color: #f0fcff;
@@ -150,13 +150,18 @@ dl {
 				background-color: #eee;
 			}
 		}
-	}
+	}*/
 	th {
+	/*
 		background-color: #eee;
 		border: 1px solid #ccc;
 		color: #333;
 		text-align: center;
 		padding: 8px;
+		*/
+		
+		
+		
 		/*
 		 * I am not sure if we would like to style the cell header group, need to discuss
 		 *
@@ -170,20 +175,22 @@ dl {
 			background-color: #999;
 		}
 		*/
-		&.table-hover {
-			background-color: lightgray;
+		/*&.table-hover {
+			background-color: lightgray;*/
 			/*
 			&.table-summaryrow0 {
 				background-color: #eee;
 			}
 			*/
-		}
+		/*}*/
 
 	}
 	td {
-		border: 1px solid #ccc;
+		/*border: 1px solid #ccc;
 		vertical-align: top;
-		padding: 5px 10px;
+		padding: 5px 10px;*/
+		
+		
 		/* Advance Zebra */
 		&.table-keycell {
 			font-style: italic;
@@ -236,6 +243,7 @@ dl {
 		}
 	}
 	col {
+	/*
 		&.table-odd {
 			background-color: #f0fcff;
 		}
@@ -245,6 +253,7 @@ dl {
 		&.table-hover {
 			background-color: #eee;
 		}
+		*/
 	}
 	
 	li {
@@ -276,10 +285,12 @@ dl {
 	
 	
 	
+	/* Zebra Stripping with CSS 3 and fallback on css class */
+	
 	&.colzebra {
 	  colgroup {
 	     col { 
-		    &.odd, &:nth-child(2n)  {
+		    &.table-odd, &:nth-child(2n)  {
 			 background-color: #f0fcff;
 		   } 
 			
@@ -289,8 +300,8 @@ dl {
 	
 	&.rowzebra {
 		tbody {
-			tr { 
-				&.odd, &:nth-child(2n)  {
+			tr {
+				&.table-odd, &:nth-child(2n)  {
 					background-color: #f0fcff;
 				}
 			}
@@ -299,35 +310,52 @@ dl {
 	
     }
 	
-	&.rowhover	tbody tr:hover {
-		background-color: #eee;
-	}
-	
-	&.rowhover tbody tr:hover th {
-		background-color: #CCCCCC;
-	}
-	
-	&.rowhover.table-accent tbody tr:hover th {
-		background-color: #2222AA;
-	}
-	
-	&.rowhover.table-medium tbody tr:hover th {
-		background-color: #222222
-	}
+	/* TODO Apply custom Table Styling, like for a row */
+	&.columnhighlight {
+		colgroup {
+			col.table-hover {
+				background-color: #eee;
+			}
+		}
 
-	&.rowhover.table-dark tbody tr:hover th {
-		background-color: #666666;
-	}
-
-	/*
-	&.rowhover.table-simplify tbody tr:hover th {
-		background-color: transparent;
-	}
-	*/
-	
-	&.rowhover.table-simplify tbody tr th {
-		background-color: transparent;
+		th.table-hover {
+			background-color: #CCCCCC;
+		}
+		
 	}
 	
-
+	&.rowhover {
+		tbody {
+			tr:hover, tr.table-hover {
+				background-color: #eee;
+			}
+			
+			tr:hover th, tr.table-hover th {
+				background-color: #CCCCCC;
+			}
+		}
+		
+		&.table-accent tbody {
+			tr:hover th, tr.table-hover th  {
+				background-color: #555555;
+			}
+		}
+		
+		&.table-medium tbody {
+			tr:hover th, tr.table-hover th {
+				background-color: #222222
+			}
+		}
+		&.table-dark tbody {
+			tr:hover th, tr.table-hover th {
+				background-color: #666666;
+			}
+		}
+		
+		&.table-simplify tbody tr th {
+			background-color: transparent;
+		}
+	}
+	
+	
 }

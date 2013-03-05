@@ -195,29 +195,38 @@
 				return $(this).children('td').length > 0;
 			});
 
-			$trs.on('mouseleave focusout', function (e) {
-				e.stopPropagation();
-				$(this).removeClass('table-hover');
-			});
-			$trs.on('mouseenter focusin', function (e) {
-				e.stopPropagation();
-				$(this).addClass('table-hover');
-			});
-
+			if (!opts.nohover) {
+				elem.addClass('rowhover');
+				if (0 < pe.ie && pe.ie < 9) {
+					$trs.on('mouseleave focusout', function (e) {
+						e.stopPropagation();
+						$(this).removeClass('table-hover');
+					});
+					$trs.on('mouseenter focusin', function (e) {
+						e.stopPropagation();
+						$(this).addClass('table-hover');
+					});
+				}
+			}
+			
 			if (opts.vectorstripe) {
 				if (!opts.columnhighlight) {
-					// note: even/odd's indices start at 0
-					$trs.filter(':odd').addClass('table-even');
-					$trs.filter(':even').addClass('table-odd');
-				} else {
-					$cols = [];
-					for (i = 0; i < tblparser.col.length; i += 1) {
-						if (tblparser.col[i].elem) {
-							$cols.push(tblparser.col[i].elem);
-						}
+					elem.addClass('rowzebra');
+					if (0 < pe.ie && pe.ie < 9) {
+						$trs.filter(':odd').addClass('table-odd');
 					}
-					$($cols).filter(':odd').addClass('table-even');
-					$($cols).filter(':even').addClass('table-odd');
+				} else {
+					elem.addClass('colzebra');
+
+					if (0 < pe.ie && pe.ie < 9) {
+						$cols = [];
+						for (i = 0; i < tblparser.col.length; i += 1) {
+							if (tblparser.col[i].elem) {
+								$cols.push(tblparser.col[i].elem);
+							}
+						}
+						$($cols).filter(':odd').addClass('table-odd');
+					}
 				}
 			}
 
@@ -347,32 +356,38 @@
 					} else {
 
 	
+
 						
 						// Default Zebra
 						$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
 							return $(this).children('td').length > 0;
 						});
-	
-						$trs.on('mouseleave focusout', function (e) {
-							e.stopPropagation();
-							$(this).removeClass('table-hover');
-						});
-						$trs.on('mouseenter focusin', function (e) {
-							e.stopPropagation();
-							$(this).addClass('table-hover');
-						});
+
+						if (!opts.nohover) {
+							elem.addClass('rowhover');
+
+							// The action "removeClass" and "addClass" instead of the toggle because, if the mouse hover a row and you hit refresh, that row get the hover class when it mouse out, The reverse is wanted. That is the explaination of using removing, adding class.
+							$trs.on('mouseleave focusout', function (e) {
+								e.stopPropagation();
+								$(this).removeClass('table-hover');
+							});
+							$trs.on('mouseenter focusin', function (e) {
+								e.stopPropagation();
+								$(this).addClass('table-hover');
+							});
+						}
 	
 	
 						if (!opts.columnhighlight) {
-							// note: even/odd's indices start at 0
-							$trs.filter(':odd').addClass('table-even');
-							$trs.filter(':even').addClass('table-odd');
+							elem.addClass('rowzebra');
+							
+							$trs.filter(':odd').addClass('table-odd');
 						} else {
+							elem.addClass('colzebra');
+							
 							$cols = elem.children('colgroup:last').children('col');
 	
-							$($cols).filter(':odd').addClass('table-even');
-							$($cols).filter(':even').addClass('table-odd');
-	
+							$($cols).filter(':odd').addClass('table-odd');
 						}
 						
 						return; // Simple Table Zebra Striping done
@@ -382,7 +397,7 @@
 
 
 
-
+				// Delayed Processing, The complex table parser need to loaded 
 
 				if (_pe.fn.parsertable) {
 					_pe.fn.zebra.fnZebraComplexTable(elem, opts);
