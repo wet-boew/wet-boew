@@ -14,7 +14,7 @@
 	/* local reference */
 	_pe.fn.equalize = {
 		type : 'plugin',
-		depends : (pe.mobile ? [] : ['equalheights', 'resize']),
+		depends : (pe.mobile ? [] : ['equalheights']),
 		_exec : function (elm) {
 			if (pe.mobile) {
 				return;
