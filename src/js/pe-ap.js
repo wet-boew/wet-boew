@@ -364,7 +364,7 @@
 		*/
 		resize: function (callback) {
 			pe.document.on(pe.resizeutil.events_all, function (e, sizes) {
-				callback(sizes);
+				callback(e, sizes);
 			});
 			return;
 		},
