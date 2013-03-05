@@ -14,7 +14,7 @@
 	/* local reference */
 	_pe.fn.slideout = {
 		type: 'plugin',
-		depends: ['resize', 'metadata'],
+		depends: ['metadata'],
 		opened: false,
 		_exec: function (elm) {
 			var borderWidth = 10,
@@ -103,7 +103,7 @@
 				slideoutClose.off('click vclick touchstart', toggle);
 				wrapper.off('keydown', keyhandler);
 				elm.off('keydown', keyhandler);
-				$(document).off('click vclick touchstart', documentToggle);
+				_pe.document.off('click vclick touchstart', documentToggle);
 
 				if (!opened) {
 					var position = wrapper.position();
@@ -144,7 +144,7 @@
 					slideoutClose.on('click vclick touchstart', toggle);
 					wrapper.on('keydown', keyhandler);
 					elm.on('keydown', keyhandler);
-					$(document).on('click vclick touchstart', documentToggle);
+					_pe.document.on('click vclick touchstart', documentToggle);
 				});
 
 				if (opened) {
@@ -291,7 +291,7 @@
 					toggle();
 				}
 			};
-			$(document).on('click vclick touchstart', documentToggle);
+			_pe.document.on('click vclick touchstart', documentToggle);
 
 			// Add the 'Hide' link
 			elm.append('<a href="#" id="slideoutClose" role="button" aria-controls="slideout-body">' + closeLink + '</a>');
@@ -340,7 +340,7 @@
 
 			// Fix scrolling issue in some versions of IE (#4051)
 			if (ie7) {
-				$('html').css('overflowY', 'auto');
+				_pe.html.css('overflowY', 'auto');
 			}
 		} // end of exec
 	};

@@ -86,7 +86,8 @@
 				target,
 				i,
 				len,
-				node;
+				node,
+				$document = $(document);
 
 			if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.bcrumb.length !== 0) {
 				// Transform the menu to a popup
@@ -181,7 +182,7 @@
 			}
 
 			// jQuery mobile has loaded
-			$(document).on('pagecreate', function () {
+			$document.on('pagecreate', function () {
 				if (wet_boew_theme.menubar.length !== 0) {
 					node = wet_boew_theme.psnb[0];
 					node.parentNode.removeChild(node);
@@ -217,7 +218,7 @@
 				$.mobile.transitionHandlers.loadingTransition = loadingTransition;
 				$.mobile.defaultDialogTransition = 'loadingTransition';
 			});
-			$(document).trigger('mobileviewloaded');
+			$document.trigger('mobileviewloaded');
 			return;
 		}
 	};
