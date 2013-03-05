@@ -38,7 +38,7 @@
 				wrapper,
 				elm = $(this);
 
-			if(elm.hasClass('picker-field')) {
+			if (elm.hasClass('picker-field')) {
 				return;
 			}
 
@@ -324,7 +324,7 @@
 					addLinksToCalendar(id, year, month, days, minDate, maxDate, format);
 					setSelectedDate(id, year, month, days, format);
 
-					$this.on('click vclick touchstart', function (e) {
+					$this.on('click vclick touchstart focusin', function (e) {
 						if (e.stopPropagation) {
 							e.stopImmediatePropagation();
 						} else {
@@ -332,15 +332,7 @@
 						}
 					});
 
-					// Close the popup a second after blur
-					$this.on('focusoutside', function () {
-						if (container.attr('aria-hidden') === 'false') {
-							hide($('#' + container.attr('id').slice(0, -7)));
-							return false;
-						}
-					});
-
-					$(document).on('click vclick touchstart', function () {
+					$(document).on('click vclick touchstart focusin', function () {
 						if (container.attr('aria-hidden') === 'false') {
 							hide($('#' + container.attr('id').slice(0, -7)));
 							return false;
