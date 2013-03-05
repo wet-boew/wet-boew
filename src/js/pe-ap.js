@@ -370,7 +370,7 @@
 		*/
 		resize: function (callback) {
 			pe.document.on(pe.resizeutil.events_all, function (e, sizes) {
-				callback(sizes);
+				callback(e, sizes);
 			});
 			return;
 		},
@@ -1281,7 +1281,6 @@
 			polyfill: {
 				'datalist': {
 					selector: 'input[list]',
-					depends: ['outside'],
 					update: function (elms) {
 						elms.datalist();
 					},
@@ -1290,7 +1289,7 @@
 				},
 				'datepicker': {
 					selector: 'input[type="date"]',
-					depends: ['calendar', 'xregexp', 'outside'],
+					depends: ['calendar', 'xregexp'],
 					update: function (elms) {
 						elms.datepicker();
 					},
