@@ -1282,7 +1282,6 @@
 			polyfill: {
 				'datalist': {
 					selector: 'input[list]',
-					depends: ['outside'],
 					update: function (elms) {
 						elms.datalist();
 					},
