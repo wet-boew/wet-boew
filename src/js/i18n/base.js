@@ -151,7 +151,7 @@
 		'%pe-disable': '@%pe-disable@',
 		'%pe-enable': '@%pe-enable@'
 	};
-	$(document).trigger('languageloaded');
+	_pe.document.trigger('languageloaded');
 	window.pe = _pe;
 	return _pe;
 }(jQuery));

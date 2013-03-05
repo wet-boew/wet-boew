@@ -194,7 +194,7 @@
 				}
 			});
 
-			$(document).on("click vclick touchstart", function (e) {
+			_pe.document.on("click vclick touchstart", function (e) {
 				if (!autolist.hasClass('al-hide') && !$(e.target).is(elm)) {
 					closeOptions();
 				}
