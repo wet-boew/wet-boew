@@ -201,7 +201,9 @@
 					elmtext,
 					matches,
 					match,
-					level;
+					level,
+					i,
+					len;
 				_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
 					return parseInt(n, 10);
 				});
@@ -252,14 +254,15 @@
 									var $this = $(this);
 									return ($this.text().substring(0, 1).toLowerCase() === keychar || (sublink && $this.text() === elmtext));
 								});
-								if (matches.length > 0) {
+								if (matches.length !== 0) {
 									if (sublink) {
-										matches.each(function (index) {
-											if ($(this).text() === elmtext) {
-												match = index;
-												return false;
+										match = matches.length;
+										for (i = 0, len = match; i !== len; i += 1) {
+											if (matches.eq(i).text() === elmtext) {
+												match = i;
+												break;
 											}
-										});
+										}
 										if (match < (matches.length - 1)) {
 											pe.focus(matches.eq(match + 1));
 											return false;
