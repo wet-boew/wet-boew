@@ -332,7 +332,9 @@
 				if (!ru.initialized) {
 					ru.sizes = [pe.resizetest.offsetHeight, pe.window.width(), pe.window.height()];
 					ru.events_all = ru.events.join(' ');
-					window.setInterval(pe.resizeutil.test(), 500);
+					window.setInterval(function () {
+						pe.resizeutil.test();
+					}, 500);
 					ru.initialized = true;
 				}
 			},
