@@ -118,7 +118,7 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = pe.html, hlinks, hlinks_same, $this, target, classes, test, init_on_mobileinit = false;
+			var $html = pe.html, hlinks, hlinks_same, $this, target, classes, test, test_elms, init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
