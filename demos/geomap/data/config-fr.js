@@ -56,6 +56,7 @@
 		    type: 'kml',
 		    url: 'data/sample.kml',		   
 		    visible: false,
+		    datatable: true,
 		    attributes: {
 		    	name: 'Titre du produit',
 		    	description: 'Description'
@@ -70,7 +71,8 @@
 		    	title: 'Titre',
 		    	summary: 'À propos de ce jeux de données'
 		    },
-		    visible: false
+		    visible: false,
+		    datatable: false
 		},
 		{
 			title: 'GeoRSS Demo FR',
@@ -83,6 +85,7 @@
 				link: 'Pour plus d\'information'
 			},
 			visible: false,
+			datatable: false
 		},
 		{
 			title: 'JSON (GeoGratis) FR',
@@ -94,6 +97,7 @@
 				'q': 'alluvial'
 			},
 			visible: false,
+			datatable: false,
 			root: 'products',			
 			attributes: {
 				title: 'Titre',
@@ -117,7 +121,8 @@
 				updated_at: 'Dernière mise à jour'
 			},
 			visible: true,	
-			zoom:  true,		
+			zoom:  true,
+			datatable: true,		
 			 // default style			
 			 style: {
 				 type: 'symbol',

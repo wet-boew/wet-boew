@@ -264,11 +264,11 @@
 		/* 
 		 * Create a table for vector features added in Load Overlays
 		 */
-		createTable: function(index, title, caption, opts) {
+		createTable: function(index, title, caption, datatable) {
 
 			var $table = $('<table>'); //, { 'style': 'width:100%' }); 
 			
-			if(opts.useDataTable) {
+			if(datatable) {
 				$table.addClass('wet-boew-tables');
 			} else {
 				$table.css('width', '100%');
@@ -277,7 +277,7 @@
 			$table.attr('aria-label', title);
 			$table.attr('id', "overlay_" + index);
 			$table.append('<caption>' + caption + '</caption>', '<thead>', '<tbody>');
-			if(opts.useDataTable) $table.append('<tfoot>');
+			if(datatable) $table.append('<tfoot>');
 			
 			return $table;	
 		},		
@@ -611,12 +611,15 @@
 		 * Handle features once they have been added to the map
 		 * 
 		 */
-		onFeaturesAdded: function($table, evt, zoomTo) {
+		onFeaturesAdded: function($table, evt, zoomTo, datatable) {
 
 			var $head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
+			var $foot = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
 			if(zoomTo) $head.append($('<th>'));
-
+			if(zoomTo) $foot.append($('<th>'));
+			
 			$table.find('thead').append($head);
+			$table.find('tfoot').append($foot);
 			$.each(evt.features, function(index, feature) {												
 				var context = {
 					'type': 'body',
@@ -628,13 +631,16 @@
 				var $row = pe.fn.geomap.createRow(context, zoomTo);									
 				$table.find('tbody').append($row);
 			});
+			
+			// Run the datatable plugin to generate the nice table
+			if (datatable) $('table#' + $table.attr('id')).dataTable();
 		},
 		
 		/*
 		 * Handle features once they have been added to the map for tabular data
 		 * 
 		 */
-		onTabularFeaturesAdded: function(feature, zoomColumn) {
+		onTabularFeaturesAdded: function(feature, zoomColumn, table) {
 
 			// Find the row
 			var $tr = $('tr#' + feature.id.replace(/\W/g, "_"));
@@ -643,7 +649,16 @@
 			if ( zoomColumn == true) {						
 				$tr.append('<td></td>').find('td:last').append(pe.fn.geomap.addZoomTo($tr, feature));
 			}
-																					
+			
+			// TODO finish this
+			// Run the datatable plugin to generate the nice table
+			// if (table.datatable){
+//					
+				// // Add the class to generate the table
+				// $('table#' + table.id).addClass('wet-boew-tables');
+				// $('table#' + table.id).dataTable();
+			// }
+																						
 			var $select = $tr.find('td.select');						
 			if($select.length) {
 				var $link = $select.find('a');
@@ -835,7 +850,7 @@
 			if(wet_boew_geomap.overlays){				
 				$.each(wet_boew_geomap.overlays, function(index, layer) {	
 					
-					var $table = pe.fn.geomap.createTable(index, layer.title, layer.caption, opts);
+					var $table = pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
 					
 					if (layer.type=='kml') {	
 						var olLayer = new OpenLayers.Layer.Vector(
@@ -881,7 +896,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {	
-										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -931,7 +946,7 @@
 									}),						
 								eventListeners: {
 									"featuresadded": function (evt) {											
-										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -995,7 +1010,7 @@
 								}),								
 								eventListeners: {
 									"featuresadded": function (evt) {
-										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1048,7 +1063,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {	
-										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1069,6 +1084,7 @@
 									params: layer.params,
 									format: new OpenLayers.Format.GeoJSON({
 										read: function(data) {
+
 											var items = data.features;
 											var row, feature, atts = {}, features = [];
 											
@@ -1101,7 +1117,7 @@
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {
-										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
+										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 									}
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
@@ -1150,8 +1166,8 @@
 				});
 				
 				// If zoom to add th
-				if (opts.tables[index].zoom) $table.find('thead').find('tr').append('<th></th>');
-				if (opts.tables[index].zoom) $table.find('tfoot').find('tr').append('<th></th>');
+				if (opts.tables[index].zoom) $table.find('thead').find('tr').append('<th>Zoom</th>');
+				if (opts.tables[index].zoom) $table.find('tfoot').find('tr').append('<th>Zoom</th>');
 				
 				// Loop trought each row
 				$.each($("table#" + table.id + ' tr'), function(index, row) {
@@ -1222,7 +1238,7 @@
 				for (var i=0; i<queryLayers.length; i++){
 					if (queryLayers[i].id == "table#" + table.id){
 						$.each(queryLayers[i].features, function(index, feature) {
-							pe.fn.geomap.onTabularFeaturesAdded(feature, zoomColumn);
+							pe.fn.geomap.onTabularFeaturesAdded(feature, zoomColumn, opts.tables[index]);
 						});
 					}
 				}
@@ -1306,7 +1322,7 @@
 			
 			var french = {
 				debugMode: 'BOEW-Geomap: mode débogage activé',
-				debugMess:'Lors de l\'exécution en mode débogage Geomap donne des messages d\'erreur, des messages d\'aide et donneras de l\'information utile dansla console de débogage. Désactiver le mode débogage en supprimant la classe <em>debug</em>.',
+				debugMess:'Lors de l\'exécution en mode débogage Geomap donne des messages d\'erreur, des messages d\'aide et donneras de l\'information utile dans la console de débogage. Désactiver le mode débogage en supprimant la classe <em>debug</em>.',
 				overlayLoad: 'BOEW-Geomap: Les couches de superpositions ont été chargées avec succès',
 				overlayNotLoad: 'BOEW-Geomap: une erreur est survenue lors du chargement des couches de superpositions',
 				basemapDefault: 'BOEW-Geomap: la carte de base par défaut est utilisée',
@@ -1372,7 +1388,7 @@
 			}
 
 			if(opts.debug) {
-				console.log(pe.fn.geomap.getLocalization('WET-Geomap: running in DEBUG mode'));
+				console.log(pe.fn.geomap.getLocalization('debugMode'));
 				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
 			}	
 						
@@ -1424,7 +1440,7 @@
 			}			
 			
 			// Global variable
-			selectControl = new OpenLayers.Control.SelectFeature();			
+			selectControl = new OpenLayers.Control.SelectFeature();
 			
 			// Add overlay data
 			pe.fn.geomap.addOverlayData(wet_boew_geomap, opts);		
@@ -1434,8 +1450,12 @@
 			
 			// Load Controls
 			pe.fn.geomap.loadControls(opts);
-			
-			return elm;
+
+			//setTimeout(function() {
+			//			$('table#overlay_4').dataTable();}		 
+			//	,3000);
+				
+			//return elm;
 		} // end of exec
 	};
 	window.pe = _pe;
