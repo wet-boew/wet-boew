@@ -196,7 +196,7 @@
 								if (pe.mobile) {
 									$.mobile.silentScroll(label_top);
 								} else {
-									$(document).scrollTop(label_top);
+									_pe.document.scrollTop(label_top);
 								}
 								return false;
 							});

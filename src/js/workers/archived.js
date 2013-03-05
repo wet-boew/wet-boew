@@ -18,7 +18,7 @@
 			}
 			// create the toolbar
 			var notice = $('<div class="archived" role="toolbar"><a class="archived-top-page" href="#archived" role="link">' + pe.dic.get('%archived-page') + '</a></div>'),
-				$window = $(window),
+				$window = _pe.window,
 				scrollTop = $window.scrollTop();
 			// lets bind the scrolls
 			$window.on('scroll', function () {
@@ -30,7 +30,7 @@
 			});
 
 			// Ensure that the archived notice does not overlap a link that gains focus
-			$(document).on('focusin', function (e) {
+			_pe.document.on('focusin', function (e) {
 				var target = $(e.target);
 				if (notice.attr('aria-hidden') === 'false' && (target.offset().top + target.outerHeight()) <= (notice.offset().top + notice.outerHeight())) {
 					$window.scrollTop($window.scrollTop() - notice.outerHeight());
