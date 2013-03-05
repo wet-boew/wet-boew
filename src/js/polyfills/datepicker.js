@@ -340,7 +340,7 @@
 						}
 					});
 
-					$(document).on('click vclick touchstart', function () {
+					_pe.document.on('click vclick touchstart', function () {
 						if (container.attr('aria-hidden') === 'false') {
 							hide($('#' + container.attr('id').slice(0, -7)));
 							return false;

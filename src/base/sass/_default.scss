@@ -108,13 +108,16 @@ h6 {
 	display: none;
 }
 
-%wb-clip-hidden {
+%wb-clip {
 	position: absolute;
 	@include clip-rect;
-	height: 1px !important;
-	width: 1px !important;
 	overflow: hidden !important;
 	margin: 0 !important;
+}
+%wb-clip-hidden {
+	@extend %wb-clip;
+	height: 1px !important;
+	width: 1px !important;
 }
 
 .wb-invisible {
@@ -160,15 +163,9 @@ h6 {
 }
 
 #mobiletest {
-	position: absolute;
-	height: 0;
-	left: -9999px;
+	@extend %wb-clip;
 }
 
-/* Right to left (RTL) CSS */
-[dir="rtl"] {
-	#mobiletest {
-		left: auto;
-		right: -9999px;
-	}
+#resizetest {
+	@extend %wb-clip;
 }

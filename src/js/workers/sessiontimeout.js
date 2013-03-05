@@ -156,7 +156,7 @@
 		
 			start_liveTimeout();
 			if (opts.refreshOnClick) {
-				$(document).on('click', start_liveTimeout);
+				_pe.document.on('click', start_liveTimeout);
 			}
 
 			return elm;

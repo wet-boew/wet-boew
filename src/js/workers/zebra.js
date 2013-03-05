@@ -371,7 +371,7 @@
 				_pe.fn.zebra.complexTblOptsStack.push(jQuery.extend(true, {}, opts));
 
 
-				$(document).on('depsTableParserLoaded', function () {
+				_pe.document.on('depsTableParserLoaded', function () {
 					while (_pe.fn.zebra.complexTblStack.length > 0) {
 						_pe.fn.zebra.fnZebraComplexTable(_pe.fn.zebra.complexTblStack.shift(), _pe.fn.zebra.complexTblOptsStack.shift());
 					}

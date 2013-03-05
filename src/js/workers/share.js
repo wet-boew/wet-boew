@@ -261,7 +261,7 @@
 					return false;
 				});
 
-				$(document).on('click vclick touchstart', function () {
+				_pe.document.on('click vclick touchstart', function () {
 					if ($popup.attr('aria-hidden') === 'false') {
 						$popup.trigger('close');
 					}
