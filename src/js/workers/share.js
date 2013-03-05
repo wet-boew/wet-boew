@@ -14,7 +14,7 @@
 	/* local reference */
 	_pe.fn.share = {
 		type : 'plugin',
-		depends : ['metadata', 'bookmark', 'outside'],
+		depends : ['metadata', 'bookmark'],
 		_exec : function (elm) {
 			var opts, overrides, $popup, $popupText, $popupLinks, popupLink, popupLinksLen, popupLinkSpan, target, leftoffset, keychar, elmtext, matches, match;
 
@@ -105,7 +105,7 @@
 				}
 				elm.append($popup);
 
-				$popup.on('click vclick touchstart', function (e) {
+				$popup.on('click vclick touchstart focusin', function (e) {
 					if (e.stopPropagation) {
 						e.stopImmediatePropagation();
 					} else {
@@ -142,7 +142,7 @@
 						return false;
 					}
 				});
-				$popup.on('keydown focusoutside open close closenofocus', function (e) {
+				$popup.on('keydown open close closenofocus', function (e) {
 					if (e.type === 'keydown') {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 							switch (e.keyCode) {
@@ -236,10 +236,6 @@
 								}
 							}
 						}
-					} else if (e.type === 'focusoutside' && !$(e.target).is($popupText)) { // Close the popup menu if focus goes outside
-						if ($popup.attr('aria-hidden') === 'false') {
-							$popup.trigger('closenofocus');
-						}
 					} else if (e.type === 'open') { // Open the popup menu an put the focus on the first link
 						$popupText.text(opts.hideText + opts.popupText);
 						$popup.attr('aria-hidden', 'false').show();
@@ -253,9 +249,13 @@
 					}
 				});
 
-				_pe.document.on('click vclick touchstart', function () {
-					if ($popup.attr('aria-hidden') === 'false') {
-						$popup.trigger('close');
+				_pe.document.on('click vclick touchstart focusin', function (e) {
+					if ($popup.attr('aria-hidden') === 'false' && e.target.className.indexOf('bookmark_popup_text') === -1) {
+						if (e.type === 'focusin') {
+							$popup.trigger('closenofocus');
+						} else {
+							$popup.trigger('close');
+						}
 					}
 				});
 			} else {
