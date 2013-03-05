@@ -261,7 +261,7 @@
 						if (e.type === 'close') {
 							pe.focus($popupText.first());
 						}
-					} else if (type === 'mouseenter') { // Mouse hover so ignore focusoutside event
+					} else if (type === 'mouseenter') { // Mouse hover so ignore click away from link but in popup
 						_pe.fn.share.ignoreFocusoutside = true;
 					} else if (type === 'mouseleave') {
 						_pe.fn.share.ignoreFocusoutside = false;
