@@ -47,6 +47,9 @@ div {
 	}
 	.bookmark_popup {
 		display: none;
+		&.show {
+			display: block !important;
+		}
 		position: absolute;
 		z-index: 99;
 		background: #fff;
