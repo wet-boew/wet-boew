@@ -264,13 +264,20 @@
 		/* 
 		 * Create a table for vector features added in Load Overlays
 		 */
-		createTable: function(index, title, caption) {
+		createTable: function(index, title, caption, opts) {
 
-			var $table = $('<table>', { 'style': 'width:100%' }); 
+			var $table = $('<table>'); //, { 'style': 'width:100%' }); 
+			
+			if(opts.useDataTable) {
+				$table.addClass('wet-boew-tables');
+			} else {
+				$table.css('width', '100%');
+			}
 			
 			$table.attr('aria-label', title);
 			$table.attr('id', "overlay_" + index);
-			$table.append('<caption>' + caption + '</caption>', '<thead>', '<tbody>');						
+			$table.append('<caption>' + caption + '</caption>', '<thead>', '<tbody>');
+			if(opts.useDataTable) $table.append('<tfoot>');
 			
 			return $table;	
 		},		
@@ -331,7 +338,7 @@
 				var $checked = enabled ? 'checked="checked"' : '';
 				var $ul;
 				if(!$div.find('ul').length) {
-					$ul = $('<ul>', { 'class': 'list-bullet-none' }).appendTo($div);					
+					$ul = $('<ul>', { 'class': 'list-bullet-none margin-left-none' }).appendTo($div);					
 				} else {
 					$ul = $div.find('ul');
 				}
@@ -348,12 +355,12 @@
 					
 					var $table = $('#' + $(featureTable).attr('id'));		
 					var $tableContainer = $table.parent();
-					var $alert = $tableContainer.find("div.module-alert");
+					var $alert = $tableContainer.find("div.module-attention");
 					
 					if($alert.length != 0) { 
 						$alert.fadeToggle();					
 					} else { 
-						$tableContainer.append('<div class="module-alert module-simplify"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');				
+						$tableContainer.append('<div class="module-attention module-simplify"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');				
 					}					
 					
 					$table.fadeToggle();									
@@ -389,7 +396,7 @@
 			$tabsPanel.append($layerTab);		
 			
 			if(enabled === false) {				
-				$layerTab.append('<div class="module-alert module-simplify"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');	
+				$layerTab.append('<div class="module-attention module-simplify"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');	
 				featureTable.fadeOut();
 			}			
 		},
@@ -546,11 +553,14 @@
 				}
 			}			
 
-			if (zoomTo == true) {
+			if (zoomTo == true) {	
+				
 				var $zoom = $('<td>');
+				
 				cols.push($zoom);
 				$(cols[cols.length -1]).empty().append(pe.fn.geomap.addZoomTo($row, context.feature, context.selectControl)); 
-				}
+				
+			}
 				
 			if(context.type != 'head') {
 
@@ -604,6 +614,7 @@
 		onFeaturesAdded: function($table, evt, zoomTo) {
 
 			var $head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
+			if(zoomTo) $head.append($('<th>'));
 
 			$table.find('thead').append($head);
 			$.each(evt.features, function(index, feature) {												
@@ -660,12 +671,12 @@
 					);
 				} else { 
 					if(opts.debug) {
-						$select.append('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorSelect') + '</p></div>');		
+						$select.append('<div class="module-alert"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorSelect') + '</p></div>');		
 					}
 				}
 				} else {
 					if(opts.debug) {
-						$tr.closest('table').before('<div class="module-attention"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorNoSelect') + '</p></div>');
+						$tr.closest('table').before('<div class="module-alert"><h3>' + pe.fn.geomap.getLocalization('error') + '</h3><p>' + pe.fn.geomap.getLocalization('errorNoSelect') + '</p></div>');
 					}
 				}
 		},
@@ -714,8 +725,7 @@
 		/*
 		 *	Set the default basemap
 		 */
-		setDefaultBaseMap: function(opts){
-			
+		setDefaultBaseMap: function(opts) {			
 			if(opts.debug) {
 				console.log(pe.fn.geomap.getLocalization('basemapDefault'));
 			}
@@ -754,9 +764,8 @@
 		
 		/*
 		 *	Add baseMap data
-		 */
-		addBasemapData: function(wet_boew_geomap, opts){
-			
+		 */		
+		addBasemapData: function(wet_boew_geomap, opts) {			
 			var mapOptions = {};
 			if (typeof(wet_boew_geomap) != "undefined"){
 				if(wet_boew_geomap.basemap && wet_boew_geomap.basemap.mapOptions) {				
@@ -819,14 +828,14 @@
 		/*
 		 *	Add overlay data
 		 */
-		addOverlayData: function(wet_boew_geomap){
+		addOverlayData: function(wet_boew_geomap, opts){
 			
 			if (typeof(wet_boew_geomap) != "undefined")
 			{			
 			if(wet_boew_geomap.overlays){				
 				$.each(wet_boew_geomap.overlays, function(index, layer) {	
 					
-					var $table = pe.fn.geomap.createTable(index, layer.title, layer.caption);
+					var $table = pe.fn.geomap.createTable(index, layer.title, layer.caption, opts);
 					
 					if (layer.type=='kml') {	
 						var olLayer = new OpenLayers.Layer.Vector(
@@ -845,40 +854,35 @@
 										
 										var row, feature, atts = {}, features = [];
 												
-												for (var i = 0; i < items.length; i++) {												
-													row = items[i];			
-																									
-													feature = new OpenLayers.Feature.Vector();														
-																									
-													feature.geometry = this.parseFeature(row).geometry;
-													
-													// parse and store the attributes
-													atts = {};
-													var a = layer.attributes;
-													
-													// TODO: test on nested attributes
-													for (var name in a) {
-														if (a.hasOwnProperty(name)) {
-															 atts[a[name]] = $(row).find(name).text();														
-														}
-													}
-													
-													feature.attributes = atts;												
+											for (var i = 0; i < items.length; i++) {												
+												row = items[i];			
+																								
+												feature = new OpenLayers.Feature.Vector();														
+																								
+												feature.geometry = this.parseFeature(row).geometry;
 												
-													// if no geometry, don't add it
-													//if (feature.geometry) {
-														features.push(feature);
-													//}
-												} 
-												return features;
-									}
+												// parse and store the attributes
+												atts = {};
+												var a = layer.attributes;
+												
+												// TODO: test on nested attributes
+												for (var name in a) {
+													if (a.hasOwnProperty(name)) {
+														 atts[a[name]] = $(row).find(name).text();														
+													}
+												}
+												
+												feature.attributes = atts;
+												features.push(feature);
+											} 
+											return features;
+										}
 									})
 								}),
 								eventListeners: {
 									"featuresadded": function (evt) {	
 										pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom);
-									}
-									
+									}									
 								},
 								styleMap: pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
 							}
@@ -918,12 +922,8 @@
 														}
 													}
 													
-													feature.attributes = atts;												
-												
-													// if no geometry, don't add it
-													//if (feature.geometry) {
-														features.push(feature);
-													//}
+													feature.attributes = atts;
+													features.push(feature);
 												} 
 												return features;
 											}
@@ -940,7 +940,7 @@
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
-						pe.fn.geomap.createTable(olLayer);						
+						//pe.fn.geomap.createTable(olLayer, opts);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);						
 					} else if (layer.type=='georss') {
 						var olLayer = new OpenLayers.Layer.Vector(
@@ -1004,7 +1004,7 @@
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
-						pe.fn.geomap.createTable(olLayer);						
+						//pe.fn.geomap.createTable(olLayer, opts);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
 					} else if (layer.type=='json') {
 						var olLayer = new OpenLayers.Layer.Vector( 
@@ -1057,7 +1057,7 @@
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
-						pe.fn.geomap.createTable(olLayer);						
+						//pe.fn.geomap.createTable(olLayer, opts);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);					
 					} else if (layer.type=='geojson') {						
 						var olLayer = new OpenLayers.Layer.Vector( 
@@ -1110,7 +1110,7 @@
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
-						pe.fn.geomap.createTable(olLayer);						
+						//pe.fn.geomap.createTable(olLayer, opts);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
 					}					
 				});
@@ -1270,7 +1270,7 @@
 			
 			// Check to see if a legend container is provided			
 			if($(".wet-boew-geomap-legend").length == 0 && $(".wet-boew-geomap").hasClass("debug")) {		
-				$("div#wb-main-in").prepend('<div class="module-alert span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
+				$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
 			}	
 		},
 		
@@ -1329,8 +1329,7 @@
 //			if (pe.mobile) {
 //				return _pe.fn.geomap.mobile(elm).trigger('create');
 //			}
-			var opts,
-				overrides,		
+			var opts, overrides;	
 			
 			// Defaults
 			opts = {
@@ -1346,7 +1345,8 @@
 				useLayerSwitcher: false,
 				useScaleLine: false,
 				useMousePosition: false,
-				debug: false
+				debug: false,
+				useDataTable: false
 			};			
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
@@ -1354,7 +1354,8 @@
 				useLayerSwitcher: elm.hasClass('layerswitcher') ? true : undefined,
 				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
 				useMousePosition: elm.hasClass('position') ? true : undefined,
-				debug: elm.hasClass('debug') ? true : false
+				debug: elm.hasClass('debug') ? true : false,
+				useDataTable: elm.hasClass('datatable') ? true : false
 			};			
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
@@ -1422,7 +1423,7 @@
 			selectControl = new OpenLayers.Control.SelectFeature();			
 			
 			// Add overlay data
-			pe.fn.geomap.addOverlayData(wet_boew_geomap);		
+			pe.fn.geomap.addOverlayData(wet_boew_geomap, opts);		
 						
 			// Add tabular data
 			pe.fn.geomap.addTabularData(opts, projLatLon, projMap);

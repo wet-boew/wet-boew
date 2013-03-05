@@ -105,7 +105,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="span-8">
     <div class="span-6 row-start">
         <div 
-            class="wet-boew-geomap span-6 border-all position scaleline" 
+            class="wet-boew-geomap span-6 border-all position scaleline datatable" 
             data-wet-boew="{ 
                 layersFile: 'data/config-en.js', 
                 tables: [ { id: 'cities', zoom: true, style: { type: 'rule', rule: [{field: 'Population 2011',value: [1000000],filter: 'LESS_THAN', init: {'strokeColor': '#0083f5', 'fillColor': '#57a8f0', 'pointRadius': '6', 'fillOpacity': 0.80, 'strokeWidth': 1.0}},
@@ -117,10 +117,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
         </div>
     </div>
     <div class="span-2 row-end">
-        <h2 class="background-accent">Legend</h2>
-        <div class="module">
-            <div class="wet-boew-geomap-legend"></div>
-        </div>
+        <h2>Legend</h2>        
+        <div class="wet-boew-geomap-legend"></div>        
     </div>
     <div class="clear"></div>
 	<div id="wet-boew-geomap-layers" class="wet-boew-tabbedinterface">
@@ -129,7 +127,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 		</ul>
 		<div class="tabs-panel">
 			<div id="tabs1_1">
-                <table id="cities" aria-label="Cities" class="span-8">
+                <table id="cities" aria-label="Cities" class="wet-boew-tables">
                     <caption>This is a sample layer created from a table in the current document. A column with cells containing geometry encoded in WKT and marked up with a class named <em>geometry</em> is required. To link the layer features in the table to the map a column containing cells marked up with a class named <em>select</em> is required.</caption>
                     <thead>
                         <tr>
@@ -137,6 +135,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
                             <th>Census subdivision</th>                            
                             <th>Population 2011</th>
                             <th class="wb-invisible">Geometry</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -200,8 +199,16 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
                             <td>519949</td>
                             <td class="geometry wb-invisible">POINT (-79.86788, 43.25717)</td>
                         </tr>
-                    </tbody
-                    <tfoot></tfoot>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Census subdivision</th>                            
+                            <th>Population 2011</th>
+                            <th class="wb-invisible">Geometry</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
                 </table>
 			</div>			
 		</div>
