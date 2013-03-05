@@ -15,7 +15,7 @@
 	/* local reference */
 	_pe.fn.menubar = {
 		type : 'plugin',
-		depends : (_pe.mobile ? [] : ['hoverintent', 'outside']),
+		depends : (_pe.mobile ? [] : ['hoverintent']),
 		ignoreMenuBarClicks : false,
 		_exec : function (elm) {
 			/*
@@ -79,10 +79,10 @@
 			};
 			/* hide all the submenus */
 			hideallsubmenus = function () {
-				$menu.find('.mb-sm-open').each(function () {
-					var _menu = $(this).closest('li');
-					return hidesubmenu(_menu);
-				});
+				var _opensm = $menu.find('.mb-sm-open');
+				if (_opensm.length !== 0) {
+					return hidesubmenu(_opensm.closest('li'));
+				}
 				return;
 			};
 			/* function to correct the height of the menu on resize */
@@ -163,7 +163,7 @@
 			correctheight();
 
 			// Handles opening and closing of a submenu on click of a menu bar item but prevents any changes on click of the empty area in the submenu
-			$scope.find('.mb-sm').on('click vclick touchstart', function (event) {
+			$scope.on('click vclick touchstart focusin', function (event) {
 				if (event.stopPropagation) {
 					event.stopPropagation();
 				} else {
@@ -365,10 +365,7 @@
 					}
 				}
 			});
-			_pe.document.on('click vclick touchstart', function () {
-				$scope.trigger('focusoutside');
-			});
-			$scope.on('focusoutside', function () {
+			_pe.document.on('click vclick touchstart focusin', function () {
 				return hideallsubmenus();
 			});
 
