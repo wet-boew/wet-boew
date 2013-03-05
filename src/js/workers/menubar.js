@@ -15,7 +15,7 @@
 	/* local reference */
 	_pe.fn.menubar = {
 		type : 'plugin',
-		depends : (_pe.mobile ? [] : ['resize', 'hoverintent', 'outside']),
+		depends : (_pe.mobile ? [] : ['hoverintent', 'outside']),
 		ignoreMenuBarClicks : false,
 		_exec : function (elm) {
 			/*
@@ -372,7 +372,7 @@
 					}
 				}
 			});
-			$(document).on('click vclick touchstart', function () {
+			_pe.document.on('click vclick touchstart', function () {
 				$scope.trigger('focusoutside');
 			});
 			$scope.on('focusoutside', function () {
