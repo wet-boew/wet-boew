@@ -641,7 +641,7 @@
 				
 			// add zoom column
 			if ( zoomColumn == true) {						
-				$tr.append('<td></td>').find('td:last').append(pe.fn.geomap.addZoomTo($tr, feature))
+				$tr.append('<td></td>').find('td:last').append(pe.fn.geomap.addZoomTo($tr, feature));
 			}
 																					
 			var $select = $tr.find('td.select');						
@@ -1148,6 +1148,10 @@
 						attr[index] = attribute.textContent;
 					}
 				});
+				
+				// If zoom to add th
+				if (opts.tables[index].zoom) $table.find('thead').find('tr').append('<th></th>');
+				if (opts.tables[index].zoom) $table.find('tfoot').find('tr').append('<th></th>');
 				
 				// Loop trought each row
 				$.each($("table#" + table.id + ' tr'), function(index, row) {
