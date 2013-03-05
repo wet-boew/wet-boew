@@ -264,13 +264,20 @@
 		/* 
 		 * Create a table for vector features added in Load Overlays
 		 */
-		createTable: function(index, title, caption) {
+		createTable: function(index, title, caption, opts) {
 
-			var $table = $('<table>', { 'style': 'width:100%' }); 
+			var $table = $('<table>'); //, { 'style': 'width:100%' }); 
+			
+			if(opts.useDataTable) {
+				$table.addClass('wet-boew-tables');
+			} else {
+				$table.css('width', '100%');
+			}
 			
 			$table.attr('aria-label', title);
 			$table.attr('id', "overlay_" + index);
-			$table.append('<caption>' + caption + '</caption>', '<thead>', '<tbody>');						
+			$table.append('<caption>' + caption + '</caption>', '<thead>', '<tbody>');
+			if(opts.useDataTable) $table.append('<tfoot>');
 			
 			return $table;	
 		},		
@@ -821,14 +828,14 @@
 		/*
 		 *	Add overlay data
 		 */
-		addOverlayData: function(wet_boew_geomap){
+		addOverlayData: function(wet_boew_geomap, opts){
 			
 			if (typeof(wet_boew_geomap) != "undefined")
 			{			
 			if(wet_boew_geomap.overlays){				
 				$.each(wet_boew_geomap.overlays, function(index, layer) {	
 					
-					var $table = pe.fn.geomap.createTable(index, layer.title, layer.caption);
+					var $table = pe.fn.geomap.createTable(index, layer.title, layer.caption, opts);
 					
 					if (layer.type=='kml') {	
 						var olLayer = new OpenLayers.Layer.Vector(
@@ -933,7 +940,7 @@
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
-						pe.fn.geomap.createTable(olLayer);						
+						//pe.fn.geomap.createTable(olLayer, opts);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);						
 					} else if (layer.type=='georss') {
 						var olLayer = new OpenLayers.Layer.Vector(
@@ -997,7 +1004,7 @@
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
-						pe.fn.geomap.createTable(olLayer);						
+						//pe.fn.geomap.createTable(olLayer, opts);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
 					} else if (layer.type=='json') {
 						var olLayer = new OpenLayers.Layer.Vector( 
@@ -1050,7 +1057,7 @@
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
-						pe.fn.geomap.createTable(olLayer);						
+						//pe.fn.geomap.createTable(olLayer, opts);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);					
 					} else if (layer.type=='geojson') {						
 						var olLayer = new OpenLayers.Layer.Vector( 
@@ -1103,7 +1110,7 @@
 						olLayer.visibility=layer.visible;
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);						
-						pe.fn.geomap.createTable(olLayer);						
+						//pe.fn.geomap.createTable(olLayer, opts);						
 						pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id);
 					}					
 				});
@@ -1338,7 +1345,8 @@
 				useLayerSwitcher: false,
 				useScaleLine: false,
 				useMousePosition: false,
-				debug: false
+				debug: false,
+				useDataTable: false
 			};			
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
@@ -1346,7 +1354,8 @@
 				useLayerSwitcher: elm.hasClass('layerswitcher') ? true : undefined,
 				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
 				useMousePosition: elm.hasClass('position') ? true : undefined,
-				debug: elm.hasClass('debug') ? true : false
+				debug: elm.hasClass('debug') ? true : false,
+				useDataTable: elm.hasClass('datatable') ? true : false
 			};			
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
@@ -1414,7 +1423,7 @@
 			selectControl = new OpenLayers.Control.SelectFeature();			
 			
 			// Add overlay data
-			pe.fn.geomap.addOverlayData(wet_boew_geomap);		
+			pe.fn.geomap.addOverlayData(wet_boew_geomap, opts);		
 						
 			// Add tabular data
 			pe.fn.geomap.addTabularData(opts, projLatLon, projMap);
