@@ -192,7 +192,7 @@
 						// a simple href anchor link doesnt seem to place focus inside the input
 						if (pe.ie === 0 || pe.ie > 7) {
 							form.find('.errorContainer a').on('click vclick', function () {
-								var label_top = pe.focus($($(this).attr("href"))).prev().offset().top;
+								var label_top = pe.focus($($(this).attr('href'))).prev().offset().top;
 								if (pe.mobile) {
 									$.mobile.silentScroll(label_top);
 								} else {
