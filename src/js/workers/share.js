@@ -14,10 +14,10 @@
 	/* local reference */
 	_pe.fn.share = {
 		type : 'plugin',
-		depends : ['metadata', 'bookmark', 'outside'],
 		ignoreFocusoutside : false,
+		depends : ['metadata', 'bookmark'],
 		_exec : function (elm) {
-			var opts, overrides, $popup, popupDOM, $popupText, $popupLinks, popupLink, popupLinksLen, popupLinkSpan, leftoffset, keychar, elmtext, matches, match;
+			var opts, overrides, $popup, popupDOM, $popupText, popupLinkListDOM, $popupLinks, popupLinksDOM, popupLink, popupLinksLen, popupLinkSpan, match;
 
 			// Defaults
 			opts = {
@@ -78,11 +78,18 @@
 					elm.wrapInner('<section />');
 				}
 				$popup = elm.find('.bookmark_popup').detach();
-				$popup.attr({'id': 'bookmark_popup', 'aria-hidden': 'true', 'role': 'menu'}).prepend('<p class="popup_title">' + opts.popupText + '</p>');
-				$popupLinks = $popup.find('ul').attr('role', 'presentation').find('a').get();
-				popupLinksLen = $popupLinks.length;
+				popupDOM = $popup[0];
+				popupDOM.setAttribute('id', 'bookmark_popup');
+				popupDOM.setAttribute('aria-hidden', 'true');
+				popupDOM.setAttribute('role', 'menu');
+				$popup.prepend('<p class="popup_title">' + opts.popupText + '</p>');
+				popupLinkListDOM = popupDOM.getElementsByTagName('ul')[0];
+				popupLinkListDOM.setAttribute('role', 'presentation');
+				popupLinksDOM = popupLinkListDOM.getElementsByTagName('a');
+				$popupLinks = $(popupLinksDOM);
+				popupLinksLen = popupLinksDOM.length;
 				while (popupLinksLen--) {
-					popupLink = $popupLinks[popupLinksLen];
+					popupLink = popupLinksDOM[popupLinksLen];
 					popupLink.setAttribute('role', 'menuitem');
 					popupLink.setAttribute('rel', 'external');
 					popupLink.parentNode.setAttribute('role', 'presentation');
@@ -132,10 +139,18 @@
 						return false;
 					}
 				});
-				$popup.on('keydown focusoutside open close closenofocus mouseenter mouseleave', function (e) {
+
+				$popup.on('keydown open close closenofocus focusin mouseenter mouseleave', function (e) {
 					var type = e.type,
 						keyCode = e.keyCode,
-						target;
+						target,
+						leftoffset,
+						keychar,
+						matches,
+						match,
+						len,
+						i,
+						elmtext;
 					if (type === 'keydown') {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 							target = $(e.target);
@@ -150,22 +165,22 @@
 								pe.focus(target.last());
 								return false;
 							} else if (keyCode === 38) { // up arrow (go one link up, or to the bottom-most link in the previous column, or to the bottom-most link of the last column)
-								leftoffset = target.offset().left;
+								leftoffset = e.target.offsetLeft;
 								target = target.closest('li').prevAll().find('a').filter(function () {
-									return ($(this).offset().left === leftoffset);
+									return (this.offsetLeft === leftoffset);
 								});
 								if (target.length > 0) {
 									pe.focus(target.first());
 								} else {
 									target = $popupLinks.filter(function () {
-										return ($(this).offset().left < leftoffset);
+										return (this.offsetLeft < leftoffset);
 									});
 									if (target.length > 0) {
 										pe.focus(target.last());
 									} else {
-										leftoffset = $popupLinks.last().offset().left;
+										leftoffset = popupLinksDOM[popupLinksDOM.length - 1].offsetLeft;
 										target = $popupLinks.filter(function () {
-											return ($(this).offset().left > leftoffset);
+											return (this.offsetLeft > leftoffset);
 										});
 										if (target.length > 0) {
 											pe.focus(target.last());
@@ -183,15 +198,15 @@
 								pe.focus(target.first());
 								return false;
 							} else if (keyCode === 40) { // down arrow (go one link down, or to the top-most link in the next column, or to the top-most link of the first column)
-								leftoffset = target.offset().left;
+								leftoffset = e.target.offsetLeft;
 								target = target.closest('li').nextAll().find('a').filter(function () {
-									return ($(this).offset().left === leftoffset);
+									return (this.offsetLeft === leftoffset);
 								});
 								if (target.length !== 0) {
 									pe.focus(target.first());
 								} else {
 									target = $popupLinks.filter(function () {
-										return ($(this).offset().left > leftoffset);
+										return (this.offsetLeft > leftoffset);
 									});
 									if (target.length !== 0) {
 										pe.focus(target.first());
@@ -206,19 +221,19 @@
 									keychar = String.fromCharCode(keyCode).toLowerCase();
 									elmtext = target.text();
 									matches = $popupLinks.filter(function () {
-										var $this = $(this);
-										return ($this.text().substring(1, 2).toLowerCase() === keychar || $this.text() === elmtext);
+										return ($(this).text().substring(1, 2).toLowerCase() === keychar);
 									});
 									if (matches.length !== 0) {
-										if (target.hasClass('bookmark_popup_text')) {
+										if (target.hasClass('bookmark_popup_text') || elmtext.substring(1, 2).toLowerCase() !== keychar) {
 											pe.focus(matches.eq(0));
 										} else {
-											matches.each(function (index) {
-												if ($(this).text() === elmtext) {
-													match = index;
-													return false;
+											match = matches.length;
+											for (i = 0, len = match; i !== len; i += 1) {
+												if (matches.eq(i).text() === elmtext) {
+													match = i;
+													break;
 												}
-											});
+											}
 											if (match < (matches.length - 1)) {
 												pe.focus(matches.eq(match + 1));
 												return false;
@@ -230,30 +245,26 @@
 								}
 							}
 						}
-					} else if (type === 'click' || type === 'vclick' || type === 'touchstart') {
+					} else if (type === 'click' || type === 'vclick' || type === 'touchstart' || type === 'focusin') {
 						if (e.stopPropagation) {
 							e.stopImmediatePropagation();
 						} else {
 							e.cancelBubble = true;
 						}
-					} else if (type === 'open') { // Open the popup menu an put the focus on the first link
+					} else if (e.type === 'open') { // Open the popup menu and put the focus on the first link
 						$popupText.text(opts.hideText + opts.popupText);
-						$popup.attr('aria-hidden', 'false').show();
-						pe.focus($popup.show().find('li a').first());
-					} else if (type === 'close' || type === 'closenofocus') { // Close the popup menu
+						$popup.attr('aria-hidden', 'false').addClass('show');
+						pe.focus($popup.find('li a').first());
+					} else if (e.type === 'close' || e.type === 'closenofocus') { // Close the popup menu
 						$popupText.text(opts.popupText);
-						$popup.attr('aria-hidden', 'true').hide();
-						if (type === 'close') {
+						$popup.attr('aria-hidden', 'true').removeClass('show');
+						if (e.type === 'close') {
 							pe.focus($popupText.first());
 						}
 					} else if (type === 'mouseenter') { // Mouse hover so ignore focusoutside event
 						_pe.fn.share.ignoreFocusoutside = true;
 					} else if (type === 'mouseleave') {
 						_pe.fn.share.ignoreFocusoutside = false;
-					} else if (type === 'focusoutside' && !$(e.target).is($popupText)) { // Close the popup menu if focus goes outside
-						if (!_pe.fn.share.ignoreFocusoutside && $popup.attr('aria-hidden') === 'false') {
-							$popup.trigger('closenofocus');
-						}
 					}
 				}).on('click vclick touchstart', 'a', function () { // Workaround for some touchscreen devices that don't 
 					window.open(this.href, '_blank');
@@ -261,9 +272,14 @@
 					return false;
 				});
 
-				_pe.document.on('click vclick touchstart', function () {
-					if ($popup.attr('aria-hidden') === 'false') {
-						$popup.trigger('close');
+				_pe.document.on('click vclick touchstart focusin', function (e) {
+					var className = e.target.className;
+					if (!_pe.fn.share.ignoreFocusoutside && $popup.attr('aria-hidden') === 'false' && (className === null || className.indexOf('bookmark_popup_text') === -1)) {
+						if (e.type === 'focusin') {
+							$popup.trigger('closenofocus');
+						} else {
+							$popup.trigger('close');
+						}
 					}
 				});
 			} else {
