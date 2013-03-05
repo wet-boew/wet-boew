@@ -104,6 +104,7 @@
 				len,
 				nodes,
 				node,
+				$document = $(document),
 				home_href,
 				header,
 				test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i),
@@ -315,7 +316,7 @@
 			}
 
 			// jQuery mobile has loaded
-			$(document).on('pagecreate', function () {
+			$document.on('pagecreate', function () {
 				var navbar = wet_boew_theme.gcnb.find('#gcwu-mnavbar'),
 					menu = pe.bodydiv.find('#jqm-mb-menu'),
 					menus,
@@ -366,7 +367,7 @@
 				$.mobile.transitionHandlers.loadingTransition = loadingTransition;
 				$.mobile.defaultDialogTransition = 'loadingTransition';
 			});
-			$(document).trigger('themeviewloaded');
+			$document.trigger('themeviewloaded');
 			return;
 		},
 

@@ -13,7 +13,7 @@
 	
 	_pe.fn.responsiveimg = {
 		type : 'plugin',
-		depends : ['picturefill', 'matchMedia', 'resize'],
+		depends : ['picturefill', 'matchMedia'],
 		_initialized : false,
 		_exec : function (elm) {	
 			var w = window;			

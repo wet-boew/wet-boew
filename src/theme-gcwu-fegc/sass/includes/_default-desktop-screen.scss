@@ -247,6 +247,8 @@ a {
 		border-left: 1px solid #fff;
 		@extend %gcwu-default-desktop-screen-display-block;
 		padding: 0 1em;
+		text-shadow: none;
+		font-weight: normal;
 	}
 	li {
 		&:first-child {
@@ -277,6 +279,7 @@ a {
 		font-size: 1.52em;
 		font-family: Arial, Helvetica, sans-serif;
 		text-shadow: 1px 1px 1px #333;
+		font-weight: normal;
 	}
 }
 
