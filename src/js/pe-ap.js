@@ -1830,7 +1830,7 @@
 						} else {
 							tabletcheck = pe.tabletcheck();
 							if (pe.tablet !== tabletcheck) {
-								$('html').toggleClass('tablet-view smartphone-view');
+								pe.html.toggleClass('tablet-view smartphone-view');
 							}
 							pe.tablet = tabletcheck;
 						}
