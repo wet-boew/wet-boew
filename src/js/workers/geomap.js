@@ -546,11 +546,14 @@
 				}
 			}			
 
-			if (zoomTo == true) {
+			if (zoomTo == true) {	
+				
 				var $zoom = $('<td>');
+				
 				cols.push($zoom);
 				$(cols[cols.length -1]).empty().append(pe.fn.geomap.addZoomTo($row, context.feature, context.selectControl)); 
-				}
+				
+			}
 				
 			if(context.type != 'head') {
 
@@ -604,6 +607,7 @@
 		onFeaturesAdded: function($table, evt, zoomTo) {
 
 			var $head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
+			if(zoomTo) $head.append($('<th>'));
 
 			$table.find('thead').append($head);
 			$.each(evt.features, function(index, feature) {												
