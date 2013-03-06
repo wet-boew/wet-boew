@@ -15,7 +15,7 @@
 	/* local reference */
 	_pe.fn.menubar = {
 		type : 'plugin',
-		depends : (_pe.mobile ? [] : ['resize', 'equalheights', 'hoverintent', 'outside']),
+		depends : (_pe.mobile ? [] : ['hoverintent']),
 		ignoreMenuBarClicks : false,
 		_exec : function (elm) {
 			/*
@@ -86,13 +86,13 @@
 			};
 			/* hide all the submenus */
 			hideallsubmenus = function () {
-				$menu.find('.mb-sm-open').each(function () {
-					var _menu = $(this).closest('li');
-					return hidesubmenu(_menu);
-				});
+				var _opensm = $menu.find('.mb-sm-open');
+				if (_opensm.length !== 0) {
+					return hidesubmenu(_opensm.closest('li'));
+				}
 				return;
 			};
-			/* function to correct the hieght of the menu on resize */
+			/* function to correct the height of the menu on resize */
 			correctheight = function () {
 				var _lastmenuli = $menu.children('li:last'),
 					newouterheight = (_lastmenuli.offset().top + _lastmenuli.outerHeight()) - $scope.offset().top;
@@ -170,7 +170,7 @@
 			correctheight();
 
 			// Handles opening and closing of a submenu on click of a menu bar item but prevents any changes on click of the empty area in the submenu
-			$scope.find('.mb-sm').on('click vclick touchstart', function (event) {
+			$scope.on('click vclick touchstart focusin', function (event) {
 				if (event.stopPropagation) {
 					event.stopPropagation();
 				} else {
@@ -208,7 +208,9 @@
 					elmtext,
 					matches,
 					match,
-					level;
+					level,
+					i,
+					len;
 				_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
 					return parseInt(n, 10);
 				});
@@ -259,14 +261,15 @@
 									var $this = $(this);
 									return ($this.text().substring(0, 1).toLowerCase() === keychar || (sublink && $this.text() === elmtext));
 								});
-								if (matches.length > 0) {
+								if (matches.length !== 0) {
 									if (sublink) {
-										matches.each(function (index) {
-											if ($(this).text() === elmtext) {
-												match = index;
-												return false;
+										match = matches.length;
+										for (i = 0, len = match; i !== len; i += 1) {
+											if (matches.eq(i).text() === elmtext) {
+												match = i;
+												break;
 											}
-										});
+										}
 										if (match < (matches.length - 1)) {
 											pe.focus(matches.eq(match + 1));
 											return false;
@@ -372,10 +375,7 @@
 					}
 				}
 			});
-			$(document).on('click vclick touchstart', function () {
-				$scope.trigger('focusoutside');
-			});
-			$scope.on('focusoutside', function () {
+			_pe.document.on('click vclick touchstart focusin', function () {
 				return hideallsubmenus();
 			});
 

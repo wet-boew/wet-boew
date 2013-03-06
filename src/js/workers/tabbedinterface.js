@@ -426,7 +426,7 @@
 					stopCycle();
 				}
 				
-				$(document).keyup(function (e) {
+				_pe.document.keyup(function (e) {
 					if (e.keyCode === 27) { // Escape	
 						if (elm.find('.tabs-toggle').data('state') === 'started') {
 							elm.find('.tabs .' + opts.tabActiveClass).focus();
@@ -461,7 +461,7 @@
 			
 			// Setup sliding panel behaviour
 			if (isSlider()) {	
-				$(window).resize(positionPanels);
+				_pe.window.resize(positionPanels);
 				positionPanels();
 
 				// Override the tab transition with our slide animation

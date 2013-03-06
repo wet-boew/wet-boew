@@ -196,6 +196,17 @@ a {
 	@extend %gcwu-default-desktop-screen-float-right;
 	@extend %gcwu-default-desktop-screen-margin-left-10;
 	@extend %gcwu-default-desktop-screen-margin-right-10;
+	img {
+		width: 100%;
+		height: auto;
+		-ms-interpolation-mode: bicubic;
+	}
+	.gcwu-minister-img {
+		img {
+			width: auto !important;
+			height: auto;
+		}
+	}
 }
 
 #gcwu-date-mod {
@@ -247,6 +258,8 @@ a {
 		border-left: 1px solid #fff;
 		@extend %gcwu-default-desktop-screen-display-block;
 		padding: 0 1em;
+		text-shadow: none;
+		font-weight: normal;
 	}
 	li {
 		&:first-child {
@@ -277,6 +290,7 @@ a {
 		font-size: 1.52em;
 		font-family: Arial, Helvetica, sans-serif;
 		text-shadow: 1px 1px 1px #333;
+		font-weight: normal;
 	}
 }
 

@@ -28,6 +28,20 @@
 	@extend %grids-util-mobile-smartphone-margin-left-0;
 }
 
+#wb-main-in {
+	padding: 0 5px;
+}
+
+.clear {
+	clear: both;
+	display: block;
+	height: 0;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	margin: 0;
+}
+
 .float-right {
 	@extend %grids-util-mobile-smartphone-float-none-important;
 }
@@ -46,6 +60,7 @@ blockquote {
 }
 
 [class*=span-] {
+	position: relative;
 	margin-bottom: 10px;
 }
 
