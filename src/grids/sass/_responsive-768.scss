@@ -76,6 +76,10 @@ table {
 	@extend %grids-responsive-768-margin-left-0-margin-right-0;
 }
 
+details {
+	@extend %grids-responsive-768-margin-left-0-margin-right-0;
+}
+
 [class*=span-] {
 	@extend %grids-responsive-768-margin-left-0-margin-right-0;
 	&:first-child {
