@@ -45,6 +45,8 @@
 			@extend %gcwu-default-screen-wmms-sig-display-none;
 		}
 	}
+%gcwu-default-screen-font-arial {
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -242,7 +244,7 @@ body {
 
 #gcwu-sft {
 	padding-bottom: 20px;
-	font-family: Arial, Helvetica, sans-serif;
+	@extend %gcwu-default-screen-font-arial;
 	%gcwu-default-screen-color-222 {
 		color: #222;
 	}
@@ -305,7 +307,7 @@ body {
 
 #gcwu-gcft {
 	background: #040707;
-	font-family: Arial, Helvetica, sans-serif;
+	@extend %gcwu-default-screen-font-arial;
 	ul {
 		list-style-type: none;
 		margin: 0;
@@ -337,7 +339,7 @@ body {
 }
 
 #gcwu-gcft-ca {
-	font-family: Arial, Helvetica, sans-serif;
+	@extend %gcwu-default-screen-font-arial;
 	float: right !important;
 	padding-left: 0;
 	margin-right: 0;
