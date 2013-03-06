@@ -40,3 +40,15 @@ a {
 #wb-main, #wb-sec, #wb-sup {
 	min-height: 0 !important;
 }
+
+.page-break-before {
+	display: block;
+	page-break-before: always;
+	page-break-inside: avoid;
+}
+
+.page-break-after {
+	display: block;
+	page-break-after: always;
+	page-break-inside: avoid;
+}
