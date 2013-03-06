@@ -9,7 +9,6 @@ body {
 	font-size: 80%;
 	margin: 0;
 	padding: 0;
-	@extend %wb-verdana-font;
 }
 
 a {
@@ -38,17 +37,8 @@ table {
 	border-spacing: 0;
 }
 
-%wb-verdana-font {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-}
-
 textarea, input {
-	@extend %wb-verdana-font;
 	font-size: 100%;
-}
-
-select {
-	@extend %wb-verdana-font;
 }
 
 pre, code, kbd, samp, tt {
@@ -63,12 +53,6 @@ address {
 #{headings(all)} {
 	font-weight: 700;
 	margin: 1em 0 0.25em;
-}
-
-#wb-main {
-	#{headings(all)} {
-		font-family: sans-serif;
-	}
 }
 
 h1 {
