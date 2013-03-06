@@ -57,6 +57,7 @@
 		    type: 'kml',
 		    url: 'data/sample.kml',		   
 		    visible: false,
+		    datatable: true,
 		    attributes: {
 		    	name: 'Product Title',
 		    	description: 'Description'
@@ -118,7 +119,8 @@
 				updated_at: 'Last updated'
 			},
 			visible: true,	
-			zoom:  true,		
+			zoom:  true,
+			datatable: true,		
 			 // default style			
 			 style: {
 				 type: 'symbol',
