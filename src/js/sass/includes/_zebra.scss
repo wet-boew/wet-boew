@@ -76,17 +76,6 @@ ol {
 	}
 }
 
-table {
-	&.wet-boew-zebra {
-		&, table {
-			background-color: #fff;
-			border: 1px solid #ccc;
-			border-collapse: collapse;
-			margin-bottom: 10px;
-			margin-top: 10px;
-		}
-	}
-}
 
 dl {
 	&.wet-boew-zebra {
@@ -95,34 +84,9 @@ dl {
 }
 
 .wet-boew-zebra {
-	/*li, dt, dd {
-		&.list-odd {
-			background-color: #ddd;
-			border: 1px solid #ccc;
-		}
-		&.list-even {
-			background-color: #eee;
-			border: 1px solid #ccc;
-		}
-		&.list-hover {
-			background-color: #f0fcff;
-		}
-	}
-	&.alterwg {
-		li, dt, dd {
-			&.list-odd {
-				background-color: #ddd;
-				border: none;
-			}
-			&.list-even {
-				background-color: #fff;
-				border: none;
-			}
-			&.list-hover {
-				background-color: #f0fcff;
-			}
-		}
-	}*/
+	
+	
+	/* Definition list Zebra Stripping */
 	dt, dd {
 		padding: 10px;
 		border: none;
@@ -135,95 +99,95 @@ dl {
 		margin-top: 2px;
 	}
 
-	&.nomargin {
-		margin: 0;
-	}/*
-	tr {
-		&.table-odd, &.table-even tr.table-odd {
+	dt, dd {
+		&.list-odd {
+			background-color: #ddd;
+			border: 1px solid #ccc;
+		}
+		&.list-even {
+			background-color: #eee;
+			border: 1px solid #ccc;
+		}
+		&.list-hover, &:hover {
 			background-color: #f0fcff;
 		}
-		&.table-even, &.table-odd tr.table-even {
-			background-color: transparent;
-		}
-		&.table-hover {
-			td {
-				background-color: #eee;
-			}
-		}
-	}*/
-	th {
-	/*
-		background-color: #eee;
-		border: 1px solid #ccc;
-		color: #333;
-		text-align: center;
-		padding: 8px;
-		*/
-		
-		
-		
-		/*
-		 * I am not sure if we would like to style the cell header group, need to discuss
-		 *
-		&.table-headgroupcol1, &.table-headgrouprow1 {
-			background-color: #CCC;
-		}
-		&.table-headgroupcol2, &.table-headgrouprow2 {
-			background-color: #AAA;
-		}
-		&.table-headgroupcol3, &.table-headgrouprow3 {
-			background-color: #999;
-		}
-		*/
-		/*&.table-hover {
-			background-color: lightgray;*/
-			/*
-			&.table-summaryrow0 {
-				background-color: #eee;
-			}
-			*/
-		/*}*/
-
 	}
+	
+	
+	/* No Margin on Zebra list  */
+	
+	&.nomargin {
+		margin: 0;
+	}
+	
+	/* Ordered and Unordered list Zebra Stripping */
+	
+	li {
+		&.list-odd, &:nth-child(2n) {
+			background-color: #ddd;
+			border: 1px solid #ccc;
+		}
+		&.list-even, &:nth-child(2n + 1) {
+			background-color: #eee;
+			border: 1px solid #ccc;
+		}
+		&.list-hover, &:hover {
+			background-color: #f0fcff;
+		}
+	}
+	
+	
+	/* Style Alterwg (Alternate White Gray zebra stripping) */
+	&.alterwg {
+		li {
+			&.list-odd, &:nth-child(2n) {
+				background-color: #ddd;
+				border: none;
+			}
+			&.list-even, &:nth-child(2n + 1) {
+				background-color: #fff;
+				border: none;
+			}
+		}
+
+		dt, dd {
+			&.list-odd {
+				background-color: #ddd;
+				border: none;
+			}
+			&.list-even {
+				background-color: #fff;
+				border: none;
+			}
+		}
+		
+		&.zebra-hover {
+			li, dt, dd {
+				&.list-hover, &:hover {
+					background-color: #f0fcff;
+				}
+			}
+		}
+	}
+	
+	li li {
+		background-color: transparent;
+	}
+	
+	
+	/* Table Zebra Stripping */
+	
+	
 	td {
-		/*border: 1px solid #ccc;
-		vertical-align: top;
-		padding: 5px 10px;*/
 		
-		
-		/* Advance Zebra */
-		&.table-keycell {
-			font-style: italic;
+		&.table-summary {
+			background-color: #f0fcff;
+		}
+		&.table-keycell, &.table-desccell {
 			padding: 8px;
-			background-color: #FFF;
 		}
 		&.table-desccell {
 			font-style: italic;
-			padding: 8px;
-			background-color: #F4F4F4;
-		}
-		&.table-summarycol3, &.table-summaryrow3 {
-			background-color: #FAFAFA;
-		}
-		&.table-summarycol2, &.table-summaryrow2 {
-			background-color: #F4F4F4;
-		}
-		&.table-summarycol1, &.table-summaryrow1 {
-			background-color: #EEE;
-		}
-		&.table-summarycol0, &.table-summaryrow0 {
-			background-color: #DDD;
-		}
-	}
-	th {
-		&.table-summarycol0, &.table-summaryrow0 {
-			background-color: #DDD;
-		}
-	}
-
-	tfoot {
-		td {
-			background-color: #DDD;
 		}
 	}
 
@@ -242,51 +206,8 @@ dl {
 			background-color: white;
 		}
 	}
-	col {
-	/*
-		&.table-odd {
-			background-color: #f0fcff;
-		}
-		&.table-even {
-			background-color: transparent;
-		}
-		&.table-hover {
-			background-color: #eee;
-		}
-		*/
-	}
 	
-	li {
-		&.list-odd, &:nth-child(2n) {
-			background-color: #ddd;
-			border: 1px solid #ccc;
-		}
-		&.list-even, &:nth-child(2n + 1) {
-			background-color: #eee;
-			border: 1px solid #ccc;
-		}
-		&.list-hover, &:hover {
-			background-color: #f0fcff;
-		}
-	}
-	dt, dd {
-		&.list-odd {
-			background-color: #ddd;
-			border: 1px solid #ccc;
-		}
-		&.list-even {
-			background-color: #eee;
-			border: 1px solid #ccc;
-		}
-		&.list-hover, &:hover {
-			background-color: #f0fcff;
-		}
-	}
-	
-	
-	
-	/* Zebra Stripping with CSS 3 and fallback on css class */
-	
+
 	&.colzebra {
 	  colgroup {
 	     col { 
@@ -310,7 +231,10 @@ dl {
 	
     }
 	
-	/* TODO Apply custom Table Styling, like for a row */
+	tr.table-summary, tbody.table-summary tr, colgroup col.table-summary, colgroup.table-summary, tfoot tr {
+		background-color: #f0fcff; /* Summary Row/Col highligth */
+	}
+
 	&.columnhighlight {
 		colgroup {
 			col.table-hover {
@@ -322,37 +246,62 @@ dl {
 			background-color: #CCCCCC;
 		}
 		
+		&.table-accent th.table-hover {
+			background-color: #555555;
+		}
+		
+		&.table-medium th.table-hover {
+			background-color: #222222
+		}
+		&.table-dark th.table-hover {
+			background-color: #666666;
+		}
+		
+		&.table-simplify th.table-hover {
+			background-color: transparent;
+		}
 	}
 	
+	
 	&.rowhover {
-		tbody {
-			tr:hover, tr.table-hover {
+		tbody, tfoot {
+			tr:hover, tr.table-hover, 
+			tr:hover td.table-keycell, tr.table-hover td.table-keycell, 
+			tr:hover td.table-desccell, tr.table-hover td.table-desccell,
+			tr:hover td.table-layoutCell, tr.table-hover td.table-layoutCell,
+			tr:hover th.table-layoutCell, tr.table-hover th.table-layoutCell  {
 				background-color: #eee;
 			}
 			
 			tr:hover th, tr.table-hover th {
 				background-color: #CCCCCC;
 			}
+			/*
+			 * White cell at the mouse intersection
+			tr:hover td:hover {
+				background-color:#FFFFFF;
+			}
+			*/
 		}
 		
-		&.table-accent tbody {
+		&.table-accent tbody, &.table-accent tfoot {
 			tr:hover th, tr.table-hover th  {
 				background-color: #555555;
 			}
 		}
 		
-		&.table-medium tbody {
+		&.table-medium tbody, &.table-medium tfoot {
 			tr:hover th, tr.table-hover th {
 				background-color: #222222
 			}
 		}
-		&.table-dark tbody {
+		&.table-dark tbody, &.table-dark tfoot {
 			tr:hover th, tr.table-hover th {
 				background-color: #666666;
 			}
 		}
 		
-		&.table-simplify tbody tr th {
+		&.table-simplify tbody tr th, &.table-simplify tfoot tr th {
 			background-color: transparent;
 		}
 	}

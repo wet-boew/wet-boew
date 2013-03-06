@@ -50,20 +50,27 @@
 			// Summary Cell
 			if (tblparser.row) {
 				for (i = 0; i < tblparser.row.length; i += 1) {
+					/*
 					for (j = 0; j < tblparser.row[i].cell.length; j += 1) {
 						if (tblparser.row[i].cell[j].type === 3) {
 							if (tblparser.row[i].cell[j].col.type === 3) {
-								$(tblparser.row[i].cell[j].elem).addClass('table-summarycol' + tblparser.row[i].cell[j].collevel); // collevel is a number
+								$(tblparser.row[i].cell[j].elem).addClass('table-summary'); // collevel is a number
 							}
 							if (tblparser.row[i].type === 3) {
-								$(tblparser.row[i].cell[j].elem).addClass('table-summaryrow' + tblparser.row[i].cell[j].rowlevel); // rowlevel is a number
+								$(tblparser.row[i].cell[j].elem).addClass('table-summary'); // rowlevel is a number
 								if (tblparser.row[i].level === 0 && tblparser.row[i].header.elem) {
 									// Special case for heading in that row
-									$(tblparser.row[i].header.elem).addClass('table-summaryrow' + tblparser.row[i].cell[j].rowlevel); // rowlevel is a number
+									$(tblparser.row[i].header.elem).addClass('table-summary'); // rowlevel is a number
 								}
 							}
 						}
+					}*/
+					
+					// Add a class to the row
+					if (tblparser.row[i].type === 3) {
+						$(tblparser.row[i].elem).addClass('table-summary');
 					}
+					
 					// Summary group styling
 					if (tblparser.row[i].type && tblparser.row[i].type === 3 && tblparser.row[i].rowgroup.elem && i > 0 && tblparser.row[i - 1].type && tblparser.row[i - 1].type === 3 && tblparser.row[i - 1].rowgroup.uid !== tblparser.row[i].rowgroup.uid) {
 						$(tblparser.row[i].rowgroup.elem).addClass('table-rowgroupmarker');
@@ -81,6 +88,11 @@
 			// Data Column Group
 			if (tblparser.colgroup) {
 				for (i = 0; i < tblparser.colgroup.length; i += 1) {
+					
+					if(tblparser.colgroup[i].type === 3) {
+						$(tblparser.colgroup[i].elem).addClass('table-summary');
+					}
+					
 					if (tblparser.colgroup[i].elem && ((i > 0 && tblparser.colgroup[i].type === 3 && tblparser.colgroup[i - 1].type === 3 && tblparser.colgroup[i - 1].level > tblparser.colgroup[i].level) ||
 						(tblparser.colgroup[i].type === 2 && ((i > 0 && tblparser.colgroup[0].type === 2) || (i > 1 && tblparser.colgroup[0].type === 1))))) {
 						$(tblparser.colgroup[i].elem).addClass('table-colgroupmarker');
@@ -470,6 +482,10 @@
 				}
 				//}
 			} else {
+				
+				if (!opts.nohover) {
+					elem.addClass('zebra-hover');
+				}
 				
 				if (0 < pe.ie && pe.ie < 9) {
 					
