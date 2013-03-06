@@ -41,14 +41,17 @@ a {
 	min-height: 0 !important;
 }
 
-.page-break-before {
+%wb-default-print-page-break-all {
 	display: block;
-	page-break-before: always;
 	page-break-inside: avoid;
 }
 
+.page-break-before {
+	@extend %wb-default-print-page-break-all;
+	page-break-before: always;
+}
+
 .page-break-after {
-	display: block;
+	@extend %wb-default-print-page-break-all;
 	page-break-after: always;
-	page-break-inside: avoid;
 }
