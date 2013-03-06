@@ -2,6 +2,39 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%grids-util-mobile-no-margin {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+blockquote {
+	@extend %grids-util-mobile-no-margin;
+}
+
+form {
+	@extend %grids-util-mobile-no-margin;
+}
+
+#{headings(2,6)} {
+	@extend %grids-util-mobile-no-margin;
+}
+
+img {
+	@extend %grids-util-mobile-no-margin;
+}
+
+p {
+	@extend %grids-util-mobile-no-margin;
+}
+
+pre {
+	@extend %grids-util-mobile-no-margin;
+}
+
+table {
+	@extend %grids-util-mobile-no-margin;
+}
+
 .date-month {
 	a {
 		color: #fff !important;
