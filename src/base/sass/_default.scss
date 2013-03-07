@@ -153,3 +153,10 @@ h6 {
 #resizetest {
 	@extend %wb-clip;
 }
+
+[dir="rtl"] {
+  .ui-popup-hidden {
+    left: auto;
+    right: -9999px;
+  }
+}
