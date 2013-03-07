@@ -105,30 +105,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="span-8">
     <div class="span-6 row-start">
         <div 
-            class="wet-boew-geomap span-6 border-all position scaleline" 
+            class="wet-boew-geomap span-6 border-all position scaleline legend tab" 
             data-wet-boew="{ 
                 layersFile: 'data/config-en.js', 
                 tables: [ { id: 'cities', zoom: true, style: { type: 'rule', rule: [{field: 'Population 2011',value: [1000000],filter: 'LESS_THAN', init: {'strokeColor': '#0083f5', 'fillColor': '#57a8f0', 'pointRadius': '6', 'fillOpacity': 0.80, 'strokeWidth': 1.0}},
                 																	{field: 'Population 2011',value: [1000000, 2000000],filter: 'BETWEEN', init: {'strokeColor': '#FF9900', 'fillColor': '#FF9900', 'pointRadius': '8', 'fillOpacity': 0.80, 'strokeWidth': 1.0}},
                 																	{field: 'Population 2011',value: [2000000],filter: 'GREATER_THAN', init: {'strokeColor': '#FF0000', 'fillColor': '#FF0000', 'pointRadius': '10', 'fillOpacity': 0.80, 'strokeWidth': 1.0}}]},
-                		    datatable: false}, 
+                		    datatable: false,
+                		    tab: true}, 
 						  
                 { id: 'bbox' } ] 
             }">
         </div>
     </div>
-    <div class="span-2 row-end">
-        <h2>Legend</h2>        
-        <div class="wet-boew-geomap-legend"></div>        
-    </div>
-    <div class="clear"></div>
-	<div id="wet-boew-geomap-layers" class="wet-boew-tabbedinterface">
-		<ul class="tabs">
-			<li class="default"><a href="#tabs1_1">Cities</a></li>
-		</ul>
-		<div class="tabs-panel">
-			<div id="tabs1_1">
-                <table id="cities" aria-label="Cities" class="wet-boew-tables">
+    <table id="cities" aria-label="Cities" class="wet-boew-tables">
                     <caption>This is a sample layer created from a table in the current document. A column with cells containing geometry encoded in WKT and marked up with a class named <em>geometry</em> is required. To link the layer features in the table to the map a column containing cells marked up with a class named <em>select</em> is required.</caption>
                     <thead>
                         <tr>
@@ -208,11 +198,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
                             <th class="wb-invisible">Geometry</th>
                         </tr>
                     </tfoot>
-                </table>
-			</div>			
-		</div>
-    </div>
-    <div class="clear"></div>
+    </table>
     <div>
         <h2>Search Results</h2>
         <p>Demonstration of inline table outside of tabbed interface.</p>
