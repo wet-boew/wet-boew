@@ -86,6 +86,8 @@
 				link: 'More Info'
 			},
 			visible: false,
+			datable:false,
+			tab: true
 		},
 		{
 			title: 'JSON (GeoGratis) EN',
