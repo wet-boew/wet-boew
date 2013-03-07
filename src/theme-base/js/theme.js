@@ -28,6 +28,7 @@
 		title: null,
 		sft: null,
 		fullft: null,
+		gridsmenu: null,
 		menu: null,
 		init: function () {
 			wet_boew_theme.fullhd = pe.header.find('#base-fullhd');
@@ -38,6 +39,7 @@
 			wet_boew_theme.title = pe.header.find('#base-title');
 			wet_boew_theme.sft = pe.footer.find('#base-sft');
 			wet_boew_theme.fullft = pe.footer.find('#base-fullft');
+			wet_boew_theme.gridsmenu = pe.main.find('.module-menu-section');
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm');
@@ -51,6 +53,9 @@
 				submenu = current.parents('ul');
 				submenu.prev().children('a').addClass('nav-current');
 			}
+			if (wet_boew_theme.gridsmenu.length !== 0) {
+				current = pe.menu.navcurrent(wet_boew_theme.gridsmenu, wet_boew_theme.bcrumb);
+			}
 
 			// If no search is provided, then make the site menu link 100% wide
 			if (wet_boew_theme.psnb.length !== 0 && wet_boew_theme.search.length === 0) {
@@ -63,7 +68,6 @@
 		/* Special handling for the mobile view */
 		mobileview: function () {
 			var mb_popup,
-				mb_header_html,
 				mb_menu = '',
 				mb_btn_txt,
 				srch_btn_txt,
@@ -98,18 +102,18 @@
 				len,
 				nodes,
 				node,
+				$document = $(document),
 				home_href,
 				header;
 
 			// Content pages only
 			if (wet_boew_theme.sft.length !== 0) {
 				// Build the menu popup
-				if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
+				if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.bcrumb.length !== 0) {
 					// Transform the menu to a popup
 					mb_btn_txt = pe.dic.get('%menu');
 					mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
 					secnav_h2 = (pe.secnav.length !== 0 ? pe.secnav[0].getElementsByTagName('h2')[0] : '');
-					mb_header_html = (wet_boew_theme.menubar.length !== 0 ? wet_boew_theme.psnb.children(':header')[0] : (pe.secnav.length !== 0 ? secnav_h2 : wet_boew_theme.bcrumb.children(':header')[0])).innerHTML;
 					mb_popup = popup + ' id="jqm-wb-mb">' + popup_default_header_open + mb_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
 
 					if (wet_boew_theme.bcrumb.length !== 0) {
@@ -123,10 +127,9 @@
 					// Build the menu
 					if (pe.secnav.length !== 0) {
 						mb_menu += '<section><div><h2>' + secnav_h2.innerHTML + '</h2>' + pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'b', false, true, 'c', true, true) + '</div></section>';
-						node = pe.secnav[0];
 					}
 					if (wet_boew_theme.menubar.length !== 0) {
-						mb_menu += '<section><div><h2>' + mb_header_html + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
+						mb_menu += '<section><div><h2>' + wet_boew_theme.psnb.children(':header')[0].innerHTML + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
 					}
 					
 					// Append the popup/dialog container and store the menu for appending later
@@ -178,27 +181,29 @@
 				settings_popup = popup + ' id="popupSettings"' + popup_settings;
 				settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open + listView + '>';
-				if (lang_links.length > 0) {
+				if (lang_links.length !== 0) {
 					settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
 				}
 				settings_popup += '<li class="ui-corner-bottom"><a href="#popupAbout"' + popup_link + '>' + pe.dic.get('%about') + '</a></li>';
 				settings_popup += '</ul>' + popup_close;
 
 				// Build the languages sub-popup
-				if (lang_links.length > 0) {
+				if (lang_links.length !== 0) {
 					settings_popup += popup + ' id="popupLanguages"' + popup_settings;
 					settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
 					settings_popup += popup_settings_content_open + listView + '>';
 					if (lang_links.filter('[id*="-lang-current"]').length === 0) {
-						settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
+						settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
 					}
 					nodes = lang_links.get();
-					for (i = 0, len = nodes.length; i !== len; i += 1) {
+					len = nodes.length;
+					i = len;
+					while (i--) {
 						node = nodes[i];
 						link = node.childNodes[0];
-						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '');
+						settings_popup += '<li' + (i === 0 ? ' class="ui-corner-bottom"' : '');
 						if (node.id.indexOf('-lang-current') !== -1) {
-							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + pe.dic.get('%current') + '</a></li>';
+							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
 						} else {
 							settings_popup += '><a href="' + link.href + '" lang="' + link.getAttribute('lang') + '">' + link.innerHTML + '</a></li>';
 						}
@@ -228,8 +233,6 @@
 					target = node.toLowerCase();
 					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';	
 				}
-
-				// Close the settings popup
 				settings_popup += '</ul>' + popup_close;
 
 				// Append all the popups to the body
@@ -237,14 +240,14 @@
 			}
 
 			// jQuery mobile has loaded
-			$(document).on('pagecreate', function () {
-				if (_list.length !== 0) {
-					var navbar = wet_boew_theme.fullhd.find('#base-mnavbar'),
-						menu = pe.bodydiv.find('#jqm-mb-menu'),
-						menus,
-						nodes,
-						nodes2,
-						node2;
+			$document.on('pagecreate', function () {
+				var navbar = wet_boew_theme.fullhd.find('#base-mnavbar'),
+					menu = pe.bodydiv.find('#jqm-mb-menu'),
+					menus,
+					nodes,
+					nodes2,
+					node2;
+				if (navbar.length !== 0) {
 					navbar.removeClass('wb-hide');
 
 					// Defer appending of menu until after page is enhanced by jQuery Mobile, and
@@ -288,7 +291,7 @@
 				$.mobile.transitionHandlers.loadingTransition = loadingTransition;
 				$.mobile.defaultDialogTransition = 'loadingTransition';
 			});
-			$(document).trigger('themeviewloaded');
+			$document.trigger('themeviewloaded');
 			return;
 		},
 

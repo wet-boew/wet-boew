@@ -6,10 +6,6 @@
 	margin: 0;
 }
 
-#mobiletest {
-	width: 1px;
-}
-
 .mobile-change {
 	width: 100% !important;
 }
@@ -31,4 +27,8 @@
 	.mobile-show {
 		@extend %wb-mobile-display-none-important;
 	}
+}
+
+#wb-core-in {
+	width: 100%;
 }

@@ -3,12 +3,14 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 
+@import '../../../grids/sass/includes/mixins';
+
 #archived {
-	background-color: #FFFFCC;
+	background-color: #FFC;
 	border: 1px solid #C00;
 	h2 {
-		background-color: #CC0000;
-		color: #FFFFFF;
+		background-color: #C00;
+		color: #FFF;
 		margin: 0;
 		padding: 2px 0 2px 10px;
 	}
@@ -16,6 +18,10 @@
 		margin-left: 10px !important;
 		margin-right: 10px !important;
 	}
+}
+
+%archived-color-FFF {
+	color: #FFF;
 }
 
 .archived {
@@ -31,19 +37,22 @@
 	z-index: 99999;
 	line-height: normal;
 	a {
-		color: #333333;
+		color: #333;
 		padding: 0 0 2px 0;
 		position: relative;
 		text-shadow: none;
 		&[href] {
-			&:link, &:hover, &:focus, &:active {
-				color: #FFFFFF;
+			&:link {
+				@extend %archived-color-FFF;
+			}
+			@include pseudo-focus {
+				@extend %archived-color-FFF;
 			}
 		}
 	}
 	.archived-top-page {
 		background-color: transparent;
-		color: #FFFFFF;
+		color: #FFF;
 		display: block;
 		font-size: 1.4em;
 		font-weight: bold;

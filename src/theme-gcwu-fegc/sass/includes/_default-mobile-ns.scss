@@ -7,48 +7,52 @@
 		width: 100% !important;
 		float: none;
 	}
-	%gcwu-default-mobile-ns-display-block {
+	%gcwu-default-mobile-ns-display-block-z-index-100 {
 		display: block;
-		width: 100%;
 		z-index: 100;
 	}
-	%gcwu-default-mobile-ns-display-block {
-		display: block;
+	%gcwu-default-mobile-ns-width-100 {
+		width: 100%;
 	}
 	#gcwu-gcnb {
 		ul {
-			@extend %gcwu-default-mobile-ns-display-block;
+			@extend %gcwu-default-mobile-ns-display-block-z-index-100;
 		}
 	}
 	#gcwu-wmms {
-		@extend %gcwu-default-mobile-ns-display-block;
+		@extend %gcwu-default-mobile-ns-display-block-z-index-100;
 	}
 	#gcwu-bc {
-		@extend %gcwu-default-mobile-ns-display-block;
+		@extend %gcwu-default-mobile-ns-display-block-z-index-100;
+		@extend %gcwu-default-mobile-ns-width-100;
 	}
 	#wb-sec {
-		@extend %gcwu-default-mobile-ns-display-block;
+		@extend %gcwu-default-mobile-ns-display-block-z-index-100;
+		@extend %gcwu-default-mobile-ns-width-100;
 	}
 	#wb-foot {
-		@extend %gcwu-default-mobile-ns-display-block;
+		@extend %gcwu-default-mobile-ns-display-block-z-index-100;
+		@extend %gcwu-default-mobile-ns-width-100;
 	}
 	#gcwu-psnb {
 		@extend %gcwu-default-mobile-ns-positioning;
-		@extend %gcwu-default-mobile-ns-display-block;
+		@extend %gcwu-default-mobile-ns-display-block-z-index-100;
 		#gcwu-psnb-in {
-			@extend %gcwu-default-mobile-ns-display-block;
+			@extend %gcwu-default-mobile-ns-display-block-z-index-100;
+			@extend %gcwu-default-mobile-ns-width-100;
 		}
 	}
 	#gcwu-srchbx {
 		@extend %gcwu-default-mobile-ns-positioning;
-		@extend %gcwu-default-mobile-ns-display-block;
+		@extend %gcwu-default-mobile-ns-display-block-z-index-100;
 		form {
 			border-bottom: 1px solid #999;
 			text-align: center;
 			background: #1A3D6C;
 			padding: 10px 0;
 			margin-bottom: 0;
-			@extend %gcwu-default-mobile-ns-display-block;
+			@extend %gcwu-default-mobile-ns-display-block-z-index-100;
+			@extend %gcwu-default-mobile-ns-width-100;
 		}
 	}
 }

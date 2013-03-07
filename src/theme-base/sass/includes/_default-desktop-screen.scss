@@ -137,9 +137,6 @@ a {
 		top: 1px;
 		bottom: 2.5em; //TODO: mixed px and ems
 	}
-	a {
-		@extend %base-default-desktop-screen-link;
-	}
 }
 
 %base-default-desktop-screen-float-right {
@@ -165,7 +162,7 @@ a {
 		display: inline-block;
 		margin-left: 10px;
 	}
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		text-decoration: underline;
 	}
 }
@@ -290,7 +287,7 @@ a {
 		margin-left: 0;
 		padding: 2px 0;
 		width: 218px;
-		&:focus, &:active {
+		@include pseudo-focus(false) {
 			background: #f0fcff;
 		}
 	}
@@ -313,7 +310,7 @@ a {
 	font-weight: 400;
 	padding: 2px 6px;
 	display: inline;
-	&:focus, &:hover {
+	@include pseudo-focus {
 		background: #ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
 		text-shadow: 0 1px 0 #ddd;
 		@extend %base-default-desktop-screen-box-shadow-none;
@@ -331,7 +328,7 @@ a {
 }
 
 %base-default-desktop-screen-psuedo-underline {
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		text-decoration: underline;
 	}
 }
@@ -419,10 +416,7 @@ a {
 				@extend %base-default-desktop-screen-float-right;
 				&#base-fullhd-lang {
 					a {
-						padding: {
-							right: 0;
-							left: 10px;
-						}
+						padding: 0 10px;
 						margin: {
 							right: auto;
 							left: 1px;

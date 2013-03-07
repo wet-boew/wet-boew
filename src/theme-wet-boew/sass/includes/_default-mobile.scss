@@ -43,6 +43,10 @@
 	border: none;
 }
 
+%wet-default-mobile-text-shadow-none {
+	text-shadow: none;
+}
+
 body {
 	@if $experimental-support-for-webkit {
 		-webkit-text-size-adjust: none;
@@ -60,25 +64,19 @@ a {
 }
 
 blockquote {
-	@extend %wet-default-mobile-no-margin-no-shadow;
-}
-
-%wet-default-mobile-no-margin-no-shadow {
-	margin-left: 0;
-	margin-right: 0;
-	text-shadow: none;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
 form {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
 #{headings(2,6)} {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
 img {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 	max-width: 100%;
 	height: auto;
 	@extend %wet-default-mobile-display-block;
@@ -96,18 +94,18 @@ li {
 }
 
 p {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
 pre {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
 table {
-	@extend %wet-default-mobile-no-margin-no-shadow;
+	@extend %wet-default-mobile-text-shadow-none;
 }
 
-[id|="wb-body-sec"] {
+.mobile-view {
 	#wb-skip2 {
 		@extend %wet-default-mobile-display-none;
 		visibility: hidden;
@@ -123,9 +121,10 @@ table {
 }
 
 #wet-title {
+	@include background-image(linear-gradient(#11507C, #176DA7));
 	border: 1px solid #456F9A;
 	p {
-		padding: 3px;
+		padding: 3px 5px;
 		margin: 0;
 	}
 	a {
@@ -143,25 +142,10 @@ table {
 	margin: 5px 0;
 }
 
-[class*="span-"] {
-	position: relative;
-}
-
 #wb-main-in {
-	padding: 0 3px;
 	h1 {
 		margin-top: 0.5em;
 	}
-}
-
-.clear {
-	clear: both;
-	@extend %wet-default-mobile-display-block;
-	height: 0;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	margin: 0;
 }
 
 .ui-mobile {
@@ -195,13 +179,15 @@ table {
 		min-width: 180px;
 		margin-left: 35px;
 		margin-right: 35px;
+		@extend %wet-default-mobile-text-shadow-none;
 	}
 }
 
 #wet-fullhd {
-	min-height: 41px;
-	.ui-header {
-		border: 1px solid #333;
+	min-height: 42px;
+	@include background-image(linear-gradient(#3C3C3C, #515151));
+	ul {
+		@extend %wet-default-mobile-display-none;
 	}
 	li {
 		@extend %wet-default-mobile-display-none;
@@ -209,7 +195,7 @@ table {
 }
 
 #wet-mnavbar {
-	right: 3px;
+	right: 5px;
 	.ui-btn-inner {
 		padding: 0.6em 14px;
 	}
@@ -225,15 +211,12 @@ table {
 	@extend %wet-default-mobile-display-none;
 }
 
-#wet-fullhd {
-	ul {
-		@extend %wet-default-mobile-display-none;
-	}
+%wet-default-mobile-padding-3-5 {
+	padding: 3px 5px;
 }
-
 #wet-subsite {
 	font-size: 130%;
-	text-shadow: none;
+	@extend %wet-default-mobile-text-shadow-none;
 	p {
 		margin: {
 			top: 0;
@@ -241,7 +224,7 @@ table {
 		}
 	}
 	a {
-		padding: 3px;
+		@extend %wet-default-mobile-padding-3-5;
 		@extend %wet-default-mobile-white-space-normal;
 		@extend %wet-default-mobile-font-weight-normal;
 	}
@@ -260,7 +243,7 @@ table {
 }
 
 #wb-sec {
-	@extend %wet-default-mobile-display-none;
+	@extend %wet-default-mobile-display-none-important;
 }
 
 #wb-foot {
@@ -283,6 +266,11 @@ table {
 	}
 }
 
+%wet-default-mobile-last-child-padding-5 {
+	&:last-child {
+		padding: 5px;
+	}
+}
 #wet-bc-in {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
@@ -299,9 +287,7 @@ table {
 		margin: 0;
 		padding: 5px 12px 5px 5px;
 		@extend %wet-default-mobile-no-rounded-corners;
-		&:last-child {
-			padding-left: 5px;
-		}
+		@extend %wet-default-mobile-last-child-padding-5;
 	}
 	a {
 		@extend %wet-default-mobile-no-rounded-corners;
@@ -326,8 +312,16 @@ table {
 	display: none;
 }
 
+%wet-default-mobile-display-none-important {
+	display: none !important;
+}
+
 %wet-default-mobile-display-block {
 	display: block;
+}
+
+%wet-default-mobile-display-block-important {
+	display: block !important;
 }
 
 %wet-default-mobile-white-space-normal {
@@ -342,7 +336,7 @@ table {
 	> {
 		div {
 			@extend %wet-default-mobile-position-absolute;
-			left: 3px;
+			left: 5px;
 			top: 4px;
 			height: 32px;
 			width: 69px;
@@ -362,9 +356,10 @@ table {
 
 #popupLanguages {
 	li {
-		.ui-btn-text {
-			&:first-letter {
-				text-transform: capitalize;
+		a {
+			text-transform: capitalize;
+			.current {
+				text-transform: lowercase;
 			}
 		}
 	}
@@ -483,7 +478,7 @@ select {
 }
 #jqm-wb-mb {
 	a {
-		text-shadow: none;
+		@extend %wet-default-mobile-text-shadow-none;
 		&:link {
 			text-decoration: none
 		}
@@ -706,7 +701,7 @@ select {
 		padding: 0;
 	}
 	.mobile-pe {
-		display: none !important;
+		@extend %wet-default-mobile-display-none-important;
 	}
 }
 
@@ -746,7 +741,7 @@ select {
 		margin-bottom: 0;
 	}
 	#wb-sec {
-		@extend %wet-default-mobile-display-block;
+		@extend %wet-default-mobile-display-block-important;
 	}
 	#wb-foot {
 		@extend %wet-default-mobile-display-block;
@@ -797,7 +792,7 @@ select {
 	#wet-fullhd {
 		.ui-title {
 			img {
-				right: 3px;
+				right: 5px;
 				left: auto;
 			}
 		}
@@ -805,7 +800,7 @@ select {
 	
 	#wet-mnavbar {
 		@extend %wet-default-mobile-rtl-scalex;
-		left: 3px;
+		left: 5px;
 		right: auto;
 	}
 
@@ -922,7 +917,7 @@ select {
 	.ui-title {
 		> {
 			div {
-				right: 3px;
+				right: 5px;
 			}
 		}
 	}
@@ -970,6 +965,12 @@ select {
 		h2 {
 			padding-right: 0;
 			padding-left: 20px;
+		}
+	}
+
+	#wet-subsite {
+		a {
+			@extend %wet-default-mobile-padding-3-5;
 		}
 	}
 

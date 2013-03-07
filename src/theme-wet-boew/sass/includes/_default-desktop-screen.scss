@@ -54,9 +54,6 @@ body {
 #wb-main-in {
 	padding-top: 1px;
 	padding-bottom: 2.5em;
-	a {
-		@extend %wet-default-link;
-	}
 }
 
 #wb-body-sec {
@@ -189,7 +186,7 @@ a {
 }
 
 %wet-default-desktop-screen-hover-focus-active-text-decoration-underline {
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		text-decoration:underline;
 	}
 }
@@ -242,7 +239,7 @@ a {
 		@include box-shadow(none);
 		background: #FFF;
 		padding: 4px;
-		&:focus, &:active {
+		@include pseudo-focus(false) {
 			background: #EEE;
 			border-color: #CCC;
 		}
@@ -385,10 +382,11 @@ a {
 				}
 				&[id*="wet-fullhd-lang"] {
 					a {
-						padding-right: 0;
-						padding-left: 10px;
-						margin-right: auto;
-						margin-left: 1px;
+						padding: 0 10px;
+						margin: {
+							right: auto;
+							left: 1px;
+						}
 					}
 				}
 				&#wet-fullhd-lang-current {
@@ -418,20 +416,6 @@ a {
 		input {
 			margin: 0 2px 2px 3px;
 			float: right;
-		}
-	}
-
-	#wet-srch-submit {
-		border: {
-			right: 1px solid #fff;
-			left: 1px solid #999;
-		}
-
-		&:focus, &:hover {
-			border: {
-				right: 1px solid #fff;
-				left: 1px solid #999;
-			}
 		}
 	}
 }

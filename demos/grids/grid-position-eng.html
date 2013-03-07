@@ -36,8 +36,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
 <!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body-sec">
@@ -52,7 +52,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
 <div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng-r.svg" role="img" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
-	<div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div>
+	<div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.png" width="214" height="20" alt="Government of Canada" /></div>
 </object></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
@@ -64,7 +64,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
 <div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms-r.svg" role="img" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
-	<div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
+	<div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
 </object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
 
@@ -77,7 +77,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="gcwu-psnb"><h2>Site menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
@@ -110,6 +110,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <h2>Table of contents</h2>
 <ul>
 	<li><a href="#floats">Floats</a></li>
+	<li><a href="#clearing">Clearing floats</a></li>
     <li><a href="#horizontal">Horizontal alignment</a></li>
     <li><a href="#vertical">Vertical alignment</a></li>
     <li><a href="#width">Width</a></li>
@@ -198,6 +199,15 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 </div>
 <div class="clear"></div>
+<h2 id="clearing">Clearing floats</h2>
+<p>Elements that are coded after a floated item will flow around it. To prevent this, a clear must be applied.</p>
+<p>The different clear options:</p>
+<ul>
+	<li><code>clear</code></li>
+	<li><code>clear-left</code></li>
+	<li><code>clear-right</code></li>
+</ul>
+<p>Also refer to: <a href="grid-base-eng.html#rows">Grid rows</a></p>
 <h2 id="horizontal">Horizontal alignment</h2>
 <p>The align classes are used to align text within a content block.</p>
 <table class="table-simplify span-6">
@@ -368,38 +378,39 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<tr>
 		<td><code>width-90</code><br/></td>
 		<td class="background-light"><div class="width-90"><p class="background-accent">This block uses the <code>width-90</code> class.</p></div>
+		</td>
 	</tr>
 	<tr>
 		<td><code>width-80</code></td>
-		<td class="background-light"><div class="width-80"><p class="background-accent">This block uses the <code>width-80</code> class.</p></div>
+		<td class="background-light"><div class="width-80"><p class="background-accent">This block uses the <code>width-80</code> class.</p></div></td>
 	</tr>
 	<tr>
 		<td><code>width-70</code></td>
-		<td class="background-light"><div class="width-70"><p class="background-accent">This block uses the <code>width-70</code> class.</p></div>
+		<td class="background-light"><div class="width-70"><p class="background-accent">This block uses the <code>width-70</code> class.</p></div></td>
 	</tr>
 	<tr>
 		<td><code>width-60</code></td>
-		<td class="background-light"><div class="width-60"><p class="background-accent">This block uses the <code>width-60</code> class.</p></div>
+		<td class="background-light"><div class="width-60"><p class="background-accent">This block uses the <code>width-60</code> class.</p></div></td>
 	</tr>
 	<tr>
 		<td><code>width-50</code></td>
-		<td class="background-light"><div class="width-50"><p class="background-accent">This block uses the <code>width-50</code> class.</p></div>
+		<td class="background-light"><div class="width-50"><p class="background-accent">This block uses the <code>width-50</code> class.</p></div></td>
 	</tr>
 	<tr>
 		<td><code>width-40</code></td>
-		<td class="background-light"><div class="width-40"><p class="background-accent">This block uses the <code>width-40</code> class.</p></div>
+		<td class="background-light"><div class="width-40"><p class="background-accent">This block uses the <code>width-40</code> class.</p></div></td>
 	</tr>
 	<tr>
 		<td><code>width-30</code></td>
-		<td class="background-light"><div class="width-30"><p class="background-accent">This block uses the <code>width-30</code> class.</p></div>
+		<td class="background-light"><div class="width-30"><p class="background-accent">This block uses the <code>width-30</code> class.</p></div></td>
 	</tr>
 	<tr>
 		<td><code>width-20</code></td>
-		<td class="background-light"><div class="width-20"><p class="background-accent">This block uses the <code>width-20</code> class.</p></div>
+		<td class="background-light"><div class="width-20"><p class="background-accent">This block uses the <code>width-20</code> class.</p></div></td>
 	</tr>
 	<tr>
 		<td><code>width-10</code></td>
-		<td class="background-light"><div class="width-10"><p class="background-accent">This block uses the <code>width-10</code> class.</p></div>
+		<td class="background-light"><div class="width-10"><p class="background-accent">This block uses the <code>width-10</code> class.</p></div></td>
 	</tr>
 </table>
 <div class="clear"></div>
@@ -737,5 +748,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
 <!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
 </body>
 </html>

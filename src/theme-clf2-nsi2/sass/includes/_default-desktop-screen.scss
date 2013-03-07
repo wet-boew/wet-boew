@@ -127,7 +127,7 @@ body {
 
 #wb-skip {
 	a {
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			background-color: #363;
 		}
 	}
@@ -241,7 +241,7 @@ body {
 					color: #FFF;
 					text-decoration: none;
 				}
-				&:hover, &:active, &:focus {
+				@include pseudo-focus {
 					color: #000;
 					background-color: #CCC;
 				}
@@ -265,7 +265,7 @@ body {
 
 %cfl2-default-desktop-screen-a-pseudo-width120pct {
 	a {
-		&:hover, &:active, &:focus {
+		@include pseudo-focus {
 			width: 120%;
 		}
 	}
@@ -329,9 +329,7 @@ body {
 	}
 	ul {
 		list-style-type: none;
-		margin: 0 0 0;
-		margin-top: 0; //TODO: Is these zero values still needed with the line above?
-		margin-bottom: 0;
+		margin: 0;
 		ul {
 			list-style-type: disc;
 			margin-left: 25px;
@@ -400,7 +398,7 @@ body {
 			color: #636;
 			text-decoration: none;
 		}
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			color: #CC9;
 			background-color: #030;
 			outline: none;
@@ -470,7 +468,7 @@ body {
 			margin: -2px -5px;
 			padding: 2px 5px;
 			width: 100%;
-			&:hover, &:active, &:focus {
+			@include pseudo-focus {
 				background-color: #030;
 				color: #CC9;
 			}
@@ -493,7 +491,7 @@ body {
 					}
 					ul {
 						a {
-							padding: 1px 5px 1px 5px; //TODO:  Simplyfy to the 2 value version "1px 5px" as it is the same?
+							padding: 1px 5px;
 							margin-left: -5px;
 						}
 					}
@@ -530,7 +528,7 @@ body {
 				color: #636;
 				text-decoration: none;
 			}
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				color: #CC9;
 				background-color: #030;
 				outline: none;
@@ -543,4 +541,41 @@ body {
 			}
 		}
 	}
+}
+
+/** .equalize fix: 2 column layout */
+#wb-body-sec {
+  .equalize {
+    > {
+      #wb-main {
+        border-left: 5px solid transparent;
+      }
+    }
+  }
+}
+
+/** .equalize fix: 3 column layout */
+#wb-body-sec-sup {
+  .equalize {
+    @extend %clf2-3col-equalize-display;
+    > {
+      #wb-sec {
+        float: left !important;
+        @extend %clf2-3col-equalize-display;
+      }
+      #wb-main {
+        float: right !important;
+        @extend %clf2-3col-equalize-display;
+      }
+      #wb-sup {
+        float: right !important;
+        @extend %clf2-3col-equalize-display;
+      }
+    }
+  }
+}
+
+
+%clf2-3col-equalize-display {
+  display: block !important;
 }

@@ -131,7 +131,7 @@ h1 {
 		a {
 			text-decoration: none;
 			font-size: 0.9em;
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				text-decoration: underline;
 			}
 		}

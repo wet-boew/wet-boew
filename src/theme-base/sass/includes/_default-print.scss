@@ -2,15 +2,26 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import 'compass/css3/transform';
 
+%base-default-print-scaleX--1 {
+	@include scaleX(-1);
+}
+%base-default-print-width-100perc {
+	width: 100%;
+}
+%base-default-print-base-title-styles {
+	font-size: 16pt;
+	text-decoration: none;
+	color: #000;
+	@extend %base-default-print-width-100perc;
+	position: relative;
+	top: 9px;
+}
 #base-title {
-	&, & a {
-		font-size: 16pt;
-		text-decoration: none;
-		color: #000;
-		width: 100%;
-		position: relative;
-		top: 9px;
+	@extend %base-default-print-base-title-styles;
+	a {
+		@extend %base-default-print-base-title-styles;
 	}
 }
 
@@ -48,22 +59,21 @@ h6 {
 	min-height: inherit;
 	height: auto;
 	ol {
-		width: 100%;
+		@extend %base-default-print-width-100perc;
 		margin: 0;
 		padding: 0;
 	}
 	li {
 		background: none;
-		padding: 0;
 		&:before {
-			content:" > ";
+			content: " > ";
 		}
 		&:first-child:before {
-			content:"";
+			content: "";
 		}
 	}
 	a {
-		padding-left: 0;
+		padding: 0 5px 0 0;
 		background: none;
 	}
 }
@@ -117,8 +127,12 @@ h6 {
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	#base-bc {
+		@extend %base-default-print-scaleX--1;
+		li {
+			@extend %base-default-print-scaleX--1;
+		}
 		a {
-			padding-right: 0;
+			padding: 0 0 0 5px;
 		}
 	}
 

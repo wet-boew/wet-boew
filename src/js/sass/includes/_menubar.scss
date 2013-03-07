@@ -59,7 +59,7 @@
 				text-decoration: none;
 				color: #fff;
 			}
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				text-decoration: underline;
 			}
 		}
@@ -140,6 +140,10 @@
 			margin: 0;
 			a, a.ui-link {
 				font-weight: 700;
+				text-decoration: underline;
+				@include pseudo-focus {
+					text-decoration: none;
+				}
 			}
 		}
 		ul {

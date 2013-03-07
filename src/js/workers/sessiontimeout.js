@@ -46,11 +46,10 @@
 			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_sessiontimeout), class-based overrides and the data attribute
-			$.metadata.setType("attr", "data-wet-boew");
 			if (typeof wet_boew_sessiontimeout !== 'undefined' && wet_boew_sessiontimeout !== null) {
-				$.extend(opts, wet_boew_sessiontimeout, elm.metadata());
+				$.extend(opts, wet_boew_sessiontimeout, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 			} else {
-				$.extend(opts, elm.metadata());
+				$.extend(opts, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 			}
 		
 			//------------------------------------------------------ Main functions
@@ -157,7 +156,7 @@
 		
 			start_liveTimeout();
 			if (opts.refreshOnClick) {
-				$(document).on('click', start_liveTimeout);
+				_pe.document.on('click', start_liveTimeout);
 			}
 
 			return elm;

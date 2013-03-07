@@ -22,23 +22,9 @@
 	background-color: #406C93;
 }
 
-@mixin gcwu-sig($iso639_2) {
-	height: 100%;
-	width: 100%;
-	background: url(../images/sig-#{$iso639_2}-w.gif) no-repeat 0 0 transparent;
-}
-
-#gcwu-sig-eng {
-	@include gcwu-sig("eng");
-}
-
-#gcwu-sig-fra {
-	@include gcwu-sig("fra");
-}
-
 #gcwu-srch-submit {
 	background: #ccc url(../images/search-button.gif) 0 0 repeat-x;
-	&:focus, &:hover {
+	@include pseudo-focus {
 		background: #ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
 	}
 }
@@ -58,12 +44,6 @@
 
 #gcwu-bc-in {
 	@extend %gcwu-default-desktop-screen-images-deco-side;
-}
-
-#gcwu-wmms-fip {
-	height: 100%;
-	width: 100%;
-	background: url(../images/wmms-w.gif) no-repeat 4px 0 transparent;
 }
 
 #gcwu-psnb {

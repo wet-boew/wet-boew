@@ -2,8 +2,34 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%wb-default-screen-verdana-font {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+body {
+	@extend %wb-default-screen-verdana-font;
+}
+
+textarea {
+	@extend %wb-default-screen-verdana-font;
+}
+
+input {
+	@extend %wb-default-screen-verdana-font;
+}
+
+select {
+	@extend %wb-default-screen-verdana-font;
+}
+
+#wb-main {
+	#{headings(all)} {
+		font-family: sans-serif;
+	}
+}
+
 a {
-	&:active, &:focus {
+	@include pseudo-focus(false) {
 		cursor: auto;
 	}
 }
@@ -34,7 +60,7 @@ abbr, acronym {
 			background-color: transparent;
 			font-weight: 700;
 		}
-		&:focus, &:active {
+		@include pseudo-focus(false) {
 			background-color: #000;
 			text-decoration: none;
 			color: #FFF;
@@ -48,13 +74,13 @@ a.wb-linkdesc {
 	span {
 		span {
 			position: absolute;
-			clip: rect(1px, 1px, 1px, 1px);
+			@include clip-rect;
 			height: 1px !important;
 			width: 1px !important;
 			overflow: hidden !important;
 		}
 	}
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		z-index: 25;
 		outline: 0;
 		text-decoration: none;
@@ -83,18 +109,24 @@ a.wb-linkdesc {
 [dir="rtl"] {
 	#wb-skip {
 		float: right;
-
+		position: absolute;
+		width: 100%;
+		z-index: 1;
 		li {
 			left: auto;
 			right: 0;
 		}
 	}
 
-	a.wb-linkdesc:hover, a.wb-linkdesc:focus, a.wb-linkdesc:active {
-		span span {
-			left: auto;
-			right: 2.2em;
-			text-align: right;
+	a {
+		.wb-linkdesc {
+			@include pseudo-focus {
+				span span {
+					left: auto;
+					right: 2.2em;
+					text-align: right;
+				}
+			}
 		}
 	}
 

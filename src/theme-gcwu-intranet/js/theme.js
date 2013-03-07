@@ -28,7 +28,7 @@
 		title: null,
 		sft: null,
 		gcft: null,
-		wmms: $('#gcwu-wmms'),
+		gridsmenu: null,
 		menu: null,
 		init: function () {
 			wet_boew_theme.gcnb = pe.header.find('#gcwu-gcnb');
@@ -39,6 +39,7 @@
 			wet_boew_theme.title = pe.header.find('#gcwu-title');
 			wet_boew_theme.sft = pe.footer.find('#gcwu-sft');
 			wet_boew_theme.gcft = pe.footer.find('#gcwu-gcft');
+			wet_boew_theme.gridsmenu = pe.main.find('.module-menu-section');
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm');
@@ -52,6 +53,9 @@
 				submenu = current.parents('ul');
 				submenu.prev().children('a').addClass('nav-current');
 			}
+			if (wet_boew_theme.gridsmenu.length !== 0) {
+				current = pe.menu.navcurrent(wet_boew_theme.gridsmenu, wet_boew_theme.bcrumb);
+			}
 
 			// If no search is provided, then make the site menu link 100% wide
 			if (wet_boew_theme.psnb.length !== 0 && wet_boew_theme.search.length === 0) {
@@ -64,7 +68,6 @@
 		/* Special handling for the mobile view */
 		mobileview: function () {
 			var mb_popup,
-				mb_header_html,
 				mb_menu = '',
 				mb_btn_txt,
 				srch_btn_txt,
@@ -101,19 +104,31 @@
 				len,
 				nodes,
 				node,
-				test,
+				$document = $(document),
 				home_href,
-				header;
+				header,
+				test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i),
+				svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46))),
+				wmms = document.getElementById('gcwu-wmms');
+
+			// Fix for old webkit versions (BB OS6 & iOS 4.3)
+			if (svgfix) {
+				nodes = document.querySelectorAll('#gcwu-wmms object, #gcwu-sig object');
+				len = nodes.length;
+				while (len--) {
+					node = nodes[len];
+					node.parentNode.replaceChild(node.getElementsByTagName('img')[0], node);
+				}
+			}
 
 			// Content pages only
 			if (wet_boew_theme.sft.length !== 0) {
 				// Build the menu popup
-				if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
+				if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.bcrumb.length !== 0) {
 					// Transform the menu to a popup
 					mb_btn_txt = pe.dic.get('%menu');
 					mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
 					secnav_h2 = (pe.secnav.length !== 0 ? pe.secnav[0].getElementsByTagName('h2')[0] : '');
-					mb_header_html = (wet_boew_theme.menubar.length !== 0 ? wet_boew_theme.psnb.children(':header')[0] : (pe.secnav.length !== 0 ? secnav_h2 : wet_boew_theme.bcrumb.children(':header')[0])).innerHTML;
 					mb_popup = popup + ' id="jqm-wb-mb">' + popup_default_header_open + mb_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
 
 					if (wet_boew_theme.bcrumb.length !== 0) {
@@ -127,10 +142,9 @@
 					// Build the menu
 					if (pe.secnav.length !== 0) {
 						mb_menu += '<section><div><h2>' + secnav_h2.innerHTML + '</h2>' + pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'b', false, true, 'c', true, true) + '</div></section>';
-						node = pe.secnav[0];
 					}
 					if (wet_boew_theme.menubar.length !== 0) {
-						mb_menu += '<section><div><h2>' + mb_header_html + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
+						mb_menu += '<section><div><h2>' + wet_boew_theme.psnb.children(':header')[0].innerHTML + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
 					}
 					
 					// Append the popup/dialog container and store the menu for appending later
@@ -157,21 +171,17 @@
 				}
 			
 				// Build the header bar
-				header = '<div data-role="header">';
-				// Handling for the Canada Wordmark if it exists
-				if (wet_boew_theme.wmms.length !== 0) {
-					node = wet_boew_theme.wmms[0].getElementsByTagName('img')[0];
-					//Fix for old webkit versions (BB OS6 & iOS 4.3)
-					test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
-					if (test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46)) {
-						header += '<div class="ui-title"><object type="image/svg+xml" width="90" height="22" data="' + node.getAttribute('src').replace('.gif', '-r.svg') + '"><img src="' + node.getAttribute('src').replace('.gif', '-wm.gif') + '" width="90" alt="' + node.getAttribute('alt') + '" /></object></div>';
-					} else {
-						header += '<div class="ui-title"><img src="' + node.getAttribute('src').replace('.gif', '-wm.gif') + '" width="90" alt="' + node.getAttribute('alt') + '" /></div>';
+				header = '<div data-role="header"><div class="ui-title"></div><map id="gcwu-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
+				if (wmms !== null) {
+					// TODO: Find way of changing colour to white without JavaScript
+					node = wmms.getElementsByTagName('object')[0];
+					node.setAttribute('data', node.getAttribute('data').replace('.svg', '-r.svg'));
+					if (!pe.svg || svgfix) {
+						// Correct the source of the Canada Wordmark fallback image
+						node = wmms.getElementsByTagName('img')[0];
+						node.setAttribute('src', node.getAttribute('src').replace('.png', '-w.png'));
 					}
-				} else {
-					header += '<div class="ui-title"></div>';
 				}
-				header += '<map id="gcwu-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 				// Handling for the home/back button if it exists
 				if (typeof home_href !== 'undefined') { // Home button needed
 					header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';
@@ -195,27 +205,29 @@
 				settings_popup = popup + ' id="popupSettings"' + popup_settings;
 				settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open + listView + '>';
-				if (lang_links.length > 0) {
+				if (lang_links.length !== 0) {
 					settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
 				}
 				settings_popup += '<li class="ui-corner-bottom"><a href="#popupAbout"' + popup_link + '>' + pe.dic.get('%about') + '</a></li>';
 				settings_popup += '</ul>' + popup_close;
 
 				// Build the languages sub-popup
-				if (lang_links.length > 0) {
+				if (lang_links.length !== 0) {
 					settings_popup += popup + ' id="popupLanguages"' + popup_settings;
 					settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
 					settings_popup += popup_settings_content_open + listView + '>';
 					if (lang_links.filter('[id*="-lang-current"]').length === 0) {
-						settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
+						settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
 					}
 					nodes = lang_links.get();
-					for (i = 0, len = nodes.length; i !== len; i += 1) {
+					len = nodes.length;
+					i = len;
+					while (i--) {
 						node = nodes[i];
 						link = node.childNodes[0];
-						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '');
+						settings_popup += '<li' + (i === 0 ? ' class="ui-corner-bottom"' : '');
 						if (node.id.indexOf('-lang-current') !== -1) {
-							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + pe.dic.get('%current') + '</a></li>';
+							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
 						} else {
 							settings_popup += '><a href="' + link.href + '" lang="' + link.getAttribute('lang') + '">' + link.innerHTML + '</a></li>';
 						}
@@ -251,8 +263,6 @@
 					target = node.toLowerCase();
 					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';	
 				}
-
-				// Close the settings popup
 				settings_popup += '</ul>' + popup_close;
 
 				// Append all the popups to the body
@@ -296,22 +306,22 @@
 				}
 
 				// Move the Canada Wordmark to the footer
-				if (wet_boew_theme.wmms.length !== 0) {
-					node = wet_boew_theme.wmms[0];
-					pe.footer[0].getElementsByTagName('footer')[0].appendChild(node.cloneNode(true));
-					node.parentNode.removeChild(node);
+				wmms = document.getElementById('wmms');
+				if (wmms !== null) {
+					pe.footer[0].getElementsByTagName('footer')[0].appendChild(wmms.cloneNode(true));
+					wmms.parentNode.removeChild(wmms);
 				}
 			}
 
 			// jQuery mobile has loaded
-			$(document).on('pagecreate', function () {
-				if (_list.length !== 0) {
-					var navbar = wet_boew_theme.gcnb.find('#gcwu-mnavbar'),
-						menu = pe.bodydiv.find('#jqm-mb-menu'),
-						menus,
-						nodes,
-						nodes2,
-						node2;
+			$document.on('pagecreate', function () {
+				var navbar = wet_boew_theme.gcnb.find('#gcwu-mnavbar'),
+					menu = pe.bodydiv.find('#jqm-mb-menu'),
+					menus,
+					nodes,
+					nodes2,
+					node2;
+				if (navbar.length !== 0) {
 					navbar.removeClass('wb-hide');
 
 					// Defer appending of menu until after page is enhanced by jQuery Mobile, and
@@ -355,7 +365,7 @@
 				$.mobile.transitionHandlers.loadingTransition = loadingTransition;
 				$.mobile.defaultDialogTransition = 'loadingTransition';
 			});
-			$(document).trigger('themeviewloaded');
+			$document.trigger('themeviewloaded');
 			return;
 		},
 

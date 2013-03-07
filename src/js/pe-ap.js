@@ -14,7 +14,7 @@
 /*
  * pe, a progressive javascript library agnostic framework
  */
-/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
+/*global jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
 /*jshint bitwise: false */
 (function ($) {
 	"use strict";
@@ -43,12 +43,15 @@
 		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
+		html: $('html'),
+		document: $(document),
+		window: $(window),
 		urlpage: '',
 		urlhash: '',
 		urlquery: '',
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
-		document: $(document),
 		mobiletest: '',
+		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 
 		/**
@@ -115,7 +118,7 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = $('html'), hlinks, hlinks_same, $this, target, classes, test, init_on_mobileinit = false;
+			var $html = pe.html, hlinks, hlinks_same, $this, target, classes, test, test_elms, init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
@@ -126,11 +129,21 @@
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
-
-			// Append the mobile test to the body
+	
+			// Mobile test: Used to detect CSS media query result regarding mobile/desktop view
 			pe.mobiletest = document.createElement('div');
 			pe.mobiletest.setAttribute('id', 'mobiletest'); // Used to detect CSS media queries result regarding mobile/desktop view
-			document.body.appendChild(pe.mobiletest);
+			
+			// Resize test element: Used to detect changes in text size and window size
+			pe.resizetest = document.createElement('span');
+			pe.resizetest.innerHTML = '&#160;';
+			pe.resizetest.setAttribute('id', 'resizetest'); // Used to detect CSS media queries result regarding mobile/desktop view
+
+			// Append the various tests to the body
+			test_elms = document.createElement('div');
+			test_elms.appendChild(pe.mobiletest);
+			test_elms.appendChild(pe.resizetest);
+			document.body.appendChild(test_elms);
 
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
@@ -143,14 +156,30 @@
 			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
 			pe.mobile = pe.mobilecheck();
 			pe.tablet = pe.tabletcheck();
-			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : '')) : ' desktop-view')) : '';
+			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : ' smartphone-view')) : ' desktop-view')) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
-			$html.removeClass('no-js').addClass(classes);
-
+			classes += (pe.svg ? ' svg' : ' no-svg');
+			
 			// Identify IE9+ browser
 			if (pe.ie > 8) {
-				$html.addClass('ie' + parseInt(pe.ie, 10));
+				classes += ' ie' + parseInt(pe.ie, 10);
+			} else if (pe.ie < 1) {
+				classes += ' no-ie';
 			}
+
+			// Is this a mobile device?
+			if (pe.mobile) {
+				// Detect if pre-OS7 BlackBerry device is being used
+				test = navigator.userAgent.indexOf('BlackBerry');
+				if (test === 0) {
+					classes += ' bb-pre6 bb-pre7';
+				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
+					classes += ' bb-pre7';
+				}
+			}
+
+			// Remove the "no-js" class and add the identification classes to the HTML element.
+			$html.removeClass('no-js').addClass(classes);
 
 			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
 				return this.href.indexOf('#') !== -1;
@@ -158,17 +187,6 @@
 			hlinks_same = hlinks.filter(function () {
 				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
 			});
-
-			// Is this a mobile device?
-			if (pe.mobile) {
-				// Detect if pre-OS7 BlackBerry device is being used
-				test = navigator.userAgent.indexOf('BlackBerry');
-				if (test === 0) {
-					$html.addClass('bb-pre6 bb-pre7');
-				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
-					$html.addClass('bb-pre7');
-				}
-			}
 			
 			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 
@@ -206,14 +224,6 @@
 						setTimeout(function () {
 							$.mobile.silentScroll(pe.focus(target).offset().top);
 						}, 200);
-					}
-				}
-
-				if (pe.ie > 0) {
-					if (pe.ie < 9) {
-						pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
-					} else {
-						pe.wb_load({'plugins': {'equalize': pe.main}}, 'equalize-loaded');
 					}
 				}
 			});
@@ -296,6 +306,7 @@
 			$.mobile.textinput.prototype.options.clearSearchButtonText = pe.dic.get('%jqm-clear-search');
 			$.mobile.selectmenu.prototype.options.closeText = pe.dic.get('%close');
 			$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
+			$.mobile.table.prototype.options.columnBtnText = pe.dic.get('%jqm-tbl-col-toggle');
 		},
 		/**
 		* The pe aware page query to append items to
@@ -306,17 +317,60 @@
 		pagecontainer: function () {
 			return $('#wb-body-sec-sup, #wb-body-sec, #wb-body-secr, #wb-body').add('body').eq(0);
 		},
+		
 		/**
-		* Initializes the Resize dependency, and attaches a given function to various resize events.
+		* Manages custom events for text and window resizing
+		* Based on http://alistapart.com/article/fontresizing
+		* @namespace pe.resizeutil
+		*/
+		resizeutil: {
+			sizes: [],
+			events: ['wb-text-resize', 'wb-window-resize-width', 'wb-window-resize-height'],
+			events_all: '',
+			initialized: false,
+			/**
+			* Sets up the testing interval
+			* @memberof pe.resizeutil
+			* @function
+			*/
+			init: function () {
+				var ru = pe.resizeutil;
+				if (!ru.initialized) {
+					ru.sizes = [pe.resizetest.offsetHeight, pe.window.width(), pe.window.height()];
+					ru.events_all = ru.events.join(' ');
+					window.setInterval(function () {
+						pe.resizeutil.test();
+					}, 500);
+					ru.initialized = true;
+				}
+			},
+			/**
+			* Tests for text size, window width and window height changes and triggers an event when a change is found
+			* @memberof pe.resizeutil
+			* @function
+			*/
+			test: function () {
+				var curr_sizes = [pe.resizetest.offsetHeight, pe.window.width(), pe.window.height()],
+					i, len,
+					ru = pe.resizeutil;
+				for (i = 0, len = curr_sizes.length; i !== len; i += 1) {
+					if (curr_sizes[i] !== ru.sizes[i]) {
+						pe.document.trigger(ru.events[i], curr_sizes);
+					}
+				}
+				ru.sizes = curr_sizes;
+				return;
+			}
+		},
+		/**
+		* Registers callbacks for the custom resize events managed in pe.resizeutil
 		* @memberof pe
 		* @function
-		* @param {function} fn The function to run when a resize event fires.
-		* @return {void}
+		* @param (string) callback Function that will be bound to the custom resize events.
 		*/
-		resize: function (fn) {
-			ResizeEvents.initialise(); // ensure resize function initialized
-			ResizeEvents.eventElement.bind('x-text-resize x-zoom-resize x-window-resize', function () {
-				fn();
+		resize: function (callback) {
+			pe.document.on(pe.resizeutil.events_all, function (e, sizes) {
+				callback(e, sizes);
 			});
 			return;
 		},
@@ -795,7 +849,7 @@
 				qparam,
 				newquery = '?',
 				settings = pe.settings,
-				$html = $('html'),
+				$html = pe.html,
 				pedisable_link = (settings && typeof settings.pedisable_link === 'boolean' ? settings.pedisable_link : true);
 
 			if (tphp !== null) {
@@ -954,6 +1008,7 @@
 					hnestDOM,
 					hnestTag,
 					hnestLinkDOM,
+					hnestLinkDOM2,
 					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
 					mainText = pe.dic.get('%main-page'),
@@ -965,9 +1020,14 @@
 					listItems,
 					listItem,
 					listItem2,
-					sectionOpen = '<div data-theme="' + theme1 + '"' + ' class="wb-nested-menu',
-					sectionLink = '<a data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
-					sectionLinkOpen = '">' + headingOpen + sectionLink,
+					sectionOpenStart = '<div data-theme="',
+					sectionOpenEnd = '" class="wb-nested-menu',
+					sectionOpen1 = sectionOpenStart + theme1 + sectionOpenEnd,
+					sectionOpen2 = sectionOpenStart + theme2 + sectionOpenEnd,
+					sectionLinkStart = '<a data-role="button" data-theme="',
+					sectionLinkEnd = '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
+					sectionLinkOpen1 = '">' + headingOpen + sectionLinkStart + theme1 + sectionLinkEnd,
+					sectionLinkOpen2 = sectionLinkStart + theme2 + sectionLinkEnd,
 					sectionLinkClose = '</a>' + headingClose,
 					link = '<a data-role="button" data-icon="arrow-r" data-iconpos="right" data-corners="false" href="',
 					menu,
@@ -981,7 +1041,7 @@
 				} else {
 					hasHeading = mDOM.getElementsByTagName(heading).length !== 0;
 					if (menubar && !hasHeading) { // Menu bar without a mega menu
-						menu = sectionOpen + '"><ul data-role="listview" data-theme="' + theme1 + '">';
+						menu = sectionOpen1 + '"><ul data-role="listview" data-theme="' + theme1 + '">';
 						mItemsDOM = mDOM.getElementsByTagName('a');
 						for (mItems_i = 0, mItems_len = mItemsDOM.length; mItems_i < mItems_len; mItems_i += 1) {
 							mItemDOM = mItemsDOM[mItems_i];
@@ -997,7 +1057,7 @@
 
 							// If the menu item is a heading
 							if (mItemTag === heading) {
-								menu += sectionOpen;
+								menu += sectionOpen1;
 								hlink = mItem.children('a');
 								hlinkDOM = hlink[0];
 								navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
@@ -1009,7 +1069,7 @@
 								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
 								} else {
-									menu += sectionLinkOpen + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
+									menu += sectionLinkOpen1 + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
 								}
 								next = mItem.next();
 								nextDOM = next[0];
@@ -1025,11 +1085,11 @@
 											menu += '<li>';
 											if (hnestDOM.length !== 0) {
 												hnestLinkDOM = listItem.children[0];
-												menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+												menu += sectionOpen2 + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLinkOpen2 + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
 												for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
 													listItem2 = hnestDOM[nested_i];
-													hlinkDOM = listItem2.querySelector('a');
-													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
+													hnestLinkDOM2 = listItem2.querySelector('a');
+													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hnestLinkDOM2.href + '">' + hnestLinkDOM2.innerHTML + '</a></li>';
 												}
 												menu += '</ul></div>';
 											} else {
@@ -1091,7 +1151,7 @@
 			init: function () {
 				// localStorage
 				var lib = pe.add.liblocation,
-					$html = $('html');
+					$html = pe.html;
 				if (!window.localStorage) {
 					pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js', 'localstorage-loaded');
 					$html.addClass('polyfill-localstorage');
@@ -1131,7 +1191,7 @@
 					js = [],
 					i,
 					_len,
-					$html = $('html');
+					$html = pe.html;
 
 				// Process each polyfill
 				for (polyname in polyfills) {
@@ -1202,7 +1262,7 @@
 			* @function
 			*/
 			enhance: function (poly_name, objs) {
-				if ($('html').hasClass('polyfill-' + poly_name)) {
+				if (pe.html.hasClass('polyfill-' + poly_name)) {
 					objs = (typeof objs.jquery !== 'undefined' ? objs.get() : objs);
 					var polyobj = this.polyfill[poly_name],
 						objs_len = objs.length;
@@ -1221,7 +1281,6 @@
 			polyfill: {
 				'datalist': {
 					selector: 'input[list]',
-					depends: ['resize', 'outside'],
 					update: function (elms) {
 						elms.datalist();
 					},
@@ -1230,7 +1289,7 @@
 				},
 				'datepicker': {
 					selector: 'input[type="date"]',
-					depends: ['calendar', 'xregexp', 'outside'],
+					depends: ['calendar', 'xregexp'],
 					update: function (elms) {
 						elms.datepicker();
 					},
@@ -1743,6 +1802,8 @@
 						}
 					}
 					pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				} else {
+					pe.document.trigger(event_pcalldeps);
 				}
 			});
 
@@ -1757,7 +1818,8 @@
 		* @todo pass an element as the context for the recursion.
 		*/
 		dance: function () {
-			var loading_finished = 'wb-init-loaded';
+			var loading_finished = 'wb-init-loaded',
+				plugins = {};
 			pe.document.one(loading_finished, function () {
 				if (!(pe.ie > 0 && pe.ie < 9)) {
 					pe.resize(function () {
@@ -1768,17 +1830,24 @@
 							window.location.href = decodeURI(pe.url(window.location.href).removehash());
 						} else {
 							tabletcheck = pe.tabletcheck();
-							if (pe.tablet && !tabletcheck) {
-								$('html').removeClass('tablet-view');
-							} else if (!pe.tablet && tabletcheck) {
-								$('html').addClass('tablet-view');
+							if (pe.tablet !== tabletcheck) {
+								pe.html.toggleClass('tablet-view smartphone-view');
 							}
 							pe.tablet = tabletcheck;
 						}
 					});
 				}
 			});
-			pe.wb_load({'dep': ['resize', 'equalheights'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
+
+			// Figure out if we need to load plugins for IE
+			if (pe.ie > 0) {
+				plugins.equalize = pe.main;
+				if (pe.ie < 9) {
+					plugins.css3ie = pe.main;
+				}
+			}
+			pe.resizeutil.init();
+			pe.wb_load({'plugins': plugins, 'checkdom': true, 'polycheckdom': true}, loading_finished);
 		}
 	};
 	/* window binding */

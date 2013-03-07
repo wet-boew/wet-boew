@@ -25,7 +25,7 @@
 		}
 		a {
 			text-decoration: none;
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				text-decoration: underline;
 			}
 		}
@@ -78,7 +78,7 @@
 						font-weight: 700;
 						@include colorize-base($accent);
 					}
-					&:hover, &:focus, &:active {
+					@include pseudo-focus {
 						text-decoration: underline;
 					}
 				}
@@ -110,7 +110,7 @@
 				a {
 					display: block;
 					text-decoration: none;
-					&:hover, &:focus, &:active {
+					@include pseudo-focus {
 						background-color: darken($light, 3%);
 						text-decoration: underline;
 					}
@@ -454,7 +454,7 @@
 }
 
 // used in: @module-colorize
-$default-module-color: #cccccc;
+$default-module-color: #ccc;
 $default-module-border: false;
 $default-module-shadow: false;
 
@@ -469,4 +469,13 @@ $default-module-shadow: false;
 	@if $shadow == true {
 		@include box-shadow(0 2px 2px rgba($color, 0.15));
 	}
+}
+
+$fugue-width: 16px;
+$fugue-height: 16px;
+$fugue-line-height: 18px;
+$fugue-padding: 30px;
+
+@mixin fugue-icon($bullet-icon, $width: $fugue-width, $height: $fugue-height, $line-height: $fugue-line-height, $padding: $fugue-padding) {
+	background: url("../images/" + $bullet-icon) no-repeat ($padding - $width) / 2 ($line-height - $height) / 2;
 }

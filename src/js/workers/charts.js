@@ -5,7 +5,7 @@
 /*
  * Charts and graphs
  */
-/*global jQuery: false, pe:false, wet_boew_charts: false, Raphael: false*/
+/*global jQuery: false, pe:false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -13,7 +13,7 @@
 	}; /* local reference */
 	_pe.fn.charts = {
 		type: 'plugin',
-		depends: ['parserTable', 'excanvas', 'flot', 'flotPie', 'charts'],
+		depends: ['parserTable', 'excanvas', 'flot', 'charts'],
 		polyfills: ['detailssummary'],
 		_exec: function (elm) {
 			_pe.fn.chartsGraph.generate(elm);

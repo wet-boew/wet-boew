@@ -2,13 +2,13 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-@import "compass/css3/opacity";
+@import 'compass/css3/opacity';
+@import '../../grids/sass/includes/mixins';
 
 body {
 	font-size: 80%;
 	margin: 0;
 	padding: 0;
-	@extend %wb-verdana-font;
 }
 
 /* Override jQuery Mobile hiding of content on mobile loading to eliminate white flicker (exact opposite of what jQuery Mobile does) */
@@ -21,7 +21,7 @@ body {
 }
 
 a {
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		text-decoration: underline;
 	}
 }
@@ -46,12 +46,7 @@ table {
 	border-spacing: 0;
 }
 
-%wb-verdana-font {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-}
-
 textarea, input {
-	@extend %wb-verdana-font;
 	font-size: 100%;
 }
 
@@ -67,12 +62,6 @@ address {
 #{headings(all)} {
 	font-weight: 700;
 	margin: 1em 0 0.25em;
-}
-
-#wb-main {
-	#{headings(all)} {
-		font-family: sans-serif;
-	}
 }
 
 h1 {
@@ -103,13 +92,16 @@ h6 {
 	display: none;
 }
 
-%wb-clip-hidden {
+%wb-clip {
 	position: absolute;
-	clip: rect(1px, 1px, 1px, 1px);
-	height: 1px !important;
-	width: 1px !important;
+	@include clip-rect;
 	overflow: hidden !important;
 	margin: 0 !important;
+}
+%wb-clip-hidden {
+	@extend %wb-clip;
+	height: 1px !important;
+	width: 1px !important;
 }
 
 .wb-invisible {
@@ -124,7 +116,7 @@ h6 {
 
 %wb-clip-focus-active {
 	@extend %wb-clip-hidden;
-	&:focus, &:active {
+	@include pseudo-focus(false) {
 		position: static;
 		clip: auto;
 		height: inherit !important;
@@ -149,21 +141,22 @@ h6 {
 
 .wb-show-onhover {
 	@include transparent;
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		@include opaque;
 	}
 }
 
 #mobiletest {
-	position: absolute;
-	height: 0;
-	left: -9999px;
+	@extend %wb-clip;
 }
 
-/* Right to left (RTL) CSS */
+#resizetest {
+	@extend %wb-clip;
+}
+
 [dir="rtl"] {
-	#mobiletest {
-		left: auto;
-		right: -9999px;
-	}
+  .ui-popup-hidden {
+    left: auto;
+    right: -9999px;
+  }
 }

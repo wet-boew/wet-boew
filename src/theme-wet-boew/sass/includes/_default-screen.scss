@@ -38,7 +38,6 @@ input {
 			padding: 13px 0;
 			&#wet-fullhd-lang {
 				a {
-					@extend %default-screen-padding-0;
 					text-transform: capitalize;
 				}
 			}
@@ -74,7 +73,7 @@ input {
 				padding-top: 8px;
 				padding-bottom: 8px;
 				font-size: 1.1em;
-				&:hover, &:focus, &:active {
+				@include pseudo-focus {
 					@extend %default-screen-color-fff;
 					text-decoration: underline;
 				}
@@ -125,7 +124,7 @@ input {
 				display: block;
 				@extend %default-screen-color-333;
 				text-decoration: none;
-				&:hover, &:focus, &:active {
+				@include pseudo-focus {
 					@extend %default-screen-color-333;
 					text-decoration: underline;
 				}

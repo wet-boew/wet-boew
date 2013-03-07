@@ -18,7 +18,7 @@ h1 {
 
 h2 {
 	position: absolute;
-	clip: rect(1px, 1px, 1px, 1px);
+	@include clip-rect;
 	height: 0 !important;
 	width: 0 !important;
 	overflow: hidden !important;
@@ -102,7 +102,7 @@ h2 {
 			display: block;
 			text-decoration: none;
 			text-transform: capitalize;
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				text-shadow: 0 1px 0 #ddd;
 				@include box-shadow(none);
 				border: 1px solid #999;
@@ -150,7 +150,7 @@ h2 {
 			display: block;
 			text-decoration: none;
 			font-size: 0.9em;
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				text-decoration: underline;
 			}
 		}

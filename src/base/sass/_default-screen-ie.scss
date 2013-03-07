@@ -13,6 +13,7 @@
 			margin: auto;
 			zoom: 1;
 			position: relative;
+			left: 44%;
 		}
 	}
 	a {
@@ -22,7 +23,7 @@
 					top: -9000em;
 				}
 			}
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				height: 1%;
 			}
 		}
@@ -43,7 +44,7 @@
 .ie8 {
 	.wb-show-onhover {
 		@include transparent;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			@include opaque;
 		}
 	}

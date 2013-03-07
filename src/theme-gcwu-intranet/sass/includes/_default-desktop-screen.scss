@@ -68,7 +68,7 @@
 	background: none;
 	padding-right: 0;
 	#gcwu-srch {
-		&:focus, &:active {
+		@include pseudo-focus(false) {
 			background: #f0fcff;
 		}
 	}
@@ -88,7 +88,7 @@
 	}
 	text-shadow: 1px 1px 1px #333;
 	a {
-		&:hover, &:focus {
+		@include pseudo-focus {
 			text-decoration: underline;
 		}
 	}
@@ -142,7 +142,7 @@
 %intranet-default-desktop-screen-clip-auto {
 	img {
 		position: absolute;
-		clip: rect(auto, auto, auto, auto);
+		@include clip-rect(auto, auto, auto, auto);
 		width: auto !important;
 	}
 }
@@ -152,10 +152,7 @@
 	display: block;
 	margin-left: 0;
 	&, a {
-		margin: {
-			top: 3px;
-			bottom: 3px;
-		}
+		margin: 0.2em 0 0.14em 0;
 		top: auto;
 		position: static;
 	}
@@ -325,7 +322,7 @@
 
 %intranet-default-desktop-screen-a-psuedo-underline {
 	a {
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			text-decoration: underline;
 		}
 	}

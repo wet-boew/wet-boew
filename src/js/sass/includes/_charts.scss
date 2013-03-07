@@ -36,7 +36,7 @@ figure {
 
 		/* Add focus styles (for keyboard accessibility) */
 		summary {
-			&:hover, &:focus {
+			@include pseudo-focus{
 				background: #ddd;
 			}
 		}

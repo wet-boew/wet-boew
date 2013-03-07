@@ -40,15 +40,12 @@
 	text-shadow: 1px 1px 1px #333;
 	p {
 		margin: 0 auto;
-		padding: {
-			top: 4px;
-			bottom: 7px;
-		}
+		padding: 4px 0;
 	}
 	a {
 		color: #fff;
 		text-decoration: none;
-		padding: 0 5px 0 10px;
+		padding: 0 5px 0 0;
 		text-shadow: 1px 1px 1px #333;
 		border-left: 1px solid #ccc;
 		font-size: 75%;

@@ -32,12 +32,12 @@ $font-weight-bold:		700;
 
 $highlight:		#ffffc9;
 $accent:		#176ca7; //#176ca7; //#1a7abd; // #cc0000;
-$black:			#000000;
-$dark:			#222222;
-$medium:		#666666;
-$light:			#eeeeee;
-$white:			#ffffff;
-$silver:		#cccccc;
+$black:			#000;
+$dark:			#222;
+$medium:		#666;
+$light:			#eee;
+$white:			#fff;
+$silver:		#ccc;
 
 $red: 			#d73d38;
 $yellow:		#ffe75d;
@@ -45,9 +45,9 @@ $yellow:		#ffe75d;
 
 $alert:			$red;
 $attention:		$yellow;
-$note:			#555555;
+$note:			#555;
 $info:			#2a7da6;
-$question:		#888888;
+$question:		#888;
 $answer:		#6c9f42;
 $tool:			#bab595;
 $inprogress:	#6d92a5;
@@ -63,7 +63,7 @@ $default-border-radius:		4px;
 
 // custom
 // used in: @colorize
-$default-color: #cccccc;
+$default-color: #ccc;
 $default-color-gradient: true;
 $default-color-shadow: true;
 $default-color-border: false;
@@ -99,15 +99,17 @@ $default-box-shadow-v-offset: 0;
 
 	// apply link colors to base only
 	a {
-		&, &:link, &:visited {
-			color: $text;
-		}
+		&, &.ui-link {
+			&, &:link, &:visited {
+				color: $text;
+			}
 
-		&:hover, &:focus, &:active {
-			@if $text == white {
-				color: darken($text, 10%);
-			} @else {
-				color: lighten($text, 20%);
+			@include pseudo-focus {
+				@if $text == white {
+					color: darken($text, 10%);
+				} @else {
+					color: lighten($text, 20%);
+				}
 			}
 		}
 	}
@@ -165,4 +167,35 @@ $default-box-shadow-v-offset: 0;
     }
   }
   @return $value;
+}
+
+@mixin clip-rect($top: 1px, $right: 1px, $bottom: 1px, $left: 1px) {
+	@if $legacy-support-for-ie {
+		clip: rect($top $right $bottom $left);
+	} @else {
+		clip: rect($top, $right, $bottom, $left);
+	}
+}
+
+//Used to work around an IE7 bug with focus
+@mixin pseudo-focus($hover: true) {
+    @if $legacy-support-for-ie7 {
+        @if $hover {
+            &:hover, &:active {
+                @content;
+            }
+        } @else {
+            &:active {
+                @content;
+            }
+        }        
+    } @else if $hover {
+		&:hover, &:focus {
+			@content;
+		}
+	} @else {
+		&:focus {
+			@content;
+		}
+    }
 }

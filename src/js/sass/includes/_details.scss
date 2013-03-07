@@ -13,7 +13,7 @@
 summary {
 	@extend %pe-details-display-block;
 	cursor: pointer; /* Apply a pointer cursor upon hover to indicate it’s a clickable element. These styles can be applied regardless of whether the fallback is needed */
-	&:hover, &:focus, &:active { /* Add focus styles (for keyboard accessibility) */
+	@include pseudo-focus { /* Add focus styles (for keyboard accessibility) */
 		background: #ddd;
 	}
 }
@@ -70,7 +70,7 @@ details {
 	}
 	summary {
 		cursor: auto;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			background: none;
 		}
 	}

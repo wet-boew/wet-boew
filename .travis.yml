@@ -6,10 +6,9 @@ env:
 
 branches:
   except:
-    - v3.0-dist
-    - master-dist
+    - /^.*-dist$/
+    - gh-pages
+
 
 script:
-  - ant test -Djshint.failbuild=true
-  - ant
-  - ./build/post_build.sh
+  - ant test -Djshint.failbuild=true && ant && ./build/post_build.sh

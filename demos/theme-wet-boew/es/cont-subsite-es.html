@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>Página de contenido + Sitio secundario - Tema de base - Ejemplos prácticos - Web Experience Toolkit (WET)</title>
+<title>Página de contenido - Sitio secundario - Tema de base - Ejemplos prácticos - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -17,7 +17,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!--[if lte IE 8]>
 <script src="../../../dist/js/jquery-ie.min.js"></script>
 <script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
-<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/jquery.mobile-ie-min.css" />
 <link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
@@ -31,8 +30,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
 <!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -46,13 +45,11 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <section><div id="wet-fullhd"><h2>Area de encabezamiento de lleno-anchura</h2>
-
 <div id="wet-fullhd-in">
-
 <ul>
-<li id="wet-fullhd-lang"><a href="../cont-subsite-eng.html" lang="en">English</a></li>
-<li id="wet-fullhd-lang-2"><a href="../cont-subsite-fra.html" lang="fr">Français</a></li>
 <li id="wet-fullhd-lang-current">Español</li>
+<li id="wet-fullhd-lang"><a href="../cont-subsite-fra.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-2"><a href="../cont-subsite-eng.html" lang="en">English</a></li>
 </ul>
 </div>
 </div></section>
@@ -62,8 +59,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <section role="search"><div id="wet-srchbx"><h2>Búsqueda</h2>
 <form action="#" method="post"><div id="wet-srchbx-in">
-<label forid="wet-srch">Buscar en este sitio Web</label><input id="wet-srch" nameid="wet-srch" type="search" value="" size="27" maxlength="150" />
-<input id="wet-srch-submit" nameid="wet-srch-submit" type="submit" value="Búsqueda" data-icon="search" class="button button-accent" />
+<label for="wet-srch">Buscar en este sitio Web</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Búsqueda" data-icon="search" class="button button-accent" />
 </div></form>
 </div></section>
 </div>
@@ -72,12 +69,24 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div>
 
 <nav role="navigation">
+<div id="wet-psnb"><h2>Menú del sitio</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../includes/menu-es.txt">
+<li lang="en"><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="section2/index-eng.html">Sección 2</a></div></li>
+<li><div><a href="#">Sección 3</a></div></li>
+<li><div><a href="#">Sección 4</a></div></li>
+<li><div><a href="#">Sección 5</a></div></li>
+<li><div><a href="#">Sección 6</a></div></li>
+<li><div><a href="#">Sección 7</a></div></li>
+</ul>
+</div></div></div></div>
+
 <div id="wet-bc"><h2>Hilo de Ariadna</h2><div id="wet-bc-in">
 <ol>
 <li><a href="../../../index-eng.html">Página de Inicio</a></li>
 <li><a href="../../index-eng.html">Ejemplos prácticos</a></li>
 <li><a href="../index-eng.html">Tema de WET</a></li>
-<li>Página de contenido + Sitio secundario</li>
+<li>Página de contenido - Sitio secundario</li>
 </ol>
 </div></div>
 </nav>
@@ -87,7 +96,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Página de contenido + Sitio secundario - Tema de base</h1>
+<h1 id="wb-cont">Página de contenido - Sitio secundario - Tema de base</h1>
 
 <section><h2>Título 2 (<code>h2</code>) - apariencia predefinida</h2>
 	<section><h3>Título 3 (<code>h3</code>) - apariencia predefinida</h3>
@@ -236,5 +245,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
 <!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
 </body>
 </html>

@@ -43,6 +43,14 @@
 	border: none;
 }
 
+%gcwu-default-mobile-text-shadow-none {
+	text-shadow: none;
+}
+
+%gcwu-default-mobile-text-decoration-none {
+	text-decoration: none;
+}
+
 body {
 	@if $experimental-support-for-webkit {
 		-webkit-text-size-adjust: none;
@@ -61,25 +69,19 @@ a {
 }
 
 blockquote {
-	@extend %no-margin-no-shadow;
-}
-
-%no-margin-no-shadow {
-	margin-left: 0;
-	margin-right: 0;
-	text-shadow: none;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 form {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 #{headings(2,6)} {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 img {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 	max-width: 100%;
 	height: auto;
 	@extend %gcwu-default-mobile-display-block;
@@ -97,62 +99,15 @@ li {
 }
 
 p {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 pre {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 table {
-	@extend %no-margin-no-shadow;
-}
-
-[id|="wb-body-sec"] {
-	#wb-skip2 {
-		@extend %gcwu-default-mobile-display-none;
-		visibility: hidden;
-	}
-}
-
-#wb-head {
-	@extend %period-after-pseudo;
-}
-
-[id|="wb-body"] {
-	background: #fff !important;
-}
-
-#gcwu-title {
-	border: 1px solid #456F9A;
-	p {
-		padding: 3px;
-		margin: 0;
-	}
-	a {
-		font-size: 1.5em;
-		@extend %gcwu-default-mobile-font-weight-normal;
-		color: #fff !important;
-		text-shadow: 0 1px 1px #044062;
-		text-decoration: none;
-	}
-}
-
-#gcwu-wmms {
-	@extend %position-absolute;
-	top: 0;
-	left: 0;
-	img {
-		padding: 5px 3px;
-		margin: 0;
-		background: #fff;
-	}
-}
-
-#gcwu-date-mod {
-	@extend %period-after-pseudo;
-	float: right;
-	margin: 5px 0;
+	@extend %gcwu-default-mobile-text-shadow-none;
 }
 
 #gcwu-priorities {
@@ -160,29 +115,67 @@ table {
 		text-align: center;
 	}
 	ul {
-		@extend %period-after-pseudo;
+		@extend %gcwu-default-mobile-period-after-pseudo;
 	}
 }
 
-[class*="span-"]{
-	position: relative;
+.mobile-view {
+	#wb-skip2 {
+		@extend %gcwu-default-mobile-display-none;
+		visibility: hidden;
+	}
+}
+
+#wb-head {
+	@extend %gcwu-default-mobile-period-after-pseudo;
+}
+
+[id|="wb-body"] {
+	background: #fff !important;
+}
+
+#gcwu-title {
+	@include background-image(linear-gradient(#4474AD, #174F88));
+	border: 1px solid #456F9A;
+	p {
+		padding: 3px 5px;
+		margin: 0;
+	}
+	a {
+		font-size: 1.5em;
+		@extend %gcwu-default-mobile-font-weight-normal;
+		color: #fff !important;
+		text-shadow: 0 1px 1px #044062;
+		@extend %gcwu-default-mobile-text-decoration-none;
+	}
+}
+
+%gcwu-default-mobile-width-90-height-22 {
+	width: 90px;
+	height: 22px;
+}
+#gcwu-wmms {
+	@extend %gcwu-default-mobile-position-absolute;
+	top: 9px;
+	left: 5px;
+	object {
+		@extend %gcwu-default-mobile-width-90-height-22;
+	}
+	img {
+		@extend %gcwu-default-mobile-width-90-height-22;
+	}
+}
+
+#gcwu-date-mod {
+	@extend %gcwu-default-mobile-period-after-pseudo;
+	float: right;
+	margin: 5px 0;
 }
 
 #wb-main-in {
-	padding: 0 3px;
 	h1 {
 		margin-top: 0.5em;
 	}
-}
-
-.clear {
-	clear: both;
-	@extend %gcwu-default-mobile-display-block;
-	height: 0;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	margin: 0;
 }
 
 .ui-mobile {
@@ -213,13 +206,15 @@ table {
 		min-width: 180px;
 		margin-left: 35px;
 		margin-right: 35px;
+		@extend %gcwu-default-mobile-text-shadow-none;
 	}
 }
 
 #gcwu-gcnb {
-	min-height: 41px;
-	.ui-header {
-		border: 1px solid #333;
+	min-height: 42px;
+	@include background-image(linear-gradient(#3C3C3C, #111));
+	ul {
+		@extend %gcwu-default-mobile-display-none;
 	}
 	li {
 		@extend %gcwu-default-mobile-display-none;
@@ -227,7 +222,7 @@ table {
 }
 
 #gcwu-mnavbar {
-	right: 3px;
+	right: 5px;
 	.ui-btn-inner {
 		padding: 0.6em 14px;
 	}
@@ -243,16 +238,6 @@ table {
 	@extend %gcwu-default-mobile-display-none;
 }
 
-#gcwu-wmms {
-	@extend %gcwu-default-mobile-display-none;
-}
-
-#gcwu-gcnb {
-	ul {
-		@extend %gcwu-default-mobile-display-none;
-	}
-}
-
 #gcwu-bc {
 	@extend %gcwu-default-mobile-display-none;
 }
@@ -266,7 +251,7 @@ table {
 }
 
 #wb-sec {
-	@extend %gcwu-default-mobile-display-none;
+	@extend %gcwu-default-mobile-display-none-important;
 }
 
 #wb-foot {
@@ -289,6 +274,11 @@ table {
 	}
 }
 
+%gcwu-default-mobile-last-child-padding-5 {
+	&:last-child {
+		padding: 5px;
+	}
+}
 #gcwu-bc-in {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
@@ -304,9 +294,7 @@ table {
 		margin: 0;
 		padding: 5px 12px 5px 5px;
 		@extend %gcwu-default-mobile-no-rounded-corners;
-		&:last-child {
-			padding-left: 5px;
-		}
+		@extend %gcwu-default-mobile-last-child-padding-5;
 	}
 	a {
 		@extend %gcwu-default-mobile-no-rounded-corners;
@@ -317,7 +305,7 @@ table {
 	clear: both;
 }
 
-%period-after-pseudo {
+%gcwu-default-mobile-period-after-pseudo {
 	&:after {
 		content: ".";
 		@extend %gcwu-default-mobile-display-block;
@@ -331,24 +319,24 @@ table {
 	display: none;
 }
 
+%gcwu-default-mobile-display-none-important {
+	display: none !important;
+}
+
 %gcwu-default-mobile-display-block {
 	display: block;
+}
+
+%gcwu-default-mobile-display-block-important {
+	display: block !important;
 }
 
 %gcwu-default-mobile-white-space-normal {
 	white-space: normal;
 }
 
-%position-absolute {
+%gcwu-default-mobile-position-absolute {
 	position: absolute;
-}
-
-.ui-title {
-	object, & > img {
-		@extend %position-absolute;
-		left: 3px;
-		top: 8px;
-	}
 }
 
 .ui-content {
@@ -362,9 +350,10 @@ table {
 
 #popupLanguages {
 	li {
-		.ui-btn-text {
-			&:first-letter {
-				text-transform: capitalize;
+		a {
+			text-transform: capitalize;
+			.current {
+				text-transform: lowercase;
 			}
 		}
 	}
@@ -444,25 +433,25 @@ select {
 	@extend %gcwu-default-mobile-font-125em;
 }
 
-%h1-border-bottom-none {
+%gcwu-default-mobile-h1-border-bottom-none {
 	h1 {
 		border-bottom: none;
 	}
 }
 .ui-dialog {
-	@extend %h1-border-bottom-none;
+	@extend %gcwu-default-mobile-h1-border-bottom-none;
 }
 
 .ui-popup {
-	@extend %h1-border-bottom-none;
+	@extend %gcwu-default-mobile-h1-border-bottom-none;
 }
 
 #jqm-wb-search {
 	label {
-		clip: rect(1px, 1px, 1px, 1px);
+		@include clip-rect;
 		height: 1px;
 		overflow: hidden;
-		@extend %position-absolute;
+		@extend %gcwu-default-mobile-position-absolute;
 		width: 1px;
 	}
 	.ui-icon-searchfield:after, .ui-icon-search {
@@ -472,9 +461,9 @@ select {
 
 #jqm-wb-mb {
 	a {
-		text-shadow: none;
+		@extend %gcwu-default-mobile-text-shadow-none;
 		&:link {
-			text-decoration: none
+			@extend %gcwu-default-mobile-text-decoration-none;
 		}
 	}
 	h3 {
@@ -683,7 +672,7 @@ select {
 		padding: 0;
 	}
 	.mobile-pe {
-		display: none !important;
+		@extend %gcwu-default-mobile-display-none-important;
 	}
 }
 
@@ -697,9 +686,6 @@ select {
 			@extend %gcwu-default-mobile-display-block;
 		}
 	}
-	#gcwu-wmms {
-		@extend %gcwu-default-mobile-display-block;
-	}
 	#gcwu-bc {
 		@extend %gcwu-default-mobile-display-block;
 	}
@@ -711,7 +697,7 @@ select {
 		margin-bottom: 0;
 	}
 	#wb-sec {
-		@extend %gcwu-default-mobile-display-block;
+		@extend %gcwu-default-mobile-display-block-important;
 	}
 	#wb-foot {
 		@extend %gcwu-default-mobile-display-block;
@@ -732,7 +718,7 @@ select {
 }
 
 /* Right to left (RTL) CSS */
-%rtl-scalex {
+%gcwu-default-mobile-rtl-scalex {
 	@include scaleX(-1);
 	@extend %gcwu-default-mobile-display-block;
 }
@@ -744,30 +730,32 @@ select {
 		float: left;
 	}
 
-	#gcwu-gcnb {
-		.ui-title {
-			img {
-				right: 3px;
-				left: auto;
-			}
-		}
+	#gcwu-wmms {
+		left: auto;
+		right: 5px;
 	}
 	
 	#gcwu-mnavbar {
-		@extend %rtl-scalex;
-		left: 3px;
+		@extend %gcwu-default-mobile-rtl-scalex;
+		left: 5px;
 		right: auto;
 	}
 
 	#gcwu-bc-in {
-		&, li:last-child, a {
-			@extend %rtl-scalex;
+		@extend %gcwu-default-mobile-rtl-scalex;
+		li {
+			&:last-child {
+				@extend %gcwu-default-mobile-rtl-scalex;
+			}
+		}
+		a {
+			@extend %gcwu-default-mobile-rtl-scalex;
 		}
 	}
 
 	.ui-popup-container, #wb-main {
 		.ui-btn, .ui-btn-text {
-			@extend %rtl-scalex;
+			@extend %gcwu-default-mobile-rtl-scalex;
 			text-align: right;
 		}
 		.ui-submit, .ui-select {
@@ -850,12 +838,6 @@ select {
 			&#base-fullft-ca div {
 				text-align: right;
 			}
-		}
-	}
-
-	.ui-title {
-		img {
-			right: 3px;
 		}
 	}
 

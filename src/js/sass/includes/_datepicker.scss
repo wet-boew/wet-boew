@@ -63,13 +63,14 @@ div {
 					&.datepicker-selected {
 						a {
 							background-color: #333;
+							color: #FFF;
 						}
 					}
 					a {
 						&, &:link {
 							color: #111 !important;
 						}
-						&:hover, &:focus, &:active {
+						@include pseudo-focus {
 							color: #FFF !important;
 						}
 					}

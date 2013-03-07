@@ -7,25 +7,12 @@
  * Version: @wet-boew-build.version@
  *
  */
+@import '../../base/sass/oldie-vendor-prefix';
 
-/* -----Include jQuery Mobile CSS Start----- */
-@import '../jquerymobile/jquery.mobile.theme';
-@import '../../js/jquerymobile/jquery.mobile.structure';
-/* -----Include jQuery Mobile CSS End----- */
-
-@import '../../base/sass/modern-vendor-prefix';
-
-/* -----Build Include Section Start----- */
+/* ----- All media types - Start of build includes ----- */
 @import '../../base/sass/default-ns';
 @import '../../grids/sass/responsive-ns';
 @import '../../grids/sass/util-ns';
 @import '../../js/sass/pe-ap-ns';
 @import '../../theme-gcwu-fegc/sass/includes/default-ns';
-/* -----Build Include Section End----- */
-
-/* Mobile view */
-@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
-/* -----Build Include Section Start----- */
-@import '../../theme-gcwu-fegc/sass/includes/default-mobile-ns';
-/* -----Build Include Section End----- */
-}
+/* ----- All media types - End of build includes ----- */

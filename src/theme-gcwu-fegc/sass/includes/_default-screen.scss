@@ -4,6 +4,52 @@
  */
 @import "compass/css3/border-radius";
 
+%gcwu-default-screen-color-fff {
+	color: #fff;
+}
+%gcwu-default-screen-color-333 {
+	color: #333;
+}
+%gcwu-default-screen-text-decoration-underline {
+	text-decoration: underline;
+}
+%gcwu-default-screen-text-decoration-none {
+	text-decoration: none;
+}
+%gcwu-default-screen-display-none {
+	display: none;
+}
+%gcwu-default-screen-display-block {
+	display: block;
+}
+%gcwu-default-screen-wmms-sig-display-none {
+	#gcwu-wmms-in {
+		@extend %gcwu-default-screen-display-none;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-default-screen-display-none;
+	}
+}
+%gcwu-default-screen-wmms-sig-display-block {
+	#gcwu-wmms-in {
+		@extend %gcwu-default-screen-display-block;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-default-screen-display-block;
+	}
+}
+%gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none {
+	&.ui-mobile {
+		@extend %gcwu-default-screen-wmms-sig-display-block;
+		&.ui-mobile-rendering {
+			@extend %gcwu-default-screen-wmms-sig-display-none;
+		}
+	}
+}
+%gcwu-default-screen-font-arial {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
 	margin: 0;
 }
@@ -30,9 +76,28 @@ body {
 		}
 	}
 	a {
-		color: #fff;
-		text-decoration: none;
+		@extend %gcwu-default-screen-color-fff;
+		@extend %gcwu-default-screen-text-decoration-none;
 	}
+}
+
+#gcwu-wmms-in {
+	@extend %gcwu-default-screen-display-none;
+}
+#gcwu-sig-in {
+	@extend %gcwu-default-screen-display-none;
+}
+.svg {
+	@extend %gcwu-default-screen-wmms-sig-display-block;
+}
+.pe-disable {
+	@extend %gcwu-default-screen-wmms-sig-display-block;
+}
+.no-svg {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie9 {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
 }
 
 .wb-sec-def {
@@ -42,18 +107,19 @@ body {
 		&.top-section {
 			a {
 				&, &.ui-link {
-					color: #FFF;
+					@extend %gcwu-default-screen-color-fff;
 					padding-top: 5px;
 					padding-bottom: 5px;
 					font-size: 1.1em;
-					&:visited, &:hover, &:focus, &:active {
-						color: #FFF;
+					&:visited {
+						@extend %gcwu-default-screen-color-fff;
 					}
-					&:hover, &:focus, &:active {
-						text-decoration: underline;
+					@include pseudo-focus {
+						@extend %gcwu-default-screen-color-fff;
+						@extend %gcwu-default-screen-text-decoration-underline;
 					}
 					&.nav-current {
-						color: #FFF;
+						@extend %gcwu-default-screen-color-fff;
 						padding-top: 4px;
 						padding-bottom: 4px;
 						background: #0f315b;
@@ -108,14 +174,15 @@ body {
 	%gcwu-default-screen-a-psuedo-underline {
 		a {
 			&, &.ui-link {
-				display: block;
-				color: #333;
-				text-decoration: none;
-				&:visited, &:hover, &:focus, &:active {
-					color: #333;
+				@extend %gcwu-default-screen-display-block;
+				@extend %gcwu-default-screen-color-333;
+				@extend %gcwu-default-screen-text-decoration-none;
+				&:visited {
+					@extend %gcwu-default-screen-color-333;
 				}
-				&:hover, &:focus, &:active {
-					text-decoration: underline;
+				@include pseudo-focus {
+					@extend %gcwu-default-screen-color-333;
+					@extend %gcwu-default-screen-text-decoration-underline;
 				}
 				&.nav-current {
 					color: #0F315B;
@@ -163,7 +230,7 @@ body {
 		}
 	}
 	a {
-		text-decoration: none;
+		@extend %gcwu-default-screen-text-decoration-none;
 	}
 	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
 		margin-bottom: 0;
@@ -178,7 +245,7 @@ body {
 
 #gcwu-sft {
 	padding-bottom: 20px;
-	font-family: Arial, Helvetica, sans-serif;
+	@extend %gcwu-default-screen-font-arial;
 	%gcwu-default-screen-color-222 {
 		color: #222;
 	}
@@ -241,7 +308,7 @@ body {
 
 #gcwu-gcft {
 	background: #040707;
-	font-family: Arial, Helvetica, sans-serif;
+	@extend %gcwu-default-screen-font-arial;
 	ul {
 		list-style-type: none;
 		margin: 0;
@@ -266,14 +333,14 @@ body {
 		}
 	}
 	a {
-		text-decoration: none;
-		color: #fff;
+		@extend %gcwu-default-screen-text-decoration-none;
+		@extend %gcwu-default-screen-color-fff;
 		font-size: 90%;
 	}
 }
 
 #gcwu-gcft-ca {
-	font-family: Arial, Helvetica, sans-serif;
+	@extend %gcwu-default-screen-font-arial;
 	float: right !important;
 	padding-left: 0;
 	margin-right: 0;
@@ -285,8 +352,8 @@ body {
 	}
 	a {
 		@include inline-block;
-		color: #fff;
-		text-decoration: none;
+		@extend %gcwu-default-screen-color-fff;
+		@extend %gcwu-default-screen-text-decoration-none;
 		border-left: 1px solid #666;
 		line-height: 1.45em;
 		padding-right: 10px;

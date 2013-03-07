@@ -24,6 +24,4 @@ $width-12small: 55px;
 	@include create_grid($width-12, 12);
 }
 
-@for $i from 1 through 8 {
-	@include create_grid($width-8, 8);
-}
+@include create_grid($width-8, 8);

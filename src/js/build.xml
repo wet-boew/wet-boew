@@ -16,7 +16,7 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"/>
 
-	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-copy-depends,-build-pe,-copy-binaries"/>
+	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-copy-depends,-build-flot,-build-pe,-copy-binaries"/>
 	
 	<target name="-copy-binaries">
 		<copy todir="${dist.dir}">  
@@ -31,6 +31,7 @@
 		<exclude name="workers/**"/>
 		<exclude name="pe-ap.js"/>
 		<exclude name="i18n/base.js"/>
+		<exclude name="dependencies/flot*.js"/>
 	</fileset>
 
 	<!-- Build JS Tasks -->
@@ -48,6 +49,12 @@
 		</concat>
 		<!-- Temporary fix - to be replaced by modern and old IE targeted output -->
 		<copy file="${dist.dir}/pe-ap.js" tofile="${dist.dir}/pe-ap-ie.js"/>
+	</target>
+	
+	<target name="-build-flot" description="Concat flot and any plugins into single file. Done for gh-1276">
+		<concat dest="${dist.dir}/dependencies/flot.js" fixlastline="yes">
+			<fileset dir="${src.dir}/dependencies" includes="flot*.js" />
+		</concat>
 	</target>
 	
 	<target name="-build-i18n" depends="-get-validation-languages">

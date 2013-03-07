@@ -19,9 +19,15 @@ img {
 	border: none;
 }
 
-h1 {
-	color: #333;
+%gcwu-default-desktop-screen-font-weight-400-color-333 {
 	font-weight: 400;
+	color: #333;
+}
+%gcwu-default-desktop-screen-border-left-none {
+	border-left: none;
+}
+h1 {
+	@extend %gcwu-default-desktop-screen-font-weight-400-color-333;
 	border-bottom: 1px solid #333;
 	font-size: 1.8em;
 	margin-bottom: 10px !important;
@@ -45,8 +51,8 @@ a {
 
 %gcwu-default-desktop-screen-hidden-img {
 	img {
-		position: absolute;
-		clip: rect(1px, 1px, 1px, 1px);
+		@extend %gcwu-default-desktop-screen-position-absolute;
+		@include clip-rect;
 		height: 0 !important;
 		width: 0 !important;
 		overflow: hidden !important;
@@ -64,20 +70,20 @@ a {
 	@extend %gcwu-default-desktop-screen-float-right-relative;
 }
 
-%overflow-hidden {
+%gcwu-default-desktop-screen-overflow-hidden {
 	overflow: hidden;
 }
 
 #wb-head {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #wb-head-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #wb-foot {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 	@extend %text-decoration-underline-a-psuedos;
 	#gcwu-wmms {
 		display: none;
@@ -85,68 +91,70 @@ a {
 }
 
 #wb-foot-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-bc {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-gcft {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-sft {
-	@extend %overflow-hidden;
-}
-
-#gcwu-gcnb-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-bc-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-gcft-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
 #gcwu-sft-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
+%gcwu-default-desktop-screen-display-block {
+	display: block;
+}
 #wb-core-in {
 	overflow: visible !important;
-	position: relative;
+	@extend %gcwu-default-desktop-screen-position-relative;
 	padding-top: 5px;
 	&:after {
 		content: ".";
-		display: block;
+		@extend %gcwu-default-desktop-screen-display-block;
 		height: 0;
 		clear: both;
 		visibility: hidden;
 	}
 }
 
-#gcwu-bnr {
-	@extend %overflow-hidden;
+%gcwu-default-desktop-screen-position-relative {
 	position: relative;
+}
+%gcwu-default-desktop-screen-position-absolute {
+	position: absolute;
+}
+#gcwu-bnr {
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
+	@extend %gcwu-default-desktop-screen-position-relative;
 	z-index: 501 !important;
 }
 
 #gcwu-bnr-in {
-	@extend %overflow-hidden;
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
 	min-height: 6.5em;
-	position: relative;
+	@extend %gcwu-default-desktop-screen-position-relative;
 }
 
 #wb-main-in {
 	padding-top: 1px;
 	padding-bottom: 2.5em;
-	a {
-		@extend %gcwu-default-link;
-	}
 }
 
 #wb-body-sec {
@@ -165,21 +173,44 @@ a {
 #wb-body {
 	#gcwu-content {
 		@extend %gcwu-default-desktop-screen-float-left;
-		position: relative;
+		@extend %gcwu-default-desktop-screen-position-relative;
 	}
 	#wb-main {
 		@extend %gcwu-default-desktop-screen-float-left;
 	}
 }
 
+%gcwu-default-desktop-screen-margin-left-10 {
+	margin-left: 10px;
+}
+%gcwu-default-desktop-screen-margin-right-10 {
+	margin-right: 10px;
+}
+%gcwu-default-desktop-screen-margin-left-0 {
+	margin-left: 0;
+}
+%gcwu-default-desktop-screen-margin-left-auto {
+	margin-left: auto;
+}
 #gcwu-aside {
 	@extend %gcwu-default-desktop-screen-float-right;
-	margin-left: 10px;
-	margin-right: 10px;
+	@extend %gcwu-default-desktop-screen-margin-left-10;
+	@extend %gcwu-default-desktop-screen-margin-right-10;
+	img {
+		width: 100%;
+		height: auto;
+		-ms-interpolation-mode: bicubic;
+	}
+	.gcwu-minister-img {
+		img {
+			width: auto !important;
+			height: auto;
+		}
+	}
 }
 
 #gcwu-date-mod {
-	position: absolute;
+	@extend %gcwu-default-desktop-screen-position-absolute;
 	bottom: 0;
 	right: 10px;
 }
@@ -205,8 +236,8 @@ a {
 }
 
 %gcwu-default-desktop-screen-float-right-relative {
-	float: right;
-	position: relative;
+	@extend %gcwu-default-desktop-screen-float-right;
+	@extend %gcwu-default-desktop-screen-position-relative;
 }
 
 #gcwu-sig {
@@ -217,25 +248,31 @@ a {
 }
 
 #gcwu-sig-in {
-	margin-left: 10px;
+	@extend %gcwu-default-desktop-screen-margin-left-10;
 	height: 24px;
 }
 
 #gcwu-gcnb {
-	height: 3.6em;
-	min-height: 41px;
+	min-height: 3.6em;
 	a {
 		border-left: 1px solid #fff;
-		display: block;
+		@extend %gcwu-default-desktop-screen-display-block;
 		padding: 0 1em;
+		text-shadow: none;
+		font-weight: normal;
 	}
 	li {
 		&:first-child {
 			a {
-				border-left: none;
+				@extend %gcwu-default-desktop-screen-border-left-none;
 			}
 		}
 	}
+}
+
+#gcwu-gcnb-in {
+	@extend %gcwu-default-desktop-screen-overflow-hidden;
+	min-height: 41px;
 }
 
 #gcwu-title {
@@ -243,8 +280,8 @@ a {
 	display: table-row;
 	a {
 		display: inline-block;
-		margin-left: 10px;
-		&:hover, &:focus, &:active {
+		@extend %gcwu-default-desktop-screen-margin-left-10;
+		@include pseudo-focus {
 			text-decoration: underline;
 		}
 	}
@@ -253,18 +290,22 @@ a {
 		font-size: 1.52em;
 		font-family: Arial, Helvetica, sans-serif;
 		text-shadow: 1px 1px 1px #333;
+		font-weight: normal;
 	}
 }
 
+%gcwu-default-desktop-screen-margin-0 {
+	margin: 0;
+}
 #gcwu-title-in {
 	display: table-cell;
 	vertical-align: middle;
-	margin: 0;
+	@extend %gcwu-default-desktop-screen-margin-0;
 }
 
 #gcwu-srchbx {
 	@extend %text-decoration-underline-a-psuedos;
-	position: absolute;
+	@extend %gcwu-default-desktop-screen-position-absolute;
 	background: #146094;
 	border-top: 1px solid #87aec9;
 	text-align: right;
@@ -282,25 +323,25 @@ a {
 		min-height: 0;
 	}
 	form {
-		margin: 0;
+		@extend %gcwu-default-desktop-screen-margin-0;
 	}
 	label {
-		position: absolute;
-		clip: rect(1px, 1px, 1px, 1px);
+		@extend %gcwu-default-desktop-screen-position-absolute;
+		@include clip-rect;
 		height: 1px;
 		width: 1px;
-		overflow: hidden;
+		@extend %gcwu-default-desktop-screen-overflow-hidden;
 	}
 	#gcwu-srch { //TODO: Does this need to be nested?
 		color: #444;
 		border: 1px solid #ccc;
 		@include border-radius(2px);
-		margin-left: 0;
+		@extend %gcwu-default-desktop-screen-margin-left-0;
 		width: 218px;
 		@include box-shadow(none);
 		background: #fff;
 		padding: 2px 0;
-		&:focus, &:active {
+		@include pseudo-focus(false) {
 			background: #f0fcff;
 		}
 	}
@@ -323,14 +364,13 @@ a {
 		top: 1px solid #fff;
 		left: 1px solid #fff;
 	}
-	color: #333;
 	@include border-radius(2px);
 	text-shadow: 0 1px 0 #eee;
-	font-weight: 400;
+	@extend %gcwu-default-desktop-screen-font-weight-400-color-333;
 	@include box-shadow(none);
 	padding: 2px 6px;
 	display: inline;
-	&:focus, &:hover {
+	@include pseudo-focus {
 		text-shadow: 0 1px 0 #ddd;
 		@include box-shadow(none);
 		border: {
@@ -348,7 +388,7 @@ a {
 
 #gcwu-wmms {
 	@extend %gcwu-default-desktop-screen-hidden-img;
-	position: absolute;
+	@extend %gcwu-default-desktop-screen-position-absolute;
 	top: 38px;
 	right: 4px;
 }
@@ -395,7 +435,7 @@ a {
 
 %text-decoration-underline-a-psuedos {
 	a {
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			text-decoration: underline;
 		}
 	}
@@ -421,8 +461,11 @@ a {
 		margin: 7px 10px 0 0;
 	}
 
-	#gcwu-date-mod {
+	%gcwu-default-desktop-screen-right-auto {
 		right: auto;
+	}
+	#gcwu-date-mod {
+		@extend %gcwu-default-desktop-screen-right-auto;
 		left: 10px;
 	}
 
@@ -444,10 +487,13 @@ a {
 	}
 
 	#gcwu-sig-in {
-		margin-right: 10px;
-		margin-left: 0;
+		@extend %gcwu-default-desktop-screen-margin-right-10;
+		@extend %gcwu-default-desktop-screen-margin-left-0;
 	}
 
+	%gcwu-default-desktop-screen-padding-left-0 {
+		padding-left: 0;
+	}
 	#gcwu-gcnb {
 		ul {
 			@extend %gcwu-default-desktop-screen-float-left;
@@ -455,17 +501,18 @@ a {
 				@extend %gcwu-default-desktop-screen-float-right;
 				&#gcwu-gcnb-lang {
 					a {
-						padding-right: 10px;
-						padding-left: 0;
-						margin-right: auto;
-						margin-left: 1px;
+						padding: 0 10px;
+						margin: {
+							right: auto;
+							left: 1px;
+						}
 					}
 				}
 			}
 		}
 
 		a {
-			border-left: none;
+			@extend %gcwu-default-desktop-screen-border-left-none;
 			border-right: 1px solid #fff;
 		}
 
@@ -480,40 +527,42 @@ a {
 	
 	#gcwu-title {
 		a {
-			margin-left: auto;
-			margin-right: 10px;
+			@extend %gcwu-default-desktop-screen-margin-left-auto;
+			@extend %gcwu-default-desktop-screen-margin-right-10;
 		}
 	}
 
+	%gcwu-default-desktop-screen-left-0 {
+		left: 0;
+	}
 	#gcwu-srchbx {
 		text-align: left;
-		right: auto;
-		left: 0;
+		@extend %gcwu-default-desktop-screen-right-auto;
+		@extend %gcwu-default-desktop-screen-left-0;
 		padding: 11px 12px 6px 10px;
 
 		#gcwu-srch {
-			margin-left: auto;
+			@extend %gcwu-default-desktop-screen-margin-left-auto;
 			margin-right: 0;
 		}
 	}
 
-	#gcwu-srch-submit {
+	%gcwu-default-desktop-screen-border-right-fff-left-999 {
 		border: {
 			right: 1px solid #fff;
 			left: 1px solid #999;
 		}
-
-		&:focus, &:hover {
-			border: {
-				right: 1px solid #fff;
-				left: 1px solid #999;
-			}
+	}
+	#gcwu-srch-submit {
+		@extend %gcwu-default-desktop-screen-border-right-fff-left-999;
+		@include pseudo-focus {
+			@extend %gcwu-default-desktop-screen-border-right-fff-left-999;
 		}
 	}
 
 	#gcwu-wmms {
-		left: 0;
-		right: auto;
+		@extend %gcwu-default-desktop-screen-left-0;
+		@extend %gcwu-default-desktop-screen-right-auto;
 	}
 
 	#gcwu-psnb {
@@ -528,20 +577,11 @@ a {
 		}
 	}
 
-	#gcwu-gcft {
-		@include scaleX(-1);
-		#gcwu-gcft-fip {
-			li {
-				@include scaleX(-1);
-			}
-		}
-	}
-
 	#gcwu-gcft-ca {
 		a {
-			border-left: none;
+			@extend %gcwu-default-desktop-screen-border-left-none;
 			border-right: 1px solid #666;
-			padding-left: 0;
+			@extend %gcwu-default-desktop-screen-padding-left-0;
 			padding-right: 44px;
 		}
 	}

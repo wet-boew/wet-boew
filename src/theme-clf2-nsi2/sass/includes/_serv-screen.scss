@@ -96,7 +96,7 @@ body {
 		}
 	}
 	a {
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			background-color: #363;
 		}
 	}

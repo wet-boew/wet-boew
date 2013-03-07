@@ -76,11 +76,10 @@
 			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data attribute
-			$.metadata.setType('attr', 'data-wet-boew');
 			if (typeof wet_boew_lightbox !== 'undefined' && wet_boew_lightbox !== null) {
-				$.extend(opts, wet_boew_lightbox, overrides, elm.metadata());
+				$.extend(opts, wet_boew_lightbox, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 			} else {
-				$.extend(opts, overrides, elm.metadata());
+				$.extend(opts, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 			}
 
 			// Add touchscreen support for launching the lightbox

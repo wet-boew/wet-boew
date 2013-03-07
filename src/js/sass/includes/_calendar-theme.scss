@@ -14,7 +14,7 @@
 			&:link, &:visited {
 				border: 1px solid #333;
 			}
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				color: #FFF;
 				border: 1px solid #FFF;
 			}
@@ -25,7 +25,7 @@
 			&:link, &:visited {
 				color: #FFF !important;
 			}
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				color: #36C !important;
 				background-color: #FFF;
 			}
@@ -49,7 +49,7 @@
 	}
 	.cal-day-list a {
 		color: #111;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			/* active is for IE, focus is for Firefox | active est pour IE, focus est pour Firefox */
 			background: #333;
 			color: #FFF;

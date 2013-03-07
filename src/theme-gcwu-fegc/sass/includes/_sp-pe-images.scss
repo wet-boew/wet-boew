@@ -7,14 +7,14 @@
 	li {
 		a {
 			background: #ccc url(../images/sp-pe-button.gif) 0 0 repeat-x; //TODO: Use gradients with fallback
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				background: #ddd url(../images/sp-pe-button-focus.gif) 0 0 repeat-x; //TODO: Use gradients with fallback
 			}
 		}
 	}
 }
 
-#gcwu-ef-lang{
+#gcwu-ef-lang {
 	@extend %gcwu-sp-pe-images-langs;
 }
 

@@ -8,32 +8,44 @@ h1 {
 	margin: 10px 0;
 }
 
+%gcwu-sp-pe-print-position-absolute {
+	position: absolute;
+}
+
 #gcwu-sig {
-	img {
-		position: absolute;
-		top: 10px;
-		left: 0;
-	}
+	@extend %gcwu-sp-pe-print-position-absolute;
+	top: 10px;
+	left: 0;
 }
 
 #gcwu-wmms {
-	img {
-		position: absolute;
-		top: 0;
-		right: 0;
-	}
+	@extend %gcwu-sp-pe-print-position-absolute;
+	top: 0;
+	right: 0;
 }
 
-%gcwu-sp-pe-print-li-magring-right-20px {
+%gcwu-sp-pe-print-li-margin-right-20px {
 	li {
 		margin-right: 20px;
 	}
 }
 
 #gcwu-lang {
-	@extend %gcwu-sp-pe-print-li-magring-right-20px;
+	@extend %gcwu-sp-pe-print-li-margin-right-20px;
 }
 
 #gcwu-tc {
-	@extend %gcwu-sp-pe-print-li-magring-right-20px;
+	@extend %gcwu-sp-pe-print-li-margin-right-20px;
+}
+
+[dir="rtl"] {
+	#gcwu-sig {
+		left: auto;
+		right: 0;
+	}
+
+	#gcwu-wmms {
+		right: auto;
+		left: 0;
+	}
 }

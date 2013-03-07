@@ -3,6 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/inline-block";
+@import '../../grids/sass/includes/mixins';
 
 /*SCSS Variables*/
 $spacing: .375em;
@@ -26,7 +27,7 @@ sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 	border: 1px solid $clrMedium;
 	padding: 0 4px 1px;
 	white-space: nowrap;
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		@extend %footnote-link-highlight;
 	}
 }
@@ -35,7 +36,7 @@ sup a.footnote-link, .wet-boew-footnotes dl dd p.footnote-return a {
 		a {
 			&.footnote-link {
 				@extend %footnote-link-background-white;
-				&:hover, &:focus, &:active {
+				@include pseudo-focus {
 					@extend %footnote-link-highlight;
 				}
 			}
@@ -72,7 +73,7 @@ table {
 		margin: 0;
 		dt {
 			position: absolute;
-			clip: rect(1px, 1px, 1px, 1px);
+			@include clip-rect;
 			height: 1px;
 			width: 1px;
 			overflow: hidden;
@@ -82,7 +83,7 @@ table {
 			position: relative;
 			margin: $spacing 0;
 			border: 1px solid transparent;
-			&:focus {
+			@include pseudo-focus(false) {
 				background-color: $clrLight;
 				border-color: $clrDark;
 				p {
