@@ -58,6 +58,7 @@
 		    url: 'data/sample.kml',		   
 		    visible: false,
 		    datatable: true,
+		    tab: true,
 		    attributes: {
 		    	name: 'Product Title',
 		    	description: 'Description'
@@ -120,7 +121,8 @@
 			},
 			visible: true,	
 			zoom:  true,
-			datatable: true,		
+			datatable: true,
+			tab: true,		
 			 // default style			
 			 style: {
 				 type: 'symbol',
