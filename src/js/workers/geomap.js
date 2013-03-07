@@ -1191,16 +1191,13 @@
 				// Get the attributes from table header
 				var attr = [];
 				$.each($("table#" + table.id + ' th'), function(index, attribute) {
-					if (attribute.textContent.toLowerCase() != 'geometry'){
 						attr[index] = attribute.textContent;
-					}
 				});
 				
 				// If zoom to add th
 				if (opts.tables[index].zoom){
 					$table.find('thead').find('tr').append($('<th>' + _pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
-					$table.find('tfoot').find('tr').append($('<th>' + _pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
-					
+					$table.find('tfoot').find('tr').append($('<th>' + _pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));				
 				} 
 				
 				// Loop trought each row
@@ -1213,35 +1210,33 @@
 							attrMap[attr[index]] = feature.lastChild.textContent;
 						}
 					});
-				
-					$(row).find('td').each(function(index, feature) {		
+					
+					// get the geometry type
+					var geomType = $(row).attr('data-type');
+					if (typeof(geomType) != 'undefined'){
 						
-						if ($(feature).hasClass('geometry')) {
-							if($(feature).hasClass('bbox')) {								
-		
-								var bbox = $(feature).text().split(',');
-								wktFeature = "POLYGON((" 
-									+ bbox[0] + " " + bbox[1] + ", " 
-									+ bbox[0] + " " + bbox[3] + ", " 
-									+ bbox[2] + " " + bbox[3] + ", " 
-									+ bbox[2] + " " + bbox[1] + ", " 
-									+ bbox[0] + " " + bbox[1] + 
-								"))";
-							} else {						
-								wktFeature = $(feature).text();
-							}
+						if (geomType == 'bbox'){
+							var bbox = $(row).attr('data-geometry').split(',');
+									wktFeature = "POLYGON((" 
+										+ bbox[0] + " " + bbox[1] + ", " 
+										+ bbox[0] + " " + bbox[3] + ", " 
+										+ bbox[2] + " " + bbox[3] + ", " 
+										+ bbox[2] + " " + bbox[1] + ", " 
+										+ bbox[0] + " " + bbox[1] + 
+									"))";
+						} else if (geomType == 'wkt') {
+							wktFeature = $(row).attr('data-geometry');
+						}
 	
 						var vectorFeatures = wktParser.read(wktFeature);
 	
 						// Set the table row id
-						var $tr = $(this).parent();
-						$tr.attr('id', vectorFeatures.id.replace(/\W/g, "_"));
+						$(row).attr('id', vectorFeatures.id.replace(/\W/g, "_"));
 						
 						// Add the attributes to the feature then add it to the map
 						vectorFeatures.attributes = attrMap;										
 						tableLayer.addFeatures([vectorFeatures]);
-						}	
-					});
+						}
 				}); 
 				
 				tableLayer.id = "table#" + table.id;
@@ -1249,9 +1244,9 @@
 				queryLayers.push(tableLayer);
 				
 				if (opts.tables[index].tab) _pe.fn.geomap.addLayerData($table, true, tableLayer.id, opts.tables[index].tab);
-				// Run the datatable plugin to generate the nice table
-			//if (datatable) $('table#' + $table.attr('id')).dataTable();
-			if (opts.tables[index].datatable) $("table#" + table.id).addClass('wet-boew-tables');
+				else _pe.fn.geomap.addToLegend($table, true, tableLayer.id);
+				
+				if (opts.tables[index].datatable) $("table#" + table.id).addClass('wet-boew-tables');
 			});		
 		},
 		
@@ -1437,12 +1432,6 @@
 			return message;
 		},
 		
-		fnZebraComplexTable: function (wet_boew_geomap, opts) {
-			_pe.fn.geomap.createMap(wet_boew_geomap, opts);
-						
-						$('#wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
-		},
-		
 		_exec: function (elm) {
 			
 			// Don't include this if statement if your plugin shouldn't run in mobile mode.
@@ -1519,6 +1508,8 @@
 						
 						$('#wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
 						_pe.wb_load({'plugins': {'tabbedinterface': $('.wet-boew-tabbedinterface')}});
+						
+						//_pe.wb_load({'plugins': {'tables': $('table#cities')}});
 						
 						if(opts.debug) {
 							console.log(_pe.fn.geomap.getLocalization('overlayLoad'));
