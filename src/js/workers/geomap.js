@@ -279,17 +279,19 @@
 
 			// Create the tab holder after the legend. If no legend, create it's after the map
 			if (tab) {
+				var holder = '<div class="clear"></div><div id="wet-boew-geomap-layers"><div id="wet-boew-geomap-tabs"><ul class="tabs"></ul><div class="tabs-panel"></div></div></div>';
 				if ($('#legendHolder').length) {
-					$('#legendHolder').after('<div class="clear"></div><div id="wet-boew-geomap-layers"><div id="wet-boew-geomap-tabs"><ul class="tabs"></ul><div class="tabs-panel"></div></div></div>');
+					$('#legendHolder').after(holder);
 				} else {
-					$('.wet-boew-geomap').parent().after('<div class="clear"></div><div id="wet-boew-geomap-layers"><div id="wet-boew-geomap-tabs"><ul class="tabs"></ul><div class="tabs-panel"></div></div></div>');
+					$('.wet-boew-geomap').parent().after(holder);
 				}
 			}
 			else {
+				var holder = '<div class="clear"></div><div id="wet-boew-geomap-layers"></div>';
 				if ($('#legendHolder').length) {
-					$('#legendHolder').after('<div class="clear"></div><div id="wet-boew-geomap-layers"></div>');
+					$('#legendHolder').after(holder);
 				} else {
-					$('.wet-boew-geomap').parent().after('<div class="clear"></div><div id="wet-boew-geomap-layers"></div>');
+					$('.wet-boew-geomap').parent().after(holder);
 				}
 			}
 		},
@@ -358,6 +360,11 @@
 				}			
 			}
 			
+			if (tab && (!$('#wet-boew-geomap-tabs').length)) {
+				if($(".wet-boew-geomap").hasClass("debug")) {		
+				$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + pe.fn.geomap.getLocalization('warningTab') + '</p></div>');	
+			}
+			}
 		},
 		
 		/* 
@@ -648,8 +655,10 @@
 
 			var $head = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
 			var $foot = pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] });
-			if(zoomTo) $head.append($('<th>'));
-			if(zoomTo) $foot.append($('<th>'));
+			if(zoomTo) {	
+				$head.append($('<th>' + pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
+				$foot.append($('<th>' + pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
+			} 
 			
 			$table.find('thead').append($head);
 			$table.find('tfoot').append($foot);
@@ -1195,8 +1204,11 @@
 				});
 				
 				// If zoom to add th
-				if (opts.tables[index].zoom) $table.find('thead').find('tr').append('<th>Zoom</th>');
-				if (opts.tables[index].zoom) $table.find('tfoot').find('tr').append('<th>Zoom</th>');
+				if (opts.tables[index].zoom){
+					$table.find('thead').find('tr').append($('<th>' + pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
+					$table.find('tfoot').find('tr').append($('<th>' + pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
+					
+				} 
 				
 				// Loop trought each row
 				$.each($("table#" + table.id + ' tr'), function(index, row) {
@@ -1282,18 +1294,30 @@
 					c[0].deactivate();
 					
 			// enable the keyboard navigation when map div has focus. Disable when blur
+			// Enable the wheel zoom only on hover
 			$('.wet-boew-geomap').attr('tabindex', '0');
-			$('.wet-boew-geomap').css("border", "solid 2px white");
+			$('.wet-boew-geomap').css("border", "solid 1px white");
+			$('.wet-boew-geomap').hover(function(){
+					var c=map.getControlsByClass('OpenLayers.Control.Navigation');
+					c[0].activate();
+					$(this).css("border", "solid 1px blue");
+				},
+				function(){
+					var c=map.getControlsByClass('OpenLayers.Control.Navigation');
+					c[0].deactivate();
+					$(this).css("border", "solid 1px white");
+				}
+			);
 			$('.wet-boew-geomap').focus(function(){
 					var c=map.getControlsByClass('OpenLayers.Control.KeyboardDefaults');
 					c[0].activate();
-					$(this).css("border", "solid 2px blue");
+					$(this).css("border", "solid 1px blue");
 				}	
 			);
 			$('.wet-boew-geomap').blur(function(){
 					var c=map.getControlsByClass('OpenLayers.Control.KeyboardDefaults');
 					c[0].deactivate();
-					$(this).css("border", "solid 2px white");
+					$(this).css("border", "solid 1px white");
 				}	
 			);
 			
@@ -1354,6 +1378,10 @@
 			
 			// Load Controls
 			pe.fn.geomap.loadControls(opts);
+			
+			// Add WCAG element for the map div
+			$('.wet-boew-geomap').attr('role', 'img');
+			$('.wet-boew-geomap').attr('aria-label', pe.fn.geomap.getLocalization('ariaMap'));
 		},
 		
 		/*
@@ -1379,7 +1407,9 @@
 				hiddenLayer: 'This layer is currently hidden!',
 				overlayNotSpecify: 'WET-Geomap: overlays file not specified',
 				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12).",
-				zoomFeature: 'Zoom to feature'
+				zoomFeature: 'Zoom to feature',
+				ariaMap: 'Map object. The map features description is in the table below.',
+				warningTab: 'No class <em>tab</tab> in wet-boew-geomap but a table has tab attribute set to true.'
 			};
 			
 			var french = {
@@ -1398,7 +1428,9 @@
 				hiddenLayer: 'Cette couche est présentement cachée!',
 				overlayNotSpecify: 'BOEW-Geomap: fichier des couches de superpositions non spécifié',
 				baseMapMapOptionsLoadError: 'BOEW-Geomap: une erreur est survenue lors du chargement des options de configuration de votre carte de base. S\'il vous plaît, vérifiez que vous avez l\'ensemble des options suivantes: maxExtent (ex: \'-3000000,0, -800000,0, 4000000,0, 3900000,0\'), maxResolution (ex: \'auto\'), projection (ex: \'EPSG: 3978\'), restrictedExtent (ex: \'-3000000,0 , -800000,0, 4000000,0, 3900000,0\'), units (ex: \'m\'), displayProjection (ex: \'EPSG: 4269\'), numZoomLevels (ex: 12).',	
-				zoomFeature: 'Zoom à l\'élément'
+				zoomFeature: 'Zoom à l\'élément',
+				ariaMap: 'Objet carte. La descriptions des élément sur la carte sont contenus dans la tables ci-dessous.',
+				warningTab: 'Il n\'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l\'attribut égal vrai.'
 			};
 			
 			var message = (_pe.language == "en") ? english[mess] : french[mess];
