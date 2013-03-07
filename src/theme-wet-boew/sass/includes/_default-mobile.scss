@@ -814,10 +814,6 @@ select {
 		a {
 			@extend %wet-default-mobile-rtl-scalex;
 		}
-		li {
-			padding: 5px 5px 5px 12px;
-			@extend %wet-default-mobile-last-child-padding-5;
-		}
 	}
 
 	.ui-popup-container, #wb-main {
