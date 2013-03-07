@@ -233,8 +233,6 @@
 					target = node.toLowerCase();
 					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';	
 				}
-
-				// Close the settings popup
 				settings_popup += '</ul>' + popup_close;
 
 				// Append all the popups to the body
