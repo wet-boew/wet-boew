@@ -86,7 +86,8 @@
 				link: 'Pour plus d\'information'
 			},
 			visible: false,
-			datatable: false
+			datatable: false,
+			tab:true
 		},
 		{
 			title: 'JSON (GeoGratis) FR',
