@@ -743,15 +743,13 @@ select {
 
 	#gcwu-bc-in {
 		@extend %gcwu-default-mobile-rtl-scalex;
-		a {
-			@extend %gcwu-default-mobile-rtl-scalex;
-		}
 		li {
-			padding: 5px 5px 5px 12px;
-			@extend %gcwu-default-mobile-last-child-padding-5;
 			&:last-child {
 				@extend %gcwu-default-mobile-rtl-scalex;
 			}
+		}
+		a {
+			@extend %gcwu-default-mobile-rtl-scalex;
 		}
 	}
 
