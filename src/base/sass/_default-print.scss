@@ -66,12 +66,12 @@ a {
 	page-break-inside: avoid;
 }
 
-.page-break-before {
+.print-page-break-before {
 	@extend %wb-default-print-page-break-all;
 	page-break-before: always;
 }
 
-.page-break-after {
+.print-page-break-after {
 	@extend %wb-default-print-page-break-all;
 	page-break-after: always;
 }
