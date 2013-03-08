@@ -122,7 +122,7 @@ dl {
 	
 	/* Ordered and Unordered list Zebra Stripping */
 	
-	li {
+	> li {
 		&.list-odd, &:nth-child(2n) {
 			background-color: #ddd;
 			border: 1px solid #ccc;
@@ -134,6 +134,7 @@ dl {
 		&.list-hover, &:hover {
 			background-color: #f0fcff;
 		}
+
 	}
 	
 	
@@ -170,14 +171,8 @@ dl {
 		}
 	}
 	
-	li li {
-		background-color: transparent;
-	}
-	
 	
 	/* Table Zebra Stripping */
-	
-	
 	td {
 		
 		&.table-summary {
@@ -262,6 +257,17 @@ dl {
 		}
 	}
 	
+	&.rowtdhover {
+		tbody, tfoot {
+			tr:hover, tr.table-hover, 
+			tr:hover td.table-keycell, tr.table-hover td.table-keycell, 
+			tr:hover td.table-desccell, tr.table-hover td.table-desccell,
+			tr:hover td.table-layoutCell, tr.table-hover td.table-layoutCell,
+			tr:hover th.table-layoutCell, tr.table-hover th.table-layoutCell  {
+				background-color: #eee;
+			}
+		}
+	}
 	
 	&.rowhover {
 		tbody, tfoot {

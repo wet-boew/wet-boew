@@ -208,7 +208,11 @@
 			});
 
 			if (!opts.nohover) {
-				elem.addClass('rowhover');
+				if (!opts.norowheaderhighlight && !opts.noheaderhighlight) {
+					elem.addClass('rowhover');
+				} else {
+					elem.addClass('rowtdhover');
+				}
 				if (0 < pe.ie && pe.ie < 9) {
 					$trs.on('mouseleave focusout', function (e) {
 						e.stopPropagation();
@@ -299,9 +303,10 @@
 				// * n col element
 				// * 0-1 tfoot row group
 
-				if (opts.complextableparsing || opts.noheaderhighlight || opts.norowheaderhighlight || opts.nocolheaderhighlight || opts.vectorstripe) {
+				if (opts.complextableparsing || opts.nocolheaderhighlight || opts.vectorstripe) {
 					isSimpleTable = false;
 				}
+				// now available for simple table opts.noheaderhighlight || opts.norowheaderhighlight ||
 
 
 
@@ -361,7 +366,11 @@
 						}
 						
 						if (!opts.nohover) {
-							elem.addClass('rowhover');
+							if (!opts.norowheaderhighlight && !opts.noheaderhighlight) {
+								elem.addClass('rowhover');
+							} else {
+								elem.addClass('rowtdhover');
+							}
 						}
 						
 						return;  // Simple Table Zebra Striping done
@@ -376,7 +385,11 @@
 						});
 
 						if (!opts.nohover) {
-							elem.addClass('rowhover');
+							if (!opts.norowheaderhighlight && !opts.noheaderhighlight) {
+								elem.addClass('rowhover');
+							} else {
+								elem.addClass('rowtdhover');
+							}
 
 							// The action "removeClass" and "addClass" instead of the toggle because, if the mouse hover a row and you hit refresh, that row get the hover class when it mouse out, The reverse is wanted. That is the explaination of using removing, adding class.
 							$trs.on('mouseleave focusout', function (e) {
