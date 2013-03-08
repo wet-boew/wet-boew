@@ -43,8 +43,8 @@
 
 			defaultOpen = elm.hasClass('wb-slideout-open');
 			opts = {
-				txtShow: pe.dic.get('%show-toc') + tocText,
-				txtHide: hideText + tocText
+				txtShow: pe.dic.get('%show-toc') + ' ' + tocText,
+				txtHide: hideText + ' ' + tocText
 			};
 			$.extend(opts, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
 
