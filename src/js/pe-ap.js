@@ -968,8 +968,6 @@
 						linkquerylen = linkquery.length;						
 						bcindex = bclinkslen;
 						while (bcindex--) {
-							console.log(bclinkurl[bcindex].slice(-linkurllen) + ' = ' + linkurl);
-							console.log(linkquerylen + ', ' + bclink[bcindex].search.slice(-linkquerylen) + ' = ' + linkquery);
 							if (bclinkurl[bcindex].slice(-linkurllen) === linkurl && (linkquerylen === 0 || bclink[bcindex].search.slice(-linkquerylen) === linkquery)) {
 								match = true;
 								break;
