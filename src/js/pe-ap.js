@@ -899,75 +899,88 @@
 			* @return {jQuery object} Link where match found
 			*/
 			navcurrent: function (menusrc, bcsrc, navclass) {
-				var pageurl = window.location.hostname + window.location.pathname,
+				var pageurl = window.location.hostname + window.location.pathname.replace(/^([^\/])/, '/$1'),
 					pageurlquery = window.location.search,
+					link,
+					linkhref,
+					linkurl,
+					linkurllen,
+					linkquery,
+					linkquerylen,
+					linkindex,
 					menulinks,
-					menulink,
-					menulinkurl,
-					menulinkurllen,
-					menulinkquery,
-					menulinkquerylen,
+					menulink = [],
+					menulinkurl = [],
 					menulinkslen,
 					bclinks,
-					bclink,
 					bclinkslen,
 					bcindex,
+					bclink,
+					bclinkurl,
 					match = false,
-					hrefBug = pe.ie !== 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
+					hrefBug = pe.ie > 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
 				menulinks = menusrc.find('a').get();
 				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;
 
-				// Try to find a match with the page URL
+				// Try to find a match with the page URL and cache link + URL for later if no match found
 				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
-					menulink = menulinks[menulinkslen];
-					menulink.href = menulink.getAttribute('href') !== '' ? menulink.getAttribute('href') : '#'; //Fix for empty A tags
-					if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
-						menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
-						menulinkurllen = menulinkurl.length;
-						menulinkquery = menulink.search;
-						menulinkquerylen = menulinkquery.length;
-						if ((pageurl.slice(-menulinkurllen) === menulinkurl && (menulinkquerylen === 0 || pageurlquery.slice(-menulinkquerylen) === menulinkquery))) {
+					link = menulinks[menulinkslen];
+					linkhref = !hrefBug ? link.getAttribute('href') : $(link).attr('href');
+					if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
+						linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
+						linkquery = link.search;
+						linkquerylen = linkquery.length;
+						if (pageurl.slice(-linkurl.length) === linkurl && (linkquerylen === 0 || pageurlquery.slice(-linkquerylen) === linkquery)) {
 							match = true;
 							break;
 						}
+						menulink.push(link);
+						menulinkurl.push(linkurl);
 					}
 				}
 
 				// No page URL match found, try a breadcrumb link match instead
 				if (!match) {
 					// Pre-process the breadcrumb links
+					bclink = [];
+					bclinkurl = [];
 					bcsrc = typeof bcsrc.jquery !== 'undefined' ? bcsrc : $(bcsrc);
 					bclinks = bcsrc.find('a').get();
 					bclinkslen = bclinks.length;
-					bcindex = bclinkslen;
-					while (bcindex--) {
-						bclink = bclinks[bcindex];
-						bclinks[bcindex] = bclink.hostname + bclink.pathname.replace(/^([^\/])/, '/$1');
+					for (bcindex = 0; bcindex !== bclinkslen; bcindex += 1) {
+						link = bclinks[bcindex];
+						linkhref = link.getAttribute('href');
+						linkhref = !hrefBug ? link.getAttribute('href') : $(link).attr('href');
+						if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
+							bclink.push(link);
+							bclinkurl.push(link.hostname + link.pathname.replace(/^([^\/])/, '/$1'));
+						}
 					}
 
 					// Try to match each breadcrumb link
-					menulinkslen = menulinks.length;
-					while (menulinkslen--) {
-						menulink = menulinks[menulinkslen];
-						if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
-							menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
-							menulinkurllen = menulinkurl.length;
-							bcindex = bclinkslen;
-							while (bcindex--) {
-								if (bclinks[bcindex].slice(-menulinkurllen) === menulinkurl) {
-									match = true;
-									break;
-								}
-							}
-							if (match) {
+					for (linkindex = 0, menulinkslen = menulink.length; linkindex !== menulinkslen; linkindex += 1) {
+						link = menulink[linkindex];
+						linkurl = menulinkurl[linkindex];
+						linkurllen = linkurl.length;
+						linkquery = link.search;
+						linkquerylen = linkquery.length;						
+						bcindex = bclinkslen;
+						while (bcindex--) {
+							console.log(bclinkurl[bcindex].slice(-linkurllen) + ' = ' + linkurl);
+							console.log(linkquerylen + ', ' + bclink[bcindex].search.slice(-linkquerylen) + ' = ' + linkquery);
+							if (bclinkurl[bcindex].slice(-linkurllen) === linkurl && (linkquerylen === 0 || bclink[bcindex].search.slice(-linkquerylen) === linkquery)) {
+								match = true;
 								break;
 							}
 						}
+						if (match) {
+							break;
+						}
 					}
 				}
-				return (match ? $(menulink).addClass(navclass) : $());
+				return (match ? $(link).addClass(navclass) : $());
 			},
 			/**
 			* Builds jQuery Mobile nested accordion menus from an existing menu
