@@ -380,15 +380,21 @@
 		 */		
 		addToLegend: function(featureTable, enabled, olLayerId) {			
 
-			var $div = $(".wet-boew-geomap-legend");
-			var $legend = $('<legend>', { 'html': pe.fn.geomap.getLocalization('legendFieldsetLegend') });
-			var $fieldset = $('<fieldset>', { 'name': 'legend' }).appendTo($div);
+			var $div = $(".wet-boew-geomap-legend");			
 			
 			if($div.length != 0) {
+				
+				var $fieldset, $ul;
+				
+				// if no legend or or fieldset add them
+				if(!$div.find('fieldset').length) {			
+					$fieldset = $('<fieldset>', { 'name': 'legend' }).append('<legend class="wb-invisible">' + pe.fn.geomap.getLocalization('legendFieldsetLegend') + '</legend>').appendTo($div);
+				}
+				
 				var $checked = enabled ? 'checked="checked"' : '';
-				var $ul;
+				
 				if(!$div.find('ul').length) {
-					$ul = $('<ul>', { 'class': 'list-bullet-none margin-left-none' }).appendTo($div);					
+					$ul = $('<ul>', { 'class': 'list-bullet-none margin-left-none' }).appendTo($fieldset);					
 				} else {
 					$ul = $div.find('ul');
 				}
@@ -1415,7 +1421,7 @@
 				zoomFeature: 'Zoom to feature',
 				ariaMap: 'Map object. The map features description is in the table below.',
 				warningTab: 'No class <em>tab</tab> in wet-boew-geomap but a table has tab attribute set to true.',
-				legendFieldsetLegend: 'Map legend listing layers currently available in the map'
+				legendFieldsetLegend: 'Toggle layer display'
 			};
 			
 			var french = {
@@ -1437,7 +1443,7 @@
 				zoomFeature: 'Zoom à l\'élément',
 				ariaMap: 'Objet carte. La descriptions des élément sur la carte sont contenus dans la tables ci-dessous.',
 				warningTab: 'Il n\'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l\'attribut égal vrai.',
-				legendFieldsetLegend: 'TRANSLATE - Map legend listing layers currently available in the map'
+				legendFieldsetLegend: 'TRANSLATE - Toggle layer display'
 			};
 			
 			var message = (_pe.language == "en") ? english[mess] : french[mess];
