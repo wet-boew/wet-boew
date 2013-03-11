@@ -455,7 +455,7 @@
 			$tabsPanel.append($layerTab);		
 			
 			if(enabled === false) {				
-				$layerTab.append('<div class="module-attention module-simplify"><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');	
+				$layerTab.append('<div id="msg_' + $(featureTable).attr('id') + '" class="module-attention module-simplify"><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');	
 				featureTable.fadeOut();
 			}			
 		},
