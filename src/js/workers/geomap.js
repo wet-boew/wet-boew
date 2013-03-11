@@ -16,16 +16,22 @@
 	var queryLayers = [];
 	/* local reference */
 	_pe.fn.geomap = {
-		type: 'plugin',
-		// This is an example from tabbed interface, to show how to call required libraries when they are needed
-		//depends: (pe.mobile ? [] : ['geomap/OpenLayers']),
+		type: 'plugin',				
+		//depends: (pe.mobile ? [] : ['openlayers', 'proj4js', 'metadata', 'datatables']),
 		depends: ['openlayers', 'proj4js', 'metadata', 'datatables'],
 		dependscss: ['datatables'],
+		
 		//Specifies polyfill needed by the plugin (for elements created at runtime)
-		polyfills:['progress','detailssummary'],
+		//polyfills:['progress','detailssummary'],
+		
 		// Don't include a mobile function if your plugin shouldn't run in mobile mode.
-//		mobile: function (elm) {
-//			// If applicaple, convert html elements and attributes into the format that jQuery mobile expects.
+//		mobile: function (elm) { 
+//			// If applicable, convert html elements and attributes into the format that jQuery mobile expects.
+//			
+////			// add mobile zoom controls
+////			var $controls = $('<div data-role="controlgroup" data-type="vertical"><a href="#" data-role="button" data-icon="plus" id="plus"data-iconpos="notext"></a><a href="#" data-role="button" data-icon="minus" id="minus" data-iconpos="notext"></a></div>');
+////			$(elm.append($controls));
+//			
 //			return elm;
 //		},
 	
@@ -74,171 +80,8 @@
 					$img.attr('alt', altTxt);
 					$div.attr('title', altTxt);
 				}
-			});
-		
+			});			
 			
-			/*
-			 *	Configure OpenLayers LayerSwitcher control
-			 */ 
-			
-			if(useLayerSwitcher) {
-			
-				OpenLayers.Control.LayerSwitcher.prototype.redraw = function() {
-					//if the state hasn't changed since last redraw, no need 
-					// to do anything. Just return the existing div.
-					if (!this.checkRedraw()) { 
-						return this.div; 
-					} 
-					// make LayerSwitcher expandable with the keyboard
-					this.maximizeDiv.tabIndex = 0;
-					var filterMax = function(evt) {
-						if (evt.keyCode == 13 || evt.keyCode == 32) {
-							this.maximizeControl(evt);
-							this.minimizeDiv.focus();
-						}
-					};
-					OpenLayers.Event.observe(this.maximizeDiv, "keydown", OpenLayers.Function.bindAsEventListener(filterMax, this));
-					this.minimizeDiv.tabIndex = 0;
-					var filterMin = function(evt) {
-						if (evt.keyCode == 13 || evt.keyCode == 32) {
-							this.minimizeControl(evt);
-							this.maximizeDiv.focus();
-						}
-					};
-					OpenLayers.Event.observe(this.minimizeDiv, "keydown", OpenLayers.Function.bindAsEventListener(filterMin, this));
-					// make the max/min divs focusable on click (ignores if IE since IE6 - IE8 throws an error)
-					if (!$.browser.msie) {
-						var that = this;
-						$(this.minimizeDiv).click(function(){ that.maximizeDiv.focus(); });
-						$(this.maximizeDiv).click(function(){ that.minimizeDiv.focus(); });
-					}
-					// add alt and title attributes to the min/max buttons
-					this.minimizeDiv.title = (_pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
-					this.minimizeDiv.firstChild.alt = (_pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
-					this.maximizeDiv.title = (pe.language==='en' ? "Open Layer Switcher" : "Ouvrir le sélecteur de couche");
-					this.maximizeDiv.firstChild.alt = (_pe.language==='en' ? "Open Layer Switcher" : "Ouvrir le sélecteur de couche");
-					
-					// fix for the defect #3203 http://tbs-sct.ircan-rican.gc.ca/issues/3203
-					// change the label "Base layer" to French if needed. OpenLayer.js 2.10 does not have French translations. There are French translations in OpenLayer.js 2.11. No need to set the label manually after upgrading to 2.11.
-					this.baseLbl.innerHTML = (_pe.language==='en' ? "Base Layer" : "Fond de carte");
-					this.dataLbl.innerHTML = (_pe.language==='en' ? "Overlays" : "Couche thématique ");
-					
-					//clear out previous layers 
-					this.clearLayersArray("base");
-					this.clearLayersArray("data");
-					var containsOverlays = false;
-					var containsBaseLayers = false;
-					// Save state -- for checking layer if the map state changed.
-					// We save this before redrawing, because in the process of redrawing
-					// we will trigger more visibility changes, and we want to not redraw
-					// and enter an infinite loop.
-					var len = this.map.layers.length;
-					this.layerStates = new Array(len);
-					for (var i=0; i <len; i++) {
-						var layer = this.map.layers[i];
-						this.layerStates[i] = {
-							'name': layer.name, 
-							'visibility': layer.visibility,
-							'inRange': layer.inRange,
-							'id': layer.id
-						};
-					}	 
-					var layers = this.map.layers.slice();
-					if (!this.ascending) { layers.reverse(); }
-					for(var i=0, len=layers.length; i<len; i++) {
-						var layer = layers[i];
-						var baseLayer = layer.isBaseLayer;
-						if (layer.displayInLayerSwitcher) {
-							if (baseLayer) {
-								containsBaseLayers = true;
-							} else {
-								containsOverlays = true;
-							}
-							// only check a baselayer if it is *the* baselayer, check data
-							//	layers if they are visible
-							var checked = (baseLayer) ? (layer == this.map.baseLayer) : layer.getVisibility();
-							// create input element
-							var inputElem = document.createElement("input");
-							inputElem.id = this.id + "_input_" + layer.name;
-							inputElem.name = (baseLayer) ? this.id + "_baseLayers" : layer.name;
-							inputElem.type = (baseLayer) ? "radio" : "checkbox";
-							inputElem.value = layer.name;
-							inputElem.checked = checked;
-							inputElem.defaultChecked = checked;
-							if (!baseLayer && !layer.inRange) {
-								inputElem.disabled = true;
-							}
-							var context = {
-								'inputElem': inputElem,
-								'layer': layer,
-								'layerSwitcher': this
-							};
-							OpenLayers.Event.observe(inputElem, "mouseup", OpenLayers.Function.bindAsEventListener(this.onInputClick, context));
-							// make the radio buttons tab-able
-							inputElem.tabIndex = 0;
-							var filterInput = function(evt) {
-								if (evt.keyCode == 13 || evt.keyCode == 32) {
-									this.layerSwitcher.onInputClick.call(this, evt);
-								} else if (37 <= evt.keyCode && evt.keyCode <= 40) {
-									// prevent up/down/left/right keys from moving map while focus is on inputElem
-									evt.stopPropagation ? evt.stopPropagation() : evt.cancelBubble = true;
-								}
-							};
-							OpenLayers.Event.observe(inputElem, "keydown", OpenLayers.Function.bindAsEventListener(filterInput, context));
-							// create span
-							var labelSpan = document.createElement("span");
-							OpenLayers.Element.addClass(labelSpan, "labelSpan");
-							if (!baseLayer && !layer.inRange) {
-								labelSpan.style.color = "gray";
-							}
-							labelSpan.innerHTML = layer.name;
-							labelSpan.style.verticalAlign = (baseLayer) ? "bottom" : "baseline";
-							// create label
-							var label = document.createElement("label");
-							label.setAttribute("for", this.id + "_input_" + layer.name);
-							OpenLayers.Event.observe(label, "click", OpenLayers.Function.bindAsEventListener(this.onInputClick, context));
-							// create line break
-							var br = document.createElement("br");
-							var groupArray = (baseLayer) ? this.baseLayers : this.dataLayers;
-							groupArray.push({
-								'layer': layer,
-								'inputElem': inputElem,
-								'labelSpan': labelSpan
-							});
-							var groupDiv = (baseLayer) ? this.baseLayersDiv : this.dataLayersDiv;
-							groupDiv.appendChild(inputElem);
-							label.appendChild(labelSpan);
-							groupDiv.appendChild(label);
-							groupDiv.appendChild(br);
-						}
-					}
-					// if no overlays, dont display the overlay label
-					this.dataLbl.style.display = (containsOverlays) ? "" : "none";		  
-					// if no baselayers, dont display the baselayer label
-					this.baseLbl.style.display = (containsBaseLayers) ? "" : "none";		
-					
-					// move radio buttons after min/max buttons
-					$('.olControlLayerSwitcher > .minimizeDiv').detach().prependTo('.olControlLayerSwitcher');
-					$('.olControlLayerSwitcher > .maximizeDiv').detach().prependTo('.olControlLayerSwitcher');
-					
-					return this.div;
-				};
-				
-				OpenLayers.Control.LayerSwitcher.prototype.onInputClick = function(e) {
-					if (!this.inputElem.disabled) {
-						if (this.inputElem.type == "radio") {
-							this.inputElem.checked = true;
-							this.layer.map.setBaseLayer(this.layer);
-						} else {
-							this.inputElem.checked = !this.inputElem.checked;
-							this.layerSwitcher.updateMap();
-						}
-						// keep the focus on the radio button after it's clicked/pressed
-						document.getElementById(this.inputElem.id).focus();
-					}
-					OpenLayers.Event.stop(e);
-				};
-			}
 		}, // end accessibilize function		
 	 
 		/* 
@@ -454,7 +297,7 @@
 				'href': '#tabs_'	+ $(featureTable).attr('id')
 			});
 
-			$tabs.append($('<li>', { 'class': 'margin-right-small'}).append($link));
+			$tabs.append($('<li>').append($link));
 			
 			var $layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
 			$layerTab.append(featureTable);		
@@ -811,8 +654,7 @@
 				{ layers: 'CBMT', version: '1.1.1', format: 'image/png' },
 				{ isBaseLayer: true, 
 					singleTile: true, 
-					ratio: 1.0, 
-					displayInLayerSwitcher: false,
+					ratio: 1.0,
 					projection: 'EPSG:3978' 
 				} 
 			));		
@@ -875,8 +717,7 @@
 					
 					if(!basemap.options) basemap.options = {}; //projection: 'EPSG:4326' };
 					
-					basemap.options['isBaseLayer'] = true;
-					basemap.options['displayInLayerSwitcher'] = false;
+					basemap.options['isBaseLayer'] = true;					
 					
 					if(basemap.type=='wms') {
 						map.addLayer(
@@ -1303,14 +1144,11 @@
 				// run the datatable here because if we run it before there is an error
 				if (opts.tables[index].datatable) $("table#" + table.id).dataTable()
 			});
-				
+							
 			if(opts.useMousePosition) { map.addControl(new OpenLayers.Control.MousePosition()); }
 			if(opts.useScaleLine) { map.addControl(new OpenLayers.Control.ScaleLine()); }					
 			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
 			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
-			
-			// experimental
-			// map.addControl(new OpenLayers.Control.TouchNavigation()); //{ dragPanOptions: { enableKinetic: true } }));
 			
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			var c=map.getControlsByClass('OpenLayers.Control.KeyboardDefaults');
@@ -1320,14 +1158,16 @@
 			// Enable the wheel zoom only on hover
 			$('.wet-boew-geomap').attr('tabindex', '0');
 			$('.wet-boew-geomap').css("border", "solid 1px #CCCCCC");
-			$('.wet-boew-geomap').hover(function(){
+			$('.wet-boew-geomap').hover(function(){					
 					var c=map.getControlsByClass('OpenLayers.Control.Navigation');
 					c[0].activate();
+					
 					$(this).css("border", "solid 1px blue");
 				},
-				function(){
+				function() {					
 					var c=map.getControlsByClass('OpenLayers.Control.Navigation');
 					c[0].deactivate();
+					
 					$(this).css("border", "solid 1px #CCCCCC");
 				}
 			);
@@ -1345,13 +1185,13 @@
 			);
 			
 			// add accessibility enhancements
-			this.accessibilize(opts.useLayerSwitcher);					
-			if(opts.useLayerSwitcher) { map.addControl(new OpenLayers.Control.LayerSwitcher()); }
-
+			this.accessibilize();					
+			
+			// zoom to the maximum extent specified
 			map.zoomToMaxExtent();			
 			
 			// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
-			$("#" + map.div.id).before((_pe.language == "en") ? '<p><strong>' + _pe.fn.geomap.getLocalization('accessibilize') + '</p>' : '<p><strong>' + _pe.fn.geomap.getLocalization('accessibilize') + '</p>');
+			if(!_pe.mobile) $("#" + map.div.id).before((_pe.language == "en") ? '<p><strong>' + _pe.fn.geomap.getLocalization('accessibilize') + '</p>' : '<p><strong>' + _pe.fn.geomap.getLocalization('accessibilize') + '</p>');
 			
 			// add a listener on the window to update map when resized
 			window.onresize = function() {				
@@ -1384,19 +1224,19 @@
 			// Create legend and tab
 			if (opts.useLegend) _pe.fn.geomap.createLegend();
 			_pe.fn.geomap.createLayerHolder(opts.useTab);
-			
+						
 			// Add tabular data
 			_pe.fn.geomap.addTabularData(opts, projLatLon, projMap);
 			
 			// Add overlay data
 			_pe.fn.geomap.addOverlayData(wet_boew_geomap);
-			
+
 			// Load Controls
 			_pe.fn.geomap.loadControls(opts);
 			
 			// Add WCAG element for the map div
 			$('.wet-boew-geomap').attr('role', 'img');
-			$('.wet-boew-geomap').attr('aria-label', _pe.fn.geomap.getLocalization('ariaMap'));
+			$('.wet-boew-geomap').attr('aria-label', _pe.fn.geomap.getLocalization('ariaMap'));			
 		},
 		
 		/*
@@ -1418,7 +1258,7 @@
 				errorNoSelect: 'This table contains rows that do not have a cell with the <em>select</em> class. Please ensure that each row has exactly one cell with the <em>select</em> class and that the cell includes a link.',
 				accessibilize: 'Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.',
 				warning: 'WET-Geomap WARNING',
-				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.',
+				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em>.',
 				hiddenLayer: 'This layer is currently hidden!',
 				overlayNotSpecify: 'WET-Geomap: overlays file not specified',
 				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12).",
@@ -1440,7 +1280,7 @@
 				errorNoSelect: 'Cette table contient des lignes qui n\'ont pas de cellule avec la classe <em>select</em>. S\'il vous plaît, assurer vous que chaque ligne a exactement une cellule avec la classe <em>select</em> et celle-ci doit contenir un lien.',
 				accessibilize: 'Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.',
 				warning: 'BOEW-Geomap AVERTISSEMENT',
-				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> ou bien activer la légende par défaut de <em>OpenLayers</em> en ajoutant le paremètre <em>layerswitcher</em> à la classe <em>wet-boew-geomap</em> du div.',
+				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> .',
 				hiddenLayer: 'Cette couche est présentement cachée!',
 				overlayNotSpecify: 'BOEW-Geomap: fichier des couches de superpositions non spécifié',
 				baseMapMapOptionsLoadError: 'BOEW-Geomap: une erreur est survenue lors du chargement des options de configuration de votre carte de base. S\'il vous plaît, vérifiez que vous avez l\'ensemble des options suivantes: maxExtent (ex: \'-3000000,0, -800000,0, 4000000,0, 3900000,0\'), maxResolution (ex: \'auto\'), projection (ex: \'EPSG: 3978\'), restrictedExtent (ex: \'-3000000,0 , -800000,0, 4000000,0, 3900000,0\'), units (ex: \'m\'), displayProjection (ex: \'EPSG: 4269\'), numZoomLevels (ex: 12).',	
@@ -1461,10 +1301,12 @@
 		
 		_exec: function (elm) {
 			
+			
 			// Don't include this if statement if your plugin shouldn't run in mobile mode.
 //			if (pe.mobile) {
 //				return _pe.fn.geomap.mobile(elm).trigger('create');
 //			}
+			
 			var opts, overrides;	
 			
 			// Defaults
@@ -1478,7 +1320,6 @@
 				overlays: [],
 				features: [],
 				tables: [],
-				useLayerSwitcher: false,
 				useScaleLine: false,
 				useMousePosition: false,
 				debug: false,
@@ -1487,8 +1328,7 @@
 			};			
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
-			overrides = {
-				useLayerSwitcher: elm.hasClass('layerswitcher') ? true : undefined,
+			overrides = {				
 				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
 				useMousePosition: elm.hasClass('position') ? true : undefined,
 				debug: elm.hasClass('debug') ? true : false,
