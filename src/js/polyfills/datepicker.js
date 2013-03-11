@@ -193,8 +193,8 @@
 
 				try {
 					if (date !== '') {
-						cpntDate = $.parseJSON(date.replace(regex, '{"year":"${c}", "month":"${b}", "day":"${a}"}'));
-						if (cpntDate.year === year && cpntDate.month === month + 1) {
+						cpntDate = $.parseJSON(date.replace(regex, '{"year":"$1", "month":"$2", "day":"$3"}'));
+						if (parseInt(cpntDate.year, 10) === year && parseInt(cpntDate.month, 10) === month + 1) {
 							$(days[cpntDate.day - 1]).addClass('datepicker-selected');
 							$(days[cpntDate.day - 1]).children('a').append('<span class="wb-invisible datepicker-selected-text"> [' + pe.dic.get('%datepicker-selected') + ']</span>');
 						}
