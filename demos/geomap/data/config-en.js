@@ -69,6 +69,7 @@
 		    caption: 'This is a sample ATOM feed loaded locally by Geomap.',
 		    type: 'atom',
 		    url: 'data/sample.atom',
+		    tab: 'true',
 		    attributes: {
 		    	title: 'Title',
 		    	summary: 'About this dataset'
@@ -80,6 +81,7 @@
 			caption: 'This is a sample GeoRSS feed loaded locally by Geomap.',
 			type: 'georss',
 			url: 'data/sample.rss',	
+			tab: 'true',
 			attributes: {
 				title: 'Title',
 				description: 'Description',
@@ -99,7 +101,8 @@
 				'q': 'alluvial'
 			},
 			visible: false,
-			root: 'products',			
+			root: 'products',	
+			tab: 'true',
 			attributes: {
 				title: 'Title',
 				summary: 'Abstract',				
@@ -123,7 +126,7 @@
 			},
 			visible: true,	
 			zoom:  true,
-			datatable: true,
+			datatable: false,
 			tab: true,		
 			 // default style			
 			 style: {

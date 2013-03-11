@@ -268,8 +268,16 @@
 		createLegend: function() {
 			
 			// Create legend div if not there
-			if (!($(".wet-boew-geomap-legend").length)){				
-				$('.wet-boew-geomap').parent().after('<div id="legendHolder" class="span-2 row-end"><h2>Legend</h2><div class="wet-boew-geomap-legend"></div></div><div class="clear"></div>');			
+			if (!($(".wet-boew-geomap-legend").length)) {	
+				
+				// Check to see if a legend container is provided			
+				if($(".wet-boew-geomap").hasClass("debug")) {		
+					$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
+				}	
+				
+				// removed this for now - we need to rethink this as it is difficult 
+				// to ensure a semantically and structurally sound markup
+				//$('.wet-boew-geomap').parent().after('<div class=".wet-boew-geomap-legend"><h2>Legend</h2><div class="wet-boew-geomap-legend"></div></div><div class="clear"></div>');			
 			}		
 		},
 		
@@ -278,23 +286,17 @@
 		 */
 		createLayerHolder: function(tab) {
 
-			// Create the tab holder after the legend. If no legend, create it's after the map
+			// user wants tabs
 			if (tab) {
-				var holder = '<div class="clear"></div><div id="wet-boew-geomap-layers"><div id="wet-boew-geomap-tabs"><ul class="tabs"></ul><div class="tabs-panel"></div></div></div>';
-				if ($('#legendHolder').length) {
-					$('#legendHolder').after(holder);
-				} else {
-					$('.wet-boew-geomap').parent().after(holder);
+				// user has specified where they want to put the tabs
+				if ($(".wet-boew-geomap-tabs").length) {
+					$(".wet-boew-geomap-tabs").append('<ul class="tabs"></ul><div class="tabs-panel"></div>');
+				// user hasn't specified where they want the tabs
+				} else { 
+					$(".wet-boew-geomap-layers").append('<div class="clear"></div><div class="wet-boew-geomap-tabs"><ul class="tabs"></ul><div class="tabs-panel"></div></div><div class="clear"></div>');
 				}
 			}
-			else {
-				var holder = '<div class="clear"></div><div id="wet-boew-geomap-layers"></div>';
-				if ($('#legendHolder').length) {
-					$('#legendHolder').after(holder);
-				} else {
-					$('.wet-boew-geomap').parent().after(holder);
-				}
-			}
+			
 		},
 		
 		/* 
@@ -302,10 +304,11 @@
 		 */
 		createTable: function(index, title, caption, datatable) {
 
-			var $table = $('<table>'); //, { 'style': 'width:100%' }); 
+			var $table = $('<table>', { 'class': 'table-simplify' }); 
 			
 			if(datatable) {
 				$table.addClass('wet-boew-tables');
+				$table.css('width', '100%');
 			} else {
 				$table.css('width', '100%');
 			}
@@ -333,38 +336,42 @@
 		/* 
 		 * Add layer data
 		 */		
-		addLayerData: function(featureTable, enabled, olLayerId, tab) {			
+		addLayerData: function(featureTable, enabled, olLayerId, tab) {						
 			
+			// add to layer to legend
 			if ($('.wet-boew-geomap-legend')) {
 				pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
 			};
 			
-			var $div = $("div#wet-boew-geomap-layers");
-			
+			var $div = $(".wet-boew-geomap-layers");
+			var $layerTab = $("<div>", { 'id': 'tabs_' + $(featureTable).attr('id') });				
+			var title = featureTable[0].attributes['aria-label'].value;
+			var $layerTitle = $("<h4>", { 'id': $(featureTable).attr('id'),	'html': title, 'class': 'background-light' });
+			var $alert = $('<div id="msg_' + $(featureTable).attr('id') + '" class="module-attention module-simplify margin-top-medium margin-bottom-medium"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');
+		
 			// TODO: add debug message for div with id 'wet-boew-geomap-layers' can't be found and prompt to have it added
-			if (tab && $('#wet-boew-geomap-tabs').length) {
 			
+			// if tabs are specified
+			if (tab && $(".wet-boew-geomap-tabs").length) {			
 				pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
+			// tabs are not specified
 			} else {				
-				var $layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
-				
-				$layerTab.append(featureTable);		
-				
-				var title = featureTable[0].attributes['aria-label'].value;
 
-				$div.append($layerTab);	
-				var $alert = $('<div class="module-alert module-simplify margin-top-medium"><h3>' + title + '</h3><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');
+				$layerTab.append($layerTitle, featureTable);
+				$div.append($layerTab, '<div class="clear"></div>');	
+
 				
+				// if layer visibility is false, add the hidden layer message and hide the table data
 				if(enabled === false) {				
 					$layerTab.append($alert);	
 					featureTable.fadeOut();
 				}			
 			}
 			
-			if (tab && (!$('#wet-boew-geomap-tabs').length)) {
+			if (tab && (!$('.wet-boew-geomap-tabs').length)) {
 				if($(".wet-boew-geomap").hasClass("debug")) {		
-				$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + _pe.fn.geomap.getLocalization('warningTab') + '</p></div>');	
-			}
+					$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + pe.fn.geomap.getLocalization('warningTab') + '</p></div>');	
+				}
 			}
 		},
 		
@@ -374,6 +381,8 @@
 		addToLegend: function(featureTable, enabled, olLayerId) {			
 
 			var $div = $(".wet-boew-geomap-legend");
+			var $legend = $('<legend>', { 'html': pe.fn.geomap.getLocalization('legendFieldsetLegend') });
+			var $fieldset = $('<fieldset>', { 'name': 'legend' }).appendTo($div);
 			
 			if($div.length != 0) {
 				var $checked = enabled ? 'checked="checked"' : '';
@@ -394,26 +403,35 @@
 					var visibility = $('#cb_' + $(featureTable).attr('id')).prop('checked') ? true : false;	
 					layer.setVisibility(visibility);	
 					
-					var $table = $('#' + $(featureTable).attr('id'));		
-					var $tableContainer = $table.parent();
-					var $alert = $tableContainer.find("div.module-attention");
+					var $table = $('table#' + $(featureTable).attr('id'));	
+					
+					
+					var $parent;
+					if($table.parent().hasClass('dataTables_wrapper')) {
+						$parent = $table.parent();
+					} else {
+						$parent = $table;
+					}
+					
+					var $alert = $("div#msg_" + $(featureTable).attr('id'));
 					
 					if($alert.length != 0) { 
 						$alert.fadeToggle();					
 					} else { 
-						$tableContainer.append('<div class="module-attention module-simplify"><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');				
+						$parent.after('<div id="msg_' + $(featureTable).attr('id') + '" class="module-attention module-simplify margin-bottom-medium margin-top-medium"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');				
 					}					
 					
-					$table.fadeToggle();									
-				});
+					$parent.fadeToggle();
+														
+				});	
 				
 				var $label = $('<label>', {
 					'html': $(featureTable).attr('aria-label'),			   
-					'for': '#tabs_'	+ $(featureTable).attr('id'),
+					'for': 'cb_'	+ $(featureTable).attr('id'),
 					'class': 'form-checkbox'
 				}).append($chkBox);
 				
-				$ul.append($("<li>", {'class': 'margin-right-small'}).append($label));			
+				$ul.append($("<li>").append($label));			
 			}	
 		},
 		
@@ -422,7 +440,7 @@
 		 */
 		addToTabs: function(featureTable, enabled, olLayerId) {				
 			
-			var $div = $("div#wet-boew-geomap-tabs");
+			var $div = $(".wet-boew-geomap-tabs");
 			var $tabs = $div.find("ul.tabs");
 			var $tabsPanel = $div.find("div.tabs-panel");			
 			var $link = $("<a>", {
@@ -430,7 +448,7 @@
 				'href': '#tabs_'	+ $(featureTable).attr('id')
 			});
 
-			$tabs.append($("<li>", { 'style': 'margin-right: 5px' }).append($link));
+			$tabs.append($("<li>").append($link));
 			
 			var $layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
 			$layerTab.append(featureTable);		
@@ -998,16 +1016,7 @@
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
-									format: new OpenLayers.Format.GeoRSS({
-//									{
-//										// adds the author attribute to the feature
-//										createFeatureFromItem: function(item) {
-//											var feature = OpenLayers.Format.GeoRSS.prototype.createFeatureFromItem.apply(this, arguments);	
-//											var node = this.getElementsByTagNameNS(item, "*", "author");											
-//											feature.attributes.author = $(node).text();
-//											return feature;
-//										}
-//									}																					
+									format: new OpenLayers.Format.GeoRSS({									
 										read: function(data) {											
 											var items = this.getElementsByTagNameNS(data, "*", "item");
 											
@@ -1196,11 +1205,15 @@
 					}
 				});
 				
-				// If zoom to add th
+				// If datatable is specified				
+				if(table.datatable) {
+					//$table.addClass('wet-boew-tables'); /* this won't work */
+				} 
+				
+				// If zoomTo add the header and footer column headers
 				if (opts.tables[index].zoom){
-					$table.find('thead').find('tr').append($('<th>' + _pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
-					$table.find('tfoot').find('tr').append($('<th>' + _pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
-					
+					$table.find('thead').find('tr').append($('<th>' + pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
+					$table.find('tfoot').find('tr').append($('<th>' + pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));					
 				} 
 				
 				// Loop trought each row
@@ -1247,11 +1260,11 @@
 				tableLayer.id = "table#" + table.id;
 				map.addLayer(tableLayer);
 				queryLayers.push(tableLayer);
-				
-				if (opts.tables[index].tab) _pe.fn.geomap.addLayerData($table, true, tableLayer.id, opts.tables[index].tab);
-				// Run the datatable plugin to generate the nice table
-			//if (datatable) $('table#' + $table.attr('id')).dataTable();
-			if (opts.tables[index].datatable) $("table#" + table.id).addClass('wet-boew-tables');
+				if ($('.wet-boew-geomap-legend')) {
+					pe.fn.geomap.addToLegend($table, true, tableLayer.id);
+				};				
+
+				//if (opts.tables[index].tab) pe.fn.geomap.addLayerData($table, true, tableLayer.id, opts.tables[index].tab);
 			});		
 		},
 		
@@ -1335,16 +1348,8 @@
 				$("#" + map.div.id).height($("#" + map.div.id).width() * 0.8);
 				map.updateSize();
 				map.zoomToMaxExtent();
-			};
-			
-			/*
-			 * General debug and warning messages - only shown if debug class is found
-			 */
-			
-			// Check to see if a legend container is provided			
-			if($(".wet-boew-geomap-legend").length == 0 && $(".wet-boew-geomap").hasClass("debug")) {		
-				$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('warning') + '</h3><p>' + _pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
-			}	
+			};			
+
 		},
 		
 		/*
@@ -1409,7 +1414,8 @@
 				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12).",
 				zoomFeature: 'Zoom to feature',
 				ariaMap: 'Map object. The map features description is in the table below.',
-				warningTab: 'No class <em>tab</tab> in wet-boew-geomap but a table has tab attribute set to true.'
+				warningTab: 'No class <em>tab</tab> in wet-boew-geomap but a table has tab attribute set to true.',
+				legendFieldsetLegend: 'Map legend listing layers currently available in the map'
 			};
 			
 			var french = {
@@ -1430,7 +1436,8 @@
 				baseMapMapOptionsLoadError: 'BOEW-Geomap: une erreur est survenue lors du chargement des options de configuration de votre carte de base. S\'il vous plaît, vérifiez que vous avez l\'ensemble des options suivantes: maxExtent (ex: \'-3000000,0, -800000,0, 4000000,0, 3900000,0\'), maxResolution (ex: \'auto\'), projection (ex: \'EPSG: 3978\'), restrictedExtent (ex: \'-3000000,0 , -800000,0, 4000000,0, 3900000,0\'), units (ex: \'m\'), displayProjection (ex: \'EPSG: 4269\'), numZoomLevels (ex: 12).',	
 				zoomFeature: 'Zoom à l\'élément',
 				ariaMap: 'Objet carte. La descriptions des élément sur la carte sont contenus dans la tables ci-dessous.',
-				warningTab: 'Il n\'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l\'attribut égal vrai.'
+				warningTab: 'Il n\'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l\'attribut égal vrai.',
+				legendFieldsetLegend: 'TRANSLATE - Map legend listing layers currently available in the map'
 			};
 			
 			var message = (_pe.language == "en") ? english[mess] : french[mess];
@@ -1490,8 +1497,8 @@
 			}
 
 			if(opts.debug) {
-				console.log(_pe.fn.geomap.getLocalization('debugMode'));
-				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + _pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + _pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
+				console.log(pe.fn.geomap.getLocalization('debugMode'));
+				$('#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
 			}	
 						
 			// Set the language for OpenLayers
@@ -1517,8 +1524,8 @@
 						
 						_pe.fn.geomap.createMap(wet_boew_geomap, opts);
 						
-						$('#wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
-						_pe.wb_load({'plugins': {'tabbedinterface': $('.wet-boew-tabbedinterface')}});
+						$('.wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
+						pe.wb_load({'plugins': {'tabbedinterface': $('.wet-boew-tabbedinterface')}});
 						
 						if(opts.debug) {
 							console.log(_pe.fn.geomap.getLocalization('overlayLoad'));
