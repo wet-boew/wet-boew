@@ -113,15 +113,15 @@
 						$(this.maximizeDiv).click(function(){ that.minimizeDiv.focus(); });
 					}
 					// add alt and title attributes to the min/max buttons
-					this.minimizeDiv.title = (pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
-					this.minimizeDiv.firstChild.alt = (pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
+					this.minimizeDiv.title = (_pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
+					this.minimizeDiv.firstChild.alt = (_pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
 					this.maximizeDiv.title = (pe.language==='en' ? "Open Layer Switcher" : "Ouvrir le sélecteur de couche");
-					this.maximizeDiv.firstChild.alt = (pe.language==='en' ? "Open Layer Switcher" : "Ouvrir le sélecteur de couche");
+					this.maximizeDiv.firstChild.alt = (_pe.language==='en' ? "Open Layer Switcher" : "Ouvrir le sélecteur de couche");
 					
 					// fix for the defect #3203 http://tbs-sct.ircan-rican.gc.ca/issues/3203
 					// change the label "Base layer" to French if needed. OpenLayer.js 2.10 does not have French translations. There are French translations in OpenLayer.js 2.11. No need to set the label manually after upgrading to 2.11.
-					this.baseLbl.innerHTML = (pe.language==='en' ? "Base Layer" : "Fond de carte");
-					this.dataLbl.innerHTML = (pe.language==='en' ? "Overlays" : "Couche thématique ");
+					this.baseLbl.innerHTML = (_pe.language==='en' ? "Base Layer" : "Fond de carte");
+					this.dataLbl.innerHTML = (_pe.language==='en' ? "Overlays" : "Couche thématique ");
 					
 					//clear out previous layers 
 					this.clearLayersArray("base");
@@ -272,7 +272,7 @@
 				
 				// Check to see if a legend container is provided			
 				if($(".wet-boew-geomap").hasClass("debug")) {		
-					$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
+					$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('warning') + '</h3><p>' + _pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
 				}	
 				
 				// removed this for now - we need to rethink this as it is difficult 
@@ -340,20 +340,20 @@
 			
 			// add to layer to legend
 			if ($('.wet-boew-geomap-legend')) {
-				pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
+				_pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
 			};
 			
 			var $div = $(".wet-boew-geomap-layers");
 			var $layerTab = $("<div>", { 'id': 'tabs_' + $(featureTable).attr('id') });				
 			var title = featureTable[0].attributes['aria-label'].value;
 			var $layerTitle = $("<h4>", { 'id': $(featureTable).attr('id'),	'html': title, 'class': 'background-light' });
-			var $alert = $('<div id="msg_' + $(featureTable).attr('id') + '" class="module-attention module-simplify margin-top-medium margin-bottom-medium"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');
+			var $alert = $('<div id="msg_' + $(featureTable).attr('id') + '" class="module-attention module-simplify margin-top-medium margin-bottom-medium"><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');
 		
 			// TODO: add debug message for div with id 'wet-boew-geomap-layers' can't be found and prompt to have it added
 			
 			// if tabs are specified
 			if (tab && $(".wet-boew-geomap-tabs").length) {			
-				pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
+				_pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
 			// tabs are not specified
 			} else {				
 
@@ -370,7 +370,7 @@
 			
 			if (tab && (!$('.wet-boew-geomap-tabs').length)) {
 				if($(".wet-boew-geomap").hasClass("debug")) {		
-					$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + pe.fn.geomap.getLocalization('warningTab') + '</p></div>');	
+					$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('warning') + '</h3><p>' + _pe.fn.geomap.getLocalization('warningTab') + '</p></div>');	
 				}
 			}
 		},
@@ -388,7 +388,7 @@
 				
 				// if no legend or or fieldset add them
 				if(!$div.find('fieldset').length) {			
-					$fieldset = $('<fieldset>', { 'name': 'legend' }).append('<legend class="wb-invisible">' + pe.fn.geomap.getLocalization('legendFieldsetLegend') + '</legend>').appendTo($div);
+					$fieldset = $('<fieldset>', { 'name': 'legend' }).append('<legend class="wb-invisible">' + _pe.fn.geomap.getLocalization('legendFieldsetLegend') + '</legend>').appendTo($div);
 				}
 				
 				var $checked = enabled ? 'checked="checked"' : '';
@@ -424,7 +424,7 @@
 					if($alert.length != 0) { 
 						$alert.fadeToggle();					
 					} else { 
-						$parent.after('<div id="msg_' + $(featureTable).attr('id') + '" class="module-attention module-simplify margin-bottom-medium margin-top-medium"><p>' + pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');				
+						$parent.after('<div id="msg_' + $(featureTable).attr('id') + '" class="module-attention module-simplify margin-bottom-medium margin-top-medium"><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');				
 					}					
 					
 					$parent.fadeToggle();
@@ -435,9 +435,9 @@
 					'html': $(featureTable).attr('aria-label'),			   
 					'for': 'cb_'	+ $(featureTable).attr('id'),
 					'class': 'form-checkbox'
-				}).append($chkBox);
+				});
 				
-				$ul.append($("<li>").append($label));			
+				$ul.append($("<li>").append($chkBox, $label));			
 			}	
 		},
 		
@@ -454,7 +454,7 @@
 				'href': '#tabs_'	+ $(featureTable).attr('id')
 			});
 
-			$tabs.append($("<li>").append($link));
+			$tabs.append($('<li>', { 'class': 'margin-right-small'}).append($link));
 			
 			var $layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
 			$layerTab.append(featureTable);		
@@ -1218,8 +1218,8 @@
 				
 				// If zoomTo add the header and footer column headers
 				if (opts.tables[index].zoom){
-					$table.find('thead').find('tr').append($('<th>' + pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
-					$table.find('tfoot').find('tr').append($('<th>' + pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));					
+					$table.find('thead').find('tr').append($('<th>' + _pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
+					$table.find('tfoot').find('tr').append($('<th>' + _pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));					
 				} 
 				
 				// Loop trought each row
@@ -1267,10 +1267,10 @@
 				map.addLayer(tableLayer);
 				queryLayers.push(tableLayer);
 				if ($('.wet-boew-geomap-legend')) {
-					pe.fn.geomap.addToLegend($table, true, tableLayer.id);
+					_pe.fn.geomap.addToLegend($table, true, tableLayer.id);
 				};				
 
-				//if (opts.tables[index].tab) pe.fn.geomap.addLayerData($table, true, tableLayer.id, opts.tables[index].tab);
+				//if (opts.tables[index].tab) _pe.fn.geomap.addLayerData($table, true, tableLayer.id, opts.tables[index].tab);
 			});		
 		},
 		
@@ -1308,6 +1308,10 @@
 			if(opts.useScaleLine) { map.addControl(new OpenLayers.Control.ScaleLine()); }					
 			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
 			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
+			
+			// experimental
+			// map.addControl(new OpenLayers.Control.TouchNavigation()); //{ dragPanOptions: { enableKinetic: true } }));
+			
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			var c=map.getControlsByClass('OpenLayers.Control.KeyboardDefaults');
 					c[0].deactivate();
@@ -1315,7 +1319,7 @@
 			// enable the keyboard navigation when map div has focus. Disable when blur
 			// Enable the wheel zoom only on hover
 			$('.wet-boew-geomap').attr('tabindex', '0');
-			$('.wet-boew-geomap').css("border", "solid 1px white");
+			$('.wet-boew-geomap').css("border", "solid 1px #CCCCCC");
 			$('.wet-boew-geomap').hover(function(){
 					var c=map.getControlsByClass('OpenLayers.Control.Navigation');
 					c[0].activate();
@@ -1324,7 +1328,7 @@
 				function(){
 					var c=map.getControlsByClass('OpenLayers.Control.Navigation');
 					c[0].deactivate();
-					$(this).css("border", "solid 1px white");
+					$(this).css("border", "solid 1px #CCCCCC");
 				}
 			);
 			$('.wet-boew-geomap').focus(function(){
@@ -1451,9 +1455,8 @@
 		},
 		
 		fnZebraComplexTable: function (wet_boew_geomap, opts) {
-			_pe.fn.geomap.createMap(wet_boew_geomap, opts);
-						
-						$('#wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
+			_pe.fn.geomap.createMap(wet_boew_geomap, opts);						
+			$('#wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
 		},
 		
 		_exec: function (elm) {
@@ -1503,8 +1506,8 @@
 			}
 
 			if(opts.debug) {
-				console.log(pe.fn.geomap.getLocalization('debugMode'));
-				$('#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
+				console.log(_pe.fn.geomap.getLocalization('debugMode'));
+				$('#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
 			}	
 						
 			// Set the language for OpenLayers
