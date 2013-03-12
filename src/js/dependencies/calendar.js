@@ -426,8 +426,8 @@
 		onGoTo : function (calendarid, minDate, maxDate) {
 			var container = $('#' + calendarid),
 				fieldset = container.find('fieldset'),
-				month = parseInt(fieldset.find('.cal-goto-month select option:selected').attr('value'), 10),
-				year = parseInt(fieldset.find('.cal-goto-year select').attr('value'), 10);
+				month = parseInt(fieldset.find('.cal-goto-month select option:selected').val(), 10),
+				year = parseInt(fieldset.find('.cal-goto-year select').val(), 10);
 
 			if (!(month < minDate.getMonth() && year <= minDate.getFullYear()) && !(month > maxDate.getMonth() && year >= maxDate.getFullYear())) {
 				_pe.fn.calendar.create(calendarid, year, month, true, minDate, maxDate);
