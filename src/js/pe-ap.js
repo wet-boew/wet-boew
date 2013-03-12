@@ -14,7 +14,7 @@
 /*
  * pe, a progressive javascript library agnostic framework
  */
-/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
+/*global jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
 /*jshint bitwise: false */
 (function ($) {
 	"use strict";
@@ -43,12 +43,15 @@
 		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
+		html: $('html'),
+		document: $(document),
+		window: $(window),
 		urlpage: '',
 		urlhash: '',
 		urlquery: '',
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
-		document: $(document),
 		mobiletest: '',
+		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 
 		/**
@@ -115,7 +118,7 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = $('html'), hlinks, hlinks_same, $this, target, classes, test, init_on_mobileinit = false;
+			var $html = pe.html, hlinks, hlinks_same, $this, target, classes, test, test_elms, init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
@@ -126,11 +129,21 @@
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
-
-			// Append the mobile test to the body
+	
+			// Mobile test: Used to detect CSS media query result regarding mobile/desktop view
 			pe.mobiletest = document.createElement('div');
 			pe.mobiletest.setAttribute('id', 'mobiletest'); // Used to detect CSS media queries result regarding mobile/desktop view
-			document.body.appendChild(pe.mobiletest);
+			
+			// Resize test element: Used to detect changes in text size and window size
+			pe.resizetest = document.createElement('span');
+			pe.resizetest.innerHTML = '&#160;';
+			pe.resizetest.setAttribute('id', 'resizetest'); // Used to detect CSS media queries result regarding mobile/desktop view
+
+			// Append the various tests to the body
+			test_elms = document.createElement('div');
+			test_elms.appendChild(pe.mobiletest);
+			test_elms.appendChild(pe.resizetest);
+			document.body.appendChild(test_elms);
 
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
@@ -304,17 +317,60 @@
 		pagecontainer: function () {
 			return $('#wb-body-sec-sup, #wb-body-sec, #wb-body-secr, #wb-body').add('body').eq(0);
 		},
+		
 		/**
-		* Initializes the Resize dependency, and attaches a given function to various resize events.
+		* Manages custom events for text and window resizing
+		* Based on http://alistapart.com/article/fontresizing
+		* @namespace pe.resizeutil
+		*/
+		resizeutil: {
+			sizes: [],
+			events: ['wb-text-resize', 'wb-window-resize-width', 'wb-window-resize-height'],
+			events_all: '',
+			initialized: false,
+			/**
+			* Sets up the testing interval
+			* @memberof pe.resizeutil
+			* @function
+			*/
+			init: function () {
+				var ru = pe.resizeutil;
+				if (!ru.initialized) {
+					ru.sizes = [pe.resizetest.offsetHeight, pe.window.width(), pe.window.height()];
+					ru.events_all = ru.events.join(' ');
+					window.setInterval(function () {
+						pe.resizeutil.test();
+					}, 500);
+					ru.initialized = true;
+				}
+			},
+			/**
+			* Tests for text size, window width and window height changes and triggers an event when a change is found
+			* @memberof pe.resizeutil
+			* @function
+			*/
+			test: function () {
+				var curr_sizes = [pe.resizetest.offsetHeight, pe.window.width(), pe.window.height()],
+					i, len,
+					ru = pe.resizeutil;
+				for (i = 0, len = curr_sizes.length; i !== len; i += 1) {
+					if (curr_sizes[i] !== ru.sizes[i]) {
+						pe.document.trigger(ru.events[i], curr_sizes);
+					}
+				}
+				ru.sizes = curr_sizes;
+				return;
+			}
+		},
+		/**
+		* Registers callbacks for the custom resize events managed in pe.resizeutil
 		* @memberof pe
 		* @function
-		* @param {function} fn The function to run when a resize event fires.
-		* @return {void}
+		* @param (string) callback Function that will be bound to the custom resize events.
 		*/
-		resize: function (fn) {
-			ResizeEvents.initialise(); // ensure resize function initialized
-			ResizeEvents.eventElement.bind('x-text-resize x-zoom-resize x-window-resize', function () {
-				fn();
+		resize: function (callback) {
+			pe.document.on(pe.resizeutil.events_all, function (e, sizes) {
+				callback(e, sizes);
 			});
 			return;
 		},
@@ -793,7 +849,7 @@
 				qparam,
 				newquery = '?',
 				settings = pe.settings,
-				$html = $('html'),
+				$html = pe.html,
 				pedisable_link = (settings && typeof settings.pedisable_link === 'boolean' ? settings.pedisable_link : true);
 
 			if (tphp !== null) {
@@ -1095,7 +1151,7 @@
 			init: function () {
 				// localStorage
 				var lib = pe.add.liblocation,
-					$html = $('html');
+					$html = pe.html;
 				if (!window.localStorage) {
 					pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js', 'localstorage-loaded');
 					$html.addClass('polyfill-localstorage');
@@ -1135,7 +1191,7 @@
 					js = [],
 					i,
 					_len,
-					$html = $('html');
+					$html = pe.html;
 
 				// Process each polyfill
 				for (polyname in polyfills) {
@@ -1206,7 +1262,7 @@
 			* @function
 			*/
 			enhance: function (poly_name, objs) {
-				if ($('html').hasClass('polyfill-' + poly_name)) {
+				if (pe.html.hasClass('polyfill-' + poly_name)) {
 					objs = (typeof objs.jquery !== 'undefined' ? objs.get() : objs);
 					var polyobj = this.polyfill[poly_name],
 						objs_len = objs.length;
@@ -1225,7 +1281,6 @@
 			polyfill: {
 				'datalist': {
 					selector: 'input[list]',
-					depends: ['resize', 'outside'],
 					update: function (elms) {
 						elms.datalist();
 					},
@@ -1234,7 +1289,7 @@
 				},
 				'datepicker': {
 					selector: 'input[type="date"]',
-					depends: ['calendar', 'xregexp', 'outside'],
+					depends: ['calendar', 'xregexp'],
 					update: function (elms) {
 						elms.datepicker();
 					},
@@ -1747,6 +1802,8 @@
 						}
 					}
 					pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				} else {
+					pe.document.trigger(event_pcalldeps);
 				}
 			});
 
@@ -1774,7 +1831,7 @@
 						} else {
 							tabletcheck = pe.tabletcheck();
 							if (pe.tablet !== tabletcheck) {
-								$('html').toggleClass('tablet-view smartphone-view');
+								pe.html.toggleClass('tablet-view smartphone-view');
 							}
 							pe.tablet = tabletcheck;
 						}
@@ -1789,7 +1846,8 @@
 					plugins.css3ie = pe.main;
 				}
 			}
-			pe.wb_load({'plugins': plugins, 'dep': ['resize', 'equalheights'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
+			pe.resizeutil.init();
+			pe.wb_load({'plugins': plugins, 'checkdom': true, 'polycheckdom': true}, loading_finished);
 		}
 	};
 	/* window binding */

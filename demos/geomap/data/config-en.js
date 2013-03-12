@@ -57,7 +57,7 @@
 		    type: 'kml',
 		    url: 'data/sample.kml',		   
 		    visible: false,
-		    datatable: true,
+		    datatable: false,
 		    tab: true,
 		    attributes: {
 		    	name: 'Product Title',
@@ -69,6 +69,7 @@
 		    caption: 'This is a sample ATOM feed loaded locally by Geomap.',
 		    type: 'atom',
 		    url: 'data/sample.atom',
+		    tab: true,
 		    attributes: {
 		    	title: 'Title',
 		    	summary: 'About this dataset'
@@ -79,7 +80,7 @@
 			title: 'GeoRSS Demo EN',
 			caption: 'This is a sample GeoRSS feed loaded locally by Geomap.',
 			type: 'georss',
-			url: 'data/sample.rss',	
+			url: 'data/sample.rss',				
 			attributes: {
 				title: 'Title',
 				description: 'Description',
@@ -99,7 +100,8 @@
 				'q': 'alluvial'
 			},
 			visible: false,
-			root: 'products',			
+			root: 'products',	
+			tab: true,
 			attributes: {
 				title: 'Title',
 				summary: 'Abstract',				
@@ -123,7 +125,7 @@
 			},
 			visible: true,	
 			zoom:  true,
-			datatable: true,
+			datatable: false,
 			tab: true,		
 			 // default style			
 			 style: {

@@ -63,7 +63,7 @@
 			
 			// Open details on print
 			if(opts.printOpen) {
-				$window = $(window);
+				$window = _pe.window;
 				
 				// Native event support
 				$window.on('beforeprint', $.proxy(function() {

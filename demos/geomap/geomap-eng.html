@@ -102,22 +102,72 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!-- MainContentStart -->
 <h1 id="wb-cont">Geomap</h1>
 
-<div class="span-8">
-    <div class="span-6 row-start">
-        <div 
-            class="wet-boew-geomap span-6 border-all position scaleline legend tab" 
-            data-wet-boew="{ 
-                layersFile: 'data/config-en.js', 
-                tables: [ { id: 'cities', zoom: true, style: { type: 'rule', rule: [{field: 'Population 2011',value: [1000000],filter: 'LESS_THAN', init: {'strokeColor': '#0083f5', 'fillColor': '#57a8f0', 'pointRadius': '6', 'fillOpacity': 0.80, 'strokeWidth': 1.0}},
-                																	{field: 'Population 2011',value: [1000000, 2000000],filter: 'BETWEEN', init: {'strokeColor': '#FF9900', 'fillColor': '#FF9900', 'pointRadius': '8', 'fillOpacity': 0.80, 'strokeWidth': 1.0}},
-                																	{field: 'Population 2011',value: [2000000],filter: 'GREATER_THAN', init: {'strokeColor': '#FF0000', 'fillColor': '#FF0000', 'pointRadius': '10', 'fillOpacity': 0.80, 'strokeWidth': 1.0}}]},
-                		    datatable: true,
-                		    tab: true}, 
-						  
-                { id: 'bbox' } ] 
-            }">
-        </div>
-    </div>
+<div class="span-6">
+    <div 
+        class="wet-boew-geomap position scaleline tab" 
+        data-wet-boew="{ 
+            layersFile: 'data/config-en.js', 
+            tables: [{ 
+                id: 'cities', 
+                zoom: true,
+                style: { 
+                    type: 'rule', 
+                    rule: [
+                    {
+                        field: 'Population 2011',
+                        value: [1000000],
+                        filter: 'LESS_THAN', 
+                        init: {
+                            'strokeColor': '#0083f5', 
+                            'fillColor': '#57a8f0', 
+                            'pointRadius': '6', 
+                            'fillOpacity': 0.80, 
+                            'strokeWidth': 1.0
+                        }
+                    },
+                    {
+                        field: 'Population 2011',
+                        value: [1000000, 2000000],
+                        filter: 'BETWEEN', 
+                        init: {
+                            'strokeColor': '#FF9900', 
+                            'fillColor': '#FF9900', 
+                            'pointRadius': '8', 
+                            'fillOpacity': 0.80, 
+                            'strokeWidth': 1.0
+                        }
+                    },
+					{
+					    field: 'Population 2011',
+					    value: [2000000],
+					    filter: 'GREATER_THAN', 
+					    init: {
+					        'strokeColor': '#FF0000', 
+					        'fillColor': '#FF0000', 
+					        'pointRadius': '10', 
+					        'fillOpacity': 0.80, 
+					        'strokeWidth': 1.0
+				        }
+			        }					        
+                ]}
+		    }]
+		    
+        }">
+    </div>  
+</div>
+
+<!-- Insert Legend (optional) --> 
+<div class="wet-boew-geomap-legend span-2">    
+    <h2>Legend</h2>
+</div>
+<!-- END Insert Legend -->
+
+<div class="clear"></div>
+
+<!-- Insert Layer Data -->
+<div class="wet-boew-geomap-layers span-8">        
+    <h3>Map Layers</h3>
+    <h4 class="background-light">Cities</h4>
     <table id="cities" aria-label="Cities">
                     <caption>This is a sample layer created from a table in the current document. A column with cells containing geometry encoded in WKT and marked up with a class named <em>geometry</em> is required. To link the layer features in the table to the map a column containing cells marked up with a class named <em>select</em> is required.</caption>
                     <thead>
@@ -187,7 +237,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
                         </tr>
                     </tfoot>
     </table>
-    <div>
+    <div class="clear"></div>
+</div>
+
+<div>
         <h2>Search Results</h2>
         <p>Demonstration of inline table outside of tabbed interface.</p>
         <table id="bbox" aria-label="Search Results">
@@ -213,8 +266,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
             </tbody>
         </table>     
     </div> 
-    <div class="clear"></div>
-</div>
+<!-- END Insert Layer Data -->
 
 <div class="clear"></div>
 <dl id="gcwu-date-mod" role="contentinfo">
@@ -280,26 +332,27 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../../dist/js/settings.js"></script>
+<!-- <script src="../../dist/js/settings.js"></script> -->
 <!--[if lte IE 8]>
 <script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
 <script src="../../dist/js/pe-ap-ie-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
 <![endif]-->
-<!--[if gt IE 8]><!--->
+<!--[if gt IE 8]><!---
 <script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
 <!--<![endif]-->
 <!-- ScriptsEnd -->
 
-<!-- Debugging --
+<!-- Debugging -->
 <script src="../../src/theme-gcwu-fegc/js/theme.js"></script>
 <script src="../../src/js/settings.js"></script>
-<script src="../../src/js/pe-ap.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
 <script src="../../src/js/workers/geomap.js"></script>
 <script src="../../src/js/workers/tabbedinterface.js"></script>
-<script src="../../src/js/dependencies/datatables.js"></script>
+<script src="../../src/js/workers/tables.js"></script>
 <!-- DebuggingEnd -->
 </body>
 </html>

@@ -56,7 +56,7 @@
 		    type: 'kml',
 		    url: 'data/sample.kml',		   
 		    visible: false,
-		    datatable: true,
+		    datatable: false,
 		    tab: true,
 		    attributes: {
 		    	name: 'Titre du produit',
@@ -73,7 +73,8 @@
 		    	summary: 'À propos de ce jeux de données'
 		    },
 		    visible: false,
-		    datatable: false
+		    datatable: false,
+		    tab: true
 		},
 		{
 			title: 'GeoRSS Demo FR',
@@ -87,7 +88,7 @@
 			},
 			visible: false,
 			datatable: false,
-			tab:true
+			tab: true
 		},
 		{
 			title: 'JSON (GeoGratis) FR',
@@ -100,6 +101,7 @@
 			},
 			visible: false,
 			datatable: false,
+			tab: true,
 			root: 'products',			
 			attributes: {
 				title: 'Titre',
@@ -124,7 +126,7 @@
 			},
 			visible: true,	
 			zoom:  true,
-			datatable: true,
+			datatable: false,
 			tab: true,		
 			 // default style			
 			 style: {

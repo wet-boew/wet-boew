@@ -102,6 +102,7 @@
 				len,
 				nodes,
 				node,
+				$document = $(document),
 				home_href,
 				header;
 
@@ -242,7 +243,7 @@
 			}
 
 			// jQuery mobile has loaded
-			$(document).on('pagecreate', function () {
+			$document.on('pagecreate', function () {
 				var navbar = wet_boew_theme.fullhd.find('#wet-mnavbar'),
 					menu = pe.bodydiv.find('#jqm-mb-menu'),
 					menus,
@@ -293,7 +294,7 @@
 				$.mobile.transitionHandlers.loadingTransition = loadingTransition;
 				$.mobile.defaultDialogTransition = 'loadingTransition';
 			});
-			$(document).trigger('themeviewloaded');
+			$document.trigger('themeviewloaded');
 			return;
 		},
 

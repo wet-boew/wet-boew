@@ -16,16 +16,22 @@
 	var queryLayers = [];
 	/* local reference */
 	_pe.fn.geomap = {
-		type: 'plugin',
-		// This is an example from tabbed interface, to show how to call required libraries when they are needed
-		//depends: (pe.mobile ? [] : ['geomap/OpenLayers']),
+		type: 'plugin',				
+		//depends: (pe.mobile ? [] : ['openlayers', 'proj4js', 'metadata', 'datatables']),
 		depends: ['openlayers', 'proj4js', 'metadata', 'datatables'],
 		dependscss: ['datatables'],
+		
 		//Specifies polyfill needed by the plugin (for elements created at runtime)
-		polyfills:['progress','detailssummary'],
+		//polyfills:['progress','detailssummary'],
+		
 		// Don't include a mobile function if your plugin shouldn't run in mobile mode.
-//		mobile: function (elm) {
-//			// If applicaple, convert html elements and attributes into the format that jQuery mobile expects.
+//		mobile: function (elm) { 
+//			// If applicable, convert html elements and attributes into the format that jQuery mobile expects.
+//			
+////			// add mobile zoom controls
+////			var $controls = $('<div data-role="controlgroup" data-type="vertical"><a href="#" data-role="button" data-icon="plus" id="plus"data-iconpos="notext"></a><a href="#" data-role="button" data-icon="minus" id="minus" data-iconpos="notext"></a></div>');
+////			$(elm.append($controls));
+//			
 //			return elm;
 //		},
 	
@@ -74,171 +80,8 @@
 					$img.attr('alt', altTxt);
 					$div.attr('title', altTxt);
 				}
-			});
-		
+			});			
 			
-			/*
-			 *	Configure OpenLayers LayerSwitcher control
-			 */ 
-			
-			if(useLayerSwitcher) {
-			
-				OpenLayers.Control.LayerSwitcher.prototype.redraw = function() {
-					//if the state hasn't changed since last redraw, no need 
-					// to do anything. Just return the existing div.
-					if (!this.checkRedraw()) { 
-						return this.div; 
-					} 
-					// make LayerSwitcher expandable with the keyboard
-					this.maximizeDiv.tabIndex = 0;
-					var filterMax = function(evt) {
-						if (evt.keyCode == 13 || evt.keyCode == 32) {
-							this.maximizeControl(evt);
-							this.minimizeDiv.focus();
-						}
-					};
-					OpenLayers.Event.observe(this.maximizeDiv, "keydown", OpenLayers.Function.bindAsEventListener(filterMax, this));
-					this.minimizeDiv.tabIndex = 0;
-					var filterMin = function(evt) {
-						if (evt.keyCode == 13 || evt.keyCode == 32) {
-							this.minimizeControl(evt);
-							this.maximizeDiv.focus();
-						}
-					};
-					OpenLayers.Event.observe(this.minimizeDiv, "keydown", OpenLayers.Function.bindAsEventListener(filterMin, this));
-					// make the max/min divs focusable on click (ignores if IE since IE6 - IE8 throws an error)
-					if (!$.browser.msie) {
-						var that = this;
-						$(this.minimizeDiv).click(function(){ that.maximizeDiv.focus(); });
-						$(this.maximizeDiv).click(function(){ that.minimizeDiv.focus(); });
-					}
-					// add alt and title attributes to the min/max buttons
-					this.minimizeDiv.title = (pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
-					this.minimizeDiv.firstChild.alt = (pe.language==='en' ? "Close Layer Switcher" : "Fermer le sélecteur de couche");
-					this.maximizeDiv.title = (pe.language==='en' ? "Open Layer Switcher" : "Ouvrir le sélecteur de couche");
-					this.maximizeDiv.firstChild.alt = (pe.language==='en' ? "Open Layer Switcher" : "Ouvrir le sélecteur de couche");
-					
-					// fix for the defect #3203 http://tbs-sct.ircan-rican.gc.ca/issues/3203
-					// change the label "Base layer" to French if needed. OpenLayer.js 2.10 does not have French translations. There are French translations in OpenLayer.js 2.11. No need to set the label manually after upgrading to 2.11.
-					this.baseLbl.innerHTML = (pe.language==='en' ? "Base Layer" : "Fond de carte");
-					this.dataLbl.innerHTML = (pe.language==='en' ? "Overlays" : "Couche thématique ");
-					
-					//clear out previous layers 
-					this.clearLayersArray("base");
-					this.clearLayersArray("data");
-					var containsOverlays = false;
-					var containsBaseLayers = false;
-					// Save state -- for checking layer if the map state changed.
-					// We save this before redrawing, because in the process of redrawing
-					// we will trigger more visibility changes, and we want to not redraw
-					// and enter an infinite loop.
-					var len = this.map.layers.length;
-					this.layerStates = new Array(len);
-					for (var i=0; i <len; i++) {
-						var layer = this.map.layers[i];
-						this.layerStates[i] = {
-							'name': layer.name, 
-							'visibility': layer.visibility,
-							'inRange': layer.inRange,
-							'id': layer.id
-						};
-					}	 
-					var layers = this.map.layers.slice();
-					if (!this.ascending) { layers.reverse(); }
-					for(var i=0, len=layers.length; i<len; i++) {
-						var layer = layers[i];
-						var baseLayer = layer.isBaseLayer;
-						if (layer.displayInLayerSwitcher) {
-							if (baseLayer) {
-								containsBaseLayers = true;
-							} else {
-								containsOverlays = true;
-							}
-							// only check a baselayer if it is *the* baselayer, check data
-							//	layers if they are visible
-							var checked = (baseLayer) ? (layer == this.map.baseLayer) : layer.getVisibility();
-							// create input element
-							var inputElem = document.createElement("input");
-							inputElem.id = this.id + "_input_" + layer.name;
-							inputElem.name = (baseLayer) ? this.id + "_baseLayers" : layer.name;
-							inputElem.type = (baseLayer) ? "radio" : "checkbox";
-							inputElem.value = layer.name;
-							inputElem.checked = checked;
-							inputElem.defaultChecked = checked;
-							if (!baseLayer && !layer.inRange) {
-								inputElem.disabled = true;
-							}
-							var context = {
-								'inputElem': inputElem,
-								'layer': layer,
-								'layerSwitcher': this
-							};
-							OpenLayers.Event.observe(inputElem, "mouseup", OpenLayers.Function.bindAsEventListener(this.onInputClick, context));
-							// make the radio buttons tab-able
-							inputElem.tabIndex = 0;
-							var filterInput = function(evt) {
-								if (evt.keyCode == 13 || evt.keyCode == 32) {
-									this.layerSwitcher.onInputClick.call(this, evt);
-								} else if (37 <= evt.keyCode && evt.keyCode <= 40) {
-									// prevent up/down/left/right keys from moving map while focus is on inputElem
-									evt.stopPropagation ? evt.stopPropagation() : evt.cancelBubble = true;
-								}
-							};
-							OpenLayers.Event.observe(inputElem, "keydown", OpenLayers.Function.bindAsEventListener(filterInput, context));
-							// create span
-							var labelSpan = document.createElement("span");
-							OpenLayers.Element.addClass(labelSpan, "labelSpan");
-							if (!baseLayer && !layer.inRange) {
-								labelSpan.style.color = "gray";
-							}
-							labelSpan.innerHTML = layer.name;
-							labelSpan.style.verticalAlign = (baseLayer) ? "bottom" : "baseline";
-							// create label
-							var label = document.createElement("label");
-							label.setAttribute("for", this.id + "_input_" + layer.name);
-							OpenLayers.Event.observe(label, "click", OpenLayers.Function.bindAsEventListener(this.onInputClick, context));
-							// create line break
-							var br = document.createElement("br");
-							var groupArray = (baseLayer) ? this.baseLayers : this.dataLayers;
-							groupArray.push({
-								'layer': layer,
-								'inputElem': inputElem,
-								'labelSpan': labelSpan
-							});
-							var groupDiv = (baseLayer) ? this.baseLayersDiv : this.dataLayersDiv;
-							groupDiv.appendChild(inputElem);
-							label.appendChild(labelSpan);
-							groupDiv.appendChild(label);
-							groupDiv.appendChild(br);
-						}
-					}
-					// if no overlays, dont display the overlay label
-					this.dataLbl.style.display = (containsOverlays) ? "" : "none";		  
-					// if no baselayers, dont display the baselayer label
-					this.baseLbl.style.display = (containsBaseLayers) ? "" : "none";		
-					
-					// move radio buttons after min/max buttons
-					$('.olControlLayerSwitcher > .minimizeDiv').detach().prependTo('.olControlLayerSwitcher');
-					$('.olControlLayerSwitcher > .maximizeDiv').detach().prependTo('.olControlLayerSwitcher');
-					
-					return this.div;
-				};
-				
-				OpenLayers.Control.LayerSwitcher.prototype.onInputClick = function(e) {
-					if (!this.inputElem.disabled) {
-						if (this.inputElem.type == "radio") {
-							this.inputElem.checked = true;
-							this.layer.map.setBaseLayer(this.layer);
-						} else {
-							this.inputElem.checked = !this.inputElem.checked;
-							this.layerSwitcher.updateMap();
-						}
-						// keep the focus on the radio button after it's clicked/pressed
-						document.getElementById(this.inputElem.id).focus();
-					}
-					OpenLayers.Event.stop(e);
-				};
-			}
 		}, // end accessibilize function		
 	 
 		/* 
@@ -268,8 +111,16 @@
 		createLegend: function() {
 			
 			// Create legend div if not there
-			if (!($(".wet-boew-geomap-legend").length)){				
-				$('.wet-boew-geomap').parent().after('<div id="legendHolder" class="span-2 row-end"><h2>Legend</h2><div class="wet-boew-geomap-legend"></div></div><div class="clear"></div>');			
+			if (!($(".wet-boew-geomap-legend").length)) {	
+				
+				// Check to see if a legend container is provided			
+				if($(".wet-boew-geomap").hasClass("debug")) {		
+					$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('warning') + '</h3><p>' + _pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
+				}	
+				
+				// removed this for now - we need to rethink this as it is difficult 
+				// to ensure a semantically and structurally sound markup
+				//$('.wet-boew-geomap').parent().after('<div class=".wet-boew-geomap-legend"><h2>Legend</h2><div class="wet-boew-geomap-legend"></div></div><div class="clear"></div>');			
 			}		
 		},
 		
@@ -278,23 +129,17 @@
 		 */
 		createLayerHolder: function(tab) {
 
-			// Create the tab holder after the legend. If no legend, create it's after the map
+			// user wants tabs
 			if (tab) {
-				var holder = '<div class="clear"></div><div id="wet-boew-geomap-layers"><div id="wet-boew-geomap-tabs"><ul class="tabs"></ul><div class="tabs-panel"></div></div></div>';
-				if ($('#legendHolder').length) {
-					$('#legendHolder').after(holder);
-				} else {
-					$('.wet-boew-geomap').parent().after(holder);
+				// user has specified where they want to put the tabs
+				if ($(".wet-boew-geomap-tabs").length) {
+					$(".wet-boew-geomap-tabs").append('<ul class="tabs"></ul><div class="tabs-panel"></div>');
+				// user hasn't specified where they want the tabs
+				} else { 
+					$(".wet-boew-geomap-layers").append('<div class="clear"></div><div class="wet-boew-geomap-tabs"><ul class="tabs"></ul><div class="tabs-panel"></div></div><div class="clear"></div>');
 				}
 			}
-			else {
-				var holder = '<div class="clear"></div><div id="wet-boew-geomap-layers"></div>';
-				if ($('#legendHolder').length) {
-					$('#legendHolder').after(holder);
-				} else {
-					$('.wet-boew-geomap').parent().after(holder);
-				}
-			}
+			
 		},
 		
 		/* 
@@ -302,10 +147,11 @@
 		 */
 		createTable: function(index, title, caption, datatable) {
 
-			var $table = $('<table>'); //, { 'style': 'width:100%' }); 
+			var $table = $('<table>', { 'class': 'table-simplify' }); 
 			
 			if(datatable) {
 				$table.addClass('wet-boew-tables');
+				$table.css('width', '100%');
 			} else {
 				$table.css('width', '100%');
 			}
@@ -333,38 +179,42 @@
 		/* 
 		 * Add layer data
 		 */		
-		addLayerData: function(featureTable, enabled, olLayerId, tab) {			
+		addLayerData: function(featureTable, enabled, olLayerId, tab) {						
 			
+			// add to layer to legend
 			if ($('.wet-boew-geomap-legend')) {
-				pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
+				_pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
 			};
 			
-			var $div = $("div#wet-boew-geomap-layers");
-			
+			var $div = $(".wet-boew-geomap-layers");
+			var $layerTab = $("<div>", { 'id': 'tabs_' + $(featureTable).attr('id') });				
+			var title = featureTable[0].attributes['aria-label'].value;
+			var $layerTitle = $("<h4>", { 'id': $(featureTable).attr('id'),	'html': title, 'class': 'background-light' });
+			var $alert = $('<div id="msg_' + $(featureTable).attr('id') + '" class="module-attention module-simplify margin-top-medium margin-bottom-medium"><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');
+		
 			// TODO: add debug message for div with id 'wet-boew-geomap-layers' can't be found and prompt to have it added
-			if (tab && $('#wet-boew-geomap-tabs').length) {
 			
-				pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
+			// if tabs are specified
+			if (tab && $(".wet-boew-geomap-tabs").length) {			
+				_pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
+			// tabs are not specified
 			} else {				
-				var $layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
-				
-				$layerTab.append(featureTable);		
-				
-				var title = featureTable[0].attributes['aria-label'].value;
 
-				$div.append($layerTab);	
-				var $alert = $('<div class="module-alert module-simplify margin-top-medium"><h3>' + title + '</h3><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');
+				$layerTab.append($layerTitle, featureTable);
+				$div.append($layerTab, '<div class="clear"></div>');	
+
 				
+				// if layer visibility is false, add the hidden layer message and hide the table data
 				if(enabled === false) {				
 					$layerTab.append($alert);	
 					featureTable.fadeOut();
 				}			
 			}
 			
-			if (tab && (!$('#wet-boew-geomap-tabs').length)) {
+			if (tab && (!$('.wet-boew-geomap-tabs').length)) {
 				if($(".wet-boew-geomap").hasClass("debug")) {		
-				$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + pe.fn.geomap.getLocalization('warning') + '</h3><p>' + _pe.fn.geomap.getLocalization('warningTab') + '</p></div>');	
-			}
+					$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('warning') + '</h3><p>' + _pe.fn.geomap.getLocalization('warningTab') + '</p></div>');	
+				}
 			}
 		},
 		
@@ -373,13 +223,21 @@
 		 */		
 		addToLegend: function(featureTable, enabled, olLayerId) {			
 
-			var $div = $(".wet-boew-geomap-legend");
+			var $div = $(".wet-boew-geomap-legend");			
 			
 			if($div.length != 0) {
+				
+				var $fieldset, $ul;
+				
+				// if no legend or or fieldset add them
+				if(!$div.find('fieldset').length) {			
+					$fieldset = $('<fieldset>', { 'name': 'legend' }).append('<legend class="wb-invisible">' + _pe.fn.geomap.getLocalization('legendFieldsetLegend') + '</legend>').appendTo($div);
+				}
+				
 				var $checked = enabled ? 'checked="checked"' : '';
-				var $ul;
+				
 				if(!$div.find('ul').length) {
-					$ul = $('<ul>', { 'class': 'list-bullet-none margin-left-none' }).appendTo($div);					
+					$ul = $('<ul>', { 'class': 'list-bullet-none margin-left-none' }).appendTo($fieldset);					
 				} else {
 					$ul = $div.find('ul');
 				}
@@ -394,26 +252,35 @@
 					var visibility = $('#cb_' + $(featureTable).attr('id')).prop('checked') ? true : false;	
 					layer.setVisibility(visibility);	
 					
-					var $table = $('#' + $(featureTable).attr('id'));		
-					var $tableContainer = $table.parent();
-					var $alert = $tableContainer.find("div.module-attention");
+					var $table = $('table#' + $(featureTable).attr('id'));	
+					
+					
+					var $parent;
+					if($table.parent().hasClass('dataTables_wrapper')) {
+						$parent = $table.parent();
+					} else {
+						$parent = $table;
+					}
+					
+					var $alert = $("div#msg_" + $(featureTable).attr('id'));
 					
 					if($alert.length != 0) { 
 						$alert.fadeToggle();					
 					} else { 
-						$tableContainer.append('<div class="module-attention module-simplify"><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');				
+						$parent.after('<div id="msg_' + $(featureTable).attr('id') + '" class="module-attention module-simplify margin-bottom-medium margin-top-medium"><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');				
 					}					
 					
-					$table.fadeToggle();									
-				});
+					$parent.fadeToggle();
+														
+				});	
 				
 				var $label = $('<label>', {
 					'html': $(featureTable).attr('aria-label'),			   
-					'for': '#tabs_'	+ $(featureTable).attr('id'),
+					'for': 'cb_'	+ $(featureTable).attr('id'),
 					'class': 'form-checkbox'
-				}).append($chkBox);
+				});
 				
-				$ul.append($("<li>", {'class': 'margin-right-small'}).append($label));			
+				$ul.append($("<li>").append($chkBox, $label));			
 			}	
 		},
 		
@@ -422,7 +289,7 @@
 		 */
 		addToTabs: function(featureTable, enabled, olLayerId) {				
 			
-			var $div = $("div#wet-boew-geomap-tabs");
+			var $div = $(".wet-boew-geomap-tabs");
 			var $tabs = $div.find("ul.tabs");
 			var $tabsPanel = $div.find("div.tabs-panel");			
 			var $link = $("<a>", {
@@ -430,14 +297,14 @@
 				'href': '#tabs_'	+ $(featureTable).attr('id')
 			});
 
-			$tabs.append($("<li>", { 'style': 'margin-right: 5px' }).append($link));
+			$tabs.append($('<li>').append($link));
 			
 			var $layerTab = $("<div>").attr('id', 'tabs_' + $(featureTable).attr('id'));
 			$layerTab.append(featureTable);		
 			$tabsPanel.append($layerTab);		
 			
 			if(enabled === false) {				
-				$layerTab.append('<div class="module-attention module-simplify"><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');	
+				$layerTab.append('<div id="msg_' + $(featureTable).attr('id') + '" class="module-attention module-simplify"><p>' + _pe.fn.geomap.getLocalization('hiddenLayer') + '</p></div>');	
 				featureTable.fadeOut();
 			}			
 		},
@@ -787,8 +654,7 @@
 				{ layers: 'CBMT', version: '1.1.1', format: 'image/png' },
 				{ isBaseLayer: true, 
 					singleTile: true, 
-					ratio: 1.0, 
-					displayInLayerSwitcher: false,
+					ratio: 1.0,
 					projection: 'EPSG:3978' 
 				} 
 			));		
@@ -851,8 +717,7 @@
 					
 					if(!basemap.options) basemap.options = {}; //projection: 'EPSG:4326' };
 					
-					basemap.options['isBaseLayer'] = true;
-					basemap.options['displayInLayerSwitcher'] = false;
+					basemap.options['isBaseLayer'] = true;					
 					
 					if(basemap.type=='wms') {
 						map.addLayer(
@@ -998,16 +863,7 @@
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
-									format: new OpenLayers.Format.GeoRSS({
-//									{
-//										// adds the author attribute to the feature
-//										createFeatureFromItem: function(item) {
-//											var feature = OpenLayers.Format.GeoRSS.prototype.createFeatureFromItem.apply(this, arguments);	
-//											var node = this.getElementsByTagNameNS(item, "*", "author");											
-//											feature.attributes.author = $(node).text();
-//											return feature;
-//										}
-//									}																					
+									format: new OpenLayers.Format.GeoRSS({									
 										read: function(data) {											
 											var items = this.getElementsByTagNameNS(data, "*", "item");
 											
@@ -1194,10 +1050,15 @@
 						attr[index] = attribute.textContent;
 				});
 				
-				// If zoom to add th
+				// If datatable is specified				
+				if(table.datatable) {
+					//$table.addClass('wet-boew-tables'); /* this won't work */
+				} 
+				
+				// If zoomTo add the header and footer column headers
 				if (opts.tables[index].zoom){
 					$table.find('thead').find('tr').append($('<th>' + _pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
-					$table.find('tfoot').find('tr').append($('<th>' + _pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));				
+					$table.find('tfoot').find('tr').append($('<th>' + _pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));					
 				} 
 				
 				// Loop trought each row
@@ -1242,11 +1103,12 @@
 				tableLayer.id = "table#" + table.id;
 				map.addLayer(tableLayer);
 				queryLayers.push(tableLayer);
-				
-				if (opts.tables[index].tab) _pe.fn.geomap.addLayerData($table, true, tableLayer.id, opts.tables[index].tab);
-				else _pe.fn.geomap.addToLegend($table, true, tableLayer.id);
-				
-				if (opts.tables[index].datatable) $("table#" + table.id).addClass('wet-boew-tables');
+
+				if ($('.wet-boew-geomap-legend')) {
+					_pe.fn.geomap.addToLegend($table, true, tableLayer.id);
+				};				
+
+				//if (opts.tables[index].tab) _pe.fn.geomap.addLayerData($table, true, tableLayer.id, opts.tables[index].tab);
 			});		
 		},
 		
@@ -1279,11 +1141,12 @@
 				// run the datatable here because if we run it before there is an error
 				if (opts.tables[index].datatable) $("table#" + table.id).dataTable()
 			});
-				
+							
 			if(opts.useMousePosition) { map.addControl(new OpenLayers.Control.MousePosition()); }
 			if(opts.useScaleLine) { map.addControl(new OpenLayers.Control.ScaleLine()); }					
 			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
 			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
+			
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			var c=map.getControlsByClass('OpenLayers.Control.KeyboardDefaults');
 					c[0].deactivate();
@@ -1291,16 +1154,18 @@
 			// enable the keyboard navigation when map div has focus. Disable when blur
 			// Enable the wheel zoom only on hover
 			$('.wet-boew-geomap').attr('tabindex', '0');
-			$('.wet-boew-geomap').css("border", "solid 1px white");
-			$('.wet-boew-geomap').hover(function(){
+			$('.wet-boew-geomap').css("border", "solid 1px #CCCCCC");
+			$('.wet-boew-geomap').hover(function(){					
 					var c=map.getControlsByClass('OpenLayers.Control.Navigation');
 					c[0].activate();
+					
 					$(this).css("border", "solid 1px blue");
 				},
-				function(){
+				function() {					
 					var c=map.getControlsByClass('OpenLayers.Control.Navigation');
 					c[0].deactivate();
-					$(this).css("border", "solid 1px white");
+					
+					$(this).css("border", "solid 1px #CCCCCC");
 				}
 			);
 			$('.wet-boew-geomap').focus(function(){
@@ -1317,29 +1182,21 @@
 			);
 			
 			// add accessibility enhancements
-			this.accessibilize(opts.useLayerSwitcher);					
-			if(opts.useLayerSwitcher) { map.addControl(new OpenLayers.Control.LayerSwitcher()); }
-
+			this.accessibilize();					
+			
+			// zoom to the maximum extent specified
 			map.zoomToMaxExtent();			
 			
 			// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
-			$("#" + map.div.id).before((_pe.language == "en") ? '<p><strong>' + _pe.fn.geomap.getLocalization('accessibilize') + '</p>' : '<p><strong>' + _pe.fn.geomap.getLocalization('accessibilize') + '</p>');
+			if(!_pe.mobile) $("#" + map.div.id).before((_pe.language == "en") ? '<p><strong>' + _pe.fn.geomap.getLocalization('accessibilize') + '</p>' : '<p><strong>' + _pe.fn.geomap.getLocalization('accessibilize') + '</p>');
 			
 			// add a listener on the window to update map when resized
 			window.onresize = function() {				
 				$("#" + map.div.id).height($("#" + map.div.id).width() * 0.8);
 				map.updateSize();
 				map.zoomToMaxExtent();
-			};
-			
-			/*
-			 * General debug and warning messages - only shown if debug class is found
-			 */
-			
-			// Check to see if a legend container is provided			
-			if($(".wet-boew-geomap-legend").length == 0 && $(".wet-boew-geomap").hasClass("debug")) {		
-				$("div#wb-main-in").prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('warning') + '</h3><p>' + _pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
-			}	
+			};			
+
 		},
 		
 		/*
@@ -1364,19 +1221,19 @@
 			// Create legend and tab
 			if (opts.useLegend) _pe.fn.geomap.createLegend();
 			_pe.fn.geomap.createLayerHolder(opts.useTab);
-			
+						
 			// Add tabular data
 			_pe.fn.geomap.addTabularData(opts, projLatLon, projMap);
 			
 			// Add overlay data
 			_pe.fn.geomap.addOverlayData(wet_boew_geomap);
-			
+
 			// Load Controls
 			_pe.fn.geomap.loadControls(opts);
 			
 			// Add WCAG element for the map div
 			$('.wet-boew-geomap').attr('role', 'img');
-			$('.wet-boew-geomap').attr('aria-label', _pe.fn.geomap.getLocalization('ariaMap'));
+			$('.wet-boew-geomap').attr('aria-label', _pe.fn.geomap.getLocalization('ariaMap'));			
 		},
 		
 		/*
@@ -1398,13 +1255,14 @@
 				errorNoSelect: 'This table contains rows that do not have a cell with the <em>select</em> class. Please ensure that each row has exactly one cell with the <em>select</em> class and that the cell includes a link.',
 				accessibilize: 'Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.',
 				warning: 'WET-Geomap WARNING',
-				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em> or enable the default OpenLayers legend by adding the <em>layerswitcher</em> class to the <em>wet-boew-geomap</em> div.',
+				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em>.',
 				hiddenLayer: 'This layer is currently hidden!',
 				overlayNotSpecify: 'WET-Geomap: overlays file not specified',
 				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12).",
 				zoomFeature: 'Zoom to feature',
 				ariaMap: 'Map object. The map features description is in the table below.',
-				warningTab: 'No class <em>tab</tab> in wet-boew-geomap but a table has tab attribute set to true.'
+				warningTab: 'No class <em>tab</tab> in wet-boew-geomap but a table has tab attribute set to true.',
+				legendFieldsetLegend: 'Toggle layer display'
 			};
 			
 			var french = {
@@ -1419,25 +1277,33 @@
 				errorNoSelect: 'Cette table contient des lignes qui n\'ont pas de cellule avec la classe <em>select</em>. S\'il vous plaît, assurer vous que chaque ligne a exactement une cellule avec la classe <em>select</em> et celle-ci doit contenir un lien.',
 				accessibilize: 'Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.',
 				warning: 'BOEW-Geomap AVERTISSEMENT',
-				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> ou bien activer la légende par défaut de <em>OpenLayers</em> en ajoutant le paremètre <em>layerswitcher</em> à la classe <em>wet-boew-geomap</em> du div.',
+				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> .',
 				hiddenLayer: 'Cette couche est présentement cachée!',
 				overlayNotSpecify: 'BOEW-Geomap: fichier des couches de superpositions non spécifié',
 				baseMapMapOptionsLoadError: 'BOEW-Geomap: une erreur est survenue lors du chargement des options de configuration de votre carte de base. S\'il vous plaît, vérifiez que vous avez l\'ensemble des options suivantes: maxExtent (ex: \'-3000000,0, -800000,0, 4000000,0, 3900000,0\'), maxResolution (ex: \'auto\'), projection (ex: \'EPSG: 3978\'), restrictedExtent (ex: \'-3000000,0 , -800000,0, 4000000,0, 3900000,0\'), units (ex: \'m\'), displayProjection (ex: \'EPSG: 4269\'), numZoomLevels (ex: 12).',	
 				zoomFeature: 'Zoom à l\'élément',
 				ariaMap: 'Objet carte. La descriptions des élément sur la carte sont contenus dans la tables ci-dessous.',
-				warningTab: 'Il n\'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l\'attribut égal vrai.'
+				warningTab: 'Il n\'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l\'attribut égal vrai.',
+				legendFieldsetLegend: 'TRANSLATE - Toggle layer display'
 			};
 			
 			var message = (_pe.language == "en") ? english[mess] : french[mess];
 			return message;
 		},
 		
+		fnZebraComplexTable: function (wet_boew_geomap, opts) {
+			_pe.fn.geomap.createMap(wet_boew_geomap, opts);						
+			$('#wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
+		},
+		
 		_exec: function (elm) {
+			
 			
 			// Don't include this if statement if your plugin shouldn't run in mobile mode.
 //			if (pe.mobile) {
 //				return _pe.fn.geomap.mobile(elm).trigger('create');
 //			}
+			
 			var opts, overrides;	
 			
 			// Defaults
@@ -1451,7 +1317,6 @@
 				overlays: [],
 				features: [],
 				tables: [],
-				useLayerSwitcher: false,
 				useScaleLine: false,
 				useMousePosition: false,
 				debug: false,
@@ -1460,8 +1325,7 @@
 			};			
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
-			overrides = {
-				useLayerSwitcher: elm.hasClass('layerswitcher') ? true : undefined,
+			overrides = {				
 				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
 				useMousePosition: elm.hasClass('position') ? true : undefined,
 				debug: elm.hasClass('debug') ? true : false,
@@ -1480,7 +1344,7 @@
 
 			if(opts.debug) {
 				console.log(_pe.fn.geomap.getLocalization('debugMode'));
-				$('#wb-main-in').prepend('<div class="module-alert span-8"><h3>' + _pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + _pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
+				$('#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
 			}	
 						
 			// Set the language for OpenLayers
@@ -1506,8 +1370,8 @@
 						
 						_pe.fn.geomap.createMap(wet_boew_geomap, opts);
 						
-						$('#wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
-						_pe.wb_load({'plugins': {'tabbedinterface': $('.wet-boew-tabbedinterface')}});
+						$('.wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
+						pe.wb_load({'plugins': {'tabbedinterface': $('.wet-boew-tabbedinterface')}});
 						
 						//_pe.wb_load({'plugins': {'tables': $('table#cities')}});
 						
