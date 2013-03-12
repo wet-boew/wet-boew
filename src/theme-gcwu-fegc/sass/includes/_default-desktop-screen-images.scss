@@ -12,6 +12,14 @@
 		color: #fff;
 	}
 }
+%gcwu-default-desktop-screen-images-deco-side {
+	background: {
+		image: url(../images/content-deco-side.gif), url(../images/content-deco-side.gif);
+		position: left top, right top;
+		repeat: repeat-y;
+		color: #fff;
+	}
+}
 
 [id|="wb-body"] {
 	@extend %gcwu-default-desktop-screen-images-header-background;
@@ -26,15 +34,6 @@
 	background: #ccc url(../images/search-button.gif) 0 0 repeat-x;
 	@include pseudo-focus {
 		background: #ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
-	}
-}
-
-%gcwu-default-desktop-screen-images-deco-side {
-	background: {
-		image: url(../images/content-deco-side.gif), url(../images/content-deco-side.gif);
-		position: left top, right top;
-		repeat: repeat-y;
-		color: #fff;
 	}
 }
 

@@ -23,7 +23,7 @@
 
 #gcwu-wmms {
 	object {
-		&[data*="wmms.svg"] {
+		&[data*="wmms-intra.svg"] {
 			display: none;
 		}
 	}
@@ -32,7 +32,7 @@
 .pe-disable {
 	#gcwu-wmms {
 		object {
-			&[data*="wmms.svg"] {
+			&[data*="wmms-intra.svg"] {
 				display: block;
 			}
 		}

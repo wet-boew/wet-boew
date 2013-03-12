@@ -4,28 +4,9 @@
  */
 @import "compass/css3/inline-block";
 
-#wb-skip {
-	.ui-link {
-		text-shadow: none !important;
-	}
-}
-
-%line-height-normal {
+%gcwu-default-line-height-normal {
 	line-height: normal;
 }
-
-#wb-head {
-	@extend %line-height-normal;
-}
-
-#wb-foot {
-	@extend %line-height-normal;
-}
-
-#wb-sec {
-	@extend %line-height-normal;
-}
-
 %gcwu-default-hidden {
 	@include clip-rect;
 	height: 0 !important;
@@ -33,6 +14,40 @@
 	position: absolute;
 	width: 0 !important;
 	margin: 0 !important;
+}
+%gcwu-default-gray-no-border {
+	color: #333;
+	font-weight: 400;
+	border: none;
+	margin-bottom: 5px;
+	font-size: 1.6em;
+}
+%gcwu-default-a-font-100pct {
+	a {
+		font-size: 100%;
+	}
+}
+%gcwu-default-no-margin {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+#wb-skip {
+	.ui-link {
+		text-shadow: none !important;
+	}
+}
+
+#wb-head {
+	@extend %gcwu-default-line-height-normal;
+}
+
+#wb-foot {
+	@extend %gcwu-default-line-height-normal;
+}
+
+#wb-sec {
+	@extend %gcwu-default-line-height-normal;
 }
 
 #gcwu-gcnb {
@@ -167,21 +182,13 @@
 }
 
 #gcwu-date-mod {
-	@extend %line-height-normal;
+	@extend %gcwu-default-line-height-normal;
 	dt, dd {
 		float: left;
 	}
 	dd {
 		margin: 0 0 0 0.39em;
 	}
-}
-
-%gcwu-default-gray-no-border {
-	color: #333;
-	font-weight: 400;
-	border: none;
-	margin-bottom: 5px;
-	font-size: 1.6em;
 }
 
 #gcwu-content {
@@ -213,12 +220,6 @@ div {
 				padding: 0 !important;
 			}
 		}
-	}
-}
-
-%gcwu-default-a-font-100pct {
-	a {
-		font-size: 100%;
 	}
 }
 
@@ -273,12 +274,6 @@ div {
 		text-decoration: none;
 	}
 }
-
-%gcwu-default-no-margin {
-	margin-left: 0;
-	margin-right: 0;
-}
-
 
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
