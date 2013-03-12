@@ -42,7 +42,25 @@
 			wet_boew_theme.gridsmenu = pe.main.find('.module-menu-section');
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
-				submenu = current.parents('div.mb-sm');
+				submenu = current.parents('div.mb-sm'),
+				len,
+				svgid = ['wet-title'],
+				svgelm,
+				object,
+				print = pe.print;
+
+			// Remove the object for loading the SVG images  and leave only the fallback image element
+			// Also switch to the white PNG if not in print view
+			if (!pe.svg || pe.svgfix) {
+				len = svgid.length;
+				while (len--) {
+					svgelm = document.getElementById(svgid[len]);
+					if (svgelm !== null) {
+						object = svgelm.getElementsByTagName('object')[0];
+						object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, (print ? object.innerHTML : object.innerHTML.replace('.png', '-w.png')));
+					}
+				}
+			}
 
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length !== 0) {
@@ -157,7 +175,7 @@
 			
 				// Build the header bar
 				node = wet_boew_theme.title[0];
-				header = '<div data-role="header"><div class="ui-title"><div><span class="wb-invisible">' + node.getElementsByTagName('a')[0].innerHTML + '</span></div></div>';
+				header = '<div data-role="header"><div class="ui-title"><div></div></div>';
 				header += '<map id="wet-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 				// Handling for the home/back button if it exists
 				if (typeof home_href !== 'undefined') { // Home button needed
