@@ -3,7 +3,7 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*
- * Template for WET-BOEW v3.x plugins
+ * GeoMap plugin
  */
 /*global jQuery: false, pe: false, wet_boew_geomap: false*/
 (function ($) {
@@ -28,9 +28,9 @@
 //		mobile: function (elm) { 
 //			// If applicable, convert html elements and attributes into the format that jQuery mobile expects.
 //			
-////			// add mobile zoom controls
-////			var $controls = $('<div data-role="controlgroup" data-type="vertical"><a href="#" data-role="button" data-icon="plus" id="plus"data-iconpos="notext"></a><a href="#" data-role="button" data-icon="minus" id="minus" data-iconpos="notext"></a></div>');
-////			$(elm.append($controls));
+//			// add mobile zoom controls
+//			//var $controls = $('<div data-role="controlgroup" data-type="vertical"><a href="#" data-role="button" data-icon="plus" id="plus"data-iconpos="notext"></a><a href="#" data-role="button" data-icon="minus" id="minus" data-iconpos="notext"></a></div>');
+//			//$(elm.append($controls));
 //			
 //			return elm;
 //		},
@@ -88,14 +88,14 @@
 		 * Map feature select
 		 */
 		onFeatureSelect: function(feature) {					
-			$("tr#" + feature.id.replace(/\W/g, "_")).attr('class', 'background-highlight');
+			$("tr#" + feature.id.replace(/\W/g, "_")).addClass('background-highlight');
 		},
 		
 		/*
 		 *	Map feature unselect
 		 */
 		onFeatureUnselect: function(feature) {
-			$("tr#" + feature.id.replace(/\W/g, "_")).attr('class', 'background-white');
+			$("tr#" + feature.id.replace(/\W/g, "_")).removeClass('background-highlight');
 		},
 		
 		/*
@@ -483,12 +483,12 @@
 				// Hover events
 				$row.hover(
 					function(){
-						$(this).closest('tr').attr('class', 'background-highlight');
+						$(this).closest('tr').addClass('background-highlight');
 						context.selectControl.unselectAll();
 						context.selectControl.select(context.feature);
 					}, 
 					function(){
-						$(this).closest('tr').attr('class', 'background-white');
+						$(this).closest('tr').removeClass('background-highlight');
 						context.selectControl.unselectAll();
 						context.selectControl.unselect(context.feature);
 					}
@@ -496,13 +496,13 @@
 	
 				// Keybord events
 				$link.focus(function(){
-						$row.attr('class', 'background-highlight');
+						$row.addClass('background-highlight');
 						context.selectControl.unselectAll();
 						context.selectControl.select(context.feature);
 					}	
 				);
 				$link.blur(function(){
-						$row.attr('class', 'background-white');
+						$row.removeClass('background-highlight');
 						context.selectControl.unselectAll();
 						context.selectControl.select(context.feature);
 					}	
@@ -566,23 +566,23 @@
 				var $link = $select.find('a');
 				if($link.length) {
 					$tr.hover(function(){
-						$tr.attr('class', 'background-highlight');
+						$tr.addClass('background-highlight');
 						selectControl.select(feature);
 					}, 
 					function(){
-						$tr.attr('class', 'background-white');
+						$tr.removeClass('background-highlight');
 						selectControl.unselect(feature);
 						}
 					);
 									
 					// Keybord events
 					$link.focus(function(){
-						$tr.attr('class', 'background-highlight');
+						$tr.addClass('background-highlight');
 						selectControl.select(feature);
 						}	
 					);
 					$link.blur(function(){
-						$tr.attr('class', 'background-white');
+						$tr.removeClass('background-highlight');
 						selectControl.unselect(feature);
 						}	
 					);
@@ -626,12 +626,12 @@
 			
 			// Keybord events
 			$ref.focus(function(){
-				row.attr('class', 'background-highlight');
+				row.addClass('background-highlight');
 				selectControl.unselectAll();
 				selectControl.select(feature);
 			});
 			$ref.blur(function(){
-				row.attr('class', 'background-white');
+				row.removeClass('background-highlight');
 				selectControl.unselectAll();
 				selectControl.unselect(feature);
 			});
@@ -1360,7 +1360,7 @@
 			elm.attr('id', 'geomap');
 			elm.height(elm.width() * 0.8);
 
-			// Read the layer file
+			// Load configuration file
 			if (typeof(opts.layersFile) != "undefined") {
 				$.ajax({
 					url: opts.layersFile,
