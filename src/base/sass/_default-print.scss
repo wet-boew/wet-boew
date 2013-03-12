@@ -75,3 +75,7 @@ a {
 	@extend %wb-default-print-page-break-all;
 	page-break-after: always;
 }
+
+#viewtest {
+	width: 0;
+}

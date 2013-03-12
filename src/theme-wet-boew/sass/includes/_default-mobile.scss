@@ -10,41 +10,124 @@
 %wet-default-mobile-no-rounded-corners {
 	@include border-radius(0);
 }
-
 %wet-default-mobile-all-rounded-corners {
 	@include border-radius(0.6em);
 }
-
 %wet-default-mobile-no-bottom-rounded-corners {
 	@include border-bottom-left-radius(0);
 	@include border-bottom-right-radius(0);
 }
-
 %wet-default-mobile-no-top-rounded-corners {
 	@include border-top-left-radius(0);
 	@include border-top-right-radius(0);
 }
-
 %wet-default-mobile-bottom-rounded-corners {
 	@include border-bottom-left-radius(0.6em);
 	@include border-bottom-right-radius(0.6em);
 }
-
 %wet-default-mobile-top-rounded-corners {
 	@include border-top-left-radius(0.6em);
 	@include border-top-right-radius(0.6em);
 }
-
 %wet-default-mobile-font-weight-normal {
 	font-weight: normal;
 }
-
 %wet-default-mobile-border-none {
 	border: none;
 }
-
 %wet-default-mobile-text-shadow-none {
 	text-shadow: none;
+}
+%wet-default-mobile-width-69-height-32 {
+	width: 69px;
+	height: 32px;
+}
+%wet-default-mobile-position-absolute-left-5-top-5 {
+	position: absolute;
+	left: 5px;
+	top: 5px;
+}
+%wet-default-mobile-width-69-height-32-position-absolute-left-5-top-5 {
+	@extend %wet-default-mobile-width-69-height-32;
+	@extend %wet-default-mobile-position-absolute-left-5-top-5;
+}
+%wet-default-mobile-padding-3-5 {
+	padding: 3px 5px;
+}
+%wet-default-mobile-last-child-padding-5 {
+	&:last-child {
+		padding: 5px;
+	}
+}
+%wet-default-mobile-period-after-pseudo {
+	&:after {
+		content: ".";
+		@extend %wet-default-mobile-display-block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+%wet-default-mobile-display-none {
+	display: none;
+}
+%wet-default-mobile-display-none-important {
+	display: none !important;
+}
+%wet-default-mobile-display-block {
+	display: block;
+}
+%wet-default-mobile-display-block-important {
+	display: block !important;
+}
+%wet-default-mobile-white-space-normal {
+	white-space: normal;
+}
+%wet-default-mobile-position-absolute {
+	position: absolute;
+}
+%wet-default-mobile-margin-left-right--15 {
+	margin: 0 -15px;
+}
+%wet-default-mobile-font-1em-margin-0 {
+	font-size: 1em;
+	margin: 0;
+}
+%wet-default-mobile-font-125em {
+	font-size: 1.25em;
+}
+%wet-default-mobile-background-none {
+	background: none;
+}
+%wet-default-mobile-margin-0 {
+	margin: 0;
+}
+%wet-default-mobile-width-100-z-index-100 {
+	width: 100%;
+	z-index: 100;
+}
+%wet-default-mobile-width-100-important-float-none {
+	width: 100% !important;
+	float: none;
+}
+%wet-default-mobile-margin-top-10 {
+	margin-top: 10px;
+}
+%wet-default-mobile-rtl-scalex {
+	@include scaleX(-1);
+	@extend %wet-default-mobile-display-block;
+}
+%wet-default-mobile-padding-right-0 {
+	padding-right: 0;
+}
+%wet-default-mobile-text-align-right {
+	text-align: right;
+}
+%wet-default-mobile-text-align-center {
+	text-align: center;
+}
+%wet-default-mobile-float-left {
+	float: left;
 }
 
 body {
@@ -133,6 +216,17 @@ table {
 		color: #fff !important;
 		text-shadow: 0 1px 1px #044062;
 		text-decoration: none;
+		> {
+			img {
+				@extend %wet-default-mobile-position-absolute-left-5-top-5;
+			}
+		}
+	}
+	object {
+		@extend %wet-default-mobile-width-69-height-32-position-absolute-left-5-top-5;
+	}
+	img {
+		@extend %wet-default-mobile-width-69-height-32;
 	}
 }
 
@@ -211,9 +305,6 @@ table {
 	@extend %wet-default-mobile-display-none;
 }
 
-%wet-default-mobile-padding-3-5 {
-	padding: 3px 5px;
-}
 #wet-subsite {
 	font-size: 130%;
 	@extend %wet-default-mobile-text-shadow-none;
@@ -266,11 +357,6 @@ table {
 	}
 }
 
-%wet-default-mobile-last-child-padding-5 {
-	&:last-child {
-		padding: 5px;
-	}
-}
 #wet-bc-in {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
@@ -298,53 +384,6 @@ table {
 	clear: both;
 }
 
-%wet-default-mobile-period-after-pseudo {
-	&:after {
-		content: ".";
-		@extend %wet-default-mobile-display-block;
-		height: 0;
-		clear: both;
-		visibility: hidden;
-	}
-}
-
-%wet-default-mobile-display-none {
-	display: none;
-}
-
-%wet-default-mobile-display-none-important {
-	display: none !important;
-}
-
-%wet-default-mobile-display-block {
-	display: block;
-}
-
-%wet-default-mobile-display-block-important {
-	display: block !important;
-}
-
-%wet-default-mobile-white-space-normal {
-	white-space: normal;
-}
-
-%wet-default-mobile-position-absolute {
-	position: absolute;
-}
-
-.ui-title {
-	> {
-		div {
-			@extend %wet-default-mobile-position-absolute;
-			left: 5px;
-			top: 4px;
-			height: 32px;
-			width: 69px;
-			background: url(../images/logo-mobile.svg) no-repeat left center;
-		}
-	}
-}
-
 .ui-content {
 	.ui-listview {
 		margin: 0 -15px;
@@ -365,9 +404,6 @@ table {
 	}
 }
 
-%wet-default-mobile-margin-left-right--15 {
-	margin: 0 -15px;
-}
 #popupAbout {
 	.site-app-title {
 		@extend %wet-default-mobile-margin-left-right--15;
@@ -377,15 +413,6 @@ table {
 		@extend %wet-default-mobile-margin-left-right--15;
 		padding: 0 15px;
 	}
-}
-
-%wet-default-mobile-font-1em-margin-0 {
-	font-size: 1em;
-	margin: 0;
-}
-
-%wet-default-mobile-font-125em {
-	font-size: 1.25em;
 }
 
 h3 {
@@ -451,10 +478,6 @@ select {
 	@extend %wet-default-mobile-h1-border-bottom-none;
 }
 
-%wet-default-mobile-background-none {
-	background: none;
-}
-
 #jqm-wb-search {
 	label {
 		clip: rect(1px, 1px, 1px, 1px);
@@ -473,9 +496,6 @@ select {
 	}
 }
 
-%wet-default-mobile-margin-0 {
-	margin: 0;
-}
 #jqm-wb-mb {
 	a {
 		@extend %wet-default-mobile-text-shadow-none;
@@ -705,17 +725,6 @@ select {
 	}
 }
 
-%wet-default-mobile-width-100-z-index-100 {
-	width: 100%;
-	z-index: 100;
-}
-%wet-default-mobile-width-100-important-float-none {
-	width: 100% !important;
-	float: none;
-}
-%wet-default-mobile-margin-top-10 {
-	margin-top: 10px;
-}
 .pe-disable {
 	#wet-fullhd { 
 		ul {
@@ -768,22 +777,6 @@ select {
 }
 
 /* Right to left (RTL) CSS */
-%wet-default-mobile-rtl-scalex {
-	@include scaleX(-1);
-	@extend %wet-default-mobile-display-block;
-}
-%wet-default-mobile-padding-right-0 {
-	padding-right: 0;
-}
-%wet-default-mobile-text-align-right {
-	text-align: right;
-}
-%wet-default-mobile-text-align-center {
-	text-align: center;
-}
-%wet-default-mobile-float-left {
-	float: left;
-}
 [dir="rtl"] {
 	#wet-date-mod {
 		@extend %wet-default-mobile-float-left;
