@@ -4,26 +4,6 @@
  */
 
 .ie7, .ie8 {
-	@mixin gcwu-sig($iso639_2) {
-		height: 100%;
-		width: 100%;
-		background: url(../images/sig-#{$iso639_2}-w.png) no-repeat 0 0 transparent;
-	}
-
-	#gcwu-sig-eng {
-		@include gcwu-sig("eng");
-	}
-
-	#gcwu-sig-fra {
-		@include gcwu-sig("fra");
-	}
-
-	#gcwu-wmms-fip {
-		height: 100%;
-		width: 100%;
-		background: url(../images/wmms-w.png) no-repeat 4px 0 transparent;
-	}
-
 	#gcwu-bc {
 		li {
 			background: url(../images/bcrumb.gif) left center no-repeat;

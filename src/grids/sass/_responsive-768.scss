@@ -11,6 +11,9 @@
 	@extend %grids-responsive-768-margin-left-0;
 	margin-right: 0;
 }
+%grids-responsive-768-margin-left-2-7092394498648 {
+	margin-left: 2.7092394498648%;
+}
 %grids-responsive-768-width-5-747913483014perc {
 	width: 5.747913483014%;
 }
@@ -87,11 +90,14 @@ details {
 	}
 	+ {
 		[class*=span-] {
-			margin-left: 2.7092394498648%;
+			@extend %grids-responsive-768-margin-left-2-7092394498648;
 		}
 	}
 	[class*=span-] {
 		width: auto;
+	}
+	&.float-right {
+		@extend %grids-responsive-768-margin-left-2-7092394498648;
 	}
 }
 

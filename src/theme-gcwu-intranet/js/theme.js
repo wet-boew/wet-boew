@@ -42,7 +42,31 @@
 			wet_boew_theme.gridsmenu = pe.main.find('.module-menu-section');
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
-				submenu = current.parents('div.mb-sm');
+				submenu = current.parents('div.mb-sm'),
+				len,
+				mobile = pe.mobile,
+				svgid = (mobile ? ['gcwu-wmms'] : ['gcwu-wmms', 'gcwu-sig']),
+				svgelm,
+				object;
+
+			// Remove the object for loading the SVG images  and leave only the fallback image element
+			// Also switch to the white PNG if not in print view
+			if (!pe.svg || pe.svgfix) {
+				len = svgid.length;
+				while (len--) {
+					svgelm = document.getElementById(svgid[len]);
+					if (svgelm !== null) {
+						object = svgelm.getElementsByTagName('object')[0];
+						object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, (mobile ? object.innerHTML.replace('.png', '-w.png') : object.innerHTML));
+					}
+				}
+			} else if (mobile) {
+				svgelm = document.getElementById(svgid[0]);
+				if (svgelm !== null) {
+					object = svgelm.getElementsByTagName('object')[0];
+					object.setAttribute('data', object.getAttribute('data').replace('-intra.svg', '.svg'));
+				}
+			}
 
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length !== 0) {
@@ -107,19 +131,7 @@
 				$document = $(document),
 				home_href,
 				header,
-				test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i),
-				svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46))),
-				wmms = document.getElementById('gcwu-wmms');
-
-			// Fix for old webkit versions (BB OS6 & iOS 4.3)
-			if (svgfix) {
-				nodes = document.querySelectorAll('#gcwu-wmms object, #gcwu-sig object');
-				len = nodes.length;
-				while (len--) {
-					node = nodes[len];
-					node.parentNode.replaceChild(node.getElementsByTagName('img')[0], node);
-				}
-			}
+				wmms;
 
 			// Content pages only
 			if (wet_boew_theme.sft.length !== 0) {
@@ -172,16 +184,6 @@
 			
 				// Build the header bar
 				header = '<div data-role="header"><div class="ui-title"></div><map id="gcwu-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
-				if (wmms !== null) {
-					// TODO: Find way of changing colour to white without JavaScript
-					node = wmms.getElementsByTagName('object')[0];
-					node.setAttribute('data', node.getAttribute('data').replace('.svg', '-r.svg'));
-					if (!pe.svg || svgfix) {
-						// Correct the source of the Canada Wordmark fallback image
-						node = wmms.getElementsByTagName('img')[0];
-						node.setAttribute('src', node.getAttribute('src').replace('.png', '-w.png'));
-					}
-				}
 				// Handling for the home/back button if it exists
 				if (typeof home_href !== 'undefined') { // Home button needed
 					header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';
@@ -263,8 +265,6 @@
 					target = node.toLowerCase();
 					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';	
 				}
-
-				// Close the settings popup
 				settings_popup += '</ul>' + popup_close;
 
 				// Append all the popups to the body
