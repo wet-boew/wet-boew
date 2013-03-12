@@ -17,6 +17,15 @@
 }
 
 .ie7 {
+	%gcwu-default-screen-ie7-overflow-visible {
+		overflow: visible;
+	}
+	%gcwu-default-screen-ie7-float-left {
+		float: left;
+	}
+	%gcwu-default-screen-ie7-float-right {
+		float: right;
+	}
 	#wb-core {
 		margin-bottom: -20px;
 	}
@@ -33,9 +42,6 @@
 		padding: 2px 0;
 		position: relative;
 		top: 1px;
-	}
-	%gcwu-default-screen-ie7-overflow-visible {
-		overflow: visible;
 	}
 	#gcwu-bnr {
 		@extend %gcwu-default-screen-ie7-float-left;
@@ -78,12 +84,6 @@
 		li {
 			margin: 13px 35px 14px 9px;
 		}
-	}
-	%gcwu-default-screen-ie7-float-left {
-		float: left;
-	}
-	%gcwu-default-screen-ie7-float-right {
-		float: right;
 	}
 
 	// Right to left (RTL) CSS

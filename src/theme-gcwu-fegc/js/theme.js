@@ -58,7 +58,7 @@
 					svgelm = document.getElementById(svgid[len]);
 					if (svgelm !== null) {
 						object = svgelm.getElementsByTagName('object')[0];
-						object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object.*?<\/object>/, (print ? object.innerHTML : object.innerHTML.replace('.png', '-w.png')));
+						object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, (print ? object.innerHTML : object.innerHTML.replace('.png', '-w.png')));
 					}
 				}
 			}
