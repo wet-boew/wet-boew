@@ -1047,9 +1047,7 @@
 				// Get the attributes from table header
 				var attr = [];
 				$.each($("table#" + table.id + ' th'), function(index, attribute) {
-					if (attribute.textContent.toLowerCase() != 'geometry'){
 						attr[index] = attribute.textContent;
-					}
 				});
 				
 				// If datatable is specified				
@@ -1073,40 +1071,39 @@
 							attrMap[attr[index]] = feature.lastChild.textContent;
 						}
 					});
-				
-					$(row).find('td').each(function(index, feature) {		
+					
+					// get the geometry type
+					var geomType = $(row).attr('data-type');
+					if (typeof(geomType) != 'undefined'){
 						
-						if ($(feature).hasClass('geometry')) {
-							if($(feature).hasClass('bbox')) {								
-		
-								var bbox = $(feature).text().split(',');
-								wktFeature = "POLYGON((" 
-									+ bbox[0] + " " + bbox[1] + ", " 
-									+ bbox[0] + " " + bbox[3] + ", " 
-									+ bbox[2] + " " + bbox[3] + ", " 
-									+ bbox[2] + " " + bbox[1] + ", " 
-									+ bbox[0] + " " + bbox[1] + 
-								"))";
-							} else {						
-								wktFeature = $(feature).text();
-							}
+						if (geomType == 'bbox'){
+							var bbox = $(row).attr('data-geometry').split(',');
+									wktFeature = "POLYGON((" 
+										+ bbox[0] + " " + bbox[1] + ", " 
+										+ bbox[0] + " " + bbox[3] + ", " 
+										+ bbox[2] + " " + bbox[3] + ", " 
+										+ bbox[2] + " " + bbox[1] + ", " 
+										+ bbox[0] + " " + bbox[1] + 
+									"))";
+						} else if (geomType == 'wkt') {
+							wktFeature = $(row).attr('data-geometry');
+						}
 	
 						var vectorFeatures = wktParser.read(wktFeature);
 	
 						// Set the table row id
-						var $tr = $(this).parent();
-						$tr.attr('id', vectorFeatures.id.replace(/\W/g, "_"));
+						$(row).attr('id', vectorFeatures.id.replace(/\W/g, "_"));
 						
 						// Add the attributes to the feature then add it to the map
 						vectorFeatures.attributes = attrMap;										
 						tableLayer.addFeatures([vectorFeatures]);
-						}	
-					});
+						}
 				}); 
 				
 				tableLayer.id = "table#" + table.id;
 				map.addLayer(tableLayer);
 				queryLayers.push(tableLayer);
+
 				if ($('.wet-boew-geomap-legend')) {
 					_pe.fn.geomap.addToLegend($table, true, tableLayer.id);
 				};				
@@ -1362,50 +1359,40 @@
 			// Initiate the map
 			elm.attr('id', 'geomap');
 			elm.height(elm.width() * 0.8);
-			
-			// trying to fix the tab rendering issue
-			//$(document).on('wb-init-loaded', function () {	
 
-				// Read the layer file
-				if (typeof(opts.layersFile) != "undefined") {
-					$.ajax({
-						url: opts.layersFile,
-						dataType: "script",
-						async: false,
-						success: function (data) {
-							
-							_pe.fn.geomap.createMap(wet_boew_geomap, opts);							
-							
-							$('.wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
-							pe.wb_load({'plugins': {'tabbedinterface': $('.wet-boew-tabbedinterface')}});
-							
-							if(opts.debug) {
-								console.log(_pe.fn.geomap.getLocalization('overlayLoad'));
-							}
-						},
-						error: function (data){
-							if(opts.debug) {
-								console.log(_pe.fn.geomap.getLocalization('overlayNotLoad'));
-							}
+			// Load configuration file
+			if (typeof(opts.layersFile) != "undefined") {
+				$.ajax({
+					url: opts.layersFile,
+					dataType: "script",
+					async: false,
+					success: function (data) {
+						
+						_pe.fn.geomap.createMap(wet_boew_geomap, opts);
+						
+						$('.wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
+						pe.wb_load({'plugins': {'tabbedinterface': $('.wet-boew-tabbedinterface')}});
+						
+						//_pe.wb_load({'plugins': {'tables': $('table#cities')}});
+						
+						if(opts.debug) {
+							console.log(_pe.fn.geomap.getLocalization('overlayLoad'));
 						}
-					}); // end ajax
-				} else {
-					
-					_pe.fn.geomap.createMap(undefined, opts);
-					
-					if(opts.debug) {
-						console.log(_pe.fn.geomap.getLocalization('overlayNotSpecify'));
+					},
+					error: function (data){
+						if(opts.debug) {
+							console.log(_pe.fn.geomap.getLocalization('overlayNotLoad'));
+						}
 					}
-				} // end load configuration file
-			
-				// trying to fix the tab rendering issue
-//				$(document).on('wb-init-loaded', function () {
-//					$('.wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
-//					pe.wb_load({'plugins': {'tabbedinterface': $('.wet-boew-tabbedinterface')}});
-//					
-//				});
-			
-			//});
+				}); // end ajax
+			} else {
+				
+				_pe.fn.geomap.createMap(undefined, opts);
+				
+				if(opts.debug) {
+					console.log(_pe.fn.geomap.getLocalization('overlayNotSpecify'));
+				}
+			} // end load configuration file
 			
 		return elm; // end of exec
 
