@@ -125,7 +125,7 @@
 			},
 			visible: true,	
 			zoom:  true,
-			datatable: false,
+			datatable: true,
 			tab: true,		
 			 // default style			
 			 style: {
