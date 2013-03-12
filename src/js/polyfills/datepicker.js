@@ -188,7 +188,7 @@
 				pattern = '^' + format + '$';
 
 				//Get the date from the field
-				date = $('#' + fieldid).attr('value');
+				date = $('#' + fieldid).val();
 				regex = new XRegExp(pattern, 'x');
 
 				try {
@@ -205,7 +205,7 @@
 			};
 
 			addSelectedDateToField = function (fieldid, year, month, day, format) {
-				container.prev().find('#' + fieldid).attr('value', formatDate(year, month, day, format));
+				container.prev().find('#' + fieldid).val(formatDate(year, month, day, format));
 			};
 
 			toggle = function (fieldid) {
