@@ -331,7 +331,7 @@
 				'strokeColor': "#0000ff", 
 				'fillColor': "#0000ff",
 				'fillOpacity': 0.4,
-				'pointRadius': 5,
+				//'pointRadius': 5,
 				'strokeWidth': 2.0
 			};
 			
