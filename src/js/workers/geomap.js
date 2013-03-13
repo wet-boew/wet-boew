@@ -25,15 +25,102 @@
 		//polyfills:['progress','detailssummary'],
 		
 		// Don't include a mobile function if your plugin shouldn't run in mobile mode.
-//		mobile: function (elm) { 
-//			// If applicable, convert html elements and attributes into the format that jQuery mobile expects.
-//			
-//			// add mobile zoom controls
-//			//var $controls = $('<div data-role="controlgroup" data-type="vertical"><a href="#" data-role="button" data-icon="plus" id="plus"data-iconpos="notext"></a><a href="#" data-role="button" data-icon="minus" id="minus" data-iconpos="notext"></a></div>');
-//			//$(elm.append($controls));
-//			
-//			return elm;
-//		},
+		mobile: function (elm) { 
+		// If applicable, convert html elements and attributes into the format that jQuery mobile expects.
+			alert('mobile');
+		
+		var opts, overrides;	
+			
+			// Defaults
+			opts = {
+				config: {
+					controls: [],					
+					autoUpdateSize: true,
+					fractionalZoom: true,
+					theme: null
+				},
+				overlays: [],
+				features: [],
+				tables: [],
+				useScaleLine: false,
+				useMousePosition: false,
+				debug: false,
+				useLegend: false,
+				useTab: false
+			};			
+
+			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
+			overrides = {				
+				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
+				useMousePosition: elm.hasClass('position') ? true : undefined,
+				debug: elm.hasClass('debug') ? true : false,
+				useLegend: elm.hasClass('legend') ? true : false,
+				useTab: elm.hasClass('tab') ? true : false
+			};			
+
+			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
+			// Only needed if there are configurable options (has 'metadata' dependency)
+			$.metadata.setType("attr", "data-wet-boew");
+			if (typeof wet_boew_geomap !== 'undefined' && wet_boew_geomap !== null) {
+				$.extend(opts, wet_boew_geomap, overrides, elm.metadata());
+			} else {
+				$.extend(opts, overrides, elm.metadata());
+			}
+
+			if(opts.debug) {
+				console.log(_pe.fn.geomap.getLocalization('debugMode'));
+				$('#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
+			}	
+						
+			// Set the language for OpenLayers
+			_pe.language === 'fr' ? OpenLayers.Lang.setCode('fr') : OpenLayers.Lang.setCode('en');
+			
+			// Set the image path for OpenLayers
+			OpenLayers.ImgPath = pe.add.liblocation + "/images/geomap/";
+			
+			// Add projection for default base map
+			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
+					
+			// Initiate the map
+			elm.attr('id', 'geomap');
+			elm.height(elm.width() * 0.8);
+
+			// Load configuration file
+			if (typeof(opts.layersFile) != "undefined") {
+				$.ajax({
+					url: opts.layersFile,
+					dataType: "script",
+					async: false,
+					success: function (data) {
+						
+						_pe.fn.geomap.createMap(wet_boew_geomap, opts);
+						
+						$('.wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
+						pe.wb_load({'plugins': {'tabbedinterface': $('.wet-boew-tabbedinterface')}});
+						
+						//_pe.wb_load({'plugins': {'tables': $('table#cities')}});
+						
+						if(opts.debug) {
+							console.log(_pe.fn.geomap.getLocalization('overlayLoad'));
+						}
+					},
+					error: function (data){
+						if(opts.debug) {
+							console.log(_pe.fn.geomap.getLocalization('overlayNotLoad'));
+						}
+					}
+				}); // end ajax
+			} else {
+				
+				_pe.fn.geomap.createMap(undefined, opts);
+				
+				if(opts.debug) {
+					console.log(_pe.fn.geomap.getLocalization('overlayNotSpecify'));
+				}
+			} // end load configuration file
+			
+		return elm; // end of exec
+		},
 	
 		accessibilize: function (useLayerSwitcher) {	
 			
@@ -528,8 +615,8 @@
 				$foot.append($('<th>' + _pe.fn.geomap.getLocalization('zoomFeature') + '</th>'));
 			} 
 			
-			$table.find('thead').append($head);
-			$table.find('tfoot').append($foot);
+			$('table#' + $table.attr('id')).find('thead').append($head);
+			$('table#' + $table.attr('id')).find('tfoot').append($foot);
 			$.each(evt.features, function(index, feature) {												
 				var context = {
 					'type': 'body',
@@ -539,12 +626,13 @@
 
 				};											
 				var $row = _pe.fn.geomap.createRow(context, zoomTo);									
-				$table.find('tbody').append($row);
+				$('table#' + $table.attr('id')).find('tbody').append($row);
 			});
 			
 			// TODO use the plugin tables instead
 			// Run the datatable plugin to generate the nice table
 			if (datatable) $('table#' + $table.attr('id')).dataTable();
+			
 		},
 		
 		/*
@@ -1300,9 +1388,9 @@
 			
 			
 			// Don't include this if statement if your plugin shouldn't run in mobile mode.
-//			if (pe.mobile) {
-//				return _pe.fn.geomap.mobile(elm).trigger('create');
-//			}
+			if (pe.mobile) {
+				return _pe.fn.geomap.mobile(elm);
+			}
 			
 			var opts, overrides;	
 			
