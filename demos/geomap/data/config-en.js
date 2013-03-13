@@ -57,7 +57,7 @@
 		    type: 'kml',
 		    url: 'data/sample.kml',		   
 		    visible: false,
-		    datatable: false,
+		    datatable: true,
 		    tab: true,
 		    attributes: {
 		    	name: 'Product Title',
@@ -125,7 +125,7 @@
 			},
 			visible: true,	
 			zoom:  true,
-			datatable: true,
+			datatable: false,
 			tab: true,		
 			 // default style			
 			 style: {
