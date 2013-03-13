@@ -105,7 +105,6 @@
 				$document = $(document),
 				home_href,
 				header;
-				//logo = document.querySelector('#base-title object');
 
 			// Content pages only
 			if (wet_boew_theme.sft.length !== 0) {
