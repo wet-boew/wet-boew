@@ -9,7 +9,7 @@
 /*
  * Charts for WET 3.1.x
  */
-/*global jQuery: false, pe:false, wet_boew_charts: false*/
+/*global jQuery: false, wet_boew_charts: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -94,7 +94,7 @@
 				parsedirection: 'x', // which direction to parse the table data
 				"parsedirection-typeof": "string",
 				"parsedirection-autocreate": true,
-				drawDirection: 'x', // TODO Not implemented yet - which direction are the dependant axis
+				drawDirection: 'x' // TODO Not implemented yet - which direction are the dependant axis
 			}, options);
 			
 			// Set the new class options if defined
@@ -942,7 +942,7 @@
 
 			
 			// Function to switch the series order, like make it as vertical series to horizontal series (see Task #2997)
-			function swapTable(src) {
+			function swapTable() {
 				// function swapTable for request #2799, transforming horizontal table to virtical table; 
 				// Government of Canada. Contact Qibo or Pierre for algorithm info and bug-fixing; 
 				// important table element: id or class, th; 
