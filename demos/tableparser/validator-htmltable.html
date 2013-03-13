@@ -36,7 +36,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
 <!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
+<!-- CustomCSSStart -->
 <script>
 	//<![CDATA[
 (function ($) {
@@ -191,7 +191,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 					_pe.fn.zebra._exec(tblelement);
 				}
 			},
-			optimizeAccessibilitySet = function (){
+			optimizeAccessibilitySet = function (tpAccessibility){
 				//var noErrorList = '<li>No Error Found</li>',
 				var noErrorList = '<li>Table passed, see the resulting source code bellow</li>',
 					ErrorParsedByForce = '<li>Forced the HTML results, It\'s recommended to fix the errors.</li>',
@@ -204,6 +204,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 					ScopeColgroupEligible = true;
 				
 				nbErrorFound = 0;
+				
+				
 				
 				
 				if (!errorHandlerAttached){
@@ -316,7 +318,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 						tblparser.colgroup.length === 1)*/){ // One data colum group
 						
 						// Without grouping
-						if (tblparser.theadRowStack.length <= 1 && (tblparser.lstrowgroup.length === 1 || (tblparser.lstrowgroup[0].type === 2 && tblparser.lstrowgroup[1].type === 3 && tblparser.lstrowgroup[1].level === 0))) { // Only one row group or one data group with a summary group at level 0 (tfoot)
+						if (tpAccessibility === "auto" && (tblparser.theadRowStack.length <= 1 && (tblparser.lstrowgroup.length === 1 || (tblparser.lstrowgroup[0].type === 2 && tblparser.lstrowgroup[1].type === 3 && tblparser.lstrowgroup[1].level === 0)))) { // Only one row group or one data group with a summary group at level 0 (tfoot)
 						
 							// This table is qualified to be an simple table
 							$('#errorList').append($(qualifiedSimple));
@@ -336,7 +338,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 							}
 						}
 						
-						if (qualifySimpleGrouping) {
+						if (qualifySimpleGrouping && (tpAccessibility === "auto" || tpAccessibility === "scope")) {
 							// Do the simple row grouping
 							$('#errorList').append($(qualifiedSimpleGrouping));
 							
@@ -774,7 +776,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			var noErrorList = '<li>Table passed, see the resulting source code bellow</li>',
 				genericMessage = '<li>Use the above text field to analyse your HTML Complex Table Source Code</li>',
 				emptyTable = '<li>Empty Table</li>',
-				parsingInProgress = '<li>Please wait, you will see the result in a moment.</li>';
+				parsingInProgress = '<li>Please wait, you will see the result in a moment.</li>',
+				tpAccessibility, // value: ["auto", "scope", "headers"]
+				elemTableExist;
 			
 			nbErrorFound = 0;
 			
@@ -787,17 +791,37 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			$('#directOutput').empty();
 			
 			
+			$('#directOutput').after('<div id="tmpWorker"></div>')
+			$('#tmpWorker').css('display', 'none');
+			$('#tmpWorker').append($('#inputHTMLtable').val());
 			
+			if ($('#tmpWorker table:eq(0)').length !== 0) {
+				elemTableExist = true;
+			}
+
+
+			if($('#addzebra').is(':checked')){
+				$('#directOutput').append(tableOpenTagZebraNoEncode + '</table>');
+			} else {
+				$('#directOutput').append(tableOpenTagNoEncode + '</table>');
+			}
+
+			
+			if (elemTableExist) {
+				$('#directOutput table:eq(0)').append($('#tmpWorker table:eq(0) > *'));
+			} else {
+				$('#directOutput table:eq(0)').append($('#inputHTMLtable').val());
+
+			}
+			$('#tmpWorker').remove()
+			
+			/*
 			if($('#addzebra').is(':checked')){
 				$('#directOutput').append(tableOpenTagZebraNoEncode + $('#inputHTMLtable').val() + '</table>');
 			} else {
 				$('#directOutput').append(tableOpenTagNoEncode + $('#inputHTMLtable').val() + '</table>');
-			}
+			}*/
 			
-			if($('#chkHassum').is(':checked')){
-				$('#directOutput table:eq(0)').addClass('hassum');
-			}
-
 			if ($('#directOutput table:eq(0)').length === 0) {
 				alert('Please add HTML Table code');
 				// $('#directOutput').empty();
@@ -805,12 +829,36 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				return;
 			}
 			
+			
+			if($('#chkHassum').is(':checked')){
+				$('#directOutput table:eq(0)').addClass('hassum');
+			}
+			
+			// Accessibility Options
+			if($('#access-1').is(':checked')){
+				// Auto (default)
+				tpAccessibility = 'auto';
+			} else if($('#access-2').is(':checked')){
+				// Scope
+				tpAccessibility = 'scope';
+			} else {
+				// Ids/Headers
+				tpAccessibility = 'headers';
+			}
+			
+			// Generate Unique Ids prefix
+			if($('#uniqueprefix').is(':checked')){
+				$('#idprefix').val('tbl' + new Date().getTime() + '-');
+			}
+			
+			
+			
 			$('#errorList').append($(parsingInProgress));
 			
 			if (_pe.fn.parsertable) {
-				optimizeAccessibilitySet();
+				optimizeAccessibilitySet(tpAccessibility);
 			} else {
-				$(document).on('depsTableParserLoaded', optimizeAccessibilitySet);
+				$(document).on('depsTableParserLoaded', function(){optimizeAccessibilitySet(tpAccessibility)});
 				_pe.wb_load({'dep': ['parserTable']}, "depsTableParserLoaded");
 			}
 		});
@@ -848,7 +896,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 }(jQuery));
 	//]]>
 </script>
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -862,7 +910,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng-r.svg" role="img" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng.svg" role="img" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
 	<div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.png" width="214" height="20" alt="Government of Canada" /></div>
 </object></div></div>
 <ul>
@@ -874,7 +922,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms-r.svg" role="img" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
 	<div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
 </object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
@@ -919,13 +967,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <h2>Instruction</h2>
 
+<div class="module-info span-3 float-right">
+<p>The table structure analysis is based on the WCAG 2.0 Level AA, HTML5 specification, the <a href="#wethtmltabletechnique">12 techniques</a> listed below under "Resources" and with the concept of having summary group (activated with the option &quot;hassum&quot;).<p>
+</div>
+
 <p>This validator would help you find any relationship error defined in your complex table. The validation process can be accomplished by <strong>pasting your HTML table source code without the table element</strong> in the text field below and clicking the button "<strong>Analyse</strong>".</p>
 
 <p>Once the validator has detected that your complex and simple table is well structured, under the Result heading you will get access to a version with the best accessibility method that can be used on your complex and simple table markup. By default, all the ids, headers, scope and class are removed. If you want to keep your table ids, please check the option &quot;Do not clean the HTML Tabular Markup&quot;. Please note that you would have different HTML markup result of the same complex table depending of the browser used, but both are valid as per the HTML5 specification. For example, with Firefox and chrome the HTML tag are in lowercase and in Internet Explorer you get HTML tag in uppercase.<p>
 
-<div class="module-alert span-8">
-<p>The table structure analysis is based on the WCAG 2.0 Level AA, HTML5 specification, the <a href="#wethtmltabletechnique">12 techniques</a> listed below under "Resources" and with the concept of having summary group (activated with the option &quot;hassum&quot;).<p>
-</div>
 
 <div class="clear"></div>
 
@@ -936,26 +985,50 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 	<frameset>
 		<legend>Options</legend>
-		<label class="form-checkbox" for="chkHassum"><input type="checkbox" value="chkHassum" id="chkHassum"/> Has Summary Group (<em>&quot;hassum&quot; option</em>)<sup id="fnb1-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup></label>
-		<label class="form-checkbox" for="byPassOnErrorStop"><input type="checkbox" value="byPassOnErrorStop" id="byPassOnErrorStop"/> Force the HTML Results<sup id="fnb2-ref"><a class="footnote-link" href="#fnb2"><span class="wb-invisible">Footnote </span>2</a></sup></label><br />
+
+<div class="grid-12">
+
+<div class="span-3">
+		<label class="form-checkbox" for="chkHassum"><input type="checkbox" value="chkHassum" id="chkHassum"/> Has Summary Group<sup id="fnb1-ref"><a class="footnote-link" href="#fnb1"><span class="wb-invisible">Footnote </span>1</a></sup></label><br />
+		<label class="form-checkbox" for="addzebra"><input type="checkbox" value="addzebra" id="addzebra"/> Zebra Stripping</label>
+</div>
+
+
+<div class="span-4">
+		<label class="form-checkbox" for="byPassOnErrorStop"><input type="checkbox" value="byPassOnErrorStop" id="byPassOnErrorStop"/> Force HTML Results<sup id="fnb2-ref"><a class="footnote-link" href="#fnb2"><span class="wb-invisible">Footnote </span>2</a></sup></label><br />
+		<label class="form-checkbox" for="chkCleanMarkup"><input type="checkbox" value="chkCleanMarkup" id="chkCleanMarkup"/> Do not clean the HTML<sup id="fnb3-ref"><a class="footnote-link" href="#fnb3"><span class="wb-invisible">Footnote </span>3</a></sup></label>
+</div>
 		
-			<label class="form-checkbox" for="chkCleanMarkup"><input type="checkbox" value="chkCleanMarkup" id="chkCleanMarkup"/> Do not clean the HTML Tabular Markup<sup id="fnb3-ref"><a class="footnote-link" href="#fnb3"><span class="wb-invisible">Footnote </span>3</a></sup></label>
-			<label class="form-checkbox" for="addzebra"><input type="checkbox" value="addzebra" id="addzebra"/> Zebra Stripping Enhancement</label><br />
-			
-			
-			<label for="idprefix">Ids Prefix:</label>
-			<input id="idprefix" value="tbl" /><br />
-			
+<div class="span-4">
+		<label for="idprefix">Ids Prefix:</label>
+		<input id="idprefix" value="tbl" /><br />
+		<label class="form-checkbox" for="uniqueprefix"><input type="checkbox" value="uniqueprefix" id="uniqueprefix"/> Auto generate prefix</label>
+</div>
+
+</div>
+
+	</frameset>
+
+	<div class="clear"></div>
+
+	<frameset>
+		<legend>Accessibility</legend>
 		
+		<div class="margin-bottom-large margin-left-large">
+			<label for="access-1" class="form-radio form-label-inline"><input type="radio" class="deselect-off" name="access" checked="checked" id="access-1"> Auto Detect <em>(default)</em></label>
+			<label for="access-2" class="form-radio form-label-inline"><input type="radio" class="deselect-off" name="access" id="access-2"> Scope</label>
+			<label for="access-3" class="form-radio form-label-inline"><input type="radio" class="deselect-off" name="access" id="access-3"> Ids/Headers</label>
+
+		</div>
 	</frameset>
 	
 	<div class="clear"></div>
 	
 	<frameset>
 		<legend>Please add content bellow</legend>
-		<div>
+		<div class="margin-left-large">
 			<p id="hassumoption" class="background-highlight">Will be analysed with <strong>Has Summary Group</strong> (<em>&quot;hassum&quot;</em>) option</p>
-			<p class="background-highlight"><code id="tableopentag">&lt;table&gt;</code></p>
+			<p class="background-highlight"><code id="tableopentag">&lt;table&gt;</code> <em class="font-small">(Will overwrite any <code>table</code> element pasted bellow)</em></p>
 			<textarea id="inputHTMLtable" class="width-90" rows="20" cols="50" placeholder="Paste your HTML Table Source Code"></textarea>
 			<p class="background-highlight"><code>&lt;/table&gt;</code></p>
 		</div>
@@ -1499,5 +1572,8 @@ Nothing to being displayed
 <script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
 <!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
 </body>
 </html>

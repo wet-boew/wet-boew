@@ -18,13 +18,13 @@
 	_pe.fn.geomap = {
 		type: 'plugin',				
 		//depends: (pe.mobile ? [] : ['openlayers', 'proj4js', 'metadata', 'datatables']),
-		depends: ['openlayers', 'proj4js', 'metadata', 'datatables'],
-		dependscss: ['datatables'],
+		depends: ['openlayers', 'proj4js', 'metadata'],		
 		
 		//Specifies polyfill needed by the plugin (for elements created at runtime)
 		//polyfills:['progress','detailssummary'],
 		
 		// Don't include a mobile function if your plugin shouldn't run in mobile mode.
+
 		mobile: function (elm) { 
 		// If applicable, convert html elements and attributes into the format that jQuery mobile expects.
 			alert('mobile');
@@ -374,7 +374,7 @@
 		/*
 		 * Create tabs - one for each layer added
 		 */
-		addToTabs: function(featureTable, enabled, olLayerId) {				
+		addToTabs: function(featureTable, enabled, olLayerId) {	
 			
 			var $div = $(".wet-boew-geomap-tabs");
 			var $tabs = $div.find("ul.tabs");
@@ -626,13 +626,14 @@
 
 				};											
 				var $row = _pe.fn.geomap.createRow(context, zoomTo);									
+
 				$('table#' + $table.attr('id')).find('tbody').append($row);
 			});
 			
 			// TODO use the plugin tables instead
 			// Run the datatable plugin to generate the nice table
 			if (datatable) $('table#' + $table.attr('id')).dataTable();
-			
+			if(datatable) $('table#' + $table.attr('id')).addClass('wet-boew-tables');
 		},
 		
 		/*
@@ -833,80 +834,29 @@
 		 */
 		addOverlayData: function(wet_boew_geomap){
 			
-			if (typeof(wet_boew_geomap) != "undefined")
-			{			
-			if(wet_boew_geomap.overlays){				
-				$.each(wet_boew_geomap.overlays, function(index, layer) {	
-					
-					var $table = _pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
-					
-					if (layer.type=='kml') {	
-						var olLayer = new OpenLayers.Layer.Vector(
-							layer.title, {							
-								strategies: [new OpenLayers.Strategy.Fixed()],
-								protocol: new OpenLayers.Protocol.HTTP({
-								url: layer.url,
-								format: new OpenLayers.Format.KML({
-									extractStyles: !layer.style,									
-									extractAttributes: true,
-									internalProjection: map.getProjectionObject(),
-									externalProjection: new OpenLayers.Projection('EPSG:4269'),
-									
-									read: function(data) {
-										var items = this.getElementsByTagNameNS(data, "*", "Placemark");
-										
-										var row, feature, atts = {}, features = [];
-												
-											for (var i = 0; i < items.length; i++) {												
-												row = items[i];			
-																								
-												feature = new OpenLayers.Feature.Vector();														
-																								
-												feature.geometry = this.parseFeature(row).geometry;
-												
-												// parse and store the attributes
-												atts = {};
-												var a = layer.attributes;
-												
-												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														 atts[a[name]] = $(row).find(name).text();														
-													}
-												}
-												
-												feature.attributes = atts;
-												features.push(feature);
-											} 
-											return features;
-										}
-									})
-								}),
-								eventListeners: {
-									"featuresadded": function (evt) {	
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
-									}									
-								},
-								styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
-							}
-						);
-						olLayer.visibility=layer.visible;						
-						map.addLayer(olLayer);
-						queryLayers.push(olLayer);						
-						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);						
-					} else if (layer.type=='atom') {
-						var olLayer = new OpenLayers.Layer.Vector(
-							layer.title, {
-								projection: map.displayProjection,
-								strategies: [new OpenLayers.Strategy.Fixed()],
-								protocol: new OpenLayers.Protocol.HTTP({
+			if (typeof(wet_boew_geomap) != "undefined")	{			
+				if(wet_boew_geomap.overlays){				
+					$.each(wet_boew_geomap.overlays, function(index, layer) {	
+						
+						var $table = _pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
+						
+						if (layer.type=='kml') {	
+							var olLayer = new OpenLayers.Layer.Vector(
+								layer.title, {							
+									strategies: [new OpenLayers.Strategy.Fixed()],
+									protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
-									format: new OpenLayers.Format.Atom({
-											read: function(data) {											
-												var items = this.getElementsByTagNameNS(data, "*", "entry");
-												
-												var row, feature, atts = {}, features = [];
-												
+									format: new OpenLayers.Format.KML({
+										extractStyles: !layer.style,									
+										extractAttributes: true,
+										internalProjection: map.getProjectionObject(),
+										externalProjection: new OpenLayers.Projection('EPSG:4269'),
+										
+										read: function(data) {
+											var items = this.getElementsByTagNameNS(data, "*", "Placemark");
+											
+											var row, feature, atts = {}, features = [];
+													
 												for (var i = 0; i < items.length; i++) {												
 													row = items[i];			
 																									
@@ -931,181 +881,231 @@
 												return features;
 											}
 										})
-									}),						
-								eventListeners: {
-									"featuresadded": function (evt) {											
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
-									}									
-								},
-								styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
-							}
-						);
-						olLayer.visibility=layer.visible;
-						queryLayers.push(olLayer);
-						map.addLayer(olLayer);									
-						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);						
-					} else if (layer.type=='georss') {
-						var olLayer = new OpenLayers.Layer.Vector(
-							layer.title, {
-								projection: map.displayProjection,
-								strategies: [new OpenLayers.Strategy.Fixed()],
-								protocol: new OpenLayers.Protocol.HTTP({
-									url: layer.url,
-									format: new OpenLayers.Format.GeoRSS({									
-										read: function(data) {											
-											var items = this.getElementsByTagNameNS(data, "*", "item");
-											
-											var row, feature, atts = {}, features = [];
-											
-											for (var i = 0; i < items.length; i++) {												
-												row = items[i];			
-																								
-												feature = new OpenLayers.Feature.Vector();											
+									}),
+									eventListeners: {
+										"featuresadded": function (evt) {	
+											_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										}									
+									},
+									styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
+								}
+							);
+							olLayer.visibility=layer.visible;						
+							map.addLayer(olLayer);
+							queryLayers.push(olLayer);						
+							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);						
+						} else if (layer.type=='atom') {
+							var olLayer = new OpenLayers.Layer.Vector(
+								layer.title, {
+									projection: map.displayProjection,
+									strategies: [new OpenLayers.Strategy.Fixed()],
+									protocol: new OpenLayers.Protocol.HTTP({
+										url: layer.url,
+										format: new OpenLayers.Format.Atom({
+												read: function(data) {											
+													var items = this.getElementsByTagNameNS(data, "*", "entry");
+													
+													var row, feature, atts = {}, features = [];
+													
+													for (var i = 0; i < items.length; i++) {												
+														row = items[i];			
+																										
+														feature = new OpenLayers.Feature.Vector();														
+																										
+														feature.geometry = this.parseFeature(row).geometry;
+														
+														// parse and store the attributes
+														atts = {};
+														var a = layer.attributes;
+														
+														// TODO: test on nested attributes
+														for (var name in a) {
+															if (a.hasOwnProperty(name)) {
+																 atts[a[name]] = $(row).find(name).text();														
+															}
+														}
+														
+														feature.attributes = atts;
+														features.push(feature);
+													} 
+													return features;
+												}
+											})
+										}),						
+									eventListeners: {
+										"featuresadded": function (evt) {											
+											_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										}									
+									},
+									styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
+								}
+							);
+							olLayer.visibility=layer.visible;
+							queryLayers.push(olLayer);
+							map.addLayer(olLayer);									
+							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);						
+						} else if (layer.type=='georss') {
+							var olLayer = new OpenLayers.Layer.Vector(
+								layer.title, {
+									projection: map.displayProjection,
+									strategies: [new OpenLayers.Strategy.Fixed()],
+									protocol: new OpenLayers.Protocol.HTTP({
+										url: layer.url,
+										format: new OpenLayers.Format.GeoRSS({									
+											read: function(data) {											
+												var items = this.getElementsByTagNameNS(data, "*", "item");
 												
-												feature.geometry = this.createGeometryFromItem(row);
+												var row, feature, atts = {}, features = [];
 												
-												// parse and store the attributes
-												atts = {};
-												var a = layer.attributes;
-												
-												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														 atts[a[name]] = $(row).find(name).text();														
+												for (var i = 0; i < items.length; i++) {												
+													row = items[i];			
+																									
+													feature = new OpenLayers.Feature.Vector();											
+													
+													feature.geometry = this.createGeometryFromItem(row);
+													
+													// parse and store the attributes
+													atts = {};
+													var a = layer.attributes;
+													
+													// TODO: test on nested attributes
+													for (var name in a) {
+														if (a.hasOwnProperty(name)) {
+															 atts[a[name]] = $(row).find(name).text();														
+														}
 													}
-												}
+													
+													feature.attributes = atts;												
 												
-												feature.attributes = atts;												
-											
-												// if no geometry, don't add it
-												if (feature.geometry) {
-													features.push(feature);
-												}
-											} 
-											return features;
-										}
-									})
-								}),								
-								eventListeners: {
-									"featuresadded": function (evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
-									}									
-								},
-								styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
-							}
-						);
-						olLayer.visibility=layer.visible;
-						queryLayers.push(olLayer);
-						map.addLayer(olLayer);											
-						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
-					} else if (layer.type=='json') {
-						var olLayer = new OpenLayers.Layer.Vector( 
-							layer.title, { 
-								projection: map.displayProjection, 
-								strategies: [new OpenLayers.Strategy.Fixed()], 
-								protocol: new OpenLayers.Protocol.Script({ 
-									url: layer.url,
-									params: layer.params,
-									format: new OpenLayers.Format.GeoJSON({										
-										read: function(data) {											
-											var items = data[layer.root] ? data[layer.root] : data;
-											var row, feature, atts = {}, features = [];
-											
-											for (var i = 0; i < items.length; i++) {												
-												row = items[i];												
-												feature = new OpenLayers.Feature.Vector();												
-												feature.geometry =	this.parseGeometry(row.geometry);
-												
-												// parse and store the attributes
-												atts = {};
-												var a = layer.attributes;
-												
-												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														 atts[a[name]] = row[name];														
+													// if no geometry, don't add it
+													if (feature.geometry) {
+														features.push(feature);
 													}
-												}
+												} 
+												return features;
+											}
+										})
+									}),								
+									eventListeners: {
+										"featuresadded": function (evt) {
+											_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										}									
+									},
+									styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
+								}
+							);
+							olLayer.visibility=layer.visible;
+							queryLayers.push(olLayer);
+							map.addLayer(olLayer);											
+							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						} else if (layer.type=='json') {
+							var olLayer = new OpenLayers.Layer.Vector( 
+								layer.title, { 
+									projection: map.displayProjection, 
+									strategies: [new OpenLayers.Strategy.Fixed()], 
+									protocol: new OpenLayers.Protocol.Script({ 
+										url: layer.url,
+										params: layer.params,
+										format: new OpenLayers.Format.GeoJSON({										
+											read: function(data) {											
+												var items = data[layer.root] ? data[layer.root] : data;
+												var row, feature, atts = {}, features = [];
 												
-												feature.attributes = atts;												
-											
-												// if no geometry, don't add it
-												if (feature.geometry) {
-													features.push(feature);
-												}
-											} 
-											return features;
-										}
-									})
-								}),
-								eventListeners: {
-									"featuresadded": function (evt) {	
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
-									}									
-								},
-								styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
-							}
-						);						
-						olLayer.visibility=layer.visible;
-						queryLayers.push(olLayer);
-						map.addLayer(olLayer);											
-						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);					
-					} else if (layer.type=='geojson') {						
-						var olLayer = new OpenLayers.Layer.Vector( 
-							layer.title, { 
-								projection: map.displayProjection, 
-								strategies: [new OpenLayers.Strategy.Fixed()], 
-								protocol: new OpenLayers.Protocol.Script({ 
-									url: layer.url,
-									params: layer.params,
-									format: new OpenLayers.Format.GeoJSON({
-										read: function(data) {
-
-											var items = data.features;
-											var row, feature, atts = {}, features = [];
-											
-											for (var i = 0; i < items.length; i++) {												
-												row = items[i];												
-												feature = new OpenLayers.Feature.Vector();												
-												feature.geometry =	this.parseGeometry(row.geometry);
-												
-												// parse and store the attributes
-												atts = {};
-												var a = layer.attributes;
-												
-												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														 atts[a[name]] = row.properties[name];														
+												for (var i = 0; i < items.length; i++) {												
+													row = items[i];												
+													feature = new OpenLayers.Feature.Vector();												
+													feature.geometry =	this.parseGeometry(row.geometry);
+													
+													// parse and store the attributes
+													atts = {};
+													var a = layer.attributes;
+													
+													// TODO: test on nested attributes
+													for (var name in a) {
+														if (a.hasOwnProperty(name)) {
+															 atts[a[name]] = row[name];														
+														}
 													}
-												}
+													
+													feature.attributes = atts;												
 												
-												feature.attributes = atts;												
-											
-												// if no geometry, don't add it
-												if (feature.geometry) {
-													features.push(feature);
-												}
-											} 
-											return features;
+													// if no geometry, don't add it
+													if (feature.geometry) {
+														features.push(feature);
+													}
+												} 
+												return features;
+											}
+										})
+									}),
+									eventListeners: {
+										"featuresadded": function (evt) {	
+											_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										}									
+									},
+									styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
+								}
+							);						
+							olLayer.visibility=layer.visible;
+							queryLayers.push(olLayer);
+							map.addLayer(olLayer);											
+							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);					
+						} else if (layer.type=='geojson') {						
+							var olLayer = new OpenLayers.Layer.Vector( 
+								layer.title, { 
+									projection: map.displayProjection, 
+									strategies: [new OpenLayers.Strategy.Fixed()], 
+									protocol: new OpenLayers.Protocol.Script({ 
+										url: layer.url,
+										params: layer.params,
+										format: new OpenLayers.Format.GeoJSON({
+											read: function(data) {
+	
+												var items = data.features;
+												var row, feature, atts = {}, features = [];
+												
+												for (var i = 0; i < items.length; i++) {												
+													row = items[i];												
+													feature = new OpenLayers.Feature.Vector();												
+													feature.geometry =	this.parseGeometry(row.geometry);
+													
+													// parse and store the attributes
+													atts = {};
+													var a = layer.attributes;
+													
+													// TODO: test on nested attributes
+													for (var name in a) {
+														if (a.hasOwnProperty(name)) {
+															 atts[a[name]] = row.properties[name];														
+														}
+													}
+													
+													feature.attributes = atts;												
+												
+													// if no geometry, don't add it
+													if (feature.geometry) {
+														features.push(feature);
+													}
+												} 
+												return features;
+											}
+										})
+									}),
+									eventListeners: {
+										"featuresadded": function (evt) {
+											_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 										}
-									})
-								}),
-								eventListeners: {
-									"featuresadded": function (evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
-									}
-								},
-								styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
-							}
-						);
-						olLayer.visibility=layer.visible;
-						queryLayers.push(olLayer);
-						map.addLayer(olLayer);										
-						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
-					}					
-				});
-			}
+									},
+									styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
+								}
+							);
+							olLayer.visibility=layer.visible;
+							queryLayers.push(olLayer);
+							map.addLayer(olLayer);										
+							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						}					
+					});
+				}
 			}
 		},
 		
@@ -1115,8 +1115,7 @@
 		* Sample tables object:
 		* 
 		*	tables: [ 
-		*		{ id: 'cityE' }, 
-		*		{ id: 'bbox', strokeColor: '#FF0000', fillcolor: '#FF0000' } 
+		*		{ id: 'cityE', strokeColor: '#FF0000', fillcolor: '#FF0000' } 
 		*	] 
 		*/	
 		addTabularData: function(opts, projLatLon, projMap){
@@ -1136,12 +1135,7 @@
 				var attr = [];
 				$.each($("table#" + table.id + ' th'), function(index, attribute) {
 						attr[index] = attribute.textContent;
-				});
-				
-				// If datatable is specified				
-				if(table.datatable) {
-					//$table.addClass('wet-boew-tables'); /* this won't work */
-				} 
+				});				
 				
 				// If zoomTo add the header and footer column headers
 				if (opts.tables[index].zoom){
@@ -1290,7 +1284,7 @@
 		/*
 		 *	Create the map after we load the config file.
 		 */
-		createMap: function(wet_boew_geomap, opts){
+		createMap: function(wet_boew_geomap, opts, callback) {
 			
 			// Add basemap data
 			_pe.fn.geomap.addBasemapData(wet_boew_geomap, opts);
@@ -1311,17 +1305,23 @@
 			_pe.fn.geomap.createLayerHolder(opts.useTab);
 						
 			// Add tabular data
-			_pe.fn.geomap.addTabularData(opts, projLatLon, projMap);
+			_pe.fn.geomap.addTabularData(opts, projLatLon, projMap, function() {
+				//_pe.fn.geomap.refreshPlugins();
+			});
 			
 			// Add overlay data
-			_pe.fn.geomap.addOverlayData(wet_boew_geomap);
+			_pe.fn.geomap.addOverlayData(wet_boew_geomap, function() {
+				//_pe.fn.geomap.refreshPlugins();
+			});
 
 			// Load Controls
 			_pe.fn.geomap.loadControls(opts);
 			
 			// Add WCAG element for the map div
 			$('.wet-boew-geomap').attr('role', 'img');
-			$('.wet-boew-geomap').attr('aria-label', _pe.fn.geomap.getLocalization('ariaMap'));			
+			$('.wet-boew-geomap').attr('aria-label', _pe.fn.geomap.getLocalization('ariaMap'));		
+			
+			callback();
 		},
 		
 		/*
@@ -1378,10 +1378,21 @@
 			var message = (_pe.language == "en") ? english[mess] : french[mess];
 			return message;
 		},
-		
-		fnZebraComplexTable: function (wet_boew_geomap, opts) {
-			_pe.fn.geomap.createMap(wet_boew_geomap, opts);						
-			$('#wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
+				
+		refreshPlugins: function() {
+			
+//			$(document).on('wb-tabs-added', function(){
+//				_pe.wb_load({'plugins': {'tables': $(".wet-boew-tables")}});
+//			});
+//			
+//			$('.wet-boew-geomap-tabs').addClass("wet-boew-tabbedinterface");
+//			_pe.wb_load({'plugins': {'tabbedinterface': $(".wet-boew-tabbedinterface")}}, 'wb-tabs-added');				
+			
+			//_pe.wb_load({'plugins': {'tables': $(".wet-boew-tables")}});
+			
+			$('.wet-boew-geomap-tabs').addClass("wet-boew-tabbedinterface");			
+			_pe.wb_load({'plugins': {'tabbedinterface': $(".wet-boew-tabbedinterface")}});	
+			
 		},
 		
 		_exec: function (elm) {
@@ -1453,15 +1464,12 @@
 				$.ajax({
 					url: opts.layersFile,
 					dataType: "script",
-					async: false,
+					async: false,					
 					success: function (data) {
 						
-						_pe.fn.geomap.createMap(wet_boew_geomap, opts);
-						
-						$('.wet-boew-geomap-tabs').addClass('wet-boew-tabbedinterface');
-						pe.wb_load({'plugins': {'tabbedinterface': $('.wet-boew-tabbedinterface')}});
-						
-						//_pe.wb_load({'plugins': {'tables': $('table#cities')}});
+						_pe.fn.geomap.createMap(wet_boew_geomap, opts, function() {
+							_pe.fn.geomap.refreshPlugins();
+						});
 						
 						if(opts.debug) {
 							console.log(_pe.fn.geomap.getLocalization('overlayLoad'));
@@ -1475,7 +1483,9 @@
 				}); // end ajax
 			} else {
 				
-				_pe.fn.geomap.createMap(undefined, opts);
+				_pe.fn.geomap.createMap(undefined, opts, function() {
+					_pe.fn.geomap.refreshPlugins();
+				});
 				
 				if(opts.debug) {
 					console.log(_pe.fn.geomap.getLocalization('overlayNotSpecify'));

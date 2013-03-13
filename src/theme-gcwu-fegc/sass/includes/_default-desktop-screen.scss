@@ -7,6 +7,90 @@
 @import "compass/css3/appearance";
 @import 'compass/css3/transform';
 
+%gcwu-default-desktop-screen-font-weight-400-color-333 {
+	font-weight: 400;
+	color: #333;
+}
+%gcwu-default-desktop-screen-border-left-none {
+	border-left: none;
+}
+%gcwu-default-link {
+	&, &.ui-link {
+		&:link {
+			color: #295376;
+		}
+		&:visited {
+			color: #5a306b;
+		}
+	}
+}
+%gcwu-default-desktop-screen-inline-z1 {
+	z-index: 1;
+	display: inline;
+}
+%gcwu-default-desktop-screen-overflow-hidden {
+	overflow: hidden;
+}
+%gcwu-default-desktop-screen-display-block {
+	display: block;
+}
+%gcwu-default-desktop-screen-position-relative {
+	position: relative;
+}
+%gcwu-default-desktop-screen-position-absolute {
+	position: absolute;
+}
+%gcwu-default-desktop-screen-margin-left-10 {
+	margin-left: 10px;
+}
+%gcwu-default-desktop-screen-margin-right-10 {
+	margin-right: 10px;
+}
+%gcwu-default-desktop-screen-margin-left-0 {
+	margin-left: 0;
+}
+%gcwu-default-desktop-screen-margin-left-auto {
+	margin-left: auto;
+}
+%gcwu-default-desktop-screen-float-left {
+	float: left;
+}
+%gcwu-default-desktop-screen-float-right {
+	float: right;
+}
+%gcwu-default-desktop-screen-float-right-relative {
+	@extend %gcwu-default-desktop-screen-float-right;
+	@extend %gcwu-default-desktop-screen-position-relative;
+}
+%gcwu-default-desktop-screen-margin-0 {
+	margin: 0;
+}
+%gcwu-default-text-decoration-underline-a-psuedos {
+	a {
+		@include pseudo-focus {
+			text-decoration: underline;
+		}
+	}
+}
+%gcwu-default-desktop-screen-right-auto {
+	right: auto;
+}
+%gcwu-default-desktop-screen-padding-left-0 {
+	padding-left: 0;
+}
+%gcwu-default-desktop-screen-left-0 {
+	left: 0;
+}
+%gcwu-default-desktop-screen-border-right-fff-left-999 {
+	border: {
+		right: 1px solid #fff;
+		left: 1px solid #999;
+	}
+}
+%gcwu-default-desktop-screen-margin-right-0 {
+	margin-right: 0;
+}
+
 html {
 	overflow-y: scroll;
 }
@@ -19,13 +103,6 @@ img {
 	border: none;
 }
 
-%gcwu-default-desktop-screen-font-weight-400-color-333 {
-	font-weight: 400;
-	color: #333;
-}
-%gcwu-default-desktop-screen-border-left-none {
-	border-left: none;
-}
 h1 {
 	@extend %gcwu-default-desktop-screen-font-weight-400-color-333;
 	border-bottom: 1px solid #333;
@@ -34,44 +111,13 @@ h1 {
 	margin-top: 0;
 }
 
-%gcwu-default-link {
-	&, &.ui-link {
-		&:link {
-			color: #295376;
-		}
-		&:visited {
-			color: #5a306b;
-		}
-	}
-}
-
 a {
 	@extend %gcwu-default-link;
-}
-
-%gcwu-default-desktop-screen-hidden-img {
-	img {
-		@extend %gcwu-default-desktop-screen-position-absolute;
-		@include clip-rect;
-		height: 0 !important;
-		width: 0 !important;
-		overflow: hidden !important;
-		margin: 0 !important;
-	}
-}
-
-%gcwu-default-desktop-screen-inline-z1 {
-	z-index: 1;
-	display: inline;
 }
 
 #wb-sup {
 	@extend %gcwu-default-desktop-screen-inline-z1;
 	@extend %gcwu-default-desktop-screen-float-right-relative;
-}
-
-%gcwu-default-desktop-screen-overflow-hidden {
-	overflow: hidden;
 }
 
 #wb-head {
@@ -84,7 +130,7 @@ a {
 
 #wb-foot {
 	@extend %gcwu-default-desktop-screen-overflow-hidden;
-	@extend %text-decoration-underline-a-psuedos;
+	@extend %gcwu-default-text-decoration-underline-a-psuedos;
 	#gcwu-wmms {
 		display: none;
 	}
@@ -118,9 +164,6 @@ a {
 	@extend %gcwu-default-desktop-screen-overflow-hidden;
 }
 
-%gcwu-default-desktop-screen-display-block {
-	display: block;
-}
 #wb-core-in {
 	overflow: visible !important;
 	@extend %gcwu-default-desktop-screen-position-relative;
@@ -134,12 +177,6 @@ a {
 	}
 }
 
-%gcwu-default-desktop-screen-position-relative {
-	position: relative;
-}
-%gcwu-default-desktop-screen-position-absolute {
-	position: absolute;
-}
 #gcwu-bnr {
 	@extend %gcwu-default-desktop-screen-overflow-hidden;
 	@extend %gcwu-default-desktop-screen-position-relative;
@@ -180,18 +217,6 @@ a {
 	}
 }
 
-%gcwu-default-desktop-screen-margin-left-10 {
-	margin-left: 10px;
-}
-%gcwu-default-desktop-screen-margin-right-10 {
-	margin-right: 10px;
-}
-%gcwu-default-desktop-screen-margin-left-0 {
-	margin-left: 0;
-}
-%gcwu-default-desktop-screen-margin-left-auto {
-	margin-left: auto;
-}
 #gcwu-aside {
 	@extend %gcwu-default-desktop-screen-float-right;
 	@extend %gcwu-default-desktop-screen-margin-left-10;
@@ -215,14 +240,6 @@ a {
 	right: 10px;
 }
 
-%gcwu-default-desktop-screen-float-left {
-	float: left;
-}
-
-%gcwu-default-desktop-screen-float-right {
-	float: right;
-}
-
 #wb-body-sec-sup {
 	#wb-main {
 		@extend %gcwu-default-desktop-screen-float-left;
@@ -235,16 +252,13 @@ a {
 	@extend %gcwu-default-desktop-screen-inline-z1;
 }
 
-%gcwu-default-desktop-screen-float-right-relative {
-	@extend %gcwu-default-desktop-screen-float-right;
-	@extend %gcwu-default-desktop-screen-position-relative;
-}
-
 #gcwu-sig {
-	@extend %gcwu-default-desktop-screen-hidden-img;
 	width: 247px;
 	@extend %gcwu-default-desktop-screen-float-left;
 	margin: 8px 0;
+	img {
+		@extend %gcwu-default-desktop-screen-margin-left-0;
+	}
 }
 
 #gcwu-sig-in {
@@ -294,9 +308,6 @@ a {
 	}
 }
 
-%gcwu-default-desktop-screen-margin-0 {
-	margin: 0;
-}
 #gcwu-title-in {
 	display: table-cell;
 	vertical-align: middle;
@@ -304,7 +315,7 @@ a {
 }
 
 #gcwu-srchbx {
-	@extend %text-decoration-underline-a-psuedos;
+	@extend %gcwu-default-text-decoration-underline-a-psuedos;
 	@extend %gcwu-default-desktop-screen-position-absolute;
 	background: #146094;
 	border-top: 1px solid #87aec9;
@@ -387,10 +398,15 @@ a {
 }
 
 #gcwu-wmms {
-	@extend %gcwu-default-desktop-screen-hidden-img;
 	@extend %gcwu-default-desktop-screen-position-absolute;
 	top: 38px;
 	right: 4px;
+	img {
+		height: 33px;
+		width: 139px;
+		@extend %gcwu-default-desktop-screen-position-absolute;
+		right: -2px;
+	}
 }
 
 #gcwu-wmms-in {
@@ -433,14 +449,6 @@ a {
 	}
 }
 
-%text-decoration-underline-a-psuedos {
-	a {
-		@include pseudo-focus {
-			text-decoration: underline;
-		}
-	}
-}
-
 @if $experimental-support-for-mozilla {
 	@-moz-document url-prefix() {
 		#gcwu-srch-submit {
@@ -461,9 +469,6 @@ a {
 		margin: 7px 10px 0 0;
 	}
 
-	%gcwu-default-desktop-screen-right-auto {
-		right: auto;
-	}
 	#gcwu-date-mod {
 		@extend %gcwu-default-desktop-screen-right-auto;
 		left: 10px;
@@ -484,6 +489,9 @@ a {
 
 	#gcwu-sig {
 		@extend %gcwu-default-desktop-screen-float-right;
+		img {
+			@extend %gcwu-default-desktop-screen-margin-right-0;
+		}
 	}
 
 	#gcwu-sig-in {
@@ -491,9 +499,6 @@ a {
 		@extend %gcwu-default-desktop-screen-margin-left-0;
 	}
 
-	%gcwu-default-desktop-screen-padding-left-0 {
-		padding-left: 0;
-	}
 	#gcwu-gcnb {
 		ul {
 			@extend %gcwu-default-desktop-screen-float-left;
@@ -532,9 +537,6 @@ a {
 		}
 	}
 
-	%gcwu-default-desktop-screen-left-0 {
-		left: 0;
-	}
 	#gcwu-srchbx {
 		text-align: left;
 		@extend %gcwu-default-desktop-screen-right-auto;
@@ -543,16 +545,10 @@ a {
 
 		#gcwu-srch {
 			@extend %gcwu-default-desktop-screen-margin-left-auto;
-			margin-right: 0;
+			@extend %gcwu-default-desktop-screen-margin-right-0;
 		}
 	}
 
-	%gcwu-default-desktop-screen-border-right-fff-left-999 {
-		border: {
-			right: 1px solid #fff;
-			left: 1px solid #999;
-		}
-	}
 	#gcwu-srch-submit {
 		@extend %gcwu-default-desktop-screen-border-right-fff-left-999;
 		@include pseudo-focus {
@@ -563,6 +559,10 @@ a {
 	#gcwu-wmms {
 		@extend %gcwu-default-desktop-screen-left-0;
 		@extend %gcwu-default-desktop-screen-right-auto;
+		img {
+			@extend %gcwu-default-desktop-screen-right-auto;
+			left: 2px;
+		}
 	}
 
 	#gcwu-psnb {

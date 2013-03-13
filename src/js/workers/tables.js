@@ -69,7 +69,13 @@
 					'sProcessing': pe.dic.get('%processing'),
 					'sSearch': pe.dic.get('%search') + pe.dic.get('%colon'),
 					'sZeroRecords': pe.dic.get('%no-match-found')
-				}				
+				},
+				'fnDrawCallback': function() {
+					// Re-equalize element heights if the equalize plugin is active on #wb-main
+					if(_pe.main.hasClass('wet-boew-equalize')) {
+						_pe.fn.equalize._exec(_pe.main);
+					}
+				}
 			});
 		} // end of exec
 	};

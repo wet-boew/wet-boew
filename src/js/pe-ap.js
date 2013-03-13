@@ -50,7 +50,8 @@
 		urlhash: '',
 		urlquery: '',
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
-		mobiletest: '',
+		svgfix: false,
+		viewtest: '',
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 
@@ -131,8 +132,8 @@
 			}
 	
 			// Mobile test: Used to detect CSS media query result regarding mobile/desktop view
-			pe.mobiletest = document.createElement('div');
-			pe.mobiletest.setAttribute('id', 'mobiletest'); // Used to detect CSS media queries result regarding mobile/desktop view
+			pe.viewtest = document.createElement('div');
+			pe.viewtest.setAttribute('id', 'viewtest'); // Used to detect CSS media queries result regarding mobile/desktop view
 			
 			// Resize test element: Used to detect changes in text size and window size
 			pe.resizetest = document.createElement('span');
@@ -141,7 +142,7 @@
 
 			// Append the various tests to the body
 			test_elms = document.createElement('div');
-			test_elms.appendChild(pe.mobiletest);
+			test_elms.appendChild(pe.viewtest);
 			test_elms.appendChild(pe.resizetest);
 			document.body.appendChild(test_elms);
 
@@ -156,7 +157,8 @@
 			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
 			pe.mobile = pe.mobilecheck();
 			pe.tablet = pe.tabletcheck();
-			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : ' smartphone-view')) : ' desktop-view')) : '';
+			pe.print = (pe.mobile ? false : pe.printcheck());
+			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : ' smartphone-view')) : (pe.print ? ' print-view' : ' desktop-view'))) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			classes += (pe.svg ? ' svg' : ' no-svg');
 			
@@ -166,6 +168,10 @@
 			} else if (pe.ie < 1) {
 				classes += ' no-ie';
 			}
+			
+			// Check for browsers that needs SVG loaded through an object element removed		
+			test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
+			pe.svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46)));
 
 			// Is this a mobile device?
 			if (pe.mobile) {
@@ -291,11 +297,15 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return pe.mobiletest.offsetWidth !== 0; // CSS (through media queries) sets to offsetWidth = 0 in desktop view, offsetWidth = 1 in mobile view and offsetWidth = 2 in tablet view
+			return pe.viewtest.offsetWidth > 1; // CSS (through media queries) sets to offsetWidth = 0 in print view, offsetWidth = 1 in desktop view, offsetWidth = 2 in mobile view and offsetWidth = 3 in tablet view
+		},
+		print: false,
+		printcheck: function () {
+			return pe.viewtest.offsetWidth === 0; // CSS (through media queries) sets to offsetWidth = 0 in print view
 		},
 		tablet: false,
 		tabletcheck: function () {
-			return pe.mobiletest.offsetWidth === 2; // CSS (through media queries) sets to offsetWidth = 2 in tablet view
+			return pe.viewtest.offsetWidth === 3; // CSS (through media queries) sets to offsetWidth = 3 in tablet view
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -520,7 +530,7 @@
 		* @return {boolean}
 		*/
 		cssenabled: function () {
-			return pe.mobiletest.offsetWidth < 2; // pe.mobiletest will be either 0 or 1 if CSS is enabled
+			return pe.viewtest.offsetWidth < 2; // pe.viewtest will be either 0 or 1 if CSS is enabled
 		},
 		/**
 		* Returns a class-based set limit on plugin instances
@@ -899,75 +909,86 @@
 			* @return {jQuery object} Link where match found
 			*/
 			navcurrent: function (menusrc, bcsrc, navclass) {
-				var pageurl = window.location.hostname + window.location.pathname,
+				var pageurl = window.location.hostname + window.location.pathname.replace(/^([^\/])/, '/$1'),
 					pageurlquery = window.location.search,
+					link,
+					linkhref,
+					linkurl,
+					linkurllen,
+					linkquery,
+					linkquerylen,
+					linkindex,
 					menulinks,
-					menulink,
-					menulinkurl,
-					menulinkurllen,
-					menulinkquery,
-					menulinkquerylen,
+					menulink = [],
+					menulinkurl = [],
 					menulinkslen,
 					bclinks,
-					bclink,
 					bclinkslen,
 					bcindex,
+					bclink,
+					bclinkurl,
 					match = false,
-					hrefBug = pe.ie !== 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
+					hrefBug = pe.ie > 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
 				menulinks = menusrc.find('a').get();
 				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;
 
-				// Try to find a match with the page URL
+				// Try to find a match with the page URL and cache link + URL for later if no match found
 				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
-					menulink = menulinks[menulinkslen];
-					menulink.href = menulink.getAttribute('href') !== '' ? menulink.getAttribute('href') : '#'; //Fix for empty A tags
-					if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
-						menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
-						menulinkurllen = menulinkurl.length;
-						menulinkquery = menulink.search;
-						menulinkquerylen = menulinkquery.length;
-						if ((pageurl.slice(-menulinkurllen) === menulinkurl && (menulinkquerylen === 0 || pageurlquery.slice(-menulinkquerylen) === menulinkquery))) {
+					link = menulinks[menulinkslen];
+					linkhref = !hrefBug ? link.getAttribute('href') : $(link).attr('href');
+					if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
+						linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
+						linkquery = link.search;
+						linkquerylen = linkquery.length;
+						if (pageurl.slice(-linkurl.length) === linkurl && (linkquerylen === 0 || pageurlquery.slice(-linkquerylen) === linkquery)) {
 							match = true;
 							break;
 						}
+						menulink.push(link);
+						menulinkurl.push(linkurl);
 					}
 				}
 
 				// No page URL match found, try a breadcrumb link match instead
 				if (!match) {
 					// Pre-process the breadcrumb links
+					bclink = [];
+					bclinkurl = [];
 					bcsrc = typeof bcsrc.jquery !== 'undefined' ? bcsrc : $(bcsrc);
 					bclinks = bcsrc.find('a').get();
 					bclinkslen = bclinks.length;
-					bcindex = bclinkslen;
-					while (bcindex--) {
-						bclink = bclinks[bcindex];
-						bclinks[bcindex] = bclink.hostname + bclink.pathname.replace(/^([^\/])/, '/$1');
+					for (bcindex = 0; bcindex !== bclinkslen; bcindex += 1) {
+						link = bclinks[bcindex];
+						linkhref = link.getAttribute('href');
+						linkhref = !hrefBug ? link.getAttribute('href') : $(link).attr('href');
+						if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
+							bclink.push(link);
+							bclinkurl.push(link.hostname + link.pathname.replace(/^([^\/])/, '/$1'));
+						}
 					}
 
 					// Try to match each breadcrumb link
-					menulinkslen = menulinks.length;
-					while (menulinkslen--) {
-						menulink = menulinks[menulinkslen];
-						if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
-							menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
-							menulinkurllen = menulinkurl.length;
-							bcindex = bclinkslen;
-							while (bcindex--) {
-								if (bclinks[bcindex].slice(-menulinkurllen) === menulinkurl) {
-									match = true;
-									break;
-								}
-							}
-							if (match) {
+					for (linkindex = 0, menulinkslen = menulink.length; linkindex !== menulinkslen; linkindex += 1) {
+						link = menulink[linkindex];
+						linkurl = menulinkurl[linkindex];
+						linkurllen = linkurl.length;
+						linkquery = link.search;
+						linkquerylen = linkquery.length;						
+						bcindex = bclinkslen;
+						while (bcindex--) {
+							if (bclinkurl[bcindex].slice(-linkurllen) === linkurl && (linkquerylen === 0 || bclink[bcindex].search.slice(-linkquerylen) === linkquery)) {
+								match = true;
 								break;
 							}
 						}
+						if (match) {
+							break;
+						}
 					}
 				}
-				return (match ? $(menulink).addClass(navclass) : $());
+				return (match ? $(link).addClass(navclass) : $());
 			},
 			/**
 			* Builds jQuery Mobile nested accordion menus from an existing menu
