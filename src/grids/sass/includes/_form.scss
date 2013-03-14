@@ -304,9 +304,9 @@
 			}
 		}
 		.form-attention & {
-			border-color: $attention;
+			border-color: $red;
 			@include pseudo-focus(false) {
-				@include single-box-shadow($attention);
+				@include single-box-shadow($red);
 			}
 		}
 		.form-alert & {
@@ -323,7 +323,7 @@
 			color: darken($summary, 5%);
 		}
 		.form-attention & {
-			color: darken($attention, 5%);
+			color: darken($red, 5%);
 		}
 		.form-alert & {
 			color: darken($alert, 42%);
