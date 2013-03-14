@@ -850,7 +850,7 @@
 				} else {
 					data = '{}';
 				}
-				return eval('(' + data + ')');
+				return $.parseJSON(data);
 			}
 		},
 		/**
