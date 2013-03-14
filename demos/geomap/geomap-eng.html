@@ -114,6 +114,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
             tables: [{ 
                 id: 'cities', 
                 zoom: true,
+                tab: false,
+                datatable: true,
                 style: { 
                     type: 'rule', 
                     rule: [
@@ -154,8 +156,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				        }
 			        }					        
                 ]}
-		    }]
-		    
+		    },
+			{ id: 'bbox', tab: true }]    
         }">
     </div>  
 </div>
@@ -242,6 +244,29 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
         </tfoot>
     </table>
     <div class="clear"></div>
+    
+    <table id="bbox" aria-label="Search Results">
+            <caption class="wb-invisible">Table of search results containing bounding box geometries.</caption>
+            <thead>
+                <tr>                        
+                    <th></th>
+                    <th>Title</th>
+                    <th>Geometry</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-geometry="-136, 61, -118, 70" data-type="bbox">
+                    <td>1</td>
+                    <td class="select"><a href="#">Report on 2011 field activities and collection of ground thermal and active layer data in the Mackenzie Corridor completed under Northwest Territories science licence #14918</a></td>
+                    <td>-136, 61, -118, 70</td>
+                </tr>
+                <tr data-geometry="-92.5, 72.75, -79, 75.5" data-type="bbox">
+                    <td>2</td>
+                    <td class="select"><a href="#">Dinoflagellate cysts from upper cretaceous-lower tertiary sections, Bylot and Devon Islands, Arctic Archipelago</a></td>
+                    <td>-92.5, 72.75, -79, 75.5</td>                                           
+                </tr>    
+            </tbody>
+        </table>
 </div>
 
 <!-- END Insert Layer Data -->
@@ -316,12 +341,23 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <script src="../../dist/js/pe-ap-ie-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
 <![endif]-->
-<!--[if gt IE 8]><!-->
+
+<!--[if gt IE 8]><!---->
 <script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
 <!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- Debugging --
+<script src="../../src/theme-gcwu-fegc/js/theme.js"></script>
+<script src="../../src/js/settings.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<script src="../../src/js/workers/geomap.js"></script>
+<script src="../../src/js/workers/tabbedinterface.js"></script>
+<script src="../../src/js/workers/tables.js"></script>
+<!-- DebuggingEnd -->
 
 </body>
 </html>
