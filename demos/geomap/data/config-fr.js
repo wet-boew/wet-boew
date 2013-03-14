@@ -55,8 +55,8 @@
 		    caption: 'Ceci est un exemple de fichier KML chargé localement par Géomap.',
 		    type: 'kml',
 		    url: 'data/sample.kml',		   
-		    visible: false,
-		    datatable: false,
+		    visible: true,
+		    datatable: true,
 		    tab: true,
 		    attributes: {
 		    	name: 'Titre du produit',
@@ -126,7 +126,7 @@
 			},
 			visible: true,	
 			zoom:  true,
-			datatable: false,
+			datatable: true,
 			tab: true,		
 			 // default style			
 			 style: {
