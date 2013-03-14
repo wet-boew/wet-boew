@@ -11,6 +11,7 @@
 	var _pe = window.pe || {
 		fn: {}
 	};
+	
 	var map;
 	var selectControl;
 	var queryLayers = [];
@@ -540,17 +541,15 @@
 			});
 			
 			if (datatable) {	
-				_pe.wb_load({'plugins': {'tables': $('table#' + $table.attr('id'))}});
-				
-				// solve the tab layout problem
-				$('table#' + $table.attr('id')).parent().attr('style', 'display: table; width: 100%');
+				$('table#' + $table.attr('id')).addClass('createDatatable');
+				//$('table#' + $table.attr('id')).parent().attr('style', 'display: table; width: 100%');
 			}
 			
 			// we need to call it here as well because if we use a config outside the domain it is called
 			// before the table is created. We need to call it only once when all overlays are loaded.
 			overlaysLoaded += 1;
 			if (overlays == overlaysLoaded) {
-				_pe.wb_load({'plugins': {'tabbedinterface': $(".wet-boew-tabbedinterface")}});
+				_pe.fn.geomap.refreshPlugins();
 				overlays = 0;
 			}
 		},
@@ -1159,10 +1158,7 @@
 				}
 				
 				if (table.datatable) {
-					_pe.wb_load({'plugins': {'tables': $('table#' + table.id)}});
-					
-					// solve the tab layout problem
-					if (table.tab) $('table#' + table.id).parent().attr('style', 'display: table; width: 100%');
+					$('table#' + table.id).addClass('createDatatable');
 				}
 			});
 							
@@ -1316,8 +1312,35 @@
 		},
 				
 		refreshPlugins: function() {
-			// if there is overlays wait before we call this because thoses tables are not created yet
-			if (!(overlays)) _pe.wb_load({'plugins': {'tabbedinterface': $(".wet-boew-tabbedinterface")}});		
+			
+			if (!(pe.mobile)) {
+				_pe.wb_load({'plugins': {'tables': $('.createDatatable')}});
+					
+				// For each datatable in tabs, set some style to solve the layout problem
+				$.each($('.createDatatable'), function(index, $feature) {
+					var $holder = ($('table#' + $feature.id)).parent();
+					if ($holder.attr('id') == 'tabs_' + $feature.id) $holder.attr('style', 'display: table; width: 100%');
+				});
+					
+				_pe.wb_load({'plugins': {'tabbedinterface': $(".wet-boew-tabbedinterface")}});
+			} else {
+				// In mobile we need to do it the oposite order.
+				_pe.wb_load({'plugins': {'tabbedinterface': $(".wet-boew-tabbedinterface")}});
+				_pe.wb_load({'plugins': {'tables': $('.createDatatable')}});
+				
+				// For each datatable, create the wrapper around it and set display:table to solve layout problem.
+				$.each($('.createDatatable'), function(index, $feature) {
+					var $holder = ($('table#' + $feature.id));
+					$holder.wrap('<div id="' + $feature.id + '_wrapper" class="dataTables_wrapper" style="display: table"></div>');
+				});
+				
+				// Set the opacity to solve transparency problem.
+				$('.wet-boew-tables').css('opacity', '1');
+				$('.table-simplify').css('opacity', '1');
+				
+				// Set display table to solve the table and hidden message appears at the same time
+				//$('.table-simplify').css('dispaly', 'table');
+			}
 		},
 		
 		_exec: function (elm) {
@@ -1413,7 +1436,8 @@
 			} // end load configuration file
 		
 		$(document).on('wb-init-loaded', function () {
-			_pe.fn.geomap.refreshPlugins();;
+			// If there is overlays, wait before calling the plugins
+			if (!(overlays)) _pe.fn.geomap.refreshPlugins();
 		});
 						
 		return elm; // end of exec

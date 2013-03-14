@@ -56,7 +56,7 @@
 		    caption: 'This is a sample KML file loaded locally by Geomap.',
 		    type: 'kml',
 		    url: 'data/sample.kml',		   
-		    visible: false,
+		    visible: true,
 		    datatable: true,
 		    tab: true,
 		    attributes: {
@@ -125,7 +125,7 @@
 			},
 			visible: true,	
 			zoom:  true,
-			datatable: false,
+			datatable: true,
 			tab: true,		
 			 // default style			
 			 style: {
