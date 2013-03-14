@@ -14,7 +14,7 @@
 	/* local reference */
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
-		depends : (pe.mobile ? [] : ['metadata', 'easytabs', 'equalheights']),
+		depends : (pe.mobile ? [] : ['easytabs', 'equalheights']),
 		mobile : function (elm, nested) {
 			// Process any nested tabs
 			if (typeof nested === 'undefined' || !nested) {
@@ -112,11 +112,7 @@
 			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_tabbedinterface), class-based overrides and the data attribute
-			if (typeof wet_boew_tabbedinterface !== 'undefined' && wet_boew_tabbedinterface !== null) {
-				$.extend(opts, wet_boew_tabbedinterface, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
-			} else {
-				$.extend(opts, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
-			}
+			$.extend(opts, ((typeof wet_boew_tabbedinterface !== 'undefined' && wet_boew_tabbedinterface !== null) ? wet_boew_tabbedinterface : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
 			// Add hidden tab list heading
 			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(pe.dic.get('%tab-list') + tabListCount);
@@ -343,7 +339,7 @@
 				if (hash.length > 1) {
 					$tab = $tabs.filter('[href="' + hash + '"]');
 					if ($tab.length) {
-						$this.off('click.hlinks vclick.hlinks').on('click vclick', function (e) {
+						$this.off('click.hlinks vclick.hlinks').on('click vclick', function () {
 							$tab.trigger('click');
 							if (opts.cycle) {
 								stopCycle();

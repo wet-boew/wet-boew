@@ -2,7 +2,7 @@
 * https://github.com/jzaefferer/jquery-validation
 * Copyright (c) 2012 Jörn Zaefferer; Licensed MIT, GPL */
 
-/*!
+/*
  * jQuery Validation Plugin 1.10.0
  *
  * http://bassistance.de/jquery-plugins/jquery-plugin-validation/

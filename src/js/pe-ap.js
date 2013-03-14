@@ -624,7 +624,7 @@
 		array: {
 			/**
 			* Eliminates duplicate strings in an array
-			* @memberof pe.sarray
+			* @memberof pe.array
 			* @function
 			* @param {array} arr Array of strings or primitives
 			* @return {array} Array with duplicate strings or primitives removed
@@ -824,6 +824,33 @@
 					return date;
 				}
 				return null;
+			}
+		},
+		/**
+		* @namespace pe.data
+		*/
+		data: {
+			/**
+			* Retrieves data from a 'data-' attribute
+			* Based on jQuery Metadata plugin | Copyright (c) 2006 John Resig, Yehuda Katz, Jörn Zaefferer, Paul McLanahan | MIT & GPL
+			* @memberof pe.data
+			* @function
+			* @param {jQuery object | DOM object} elm Object with the 'data-' attribute
+			* @param {string} data_name Name after 'data-' in the 'data-' attribute (e.g., 'wet-boew')
+			* @return {data} Object containing the retrieved data
+			*/
+			getData: function (elm, data_name) {
+				var name = 'data-' + (typeof data_name !== undefined ? data_name : 'wet-boew'),
+					elmDOM = (typeof elm.jquery !== 'undefined' ? elm[0] : elm),			
+					data = elmDOM.getAttribute(name);
+				if (data) {
+					if (data.indexOf('{') === -1) {
+						data = '{' + data + '}';
+					}
+				} else {
+					data = '{}';
+				}
+				return eval('(' + data + ')');
 			}
 		},
 		/**
@@ -1410,7 +1437,6 @@
 				},
 				'slider': {
 					selector: 'input[type="range"]',
-					depends: ['metadata'],
 					init: function () { // Needs to be initialized manually
 						fdSlider.onDomReady();
 					},
