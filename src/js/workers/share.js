@@ -14,9 +14,20 @@
 	/* local reference */
 	_pe.fn.share = {
 		type : 'plugin',
-		depends : ['metadata', 'bookmark'],
+		depends : ['bookmark'],
 		_exec : function (elm) {
-			var opts, overrides, $popup, popupDOM, $popupText, popupLinkListDOM, $popupLinks, popupLinksDOM, popupLink, popupLinksLen, popupLinkSpan, match;
+			var opts,
+				overrides,
+				$popup,
+				popupDOM,
+				$popupText,
+				popupLinkListDOM,
+				$popupLinks,
+				popupLinksDOM,
+				popupLink,
+				popupLinksLen,
+				popupLinkSpan,
+				match;
 
 			// Defaults
 			opts = {
@@ -62,13 +73,9 @@
 				addShowAll: elm.hasClass('showall') ? true : undefined,
 				addAnalytics: elm.hasClass('analytics') ? true : undefined
 			};
-
+			
 			// Extend the defaults with settings passed through settings.js (wet_boew_share), class-based overrides and the data attribute
-			if (typeof wet_boew_share !== 'undefined' && wet_boew_share !== null) {
-				$.extend(opts, wet_boew_share, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
-			} else {
-				$.extend(opts, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
-			}
+			$.extend(opts, ((typeof wet_boew_share !== 'undefined' && wet_boew_share !== null) ? wet_boew_share : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
 			elm.bookmark(opts);
 			if (opts.popup && pe.cssenabled) {
