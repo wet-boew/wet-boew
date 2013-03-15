@@ -31,7 +31,7 @@
 				timeParse,
 				getExpireTime,
 				alreadyTimeoutMsg = pe.dic.get('%st-already-timeout-msg'),
-				timoutMsg = pe.dic.get('%st-timeout-msg').replace('&#44;', ',').replace('&#34;', '"');
+				timeoutMsg = pe.dic.get('%st-timeout-msg');
 
 			// Defaults
 			opts = {
@@ -82,7 +82,7 @@
 					result;
 
 				$(document.body).append(overLay);
-				result = confirm(pe.dic.get('%st-timeout-msg').replace('#expireTime#', expireTime));
+				result = confirm(timeoutMsg.replace('#expireTime#', expireTime));
 				$where_was_i.focus();
 				$('.jqmOverlay').detach();
 				return result;
