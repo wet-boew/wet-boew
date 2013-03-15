@@ -6,6 +6,53 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/images";
 
+%wet-default-desktop-screen-z-index-1-display-inline {
+	z-index: 1;
+	display: inline;
+}
+%wet-default-desktop-screen-position-relative {
+	position: relative;
+}
+%wet-default-desktop-screen-float-right {
+	float: right;
+}
+%wet-default-desktop-screen-font-size-1-52-em {
+	font-size: 1.52em;
+}
+%wet-default-desktop-screen-link {
+	&, &.ui-link {
+		&:link {
+			color: #295376;
+		}
+		&:visited {
+			color: #5a306b;
+		}
+	}
+}
+%wet-default-desktop-screen-hover-focus-active-text-decoration-underline {
+	@include pseudo-focus {
+		text-decoration: underline;
+	}
+}
+%wet-default-desktop-screen-a-hover-focus-active-text-decoration-underline {
+	a {
+		@extend %wet-default-desktop-screen-hover-focus-active-text-decoration-underline;
+	}
+}
+%wet-default-desktop-screen-background-0E4164 {
+	background: #0E4164;
+}
+%wet-default-desktop-screen-float-left {
+	float: left;
+}
+%wet-default-desktop-screen-float-right {
+	float: right;
+}
+%wet-default-desktop-screen-padding-9-15-9-0-position-absolute {
+	padding: 9px 15px 9px 0;
+	position: absolute;
+}
+
 html {
 	overflow-y: scroll;
 }
@@ -16,13 +63,6 @@ body {
 	background: #F9F9F9;
 }
 
-%wet-default-desktop-screen-z-index-1-display-inline {
-	z-index: 1;
-	display: inline;
-}
-%wet-default-desktop-screen-position-relative {
-	position: relative;
-}
 #wb-sec {
 	@extend %wet-default-desktop-screen-z-index-1-display-inline;
 }
@@ -66,10 +106,6 @@ body {
 	margin: 7px 0 0 10px;
 }
 
-#wet-title {
-	@extend %wet-default-desktop-screen-hover-focus-active-text-decoration-underline;
-}
-
 #wet-date-mod {
 	position: absolute;
 	bottom: 10px;
@@ -103,9 +139,6 @@ h1 {
 	float: left;
 }
 
-%wet-default-desktop-screen-float-right {
-	float: right;
-}
 #wb-body-sec-sup {
 	#wb-main {
 		@extend %wet-default-desktop-screen-float-right;
@@ -117,19 +150,8 @@ h1 {
 	@extend %wet-default-desktop-screen-position-relative;
 }
 
-%wet-default-link {
-	&, &.ui-link {
-		&:link {
-			color: #295376;
-		}
-		&:visited {
-			color: #5a306b;
-		}
-	}
-}
-
 a {
-	@extend %wet-default-link;
+	@extend %wet-default-desktop-screen-link;
 }
 
 #wet-fullhd {
@@ -160,49 +182,36 @@ a {
 }
 
 #wet-title {
-	display: table-row;
+	@extend %wet-default-desktop-screen-hover-focus-active-text-decoration-underline;
+	@extend %wet-default-desktop-screen-a-hover-focus-active-text-decoration-underline;
+	@extend %wet-default-desktop-screen-font-size-1-52-em;
 	a {
-		display: inline-block;
-		margin-left: 10px;
-		padding-left: 145px;
-	}
-}
-
-#wet-title {
-	&, a {
 		color: #FFF;
-		font-size: 1.52em;
+		@extend %wet-default-desktop-screen-font-size-1-52-em;
 		font-family: Arial, Helvetica, sans-serif;
 		text-shadow: #333 1px 1px 1px;
+		display: table-row;
+	}
+	object {
+		@extend %wet-default-desktop-screen-padding-9-15-9-0-position-absolute;
+	}
+	img {
+		@extend %wet-default-desktop-screen-padding-9-15-9-0-position-absolute;
+	}
+	span {
+		display: table-cell;
+		vertical-align: middle;
+		padding-left: 155px;
+		height: 2.82em;
 	}
 }
 
 #wet-title-in {
-	display: table-cell;
-	vertical-align: middle;
 	margin: 0;
-	padding: 24px 0 24px 0;
-	background: url(../images/logo.svg) no-repeat 0 center;
-}
-
-%wet-default-desktop-screen-hover-focus-active-text-decoration-underline {
-	@include pseudo-focus {
-		text-decoration:underline;
-	}
-}
-
-%wet-default-desktop-screen-a-hover-focus-active-text-decoration-underline {
-	a {
-		@extend %wet-default-desktop-screen-hover-focus-active-text-decoration-underline;
-	}
-}
-
-#wet-title {
-	@extend %wet-default-desktop-screen-a-hover-focus-active-text-decoration-underline;
 }
 
 #wet-srchbx {
-	top: 24px;
+	top: 1.95em;
 	padding: 0;
 	background: #FFF;
 	@include border-radius(4px);
@@ -270,9 +279,6 @@ a {
 	@extend %wet-default-desktop-screen-a-hover-focus-active-text-decoration-underline;
 }
 
-%wet-default-desktop-screen-background-0E4164 {
-	background: #0E4164;
-}
 #wet-psnb {
 	background: #0E4164;
 	border-top: 1px solid #0B3048;
@@ -327,12 +333,6 @@ a {
 	}
 }
 
-%wet-default-desktop-screen-float-left {
-	float: left;
-}
-%wet-default-desktop-scree-float-right {
-	float: right;
-}
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	#wb-body, #wb-body-sec {
@@ -342,7 +342,6 @@ a {
 	}
 
 	#wet-title-in {
-		padding: 24px 0 24px 0;
 		background-position: right center;
 	}
 	#wb-sec-in {
@@ -393,15 +392,6 @@ a {
 					padding-left: 10px;
 				}
 			}
-		}
-	}
-
-	#wet-title {
-		a {
-			margin-left: auto;
-			margin-right: 10px;
-			padding-left: 0;
-			padding-right: 145px;
 		}
 	}
 

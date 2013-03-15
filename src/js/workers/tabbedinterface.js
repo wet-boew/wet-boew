@@ -14,7 +14,7 @@
 	
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
-		depends : (_pe.mobile ? [] : ['metadata', 'easytabs', 'equalheights']),
+		depends : (_pe.mobile ? [] : ['easytabs']),
 		mobile : function (elm, nested) {
 			// Process any nested tabs
 			if (typeof nested === 'undefined' || !nested) {
@@ -86,6 +86,7 @@
 				$tabbedInterfaces = $('.wet-boew-tabbedinterface'),
 				$tabListHeading,
 				$panels = $tabsPanel.children(),
+				panelsDOM = $panels.get(),
 				$toggleButton,
 				$toggleRow,
 				$viewport,
@@ -109,7 +110,10 @@
 				tabListCount = $tabbedInterfaces.length > 1 ? ' ' + (tabListIdx + 1) : '',
 				tabsPanelId,
 				tabSuffix = '-link',
-				href;				
+				href,
+				tallest,
+				height,
+				len;				
 
 			// Defaults
 			opts = {
@@ -138,12 +142,8 @@
 				transition :  (elm.hasClass('fade') ? 'fade' : (elm.hasClass('slide-vert') ? 'slide-vert' : (elm.hasClass('slide-horz') ? 'slide-horz' : undefined)))
 			};
 
-			// Extend the defaults with settings passed through settings.js (wet_boew_tabbedinterface), class-based overrides and the data attribute
-			if (typeof wet_boew_tabbedinterface !== 'undefined' && wet_boew_tabbedinterface !== null) {
-				$.extend(opts, wet_boew_tabbedinterface, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
-			} else {
-				$.extend(opts, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
-			}
+			// Extend the defaults with settings passed through settings.js (wet_boew_tabbedinterface), class-based overrides and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_tabbedinterface !== 'undefined' ? wet_boew_tabbedinterface : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
 			// Add hidden tab list heading
 			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(_pe.dic.get('%tab-list') + tabListCount);
@@ -345,7 +345,15 @@
 			};
 			if (isSlider() || (opts.autoHeight && !elm.hasClass('tabs-style-4') && !elm.hasClass('tabs-style-5'))) {
 				$panels.show();
-				$tabsPanel.equalHeights(true);
+				tallest = 0;
+				len = panelsDOM.length;
+				while (len--) {
+					height = panelsDOM[len].offsetHeight;
+					if (height > tallest) {
+						tallest = height;
+					}
+				}
+				$panels.css({ 'min-height': tallest });
 			}
 	
 			elm.easytabs($.extend({}, opts, {
@@ -519,11 +527,16 @@
 		 * Track the currently active tab for the user's session
 		 */
 		_set_active_panel : function(id, tabListIdx) {
-			window.sessionStorage.setItem('activePanel-' + tabListIdx, id);
+			if (typeof window.sessionStorage !== 'undefined') {
+				window.sessionStorage.setItem('activePanel-' + tabListIdx, id);
+			}
 		},
 
 		_get_active_panel : function(tabListIdx) {
-			return window.sessionStorage.getItem('activePanel-' + tabListIdx);
+			if (typeof window.sessionStorage !== 'undefined') {
+				return window.sessionStorage.getItem('activePanel-' + tabListIdx);
+			}
+			return null;
 		},
 
 		/**
