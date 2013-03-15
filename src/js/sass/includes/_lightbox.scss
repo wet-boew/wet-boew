@@ -47,8 +47,13 @@
 	clear: left;
 }
 
-%wb-lightbox-border-0 {
-	border: 0;
+%wb-lightbox-border-none {
+	border: none;
+}
+
+%wb-lightbox-background-color-transparent-border-none {
+	background-color: transparent;
+	@extend %wb-lightbox-border-none;
 }
 
 %wb-lightbox-box-sizing-content-box {
@@ -175,7 +180,7 @@
 }
 
 .cboxPhoto {
-	@extend %wb-lightbox-border-0;
+	@extend %wb-lightbox-border-none;
 	@extend %wb-lightbox-display-block;
 	float: left;
 	margin: auto;
@@ -185,7 +190,7 @@
 .cboxIframe {
 	@extend %wb-lightbox-width-100-height-100;
 	@extend %wb-lightbox-display-block;
-	@extend %wb-lightbox-border-0;
+	@extend %wb-lightbox-border-none;
 	background: #fff;
 }
 
@@ -229,6 +234,7 @@
 	@extend %wb-lightbox-top-50-width-28-height-65;
 	@extend %wb-lightbox-margin-top--32;
 	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
+	@extend %wb-lightbox-background-color-transparent-border-none;
 	left: -28px;
 	background-position: 100% 0;
 	@include pseudo-focus {
@@ -243,6 +249,7 @@
 	@extend %wb-lightbox-top-50-width-28-height-65;
 	@extend %wb-lightbox-margin-top--32;
 	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
+	@extend %wb-lightbox-background-color-transparent-border-none;
 	right: -28px;
 	background-position: 0 0;
 	@include pseudo-focus {
@@ -257,6 +264,7 @@
 	@extend %wb-lightbox-right-5;
 	@extend %wb-lightbox-display-block;
 	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
+	@extend %wb-lightbox-background-color-transparent-border-none;
 	top: -19px;
 	background-position: 50% 0;
 	width: 38px;
