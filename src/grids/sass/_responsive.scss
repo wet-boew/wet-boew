@@ -64,7 +64,7 @@ form {
 	@extend %grids-responsive-margin-left-10-margin-right-10;
 }
 
-#{headings(2,6)} {
+#{headings(all)} {
 	@extend %grids-responsive-margin-left-10-margin-right-10;
 }
 
@@ -84,6 +84,10 @@ table {
 	@extend %grids-responsive-margin-left-10-margin-right-10;
 }
 
+details {
+	@extend %grids-responsive-margin-left-10-margin-right-10;
+}
+
 [class*=span-] {
 	@extend %grids-responsive-position-relative-float-left-min-height-1;
 	@extend %grids-responsive-margin-left-10-margin-right-10;
@@ -92,10 +96,8 @@ table {
 		height: auto;
 		-ms-interpolation-mode: bicubic;
 	}
-	& {
-		& {
-			@extend %grids-responsive-no-margin;
-		}
+	& & {
+		@extend %grids-responsive-no-margin;
 	}
 }
 

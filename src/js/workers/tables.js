@@ -13,7 +13,7 @@
 	}; /* local reference */
 	_pe.fn.tables = {
 		type: 'plugin',
-		depends: ['metadata','datatables'],
+		depends: ['datatables'],
 		dependscss: ['datatables'],
 		_exec: function (elm) {
 			var opts,
@@ -30,17 +30,10 @@
 			};
 			
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
-			overrides = {
-				
-			};
+			overrides = {};
 			
-			// Extend the defaults with settings passed through settings.js (wet_boew_tables), class-based overrides and the data attribute
-			$.metadata.setType('attr', 'data-wet-boew');
-			if (typeof wet_boew_tables !== 'undefined' && wet_boew_tables !== null) {
-				$.extend(opts, wet_boew_tables, overrides, elm.metadata());
-			} else {
-				$.extend(opts, overrides, elm.metadata());
-			}
+			// Extend the defaults with settings passed through settings.js (wet_boew_tables), class-based overrides and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_tables !== 'undefined' ? wet_boew_tables : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 			
 			elm.dataTable({
 				'aoColumnDefs': [ { 'bVisible': (opts.visible === true), 'aTargets': opts.vColumns } ],
@@ -69,7 +62,13 @@
 					'sProcessing': pe.dic.get('%processing'),
 					'sSearch': pe.dic.get('%search') + pe.dic.get('%colon'),
 					'sZeroRecords': pe.dic.get('%no-match-found')
-				}				
+				},
+				'fnDrawCallback': function() {
+					// Re-equalize element heights if the equalize plugin is active on #wb-main
+					if(_pe.main.hasClass('wet-boew-equalize')) {
+						_pe.fn.equalize._exec(_pe.main);
+					}
+				}
 			});
 		} // end of exec
 	};

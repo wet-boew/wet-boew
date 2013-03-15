@@ -36,8 +36,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
 <!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -51,7 +51,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng-r.svg" role="img" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng.svg" role="img" tabindex="-1" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
 	<div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.png" width="214" height="20" alt="Government of Canada" /></div>
 </object></div></div>
 <ul>
@@ -63,7 +63,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms-r.svg" role="img" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" tabindex="-1" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
 	<div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
 </object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
@@ -204,9 +204,48 @@ and
 						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
 				</section></div>
 				<div id="tab2"><section><h4>Tab 2</h4>
-					<p><a href="#tab3"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Tab 3</a><br />
-						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
-					<p><a href="#">fake link</a></p>
+            <div class="wet-boew-formvalid span-8">
+            <form action="#" method="get" id="validation-example">
+            <fieldset><legend>Contact information</legend>
+            <label for="title1"><span class="field-name">Title</span> <strong>(required)</strong></label>
+            <select id="title1" name="title1" required="required">
+            <option></option>
+            <option value="dr">Dr.</option>
+            <option value="esq">Esq.</option>
+            <option value="mr">Mr.</option>
+            <option value="ms">Ms.</option>
+            </select>
+            <label for="fname1"><span class="field-name">First Name</span> <strong>(required)</strong></label><input id="fname1" name="fname1" type="text" required="required" pattern="{2,}" class="{validate:{minlength:2}}" />
+            <label for="lname1"><span class="field-name">Last Name</span> <strong>(required)</strong></label><input id="lname1" name="lname1" type="text" required="required" pattern="{2,}" class="{validate:{minlength:2}}" />
+            <label for="tel1"><span class="field-name">Telephone Number</span> (999-999-9999) <strong>(required)</strong></label><input id="tel1" name="tel1" type="tel" required="required" class="{validate:{phoneUS:true}}" />
+            <label for="email1"><span class="field-name">Email Address</span></label><input id="email1" name="email1" type="email" />
+            <label for="url1"><span class="field-name">Website URL (http://www.url.com)</span></label><input id="url1" name="url1" type="url" />
+            </fieldset>
+
+            <fieldset><legend>Other examples</legend>
+            <label for="date1"><span class="field-name">Date</span> (YYYY-MM-DD)</label><input id="date1" name="date1" type="date" class="{validate:{dateISO:true}}" />
+            <label for="time1"><span class="field-name">Time</span> (hh:mm)</label><input id="time1" name="time1" type="time" />
+            <label for="an1"><span class="field-name">Alphanumeric</span> (at least 4 characters)</label><input id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" class="{validate:{alphanumeric:true,minlength:4}}" />
+            <label for="digits1"><span class="field-name">Digits only</span></label><input id="digits1" name="digits1" type="number" />
+            <label for="integer1"><span class="field-name">Integer</span> (between 5 and 40)</label><input id="integer1" name="integer1" type="number" min="5" max="40" />
+            <label for="letters1"><span class="field-name">Letters only</span> (maximum of 5 characters)</label><input id="letters1" name="letters1" type="text" size="5" maxlength="5" pattern="[A-Za-z\s]" class="{validate:{lettersonly:true}}" />
+            <label for="text1"><span class="field-name">Letters and punctuation only</span> (allowed punctuation: [. , ( ) "])</label><input id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&quot;\s]" class="{validate:{letterswithbasicpunc:true}}" />
+            <label for="password1"><span class="field-name">Password</span> (between 5 and 10 characters)</label><input id="password1" name="password1" type="password" maxlength="10" size="10" pattern="{5,10}" class="{validate:{rangelength:[5,10]}}" />
+            </fieldset>
+            <div class="form-inline">
+            <input type="submit" value="Submit" class="button button-accent"/> <input type="reset" value="Reset" class="button" />
+            </div>
+            </form>
+            </div>
+            <div class="clear"></div>
+            <noscript>
+            <p>This form cannot be submitted without JavaScript. You may use one of the following methods:</p>
+            <ul>
+            <li>Method 1</li>
+            <li>Method 2</li>
+            <li>Method n</li>
+            </ul>
+            </noscript>
 				</section></div>
 				<div id="tab3"><section><h4>Tab 3</h4>
 					<p><a href="#">fake link</a></p>
@@ -619,5 +658,8 @@ and
 <script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
 <!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
 </body>
 </html>

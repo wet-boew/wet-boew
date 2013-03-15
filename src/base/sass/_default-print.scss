@@ -2,24 +2,80 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%wb-default-print-times-new-roman-font {
+	font-family: Times New Roman, serif;
+}
+
 body {
+	@extend %wb-default-print-times-new-roman-font;
 	background: #FFF;
 }
 
-.print-none, #wb-skip {
+textarea {
+	@extend %wb-default-print-times-new-roman-font;
+}
+
+input {
+	@extend %wb-default-print-times-new-roman-font;
+}
+
+select {
+	@extend %wb-default-print-times-new-roman-font;
+}
+
+%wb-default-print-display-none {
 	display: none;
+}
+
+.print-none {
+	@extend %wb-default-print-display-none;
+}
+
+#wb-skip {
+	@extend %wb-default-print-display-none;
 }
 
 a {
 	&.wb-linkdesc {
 		span {
 			span {
-				@extend .print-none;
+				@extend %wb-default-print-display-none;
 			}
 		}
 	}
 }
 
-#wb-main, #wb-sec, #wb-sup {
+%wb-default-print-min-height-0-important {
 	min-height: 0 !important;
+}
+
+#wb-main {
+	@extend %wb-default-print-min-height-0-important;
+}
+
+#wb-sec {
+	@extend %wb-default-print-min-height-0-important;
+}
+
+#wb-sup {
+	@extend %wb-default-print-min-height-0-important;
+}
+
+%wb-default-print-page-break-all {
+	display: block;
+	page-break-inside: avoid;
+}
+
+.print-page-break-before {
+	@extend %wb-default-print-page-break-all;
+	page-break-before: always;
+}
+
+.print-page-break-after {
+	@extend %wb-default-print-page-break-all;
+	page-break-after: always;
+}
+
+#viewtest {
+	width: 0;
 }

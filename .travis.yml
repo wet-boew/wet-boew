@@ -11,6 +11,4 @@ branches:
 
 
 script:
-  - ant test -Djshint.failbuild=true
-  - ant
-  - ./build/post_build.sh
+  - ant test -Djshint.failbuild=true && ant && ./build/post_build.sh

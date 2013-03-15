@@ -14,7 +14,7 @@
 	/* local reference */
 	_pe.fn.lightbox = {
 		type : 'plugin',
-		depends : ['colorbox', 'metadata'],
+		depends : ['colorbox'],
 		groupindex : 0,
 		_exec : function (elm) {
 			// Variables
@@ -44,10 +44,6 @@
 				slideshowStop : pe.dic.get('%stop') + ' ' + pe.dic.get('%lb-slideshow'),
 				slideshow : false,
 				slideshowAuto : false,
-				onLoad : function () {
-					var $lbTitle = $lbContent.find('#cboxTitle'),
-						$lbCurrent = $lbTitle.next();
-				},
 				onComplete : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
 						$lbCurrent = $lbTitle.next();
@@ -75,16 +71,17 @@
 				slideshowAuto : elm.hasClass('slideshow-auto') ? true : undefined
 			};
 
-			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data attribute
-			if (typeof wet_boew_lightbox !== 'undefined' && wet_boew_lightbox !== null) {
-				$.extend(opts, wet_boew_lightbox, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
-			} else {
-				$.extend(opts, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
-			}
+			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_lightbox !== 'undefined' ? wet_boew_lightbox : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
 			// Add touchscreen support for launching the lightbox
-			$lb = elm.find('.lb-item, .lb-gallery, .lb-hidden-gallery').on('vclick', function () {
-				$.colorbox.launch(this);
+			$lb = elm.find('.lb-item, .lb-gallery, .lb-hidden-gallery').on('vclick touchstart', function (e) {
+				if (e.stopPropagation) {
+					e.stopPropagation();
+				} else {
+					e.cancelBubble = true;
+				}
+				$(this).trigger('click');
 			});
 
 			// Build single images, inline content and AJAXed content
