@@ -119,7 +119,7 @@ jQuery Mobile,%jqm-expand, click to expand contents, cliquer pour afficher le co
 ,%jqm-filter,Filter items…,Filtrer des articles...,filtrar artículos…
 Charts widget,%table-mention,Table,#NAME?,Tabla
 ,%table-following,Chart. Details in the following table.,#NAME?,Cuadro. Los detalles aparecen en la siguiente tabla.
-Session timeout ,%st-timeout-msg,"Your session is about to expire, You have until #expireTime# to activate the ""OK"" button below to extend your session.","Votre session est sur le point d\'expirer, vous avez jusqu\'a #expireTime# pour sélectionnez « OK » ci-dessous pour prolonger votre session.","Su sesión está próxima a expirar, tiene hasta #expireTime# para activar el botón ""OK"" y así extender su sesión."
+Session timeout,%st-timeout-msg,"Your session is about to expire, you have until #expireTime# to activate the ""OK"" button below to extend your session.","Votre session est sur le point d\'expirer, vous avez jusqu\'a #expireTime# pour sélectionnez « OK » ci-dessous pour prolonger votre session.","Su sesión está próxima a expirar, tiene hasta #expireTime# para activar el botón ""OK"" y así extender su sesión."
 ,%st-msgbox-title,Session timeout warning,Avertissement d\'expiration de la session,Aviso de finalización de sesión
 ,%st-already-timeout-msg,"Sorry your session has already expired. Please login again.","Désolé, votre session a déjà expiré. S\'il vous plaît vous connecter à nouveau.","Lamentablemente su sesión ha expirado. Por favor ingrese nuevamente."
 Toggle details,%td-toggle,Toggle all,Basculer tout,Alternar todo

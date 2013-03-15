@@ -15,7 +15,7 @@
  * pe, a progressive javascript library agnostic framework
  */
 /*global jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false*/
-/*jshint bitwise: false */
+/*jshint bitwise: false, evil: true */
 (function ($) {
 	"use strict";
 	var pe, _pe;
@@ -832,7 +832,6 @@
 		data: {
 			/**
 			* Retrieves data from a 'data-' attribute
-			* Based on jQuery Metadata plugin | Copyright (c) 2006 John Resig, Yehuda Katz, Jörn Zaefferer, Paul McLanahan | MIT & GPL
 			* @memberof pe.data
 			* @function
 			* @param {jQuery object | DOM object} elm Object with the 'data-' attribute
@@ -840,17 +839,22 @@
 			* @return {data} Object containing the retrieved data
 			*/
 			getData: function (elm, data_name) {
-				var name = 'data-' + (typeof data_name !== undefined ? data_name : 'wet-boew'),
-					elmDOM = (typeof elm.jquery !== 'undefined' ? elm[0] : elm),			
-					data = elmDOM.getAttribute(name);
-				if (data) {
-					if (data.indexOf('{') === -1) {
-						data = '{' + data + '}';
+				var $elm = typeof elm.jquery !== 'undefined' ? elm : $(elm),
+					dataAttr = $elm.attr('data-' + data_name),
+					dataObj = null;
+				if (dataAttr) {
+					try {
+						dataObj = $.parseJSON(dataAttr);
+					} catch (e) {
+						// Fallback if data- contains a malformed JSON string (less secure than with a JSON string)
+						if (dataAttr.indexOf('{') === -1) {
+							dataAttr = '{' + dataAttr + '}';
+						}
+						dataObj = eval('(' + dataAttr + ')');
 					}
-				} else {
-					data = '{}';
 				}
-				return $.parseJSON(data);
+				$.data(elm, data_name, dataObj);
+				return dataObj;
 			}
 		},
 		/**

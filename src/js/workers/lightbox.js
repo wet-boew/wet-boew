@@ -71,8 +71,8 @@
 				slideshowAuto : elm.hasClass('slideshow-auto') ? true : undefined
 			};
 
-			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data attribute
-			$.extend(opts, ((typeof wet_boew_lightbox !== 'undefined' && wet_boew_lightbox !== null) ? wet_boew_lightbox : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
+			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_lightbox !== 'undefined' ? wet_boew_lightbox : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
 			// Add touchscreen support for launching the lightbox
 			$lb = elm.find('.lb-item, .lb-gallery, .lb-hidden-gallery').on('vclick', function () {

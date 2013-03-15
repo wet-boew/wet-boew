@@ -111,8 +111,8 @@
 				animationSpeed : (elm.hasClass('animate-slow') ? 'slow' : (elm.hasClass('animate-fast') ? 'fast' : undefined))
 			};
 
-			// Extend the defaults with settings passed through settings.js (wet_boew_tabbedinterface), class-based overrides and the data attribute
-			$.extend(opts, ((typeof wet_boew_tabbedinterface !== 'undefined' && wet_boew_tabbedinterface !== null) ? wet_boew_tabbedinterface : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
+			// Extend the defaults with settings passed through settings.js (wet_boew_tabbedinterface), class-based overrides and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_tabbedinterface !== 'undefined' ? wet_boew_tabbedinterface : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
 			// Add hidden tab list heading
 			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(pe.dic.get('%tab-list') + tabListCount);

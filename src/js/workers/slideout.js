@@ -55,8 +55,8 @@
 				}
 			};
 
-			// Extend the defaults with settings passed through settings.js (wet_boew_slideout) and the data attribute
-			$.extend(opts, ((typeof wet_boew_slideout !== 'undefined' && wet_boew_slideout !== null) ? wet_boew_slideout : {}), _pe.data.getData(elm, 'wet-boew'));
+			// Extend the defaults with settings passed through settings.js (wet_boew_slideout) and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_slideout !== 'undefined' ? wet_boew_slideout : {}), _pe.data.getData(elm, 'wet-boew'));
 
 			// Don't do anything if CSS is disabled
 			if (!pe.cssenabled()) {
