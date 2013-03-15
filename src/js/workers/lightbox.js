@@ -75,8 +75,8 @@
 			$.extend(opts, (typeof wet_boew_lightbox !== 'undefined' ? wet_boew_lightbox : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
 			// Add touchscreen support for launching the lightbox
-			$lb = elm.find('.lb-item, .lb-gallery, .lb-hidden-gallery').on('vclick', function () {
-				$.colorbox.launch(this);
+			$lb = elm.find('.lb-item, .lb-gallery, .lb-hidden-gallery').on('vclick touchstart', function () {
+				$(this).trigger('click');
 			});
 
 			// Build single images, inline content and AJAXed content
