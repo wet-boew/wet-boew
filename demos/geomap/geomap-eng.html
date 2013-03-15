@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
+<title>Geomap widget - Working examples - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../dist/js/jquery.min.js"></script>
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng.svg" role="img" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
+    <div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.png" width="214" height="20" alt="Government of Canada" /></div>
+</object></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="geomap-fra.html" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
+    <div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
+</object></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2>Site menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
+<li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="section2/index-eng.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li>Geomap</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Geomap</h1>
+
+<div class="span-6">
+    <div 
+        class="wet-boew-geomap position scaleline tab" 
+        data-wet-boew="{ 
+            layersFile: 'data/config-en.js', 
+            tables: [{ 
+                id: 'cities', 
+                zoom: true,
+                tab: false,
+                datatable: true,
+                style: { 
+                    type: 'rule', 
+                    rule: [
+                    {
+                        field: 'Population 2011',
+                        value: [1000000],
+                        filter: 'LESS_THAN', 
+                        init: {
+                            'strokeColor': '#0083f5', 
+                            'fillColor': '#57a8f0', 
+                            'pointRadius': '6', 
+                            'fillOpacity': 0.80, 
+                            'strokeWidth': 1.0
+                        }
+                    },
+                    {
+                        field: 'Population 2011',
+                        value: [1000000, 2000000],
+                        filter: 'BETWEEN', 
+                        init: {
+                            'strokeColor': '#FF9900', 
+                            'fillColor': '#FF9900', 
+                            'pointRadius': '8', 
+                            'fillOpacity': 0.80, 
+                            'strokeWidth': 1.0
+                        }
+                    },
+					{
+					    field: 'Population 2011',
+					    value: [2000000],
+					    filter: 'GREATER_THAN', 
+					    init: {
+					        'strokeColor': '#FF0000', 
+					        'fillColor': '#FF0000', 
+					        'pointRadius': '10', 
+					        'fillOpacity': 0.80, 
+					        'strokeWidth': 1.0
+				        }
+			        }					        
+                ]}
+		    },
+			{ id: 'bbox', tab: true }]    
+        }">
+    </div>  
+</div>
+
+<!-- Insert Legend (optional) --> 
+<div class="wet-boew-geomap-legend span-2">    
+    <h2>Legend</h2>
+</div>
+<!-- END Insert Legend -->
+
+<div class="clear"></div>
+
+<!-- Insert Layer Data -->
+<div class="wet-boew-geomap-layers span-8">        
+    <h3>Map Layers</h3>
+    <h4 class="background-light">Cities</h4>
+    <table id="cities" class="table-simplify" aria-label="Cities" class="span-8">
+        <caption>This is a sample layer created from a table in the current document. A column with cells containing geometry encoded in WKT and marked up with a class named <em>geometry</em> is required. To link the layer features in the table to the map a column containing cells marked up with a class named <em>select</em> is required.</caption>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Census subdivision</th>                            
+                <th>Population 2011</th>
+            </tr>
+        </thead>
+       <tbody>
+            <tr data-geometry="POINT (-79.3847, 43.6476)" data-type="wkt">
+                <td>1</td>
+                <td class="select"><a href="http://www.wikipedia.org/wiki/Toronto" title="Toronto">Toronto</a></td>
+                <td>2615060</td>
+            </tr>
+            <tr data-geometry="POINT (-73.56123, 45.52927)" data-type="wkt">
+                <td>2</td>
+                <td class="select"><a href="http://www.wikipedia.org/wiki/Montreal" title="Montreal">Montreal</a></td>
+                <td>1649519</td>
+            </tr>
+            <tr data-geometry="POINT (-114.05879, 51.04668)" data-type="wkt">
+                <td>3</td>
+                <td class="select"><a href="http://www.wikipedia.org/wiki/Calgary" title="Calgary">Calgary</a></td>
+                <td>1096833</td>
+            </tr>
+            <tr data-geometry="POINT (-75.68937, 45.41072)" data-type="wkt">
+                <td>4</td>
+                <td class="select"><a href="http://www.wikipedia.org/wiki/Ottawa" title="Ottawa">Ottawa</a></td>
+                <td>883391</td>
+            </tr>
+            <tr data-geometry="POINT (-113.49590, 53.53398)" data-type="wkt">
+                <td>5</td>
+                <td class="select"><a href="http://www.wikipedia.org/wiki/Edmonton" title="Edmonton">Edmonton</a></td>
+                <td>812201</td>
+            </tr>
+            <tr data-geometry="POINT (-85.68937, 45.41072)" data-type="wkt">
+                <td>6</td>
+                <td class="select"><a href="http://www.wikipedia.org/wiki/Mississauga" title="Mississauga">Mississauga</a></td>
+                <td>713443</td>
+            </tr>
+            <tr data-geometry="POINT (-97.14352, 49.89375)" data-type="wkt">
+                <td>7</td>
+                <td class="select"><a href="http://www.wikipedia.org/wiki/Winnipeg" title="Winnipeg">Winnipeg</a></td>
+                <td>663617</td>
+            </tr>
+            <tr data-geometry="POINT (-123.10091, 49.26428)" data-type="wkt">
+                <td>8</td>
+                <td class="select"><a href="http://www.wikipedia.org/wiki/Vancouver" title="Vancouver">Vancouver</a></td>
+                <td>603502</td>
+            </tr>
+            <tr data-geometry="POINT (-79.76181, 43.68686)" data-type="wkt">
+                <td>9</td>
+                <td class="select"><a href="/wiki/Brampton" title="Brampton">Brampton</a></td>
+                <td>523911</td>
+            </tr>
+            <tr data-geometry="POINT (-79.86788, 43.25717)" data-type="wkt">
+                <td>10</td>
+                <td class="select"><a href="/wiki/Hamilton,_Ontario" title="Hamilton, Ontario">Hamilton</a></td>
+                <td>519949</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Rank</th>
+                <th>Census subdivision</th>                            
+                <th>Population 2011</th>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="clear"></div>
+    
+    <table id="bbox" class="table-simplify" aria-label="Search Results">
+            <caption class="wb-invisible">Table of search results containing bounding box geometries.</caption>
+            <thead>
+                <tr>                        
+                    <th></th>
+                    <th>Title</th>
+                    <th>Geometry</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-geometry="-136, 61, -118, 70" data-type="bbox">
+                    <td>1</td>
+                    <td class="select"><a href="#">Report on 2011 field activities and collection of ground thermal and active layer data in the Mackenzie Corridor completed under Northwest Territories science licence #14918</a></td>
+                    <td>-136, 61, -118, 70</td>
+                </tr>
+                <tr data-geometry="-92.5, 72.75, -79, 75.5" data-type="bbox">
+                    <td>2</td>
+                    <td class="select"><a href="#">Dinoflagellate cysts from upper cretaceous-lower tertiary sections, Bylot and Devon Islands, Arctic Archipelago</a></td>
+                    <td>-92.5, 72.75, -79, 75.5</td>                                           
+                </tr>    
+            </tbody>
+        </table>
+</div>
+
+<!-- END Insert Layer Data -->
+
+<div class="clear"></div>
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-02-01</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">Our Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/en"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+
+<!--[if gt IE 8]><!---->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- Debugging --
+<script src="../../src/theme-gcwu-fegc/js/theme.js"></script>
+<script src="../../src/js/settings.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<script src="../../src/js/workers/geomap.js"></script>
+<script src="../../src/js/workers/tabbedinterface.js"></script>
+<script src="../../src/js/workers/tables.js"></script>
+<!-- DebuggingEnd -->
+
+</body>
+</html>
