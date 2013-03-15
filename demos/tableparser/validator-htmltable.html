@@ -282,11 +282,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 						// Test the first row
 						if (ScopeColgroupEligible) {
 							for (i; i < tblparser.theadRowStack[0].cell.length; i += 1) {
-								if (tblparser.theadRowStack[0].cell[i].colgroup.start === tblparser.theadRowStack[0].cell[i].colgroup.end ||
+								if (tblparser.theadRowStack[0].cell[i].colgroup && 
+									(tblparser.theadRowStack[0].cell[i].colgroup.start === tblparser.theadRowStack[0].cell[i].colgroup.end ||
 									tblparser.theadRowStack[0].cell[i].colgroup.start !== tblparser.theadRowStack[0].cell[i].colpos || 
 									tblparser.theadRowStack[0].cell[i].colgroup.end !== 
 									(tblparser.theadRowStack[0].cell[i].colpos + tblparser.theadRowStack[0].cell[i].width - 1) || 
-									tblparser.theadRowStack[0].cell[i].colgroup.type !== 2) {
+									tblparser.theadRowStack[0].cell[i].colgroup.type !== 2)) {
 
 									// This cell DO NOT fit in the colgroup patern
 									ScopeColgroupEligible = false;
