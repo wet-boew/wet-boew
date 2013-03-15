@@ -24,7 +24,7 @@ Just include something like this to the Maven POM file for your application:
 						<overlays>
 							<overlay>
 								<groupId>com.github.wet-boew</groupId>
-								<artifactId>wet-gcwu-theme-overlay</artifactId>
+								<artifactId>wet-wet-theme-overlay</artifactId>
 								<targetPath>static/WET</targetPath>
 							</overlay>
 						</overlays>
@@ -39,7 +39,7 @@ Just include something like this to the Maven POM file for your application:
 	...
 		<dependency>
 			<groupId>com.github.wet-boew</groupId>
-			<artifactId>wet-gcwu-theme-overlay</artifactId>
+			<artifactId>wet-wet-theme-overlay</artifactId>
 			<version>3.0.5</version>
 			<type>war</type>
 			<scope>runtime</scope>

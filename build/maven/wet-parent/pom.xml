@@ -1,28 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- NOTE:  The v3.0.3 git repository did not yet include the POM files to build the WAR overlays.  If for some reason you want to rebuild the overlays from the 'v3.03release' tag, place
-	the Maven POM files in the src/maven folder.  You should have a structure like this:
-		src/maven/wet-parent/
-		src/maven/wet-parent/wet-clf2-theme-overlay/
-		src/maven/wet-parent/wet-gcwu-intranet-theme-overlay/
-		src/maven/wet-parent/wet-gcwu-theme-overlay/
-		
-		And of course, in each over the overlay folders the standard Maven layout should be created.
-	-->
-	
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
 		<version>7</version>
 	</parent>
 
-	<groupId>ca.gc.tbs-sct.wet-boew</groupId>
+	<groupId>com.github.wet-boew</groupId>
 	<artifactId>wet-parent</artifactId>
-	<version>3.0.3-SNAPSHOT</version>
+	<version>3.0.6</version>
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>wet-base-theme-overlay</module>
+		<module>wet-wet-theme-overlay</module>
 		<module>wet-clf2-theme-overlay</module>
 		<module>wet-gcwu-theme-overlay</module>
 		<module>wet-gcwu-intranet-theme-overlay</module>
@@ -30,8 +23,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-		<!-- Maven plugin versions -->
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
 		<maven.archetype.plugin.version>2.2</maven.archetype.plugin.version>
 		<maven.assembly.plugin.version>2.3</maven.assembly.plugin.version>
@@ -42,6 +34,7 @@
 		<maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
 		<maven.enforcer.plugin.version>1.1.1</maven.enforcer.plugin.version>
 		<maven.failsafe.plugin.version>2.12.2</maven.failsafe.plugin.version>
+		<maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
 		<maven.install.plugin.version>2.3.1</maven.install.plugin.version>
 		<maven.jar.plugin.version>2.4</maven.jar.plugin.version>
 		<maven.javadoc.plugin.version>2.8.1</maven.javadoc.plugin.version>
@@ -52,6 +45,14 @@
 		<maven.source.plugin.version>2.2</maven.source.plugin.version>
 		<maven.surefire.plugin.version>2.12.2</maven.surefire.plugin.version>
 		<maven.war.plugin.version>2.2</maven.war.plugin.version>
+		<nexus.staging.maven.plugin.version>1.3</nexus.staging.maven.plugin.version>
+		<dist.js.folder>${dist.folder}/js</dist.js.folder>
+		<dist.grids.folder>${dist.folder}/grids</dist.grids.folder>
+		<dist.theme.base.folder>${dist.folder}/theme-base</dist.theme.base.folder>
+		<dist.theme.wet.folder>${dist.folder}/theme-wet-boew</dist.theme.wet.folder>
+		<dist.theme.gcwu.folder>${dist.folder}/theme-gcwu-fegc</dist.theme.gcwu.folder>
+		<dist.theme.gcwu.intranet.folder>${dist.folder}/theme-gcwu-intranet</dist.theme.gcwu.intranet.folder>
+		<dist.theme.clf2.folder>${dist.folder}/theme-clf2-nsi2</dist.theme.clf2.folder>
 	</properties>
 
 	<build>
@@ -61,6 +62,30 @@
 				<artifactId>maven-enforcer-plugin</artifactId>
 				<version>${maven.enforcer.plugin.version}</version>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <nexusUrl>https://oss.sonatype.org</nexusUrl>
+                    <serverId>sonatype-nexus-staging</serverId>
+                </configuration>
+            </plugin>
 		</plugins>
 
 		<!-- Manage plugin versions to provide stability of build environment -->
@@ -124,6 +149,12 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-failsafe-plugin</artifactId>
 					<version>${maven.failsafe.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>${maven.gpg.plugin.version}</version>
 				</plugin>
 
 				<plugin>
@@ -192,6 +223,12 @@
 						<packagingExcludes>**/.gitignore, **/WEB-INF/*</packagingExcludes>
 					</configuration>
 				</plugin>
+
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>${nexus.staging.maven.plugin.version}</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -218,24 +255,9 @@
 			<name>MIT License</name>
 			<url>https://github.com/wet-boew/wet-boew/blob/master/Licence-fra.txt</url>
 			<distribution>repo</distribution>
-			<comments>Licence en fran�ais</comments>
+			<comments>Licence en français</comments>
 		</license>
 	</licenses>
-
-	<organization>
-		<name>Treasury Board Secretariat, Government of Canada</name>
-		<url>http://www.tbs-sct.gc.ca</url>
-	</organization>
-
-	<!-- Main point of contact -->
-	<developers>
-		<developer>
-			<id>wet-boew</id>
-			<name>Web Standards Office</name>
-			<email>ws-nw@tbs-sct.gc.ca</email>
-			<url>https://github.com/wet-boew</url>
-		</developer>
-	</developers>
 
 	<issueManagement>
 		<system>Github</system>
@@ -251,17 +273,17 @@
 	<scm>
 		<connection>scm:git:https://github.com/wet-boew/wet-boew.git</connection>
 		<developerConnection>scm:git:https://github.com/wet-boew/wet-boew.git</developerConnection>
-		<tag>v3.03release</tag>
 	</scm>
 
-	<!-- Override the target folder location when building as part of the WET 
-		ant build -->
 	<profiles>
 		<profile>
-			<id>wetAntBuild</id>
-			<build>
-				<directory>${wet.ant.build.folder}</directory>
-			</build>
+			<id>default</id>
+			<properties>
+				<dist.folder>../../../dist</dist.folder>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 	</profiles>
 </project>

@@ -23,7 +23,7 @@ Just include something like this to the Maven POM file for your application:
 					<configuration>
 						<overlays>
 							<overlay>
-								<groupId>ca.gc.tbs-sct.wet-boew</groupId>
+								<groupId>com.github.wet-boew</groupId>
 								<artifactId>wet-clf2-theme-overlay</artifactId>
 								<targetPath>static/WET</targetPath>
 							</overlay>
@@ -38,9 +38,9 @@ Just include something like this to the Maven POM file for your application:
 	<dependencies>
 	...
 		<dependency>
-			<groupId>ca.gc.tbs-sct.wet-boew</groupId>
+			<groupId>com.github.wet-boew</groupId>
 			<artifactId>wet-clf2-theme-overlay</artifactId>
-			<version>3.0</version>
+			<version>3.0.5</version>
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>

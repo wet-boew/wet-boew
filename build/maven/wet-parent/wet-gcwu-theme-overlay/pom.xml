@@ -1,21 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- NOTE:  The v3.0.3 git repository did not yet include the POM files to build the WAR overlays.  If for some reason you want to rebuild the overlays from the 'v3.03release' tag, place
-	the Maven POM files in the src/maven folder.  You should have a structure like this:
-		src/maven/wet-parent/
-		src/maven/wet-parent/wet-clf2-theme-overlay/
-		src/maven/wet-parent/wet-gcwu-intranet-theme-overlay/
-		src/maven/wet-parent/wet-gcwu-theme-overlay/
-		
-		And of course, in each over the overlay folders the standard Maven layout should be created.
-	-->
-
 	<parent>
 		<artifactId>wet-parent</artifactId>
-		<groupId>ca.gc.tbs-sct.wet-boew</groupId>
-		<version>3.0.3-SNAPSHOT</version>
-		<relativePath>..</relativePath>
+		<groupId>com.github.wet-boew</groupId>
+		<version>3.0.6</version>
 	</parent>
 
 	<artifactId>wet-gcwu-theme-overlay</artifactId>
@@ -31,15 +21,15 @@
 					<configuration>
 						<webResources>
 							<resource>
-								<directory>../../../../dist/js</directory>
+								<directory>../${dist.js.folder}</directory>
 								<targetPath>js</targetPath>
 							</resource>
 							<resource>
-								<directory>../../../../dist/grids</directory>
+								<directory>../${dist.grids.folder}</directory>
 								<targetPath>grids</targetPath>
 							</resource>
 							<resource>
-								<directory>../../../../dist/theme-gcwu-fegc</directory>
+								<directory>../${dist.theme.gcwu.folder}</directory>
 								<targetPath>theme-gcwu-fegc</targetPath>
 							</resource>
 						</webResources>
