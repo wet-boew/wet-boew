@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
+<title>Labels - Charts - Working examples - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng.svg" role="img" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
+	<div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.png" width="214" height="20" alt="Government of Canada" /></div>
+</object></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="#" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
+	<div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
+</object></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2>Site menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
+<li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="section2/index-eng.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li>Charts - Web Experience Toolkit (WET)</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Labels - Charts - Web Experience Toolkit (WET)</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Charts-and-graphs" class="button button-info">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<div class="module-info span-2 float-right">
+<h3>Requirement</h3>
+<p>WxT 3.1 or higher</p>
+</div>
+
+
+<h2>Position</h2>
+
+<p>This is how you can specify wich row or column that would be use to label the charts. The column is only available when the table is reversed.</h2>
+
+<p><code>wb-charts-labelposition-<strong>x</strong></code> Where <strong>x</strong> represent a positive number associated to the row/col position of the table. The first row/col is represented by the number 1. The default value is the deppest row/col used in the heading group.</p>
+
+
+<h3>Examples</h3>
+
+<table class="wet-boew-charts wb-charts-line wb-chart-labelposition-1 wb-charts-noencapsulation-true">
+	<caption>First row use to label the chart - <code>wb-charts-labelposition-1</code> </caption>
+	<thead>
+		<tr>
+			<th rowspan="2"></th>
+			<th id="tbl1363314652944-6" colspan="3">Group 1</th>
+			<th id="tbl1363314652944-7" colspan="2">Group 2</th>
+			<th id="tbl1363314652944-8" rowspan="2">bath</th>
+		</tr>
+		<tr>
+			<th headers="tbl1363314652944-6" id="tbl1363314652944-11">food</th>
+			<th headers="tbl1363314652944-6" id="tbl1363314652944-12">auto</th>
+			<th headers="tbl1363314652944-6" id="tbl1363314652944-13">household</th>
+			<th headers="tbl1363314652944-7" id="tbl1363314652944-14">furniture</th>
+			<th headers="tbl1363314652944-7" id="tbl1363314652944-15">kitchen</th>
+		</tr>
+	</thead><tbody>
+		<tr>
+			<th id="tbl1363314652944-19">Mary</th>
+			<td headers="tbl1363314652944-6 tbl1363314652944-11 tbl1363314652944-19">300</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-12 tbl1363314652944-19">160</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-13 tbl1363314652944-19">40</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-14 tbl1363314652944-19">120</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-15 tbl1363314652944-19">100</td>
+			<td headers="tbl1363314652944-8 tbl1363314652944-19">70</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314652944-38">Tom</th>
+			<td headers="tbl1363314652944-6 tbl1363314652944-11 tbl1363314652944-38">3</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-12 tbl1363314652944-38">40</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-13 tbl1363314652944-38">30</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-14 tbl1363314652944-38">45</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-15 tbl1363314652944-38">35</td>
+			<td headers="tbl1363314652944-8 tbl1363314652944-38">49</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314652944-48">Brad</th>
+			<td headers="tbl1363314652944-6 tbl1363314652944-11 tbl1363314652944-48">10</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-12 tbl1363314652944-48">180</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-13 tbl1363314652944-48">10</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-14 tbl1363314652944-48">85</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-15 tbl1363314652944-48">70</td>
+			<td headers="tbl1363314652944-8 tbl1363314652944-48">79</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314652944-58">Kate</th>
+			<td headers="tbl1363314652944-6 tbl1363314652944-11 tbl1363314652944-58">40</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-12 tbl1363314652944-58">80</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-13 tbl1363314652944-58">90</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-14 tbl1363314652944-58">25</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-15 tbl1363314652944-58">15</td>
+			<td headers="tbl1363314652944-8 tbl1363314652944-58">119</td>
+		</tr>		
+	</tbody></table>
+
+<hr />
+
+<table class="wet-boew-charts wb-charts-line wb-charts-labelposition-2 wb-charts-noencapsulation-true">
+	<caption>Second row use to label the chart - <code>wb-charts-labelposition-2</code></caption>
+	<thead>
+		<tr>
+			<th rowspan="2"></th>
+			<th id="tbl1363314702030-6" colspan="3">Group 1</th>
+			<th id="tbl1363314702030-7" colspan="2">Group 2</th>
+			<th id="tbl1363314702030-8" rowspan="2">bath</th>
+		</tr>
+		<tr>
+			<th headers="tbl1363314702030-6" id="tbl1363314702030-11">food</th>
+			<th headers="tbl1363314702030-6" id="tbl1363314702030-12">auto</th>
+			<th headers="tbl1363314702030-6" id="tbl1363314702030-13">household</th>
+			<th headers="tbl1363314702030-7" id="tbl1363314702030-14">furniture</th>
+			<th headers="tbl1363314702030-7" id="tbl1363314702030-15">kitchen</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th id="tbl1363314702030-19">Mary</th>
+			<td headers="tbl1363314702030-6 tbl1363314702030-11 tbl1363314702030-19">300</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-12 tbl1363314702030-19">160</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-13 tbl1363314702030-19">40</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-14 tbl1363314702030-19">120</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-15 tbl1363314702030-19">100</td>
+			<td headers="tbl1363314702030-8 tbl1363314702030-19">70</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314702030-38">Tom</th>
+			<td headers="tbl1363314702030-6 tbl1363314702030-11 tbl1363314702030-38">3</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-12 tbl1363314702030-38">40</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-13 tbl1363314702030-38">30</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-14 tbl1363314702030-38">45</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-15 tbl1363314702030-38">35</td>
+			<td headers="tbl1363314702030-8 tbl1363314702030-38">49</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314702030-48">Brad</th>
+			<td headers="tbl1363314702030-6 tbl1363314702030-11 tbl1363314702030-48">10</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-12 tbl1363314702030-48">180</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-13 tbl1363314702030-48">10</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-14 tbl1363314702030-48">85</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-15 tbl1363314702030-48">70</td>
+			<td headers="tbl1363314702030-8 tbl1363314702030-48">79</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314702030-58">Kate</th>
+			<td headers="tbl1363314702030-6 tbl1363314702030-11 tbl1363314702030-58">40</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-12 tbl1363314702030-58">80</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-13 tbl1363314702030-58">90</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-14 tbl1363314702030-58">25</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-15 tbl1363314702030-58">15</td>
+			<td headers="tbl1363314702030-8 tbl1363314702030-58">119</td>
+		</tr>		
+	</tbody>
+</table>
+
+<hr />
+
+<table class="wet-boew-charts wb-charts-line wb-charts-labelposition-1 wb-charts-noencapsulation-true wb-charts-parsedirection-y">
+	<caption>First column use to label the chart - <code>wb-charts-labelposition-1</code> </caption>
+	<thead>
+		<tr>
+			<th colspan="2"></th>
+			<th id="tbl1363314739889-6">food</th>
+			<th id="tbl1363314739889-7">auto</th>
+			<th id="tbl1363314739889-8">household</th>
+			<th id="tbl1363314739889-9">furniture</th>
+			<th id="tbl1363314739889-10">kitchen</th>
+			<th id="tbl1363314739889-11">bath</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th id="tbl1363314739889-15" colspan="2">Mary</th>
+			<td headers="tbl1363314739889-6 tbl1363314739889-15">300</td>
+			<td headers="tbl1363314739889-7 tbl1363314739889-15">160</td>
+			<td headers="tbl1363314739889-8 tbl1363314739889-15">40</td>
+			<td headers="tbl1363314739889-9 tbl1363314739889-15">120</td>
+			<td headers="tbl1363314739889-10 tbl1363314739889-15">100</td>
+			<td headers="tbl1363314739889-11 tbl1363314739889-15">70</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314739889-35" rowspan="2">Group</th>
+			<th headers="tbl1363314739889-35" id="tbl1363314739889-36">Tom</th>
+			<td headers="tbl1363314739889-6 tbl1363314739889-35 tbl1363314739889-36">3</td>
+			<td headers="tbl1363314739889-7 tbl1363314739889-35 tbl1363314739889-36">40</td>
+			<td headers="tbl1363314739889-8 tbl1363314739889-35 tbl1363314739889-36">30</td>
+			<td headers="tbl1363314739889-9 tbl1363314739889-35 tbl1363314739889-36">45</td>
+			<td headers="tbl1363314739889-10 tbl1363314739889-35 tbl1363314739889-36">35</td>
+			<td headers="tbl1363314739889-11 tbl1363314739889-35 tbl1363314739889-36">49</td>
+		</tr>
+		<tr>
+			<th headers="tbl1363314739889-35" id="tbl1363314739889-46">Brad</th>
+			<td headers="tbl1363314739889-6 tbl1363314739889-35 tbl1363314739889-46">10</td>
+			<td headers="tbl1363314739889-7 tbl1363314739889-35 tbl1363314739889-46">180</td>
+			<td headers="tbl1363314739889-8 tbl1363314739889-35 tbl1363314739889-46">10</td>
+			<td headers="tbl1363314739889-9 tbl1363314739889-35 tbl1363314739889-46">85</td>
+			<td headers="tbl1363314739889-10 tbl1363314739889-35 tbl1363314739889-46">70</td>
+			<td headers="tbl1363314739889-11 tbl1363314739889-35 tbl1363314739889-46">79</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314739889-56" colspan="2">Kate</th>
+			<td headers="tbl1363314739889-6 tbl1363314739889-56">40</td>
+			<td headers="tbl1363314739889-7 tbl1363314739889-56">80</td>
+			<td headers="tbl1363314739889-8 tbl1363314739889-56">90</td>
+			<td headers="tbl1363314739889-9 tbl1363314739889-56">25</td>
+			<td headers="tbl1363314739889-10 tbl1363314739889-56">15</td>
+			<td headers="tbl1363314739889-11 tbl1363314739889-56">119</td>
+		</tr>		
+	</tbody>
+</table>
+
+<hr />
+
+<table class="wet-boew-charts wb-charts-line wb-charts-labelposition-2 wb-charts-noencapsulation-true wb-charts-parsedirection-y">
+	<caption>Second column use to label the chart - <code>wb-charts-labelposition-2</code> </caption>
+	<thead>
+		<tr>
+			<th colspan="2"></th>
+			<th id="tbl1363314789868-6">food</th>
+			<th id="tbl1363314789868-7">auto</th>
+			<th id="tbl1363314789868-8">household</th>
+			<th id="tbl1363314789868-9">furniture</th>
+			<th id="tbl1363314789868-10">kitchen</th>
+			<th id="tbl1363314789868-11">bath</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th id="tbl1363314789868-15" colspan="2">Mary</th>
+			<td headers="tbl1363314789868-6 tbl1363314789868-15">300</td>
+			<td headers="tbl1363314789868-7 tbl1363314789868-15">160</td>
+			<td headers="tbl1363314789868-8 tbl1363314789868-15">40</td>
+			<td headers="tbl1363314789868-9 tbl1363314789868-15">120</td>
+			<td headers="tbl1363314789868-10 tbl1363314789868-15">100</td>
+			<td headers="tbl1363314789868-11 tbl1363314789868-15">70</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314789868-35" rowspan="2">Group</th>
+			<th headers="tbl1363314789868-35" id="tbl1363314789868-36">Tom</th>
+			<td headers="tbl1363314789868-6 tbl1363314789868-35 tbl1363314789868-36">3</td>
+			<td headers="tbl1363314789868-7 tbl1363314789868-35 tbl1363314789868-36">40</td>
+			<td headers="tbl1363314789868-8 tbl1363314789868-35 tbl1363314789868-36">30</td>
+			<td headers="tbl1363314789868-9 tbl1363314789868-35 tbl1363314789868-36">45</td>
+			<td headers="tbl1363314789868-10 tbl1363314789868-35 tbl1363314789868-36">35</td>
+			<td headers="tbl1363314789868-11 tbl1363314789868-35 tbl1363314789868-36">49</td>
+		</tr>
+		<tr>
+			<th headers="tbl1363314789868-35" id="tbl1363314789868-46">Brad</th>
+			<td headers="tbl1363314789868-6 tbl1363314789868-35 tbl1363314789868-46">10</td>
+			<td headers="tbl1363314789868-7 tbl1363314789868-35 tbl1363314789868-46">180</td>
+			<td headers="tbl1363314789868-8 tbl1363314789868-35 tbl1363314789868-46">10</td>
+			<td headers="tbl1363314789868-9 tbl1363314789868-35 tbl1363314789868-46">85</td>
+			<td headers="tbl1363314789868-10 tbl1363314789868-35 tbl1363314789868-46">70</td>
+			<td headers="tbl1363314789868-11 tbl1363314789868-35 tbl1363314789868-46">79</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314789868-56" colspan="2">Kate</th>
+			<td headers="tbl1363314789868-6 tbl1363314789868-56">40</td>
+			<td headers="tbl1363314789868-7 tbl1363314789868-56">80</td>
+			<td headers="tbl1363314789868-8 tbl1363314789868-56">90</td>
+			<td headers="tbl1363314789868-9 tbl1363314789868-56">25</td>
+			<td headers="tbl1363314789868-10 tbl1363314789868-56">15</td>
+			<td headers="tbl1363314789868-11 tbl1363314789868-56">119</td>
+		</tr>		
+	</tbody>
+</table>
+
+<hr />
+
+<h2>Uniform Tick options</h2>
+
+<p>By default, the tick is called uniform because each table slot would have the same value (Uniform value between slots). When deactivated, only the highest header row/col would get uniform value. Childs cells would get divised value attribution.</p>
+
+
+<h3>Examples</h3> 
+
+<table class="wet-boew-charts wb-charts-uniformtick-false wb-charts-noencapsulation-true">
+<caption>Uniform Tick deactivated <code>wb-charts-uniformtick-false</code></caption>
+<thead>
+<tr>
+<th rowspan="3" colspan="2" class="wb-charts-fill-Azure wb-charts-fillover-Beige"></th>
+<th id="tbl1363314833611-6" colspan="6" class="wb-charts-fill-Bisque wb-charts-fillover-BurlyWood">Previous Year</th>
+<th id="tbl1363314833611-7" rowspan="3" class="wb-charts-fill-Cornsilk wb-charts-fillover-Cyan">2008 - Q1</th>
+<th id="tbl1363314833611-8" rowspan="3" class="wb-charts-fill-LightCoral wb-charts-fillover-HotPink">2008 - Q1</th>
+</tr>
+<tr>
+<th headers="tbl1363314833611-6" id="tbl1363314833611-11" colspan="2" class="wb-charts-fill-pink wb-charts-fillover-yellow">2006</th>
+<th headers="tbl1363314833611-6" id="tbl1363314833611-12" colspan="4" class="wb-charts-fill-lightblue wb-charts-fillover-lightgreen">2007</th>
+</tr>
+<tr>
+<th headers="tbl1363314833611-6 tbl1363314833611-11" id="tbl1363314833611-15" class="wb-charts-fill-pink wb-charts-fillover-yellow">Q3</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-11" id="tbl1363314833611-16" class="wb-charts-fill-pink wb-charts-fillover-blue">Q4</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-17" class="wb-charts-fill-pink wb-charts-fillover-red">Q1</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-18" class="wb-charts-fill-pink wb-charts-fillover-yellow">Q2</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-19" class="wb-charts-fill-pink wb-charts-fillover-blue">Q3</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-20" class="wb-charts-fill-pink wb-charts-fillover-red">Q4</th>
+</tr>
+</thead><tbody>
+<tr>
+<th id="tbl1363314833611-24" colspan="2" class="wb-charts-stacked wb-charts-color-red wb-charts-dasharray-DashSpace wb-charts-fillopacity-50">Goods</th>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-15 tbl1363314833611-24">11.406</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-16 tbl1363314833611-24">12.139</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-17 tbl1363314833611-24">13.563</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-18 tbl1363314833611-24">$ 15.134</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-19 tbl1363314833611-24">9.510 $</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-20 tbl1363314833611-24">9.230</td>
+<td headers="tbl1363314833611-7 tbl1363314833611-24">12.551</td>
+<td headers="tbl1363314833611-8 tbl1363314833611-24">12.551</td>
+</tr>
+<tr>
+<th id="tbl1363314833611-48" rowspan="2" class="wb-charts-line wb-charts-color-yellow">Test Group</th>
+<th headers="tbl1363314833611-48" id="tbl1363314833611-49" class="wb-charts-stacked wb-charts-color-blue wb-charts-dasharray-DashDot wb-charts-fillopacity-50">Other current account</th>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-15 tbl1363314833611-48 tbl1363314833611-49">-7.010</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-16 tbl1363314833611-48 tbl1363314833611-49">-7.437</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-17 tbl1363314833611-18 tbl1363314833611-19 tbl1363314833611-48 tbl1363314833611-59 tbl1363314833611-59" rowspan="2" colspan="3">-10.231</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-20 tbl1363314833611-48 tbl1363314833611-49">-7.009</td>
+<td headers="tbl1363314833611-7 tbl1363314833611-48 tbl1363314833611-49">-6.387</td>
+<td headers="tbl1363314833611-8 tbl1363314833611-48 tbl1363314833611-49">-6.387</td>
+</tr>
+<tr>
+<th headers="tbl1363314833611-48" id="tbl1363314833611-59" class="wb-charts-area wb-charts-color-green">Total</th>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-15 tbl1363314833611-48 tbl1363314833611-59">4.396</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-16 tbl1363314833611-48 tbl1363314833611-59">4.702</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-20 tbl1363314833611-48 tbl1363314833611-59">2.221</td>
+<td headers="tbl1363314833611-7 tbl1363314833611-48 tbl1363314833611-59">-6.164</td>
+<td headers="tbl1363314833611-8 tbl1363314833611-48 tbl1363314833611-59">6.164</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<table class="wet-boew-charts  wb-charts-noencapsulation-true wb-charts-uniformtick-true">
+<caption>Uniform Tick activated (Default or <code>wb-charts-uniformtick-true</code>)</caption>
+<thead>
+<tr>
+<th rowspan="3" colspan="2" class="wb-charts-fill-Azure wb-charts-fillover-Beige"></th>
+<th id="tbl1363314869184-6" colspan="6" class="wb-charts-fill-Bisque wb-charts-fillover-BurlyWood">Previous Year</th>
+<th id="tbl1363314869184-7" rowspan="3" class="wb-charts-fill-Cornsilk wb-charts-fillover-Cyan">2008 - Q1</th>
+<th id="tbl1363314869184-8" rowspan="3" class="wb-charts-fill-LightCoral wb-charts-fillover-HotPink">2008 - Q1</th>
+</tr>
+<tr>
+<th headers="tbl1363314869184-6" id="tbl1363314869184-11" colspan="2" class="wb-charts-fill-pink wb-charts-fillover-yellow">2006</th>
+<th headers="tbl1363314869184-6" id="tbl1363314869184-12" colspan="4" class="wb-charts-fill-lightblue wb-charts-fillover-lightgreen">2007</th>
+</tr>
+<tr>
+<th headers="tbl1363314869184-6 tbl1363314869184-11" id="tbl1363314869184-15" class="wb-charts-fill-pink wb-charts-fillover-yellow">Q3</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-11" id="tbl1363314869184-16" class="wb-charts-fill-pink wb-charts-fillover-blue">Q4</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-17" class="wb-charts-fill-pink wb-charts-fillover-red">Q1</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-18" class="wb-charts-fill-pink wb-charts-fillover-yellow">Q2</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-19" class="wb-charts-fill-pink wb-charts-fillover-blue">Q3</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-20" class="wb-charts-fill-pink wb-charts-fillover-red">Q4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th id="tbl1363314869184-24" colspan="2" class="wb-charts-stacked wb-charts-color-red wb-charts-dasharray-DashSpace wb-charts-fillopacity-50">Goods</th>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-15 tbl1363314869184-24">11.406</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-16 tbl1363314869184-24">12.139</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-17 tbl1363314869184-24">13.563</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-18 tbl1363314869184-24">$ 15.134</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-19 tbl1363314869184-24">9.510 $</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-20 tbl1363314869184-24">9.230</td>
+<td headers="tbl1363314869184-7 tbl1363314869184-24">12.551</td>
+<td headers="tbl1363314869184-8 tbl1363314869184-24">12.551</td>
+</tr>
+<tr>
+<th id="tbl1363314869184-48" rowspan="2" class="wb-charts-line wb-charts-color-yellow">Test Group</th>
+<th headers="tbl1363314869184-48" id="tbl1363314869184-49" class="wb-charts-stacked wb-charts-color-blue wb-charts-dasharray-DashDot wb-charts-fillopacity-50">Other current account</th>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-15 tbl1363314869184-48 tbl1363314869184-49">-7.010</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-16 tbl1363314869184-48 tbl1363314869184-49">-7.437</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-17 tbl1363314869184-18 tbl1363314869184-19 tbl1363314869184-48 tbl1363314869184-59 tbl1363314869184-59" rowspan="2" colspan="3">-10.231</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-20 tbl1363314869184-48 tbl1363314869184-49">-7.009</td>
+<td headers="tbl1363314869184-7 tbl1363314869184-48 tbl1363314869184-49">-6.387</td>
+<td headers="tbl1363314869184-8 tbl1363314869184-48 tbl1363314869184-49">-6.387</td>
+</tr>
+<tr>
+<th headers="tbl1363314869184-48" id="tbl1363314869184-59" class="wb-charts-area wb-charts-color-green">Total</th>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-15 tbl1363314869184-48 tbl1363314869184-59">4.396</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-16 tbl1363314869184-48 tbl1363314869184-59">4.702</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-20 tbl1363314869184-48 tbl1363314869184-59">2.221</td>
+<td headers="tbl1363314869184-7 tbl1363314869184-48 tbl1363314869184-59">-6.164</td>
+<td headers="tbl1363314869184-8 tbl1363314869184-48 tbl1363314869184-59">6.164</td>
+</tr>
+</tbody>
+</table>
+
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">Our Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/en"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
+</body>
+</html>
