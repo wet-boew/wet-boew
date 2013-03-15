@@ -15,7 +15,7 @@
  * pe, a progressive javascript library agnostic framework
  */
 /*global jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
-/*jshint bitwise: false */
+/*jshint bitwise: false, evil: true */
 (function ($) {
 	"use strict";
 	var pe, _pe;
@@ -640,7 +640,7 @@
 		array: {
 			/**
 			* Eliminates duplicate strings in an array
-			* @memberof pe.sarray
+			* @memberof pe.array
 			* @function
 			* @param {array} arr Array of strings or primitives
 			* @return {array} Array with duplicate strings or primitives removed
@@ -840,6 +840,37 @@
 					return date;
 				}
 				return null;
+			}
+		},
+		/**
+		* @namespace pe.data
+		*/
+		data: {
+			/**
+			* Retrieves data from a 'data-' attribute
+			* @memberof pe.data
+			* @function
+			* @param {jQuery object | DOM object} elm Object with the 'data-' attribute
+			* @param {string} data_name Name after 'data-' in the 'data-' attribute (e.g., 'wet-boew')
+			* @return {data} Object containing the retrieved data
+			*/
+			getData: function (elm, data_name) {
+				var $elm = typeof elm.jquery !== 'undefined' ? elm : $(elm),
+					dataAttr = $elm.attr('data-' + data_name),
+					dataObj = null;
+				if (dataAttr) {
+					try {
+						dataObj = $.parseJSON(dataAttr);
+					} catch (e) {
+						// Fallback if data- contains a malformed JSON string (less secure than with a JSON string)
+						if (dataAttr.indexOf('{') === -1) {
+							dataAttr = '{' + dataAttr + '}';
+						}
+						dataObj = eval('(' + dataAttr + ')');
+					}
+				}
+				$.data(elm, data_name, dataObj);
+				return dataObj;
 			}
 		},
 		/**
@@ -1432,7 +1463,6 @@
 				},
 				'slider': {
 					selector: 'input[type="range"]',
-					depends: ['metadata'],
 					init: function () { // Needs to be initialized manually
 						fdSlider.onDomReady();
 					},
