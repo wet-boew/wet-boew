@@ -46,8 +46,8 @@
 				powers:	{'ms': 1, 'cs': 10, 'ds': 100, 's': 1000, 'das': 10000, 'hs': 100000, 'ks': 1000000}
 			};
 
-			// Extend the defaults with settings passed through settings.js (wet_boew_sessiontimeout) and the data attribute
-			$.extend(opts, ((typeof wet_boew_sessiontimeout !== 'undefined' && wet_boew_sessiontimeout !== null) ? wet_boew_sessiontimeout : {}), _pe.data.getData(elm, 'wet-boew'));
+			// Extend the defaults with settings passed through settings.js (wet_boew_sessiontimeout) and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_sessiontimeout !== 'undefined' ? wet_boew_sessiontimeout : {}), _pe.data.getData(elm, 'wet-boew'));
 		
 			//------------------------------------------------------ Main functions
 
