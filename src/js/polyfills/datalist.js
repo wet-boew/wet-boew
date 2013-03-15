@@ -120,8 +120,6 @@
 				} else if (type === 'click' || type === 'vclick') {
 					if (!autolist.hasClass('al-hide')) {
 						closeOptions();
-					} else {
-						showOptions('');
 					}
 					return false;
 				} else if (type === 'focus' && pe.ie > 0 && pe.ie < 8) {
@@ -196,11 +194,7 @@
 				}
 			});
 
-			$(container).on("focusoutside", function () {
-				closeOptions();
-			});
-
-			$(document).on("click vclick touchstart", function (e) {
+			_pe.document.on("click vclick touchstart", function (e) {
 				if (!autolist.hasClass('al-hide') && !$(e.target).is(elm)) {
 					closeOptions();
 				}

@@ -2,33 +2,36 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-.cal-container.picker-overlay {
-	position:absolute;
-	z-index:498 !important;
-	margin-top:-2em;
+.cal-container {
+	&.picker-overlay {
+		position: absolute;
+		z-index: 498 !important;
+		margin-top: -2em;
+	}
 }
 
 .picker-close {
 	position: absolute;
 	right: 17px;
 	top: 5px;
-}
-
-.picker-close img {
-	margin: 0;
+	img {
+		margin: 0;
+	}
 }
 
 .picker-field {
-	width:7em;
+	width: 7em;
 }
 
 .ui-mobile {
-	.polyfill.picker-field {
-		display:inline;
+	.polyfill {
+		&.picker-field {
+			display: inline;
+		}
 	}
 	.picker-toggle-hidden, .picker-toggle-visible {
 		img {
-			display:inline;
+			display: inline;
 		}
 	}
 }
@@ -39,23 +42,40 @@
 
 .picker-toggle-visible, .picker-toggle-hidden {
 	padding: 10px;
-}
-
-.picker-toggle-visible img, .picker-toggle-hidden img {
-	margin: 0;
-    vertical-align: middle;
-	width: auto;
-}
-
-.picker-toggle-visible a, .picker-toggle-hidden a {
-	margin-left:0.5em;
-}
-
-div.cal-days {
-	a {
-		text-decoration:underline;
+	img {
+		margin: 0;
+		vertical-align: middle;
+		width: auto;
 	}
-	ol.cal-day-list li.datepicker-selected a {
-		background-color:#333;
+	a {
+		margin-left: 0.5em;
+	}
+}
+
+div {
+	&.cal-days {
+		a {
+			text-decoration: underline;
+		}
+		ol {
+			&.cal-day-list {
+				li {
+					&.datepicker-selected {
+						a {
+							background-color: #333;
+							color: #FFF;
+						}
+					}
+					a {
+						&, &:link {
+							color: #111 !important;
+						}
+						@include pseudo-focus {
+							color: #FFF !important;
+						}
+					}
+				}
+			}
+		}
 	}
 }

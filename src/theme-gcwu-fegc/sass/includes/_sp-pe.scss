@@ -5,100 +5,73 @@
 @import "compass/css3/inline-block";
 @import "compass/css3/appearance";
 @import "compass/css3/border-radius";
-@import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
 
-#wb-body, #wb-body-sec {
-	background:#fff;
-}
-
-h1 {
-	font-size: 2em;
-	color:#222;
-	border:none;
-	font-weight:bold;
-	margin-bottom:0 !important;
-}
-
-h2 {
-	position: absolute;
-	clip: rect(1px, 1px, 1px, 1px);
-	height: 0 !important;
-	width: 0 !important;
-	overflow: hidden !important;
-	margin: 0 !important;
-}
-
-#wb-skip {
-	display:none;
-	visibility:hidden;
-}
-
-#gcwu-title-left, #gcwu-title-right, .gcwu-alt-title-left, .gcwu-alt-title-right {
+%gcwu-sp-pe-title-all {
 	padding-top: 10px;
-	font-size: 1.5em;
 	color: #333;
 	font-weight: bold;
 }
-
-.gcwu-alt-title-left, .gcwu-alt-title-right {
-	font-size: 1.2em;
+%gcwu-sp-pe-title {
+	font-size: 1.5em;
+	@extend %gcwu-sp-pe-title-all;
 }
-
-#gcwu-ef-lang, #gcwu-other-lang {
+%gcwu-sp-pe-alt-title {
+	font-size: 1.2em;
+	@extend %gcwu-sp-pe-title-all;
+}
+%gcwu-sp-pe-lang {
 	list-style-type: none;
 	@include inline-block;
 	margin: 10px 0 0;
 	padding-left: 0;
+	div {
+		min-width: 8em;
+	}
 	li {
 		float: left;
 		padding: 0;
 		text-align: center;
-			a {
-				@include appearance(none);
-				border-bottom:1px solid #999;
-				border-right: 1px solid #999;
-				border-top: 1px solid #fff;
-				border-left: 1px solid #fff;
-				color: #333;
-				padding: 10px 0;
-				@include border-radius(2px);
-				@include text-shadow(0 1px 0 #eee);
-				font-weight:700;
-				@include box-shadow(none);
-				display:block;
-				font-size: 120%;
-				text-decoration: none;
-				&:hover, &:focus, &:active {
-					@include text-shadow(0 1px 0 #ddd);
-					@include box-shadow(none);
-					border: 1px solid #999;
-				}
+		a {
+			@include appearance(none);
+			border: {
+				bottom: 1px solid #999;
+				right: 1px solid #999;
+				top: 1px solid #fff;
+				left: 1px solid #fff;
 			}
-	}
-	div {
-		min-width: 8em;
+			color: #333;
+			padding: 10px 0;
+			@include border-radius(2px);
+			text-shadow: 0 1px 0 #eee;
+			font: {
+				weight: 700;
+				size: 120%;
+			}
+			@include box-shadow(none);
+			display: block;
+			text-decoration: none;
+			text-transform: capitalize;
+			@include pseudo-focus {
+				text-shadow: 0 1px 0 #ddd;
+				@include box-shadow(none);
+				border: 1px solid #999;
+			}
+		}
 	}
 }
-
-#gcwu-ef-lang li {
-	@include inline-block;
-	a:active {
-		@include box-shadow(inset 0 0 5px 2px #999, 0 0 0 0 #eee);
-	}
-}
-
-#gcwu-tc {
-	margin-top:0;
-}
-
-#gcwu-ef-tc, #gcwu-other-tc {
+%gcwu-sp-pe-tc {
 	list-style-type: none;
 	@include inline-block;
 	margin: 0;
-	padding-top: 4px;
-	padding-left: 0;
+	padding: {
+		top: 4px;
+		left: 0;
+	}
 	line-height: normal;
+	div {
+		min-width: 8em;
+	}
 	li {
 		float: left;
 		padding: 0;
@@ -106,12 +79,84 @@ h2 {
 			display: block;
 			text-decoration: none;
 			font-size: 0.9em;
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				text-decoration: underline;
 			}
 		}
 	}
-	div {
-		min-width: 8em;
+}
+
+h1 {
+	font-size: 2em;
+	color: #222;
+	border: none;
+	font-weight: bold;
+	margin-bottom: 0 !important;
+	text-shadow: none;
+}
+
+h2 {
+	position: absolute;
+	@include clip-rect;
+	height: 0 !important;
+	width: 0 !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+}
+
+#gcwu-title {
+	text-shadow: none;
+}
+
+#wb-body {
+	background: #fff;
+}
+
+#wb-skip {
+	display: none;
+	visibility: hidden;
+}
+
+#gcwu-title-left {
+	@extend %gcwu-sp-pe-title;
+}
+
+#gcwu-title-right {
+	@extend %gcwu-sp-pe-title;
+}
+
+.gcwu-alt-title-left {
+	@extend %gcwu-sp-pe-alt-title;
+}
+
+.gcwu-alt-title-right {
+	@extend %gcwu-sp-pe-alt-title;
+}
+
+#gcwu-other-lang {
+	@extend %gcwu-sp-pe-lang;
+}
+
+#gcwu-ef-lang {
+	@extend %gcwu-sp-pe-lang;
+	li {
+		@include inline-block;
+		a {
+			&:active {
+				@include box-shadow(inset 0 0 5px 2px #999, 0 0 0 0 #eee);
+			}
+		}
 	}
+}
+
+#gcwu-tc {
+	margin-top: 0;
+}
+
+#gcwu-ef-tc {
+	@extend %gcwu-sp-pe-tc;
+}
+
+#gcwu-other-tc {
+	@extend %gcwu-sp-pe-tc;
 }

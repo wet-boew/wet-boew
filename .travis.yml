@@ -2,17 +2,13 @@ language: java
 
 env:
   global:
-    - secure: "Vd6aDdDAKL8SZQx8L/LeoDI4+I/Y6cjIoedk31MFCWn6NzAWNj08h6JfRT31\noCH7+jPjIVoakzdjFHBxiLskPfqPSZA4xkVCml3kMai9UqYortnRK8VcFg2W\nqi8XQHOCF7e5mOmHt4AycN/1kJHJZ39u1gdoXu1eO4ml62uKLxc="
+    - secure: "lyMMmGvleOhoAD+T/UQqFfjjiAW+WWU+9YqZjLEfVQxgOQKxB1/GXs45WXko\nB6sQ/U6+b5V202h3RwKuxUUgWZ1TMSrfWjy5NTX+tM8y5IJaVGh4Dl+9p51o\nekfMtEQ6TUHTFpLFwouaGpf4DUCpJHUtoh8HoI/kuAdnIpVmpMY="
 
 branches:
   except:
-    - downloads
+    - /^.*-dist$/
+    - gh-pages
 
-before_script: 
-  - ant test -Djshint.failbuild=true
 
 script:
-  - ant
-
-after_success:
-  - ./build/post_build.sh
+  - ant test -Djshint.failbuild=true && ant && ./build/post_build.sh

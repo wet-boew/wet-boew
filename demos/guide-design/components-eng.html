@@ -20,27 +20,29 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
+<!-- CustomCSSStart -->
 <style type="text/css">
 .billboard-1{background-image:url(../grids/images/billboard-1.jpg);}
 .billboard-2{background-image:url(../grids/images/billboard-2.jpg);}
 .billboard-3{background-image:url(../grids/images/billboard-3.jpg);}
 </style>
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body-sec">
@@ -54,7 +56,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng.svg" role="img" tabindex="-1" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
+	<div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.png" width="214" height="20" alt="Government of Canada" /></div>
+</object></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
@@ -64,19 +68,21 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" tabindex="-1" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
+	<div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
+</object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="gcwu-psnb"><h2>Site menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
@@ -111,7 +117,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 <div class="span-6 module-table-contents">
   <h2>Table of contents</h2>
-  <ul class="column-three">
+  <ul class="column-3">
     <li> <a href="#size">Font size</a></li>
     <li> <a href="#colour">Font colour</a></li>
     <li> <a href="#family">Font family</a></li>
@@ -126,8 +132,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     <li> <a href="#borders">Borders</a></li>
     <li> <a href="#margins">Margins and indents</a></li>
     <li> <a href="#floats">Floats</a></li>
-    <li> <a href="#horizontal">Horizontal aligment</a></li>
-    <li> <a href="#vertical">Vertical aligment</a></li>
+	<li> <a href="#clearing">Clearing floats</a></li>
+    <li> <a href="#horizontal">Horizontal alignment</a></li>
+    <li> <a href="#vertical">Vertical alignment</a></li>
     <li> <a href="#lineheight">Line height</a></li>
     <li> <a href="#nowrap">No wrapping</a></li>
 	<li> <a href="#display">Display options</a></li>
@@ -138,6 +145,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     <li><a href="#print">Print</a></li>
     <li><a href="#thermometer">Thermometer</a></li>
     <li><a href="#date">Date</a></li>
+	<li><a href="#columns">Columns</a></li>
     <li><strong>Modules</strong>
       <ul>
         <li><a href="#module">Module</a></li>
@@ -218,7 +226,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     <h3 class="margin-top-none margin-bottom-none">Demo</h3>
     <p><span class="font-serif">Font families can be changed.</span></p>
     <p>Font families can be changed.</p>
-    <p class="float-right"><a href="../grids/grid-text-eng.html#family" class="button">View all font familiy options</a></p>
+    <p class="float-right"><a href="../grids/grid-text-eng.html#family" class="button">View all font family options</a></p>
   </div>
 </div>
 <div class="clear"></div>
@@ -329,7 +337,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 <h2 id="images"> Images</h2>
 <div class="span-4">
-  <p>Images can be a great thing. According to <a href="http://www.linkedin.com/in/sandraniehaus">Sandra Niehaus</a> (external link), VP User Experience and Creative Director at Closed Loop Marketing,  images require less cognitive processing to recognize and understand than text. </p>
+  <p>Images can be a great thing. According to <a href="http://www.linkedin.com/in/sandraniehaus">Sandra Niehaus</a>, VP User Experience and Creative Director at Closed Loop Marketing,  images require less cognitive processing to recognize and understand than text. </p>
   <p>Images also do the following: </p>
   <ul>
     <li>help users perceive information faster than text, </li>
@@ -342,7 +350,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   </ul>
   <p>Furthermore, while users with visual impairments will need a text  equivalent, images add tremendous value to users with visual  comprehension deficits, like dyslexia. </p>
   <h3 class="margin-bottom-none">Correct use</h3>
-  <p>Refer to: <a href="../opt-cont/img-eng.html">Images - Optimal Content Examples</a></p>
+  <ul>
+	<li>Images can positively and negatively impact the site and the content. Refer to: <a href="format-eng.html#image">Images - Content formatting</a>  </li>
+	<li>Refer to: <a href="../opt-cont/img-eng.html">Images - Optimal Content Examples</a></li>
+	</ul>
 </div>
 <div class="border-left float-right">
   <div class="span-2 margin-bottom-none">
@@ -484,7 +495,27 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   </div>
 </div>
 <div class="clear"></div>
-<h2 id="horizontal" class="margin-bottom-none color-dark">Horizontal aligment</h2>
+<h2 id="clearing" class="margin-bottom-none color-dark">Clearing floats</h2>
+<div class="span-4">
+  <p>Prevent subsequent content from floating.</p>
+  <h3 class="margin-bottom-none">Correct use</h3>
+  <ul>
+    <li>To prevent elements from floating.</li>
+    <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
+  </ul>
+</div>
+<div class="border-left float-right">
+  <div class="span-2 margin-bottom-none">
+    <h3 class="margin-top-none margin-bottom-none">Demo</h3>
+    <p class="float-right background-light">Float right</p>
+	<div class="clear"></div>
+    <p class="float-left background-light">Float left</p>
+    <div class="clear"></div>
+    <p class="float-right"><a href="../grids/grid-position-eng.html#clearing" class="button">View all clearing float options</a></p>
+  </div>
+</div>
+<div class="clear"></div>
+<h2 id="horizontal" class="margin-bottom-none color-dark">Horizontal alignment</h2>
 <div class="span-4">
   <p>Content can be horizontally aligned left, center or right.</p>
   <h3 class="margin-bottom-none">Correct use</h3>
@@ -671,7 +702,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Should only contain a maximum of a few trigger words.</li>
-    <li>It is a teaser to the information follows or preceeds it.</li>
+    <li>It is a teaser to the information follows or precedes it.</li>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -723,7 +754,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 <h2 id="thermometer" class="margin-bottom-none color-dark">Thermometer</h2>
 <div class="span-4">
-  <p> </p>
+  <p>Add a thermometer image. </p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>The image cannot be the sole way of communicating the information.  Text must appear above the image which then allows the image to support the text. </li>
@@ -741,7 +772,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 <h2 id="date" class="margin-bottom-none color-dark">Date</h2>
 <div class="span-4">
-  <p> </p>
+  <p>Display a single date. </p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Only use with a single date, not a date range. </li>
@@ -765,9 +796,40 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   </div>
 </div>
 <div class="clear"></div>
+
+<h2 id="columns" class="margin-bottom-none color-dark">Columns</h2>
+<div class="span-4">
+  <p>Create columns of content. </p>
+  <h3 class="margin-bottom-none">Correct use</h3>
+  <ul>
+    <li>Use to transform a single column of content into two, three or four columns.  However, this feature uses the CSS3 <code>column-count</code> attribute.  IE9 and lower will display the content in a single column, as these browsers do not support column-count.</li>
+    <li>Use when modifications to the default design increase the value to the user and/or content experience.</li>
+    <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
+  </ul>
+</div>
+<div class="border-left float-right">
+  <div class="span-2 margin-bottom-none">
+    <h3 class="margin-top-none margin-bottom-none">Demo</h3>
+    <ul class="column-2">
+		<li>col 1</li>
+		<li>col 1</li>
+		<li>col 1</li>
+		<li>col 2</li>
+		<li>col 2</li>
+		<li>col 2</li>
+	</ul>
+    <div class="clear"></div>
+    <p class="float-right"><a href="../grids/grid-other-eng.html#columns" class="button">View all column options</a></p>
+  </div>
+</div>
+<div class="clear"></div>
+ 
+
+
+
 <h2 id="module" class="margin-bottom-none color-dark">Module</h2>
 <div class="span-4">
-  <p> </p>
+  <p>Put any content in a generic box.</p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
@@ -786,7 +848,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 <h2 id="related" class="margin-bottom-none color-dark">Related module</h2>
 <div class="span-4">
-  <p> </p>
+  <p>Feature links to that are related to the current topic. </p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Use the module-related class to feature a list of links that point to related Web pages.</li>
@@ -811,7 +873,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 <h2 id="billboard" class="margin-bottom-none color-dark">Billboard module</h2>
 <div class="span-4">
-  <p> </p>
+  <p>Create a billboard of links, mixing text with images. </p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Feature links to <strong>short-term specialty (announcements, general interest) and newsworthy pages (stories, events and happenings)</strong>. Do <strong>not</strong> place permanent links in this module as it is for temporarily listings only.  It is not intended to be used as a graphical menu system to supplement or substitute permanent navigation.  This ensures that the billboard remains relevant and that users continue to notice the evergreen items.</li>
@@ -839,7 +901,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 <h2 id="menu" class="margin-bottom-none color-dark">Menu section module</h2>
 <div class="span-4">
-  <p> </p>
+  <p>Creates a supplementary menu.</p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Use as a supplementary menu that follows the user throughout a section of the site. </li>
@@ -868,7 +930,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="clear"></div>
 <h2 id="toc" class="margin-bottom-none color-dark">Table of contents</h2>
 <div class="span-4">
-  <p> </p>
+  <p>Create a standard table of contents. </p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Alignment is always on the left of the page. </li>
@@ -902,7 +964,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <p>Features a large image and a caption.</p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
-    <li> </li>
+    <li>Must include an image and supporting text. </li>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -925,7 +987,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <p>Features basic contact information (complex information should use a regular table).</p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
-    <li> </li>
+    <li>Use for simply contact information.  Complex information would likely use a table. </li>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -956,7 +1018,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <p>Features an article or story.</p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
-    <li> </li>
+    <li>Use to feature an article or story.  Do not use for general information. </li>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -980,7 +1042,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <p>Showcases a list of links to articles or stories.</p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
-    <li> </li>
+    <li> Use on a list of links that showcase links to articles or stories.</li>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1008,7 +1070,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <p>Features a user's comments and responses</p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
-    <li> </li>
+    <li>Use on a list of user comments. </li>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1035,7 +1097,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Use the the module-alert class to alert the user to important <strong>temporary</strong> information, for example systems are down, error messages, or here is a pending change to X.  There is no set definition for what temporary means, however, there is an expectation that this type of information is very short-term.</li>
-    <li>The icon is purely decorative and cannot be soley relied on to communicate the importance of this message.</li>
+    <li>The icon is purely decorative and cannot be solely relied on to communicate the importance of this message.</li>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1058,8 +1120,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <p>An attention module can be added. </p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
-    <li>Use the module-attention class to call attention to a important information. </li>
-    <li>The icon is purely decorative and cannot be soley relied on to communicate the importance of this message.</li>
+    <li>Use the module-attention class to call attention to important information. </li>
+    <li>The icon is purely decorative and cannot be solely relied on to communicate the importance of this message.</li>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1083,7 +1145,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Use the module-note class to call attention to a <strong>feature-worthy information</strong>, for example notes or advisories.</li>
-    <li>The icon is purely decorative and cannot be soley relied on to communicate the importance of this message.</li>
+    <li>The icon is purely decorative and cannot be solely relied on to communicate the importance of this message.</li>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1107,7 +1169,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Use the module-info class to call attention to a <strong>feature-worthy information</strong>.</li>
-    <li>The icon is purely decorative and cannot be soley relied on to communicate the importance of this message.</li>
+    <li>The icon is purely decorative and cannot be solely relied on to communicate the importance of this message.</li>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1131,7 +1193,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Use the module-question class to feature a question.</li>
-    <li>The icon is purely decorative and cannot be soley relied on to communicate the importance of this message.</li>
+    <li>The icon is purely decorative and cannot be solely relied on to communicate the importance of this message.</li>
     <li> Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1155,7 +1217,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Use the module-answer class to feature an answer.</li>
-    <li>The icon is purely decorative and cannot be soley relied on to communicate the importance of this message.</li>
+    <li>The icon is purely decorative and cannot be solely relied on to communicate the importance of this message.</li>
     <li>Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1179,7 +1241,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Use the module-tool class to call attention to a tool or similar solution/product that is featured on the page.</li>
-    <li>The icon is purely decorative and cannot be soley relied on to communicate the importance of this message.</li>
+    <li>The icon is purely decorative and cannot be solely relied on to communicate the importance of this message.</li>
     <li>Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1203,7 +1265,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Use the module-inprogress class to call attention to content that is in-progress or being worked on.</li>
-    <li>The icon is purely decorative and cannot be soley relied on to communicate the importance of this message.</li>
+    <li>The icon is purely decorative and cannot be solely relied on to communicate the importance of this message.</li>
     <li>Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1226,8 +1288,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <p>A refer module can be added. </p>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
-    <li>Use the module-refer class to call attention to a the action of referring something. </li>
-    <li>The icon is purely decorative and cannot be soley relied on to communicate the importance of this message.</li>
+    <li>Use the module-refer class to drawn attention to the fact that the user is being referred/redirected to another page.</li>
+    <li>The icon is purely decorative and cannot be solely relied on to communicate the importance of this message.</li>
     <li>Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1251,7 +1313,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Use the module-summary class to feature <strong>content summaries</strong>, <strong>recaps</strong> and <strong>reviews</strong>.</li>
-    <li>The icon is purely decorative and cannot be soley relied on to communicate the importance of this message.</li>
+    <li>The icon is purely decorative and cannot be solely relied on to communicate the importance of this message.</li>
     <li>Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1275,7 +1337,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Use the module-archive class to inform the user that the page contains archived information. </li>
-    <li>The icon is purely decorative and cannot be soley relied on to communicate the importance of this message.</li>
+    <li>The icon is purely decorative and cannot be solely relied on to communicate the importance of this message.</li>
     <li>Use when modifications to the default design increase the value to the user and/or content experience.</li>
     <li>Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
@@ -1311,6 +1373,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li class="top-level"><a href="components-eng.html">Design components</a></li>
 <li class="top-level"><a href="javascript-eng.html">JavaScript add-ons</a></li>
 <li class="top-level"><a href="layout-eng.html">Page layout</a></li>
+<li class="top-level"><a href="format-eng.html">Content formatting</a></li>
 </ul></div>
 </section>
 <!-- SecNavEnd -->
@@ -1373,9 +1436,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
 </body>
 </html>

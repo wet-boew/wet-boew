@@ -20,22 +20,24 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.language" title="ISO639-2" content="fra" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -49,7 +51,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation du gouvernement du Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-fra.svg" role="img" tabindex="-1" aria-label="Gouvernement du Canada" type="image/svg+xml" width="237" height="24">
+	<div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-fra.png" width="214" height="20" alt="Gouvernement du Canada" /></div>
+</object></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
@@ -59,19 +63,21 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div></div></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" tabindex="-1" aria-label="Symbole du gouvernement du Canada" type="image/svg+xml" width="144" height="34">
+	<div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div>
+</object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-fra.html">Boîte à outils de l'expérience Web&#160;(BOEW)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2>Menu<span> du site</span></h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="gcwu-psnb"><h2>Menu du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-fra.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
@@ -98,12 +104,17 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!-- MainContentStart -->
 <h1 id="wb-cont">Expiration de la session</h1>
 
-<span class="wet-boew-sessiontimeout" data-wet-boew="{inactivity: 30000, logouturl: 'http://wet-boew.github.com/wet-boew/demos/index-fra.html'}"></span>
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Expiration-de-la-session" class="button button-info">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-sessiontimeout" data-wet-boew='{"inactivity": 30000, "logouturl": "http://wet-boew.github.com/wet-boew/demos/index-fra.html"}'></span>
 
 <section><h2>Aperçu</h2>
 <p>Ce sous-projet aidera les propriétaires d'actifs Web à configurer leurs actifs avec une fonction «&#160;Expiration de la session&#160;». Celle-ci sera activée en deux circonstances&#160;: après une période de temps spécifique ou lors d'inactivité. Par exemple, si l'utilisateur demeure trop longtemps sur la même page, la fonction sera activée. De même, si l’utilisateur demeure inactif, la fonction sera activée. Le fureteur affichera alors une boîte de dialogue proposant deux options à l'utilisateur ; s’il souhaite rester connecté il devra sélectionner « OK » et ce, dans un laps de temps précis et s’il souhaite mettre fin à sa session, il n’aura qu’à choisir «&#160;Annuler&#160;». Advenant que l'utilisateur tarde trop à faire son choix, ce sera le paramètre de déconnexion qui s’affichera.</p>
 <p>Le code que vous êtes autorisés à modifier (dans la page) est&#160;:</p>
-<p><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew="{inactivity: 1200000, reactionTime: 30000, sessionalive: 1200000, logouturl: './', refreshCallbackUrl: './'}"&gt;&lt;/span&gt;</code></p>
+<p><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshCallbackUrl": "./"'}"&gt;&lt;/span&gt;</code></p>
 <p>Les paramètres suivants vous permettent de configurer la fonction&#160;:</p>
 <ul>
 <li><strong>inactivity&#160;:</strong> période de temps d'inactivité après laquelle la boîte de dialogue apparaîtra.</li>
@@ -113,14 +124,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li><strong>refreshCallbackUrl&#160;:</strong> Ceci est l'URL pour effectuer une actualisation ajax, doit retourner true/false.</li>
 </ul>
 <p>Le seul paramètre requis est logouturl, tous les autres champs sont facultatifs. Le JavaScript par défaut serait&#160;:</p>
-<p><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew="{logouturl: './'}"&gt;&lt;/span&gt;</code></p>
+<p><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"logouturl": "./"}'&gt;&lt;/span&gt;</code></p>
 <p><strong>NOTE IMPORTANTE&#160;:</strong> Les paramètres inactivity, reactionTime et sessionAlive sont mis en millisecondes. Le seule paramètre obligatoire est le logouturl. Les paramètres inactivity et sessionalive est fixé à 20 minutes par défaut avec un temps de 30 secondes  pour la confirmation du message de dialogue. Le paramètre refreshCallbackUrl ne doit pas être une page contenant la fonction d'expiration de la session de nouveau sinon une boucle sera créé, il devrait être tout simplement une page qui rafraîchit la session.</p>
 <p>Voici un outil qui vous aidera a convertir des minutes en millisecondes (disponible en anglais seulement)&#160;: <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm" rel="external">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>
 <p><strong>NOTE IMPORTANTE&#160;:</strong> Les paramètres sessionalive et inactivity devrait être égal à votre session sur le serveur web moins le temps de reactionTime. Si vous définissez paramètres sessionalive et inactivity avec le même temps que la session sur le serveur web, sans prendre en considération le temps reactionTime, alors la session sur le serveur sera fini dès que la fenêtre contextuelle apparaît pour prolonger la session.</p>
 </section>
 <section><h2>Configuration</h2>
 <p>Ajoutez les lignes suivantes à la page&#160;:</p>
-<p><code>&lt;span class="wet-boew-sessiontimeout"&gt; data-wet-boew="{logouturl: './'}"&gt;&lt;/span&gt;</code></p>
+<p><code>&lt;span class="wet-boew-sessiontimeout"&gt; data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></p>
 </section>
 <section><h2>Faites un essai</h2>
 <p>Cette page a été configurée pour expirer dans 30 secondes. Après ce délai, vous aurez 30 secondes pour choisir de la garder active ou non. Veuillez svp attendre que la boîte de dialogue apparaisse.</p>
@@ -189,9 +200,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
 </body>
 </html>

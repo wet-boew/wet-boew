@@ -2,41 +2,108 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-body{
-	min-width:1200px;
+body {
+	min-width: 1200px;
 }
 
-#base-title-in{
-	width:800px;
+#wet-title-in {
+	width: 800px;
 }
 
+%wet-default-responsive-1200-width-1200 {
+	width: 1200px;
+}
+%wet-default-responsive-1200-width-600 {
+	width: 600px;
+}
+%wet-default-responsive-1200-width-300 {
+	width: 300px;
+}
 #wb-body-sec-sup {
-	#wb-main{
-		width:600px;
-		left:300px;
+	#wb-main {
+		@extend %wet-default-responsive-1200-width-600;
+		left: 300px;
 	}
-	#wb-main-in{
-		width:600px;
+	#wb-main-in {
+		@extend %wet-default-responsive-1200-width-600;
 	}
 }
 
-#wb-sec{
-	width:300px;
+#wb-sec {
+	@extend %wet-default-responsive-1200-width-300;
 }
 
-#wb-sup{
-	width:300px;
+#wb-sup {
+	@extend %wet-default-responsive-1200-width-300;
 	left:600px;
 }
 
-#wb-core-in,#base-fullhd-in,#base-bnr-in,#base-psnb-in,#base-bc-in,#base-fullft-in,#base-sft-in,#base-bnr-in,#base-psnb .mb-menu,#wb-body #wb-main,#base-subsite p{
-	width:1200px;
+#wb-core-in {
+	@extend %wet-default-responsive-1200-width-1200;
 }
 
-#wb-body-sec #wb-main,#wb-body-sec-sup #wb-main,#wb-body-sec #wb-main-in,#wb-body-sec-sup #wb-main-in{
-	width:900px;
+#wet-fullhd-in {
+	@extend %wet-default-responsive-1200-width-1200;
 }
 
-#base-subsite p{
-	margin:0 auto;
+#wet-bnr-in {
+	@extend %wet-default-responsive-1200-width-1200;
+}
+
+#wet-psnb-in {
+	@extend %wet-default-responsive-1200-width-1200;
+}
+
+#wet-bc-in {
+	@extend %wet-default-responsive-1200-width-1200;
+}
+
+#wet-fullft-in {
+	@extend %wet-default-responsive-1200-width-1200;
+}
+
+#wet-sft-in {
+	@extend %wet-default-responsive-1200-width-1200;
+}
+
+#wet-psnb {
+	.mb-menu {
+		@extend %wet-default-responsive-1200-width-1200;
+	}
+}
+
+#wb-body {
+	#wb-main {
+		@extend %wet-default-responsive-1200-width-1200;
+	}
+}
+
+#wet-subsite {
+	p {
+		@extend %wet-default-responsive-1200-width-1200;
+		margin: 0 auto;
+	}
+}
+
+[id|="wb-body-sec"] {
+	[id|="wb-main"] {
+		width: 900px;
+	}
+}
+
+/* Right to left (RTL) CSS */
+%wet-default-responsive-1200-left-auto {
+	left: auto;
+}
+[dir="rtl"] {
+	#wb-body-sec-sup {
+		#wb-main {
+			@extend %wet-default-responsive-1200-left-auto;
+			right: 300px;
+		}
+	}
+	#wb-sup {
+		@extend %wet-default-responsive-1200-left-auto;
+		right: 600px;
+	}
 }

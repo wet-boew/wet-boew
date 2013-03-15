@@ -20,22 +20,24 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../dist/js/jquery-ie.min.js"></script>
 <script src="../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../dist/theme-gcwu-fegc/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -49,7 +51,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../dist/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../dist/theme-gcwu-fegc/images/sig-eng.svg" role="img" tabindex="-1" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
+	<div id="gcwu-sig-eng" title="Government of Canada"><img src="../dist/theme-gcwu-fegc/images/sig-eng.png" width="237" height="22" alt="Government of Canada" /></div>
+</object></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
@@ -59,19 +63,21 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../dist/theme-gcwu-fegc/images/wmms.svg" role="img" tabindex="-1" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
+	<div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
+</object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="gcwu-psnb"><h2>Site menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="includes/menu-eng.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
@@ -122,14 +128,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </ul>
 </section>
 
-<section><h2 id="base">Base theme (v3.1 Alpha)</h2>
+<section><h2 id="base">Base theme (v3.1 Beta)</h2>
 <ul>
 <li><a href="theme-base/index-eng.html#en"><span class="wb-invisible">Base theme - </span>English examples</a></li>
 <li><a href="theme-base/index-eng.html#fr"><span class="wb-invisible">Base theme - </span>French examples</a></li>
-<!--<li><a href="theme-base/index-eng.html#bg"><span class="wb-invisible">Base theme - </span>Bulgarian examples</a></li>-->
 <li><a href="theme-base/index-eng.html#es"><span class="wb-invisible">Base theme - </span>Spanish examples</a></li>
-<!--<li><a href="theme-base/index-eng.html#pt"><span class="wb-invisible">Base theme - </span>Portuguese examples</a></li>
-<li><a href="theme-base/index-eng.html#pt-BR"><span class="wb-invisible">Base theme - </span>Portuguese (Brazilian) examples</a></li>-->
+<li><a href="theme-base/index-eng.html#ar"><span class="wb-invisible">Base theme - </span>Arabic examples</a></li>
 </ul>
 </section>
 
@@ -158,13 +162,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </ul>
 </section>
 
-<section><h2 id="grids">CSS Grid System</h2>
-<ul>
-<li><a href="grids/grid-base-eng.html"><span class="wb-invisible">CSS Grid System - </span>English example</a></li>
-</ul>
-</section>
-
-<section><h2 id="design">Design guide (v3.1 alpha)</h2>
+<section><h2 id="design">Design guide (v3.1 Beta)</h2>
 <ul>
 <li><a href="guide-design/guide-eng.html"><span class="wb-invisible">Design guide - </span>English guide</a></li>
 </ul>
@@ -181,8 +179,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ul>
 <li><a href="details/details-eng.html"><span class="wb-invisible">Expandable/collapsible content (details/summary polyfill) - </span>English example</a></li>
 <li><a href="details/details-fra.html"><span class="wb-invisible">Expandable/collapsible content (details/summary polyfill) - </span>French example</a></li>
-<li><a href="details/toggledetails-eng.html"><span class="wb-invisible">Expandable/collapsible content (details/summary polyfill) - </span>English example - Expand/Collapse All (v3.1 Alpha)</a></li>
-<li><a href="details/toggledetails-fra.html"><span class="wb-invisible">Expandable/collapsible content (details/summary polyfill) - </span>French example - Expand/Collapse All (v3.1 Alpha)</a></li>
+<li><a href="details/expandcollapseall-eng.html"><span class="wb-invisible">Expandable/collapsible content (details/summary polyfill) - </span>English example - Expand/Collapse All Content (v3.1 Beta)</a></li>
+<li><a href="details/expandcollapseall-fra.html"><span class="wb-invisible">Expandable/collapsible content (details/summary polyfill) - </span>French example - Expand/Collapse All Content (v3.1 Beta)</a></li>
 </ul>
 </section>
 
@@ -209,19 +207,24 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <section><h2 id="gcwu">GC Web Usability theme</h2>
 <ul>
-<li><a href="theme-gcwu-fegc/index-eng.html#home"><span class="wb-invisible">GC Web Usability theme - </span>Home pages</a></li>
-<li><a href="theme-gcwu-fegc/index-eng.html#content"><span class="wb-invisible">GC Web Usability theme - </span>Content pages</a></li>
-<li><a href="theme-gcwu-fegc/index-eng.html#webapp"><span class="wb-invisible">GC Web Usability theme - </span>Content pages - Web application template</a></li>
-<li><a href="theme-gcwu-fegc/index-eng.html#splash"><span class="wb-invisible">GC Web Usability theme - </span>Splash pages</a></li>
-<li><a href="theme-gcwu-fegc/index-eng.html#serv"><span class="wb-invisible">GC Web Usability theme - </span>Server message pages</a></li>
+<li><a href="theme-gcwu-fegc/index-eng.html#en"><span class="wb-invisible">GC Web Usability theme - </span>English examples</a></li>
+<li><a href="theme-gcwu-fegc/index-eng.html#fr"><span class="wb-invisible">GC Web Usability theme - </span>French examples</a></li>
+<li><a href="theme-gcwu-fegc/index-eng.html#es"><span class="wb-invisible">GC Web Usability theme - </span>Spanish examples</a></li>
+<li><a href="theme-gcwu-fegc/index-eng.html#ar"><span class="wb-invisible">GC Web Usability theme - </span>Arabic examples</a></li>
 </ul>
 </section>
 
 <section><h2 id="gcwuintranet">GC Web Usability Intranet theme</h2>
 <ul>
-<li><a href="theme-gcwu-intranet/index-eng.html#content"><span class="wb-invisible">GC Web Usability Intranet theme - </span>Content pages</a></li>
-<li><a href="theme-gcwu-intranet/index-eng.html#splash"><span class="wb-invisible">GC Web Usability Intranet theme - </span>Splash pages</a></li>
-<li><a href="theme-gcwu-intranet/index-eng.html#serv"><span class="wb-invisible">GC Web Usability Intranet theme - </span>Server message pages</a></li>
+<li><a href="theme-gcwu-intranet/index-eng.html#en"><span class="wb-invisible">GC Web Usability Intranet theme - </span>English examples</a></li>
+<li><a href="theme-gcwu-intranet/index-eng.html#fr"><span class="wb-invisible">GC Web Usability Intranet theme - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="grids">Grid System</h2>
+<ul>
+<li><a href="grids/grid-base-eng.html"><span class="wb-invisible">Grid System - </span>English example</a></li>
+<li><a href="grids/grid-base-ara.html"><span class="wb-invisible">Grid System - </span>Arabic example</a></li>
 </ul>
 </section>
 
@@ -256,7 +259,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </ul>
 </section>
 
-<section><h2 id="meter">Meter (meter polyfill) (v3.1 Alpha)</h2>
+<section><h2 id="meter">Meter (meter polyfill) (v3.1 Beta)</h2>
 <ul>
 <li><a href="meter/meter-eng.html"><span class="wb-invisible">Meter (meter polyfill) - </span>English examples</a></li>
 <li><a href="meter/meter-fra.html"><span class="wb-invisible">Meter (meter polyfill) - </span>French examples</a></li>
@@ -281,7 +284,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </ul>
 </section>
 
-<section><h2 id="opt-cont-tools">Optimal content development tools (v3.1 Alpha)</h2>
+<section><h2 id="opt-cont-tools">Optimal content development tools (v3.1 Beta)</h2>
 <ul>
 <li><a href="tableparser/validator-htmltable.html">HTML Table Validator</a></li>
 </ul>
@@ -316,6 +319,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav1-fra.html"><span class="wb-invisible">Responsive design emulator - </span>Content page + Secondary menu 1 - French - GC Web Usability theme</a></li>
 <li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-eng.html"><span class="wb-invisible">Responsive design emulator - </span>Content page + Secondary menu 2 - English - GC Web Usability theme</a></li>
 <li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-fra.html"><span class="wb-invisible">Responsive design emulator - </span>Content page + Secondary menu 2 - French - GC Web Usability theme</a></li>
+</ul>
+</section>
+
+<section><h2 id="responsive-images">Responsive images (v3.1 Beta)</h2>
+<ul>
+<li><a href="responsiveimg/responsiveimg-eng.html"><span class="wb-invisible">Responsive images - </span>English example</a></li>
 </ul>
 </section>
 
@@ -363,6 +372,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </ul>
 </section>
 
+<section><h2 id="tables">Table enhancement (DataTables integration) (v3.1 Beta)</h2>
+<ul>
+<li><a href="tables/tables-eng.html"><span class="wb-invisible">Table enhancement (DataTables integration) - </span>English example</a></li>
+</ul>
+</section>
+
 <section><h2 id="texthighlight">Text highlighting</h2>
 <ul>
 <li><a href="texthighlight/texthighlight-eng.html?texthighlight=avian%20influenza+world+cook+flu-like%20symptoms+Don't%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people."><span class="wb-invisible">Text highlighting - </span>English example</a></li>
@@ -390,19 +405,17 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ul>
 <li><a href="webstorage/localstorage-eng.html"><span class="wb-invisible">Web Storage (HTML5) - </span>English example - Persistent storage (localStorage polyfill)</a></li>
 <li><a href="webstorage/localstorage-fra.html"><span class="wb-invisible">Web Storage (HTML5) - </span>French example - Persistent storage (localStorage polyfill)</a></li>
-<li><a href="webstorage/sessionstorage-eng.html"><span class="wb-invisible">Web Storage (HTML5) - </span>English example - Session storage (sessionStorage polyfill) (v3.1 Alpha)</a></li>
-<li><a href="webstorage/sessionstorage-fra.html"><span class="wb-invisible">Web Storage (HTML5) - </span>French example - Session storage (sessionStorage polyfill) (v3.1 Alpha)</a></li>
+<li><a href="webstorage/sessionstorage-eng.html"><span class="wb-invisible">Web Storage (HTML5) - </span>English example - Session storage (sessionStorage polyfill) (v3.1 Beta)</a></li>
+<li><a href="webstorage/sessionstorage-fra.html"><span class="wb-invisible">Web Storage (HTML5) - </span>French example - Session storage (sessionStorage polyfill) (v3.1 Beta)</a></li>
 </ul>
 </section>
 
-<section><h2 id="base">WET theme (v3.1 Alpha)</h2>
+<section><h2 id="wet-theme">WET theme (v3.1 Beta)</h2>
 <ul>
 <li><a href="theme-wet-boew/index-eng.html#en"><span class="wb-invisible">WET theme - </span>English examples</a></li>
 <li><a href="theme-wet-boew/index-eng.html#fr"><span class="wb-invisible">WET theme - </span>French examples</a></li>
-<!--<li><a href="theme-wet-boew/index-eng.html#bg"><span class="wb-invisible">WET theme - </span>Bulgarian examples</a></li>-->
 <li><a href="theme-wet-boew/index-eng.html#es"><span class="wb-invisible">WET theme - </span>Spanish examples</a></li>
-<!--<li><a href="theme-wet-boew/index-eng.html#pt"><span class="wb-invisible">WET theme - </span>Portuguese examples</a></li>
-<li><a href="theme-wet-boew/index-eng.html#pt-BR"><span class="wb-invisible">WET theme - </span>Portuguese (Brazilian) examples</a></li>-->
+<li><a href="theme-wet-boew/index-eng.html#ar"><span class="wb-invisible">WET theme - </span>Arabic examples</a></li>
 </ul>
 </section>
 
@@ -424,6 +437,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </ul>
 </section>
 </div>
+<div class="clear"></div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2012-11-29</time></span></dd>
@@ -488,11 +502,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../dist/js/pe-ap-ie-min.js"></script>
+<script src="../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../dist/js/pe-ap-min.js"></script>
+<script src="../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
 
+<!-- CustomScriptsStart -->
 <script>
 /* <![CDATA[ */
 (function ($) {
@@ -504,5 +527,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 }(jQuery));
 /* ]]> */
 </script>
+<!-- CustomScriptsEnd -->
 </body>
 </html>

@@ -6,6 +6,72 @@
 @import "compass/css3/opacity";
 
 @import "mixins";
+/*   base appearance   */
+body {
+	line-height: 1.5em;
+}
+
+p, table {
+	margin-bottom: $margin-medium;
+	margin-top: $margin-medium;
+
+	img {
+		margin-left: 0;
+	}
+}
+
+pre {
+	white-space: pre-wrap;
+}
+
+blockquote, form, img, pre {
+	margin-bottom: $margin-medium;
+}
+
+// reset elements in grid system
+[class*="span-"] {
+
+	// reset margin left and right to elements that are used inside a grid cell
+	#{headings(all)}, p, blockquote, table, form, img, pre, details {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	p {
+		margin-bottom: $margin-medium;
+		margin-top: $margin-medium;
+	}
+
+	ul, ol, dl {
+		margin: 5px 5px 10px 40px;
+		padding: 0;
+	}
+
+	.float-right {
+		margin-right: 0;
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	p, table {
+		img {
+			margin-left: auto;
+			margin-right: 0;
+		}
+	}
+
+	// reset elements in grid system
+	[class*="span-"] {
+		ul, ol, dl {
+			margin: 5px 40px 10px 5px;
+		}
+		.float-left {
+			margin-left: 0;
+		}
+	}
+}
+
 @import "border";
 @import "button";
 @import "color";
@@ -15,58 +81,74 @@
 @import "badge";
 @import "list";
 @import "icon";
+@import "thermometer";
 
 @include buttons; /*done buttons*/
 @include colors;
 @include modules;
 @include tables;	/*done tables*/
-@include forms; 
+@include forms;
 @include badges;	/*done tables*/
 @include lists;
+@include thermometer;
 
 // fixes
 
+%font-weight-700 {
+	font-weight: 700;
+}
 
 /* ---- Headings ---- */
 #wb-main {
-	h1, h2, h3, h4, h5, h6 {
+	#{headings(all)} {
 		font-weight: $font-weight-bold;
 		line-height: 150%;
 		vertical-align: bottom;
 	}
 }
-h1 { 
-	color: $dark;
-	border-bottom: 1px dotted $silver;
-	font-size: 200%;
-	padding: 0;
-}
-h2 {
-	color: lighten($dark, 20%);
-	font-size: 185%;
-}
-h3 {
-	color: $medium;
-	font-size: 170%;
-}
-h4 {
-	color: $dark;
-	font-size: 155%;
-}
-h5 {
-	color: lighten($dark, 20%);
-	font-size: 140%;
-}
-h6 {
-	color: $medium;
-	font-size: 125%;
-}
-h5, h6 { 
-	font-weight: 700; 
+
+h1 {
+	&:not(.ui-title) {
+		color: $dark;
+		border-bottom: 1px dotted $silver;
+		padding: 0;
+	}
 }
 
-[class*="span-"] { 
-	#{headings(2,6)} {
+h2 {
+	&:not(.ui-title) {
+		color: lighten($dark, 20%);
+	}
+}
+
+h3 {
+	&:not(.ui-title) {
+		color: $medium;
+	}
+}
+
+h4 {
+	&:not(.ui-title) {
+		color: $dark;
+	}
+}
+
+h5 {
+	&:not(.ui-title) {
+		color: lighten($dark, 20%);
+		@extend %font-weight-700;
+	}
+}
+
+h6 {
+	&:not(.ui-title) {
+		color: $medium;
+		@extend %font-weight-700;
+	}
+}
+
+[class*="span-"] {
+	#{headings(2, 6)} {
 		//margin: $margin-large 0 $margin-medium;
 		margin-left: 0;
 		margin-right: 0;
@@ -74,246 +156,324 @@ h5, h6 {
 }
 
 /*	 text	 */
-.font-serif			{ font-family: $serif; }
-.font-sans-serif	 { font-family: $sans-serif; }
-.wrap-none		{ white-space: nowrap;}
+.font-serif	{
+	font-family: $serif;
+}
+.font-sans-serif {
+	font-family: $sans-serif;
+}
+.wrap-none {
+	white-space: nowrap;
+}
 
-.font-xxsmall { font-size: $font-xxsmall !important; }
-.font-xsmall	{ font-size: $font-xsmall !important; }
-.font-small	 { font-size: $font-small !important; }
-.font-medium	{ font-size: $font-medium !important; }
-.font-large	 { font-size: $font-large !important; }
-.font-xlarge	{ font-size: $font-xlarge !important; }
-.font-xxlarge { font-size: $font-xxlarge !important; }
+.font-xxsmall {
+	font-size: $font-xxsmall !important;
+}
+.font-xsmall {
+	font-size: $font-xsmall !important;
+}
+.font-small {
+	font-size: $font-small !important;
+}
+.font-medium {
+	font-size: $font-medium !important;
+}
+.font-large	 {
+	font-size: $font-large !important;
+}
+.font-xlarge	{
+	font-size: $font-xlarge !important;
+}
+.font-xxlarge {
+	font-size: $font-xxlarge !important;
+}
 
 blockquote {
 	&, &.float-left, &.float-right {
-		border-left:{
+		border-left: {
 			width: 8px !important;
 			color: $accent !important;
 		}
-		font:{
+		font: {
 			family: $serif;
 			size: 110%;
 			style: italic;
 		}
 		line-height: 1.6em;
-		padding: $spacing-medium $spacing-large; 
+		padding: $spacing-medium $spacing-large;
 
 		@include colorize-base(lighten($light, 3%));
 		@include colorize-border(lighten($light, 3%));
 	}
-	&.float-left { 
-		float: left; 
-		margin-right: $spacing-medium; 
-		width: 30%; 
+	&.float-left {
+		float: left;
+		margin-right: $spacing-medium;
+		width: 30%;
 	}
-	&.float-right { 
-		float: right; 
-		margin-left: $spacing-medium; 
-		width: 30%; 
+	&.float-right {
+		float: right;
+		margin-left: $spacing-medium;
+		width: 30%;
 	}
-	&.float-right, &.float-left { 
-		font:{
+	&.float-right, &.float-left {
+		font: {
 			family: $serif;
-			style: normal;
 		}
-		border:{
-			left: none; 
+		border: {
+			left: none;
 			right: none;
 		}
-		padding: 0 10px; 
+		padding: 0 10px;
 	}
 	.align-left, .align-right {
-		font-style:normal;
-		font-family:Verdana, Geneva, sans-serif;
-		font-size:90%;
+		font-style: normal;
+		font-family: Verdana, Geneva, sans-serif;
+		font-size: 90%;
 	}
 }
 
-code { 
-	font:{
+code {
+	font: {
 		size: 90%;
 		weight: $font-weight-normal;
 	}
-	padding:0 2px !important;
-	@include text-shadow(none);
-	
+	padding: 0 2px !important;
+	text-shadow: none;
+
 	@include colorize-base($light);
 	@include colorize-border($light);
 }
 
-pre code {
-	background: none;
-	border: none;
-	padding: 0 !important;
+pre {
+	code {
+		background: none;
+		border: none;
+		padding: 0 !important;
+	}
 }
 
 /*	 margin	 */
-.margin-bottom-none	 { margin-bottom: 0 !important; }
-.margin-bottom-small	{ margin-bottom: $margin-small !important; }
-.margin-bottom-medium	 { margin-bottom: $margin-medium !important; }
-.margin-bottom-large	{ margin-bottom: $margin-large !important; }
-.margin-bottom-xlarge	 { margin-bottom: $margin-xlarge !important; }
-.margin-top-none		{ margin-top: 0 !important; }
-.margin-top-small		 { margin-top: $margin-small !important; }
-.margin-top-medium		{ margin-top: $margin-medium !important; }
-.margin-top-large		 { margin-top: $margin-large !important; }
-.margin-top-xlarge		{ margin-top: $margin-xlarge !important; }
-.margin-right-none		{ margin-right: 0 !important; }
-.margin-right-small	 { margin-right: $margin-small !important; }
-.margin-right-medium	{ margin-right: $margin-medium !important; }
-.margin-right-large	 { margin-right: $margin-large !important; }
-.margin-right-xlarge	{ margin-right: $margin-xlarge !important; }
+.margin-bottom-none	 {
+	margin-bottom: 0 !important;
+}
+.margin-bottom-small {
+	margin-bottom: $margin-small !important;
+}
+.margin-bottom-medium {
+	margin-bottom: $margin-medium !important;
+}
+.margin-bottom-large {
+	margin-bottom: $margin-large !important;
+}
+.margin-bottom-xlarge {
+	margin-bottom: $margin-xlarge !important;
+}
+.margin-top-none {
+	margin-top: 0 !important;
+}
+.margin-top-small {
+	margin-top: $margin-small !important;
+}
+.margin-top-medium {
+	margin-top: $margin-medium !important;
+}
+.margin-top-large {
+	margin-top: $margin-large !important;
+}
+.margin-top-xlarge {
+	margin-top: $margin-xlarge !important;
+}
+.margin-right-none {
+	margin-right: 0 !important;
+}
+.margin-right-small {
+	margin-right: $margin-small !important;
+}
+.margin-right-medium {
+	margin-right: $margin-medium !important;
+}
+.margin-right-large {
+	margin-right: $margin-large !important;
+}
+.margin-right-xlarge {
+	margin-right: $margin-xlarge !important;
+}
+.margin-left-none {
+	margin-left: 0 !important;
+}
+.margin-left-small {
+	margin-left: $margin-small !important;
+}
+.margin-left-medium {
+	margin-left: $margin-medium !important;
+}
+.margin-left-large {
+	margin-left: $margin-large !important;
+}
+.margin-left-xlarge {
+	margin-left: $margin-xlarge !important;
+}
 
 /*	 indentation	 */
-.indent-none			{ margin-left: 0 !important;}
-.indent-small		 { margin-left: $margin-small !important;}
-.indent-medium			{ margin-left: $margin-medium !important;}
-.indent-large		 { margin-left: $margin-large !important;}
-.indent-xlarge			{ margin-left: $margin-xlarge !important;}
+.indent-none {
+	margin-left: 0 !important;
+}
+.indent-small {
+	margin-left: $margin-small !important;
+}
+.indent-medium {
+	margin-left: $margin-medium !important;
+}
+.indent-large {
+	margin-left: $margin-large !important;
+}
+.indent-xlarge			{
+	margin-left: $margin-xlarge !important;
+}
 
 /*	 alignment	 */
-.align-left		 { text-align: left !important; }
-.align-center	 { text-align: center !important; }
-.align-right		{ text-align: right !important; }
-p.align-right	 { margin-right: $margin-medium; }
-.align-top			{ vertical-align: top !important; }
-.align-top img		{ vertical-align: text-top !important; }
-.align-middle	 { vertical-align: middle !important; }
-.align-bottom	 { vertical-align: bottom !important; }
-.align-bottom img { vertical-align: text-bottom !important; }
+.align-left {
+	text-align: left !important;
+}
+.align-center {
+	text-align: center !important;
+}
+.align-right {
+	text-align: right !important;
+}
+p {
+	&.align-right {
+		margin-right: $margin-medium;
+	}
+}
+.align-top {
+	vertical-align: top !important;
+	img {
+		vertical-align: text-top !important;
+	}
+}
+.align-middle	 {
+	vertical-align: middle !important;
+}
+.align-bottom	 {
+	vertical-align: bottom !important;
+	img {
+		vertical-align: text-bottom !important;
+	}
+}
 
 /*	 line height	 */
-.line-height-xsmall	 { line-height: 0.8 !important; }
-.line-height-small		{ line-height: 1.0 !important; }
-.line-height-medium	 { line-height: 1.25 !important;}
-.line-height-large		{ line-height: 1.5 !important; }
-.line-height-xlarge	 { line-height: 2.0 !important; }
+.line-height-xsmall	 {
+	line-height: 0.8 !important;
+}
+.line-height-small		{
+	line-height: 1.0 !important;
+}
+.line-height-medium	 {
+	line-height: 1.25 !important;
+}
+.line-height-large		{
+	line-height: 1.5 !important;
+}
+.line-height-xlarge	 {
+	line-height: 2.0 !important;
+}
 
 
 /*	 floating	 */
-img.float-left { margin-right: $margin-medium; }
-.float-left {float:left !important;}
-.float-right {float:right !important;} /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
+img {
+	&.float-left {
+		margin-right: $margin-medium;
+	}
+}
+.float-left {
+	float: left !important;
+}
+.float-right {
+	float: right !important;
+} /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
 
 /*	 width	 */
-.width-100	{ width: 100% !important; }
-.width-90 { width: 90% !important; }
-.width-80 { width: 80% !important; }
-.width-70 { width: 70% !important; }
-.width-60 { width: 60% !important; }
-.width-50 { width: 50% !important; }
-.width-40 { width: 40% !important; }
-.width-30 { width: 30% !important; }
-.width-20 { width: 20% !important; }
-.width-10 { width: 10% !important; }
+$i: 100;
+@while $i > 0 {
+  .width-#{$i} { width: #{$i}% !important; }
+  $i: $i - 10;
+}
 
 /*	 opacity	 */
-.opacity-100	{ @include opacity(1.0); }
-.opacity-90	 { @include opacity(0.9); }
-.opacity-80	 { @include opacity(0.8); }
-.opacity-70	 { @include opacity(0.7); }
-.opacity-60	 { @include opacity(0.6); }
-.opacity-50	 { @include opacity(0.5); }
-.opacity-40	 { @include opacity(0.4); }
-.opacity-30	 { @include opacity(0.3); }
-.opacity-20	 { @include opacity(0.2); }
-.opacity-10	 { @include opacity(0.1); }
+$i: 100;
+@while $i > 0 {
+  .opacity-#{$i} { @include opacity($i / 100); }
+  $i: $i - 10;
+}
 
-.border-top,.border-right,.border-bottom,.border-left,.border-all {
-	float:left;
-	min-height:1px;
-	position:relative;
-	@extend .border-image;
+.border-top, .border-right, .border-bottom, .border-left, .border-all {
+	float: left;
+	position: relative;
+	@extend %border-image;
 }
- 
+
 .border-top {
-	background-position:0 0;
-	background-repeat:repeat-x;
-	min-height:1px;
+	background-position: 0 0;
+	background-repeat: repeat-x;
+	min-height: 1px;
 }
- 
+
 .border-bottom {
-	background-position:0 bottom;
-	background-repeat:repeat-x;
-	min-height:1px;
+	background-position: 0 bottom;
+	background-repeat: repeat-x;
+	min-height: 1px;
 }
- 
+
 .border-left {
-	background-position:left 0;
-	background-repeat:repeat-y;
+	background-position: left 0;
+	background-repeat: repeat-y;
 }
- 
+
 .border-right {
-	background-position:right 0;
-	background-repeat:repeat-y;
+	background-position: right 0;
+	background-repeat: repeat-y;
 }
 .border-all {
-	outline:1px solid #ccc;
-	background:none;
+	outline: 1px solid #ccc;
+	background: none;
 }
 
 /* ---- Keyboard keys ---- */
 kbd {
-	background:#eee none repeat scroll 0 0;
-	border:{
-		color:#ccc #999 #777 #999;
-		style:solid;
-		width:1px 3px 3px 2px;
+	background: #eee none repeat scroll 0 0;
+	border: {
+		color: #ccc #999 #777 #999;
+		style: solid;
+		width: 1px 3px 3px 2px;
 	}
-	font:{
-		family:Arial,Helvetica,sans-serif;
-		size:80%;
+	font: {
+		family: Arial, Helvetica, sans-serif;
+		size: 80%;
 	}
-	padding:0 3px;
-	white-space:nowrap;
+	padding: 0 3px;
+	white-space: nowrap;
 	@include border-radius(2px);
 }
 
-/*	 progress effects	 */
-p[class*="thermometer"] {
-	padding-bottom: 230px !important;
-	background:{
-		repeat: no-repeat;
-		position: center bottom;
-	}
-}
-[class*="background-"] p[class*="thermometer"] {
-	padding-bottom: 230px !important;
-}
-.thermometer-0 {background-image:url(../images/thermometer-0.gif);}
-.thermometer-10 {background-image:url(../images/thermometer-10.gif);}
-.thermometer-20 {background-image:url(../images/thermometer-20.gif);}
-.thermometer-30 {background-image:url(../images/thermometer-30.gif);}
-.thermometer-40 {background-image:url(../images/thermometer-40.gif);}
-.thermometer-50 {background-image:url(../images/thermometer-50.gif);}
-.thermometer-60 {background-image:url(../images/thermometer-60.gif);}
-.thermometer-70 {background-image:url(../images/thermometer-70.gif);}
-.thermometer-80 {background-image:url(../images/thermometer-80.gif);}
-.thermometer-90 {background-image:url(../images/thermometer-90.gif);}
-.thermometer-100 {background-image:url(../images/thermometer-100.gif);}
-.thermometer-110 {background-image:url(../images/thermometer-110.gif);}
-.thermometer-120 {background-image:url(../images/thermometer-120.gif);}
-
 /*	grid on a table	 */
 table {
-	&.span-1,&.span-2,&.span-3,&.span-4,&.span-5,&.span-6,&.span-7,&.span-8,&.span-9,&.span-10,&.span-11,&.span-12 {
-		display:table;
+	&.span-1, &.span-2, &.span-3, &.span-4, &.span-5, &.span-6, &.span-7, &.span-8, &.span-9, &.span-10, &.span-11, &.span-12 {
+		display: table;
 	}
 }
 
 /*	display overrides  */
 .display-block {
-	display:block !important;
+	display: block !important;
 }
 
 .display-inline-block {
-	display:inline-block !important;
+	display: inline-block !important;
 }
 
 .display-inline {
-	display:inline !important;
+	display: inline !important;
 }
 
 /*	date  */
@@ -324,26 +484,26 @@ table {
 	margin-left: $margin-medium;
 	min-width: 80px;
 	position: relative;
-	text-align:center;
+	text-align: center;
 }
 
 [class*="span-"] .date-container {
-	margin-left:0;
+	margin-left: 0;
 }
 
 .date-month {
 	width: 100%;
-	border: 1px solid rgba(0,0,0,0.25);
-	@include box-shadow(inset 0 1px 1px 0 rgba(255,255,255,0.4));
-	
+	border: 1px solid rgba(0, 0, 0, 0.25);
+	@include box-shadow(inset 0 1px 1px 0 rgba(255, 255, 255, 0.4));
+
 	@include border-top-radius;
 	@include colorize-base($accent);
-	@include colorize($accent, $border:false);
+	@include colorize($accent, $border: false);
 	p {
 		text-align: center;
 		color: #fff;
 		font-size: 85%;
-		@include text-shadow(0 1px 0 #111);
+		text-shadow: 0 1px 0 #111;
 		margin: 5px 0 0 0;
 		margin: 0 8px;
 		padding: 0 0 1px 0;
@@ -356,20 +516,20 @@ table {
 	background: $white;
 	border: 1px solid $silver;
 	height: 55px;
-	width: 100%;	
-	@include background(top, rgba(255, 255, 255, 1) 0%, rgba(247, 247, 247, 1) 100%);
+	width: 100%;
+	@include background-image(linear-gradient(rgba(255, 255, 255, 1), rgba(247, 247, 247, 1)));
 	@include border-bottom-radius($default-border-radius);
-	@include box-shadow(0 1px 0 0 $light, 0 2px 0 0 $silver,0 3px 0 0 $light, 0 4px 0 0 $silver);
+	@include box-shadow(0 1px 0 0 $light, 0 2px 0 0 $silver, 0 3px 0 0 $light, 0 4px 0 0 $silver);
 	p {
 		text-align: center;
-		font:{
+		font: {
 			size: 275%;
 			weight: $font-weight-bold;
 		}
 		color: $dark;
 		letter-spacing: -0.1em;
 		line-height: 55px;
-		@include text-shadow(1px 1px 0 $white);
+		text-shadow: 1px 1px 0 $white;
 		margin: 0 !important;
 		width: 100%;
 	}
@@ -379,11 +539,62 @@ table {
 	height: 64px;
 	min-width: 40px;
 	.date-day {
-		height:30px;
+		height: 30px;
 		p {
-			line-height:30px;
-			font-size:150%;
+			line-height: 30px;
+			font-size: 150%;
 		}
 	}
 }
 
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	blockquote {
+		&, &.float-left, &.float-right {
+			border-left: {
+				width: 1px !important;
+				color: #ddd !important;
+			}
+
+			border-right: {
+				width: 8px !important;
+				color: $accent !important;
+			}
+		}
+	}
+
+	.border-top, .border-right, .border-bottom, .border-left, .border-all {
+		float: right;
+	}
+
+	.date-container {
+		float: right;
+	}
+
+	[class*="span-"] .date-container {
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	//	 indentation
+	.indent-none {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+	.indent-small {
+		margin-left: 0 !important;
+		margin-right: $margin-small !important;
+	}
+	.indent-medium {
+		margin-left: 0 !important;
+		margin-right: $margin-medium !important;
+	}
+	.indent-large {
+		margin-left: 0 !important;
+		margin-right: $margin-large !important;
+	}
+	.indent-xlarge {
+		margin-left: 0 !important;
+		margin-right: $margin-xlarge !important;
+	}
+}

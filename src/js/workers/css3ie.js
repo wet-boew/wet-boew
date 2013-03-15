@@ -14,13 +14,13 @@
 	/* local reference */
 	_pe.fn.css3ie = {
 		type : 'plugin',
-		depends : (pe.ie > 0 && pe.ie < 9 ? ['pie', 'resize'] : []),
+		depends : (pe.ie > 0 && pe.ie < 9 ? ['pie'] : []),
 		_exec : function (elm) {
 			if (pe.mobile || !(pe.ie > 0 && pe.ie < 9)) {
 				return;
 			}
 
-			var $enhance = $('.rounded, .pie-enhance'),
+			var $enhance = $('.rounded, .pie-enhance, .ui-icon'),
 				pieEnabled = false,
 				$wbcore = $('#wb-core'),
 				$wbcorein = $wbcore.children('#wb-core-in'),

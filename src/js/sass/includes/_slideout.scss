@@ -2,24 +2,25 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+ 
+@import "compass/css3/transform";
+
 .wet-boew-slideout {
-	display:none;
+	display: none;
 }
 
 .no-js {
 	.wet-boew-slideout {
-		display:block;
+		display: block;
 	}
 }
- 
+
 #slideoutInnerWrapper {
-	overflow: hidden;
 	position: relative;
 	width: 295px;
 }
 
 .slideoutWrapper { /* Follows on scrolling */
-	overflow: hidden;
 	position: fixed;
     z-index: 1;
 }
@@ -38,19 +39,28 @@
 }
 
 #toggleLink {
+	background-color: #369;
+	border: 1px solid #000;
+	border-bottom: 0;
+	color: #FFF !important;
 	cursor: pointer;
-	img {
-		margin: 0;
-	}
+	display: block;
+	margin: 0;
+	padding: 5px;
+	position: absolute;
+	text-decoration: none;
+	@include transform-origin(0, 0);
+	@include transform(rotate(-90deg) translate(-100%, 0));
+	white-space: nowrap;
 }
 
 .tabbedSlideout {
 	background-color: #FFF;
 	border: 1px solid #CCC;
-	border-right: none; 
+	border-right: none;
 	float: left;
 	padding: 8px;
-	position: relative; 
+	position: relative;
 	margin: auto;
 	width: 245px;
 	#slideoutClose {
@@ -58,21 +68,23 @@
 	}
 }
 
-div.tabbedSlideout {
-	h2 {
-		margin: 0;
-		padding: 0 5px 5px 5px;
-		text-align: left;
-	}
-	ul, ol {
-		margin: 0;
-		list-style-type: none;
-		padding: 0 5px;
-	}
-	li {
-		margin: 6px 0;
+div {
+	&.tabbedSlideout {
+		h2 {
+			margin: 0;
+			padding: 0 5px 5px 5px;
+			text-align: left;
+		}
 		ul, ol {
-			margin-left: 20px;
+			margin: 0;
+			list-style-type: none;
+			padding: 0 5px;
+		}
+		li {
+			margin: 6px 0;
+			ul, ol {
+				margin-left: 20px;
+			}
 		}
 	}
 }
@@ -80,6 +92,6 @@ div.tabbedSlideout {
 /*Print SCSS*/
 @media print {
 	#slideoutWrapper {
-		display:none;
+		display: none;
 	}
 }

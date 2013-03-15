@@ -4,62 +4,55 @@
  */
 
 /* Charts and Graph */
-figure, figcaption { 
-    display: block; 
+figure, figcaption {
+    display: block;
 }
 
-figure.wb-charts {
-	border: 1px solid black;
-	margin: 10px;
+figure {
+	&.wb-charts {
+		border: 1px solid black;
+		margin: 10px;
 
-	figcaption {
-		border-bottom: 1px solid black;
-		padding: 5px;
-		margin-bottom: 10px;
-	}
-	
-	/*
-	svg, vml {
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-	*/
-	
-	details {
-		
-		
-		
-		summary {
-			background-color: whitesmoke;
-			padding-left: 5px;
+		figcaption {
+			border-bottom: 1px solid black;
+			padding: 5px;
+			margin-bottom: 10px;
 		}
-		
-		table {
-			margin-left: 0;
-			margin-right: 0;
-			margin-bottom: 0;
-			td {
-				background-color: white;
+		details {
+			summary {
+				background-color: whitesmoke;
+				padding-left: 5px;
+			}
+
+			table {
+				margin-left: 0;
+				margin-right: 0;
+				margin-bottom: 0;
+				td {
+					background-color: white;
+				}
 			}
 		}
-	}
-	
-	/* Add focus styles (for keyboard accessibility) */
-	summary:hover, summary:focus { 
-		background: #ddd; 
-	}
-	
-	figure {
-		margin-left: 0;
-		margin-right: 0;
-		
-		figcaption {
-			font-style: italic;
-			text-align: center;
+
+		/* Add focus styles (for keyboard accessibility) */
+		summary {
+			@include pseudo-focus{
+				background: #ddd;
+			}
 		}
-	}
-	
-	ul {
-		list-style-type: none;
+
+		figure {
+			margin-left: 0;
+			margin-right: 0;
+
+			figcaption {
+				font-style: italic;
+				text-align: center;
+			}
+		}
+
+		ul {
+			list-style-type: none;
+		}
 	}
 }

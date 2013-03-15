@@ -1,6 +1,6 @@
 # Change this to :production when ready to deploy the CSS to the live server.
-environment = :development
-#environment = :production
+# environment = :development
+environment = (ARGV[4]) ? :development : :production
 
 # In development, we can turn on the FireSass-compatible debug_info.
 firesass = false

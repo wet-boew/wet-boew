@@ -22,11 +22,17 @@
 				formDOM = form.get(0),
 				labels = formDOM.getElementsByTagName('label'),
 				labels_len = labels.length,
-				inputs = formDOM.getElementsByTagName('input'),
-				$inputs = $(inputs),
+				formElms = form.find('input, select, textarea'),
+				formElmsDOM = formElms.get(),
+				formElm,
+				$inputs = formElms.filter('input'),
+				inputs = $inputs.get(),
 				inputs_len = inputs.length,
 				input,
+				i,
 				len,
+				index,
+				string,
 				nativeAttribute,
 				submitted = false,
 				required = form.find('[required]').attr('aria-required', 'true'),
@@ -34,8 +40,7 @@
 				validator,
 				vlang = pe.language.replace('-', '_'),
 				lang = pe.get_language(vlang, _pe.fn.formvalid.languages, '_'),
-				mthdlang = pe.get_language(vlang, _pe.fn.formvalid.methods, '_'),
-				d;
+				mthdlang = pe.get_language(vlang, _pe.fn.formvalid.methods, '_');
 
 			// Load different language strings if page is not in English
 			if (lang !== null) {
@@ -52,21 +57,16 @@
 				labels[len].innerHTML += ' ';
 			}
 
-			function addValidation(target, key, value) {
-				var targetclass = target.attr('class'),
-					index1 = (targetclass !== undefined ? targetclass.search(/validate\s?:\s?\{/) : -1),
-					valstring;
-				if (index1 > -1) { // validate:{ already exists
-					if (targetclass.search("/" + key + "\\s?:/") === -1) {
-						valstring = targetclass.substring(index1, targetclass.indexOf('{', index1) + 1);
-						target.attr('class', targetclass.replace(valstring, valstring + key + ':' + value + ', '));
-					}
-				} else { // validate:{ doesn't exist
-					target.addClass('{validate:{' + key + ':' + value + '}}');
+			// Move class="{validate:{...}}" to data-rule="{...}
+			for (i = 0, len = formElmsDOM.length; i !== len; i += 1) {
+				formElm = formElmsDOM[i];
+				string = formElm.className;
+				index = string.indexOf('{validate');
+				if (index !== -1) {
+					formElm.setAttribute('data-rule', string.substring(string.indexOf('{', index + 1), string.indexOf('}', index + 1) + 1));
 				}
-				return;
 			}
-
+			
 			// Remove the pattern attribute until it is safe to use with jQuery Validation
 			len = inputs_len;
 			if (len !== 0 && inputs[0].hasAttribute !== undefined) {
@@ -80,6 +80,39 @@
 						$(input).removeAttr('pattern');
 					}
 				}
+			}
+
+			// TODO: Remove class part when updated to jQuery Validation 1.11.0 or later
+			function addValidation(target, key, value) {
+				var targetclass = target.attr('class'), // Remove in jQuery Validation 1.11.0
+					pair = key + ':' + value,
+					datarule = target.attr('data-rule'),
+					index1 = (targetclass !== undefined ? targetclass.search(/validate\s?:\s?\{/) : -1), // Remove value in jQuery Validation 1.11.0 (keep variable)
+					len,
+					valstring;
+				/**** Remove in jQuery Validation 1.11.0 ****/
+				if (index1 !== -1) { // validate:{ already exists
+					if (targetclass.search("/" + key + "\\s?:/") === -1) {
+						valstring = targetclass.substring(index1, targetclass.indexOf('{', index1) + 1);
+						target.attr('class', targetclass.replace(valstring, valstring + pair + ', '));
+					}
+				} else { // validate:{ doesn't exist
+					target.addClass('{validate:{' + pair + '}}');
+				}
+				/**********/
+				if (datarule !== undefined) { // data-rule already exists
+					len = datarule.length;
+					index1 = datarule.indexOf('{');
+					if (len === 0) {
+						datarule = '{' + pair + '}';
+					} else {
+						datarule = '{' + pair + ',' + datarule.substring(1) + (index !== -1 ? '}' : '');
+					}
+				} else {
+					datarule = '{' + pair + '}';
+				}
+				target.attr('data-rule', datarule);
+				return;
 			}
 
 			// Change form attributes and values that intefere with validation in IE7/8
@@ -159,11 +192,11 @@
 						// a simple href anchor link doesnt seem to place focus inside the input
 						if (pe.ie === 0 || pe.ie > 7) {
 							form.find('.errorContainer a').on('click vclick', function () {
-								var label_top = pe.focus($($(this).attr("href"))).prev().offset().top;
+								var label_top = pe.focus($($(this).attr('href'))).prev().offset().top;
 								if (pe.mobile) {
 									$.mobile.silentScroll(label_top);
 								} else {
-									$(document).scrollTop(label_top);
+									_pe.document.scrollTop(label_top);
 								}
 								return false;
 							});

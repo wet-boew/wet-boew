@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html dir="rtl" lang="ar" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html dir="rtl" lang="ar" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html dir="rtl" lang="ar" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
+<title>CSS grid system - Working examples - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="ara" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body-sec">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to secondary menu</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng.svg" role="img" tabindex="-1" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
+	<div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.png" width="214" height="20" alt="Government of Canada" /></div>
+</object></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li><a href="#" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="#" lang="en">English</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" tabindex="-1" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
+	<div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
+</object></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2>Site menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-ara.txt">
+<li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="section2/index-eng.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li>CSS grid system</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">CSS Grid System</h1>
+
+<div class="wet-boew-prettify all-pre linenums">
+<p>This page demonstrates grid options when there is a left menu.  Alternatively view the: <a class="button button-accent" href="grid-base-full-ara.html">No left menu grid options</a></p>
+
+<div class="clear"></div>
+<div class="span-6 module-table-contents">
+<h2>Table of contents</h2>
+<ul class="column-3">
+	<li><a href="#overview">Grid overview</a></li>
+        <li><a href="#structure">Grid structure</a>
+		<ul>
+			<li><a href="#buildingblocks">Grid building blocks</a>
+				<ul>
+					<li><a href="#six">Six grid columns</a></li>
+					<li><a href="#twelve">Twelve grid columns</a></li>
+				</ul>
+			</li>
+			<li><a href="#rows">Grid rows</a></li>
+			<li><a href="#dimensions">Grid dimensions</a></li>
+		</ul>
+	</li>
+	<li><a href="#layout">Grid layout</a>
+		<ul>
+			<li><a href="#onec">One column</a></li>
+			<li><a href="#twoc">Two colums</a></li>
+			<li><a href="#threec">Three colums</a></li>
+			<li><a href="#fourc">Four colums</a></li>
+			<li><a href="#fivec">Five colums</a></li>
+			<li><a href="#sixc">Six colums</a></li>
+			<li><a href="#sevenc">Seven to twelve columns</a></li>
+		</ul>
+	</li>
+	<li><a href="#parents">Grid parents and children</a>
+		<ul>
+			<li><a href="#rowstart"><code>row-start</code> and <code>row-end</code> <abbr title="Cascading Style Sheet">CSS</abbr></a></li>
+			<li><a href="#equal">Equal height columns</a></li>
+		</ul>
+	</li>
+</ul>
+
+</div>
+<div class="clear"></div>
+<h2 id="overview">Grid overview</h2>
+
+<p>Grids have been around for a long time in print publishing, and have now moved to the Web. A grid is an invisible <abbr title="Cascading Style Sheet">CSS</abbr> wireframe used to achieve visual cohesion. It's like a lattice that divides space into sections used to hold content such as headings, text, lists, images and so on.</p>
+
+<div class="module-info span-6">
+	<h3>Do you have to use grids?</h3>
+	<p><strong>Nope.</strong> Grids are <strong>not</strong> required when standard content - paragraphs, tables, lists, etc. - is allowed to freely fill the entire content area. Grids are <strong>only</strong> necessary for positioning and alignment of content. Some examples include:</p>
+	<ul>
+		<li>a right menu</li>
+		<li>a grouping of thumbnails</li>
+		<li>anything in columns (except table columns that are generate from the <code>table</code> element)</li>
+		<li>call out boxes</li>
+		<li>alert boxes</li>
+		<li>etc.</li>
+	</ul>
+</div>
+<div class="clear"></div>
+
+<h3>No left menu </h3>
+<p>If a pages has no left menu, there are two grid systems that can be used within the page.  An 8 column is the default and an optional 12 column can be called in at any location on the page by opening a <code>&lt;div class=&quot;grid-12&quot;&gt;</code>.
+<div class="span-3"> <img src="images/grids-8-12.gif" alt="Comparison of grid 8 and grid 12" width="340" height="180" /> </div>
+<div class="span-3"><p>Example page: <a class="button button-accent" href="grid-base-full-ara.html">No left menu grid options</a></p></div>
+<div class="clear"></div>
+<h3>With a left menu</h3>
+<p> There are two grid systems that can be used within a page that has a left menu.  An <strong>8-column system is the default</strong>, however because the left menu occupies the first 2 columns, the content area can occupy only the remaining six columns. An optional 12-column is available at any point on the page by simply opening a <code>&lt;div class=&quot;grid-12&quot;&gt;</code> within the content area.</p>
+<h3><strong>Why is 8 columns the default?</strong></h3>
+<p>Most complex sites have a left menu. The left menu takes up a certain number of grid cells, leaving the remaining space for the content area. The default design of this grid system allows for the left menu to be two columns wide while the content area is six. </p>
+<p>The content area, with it's six columns, nicely divides into two and three equal columns. As demonstrated below, a 12 column grid system that has a left menu, cannot divide the content as nicely, as the remaing cells cannot be divided by two, which is a basic design requirement. A 16-column grid system also has problems, as the remaining space cannot be divided into equal thirds. In fact, the only grid system that solved all design requirements was a 24-column grid system, but that seems  overcomplicated. Furthermore, text should not be put in the tinest grid cells, like a <code>span-1</code>,  and should only be used for indenting purposes or to hold an image so having 24 tiny grid cells was potentially going against accessibility requirements. The <abbr title="Web Content Accessibility Guidelines" rel="external">WCAG</abbr> 2.0 requires text to increase up to 200% without breaking the layout and text inside a tiny box cannot effectively do this. Refer to: <a href="http://www.w3.org/WAI/WCAG20/quickref/#qr-visual-audio-contrast-scale" rel="external">WCAG 2.0: Success Criterion 1.4.4</a></p>
+
+<div class="span-2"><img src="images/tick.gif" alt="Correct" class="image-actual margin-bottom-none">
+              <p class="background-light"> Both can divide the content area into thirds.</p>
+            <img src="images/grids-8-12-span2.gif" width="340" height="180" alt="Comparison of grid 8 and grid 12 with a left menu and the content area divided into thirds" /> </div>
+            
+<div class="span-2"><img src="images/tick.gif" alt="Correct" class="image-actual margin-bottom-none">
+              <p class="background-light"> Both can create a right menu the same width as the left menu.</p>
+              <img src="images/grids-8-12-span2-4.gif" width="340" height="180" alt="Comparison of grid 8 and grid 12 with equal width left and right menus" /> </div>
+
+ 
+<div class="span-2"><img src="images/x.gif" alt="Incorrect" class="image-actual margin-bottom-none">
+              <p class="background-light"> Only one can divide the content area in half.</p>
+              <img src="images/grids-8-12-span3.gif" width="340" height="180" alt="Comparison grid 8 and grid 12 with a left menu and dividing the content area in half (only possible in grid 8)" /> </div>
+<div class="clear"></div>
+<h3>12 column option </h3><div class="span-2 float-left">
+              <p class="background-light">A grid-12 living inside of the the default 8 column grid design.</p>
+              <img src="images/grids-8-12-grid12.gif" width="340" height="180" alt="Comparison of grid 8 and grid 12 nested in a grid 8" /> </div>
+<p>For complex or alternate layouts, you can call in a <code>grid-12</code> <strong class="color-attention">within the content area</strong>. Although the default grid system will likely meet the majority of all needs, this alternate grid version is available and can be easily activated.</p>
+
+<div class="clear"></div>
+<h2 id="structure">Grid structure</h2>
+<p>When there is a left menu, the grid system offers two grid layouts for the content ara: the <strong>six</strong> column layout and the <strong>twelve</strong> column layout.</p>
+<div class="clear"></div>
+<div class="span-1 background-medium margin-bottom-medium align-center">
+	<p>1</p>
+</div>
+<div class="span-1 background-medium margin-bottom-medium align-center">
+	<p>2</p>
+</div>
+<div class="span-1 background-medium margin-bottom-medium align-center">
+	<p>3</p>
+</div>
+<div class="span-1 background-medium margin-bottom-medium align-center">
+	<p>4</p>
+</div>
+<div class="span-1 background-medium margin-bottom-medium align-center">
+	<p>5</p>
+</div>
+<div class="span-1 background-medium margin-bottom-medium align-center">
+	<p>6</p>
+</div>
+<div class="clear"></div>
+<div class="grid-12">
+	<div class="span-1 background-accent align-center">
+		<p>1</p>
+	</div>
+	<div class="span-1 background-accent align-center">
+		<p>2</p>
+	</div>
+	<div class="span-1 background-accent align-center">
+		<p>3</p>
+	</div>
+	<div class="span-1 background-accent align-center">
+		<p>4</p>
+	</div>
+	<div class="span-1 background-accent align-center">
+		<p>5</p>
+	</div>
+	<div class="span-1 background-accent align-center">
+		<p>6</p>
+	</div>
+	<div class="span-1 background-accent align-center">
+		<p>7</p>
+	</div>
+	<div class="span-1 background-accent align-center">
+		<p>8</p>
+	</div>
+	<div class="span-1 background-accent align-center">
+		<p>9</p>
+	</div>
+	<div class="span-1 background-accent align-center">
+		<p>10</p>
+	</div>
+	<div class="span-1 background-accent align-center">
+		<p>11</p>
+	</div>
+	<div class="span-1 background-accent align-center">
+		<p>12</p>
+	</div>
+</div>
+<h3 id="buildingblocks">Grid building blocks </h3>
+<p>In the same way that a typical browser setting is 1024x768 (not 1025x775), the dimensions below do not always use convenient values as they use the exact value needed for the system to work. A single grid cell has a <code>margin-left</code> and <code>margin-right</code> of 10px. This is known as the gutter.</p>
+<p>Furthermore, grid cells have a default <code>margin-top</code> of 0px and a <code>margin-bottom</code> of 20px. This can be increased or decreased by adding the <a href="grid-proximity-ara.html">margin proximity CSS</a>.</p>
+<div class="span-6 module-note"><p><strong>Note:</strong> Grids cells are invisible by default, as they are only structural in nature. For display purposes, we applied a background colour to them.</p></div>
+<div class="clear"></div>
+
+<h4 id="six">Six grid columns</h4>
+<div class="span-2 module float-left">
+	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
+	<ul>
+	<li><code>span-1</code></li>
+	<li><code>span-2</code></li>
+	<li><code>span-3</code></li>
+	<li><code>span-4</code></li>
+	<li><code>span-5</code></li>
+	<li><code>span-6</code></li>
+	</ul>
+</div>
+<div class="span-4 margin-bottom-none">
+	<div class="span-1 row-start background-medium"><p><code>span-1</code></p></div>
+	<div class="clear"></div>
+	<div class="span-2 row-start background-medium"><p><code>span-2</code></p></div>
+	<div class="clear"></div>
+	<div class="span-3 row-start background-medium"><p><code>span-3</code></p></div>
+	<div class="clear"></div>
+	<div class="span-4 row-start background-medium"><p><code>span-4</code></p></div>
+	<div class="clear"> </div>
+    </div>
+	<div class="span-5 background-medium"><p><code>span-5</code></p></div>
+	<div class="clear"></div>
+	<div class="span-6  background-medium"><p><code>span-6</code></p></div>
+	<div class="clear"></div>
+
+
+
+
+<h4 id="twelve">Twelve grid columns</h4>
+<div class="grid-12">
+	
+		<div class="span-1 background-light"> <p class="indent-none margin-right-none"><code>span-1</code></p>
+			
+		</div>
+		<div class="clear"></div>
+		<div class="span-2 background-light"><p><code>span-2</code></p>
+			
+		</div>
+		<div class="clear"></div>
+		<div class="span-3 background-light"><p><code>span-3</code></p>
+			
+		</div>
+		<div class="clear"></div>
+        <div class="span-3 module float-left">
+    
+		<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
+		<ul>
+        	<li><code>grid-12</code></li>
+            <li><code>span-7</code></li>
+            <li><code>span-8</code></li>
+			<li><code>span-9</code></li>
+			<li><code>span-10</code></li>
+			<li><code>span-11</code></li>
+			<li><code>span-12</code></li>
+		</ul>
+	</div>
+        <div class="span-9 margin-bottom-none">
+		<div class="span-4 background-light row-start"><p><code>span-4</code></p>
+			
+		</div>	
+		<div class="clear"></div>
+		<div class="span-5 background-light row-start"><p><code>span-5</code></p>
+		
+		</div>
+		<div class="clear"></div>
+		<div class="span-6 background-light row-start"><p><code>span-6</code></p>
+		
+		</div>
+		<div class="clear"></div>
+		
+		
+		
+	
+	
+	
+    
+    <div class="span-7 background-medium row-start"><p><code>span-7</code></p>
+<div class="clear"></div>
+	</div><div class="span-8  background-medium row-start"><p><code>span-8</code></p>
+		
+		</div></div>
+		<div class="clear"></div>
+		<div class="span-9  background-medium"><p><code>span-9</code></p>
+		
+		</div>
+        
+		<div class="clear"></div>
+		<div class="span-10 background-medium"><p><code>span-10</code></p>
+	
+	</div>
+	<div class="clear"></div>
+	<div class="span-11 background-medium"><p><code>span-11</code></p>
+	
+	</div>
+	<div class="clear"></div>
+	<div class="span-12 background-medium"><p><code>span-12</code></p>
+	
+	</div>
+</div>
+<div class="clear"></div>
+
+
+
+
+<h3 id="rows">Grid rows</h3>
+<p>To maintain the integrity of each row, you must place a <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code> at the end of each row. This is because grid cells have a <code>float:left</code> property. The <code>clear</code> prevents the next row of grid cells from trying to float up and fill any gaps in the previous row.</p>
+<div class="span-4">
+	<div class="background-light">
+		<div class="span-2 background-medium align-center row-start">
+			<p>A</p>
+		</div>
+		<div class="span-2 background-medium align-center row-end">
+			<p>B</p>
+		</div>
+		<div class="clear"></div>
+        <div class="span-2 background-medium align-center row-start">
+			<p>C</p>
+		</div>
+		<div class="span-2 background-medium align-center row-end">
+			<p>D</p>
+		</div>
+		<div class="clear"></div>
+	</div>
+  
+</div>
+<details class="span-2">
+	<summary>View code</summary>
+	<pre>
+&lt;div class=&quot;span-2&quot;&gt;
+    &lt;p&gt;A&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;span-2&quot;&gt;
+    &lt;p&gt;B&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-2&quot;&gt;
+    &lt;p&gt;C&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;span-2&quot;&gt;
+    &lt;p&gt;D&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;	
+</pre>
+</details>
+<div class="clear"></div>
+
+<div class="span-4 margin-top-medium">
+	<div class="background-light">
+		<div class="span-2 background-medium align-center row-start">
+			<p>A</p>
+		</div>
+		<div class="clear"></div>
+		<div class="span-2 background-medium align-center row-start">
+			<p>B</p>
+		</div>
+		<div class="clear"></div>
+        <div class="span-2 background-medium align-center row-start">
+			<p>C</p>
+		</div>
+        <div class="clear"></div>
+		<div class="span-2 background-medium align-center row-start">
+			<p>D</p>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<details class="span-2  margin-top-medium">
+<summary>View code</summary>
+	<pre>
+&lt;div class=&quot;span-2&quot;&gt;
+    &lt;p&gt;A&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-2&quot;&gt;
+    &lt;p&gt;B&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-2&quot;&gt;
+    &lt;p&gt;C&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-2&quot;&gt;
+    &lt;p&gt;D&lt;/p&gt;
+&lt;/div&gt;	
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+	</pre>
+</details>
+<div class="clear"></div>
+
+
+<h3 id="dimensions">Grid dimensions</h3>
+<p class="margin-top-large">As per <a href="http://www.gridsystemgenerator.com" rel="external">gridsystemgenerator.com (external link)</a> the grid cell dimensions for the responsive design are as follows:</p>
+<div class="span-3">
+	<h4 class="background-medium">8 column grid system </h4>
+    <p>When there is a left menu, the left menu accounts for two grid cells, leaving six for the content area.</p>
+	<ul>
+	<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/768_8_10_10.html" rel="external">Default grid system dimensions: <strong>800x600</strong> (external link)</a></li>
+	<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/960_8_10_10.html" rel="external">Default grid system dimensions: <strong>1024x768</strong> (external link)</a></li>
+	<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/1200_8_10_10.html" rel="external">Default grid system dimensions: <strong>1280x720+</strong> (external link)</a></li>
+	</ul>
+	</div>
+	
+<div class="border-right">
+	<div class="span-3">
+	<h4 class="background-light">12 column grid system</h4>
+	<p>When the columns are the full width of the wireframe: <img src="images/grid12-full.gif" width="340" height="28" alt="Grid 12" /></p>
+	<ul>
+		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/768_12_10_10.html" rel="external">Optional grid-12 dimension in a one column layout: <strong>800x600</strong> (external link)</a></li>
+		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/960_12_10_10.html" rel="external">Optional grid-12 dimensions in a one column layout: <strong>1024x768</strong> (external link)</a></li>
+		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/1200_12_10_10.html" rel="external">Optional grid-12 dimensions in a one column layout: <strong>1280x720+</strong> (external link)</a></li>
+		</ul>
+	<p>When the columns are sharing the same horizontal space as a left menu and are only inside the content are of a two column template: <img src="images/grid12-leftmenu.gif" width="340" height="57" alt="Grid 12 next to a left menu" /></p>
+	<ul>
+		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/576_12_10_10.html" rel="external">Optional grid-12 dimension in a two column layout: <strong>800x600</strong> (external link)</a></li>
+		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/720_12_10_10.html" rel="external">Optional grid-12 dimension in a two column layout: <strong>1024x768</strong> (external link)</a></li>
+		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/900_12_10_10.html" rel="external">Optional grid-12 dimension in a two column layout: <strong>1280x720</strong>+ (external link)</a></li>
+		</ul>
+	</div>
+	</div>
+<div class="clear"></div>
+<div class="span-6 module-attention"><p><strong class="color-attention">Important!</strong> Design your content to optimize for the 1024x768 viewport. The responsive design will do the rest of the work.</p></div>
+<div class="clear"></div>
+
+
+<h3 id="layout" class="margin-bottom-medium">Grid layout</h3>
+<p>There are 32 base layout options, ranging from a single full width (<code>span-6</code>) to a six column layout (six <code>span-1</code>'s).  Below are the layout options: </p>
+
+       
+
+          <div class="span-6 margin-top-large margin-bottom-small">
+
+            <h3 id="onec" class="margin-top-large">One column</h3>
+
+          </div>
+
+          <div class="clear"></div>
+
+          <div class="span-6 background-light  align-center">
+
+          <p>  <code>span-6</code></p>         </div>
+
+<div class="clear"></div>
+
+<details class="span-6">
+<summary>View code</summary>
+<pre>&lt;div class="span-6"&gt;
+	&lt;p&gt;Text here&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="clear"&gt;&lt;/div&gt;</pre></details>
+
+            <div class="clear"></div>
+
+         
+
+          <div class="span-6 margin-bottom-small">
+
+           <h3 id="twoc" class="margin-top-large">Two columns</h3>
+
+          </div>
+
+          <div class="span-5 background-light  align-center">
+
+            <p><code>span-5</code></p>        </div>
+
+          <div class="span-1 background-light align-center">
+
+            <p><code>span-1</code> </p>         </div>
+
+          <div class="clear"></div>
+
+ 
+
+          
+
+               
+
+            <details class="span-4">
+<summary>View code</summary>
+<pre>&lt;div class="span-5"&gt;
+  &lt;p&gt;Text here&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="span-1"&gt;
+  &lt;p&gt;Text here&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="clear"&gt;&lt;/div&gt;</pre></details>
+        
+
+          <div class="clear"></div> <div class="span-4 background-light align-center">
+
+           <p><code>span-4</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-4 background-light align-center">
+
+           <p><code>span-4</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="span-5 background-light align-center">
+
+            <p><code>span-5</code></p>          </div>
+
+          <div class="clear"></div>
+
+          <div class="span-6 margin-bottom-small">
+
+           <h3 id="threec" class="margin-top-large">Three columns</h3>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-4 background-light align-center">
+
+           <p><code>span-4</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-4 background-light align-center">
+
+           <p><code>span-4</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-4 background-light align-center">
+
+           <p><code>span-4</code></p>
+
+          </div>
+
+          <div class="clear"></div>
+
+          <div class="span-6 margin-bottom-small">
+
+           <h3 id="fourc" class="margin-top-large">Four columns</h3>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-3 background-light align-center">
+
+           <p><code>span-3</code></p>
+
+          </div>
+
+          <div class="clear"></div>
+
+          <div class="span-6 margin-bottom-small">
+
+           <h3 id="fivec" class="margin-top-large">Five columns</h3>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-2 background-light align-center">
+
+           <p><code>span-2</code></p>
+
+          </div>
+
+          <div class="clear"></div>
+
+          <div class="span-6 margin-bottom-small">
+
+            <h3 id="sixc" class="margin-top-large">Six columns</h3>
+
+          </div>
+
+          <div class="clear"></div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div> <div class="span-1 background-light align-center">
+
+           <p><code>span-1</code></p>
+
+          </div>
+
+          <div class="clear"></div>
+
+<h3 id="sevenc">Seven to twelve columns</h3>
+<p>For complex or alternate layouts, you can call in a grid 12 within the content area. Although the default grid system will likely meet the majority of your needs, this alternate grid version is available and can be easily activated. The grid 12 can be called in anywhere on the page by opening a <code>&lt;div&#160;class=&quot;grid-12&quot;&gt;</code> container:</p>
+
+<div class="span-12 grid-12 background-light">
+	<div class="span-6 background-medium align-center row-start">
+		<p><code>span-6</code></p>
+	</div>
+	<div class="span-6 background-medium align-center row-end">
+		<p><code>span-6</code></p>
+	</div>
+	<div class="clear"></div>
+</div>
+	
+<details class="span-6">
+	<summary>View code</summary>
+<pre>&lt;div class=&quot;grid-12&quot;&gt;	 
+   &lt;div class=&quot;span-6&quot;&gt;
+      &lt;p&gt;Text here&lt;/p&gt;
+   &lt;/div&gt;
+   &lt;div class=&quot;span-6&quot;&gt;
+      &lt;p&gt;Text here&lt;/p&gt;
+   &lt;/div&gt;
+   &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+</details>
+<div class="clear"></div>
+
+<p>The width of the grid cells are smaller within the <code>&lt;div&#160;class=&quot;grid-12&quot;&gt;</code> container. A <code>&lt;div&#160;class=&quot;span-1&quot;&gt;</code> in the grid 12 is much smaller than in the default grid system. This resizing happens automatically when cells are inside the <code>&lt;div&#160;class=&quot;grid-12&quot;&gt;</code> container.</p>
+<div class="grid-12">
+	<div class="span-12 background-light align-center"><p><code>span-12</code></p></div>
+	<div class="clear"></div>
+	<div class="span-11 background-light align-center"><p><code>span-11</code></p></div>
+	<div class="span-1 background-light align-center font-xsmall"><p class="indent-none"><code>span-1</code></p></div>
+	<div class="clear"></div>
+	<div class="span-10 background-light align-center"><p><code>span-10</code></p></div>
+	<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+	<div class="clear"></div>
+	<div class="span-9 background-light align-center"><p><code>span-9</code></p></div>
+	<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+	<div class="clear"></div>
+	<div class="span-8 background-light align-center"><p><code>span-8</code></p></div>
+	<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+	<div class="clear"></div>
+	<div class="span-7 background-light align-center"><p><code>span-7</code></p></div>
+	<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+	<div class="clear"></div>
+	<div class="span-6 background-light align-center"><p><code>span-6</code></p></div>
+	<div class="span-6 background-light align-center"><p><code>span-6</code></p></div>
+	<div class="clear"></div>
+	<div class="span-5 background-light align-center"><p><code>span-5</code></p></div>
+	<div class="span-7 background-light align-center"><p><code>span-7</code></p></div>
+	<div class="clear"></div>
+	<div class="span-4 background-light align-center"><p><code>span-4</code></p></div>
+	<div class="span-8 background-light align-center"><p><code>span-8</code></p></div>
+	<div class="clear"></div>
+	<div class="span-3 background-light align-center"><p><code>span-3</code></p></div>
+	<div class="span-9 background-light align-center"><p><code>span-9</code></p></div>
+	<div class="clear"></div>
+	<div class="span-2 background-light align-center"><p><code>span-2</code></p></div>
+	<div class="span-10 background-light align-center"><p><code>span-10</code></p></div>
+	<div class="clear"></div>
+	<div class="span-1 background-light align-center font-xsmall"><p class="indent-none"><code>span-1</code></p></div>
+	<div class="span-11 background-light align-center"><p><code>span-11</code></p></div>
+	<div class="clear"></div>
+	<div class="span-12 background-light align-center"><p><code>span-12</code></p></div>
+	<div class="clear"></div>
+</div>
+
+<div class="span-6 module-summary margin-top-large">
+	<h3>Recap: Grid structure and layout options </h3>
+	<ul>
+	<li>Grids are used to slice up the sections within the content area. They create boxes and/or columns. They are <strong>not needed for basic content</strong> that is intended to fill the <strong>full width</strong> of the content area.</li>
+	<li>When there is no left menu, the grid system offers a default of eight grid columnss &mdash; each row <strong>must</strong> total eight grids.</li>
+	<li>An optional 12 column grid system can be inserted into the content area.</li>
+	<li>Grid cells float to the left, and you can combine them together in a variety of ways to form a row.</li>
+	<li>There are 32 base layout options in the default grid system. There are hundreds more when a grid 12 is added.</li>
+	<li>A single grid cell has a <code>margin-left</code> and <code>margin-right</code> of 10px. This is known as the gutter.</li>
+	<li>A single grid cell has a <code>margin-top</code> of 0px and a <code>margin-bottom</code> of 20px. This can be increased or decreased by adding the <a href="grid-proximity-ara.html">margin proximity <abbr title="Cascading Style Sheet">CSS</abbr></a>.</li>
+	<li>You need to add <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code> at the end of each row to ensure new rows appear properly.</li>
+	</ul>
+</div>
+<div class="clear"></div>
+
+
+
+<h2 id="parents">Grid parents and children <abbr title="Cascading Style Sheet">CSS</abbr></h2>
+<div class="span-2 module float-left">
+	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
+	<ul>
+	<li><code>row-start</code></li>
+	<li><code>row-end</code></li>
+	<li><code>equalize</code></li>
+	</ul>
+</div>
+<p>Within a grid cell, you can place other grids, thereby creating a <strong>grid parent</strong> that contains <strong>grid children</strong> (like a table inside a table). Grids are typically rows of content, read from left to right. However, there are times when you need to cluster and group content in a customized way. Grid parents allow you to do this.</p>
+<p>Placing grids inside grids allows you to stack content and create unique layouts, while adhering to the structure and rigour of a grid system. Additionally, JAWS (software for visually impaired staff) can read grouped content within the grid parent before moving to the next grid cell, even when you vertically stack this content. This ensures both visual and visually-impaired users have the same experience.</p>
+<h3 id="rowstart"><code>row-start</code> and <code>row-end</code> <abbr title="Cascading Style Sheet">CSS</abbr></h3>
+<p>In each row, you need to remove the left hand gutter from the first child and the right hand gutter from the last grid child so it fits into the available space. Apply the <code>row-start</code> to the first child in the row and then <code>row-end</code> <abbr title="Cascading Style Sheet">CSS</abbr> to the last child in a given row to achieve this. Refer to the example below.</p>
+
+<div class="span-4 align-center background-light">
+	<p class="font-large">Parent cell</p>
+	<div class="span-1 row-start background-dark">
+		<p>row-start child</p>
+	</div>
+	<div class="span-2 background-accent">
+		<p>child</p>
+	</div>
+	<div class="span-1 row-end background-dark">
+		<p>row-end child</p>
+	</div>
+</div>
+<details class="span-2">
+<summary>View code</summary>
+<pre>
+&lt;div class=&quot;span-4 align-center background-light&quot;&gt;
+	&lt;p class=&quot;font-large&quot;&gt;Parent cell&lt;/p&gt;
+    &lt;div class=&quot;span-1 row-start background-dark&quot;&gt;
+    	&lt;p&gt;row-start child&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;span-2 background-accent&quot;&gt;
+    	&lt;p&gt;child&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;span-1 row-end background-dark&quot;&gt;
+    	&lt;p&gt;row-end child&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+</details>
+<div class="clear"></div>
+<h4>If you forget to use the <code>row-start</code> and <code>row-end</code> class&hellip;</h4>
+<p>If you allow the first and last child per row to retain their margins, they can't fit into the available space. Therefore, the final cells gets bumped and floats to the next available space below.</p>
+<div class="span-4 align-center background-light">
+	<p class="font-large">Parent cell</p>
+	<div class="span-1 background-accent">
+		<p>child</p>
+	</div>
+	<div class="span-2 background-accent">
+		<p>child</p>
+	</div>
+	<div class="span-1 background-accent">
+		<p>child</p>
+	</div>
+</div>
+<details class="span-2">
+<summary>View code</summary>
+<pre>
+&lt;div class=&quot;span-4 align-center background-light&quot;&gt;
+	&lt;p class=&quot;font-large&quot;&gt;Parent cell&lt;/p&gt;
+    &lt;div class=&quot;span-1 background-dark&quot;&gt;
+    	&lt;p&gt;child&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;span-2 background-accent&quot;&gt;
+    	&lt;p&gt;child&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;span-1 background-dark&quot;&gt;
+    	&lt;p&gt;child&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+</details>
+<div class="clear"></div>
+<h4>When the parent and the child are the same width&hellip;</h4>
+<p>You can have children with the <strong class="color-accent">same width</strong> as the parent cell. If a child cell is as wide as the parent cell, then you do <strong class="font-large">not</strong> need to apply the <code>row-start</code> and <code>row-end</code> classes, as the <abbr title="Cascading Style Sheet">CSS</abbr> automatically removes the margin left and right from the child.</p>
+<div class="span-4 align-center background-light">
+	<p class="font-large">Parent cell</p>
+	<div class="span-4 background-accent">
+		<p>child</p>
+	</div>
+	<div class="span-4 background-accent">
+		<p>child</p>
+	</div>
+	<div class="span-4 background-accent">
+		<p>child</p>
+	</div>
+</div>
+<details class="span-2">
+<summary>View code</summary>
+<pre>
+&lt;div class=&quot;span-4 align-center background-light&quot;&gt;
+	&lt;p class=&quot;font-large&quot;&gt;Parent cell&lt;/p&gt;
+    &lt;div class=&quot;span-4 background-dark&quot;&gt;
+    	&lt;p&gt;child&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;span-4 background-accent&quot;&gt;
+    	&lt;p&gt;child&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;span-4 background-dark&quot;&gt;
+    	&lt;p&gt;child&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+</details>
+<div class="clear"></div>
+
+
+
+<h3 id="equal">Equal height columns</h3>
+<p>Historically, you used tables for layout, and it was easy to create columns of equal height. In every row, the table data cells always assumed the height of the tallest cell in that row. <abbr title="Cascading Style Sheet">CSS</abbr> grid cells create similar rows of content, but because they are not associated with each other, they do not apply borders and background colour fills in the same way. Without JavaScript, there is no way for the browser to know what the tallest grid cell per row cell is. Therefore, a <abbr title="Cascading Style Sheet">CSS</abbr> &#47; JavaScript solution is necessary to achieve this same effect.</p>
+<div class="span-2 float-left margin-bottom-medium"><img src="images/equalHeights.gif" alt="Equal height diagram" width="224" height="62" /></div>
+<p>By using <code>equalize</code> on the grid parent, its row of grid children automatically assume the height of the tallest child.</p>
+<div class="clear"></div>
+<div class="span-4">
+<h4 class="margin-top-none">Default &mdash; <span class="font-large color-attention">No</span> parent &#47; child relationship, and <span class="font-large color-attention">no</span> <code>equalize</code> <abbr title="Cascading Style Sheet">CSS</abbr></h4>
+<div class="span-4 margin-bottom-none">
+<div class="span-1 background-light row-start"><p>This is placeholder text. This is placeholder text. </p></div>
+<div class="span-3 background-light row-end">
+	<p>This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.</p>
+</div>
+<div class="clear"></div>
+<div class="span-2 background-light row-start">
+	<p>This is placeholder text.</p>
+</div>
+<div class="span-2 background-light row-end">
+	<p>This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.</p>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+</div>
+<div class="span-2">
+<details>
+<summary>View code</summary>
+<pre>
+&lt;div class=&quot;span-1 background-light&quot;&gt;
+	&lt;p&gt;This is placeholder text. This is placeholder text. &lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;span-3 background-light&quot;&gt;
+	&lt;p&gt;This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-2 background-light&quot;&gt;
+	&lt;p&gt;This is placeholder text.&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;div class=&quot;span-2 background-light&quot;&gt;
+    &lt;p&gt;This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</pre>
+</details>
+</div>
+<div class="clear"></div>
+<div class="span-4">
+<h4 class="margin-top-none">Optional &mdash; Parent &#47; child relationship using <code>equalize</code></h4>
+<div class="span-4 equalize">
+<div class="span-1 background-light row-start"><p>This is placeholder text. This is placeholder text. </p></div>
+<div class="span-3 background-light row-end">
+	<p>This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.</p>
+</div>
+</div>
+<div class="clear"></div>
+<div class="span-4 equalize">
+<div class="span-2 background-light row-start">
+	<p>This is placeholder text.</p>
+</div>
+<div class="span-2 background-light row-end">
+	<p>This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.</p>
+</div>
+</div>
+<div class="clear"></div>
+
+</div>
+<div class="span-2">
+<details>
+<summary>View code</summary>
+<pre>
+&lt;div class=&quot;span-4 equalize&quot;&gt;
+    &lt;div class=&quot;span-1 background-light row-start&quot;&gt;
+        &lt;p&gt;This is placeholder text. This is placeholder text. &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;span-3 background-light row-end&quot;&gt;
+        &lt;p&gt;This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-4 equalize&quot;&gt;
+    &lt;div class=&quot;span-2 background-light row-start&quot;&gt;
+        &lt;p&gt;This is placeholder text.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;span-2 background-light row-end&quot;&gt;
+        &lt;p&gt;This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</pre>
+</details>
+</div>
+<div class="clear"></div>
+
+</div>
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2012-09-17</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+<div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
+  <div class="wb-sec-def">
+    <!-- SecNavStart -->
+    <section>
+      <h3><a href="grid-structure-ara.html">Structure</a></h3>
+      <ul>
+        <li><a href="grid-base-ara.html">CSS Grid System</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-basic-ara.html">Basic effects</a></h3>
+      <ul>
+        <li><a href="grid-text-ara.html">Text</a></li>
+        <li><a href="grid-table-ara.html">Tables</a></li>
+        <li><a href="grid-form-ara.html">Forms</a></li>
+        <li><a href="grid-image-ara.html">Images</a></li>
+        <li><a href="grid-color-ara.html">Colour</a></li>
+        <li><a href="grid-button-ara.html">Buttons</a></li>
+        <li><a href="grid-border-ara.html">Borders</a></li>
+        <li><a href="grid-icon-ara.html">Icons</a></li>
+        <li><a href="grid-opacity-ara.html">Opacity</a></li>
+        <li><a href="grid-proximity-ara.html">Proximity</a></li>
+        <li><a href="grid-position-ara.html">Positioning and alignment</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-specialty-ara.html">Specialty effects</a></h3>
+      <ul>
+        <li><a href="grid-message-ara.html">Messages</a></li>
+        <li><a href="grid-module-ara.html">Modules</a></li>
+        <li><a href="grid-other-ara.html">Other</a></li>
+      </ul>
+    </section>
+    <!-- SecNavEnd -->
+  </div>
+</nav></div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2>Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">The Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/en"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
+</body>
+</html>

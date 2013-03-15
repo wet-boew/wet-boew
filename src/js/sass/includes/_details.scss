@@ -6,46 +6,72 @@
 /* details polyfill */
 
 /* <details> and <summary> are block level elements */
-details, summary { 
+%pe-details-display-block {
     display: block;
 }
 
 summary {
+	@extend %pe-details-display-block;
 	cursor: pointer; /* Apply a pointer cursor upon hover to indicate it’s a clickable element. These styles can be applied regardless of whether the fallback is needed */
-	&:hover, &:focus, &:active { /* Add focus styles (for keyboard accessibility) */
-		background: #ddd; 
+	@include pseudo-focus { /* Add focus styles (for keyboard accessibility) */
+		background: #ddd;
 	}
 }
 
 /* Only get applied if JavaScript is enabled and <details> is not natively supported */
 details {
-	&.polyfill { 
-		> summary:before { /* Add the close pointer */
-			content: "\25BA\a0";
+	@extend %pe-details-display-block;
+	&.polyfill {
+		> {
+			summary {
+				&:before { /* Add the close pointer */
+					content: "\25BA\a0";
+				}
+			}
 		}
-		&.open > summary:before { /* Add the open pointer */
-			content: "\25BC\a0";
+		&.open {
+			> {
+				summary {
+					&:before { /* Add the open pointer */
+						content: "\25BC\a0";
+					}
+				}
+			}
 		}
 	}
 	summary { /* Make sure summary remains visible */
 		display: block;
 		background: transparent
 	}
-	> * {
-		display:none;
+	> {
+		* {
+			display: none;
+		}
 	}
 }
 
 .detailssummary {
 	details {
-		> * { /* Show the details content for browsers that natively support it. */
-			display: block;
+		> {
+			* { /* Show the details content for browsers that natively support it. */
+				display: block;
+			}
 		}
 	}
 }
 
-.pe-disable {
-	details > * {
-		display: block;
+.no-js {
+	details {
+		> {
+			* {
+				display: block;
+			}
+		}
+	}
+	summary {
+		cursor: auto;
+		@include pseudo-focus {
+			background: none;
+		}
 	}
 }

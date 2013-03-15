@@ -2,57 +2,83 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#gcwu-psnb,#gcwu-srchbx {
+%gcwu-default-desktop-hidden-h2 {
 	h2 {
-		position:absolute;
-		clip:rect(1px, 1px, 1px, 1px);
-		height:0 !important;
-		width:0 !important;
-		overflow:hidden !important;
-		margin:0 !important;
+		position: absolute;
+		@include clip-rect;
+		height: 0 !important;
+		width: 0 !important;
+		overflow: hidden !important;
+		margin: 0 !important;
+	}
+}
+%gcwu-default-desktop-background-none {
+	background: none;
+}
+ 
+[class*="ui-body-"], [class*="ui-overlay-"] {
+	text-shadow: none;
+}
+
+[class*="ui-body-"] .ui-link {
+	font-weight: normal;
+}
+ 
+#gcwu-title {
+	@extend %gcwu-default-desktop-background-none;
+}
+
+#gcwu-gcnb {
+	.ui-header {
+		@extend %gcwu-default-desktop-display-none-important;
 	}
 }
 
-#gcwu-bc {
-	font-size:85%;
-	color:#555;
+#gcwu-psnb {
+	@extend %gcwu-default-desktop-hidden-h2;
+}
+
+#gcwu-srchbx {
+	@extend %gcwu-default-desktop-hidden-h2;
+}
+
+#gcwu-bc-in {
+	font-size: 85%;
 	ol {
-		line-height:1.57em;
-		list-style-type:none;
-		margin:2px 10px 0;
-		padding:0;
-		&:after {
-			content:".";
-			display:block;
-			height:0;
-			clear:both;
-			visibility:hidden;
-		}
+		margin: 2px 10px 0;
 	}
 	li {
-		float:left;
-		white-space:nowrap;
-		margin:0 5px 0 0;
-		padding:0 0 0 11px;
-		&:first-child {
-			background-image:none;
-			padding-left:0;
-		}
-	}
-	a {
-		color:#295376;
-		text-decoration:none;
-		&:hover,&:focus,&:active {
-			color:#295376;
-			text-decoration:underline;
+		white-space: nowrap;
+		margin: 0 5px 0 0;
+		padding: 0 11px 0 0;
+		&:last-child {
+			background-image: none;
 		}
 	}
 }
 
 #gcwu-date-mod {
-	margin:0;
+	margin: 0;
 }
 
-#gcwu-bnr .ui-navbar,#jqm-wb-mb,#jqm-wb-search,.ui-loader {
-	display:none !important;
+%gcwu-default-desktop-display-none-important {
+	display: none !important;
+}
+
+#gcwu-bnr {
+	.ui-navbar {
+		@extend %gcwu-default-desktop-display-none-important;
+	}
+}
+
+#jqm-wb-mb {
+	@extend %gcwu-default-desktop-display-none-important;
+}
+
+#jqm-wb-search {
+	@extend %gcwu-default-desktop-display-none-important;
+}
+
+.ui-loader {
+	@extend %gcwu-default-desktop-display-none-important;
 }

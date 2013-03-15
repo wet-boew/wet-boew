@@ -20,22 +20,24 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -49,7 +51,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng.svg" role="img" tabindex="-1" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
+	<div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.png" width="214" height="20" alt="Government of Canada" /></div>
+</object></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
@@ -59,19 +63,21 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" tabindex="-1" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
+	<div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
+</object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="gcwu-psnb"><h2>Site menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
@@ -105,32 +111,32 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <p>Here a quick view about the definition of each table related element:</p>
 <ul>
-	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-table-element.html#the-table-element" rel="external">table</a>:</strong> The table element represents data with more than one dimension, in the form of a table. [...] Tables have rows, columns, and cells given by their descendants. The rows and columns form a grid; a table's cells must completely cover that grid without overlap. [...] Authors are encouraged to provide information describing how to interpret complex tables.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/tabular-data.html#the-table-element" rel="external">table</a>:</strong> The table element represents data with more than one dimension, in the form of a table. [...] Tables have rows, columns, and cells given by their descendants. The rows and columns form a grid; a table's cells must completely cover that grid without overlap. [...] Authors are encouraged to provide information describing how to interpret complex tables.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-caption-element.html#the-caption-element" rel="external">caption</a>:</strong> The caption element represents the title of the table that is its parent, if it has a parent and that is a table element. [..] A caption can introduce context for a table, making it significantly easier to understand.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/tabular-data.html#the-caption-element" rel="external">caption</a>:</strong> The caption element represents the title of the table that is its parent, if it has a parent and that is a table element. [..] A caption can introduce context for a table, making it significantly easier to understand.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-colgroup-element.html#the-colgroup-element" rel="external">colgroup</a>:</strong> The colgroup element represents a group of one or more columns in the table that is its parent, if it has a parent and that is a table element.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/tabular-data.html#the-colgroup-element" rel="external">colgroup</a>:</strong> The colgroup element represents a group of one or more columns in the table that is its parent, if it has a parent and that is a table element.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-col-element.html#the-col-element" rel="external">col</a>:</strong> If a col element has a parent and that is a colgroup element that itself has a parent that is a table element, then the col element represents one or more columns in the column group represented by that colgroup.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/tabular-data.html#the-col-element" rel="external">col</a>:</strong> If a col element has a parent and that is a colgroup element that itself has a parent that is a table element, then the col element represents one or more columns in the column group represented by that colgroup.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-thead-element.html#the-thead-element" rel="external">thead</a>:</strong> The thead element represents the block of rows that consist of the column labels (headers) for the parent table element, if the thead element has a parent and it is a table. [...] Notice the use of both th and td elements in the thead element: the first row is the headers, and the second row is an explanation of how to fill in the table.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/tabular-data.html#the-thead-element" rel="external">thead</a>:</strong> The thead element represents the block of rows that consist of the column labels (headers) for the parent table element, if the thead element has a parent and it is a table. [...] Notice the use of both th and td elements in the thead element: the first row is the headers, and the second row is an explanation of how to fill in the table.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-tbody-element.html#the-tbody-element" rel="external">tbody</a>:</strong> The tbody element represents a block of rows that consist of a body of data for the parent table element, if the tbody element has a parent and it is a table.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/tabular-data.html#the-tbody-element" rel="external">tbody</a>:</strong> The tbody element represents a block of rows that consist of a body of data for the parent table element, if the tbody element has a parent and it is a table.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-tfoot-element.html#the-tfoot-element" rel="external">tfoot</a>:</strong> The tfoot element represents the block of rows that consist of the column summaries (footers) for the parent table element, if the tfoot element has a parent and it is a table.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/tabular-data.html#the-tfoot-element" rel="external">tfoot</a>:</strong> The tfoot element represents the block of rows that consist of the column summaries (footers) for the parent table element, if the tfoot element has a parent and it is a table.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-tr-element.html#the-tr-element" rel="external">tr</a>:</strong> The tr element represents a row of cells in a table.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/tabular-data.html#the-tr-element" rel="external">tr</a>:</strong> The tr element represents a row of cells in a table.</li>
 	
-	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/the-th-element.html#the-th-element" rel="external">th</a>:</strong> The th element represents a header cell in a table.</li>
+	<li class="margin-bottom-large"><strong><a href="http://www.w3.org/TR/html5/tabular-data.html#the-th-element" rel="external">th</a>:</strong> The th element represents a header cell in a table.</li>
 	
-	<li><strong><a href="http://www.w3.org/TR/html5/the-td-element.html#the-td-element" rel="external">td</a>:</strong> The td element represents a data cell in a table.</li>
+	<li><strong><a href="http://www.w3.org/TR/html5/tabular-data.html#the-td-element" rel="external">td</a>:</strong> The td element represents a data cell in a table.</li>
 </ul>
 
 <p><em>Information was token from the HTLM5 specification, Editor's Draft 26 June 2012, Revision 1.5697</em></p>
 
 
 
-<p>A basic knowledge about the <a href="http://www.w3.org/TR/html5/attributes-common-to-td-and-th-elements.html#processing-model-0" rel="external">HTML table processing model</a> help on how to use the colspan and rowspan attribute on a cell in regards of the group element. The table usability concep should not conflic with the specification to <a href="http://www.w3.org/TR/html5/attributes-common-to-td-and-th-elements.html#header-and-data-cell-semantics" rel="external">forming relationships between data cells and header cells</a> if the WCAG technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H43.html" rel="external">H43: Using id and headers attributes to associate data cells with header cells in data tables</a> is used.</p>
+<p>A basic knowledge about the <a href="http://www.w3.org/TR/html5/tabular-data.html#processing-model-1" rel="external">HTML table processing model</a> help on how to use the colspan and rowspan attribute on a cell in regards of the group element. The table usability concep should not conflic with the specification to <a href="http://www.w3.org/TR/html5/tabular-data.html#header-and-data-cell-semantics" rel="external">forming relationships between data cells and header cells</a> if the WCAG technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H43.html" rel="external">H43: Using id and headers attributes to associate data cells with header cells in data tables</a> is used.</p>
 
 <hr />
 
@@ -248,7 +254,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <p>The row level is calculated by the number of row header inside a data row group. The level always increase and decrease of one level for the next summary row group.</p>
 
 <h3>Row Level Inside a Data Group</h3>
-<p>A row level can be increased inside a data group if the table structure is constant. This create a sub group based on the number of row the group header cell is spanned. However no summary can be defined in that sub row group because in the <a href="http://www.w3.org/TR/html5/attributes-common-to-td-and-th-elements.html#processing-model-0">4.9.12 Processing model</a> from the HTLM5 specification said: <cite>A cell cannot cover slots that are from two or more row groups.</cite>.</p>
+<p>A row level can be increased inside a data group if the table structure is constant. This create a sub group based on the number of row the group header cell is spanned. However no summary can be defined in that sub row group because in the <a href="http://www.w3.org/TR/html5/tabular-data.html#processing-model-1">4.9.12 Processing model</a> from the HTLM5 specification said: <cite>A cell cannot cover slots that are from two or more row groups.</cite>.</p>
 
 -->
 
@@ -315,9 +321,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
 </body>
 </html>

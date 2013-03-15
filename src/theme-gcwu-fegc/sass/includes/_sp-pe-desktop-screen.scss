@@ -10,18 +10,16 @@
 	}
 }
 
-#wb-body #wb-main {
-	float:left;
-}
-
-#wb-main {
-	a[href]:hover,a[href]:focus,a[href]:active {
-		color: #000;
+#wb-body {
+	#wb-main {
+		float: left;
 	}
 }
 
-.ui-mobile {
-	#gcwu-lang, #wb-foot {
-		display: none;
+#wb-main {
+	a[href] {
+		@include pseudo-focus {
+			color: #000;
+		}
 	}
 }

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
+<html lang="bg">
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
 <!-- DataAjaxFragmentStart -->
@@ -48,7 +48,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="section2/index-eng.html">Section 2 - Main page</a></div>
 </div></section></li>
 <li><section><h3><a href="#">Section 3</a></h3><div class="mb-sm">
 <div class="mb-highlight">
@@ -122,7 +121,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="#">Section 4 - Main page</a></div>
 </div></section></li>
 <li><div><a href="#">Section 5</a></div></li>
 <li><section><h3><a href="#">Section 6</a></h3><div class="mb-sm">
@@ -203,7 +201,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="#">Section 7 - Main page</a></div>
 </div></section></li>
 <!-- DataAjaxFragmentEnd -->
 </html>

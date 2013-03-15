@@ -15,7 +15,8 @@
 	/* local reference */
 	_pe.fn.menubar = {
 		type : 'plugin',
-		depends : (_pe.mobile ? [] : ['resize', 'equalheights', 'hoverintent', 'outside']),
+		depends : (_pe.mobile ? [] : ['hoverintent']),
+		ignoreMenuBarClicks : false,
 		_exec : function (elm) {
 			/*
 			@notes: the mega menu will use custom events to better manage its events.
@@ -49,9 +50,16 @@
 					_sm = _node.find('.mb-sm');
 				_sm.attr({'aria-expanded':'true', 'aria-hidden':'false'}).toggleClass('mb-sm mb-sm-open');
 
-				if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
-					_sm.css('right', '0px');
+				if (pe.rtl) {
+					if ((Math.floor(_sm.offset().left) - Math.floor($menuBoundary.offset().left)) <= 0) {
+						_sm.css('left', '0');
+					}
+				} else {
+					if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
+						_sm.css('right', '0');
+					}
 				}
+
 				_node.addClass('mb-active');
 				return;
 			};
@@ -78,13 +86,13 @@
 			};
 			/* hide all the submenus */
 			hideallsubmenus = function () {
-				$menu.find('.mb-sm-open').each(function () {
-					var _menu = $(this).closest('li');
-					return hidesubmenu(_menu);
-				});
+				var _opensm = $menu.find('.mb-sm-open');
+				if (_opensm.length !== 0) {
+					return hidesubmenu(_opensm.closest('li'));
+				}
 				return;
 			};
-			/* function to correct the hieght of the menu on resize */
+			/* function to correct the height of the menu on resize */
 			correctheight = function () {
 				var _lastmenuli = $menu.children('li:last'),
 					newouterheight = (_lastmenuli.offset().top + _lastmenuli.outerHeight()) - $scope.offset().top;
@@ -120,7 +128,7 @@
 				var $elm = $(value).addClass('knav-' + index + '-0-0'),
 					$childmenu = $elm.closest('li').find('.mb-sm');
 				if ($childmenu.length > 0) {
-					$elm.attr('aria-haspopup', 'true').addClass('mb-has-sm').wrapInner('<span class="expandicon"><span class="sublink"></span></span>');
+					$elm.attr('aria-haspopup', 'true').addClass('mb-has-sm').attr('href', '#').wrapInner('<span class="expandicon"><span class="sublink"></span></span>');
 					$childmenu.attr({'role': 'menu', 'aria-expanded': 'false', 'aria-hidden': 'true'}).find(':has(:header) ul').attr('role', 'menu');
 					$elm.append('<span class="wb-invisible">' + submenuHelp + '</span>');
 					$elm.closest('li').hoverIntent({
@@ -162,19 +170,28 @@
 			correctheight();
 
 			// Handles opening and closing of a submenu on click of a menu bar item but prevents any changes on click of the empty area in the submenu
-			$scope.find('.mb-sm').on('click vclick touchstart', function (event) {
+			$scope.on('click vclick touchstart focusin', function (event) {
 				if (event.stopPropagation) {
 					event.stopPropagation();
 				} else {
 					event.cancelBubble = true;
 				}
-			}).parent().on('click vclick touchstart', '> :header a', function () {
-				if ($(this).closest('li').hasClass('mb-active')) {
-					hidesubmenu(this);
+			}).parent().on('click vclick touchstart mouseenter mouseleave', '> :header a', function (e) {
+				var type = e.type;
+				if (type === 'mouseenter') {
+					_pe.fn.menubar.ignoreMenuBarClicks = true;
+				} else if (type === 'mouseleave') {
+					_pe.fn.menubar.ignoreMenuBarClicks = false;
 				} else {
-					showsubmenu(this);
+					if ($(this).closest('li').hasClass('mb-active')) {
+						if (type !== 'click' || !_pe.fn.menubar.ignoreMenuBarClicks) { // Ignore clicks on the menu bar if menu opened by hover
+							hidesubmenu(this);
+						}
+					} else {
+						showsubmenu(this);
+					}
+					return false;
 				}
-				return false;
 			});
 
 			/* bind all custom events and triggers to menu */
@@ -191,7 +208,9 @@
 					elmtext,
 					matches,
 					match,
-					level;
+					level,
+					i,
+					len;
 				_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
 					return parseInt(n, 10);
 				});
@@ -242,14 +261,15 @@
 									var $this = $(this);
 									return ($this.text().substring(0, 1).toLowerCase() === keychar || (sublink && $this.text() === elmtext));
 								});
-								if (matches.length > 0) {
+								if (matches.length !== 0) {
 									if (sublink) {
-										matches.each(function (index) {
-											if ($(this).text() === elmtext) {
-												match = index;
-												return false;
+										match = matches.length;
+										for (i = 0, len = match; i !== len; i += 1) {
+											if (matches.eq(i).text() === elmtext) {
+												match = i;
+												break;
 											}
-										});
+										}
 										if (match < (matches.length - 1)) {
 											pe.focus(matches.eq(match + 1));
 											return false;
@@ -355,10 +375,7 @@
 					}
 				}
 			});
-			$(document).on('click vclick touchstart', function () {
-				$scope.trigger('focusoutside');
-			});
-			$scope.on('focusoutside', function () {
+			_pe.document.on('click vclick touchstart focusin', function () {
 				return hideallsubmenus();
 			});
 

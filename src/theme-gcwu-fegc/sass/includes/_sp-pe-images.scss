@@ -2,13 +2,22 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#gcwu-ef-lang, #gcwu-other-lang {
+
+%gcwu-sp-pe-images-langs {
 	li {
-			a {
-				background: #ccc url(../images/sp-pe-button.gif) 0 0 repeat-x;
-				&:hover, &:focus, &:active {
-					background: #ddd url(../images/sp-pe-button-focus.gif) 0 0 repeat-x;
-				}
+		a {
+			background: #ccc url(../images/sp-pe-button.gif) 0 0 repeat-x; //TODO: Use gradients with fallback
+			@include pseudo-focus {
+				background: #ddd url(../images/sp-pe-button-focus.gif) 0 0 repeat-x; //TODO: Use gradients with fallback
 			}
+		}
 	}
+}
+
+#gcwu-ef-lang {
+	@extend %gcwu-sp-pe-images-langs;
+}
+
+#gcwu-other-lang {
+	@extend %gcwu-sp-pe-images-langs;
 }

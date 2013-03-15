@@ -6,14 +6,20 @@
 	display: block;
 }
 .wet-boew-formvalid {
-	label .error {
-		display: block;
-		font-weight: bold;
-		color: #c00;
+	label {
+		.error {
+			display: block;
+			font-weight: bold;
+			color: #c00;
+		}
 	}
-	input[type=checkbox] + label {
-		display: inline;
-		margin-top: 0;
+	input[type=checkbox] {
+		+ {
+			label {
+				display: inline;
+				margin-top: 0;
+			}
+		}
 	}
 }
 
@@ -29,21 +35,31 @@
 			margin-bottom: -1em;
 		}
 		.buttons {
-			margin-top:2em;
+			margin-top: 2em;
 		}
 	}
 }
-	
-div.errorContainer {
-	h2 {
-		color: #8a1f11;
-	}	
-	div.errorContainer p {
-		font-weight: bold;
+
+div {
+	&.errorContainer {
+		h2 {
+			color: #8a1f11;
+		}
+		div {
+			&.errorContainer {
+				p {
+					font-weight: bold;
+				}
+			}
+		}
 	}
 }
-.errorContainer ul li {
-	margin-bottom: 5px;
+.errorContainer {
+	ul {
+		li {
+			margin-bottom: 5px;
+		}
+	}
 }
 .no-js {
 	.wet-boew-formvalid {

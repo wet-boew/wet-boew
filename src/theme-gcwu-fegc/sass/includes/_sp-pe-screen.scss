@@ -2,49 +2,79 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%gcwu-sp-pe-screen-margin-auto {
+	margin: auto;
+}
+%gcwu-sp-pe-screen-overflow-hidden  {
+	overflow: hidden;
+}
+%gcwu-sp-pe-screen-display-block-auto-margins {
+	display: block;
+	float: none;
+	margin: auto;
+}
+%gcwu-sp-pe-screen-img-margin-bottom-0 {
+	img {
+		margin-bottom: 0;
+	}
+}
+%gcwu-sp-pe-screen-li-margin-right-10 {
+	li {
+		margin-right: 10px;
+	}
+}
+
 html {
 	overflow-y: scroll;
 }
 
 body {
-	width:100%;
-	margin:0;
-	padding:0;
-}
-
-h1 {
-	text-align: center;
-	padding: 40px 0;
+	width: 100%;
 	margin: 0;
+	padding: 0;
 }
 
-#wb-head-in, #wb-core-in, #wb-foot-in {
-	margin: auto;
+#wb-main {
+	h1 {
+		text-align: center;
+		padding: 40px 0;
+		margin: 0;
+		border: none;
+	}
 }
 
-#wb-head, #wb-head-in, #wb-foot, #wb-foot-in  {
-	overflow: hidden;
+#wb-head-in {
+	@extend %gcwu-sp-pe-screen-margin-auto;
+	@extend %gcwu-sp-pe-screen-overflow-hidden;
 }
 
-#gcwu-sig,#gcwu-tc {
-	display:block;
-	float:none;
-	margin:auto;
+#wb-foot-in {
+	@extend %gcwu-sp-pe-screen-margin-auto;
+	@extend %gcwu-sp-pe-screen-overflow-hidden;
+}
+
+#wb-head {
+	@extend %gcwu-sp-pe-screen-overflow-hidden;
+}
+
+#wb-foot {
+	@extend %gcwu-sp-pe-screen-overflow-hidden;
 }
 
 #gcwu-sig {
+	@extend %gcwu-sp-pe-screen-display-block-auto-margins;
+	@extend %gcwu-sp-pe-screen-img-margin-bottom-0;
 	margin-top: 20px;
 	margin-bottom: 7px;
 	line-height: normal;
 }
 
-#gcwu-sig,#gcwu-wmms {
-	img {
-		margin-bottom:0;
-	}
+#gcwu-wmms {
+	@extend %gcwu-sp-pe-screen-img-margin-bottom-0;
 }
 
 #wb-core-in {
+	@extend %gcwu-sp-pe-screen-margin-auto;
 	overflow: visible !important;
 	&:after {
 		content: ".";
@@ -57,8 +87,8 @@ h1 {
 
 #wb-main-in {
 	position: relative;
-	padding-top:1px;
-	padding-bottom:1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 }
 
 #gcwu-bnr {
@@ -70,11 +100,25 @@ h1 {
 	min-height: 115px;
 }
 
-#gcwu-title-right, .gcwu-alt-title-right {
+%gcwu-sp-pe-screen-right-titles {
 	text-align: right;
 }
 
+#gcwu-title-right {
+	@extend %gcwu-sp-pe-screen-right-titles;
+}
+
+.gcwu-alt-title-right {
+	@extend %gcwu-sp-pe-screen-right-titles;
+}
+
 #gcwu-lang {
+	@extend %gcwu-sp-pe-screen-li-margin-right-10;
 	margin-top: 20px;
 	line-height: normal;
+}
+
+#gcwu-tc {
+	@extend %gcwu-sp-pe-screen-li-margin-right-10;
+	@extend %gcwu-sp-pe-screen-display-block-auto-margins;
 }

@@ -2,102 +2,48 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-.intranet {
-	#gcwu-subsite {
-		border-top:1px solid #CCC;
-		clear:both;
-		font-size:130%;
-		@include text-shadow(1px 1px 1px #333);
-		background:url(../images/gcwu-subsite-1.gif) repeat-x scroll 0 top #618000;
-	}
-	#wb-head-in {
-		position:relative;
-	}
-	#gcwu-psnb {
-		position:absolute;
-		margin-top:-64px;
-	}
-	#gcwu-psnb, #gcwu-srchbx {
-		min-height:32px;
-	}
-	#gcwu-subsite {
-		p {
-			margin:0;
-			padding:5px 10px;
-		}
-	}
-	#gcwu-sft-in {
-		section:nth-child(3n-1), div:nth-child(3n-1){
-			clear:none;
-		}
-		section:nth-child(3n), div:nth-child(3n){
-			clear:both;
-		}
-	}
-	#gcwu-tctr {
-		padding-top:20px;
-		clear:both;
-	}
+%gcwu-default-mobile-padding-3-5 {
+	padding: 3px 5px;
 }
-
-.ui-mobile {
-	#gcwu-subsite a {
-		white-space:normal;
-	}
-}
-
 #gcwu-subsite {
-	font-size:130%;
-	@include text-shadow(1px 1px 1px #333);
+	font-size: 130%;
+	text-shadow: 1px 1px 1px #333;
 	p {
-		margin-top: 0;
-		margin-bottom: 0;
-	}
-}
-
-#gcwu-intranetnb {
-	li {
-		display:none;
-		padding-bottom:5px;
-	}
-	#gcwu-gcnb-lang {
-		float:right;
-	}
-}
-
-#gcwu-intranetnb-inner {
-	padding:0 5px;
-	background:#fafafa;
-	margin-bottom:5px;
-	border-bottom:1px solid #eee;
-	@include box-shadow(inset 1px 1px 2px #999);
-	ul {
-		margin:0;
-		float:right;
-	}
-	li {
-		float:left;
-		padding:5px 0 5px 5px;
+		margin: {
+			top: 0;
+			bottom: 0;
+		}
 	}
 	a {
-		background: none repeat scroll 0 0 #eee;
-		border: 1px solid #ddd;
-		@include border-radius(2px 2px 2px 2px);
-		color: #222;
-		float: right;
-		font-weight: 400;
-		padding: 3px;
-		text-decoration: none;
-	}
-	&:after {
-		content:".";
-		display:block;
-		height:0;
-		clear:both;
-		visibility:hidden;
+		@extend %gcwu-default-mobile-padding-3-5;
+		white-space: normal;
+		font-weight: normal;
 	}
 }
 
-#gcwu-psnb {
-	margin-top:-3px;
+#gcwu-wmms {
+	object {
+		&[data*="wmms-intra.svg"] {
+			display: none;
+		}
+	}
+}
+
+.pe-disable {
+	#gcwu-wmms {
+		object {
+			&[data*="wmms-intra.svg"] {
+				display: block;
+			}
+		}
+		background: #fff;
+	}
+}
+
+[dir="rtl"] {
+	#gcwu-subsite {
+		a {
+			@extend %gcwu-default-mobile-padding-3-5;
+		}
+	}
 }

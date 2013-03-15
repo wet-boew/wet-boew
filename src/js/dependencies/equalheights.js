@@ -23,8 +23,6 @@ Optional: to set min-height in px, pass a true argument: $(element).equalHeights
 				if ($(this).height() > currentTallest) { currentTallest = $(this).height(); }
 			});
 			if (!px && typeof Number.prototype.pxToEm !== 'undefined') { currentTallest = currentTallest.pxToEm(); } //use ems unless px is specified
-			// for ie6, set height since min-height isn't supported
-			if ($.browser.msie && $.browser.version === '6.0') { $(this).children().css({ 'height': currentTallest }); }
 			$(this).children().css({ 'min-height': currentTallest });
 		});
 		return this;

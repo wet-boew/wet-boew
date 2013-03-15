@@ -1,80 +1,60 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
-*/
-@import "compass/css3/inline-block";
+ */
+%grids-util-mobile-no-margin {
+	margin-left: 0;
+	margin-right: 0;
+}
 
-.float-right,.float-left {float:none!important;}
+blockquote {
+	@extend %grids-util-mobile-no-margin;
+}
 
 form {
-	[class*=width-] {
-		width:100%!important;
+	@extend %grids-util-mobile-no-margin;
+}
+
+#{headings(2,6)} {
+	@extend %grids-util-mobile-no-margin;
+}
+
+img {
+	@extend %grids-util-mobile-no-margin;
+}
+
+p {
+	@extend %grids-util-mobile-no-margin;
+}
+
+pre {
+	@extend %grids-util-mobile-no-margin;
+}
+
+table {
+	@extend %grids-util-mobile-no-margin;
+}
+
+.date-month {
+	a {
+		color: #fff !important;
 	}
-	[class*=margin-], [class*=span-]{
-		margin:0!important;
-	}
-	
-	&.background-light > * {
-		outline: none;
-		margin-left:0;
-		margin-right:0;
-	}
 }
 
-.form-inline {
-		& > * {
-			margin-right:0;
-		}
-		
-		label {
-			display: block;
-		}
+%util-mobile-bb-pre7-background-333-important-color-f9f9f9-important {
+	background: #333 !important;
+	color: #f9f9f9 !important;
 }
-
-.form-radio.form-label-inline,.form-checkbox.form-label-inline {
-	display: block;
-	padding:0;
-}
-
-.form-radio, .form-checkbox {
-	padding:0;
-}
-
-.form-horizontal label {
-	text-align:left;
-}
-
-.form-input-append button {
-	position:absolute;
-}
-
-input[type="image"] + label, input[type="checkbox"] + label, input[type="radio"] + label {
-	display:block;
-}
-
-.border-top,.border-right,.border-bottom,.border-left,.border-all {
-	float:none!important;
-	display:block;
-	outline:none;
-	position:static!important;
-	background:none;
-}
-
-.module-billboard {
-	max-width:280px;
-}
-
-.module-poster {
-	@include inline-block;
-}
-
-.date-month a {
-	color:#fff !important;
-}
-
 .bb-pre7 {
-	input:focus, input:active, textarea:focus, textarea:active, select:focus, select:active, .ui-input-text.ui-focus, .ui-input-search.ui-focus {
-		background:#333 !important;
-		color:#f9f9f9 !important;
+	input, textarea, select {
+		// Can't use pseudo-focus since fix is needed for both focused and activated states
+		&:focus, &:active { 
+			@extend %util-mobile-bb-pre7-background-333-important-color-f9f9f9-important;
+		}
+	}
+	.ui-input-text, .ui-input-search {
+		&.ui-focus {
+			@extend %util-mobile-bb-pre7-background-333-important-color-f9f9f9-important;
+		}
 	}
 }

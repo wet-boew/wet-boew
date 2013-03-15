@@ -2,63 +2,95 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-#base-psnb,#base-srchbx{
+[class*="ui-body-"], [class*="ui-overlay-"] {
+	text-shadow: none;
+}
+[class*="ui-body-"] {
+	.ui-link {
+		font-weight: normal;
+	}
+}
+
+%wet-default-desktop-background-none {
+	background: none;
+}
+
+#wet-title {
+	@extend %wet-default-desktop-background-none;
+}
+
+#wet-fullhd {
+	.ui-header {
+		display: none !important;
+	}
+}
+
+%wet-default-desktop-hidden-clip {
+		position: absolute;
+		clip: rect(1px, 1px, 1px, 1px);//TODO: Should have old IE class withouth commas
+		height: 0 !important;
+		width: 0 !important;
+		overflow: hidden !important;
+		margin: 0 !important;
+}
+
+#wet-psnb {
 	h2 {
-		position:absolute;
-		clip:rect(1px, 1px, 1px, 1px);
-		height:0 !important;
-		width:0 !important;
-		overflow:hidden !important;
-		margin:0 !important;
+		@extend %wet-default-desktop-hidden-clip;
 	}
 }
 
-#base-bc {
-	font-size:85%;
-	color:#555;
-	ol{
-		line-height:1.57em;
-		list-style-type:none;
-		margin:6px 10px 2px;
-		padding:0;
-		&:after{
-			content:".";
-			display:block;
-			height:0;
-			clear:both;
-			visibility:hidden;
+#wet-srchbx {
+	h2 {
+		@extend %wet-default-desktop-hidden-clip;
+	}
+}
+
+#wet-bc-in {
+	font-size: 85%;
+	color: #555;
+	ol {
+		line-height: 1.57em;
+		list-style-type: none;
+		margin: 6px 10px 2px;
+		padding: 0;
+		&:after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
 		}
 	}
-	li{
-		background:url(../images/bcrumb.gif) left 60% no-repeat;
-		display:inline;
-		float:left;
-		white-space:nowrap;
-		margin:0 5px 0 0;
-		padding:0 0 0 11px;
-		&:first-child{
-			background-image:none;
-			padding-left:0;
+	li {
+		display: inline;
+		float: left;
+		white-space: nowrap;
+		margin: 0 5px 0 0;
+		padding: 0 11px 0 0;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
 		}
 	}
-	a{
-		color:#295376;
-		text-decoration:none;
-		&:hover,&:focus,&:active{
-			color:#295376;
-			text-decoration:underline;
+	a {
+		color: #295376;
+		text-decoration: none;
+		@include pseudo-focus {
+			color: #295376;
+			text-decoration: underline;
 		}
 	}
 }
 
-#base-bc-in{
-	background:#FFF;
+#wet-bc-in {
+	background: #FFF;
 }
 
-#base-date-mod{
-	margin:0;
+#wet-date-mod {
+	margin: 0;
 }
 
-#base-bnr .ui-navbar,#jqm-wb-mb,#jqm-wb-search,.ui-loader{
-	display:none !important;
+#wet-bnr .ui-navbar, #jqm-wb-mb, #jqm-wb-search, .ui-loader {
+	display: none !important;
 }

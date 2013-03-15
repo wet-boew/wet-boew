@@ -37,6 +37,16 @@
 			if (pe.secnav.length > 0) {
 				pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
 			}
+		},
+
+		/* Special handling for the desktop view */
+		desktopview: function () {
+			pe.document.one('wb-init-loaded', function(){
+				if($('#wb-body-sec-sup').length && !pe.main.hasClass('wet-boew-equalize')) {
+					pe.wb_load({'plugins': {'equalize': pe.main}});
+				}
+			});
+			pe.document.trigger('themeviewloaded');
 		}
 	};
 	/* window binding */

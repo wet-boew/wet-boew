@@ -29,7 +29,7 @@
 				modifiedId: 'gcwu-date-mod' //What is the container ID of the data modified section
 			};
 			
-			if (typeof wet_boew_datemodified !== 'undefined' && wet_boew_datemodified !== null) {
+			if (typeof wet_boew_datemodified !== 'undefined') {
 				$.extend(opts, wet_boew_datemodified);
 			}
 			

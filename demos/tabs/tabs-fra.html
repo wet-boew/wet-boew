@@ -20,22 +20,24 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.language" title="ISO639-2" content="fra" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -49,7 +51,9 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation du gouvernement du Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-fra.svg" role="img" tabindex="-1" aria-label="Gouvernement du Canada" type="image/svg+xml" width="237" height="24">
+	<div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-fra.png" width="214" height="20" alt="Gouvernement du Canada" /></div>
+</object></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
@@ -59,19 +63,21 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div></div></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" tabindex="-1" aria-label="Symbole du gouvernement du Canada" type="image/svg+xml" width="144" height="34">
+	<div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div>
+</object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-fra.html">Boîte à outils de l'expérience Web&#160;(BOEW)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2>Menu<span> du site</span></h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="gcwu-psnb"><h2>Menu du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-fra.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
@@ -97,6 +103,11 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
 <h1 id="wb-cont">Interface à onglets</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Interface-%C3%A0-onglets" class="button button-info">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
 
 <section><div class="span-4 module-table-contents"><h2>Table des matières</h2>
 <ul>
@@ -185,17 +196,17 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<div class="tabs-panel">
 				<div id="tab1"><section><h4>Onglet 1</h4>
 					<p><a href="#">lien fictif</a></p>
-					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Titre X</a><br /><br />
+					<p><a href="#tab2"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Onglet 2</a><br /><br />
 						Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
 				</section></div>
 				<div id="tab2"><section><h4>Onglet 2</h4>
-					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Titre X</a><br />
+					<p><a href="#tab3"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Onglet 3</a><br />
 						Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
 					<p><a href="#">lien fictif</a></p>
 				</section></div>
 				<div id="tab3"><section><h4>Onglet 3</h4>
 					<p><a href="#">lien fictif</a></p>
-					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Titre X</a><br />
+					<p><a href="#tab1"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Onglet 1</a><br />
 						Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
 					<div class="clear"></div>
 					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Titre X</a><br />
@@ -243,47 +254,47 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	</div><div class="clear"></div></section>
 
 	<section><div class="span-4"><h3 class="background-dark margin-bottom-medium">Mise en forme&#160;: <code lang="en">tabs-style-2</code></h3>
-		<p><strong>La démo comprend&#160;:</strong> les éléments <code lang="en">cycle-slow</code>, <code lang="en">animate</code> et <code lang="en">slide-horz</code></p>
-				<div class="wet-boew-tabbedinterface tabs-style-2 cycle-slow animate slide-horz">
+		<p><strong>La démo comprend&#160;:</strong> les éléments <code lang="en">cycle-slow</code>, <code lang="en">animate</code> et <code lang="en">slide-horz</code> (v3.1 Bêta)</p>
+		<div class="wet-boew-tabbedinterface tabs-style-2 cycle-slow animate slide-horz">
 			<div class="tabs-panel">
 				<div id="tab7">
 				<section>
-          <div class="span-2 row-start margin-bottom-none">
-            <div class="tabs-content-pad">
-              <h2 class="margin-top-none">Onglet 7</h2>
-              <p>Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
-              <p><a href="#" class="button button-accent">Lien<span class="wb-invisible">: Lien 1</span></a></p>
-            </div>
-          </div>
-          <div class="span-2 margin-right-none row-end margin-bottom-none"><img src="images/demo-1.jpg" alt="description 1" class="margin-bottom-none" /></div>
-		  <div class="clear"></div>
-        </section>
+					<div class="span-2 row-start margin-bottom-none">
+						<div class="tabs-content-pad">
+							<h2 class="margin-top-none">Onglet 7</h2>
+							<p>Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
+							<p><a href="#" class="button button-accent">Lien<span class="wb-invisible">: Lien 1</span></a></p>
+						</div>
+					</div>
+					<div class="span-2 row-end"><img src="images/demo-1.jpg" alt="description 1" class="margin-bottom-none" /></div>
+					<div class="clear"></div>
+				</section>
 				</div>
 				<div id="tab8">
-				<section>
-          <div class="span-2 row-start margin-bottom-none">
-            <div class="tabs-content-pad">
-              <h2 class="margin-top-none">Onglet 8</h2>
-              <p>Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
-              <p><a href="#" class="button button-accent">Lien<span class="wb-invisible">: Lien 2</span></a></p>
-            </div>
-          </div>
-          <div class="span-2 margin-right-none row-end margin-bottom-none"><img src="images/demo-2.jpg" alt="description 2" class="margin-bottom-none" /></div>
-		  <div class="clear"></div>
-        </section>
+					<section>
+						<div class="span-2 row-start margin-bottom-none">
+							<div class="tabs-content-pad">
+								<h2 class="margin-top-none">Onglet 8</h2>
+								<p>Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
+								<p><a href="#" class="button button-accent">Lien<span class="wb-invisible">: Lien 2</span></a></p>
+							</div>
+						</div>
+						<div class="span-2 row-end"><img src="images/demo-2.jpg" alt="description 2" class="margin-bottom-none" /></div>
+						<div class="clear"></div>
+					</section>
 				</div>
 				<div id="tab9">
-				<section>
-          <div class="span-2 row-start margin-bottom-none">
-            <div class="tabs-content-pad">
-              <h2 class="margin-top-none">Onglet 9</h2>
-              <p>Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
-              <p><a href="#" class="button button-accent">Lien<span class="wb-invisible">: Lien 3</span></a></p>
-            </div>
-          </div>
-          <div class="span-2 margin-right-none row-end margin-bottom-none"><img src="images/demo-3.jpg" alt="description 3" class="margin-bottom-none" /></div>
-		  <div class="clear"></div>
-        </section>
+					<section>
+						<div class="span-2 row-start margin-bottom-none">
+							<div class="tabs-content-pad">
+								<h2 class="margin-top-none">Onglet 9</h2>
+								<p>Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
+								<p><a href="#" class="button button-accent">Lien<span class="wb-invisible">: Lien 3</span></a></p>
+							</div>
+						</div>
+						<div class="span-2 row-end"><img src="images/demo-3.jpg" alt="description 3" class="margin-bottom-none" /></div>
+						<div class="clear"></div>
+					</section>
 				</div>
 			</div>
 			<ul class="tabs">
@@ -304,7 +315,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			</ul>
 			<div class="tabs-panel">
 				<div id="tab10" class="tabs-content-pad"><section><h4>Onglet 10</h4>
-					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Titre X</a><br />
+					<p><a href="#tab11"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Onglet 11</a><br />
 						Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
 					<p><a href="#">lien fictif</a></p>
 					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Titre X</a><br />
@@ -312,12 +323,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				</section></div>
 				<div id="tab11" class="tabs-content-pad"><section><h4>Onglet 11</h4>
 					<p><a href="#">lien fictif</a></p>
-					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Titre X</a><br />
+					<p><a href="#tab12"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Onglet 12</a><br />
 						Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
 				</section></div>
 				<div id="tab12" class="tabs-content-pad"><section><h4>Onglet 12</h4>
 					<p><a href="#">lien fictif</a></p>
-					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Titre X</a><br />
+					<p><a href="#tab10"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Onglet 10</a><br />
 						Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
 					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Titre X</a><br />
 						Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif. Contenu fictif.</p>
@@ -367,7 +378,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	</div></section>
 	<div class="clear"></div>
 	
-	<section><div class="span-8"><h3 class="background-dark margin-bottom-medium">Mise en forme&#160;: <code>tabs-style-6</code> (v3.1 Alpha)</h3>
+	<section><div class="span-8"><h3 class="background-dark margin-bottom-medium">Mise en forme&#160;: <code>tabs-style-6</code> (v3.1 Bêta)</h3>
 		<p><strong>La démo comprend&#160;:</strong> les éléments <code>embedded-grid</code>, <code>animate</code>, <code>cycle</code> et <code>slide-horz</code>.</p>		
 		<div class="wet-boew-tabbedinterface embedded-grid tabs-style-6 animate cycle slide-horz">				
 			<div class="tabs-panel">
@@ -414,7 +425,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 		</div>		
 	</div></section>
 </section>
-
+<div class="clear"></div>
 <section><h3 id="complex">Exemples complexes</h3>
 	<section><h4>Exemple n° 1</h4>
 		<p>Lorsque vous créez des tableaux parents - enfants, vous devez utiliser les éléments <code lang="en">row-start</code> et <code lang="en">row-end</code>, sauf dans de rares cas où ça n'est pas souhaitable. Par exemple, si vous utilisez des widgets glisser-déplacer, toutes les cellules du tableau doivent avoir la même taille, car l'ajout de l'élément <code lang="en">row-start</code> ou <code lang="en">row-end</code> dans certaines d'entre elles peut causer quelques problèmes de mise en page lorsque vous déplacez une case d'une colonne à une autre. Dans cette situation, utilisez plutôt la classe <code lang="en">embedded-grid</code>. Cette feuille de style CSS agit comme un conteneur pour les onglets; vous n'avez donc pas à les placer dans une cellule du tableau. De plus, elle fait disparaître les bordures afin que l'espace soit disponible dans toute sa largeur.</p>
@@ -591,9 +602,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
 </body>
 </html>
