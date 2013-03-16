@@ -45,8 +45,8 @@
 				"uniformtick-autocreate": true,
 				
 				// Force to use which row in the thead for the label
-				"labeltheadrownum-typeof": "number",
-				"labeltheadrownum-autocreate": true,
+				"labelposition-typeof": "number",
+				"labelposition-autocreate": true,
 				
 				// Legend Management
 				"legendinline-typeof": "boolean",
@@ -872,9 +872,7 @@
 				// From an option that would choose the appropriate row.			
 				// UseHeadRow get a number that represent the row to use to draw the label
 				
-				o.labeltheadrownum = 2;
-				
-				UseHeadRow = (!o.labeltheadrownum || (o.labeltheadrownum && o.labeltheadrownum > parsedData.theadRowStack.length) ? parsedData.theadRowStack.length : o.labeltheadrownum) - 1;
+				UseHeadRow = (!o.labelposition || (o.labelposition && o.labelposition > parsedData.theadRowStack.length) ? parsedData.theadRowStack.length : o.labelposition) - 1;
 				
 				
 				// var calcTick = [];
