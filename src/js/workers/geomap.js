@@ -109,7 +109,7 @@
 		 * Create a table for vector features added in Load Overlays
 		 */
 		createTable: function (index, title, caption, datatable) {
-			var table = '<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + ' id="overlay_' + index + '">';
+			var table = '<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">';
 			table += '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot>' : '') + '</table>';
 			return $(table);	
 		},		
@@ -192,7 +192,7 @@
 
 				$ul = $div.find('ul');
 				if ($ul.length === 0) {
-					$ul = $fieldset.append('<ul class="list-bullet-none margin-left-none"></ul>');
+					$ul = $('<ul class="list-bullet-none margin-left-none"></ul>').appendTo($fieldset);
 				}
 
 				$chkBox = $('<input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' />');
@@ -206,10 +206,10 @@
 						$alert;
 					layer.setVisibility(visibility);	
 
-					if (!$parent().hasClass('dataTables_wrapper')) {
+					if (!$parent.hasClass('dataTables_wrapper')) {
 						$parent = $table;
 					}
-					
+
 					$alert = $('div#msg_' + featureTableId);
 
 					if ($alert.length !== 0) { 
@@ -225,12 +225,7 @@
 					}
 				});	
 
-				$label = $('<label>', {
-					'html': $featureTable.attr('aria-label'),
-					'for': 'cb_' + featureTableId,
-					'class': 'form-checkbox'
-				});
-
+				$label = $('<label class="form-checkbox" for="cb_' + featureTableId + '">' + $featureTable.attr('aria-label') + '</lable>');
 				$ul.append($('<li>').append($chkBox, $label));			
 			}	
 		},
@@ -250,7 +245,7 @@
 			$tabs.append('<li><a href="#tabs_' + featureTableId + '">' + $featureTable.attr('aria-label') + '</a></li>');
 			$layerTab = $('<div id="tabs_' + featureTableId + '">').append(featureTable);
 			$tabsPanel.append($layerTab);
-
+console.log(_pe.dic.get('%geo-hiddenlayer'));
 			if (!enabled) {
 				$layerTab.append('<div id="msg_' + featureTableId + '" class="module-attention module-simplify"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');	
 				featureTable.fadeOut();
@@ -460,7 +455,6 @@
 		 * 
 		 */
 		onFeaturesAdded: function($table, evt, zoomTo, datatable) {
-
 			var $head = _pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] }),
 				$foot = _pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] }),
 				thZoom,
@@ -511,7 +505,7 @@
 				
 			// add zoom column
 			if (zoomColumn) {
-				$tr.append('<td>' + _pe.fn.geomap.addZoomTo($tr, feature) + '</td>');
+				$tr.append('<td>' + _pe.fn.geomap.addZoomTo($tr, feature).html() + '</td>');
 			}
 
 			$select = $tr.find('td.select');						
@@ -557,25 +551,15 @@
 		 * 
 		 */
 		addZoomTo: function(row, feature){
-
-			var $ref = $('<a href="javascript:;" class="button"></a>').on('click', function (e) {
-				e.preventDefault();			
-				map.zoomToExtent(feature.geometry.bounds);	
-				row.closest('tr').attr('class', 'background-highlight');
-				selectControl.unselectAll();
-				selectControl.select(feature);	
-			});
-
-			// Add icon	
-			$ref.append('<span class="wb-icon-target"></span>');
-
-			// Add text
-			$ref.append(document.createTextNode(_pe.dic.get('%geo-zoomfeature')));
-			
-			// Keybord events
-			$ref.on('focus blur', function (e) {
+			var $ref = $('<a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a>').on('click focus blur', function (e) {
 				var type = e.type;
-				if (type === 'focus') {
+				if (type === 'click') {
+					e.preventDefault();			
+					map.zoomToExtent(feature.geometry.bounds);	
+					row.closest('tr').attr('class', 'background-highlight');
+					selectControl.unselectAll();
+					selectControl.select(feature);
+				} else if (type === 'focus') {
 					row.addClass('background-highlight');
 					selectControl.unselectAll();
 					selectControl.select(feature);
@@ -1029,7 +1013,7 @@
 					$table.find('tfoot').find('tr').append(thZoom);					
 				} 
 				
-				// Loop trought each row
+				// Loop through each row
 				$table.find('tr').each(function(index, row) {
 					
 					// Create an array of attributes: value
@@ -1278,7 +1262,7 @@
 				// For each datatable, create the wrapper around it and set display:table to solve layout problem.
 				$createDatatable.each(function(index, $feature) {
 					$holder = ($('table#' + $feature.id));
-					$holder.wrap('<div id="' + $feature.id + '_wrapper" class="dataTables_wrapper" style="display: table"></div>');
+					$holder.wrap('<div id="' + $feature.id + '_wrapper" class="dataTables_wrapper width-100" style="display: table"></div>');
 				});
 				
 				// Set the opacity to solve transparency problem.

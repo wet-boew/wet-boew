@@ -175,6 +175,20 @@
 		'%sInfoFiltered': '@%sInfoFiltered@',
 		'%sInfoThousands': '@%sInfoThousands@',
 		'%sLengthMenu': '@%sLengthMenu@',
+		/* Geomap */
+		'%geo-mapcontrol': '@%geo-mapcontrol@',
+		'%geo-panup': '@%geo-panup@',
+		'%geo-pandown': '@%geo-pandown@',
+		'%geo-panleft': '@%geo-panleft@',
+		'%geo-panright': '@%geo-panright@',
+		'%geo-zoomin': '@%geo-zoomin@',
+		'%geo-zoomout': '@%geo-zoomout@',
+		'%geo-zoomworld': '@%geo-zoomworld@',
+		'%geo-zoomfeature': '@%geo-zoomfeature@',
+		'%geo-ariamap': '@%geo-ariamap@',
+		'%geo-accessibilize': '@%geo-accessibilize@',
+		'%geo-togglelayer': '@%geo-togglelayer@',
+		'%geo-hiddenlayer': '@%geo-hiddenlayer@',
 		/* Disable/enable PE */
 		'%pe-disable': '@%pe-disable@',
 		'%pe-enable': '@%pe-enable@'
