@@ -28,6 +28,7 @@ goto :done
 
 :error
 	cd %initial.folder%
+	endlocal
 	exit /B 1
 
 :abort

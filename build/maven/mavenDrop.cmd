@@ -15,13 +15,14 @@ cd %wet.maven.folder%
 rem Tell Nexus to release the staged artifacts
 echo Dropping staging repository...
 call mvn org.sonatype.plugins:nexus-staging-maven-plugin:drop
-IF %ERROR_CODE% EQU 0 (echo Command result: SUCCESS) ELSE ( echo Something went wrong while trying to drop the Sonatype repository!  Aborting.  You may want to log into Sonatype Nexus and drop the repository from there.
+IF %ERROR_CODE% EQU 0 (echo Command result: SUCCESS) ELSE ( echo Something went wrong while trying to drop the Sonatype repository!  Aborting.  You should log into Sonatype Nexus and drop the repository from there.
 															GOTO :error)
 
 goto :done
 
 :error
 	cd %initial.folder%
+	endlocal
 	exit /B 1
 
 :done
