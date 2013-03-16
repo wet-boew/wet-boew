@@ -14,7 +14,7 @@
 	
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
-		depends : (_pe.mobile ? [] : ['metadata', 'easytabs']),
+		depends : (_pe.mobile ? [] : ['easytabs']),
 		mobile : function (elm, nested) {
 			// Process any nested tabs
 			if (typeof nested === 'undefined' || !nested) {
@@ -142,12 +142,8 @@
 				transition :  (elm.hasClass('fade') ? 'fade' : (elm.hasClass('slide-vert') ? 'slide-vert' : (elm.hasClass('slide-horz') ? 'slide-horz' : undefined)))
 			};
 
-			// Extend the defaults with settings passed through settings.js (wet_boew_tabbedinterface), class-based overrides and the data attribute
-			if (typeof wet_boew_tabbedinterface !== 'undefined' && wet_boew_tabbedinterface !== null) {
-				$.extend(opts, wet_boew_tabbedinterface, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
-			} else {
-				$.extend(opts, overrides, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
-			}
+			// Extend the defaults with settings passed through settings.js (wet_boew_tabbedinterface), class-based overrides and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_tabbedinterface !== 'undefined' ? wet_boew_tabbedinterface : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
 			// Add hidden tab list heading
 			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(_pe.dic.get('%tab-list') + tabListCount);

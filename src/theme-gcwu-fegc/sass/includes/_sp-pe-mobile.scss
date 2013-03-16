@@ -5,12 +5,100 @@
 @import "compass/css3/images";
 @import "compass/css3/border-radius";
 
-h1 {
-	@extend %gcwu-sp-pe-mobile-padding-sides-5px;
-}
-
 %gcwu-sp-pe-mobile-text-align-center {
 	text-align: center;
+}
+%gcwu-sp-pe-mobile-padding-sides-5px {
+    padding: {
+		left: 5px;
+		right: 5px;
+	}
+}
+%gcwu-sp-pe-mobile-titles-all {
+	width: 50%;
+	float: left;
+}
+%gcwu-sp-pe-mobile-left-titles {
+	clear: left;
+}
+%gcwu-sp-pe-mobile-margin-right-0 {
+	margin-right: 0;
+}
+%gcwu-sp-pe-mobile-margin-right-0-width-50 {
+	@extend %gcwu-sp-pe-mobile-margin-right-0;
+	width: 50%;
+}
+%gcwu-sp-pe-mobile-width-100 {
+	width: 100%;
+}
+%gcwu-sp-pe-mobile-text-shadow-none-font-size-100-border-top-0-padding-9 {
+	text-shadow: none;
+	font-size: 100%;
+	border-top-width: 0;
+	padding: 9px 0;
+}
+%gcwu-sp-pe-mobile-first-child-border-right-0 {
+	&:first-child {
+		a {
+			border-right-width: 0;
+		}
+	}
+}
+%gcwu-sp-pe-mobile-langs {
+	@extend %gcwu-sp-pe-mobile-width-100;
+	li {
+		@extend %gcwu-sp-pe-mobile-margin-right-0-width-50;
+		a {
+			@include background-image(linear-gradient(#444, #2D2D2D));
+			color: #fff;
+			@include border-radius(0);
+			@extend %gcwu-sp-pe-mobile-display-block;
+			@extend %gcwu-sp-pe-mobile-text-shadow-none-font-size-100-border-top-0-padding-9;
+			border: 1px solid #111;
+		}
+		@extend %gcwu-sp-pe-mobile-first-child-border-right-0;
+	}
+}
+%gcwu-sp-pe-mobile-lang-foot {
+	%gcwu-sp-pe-mobile-margin-0 {
+		margin: 0;
+	}
+	a {
+		@extend %gcwu-sp-pe-mobile-margin-0;
+	}
+	li {
+		a {
+			&.ui-btn {
+				border-top-width: 0;
+			}
+			&:nth-child(1), &:nth-child(2) {
+				a {
+					&.ui-btn {
+						border-top-width: 1px;
+					}
+				}
+			}
+			&:not(:last-child) {
+				&.ui-block-a {
+					a {
+						&.ui-btn {
+							border-right-width: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+	ul {
+		@extend %gcwu-sp-pe-mobile-margin-0;
+	}
+}
+%gcwu-sp-pe-mobile-display-block {
+	display: block;
+}
+
+h1 {
+	@extend %gcwu-sp-pe-mobile-padding-sides-5px;
 }
 
 #wb-main {
@@ -50,20 +138,8 @@ h1 {
 	@extend %gcwu-sp-pe-mobile-width-100;
 }
 
-%gcwu-sp-pe-mobile-padding-sides-5px {
-    padding: {
-		left: 5px;
-		right: 5px;
-	}
-}
-
 #gcwu-title {
 	@extend %gcwu-sp-pe-mobile-padding-sides-5px;
-}
-
-%gcwu-sp-pe-mobile-titles-all {
-	width: 50%;
-	float: left;
 }
 
 #gcwu-title-left {
@@ -84,10 +160,6 @@ h1 {
 	@extend %gcwu-sp-pe-mobile-titles-all;
 }
 
-%gcwu-sp-pe-mobile-left-titles {
-	clear: left;
-}
-
 #wb-main-in {
 	background: none;
 	padding-bottom: 0;
@@ -95,37 +167,11 @@ h1 {
 
 #gcwu-lang {
 	@extend %gcwu-sp-pe-mobile-lang-foot;
+	margin-left: -5px;
+	margin-right: -5px;
 	a[href]{
 		@include pseudo-focus {
 			color: #FFF;
-		}
-	}
-}
-
-%gcwu-sp-pe-mobile-margin-right-0 {
-	margin-right: 0;
-}
-
-%gcwu-sp-pe-mobile-margin-right-0-width-50 {
-	@extend %gcwu-sp-pe-mobile-margin-right-0;
-	width: 50%;
-}
-
-%gcwu-sp-pe-mobile-width-100 {
-	width: 100%;
-}
-
-%gcwu-sp-pe-mobile-text-shadow-none-font-size-100-border-top-0-padding-9 {
-	text-shadow: none;
-	font-size: 100%;
-	border-top-width: 0;
-	padding: 9px 0;
-}
-
-%gcwu-sp-pe-mobile-first-child-border-right-0 {
-	&:first-child {
-		a {
-			border-right-width: 0;
 		}
 	}
 }
@@ -139,21 +185,6 @@ h1 {
 	}
 }
 
-%gcwu-sp-pe-mobile-langs {
-	@extend %gcwu-sp-pe-mobile-width-100;
-	li {
-		@extend %gcwu-sp-pe-mobile-margin-right-0-width-50;
-		a {
-			@include background-image(linear-gradient(#444, #2D2D2D));
-			color: #fff;
-			@include border-radius(0);
-			@extend %gcwu-sp-pe-mobile-display-block;
-			@extend %gcwu-sp-pe-mobile-text-shadow-none-font-size-100-border-top-0-padding-9;
-			border: 1px solid #111;
-		}
-		@extend %gcwu-sp-pe-mobile-first-child-border-right-0;
-	}
-}
 #gcwu-ef-lang {
 	@extend %gcwu-sp-pe-mobile-langs;
 }
@@ -184,44 +215,6 @@ h1 {
 	}
 }
 
-%gcwu-sp-pe-mobile-lang-foot {
-	%gcwu-sp-pe-mobile-margin-0 {
-		margin: 0;
-	}
-	a {
-		@extend %gcwu-sp-pe-mobile-margin-0;
-	}
-	li {
-		a {
-			&.ui-btn {
-				border-top-width: 0;
-			}
-			&:nth-child(1), &:nth-child(2) {
-				a {
-					&.ui-btn {
-						border-top-width: 1px;
-					}
-				}
-			}
-			&:not(:last-child) {
-				&.ui-block-a {
-					a {
-						&.ui-btn {
-							border-right-width: 0;
-						}
-					}
-				}
-			}
-		}
-	}
-	ul {
-		@extend %gcwu-sp-pe-mobile-margin-0;
-	}
-}
-
-%gcwu-sp-pe-mobile-display-block {
-	display: block;
-}
 .ui-mobile {
 	#gcwu-lang {
 		@extend %gcwu-sp-pe-mobile-display-block;

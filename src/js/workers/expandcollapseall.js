@@ -50,13 +50,9 @@
 				accentFirst: elm.hasClass('accent-first') ? true : undefined,
 				printOpen: elm.hasClass('print-open') ? true : undefined
 			};
-			
+
 			// Extend the defaults with settings passed through settings.js (wet_boew_expandcollapseall) and class-based overrides
-			if (typeof wet_boew_expandcollapseall !== 'undefined' && wet_boew_expandcollapseall !== null) {
-				$.extend(opts, wet_boew_expandcollapseall, overrides);
-			} else {
-				$.extend(opts, overrides);
-			}	
+			$.extend(opts, (typeof wet_boew_expandcollapseall !== 'undefined' ? wet_boew_expandcollapseall : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 			
 			// Create the toggle controls and add them to the page
 			this._initTogglers(elm, opts);

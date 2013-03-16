@@ -5,7 +5,7 @@
 /*
  * Slideout
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false, pe: false, wet_boew_slideout:false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -14,7 +14,6 @@
 	/* local reference */
 	_pe.fn.slideout = {
 		type: 'plugin',
-		depends: ['metadata'],
 		opened: false,
 		_exec: function (elm) {
 			var borderWidth = 10,
@@ -46,7 +45,9 @@
 				txtShow: pe.dic.get('%show-toc') + ' ' + tocText,
 				txtHide: hideText + ' ' + tocText
 			};
-			$.extend(opts, elm.metadata({type: 'attr', name: 'data-wet-boew'}));
+
+			// Extend the defaults with settings passed through settings.js (wet_boew_slideout) and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_slideout !== 'undefined' ? wet_boew_slideout : {}), _pe.data.getData(elm, 'wet-boew'));
 
 			// Don't do anything if CSS is disabled
 			if (!pe.cssenabled()) {
