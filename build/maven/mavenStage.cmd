@@ -28,25 +28,21 @@ cd %wet.maven.folder%
 
 rem Update the version of the parent (oss-parent) to the latest.
 echo Updating parent version (oss-parent)...
-set phase=update.pom
 call mvn -N versions:update-parent
-IF %ERROR_CODE% EQU 0 (echo Command result: SUCCESS) ELSE (echo Command result: FAILURE)
-IF %ERROR_CODE% NEQ 0 GOTO :revert
+IF %ERROR_CODE% EQU 0 (echo Command result: SUCCESS) ELSE (echo Command result: FAILURE
+															GOTO :revert)
 call mvn -q versions:commit
 
 rem Update artifacts to release version
 echo Updating WET poms to release version...
-call mvn -N versions:set -DnewVersion=%release.version% -DprocessDependencies=false -DprocessPlugins=false
-IF %ERROR_CODE% EQU 0 (echo Command result: SUCCESS) ELSE (echo Command result: FAILURE)
-IF %ERROR_CODE% NEQ 0 GOTO :revert
-call mvn -q versions:commit
+call %initial.folder%\setVersion.cmd %release.version%
+if %ERRORLEVEL% NEQ 0 GOTO :error
 
 rem Run the Maven job to create the release artifacts
 echo Creating Maven artifacts...
-set phase=build.artifacts
 call mvn -Ddist.folder=%dist.folder% clean deploy
-IF %ERROR_CODE% EQU 0 (echo Command result: SUCCESS) ELSE (echo Command result: FAILURE)
-IF %ERROR_CODE% NEQ 0 GOTO :revert
+IF %ERROR_CODE% EQU 0 (echo Command result: SUCCESS) ELSE (echo Command result: FAILURE
+															GOTO :revert)
 
 rem Extract the new artifacts to demo folder for a quick smoke test
 echo Creating demos for smoke test...
@@ -73,19 +69,19 @@ goto :done
 	goto :error
 
 :revert
-	IF "%phase%" EQU "update.pom" ( echo An error occurred.  Reverting POM(s) to initial version!
-									call mvn -q versions:revert )
-	IF "%phase%" EQU "build.artifacts" ( echo Artifact generation failed.  Once you've found out what went wrong, please discard the modified files under the Maven folder and try again.)
+	echo Artifact generation failed.  Once you've found out what went wrong, please discard the modified files under the Maven folder and try again.
 	echo Dropping any staging repository that may have been created...
 	call mvn -q org.sonatype.plugins:nexus-staging-maven-plugin:drop > nul
 
 :error
 	cd %initial.folder%
+	endlocal
 	exit /B 1
 
 :abort
 	echo Staging aborted.
 	cd %initial.folder%
+	endlocal
 	exit /B 0
 
 :usage
@@ -94,7 +90,7 @@ goto :done
 	exit /B 1
 
 :done
-	del *.*versionsBackup /s
+	del  /Q /S *.*versionsBackup 2>nul
 	echo Maven version numbers and staging to Sonatype repository is done.
 	echo Demo files have been created in %test.folder%.
 	echo You should do a quick sanity test of each theme to make sure everything is ok.

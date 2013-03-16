@@ -10,7 +10,7 @@
 
 	<groupId>com.github.wet-boew</groupId>
 	<artifactId>wet-parent</artifactId>
-	<version>3.0.6</version>
+	<version>3.0.6-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -279,7 +279,7 @@
 		<profile>
 			<id>default</id>
 			<properties>
-				<dist.folder>../../../dist</dist.folder>
+				<dist.folder>../../dist</dist.folder>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
