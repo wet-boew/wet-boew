@@ -245,7 +245,6 @@
 			$tabs.append('<li><a href="#tabs_' + featureTableId + '">' + $featureTable.attr('aria-label') + '</a></li>');
 			$layerTab = $('<div id="tabs_' + featureTableId + '">').append(featureTable);
 			$tabsPanel.append($layerTab);
-console.log(_pe.dic.get('%geo-hiddenlayer'));
 			if (!enabled) {
 				$layerTab.append('<div id="msg_' + featureTableId + '" class="module-attention module-simplify"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');	
 				featureTable.fadeOut();
