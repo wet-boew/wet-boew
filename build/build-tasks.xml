@@ -144,6 +144,7 @@
 			<exclude name="dependencies/validateAdditional.js"/>
 			<exclude name="dependencies/xregexp.js"/>
 			<exclude name="dependencies/openlayers.js"/>
+			<exclude name="dependencies/proj4js.js"/>
 		</jshint>
 	</target>
 
