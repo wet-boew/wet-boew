@@ -96,8 +96,7 @@
 				// user has specified where they want to put the tabs
 				var $tabs = $('.wet-boew-geomap-tabs');
 				if ($tabs.length) {
-					$tabs.append('<ul class="tabs"></ul><div class="tabs-panel"></div>');
-					$tabs.addClass('wet-boew-tabbedinterface auto-height-none');
+					$tabs.addClass('wet-boew-tabbedinterface auto-height-none').append('<ul class="tabs"></ul><div class="tabs-panel"></div>');
 				// user hasn't specified where they want the tabs
 				} else { 
 					$('.wet-boew-geomap-layers').append('<div class="clear"></div><div class="wet-boew-geomap-tabs wet-boew-tabbedinterface auto-height-none"><ul class="tabs"></ul><div class="tabs-panel"></div></div><div class="clear"></div>');
@@ -109,8 +108,7 @@
 		 * Create a table for vector features added in Load Overlays
 		 */
 		createTable: function (index, title, caption, datatable) {
-			var table = '<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">';
-			table += '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot>' : '') + '</table>';
+			var table = '<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot>' : '') + '</table>';
 			return $(table);	
 		},		
 		
@@ -170,7 +168,7 @@
 		/* 
 		 * Create Legend
 		 */		
-		addToLegend: function (featureTable, enabled, olLayerId) {			
+		addToLegend: function(featureTable, enabled, olLayerId) {			
 
 			var $div = $('.wet-boew-geomap-legend'),
 				$featureTable = $(featureTable),
@@ -280,7 +278,7 @@
 				switch(elm.style.type) {
 				case 'unique':
 					// set the select style then the unique value.
-					select = (typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle);
+					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
 					styleMap = new window.OpenLayers.StyleMap({'select': new window.OpenLayers.Style(select)});
 					styleMap.addUniqueValueRules('default', elm.style.field, elm.style.init);
 					break;
