@@ -9,6 +9,8 @@ branches:
     - /^.*-dist$/
     - gh-pages
 
-
+git:
+  depth: 5
+  
 script:
   - ant test -Djshint.failbuild=true && ant && ./build/post_build.sh
