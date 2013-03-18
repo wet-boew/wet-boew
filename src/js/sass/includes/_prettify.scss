@@ -20,6 +20,7 @@
 	%prettify-screen-color-2F6D2F {
 		color: #2F6D2F;
 	}
+
 	.str {
 		@extend %prettify-screen-color-2F6D2F;
 	}	/* string content - from #080 */
@@ -81,6 +82,7 @@
 	%prettify-print-projection-color-404 {
 		color: #404;
 	}
+
 	.str {		@extend %prettify-print-projection-color-060;
 	}
 	.kwd {		@extend %prettify-print-projection-color-006;
