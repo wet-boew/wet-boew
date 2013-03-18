@@ -129,7 +129,7 @@
 		 * Add layer data
 		 */		
 		addLayerData: function(featureTable, enabled, olLayerId, tab) {						
-			// add to layer to legend
+			// add layer to legend
 			if ($('.wet-boew-geomap-legend')) {
 				_pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
 			}
@@ -138,7 +138,7 @@
 				featureTableId = $(featureTable).attr('id'),
 				$layerTab = $('<div>', { 'id': 'tabs_' + featureTableId }),
 				title = featureTable[0].attributes['aria-label'].value,
-				$layerTitle = $('<h4>', { 'id': featureTableId,	'html': title, 'class': 'background-light' }),
+				$layerTitle = $('<h3>', { 'id': featureTableId,	'html': title, 'class': 'background-light' }),
 				$alert = $('<div id="msg_' + featureTableId + '" class="module-attention module-simplify margin-top-medium margin-bottom-medium"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');
 
 			// TODO: add debug message for div with id 'wet-boew-geomap-layers' can't be found and prompt to have it added
