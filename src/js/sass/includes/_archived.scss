@@ -12,7 +12,7 @@
 	background-color: #FFC;
 	border: 1px solid #C00;
 	h2 {
-		@extend %archived-background-color-C00;
+		background-color: #C00;
 		color: #FFF;
 		margin: 0;
 		padding: 2px 0 2px 10px;
@@ -25,7 +25,7 @@
 
 .archived {
 	display: none;
-	@extend %archived-background-color-C00;
+	background-color: #C00;
 	border: 1px solid #000;
 	border-image: initial;
 	clear: both;
