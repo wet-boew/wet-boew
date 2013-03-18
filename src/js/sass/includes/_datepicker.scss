@@ -2,6 +2,21 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%datepicker-color-fff-important {
+	color: #FFF !important;
+}
+%datepicker-display-inline {
+	display: inline;
+}
+%datepicker-img-display-inline {
+	img {
+		display: inline;
+	}
+}
+%datepicker-margin-0 {
+	margin: 0;
+}
+ 
 .cal-container {
 	&.picker-overlay {
 		position: absolute;
@@ -15,7 +30,7 @@
 	right: 17px;
 	top: 5px;
 	img {
-		margin: 0;
+		@extend %datepicker-margin-0;
 	}
 }
 
@@ -26,13 +41,14 @@
 .ui-mobile {
 	.polyfill {
 		&.picker-field {
-			display: inline;
+			@extend %datepicker-display-inline;
 		}
 	}
-	.picker-toggle-hidden, .picker-toggle-visible {
-		img {
-			display: inline;
-		}
+	.picker-toggle-hidden {
+		@extend %datepicker-img-display-inline;
+	}
+	.picker-toggle-visible {
+		@extend %datepicker-img-display-inline;
 	}
 }
 
@@ -43,7 +59,7 @@
 .picker-toggle-visible, .picker-toggle-hidden {
 	padding: 10px;
 	img {
-		margin: 0;
+		@extend %datepicker-margin-0;
 		vertical-align: middle;
 		width: auto;
 	}
@@ -57,24 +73,22 @@ div {
 		a {
 			text-decoration: underline;
 		}
-		ol {
-			&.cal-day-list {
-				li {
-					&.datepicker-selected {
-						a {
-							background-color: #333;
-							color: #FFF;
-						}
-					}
-					a {
-						&, &:link {
-							color: #111 !important;
-						}
-						@include pseudo-focus {
-							color: #FFF !important;
-						}
+		li {
+			&.datepicker-selected {
+				a {
+					&, &:link {
+						background-color: #333;
+						@extend %datepicker-color-fff-important;
 					}
 				}
+			}
+		}
+		a {
+			&, &:link {
+				color: #111 !important;
+			}
+			@include pseudo-focus {
+				@extend %datepicker-color-fff-important;
 			}
 		}
 	}

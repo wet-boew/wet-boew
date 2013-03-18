@@ -11,8 +11,17 @@
 }	/* plain text */
 
 @media screen {
-	.str {
+	%prettify-screen-color-606 {
+		color: #606;
+	}
+	%prettify-screen-color-660 {
+		color: #660;
+	}
+	%prettify-screen-color-2F6D2F {
 		color: #2F6D2F;
+	}
+	.str {
+		@extend %prettify-screen-color-2F6D2F;
 	}	/* string content - from #080 */
 	.kwd {
 		color: #024B6E;
@@ -21,26 +30,35 @@
 		color: #800;
 	}	/* a comment */
 	.typ {
-		color: #606;
+		@extend %prettify-screen-color-606;
 	}	/* a type name */
 	.lit {
 		color: #066;
 	}	/* a literal value */
 	/* punctuation, lisp open bracket, lisp close bracket */
-	.pun, .opn, .clo {
-		color: #660;
+	.pun {
+		@extend %prettify-screen-color-660;
+	}
+	.opn {
+		@extend %prettify-screen-color-660;
+	}
+	.clo {
+		@extend %prettify-screen-color-660;
 	}
 	.tag {
 		color: #125B7E; }	/* a markup tag name - from #008 */
 	.atn {
-		color: #606;
+		@extend %prettify-screen-color-606;
 	}	/* a markup attribute name */
 	.atv {
-		color: #2F6D2F;
+		@extend %prettify-screen-color-2F6D2F;
 	}	/* a markup attribute value - from #080 */
-	.dec, .var {
-		color: #606;
-	}	/* a declaration; a variable name */
+	.dec {
+		@extend %prettify-screen-color-606;
+	}	/* a declaration */
+	.var {
+		@extend %prettify-screen-color-606;
+	}	/* a variable name */
 	.fun {
 		color: red;
 	}	/* a function name */
@@ -48,27 +66,48 @@
 
 /* Use higher contrast and text-weight for printable form. */
 @media print, projection {
-	.str {		color: #060;
+	%prettify-print-projection-font-weight-700 {
+		font-weight: 700;
 	}
-	.kwd {		color: #006;
-		font-weight: bold;
+	%prettify-print-projection-color-006 {
+		color: #006;
+	}
+	%prettify-print-projection-color-060 {
+		color: #060;
+	}
+	%prettify-print-projection-color-440 {
+		color: #440;
+	}
+	%prettify-print-projection-color-404 {
+		color: #404;
+	}
+	.str {		@extend %prettify-print-projection-color-060;
+	}
+	.kwd {		@extend %prettify-print-projection-color-006;
+		@extend %prettify-print-projection-font-weight-700;
 	}
 	.com {		color: #600;
 		font-style: italic;
 	}
-	.typ {		color: #404;
-		font-weight: bold;
+	.typ {		@extend %prettify-print-projection-color-404;
+		@extend %prettify-print-projection-font-weight-700;
 	}
 	.lit {		color: #044;
 	}
-	.pun, .opn, .clo {		color: #440;
+	.pun {		@extend %prettify-print-projection-color-440;
 	}
-	.tag {		color: #006;
-		font-weight: bold;
+	.opn {
+		@extend %prettify-print-projection-color-440;
 	}
-	.atn {		color: #404;
+	.clo {
+		@extend %prettify-print-projection-color-440;
 	}
-	.atv {		color: #060;
+	.tag {		@extend %prettify-print-projection-color-006;
+		@extend %prettify-print-projection-font-weight-700;
+	}
+	.atn {		@extend %prettify-print-projection-color-404;
+	}
+	.atv {		@extend %prettify-print-projection-color-060;
 	}
 }
 

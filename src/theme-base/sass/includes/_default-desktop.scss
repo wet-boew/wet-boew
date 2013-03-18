@@ -2,20 +2,35 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-
-[class*="ui-overlay-"] {
+%base-default-desktop-background-none {
+	background: none;
+}
+%base-default-desktop-text-shadow-none {
 	text-shadow: none;
+}
+%base-default-desktop-h2-hidden-clip {
+	h2 {
+		position: absolute;
+		clip: rect(1px, 1px, 1px, 1px);//TODO: Should have old IE class withouth commas
+		height: 0 !important;
+		width: 0 !important;
+		overflow: hidden !important;
+		margin: 0 !important;
+	}
+}
+%base-default-desktop-display-none {
+	display: none !important;
+}
+ 
+[class*="ui-overlay-"] {
+	@extend %base-default-desktop-text-shadow-none;
 }
 
 [class*="ui-body-"] {
-	text-shadow: none;
+	@extend %base-default-desktop-text-shadow-none;
 	.ui-link {
-		font-weight: normal;
+		font-weight: 400;
 	}
-}
-
-%base-default-desktop-background-none {
-	background: none;
 }
 
 #base-title {
@@ -28,25 +43,12 @@
 	}
 }
 
-%base-default-desktop-hidden-clip {
-		position: absolute;
-		clip: rect(1px, 1px, 1px, 1px);//TODO: Should have old IE class withouth commas
-		height: 0 !important;
-		width: 0 !important;
-		overflow: hidden !important;
-		margin: 0 !important;
-}
-
 #base-psnb {
-	h2 {
-		@extend %base-default-desktop-hidden-clip;
-	}
+	@extend %base-default-desktop-h2-hidden-clip;
 }
 
 #base-srchbx {
-	h2 {
-		@extend %base-default-desktop-hidden-clip;
-	}
+	@extend %base-default-desktop-h2-hidden-clip;
 }
 
 #base-bc-in {
@@ -92,10 +94,6 @@
 
 #base-date-mod {
 	margin: 0;
-}
-
-%base-default-desktop-display-none {
-	display: none !important;
 }
 
 #base-bnr {

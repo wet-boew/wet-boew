@@ -2,6 +2,13 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%events-calendar-background-color-fff {
+	background-color: #FFF
+}
+%events-calendar-color-fff-important {
+	color: #FFF !important;
+}
+
 ul {
 	&.ev-details {
 		position: absolute;
@@ -10,11 +17,11 @@ ul {
 		width: 10em;
 		margin: 0;
 		margin-top: -0.5em;
-		font-weight: normal;
-		background-color: #FFF;
+		font-weight: 400;
+		@extend %events-calendar-background-color-fff;
 		a {
 			padding: 0.5em;
-			background-color: #FFF;
+			@extend %events-calendar-background-color-fff;
 		}
 	}
 }
@@ -26,7 +33,7 @@ div {
 				ul {
 					&.ev-details {
 						li {
-							border: 0;
+							border: none;
 							width: 100%;
 							list-style-type: none !important;
 							a {
@@ -35,7 +42,7 @@ div {
 									width: auto;
 								}
 								@include pseudo-focus {
-									color: #FFF !important;
+									@extend %events-calendar-color-fff-important;
 								}
 							}
 						}
@@ -45,8 +52,10 @@ div {
 		}
 		a {
 			&.cal-event {
-				color: #FFF !important;
-				background: #176ca7;
+				&, &:link {
+					@extend %events-calendar-color-fff-important;
+					background: #176ca7;
+				}
 			}
 		}
 	}
