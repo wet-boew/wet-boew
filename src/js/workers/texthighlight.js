@@ -5,7 +5,7 @@
 /*
  * Text highlighting functionality 
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -51,8 +51,8 @@
 				return null;
 			} // end of addHighlight
 
-			if (pe.urlquery.texthighlight !== undefined) {
-				addHighlight(pe.urlquery.texthighlight, elm);
+			if (_pe.urlquery.texthighlight !== undefined) {
+				addHighlight(_pe.urlquery.texthighlight, elm);
 			}
 			return this;
 		} // end of exec
