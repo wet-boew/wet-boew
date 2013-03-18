@@ -2,11 +2,75 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%zebra-border-none {
+	border: none;
+}
+%zebra-list-style-type-none {
+	list-style-type: none;
+}
+%zebra-padding-10 {
+	padding: 10px;
+}
+%zebra-content-normal {
+	content: normal;
+}
+%zebra-border-1-solid-ccc {
+	border: 1px solid #CCC;
+}
+%zebra-background-color-999 {
+	background-color: #999;
+}
+%zebra-background-color-aaa {
+	background-color: #AAA;
+}
+%zebra-background-color-ccc {
+	background-color: #CCC;
+}
+%zebra-background-color-ddd {
+	background-color: #DDD;
+}
+%zebra-background-color-eee {
+	background-color: #EEE;
+}
+%zebra-background-color-f4f4f4 {
+	background-color: #F4F4F4;
+}
+%zebra-background-color-fafafa {
+	background-color: #FAFAFA;
+}
+%zebra-background-color-fff {
+	background-color: #fff;
+}
+%zebra-background-color-f0fcff {
+	background-color: #f0fcff;
+}
+%zebra-background-color-transparent {
+	background-color: transparent;
+}
+%zebra-margin-left {
+	margin-left: 0;
+}
+%zebra-padding-8 {
+	padding: 8px;
+}
+%zebra-font-style-italic {
+	font-style: italic;
+}
+%zebra-list-odd-list-even-border-none {
+	&.list-odd {
+		@extend %zebra-border-none;
+	}
+	&.list-even {
+		@extend %zebra-border-none;
+	}
+}
+
 ul {
 	&.wet-boew-zebra {
 		li {
-			&, li {
-				list-style-type: none;
+			@extend %zebra-list-style-type-none;
+			li {
+				@extend %zebra-list-style-type-none;
 			}
 		}
 	}
@@ -18,7 +82,7 @@ ol, ul {
 		li {
 			margin-bottom: 2px;
 			margin-right: 0;
-			padding: 10px;
+			@extend %zebra-padding-10;
 		}
 	}
 }
@@ -49,7 +113,7 @@ ol {
 			li {
 				padding-left: 0;
 				&:before {
-					content: normal;
+					@extend %zebra-content-normal;
 				}
 			}
 		}
@@ -59,7 +123,7 @@ ol {
 	> {
 		li {
 			&:before {
-				content: normal;
+				@extend %zebra-content-normal;
 				counter-increment: none;
 				position: static;
 				left: auto;
@@ -70,8 +134,13 @@ ol {
 
 .module-comment ol.wet-boew-zebra, ol.wet-boew-zebra.module-comment {
 	ol {
-		li, ol li {
-			list-style-type: none;
+		li {
+			@extend %zebra-list-style-type-none;
+		}
+		ol {
+			li {
+				@extend %zebra-list-style-type-none;
+			}
 		}
 	}
 }
@@ -79,8 +148,8 @@ ol {
 table {
 	&.wet-boew-zebra {
 		&, table {
-			background-color: #fff;
-			border: 1px solid #ccc;
+			@extend %zebra-background-color-fff;
+			@extend %zebra-border-1-solid-ccc;
 			border-collapse: collapse;
 			margin-bottom: 10px;
 			margin-top: 10px;
@@ -90,53 +159,51 @@ table {
 
 dl {
 	&.wet-boew-zebra {
-		margin-left: 0;
+		@extend %zebra-margin-left;
 	}
 }
 
 .wet-boew-zebra {
 	li, dt, dd {
 		&.list-odd {
-			background-color: #ddd;
-			border: 1px solid #ccc;
+			@extend %zebra-background-color-ddd;
+			@extend %zebra-border-1-solid-ccc;
 		}
 		&.list-even {
-			background-color: #eee;
-			border: 1px solid #ccc;
+			@extend %zebra-background-color-eee;
+			@extend %zebra-border-1-solid-ccc;
 		}
 		&.list-hover {
-			background-color: #f0fcff;
+			@extend %zebra-background-color-f0fcff;
 		}
 	}
 	&.alterwg {
 		li, dt, dd {
 			&.list-odd {
-				background-color: #ddd;
-				border: none;
+				@extend %zebra-background-color-ddd;
+				@extend %zebra-border-none;
 			}
 			&.list-even {
-				background-color: #fff;
-				border: none;
+				@extend %zebra-background-color-fff;
+				@extend %zebra-border-none;
 			}
 			&.list-hover {
-				background-color: #f0fcff;
+				@extend %zebra-background-color-f0fcff;
 			}
 		}
 	}
-	dt, dd {
-		padding: 10px;
-		&.list-odd {
-			border: none;
-		}
-		&.list-even {
-			border: none;
-		}
+	dl {
+		@extend %zebra-margin-left;
 	}
-	dl, dd {
-		margin-left: 0;
+	dd {
+		@extend %zebra-padding-10;
+		@extend %zebra-margin-left;
+		@extend %zebra-list-odd-list-even-border-none;
 	}
 	dt {
-		font-weight: bold;
+		@extend %zebra-padding-10;
+		@extend %zebra-list-odd-list-even-border-none;
+		font-weight: 700;
 		margin-top: 2px;
 	}
 
@@ -144,84 +211,118 @@ dl {
 		margin: 0;
 	}
 	tr {
-		&.table-odd, &.table-even tr.table-odd {
-			background-color: #f0fcff;
+		&.table-odd {
+			@extend %zebra-background-color-f0fcff;
+					tr {
+				&.table-even {
+					@extend %zebra-background-color-transparent;
+				}
+			}
 		}
-		&.table-even, &.table-odd tr.table-even {
-			background-color: transparent;
+		&.table-even {
+			@extend %zebra-background-color-transparent;
+			tr {
+				&.table-odd {
+					@extend %zebra-background-color-f0fcff;
+				}
+			}
 		}
 		&.table-hover {
 			td {
-				background-color: #eee;
+				@extend %zebra-background-color-eee;
 			}
 		}
 	}
 	th {
-		background-color: #eee;
-		border: 1px solid #ccc;
+		@extend %zebra-background-color-eee;
+		@extend %zebra-border-1-solid-ccc;
 		color: #333;
 		text-align: center;
-		padding: 8px;
+		@extend %zebra-padding-8;
 		/*
 		 * I am not sure if we would like to style the cell header group, need to discuss
 		 *
-		&.table-headgroupcol1, &.table-headgrouprow1 {
-			background-color: #CCC;
+		&.table-headgroupcol1 {
+			@extend %zebra-background-color-ccc;
 		}
-		&.table-headgroupcol2, &.table-headgrouprow2 {
-			background-color: #AAA;
+		&.table-headgrouprow1 {
+			@extend %zebra-background-color-ccc;
 		}
-		&.table-headgroupcol3, &.table-headgrouprow3 {
-			background-color: #999;
+		&.table-headgroupcol2 {
+			@extend %zebra-background-color-aaa;
+		}
+		&.table-headgrouprow2 {
+			@extend %zebra-background-color-aaa;
+		}
+		&.table-headgroupcol3 {
+			@extend %zebra-background-color-999;
+		}
+		&.table-headgrouprow3 {
+			@extend %zebra-background-color-999;
 		}
 		*/
 		&.table-hover {
 			background-color: lightgray;
 			/*
 			&.table-summaryrow0 {
-				background-color: #eee;
+				@extend %zebra-background-color-eee;
 			}
 			*/
 		}
 
 	}
 	td {
-		border: 1px solid #ccc;
+		@extend %zebra-border-1-solid-ccc;
 		vertical-align: top;
 		padding: 5px 10px;
 		/* Advance Zebra */
 		&.table-keycell {
-			font-style: italic;
-			padding: 8px;
-			background-color: #FFF;
+			@extend %zebra-font-style-italic;
+			@extend %zebra-padding-8;
+			@extend %zebra-background-color-fff;
 		}
 		&.table-desccell {
-			font-style: italic;
-			padding: 8px;
-			background-color: #F4F4F4;
+			@extend %zebra-font-style-italic;
+			@extend %zebra-padding-8;
+			@extend %zebra-background-color-f4f4f4;
 		}
-		&.table-summarycol3, &.table-summaryrow3 {
-			background-color: #FAFAFA;
+		&.table-summarycol3 {
+			@extend %zebra-background-color-fafafa;
 		}
-		&.table-summarycol2, &.table-summaryrow2 {
-			background-color: #F4F4F4;
+		&.table-summaryrow3 {
+			@extend %zebra-background-color-fafafa;
 		}
-		&.table-summarycol1, &.table-summaryrow1 {
-			background-color: #EEE;
+		&.table-summarycol2 {
+			@extend %zebra-background-color-f4f4f4;
 		}
-		&.table-summarycol0, &.table-summaryrow0 {
-			background-color: #DDD;
+		&.table-summaryrow2 {
+			@extend %zebra-background-color-f4f4f4;
+		}
+		&.table-summarycol1 {
+			@extend %zebra-background-color-eee;
+		}
+		&.table-summaryrow1 {
+			@extend %zebra-background-color-eee;
+		}
+		&.table-summarycol0 {
+			@extend %zebra-background-color-ddd;
+		}
+		&.table-summaryrow0 {
+			@extend %zebra-background-color-ddd;
 		}
 	}
 	th {
-		&.table-summarycol0, &.table-summaryrow0 {
-			background-color: #DDD;
+		&.table-summarycol0 {
+			@extend %zebra-background-color-ddd;
+		}
+		&.table-summaryrow0 {
+			@extend %zebra-background-color-ddd;
 		}
 	}
 
 	tfoot {
 		td {
-			background-color: #DDD;
+			@extend %zebra-background-color-ddd;
 		}
 	}
 
@@ -237,18 +338,18 @@ dl {
 	}
 	td, th {
 		&.table-layoutCell {
-			background-color: white;
+			@extend %zebra-background-color-fff;
 		}
 	}
 	col {
 		&.table-odd {
-			background-color: #f0fcff;
+			@extend %zebra-background-color-f0fcff;
 		}
 		&.table-even {
 			background-color: transparent;
 		}
 		&.table-hover {
-			background-color: #eee;
+			@extend %zebra-background-color-eee;
 		}
 	}
 }

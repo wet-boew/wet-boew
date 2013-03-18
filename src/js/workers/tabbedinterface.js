@@ -168,7 +168,7 @@
 				$nav.find('li').removeClass('default');
 				$default_tab.parent('li').addClass('default');
 			} else {
-				$default_tab = $tabs.filter('[href="*#'+_pe.urlhash+'"]');
+				$default_tab = $tabs.filter('[href="*#' + _pe.urlhash + '"]');
 				if ($default_tab.length === 0) {
 					$default_tab = $nav.find('.default a');
 					if ($default_tab.length === 0) {

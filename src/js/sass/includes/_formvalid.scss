@@ -2,22 +2,32 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-.wet-boew-formvalid label, .ui-mobile .wet-boew-formvalid input[type=checkbox] + label {
+%formvalid-font-weight-700 {
+	font-weight: 700;
+}
+%formvalid-display-block {
 	display: block;
 }
+%formvalid-margin-top-1em {
+	margin-top: 1em;
+}
+
 .wet-boew-formvalid {
 	label {
+		@extend %formvalid-display-block;
 		.error {
-			display: block;
-			font-weight: bold;
+			@extend %formvalid-display-block;
+			@extend %formvalid-font-weight-700;
 			color: #c00;
 		}
 	}
-	input[type=checkbox] {
-		+ {
-			label {
-				display: inline;
-				margin-top: 0;
+	input {
+		&[type=checkbox] {
+			+ {
+				label {
+					display: inline;
+					margin-top: 0;
+				}
 			}
 		}
 	}
@@ -25,11 +35,20 @@
 
 .ui-mobile {
 	.wet-boew-formvalid {
+		input {
+			&[type=checkbox] {
+				+ {
+					label {
+						@extend %formvalid-display-block;
+					}
+				}
+			}
+		}
 		label {
-			margin-top: 1em;
+			@extend %formvalid-margin-top-1em;
 		}
 		fieldset {
-			margin-top: 1em;
+			@extend %formvalid-margin-top-1em;
 		}
 		legend {
 			margin-bottom: -1em;
@@ -48,7 +67,7 @@ div {
 		div {
 			&.errorContainer {
 				p {
-					font-weight: bold;
+					@extend %formvalid-font-weight-700;
 				}
 			}
 		}

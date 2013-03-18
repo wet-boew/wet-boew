@@ -5,7 +5,7 @@
 /*
  * Menu bar plugin
  */
-/*global jQuery: false, pe:false */
+/*global jQuery: false */
 /*jshint bitwise: false */
 (function ($) {
 	"use strict";
@@ -26,7 +26,7 @@
 			- open : this will open the child menu item
 			*/
 			/* bind plugin scope element */
-			if (pe.mobile) {
+			if (_pe.mobile) {
 				return;
 			}
 			var $menu,
@@ -38,7 +38,7 @@
 				hideallsubmenus,
 				hidesubmenu,
 				showsubmenu,
-				submenuHelp = pe.dic.get('%sub-menu-help'),
+				submenuHelp = _pe.dic.get('%sub-menu-help'),
 				menuelms,
 				menuelm,
 				menulen;
@@ -50,7 +50,7 @@
 					_sm = _node.find('.mb-sm');
 				_sm.attr({'aria-expanded':'true', 'aria-hidden':'false'}).toggleClass('mb-sm mb-sm-open');
 
-				if (pe.rtl) {
+				if (_pe.rtl) {
 					if ((Math.floor(_sm.offset().left) - Math.floor($menuBoundary.offset().left)) <= 0) {
 						_sm.css('left', '0');
 					}
@@ -67,7 +67,7 @@
 			gotosubmenu = function (toplink) {
 				var _node = $(toplink),
 					_sm = _node.closest('li').find('.mb-sm-open');
-				if (pe.cssenabled) {
+				if (_pe.cssenabled) {
 					_sm.find('a').attr('tabindex', '0');
 				}
 				_node.trigger('item-next');
@@ -78,7 +78,7 @@
 				var _node = $(toplink).closest('li'),
 					_sm = _node.find('.mb-sm-open');
 				_sm.attr({'aria-expanded':'false', 'aria-hidden':'true'}).toggleClass('mb-sm mb-sm-open').css('right', '');
-				if (pe.cssenabled) {
+				if (_pe.cssenabled) {
 					_sm.find('a').attr('tabindex', '-1');
 				}
 				_node.removeClass('mb-active');
@@ -121,7 +121,7 @@
 					menuelm.setAttribute('role', 'presentation');
 				}
 			}
-			pe.resize(correctheight);
+			_pe.resize(correctheight);
 
 			/* [Main] parse mega menu and establish all ARIA and Navigation classes */
 			$scope.find('ul.mb-menu > li').find('a:eq(0)').each(function (index, value) {
@@ -159,7 +159,7 @@
 			});
 
 			/* if CSS is enabled we want to ensure a correct tabbing response */
-			if (pe.cssenabled) {
+			if (_pe.cssenabled) {
 				$scope.find('.mb-sm a').attr('tabindex', '-1');
 			}
 
@@ -271,11 +271,11 @@
 											}
 										}
 										if (match < (matches.length - 1)) {
-											pe.focus(matches.eq(match + 1));
+											_pe.focus(matches.eq(match + 1));
 											return false;
 										}
 									}
-									pe.focus(matches.eq(0));
+									_pe.focus(matches.eq(0));
 								}
 								return false;
 							}
@@ -283,9 +283,9 @@
 					}
 				} else if (type === 'close') {
 					if ((!!_id[2] << 1 | !!_id[3]) === 0) { // top-level menu link has focus so close menus and put focus after menu bar
-						pe.focus(pe.main.find('#wb-cont').attr('tabindex', '-1'));
+						_pe.focus(_pe.main.find('#wb-cont').attr('tabindex', '-1'));
 					} else { // submenu link has focus so close menu and put focus on the parent menu bar link
-						pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-0'));
+						_pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-0'));
 					}
 					setTimeout(function () {
 						return hideallsubmenus();
@@ -297,22 +297,22 @@
 					case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
 						prev = $scope.find('.knav-' + (_id[1] - 1) + '-0-0');
 						if (prev.length > 0) {
-							pe.focus(prev);
+							_pe.focus(prev);
 						} else {
-							pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
+							_pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
 						}
 						break;
 					case 2: // sub-section link has focus
 					case 3: // 3rd level link (child of a sub-section) has focus
 						prev = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] - 1) + '-0');
 						if (prev.length > 0 && _id[2] > 1) {
-							pe.focus(prev);
+							_pe.focus(prev);
 						} else {
 							prev = $scope.find('.knav-' + (_id[1] - 1) + '-0-0'); // wrap around at the sub-section level
 							if (prev.length > 0) {
-								pe.focus(prev);
+								_pe.focus(prev);
 							} else {
-								pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
+								_pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
 							}
 						}
 						break;
@@ -325,22 +325,22 @@
 					case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
 						next = $scope.find('.knav-' + (_id[1] + 1) + '-0-0');
 						if (next.length > 0) {
-							pe.focus(next);
+							_pe.focus(next);
 						} else {
-							pe.focus($scope.find('.knav-0-0-0')); // wrap around at the top level
+							_pe.focus($scope.find('.knav-0-0-0')); // wrap around at the top level
 						}
 						break;
 					case 2: // sub-section link has focus
 					case 3: // 3rd level link (child of a sub-section) has focus
 						next = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] + 1) + '-0');
 						if (next.length > 0) {
-							pe.focus(next);
+							_pe.focus(next);
 						} else {
 							next = $scope.find('.knav-' + (_id[1] + 1) + '-0-0'); // wrap around at the sub-section level
 							if (next.length > 0) {
-								pe.focus(next);
+								_pe.focus(next);
 							} else {
-								pe.focus($scope.find('.knav-0-0-0')); // wrap around at the top level
+								_pe.focus($scope.find('.knav-0-0-0')); // wrap around at the top level
 							}
 						}
 						break;
@@ -352,9 +352,9 @@
 						next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2] + 1) + '-0'); // move to next section
 					}
 					if (next.length !== 0) {
-						pe.focus(next);
+						_pe.focus(next);
 					} else {
-						pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-1, .knav-' + _id[1] + '-1-0').first()); // move to first item in the submenu
+						_pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-1, .knav-' + _id[1] + '-1-0').first()); // move to first item in the submenu
 					}
 					return false;
 				} else if (type === 'item-previous') {
@@ -363,9 +363,9 @@
 						prev = (_id[2] !== 0 ? _activemenu.find('a').filter('[class*="knav-' + _id[1] + '-' + (_id[2] - 1) + '-"]:not(.knav-' + _id[1] + '-0-0)').last() : ''); // move to last item of the previous section
 					}
 					if (prev.length !== 0) {
-						pe.focus(prev);
+						_pe.focus(prev);
 					} else {
-						pe.focus(_activemenu.find('[class*="knav-"]').last()); // move to last item in the submenu
+						_pe.focus(_activemenu.find('[class*="knav-"]').last()); // move to last item in the submenu
 					}
 					return false;
 				} else if (type === 'focusin' && _id[2] === 0 && _id[3] === 0) {

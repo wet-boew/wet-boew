@@ -2,10 +2,55 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%gcwu-serv-mobile-background-white {
+	background: #FFF;
+}
+%gcwu-serv-mobile-color-295376 {
+	color: #295376;
+}
+%gcwu-serv-mobile-text-decoration-none {
+	text-decoration: none;
+}
+%gcwu-serv-mobile-padding-0-5 {
+	padding: 0 5px;
+}
+%gcwu-serv-mobile-padding-0-color-000-font-weight-700 {
+	padding: 0;
+	color: #000;
+	font-weight: 700;
+}
+%gcwu-serv-mobile-50pct-black {
+	@extend %gcwu-serv-mobile-padding-0-color-000-font-weight-700;
+	font-size: 1.5em;
+	@extend %gcwu-serv-mobile-50pct-float-left;
+}
+%gcwu-serv-mobile-clear-left {
+	clear: left;
+}
+%gcwu-serv-mobile-alt-title {
+	@extend %gcwu-serv-mobile-padding-0-color-000-font-weight-700;
+	font-size: 1.2em;
+}
+%gcwu-serv-mobile-display-block {
+	display: block;
+}
+%gcwu-serv-float-left {
+	float: left;
+}
+%gcwu-serv-mobile-50pct-float-left {
+	width: 50%;
+	@extend %gcwu-serv-float-left;
+}
+%gcwu-serv-mobile-display-none {
+	display: none;
+}
+%gcwu-serv-mobile-margin-0 {
+	margin: 0;
+}
 
 #gcwu-sig {
-	float: left;
-	margin: 10px 0 10px 0;
+	@extend %gcwu-serv-float-left;
+	margin: 10px 0;
 	img {
 		margin-bottom: 0;
 	}
@@ -17,11 +62,7 @@
 }
 
 #wb-head {
-	padding: 0 5px;
-}
-
-%gcwu-serv-mobile-background-white {
-	background: #FFF;
+	@extend %gcwu-serv-mobile-padding-0-5;
 }
 
 #wb-foot-in {
@@ -33,31 +74,22 @@
 }
 
 #wb-body {
-	background: #fff;
+	@extend %gcwu-serv-mobile-background-white;
 }
 
 #gcwu-title {
 	a {
-		&, &:visited {
-			color: #295376;
-			text-decoration: none;
+		@extend %gcwu-serv-mobile-color-295376;
+		@extend %gcwu-serv-mobile-text-decoration-none;
+		&:visited {
+			@extend %gcwu-serv-mobile-color-295376;
+			@extend %gcwu-serv-mobile-text-decoration-none;
 		}
 		@include pseudo-focus {
-			color: #295376;
+			@extend %gcwu-serv-mobile-color-295376;
 			text-decoration: underline;
 		}
 	}
-}
-
-%gcwu-serv-mobile-50pct-black {
-	padding: 0;
-	color: #000;
-	font: {
-		size: 1.5em;
-		weight: bold;
-	}
-	width: 50%;
-	float: left;
 }
 
 #gcwu-title-left {
@@ -80,24 +112,9 @@
 	@extend %gcwu-serv-mobile-alt-title;
 }
 
-%gcwu-serv-mobile-clear-left {
-	clear: left;
-}
-
-%gcwu-serv-mobile-alt-title {
-	padding: 0;
-	color: #000;
-	font-size: 1.2em;
-	font-weight: bold;
-}
-
 #wb-main-in {
     padding-left: 5px;
     padding-right: 5px;
-}
-
-%gcwu-serv-mobile-display-none {
-	display: none;
 }
 
 #gcwu-bar {
@@ -107,14 +124,11 @@
 #wb-foot {
 	@extend %gcwu-serv-mobile-display-none;
 	@extend %gcwu-serv-mobile-background-white;
-	%gcwu-serv-mobile-foot-margin-0 {
-		margin: 0;
-	}
 	ul {
-		@extend %gcwu-serv-mobile-foot-margin-0;
+		@extend %gcwu-serv-mobile-margin-0;
 	}
 	a {
-		@extend %gcwu-serv-mobile-foot-margin-0;
+		@extend %gcwu-serv-mobile-margin-0;
 	}
 	li {
 		a {
@@ -140,12 +154,12 @@
 		}
 	}
 	.ui-footer {
-		border: 0;
+		border: none;
 		background: none;
 	}
 	#gcwu-wmms {
 		object {
-			display: block;
+			@extend %gcwu-serv-mobile-display-block;
 			margin: 5px auto;
 		}
 	}
@@ -153,38 +167,31 @@
 
 .ui-mobile {
 	#wb-foot {
-		display: block;
+		@extend %gcwu-serv-mobile-display-block;
 	}
 }
 
 .no-js {
-	%gcwu-serv-mobile-no-js-display-block {
-		display: block;
-	}
 	#gcwu-sig {
-		@extend %gcwu-serv-mobile-no-js-50pct-float-left;
+		@extend %gcwu-serv-mobile-50pct-float-left;
 		margin-top: 20px;
 	}
 	#gcwu-bar {
-		@extend %gcwu-serv-mobile-no-js-display-block;
+		@extend %gcwu-serv-mobile-display-block;
 		margin-bottom: 5px;
 	}
 	#wb-foot {
-		@extend %gcwu-serv-mobile-no-js-display-block;
-		padding: 0 5px;
-	}
-	%gcwu-serv-mobile-no-js-50pct-float-left {
-		width: 50%;
-		float: left;
+		@extend %gcwu-serv-mobile-display-block;
+		@extend %gcwu-serv-mobile-padding-0-5;
 	}
 	#gcwu-wmms {
-		@extend %gcwu-serv-mobile-no-js-50pct-float-left;
+		@extend %gcwu-serv-mobile-50pct-float-left;
 	}
 	.gcwu-tc-left {
-		@extend %gcwu-serv-mobile-no-js-50pct-float-left;
+		@extend %gcwu-serv-mobile-50pct-float-left;
 	}
 	.gcwu-tc-right {
-		@extend %gcwu-serv-mobile-no-js-50pct-float-left;
+		@extend %gcwu-serv-mobile-50pct-float-left;
 		text-align: right;
 	}
 }
