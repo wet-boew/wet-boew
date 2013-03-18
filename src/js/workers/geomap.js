@@ -983,7 +983,7 @@
 		* Sample tables object:
 		* 
 		*	tables: [ 
-		*		{ id: 'cityE', strokeColor: '#FF0000', fillcolor: '#FF0000' } 
+		*		{ id: 'cityE', strokeColor: '#F00', fillcolor: '#F00' } 
 		*	] 
 		*/	
 		addTabularData: function(opts, projLatLon, projMap) {
