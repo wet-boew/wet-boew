@@ -108,8 +108,7 @@
 		 * Create a table for vector features added in Load Overlays
 		 */
 		createTable: function(index, title, caption, datatable) {
-			var table = '<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot>' : '') + '</table>';
-			return $(table);	
+			return $('<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot>' : '') + '</table>');
 		},		
 		
 		/*
@@ -130,15 +129,15 @@
 		 */		
 		addLayerData: function(featureTable, enabled, olLayerId, tab) {						
 			// add layer to legend
-			if ($('.wet-boew-geomap-legend')) {
+			if ($('.wet-boew-geomap-legend').length !== 0) {
 				_pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
 			}
 
 			var $div = $('.wet-boew-geomap-layers'),
 				featureTableId = $(featureTable).attr('id'),
-				$layerTab = $('<div>', { 'id': 'tabs_' + featureTableId }),
+				$layerTab = $('<div id="tabs_' + featureTableId + '">'),
 				title = featureTable[0].attributes['aria-label'].value,
-				$layerTitle = $('<h3>', { 'id': featureTableId,	'html': title, 'class': 'background-light' }),
+				$layerTitle = $('<h3 id="' + featureTableId + '" class="background-light">' + title + '</h3>'),
 				$alert = $('<div id="msg_' + featureTableId + '" class="module-attention module-simplify margin-top-medium margin-bottom-medium"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');
 
 			// TODO: add debug message for div with id 'wet-boew-geomap-layers' can't be found and prompt to have it added
@@ -183,7 +182,7 @@
 				// if no legend or fieldset add them
 				$fieldset = $div.find('fieldset');
 				if ($fieldset.length === 0) {
-					$fieldset = $('<fieldset>', { 'name': 'legend'}).attr('data-role', 'controlgroup').append('<legend class="wb-invisible">' + _pe.dic.get('%geo-togglelayer') + '</legend>').appendTo($div);
+					$fieldset = $('<fieldset name="legend" data-role="controlgroup"><legend class="wb-invisible">' + _pe.dic.get('%geo-togglelayer') + '</legend></fieldset>').appendTo($div);
 				}
 
 				$checked = enabled ? 'checked="checked"' : '';
@@ -265,8 +264,8 @@
 					'strokeWidth': 0.5
 				},
 				selectStyle = { 
-					'strokeColor': "#0000ff", 
-					'fillColor': "#0000ff",
+					'strokeColor': "#00f", 
+					'fillColor': "#00f",
 					'fillOpacity': 0.4,
 					//'pointRadius': 5,
 					'strokeWidth': 2.0
