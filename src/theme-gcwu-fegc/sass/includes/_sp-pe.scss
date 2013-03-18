@@ -7,10 +7,13 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 
+%gcwu-sp-pe-font-weight-700 {
+	font-weight: 700;
+}
 %gcwu-sp-pe-title-all {
 	padding-top: 10px;
 	color: #333;
-	font-weight: bold;
+	@extend %gcwu-sp-pe-font-weight-700;
 }
 %gcwu-sp-pe-title {
 	font-size: 1.5em;
@@ -29,8 +32,8 @@
 		min-width: 8em;
 	}
 	li {
-		float: left;
-		padding: 0;
+		@extend %gcwu-sp-pe-float-left;
+		@extend %gcwu-sp-pe-padding-0;
 		text-align: center;
 		a {
 			@include appearance(none);
@@ -44,13 +47,11 @@
 			padding: 10px 0;
 			@include border-radius(2px);
 			text-shadow: 0 1px 0 #eee;
-			font: {
-				weight: 700;
-				size: 120%;
-			}
+			@extend %gcwu-sp-pe-font-weight-700;
+			font-size: 120%;
 			@include box-shadow(none);
-			display: block;
-			text-decoration: none;
+			@extend %gcwu-sp-pe-display-block;
+			@extend %gcwu-sp-pe-text-decoration-none;
 			text-transform: capitalize;
 			@include pseudo-focus {
 				text-shadow: 0 1px 0 #ddd;
@@ -73,11 +74,11 @@
 		min-width: 8em;
 	}
 	li {
-		float: left;
-		padding: 0;
+		@extend %gcwu-sp-pe-float-left;
+		@extend %gcwu-sp-pe-padding-0;
 		a {
-			display: block;
-			text-decoration: none;
+			@extend %gcwu-sp-pe-display-block;
+			@extend %gcwu-sp-pe-text-decoration-none;
 			font-size: 0.9em;
 			@include pseudo-focus {
 				text-decoration: underline;
@@ -85,14 +86,29 @@
 		}
 	}
 }
+%gcwu-sp-pe-text-shadow-none {
+	text-shadow: none;
+}
+%gcwu-sp-pe-float-left {
+	float: left;
+}
+%gcwu-sp-pe-padding-0 {
+	padding: 0;
+}
+%gcwu-sp-pe-display-block {
+	display: block;
+}
+%gcwu-sp-pe-text-decoration-none {
+	text-decoration: none;
+}
 
 h1 {
 	font-size: 2em;
 	color: #222;
 	border: none;
-	font-weight: bold;
+	@extend %gcwu-sp-pe-font-weight-700;
 	margin-bottom: 0 !important;
-	text-shadow: none;
+	@extend %gcwu-sp-pe-text-shadow-none;
 }
 
 h2 {
@@ -105,7 +121,7 @@ h2 {
 }
 
 #gcwu-title {
-	text-shadow: none;
+	@extend %gcwu-sp-pe-text-shadow-none;
 }
 
 #wb-body {

@@ -9,10 +9,14 @@
 	}
 }
 .ie7, .ie8 {
+	%sp-pe-ie-ie7-ie8-font-weight-400 {
+		font-weight: 400;
+	}
 	#gcwu-tc {
 		a {
-			&, &.ui-link {
-				font-weight: normal;
+			@extend %sp-pe-ie-ie7-ie8-font-weight-400;
+			&.ui-link {
+				@extend %sp-pe-ie-ie7-ie8-font-weight-400;
 			}
 		}
 	}

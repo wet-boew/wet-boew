@@ -10,41 +10,134 @@
 %base-default-mobile-no-rounded-corners {
 	@include border-radius(0);
 }
-
 %base-default-mobile-all-rounded-corners {
 	@include border-radius(0.6em);
 }
-
 %base-default-mobile-no-bottom-rounded-corners {
 	@include border-bottom-left-radius(0);
 	@include border-bottom-right-radius(0);
 }
-
 %base-default-mobile-no-top-rounded-corners {
 	@include border-top-left-radius(0);
 	@include border-top-right-radius(0);
 }
-
 %base-default-mobile-bottom-rounded-corners {
 	@include border-bottom-left-radius(0.6em);
 	@include border-bottom-right-radius(0.6em);
 }
-
 %base-default-mobile-top-rounded-corners {
 	@include border-top-left-radius(0.6em);
 	@include border-top-right-radius(0.6em);
 }
-
-%base-default-mobile-font-weight-normal {
-	font-weight: normal;
+%base-default-mobile-font-weight-400 {
+	font-weight: 400;
 }
-
 %base-default-mobile-border-none {
 	border: none;
 }
-
 %base-default-mobile-text-decoration-none {
 	text-decoration: none;
+}
+%base-default-mobile-text-shadow-none {
+	text-shadow: none;
+}
+%base-default-mobile-clear-both {
+	clear: both;
+}
+%base-default-mobile-last-child-padding-5 {
+	&:last-child {
+		padding: 5px;
+	}
+}
+%base-default-mobile-period-after-pseudo {
+	&:after {
+		content: ".";
+		@extend %base-default-mobile-display-block;
+		height: 0;
+		@extend %base-default-mobile-clear-both;
+		visibility: hidden;
+	}
+}
+%base-default-mobile-display-none {
+	display: none;
+}
+%base-default-mobile-display-none-important {
+	display: none !important;
+}
+%base-default-mobile-display-block {
+	display: block;
+}
+%base-default-mobile-display-block-important {
+	display: block !important;
+}
+%base-default-mobile-white-space-normal {
+	white-space: normal;
+}
+%base-default-mobile-position-absolute {
+	position: absolute;
+}
+%base-default-mobile-margin-left-right--15 {
+	margin: 0 -15px;
+}
+%base-default-mobile-font-1em-margin-0 {
+	font-size: 1em;
+	@extend %base-default-mobile-margin-0;
+}
+%base-default-mobile-font-125em {
+	font-size: 1.25em;
+}
+%base-default-mobile-margin-0 {
+	margin: 0;
+}
+%base-default-mobile-padding-0 {
+	padding: 0;
+}
+%base-default-mobile-padding-left-0 {
+	padding-left: 0;
+}
+%base-default-mobile-padding-left-15 {
+	padding-left: 15px;
+}
+%base-default-mobile-padding-left-30 {
+	padding-left: 30px;
+}
+%base-default-mobile-padding-right-0 {
+	padding-right: 0;
+}
+%base-default-mobile-width-100-z-index-100 {
+	width: 100%;
+	z-index: 100;
+}
+%base-default-mobile-width-100-important-float-none {
+	width: 100% !important;
+	float: none;
+}
+%base-default-mobile-rtl-scalex {
+	@include scaleX(-1);
+	@extend %base-default-mobile-display-block;
+}
+%base-default-mobile-text-align-right {
+	text-align: right;
+}
+%base-default-mobile-text-align-center {
+	text-align: center;
+}
+%base-default-mobile-float-left {
+	float: left;
+}
+%base-default-mobile-border-left-none {
+	border-left: none;
+}
+%base-default-mobile-padding-3-5 {
+	padding: 3px 5px;
+}
+%base-default-mobile-padding-0-15 {
+	padding: 0 15px;
+}
+%base-default-mobile-h1-border-bottom-none {
+	h1 {
+		border-bottom: none;
+	}
 }
 
 body {
@@ -58,14 +151,10 @@ body {
 
 a {
 	color: #295376;
-	font-weight: bold;
+	font-weight: 700;
 	&:active {
 		text-decoration: underline !important;
 	}
-}
-
-%base-default-mobile-text-shadow-none {
-	text-shadow: none;
 }
 
 blockquote {
@@ -90,10 +179,10 @@ img {
 li {
 	&#base-fullft-ca { //TODO: Is this ID ever outside an li?
 		a {
-			padding-left: 0;
-			padding-right: 0;
+			@extend %base-default-mobile-padding-left-0;
+			@extend %base-default-mobile-padding-right-0;
 			font-size: 0.7em;
-			border: none;
+			@extend %base-default-mobile-border-none;
 		}
 	}
 }
@@ -127,14 +216,14 @@ table {
 
 #base-title {
 	@include background-image(linear-gradient(#BA380C, #E3450F));
-	border: none;
+	@extend %base-default-mobile-border-none;
 	p {
-		padding: 3px 5px;
-		margin: 0;
+		@extend %base-default-mobile-padding-3-5;
+		@extend %base-default-mobile-margin-0;
 	}
 	a {
 		font-size: 1.5em;
-		@extend %base-default-mobile-font-weight-normal;
+		@extend %base-default-mobile-font-weight-400;
 		color: #fff !important;
 		text-shadow: 0 1px 1px #044062;
 		@extend %base-default-mobile-text-decoration-none;
@@ -158,11 +247,11 @@ table {
 		@include box-shadow(none);
 	}
 	.ui-content {
-		padding: 0 15px;
+		@extend %base-default-mobile-padding-0-15;
 	}
 	.wet-boew-menubar {
 		a {
-			padding: 0;
+			@extend %base-default-mobile-padding-0;
 		}
 	}
 	.ui-li, a {
@@ -209,16 +298,13 @@ table {
 #base-srch-submit {
 	min-height: 22px;
 	display: inline;
-	margin: 0;
+	@extend %base-default-mobile-margin-0;
 }
 
 #base-sig {
 	@extend %base-default-mobile-display-none;
 }
 
-%base-default-mobile-padding-3-5 {
-	padding: 3px 5px;
-}
 #base-subsite {
 	font-size: 130%;
 	@extend %base-default-mobile-text-shadow-none;
@@ -231,7 +317,7 @@ table {
 	a {
 		@extend %base-default-mobile-padding-3-5;
 		@extend %base-default-mobile-white-space-normal;
-		@extend %base-default-mobile-font-weight-normal;
+		@extend %base-default-mobile-font-weight-400;
 	}
 }
 
@@ -271,11 +357,6 @@ table {
 	}
 }
 
-%base-default-mobile-last-child-padding-5 {
-	&:last-child {
-		padding: 5px;
-	}
-}
 #base-bc-in {
 	background: #DFDFDD;
 	@include background-image(linear-gradient(#F0EFEF, #DFDFDD));
@@ -284,12 +365,12 @@ table {
 	border-bottom: 1px solid #ccc;
 	@include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 	ol {
-		margin: 0;
+		@extend %base-default-mobile-margin-0;
 		font-size: 90%;
 	}
 	li {
 		background: url(../images/bcrumb-mobile.png) no-repeat right center;
-		margin: 0;
+		@extend %base-default-mobile-margin-0;
 		padding: 5px 12px 5px 5px;
 		@extend %base-default-mobile-no-rounded-corners;
 		@extend %base-default-mobile-last-child-padding-5;
@@ -300,46 +381,12 @@ table {
 }
 
 #wb-core {
-	clear: both;
-}
-
-%base-default-mobile-period-after-pseudo {
-	&:after {
-		content: ".";
-		@extend %base-default-mobile-display-block;
-		height: 0;
-		clear: both;
-		visibility: hidden;
-	}
-}
-
-%base-default-mobile-display-none {
-	display: none;
-}
-
-%base-default-mobile-display-none-important {
-	display: none !important;
-}
-
-%base-default-mobile-display-block {
-	display: block;
-}
-
-%base-default-mobile-display-block-important {
-	display: block !important;
-}
-
-%base-default-mobile-white-space-normal {
-	white-space: normal;
-}
-
-%position-absolute {
-	position: absolute;
+	@extend %base-default-mobile-clear-both;
 }
 
 .ui-title {
 	img {
-		@extend %position-absolute;
+		@extend %base-default-mobile-position-absolute;
 		left: 5px;
 		top: 8px;
 	}
@@ -365,9 +412,6 @@ table {
 	}
 }
 
-%base-default-mobile-margin-left-right--15 {
-	margin: 0 -15px;
-}
 #popupAbout {
 	.site-app-title {
 		@extend %base-default-mobile-margin-left-right--15;
@@ -376,17 +420,8 @@ table {
 	.app-version {
 		@extend %base-default-mobile-margin-left-right--15;
 		@extend %base-default-mobile-border-none;
-		padding: 0 15px;
+		@extend %base-default-mobile-padding-0-15;
 	}
-}
-
-%base-default-mobile-font-1em-margin-0 {
-	font-size: 1em;
-	margin: 0;
-}
-
-%base-default-mobile-font-125em {
-	font-size: 1.25em;
 }
 
 h3 {
@@ -439,11 +474,6 @@ select {
 	@extend %base-default-mobile-font-125em;
 }
 
-%base-default-mobile-h1-border-bottom-none {
-	h1 {
-		border-bottom: none;
-	}
-}
 .ui-dialog {
 	@extend %base-default-mobile-h1-border-bottom-none;
 }
@@ -457,7 +487,7 @@ select {
 		clip: rect(1px, 1px, 1px, 1px);
 		height: 1px;
 		overflow: hidden;
-		@extend %position-absolute;
+		@extend %base-default-mobile-position-absolute;
 		width: 1px;
 	}
 	.ui-icon-searchfield:after, .ui-icon-search {
@@ -465,9 +495,6 @@ select {
 	}
 }
 
-%base-default-mobile-margin-0 {
-	margin: 0;
-}
 #jqm-wb-mb {
 	a {
 		@extend %base-default-mobile-text-shadow-none;
@@ -494,7 +521,7 @@ select {
 	.ui-content {
 		padding: 0 15px 5px;
 		.ui-listview {
-			margin: 0;
+			@extend %base-default-mobile-margin-0;
 		}
 		h2 {
 			+ {
@@ -530,7 +557,7 @@ select {
 		background: #FFF;
 	}
 	.ui-collapsible-set {
-		margin: 0;
+		@extend %base-default-mobile-margin-0;
 		a {
 			@extend %base-default-mobile-white-space-normal;
 		}
@@ -561,42 +588,33 @@ select {
 		}
 	}
 	.wb-nested-menu {
-		padding: 0;
-		h2 {
-			@extend %base-default-mobile-margin-0;
-		}
-		h3 {
-			@extend %base-default-mobile-margin-0;
-		}
-		h4 {
-			@extend %base-default-mobile-margin-0;
-		}
-		h5 {
+		@extend %base-default-mobile-padding-0;
+		#{headings(2,5)} {
 			@extend %base-default-mobile-margin-0;
 		}
 		.ui-btn-icon-right {
 			.ui-btn-inner {
-				padding-left: 0;
+				@extend %base-default-mobile-padding-left-0;
 			}
 		}
 		a {
 			padding-left: 55px;
 			&.ui-btn-icon-left {
-				padding-left: 0;
+				@extend %base-default-mobile-padding-left-0;
 			}
 		}
 		.wb-nested-menu {
 			a {
 				padding-left: 70px;
 				&.ui-btn-icon-left {
-					padding-left: 15px;
+					@extend %base-default-mobile-padding-left-15;
 				}
 			}
 			.wb-nested-menu {
 				a {
 					padding-left: 85px;
 					&.ui-btn-icon-left {
-						padding-left: 30px;
+						@extend %base-default-mobile-padding-left-30;
 					}
 				}
 			}
@@ -606,10 +624,10 @@ select {
 		}
 	}
 	.ui-collapsible-content {
-		padding: 0;
+		@extend %base-default-mobile-padding-0;
 	}
 	.ui-li-static {
-		border-left: none;
+		@extend %base-default-mobile-border-left-none;
 		border-right: none;
 		background: #F4F4F4;
 		.wb-nested-menu {
@@ -619,11 +637,11 @@ select {
 		}
 	}
 	.ui-btn {
-		margin: 0;
+		@extend %base-default-mobile-margin-0;
 		text-align: left;
 	}
 	.ui-li {
-		padding: 0;
+		@extend %base-default-mobile-padding-0;
 		border-width: 1px 1px 0 1px;
 		.ui-collapsible {
 			&:first-child {
@@ -656,16 +674,16 @@ select {
 
 .ui-loader-default {
 	h1 {
-		margin: 0;
-		padding: 0;
-		border: 0;
+		@extend %base-default-mobile-margin-0;
+		@extend %base-default-mobile-padding-0;
+		@extend %base-default-mobile-border-none;
 	}
 }
 
 .no-js {
 	#base-fullhd {
 		a {
-			border-left: none;
+			@extend %base-default-mobile-border-left-none;
 			padding: 0 5px !important;
 		}
 	}
@@ -690,21 +708,13 @@ select {
 		padding-left: 5px;
 	}
 	.ui-content {
-		padding: 0;
+		@extend %base-default-mobile-padding-0;
 	}
 	.mobile-pe {
 		@extend %base-default-mobile-display-none-important;
 	}
 }
 
-%base-default-mobile-width-100-z-index-100 {
-	width: 100%;
-	z-index: 100;
-}
-%base-default-mobile-width-100-important-float-none {
-	width: 100% !important;
-	float: none;
-}
 .pe-disable {
 	#base-fullhd { 
 		ul {
@@ -754,25 +764,9 @@ select {
 }
 
 /* Right to left (RTL) CSS */
-%base-default-mobile-rtl-scalex {
-	@include scaleX(-1);
-	@extend %base-default-mobile-display-block;
-}
-%base-default-mobile-padding-right-0 {
-	padding-right: 0;
-}
-%base-default-mobile-text-align-right {
-	text-align: right;
-}
-%base-default-mobile-text-align-center {
-	text-align: center;
-}
-%base-default-mobile-float-left {
-	float: left;
-}
 [dir="rtl"] {
 	#base-date-mod {
-		float: left;
+		@extend %base-default-mobile-float-left;
 	}
 
 	#base-fullhd {
@@ -853,17 +847,17 @@ select {
 				a {
 					padding-right: 70px;
 					&.ui-btn-icon-left {
-						padding-left: 15px;
+						@extend %base-default-mobile-padding-left-15;
 						padding-right: 15px;
 					}
 				}
 
 				.wb-nested-menu {
 					a {
-						padding-left: 0;
+						@extend %base-default-mobile-padding-left-0;
 						padding-right: 85px;
 						&.ui-btn-icon-left {
-							padding-left: 30px;
+							@extend %base-default-mobile-padding-left-30;
 							padding-right: 30px;
 						}
 					}
@@ -933,7 +927,7 @@ select {
 		h2 {
 			padding: 0.7em 0 0.8em 18px;
 			border-right: 1px solid #CCC;
-			border-left: none;
+			@extend %base-default-mobile-border-left-none;
 		}
 	}
 
@@ -942,7 +936,7 @@ select {
 			a {
 				&.ui-btn-active {
 					border: 1px solid #CCC;
-					border-left: none;
+					@extend %base-default-mobile-border-left-none;
 				}
 			}
 		}
@@ -950,7 +944,7 @@ select {
 
 	#base-srchbx {
 		h2 {
-			padding-right: 0;
+			@extend %base-default-mobile-padding-right-0;
 			padding-left: 20px;
 		}
 	}
