@@ -5,7 +5,7 @@
 /*
  * GeoMap plugin
  */
-/*global jQuery: false, wet_boew_geomap: false, OpenLayers: false*/
+/*global jQuery: false, wet_boew_geomap: false, OpenLayers: false, Proj4js: false*/
 (function($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -1319,7 +1319,7 @@
 			OpenLayers.ImgPath = _pe.add.liblocation + '/images/geomap/';
 			
 			// Add projection for default base map
-			window.Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
+			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
 					
 			// Initiate the map
 			elm.attr('id', 'geomap').height(elm.width() * 0.8);
