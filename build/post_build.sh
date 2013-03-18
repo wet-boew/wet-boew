@@ -54,6 +54,8 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		git checkout -f "$build_branch"
 
 		#Replace the new dist and demo folders and root files with the new ones
+		rm -Rf dist/*
+		rm -Rf demos/*
 		cp -Rf $HOME/temp_wet-boew/* .
 
 		#Commit the result
