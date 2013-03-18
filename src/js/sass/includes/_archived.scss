@@ -7,16 +7,13 @@
 %archived-color-FFF {
 	color: #FFF;
 }
-%archived-background-color-C00 {
-	background-color: #C00;
-}
 
 #archived {
 	background-color: #FFC;
 	border: 1px solid #C00;
 	h2 {
 		@extend %archived-background-color-C00;
-		@extend %archived-color-FFF;
+		color: #FFF;
 		margin: 0;
 		padding: 2px 0 2px 10px;
 	}
@@ -54,7 +51,7 @@
 	}
 	.archived-top-page {
 		background-color: transparent;
-		@extend %archived-color-FFF;
+		color: #FFF;
 		display: block;
 		font-size: 1.4em;
 		font-weight: 700;
