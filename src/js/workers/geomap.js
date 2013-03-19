@@ -1274,42 +1274,28 @@
 		},
 
 		refreshPlugins: function() {
-			var $holder;
-
+			var $createDatatable;
 			_pe.wb_load({
 				'plugins': {
 					'tabbedinterface': _pe.main.find('.wet-boew-tabbedinterface')
 				}
 			});
+
+			$createDatatable = _pe.main.find('.createDatatable');
 			_pe.wb_load({
 				'plugins': {
-					'tables': _pe.main.find('.createDatatable')
+					'tables': $createDatatable
 				}
 			});
-				
-			if (!_pe.mobile) {
-				// For each datatable in tabs, set some style to solve the layout problem
-				$createDatatable.each(function(index, $feature) {
-					$holder = ($('table#' + $feature.id)).parent();
-					if ($holder.attr('id') === 'tabs_' + $feature.id) {
-						$holder.attr('style', 'display: table; width: 100%');
-					}
-				});
-			} else {
+
+			// Workaround for nesting data tables in a tab panel
+			$createDatatable.each(function() {
+				$(this).parent().append('<div class="clear"></div>');
+			});
+
+			if (_pe.mobile) {
 				// Enhance the checkboxes with jQuery Mobile
-				$('.wet-boew-geomap-legend').trigger('create');
-
-				// For each datatable, create the wrapper around it and set display:table to solve layout problem.
-				$createDatatable.each(function(index, $feature) {
-					$('table#' + $feature.id).wrap('<div id="' + $feature.id + '_wrapper" class="dataTables_wrapper width-100"></div>');
-				});
-
-				// Set the opacity to solve transparency problem.
-				$('.wet-boew-tables').addClass('opacity-100');
-				$('.table-simplify').addClass('opacity-100');
-
-				// Set display table to solve the table and hidden message appears at the same time
-				//$('.table-simplify').css('dispaly', 'table');
+				_pe.main.find('.wet-boew-geomap-legend').trigger('create');
 			}
 		}
 	};
