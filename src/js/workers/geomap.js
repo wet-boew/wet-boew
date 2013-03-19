@@ -1301,6 +1301,9 @@
 					}
 				});
 
+				// Enhance the checkboxes with jQuery Mobile
+				$('.wet-boew-geomap-legend').trigger('create');
+
 				// For each datatable, create the wrapper around it and set display:table to solve layout problem.
 				$createDatatable.each(function(index, $feature) {
 					$('table#' + $feature.id).wrap('<div id="' + $feature.id + '_wrapper" class="dataTables_wrapper width-100" style="display: table"></div>');
