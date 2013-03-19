@@ -5,7 +5,7 @@
 /*
  * GeoMap plugin
  */
-/*global jQuery: false, pe: false, wet_boew_geomap: false*/
+/*global jQuery: false, wet_boew_geomap: false, OpenLayers: false, Proj4js: false*/
 (function($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -108,8 +108,7 @@
 		 * Create a table for vector features added in Load Overlays
 		 */
 		createTable: function(index, title, caption, datatable) {
-			var table = '<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot>' : '') + '</table>';
-			return $(table);	
+			return $('<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot>' : '') + '</table>');
 		},		
 		
 		/*
@@ -129,16 +128,16 @@
 		 * Add layer data
 		 */		
 		addLayerData: function(featureTable, enabled, olLayerId, tab) {						
-			// add to layer to legend
-			if ($('.wet-boew-geomap-legend')) {
+			// add layer to legend
+			if ($('.wet-boew-geomap-legend').length !== 0) {
 				_pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
 			}
 
 			var $div = $('.wet-boew-geomap-layers'),
 				featureTableId = $(featureTable).attr('id'),
-				$layerTab = $('<div>', { 'id': 'tabs_' + featureTableId }),
+				$layerTab = $('<div id="tabs_' + featureTableId + '">'),
 				title = featureTable[0].attributes['aria-label'].value,
-				$layerTitle = $('<h4>', { 'id': featureTableId,	'html': title, 'class': 'background-light' }),
+				$layerTitle = $('<h3 id="' + featureTableId + '" class="background-light">' + title + '</h3>'),
 				$alert = $('<div id="msg_' + featureTableId + '" class="module-attention module-simplify margin-top-medium margin-bottom-medium"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');
 
 			// TODO: add debug message for div with id 'wet-boew-geomap-layers' can't be found and prompt to have it added
@@ -183,7 +182,7 @@
 				// if no legend or fieldset add them
 				$fieldset = $div.find('fieldset');
 				if ($fieldset.length === 0) {
-					$fieldset = $('<fieldset>', { 'name': 'legend'}).attr('data-role', 'controlgroup').append('<legend class="wb-invisible">' + _pe.dic.get('%geo-togglelayer') + '</legend>').appendTo($div);
+					$fieldset = $('<fieldset name="legend" data-role="controlgroup"><legend class="wb-invisible">' + _pe.dic.get('%geo-togglelayer') + '</legend></fieldset>').appendTo($div);
 				}
 
 				$checked = enabled ? 'checked="checked"' : '';
@@ -265,8 +264,8 @@
 					'strokeWidth': 0.5
 				},
 				selectStyle = { 
-					'strokeColor': "#0000ff", 
-					'fillColor': "#0000ff",
+					'strokeColor': "#00f", 
+					'fillColor': "#00f",
 					'fillOpacity': 0.4,
 					//'pointRadius': 5,
 					'strokeWidth': 2.0
@@ -279,7 +278,7 @@
 				case 'unique':
 					// set the select style then the unique value.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
-					styleMap = new window.OpenLayers.StyleMap({'select': new window.OpenLayers.Style(select)});
+					styleMap = new OpenLayers.StyleMap({'select': new OpenLayers.Style(select)});
 					styleMap.addUniqueValueRules('default', elm.style.field, elm.style.init);
 					break;
 
@@ -293,34 +292,34 @@
 						// set the filter						
 						switch(elm.style.rule[i].filter){
 						case 'LESS_THAN':
-							filter = window.OpenLayers.Filter.Comparison.LESS_THAN;
+							filter = OpenLayers.Filter.Comparison.LESS_THAN;
 							break;
 						case 'LESS_THAN_OR_EQUAL_TO':
-							filter = window.OpenLayers.Filter.Comparison.LESS_THAN_OR_EQUAL_TO;
+							filter = OpenLayers.Filter.Comparison.LESS_THAN_OR_EQUAL_TO;
 							break;
 						case 'GREATER_THAN_OR_EQUAL_TO':
-							filter = window.OpenLayers.Filter.Comparison.GREATER_THAN_OR_EQUAL_TO;
+							filter = OpenLayers.Filter.Comparison.GREATER_THAN_OR_EQUAL_TO;
 							break;
 						case 'GREATER_THAN':
-							filter = window.OpenLayers.Filter.Comparison.GREATER_THAN;
+							filter = OpenLayers.Filter.Comparison.GREATER_THAN;
 							break;
 						case 'BETWEEN':
-							filter = window.OpenLayers.Filter.Comparison.BETWEEN;
+							filter = OpenLayers.Filter.Comparison.BETWEEN;
 							break;
 						case 'EQUAL_TO':
-							filter = window.OpenLayers.Filter.Comparison.EQUAL_TO;
+							filter = OpenLayers.Filter.Comparison.EQUAL_TO;
 							break;
 						case 'NOT_EQUAL_TO':
-							filter = window.OpenLayers.Filter.Comparison.NOT_EQUAL_TO;
+							filter = OpenLayers.Filter.Comparison.NOT_EQUAL_TO;
 							break;
 						case 'LIKE':
-							filter = window.OpenLayers.Filter.Comparison.LIKE;
+							filter = OpenLayers.Filter.Comparison.LIKE;
 							break;
 						}
 
 						if (elm.style.rule[i].filter !== 'BETWEEN') {
-							rules.push(new window.OpenLayers.Rule({
-								filter: new window.OpenLayers.Filter.Comparison({
+							rules.push(new OpenLayers.Rule({
+								filter: new OpenLayers.Filter.Comparison({
 									type: filter,
 									property: elm.style.rule[i].field,
 									value: elm.style.rule[i].value[0]}),
@@ -328,8 +327,8 @@
 								})
 							);
 						} else {
-							rules.push(new window.OpenLayers.Rule({
-								filter: new window.OpenLayers.Filter.Comparison({
+							rules.push(new OpenLayers.Rule({
+								filter: new OpenLayers.Filter.Comparison({
 									type: filter,
 									property: elm.style.rule[i].field,
 									lowerBoundary: elm.style.rule[i].value[0],
@@ -340,30 +339,30 @@
 						}
 					}
 
-					var style = new window.OpenLayers.Style();
+					var style = new OpenLayers.Style();
 					style.addRules(rules);
 
 					// set the select style then the rules.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
-					styleMap = new window.OpenLayers.StyleMap({
+					styleMap = new OpenLayers.StyleMap({
 						"default": style, 
-						"select": new window.OpenLayers.Style(select)
+						"select": new OpenLayers.Style(select)
 					});					
 					break;
 				default:
 					// set the select style then the default.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
-					styleMap = new window.OpenLayers.StyleMap({ 
-						"default": new window.OpenLayers.Style(elm.style.init),
-						"select": new window.OpenLayers.Style(select)
+					styleMap = new OpenLayers.StyleMap({ 
+						"default": new OpenLayers.Style(elm.style.init),
+						"select": new OpenLayers.Style(select)
 					});
 					break;
 				}
 			} // end of (typeof elm.style !== 'undefined'
 			else {
-				styleMap = new window.OpenLayers.StyleMap({ 
-					"default": new window.OpenLayers.Style(defaultStyle),
-					"select": new window.OpenLayers.Style(selectStyle)
+				styleMap = new OpenLayers.StyleMap({ 
+					"default": new OpenLayers.Style(defaultStyle),
+					"select": new OpenLayers.Style(selectStyle)
 				});
 			}
 
@@ -578,7 +577,7 @@
 			}
 	
 			// Add the Canada Transportation Base Map (CBMT)			
-			map.addLayer(new window.OpenLayers.Layer.WMS(
+			map.addLayer(new OpenLayers.Layer.WMS(
 				"CBMT", 
 				"http://geogratis.gc.ca/maps/CBMT", 
 				{
@@ -601,12 +600,12 @@
 		setDefaultMapOptions: function(){
 			// use map options for the Canada Transportation Base Map (CBMT)
 			var mapOptions = {
-				maxExtent: new window.OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),			
+				maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),			
 				maxResolution: 'auto',
 				projection: 'EPSG:3978', 
-				restrictedExtent: new window.OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
+				restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
 				units: 'm',
-				displayProjection: new window.OpenLayers.Projection('EPSG:4269') /* only used by specific controls (i.e. MousePosition) */ ,
+				displayProjection: new OpenLayers.Projection('EPSG:4269') /* only used by specific controls (i.e. MousePosition) */ ,
 				numZoomLevels: 12
 			};
 
@@ -624,12 +623,12 @@
 				if (wet_boew_geomap.basemap && wet_boew_geomap.basemap.mapOptions) {				
 					mapOpts = wet_boew_geomap.basemap.mapOptions;
 					try {
-						mapOptions.maxExtent = new window.OpenLayers.Bounds(mapOpts.maxExtent.split(','));
+						mapOptions.maxExtent = new OpenLayers.Bounds(mapOpts.maxExtent.split(','));
 						mapOptions.maxResolution = mapOpts.maxResolution;
 						mapOptions.projection = mapOpts.projection; 
-						mapOptions.restrictedExtent = new window.OpenLayers.Bounds(mapOpts.restrictedExtent.split(','));
+						mapOptions.restrictedExtent = new OpenLayers.Bounds(mapOpts.restrictedExtent.split(','));
 						mapOptions.units = mapOpts.units;
-						mapOptions.displayProjection = new window.OpenLayers.Projection(mapOpts.displayProjection);
+						mapOptions.displayProjection = new OpenLayers.Projection(mapOpts.displayProjection);
 						mapOptions.numZoomLevels = mapOpts.numZoomLevels;
 					} catch (err) {
 						if (opts.debug) {
@@ -644,7 +643,7 @@
 				mapOptions = _pe.fn.geomap.setDefaultMapOptions();
 			}
 
-			map = new window.OpenLayers.Map('geomap', $.extend(opts.config, mapOptions));		
+			map = new OpenLayers.Map('geomap', $.extend(opts.config, mapOptions));		
 
 			// Check to see if a base map has been configured. If not add the
 			// default base map (the Canada Transportation Base Map (CBMT))
@@ -660,7 +659,7 @@
 
 					if (basemap.type === 'wms') {
 						map.addLayer(
-							new window.OpenLayers.Layer.WMS(
+							new OpenLayers.Layer.WMS(
 								basemap.title, 
 								basemap.url, 
 								{
@@ -673,7 +672,7 @@
 						);
 					} else if (basemap.type ==='esri') {						
 						map.addLayer(
-							new window.OpenLayers.Layer.ArcGIS93Rest(
+							new OpenLayers.Layer.ArcGIS93Rest(
 								basemap.title, 
 								basemap.url
 							)
@@ -700,16 +699,16 @@
 						var $table = _pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
 
 						if (layer.type === 'kml') {	
-							olLayer = new window.OpenLayers.Layer.Vector(
+							olLayer = new OpenLayers.Layer.Vector(
 								layer.title, {							
-									strategies: [new window.OpenLayers.Strategy.Fixed()],
-									protocol: new window.OpenLayers.Protocol.HTTP({
+									strategies: [new OpenLayers.Strategy.Fixed()],
+									protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
-									format: new window.OpenLayers.Format.KML({
+									format: new OpenLayers.Format.KML({
 										extractStyles: !layer.style,									
 										extractAttributes: true,
 										internalProjection: map.getProjectionObject(),
-										externalProjection: new window.OpenLayers.Projection('EPSG:4269'),
+										externalProjection: new OpenLayers.Projection('EPSG:4269'),
 
 										read: function(data) {
 											var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
@@ -718,7 +717,7 @@
 
 												for (i = 0, len = items.length; i !== len; i += 1) {												
 													row = items[i];			
-													feature = new window.OpenLayers.Feature.Vector();														
+													feature = new OpenLayers.Feature.Vector();														
 													feature.geometry = this.parseFeature(row).geometry;
 
 													// parse and store the attributes
@@ -754,13 +753,13 @@
 							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
 							olLayer.visibility = layer.visible;							
 						} else if (layer.type === 'atom') {
-							olLayer = new window.OpenLayers.Layer.Vector(
+							olLayer = new OpenLayers.Layer.Vector(
 								layer.title, {
 									projection: map.displayProjection,
-									strategies: [new window.OpenLayers.Strategy.Fixed()],
-									protocol: new window.OpenLayers.Protocol.HTTP({
+									strategies: [new OpenLayers.Strategy.Fixed()],
+									protocol: new OpenLayers.Protocol.HTTP({
 										url: layer.url,
-										format: new window.OpenLayers.Format.Atom({
+										format: new OpenLayers.Format.Atom({
 												read: function(data) {											
 													var items = this.getElementsByTagNameNS(data, '*', 'entry'),
 														row, $row, i, len, feature, atts = {}, features = [],
@@ -769,7 +768,7 @@
 													for (i = 0, len = items.length; i !== len; i += 1) {												
 														row = items[i];
 														$row = $(row);
-														feature = new window.OpenLayers.Feature.Vector();														
+														feature = new OpenLayers.Feature.Vector();														
 														feature.geometry = this.parseFeature(row).geometry;
 
 														// parse and store the attributes
@@ -805,13 +804,13 @@
 							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
 							olLayer.visibility = layer.visible;					
 						} else if (layer.type === 'georss') {
-							olLayer = new window.OpenLayers.Layer.Vector(
+							olLayer = new OpenLayers.Layer.Vector(
 								layer.title, {
 									projection: map.displayProjection,
-									strategies: [new window.OpenLayers.Strategy.Fixed()],
-									protocol: new window.OpenLayers.Protocol.HTTP({
+									strategies: [new OpenLayers.Strategy.Fixed()],
+									protocol: new OpenLayers.Protocol.HTTP({
 										url: layer.url,
-										format: new window.OpenLayers.Format.GeoRSS({									
+										format: new OpenLayers.Format.GeoRSS({									
 											read: function(data) {											
 												var items = this.getElementsByTagNameNS(data, "*", "item"),
 													row, $row, i, len, feature, atts = {}, features = [];
@@ -820,7 +819,7 @@
 													row = items[i];
 													$row = $(row);			
 																									
-													feature = new window.OpenLayers.Feature.Vector();											
+													feature = new OpenLayers.Feature.Vector();											
 													
 													feature.geometry = this.createGeometryFromItem(row);
 													
@@ -862,21 +861,21 @@
 							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
 							olLayer.visibility = layer.visible;
 						} else if (layer.type === 'json') {
-							olLayer = new window.OpenLayers.Layer.Vector( 
+							olLayer = new OpenLayers.Layer.Vector( 
 								layer.title, { 
 									projection: map.displayProjection, 
-									strategies: [new window.OpenLayers.Strategy.Fixed()], 
-									protocol: new window.OpenLayers.Protocol.Script({ 
+									strategies: [new OpenLayers.Strategy.Fixed()], 
+									protocol: new OpenLayers.Protocol.Script({ 
 										url: layer.url,
 										params: layer.params,
-										format: new window.OpenLayers.Format.GeoJSON({										
+										format: new OpenLayers.Format.GeoJSON({										
 											read: function(data) {											
 												var items = data[layer.root] ? data[layer.root] : data,
 													row, i, len, feature, atts = {}, features = [];
 												
 												for (i = 0, len = items.length; i !== len; i += 1) {												
 													row = items[i];												
-													feature = new window.OpenLayers.Feature.Vector();												
+													feature = new OpenLayers.Feature.Vector();												
 													feature.geometry =	this.parseGeometry(row.geometry);
 													
 													// parse and store the attributes
@@ -917,14 +916,14 @@
 							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
 							olLayer.visibility = layer.visible;			
 						} else if (layer.type ==='geojson') {						
-							olLayer = new window.OpenLayers.Layer.Vector( 
+							olLayer = new OpenLayers.Layer.Vector( 
 								layer.title, { 
 									projection: map.displayProjection, 
-									strategies: [new window.OpenLayers.Strategy.Fixed()], 
-									protocol: new window.OpenLayers.Protocol.Script({ 
+									strategies: [new OpenLayers.Strategy.Fixed()], 
+									protocol: new OpenLayers.Protocol.Script({ 
 										url: layer.url,
 										params: layer.params,
-										format: new window.OpenLayers.Format.GeoJSON({
+										format: new OpenLayers.Format.GeoJSON({
 											read: function(data) {
 
 												var items = data.features,
@@ -933,7 +932,7 @@
 												
 												for (i = 0, len = items.length; i !== len; i += 1) {												
 													row = items[i];												
-													feature = new window.OpenLayers.Feature.Vector();												
+													feature = new OpenLayers.Feature.Vector();												
 													feature.geometry = this.parseGeometry(row.geometry);
 													
 													// parse and store the attributes
@@ -984,20 +983,20 @@
 		* Sample tables object:
 		* 
 		*	tables: [ 
-		*		{ id: 'cityE', strokeColor: '#FF0000', fillcolor: '#FF0000' } 
+		*		{ id: 'cityE', strokeColor: '#F00', fillcolor: '#F00' } 
 		*	] 
 		*/	
 		addTabularData: function(opts, projLatLon, projMap) {
 			var thZoom = '<th>' + _pe.dic.get('%geo-zoomfeature') + '</th>',
 				wktFeature,
-				wktParser = new window.OpenLayers.Format.WKT({						
+				wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap, 
 					'externalProjection': projLatLon
 				});
 			$.each(opts.tables, function(index, table) {
 				var $table = $('table#' + table.id),
 					attr = [],
-					tableLayer = new window.OpenLayers.Layer.Vector($table.find('caption').text(), {
+					tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), {
 						styleMap: _pe.fn.geomap.getStyleMap(opts.tables[index])
 					});
 
@@ -1077,7 +1076,7 @@
 				$mapDiv = $('#' + map.div.id);
 			
 			// TODO: ensure WCAG compliance before enabling			
-			selectControl = new window.OpenLayers.Control.SelectFeature(
+			selectControl = new OpenLayers.Control.SelectFeature(
 				queryLayers,
 				{
 					onSelect: this.onFeatureSelect,
@@ -1106,15 +1105,15 @@
 			});
 							
 			if (opts.useMousePosition) {
-				map.addControl(new window.OpenLayers.Control.MousePosition());
+				map.addControl(new OpenLayers.Control.MousePosition());
 			}
 			if (opts.useScaleLine) {
-				map.addControl(new window.OpenLayers.Control.ScaleLine());
+				map.addControl(new OpenLayers.Control.ScaleLine());
 			}
-			map.addControl(new window.OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
-			map.addControl(new window.OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
+			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
+			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
 			
-			map.addControl(new window.OpenLayers.Control.KeyboardDefaults());			
+			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
 					
 			// enable the keyboard navigation when map div has focus. Disable when blur
@@ -1165,7 +1164,7 @@
 			_pe.fn.geomap.addBasemapData(wet_boew_geomap, opts);
 					
 			// Create projection objects
-			var projLatLon = new window.OpenLayers.Projection('EPSG:4326'),
+			var projLatLon = new OpenLayers.Projection('EPSG:4326'),
 				projMap = map.getProjectionObject(),
 				$geomap = $('.wet-boew-geomap');						
 
@@ -1174,7 +1173,7 @@
 			}			
 			
 			// Global variable
-			selectControl = new window.OpenLayers.Control.SelectFeature();
+			selectControl = new OpenLayers.Control.SelectFeature();
 			
 			// Create legend and tab
 			if (opts.useLegend) {
@@ -1244,7 +1243,7 @@
 			var $holder,
 				$createDatatable = $('.createDatatable'),
 				$tabbedInterface = $('.wet-boew-tabbedinterface');
-			if (!pe.mobile) {
+			if (!_pe.mobile) {
 				_pe.wb_load({'plugins': {'tables': $createDatatable, 'tabbedinterface': $tabbedInterface}});
 					
 				// For each datatable in tabs, set some style to solve the layout problem
@@ -1310,17 +1309,17 @@
 
 			if (opts.debug) {
 				window.console.log(_pe.fn.geomap.getLocalization('debugMode'));
-				$('#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
+				$('#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + _pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
 			}	
 
 			// Set the language for OpenLayers
-			window.OpenLayers.Lang.setCode(_pe.language);
+			OpenLayers.Lang.setCode(_pe.language);
 
 			// Set the image path for OpenLayers
-			window.OpenLayers.ImgPath = pe.add.liblocation + '/images/geomap/';
+			OpenLayers.ImgPath = _pe.add.liblocation + '/images/geomap/';
 			
 			// Add projection for default base map
-			window.Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
+			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
 					
 			// Initiate the map
 			elm.attr('id', 'geomap').height(elm.width() * 0.8);
