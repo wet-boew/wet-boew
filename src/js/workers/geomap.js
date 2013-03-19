@@ -62,7 +62,7 @@
 			OpenLayers.Lang.setCode(_pe.language);
 
 			// Set the image path for OpenLayers
-			OpenLayers.ImgPath = lib + '/images/geomap/';
+			OpenLayers.ImgPath = lib + 'images/geomap/';
 
 			// Add projection for default base map
 			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
@@ -124,7 +124,7 @@
 			 *	Add alt text to map controls and make tab-able
 			 */
 			var mapControl = _pe.dic.get('%geo-mapcontrol');
-			$('div.olButton').each(function() {
+			_pe.main.find('div.olControlPanZoomBar div').each(function() {
 				var $div = $(this),
 					$img = $div.find('img.olAlphaImg'),
 					altTxt = mapControl,
@@ -137,9 +137,11 @@
 					altTxt = _pe.dic.get('%geo-' + actn);
 					$img.attr('alt', altTxt);
 					$div.attr('title', altTxt);
+				} else if ($img.length !== 0) {
+					// Add null alt text to slider image since should be ignored
+					$img.attr('alt', '');
 				}
-			});			
-			
+			});
 		}, // end accessibilize function		
 
 		/*
