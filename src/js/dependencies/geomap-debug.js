@@ -28,8 +28,9 @@
 				warning: 'WET-Geomap WARNING',
 				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em>.',
 				overlayNotSpecify: 'WET-Geomap: overlays file not specified',
-				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12).",
-				warningTab: 'No class <em>tab</em> in wet-boew-geomap but a table has tab attribute set to true.'
+				baseMapMapOptionsLoadError: 'WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. \'-3000000.0, -800000.0, 4000000.0, 3900000.0\'), maxResolution (e.g. \'auto\'), projection (e.g. \'EPSG:3978\'), restrictedExtent (e.g. \'-3000000.0, -800000.0, 4000000.0, 3900000.0\'), units (e.g. \'m\'), displayProjection: (e.g. \'EPSG:4269\'), numZoomLevels: (e.g. 12).',
+				warningTab: 'No class <em>tab</em> in wet-boew-geomap but a table has tab attribute set to true.',
+				layersNotSpecify: 'No div with id \'wet-boew-geomap-layers\' can\'t be found. You need to add one.'
 			},
 			fr: {
 				debugMode: 'BOEW-Géocarte : mode débogage activé',
@@ -45,7 +46,8 @@
 				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> .',
 				overlayNotSpecify: 'BOEW-Géocarte : fichier des couches de superpositions non spécifié',
 				baseMapMapOptionsLoadError: 'BOEW-Géocarte : une erreur est survenue lors du chargement des options de configuration de votre carte de base. S\'il vous plaît, vérifiez que vous avez l\'ensemble des options suivantes: maxExtent (ex: \'-3000000,0, -800000,0, 4000000,0, 3900000,0\'), maxResolution (ex: \'auto\'), projection (ex: \'EPSG: 3978\'), restrictedExtent (ex: \'-3000000,0 , -800000,0, 4000000,0, 3900000,0\'), units (ex: \'m\'), displayProjection (ex: \'EPSG: 4269\'), numZoomLevels (ex: 12).',	
-				warningTab: 'Il n\'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l\'attribut égal vrai.'
+				warningTab: 'Il n\'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l\'attribut égal vrai.',
+				layersNotSpecify: 'Il n\y a pas de div avec le id \'wet-boew-geomap-layers\'. Vous devez en ajouter un.'
 			}
 		},
 		init: function() {
@@ -67,7 +69,7 @@
 			console.log(debugMode);
 			$wb_main_in.prepend(msg_start + debugMode + msg_middle + messages.debugMess + msg_end);
 
-			_pe.document.on('geomap-overlayLoad geomap-overlayNotLoad geomap-overlayNotSpecify geomap-warningLegend geomap-warningTab geomap-errorSelect geomap-errorNoSelect geomap-basemapDefault geomap-baseMapMapOptionsLoadError geomap-projection', function(e, param1) {
+			_pe.document.on('geomap-overlayLoad geomap-overlayNotLoad geomap-overlayNotSpecify geomap-warningLegend geomap-warningTab geomap-errorSelect geomap-errorNoSelect geomap-basemapDefault geomap-baseMapMapOptionsLoadError geomap-projection geomap-layersNotSpecify', function(e, param1) {
 				var type = e.type;
 
 				if (type === 'geomap-overlayLoad') {
@@ -90,6 +92,8 @@
 					console.log(messages.baseMapMapOptionsLoadError);
 				} else if (type === 'geomap-projection') {
 					console.log(messages.projection + ' ' + param1);
+				} else if (type === 'geomap-layersNotSpecify') {
+					$wb_main_in.prepend(warning_start + messages.layersNotSpecify + msg_end);
 				}
 			});
 		}

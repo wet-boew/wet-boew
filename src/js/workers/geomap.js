@@ -117,7 +117,7 @@
 				}
 			});
 
-			return elm; // end of exec
+			return elm;
 		}, // end of exec
 		
 		addPanZoomBar: function() {
@@ -145,8 +145,7 @@
 					oButtons._addButton('zoomworld', 'transparent.png');
 			
 					// add custom CSS styles
-					$(oButtons.slider).attr('class', 'olControlSlider');
-					$(oButtons.slider).find('img').attr('class', 'olControlSlider');
+					$(oButtons.slider).attr('class', 'olControlSlider').find('img').attr('class', 'olControlSlider');;
 					$(oButtons.zoombarDiv).attr('class', 'olControlBar');
 					return oButtons.div;
 				}
@@ -157,16 +156,16 @@
 			/*
 			 *	Add alt text to map controls and make tab-able
 			 */
-			$('div.olButton').each(function() {
+			$('.olButton').each(function() {
 				var $div = $(this),
-					$img = $div.find('img.olAlphaImg'),
+					$img = $div.find('.olAlphaImg'),
 					altTxt = mapControl,
 					actn = this.action;
 
 				if (actn !== undefined) {
 					this.tabIndex = 0;
 
-					// add alt text
+					// add alt text and custom CSS style
 					altTxt = _pe.dic.get('%geo-' + actn);
 					$img.attr('alt', altTxt).addClass('olControl' + actn);
 					$div.attr('title', altTxt).addClass('olControl' + actn);
@@ -202,11 +201,7 @@
 		createLegend: function() {
 			// Create legend div if not there
 			if (_pe.fn.geomap.debug && !($('.wet-boew-geomap-legend').length)) {	
-				_pe.document.trigger('geomap-warningLegend');
-				
-				// removed this for now - we need to rethink this as it is difficult
-				// to ensure a semantically and structurally sound markup
-				//$('.wet-boew-geomap').parent().after('<div class=".wet-boew-geomap-legend"><h2>Legend</h2><div class="wet-boew-geomap-legend"></div></div><div class="clear"></div>');			
+				_pe.document.trigger('geomap-warningLegend');		
 			}		
 		},
 
@@ -218,7 +213,7 @@
 			if (tab) {
 				// user has specified where they want to put the tabs
 				var $tabs = $('.wet-boew-geomap-tabs');
-				if ($tabs.length) {
+				if ($tabs.length !== 0) {
 					$tabs.addClass('wet-boew-tabbedinterface auto-height-none').append('<ul class="tabs"></ul><div class="tabs-panel"></div>');
 				// user hasn't specified where they want the tabs
 				} else {
@@ -263,8 +258,10 @@
 				$layerTitle = $('<h3 id="' + featureTableId + '" class="background-light">' + title + '</h3>'),
 				$alert = $('<div id="msg_' + featureTableId + '" class="module-attention module-simplify margin-top-medium margin-bottom-medium"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');
 
-			// TODO: add debug message for div with id 'wet-boew-geomap-layers' can't be found and prompt to have it added
-
+			if (_pe.fn.geomap.debug && ($div.length === 0)) {
+				_pe.document.trigger('geomap-layersNotSpecify');
+			}
+			
 			// if tabs are specified
 			if (tab && $('.wet-boew-geomap-tabs').length !== 0) {
 				_pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
@@ -385,101 +382,88 @@
 					'strokeColor': "#00f",
 					'fillColor': "#00f",
 					'fillOpacity': 0.4,
-					//'pointRadius': 5,
 					'strokeWidth': 2.0
 				};
 
 			// if style is supplied, create it. If not, create the default one.
 			if (typeof elm.style !== 'undefined') {
 				// Check the style type (by default, no type are supplied).
-				switch(elm.style.type) {
-				case 'unique':
+				if (elm.style.type === 'unique') {
 					// set the select style then the unique value.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
 					styleMap = new OpenLayers.StyleMap({'select': new OpenLayers.Style(select)});
 					styleMap.addUniqueValueRules('default', elm.style.field, elm.style.init);
-					break;
-
-				case 'rule':
+				} else if (elm.style.type === 'rule') {	
 					// set the rules and add to the style
 					var rules = [],
 						i,
-						len;
-					for (i = 0, len = elm.style.rule.length; i !== len; i += 1){
-						// set the filter						
-						switch(elm.style.rule[i].filter){
-						case 'LESS_THAN':
+						len,
+						style = new OpenLayers.Style();
+
+					for (i = 0, len = elm.style.rule.length; i !== len; i += 1) {
+						// set the filter
+						var rule = elm.style.rule[i];
+												
+						if (rule.filter === 'LESS_THAN') {
 							filter = OpenLayers.Filter.Comparison.LESS_THAN;
-							break;
-						case 'LESS_THAN_OR_EQUAL_TO':
+						} else if (rule.filter === 'LESS_THAN_OR_EQUAL_TO') {
 							filter = OpenLayers.Filter.Comparison.LESS_THAN_OR_EQUAL_TO;
-							break;
-						case 'GREATER_THAN_OR_EQUAL_TO':
+						} else if (rule.filter === 'GREATER_THAN_OR_EQUAL_TO') {
 							filter = OpenLayers.Filter.Comparison.GREATER_THAN_OR_EQUAL_TO;
-							break;
-						case 'GREATER_THAN':
+						} else if (rule.filter === 'GREATER_THAN') {
 							filter = OpenLayers.Filter.Comparison.GREATER_THAN;
-							break;
-						case 'BETWEEN':
+						} else if (rule.filter === 'BETWEEN') {
 							filter = OpenLayers.Filter.Comparison.BETWEEN;
-							break;
-						case 'EQUAL_TO':
+						} else if (rule.filter === 'EQUAL_TO') {
 							filter = OpenLayers.Filter.Comparison.EQUAL_TO;
-							break;
-						case 'NOT_EQUAL_TO':
+						} else if (rule.filter === 'NOT_EQUAL_TO') {
 							filter = OpenLayers.Filter.Comparison.NOT_EQUAL_TO;
-							break;
-						case 'LIKE':
+						} else if (rule.filter === 'LIKE') {
 							filter = OpenLayers.Filter.Comparison.LIKE;
-							break;
 						}
 
-						if (elm.style.rule[i].filter !== 'BETWEEN') {
+						if (rule.filter !== 'BETWEEN') {
 							rules.push(new OpenLayers.Rule({
 								filter: new OpenLayers.Filter.Comparison({
 									type: filter,
-									property: elm.style.rule[i].field,
-									value: elm.style.rule[i].value[0]}),
-									symbolizer: elm.style.rule[i].init
+									property: rule.field,
+									value: rule.value[0]}),
+									symbolizer: rule.init
 								})
 							);
 						} else {
 							rules.push(new OpenLayers.Rule({
 								filter: new OpenLayers.Filter.Comparison({
 									type: filter,
-									property: elm.style.rule[i].field,
-									lowerBoundary: elm.style.rule[i].value[0],
-									upperBoundary: elm.style.rule[i].value[1]}),
-									symbolizer: elm.style.rule[i].init
+									property: rule.field,
+									lowerBoundary: rule.value[0],
+									upperBoundary: rule.value[1]}),
+									symbolizer: rule.init
 								})
 							);
 						}
 					}
-
-					var style = new OpenLayers.Style();
 					style.addRules(rules);
 
 					// set the select style then the rules.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
 					styleMap = new OpenLayers.StyleMap({
-						"default": style,
-						"select": new OpenLayers.Style(select)
+						'default': style,
+						'select': new OpenLayers.Style(select)
 					});					
-					break;
-				default:
+				} else {
 					// set the select style then the default.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
 					styleMap = new OpenLayers.StyleMap({
-						"default": new OpenLayers.Style(elm.style.init),
-						"select": new OpenLayers.Style(select)
+						'default': new OpenLayers.Style(elm.style.init),
+						'select': new OpenLayers.Style(select)
 					});
-					break;
 				}
-			} // end of (typeof elm.style !== 'undefined'
+			} // end of (typeof elm.style !== 'undefined')
 			else {
 				styleMap = new OpenLayers.StyleMap({
-					"default": new OpenLayers.Style(defaultStyle),
-					"select": new OpenLayers.Style(selectStyle)
+					'default': new OpenLayers.Style(defaultStyle),
+					'select': new OpenLayers.Style(selectStyle)
 				});
 			}
 
