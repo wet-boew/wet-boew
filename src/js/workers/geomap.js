@@ -344,14 +344,14 @@
 			var styleMap, filter, select,
 				strokeColor = _pe.fn.geomap.randomColor(), // set random color
 				fillColor = strokeColor,
-				defaultStyle = {			
+				defaultStyle = {
 					'strokeColor': strokeColor, 
 					'fillColor': fillColor,
 					'fillOpacity': 0.5,
 					'pointRadius': 5,
 					'strokeWidth': 0.5
 				},
-				selectStyle = { 
+				selectStyle = {
 					'strokeColor': "#00f", 
 					'fillColor': "#00f",
 					'fillOpacity': 0.4,
