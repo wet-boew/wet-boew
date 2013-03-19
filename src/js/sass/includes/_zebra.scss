@@ -17,6 +17,9 @@
 %zebra-border-1-solid-ccc {
 	border: 1px solid #CCC;
 }
+%zebra-background-color-f0fcff {
+	background-color: #f0fcff;
+}
 %zebra-background-color-222 {
 	background-color: #222;
 }
@@ -37,9 +40,6 @@
 }
 %zebra-background-color-fff {
 	background-color: #fff;
-}
-%zebra-background-color-f0fcff {
-	background-color: #f0fcff;
 }
 %zebra-background-color-transparent {
 	background-color: transparent;
@@ -329,7 +329,7 @@ dl {
 	/* Row Effect */
 	&.rowtdhover {
 		tbody, tfoot {
-			tr:hover, tr.table-hover, 
+			tr:hover, /*tr.table-hover,*/ tr.table-hover td,
 			tr:hover td.table-keycell, tr.table-hover td.table-keycell, 
 			tr:hover td.table-desccell, tr.table-hover td.table-desccell,
 			tr:hover td.table-layoutCell, tr.table-hover td.table-layoutCell,
@@ -340,7 +340,7 @@ dl {
 	}
 	&.rowhover {
 		tbody, tfoot {
-			tr:hover, tr.table-hover, 
+			tr:hover, /*tr.table-hover,*/ tr.table-hover td,
 			tr:hover td.table-keycell, tr.table-hover td.table-keycell, 
 			tr:hover td.table-desccell, tr.table-hover td.table-desccell,
 			tr:hover td.table-layoutCell, tr.table-hover td.table-layoutCell,

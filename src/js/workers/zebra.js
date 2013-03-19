@@ -66,7 +66,7 @@
 			 * Currently unused. 
 			 * Uncomment to be able to apply custom styling to an header group cells.
 			 * 
-		    +-----------------------------------------------------+
+			+-----------------------------------------------------+
 			| FYI - 'tblparser.type' property (See the docs related to the parserTable.js dependency)
 			+-------+---------------+-----------------------------+
 			| Type	| Signification | Technicality
