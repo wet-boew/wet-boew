@@ -1274,17 +1274,20 @@
 		},
 
 		refreshPlugins: function() {
-			var $holder,
-				$createDatatable = $('.createDatatable'),
-				$tabbedInterface = $('.wet-boew-tabbedinterface');
-			if (!_pe.mobile) {
-				_pe.wb_load({
-					'plugins': {
-						'tables': $createDatatable,
-						'tabbedinterface': $tabbedInterface
-					}
-				});
+			var $holder;
 
+			_pe.wb_load({
+				'plugins': {
+					'tabbedinterface': _pe.main.find('.wet-boew-tabbedinterface')
+				}
+			});
+			_pe.wb_load({
+				'plugins': {
+					'tables': _pe.main.find('.createDatatable')
+				}
+			});
+				
+			if (!_pe.mobile) {
 				// For each datatable in tabs, set some style to solve the layout problem
 				$createDatatable.each(function(index, $feature) {
 					$holder = ($('table#' + $feature.id)).parent();
@@ -1293,14 +1296,6 @@
 					}
 				});
 			} else {
-				// In mobile we need to do it the oposite order.
-				_pe.wb_load({
-					'plugins': {
-						'tabbedinterface': $tabbedInterface,
-						'tables': $createDatatable
-					}
-				});
-
 				// Enhance the checkboxes with jQuery Mobile
 				$('.wet-boew-geomap-legend').trigger('create');
 
