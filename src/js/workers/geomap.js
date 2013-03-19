@@ -63,10 +63,10 @@
 
 			// Set the image path for OpenLayers
 			OpenLayers.ImgPath = lib + '/images/geomap/';
-			
+
 			// Add projection for default base map
 			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
-					
+
 			// Initiate the map
 			elm.attr('id', 'geomap').height(elm.width() * 0.8);
 
@@ -125,7 +125,6 @@
 			 */
 			var mapControl = _pe.dic.get('%geo-mapcontrol');
 			$('div.olButton').each(function() {
-				
 				var $div = $(this),
 					$img = $div.find('img.olAlphaImg'),
 					altTxt = mapControl,
@@ -142,21 +141,21 @@
 			});			
 			
 		}, // end accessibilize function		
-	
-		/* 
+
+		/*
 		 * Map feature select
 		 */
 		onFeatureSelect: function(feature) {					
 			$('tr#' + feature.id.replace(/\W/g, '_')).addClass('background-highlight');
 		},
-		
+
 		/*
 		 *	Map feature unselect
 		 */
 		onFeatureUnselect: function(feature) {
 			$('tr#' + feature.id.replace(/\W/g, '_')).removeClass('background-highlight');
 		},
-		
+
 		/*
 		 * Get the OpenLayers map object
 		 */
@@ -168,17 +167,16 @@
 		 *	Create legend
 		 */
 		createLegend: function() {
-			
 			// Create legend div if not there
 			if (_pe.fn.geomap.debug && !($('.wet-boew-geomap-legend').length)) {	
 				_pe.document.trigger('geomap-warningLegend');
 				
-				// removed this for now - we need to rethink this as it is difficult 
+				// removed this for now - we need to rethink this as it is difficult
 				// to ensure a semantically and structurally sound markup
 				//$('.wet-boew-geomap').parent().after('<div class=".wet-boew-geomap-legend"><h2>Legend</h2><div class="wet-boew-geomap-legend"></div></div><div class="clear"></div>');			
 			}		
 		},
-		
+
 		/*
 		 *	Create layer holder to add all tabs data (HTML and overlay) and overlay data.
 		 */
@@ -190,23 +188,23 @@
 				if ($tabs.length) {
 					$tabs.addClass('wet-boew-tabbedinterface auto-height-none').append('<ul class="tabs"></ul><div class="tabs-panel"></div>');
 				// user hasn't specified where they want the tabs
-				} else { 
+				} else {
 					$('.wet-boew-geomap-layers').append('<div class="clear"></div><div class="wet-boew-geomap-tabs wet-boew-tabbedinterface auto-height-none"><ul class="tabs"></ul><div class="tabs-panel"></div></div><div class="clear"></div>');
 				}
 			}
 		},
-		
-		/* 
+
+		/*
 		 * Create a table for vector features added in Load Overlays
 		 */
 		createTable: function(index, title, caption, datatable) {
 			return $('<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot>' : '') + '</table>');
 		},		
-		
+
 		/*
 		 * Random Color Generator
 		 */
-		randomColor: function() { 
+		randomColor: function() {
 			var letters = '0123456789ABCDEF'.split(''),
 				color = '#',
 				i;
@@ -215,8 +213,8 @@
 			}			
 			return color;
 		},
-		
-		/* 
+
+		/*
 		 * Add layer data
 		 */		
 		addLayerData: function(featureTable, enabled, olLayerId, tab) {						
@@ -253,12 +251,11 @@
 				_pe.document.trigger('geomap-warningTab');
 			}
 		},
-		
-		/* 
+
+		/*
 		 * Create Legend
 		 */		
-		addToLegend: function(featureTable, enabled, olLayerId) {			
-
+		addToLegend: function(featureTable, enabled, olLayerId) {
 			var $div = $('.wet-boew-geomap-legend'),
 				$featureTable = $(featureTable),
 				featureTableId = $featureTable.attr('id'),
@@ -267,7 +264,7 @@
 				$checked,
 				$chkBox,
 				$label;	
-			
+
 			if ($div.length !== 0) {			
 				// if no legend or fieldset add them
 				$fieldset = $div.find('fieldset');
@@ -299,12 +296,12 @@
 
 					$alert = $('div#msg_' + featureTableId);
 
-					if ($alert.length !== 0) { 
+					if ($alert.length !== 0) {
 						$alert.fadeToggle();					
-					} else { 
+					} else {
 						$parent.after('<div id="msg_' + featureTableId + '" class="module-attention module-simplify margin-bottom-medium margin-top-medium"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');				
 					}					
-					
+
 					if (visibility) {
 						$parent.css('display', 'table');
 					} else {
@@ -316,7 +313,7 @@
 				$ul.append($('<li>').append($chkBox, $label));			
 			}	
 		},
-		
+
 		/*
 		 * Create tabs - one for each layer added
 		 */
@@ -336,7 +333,7 @@
 				featureTable.fadeOut();
 			}			
 		},
-		
+
 		/*
 		 * Generate StyleMap
 		 */
@@ -345,14 +342,14 @@
 				strokeColor = _pe.fn.geomap.randomColor(), // set random color
 				fillColor = strokeColor,
 				defaultStyle = {
-					'strokeColor': strokeColor, 
+					'strokeColor': strokeColor,
 					'fillColor': fillColor,
 					'fillOpacity': 0.5,
 					'pointRadius': 5,
 					'strokeWidth': 0.5
 				},
 				selectStyle = {
-					'strokeColor': "#00f", 
+					'strokeColor': "#00f",
 					'fillColor': "#00f",
 					'fillOpacity': 0.4,
 					//'pointRadius': 5,
@@ -376,7 +373,6 @@
 						i,
 						len;
 					for (i = 0, len = elm.style.rule.length; i !== len; i += 1){
-
 						// set the filter						
 						switch(elm.style.rule[i].filter){
 						case 'LESS_THAN':
@@ -433,14 +429,14 @@
 					// set the select style then the rules.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
 					styleMap = new OpenLayers.StyleMap({
-						"default": style, 
+						"default": style,
 						"select": new OpenLayers.Style(select)
 					});					
 					break;
 				default:
 					// set the select style then the default.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
-					styleMap = new OpenLayers.StyleMap({ 
+					styleMap = new OpenLayers.StyleMap({
 						"default": new OpenLayers.Style(elm.style.init),
 						"select": new OpenLayers.Style(select)
 					});
@@ -448,7 +444,7 @@
 				}
 			} // end of (typeof elm.style !== 'undefined'
 			else {
-				styleMap = new OpenLayers.StyleMap({ 
+				styleMap = new OpenLayers.StyleMap({
 					"default": new OpenLayers.Style(defaultStyle),
 					"select": new OpenLayers.Style(selectStyle)
 				});
@@ -456,19 +452,18 @@
 
 			return styleMap;
 		},
-		
+
 		/*
 		 * Create a linked table row
-		 * 
+		 *
 		 * TODO: provide for an array of configured table columns.
 		 */
 		createRow: function(context, zoomTo) {
-			
 			// add a row for each feature
 			var $row = $('<tr>'),
 				cols = [],
 				attributes = context.feature.attributes;
-			
+
 			// replace periods with underscores for jQuery!
 			if (context.type !== 'head') {
 				$row.attr('id', context.id.replace(/\W/g, "_"));
@@ -489,9 +484,8 @@
 				cols.push($('<td>'));
 				$(cols[cols.length - 1]).empty().append(_pe.fn.geomap.addZoomTo($row, context.feature, context.selectControl));
 			}
-				
-			if (context.type !== 'head') {
 
+			if (context.type !== 'head') {
 				// TODO: support user configured column for link, currently defaults to first column.
 				var $col0 = $(cols[0]),
 					$link = $('<a href="javascript:;">' + $col0.html() + '</a>');
@@ -507,13 +501,13 @@
 						$this.closest('tr').addClass('background-highlight');
 						selectControl.unselectAll();
 						selectControl.select(context.feature);
-					} else { 
+					} else {
 						$this.closest('tr').removeClass('background-highlight');
 						selectControl.unselectAll();
 						selectControl.unselect(context.feature);
 					}
 				});
-	
+
 				// Keybord events
 				$link.on('focus blur', function(e) {
 					var type = e.type,
@@ -536,7 +530,7 @@
 		
 		/*
 		 * Handle features once they have been added to the map
-		 * 
+		 *
 		 */
 		onFeaturesAdded: function($table, evt, zoomTo, datatable) {
 			var $head = _pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] }),
@@ -548,8 +542,8 @@
 				thZoom = '<th>' + _pe.dic.get('%geo-zoomfeature') + '</th>';
 				$head.append(thZoom);
 				$foot.append(thZoom);
-			} 
-			
+			}
+
 			$targetTable.find('thead').append($head);
 			$targetTable.find('tfoot').append($foot);
 			$.each(evt.features, function(index, feature) {												
@@ -561,12 +555,12 @@
 				};									
 				$targetTableBody.append(_pe.fn.geomap.createRow(context, zoomTo));
 			});
-			
+
 			if (datatable) {	
 				$targetTable.addClass('createDatatable');
 				//$targetTable.parent().attr('style', 'display: table; width: 100%');
 			}
-			
+
 			// we need to call it here as well because if we use a config outside the domain it is called
 			// before the table is created. We need to call it only once when all overlays are loaded.
 			overlaysLoaded += 1;
@@ -578,15 +572,14 @@
 		
 		/*
 		 * Handle features once they have been added to the map for tabular data
-		 * 
+		 *
 		 */
 		onTabularFeaturesAdded: function(feature, zoomColumn, table, opts) {
-
 			// Find the row
 			var $tr = $('tr#' + feature.id.replace(/\W/g, '_')),
 				$select,
 				$link;
-				
+
 			// add zoom column
 			if (zoomColumn) {
 				$tr.append('<td>' + _pe.fn.geomap.addZoomTo($tr, feature).html() + '</td>');
@@ -625,10 +618,10 @@
 				_pe.document.trigger('geomap-errorNoSelect', $tr.closest('table'));
 			}
 		},
-		
+
 		/*
 		 *	Add the zoom to column
-		 * 
+		 *
 		 */
 		addZoomTo: function(row, feature){
 			var $ref = $('<a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a>').on('click focus blur', function(e) {
@@ -651,7 +644,7 @@
 			});
 			return $ref;
 		},
-		
+
 		/*
 		 *	Set the default basemap
 		 */
@@ -662,22 +655,22 @@
 	
 			// Add the Canada Transportation Base Map (CBMT)			
 			map.addLayer(new OpenLayers.Layer.WMS(
-				"CBMT", 
-				"http://geogratis.gc.ca/maps/CBMT", 
+				"CBMT",
+				"http://geogratis.gc.ca/maps/CBMT",
 				{
 					layers: 'CBMT',
 					version: '1.1.1',
 					format: 'image/png'
 				},
 				{
-					isBaseLayer: true, 
-					singleTile: true, 
+					isBaseLayer: true,
+					singleTile: true,
 					ratio: 1.0,
-					projection: 'EPSG:3978' 
-				} 
+					projection: 'EPSG:3978'
+				}
 			));		
 		},
-		
+
 		/*
 		 * Set default map option
 		 */
@@ -686,7 +679,7 @@
 			var mapOptions = {
 				maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),			
 				maxResolution: 'auto',
-				projection: 'EPSG:3978', 
+				projection: 'EPSG:3978',
 				restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
 				units: 'm',
 				displayProjection: new OpenLayers.Projection('EPSG:4269') /* only used by specific controls (i.e. MousePosition) */ ,
@@ -695,7 +688,7 @@
 
 			return mapOptions;
 		},
-		
+
 		/*
 		 *	Add baseMap data
 		 */		
@@ -712,7 +705,7 @@
 					try {
 						mapOptions.maxExtent = new OpenLayers.Bounds(mapOpts.maxExtent.split(','));
 						mapOptions.maxResolution = mapOpts.maxResolution;
-						mapOptions.projection = mapOpts.projection; 
+						mapOptions.projection = mapOpts.projection;
 						mapOptions.restrictedExtent = new OpenLayers.Bounds(mapOpts.restrictedExtent.split(','));
 						mapOptions.units = mapOpts.units;
 						mapOptions.displayProjection = new OpenLayers.Projection(mapOpts.displayProjection);
@@ -742,8 +735,8 @@
 				if (basemap.type === 'wms') {
 					map.addLayer(
 						new OpenLayers.Layer.WMS(
-							basemap.title, 
-							basemap.url, 
+							basemap.title,
+							basemap.url,
 							{
 								layers: basemap.layers,
 								version: basemap.version,
@@ -755,7 +748,7 @@
 				} else if (basemap.type ==='esri') {						
 					map.addLayer(
 						new OpenLayers.Layer.ArcGIS93Rest(
-							basemap.title, 
+							basemap.title,
 							basemap.url
 						)
 					);									
@@ -764,7 +757,7 @@
 				_pe.fn.geomap.setDefaultBaseMap(opts);
 			}
 		},
-		
+
 		/*
 		 *	Add overlay data
 		 */
@@ -778,12 +771,12 @@
 
 					if (layer.type === 'kml') {	
 						olLayer = new OpenLayers.Layer.Vector(
-							layer.title, {							
+							layer.title, {
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
 								url: layer.url,
 								format: new OpenLayers.Format.KML({
-									extractStyles: !layer.style,									
+									extractStyles: !layer.style,
 									extractAttributes: true,
 									internalProjection: map.getProjectionObject(),
 									externalProjection: new OpenLayers.Projection('EPSG:4269'),
@@ -793,9 +786,9 @@
 											row, i, len, feature, atts = {}, features = [],
 											a = layer.attributes;
 
-											for (i = 0, len = items.length; i !== len; i += 1) {												
-												row = items[i];			
-												feature = new OpenLayers.Feature.Vector();														
+											for (i = 0, len = items.length; i !== len; i += 1) {
+												row = items[i];
+												feature = new OpenLayers.Feature.Vector();
 												feature.geometry = this.parseFeature(row).geometry;
 
 												// parse and store the attributes
@@ -810,26 +803,26 @@
 
 												feature.attributes = atts;
 												features.push(feature);
-											} 
+											}
 											return features;
 										}
 									})
 								}),
 								eventListeners: {
-									"featuresadded": function(evt) {	
+									"featuresadded": function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
-									}									
+									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
 							}
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
-						olLayer.visibility = true; // to force featuresadded listener						
+						olLayer.visibility = true; // to force featuresadded listener
 						map.addLayer(olLayer);
-						queryLayers.push(olLayer);						
+						queryLayers.push(olLayer);
 						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
-						olLayer.visibility = layer.visible;							
+						olLayer.visibility = layer.visible;
 					} else if (layer.type === 'atom') {
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
@@ -838,15 +831,15 @@
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
 									format: new OpenLayers.Format.Atom({
-											read: function(data) {											
+											read: function(data) {
 												var items = this.getElementsByTagNameNS(data, '*', 'entry'),
 													row, $row, i, len, feature, atts = {}, features = [],
 													a = layer.attributes;
 
-												for (i = 0, len = items.length; i !== len; i += 1) {												
+												for (i = 0, len = items.length; i !== len; i += 1) {
 													row = items[i];
 													$row = $(row);
-													feature = new OpenLayers.Feature.Vector();														
+													feature = new OpenLayers.Feature.Vector();
 													feature.geometry = this.parseFeature(row).geometry;
 
 													// parse and store the attributes
@@ -855,13 +848,13 @@
 													// TODO: test on nested attributes
 													for (var name in a) {
 														if (a.hasOwnProperty(name)) {
-															atts[a[name]] = $row.find(name).text();														
+															atts[a[name]] = $row.find(name).text();
 														}
 													}
 
 													feature.attributes = atts;
 													features.push(feature);
-												} 
+												}
 												return features;
 											}
 										})
@@ -896,15 +889,15 @@
 											for (i = 0, len = items.length; i !== len; i += 1) {												
 												row = items[i];
 												$row = $(row);			
-																								
+
 												feature = new OpenLayers.Feature.Vector();											
-												
+
 												feature.geometry = this.createGeometryFromItem(row);
-												
+
 												// parse and store the attributes
 												atts = {};
 												var a = layer.attributes;
-												
+
 												// TODO: test on nested attributes
 												for (var name in a) {
 													if (a.hasOwnProperty(name)) {
@@ -913,12 +906,12 @@
 												}
 
 												feature.attributes = atts;												
-											
+
 												// if no geometry, don't add it
 												if (feature.geometry) {
 													features.push(feature);
 												}
-											} 
+											}
 											return features;
 										}
 									})
@@ -939,41 +932,41 @@
 						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;
 					} else if (layer.type === 'json') {
-						olLayer = new OpenLayers.Layer.Vector( 
-							layer.title, { 
-								projection: map.displayProjection, 
-								strategies: [new OpenLayers.Strategy.Fixed()], 
-								protocol: new OpenLayers.Protocol.Script({ 
+						olLayer = new OpenLayers.Layer.Vector(
+							layer.title, {
+								projection: map.displayProjection,
+								strategies: [new OpenLayers.Strategy.Fixed()],
+								protocol: new OpenLayers.Protocol.Script({
 									url: layer.url,
 									params: layer.params,
 									format: new OpenLayers.Format.GeoJSON({										
 										read: function(data) {											
 											var items = data[layer.root] ? data[layer.root] : data,
 												row, i, len, feature, atts = {}, features = [];
-											
+
 											for (i = 0, len = items.length; i !== len; i += 1) {												
 												row = items[i];												
 												feature = new OpenLayers.Feature.Vector();												
 												feature.geometry =	this.parseGeometry(row.geometry);
-												
+
 												// parse and store the attributes
 												atts = {};
 												var a = layer.attributes;
-												
+
 												// TODO: test on nested attributes
 												for (var name in a) {
 													if (a.hasOwnProperty(name)) {
 														atts[a[name]] = row[name];														
 													}
 												}
-												
+
 												feature.attributes = atts;												
-											
+
 												// if no geometry, don't add it
 												if (feature.geometry) {
 													features.push(feature);
 												}
-											} 
+											}
 											return features;
 										}
 									})
@@ -994,11 +987,11 @@
 						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;			
 					} else if (layer.type ==='geojson') {						
-						olLayer = new OpenLayers.Layer.Vector( 
-							layer.title, { 
-								projection: map.displayProjection, 
-								strategies: [new OpenLayers.Strategy.Fixed()], 
-								protocol: new OpenLayers.Protocol.Script({ 
+						olLayer = new OpenLayers.Layer.Vector(
+							layer.title, {
+								projection: map.displayProjection,
+								strategies: [new OpenLayers.Strategy.Fixed()],
+								protocol: new OpenLayers.Protocol.Script({
 									url: layer.url,
 									params: layer.params,
 									format: new OpenLayers.Format.GeoJSON({
@@ -1007,15 +1000,15 @@
 											var items = data.features,
 												i, len, row, feature, atts = {}, features = [],
 												a = layer.attributes;
-											
+
 											for (i = 0, len = items.length; i !== len; i += 1) {												
 												row = items[i];												
 												feature = new OpenLayers.Feature.Vector();												
 												feature.geometry = this.parseGeometry(row.geometry);
-												
+
 												// parse and store the attributes
 												atts = {};
-												
+
 												// TODO: test on nested attributes
 												for (var name in a) {
 													if (a.hasOwnProperty(name)) {
@@ -1024,12 +1017,12 @@
 												}
 
 												feature.attributes = atts;												
-											
+
 												// if no geometry, don't add it
 												if (feature.geometry) {
 													features.push(feature);
 												}
-											} 
+											}
 											return features;
 										}
 									})
@@ -1053,21 +1046,21 @@
 				});
 			}
 		},
-		
+
 		/*
 		* Add tabluar data
-		* 
+		*
 		* Sample tables object:
-		* 
-		*	tables: [ 
-		*		{ id: 'cityE', strokeColor: '#F00', fillcolor: '#F00' } 
-		*	] 
+		*
+		*	tables: [
+		*		{ id: 'cityE', strokeColor: '#F00', fillcolor: '#F00' }
+		*	]
 		*/	
 		addTabularData: function(opts, projLatLon, projMap) {
 			var thZoom = '<th>' + _pe.dic.get('%geo-zoomfeature') + '</th>',
 				wktFeature,
 				wktParser = new OpenLayers.Format.WKT({						
-					'internalProjection': projMap, 
+					'internalProjection': projMap,
 					'externalProjection': projLatLon
 				});
 			$.each(opts.tables, function(index, table) {
@@ -1086,11 +1079,11 @@
 				if (opts.tables[index].zoom) {
 					$table.find('thead').find('tr').append(thZoom);
 					$table.find('tfoot').find('tr').append(thZoom);					
-				} 
-				
+				}
+
 				// Loop through each row
 				$table.find('tr').each(function(index, row) {
-					
+
 					// Create an array of attributes: value
 					var attrMap = {},
 						$row = $(row),
@@ -1105,19 +1098,19 @@
 					if (typeof geomType !== 'undefined') {
 						if (geomType === 'bbox') {
 							var bbox = $row.attr('data-geometry').split(',');
-							wktFeature = "POLYGON((" + 
+							wktFeature = "POLYGON((" +
 								bbox[0] + " " + bbox[1] + ", " +
 								bbox[0] + " " + bbox[3] + ", " +
 								bbox[2] + " " + bbox[3] + ", " +
 								bbox[2] + " " + bbox[1] + ", " +
-								bbox[0] + " " + bbox[1] + 
+								bbox[0] + " " + bbox[1] +
 							"))";
 						} else if (geomType === 'wkt') {
 							wktFeature = $(row).attr('data-geometry');
 						}
 
 						vectorFeatures = wktParser.read(wktFeature);
-	
+
 						// Set the table row id
 						$row.attr('id', vectorFeatures.id.replace(/\W/g, '_'));
 
@@ -1125,8 +1118,8 @@
 						vectorFeatures.attributes = attrMap;										
 						tableLayer.addFeatures([vectorFeatures]);
 					}
-				}); 
-				
+				});
+
 				tableLayer.id = 'table#' + table.id;
 				tableLayer.datatable = opts.tables[index].datatable;
 				tableLayer.name = table.id;
@@ -1144,14 +1137,14 @@
 				}
 			});		
 		},
-		
+
 		/*
 		 *	Load controls
 		 */
 		loadControls: function(opts){
 			var $geomap = $('.wet-boew-geomap'),
 				$mapDiv = $('#' + map.div.id);
-			
+
 			// TODO: ensure WCAG compliance before enabling			
 			selectControl = new OpenLayers.Control.SelectFeature(
 				queryLayers,
@@ -1175,12 +1168,12 @@
 						});
 					}
 				});
-				
+
 				if (table.datatable) {
 					$(tableId).addClass('createDatatable');
 				}
 			});
-							
+
 			if (opts.useMousePosition) {
 				map.addControl(new OpenLayers.Control.MousePosition());
 			}
@@ -1189,10 +1182,10 @@
 			}
 			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
 			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
-			
+
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
-					
+
 			// enable the keyboard navigation when map div has focus. Disable when blur
 			// Enable the wheel zoom only on hover
 			$geomap.attr('tabindex', '0').css('border', 'solid 1px #CCC').on('mouseenter mouseleave focus blur', function(e) {
@@ -1212,18 +1205,18 @@
 					$this.css('border', 'solid 1px #FFF');
 				}
 			});
-			
+
 			// add accessibility enhancements
 			this.accessibilize();					
-			
+
 			// zoom to the maximum extent specified
 			map.zoomToMaxExtent();			
-			
+
 			// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
 			if (!_pe.mobile) {
 				$mapDiv.before('<p><strong>' + _pe.dic.get('%geo-accessibilize') + '</p>');
 			}
-			
+
 			// add a listener on the window to update map when resized
 			window.onresize = function() {		
 				$mapDiv.height($mapDiv.width() * 0.8);
@@ -1231,15 +1224,14 @@
 				map.zoomToMaxExtent();
 			};			
 		},
-		
+
 		/*
 		 *	Create the map after we load the config file.
 		 */
 		createMap: function(opts) {
-			
 			// Add basemap data
 			_pe.fn.geomap.addBasemapData(opts);
-					
+
 			// Create projection objects
 			var projLatLon = new OpenLayers.Projection('EPSG:4326'),
 				projMap = map.getProjectionObject(),
@@ -1251,16 +1243,16 @@
 
 			// Global variable
 			selectControl = new OpenLayers.Control.SelectFeature();
-			
+
 			// Create legend and tab
 			if (opts.useLegend) {
 				_pe.fn.geomap.createLegend();
 			}
 			_pe.fn.geomap.createLayerHolder(opts.useTab);
-						
+
 			// Add tabular data
 			_pe.fn.geomap.addTabularData(opts, projLatLon, projMap);
-			
+
 			// Add overlay data
 			_pe.fn.geomap.addOverlayData(opts);
 
@@ -1306,11 +1298,11 @@
 				$createDatatable.each(function(index, $feature) {
 					$('table#' + $feature.id).wrap('<div id="' + $feature.id + '_wrapper" class="dataTables_wrapper width-100" style="display: table"></div>');
 				});
-				
+
 				// Set the opacity to solve transparency problem.
 				$('.wet-boew-tables').addClass('opacity-100');
 				$('.table-simplify').addClass('opacity-100');
-				
+
 				// Set display table to solve the table and hidden message appears at the same time
 				//$('.table-simplify').css('dispaly', 'table');
 			}
