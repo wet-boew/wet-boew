@@ -21,9 +21,105 @@
 	/* local reference */
 	_pe.fn.geomap = {
 		type: 'plugin',				
-		depends: ['openlayers', 'proj4js'],		
-		accessibilize: function() {	
+		depends: ['openlayers', 'proj4js'],
+		debug: false,
+		_exec: function(elm) {	
+			var opts,
+				overrides,
+				lib = _pe.add.liblocation;	
+
+			// Defaults
+			opts = {
+				config: {
+					controls: [],					
+					autoUpdateSize: true,
+					fractionalZoom: true,
+					theme: null
+				},
+				overlays: [],
+				features: [],
+				tables: [],
+				useScaleLine: false,
+				useMousePosition: false,
+				debug: false,
+				useLegend: false,
+				useTab: false
+			};
+
+			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
+			overrides = {				
+				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
+				useMousePosition: elm.hasClass('position') ? true : undefined,
+				debug: elm.hasClass('debug') ? true : false,
+				useLegend: elm.hasClass('legend') ? true : false,
+				useTab: elm.hasClass('tab') ? true : false
+			};			
+
+			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_geomap !== 'undefined' ? wet_boew_geomap : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
+
+			// Set the language for OpenLayers
+			OpenLayers.Lang.setCode(_pe.language);
+
+			// Set the image path for OpenLayers
+			OpenLayers.ImgPath = lib + '/images/geomap/';
 			
+			// Add projection for default base map
+			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
+					
+			// Initiate the map
+			elm.attr('id', 'geomap').height(elm.width() * 0.8);
+
+			_pe.document.on('wb-init-loaded', function() {
+				_pe.document.one('geomap-init', function () {
+					if (opts.debug) {
+						_pe.fn.geomap_debug.init();
+					}
+
+					// Load configuration file
+					if (typeof opts.layersFile !== 'undefined') {
+						$.ajax({
+							url: opts.layersFile,
+							dataType: 'script',
+							async: false,					
+							success: function() {
+								// Extend opts with data loaded from the configuration file (through wet_boew_geomap)
+								$.extend(opts, wet_boew_geomap);
+
+								_pe.fn.geomap.createMap(opts);
+								if (opts.debug) {
+									_pe.document.trigger('geomap-overlayLoad');
+								}
+							},
+							error: function() {
+								if (opts.debug) {
+									_pe.document.trigger('geomap-overlayNotLoad');
+								}
+							}
+						}); // end ajax
+					} else {
+						_pe.fn.geomap.createMap(opts);
+						if (opts.debug) {
+							_pe.document.trigger('geomap-overlayNotSpecify');
+						}
+					} // end load configuration file
+
+					// If there are overlays, wait before calling the plugins
+					if (!overlays) {
+						_pe.fn.geomap.refreshPlugins();
+					}
+				});
+				if (opts.debug) {
+					_pe.fn.geomap.debug = true;
+					_pe.add._load(lib + 'dependencies/geomap-debug' + _pe.suffix + '.js', 'geomap-init');
+				} else {
+					_pe.document.trigger('geomap-init');
+				}
+			});
+
+			return elm; // end of exec
+		}, // end of exec
+		accessibilize: function() {
 			/*
 			 *	Add alt text to map controls and make tab-able
 			 */
@@ -46,7 +142,7 @@
 			});			
 			
 		}, // end accessibilize function		
-	 
+	
 		/* 
 		 * Map feature select
 		 */
@@ -74,12 +170,8 @@
 		createLegend: function() {
 			
 			// Create legend div if not there
-			if (!($('.wet-boew-geomap-legend').length)) {	
-
-				// Check to see if a legend container is provided			
-				if ($('.wet-boew-geomap').hasClass('debug')) {		
-					$('div#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('warning') + '</h3><p>' + _pe.fn.geomap.getLocalization('warningLegend') + '</p></div>');	
-				}	
+			if (_pe.fn.geomap.debug && !($('.wet-boew-geomap-legend').length)) {	
+				_pe.document.trigger('geomap-warningLegend');
 				
 				// removed this for now - we need to rethink this as it is difficult 
 				// to ensure a semantically and structurally sound markup
@@ -143,7 +235,7 @@
 			// TODO: add debug message for div with id 'wet-boew-geomap-layers' can't be found and prompt to have it added
 
 			// if tabs are specified
-			if (tab && $('.wet-boew-geomap-tabs').length !== 0) {			
+			if (tab && $('.wet-boew-geomap-tabs').length !== 0) {
 				_pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
 			// tabs are not specified
 			} else {
@@ -157,10 +249,8 @@
 				}			
 			}
 
-			if (tab && ($('.wet-boew-geomap-tabs').length === 0)) {
-				if ($('.wet-boew-geomap').hasClass('debug')) {		
-					$('div#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('warning') + '</h3><p>' + _pe.fn.geomap.getLocalization('warningTab') + '</p></div>');	
-				}
+			if (_pe.fn.geomap.debug && tab && ($('.wet-boew-geomap-tabs').length === 0)) {
+				_pe.document.trigger('geomap-warningTab');
 			}
 		},
 		
@@ -231,7 +321,6 @@
 		 * Create tabs - one for each layer added
 		 */
 		addToTabs: function(featureTable, enabled) {	
-
 			var $div = $('.wet-boew-geomap-tabs'),
 				$tabs = $div.find('ul.tabs'),
 				$tabsPanel = $div.find('div.tabs-panel'),
@@ -252,18 +341,17 @@
 		 * Generate StyleMap
 		 */
 		getStyleMap: function(elm) {
-
 			var styleMap, filter, select,
 				strokeColor = _pe.fn.geomap.randomColor(), // set random color
 				fillColor = strokeColor,
-				defaultStyle = {				
+				defaultStyle = {
 					'strokeColor': strokeColor, 
 					'fillColor': fillColor,
 					'fillOpacity': 0.5,
 					'pointRadius': 5,
 					'strokeWidth': 0.5
 				},
-				selectStyle = { 
+				selectStyle = {
 					'strokeColor': "#00f", 
 					'fillColor': "#00f",
 					'fillOpacity': 0.4,
@@ -530,15 +618,11 @@
 							selectControl.unselect(feature);
 						}
 					});
-				} else { 
-					if (opts.debug) {
-						$select.append('<div class="module-alert"><h3>' + _pe.fn.geomap.getLocalization('error') + '</h3><p>' + _pe.fn.geomap.getLocalization('errorSelect') + '</p></div>');		
-					}
+				} else if (opts.debug) {
+					_pe.document.trigger('geomap-errorSelect', $select);
 				}
-			} else {
-				if (opts.debug) {
-					$tr.closest('table').before('<div class="module-alert"><h3>' + _pe.fn.geomap.getLocalization('error') + '</h3><p>' + _pe.fn.geomap.getLocalization('errorNoSelect') + '</p></div>');
-				}
+			} else if (opts.debug) {
+				_pe.document.trigger('geomap-errorNoSelect', $tr.closest('table'));
 			}
 		},
 		
@@ -573,7 +657,7 @@
 		 */
 		setDefaultBaseMap: function(opts) {			
 			if (opts.debug) {
-				window.console.log(_pe.fn.geomap.getLocalization('basemapDefault'));
+				_pe.document.trigger('geomap-basemapDefault');
 			}
 	
 			// Add the Canada Transportation Base Map (CBMT)			
@@ -615,13 +699,16 @@
 		/*
 		 *	Add baseMap data
 		 */		
-		addBasemapData: function(wet_boew_geomap, opts) {			
+		addBasemapData: function(opts) {			
 			var mapOptions = {},
 				mapOpts,
+				hasBasemap = (typeof opts.basemap !== 'undefined' && opts.basemap.length !== 0),
 				basemap;
-			if (typeof wet_boew_geomap !== 'undefined') {
-				if (wet_boew_geomap.basemap && wet_boew_geomap.basemap.mapOptions) {				
-					mapOpts = wet_boew_geomap.basemap.mapOptions;
+
+			if (hasBasemap) {
+				basemap = opts.basemap;
+				if (basemap.mapOptions) {				
+					mapOpts = basemap.mapOptions;
 					try {
 						mapOptions.maxExtent = new OpenLayers.Bounds(mapOpts.maxExtent.split(','));
 						mapOptions.maxResolution = mapOpts.maxResolution;
@@ -632,14 +719,12 @@
 						mapOptions.numZoomLevels = mapOpts.numZoomLevels;
 					} catch (err) {
 						if (opts.debug) {
-							window.console.log(_pe.fn.geomap.getLocalization('baseMapMapOptionsLoadError'));
+							_pe.document.trigger('geomap-baseMapMapOptionsLoadError');
 						}
 					}
-				} else if (!wet_boew_geomap.basemap) {
-					// use map options for the Canada Transportation Base Map (CBMT)
-					mapOptions = _pe.fn.geomap.setDefaultMapOptions();
 				}
 			} else {
+				// use map options for the Canada Transportation Base Map (CBMT)
 				mapOptions = _pe.fn.geomap.setDefaultMapOptions();
 			}
 
@@ -647,39 +732,33 @@
 
 			// Check to see if a base map has been configured. If not add the
 			// default base map (the Canada Transportation Base Map (CBMT))
-			if (typeof wet_boew_geomap !== 'undefined') {
-				if (wet_boew_geomap.basemap) {
-					basemap = wet_boew_geomap.basemap;
+			if (hasBasemap) {
+				if (!basemap.options) {
+					basemap.options = {};
+				} //projection: 'EPSG:4326' };
 
-					if (!basemap.options) {
-						basemap.options = {};
-					} //projection: 'EPSG:4326' };
+				basemap.options.isBaseLayer = true;					
 
-					basemap.options.isBaseLayer = true;					
-
-					if (basemap.type === 'wms') {
-						map.addLayer(
-							new OpenLayers.Layer.WMS(
-								basemap.title, 
-								basemap.url, 
-								{
-									layers: basemap.layers,
-									version: basemap.version,
-									format: basemap.format
-								},
-								basemap.options
-							)
-						);
-					} else if (basemap.type ==='esri') {						
-						map.addLayer(
-							new OpenLayers.Layer.ArcGIS93Rest(
-								basemap.title, 
-								basemap.url
-							)
-						);									
-					}
-				} else {
-					_pe.fn.geomap.setDefaultBaseMap(opts);
+				if (basemap.type === 'wms') {
+					map.addLayer(
+						new OpenLayers.Layer.WMS(
+							basemap.title, 
+							basemap.url, 
+							{
+								layers: basemap.layers,
+								version: basemap.version,
+								format: basemap.format
+							},
+							basemap.options
+						)
+					);
+				} else if (basemap.type ==='esri') {						
+					map.addLayer(
+						new OpenLayers.Layer.ArcGIS93Rest(
+							basemap.title, 
+							basemap.url
+						)
+					);									
 				}
 			} else {
 				_pe.fn.geomap.setDefaultBaseMap(opts);
@@ -689,34 +768,84 @@
 		/*
 		 *	Add overlay data
 		 */
-		addOverlayData: function(wet_boew_geomap) {
-			
-			if (typeof wet_boew_geomap !== 'undefined')	{
-				if (wet_boew_geomap.overlays) {
-					var olLayer;
-					overlays = wet_boew_geomap.overlays.length;	
-					$.each(wet_boew_geomap.overlays, function(index, layer) {	
-						var $table = _pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
+		addOverlayData: function(opts) {
+			var overlayData = opts.overlays,
+				olLayer;
+			if (overlayData.length !== 0) {
+				overlays = overlayData.length;
+				$.each(overlayData, function(index, layer) {	
+					var $table = _pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
 
-						if (layer.type === 'kml') {	
-							olLayer = new OpenLayers.Layer.Vector(
-								layer.title, {							
-									strategies: [new OpenLayers.Strategy.Fixed()],
-									protocol: new OpenLayers.Protocol.HTTP({
+					if (layer.type === 'kml') {	
+						olLayer = new OpenLayers.Layer.Vector(
+							layer.title, {							
+								strategies: [new OpenLayers.Strategy.Fixed()],
+								protocol: new OpenLayers.Protocol.HTTP({
+								url: layer.url,
+								format: new OpenLayers.Format.KML({
+									extractStyles: !layer.style,									
+									extractAttributes: true,
+									internalProjection: map.getProjectionObject(),
+									externalProjection: new OpenLayers.Projection('EPSG:4269'),
+
+									read: function(data) {
+										var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
+											row, i, len, feature, atts = {}, features = [],
+											a = layer.attributes;
+
+											for (i = 0, len = items.length; i !== len; i += 1) {												
+												row = items[i];			
+												feature = new OpenLayers.Feature.Vector();														
+												feature.geometry = this.parseFeature(row).geometry;
+
+												// parse and store the attributes
+												atts = {};
+
+												// TODO: test on nested attributes
+												for (var name in a) {
+													if (a.hasOwnProperty(name)) {
+														atts[a[name]] = $(row).find(name).text();
+													}
+												}
+
+												feature.attributes = atts;
+												features.push(feature);
+											} 
+											return features;
+										}
+									})
+								}),
+								eventListeners: {
+									"featuresadded": function(evt) {	
+										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+									}									
+								},
+								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
+							}
+						);
+						olLayer.name = 'overlay_' + index;
+						olLayer.datatable = layer.datatable;
+						olLayer.visibility = true; // to force featuresadded listener						
+						map.addLayer(olLayer);
+						queryLayers.push(olLayer);						
+						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						olLayer.visibility = layer.visible;							
+					} else if (layer.type === 'atom') {
+						olLayer = new OpenLayers.Layer.Vector(
+							layer.title, {
+								projection: map.displayProjection,
+								strategies: [new OpenLayers.Strategy.Fixed()],
+								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
-									format: new OpenLayers.Format.KML({
-										extractStyles: !layer.style,									
-										extractAttributes: true,
-										internalProjection: map.getProjectionObject(),
-										externalProjection: new OpenLayers.Projection('EPSG:4269'),
-
-										read: function(data) {
-											var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
-												row, i, len, feature, atts = {}, features = [],
-												a = layer.attributes;
+									format: new OpenLayers.Format.Atom({
+											read: function(data) {											
+												var items = this.getElementsByTagNameNS(data, '*', 'entry'),
+													row, $row, i, len, feature, atts = {}, features = [],
+													a = layer.attributes;
 
 												for (i = 0, len = items.length; i !== len; i += 1) {												
-													row = items[i];			
+													row = items[i];
+													$row = $(row);
 													feature = new OpenLayers.Feature.Vector();														
 													feature.geometry = this.parseFeature(row).geometry;
 
@@ -726,7 +855,7 @@
 													// TODO: test on nested attributes
 													for (var name in a) {
 														if (a.hasOwnProperty(name)) {
-															atts[a[name]] = $(row).find(name).text();
+															atts[a[name]] = $row.find(name).text();														
 														}
 													}
 
@@ -736,244 +865,192 @@
 												return features;
 											}
 										})
-									}),
-									eventListeners: {
-										"featuresadded": function(evt) {	
-											_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
-										}									
-									},
-									styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
-								}
-							);
-							olLayer.name = 'overlay_' + index;
-							olLayer.datatable = layer.datatable;
-							olLayer.visibility = true; // to force featuresadded listener						
-							map.addLayer(olLayer);
-							queryLayers.push(olLayer);						
-							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
-							olLayer.visibility = layer.visible;							
-						} else if (layer.type === 'atom') {
-							olLayer = new OpenLayers.Layer.Vector(
-								layer.title, {
-									projection: map.displayProjection,
-									strategies: [new OpenLayers.Strategy.Fixed()],
-									protocol: new OpenLayers.Protocol.HTTP({
-										url: layer.url,
-										format: new OpenLayers.Format.Atom({
-												read: function(data) {											
-													var items = this.getElementsByTagNameNS(data, '*', 'entry'),
-														row, $row, i, len, feature, atts = {}, features = [],
-														a = layer.attributes;
+									}),						
+								eventListeners: {
+									"featuresadded": function(evt) {											
+										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+									}									
+								},
+								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
+							}
+						);
+						olLayer.name = 'overlay_' + index;
+						olLayer.datatable = layer.datatable;
+						olLayer.visibility = true;	// to force featuresadded listener		
+						queryLayers.push(olLayer);
+						map.addLayer(olLayer);									
+						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						olLayer.visibility = layer.visible;					
+					} else if (layer.type === 'georss') {
+						olLayer = new OpenLayers.Layer.Vector(
+							layer.title, {
+								projection: map.displayProjection,
+								strategies: [new OpenLayers.Strategy.Fixed()],
+								protocol: new OpenLayers.Protocol.HTTP({
+									url: layer.url,
+									format: new OpenLayers.Format.GeoRSS({									
+										read: function(data) {											
+											var items = this.getElementsByTagNameNS(data, '*', 'item'),
+												row, $row, i, len, feature, atts = {}, features = [];
 
-													for (i = 0, len = items.length; i !== len; i += 1) {												
-														row = items[i];
-														$row = $(row);
-														feature = new OpenLayers.Feature.Vector();														
-														feature.geometry = this.parseFeature(row).geometry;
-
-														// parse and store the attributes
-														atts = {};
-
-														// TODO: test on nested attributes
-														for (var name in a) {
-															if (a.hasOwnProperty(name)) {
-																atts[a[name]] = $row.find(name).text();														
-															}
-														}
-
-														feature.attributes = atts;
-														features.push(feature);
-													} 
-													return features;
+											for (i = 0, len = items.length; i !== len; i += 1) {												
+												row = items[i];
+												$row = $(row);			
+																								
+												feature = new OpenLayers.Feature.Vector();											
+												
+												feature.geometry = this.createGeometryFromItem(row);
+												
+												// parse and store the attributes
+												atts = {};
+												var a = layer.attributes;
+												
+												// TODO: test on nested attributes
+												for (var name in a) {
+													if (a.hasOwnProperty(name)) {
+														atts[a[name]] = $row.find(name).text();														
+													}
 												}
-											})
-										}),						
-									eventListeners: {
-										"featuresadded": function(evt) {											
-											_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
-										}									
-									},
-									styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
-								}
-							);
-							olLayer.name = 'overlay_' + index;
-							olLayer.datatable = layer.datatable;
-							olLayer.visibility = true;	// to force featuresadded listener		
-							queryLayers.push(olLayer);
-							map.addLayer(olLayer);									
-							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
-							olLayer.visibility = layer.visible;					
-						} else if (layer.type === 'georss') {
-							olLayer = new OpenLayers.Layer.Vector(
-								layer.title, {
-									projection: map.displayProjection,
-									strategies: [new OpenLayers.Strategy.Fixed()],
-									protocol: new OpenLayers.Protocol.HTTP({
-										url: layer.url,
-										format: new OpenLayers.Format.GeoRSS({									
-											read: function(data) {											
-												var items = this.getElementsByTagNameNS(data, "*", "item"),
-													row, $row, i, len, feature, atts = {}, features = [];
 
-												for (i = 0, len = items.length; i !== len; i += 1) {												
-													row = items[i];
-													$row = $(row);			
-																									
-													feature = new OpenLayers.Feature.Vector();											
-													
-													feature.geometry = this.createGeometryFromItem(row);
-													
-													// parse and store the attributes
-													atts = {};
-													var a = layer.attributes;
-													
-													// TODO: test on nested attributes
-													for (var name in a) {
-														if (a.hasOwnProperty(name)) {
-															atts[a[name]] = $row.find(name).text();														
-														}
-													}
-
-													feature.attributes = atts;												
-												
-													// if no geometry, don't add it
-													if (feature.geometry) {
-														features.push(feature);
-													}
-												} 
-												return features;
-											}
-										})
-									}),								
-									eventListeners: {
-										"featuresadded": function(evt) {
-											_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
-										}									
-									},
-									styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
-								}
-							);
-							olLayer.name = 'overlay_' + index;
-							olLayer.datatable = layer.datatable;
-							olLayer.visibility = true;	// to force featuresadded listener		
-							queryLayers.push(olLayer);
-							map.addLayer(olLayer);											
-							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
-							olLayer.visibility = layer.visible;
-						} else if (layer.type === 'json') {
-							olLayer = new OpenLayers.Layer.Vector( 
-								layer.title, { 
-									projection: map.displayProjection, 
-									strategies: [new OpenLayers.Strategy.Fixed()], 
-									protocol: new OpenLayers.Protocol.Script({ 
-										url: layer.url,
-										params: layer.params,
-										format: new OpenLayers.Format.GeoJSON({										
-											read: function(data) {											
-												var items = data[layer.root] ? data[layer.root] : data,
-													row, i, len, feature, atts = {}, features = [];
-												
-												for (i = 0, len = items.length; i !== len; i += 1) {												
-													row = items[i];												
-													feature = new OpenLayers.Feature.Vector();												
-													feature.geometry =	this.parseGeometry(row.geometry);
-													
-													// parse and store the attributes
-													atts = {};
-													var a = layer.attributes;
-													
-													// TODO: test on nested attributes
-													for (var name in a) {
-														if (a.hasOwnProperty(name)) {
-															atts[a[name]] = row[name];														
-														}
-													}
-													
-													feature.attributes = atts;												
-												
-													// if no geometry, don't add it
-													if (feature.geometry) {
-														features.push(feature);
-													}
-												} 
-												return features;
-											}
-										})
-									}),
-									eventListeners: {
-										"featuresadded": function(evt) {	
-											_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
-										}									
-									},
-									styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
-								}
-							);	
-							olLayer.name = 'overlay_' + index;
-							olLayer.datatable = layer.datatable;					
-							olLayer.visibility = true;	// to force featuresadded listener		
-							queryLayers.push(olLayer);
-							map.addLayer(olLayer);											
-							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
-							olLayer.visibility = layer.visible;			
-						} else if (layer.type ==='geojson') {						
-							olLayer = new OpenLayers.Layer.Vector( 
-								layer.title, { 
-									projection: map.displayProjection, 
-									strategies: [new OpenLayers.Strategy.Fixed()], 
-									protocol: new OpenLayers.Protocol.Script({ 
-										url: layer.url,
-										params: layer.params,
-										format: new OpenLayers.Format.GeoJSON({
-											read: function(data) {
-
-												var items = data.features,
-													i, len, row, feature, atts = {}, features = [],
-													a = layer.attributes;
-												
-												for (i = 0, len = items.length; i !== len; i += 1) {												
-													row = items[i];												
-													feature = new OpenLayers.Feature.Vector();												
-													feature.geometry = this.parseGeometry(row.geometry);
-													
-													// parse and store the attributes
-													atts = {};
-													
-													// TODO: test on nested attributes
-													for (var name in a) {
-														if (a.hasOwnProperty(name)) {
-															atts[a[name]] = row.properties[name];														
-														}
-													}
-
-													feature.attributes = atts;												
-												
-													// if no geometry, don't add it
-													if (feature.geometry) {
-														features.push(feature);
-													}
-												} 
-												return features;
-											}
-										})
-									}),
-									eventListeners: {
-										"featuresadded": function(evt) {
-											_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+												feature.attributes = atts;												
+											
+												// if no geometry, don't add it
+												if (feature.geometry) {
+													features.push(feature);
+												}
+											} 
+											return features;
 										}
-									},
-									styleMap: _pe.fn.geomap.getStyleMap(wet_boew_geomap.overlays[index])
-								}
-							);
-							olLayer.name = 'overlay_' + index;
-							olLayer.datatable = layer.datatable;
-							olLayer.visibility = true;	// to force featuresadded listener		
-							queryLayers.push(olLayer);
-							map.addLayer(olLayer);										
-							_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
-							olLayer.visibility = layer.visible;
-						}					
-					});
-				}
+									})
+								}),								
+								eventListeners: {
+									"featuresadded": function(evt) {
+										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+									}									
+								},
+								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
+							}
+						);
+						olLayer.name = 'overlay_' + index;
+						olLayer.datatable = layer.datatable;
+						olLayer.visibility = true;	// to force featuresadded listener		
+						queryLayers.push(olLayer);
+						map.addLayer(olLayer);											
+						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						olLayer.visibility = layer.visible;
+					} else if (layer.type === 'json') {
+						olLayer = new OpenLayers.Layer.Vector( 
+							layer.title, { 
+								projection: map.displayProjection, 
+								strategies: [new OpenLayers.Strategy.Fixed()], 
+								protocol: new OpenLayers.Protocol.Script({ 
+									url: layer.url,
+									params: layer.params,
+									format: new OpenLayers.Format.GeoJSON({										
+										read: function(data) {											
+											var items = data[layer.root] ? data[layer.root] : data,
+												row, i, len, feature, atts = {}, features = [];
+											
+											for (i = 0, len = items.length; i !== len; i += 1) {												
+												row = items[i];												
+												feature = new OpenLayers.Feature.Vector();												
+												feature.geometry =	this.parseGeometry(row.geometry);
+												
+												// parse and store the attributes
+												atts = {};
+												var a = layer.attributes;
+												
+												// TODO: test on nested attributes
+												for (var name in a) {
+													if (a.hasOwnProperty(name)) {
+														atts[a[name]] = row[name];														
+													}
+												}
+												
+												feature.attributes = atts;												
+											
+												// if no geometry, don't add it
+												if (feature.geometry) {
+													features.push(feature);
+												}
+											} 
+											return features;
+										}
+									})
+								}),
+								eventListeners: {
+									"featuresadded": function(evt) {	
+										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+									}									
+								},
+								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
+							}
+						);	
+						olLayer.name = 'overlay_' + index;
+						olLayer.datatable = layer.datatable;					
+						olLayer.visibility = true;	// to force featuresadded listener		
+						queryLayers.push(olLayer);
+						map.addLayer(olLayer);											
+						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						olLayer.visibility = layer.visible;			
+					} else if (layer.type ==='geojson') {						
+						olLayer = new OpenLayers.Layer.Vector( 
+							layer.title, { 
+								projection: map.displayProjection, 
+								strategies: [new OpenLayers.Strategy.Fixed()], 
+								protocol: new OpenLayers.Protocol.Script({ 
+									url: layer.url,
+									params: layer.params,
+									format: new OpenLayers.Format.GeoJSON({
+										read: function(data) {
+
+											var items = data.features,
+												i, len, row, feature, atts = {}, features = [],
+												a = layer.attributes;
+											
+											for (i = 0, len = items.length; i !== len; i += 1) {												
+												row = items[i];												
+												feature = new OpenLayers.Feature.Vector();												
+												feature.geometry = this.parseGeometry(row.geometry);
+												
+												// parse and store the attributes
+												atts = {};
+												
+												// TODO: test on nested attributes
+												for (var name in a) {
+													if (a.hasOwnProperty(name)) {
+														atts[a[name]] = row.properties[name];														
+													}
+												}
+
+												feature.attributes = atts;												
+											
+												// if no geometry, don't add it
+												if (feature.geometry) {
+													features.push(feature);
+												}
+											} 
+											return features;
+										}
+									})
+								}),
+								eventListeners: {
+									"featuresadded": function(evt) {
+										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+									}
+								},
+								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
+							}
+						);
+						olLayer.name = 'overlay_' + index;
+						olLayer.datatable = layer.datatable;
+						olLayer.visibility = true;	// to force featuresadded listener		
+						queryLayers.push(olLayer);
+						map.addLayer(olLayer);										
+						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						olLayer.visibility = layer.visible;
+					}					
+				});
 			}
 		},
 		
@@ -1158,10 +1235,10 @@
 		/*
 		 *	Create the map after we load the config file.
 		 */
-		createMap: function(wet_boew_geomap, opts) {
+		createMap: function(opts) {
 			
 			// Add basemap data
-			_pe.fn.geomap.addBasemapData(wet_boew_geomap, opts);
+			_pe.fn.geomap.addBasemapData(opts);
 					
 			// Create projection objects
 			var projLatLon = new OpenLayers.Projection('EPSG:4326'),
@@ -1169,9 +1246,9 @@
 				$geomap = $('.wet-boew-geomap');						
 
 			if (opts.debug) {
-				window.console.log(_pe.fn.geomap.getLocalization('projection') + ' ' + projMap.getCode());
-			}			
-			
+				_pe.document.trigger('geomap-projection', projMap.getCode());
+			}		
+
 			// Global variable
 			selectControl = new OpenLayers.Control.SelectFeature();
 			
@@ -1185,67 +1262,30 @@
 			_pe.fn.geomap.addTabularData(opts, projLatLon, projMap);
 			
 			// Add overlay data
-			_pe.fn.geomap.addOverlayData(wet_boew_geomap);
+			_pe.fn.geomap.addOverlayData(opts);
 
 			// Load Controls
 			_pe.fn.geomap.loadControls(opts);
 
 			// Add WCAG element for the map div
-			$geomap.attr({'role': 'img', 'aria-label': _pe.dic.get('%geo-ariamap')});
+			$geomap.attr({
+				'role': 'img',
+				'aria-label': _pe.dic.get('%geo-ariamap')
+			});
 		},
-		
-		/*
-		 *	Localization for debug message
-		 * 
-		 * TODO: do it for accessibilize function after new icon
-		 */
-		getLocalization: function(mess) {
-			
-			var english = {
-				debugMode: 'WET-Geomap: running in DEBUG mode',
-				debugMess:'When running in debug mode Geomap will provide inline error and help messages and write useful debugging information into the console. Disable debug mode by removing the <em>debug</em> class.',
-				overlayLoad: 'WET-Geomap: overlays were loaded successfully',
-				overlayNotLoad: 'WET-Geomap: an error occurred while loading overlays',
-				basemapDefault: 'WET-Geomap: using default basemap',
-				projection: 'WET-Geomap: using projection',
-				error: 'WET-Geomap ERROR',
-				errorSelect: 'This cell has the <em>select</em> class but no link was found. Please add a link to this cell.',
-				errorNoSelect: 'This table contains rows that do not have a cell with the <em>select</em> class. Please ensure that each row has exactly one cell with the <em>select</em> class and that the cell includes a link.',
-				warning: 'WET-Geomap WARNING',
-				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em>.',
-				overlayNotSpecify: 'WET-Geomap: overlays file not specified',
-				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12).",
-				warningTab: 'No class <em>tab</em> in wet-boew-geomap but a table has tab attribute set to true.'
-			};
-			
-			var french = {
-				debugMode: 'BOEW-Géocarte : mode débogage activé',
-				debugMess:'Lors de l\'exécution en mode débogage Geomap donne des messages d\'erreur, des messages d\'aide et donneras de l\'information utile dans la console de débogage. Désactiver le mode débogage en supprimant la classe <em>debug</em>.',
-				overlayLoad: 'BOEW-Géocarte : Les couches de superpositions ont été chargées avec succès',
-				overlayNotLoad: 'BOEW-Géocarte : une erreur est survenue lors du chargement des couches de superpositions',
-				basemapDefault: 'BOEW-Géocarte : la carte de base par défaut est utilisée',
-				projection: 'BOEW-Géocarte : la projection utilisée est',
-				error: 'BOEW-Géocarte ERREUR',
-				errorSelect: 'Cette cellule a la classe <em>select</em> mais aucun lien n\'a été trouvé. S\'il vous plaît, ajouter un lien à cette cellule.',
-				errorNoSelect: 'Cette table contient des lignes qui n\'ont pas de cellule avec la classe <em>select</em>. S\'il vous plaît, assurer vous que chaque ligne a exactement une cellule avec la classe <em>select</em> et celle-ci doit contenir un lien.',
-				warning: 'BOEW-Geomap AVERTISSEMENT',
-				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> .',
-				overlayNotSpecify: 'BOEW-Géocarte : fichier des couches de superpositions non spécifié',
-				baseMapMapOptionsLoadError: 'BOEW-Géocarte : une erreur est survenue lors du chargement des options de configuration de votre carte de base. S\'il vous plaît, vérifiez que vous avez l\'ensemble des options suivantes: maxExtent (ex: \'-3000000,0, -800000,0, 4000000,0, 3900000,0\'), maxResolution (ex: \'auto\'), projection (ex: \'EPSG: 3978\'), restrictedExtent (ex: \'-3000000,0 , -800000,0, 4000000,0, 3900000,0\'), units (ex: \'m\'), displayProjection (ex: \'EPSG: 4269\'), numZoomLevels (ex: 12).',	
-				warningTab: 'Il n\'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l\'attribut égal vrai.'
-			};
-			
-			var message = (_pe.language === 'en') ? english[mess] : french[mess];
-			return message;
-		},
-				
+
 		refreshPlugins: function() {
 			var $holder,
 				$createDatatable = $('.createDatatable'),
 				$tabbedInterface = $('.wet-boew-tabbedinterface');
 			if (!_pe.mobile) {
-				_pe.wb_load({'plugins': {'tables': $createDatatable, 'tabbedinterface': $tabbedInterface}});
-					
+				_pe.wb_load({
+					'plugins': {
+						'tables': $createDatatable,
+						'tabbedinterface': $tabbedInterface
+					}
+				});
+
 				// For each datatable in tabs, set some style to solve the layout problem
 				$createDatatable.each(function(index, $feature) {
 					$holder = ($('table#' + $feature.id)).parent();
@@ -1255,12 +1295,16 @@
 				});
 			} else {
 				// In mobile we need to do it the oposite order.
-				_pe.wb_load({'plugins': {'tabbedinterface': $tabbedInterface, 'tables': $createDatatable}});
-				
+				_pe.wb_load({
+					'plugins': {
+						'tabbedinterface': $tabbedInterface,
+						'tables': $createDatatable
+					}
+				});
+
 				// For each datatable, create the wrapper around it and set display:table to solve layout problem.
 				$createDatatable.each(function(index, $feature) {
-					$holder = ($('table#' + $feature.id));
-					$holder.wrap('<div id="' + $feature.id + '_wrapper" class="dataTables_wrapper width-100" style="display: table"></div>');
+					$('table#' + $feature.id).wrap('<div id="' + $feature.id + '_wrapper" class="dataTables_wrapper width-100" style="display: table"></div>');
 				});
 				
 				// Set the opacity to solve transparency problem.
@@ -1270,97 +1314,7 @@
 				// Set display table to solve the table and hidden message appears at the same time
 				//$('.table-simplify').css('dispaly', 'table');
 			}
-		},
-		
-		_exec: function(elm) {	
-			var opts,
-				overrides;	
-
-			// Defaults
-			opts = {
-				config: {
-					controls: [],					
-					autoUpdateSize: true,
-					fractionalZoom: true,
-					theme: null
-				},
-				overlays: [],
-				features: [],
-				tables: [],
-				useScaleLine: false,
-				useMousePosition: false,
-				debug: false,
-				useLegend: false,
-				useTab: false
-			};			
-
-			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
-			overrides = {				
-				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
-				useMousePosition: elm.hasClass('position') ? true : undefined,
-				debug: elm.hasClass('debug') ? true : false,
-				useLegend: elm.hasClass('legend') ? true : false,
-				useTab: elm.hasClass('tab') ? true : false
-			};			
-
-			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
-			$.extend(opts, (typeof wet_boew_geomap !== 'undefined' ? wet_boew_geomap : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
-
-
-			if (opts.debug) {
-				window.console.log(_pe.fn.geomap.getLocalization('debugMode'));
-				$('#wb-main-in').prepend('<div class="module-attention span-8"><h3>' + _pe.fn.geomap.getLocalization('debugMode') + '</h3><p>' + _pe.fn.geomap.getLocalization('debugMess') + '</p></div>');
-			}	
-
-			// Set the language for OpenLayers
-			OpenLayers.Lang.setCode(_pe.language);
-
-			// Set the image path for OpenLayers
-			OpenLayers.ImgPath = _pe.add.liblocation + '/images/geomap/';
-			
-			// Add projection for default base map
-			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
-					
-			// Initiate the map
-			elm.attr('id', 'geomap').height(elm.width() * 0.8);
-
-			// Load configuration file
-			if (typeof opts.layersFile !== 'undefined') {
-				$.ajax({
-					url: opts.layersFile,
-					dataType: "script",
-					async: false,					
-					success: function() {
-						_pe.fn.geomap.createMap(wet_boew_geomap, opts);
-
-						if (opts.debug) {
-							window.console.log(_pe.fn.geomap.getLocalization('overlayLoad'));
-						}
-					},
-					error: function(){
-						if (opts.debug) {
-							window.console.log(_pe.fn.geomap.getLocalization('overlayNotLoad'));
-						}
-					}
-				}); // end ajax
-			} else {
-				
-				_pe.fn.geomap.createMap(undefined, opts);
-				
-				if (opts.debug) {
-					window.console.log(_pe.fn.geomap.getLocalization('overlayNotSpecify'));
-				}
-			} // end load configuration file
-		
-			$(document).on('wb-init-loaded', function() {
-				// If there are overlays, wait before calling the plugins
-				if (!overlays) {
-					_pe.fn.geomap.refreshPlugins();
-				}
-			});
-
-			return elm; // end of exec
-		} // end of exec
+		}
 	};
 	window.pe = _pe;
 	return _pe;
