@@ -33,7 +33,7 @@
 	}
 }
 
-.ui-mobile {
+.mobile-view {
 	.wet-boew-formvalid {
 		input {
 			&[type=checkbox] {
@@ -51,7 +51,7 @@
 			@extend %formvalid-margin-top-1em;
 		}
 		legend {
-			margin-bottom: -1em;
+			margin-bottom: -0.5em;
 		}
 		.buttons {
 			margin-top: 2em;
