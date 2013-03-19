@@ -123,11 +123,11 @@ dl {
 	/* Ordered and Unordered list Zebra Stripping */
 	
 	> li {
-		&.list-odd, &:nth-child(2n) {
+		&.list-even, &:nth-child(2n) {
 			background-color: #ddd;
 			border: 1px solid #ccc;
 		}
-		&.list-even, &:nth-child(2n + 1) {
+		&.list-odd, &:nth-child(2n + 1) {
 			background-color: #eee;
 			border: 1px solid #ccc;
 		}
@@ -138,14 +138,14 @@ dl {
 	}
 	
 	
-	/* Style Alterwg (Alternate White Gray zebra stripping) */
+	/* Style Alterwg (Alternate White and Gray zebra stripping) */
 	&.alterwg {
 		li {
-			&.list-odd, &:nth-child(2n) {
+			&.list-even, &:nth-child(2n) {
 				background-color: #ddd;
 				border: none;
 			}
-			&.list-even, &:nth-child(2n + 1) {
+			&.list-odd, &:nth-child(2n + 1) {
 				background-color: #fff;
 				border: none;
 			}
