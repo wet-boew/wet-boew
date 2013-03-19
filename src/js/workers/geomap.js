@@ -1274,44 +1274,28 @@
 		},
 
 		refreshPlugins: function() {
-			var $holder,
-				$createDatatable = $('.createDatatable'),
-				$tabbedInterface = $('.wet-boew-tabbedinterface');
-			if (!_pe.mobile) {
-				_pe.wb_load({
-					'plugins': {
-						'tables': $createDatatable,
-						'tabbedinterface': $tabbedInterface
-					}
-				});
+			var $createDatatable;
+			_pe.wb_load({
+				'plugins': {
+					'tabbedinterface': _pe.main.find('.wet-boew-tabbedinterface')
+				}
+			});
 
-				// For each datatable in tabs, set some style to solve the layout problem
-				$createDatatable.each(function(index, $feature) {
-					$holder = ($('table#' + $feature.id)).parent();
-					if ($holder.attr('id') === 'tabs_' + $feature.id) {
-						$holder.attr('style', 'display: table; width: 100%');
-					}
-				});
-			} else {
-				// In mobile we need to do it the oposite order.
-				_pe.wb_load({
-					'plugins': {
-						'tabbedinterface': $tabbedInterface,
-						'tables': $createDatatable
-					}
-				});
+			$createDatatable = _pe.main.find('.createDatatable');
+			_pe.wb_load({
+				'plugins': {
+					'tables': $createDatatable
+				}
+			});
 
-				// For each datatable, create the wrapper around it and set display:table to solve layout problem.
-				$createDatatable.each(function(index, $feature) {
-					$('table#' + $feature.id).wrap('<div id="' + $feature.id + '_wrapper" class="dataTables_wrapper width-100" style="display: table"></div>');
-				});
+			// Workaround for nesting data tables in a tab panel
+			$createDatatable.each(function() {
+				$(this).parent().append('<div class="clear"></div>');
+			});
 
-				// Set the opacity to solve transparency problem.
-				$('.wet-boew-tables').addClass('opacity-100');
-				$('.table-simplify').addClass('opacity-100');
-
-				// Set display table to solve the table and hidden message appears at the same time
-				//$('.table-simplify').css('dispaly', 'table');
+			if (_pe.mobile) {
+				// Enhance the checkboxes with jQuery Mobile
+				_pe.main.find('.wet-boew-geomap-legend').trigger('create');
 			}
 		}
 	};

@@ -1707,13 +1707,13 @@
 		* Handles loading of the plugins, dependencies and polyfills
 		* @function
 		* @param {object} options Object containing the loader options. The following optional properties are supported: 
-		* "plugins": {"plugin_name1": elms1, "plugin_name2": elms2, ...} - Names of plugins to load and the elements to load them on
-		* "global": [plugin_name1, plugin_name2, ...] - Names of global plugins to load
-		* "deps": [dependency_name1, dependenccy_name2, ...] - Names of dependences to load
-		* "poly": [polyfill_name1, polyfill_name2, ...] - Names of polyfills to load
-		* "checkdom": true/false - Enable/disable checking the DOM for "wet-boew-*" triggers
-		* "polycheckdom": true/false - Enable/disable checking the DOM for elements to polyfill
-		* @param {string} finished_event Name of the event to trigger when loading is complete (defai;t is "wb-loaded")
+		* 'plugins': {'plugin_name1': elms1, 'plugin_name2': elms2, ...} - Names of plugins to load and the elements to load them on
+		* 'global': [plugin_name1, plugin_name2, ...] - Names of global plugins to load
+		* 'deps': [dependency_name1, dependency_name2, ...] - Names of dependences to load
+		* 'poly': [polyfill_name1, polyfill_name2, ...] - Names of polyfills to load
+		* 'checkdom': true/false - Enable/disable checking the DOM for 'wet-boew-*' triggers
+		* 'polycheckdom': true/false - Enable/disable checking the DOM for elements to polyfill
+		* @param {string} finished_event Name of the event to trigger when loading is complete (default is 'wb-loaded')
 		* @return {void}
 		*/
 		wb_load: function (options, finished_event) {
