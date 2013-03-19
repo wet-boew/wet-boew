@@ -68,7 +68,7 @@ blockquote {
 	margin: 0 !important;
 }
 
-[class*=width-] {
+[class*=width-]:not(.width-100) {
 	width: auto !important;
 }
 
