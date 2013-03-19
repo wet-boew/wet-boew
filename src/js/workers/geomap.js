@@ -815,7 +815,7 @@
 									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 									},
-									'loadend': function(evt) {
+									'loadend': function() {
 										// TODO: Fix no alt attribute on tile image in OpenLayers rather than use this override
 										_pe.main.find('.olTileImage').attr('alt', '');
 									}
