@@ -62,7 +62,7 @@
 			OpenLayers.Lang.setCode(_pe.language);
 
 			// Set the image path for OpenLayers
-			OpenLayers.ImgPath = lib + '/images/geomap/';
+			OpenLayers.ImgPath = lib + 'images/geomap/';
 
 			// Add projection for default base map
 			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
@@ -121,10 +121,11 @@
 		}, // end of exec
 		accessibilize: function() {
 			/*
-			 *	Add alt text to map controls and make tab-able
+			 * Add alt text to map controls and make tab-able
+			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
 			 */
 			var mapControl = _pe.dic.get('%geo-mapcontrol');
-			$('div.olButton').each(function() {
+			_pe.main.find('div.olControlPanZoomBar div').each(function() {
 				var $div = $(this),
 					$img = $div.find('img.olAlphaImg'),
 					altTxt = mapControl,
@@ -137,9 +138,11 @@
 					altTxt = _pe.dic.get('%geo-' + actn);
 					$img.attr('alt', altTxt);
 					$div.attr('title', altTxt);
+				} else if ($img.length !== 0) {
+					// Add null alt text to slider image since should be ignored
+					$img.attr('alt', '');
 				}
-			});			
-			
+			});
 		}, // end accessibilize function		
 
 		/*
@@ -189,7 +192,7 @@
 					$tabs.addClass('wet-boew-tabbedinterface auto-height-none').append('<ul class="tabs"></ul><div class="tabs-panel"></div>');
 				// user hasn't specified where they want the tabs
 				} else {
-					$('.wet-boew-geomap-layers').append('<div class="clear"></div><div class="wet-boew-geomap-tabs wet-boew-tabbedinterface auto-height-none"><ul class="tabs"></ul><div class="tabs-panel"></div></div><div class="clear"></div>');
+					$('.wet-boew-geomap-layers').append('<div class="clear"></div><div class="wet-boew-geomap-tabs wet-boew-tabbedinterface auto-height-none span-8"><ul class="tabs"></ul><div class="tabs-panel"></div></div><div class="clear"></div>');
 				}
 			}
 		},
@@ -809,8 +812,12 @@
 									})
 								}),
 								eventListeners: {
-									"featuresadded": function(evt) {
+									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+									},
+									'loadend': function() {
+										// TODO: Fix no alt attribute on tile image in OpenLayers rather than use this override
+										_pe.main.find('.olTileImage').attr('alt', '');
 									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
