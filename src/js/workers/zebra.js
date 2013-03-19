@@ -64,7 +64,28 @@
 			// Header Group Cell
 			/*
 			 * Currently unused. 
-			 * Uncomment to be able to apply custom styling to the header group cells.
+			 * Uncomment to be able to apply custom styling to an header group cells.
+			 * 
+		    +-----------------------------------------------------+
+			| FYI - 'tblparser.type' property (See the docs related to the parserTable.js dependency)
+			+-------+---------------+-----------------------------+
+			| Type	| Signification | Technicality
+			+-------+---------------+------------------------------
+			|	1	| Header		| TH element only
+			+-------+---------------+------------------------------
+			|	2	| Data			| TD element only
+			+-------+---------------+------------------------------
+			|	3	| Summary		| TD element and TD of type 2 exist
+			+-------+---------------+------------------------------
+			|	4	| Key			| TD element applicable to right TH, Only available on row
+			+-------+---------------+------------------------------
+			|	5	| Description	| TD element applicable to left or top TH
+			+-------+---------------+------------------------------
+			|	6	| Layout		| Can be only: Top Left cell or/and Summmary group intersection
+			+-------+---------------+------------------------------
+			|	7	| Header Group	| TH element only, visual heading grouping, this type are an extension of the type 1
+			+-------+---------------+------------------------------
+			 * 
 			 * 
 			$('th', elem).each(function () {
 				var $this = $(this),
