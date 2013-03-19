@@ -229,6 +229,7 @@
 				color: #fff !important;
 				padding: 3px 4px 4px;
 				@include pseudo-focus {
+					@extend %tabbedinterface-gradient-background;
 					@extend %tabbedinterface-color-000-important;
 					border-top: 1px solid #fff;
 					padding-top: 1px;
@@ -429,7 +430,7 @@
 		padding: 10px;
 	}
 	.tabs-roller {
-		background-color: white;
+		background-color: #fff;
 		@include opacity(0.2);
 		@include border-radius(3px 0 0 3px);
 	}
@@ -461,6 +462,7 @@
 				margin: 0;
 				padding: 2px;
 				@include pseudo-focus {
+					@extend %tabbedinterface-gradient-background;
 					@extend %tabbedinterface-color-000-important;
 				}
 				&.active {
@@ -638,11 +640,13 @@
 				}				
 			}
 			&.tabs-toggle {
-				@include pseudo-focus {
-					@extend %tabbedinterface-text-decoration-underline;
-					@extend %tabbedinterface-color-000-important;
-					background: 0;
-					border-color: #999;
+				a {
+					@include pseudo-focus {
+						@extend %tabbedinterface-text-decoration-underline;
+						@extend %tabbedinterface-color-000-important;
+						background: 0;
+						border-color: #999;
+					}
 				}
 			}
 		}

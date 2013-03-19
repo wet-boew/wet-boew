@@ -5,7 +5,7 @@
 /*
  * Web feeds widget
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -21,7 +21,7 @@
 				sorted = entries.sort(function (a, b) {
 					a.created_at = a.created_at.replace(/\+\d{4} (\d{4})/, '$1 GMT');
 					b.created_at = b.created_at.replace(/\+\d{4} (\d{4})/, '$1 GMT');
-					return pe.date.compare(b.created_at, a.created_at);
+					return _pe.date.compare(b.created_at, a.created_at);
 				});
 				for (i = 0; i < cap; i += 1) {
 					sorted_entry = sorted[i];
@@ -34,7 +34,7 @@
 						displayname = sorted_entry.from_user_name;
 						image = sorted_entry.profile_image_url;
 					}
-					result += '<li><a class="float-left" href="http://www.twitter.com/' + username + '"><img class="widget-avatar" src="' + image  + '" alt="' + displayname + '" /></a> ' + pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' +  pe.dic.ago(sorted_entry.created_at) + '</span></li>';
+					result += '<li><a class="float-left" href="http://www.twitter.com/' + username + '"><img class="widget-avatar" src="' + image  + '" alt="' + displayname + '" /></a> ' + _pe.string.ify.clean(sorted_entry.text) + ' <span class="widget-datestamp-accent">' +	_pe.dic.ago(sorted_entry.created_at) + '</span></li>';
 				}
 				return elm.empty().append(result);
 			},
@@ -60,7 +60,7 @@
 		weather: {
 			_parse_entries: function (entries, limit, elm) {
 				var entry = entries[1],
-					result = '<li><a href="' + entry.link + '">' + entry.title + '</a><span class="widget-datestamp">[' + pe.date.to_iso_format(entry.publishedDate, true) + ']</span></li>';
+					result = '<li><a href="' + entry.link + '">' + entry.title + '</a><span class="widget-datestamp">[' + _pe.date.to_iso_format(entry.publishedDate, true) + ']</span></li>';
 				return elm.empty().append(result);
 			},
 			_map_entries : function (data) {
@@ -81,11 +81,11 @@
 				var cap, i, result = '', sorted, sorted_entry;
 				cap = (limit > 0 && limit < entries.length ? limit : entries.length);
 				sorted = entries.sort(function (a, b) {
-					return pe.date.compare(b.publishedDate, a.publishedDate);
+					return _pe.date.compare(b.publishedDate, a.publishedDate);
 				});
 				for (i = 0; i < cap; i += 1) {
 					sorted_entry = sorted[i];
-					result += '<li><a href="' + sorted_entry.link + '">' + sorted_entry.title + '</a>' + (sorted_entry.publishedDate !== '' ?  '<span class="widget-datestamp">[' + pe.date.to_iso_format(sorted_entry.publishedDate, true) + ']</span>' : '') + '</li>';
+					result += '<li><a href="' + sorted_entry.link + '">' + sorted_entry.title + '</a>' + (sorted_entry.publishedDate !== '' ?  '<span class="widget-datestamp">[' + _pe.date.to_iso_format(sorted_entry.publishedDate, true) + ']</span>' : '') + '</li>';
 				}
 				return elm.empty().append(result);
 			},
@@ -119,7 +119,7 @@
 				return a;
 			});
 
-			$loading = $('<li class="widget-state-loading"><img src="' + pe.add.liblocation + 'images/webfeeds/ajax-loader.gif" alt="' + pe.dic.get('%loading') + '" /></li>');
+			$loading = $('<li class="widget-state-loading"><img src="' + _pe.add.liblocation + 'images/webfeeds/ajax-loader.gif" alt="' + _pe.dic.get('%loading') + '" /></li>');
 			$content = elm.find('.widget-content');
 			$content.append($loading);
 

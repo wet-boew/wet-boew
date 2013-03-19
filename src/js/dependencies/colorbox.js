@@ -1,5 +1,5 @@
 /*!
-	jQuery ColorBox v1.3.34 - 2013-02-04
+	jQuery ColorBox v1.4.4 - 2013-03-10
 	(c) 2013 Jack Moore - jacklmoore.com/colorbox
 	license: http://www.opensource.org/licenses/mit-license.php
 */
@@ -129,6 +129,7 @@
 	publicMethod,
 	div = "div",
 	className,
+	requests = 0,
 	init;
 
 	// ****************
@@ -149,6 +150,12 @@
 
 		return $(element);
 	}
+	
+	// Get the window height using innerHeight when available to avoid an issue with iOS
+	// http://bugs.jquery.com/ticket/6724
+	function winheight() {
+		return window.innerHeight ? window.innerHeight : $(window).height();
+	}
 
 	// Determine the next and previous members in a group.
 	function getIndex(increment) {
@@ -161,17 +168,24 @@
 
 	// Convert '%' and 'px' values to integers
 	function setSize(size, dimension) {
-		return Math.round((/%/.test(size) ? ((dimension === 'x' ? $window.width() : $window.height()) / 100) : 1) * parseInt(size, 10));
+		return Math.round((/%/.test(size) ? ((dimension === 'x' ? $window.width() : winheight()) / 100) : 1) * parseInt(size, 10));
 	}
 	
 	// Checks an href to see if it is a photo.
 	// There is a force photo option (photo: true) for hrefs that cannot be matched by the regex.
-	function isImage(url) {
+	function isImage(settings, url) {
 		return settings.photo || settings.photoRegex.test(url);
 	}
 
-	function retinaUrl(url) {
+	function retinaUrl(settings, url) {
 		return settings.retinaUrl && window.devicePixelRatio > 1 ? url.replace(settings.photoRegex, settings.retinaSuffix) : url;
+	}
+
+	function trapFocus(e) {
+		if ('contains' in $box[0] && !$box[0].contains(e.target)) {
+			e.stopPropagation();
+			$box.focus();
+		}
 	}
 
 	// Assigns function results to their respective properties
@@ -311,6 +325,12 @@
 				}
 			}
 			
+			$overlay.css({
+				opacity: parseFloat(settings.opacity),
+				cursor: settings.overlayClose ? "pointer" : "auto",
+				visibility: 'visible'
+			}).show();
+			
 			if (!open) {
 				open = active = true; // Prevents the page-change action from queuing up if the visitor holds down the left or right keys.
 				
@@ -324,19 +344,7 @@
 				interfaceWidth = $leftBorder.width() + $rightBorder.width() + $content.outerWidth(true) - $content.width();
 				loadedHeight = $loaded.outerHeight(true);
 				loadedWidth = $loaded.outerWidth(true);
-
-				if (settings.returnFocus) {
-					$(element).blur();
-					$events.one(event_closed, function () {
-						$(element).focus();
-					});
-				}
 				
-				$overlay.css({
-					opacity: parseFloat(settings.opacity),
-					cursor: settings.overlayClose ? "pointer" : "auto",
-					visibility: 'visible'
-				}).show();
 				
 				// Opens inital empty ColorBox prior to content being loaded.
 				settings.w = setSize(settings.initialWidth, 'x');
@@ -345,7 +353,7 @@
 
 				if (isIE6) {
 					$window.bind('resize.' + event_ie6 + ' scroll.' + event_ie6, function () {
-						$overlay.css({width: $window.width(), height: $window.height(), top: $window.scrollTop(), left: $window.scrollLeft()});
+						$overlay.css({width: $window.width(), height: winheight(), top: $window.scrollTop(), left: $window.scrollLeft()});
 					}).trigger('resize.' + event_ie6);
 				}
 				
@@ -356,6 +364,26 @@
 				$groupControls.add($title).hide();
 				
 				$close.html(settings.close).show();
+
+				$box.focus();
+				
+				// Confine focus to the modal
+				// Uses event capturing that is not supported in IE8-
+				if (document.addEventListener) {
+
+					document.addEventListener('focus', trapFocus, true);
+					
+					$events.one(event_closed, function () {
+						document.removeEventListener('focus', trapFocus, true);
+					});
+				}
+
+				// Return focus on closing
+				if (settings.returnFocus) {
+					$events.one(event_closed, function () {
+						$(element).focus();
+					});
+				}
 			}
 			
 			publicMethod.load(true);
@@ -369,17 +397,23 @@
 			init = false;
 
 			$window = $(window);
-			$box = $tag(div).attr({id: colorbox, 'class': isIE ? prefix + (isIE6 ? 'IE6' : 'IE') : ''}).hide();
+			$box = $tag(div).attr({
+				id: colorbox,
+				'class': isIE ? prefix + (isIE6 ? 'IE6' : 'IE') : '',
+				role: 'dialog',
+				tabindex: '-1'
+			}).hide();
 			$overlay = $tag(div, "Overlay", isIE6 ? 'position:absolute' : '').hide();
 			$loadingOverlay = $tag(div, "LoadingOverlay").add($tag(div, "LoadingGraphic"));
 			$wrap = $tag(div, "Wrapper");
 			$content = $tag(div, "Content").append(
 				$title = $tag(div, "Title"),
 				$current = $tag(div, "Current"),
-				$next = $tag(div, "Next"),
-				$prev = $tag(div, "Previous"),
-				$slideshow = $tag(div, "Slideshow"),
-				$close = $tag(div, "Close")
+				$prev = $tag('button', "Previous"),
+				$next = $tag('button', "Next"),
+				$slideshow = $tag('button', "Slideshow"),
+				$loadingOverlay,
+				$close = $tag('button', "Close")
 			);
 			
 			$wrap.append( // The 3x3 Grid that makes up ColorBox
@@ -446,7 +480,7 @@
 						e.preventDefault();
 						publicMethod.close();
 					}
-					if (open && settings.arrowKey && $related[1]) {
+					if (open && settings.arrowKey && $related[1] && !e.altKey) {
 						if (key === 37) {
 							e.preventDefault();
 							$prev.click();
@@ -458,8 +492,12 @@
 				});
 
 				if ($.isFunction($.fn.on)) {
+					// For jQuery 1.7+
 					$(document).on('click.'+prefix, '.'+boxElement, clickHandler);
-				} else { // For jQuery 1.3.x -> 1.6.x
+				} else {
+					// For jQuery 1.3.x -> 1.6.x
+					// This code is never reached in jQuery 1.9, so do not contact me about 'live' being removed.
+					// This is not here for jQuery 1.9, it's here for legacy users.
 					$('.'+boxElement).live('click.'+prefix, clickHandler);
 				}
 			}
@@ -551,11 +589,11 @@
 		}
 		
 		if (settings.bottom !== false) {
-			top += Math.max($window.height() - settings.h - loadedHeight - interfaceHeight - setSize(settings.bottom, 'y'), 0);
+			top += Math.max(winheight() - settings.h - loadedHeight - interfaceHeight - setSize(settings.bottom, 'y'), 0);
 		} else if (settings.top !== false) {
 			top += setSize(settings.top, 'y');
 		} else {
-			top += Math.round(Math.max($window.height() - settings.h - loadedHeight - interfaceHeight, 0) / 2);
+			top += Math.round(Math.max(winheight() - settings.h - loadedHeight - interfaceHeight, 0) / 2);
 		}
 
 		$box.css({top: offset.top, left: offset.left, visibility:'visible'});
@@ -639,7 +677,7 @@
 		}
 		
 		var callback, speed = settings.transition === "none" ? 0 : settings.speed;
-		
+
 		$loaded.empty().remove(); // Using empty first may prevent some IE7 issues.
 
 		$loaded = $tag(div, 'LoadedContent').append(object);
@@ -686,7 +724,7 @@
 			
 			complete = function () {
 				clearTimeout(loadingTimer);
-				$loadingOverlay.remove();
+				$loadingOverlay.hide();
 				trigger(event_complete, settings.onComplete);
 			};
 			
@@ -728,7 +766,8 @@
 							src = $(i).attr('href');
 						}
 
-						if (src && (isImage(src) || data.photo)) {
+						if (src && isImage(data, src)) {
+							src = retinaUrl(data, src);
 							img = new Image();
 							img.src = src;
 						}
@@ -793,7 +832,7 @@
 	};
 
 	publicMethod.load = function (launched) {
-		var href, setResize, prep = publicMethod.prep, $inline;
+		var href, setResize, prep = publicMethod.prep, $inline, request = ++requests;
 		
 		active = true;
 		
@@ -843,7 +882,7 @@
 		href = settings.href;
 		
 		loadingTimer = setTimeout(function () {
-			$loadingOverlay.appendTo($content);
+			$loadingOverlay.show();
 		}, 100);
 		
 		if (settings.inline) {
@@ -862,9 +901,9 @@
 			prep(" ");
 		} else if (settings.html) {
 			prep(settings.html);
-		} else if (isImage(href)) {
+		} else if (isImage(settings, href)) {
 
-			href = retinaUrl(href);
+			href = retinaUrl(settings, href);
 
 			$(photo = new Image())
 			.addClass(prefix + 'Photo')
@@ -874,6 +913,10 @@
 			})
 			.one('load', function () {
 				var percent;
+
+				if (request !== requests) {
+					return;
+				}
 
 				if (settings.retinaImage && window.devicePixelRatio > 1) {
 					photo.height = photo.height / window.devicePixelRatio;
@@ -920,7 +963,9 @@
 			}, 1);
 		} else if (href) {
 			$loadingBay.load(href, settings.data, function (data, status) {
-				prep(status === 'error' ? $tag(div, 'Error').html(settings.xhrError) : $(this).contents());
+				if (request === requests) {
+					prep(status === 'error' ? $tag(div, 'Error').html(settings.xhrError) : $(this).contents());
+				}
 			});
 		}
 	};

@@ -2,6 +2,32 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%wb-default-screen-verdana-font {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+body {
+	@extend %wb-default-screen-verdana-font;
+}
+
+textarea {
+	@extend %wb-default-screen-verdana-font;
+}
+
+input {
+	@extend %wb-default-screen-verdana-font;
+}
+
+select {
+	@extend %wb-default-screen-verdana-font;
+}
+
+#wb-main {
+	#{headings(all)} {
+		font-family: sans-serif;
+	}
+}
+
 a {
 	@include pseudo-focus(false) {
 		cursor: auto;
@@ -83,7 +109,9 @@ a.wb-linkdesc {
 [dir="rtl"] {
 	#wb-skip {
 		float: right;
-
+		position: absolute;
+		width: 100%;
+		z-index: 1;
 		li {
 			left: auto;
 			right: 0;

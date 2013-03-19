@@ -9,7 +9,7 @@
 /*
  * Charts for WET 3.1.x
  */
-/*global jQuery: false, pe:false, wet_boew_charts: false*/
+/*global jQuery: false, wet_boew_charts: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -23,6 +23,7 @@
 			var options = {},
 				o,
 				self = $(elm),
+				srcTbl = self,
 				// graphStartExecTime = new Date().getTime(), // This variable is used to autogenerate ids for the given tables.
 				smallestHorizontalFlotDelta,
 				smallestVerticalFlotDelta; // Default Colors set
@@ -44,8 +45,8 @@
 				"uniformtick-autocreate": true,
 				
 				// Force to use which row in the thead for the label
-				"labeltheadrownum-typeof": "number",
-				"labeltheadrownum-autocreate": true,
+				"labelposition-typeof": "number",
+				"labelposition-autocreate": true,
 				
 				// Legend Management
 				"legendinline-typeof": "boolean",
@@ -62,8 +63,6 @@
 				"bottomvalue-typeof": "number",
 				"bottomvaluenegative-autocreate": true,
 				"bottomvaluenegative-typeof": "boolean",
-				"nocutaxis-autocreate": true,
-				"nocutaxis-typeof": "boolean",
 				// This is to set a predefined interval
 				// Note: Any Top or bottom value will be overwritten with an pre-defined interval
 				"steps-autocreate": true,
@@ -71,39 +70,10 @@
 				// This is to set a decimal precision for the pie chart
 				"decimal-autocreate": true,
 				"decimal-typeof": "number",
-				// This is to set the delayed execution timer
-				"execdelay-autocreate": true,
-				"execdelay-typeof": "number",
-				// This is the default option for a series
-				serie: {
-					type: 'line',
-					color: 'blue' // Line color or Fill Color
-				},
-				serie2dAxis: {
-					dasharray: "",
-					fillopacity: 100 // Use for Area graph type
-				},
-				heading2dAxis: {
-					fill: 'white', // Color used to fill the Heading zone
-					fillover: 'blue', // Color used to fill the Heading on a mouse over
-					foreground: 'black', // foreground color for the Heading
-					foregroundover: 'red' // foreground color on mouse over
-				},
 				'default-option': 'type', // Default CSS Options
 				// Graph Type
 				type: 'bar', // this be one of or an array of: area, pie, line, bar, stacked
 				"type-autocreate": true,
-				optionsClass: {
-					'default-option': 'type', // Default CSS Options
-					"type-autocreate": true,
-					"color-autocreate": true,
-					"overcolor-autocreate": true,
-					"default-namespace": ["wb-charts", "wb-chart", "wb-graph"],
-					"dasharray-autocreate": true,
-					"noencapsulation-autocreate": true,
-					"fillopacity-autocreate": true,
-					"fillopacity-typeof": "number"
-				},
 				//
 				// Graph Layout
 				//
@@ -114,68 +84,17 @@
 				maxwidth: '9999',// '590',
 				// "maxwidth-typeof": "locked", //Remove the lock, that will allow zomming feature in the canvas to fit it in the webpage
 				"maxwidth-typeof": "number",
-				widthPadding: 2, // That is to fix the svg positioning offset (left: -0.5px; top: -0.56665px)
 				//
 				// Colors
 				//
 				colors: ['#be1e2d', '#666699', '#92d5ea', '#ee8310', '#8d10ee', '#5a3b16', '#26a4ed', '#f45a90', '#e9e744'], // Serie colors set
-				textColors: [], //corresponds with colors array. null/undefined items will fall back to CSS
 				//
 				// Data Table and Graph Orientation
 				//
 				parsedirection: 'x', // which direction to parse the table data
 				"parsedirection-typeof": "string",
 				"parsedirection-autocreate": true,
-				drawDirection: 'x', // TODO Not implemented yet - which direction are the dependant axis
-				//
-				// Pie Graph Option 
-				//
-				pieMargin: 20, //pie charts only - spacing around pie
-				pieLabelsAsPercent: true,
-				pieLabelPos: 'inside',
-				//
-				// Line, Area, Bar, Stacked Option
-				//
-				lineWeight: 4, // for line and area - stroke weight
-				barGroupMargin: 10,
-				barMargin: 1, // space around bars in bar chart (added to both sides of bar)
-				//
-				// Font Option * NEW v2.0
-				//
-				font: {
-					height: 20, // Number of pixel
-					width: 10, // Number of pixel (Minimum Value = half size of the height)
-					size: 14 // Font Size
-				},
-				//
-				// Axis Draw Option * NEW v2.0
-				//
-				axis: {
-					top: {
-						tick: null, // Draw the top tick line (If specified the axis.tick would be ignored)
-						lenght: null, // Number of pixel (If specified the axis.lenght would be ignored)
-						padding: null // Padding at the top of x-axis
-					},
-					right: {
-						tick: null, // Draw the right tick line (If specified the axis.tick would be ignored)
-						lenght: null, // Number of pixel (If specified the axis.lenght would be ignored)
-						padding: null // Padding at the right of x-axis
-					},
-					bottom: {
-						tick: null, // Draw the bottom tick line (If specified the axis.tick would be ignored)
-						lenght: null, // Number of pixel (If specified the axis.lenght would be ignored)
-						padding: null // Padding at the bottom of x-axis
-					},
-					left: {
-						tick: null, // Draw the left tick line (If specified the axis.tick would be ignored)
-						lenght: null, // Number of pixel (If specified the axis.lenght would be ignored)
-						padding: null // Padding at the left of x-axis
-					},
-					tick: true, // Draw the tick line
-					lenght: 4, // Number of pixel
-					padding: 4, // Number of pixel, distance between the axes/graph limit and the text
-					minNbIncrementStep: 6 // Minimum Number of incrementing step, that's mean an auto resize if needed and no Axis cut
-				}
+				drawDirection: 'x' // TODO Not implemented yet - which direction are the dependant axis
 			}, options);
 			
 			// Set the new class options if defined
@@ -953,9 +872,7 @@
 				// From an option that would choose the appropriate row.			
 				// UseHeadRow get a number that represent the row to use to draw the label
 				
-				o.labeltheadrownum = 2;
-				
-				UseHeadRow = (!o.labeltheadrownum || (o.labeltheadrownum && o.labeltheadrownum > parsedData.theadRowStack.length) ? parsedData.theadRowStack.length : o.labeltheadrownum) - 1;
+				UseHeadRow = (!o.labelposition || (o.labelposition && o.labelposition > parsedData.theadRowStack.length) ? parsedData.theadRowStack.length : o.labelposition) - 1;
 				
 				
 				// var calcTick = [];
@@ -1022,12 +939,131 @@
 			}
 
 			
+			// Function to switch the series order, like make it as vertical series to horizontal series (see Task #2997)
+			function swapTable() {
+				// function swapTable for request #2799, transforming horizontal table to virtical table; 
+				// Government of Canada. Contact Qibo or Pierre for algorithm info and bug-fixing; 
+				// important table element: id or class, th; 
+				var sMatrix = [],
+					i = 0,
+					_ilen,
+					j = 0,
+					capVal = "Table caption tag is missing",
+					maxRowCol = 10, //basic;
+					s = 0,
+					t,
+					tMatrix = [],
+					swappedTable,
+					html2,
+					headStr,
+					arr,
+					tr;
+				capVal =  $("caption", srcTbl).text();
+				$('tr ', srcTbl).each(function () {
+					maxRowCol += 1;
+					if (s < 1) {
+						$('td,th', $(this)).each(function () {
+							if ($(this).attr('colspan') === undefined) {
+								$(this).attr('colspan', 1);
+							}
+							maxRowCol += Number($(this).attr("colspan"));
+							// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo; 
+						});
+					}
+					s += 1;
+				});
+				// prepare the place holding matrix;
+				for (s = 0; s < maxRowCol; s += 1) {
+					tMatrix[s] = [];
+					for (t = 0; t < maxRowCol; t += 1) {
+						tMatrix[s][t] = 0;
+					}
+				}
+				$('tr ', srcTbl).each(function () {
+					j = 0;
+					var attrCol = 1,
+						attrRow = 1;
+					$('td,th', $(this)).each(function () {
+						if ($(this).attr('colspan') === undefined) {
+							$(this).attr('colspan', 1);
+						}
+						if ($(this).attr('rowspan') === undefined) {
+							$(this).attr('rowspan', 1);
+						}
+						attrCol = Number($(this).attr("colspan"));
+						attrRow = Number($(this).attr("rowspan"));
+						// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo; 
+						while (tMatrix[i][j] === 3) {
+							j += 1;
+						}
+						var ii = i,
+							stopRow = i + attrRow - 1,
+							jj,
+							stopCol,
+							ss1;
+						if (attrRow > 1 && attrCol > 1) {
+							jj = j;
+							stopCol = j + attrCol - 1;
+							for (jj = j; jj <= stopCol; jj += 1) {
+								for (ii = i; ii <= stopRow; ii += 1) {
+									tMatrix[ii][jj] = 3; //random number as place marker; 
+								}
+							}
+						} else if (attrRow > 1) {
+							for (ii = i; ii <= stopRow; ii += 1) {
+								tMatrix[ii][j] = 3; // place holder; 
+							}
+						}
+						ss1 = $(this).clone(); // have a copy of it, not destroying the look of the original table; 
+						// transforming rows and cols and their properties; 
+						ss1.attr("colspan", attrRow);
+						ss1.attr("rowspan", attrCol);
+						(sMatrix[j] = sMatrix[j] || [])[i] = ss1;
+						j = j + attrCol;
+					});
+					i += 1;
+				});
+				// now creating the swapped table from the transformed matrix;
+				swappedTable = $('<table>');
+				$.each(sMatrix, function (s) {
+					var oneRow = $('<tr>');
+					swappedTable.append(oneRow);
+					$.each(sMatrix[s], function (ind, val) {
+						oneRow.append(val);
+					});
+				});
+				// now adding the missing thead; 
+				html2 = swappedTable.html();
+				headStr = "<table id=\"swappedGraph\">" + "<caption>" + capVal + " (Horizontal to Virtical)</caption><thead>";
+				html2 = html2.replace(/<tbody>/gi, headStr);
+				html2 = html2.replace(/<\/tbody>/gi, "</tbody></table>");
+				html2 = html2.replace(/\n/g, "");
+				html2 = html2.replace(/<tr/gi, "\n<tr");
+				arr = html2.split("\n");
+				for (i = 0, _ilen = arr.length; i < _ilen; i += 1) {
+					tr = arr[i];
+					if (tr.match(/<td/i) !== null) {
+						arr[i] = '</thead><tbody>' + tr;
+						break;
+					}
+				}
+				html2 = arr.join("\n");
+				// alert(html2); // see the source 
+				$(html2).insertAfter(srcTbl).hide(); //visible, for debugging and checking;
+				return $(html2);
+			}
+			
+			
+			
+			
+			if (o.parsedirection === 'y') {
+				self = swapTable(srcTbl);
+			}
+			
 			// Parse the table
 			if (!$(self).data().tblparser) {
 				_pe.fn.parsertable.parse($(self));
 			}
-			
-			var currentTable = self;
 			
 			var RowDefaultOptions = {
 				'default-option': 'type', // Default CSS Options
@@ -1039,7 +1075,7 @@
 
 
 			// Retrieve the parsed data
-			var parsedData = $(currentTable).data().tblparser;
+			var parsedData = $(self).data().tblparser;
 			
 			// Fix the parsed data
 			addTblHeaders(parsedData);
@@ -1085,12 +1121,12 @@
 				// Create a chart/ place holder, by series
 				
 				
-				var mainFigureElem = $('<figure />').insertAfter(self);
+				var mainFigureElem = $('<figure />').insertAfter(srcTbl);
 				figCaptionElem = $('<figcaption />');
 				
 				$(mainFigureElem).append(figCaptionElem);
-				tblCaptionHTML = $('caption', self).html();
-				var tblCaptionText = $('caption', self).text();
+				tblCaptionHTML = $('caption', srcTbl).html();
+				var tblCaptionText = $('caption', srcTbl).text();
 				$(figCaptionElem).append(tblCaptionHTML);
 				
 				
@@ -1219,23 +1255,19 @@
 					// set the title for the ability to show or hide the table as a data source
 					$(tblSrcContainerSummary).text(tblCaptionHTML + _pe.dic.get('%table-mention'))
 						.appendTo(tblSrcContainer)
-						.after(self);
+						.after(srcTbl);
 
 					_pe.polyfills.enhance('detailssummary', tblSrcContainer);
 					
 				} else {
 					// Move the table inside the figure element
-					$(self).appendTo(mainFigureElem);
+					$(srcTbl).appendTo(mainFigureElem);
 				}
 				
-				/*
-				ChartPlacement(allSeries, {
-						series: {
-							pie: {
-								show: true
-							}
-						}); */
-				
+				// Destroy the temp table if used
+				if (o.parsedirection === 'y') {
+					$(self).remove();
+				}
 				return;
 			}
 			
@@ -1295,9 +1327,13 @@
 							
 							// one section width
 							// fyi - smallestHorizontalFlotDelta / nbBarChart
-							
+						
 							// Position bar
 							valuePoint = valueCumul - (smallestHorizontalFlotDelta / 2)  + ((smallestHorizontalFlotDelta / nbBarChart) * (rowOptions.chartBarOption - 1));
+							
+							if (nbBarChart === 1) {
+								valuePoint = valueCumul;
+							}
 							
 							/*
 							console.log("---- " + nbBarChart + " bars");
@@ -1379,11 +1415,11 @@
 			// chartPlacement(allSeries, {xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })});
 			
 			
-			var figureElem = $('<figure />').insertAfter(self);
+			var figureElem = $('<figure />').insertAfter(srcTbl);
 			figCaptionElem = $('<figcaption />');
 			
 			$(figureElem).append(figCaptionElem);
-			tblCaptionHTML = $('caption', self).html();
+			tblCaptionHTML = $('caption', srcTbl).html();
 			$(figCaptionElem).append(tblCaptionHTML);
 			
 			// Create the placeholder
@@ -1398,7 +1434,7 @@
 			
 			$(placeHolder).attr('role', 'img');
 			// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-			$(placeHolder).attr('aria-label', $('caption', self).text() + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
+			$(placeHolder).attr('aria-label', $('caption', srcTbl).text() + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
 			
 			
 			if (!o.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
@@ -1411,13 +1447,13 @@
 				// set the title for the ability to show or hide the table as a data source
 				$(tblSrcContainerSummary).text(tblCaptionHTML + _pe.dic.get('%table-mention'))
 					.appendTo(tblSrcContainer)
-					.after(self);
+					.after(srcTbl);
 
 				_pe.polyfills.enhance('detailssummary', tblSrcContainer);
 				
 			} else {
 				// Move the table inside the figure element
-				$(self).appendTo(figureElem);
+				$(srcTbl).appendTo(figureElem);
 			}
 	
 			// Create the graphic
@@ -1433,6 +1469,11 @@
 			if (o.nolegend) {
 				// Remove the legend
 				$('.legend', placeHolder).remove();
+			}
+			
+			// Destroy the temp table if used
+			if (o.parsedirection === 'y') {
+				$(self).remove();
 			}
 				
 		} // end of exec

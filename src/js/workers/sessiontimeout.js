@@ -5,7 +5,7 @@
 /*
  * Share widget plugin
  */
-/*global jQuery: false, pe:false, wet_boew_sessiontimeout:false, alert:false, confirm:false */
+/*global jQuery: false, wet_boew_sessiontimeout:false, alert:false, confirm:false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -14,7 +14,6 @@
 	/* local reference */
 	_pe.fn.sessiontimeout = {
 		type : 'plugin',
-		depends : ['metadata'],
 		_exec : function (elm) {
 			var opts,
 				// An overlay over the screen when showing the dialog message
@@ -30,7 +29,9 @@
 				redirect,
 				stay_logged_in,
 				timeParse,
-				getExpireTime;
+				getExpireTime,
+				alreadyTimeoutMsg = _pe.dic.get('%st-already-timeout-msg'),
+				timeoutMsg = _pe.dic.get('%st-timeout-msg');
 
 			// Defaults
 			opts = {
@@ -45,13 +46,8 @@
 				powers:	{'ms': 1, 'cs': 10, 'ds': 100, 's': 1000, 'das': 10000, 'hs': 100000, 'ks': 1000000}
 			};
 
-			// Extend the defaults with settings passed through settings.js (wet_boew_sessiontimeout), class-based overrides and the data attribute
-			$.metadata.setType("attr", "data-wet-boew");
-			if (typeof wet_boew_sessiontimeout !== 'undefined' && wet_boew_sessiontimeout !== null) {
-				$.extend(opts, wet_boew_sessiontimeout, elm.metadata());
-			} else {
-				$.extend(opts, elm.metadata());
-			}
+			// Extend the defaults with settings passed through settings.js (wet_boew_sessiontimeout) and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_sessiontimeout !== 'undefined' ? wet_boew_sessiontimeout : {}), _pe.data.getData(elm, 'wet-boew'));
 		
 			//------------------------------------------------------ Main functions
 
@@ -61,10 +57,10 @@
 				if (opts.refreshCallbackUrl.length > 2) {
 					$.post(opts.refreshCallbackUrl,	function (responseData) {
 						// if the response data returns "false", we should display that the session has timed out.
-						if (responseData && responseData.replace(/\s/g, "") !== "false") {
+						if (responseData && responseData.replace(/\s/g, '') !== 'false') {
 							sessionTimeout = setTimeout(keep_session, timeParse(opts.sessionalive));
 						} else {
-							alert(pe.dic.get('%st-already-timeout-msg'));
+							alert(alreadyTimeoutMsg);
 							redirect();
 						}	
 					});
@@ -86,7 +82,7 @@
 					result;
 
 				$(document.body).append(overLay);
-				result = confirm(pe.dic.get('%st-timeout-msg').replace("#expireTime#", expireTime));
+				result = confirm(timeoutMsg.replace('#expireTime#', expireTime));
 				$where_was_i.focus();
 				$('.jqmOverlay').detach();
 				return result;
@@ -140,7 +136,7 @@
 					hours = expire.getHours(), 
 					minutes = expire.getMinutes(), 
 					seconds = expire.getSeconds(),
-					timeformat = hours < 12 ? " AM" : " PM";
+					timeformat = hours < 12 ? ' AM' : ' PM';
 					
 				hours = hours % 12;
 				if (hours === 0) {
@@ -152,12 +148,12 @@
 				minutes = minutes < 10 ? '0' + minutes : minutes;
 				seconds = seconds < 10 ? '0' + seconds : seconds;
 
-				return hours + ":" + minutes + ":" + seconds + timeformat;
+				return hours + ':' + minutes + ':' + seconds + timeformat;
 			};
 		
 			start_liveTimeout();
 			if (opts.refreshOnClick) {
-				$(document).on('click', start_liveTimeout);
+				_pe.document.on('click', start_liveTimeout);
 			}
 
 			return elm;

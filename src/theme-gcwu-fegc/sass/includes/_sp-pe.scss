@@ -7,69 +7,22 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 
-h1 {
-	font-size: 2em;
-	color: #222;
-	border: none;
-	font-weight: bold;
-	margin-bottom: 0 !important;
-	text-shadow: none;
+%gcwu-sp-pe-font-weight-700 {
+	font-weight: 700;
 }
-
-h2 {
-	position: absolute;
-	@include clip-rect;
-	height: 0 !important;
-	width: 0 !important;
-	overflow: hidden !important;
-	margin: 0 !important;
-}
-
-#gcwu-title {
-	text-shadow: none;
-}
-
-#wb-body {
-	background: #fff;
-}
-
-#wb-skip {
-	display: none;
-	visibility: hidden;
-}
-
 %gcwu-sp-pe-title-all {
 	padding-top: 10px;
 	color: #333;
-	font-weight: bold;
+	@extend %gcwu-sp-pe-font-weight-700;
 }
-
 %gcwu-sp-pe-title {
 	font-size: 1.5em;
 	@extend %gcwu-sp-pe-title-all;
 }
-
-#gcwu-title-left {
-	@extend %gcwu-sp-pe-title;
-}
-
-#gcwu-title-right {
-	@extend %gcwu-sp-pe-title;
-}
-
 %gcwu-sp-pe-alt-title {
 	font-size: 1.2em;
 	@extend %gcwu-sp-pe-title-all;
 }
-
-.gcwu-alt-title-left {
-	@extend %gcwu-sp-pe-alt-title;
-}
-
-.gcwu-alt-title-right {
-	@extend %gcwu-sp-pe-alt-title;
-}
-
 %gcwu-sp-pe-lang {
 	list-style-type: none;
 	@include inline-block;
@@ -79,8 +32,8 @@ h2 {
 		min-width: 8em;
 	}
 	li {
-		float: left;
-		padding: 0;
+		@extend %gcwu-sp-pe-float-left;
+		@extend %gcwu-sp-pe-padding-0;
 		text-align: center;
 		a {
 			@include appearance(none);
@@ -94,13 +47,11 @@ h2 {
 			padding: 10px 0;
 			@include border-radius(2px);
 			text-shadow: 0 1px 0 #eee;
-			font: {
-				weight: 700;
-				size: 120%;
-			}
+			@extend %gcwu-sp-pe-font-weight-700;
+			font-size: 120%;
 			@include box-shadow(none);
-			display: block;
-			text-decoration: none;
+			@extend %gcwu-sp-pe-display-block;
+			@extend %gcwu-sp-pe-text-decoration-none;
 			text-transform: capitalize;
 			@include pseudo-focus {
 				text-shadow: 0 1px 0 #ddd;
@@ -109,6 +60,93 @@ h2 {
 			}
 		}
 	}
+}
+%gcwu-sp-pe-tc {
+	list-style-type: none;
+	@include inline-block;
+	margin: 0;
+	padding: {
+		top: 4px;
+		left: 0;
+	}
+	line-height: normal;
+	div {
+		min-width: 8em;
+	}
+	li {
+		@extend %gcwu-sp-pe-float-left;
+		@extend %gcwu-sp-pe-padding-0;
+		a {
+			@extend %gcwu-sp-pe-display-block;
+			@extend %gcwu-sp-pe-text-decoration-none;
+			font-size: 0.9em;
+			@include pseudo-focus {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+%gcwu-sp-pe-text-shadow-none {
+	text-shadow: none;
+}
+%gcwu-sp-pe-float-left {
+	float: left;
+}
+%gcwu-sp-pe-padding-0 {
+	padding: 0;
+}
+%gcwu-sp-pe-display-block {
+	display: block;
+}
+%gcwu-sp-pe-text-decoration-none {
+	text-decoration: none;
+}
+
+h1 {
+	font-size: 2em;
+	color: #222;
+	border: none;
+	@extend %gcwu-sp-pe-font-weight-700;
+	margin-bottom: 0 !important;
+	@extend %gcwu-sp-pe-text-shadow-none;
+}
+
+h2 {
+	position: absolute;
+	@include clip-rect;
+	height: 0 !important;
+	width: 0 !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+}
+
+#gcwu-title {
+	@extend %gcwu-sp-pe-text-shadow-none;
+}
+
+#wb-body {
+	background: #fff;
+}
+
+#wb-skip {
+	display: none;
+	visibility: hidden;
+}
+
+#gcwu-title-left {
+	@extend %gcwu-sp-pe-title;
+}
+
+#gcwu-title-right {
+	@extend %gcwu-sp-pe-title;
+}
+
+.gcwu-alt-title-left {
+	@extend %gcwu-sp-pe-alt-title;
+}
+
+.gcwu-alt-title-right {
+	@extend %gcwu-sp-pe-alt-title;
 }
 
 #gcwu-other-lang {
@@ -129,32 +167,6 @@ h2 {
 
 #gcwu-tc {
 	margin-top: 0;
-}
-
-%gcwu-sp-pe-tc {
-	list-style-type: none;
-	@include inline-block;
-	margin: 0;
-	padding: {
-		top: 4px;
-		left: 0;
-	}
-	line-height: normal;
-	div {
-		min-width: 8em;
-	}
-	li {
-		float: left;
-		padding: 0;
-		a {
-			display: block;
-			text-decoration: none;
-			font-size: 0.9em;
-			@include pseudo-focus {
-				text-decoration: underline;
-			}
-		}
-	}
 }
 
 #gcwu-ef-tc {

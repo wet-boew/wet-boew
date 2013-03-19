@@ -26,7 +26,7 @@
 					input.className += ' deselectable' + (input.checked ? ' checked' : '');
 				}
 			}
-			$(document).on('click vclick', 'input[type="radio"].deselectable', function () {
+			_pe.document.on('click vclick', 'input[type="radio"].deselectable', function () {
 				if (this.className.indexOf(' checked') !== -1) { // Already selected so deselect and remember that it is no longer selected
 					this.checked = false;
 					this.className = this.className.replace(' checked', '');

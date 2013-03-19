@@ -2,6 +2,27 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%gcwu-sp-pe-screen-margin-auto {
+	margin: auto;
+}
+%gcwu-sp-pe-screen-overflow-hidden  {
+	overflow: hidden;
+}
+%gcwu-sp-pe-screen-display-block-auto-margins {
+	display: block;
+	float: none;
+	margin: auto;
+}
+%gcwu-sp-pe-screen-img-margin-bottom-0 {
+	img {
+		margin-bottom: 0;
+	}
+}
+%gcwu-sp-pe-screen-li-margin-right-10 {
+	li {
+		margin-right: 10px;
+	}
+}
 
 html {
 	overflow-y: scroll;
@@ -22,10 +43,6 @@ body {
 	}
 }
 
-%gcwu-sp-pe-screen-margin-auto {
-	margin: auto;
-}
-
 #wb-head-in {
 	@extend %gcwu-sp-pe-screen-margin-auto;
 	@extend %gcwu-sp-pe-screen-overflow-hidden;
@@ -36,10 +53,6 @@ body {
 	@extend %gcwu-sp-pe-screen-overflow-hidden;
 }
 
-%gcwu-sp-pe-screen-overflow-hidden  {
-	overflow: hidden;
-}
-
 #wb-head {
 	@extend %gcwu-sp-pe-screen-overflow-hidden;
 }
@@ -48,28 +61,12 @@ body {
 	@extend %gcwu-sp-pe-screen-overflow-hidden;
 }
 
-%gcwu-sp-pe-screen-display-block-auto-margins {
-	display: block;
-	float: none;
-	margin: auto;
-}
-
-#gcwu-tc {
-	@extend %gcwu-sp-pe-screen-display-block-auto-margins;
-}
-
 #gcwu-sig {
 	@extend %gcwu-sp-pe-screen-display-block-auto-margins;
 	@extend %gcwu-sp-pe-screen-img-margin-bottom-0;
 	margin-top: 20px;
 	margin-bottom: 7px;
 	line-height: normal;
-}
-
-%gcwu-sp-pe-screen-img-margin-bottom-0 {
-	img {
-		margin-bottom: 0;
-	}
 }
 
 #gcwu-wmms {
@@ -116,12 +113,12 @@ body {
 }
 
 #gcwu-lang {
+	@extend %gcwu-sp-pe-screen-li-margin-right-10;
 	margin-top: 20px;
 	line-height: normal;
 }
 
-#gcwu-lang, #gcwu-tc {
-	li {
-		margin-right: 10px;
-	}
+#gcwu-tc {
+	@extend %gcwu-sp-pe-screen-li-margin-right-10;
+	@extend %gcwu-sp-pe-screen-display-block-auto-margins;
 }

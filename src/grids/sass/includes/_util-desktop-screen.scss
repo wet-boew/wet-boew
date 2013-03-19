@@ -9,13 +9,13 @@
 @include equalize;
 
 /*	 columns	 */
-.column-two {
+.column-2 {
 	@include column-count(2);
 }
-.column-three {
+.column-3 {
 	@include column-count(3);
 }
-.column-four {
+.column-4 {
 	@include column-count(4);
 }
 

@@ -99,15 +99,17 @@ $default-box-shadow-v-offset: 0;
 
 	// apply link colors to base only
 	a {
-		&, &:link, &:visited {
-			color: $text;
-		}
+		&, &.ui-link {
+			&, &:link, &:visited {
+				color: $text;
+			}
 
-		@include pseudo-focus {
-			@if $text == white {
-				color: darken($text, 10%);
-			} @else {
-				color: lighten($text, 20%);
+			@include pseudo-focus {
+				@if $text == white {
+					color: darken($text, 10%);
+				} @else {
+					color: lighten($text, 20%);
+				}
 			}
 		}
 	}
@@ -179,11 +181,11 @@ $default-box-shadow-v-offset: 0;
 @mixin pseudo-focus($hover: true) {
     @if $legacy-support-for-ie7 {
         @if $hover {
-            &:hover, &:active {
+            &:hover, &:focus, &:active {
                 @content;
             }
         } @else {
-            &:active {
+            &:focus, &:active {
                 @content;
             }
         }        

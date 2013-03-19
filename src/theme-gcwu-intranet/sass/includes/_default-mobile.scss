@@ -17,13 +17,13 @@
 	a {
 		@extend %gcwu-default-mobile-padding-3-5;
 		white-space: normal;
-		font-weight: normal;
+		font-weight: 400;
 	}
 }
 
 #gcwu-wmms {
 	object {
-		&[data*="wmms.svg"] {
+		&[data*="wmms-static.svg"] {
 			display: none;
 		}
 	}
@@ -32,11 +32,11 @@
 .pe-disable {
 	#gcwu-wmms {
 		object {
-			&[data*="wmms.svg"] {
+			&[data*="wmms-static.svg"] {
 				display: block;
 			}
 		}
-		background: #fff;
+		background: #FFF;
 	}
 }
 

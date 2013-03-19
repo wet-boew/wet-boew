@@ -5,7 +5,7 @@
 /*
  * Slideout
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false, wet_boew_slideout:false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -14,12 +14,11 @@
 	/* local reference */
 	_pe.fn.slideout = {
 		type: 'plugin',
-		depends: ['resize', 'metadata'],
 		opened: false,
 		_exec: function (elm) {
 			var borderWidth = 10,
-				tocText = pe.dic.get('%table-contents'),
-				hideText = pe.dic.get('%hide'),
+				tocText = _pe.dic.get('%table-contents'),
+				hideText = _pe.dic.get('%hide'),
 				closeLink = hideText + '<span class="wb-invisible">' + tocText + '</span>',
 				focusOutlineAllowance = 2,
 				opened = false,
@@ -36,21 +35,22 @@
 				tocLinks,
 				documentToggle,
 				opts,
-				ie7 = pe.ie > 0 && pe.ie < 8,
+				ie7 = _pe.ie > 0 && _pe.ie < 8,
 				$wbcorein = $('#wb-core-in'),
 				defaultOpen = false,
 				tab;
-				
+
 			defaultOpen = elm.hasClass('wb-slideout-open');
-			$.metadata.setType('attr', 'data-wet-boew');
 			opts = {
-				txtShow: pe.dic.get('%show-toc') + tocText,
-				txtHide: hideText + tocText
+				txtShow: _pe.dic.get('%show-toc') + ' ' + tocText,
+				txtHide: hideText + ' ' + tocText
 			};
-			$.extend(opts, elm.metadata());
+
+			// Extend the defaults with settings passed through settings.js (wet_boew_slideout) and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_slideout !== 'undefined' ? wet_boew_slideout : {}), _pe.data.getData(elm, 'wet-boew'));
 
 			// Don't do anything if CSS is disabled
-			if (!pe.cssenabled()) {
+			if (!_pe.cssenabled()) {
 				return;
 			}
 
@@ -90,11 +90,11 @@
 				slideoutClose.off('click vclick touchstart', toggle);
 				wrapper.off('keydown', keyhandler);
 				elm.off('keydown', keyhandler);
-				$(document).off('click vclick touchstart', documentToggle);
+				_pe.document.off('click vclick touchstart', documentToggle);
 
 				if (!opened) {
 					var position = wrapper.offset();
-					if (pe.ie <= 0 || document.documentMode !== undefined) { // IE8 compat. and up
+					if (_pe.ie <= 0 || document.documentMode !== undefined) { // IE8 compat. and up
 						wrapper.removeClass('slideoutWrapper')
 							.addClass('slideoutWrapperRel')
 							.css({'top': position.top - $wbcorein.offset().top, 'right': borderWidth - 10});
@@ -103,13 +103,13 @@
 					setTimeout(function () {
 						elm.show();
 					}, 50);
-					pe.focus(tocLinks.eq(0));
+					_pe.focus(tocLinks.eq(0));
 				}
 
 				opened = !opened;
 				
 				var tabWidth;
-				if (pe.ie <= 0 || pe.ie > 8) { // IE 9 and other browsers
+				if (_pe.ie <= 0 || _pe.ie > 8) { // IE 9 and other browsers
 					tabWidth = tab.width();
 				} else {
 					// tabWidth = tab.height();
@@ -124,7 +124,7 @@
 						elm.hide(); // Hide the widget content if the widget was just closed
 						wrapper.find('#slideoutInnerWrapper').css('width', tab.height());
 
-						if (pe.ie <= 0 || document.documentMode !== undefined) { // IE8 compat. and up
+						if (_pe.ie <= 0 || document.documentMode !== undefined) { // IE8 compat. and up
 							wrapper.addClass('slideoutWrapper');
 							wrapper.removeClass('slideoutWrapperRel');
 							wrapper.css('width', (tabWidth + focusOutlineAllowance) + 'px').css('top', $wbcorein.offset().top);
@@ -140,7 +140,7 @@
 					slideoutClose.on('click vclick touchstart', toggle);
 					wrapper.on('keydown', keyhandler);
 					elm.on('keydown', keyhandler);
-					$(document).on('click vclick touchstart', documentToggle);
+					_pe.document.on('click vclick touchstart', documentToggle);
 				});
 
 				if (opened) {
@@ -181,58 +181,58 @@
 					case 9: // tab key
 						if (opened && ((e.shiftKey && target.is(toggleLink)) || (!e.shiftKey && target.is(slideoutClose)))) {
 							toggleLink.trigger('click');
-							pe.focus(toggleLink);
+							_pe.focus(toggleLink);
 							return false;
 						}
 						break;
 					case 13: // enter key
 						target.trigger('click');
 						if (target.is(slideoutClose)) {
-							pe.focus(toggleLink);
+							_pe.focus(toggleLink);
 							return false;
 						}
 						break;
 					case 27: // escape key
 						if (opened) {
 							toggle();
-							pe.focus(toggleLink);
+							_pe.focus(toggleLink);
 							return false;
 						}
 						break;
 					case 32: // spacebar
 						target.trigger('click');
 						if (target.is(slideoutClose)) {
-							pe.focus(toggleLink);
+							_pe.focus(toggleLink);
 							return false;
 						}
 						break;
 					case 38: // up arrow
 						if (!menuitem) {
 							if (opened) {
-								pe.focus(tocLinks.eq(tocLinks.length - 1));
+								_pe.focus(tocLinks.eq(tocLinks.length - 1));
 							} else {
 								toggleLink.trigger('click');
 							}
 						} else {
 							if (tocLink === 0) {
-								pe.focus(tocLinks.eq(tocLinks.length - 1));
+								_pe.focus(tocLinks.eq(tocLinks.length - 1));
 							} else {
-								pe.focus(tocLinks.eq(tocLink - 1));
+								_pe.focus(tocLinks.eq(tocLink - 1));
 							}
 						}
 						return false;
 					case 40: // down arrow
 						if (!menuitem) {
 							if (opened) {
-								pe.focus(tocLinks.eq(0));
+								_pe.focus(tocLinks.eq(0));
 							} else {
 								toggleLink.trigger('click');
 							}
 						} else {
 							if (tocLink === tocLinks.length - 1) {
-								pe.focus(tocLinks.eq(0));
+								_pe.focus(tocLinks.eq(0));
 							} else {
-								pe.focus(tocLinks.eq(tocLink + 1));
+								_pe.focus(tocLinks.eq(tocLink + 1));
 							}
 						}
 						return false;
@@ -253,10 +253,10 @@
 									}
 								});
 								if (match < (matches.length - 1)) {
-									pe.focus(matches.eq(match + 1));
+									_pe.focus(matches.eq(match + 1));
 									return false;
 								}
-								pe.focus(matches.eq(0));
+								_pe.focus(matches.eq(0));
 							}
 							return false;
 						}
@@ -281,7 +281,7 @@
 					toggle();
 				}
 			};
-			$(document).on('click vclick touchstart', documentToggle);
+			_pe.document.on('click vclick touchstart', documentToggle);
 
 			// Add the 'Hide' link
 			elm.append('<a href="#" id="slideoutClose" role="button" aria-controls="slideout-body">' + closeLink + '</a>');
@@ -309,7 +309,7 @@
 			if (scroll) {
 				wrapper.addClass('slideoutWrapper');
 				// Handle window resize and zoom in/out events
-				pe.resize(reposition);
+				_pe.resize(reposition);
 				reposition();
 			} else {
 				wrapper.addClass('so-ie7');
@@ -324,7 +324,7 @@
 			container.append(wrapper);
 			wrapper.unwrap();
 
-			if (pe.ie <= 0 || pe.ie > 8) { // IE 9 and other browsers
+			if (_pe.ie <= 0 || _pe.ie > 8) { // IE 9 and other browsers
 				tab.css({
 					'height': toggleLink.outerWidth() + 'px',
 					'width': toggleLink.outerHeight() + 'px'
@@ -336,7 +336,7 @@
 				});
 			}
 
-			if (pe.ie > 7 && pe.ie < 9) {  // IE 8
+			if (_pe.ie > 7 && _pe.ie < 9) {  // IE 8
 				$('#slideoutToggle').css({
 					'left': -($('#slideoutToggle').width()) + 'px',
 					'top': $('#slideoutToggle').width() + 'px'
@@ -349,7 +349,7 @@
 
 			// Fix scrolling issue in some versions of IE (#4051)
 			if (ie7) {
-				$('html').css('overflowY', 'auto');
+				_pe.html.css('overflowY', 'auto');
 			}
 
 			//If start Open is turned on then slide out the sidebar

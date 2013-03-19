@@ -14,10 +14,26 @@
 %wet-default-screen-ie-float-right {
 	float: right;
 }
-%wet-default-screen-ie-background-image-logo {
-	background-image: url(../images/logo.png);
+%wet-default-screen-ie-font-size-0 {
+	font-size: 0;
 }
 .ie7 {
+	#wb-skip {
+		li {
+			top: 1px;
+		}
+		a {
+			&:link {
+				@extend %wet-default-screen-ie-font-size-0;
+			}
+			&:visited {
+				@extend %wet-default-screen-ie-font-size-0;
+			}
+			&:active {
+				font-size: 100%;
+			}
+		}
+	}
 	#wb-core {
 		margin-bottom: -20px;
 	}
@@ -37,9 +53,15 @@
 	#wet-title {
 		zoom: 1;
 		@extend %wet-default-screen-ie-position-relative;
-	}
-	#wet-title-in {
-		@extend %wet-default-screen-ie-background-image-logo;
+		a {
+			height: 2.9em;
+			display: block;
+		}
+		span {
+			height: auto;
+			@extend %wet-default-screen-ie-position-relative;
+			top: 0.8em;
+		}
 	}
 	#wet-date-mod {
 		@extend %wet-default-screen-ie-position-relative;
@@ -49,11 +71,13 @@
 	}
 	#wet-tctr {
 		padding: 7px 0 6px;
-		li.wet-tc {
-			padding: 0 10px;
-		}
-		li.wet-tr {
-			padding-left: 10px;
+		li {
+			&.wet-tc {
+				padding: 0 10px;
+			}
+			&.wet-tr {
+				padding-left: 10px;
+			}
 		}
 	}
 	#wet-fullft {
@@ -103,7 +127,10 @@
 
 		#wet-date-mod {
 			@extend %wet-default-screen-ie-float-left;
-			dt, dd {
+			dt {
+				@extend %wet-default-screen-ie7-rtl-float-fix;
+			}
+			dd {
 				@extend %wet-default-screen-ie7-rtl-float-fix;
 			}
 		}
@@ -126,6 +153,7 @@
 		#wet-bnr {
 			@extend %wet-default-screen-ie-float-right;
 		}
+
 		#wet-tctr {
 			li {
 				@extend %wet-default-screen-ie-float-right;
@@ -135,12 +163,12 @@
 }
 
 .ie8 {
-	#wet-title-in {
-		@extend %wet-default-screen-ie-background-image-logo;
-	}
 	#wet-srch-submit {
 		padding: 2px 5px;
 		@extend %wet-default-screen-ie-position-relative;
 		@extend %wet-default-screen-ie-top-1px;
+	}
+	#wet-psnb {
+		padding-bottom: 1px;
 	}
 }

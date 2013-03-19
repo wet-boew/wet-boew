@@ -5,7 +5,7 @@
 /*
  * CSS3 for IE plugin
  */
-/*global jQuery: false, pe:false, PIE:false*/
+/*global jQuery: false, PIE:false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -14,9 +14,9 @@
 	/* local reference */
 	_pe.fn.css3ie = {
 		type : 'plugin',
-		depends : (pe.ie > 0 && pe.ie < 9 ? ['pie', 'resize'] : []),
+		depends : (_pe.ie > 0 && _pe.ie < 9 ? ['pie'] : []),
 		_exec : function (elm) {
-			if (pe.mobile || !(pe.ie > 0 && pe.ie < 9)) {
+			if (_pe.mobile || !(_pe.ie > 0 && _pe.ie < 9)) {
 				return;
 			}
 
@@ -49,7 +49,7 @@
 					return $(this).css('position') === 'static';
 				}).css('position', 'relative');
 
-				if (pe.ie === 7) {
+				if (_pe.ie > 0 && _pe.ie < 8) {
 					body = document.body;
 					r = body.getBoundingClientRect();
 					if ((r.left - r.right) / body.offsetWidth === -1) {
@@ -61,8 +61,8 @@
 					pieEnabled = setupPIE();
 				}
 
-				pe.resize(function () {
-					if (pe.ie === 7) {
+				_pe.resize(function () {
+					if (_pe.ie === 7) {
 						var body = document.body,
 							r = body.getBoundingClientRect();
 						if ((r.left - r.right) / body.offsetWidth !== -1) {

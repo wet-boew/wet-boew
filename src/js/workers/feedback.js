@@ -5,7 +5,7 @@
 /*
  * Form validation plugin
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -26,7 +26,7 @@
 				contact2 = contact_coord.find('#contact2'),
 				info = contact_coord.find('#info'),
 				referrerUrl = document.referrer,
-				urlParams = pe.url(window.location.href).params,
+				urlParams = _pe.url(window.location.href).params,
 				load;
 
 			// Web Questions

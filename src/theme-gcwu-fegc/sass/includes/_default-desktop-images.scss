@@ -10,12 +10,51 @@
 	}
 }
 
+%gcwu-default-desktop-images-scaleX--1 {
+	@include scaleX(-1);
+}
 [dir="rtl"] {
-	#gcwu-bc a {
-		display: inline-block;
+	#gcwu-bc {
+		a {
+			display: inline-block;
+			@extend %gcwu-default-desktop-images-scaleX--1;
+		}
+		li {
+			&:last-child {
+				@extend %gcwu-default-desktop-images-scaleX--1;
+			}
+		}
 	}
 
-	[id|="wb-body"], #wb-skip, #gcwu-gcnb, #gcwu-bnr, #gcwu-psnb .mb-menu, #gcwu-bc li:last-child, #gcwu-bc a, #wb-core, #wb-foot {
-		@include scaleX(-1);
+	[id|="wb-body"] {
+		@extend %gcwu-default-desktop-images-scaleX--1;
+	}
+	#wb-skip {
+		@extend %gcwu-default-desktop-images-scaleX--1;
+	}
+	#gcwu-gcnb {
+		@extend %gcwu-default-desktop-images-scaleX--1;
+	}
+	#gcwu-bnr {
+		@extend %gcwu-default-desktop-images-scaleX--1;
+	}
+	#gcwu-psnb {
+		.mb-menu {
+			@extend %gcwu-default-desktop-images-scaleX--1;
+		}
+	}
+	#wb-core {
+		@extend %gcwu-default-desktop-images-scaleX--1;
+	}
+	#wb-foot {
+		@extend %gcwu-default-desktop-images-scaleX--1;
+	}
+	#gcwu-gcft {
+		@extend %gcwu-default-desktop-images-scaleX--1;
+		#gcwu-gcft-fip {
+			li {
+				@extend %gcwu-default-desktop-images-scaleX--1;
+			}
+		}
 	}
 }

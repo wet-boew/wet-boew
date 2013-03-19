@@ -57,6 +57,12 @@
 	}
 }
 
+.ie8 {
+	.wb-invisible {
+		border: none;
+	}
+}
+
 .ie7, .ie8 {
 	select, button {
 		font-size: 100%

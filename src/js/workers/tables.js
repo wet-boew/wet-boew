@@ -5,7 +5,7 @@
 /*
  * DataTables
  */
-/*global jQuery: false, pe:false, wet_boew_tables: false*/
+/*global jQuery: false, wet_boew_tables: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -13,7 +13,7 @@
 	}; /* local reference */
 	_pe.fn.tables = {
 		type: 'plugin',
-		depends: ['metadata','datatables'],
+		depends: ['datatables'],
 		dependscss: ['datatables'],
 		_exec: function (elm) {
 			var opts,
@@ -30,17 +30,10 @@
 			};
 			
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
-			overrides = {
-				
-			};
+			overrides = {};
 			
-			// Extend the defaults with settings passed through settings.js (wet_boew_tables), class-based overrides and the data attribute
-			$.metadata.setType('attr', 'data-wet-boew');
-			if (typeof wet_boew_tables !== 'undefined' && wet_boew_tables !== null) {
-				$.extend(opts, wet_boew_tables, overrides, elm.metadata());
-			} else {
-				$.extend(opts, overrides, elm.metadata());
-			}
+			// Extend the defaults with settings passed through settings.js (wet_boew_tables), class-based overrides and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_tables !== 'undefined' ? wet_boew_tables : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 			
 			elm.dataTable({
 				'aoColumnDefs': [ { 'bVisible': (opts.visible === true), 'aTargets': opts.vColumns } ],
@@ -50,26 +43,32 @@
 				'bSort': (opts.sort === true),
 				'oLanguage': {
 					'oAria': {
-						'sSortAscending': pe.dic.get('%sSortAscending'),
-						'sSortDescending': pe.dic.get('%sSortDecending')
+						'sSortAscending': _pe.dic.get('%sSortAscending'),
+						'sSortDescending': _pe.dic.get('%sSortDecending')
 					},
 					'oPaginate': {
-						'sFirst': pe.dic.get('%first'),
-						'sLast': pe.dic.get('%last'),
-						'sNext': pe.dic.get('%next'),
-						'sPrevious': pe.dic.get('%previous')
+						'sFirst': _pe.dic.get('%first'),
+						'sLast': _pe.dic.get('%last'),
+						'sNext': _pe.dic.get('%next'),
+						'sPrevious': _pe.dic.get('%previous')
 					},
-					'sEmptyTable': pe.dic.get('sEmptyTable'),
-					'sInfo': pe.dic.get('%sInfo'),
-					'sInfoEmpty': pe.dic.get('%sInfoEmpty'),
-					'sInfoFiltered': pe.dic.get('%sInfoFiltered'),
-					'sInfoThousands': pe.dic.get('%sInfoThousands'),
-					'sLengthMenu': pe.dic.get('%sLengthMenu'),
-					'sLoadingRecords': pe.dic.get('%loading'),
-					'sProcessing': pe.dic.get('%processing'),
-					'sSearch': pe.dic.get('%search') + pe.dic.get('%colon'),
-					'sZeroRecords': pe.dic.get('%no-match-found')
-				}				
+					'sEmptyTable': _pe.dic.get('sEmptyTable'),
+					'sInfo': _pe.dic.get('%sInfo'),
+					'sInfoEmpty': _pe.dic.get('%sInfoEmpty'),
+					'sInfoFiltered': _pe.dic.get('%sInfoFiltered'),
+					'sInfoThousands': _pe.dic.get('%sInfoThousands'),
+					'sLengthMenu': _pe.dic.get('%sLengthMenu'),
+					'sLoadingRecords': _pe.dic.get('%loading'),
+					'sProcessing': _pe.dic.get('%processing'),
+					'sSearch': _pe.dic.get('%search') + _pe.dic.get('%colon'),
+					'sZeroRecords': _pe.dic.get('%no-match-found')
+				},
+				'fnDrawCallback': function() {
+					// Re-equalize element heights if the equalize plugin is active on #wb-main
+					if(_pe.main.hasClass('wet-boew-equalize')) {
+						_pe.fn.equalize._exec(_pe.main);
+					}
+				}
 			});
 		} // end of exec
 	};
