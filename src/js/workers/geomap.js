@@ -119,11 +119,44 @@
 
 			return elm; // end of exec
 		}, // end of exec
-		accessibilize: function() {
+		
+		addPanZoomBar: function() {
+			
+			var mapControl = _pe.dic.get('%geo-mapcontrol');
+			var panZoomBar = new OpenLayers.Control.PanZoomBar();
+			
+			OpenLayers.Util.extend(panZoomBar, {
+				draw: function(px) {
+					// initialize our internal div
+					var oButtons = this;
+					var centered = new OpenLayers.Pixel(7.5, 81);
+					OpenLayers.Control.prototype.draw.apply(oButtons, arguments);
+			
+					// place the controls
+					oButtons.buttons = [];
+					
+					oButtons._addButton('panup', 'transparent.png');
+					oButtons._addButton('panleft', 'transparent.png');
+					oButtons._addButton('panright', 'transparent.png');
+					oButtons._addButton('pandown', 'transparent.png');				
+					oButtons._addButton('zoomin', 'transparent.png');
+					oButtons._addZoomBar(centered.add(7.5,0));
+					oButtons._addButton('zoomout', 'transparent.png');
+					oButtons._addButton('zoomworld', 'transparent.png');
+			
+					// add custom CSS styles
+					$(oButtons.slider).attr('class', 'olControlSlider');
+					$(oButtons.slider).find('img').attr('class', 'olControlSlider');
+					$(oButtons.zoombarDiv).attr('class', 'olControlBar');
+					return oButtons.div;
+				}
+			});
+			
+			map.addControl(panZoomBar);
+			
 			/*
 			 *	Add alt text to map controls and make tab-able
 			 */
-			var mapControl = _pe.dic.get('%geo-mapcontrol');
 			$('div.olButton').each(function() {
 				var $div = $(this),
 					$img = $div.find('img.olAlphaImg'),
@@ -135,8 +168,8 @@
 
 					// add alt text
 					altTxt = _pe.dic.get('%geo-' + actn);
-					$img.attr('alt', altTxt);
-					$div.attr('title', altTxt);
+					$img.attr('alt', altTxt).addClass('olControl' + actn);
+					$div.attr('title', altTxt).addClass('olControl' + actn);
 				}
 			});			
 			
@@ -1180,7 +1213,7 @@
 			if (opts.useScaleLine) {
 				map.addControl(new OpenLayers.Control.ScaleLine());
 			}
-			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
+
 			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
 
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
@@ -1206,8 +1239,8 @@
 				}
 			});
 
-			// add accessibility enhancements
-			this.accessibilize();					
+			// add pan zoom bar
+			_pe.fn.geomap.addPanZoomBar();					
 
 			// zoom to the maximum extent specified
 			map.zoomToMaxExtent();			
