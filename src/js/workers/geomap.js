@@ -794,7 +794,6 @@
 										internalProjection: map.getProjectionObject(),
 										externalProjection: new OpenLayers.Projection('EPSG:4269'),
 										read: function(data) {
-											console.log(data);
 											var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
 												row, i, len, feature, atts, features = [],
 												layerAttributes = layer.attributes,
