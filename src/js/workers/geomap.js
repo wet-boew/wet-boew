@@ -130,7 +130,7 @@
 					actn;
 				
 				if (typeof img !== 'undefined') {
-					actn = this.action
+					actn = this.action;
 					if (actn !== undefined) {
 						// add alt text
 						altTxt = _pe.dic.get('%geo-' + actn);
