@@ -483,8 +483,9 @@
 				cols.push($col);
 			});		
 
-			if (zoomTo) {	
-				$(cols[cols.length - 1]).empty().append(_pe.fn.geomap.addZoomTo($row, context.feature, context.selectControl));
+			if (zoomTo) {
+				cols.push($('<td>'));
+				$(cols[cols.length - 1]).empty().append(_pe.fn.geomap.addZoomTo($row, context.feature, context.selectControl).children());
 			}
 
 			if (context.type !== 'head') {
@@ -551,7 +552,7 @@
 			$.each(evt.features, function(index, feature) {												
 				var context = {
 					'type': 'body',
-					'id': feature.id.replace(/\W/g, "_"),
+					'id': feature.id.replace(/\W/g, '_'),
 					'feature': feature,
 					'selectControl': selectControl
 				};									
@@ -561,16 +562,26 @@
 			if (datatable) {	
 				$targetTable.addClass('createDatatable');
 			}
+		},
+		
+		/*
+		 * Handle overlays once loading has ended
+		 *
+		 */
+		onLoadEnd: function() {
+			// TODO: Fix no alt attribute on tile image in OpenLayers rather than use this override
+			_pe.main.find('.olTileImage').attr('alt', '');
 
 			// we need to call it here as well because if we use a config outside the domain it is called
-			// before the table is created. We need to call it only once when all overlays are loaded.
+			// before the table is created. We need to call it only once loading for all overlays has ended
 			overlaysLoaded += 1;
 			if (overlays === overlaysLoaded) {
 				_pe.fn.geomap.refreshPlugins();
 				overlays = 0;
+				overlaysLoaded = 0;
 			}
 		},
-		
+
 		/*
 		 * Handle features once they have been added to the map for tabular data
 		 *
@@ -783,6 +794,7 @@
 										internalProjection: map.getProjectionObject(),
 										externalProjection: new OpenLayers.Projection('EPSG:4269'),
 										read: function(data) {
+											console.log(data);
 											var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
 												row, i, len, feature, atts, features = [],
 												layerAttributes = layer.attributes,
@@ -813,8 +825,7 @@
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 									},
 									'loadend': function() {
-										// TODO: Fix no alt attribute on tile image in OpenLayers rather than use this override
-										_pe.main.find('.olTileImage').attr('alt', '');
+										_pe.fn.geomap.onLoadEnd();
 									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
@@ -867,8 +878,7 @@
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 									},
 									'loadend': function() {
-										// TODO: Fix no alt attribute on tile image in OpenLayers rather than use this override
-										_pe.main.find('.olTileImage').attr('alt', '');
+										_pe.fn.geomap.onLoadEnd();
 									}									
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
@@ -925,8 +935,7 @@
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 									},
 									'loadend': function() {
-										// TODO: Fix no alt attribute on tile image in OpenLayers rather than use this override
-										_pe.main.find('.olTileImage').attr('alt', '');
+										_pe.fn.geomap.onLoadEnd();
 									}								
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
@@ -983,8 +992,7 @@
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 									},
 									'loadend': function() {
-										// TODO: Fix no alt attribute on tile image in OpenLayers rather than use this override
-										_pe.main.find('.olTileImage').attr('alt', '');
+										_pe.fn.geomap.onLoadEnd();
 									}									
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
@@ -1020,7 +1028,7 @@
 												// parse and store the attributes
 												// TODO: test on nested attributes
 												atts = {};
-												for (var name in layerAttributes) {
+												for (name in layerAttributes) {
 													if (layerAttributes.hasOwnProperty(name)) {
 														atts[layerAttributes[name]] = row.properties[name];														
 													}
@@ -1041,8 +1049,7 @@
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
 									},
 									'loadend': function() {
-										// TODO: Fix no alt attribute on tile image in OpenLayers rather than use this override
-										_pe.main.find('.olTileImage').attr('alt', '');
+										_pe.fn.geomap.onLoadEnd();
 									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
