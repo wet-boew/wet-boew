@@ -484,7 +484,6 @@
 			});		
 
 			if (zoomTo) {	
-				cols.push($('<td>'));
 				$(cols[cols.length - 1]).empty().append(_pe.fn.geomap.addZoomTo($row, context.feature, context.selectControl));
 			}
 
@@ -585,7 +584,7 @@
 
 			// add zoom column
 			if (zoomColumn) {
-				$tr.append('<td>' + _pe.fn.geomap.addZoomTo($tr, feature).html() + '</td>');
+				$tr.append(_pe.fn.geomap.addZoomTo($tr, feature));
 			}
 
 			$select = $tr.find('td.select');						
@@ -627,7 +626,7 @@
 		 *
 		 */
 		addZoomTo: function(row, feature){
-			var $ref = $('<a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a>').on('click focus blur', function(e) {
+			var $ref = $('<td><a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a></td>').on('click focus blur', 'a', function(e) {
 				var type = e.type;
 				if (type === 'click') {
 					e.preventDefault();			
@@ -635,6 +634,7 @@
 					row.closest('tr').attr('class', 'background-highlight');
 					selectControl.unselectAll();
 					selectControl.select(feature);
+					$.mobile.silentScroll(_pe.focus(_pe.main.find('#geomap')).offset().top);
 				} else if (type === 'focus') {
 					row.addClass('background-highlight');
 					selectControl.unselectAll();
