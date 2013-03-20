@@ -28,26 +28,26 @@
 				warning: 'WET-Geomap WARNING',
 				warningLegend: 'No div element with a class of <em>wet-boew-geomap-legend</em> was found. If you require a legend either add a div with a class of <em>wet-boew-geomap-legend</em>.',
 				overlayNotSpecify: 'WET-Geomap: overlays file not specified',
-				baseMapMapOptionsLoadError: 'WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. \'-3000000.0, -800000.0, 4000000.0, 3900000.0\'), maxResolution (e.g. \'auto\'), projection (e.g. \'EPSG:3978\'), restrictedExtent (e.g. \'-3000000.0, -800000.0, 4000000.0, 3900000.0\'), units (e.g. \'m\'), displayProjection: (e.g. \'EPSG:4269\'), numZoomLevels: (e.g. 12).',
+				baseMapMapOptionsLoadError: "WET-Geomap: an error occurred when loading the mapOptions in your basemap configuration. Please ensure that you have the following options set: maxExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), maxResolution (e.g. 'auto'), projection (e.g. 'EPSG:3978'), restrictedExtent (e.g. '-3000000.0, -800000.0, 4000000.0, 3900000.0'), units (e.g. 'm'), displayProjection: (e.g. 'EPSG:4269'), numZoomLevels: (e.g. 12), aspectRatio: (e.g. 0.8).",
 				warningTab: 'No class <em>tab</em> in wet-boew-geomap but a table has tab attribute set to true.',
-				layersNotSpecify: 'No div with id \'wet-boew-geomap-layers\' can\'t be found. You need to add one.'
+				layersNotSpecify: 'No div with id <em>wet-boew-geomap-layers</em> have been found. You need to add one.'
 			},
 			fr: {
 				debugMode: 'BOEW-Géocarte : mode débogage activé',
-				debugMess:'Lors de l\'exécution en mode débogage Geomap donne des messages d\'erreur, des messages d\'aide et donneras de l\'information utile dans la console de débogage. Désactiver le mode débogage en supprimant la classe <em>debug</em>.',
+				debugMess:"Lors de l'exécution en mode débogage Geomap donne des messages d'erreur, des messages d'aide et donneras de l'information utile dans la console de débogage. Désactiver le mode débogage en supprimant la classe <em>debug</em>.",
 				overlayLoad: 'BOEW-Géocarte : Les couches de superpositions ont été chargées avec succès',
 				overlayNotLoad: 'BOEW-Géocarte : une erreur est survenue lors du chargement des couches de superpositions',
 				basemapDefault: 'BOEW-Géocarte : la carte de base par défaut est utilisée',
 				projection: 'BOEW-Géocarte : la projection utilisée est',
 				error: 'BOEW-Géocarte ERREUR',
-				errorSelect: 'Cette cellule a la classe <em>select</em> mais aucun lien n\'a été trouvé. S\'il vous plaît, ajouter un lien à cette cellule.',
-				errorNoSelect: 'Cette table contient des lignes qui n\'ont pas de cellule avec la classe <em>select</em>. S\'il vous plaît, assurer vous que chaque ligne a exactement une cellule avec la classe <em>select</em> et celle-ci doit contenir un lien.',
+				errorSelect: "Cette cellule a la classe <em>select</em> mais aucun lien n'a été trouvé. S'il vous plaît, ajouter un lien à cette cellule.",
+				errorNoSelect: "Cette table contient des lignes qui n'ont pas de cellule avec la classe <em>select</em>. S'il vous plaît, assurer vous que chaque ligne a exactement une cellule avec la classe <em>select</em> et celle-ci doit contenir un lien.",
 				warning: 'BOEW-Geomap AVERTISSEMENT',
-				warningLegend: 'Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n\' été trouvé. Si vous avez besoin d\'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em> .',
+				warningLegend: "Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n'a été trouvé. Si vous avez besoin d'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em>.",
 				overlayNotSpecify: 'BOEW-Géocarte : fichier des couches de superpositions non spécifié',
-				baseMapMapOptionsLoadError: 'BOEW-Géocarte : une erreur est survenue lors du chargement des options de configuration de votre carte de base. S\'il vous plaît, vérifiez que vous avez l\'ensemble des options suivantes: maxExtent (ex: \'-3000000,0, -800000,0, 4000000,0, 3900000,0\'), maxResolution (ex: \'auto\'), projection (ex: \'EPSG: 3978\'), restrictedExtent (ex: \'-3000000,0 , -800000,0, 4000000,0, 3900000,0\'), units (ex: \'m\'), displayProjection (ex: \'EPSG: 4269\'), numZoomLevels (ex: 12).',	
-				warningTab: 'Il n\'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l\'attribut égal vrai.',
-				layersNotSpecify: 'Il n\y a pas de div avec le id \'wet-boew-geomap-layers\'. Vous devez en ajouter un.'
+				baseMapMapOptionsLoadError: "BOEW-Géocarte : une erreur est survenue lors du chargement des options de configuration de votre carte de base. S'il vous plaît, vérifiez que vous avez l'ensemble des options suivantes: maxExtent (ex: '-3000000,0, -800000,0, 4000000,0, 3900000,0'), maxResolution (ex: 'auto'), projection (ex: 'EPSG: 3978'), restrictedExtent (ex: '-3000000,0 , -800000,0, 4000000,0, 3900000,0'), units (ex: 'm'), displayProjection (ex: 'EPSG: 4269'), numZoomLevels (ex: 12), aspectRatio: (ex: 0.8).",	
+				warningTab: "Il n'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l'attribut égal vrai.",
+				layersNotSpecify: "Il n'y a pas de div avec le id <em>wet-boew-geomap-layers</em>. Vous devez en ajouter un."
 			}
 		},
 		init: function() {

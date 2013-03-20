@@ -145,7 +145,7 @@
 					oButtons._addButton('zoomworld', 'transparent.png');
 			
 					// add custom CSS styles
-					$(oButtons.slider).attr('class', 'olControlSlider').find('img').attr('class', 'olControlSlider');;
+					$(oButtons.slider).attr('class', 'olControlSlider').find('img').attr('class', 'olControlSlider');
 					$(oButtons.zoombarDiv).attr('class', 'olControlBar');
 					return oButtons.div;
 				}
@@ -729,6 +729,7 @@
 						mapOptions.units = mapOpts.units;
 						mapOptions.displayProjection = new OpenLayers.Projection(mapOpts.displayProjection);
 						mapOptions.numZoomLevels = mapOpts.numZoomLevels;
+						mapOptions.aspectRatio = mapOpts.aspectRatio;
 					} catch (err) {
 						if (opts.debug) {
 							_pe.document.trigger('geomap-baseMapMapOptionsLoadError');
@@ -1213,26 +1214,16 @@
 
 			// enable the keyboard navigation when map div has focus. Disable when blur
 			// Enable the wheel zoom only on hover
-			$geomap.attr('tabindex', '0').addClass('map-blur').on('mouseenter mouseleave focus blur', function(e) {
-				var type = e.type,
-					$this = $(this),
-					mapDiv = this;
+			$geomap.attr('tabindex', '0').on('mouseenter mouseleave focus blur', function(e) {
+				var type = e.type;
 				if (type === 'mouseenter') {
 					map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
-					mapDiv.classList.add('map-focus');
-					mapDiv.classList.remove('map-blur');
 				} else if (type === 'mouseleave') {
 					map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();					
-					mapDiv.classList.add('map-blur');
-					mapDiv.classList.remove('map-focus');
 				} else if (type === 'focus') {
 					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
-					mapDiv.classList.add('map-focus');
-					mapDiv.classList.remove('map-blur');
 				} else {
 					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
-					mapDiv.classList.add('map-blur');
-					mapDiv.classList.remove('map-focus');
 				}
 			});
 
