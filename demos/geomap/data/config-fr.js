@@ -1,25 +1,21 @@
+/*!
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
 /*
- *
- * Boîte à outils de l'expérience Web (BOEW) / Web Experience Toolkit (WET)
- * wet-boew.github.com/wet-boew/Licence-fra.txt / wet-boew.github.com/wet-boew/License-eng.txt
- *
- * Version: @wet-boew-build.version@
- *
- *
- *
- * BOEW-WET-Geomap-Configuration
-*/
+ * Exemple d'un fichier de configuration français pour Géocarte
+ */
 
 /*
  * Les composantes individuelles seront substituées par les compasantes globales
  *
  * Les couche de superpositions seront ajoutés dans l'ordre où ils sont fournis
  * (c'est à dire la première couche sera ajouté en premier, puis la suivante
- * sur le dessus, et ainsi de suite). 
- * 
+ * sur le dessus, et ainsi de suite).
+ *
  * Prennez note, la carte de base peut être définie globalement dans le fichier settings.js.
-*/
- var wet_boew_geomap = {
+ */
+var wet_boew_geomap = {
 	// OPTIONNEL: Géomap va fournir une carte de base par défaut si aucune carte de base n'est spécifié ici.
 	/*
 	basemap : {
@@ -33,7 +29,7 @@
 		mapOptions: {
 			maxExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',			
 			maxResolution: 'auto',
-			projection: 'EPSG:3978', 
+			projection: 'EPSG:3978',
 			restrictedExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
 			units: 'm',
 			displayProjection: 'EPSG:4269',
@@ -44,37 +40,37 @@
 	/*
 	basemap : {
 		title: 'WMS Demo',
-	    type: 'wms',	   
-	    url: 'http://vmap0.tiles.osgeo.org/wms/vmap0',
-	    layers: 'basic'
+		type: 'wms',	
+		url: 'http://vmap0.tiles.osgeo.org/wms/vmap0',
+		layers: 'basic'
 	},
 	*/	
 	overlays : [		
 		{
-		    title: 'KML Demo FR',
-		    caption: 'Ceci est un exemple de fichier KML chargé localement par Géomap.',
-		    type: 'kml',
-		    url: 'data/sample.kml',		   
-		    visible: true,
-		    datatable: true,
-		    tab: true,
-		    attributes: {
-		    	name: 'Titre du produit',
-		    	description: 'Description'
-		    },
+			title: 'KML Demo FR',
+			caption: 'Ceci est un exemple de fichier KML chargé localement par Géomap.',
+			type: 'kml',
+			url: 'data/sample.kml',		
+			visible: true,
+			datatable: true,
+			tab: true,
+			attributes: {
+				name: 'Titre du produit',
+				description: 'Description'
+			}
 		},
 		{
-		    title: 'ATOM Demo FR',
-		    caption: 'Ceci est un exemple de fil ATOM chargé localement par Géomap.',
-		    type: 'atom',
-		    url: 'data/sample.atom',
-		    attributes: {
-		    	title: 'Titre',
-		    	summary: 'À propos de ce jeux de données'
-		    },
-		    visible: false,
-		    datatable: false,
-		    tab: true
+			title: 'ATOM Demo FR',
+			caption: 'Ceci est un exemple de fil ATOM chargé localement par Géomap.',
+			type: 'atom',
+			url: 'data/sample.atom',
+			attributes: {
+				title: 'Titre',
+				summary: 'À propos de ce jeux de données'
+			},
+			visible: false,
+			datatable: false,
+			tab: true
 		},
 		{
 			title: 'GeoRSS Demo FR',
@@ -107,7 +103,7 @@
 				title: 'Titre',
 				summary: 'Résumé',				
 				author: 'Autheur'
-			},
+			}
 		},
 		{
 			title: 'GeoJSON (CartoDB) FR',
@@ -128,42 +124,44 @@
 			zoom:  true,
 			datatable: true,
 			tab: true,		
-			 // default style			
-			 style: {
-				 type: 'symbol',
-				 init: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera.png', 'fillOpacity': 1.0 }, 
-				 select: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera_active.png', 'fillOpacity': 1.0 }
-			 }
-//		     // unique value style
-//			 style: {
-//				 type: 'unique',
-//				 field: 'Location',
-//				 init: {'Bayshore & Richmond': {'pointRadius':'25', 'strokeWidth':'20', 'strokeColor': '#800080'},'Baseline & Greenbank': {'pointRadius':'25', 'strokeWidth':'10', 'fillColor': '#800080'}},
-//				 select: {'pointRadius': 30, 'externalGraphic': '../../OverIcon.png', 'label': "${Location}", 'fillOpacity': 0.90} 
-//			 }
-//			// rule style
-//			style: {
-//				type: 'rule',
-//				rule: [{
-//						field: 'Longitude',
-//						value: [45.36],
-//						filter: 'LESS_THAN',
-//						init: {'pointRadius': '15', 'strokeColor': '#800000','fillColor': '#FFFFFF', 'fillOpacity': 0.90}
-//				},
-//						{
-//						field: 'Longitude',
-//						value: [45.37, 45.42],
-//						filter: 'BETWEEN',
-//						init: {'pointRadius': '25', 'strokeColor': '#000000','fillColor': '#222222', 'fillOpacity': 0.90}
-//				},
-//						{
-//						field: 'Longitude',
-//						value: [45.42],
-//						filter: 'GREATER_THAN',
-//						init: {'pointRadius': '10', 'strokeColor': '#800080','fillColor': '#800080'}
-//				}],
-//				select: {'pointRadius': '30', 'externalGraphic': '../../OverIcon.png', 'label': "Selected", 'fillOpacity': 0.90}
-//			}
+			// default style			
+			style: {
+				type: 'symbol',
+				init: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera.png', 'fillOpacity': 1.0 },
+				select: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera_active.png', 'fillOpacity': 1.0 }
+			}
+			/*
+			// unique value style
+			style: {
+				type: 'unique',
+				field: 'Location',
+				init: {'Bayshore & Richmond': {'pointRadius':'25', 'strokeWidth':'20', 'strokeColor': '#800080'},'Baseline & Greenbank': {'pointRadius':'25', 'strokeWidth':'10', 'fillColor': '#800080'}},
+				select: {'pointRadius': 30, 'externalGraphic': '../../OverIcon.png', 'label': "${Location}", 'fillOpacity': 0.90}
+			}
+			// rule style
+			style: {
+				type: 'rule',
+				rule: [{
+						field: 'Longitude',
+						value: [45.36],
+						filter: 'LESS_THAN',
+						init: {'pointRadius': '15', 'strokeColor': '#800000','fillColor': '#FFFFFF', 'fillOpacity': 0.90}
+				},
+						{
+						field: 'Longitude',
+						value: [45.37, 45.42],
+						filter: 'BETWEEN',
+						init: {'pointRadius': '25', 'strokeColor': '#000000','fillColor': '#222222', 'fillOpacity': 0.90}
+				},
+						{
+						field: 'Longitude',
+						value: [45.42],
+						filter: 'GREATER_THAN',
+						init: {'pointRadius': '10', 'strokeColor': '#800080','fillColor': '#800080'}
+				}],
+				select: {'pointRadius': '30', 'externalGraphic': '../../OverIcon.png', 'label': "Selected", 'fillOpacity': 0.90}
+			}
+			*/
 		}	
 	]
 };
