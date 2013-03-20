@@ -201,7 +201,7 @@
 		 * Create a table for vector features added in Load Overlays
 		 */
 		createTable: function(index, title, caption, datatable) {
-			return $('<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot>' : '') + '</table>');
+			return $('<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot></table><div class="clear"></div>' : '</table>'));
 		},		
 
 		/*
@@ -1302,11 +1302,6 @@
 				'plugins': {
 					'tables': $createDatatable
 				}
-			});
-
-			// Workaround for nesting data tables in a tab panel
-			$createDatatable.each(function() {
-				$(this).parent().append('<div class="clear"></div>');
 			});
 
 			if (_pe.mobile) {
