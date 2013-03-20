@@ -1,4 +1,4 @@
-/*!
+/*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
@@ -801,12 +801,13 @@
 										externalProjection: new OpenLayers.Projection('EPSG:4269'),
 										read: function(data) {
 											var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
-												row, i, len, feature, atts, features = [],
+												row, $row, i, len, feature, atts, features = [],
 												layerAttributes = layer.attributes,
 												name;
 
 											for (i = 0, len = items.length; i !== len; i += 1) {
 												row = items[i];
+												$row = $(row);
 												feature = new OpenLayers.Feature.Vector();
 												feature.geometry = this.parseFeature(row).geometry;
 
@@ -815,7 +816,7 @@
 												atts = {};
 												for (name in layerAttributes) {
 													if (layerAttributes.hasOwnProperty(name)) {
-														atts[layerAttributes[name]] = $(row).find(name).text();
+														atts[layerAttributes[name]] = $row.find(name).text();
 													}
 												}
 												feature.attributes = atts;
