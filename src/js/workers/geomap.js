@@ -1,4 +1,4 @@
-/*!
+/*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
@@ -65,9 +65,9 @@
 			OpenLayers.ImgPath = lib + 'images/geomap/';
 
 			// Add projection for default base map
-			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
+			Proj4js.defs['EPSG:3978'] = '+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs';
 
-			// Initiate the map
+			// Initiate the map. Height set by default. Will be reinitialize by value from user if provided.
 			elm.attr('id', 'geomap').height(elm.width() * 0.8);
 
 			_pe.document.on('wb-init-loaded', function() {
@@ -117,33 +117,74 @@
 				}
 			});
 
-			return elm; // end of exec
+			return elm;
 		}, // end of exec
-		accessibilize: function() {
+		
+		addPanZoomBar: function() {
+			
+			var mapControl = _pe.dic.get('%geo-mapcontrol');
+			var panZoomBar = new OpenLayers.Control.PanZoomBar();
+			
+			OpenLayers.Util.extend(panZoomBar, {
+				draw: function(px) {
+					// initialize our internal div
+					var oButtons = this;
+					var centered = new OpenLayers.Pixel(7.5, 81);
+					OpenLayers.Control.prototype.draw.apply(oButtons, arguments);
+			
+					// place the controls
+					oButtons.buttons = [];
+					
+					oButtons._addButton('panup', 'transparent.png');
+					oButtons._addButton('panleft', 'transparent.png');
+					oButtons._addButton('panright', 'transparent.png');
+					oButtons._addButton('pandown', 'transparent.png');				
+					oButtons._addButton('zoomin', 'transparent.png');
+					oButtons._addZoomBar(centered.add(7.5,0));
+					oButtons._addButton('zoomout', 'transparent.png');
+					oButtons._addButton('zoomworld', 'transparent.png');
+			
+					// add custom CSS styles
+					$(oButtons.slider).attr('class', 'olControlSlider').find('img').attr('class', 'olControlSlider');
+					$(oButtons.zoombarDiv).attr('class', 'olControlBar');
+					return oButtons.div;
+				}
+			});
+			
+			map.addControl(panZoomBar);
+			
 			/*
 			 * Add alt text to map controls and make tab-able
 			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
 			 */
-			_pe.main.find('div.olControlPanZoomBar div').each(function() {
-				var img = this.getElementsByTagName('img')[0],
-					altTxt,
-					actn;
-				
+			var controls = _pe.main.find('div.olControlPanZoomBar div').get(),
+				len = controls.length,
+				control,
+				img,
+				altTxt,
+				actn;
+
+			while (len--) {
+				control = controls[len];
+				img = control.getElementsByTagName('img')[0];
+
 				if (typeof img !== 'undefined') {
-					actn = this.action;
+					actn = control.action;
 					if (actn !== undefined) {
 						// add alt text
 						altTxt = _pe.dic.get('%geo-' + actn);
-						this.setAttribute('title', altTxt);
+						control.setAttribute('title', altTxt);
+						control.classList.add('olControl' + actn);
 						img.tabIndex = 0;
 					} else {
 						// Add null alt text to slider image since should be ignored
 						altTxt = '';
 					}
 					img.setAttribute('alt', altTxt);
+					img.classList.add('olControl' + actn);
 				}
-			});
-		}, // end accessibilize function		
+			}
+		}, // end addPanZoomBar function
 
 		/*
 		 * Map feature select
@@ -172,11 +213,7 @@
 		createLegend: function() {
 			// Create legend div if not there
 			if (_pe.fn.geomap.debug && !($('.wet-boew-geomap-legend').length)) {	
-				_pe.document.trigger('geomap-warningLegend');
-				
-				// removed this for now - we need to rethink this as it is difficult
-				// to ensure a semantically and structurally sound markup
-				//$('.wet-boew-geomap').parent().after('<div class=".wet-boew-geomap-legend"><h2>Legend</h2><div class="wet-boew-geomap-legend"></div></div><div class="clear"></div>');			
+				_pe.document.trigger('geomap-warningLegend');		
 			}		
 		},
 
@@ -188,7 +225,7 @@
 			if (tab) {
 				// user has specified where they want to put the tabs
 				var $tabs = $('.wet-boew-geomap-tabs');
-				if ($tabs.length) {
+				if ($tabs.length !== 0) {
 					$tabs.addClass('wet-boew-tabbedinterface auto-height-none').append('<ul class="tabs"></ul><div class="tabs-panel"></div>');
 				// user hasn't specified where they want the tabs
 				} else {
@@ -233,8 +270,10 @@
 				$layerTitle = $('<h3 id="' + featureTableId + '" class="background-light">' + title + '</h3>'),
 				$alert = $('<div id="msg_' + featureTableId + '" class="module-attention module-simplify margin-top-medium margin-bottom-medium"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');
 
-			// TODO: add debug message for div with id 'wet-boew-geomap-layers' can't be found and prompt to have it added
-
+			if (_pe.fn.geomap.debug && ($div.length === 0)) {
+				_pe.document.trigger('geomap-layersNotSpecify');
+			}
+			
 			// if tabs are specified
 			if (tab && $('.wet-boew-geomap-tabs').length !== 0) {
 				_pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
@@ -355,101 +394,88 @@
 					'strokeColor': "#00f",
 					'fillColor': "#00f",
 					'fillOpacity': 0.4,
-					//'pointRadius': 5,
 					'strokeWidth': 2.0
 				};
 
 			// if style is supplied, create it. If not, create the default one.
 			if (typeof elm.style !== 'undefined') {
 				// Check the style type (by default, no type are supplied).
-				switch(elm.style.type) {
-				case 'unique':
+				if (elm.style.type === 'unique') {
 					// set the select style then the unique value.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
 					styleMap = new OpenLayers.StyleMap({'select': new OpenLayers.Style(select)});
 					styleMap.addUniqueValueRules('default', elm.style.field, elm.style.init);
-					break;
-
-				case 'rule':
+				} else if (elm.style.type === 'rule') {	
 					// set the rules and add to the style
 					var rules = [],
 						i,
-						len;
-					for (i = 0, len = elm.style.rule.length; i !== len; i += 1){
-						// set the filter						
-						switch(elm.style.rule[i].filter){
-						case 'LESS_THAN':
+						len,
+						style = new OpenLayers.Style();
+
+					for (i = 0, len = elm.style.rule.length; i !== len; i += 1) {
+						// set the filter
+						var rule = elm.style.rule[i];
+												
+						if (rule.filter === 'LESS_THAN') {
 							filter = OpenLayers.Filter.Comparison.LESS_THAN;
-							break;
-						case 'LESS_THAN_OR_EQUAL_TO':
+						} else if (rule.filter === 'LESS_THAN_OR_EQUAL_TO') {
 							filter = OpenLayers.Filter.Comparison.LESS_THAN_OR_EQUAL_TO;
-							break;
-						case 'GREATER_THAN_OR_EQUAL_TO':
+						} else if (rule.filter === 'GREATER_THAN_OR_EQUAL_TO') {
 							filter = OpenLayers.Filter.Comparison.GREATER_THAN_OR_EQUAL_TO;
-							break;
-						case 'GREATER_THAN':
+						} else if (rule.filter === 'GREATER_THAN') {
 							filter = OpenLayers.Filter.Comparison.GREATER_THAN;
-							break;
-						case 'BETWEEN':
+						} else if (rule.filter === 'BETWEEN') {
 							filter = OpenLayers.Filter.Comparison.BETWEEN;
-							break;
-						case 'EQUAL_TO':
+						} else if (rule.filter === 'EQUAL_TO') {
 							filter = OpenLayers.Filter.Comparison.EQUAL_TO;
-							break;
-						case 'NOT_EQUAL_TO':
+						} else if (rule.filter === 'NOT_EQUAL_TO') {
 							filter = OpenLayers.Filter.Comparison.NOT_EQUAL_TO;
-							break;
-						case 'LIKE':
+						} else if (rule.filter === 'LIKE') {
 							filter = OpenLayers.Filter.Comparison.LIKE;
-							break;
 						}
 
-						if (elm.style.rule[i].filter !== 'BETWEEN') {
+						if (rule.filter !== 'BETWEEN') {
 							rules.push(new OpenLayers.Rule({
 								filter: new OpenLayers.Filter.Comparison({
 									type: filter,
-									property: elm.style.rule[i].field,
-									value: elm.style.rule[i].value[0]}),
-									symbolizer: elm.style.rule[i].init
+									property: rule.field,
+									value: rule.value[0]}),
+									symbolizer: rule.init
 								})
 							);
 						} else {
 							rules.push(new OpenLayers.Rule({
 								filter: new OpenLayers.Filter.Comparison({
 									type: filter,
-									property: elm.style.rule[i].field,
-									lowerBoundary: elm.style.rule[i].value[0],
-									upperBoundary: elm.style.rule[i].value[1]}),
-									symbolizer: elm.style.rule[i].init
+									property: rule.field,
+									lowerBoundary: rule.value[0],
+									upperBoundary: rule.value[1]}),
+									symbolizer: rule.init
 								})
 							);
 						}
 					}
-
-					var style = new OpenLayers.Style();
 					style.addRules(rules);
 
 					// set the select style then the rules.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
 					styleMap = new OpenLayers.StyleMap({
-						"default": style,
-						"select": new OpenLayers.Style(select)
+						'default': style,
+						'select': new OpenLayers.Style(select)
 					});					
-					break;
-				default:
+				} else {
 					// set the select style then the default.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
 					styleMap = new OpenLayers.StyleMap({
-						"default": new OpenLayers.Style(elm.style.init),
-						"select": new OpenLayers.Style(select)
+						'default': new OpenLayers.Style(elm.style.init),
+						'select': new OpenLayers.Style(select)
 					});
-					break;
 				}
-			} // end of (typeof elm.style !== 'undefined'
+			} // end of (typeof elm.style !== 'undefined')
 			else {
 				styleMap = new OpenLayers.StyleMap({
-					"default": new OpenLayers.Style(defaultStyle),
-					"select": new OpenLayers.Style(selectStyle)
+					'default': new OpenLayers.Style(defaultStyle),
+					'select': new OpenLayers.Style(selectStyle)
 				});
 			}
 
@@ -469,7 +495,8 @@
 
 			// replace periods with underscores for jQuery!
 			if (context.type !== 'head') {
-				$row.attr('id', context.id.replace(/\W/g, "_"));
+				$row.attr('id', context.id.replace(/\W/g, '_'));
+				$row.attr('tabindex', '0');
 			}
 
 			$.each(attributes, function(key, value) {
@@ -484,16 +511,10 @@
 			});		
 
 			if (zoomTo) {
-				cols.push($('<td>'));
-				$(cols[cols.length - 1]).empty().append(_pe.fn.geomap.addZoomTo($row, context.feature, context.selectControl).children());
+				cols.push(_pe.fn.geomap.addZoomTo($row, context.feature));
 			}
 
 			if (context.type !== 'head') {
-				// TODO: support user configured column for link, currently defaults to first column.
-				var $col0 = $(cols[0]),
-					$link = $('<a href="javascript:;">' + $col0.html() + '</a>');
-
-				$col0.empty().append($link);
 
 				// Hover events
 				$row.on('mouseenter mouseleave', function(e) {
@@ -512,7 +533,7 @@
 				});
 
 				// Keybord events
-				$link.on('focus blur', function(e) {
+				$row.on('focus blur', function(e) {
 					var type = e.type,
 						selectControl = context.selectControl;
 					if (type === 'focus') {
@@ -588,47 +609,36 @@
 		 */
 		onTabularFeaturesAdded: function(feature, zoomColumn, table, opts) {
 			// Find the row
-			var $tr = $('tr#' + feature.id.replace(/\W/g, '_')),
-				$select,
-				$link;
+			var $tr = $('tr#' + feature.id.replace(/\W/g, '_'));
 
 			// add zoom column
 			if (zoomColumn) {
 				$tr.append(_pe.fn.geomap.addZoomTo($tr, feature));
 			}
 
-			$select = $tr.find('td.select');						
-			if ($select.length !== 0) {
-				$link = $select.find('a');
-				if ($link.length !== 0) {
-					$tr.on('mouseenter mouseleave', function(e) {
-						var type = e.type;
-						if (type === 'mouseenter') {
-							$tr.addClass('background-highlight');
-							selectControl.select(feature);
-						} else {
-							$tr.removeClass('background-highlight');
-							selectControl.unselect(feature);
-						}
-					});
-
-					// Keybord events
-					$link.on('focus blur', function(e) {
-						var type = e.type;
-						if (type === 'focus') {
-							$tr.addClass('background-highlight');
-							selectControl.select(feature);
-						} else {
-							$tr.removeClass('background-highlight');
-							selectControl.unselect(feature);
-						}
-					});
-				} else if (opts.debug) {
-					_pe.document.trigger('geomap-errorSelect', $select);
+			$tr.attr('tabindex', '0');						
+			$tr.on('mouseenter mouseleave', function(e) {
+				var type = e.type;
+				if (type === 'mouseenter') {
+					$tr.addClass('background-highlight');
+					selectControl.select(feature);
+				} else {
+					$tr.removeClass('background-highlight');
+					selectControl.unselect(feature);
 				}
-			} else if (opts.debug) {
-				_pe.document.trigger('geomap-errorNoSelect', $tr.closest('table'));
-			}
+			});
+
+			// Keybord events
+			$tr.on('focus blur', function(e) {
+				var type = e.type;
+				if (type === 'focus') {
+					$tr.addClass('background-highlight');
+					selectControl.select(feature);
+				} else {
+					$tr.removeClass('background-highlight');
+					selectControl.unselect(feature);
+				}
+			});
 		},
 
 		/*
@@ -665,13 +675,13 @@
 			if (opts.debug) {
 				_pe.document.trigger('geomap-basemapDefault');
 			}
-	
+
 			// Add the Canada Transportation Base Map (CBMT)			
 			map.addLayer(new OpenLayers.Layer.WMS(
-				"CBMT",
-				"http://geogratis.gc.ca/maps/CBMT",
+				_pe.dic.get('%geo-basemaptitle'),
+				_pe.dic.get('%geo-basemapurl'),
 				{
-					layers: 'CBMT',
+					layers: _pe.dic.get('%geo-basemaptitle'),
 					version: '1.1.1',
 					format: 'image/png'
 				},
@@ -687,7 +697,7 @@
 		/*
 		 * Set default map option
 		 */
-		setDefaultMapOptions: function(){
+		setDefaultMapOptions: function() {
 			// use map options for the Canada Transportation Base Map (CBMT)
 			var mapOptions = {
 				maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),			
@@ -696,7 +706,8 @@
 				restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
 				units: 'm',
 				displayProjection: new OpenLayers.Projection('EPSG:4269') /* only used by specific controls (i.e. MousePosition) */ ,
-				numZoomLevels: 12
+				numZoomLevels: 12,
+				aspectRatio: 0.8
 			};
 
 			return mapOptions;
@@ -709,7 +720,8 @@
 			var mapOptions = {},
 				mapOpts,
 				hasBasemap = (typeof opts.basemap !== 'undefined' && opts.basemap.length !== 0),
-				basemap;
+				basemap,
+				$div = $('#geomap');
 
 			if (hasBasemap) {
 				basemap = opts.basemap;
@@ -723,6 +735,7 @@
 						mapOptions.units = mapOpts.units;
 						mapOptions.displayProjection = new OpenLayers.Projection(mapOpts.displayProjection);
 						mapOptions.numZoomLevels = mapOpts.numZoomLevels;
+						mapOptions.aspectRatio = mapOpts.aspectRatio;
 					} catch (err) {
 						if (opts.debug) {
 							_pe.document.trigger('geomap-baseMapMapOptionsLoadError');
@@ -769,6 +782,9 @@
 			} else {
 				_pe.fn.geomap.setDefaultBaseMap(opts);
 			}
+			
+			// Set aspect ratio
+			$div.height($div.width() * mapOptions.aspectRatio);
 		},
 
 		/*
@@ -795,12 +811,13 @@
 										externalProjection: new OpenLayers.Projection('EPSG:4269'),
 										read: function(data) {
 											var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
-												row, i, len, feature, atts, features = [],
+												row, $row, i, len, feature, atts, features = [],
 												layerAttributes = layer.attributes,
 												name;
 
 											for (i = 0, len = items.length; i !== len; i += 1) {
 												row = items[i];
+												$row = $(row);
 												feature = new OpenLayers.Feature.Vector();
 												feature.geometry = this.parseFeature(row).geometry;
 
@@ -809,7 +826,7 @@
 												atts = {};
 												for (name in layerAttributes) {
 													if (layerAttributes.hasOwnProperty(name)) {
-														atts[layerAttributes[name]] = $(row).find(name).text();
+														atts[layerAttributes[name]] = $row.find(name).text();
 													}
 												}
 												feature.attributes = atts;
@@ -1109,21 +1126,19 @@
 						geomType = $row.attr('data-type'), // get the geometry type
 						vectorFeatures;
 					$row.find('td').each(function(index, feature) {	
-						if (!($(feature).hasClass('geometry'))) {
-							attrMap[attr[index]] = feature.lastChild.textContent;
-						}
+						attrMap[attr[index]] = feature.lastChild.textContent;
 					});
 
 					if (typeof geomType !== 'undefined') {
 						if (geomType === 'bbox') {
 							var bbox = $row.attr('data-geometry').split(',');
-							wktFeature = "POLYGON((" +
-								bbox[0] + " " + bbox[1] + ", " +
-								bbox[0] + " " + bbox[3] + ", " +
-								bbox[2] + " " + bbox[3] + ", " +
-								bbox[2] + " " + bbox[1] + ", " +
-								bbox[0] + " " + bbox[1] +
-							"))";
+							wktFeature = 'POLYGON((' +
+								bbox[0] + ' ' + bbox[1] + ', ' +
+								bbox[0] + ' ' + bbox[3] + ', ' +
+								bbox[2] + ' ' + bbox[3] + ', ' +
+								bbox[2] + ' ' + bbox[1] + ', ' +
+								bbox[0] + ' ' + bbox[1] +
+							'))';
 						} else if (geomType === 'wkt') {
 							wktFeature = $(row).attr('data-geometry');
 						}
@@ -1161,7 +1176,7 @@
 		 *	Load controls
 		 */
 		loadControls: function(opts){
-			var $geomap = $('.wet-boew-geomap'),
+			var $geomap = _pe.main.find('.wet-boew-geomap'),
 				$mapDiv = $('#' + map.div.id);
 
 			// TODO: ensure WCAG compliance before enabling			
@@ -1199,34 +1214,28 @@
 			if (opts.useScaleLine) {
 				map.addControl(new OpenLayers.Control.ScaleLine());
 			}
-			map.addControl(new OpenLayers.Control.PanZoomBar({ zoomWorldIcon: true }));
-			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
 
+			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
 
 			// enable the keyboard navigation when map div has focus. Disable when blur
 			// Enable the wheel zoom only on hover
-			$geomap.attr('tabindex', '0').css('border', 'solid 1px #CCC').on('mouseenter mouseleave focus blur', function(e) {
-				var type = e.type,
-					$this = $(this);
+			$geomap.attr('tabindex', '0').on('mouseenter mouseleave focus blur', function(e) {
+				var type = e.type;
 				if (type === 'mouseenter') {
 					map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
-					$this.css('border', 'solid 1px blue');
 				} else if (type === 'mouseleave') {
 					map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();					
-					$this.css('border', 'solid 1px #CCC');
 				} else if (type === 'focus') {
 					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
-					$this.css('border', 'solid 1px blue');
 				} else {
 					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
-					$this.css('border', 'solid 1px #FFF');
 				}
 			});
 
-			// add accessibility enhancements
-			this.accessibilize();					
+			// add pan zoom bar
+			_pe.fn.geomap.addPanZoomBar();					
 
 			// zoom to the maximum extent specified
 			map.zoomToMaxExtent();			
@@ -1254,7 +1263,7 @@
 			// Create projection objects
 			var projLatLon = new OpenLayers.Projection('EPSG:4326'),
 				projMap = map.getProjectionObject(),
-				$geomap = $('.wet-boew-geomap');						
+				$geomap = _pe.main.find('.wet-boew-geomap');						
 
 			if (opts.debug) {
 				_pe.document.trigger('geomap-projection', projMap.getCode());

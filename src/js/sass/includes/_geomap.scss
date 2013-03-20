@@ -15,6 +15,110 @@
 	font-size: 1px;
 }
 
+/**
+ *   Openlayer pan zoom bar button
+ */
+.olControlpanup {
+  height: 18px;
+  width: 18px;
+  left: 15px;
+  top: 4px;
+  img {
+    content: url("../images/geomap/north-mini.png");
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.olControlpanleft {
+  height: 18px;
+  width: 18px;
+  left: 1px;
+  top: 22px;
+  img {
+    content: url("../images/geomap/west-mini.png");
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.olControlpandown {
+  height: 18px;
+  width: 18px;
+  left: 15px;
+  top: 40px;
+  img {
+    content: url("../images/geomap/south-mini.png");
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.olControlpanright {
+  height: 18px;
+  width: 18px;
+  left: 29px;
+  top: 22px;
+  img {
+    content: url("../images/geomap/east-mini.png");
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.olControlzoomin {
+  height: 18px;
+  width: 18px;
+  left: 15px;
+  top: 63px;
+  img {
+    content: url("../images/geomap/zoom-plus-mini.png");
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.olControlzoomout {
+  height: 18px;
+  width: 18px;
+  left: 15px;
+  top: 213px;
+  img {
+    content: url("../images/geomap/zoom-minus-mini.png");
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.olControlzoomworld {
+  height: 18px;
+  width: 18px;
+  left: 15px;
+  top: 234px;
+  img {
+    content: url("../images/geomap/zoom-world-mini.png");
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.olControlSlider {
+  height: 9px;
+  width: 18px;
+  img {
+    height: 9px;
+    width: 18px;
+  }
+}
+
+.olControlBar {
+  background-image: url("../images/geomap/zoombar.png") !important;
+  height: 18px;
+  width: 132px;
+  left: 15px !important;
+  top: 81px !important;
+}
+
 div {
 	&.olMap {	
 		z-index: 0;
@@ -530,4 +634,16 @@ a {
 .wet-boew-geomap {
 	width: 100%;
 	position: relative;
+	border-style: solid;
+  border-width: 1px;
+  border-color: #CCC;
+  &:hover {
+    border-color: #07F;
+  }
+  &:focus {
+    border-color: #07F;
+  }
+  &:blur {
+    border-color: #CCC;
+  }
 }
