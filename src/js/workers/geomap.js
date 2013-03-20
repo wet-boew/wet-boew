@@ -669,13 +669,13 @@
 			if (opts.debug) {
 				_pe.document.trigger('geomap-basemapDefault');
 			}
-	
+
 			// Add the Canada Transportation Base Map (CBMT)			
 			map.addLayer(new OpenLayers.Layer.WMS(
-				"CBMT",
-				"http://geogratis.gc.ca/maps/CBMT",
+				_pe.dic.get('%geo-basemaptitle'),
+				_pe.dic.get('%geo-basemapurl'),
 				{
-					layers: 'CBMT',
+					layers: _pe.dic.get('%geo-basemaptitle'),
 					version: '1.1.1',
 					format: 'image/png'
 				},
@@ -691,7 +691,7 @@
 		/*
 		 * Set default map option
 		 */
-		setDefaultMapOptions: function(){
+		setDefaultMapOptions: function() {
 			// use map options for the Canada Transportation Base Map (CBMT)
 			var mapOptions = {
 				maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),			

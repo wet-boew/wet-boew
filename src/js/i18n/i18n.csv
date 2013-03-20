@@ -157,6 +157,8 @@ Geomap,%geo-mapcontrol,Map control,Contrôle de la carte,,,,,,,,,,,,,,,,,,,,,,,C
 ,%geo-accessibilize,Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.,Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.,,,,,,,,,,,,,,,,,,,,,,,Los usuarios de teclado:</strong> Utilice las teclas de flecha para mover el mapa y utilizar el más y menos para ampliar.,,,,
 ,%geo-togglelayer,Toggle the display of the layer,Basculer l'affichage de la couche,,,,,,,,,,,,,,,,,,,,,,,Cambiar la visualización de la capa,,,,
 ,%geo-hiddenlayer,This layer is currently hidden!,Cette couche est présentement cachée!,,,,,,,,,,,,,,,,,,,,,,,Esta capa está oculta!,,,,
+,%geo-basemapurl,http://geogratis.gc.ca/maps/CBMT,http://geogratis.gc.ca/cartes/CBCT,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,%geo-basemaptitle,CBMT,CBCT,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Disable/enable PE,%pe-disable,Basic HTML version,Version HTML simplifiée,,,基本HTML版本,基本网页格式,,Versie in basis-HTML,Lihtsustatud HTML versioon,,,Egyszerű HTML verzió,,Versi HTML dasar.,,HTMLベーシック版,,Pamata HTML versija,Pagrindinė HTML versija,Podstawowa wersja HTML,Versão HTML simplificada,,Базовая версия HTML,,Versión HTML básica,,Basit HTML sürümü,Базова версія HTML,
 ,%pe-enable,Standard version,Version standard,,,標準版本,标准格式,,Standaardversie,Standardversioon,,,Standard verzió,,Versi standar.,,スタンダード版,,Standarta versija,Standartinė versija,Wersja standardowa,Versão padrão,,Стандартная версия,,Versión estándar,,Standart sürüm,Стандартна версія,
 Template strings (Generic),%tmpl-skip-main,Skip to main content,Passer au contenu principal,,,,,,,,,,,,,,,,,,,,,,,Saltar al contenido principal,,,,

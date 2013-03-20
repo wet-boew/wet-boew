@@ -189,6 +189,8 @@
 		'%geo-accessibilize': '@%geo-accessibilize@',
 		'%geo-togglelayer': '@%geo-togglelayer@',
 		'%geo-hiddenlayer': '@%geo-hiddenlayer@',
+		'%geo-basemapurl': '@%geo-basemapurl@',
+		'%geo-basemaptitle': '@%geo-basemaptitle@',
 		/* Disable/enable PE */
 		'%pe-disable': '@%pe-disable@',
 		'%pe-enable': '@%pe-enable@'
