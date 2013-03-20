@@ -4,12 +4,6 @@
  */
 @import "compass/css3/border-radius";
 
-%gcwu-default-screen-color-fff {
-	color: #fff;
-}
-%gcwu-default-screen-color-333 {
-	color: #333;
-}
 %gcwu-default-screen-text-decoration-underline {
 	text-decoration: underline;
 }
@@ -67,17 +61,17 @@
 	}
 }
 //TODO: Similar to rule on line ?? except for the li element. Could these be merged further.
-%gcwu-default-screen-a-psuedo-underline {
+%gcwu-default-screen-a-pseudo-underline {
 	a {
 		&, &.ui-link {
 			@extend %gcwu-default-screen-display-block;
-			@extend %gcwu-default-screen-color-333;
+			color: #333;
 			@extend %gcwu-default-screen-text-decoration-none;
 			&:visited {
-				@extend %gcwu-default-screen-color-333;
+				color: #333;
 			}
 			@include pseudo-focus {
-				@extend %gcwu-default-screen-color-333;
+				color: #333;
 				@extend %gcwu-default-screen-text-decoration-underline;
 			}
 			&.nav-current {
@@ -113,7 +107,7 @@ body {
 		}
 	}
 	a {
-		@extend %gcwu-default-screen-color-fff;
+		color: #fff;
 		@extend %gcwu-default-screen-text-decoration-none;
 	}
 }
@@ -140,23 +134,23 @@ body {
 .wb-sec-def {
 	h3 {
 		@extend %gcwu-default-screen-complex-border;
-		@extend %gcwu-default-screen-a-psuedo-underline;
+		@extend %gcwu-default-screen-a-pseudo-underline;
 		&.top-section {
 			a {
 				&, &.ui-link {
-					@extend %gcwu-default-screen-color-fff;
+					color: #fff;
 					padding-top: 5px;
 					padding-bottom: 5px;
 					font-size: 1.1em;
 					&:visited {
-						@extend %gcwu-default-screen-color-fff;
+						color: #fff;
 					}
 					@include pseudo-focus {
-						@extend %gcwu-default-screen-color-fff;
+						color: #fff;
 						@extend %gcwu-default-screen-text-decoration-underline;
 					}
 					&.nav-current {
-						@extend %gcwu-default-screen-color-fff;
+						color: #fff;
 						padding-top: 4px;
 						padding-bottom: 4px;
 						background: #0f315b;
@@ -167,10 +161,10 @@ body {
 	}
 	h4 {
 		@extend %gcwu-default-screen-complex-border;
-		@extend %gcwu-default-screen-a-psuedo-underline;
+		@extend %gcwu-default-screen-a-pseudo-underline;
 	}
 	li {
-		@extend %gcwu-default-screen-a-psuedo-underline;
+		@extend %gcwu-default-screen-a-pseudo-underline;
 		a {
 			padding: 4px 5px;
 			&.nav-current {
@@ -203,7 +197,7 @@ body {
 	}
 	.top-level {
 		@extend %gcwu-default-screen-complex-border;
-		@extend %gcwu-default-screen-a-psuedo-underline;
+		@extend %gcwu-default-screen-a-pseudo-underline;
 	}
 }
 
@@ -334,7 +328,7 @@ body {
 	}
 	a {
 		@extend %gcwu-default-screen-text-decoration-none;
-		@extend %gcwu-default-screen-color-fff;
+		color: #fff;
 		font-size: 90%;
 	}
 }
@@ -352,7 +346,7 @@ body {
 	}
 	a {
 		@include inline-block;
-		@extend %gcwu-default-screen-color-fff;
+		color: #fff;
 		@extend %gcwu-default-screen-text-decoration-none;
 		border-left: 1px solid #666;
 		line-height: 1.45em;
