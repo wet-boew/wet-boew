@@ -124,17 +124,23 @@
 			 * Add alt text to map controls and make tab-able
 			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
 			 */
-			_pe.main.find('div.olControlPanZoomBar div').each(function() {
-				var img = this.getElementsByTagName('img')[0],
-					altTxt,
-					actn;
-				
+			var controls = _pe.main.find('div.olControlPanZoomBar div').get(),
+				len = controls.length,
+				control,
+				img,
+				altTxt,
+				actn;
+
+			while (len--) {
+				control = controls[len];
+				img = control.getElementsByTagName('img')[0];
+			
 				if (typeof img !== 'undefined') {
-					actn = this.action;
+					actn = control.action;
 					if (actn !== undefined) {
 						// add alt text
 						altTxt = _pe.dic.get('%geo-' + actn);
-						this.setAttribute('title', altTxt);
+						control.setAttribute('title', altTxt);
 						img.tabIndex = 0;
 					} else {
 						// Add null alt text to slider image since should be ignored
@@ -142,7 +148,7 @@
 					}
 					img.setAttribute('alt', altTxt);
 				}
-			});
+			}
 		}, // end accessibilize function		
 
 		/*
@@ -1161,7 +1167,7 @@
 		 *	Load controls
 		 */
 		loadControls: function(opts){
-			var $geomap = $('.wet-boew-geomap'),
+			var $geomap = _pe.main.find('.wet-boew-geomap'),
 				$mapDiv = $('#' + map.div.id);
 
 			// TODO: ensure WCAG compliance before enabling			
@@ -1254,7 +1260,7 @@
 			// Create projection objects
 			var projLatLon = new OpenLayers.Projection('EPSG:4326'),
 				projMap = map.getProjectionObject(),
-				$geomap = $('.wet-boew-geomap');						
+				$geomap = _pe.main.find('.wet-boew-geomap');						
 
 			if (opts.debug) {
 				_pe.document.trigger('geomap-projection', projMap.getCode());
