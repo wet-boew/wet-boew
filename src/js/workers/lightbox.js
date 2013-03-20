@@ -74,8 +74,11 @@
 			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data-wet-boew attribute
 			$.extend(opts, (typeof wet_boew_lightbox !== 'undefined' ? wet_boew_lightbox : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
+			// Find the lightbox links and galleries
+			$lb = elm.find('.lb-item, .lb-item-gal, .lb-gallery, .lb-hidden-gallery');
+
 			// Add touchscreen support for launching the lightbox
-			$lb = elm.find('.lb-item, .lb-gallery, .lb-hidden-gallery').on('vclick touchstart', function () {
+			$lb.filter('.lb-item, .lb-item-gal').on('vclick touchstart', function () {
 				$.fn.colorbox.load();
 			});
 
