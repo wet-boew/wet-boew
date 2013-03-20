@@ -124,23 +124,23 @@
 			 * Add alt text to map controls and make tab-able
 			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
 			 */
-			var mapControl = _pe.dic.get('%geo-mapcontrol');
 			_pe.main.find('div.olControlPanZoomBar div').each(function() {
-				var $div = $(this),
-					$img = $div.find('img.olAlphaImg'),
-					altTxt = mapControl,
+				var img = this.getElementsByTagName('img')[0],
+					altTxt,
+					actn;
+				
+				if (typeof img !== 'undefined') {
 					actn = this.action;
-
-				if (actn !== undefined) {
-					this.tabIndex = 0;
-
-					// add alt text
-					altTxt = _pe.dic.get('%geo-' + actn);
-					$img.attr('alt', altTxt);
-					$div.attr('title', altTxt);
-				} else if ($img.length !== 0) {
-					// Add null alt text to slider image since should be ignored
-					$img.attr('alt', '');
+					if (actn !== undefined) {
+						// add alt text
+						altTxt = _pe.dic.get('%geo-' + actn);
+						this.setAttribute('title', altTxt);
+						img.tabIndex = 0;
+					} else {
+						// Add null alt text to slider image since should be ignored
+						altTxt = '';
+					}
+					img.setAttribute('alt', altTxt);
 				}
 			});
 		}, // end accessibilize function		
@@ -201,7 +201,7 @@
 		 * Create a table for vector features added in Load Overlays
 		 */
 		createTable: function(index, title, caption, datatable) {
-			return $('<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot>' : '') + '</table>');
+			return $('<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot></table><div class="clear"></div>' : '</table>'));
 		},		
 
 		/*
@@ -1302,11 +1302,6 @@
 				'plugins': {
 					'tables': $createDatatable
 				}
-			});
-
-			// Workaround for nesting data tables in a tab panel
-			$createDatatable.each(function() {
-				$(this).parent().append('<div class="clear"></div>');
 			});
 
 			if (_pe.mobile) {
