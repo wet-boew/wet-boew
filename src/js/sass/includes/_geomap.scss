@@ -15,6 +15,9 @@
 	font-size: 1px;
 }
 
+/**
+ *   Openlayer pan zoom bar button
+ */
 div {
   &.olControlpanup {
     height: 18px;
@@ -567,6 +570,15 @@ span {
 	}
 }
 
+.tablet-view {
+	.wet-boew-geomap-legend {
+		width: 100% !important;
+	}
+	.form-checkbox {
+		display: block;
+	}
+}
+
 @media only screen and (max-width:600px) {
 	div {
 		&.olControlZoom {
@@ -606,3 +618,18 @@ a {
 	width: 100%;
 	position: relative;
 }
+
+/**
+ *   Focus on map
+ */
+.map-focus {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #07F;
+ }
+ 
+.map-blur {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #FFF;
+ }

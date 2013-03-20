@@ -62,12 +62,12 @@
 			OpenLayers.Lang.setCode(_pe.language);
 
 			// Set the image path for OpenLayers
-			OpenLayers.ImgPath = lib + '/images/geomap/';
+			OpenLayers.ImgPath = lib + 'images/geomap/';
 
 			// Add projection for default base map
-			Proj4js.defs['EPSG:3978'] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
+			Proj4js.defs['EPSG:3978'] = '+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs';
 
-			// Initiate the map
+			// Initiate the map. Height set by default. Will be reinitialize by value from user if provided.
 			elm.attr('id', 'geomap').height(elm.width() * 0.8);
 
 			_pe.document.on('wb-init-loaded', function() {
@@ -154,25 +154,31 @@
 			map.addControl(panZoomBar);
 			
 			/*
-			 *	Add alt text to map controls and make tab-able
+			 * Add alt text to map controls and make tab-able
+			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
 			 */
-			$('.olButton').each(function() {
-				var $div = $(this),
-					$img = $div.find('.olAlphaImg'),
-					altTxt = mapControl,
+			_pe.main.find('div.olControlPanZoomBar div').each(function() {
+				var img = this.getElementsByTagName('img')[0],
+					altTxt,
+					actn;
+
+				if (typeof img !== 'undefined') {
 					actn = this.action;
-
-				if (actn !== undefined) {
-					this.tabIndex = 0;
-
-					// add alt text and custom CSS style
-					altTxt = _pe.dic.get('%geo-' + actn);
-					$img.attr('alt', altTxt).addClass('olControl' + actn);
-					$div.attr('title', altTxt).addClass('olControl' + actn);
+					if (actn !== undefined) {
+						// add alt text
+						altTxt = _pe.dic.get('%geo-' + actn);
+						this.setAttribute('title', altTxt);
+						this.classList.add('olControl' + actn);
+						img.tabIndex = 0;
+					} else {
+						// Add null alt text to slider image since should be ignored
+						altTxt = '';
+					}
+					img.setAttribute('alt', altTxt);
+					img.classList.add('olControl' + actn);
 				}
-			});			
-			
-		}, // end accessibilize function		
+			});
+		},	
 
 		/*
 		 * Map feature select
@@ -217,7 +223,7 @@
 					$tabs.addClass('wet-boew-tabbedinterface auto-height-none').append('<ul class="tabs"></ul><div class="tabs-panel"></div>');
 				// user hasn't specified where they want the tabs
 				} else {
-					$('.wet-boew-geomap-layers').append('<div class="clear"></div><div class="wet-boew-geomap-tabs wet-boew-tabbedinterface auto-height-none"><ul class="tabs"></ul><div class="tabs-panel"></div></div><div class="clear"></div>');
+					$('.wet-boew-geomap-layers').append('<div class="clear"></div><div class="wet-boew-geomap-tabs wet-boew-tabbedinterface auto-height-none span-8"><ul class="tabs"></ul><div class="tabs-panel"></div></div><div class="clear"></div>');
 				}
 			}
 		},
@@ -226,7 +232,7 @@
 		 * Create a table for vector features added in Load Overlays
 		 */
 		createTable: function(index, title, caption, datatable) {
-			return $('<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot>' : '') + '</table>');
+			return $('<table class="table-simplify' + (datatable ? ' wet-boew-tables' : '') + ' width-100" aria-label="' + title + '" id="overlay_' + index + '">' + '<caption>' + caption + '</caption><thead></thead><tbody></tbody>' + (datatable ? '<tfoot></tfoot></table><div class="clear"></div>' : '</table>'));
 		},		
 
 		/*
@@ -483,7 +489,7 @@
 
 			// replace periods with underscores for jQuery!
 			if (context.type !== 'head') {
-				$row.attr('id', context.id.replace(/\W/g, "_"));
+				$row.attr('id', context.id.replace(/\W/g, '_'));
 			}
 
 			$.each(attributes, function(key, value) {
@@ -497,9 +503,9 @@
 				cols.push($col);
 			});		
 
-			if (zoomTo) {	
+			if (zoomTo) {
 				cols.push($('<td>'));
-				$(cols[cols.length - 1]).empty().append(_pe.fn.geomap.addZoomTo($row, context.feature, context.selectControl));
+				$(cols[cols.length - 1]).empty().append(_pe.fn.geomap.addZoomTo($row, context.feature, context.selectControl).children());
 			}
 
 			if (context.type !== 'head') {
@@ -566,7 +572,7 @@
 			$.each(evt.features, function(index, feature) {												
 				var context = {
 					'type': 'body',
-					'id': feature.id.replace(/\W/g, "_"),
+					'id': feature.id.replace(/\W/g, '_'),
 					'feature': feature,
 					'selectControl': selectControl
 				};									
@@ -575,18 +581,27 @@
 
 			if (datatable) {	
 				$targetTable.addClass('createDatatable');
-				//$targetTable.parent().attr('style', 'display: table; width: 100%');
 			}
+		},
+		
+		/*
+		 * Handle overlays once loading has ended
+		 *
+		 */
+		onLoadEnd: function() {
+			// TODO: Fix no alt attribute on tile image in OpenLayers rather than use this override
+			_pe.main.find('.olTileImage').attr('alt', '');
 
 			// we need to call it here as well because if we use a config outside the domain it is called
-			// before the table is created. We need to call it only once when all overlays are loaded.
+			// before the table is created. We need to call it only once loading for all overlays has ended
 			overlaysLoaded += 1;
 			if (overlays === overlaysLoaded) {
 				_pe.fn.geomap.refreshPlugins();
 				overlays = 0;
+				overlaysLoaded = 0;
 			}
 		},
-		
+
 		/*
 		 * Handle features once they have been added to the map for tabular data
 		 *
@@ -599,13 +614,13 @@
 
 			// add zoom column
 			if (zoomColumn) {
-				$tr.append('<td>' + _pe.fn.geomap.addZoomTo($tr, feature).html() + '</td>');
+				$tr.append(_pe.fn.geomap.addZoomTo($tr, feature));
 			}
 
 			$select = $tr.find('td.select');						
 			if ($select.length !== 0) {
 				$link = $select.find('a');
-				if ($link.length) {
+				if ($link.length !== 0) {
 					$tr.on('mouseenter mouseleave', function(e) {
 						var type = e.type;
 						if (type === 'mouseenter') {
@@ -641,7 +656,7 @@
 		 *
 		 */
 		addZoomTo: function(row, feature){
-			var $ref = $('<a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a>').on('click focus blur', function(e) {
+			var $ref = $('<td><a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a></td>').on('click focus blur', 'a', function(e) {
 				var type = e.type;
 				if (type === 'click') {
 					e.preventDefault();			
@@ -649,6 +664,7 @@
 					row.closest('tr').attr('class', 'background-highlight');
 					selectControl.unselectAll();
 					selectControl.select(feature);
+					$.mobile.silentScroll(_pe.focus(_pe.main.find('#geomap')).offset().top);
 				} else if (type === 'focus') {
 					row.addClass('background-highlight');
 					selectControl.unselectAll();
@@ -700,7 +716,8 @@
 				restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
 				units: 'm',
 				displayProjection: new OpenLayers.Projection('EPSG:4269') /* only used by specific controls (i.e. MousePosition) */ ,
-				numZoomLevels: 12
+				numZoomLevels: 12,
+				aspectRatio: 0.8
 			};
 
 			return mapOptions;
@@ -713,7 +730,8 @@
 			var mapOptions = {},
 				mapOpts,
 				hasBasemap = (typeof opts.basemap !== 'undefined' && opts.basemap.length !== 0),
-				basemap;
+				basemap,
+				$div = $('#geomap');
 
 			if (hasBasemap) {
 				basemap = opts.basemap;
@@ -773,6 +791,9 @@
 			} else {
 				_pe.fn.geomap.setDefaultBaseMap(opts);
 			}
+			
+			// Set aspect ratio
+			$div.height($div.width() * mapOptions.aspectRatio);
 		},
 
 		/*
@@ -791,17 +812,17 @@
 							layer.title, {
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
-								url: layer.url,
-								format: new OpenLayers.Format.KML({
-									extractStyles: !layer.style,
-									extractAttributes: true,
-									internalProjection: map.getProjectionObject(),
-									externalProjection: new OpenLayers.Projection('EPSG:4269'),
-
-									read: function(data) {
-										var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
-											row, i, len, feature, atts = {}, features = [],
-											a = layer.attributes;
+									url: layer.url,
+									format: new OpenLayers.Format.KML({
+										extractStyles: !layer.style,
+										extractAttributes: true,
+										internalProjection: map.getProjectionObject(),
+										externalProjection: new OpenLayers.Projection('EPSG:4269'),
+										read: function(data) {
+											var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
+												row, i, len, feature, atts, features = [],
+												layerAttributes = layer.attributes,
+												name;
 
 											for (i = 0, len = items.length; i !== len; i += 1) {
 												row = items[i];
@@ -809,15 +830,13 @@
 												feature.geometry = this.parseFeature(row).geometry;
 
 												// parse and store the attributes
-												atts = {};
-
 												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														atts[a[name]] = $(row).find(name).text();
+												atts = {};
+												for (name in layerAttributes) {
+													if (layerAttributes.hasOwnProperty(name)) {
+														atts[layerAttributes[name]] = $(row).find(name).text();
 													}
 												}
-
 												feature.attributes = atts;
 												features.push(feature);
 											}
@@ -826,8 +845,11 @@
 									})
 								}),
 								eventListeners: {
-									"featuresadded": function(evt) {
+									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+									},
+									'loadend': function() {
+										_pe.fn.geomap.onLoadEnd();
 									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
@@ -848,37 +870,39 @@
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
 									format: new OpenLayers.Format.Atom({
-											read: function(data) {
-												var items = this.getElementsByTagNameNS(data, '*', 'entry'),
-													row, $row, i, len, feature, atts = {}, features = [],
-													a = layer.attributes;
+										read: function(data) {
+											var items = this.getElementsByTagNameNS(data, '*', 'entry'),
+												row, $row, i, len, feature, atts, features = [],
+												layerAttributes = layer.attributes,
+												name;
 
-												for (i = 0, len = items.length; i !== len; i += 1) {
-													row = items[i];
-													$row = $(row);
-													feature = new OpenLayers.Feature.Vector();
-													feature.geometry = this.parseFeature(row).geometry;
+											for (i = 0, len = items.length; i !== len; i += 1) {
+												row = items[i];
+												$row = $(row);
+												feature = new OpenLayers.Feature.Vector();
+												feature.geometry = this.parseFeature(row).geometry;
 
-													// parse and store the attributes
-													atts = {};
-
-													// TODO: test on nested attributes
-													for (var name in a) {
-														if (a.hasOwnProperty(name)) {
-															atts[a[name]] = $row.find(name).text();
-														}
+												// parse and store the attributes
+												// TODO: test on nested attributes
+												atts = {};
+												for (name in layerAttributes) {
+													if (layerAttributes.hasOwnProperty(name)) {
+														atts[layerAttributes[name]] = $row.find(name).text();
 													}
-
-													feature.attributes = atts;
-													features.push(feature);
 												}
-												return features;
+												feature.attributes = atts;
+												features.push(feature);
 											}
-										})
-									}),						
+											return features;
+										}
+									})
+								}),						
 								eventListeners: {
-									"featuresadded": function(evt) {											
+									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+									},
+									'loadend': function() {
+										_pe.fn.geomap.onLoadEnd();
 									}									
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
@@ -901,27 +925,24 @@
 									format: new OpenLayers.Format.GeoRSS({									
 										read: function(data) {											
 											var items = this.getElementsByTagNameNS(data, '*', 'item'),
-												row, $row, i, len, feature, atts = {}, features = [];
+												row, $row, i, len, feature, atts, features = [],
+												layerAttributes = layer.attributes,
+												name;
 
 											for (i = 0, len = items.length; i !== len; i += 1) {												
 												row = items[i];
 												$row = $(row);			
-
 												feature = new OpenLayers.Feature.Vector();											
-
 												feature.geometry = this.createGeometryFromItem(row);
 
 												// parse and store the attributes
-												atts = {};
-												var a = layer.attributes;
-
 												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														atts[a[name]] = $row.find(name).text();														
+												atts = {};
+												for (name in layerAttributes) {
+													if (layerAttributes.hasOwnProperty(name)) {
+														atts[layerAttributes[name]] = $row.find(name).text();														
 													}
 												}
-
 												feature.attributes = atts;												
 
 												// if no geometry, don't add it
@@ -934,9 +955,12 @@
 									})
 								}),								
 								eventListeners: {
-									"featuresadded": function(evt) {
+									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
-									}									
+									},
+									'loadend': function() {
+										_pe.fn.geomap.onLoadEnd();
+									}								
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
 							}
@@ -959,24 +983,23 @@
 									format: new OpenLayers.Format.GeoJSON({										
 										read: function(data) {											
 											var items = data[layer.root] ? data[layer.root] : data,
-												row, i, len, feature, atts = {}, features = [];
+												row, i, len, feature, atts, features = [],
+												layerAttributes = layer.attributes,
+												name;
 
 											for (i = 0, len = items.length; i !== len; i += 1) {												
 												row = items[i];												
 												feature = new OpenLayers.Feature.Vector();												
-												feature.geometry =	this.parseGeometry(row.geometry);
+												feature.geometry = this.parseGeometry(row.geometry);
 
 												// parse and store the attributes
-												atts = {};
-												var a = layer.attributes;
-
 												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														atts[a[name]] = row[name];														
+												atts = {};
+												for (name in layerAttributes) {
+													if (layerAttributes.hasOwnProperty(name)) {
+														atts[layerAttributes[name]] = row[name];														
 													}
 												}
-
 												feature.attributes = atts;												
 
 												// if no geometry, don't add it
@@ -989,8 +1012,11 @@
 									})
 								}),
 								eventListeners: {
-									"featuresadded": function(evt) {	
+									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+									},
+									'loadend': function() {
+										_pe.fn.geomap.onLoadEnd();
 									}									
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
@@ -1013,10 +1039,10 @@
 									params: layer.params,
 									format: new OpenLayers.Format.GeoJSON({
 										read: function(data) {
-
 											var items = data.features,
-												i, len, row, feature, atts = {}, features = [],
-												a = layer.attributes;
+												i, len, row, feature, atts, features = [],
+												layerAttributes = layer.attributes,
+												name;
 
 											for (i = 0, len = items.length; i !== len; i += 1) {												
 												row = items[i];												
@@ -1024,15 +1050,13 @@
 												feature.geometry = this.parseGeometry(row.geometry);
 
 												// parse and store the attributes
-												atts = {};
-
 												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														atts[a[name]] = row.properties[name];														
+												atts = {};
+												for (name in layerAttributes) {
+													if (layerAttributes.hasOwnProperty(name)) {
+														atts[layerAttributes[name]] = row.properties[name];														
 													}
 												}
-
 												feature.attributes = atts;												
 
 												// if no geometry, don't add it
@@ -1045,8 +1069,11 @@
 									})
 								}),
 								eventListeners: {
-									"featuresadded": function(evt) {
+									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+									},
+									'loadend': function() {
+										_pe.fn.geomap.onLoadEnd();
 									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
@@ -1107,21 +1134,19 @@
 						geomType = $row.attr('data-type'), // get the geometry type
 						vectorFeatures;
 					$row.find('td').each(function(index, feature) {	
-						if (!($(feature).hasClass('geometry'))) {
-							attrMap[attr[index]] = feature.lastChild.textContent;
-						}
+						attrMap[attr[index]] = feature.lastChild.textContent;
 					});
 
 					if (typeof geomType !== 'undefined') {
 						if (geomType === 'bbox') {
 							var bbox = $row.attr('data-geometry').split(',');
-							wktFeature = "POLYGON((" +
-								bbox[0] + " " + bbox[1] + ", " +
-								bbox[0] + " " + bbox[3] + ", " +
-								bbox[2] + " " + bbox[3] + ", " +
-								bbox[2] + " " + bbox[1] + ", " +
-								bbox[0] + " " + bbox[1] +
-							"))";
+							wktFeature = 'POLYGON((' +
+								bbox[0] + ' ' + bbox[1] + ', ' +
+								bbox[0] + ' ' + bbox[3] + ', ' +
+								bbox[2] + ' ' + bbox[3] + ', ' +
+								bbox[2] + ' ' + bbox[1] + ', ' +
+								bbox[0] + ' ' + bbox[1] +
+							'))';
 						} else if (geomType === 'wkt') {
 							wktFeature = $(row).attr('data-geometry');
 						}
@@ -1199,27 +1224,31 @@
 			}
 
 			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
-
 			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 			map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
 
 			// enable the keyboard navigation when map div has focus. Disable when blur
 			// Enable the wheel zoom only on hover
-			$geomap.attr('tabindex', '0').css('border', 'solid 1px #CCC').on('mouseenter mouseleave focus blur', function(e) {
+			$geomap.attr('tabindex', '0').addClass('map-blur').on('mouseenter mouseleave focus blur', function(e) {
 				var type = e.type,
-					$this = $(this);
+					$this = $(this),
+					mapDiv = this;
 				if (type === 'mouseenter') {
 					map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
-					$this.css('border', 'solid 1px blue');
+					mapDiv.classList.add('map-focus');
+					mapDiv.classList.remove('map-blur');
 				} else if (type === 'mouseleave') {
 					map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();					
-					$this.css('border', 'solid 1px #CCC');
+					mapDiv.classList.add('map-blur');
+					mapDiv.classList.remove('map-focus');
 				} else if (type === 'focus') {
 					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
-					$this.css('border', 'solid 1px blue');
+					mapDiv.classList.add('map-focus');
+					mapDiv.classList.remove('map-blur');
 				} else {
 					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
-					$this.css('border', 'solid 1px #FFF');
+					mapDiv.classList.add('map-blur');
+					mapDiv.classList.remove('map-focus');
 				}
 			});
 
@@ -1284,44 +1313,23 @@
 		},
 
 		refreshPlugins: function() {
-			var $holder,
-				$createDatatable = $('.createDatatable'),
-				$tabbedInterface = $('.wet-boew-tabbedinterface');
-			if (!_pe.mobile) {
-				_pe.wb_load({
-					'plugins': {
-						'tables': $createDatatable,
-						'tabbedinterface': $tabbedInterface
-					}
-				});
+			var $createDatatable;
+			_pe.wb_load({
+				'plugins': {
+					'tabbedinterface': _pe.main.find('.wet-boew-tabbedinterface')
+				}
+			});
 
-				// For each datatable in tabs, set some style to solve the layout problem
-				$createDatatable.each(function(index, $feature) {
-					$holder = ($('table#' + $feature.id)).parent();
-					if ($holder.attr('id') === 'tabs_' + $feature.id) {
-						$holder.attr('style', 'display: table; width: 100%');
-					}
-				});
-			} else {
-				// In mobile we need to do it the oposite order.
-				_pe.wb_load({
-					'plugins': {
-						'tabbedinterface': $tabbedInterface,
-						'tables': $createDatatable
-					}
-				});
+			$createDatatable = _pe.main.find('.createDatatable');
+			_pe.wb_load({
+				'plugins': {
+					'tables': $createDatatable
+				}
+			});
 
-				// For each datatable, create the wrapper around it and set display:table to solve layout problem.
-				$createDatatable.each(function(index, $feature) {
-					$('table#' + $feature.id).wrap('<div id="' + $feature.id + '_wrapper" class="dataTables_wrapper width-100" style="display: table"></div>');
-				});
-
-				// Set the opacity to solve transparency problem.
-				$('.wet-boew-tables').addClass('opacity-100');
-				$('.table-simplify').addClass('opacity-100');
-
-				// Set display table to solve the table and hidden message appears at the same time
-				//$('.table-simplify').css('dispaly', 'table');
+			if (_pe.mobile) {
+				// Enhance the checkboxes with jQuery Mobile
+				_pe.main.find('.wet-boew-geomap-legend').trigger('create');
 			}
 		}
 	};
