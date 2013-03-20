@@ -124,23 +124,23 @@
 			 * Add alt text to map controls and make tab-able
 			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
 			 */
-			var mapControl = _pe.dic.get('%geo-mapcontrol');
 			_pe.main.find('div.olControlPanZoomBar div').each(function() {
-				var $div = $(this),
-					$img = $div.find('img.olAlphaImg'),
-					altTxt = mapControl,
-					actn = this.action;
-
-				if (actn !== undefined) {
-					this.tabIndex = 0;
-
-					// add alt text
-					altTxt = _pe.dic.get('%geo-' + actn);
-					$img.attr('alt', altTxt);
-					$div.attr('title', altTxt);
-				} else if ($img.length !== 0) {
-					// Add null alt text to slider image since should be ignored
-					$img.attr('alt', '');
+				var img = this.getElementsByTagName('img')[0],
+					altTxt,
+					actn;
+				
+				if (typeof img !== 'undefined') {
+					actn = this.action
+					if (actn !== undefined) {
+						// add alt text
+						altTxt = _pe.dic.get('%geo-' + actn);
+						this.setAttribute('title', altTxt);
+						img.tabIndex = 0;
+					} else {
+						// Add null alt text to slider image since should be ignored
+						altTxt = '';
+					}
+					img.setAttribute('alt', altTxt);
 				}
 			});
 		}, // end accessibilize function		
