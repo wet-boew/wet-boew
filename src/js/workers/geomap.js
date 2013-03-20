@@ -490,6 +490,7 @@
 			// replace periods with underscores for jQuery!
 			if (context.type !== 'head') {
 				$row.attr('id', context.id.replace(/\W/g, '_'));
+				$row.attr('tabindex', '0');
 			}
 
 			$.each(attributes, function(key, value) {
@@ -504,16 +505,10 @@
 			});		
 
 			if (zoomTo) {
-				cols.push($('<td>'));
-				$(cols[cols.length - 1]).empty().append(_pe.fn.geomap.addZoomTo($row, context.feature, context.selectControl).children());
+				cols.push(_pe.fn.geomap.addZoomTo($row, context.feature));
 			}
 
 			if (context.type !== 'head') {
-				// TODO: support user configured column for link, currently defaults to first column.
-				var $col0 = $(cols[0]),
-					$link = $('<a href="javascript:;">' + $col0.html() + '</a>');
-
-				$col0.empty().append($link);
 
 				// Hover events
 				$row.on('mouseenter mouseleave', function(e) {
@@ -532,7 +527,7 @@
 				});
 
 				// Keybord events
-				$link.on('focus blur', function(e) {
+				$row.on('focus blur', function(e) {
 					var type = e.type,
 						selectControl = context.selectControl;
 					if (type === 'focus') {
@@ -608,47 +603,36 @@
 		 */
 		onTabularFeaturesAdded: function(feature, zoomColumn, table, opts) {
 			// Find the row
-			var $tr = $('tr#' + feature.id.replace(/\W/g, '_')),
-				$select,
-				$link;
+			var $tr = $('tr#' + feature.id.replace(/\W/g, '_'));
 
 			// add zoom column
 			if (zoomColumn) {
 				$tr.append(_pe.fn.geomap.addZoomTo($tr, feature));
 			}
 
-			$select = $tr.find('td.select');						
-			if ($select.length !== 0) {
-				$link = $select.find('a');
-				if ($link.length !== 0) {
-					$tr.on('mouseenter mouseleave', function(e) {
-						var type = e.type;
-						if (type === 'mouseenter') {
-							$tr.addClass('background-highlight');
-							selectControl.select(feature);
-						} else {
-							$tr.removeClass('background-highlight');
-							selectControl.unselect(feature);
-						}
-					});
-
-					// Keybord events
-					$link.on('focus blur', function(e) {
-						var type = e.type;
-						if (type === 'focus') {
-							$tr.addClass('background-highlight');
-							selectControl.select(feature);
-						} else {
-							$tr.removeClass('background-highlight');
-							selectControl.unselect(feature);
-						}
-					});
-				} else if (opts.debug) {
-					_pe.document.trigger('geomap-errorSelect', $select);
+			$tr.attr('tabindex', '0');						
+			$tr.on('mouseenter mouseleave', function(e) {
+				var type = e.type;
+				if (type === 'mouseenter') {
+					$tr.addClass('background-highlight');
+					selectControl.select(feature);
+				} else {
+					$tr.removeClass('background-highlight');
+					selectControl.unselect(feature);
 				}
-			} else if (opts.debug) {
-				_pe.document.trigger('geomap-errorNoSelect', $tr.closest('table'));
-			}
+			});
+
+			// Keybord events
+			$tr.on('focus blur', function(e) {
+				var type = e.type;
+				if (type === 'focus') {
+					$tr.addClass('background-highlight');
+					selectControl.select(feature);
+				} else {
+					$tr.removeClass('background-highlight');
+					selectControl.unselect(feature);
+				}
+			});
 		},
 
 		/*
