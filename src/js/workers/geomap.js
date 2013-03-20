@@ -560,7 +560,6 @@
 
 			if (datatable) {	
 				$targetTable.addClass('createDatatable');
-				//$targetTable.parent().attr('style', 'display: table; width: 100%');
 			}
 
 			// we need to call it here as well because if we use a config outside the domain it is called
@@ -590,7 +589,7 @@
 			$select = $tr.find('td.select');						
 			if ($select.length !== 0) {
 				$link = $select.find('a');
-				if ($link.length) {
+				if ($link.length !== 0) {
 					$tr.on('mouseenter mouseleave', function(e) {
 						var type = e.type;
 						if (type === 'mouseenter') {
@@ -777,17 +776,17 @@
 							layer.title, {
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
-								url: layer.url,
-								format: new OpenLayers.Format.KML({
-									extractStyles: !layer.style,
-									extractAttributes: true,
-									internalProjection: map.getProjectionObject(),
-									externalProjection: new OpenLayers.Projection('EPSG:4269'),
-
-									read: function(data) {
-										var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
-											row, i, len, feature, atts = {}, features = [],
-											a = layer.attributes;
+									url: layer.url,
+									format: new OpenLayers.Format.KML({
+										extractStyles: !layer.style,
+										extractAttributes: true,
+										internalProjection: map.getProjectionObject(),
+										externalProjection: new OpenLayers.Projection('EPSG:4269'),
+										read: function(data) {
+											var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
+												row, i, len, feature, atts, features = [],
+												layerAttributes = layer.attributes,
+												name;
 
 											for (i = 0, len = items.length; i !== len; i += 1) {
 												row = items[i];
@@ -795,15 +794,13 @@
 												feature.geometry = this.parseFeature(row).geometry;
 
 												// parse and store the attributes
-												atts = {};
-
 												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														atts[a[name]] = $(row).find(name).text();
+												atts = {};
+												for (name in layerAttributes) {
+													if (layerAttributes.hasOwnProperty(name)) {
+														atts[layerAttributes[name]] = $(row).find(name).text();
 													}
 												}
-
 												feature.attributes = atts;
 												features.push(feature);
 											}
@@ -838,34 +835,33 @@
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
 									format: new OpenLayers.Format.Atom({
-											read: function(data) {
-												var items = this.getElementsByTagNameNS(data, '*', 'entry'),
-													row, $row, i, len, feature, atts = {}, features = [],
-													a = layer.attributes;
+										read: function(data) {
+											var items = this.getElementsByTagNameNS(data, '*', 'entry'),
+												row, $row, i, len, feature, atts, features = [],
+												layerAttributes = layer.attributes,
+												name;
 
-												for (i = 0, len = items.length; i !== len; i += 1) {
-													row = items[i];
-													$row = $(row);
-													feature = new OpenLayers.Feature.Vector();
-													feature.geometry = this.parseFeature(row).geometry;
+											for (i = 0, len = items.length; i !== len; i += 1) {
+												row = items[i];
+												$row = $(row);
+												feature = new OpenLayers.Feature.Vector();
+												feature.geometry = this.parseFeature(row).geometry;
 
-													// parse and store the attributes
-													atts = {};
-
-													// TODO: test on nested attributes
-													for (var name in a) {
-														if (a.hasOwnProperty(name)) {
-															atts[a[name]] = $row.find(name).text();
-														}
+												// parse and store the attributes
+												// TODO: test on nested attributes
+												atts = {};
+												for (name in layerAttributes) {
+													if (layerAttributes.hasOwnProperty(name)) {
+														atts[layerAttributes[name]] = $row.find(name).text();
 													}
-
-													feature.attributes = atts;
-													features.push(feature);
 												}
-												return features;
+												feature.attributes = atts;
+												features.push(feature);
 											}
-										})
-									}),						
+											return features;
+										}
+									})
+								}),						
 								eventListeners: {
 									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
@@ -895,27 +891,24 @@
 									format: new OpenLayers.Format.GeoRSS({									
 										read: function(data) {											
 											var items = this.getElementsByTagNameNS(data, '*', 'item'),
-												row, $row, i, len, feature, atts = {}, features = [];
+												row, $row, i, len, feature, atts, features = [],
+												layerAttributes = layer.attributes,
+												name;
 
 											for (i = 0, len = items.length; i !== len; i += 1) {												
 												row = items[i];
 												$row = $(row);			
-
 												feature = new OpenLayers.Feature.Vector();											
-
 												feature.geometry = this.createGeometryFromItem(row);
 
 												// parse and store the attributes
-												atts = {};
-												var a = layer.attributes;
-
 												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														atts[a[name]] = $row.find(name).text();														
+												atts = {};
+												for (name in layerAttributes) {
+													if (layerAttributes.hasOwnProperty(name)) {
+														atts[layerAttributes[name]] = $row.find(name).text();														
 													}
 												}
-
 												feature.attributes = atts;												
 
 												// if no geometry, don't add it
@@ -957,24 +950,23 @@
 									format: new OpenLayers.Format.GeoJSON({										
 										read: function(data) {											
 											var items = data[layer.root] ? data[layer.root] : data,
-												row, i, len, feature, atts = {}, features = [];
+												row, i, len, feature, atts, features = [],
+												layerAttributes = layer.attributes,
+												name;
 
 											for (i = 0, len = items.length; i !== len; i += 1) {												
 												row = items[i];												
 												feature = new OpenLayers.Feature.Vector();												
-												feature.geometry =	this.parseGeometry(row.geometry);
+												feature.geometry = this.parseGeometry(row.geometry);
 
 												// parse and store the attributes
-												atts = {};
-												var a = layer.attributes;
-
 												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														atts[a[name]] = row[name];														
+												atts = {};
+												for (name in layerAttributes) {
+													if (layerAttributes.hasOwnProperty(name)) {
+														atts[layerAttributes[name]] = row[name];														
 													}
 												}
-
 												feature.attributes = atts;												
 
 												// if no geometry, don't add it
@@ -1015,10 +1007,10 @@
 									params: layer.params,
 									format: new OpenLayers.Format.GeoJSON({
 										read: function(data) {
-
 											var items = data.features,
-												i, len, row, feature, atts = {}, features = [],
-												a = layer.attributes;
+												i, len, row, feature, atts, features = [],
+												layerAttributes = layer.attributes,
+												name;
 
 											for (i = 0, len = items.length; i !== len; i += 1) {												
 												row = items[i];												
@@ -1026,15 +1018,13 @@
 												feature.geometry = this.parseGeometry(row.geometry);
 
 												// parse and store the attributes
-												atts = {};
-
 												// TODO: test on nested attributes
-												for (var name in a) {
-													if (a.hasOwnProperty(name)) {
-														atts[a[name]] = row.properties[name];														
+												atts = {};
+												for (var name in layerAttributes) {
+													if (layerAttributes.hasOwnProperty(name)) {
+														atts[layerAttributes[name]] = row.properties[name];														
 													}
 												}
-
 												feature.attributes = atts;												
 
 												// if no geometry, don't add it
