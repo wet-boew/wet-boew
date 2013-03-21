@@ -122,11 +122,9 @@
 		
 		addPanZoomBar: function() {
 			
-			var mapControl = _pe.dic.get('%geo-mapcontrol');
 			var panZoomBar = new OpenLayers.Control.PanZoomBar();
-			
 			OpenLayers.Util.extend(panZoomBar, {
-				draw: function(px) {
+				draw: function() {
 					// initialize our internal div
 					var oButtons = this;
 					var centered = new OpenLayers.Pixel(7.5, 81);
@@ -607,7 +605,7 @@
 		 * Handle features once they have been added to the map for tabular data
 		 *
 		 */
-		onTabularFeaturesAdded: function(feature, zoomColumn, table, opts) {
+		onTabularFeaturesAdded: function(feature, zoomColumn, tableß) {
 			// Find the row
 			var $tr = $('tr#' + feature.id.replace(/\W/g, '_'));
 
