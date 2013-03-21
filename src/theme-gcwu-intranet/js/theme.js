@@ -54,7 +54,7 @@
 
 			// Remove the object for loading the SVG images  and leave only the fallback image element (content pages only)
 			// Also switch to the white PNG if not in print view
-			if ((!pe.svg || pe.svgfix) && wet_boew_theme.sft.length !== 0) {
+			if (!pe.svg || pe.svgfix) {
 				len = svgid.length;
 				while (len--) {
 					svgelm = document.getElementById(svgid[len]);
@@ -65,7 +65,7 @@
 							object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, ((print || !contentPage) ? object.innerHTML : object.innerHTML.replace('.png', '-w.png')));
 						} else if (contentPage) {
 							img = svgelm.getElementsByTagName('img');
-							if(img.length > 0) {
+							if (img.length > 0) {
 								img = img[0];
 								img.src = (print ? img.src : img.src.replace('.png', '-w.png'));
 							}
