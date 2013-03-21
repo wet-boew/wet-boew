@@ -21,25 +21,6 @@
 	}
 }
 
-#gcwu-wmms {
-	object {
-		&[data*="wmms-static.svg"] {
-			display: none;
-		}
-	}
-}
-
-.pe-disable {
-	#gcwu-wmms {
-		object {
-			&[data*="wmms-static.svg"] {
-				display: block;
-			}
-		}
-		background: #FFF;
-	}
-}
-
 [dir="rtl"] {
 	#gcwu-subsite {
 		a {

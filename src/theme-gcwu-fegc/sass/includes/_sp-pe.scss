@@ -7,6 +7,14 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 
+%gcwu-sp-pe-width-214-height-20 {
+	width: 214px;
+	height: 20px;
+}
+%gcwu-sp-pe-width-126-height-30 {
+	width: 126px;
+	height: 30px;
+}
 %gcwu-sp-pe-font-weight-700 {
 	font-weight: 700;
 }
@@ -131,6 +139,28 @@ h2 {
 #wb-skip {
 	display: none;
 	visibility: hidden;
+}
+
+#gcwu-sig {
+	img {
+		@extend %gcwu-sp-pe-width-214-height-20;
+	}
+}
+
+#gcwu-sig-in {
+	@extend %gcwu-sp-pe-width-214-height-20;
+}
+
+#gcwu-wmms {
+	img {
+		@extend %gcwu-sp-pe-width-126-height-30;
+	}
+}
+
+#gcwu-wmms-in {
+	@extend %gcwu-sp-pe-width-126-height-30;
+	position: absolute;
+	right: 0;
 }
 
 #gcwu-title-left {
