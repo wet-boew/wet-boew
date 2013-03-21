@@ -70,13 +70,7 @@
 						}
 					}
 				}
-			}/* else if (mobile) {
-				svgelm = document.getElementById(svgid[0]);
-				if (svgelm !== null) {
-					object = svgelm.getElementsByTagName('object')[0];
-					object.setAttribute('data', object.getAttribute('data').replace('-static.svg', '.svg'));
-				}
-			}*/
+			}
 
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length !== 0) {
