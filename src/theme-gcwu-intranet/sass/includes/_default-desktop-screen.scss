@@ -6,9 +6,9 @@
 %gcwu-intranet-default-desktop-screen-intranetnb-sprite {
 	background-image: url(../images/core/gcwu-intranetnb-sprite.gif);
 }
-%gcwu-intranet-default-desktop-screen-height20px-overflow-visible {
-	height: 20px !important;
-	overflow: visible !important;
+%gcwu-intranet-default-desktop-screen-width-234-height22 {
+	width: 234px;
+	height: 22px;
 }
 %gcwu-intranet-default-desktop-screen-psnb-background {
 	background: #555 url(../images/gcwu-psnb.gif) repeat-x 0 0; //TODO: Replace with gradient if applicable
@@ -179,14 +179,18 @@
 }
 
 #gcwu-sig {
-	@extend %gcwu-intranet-default-desktop-screen-height20px-overflow-visible;
+	z-index: 3;
 	@extend %gcwu-intranet-default-desktop-screen-bottom-11;
 	@extend %gcwu-intranet-default-desktop-screen-position-absolute;
-	z-index: 3;
 	@extend %gcwu-intranet-default-desktop-screen-margin-0;
+	@extend %gcwu-intranet-default-desktop-screen-width-234-height22;
 	img {
-		@extend %gcwu-intranet-default-desktop-screen-height20px-overflow-visible;
+		@extend %gcwu-intranet-default-desktop-screen-width-234-height22;
 	}
+}
+
+#gcwu-sig-in {
+	@extend %gcwu-intranet-default-desktop-screen-margin-0;
 }
 
 #gcwu-bnr-in {
@@ -206,7 +210,6 @@
 	@extend %gcwu-intranet-default-desktop-screen-right-0;
 	@extend %gcwu-intranet-default-desktop-screen-margin-0;
 	img {
-		height: auto !important;
 		@extend %gcwu-intranet-default-desktop-screen-margin-right-0;
 		@extend %gcwu-intranet-default-desktop-screen-height-30-width-126;
 		@extend %gcwu-intranet-default-desktop-screen-right-0;
@@ -372,11 +375,6 @@
 	a {
 		@extend %gcwu-intranet-default-desktop-screen-font-weight-400;
 	}
-}
-
-#gcwu-sig-in {
-	@extend %gcwu-intranet-default-desktop-screen-height20px-overflow-visible;
-	@extend %gcwu-intranet-default-desktop-screen-margin-0;
 }
 
 #gcwu-subsite {

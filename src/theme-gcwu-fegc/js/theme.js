@@ -313,7 +313,7 @@
 				}
 
 				// Move the Canada Wordmark to the footer
-				wmms = document.getElementById('wmms');
+				wmms = document.getElementById('gcwu-wmms');
 				if (wmms !== null) {
 					pe.footer[0].getElementsByTagName('footer')[0].appendChild(wmms.cloneNode(true));
 					wmms.parentNode.removeChild(wmms);

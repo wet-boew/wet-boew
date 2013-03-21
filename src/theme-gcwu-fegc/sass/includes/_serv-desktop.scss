@@ -2,3 +2,22 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%gcwu-serv-desktop-display-none {
+	display: none;
+}
+
+#gcwu-tc {
+	.ui-link {
+		font-weight: 400;
+	}
+}
+
+.ui-footer {
+	@extend %gcwu-serv-desktop-display-none;
+}
+
+#wb-foot {
+	#gcwu-wmms {
+		@extend %gcwu-serv-desktop-display-none;
+	}
+}
