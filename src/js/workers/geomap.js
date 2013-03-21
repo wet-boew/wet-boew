@@ -605,7 +605,7 @@
 		 * Handle features once they have been added to the map for tabular data
 		 *
 		 */
-		onTabularFeaturesAdded: function(feature, zoomColumn, tableß) {
+		onTabularFeaturesAdded: function(feature, zoomColumn, table) {
 			// Find the row
 			var $tr = $('tr#' + feature.id.replace(/\W/g, '_'));
 
