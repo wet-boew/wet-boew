@@ -60,9 +60,11 @@
 %wet-default-desktop-screen-margin-0 {
 	margin: 0;
 }
-%wet-default-desktop-screen-padding-9-15-9-0-position-absolute {
+%wet-default-desktop-screen-padding-9-15-9-0-position-absolute-width-141-width-65 {
 	padding: 9px 15px 9px 0;
 	@extend %wet-default-desktop-screen-position-absolute;
+	width: 141px;
+	height: 65px;
 }
 %wet-default-desktop-screen-padding-9-0-9-15 {
 	padding: 9px 0 9px 15px;
@@ -261,10 +263,10 @@ a {
 		display: table-row;
 	}
 	object {
-		@extend %wet-default-desktop-screen-padding-9-15-9-0-position-absolute;
+		@extend %wet-default-desktop-screen-padding-9-15-9-0-position-absolute-width-141-width-65;
 	}
 	img {
-		@extend %wet-default-desktop-screen-padding-9-15-9-0-position-absolute;
+		@extend %wet-default-desktop-screen-padding-9-15-9-0-position-absolute-width-141-width-65;
 	}
 	span {
 		display: table-cell;
