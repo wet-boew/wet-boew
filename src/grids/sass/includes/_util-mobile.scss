@@ -35,6 +35,13 @@ table {
 	@extend %grids-util-mobile-no-margin;
 }
 
+ul {
+	&.button-group {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
 .date-month {
 	a {
 		color: #fff !important;
