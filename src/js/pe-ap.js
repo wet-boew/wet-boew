@@ -153,8 +153,8 @@
 			pe.urlhash = pe.urlpage.hash;
 			pe.urlquery = pe.urlpage.params;
 
-			// Identify whether or not the device supports JavaScript and has a touchscreen
-			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '');
+			// Identify whether or not the device supports JavaScript, has a touchscreen and is a modern version of IE
+			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '').addClass(pe.ie > 8 ? 'ie' + parseInt(pe.ie, 10) : '');
 
 			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
 				return this.href.indexOf('#') !== -1;
