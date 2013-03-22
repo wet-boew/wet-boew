@@ -808,7 +808,9 @@
 										internalProjection: map.getProjectionObject(),
 										externalProjection: new OpenLayers.Projection('EPSG:4269'),
 										read: function(data) {
-											var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
+											var parser = new DOMParser(),
+												val = parser.parseFromString(data, "text/xml"),
+												items = this.getElementsByTagNameNS(val, '*', 'Placemark'),
 												row, $row, i, len, feature, atts, features = [],
 												layerAttributes = layer.attributes,
 												name;
