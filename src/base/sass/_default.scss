@@ -9,6 +9,9 @@
 	right: auto;
 	left: -9999px;
 }
+%wb-default-text-indent-9999 {
+	text-indent: 9999px;
+}
 
 body {
 	font-size: 80%;
@@ -163,7 +166,7 @@ h6 {
 	/* Start of RTL fixes for jQuery Mobile's way of hiding stuff
 	 * TODO: Fix in jQuery Mobile rather than here
 	 */
-	/* left: -9999px */
+	/* Fixes left: -9999px */
 	.ui-nojs {
 		@extend %wb-default-left-auto-right--9999;
 	}
@@ -222,15 +225,15 @@ h6 {
 			@extend %wb-default-left-auto-right--9999;
 		}
 	}
-	/* text-indent: -9999px */
+	/* Fixes text-indent: -9999px */
 	.ui-btn-hidden {
-		text-indent: 9999px;
+		@extend %wb-default-text-indent-9999;
 	}
 	.ui-collapsible-heading {
 		.ui-btn {
 			span {
 				&.ui-btn {
-					text-indent: 9999px;
+					@extend %wb-default-text-indent-9999;
 				}
 			}
 		}
