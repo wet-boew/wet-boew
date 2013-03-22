@@ -5,6 +5,14 @@
 @import 'compass/css3/opacity';
 @import '../../grids/sass/includes/mixins';
 
+%wb-default-left-auto-right--9999 {
+	right: auto;
+	left: -9999px;
+}
+%wb-default-text-indent-9999 {
+	text-indent: 9999px;
+}
+
 body {
 	font-size: 80%;
 	margin: 0;
@@ -155,8 +163,80 @@ h6 {
 }
 
 [dir="rtl"] {
-  .ui-popup-hidden {
-    left: auto;
-    right: -9999px;
-  }
+	/* Start of RTL fixes for jQuery Mobile's way of hiding stuff
+	 * TODO: Fix in jQuery Mobile rather than here
+	 */
+	/* Fixes left: -9999px */
+	.ui-nojs {
+		@extend %wb-default-left-auto-right--9999;
+	}
+	.ui-popup-hidden {
+		@extend %wb-default-left-auto-right--9999;
+	}
+	.ui-hide-label {
+		label {
+			&.ui-input-text {
+				@extend %wb-default-left-auto-right--9999;
+			}
+			&.ui-select {
+				@extend %wb-default-left-auto-right--9999;
+			}
+			&.ui-slider {
+				@extend %wb-default-left-auto-right--9999;
+			}
+			&.ui-submit {
+				@extend %wb-default-left-auto-right--9999;
+			}
+			&.ui-controlgroup-label {
+				@extend %wb-default-left-auto-right--9999;
+			}
+		}
+	}
+	.ui-hidden-accessible {
+		@extend %wb-default-left-auto-right--9999;
+	}
+	.ui-page-header-fullscreen {
+		.ui-fixed-hidden {
+			@extend %wb-default-left-auto-right--9999;
+		}
+	}
+	.ui-page-footer-fullscreen {
+		.ui-fixed-hidden {
+			@extend %wb-default-left-auto-right--9999;
+		}
+	}
+	.ui-btn-icon-notext {
+		.ui-btn-text {
+			@extend %wb-default-left-auto-right--9999;
+		}
+	}
+	.ui-controlgroup-controls {
+		label {
+			&.ui-select {
+				@extend %wb-default-left-auto-right--9999;
+			}
+			&.ui-submit {
+				@extend %wb-default-left-auto-right--9999;
+			}
+		}
+	}
+	.ui-select {
+		select {
+			@extend %wb-default-left-auto-right--9999;
+		}
+	}
+	/* Fixes text-indent: -9999px */
+	.ui-btn-hidden {
+		@extend %wb-default-text-indent-9999;
+	}
+	.ui-collapsible-heading {
+		.ui-btn {
+			span {
+				&.ui-btn {
+					@extend %wb-default-text-indent-9999;
+				}
+			}
+		}
+	}
+	/* End of RTL fixes for jQuery Mobile's way of hiding stuff */
 }
