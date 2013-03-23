@@ -534,3 +534,24 @@
 		display: block;
 	}
 }
+
+.ie9 {
+	.tabs-style-2 {
+		.tabs {
+			li {
+				a {
+					display: inline;
+				}
+			}
+		}
+	}
+	.tabs-style-3 {
+		.tabs {
+			li {
+				&:not(.tabs-toggle) {
+					display: inline;
+				}
+			}
+		}
+	}
+}
