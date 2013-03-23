@@ -2,72 +2,21 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-%zebra-border-none {
-	border: none;
-}
-%zebra-list-style-type-none {
-	list-style-type: none;
-}
-%zebra-padding-10 {
-	padding: 10px;
-}
-%zebra-content-normal {
-	content: normal;
-}
-%zebra-border-1-solid-ccc {
-	border: 1px solid #CCC;
-}
-%zebra-background-color-f0fcff {
-	background-color: #f0fcff;
-}
-%zebra-background-color-222 {
-	background-color: #222;
-}
-%zebra-background-color-555 {
-	background-color: #555;
-}
-%zebra-background-color-666 {
-	background-color: #666;
-}
-%zebra-background-color-ccc {
-	background-color: #CCC;
-}
-%zebra-background-color-ddd {
-	background-color: #DDD;
-}
-%zebra-background-color-eee {
-	background-color: #EEE;
-}
-%zebra-background-color-fff {
-	background-color: #fff;
-}
-%zebra-background-color-transparent {
-	background-color: transparent;
-}
-%zebra-margin-left {
-	margin-left: 0;
-}
-%zebra-padding-8 {
-	padding: 8px;
-}
-%zebra-font-style-italic {
-	font-style: italic;
-}
 %zebra-list-odd-list-even-border-none {
 	&.list-odd {
-		@extend %zebra-border-none;
+		border: none;
 	}
 	&.list-even {
-		@extend %zebra-border-none;
+		border: none;
 	}
 }
 
 ul {
 	&.wet-boew-zebra {
 		li {
-			 @extend %zebra-list-style-type-none;
+			 list-style-type: none;
 			li {
-				@extend %zebra-list-style-type-none; 
+				list-style-type: none; 
 			}
 		}
 	}
@@ -79,7 +28,7 @@ ol, ul {
 		li {
 			margin-bottom: 2px;
 			margin-right: 0;
-			@extend %zebra-padding-10;
+			padding: 10px;
 		}
 	}
 }
@@ -110,7 +59,7 @@ ol {
 			li {
 				padding-left: 0;
 				&:before {
-					@extend %zebra-content-normal;
+					content: normal;
 				}
 			}
 		}
@@ -120,7 +69,7 @@ ol {
 	> {
 		li {
 			&:before {
-				@extend %zebra-content-normal;
+				content: normal;
 				counter-increment: none;
 				position: static;
 				left: auto;
@@ -132,11 +81,11 @@ ol {
 .module-comment ol.wet-boew-zebra, ol.wet-boew-zebra.module-comment {
 	ol {
 		li {
-			@extend %zebra-list-style-type-none;
+			list-style-type: none;
 		}
 		ol {
 			li {
-				@extend %zebra-list-style-type-none;
+				list-style-type: none;
 			} 
 		}
 	}
@@ -144,7 +93,7 @@ ol {
 
 dl {
 	&.wet-boew-zebra {
-		@extend %zebra-margin-left;
+		margin-left: 0;
 	}
 }
 
@@ -152,15 +101,15 @@ dl {
 	
 	/* Definition list */
 	dl {
-		@extend %zebra-margin-left;
+		margin-left: 0;
 	}
 	dd {
-		@extend %zebra-padding-10;
-		@extend %zebra-margin-left;
+		padding: 10px;
+		margin-left: 0;
 		@extend %zebra-list-odd-list-even-border-none;
 	}
 	dt {
-		@extend %zebra-padding-10;
+		padding: 10px;
 		@extend %zebra-list-odd-list-even-border-none;
 		font-weight: 700;
 		margin-top: 2px;
@@ -169,15 +118,15 @@ dl {
 	
 	dt, dd {
 		&.list-even {
-			@extend %zebra-background-color-ddd;
-			@extend %zebra-border-1-solid-ccc;
+			background-color: #ddd;
+			border: 1px solid #CCC;
 		}
 		&.list-odd {
-			@extend %zebra-background-color-eee;
-			@extend %zebra-border-1-solid-ccc;
+			background-color: #eee;
+			border: 1px solid #CCC;
 		}
 		&.list-hover {
-			@extend %zebra-background-color-f0fcff;
+			background-color: #f0fcff;
 		}
 	}
 	
@@ -185,15 +134,15 @@ dl {
 	/* Ordered and Unordered list */
 	> li {
 		&.list-even, &:nth-child(2n) {
-			@extend %zebra-background-color-ddd;
-			@extend %zebra-border-1-solid-ccc;
+			background-color: #ddd;
+			border: 1px solid #CCC;
 		}
 		&.list-odd, &:nth-child(2n + 1) {
-			@extend %zebra-background-color-eee;
-			@extend %zebra-border-1-solid-ccc;
+			background-color: #eee;
+			border: 1px solid #CCC;
 		}
 		&.list-hover, &:hover {
-			@extend %zebra-background-color-f0fcff;
+			background-color: #f0fcff;
 		}
 
 	}
@@ -203,30 +152,30 @@ dl {
 	&.alterwg {
 		li {
 			&.list-even, &:nth-child(2n) {
-				@extend %zebra-background-color-ddd;
-				@extend %zebra-border-none;
+				background-color: #ddd;
+				border: none;
 			}
 			&.list-odd, &:nth-child(2n + 1) {
-				@extend %zebra-background-color-fff;
-				@extend %zebra-border-none;
+				background-color: #fff;
+				border: none;
 			}
 		}
 
 		dt, dd {
 			&.list-even {
-				@extend %zebra-background-color-ddd;
-				@extend %zebra-border-none;
+				background-color: #ddd;
+				border: none;
 			}
 			&.list-odd {
-				@extend %zebra-background-color-fff;
-				@extend %zebra-border-none;
+				background-color: #fff;
+				border: none;
 			}
 		}
 		
 		&.zebra-hover {
 			li, dt, dd {
 				&.list-hover, &:hover {
-					@extend %zebra-background-color-f0fcff;
+					background-color: #f0fcff;
 				}
 			}
 		}
@@ -247,25 +196,25 @@ dl {
 	td {
 		
 		&.table-summary {
-			@extend %zebra-background-color-f0fcff;
+			background-color: #f0fcff;
 		}
 		&.table-keycell {
-			@extend %zebra-padding-8;
+			padding: 8px;
 		}
 		&.table-desccell {
-			@extend %zebra-font-style-italic;
-			@extend %zebra-padding-8;
+			font-style: italic;
+			padding: 8px;
 		}
 	}
 	td, th {
 		&.table-layoutCell {
-			@extend %zebra-background-color-fff;
+			background-color: #fff;
 		}
 	}
 
 	/* Summary Group Styling */
 	tr.table-summary, tbody.table-summary tr, colgroup col.table-summary, colgroup.table-summary, tfoot tr {
-		@extend %zebra-background-color-f0fcff; /* Summary Row/Col highligth */
+		background-color: #f0fcff; /* Summary Row/Col highligth */
 	}
 	
 	/* Delimiter between table group */
@@ -286,7 +235,7 @@ dl {
 		colgroup {
 			col {
 				&.table-odd, &:nth-child(2n)  {
-					@extend %zebra-background-color-f0fcff;
+					background-color: #f0fcff;
 				}
 			}
 		}
@@ -295,7 +244,7 @@ dl {
 		tbody {
 			tr {
 				&.table-odd, &:nth-child(2n)  {
-					@extend %zebra-background-color-f0fcff;
+					background-color: #f0fcff;
 				}
 			}
 		}
@@ -306,23 +255,23 @@ dl {
 	&.columnhighlight {
 		colgroup {
 			col.table-hover {
-				@extend %zebra-background-color-eee;
+				background-color: #eee;
 			}
 		}
 		th.table-hover {
-			@extend %zebra-background-color-ccc;
+			background-color: #ccc;
 		}
 		&.table-accent th.table-hover {
-			@extend %zebra-background-color-555;
+			background-color: #555;
 		}
 		&.table-medium th.table-hover {
-			@extend %zebra-background-color-222;
+			background-color: #222;
 		}
 		&.table-dark th.table-hover {
-			@extend %zebra-background-color-666;
+			background-color: #666;
 		}
 		&.table-simplify th.table-hover {
-			@extend %zebra-background-color-transparent;
+			background-color: transparent;
 		}
 	}
 	
@@ -334,7 +283,7 @@ dl {
 			tr:hover td.table-desccell, tr.table-hover td.table-desccell,
 			tr:hover td.table-layoutCell, tr.table-hover td.table-layoutCell,
 			tr:hover th.table-layoutCell, tr.table-hover th.table-layoutCell  {
-				@extend %zebra-background-color-eee;
+				background-color: #eee;
 			}
 		}
 	}
@@ -345,36 +294,36 @@ dl {
 			tr:hover td.table-desccell, tr.table-hover td.table-desccell,
 			tr:hover td.table-layoutCell, tr.table-hover td.table-layoutCell,
 			tr:hover th.table-layoutCell, tr.table-hover th.table-layoutCell  {
-				@extend %zebra-background-color-eee;
+				background-color: #eee;
 			}
 			
 			tr:hover th, tr.table-hover th {
-				@extend %zebra-background-color-ccc;
+				background-color: #ccc;
 			}
 			/*
 			 * Uncomment to have white cell at the mouse intersection
 			tr:hover td:hover {
-				@extend %zebra-background-color-fff;
+				background-color: #fff;
 			}
 			*/
 		}
 		&.table-accent tbody, &.table-accent tfoot {
 			tr:hover th, tr.table-hover th  {
-				@extend %zebra-background-color-555;
+				background-color: #555;
 			}
 		}
 		&.table-medium tbody, &.table-medium tfoot {
 			tr:hover th, tr.table-hover th {
-				@extend %zebra-background-color-222;
+				background-color: #222;
 			}
 		}
 		&.table-dark tbody, &.table-dark tfoot {
 			tr:hover th, tr.table-hover th {
-				@extend %zebra-background-color-666;
+				background-color: #666;
 			}
 		}
 		&.table-simplify tbody tr th, &.table-simplify tfoot tr th {
-			@extend %zebra-background-color-transparent;
+			background-color: transparent;
 		}
 	}
 }
