@@ -38,7 +38,7 @@ div {
 							list-style-type: none !important;
 							a {
 								&, &:link {
-									color: #000 !important;
+									color: #000;
 									width: auto;
 								}
 								@include pseudo-focus {
