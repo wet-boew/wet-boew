@@ -843,18 +843,30 @@
 					dataAttr = $elm.attr('data-' + data_name),
 					dataObj = null;
 				if (dataAttr) {
-					try {
-						dataObj = $.parseJSON(dataAttr);
-					} catch (e) {
-						// Fallback if data- contains a malformed JSON string (less secure than with a JSON string)
-						if (dataAttr.indexOf('{') === -1) {
-							dataAttr = '{' + dataAttr + '}';
-						}
-						dataObj = eval('(' + dataAttr + ')');
-					}
+					dataObj = this.toObject(dataAttr);
 				}
 				$.data(elm, data_name, dataObj);
 				return dataObj;
+			},
+			/**
+			* Converts a string to an object
+			* @memberof pe.data
+			* @function
+			* @param {string} data_string String to convert to an object (recommend JSON)
+			* @return {data} Object created by converting the string
+			*/
+			toObject: function (data_string) {
+				var obj = null;
+				try {
+					obj = $.parseJSON(data_string);
+				} catch (e) {
+					// Fallback if data_string is a malformed JSON string (less secure than with a JSON string)
+					if (data_string.indexOf('{') === -1) {
+						data_string = '{' + data_string + '}';
+					}
+					obj = eval('(' + data_string + ')');
+				}
+				return obj;
 			}
 		},
 		/**

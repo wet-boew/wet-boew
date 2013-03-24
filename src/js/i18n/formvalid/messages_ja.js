@@ -1,4 +1,4 @@
-/*!
+/*
  * Translated default messages for the jQuery validation plugin.
  * Locale: JA (Japanese; 日本語)
  */
