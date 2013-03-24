@@ -117,22 +117,22 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <option value="ms">Madame</option>
 </select>
 
-<label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" required pattern="{2,}" class="{validate:{minlength:2}}" />
-<label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" required pattern="{2,}" class="{validate:{minlength:2}}" />
-<label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label><input id="tel" name="tel" type="tel" required class="{validate:{phoneUS:true}}" />
+<label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" required="required" pattern="{2,}" data-rule-minlength="2" />
+<label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" required="required" pattern="{2,}" data-rule-minlength="2" />
+<label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label><input id="tel" name="tel" type="tel" required="required" data-rule-phoneUS="true" />
 <label for="email1"><span class="field-name">Adresse électronique</span></label><input id="email1" name="email1" type="email" />
-<label for="url1"><span class="field-name">URL du site Web (http://www.url.com)</span></label><input id="url1" name="url1" type="url" class="{validate:{url:true}}" />
+<label for="url1"><span class="field-name">URL du site Web (http://www.url.com)</span></label><input id="url1" name="url1" type="url" />
 </fieldset>
 
 <fieldset><legend>Autres exemples</legend>
-<label for="date1"><span class="field-name">Date</span> (AAAA-MM-JJ)</label><input id="date1" name="date1" type="date" class="{validate:{dateISO:true}}" />
+<label for="date1"><span class="field-name">Date</span> (AAAA-MM-JJ)</label><input id="date1" name="date1" type="date" data-rule-dateISO="true" />
 <label for="time1"><span class="field-name">Heure</span> (hh:mm)</label><input id="time1" name="time1" type="time" />
-<label for="an1"><span class="field-name">Alphanumérique</span> (4 caractères minimum)</label><input id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" class="{validate:{alphanumeric:true,minlength:4}}" />
+<label for="an1"><span class="field-name">Alphanumérique</span> (4 caractères minimum)</label><input id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" data-rule-alphanumeric="true" data-rule-minlength="4" />
 <label for="digits1"><span class="field-name">Chiffres seulement</span></label><input id="digits1" name="digits1" type="number" />
 <label for="integer1"><span class="field-name">Intègre</span> (entre 5 et 40)</label><input id="integer1" name="integer1" type="number" min="5" max="40" />
-<label for="letters1"><span class="field-name">Lettres seulement</span> (5 caractères maximum)</label><input id="letters1" name="letters1" type="text" size="5" maxlength="5" pattern="[A-Za-z\s]" class="{validate:{lettersonly:true}}" />
-<label for="text1"><span class="field-name">Lettres et des signes de ponctuation seulement</span> (ponctuation qui est permis&#160;: [. , ( ) "])</label><input id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&quot;\s]" class="{validate:{letterswithbasicpunc:true}}" />
-<label for="password1"><span class="field-name">Mot de passe</span> (entre 5 et 10 characters)</label><input id="password1" name="password1" type="password" maxlength="10" size="10" pattern="{5,10}" class="{validate:{rangelength:[5,10]}}" />
+<label for="letters1"><span class="field-name">Lettres seulement</span> (5 caractères maximum)</label><input id="letters1" name="letters1" type="text" size="5" maxlength="5" pattern="[A-Za-z\s]" data-rule-lettersonly="true" />
+<label for="text1"><span class="field-name">Lettres et des signes de ponctuation seulement</span> (ponctuation qui est permis&#160;: [. , ( ) "])</label><input id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&quot;\s]" data-rule-letterswithbasicpunc="true" />
+<label for="password1"><span class="field-name">Mot de passe</span> (entre 5 et 10 characters)</label><input id="password1" name="password1" type="password" maxlength="10" size="10" pattern="{5,10}" data-rule-rangelength="[5,10]" />
 </fieldset>
 <div class="form-inline"><input type="submit" value="Soumettre" class="button button-accent" /> <input type="reset" value="Réinitialiser" class="button" /></div>
 </form>
