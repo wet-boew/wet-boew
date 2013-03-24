@@ -161,7 +161,7 @@
 			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : ' smartphone-view')) : (pe.print ? ' print-view' : ' desktop-view'))) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			classes += (pe.svg ? ' svg' : ' no-svg');
-			classes += (pe.ie > 8 ? 'ie' + parseInt(pe.ie, 10));
+			classes += (pe.ie > 8 ? 'ie' + parseInt(pe.ie, 10) : '');
 			
 			// Identify IE9+ browser
 			if (pe.ie > 8) {
