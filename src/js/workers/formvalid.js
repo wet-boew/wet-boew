@@ -164,7 +164,7 @@
 									ariaLive.html(string);
 								}
 							} else if (ariaLive.html().length !== 0) {
-								ariaLive.empty()
+								ariaLive.empty();
 							}
 						}
 
