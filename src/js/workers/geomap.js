@@ -813,6 +813,11 @@
 												layerAttributes = layer.attributes,
 												name;
 
+											// When read from server, data is string instead of #document
+											if (typeof data === 'string') {
+												data = (new DOMParser()).parseFromString(data, 'text/xml');
+											} 
+
 											for (i = 0, len = items.length; i !== len; i += 1) {
 												row = items[i];
 												$row = $(row);
