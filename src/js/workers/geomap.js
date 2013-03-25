@@ -1293,17 +1293,10 @@
 		},
 
 		refreshPlugins: function() {
-			var $createDatatable;
 			_pe.wb_load({
 				'plugins': {
+					'tables': _pe.main.find('.createDatatable'),
 					'tabbedinterface': _pe.main.find('.wet-boew-tabbedinterface')
-				}
-			});
-
-			$createDatatable = _pe.main.find('.createDatatable');
-			_pe.wb_load({
-				'plugins': {
-					'tables': $createDatatable
 				}
 			});
 
