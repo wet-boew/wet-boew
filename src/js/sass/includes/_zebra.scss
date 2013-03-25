@@ -133,34 +133,32 @@ dl {
 	
 	/* Ordered and Unordered list */
 	> li {
-		&.list-even, &:nth-child(2n) {
+		&:nth-child(2n) {
 			background-color: #ddd;
 			border: 1px solid #CCC;
 		}
-		&.list-odd, &:nth-child(2n + 1) {
+		&:nth-child(2n + 1) {
 			background-color: #eee;
 			border: 1px solid #CCC;
 		}
-		&.list-hover, &:hover {
+		&:hover {
 			background-color: #f0fcff;
 		}
-
 	}
-	
 	
 	/* Style Alterwg (Alternate White and Gray stripe) */
 	&.alterwg {
-		li {
-			&.list-even, &:nth-child(2n) {
+		> li {
+			&:nth-child(2n) {
 				background-color: #ddd;
 				border: none;
 			}
-			&.list-odd, &:nth-child(2n + 1) {
+			&:nth-child(2n + 1) {
 				background-color: #fff;
 				border: none;
 			}
 		}
-
+		
 		dt, dd {
 			&.list-even {
 				background-color: #ddd;
@@ -194,10 +192,6 @@ dl {
 	 
 	/* Scope of cells */
 	td {
-		
-		&.table-summary {
-			background-color: #f0fcff;
-		}
 		&.table-keycell {
 			padding: 8px;
 		}
@@ -213,8 +207,10 @@ dl {
 	}
 
 	/* Summary Group Styling */
-	tr.table-summary, tbody.table-summary tr, colgroup col.table-summary, colgroup.table-summary, tfoot tr {
-		background-color: #f0fcff; /* Summary Row/Col highligth */
+	tr.table-summary, tbody.table-summary tr, 
+	colgroup col.table-summary, colgroup.table-summary, 
+	tfoot tr, td.table-summary {
+		background-color: #eee; /* Summary Row/Col highligth */
 	}
 	
 	/* Delimiter between table group */
@@ -234,7 +230,7 @@ dl {
 	&.colzebra {
 		colgroup {
 			col {
-				&.table-odd, &:nth-child(2n)  {
+				&:nth-child(2n)  {
 					background-color: #f0fcff;
 				}
 			}
@@ -243,7 +239,7 @@ dl {
 	&.rowzebra {
 		tbody {
 			tr {
-				&.table-odd, &:nth-child(2n)  {
+				&:nth-child(2n)  {
 					background-color: #f0fcff;
 				}
 			}
@@ -257,7 +253,12 @@ dl {
 			col.table-hover {
 				background-color: #eee;
 			}
+			&.table-summary col.table-hover {
+				background-color: #f0fcff;
+			}
 		}
+		
+		
 		th.table-hover {
 			background-color: #ccc;
 		}
@@ -285,6 +286,15 @@ dl {
 			tr:hover th.table-layoutCell, tr.table-hover th.table-layoutCell  {
 				background-color: #eee;
 			}
+			
+			/* Hover for summary rows */
+			tr.table-summary:hover, tr.table-summary.table-hover td,
+			tr.table-summary:hover td.table-keycell, tr.table-summary.table-hover td.table-keycell, 
+			tr.table-summary:hover td.table-desccell, tr.table-summary.table-hover td.table-desccell,
+			tr.table-summary:hover td.table-layoutCell, tr.table-summary.table-hover td.table-layoutCell,
+			tr.table-summary:hover th.table-layoutCell, tr.table-summary.table-hover th.table-layoutCell  {
+				background-color: #f0fcff;
+			}
 		}
 	}
 	&.rowhover {
@@ -296,6 +306,16 @@ dl {
 			tr:hover th.table-layoutCell, tr.table-hover th.table-layoutCell  {
 				background-color: #eee;
 			}
+
+			/* Hover for summary rows */
+			tr.table-summary:hover, tr.table-summary.table-hover td,
+			tr.table-summary:hover td.table-keycell, tr.table-summary.table-hover td.table-keycell, 
+			tr.table-summary:hover td.table-desccell, tr.table-summary.table-hover td.table-desccell,
+			tr.table-summary:hover td.table-layoutCell, tr.table-summary.table-hover td.table-layoutCell,
+			tr.table-summary:hover th.table-layoutCell, tr.table-summary.table-hover th.table-layoutCell  {
+				background-color: #f0fcff;
+			}
+
 			
 			tr:hover th, tr.table-hover th {
 				background-color: #ccc;
