@@ -47,7 +47,7 @@ var wet_boew_geomap = {
 	},
 	*/	
 	overlays : [		
-		/*{
+		{
 			title: 'KML Demo EN',
 			caption: 'This is a sample KML file loaded locally by Geomap.',
 			type: 'kml',
@@ -59,7 +59,7 @@ var wet_boew_geomap = {
 				name: 'Product Title',
 				description: 'Description'
 			}
-		},*/
+		},
 		{
 			title: 'ATOM Demo EN',
 			caption: 'This is a sample ATOM feed loaded locally by Geomap.',
