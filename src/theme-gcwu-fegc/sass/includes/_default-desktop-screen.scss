@@ -7,8 +7,19 @@
 @import "compass/css3/appearance";
 @import 'compass/css3/transform';
 
-%gcwu-default-desktop-screen-font-weight-400-color-333 {
+%gcwu-default-desktop-screen-font-weight-400 {
 	font-weight: 400;
+}
+%gcwu-default-desktop-screen-width-139-height-33 {
+	width: 139px;
+	height: 33px;
+}
+%gcwu-default-desktop-screen-width-234-height-22 {
+	width: 234px;
+	height: 22px;
+}
+%gcwu-default-desktop-screen-font-weight-400-color-333 {
+	@extend %gcwu-default-desktop-screen-font-weight-400;
 	color: #333;
 }
 %gcwu-default-desktop-screen-border-left-none {
@@ -39,6 +50,9 @@
 }
 %gcwu-default-desktop-screen-position-absolute {
 	position: absolute;
+}
+%gcwu-default-desktop-screen-padding-0 {
+	padding: 0;
 }
 %gcwu-default-desktop-screen-margin-left-10 {
 	margin-left: 10px;
@@ -78,9 +92,6 @@
 %gcwu-default-desktop-screen-padding-left-0 {
 	padding-left: 0;
 }
-%gcwu-default-desktop-screen-left-0 {
-	left: 0;
-}
 %gcwu-default-desktop-screen-border-right-fff-left-999 {
 	border: {
 		right: 1px solid #fff;
@@ -90,13 +101,16 @@
 %gcwu-default-desktop-screen-margin-right-0 {
 	margin-right: 0;
 }
+%gcwu-default-desktop-screen-color-fff {
+	color: #FFF;
+}
 
 html {
 	overflow-y: scroll;
 }
 
 body {
-	padding: 0;
+	@extend %gcwu-default-desktop-screen-padding-0;
 }
 
 img {
@@ -253,17 +267,16 @@ a {
 }
 
 #gcwu-sig {
-	width: 247px;
 	@extend %gcwu-default-desktop-screen-float-left;
-	margin: 8px 0;
+	margin: 9px 0 9px 10px;
 	img {
 		@extend %gcwu-default-desktop-screen-margin-left-0;
+		@extend %gcwu-default-desktop-screen-width-234-height-22;
 	}
 }
 
 #gcwu-sig-in {
-	@extend %gcwu-default-desktop-screen-margin-left-10;
-	height: 24px;
+	@extend %gcwu-default-desktop-screen-width-234-height-22;
 }
 
 #gcwu-gcnb {
@@ -273,7 +286,7 @@ a {
 		@extend %gcwu-default-desktop-screen-display-block;
 		padding: 0 1em;
 		text-shadow: none;
-		font-weight: normal;
+		@extend %gcwu-default-desktop-screen-font-weight-400;
 	}
 	li {
 		&:first-child {
@@ -300,11 +313,11 @@ a {
 		}
 	}
 	&, a {
-		color: #fff;
+		@extend %gcwu-default-desktop-screen-color-fff;
 		font-size: 1.52em;
 		font-family: Arial, Helvetica, sans-serif;
 		text-shadow: 1px 1px 1px #333;
-		font-weight: normal;
+		@extend %gcwu-default-desktop-screen-font-weight-400;
 	}
 }
 
@@ -358,7 +371,7 @@ a {
 	}
 	a {
 		&, &:visited {
-			color: #fff;
+			@extend %gcwu-default-desktop-screen-color-fff;
 			text-decoration: none;
 			font-size: 80%;
 			padding: 2px;
@@ -399,20 +412,17 @@ a {
 
 #gcwu-wmms {
 	@extend %gcwu-default-desktop-screen-position-absolute;
-	top: 38px;
-	right: 4px;
+	top: 39px;
+	right: 10px;
 	img {
-		height: 33px;
-		width: 139px;
-		@extend %gcwu-default-desktop-screen-position-absolute;
-		right: -2px;
+		@extend %gcwu-default-desktop-screen-width-139-height-33;
+		margin: 0;
 	}
 }
 
 #gcwu-wmms-in {
 	@extend %gcwu-default-desktop-screen-float-right;
-	height: 39px;
-	width: 147px;
+	@extend %gcwu-default-desktop-screen-width-139-height-33;
 }
 
 #gcwu-psnb {
@@ -427,7 +437,7 @@ a {
 				right: 1px solid #15598f;
 				bottom: none;
 			}
-			padding: 0;
+			@extend %gcwu-default-desktop-screen-padding-0;
 			&:first-child {
 				&.mb-active {
 					border-left: 1px solid #CCC;
@@ -540,7 +550,7 @@ a {
 	#gcwu-srchbx {
 		text-align: left;
 		@extend %gcwu-default-desktop-screen-right-auto;
-		@extend %gcwu-default-desktop-screen-left-0;
+		left: 0;
 		padding: 11px 12px 6px 10px;
 
 		#gcwu-srch {
@@ -557,7 +567,7 @@ a {
 	}
 
 	#gcwu-wmms {
-		@extend %gcwu-default-desktop-screen-left-0;
+		left: 10px;
 		@extend %gcwu-default-desktop-screen-right-auto;
 		img {
 			@extend %gcwu-default-desktop-screen-right-auto;

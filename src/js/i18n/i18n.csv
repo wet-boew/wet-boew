@@ -1,7 +1,7 @@
 ,String code,English,French,Arabic,Bulgarian,Chinese,Chinese (Simplified),Czech,Dutch,Estonian,German,Greek,Hungarian,Icelandic,Indonesian,Italian,Japanese,Korean,Latvian,Lithuanian,Polish,Portuguese,Portuguese (Brazilian),Russian,Slovak,Spanish,Thai,Turkish,Ukrainian,Vietnamese
 Language code (ISO 639-1),%lang-code,en,fr,ar,bg,zh,zh-Hans,cs,nl,et,de,el,hu,is,id,it,ja,ko,lv,lt,pl,pt,pt-BR,ru,sk,es,th,tr,uk,vi
 Language code (ISO 639-2/T),%lang-code-iso-639-2,eng,fra,ara,bul,zho,zho-Hans,cze,nld,est,deu,ell,hun,isl,ind,ita,jpn,kor,lav,lit,pol,por,por-BR,rus,slk,spa,tha,tur,ukr,vie
-Language direction, %lang-dir,ltr,ltr,rtl,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr
+Language direction,%lang-dir,ltr,ltr,rtl,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr
 Language name (English),%lang-eng,English,French,Arabic,Bulgarian,Chinese,Chinese (Simplified),Czech,Dutch,Estonian,German,Greek,Hungarian,Icelandic,Indonesian,Italian,Japanese,Korean,Latvian,Lithuanian,Polish,Portuguese,Portuguese (Brazilian),Russian,Slovak,Spanish,Thai,Turkish,Ukrainian,Vietnamese
 Language name (French),%lang-fra,anglais,français,arabe,bulgare,chinois,chinois (simplifié),tchèque,néerlandais,estonien,allemand,grec,hongrois,islandais,indonésien,italien,japonais,coréen,letton,lituanien,polonais,portugais,portugais (brésilien),russe,slovaque,espagnol,thaï,turc,ukrainien,vietnamien
 Language name (native),%lang-native,English,Français,العربية,български език,繁體字,繁体字,čeština,Nederlands,eesti keel,Deutsch,ελληνικά,magyar,íslenska,Bahasa Indonesia,Italiano,日本語,한국어,latviešu valoda,lietuvių kalba,język polski,português,português do Brasil,русский язык,slovenčina,español,ภาษาไทย,Türkçe,Українська мова,tiếng Việt
@@ -144,6 +144,21 @@ Table enhancement,%sSortAscending,: activate for ascending sort,&#160;: activer 
 ,%sInfoFiltered,(filtered from _MAX_ total entries),(filtré de _MAX_ entrées totales),,,,,,,,,,,,,,,,,,,,,,,(filtró de _MAX_ entradas totales),,,,
 ,%sInfoThousands,&#44;,&#160;,,,,,,,,,,,,,,,,,,,,,,,.,,,,
 ,%sLengthMenu,Show _MENU_ entries,Montrer _MENU_ entrées,,,,,,,,,,,,,,,,,,,,,,,Muestre _MENU_ entradas,,,,
+Geomap,%geo-mapcontrol,Map control,Contrôle de la carte,,,,,,,,,,,,,,,,,,,,,,,Control de mapa,,,,
+,%geo-panup,Pan up,Déplacer vers le haut,,,,,,,,,,,,,,,,,,,,,,,Desplazar a la cima,,,,
+,%geo-pandown,Pan down,Déplacer vers le bas,,,,,,,,,,,,,,,,,,,,,,,Desplazar al fondo,,,,
+,%geo-panleft,Pan left,Déplacer vers la gauche,,,,,,,,,,,,,,,,,,,,,,,Desplazar a la izquierda,,,,
+,%geo-panright,Pan right,Déplacer vers la droite,,,,,,,,,,,,,,,,,,,,,,,Desplazar a la derecha,,,,
+,%geo-zoomin,Zoom in,Zoom avant,,,,,,,,,,,,,,,,,,,,,,,Acercar,,,,
+,%geo-zoomout,Zoom out,Zoom arrière,,,,,,,,,,,,,,,,,,,,,,,Alejar,,,,
+,%geo-zoomworld,Zoom to map extent,Zoom sur l'étendue de la carte,,,,,,,,,,,,,,,,,,,,,,,Alejar al mapa completo,,,,
+,%geo-zoomfeature,Zoom to feature,Zoom à l\'élément,,,,,,,,,,,,,,,,,,,,,,,Alejar al elemento,,,,
+,%geo-ariamap,Map object. The descriptions of the map features are in the table below.,Objet de la carte. Les descriptions des caractéristiques de la carte se trouvent dans la table ci-dessous.,,,,,,,,,,,,,,,,,,,,,,,Objeto del mapa. Las descripciones de las características del mapa están en la tabla a continuación.,,,,
+,%geo-accessibilize,Keyboard users:</strong> Use the arrow keys to move the map and use plus and minus to zoom.,Utilisateurs de clavier :</strong> Utiliser les touches flèches pour déplacer la carte et utiliser les touches plus et négatif pour faire un zoom.,,,,,,,,,,,,,,,,,,,,,,,Los usuarios de teclado:</strong> Utilice las teclas de flecha para mover el mapa y utilizar el más y menos para ampliar.,,,,
+,%geo-togglelayer,Toggle the display of the layer,Basculer l'affichage de la couche,,,,,,,,,,,,,,,,,,,,,,,Cambiar la visualización de la capa,,,,
+,%geo-hiddenlayer,This layer is currently hidden!,Cette couche est présentement cachée!,,,,,,,,,,,,,,,,,,,,,,,Esta capa está oculta!,,,,
+,%geo-basemapurl,http://geogratis.gc.ca/maps/CBMT,http://geogratis.gc.ca/cartes/CBCT,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,%geo-basemaptitle,CBMT,CBCT,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Disable/enable PE,%pe-disable,Basic HTML version,Version HTML simplifiée,,,基本HTML版本,基本网页格式,,Versie in basis-HTML,Lihtsustatud HTML versioon,,,Egyszerű HTML verzió,,Versi HTML dasar.,,HTMLベーシック版,,Pamata HTML versija,Pagrindinė HTML versija,Podstawowa wersja HTML,Versão HTML simplificada,,Базовая версия HTML,,Versión HTML básica,,Basit HTML sürümü,Базова версія HTML,
 ,%pe-enable,Standard version,Version standard,,,標準版本,标准格式,,Standaardversie,Standardversioon,,,Standard verzió,,Versi standar.,,スタンダード版,,Standarta versija,Standartinė versija,Wersja standardowa,Versão padrão,,Стандартная версия,,Versión estándar,,Standart sürüm,Стандартна версія,
 Template strings (Generic),%tmpl-skip-main,Skip to main content,Passer au contenu principal,,,,,,,,,,,,,,,,,,,,,,,Saltar al contenido principal,,,,
@@ -172,6 +187,7 @@ Template strings (GC Web Usability theme),%tmpl-gc-navbar,Gobierno de Canadá na
 ,%tmpl-transparency,Transparency,Transparence,,,透明度,临时,,Transparantie,Läbipaistvus,,,Átláthatóság,,Transparansi,,透明性,,Atklātība,Skaidrumas,Przejrzystość,Transparência,,Прозрачность,,Transparencia,,Saydamlık,Прозорість,
 Filler content (Generic),%tmpl-sub-site-name,Sub-site name,Nom du sous-site,,,,,,,,,,,,,,,,,,,,,,,Nombre de sitio secundario,,,,
 ,%tmpl-fullwidth-head,Full-width header area,Secteur d'en-tête de plein-largeur,,,,,,,,,,,,,,,,,,,,,,,Area de encabezamiento de lleno-anchura,,,,
+,%tmpl-fullwidth-foot,Full-width footer area,Secteur de pied de page de plein-largeur,,,,,,,,,,,,,,,,,,,,,,,Area de pie de página de lleno-anchura,,,,
 ,%tmpl-section,Section,Section,,,,,,,,,,,,,,,,,,,,,,,Sección,,,,
 ,%tmpl-item,Item,Article,,,,,,,,,,,,,,,,,,,,,,,Artículo,,,,
 ,%tmpl-wet,Web Experience Toolkit (WET),Boîte à outils de l'expérience Web (BOEW),,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -181,10 +197,11 @@ Filler content (Generic),%tmpl-sub-site-name,Sub-site name,Nom du sous-site,,,,,
 ,%tmpl-cont-page,Content page,Page de contenu,,,,,,,,,,,,,,,,,,,,,,,Página de contenido,,,,
 ,%tmpl-nosearchlang,No search or language selection link,Sans recherche ou lien de sélection de la langue,,,,,,,,,,,,,,,,,,,,,,,Ningún búsqueda ni enlace de selección de idioma,,,,
 ,%tmpl-nositemenubc,No site menu or breadcrumb trail,Sans menu du site ou fil d'Ariane,,,,,,,,,,,,,,,,,,,,,,,Ningún menú de sitio ni hilo de Ariadna,,,,
-,%tmpl-nosearchlangsitemenubc,No search&#44; language selection link&#44; site menu or breadcrumb trail,Sans recherche&#44; lien de sélection de la langue&#44; menu du site ou fil d'Ariane,,,,,,,,,,,,,,,,,,,,,,,Ningún búsqueda&#44; enlace de selección de idioma&#44; menú de sitio ni hilo de Ariadna,,,,
+,%tmpl-nosearchlangsitemenubc,"No search, language selection link, site menu or breadcrumb trail","Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane",,,,,,,,,,,,,,,,,,,,,,,"Ningún búsqueda, enlace de selección de idioma, menú de sitio ni hilo de Ariadna",,,,
 ,%tmpl-web-application,Web application; Application Web,,,,,,,,,,,,,,,,,,,,,,,Aplicación web,,,,
 ,%tmpl-site-title,Site title,Titre du site,,,,,,,,,,,,,,,,,,,,,,,Título del sitio,,,,
 ,%tmpl-sub-site,Sub-site,Sous-site,,,,,,,,,,,,,,,,,,,,,,,Sitio secundario,,,,
+,%tmpl-wet-project,WET project,Projet de la BOEW,,,,,,,,,,,,,,,,,,,,,,,Proyecto de WET,,,,
 ,%tmpl-work-examples,Working examples,Exemples pratiques,,,,,,,,,,,,,,,,,,,,,,,Ejemplos prácticos,,,,
 ,%tmpl-default-app,default appearance,apparence par défaut,,,,,,,,,,,,,,,,,,,,,,,apariencia predefinida,,,,
 ,%tmpl-heading,Heading,En-tête,,,,,,,,,,,,,,,,,,,,,,,Título,,,,

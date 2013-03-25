@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
+<title>Géocarte - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="French description / Description en français" />
+<meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
+<meta name="dcterms.title" content="French title / Titre en français" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="French subject terms / Termes de sujet en français" />
+<meta name="dcterms.language" title="ISO639-2" content="fra" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation du gouvernement du Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-fra.svg" role="img" tabindex="-1" aria-label="Gouvernement du Canada" type="image/svg+xml"><img src="../../dist/theme-gcwu-fegc/images/sig-fra.png" alt="Gouvernement du Canada" /></object></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
+<li id="gcwu-gcnb-lang"><a href="geomap-eng.html" lang="en">English</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" tabindex="-1" aria-label="Symbole du gouvernement du Canada" type="image/svg+xml"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" alt="Symbole du gouvernement du Canada" /></object></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-fra.html">Boîte à outils de l'expérience Web&#160;(BOEW)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2>Menu du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-fra.txt">
+<li><div><a href="http://wet-boew.github.com/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
+<li><div><a href="section2/index-fra.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Fil d'Ariane</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../index-fra.html">Accueil</a></li>
+<li><a href="../index-fra.html">Exemples pratiques</a></li>
+<li>Géocarte</li>
+</ol></div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Géocarte</h1>
+
+<div class="span-6">
+	<div 
+		class="wet-boew-geomap position scaleline tab" 
+		data-wet-boew='{ 
+			"layersFile": "data/config-fr.js", 
+			"tables": [{ 
+				"id": "cities", 
+				"zoom": true,
+				"tab": false,
+				"datatable": true,
+				"style": { 
+					"type": "rule", 
+					"rule": [
+					{
+						"field": "Population de 2011",
+						"value": [1000000],
+						"filter": "LESS_THAN", 
+						"init": {
+							"strokeColor": "#0083f5", 
+							"fillColor": "#57a8f0", 
+							"pointRadius": "6", 
+							"fillOpacity": 0.80, 
+							"strokeWidth": 1.0
+						}
+					},
+					{
+						"field": "Population de 2011",
+						"value": [1000000, 2000000],
+						"filter": "BETWEEN", 
+						"init": {
+							"strokeColor": "#F90", 
+							"fillColor": "#F90", 
+							"pointRadius": "8", 
+							"fillOpacity": 0.80, 
+							"strokeWidth": 1.0
+						}
+					},
+					{
+						"field": "Population de 2011",
+						"value": [2000000],
+						"filter": "GREATER_THAN", 
+						"init": {
+							"strokeColor": "#F00", 
+							"fillColor": "#F00", 
+							"pointRadius": "10", 
+							"fillOpacity": 0.80, 
+							"strokeWidth": 1.0
+						}
+					}					        
+				]}
+			},
+			{
+				"id": "bbox", 
+				"tab": true
+			}] 
+		}'>
+	</div> 
+</div>
+
+<!-- Insert Legend (optional) --> 
+<section><div class="wet-boew-geomap-legend span-2">
+	<h2>Légende</h2>
+</div></section>
+<!-- END Insert Legend -->
+
+<div class="clear"></div>
+
+<!-- Insert Layer Data -->
+<div class="wet-boew-geomap-layers width-100"><section>    
+	<h2>Couches de la carte</h2>
+	<div class="span-8"><section><h3 class="background-light">Villes</h3>
+	<table id="cities" class="table-simplify width-100" aria-label="Villes">
+		<caption>Ceci est un exemple créé à partir d'une table dans le présent document. Une colonne avec des cellules contenant une géométrie codée en WKT et contenant une classe nommée <em>geometry</em> est obligatoire. Pour relier les éléments de la table à la carte une colonne avec des cellules contenant une classe nommée <em>select</em> est obligatoire.</caption>
+			<thead>
+				<tr>
+					<th>Rang</th>
+					<th>Subdivision de recensement</th>                            
+					<th>Population de 2011</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-geometry="POINT (-79.3847, 43.6476)" data-type="wkt">
+					<td>1</td>
+					<td class="select"><a href="http://www.wikipedia.org/wiki/Toronto" title="Toronto">Toronto</a></td>
+					<td>2615060</td>
+				</tr>
+				<tr data-geometry="POINT (-73.56123, 45.52927)" data-type="wkt">
+					<td>2</td>
+					<td class="select"><a href="http://www.wikipedia.org/wiki/Montreal" title="Montreal">Montreal</a></td>
+					<td>1649519</td>
+				</tr>
+				<tr data-geometry="POINT (-114.05879, 51.04668)" data-type="wkt">
+					<td>3</td>
+					<td class="select"><a href="http://www.wikipedia.org/wiki/Calgary" title="Calgary">Calgary</a></td>
+					<td>1096833</td>
+				</tr>
+				<tr data-geometry="POINT (-75.68937, 45.41072)" data-type="wkt">
+					<td>4</td>
+					<td class="select"><a href="http://www.wikipedia.org/wiki/Ottawa" title="Ottawa">Ottawa</a></td>
+					<td>883391</td>
+				</tr>
+				<tr data-geometry="POINT (-113.49590, 53.53398)" data-type="wkt">
+					<td>5</td>
+					<td class="select"><a href="http://www.wikipedia.org/wiki/Edmonton" title="Edmonton">Edmonton</a></td>
+					<td>812201</td>
+				</tr>
+				<tr data-geometry="POINT (-85.68937, 45.41072)" data-type="wkt">
+					<td>6</td>
+					<td class="select"><a href="http://www.wikipedia.org/wiki/Mississauga" title="Mississauga">Mississauga</a></td>
+					<td>713443</td>
+				</tr>
+				<tr data-geometry="POINT (-97.14352, 49.89375)" data-type="wkt">
+					<td>7</td>
+					<td class="select"><a href="http://www.wikipedia.org/wiki/Winnipeg" title="Winnipeg">Winnipeg</a></td>
+					<td>663617</td>
+				</tr>
+				<tr data-geometry="POINT (-123.10091, 49.26428)" data-type="wkt">
+					<td>8</td>
+					<td class="select"><a href="http://www.wikipedia.org/wiki/Vancouver" title="Vancouver">Vancouver</a></td>
+					<td>603502</td>
+				</tr>
+				<tr data-geometry="POINT (-79.76181, 43.68686)" data-type="wkt">
+					<td>9</td>
+					<td class="select"><a href="/wiki/Brampton" title="Brampton">Brampton</a></td>
+					<td>523911</td>
+				</tr>
+				<tr data-geometry="POINT (-79.86788, 43.25717)" data-type="wkt">
+					<td>10</td>
+					<td class="select"><a href="/wiki/Hamilton,_Ontario" title="Hamilton, Ontario">Hamilton</a></td>
+					<td>519949</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>Rang</th>
+					<th>Subdivision de recensement</th>                            
+					<th>Population de 2011</th>
+				</tr>
+			</tfoot>
+		</table>
+	</section></div>
+	<div class="clear"></div>
+
+	<h2 class="wb-invisible">Résultats de la recherche</h2>
+	<table id="bbox" class="table-simplify width-100" aria-label="Résultats de la recherche">
+		<caption class="wb-invisible">Tableau des résultats de la recherche contenant la géométries des étendues des éléments.</caption>
+		<thead>
+			<tr>
+				<th></th>                        
+				<th>Titre</th>
+				<th>Géometrie</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-geometry="-136, 61, -118, 70" data-type="bbox">
+				<td>1</td>
+				<td>Rapport de 2011 sur les activités terrain et la collecte de données terrain dont les couches thermiques et active dans le corridor du Mackenzie, Territoires du Nord, n ° de licence 14918</td>
+				<td>-136, 61, -118, 70</td>
+			</tr>
+			<tr data-geometry="-92.5, 72.75, -79, 75.5" data-type="bbox">
+				<td>2</td>
+				<td>Dinokystes du Crétacé supérieur-inférieur tertiaire, îles de Bylot et Devon, archipel arctique</td>
+				<td>-92.5, 72.75, -79, 75.5</td>                                           
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th></th>                        
+				<th>Titre</th>
+				<th>Géometrie</th>
+			</tr>
+		</tfoot>
+	</table>
+</section></div>
+
+<!-- END Insert Layer Data -->   
+
+
+<div class="clear"></div>
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date de modification:</dt><dd><span><time>2013-03-19</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Pied de page du site</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Avis</a></li>
+<li class="gcwu-tr"><a href="#">Transparence</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">À propos de nous</a></h4>
+<ul>
+<li><a href="#">Notre mandat</a></li>
+<li><a href="#">Le ministre</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Nouvelles</a></h4>
+<ul>
+<li><a href="#">Communiqués</a></li>
+<li><a href="#">Avix aux médias</a></li>
+<li><a href="#">Multimédia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contactez-nous</a></h4>
+<address>
+<ul>
+<li><a href="#">Numéros de téléphone</a></li>
+<li><a href="#">Nos bureaux</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Restez branchés</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Flux</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Pied de page du gouvernement du Canada</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://canadiensensante.gc.ca/index-fra.php"><span>Santé</span><br />canadiensensante.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-fra.asp"><span>Voyage</span><br />voyage.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
+<li><a rel="external" href="http://plandaction.gc.ca/fr"><span>Économie</span><br />plandaction.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
+</body>
+</html>

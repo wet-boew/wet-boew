@@ -161,6 +161,7 @@
 			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : ' smartphone-view')) : (pe.print ? ' print-view' : ' desktop-view'))) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			classes += (pe.svg ? ' svg' : ' no-svg');
+			classes += (pe.ie > 8 ? 'ie' + parseInt(pe.ie, 10) : '');
 			
 			// Identify IE9+ browser
 			if (pe.ie > 8) {
@@ -859,18 +860,30 @@
 					dataAttr = $elm.attr('data-' + data_name),
 					dataObj = null;
 				if (dataAttr) {
-					try {
-						dataObj = $.parseJSON(dataAttr);
-					} catch (e) {
-						// Fallback if data- contains a malformed JSON string (less secure than with a JSON string)
-						if (dataAttr.indexOf('{') === -1) {
-							dataAttr = '{' + dataAttr + '}';
-						}
-						dataObj = eval('(' + dataAttr + ')');
-					}
+					dataObj = this.toObject(dataAttr);
 				}
 				$.data(elm, data_name, dataObj);
 				return dataObj;
+			},
+			/**
+			* Converts a string to an object
+			* @memberof pe.data
+			* @function
+			* @param {string} data_string String to convert to an object (recommend JSON)
+			* @return {data} Object created by converting the string
+			*/
+			toObject: function (data_string) {
+				var obj = null;
+				try {
+					obj = $.parseJSON(data_string);
+				} catch (e) {
+					// Fallback if data_string is a malformed JSON string (less secure than with a JSON string)
+					if (data_string.indexOf('{') === -1) {
+						data_string = '{' + data_string + '}';
+					}
+					obj = eval('(' + data_string + ')');
+				}
+				return obj;
 			}
 		},
 		/**
@@ -1290,11 +1303,13 @@
 					}
 				}
 
-				for (i = 0, _len = loadnow.length; i !== _len; i += 1) {
-					polyprefs = polyfills[loadnow[i]];
-					js[js.length] = (typeof polyprefs.load !== 'undefined' ? polyprefs.load : lib + 'polyfills/' + loadnow[i] + pe.suffix + '.js');
+				// Load polyfills in reverse order to better deal with nested polyfill calls
+				_len = loadnow.length;
+				while (_len--) {
+					polyprefs = polyfills[loadnow[_len]];
+					js[js.length] = (typeof polyprefs.load !== 'undefined' ? polyprefs.load : lib + 'polyfills/' + loadnow[_len] + pe.suffix + '.js');
 					if (typeof polyprefs.init !== 'undefined') {
-						needsinit.push(loadnow[i]);
+						needsinit.push(loadnow[_len]);
 					}
 					polyprefs.loaded = true;
 				}
@@ -1707,13 +1722,13 @@
 		* Handles loading of the plugins, dependencies and polyfills
 		* @function
 		* @param {object} options Object containing the loader options. The following optional properties are supported: 
-		* "plugins": {"plugin_name1": elms1, "plugin_name2": elms2, ...} - Names of plugins to load and the elements to load them on
-		* "global": [plugin_name1, plugin_name2, ...] - Names of global plugins to load
-		* "deps": [dependency_name1, dependenccy_name2, ...] - Names of dependences to load
-		* "poly": [polyfill_name1, polyfill_name2, ...] - Names of polyfills to load
-		* "checkdom": true/false - Enable/disable checking the DOM for "wet-boew-*" triggers
-		* "polycheckdom": true/false - Enable/disable checking the DOM for elements to polyfill
-		* @param {string} finished_event Name of the event to trigger when loading is complete (defai;t is "wb-loaded")
+		* 'plugins': {'plugin_name1': elms1, 'plugin_name2': elms2, ...} - Names of plugins to load and the elements to load them on
+		* 'global': [plugin_name1, plugin_name2, ...] - Names of global plugins to load
+		* 'deps': [dependency_name1, dependency_name2, ...] - Names of dependences to load
+		* 'poly': [polyfill_name1, polyfill_name2, ...] - Names of polyfills to load
+		* 'checkdom': true/false - Enable/disable checking the DOM for 'wet-boew-*' triggers
+		* 'polycheckdom': true/false - Enable/disable checking the DOM for elements to polyfill
+		* @param {string} finished_event Name of the event to trigger when loading is complete (default is 'wb-loaded')
 		* @return {void}
 		*/
 		wb_load: function (options, finished_event) {
@@ -1813,16 +1828,19 @@
 							polyfills[polyinit[i]].init();
 						}
 
-						// Execute each of the node specific plugin calls
-						wetboew.each(function () {
-							var _node = $(this),
-								_fcall = _node.attr('data-load').split(',');
+						// Execute each of the node specific plugin calls in reverse order (to execute nested plugin calls first)
+						var _len2 = wetboew.length,
+							_node,
+							_fcall;
+						while (_len2--) {
+							_node = wetboew.eq(_len2);
+							_fcall = _node.attr('data-load').split(',');
 							for (i = 0, _len = _fcall.length; i !== _len; i += 1) {
 								if (typeof pe.fn[_fcall[i]] !== 'undefined') { // lets safeguard the execution to only functions we have
 									pe.fn[_fcall[i]]._exec(_node);
 								}
 							}
-						});
+						}
 
 						// Execute each of the global plugin calls
 						if (settings) {

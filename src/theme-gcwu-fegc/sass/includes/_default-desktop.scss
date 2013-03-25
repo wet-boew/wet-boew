@@ -15,13 +15,22 @@
 %gcwu-default-desktop-background-none {
 	background: none;
 }
- 
-[class*="ui-body-"], [class*="ui-overlay-"] {
+%gcwu-default-desktop-text-shadow-none {
 	text-shadow: none;
 }
+%gcwu-default-desktop-display-none-important {
+	display: none !important;
+}
 
-[class*="ui-body-"] .ui-link {
-	font-weight: normal;
+[class*="ui-body-"] {
+	@extend %gcwu-default-desktop-text-shadow-none;
+	.ui-link {
+		font-weight: 400;
+	}
+}
+
+[class*="ui-overlay-"] {
+	@extend %gcwu-default-desktop-text-shadow-none;
 }
  
 #gcwu-title {
@@ -59,10 +68,6 @@
 
 #gcwu-date-mod {
 	margin: 0;
-}
-
-%gcwu-default-desktop-display-none-important {
-	display: none !important;
 }
 
 #gcwu-bnr {

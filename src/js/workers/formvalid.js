@@ -5,8 +5,8 @@
 /*
  * Form validation plugin
  */
-/*global jQuery: false, pe: false*/
-(function ($) {
+/*global jQuery: false*/
+(function($) {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {}
@@ -17,38 +17,41 @@
 		depends: ['validate', 'validateAdditional', 'metadata'],
 		languages: ['@wet-boew-build.validlanguagelist@'],
 		methods: ['@wet-boew-build.validlanguagemethod@'],
-		_exec: function (elm) {
+		_exec: function(elm) {
 			var form = elm.find('form'),
 				formDOM = form.get(0),
 				labels = formDOM.getElementsByTagName('label'),
 				labels_len = labels.length,
 				formElms = form.find('input, select, textarea'),
-				formElmsDOM = formElms.get(),
 				formElm,
 				$inputs = formElms.filter('input'),
-				inputs = $inputs.get(),
-				inputs_len = inputs.length,
-				input,
+				pattern = $inputs.filter('[pattern]'),
 				i,
 				len,
 				index,
+				valItems,
 				string,
-				nativeAttribute,
 				submitted = false,
 				required = form.find('[required]').attr('aria-required', 'true'),
 				$errorFormId = 'errors-' + (form.attr('id') === undefined ? 'default' : form.attr('id')),
 				validator,
-				vlang = pe.language.replace('-', '_'),
-				lang = pe.get_language(vlang, _pe.fn.formvalid.languages, '_'),
-				mthdlang = pe.get_language(vlang, _pe.fn.formvalid.methods, '_');
+				vlang = _pe.language.replace('-', '_'),
+				lang = _pe.get_language(vlang, _pe.fn.formvalid.languages, '_'),
+				mthdlang = _pe.get_language(vlang, _pe.fn.formvalid.methods, '_'),
+				liblocation = _pe.add.liblocation,
+				suffixExt = _pe.suffix + '.js',
+				ariaLive = $('<div class="arialive" aria-live="polite" aria-relevant="all"></div>');
 
+			// Append the aria-live region (for provide message updates to screen readers)
+			elm.append(ariaLive);
+			
 			// Load different language strings if page is not in English
 			if (lang !== null) {
-				pe.add._load(pe.add.liblocation + 'i18n/formvalid/messages_' + lang + pe.suffix + '.js');
+				_pe.add._load(liblocation + 'i18n/formvalid/messages_' + lang + suffixExt);
 			}
 			
 			if (mthdlang !== null) {
-				pe.add._load(pe.add.liblocation + 'i18n/formvalid/methods_' + mthdlang + pe.suffix + '.js');
+				_pe.add._load(liblocation + 'i18n/formvalid/methods_' + mthdlang + suffixExt);
 			}
 
 			// Add space to the end of the labels (so separation between label and error when CSS turned off)
@@ -56,82 +59,41 @@
 			while (len--) {
 				labels[len].innerHTML += ' ';
 			}
-
-			// Move class="{validate:{...}}" to data-rule="{...}
-			for (i = 0, len = formElmsDOM.length; i !== len; i += 1) {
-				formElm = formElmsDOM[i];
-				string = formElm.className;
-				index = string.indexOf('{validate');
-				if (index !== -1) {
-					formElm.setAttribute('data-rule', string.substring(string.indexOf('{', index + 1), string.indexOf('}', index + 1) + 1));
-				}
-			}
-			
+		
 			// Remove the pattern attribute until it is safe to use with jQuery Validation
-			len = inputs_len;
-			if (len !== 0 && inputs[0].hasAttribute !== undefined) {
-				while (len--) {
-					input = inputs[len];
-					if (nativeAttribute) {
-						if (input.hasAttribute('pattern')) {
-							input.removeAttribute('pattern');
-						}
-					} else {
-						$(input).removeAttr('pattern');
-					}
-				}
-			}
-
-			// TODO: Remove class part when updated to jQuery Validation 1.11.0 or later
-			function addValidation(target, key, value) {
-				var targetclass = target.attr('class'), // Remove in jQuery Validation 1.11.0
-					pair = key + ':' + value,
-					datarule = target.attr('data-rule'),
-					index1 = (targetclass !== undefined ? targetclass.search(/validate\s?:\s?\{/) : -1), // Remove value in jQuery Validation 1.11.0 (keep variable)
-					len,
-					valstring;
-				/**** Remove in jQuery Validation 1.11.0 ****/
-				if (index1 !== -1) { // validate:{ already exists
-					if (targetclass.search("/" + key + "\\s?:/") === -1) {
-						valstring = targetclass.substring(index1, targetclass.indexOf('{', index1) + 1);
-						target.attr('class', targetclass.replace(valstring, valstring + pair + ', '));
-					}
-				} else { // validate:{ doesn't exist
-					target.addClass('{validate:{' + pair + '}}');
-				}
-				/**********/
-				if (datarule !== undefined) { // data-rule already exists
-					len = datarule.length;
-					index1 = datarule.indexOf('{');
-					if (len === 0) {
-						datarule = '{' + pair + '}';
-					} else {
-						datarule = '{' + pair + ',' + datarule.substring(1) + (index !== -1 ? '}' : '');
-					}
-				} else {
-					datarule = '{' + pair + '}';
-				}
-				target.attr('data-rule', datarule);
-				return;
-			}
-
-			// Change form attributes and values that intefere with validation in IE7/8
-			if (pe.ie > 0 && pe.ie < 9) {
-				required.removeAttr('required').each(function () {
-					addValidation($(this), 'required', 'true'); // Adds required:true to validation:{}
-				});
-				$inputs.filter('[type="date"]').each(function () {
-					var $this = $(this),
-						parent = $this.wrap('<div/>').parent(),
-						newelm = $(parent.html().replace('type=' + $this.attr('type'), 'type=text'));
-					parent.replaceWith(newelm);
-				});
+			len = pattern.length;
+			while (len--) {
+				pattern.eq(len).removeAttr('pattern');
 			}
 
 			// Special handling for mobile
-			if (pe.mobile) {
+			if (_pe.mobile) {
 				formDOM.setAttribute('data-ajax', 'false');
 				$inputs.filter('[type="checkbox"]').closest('fieldset').attr('data-role', 'controlgroup');
+			}
+
+			// Clear the form and remove error messages on reset
+			$inputs.filter('[type="reset"]').on('click vclick touchstart', function() {
+				validator.resetForm();
+				var summaryContainer = form.find('#' + $errorFormId);
+				if (summaryContainer.length > 0) {
+					summaryContainer.empty();
+				}
+				form.find('[aria-invalid="true"]').removeAttr('aria-invalid');
+			});
+
+			// Change form attributes and values that intefere with validation in IE7/8
+			if (_pe.ie > 0 && _pe.ie < 9) {
+				required.removeAttr('required').each(function() {
+					this.setAttribute('data-rule-required', 'true');
+				});
+				$inputs.filter('[type="date"]').each(function() {
+					var $this = $(this),
+						parent = $this.wrap('<div/>').parent(),
+						newelm = $(parent.html().replace('type=date', 'type=text'));
+					parent.replaceWith(newelm);
+				});
+				formElms = form.find('input, select, textarea');
 			}
 
 			// The jQuery validation plug-in in action
@@ -144,22 +106,23 @@
 
 				// Location for the inline error messages
 				// In this case we will place them in the associated label element
-				errorPlacement: function (error, element) {
+				errorPlacement: function(error, element) {
 					error.appendTo(form.find('label[for="' + element.attr('id') + '"]'));
 				},
 
 				// Create our error summary that will appear before the form
-				showErrors: function (errorMap, errorList) {
+				showErrors: function(errorMap) {
 					this.defaultShowErrors();
 					var errors = form.find('strong.error').filter(':not(:hidden)'),
 						errorfields = form.find('input.error, select.error, textarea.error'),
 						summaryContainer = form.find('#' + $errorFormId),
-						prefixStart = '<span class="prefix">' + pe.dic.get("%error") + '&#160;',
-						prefixEnd = pe.dic.get("%colon") + ' </span>',
-						summary;
+						prefixStart = '<span class="prefix">' + _pe.dic.get('%error') + '&#160;',
+						prefixEnd = _pe.dic.get('%colon') + ' </span>',
+						summary,
+						key;
 
-					form.find('[aria-invalid="true"]').removeAttr("aria-invalid");
-					if (errors.length > 0) {
+					form.find('[aria-invalid="true"]').removeAttr('aria-invalid');
+					if (errors.length !== 0) {
 						// Create our container if one doesn't already exist
 						if (summaryContainer.length === 0) {
 							summaryContainer = $('<div id="' + $errorFormId + '" class="errorContainer" tabindex="-1"/>').prependTo(form);
@@ -168,9 +131,9 @@
 						}
 
 						// Post process
-						summary = '<p>' + pe.dic.get('%form-not-submitted') + errors.length + (errors.length !== 1 ? pe.dic.get('%errors-found') : pe.dic.get('%error-found')) + '</p><ul>';
+						summary = '<p>' + _pe.dic.get('%form-not-submitted') + errors.length + (errors.length !== 1 ? _pe.dic.get('%errors-found') : _pe.dic.get('%error-found')) + '</p><ul>';
 						errorfields.attr('aria-invalid', 'true');
-						errors.each(function (index) {
+						errors.each(function(index) {
 							var $this = $(this),
 								prefix = prefixStart + (index + 1) + prefixEnd,
 								label = $this.closest('label');
@@ -185,15 +148,32 @@
 
 						// Put focus on the error if the errors are generated by an attempted form submission
 						if (submitted) {
-							pe.focus(summaryContainer);
+							_pe.focus(summaryContainer);
+						} else {
+							// Update the aria-live region as necessary
+							i = 0;
+							for (key in errorMap) {
+								if (errorMap.hasOwnProperty(key)) {
+									i += 1;
+									break;
+								}
+							}
+							if (i !== 0) {
+								string = errors.filter('[for=' + key + ']')[0].innerHTML;
+								if (string !== ariaLive.html()) {
+									ariaLive.html(string);
+								}
+							} else if (ariaLive.html().length !== 0) {
+								ariaLive.empty();
+							}
 						}
 
 						// Move the focus to the associated input when error message link is triggered
 						// a simple href anchor link doesnt seem to place focus inside the input
-						if (pe.ie === 0 || pe.ie > 7) {
-							form.find('.errorContainer a').on('click vclick', function () {
-								var label_top = pe.focus($($(this).attr('href'))).prev().offset().top;
-								if (pe.mobile) {
+						if (_pe.ie === 0 || _pe.ie > 7) {
+							form.find('.errorContainer a').on('click vclick', function() {
+								var label_top = _pe.focus($($(this).attr('href'))).prev().offset().top;
+								if (_pe.mobile) {
 									$.mobile.silentScroll(label_top);
 								} else {
 									_pe.document.scrollTop(label_top);
@@ -201,26 +181,29 @@
 								return false;
 							});
 						}
-
+					
 						submitted = false;
 					} else {
+						// Update the aria-live region as necessary
+						if (ariaLive.html().length !== 0) {
+							ariaLive.empty();
+						}
 						summaryContainer.detach();
 					}
 				}, //end of showErrors()
-				invalidHandler: function (form, validator) {
+				invalidHandler: function() {
 					submitted = true;
 				}
 			}); //end of validate()
 
-			// Clear the form and remove error messages on reset
-			$inputs.filter('[type="reset"]').on('click vclick touchstart', function () {
-				validator.resetForm();
-				var summaryContainer = form.find('#' + $errorFormId);
-				if (summaryContainer.length > 0) {
-					summaryContainer.empty();
-				}
-				form.find('[aria-invalid="true"]').removeAttr('aria-invalid');
-			});
+			// Add class="{validate:{...}}" as jQuery Validation rules
+			valItems = formElms.filter('[class*="{validate"]');
+			for (i = 0, len = valItems.length; i !== len; i += 1) {
+				formElm = valItems.eq(i);
+				string = formElm.attr('class');
+				index = string.indexOf('{validate');
+				formElm.rules('add', _pe.data.toObject(string.substring(string.indexOf('{', index + 1), string.indexOf('}', index + 1) + 1)));
+			}
 
 			return elm;
 		} // end of exec

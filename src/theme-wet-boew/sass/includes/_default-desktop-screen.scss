@@ -13,8 +13,8 @@
 %wet-default-desktop-screen-position-relative {
 	position: relative;
 }
-%wet-default-desktop-screen-float-right {
-	float: right;
+%wet-default-desktop-screen-position-absolute {
+	position: absolute;
 }
 %wet-default-desktop-screen-font-size-1-52-em {
 	font-size: 1.52em;
@@ -48,9 +48,47 @@
 %wet-default-desktop-screen-float-right {
 	float: right;
 }
-%wet-default-desktop-screen-padding-9-15-9-0-position-absolute {
+%wet-default-desktop-screen-overflow-hidden {
+	overflow: hidden;
+}
+%wet-default-desktop-screen-display-block {
+	display: block;
+}
+%wet-default-desktop-screen-border-none {
+	border: none;
+}
+%wet-default-desktop-screen-margin-0 {
+	margin: 0;
+}
+%wet-default-desktop-screen-padding-9-15-9-0-position-absolute-width-141-width-65 {
 	padding: 9px 15px 9px 0;
-	position: absolute;
+	@extend %wet-default-desktop-screen-position-absolute;
+	width: 141px;
+	height: 65px;
+}
+%wet-default-desktop-screen-padding-9-0-9-15 {
+	padding: 9px 0 9px 15px;
+}
+%wet-default-desktop-screen-padding-left-0 {
+	padding-left: 0;
+}
+%wet-default-desktop-screen-padding-0 {
+	padding: 0;
+}
+%wet-default-desktop-screen-background-fff {
+	background: #FFF;
+}
+%wet-default-desktop-screen-color-fff {
+	color: #FFF;
+}
+%wet-default-desktop-screen-font-family-arial {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+%wet-default-desktop-screen-background-none {
+	background: none;
+}
+%wet-default-desktop-screen-right-auto {
+	right: auto;
 }
 
 html {
@@ -58,30 +96,55 @@ html {
 }
 
 body {
-	padding: 0;
-	font-family: Arial, Verdana, Helvetica, sans-serif;
+	@extend %wet-default-desktop-screen-padding-0;
+	@extend %wet-default-desktop-screen-font-family-arial;
 	background: #F9F9F9;
+}
+
+#wb-head {
+	@extend %wet-default-desktop-screen-overflow-hidden;
+}
+
+#wb-head-in {
+	@extend %wet-default-desktop-screen-overflow-hidden;
+}
+
+#wb-body {
+	#wb-main {
+		@extend %wet-default-desktop-screen-float-left;
+	}
+}
+
+#wb-body-sec {
+	#wb-main {
+		@extend %wet-default-desktop-screen-float-right;
+	}
+}
+
+#wb-body-sec-sup {
+ 	#wb-main {
+		@extend %wet-default-desktop-screen-float-left;
+	}
 }
 
 #wb-sec {
 	@extend %wet-default-desktop-screen-z-index-1-display-inline;
-}
-#wb-sup {
-	@extend %wet-default-desktop-screen-z-index-1-display-inline;
+	@extend %wet-default-desktop-screen-float-left;
 }
 
-#wb-head, #wb-head-in, #wb-foot, #wb-foot-in, #wet-fullhd, #wet-bnr, #wet-bc, #wet-fullft, #wet-sft, #wet-fullhd-in, #wet-bnr-in, #wet-bc-in, #wet-fullft-in, #wet-sft-in {
-	overflow: hidden;
+#wb-sup {
+	@extend %wet-default-desktop-screen-z-index-1-display-inline;
 }
 
 #wb-core-in {
 	overflow: visible !important;
 	@extend %wet-default-desktop-screen-position-relative;
-	background: #FFF;
+	@extend %wet-default-desktop-screen-background-fff;
 }
 
 #wet-bnr {
 	@extend %wet-default-desktop-screen-position-relative;
+	@extend %wet-default-desktop-screen-overflow-hidden;
 	z-index: 501 !important;
 	background: #114F7A url(../images/banner.png) repeat-x 0 0;
 	background-image: linear-gradient(#176CA7, #114F7A);
@@ -89,6 +152,15 @@ body {
 
 #wet-bnr-in {
 	@extend %wet-default-desktop-screen-position-relative;
+	@extend %wet-default-desktop-screen-overflow-hidden;
+}
+
+#wet-bc {
+	@extend %wet-default-desktop-screen-overflow-hidden;
+}
+
+#wet-bc-in {
+	@extend %wet-default-desktop-screen-overflow-hidden;
 }
 
 #wb-main-in {
@@ -96,24 +168,18 @@ body {
 	padding-bottom: 2.5em;
 }
 
-#wb-body-sec {
-	#wb-main {
-		float: right;
-	}
-}
-
 #wb-sec-in {
 	margin: 7px 0 0 10px;
 }
 
 #wet-date-mod {
-	position: absolute;
+	@extend %wet-default-desktop-screen-position-absolute;
 	bottom: 10px;
 	right: 10px;
 }
 
 img {
-	border: none;
+	@extend %wet-default-desktop-screen-border-none;
 }
 
 h1 {
@@ -128,15 +194,11 @@ h1 {
 #wb-core-in {
 	&:after {
 		content: ".";
-		display: block;
+		@extend %wet-default-desktop-screen-display-block;
 		height: 0;
 		clear: both;
 		visibility: hidden;
 	}
-}
-
-#wb-body #wb-main, #wb-body-sec-sup #wb-main, #wb-sec {
-	float: left;
 }
 
 #wb-body-sec-sup {
@@ -155,25 +217,29 @@ a {
 }
 
 #wet-fullhd {
+	@extend %wet-default-desktop-screen-overflow-hidden;
+	@extend %wet-default-desktop-screen-a-hover-focus-active-text-decoration-underline;
 	font-size: 0.9em;
 	border-bottom: 1px solid #FFF;
 	a {
-		display: block;
-		padding: 0;
+		@extend %wet-default-desktop-screen-display-block;
+		@extend %wet-default-desktop-screen-padding-0;
 	}
 	li {
 		&[id*="wet-fullhd-lang"] {
 			padding: 8px 10px;
 			border-left: 1px solid #777;
 		}
-		&#wet-fullhd-lang-current{
+		&#wet-fullhd-lang-current {
 			margin-right: 1px;
 			padding-right: 10px;
-			background:url(../images/lang_current.png) no-repeat center bottom;
+			background: url(../images/lang_current.png) no-repeat center bottom;
 			color: #CCC;
 		}
-		&:first-child[id*="wet-fullhd-lang"] {
-			border: none;
+		&:first-child {
+			&[id*="wet-fullhd-lang"] {
+				@extend %wet-default-desktop-screen-border-none;
+			}
 		}
 		&:list-child {
 			padding-right: 0 !important;
@@ -181,22 +247,26 @@ a {
 	}
 }
 
+#wet-fullhd-in {
+	@extend %wet-default-desktop-screen-overflow-hidden;
+}
+
 #wet-title {
 	@extend %wet-default-desktop-screen-hover-focus-active-text-decoration-underline;
 	@extend %wet-default-desktop-screen-a-hover-focus-active-text-decoration-underline;
 	@extend %wet-default-desktop-screen-font-size-1-52-em;
 	a {
-		color: #FFF;
+		@extend %wet-default-desktop-screen-color-fff;
 		@extend %wet-default-desktop-screen-font-size-1-52-em;
-		font-family: Arial, Helvetica, sans-serif;
+		@extend %wet-default-desktop-screen-font-family-arial;
 		text-shadow: #333 1px 1px 1px;
 		display: table-row;
 	}
 	object {
-		@extend %wet-default-desktop-screen-padding-9-15-9-0-position-absolute;
+		@extend %wet-default-desktop-screen-padding-9-15-9-0-position-absolute-width-141-width-65;
 	}
 	img {
-		@extend %wet-default-desktop-screen-padding-9-15-9-0-position-absolute;
+		@extend %wet-default-desktop-screen-padding-9-15-9-0-position-absolute-width-141-width-65;
 	}
 	span {
 		display: table-cell;
@@ -207,17 +277,17 @@ a {
 }
 
 #wet-title-in {
-	margin: 0;
+	@extend %wet-default-desktop-screen-margin-0;
 }
 
 #wet-srchbx {
 	top: 1.95em;
-	padding: 0;
-	background: #FFF;
+	@extend %wet-default-desktop-screen-padding-0;
+	@extend %wet-default-desktop-screen-background-fff;
 	@include border-radius(4px);
-	float: right;
-	margin: 0;
-	position: absolute;
+	@extend %wet-default-desktop-screen-float-right;
+	@extend %wet-default-desktop-screen-margin-0;
+	@extend %wet-default-desktop-screen-position-absolute;
 	text-align: right;
 	right: 0;
 	width: auto;
@@ -225,19 +295,19 @@ a {
 	input {
 		min-height: 0;
 		margin: 0 3px 2px 2px;
-		float: left;
+		@extend %wet-default-desktop-screen-float-left;
 	}
 	form {
-		margin: 0;
+		@extend %wet-default-desktop-screen-margin-0;
 		padding-top: 2px;
 		padding-bottom: 0;
 	}
 	label {
-		position: absolute;
+		@extend %wet-default-desktop-screen-position-absolute;
 		clip: rect(1px, 1px, 1px, 1px);
 		height: 1px;
 		width: 1px;
-		overflow: hidden;
+		@extend %wet-default-desktop-screen-overflow-hidden;
 	}
 	#wet-srch {
 		color: #444;
@@ -246,7 +316,7 @@ a {
 		margin: 0 0 0 3px;
 		width: 218px;
 		@include box-shadow(none);
-		background: #FFF;
+		@extend %wet-default-desktop-screen-background-fff;
 		padding: 4px;
 		@include pseudo-focus(false) {
 			background: #EEE;
@@ -255,7 +325,7 @@ a {
 	}
 	a {
 		&, &:visited {
-			color: #FFF;
+			@extend %wet-default-desktop-screen-color-fff;
 			text-decoration: none;
 			font-size: 80%;
 			padding: 2px;
@@ -267,16 +337,33 @@ a {
 	@extend %wet-default-desktop-screen-a-hover-focus-active-text-decoration-underline;
 }
 
-#wet-fullhd {
-	@extend %wet-default-desktop-screen-a-hover-focus-active-text-decoration-underline;
-}
-
 #wet-srchbx {
 	@extend %wet-default-desktop-screen-a-hover-focus-active-text-decoration-underline;
 }
 
 #wb-foot {
 	@extend %wet-default-desktop-screen-a-hover-focus-active-text-decoration-underline;
+	@extend %wet-default-desktop-screen-overflow-hidden;
+}
+
+#wb-foot-in {
+	@extend %wet-default-desktop-screen-overflow-hidden;
+}
+
+#wet-sft {
+	@extend %wet-default-desktop-screen-overflow-hidden;
+}
+
+#wet-sft-in {
+	@extend %wet-default-desktop-screen-overflow-hidden;
+}
+
+#wet-fullft {
+	@extend %wet-default-desktop-screen-overflow-hidden;
+}
+
+#wet-fullft-in {
+	@extend %wet-default-desktop-screen-overflow-hidden;
 }
 
 #wet-psnb {
@@ -288,19 +375,22 @@ a {
 			@include box-shadow(0 5px 5px -4px rgba(0, 0, 0, 0.5), 5px 5px 5px -4px rgba(0, 0, 0, 0.5), -5px 5px 5px -4px rgba(0, 0, 0, 0.5));
 			@include background-image(linear-gradient(bottom,#EEE,#CCC));
 			border-bottom: 4px solid #0E4164;
-			li, .nav-current {
-				background: none;
+			li {
+				@extend %wet-default-desktop-screen-background-none;
+			}
+			.nav-current {
+				@extend %wet-default-desktop-screen-background-none;
 			}
 		}
 		.nav-current {
-			background:#0B3048;
+			background: #0B3048;
 		}
 		.mb-active {
 			a {
 				&.mb-has-sm {
 					&:hover, &:link, &:visited {
 						background-color: #CCC;
-						color: #000000;
+						color: #000;
 					}
 				}
 			}
@@ -317,7 +407,7 @@ a {
 }
 
 .wet-boew-menubar {
-	border: none;
+	@extend %wet-default-desktop-screen-border-none;
 	min-height: 2.34em;
 }
 
@@ -340,7 +430,18 @@ a {
 			@extend %wet-default-desktop-screen-float-left;
 		}
 	}
-
+	#wet-title {
+		object {
+			@extend %wet-default-desktop-screen-padding-9-0-9-15;
+		}
+		img {
+			@extend %wet-default-desktop-screen-padding-9-0-9-15;
+		}
+		span {
+			@extend %wet-default-desktop-screen-padding-left-0;
+			padding-right: 155px;
+		}
+	}
 	#wet-title-in {
 		background-position: right center;
 	}
@@ -349,12 +450,12 @@ a {
 	}
 
 	#wet-date-mod {
-		right: auto;
+		@extend %wet-default-desktop-screen-right-auto;
 		left: 10px;
 	}
 
 	#wb-sec {
-		float: right;
+		@extend %wet-default-desktop-screen-float-right;
 	}
 
 	#wb-body-sec-sup {
@@ -370,8 +471,8 @@ a {
 		ul {
 			@extend %wet-default-desktop-screen-float-left;
 			li {
-				float: right;
-				padding-left: 0;
+				@extend %wet-default-desktop-screen-float-right;
+				@extend %wet-default-desktop-screen-padding-left-0;
 				border-right: 1px solid #777;
 				border-left: 0;
 				&:first-child {
@@ -397,7 +498,7 @@ a {
 
 	#wet-srchbx {
 		text-align: left;
-		right: auto;
+		@extend %wet-default-desktop-screen-right-auto;
 		left: 0;
 		#wet-srch {
 			margin-left: auto;
@@ -405,7 +506,7 @@ a {
 		}
 		input {
 			margin: 0 2px 2px 3px;
-			float: right;
+			@extend %wet-default-desktop-screen-float-right;
 		}
 	}
 }

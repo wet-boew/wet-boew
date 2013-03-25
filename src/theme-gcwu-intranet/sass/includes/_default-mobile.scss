@@ -17,26 +17,7 @@
 	a {
 		@extend %gcwu-default-mobile-padding-3-5;
 		white-space: normal;
-		font-weight: normal;
-	}
-}
-
-#gcwu-wmms {
-	object {
-		&[data*="wmms-intra.svg"] {
-			display: none;
-		}
-	}
-}
-
-.pe-disable {
-	#gcwu-wmms {
-		object {
-			&[data*="wmms-intra.svg"] {
-				display: block;
-			}
-		}
-		background: #fff;
+		font-weight: 400;
 	}
 }
 

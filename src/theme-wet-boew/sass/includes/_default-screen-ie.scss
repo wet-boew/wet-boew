@@ -71,11 +71,13 @@
 	}
 	#wet-tctr {
 		padding: 7px 0 6px;
-		li.wet-tc {
-			padding: 0 10px;
-		}
-		li.wet-tr {
-			padding-left: 10px;
+		li {
+			&.wet-tc {
+				padding: 0 10px;
+			}
+			&.wet-tr {
+				padding-left: 10px;
+			}
 		}
 	}
 	#wet-fullft {
@@ -125,7 +127,10 @@
 
 		#wet-date-mod {
 			@extend %wet-default-screen-ie-float-left;
-			dt, dd {
+			dt {
+				@extend %wet-default-screen-ie7-rtl-float-fix;
+			}
+			dd {
 				@extend %wet-default-screen-ie7-rtl-float-fix;
 			}
 		}
@@ -148,6 +153,7 @@
 		#wet-bnr {
 			@extend %wet-default-screen-ie-float-right;
 		}
+
 		#wet-tctr {
 			li {
 				@extend %wet-default-screen-ie-float-right;

@@ -5,7 +5,7 @@
 /*
  * Footnotes
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -31,10 +31,10 @@
 				$this.find('span span').remove();
 				$this.off('click vclick').on('click vclick', function () {
 					var referrer = _ctn.find($(this).attr('href')).find('a');
-					if (pe.mobile) {
-						$.mobile.silentScroll(pe.focus(referrer).offset().top);
+					if (_pe.mobile) {
+						$.mobile.silentScroll(_pe.focus(referrer).offset().top);
 					} else {
-						pe.focus(referrer);
+						_pe.focus(referrer);
 					}
 					return false;
 				});
@@ -47,19 +47,19 @@
 
 				_refLinkDest.find('p.footnote-return a').attr('href', '#' + this.parentNode.id).off('click vclick').on('click vclick', function () {
 					var referrer = _ctn.find($(this).attr('href')).find('a');
-					if (pe.mobile === true) {
-						$.mobile.silentScroll(pe.focus(referrer).offset().top);
+					if (_pe.mobile) {
+						$.mobile.silentScroll(_pe.focus(referrer).offset().top);
 					} else {
-						pe.focus(referrer);
+						_pe.focus(referrer);
 					}
 					return false;
 				});
-				if (pe.mobile) {
-					$.mobile.silentScroll(pe.focus(_refLinkDest).offset().top);
+				if (_pe.mobile) {
+					$.mobile.silentScroll(_pe.focus(_refLinkDest).offset().top);
 				} else {
-					pe.focus(_refLinkDest);
+					_pe.focus(_refLinkDest);
 				}
-				if (pe.ie > 0 && pe.ie < 8) {
+				if (_pe.ie > 0 && _pe.ie < 8) {
 					_refLinkDest.addClass('footnote-focus').one('blur', function () {
 						$(this).removeClass('footnote-focus');
 					});

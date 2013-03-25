@@ -1,0 +1,176 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+@import 'compass/css3/transform';
+
+%gcwu-default-print-position-absolute {
+	position: absolute;
+}
+%gcwu-default-print-width-100perc {
+	width: 100%;
+}
+%gcwu-default-print-gcwu-title-styles {
+	font-size: 16pt;
+	text-decoration: none;
+	color: #000;
+	@extend %gcwu-default-print-width-100perc;
+	position: relative;
+	top: 9px;
+}
+%gcwu-default-print-margin-0 {
+	margin: 0;
+}
+%gcwu-default-print-left-0 {
+	left: 0;
+}
+%gcwu-default-print-right-0 {
+	right: 0;
+}
+%gcwu-default-print-scaleX--1 {
+	@include scaleX(-1);
+}
+
+h1 {
+	font-size: 140%;
+	margin: 0 !important;
+}
+
+h2 {
+	font-size: 125%;
+}
+
+h3 {
+	font-size: 120%;
+}
+
+h4 {
+	font-size: 115%;
+}
+
+h5 {
+	font-size: 110%;
+}
+
+h6 {
+	font-size: 100%;
+}
+
+#gcwu-sig {
+	@extend %gcwu-default-print-position-absolute;
+	top: 10px;
+	@extend %gcwu-default-print-left-0;
+}
+
+#gcwu-wmms {
+	@extend %gcwu-default-print-position-absolute;
+	top: 0;
+	@extend %gcwu-default-print-right-0;
+}
+
+#gcwu-title {
+	@extend %gcwu-default-print-gcwu-title-styles;
+	a {
+		@extend %gcwu-default-print-gcwu-title-styles;
+	}
+}
+
+#wb-main-in {
+	border-top: 3px outset #666;
+	padding-top: 5px;
+}
+
+#gcwu-bc {
+	min-height: inherit;
+	height: auto;
+	ol {
+		@extend %gcwu-default-print-width-100perc;
+		@extend %gcwu-default-print-margin-0;
+		padding: 0;
+	}
+	li {
+		background: none;
+		&:before {
+			content: " > ";
+		}
+		&:first-child:before {
+			content: "";
+		}
+	}
+	a {
+		padding: 0 5px 0 0;
+		background: none;
+	}
+}
+
+%gcwu-default-print-display-none {
+	display: none;
+}
+
+#wb-sec {
+	@extend %gcwu-default-print-display-none;
+}
+
+#wb-sup {
+	@extend %gcwu-default-print-display-none;
+}
+
+#gcwu-gcnb {
+	ul {
+		@extend %gcwu-default-print-display-none;
+	}
+}
+
+#gcwu-srchbx {
+	@extend %gcwu-default-print-display-none;
+}
+
+#gcwu-psnb {
+	@extend %gcwu-default-print-display-none;
+}
+
+#wb-foot {
+	@extend %gcwu-default-print-display-none;
+}
+
+#gcwu-date-mod {
+	float: right;
+}
+
+.clear {
+	clear: both;
+	display: block;
+	height: 0 !important;
+	min-height: 0 !important;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	@extend %gcwu-default-print-margin-0;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#gcwu-bc {
+		@extend %gcwu-default-print-scaleX--1;
+		li {
+			@extend %gcwu-default-print-scaleX--1;
+		}
+		a {
+			padding: 0 0 0 5px;
+		}
+	}
+
+	#gcwu-date-mod {
+		float: left;
+	}
+
+	#gcwu-sig {
+		left: auto;
+		@extend %gcwu-default-print-right-0;
+	}
+
+	#gcwu-wmms {
+		right: auto;
+		@extend %gcwu-default-print-left-0;
+	}
+}

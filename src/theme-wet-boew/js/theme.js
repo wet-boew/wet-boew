@@ -43,11 +43,13 @@
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm'),
+				img,
 				len,
 				svgid = ['wet-title'],
 				svgelm,
 				object,
-				print = pe.print;
+				print = pe.print,
+				contentPage = wet_boew_theme.sft.length !== 0;
 
 			// Remove the object for loading the SVG images  and leave only the fallback image element
 			// Also switch to the white PNG if not in print view
@@ -56,8 +58,17 @@
 				while (len--) {
 					svgelm = document.getElementById(svgid[len]);
 					if (svgelm !== null) {
-						object = svgelm.getElementsByTagName('object')[0];
-						object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, (print ? object.innerHTML : object.innerHTML.replace('.png', '-w.png')));
+						object = svgelm.getElementsByTagName('object');
+						if (object.length > 0) {
+							object = object[0];
+							object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, ((print || !contentPage) ? object.innerHTML : object.innerHTML.replace('.png', '-w.png')));
+						} else if (contentPage) {
+							img = svgelm.getElementsByTagName('img');
+							if (img.length > 0) {
+								img = img[0];
+								img.src = (print ? img.src : img.src.replace('.png', '-w.png'));
+							}
+						}
 					}
 				}
 			}
@@ -149,14 +160,14 @@
 					if (wet_boew_theme.menubar.length !== 0) {
 						mb_menu += '<section><div><h2>' + wet_boew_theme.psnb.children(':header')[0].innerHTML + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
 					}
-					
+
 					// Append the popup/dialog container and store the menu for appending later
 					mb_popup += '<div id="jqm-mb-menu"></div></nav></div></div></div>';
 					bodyAppend += mb_popup;
 					wet_boew_theme.menu = mb_menu;
 					_list += popup_button + ' data-icon="bars" href="#jqm-wb-mb">' + mb_btn_txt + '</a>';
 				}
-			
+
 				// Build the search popup (content pages only)
 				if (wet_boew_theme.search.length !== 0) {
 					// :: Search box transform lets transform the search box to a popup
@@ -172,7 +183,7 @@
 					bodyAppend += s_popup;
 					_list += popup_button + ' data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a>';
 				}
-			
+
 				// Build the header bar
 				node = wet_boew_theme.title[0];
 				header = '<div data-role="header"><div class="ui-title"><div></div></div>';
@@ -194,7 +205,7 @@
 				wet_boew_theme.fullhd.children('#wet-fullhd-in').before(header);
 				// Apply a theme to the site title
 				node.className += ' ui-bar-b';
-			
+
 				// Build the settings popup
 				lang_links = wet_boew_theme.fullhd.find('li[id*="-lang"]');
 				settings_popup = popup + ' id="popupSettings"' + popup_settings;
@@ -230,9 +241,9 @@
 					settings_popup += '</ul>' + popup_close;
 				}
 
-				// Build the about sub-popup	
+				// Build the about sub-popup
 				settings_popup += popup + ' id="popupAbout"' + popup_settings;
-				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';			
+				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open;
 				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
 				// Add the version
@@ -250,7 +261,7 @@
 					link = links[i];
 					node = link.innerHTML;
 					target = node.toLowerCase();
-					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';	
+					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';
 				}
 				settings_popup += '</ul>' + popup_close;
 
