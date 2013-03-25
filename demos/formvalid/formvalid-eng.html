@@ -124,7 +124,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <label for="url1"><span class="field-name">Website URL (http://www.url.com)</span></label><input id="url1" name="url1" type="url" />
 </fieldset>
 
-<fieldset><legend>Other examples</legend>
+<fieldset><legend>Other examples <strong for="title1" class="error" style="display:inline-block"><span class="prefix">Error&nbsp;1: </span>This field is required. This field is required. This field is required. This field is required. This field is required.</strong></legend>
 <label for="date1"><span class="field-name">Date</span> (YYYY-MM-DD)</label><input id="date1" name="date1" type="date" data-rule-dateISO="true" />
 <label for="time1"><span class="field-name">Time</span> (hh:mm)</label><input id="time1" name="time1" type="time" />
 <label for="an1"><span class="field-name">Alphanumeric</span> (at least 4 characters)</label><input id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" data-rule-alphanumeric="true" data-rule-minlength="4" />
@@ -134,6 +134,18 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <label for="text1"><span class="field-name">Letters and punctuation only</span> (allowed punctuation: [. , ( ) "])</label><input id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&quot;\s]" data-rule-letterswithbasicpunc="true" />
 <label for="password1"><span class="field-name">Password</span> (between 5 and 10 characters)</label><input id="password1" name="password1" type="password" maxlength="10" size="10" pattern="{5,10}" data-rule-rangelength="[5,10]" />
 </fieldset>
+<fieldset><legend>Radio button</legend>
+<label for="Status1"><input type="radio" name="Status" value="1" id="Status1" required="required" data-msg-required="Please select a Citizenship status" />&nbsp;&nbsp;Canadian citizen</label>
+<label for="Status2"><input type="radio" name="Status" value="2" id="Status2" />&nbsp;&nbsp;Permanent resident</label>
+<label for="Status3"><input type="radio" name="Status" value="3" id="Status3" />&nbsp;&nbsp;Work permit</label>
+<label for="Status4"><input type="radio" name="Status" value="4" id="Status4" />&nbsp;&nbsp;Other</label>
+</fieldset>
+<fieldset><legend>Pets (check box)</legend>
+<label for="Animal1"><input type="checkbox" name="Animal" value="1" id="Animal1" required="required" data-msg-required="Please select a pet" />&nbsp;&nbsp;Dog</label>
+<label for="Animal2"><input type="checkbox" name="Animal" value="2" id="Animal2" />&nbsp;&nbsp;Cat</label>
+<label for="Animal3"><input type="checkbox" name="Animal" value="3" id="Animal3" />&nbsp;&nbsp;Fish</label>
+<label for="Animal4"><input type="checkbox" name="Animal" value="4" id="Animal4" />&nbsp;&nbsp;Other</label>
+</fieldset> 
 <div class="form-inline">
 <input type="submit" value="Submit" class="button button-accent"/> <input type="reset" value="Reset" class="button" />
 </div>
