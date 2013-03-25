@@ -808,15 +808,15 @@
 										internalProjection: map.getProjectionObject(),
 										externalProjection: new OpenLayers.Projection('EPSG:4269'),
 										read: function(data) {
-											var items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
-												row, $row, i, len, feature, atts, features = [],
+											var items, row, $row, i, len, feature, atts, features = [],
 												layerAttributes = layer.attributes,
 												name;
 
 											// When read from server, data is string instead of #document
 											if (typeof data === 'string') {
 												data = (new DOMParser()).parseFromString(data, 'text/xml');
-											} 
+											}
+											items = this.getElementsByTagNameNS(data, '*', 'Placemark');
 
 											for (i = 0, len = items.length; i !== len; i += 1) {
 												row = items[i];
