@@ -1792,7 +1792,7 @@
 
 				pe.document.one(event_pcalldeps, function () {
 					pe.document.one(event_polydep, function (e) {
-						// Initiate any polyfills that need to be initiated manually in reverse order (to execute nested pol
+						// Initiate any polyfills that need to be initiated manually
 						polyinit = typeof e.payload !== 'undefined' ? e.payload[1] : [];
 						for (i = 0, _len = polyinit.length; i !== _len; i += 1) {
 							polyfills[polyinit[_len]].init();
