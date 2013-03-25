@@ -6,14 +6,14 @@
 %gcwu-intranet-default-desktop-screen-intranetnb-sprite {
 	background-image: url(../images/core/gcwu-intranetnb-sprite.gif);
 }
-%gcwu-intranet-default-desktop-screen-height20px-overflow-visible {
-	height: 20px !important;
-	overflow: visible !important;
+%gcwu-intranet-default-desktop-screen-width-234-height22 {
+	width: 234px;
+	height: 22px;
 }
 %gcwu-intranet-default-desktop-screen-psnb-background {
 	background: #555 url(../images/gcwu-psnb.gif) repeat-x 0 0; //TODO: Replace with gradient if applicable
 }
-%gcwu-intranet-default-desktop-screen-a-psuedo-underline {
+%gcwu-intranet-default-desktop-screen-a-pseudo-underline {
 	a {
 		@include pseudo-focus {
 			@extend %gcwu-intranet-default-desktop-screen-text-decoration-underline;
@@ -114,21 +114,27 @@
 			padding: 0 4px 0 13px;
 			color: #333;
 			a {
-				padding: {
-					top: 7px;
-					bottom: 7px;
+				&, &.ui-link {
+					padding: {
+						top: 7px;
+						bottom: 7px;
+					}
+					@extend %gcwu-intranet-default-desktop-screen-font-size-1em;
+					&, &:link, &:visited {
+						background: transparent;
+						color: #333;
+						@extend %gcwu-intranet-default-desktop-screen-font-weight-400;
+					}
+					@include pseudo-focus {
+						@extend %gcwu-intranet-default-desktop-screen-text-decoration-underline;
+						color: #333;
+					}
+					&.nav-current {
+						color: #29527D !important;
+						padding: 7px 4px;
+						@extend %gcwu-intranet-default-desktop-screen-border-none;
+					}
 				}
-				@extend %gcwu-intranet-default-desktop-screen-font-size-1em;
-				&, &:link, &:visited {
-					background: transparent;
-					color: #333;
-					@extend %gcwu-intranet-default-desktop-screen-font-weight-400;
-				}
-				&.nav-current {
-					color: #29527D !important;
-					padding: 7px 4px;
-					@extend %gcwu-intranet-default-desktop-screen-border-none;
-				}   
 			}
 		}
 	}
@@ -164,11 +170,7 @@
 		position: 0 -170px;
 	}
 	text-shadow: 1px 1px 1px #333;
-	a {
-		@include pseudo-focus {
-			@extend %gcwu-intranet-default-desktop-screen-text-decoration-underline;
-		}
-	}
+	@extend %gcwu-intranet-default-desktop-screen-a-pseudo-underline;
 }
 
 #gcwu-gcnb-fip {
@@ -177,14 +179,18 @@
 }
 
 #gcwu-sig {
-	@extend %gcwu-intranet-default-desktop-screen-height20px-overflow-visible;
+	z-index: 3;
 	@extend %gcwu-intranet-default-desktop-screen-bottom-11;
 	@extend %gcwu-intranet-default-desktop-screen-position-absolute;
-	z-index: 3;
 	@extend %gcwu-intranet-default-desktop-screen-margin-0;
+	@extend %gcwu-intranet-default-desktop-screen-width-234-height22;
 	img {
-		@extend %gcwu-intranet-default-desktop-screen-height20px-overflow-visible;
+		@extend %gcwu-intranet-default-desktop-screen-width-234-height22;
 	}
+}
+
+#gcwu-sig-in {
+	@extend %gcwu-intranet-default-desktop-screen-margin-0;
 }
 
 #gcwu-bnr-in {
@@ -204,7 +210,6 @@
 	@extend %gcwu-intranet-default-desktop-screen-right-0;
 	@extend %gcwu-intranet-default-desktop-screen-margin-0;
 	img {
-		height: auto !important;
 		@extend %gcwu-intranet-default-desktop-screen-margin-right-0;
 		@extend %gcwu-intranet-default-desktop-screen-height-30-width-126;
 		@extend %gcwu-intranet-default-desktop-screen-right-0;
@@ -236,7 +241,7 @@
 }
 
 #gcwu-intranetnb {
-	@extend %gcwu-intranet-default-desktop-screen-a-psuedo-underline;
+	@extend %gcwu-intranet-default-desktop-screen-a-pseudo-underline;
 	@extend %gcwu-intranet-default-desktop-screen-min-height-32;
 	font-size: 90%;
 	@extend %gcwu-intranet-default-desktop-screen-position-absolute;
@@ -372,13 +377,8 @@
 	}
 }
 
-#gcwu-sig-in {
-	@extend %gcwu-intranet-default-desktop-screen-height20px-overflow-visible;
-	@extend %gcwu-intranet-default-desktop-screen-margin-0;
-}
-
 #gcwu-subsite {
-	@extend %gcwu-intranet-default-desktop-screen-a-psuedo-underline;
+	@extend %gcwu-intranet-default-desktop-screen-a-pseudo-underline;
 }
 
 #wb-foot-in {

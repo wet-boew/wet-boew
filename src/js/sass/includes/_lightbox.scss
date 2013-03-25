@@ -8,6 +8,9 @@
 %wb-lightbox-position-absolute {
 	position: absolute;
 }
+%wb-lightbox-text-indent-9999 {
+	text-indent: 9999px;
+}
 
 %wb-lightbox-top-0 {
 	top: 0;
@@ -316,5 +319,17 @@
 			@extend %wb-lightbox-display-block;
 			@extend %wb-lightbox-visibility-visible;
 		}
+	}
+}
+
+[dir="rtl"] {
+	#cboxPrevious {
+		@extend %wb-lightbox-text-indent-9999;
+	}
+	#cboxNext {
+		@extend %wb-lightbox-text-indent-9999;
+	}
+	#cboxClose {
+		@extend %wb-lightbox-text-indent-9999;
 	}
 }

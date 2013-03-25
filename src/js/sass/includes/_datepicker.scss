@@ -85,7 +85,7 @@ div {
 		}
 		a {
 			&, &:link {
-				color: #111 !important;
+				color: #111;
 			}
 			@include pseudo-focus {
 				@extend %datepicker-color-fff-important;

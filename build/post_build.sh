@@ -21,6 +21,29 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 
 	git fetch -qn upstream > /dev/null
 
+	#Add the latest tags
+	case "${supported_branches[@]}" in  *"$TRAVIS_BRANCH"*)
+		echo -e "Tagging the latest build for branch $TRAVIS_BRANCH\n"
+
+		build_branch="$TRAVIS_BRANCH-dist"
+
+		git checkout -f "$build_branch"
+
+		#Replace the new dist and demo folders and root files with the new ones
+		git rm -rf dist/*
+		git rm -rf demos/*
+		cp -Rf $HOME/temp_wet-boew/* .
+
+		#Commit the result
+		git add -f dist
+		git add -f demos
+		git add -f *.*
+		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
+		git push -fq upstream $build_branch > /dev/null
+
+		echo -e "Finished tagging the latest build for branch $TRAVIS_BRANCH\n"
+	;; esac
+
 	#Update working example
 	if [ "$TRAVIS_BRANCH" == "master" ]; then
 		echo -e "Updating working examples...\n"
@@ -44,27 +67,4 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 
 		echo -e "Finished updating the experimental working examples\n"
 	fi
-
-	#Add the latest tags
-	case "${supported_branches[@]}" in  *"$TRAVIS_BRANCH"*)
-		echo -e "Tagging the latest build for branch $TRAVIS_BRANCH\n"
-
-		build_branch="$TRAVIS_BRANCH-dist"
-
-		git checkout -f "$build_branch"
-
-		#Replace the new dist and demo folders and root files with the new ones
-		git rm -rf dist/*
-		git rm -rf demos/*
-		cp -Rf $HOME/temp_wet-boew/* .
-
-		#Commit the result
-		git add -f dist
-		git add -f demos
-		git add -f *.*
-		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
-		git push -fq upstream $build_branch > /dev/null
-
-		echo -e "Finished tagging the latest build for branch $TRAVIS_BRANCH\n"
-	;; esac
 fi
