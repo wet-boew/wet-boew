@@ -55,7 +55,7 @@
 			};
 
 			addLinksToCalendar = function (fieldid, year, month, days, minDate, maxDate, format) {
-				var field = container.prev().find('#' + fieldid),
+				var field = container.parent().find('#' + fieldid),
 					lLimit,
 					hLimit;
 
@@ -205,7 +205,7 @@
 			};
 
 			addSelectedDateToField = function (fieldid, year, month, day, format) {
-				container.prev().find('#' + fieldid).val(formatDate(year, month, day, format));
+				container.parent().find('#' + fieldid).val(formatDate(year, month, day, format));
 			};
 
 			toggle = function (fieldid) {
@@ -232,7 +232,7 @@
 					'aria-controls': fieldid
 				});
 				calendar.create('wb-picker', year, month, true, minDate, maxDate);
-				wrapper.after(container);
+				field.after(container);
 
 				container.unbind('focusout.calendar');
 				container.unbind('focusin.calendar');
@@ -329,7 +329,7 @@
 				container.on('keyup', function (e) {
 					if (e.keyCode === 27) {
 						hideAll();
-						pe.focus(container.prev().find('#' + container.attr('aria-controls')));
+						pe.focus(container.parent().find('#' + container.attr('aria-controls')));
 					}
 				});
 
@@ -351,7 +351,7 @@
 
 				pe.document.on('click vclick touchstart focusin', function () {
 					if (container.attr('aria-hidden') === 'false') {
-						hide(container.prev().find('#' + container.attr('aria-controls')));
+						hide(container.parent().find('#' + container.attr('aria-controls')));
 						return false;
 					}
 				});
