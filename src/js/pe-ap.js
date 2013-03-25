@@ -1795,7 +1795,7 @@
 						// Initiate any polyfills that need to be initiated manually
 						polyinit = typeof e.payload !== 'undefined' ? e.payload[1] : [];
 						for (i = 0, _len = polyinit.length; i !== _len; i += 1) {
-							polyfills[polyinit[_len]].init();
+							polyfills[polyinit[i]].init();
 						}
 
 						// Execute each of the node specific plugin calls in reverse order (to execute nested plugin calls first)
