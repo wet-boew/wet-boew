@@ -14,7 +14,8 @@ set wet.maven.folder=wet-parent
 echo Updating WET poms to version %new.version%...
 rem find out what folder we started in. If we're not in the wet-parent folder, then go there
 for %%F in ("%cd%") do set "initial.folder=%%~nxF"
-if "%initial.folder%" NEQ "%wet.maven.folder%" (cd %wet.maven.folder%)
+if "%initial.folder%" NEQ "%wet.maven.folder%" (set started.in.parent=true
+												pushd %wet.maven.folder%)
 
 call mvn -N versions:set -DnewVersion=%new.version% -DprocessDependencies=false -DprocessPlugins=false
 IF %ERROR_CODE% EQU 0 (echo Command result: SUCCESS) ELSE (echo Command result: FAILURE
@@ -27,7 +28,7 @@ goto :done
 									call mvn -q versions:revert )
 
 :error
-	cd %initial.folder%
+	if %started.in.parent% popd
 	endlocal
 	exit /B 1
 :usage
@@ -37,6 +38,6 @@ goto :done
 :done
 	del /S /Q *.*versionsBackup 2>NUL
 	echo Maven version numbers have been updated.
-	cd %initial.folder%
+	if "%started.in.parent%" EQU "true" popd
 	endlocal
 	exit /B 0

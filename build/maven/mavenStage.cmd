@@ -10,11 +10,14 @@ rem Set up environment
 setlocal
 IF "%~1"=="" (GOTO :usage) ELSE (set release.version=%1)
 IF "%~2"=="" (GOTO :usage) ELSE (set test.folder=%2)
+rem the root of the Maven projects relative to this script
 set wet.maven.folder=wet-parent
-rem dist path, relative to this script
+rem demo path, relative to wet-parent
 set demo.folder=..\..\..\demos
 rem dist path, relative to wet-parent
 set dist.folder=..\..\..\dist
+rem the location of the license files, relative to wet-parent
+set license.location=..\..\..
 set initial.folder=%cd%
 
 rem If test folder already exists, ask if we should continue
@@ -40,7 +43,7 @@ if %ERRORLEVEL% NEQ 0 GOTO :error
 
 rem Run the Maven job to create the release artifacts
 echo Creating Maven artifacts...
-call mvn -Ddist.folder=%dist.folder% clean deploy
+call mvn -Ddist.folder=%dist.folder% -Dlicense.location=%license.location% clean deploy
 IF %ERROR_CODE% EQU 0 (echo Command result: SUCCESS) ELSE (echo Command result: FAILURE
 															GOTO :revert)
 

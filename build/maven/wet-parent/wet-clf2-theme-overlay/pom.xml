@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>wet-parent</artifactId>
 		<groupId>com.github.wet-boew</groupId>
-		<version>3.0.6-SNAPSHOT</version>
+		<version>3.0.6</version>
 	</parent>
 
 	<artifactId>wet-clf2-theme-overlay</artifactId>
@@ -21,16 +21,30 @@
 					<configuration>
 						<webResources>
 							<resource>
-								<directory>../${dist.js.folder}</directory>
+								<directory>${project.parent.basedir}/${dist.js.folder}</directory>
 								<targetPath>js</targetPath>
 							</resource>
 							<resource>
-								<directory>../${dist.grids.folder}</directory>
+								<directory>${project.parent.basedir}/${dist.grids.folder}</directory>
 								<targetPath>grids</targetPath>
 							</resource>
 							<resource>
-								<directory>../${dist.theme.clf2.folder}</directory>
+								<directory>${project.parent.basedir}/${dist.theme.clf2.folder}</directory>
 								<targetPath>theme-clf2-nsi2</targetPath>
+							</resource>
+							<!-- For now Maven doesn't seem to provide a nice way of inheriting these common resource from the parent, so they need to be added to each child pom -->
+							<resource>
+								<directory>${project.parent.basedir}/${license.location}</directory>
+								<includes>
+									<include>Licence-fra.txt</include>
+									<include>License-eng.txt</include>
+								</includes>
+							</resource>
+							<resource>
+								<directory>${project.parent.basedir}/</directory>
+								<includes>
+									<include>README.txt</include>
+								</includes>
 							</resource>
 						</webResources>
 					</configuration>
