@@ -1303,11 +1303,13 @@
 					}
 				}
 
-				for (i = 0, _len = loadnow.length; i !== _len; i += 1) {
-					polyprefs = polyfills[loadnow[i]];
-					js[js.length] = (typeof polyprefs.load !== 'undefined' ? polyprefs.load : lib + 'polyfills/' + loadnow[i] + pe.suffix + '.js');
+				// Load polyfills in reverse order to better deal with nested polyfill calls
+				_len = loadnow.length;
+				while (_len--) {
+					polyprefs = polyfills[loadnow[_len]];
+					js[js.length] = (typeof polyprefs.load !== 'undefined' ? polyprefs.load : lib + 'polyfills/' + loadnow[_len] + pe.suffix + '.js');
 					if (typeof polyprefs.init !== 'undefined') {
-						needsinit.push(loadnow[i]);
+						needsinit.push(loadnow[_len]);
 					}
 					polyprefs.loaded = true;
 				}
@@ -1826,16 +1828,19 @@
 							polyfills[polyinit[i]].init();
 						}
 
-						// Execute each of the node specific plugin calls
-						wetboew.each(function () {
-							var _node = $(this),
-								_fcall = _node.attr('data-load').split(',');
+						// Execute each of the node specific plugin calls in reverse order (to execute nested plugin calls first)
+						var _len2 = wetboew.length,
+							_node,
+							_fcall;
+						while (_len2--) {
+							_node = wetboew.eq(_len2);
+							_fcall = _node.attr('data-load').split(',');
 							for (i = 0, _len = _fcall.length; i !== _len; i += 1) {
 								if (typeof pe.fn[_fcall[i]] !== 'undefined') { // lets safeguard the execution to only functions we have
 									pe.fn[_fcall[i]]._exec(_node);
 								}
 							}
-						});
+						}
 
 						// Execute each of the global plugin calls
 						if (settings) {
