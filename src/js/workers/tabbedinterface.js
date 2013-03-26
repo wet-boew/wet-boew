@@ -153,9 +153,9 @@
 			$tabListHeading.insertBefore($nav);
 
 			// End of panel text to notify screen reader users that there are more tab panels available
-			if($panels.length > 1) {
-				$panels.append('<p class="wb-invisible">' + _pe.dic.get('%tab-panel-end') + '</p>').find('a').on('click', function(e){
-					_pe.focus($tabs.filter('.'+opts.tabActiveClass));
+			if ($panels.length > 1) {
+				$panels.append('<p><span class="wb-invisible">' + _pe.dic.get('%tab-panel-end-1') + ($tabsPanel.prev().hasClass('tabs') ? '</span><a href="javascript:;" class="wb-show-onfocus button button-accent position-bottom-medium position-left">' + _pe.dic.get('%tab-panel-end-2') + '</a><span class="wb-invisible">' + _pe.dic.get('%tab-panel-end-3') : '') + '</span></p>').find('a').on('click', function(e) {
+					_pe.focus($tabs.filter('.' + opts.tabActiveClass));
 					e.preventDefault();
 				});
 			}
@@ -165,7 +165,7 @@
 			$tabs.attr({'role': 'tab', 'aria-selected': 'false'}).each(function () {
 				var hash = _pe.fn.tabbedinterface._get_hash(this.href),
 					id = hash.length > 0 ? hash.substring(1) : false;
-				if(id !== false) {
+				if (id !== false) {
 					this.setAttribute('aria-controls', id);
 					this.setAttribute('id', id + tabSuffix);
 				}
@@ -183,7 +183,7 @@
 				$tab.attr({'aria-selected': 'true', 'tabindex': '0'});
 
 				// Focus active tab if tabs have been initialized and cycle isn't active
-				if(elm.data('easytabs') !== undefined && !$nav.hasClass('started')) {
+				if (elm.data('easytabs') !== undefined && !$nav.hasClass('started')) {
 					_pe.focus($tab);
 				}
 			});
