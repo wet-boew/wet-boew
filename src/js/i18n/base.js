@@ -139,8 +139,6 @@
 		'%calendar-nextMonth': '@%calendar-nextMonth@',
 		/* Slideout */
 		'%show-toc': '@%show-toc@',
-		'%show-image': '@%show-image@',
-		'%hide-image': '@%hide-image@',
 		'%show-text': '@%show-text@',
 		'%hide-text': '@%hide-text@',
 		'%table-contents': '@%table-contents@',
