@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-
 /* IE7 hacks - should be in an IE7 only .css */
 .ie7 {
     ol.wet-boew-zebra {
@@ -32,11 +31,9 @@
 	li {
 		&.list-even {
 			background-color: #ddd;
-			border: 1px solid #CCC;
 		}
 		&.list-odd {
 			background-color: #eee;
-			border: 1px solid #CCC;
 		}
 		&.list-hover {
 			background-color: #f0fcff;
@@ -49,11 +46,9 @@
 		li {
 			&.list-even {
 				background-color: #ddd;
-				border: none;
 			}
 			&.list-odd {
 				background-color: #fff;
-				border: none;
 			}
 		}
 	}

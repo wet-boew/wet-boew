@@ -2,21 +2,19 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-%zebra-list-odd-list-even-border-none {
-	&.list-odd {
-		border: none;
-	}
-	&.list-even {
-		border: none;
-	}
+%zebra-border-none {
+	border: none;
+}
+%zebra-list-style-type-none {
+	list-style-type: none;
 }
 
 ul {
 	&.wet-boew-zebra {
 		li {
-			 list-style-type: none;
+			@extend %zebra-list-style-type-none;
 			li {
-				list-style-type: none; 
+				@extend %zebra-list-style-type-none;
 			}
 		}
 	}
@@ -81,11 +79,11 @@ ol {
 .module-comment ol.wet-boew-zebra, ol.wet-boew-zebra.module-comment {
 	ol {
 		li {
-			list-style-type: none;
+			@extend %zebra-list-style-type-none;
 		}
 		ol {
 			li {
-				list-style-type: none;
+				@extend %zebra-list-style-type-none;
 			} 
 		}
 	}
@@ -100,30 +98,28 @@ dl {
 .wet-boew-zebra {
 	
 	/* Definition list */
-	dl {
+	dl, dd {
 		margin-left: 0;
 	}
 	dd {
 		padding: 10px;
-		margin-left: 0;
-		@extend %zebra-list-odd-list-even-border-none;
 	}
 	dt {
 		padding: 10px;
-		@extend %zebra-list-odd-list-even-border-none;
 		font-weight: 700;
 		margin-top: 2px;
 	}
 
+	dt, dd, > li {
+		border: 1px solid #CCC;
+	}
 	
 	dt, dd {
 		&.list-even {
 			background-color: #ddd;
-			border: 1px solid #CCC;
 		}
 		&.list-odd {
 			background-color: #eee;
-			border: 1px solid #CCC;
 		}
 		&.list-hover {
 			background-color: #f0fcff;
@@ -135,11 +131,9 @@ dl {
 	> li {
 		&:nth-child(2n) {
 			background-color: #ddd;
-			border: 1px solid #CCC;
 		}
 		&:nth-child(2n + 1) {
 			background-color: #eee;
-			border: 1px solid #CCC;
 		}
 		&:hover {
 			background-color: #f0fcff;
@@ -148,25 +142,24 @@ dl {
 	
 	/* Style Alterwg (Alternate White and Gray stripe) */
 	&.alterwg {
+		dt, dd, > li {
+			@extend %zebra-border-none;
+		}
 		> li {
 			&:nth-child(2n) {
 				background-color: #ddd;
-				border: none;
 			}
 			&:nth-child(2n + 1) {
 				background-color: #fff;
-				border: none;
 			}
 		}
 		
 		dt, dd {
 			&.list-even {
 				background-color: #ddd;
-				border: none;
 			}
 			&.list-odd {
 				background-color: #fff;
-				border: none;
 			}
 		}
 		
