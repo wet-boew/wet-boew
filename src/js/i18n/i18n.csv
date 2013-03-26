@@ -19,6 +19,7 @@ General (i18n),%all,All,Tous,Todo
 ,%hide,Hide,Masquer,Ocultar
 ,%error,Error,Erreur,Error
 ,%colon,:, :,:
+,%hyphen, - , - , - 
 ,%start,Start,Lancer,Iniciar
 ,%stop,Stop,Arrêter,Detener
 ,%back,Back,Précédent,Volver
