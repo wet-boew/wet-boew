@@ -273,6 +273,9 @@ a {
 		@extend %gcwu-default-desktop-screen-margin-left-0;
 		@extend %gcwu-default-desktop-screen-width-234-height-22;
 	}
+  object {
+    @extend %gcwu-default-desktop-screen-width-234-height-22;
+  }
 }
 
 #gcwu-sig-in {
@@ -418,6 +421,9 @@ a {
 		@extend %gcwu-default-desktop-screen-width-139-height-33;
 		margin: 0;
 	}
+  object {
+    @extend %gcwu-default-desktop-screen-width-139-height-33;
+  }
 }
 
 #gcwu-wmms-in {
@@ -539,7 +545,7 @@ a {
 			}
 		}
 	}
-	
+
 	#gcwu-title {
 		a {
 			@extend %gcwu-default-desktop-screen-margin-left-auto;
