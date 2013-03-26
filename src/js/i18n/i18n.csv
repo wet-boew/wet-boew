@@ -180,7 +180,11 @@ Template strings (Generic),%tmpl-skip-main,Skip to main content,Passer au conten
 ,%tmpl-version,Version:,Version&#160;:,,,,,,,,,,,,,,,,,,,,,,,Versión:,,,,
 Template strings (GC Web Usability theme),%tmpl-gc-navbar,Government of Canada navigation bar,Barre de navigation du gouvernement du Canada,,,,,,,,,,,,,,,,,,,,,,,Barra de navegación del Gobierno de Canadá,,,,
 ,%tmpl-gc-sig,Government of Canada,Gouvernement du Canada,,,,,,,,,,,,,,,,,,,,,,,Gobierno de Canadá,,,,
+<<<<<<< HEAD
 ,%tmpl-gc-wmms,Symbol of the Government of Canada,Symbole du gouvernement du Canada,,,,,,,,,,,,,,,,,,,,,,,Símbolo del Gobierno de Canadá,,,,
+=======
+,%tmpl-gc-wmms,Symbol of the Government of Canadaá,Symbole du gouvernement du Canada,,,,,,,,,,,,,,,,,,,,,,,Símbolo del Gobierno de Canadá,,,,
+>>>>>>> f2077a9c82479b7ea36daacfa322d23a7f59da18
 ,%tmpl-gc-ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca
 ,%tmpl-services,Services,Services,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,%tmpl-depts,Departments,Ministères,,,,,,,,,,,,,,,,,,,,,,,,,,,
