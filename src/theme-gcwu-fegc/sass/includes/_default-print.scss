@@ -4,6 +4,14 @@
  */
 @import 'compass/css3/transform';
 
+%gcwu-default-print-width-214-height-20 {
+	width: 214px;
+	height: 20px;
+}
+%gcwu-default-print-width-126-height-30 {
+	width: 126px;
+	height: 30px;
+}
 %gcwu-default-print-position-absolute {
 	position: absolute;
 }
@@ -13,6 +21,7 @@
 %gcwu-default-print-gcwu-title-styles {
 	font-size: 16pt;
 	text-decoration: none;
+	border: none;
 	color: #000;
 	@extend %gcwu-default-print-width-100perc;
 	position: relative;
@@ -60,12 +69,32 @@ h6 {
 	@extend %gcwu-default-print-position-absolute;
 	top: 10px;
 	@extend %gcwu-default-print-left-0;
+	img {
+		@extend %gcwu-default-print-width-214-height-20;
+	}
+	object {
+		@extend %gcwu-default-print-width-214-height-20;
+	}
+}
+
+#gcwu-sig-in {
+	@extend %gcwu-default-print-width-214-height-20;
 }
 
 #gcwu-wmms {
 	@extend %gcwu-default-print-position-absolute;
 	top: 0;
 	@extend %gcwu-default-print-right-0;
+	img {
+		@extend %gcwu-default-print-width-126-height-30;
+	}
+	object {
+		@extend %gcwu-default-print-width-126-height-30;
+	}
+}
+
+#gcwu-wmms-in {
+	@extend %gcwu-default-print-width-126-height-30;
 }
 
 #gcwu-title {
@@ -133,6 +162,14 @@ h6 {
 	@extend %gcwu-default-print-display-none;
 }
 
+#gcwu-mnavbar {
+	@extend %gcwu-default-print-display-none;
+}
+
+.ui-title {
+	@extend %gcwu-default-print-display-none;
+}
+
 #gcwu-date-mod {
 	float: right;
 }
@@ -146,6 +183,12 @@ h6 {
 	visibility: hidden;
 	width: 0;
 	@extend %gcwu-default-print-margin-0;
+}
+
+.ui-mobile {
+	.ui-header {
+		border: none;
+	}
 }
 
 /* Right to left (RTL) CSS */

@@ -2,6 +2,11 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+@import "compass/css3/images";
+%gcwu-serv-mobile-width-90-height-22 {
+	width: 90px;
+	height: 22px;
+}
 %gcwu-serv-mobile-background-white {
 	background: #FFF;
 }
@@ -61,6 +66,42 @@
 	height: 20px;
 }
 
+#gcwu-title {
+	#gcwu-wmms {
+		display: none;
+	}
+}
+
+.pe-disable {
+	#gcwu-title {
+		#gcwu-wmms {
+			display: block;
+		}
+	}
+}
+
+#gcwu-bar {
+	@extend %gcwu-serv-mobile-display-none;
+}
+
+#wb-foot {
+	#gcwu-wmms {
+		margin-top: 10px;
+		width: 100%;
+		img {
+			@extend %gcwu-serv-mobile-width-90-height-22;
+		}
+		object {
+			@extend %gcwu-serv-mobile-width-90-height-22;
+		}
+	}
+	#gcwu-wmms-in {
+		position: static;
+		margin: auto;
+		@extend %gcwu-serv-mobile-width-90-height-22;
+	}
+}
+
 #wb-head {
 	@extend %gcwu-serv-mobile-padding-0-5;
 }
@@ -75,6 +116,9 @@
 
 #wb-body {
 	@extend %gcwu-serv-mobile-background-white;
+	#wb-main {
+		float: left !important;
+	}
 }
 
 #gcwu-title {
@@ -157,10 +201,32 @@
 		border: none;
 		background: none;
 	}
-	#gcwu-wmms {
-		object {
-			@extend %gcwu-serv-mobile-display-block;
-			margin: 5px auto;
+}
+
+#gcwu-tc {
+	ul {
+		width: 100%;
+		padding-top: 0;
+	}
+	li {
+		margin-right: 0;
+		width: 50%;
+		a {
+			@include background-image(linear-gradient(#F5F5F5, #D5D5D5));
+			color: #2F3E46;
+			font-weight: 700;
+			text-align: center;
+			display: block;
+			text-shadow: none;
+			font-size: 100%;
+			border-top-width: 0;
+			padding: 9px 0;
+			border: 1px solid #999;
+		}
+		&:first-child {
+			a {
+				border-right-width: 0;
+			}
 		}
 	}
 }

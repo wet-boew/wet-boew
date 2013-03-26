@@ -809,16 +809,15 @@
 										externalProjection: new OpenLayers.Projection('EPSG:4269'),
 										read: function(data) {
 											
-											// When read from server, data is string instead of #document
-											if (typeof data === 'string') {
-												var parser = new DOMParser(),
-													data = parser.parseFromString(data, "text/xml");
-											}
-
-											var	items = this.getElementsByTagNameNS(data, '*', 'Placemark'),
-												row, $row, i, len, feature, atts, features = [],
+											var items, row, $row, i, len, feature, atts, features = [],
 												layerAttributes = layer.attributes,
 												name;
+
+											// When read from server, data is string instead of #document
+											if (typeof data === 'string') {
+												data = (new DOMParser()).parseFromString(data, 'text/xml');
+											}
+											items = this.getElementsByTagNameNS(data, '*', 'Placemark');
 
 											for (i = 0, len = items.length; i !== len; i += 1) {
 												row = items[i];
@@ -1300,17 +1299,10 @@
 		},
 
 		refreshPlugins: function() {
-			var $createDatatable;
 			_pe.wb_load({
 				'plugins': {
+					'tables': _pe.main.find('.createDatatable'),
 					'tabbedinterface': _pe.main.find('.wet-boew-tabbedinterface')
-				}
-			});
-
-			$createDatatable = _pe.main.find('.createDatatable');
-			_pe.wb_load({
-				'plugins': {
-					'tables': $createDatatable
 				}
 			});
 

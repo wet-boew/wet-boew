@@ -49,9 +49,10 @@
 				svgid = (mobile ? ['gcwu-wmms'] : ['gcwu-wmms', 'gcwu-sig']),
 				svgelm,
 				object,
-				print = pe.print;
+				print = pe.print,
+				contentPage = wet_boew_theme.sft.length !== 0;
 
-			// Remove the object for loading the SVG images  and leave only the fallback image element
+			// Remove the object for loading the SVG images and leave only the fallback image element (content pages only)
 			// Also switch to the white PNG if not in print view
 			if (!pe.svg || pe.svgfix) {
 				len = svgid.length;
@@ -61,10 +62,10 @@
 						object = svgelm.getElementsByTagName('object');
 						if (object.length > 0) {
 							object = object[0];
-							object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, (print ? object.innerHTML : object.innerHTML.replace('.png', '-w.png')));
-						} else {
+							object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, ((print || !contentPage) ? object.innerHTML : object.innerHTML.replace('.png', '-w.png')));
+						} else if (contentPage) {
 							img = svgelm.getElementsByTagName('img');
-							if(img.length > 0) {
+							if (img.length > 0) {
 								img = img[0];
 								img.src = (print ? img.src : img.src.replace('.png', '-w.png'));
 							}
@@ -313,7 +314,7 @@
 				}
 
 				// Move the Canada Wordmark to the footer
-				wmms = document.getElementById('wmms');
+				wmms = document.getElementById('gcwu-wmms');
 				if (wmms !== null) {
 					pe.footer[0].getElementsByTagName('footer')[0].appendChild(wmms.cloneNode(true));
 					wmms.parentNode.removeChild(wmms);

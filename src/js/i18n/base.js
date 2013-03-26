@@ -42,6 +42,7 @@
 		'%hide': '@%hide@',
 		'%error': '@%error@',
 		'%colon': '@%colon@',
+		'%hyphen': '@%hyphen@',
 		'%start': '@%start@',
 		'%stop': '@%stop@',
 		'%back': '@%back@',
@@ -59,12 +60,12 @@
 			'mixin': '@%days-ago@'
 		},
 		'%yesterday': '@%yesterday@',
-		
+
 		'%next': '@%next@',
 		'%previous': '@%previous@',
 		'%first': '@%first@',
 		'%last': '@%last@',
-		
+
 		/* Archived Web page template */
 		'%archived-page': '@%archived-page@',
 		/* Menu bar */
@@ -75,6 +76,9 @@
 			'enable': '@%tab-rotation-enable@'
 		},
 		'%tab-list': '@%tab-list@',
+		'%tab-panel-end-1': '@%tab-panel-end-1@',
+		'%tab-panel-end-2': '@%tab-panel-end-2@',
+		'%tab-panel-end-3': '@%tab-panel-end-3@',
 		/* Multimedia player */
 		'%play': '@%play@',
 		'%pause': '@%pause@',

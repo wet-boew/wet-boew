@@ -5,8 +5,9 @@
 @import "compass/css3/images";
 @import "compass/css3/border-radius";
 
-%gcwu-sp-pe-mobile-text-align-center {
-	text-align: center;
+%gcwu-sp-pe-mobile-width-90-height-22 {
+	width: 90px;
+	height: 22px;
 }
 %gcwu-sp-pe-mobile-padding-sides-5px {
     padding: {
@@ -59,10 +60,10 @@
 		@extend %gcwu-sp-pe-mobile-first-child-border-right-0;
 	}
 }
+%gcwu-sp-pe-mobile-margin-0 {
+	margin: 0;
+}
 %gcwu-sp-pe-mobile-lang-foot {
-	%gcwu-sp-pe-mobile-margin-0 {
-		margin: 0;
-	}
 	a {
 		@extend %gcwu-sp-pe-mobile-margin-0;
 	}
@@ -103,11 +104,27 @@ h1 {
 
 #wb-main {
 	#gcwu-wmms {
-		@extend %gcwu-sp-pe-mobile-text-align-center;
 		position: absolute;
-		bottom: -5.6em;
-		@extend %gcwu-sp-pe-mobile-width-100;
+		bottom: -67px;
+		left: 0;
 	}
+}
+
+#gcwu-wmms {
+	margin-top: 10px;
+	@extend %gcwu-sp-pe-mobile-width-100;
+	img {
+		@extend %gcwu-sp-pe-mobile-width-90-height-22;
+	}
+	object {
+		@extend %gcwu-sp-pe-mobile-width-90-height-22;
+	}
+}
+	
+#gcwu-wmms-in {
+	margin: auto;
+	position: static;
+	@extend %gcwu-sp-pe-mobile-width-90-height-22;
 }
 
 #wb-foot {
@@ -117,12 +134,6 @@ h1 {
 	.ui-footer {
 		border: 0;
 		background: none;
-	}
-	#gcwu-wmms {
-		object {
-			@extend %gcwu-sp-pe-mobile-display-block;
-			margin: 5px auto;
-		}
 	}
 }
 
@@ -162,13 +173,13 @@ h1 {
 
 #wb-main-in {
 	background: none;
-	padding-bottom: 0;
+	padding: 0;
 }
 
 #gcwu-lang {
 	@extend %gcwu-sp-pe-mobile-lang-foot;
-	margin-left: -5px;
-	margin-right: -5px;
+	margin-left: -15px;
+	margin-right: -15px;
 	a[href]{
 		@include pseudo-focus {
 			color: #FFF;
@@ -206,7 +217,7 @@ h1 {
 			@include background-image(linear-gradient(#F5F5F5, #D5D5D5));
 			color: #2F3E46;
 			font-weight: 700;
-			@extend %gcwu-sp-pe-mobile-text-align-center;
+			text-align: center;
 			@extend %gcwu-sp-pe-mobile-display-block;
 			@extend %gcwu-sp-pe-mobile-text-shadow-none-font-size-100-border-top-0-padding-9;
 			border: 1px solid #999;
