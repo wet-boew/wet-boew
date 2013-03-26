@@ -11,14 +11,24 @@
 %formvalid-margin-top-1em {
 	margin-top: 1em;
 }
+%formvalid-error {
+	@extend %formvalid-display-block;
+	@extend %formvalid-font-weight-700;
+	color: #c00;
+}
 
 .wet-boew-formvalid {
 	label {
 		@extend %formvalid-display-block;
+		strong {
+			&.error {
+				@extend %formvalid-error;
+			}
+		}
+	}
+	legend {
 		.error {
-			@extend %formvalid-display-block;
-			@extend %formvalid-font-weight-700;
-			color: #c00;
+			@extend %formvalid-error;
 		}
 	}
 	input {
