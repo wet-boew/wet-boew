@@ -65,8 +65,13 @@
 				"bottomvaluenegative-typeof": "boolean",
 				// This is to set a predefined interval
 				// Note: Any Top or bottom value will be overwritten with an pre-defined interval
-				"steps-autocreate": true,
-				"steps-typeof": "number",
+				// "steps-autocreate": true, // Replaced by ticks combined with min/max
+				// "steps-typeof": "number", // Replaced by ticks combined with min/max
+				// Ticks => Number of ticks for the y-axis
+				"ticks-autocreate": true,
+				"ticks-typeof": "number",
+				
+				
 				// This is to set a decimal precision for the pie chart
 				"decimal-autocreate": true,
 				"decimal-typeof": "number",
@@ -81,20 +86,16 @@
 				"width-typeof": "number",
 				height: $(elm).height(), // height of canvas - defaults to table height
 				"height-typeof": "number",
-				maxwidth: '9999',// '590',
+				// maxwidth: '9999',// '590',
 				// "maxwidth-typeof": "locked", //Remove the lock, that will allow zomming feature in the canvas to fit it in the webpage
-				"maxwidth-typeof": "number",
-				//
-				// Colors
-				//
-				colors: ['#be1e2d', '#666699', '#92d5ea', '#ee8310', '#8d10ee', '#5a3b16', '#26a4ed', '#f45a90', '#e9e744'], // Serie colors set
+				// "maxwidth-typeof": "number",
 				//
 				// Data Table and Graph Orientation
 				//
 				parsedirection: 'x', // which direction to parse the table data
 				"parsedirection-typeof": "string",
-				"parsedirection-autocreate": true,
-				drawDirection: 'x' // TODO Not implemented yet - which direction are the dependant axis
+				"parsedirection-autocreate": true
+				// drawDirection: 'x' // TODO Not implemented yet - which direction are the dependant axis
 			}, options);
 			
 			// Set the new class options if defined
@@ -1102,9 +1103,9 @@
 			
 			calcTick = horizontalCalcTick;
 			
-			var allSeries = [];
-			var isPieChart = false;
-			var dataSeries = [],
+			var allSeries = [],
+				isPieChart,
+				dataSeries = [],
 				valueCumul = 0,
 				header,
 				rIndex,
@@ -1116,12 +1117,26 @@
 				tblSrcContainer,
 				tblSrcContainerSummary;
 			
+
+			
 			if (o.type === "pie") {
 				// Use Reverse table axes
 				// Create a chart/ place holder, by series
 				
 				
-				var mainFigureElem = $('<figure />').insertAfter(srcTbl);
+				var mainFigureElem = $('<figure />').insertAfter(srcTbl),
+					_graphclasslen;
+				mainFigureElem.addClass('wb-charts'); // Default
+				if (o.graphclass) {
+					if ($.isArray(o.graphclass)) {
+						for (i = 0, _graphclasslen = o.graphclass.length; i < _graphclasslen; i += 1) {
+							mainFigureElem.addClass(o.graphclass[i]);
+						}
+					} else {
+						mainFigureElem.addClass(o.graphclass);
+					}
+				}
+				
 				figCaptionElem = $('<figcaption />');
 				
 				$(mainFigureElem).append(figCaptionElem);
@@ -1272,6 +1287,8 @@
 			}
 			
 			
+			
+			
 			var nbBarChart = 0;
 			var barDelta;
 			var rowOptions;
@@ -1415,7 +1432,19 @@
 			// chartPlacement(allSeries, {xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })});
 			
 			
-			var figureElem = $('<figure />').insertAfter(srcTbl);
+			var figureElem = $('<figure />').insertAfter(srcTbl),
+				_graphclasslen2;
+			figureElem.addClass('wb-charts'); // Default
+			if (o.graphclass) {
+				if ($.isArray(o.graphclass)) {
+					for (i = 0, _graphclasslen2 = o.graphclass.length; i < _graphclasslen2; i += 1) {
+						figureElem.addClass(o.graphclass[i]);
+					}
+				} else {
+					figureElem.addClass(o.graphclass);
+				}
+			}
+			
 			figCaptionElem = $('<figcaption />');
 			
 			$(figureElem).append(figCaptionElem);
@@ -1457,7 +1486,34 @@
 			}
 	
 			// Create the graphic
-			$.plot(placeHolder, allSeries, {xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })});
+			
+			var plotParameter = {xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })};
+			if (o.topvalue) {
+				if (!plotParameter.yaxis) {
+					plotParameter.yaxis = {};
+				}
+				if (o.topvaluenegative) {
+					o.topvalue = (o.topvalue * -1);
+				}
+				plotParameter.yaxis.max = o.topvalue;
+			}
+			if (o.bottomvalue) {
+				if (!plotParameter.yaxis) {
+					plotParameter.yaxis = {};
+				}
+				if (o.bottomvaluenegative) {
+					o.bottomvalue = (o.bottomvalue * -1);
+				}
+				plotParameter.yaxis.min = o.bottomvalue;
+			}
+			if (o.steps) {
+				if (!plotParameter.yaxis) {
+					plotParameter.yaxis = {};
+				}
+				plotParameter.yaxis.ticks = o.steps;
+			} 
+			 
+			$.plot(placeHolder, allSeries, plotParameter);
 			
 			
 			if (!o.legendinline) {
