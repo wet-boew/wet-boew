@@ -107,7 +107,26 @@
 				// Location for the inline error messages
 				// In this case we will place them in the associated label element
 				errorPlacement: function(error, element) {
+					var type = element.attr('type'),
+						name,
+						fieldset,
+						legend;
+					
+					if (typeof type !== 'undefined') {
+						type = type.toLowerCase();
+						if (type === 'radio' || type === 'checkbox') {
+							fieldset = element.closest('fieldset');
+							if (fieldset.length !== 0) {
+								legend = fieldset.children('legend');
+								if (legend.length !== 0 && fieldset.find('input[name="' + element.attr('name') + '"]') !== 1) {
+									error.appendTo(legend);
+									return;
+								}
+							}
+						}
+					}
 					error.appendTo(form.find('label[for="' + element.attr('id') + '"]'));
+					return;
 				},
 
 				// Create our error summary that will appear before the form
@@ -118,6 +137,7 @@
 						summaryContainer = form.find('#' + $errorFormId),
 						prefixStart = '<span class="prefix">' + _pe.dic.get('%error') + '&#160;',
 						prefixEnd = _pe.dic.get('%colon') + ' </span>',
+						separator = _pe.dic.get('%hyphen'),
 						summary,
 						key;
 
@@ -136,9 +156,20 @@
 						errors.each(function(index) {
 							var $this = $(this),
 								prefix = prefixStart + (index + 1) + prefixEnd,
-								label = $this.closest('label');
+								label = $this.closest('label'),
+								fieldName = label.find('.field-name'),
+								fieldset;
+
+							// Try to find the field name in the legend (if one exists)
+							if (fieldName.length === 0) {
+								fieldset = $this.closest('fieldset');
+								if (fieldset.length !== 0) {
+									fieldName = fieldset.find('legend .field-name');
+								}
+							}
+
 							$this.find('span.prefix').detach();
-							summary += '<li><a href="#' + label.attr('for') + '">' + prefix + label.find('.field-name').html() + ' - ' + this.innerHTML + '</a></li>';
+							summary += '<li><a href="#' + label.attr('for') + '">' + prefix + (fieldName.length !== 0 ? fieldName.html() + separator : '') + this.innerHTML + '</a></li>';
 							$this.prepend(prefix);
 						});
 						summary += '</ul>';
