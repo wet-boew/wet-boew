@@ -56,6 +56,13 @@
 		padding-right:0
 	}
 }
+#wb-head,#wb-foot,#wb-sec {
+	[rel="external"] {
+		background-image:none;
+		padding-right:0;
+	}
+}
+
 /* Start the sprite positioning */
 .wb-icon-alarm {
 	@extend %wb-icon;
