@@ -273,13 +273,13 @@
 					margin-right: -1 * $margin-large;
 				}
 			}
-			
+
 			.form-inline & {
 				margin-right: auto;
 				margin-left: $margin-medium;
 			}
 		}
-		
+
 		.form-text-inline {
 			padding-left: 0;
 			padding-right: 5px;
@@ -293,11 +293,11 @@
 		.form-input-prepend {
 			input, select, .form-uneditable-input, button { @include border-right-radius(0); }
 		}
-		
-		.form-input-append { 
+
+		.form-input-append {
 			input, select, .form-uneditable-input, button { @include border-left-radius(0); }
 		}
-		
+
 		.form-inline {
 			> * {
 				margin-right: auto;
@@ -323,6 +323,7 @@
 			border-top: 1px solid $silver;
 			content: "";
 			display: block;
+			width: 100%;
 			height: $margin-medium;
 			clear: both;
 		}
