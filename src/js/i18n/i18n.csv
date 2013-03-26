@@ -180,7 +180,11 @@ Template strings (Generic),%tmpl-skip-main,Skip to main content,Passer au conten
 ,%tmpl-version,Version:,Version&#160;:,,,,,,,,,,,,,,,,,,,,,,,Versión:,,,,
 Template strings (GC Web Usability theme),%tmpl-gc-navbar,Government of Canada navigation bar,Barre de navigation du gouvernement du Canada,,,,,,,,,,,,,,,,,,,,,,,Barra de navegación del Gobierno de Canadá,,,,
 ,%tmpl-gc-sig,Government of Canada,Gouvernement du Canada,,,,,,,,,,,,,,,,,,,,,,,Gobierno de Canadá,,,,
+<<<<<<< HEAD
+,%tmpl-gc-wmms,Symbol of the Government of Canada,Symbole du gouvernement du Canada,,,,,,,,,,,,,,,,,,,,,,,Símbolo del Gobierno de Canadá,,,,
+=======
 ,%tmpl-gc-wmms,Symbol of the Government of Canadaá,Symbole du gouvernement du Canada,,,,,,,,,,,,,,,,,,,,,,,Símbolo del Gobierno de Canadá,,,,
+>>>>>>> f2077a9c82479b7ea36daacfa322d23a7f59da18
 ,%tmpl-gc-ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca,Canada.gc.ca
 ,%tmpl-services,Services,Services,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,%tmpl-depts,Departments,Ministères,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -189,6 +193,7 @@ Template strings (GC Web Usability theme),%tmpl-gc-navbar,Government of Canada n
 ,%tmpl-site-foot,Site footer,Pied de page du site,,,,网站注脚,,Website-onderkant,Lehekülje jalus,,,,,,,サイトフッター,,,,Stopka,,,,,Site pie de página,,,,
 ,%tmpl-terms,Terms and conditions,Avis,,,使用條款,限制性规定,,Gebruiksvoorwaarden,Tingimused ja kokkulepped,,,Felhasználási feltételek,,Syarat dan Ketentuan,,利用規約,,Noteikumi,Terminai ir sąlygos,Warunki korzystania z serwisu.,Termos e Condições,,Условия использования,,Términos y Condiciones,,Koşullar ve Kurallar,Умови та правила,
 ,%tmpl-transparency,Transparency,Transparence,,,透明度,临时,,Transparantie,Läbipaistvus,,,Átláthatóság,,Transparansi,,透明性,,Atklātība,Skaidrumas,Przejrzystość,Transparência,,Прозрачность,,Transparencia,,Saydamlık,Прозорість,
+Template strings (GC Web Usability Intranet theme),%tmpl-gcintra-navbar,Intranet navigation bar,Barre de navigation d'intranet,,,,,,,,,,,,,,,,,,,,,,,Barra de navegación de la intranet,,,,
 Filler content (Generic),%tmpl-sub-site-name,Sub-site name,Nom du sous-site,,,,,,,,,,,,,,,,,,,,,,,Nombre de sitio secundario,,,,
 ,%tmpl-fullwidth-head,Full-width header area,Secteur d'en-tête de plein-largeur,,,,,,,,,,,,,,,,,,,,,,,Area de encabezamiento de lleno-anchura,,,,
 ,%tmpl-fullwidth-foot,Full-width footer area,Secteur de pied de page de plein-largeur,,,,,,,,,,,,,,,,,,,,,,,Area de pie de página de lleno-anchura,,,,
@@ -197,6 +202,7 @@ Filler content (Generic),%tmpl-sub-site-name,Sub-site name,Nom du sous-site,,,,,
 ,%tmpl-wet,Web Experience Toolkit&#160;(WET),Boîte à outils de l'expérience Web&#160;(BOEW),Web Experience Toolkit,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,%tmpl-base-theme,Base theme,Thème base,,,,,,,,,,,,,,,,,,,,,,,Tema de base,,,,
 ,%tmpl-gcwu-theme,GC Web Usability theme,Thème de la facilité d'emploi Web GC,,,,,,,,,,,,,,,,,,,,,,,Tema de facilidad de empleo del Gobierno de Canadá,,,,
+,%tmpl-gcwu-intranet-theme,GC Web Usability intranet theme,Thème d'intranet de la facilité d'emploi Web GC,,,,,,,,,,,,,,,,,,,,,,,Tema intranet de facilidad de empleo del Gobierno de Canadá,,,,
 ,%tmpl-wet-theme,WET theme,Thème de la BOEW,,,,,,,,,,,,,,,,,,,,,,,Tema de WET,,,,
 ,%tmpl-cont-page,Content page,Page de contenu,,,,,,,,,,,,,,,,,,,,,,,Página de contenido,,,,
 ,%tmpl-nosearchlang,No search or language selection link,Sans recherche ou lien de sélection de la langue,,,,,,,,,,,,,,,,,,,,,,,Ningún búsqueda ni enlace de selección de idioma,,,,
