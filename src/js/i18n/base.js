@@ -33,6 +33,7 @@
 		'%hide': '@%hide@',
 		'%error': '@%error@',
 		'%colon': '@%colon@',
+		'%hyphen': '@%hyphen@',
 		'%start': '@%start@',
 		'%stop': '@%stop@',
 		'%back': '@%back@',
