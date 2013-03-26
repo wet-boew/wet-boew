@@ -75,7 +75,9 @@
 			'enable': '@%tab-rotation-enable@'
 		},
 		'%tab-list': '@%tab-list@',
-		'%tab-panel-end': '@%tab-panel-end@',
+		'%tab-panel-end-1': '@%tab-panel-end-1@',
+		'%tab-panel-end-2': '@%tab-panel-end-2@',
+		'%tab-panel-end-3': '@%tab-panel-end-3@',
 		/* Multimedia player */
 		'%play': '@%play@',
 		'%pause': '@%pause@',
