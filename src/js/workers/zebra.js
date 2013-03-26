@@ -20,7 +20,8 @@
 				getCellHeaders,
 				autoRemoveTimeout,
 				$trs,
-				$cols;
+				$cols,
+				col_length;
 
 			// Parse the table
 			if (!$(elem).data().tblparser) {
@@ -128,7 +129,7 @@
 					var cellsheader = [],
 						$elem = $(elem),
 						tblparser = $elem.data().tblparser,
-						len; 
+						len;
 					if (tblparser.row && tblparser.row.header && !opts.norowheaderhighlight) {
 						for (i = 0, len = tblparser.row.header.length; i !== len; i += 1) {
 							cellsheader.push(tblparser.row.header[i].elem);
@@ -200,14 +201,14 @@
 								$cellheader;
 							if (tblparser.type === 1) {
 								$elem.removeClass('table-hover');
-								delete $elem.data().zebrafor; 
+								delete $elem.data().zebrafor;
 								return;
 							}
 							for (i = 0, len = $elem.data().cellsheader.length; i !== len; i += 1) {
 								$cellheader = $($(elem).data().cellsheader[i]);
 								if ($cellheader.data().zebrafor === tblparser.uid) {
 									$cellheader.removeClass('table-hover');
-									delete $cellheader.data().zebrafor; 
+									delete $cellheader.data().zebrafor;
 								}
 							}
 						}, 25);
@@ -245,15 +246,15 @@
 			if (opts.vectorstripe) {
 				if (!opts.columnhighlight) {
 					elem.addClass('rowzebra');
-					if (0 < _pe.ie && _pe.ie < 9) {
+					if (_pe.ie > 0 && _pe.ie < 9) {
 						$trs.filter(':odd').addClass('table-odd');
 					}
 				} else {
 					elem.addClass('colzebra');
 
-					if (0 < _pe.ie && _pe.ie < 9) {
+					if (_pe.ie > 0	&& _pe.ie < 9) {
 						$cols = [];
-						for (i = 0; i < tblparser.col.length; i += 1) {
+						for (i = 0, col_length = tblparser.col.length; i < col_length; i += 1) {
 							if (tblparser.col[i].elem) {
 								$cols.push(tblparser.col[i].elem);
 							}
@@ -354,11 +355,9 @@
 						
 						
 						$('tr:first()', elem).appendTo($(domTable.createTHead()));
-						
-						// $('tr:first()', elem).appendTo($('<thead />').prependTo(elem));
 					}
 					
-					if (!(0 < _pe.ie && _pe.ie < 9)) {
+					if (!(_pe.ie > 0 && _pe.ie < 9)) {
 						
 						if (!opts.columnhighlight) {
 							elem.addClass('rowzebra');
@@ -413,7 +412,7 @@
 							
 							$cols = elem.children('colgroup:last').children('col');
 	
-							$($cols).filter(':odd').addClass('table-odd');
+							$cols.filter(':odd').addClass('table-odd');
 						}
 						
 						return; // Simple Table Zebra Striping done
@@ -498,7 +497,7 @@
 					elem.addClass('zebra-hover');
 				}
 				
-				if (0 < _pe.ie && _pe.ie < 9) {
+				if (_pe.ie > 0 && _pe.ie < 9) {
 					
 					$lis = elem.children('li');
 					parity = (elem.parents('li').length + 1) % 2;
