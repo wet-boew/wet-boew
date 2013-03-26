@@ -152,6 +152,14 @@
 			}
 			$tabListHeading.insertBefore($nav);
 
+			// End of panel text to notify screen reader users that there are more tab panels available
+			if($panels.length > 1) {
+				$panels.append('<p class="wb-invisible">' + _pe.dic.get('%tab-panel-end') + '</p>').find('a').on('click', function(e){
+					_pe.focus($tabs.filter('.'+opts.tabActiveClass));
+					e.preventDefault();
+				});
+			}
+
 			// Set ARIA attributes on the tabs and panels
 			$nav.attr('role', 'tablist').children('li').attr('role', 'presentation');
 			$tabs.attr({'role': 'tab', 'aria-selected': 'false'}).each(function () {
