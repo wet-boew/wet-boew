@@ -5,7 +5,7 @@
 /*
  * GeoMap plugin
  */
-/*global jQuery: false, wet_boew_geomap: false, OpenLayers: false, Proj4js: false*/
+/*global jQuery: false, wet_boew_geomap: false, OpenLayers: false, Proj4js: false, ActiveXObject: false*/
 (function($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -126,21 +126,20 @@
 			OpenLayers.Util.extend(panZoomBar, {
 				draw: function() {
 					// initialize our internal div
-					var oButtons = this;
-					var centered = new OpenLayers.Pixel(7.5, 81);
+					var oButtons = this,
+						centered = new OpenLayers.Pixel(7.5, 81),
+						buttonArray = ['zoomworld', 'zoomout', 'zoomin', 'pandown', 'panright', 'panup', 'panleft'],
+						buttonImg = ['zoom-world-mini', 'zoom-minus-mini', 'zoom-plus-mini', 'south-mini', 'east-mini', 'north-mini', 'west-mini'],
+						len = buttonArray.length;
 					OpenLayers.Control.prototype.draw.apply(oButtons, arguments);
 			
 					// place the controls
 					oButtons.buttons = [];
 					
-					oButtons._addButton('panup', 'transparent.png');
-					oButtons._addButton('panleft', 'transparent.png');
-					oButtons._addButton('panright', 'transparent.png');
-					oButtons._addButton('pandown', 'transparent.png');				
-					oButtons._addButton('zoomin', 'transparent.png');
+					while (len--) {
+						oButtons._addButton(buttonArray[len], buttonImg[len] + '.png');
+					}
 					oButtons._addZoomBar(centered.add(7.5,0));
-					oButtons._addButton('zoomout', 'transparent.png');
-					oButtons._addButton('zoomworld', 'transparent.png');
 			
 					// add custom CSS styles
 					$(oButtons.slider).attr('class', 'olControlSlider').find('img').attr('class', 'olControlSlider');
@@ -172,7 +171,6 @@
 						// add alt text
 						altTxt = _pe.dic.get('%geo-' + actn);
 						control.setAttribute('title', altTxt);
-						//control.classList.add('olControl' + actn);
 						control.className = control.className + ' olControl' + actn;
 						img.tabIndex = 0;
 					} else {
@@ -180,7 +178,6 @@
 						altTxt = '';
 					}
 					img.setAttribute('alt', altTxt);
-					//img.classList.add('olControl' + actn);
 					img.className = control.className + ' olControl' + actn;
 				}
 			}
@@ -607,7 +604,7 @@
 		 * Handle features once they have been added to the map for tabular data
 		 *
 		 */
-		onTabularFeaturesAdded: function(feature, zoomColumn, table) {
+		onTabularFeaturesAdded: function(feature, zoomColumn) {
 			// Find the row
 			var $tr = $('tr#' + feature.id.replace(/\W/g, '_'));
 
@@ -1212,7 +1209,7 @@
 				$.each(queryLayers, function(index, layer) {
 					if (layer.id === tableId){
 						$.each(layer.features, function(index, feature) {
-							_pe.fn.geomap.onTabularFeaturesAdded(feature, zoomColumn, opts.tables[index], opts);
+							_pe.fn.geomap.onTabularFeaturesAdded(feature, zoomColumn);
 						});
 					}
 				});
