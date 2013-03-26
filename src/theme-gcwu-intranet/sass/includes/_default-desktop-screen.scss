@@ -214,6 +214,9 @@
 		@extend %gcwu-intranet-default-desktop-screen-height-30-width-126;
 		@extend %gcwu-intranet-default-desktop-screen-right-0;
 	}
+  object {
+    @extend %gcwu-intranet-default-desktop-screen-height-30-width-126;
+  }
 }
 
 #gcwu-wmms-in {
