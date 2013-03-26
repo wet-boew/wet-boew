@@ -817,7 +817,15 @@
 
 											// When read from server, data is string instead of #document
 											if (typeof data === 'string') {
-												data = (new DOMParser()).parseFromString(data, 'text/xml');
+												// With IE we cant use DOMParser
+												if (_pe.ie > 0) {
+													var xmlDocument = new ActiveXObject('Microsoft.XMLDOM');
+													xmlDocument.async = false;
+													xmlDocument.loadXML(data);
+													data = xmlDocument;
+												} else {
+													data = (new DOMParser()).parseFromString(data, 'text/xml');
+												}
 											}
 											items = this.getElementsByTagNameNS(data, '*', 'Placemark');
 
