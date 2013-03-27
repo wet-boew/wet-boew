@@ -627,16 +627,8 @@ a {
 .wet-boew-geomap {
 	width: 100%;
 	position: relative;
-	border-style: solid;
-  border-width: 1px;
-  border-color: #CCC;
-  &:hover {
-    border-color: #07F;
-  }
-  &:focus {
-    border-color: #07F;
-  }
-  &:blur {
-    border-color: #CCC;
-  }
+	border: 1px solid #CCC;
+	&.active {
+		border-color: #07F;
+	}
 }
