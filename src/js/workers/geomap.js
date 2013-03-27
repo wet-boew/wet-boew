@@ -18,8 +18,7 @@
 		overlays = 0,
 		overlaysLoaded = 0,
 		overlaysLoading = {}, // Status of overlayLoading (true = still loading)
-		overlayTimeout = 2000, // Timeout for overlay loading in milliseconds
-		keyboardActive = false;
+		overlayTimeout = 2000; // Timeout for overlay loading in milliseconds
 
 	/* local reference */
 	_pe.fn.geomap = {
