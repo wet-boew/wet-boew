@@ -16,7 +16,9 @@
 		selectControl,
 		queryLayers = [],
 		overlays = 0,
-		overlaysLoaded = 0;
+		overlaysLoaded = 0,
+		overlaysLoading = {}, // Status of overlayLoading (true = still loading)
+		overlayTimeout = 2000; // Timeout for overlay loading in milliseconds
 
 	/* local reference */
 	_pe.fn.geomap = {
@@ -850,9 +852,17 @@
 								eventListeners: {
 									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										if (overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd();
+										}
 									},
-									'loadend': function() {
-										_pe.fn.geomap.onLoadEnd();
+									'loadstart': function() {
+										overlaysLoading[layer.title] = true;
+										setTimeout(function () {
+											if (overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd();
+											}
+										}, overlayTimeout);
 									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
@@ -903,10 +913,18 @@
 								eventListeners: {
 									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										if (overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd();
+										}
 									},
-									'loadend': function() {
-										_pe.fn.geomap.onLoadEnd();
-									}									
+									'loadstart': function() {
+										overlaysLoading[layer.title] = true;
+										setTimeout(function () {
+											if (overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd();
+											}
+										}, overlayTimeout);
+									}								
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
 							}
@@ -960,10 +978,18 @@
 								eventListeners: {
 									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										if (overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd();
+										}
 									},
-									'loadend': function() {
-										_pe.fn.geomap.onLoadEnd();
-									}								
+									'loadstart': function() {
+										overlaysLoading[layer.title] = true;
+										setTimeout(function () {
+											if (overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd();
+											}
+										}, overlayTimeout);
+									}							
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
 							}
@@ -1017,10 +1043,18 @@
 								eventListeners: {
 									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										if (overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd();
+										}
 									},
-									'loadend': function() {
-										_pe.fn.geomap.onLoadEnd();
-									}									
+									'loadstart': function() {
+										overlaysLoading[layer.title] = true;
+										setTimeout(function () {
+											if (overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd();
+											}
+										}, overlayTimeout);
+									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
 							}
@@ -1074,9 +1108,17 @@
 								eventListeners: {
 									'featuresadded': function(evt) {
 										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										if (overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd();
+										}
 									},
-									'loadend': function() {
-										_pe.fn.geomap.onLoadEnd();
+									'loadstart': function() {
+										overlaysLoading[layer.title] = true;
+										setTimeout(function () {
+											if (overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd();
+											}
+										}, overlayTimeout);
 									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
