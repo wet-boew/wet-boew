@@ -45,7 +45,8 @@
 				useMousePosition: false,
 				debug: false,
 				useLegend: false,
-				useTab: false
+				useTab: false,
+				useMapControls: true
 			};
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
@@ -54,7 +55,8 @@
 				useMousePosition: elm.hasClass('position') ? true : undefined,
 				debug: elm.hasClass('debug') ? true : false,
 				useLegend: elm.hasClass('legend') ? true : false,
-				useTab: elm.hasClass('tab') ? true : false
+				useTab: elm.hasClass('tab') ? true : false,
+				useMapControls: elm.hasClass('static') ? false : true
 			};			
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
@@ -851,7 +853,8 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										var zoom = (layer.zoom && opts.useMapControls) ? true : false;
+										_pe.fn.geomap.onFeaturesAdded($table, evt, zoom, layer.datatable);
 										if (overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd();
 										}
@@ -912,7 +915,8 @@
 								}),						
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										var zoom = (layer.zoom && opts.useMapControls) ? true : false;
+										_pe.fn.geomap.onFeaturesAdded($table, evt, zoom, layer.datatable);
 										if (overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd();
 										}
@@ -977,7 +981,8 @@
 								}),								
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										var zoom = (layer.zoom && opts.useMapControls) ? true : false;
+										_pe.fn.geomap.onFeaturesAdded($table, evt, zoom, layer.datatable);
 										if (overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd();
 										}
@@ -1042,7 +1047,8 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										var zoom = (layer.zoom && opts.useMapControls) ? true : false;
+										_pe.fn.geomap.onFeaturesAdded($table, evt, zoom, layer.datatable);
 										if (overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd();
 										}
@@ -1107,7 +1113,8 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										var zoom = (layer.zoom && opts.useMapControls) ? true : false;
+										_pe.fn.geomap.onFeaturesAdded($table, evt, zoom, layer.datatable);
 										if (overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd();
 										}
@@ -1165,7 +1172,7 @@
 				});				
 
 				// If zoomTo add the header and footer column headers
-				if (opts.tables[index].zoom) {
+				if (opts.tables[index].zoom && opts.useMapControls) {
 					$table.find('thead').find('tr').append(thZoom);
 					$table.find('tfoot').find('tr').append(thZoom);					
 				}
@@ -1239,65 +1246,68 @@
 					onSelect: this.onFeatureSelect,
 					onUnselect: this.onFeatureUnselect
 				}
-			);			
-
-			map.addControl(selectControl);			
-			selectControl.activate();			
-
+			);	
+			
 			// Add the select control to every tabular feature. We need to this now because the select control needs to be set.
 			$.each(opts.tables, function(index, table) {
-				var zoomColumn = opts.tables[index].zoom,
+				var zoom = (opts.tables[index].zoom && opts.useMapControls) ? true : false,
 					tableId = 'table#' + table.id;
 				$.each(queryLayers, function(index, layer) {
 					if (layer.id === tableId){
 						$.each(layer.features, function(index, feature) {
-							_pe.fn.geomap.onTabularFeaturesAdded(feature, zoomColumn);
+							_pe.fn.geomap.onTabularFeaturesAdded(feature, zoom);
 						});
 					}
 				});
-
+	
 				if (table.datatable) {
 					$(tableId).addClass('createDatatable');
 				}
 			});
+				
+			if(opts.useMapControls) {
 
-			if (opts.useMousePosition) {
-				map.addControl(new OpenLayers.Control.MousePosition());
-			}
-			if (opts.useScaleLine) {
-				map.addControl(new OpenLayers.Control.ScaleLine());
-			}
-
-			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
-			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
-			map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
-
-			// enable the keyboard navigation when map div has focus. Disable when blur
-			// Enable the wheel zoom only on hover
-			$geomap.attr('tabindex', '0').on('mouseenter mouseleave focus blur', function(e) {
-				var type = e.type;
-				if (type === 'mouseenter') {
-					map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
-				} else if (type === 'mouseleave') {
-					map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();					
-				} else if (type === 'focus') {
-					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
-				} else {
-					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
+				map.addControl(selectControl);			
+				selectControl.activate();			
+	
+				if (opts.useMousePosition) {
+					map.addControl(new OpenLayers.Control.MousePosition());
 				}
-			});
-
-			// add pan zoom bar
-			_pe.fn.geomap.addPanZoomBar();					
+				if (opts.useScaleLine) {
+					map.addControl(new OpenLayers.Control.ScaleLine());
+				}
+	
+				map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
+				map.addControl(new OpenLayers.Control.KeyboardDefaults());			
+				map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
+	
+				// enable the keyboard navigation when map div has focus. Disable when blur
+				// Enable the wheel zoom only on hover
+				$geomap.attr('tabindex', '0').on('mouseenter mouseleave focus blur', function(e) {
+					var type = e.type;
+					if (type === 'mouseenter') {
+						map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
+					} else if (type === 'mouseleave') {
+						map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();					
+					} else if (type === 'focus') {
+						map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
+					} else {
+						map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
+					}
+				});
+	
+				// add pan zoom bar
+				_pe.fn.geomap.addPanZoomBar();					
+	
+				// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
+				if (!_pe.mobile) {
+					$mapDiv.before('<p><strong>' + _pe.dic.get('%geo-accessibilize') + '</p>');
+				}
+			}
 
 			// zoom to the maximum extent specified
 			map.zoomToMaxExtent();			
-
-			// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
-			if (!_pe.mobile) {
-				$mapDiv.before('<p><strong>' + _pe.dic.get('%geo-accessibilize') + '</p>');
-			}
-
+			
 			// add a listener on the window to update map when resized
 			window.onresize = function() {		
 				$mapDiv.height($mapDiv.width() * 0.8);
