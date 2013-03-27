@@ -18,7 +18,8 @@
 		overlays = 0,
 		overlaysLoaded = 0,
 		overlaysLoading = {}, // Status of overlayLoading (true = still loading)
-		overlayTimeout = 2000; // Timeout for overlay loading in milliseconds
+		overlayTimeout = 2000, // Timeout for overlay loading in milliseconds
+		keyboardActive = false;
 
 	/* local reference */
 	_pe.fn.geomap = {
@@ -1269,7 +1270,7 @@
 
 				map.addControl(selectControl);			
 				selectControl.activate();			
-	
+					
 				if (opts.useMousePosition) {
 					map.addControl(new OpenLayers.Control.MousePosition());
 				}
@@ -1283,16 +1284,21 @@
 	
 				// enable the keyboard navigation when map div has focus. Disable when blur
 				// Enable the wheel zoom only on hover
-				$geomap.attr('tabindex', '0').on('mouseenter mouseleave focus blur', function(e) {
-					var type = e.type;
-					if (type === 'mouseenter') {
-						map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
-					} else if (type === 'mouseleave') {
-						map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();					
-					} else if (type === 'focus') {
-						map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
-					} else {
-						map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
+				$geomap.attr('tabindex', '0').on('mouseenter mouseleave focusin focusout', function(e) {
+					var type = e.type,
+						$this = $(this);
+					if (type === 'mouseenter' || type === 'focusin') {
+						if (!$this.hasClass('active')) {
+							map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
+							map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
+							$this.addClass('active');
+						}
+					} else if (type === 'mouseleave' || type === 'focusout') {
+						if ($this.hasClass('active')) {
+							map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();
+							map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
+							$this.removeClass('active');
+						}
 					}
 				});
 	
