@@ -146,8 +146,12 @@ body {
 	@extend %wet-default-desktop-screen-position-relative;
 	@extend %wet-default-desktop-screen-overflow-hidden;
 	z-index: 501 !important;
-	background: #114F7A url(../images/banner.png) repeat-x 0 0;
-	background-image: linear-gradient(#176CA7, #114F7A);
+	background: #114F7A;
+	@if $legacy-support-for-ie8 {
+		@include filter-gradient(#176CA7, #114F7A);
+	} @else {
+		@include background-image(linear-gradient(#176CA7, #114F7A));
+	}
 }
 
 #wet-bnr-in {
