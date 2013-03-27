@@ -4,6 +4,7 @@
  */
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
+@import "compass/css3/images";
 
 html {
 	overflow-y: scroll;
@@ -294,7 +295,12 @@ a {
 }
 
 #base-srch-submit {
-	background: #ccc url(../images/search-button.gif) 0 0 repeat-x;
+	background: #ccc;
+	@if $legacy-support-for-ie8 { 
+		@include filter-gradient(#F0F0F0,#CCC);
+	} @else {
+		@include background-image(linear-gradient(#F0F0F0,#CCC));
+	}
 	-webkit-appearance: none;
 	min-height: 24px;
 	border:{
@@ -311,7 +317,13 @@ a {
 	padding: 2px 6px;
 	display: inline;
 	@include pseudo-focus {
-		background: #ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
+		background: #ddd;
+		@if $legacy-support-for-ie8 { 
+			@include filter-gradient(#CCC,#DDD);
+		} @else {
+			@include background-image(linear-gradient(#CCC,#DDD));
+		}
+	// url(../images/search-button-focus.gif) 0 0 repeat-x;
 		text-shadow: 0 1px 0 #ddd;
 		@extend %base-default-desktop-screen-box-shadow-none;
 		border:{
