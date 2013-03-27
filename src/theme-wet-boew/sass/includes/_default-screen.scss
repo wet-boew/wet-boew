@@ -124,6 +124,9 @@ input {
 .ie9 {
 	@extend %wet-default-screen-ui-mobile-rendering-wet-title-object-display-block-none;
 }
+.ie10 {
+	@extend %wet-default-screen-ui-mobile-rendering-wet-title-object-display-block-none;
+}
 
 .wb-sec-def {
 	h3.top-section {
