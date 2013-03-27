@@ -173,14 +173,14 @@
 						// add alt text
 						altTxt = _pe.dic.get('%geo-' + actn);
 						control.setAttribute('title', altTxt);
-						control.className = control.className + ' olControl' + actn;
-						img.tabIndex = 0;
+						control.className += ' olControl' + actn;
+						control.tabIndex = 0;
 					} else {
 						// Add null alt text to slider image since should be ignored
 						altTxt = '';
 					}
 					img.setAttribute('alt', altTxt);
-					img.className = control.className + ' olControl' + actn;
+					img.className +=  ' olControl' + actn;
 				}
 			}
 		}, // end addPanZoomBar function
