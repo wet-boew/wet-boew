@@ -15,6 +15,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	mkdir $HOME/temp_wet-boew
 	cp -R dist $HOME/temp_wet-boew/dist
 	cp -R demos $HOME/temp_wet-boew/demos
+	cp -R test $HOME/temp_wet-boew/test
 	cp *.htm* $HOME/temp_wet-boew
 	cp *.md $HOME/temp_wet-boew
 	cp *.txt $HOME/temp_wet-boew
@@ -32,11 +33,13 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		#Replace the new dist and demo folders and root files with the new ones
 		git rm -rf dist/*
 		git rm -rf demos/*
+		git rm -rf test/*
 		cp -Rf $HOME/temp_wet-boew/* .
 
 		#Commit the result
 		git add -f dist
 		git add -f demos
+		git add -f test
 		git add -f *.*
 		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
 		git push -fq upstream $build_branch > /dev/null
