@@ -18,8 +18,7 @@
 		overlays = 0,
 		overlaysLoaded = 0,
 		overlaysLoading = {}, // Status of overlayLoading (true = still loading)
-		overlayTimeout = 2000, // Timeout for overlay loading in milliseconds
-		keyboardActive = false;
+		overlayTimeout = 2000; // Timeout for overlay loading in milliseconds
 
 	/* local reference */
 	_pe.fn.geomap = {
@@ -157,13 +156,15 @@
 			 * Add alt text to map controls and make tab-able
 			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
 			 */
-			var controls = _pe.main.find('div.olControlPanZoomBar div').get(),
+			var controlBar = _pe.main.find('div.olControlPanZoomBar')[0],
+				controls = controlBar.getElementsByTagName('div'),
 				len = controls.length,
 				control,
 				img,
 				altTxt,
 				actn;
 
+			controlBar.setAttribute('role', 'toolbar');
 			while (len--) {
 				control = controls[len];
 				img = control.getElementsByTagName('img')[0];
@@ -173,7 +174,9 @@
 					if (actn !== undefined) {
 						// add alt text
 						altTxt = _pe.dic.get('%geo-' + actn);
+						control.setAttribute('aria-label', altTxt);
 						control.setAttribute('title', altTxt);
+						control.setAttribute('role', 'button');
 						control.className += ' olControl' + actn;
 						control.tabIndex = 0;
 					} else {
