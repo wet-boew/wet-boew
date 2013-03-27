@@ -216,7 +216,7 @@
 				settings_popup = popup + ' id="popupSettings"' + popup_settings;
 				settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open + listView + '>';
-				if (session.length !== 0) {
+				if (session !== null) {
 					sessionSettings = session.getElementsByClassName('settings');
 					for (i = 0, len = sessionSettings.length; i !== len; i += 1) {
 						settings_popup += '<li>' + sessionSettings[i].innerHTML + '</li>';
