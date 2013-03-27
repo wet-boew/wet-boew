@@ -53,6 +53,8 @@
 				"legendinline-autocreate": true,
 				"nolegend-typeof": "boolean",
 				"nolegend-autocreate": true,
+				"percentlegend-typeof": "boolean",
+				"percentlegend-autocreate": true,
 				
 				// Force the Top and Bottom Value for a graph
 				"topvalue-autocreate": true,
@@ -72,9 +74,26 @@
 				"ticks-typeof": "number",
 				
 				
-				// This is to set a decimal precision for the pie chart
+				// Pie chart option
+				// set a decimal precision
 				"decimal-autocreate": true,
 				"decimal-typeof": "number",
+				"pieradius": 100, // Pie radius
+				"pieradius-typeof": "number",
+				"pielblradius": 100, // Pie label radius
+				"pielblradius-typeof": "number",
+				"piethreshold-autocreate": true, // Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
+				"piethreshold-typeof": "number",
+				"pietilt-autocreate": true, // Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
+				"pietilt-typeof": "number",
+				"pieinnerradius-autocreate": true, // Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
+				"pieinnerradius-typeof": "number",
+				"piestartangle-autocreate": true, // Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
+				"piestartangle-typeof": "number",
+				"piehighlight-autocreate": true, //  Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
+				"piehighlight-typeof": "number",
+				
+				// General option
 				'default-option': 'type', // Default CSS Options
 				// Graph Type
 				type: 'bar', // this be one of or an array of: area, pie, line, bar, stacked
@@ -1210,31 +1229,89 @@
 						
 						pieChartLabelText = $(header[header.length - 1].elem).text();
 						
-						$(subFigureElem).append(subfigCaptionElem);
-						$(subfigCaptionElem).append($(header[header.length - 1].elem).html());
+						subFigureElem.append(subfigCaptionElem);
+						subfigCaptionElem.append($(header[header.length - 1].elem).html());
 						
-						$(subFigureElem).append(placeHolder);
+						subFigureElem.append(placeHolder);
 					}
 						
 					
 					// Canvas Size
-					$(placeHolder).css('height', o.height);
-					$(placeHolder).css('width', o.width);
+					placeHolder.css('height', o.height);
+					placeHolder.css('width', o.width);
 
 					
 					
-					$(placeHolder).attr('role', 'img');
+					placeHolder.attr('role', 'img');
 					// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-					$(placeHolder).attr('aria-label', pieChartLabelText + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
+					placeHolder.attr('aria-label', pieChartLabelText + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
 					
-					// Create the graphic
-					$.plot(placeHolder, allSeries, {
+					var pieOptions = {
 						series: {
 							pie: {
 								show: true
 							}
 						}
-					});
+					};
+
+					if (o.nolegend) {
+						pieOptions.legend = {show: false};
+					}
+					
+					if (o.percentlegend) {
+						pieOptions.series.pie.radius = o.pieradius / 100;
+						pieOptions.series.pie.label = {
+							show: true,
+							radius: o.pielblradius / 100,
+							formatter: function(label, series){
+								
+								var textlabel;
+								
+								if (!o.decimal) {
+									textlabel = Math.round(series.percent);
+								} else {
+									textlabel = Math.round(series.percent * Math.pow(10, o.decimal));
+									textlabel = textlabel / Math.pow(10, o.decimal);
+								}
+								
+								if (o.nolegend) {
+									// Add the series label
+									textlabel = label+'<br/>'+textlabel;
+								}
+								return textlabel+'%';
+							}
+						};
+						if (o.piethreshold) {
+							pieOptions.series.pie.label.threshold = o.piethreshold;
+						}
+					}
+					if (o.pietilt) {
+						pieOptions.series.pie.tilt = o.pietilt;
+					}
+					
+					if (o.pietilt) {
+						pieOptions.series.pie.tilt = o.pietilt;
+					}
+					
+					if (o.pieinnerradius) {
+						pieOptions.series.pie.innerRadius = o.pieinnerradius / 100;
+					}
+					
+					if (o.piestartangle) {
+						pieOptions.series.pie.startAngle = o.piestartangle / 100;
+					}
+
+					if (o.piehighlight) {
+						pieOptions.series.pie.highlight = o.piehighlight / 100;
+					}
+					
+					
+					// Create the graphic
+					$.plot(placeHolder, allSeries, pieOptions);
+					
+					if (o.nolegend) {
+						// $('.pieLabel > div', placeHolder).removeAttr('style');
+					}
 					
 					if (!o.legendinline) {
 						// Move the legend under the graphic
@@ -1242,10 +1319,7 @@
 						$('.legend > table', placeHolder).removeAttr('style').addClass('font-small');
 						$(placeHolder).css('height', 'auto');
 					}
-					if (o.nolegend) {
-						// Remove the legend
-						$('.legend', placeHolder).remove();
-					}
+					
 			
 					/*
 					chartPlacement(allSeries, {
