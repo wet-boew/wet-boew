@@ -112,6 +112,16 @@
   top: 81px !important;
 }
 
+/*
+ * When a potential text is bigger than the image it move the image
+ * with some headers (closes #3154)
+ */
+.olControlPanZoomBar {
+  div {
+    font-size: 1px;
+  }
+}
+
 div {
 	&.olMap {	
 		z-index: 0;
@@ -175,33 +185,6 @@ div {
 	}
 }
 
-.olLayerGoogleCopyright {
-	left: 2px;
-	bottom: 2px;
-}
-
-.olLayerGooglePoweredBy {
-	left: 2px;
-	bottom: 15px;
-}
-
-.olLayerGoogleV3 {
-	&.olLayerGoogleCopyright {
-		right: auto !important;
-	}
-	&.olLayerGooglePoweredBy {
-		bottom: 15px !important;
-	}
-}
-
-.olControlAttribution {
-	font-size: smaller;
-	right: 3px;
-	bottom: 4.5em;
-	display: block;
-	position: absolute;
-}
-
 .olControlScale {
 	right: 3px;
 	bottom: 3em;
@@ -231,98 +214,6 @@ div {
 	text-align: center;
 }
 
-.olControlPermalink {
-	right: 3px;
-	bottom: 1.5em;
-	display: block;
-	position: absolute;
-	font-size: smaller;
-}
-
-.olControlOverviewMapContainer {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-}
-
-.olControlOverviewMapElement {
-	padding: 10px 18px 10px 10px;
-	background-color: #00008B;
-	-moz-border-radius: 1em 0 0 0;
-}
-
-.olControlOverviewMapMinimizeButton,
-.olControlOverviewMapMaximizeButton {
-	height: 18px;
-	width: 18px;
-	right: 0;
-	bottom: 80px;
-	cursor: pointer;
-}
-
-.olControlOverviewMapExtentRectangle {
-	overflow: hidden;
-	@extend %geomap-overflow-cursor-move;
-	background-image: url(../images/geomap/blank.gif);
-	border: 2px dotted red;
-}
-
-.olControlOverviewMapRectReplacement {
-	overflow: hidden;
-	@extend %geomap-overflow-cursor-move;
-	background-image: url(../images/geomap/overview_replacement.gif);
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-.olLayerGeoRSSDescription {
-	float: left;
-	width: 100%;
-	overflow: auto;
-	font-size: 1.0em;
-}
-
-.olLayerGeoRSSClose {
-	float: right;
-	color: gray;
-	font-size: 1.2em;
-	margin-right: 6px;
-	font-family: sans-serif;
-}
-
-.olLayerGeoRSSTitle {
-	float: left;
-	font-size: 1.2em;
-}
-
-.olPopupContent {
-	padding: 5px;
-	overflow: auto;
-}
-
-.olControlNavigationHistory {
-	background-image: url(../images/geomap/navigation_history.png);
-	background-repeat: no-repeat;
-	width: 24px;
-	height: 24px;
-}
-
-.olControlNavigationHistoryPreviousItemActive {
-	background-position: 0 0;
-}
-
-.olControlNavigationHistoryPreviousItemInactive {
-	background-position: 0 -24px;
-}
-
-.olControlNavigationHistoryNextItemActive {
-	background-position: -24px 0;
-}
-
-.olControlNavigationHistoryNextItemInactive {
-	background-position: -24px -24px;
-}
-
 .olHandlerBoxZoomBox {
 	border: 2px solid red;
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
@@ -333,74 +224,9 @@ div {
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
 }
 
-.olControlPanPanel {
-	top: 10px;
-	left: 5px;
-	div {
-		background-image:url(../images/geomap/pan-panel.png);
-		height: 18px;
-		width: 18px;
-		cursor: pointer;
-		position: absolute;
-	}
-	.olControlPanNorthItemInactive {
-		top: 0;
-		left: 9px;
-		background-position: 0 0;
-	}
-	.olControlPanSouthItemInactive {
-		top: 36px;
-		left: 9px;
-		background-position:18px 0;
-	}
-	.olControlPanWestItemInactive {
-		position: absolute;
-		top: 18px;
-		left: 0;
-		background-position: 0 18px;
-	}
-	.olControlPanEastItemInactive {
-		top: 18px;
-		left: 18px;
-		background-position: 18px 18px;
-	}
-}
-
-.olControlZoomPanel {
-	top: 71px;
-	left: 14px;
-	div {
-		background-image: url(../images/geomap/zoom-panel.png);
-		position: absolute;
-		height: 18px;
-		width: 18px;
-		cursor: pointer;
-	}
-	.olControlZoomInItemInactive {
-		top: 0;
-		left: 0;
-		background-position: 0 0;
-	}
-	.olControlZoomToMaxExtentItemInactive {
-		top: 18px;
-		left: 0;
-		background-position: 0 -18px;
-	}
-	.olControlZoomOutItemInactive {
-		top: 36px;
-		left: 0;
-		background-position: 0 18px;
-	}
-}
-
-/*
- * When a potential text is bigger than the image it move the image
- * with some headers (closes #3154)
- */
-.olControlPanZoomBar {
-	div {
-		font-size: 1px;
-	}
+.olPopupContent {
+  padding: 5px;
+  overflow: auto;
 }
 
 .olPopupCloseBox {
@@ -426,7 +252,6 @@ div {
 /**
  * Cursor styles
  */
-
 .olCursorWait {
 	cursor: wait;
 }
@@ -452,168 +277,8 @@ div {
 }
 
 /**
- * Layer switcher
- */
-.olControlLayerSwitcher {
-	position: absolute;
-	top: 25px;
-	right: 0;
-	width: 20em;
-	font-family: sans-serif;
-	font-weight: 700;
-	margin-top: 3px;
-	margin-left: 3px;
-	margin-bottom: 3px;
-	font-size: smaller;
-	color: #fff;
-	background-color: transparent;
-}
-
-.olControlLayerSwitcher {
-	.layersDiv {
-		padding: 5px 10px;
-		background-color: darkblue;
-		.baseLbl, .dataLbl {
-			margin-top: 3px;
-			margin-left: 3px;
-			margin-bottom: 3px;
-		}
-		.baseLayersDiv, .dataLayersDiv {
-			padding-left: 10px;
-		}
-		.maximizeDiv, .minimizeDiv {
-			height: 18px;
-			width: 18px;
-			top: 5px;
-			right: 0;
-			cursor: pointer;
-		}
-	}
-}
-
-.olBingAttribution {
-	color: #DDD;
-	&.road {
-		color: #333;
-	}
-}
-
-.olGoogleAttribution {
-	color: #333;
-	&.hybrid, &.satellite {
-		color: #EEE;
-	}
-}
-
-span {
-	&.olGoogleAttribution {
-		a {
-			color: #77C;
-		}
-		&.hybrid, &.satellite {
-			a {
-				color: #EEE;
-			}
-		}
-	}
-}
-
-/**
- * Editing and navigation icons.
- * (using the editing_tool_bar.png sprint image)
- */
-.olControlNavToolbar,
-.olControlEditingToolbar {
-	margin: 5px 0;
-	div {
-		background-image: url(../images/geomap/editing_tool_bar.png);
-		background-repeat: no-repeat;
-		margin: 0 5px;
-		width: 24px;
-		height: 22px;
-		cursor: pointer;
-	}
-	.olControlNavigationItemInactive {
-		background-position: -103px -1px;
-	}
-	.olControlNavigationItemActive {
-		background-position: -103px -24px;
-	}
-}
-
-/* positions */
-.olControlEditingToolbar {
-	right: 0;
-	top: 0;
-	/* layouts */
-	div {
-		float: right;
-	}
-	.olControlDrawFeaturePointItemInactive {
-		background-position: -77px -1px;
-	}
-	.olControlDrawFeaturePointItemActive {
-		background-position: -77px -24px;
-	}
-	.olControlDrawFeaturePathItemInactive {
-		background-position: -51px -1px;
-	}
-	.olControlDrawFeaturePathItemActive {
-		background-position: -51px -24px;
-	}
-	.olControlDrawFeaturePolygonItemInactive {
-		background-position: -26px -1px;
-	}
-	.olControlDrawFeaturePolygonItemActive {
-		background-position: -26px -24px;
-	}
-}
-
-.olControlNavToolbar {
-	top: 295px;
-	left: 9px;
-	.olControlZoomBoxItemInactive {
-		background-position: -128px -1px;
-	}
-	.olControlZoomBoxItemActive {
-		background-position: -128px -24px;
-	}
-}
-
-.tablet-view {
-	.wet-boew-geomap-legend {
-		width: 100% !important;
-	}
-	.form-checkbox {
-		display: block;
-	}
-}
-
-@media only screen and (max-width:600px) {
-	div {
-		&.olControlZoom {
-			a {
-				@include pseudo-focus {
-					background: rgba(0, 60, 136, 0.5);
-				}
-			}
-		}
-	}
-}
-
-a {
-	&.olControlZoomIn {
-		border-radius: 4px 4px 0 0;
-	}
-	&.olControlZoomOut {
-		border-radius: 0 0 4px 4px;
-	}
-}
-
-/**
  * Animations
  */
-
 .olLayerGrid {
 	.olTileImage {
 		@include transition(opacity 0.2s linear);
@@ -623,7 +288,6 @@ a {
 /**
  * GeoMap
  */
-
 .wet-boew-geomap {
 	width: 100%;
 	position: relative;
@@ -638,5 +302,14 @@ a {
   }
   &:blur {
     border-color: #CCC;
+  }
+}
+
+.tablet-view {
+  .wet-boew-geomap-legend {
+    width: 100% !important;
+  }
+  .form-checkbox {
+    display: block;
   }
 }
