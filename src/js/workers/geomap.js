@@ -1276,20 +1276,19 @@
 			// enable the keyboard navigation when map div has focus. Disable when blur
 			// Enable the wheel zoom only on hover
 			$geomap.attr('tabindex', '0').on('mouseenter mouseleave focusin focusout', function(e) {
-				var type = e.type;
-				if (type === 'mouseenter') {
-					map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
-				} else if (type === 'mouseleave') {
-					map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();					
-				} else if (type === 'focusin') {
-					if (!keyboardActive) {
+				var type = e.type,
+					$this = $(this);
+				if (type === 'mouseenter' || type === 'focusin') {
+					if (!$this.hasClass('active')) {
 						map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
-						keyboardActive = true;
+						map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
+						$this.addClass('active');
 					}
-				} else {
-					if (keyboardActive) {
+				} else if (type === 'mouseleave' || type === 'focusout') {
+					if ($this.hasClass('active')) {
+						map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();
 						map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
-						keyboardActive = false;
+						$this.removeClass('active');
 					}
 				}
 			});
