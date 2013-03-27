@@ -18,7 +18,8 @@
 		overlays = 0,
 		overlaysLoaded = 0,
 		overlaysLoading = {}, // Status of overlayLoading (true = still loading)
-		overlayTimeout = 2000; // Timeout for overlay loading in milliseconds
+		overlayTimeout = 2000, // Timeout for overlay loading in milliseconds
+		keyboardActive = false;
 
 	/* local reference */
 	_pe.fn.geomap = {
@@ -1274,16 +1275,22 @@
 
 			// enable the keyboard navigation when map div has focus. Disable when blur
 			// Enable the wheel zoom only on hover
-			$geomap.attr('tabindex', '0').on('mouseenter mouseleave focus blur', function(e) {
+			$geomap.attr('tabindex', '0').on('mouseenter mouseleave focusin focusout', function(e) {
 				var type = e.type;
 				if (type === 'mouseenter') {
 					map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
 				} else if (type === 'mouseleave') {
 					map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();					
-				} else if (type === 'focus') {
-					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
+				} else if (type === 'focusin') {
+					if (!keyboardActive) {
+						map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
+						keyboardActive = true;
+					}
 				} else {
-					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
+					if (keyboardActive) {
+						map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
+						keyboardActive = false;
+					}
 				}
 			});
 
