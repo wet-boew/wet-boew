@@ -5,7 +5,7 @@
 %wb-mobile-display-none-important {
 	display: none !important;
 }
- 
+
 .mobile-hide {
 	@extend %wb-mobile-display-none-important;
 }
@@ -23,4 +23,8 @@
 }
 #wb-core-in {
 	width: 100%;
+}
+
+#wb-session {
+  @extend %wb-mobile-display-none-important;
 }
