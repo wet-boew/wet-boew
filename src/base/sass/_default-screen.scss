@@ -116,6 +116,7 @@ a.wb-linkdesc {
 
 /* Sign-in/out application links */
 #wb-session {
+  margin-bottom: 10px;
   &:before {
     @extend %wb-default-screen-clearfix;
   }
