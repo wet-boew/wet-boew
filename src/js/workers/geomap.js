@@ -180,8 +180,10 @@
 						control.className += ' olControl' + actn;
 						control.tabIndex = 0;
 					} else {
-						// Add null alt text to slider image since should be ignored
-						altTxt = '';
+						// Special handling for the zoom slider
+						altTxt = _pe.dic.get('%geo-zoomslider');
+						control.setAttribute('aria-label', altTxt);
+						control.setAttribute('title', altTxt);
 					}
 					img.setAttribute('alt', altTxt);
 					img.className +=  ' olControl' + actn;
