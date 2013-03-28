@@ -65,10 +65,6 @@
 				"bottomvalue-typeof": "number",
 				"bottomvaluenegative-autocreate": true,
 				"bottomvaluenegative-typeof": "boolean",
-				// This is to set a predefined interval
-				// Note: Any Top or bottom value will be overwritten with an pre-defined interval
-				// "steps-autocreate": true, // Replaced by ticks combined with min/max
-				// "steps-typeof": "number", // Replaced by ticks combined with min/max
 				// Ticks => Number of ticks for the y-axis
 				"ticks-autocreate": true,
 				"ticks-typeof": "number",
@@ -105,16 +101,12 @@
 				"width-typeof": "number",
 				height: $(elm).height(), // height of canvas - defaults to table height
 				"height-typeof": "number",
-				// maxwidth: '9999',// '590',
-				// "maxwidth-typeof": "locked", //Remove the lock, that will allow zomming feature in the canvas to fit it in the webpage
-				// "maxwidth-typeof": "number",
 				//
 				// Data Table and Graph Orientation
 				//
 				parsedirection: 'x', // which direction to parse the table data
 				"parsedirection-typeof": "string",
 				"parsedirection-autocreate": true
-				// drawDirection: 'x' // TODO Not implemented yet - which direction are the dependant axis
 			}, options);
 			
 			// Set the new class options if defined
@@ -161,38 +153,7 @@
 				}
 				// Get a working copy for the sourceOptions
 				sourceOptions = jQuery.extend(true, {}, sourceOptions);
-				/*
-				// Check if some option need to be removed
-				function unsetOption(opt, currLevel, maxLevel) {
-					if (currLevel > maxLevel || !$.isArray(opt)) {
-						return;
-					}
-					var arrToRemove = [],
-						i,
-						_ilen;
-					for (key in opt) {
-						// if the key are ending "-remove", get the key to remove
-						if (key.lenght > 7 && key.substr(key.lenght - 7) === "-remove") {
-							arrToRemove.push(key.substr(0, key.lenght - 7));
-						} else {
-							// get it deeper if applicable
-							if (typeof(opt[key])) === "object") {
-								currLevel ++;
-								if (currLevel < maxLevel) {
-									unsetOption(opt[key], currLevel, maxLevel);
-								}
-							}
-						}
-					}
-					for (i = 0, _ilen =  arrToRemove.length; i < _ilen; i += 1) {
-						delete opt[arrToRemove[i]];
-					}
-				}
 				
-				// Check for an unsetOptionsLevel, if defined to the unset
-				if (sourceOptions['default-unsetoptionlevel'] && typeof(sourceOptions['default-unsetoptionlevel']) === "number") {
-					unsetOption(sourceOptions, 1, sourceOptions['default-unsetoptionlevel']);
-				}*/
 				// Test: strClass
 				if (typeof (strClass) !== "string" || strClass.lenght === 0) {
 					// console.log("no string class");
@@ -559,43 +520,7 @@
 							
 						}
 						
-						/*
-						if (currCell.type === 4 || currCell.type === 5) {
-							var descHeaders = "";
-							
-							if (currCell.describe) {
-								for (m = 0; m < currCell.describe.length; m += 1) {
-									var currCellId = $(currCell.describe[m].elem).attr('id');
-									if (currCellId === undefined || currCellId === '' || resetIds) {
-										// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-										currCellId = idPrefix + currCell.describe[m].uid; // Generate a new ID
-										$(currCell.describe[m].elem).attr('id', currCellId);
-									}
-									descHeaders = (descHeaders ? descHeaders + ' ' + currCellId : currCellId);
-									if (currCell.type === 5 && !$(currCell.describe[m].elem).attr('aria-describedby')) {
-										var currCellId = $(currCell.elem).attr('id');
-										if (currCellId === undefined || currCellId === '' || resetIds) {
-											// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-											currCellId = idPrefix + currCell.uid; // Generate a new ID
-											$(currCell.elem).attr('id', currCellId);
-										}
-										$(currCell.describe[m].elem).attr('aria-describedby', currCellId);
-									}
-								}
-							}
-							if (currCell.type !== 4) {
-								$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (coldataheader && descHeaders ? ' ' : '') + (descHeaders || ''));
-								if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
-									$(currCell.elem).removeAttr('headers');
-								}
-							} else if (!$(currCell.elem).attr('aria-describedby')) {
-								$(currCell.elem).attr('aria-describedby', descHeaders || '');
-								$(currCell.elem).attr('headers', coldataheader || '');
-								if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
-									$(currCell.elem).removeAttr('headers');
-								}
-							}
-						}*/					
+										
 					}
 				}
 			}
@@ -636,9 +561,7 @@
 			function helper2CalcVTick(parsedDataCell, headerlevel){
 				var kIndex;
 				
-				/*if (parsedDataCell.child.length === 0) {
-					return;
-				}*/
+				
 				headerlevel += 1;
 				var internalCumul = 0;
 				internalCumul = parsedDataCell.flotValue - parsedDataCell.flotDelta;
@@ -707,8 +630,6 @@
 				for (i = 1; i < tblMultiplier.length; i += 1){
 					TotalRowValue = TotalRowValue * tblMultiplier[i][0];
 				}
-				// console.log(tblMultiplier);
-				// console.log(TotalRowValue);
 				
 				
 				//
@@ -750,15 +671,11 @@
 							cumulFlotValue += parsedDataCell.flotDelta;
 							
 							parsedDataCell.flotValue = cumulFlotValue;
-							// console.log(parsedDataCell);
 							if (headerlevel === UseHeadRow || 
 							
 								((parsedDataCell.colpos - 1) < UseHeadRow && UseHeadRow <= ((parsedDataCell.colpos - 1) + (parsedDataCell.width - 1)))){
 								calcTick.push([(parsedDataCell.flotValue - parsedDataCell.flotDelta), $(parsedDataCell.elem).text()]);
 							}
-							
-							// console.log(parsedDataCell);
-							
 							
 							if (parsedDataCell.child.length > 0){
 								helper2CalcVTick(parsedDataCell, headerlevel);
@@ -790,11 +707,8 @@
 				}
 				headerlevel += 1;
 				var internalCumul = 0;
-				// internalCumul = (parsedDataCell.flotValue - parsedDataCell.flotDelta);
 				internalCumul = parsedDataCell.flotValue;
 				
-				
-				// var flotDelta = (!o.uniformtick ? (parsedDataCell.flotDelta / parsedDataCell.child.length): (TotalRowValue / nbTotSlots));
 				var flotDelta = (!o.uniformtick ? (parsedDataCell.flotDelta / parsedDataCell.child.length): 1);
 				if (!smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta){
 					smallestHorizontalFlotDelta = flotDelta;
@@ -804,11 +718,6 @@
 					
 					if (headerlevel === UseHeadRow) {
 						calcTick.push([(!o.uniformtick ? internalCumul : uniformCumul), $(parsedDataCell.child[kIndex].elem).text()]);
-						/*
-						if (UseHeadRow === (parsedData.theadRowStack.length - 1)
-						uniformCumul += flotDelta;
-						*/
-						// calcTick.push([(parsedDataCell.child[kIndex].flotValue - flotDelta), $(parsedDataCell.child[kIndex].elem).text()]);
 					}
 					
 					if (headerlevel === (parsedData.theadRowStack.length - 1) || 
@@ -882,8 +791,6 @@
 				for (i = 1; i < tblMultiplier.length; i += 1){
 					TotalRowValue = TotalRowValue * tblMultiplier[i][0];
 				}
-				// console.log(tblMultiplier);
-				// console.log(TotalRowValue);
 				
 				
 				//
@@ -925,14 +832,8 @@
 						}
 						parsedDataCell.flotValue = cumulFlotValue;
 						// console.log(parsedDataCell);
-						if (headerlevel === UseHeadRow || 
-						
-							((parsedDataCell.rowpos - 1) < UseHeadRow && UseHeadRow <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1)))){
-							
+						if (headerlevel === UseHeadRow || ((parsedDataCell.rowpos - 1) < UseHeadRow && UseHeadRow <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1)))){
 							calcTick.push([(!o.uniformtick ? cumulFlotValue : uniformCumul), $(parsedDataCell.elem).text()]);
-							/* uniformCumul += parsedDataCell.flotDelta; */
-							
-							// calcTick.push([(parsedDataCell.flotValue - parsedDataCell.flotDelta), $(parsedDataCell.elem).text()]);
 						}
 						
 						if (headerlevel === (parsedData.theadRowStack.length - 1) || 
@@ -944,17 +845,13 @@
 							
 							uniformCumul += parsedDataCell.flotDelta;
 							
-							// calcTick.push([(parsedDataCell.flotValue - parsedDataCell.flotDelta), $(parsedDataCell.elem).text()]);
 						}
 						
 						cumulFlotValue += parsedDataCell.flotDelta;
 						
-						// console.log(parsedDataCell);
-						
 						helper2CalcHTick(parsedDataCell, headerlevel);
 					}
 				}
-				// console.log(calcTick);
 				return calcTick;
 			}
 
@@ -1109,17 +1006,12 @@
 			//
 			horizontalCalcTick = calculateHorisontalTick(parsedData);
 
-			// console.log('Horizontal Tick: done');
-
 			//
 			// Reverse the axis for the data table
 			//
 			verticalCalcTick = calculateVerticalTick(parsedData);
 			
-			// console.log('TICK Measure :');
-			// console.log(horizontalCalcTick);
-			// console.log(verticalCalcTick);
-			
+		
 			calcTick = horizontalCalcTick;
 			
 			var allSeries = [],
@@ -1141,22 +1033,19 @@
 			if (o.type === "pie") {
 				// Use Reverse table axes
 				// Create a chart/ place holder, by series
-				
 				var pieLabelFormater = function(label, series){
 					var textlabel;
-					
 					if (!o.decimal) {
 						textlabel = Math.round(series.percent);
 					} else {
 						textlabel = Math.round(series.percent * Math.pow(10, o.decimal));
 						textlabel = textlabel / Math.pow(10, o.decimal);
 					}
-					
 					if (o.nolegend) {
 						// Add the series label
-						textlabel = label+'<br/>'+textlabel;
+						textlabel = label + '<br/>' + textlabel;
 					}
-					return textlabel+'%';
+					return textlabel + '%';
 				},
 					mainFigureElem = $('<figure />').insertAfter(srcTbl),
 					_graphclasslen;
@@ -1202,12 +1091,7 @@
 							header = dataGroup.col[i].cell[j].row.header;
 							
 							
-							dataSeries.push(
-								[
-									valueCumul, 
-								// $(parsedData.lstrowgroup[0].row[i].cell[j].col.header[0].elem).text(), 
-								
-								getCellValue($(dataGroup.col[i].cell[rIndex].elem).text()).cellValue]);
+							dataSeries.push([valueCumul, getCellValue($(dataGroup.col[i].cell[rIndex].elem).text()).cellValue]);
 							
 							valueCumul += header[header.length - 1].flotDelta;
 						
@@ -1315,16 +1199,6 @@
 						$(placeHolder).css('height', 'auto');
 					}
 					
-			
-					/*
-					chartPlacement(allSeries, {
-						series: {
-							pie: {
-								show: true
-							}
-						}
-					});*/
-					
 					allSeries = [];
 
 				}
@@ -1406,14 +1280,6 @@
 						
 						// Bar chart case, re-evaluate the calculated point
 						if (barDelta && rowOptions.chartBarOption) {
-							// fyi- smallestVerticalFlotDelta
-							
-							// Zero Value
-							// fyi -  valueCumul - (smallestHorizontalFlotDelta / 2) 
-							
-							// one section width
-							// fyi - smallestHorizontalFlotDelta / nbBarChart
-						
 							// Position bar
 							valuePoint = valueCumul - (smallestHorizontalFlotDelta / 2)  + ((smallestHorizontalFlotDelta / nbBarChart) * (rowOptions.chartBarOption - 1));
 							
@@ -1421,24 +1287,12 @@
 								valuePoint = valueCumul;
 							}
 							
-							/*
-							console.log("---- " + nbBarChart + " bars");
-							console.log(valueCumul - (smallestHorizontalFlotDelta / 2));
-							console.log(rowOptions.chartBarOption);
-							console.log(valuePoint);
-							*/
 						}
 						
-						dataSeries.push(
-							[
-								valuePoint, 
-							// $(parsedData.lstrowgroup[0].row[i].cell[j].col.header[0].elem).text(), 
-							
-							getCellValue($(parsedData.lstrowgroup[0].row[i].cell[j].elem).text()).cellValue]);
+						dataSeries.push([valuePoint, getCellValue($(parsedData.lstrowgroup[0].row[i].cell[j].elem).text()).cellValue]);
 						
 						valueCumul += header[header.length - 1].flotDelta;
 
-						// dataSeries.push([datacolgroupfound, getCellValue($(parsedData.lstrowgroup[0].row[i].cell[j].elem).text()).cellValue]);
 						datacolgroupfound ++;
 					}
 				}
@@ -1447,18 +1301,10 @@
 				
 				// Get the graph type
 				
-				
-				
-				// console.log(($(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).attr('class') !== undefined ? 
-				// $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).attr('class') : ""));
-				
 				if(!rowOptions.type){
 					// console.log('defaultSET');
 					rowOptions.type = o.type;
 				}
-				
-				
-				// console.log(rowOptions.type);
 				
 				if (rowOptions.type === "line") {
 					allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color))});
@@ -1473,13 +1319,6 @@
 						barWidth: (1 / nbBarChart * 0.9),
 						align: "center"
 					}});
-					
-					/*
-					// Need to tweek flot.js
-					allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: colorsAccent[i],
-					lines: { show: true },
-					points: { show: true }});
-					*/ 
 					
 				} else if (rowOptions.type === "stacked") {
 					allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color)),
@@ -1497,8 +1336,6 @@
 				
 				
 			}
-			
-			// chartPlacement(allSeries, {xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })});
 			
 			
 			var figureElem = $('<figure />').insertAfter(srcTbl),
