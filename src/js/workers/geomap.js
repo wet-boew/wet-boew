@@ -54,9 +54,9 @@
 			overrides = {				
 				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
 				useMousePosition: elm.hasClass('position') ? true : undefined,
-				debug: elm.hasClass('debug') ? true : false,
-				useLegend: elm.hasClass('legend') ? true : false,
-				useTab: elm.hasClass('tab') ? true : false,
+				debug: elm.hasClass('debug'),
+				useLegend: elm.hasClass('legend'),
+				useTab: elm.hasClass('tab'),
 				useMapControls: elm.hasClass('static') ? false : true
 			};			
 
