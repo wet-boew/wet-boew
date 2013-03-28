@@ -498,12 +498,15 @@
 			// add a row for each feature
 			var $row = $('<tr>'),
 				cols = [],
-				attributes = context.feature.attributes;
+				$chkBox,
+				attributes = context.feature.attributes,
+				featureId = context.feature.id.replace(/\W/g, '_');
 
 			// replace periods with underscores for jQuery!
 			if (context.type !== 'head') {
-				$row.attr('id', context.id.replace(/\W/g, '_'));
-				$row.attr('tabindex', '0');
+				$row.attr('id', featureId);
+				$chkBox = $('<td><input type="checkbox" id="cb_' + featureId + '"/></td>');
+				cols.push($chkBox);
 			}
 
 			$.each(attributes, function(key, value) {
@@ -522,36 +525,12 @@
 			}
 
 			if (context.type !== 'head') {
-
-				// Hover events
-				$row.on('mouseenter mouseleave', function(e) {
-					var type = e.type,
-						$this = $(this),
-						selectControl = context.selectControl;
-					if (type === 'mouseenter') {
-						$this.closest('tr').addClass('background-highlight');
-						selectControl.unselectAll();
-						selectControl.select(context.feature);
-					} else {
-						$this.closest('tr').removeClass('background-highlight');
-						selectControl.unselectAll();
+				$chkBox.on('change', function() {
+					if (!$('#cb_' + featureId).prop('checked')) {
 						selectControl.unselect(context.feature);
-					}
-				});
-
-				// Keybord events
-				$row.on('focus blur', function(e) {
-					var type = e.type,
-						selectControl = context.selectControl;
-					if (type === 'focus') {
-						$row.addClass('background-highlight');
-						selectControl.unselectAll();
-						selectControl.select(context.feature);
 					} else {
-						$row.removeClass('background-highlight');
-						selectControl.unselectAll();
 						selectControl.select(context.feature);
-					}	
+					}
 				});
 			}
 			$row.append(cols);
@@ -567,6 +546,7 @@
 			var $head = _pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] }),
 				$foot = _pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] }),
 				thZoom,
+				thSelect = ('<th>' + _pe.dic.get('%geo-select') + '</th>'),
 				$targetTable = $('table#' + $table.attr('id')),
 				$targetTableBody = $targetTable.find('tbody');
 			if (zoomTo) {
@@ -575,6 +555,9 @@
 				$foot.append(thZoom);
 			}
 
+			$head.prepend(thSelect);
+			$foot.prepend(thSelect);
+			
 			$targetTable.find('thead').append($head);
 			$targetTable.find('tfoot').append($foot);
 			$.each(evt.features, function(index, feature) {												
@@ -616,34 +599,24 @@
 		 */
 		onTabularFeaturesAdded: function(feature, zoomColumn) {
 			// Find the row
-			var $tr = $('tr#' + feature.id.replace(/\W/g, '_'));
+			var featureId = feature.id.replace(/\W/g, '_'),
+				$tr = $('tr#' + featureId),
+				$chkBox;
 
-			// add zoom column
+			// Add select checkbox
+			$chkBox = $('<td><input type="checkbox" id="cb_' + featureId + '"/></td>');
+			$tr.prepend($chkBox);
+			
+			// Add zoom column
 			if (zoomColumn) {
 				$tr.append(_pe.fn.geomap.addZoomTo($tr, feature));
 			}
-
-			$tr.attr('tabindex', '0');						
-			$tr.on('mouseenter mouseleave', function(e) {
-				var type = e.type;
-				if (type === 'mouseenter') {
-					$tr.addClass('background-highlight');
-					selectControl.select(feature);
-				} else {
-					$tr.removeClass('background-highlight');
+			
+			$chkBox.on('change', function() {
+				if (!$('#cb_' + featureId).prop('checked')) {
 					selectControl.unselect(feature);
-				}
-			});
-
-			// Keybord events
-			$tr.on('focus blur', function(e) {
-				var type = e.type;
-				if (type === 'focus') {
-					$tr.addClass('background-highlight');
-					selectControl.select(feature);
 				} else {
-					$tr.removeClass('background-highlight');
-					selectControl.unselect(feature);
+					selectControl.select(feature);
 				}
 			});
 		},
@@ -653,23 +626,12 @@
 		 *
 		 */
 		addZoomTo: function(row, feature){
-			var $ref = $('<td><a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a></td>').on('click focus blur', 'a', function(e) {
+			var $ref = $('<td><a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a></td>').on('click', 'a', function(e) {
 				var type = e.type;
 				if (type === 'click') {
 					e.preventDefault();			
 					map.zoomToExtent(feature.geometry.bounds);	
-					row.closest('tr').attr('class', 'background-highlight');
-					selectControl.unselectAll();
-					selectControl.select(feature);
 					$.mobile.silentScroll(_pe.focus(_pe.main.find('#geomap')).offset().top);
-				} else if (type === 'focus') {
-					row.addClass('background-highlight');
-					selectControl.unselectAll();
-					selectControl.select(feature);
-				} else {
-					row.removeClass('background-highlight');
-					selectControl.unselectAll();
-					selectControl.unselect(feature);
 				}
 			});
 			return $ref;
@@ -1160,6 +1122,7 @@
 		*/	
 		addTabularData: function(opts, projLatLon, projMap) {
 			var thZoom = '<th>' + _pe.dic.get('%geo-zoomfeature') + '</th>',
+				thSelect = ('<th>' + _pe.dic.get('%geo-select') + '</th>'),
 				wktFeature,
 				wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap,
@@ -1183,6 +1146,10 @@
 					$table.find('tfoot').find('tr').append(thZoom);					
 				}
 
+				// Add select checkbox
+				$table.find('thead').find('tr').prepend(thSelect);
+				$table.find('tfoot').find('tr').prepend(thSelect);	
+					
 				// Loop through each row
 				$table.find('tr').each(function(index, row) {
 
