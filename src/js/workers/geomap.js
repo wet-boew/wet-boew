@@ -860,8 +860,7 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										var zoom = (layer.zoom && opts.useMapControls) ? true : false;
-										_pe.fn.geomap.onFeaturesAdded($table, evt, zoom, layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
 										if (overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd();
 										}
@@ -922,8 +921,7 @@
 								}),						
 								eventListeners: {
 									'featuresadded': function(evt) {
-										var zoom = (layer.zoom && opts.useMapControls) ? true : false;
-										_pe.fn.geomap.onFeaturesAdded($table, evt, zoom, layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
 										if (overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd();
 										}
@@ -988,8 +986,7 @@
 								}),								
 								eventListeners: {
 									'featuresadded': function(evt) {
-										var zoom = (layer.zoom && opts.useMapControls) ? true : false;
-										_pe.fn.geomap.onFeaturesAdded($table, evt, zoom, layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
 										if (overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd();
 										}
@@ -1054,8 +1051,7 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										var zoom = (layer.zoom && opts.useMapControls) ? true : false;
-										_pe.fn.geomap.onFeaturesAdded($table, evt, zoom, layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
 										if (overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd();
 										}
@@ -1120,8 +1116,7 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										var zoom = (layer.zoom && opts.useMapControls) ? true : false;
-										_pe.fn.geomap.onFeaturesAdded($table, evt, zoom, layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
 										if (overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd();
 										}
@@ -1256,13 +1251,12 @@
 			);	
 			
 			// Add the select control to every tabular feature. We need to this now because the select control needs to be set.
-			$.each(opts.tables, function(index, table) {
-				var zoom = (opts.tables[index].zoom && opts.useMapControls) ? true : false,
-					tableId = 'table#' + table.id;
+			$.each(opts.tables, function(indexT, table) {
+					var tableId = 'table#' + table.id;
 				$.each(queryLayers, function(index, layer) {
 					if (layer.id === tableId){
 						$.each(layer.features, function(index, feature) {
-							_pe.fn.geomap.onTabularFeaturesAdded(feature, zoom);
+							_pe.fn.geomap.onTabularFeaturesAdded(feature, (opts.tables[indexT].zoom && opts.useMapControls));
 						});
 					}
 				});
