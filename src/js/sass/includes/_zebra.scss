@@ -8,6 +8,43 @@
 %zebra-list-style-type-none {
 	list-style-type: none;
 }
+%zebra-content-normal {
+	content: normal;
+}
+%zebra-border-1-solid-ccc {
+	border: 1px solid #CCC;
+}
+%zebra-table-background-color-f0fcff {
+	background-color: #f0fcff;
+}
+%zebra-background-color-ccc {
+	background-color: #CCC;
+}
+%zebra-background-color-ddd {
+	background-color: #DDD;
+}
+%zebra-background-color-eee {
+	background-color: #EEE;
+}
+%zebra-background-color-555 {
+	background-color: #555;
+}
+%zebra-background-color-222 {
+	background-color: #222;
+}
+%zebra-background-color-666 {
+	background-color: #666;
+}
+%zebra-background-color-fff {
+	background-color: #fff;
+}
+%zebra-list-background-color-f0fcff {
+	background-color: #f0fcff;
+}
+%zebra-background-color-transparent {
+	background-color: transparent;
+}
+
 
 ul {
 	&.wet-boew-zebra {
@@ -57,7 +94,7 @@ ol {
 			li {
 				padding-left: 0;
 				&:before {
-					content: normal;
+					@extend %zebra-content-normal;
 				}
 			}
 		}
@@ -67,7 +104,7 @@ ol {
 	> {
 		li {
 			&:before {
-				content: normal;
+				@extend %zebra-content-normal;
 				counter-increment: none;
 				position: static;
 				left: auto;
@@ -111,18 +148,18 @@ dl {
 	}
 
 	dt, dd, > li {
-		border: 1px solid #CCC;
+		@extend %zebra-border-1-solid-ccc;
 	}
 	
 	dt, dd {
 		&.list-even {
-			background-color: #ddd;
+			@extend %zebra-background-color-ddd;
 		}
 		&.list-odd {
-			background-color: #eee;
+			@extend %zebra-background-color-eee;
 		}
 		&.list-hover {
-			background-color: #f0fcff;
+			@extend %zebra-list-background-color-f0fcff;
 		}
 	}
 	
@@ -130,13 +167,13 @@ dl {
 	/* Ordered and Unordered list */
 	> li {
 		&:nth-child(2n) {
-			background-color: #ddd;
+			@extend %zebra-background-color-ddd;
 		}
 		&:nth-child(2n + 1) {
-			background-color: #eee;
+			@extend %zebra-background-color-eee;
 		}
 		&:hover {
-			background-color: #f0fcff;
+			@extend %zebra-list-background-color-f0fcff;
 		}
 	}
 	
@@ -147,26 +184,26 @@ dl {
 		}
 		> li {
 			&:nth-child(2n) {
-				background-color: #ddd;
+				@extend %zebra-background-color-ddd;
 			}
 			&:nth-child(2n + 1) {
-				background-color: #fff;
+				@extend %zebra-background-color-fff;
 			}
 		}
 		
 		dt, dd {
 			&.list-even {
-				background-color: #ddd;
+				@extend %zebra-background-color-ddd;
 			}
 			&.list-odd {
-				background-color: #fff;
+				@extend %zebra-background-color-fff;
 			}
 		}
 		
 		&.zebra-hover {
 			li, dt, dd {
 				&.list-hover, &:hover {
-					background-color: #f0fcff;
+					@extend %zebra-list-background-color-f0fcff;
 				}
 			}
 		}
@@ -195,7 +232,7 @@ dl {
 	}
 	td, th {
 		&.table-layoutCell {
-			background-color: #fff;
+			@extend %zebra-background-color-fff;
 		}
 	}
 
@@ -203,7 +240,7 @@ dl {
 	tr.table-summary, tbody.table-summary tr, 
 	colgroup col.table-summary, colgroup.table-summary, 
 	tfoot tr, td.table-summary {
-		background-color: #eee; /* Summary Row/Col highligth */
+		@extend %zebra-background-color-eee; /* Summary Row/Col highligth */
 	}
 	
 	/* Delimiter between table group */
@@ -224,7 +261,7 @@ dl {
 		colgroup {
 			col {
 				&:nth-child(2n)  {
-					background-color: #f0fcff;
+					@extend %zebra-table-background-color-f0fcff;
 				}
 			}
 		}
@@ -233,7 +270,7 @@ dl {
 		tbody {
 			tr {
 				&:nth-child(2n)  {
-					background-color: #f0fcff;
+					@extend %zebra-table-background-color-f0fcff;
 				}
 			}
 		}
@@ -244,28 +281,28 @@ dl {
 	&.columnhighlight {
 		colgroup {
 			col.table-hover {
-				background-color: #eee;
+				@extend %zebra-background-color-eee;
 			}
 			&.table-summary col.table-hover {
-				background-color: #f0fcff;
+				@extend %zebra-table-background-color-f0fcff;
 			}
 		}
 		
 		
 		th.table-hover {
-			background-color: #ccc;
+			@extend %zebra-background-color-ccc;
 		}
 		&.table-accent th.table-hover {
-			background-color: #555;
+			@extend %zebra-background-color-555;
 		}
 		&.table-medium th.table-hover {
-			background-color: #222;
+			@extend %zebra-background-color-222;
 		}
 		&.table-dark th.table-hover {
-			background-color: #666;
+			@extend %zebra-background-color-666;
 		}
 		&.table-simplify th.table-hover {
-			background-color: transparent;
+			@extend %zebra-background-color-transparent;
 		}
 	}
 	
@@ -277,7 +314,7 @@ dl {
 			tr:hover td.table-desccell, tr.table-hover td.table-desccell,
 			tr:hover td.table-layoutCell, tr.table-hover td.table-layoutCell,
 			tr:hover th.table-layoutCell, tr.table-hover th.table-layoutCell  {
-				background-color: #eee;
+				@extend %zebra-background-color-eee;
 			}
 			
 			/* Hover for summary rows */
@@ -286,7 +323,7 @@ dl {
 			tr.table-summary:hover td.table-desccell, tr.table-summary.table-hover td.table-desccell,
 			tr.table-summary:hover td.table-layoutCell, tr.table-summary.table-hover td.table-layoutCell,
 			tr.table-summary:hover th.table-layoutCell, tr.table-summary.table-hover th.table-layoutCell  {
-				background-color: #f0fcff;
+				@extend %zebra-table-background-color-f0fcff;
 			}
 		}
 	}
@@ -297,7 +334,7 @@ dl {
 			tr:hover td.table-desccell, tr.table-hover td.table-desccell,
 			tr:hover td.table-layoutCell, tr.table-hover td.table-layoutCell,
 			tr:hover th.table-layoutCell, tr.table-hover th.table-layoutCell  {
-				background-color: #eee;
+				@extend %zebra-background-color-eee;
 			}
 
 			/* Hover for summary rows */
@@ -306,12 +343,12 @@ dl {
 			tr.table-summary:hover td.table-desccell, tr.table-summary.table-hover td.table-desccell,
 			tr.table-summary:hover td.table-layoutCell, tr.table-summary.table-hover td.table-layoutCell,
 			tr.table-summary:hover th.table-layoutCell, tr.table-summary.table-hover th.table-layoutCell  {
-				background-color: #f0fcff;
+				@extend %zebra-table-background-color-f0fcff;
 			}
 
 			
 			tr:hover th, tr.table-hover th {
-				background-color: #ccc;
+				@extend %zebra-background-color-ccc;
 			}
 			/*
 			 * Uncomment to have white cell at the mouse intersection
@@ -322,21 +359,21 @@ dl {
 		}
 		&.table-accent tbody, &.table-accent tfoot {
 			tr:hover th, tr.table-hover th  {
-				background-color: #555;
+				@extend %zebra-background-color-555;
 			}
 		}
 		&.table-medium tbody, &.table-medium tfoot {
 			tr:hover th, tr.table-hover th {
-				background-color: #222;
+				@extend %zebra-background-color-222;
 			}
 		}
 		&.table-dark tbody, &.table-dark tfoot {
 			tr:hover th, tr.table-hover th {
-				background-color: #666;
+				@extend %zebra-background-color-666;
 			}
 		}
 		&.table-simplify tbody tr th, &.table-simplify tfoot tr th {
-			background-color: transparent;
+			@extend %zebra-background-color-transparent;
 		}
 	}
 }
