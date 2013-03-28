@@ -505,7 +505,7 @@
 			// replace periods with underscores for jQuery!
 			if (context.type !== 'head') {
 				$row.attr('id', featureId);
-				$chkBox = $('<td><input type="checkbox" id="cb_' + featureId + '"/></td>');
+				$chkBox = $('<td><label class="wb-invisible" for="cb_' + featureId + '">' + _pe.dic.get('%geo-labelselect') + '</label><input type="checkbox" id="cb_' + featureId + '"/></td>');
 				cols.push($chkBox);
 			}
 
@@ -604,7 +604,7 @@
 				$chkBox;
 
 			// Add select checkbox
-			$chkBox = $('<td><input type="checkbox" id="cb_' + featureId + '"/></td>');
+			$chkBox = $('<td><label class="wb-invisible" for="cb_' + featureId + '">' + _pe.dic.get('%geo-labelselect') + '</label><input type="checkbox" id="cb_' + featureId + '"/></td>');
 			$tr.prepend($chkBox);
 			
 			// Add zoom column

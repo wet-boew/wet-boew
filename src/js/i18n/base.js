@@ -195,6 +195,7 @@
 		'%geo-basemapurl': '@%geo-basemapurl@',
 		'%geo-basemaptitle': '@%geo-basemaptitle@',
 		'%geo-select': '@%geo-select@',
+		'%geo-labelselect': '@%geo-labelselect@',
 		/* Disable/enable PE */
 		'%pe-disable': '@%pe-disable@',
 		'%pe-enable': '@%pe-enable@'
