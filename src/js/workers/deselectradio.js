@@ -5,7 +5,6 @@
 /*
  * Deselectable radio buttons plugin
  */
-/*global jQuery: false*/
 (function () {
 	"use strict";
 	var _pe = window.pe || {
@@ -55,4 +54,4 @@
 	window.pe = _pe;
 	return _pe;
 }
-(jQuery));
+());

@@ -130,6 +130,9 @@ body {
 .ie9 {
 	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
 }
+.ie10 {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
 
 .wb-sec-def {
 	h3 {

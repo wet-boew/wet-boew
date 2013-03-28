@@ -161,15 +161,8 @@
 			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : ' smartphone-view')) : (pe.print ? ' print-view' : ' desktop-view'))) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			classes += (pe.svg ? ' svg' : ' no-svg');
-			classes += (pe.ie > 8 ? 'ie' + parseInt(pe.ie, 10) : '');
-			
-			// Identify IE9+ browser
-			if (pe.ie > 8) {
-				classes += ' ie' + parseInt(pe.ie, 10);
-			} else if (pe.ie < 1) {
-				classes += ' no-ie';
-			}
-			
+			classes += (pe.ie > 8 ? ' ie' + parseInt(pe.ie, 10) : (pe.ie < 1 ? ' no-ie' : ''));
+
 			// Check for browsers that needs SVG loaded through an object element removed		
 			test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
 			pe.svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46)));
