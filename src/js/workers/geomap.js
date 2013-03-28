@@ -24,6 +24,7 @@
 	_pe.fn.geomap = {
 		type: 'plugin',				
 		depends: ['openlayers', 'proj4js'],
+		polyfills: ['detailssummary'],
 		debug: false,
 		_exec: function(elm) {	
 			var opts,
@@ -53,9 +54,9 @@
 			overrides = {				
 				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
 				useMousePosition: elm.hasClass('position') ? true : undefined,
-				debug: elm.hasClass('debug') ? true : false,
-				useLegend: elm.hasClass('legend') ? true : false,
-				useTab: elm.hasClass('tab') ? true : false,
+				debug: elm.hasClass('debug'),
+				useLegend: elm.hasClass('legend'),
+				useTab: elm.hasClass('tab'),
 				useMapControls: elm.hasClass('static') ? false : true
 			};			
 
@@ -1306,7 +1307,8 @@
 	
 				// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
 				if (!_pe.mobile) {
-					$mapDiv.before('<p><strong>' + _pe.dic.get('%geo-accessibilize') + '</p>');
+					$mapDiv.before('<details class="wet-boew-geomap-detail"><summary>' + _pe.dic.get('%geo-accessibilizetitle') + '</summary><p>' + _pe.dic.get('%geo-accessibilize') + '</p></details>');
+					_pe.polyfills.enhance('detailssummary', document.getElementsByTagName('details'));
 				}
 			}
 
