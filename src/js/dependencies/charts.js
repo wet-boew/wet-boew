@@ -1142,8 +1142,23 @@
 				// Use Reverse table axes
 				// Create a chart/ place holder, by series
 				
-				
-				var mainFigureElem = $('<figure />').insertAfter(srcTbl),
+				var pieLabelFormater = function(label, series){
+					var textlabel;
+					
+					if (!o.decimal) {
+						textlabel = Math.round(series.percent);
+					} else {
+						textlabel = Math.round(series.percent * Math.pow(10, o.decimal));
+						textlabel = textlabel / Math.pow(10, o.decimal);
+					}
+					
+					if (o.nolegend) {
+						// Add the series label
+						textlabel = label+'<br/>'+textlabel;
+					}
+					return textlabel+'%';
+				},
+					mainFigureElem = $('<figure />').insertAfter(srcTbl),
 					_graphclasslen;
 				mainFigureElem.addClass('wb-charts'); // Default
 				if (o.graphclass) {
@@ -1263,23 +1278,7 @@
 						pieOptions.series.pie.label = {
 							show: true,
 							radius: o.pielblradius / 100,
-							formatter: function(label, series){
-								
-								var textlabel;
-								
-								if (!o.decimal) {
-									textlabel = Math.round(series.percent);
-								} else {
-									textlabel = Math.round(series.percent * Math.pow(10, o.decimal));
-									textlabel = textlabel / Math.pow(10, o.decimal);
-								}
-								
-								if (o.nolegend) {
-									// Add the series label
-									textlabel = label+'<br/>'+textlabel;
-								}
-								return textlabel+'%';
-							}
+							formatter: pieLabelFormater
 						};
 						if (o.piethreshold) {
 							pieOptions.series.pie.label.threshold = o.piethreshold;
@@ -1308,10 +1307,6 @@
 					
 					// Create the graphic
 					$.plot(placeHolder, allSeries, pieOptions);
-					
-					if (o.nolegend) {
-						// $('.pieLabel > div', placeHolder).removeAttr('style');
-					}
 					
 					if (!o.legendinline) {
 						// Move the legend under the graphic

@@ -13,7 +13,7 @@
 	}; /* local reference */
 	_pe.fn.charts = {
 		type: 'plugin',
-		depends: ['parserTable', 'excanvas', 'flot', 'charts'],
+		depends: (_pe.ie > 0 && _pe.ie < 9 ? ['parserTable', 'excanvas', 'flot', 'charts'] : ['parserTable', 'flot', 'charts']),
 		polyfills: ['detailssummary'],
 		_exec: function (elm) {
 			_pe.fn.chartsGraph.generate(elm);
