@@ -156,7 +156,7 @@
 			 * Add alt text to map controls and make tab-able
 			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
 			 */
-			var controlBar = _pe.main.find('div.olControlPanZoomBar')[0],
+			var controlBar = _pe.main.find('.olControlPanZoomBar')[0],
 				controls = controlBar.getElementsByTagName('div'),
 				len = controls.length,
 				control,
