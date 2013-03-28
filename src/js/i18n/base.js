@@ -190,6 +190,7 @@
 		'%geo-zoomfeature': '@%geo-zoomfeature@',
 		'%geo-ariamap': '@%geo-ariamap@',
 		'%geo-accessibilize': '@%geo-accessibilize@',
+		'%geo-accessibilizetitle': '@%geo-accessibilizetitle@',
 		'%geo-togglelayer': '@%geo-togglelayer@',
 		'%geo-hiddenlayer': '@%geo-hiddenlayer@',
 		'%geo-basemapurl': '@%geo-basemapurl@',
