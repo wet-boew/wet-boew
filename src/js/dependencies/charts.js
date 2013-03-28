@@ -1033,7 +1033,7 @@
 			if (o.type === "pie") {
 				// Use Reverse table axes
 				// Create a chart/ place holder, by series
-				var pieLabelFormater = function(label, series){
+				var pieLabelFormater = function (label, series) {
 					var textlabel;
 					if (!o.decimal) {
 						textlabel = Math.round(series.percent);
