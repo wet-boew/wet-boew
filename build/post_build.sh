@@ -19,6 +19,30 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	cp *.htm* $HOME/temp_wet-boew
 	cp *.md $HOME/temp_wet-boew
 	cp *.txt $HOME/temp_wet-boew
+	
+	#Update working example
+	if [ "$TRAVIS_BRANCH" == "master" ]; then
+		echo -e "Updating working examples...\n"
+
+		git checkout -B gh-pages
+		git add -f dist/.
+		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
+		git push -fq upstream gh-pages > /dev/null
+
+		echo -e "Finished updating the working examples\n"
+	fi
+
+	#Update the experimental working example
+	if [[ "$TRAVIS_BRANCH" == experimental* ]]; then
+		echo -e "Updating experimental working examples...\n"
+
+		git checkout -B gh-pages
+		git add -f dist/.
+		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
+		git push -fq experimental gh-pages > /dev/null
+
+		echo -e "Finished updating the experimental working examples\n"
+	fi
 
 	git fetch -qn upstream > /dev/null
 
@@ -46,28 +70,4 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 
 		echo -e "Finished tagging the latest build for branch $TRAVIS_BRANCH\n"
 	;; esac
-
-	#Update working example
-	if [ "$TRAVIS_BRANCH" == "master" ]; then
-		echo -e "Updating working examples...\n"
-
-		git checkout -B gh-pages
-		git add -f dist/.
-		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
-		git push -fq upstream gh-pages > /dev/null
-
-		echo -e "Finished updating the working examples\n"
-	fi
-
-	#Update the experimental working example
-	if [[ "$TRAVIS_BRANCH" == experimental* ]]; then
-		echo -e "Updating experimental working examples...\n"
-
-		git checkout -B gh-pages
-		git add -f dist/.
-		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
-		git push -fq experimental gh-pages > /dev/null
-
-		echo -e "Finished updating the experimental working examples\n"
-	fi
 fi
