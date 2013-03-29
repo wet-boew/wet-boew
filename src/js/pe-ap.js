@@ -1112,7 +1112,7 @@
 								navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
 								navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
 								if (toplevel) {
-									secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1 || (hlinkDOM.className.indexOf('nav-current-nocss') !== -1));
+									secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1);
 								}
 								menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
 								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
