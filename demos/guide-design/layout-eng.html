@@ -107,7 +107,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h2>Table of contents</h2>
   <ul>
     <li><a href="#grids">Grids</a></li>
-	<li><a href="#mobile-sh">Mobile show and hide</a></li>
+	<li><a href="#mobile-sh">Mobile/tablet/smartphone show and hide</a></li>
     <li><a href="#form-layout">Form layout</a></li>
     <li><a href="#scrolling">Page length and scrolling</a></li>
   </ul>
@@ -123,60 +123,95 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     <li> Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
 </div>
-<div class="border-left float-right">
-  <div class="span-2 margin-bottom-none">
+<div class="span-2">
     <h3 class="margin-top-none margin-bottom-none">Demo</h3>
     <p>Grids cells are invisible but have been coloured in for demonstration purposes:</p>
-    <div class="grid-12">
       <div class="span-1 background-light align-center row-start margin-bottom-medium">
         <p>1</p>
       </div>
-      <div class="span-1 background-light align-center margin-bottom-medium">
+      <div class="span-1 background-light align-center row-end margin-bottom-medium">
         <p>2</p>
       </div>
-      <div class="span-1 background-light align-center margin-bottom-medium">
-        <p>3</p>
-      </div>
-      <div class="span-1 background-light align-center row-end margin-bottom-medium">
-        <p>4</p>
-      </div>
       <div class="clear"></div>
-    </div>
-    <div class="span-1 background-light align-center row-start margin-bottom-medium">
+    <div class="span-2 background-light align-center margin-bottom-medium">
       <p>1</p>
-    </div>
-    <div class="span-1 background-light align-center row-end margin-bottom-medium">
-      <p>2</p>
     </div>
     <div class="clear"></div>
     <p class="float-right"><a href="../grids/grid-base-eng.html" class="button">View all grid options</a></p>
-  </div>
 </div>
 <div class="clear"></div>
 
-<h2 id="mobile-sh">Mobile show and hide</h2>
+<h2 id="mobile-sh">Mobile/tablet/smartphone show and hide</h2>
 <div class="span-4">
-  <p>Desktop content can be hidden from the mobile user with the <code>mobile-hide</code> CSS and additional information can be presented to the mobile user with the <code>mobile-show</code> CSS. </p>
+  <p>Content can be hidden from the mobile or tablet user with CSS. </p>
+  <table class="table-bordered">
+	<thead>
+	  <tr>
+		<th>Class</th>
+		<th>Desktop <br><span class="font-small">960px and greater</span></th>
+		<th>Tablets <br><span class="font-small">768px to 959px</span></th>
+		<th>Smartphone <br><span class="font-small">0px to 767px</span></th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+		<th><code>.mobile-hide</code></th>
+		<td class="background-highlight">Visible</td>
+		<td>Hidden</td>
+		<td>Hidden</td>
+	  </tr>
+	  <tr>
+		<th><code>.mobile-show</code></th>
+		<td>Hidden</td>
+		<td class="background-highlight">Visible</td>
+		<td class="background-highlight">Visible</td>
+	  </tr>
+	  <tr>
+		<th><code>.tablet-hide</code></th>
+		<td class="background-highlight">Visible</td>
+		<td>Hidden</td>
+		<td class="background-highlight">Visible</td>
+	  </tr>
+	  <tr>
+		<th><code>.tablet-show</code></th>
+		<td>Hidden</td>
+		<td class="background-highlight">Visible</td>
+		<td>Hidden</td>
+	  </tr>
+	  <tr>
+		<th><code>.smartphone-hide</code></th>
+		<td class="background-highlight">Visible</td>
+		<td class="background-highlight">Visible</td>
+		<td>Hidden</td>
+	  </tr>
+	  <tr>
+		<th><code>.smartphone-show</code></th>
+		<td>Hidden</td>
+		<td>Hidden</td>
+		<td class="background-highlight">Visible</td>
+	  </tr>
+	</tbody>
+  </table>
+  <div class="module-info">
+  <p>Note that <code>smartphone-*</code> and <code>tablet-*</code> classes were introduced in WET 3.1.</p>
+  </div>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
     <li>Since there is no <strong>Full site</strong> feature available to the mobile user, only decorative content or other supporting information should be hidden from them.  Actual content should be available to both the desktop and mobile users so there is no loss of information.</li>
     <li>Additional information can be presented to the mobile user to improve the mobile experience. </li>
   </ul>
 </div>
-<div class="border-left float-right">
-  <div class="span-2 margin-bottom-none">
-    <h3 class="margin-top-none margin-bottom-none">Demo</h3>
-    <p>This image has <code>mobile-hide</code> applied to it, so it will not show in resolutions &lt;767px.</p>
+<div class="span-2">
+	<h3 class="margin-top-none margin-bottom-none">Demo</h3>
+	<p>This image has <code>mobile-hide</code> applied to it, so it will not show in resolutions &lt;959px.</p>
 	<img height="168" width="220" alt="Sunflower" src="../grids/images/a7.jpg" class="mobile-hide" />
-	<p>A mobile jump menu will appear below in resolutions &lt;767px.</p>
+	<p>A mobile jump menu will appear below in resolutions &lt;959px.</p>
 	<ul class="mobile-show margin-top-large margin-bottom-large" data-inset="true" data-role="listview">
 		<li><a href="#">Menu item 1</a></li>
 		<li><a href="#">Menu item 2</a></li>
 		<li><a href="#">Menu item 3</a></li>
 		<li><a href="#">Menu item 4</a></li>
 	</ul>
-   
-  </div>
 </div>
 <div class="clear"></div>
 <h2 id="form-layout"> Form layout</h2>
@@ -187,8 +222,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <p>Place the label above the input field. </p>
   <p>This is the <strong>recommended</strong> layout. This layout allows users to  capture both labels and input fields with a single eye movement. While  this is the simplest of layouts, users can actually process the  information ten times faster than if the information is left-aligned,  as demonstrated in option 3. However, this solution uses more vertical  space. This does not impact the user experience, but may not suit your  specific layout needs. Although this layout is the recommended option,  you can also use the layout provided in option 2, to reduce vertical  space. </p>
 </div>
-<div class="border-left">
-  <div class="span-2 margin-bottom-none">
+<div class="span-2">
     <h4 class="margin-top-none margin-bottom-none color-medium">Demo</h4>
     <form>
       <label for="label-1-1">Label 1</label>
@@ -197,7 +231,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
       <input type="password" size="10" id="label-2-1" name="label-2-1"/>
       <input type="submit" value="Sign in" class="button button-accent"/>
     </form>
-  </div>
 </div>
 <div class="clear"></div>
 <h3>Option 2: Alternate</h3>
@@ -207,8 +240,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     The reason this solution is preferred over left  aligned labels (option 3), is that eye tracking studies have shown that  it creates a clear association between label and field, which reduces  the number of fixations the user has (the eye jumping from spot to  spot) by nearly half. As a result, the reduced eye moments and clear  association reduces eye strain and improves cognition. This translates  to a 50% faster form completion rate. <br />
   </p>
 </div>
-<div class="border-left">
-  <div class="span-2 margin-bottom-none">
+<div class="span-2">
     <h4 class="margin-top-none margin-bottom-none color-medium">Demo</h4>
     <form>
       <div class="span-1 row-start">
@@ -230,7 +262,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
       </div>
       <div class="clear"></div>
     </form>
-  </div>
 </div>
 <div class="clear"></div>
 <h3>Option 3: Never use </h3>
@@ -238,8 +269,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <p>Place the label left-aligned to the input field. </p>
   <p>For the reasons mentioned in options 1 and 2, never use this layout. </p>
 </div>
-<div class="border-left">
-  <div class="span-2 margin-bottom-none">
+<div class="span-2">
     <h4 class="margin-top-none margin-bottom-none color-medium">Demo</h4>
     <form>
       <div class="span-1 row-start margin-bottom-none">
@@ -261,7 +291,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
       </div>
       <div class="clear"></div>
     </form>
-  </div>
 </div>
 -
 <h2 id="scrolling"> Page length and scrolling </h2>
