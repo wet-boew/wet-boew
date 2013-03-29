@@ -5,11 +5,14 @@
 %zebra-border-none {
 	border: none;
 }
-%zebra-list-style-type-none {
-	list-style-type: none;
+%zebra-no-margin-left {
+	margin-left: 0;
 }
 %zebra-padding-10 {
 	padding: 10px;
+}
+%zebra-list-style-type-none {
+	list-style-type: none;
 }
 %zebra-content-normal {
 	content: normal;
@@ -17,11 +20,8 @@
 %zebra-border-1-solid-ccc {
 	border: 1px solid #CCC;
 }
-%zebra-background-color-999 {
-	background-color: #999;
-}
-%zebra-background-color-aaa {
-	background-color: #AAA;
+%zebra-table-background-color-f0fcff {
+	background-color: #f0fcff;
 }
 %zebra-background-color-ccc {
 	background-color: #CCC;
@@ -32,38 +32,25 @@
 %zebra-background-color-eee {
 	background-color: #EEE;
 }
-%zebra-background-color-f4f4f4 {
-	background-color: #F4F4F4;
+%zebra-background-color-555 {
+	background-color: #555;
 }
-%zebra-background-color-fafafa {
-	background-color: #FAFAFA;
+%zebra-background-color-222 {
+	background-color: #222;
+}
+%zebra-background-color-666 {
+	background-color: #666;
 }
 %zebra-background-color-fff {
 	background-color: #fff;
 }
-%zebra-background-color-f0fcff {
+%zebra-list-background-color-f0fcff {
 	background-color: #f0fcff;
 }
 %zebra-background-color-transparent {
 	background-color: transparent;
 }
-%zebra-margin-left {
-	margin-left: 0;
-}
-%zebra-padding-8 {
-	padding: 8px;
-}
-%zebra-font-style-italic {
-	font-style: italic;
-}
-%zebra-list-odd-list-even-border-none {
-	&.list-odd {
-		@extend %zebra-border-none;
-	}
-	&.list-even {
-		@extend %zebra-border-none;
-	}
-}
+
 
 ul {
 	&.wet-boew-zebra {
@@ -80,9 +67,9 @@ ol, ul {
 	&.wet-boew-zebra {
 		margin: 5px 0 10px 0;
 		li {
+			@extend %zebra-padding-10;
 			margin-bottom: 2px;
 			margin-right: 0;
-			@extend %zebra-padding-10;
 		}
 	}
 }
@@ -140,192 +127,156 @@ ol {
 		ol {
 			li {
 				@extend %zebra-list-style-type-none;
-			}
-		}
-	}
-}
-
-table {
-	&.wet-boew-zebra {
-		&, table {
-			@extend %zebra-background-color-fff;
-			@extend %zebra-border-1-solid-ccc;
-			border-collapse: collapse;
-			margin-bottom: 10px;
-			margin-top: 10px;
+			} 
 		}
 	}
 }
 
 dl {
 	&.wet-boew-zebra {
-		@extend %zebra-margin-left;
+		@extend %zebra-no-margin-left;
 	}
 }
 
 .wet-boew-zebra {
-	li, dt, dd {
-		&.list-odd {
-			@extend %zebra-background-color-ddd;
-			@extend %zebra-border-1-solid-ccc;
-		}
-		&.list-even {
-			@extend %zebra-background-color-eee;
-			@extend %zebra-border-1-solid-ccc;
-		}
-		&.list-hover {
-			@extend %zebra-background-color-f0fcff;
-		}
-	}
-	&.alterwg {
-		li, dt, dd {
-			&.list-odd {
-				@extend %zebra-background-color-ddd;
-				@extend %zebra-border-none;
-			}
-			&.list-even {
-				@extend %zebra-background-color-fff;
-				@extend %zebra-border-none;
-			}
-			&.list-hover {
-				@extend %zebra-background-color-f0fcff;
-			}
-		}
-	}
-	dl {
-		@extend %zebra-margin-left;
-	}
+	
+	/* Definition list */
 	dd {
+		@extend %zebra-no-margin-left;
 		@extend %zebra-padding-10;
-		@extend %zebra-margin-left;
-		@extend %zebra-list-odd-list-even-border-none;
+		@extend %zebra-border-1-solid-ccc;
 	}
 	dt {
 		@extend %zebra-padding-10;
-		@extend %zebra-list-odd-list-even-border-none;
+		@extend %zebra-border-1-solid-ccc;
 		font-weight: 700;
 		margin-top: 2px;
 	}
 
+	dt, dd {
+		&.list-even {
+			@extend %zebra-background-color-ddd;
+		}
+		&.list-odd {
+			@extend %zebra-background-color-eee;
+		}
+		&.list-hover {
+			@extend %zebra-list-background-color-f0fcff;
+		}
+	}
+	
+	
+	/* Ordered and Unordered list */
+	> li {
+		@extend %zebra-border-1-solid-ccc;
+		&:nth-child(2n) {
+			@extend %zebra-background-color-ddd;
+		}
+		&:nth-child(2n + 1) {
+			@extend %zebra-background-color-eee;
+		}
+		&:hover {
+			@extend %zebra-list-background-color-f0fcff;
+		}
+	}
+	
+	/* Style Alterwg (Alternate White and Gray stripe) */
+	&.alterwg {
+		dt, dd, > li {
+			@extend %zebra-border-none;
+		}
+		> li {
+			&:nth-child(2n) {
+				@extend %zebra-background-color-ddd;
+			}
+			&:nth-child(2n + 1) {
+				@extend %zebra-background-color-fff;
+			}
+		}
+		
+		dt, dd {
+			&.list-even {
+				@extend %zebra-background-color-ddd;
+			}
+			&.list-odd {
+				@extend %zebra-background-color-fff;
+			}
+		}
+		
+		&.zebra-hover {
+			li, dt, dd {
+				&.list-hover, &:hover {
+					@extend %zebra-list-background-color-f0fcff;
+				}
+			}
+		}
+	}
+	
+	/* Option about to apply no Margin on a Zebra list  */
 	&.nomargin {
 		margin: 0;
 	}
-	tr {
-		&.table-odd {
-			@extend %zebra-background-color-f0fcff;
-					tr {
-				&.table-even {
-					@extend %zebra-background-color-transparent;
-				}
-			}
-		}
-		&.table-even {
-			@extend %zebra-background-color-transparent;
-			tr {
-				&.table-odd {
-					@extend %zebra-background-color-f0fcff;
-				}
-			}
-		}
-		&.table-hover {
-			td {
-				@extend %zebra-background-color-eee;
-			}
-		}
-	}
-	th {
-		@extend %zebra-background-color-eee;
-		@extend %zebra-border-1-solid-ccc;
-		color: #333;
-		text-align: center;
-		@extend %zebra-padding-8;
-		/*
-		 * I am not sure if we would like to style the cell header group, need to discuss
-		 *
-		&.table-headgroupcol1 {
-			@extend %zebra-background-color-ccc;
-		}
-		&.table-headgrouprow1 {
-			@extend %zebra-background-color-ccc;
-		}
-		&.table-headgroupcol2 {
-			@extend %zebra-background-color-aaa;
-		}
-		&.table-headgrouprow2 {
-			@extend %zebra-background-color-aaa;
-		}
-		&.table-headgroupcol3 {
-			@extend %zebra-background-color-999;
-		}
-		&.table-headgrouprow3 {
-			@extend %zebra-background-color-999;
-		}
-		*/
-		&.table-hover {
-			background-color: lightgray;
-			/*
-			&.table-summaryrow0 {
-				@extend %zebra-background-color-eee;
-			}
-			*/
-		}
-
-	}
+	
+	/* 
+	 * 
+	 * Table Zebra Stripping 
+	 * 
+	 * */
+	 
+	/* Scope of cells */
 	td {
-		@extend %zebra-border-1-solid-ccc;
-		vertical-align: top;
-		padding: 5px 10px;
-		/* Advance Zebra */
 		&.table-keycell {
-			@extend %zebra-font-style-italic;
-			@extend %zebra-padding-8;
-			@extend %zebra-background-color-fff;
+			padding: 8px;
 		}
 		&.table-desccell {
-			@extend %zebra-font-style-italic;
-			@extend %zebra-padding-8;
-			@extend %zebra-background-color-f4f4f4;
-		}
-		&.table-summarycol3 {
-			@extend %zebra-background-color-fafafa;
-		}
-		&.table-summaryrow3 {
-			@extend %zebra-background-color-fafafa;
-		}
-		&.table-summarycol2 {
-			@extend %zebra-background-color-f4f4f4;
-		}
-		&.table-summaryrow2 {
-			@extend %zebra-background-color-f4f4f4;
-		}
-		&.table-summarycol1 {
-			@extend %zebra-background-color-eee;
-		}
-		&.table-summaryrow1 {
-			@extend %zebra-background-color-eee;
-		}
-		&.table-summarycol0 {
-			@extend %zebra-background-color-ddd;
-		}
-		&.table-summaryrow0 {
-			@extend %zebra-background-color-ddd;
+			font-style: italic;
+			padding: 8px;
 		}
 	}
-	th {
-		&.table-summarycol0 {
-			@extend %zebra-background-color-ddd;
-		}
-		&.table-summaryrow0 {
-			@extend %zebra-background-color-ddd;
+	td, th {
+		&.table-layoutCell {
+			@extend %zebra-background-color-fff;
 		}
 	}
 
+	/* Summary Group Styling */
+	tr {
+		&.table-summary {
+			@extend %zebra-background-color-eee;
+		}
+	}
+	tbody {
+		&.table-summary {
+			tr {
+				@extend %zebra-background-color-eee;
+			}
+		} 
+	}
+	colgroup {
+		col {
+			&.table-summary {
+				@extend %zebra-background-color-eee;
+			}
+		}
+	} 
+	colgroup {
+		&.table-summary {
+			@extend %zebra-background-color-eee;
+		}
+	} 
 	tfoot {
-		td {
-			@extend %zebra-background-color-ddd;
+		tr {
+			@extend %zebra-background-color-eee;
 		}
 	}
-
+	td {
+		&.table-summary {
+			@extend %zebra-background-color-eee;
+		}
+	}
+	
+	
+	/* Delimiter between table group */
 	tbody, tfoot {
 		&.table-rowgroupmarker {
 			border-top: solid black 2px;
@@ -336,20 +287,132 @@ dl {
 			border-left: solid black 2px;
 		}
 	}
-	td, th {
-		&.table-layoutCell {
-			@extend %zebra-background-color-fff;
+	
+	
+	/* Traditionel Table Zebra Stripping */
+	&.colzebra {
+		colgroup {
+			col {
+				&:nth-child(2n)  {
+					@extend %zebra-table-background-color-f0fcff;
+				}
+			}
+		}
+    }
+	&.rowzebra {
+		tbody {
+			tr {
+				&:nth-child(2n)  {
+					@extend %zebra-table-background-color-f0fcff;
+				}
+			}
+		}
+    }
+	
+	
+	/* Column Effect */
+	&.columnhighlight {
+		colgroup {
+			col {
+				&.table-hover {
+					@extend %zebra-background-color-eee;
+				}
+			}
+			&.table-summary {
+				col {
+					&.table-hover {
+						@extend %zebra-table-background-color-f0fcff;
+					}
+				}
+			}
+		}
+		
+		
+		th.table-hover {
+			@extend %zebra-background-color-ccc;
+		}
+		&.table-accent th.table-hover {
+			@extend %zebra-background-color-555;
+		}
+		&.table-medium th.table-hover {
+			@extend %zebra-background-color-222;
+		}
+		&.table-dark th.table-hover {
+			@extend %zebra-background-color-666;
+		}
+		&.table-simplify th.table-hover {
+			@extend %zebra-background-color-transparent;
 		}
 	}
-	col {
-		&.table-odd {
-			@extend %zebra-background-color-f0fcff;
+	
+	/* Row Effect */
+	&.rowtdhover {
+		tbody, tfoot {
+			tr:hover, /*tr.table-hover,*/ tr.table-hover td,
+			tr:hover td.table-keycell, tr.table-hover td.table-keycell, 
+			tr:hover td.table-desccell, tr.table-hover td.table-desccell,
+			tr:hover td.table-layoutCell, tr.table-hover td.table-layoutCell,
+			tr:hover th.table-layoutCell, tr.table-hover th.table-layoutCell  {
+				@extend %zebra-background-color-eee;
+			}
+			
+			/* Hover for summary rows */
+			tr.table-summary:hover, tr.table-summary.table-hover td,
+			tr.table-summary:hover td.table-keycell, tr.table-summary.table-hover td.table-keycell, 
+			tr.table-summary:hover td.table-desccell, tr.table-summary.table-hover td.table-desccell,
+			tr.table-summary:hover td.table-layoutCell, tr.table-summary.table-hover td.table-layoutCell,
+			tr.table-summary:hover th.table-layoutCell, tr.table-summary.table-hover th.table-layoutCell  {
+				@extend %zebra-table-background-color-f0fcff;
+			}
 		}
-		&.table-even {
-			background-color: transparent;
+	}
+	&.rowhover {
+		tbody, tfoot {
+			tr:hover, /*tr.table-hover,*/ tr.table-hover td,
+			tr:hover td.table-keycell, tr.table-hover td.table-keycell, 
+			tr:hover td.table-desccell, tr.table-hover td.table-desccell,
+			tr:hover td.table-layoutCell, tr.table-hover td.table-layoutCell,
+			tr:hover th.table-layoutCell, tr.table-hover th.table-layoutCell  {
+				@extend %zebra-background-color-eee;
+			}
+
+			/* Hover for summary rows */
+			tr.table-summary:hover, tr.table-summary.table-hover td,
+			tr.table-summary:hover td.table-keycell, tr.table-summary.table-hover td.table-keycell, 
+			tr.table-summary:hover td.table-desccell, tr.table-summary.table-hover td.table-desccell,
+			tr.table-summary:hover td.table-layoutCell, tr.table-summary.table-hover td.table-layoutCell,
+			tr.table-summary:hover th.table-layoutCell, tr.table-summary.table-hover th.table-layoutCell  {
+				@extend %zebra-table-background-color-f0fcff;
+			}
+
+			
+			tr:hover th, tr.table-hover th {
+				@extend %zebra-background-color-ccc;
+			}
+			/*
+			 * Uncomment to have white cell at the mouse intersection
+			tr:hover td:hover {
+				background-color: #fff;
+			}
+			*/
 		}
-		&.table-hover {
-			@extend %zebra-background-color-eee;
+		&.table-accent tbody, &.table-accent tfoot {
+			tr:hover th, tr.table-hover th  {
+				@extend %zebra-background-color-555;
+			}
+		}
+		&.table-medium tbody, &.table-medium tfoot {
+			tr:hover th, tr.table-hover th {
+				@extend %zebra-background-color-222;
+			}
+		}
+		&.table-dark tbody, &.table-dark tfoot {
+			tr:hover th, tr.table-hover th {
+				@extend %zebra-background-color-666;
+			}
+		}
+		&.table-simplify tbody tr th, &.table-simplify tfoot tr th {
+			@extend %zebra-background-color-transparent;
 		}
 	}
 }
