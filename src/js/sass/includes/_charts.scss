@@ -2,6 +2,10 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%charts-font-style-italic {
+	font-style: italic;
+}
+
 
 /* Charts and Graph */
 figure, figcaption {
@@ -10,34 +14,26 @@ figure, figcaption {
 
 figure {
 	&.wb-charts {
-		border: 1px solid black;
 		margin: 10px;
+		padding: 5px;
 
+		.pieLabel {
+			font-size: 8pt;
+			text-align: center;
+			padding: 2px;
+			color: #000;
+			background-color: #fff;
+			border: 1px solid black;
+		}
+		
 		figcaption {
-			border-bottom: 1px solid black;
 			padding: 5px;
 			margin-bottom: 10px;
 		}
 		details {
 			summary {
-				background-color: whitesmoke;
+				@extend %charts-font-style-italic;
 				padding-left: 5px;
-			}
-
-			table {
-				margin-left: 0;
-				margin-right: 0;
-				margin-bottom: 0;
-				td {
-					background-color: white;
-				}
-			}
-		}
-
-		/* Add focus styles (for keyboard accessibility) */
-		summary {
-			@include pseudo-focus{
-				background: #ddd;
 			}
 		}
 
@@ -46,13 +42,9 @@ figure {
 			margin-right: 0;
 
 			figcaption {
-				font-style: italic;
-				text-align: center;
+				@extend %charts-font-style-italic;
 			}
 		}
 
-		ul {
-			list-style-type: none;
-		}
 	}
 }
