@@ -101,7 +101,7 @@ $second-row-sprite-y: 0;
 		}
 	}
 
-	[href$='.psd'],[href$='.zip'],[href$='.doc'],[href$='.pdf'],[href$='.xls'],[href$='.rtf'],[href$='.pot'],[href$='.ppt'],[href$='.pps'],[href$='.pptm'],[href$='.docx'],[href$='.xlsx'],[href$='.pptx']{
+	[href$='.psd'], [href$='.zip'], [href$='.doc'], [href$='.pdf'], [href$='.xls'], [href$='.rtf'], [href$='.pot'], [href$='.ppt'], [href$='.pps'], [href$='.pptm'], [href$='.docx'], [href$='.xlsx'], [href$='.pptx'] {
 		background-position: 100% 0;
 		padding-left: 0;
 		padding-right: 19px;
