@@ -76,12 +76,12 @@
 
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length !== 0) {
-				submenu.prev().children('a').addClass('nav-current');
+				submenu.prev().children('a').addClass('nav-current-nocss');
 			}
 			if (pe.secnav.length !== 0) {
 				current = pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
 				submenu = current.parents('ul');
-				submenu.prev().children('a').addClass('nav-current');
+				submenu.prev().children('a').addClass('nav-current-nocss');
 			}
 			if (wet_boew_theme.gridsmenu.length !== 0) {
 				current = pe.menu.navcurrent(wet_boew_theme.gridsmenu, wet_boew_theme.bcrumb);
