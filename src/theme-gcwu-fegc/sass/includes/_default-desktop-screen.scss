@@ -452,8 +452,9 @@ a {
 			background: #23447e;
 			min-height: 2.15em;
 			@if $legacy-support-for-ie8 { 
-				@include filter-gradient(#146094, #23447E);
+				background: #23447e url(../images/menu-bg.gif) repeat-x;
 			} @else {
+				border-top: 1px solid #87AEC9;
 				@include background-image(linear-gradient(#146094, #23447E));
 			}
 		}
@@ -462,7 +463,6 @@ a {
 			border: {
 				left: 1px solid #124B79;
 				right: 1px solid #15598f;
-				top: 1px solid #87AEC9;
 				bottom: none;
 			}
 			&:first-child {
