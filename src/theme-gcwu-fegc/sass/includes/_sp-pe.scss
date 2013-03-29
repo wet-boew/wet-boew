@@ -6,6 +6,7 @@
 @import "compass/css3/appearance";
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
+@import "compass/css3/images";
 
 %gcwu-sp-pe-width-214-height-20 {
 	width: 214px;
@@ -45,6 +46,11 @@
 		text-align: center;
 		a {
 			@include appearance(none);
+			@if $legacy-support-for-ie8 { 
+				@include filter-gradient(#EEE, #CCC);
+			} @else {
+				@include background-image(linear-gradient(#EEE, #CCC));
+			}
 			border: {
 				bottom: 1px solid #999;
 				right: 1px solid #999;
@@ -62,9 +68,14 @@
 			@extend %gcwu-sp-pe-text-decoration-none;
 			text-transform: capitalize;
 			@include pseudo-focus {
-				text-shadow: 0 1px 0 #ddd;
 				@include box-shadow(none);
+				@if $legacy-support-for-ie8 { 
+					@include filter-gradient(#DDD, #CCC);
+				} @else {
+					@include background-image(linear-gradient(#DDD, #CCC));
+				}
 				border: 1px solid #999;
+				text-shadow: 0 1px 0 #ddd;
 			}
 		}
 	}

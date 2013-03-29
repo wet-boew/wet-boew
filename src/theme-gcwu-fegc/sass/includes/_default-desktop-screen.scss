@@ -6,6 +6,7 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/appearance";
 @import 'compass/css3/transform';
+@import 'compass/css3/images';
 
 %gcwu-default-desktop-screen-font-weight-400 {
 	font-weight: 400;
@@ -385,6 +386,11 @@ a {
 #gcwu-srch-submit {
 	@include appearance(none);
 	min-height: 24px;
+	@if $legacy-support-for-ie8 { 
+		@include filter-gradient(#F0F0F0,#CCC);
+	} @else {
+		@include background-image(linear-gradient(#F0F0F0,#CCC));
+	}
 	border: {
 		bottom: 1px solid #999;
 		right: 1px solid #999;
@@ -398,6 +404,11 @@ a {
 	padding: 2px 6px;
 	display: inline;
 	@include pseudo-focus {
+		@if $legacy-support-for-ie8 { 
+			@include filter-gradient(#CCC,#DDD);
+		} @else {
+			@include background-image(linear-gradient(#CCC,#DDD));
+		}
 		text-shadow: 0 1px 0 #ddd;
 		@include box-shadow(none);
 		border: {
@@ -437,13 +448,23 @@ a {
 		border-bottom: 4px solid #ccc;
 	}
 	.mb-menu {
+		&, li {
+			background: #23447e;
+			min-height: 2.15em;
+			@if $legacy-support-for-ie8 { 
+				@include filter-gradient(#146094, #23447E);
+			} @else {
+				@include background-image(linear-gradient(#146094, #23447E));
+			}
+		}
 		li {
+			@extend %gcwu-default-desktop-screen-padding-0;
 			border: {
 				left: 1px solid #124B79;
 				right: 1px solid #15598f;
+				top: 1px solid #87AEC9;
 				bottom: none;
 			}
-			@extend %gcwu-default-desktop-screen-padding-0;
 			&:first-child {
 				&.mb-active {
 					border-left: 1px solid #CCC;
@@ -458,9 +479,34 @@ a {
 		}
 		.mb-sm-open {
 			@include box-shadow(0 5px 5px -4px rgba(0, 0, 0, 0.5), 5px 5px 5px -4px rgba(0, 0, 0, 0.5), -5px 5px 5px -4px rgba(0, 0, 0, 0.5));
+			border-bottom: 4px solid #0F315B;
+			@if $legacy-support-for-ie8 { 
+				@include filter-gradient(#CCC, #EEE);
+			} @else {
+				@include background-image(linear-gradient(#CCC, #EEE));
+			}
+			li {
+				background: transparent;
+				min-height: 0;
+				border: none;
+			}
+			.nav-current {
+				background: none;
+			}
 		}
-		&, li {
-			min-height: 2.15em;
+		.mb-active {
+			a {
+				&:hover, &:link, &:visited {
+					&.mb-has-sm {
+						background-color: #CCC;
+						color: #000;
+					}
+				}
+			}
+		}
+		.nav-current {
+			background: #0f315b;
+			border-top: #8BAAA2 1px solid;
 		}
 	}
 }
