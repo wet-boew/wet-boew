@@ -154,7 +154,7 @@
 
 			// End of panel text to notify screen reader users that there are more tab panels available
 			if ($panels.length > 1) {
-				$panels.append('<p><span class="wb-invisible">' + _pe.dic.get('%tab-panel-end-1') + ($tabsPanel.prev().hasClass('tabs') ? '</span><a href="javascript:;" class="panel-end wb-show-onfocus button button-accent position-bottom-medium position-left">' + _pe.dic.get('%tab-panel-end-2') + '</a><span class="wb-invisible">' + _pe.dic.get('%tab-panel-end-3') : '') + '</span></p>').find('.panel-end').on('click', function(e) {
+				$panels.append('<p class="panel-end"><span class="wb-invisible">' + _pe.dic.get('%tab-panel-end-1') + ($tabsPanel.prev().hasClass('tabs') ? '</span><a href="javascript:;" class="wb-show-onfocus button button-accent position-bottom-medium position-left">' + _pe.dic.get('%tab-panel-end-2') + '</a><span class="wb-invisible">' + _pe.dic.get('%tab-panel-end-3') : '') + '</span></p>').find('.panel-end a').on('click', function(e) {
 					_pe.focus($tabs.filter('.' + opts.tabActiveClass));
 					e.preventDefault();
 				});
