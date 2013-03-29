@@ -231,7 +231,7 @@
 				} else {
 					elem.addClass('rowtdhover');
 				}
-				if (0 < _pe.ie && _pe.ie < 9) {
+				if (_pe.ie > 0 && _pe.ie < 9) {
 					$trs.on('mouseleave focusout', function (e) {
 						e.stopPropagation();
 						$(this).removeClass('table-hover');
@@ -331,7 +331,6 @@
 				if (isSimpleTable && ($('tr:first th, tr:first td, tr', elem).length) < $('th', elem).length) {
 					isSimpleTable = false;
 				}
-
 				i = 0;
 				$('tr:eq(2)', elem).children().each(function () {
 					var nn = this.nodeName.toLowerCase();
@@ -345,10 +344,7 @@
 					i += 1;
 				});
 
-
 				if (isSimpleTable) {
-					
-					
 					// Check if the first row is an header row, move it in a thead section
 					domTable = elem.get(0);
 					if (!domTable.tHead && domTable.rows[0].cells[domTable.rows[0].cells.length - 1].nodeName === "TH") {

@@ -5,6 +5,12 @@
 %zebra-border-none {
 	border: none;
 }
+%zebra-no-margin-left {
+	margin-left: 0;
+}
+%zebra-padding-10 {
+	padding: 10px;
+}
 %zebra-list-style-type-none {
 	list-style-type: none;
 }
@@ -61,9 +67,9 @@ ol, ul {
 	&.wet-boew-zebra {
 		margin: 5px 0 10px 0;
 		li {
+			@extend %zebra-padding-10;
 			margin-bottom: 2px;
 			margin-right: 0;
-			padding: 10px;
 		}
 	}
 }
@@ -128,29 +134,25 @@ ol {
 
 dl {
 	&.wet-boew-zebra {
-		margin-left: 0;
+		@extend %zebra-no-margin-left;
 	}
 }
 
 .wet-boew-zebra {
 	
 	/* Definition list */
-	dl, dd {
-		margin-left: 0;
-	}
 	dd {
-		padding: 10px;
+		@extend %zebra-no-margin-left;
+		@extend %zebra-padding-10;
+		@extend %zebra-border-1-solid-ccc;
 	}
 	dt {
-		padding: 10px;
+		@extend %zebra-padding-10;
+		@extend %zebra-border-1-solid-ccc;
 		font-weight: 700;
 		margin-top: 2px;
 	}
 
-	dt, dd, > li {
-		@extend %zebra-border-1-solid-ccc;
-	}
-	
 	dt, dd {
 		&.list-even {
 			@extend %zebra-background-color-ddd;
@@ -166,6 +168,7 @@ dl {
 	
 	/* Ordered and Unordered list */
 	> li {
+		@extend %zebra-border-1-solid-ccc;
 		&:nth-child(2n) {
 			@extend %zebra-background-color-ddd;
 		}
@@ -237,11 +240,41 @@ dl {
 	}
 
 	/* Summary Group Styling */
-	tr.table-summary, tbody.table-summary tr, 
-	colgroup col.table-summary, colgroup.table-summary, 
-	tfoot tr, td.table-summary {
-		@extend %zebra-background-color-eee; /* Summary Row/Col highligth */
+	tr {
+		&.table-summary {
+			@extend %zebra-background-color-eee;
+		}
 	}
+	tbody {
+		&.table-summary {
+			tr {
+				@extend %zebra-background-color-eee;
+			}
+		} 
+	}
+	colgroup {
+		col {
+			&.table-summary {
+				@extend %zebra-background-color-eee;
+			}
+		}
+	} 
+	colgroup {
+		&.table-summary {
+			@extend %zebra-background-color-eee;
+		}
+	} 
+	tfoot {
+		tr {
+			@extend %zebra-background-color-eee;
+		}
+	}
+	td {
+		&.table-summary {
+			@extend %zebra-background-color-eee;
+		}
+	}
+	
 	
 	/* Delimiter between table group */
 	tbody, tfoot {
@@ -280,11 +313,17 @@ dl {
 	/* Column Effect */
 	&.columnhighlight {
 		colgroup {
-			col.table-hover {
-				@extend %zebra-background-color-eee;
+			col {
+				&.table-hover {
+					@extend %zebra-background-color-eee;
+				}
 			}
-			&.table-summary col.table-hover {
-				@extend %zebra-table-background-color-f0fcff;
+			&.table-summary {
+				col {
+					&.table-hover {
+						@extend %zebra-table-background-color-f0fcff;
+					}
+				}
 			}
 		}
 		
