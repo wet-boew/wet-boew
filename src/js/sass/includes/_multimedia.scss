@@ -53,6 +53,15 @@ video, object.video {
 
 $progress-color: #000;
 
+.ie9 {
+	.wb-mm-controls {
+		margin-top: -1px;
+		button {
+			padding: 1px 3px;
+		}
+	}
+}
+
 .wb-mm-controls {
 	position: relative;
 	width: 100%;
@@ -118,6 +127,7 @@ $progress-color: #000;
 		width: 100%;
 		height: 14px;
 		margin: 2px 0;
+		vertical-align: top;
 		@if $experimental-support-for-mozilla {
 			&::-moz-progress-bar {
 				background: $progress-color;
