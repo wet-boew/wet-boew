@@ -323,7 +323,6 @@ a {
 		} @else {
 			@include background-image(linear-gradient(#CCC,#DDD));
 		}
-	// url(../images/search-button-focus.gif) 0 0 repeat-x;
 		text-shadow: 0 1px 0 #ddd;
 		@extend %base-default-desktop-screen-box-shadow-none;
 		border:{

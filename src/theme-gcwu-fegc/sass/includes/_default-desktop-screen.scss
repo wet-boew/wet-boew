@@ -386,6 +386,11 @@ a {
 #gcwu-srch-submit {
 	@include appearance(none);
 	min-height: 24px;
+	@if $legacy-support-for-ie8 { 
+		@include filter-gradient(#F0F0F0,#CCC);
+	} @else {
+		@include background-image(linear-gradient(#F0F0F0,#CCC));
+	}
 	border: {
 		bottom: 1px solid #999;
 		right: 1px solid #999;
@@ -399,6 +404,11 @@ a {
 	padding: 2px 6px;
 	display: inline;
 	@include pseudo-focus {
+		@if $legacy-support-for-ie8 { 
+			@include filter-gradient(#CCC,#DDD);
+		} @else {
+			@include background-image(linear-gradient(#CCC,#DDD));
+		}
 		text-shadow: 0 1px 0 #ddd;
 		@include box-shadow(none);
 		border: {
