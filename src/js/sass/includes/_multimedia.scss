@@ -53,6 +53,12 @@ video, object.video {
 
 $progress-color: #000;
 
+.ie9 {
+	.wb-mm-controls {
+		margin-top: -1px;
+	}
+}
+
 .wb-mm-controls {
 	button {
 		@extend .wb-mm-toolbar;
