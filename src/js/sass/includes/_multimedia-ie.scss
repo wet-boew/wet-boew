@@ -23,7 +23,7 @@
 
 		.wb-mm-timeline-inner {
 			progress {
-				margin-top: -21px;
+				margin-top: -17px;
 			}
 		}
 	}
@@ -33,6 +33,12 @@
 	.wet-boew-multimedia {
 		.wb-mm-overlay {
 			@extend %multimedia-ie-backbround-overlay;
+		}
+	}
+	.wb-mm-controls {	
+		margin-top: -1px;
+		button {
+			padding: 1px 3px;
 		}
 	}
 }
