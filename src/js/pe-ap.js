@@ -1050,6 +1050,7 @@
 					hlink,
 					hlinkDOM,
 					navCurrent,
+					navCurrentNoCSS,
 					nested,
 					nested_i,
 					nested_len,
@@ -1109,10 +1110,11 @@
 								hlink = mItem.children('a');
 								hlinkDOM = hlink[0];
 								navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
+								navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
 								if (toplevel) {
-									secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1);
+									secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1 || (hlinkDOM.className.indexOf('nav-current-nocss') !== -1));
 								}
-								menu += (navCurrent ? ' nav-current' : '');
+								menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
 								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
 								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
