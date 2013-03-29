@@ -16,18 +16,13 @@
 		fn: {}
 	}; /* local reference */
 	_pe.fn.chartsGraph = {
-		// type: 'plugin',
-		// depends: ['raphael', 'parserTable'],
-		// polyfills: ['detailssummary'],
 		generate: function (elm) {
 			var options = {},
 				o,
 				self = $(elm),
 				srcTbl = self,
-				// graphStartExecTime = new Date().getTime(), // This variable is used to autogenerate ids for the given tables.
 				smallestHorizontalFlotDelta,
-				smallestVerticalFlotDelta; // Default Colors set
-			// console.log('graph start exec time ' + graphStartExecTime);
+				smallestVerticalFlotDelta; 
 			if (typeof (wet_boew_charts) !== 'undefined' && wet_boew_charts !== null) {
 				options = wet_boew_charts;
 			}
@@ -109,9 +104,6 @@
 				"parsedirection-autocreate": true
 			}, options);
 			
-			// Set the new class options if defined
-			o = setClassOptions(o, ($(self).attr('class') !== undefined ? $(self).attr('class') : ""));
-			
 			function colourNameToHex(colour) {
 				// colorsAccent = ["#8d201c", "#EE8310", "#2a7da6", "#5a306b", "#285228", "#154055", "#555555", "#f6d200", "#d73d38", "#418541", "#87aec9", "#23447e", "#999999"];
 				var colours = {"aliceblue": "#f0f8ff", "antiquewhite": "#faebd7", "aqua": "#00ffff", "aquamarine": "#7fffd4", "azure": "#f0ffff", "beige": "#f5f5dc", "bisque": "#ffe4c4", "black": "#000000", "blanchedalmond": "#ffebcd", "blue": "#0000ff", "blueviolet": "#8a2be2", "brown": "#a52a2a", "burlywood": "#deb887", "cadetblue": "#5f9ea0", "chartreuse": "#7fff00", "chocolate": "#d2691e", "coral": "#ff7f50", "cornflowerblue": "#6495ed", "cornsilk": "#fff8dc", "crimson": "#dc143c", "cyan": "#00ffff", "darkblue": "#00008b", "darkcyan": "#008b8b", "darkgoldenrod": "#b8860b", "darkgray": "#a9a9a9", "darkgreen": "#006400", "darkkhaki": "#bdb76b", "darkmagenta": "#8b008b", "darkolivegreen": "#556b2f", "darkorange": "#ff8c00", "darkorchid": "#9932cc", "darkred": "#8b0000", "darksalmon": "#e9967a", "darkseagreen": "#8fbc8f", "darkslateblue": "#483d8b", "darkslategray": "#2f4f4f", "darkturquoise": "#00ced1", "darkviolet": "#9400d3", "deeppink": "#ff1493", "deepskyblue": "#00bfff", "dimgray": "#696969", "dodgerblue": "#1e90ff", "firebrick": "#b22222", "floralwhite": "#fffaf0", "forestgreen": "#228b22", "fuchsia": "#ff00ff", "gainsboro": "#dcdcdc", "ghostwhite": "#f8f8ff", "gold": "#ffd700", "goldenrod": "#daa520", "gray": "#808080", "green": "#008000", "greenyellow": "#adff2f", "honeydew": "#f0fff0", "hotpink": "#ff69b4", "indianred ": "#cd5c5c", "indigo ": "#4b0082", "ivory": "#fffff0", "khaki": "#f0e68c", "lavender": "#e6e6fa", "lavenderblush": "#fff0f5", "lawngreen": "#7cfc00", "lemonchiffon": "#fffacd", "lightblue": "#add8e6", "lightcoral": "#f08080", "lightcyan": "#e0ffff", "lightgoldenrodyellow": "#fafad2", "lightgrey": "#d3d3d3", "lightgreen": "#90ee90", "lightpink": "#ffb6c1", "lightsalmon": "#ffa07a", "lightseagreen": "#20b2aa", "lightskyblue": "#87cefa", "lightslategray": "#778899", "lightsteelblue": "#b0c4de", "lightyellow": "#ffffe0", "lime": "#00ff00", "limegreen": "#32cd32", "linen": "#faf0e6", "magenta": "#ff00ff", "maroon": "#800000", "mediumaquamarine": "#66cdaa", "mediumblue": "#0000cd", "mediumorchid": "#ba55d3", "mediumpurple": "#9370d8", "mediumseagreen": "#3cb371", "mediumslateblue": "#7b68ee", "mediumspringgreen": "#00fa9a", "mediumturquoise": "#48d1cc", "mediumvioletred": "#c71585", "midnightblue": "#191970", "mintcream": "#f5fffa", "mistyrose": "#ffe4e1", "moccasin": "#ffe4b5", "navajowhite": "#ffdead", "navy": "#000080", "oldlace": "#fdf5e6", "olive": "#808000", "olivedrab": "#6b8e23", "orange": "#ffa500", "orangered": "#ff4500", "orchid": "#da70d6", "palegoldenrod": "#eee8aa", "palegreen": "#98fb98", "paleturquoise": "#afeeee", "palevioletred": "#d87093", "papayawhip": "#ffefd5", "peachpuff": "#ffdab9", "peru": "#cd853f", "pink": "#ffc0cb", "plum": "#dda0dd", "powderblue": "#b0e0e6", "purple": "#800080", "red": "#ff0000", "rosybrown": "#bc8f8f", "royalblue": "#4169e1", "saddlebrown": "#8b4513", "salmon": "#fa8072", "sandybrown": "#f4a460", "seagreen": "#2e8b57", "seashell": "#fff5ee", "sienna": "#a0522d", "silver": "#c0c0c0", "skyblue": "#87ceeb", "slateblue": "#6a5acd", "slategray": "#708090", "snow": "#fffafa", "springgreen": "#00ff7f", "steelblue": "#4682b4", "tan": "#d2b48c", "teal": "#008080", "thistle": "#d8bfd8", "tomato":  "#ff6347", "turquoise":	"#40e0d0", "violet":  "#ee82ee", "wheat":  "#f5deb3", "white":	"#ffffff", "whitesmoke":  "#f5f5f5", "yellow": "#ffff00", "yellowgreen": "#9acd32",
@@ -148,7 +140,7 @@
 					arrClass;
 				// Test: optSource
 				if (typeof (sourceOptions) !== "object") {
-					// console.log("Empty source");
+					// Empty source
 					return {};
 				}
 				// Get a working copy for the sourceOptions
@@ -156,7 +148,7 @@
 				
 				// Test: strClass
 				if (typeof (strClass) !== "string" || strClass.lenght === 0) {
-					// console.log("no string class");
+					// no string class;
 					return sourceOptions;
 				}
 				// Test: namespace
@@ -165,8 +157,7 @@
 					if (sourceOptions['default-namespace'] && (typeof (sourceOptions['default-namespace']) === "string" || $.isArray(sourceOptions['default-namespace']))) {
 						namespace = sourceOptions['default-namespace'];
 					} else {
-						// This a not a valid namespace
-						// console.log("no namespace");
+						// This a not a valid namespace (no namespace)
 						return sourceOptions;
 					}
 				}
@@ -231,7 +222,6 @@
 						for (i = 0, _ilen = arrParameter.length; i < _ilen; i += 1) {
 							valIsNext = (i + 2 === _ilen ? true : false);
 							isVal = (i + 1 === _ilen ? true : false);
-							// console.log('propName:' + propName + ' value:' + arrParameter[i] + ' valIsNext:' + valIsNext + ' isVal:' + isVal);
 							// Check if that is the default value and make a reset to the parameter name if applicable
 							if (isVal && _ilen === 1 && sourceOptions['default-option']) {
 								propName = sourceOptions['default-option'];
@@ -261,7 +251,6 @@
 									}
 									break;
 								case "number":
-									// console.log(arrParameter[i]);
 									if (!isNaN(parseInt(arrParameter[i], 10))) {
 										arrParameter[i] = parseInt(arrParameter[i], 10);
 									} else {
@@ -288,7 +277,6 @@
 							if (currObj[propName + '-autocreate']) {
 								autoCreateMe = true;
 							}
-							// console.log('After propName:' + propName + ' value:' + arrParameter[i] + ' valIsNext:' + valIsNext + ' isVal:' + isVal);
 							if (valIsNext && arrParameter[i] !== undefined) {
 								// Keep the Property Name
 								propName = arrParameter[i];
@@ -335,10 +323,13 @@
 				return sourceOptions;
 			}
 			
+			// Set the new class options if defined
+			o = setClassOptions(o, ($(self).attr('class') !== undefined ? $(self).attr('class') : ""));
+			
 			// Add headers information to the table parsed data structure
 			// Similar sample of code as the HTML Table validator
 			function addTblHeaders(tblparser) {
-			var i, j, k, m, currRow;
+			var i, j, k, m, currRow, currCell;
 			
 			// Set ID and Header for the table head
 			for (i = 0; i < tblparser.theadRowStack.length; i += 1) {
@@ -397,7 +388,8 @@
 				var rowheadersgroup = [],
 					rowheaders = [],
 					currrowheader = [],
-					ongoingRowHeader = [];
+					ongoingRowHeader = [], 
+					coldataheader = [];
 				
 				// Get or Generate a unique ID for each header in this row
 				if (currRow.headerset && !currRow.idsheaderset) { 
@@ -412,13 +404,12 @@
 						rowheaders = rowheaders.concat(currRow.header[j]);
 					}
 				}
-				// rowheaders = (currRow.idsheaderset ? currRow.idsheaderset + ' ' + rowheaders : rowheaders);
 				rowheaders = currRow.idsheaderset.concat(rowheaders);
 				for (j = 0; j < currRow.cell.length; j += 1) {
 					
 					if ((j === 0) || (j > 0 && currRow.cell[j].uid !== currRow.cell[(j - 1)].uid)){
-						var currCell = currRow.cell[j],
-							coldataheader = [];
+						currCell = currRow.cell[j];
+						coldataheader = [];
 						
 						if (!currCell.header) { // Imediate header
 							currCell.header = [];
@@ -623,8 +614,6 @@
 				
 				tblMultiplier.push([nbCells, headerlevel]);
 				
-				// console.log(tblMultiplier);
-				
 				var TotalRowValue = tblMultiplier[0][0];
 				
 				for (i = 1; i < tblMultiplier.length; i += 1){
@@ -701,7 +690,8 @@
 			
 			
 			function helper2CalcHTick(parsedDataCell, headerlevel){
-				var kIndex;
+				var kIndex,
+					theadRowStack_len = parsedDataCell.groupZero.theadRowStack.length - 1;
 				if (parsedDataCell.child.length === 0) {
 					return;
 				}
@@ -720,11 +710,10 @@
 						calcTick.push([(!o.uniformtick ? internalCumul : uniformCumul), $(parsedDataCell.child[kIndex].elem).text()]);
 					}
 					
-					if (headerlevel === (parsedData.theadRowStack.length - 1) || 
-						((parsedDataCell.rowpos - 1) < (parsedData.theadRowStack.length - 1) && 
-						(parsedData.theadRowStack.length - 1) <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))) ||
-						
-						(parsedData.theadRowStack.length - 1) === ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))) {
+					if (headerlevel === theadRowStack_len || 
+						((parsedDataCell.rowpos - 1) < theadRowStack_len && 
+						theadRowStack_len <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))) ||
+						theadRowStack_len === ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))) {
 							
 						uniformCumul += flotDelta;
 					}
@@ -758,12 +747,12 @@
 				}
 				
 				// Get the appropriate ticks
-				var nbCells = 0;
-				var parsedDataCell;
-				var nbTotSlots = 0;
-				// var tblMultiplier = [];
+				var nbCells = 0,
+					parsedDataCell,
+					nbTotSlots = 0,
+					headerlevel = 0;
+					
 				tblMultiplier = [];
-				var headerlevel = 0;
 				for (i = 0; i < parsedData.theadRowStack[0].elem.cells.length; i += 1) {
 					
 					parsedDataCell = $(parsedData.theadRowStack[0].elem.cells[i]).data().tblparser;
@@ -801,8 +790,6 @@
 				
 				UseHeadRow = (!o.labelposition || (o.labelposition && o.labelposition > parsedData.theadRowStack.length) ? parsedData.theadRowStack.length : o.labelposition) - 1;
 				
-				
-				// var calcTick = [];
 				calcTick = [];
 				
 				var cumulFlotValue = 0;
@@ -820,10 +807,7 @@
 					}
 					
 					if (parsedDataCell.colpos >= dataColgroupStart && (parsedDataCell.type === 1 || parsedDataCell.type === 7))  {
-						
-						
-						
-						// parsedDataCell.flotDelta = (!o.uniformtick ? (TotalRowValue / nbCells) : (TotalRowValue / nbTotSlots));
+
 						parsedDataCell.flotDelta = (!o.uniformtick ? (TotalRowValue / nbCells) : 1);
 						
 						
@@ -831,8 +815,8 @@
 							smallestHorizontalFlotDelta = parsedDataCell.flotDelta;
 						}
 						parsedDataCell.flotValue = cumulFlotValue;
-						// console.log(parsedDataCell);
-						if (headerlevel === UseHeadRow || ((parsedDataCell.rowpos - 1) < UseHeadRow && UseHeadRow <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1)))){
+
+						if (headerlevel === UseHeadRow || ((parsedDataCell.rowpos - 1) < UseHeadRow && UseHeadRow <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1)))) {
 							calcTick.push([(!o.uniformtick ? cumulFlotValue : uniformCumul), $(parsedDataCell.elem).text()]);
 						}
 						
@@ -965,7 +949,6 @@
 					}
 				}
 				html2 = arr.join("\n");
-				// alert(html2); // see the source 
 				$(html2).insertAfter(srcTbl).hide(); //visible, for debugging and checking;
 				return $(html2);
 			}
@@ -988,18 +971,13 @@
 				"type-autocreate": true,
 				"color-typeof": "string",
 				"color-autocreate": true
-			};
-
-
-			// Retrieve the parsed data
-			var parsedData = $(self).data().tblparser;
+			},
+				parsedData = $(self).data().tblparser, // Retrieve the parsed data
+				horizontalCalcTick,
+				verticalCalcTick;
 			
 			// Fix the parsed data
 			addTblHeaders(parsedData);
-			// setTblCells(parsedData);
-			
-			var horizontalCalcTick,
-				verticalCalcTick;
 			
 			//
 			// Calculate the tick for a table where x is horizontal
@@ -1024,7 +1002,7 @@
 				j,
 				figCaptionElem,
 				tblCaptionHTML,
-				placeHolder,
+				$placeHolder,
 				tblSrcContainer,
 				tblSrcContainerSummary;
 			
@@ -1033,7 +1011,11 @@
 			if (o.type === "pie") {
 				// Use Reverse table axes
 				// Create a chart/ place holder, by series
-				var pieLabelFormater = function (label, series) {
+				var pieLabelFormater,
+					mainFigureElem = $('<figure />').insertAfter(srcTbl),
+					_graphclasslen;
+				
+				pieLabelFormater = function (label, series) {
 					var textlabel;
 					if (!o.decimal) {
 						textlabel = Math.round(series.percent);
@@ -1046,9 +1028,7 @@
 						textlabel = label + '<br/>' + textlabel;
 					}
 					return textlabel + '%';
-				},
-					mainFigureElem = $('<figure />').insertAfter(srcTbl),
-					_graphclasslen;
+				};
 				mainFigureElem.addClass('wb-charts'); // Default
 				if (o.graphclass) {
 					if ($.isArray(o.graphclass)) {
@@ -1091,7 +1071,11 @@
 							header = dataGroup.col[i].cell[j].row.header;
 							
 							
-							dataSeries.push([valueCumul, getCellValue($(dataGroup.col[i].cell[rIndex].elem).text()).cellValue]);
+							dataSeries.push(
+								[
+									valueCumul, 
+									getCellValue($(dataGroup.col[i].cell[rIndex].elem).text()).cellValue
+								]);
 							
 							valueCumul += header[header.length - 1].flotDelta;
 						
@@ -1105,7 +1089,7 @@
 
 					
 					// Create the Canvas
-					placeHolder = $('<div />');
+					$placeHolder = $('<div />');
 					
 					// Create a sub Figure or use the main one ?
 					var pieChartLabelText = "";
@@ -1116,35 +1100,37 @@
 						pieChartLabelText = tblCaptionText;
 						
 						// Use the main Container
-						$(mainFigureElem).append(placeHolder);
+						$(mainFigureElem).append($placeHolder);
 						
 					} else {
 					
 						// Use a sub container
-						var subFigureElem = $('<figure />').appendTo(mainFigureElem);
-						var subfigCaptionElem = $('<figcaption />');
+						var $subFigureElem = $('<figure />').appendTo(mainFigureElem),
+							$subfigCaptionElem = $('<figcaption />');
 						
 						header = parsedData.lstrowgroup[0].row[rIndex].header;
 						
 						pieChartLabelText = $(header[header.length - 1].elem).text();
 						
-						subFigureElem.append(subfigCaptionElem);
-						subfigCaptionElem.append($(header[header.length - 1].elem).html());
+						$subFigureElem.append($subfigCaptionElem);
+						$subfigCaptionElem.append($(header[header.length - 1].elem).html());
 						
-						subFigureElem.append(placeHolder);
+						$subFigureElem.append($placeHolder);
 					}
 						
 					
 					// Canvas Size
-					placeHolder.css('height', o.height);
-					placeHolder.css('width', o.width);
+					$placeHolder.css('height', o.height).css('width', o.width);
 
 					
 					
-					placeHolder.attr('role', 'img');
+					$placeHolder.attr('role', 'img');
 					// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-					placeHolder.attr('aria-label', pieChartLabelText + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
+					$placeHolder.attr('aria-label', pieChartLabelText + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
 					
+					//
+					// Pie Charts Options
+					//
 					var pieOptions = {
 						series: {
 							pie: {
@@ -1152,11 +1138,11 @@
 							}
 						}
 					};
-
+					// Hide the legend,
 					if (o.nolegend) {
 						pieOptions.legend = {show: false};
 					}
-					
+					// Add pie chart percentage label on slice
 					if (o.percentlegend) {
 						pieOptions.series.pie.radius = o.pieradius / 100;
 						pieOptions.series.pie.label = {
@@ -1164,39 +1150,37 @@
 							radius: o.pielblradius / 100,
 							formatter: pieLabelFormater
 						};
+						// Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
 						if (o.piethreshold) {
 							pieOptions.series.pie.label.threshold = o.piethreshold;
 						}
 					}
+					// Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
 					if (o.pietilt) {
 						pieOptions.series.pie.tilt = o.pietilt;
 					}
-					
-					if (o.pietilt) {
-						pieOptions.series.pie.tilt = o.pietilt;
-					}
-					
+					// Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
 					if (o.pieinnerradius) {
 						pieOptions.series.pie.innerRadius = o.pieinnerradius / 100;
 					}
-					
+					// Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
 					if (o.piestartangle) {
 						pieOptions.series.pie.startAngle = o.piestartangle / 100;
 					}
-
+					//	Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
 					if (o.piehighlight) {
 						pieOptions.series.pie.highlight = o.piehighlight / 100;
 					}
 					
 					
 					// Create the graphic
-					$.plot(placeHolder, allSeries, pieOptions);
+					$.plot($placeHolder, allSeries, pieOptions);
 					
 					if (!o.legendinline) {
 						// Move the legend under the graphic
-						$('.legend > div', placeHolder).remove();
-						$('.legend > table', placeHolder).removeAttr('style').addClass('font-small');
-						$(placeHolder).css('height', 'auto');
+						$('.legend > div', $placeHolder).remove();
+						$('.legend > table', $placeHolder).removeAttr('style').addClass('font-small');
+						$placeHolder.css('height', 'auto');
 					}
 					
 					allSeries = [];
@@ -1229,12 +1213,9 @@
 				return;
 			}
 			
-			
-			
-			
-			var nbBarChart = 0;
-			var barDelta;
-			var rowOptions;
+			var nbBarChart = 0,
+				barDelta,
+				rowOptions;
 			
 			// Count nbBarChart, 
 			for (i=0;i<parsedData.lstrowgroup[0].row.length; i++) {
@@ -1288,12 +1269,14 @@
 							}
 							
 						}
-						
-						dataSeries.push([valuePoint, getCellValue($(parsedData.lstrowgroup[0].row[i].cell[j].elem).text()).cellValue]);
-						
+						// Add the data point
+						dataSeries.push(
+							[
+								valuePoint, 
+								getCellValue($(parsedData.lstrowgroup[0].row[i].cell[j].elem).text()).cellValue
+							]);
 						valueCumul += header[header.length - 1].flotDelta;
-
-						datacolgroupfound ++;
+						datacolgroupfound++;
 					}
 				}
 				
@@ -1301,33 +1284,32 @@
 				
 				// Get the graph type
 				
-				if(!rowOptions.type){
-					// console.log('defaultSET');
+				if (!rowOptions.type) {
 					rowOptions.type = o.type;
 				}
 				
-				if (rowOptions.type === "line") {
+				if (rowOptions.type === 'line') {
 					allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color))});
-				} else if (rowOptions.type === "area") {
+				} else if (rowOptions.type === 'area') {
 					allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color)),
 					lines: { show: true, fill: true }
 					});
-				} else if (rowOptions.type === "bar" || (barDelta && rowOptions.type === "stacked")) {
+				} else if (rowOptions.type === 'bar' || (barDelta && rowOptions.type === 'stacked')) {
 					allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color)),
 					bars: {
 						show: true,
 						barWidth: (1 / nbBarChart * 0.9),
-						align: "center"
+						align: 'center'
 					}});
 					
-				} else if (rowOptions.type === "stacked") {
+				} else if (rowOptions.type === 'stacked') {
 					allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color)),
 					bars: {
 						show: true,
 						barWidth: 0.9,
-						align: "center"
+						align: 'center'
 					}});
-				} else if (rowOptions.type === "pie") {
+				} else if (rowOptions.type === 'pie') {
 					
 					allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color))});
 					
@@ -1358,18 +1340,17 @@
 			$(figCaptionElem).append(tblCaptionHTML);
 			
 			// Create the placeholder
-			placeHolder = $('<div />');
+			$placeHolder = $('<div />');
 			
-			$(figureElem).append(placeHolder);
+			$(figureElem).append($placeHolder);
 			
 			// Canvas Size
-			$(placeHolder).css('height', o.height);
-			$(placeHolder).css('width', o.width);
+			$placeHolder.css('height', o.height).css('width', o.width);
 			
 			
-			$(placeHolder).attr('role', 'img');
+			$placeHolder.attr('role', 'img');
 			// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-			$(placeHolder).attr('aria-label', $('caption', srcTbl).text() + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
+			$placeHolder.attr('aria-label', $('caption', srcTbl).text() + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
 			
 			
 			if (!o.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
@@ -1393,13 +1374,15 @@
 	
 			// Create the graphic
 			
-			var plotParameter = {xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })};
+			var plotParameter = {
+					xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })
+				};
 			if (o.topvalue) {
 				if (!plotParameter.yaxis) {
 					plotParameter.yaxis = {};
 				}
 				if (o.topvaluenegative) {
-					o.topvalue = (o.topvalue * -1);
+					o.topvalue *= -1;
 				}
 				plotParameter.yaxis.max = o.topvalue;
 			}
@@ -1408,7 +1391,7 @@
 					plotParameter.yaxis = {};
 				}
 				if (o.bottomvaluenegative) {
-					o.bottomvalue = (o.bottomvalue * -1);
+					o.bottomvalue *= -1;
 				}
 				plotParameter.yaxis.min = o.bottomvalue;
 			}
@@ -1419,18 +1402,18 @@
 				plotParameter.yaxis.ticks = o.steps;
 			} 
 			 
-			$.plot(placeHolder, allSeries, plotParameter);
+			$.plot($placeHolder, allSeries, plotParameter);
 			
 			
 			if (!o.legendinline) {
 				// Move the legend under the graphic
-				$('.legend > div', placeHolder).remove();
-				$('.legend > table', placeHolder).removeAttr('style').addClass('font-small');
-				$(placeHolder).css('height', 'auto');
+				$('.legend > div', $placeHolder).remove();
+				$('.legend > table', $placeHolder).removeAttr('style').addClass('font-small');
+				$placeHolder.css('height', 'auto');
 			}
 			if (o.nolegend) {
 				// Remove the legend
-				$('.legend', placeHolder).remove();
+				$('.legend', $placeHolder).remove();
 			}
 			
 			// Destroy the temp table if used
