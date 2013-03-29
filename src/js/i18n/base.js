@@ -186,13 +186,17 @@
 		'%geo-zoomin': '@%geo-zoomin@',
 		'%geo-zoomout': '@%geo-zoomout@',
 		'%geo-zoomworld': '@%geo-zoomworld@',
+		'%geo-zoomslider': '@%geo-zoomslider@',
 		'%geo-zoomfeature': '@%geo-zoomfeature@',
 		'%geo-ariamap': '@%geo-ariamap@',
 		'%geo-accessibilize': '@%geo-accessibilize@',
+		'%geo-accessibilizetitle': '@%geo-accessibilizetitle@',
 		'%geo-togglelayer': '@%geo-togglelayer@',
 		'%geo-hiddenlayer': '@%geo-hiddenlayer@',
 		'%geo-basemapurl': '@%geo-basemapurl@',
 		'%geo-basemaptitle': '@%geo-basemaptitle@',
+		'%geo-select': '@%geo-select@',
+		'%geo-labelselect': '@%geo-labelselect@',
 		/* Disable/enable PE */
 		'%pe-disable': '@%pe-disable@',
 		'%pe-enable': '@%pe-enable@'
