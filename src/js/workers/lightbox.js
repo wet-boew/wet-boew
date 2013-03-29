@@ -46,14 +46,15 @@
 				slideshowAuto : false,
 				onComplete : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
-						$lbCurrent = $lbTitle.next();
+						$lbCurrent = $lbContent.find('#cboxCurrent'),
+						alt_text = $lbTitle.text() + ($lbCurrent.length !== 0 ? ' - ' + $lbCurrent.text() : '');
 
 					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr('tabindex', '0');
-					$lbLoadedContent.attr('aria-label', $lbTitle.text() + ' ' + $lbCurrent.text());
+					$lbLoadedContent.attr('aria-label', alt_text);
 					if ($lbLoadedContent.children('.cboxPhoto').length === 0) {
 						$lbLoadedContent.attr('role', 'document');
 					} else {
-						$lbLoadedContent.children().attr('alt', $lbTitle.text());
+						$lbLoadedContent.children().attr('alt', alt_text);
 					}
 					pe.focus($lbLoadedContent);
 					open = true;
