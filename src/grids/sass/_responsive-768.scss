@@ -101,6 +101,21 @@ details {
 	}
 }
 
+#wb-main-in {
+	div {
+		&:not([class*="span-"]) {
+			[class*="span-"] {
+				width: auto;
+			}
+		}
+	}
+}
+
+[class*=border-] {
+	background: none;
+	outline: none;
+} 
+
 .clear {
 	+ {
 		[class*=span-] {
