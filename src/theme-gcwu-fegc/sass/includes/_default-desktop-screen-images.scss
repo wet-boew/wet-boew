@@ -47,42 +47,9 @@
 
 #gcwu-psnb {
 	.mb-menu {
-		&, li {
-			background: #23447e url(../images/menu-bg.gif) repeat-x;
-		}
-		.nav-current {
-			background: #0f315b url(../images/menu-border.gif) repeat-x scroll 0 0;
-		}
 		.expandicon {
 			padding-right: 0.79em;
 			background: url(../images/menu-arrow.gif) no-repeat right center;
-		}
-		.mb-sm-open {
-			border-bottom: 4px solid #0F315B;
-			@include background-image(linear-gradient(bottom, #EEE, #CCC));
-			li {
-				background: transparent;
-				min-height: 0;
-				border: none;
-			}
-			.nav-current {
-				background: none;
-			}
-		}
-	}
-	.mb-active {
-		a {
-			&:hover, &:link, &:visited {
-				&.mb-has-sm {
-					background-color: #CCC;
-					color: #000;
-				}
-			}
-		}
-	}
-	.mb-sm-open {
-		li {
-			background: transparent;
 		}
 	}
 }
