@@ -251,23 +251,23 @@
 			@include no-bullet;
 			li {
 				clear: left;
-				margin-bottom: 10px;
+				margin-bottom: 10px !important;
 				overflow: hidden;
 				span { display: block; }
 			}
 			img {
 				float: left;
-				margin-right: 10px !important;
+				margin: 0 10px;
+			}
+			p {
+				padding-left: 10px;
 			}
 		}
 		img {
 			width: 100px !important;
 			height: 62px !important;
 			float: left;
-			margin-left: 0 10px;
-		}
-		p {
-			padding-left: 10px;
+			margin-left: 10px;
 		}
 		& > * {
 			padding: 10px;
