@@ -46,12 +46,12 @@
 
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length !== 0) {
-				submenu.prev().children('a').addClass('nav-current');
+				submenu.prev().children('a').addClass('nav-current-nocss');
 			}
 			if (pe.secnav.length !== 0) {
 				current = pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
 				submenu = current.parents('ul');
-				submenu.prev().children('a').addClass('nav-current');
+				submenu.prev().children('a').addClass('nav-current-nocss');
 			}
 			if (wet_boew_theme.gridsmenu.length !== 0) {
 				current = pe.menu.navcurrent(wet_boew_theme.gridsmenu, wet_boew_theme.bcrumb);
@@ -104,7 +104,9 @@
 				node,
 				$document = $(document),
 				home_href,
-				header;
+				header,
+				sessionSettings,
+				session;
 
 			// Content pages only
 			if (wet_boew_theme.sft.length !== 0) {
@@ -177,10 +179,18 @@
 				wet_boew_theme.title[0].className += ' ui-bar-b';
 			
 				// Build the settings popup
+				session = document.getElementById('wb-session');
 				lang_links = wet_boew_theme.fullhd.find('li[id*="-lang"]');
 				settings_popup = popup + ' id="popupSettings"' + popup_settings;
 				settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open + listView + '>';
+				if (session !== null) {
+					sessionSettings = session.getElementsByClassName('settings');
+					for (i = 0, len = sessionSettings.length; i !== len; i += 1) {
+						settings_popup += '<li>' + sessionSettings[i].innerHTML + '</li>';
+					}
+					settings_popup += '<li>' + session.getElementsByClassName('session')[0].innerHTML + '</li>';
+				}
 				if (lang_links.length !== 0) {
 					settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
 				}

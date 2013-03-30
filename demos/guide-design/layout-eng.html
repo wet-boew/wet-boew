@@ -37,6 +37,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!--<![endif]-->
 
 <!-- CustomCSSStart -->
+<style>
+#tableshowhide th {
+	text-align: left;
+}
+#tableshowhide td {
+	text-align: center;
+}
+</style>
 <!-- CustomCSSEnd -->
 </head>
 
@@ -107,7 +115,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h2>Table of contents</h2>
   <ul>
     <li><a href="#grids">Grids</a></li>
-	<li><a href="#mobile-sh">Mobile show and hide</a></li>
+	<li><a href="#mobile-sh">Screen size show and hide</a></li>
     <li><a href="#form-layout">Form layout</a></li>
     <li><a href="#scrolling">Page length and scrolling</a></li>
   </ul>
@@ -123,60 +131,109 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     <li> Avoid using this CSS for strictly cosmetic or decorative purposes.</li>
   </ul>
 </div>
-<div class="border-left float-right">
-  <div class="span-2 margin-bottom-none">
+<div class="span-2">
     <h3 class="margin-top-none margin-bottom-none">Demo</h3>
     <p>Grids cells are invisible but have been coloured in for demonstration purposes:</p>
-    <div class="grid-12">
       <div class="span-1 background-light align-center row-start margin-bottom-medium">
         <p>1</p>
       </div>
-      <div class="span-1 background-light align-center margin-bottom-medium">
+      <div class="span-1 background-light align-center row-end margin-bottom-medium">
         <p>2</p>
       </div>
-      <div class="span-1 background-light align-center margin-bottom-medium">
-        <p>3</p>
-      </div>
-      <div class="span-1 background-light align-center row-end margin-bottom-medium">
-        <p>4</p>
-      </div>
       <div class="clear"></div>
-    </div>
-    <div class="span-1 background-light align-center row-start margin-bottom-medium">
+    <div class="span-2 background-light align-center margin-bottom-medium">
       <p>1</p>
-    </div>
-    <div class="span-1 background-light align-center row-end margin-bottom-medium">
-      <p>2</p>
     </div>
     <div class="clear"></div>
     <p class="float-right"><a href="../grids/grid-base-eng.html" class="button">View all grid options</a></p>
-  </div>
 </div>
 <div class="clear"></div>
 
-<h2 id="mobile-sh">Mobile show and hide</h2>
+<h2 id="mobile-sh">Screen size show and hide</h2>
+<div class="span-6">
+  <p>Content can be hidden from small, medium and large screen users with CSS. </p>
+  <table class="table-bordered width-100" id="tableshowhide">
+	<thead>
+	  <tr>
+		<th>Class name</th>
+		<th>Large screens (e.g., desktop)<br /><span class="font-small">Viewport: 960px+</span><br /><span class="font-small">Screen: 1024px+</span></th>
+		<th>Medium screens (e.g., tablet)<br /><span class="font-small">Viewport: 768px to 959px</span><br /><span class="font-small">Screen: 768px to 1023px</span></th>
+		<th>Small screens (e.g., smartphone) <br /><span class="font-small">Viewport: 0px to 767px</span><br /><span class="font-small">Screen: 0px to 767px</span></th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+		<th><code>.large-hide</code></th>
+		<td>Hidden</td>
+		<td class="background-highlight">Visible</td>
+		<td class="background-highlight">Visible</td>
+	  </tr>
+	  <tr>
+		<th><code>.large-show</code></th>
+		<td class="background-highlight">Visible</td>
+		<td>Hidden</td>
+		<td>Hidden</td>
+	  </tr>
+	  <tr>
+		<th><code>.medium-hide</code></th>
+		<td class="background-highlight">Visible</td>
+		<td>Hidden</td>
+		<td class="background-highlight">Visible</td>
+	  </tr>
+	  <tr>
+		<th><code>.medium-show</code></th>
+		<td>Hidden</td>
+		<td class="background-highlight">Visible</td>
+		<td>Hidden</td>
+	  </tr>
+	  <tr>
+		<th><code>.small-hide</code></th>
+		<td class="background-highlight">Visible</td>
+		<td class="background-highlight">Visible</td>
+		<td>Hidden</td>
+	  </tr>
+	  <tr>
+		<th><code>.small-show</code></th>
+		<td>Hidden</td>
+		<td>Hidden</td>
+		<td class="background-highlight">Visible</td>
+	  </tr>
+	  <tr>
+		<th><code>.mobile-hide</code><br /><span class="font-small">(small + medium)</span></th>
+		<td class="background-highlight">Visible</td>
+		<td>Hidden</td>
+		<td>Hidden</td>
+	  </tr>
+	  <tr>
+		<th><code>.mobile-show</code><br /><span class="font-small">(small + medium)</span></th>
+		<td>Hidden</td>
+		<td class="background-highlight">Visible</td>
+		<td class="background-highlight">Visible</td>
+	  </tr>
+	</tbody>
+  </table>
+</div>
 <div class="span-4">
-  <p>Desktop content can be hidden from the mobile user with the <code>mobile-hide</code> CSS and additional information can be presented to the mobile user with the <code>mobile-show</code> CSS. </p>
+  <div class="module-info">
+  <p>Note that <code>small-screen-*</code>, <code>medium-screen-*</code> and <code>large-screen-*</code> classes were introduced in WET 3.1.</p>
+  </div>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
-    <li>Since there is no <strong>Full site</strong> feature available to the mobile user, only decorative content or other supporting information should be hidden from them.  Actual content should be available to both the desktop and mobile users so there is no loss of information.</li>
+    <li>Since there is no <strong>Full site</strong> feature available to small and medium screen (mobile) users, only decorative content or other supporting information should be hidden from them.  Actual content should be available to small, medium and large screen users so there is no loss of information.</li>
     <li>Additional information can be presented to the mobile user to improve the mobile experience. </li>
   </ul>
 </div>
-<div class="border-left float-right">
-  <div class="span-2 margin-bottom-none">
-    <h3 class="margin-top-none margin-bottom-none">Demo</h3>
-    <p>This image has <code>mobile-hide</code> applied to it, so it will not show in resolutions &lt;767px.</p>
+<div class="span-2">
+	<h3 class="margin-top-none margin-bottom-none">Demo</h3>
+	<p>This image has <code>mobile-hide</code> applied to it, so it will not show in resolutions &lt;&#160;959px.</p>
 	<img height="168" width="220" alt="Sunflower" src="../grids/images/a7.jpg" class="mobile-hide" />
-	<p>A mobile jump menu will appear below in resolutions &lt;767px.</p>
+	<p>A mobile jump menu will appear below in resolutions &lt;&#160;959px.</p>
 	<ul class="mobile-show margin-top-large margin-bottom-large" data-inset="true" data-role="listview">
 		<li><a href="#">Menu item 1</a></li>
 		<li><a href="#">Menu item 2</a></li>
 		<li><a href="#">Menu item 3</a></li>
 		<li><a href="#">Menu item 4</a></li>
 	</ul>
-   
-  </div>
 </div>
 <div class="clear"></div>
 <h2 id="form-layout"> Form layout</h2>
@@ -187,8 +244,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <p>Place the label above the input field. </p>
   <p>This is the <strong>recommended</strong> layout. This layout allows users to  capture both labels and input fields with a single eye movement. While  this is the simplest of layouts, users can actually process the  information ten times faster than if the information is left-aligned,  as demonstrated in option 3. However, this solution uses more vertical  space. This does not impact the user experience, but may not suit your  specific layout needs. Although this layout is the recommended option,  you can also use the layout provided in option 2, to reduce vertical  space. </p>
 </div>
-<div class="border-left">
-  <div class="span-2 margin-bottom-none">
+<div class="span-2">
     <h4 class="margin-top-none margin-bottom-none color-medium">Demo</h4>
     <form>
       <label for="label-1-1">Label 1</label>
@@ -197,7 +253,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
       <input type="password" size="10" id="label-2-1" name="label-2-1"/>
       <input type="submit" value="Sign in" class="button button-accent"/>
     </form>
-  </div>
 </div>
 <div class="clear"></div>
 <h3>Option 2: Alternate</h3>
@@ -207,8 +262,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     The reason this solution is preferred over left  aligned labels (option 3), is that eye tracking studies have shown that  it creates a clear association between label and field, which reduces  the number of fixations the user has (the eye jumping from spot to  spot) by nearly half. As a result, the reduced eye moments and clear  association reduces eye strain and improves cognition. This translates  to a 50% faster form completion rate. <br />
   </p>
 </div>
-<div class="border-left">
-  <div class="span-2 margin-bottom-none">
+<div class="span-2">
     <h4 class="margin-top-none margin-bottom-none color-medium">Demo</h4>
     <form>
       <div class="span-1 row-start">
@@ -230,7 +284,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
       </div>
       <div class="clear"></div>
     </form>
-  </div>
 </div>
 <div class="clear"></div>
 <h3>Option 3: Never use </h3>
@@ -238,8 +291,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <p>Place the label left-aligned to the input field. </p>
   <p>For the reasons mentioned in options 1 and 2, never use this layout. </p>
 </div>
-<div class="border-left">
-  <div class="span-2 margin-bottom-none">
+<div class="span-2">
     <h4 class="margin-top-none margin-bottom-none color-medium">Demo</h4>
     <form>
       <div class="span-1 row-start margin-bottom-none">
@@ -261,7 +313,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
       </div>
       <div class="clear"></div>
     </form>
-  </div>
 </div>
 -
 <h2 id="scrolling"> Page length and scrolling </h2>
@@ -274,7 +325,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     <li>The real estate above the fold is more valuable than the stuff below the fold for attracting and keeping users' attention. </li>
   </ul>
   <p>So, yes, you can put information below the fold rather than limit  yourself to bite-sized pages. <strong>In fact, if you have a long article, it's  better to present it as one scrolling canvas than to split it across  multiple pageviews. Scrolling beats paging because it's easier for  users to simply keep going down the page than it is to decide whether  or not to click through for a next page of a fragmented article.</strong> But  no, the fact that users scroll doesn't free you from prioritizing and  making sure that anything truly important remains above the fold.  Information foraging theory states that people decide whether to  continue along a path (including scrolling path down a page) based on  the current content's information scent. In other words, users will  scroll below the fold only if the information above it makes them  believe the reset of the page will be valuable. </p>
-  <p class="align-right">-Jakob Nielsen<br> <a  href="http://www.useit.com/alertbox/scrolling-attention.html">Scrolling and Attention</a></p>
+  <p class="align-right">-Jakob Nielsen<br /> <a  href="http://www.useit.com/alertbox/scrolling-attention.html">Scrolling and Attention</a></p>
   </blockquote>
   <div class="clear"></div>
 <p>Other articles on this topic include: </p>

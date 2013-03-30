@@ -1,0 +1,67 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+%grids-util-small-medium-no-margin {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+blockquote {
+	@extend %grids-util-small-medium-no-margin;
+}
+
+form {
+	@extend %grids-util-small-medium-no-margin;
+}
+
+#{headings(2,6)} {
+	@extend %grids-util-small-medium-no-margin;
+}
+
+img {
+	@extend %grids-util-small-medium-no-margin;
+}
+
+p {
+	@extend %grids-util-small-medium-no-margin;
+}
+
+pre {
+	@extend %grids-util-small-medium-no-margin;
+}
+
+table {
+	@extend %grids-util-small-medium-no-margin;
+}
+
+ul {
+	&.button-group {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+.date-month {
+	a {
+		color: #fff !important;
+	}
+}
+
+%util-small-medium-bb-pre7-background-333-important-color-f9f9f9-important {
+	background: #333 !important;
+	color: #f9f9f9 !important;
+}
+.bb-pre7 {
+	input, textarea, select {
+		// Can't use pseudo-focus since fix is needed for both focused and activated states
+		&:focus, &:active { 
+			@extend %util-small-medium-bb-pre7-background-333-important-color-f9f9f9-important;
+		}
+	}
+	.ui-input-text, .ui-input-search {
+		&.ui-focus {
+			@extend %util-small-medium-bb-pre7-background-333-important-color-f9f9f9-important;
+		}
+	}
+}

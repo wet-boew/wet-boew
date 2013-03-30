@@ -5,7 +5,7 @@
 /*
  * GeoMap plugin
  */
-/*global jQuery: false, wet_boew_geomap: false, OpenLayers: false, Proj4js: false*/
+/*global jQuery: false, wet_boew_geomap: false, OpenLayers: false, Proj4js: false, ActiveXObject: false*/
 (function($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -16,12 +16,15 @@
 		selectControl,
 		queryLayers = [],
 		overlays = 0,
-		overlaysLoaded = 0;
+		overlaysLoaded = 0,
+		overlaysLoading = {}, // Status of overlayLoading (true = still loading)
+		overlayTimeout = 2000; // Timeout for overlay loading in milliseconds
 
 	/* local reference */
 	_pe.fn.geomap = {
 		type: 'plugin',				
 		depends: ['openlayers', 'proj4js'],
+		polyfills: ['detailssummary'],
 		debug: false,
 		_exec: function(elm) {	
 			var opts,
@@ -43,16 +46,18 @@
 				useMousePosition: false,
 				debug: false,
 				useLegend: false,
-				useTab: false
+				useTab: false,
+				useMapControls: true
 			};
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
 			overrides = {				
 				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
 				useMousePosition: elm.hasClass('position') ? true : undefined,
-				debug: elm.hasClass('debug') ? true : false,
-				useLegend: elm.hasClass('legend') ? true : false,
-				useTab: elm.hasClass('tab') ? true : false
+				debug: elm.hasClass('debug'),
+				useLegend: elm.hasClass('legend'),
+				useTab: elm.hasClass('tab'),
+				useMapControls: elm.hasClass('static') ? false : true
 			};			
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
@@ -126,21 +131,20 @@
 			OpenLayers.Util.extend(panZoomBar, {
 				draw: function() {
 					// initialize our internal div
-					var oButtons = this;
-					var centered = new OpenLayers.Pixel(7.5, 81);
+					var oButtons = this,
+						centered = new OpenLayers.Pixel(7.5, 81),
+						buttonArray = ['zoomworld', 'zoomout', 'zoomin', 'pandown', 'panright', 'panup', 'panleft'],
+						buttonImg = ['zoom-world-mini', 'zoom-minus-mini', 'zoom-plus-mini', 'south-mini', 'east-mini', 'north-mini', 'west-mini'],
+						len = buttonArray.length;
 					OpenLayers.Control.prototype.draw.apply(oButtons, arguments);
 			
 					// place the controls
 					oButtons.buttons = [];
 					
-					oButtons._addButton('panup', 'transparent.png');
-					oButtons._addButton('panleft', 'transparent.png');
-					oButtons._addButton('panright', 'transparent.png');
-					oButtons._addButton('pandown', 'transparent.png');				
-					oButtons._addButton('zoomin', 'transparent.png');
+					while (len--) {
+						oButtons._addButton(buttonArray[len], buttonImg[len] + '.png');
+					}
 					oButtons._addZoomBar(centered.add(7.5,0));
-					oButtons._addButton('zoomout', 'transparent.png');
-					oButtons._addButton('zoomworld', 'transparent.png');
 			
 					// add custom CSS styles
 					$(oButtons.slider).attr('class', 'olControlSlider').find('img').attr('class', 'olControlSlider');
@@ -155,13 +159,15 @@
 			 * Add alt text to map controls and make tab-able
 			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
 			 */
-			var controls = _pe.main.find('div.olControlPanZoomBar div').get(),
+			var controlBar = _pe.main.find('.olControlPanZoomBar')[0],
+				controls = controlBar.getElementsByTagName('div'),
 				len = controls.length,
 				control,
 				img,
 				altTxt,
 				actn;
 
+			controlBar.setAttribute('role', 'toolbar');
 			while (len--) {
 				control = controls[len];
 				img = control.getElementsByTagName('img')[0];
@@ -171,15 +177,19 @@
 					if (actn !== undefined) {
 						// add alt text
 						altTxt = _pe.dic.get('%geo-' + actn);
+						control.setAttribute('aria-label', altTxt);
 						control.setAttribute('title', altTxt);
-						control.classList.add('olControl' + actn);
-						img.tabIndex = 0;
+						control.setAttribute('role', 'button');
+						control.className += ' olControl' + actn;
+						control.tabIndex = 0;
 					} else {
-						// Add null alt text to slider image since should be ignored
-						altTxt = '';
+						// Special handling for the zoom slider
+						altTxt = _pe.dic.get('%geo-zoomslider');
+						control.setAttribute('aria-label', altTxt);
+						control.setAttribute('title', altTxt);
 					}
 					img.setAttribute('alt', altTxt);
-					img.classList.add('olControl' + actn);
+					img.className +=  ' olControl' + actn;
 				}
 			}
 		}, // end addPanZoomBar function
@@ -489,12 +499,15 @@
 			// add a row for each feature
 			var $row = $('<tr>'),
 				cols = [],
-				attributes = context.feature.attributes;
+				$chkBox,
+				attributes = context.feature.attributes,
+				featureId = context.feature.id.replace(/\W/g, '_');
 
 			// replace periods with underscores for jQuery!
 			if (context.type !== 'head') {
-				$row.attr('id', context.id.replace(/\W/g, '_'));
-				$row.attr('tabindex', '0');
+				$row.attr('id', featureId);
+				$chkBox = $('<td><label class="wb-invisible" for="cb_' + featureId + '">' + _pe.dic.get('%geo-labelselect') + '</label><input type="checkbox" id="cb_' + featureId + '"/></td>');
+				cols.push($chkBox);
 			}
 
 			$.each(attributes, function(key, value) {
@@ -513,36 +526,12 @@
 			}
 
 			if (context.type !== 'head') {
-
-				// Hover events
-				$row.on('mouseenter mouseleave', function(e) {
-					var type = e.type,
-						$this = $(this),
-						selectControl = context.selectControl;
-					if (type === 'mouseenter') {
-						$this.closest('tr').addClass('background-highlight');
-						selectControl.unselectAll();
-						selectControl.select(context.feature);
-					} else {
-						$this.closest('tr').removeClass('background-highlight');
-						selectControl.unselectAll();
+				$chkBox.on('change', function() {
+					if (!$('#cb_' + featureId).prop('checked')) {
 						selectControl.unselect(context.feature);
-					}
-				});
-
-				// Keybord events
-				$row.on('focus blur', function(e) {
-					var type = e.type,
-						selectControl = context.selectControl;
-					if (type === 'focus') {
-						$row.addClass('background-highlight');
-						selectControl.unselectAll();
-						selectControl.select(context.feature);
 					} else {
-						$row.removeClass('background-highlight');
-						selectControl.unselectAll();
 						selectControl.select(context.feature);
-					}	
+					}
 				});
 			}
 			$row.append(cols);
@@ -558,6 +547,7 @@
 			var $head = _pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] }),
 				$foot = _pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] }),
 				thZoom,
+				thSelect = ('<th>' + _pe.dic.get('%geo-select') + '</th>'),
 				$targetTable = $('table#' + $table.attr('id')),
 				$targetTableBody = $targetTable.find('tbody');
 			if (zoomTo) {
@@ -566,6 +556,9 @@
 				$foot.append(thZoom);
 			}
 
+			$head.prepend(thSelect);
+			$foot.prepend(thSelect);
+			
 			$targetTable.find('thead').append($head);
 			$targetTable.find('tfoot').append($foot);
 			$.each(evt.features, function(index, feature) {												
@@ -605,36 +598,26 @@
 		 * Handle features once they have been added to the map for tabular data
 		 *
 		 */
-		onTabularFeaturesAdded: function(feature, zoomColumn, table) {
+		onTabularFeaturesAdded: function(feature, zoomColumn) {
 			// Find the row
-			var $tr = $('tr#' + feature.id.replace(/\W/g, '_'));
+			var featureId = feature.id.replace(/\W/g, '_'),
+				$tr = $('tr#' + featureId),
+				$chkBox;
 
-			// add zoom column
+			// Add select checkbox
+			$chkBox = $('<td><label class="wb-invisible" for="cb_' + featureId + '">' + _pe.dic.get('%geo-labelselect') + '</label><input type="checkbox" id="cb_' + featureId + '"/></td>');
+			$tr.prepend($chkBox);
+			
+			// Add zoom column
 			if (zoomColumn) {
 				$tr.append(_pe.fn.geomap.addZoomTo($tr, feature));
 			}
-
-			$tr.attr('tabindex', '0');						
-			$tr.on('mouseenter mouseleave', function(e) {
-				var type = e.type;
-				if (type === 'mouseenter') {
-					$tr.addClass('background-highlight');
-					selectControl.select(feature);
-				} else {
-					$tr.removeClass('background-highlight');
+			
+			$chkBox.on('change', function() {
+				if (!$('#cb_' + featureId).prop('checked')) {
 					selectControl.unselect(feature);
-				}
-			});
-
-			// Keybord events
-			$tr.on('focus blur', function(e) {
-				var type = e.type;
-				if (type === 'focus') {
-					$tr.addClass('background-highlight');
-					selectControl.select(feature);
 				} else {
-					$tr.removeClass('background-highlight');
-					selectControl.unselect(feature);
+					selectControl.select(feature);
 				}
 			});
 		},
@@ -644,23 +627,12 @@
 		 *
 		 */
 		addZoomTo: function(row, feature){
-			var $ref = $('<td><a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a></td>').on('click focus blur', 'a', function(e) {
+			var $ref = $('<td><a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a></td>').on('click', 'a', function(e) {
 				var type = e.type;
 				if (type === 'click') {
 					e.preventDefault();			
 					map.zoomToExtent(feature.geometry.bounds);	
-					row.closest('tr').attr('class', 'background-highlight');
-					selectControl.unselectAll();
-					selectControl.select(feature);
 					$.mobile.silentScroll(_pe.focus(_pe.main.find('#geomap')).offset().top);
-				} else if (type === 'focus') {
-					row.addClass('background-highlight');
-					selectControl.unselectAll();
-					selectControl.select(feature);
-				} else {
-					row.removeClass('background-highlight');
-					selectControl.unselectAll();
-					selectControl.unselect(feature);
 				}
 			});
 			return $ref;
@@ -808,13 +780,22 @@
 										internalProjection: map.getProjectionObject(),
 										externalProjection: new OpenLayers.Projection('EPSG:4269'),
 										read: function(data) {
+											
 											var items, row, $row, i, len, feature, atts, features = [],
 												layerAttributes = layer.attributes,
 												name;
 
 											// When read from server, data is string instead of #document
 											if (typeof data === 'string') {
-												data = (new DOMParser()).parseFromString(data, 'text/xml');
+												// With IE we cant use DOMParser
+												if (_pe.ie > 0) {
+													var xmlDocument = new ActiveXObject('Microsoft.XMLDOM');
+													xmlDocument.async = false;
+													xmlDocument.loadXML(data);
+													data = xmlDocument;
+												} else {
+													data = (new DOMParser()).parseFromString(data, 'text/xml');
+												}
 											}
 											items = this.getElementsByTagNameNS(data, '*', 'Placemark');
 
@@ -841,10 +822,18 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										if (overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd();
+										}
 									},
-									'loadend': function() {
-										_pe.fn.geomap.onLoadEnd();
+									'loadstart': function() {
+										overlaysLoading[layer.title] = true;
+										setTimeout(function () {
+											if (overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd();
+											}
+										}, overlayTimeout);
 									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
@@ -894,11 +883,19 @@
 								}),						
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										if (overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd();
+										}
 									},
-									'loadend': function() {
-										_pe.fn.geomap.onLoadEnd();
-									}									
+									'loadstart': function() {
+										overlaysLoading[layer.title] = true;
+										setTimeout(function () {
+											if (overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd();
+											}
+										}, overlayTimeout);
+									}								
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
 							}
@@ -951,11 +948,19 @@
 								}),								
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										if (overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd();
+										}
 									},
-									'loadend': function() {
-										_pe.fn.geomap.onLoadEnd();
-									}								
+									'loadstart': function() {
+										overlaysLoading[layer.title] = true;
+										setTimeout(function () {
+											if (overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd();
+											}
+										}, overlayTimeout);
+									}							
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
 							}
@@ -1008,11 +1013,19 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										if (overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd();
+										}
 									},
-									'loadend': function() {
-										_pe.fn.geomap.onLoadEnd();
-									}									
+									'loadstart': function() {
+										overlaysLoading[layer.title] = true;
+										setTimeout(function () {
+											if (overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd();
+											}
+										}, overlayTimeout);
+									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
 							}
@@ -1065,10 +1078,18 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, layer.zoom, layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										if (overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd();
+										}
 									},
-									'loadend': function() {
-										_pe.fn.geomap.onLoadEnd();
+									'loadstart': function() {
+										overlaysLoading[layer.title] = true;
+										setTimeout(function () {
+											if (overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd();
+											}
+										}, overlayTimeout);
 									}
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
@@ -1097,6 +1118,7 @@
 		*/	
 		addTabularData: function(opts, projLatLon, projMap) {
 			var thZoom = '<th>' + _pe.dic.get('%geo-zoomfeature') + '</th>',
+				thSelect = ('<th>' + _pe.dic.get('%geo-select') + '</th>'),
 				wktFeature,
 				wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap,
@@ -1115,11 +1137,15 @@
 				});				
 
 				// If zoomTo add the header and footer column headers
-				if (opts.tables[index].zoom) {
+				if (opts.tables[index].zoom && opts.useMapControls) {
 					$table.find('thead').find('tr').append(thZoom);
 					$table.find('tfoot').find('tr').append(thZoom);					
 				}
 
+				// Add select checkbox
+				$table.find('thead').find('tr').prepend(thSelect);
+				$table.find('tfoot').find('tr').prepend(thSelect);	
+					
 				// Loop through each row
 				$table.find('tr').each(function(index, row) {
 
@@ -1189,65 +1215,73 @@
 					onSelect: this.onFeatureSelect,
 					onUnselect: this.onFeatureUnselect
 				}
-			);			
-
-			map.addControl(selectControl);			
-			selectControl.activate();			
-
+			);	
+			
 			// Add the select control to every tabular feature. We need to this now because the select control needs to be set.
-			$.each(opts.tables, function(index, table) {
-				var zoomColumn = opts.tables[index].zoom,
-					tableId = 'table#' + table.id;
+			$.each(opts.tables, function(indexT, table) {
+					var tableId = 'table#' + table.id;
 				$.each(queryLayers, function(index, layer) {
 					if (layer.id === tableId){
 						$.each(layer.features, function(index, feature) {
-							_pe.fn.geomap.onTabularFeaturesAdded(feature, zoomColumn, opts.tables[index], opts);
+							_pe.fn.geomap.onTabularFeaturesAdded(feature, (opts.tables[indexT].zoom && opts.useMapControls));
 						});
 					}
 				});
-
+	
 				if (table.datatable) {
 					$(tableId).addClass('createDatatable');
 				}
 			});
+				
+			if(opts.useMapControls) {
 
-			if (opts.useMousePosition) {
-				map.addControl(new OpenLayers.Control.MousePosition());
-			}
-			if (opts.useScaleLine) {
-				map.addControl(new OpenLayers.Control.ScaleLine());
-			}
-
-			map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
-			map.addControl(new OpenLayers.Control.KeyboardDefaults());			
-			map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
-
-			// enable the keyboard navigation when map div has focus. Disable when blur
-			// Enable the wheel zoom only on hover
-			$geomap.attr('tabindex', '0').on('mouseenter mouseleave focus blur', function(e) {
-				var type = e.type;
-				if (type === 'mouseenter') {
-					map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
-				} else if (type === 'mouseleave') {
-					map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();					
-				} else if (type === 'focus') {
-					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
-				} else {
-					map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
+				map.addControl(selectControl);			
+				selectControl.activate();			
+					
+				if (opts.useMousePosition) {
+					map.addControl(new OpenLayers.Control.MousePosition());
 				}
-			});
-
-			// add pan zoom bar
-			_pe.fn.geomap.addPanZoomBar();					
+				if (opts.useScaleLine) {
+					map.addControl(new OpenLayers.Control.ScaleLine());
+				}
+	
+				map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
+				map.addControl(new OpenLayers.Control.KeyboardDefaults());			
+				map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
+	
+				// enable the keyboard navigation when map div has focus. Disable when blur
+				// Enable the wheel zoom only on hover
+				$geomap.attr('tabindex', '0').on('mouseenter mouseleave focusin focusout', function(e) {
+					var type = e.type,
+						$this = $(this);
+					if (type === 'mouseenter' || type === 'focusin') {
+						if (!$this.hasClass('active')) {
+							map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].activate();
+							map.getControlsByClass('OpenLayers.Control.Navigation')[0].activate();
+							$this.addClass('active');
+						}
+					} else if (type === 'mouseleave' || type === 'focusout') {
+						if ($this.hasClass('active')) {
+							map.getControlsByClass('OpenLayers.Control.Navigation')[0].deactivate();
+							map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
+							$this.removeClass('active');
+						}
+					}
+				});
+	
+				// add pan zoom bar
+				_pe.fn.geomap.addPanZoomBar();					
+	
+				// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
+				if (!_pe.mobile) {
+					$mapDiv.before('<details class="wet-boew-geomap-detail"><summary>' + _pe.dic.get('%geo-accessibilizetitle') + '</summary><p>' + _pe.dic.get('%geo-accessibilize') + '</p></details>');
+					_pe.polyfills.enhance('detailssummary', document.getElementsByTagName('details'));
+				}
+			}
 
 			// zoom to the maximum extent specified
 			map.zoomToMaxExtent();			
-
-			// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
-			if (!_pe.mobile) {
-				$mapDiv.before('<p><strong>' + _pe.dic.get('%geo-accessibilize') + '</p>');
-			}
-
+			
 			// add a listener on the window to update map when resized
 			window.onresize = function() {		
 				$mapDiv.height($mapDiv.width() * 0.8);

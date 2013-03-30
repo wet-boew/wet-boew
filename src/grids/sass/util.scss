@@ -14,33 +14,33 @@
  */
 
 @media screen {
-/* ----- Screen media type only - Start of build includes ----- */
+/* ----- All screens - Screen media type - Start of build includes ----- */
 @import 'includes/util-screen';
-/* ----- Screen media type only - End of build includes ----- */
+/* ----- All screens - Screen media type - End of build includes ----- */
 }
 
 @media screen and (min-width: 768px) and (min-device-width: 768px) {
-/* ----- Desktop view (including Mobile view (Tablet)) - Screen media type only - Start of build includes ----- */
-@import 'includes/util-desktop-screen';
-/* ----- Desktop view (including Mobile view (Tablet)) - Screen media type only - End of build includes ----- */
+/* ----- Medium and large screens - Screen media type - Start of build includes ----- */
+@import 'includes/util-medium-large-screen';
+/* ----- Medium and large screens - Screen media type - End of build includes ----- */
 }
 
 @media screen and (max-width: 959px), screen and (max-device-width: 1023px) {
-/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - Start of build includes ----- */
-@import 'includes/util-mobile';
-/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - End of build includes ----- */
+/* ----- Small and medium screens - Screen media type - Start of build includes ----- */
+@import 'includes/util-small-medium';
+/* ----- Small and medium screens - Screen media type - End of build includes ----- */
 }
 
 @media screen and (max-width: 767px), screen and (max-device-width: 767px) {
-/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - Start of build includes ----- */
-@import 'includes/util-mobile-smartphone';
-/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - End of build includes ----- */
+/* ----- Small screens - Screen media type - Start of build includes ----- */
+@import 'includes/util-small';
+/* ----- Small screens - Screen media type - End of build includes ----- */
 }
 
 @media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
-/* ----- Mobile view (Tablet) - Screen media type only - Start of build includes ----- */
-@import 'includes/util-mobile-tablet';
-/* ----- Mobile view (Tablet) - Screen media type only - End of build includes ----- */
+/* ----- Medium screens - Screen media type - Start of build includes ----- */
+@import 'includes/util-medium';
+/* ----- Medium screens - Screen media type - End of build includes ----- */
 }
 
 @media print {

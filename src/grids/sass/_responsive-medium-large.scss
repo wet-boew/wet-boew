@@ -1,0 +1,301 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+%grids-responsive-medium-large-margin-left-10-margin-right-10 {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+%grid-responsive-clear-invisible {
+	display: block;
+	height: 0;
+	margin: 0;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+}
+%grids-responsive-medium-large-margin-left-0-important {
+	margin-left: 0 !important;
+}
+%grids-responsive-medium-large-margin-right-0-important {
+	margin-right: 0 !important;
+}
+%grids-responsive-medium-large-no-margin {
+	@extend %grids-responsive-medium-large-margin-left-0-important;
+	@extend %grids-responsive-medium-large-margin-right-0-important;
+}
+%grids-responsive-medium-large-position-relative-float-left-min-height-1 {
+	position: relative;
+	float: left;
+	min-height: 1px;
+}
+%grids-responsive-medium-large-margin-l {
+	width: 100%;
+	height: auto;
+	-ms-interpolation-mode: bicubic;
+}
+%grids-responsive-medium-large-width100 {
+	width: 100px;
+}
+%grids-responsive-medium-large-width220 {
+	width: 220px;
+}
+%grids-responsive-medium-large-width340 {
+	width: 340px;
+}
+%grids-responsive-medium-large-width460 {
+	width: 460px;
+}
+%grids-responsive-medium-large-width580 {
+	width: 580px;
+}
+%grids-responsive-medium-large-width700 {
+	width: 700px;
+}
+%grids-responsive-medium-large-width940 {
+	width: 940px;
+}
+
+blockquote {
+	@extend %grids-responsive-medium-large-margin-left-10-margin-right-10;
+}
+
+form {
+	@extend %grids-responsive-medium-large-margin-left-10-margin-right-10;
+}
+
+#{headings(all)} {
+	@extend %grids-responsive-medium-large-margin-left-10-margin-right-10;
+}
+
+img {
+	@extend %grids-responsive-medium-large-margin-left-10-margin-right-10;
+}
+
+p {
+	@extend %grids-responsive-medium-large-margin-left-10-margin-right-10;
+}
+
+pre {
+	@extend %grids-responsive-medium-large-margin-left-10-margin-right-10;
+}
+
+table {
+	@extend %grids-responsive-medium-large-margin-left-10-margin-right-10;
+}
+
+details {
+	@extend %grids-responsive-medium-large-margin-left-10-margin-right-10;
+}
+
+[class*=span-] {
+	@extend %grids-responsive-medium-large-position-relative-float-left-min-height-1;
+	@extend %grids-responsive-medium-large-margin-left-10-margin-right-10;
+	img {
+		width: 100%;
+		height: auto;
+		-ms-interpolation-mode: bicubic;
+	}
+}
+
+.span-1 .span-1, .span-2 .span-2, .span-3 .span-3, .span-4 .span-4, .span-5 .span-5, .span-6 .span-6, .span-7 .span-7, .span-8 .span-8, .span-9 .span-9, .span-10 .span-10, .span-11 .span-11, .span-12 .span-12 {
+	@extend %grids-responsive-medium-large-no-margin;
+}
+
+.border-top {
+	@extend %grids-responsive-medium-large-position-relative-float-left-min-height-1;
+}
+.border-right {
+	@extend %grids-responsive-medium-large-position-relative-float-left-min-height-1;
+}
+.border-bottom {
+	@extend %grids-responsive-medium-large-position-relative-float-left-min-height-1;
+}
+.border-left {
+	@extend %grids-responsive-medium-large-position-relative-float-left-min-height-1;
+}
+
+#wb-main-in {
+	[class*=span-] {
+		margin-bottom: 20px;
+	}
+}
+
+.row-start {
+	@extend %grids-responsive-medium-large-margin-left-0-important;
+}
+
+.row-end {
+	@extend %grids-responsive-medium-large-margin-right-0-important;
+}
+
+.clear {
+	clear: both;
+	@extend %grid-responsive-clear-invisible;
+}
+
+.clear-left {
+	clear: left;
+	@extend %grid-responsive-clear-invisible;
+}
+
+.clear-right {
+	clear: right;
+	@extend %grid-responsive-clear-invisible;
+}
+
+.image-actual {
+	width: auto !important;
+	height: auto;
+}
+
+.equalize {
+	margin-bottom: 0 !important;
+}
+
+[id|="wb-body-sec"] {
+	#wb-core {
+		.grid-12 {
+			.span-1 {
+				width: 40px;
+			}
+			.span-2 {
+				@extend %grids-responsive-medium-large-width100;
+			}
+			.span-3 {
+				width: 160px;
+			}
+			.span-4 {
+				@extend %grids-responsive-medium-large-width220;
+			}
+			.span-5 {
+				width: 280px;
+			}
+			.span-6 {
+				@extend %grids-responsive-medium-large-width340;
+			}
+			.span-7 {
+				width: 400px;
+			}
+			.span-8 {
+				@extend %grids-responsive-medium-large-width460;
+			}
+			.span-9 {
+				width: 520px;
+			}
+			.span-10 {
+				@extend %grids-responsive-medium-large-width580;
+			}
+			.span-11 {
+				width: 640px;
+			}
+			.span-12 {
+				@extend %grids-responsive-medium-large-width700;
+			}
+		}
+	}
+}
+
+.grid-12 {
+	.span-1 {
+		width: 60px;
+	}
+	.span-2 {
+		width: 140px;
+	}
+	.span-3 {
+		@extend %grids-responsive-medium-large-width220;
+	}
+	.span-4 {
+		width: 300px;
+	}
+	.span-5 {
+		width: 380px;
+	}
+	.span-6 {
+		@extend %grids-responsive-medium-large-width460;
+	}
+	.span-7 {
+		width: 540px;
+	}
+	.span-8 {
+		width: 620px;
+	}
+	.span-9 {
+		@extend %grids-responsive-medium-large-width700;
+	}
+	.span-10 {
+		width: 780px;
+	}
+	.span-11 {
+		width: 860px;
+	}
+	.span-12 {
+		@extend %grids-responsive-medium-large-width940;
+	}
+}
+
+.span-1 {
+	@extend %grids-responsive-medium-large-width100;
+}
+
+.span-2 {
+	@extend %grids-responsive-medium-large-width220;
+}
+
+.span-3 {
+	@extend %grids-responsive-medium-large-width340;
+}
+
+.span-4 {
+	@extend %grids-responsive-medium-large-width460;
+}
+
+.span-5 {
+	@extend %grids-responsive-medium-large-width580;
+}
+
+.span-6 {
+	@extend %grids-responsive-medium-large-width700;
+}
+
+.span-7 {
+	width: 820px;
+}
+
+.span-8 {
+	@extend %grids-responsive-medium-large-width940;
+}
+
+/* Right to left (RTL) CSS */
+%grids-responsive-medium-large-float-right {
+	float: right;
+}
+[dir="rtl"] {
+	[class*=span-] {
+		@extend %grids-responsive-medium-large-float-right;
+	}
+
+	.border-top {
+		@extend %grids-responsive-medium-large-float-right;
+	}
+	.border-right {
+		@extend %grids-responsive-medium-large-float-right;
+	}
+	.border-bottom {
+		@extend %grids-responsive-medium-large-float-right;
+	}
+	.border-left {
+		@extend %grids-responsive-medium-large-float-right;
+	}
+
+	.row-start {
+		margin-left: 10px !important;
+		@extend %grids-responsive-medium-large-margin-right-0-important;
+	}
+
+	.row-end {
+		margin-right: 10px !important;
+		@extend %grids-responsive-medium-large-margin-left-0-important;
+	}
+}

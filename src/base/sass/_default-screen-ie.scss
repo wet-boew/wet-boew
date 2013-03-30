@@ -16,6 +16,11 @@
 			left: 44%;
 		}
 	}
+
+	#wb-session {
+		zoom: 1;
+	}
+
 	a {
 		&.wb-linkdesc {
 			span {
@@ -36,6 +41,20 @@
 		#wb-skip {
 			ul {
 				float: right;
+			}
+		}
+
+		#wb-session {
+			ul {
+				li {
+					float: left;
+					direction: ltr;
+					&.settings {
+						a {
+							border: 0;
+						}
+					}
+				}
 			}
 		}
 	}

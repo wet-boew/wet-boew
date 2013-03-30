@@ -28,6 +28,12 @@
 	text-decoration: underline;
 }
 
+.wet-boew-tabbedinterface {
+	.ui-collapsible-content {
+		position: relative;
+	}
+}
+
 .tabs {
     border-bottom: solid 1px #ccc;
     margin: 0;
@@ -119,7 +125,7 @@
 		}
 	}
 	.viewport {
-		position: absolute;		
+		position: absolute;
 		left: 0;
 		top: 0;
 		display: block;
@@ -140,6 +146,9 @@
 			}
 		}
 	}
+  .panel-end {
+    margin: 0 10px;
+  }
 }
 
 .slide-horz, .slide-vert {
@@ -179,6 +188,9 @@
 	}
 	.tabs {
 		margin: 0 10px 10px;
+	}
+	.panel-end {
+	  margin: 0;
 	}
 }
 
@@ -637,7 +649,7 @@
 					@include pseudo-focus {
 						@extend %tabbedinterface-tab-style-6-opacity-1-color-000-important;
 					}
-				}				
+				}
 			}
 			&.tabs-toggle {
 				a {

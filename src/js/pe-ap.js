@@ -131,14 +131,14 @@
 				pe.rtl = (test === 'rtl');
 			}
 	
-			// Mobile test: Used to detect CSS media query result regarding mobile/desktop view
+			// View test: Used to detect CSS media query result regarding screen size and mobile/desktop view
 			pe.viewtest = document.createElement('div');
-			pe.viewtest.setAttribute('id', 'viewtest'); // Used to detect CSS media queries result regarding mobile/desktop view
+			pe.viewtest.setAttribute('id', 'viewtest');
 			
 			// Resize test element: Used to detect changes in text size and window size
 			pe.resizetest = document.createElement('span');
 			pe.resizetest.innerHTML = '&#160;';
-			pe.resizetest.setAttribute('id', 'resizetest'); // Used to detect CSS media queries result regarding mobile/desktop view
+			pe.resizetest.setAttribute('id', 'resizetest');
 
 			// Append the various tests to the body
 			test_elms = document.createElement('div');
@@ -154,22 +154,15 @@
 			pe.urlhash = pe.urlpage.hash;
 			pe.urlquery = pe.urlpage.params;
 
-			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
+			// Identify whether or not the device supports JavaScript, the current theme, the current view and screen size, and if the device has a touchscreen
 			pe.mobile = pe.mobilecheck();
-			pe.tablet = pe.tabletcheck();
+			pe.medium = pe.mediumcheck();
 			pe.print = (pe.mobile ? false : pe.printcheck());
-			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : ' smartphone-view')) : (pe.print ? ' print-view' : ' desktop-view'))) : '';
+			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.medium ? ' medium-screen' : ' small-screen')) : (pe.print ? ' print-view' : ' desktop-view large-screen'))) : '';
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			classes += (pe.svg ? ' svg' : ' no-svg');
-			classes += (pe.ie > 8 ? 'ie' + parseInt(pe.ie, 10) : '');
-			
-			// Identify IE9+ browser
-			if (pe.ie > 8) {
-				classes += ' ie' + parseInt(pe.ie, 10);
-			} else if (pe.ie < 1) {
-				classes += ' no-ie';
-			}
-			
+			classes += (pe.ie > 8 ? ' ie' + parseInt(pe.ie, 10) : (pe.ie < 1 ? ' no-ie' : ''));
+
 			// Check for browsers that needs SVG loaded through an object element removed		
 			test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
 			pe.svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46)));
@@ -298,15 +291,15 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return pe.viewtest.offsetWidth > 1; // CSS (through media queries) sets to offsetWidth = 0 in print view, offsetWidth = 1 in desktop view, offsetWidth = 2 in mobile view and offsetWidth = 3 in tablet view
+			return pe.viewtest.offsetWidth > 1; // CSS (through media queries) sets to offsetWidth = 0 in print view, offsetWidth = 1 desktop view (large screen), offsetWidth = 2 or 3 mobile view (2 = small screen, 3 = medium screen)
 		},
 		print: false,
 		printcheck: function () {
 			return pe.viewtest.offsetWidth === 0; // CSS (through media queries) sets to offsetWidth = 0 in print view
 		},
-		tablet: false,
-		tabletcheck: function () {
-			return pe.viewtest.offsetWidth === 3; // CSS (through media queries) sets to offsetWidth = 3 in tablet view
+		medium: false,
+		mediumcheck: function () {
+			return pe.viewtest.offsetWidth === 3; // CSS (through media queries) sets to offsetWidth = 3 for medium screen
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -1067,6 +1060,7 @@
 					hlink,
 					hlinkDOM,
 					navCurrent,
+					navCurrentNoCSS,
 					nested,
 					nested_i,
 					nested_len,
@@ -1126,10 +1120,11 @@
 								hlink = mItem.children('a');
 								hlinkDOM = hlink[0];
 								navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
+								navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
 								if (toplevel) {
 									secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1);
 								}
-								menu += (navCurrent ? ' nav-current' : '');
+								menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
 								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
 								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
@@ -1893,16 +1888,16 @@
 				if (!(pe.ie > 0 && pe.ie < 9)) {
 					pe.resize(function () {
 						var mobilecheck = pe.mobilecheck(),
-							tabletcheck;
+							mediumcheck;
 						if (pe.mobile !== mobilecheck) {
 							pe.mobile = mobilecheck;
 							window.location.href = decodeURI(pe.url(window.location.href).removehash());
 						} else {
-							tabletcheck = pe.tabletcheck();
-							if (pe.tablet !== tabletcheck) {
-								pe.html.toggleClass('tablet-view smartphone-view');
+							mediumcheck = pe.mediumcheck();
+							if (pe.medium !== mediumcheck) {
+								pe.html.toggleClass('medium-screen small-screen');
 							}
-							pe.tablet = tabletcheck;
+							pe.medium = mediumcheck;
 						}
 					});
 				}
