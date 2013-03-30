@@ -1,0 +1,16 @@
+@charset "utf-8";
+/*!!
+ *
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ *
+ * Version: @wet-boew-build.version@
+ *
+ */
+@import '../../base/sass/oldie-vendor-prefix';
+
+/* ----- All screens - All media types - Start of build includes ----- */
+@import '../../base/sass/default-ns';
+@import '../../grids/sass/util-ns';
+@import '../../js/sass/pe-ap-ns';
+/* ----- All screens - All media types - End of build includes ----- */

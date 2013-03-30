@@ -4,43 +4,52 @@
  */
 @import "compass/css3/border-radius";
 
+%gcwu-default-screen-text-decoration-underline {
+	text-decoration: underline;
+}
+%gcwu-default-screen-text-decoration-none {
+	text-decoration: none;
+}
+%gcwu-default-screen-display-none {
+	display: none;
+}
+%gcwu-default-screen-display-block {
+	display: block;
+}
+%gcwu-default-screen-wmms-sig-display-none {
+	#gcwu-wmms-in {
+		@extend %gcwu-default-screen-display-none;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-default-screen-display-none;
+	}
+}
+%gcwu-default-screen-wmms-sig-display-block {
+	#gcwu-wmms-in {
+		@extend %gcwu-default-screen-display-block;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-default-screen-display-block;
+	}
+}
+%gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none {
+	&.ui-mobile {
+		@extend %gcwu-default-screen-wmms-sig-display-block;
+		&.ui-mobile-rendering {
+			@extend %gcwu-default-screen-wmms-sig-display-none;
+		}
+	}
+}
 %gcwu-default-screen-font-arial {
 	font-family: Arial, Helvetica, sans-serif;
 }
-
-body {
-	margin: 0;
-}
-
-.wb-sec-def {
-	h3 {
-		@extend %gcwu-default-screen-complex-border;
-		@extend %gcwu-default-screen-a-psuedo-underline;
-		&.top-section {
-			a {
-				color: #FFF;
-				padding-top: 5px;
-				padding-bottom: 5px;
-				font-size: 1.1em;
-				@include pseudo-focus {
-					color: #FFF;
-					text-decoration: underline;
-				}
-				&.nav-current {
-					color: #FFF;
-					padding-top: 4px;
-					padding-bottom: 4px;
-					background: #0f315b;
-				}
-			}
-		}
-	}
-	%gcwu-default-screen-complex-border {
-		font-size: 100%;
-		border-bottom: none;
-		@include border-radius(2px);
-		margin: 0 0 3px;
-		a {
+%gcwu-default-screen-complex-border {
+	font-size: 100%;
+	border-bottom: none;
+	@include border-radius(2px);
+	margin: 0 0 3px;
+	a {
+		&, &.ui-link {
 			font-weight: 700;
 			background: #DDD;
 			padding: 2px 4px;
@@ -50,16 +59,118 @@ body {
 			}
 		}
 	}
+}
+//TODO: Similar to rule on line ?? except for the li element. Could these be merged further.
+%gcwu-default-screen-a-pseudo-underline {
+	a {
+		&, &.ui-link {
+			@extend %gcwu-default-screen-display-block;
+			color: #333;
+			@extend %gcwu-default-screen-text-decoration-none;
+			&:visited {
+				color: #333;
+			}
+			@include pseudo-focus {
+				color: #333;
+				@extend %gcwu-default-screen-text-decoration-underline;
+			}
+			&.nav-current {
+				color: #0F315B;
+			}
+		}
+	}
+}
+
+body {
+	margin: 0;
+}
+
+#gcwu-gcnb {
+	overflow: hidden;
+	background: #000;
+	font-size: 0.9em;
+	ul {
+		list-style-type: none;
+		float: right;
+		margin: 0;
+		padding: 0;
+		li {
+			float: left;
+			padding: 13px 0;
+			&#gcwu-gcnb-lang {
+				a {
+					text-transform: capitalize;
+					padding-right: 10px;
+					margin-right: 1px;
+				}
+			}
+		}
+	}
+	a {
+		color: #fff;
+		@extend %gcwu-default-screen-text-decoration-none;
+	}
+}
+
+#gcwu-wmms-in {
+	@extend %gcwu-default-screen-display-none;
+}
+#gcwu-sig-in {
+	@extend %gcwu-default-screen-display-none;
+}
+.svg {
+	@extend %gcwu-default-screen-wmms-sig-display-block;
+}
+.pe-disable {
+	@extend %gcwu-default-screen-wmms-sig-display-block;
+}
+.no-svg {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie9 {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie10 {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+
+.wb-sec-def {
+	h3 {
+		@extend %gcwu-default-screen-complex-border;
+		@extend %gcwu-default-screen-a-pseudo-underline;
+		&.top-section {
+			a {
+				&, &.ui-link {
+					color: #fff;
+					padding-top: 5px;
+					padding-bottom: 5px;
+					font-size: 1.1em;
+					&:visited {
+						color: #fff;
+					}
+					@include pseudo-focus {
+						color: #fff;
+						@extend %gcwu-default-screen-text-decoration-underline;
+					}
+					&.nav-current {
+						color: #fff;
+						padding-top: 4px;
+						padding-bottom: 4px;
+						background: #0f315b;
+					}
+				}
+			}
+		}
+	}
 	h4 {
 		@extend %gcwu-default-screen-complex-border;
-		@extend %gcwu-default-screen-a-psuedo-underline;
+		@extend %gcwu-default-screen-a-pseudo-underline;
 	}
 	li {
-		@extend %gcwu-default-screen-a-psuedo-underline;
+		@extend %gcwu-default-screen-a-pseudo-underline;
 		a {
 			padding: 4px 5px;
 			&.nav-current {
-				color: #0F315B;
 				padding: 3px 4px;
 			}
 		}
@@ -76,18 +187,6 @@ body {
 			@include border-radius(2px);
 		}
 	}
-	//TODO: Similar to rule on line 33 except for the li element. Could these be merged further.
-	%gcwu-default-screen-a-psuedo-underline {
-		a {
-			display: block;
-			color: #333;
-			text-decoration: none;
-			@include pseudo-focus {
-				color: #333;
-				text-decoration: underline;
-			}
-		}
-	}
 	ul {
 		list-style-type: none;
 		margin: 0 0 3px;
@@ -101,7 +200,7 @@ body {
 	}
 	.top-level {
 		@extend %gcwu-default-screen-complex-border;
-		@extend %gcwu-default-screen-a-psuedo-underline;
+		@extend %gcwu-default-screen-a-pseudo-underline;
 	}
 }
 
@@ -128,13 +227,16 @@ body {
 		}
 	}
 	a {
-		text-decoration: none;
+		@extend %gcwu-default-screen-text-decoration-none;
 	}
 	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
 		margin-bottom: 0;
 	}
 	.gcwu-col-head {
 		@extend %gcwu-default-screen-foot-border;
+		.ui-link {
+			font-weight: 700;
+		}
 	}
 }
 
@@ -228,7 +330,7 @@ body {
 		}
 	}
 	a {
-		text-decoration: none;
+		@extend %gcwu-default-screen-text-decoration-none;
 		color: #fff;
 		font-size: 90%;
 	}
@@ -248,10 +350,33 @@ body {
 	a {
 		@include inline-block;
 		color: #fff;
-		text-decoration: none;
+		@extend %gcwu-default-screen-text-decoration-none;
 		border-left: 1px solid #666;
 		line-height: 1.45em;
 		padding-right: 10px;
 		font-size: 0.95em;
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#gcwu-tctr {
+		padding: 11px 0 25px;
+		li {
+			float: right;
+
+			&.gcwu-tc {
+				border-left: 1px solid #999;
+				border-right: 0;
+			}
+
+			&.gcwu-tr {
+				padding: 0 9px;
+			}
+
+			a {
+				line-height: 1em;
+			}
+		}
 	}
 }

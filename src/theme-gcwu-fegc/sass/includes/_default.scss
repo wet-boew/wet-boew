@@ -4,22 +4,9 @@
  */
 @import "compass/css3/inline-block";
 
-%line-height-normal {
+%gcwu-default-line-height-normal {
 	line-height: normal;
 }
-
-#wb-head {
-	@extend %line-height-normal;
-}
-
-#wb-foot {
-	@extend %line-height-normal;
-}
-
-#wb-sec {
-	@extend %line-height-normal;
-}
-
 %gcwu-default-hidden {
 	@include clip-rect;
 	height: 0 !important;
@@ -28,6 +15,40 @@
 	width: 0 !important;
 	margin: 0 !important;
 }
+%gcwu-default-gray-no-border {
+	color: #333;
+	font-weight: 400;
+	border: none;
+	margin-bottom: 5px;
+	font-size: 1.6em;
+}
+%gcwu-default-a-font-100pct {
+	a {
+		font-size: 100%;
+	}
+}
+%gcwu-default-no-margin {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+#wb-skip {
+	.ui-link {
+		text-shadow: none !important;
+	}
+}
+
+#wb-head {
+	@extend %gcwu-default-line-height-normal;
+}
+
+#wb-foot {
+	@extend %gcwu-default-line-height-normal;
+}
+
+#wb-sec {
+	@extend %gcwu-default-line-height-normal;
+}
 
 #gcwu-gcnb {
 	h2 {
@@ -35,9 +56,47 @@
 	}
 }
 
-#gcwu-srchbx {
-	label {
+#gcwu-psnb {
+	h2 {
 		@extend %gcwu-default-hidden;
+	}
+}
+
+#gcwu-srchbx {
+	h2, label {
+		@extend %gcwu-default-hidden;
+	}
+}
+
+#gcwu-bc-in {
+	color: #555;
+	ol {
+		line-height: 1.57em;
+		list-style-type: none;
+		padding: 0;
+		&:after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+	}
+	li {
+		float: left;
+		white-space: nowrap;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
+		}
+	}
+	a {
+		color: #295376;
+		text-decoration: none;
+		@include pseudo-focus {
+			color: #295376;
+			text-decoration: underline;
+		}
 	}
 }
 
@@ -123,21 +182,13 @@
 }
 
 #gcwu-date-mod {
-	@extend %line-height-normal;
+	@extend %gcwu-default-line-height-normal;
 	dt, dd {
 		float: left;
 	}
 	dd {
 		margin: 0 0 0 0.39em;
 	}
-}
-
-%gcwu-default-gray-no-border {
-	color: #333;
-	font-weight: 400;
-	border: none;
-	margin-bottom: 5px;
-	font-size: 1.6em;
 }
 
 #gcwu-content {
@@ -169,12 +220,6 @@ div {
 				padding: 0 !important;
 			}
 		}
-	}
-}
-
-%gcwu-default-a-font-100pct {
-	a {
-		font-size: 100%;
 	}
 }
 
@@ -230,8 +275,15 @@ div {
 	}
 }
 
-%gcwu-default-no-margin {
-	margin-left: 0;
-	margin-right: 0;
-}
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#gcwu-date-mod {
+		dt, dd {
+			float: right;
+		}
 
+		dd {
+			margin: 0 0.39em 0 0;
+		}
+	}
+}

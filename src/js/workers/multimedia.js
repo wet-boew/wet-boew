@@ -5,7 +5,7 @@
 /*
 * Multimedia player
 */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -25,7 +25,7 @@
 			height = height !== undefined ? height : 20;
 			width = width !== undefined ? width : 20;
 
-			if (pe.svg) {
+			if (_pe.svg) {
 				icon = _pe.fn.multimedia.icons.clone();
 				icon.attr({'height': height, 'width': width});
 				icon.prepend('<title>' + alt + '</title>');
@@ -294,7 +294,7 @@
 							if (this.getBuffering() === false) {
 								this.setBuffering(true);
 								evtmgr.trigger('waiting');								
-							}								
+							}				
 						// Waiting has ended, but icon is still visible - remove it.
 						} else if (this.getBuffering() === true) {							
 							this.setBuffering(false);
@@ -386,7 +386,7 @@
 				}).append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')))
 			);
 
-			ui.append(ui_start).append(ui_timeline).append(ui_end);
+			ui.append(ui_start).append(ui_end).append(ui_timeline);
 
 			return ui;
 		},

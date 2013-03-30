@@ -5,6 +5,7 @@
 @import "compass/css3/box-sizing";
 @import "compass/typography/lists/bullets";
 @import "compass/css3/border-radius";
+@import 'compass/css3/transform';
 
 @mixin modules {
 
@@ -71,7 +72,7 @@
 						min-height: 32px;
 						padding: $spacing-medium;
 						text-decoration: none;
-						background-repeat: no-repeat;
+						background-repeat: repeat-x;
 						background-position: 100% 0; //top right;
 						text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #555, 1px 1px 0 #000;
 						font-weight: 700;
@@ -351,6 +352,106 @@
 		}
 		.module-archive {
 			@include module-colorize($archive, $border: "outline"); background-position: -12000px 0;
+		}
+	}
+
+	// Right to left (RTL) CSS
+	[dir="rtl"] {
+		.module-billboard, .module-related, .module-menu-section {
+			ul {
+				margin: 0;
+			}
+		}
+
+		.module-billboard ul {
+			li {		
+				a, a:link, a:visited {
+					background-position: top left;	
+				}
+			}
+		}
+
+		.module-menu-section ul {
+			li {
+				ul {
+					margin-left: auto !important;
+					margin-right: 0 !important;
+				}
+
+				li {
+					a {
+						padding-left: 0 !important;
+						padding-right: 20px !important;
+					}
+
+					li a {
+						padding-left: 0 !important;
+						padding-right: 30px !important;
+					}
+				}
+			}
+		}
+
+		.module-table-contents {
+			ul {
+				&, &[class*="column-"] {
+					margin: 0;
+					padding: $margin-medium $margin-medium;
+					li {
+						margin-bottom: $margin-medium / 2;
+						margin-left: auto;
+						margin-right: 25px !important;
+					}
+				}
+				ul {
+					padding-top: 5px;
+					padding-bottom: 0;
+				}
+			}
+		}
+
+		.module-spotlight {
+			ul {
+				li { 
+					clear: right; 
+				}
+
+				img {
+					float: right;
+					margin-right: auto;
+					margin-left: 10px;
+				}
+			}
+
+			img {
+				float: right;
+				margin-left: auto;
+				margin-right: 10px;
+			}
+		}
+
+		.module-comment {
+			ol, ul {
+				margin-right: auto;
+				margin-left: 0;
+				li {
+					background-position: 98% 10px;
+					padding: $margin-medium ($margin-xlarge - $margin-medium) $margin-medium $margin-medium !important;
+				}
+			}
+		}
+
+		div {
+			.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
+				@include scaleX(-1);
+				> * {
+					@include scaleX(-1);
+				}
+
+				ul, ol {
+					margin: $margin-medium 40px $margin-medium $margin-medium;
+				}
+			}
 		}
 	}
 }

@@ -13,8 +13,14 @@
 			margin: auto;
 			zoom: 1;
 			position: relative;
+			left: 44%;
 		}
 	}
+
+	#wb-session {
+		zoom: 1;
+	}
+
 	a {
 		&.wb-linkdesc {
 			span {
@@ -24,6 +30,31 @@
 			}
 			@include pseudo-focus {
 				height: 1%;
+			}
+		}
+	}
+
+	// Right to left (RTL) CSS
+	&[dir="rtl"] {
+		overflow-x: hidden;
+
+		#wb-skip {
+			ul {
+				float: right;
+			}
+		}
+
+		#wb-session {
+			ul {
+				li {
+					float: left;
+					direction: ltr;
+					&.settings {
+						a {
+							border: 0;
+						}
+					}
+				}
 			}
 		}
 	}

@@ -8,7 +8,6 @@
 @import "mixins";
 /*   base appearance   */
 body {
-	font-size: 13px;
 	line-height: 1.5em;
 }
 
@@ -22,9 +21,6 @@ p, table {
 }
 
 pre {
-	@if $legacy-support-for-mozilla { //TODO: Do we still need to support this version when Mozilla no longer does
-		overflow-x: auto;  /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */
-	}
 	white-space: pre-wrap;
 }
 
@@ -56,6 +52,26 @@ blockquote, form, img, pre {
 	}
 }
 
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	p, table {
+		img {
+			margin-left: auto;
+			margin-right: 0;
+		}
+	}
+
+	// reset elements in grid system
+	[class*="span-"] {
+		ul, ol, dl {
+			margin: 5px 40px 10px 5px;
+		}
+		.float-left {
+			margin-left: 0;
+		}
+	}
+}
+
 @import "border";
 @import "button";
 @import "color";
@@ -78,6 +94,9 @@ blockquote, form, img, pre {
 
 // fixes
 
+%util-screen-font-weight-700 {
+	font-weight: 700;
+}
 
 /* ---- Headings ---- */
 #wb-main {
@@ -87,40 +106,45 @@ blockquote, form, img, pre {
 		vertical-align: bottom;
 	}
 }
+
 h1 {
-	color: $dark;
-	border-bottom: 1px dotted $silver;
-	font-size: 200%;
-	padding: 0;
+	&:not(.ui-title) {
+		color: $dark;
+		border-bottom: 1px dotted $silver;
+		padding: 0;
+	}
 }
 
 h2 {
-	color: lighten($dark, 20%);
-	font-size: 185%;
+	&:not(.ui-title) {
+		color: lighten($dark, 20%);
+	}
 }
 
 h3 {
-	color: $medium;
-	font-size: 170%;
+	&:not(.ui-title) {
+		color: $medium;
+	}
 }
 
 h4 {
-	color: $dark;
-	font-size: 155%;
+	&:not(.ui-title) {
+		color: $dark;
+	}
 }
 
 h5 {
-	color: lighten($dark, 20%);
-	font-size: 140%;
+	&:not(.ui-title) {
+		color: lighten($dark, 20%);
+		@extend %util-screen-font-weight-700;
+	}
 }
 
 h6 {
-	color: $medium;
-	font-size: 125%;
-}
-
-h5, h6 {
-	font-weight: 700;
+	&:not(.ui-title) {
+		color: $medium;
+		@extend %util-screen-font-weight-700;
+	}
 }
 
 [class*="span-"] {
@@ -132,17 +156,37 @@ h5, h6 {
 }
 
 /*	 text	 */
-.font-serif	{	font-family: $serif;}
-.font-sans-serif {	font-family: $sans-serif;}
-.wrap-none {	white-space: nowrap;}
+.font-serif	{
+	font-family: $serif;
+}
+.font-sans-serif {
+	font-family: $sans-serif;
+}
+.wrap-none {
+	white-space: nowrap;
+}
 
-.font-xxsmall {	font-size: $font-xxsmall !important;}
-.font-xsmall {	font-size: $font-xsmall !important;}
-.font-small {	font-size: $font-small !important;}
-.font-medium {	font-size: $font-medium !important;}
-.font-large	 {	font-size: $font-large !important;}
-.font-xlarge	{	font-size: $font-xlarge !important;}
-.font-xxlarge {	font-size: $font-xxlarge !important;}
+.font-xxsmall {
+	font-size: $font-xxsmall !important;
+}
+.font-xsmall {
+	font-size: $font-xsmall !important;
+}
+.font-small {
+	font-size: $font-small !important;
+}
+.font-medium {
+	font-size: $font-medium !important;
+}
+.font-large	 {
+	font-size: $font-large !important;
+}
+.font-xlarge	{
+	font-size: $font-xlarge !important;
+}
+.font-xxlarge {
+	font-size: $font-xxlarge !important;
+}
 
 blockquote {
 	&, &.float-left, &.float-right {
@@ -188,7 +232,8 @@ blockquote {
 	}
 }
 
-code {	font: {
+code {
+	font: {
 		size: 90%;
 		weight: $font-weight-normal;
 	}
@@ -212,56 +257,141 @@ pre {
 	margin-bottom: 0 !important;
 }
 .margin-bottom-small {
-	margin-bottom: $margin-small !important;}
-.margin-bottom-medium {	margin-bottom: $margin-medium !important;}
-.margin-bottom-large {	margin-bottom: $margin-large !important;}
-.margin-bottom-xlarge {	margin-bottom: $margin-xlarge !important;}
-.margin-top-none {	margin-top: 0 !important;}
-.margin-top-small {	margin-top: $margin-small !important;}
-.margin-top-medium {	margin-top: $margin-medium !important;}
-.margin-top-large {	margin-top: $margin-large !important;}
-.margin-top-xlarge {	margin-top: $margin-xlarge !important;}
-.margin-right-none {	margin-right: 0 !important;}
-.margin-right-small {	margin-right: $margin-small !important;}
-.margin-right-medium {	margin-right: $margin-medium !important;}
-.margin-right-large {	margin-right: $margin-large !important;}
-.margin-right-xlarge {	margin-right: $margin-xlarge !important;}
+	margin-bottom: $margin-small !important;
+}
+.margin-bottom-medium {
+	margin-bottom: $margin-medium !important;
+}
+.margin-bottom-large {
+	margin-bottom: $margin-large !important;
+}
+.margin-bottom-xlarge {
+	margin-bottom: $margin-xlarge !important;
+}
+.margin-top-none {
+	margin-top: 0 !important;
+}
+.margin-top-small {
+	margin-top: $margin-small !important;
+}
+.margin-top-medium {
+	margin-top: $margin-medium !important;
+}
+.margin-top-large {
+	margin-top: $margin-large !important;
+}
+.margin-top-xlarge {
+	margin-top: $margin-xlarge !important;
+}
+.margin-right-none {
+	margin-right: 0 !important;
+}
+.margin-right-small {
+	margin-right: $margin-small !important;
+}
+.margin-right-medium {
+	margin-right: $margin-medium !important;
+}
+.margin-right-large {
+	margin-right: $margin-large !important;
+}
+.margin-right-xlarge {
+	margin-right: $margin-xlarge !important;
+}
+.margin-left-none {
+	margin-left: 0 !important;
+}
+.margin-left-small {
+	margin-left: $margin-small !important;
+}
+.margin-left-medium {
+	margin-left: $margin-medium !important;
+}
+.margin-left-large {
+	margin-left: $margin-large !important;
+}
+.margin-left-xlarge {
+	margin-left: $margin-xlarge !important;
+}
 
 /*	 indentation	 */
-.indent-none {	margin-left: 0 !important;}
-.indent-small {	margin-left: $margin-small !important;}
-.indent-medium {	margin-left: $margin-medium !important;}
-.indent-large {	margin-left: $margin-large !important;}
-.indent-xlarge			{	margin-left: $margin-xlarge !important;}
+.indent-none {
+	margin-left: 0 !important;
+}
+.indent-small {
+	margin-left: $margin-small !important;
+}
+.indent-medium {
+	margin-left: $margin-medium !important;
+}
+.indent-large {
+	margin-left: $margin-large !important;
+}
+.indent-xlarge			{
+	margin-left: $margin-xlarge !important;
+}
 
 /*	 alignment	 */
-.align-left {	text-align: left !important;}
-.align-center {	text-align: center !important;}
-.align-right {	text-align: right !important;}
+.align-left {
+	text-align: left !important;
+}
+.align-center {
+	text-align: center !important;
+}
+.align-right {
+	text-align: right !important;
+}
 p {
-	&.align-right {		margin-right: $margin-medium;	}
+	&.align-right {
+		margin-right: $margin-medium;
+	}
 }
-.align-top {	vertical-align: top !important;
-	img {		vertical-align: text-top !important;	}
+.align-top {
+	vertical-align: top !important;
+	img {
+		vertical-align: text-top !important;
+	}
 }
-.align-middle	 {	vertical-align: middle !important;}
-.align-bottom	 {	vertical-align: bottom !important;	img {		vertical-align: text-bottom !important;
-	}}
+.align-middle	 {
+	vertical-align: middle !important;
+}
+.align-bottom	 {
+	vertical-align: bottom !important;
+	img {
+		vertical-align: text-bottom !important;
+	}
+}
 
 /*	 line height	 */
-.line-height-xsmall	 {	line-height: 0.8 !important;}
-.line-height-small		{	line-height: 1.0 !important;}
-.line-height-medium	 {	line-height: 1.25 !important;}
-.line-height-large		{	line-height: 1.5 !important;}
-.line-height-xlarge	 {	line-height: 2.0 !important;}
+.line-height-xsmall	 {
+	line-height: 0.8 !important;
+}
+.line-height-small		{
+	line-height: 1.0 !important;
+}
+.line-height-medium	 {
+	line-height: 1.25 !important;
+}
+.line-height-large		{
+	line-height: 1.5 !important;
+}
+.line-height-xlarge	 {
+	line-height: 2.0 !important;
+}
 
 
 /*	 floating	 */
 img {
-	&.float-left {		margin-right: $margin-medium;	}
+	&.float-left {
+		margin-right: $margin-medium;
+	}
 }
-.float-left {	float: left !important;}
-.float-right {	float: right !important;} /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
+.float-left {
+	float: left !important;
+}
+.float-right {
+	float: right !important;
+} /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
 
 /*	 width	 */
 $i: 100;
@@ -417,3 +547,54 @@ table {
 	}
 }
 
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	blockquote {
+		&, &.float-left, &.float-right {
+			border-left: {
+				width: 1px !important;
+				color: #ddd !important;
+			}
+
+			border-right: {
+				width: 8px !important;
+				color: $accent !important;
+			}
+		}
+	}
+
+	.border-top, .border-right, .border-bottom, .border-left, .border-all {
+		float: right;
+	}
+
+	.date-container {
+		float: right;
+	}
+
+	[class*="span-"] .date-container {
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	//	 indentation
+	.indent-none {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+	.indent-small {
+		margin-left: 0 !important;
+		margin-right: $margin-small !important;
+	}
+	.indent-medium {
+		margin-left: 0 !important;
+		margin-right: $margin-medium !important;
+	}
+	.indent-large {
+		margin-left: 0 !important;
+		margin-right: $margin-large !important;
+	}
+	.indent-xlarge {
+		margin-left: 0 !important;
+		margin-right: $margin-xlarge !important;
+	}
+}

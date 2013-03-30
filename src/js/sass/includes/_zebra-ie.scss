@@ -2,6 +2,18 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%zebra-ie-table-background-color-f0fcff {
+	background-color: #f0fcff;
+}
+%zebra-ie-background-color-ddd {
+	background-color: #DDD;
+}
+%zebra-ie-background-color-eee {
+	background-color: #EEE;
+}
+%zebra-ie-list-background-color-f0fcff {
+	background-color: #f0fcff;
+}
 
 /* IE7 hacks - should be in an IE7 only .css */
 .ie7 {
@@ -23,4 +35,95 @@
 			}
 		}
 	}
+}
+
+
+/* In separate CSS because IE have conflit when it's combined with the CSS3 nthChild instruction */
+.wet-boew-zebra {
+	/* List Zebra */
+	li, dt, dd {
+		&.list-even {
+			@extend %zebra-ie-background-color-ddd;
+		}
+		&.list-odd {
+			@extend %zebra-ie-background-color-eee;
+		}
+		&.list-hover {
+			@extend %zebra-ie-list-background-color-f0fcff;
+		}
+
+	}
+	
+	/* Style Alterwg (Alternate White and Gray stripe) */
+	&.alterwg {
+		li, dt, dd {
+			&.list-even {
+				@extend %zebra-ie-background-color-ddd;
+			}
+			&.list-odd {
+				background-color: #fff;
+			}
+		}
+	}
+
+	/* Summary Group Styling */
+	tr.table-summary, tbody.table-summary tr, 
+	colgroup col.table-summary, colgroup.table-summary, 
+	tfoot tr, td.table-summary {
+		@extend %zebra-ie-background-color-eee; /* Summary Row/Col highligth */
+	}
+	
+	/* Traditionel Table Zebra Stripping */
+	&.colzebra {
+		colgroup {
+			col {
+				&.table-odd {
+					@extend %zebra-ie-table-background-color-f0fcff;
+				}
+			}
+		}
+    }
+	&.rowzebra {
+		tbody {
+			tr {
+				&.table-odd {
+					@extend %zebra-ie-table-background-color-f0fcff;
+				}
+			}
+		}
+    }
+	&.columnhighlight {
+		colgroup {
+			col.table-hover {
+				@extend %zebra-ie-background-color-eee;
+			}
+			&.table-summary col.table-hover {
+				@extend %zebra-ie-table-background-color-f0fcff;
+			}
+		}
+	}
+
+	&.rowhover, &.rowtdhover {
+		tbody, tfoot {
+			tr.table-hover,
+			tr.table-hover td.table-keycell, 
+			tr.table-hover td.table-desccell,
+			tr.table-hover td.table-layoutCell,
+			tr.table-hover th.table-layoutCell  {
+				@extend %zebra-ie-background-color-eee;
+			}
+			
+			/* Hover for summary rows */
+			tr.table-summary.table-hover,
+			tr.table-summary.table-hover td.table-keycell, 
+			tr.table-summary.table-hover td.table-desccell,
+			tr.table-summary.table-hover td.table-layoutCell,
+			tr.table-summary.table-hover th.table-layoutCell  {
+				@extend %zebra-ie-table-background-color-f0fcff;
+			}
+			
+		}
+		
+	}
+	
 }

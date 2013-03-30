@@ -20,7 +20,7 @@ video, object.video {
 
 	.wb-mm-overlay {
 		position: absolute;
-		background:transparent;
+		background: transparent;
 		background: rgba(0, 0, 0, 0.001);
 		border: 0;
 		width: 100%;
@@ -42,12 +42,12 @@ video, object.video {
 	}
 }
 
-@mixin border {
+%multimedia-border-1px-solid-BBB {
 	border: 1px solid #BBB;
 }
 
 .wb-mm-toolbar {
-	@include border;
+	@extend %multimedia-border-1px-solid-BBB;
 	background: #DADADA url('../images/multimedia/background-toolbar.png') repeat-x 0 0;
 }
 
@@ -56,17 +56,10 @@ $progress-color: #000;
 .ie9 {
 	.wb-mm-controls {
 		margin-top: -1px;
-		button {
-			padding: 1px 3px;
-		}
 	}
 }
 
 .wb-mm-controls {
-	position: relative;
-	width: 100%;
-	padding: 0;
-
 	button {
 		@extend .wb-mm-toolbar;
 		padding: 0;
@@ -85,34 +78,21 @@ $progress-color: #000;
 
 	.wb-mm-controls-start, .wb-mm-timeline-current {
 		float: left;
+		padding-right: 0.2em;
 	}
 
-	.wb-mm-timeline-total {
+	.wb-mm-controls-end, .wb-mm-timeline-total {
 		float: right;
-	}
-
-	.wb-mm-controls-end {
-		position: absolute;
-		top: 0;
-		right: 0;
+		padding-left: 0.2em;
 	}
 
 	.wb-mm-timeline {
-		position: relative;
 		@extend .wb-mm-toolbar;
-		margin-left: 83px;
-		margin-right: 55px;
-		height: 18px;
 		padding: 2px 4px;
 
 		p {
 			margin: 0;
 		}
-
-		.wb-mm-timeline-inner {
-			margin: 0 70px;
-		}
-
 	}
 
 	&.wb-mm-no-cc {
@@ -122,12 +102,9 @@ $progress-color: #000;
 	}
 
 	progress {
-		@include border;
+		@extend %multimedia-border-1px-solid-BBB;
 		color: $progress-color;
 		width: 100%;
-		height: 14px;
-		margin: 2px 0;
-		vertical-align: top;
 		@if $experimental-support-for-mozilla {
 			&::-moz-progress-bar {
 				background: $progress-color;

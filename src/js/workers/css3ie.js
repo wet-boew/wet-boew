@@ -5,7 +5,7 @@
 /*
  * CSS3 for IE plugin
  */
-/*global jQuery: false, pe:false, PIE:false*/
+/*global jQuery: false, PIE:false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -14,17 +14,17 @@
 	/* local reference */
 	_pe.fn.css3ie = {
 		type : 'plugin',
-		depends : (pe.ie > 0 && pe.ie < 9 ? ['pie'] : []),
+		depends : (_pe.ie > 0 && _pe.ie < 9 ? ['pie'] : []),
 		_exec : function (elm) {
-			if (pe.mobile || !(pe.ie > 0 && pe.ie < 9)) {
+			if (_pe.mobile || !(_pe.ie > 0 && _pe.ie < 9)) {
 				return;
 			}
 
-			var $enhance = $(".rounded, .pie-enhance"),
+			var $enhance = $('.rounded, .pie-enhance, .ui-icon'),
 				pieEnabled = false,
-				$wbcore = $("#wb-core"),
-				$wbcorein = $wbcore.children("#wb-core-in"),
-				wbcoremb = $wbcore.css("margin-bottom"),
+				$wbcore = $('#wb-core'),
+				$wbcorein = $wbcore.children('#wb-core-in'),
+				wbcoremb = $wbcore.css('margin-bottom'),
 				body,
 				r,
 				setupPIE,
@@ -46,45 +46,35 @@
 			// now attach PIE to bound objects
 			if (window.PIE) {
 				$enhance.filter(function () {
-					return $(this).css("position") === "static";
-				}).css("position", "relative");
+					return $(this).css('position') === 'static';
+				}).css('position', 'relative');
 
-				if (pe.ie === 7) {
+				if (_pe.ie > 0 && _pe.ie < 8) {
 					body = document.body;
 					r = body.getBoundingClientRect();
 					if ((r.left - r.right) / body.offsetWidth === -1) {
 						pieEnabled = setupPIE();
 					} else {
-						$wbcore.css("margin-bottom", ($wbcorein.offset().top + $wbcorein.height()) - ($wbcore.offset().top + $wbcore.height()));
+						$wbcore.css('margin-bottom', ($wbcorein.offset().top + $wbcorein.height()) - ($wbcore.offset().top + $wbcore.height()));
 					}
-				} else if (pe.ie === 8) {
-					/*if (screen.deviceXDPI / screen.logicalXDPI === 1) {}*/
-					pieEnabled = setupPIE();
 				} else {
 					pieEnabled = setupPIE();
 				}
 
-				pe.resize(function () {
-					if (pe.ie === 7) {
+				_pe.resize(function () {
+					if (_pe.ie === 7) {
 						var body = document.body,
 							r = body.getBoundingClientRect();
 						if ((r.left - r.right) / body.offsetWidth !== -1) {
 							pieEnabled = cleanup($enhance);
-							$wbcore.css("margin-bottom", ($wbcorein.offset().top + $wbcorein.height()) - ($wbcore.offset().top + $wbcore.height()));
+							$wbcore.css('margin-bottom', ($wbcorein.offset().top + $wbcorein.height()) - ($wbcore.offset().top + $wbcore.height()));
 						} else {
 							if (!pieEnabled) {
 								setupPIE();
 							}
-							$wbcore.css("margin-bottom", wbcoremb);
+							$wbcore.css('margin-bottom', wbcoremb);
 						}
-					} /*else if (pe.ie === 8)) {
-						if (screen.deviceXDPI / screen.logicalXDPI !== 1) {
-							pieEnabled = cleanup();
-						}
-						else if (!pieEnabled) {
-							pieEnabled = setupPIE();
-						}
-					}*/
+					}
 				});
 			}
 

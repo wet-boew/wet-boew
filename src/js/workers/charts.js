@@ -1,11 +1,11 @@
 /*
-* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-* wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
-*/
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
 /*
-* Chart for WET 3.0
-*/
-/*global jQuery: false, pe:false, wet_boew_charts: false, Raphael: false*/
+ * Charts and graphs
+ */
+/*global jQuery: false, pe:false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -13,7 +13,7 @@
 	}; /* local reference */
 	_pe.fn.charts = {
 		type: 'plugin',
-		depends: ['raphael', 'parserTable', 'charts'],
+		depends: (_pe.ie > 0 && _pe.ie < 9 ? ['parserTable', 'excanvas', 'flot', 'charts'] : ['parserTable', 'flot', 'charts']),
 		polyfills: ['detailssummary'],
 		_exec: function (elm) {
 			_pe.fn.chartsGraph.generate(elm);

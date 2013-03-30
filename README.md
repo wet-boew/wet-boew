@@ -49,8 +49,6 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 * **La version v3.0.1 de la BOEW a été lancée le 9 octobre 2012** ([v3.0.1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.1-release-notes))
 * **La version v3.0 de la BOEW a été lancée le 17 septembre 2012** ([v3.0 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0-release-notes))
 
-
-
 ## Vue d'ensemble
 
 La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes. 

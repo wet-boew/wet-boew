@@ -15,14 +15,13 @@
 	_pe.fn.zebra = {
 		type: 'plugin',
 		fnZebraComplexTable: function (elem, opts) {
-
 			var tblparser,
 				i,
-				j,
 				getCellHeaders,
 				autoRemoveTimeout,
 				$trs,
-				$cols;
+				$cols,
+				col_length;
 
 			// Parse the table
 			if (!$(elem).data().tblparser) {
@@ -50,27 +49,45 @@
 			// Summary Cell
 			if (tblparser.row) {
 				for (i = 0; i < tblparser.row.length; i += 1) {
-					for (j = 0; j < tblparser.row[i].cell.length; j += 1) {
-						if (tblparser.row[i].cell[j].type === 3) {
-							if (tblparser.row[i].cell[j].col.type === 3) {
-								$(tblparser.row[i].cell[j].elem).addClass('table-summarycol' + tblparser.row[i].cell[j].collevel); // collevel is a number
-							}
-							if (tblparser.row[i].type === 3) {
-								$(tblparser.row[i].cell[j].elem).addClass('table-summaryrow' + tblparser.row[i].cell[j].rowlevel); // rowlevel is a number
-								if (tblparser.row[i].level === 0 && tblparser.row[i].header.elem) {
-									// Special case for heading in that row
-									$(tblparser.row[i].header.elem).addClass('table-summaryrow' + tblparser.row[i].cell[j].rowlevel); // rowlevel is a number
-								}
-							}
-						}
+					
+					// Add a class to the row
+					if (tblparser.row[i].type === 3) {
+						$(tblparser.row[i].elem).addClass('table-summary');
 					}
+					
 					// Summary group styling
 					if (tblparser.row[i].type && tblparser.row[i].type === 3 && tblparser.row[i].rowgroup.elem && i > 0 && tblparser.row[i - 1].type && tblparser.row[i - 1].type === 3 && tblparser.row[i - 1].rowgroup.uid !== tblparser.row[i].rowgroup.uid) {
 						$(tblparser.row[i].rowgroup.elem).addClass('table-rowgroupmarker');
 					}
 				}
 			}
-			// Header Group
+			
+			// Header Group Cell
+			/*
+			 * Currently unused. 
+			 * Uncomment to be able to apply custom styling to an header group cells.
+			 * 
+			+-----------------------------------------------------+
+			| FYI - 'tblparser.type' property (See the docs related to the parserTable.js dependency)
+			+-------+---------------+-----------------------------+
+			| Type	| Signification | Technicality
+			+-------+---------------+------------------------------
+			|	1	| Header		| TH element only
+			+-------+---------------+------------------------------
+			|	2	| Data			| TD element only
+			+-------+---------------+------------------------------
+			|	3	| Summary		| TD element and TD of type 2 exist
+			+-------+---------------+------------------------------
+			|	4	| Key			| TD element applicable to right TH, Only available on row
+			+-------+---------------+------------------------------
+			|	5	| Description	| TD element applicable to left or top TH
+			+-------+---------------+------------------------------
+			|	6	| Layout		| Can be only: Top Left cell or/and Summmary group intersection
+			+-------+---------------+------------------------------
+			|	7	| Header Group	| TH element only, visual heading grouping, this type are an extension of the type 1
+			+-------+---------------+------------------------------
+			 * 
+			 * 
 			$('th', elem).each(function () {
 				var $this = $(this),
 					tblparser = $this.data().tblparser;
@@ -78,10 +95,16 @@
 					$this.addClass('table-headgroup' + tblparser.scope + tblparser.level);	// level is a number, scope either "row" || "col"
 				}
 			});
+			*/
 
 			// Data Column Group
 			if (tblparser.colgroup) {
 				for (i = 0; i < tblparser.colgroup.length; i += 1) {
+					
+					if(tblparser.colgroup[i].type === 3) {
+						$(tblparser.colgroup[i].elem).addClass('table-summary');
+					}
+					
 					if (tblparser.colgroup[i].elem && ((i > 0 && tblparser.colgroup[i].type === 3 && tblparser.colgroup[i - 1].type === 3 && tblparser.colgroup[i - 1].level > tblparser.colgroup[i].level) ||
 						(tblparser.colgroup[i].type === 2 && ((i > 0 && tblparser.colgroup[0].type === 2) || (i > 1 && tblparser.colgroup[0].type === 1))))) {
 						$(tblparser.colgroup[i].elem).addClass('table-colgroupmarker');
@@ -202,29 +225,42 @@
 				return $(this).children('td').length > 0;
 			});
 
-			$trs.on('mouseleave focusout', function (e) {
-				e.stopPropagation();
-				$(this).removeClass('table-hover');
-			});
-			$trs.on('mouseenter focusin', function (e) {
-				e.stopPropagation();
-				$(this).addClass('table-hover');
-			});
-
+			if (!opts.nohover) {
+				if (!opts.norowheaderhighlight && !opts.noheaderhighlight) {
+					elem.addClass('rowhover');
+				} else {
+					elem.addClass('rowtdhover');
+				}
+				if (_pe.ie > 0 && _pe.ie < 9) {
+					$trs.on('mouseleave focusout', function (e) {
+						e.stopPropagation();
+						$(this).removeClass('table-hover');
+					});
+					$trs.on('mouseenter focusin', function (e) {
+						e.stopPropagation();
+						$(this).addClass('table-hover');
+					});
+				}
+			}
+			
 			if (opts.vectorstripe) {
 				if (!opts.columnhighlight) {
-					// note: even/odd's indices start at 0
-					$trs.filter(':odd').addClass('table-even');
-					$trs.filter(':even').addClass('table-odd');
-				} else {
-					$cols = [];
-					for (i = 0; i < tblparser.col.length; i += 1) {
-						if (tblparser.col[i].elem) {
-							$cols.push(tblparser.col[i].elem);
-						}
+					elem.addClass('rowzebra');
+					if (_pe.ie > 0 && _pe.ie < 9) {
+						$trs.filter(':odd').addClass('table-odd');
 					}
-					$($cols).filter(':odd').addClass('table-even');
-					$($cols).filter(':even').addClass('table-odd');
+				} else {
+					elem.addClass('colzebra');
+
+					if (_pe.ie > 0	&& _pe.ie < 9) {
+						$cols = [];
+						for (i = 0, col_length = tblparser.col.length; i < col_length; i += 1) {
+							if (tblparser.col[i].elem) {
+								$cols.push(tblparser.col[i].elem);
+							}
+						}
+						$($cols).filter(':odd').addClass('table-odd');
+					}
 				}
 			}
 
@@ -239,8 +275,9 @@
 				opts,
 				overrides,
 				lstDlItems = [],
-				isodd = false,
-				dlitem = [];
+				isodd,
+				dlitem = [],
+				domTable;
 			// Defaults Options
 			opts = {
 				noheaderhighlight: false,
@@ -261,10 +298,9 @@
 				vectorstripe: elem.hasClass('vectorstripe') ? true : undefined,
 				complextableparsing: elem.hasClass('complextableparsing') ? true : undefined
 			};
-
 			// Extend the defaults with settings passed through settings.js (wet_boew_zebra), class-based overrides and the data-wet-boew attribute
-			$.extend(opts, (typeof wet_boew_zebra !== 'undefined' ? wet_boew_zebra : {}), overrides);
-
+			$.extend(opts, (typeof wet_boew_zebra !== 'undefined' ? wet_boew_zebra : {}), overrides); 
+			
 			if (elem.is('table')) {
 
 				// Perform a test to know if we need to completly parse the table
@@ -279,19 +315,10 @@
 				// * n col element
 				// * 0-1 tfoot row group
 
-				if (opts.complextableparsing || opts.noheaderhighlight || opts.norowheaderhighlight || opts.nocolheaderhighlight || opts.nohover || opts.vectorstripe) {
+				if (opts.complextableparsing || opts.nocolheaderhighlight || opts.vectorstripe) {
 					isSimpleTable = false;
 				}
-
-
-
-				// This condifition for simple table are not supported by IE
-				// 
-				// if (isSimpleTable && $('th[rowspan], th[colspan], td[rowspan], td[colspan], colgroup[span]', elem).length > 0) {
-				//	isSimpleTable = false;
-				// }
-				// console.log('2 Zebra, isSimpleTable:' + isSimpleTable);
-				// console.log($('th[rowspan]', elem).length + '  ' + $('th[colspan]', elem).length + '  ' + $('td[rowspan]', elem).length + '	' + $('td[colspan]', elem).length + '  ' + $('colgroup[span]', elem).length);
+				// option now available since WxT 3.1 for simple table: noheaderhighlight, norowheaderhighlight 
 
 				if (isSimpleTable && (elem.children('tbody').length > 1 || elem.children('thead').children('tr').length > 1 || elem.children('colgroup').length > 2)) {
 					isSimpleTable = false;
@@ -304,7 +331,6 @@
 				if (isSimpleTable && ($('tr:first th, tr:first td, tr', elem).length) < $('th', elem).length) {
 					isSimpleTable = false;
 				}
-
 				i = 0;
 				$('tr:eq(2)', elem).children().each(function () {
 					var nn = this.nodeName.toLowerCase();
@@ -318,42 +344,80 @@
 					i += 1;
 				});
 
-
 				if (isSimpleTable) {
-					// Default Zebra
-					$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
-						return $(this).children('td').length > 0;
-					});
-
-					$trs.on('mouseleave focusout', function (e) {
-						e.stopPropagation();
-						$(this).removeClass('table-hover');
-					});
-					$trs.on('mouseenter focusin', function (e) {
-						e.stopPropagation();
-						$(this).addClass('table-hover');
-					});
-
-
-					if (!opts.columnhighlight) {
-						// note: even/odd's indices start at 0
-						$trs.filter(':odd').addClass('table-even');
-						$trs.filter(':even').addClass('table-odd');
-					} else {
-						$cols = elem.children('colgroup:last').children('col');
-
-						$($cols).filter(':odd').addClass('table-even');
-						$($cols).filter(':even').addClass('table-odd');
-
+					// Check if the first row is an header row, move it in a thead section
+					domTable = elem.get(0);
+					if (!domTable.tHead && domTable.rows[0].cells[domTable.rows[0].cells.length - 1].nodeName === "TH") {
+						
+						
+						$('tr:first()', elem).appendTo($(domTable.createTHead()));
 					}
 					
-					return; // Simple Table Zebra Striping done
+					if (!(_pe.ie > 0 && _pe.ie < 9)) {
+						
+						if (!opts.columnhighlight) {
+							elem.addClass('rowzebra');
+						} else {
+							elem.addClass('colzebra');
+						}
+						
+						if (!opts.nohover) {
+							if (!opts.norowheaderhighlight && !opts.noheaderhighlight) {
+								elem.addClass('rowhover');
+							} else {
+								elem.addClass('rowtdhover');
+							}
+						}
+						
+						return;  // Simple Table Zebra Striping done
+					} else {
+
+	
+
+						
+						// Default Zebra
+						$trs = (elem.children('tr').add(elem.children('tbody').children('tr'))).filter(function () {
+							return $(this).children('td').length > 0;
+						});
+
+						if (!opts.nohover) {
+							if (!opts.norowheaderhighlight && !opts.noheaderhighlight) {
+								elem.addClass('rowhover');
+							} else {
+								elem.addClass('rowtdhover');
+							}
+
+							// The action "removeClass" and "addClass" instead of the toggle because, if the mouse hover a row and you hit refresh, that row get the hover class when it mouse out, The reverse is wanted. That is the explaination of using removing, adding class.
+							$trs.on('mouseleave focusout', function (e) {
+								e.stopPropagation();
+								$(this).removeClass('table-hover');
+							});
+							$trs.on('mouseenter focusin', function (e) {
+								e.stopPropagation();
+								$(this).addClass('table-hover');
+							});
+						}
+	
+	
+						if (!opts.columnhighlight) {
+							elem.addClass('rowzebra');
+							
+							$trs.filter(':odd').addClass('table-odd');
+						} else {
+							elem.addClass('colzebra');
+							
+							$cols = elem.children('colgroup:last').children('col');
+	
+							$cols.filter(':odd').addClass('table-odd');
+						}
+						
+						return; // Simple Table Zebra Striping done
+					}
 				}
 
+				
 
-
-
-
+				// Delayed Processing, The complex table parser need to loaded 
 
 				if (_pe.fn.parsertable) {
 					_pe.fn.zebra.fnZebraComplexTable(elem, opts);
@@ -424,19 +488,27 @@
 					});
 				}
 			} else {
-				$lis = elem.children('li');
-				parity = (elem.parents('li').length + 1) % 2;
-				$lis.filter(':odd').addClass(parity === 0 ? 'list-odd' : 'list-even');
-				$lis.filter(':even').addClass(parity === 1 ? 'list-odd' : 'list-even');
+				
 				if (!opts.nohover) {
-					$lis.on('mouseleave focusout', function (e) {
-						e.stopPropagation();
-						$(this).removeClass('list-hover');
-					});
-					$lis.on('mouseenter focusin', function (e) {
-						e.stopPropagation();
-						$(this).addClass('list-hover');
-					});
+					elem.addClass('zebra-hover');
+				}
+				
+				if (_pe.ie > 0 && _pe.ie < 9) {
+					
+					$lis = elem.children('li');
+					parity = (elem.parents('li').length + 1) % 2;
+					$lis.filter(':odd').addClass(parity === 0 ? 'list-odd' : 'list-even');
+					$lis.filter(':even').addClass(parity === 1 ? 'list-odd' : 'list-even');
+					if (!opts.nohover) {
+						$lis.on('mouseleave focusout', function (e) {
+							e.stopPropagation();
+							$(this).removeClass('list-hover');
+						});
+						$lis.on('mouseenter focusin', function (e) {
+							e.stopPropagation();
+							$(this).addClass('list-hover');
+						});
+					}
 				}
 			}
 		} // end of exec

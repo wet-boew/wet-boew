@@ -108,8 +108,10 @@
 				// In this case we will place them in the associated label element
 				errorPlacement: function(error, element) {
 					var type = element.attr('type'),
+						name,
 						fieldset,
 						legend;
+					
 					if (typeof type !== 'undefined') {
 						type = type.toLowerCase();
 						if (type === 'radio' || type === 'checkbox') {

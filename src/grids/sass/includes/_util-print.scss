@@ -88,3 +88,10 @@ td {
 	vertical-align: top;
 	padding: 5px 10px;
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	caption {
+		text-align: right;
+	}
+}

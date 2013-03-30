@@ -115,9 +115,15 @@
 				z-index: 2;
 			}
 		}
-		> .button {
-			&:first-child { @include border-left-radius(4px); }
-			&:last-child { @include border-right-radius(4px); }
+		> {
+			.button {
+				&:first-child {
+					@include border-left-radius(4px);
+				}
+				&:last-child {
+					@include border-right-radius(4px);
+				}
+			}
 		}
 		li {
 			list-style: none;
@@ -135,15 +141,32 @@
 		}
 	}
 
+	%button-only-child {
+		@include border-radius(4px);
+		margin-right: 4px;
+	}
+
 	ul {
 		&.button-group {
 			margin: $margin-medium;
+			li {
+				&:nth-child(1):nth-last-child(1) {
+					.button {
+						@extend %button-only-child;
+					}
+				}
+			}
 		}
 	}
 
 	p {
 		&.button-group {
 			margin-top: 0;
+			.button {
+				&:nth-child(1):nth-last-child(1) {
+					@extend %button-only-child;
+				}
+			}
 		}
 	}
 
@@ -154,11 +177,6 @@
 				margin-right: 0;
 			}
 		}
-	}
-
-	p.button-group .button:nth-child(1):nth-last-child(1), ul.button-group li:nth-child(1):nth-last-child(1) .button {
-		@include border-radius(4px);
-		margin-right: 4px;
 	}
 
 	.button-toolbar {
@@ -175,6 +193,93 @@
 		}
 	}
 
+	// Right to left (RTL) CSS
+	[dir="rtl"] {
+		.button-group {
+			.button {
+				float: right;
+				margin-left: auto;
+				margin-right: -1px;
+			}
+			> {
+				.button {
+					&:first-child {
+						@include border-radius(0 4px 4px 0);
+					}
+					&:last-child {
+						@include border-radius(4px 0 0 4px);
+					}
+				}
+			}
+			li {
+				float: right;
+				&:first-child {
+					.button {
+						@include border-radius(0 4px 4px 0);
+					}
+				}
+				&:last-child {
+					.button {
+						@include border-radius(4px 0 0 4px);
+					}
+				}
+			}
+		}
+
+		%button-only-child-rtl {
+			margin-right: auto;
+			margin-left: 4px;
+		}
+
+		ul {
+			&.button-group {
+				margin: 0 10px 10px;
+				li {
+					&:nth-child(1):nth-last-child(1) {
+						.button {
+							@extend %button-only-child-rtl;
+						}
+					}
+				}
+			}
+		}
+
+		p {
+			&.button-group {
+				.button {
+					&:nth-child(1):nth-last-child(1) {
+						@extend %button-only-child-rtl;
+					}
+				}
+			}
+		}
+
+		[class*="span-"] {
+			 ul {
+				 &.button-group, &.menu-horizontal {
+					margin-left: 0;
+					margin-right: 0;
+				}
+			}
+		}
+
+		&.ie7 {
+			.button-group {
+				.button {
+					@extend %button-ie7-rtl-float-fix;
+				}
+				li {
+					@extend %button-ie7-rtl-float-fix;
+				}
+			}
+		}
+	}
+
+	%button-ie7-rtl-float-fix {
+		zoom: 1;
+		float: none;
+		display: inline;
+	}
 }
 
 @mixin button($color) {

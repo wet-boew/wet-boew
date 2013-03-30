@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
+<title>Compteur (correctif pour meter) - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="French description / Description en français" />
+<meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
+<meta name="dcterms.title" content="French title / Titre en français" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="French subject terms / Termes de sujet en français" />
+<meta name="dcterms.language" title="ISO639-2" content="fra" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation du gouvernement de Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-fra.svg" role="img" tabindex="-1" aria-label="Gouvernement du Canada" type="image/svg+xml"><img src="../../dist/theme-gcwu-fegc/images/sig-fra.png" alt="Gouvernement du Canada" /></object></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
+<li id="gcwu-gcnb-lang"><a href="meter-eng.html" lang="en">English</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" tabindex="-1" aria-label="Symbole du gouvernement du Canada" type="image/svg+xml"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" alt="Symbole du gouvernement du Canada" /></object></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-fra.html">Boîte à outils de l'expérience Web&#160;(BOEW)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2>Menu du site</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-fra.txt">
+<li><div><a href="http://wet-boew.github.com/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
+<li><div><a href="section2/index-fra.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Fil d'Ariane</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../index-fra.html">Accueil</a></li>
+<li><a href="../index-fra.html">Exemples pratiques</a></li>
+<li>Compteur (correctif pour <span lang="en">meter</span>)</li>
+</ol></div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Compteur (correctif pour <span lang="en">meter</span>)</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Contenu-archiv%C3%A9" class="button button-info">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Compteur-%28correctif-pour-meter%29" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<p>La description qui est inclus dans HTML5&#160;:</p>
+<blockquote lang="en" cite="http://www.w3.org/TR/html5/forms.html#the-meter-element">
+The meter element represents a scalar measurement within a known range, or a fractional value; for example disk usage, the relevance of a query result, or the fraction of a voting population to have selected a particular candidate.<br /><br />
+This is also known as a gauge.<br /><br />
+The meter element should not be used to indicate progress (as in a progress bar). For that role, HTML provides a separate progress element.<br /><br />
+The meter element also does not represent a scalar value of arbitrary range — for example, it would be wrong to use this to report a weight, or height, unless there is a known maximum value.
+</blockquote>
+
+<section><h2>Exemples</h2>
+
+<table>
+<thead>
+<tr>
+<th scope="col">Description</th>
+<th scope="col" lang="en">Min</th>
+<th scope="col" lang="en">Low</th>
+<th scope="col" lang="en">Value</th>
+<th scope="col" lang="en">Max</th>
+<th scope="col" lang="en">High</th>
+<th scope="col">Résultat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal (75%)</td>
+<td>20</td>
+<td>n/a</td>
+<td>65</td>
+<td>80</td>
+<td>n/a</td>
+<td><meter min="20" value="65" max="80">75 % (normal)</meter></td>
+</tr>
+<tr>
+<td>Trop haut (90%)</td>
+<td>0</td>
+<td>n/a</td>
+<td>90</td>
+<td>100</td>
+<td>80</td>
+<td><meter min="0" value="90" max="100" high="80">90 % (trop haut)</meter></td>
+</tr>
+<tr>
+<td>Trop bas (15 %)</td>
+<td>100</td>
+<td>120</td>
+<td>115</td>
+<td>200</td>
+<td>180</td>
+<td><meter min="100" low="120" value="115" max="200" high="180">15 % (trop bas)</meter></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2012-10-10</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Pied de page du site</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Avis</a></li>
+<li class="gcwu-tr"><a href="#">Transparence</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">À propos de nous</a></h4>
+<ul>
+<li><a href="#">Notre mandat</a></li>
+<li><a href="#">Le ministre</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Nouvelles</a></h4>
+<ul>
+<li><a href="#">Communiqués</a></li>
+<li><a href="#">Avix aux médias</a></li>
+<li><a href="#">Multimédia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contactez-nous</a></h4>
+<address>
+<ul>
+<li><a href="#">Numéros de téléphone</a></li>
+<li><a href="#">Nos bureaux</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Restez branchés</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Flux</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Pied de page du gouvernement du Canada</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://canadiensensante.gc.ca/index-fra.php"><span>Santé</span><br />canadiensensante.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-fra.asp"><span>Voyage</span><br />voyage.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
+<li><a rel="external" href="http://plandaction.gc.ca/fr"><span>Économie</span><br />plandaction.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
+</body>
+</html>

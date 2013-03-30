@@ -68,6 +68,20 @@ $default-color-gradient: true;
 $default-color-shadow: true;
 $default-color-border: false;
 
+$accent-1: #8d201c;
+$accent-2: #EE8310;
+$accent-3: #2a7da6;
+$accent-4: #5a306b;
+$accent-5: #285228;
+$accent-6: #154055;
+$accent-7: #555555;
+$accent-8: #f6d200;
+$accent-9: #d73d38;
+$accent-10: #418541;
+$accent-11: #87aec9;
+$accent-12: #23447e;
+$accent-13: #999999;
+
 //override the compass zero values with unitless values
 $default-box-shadow-h-offset: 0;
 $default-box-shadow-v-offset: 0;
@@ -85,15 +99,17 @@ $default-box-shadow-v-offset: 0;
 
 	// apply link colors to base only
 	a {
-		&, &:link, &:visited {
-			color: $text;
-		}
+		&, &.ui-link {
+			&, &:link, &:visited {
+				color: $text;
+			}
 
-		@include pseudo-focus {
-			@if $text == white {
-				color: darken($text, 10%);
-			} @else {
-				color: lighten($text, 20%);
+			@include pseudo-focus {
+				@if $text == white {
+					color: darken($text, 10%);
+				} @else {
+					color: lighten($text, 20%);
+				}
 			}
 		}
 	}

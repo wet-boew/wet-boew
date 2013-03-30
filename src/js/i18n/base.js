@@ -9,13 +9,17 @@
 /*
 ----- @%lang-eng@ dictionary (il8n) ---
  */
-/*global jQuery: false, pe: false */
+/*global jQuery: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {}
 	};
 	_pe.dic.ind = {
+		'%lang-code': '@%lang-code@',
+		'%lang-eng': '@%lang-eng@',
+		'%lang-fra': '@%lang-fra@',
+		'%lang-native': '@%lang-native@',
 		'%all': '@%all@',
 		'%home': '@%home@',
 		'%main-page': '@%main-page@',
@@ -23,6 +27,7 @@
 		'%you-are-in': '@%you-are-in@',
 		'%welcome-to': '@%welcome-to@',
 		'%loading': '@%loading@',
+		'%processing': '@%processing@',
 		'%search': '@%search@',
 		'%search-for-terms': '@%search-for-terms@',
 		'%no-match-found': '@%no-match-found@',
@@ -30,6 +35,10 @@
 			'mixin': '@%matches-found@'
 		},
 		'%menu': '@%menu@',
+		'%settings': '@%settings@',
+		'%languages': '@%languages@',
+		'%about': '@%about@',
+		'%current': '@%current@',
 		'%hide': '@%hide@',
 		'%error': '@%error@',
 		'%colon': '@%colon@',
@@ -51,10 +60,12 @@
 			'mixin': '@%days-ago@'
 		},
 		'%yesterday': '@%yesterday@',
-		
+
 		'%next': '@%next@',
 		'%previous': '@%previous@',
-		
+		'%first': '@%first@',
+		'%last': '@%last@',
+
 		/* Archived Web page template */
 		'%archived-page': '@%archived-page@',
 		/* Menu bar */
@@ -65,9 +76,13 @@
 			'enable': '@%tab-rotation-enable@'
 		},
 		'%tab-list': '@%tab-list@',
+		'%tab-panel-end-1': '@%tab-panel-end-1@',
+		'%tab-panel-end-2': '@%tab-panel-end-2@',
+		'%tab-panel-end-3': '@%tab-panel-end-3@',
 		/* Multimedia player */
 		'%play': '@%play@',
 		'%pause': '@%pause@',
+		'%open': '@%open@',
 		'%close': '@%close@',
 		'%rewind': '@%rewind@',
 		'%fast-forward': '@%fast-forward@',
@@ -124,8 +139,6 @@
 		'%calendar-nextMonth': '@%calendar-nextMonth@',
 		/* Slideout */
 		'%show-toc': '@%show-toc@',
-		'%show-image': '@%show-image@',
-		'%hide-image': '@%hide-image@',
 		'%show-text': '@%show-text@',
 		'%hide-text': '@%hide-text@',
 		'%table-contents': '@%table-contents@',
@@ -141,6 +154,7 @@
 		'%jqm-collapse': '@%jqm-collapse@',
 		'%jqm-clear-search': '@%jqm-clear-search@',
 		'%jqm-filter': '@%jqm-filter@',
+		'%jqm-tbl-col-toggle': '@%jqm-tbl-col-toggle@',
 		/* Charts widget */
 		'%table-mention': '@%table-mention@',
 		'%table-following': '@%table-following@',
@@ -148,6 +162,41 @@
 		'%st-timeout-msg': '@%st-timeout-msg@',
 		'%st-msgbox-title': '@%st-msgbox-title@',
 		'%st-already-timeout-msg': '@%st-already-timeout-msg@',
+		/* Toggle details */
+		'%td-toggle': '@%td-toggle@',
+		'%td-open': '@%td-open@',
+		'%td-close': '@%td-close@',
+		'%td-ttl-open': '@%td-ttl-open@',
+		'%td-ttl-close': '@%td-ttl-close@',
+		/* Table enhancement */
+		'%sSortAscending': '@%sSortAscending@',
+		'%sSortDescending': '@%sSortDescending@',
+		'%sEmptyTable': '@%sEmptyTable@',
+		'%sInfo': '@%sInfo@',
+		'%sInfoEmpty': '@%sInfoEmpty@',
+		'%sInfoFiltered': '@%sInfoFiltered@',
+		'%sInfoThousands': '@%sInfoThousands@',
+		'%sLengthMenu': '@%sLengthMenu@',
+		/* Geomap */
+		'%geo-mapcontrol': '@%geo-mapcontrol@',
+		'%geo-panup': '@%geo-panup@',
+		'%geo-pandown': '@%geo-pandown@',
+		'%geo-panleft': '@%geo-panleft@',
+		'%geo-panright': '@%geo-panright@',
+		'%geo-zoomin': '@%geo-zoomin@',
+		'%geo-zoomout': '@%geo-zoomout@',
+		'%geo-zoomworld': '@%geo-zoomworld@',
+		'%geo-zoomslider': '@%geo-zoomslider@',
+		'%geo-zoomfeature': '@%geo-zoomfeature@',
+		'%geo-ariamap': '@%geo-ariamap@',
+		'%geo-accessibilize': '@%geo-accessibilize@',
+		'%geo-accessibilizetitle': '@%geo-accessibilizetitle@',
+		'%geo-togglelayer': '@%geo-togglelayer@',
+		'%geo-hiddenlayer': '@%geo-hiddenlayer@',
+		'%geo-basemapurl': '@%geo-basemapurl@',
+		'%geo-basemaptitle': '@%geo-basemaptitle@',
+		'%geo-select': '@%geo-select@',
+		'%geo-labelselect': '@%geo-labelselect@',
 		/* Disable/enable PE */
 		'%pe-disable': '@%pe-disable@',
 		'%pe-enable': '@%pe-enable@'

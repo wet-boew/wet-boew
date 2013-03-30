@@ -60,3 +60,22 @@ a {
 #wb-sup {
 	@extend %wb-default-print-min-height-0-important;
 }
+
+%wb-default-print-page-break-all {
+	display: block;
+	page-break-inside: avoid;
+}
+
+.print-page-break-before {
+	@extend %wb-default-print-page-break-all;
+	page-break-before: always;
+}
+
+.print-page-break-after {
+	@extend %wb-default-print-page-break-all;
+	page-break-after: always;
+}
+
+#viewtest {
+	width: 0;
+}

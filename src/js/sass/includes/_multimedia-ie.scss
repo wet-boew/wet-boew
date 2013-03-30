@@ -14,7 +14,9 @@
 		}
 	}
 	.wb-mm-controls {
+		margin-top: 4px;
 		button {
+			border: 1px solid #bbb;
 			img {
 				display: inline;
 				height: 18px;
@@ -23,7 +25,7 @@
 
 		.wb-mm-timeline-inner {
 			progress {
-				margin-top: -17px;
+				margin: 24px 0 0 -148px;
 			}
 		}
 	}
@@ -35,10 +37,7 @@
 			@extend %multimedia-ie-backbround-overlay;
 		}
 	}
-	.wb-mm-controls {	
+	.wb-mm-controls {
 		margin-top: -1px;
-		button {
-			padding: 1px 3px;
-		}
 	}
 }

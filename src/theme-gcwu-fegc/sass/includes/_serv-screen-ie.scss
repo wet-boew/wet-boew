@@ -41,3 +41,13 @@
 		}
 	}
 }
+
+.ie7, .ie8 {
+	#wb-core-in, #gcwu-tc {
+		a {
+			&, &.uri-link {
+				font-weight: 400;
+			}
+		}
+	}
+}

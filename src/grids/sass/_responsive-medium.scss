@@ -1,0 +1,272 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+@import 'includes/_grid-mixins.scss';
+
+%grids-responsive-medium-margin-left-0 {
+	margin-left: 0;
+}
+%grids-responsive-medium-margin-left-0-margin-right-0 {
+	@extend %grids-responsive-medium-margin-left-0;
+	margin-right: 0;
+}
+%grids-responsive-medium-margin-left-2-7092394498648 {
+	margin-left: 2.7092394498648%;
+}
+%grids-responsive-medium-width-5-747913483014perc {
+	width: 5.747913483014%;
+}
+%grids-responsive-medium-width-14-311449394616perc {
+	width: 14.311449394616%;
+}
+%grids-responsive-medium-width-22-874985306218perc {
+	width: 22.874985306218%;
+}
+%grids-responsive-medium-width-31-438521217821perc {
+	width: 31.438521217821%;
+}
+%grids-responsive-medium-width-40-002057129423perc {
+	width: 40.002057129423%;
+}
+%grids-responsive-medium-width-48-565593041025perc {
+	width: 48.565593041025%;
+}
+%grids-responsive-medium-width-48-565593041025perc-important {
+	width: 48.565593041025% !important;
+}
+%grids-responsive-medium-width-57-129128952627perc {
+	width: 57.129128952627%;
+}
+%grids-responsive-medium-width-65-692664864229perc {
+	width: 65.692664864229%;
+}
+%grids-responsive-medium-width-74-256200775832perc {
+	width: 74.256200775832%;
+}
+%grids-responsive-medium-width-82-819736687434perc {
+	width: 82.819736687434%;
+}
+%grids-responsive-medium-width-91-383272599036perc {
+	width: 91.383272599036%;
+}
+%grids-responsive-medium-width-99-930167597765perc {
+	width: 99.930167597765%;
+}
+%grids-responsive-medium-width-99-946808510638perc-important {
+	width: 99.946808510638% !important;
+}
+
+blockquote {
+	@extend %grids-responsive-medium-margin-left-0-margin-right-0;
+}
+
+form {
+	@extend %grids-responsive-medium-margin-left-0-margin-right-0;
+}
+
+#{headings(all)} {
+	@extend %grids-responsive-medium-margin-left-0-margin-right-0;
+}
+
+img {
+	@extend %grids-responsive-medium-margin-left-0-margin-right-0;
+}
+
+p {
+	@extend %grids-responsive-medium-margin-left-0-margin-right-0;
+}
+
+pre {
+	@extend %grids-responsive-medium-margin-left-0-margin-right-0;
+}
+
+table {
+	@extend %grids-responsive-medium-margin-left-0-margin-right-0;
+}
+
+details {
+	@extend %grids-responsive-medium-margin-left-0-margin-right-0;
+}
+
+[class*=span-] {
+	@extend %grids-responsive-medium-margin-left-0-margin-right-0;
+	+ {
+		[class*=span-] {
+			@extend %grids-responsive-medium-margin-left-2-7092394498648;
+		}
+	}
+	&.float-right {
+		@extend %grids-responsive-medium-margin-left-2-7092394498648;
+	}
+}
+
+[class*=border-] {
+	background: none;
+	outline: none;
+} 
+
+.clear {
+	+ {
+		[class*=span-] {
+			@extend %grids-responsive-medium-margin-left-0;
+		}
+	}
+}
+
+.float-right {
+	+ {
+		[class*=span-] {
+			margin-left: 0 !important;
+		}
+	}
+}
+
+[id|=wb-body] {
+	#wb-core {
+		.grid-12 {
+			.span-1 {
+				@extend %grids-responsive-medium-width-5-747913483014perc;
+			}
+			.span-2 {
+				@extend %grids-responsive-medium-width-14-311449394616perc;
+			}
+			.span-3 {
+				@extend %grids-responsive-medium-width-22-874985306218perc;
+			}
+			.span-4 {
+				@extend %grids-responsive-medium-width-31-438521217821perc;
+			}
+			.span-5 {
+				@extend %grids-responsive-medium-width-40-002057129423perc;
+			}
+			.span-6 {
+				@extend %grids-responsive-medium-width-48-565593041025perc;
+			}
+			.span-7 {
+				@extend %grids-responsive-medium-width-57-129128952627perc;
+			}
+			.span-8 {
+				@extend %grids-responsive-medium-width-65-692664864229perc;
+			}
+			.span-9 {
+				@extend %grids-responsive-medium-width-74-256200775832perc;
+			}
+			.span-10 {
+				@extend %grids-responsive-medium-width-82-819736687434perc;
+			}
+			.span-11 {
+				@extend %grids-responsive-medium-width-91-383272599036perc;
+			}
+			.span-12 {
+				@extend %grids-responsive-medium-width-99-930167597765perc;
+			}
+		}
+	}
+}
+
+#wb-body {
+	.span-1 {
+		width: 9.9860335195531%;
+	}
+	.span-2 {
+		width: 22.835195530726%;
+	}
+	.span-3 {
+		width: 35.684357541899%;
+	}
+	.span-4 {
+		width: 48.533519553073%;
+	}
+	.span-5 {
+		width: 61.382681564246%;
+	}
+	.span-6 {
+		width: 74.231843575419%;
+	}
+	.span-7 {
+		width: 87.081005586592%;
+	}
+	.span-8 {
+		@extend %grids-responsive-medium-width-99-930167597765perc;
+	}
+}
+
+.span-1 {
+	@extend %grids-responsive-medium-width-14-311449394616perc;
+	.span-1 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+}
+.span-2 {
+	@extend %grids-responsive-medium-width-31-438521217821perc;
+	.span-2 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+	.span-1 {
+		@extend %grids-responsive-medium-width-48-565593041025perc-important;
+	}
+}
+.span-3 {
+	@extend %grids-responsive-medium-width-48-565593041025perc;
+	.span-3 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+}
+.span-4 {
+	@extend %grids-responsive-medium-width-65-692664864229perc;
+	.span-4 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+	.span-2 {
+		@extend %grids-responsive-medium-width-48-565593041025perc-important;
+	}
+}
+.span-5 {
+	@extend %grids-responsive-medium-width-82-819736687434perc;
+	.span-5 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+}
+.span-6 {
+	@extend %grids-responsive-medium-width-99-930167597765perc;
+	.span-6 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+	.span-3 {
+		@extend %grids-responsive-medium-width-48-565593041025perc-important;
+	}
+}
+.span-7 {
+	.span-7 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+}
+.span-8 {
+	.span-8 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+	.span-4 {
+		@extend %grids-responsive-medium-width-48-565593041025perc-important;
+	}
+}
+.span-9 {
+	.span-9 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+}
+.span-10 {
+	.span-10 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+}
+.span-11 {
+	.span-11 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+}
+.span-12 {
+	.span-12 {
+		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+}

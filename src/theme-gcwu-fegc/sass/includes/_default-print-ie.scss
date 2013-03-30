@@ -23,4 +23,19 @@
 			}
 		}
 	}
+
+	// Right to left (RTL) CSS
+	&[dir="rtl"] {
+		#gcwu-bc {
+			li {
+				border-left: none;
+				border-right: 1px solid #000;
+
+				&:first-child {
+					border-right: none;
+					padding-right: 0;
+				}
+			}
+		}
+	}
 }

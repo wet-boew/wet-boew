@@ -20,21 +20,23 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
 <link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
-<!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
+<!-- CustomCSSStart -->
 <style>
 	.wet-boew-lightbox > ul {margin-left:0;}
 	.wet-boew-lightbox > ul > li {list-style-type:none;float:left;margin: 0 5px 0 0;}
@@ -45,7 +47,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	.box > a:hover, .box > a:focus, .box > a:active {text-decoration: underline; background: #FFF;}
 	.lb-hidden-gallery .box > a {display: none;}
 </style>
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -59,7 +61,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng.svg" role="img" tabindex="-1" aria-label="Government of Canada" type="image/svg+xml"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.png" alt="Government of Canada" /></object></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
@@ -69,19 +71,19 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" tabindex="-1" aria-label="Symbol of the Government of Canada" type="image/svg+xml"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" alt="Symbol of the Government of Canada" /></object></div></div>
 <div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
 <label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="gcwu-psnb"><h2>Site menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
 <li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
@@ -124,6 +126,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 					<li><a href="#examples1">Single items</a></li>
 					<li><a href="#examples2">Item gallery</a></li>
 					<li><a href="#examples3">Hidden item gallery</a></li>
+					<li><a href="#examples4">Alternative image title</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -357,6 +360,52 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 		</div>
 	</section>
 	<div class="clear"></div>
+	
+	<section>
+		<h3 id="examples4">Alternative image title (v3.1 Beta)</h3>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Example</h4>
+				<div class="wet-boew-lightbox">
+					<ul class="lb-gallery">
+						<li>
+							<a class="lb-item-gal" href="images/1_b.jpg" title="Image 1" data-title="image_1_b">
+								<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
+							</a>
+						</li>
+						<li>
+							<a class="lb-item-gal" href="images/2_b.jpg" title="Image 2" data-title="image_2_b">
+								<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
+							</a>
+						</li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+				
+				<p id="image_1_b"><strong>Image 1:</strong> Lorem ipsum consectetur <em>adipiscing elit</em>.</p>
+				<p id="image_2_b"><strong>Image 2:</strong> Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis. </p>
+				
+			</section>
+		</div>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Coding</h4>
+				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;ul class="lb-gallery"&gt;
+    &lt;li&gt;
+	  &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image" data-title="element_id"&gt;
+		&lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
+    ...
+  &lt;/ul&gt;	
+&lt;/div&gt;
+&lt;p id="element_id"&gt;Title of the image&lt;/p&gt;</code></pre>
+			</section>
+		</div>
+	</section>
+	<div class="clear"></div>		
+	
 </section>
 </div>
 
@@ -423,9 +472,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
 </body>
 </html>

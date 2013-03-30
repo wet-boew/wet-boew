@@ -12,26 +12,39 @@
 /*!!
  * Icons by Yusuke Kamiyamane (http: //p.yusukekamiyamane.com/) - Creative Commons Attribution 3.0 License (http: //creativecommons.org/licenses/by/3.0/)
  */
+
 @media screen {
-/* -----Build Include Section Start----- */
+/* ----- All screens - Screen media type - Start of build includes ----- */
 @import 'includes/util-screen';
-/* -----Build Include Section End----- */
-}
-@media screen and (min-width: 768px) and (min-device-width: 768px) {
-/* -----Build Include Section Start----- */
-@import 'includes/util-desktop-screen';
-/* -----Build Include Section End----- */
+/* ----- All screens - Screen media type - End of build includes ----- */
 }
 
-/* Mobile view */
+@media screen and (min-width: 768px) and (min-device-width: 768px) {
+/* ----- Medium and large screens - Screen media type - Start of build includes ----- */
+@import 'includes/util-medium-large-screen';
+/* ----- Medium and large screens - Screen media type - End of build includes ----- */
+}
+
+@media screen and (max-width: 959px), screen and (max-device-width: 1023px) {
+/* ----- Small and medium screens - Screen media type - Start of build includes ----- */
+@import 'includes/util-small-medium';
+/* ----- Small and medium screens - Screen media type - End of build includes ----- */
+}
+
 @media screen and (max-width: 767px), screen and (max-device-width: 767px) {
-/* -----Build Include Section Start----- */
-@import 'includes/util-mobile';
-/* -----Build Include Section End----- */
+/* ----- Small screens - Screen media type - Start of build includes ----- */
+@import 'includes/util-small';
+/* ----- Small screens - Screen media type - End of build includes ----- */
+}
+
+@media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+/* ----- Medium screens - Screen media type - Start of build includes ----- */
+@import 'includes/util-medium';
+/* ----- Medium screens - Screen media type - End of build includes ----- */
 }
 
 @media print {
-/* -----Build Include Section Start----- */
+/* ----- Print media type only - Start of build includes ----- */
 @import 'includes/util-print';
-/* -----Build Include Section End----- */
+/* ----- Print media type only - End of build includes ----- */
 }

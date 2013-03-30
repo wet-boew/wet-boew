@@ -5,7 +5,7 @@
 /*
  * Equalize plugin
  */
-/*global jQuery: false, pe:false*/
+/*global jQuery: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -14,14 +14,14 @@
 	/* local reference */
 	_pe.fn.equalize = {
 		type : 'plugin',
-		depends : (pe.mobile ? [] : ['equalheights']),
+		depends : (_pe.mobile ? [] : ['equalheights']),
 		_exec : function (elm) {
-			if (pe.mobile) {
+			if (_pe.mobile) {
 				return;
 			}
 
 			$('.equalize').children().css('min-height', '').parent().equalHeights(true);
-			pe.resize(function () {
+			_pe.resize(function () {
 				$('.equalize').children().css('min-height', '').parent().equalHeights(true);
 			});
 

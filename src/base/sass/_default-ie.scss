@@ -55,6 +55,18 @@
 			width: 100%;
 		}
 	}
+
+	// Right to left (RTL) CSS
+	&[dir="rtl"] {
+		.wb-invisible, .wb-show-onfocus, #wb-foot h2 {
+			float: right;
+		}
+
+		legend {
+			margin-left: auto;
+			margin-right: -7px;
+		}
+	}
 }
 
 .ie8 {

@@ -71,4 +71,32 @@
 			margin-top: 0 !important;
 		}
 	}
+
+	// Right to left (RTL) CSS
+	[dir="rtl"] {
+		ul, dl, ol {
+			margin: $margin-medium 40px $margin-medium $margin-medium;
+			padding: 0;
+		}
+
+		.ui-navbar {
+			ul, dl, ol {
+				margin: 0;
+			}
+		}
+
+		ul.menu-horizontal {
+			margin: 0 10px;
+			li {
+				padding-left: 4px;
+				padding-right: 0;
+				float: right;
+			}
+		}
+		.list-bullet-none {
+			abbr {
+				float: right;
+			}
+		}
+	}
 }

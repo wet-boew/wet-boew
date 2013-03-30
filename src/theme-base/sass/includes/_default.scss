@@ -1,0 +1,182 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+#wb-skip {
+	.ui-link {
+		text-shadow: none !important;
+	}
+}
+%base-default-line-height-normal {
+	line-height: normal;
+}
+
+#wb-head {
+	@extend %base-default-line-height-normal;
+}
+ 
+#wb-foot {
+	@extend %base-default-line-height-normal;
+}
+ 
+#wb-sec {
+	@extend %base-default-line-height-normal;
+}
+ 
+%base-default-hidden-clip {
+	@include clip-rect;
+	height: 0 !important;
+	overflow: hidden !important;
+	position: absolute;
+	width: 0 !important;
+	margin: 0 !important;
+}
+
+#base-fullhd {
+	h2 {
+		@extend %base-default-hidden-clip;
+	}
+}
+
+#base-psnb {
+	h2 {
+		@extend %base-default-hidden-clip;
+	}
+}
+
+#base-srchbx {
+	h2 {
+		@extend %base-default-hidden-clip;
+	}
+	label {
+		@extend %base-default-hidden-clip;
+	}
+}
+
+#base-sft {
+	h3 {
+		@extend %base-default-hidden-clip;
+	}
+}
+
+#base-bc {
+	h2 {
+		@extend %base-default-hidden-clip;
+	}
+}
+
+#base-bc-in {
+	color: #555;
+	ol {
+		line-height: 1.57em;
+		list-style-type: none;
+		padding: 0;
+		&:after {
+			content:".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+	}
+	li {
+		float: left;
+		white-space: nowrap;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
+		}
+	}
+	a {
+		color: #295376;
+		text-decoration: none;
+		@include pseudo-focus {
+			color: #295376;
+			text-decoration: underline;
+		}
+	}
+}
+
+#base-fullft {
+	h3 {
+		@extend %base-default-hidden-clip;
+	}
+}
+
+%base-default-float-left {
+	float: left;
+}
+
+#base-date-mod {
+	@extend %base-default-line-height-normal;
+	dt {
+		@extend %base-default-float-left;
+	}
+	dd {
+		@extend %base-default-float-left;
+		margin: 0 0 0 0.39em;
+	}
+}
+
+#base-title {
+	a {
+		text-decoration: none;
+	}
+}
+
+#base-subsite {
+	background: #ad340c;
+	border-top: 1px solid #992f0b;
+	clear: left;
+	font-size: 130%;
+	text-shadow: 1px 1px 1px #333;
+	p {
+		margin: 0 auto;
+		padding: 4px 0;
+	}
+	a {
+		color: #fff;
+		text-decoration: none;
+		padding: 0 5px 0 10px;
+		text-shadow: 1px 1px 1px #333;
+		border-left: 1px solid #ccc;
+		font-size: 75%;
+		&:first-child {
+			border-left: none;
+			font-size: 100%;
+		}
+	}
+}
+
+%base-default-float-right {
+	float: right;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#base-date-mod {
+		dt {
+			@extend %base-default-float-right;
+		}
+
+		dd {
+			@extend %base-default-float-right;
+			margin: 0 0.39em 0 0;
+		}
+	}
+
+	#base-subsite {
+		clear: right;
+
+		a {
+			padding: 0 10px 0 5px;
+			border: {
+				left: none;
+				right: 1px solid #ccc;
+			}
+			&:first-child {
+				border-right: none;
+			}
+		}
+	}
+}

@@ -14,7 +14,7 @@
 /*
  * pe, a progressive javascript library agnostic framework
  */
-/*global jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false*/
+/*global jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
 /*jshint bitwise: false, evil: true */
 (function ($) {
 	"use strict";
@@ -50,7 +50,8 @@
 		urlhash: '',
 		urlquery: '',
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
-		mobiletest: '',
+		svgfix: false,
+		viewtest: '',
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 
@@ -118,30 +119,30 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = pe.html, hlinks, hlinks_same, $this, target, test, test_elms, init_on_mobileinit = false;
+			var $html = pe.html, hlinks, hlinks_same, $this, target, classes, test, test_elms, init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.language = test;
 			}
-			test = $('head').attr('dir');
+			test = $html.attr('dir');
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
 	
-			// Mobile test: Used to detect CSS media query result regarding mobile/desktop view
-			pe.mobiletest = document.createElement('div');
-			pe.mobiletest.setAttribute('id', 'mobiletest'); // Used to detect CSS media queries result regarding mobile/desktop view
+			// View test: Used to detect CSS media query result regarding screen size and mobile/desktop view
+			pe.viewtest = document.createElement('div');
+			pe.viewtest.setAttribute('id', 'viewtest');
 			
 			// Resize test element: Used to detect changes in text size and window size
 			pe.resizetest = document.createElement('span');
 			pe.resizetest.innerHTML = '&#160;';
-			pe.resizetest.setAttribute('id', 'resizetest'); // Used to detect CSS media queries result regarding mobile/desktop view
+			pe.resizetest.setAttribute('id', 'resizetest');
 
 			// Append the various tests to the body
 			test_elms = document.createElement('div');
-			test_elms.appendChild(pe.mobiletest);
+			test_elms.appendChild(pe.viewtest);
 			test_elms.appendChild(pe.resizetest);
 			document.body.appendChild(test_elms);
 
@@ -153,8 +154,32 @@
 			pe.urlhash = pe.urlpage.hash;
 			pe.urlquery = pe.urlpage.params;
 
-			// Identify whether or not the device supports JavaScript, has a touchscreen and is a modern version of IE
-			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '').addClass(pe.ie > 8 ? 'ie' + parseInt(pe.ie, 10) : '');
+			// Identify whether or not the device supports JavaScript, the current theme, the current view and screen size, and if the device has a touchscreen
+			pe.mobile = pe.mobilecheck();
+			pe.medium = pe.mediumcheck();
+			pe.print = (pe.mobile ? false : pe.printcheck());
+			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.medium ? ' medium-screen' : ' small-screen')) : (pe.print ? ' print-view' : ' desktop-view large-screen'))) : '';
+			classes += (pe.touchscreen ? ' touchscreen' : '');
+			classes += (pe.svg ? ' svg' : ' no-svg');
+			classes += (pe.ie > 8 ? ' ie' + parseInt(pe.ie, 10) : (pe.ie < 1 ? ' no-ie' : ''));
+
+			// Check for browsers that needs SVG loaded through an object element removed		
+			test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
+			pe.svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46)));
+
+			// Is this a mobile device?
+			if (pe.mobile) {
+				// Detect if pre-OS7 BlackBerry device is being used
+				test = navigator.userAgent.indexOf('BlackBerry');
+				if (test === 0) {
+					classes += ' bb-pre6 bb-pre7';
+				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
+					classes += ' bb-pre7';
+				}
+			}
+
+			// Remove the "no-js" class and add the identification classes to the HTML element.
+			$html.removeClass('no-js').addClass(classes);
 
 			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
 				return this.href.indexOf('#') !== -1;
@@ -162,73 +187,46 @@
 			hlinks_same = hlinks.filter(function () {
 				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
 			});
+			
+			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 
-			// Is this a mobile device?
-			if (pe.mobilecheck()) {
-				pe.mobile = true;
-				pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
-
-				// Detect if pre-OS7 BlackBerry device is being used
-				test = navigator.userAgent.indexOf('BlackBerry');
-				if (test === 0) {
-					$html.addClass('bb-pre6 bb-pre7');
-				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
-					$html.addClass('bb-pre7');
+			pe.document.on('mobileinit', function () {
+				$.extend($.mobile, {
+					ajaxEnabled: false,
+					pushStateEnabled: false,
+					autoInitializePage: (init_on_mobileinit ? true : false)
+				});
+				if (init_on_mobileinit) {
+					pe.mobilelang();
 				}
+			});
 
-				pe.document.on('mobileinit', function () {
-					$.extend($.mobile, {
-						ajaxEnabled: false,
-						pushStateEnabled: false,
-						autoInitializePage: (init_on_mobileinit ? true : false)
-					});
-					if (init_on_mobileinit) {
-						pe.mobilelang();
-					}
-				});
-
-				pe.document.on('pageinit', function () {
-					// On click, puts focus on and scrolls to the target of same page links
-					hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
-						$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
-						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if ($this.length > 0) {
-							$.mobile.silentScroll(pe.focus($this).offset().top);
-						}
-					});
-
-					// If the page URL includes a hash upon page load, then focus on and scroll to the target
-					if (pe.urlhash.length !== 0) {
-						target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if (target.length > 0 && target.attr('data-role') !== 'page') {
-							setTimeout(function () {
-								$.mobile.silentScroll(pe.focus(target).offset().top);
-							}, 200);
-						}
-					}
-				});
-				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
-				pe.add._load([pe.add.liblocation + 'jquerymobile/jquery.mobile.min.js']);
-			} else {
-				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
-				hlinks_same.on('click vclick', function () {
-					$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
+			pe.document.on('pageinit', function () {
+				// On click, puts focus on and scrolls to the target of same page links
+				hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
+					var hash = $(this).attr('href'),
+						role;
+					$this = $('#' + pe.string.jqescape(hash.substring(1)));
 					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					if ($this.length > 0) {
 						pe.focus($this);
+						role = $this.jqmData('role');
+						if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
+							window.location.hash = hash;
+						}
 					}
 				});
-
-				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
-				if (pe.urlhash.length > 0) {
-					$this = $('#' + pe.string.jqescape(pe.urlhash));
-					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if ($this.length > 0) {
-						pe.focus($this);
+				// If the page URL includes a hash upon page load, then focus on and scroll to the target
+				if (pe.urlhash.length !== 0) {
+					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					if (target.length > 0 && target.attr('data-role') !== 'page' && (pe.ie === '0' || pe.ie > 7)) {
+						setTimeout(function () {
+							$.mobile.silentScroll(pe.focus(target).offset().top);
+						}, 200);
 					}
 				}
-			}
+			});
 
 			// Load ajax content
 			$.when.apply($, $.map($('*[data-ajax-replace], *[data-ajax-append]'), function (o) {
@@ -258,19 +256,22 @@
 						// Initialize the theme
 						wet_boew_theme.init();
 
-						//Load the mobile view
+						pe.document.one('themeviewloaded', function () {
+							if (typeof $.mobile !== 'undefined') {
+								pe.mobilelang();
+								$.mobile.initializePage();
+							} else {
+								init_on_mobileinit = true;
+							}
+						});
+
+						// Load the mobile or desktop view
 						if (pe.mobile) {
-							pe.document.one('mobileviewloaded', function () {
-								if (typeof $.mobile !== 'undefined') {
-									pe.mobilelang();
-									$.mobile.initializePage();
-								} else {
-									init_on_mobileinit = true;
-								}
-							});
 							wet_boew_theme.mobileview();
+						} else {
+							wet_boew_theme.desktopview();
 						}
-					} else if (pe.mobile) {
+					} else {
 						if (typeof $.mobile !== 'undefined') {
 							pe.mobilelang();
 							$.mobile.initializePage();
@@ -290,7 +291,15 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return pe.mobiletest.offsetWidth === 1; // CSS (through media queries) sets to offsetWidth = 0 in desktop view and offsetWidth = 1 in mobile view
+			return pe.viewtest.offsetWidth > 1; // CSS (through media queries) sets to offsetWidth = 0 in print view, offsetWidth = 1 desktop view (large screen), offsetWidth = 2 or 3 mobile view (2 = small screen, 3 = medium screen)
+		},
+		print: false,
+		printcheck: function () {
+			return pe.viewtest.offsetWidth === 0; // CSS (through media queries) sets to offsetWidth = 0 in print view
+		},
+		medium: false,
+		mediumcheck: function () {
+			return pe.viewtest.offsetWidth === 3; // CSS (through media queries) sets to offsetWidth = 3 for medium screen
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -301,6 +310,7 @@
 			$.mobile.textinput.prototype.options.clearSearchButtonText = pe.dic.get('%jqm-clear-search');
 			$.mobile.selectmenu.prototype.options.closeText = pe.dic.get('%close');
 			$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
+			$.mobile.table.prototype.options.columnBtnText = pe.dic.get('%jqm-tbl-col-toggle');
 		},
 		/**
 		* The pe aware page query to append items to
@@ -514,7 +524,7 @@
 		* @return {boolean}
 		*/
 		cssenabled: function () {
-			return pe.mobiletest.offsetWidth < 2; // pe.mobiletest will be either 0 or 1 if CSS is enabled
+			return pe.viewtest.offsetWidth < 2; // pe.viewtest will be either 0 or 1 if CSS is enabled
 		},
 		/**
 		* Returns a class-based set limit on plugin instances
@@ -1185,21 +1195,6 @@
 					menu = '<div data-role="controlgroup" data-theme="' + theme1 + '">' + menu + '</div>';
 				}
 				return returnString ? menu : $(menu);
-			},
-			/**
-			* Correct the corners for each sections and sub-section in the menu build by pe.menu.buildmobile
-			* @memberof pe.menu
-			* @param {jQuery object | DOM object} menusrc Mobile menu to correct
-			* @function
-			* @return {void}
-			*/
-			correctmobile: function (menusrc) {
-				var original = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
-					menus = original.find('.wb-nested-menu');
-				if (menus.length !== 0) {
-					menus = menus.get(0).parentNode.childNodes;
-					menus[menus.length - 1].getElementsByTagName('a')[0].className += ' ui-corner-bottom';
-				}
 			}
 		},
 		/**
@@ -1222,6 +1217,14 @@
 					$html.addClass('polyfill-localstorage');
 				} else {
 					$html.addClass('localstorage');
+				}
+
+				// sessionStorage
+				if (!window.sessionStorage) {
+					pe.add._load(lib + 'polyfills/sessionstorage' + pe.suffix + '.js', 'sessionstorage-loaded');
+					$html.addClass('polyfill-sessionstorage');
+				} else {
+					$html.addClass('sessionstorage');
 				}
 			},
 			/**
@@ -1447,6 +1450,19 @@
 						return hasMathML;
 					}
 				},
+				'meter': {
+					selector: 'meter',
+					/* Based on check from Modernizr 2.6.1 | MIT & BSD */
+					update: function (elms) {
+						var meters = elms.get(),
+							i = meters.length;
+
+						while (i--) {
+							makeMeter(meters[i]);
+						}
+					},
+					support_check: document.createElement('meter').max !== undefined
+				},
 				'progress': {
 					selector: 'progress',
 					update: function (elms) {
@@ -1654,12 +1670,15 @@
 				* @memberof pe.add
 				* @function
 				* @param {string | string[]} d The path and filename of the dependency OR just the name (minus the path and extension).
+				* @param {boolean} css Optional. Is the dependency a CSS file? (default: false)
 				* @return {string[]} NOTE: If d is a string, this returns a string array with 8 copies of the transformed string. If d is a string array, this returns a string array with just one entry; the transformed string.
 				*/
-				depends: function (d) {
-					var lib = pe.add.liblocation,
+				depends: function (d, css) {
+					var iscss = typeof css !== 'undefined' ? css : false, 
+						extension = pe.suffix + (iscss ? '.css' : '.js'),
+						dir = pe.add.liblocation + 'dependencies/' + (iscss ? 'css/' : ''),
 						c_d = $.map(d, function (a) {
-							return (/^http(s)?/i.test(a)) ? a : lib + 'dependencies/' + a + pe.suffix + '.js';
+							return (/^http(s)?/i.test(a)) ? a : dir + a + extension;
 						});
 					return c_d;
 				},
@@ -1698,13 +1717,13 @@
 		* Handles loading of the plugins, dependencies and polyfills
 		* @function
 		* @param {object} options Object containing the loader options. The following optional properties are supported: 
-		* "plugins": {"plugin_name1": elms1, "plugin_name2": elms2, ...} - Names of plugins to load and the elements to load them on
-		* "global": [plugin_name1, plugin_name2, ...] - Names of global plugins to load
-		* "deps": [dependency_name1, dependenccy_name2, ...] - Names of dependences to load
-		* "poly": [polyfill_name1, polyfill_name2, ...] - Names of polyfills to load
-		* "checkdom": true/false - Enable/disable checking the DOM for "wet-boew-*" triggers
-		* "polycheckdom": true/false - Enable/disable checking the DOM for elements to polyfill
-		* @param {string} finished_event Name of the event to trigger when loading is complete (defai;t is "wb-loaded")
+		* 'plugins': {'plugin_name1': elms1, 'plugin_name2': elms2, ...} - Names of plugins to load and the elements to load them on
+		* 'global': [plugin_name1, plugin_name2, ...] - Names of global plugins to load
+		* 'deps': [dependency_name1, dependency_name2, ...] - Names of dependences to load
+		* 'poly': [polyfill_name1, polyfill_name2, ...] - Names of polyfills to load
+		* 'checkdom': true/false - Enable/disable checking the DOM for 'wet-boew-*' triggers
+		* 'polycheckdom': true/false - Enable/disable checking the DOM for elements to polyfill
+		* @param {string} finished_event Name of the event to trigger when loading is complete (default is 'wb-loaded')
 		* @return {void}
 		*/
 		wb_load: function (options, finished_event) {
@@ -1721,6 +1740,7 @@
 				pcalls = typeof options.global !== 'undefined' ? options.global : [],
 				pcall,
 				dep = typeof options.dep !== 'undefined' ? options.dep : [],
+				depcss = typeof options.depcss !== 'undefined' ? options.depcss : [],
 				poly = typeof options.poly !== 'undefined' ? options.poly : [],
 				checkdom = typeof options.checkdom !== 'undefined' ? options.checkdom : false,
 				polycheckdom = typeof options.polycheckdom !== 'undefined' ? options.polycheckdom : false,
@@ -1768,6 +1788,9 @@
 					}
 					if (typeof pe.fn[pcall].depends !== 'undefined') {
 						dep.push.apply(dep, pe.fn[pcall].depends);
+						if (typeof pe.fn[pcall].dependscss !== 'undefined') {
+							dep.push.apply(depcss, pe.fn[pcall].dependscss);
+						}
 					}
 				}
 			}
@@ -1834,7 +1857,18 @@
 				});
 
 				// Load each of the dependencies (eliminating duplicates)
-				pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				if (dep.length !== 0) {
+					if (depcss.length > 0) {
+						depcss = pe.add.depends(pe.array.noduplicates(depcss), true);
+						_len = depcss.length;
+						while (_len--) {
+							pe.add.css(depcss[_len]);
+						}
+					}
+					pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				} else {
+					pe.document.trigger(event_pcalldeps);
+				}
 			});
 
 			// Load the polyfills without dependencies and return the polyfills with dependencies (eliminating duplicates first)
@@ -1848,20 +1882,36 @@
 		* @todo pass an element as the context for the recursion.
 		*/
 		dance: function () {
-			var loading_finished = 'wb-init-loaded';
+			var loading_finished = 'wb-init-loaded',
+				plugins = {};
 			pe.document.one(loading_finished, function () {
 				if (!(pe.ie > 0 && pe.ie < 9)) {
 					pe.resize(function () {
-						var mobilecheck = pe.mobilecheck();
+						var mobilecheck = pe.mobilecheck(),
+							mediumcheck;
 						if (pe.mobile !== mobilecheck) {
 							pe.mobile = mobilecheck;
 							window.location.href = decodeURI(pe.url(window.location.href).removehash());
+						} else {
+							mediumcheck = pe.mediumcheck();
+							if (pe.medium !== mediumcheck) {
+								pe.html.toggleClass('medium-screen small-screen');
+							}
+							pe.medium = mediumcheck;
 						}
 					});
 				}
 			});
+
+			// Figure out if we need to load plugins for IE
+			if (pe.ie > 0) {
+				plugins.equalize = pe.main;
+				if (pe.ie < 9) {
+					plugins.css3ie = pe.main;
+				}
+			}
 			pe.resizeutil.init();
-			pe.wb_load({'dep': ['equalheights'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
+			pe.wb_load({'plugins': plugins, 'checkdom': true, 'polycheckdom': true}, loading_finished);
 		}
 	};
 	/* window binding */
