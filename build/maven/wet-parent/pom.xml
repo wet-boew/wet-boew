@@ -10,7 +10,7 @@
 
 	<groupId>com.github.wet-boew</groupId>
 	<artifactId>wet-parent</artifactId>
-	<version>3.0.6</version>
+	<version>3.0.6-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
