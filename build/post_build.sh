@@ -7,9 +7,10 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	git config --global user.email "laurent.goderre@gmail.com"
 	git config --global user.name "Travis"
 
-	#Set upstream remote
+	#Set remotes
 	git remote add upstream https://${GH_TOKEN}@github.com/wet-boew/wet-boew.git > /dev/null
 	git remote add experimental https://${GH_TOKEN}@github.com/LaurentGoderre/wet-boew.git > /dev/null
+	git remote add dist https://${GH_TOKEN}@github.com/wet-boew/wet-boew-dist.git > /dev/null
 
 	#Copy result of build and demo in a temporary location
 	mkdir $HOME/temp_wet-boew
@@ -19,34 +20,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	cp *.htm* $HOME/temp_wet-boew
 	cp *.md $HOME/temp_wet-boew
 	cp *.txt $HOME/temp_wet-boew
-
-	git fetch -qn upstream > /dev/null
-
-	#Add the latest tags
-	case "${supported_branches[@]}" in  *"$TRAVIS_BRANCH"*)
-		echo -e "Tagging the latest build for branch $TRAVIS_BRANCH\n"
-
-		build_branch="$TRAVIS_BRANCH-dist"
-
-		git checkout -f "$build_branch"
-
-		#Replace the new dist and demo folders and root files with the new ones
-		git rm -rf dist/*
-		git rm -rf demos/*
-		git rm -rf test/*
-		cp -Rf $HOME/temp_wet-boew/* .
-
-		#Commit the result
-		git add -f dist
-		git add -f demos
-		git add -f test
-		git add -f *.*
-		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
-		git push -fq upstream $build_branch > /dev/null
-
-		echo -e "Finished tagging the latest build for branch $TRAVIS_BRANCH\n"
-	;; esac
-
+	
 	#Update working example
 	if [ "$TRAVIS_BRANCH" == "master" ]; then
 		echo -e "Updating working examples...\n"
@@ -70,4 +44,32 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 
 		echo -e "Finished updating the experimental working examples\n"
 	fi
+
+	git fetch -qn dist > /dev/null
+
+	#Add the latest tags
+	case "${supported_branches[@]}" in  *"$TRAVIS_BRANCH"*)
+		echo -e "Tagging the latest build for branch $TRAVIS_BRANCH\n"
+
+		build_branch="$TRAVIS_BRANCH-dist"
+
+		git checkout dist/$build_branch
+		git checkout -b "$build_branch"
+
+		#Replace the new dist and demo folders and root files with the new ones
+		git rm -rf dist/*
+		git rm -rf demos/*
+		git rm -rf test/*
+		cp -Rf $HOME/temp_wet-boew/* .
+
+		#Commit the result
+		git add -f dist
+		git add -f demos
+		git add -f test
+		git add -f *.*
+		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
+		git push -fq dist $build_branch > /dev/null
+
+		echo -e "Finished tagging the latest build for branch $TRAVIS_BRANCH\n"
+	;; esac
 fi
