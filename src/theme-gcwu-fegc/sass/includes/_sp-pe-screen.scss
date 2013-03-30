@@ -23,6 +23,36 @@
 		margin-right: 10px;
 	}
 }
+%gcwu-sp-pe-screen-display-none {
+	display: none;
+}
+%gcwu-sp-pe-screen-display-block {
+	display: block;
+}
+%gcwu-sp-pe-screen-wmms-sig-display-none {
+	#gcwu-wmms-in {
+		@extend %gcwu-sp-pe-screen-display-none;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-sp-pe-screen-display-none;
+	}
+}
+%gcwu-sp-pe-screen-wmms-sig-display-block {
+	#gcwu-wmms-in {
+		@extend %gcwu-sp-pe-screen-display-block;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-sp-pe-screen-display-block;
+	}
+}
+%gcwu-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none {
+	&.ui-mobile {
+		@extend %gcwu-sp-pe-screen-wmms-sig-display-block;
+		&.ui-mobile-rendering {
+			@extend %gcwu-sp-pe-screen-wmms-sig-display-none;
+		}
+	}
+}
 
 html {
 	overflow-y: scroll;
@@ -71,6 +101,28 @@ body {
 
 #gcwu-wmms {
 	@extend %gcwu-sp-pe-screen-img-margin-bottom-0;
+}
+
+#gcwu-wmms-in {
+	@extend %gcwu-sp-pe-screen-display-none;
+}
+#gcwu-sig-in {
+	@extend %gcwu-sp-pe-screen-display-none;
+}
+.svg {
+	@extend %gcwu-sp-pe-screen-wmms-sig-display-block;
+}
+.pe-disable {
+	@extend %gcwu-sp-pe-screen-wmms-sig-display-block;
+}
+.no-svg {
+	@extend %gcwu-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie9 {
+	@extend %gcwu-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie10 {
+	@extend %gcwu-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none;
 }
 
 #wb-core-in {

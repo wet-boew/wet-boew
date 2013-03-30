@@ -11,13 +11,13 @@
 			}
 		}
 	}
-	%intranet-default-screen-images-ie-background-deco {
+	%gcwu-intranet-default-screen-images-ie-background-deco {
 		background: url(../images/content-deco-ie.gif) center top repeat-y;
 	}
 	#wb-core-in {
-		@extend %intranet-default-screen-images-ie-background-deco;
+		@extend %gcwu-intranet-default-screen-images-ie-background-deco;
 	}
 	#gcwu-bc-in {
-		@extend %intranet-default-screen-images-ie-background-deco;
+		@extend %gcwu-intranet-default-screen-images-ie-background-deco;
 	}
 }

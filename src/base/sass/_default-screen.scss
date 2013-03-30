@@ -2,7 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-
 @import "compass/css3/border-radius";
 
 %wb-default-screen-verdana-font {
@@ -10,8 +9,8 @@
 }
 
 %wb-default-screen-clearfix {
-  content: "";
-  display: table;
+	content: "";
+	display: table;
 }
 
 
@@ -116,47 +115,47 @@ a.wb-linkdesc {
 
 /* Sign-in/out application links */
 #wb-session {
-  margin-bottom: 10px;
-  &:before {
-    @extend %wb-default-screen-clearfix;
-  }
-  &:after {
-    @extend %wb-default-screen-clearfix;
-    clear: both;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    margin: -10px 10px 0 10px;
-    padding: 0 2px 1px 2px;
-    background: #1E4C85;
-    @include border-radius(0 0 2px 2px);
-    li {
-      float: left;
-      margin: 0;
-      padding: 6px 0;
-      a {
-        padding: 2px 10px;
-        text-decoration: none;
-        text-shadow: none;
-        color: #fff;
-        &:hover {
-           text-decoration: underline;
-        }
-      }
-      &.session {
-        a {
-          font-weight: 700;
-          text-decoration: underline;
-        }
-      }
-      &.settings {
-        a {
-          border-right: 1px solid #5679A4;
-        }
-      }
-    }
-  }
+	margin-bottom: 10px;
+	&:before {
+		@extend %wb-default-screen-clearfix;
+	}
+	&:after {
+		@extend %wb-default-screen-clearfix;
+		clear: both;
+	}
+	ul {
+		float: right;
+		list-style: none;
+		margin: -10px 10px 0 10px;
+		padding: 0 2px 1px 2px;
+		background: #1E4C85;
+		@include border-radius(0 0 2px 2px);
+		li {
+			float: left;
+			margin: 0;
+			padding: 6px 0;
+			a {
+				padding: 2px 10px;
+				text-decoration: none;
+				text-shadow: none;
+				color: #fff;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+			&.session {
+				a {
+					font-weight: 700;
+					text-decoration: underline;
+				}
+			}
+			&.settings {
+				a {
+					border-right: 1px solid #5679A4;
+				}
+			}
+		}
+	}
 }
 
 /* Right to left (RTL) CSS */
@@ -197,17 +196,17 @@ a.wb-linkdesc {
 	}
 
 	#wb-session {
-	  ul {
-	    float: left;
-	    li {
-	      float: right;
-        &.settings {
-          a {
-            border-left: 1px solid #5679A4;
-            border-right: 0;
-          }
-        }
-	    }
-	  }
+		ul {
+			float: left;
+			li {
+				float: right;
+				&.settings {
+					a {
+						border-left: 1px solid #5679A4;
+						border-right: 0;
+					}
+				}
+			}
+		}
 	}
 }

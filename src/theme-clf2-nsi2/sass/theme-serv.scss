@@ -9,21 +9,21 @@
  */
 @import '../../base/sass/modern-vendor-prefix';
 
-/* ----- All media types - Start of build includes ----- */
+/* ----- All screens - All media types - Start of build includes ----- */
 @import '../../base/sass/default';
 @import 'includes/serv';
-@import '../../base/sass/default-desktop';
-@import 'includes/serv-desktop';
-/* ----- All media types - End of build includes ----- */
+@import '../../base/sass/default-large';
+@import 'includes/serv-large';
+/* ----- All screens - All media types - End of build includes ----- */
 
 @media screen {
-/* ----- Screen media type only - Start of build includes ----- */
+/* ----- All screens - Screen media type - Start of build includes ----- */
 @import '../../base/sass/default-screen';
 @import 'includes/serv-screen';
-@import '../../base/sass/default-desktop-screen';
-@import 'includes/serv-desktop-screen';
+@import '../../base/sass/default-large-screen';
+@import 'includes/serv-large-screen';
 @import 'includes/serv-responsive';
-/* ----- Screen media type only - End of build includes ----- */
+/* ----- All screens - Screen media type - End of build includes ----- */
 }
 
 @media print {
