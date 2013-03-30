@@ -258,14 +258,17 @@
 			}
 			img {
 				float: left;
-				margin-right: 10px;
+				margin-right: 10px !important;
 			}
 		}
 		img {
 			width: 100px !important;
 			height: 62px !important;
 			float: left;
-			margin-left: 10px;
+			margin-left: 0 10px;
+		}
+		p {
+			padding-left: 10px;
 		}
 		& > * {
 			padding: 10px;
