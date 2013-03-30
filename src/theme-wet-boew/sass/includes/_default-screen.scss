@@ -286,15 +286,6 @@ input {
 	}
 }
 
-#wet-fullft {
-	background: #333;
-	@extend %wet-default-screen-color-fff;
-}
-
-#wet-fullft-in {
-	background: #666;
-}
-
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	.wb-sec-def {
@@ -314,6 +305,12 @@ input {
 				margin-left: auto;
 				margin-right: 0;
 			}
+		}
+	}
+
+	#wet-fullhd {
+		ul {
+			margin: 0 10px 0 0;
 		}
 	}
 }

@@ -62,13 +62,7 @@
 						object = svgelm.getElementsByTagName('object');
 						if (object.length > 0) {
 							object = object[0];
-							object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, ((print || !contentPage) ? object.innerHTML : object.innerHTML.replace('.png', '-w.png')));
-						} else if (contentPage) {
-							img = svgelm.getElementsByTagName('img');
-							if (img.length > 0) {
-								img = img[0];
-								img.src = (print ? img.src : img.src.replace('.png', '-w.png'));
-							}
+							object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, ((mobile && contentPage) ? object.innerHTML.replace('.png', '-w.png') : object.innerHTML));
 						}
 					}
 				}

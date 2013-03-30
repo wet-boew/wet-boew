@@ -9,16 +9,15 @@
  */
 @import '../../base/sass/modern-vendor-prefix';
 
-/* ----- All media types - Start of build includes ----- */
+/* ----- All screens - All media types - Start of build includes ----- */
 @import '../../base/sass/default-ns';
-@import '../../grids/sass/responsive-ns';
 @import '../../grids/sass/util-ns';
 @import '../../js/sass/pe-ap-ns';
 @import 'includes/default-ns';
-/* ----- All media types - End of build includes ----- */
+/* ----- All screens - All media types - End of build includes ----- */
 
 @media screen and (max-width: 959px), screen and (max-device-width: 1023px) {
-/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - Start of build includes ----- */
-@import 'includes/default-mobile-ns';
-/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - End of build includes ----- */
+/* ----- Small and medium screens - Screen media type - Start of build includes ----- */
+@import 'includes/default-small-medium-ns';
+/* ----- Small and medium screens - Screen media type - End of build includes ----- */
 }

@@ -17,9 +17,9 @@
 		}
 	}
 
-  #wb-session {
-    zoom: 1;
-  }
+	#wb-session {
+		zoom: 1;
+	}
 
 	a {
 		&.wb-linkdesc {
@@ -44,19 +44,19 @@
 			}
 		}
 
-    #wb-session {
-      ul {
-        li {
-          float: left;
-          direction: ltr;
-          &.settings {
-            a {
-              border: 0;
-            }
-          }
-        }
-      }
-    }
+		#wb-session {
+			ul {
+				li {
+					float: left;
+					direction: ltr;
+					&.settings {
+						a {
+							border: 0;
+						}
+					}
+				}
+			}
+		}
 	}
 }
 

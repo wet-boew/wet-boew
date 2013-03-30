@@ -80,11 +80,6 @@
 			}
 		}
 	}
-	#wet-fullft {
-		li {
-			margin: 13px 35px 14px 9px;
-		}
-	}
 	#wet-bnr {
 		@extend %wet-default-screen-ie-float-left;
 	}
@@ -92,6 +87,9 @@
 		li {
 			@extend %wet-default-screen-ie-float-left;
 		}
+	}
+	#wet-fullft {
+		display: none;
 	}
 
 	// Right to left (RTL) CSS
@@ -141,12 +139,6 @@
 					padding-left: 0;
 					padding-right: 10px;
 				}
-			}
-		}
-
-		#wet-fullft {
-			li {
-				margin: 13px 9px 14px 35px;
 			}
 		}
 

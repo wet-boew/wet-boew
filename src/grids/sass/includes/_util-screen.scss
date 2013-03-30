@@ -94,7 +94,7 @@ blockquote, form, img, pre {
 
 // fixes
 
-%font-weight-700 {
+%util-screen-font-weight-700 {
 	font-weight: 700;
 }
 
@@ -136,14 +136,14 @@ h4 {
 h5 {
 	&:not(.ui-title) {
 		color: lighten($dark, 20%);
-		@extend %font-weight-700;
+		@extend %util-screen-font-weight-700;
 	}
 }
 
 h6 {
 	&:not(.ui-title) {
 		color: $medium;
-		@extend %font-weight-700;
+		@extend %util-screen-font-weight-700;
 	}
 }
 

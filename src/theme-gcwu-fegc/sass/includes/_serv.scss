@@ -72,6 +72,7 @@ h1 {
 }
 
 #gcwu-sig {
+	height: 20px;
 	@extend %gcwu-serv-img-margin-bottom-0;
 	margin-top: 20px;
 	@extend %gcwu-serv-margin-bottom-11;
@@ -85,6 +86,7 @@ h1 {
 }
 
 #gcwu-wmms {
+	height: 30px;
 	@extend %gcwu-serv-img-margin-bottom-0;
 	text-align: right;
 	margin-top: 10px;
