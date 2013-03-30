@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>wet-parent</artifactId>
 		<groupId>com.github.wet-boew</groupId>
-		<version>3.0.6</version>
+		<version>3.0.6-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>wet-wet-theme-overlay</artifactId>
