@@ -252,13 +252,16 @@
 			@include no-bullet;
 			li {
 				clear: left;
-				margin-bottom: 10px;
+				margin-bottom: 10px !important;
 				overflow: hidden;
 				span { display: block; }
 			}
 			img {
 				float: left;
-				margin-right: 10px;
+				margin: 0 10px;
+			}
+			p {
+				padding-left: 10px;
 			}
 		}
 		img {
