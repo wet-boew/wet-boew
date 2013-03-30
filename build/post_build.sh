@@ -45,14 +45,13 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		echo -e "Finished updating the experimental working examples\n"
 	fi
 
-	git fetch -qn dist > /dev/null
-
 	#Add the latest tags
 	case "${supported_branches[@]}" in  *"$TRAVIS_BRANCH"*)
 		echo -e "Tagging the latest build for branch $TRAVIS_BRANCH\n"
 
 		build_branch="$TRAVIS_BRANCH-dist"
 
+		git fetch -qn dist > /dev/null
 		git checkout dist/$build_branch
 		git checkout -b "$build_branch"
 
