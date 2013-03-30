@@ -24,7 +24,7 @@
 }
  
 %base-default-hidden-clip {
-	clip: rect(1px, 1px, 1px, 1px);//TODO: Should have old IE class withouth commas
+	@include clip-rect;
 	height: 0 !important;
 	overflow: hidden !important;
 	position: absolute;

@@ -1,0 +1,96 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+[class*="ui-body-"], [class*="ui-overlay-"] {
+	text-shadow: none;
+}
+[class*="ui-body-"] {
+	.ui-link {
+		font-weight: normal;
+	}
+}
+
+%wet-default-large-background-none {
+	background: none;
+}
+
+#wet-title {
+	@extend %wet-default-large-background-none;
+}
+
+#wet-fullhd {
+	.ui-header {
+		display: none !important;
+	}
+}
+
+%wet-default-large-hidden-clip {
+		position: absolute;
+		@include clip-rect;
+		height: 0 !important;
+		width: 0 !important;
+		overflow: hidden !important;
+		margin: 0 !important;
+}
+
+#wet-psnb {
+	h2 {
+		@extend %wet-default-large-hidden-clip;
+	}
+}
+
+#wet-srchbx {
+	h2 {
+		@extend %wet-default-large-hidden-clip;
+	}
+}
+
+#wet-bc-in {
+	font-size: 85%;
+	color: #555;
+	ol {
+		line-height: 1.57em;
+		list-style-type: none;
+		margin: 6px 10px 2px;
+		padding: 0;
+		&:after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+	}
+	li {
+		display: inline;
+		float: left;
+		white-space: nowrap;
+		margin: 0 5px 0 0;
+		padding: 0 11px 0 0;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
+		}
+	}
+	a {
+		color: #295376;
+		text-decoration: none;
+		@include pseudo-focus {
+			color: #295376;
+			text-decoration: underline;
+		}
+	}
+}
+
+#wet-bc-in {
+	background: #FFF;
+}
+
+#wet-date-mod {
+	margin: 0;
+}
+
+#wet-bnr .ui-navbar, #jqm-wb-mb, #jqm-wb-search, .ui-loader {
+	display: none !important;
+}

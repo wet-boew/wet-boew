@@ -13,24 +13,24 @@
 }
 
 /** From default.css **/
-%intranet-default-background-none {
+%gcwu-intranet-default-background-none {
 	background: none;
 }
 
 [id|="wb-body"] {
-	@extend %intranet-default-background-none;
+	@extend %gcwu-intranet-default-background-none;
 }
 
 #wb-head-in {
-	@extend %intranet-default-background-none;
+	@extend %gcwu-intranet-default-background-none;
 }
 
 [id|="gcwu-sig"] {
-	@extend %intranet-default-background-none;
+	@extend %gcwu-intranet-default-background-none;
 }
 
 #gcwu-wmms-fip {
-	@extend %intranet-default-background-none;
+	@extend %gcwu-intranet-default-background-none;
 }
 
 #gcwu-subsite {

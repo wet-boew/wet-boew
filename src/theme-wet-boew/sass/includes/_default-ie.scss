@@ -10,12 +10,33 @@
 		}
 	}
 
+	#wet-date-mod {
+		padding-bottom: 11px;
+	}
+
 	// Right to left (RTL) CSS
 	&[dir="rtl"] {
 		#wet-subsite {
 			a {
 				border-left: none;
 				border-right: expression(this.previousSibling == null ? 'none' : '-' );
+			}
+		}
+	}
+}
+
+.ie7, .ie8 {
+	[data-theme="a"], [data-theme="b"], [data-theme="c"] {
+		.ui-icon {
+			background-color: #8F8F8F;
+		}
+	}
+
+	// Right to left (RTL) CSS
+	&[dir="rtl"] {
+		#wet-bc {
+			li {
+				float: right;
 			}
 		}
 	}

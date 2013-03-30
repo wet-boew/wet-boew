@@ -37,6 +37,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!--<![endif]-->
 
 <!-- CustomCSSStart -->
+<style>
+#tableshowhide th {
+	text-align: left;
+}
+#tableshowhide td {
+	text-align: center;
+}
+</style>
 <!-- CustomCSSEnd -->
 </head>
 
@@ -107,7 +115,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
   <h2>Table of contents</h2>
   <ul>
     <li><a href="#grids">Grids</a></li>
-	<li><a href="#mobile-sh">Mobile/tablet/smartphone show and hide</a></li>
+	<li><a href="#mobile-sh">Screen size show and hide</a></li>
     <li><a href="#form-layout">Form layout</a></li>
     <li><a href="#scrolling">Page length and scrolling</a></li>
   </ul>
@@ -141,71 +149,85 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div>
 <div class="clear"></div>
 
-<h2 id="mobile-sh">Mobile/tablet/smartphone show and hide</h2>
-<div class="span-4">
-  <p>Content can be hidden from the mobile or tablet user with CSS. </p>
-  <table class="table-bordered width-100">
+<h2 id="mobile-sh">Screen size show and hide</h2>
+<div class="span-6">
+  <p>Content can be hidden from small, medium and large screen users with CSS. </p>
+  <table class="table-bordered width-100" id="tableshowhide">
 	<thead>
 	  <tr>
-		<th>Class</th>
-		<th>Desktop <br><span class="font-small">960px and greater</span></th>
-		<th>Tablets <br><span class="font-small">768px to 959px</span></th>
-		<th>Smartphone <br><span class="font-small">0px to 767px</span></th>
+		<th>Class name</th>
+		<th>Large screens (e.g., desktop)<br /><span class="font-small">Viewport: 960px+</span><br /><span class="font-small">Screen: 1024px+</span></th>
+		<th>Medium screens (e.g., tablet)<br /><span class="font-small">Viewport: 768px to 959px</span><br /><span class="font-small">Screen: 768px to 1023px</span></th>
+		<th>Small screens (e.g., smartphone) <br /><span class="font-small">Viewport: 0px to 767px</span><br /><span class="font-small">Screen: 0px to 767px</span></th>
 	  </tr>
 	</thead>
 	<tbody>
 	  <tr>
-		<th><code>.mobile-hide</code></th>
-		<td class="background-highlight">Visible</td>
-		<td>Hidden</td>
-		<td>Hidden</td>
-	  </tr>
-	  <tr>
-		<th><code>.mobile-show</code></th>
+		<th><code>.large-hide</code></th>
 		<td>Hidden</td>
 		<td class="background-highlight">Visible</td>
 		<td class="background-highlight">Visible</td>
 	  </tr>
 	  <tr>
-		<th><code>.tablet-hide</code></th>
+		<th><code>.large-show</code></th>
+		<td class="background-highlight">Visible</td>
+		<td>Hidden</td>
+		<td>Hidden</td>
+	  </tr>
+	  <tr>
+		<th><code>.medium-hide</code></th>
 		<td class="background-highlight">Visible</td>
 		<td>Hidden</td>
 		<td class="background-highlight">Visible</td>
 	  </tr>
 	  <tr>
-		<th><code>.tablet-show</code></th>
+		<th><code>.medium-show</code></th>
 		<td>Hidden</td>
 		<td class="background-highlight">Visible</td>
 		<td>Hidden</td>
 	  </tr>
 	  <tr>
-		<th><code>.smartphone-hide</code></th>
+		<th><code>.small-hide</code></th>
 		<td class="background-highlight">Visible</td>
 		<td class="background-highlight">Visible</td>
 		<td>Hidden</td>
 	  </tr>
 	  <tr>
-		<th><code>.smartphone-show</code></th>
+		<th><code>.small-show</code></th>
 		<td>Hidden</td>
 		<td>Hidden</td>
+		<td class="background-highlight">Visible</td>
+	  </tr>
+	  <tr>
+		<th><code>.mobile-hide</code><br /><span class="font-small">(small + medium)</span></th>
+		<td class="background-highlight">Visible</td>
+		<td>Hidden</td>
+		<td>Hidden</td>
+	  </tr>
+	  <tr>
+		<th><code>.mobile-show</code><br /><span class="font-small">(small + medium)</span></th>
+		<td>Hidden</td>
+		<td class="background-highlight">Visible</td>
 		<td class="background-highlight">Visible</td>
 	  </tr>
 	</tbody>
   </table>
+</div>
+<div class="span-4">
   <div class="module-info">
-  <p>Note that <code>smartphone-*</code> and <code>tablet-*</code> classes were introduced in WET 3.1.</p>
+  <p>Note that <code>small-screen-*</code>, <code>medium-screen-*</code> and <code>large-screen-*</code> classes were introduced in WET 3.1.</p>
   </div>
   <h3 class="margin-bottom-none">Correct use</h3>
   <ul>
-    <li>Since there is no <strong>Full site</strong> feature available to the mobile user, only decorative content or other supporting information should be hidden from them.  Actual content should be available to both the desktop and mobile users so there is no loss of information.</li>
+    <li>Since there is no <strong>Full site</strong> feature available to small and medium screen (mobile) users, only decorative content or other supporting information should be hidden from them.  Actual content should be available to small, medium and large screen users so there is no loss of information.</li>
     <li>Additional information can be presented to the mobile user to improve the mobile experience. </li>
   </ul>
 </div>
 <div class="span-2">
 	<h3 class="margin-top-none margin-bottom-none">Demo</h3>
-	<p>This image has <code>mobile-hide</code> applied to it, so it will not show in resolutions &lt;959px.</p>
+	<p>This image has <code>mobile-hide</code> applied to it, so it will not show in resolutions &lt;&#160;959px.</p>
 	<img height="168" width="220" alt="Sunflower" src="../grids/images/a7.jpg" class="mobile-hide" />
-	<p>A mobile jump menu will appear below in resolutions &lt;959px.</p>
+	<p>A mobile jump menu will appear below in resolutions &lt;&#160;959px.</p>
 	<ul class="mobile-show margin-top-large margin-bottom-large" data-inset="true" data-role="listview">
 		<li><a href="#">Menu item 1</a></li>
 		<li><a href="#">Menu item 2</a></li>
@@ -303,7 +325,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
     <li>The real estate above the fold is more valuable than the stuff below the fold for attracting and keeping users' attention. </li>
   </ul>
   <p>So, yes, you can put information below the fold rather than limit  yourself to bite-sized pages. <strong>In fact, if you have a long article, it's  better to present it as one scrolling canvas than to split it across  multiple pageviews. Scrolling beats paging because it's easier for  users to simply keep going down the page than it is to decide whether  or not to click through for a next page of a fragmented article.</strong> But  no, the fact that users scroll doesn't free you from prioritizing and  making sure that anything truly important remains above the fold.  Information foraging theory states that people decide whether to  continue along a path (including scrolling path down a page) based on  the current content's information scent. In other words, users will  scroll below the fold only if the information above it makes them  believe the reset of the page will be valuable. </p>
-  <p class="align-right">-Jakob Nielsen<br> <a  href="http://www.useit.com/alertbox/scrolling-attention.html">Scrolling and Attention</a></p>
+  <p class="align-right">-Jakob Nielsen<br /> <a  href="http://www.useit.com/alertbox/scrolling-attention.html">Scrolling and Attention</a></p>
   </blockquote>
   <div class="clear"></div>
 <p>Other articles on this topic include: </p>

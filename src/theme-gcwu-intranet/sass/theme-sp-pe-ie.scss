@@ -15,28 +15,28 @@
 
 @import '../../base/sass/oldie-vendor-prefix';
 
-/* ----- All media types - Start of build includes ----- */
+/* ----- All screens - All media types - Start of build includes ----- */
 @import '../../base/sass/default';
-@import '../../base/sass/default-desktop';
+@import '../../base/sass/default-large';
 @import '../../base/sass/default-ie';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-desktop-screen';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-large-screen';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-ie';
-/* ----- All media types - End of build includes ----- */
+/* ----- All screens - All media types - End of build includes ----- */
 
 @media screen {
-/* ----- Screen media type only - Start of build includes ----- */
+/* ----- All screens - Screen media type - Start of build includes ----- */
 @import '../../base/sass/default-screen';
-@import '../../base/sass/default-desktop-screen';
+@import '../../base/sass/default-large-screen';
 @import '../../base/sass/default-screen-ie';
-@import '../../grids/sass/responsive';
+@import '../../grids/sass/responsive-medium-large';
 @import '../../grids/sass/responsive-ie';
-@import '../../theme-gcwu-fegc/sass/includes/default-responsive';
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive-large';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-desktop';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-large';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen-ie';
 @import 'includes/sp-pe-screen';
-/* ----- Screen media type only - End of build includes ----- */
+/* ----- All screens - Screen media type - End of build includes ----- */
 }
 
 @media print {
