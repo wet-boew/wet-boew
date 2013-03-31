@@ -522,11 +522,9 @@ body {
 			bottom: 0;
 		}
 		font-size: 110%;
-		&, a:link, a:visited {
-			@extend %clf2-default-large-screen-color-fff;
-			@extend %clf2-default-large-text-decoration-none;
-			@extend %clf2-default-large-screen-display-block;
-		}
+		@extend %clf2-default-large-screen-color-fff;
+		@extend %clf2-default-large-text-decoration-none;
+		@extend %clf2-default-large-screen-display-block;
 		a {
 			margin: -2px -5px;
 			padding: 2px 5px;
@@ -534,6 +532,16 @@ body {
 			@include pseudo-focus {
 				@extend %clf2-default-large-screen-background-color-030;
 				@extend %clf2-default-large-screen-color-CC9;
+			}
+			&:link {
+				@extend %clf2-default-large-screen-color-fff;
+				@extend %clf2-default-large-text-decoration-none;
+				@extend %clf2-default-large-screen-display-block;
+			}
+			&:visited {
+				@extend %clf2-default-large-screen-color-fff;
+				@extend %clf2-default-large-text-decoration-none;
+				@extend %clf2-default-large-screen-display-block;
 			}
 		}
 		+ {
