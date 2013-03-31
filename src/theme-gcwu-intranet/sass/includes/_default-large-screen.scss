@@ -227,7 +227,6 @@
 #gcwu-title {
 	@extend %gcwu-intranet-default-large-screen-height-auto;
 	@extend %gcwu-intranet-default-large-screen-display-block;
-	margin-left: 0;
 	&, a {
 		margin: 0.2em 0 0.14em 0;
 		@extend %gcwu-intranet-default-large-screen-top-auto-position-static;
@@ -367,16 +366,20 @@
 		h3 {
 			@extend %gcwu-intranet-default-large-screen-border-none;
 			@extend %gcwu-intranet-default-large-screen-display-block;
-		}
-		h3, .first-in-list {
 			a {
-				@extend %gcwu-intranet-default-large-screen-font-weight-400;
+				@extend %gcwu-intranet-default-large-screen-padding-top-8-padding-bottom-8;
+			}
+		}
+		.first-in-list {
+			a {
 				@extend %gcwu-intranet-default-large-screen-padding-top-8-padding-bottom-8;
 			}
 		}
 	}
 	a {
-		@extend %gcwu-intranet-default-large-screen-font-weight-400;
+		&, &.ui-link {
+			@extend %gcwu-intranet-default-large-screen-font-weight-400;
+		}
 	}
 }
 
