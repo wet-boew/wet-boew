@@ -510,10 +510,14 @@ select {
 		}
 	}
 	div {
-		&.ui-collapsible-set + h2 {
-			border-top: 3px groove #fff;
-			padding-top: 8px;
-			margin-top: 23px;
+		&.ui-collapsible-set {
+			+ {
+				h2 {
+					border-top: 3px groove #fff;
+					padding-top: 8px;
+					margin-top: 23px;
+				}
+			}
 		}
 	}
 	.ui-content {
