@@ -354,7 +354,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 						</li>
 						<li>
 							<a class="lb-item-gal" href="images/2_b.jpg" title="Image 2" data-title="image_2_b">
-								<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
+								<img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" />
 							</a>
 						</li>
 					</ul>
@@ -372,11 +372,15 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul class="lb-gallery"&gt;
     &lt;li&gt;
-	  &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Texte alternatif pour l'image"&gt;
-		&lt;img src="images/image_source.jpg" alt="Texte alternatif pour l'image" class="image-actual" data-title="element_id" /&gt;
+	  &lt;a class="lb-item-gal" href="images/1_b.jpg" title="Image 1"&gt;
+		&lt;img src="images/1_s.jpg" alt="Image 1" class="image-actual" data-title="image_1_b" /&gt;
 	  &lt;/a&gt;
     &lt;/li&gt;
-    ...
+    &lt;li&gt;
+	  &lt;a class="lb-item-gal" href="images/2_b.jpg" title="Image 2"&gt;
+		&lt;img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" data-title="image_2_b" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
   &lt;/ul&gt;	
 &lt;/div&gt;
 &lt;p id="element_id"&gt;Titre de l'image&lt;/p&gt;</code></pre>
