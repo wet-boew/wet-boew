@@ -185,7 +185,7 @@
 	cursor: pointer;
 	font-family: $sans-serif;
 	line-height: 16px;
-	padding: 4px 10px;
+	padding: 4px 10px !important;
 	text-align: center;
 	text-decoration: none;
 	@include border-radius;
@@ -220,7 +220,7 @@
 @mixin button-size($padding, $size, $height) {
 	font-size: $size;
 	line-height: $height;
-	padding: $padding;
+	padding: $padding !important;
 }
 
 @mixin button-disabled() {
