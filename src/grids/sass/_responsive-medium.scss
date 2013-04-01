@@ -104,7 +104,10 @@ details {
 [class*=border-] {
 	background: none;
 	outline: none;
-} 
+	[class*=span-] {
+		width: auto;
+	}
+}
 
 .clear {
 	+ {
