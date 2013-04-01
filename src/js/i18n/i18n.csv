@@ -182,7 +182,7 @@ Template strings (Generic),%tmpl-skip-main,Skip to main content,Passer au conten
 ,%tmpl-version,Version:,Version&#160;:,,,,,,,,,,,,,,,,,,,,,,,Versión:,,,,
 ,%tmpl-signin,Sign In,Ouvrir une session,,,,,,,,,,,,,,,,,,,,,,,Iniciar sesión,,,,
 ,%tmpl-signout,Sign Out,Fermer la session,,,,,,,,,,,,,,,,,,,,,,,Cerrar sesión,,,,
-,%tmpl-youraccount,Your account,Votre compte,,,,,,,,,,,,,,,,,,,,,,,Su cuenta,,,,
+,%tmpl-myaccount,My account,Mon compte,,,,,,,,,,,,,,,,,,,,,,,Mi cuenta,,,,
 Template strings (GC Web Usability theme),%tmpl-gc-navbar,Government of Canada navigation bar,Barre de navigation du gouvernement du Canada,,,,,,,,,,,,,,,,,,,,,,,Barra de navegación del Gobierno de Canadá,,,,
 ,%tmpl-gc-sig,Government of Canada,Gouvernement du Canada,,,,,,,,,,,,,,,,,,,,,,,Gobierno de Canadá,,,,
 ,%tmpl-gc-wmms,Symbol of the Government of Canada,Symbole du gouvernement du Canada,,,,,,,,,,,,,,,,,,,,,,,Símbolo del Gobierno de Canadá,,,,
