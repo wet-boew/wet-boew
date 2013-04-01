@@ -35,6 +35,10 @@
 	display: block;
 }
 
+%wb-lightbox-visibility-hidden {
+	visibility: hidden;
+}
+
 %wb-lightbox-visibility-visible {
 	visibility: visible;
 }
@@ -276,13 +280,13 @@
 
 .lb-inline {
 	@extend %wb-lightbox-display-none;
-	@extend %wb-lightbox-visibility-visible;
+	@extend %wb-lightbox-visibility-hidden;
 }
 
 .lb-hidden-gallery {
 	a {
 		@extend %wb-lightbox-display-none;
-		@extend %wb-lightbox-visibility-visible;
+		@extend %wb-lightbox-visibility-hidden;
 	}
 	li {
 		&:first-child {
