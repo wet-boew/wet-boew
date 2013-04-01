@@ -4,7 +4,7 @@
  */
 @import "compass/css3/inline-block";
 
-%wb-icon {
+%grids-icon-wb-icon {
 	background: {
 		image: url(../images/icons.png);
 		repeat: no-repeat;
@@ -15,7 +15,7 @@
 	@include inline-block(text-top);
 }
 
-[href^='mailto:']{
+[href^='mailto:'] {
 	background: {
 		image: url(../images/mail.png);
 		repeat: no-repeat;
@@ -23,16 +23,33 @@
 	padding-left: 19px;
 }
 
-%download-icon {
+%grids-icon-download-icon {
 	background: {
-			image: url(../images/download.png);
-			repeat: no-repeat;
-		}
+		image: url(../images/download.png);
+		repeat: no-repeat;
+	}
 	padding-left: 19px;
 }
 @each $downloadable-file-type in psd, zip, egret, doc, pdf, xls, rtf, pot, ppt, pps, pptm, docx, xlsx, pptx {
 	[href$='.#{$downloadable-file-type}'] {
-		@extend %download-icon;
+		@extend %grids-icon-download-icon;
+	}
+}
+
+
+#wb-main {
+	[rel="external"] {
+		background-image: url(../images/external.png);
+		background-position: right 0;
+		background-repeat: no-repeat;
+		padding-right: 20px;
+		&.wb-icon-none {
+			background-image: none;
+			padding-right: 0;
+		}
+		&.button {
+			background-image: none;
+		}
 	}
 }
 
@@ -42,24 +59,25 @@
 	display: inline;
 	margin-right: 0;
 }
+
 /* Start the sprite positioning */
 .wb-icon-alarm {
-	@extend %wb-icon;
+	@extend %grids-icon-wb-icon;
 }
 $first-row-sprite-x: -18px; // Because the alarm icon is the first in the series, but is omitted
-@each $first-row-sprite in bank, book-address, book-alt, book-open, book, box, briefcase, bulb-off, bulb, calculator-arrow, calculator-exclamation, calculator-minus, calculator-plus, calculator, calendar-day, calendar-list, calendar-month, calendar, car, chart-down, chart-pie, chart-up, chart, clip, clipboard-exclamation, clipboard, clock, comment, compass, cone, construction, currency, desktop, direction, disk, document-zip, document, documents, door-open, door, drive-arrow, drive-download, drive-network, drive-upload, envelope-arrow, envelope-share, envelope, eraser, exclamation-alt, exclamation-alt2, exclamation, film, folder-alt, folder-open, folder, gavel, gear, globe, home, hourglass, image, info-alt, info, key, light-exclamation, light-green, light-red, light-yellow, light, lock-unlock, lock, luggage, magnet, magnifier, mail-open, mail, marker, megaphone, microphone, monitor, nav-090-alt, nav-090, nav-180-alt, nav-180, nav-270-alt, nav-270, nav-alt, nav, newspaper, note-pencil, note, paper-pencil, paper-share, paper, pencil, picture, printer, prohibit, question-alt, question, report-pencil, report, reports, rss, safe, scale, server-network, server, service-bell, sitemap {
+@each $first-row-sprite in bank, book-address, book-alt, book-open, book, box, briefcase, bulb-off, bulb, calculator-arrow, calculator-exclamation, calculator-minus, calculator-plus, calculator, calendar-day, calendar-list, calendar-month, calendar, car, chart-down, chart-pie, chart-up, chart, clip, clipboard-exclamation, clipboard, clock, comment, compass, cone, construction, currency, desktop, direction, disk, document-zip, document, documents, door-open, door, drive-arrow, drive-download, drive-network, drive-upload, envelope-arrow, envelope-share, envelope, eraser, exclamation-alt, exclamation-alt2, exclamation, external, film, folder-alt, folder-open, folder, gavel, gear, globe, home, hourglass, image, info-alt, info, key, light-exclamation, light-green, light-red, light-yellow, light, lock-unlock, lock, luggage, magnet, magnifier, mail-open, mail, marker, megaphone, microphone, monitor, nav-090-alt, nav-090, nav-180-alt, nav-180, nav-270-alt, nav-270, nav-alt, nav, newspaper, note-pencil, note, paper-pencil, paper-share, paper, pencil, picture, printer, prohibit, question-alt, question, report-pencil, report, reports, rss, safe, scale, server-network, server, service-bell {
 	.wb-icon-#{$first-row-sprite} {
 		background-position: 0 $first-row-sprite-x;
-		@extend %wb-icon;
+		@extend %grids-icon-wb-icon;
 	}
 	$first-row-sprite-x: $first-row-sprite-x - 18px;
 }
 //TODO: Make sprite single column and add the rest of the iterator values to the first array at the end.
 $second-row-sprite-y: 0;
-@each $second-row-sprite in table, target, fax, telephone, thermometer-high, thermometer-low, thermometer, tick-alt, tick-alt2, tick, tool, toolbox, tshirt, usb-arrow, usb-logo, usb, user, users, weather-cloud, weather-lightning, weather-rain, weather-snow, weather-sun-cloud, weather-sun, x-alt, x-alt2, x {
+@each $second-row-sprite in sitemap, table, target, fax, telephone, thermometer-high, thermometer-low, thermometer, tick-alt, tick-alt2, tick, tool, toolbox, tshirt, usb-arrow, usb-logo, usb, user, users, weather-cloud, weather-lightning, weather-rain, weather-snow, weather-sun-cloud, weather-sun, x-alt, x-alt2, x {
 	.wb-icon-#{$second-row-sprite} {
 		background-position: -18px $second-row-sprite-y;
-		@extend %wb-icon;
+		@extend %grids-icon-wb-icon;
 	}
 	$second-row-sprite-y: $second-row-sprite-y - 18px;
 }
@@ -70,24 +88,16 @@ $second-row-sprite-y: 0;
 		background-position: top right;
 	}
 
-	[href^='mailto:']{
+	[href^='mailto:'] {
 		background-position: 100% 0;
 		padding-left: 0;
 		padding-right: 19px;
-		&.button {
-			padding-left: 10px;
-			padding-right: 10px;
-		}
 	}
 
-	[href$='.psd'],[href$='.zip'],[href$='.doc'],[href$='.pdf'],[href$='.xls'],[href$='.rtf'],[href$='.pot'],[href$='.ppt'],[href$='.pps'],[href$='.pptm'],[href$='.docx'],[href$='.xlsx'],[href$='.pptx']{
+	[href$='.psd'], [href$='.zip'], [href$='.doc'], [href$='.pdf'], [href$='.xls'], [href$='.rtf'], [href$='.pot'], [href$='.ppt'], [href$='.pps'], [href$='.pptm'], [href$='.docx'], [href$='.xlsx'], [href$='.pptx'] {
 		background-position: 100% 0;
 		padding-left: 0;
 		padding-right: 19px;
-		&.button {
-			padding-left: 10px;
-			padding-right: 10px;
-		}
 	}
 
 	[class*=wb-icon-] {
@@ -99,5 +109,16 @@ $second-row-sprite-y: 0;
 		padding-right: 0;
 		margin-right: auto;
 		margin-left: 0;
+	}
+
+	#wb-main {
+		[rel="external"] {
+			background-position: left 0;
+			padding-left: 20px;
+			padding-right: 0;
+			&.wb-icon-none {
+				padding-left: 0;
+			}
+		}
 	}
 }
