@@ -446,6 +446,7 @@ a {
 	.wet-boew-menubar {
 		margin-top: -1px;
 		border-bottom: 4px solid #ccc;
+		min-height: 2.26em;
 	}
 	.mb-menu {
 		@if not $legacy-support-for-ie8 {
