@@ -54,6 +54,7 @@
 		viewtest: '',
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
+		scrollTopInit: 0,
 
 		/**
 		* @namespace pe.dic
@@ -119,7 +120,16 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = pe.html, hlinks, hlinks_same, $this, target, classes, test, test_elms, init_on_mobileinit = false;
+			var $html = pe.html,
+				hlinks,
+				hlinks_same,
+				$this,
+				target,
+				validTarget = false,
+				classes,
+				test,
+				test_elms,
+				init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
@@ -199,9 +209,10 @@
 				if (init_on_mobileinit) {
 					pe.mobilelang();
 				}
+				pe.scrollTopInit = pe.window.scrollTop();
 			});
 
-			pe.document.on('pageinit', function () {
+			pe.document.on('pagebeforecreate', function () {
 				// On click, puts focus on and scrolls to the target of same page links
 				hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
 					var hash = $(this).attr('href'),
@@ -216,16 +227,24 @@
 						}
 					}
 				});
+
 				// If the page URL includes a hash upon page load, then focus on and scroll to the target
+				// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
+				// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
 				if (pe.urlhash.length !== 0) {
 					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
 					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if (target.length > 0 && target.attr('data-role') !== 'page' && (pe.ie === '0' || pe.ie > 7)) {
-						setTimeout(function () {
-							$.mobile.silentScroll(pe.focus(target).offset().top);
-						}, 200);
-					}
+					validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
 				}
+				if (validTarget || pe.scrollTopInit !== 0) {
+					$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
+				}
+			});
+
+			pe.document.on('pageinit', function () {
+				// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
+				// TODO: Find a more elegant way to address this in jQuery Mobile
+				pe.bodydiv.removeAttr('tabindex');
 			});
 
 			// Load ajax content
