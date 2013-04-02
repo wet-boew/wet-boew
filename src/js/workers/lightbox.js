@@ -71,7 +71,6 @@
 							$currImg.attr('aria-describedby', describedBy);
 						}
 						if (typeof longdesc !== 'undefined') {
-							$lbLoadedContent.attr('longdesc', longdesc);
 							$currImg.attr('longdesc', longdesc);
 						}
 					}
