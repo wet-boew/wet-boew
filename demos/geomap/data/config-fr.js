@@ -48,9 +48,9 @@ var wet_boew_geomap = {
 	overlays : [		
 		{
 			title: 'KML Demo FR',
-			caption: 'Ceci est un exemple de fichier KML chargé localement par Géomap.',
+			caption: 'Ceci est un exemple de fichier KML chargé localement par Géocarte.',
 			type: 'kml',
-			url: 'data/sample.kml',		
+			url: 'data/sample_fr.kml',		
 			visible: true,
 			datatable: true,
 			tab: true,
@@ -61,9 +61,9 @@ var wet_boew_geomap = {
 		},
 		{
 			title: 'ATOM Demo FR',
-			caption: 'Ceci est un exemple de fil ATOM chargé localement par Géomap.',
+			caption: 'Ceci est un exemple de fil ATOM chargé localement par Géocarte.',
 			type: 'atom',
-			url: 'data/sample.atom',
+			url: 'data/sample_fr.atom',
 			attributes: {
 				title: 'Titre',
 				summary: 'À propos de ce jeux de données'
@@ -74,9 +74,9 @@ var wet_boew_geomap = {
 		},
 		{
 			title: 'GeoRSS Demo FR',
-			caption: 'Ceci est un exemple de fil GeoRSS chargé localement par Géomap.',
+			caption: 'Ceci est un exemple de fil GeoRSS chargé localement par Géocarte.',
 			type: 'georss',
-			url: 'data/sample.rss',	
+			url: 'data/sample_fr.rss',	
 			attributes: {
 				title: 'Titre',
 				description: 'Description',
@@ -90,7 +90,7 @@ var wet_boew_geomap = {
 			title: 'JSON (GeoGratis) FR',
 			caption: 'Ceci est un exemple d\'un jeu de données JSON chargé à partir d\'un site externe, dans ce cas-ci Géogratis.',
 			type: 'json',					
-			url: 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst',
+			url: 'http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst',
 			params: {
 				'alt': 'json',
 				'q': 'alluvial'
