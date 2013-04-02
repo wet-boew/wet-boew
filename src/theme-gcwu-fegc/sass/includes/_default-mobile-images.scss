@@ -16,13 +16,13 @@
 
 /* Custom jquery.mobile icons */
 .ui-icon-site-menu {
-	@extend %gcwu-default-mobile-images-background-position;
-	background-image: url(../images/icons-18-white.png);
+	@extend %gcwu-default-mobile-images-background-position-important;
+	background-image: url(../images/icons-18-white.png) !important;
 }
 
 .ui-icon-alt {
-	@extend %gcwu-default-mobile-images-background-position;
-	background-image: url(../images/icons-18-black.png);
+	@extend %gcwu-default-mobile-images-background-position-important;
+	background-image: url(../images/icons-18-black.png) !important;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
@@ -32,17 +32,14 @@
 	only screen and (min-resolution: 240dpi),
 	only screen and (min-resolution: 1.5dppx) {
 	.ui-icon-site-menu {
-		background-image: url(../images/icons-36-white.png);
+		background-image: url(../images/icons-36-white.png) !important;
 	}
 	.ui-icon-alt {
-		background-image: url(../images/icons-36-black.png);
+		background-image: url(../images/icons-36-black.png) !important;
 	}
 }
 
 /* Position and size the custom icon */
-%gcwu-default-mobile-images-background-position {
-	background: {
-		position: 0 50%;
-		size: 18px 18px;
-	}
+%gcwu-default-mobile-images-background-position-important {
+	background-position: 0 50% !important;
 }
