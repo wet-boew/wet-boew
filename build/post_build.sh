@@ -57,9 +57,9 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		cd wet-boew-dist
 
 		#Replace the new dist and demo folders and root files with the new ones
-		git rm -rf dist/*
-		git rm -rf demos/*
-		git rm -rf test/*
+		git rm -qrf dist/*
+		git rm -qrf demos/*
+		git rm -qrf test/*
 		cp -Rf $HOME/temp_wet-boew/* .
 
 		#Commit the result
@@ -76,11 +76,12 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
 			git checkout master-base-dist
 			git merge --squash master-dist
-			git rm -rf dist/theme-gcwu-fegc
-			git rm -rf demos/theme-gcwu-fegc
-			git rm -rf dist/theme-intranet
-			git rm -rf demos/theme-intranet
+			git rm -qrf dist/theme-gcwu-fegc
+			git rm -qrf demos/theme-gcwu-fegc
+			git rm -qrf dist/theme-intranet
+			git rm -qrf demos/theme-intranet
 			git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
+			git push -fq origin master-base-dist > /dev/null
 		fi
 	;; esac
 fi
