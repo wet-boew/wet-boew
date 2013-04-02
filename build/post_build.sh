@@ -1,5 +1,5 @@
 #!/bin/bash
-res1=$(date +%s.%N)
+start=$(date +%s)
 echo -e "Current repo: $TRAVIS_REPO_SLUG\n"
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ]; then
@@ -74,8 +74,8 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	;; esac
 fi
 
-res2=$(date +%s.%N)
-elapsed=$(echo "$res2 - $res1"|bc )
-minutes=$(echo "$elapsed /  60"|bc )
-seconds=$(printf "%.0f" $(echo "$elapsed %  60"|bc ))
+end=$(date +%s)
+elapsed=$(( $end - $start ))
+minutes=$(( $elapsed / 60 ))
+seconds=$(( $elapsed % 60 ))
 echo "Post-Build process finished in $minutes minute(s) and $seconds seconds"
