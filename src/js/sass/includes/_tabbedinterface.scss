@@ -20,7 +20,6 @@
 	cursor: text;
 }
 
-<<<<<<< HEAD
 %tabbedinterface-color-000-important {
 	color: #000 !important;
 }
@@ -29,19 +28,19 @@
 	text-decoration: underline;
 }
 
+%tabbedinterface-rel-external {
+	a {
+		&[rel="external"] {
+			padding: 0 !important;
+			background: 0 !important;
+		}
+	}
+}
+
 .wet-boew-tabbedinterface {
 	.ui-collapsible-content {
 		position: relative;
 	}
-=======
-%tabbedinterface-rel-external {
-  a {
-    &[rel="external"] {
-      padding: 0 !important;
-      background: 0 !important;
-    }
-  }
->>>>>>> v3.0
 }
 
 .tabs {
