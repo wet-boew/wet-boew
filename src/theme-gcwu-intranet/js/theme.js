@@ -334,6 +334,10 @@
 					nodes2,
 					node2;
 				if (navbar.length !== 0) {
+					// Manually initializes the navbar controlgroup if it doesn't initialize normally (can happen in IE)
+					if (!navbar.hasClass('ui-controlgroup')) {
+						navbar.controlgroup();
+					}
 					navbar.removeClass('wb-hide');
 
 					// Defer appending of menu until after page is enhanced by jQuery Mobile, and
