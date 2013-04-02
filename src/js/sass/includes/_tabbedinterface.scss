@@ -20,6 +20,15 @@
 	cursor: text;
 }
 
+%tabbedinterface-rel-external {
+  a {
+    &[rel="external"] {
+      padding: 0 !important;
+      background: 0 !important;
+    }
+  }
+}
+
 .tabs {
     border-bottom: solid 1px #ccc;
     margin: 0;
@@ -454,6 +463,7 @@
 			display: block;
 			margin-bottom: 0;
 		}
+		@extend %tabbedinterface-rel-external;
 	}
 }
 
@@ -519,6 +529,7 @@
 			display: block;
 			margin-bottom: 0;
 		}
+		@extend %tabbedinterface-rel-external;
 	}
 }
 
