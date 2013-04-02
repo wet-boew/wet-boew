@@ -70,6 +70,17 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		git push -fq origin $build_branch > /dev/null
 
 		echo -e "Finished tagging the latest build for branch $TRAVIS_BRANCH\n"
+
+		#Create the dist without the GC themes
+		if [ "$TRAVIS_BRANCH" == "master" ]; then
+			git checkout master-base-dist
+			git merge --squash master-dist
+			git rm -rf dist/theme-gcwu-fegc
+			git rm -rf demos/theme-gcwu-fegc
+			git rm -rf dist/theme-intranet
+			git rm -rf demos/theme-intranet
+			git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
+		fi
 	;; esac
 fi
 
