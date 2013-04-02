@@ -184,7 +184,7 @@
 				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
 					$html.addClass('bb-pre7');
 				}
-
+			
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
 						ajaxEnabled: false,
@@ -194,10 +194,28 @@
 					if (init_on_mobileinit) {
 						pe.mobilelang();
 					}
+
+					// If the page URL includes a hash upon page load, then focus on and scroll to the target
+					// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
+					// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
 					pe.scrollTopInit = pe.window.scrollTop();
+					if (pe.urlhash.length !== 0) {
+						target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+						validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
+					}
+					pe.document.one('silentscroll', function() {
+						if (validTarget || pe.scrollTopInit !== 0) {
+							$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
+						}
+					});
 				});
 
-				pe.document.on('pagebeforecreate', function () {
+				pe.document.on('pageinit', function () {
+					// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
+					// TODO: Find a more elegant way to address this in jQuery Mobile
+					pe.bodydiv.removeAttr('tabindex');
+					
 					// On click, puts focus on and scrolls to the target of same page links
 					hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
 						$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
@@ -206,24 +224,6 @@
 							$.mobile.silentScroll(pe.focus($this).offset().top);
 						}
 					});
-				
-					// If the page URL includes a hash upon page load, then focus on and scroll to the target
-					// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
-					// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
-					if (pe.urlhash.length !== 0) {
-						target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
-					}
-					if (validTarget || pe.scrollTopInit !== 0) {
-						$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
-					}
-				});
-
-				pe.document.on('pageinit', function () {
-					// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
-					// TODO: Find a more elegant way to address this in jQuery Mobile
-					pe.bodydiv.removeAttr('tabindex');
 				});
 				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
 				pe.add._load([pe.add.liblocation + 'jquerymobile/jquery.mobile.min.js']);
