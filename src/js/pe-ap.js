@@ -184,7 +184,31 @@
 				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
 					$html.addClass('bb-pre7');
 				}
-			
+
+				// If the page URL includes a hash upon page load, then focus on and scroll to the target
+				// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
+				// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point				
+				setTimeout(function pollScrollTop() {
+					// Poll for a change in scrollTop (polling done to handle quirks in Chrome)
+					var scrollTop = pe.window.scrollTop();
+					if (scrollTop !== 0 || pe.scrollTopInit === -1) {
+						pe.scrollTopInit = scrollTop;
+					} else {
+						setTimeout(pollScrollTop, 10);
+					}
+				}, 7);
+				if (pe.urlhash.length !== 0) {
+					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
+				}
+				pe.document.one('silentscroll', function() {
+					if (validTarget || pe.scrollTopInit !== 0) {
+						$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
+					}
+					pe.scrollTopInit = -1;
+				});
+
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
 						ajaxEnabled: false,
@@ -194,21 +218,6 @@
 					if (init_on_mobileinit) {
 						pe.mobilelang();
 					}
-
-					// If the page URL includes a hash upon page load, then focus on and scroll to the target
-					// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
-					// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
-					pe.scrollTopInit = pe.window.scrollTop();
-					if (pe.urlhash.length !== 0) {
-						target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
-					}
-					pe.document.one('silentscroll', function() {
-						if (validTarget || pe.scrollTopInit !== 0) {
-							$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
-						}
-					});
 				});
 
 				pe.document.on('pageinit', function () {
