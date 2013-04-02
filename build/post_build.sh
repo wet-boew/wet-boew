@@ -1,3 +1,4 @@
+#!/bin/sh
 res1=$(date +%s.%N)
 echo -e "Current repo: $TRAVIS_REPO_SLUG\n"
 
