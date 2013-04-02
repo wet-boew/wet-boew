@@ -10,7 +10,6 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	#Set remotes
 	git remote add upstream https://${GH_TOKEN}@github.com/wet-boew/wet-boew.git > /dev/null
 	git remote add experimental https://${GH_TOKEN}@github.com/LaurentGoderre/wet-boew.git > /dev/null
-	git remote add dist https://${GH_TOKEN}@github.com/wet-boew/wet-boew-dist.git > /dev/null
 
 	#Copy result of build and demo in a temporary location
 	mkdir $HOME/temp_wet-boew
@@ -50,10 +49,10 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		echo -e "Tagging the latest build for branch $TRAVIS_BRANCH\n"
 
 		build_branch="$TRAVIS_BRANCH-dist"
-
-		git fetch -qn dist > /dev/null
-		git checkout dist/$build_branch
-		git checkout -b "$build_branch"
+		
+		cd ..
+		git clone --single-branch -q -b $build_branch https://${GH_TOKEN}@github.com/wet-boew/wet-boew-dist.git > /dev/null
+		cd wet-boew-dist
 
 		#Replace the new dist and demo folders and root files with the new ones
 		git rm -rf dist/*
@@ -67,7 +66,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		git add -f test
 		git add -f *.*
 		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
-		git push -fq dist $build_branch > /dev/null
+		git push -fq origin $build_branch > /dev/null
 
 		echo -e "Finished tagging the latest build for branch $TRAVIS_BRANCH\n"
 	;; esac
