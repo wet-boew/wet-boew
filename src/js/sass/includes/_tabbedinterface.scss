@@ -20,6 +20,7 @@
 	cursor: text;
 }
 
+<<<<<<< HEAD
 %tabbedinterface-color-000-important {
 	color: #000 !important;
 }
@@ -32,6 +33,15 @@
 	.ui-collapsible-content {
 		position: relative;
 	}
+=======
+%tabbedinterface-rel-external {
+  a {
+    &[rel="external"] {
+      padding: 0 !important;
+      background: 0 !important;
+    }
+  }
+>>>>>>> v3.0
 }
 
 .tabs {
@@ -505,6 +515,7 @@
 			display: block;
 			margin-bottom: 0;
 		}
+		@extend %tabbedinterface-rel-external;
 	}
 }
 
@@ -571,6 +582,7 @@
 			display: block;
 			margin-bottom: 0;
 		}
+		@extend %tabbedinterface-rel-external;
 	}
 }
 
