@@ -2,7 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-body {
+body, #wb-head, #wb-core, #wb-foot, #wb-head-in, #gcwu-gcnb, #gcwu-bnr, #gcwu-psnb, #gcwu-bc, #wb-foot-in, #gcwu-gcft, #gcwu-sft {
 	min-width: 768px;
 }
 
@@ -60,71 +60,71 @@ li {
 	}
 }
 
-%width-768px {
+%gcwu-default-responsive-768-width-768px {
 	width: 768px;
 }
 
 #wb-core-in {
-	@extend %width-768px;
+	@extend %gcwu-default-responsive-768-width-768px;
 }
 
 #gcwu-gcnb-in {
-	@extend %width-768px;
+	@extend %gcwu-default-responsive-768-width-768px;
 }
 
 #gcwu-bnr-in {
-	@extend %width-768px;
+	@extend %gcwu-default-responsive-768-width-768px;
 }
 
 #gcwu-psnb-in {
-	@extend %width-768px;
+	@extend %gcwu-default-responsive-768-width-768px;
 }
 
 #gcwu-bc-in {
-	@extend %width-768px;
+	@extend %gcwu-default-responsive-768-width-768px;
 }
 
 #gcwu-gcft-in {
-	@extend %width-768px;
+	@extend %gcwu-default-responsive-768-width-768px;
 }
 
 #gcwu-sft-in {
-	@extend %width-768px;
+	@extend %gcwu-default-responsive-768-width-768px;
 }
 
 #gcwu-psnb {
 	.mb-menu {
-		@extend %width-768px;
+		@extend %gcwu-default-responsive-768-width-768px;
 	}
 }
 
 #wb-body {
 	#wb-main {
-		@extend %width-768px;
+		@extend %gcwu-default-responsive-768-width-768px;
 	}
 	#gcwu-content {
-		@extend %width-576px;
+		@extend %gcwu-default-responsive-768-width-576px;
 	}
 }
 
-%width-576px {
+%gcwu-default-responsive-768-width-576px {
 	width: 576px;
 }
 
 [id|="wb-body-sec"] {
 	[id|="wb-main"] {
-		@extend %width-576px;
+		@extend %gcwu-default-responsive-768-width-576px;
 	}
 }
 
-%width-172px {
+%gcwu-default-responsive-768-width-172px {
 	width: 172px;
 }
 
 #gcwu-aside {
-	@extend %width-172px;
+	@extend %gcwu-default-responsive-768-width-172px;
 }
 
 #gcwu-priorities {
-	@extend %width-172px;
+	@extend %gcwu-default-responsive-768-width-172px;
 }
