@@ -73,7 +73,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		#Create the dist without the GC themes
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
 			git checkout master-base-dist
-			git merge --squash master-dist
+			git merge --squash -s ours master-dist
 			git rm -qrf dist/theme-gcwu-fegc
 			git rm -qrf demos/theme-gcwu-fegc
 			git rm -qrf dist/theme-intranet
