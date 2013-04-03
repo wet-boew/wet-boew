@@ -270,15 +270,6 @@
 		</copy>
 	</target>
 
-	<target name="-copy-depends">
-		<copy todir="${dist.dir}/dependencies/css">
-			<fileset dir="${src.dir}/dependencies/css"/>
-		</copy>
-		<copy todir="${dist.dir}/dependencies/images">
-			<fileset dir="${src.dir}/dependencies/images"/>
-		</copy>
-	</target>
-
 	<fileset id="jsfiles" dir="${src.dir}">
 		<include name="**/*.js"/>
 	</fileset>
