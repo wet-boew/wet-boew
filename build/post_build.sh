@@ -74,10 +74,10 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
 			git checkout master-base-dist
 			git merge --squash -s ours master-dist
-			git rm -qrf dist/theme-gcwu-fegc
-			git rm -qrf demos/theme-gcwu-fegc
-			git rm -qrf dist/theme-intranet
-			git rm -qrf demos/theme-intranet
+			git rm --ignore-unmatch -qrf dist/theme-gcwu-fegc
+			git rm --ignore-unmatch -qrf demos/theme-gcwu-fegc
+			git rm --ignore-unmatch -qrf dist/theme-intranet
+			git rm --ignore-unmatch -qrf demos/theme-intranet
 			git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
 			git push -fq origin master-base-dist > /dev/null
 		fi
