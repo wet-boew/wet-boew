@@ -2,6 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
+%base-default-responsive-large-1200-min-width-1200 {
+	min-width: 1200px;
+}
 %base-default-responsive-large-1200-width-600 {
 	width: 600px;
 }
@@ -10,7 +13,61 @@
 }
 
 body {
-	min-width: 1200px;
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-head {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-core {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-foot {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-head-in {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#base-fullhd {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#base-bnr {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#base-psnb {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+	.mb-menu {
+		@extend %base-default-responsive1200-width1200px;
+	}
+}
+
+#base-psnb {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+	.mb-menu {
+		@extend %base-default-responsive-large-width960px;
+	}
+}
+
+#base-bc {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-foot-in {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#base-fullft {
+	@extend %base-default-responsive-large-1200-min-width-1200;
+}
+
+#base-sft {
+	@extend %base-default-responsive-large-1200-min-width-1200;
 }
 
 #base-title-in {
@@ -66,12 +123,6 @@ body {
 
 #base-bnr-in {
 	@extend %base-default-responsive1200-width1200px;
-}
-
-#base-psnb {
-	.mb-menu {
-		@extend %base-default-responsive1200-width1200px;
-	}
 }
 
 #wb-body {
