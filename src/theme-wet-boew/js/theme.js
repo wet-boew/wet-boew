@@ -240,7 +240,7 @@
 					i = len;
 					while (i--) {
 						node = nodes[i];
-						link = node.childNodes[0];
+						link = $(node).children('a:first')[0];
 						settings_popup += '<li' + (i === 0 ? ' class="ui-corner-bottom"' : '');
 						if (node.id.indexOf('-lang-current') !== -1) {
 							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
