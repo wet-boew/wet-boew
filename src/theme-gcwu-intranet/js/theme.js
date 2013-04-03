@@ -325,6 +325,9 @@
 				}
 			}
 
+			// Load the mobile favicon
+			pe.add.favicon(pe.add.themecsslocation.replace(/css\/$/, 'images/favicon-mobile.png'), 'apple-touch-icon', '57x57 72x72 114x114 144x144 150x150');
+
 			// jQuery mobile has loaded
 			$document.on('pagecreate', function () {
 				var navbar = wet_boew_theme.gcnb.find('#gcwu-mnavbar'),

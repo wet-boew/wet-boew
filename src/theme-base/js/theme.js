@@ -133,14 +133,14 @@
 					if (wet_boew_theme.menubar.length !== 0) {
 						mb_menu += '<section><div><h2>' + wet_boew_theme.psnb.children(':header')[0].innerHTML + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
 					}
-					
+
 					// Append the popup/dialog container and store the menu for appending later
 					mb_popup += '<div id="jqm-mb-menu"></div></nav></div></div></div>';
 					bodyAppend += mb_popup;
 					wet_boew_theme.menu = mb_menu;
 					_list += popup_button + ' data-icon="bars" href="#jqm-wb-mb">' + mb_btn_txt + '</a>';
 				}
-			
+
 				// Build the search popup (content pages only)
 				if (wet_boew_theme.search.length !== 0) {
 					// :: Search box transform lets transform the search box to a popup
@@ -156,7 +156,7 @@
 					bodyAppend += s_popup;
 					_list += popup_button + ' data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a>';
 				}
-			
+
 				// Build the header bar
 				header = '<div data-role="header"><div class="ui-title"></div>';
 				header += '<map id="base-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
@@ -177,7 +177,7 @@
 				wet_boew_theme.fullhd.children('#base-fullhd-in').before(header);
 				// Apply a theme to the site title
 				wet_boew_theme.title[0].className += ' ui-bar-b';
-			
+
 				// Build the settings popup
 				session = document.getElementById('wb-session');
 				lang_links = wet_boew_theme.fullhd.find('li[id*="-lang"]');
@@ -221,9 +221,9 @@
 					settings_popup += '</ul>' + popup_close;
 				}
 
-				// Build the about sub-popup	
+				// Build the about sub-popup
 				settings_popup += popup + ' id="popupAbout"' + popup_settings;
-				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';			
+				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open;
 				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
 				// Add the version
@@ -241,13 +241,16 @@
 					link = links[i];
 					node = link.innerHTML;
 					target = node.toLowerCase();
-					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';	
+					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';
 				}
 				settings_popup += '</ul>' + popup_close;
 
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);
 			}
+
+			// Load the mobile favicon
+			pe.add.favicon(pe.add.themecsslocation.replace(/css\/$/, 'images/favicon-mobile.png'), 'apple-touch-icon', '57x57 72x72 114x114 144x144 150x150');
 
 			// jQuery mobile has loaded
 			$document.on('pagecreate', function () {
