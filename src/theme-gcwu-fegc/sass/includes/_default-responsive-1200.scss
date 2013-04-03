@@ -88,17 +88,17 @@ li {
 		@extend %gcwu-default-responsive-1200-width-1200px;
 	}
 	#gcwu-content {
-		@extend @extend %gcwu-default-responsive-1200-width-900px;
+		@extend %gcwu-default-responsive-1200-width-900px;
 	}
 }
 
-@extend %gcwu-default-responsive-1200-width-900px {
+%gcwu-default-responsive-1200-width-900px {
 	width: 900px;
 }
 
 [id|="wb-body-sec"] {
 	[id|="wb-main"] {
-		@extend @extend %gcwu-default-responsive-1200-width-900px;
+		@extend %gcwu-default-responsive-1200-width-900px;
 	}
 }
 
@@ -108,14 +108,14 @@ li {
 	}
 }
 
-@extend %gcwu-default-responsive-1200-width-280px {
+%gcwu-default-responsive-1200-width-280px {
 	width: 280px;
 }
 
 #gcwu-aside {
-	@extend @extend %gcwu-default-responsive-1200-width-280px;
+	@extend %gcwu-default-responsive-1200-width-280px;
 }
 
 #gcwu-priorities {
-	@extend @extend %gcwu-default-responsive-1200-width-280px;
+	@extend %gcwu-default-responsive-1200-width-280px;
 }
