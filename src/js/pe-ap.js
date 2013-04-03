@@ -129,6 +129,8 @@
 				classes,
 				test,
 				test_elms,
+				silentscroll_fired = false,
+				pageinit_fired = false,
 				init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
@@ -203,27 +205,29 @@
 			// If the page URL includes a hash upon page load, then focus on and scroll to the target
 			// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
 			// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point				
-			setTimeout(function pollScrollTop() {
-				// Poll for a change in scrollTop (polling done to handle quirks in Chrome)
-				var scrollTop = pe.window.scrollTop();
-				if (scrollTop !== 0 || pe.scrollTopInit === -1) {
-					pe.scrollTopInit = scrollTop;
-				} else {
-					setTimeout(pollScrollTop, 10);
-				}
-			}, 7);
+			pe.scrollTopInit = pe.window.scrollTop();
+			if (pe.scrollTopInit === 0) {
+				window.onload = function() {
+					setTimeout(function() {
+						pe.scrollTopInit = pe.window.scrollTop();
+					}, 1);
+				};
+			}
 			if (pe.urlhash.length !== 0) {
 				target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
 				target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 				validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
 			}
-			pe.document.one('silentscroll', function() {
-				if (validTarget || pe.scrollTopInit !== 0) {
+			pe.document.on('silentscroll.wbinit', function() {
+				silentscroll_fired = true;
+				if (pageinit_fired) {
+					pe.document.off('silentscroll.wbinit');
+				}
+				if (validTarget || pe.scrollTopInit > 1) {
 					$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
 				}
-				pe.scrollTopInit = -1;
 			});
-			
+
 			pe.document.on('mobileinit', function () {
 				$.extend($.mobile, {
 					ajaxEnabled: false,
@@ -236,6 +240,12 @@
 			});
 
 			pe.document.on('pageinit', function () {
+				pageinit_fired = true;
+				// Remove the silentscroll handling for determining scrollTop if the silentscroll event has already fired
+				if (silentscroll_fired) {
+					pe.document.off('silentscroll.wbinit');
+				}
+
 				// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
 				// TODO: Find a more elegant way to address this in jQuery Mobile
 				pe.bodydiv.removeAttr('tabindex');
