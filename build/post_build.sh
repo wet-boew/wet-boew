@@ -63,7 +63,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		cp -Rf $HOME/temp_wet-boew/* .
 
 		#Commit the result
-		git add -qf dist
+		git add -f dist
 		git add -f demos
 		git add -f test
 		git add -f *.*
@@ -81,8 +81,8 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 			git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
 			git push -fq origin master-base-dist > /dev/null
 		fi
-		
-		echo -e "Uploading the build artifact for branch $TRAVIS_BRANCH\n"
+
+		echo -e "Done uploading the build artifact for branch $TRAVIS_BRANCH\n"
 	;; esac
 fi
 
