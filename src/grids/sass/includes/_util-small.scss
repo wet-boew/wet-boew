@@ -190,6 +190,10 @@ ul {
 	@include inline-block;
 }
 
+.module-spotlight {
+	padding-bottom: 10px;
+}
+
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	.form-inline {
