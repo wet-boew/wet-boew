@@ -48,7 +48,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 
 	#Add the latest tags
 	case "${supported_branches[@]}" in  *"$TRAVIS_BRANCH"*)
-		echo -e "Tagging the latest build for branch $TRAVIS_BRANCH\n"
+		echo -e "Packaging the latest build for branch $TRAVIS_BRANCH to https://github.com/wet-boew/wet-boew-dist/tree/$TRAVIS_BRANCH-dist\n"
 
 		build_branch="$TRAVIS_BRANCH-dist"
 		
@@ -70,7 +70,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
 		git push -fq origin $build_branch > /dev/null
 
-		echo -e "Finished tagging the latest build for branch $TRAVIS_BRANCH\n"
+		echo -e "Finished packaging branch $TRAVIS_BRANCH\n"
 
 		#Create the dist without the GC themes
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
