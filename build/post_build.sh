@@ -27,7 +27,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		echo -e "Updating working examples...\n"
 
 		git checkout -B gh-pages
-		git add -qf dist/.
+		git add - dist/.
 		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
 		git push -fq upstream gh-pages > /dev/null
 
@@ -39,7 +39,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		echo -e "Updating experimental working examples...\n"
 
 		git checkout -B gh-pages
-		git add -qf dist/.
+		git add -f dist/.
 		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
 		git push -fq experimental gh-pages > /dev/null
 
@@ -64,9 +64,9 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 
 		#Commit the result
 		git add -qf dist
-		git add -qf demos
-		git add -qf test
-		git add -qf *.*
+		git add -f demos
+		git add -f test
+		git add -f *.*
 		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
 		git push -fq origin $build_branch > /dev/null
 
