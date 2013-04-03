@@ -27,8 +27,8 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		echo -e "Updating working examples...\n"
 
 		git checkout -B gh-pages
-		git add -qf dist/.
-		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
+		git add - dist/.
+		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
 		git push -fq upstream gh-pages > /dev/null
 
 		echo -e "Finished updating the working examples\n"
@@ -39,8 +39,8 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		echo -e "Updating experimental working examples...\n"
 
 		git checkout -B gh-pages
-		git add -qf dist/.
-		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
+		git add -f dist/.
+		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
 		git push -fq experimental gh-pages > /dev/null
 
 		echo -e "Finished updating the experimental working examples\n"
@@ -63,11 +63,11 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		cp -Rf $HOME/temp_wet-boew/* .
 
 		#Commit the result
-		git add -qf dist
-		git add -qf demos
-		git add -qf test
-		git add -qf *.*
-		git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
+		git add -f dist
+		git add -f demos
+		git add -f test
+		git add -f *.*
+		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
 		git push -fq origin $build_branch > /dev/null
 
 		#Create the dist without the GC themes
@@ -78,11 +78,11 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 			git rm -qrf demos/theme-gcwu-fegc
 			git rm -qrf dist/theme-intranet
 			git rm -qrf demos/theme-intranet
-			git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
+			git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
 			git push -fq origin master-base-dist > /dev/null
 		fi
-		
-		echo -e "Uploading the build artifact for branch $TRAVIS_BRANCH\n"
+
+		echo -e "Done uploading the build artifact for branch $TRAVIS_BRANCH\n"
 	;; esac
 fi
 
