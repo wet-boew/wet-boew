@@ -50,7 +50,7 @@ body {
 #base-psnb {
 	@extend %base-default-responsive-large-1200-min-width-1200;
 	.mb-menu {
-		@extend %base-default-responsive-large-width960px;
+		@extend %base-default-responsive1200-width1200px;
 	}
 }
 
