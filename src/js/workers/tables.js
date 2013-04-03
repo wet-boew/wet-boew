@@ -14,7 +14,6 @@
 	_pe.fn.tables = {
 		type: 'plugin',
 		depends: ['datatables'],
-		dependscss: ['datatables'],
 		_exec: function (elm) {
 			var opts,
 				overrides;
