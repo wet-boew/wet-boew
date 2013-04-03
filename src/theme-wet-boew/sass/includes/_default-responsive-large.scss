@@ -2,10 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
-body{
-	min-width: 960px;
-}
-
 %wet-default-responsive-large-width-100perc-min-width-960 {
 	width: 100%;
 	min-width: 960px;
@@ -18,6 +14,10 @@ body{
 }
 %wet-default-responsive-large-margin-auto {
 	margin: auto;
+}
+
+body{
+	min-width: 960px;
 }
 
 #wb-head {
