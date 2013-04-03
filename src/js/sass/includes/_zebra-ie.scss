@@ -15,7 +15,7 @@
 	background-color: #f0fcff;
 }
 
-/* IE7 hacks - should be in an IE7 only .css */
+// IE7 hacks - should be in an IE7 only .css
 .ie7 {
     ol.wet-boew-zebra {
 		> {
@@ -38,9 +38,9 @@
 }
 
 
-/* In separate CSS because IE have conflit when it's combined with the CSS3 nthChild instruction */
+// In separate CSS because IE have conflit when it's combined with the CSS3 nthChild instruction
 .wet-boew-zebra {
-	/* List Zebra */
+	// List Zebra
 	li, dt, dd {
 		&.list-even {
 			@extend %zebra-ie-background-color-ddd;
@@ -51,10 +51,9 @@
 		&.list-hover {
 			@extend %zebra-ie-list-background-color-f0fcff;
 		}
-
 	}
-	
-	/* Style Alterwg (Alternate White and Gray stripe) */
+
+	// Style Alterwg (Alternate White and Gray stripe)
 	&.alterwg {
 		li, dt, dd {
 			&.list-even {
@@ -66,14 +65,43 @@
 		}
 	}
 
-	/* Summary Group Styling */
-	tr.table-summary, tbody.table-summary tr, 
-	colgroup col.table-summary, colgroup.table-summary, 
-	tfoot tr, td.table-summary {
-		@extend %zebra-ie-background-color-eee; /* Summary Row/Col highligth */
+	// Summary Group Styling
+	tr {
+		&.table-summary {
+			@extend %zebra-ie-background-color-eee;
+		}
 	}
-	
-	/* Traditionel Table Zebra Stripping */
+
+	tbody {
+		&.table-summary {
+			tr {
+				@extend %zebra-ie-background-color-eee;
+			}
+		}
+	}
+	 
+	colgroup {
+		col.table-summary {
+			@extend %zebra-ie-background-color-eee;
+		}
+		&.table-summary {
+			@extend %zebra-ie-background-color-eee;
+		}
+	}
+	 
+	tfoot {
+		tr {
+			@extend %zebra-ie-background-color-eee;
+		}
+	}
+
+	td {
+		&.table-summary {
+			@extend %zebra-ie-background-color-eee;
+		}
+	}
+
+	// Traditionel Table Zebra Stripping
 	&.colzebra {
 		colgroup {
 			col {
@@ -105,25 +133,51 @@
 
 	&.rowhover, &.rowtdhover {
 		tbody, tfoot {
-			tr.table-hover,
-			tr.table-hover td.table-keycell, 
-			tr.table-hover td.table-desccell,
-			tr.table-hover td.table-layoutCell,
-			tr.table-hover th.table-layoutCell  {
-				@extend %zebra-ie-background-color-eee;
+			tr {
+				&.table-hover {
+					@extend %zebra-ie-background-color-eee;
+					th {
+						&.table-layoutCell {
+							@extend %zebra-ie-background-color-eee;
+						}
+					}
+					td {
+						&.table-keycell {
+							@extend %zebra-ie-background-color-eee;
+						}
+						&.table-desccell {
+							@extend %zebra-ie-background-color-eee;
+						}
+						&.table-layoutCell {
+							@extend %zebra-ie-background-color-eee;
+						}
+					}
+				}
+
+				// Hover for summary rows
+				&.table-summary {
+					&.table-hover {
+						@extend %zebra-ie-table-background-color-f0fcff;
+						th {
+							&.table-layoutCell {
+								@extend %zebra-ie-table-background-color-f0fcff;
+							}
+						}
+						td {
+							@extend %zebra-background-color-eee;
+							&.table-keycell {
+								@extend %zebra-ie-table-background-color-f0fcff;
+							}
+							&.table-desccell {
+								@extend %zebra-ie-table-background-color-f0fcff;
+							}
+							&.table-layoutCell {
+								@extend %zebra-ie-table-background-color-f0fcff;
+							}
+						}
+					}
+				}
 			}
-			
-			/* Hover for summary rows */
-			tr.table-summary.table-hover,
-			tr.table-summary.table-hover td.table-keycell, 
-			tr.table-summary.table-hover td.table-desccell,
-			tr.table-summary.table-hover td.table-layoutCell,
-			tr.table-summary.table-hover th.table-layoutCell  {
-				@extend %zebra-ie-table-background-color-f0fcff;
-			}
-			
 		}
-		
 	}
-	
 }
