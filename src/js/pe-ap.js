@@ -142,11 +142,11 @@
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
-	
+
 			// View test: Used to detect CSS media query result regarding screen size and mobile/desktop view
 			pe.viewtest = document.createElement('div');
 			pe.viewtest.setAttribute('id', 'viewtest');
-			
+
 			// Resize test element: Used to detect changes in text size and window size
 			pe.resizetest = document.createElement('span');
 			pe.resizetest.innerHTML = '&#160;';
@@ -175,7 +175,7 @@
 			classes += (pe.svg ? ' svg' : ' no-svg');
 			classes += (pe.ie > 8 ? ' ie' + parseInt(pe.ie, 10) : (pe.ie < 1 ? ' no-ie' : ''));
 
-			// Check for browsers that needs SVG loaded through an object element removed		
+			// Check for browsers that needs SVG loaded through an object element removed
 			test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
 			pe.svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46)));
 
@@ -199,12 +199,12 @@
 			hlinks_same = hlinks.filter(function () {
 				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
 			});
-			
+
 			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 
 			// If the page URL includes a hash upon page load, then focus on and scroll to the target
 			// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
-			// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point				
+			// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
 			pe.scrollTopInit = pe.window.scrollTop();
 			if (pe.scrollTopInit === 0) {
 				window.onload = function() {
@@ -359,7 +359,7 @@
 		pagecontainer: function () {
 			return $('#wb-body-sec-sup, #wb-body-sec, #wb-body-secr, #wb-body').add('body').eq(0);
 		},
-		
+
 		/**
 		* Manages custom events for text and window resizing
 		* Based on http://alistapart.com/article/fontresizing
@@ -1050,7 +1050,7 @@
 						linkurl = menulinkurl[linkindex];
 						linkurllen = linkurl.length;
 						linkquery = link.search;
-						linkquerylen = linkquery.length;						
+						linkquerylen = linkquery.length;
 						bcindex = bclinkslen;
 						while (bcindex--) {
 							if (bclinkurl[bcindex].slice(-linkurllen) === linkurl && (linkquerylen === 0 || bclink[bcindex].search.slice(-linkquerylen) === linkquery)) {
@@ -1712,7 +1712,7 @@
 				* @return {string[]} NOTE: If d is a string, this returns a string array with 8 copies of the transformed string. If d is a string array, this returns a string array with just one entry; the transformed string.
 				*/
 				depends: function (d, css) {
-					var iscss = typeof css !== 'undefined' ? css : false, 
+					var iscss = typeof css !== 'undefined' ? css : false,
 						extension = pe.suffix + (iscss ? '.css' : '.js'),
 						dir = pe.add.liblocation + 'dependencies/' + (iscss ? 'css/' : ''),
 						c_d = $.map(d, function (a) {
@@ -1747,6 +1747,21 @@
 					pe.add.set(styleElement, 'name', name).set(styleElement, 'content', content);
 					pe.add.head.appendChild(styleElement);
 					return this;
+				},
+				/**
+				* Adds a mobile favicon to the head of the document.
+				* @memberof pe.add
+				* @function
+				* @param {string} href Path of the favicon to add
+				* @param {string} rel Value of the favicon's rel attribute
+				* @param {string} sizes Value of the favicon's sizes attribute
+				* @return {object} A reference to pe.add
+				*/
+				favicon: function(href, rel, sizes) {
+					var favicon = document.createElement('link');
+					pe.add.set(favicon, 'href', href).set(favicon, 'rel', rel).set(favicon, 'sizes', sizes);
+					pe.add.head.appendChild(favicon);
+					return this;
 				}
 			};
 		}
@@ -1754,7 +1769,7 @@
 		/**
 		* Handles loading of the plugins, dependencies and polyfills
 		* @function
-		* @param {object} options Object containing the loader options. The following optional properties are supported: 
+		* @param {object} options Object containing the loader options. The following optional properties are supported:
 		* 'plugins': {'plugin_name1': elms1, 'plugin_name2': elms2, ...} - Names of plugins to load and the elements to load them on
 		* 'global': [plugin_name1, plugin_name2, ...] - Names of global plugins to load
 		* 'deps': [dependency_name1, dependency_name2, ...] - Names of dependences to load
