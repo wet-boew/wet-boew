@@ -27,7 +27,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		echo -e "Updating working examples...\n"
 
 		git checkout -B gh-pages
-		git add - dist/.
+		git add -f dist/.
 		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
 		git push -fq upstream gh-pages > /dev/null
 
