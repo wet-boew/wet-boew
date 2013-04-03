@@ -73,11 +73,12 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		#Create the dist without the GC themes
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
 			git checkout master-base-dist
-			git merge --squash -s ours master-dist
-			git rm --ignore-unmatch -qrf dist/theme-gcwu-fegc
-			git rm --ignore-unmatch -qrf demos/theme-gcwu-fegc
-			git rm --ignore-unmatch -qrf dist/theme-intranet
-			git rm --ignore-unmatch -qrf demos/theme-intranet
+			cp -Rf $HOME/temp_wet-boew/dist
+			rm -Rf ./dist/theme-clf2-nsi2
+			rm -Rf ./dist/theme-gcwu-fegc
+			rm -Rf ./dist/theme-intranet
+			cp -Rf $HOME/temp_wet-boew/demos/theme-base
+			cp -Rf $HOME/temp_wet-boew/demos/theme-wet-boew
 			git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
 			git push -fq origin master-base-dist > /dev/null
 		fi
