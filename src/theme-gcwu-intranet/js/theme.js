@@ -43,13 +43,11 @@
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm'),
-				img,
 				len,
 				mobile = pe.mobile,
 				svgid = (mobile ? ['gcwu-wmms'] : ['gcwu-wmms', 'gcwu-sig']),
 				svgelm,
 				object,
-				print = pe.print,
 				contentPage = wet_boew_theme.sft.length !== 0;
 
 			// Remove the object for loading the SVG images  and leave only the fallback image element (content pages only)
@@ -324,6 +322,9 @@
 					wmms.parentNode.removeChild(wmms);
 				}
 			}
+
+			// Load the mobile favicon
+			pe.add.favicon(pe.add.themecsslocation.replace(/css\/$/, 'images/favicon-mobile.png'), 'apple-touch-icon', '57x57 72x72 114x114 144x144 150x150');
 
 			// jQuery mobile has loaded
 			$document.on('pagecreate', function () {
