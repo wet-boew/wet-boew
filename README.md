@@ -99,14 +99,16 @@
 ## C'est quoi la Boîte à outils de l’expérience Web?
 
 * Bibliothèque de code pour construire des sites Web innovants qui sont&#160;:
- * [Accessibles](#accessibilit%C3%A9), [utilisables](#facilit%C3%A9-demploi) et [interopérables](#interop%C3%A9rabilit%C3%A9)
- * [Optimizés pour les appareils mobiles](#conception-adaptif-qui-est-optimiz%C3%A9-pour-les-appareils-mobiles)
+ * [Accessibles](#accessibilit), [utilisables](#facilit-demploi) et [interopérables](#interoprabilit)
+ * [Optimizés pour les appareils mobiles](#conception-adaptif-qui-est-optimiz-pour-les-appareils-mobiles)
  * [Multilingues](#multilingue)
-* [Modèles et composants réutilisables qui sont flexibles et personnalisables](#personnalisable-et-r%C3%A9utilisable)
+* [Modèles et composants réutilisables qui sont flexibles et personnalisables](#personnalisable-et-rutilisable)
 * Logiciels libres
  * Libre d'utiliser à des fins commerciales et non commerciales (licence MIT - [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/License-fra.txt))
  * [Développé ouvertement sur GitHub par la communauté](#approche-collaborative)
 
+## Ressources clés
+ 
 * [Avantages](#avantages)
 * [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
