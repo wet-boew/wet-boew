@@ -990,7 +990,10 @@
 				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
 					link = menulinks[menulinkslen];
-					linkhref = !hrefBug ? link.getAttribute('href') : $(link).attr('href');
+					linkhref = link.getAttribute('href');
+					if (hrefBug && linkhref !== window.location.href) {
+						linkhref = linkhref.replace(window.location.href, '');
+					}
 					if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
 						linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
 						linkquery = link.search;
@@ -1015,7 +1018,9 @@
 					for (bcindex = 0; bcindex !== bclinkslen; bcindex += 1) {
 						link = bclinks[bcindex];
 						linkhref = link.getAttribute('href');
-						linkhref = !hrefBug ? link.getAttribute('href') : $(link).attr('href');
+						if (hrefBug && linkhref !== window.location.href) {
+							linkhref = linkhref.replace(window.location.href, '');
+						}
 						if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
 							bclink.push(link);
 							bclinkurl.push(link.hostname + link.pathname.replace(/^([^\/])/, '/$1'));
