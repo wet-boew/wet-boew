@@ -1152,7 +1152,7 @@
 								}
 								next = mItem.next();
 								nextDOM = next[0];
-								if (nextDOM.tagName.toLowerCase() === 'ul') {
+								if (typeof nextDOM != 'undefined' && nextDOM.tagName.toLowerCase() === 'ul') {
 									menu += listView;
 									nested = nextDOM.querySelector('li ul');
 									if (nested !== null && nested.length !== 0) { // Special handling for a nested list
