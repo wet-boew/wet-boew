@@ -2,19 +2,18 @@
 
 [![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.png?branch=master)](http://travis-ci.org/wet-boew/wet-boew)
 
-* **WET v3.1.0 Release Candidate 1 was released on April 3, 2013** ([v3.1.0 Release Candidate 1 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Release-Candidate-1-release-notes))
-* **WET v3.1.0 Beta 2 was released on February 15, 2013** ([v3.1.0 Beta 2 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-2-release-notes))
-* **WET v3.0.5 was released on February 15, 2013** ([v3.0.5 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.5-release-notes))
-* **WET v3.0.4 was released on January 24, 2013** ([v3.0.4 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.4-release-notes))
-* **WET v3.1.0 Beta 1 was released on December 21, 2012** ([v3.1.0 Beta 1 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-1-release-notes))
-* **WET v3.0.3 was released on December 21, 2012** ([v3.0.3 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.3-release-notes))
-* **WET v3.0.2 was released on November 15, 2012** ([v3.0.2 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.2-release-notes))
-* **WET v3.0.1 was released on October 9, 2012** ([v3.0.1 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.1-release-notes))
-* **WET v3.0 was released on September 17, 2012** ([v3.0 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0-release-notes))
-
 Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities.  
 
 The toolkit complies with the new Standards on Web Accessibility and Web Usability; the toolkit will also ease compliance with the Standard on Web Interoperability. WET is highly recommended for use on Government of Canada Websites.
+
+* [Benefits](#benefits)
+* [Working examples](http://wet-boew.github.com/wet-boew/demos/index-eng.html)
+* [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
+* [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET#wiki-Contributor_guidelines)
+* [Downloads](https://github.com/wet-boew/wet-boew/wiki/Downloads)
+* [Terms and conditions](http://wet-boew.github.com/wet-boew/License-eng.txt)
+* [Version history](#version-history)
+* [Roadmap](https://github.com/wet-boew/wet-boew/wiki/Roadmap)
 
 ## Benefits
 
@@ -27,37 +26,37 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
   * Ever-growing list of open source plugins and widgets.
 * Supports a wide range of layouts and designs for internal and external Web sites (including applications).
 
-## Key resources
+## Version history
 
-* [Working examples](http://wet-boew.github.com/wet-boew/demos/index-eng.html)
-* [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
-* [Downloads](https://github.com/wet-boew/wet-boew/wiki/Downloads)
-* [Terms and conditions](http://wet-boew.github.com/wet-boew/License-eng.txt)
-* [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET#wiki-Contributor_guidelines)
-* [Roadmap](https://github.com/wet-boew/wet-boew/wiki/Roadmap)
+* **WET v3.1.0 Release Candidate 1 was released on April 3, 2013** ([v3.1.0 Release Candidate 1 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Release-Candidate-1-release-notes))
+* **WET v3.1.0 Beta 2 was released on February 15, 2013** ([v3.1.0 Beta 2 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-2-release-notes))
+* **WET v3.0.5 was released on February 15, 2013** ([v3.0.5 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.5-release-notes))
+* **WET v3.0.4 was released on January 24, 2013** ([v3.0.4 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.4-release-notes))
+* **WET v3.1.0 Beta 1 was released on December 21, 2012** ([v3.1.0 Beta 1 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-1-release-notes))
+* **WET v3.0.3 was released on December 21, 2012** ([v3.0.3 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.3-release-notes))
+* **WET v3.0.2 was released on November 15, 2012** ([v3.0.2 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.2-release-notes))
+* **WET v3.0.1 was released on October 9, 2012** ([v3.0.1 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.1-release-notes))
+* **WET v3.0 was released on September 17, 2012** ([v3.0 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0-release-notes))
 
 -------------------------------------------------------------------
 
 
 # Boîte à outils de l’expérience Web (BOEW)
 
-* **La version v3.1.0 Version candidate 1 a été lancée le 3 avril 2013** ([v3.1.0 Version candidate 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Release-Candidate-1-release-notes))
-* **La version v3.1.0 Bêta 2 de la BOEW a été lancée le 15 février 2013** ([v3.1.0 Bêta 2 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-2-release-notes))
-* **La version v3.0.5 de la BOEW a été lancée le 15 février 2013** ([v3.0.5 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.5-release-notes))
-* **La version v3.0.4 de la BOEW a été lancée le 24 janvier 2013** ([v3.0.4 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.4-release-notes))
-* **La version v3.1.0 Bêta 1 de la BOEW a été lancée le 21 décembre 2012** ([v3.1.0 Bêta 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-1-release-notes))
-* **La version v3.0.3 de la BOEW a été lancée le 21 décembre 2012** ([v3.0.3 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.3-release-notes))
-* **La version v3.0.2 de la BOEW a été lancée le 15 novembre 2012** ([v3.0.2 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.2-release-notes))
-* **La version v3.0.1 de la BOEW a été lancée le 9 octobre 2012** ([v3.0.1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.1-release-notes))
-* **La version v3.0 de la BOEW a été lancée le 17 septembre 2012** ([v3.0 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0-release-notes))
-
-
-
 ## Vue d'ensemble
 
 La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes. 
 
 La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web et la Norme sur la facilité des sites Web et sera conforme à la Norme sur l’interopérabilité du Web. Il est fortement recommandé d’utiliser la BOEW pour tous les sites Web du gouvernement du Canada.
+
+* [Avantages](#avantages)
+* [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
+* [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
+* [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Développer-pour-la-boew#wiki-Lignes_directrices_pour_les_contributeurs)
+* [Versions à télécharger](https://github.com/wet-boew/wet-boew/wiki/Versions-de-t%C3%A9l%C3%A9chargement)
+* [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/Licence-fra.txt)
+* [Historique des versions](#historique-des-versions)
+* [Feuille de route](https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route)
 
 ## Avantages
 
@@ -70,11 +69,14 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
   * liste croissante de plugiciels et gadgets de source ouverte.
 * Permet d’avoir accès à une grande diversité de mises en page et de conceptions pour les sites Web internes et externes (y compris les applications). 
 
-## Ressources clés
+## Historique des versions
 
-* [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
-* [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
-* [Versions à télécharger](https://github.com/wet-boew/wet-boew/wiki/Versions-de-t%C3%A9l%C3%A9chargement)
-* [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/Licence-fra.txt)
-* [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Développer-pour-la-boew#wiki-Lignes_directrices_pour_les_contributeurs)
-* [Feuille de route](https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route)
+* **La version v3.1.0 Version candidate 1 a été lancée le 3 avril 2013** ([v3.1.0 Version candidate 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Release-Candidate-1-release-notes))
+* **La version v3.1.0 Bêta 2 de la BOEW a été lancée le 15 février 2013** ([v3.1.0 Bêta 2 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-2-release-notes))
+* **La version v3.0.5 de la BOEW a été lancée le 15 février 2013** ([v3.0.5 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.5-release-notes))
+* **La version v3.0.4 de la BOEW a été lancée le 24 janvier 2013** ([v3.0.4 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.4-release-notes))
+* **La version v3.1.0 Bêta 1 de la BOEW a été lancée le 21 décembre 2012** ([v3.1.0 Bêta 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-1-release-notes))
+* **La version v3.0.3 de la BOEW a été lancée le 21 décembre 2012** ([v3.0.3 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.3-release-notes))
+* **La version v3.0.2 de la BOEW a été lancée le 15 novembre 2012** ([v3.0.2 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.2-release-notes))
+* **La version v3.0.1 de la BOEW a été lancée le 9 octobre 2012** ([v3.0.1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.1-release-notes))
+* **La version v3.0 de la BOEW a été lancée le 17 septembre 2012** ([v3.0 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0-release-notes))
