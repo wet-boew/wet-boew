@@ -107,17 +107,17 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </ul>
 
 <div class="module-info span-2 float-right">
-<h3>Exigence</h3>
+<h3>Pré requis</h3>
 <p>Version 3.1 de la BOEW ou plus récente</p>
 </div>
 
 
-<h2>Position</h2>
+<h2>Positionnement</h2>
+<p>Il est possible de spécifier la rangée ou la colonne qui sera utilisée pour étiqueter le graphiques. Seulement lorsque le tableau est inversé que le positionnement de l'étiquette est représenté par la colonne.</p>
 
-<p>This is how you can specify wich row or column that would be use to label the charts. The column is only available when the table is reversed.</p>
-<p>Voici comment spécifiez quelle rangée ou colonne sera utilisée comme étiquettes pour les graphiques. La colonne est uniquement disponible lorsque le tableau est inversé.</p>
+<p><code>wb-charts-labelposition-<strong>x</strong></code> où <strong>x</strong> représente un nombre positif associé à la rangée ou la colonne dans le tableau. La première rangée ou la première colonne est représenté par le chiffre 1. La valeur par défaut est la rangée ou la colonne qui représente les données de façons la plus précise.</p>
 
-<p><code>wb-charts-labelposition-<strong>x</strong></code> Where <strong>x</strong> represent a positive number associated to the row/col position of the table. The first row/col is represented by the number 1. The default value is the deppest row/col used in the heading group.</p>
+
 
 
 <h3>Examples</h3>
@@ -350,36 +350,36 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <hr />
 
-<h2>Options pour les tiques uniformes</h2>
+<h2>Positionnement par intervale uniformes</h2>
 
-<p>Par défaut, la tique est uniforme parce que chaque fente de la table aurait la même valeur (valeur uniforme entre les fentes). Lorsqu'il est désactivé, seule la rangée ou colonne d'en-tête le plus haut obtiendrait la valeur uniforme. Les cellules enfant obtiendraient l'attribution de valeur mis au point.</p>
+<p>Par défaut, le positionnement des données du graphique est par intervale uniforme qui veux dire que chaque colonne du tableau occupe un espace equivalente dans le graphique. Lorsque le positionnement par intervale est désactivé, <code>wb-charts-uniformtick-false</code>, l'imbrication de la colonne à l'intérieur de d'autre groupe va influencer le positionnement des étiquettes, avec leurs données, par rapport à l'axe des x (horizontal).</p>
 
 <h3>Exemples</h3> 
 
 <table class="wet-boew-charts wb-charts-uniformtick-false wb-charts-noencapsulation-true">
-<caption>Tique ​​uniforme désactivé <code>wb-charts-uniformtick-false</code></caption>
+<caption>Intervale uniformes désactivé <code>wb-charts-uniformtick-false</code></caption>
 <thead>
 <tr>
-<th rowspan="3" colspan="2" class="wb-charts-fill-Azure wb-charts-fillover-Beige"></th>
-<th id="tbl1363314833611-6" colspan="6" class="wb-charts-fill-Bisque wb-charts-fillover-BurlyWood">Année précédente</th>
-<th id="tbl1363314833611-7" rowspan="3" class="wb-charts-fill-Cornsilk wb-charts-fillover-Cyan">2008 - T1</th>
-<th id="tbl1363314833611-8" rowspan="3" class="wb-charts-fill-LightCoral wb-charts-fillover-HotPink">2008 - T1</th>
+<th rowspan="3" colspan="2"></th>
+<th id="tbl1363314833611-6" colspan="6">Année précédente</th>
+<th id="tbl1363314833611-7" rowspan="3">2008 - T1</th>
+<th id="tbl1363314833611-8" rowspan="3">2008 - T1</th>
 </tr>
 <tr>
-<th headers="tbl1363314833611-6" id="tbl1363314833611-11" colspan="2" class="wb-charts-fill-pink wb-charts-fillover-yellow">2006</th>
-<th headers="tbl1363314833611-6" id="tbl1363314833611-12" colspan="4" class="wb-charts-fill-lightblue wb-charts-fillover-lightgreen">2007</th>
+<th headers="tbl1363314833611-6" id="tbl1363314833611-11" colspan="2">2006</th>
+<th headers="tbl1363314833611-6" id="tbl1363314833611-12" colspan="4">2007</th>
 </tr>
 <tr>
-<th headers="tbl1363314833611-6 tbl1363314833611-11" id="tbl1363314833611-15" class="wb-charts-fill-pink wb-charts-fillover-yellow">T3</th>
-<th headers="tbl1363314833611-6 tbl1363314833611-11" id="tbl1363314833611-16" class="wb-charts-fill-pink wb-charts-fillover-blue">T4</th>
-<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-17" class="wb-charts-fill-pink wb-charts-fillover-red">T1</th>
-<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-18" class="wb-charts-fill-pink wb-charts-fillover-yellow">T2</th>
-<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-19" class="wb-charts-fill-pink wb-charts-fillover-blue">T3</th>
-<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-20" class="wb-charts-fill-pink wb-charts-fillover-red">T4</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-11" id="tbl1363314833611-15">T3</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-11" id="tbl1363314833611-16">T4</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-17">T1</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-18">T2</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-19">T3</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-20">T4</th>
 </tr>
 </thead><tbody>
 <tr>
-<th id="tbl1363314833611-24" colspan="2" class="wb-charts-stacked wb-charts-color-red wb-charts-dasharray-DashSpace wb-charts-fillopacity-50">Biens</th>
+<th id="tbl1363314833611-24" colspan="2" class="wb-charts-stacked">Biens</th>
 <td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-15 tbl1363314833611-24">11,406</td>
 <td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-16 tbl1363314833611-24">12,139</td>
 <td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-17 tbl1363314833611-24">13,563</td>
@@ -390,8 +390,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <td headers="tbl1363314833611-8 tbl1363314833611-24">12,551</td>
 </tr>
 <tr>
-<th id="tbl1363314833611-48" rowspan="2" class="wb-charts-line wb-charts-color-yellow">Groupe de test</th>
-<th headers="tbl1363314833611-48" id="tbl1363314833611-49" class="wb-charts-stacked wb-charts-color-blue wb-charts-dasharray-DashDot wb-charts-fillopacity-50">Autre compte courant</th>
+<th id="tbl1363314833611-48" rowspan="2" class="wb-charts-line">Groupe de test</th>
+<th headers="tbl1363314833611-48" id="tbl1363314833611-49" class="wb-charts-stacked">Autre compte courant</th>
 <td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-15 tbl1363314833611-48 tbl1363314833611-49">-7,010</td>
 <td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-16 tbl1363314833611-48 tbl1363314833611-49">-7,437</td>
 <td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-17 tbl1363314833611-18 tbl1363314833611-19 tbl1363314833611-48 tbl1363314833611-59 tbl1363314833611-59" rowspan="2" colspan="3">-10,231</td>
@@ -400,7 +400,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <td headers="tbl1363314833611-8 tbl1363314833611-48 tbl1363314833611-49">-6,387</td>
 </tr>
 <tr>
-<th headers="tbl1363314833611-48" id="tbl1363314833611-59" class="wb-charts-area wb-charts-color-green">Total</th>
+<th headers="tbl1363314833611-48" id="tbl1363314833611-59" class="wb-charts-area">Total</th>
 <td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-15 tbl1363314833611-48 tbl1363314833611-59">4,396</td>
 <td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-16 tbl1363314833611-48 tbl1363314833611-59">4,702</td>
 <td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-20 tbl1363314833611-48 tbl1363314833611-59">2,221</td>
@@ -413,30 +413,30 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <hr />
 
 <table class="wet-boew-charts  wb-charts-noencapsulation-true wb-charts-uniformtick-true">
-<caption>Tick ​​uniforme activé (par défaut ou <code>wb-charts-uniformtick-true</code>)</caption>
+<caption>Intervale uniformes activé (par défaut ou avec <code>wb-charts-uniformtick-true</code>)</caption>
 <thead>
 <tr>
-<th rowspan="3" colspan="2" class="wb-charts-fill-Azure wb-charts-fillover-Beige"></th>
-<th id="tbl1363314869184-6" colspan="6" class="wb-charts-fill-Bisque wb-charts-fillover-BurlyWood">Année précédente</th>
-<th id="tbl1363314869184-7" rowspan="3" class="wb-charts-fill-Cornsilk wb-charts-fillover-Cyan">2008 - T1</th>
-<th id="tbl1363314869184-8" rowspan="3" class="wb-charts-fill-LightCoral wb-charts-fillover-HotPink">2008 - T1</th>
+<th rowspan="3" colspan="2"></th>
+<th id="tbl1363314869184-6" colspan="6">Année précédente</th>
+<th id="tbl1363314869184-7" rowspan="3">2008 - T1</th>
+<th id="tbl1363314869184-8" rowspan="3">2008 - T1</th>
 </tr>
 <tr>
-<th headers="tbl1363314869184-6" id="tbl1363314869184-11" colspan="2" class="wb-charts-fill-pink wb-charts-fillover-yellow">2006</th>
-<th headers="tbl1363314869184-6" id="tbl1363314869184-12" colspan="4" class="wb-charts-fill-lightblue wb-charts-fillover-lightgreen">2007</th>
+<th headers="tbl1363314869184-6" id="tbl1363314869184-11" colspan="2">2006</th>
+<th headers="tbl1363314869184-6" id="tbl1363314869184-12" colspan="4">2007</th>
 </tr>
 <tr>
-<th headers="tbl1363314869184-6 tbl1363314869184-11" id="tbl1363314869184-15" class="wb-charts-fill-pink wb-charts-fillover-yellow">T3</th>
-<th headers="tbl1363314869184-6 tbl1363314869184-11" id="tbl1363314869184-16" class="wb-charts-fill-pink wb-charts-fillover-blue">T4</th>
-<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-17" class="wb-charts-fill-pink wb-charts-fillover-red">T1</th>
-<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-18" class="wb-charts-fill-pink wb-charts-fillover-yellow">T2</th>
-<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-19" class="wb-charts-fill-pink wb-charts-fillover-blue">T3</th>
-<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-20" class="wb-charts-fill-pink wb-charts-fillover-red">T4</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-11" id="tbl1363314869184-15">T3</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-11" id="tbl1363314869184-16">T4</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-17">T1</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-18">T2</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-19">T3</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-20">T4</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<th id="tbl1363314869184-24" colspan="2" class="wb-charts-stacked wb-charts-color-red wb-charts-dasharray-DashSpace wb-charts-fillopacity-50">Biens</th>
+<th id="tbl1363314869184-24" colspan="2" class="wb-charts-stacked">Biens</th>
 <td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-15 tbl1363314869184-24">11,406</td>
 <td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-16 tbl1363314869184-24">12,139</td>
 <td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-17 tbl1363314869184-24">13,563</td>
@@ -447,8 +447,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <td headers="tbl1363314869184-8 tbl1363314869184-24">12,551</td>
 </tr>
 <tr>
-<th id="tbl1363314869184-48" rowspan="2" class="wb-charts-line wb-charts-color-yellow">Groupe de test</th>
-<th headers="tbl1363314869184-48" id="tbl1363314869184-49" class="wb-charts-stacked wb-charts-color-blue wb-charts-dasharray-DashDot wb-charts-fillopacity-50">Autre compte courant</th>
+<th id="tbl1363314869184-48" rowspan="2" class="wb-charts-line">Groupe de test</th>
+<th headers="tbl1363314869184-48" id="tbl1363314869184-49" class="wb-charts-stacked">Autre compte courant</th>
 <td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-15 tbl1363314869184-48 tbl1363314869184-49">-7,010</td>
 <td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-16 tbl1363314869184-48 tbl1363314869184-49">-7,437</td>
 <td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-17 tbl1363314869184-18 tbl1363314869184-19 tbl1363314869184-48 tbl1363314869184-59 tbl1363314869184-59" rowspan="2" colspan="3">-10,231</td>
@@ -457,7 +457,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <td headers="tbl1363314869184-8 tbl1363314869184-48 tbl1363314869184-49">-6,387</td>
 </tr>
 <tr>
-<th headers="tbl1363314869184-48" id="tbl1363314869184-59" class="wb-charts-area wb-charts-color-green">Total</th>
+<th headers="tbl1363314869184-48" id="tbl1363314869184-59" class="wb-charts-area">Total</th>
 <td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-15 tbl1363314869184-48 tbl1363314869184-59">4,396</td>
 <td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-16 tbl1363314869184-48 tbl1363314869184-59">4,702</td>
 <td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-20 tbl1363314869184-48 tbl1363314869184-59">2,221</td>
@@ -468,7 +468,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </table>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date de modification&#160;:</dt><dd><span><time>2013-04-10</time></span></dd>
+<dt>Date de modification&#160;:</dt><dd><span><time>2013-04-04</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
