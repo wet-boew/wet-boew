@@ -96,15 +96,15 @@
 
 # Boîte à outils de l’expérience Web (BOEW)
 
-## C'est quoi la Boîte à outils de l’expérience Web?
+## Qu’est-ce que la Boîte à outils de l’expérience Web?
 
-* Bibliothèque de code pour construire des sites Web innovants qui sont&#160;:
- * [Accessibles](#accessibilit), [utilisables](#facilit-demploi) et [interopérables](#interoprabilit)
- * [Optimizés pour les appareils mobiles](#conception-adaptif-qui-est-optimiz-pour-les-appareils-mobiles)
+* Une bibliothèque de code pour construire des sites Web innovants&#160;:
+ * [Accessibles](#accessibilit), [faciles d'emploi](#facilit-demploi) et [interopérables](#interoprabilit)
+ * [Optimisés pour les appareils mobiles](#conception-optimise-pour-les-appareils-mobiles-et-ractive)
  * [Multilingues](#multilingue)
-* [Modèles et composants réutilisables qui sont flexibles et personnalisables](#personnalisable-et-rutilisable)
-* Logiciels libres
- * Libre d'utiliser à des fins commerciales et non commerciales (licence MIT - [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/License-fra.txt))
+* [Des modèles, ainsi que des composants réutilisables, qui sont flexibles et personnalisables](#personnalisable-et-rutilisable)
+* Un logiciel libre
+ * Libre d'utilisation à des fins commerciales et non commerciales (licence MIT - [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/License-fra.txt))
  * [Développé ouvertement sur GitHub par la communauté](#approche-collaborative)
 
 ## Ressources clés
@@ -113,7 +113,7 @@
 * [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
 * [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Développer-pour-la-boew#wiki-Lignes_directrices_pour_les_contributeurs)
-* [Versions à télécharger](https://github.com/wet-boew/wet-boew/wiki/Versions-de-t%C3%A9l%C3%A9chargement)
+* [Téléchargements](https://github.com/wet-boew/wet-boew/wiki/T%C3%A9l%C3%A9chargements)
 * [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/Licence-fra.txt)
 * [Historique des versions](#historique-des-versions)
 * [Feuille de route](https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route)
@@ -122,41 +122,41 @@
 
 ### Accessibilité
 
-* Conformité à [WCAG 2.0](http://www.w3.org/Translations/WCAG20-fr/) niveau AA
+* •	Conforme aux [Règles pour l'accessibilité des contenus Web (WCAG) 2.0](http://www.w3.org/Translations/WCAG20-fr/) niveau AA
 * S'appuie sur [WAI-ARIA](http://www.w3.org/TR/wai-aria/) pour améliorer l'accessibilité
 * Vérification avec les technologies d'assistance (Groupe de travail sur l'accessibilité)
 
 ### Facilité d'emploi
 
 * Approche itérative pour la conception
-* Modèles de conception et les essais de facilité d'emploi (Groupe de travail sur l'expérience des utilisateurs)
+* Patrons de conception et les essais de facilité d'emploi (Groupe de travail sur l'expérience des utilisateurs)
 
 ### Interopérabilité
 
-* Approche centrée sur [HTML5](http://www.w3.org/TR/html5/) (s'appuyant sur le soutien HTML5 natif et puis les &laquo;correctifs&raquo; pour résoudre les problèmes de soutien)
+* Approche centrée sur le [HTML5](http://www.w3.org/TR/html5/) (s'appuyant sur le soutien HTML5 natif et puis les &laquo;correctifs&raquo; pour résoudre les problèmes de soutien)
 * Soutien pour plusieurs navigateurs (IE, Firefox, Chrome, Safari, Opera)
 * Soutien en développement pour les données HTML ([RDFa 1.1 Lite](http://www.w3.org/TR/rdfa-lite/), [Schema.org](http://http://www.schema.org/))
 
-### Conception adaptif qui est optimizé pour les appareils mobiles
+### Conception optimisée pour les appareils mobiles et réactive
 
 * S'adapte à différentes tailles d'écran et capacités d'appareil
 * Soutien pour les écrans tactiles ([jQuery Mobile](http://www.jquerymobile.com))
-* Optimisé pour la vitesse
-* Soutien en développement pour les applications axées sur les appareils mobiles
+* Optimisé pour les performances
+* Soutien en développement pour les applications s’installant sur un appareil mobile
 
 ### Multilingue
 
-* Soutien pour 3 langues (anglais, français et espanol)
-* Soutien partiel pour 29 langues (y compris les langues droit-à-gauche)
+* Soutien actuellement 3 langues (anglais, français et espagnol)
+* Soutien partiel pour 29 langues (y compris les langues droite-à-gauche)
 
 ### Personnalisable et réutilisable
 
 * Cadre flexible qui supporte des thèmes personnalisés
-* Soutien 5 thèmes différents, y compris un thème base pour utiliser comme modèle
+* Soutien 5 thèmes différents, y compris un thème de base servant comme modèle
 * Modèles, plugiciels et gadgets réutilisables
 * Adapté aux différents systèmes de gestion de contenu et cadres de programmation (Drupal, WordPress, SharePoint (en développement), DotNetNuke (en développement), PHP, SSI, Java/Maven)
 
-### Réduit les coûts en partageant ouvertement et en collaborant ouvertement
+### Réduit les coûts en partageant et en collaborant ouvertement
 
 * Réduit les coûts de recherche et de développement
 * Évite la duplication des efforts
@@ -164,24 +164,24 @@
 
 ### Approche collaborative
 
-* Projet géré ouvertement sur GitHub, y compris les discussions à travers le traqueur de problèmes
-* On encourage la libre circulation des idées, le dialogue et l'innovation, y compris le partage des défis et des idées
-* Contributions externes sont invités
+* Projet géré ouvertement sur GitHub, y compris les discussions à travers le système de suivi des questions
+* Encourage la libre circulation des idées, du dialogue et de l'innovation, y compris le partage des défis et des idées
+* Les contributions externes sont invités
  * Soumissions de code
- * Modèles de conception
+ * Patrons de conception
  * Problèmes et suggestions
  * Documentation
  * Évaluations
-* Processus d'examen à plusieurs niveaux pour les contributions pour assurer l'intégrité du code (combinaison d'évaluations automatisées et manuelles)
+* Processus d'examen sur plusieurs niveaux pour les contributions pour assurer l'intégrité du code (combinaison d'évaluations automatisées et manuelles)
 
 ## Historique des versions
 
-* **La version v3.1.0 Version candidate 1 a été lancée le 3 avril 2013** ([v3.1.0 Version candidate 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Release-Candidate-1-release-notes))
-* **La version v3.1.0 Bêta 2 de la BOEW a été lancée le 15 février 2013** ([v3.1.0 Bêta 2 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-2-release-notes))
-* **La version v3.0.5 de la BOEW a été lancée le 15 février 2013** ([v3.0.5 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.5-release-notes))
-* **La version v3.0.4 de la BOEW a été lancée le 24 janvier 2013** ([v3.0.4 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.4-release-notes))
-* **La version v3.1.0 Bêta 1 de la BOEW a été lancée le 21 décembre 2012** ([v3.1.0 Bêta 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-1-release-notes))
-* **La version v3.0.3 de la BOEW a été lancée le 21 décembre 2012** ([v3.0.3 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.3-release-notes))
-* **La version v3.0.2 de la BOEW a été lancée le 15 novembre 2012** ([v3.0.2 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.2-release-notes))
-* **La version v3.0.1 de la BOEW a été lancée le 9 octobre 2012** ([v3.0.1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.1-release-notes))
-* **La version v3.0 de la BOEW a été lancée le 17 septembre 2012** ([v3.0 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0-release-notes))
+* **La version 3.1.0 Candidate 1 de la BOEW a été lancée le 3 avril 2013** ([v3.1.0 Version candidate 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Release-Candidate-1-release-notes))
+* **La version 3.1.0 Bêta 2 de la BOEW a été lancée le 15 février 2013** ([v3.1.0 Bêta 2 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-2-release-notes))
+* **La version 3.0.5 de la BOEW a été lancée le 15 février 2013** ([v3.0.5 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.5-release-notes))
+* **La version 3.0.4 de la BOEW a été lancée le 24 janvier 2013** ([v3.0.4 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.4-release-notes))
+* **La version 3.1.0 Bêta 1 de la BOEW a été lancée le 21 décembre 2012** ([v3.1.0 Bêta 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-1-release-notes))
+* **La version 3.0.3 de la BOEW a été lancée le 21 décembre 2012** ([v3.0.3 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.3-release-notes))
+* **La version 3.0.2 de la BOEW a été lancée le 15 novembre 2012** ([v3.0.2 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.2-release-notes))
+* **La version 3.0.1 de la BOEW a été lancée le 9 octobre 2012** ([v3.0.1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.1-release-notes))
+* **La version 3.0.0 de la BOEW a été lancée le 17 septembre 2012** ([v3.0 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0-release-notes))
