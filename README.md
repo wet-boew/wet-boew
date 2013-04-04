@@ -99,7 +99,7 @@
 ## C'est quoi la Boîte à outils de l’expérience Web?
 
 * Bibliothèque de code pour construire des sites Web innovants qui sont&#160;:
- * [Accessibles](#accessibilit%C3%A9), [utilisables](facilit%C3%A9-demploi) et [interopérables](#interop%C3%A9rabilit%C3%A9)
+ * [Accessibles](#accessibilit%C3%A9), [utilisables](#facilit%C3%A9-demploi) et [interopérables](#interop%C3%A9rabilit%C3%A9)
  * [Optimizés pour les appareils mobiles](#conception-adaptif-qui-est-optimiz%C3%A9-pour-les-appareils-mobiles)
  * [Multilingues](#multilingue)
 * [Modèles et composants réutilisables qui sont flexibles et personnalisables](#personnalisable-et-r%C3%A9utilisable)
