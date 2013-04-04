@@ -77,7 +77,6 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 			rm -Rf ./dist/theme-clf2-nsi2
 			rm -Rf ./dist/theme-gcwu-fegc
 			rm -Rf ./dist/theme-intranet
-			mkdir demos
 			cp -Rf $HOME/temp_wet-boew/demos/theme-base ./demos/theme-base
 			cp -Rf $HOME/temp_wet-boew/demos/theme-wet-boew ./demos/theme-wet-boew
 			git add -f .
