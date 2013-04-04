@@ -31,10 +31,6 @@ h1 {
 	}
 }
 
-a {
-	@extend %base-default-large-screen-link;
-}
-
 %base-default-large-screen-inline-z-index1 {
 	z-index: 1;
 	display: inline;
@@ -138,6 +134,9 @@ a {
 		top: 1px;
 		bottom: 2.5em; //TODO: mixed px and ems
 	}
+  a {
+    @extend %base-default-large-screen-link;
+  }
 }
 
 %base-default-large-screen-float-right {
@@ -296,7 +295,7 @@ a {
 
 #base-srch-submit {
 	background: #ccc;
-	@if $legacy-support-for-ie8 { 
+	@if $legacy-support-for-ie8 {
 		@include filter-gradient(#F0F0F0,#CCC);
 	} @else {
 		@include background-image(linear-gradient(#F0F0F0,#CCC));
@@ -318,7 +317,7 @@ a {
 	display: inline;
 	@include pseudo-focus {
 		background: #ddd;
-		@if $legacy-support-for-ie8 { 
+		@if $legacy-support-for-ie8 {
 			@include filter-gradient(#CCC,#DDD);
 		} @else {
 			@include background-image(linear-gradient(#CCC,#DDD));
@@ -391,7 +390,7 @@ a {
 			@extend %base-default-large-screen-float-left;
 		}
 	}
-	
+
 	#wb-body-sec {
 		#wb-main {
 			@extend %base-default-large-screen-float-left;
@@ -451,9 +450,9 @@ a {
 				}
 			}
 		}
-		
+
 	}
-	
+
 	#base-fullhd-in {
 		p {
 			@extend %base-default-large-screen-float-right;
