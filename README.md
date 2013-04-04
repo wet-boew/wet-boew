@@ -40,10 +40,7 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 -------------------------------------------------------------------
 
-
 # Boîte à outils de l’expérience Web (BOEW)
-
-## Vue d'ensemble
 
 La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes. 
 
