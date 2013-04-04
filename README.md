@@ -2,10 +2,19 @@
 
 [![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.png?branch=master)](http://travis-ci.org/wet-boew/wet-boew)
 
-Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities.  
+## What is the Web Experience Toolkit?
 
-The toolkit complies with the new Standards on Web Accessibility and Web Usability; the toolkit will also ease compliance with the Standard on Web Interoperability. WET is highly recommended for use on Government of Canada Websites.
+* Code library for building innovative websites that are:
+ * [Accessible](#accessibility), [usable](#usability) and [interoperable](#interoperability)
+ * [Mobile friendly](#mobile-friendly-responsive-design)
+ * [Multilingual](#multilingual)
+* [Flexible and themeable templates and reusable components](#themeable-and-reusable)
+* Open source software
+ * Free to use for commercial and non-commercial purposes (MIT license - [Terms and conditions](http://wet-boew.github.com/wet-boew/License-eng.txt))
+ * [Developed openly by the community on GitHub](#collaborative-approach)
 
+## Key resources
+ 
 * [Benefits](#benefits)
 * [Working examples](http://wet-boew.github.com/wet-boew/demos/index-eng.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
@@ -17,14 +26,59 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 ## Benefits
 
-* Provides reusable components for building and maintaining innovative Web sites.
-* Respects accessibility ([WCAG 2.0](http://www.w3.org/TR/WCAG20/) AA and [WAI-ARIA](http://www.w3.org/TR/wai-aria/)), usability, and interoperability.
-* Reduces costs by consolidating Web tools and solutions.
-* Open source software that is free to use by departments and external Web communities.
-* Uses advanced technologies to push the envelope for Web site functionality:
-  * [HTML5](http://www.w3.org/TR/html5/), [CSS3](http://www.w3.org/Style/CSS/current-work), [jQuery](http://jquery.com/) (JavaScript framework);
-  * Ever-growing list of open source plugins and widgets.
-* Supports a wide range of layouts and designs for internal and external Web sites (including applications).
+### Accessibility 
+
+* Conforms to [WCAG 2.0](http://www.w3.org/TR/WCAG20/) level AA
+* Leverages [WAI-ARIA](http://www.w3.org/TR/wai-aria/) to further enhance accessibility
+* Assistive technology testing (Access Working Group)
+
+### Usability
+
+* Iterative approach to design
+* Design patterns and usability testing (User Experience Working Group)
+
+### Interoperability
+
+* [HTML5](http://www.w3.org/TR/html5/)-first approach (leveraging native HTML5 support and filling support gaps with “polyfills”)
+* Supporting a wide variety of browsers (IE, Firefox, Chrome, Safari, Opera)
+* Building support for HTML data ([RDFa 1.1 Lite](http://www.w3.org/TR/rdfa-lite/), [Schema.org](http://http://www.schema.org/))
+
+### Mobile friendly responsive design
+
+* Adapts to different screen sizes and device capabilities
+* Touchscreen support ([jQuery Mobile](http://www.jquerymobile.com))
+* Optimized for performance
+* Building support for device-based mobile applications
+
+### Multilingual
+
+* Currently supports 3 languages (English, French and Spanish)
+* Partial support for 29 languages (including right-to-left languages)
+
+### Themeable and reusable
+
+* Flexible framework that supports custom themes
+* Includes support for 5 different themes including a “Base” theme to use as a template
+* Reusable templates, plugins and widgets
+* Adapted to various CMS and programming frameworks (Drupal, WordPress, SharePoint (in development), DotNetNuke (in development), PHP, SSI, Java/Maven)
+
+### Reduces costs by openly sharing and collaborating
+
+* Drives down research and development costs
+* Avoids duplication of effort
+* Produces better quality results
+
+### Collaborative approach
+
+* Project managed openly on GitHub, including discussion through the issues tracker
+* Encouraging a free flow of ideas, dialogue and innovation including sharing of challenges and ideas
+* External contributions welcome
+ * Pull requests
+ * Design patterns
+ * Issues and suggestions
+ * Documentation
+ * Testing
+* Multi-level review process for contributions to ensure code integrity (combination of automated and manual reviews)
 
 ## Version history
 
@@ -42,9 +96,16 @@ The toolkit complies with the new Standards on Web Accessibility and Web Usabili
 
 # Boîte à outils de l’expérience Web (BOEW)
 
-La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes. 
+## C'est quoi la Boîte à outils de l’expérience Web?
 
-La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web et la Norme sur la facilité des sites Web et sera conforme à la Norme sur l’interopérabilité du Web. Il est fortement recommandé d’utiliser la BOEW pour tous les sites Web du gouvernement du Canada.
+* Bibliothèque de code pour construire des sites Web innovants qui sont&#160;:
+ * [Accessibles](#accessibilit%C3%A9), [utilisables](facilit%C3%A9-demploi) et [interopérables](#interop%C3%A9rabilit%C3%A9)
+ * [Optimizés pour les appareils mobiles](#conception-adaptif-qui-est-optimiz%C3%A9-pour-les-appareils-mobiles)
+ * [Multilingues](#multilingue)
+* [Modèles et composants réutilisables qui sont flexibles et personnalisables](#personnalisable-et-r%C3%A9utilisable)
+* Logiciels libres
+ * Libre d'utiliser à des fins commerciales et non commerciales (licence MIT - [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/License-fra.txt))
+ * [Développé ouvertement sur GitHub par la communauté](#approche-collaborative)
 
 * [Avantages](#avantages)
 * [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
@@ -57,14 +118,59 @@ La Boîte à outils est conforme à la Norme sur l'accessibilité des sites Web 
 
 ## Avantages
 
-* Fournit composants réutilisables pour la conception et la mise à jour de sites Web innovateurs.
-* Respecte l'accessibilité ([WCAG 2.0](http://www.w3.org/Translations/WCAG20-fr) AA et [WAI-ARIA](http://www.w3.org/TR/wai-aria/)), la facilité d’emploi et l'interopérabilité.
-* Réduit les coûts en consolidant les outils et solutions axés sur le Web. 
-* Sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.
-* Fait appel à des technologies nouvelles et novatrices pour rendre les sites plus novateurs et interactifs :
-  * [HTML5](http://www.w3.org/TR/html5/), [CSS3](http://www.w3.org/Style/CSS/current-work#CSS3) et [jQuery](http://jquery.com/) (cadre JavaScript); 
-  * liste croissante de plugiciels et gadgets de source ouverte.
-* Permet d’avoir accès à une grande diversité de mises en page et de conceptions pour les sites Web internes et externes (y compris les applications). 
+### Accessibilité
+
+* Conformité à [WCAG 2.0](http://www.w3.org/Translations/WCAG20-fr/) niveau AA
+* S'appuie sur [WAI-ARIA](http://www.w3.org/TR/wai-aria/) pour améliorer l'accessibilité
+* Vérification avec les technologies d'assistance (Groupe de travail sur l'accessibilité)
+
+### Facilité d'emploi
+
+* Approche itérative pour la conception
+* Modèles de conception et les essais de facilité d'emploi (Groupe de travail sur l'expérience des utilisateurs)
+
+### Interopérabilité
+
+* Approche centrée sur [HTML5](http://www.w3.org/TR/html5/) (s'appuyant sur le soutien HTML5 natif et puis les &laquo;correctifs&raquo; pour résoudre les problèmes de soutien)
+* Soutien pour plusieurs navigateurs (IE, Firefox, Chrome, Safari, Opera)
+* Soutien en développement pour les données HTML ([RDFa 1.1 Lite](http://www.w3.org/TR/rdfa-lite/), [Schema.org](http://http://www.schema.org/))
+
+### Conception adaptif qui est optimizé pour les appareils mobiles
+
+* S'adapte à différentes tailles d'écran et capacités d'appareil
+* Soutien pour les écrans tactiles ([jQuery Mobile](http://www.jquerymobile.com))
+* Optimisé pour la vitesse
+* Soutien en développement pour les applications axées sur les appareils mobiles
+
+### Multilingue
+
+* Soutien pour 3 langues (anglais, français et espanol)
+* Soutien partiel pour 29 langues (y compris les langues droit-à-gauche)
+
+### Personnalisable et réutilisable
+
+* Cadre flexible qui supporte des thèmes personnalisés
+* Soutien 5 thèmes différents, y compris un thème base pour utiliser comme modèle
+* Modèles, plugiciels et gadgets réutilisables
+* Adapté aux différents systèmes de gestion de contenu et cadres de programmation (Drupal, WordPress, SharePoint (en développement), DotNetNuke (en développement), PHP, SSI, Java/Maven)
+
+### Réduit les coûts en partageant ouvertement et en collaborant ouvertement
+
+* Réduit les coûts de recherche et de développement
+* Évite la duplication des efforts
+* Produit des résultats de meilleure qualité
+
+### Approche collaborative
+
+* Projet géré ouvertement sur GitHub, y compris les discussions à travers le traqueur de problèmes
+* On encourage la libre circulation des idées, le dialogue et l'innovation, y compris le partage des défis et des idées
+* Contributions externes sont invités
+ * Soumissions de code
+ * Modèles de conception
+ * Problèmes et suggestions
+ * Documentation
+ * Évaluations
+* Processus d'examen à plusieurs niveaux pour les contributions pour assurer l'intégrité du code (combinaison d'évaluations automatisées et manuelles)
 
 ## Historique des versions
 
