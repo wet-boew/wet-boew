@@ -4,7 +4,7 @@
 	<property file="${tasks.basedir}/build-tasks.properties"/>
 	
 	<!-- Version and build time-->
-	<property name="wet-boew-build.version" value="v3.1.0-rc1-development"/>
+	<property name="wet-boew-build.version" value="v3.1.0-release-development"/>
 	<tstamp>
 		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
 	</tstamp>
@@ -267,15 +267,6 @@
 	<target name="-copy-jquery-mobile">
 		<copy todir="${dist.dir}/css/images">
 			<fileset dir="${src.dir}/jquerymobile/images-ie"/>
-		</copy>
-	</target>
-
-	<target name="-copy-depends">
-		<copy todir="${dist.dir}/dependencies/css">
-			<fileset dir="${src.dir}/dependencies/css"/>
-		</copy>
-		<copy todir="${dist.dir}/dependencies/images">
-			<fileset dir="${src.dir}/dependencies/images"/>
 		</copy>
 	</target>
 

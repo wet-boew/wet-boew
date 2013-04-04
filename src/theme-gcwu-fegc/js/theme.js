@@ -242,7 +242,7 @@
 					i = len;
 					while (i--) {
 						node = nodes[i];
-						link = $(node).children('a:first')[0];
+						link = node.getElementsByTagName('a')[0];
 						settings_popup += '<li' + (i === 0 ? ' class="ui-corner-bottom"' : '');
 						if (node.id.indexOf('-lang-current') !== -1) {
 							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
@@ -330,6 +330,9 @@
 					wmms.parentNode.removeChild(wmms);
 				}
 			}
+
+			// Load the mobile favicon
+			pe.add.favicon(pe.add.themecsslocation.replace(/css\/$/, 'images/favicon-mobile.png'), 'apple-touch-icon', '57x57 72x72 114x114 144x144 150x150');
 
 			// jQuery mobile has loaded
 			$document.on('pagecreate', function () {

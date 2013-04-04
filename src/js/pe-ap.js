@@ -129,6 +129,8 @@
 				classes,
 				test,
 				test_elms,
+				silentscroll_fired = false,
+				pageinit_fired = false,
 				init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
@@ -140,11 +142,11 @@
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
-	
+
 			// View test: Used to detect CSS media query result regarding screen size and mobile/desktop view
 			pe.viewtest = document.createElement('div');
 			pe.viewtest.setAttribute('id', 'viewtest');
-			
+
 			// Resize test element: Used to detect changes in text size and window size
 			pe.resizetest = document.createElement('span');
 			pe.resizetest.innerHTML = '&#160;';
@@ -173,7 +175,7 @@
 			classes += (pe.svg ? ' svg' : ' no-svg');
 			classes += (pe.ie > 8 ? ' ie' + parseInt(pe.ie, 10) : (pe.ie < 1 ? ' no-ie' : ''));
 
-			// Check for browsers that needs SVG loaded through an object element removed		
+			// Check for browsers that needs SVG loaded through an object element removed
 			test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
 			pe.svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46)));
 
@@ -197,8 +199,34 @@
 			hlinks_same = hlinks.filter(function () {
 				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
 			});
-			
+
 			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
+
+			// If the page URL includes a hash upon page load, then focus on and scroll to the target
+			// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
+			// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
+			pe.scrollTopInit = pe.window.scrollTop();
+			if (pe.scrollTopInit === 0) {
+				window.onload = function() {
+					setTimeout(function() {
+						pe.scrollTopInit = pe.window.scrollTop();
+					}, 1);
+				};
+			}
+			if (pe.urlhash.length !== 0) {
+				target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+				target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+				validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
+			}
+			pe.document.on('silentscroll.wbinit', function() {
+				silentscroll_fired = true;
+				if (pageinit_fired) {
+					pe.document.off('silentscroll.wbinit');
+				}
+				if (validTarget || pe.scrollTopInit > 1) {
+					$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
+				}
+			});
 
 			pe.document.on('mobileinit', function () {
 				$.extend($.mobile, {
@@ -209,10 +237,19 @@
 				if (init_on_mobileinit) {
 					pe.mobilelang();
 				}
-				pe.scrollTopInit = pe.window.scrollTop();
 			});
 
-			pe.document.on('pagebeforecreate', function () {
+			pe.document.on('pageinit', function () {
+				pageinit_fired = true;
+				// Remove the silentscroll handling for determining scrollTop if the silentscroll event has already fired
+				if (silentscroll_fired) {
+					pe.document.off('silentscroll.wbinit');
+				}
+
+				// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
+				// TODO: Find a more elegant way to address this in jQuery Mobile
+				pe.bodydiv.removeAttr('tabindex');
+
 				// On click, puts focus on and scrolls to the target of same page links
 				hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
 					var hash = $(this).attr('href'),
@@ -227,24 +264,6 @@
 						}
 					}
 				});
-
-				// If the page URL includes a hash upon page load, then focus on and scroll to the target
-				// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
-				// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
-				if (pe.urlhash.length !== 0) {
-					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
-				}
-				if (validTarget || pe.scrollTopInit !== 0) {
-					$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
-				}
-			});
-
-			pe.document.on('pageinit', function () {
-				// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
-				// TODO: Find a more elegant way to address this in jQuery Mobile
-				pe.bodydiv.removeAttr('tabindex');
 			});
 
 			// Load ajax content
@@ -340,7 +359,7 @@
 		pagecontainer: function () {
 			return $('#wb-body-sec-sup, #wb-body-sec, #wb-body-secr, #wb-body').add('body').eq(0);
 		},
-		
+
 		/**
 		* Manages custom events for text and window resizing
 		* Based on http://alistapart.com/article/fontresizing
@@ -1031,7 +1050,7 @@
 						linkurl = menulinkurl[linkindex];
 						linkurllen = linkurl.length;
 						linkquery = link.search;
-						linkquerylen = linkquery.length;						
+						linkquerylen = linkquery.length;
 						bcindex = bclinkslen;
 						while (bcindex--) {
 							if (bclinkurl[bcindex].slice(-linkurllen) === linkurl && (linkquerylen === 0 || bclink[bcindex].search.slice(-linkquerylen) === linkquery)) {
@@ -1697,7 +1716,7 @@
 				* @return {string[]} NOTE: If d is a string, this returns a string array with 8 copies of the transformed string. If d is a string array, this returns a string array with just one entry; the transformed string.
 				*/
 				depends: function (d, css) {
-					var iscss = typeof css !== 'undefined' ? css : false, 
+					var iscss = typeof css !== 'undefined' ? css : false,
 						extension = pe.suffix + (iscss ? '.css' : '.js'),
 						dir = pe.add.liblocation + 'dependencies/' + (iscss ? 'css/' : ''),
 						c_d = $.map(d, function (a) {
@@ -1732,6 +1751,21 @@
 					pe.add.set(styleElement, 'name', name).set(styleElement, 'content', content);
 					pe.add.head.appendChild(styleElement);
 					return this;
+				},
+				/**
+				* Adds a mobile favicon to the head of the document.
+				* @memberof pe.add
+				* @function
+				* @param {string} href Path of the favicon to add
+				* @param {string} rel Value of the favicon's rel attribute
+				* @param {string} sizes Value of the favicon's sizes attribute
+				* @return {object} A reference to pe.add
+				*/
+				favicon: function(href, rel, sizes) {
+					var favicon = document.createElement('link');
+					pe.add.set(favicon, 'href', href).set(favicon, 'rel', rel).set(favicon, 'sizes', sizes);
+					pe.add.head.appendChild(favicon);
+					return this;
 				}
 			};
 		}
@@ -1739,7 +1773,7 @@
 		/**
 		* Handles loading of the plugins, dependencies and polyfills
 		* @function
-		* @param {object} options Object containing the loader options. The following optional properties are supported: 
+		* @param {object} options Object containing the loader options. The following optional properties are supported:
 		* 'plugins': {'plugin_name1': elms1, 'plugin_name2': elms2, ...} - Names of plugins to load and the elements to load them on
 		* 'global': [plugin_name1, plugin_name2, ...] - Names of global plugins to load
 		* 'deps': [dependency_name1, dependency_name2, ...] - Names of dependences to load

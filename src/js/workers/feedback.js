@@ -3,10 +3,10 @@
  * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
  */
 /*
- * Form validation plugin
+ * Feedback form plugin
  */
 /*global jQuery: false*/
-(function ($) {
+(function () {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {}
@@ -23,6 +23,8 @@
 				computer = web.find('#computer'),
 				contact_coord = elm.find('#contact-coord'),
 				contact1 = contact_coord.find('#contact1'),
+				contactType = contact1.attr('type'),
+				contactCheckbox = (typeof contactType !== 'undefined' && contactType.toLowerCase() === 'checkbox'),
 				contact2 = contact_coord.find('#contact2'),
 				info = contact_coord.find('#info'),
 				referrerUrl = document.referrer,
@@ -53,7 +55,7 @@
 
 			// Computer and Mobile
 			access.attr('aria-controls', 'mobile computer').on('keyup click load', function (e) {
-				load = (e.type === "load");
+				load = (e.type === 'load');
 				if (!load && this.value === 'mobile') {
 					mobile.attr('aria-hidden', 'false').show('slow');
 					computer.attr('aria-hidden', 'true').hide('slow');
@@ -71,11 +73,11 @@
 			}).trigger('load');
 
 			// Contact info first selection
-			contact1.on("keyup click load", function (e) {
-				load = (e.type === "load");
-				if (!load && this.value === 'yes') {
+			contact1.on('keyup click load', function (e) {
+				load = (e.type === 'load');
+				if (!load && (this.checked || (!contactCheckbox && this.value === 'yes'))) {
 					info.attr('aria-hidden', 'false').show('slow');
-				} else if (load || ((this.value === 'no' || this.value === null) && (contact2.val() === 'no' || contact2.val() === null))) {
+				} else if (load || (!this.checked && !contact2.prop('checked')) || (!contactCheckbox && this.value !== 'yes' && contact2.val() !== 'yes')) {
 					info.attr('aria-hidden', 'true');
 					if (load) {
 						info.css('display', 'none');
@@ -86,11 +88,11 @@
 			}).trigger('load');
 
 			// Contact info second selection
-			contact2.on("keyup click load", function (e) {
-				load = (e.type === "load");
-				if (!load && this.value === 'yes') {
+			contact2.on('keyup click load', function (e) {
+				load = (e.type === 'load');
+				if (!load && (this.checked || (!contactCheckbox && this.value === 'yes'))) {
 					info.attr('aria-hidden', 'false').show('slow');
-				} else if (load || ((this.value === 'no' || this.value === null) && (contact1.val() === 'no' || contact1.val() === null))) {
+				} else if (load || (!this.checked && !contact1.prop('checked')) || (!contactCheckbox && this.value !== 'yes' && contact1.val() !== 'yes')) {
 					info.attr('aria-hidden', 'true');
 					if (load) {
 						info.css('display', 'none');
