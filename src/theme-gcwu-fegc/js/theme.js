@@ -368,7 +368,7 @@
 								// Fix the bottom corners
 								nodes2 = menus.eq(len).find('.ui-btn').get();
 								node = nodes2[nodes2.length - 1];
-								if (node.className.indexOf('ui-corner-bottom') === -1) {
+								if (typeof node != 'undefined' && node.className.indexOf('ui-corner-bottom') === -1) {
 									node.className += ' ui-corner-bottom';
 								}
 							}
