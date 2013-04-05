@@ -5,9 +5,9 @@
 @import "compass/css3/images";
 
 #gcwu-srch-submit {
-	background: #ccc url(../images/search-button.gif) 0 0 repeat-x;
+	background-color: #ccc;
 	@include pseudo-focus {
-		background: #ddd url(../images/search-button-focus.gif) 0 0 repeat-x;
+		background-color: #ddd;
 	}
 }
 
@@ -39,7 +39,7 @@
 #gcwu-psnb {
 	.mb-menu {
 		.nav-current {
-			background: #0f315b url(../images/menu-border.gif) repeat-x scroll 0 0;
+			background-color: #0f315b;
 		}
 		.mb-sm-open {
 			border-bottom: 4px solid #0F315B;
