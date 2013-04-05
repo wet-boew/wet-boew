@@ -30,6 +30,11 @@
 		fullft: null,
 		gridsmenu: null,
 		menu: null,
+		favicon: {
+			href: 'images/favicon-mobile.png',
+			rel: 'apple-touch-icon',
+			sizes: '57x57 72x72 114x114 144x144 150x150'
+		},
 		init: function () {
 			wet_boew_theme.fullhd = pe.header.find('#wet-fullhd');
 			wet_boew_theme.psnb = pe.header.find('#wet-psnb');
@@ -278,9 +283,6 @@
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);
 			}
-
-			// Load the mobile favicon
-			pe.add.favicon(pe.add.themecsslocation.replace(/css\/$/, 'images/favicon-mobile.png'), 'apple-touch-icon', '57x57 72x72 114x114 144x144 150x150');
 
 			// jQuery mobile has loaded
 			$document.on('pagecreate', function () {
