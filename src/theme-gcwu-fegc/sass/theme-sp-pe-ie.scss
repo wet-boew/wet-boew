@@ -20,7 +20,7 @@
 @import '../../base/sass/default-large';
 @import '../../base/sass/default-ie';
 @import 'includes/sp-pe';
-@import 'includes/sp-pe-large-screen';
+@import 'includes/sp-pe-large';
 @import 'includes/sp-pe-ie';
 /* ----- All screens - All media types - End of build includes ----- */
 
@@ -29,12 +29,12 @@
 @import '../../base/sass/default-screen';
 @import '../../base/sass/default-large-screen';
 @import '../../base/sass/default-screen-ie';
-@import '../../grids/sass/responsive-medium-large';
-@import '../../grids/sass/responsive-ie';
-@import 'includes/default-responsive-large';
+@import '../../grids/sass/responsive-medium-large-screen';
+@import '../../grids/sass/responsive-screen-ie';
+@import 'includes/default-responsive-large-screen';
 @import 'includes/sp-pe-screen';
-@import 'includes/sp-pe-screen-images';
-@import 'includes/sp-pe-large';
+@import 'includes/sp-pe-images-screen';
+@import 'includes/sp-pe-large-screen';
 @import 'includes/sp-pe-screen-ie';
 /* ----- All screens - Screen media type - End of build includes ----- */
 }
