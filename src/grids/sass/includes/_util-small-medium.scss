@@ -42,12 +42,6 @@ ul {
 	}
 }
 
-.date-month {
-	a {
-		color: #fff !important;
-	}
-}
-
 %util-small-medium-bb-pre7-background-333-important-color-f9f9f9-important {
 	background: #333 !important;
 	color: #f9f9f9 !important;
@@ -55,7 +49,7 @@ ul {
 .bb-pre7 {
 	input, textarea, select {
 		// Can't use pseudo-focus since fix is needed for both focused and activated states
-		&:focus, &:active { 
+		&:focus, &:active {
 			@extend %util-small-medium-bb-pre7-background-333-important-color-f9f9f9-important;
 		}
 	}
