@@ -170,6 +170,9 @@ body {
 #wb-main-in {
 	padding-top: 1px;
 	padding-bottom: 2.5em;
+  a {
+    @extend %wet-default-large-screen-link;
+  }
 }
 
 #wb-sec-in {
@@ -214,10 +217,6 @@ h1 {
 #wb-sup {
 	@extend %wet-default-large-screen-float-right;
 	@extend %wet-default-large-screen-position-relative;
-}
-
-a {
-	@extend %wet-default-large-screen-link;
 }
 
 #wet-fullhd {
@@ -334,7 +333,7 @@ a {
 			font-size: 80%;
 			padding: 2px;
 		}
-	}	
+	}
 }
 
 #wet-subsite {
