@@ -126,7 +126,7 @@
 				$this,
 				target,
 				validTarget = false,
-				classes,
+				classes = '',
 				test,
 				test_elms,
 				silentscroll_fired = false,
@@ -170,7 +170,14 @@
 			pe.mobile = pe.mobilecheck();
 			pe.medium = pe.mediumcheck();
 			pe.print = (pe.mobile ? false : pe.printcheck());
-			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.medium ? ' medium-screen' : ' small-screen')) : (pe.print ? ' print-view' : ' desktop-view large-screen'))) : '';
+
+			// Add theme specific CSS classes and favicon
+			if(wet_boew_theme !== null) {
+				classes += wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.medium ? ' medium-screen' : ' small-screen')) : (pe.print ? ' print-view' : ' desktop-view large-screen'));
+				if(typeof wet_boew_theme.favicon !== 'undefined') {
+					pe.add.favicon(pe.add.themecsslocation.replace(/css\/$/, wet_boew_theme.favicon.href), wet_boew_theme.favicon.rel, wet_boew_theme.favicon.sizes);
+				}
+			}
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			classes += (pe.svg ? ' svg' : ' no-svg');
 			classes += (pe.ie > 8 ? ' ie' + parseInt(pe.ie, 10) : (pe.ie < 1 ? ' no-ie' : ''));
@@ -1214,7 +1221,7 @@
 										}
 									}
 								}
-								
+
 								// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
 								if (!menubar && hlink.length > 0 && (toplevel || collapsible || !collapseTopOnly)) {
 									menu += link + hlinkDOM.href + '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
