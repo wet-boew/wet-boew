@@ -126,10 +126,6 @@ h1 {
 	margin-top: 0;
 }
 
-a {
-	@extend %gcwu-default-link;
-}
-
 #wb-sup {
 	@extend %gcwu-default-large-screen-inline-z1;
 	@extend %gcwu-default-large-screen-float-right-relative;
@@ -207,6 +203,9 @@ a {
 #wb-main-in {
 	padding-top: 1px;
 	padding-bottom: 2.5em;
+  a {
+    @extend %gcwu-default-link;
+  }
 }
 
 #wb-body-sec {
@@ -386,7 +385,7 @@ a {
 #gcwu-srch-submit {
 	@include appearance(none);
 	min-height: 24px;
-	@if $legacy-support-for-ie8 { 
+	@if $legacy-support-for-ie8 {
 		@include filter-gradient(#F0F0F0,#CCC);
 	} @else {
 		@include background-image(linear-gradient(#F0F0F0,#CCC));
@@ -404,7 +403,7 @@ a {
 	padding: 2px 6px;
 	display: inline;
 	@include pseudo-focus {
-		@if $legacy-support-for-ie8 { 
+		@if $legacy-support-for-ie8 {
 			@include filter-gradient(#CCC,#DDD);
 		} @else {
 			@include background-image(linear-gradient(#CCC,#DDD));
@@ -455,7 +454,7 @@ a {
 		&, li {
 			background: #23447e;
 			min-height: 2.15em;
-			@if $legacy-support-for-ie8 { 
+			@if $legacy-support-for-ie8 {
 				background: #23447e url(../images/menu-bg.gif) repeat-x;
 			} @else {
 				@include background-image(linear-gradient(#146094, #23447E));
@@ -487,7 +486,7 @@ a {
 		.mb-sm-open {
 			@include box-shadow(0 5px 5px -4px rgba(0, 0, 0, 0.5), 5px 5px 5px -4px rgba(0, 0, 0, 0.5), -5px 5px 5px -4px rgba(0, 0, 0, 0.5));
 			border-bottom: 4px solid #0F315B;
-			@if $legacy-support-for-ie8 { 
+			@if $legacy-support-for-ie8 {
 				@include filter-gradient(#CCC, #EEE);
 			} @else {
 				@include background-image(linear-gradient(#CCC, #EEE));
