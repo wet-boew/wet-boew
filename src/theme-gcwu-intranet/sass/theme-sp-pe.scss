@@ -31,15 +31,15 @@
 /* ----- Large screens - Screen media type - Start of build includes ----- */
 @import '../../base/sass/default-large-screen';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-large-screen';
-@import '../../grids/sass/responsive-medium-large';
-@import '../../theme-gcwu-fegc/sass/includes/default-responsive-large';
+@import '../../grids/sass/responsive-medium-large-screen';
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive-large-screen';
 /* ----- Large screens - Screen media type - End of build includes ----- */
 }
 
 @media screen and (min-width: 1200px) and (min-device-width: 1024px) {
 /* ----- Large screens (1200+ pixel width) - Screen media type - Start of build includes ----- */
-@import '../../grids/sass/responsive-large-1200';
-@import '../../theme-gcwu-fegc/sass/includes/default-responsive-large-1200';
+@import '../../grids/sass/responsive-large-1200-screen';
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive-large-1200-screen';
 /* ----- Large screens (1200+ pixel width) - Screen media type - End of build includes ----- */
 }
 
@@ -53,21 +53,21 @@
 
 @media screen and (max-width: 959px), screen and (max-device-width: 1023px) {
 /* ----- Small and medium screens - Screen media type - Start of build includes ----- */
-@import '../../base/sass/default-small-medium';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-small-medium';
+@import '../../base/sass/default-small-medium-screen';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-small-medium-screen';
 /* ----- Small and medium screens - Screen media type - End of build includes ----- */
 }
 
 @media screen and (max-width: 767px), screen and (max-device-width: 767px) {
 /* ----- Small screens - Screen media type - Start of build includes ----- */
-@import '../../base/sass/default-small';
+@import '../../base/sass/default-small-screen';
 /* ----- Small screens - Screen media type - End of build includes ----- */
 }
 
 @media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
 /* ----- Medium screens - Screen media type - Start of build includes ----- */
-@import '../../base/sass/default-medium';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-medium';
+@import '../../base/sass/default-medium-screen';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-medium-screen';
 /* ----- Medium screens - Screen media type - End of build includes ----- */
 }
 

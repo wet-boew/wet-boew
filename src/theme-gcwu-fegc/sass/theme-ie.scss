@@ -30,15 +30,15 @@
 @import '../../base/sass/default-screen';
 @import '../../base/sass/default-large-screen';
 @import '../../base/sass/default-screen-ie';
-@import '../../grids/sass/responsive-medium-large';
-@import '../../grids/sass/responsive-ie';
-@import 'includes/default-responsive-large';
+@import '../../grids/sass/responsive-medium-large-screen';
+@import '../../grids/sass/responsive-screen-ie';
+@import 'includes/default-responsive-large-screen';
 @import 'includes/default-screen';
-@import 'includes/default-screen-images';
+@import 'includes/default-images-screen';
 @import 'includes/default-large-screen';
-@import 'includes/default-large-screen-images';
+@import 'includes/default-large-images-screen';
 @import 'includes/default-screen-ie';
-@import 'includes/default-screen-images-ie';
+@import 'includes/default-images-screen-ie';
 /* ----- All screens - Screen media type - End of build includes ----- */
 }
 

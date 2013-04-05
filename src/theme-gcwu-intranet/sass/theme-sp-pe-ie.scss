@@ -20,7 +20,7 @@
 @import '../../base/sass/default-large';
 @import '../../base/sass/default-ie';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-large-screen';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-large';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-ie';
 /* ----- All screens - All media types - End of build includes ----- */
 
@@ -29,11 +29,11 @@
 @import '../../base/sass/default-screen';
 @import '../../base/sass/default-large-screen';
 @import '../../base/sass/default-screen-ie';
-@import '../../grids/sass/responsive-medium-large';
-@import '../../grids/sass/responsive-ie';
-@import '../../theme-gcwu-fegc/sass/includes/default-responsive-large';
+@import '../../grids/sass/responsive-medium-large-screen';
+@import '../../grids/sass/responsive-screen-ie';
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive-large-screen';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen';
-@import '../../theme-gcwu-fegc/sass/includes/sp-pe-large';
+@import '../../theme-gcwu-fegc/sass/includes/sp-pe-large-screen';
 @import '../../theme-gcwu-fegc/sass/includes/sp-pe-screen-ie';
 @import 'includes/sp-pe-screen';
 /* ----- All screens - Screen media type - End of build includes ----- */
