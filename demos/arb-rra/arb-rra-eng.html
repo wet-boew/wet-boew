@@ -44,6 +44,60 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 #tsrw td.wcagsc {
 	text-align: left;
 }
+
+@media screen and (min-width: 240px) {
+	#tsrw th.ui-table-priority-arb, #tsrw td.ui-table-priority-arb {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 360px) {
+	#tsrw th.ui-table-priority-arb2, #tsrw td.ui-table-priority-arb2 {
+		display: table-cell;
+	}
+	.ui-table-columntoggle-btn {
+		position: absolute;
+	}
+}
+@media screen and (min-width: 480px) {
+	#tsrw th.ui-table-priority-arb3, #tsrw td.ui-table-priority-arb3 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 560px) {
+	#tsrw th.ui-table-priority-arb4, #tsrw td.ui-table-priority-arb4 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 660px) {
+	#tsrw th.ui-table-priority-arb5, #tsrw td.ui-table-priority-arb5 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 740px) {
+	#tsrw th.ui-table-priority-arb6, #tsrw td.ui-table-priority-arb6 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 860px) {
+	#tsrw th.ui-table-priority-arb7, #tsrw td.ui-table-priority-arb7 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 920px) {
+	#tsrw th.ui-table-priority-arb8, #tsrw td.ui-table-priority-arb8 {
+		display: table-cell;
+	}
+}
+
+#tsrw [class*="ui-table-priority"], #tsrw th.ui-table-cell-hidden, #tsrw td.ui-table-cell-hidden {
+	display: none;
+}
+#tsrw .ui-table-priority-arb1, #tsrw th.ui-table-cell-visible, #tsrw td.ui-table-cell-visible {
+	display: table-cell;
+}
+#tsrw-overflow {
+	overflow: auto;
+}
 </style>
 <!-- CustomCSSEnd -->
 </head>
@@ -427,25 +481,22 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	</div>
 </section>		
 
-<section>
-	<h2 id="a2">Summary table of WCAG 2.0 distribution</h2>
+<section><div class="tsrw-overflow">
+	<h2 id="a2">Summary table of WCAG 2.0 distribution across production chain phase</h2>
 	
-	<table id="tsrw" class="wet-boew-tables" data-wet-boew='{"zebra": true, "paginate": false}'>
+	<table id="tsrw" class="wet-boew-tables" data-wet-boew='{"zebra": true, "paginate": false}' data-role="table" data-mode="columntoggle">
 	<thead>
-		<tr>
-			<th scope="col" rowspan="2">Success criteria</th>
-			<th scope="col" rowspan="2">Level</th>
-			<th scope="col" colspan="8">Production chain phase</th>
-		</tr>
-		<tr>
-			<th scope="col">Analysis</th>
-			<th scope="col">Architecture</th>
-			<th scope="col">Interaction design</th>
-			<th scope="col">Graphic design</th>
-			<th scope="col">Prototyping</th>
-			<th scope="col">Editing</th>
-			<th scope="col">Development</th>
-			<th scope="col">Quality control</th>
+		<tr class="font-small">
+			<th scope="col">Success criteria</th>
+			<th scope="col" data-priority="arb">Level</th>
+			<th scope="col" data-priority="arb1">Analysis</th>
+			<th scope="col" data-priority="arb2">Architecture</th>
+			<th scope="col" data-priority="arb3">Interaction design</th>
+			<th scope="col" data-priority="arb4">Graphic design</th>
+			<th scope="col" data-priority="arb5">Prototyping</th>
+			<th scope="col" data-priority="arb6">Editing</th>
+			<th scope="col" data-priority="arb7">Development</th>
+			<th scope="col" data-priority="arb8">Quality control</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -1183,7 +1234,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 		</tr>
 	</tbody>
 	</table>
-</section>
+</div></section>
 <div class="clear"></div>
 <p><strong>Note:</strong> This breakdown offers a vision that may not correspond exactly to the reality of your own production chain and therefore you should adapt it as required.</p>
 <p>© <span lang="fr">Coopérative AccessibilitéWeb</span>, 2011. <a href="https://github.com/wet-boew/wet-boew/wiki/Accessibility-Responsibility-Breakdown---Web-Experience-Toolkit-%28WET%29---Terms-and-Conditions-of-Use" rel="external">Terms and Conditions of Use</a>.</p>

@@ -44,6 +44,62 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 #tsrw td.wcagsc {
 	text-align: left;
 }
+
+@media screen and (min-width: 260px) {
+	#tsrw th.ui-table-priority-arb, #tsrw td.ui-table-priority-arb {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 370px) {
+	#tsrw th.ui-table-priority-arb2, #tsrw td.ui-table-priority-arb2 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 400px) {
+	.ui-table-columntoggle-btn {
+		position: absolute;
+	}
+}
+@media screen and (min-width: 480px) {
+	#tsrw th.ui-table-priority-arb3, #tsrw td.ui-table-priority-arb3 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 580px) {
+	#tsrw th.ui-table-priority-arb4, #tsrw td.ui-table-priority-arb4 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 690px) {
+	#tsrw th.ui-table-priority-arb5, #tsrw td.ui-table-priority-arb5 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 800px) {
+	#tsrw th.ui-table-priority-arb6, #tsrw td.ui-table-priority-arb6 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 920px) {
+	#tsrw th.ui-table-priority-arb7, #tsrw td.ui-table-priority-arb7 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 1020px) {
+	#tsrw th.ui-table-priority-arb8, #tsrw td.ui-table-priority-arb8 {
+		display: table-cell;
+	}
+}
+
+#tsrw [class*="ui-table-priority"], #tsrw th.ui-table-cell-hidden, #tsrw td.ui-table-cell-hidden {
+	display: none;
+}
+#tsrw .ui-table-priority-arb1, #tsrw th.ui-table-cell-visible, #tsrw td.ui-table-cell-visible {
+	display: table-cell;
+}
+#tsrw-overflow {
+	overflow: auto;
+}
 </style>
 <!-- CustomCSSEnd -->
 </head>
@@ -426,25 +482,22 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	</div>
 </section>		
 
-<section>
-	<h2 id="a2">Tableau synthèse de la répartition WCAG 2.0</h2>
+<section><div class="tsrw-overflow">
+	<h2 id="a2">Tableau synthèse de la répartition WCAG 2.0 à travers les étapes de la chaîne de production</h2>
 	
-	<table id="tsrw" class="wet-boew-tables" data-wet-boew='{"zebra": true, "paginate": false}'>
+	<table id="tsrw" class="wet-boew-tables" data-wet-boew='{"zebra": true, "paginate": false}' data-role="table" data-mode="columntoggle">
 	<thead>
-		<tr>
-			<th scope="col" rowspan="2">Critère de succès</th>
-			<th scope="col" rowspan="2">Niveau</th>
-			<th scope="col" colspan="8">Étape de la chaîne de production</th>
-		</tr>
-		<tr>
-			<th scope="col">Analyse</th>
-			<th scope="col">Architecture</th>
-			<th scope="col">Conception d'interaction</th>
-			<th scope="col">Graphisme</th>
-			<th scope="col">Prototypage</th>
-			<th scope="col">Rédaction</th>
-			<th scope="col">Développement</th>
-			<th scope="col">Contrôle Qualité</th>
+		<tr class="font-small">
+			<th scope="col">Critère de succès</th>
+			<th scope="col" data-priority="arb">Niveau</th>
+			<th scope="col" data-priority="arb1">Analyse</th>
+			<th scope="col" data-priority="arb2">Architecture</th>
+			<th scope="col" data-priority="arb3">Conception d'interaction</th>
+			<th scope="col" data-priority="arb4">Graphisme</th>
+			<th scope="col" data-priority="arb5">Prototypage</th>
+			<th scope="col" data-priority="arb6">Rédaction</th>
+			<th scope="col" data-priority="arb7">Développement</th>
+			<th scope="col" data-priority="arb8">Contrôle Qualité</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -1182,7 +1235,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 		</tr>
 	</tbody>
 	</table>
-</section>
+</div></section>
 <div class="clear"></div>
 <p><strong>Nota&#160;:</strong> Ce découpage présente une vision qui peut ne pas correspondre exactement à la réalité de votre chaîne de production. Il convient donc d’adapter ce modèle pour répondre à la réalité de propre chaîne de production.</p>
 <p>© Coopérative AccessibilitéWeb, 2011. <a href="https://github.com/wet-boew/wet-boew/wiki/R%C3%A9partition-des-responsabilit%C3%A9s-d%27accessibilit%C3%A9---Bo%C3%AEte-%C3%A0-outils-de-l%27exp%C3%A9rience-Web-%28BOEW%29---Conditions-r%C3%A9gissant-l%27utilisation" rel="external">Conditions régissant l'utilisation</a>.</p>
