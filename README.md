@@ -10,17 +10,17 @@
  * [Multilingual](#multilingual)
 * [Flexible and themeable templates and reusable components](#themeable-and-reusable)
 * Open source software
- * Free to use for commercial and non-commercial purposes (MIT license - [Terms and conditions](http://wet-boew.github.com/wet-boew/License-eng.txt))
+ * Free to use for commercial and non-commercial purposes (MIT license - [Terms and conditions](http://wet-boew.github.io/wet-boew/License-eng.txt))
  * [Developed openly by the community on GitHub](#collaborative-approach)
 
 ## Key resources
  
 * [Benefits](#benefits)
-* [Working examples](http://wet-boew.github.com/wet-boew/demos/index-eng.html)
+* [Working examples](http://wet-boew.github.io/wet-boew/demos/index-eng.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
 * [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET#wiki-Contributor_guidelines)
 * [Downloads](https://github.com/wet-boew/wet-boew/wiki/Downloads)
-* [Terms and conditions](http://wet-boew.github.com/wet-boew/License-eng.txt)
+* [Terms and conditions](http://wet-boew.github.io/wet-boew/License-eng.txt)
 * [Version history](#version-history)
 * [Roadmap](https://github.com/wet-boew/wet-boew/wiki/Roadmap)
 
@@ -104,17 +104,17 @@
  * [Multilingues](#multilingue)
 * [Des modèles, ainsi que des composants réutilisables, qui sont flexibles et personnalisables](#personnalisable-et-rutilisable)
 * Un logiciel libre
- * Libre d'utilisation à des fins commerciales et non commerciales (licence MIT - [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/License-fra.txt))
+ * Libre d'utilisation à des fins commerciales et non commerciales (licence MIT - [Conditions régissant l'utilisation](http://wet-boew.github.io/wet-boew/License-fra.txt))
  * [Développé ouvertement sur GitHub par la communauté](#approche-collaborative)
 
 ## Ressources clés
  
 * [Avantages](#avantages)
-* [Exemples pratiques](http://wet-boew.github.com/wet-boew/demos/index-fra.html)
+* [Exemples pratiques](http://wet-boew.github.io/wet-boew/demos/index-fra.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
 * [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Développer-pour-la-boew#wiki-Lignes_directrices_pour_les_contributeurs)
 * [Téléchargements](https://github.com/wet-boew/wet-boew/wiki/T%C3%A9l%C3%A9chargements)
-* [Conditions régissant l'utilisation](http://wet-boew.github.com/wet-boew/Licence-fra.txt)
+* [Conditions régissant l'utilisation](http://wet-boew.github.io/wet-boew/Licence-fra.txt)
 * [Historique des versions](#historique-des-versions)
 * [Feuille de route](https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route)
 
