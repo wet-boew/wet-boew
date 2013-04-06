@@ -1,6 +1,6 @@
 /*!
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * Web Experience Toolkit (WET) / BoÃ®te Ã  outils de l'expÃ©rience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /**
  * Key Cell Selector - Table usability - Core plugin
@@ -194,7 +194,7 @@ The perpective for the computation/query search
  
 Parameterised Custom Selectors
 
-You’ll notice that some Pseudo-Class selectors accept a parameter, for example :has(selector). So how do we get some of that good stuff? We are going to build a lengthBetween selector that will filter out items whose length is greater than two specified parameters, in this case, four and eight. The calling code will look like:
+Youâ€™ll notice that some Pseudo-Class selectors accept a parameter, for example :has(selector). So how do we get some of that good stuff? We are going to build a lengthBetween selector that will filter out items whose length is greater than two specified parameters, in this case, four and eight. The calling code will look like:
 view plaincopy to clipboardprint?
 
     alert($("input:lengthBetween(4,8)").length);  
@@ -218,12 +218,12 @@ view plaincopy to clipboardprint?
 
     alert($("input:lengthBetween(4,8)").length);  
 
-    match[0] – contains the full pseudo-class selector call. In this example :lengthBetween(4,8)
-    match[1] – contains the selector name only. In this example lengthBetween
-    match[2] – denotes which, if any, type of quotes are used in the parameter expression. i.e. single (‘)  or double (“). In this example it will be empty.
-    match[3] – gives us the parameters, i.e. what is contained in the brackets. In this example 4,8
+    match[0] â€“ contains the full pseudo-class selector call. In this example :lengthBetween(4,8)
+    match[1] â€“ contains the selector name only. In this example lengthBetween
+    match[2] â€“ denotes which, if any, type of quotes are used in the parameter expression. i.e. single (â€˜)  or double (â€œ). In this example it will be empty.
+    match[3] â€“ gives us the parameters, i.e. what is contained in the brackets. In this example 4,8
 
-So, if we just want the parameters, then match[3] is the way forward. This is a simple string value and it’s really up to you how you handle it. You can String.Split() it to get multiple parameters, and you can consider validating the parameters somehow. Again, we are drifting away somewhat from the scope of this discussion, so I’ll refer to the jQuery core once more:
+So, if we just want the parameters, then match[3] is the way forward. This is a simple string value and itâ€™s really up to you how you handle it. You can String.Split() it to get multiple parameters, and you can consider validating the parameters somehow. Again, we are drifting away somewhat from the scope of this discussion, so Iâ€™ll refer to the jQuery core once more:
 view plaincopy to clipboardprint?
 
     gt: function (elem, i, match) {  
