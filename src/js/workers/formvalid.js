@@ -44,12 +44,12 @@
 
 			// Append the aria-live region (for provide message updates to screen readers)
 			elm.append(ariaLive);
-			
+
 			// Load different language strings if page is not in English
 			if (lang !== null) {
 				_pe.add._load(liblocation + 'i18n/formvalid/messages_' + lang + suffixExt);
 			}
-			
+
 			if (mthdlang !== null) {
 				_pe.add._load(liblocation + 'i18n/formvalid/methods_' + mthdlang + suffixExt);
 			}
@@ -59,7 +59,7 @@
 			while (len--) {
 				labels[len].innerHTML += ' ';
 			}
-		
+
 			// Remove the pattern attribute until it is safe to use with jQuery Validation
 			len = pattern.length;
 			while (len--) {
@@ -80,6 +80,9 @@
 					summaryContainer.empty();
 				}
 				form.find('[aria-invalid="true"]').removeAttr('aria-invalid');
+				if (ariaLive.html().length !== 0) {
+					ariaLive.empty();
+				}
 			});
 
 			// Change form attributes and values that intefere with validation in IE7/8
@@ -108,10 +111,10 @@
 				// In this case we will place them in the associated label element
 				errorPlacement: function(error, element) {
 					var type = element.attr('type'),
-						name,
 						fieldset,
 						legend;
-					
+
+					error.data('element-id', element.attr('id'));
 					if (typeof type !== 'undefined') {
 						type = type.toLowerCase();
 						if (type === 'radio' || type === 'checkbox') {
@@ -154,23 +157,22 @@
 						summary = '<p>' + _pe.dic.get('%form-not-submitted') + errors.length + (errors.length !== 1 ? _pe.dic.get('%errors-found') : _pe.dic.get('%error-found')) + '</p><ul>';
 						errorfields.attr('aria-invalid', 'true');
 						errors.each(function(index) {
-							var $this = $(this),
+							var $error = $(this),
 								prefix = prefixStart + (index + 1) + prefixEnd,
-								label = $this.closest('label'),
-								fieldName = label.find('.field-name'),
+								fieldName = $error.closest('label').find('.field-name'),
 								fieldset;
 
 							// Try to find the field name in the legend (if one exists)
 							if (fieldName.length === 0) {
-								fieldset = $this.closest('fieldset');
+								fieldset = $error.closest('fieldset');
 								if (fieldset.length !== 0) {
 									fieldName = fieldset.find('legend .field-name');
 								}
 							}
 
-							$this.find('span.prefix').detach();
-							summary += '<li><a href="#' + label.attr('for') + '">' + prefix + (fieldName.length !== 0 ? fieldName.html() + separator : '') + this.innerHTML + '</a></li>';
-							$this.prepend(prefix);
+							$error.find('span.prefix').detach();
+							summary += '<li><a href="#' + $error.data('element-id') + '">' + prefix + (fieldName.length !== 0 ? fieldName.html() + separator : '') + this.innerHTML + '</a></li>';
+							$error.prepend(prefix);
 						});
 						summary += '</ul>';
 
@@ -199,20 +201,20 @@
 							}
 						}
 
-						// Move the focus to the associated input when error message link is triggered
-						// a simple href anchor link doesnt seem to place focus inside the input
-						if (_pe.ie === 0 || _pe.ie > 7) {
-							form.find('.errorContainer a').on('click vclick', function() {
-								var label_top = _pe.focus($($(this).attr('href'))).prev().offset().top;
-								if (_pe.mobile) {
-									$.mobile.silentScroll(label_top);
-								} else {
-									_pe.document.scrollTop(label_top);
-								}
-								return false;
-							});
-						}
-					
+						// Move the focus to the associated input when an error message link is clicked
+						// and scroll to the top of the label or legend that contains the error
+						form.find('.errorContainer a').on('click vclick', function() {
+							var hash = this.href.substring(this.href.indexOf('#')),
+								input = $(hash),
+								label = input.prev(),
+								legend = label.length === 0 ? input.closest('fieldset').find('legend') : [],
+								errorTop = label.length !== 0 ? label.offset().top : (legend.length !== 0 ? legend.offset().top : -1);
+							_pe.focus(input);
+							if(errorTop !== -1) {
+								$.mobile.silentScroll(errorTop);
+							}
+							return false;
+						});
 						submitted = false;
 					} else {
 						// Update the aria-live region as necessary
