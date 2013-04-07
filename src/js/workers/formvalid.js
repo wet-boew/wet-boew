@@ -80,6 +80,9 @@
 					summaryContainer.empty();
 				}
 				form.find('[aria-invalid="true"]').removeAttr('aria-invalid');
+				if (ariaLive.html().length !== 0) {
+					ariaLive.empty();
+				}
 			});
 
 			// Change form attributes and values that intefere with validation in IE7/8
@@ -201,17 +204,14 @@
 						// Move the focus to the associated input when an error message link is clicked
 						// and scroll to the top of the label or legend that contains the error
 						form.find('.errorContainer a').on('click vclick', function() {
-							var input = $($(this).attr('href')),
+							var hash = this.href.substring(this.href.indexOf('#')),
+								input = $(hash),
 								label = input.prev(),
 								legend = label.length === 0 ? input.closest('fieldset').find('legend') : [],
 								errorTop = label.length !== 0 ? label.offset().top : (legend.length !== 0 ? legend.offset().top : -1);
 							_pe.focus(input);
 							if(errorTop !== -1) {
-								if (_pe.mobile) {
-									$.mobile.silentScroll(errorTop);
-								} else {
-									_pe.document.scrollTop(errorTop);
-								}
+								$.mobile.silentScroll(errorTop);
 							}
 							return false;
 						});
