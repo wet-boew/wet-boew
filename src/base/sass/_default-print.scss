@@ -11,6 +11,10 @@ body {
 	background: #FFF;
 }
 
+.ui-body-c, .ui-overlay-c {
+	background: transparent !important;
+}
+
 textarea {
 	@extend %wb-default-print-times-new-roman-font;
 }
