@@ -36,13 +36,15 @@ ul {
 				float: right;
 			}
 			a {
-				text-decoration: none;
-				color: #000;
-				display: block;
-				padding: 0 5px;
-				@include pseudo-focus {
-					background: #406C93;
-					color: #fff;
+				&, &.ui-link {
+					text-decoration: none;
+					color: #000;
+					display: block;
+					padding: 0 5px;
+					@include pseudo-focus {
+						background: #406C93;
+						color: #fff;
+					}
 				}
 			}
 		}
