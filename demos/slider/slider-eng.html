@@ -8,16 +8,10 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
-<title>Slider control (input type="range" polyfill) - Working examples - Web Experience Toolkit (WET)</title>
+<title>Slider control (input type="range" polyfill) - Working examples - Web Experience Toolkit&#160;(WET)</title>
 
-<link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
-<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
-<meta name="dcterms.title" content="English title / Titre en anglais" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
-<meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!--[if lte IE 8]>
@@ -25,18 +19,19 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
-<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
-<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
 <script src="../../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
-<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
-<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
 <!--<![endif]-->
 
 <!-- CustomCSSStart -->
+
 <!-- CustomCSSEnd -->
 </head>
 
@@ -50,32 +45,30 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
-<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng.svg" role="img" tabindex="-1" aria-label="Government of Canada" type="image/svg+xml"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.png" alt="Government of Canada" /></object></div></div>
+<section><div id="wet-fullhd"><h2>Full-width header area</h2>
+<div id="wet-fullhd-in">
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
-<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="slider-fra.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-2"><a href="../slider-fra.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
 </ul>
-</div></div></div></nav>
+</div>
+</div></section>
 
-<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms.svg" role="img" tabindex="-1" aria-label="Symbol of the Government of Canada" type="image/svg+xml"><img src="../../dist/theme-gcwu-fegc/images/wmms.png" alt="Symbol of the Government of Canada" /></object></div></div>
-<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-eng.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET)</span></a></p></div>
 
-<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
-<form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2>Site menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
-<li><div><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-eng.html" lang="en">WET project</a></div></li>
 <li><div><a href="section2/index-eng.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
 <li><div><a href="#">Section 4</a></div></li>
@@ -85,7 +78,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 </ul>
 </div></div></div></div>
 
-<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
 <ol>
 <li><a href="../../index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
@@ -122,7 +115,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 		<div class="span-4">
 			<section>
 				<h4 class="background-dark margin-bottom-medium">Range: 0 to 100 in steps of 1 <span id="html5shim-1-out"></span></h4>
-				<p><input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" onchange="document.getElementById('html5shim-1-out').innerHTML = '(Current Value: ' + this.value + ')'" /></p>
+				<p><input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" onchange="document.getElementById('html5shim-1-out').innerHTML = '(Current Value: ' + this.value + ')'"></p>
 			</section>
 		</div>
 		<div class="span-4">
@@ -135,7 +128,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 		<div class="span-4">
 			<section>
 				<h4 class="background-dark margin-bottom-medium">Range: 20 to 50 in steps of 10 <span id="html5shim-2-out"></span></h4>
-				<p><input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" onchange="document.getElementById('html5shim-2-out').innerHTML = '(Current Value: ' + this.value + ')'" /></p>
+				<p><input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" onchange="document.getElementById('html5shim-2-out').innerHTML = '(Current Value: ' + this.value + ')'"></p>
 			</section>
 		</div>
 		<div class="span-4">
@@ -152,7 +145,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 		<div class="span-4">
 			<section>
 				<h4 class="background-dark margin-bottom-medium">Range: 0 to 100 in steps of 1 <span id="html5shim-V1-out"></span></h4>
-				<p><input data-fd-slider-vertical="v-s" name="html5shim-V1" id="html5shim-V1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" onchange="document.getElementById('html5shim-V1-out').innerHTML = '(Current Value: ' + this.value + ')'" /></p>
+				<p><input data-fd-slider-vertical="v-s" name="html5shim-V1" id="html5shim-V1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" onchange="document.getElementById('html5shim-V1-out').innerHTML = '(Current Value: ' + this.value + ')'"></p>
 			</section>
 		</div>
 		<div class="span-4">
@@ -165,7 +158,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 		<div class="span-4">
 			<section>
 				<h4 class="background-dark margin-bottom-medium">Range: 20 to 50 in steps of 10 <span id="html5shim-V2-out"></span></h4>
-				<p><input data-fd-slider-vertical="v-s" name="html5shim-V2" id="html5shim-V2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" onchange="document.getElementById('html5shim-V2-out').innerHTML = '(Current Value: ' + this.value + ')'" /></p>
+				<p><input data-fd-slider-vertical="v-s" name="html5shim-V2" id="html5shim-V2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" onchange="document.getElementById('html5shim-V2-out').innerHTML = '(Current Value: ' + this.value + ')'"></p>
 			</section>
 		</div>
 		<div class="span-4">
@@ -178,34 +171,32 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 	<div class="clear"></div>
 </div>
 
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-10</time></span></dd>
+</dl>
+<div class="clear"></div>
 <!-- MainContentEnd -->
 </div></div>
+
 </div></div>
 
 <div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
 <!-- FooterStart -->
-<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
-<div id="gcwu-tctr">
-<ul>
-<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
-<li class="gcwu-tr"><a href="#">Transparency</a></li>
-</ul>
-</div>
-<div class="clear"></div>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head"><a href="#">About us</a></h4>
 <ul>
 <li><a href="#">Our Mandate</a></li>
-<li><a href="#">Our Minister</a></li>
+<li><a href="#">Our history</a></li>
 </ul>
 </div></section>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<section><div class="span-2"><h4 class="wet-col-head"><a href="#">News</a></h4>
 <ul>
 <li><a href="#">News releases</a></li>
 <li><a href="#">Media advisories</a></li>
 <li><a href="#">Multimedia</a></li>
 </ul>
 </div></section>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<section><div class="span-2"><h4 class="wet-col-head"><a href="#">Contact us</a></h4>
 <address>
 <ul>
 <li><a href="#">Phone numbers</a></li>
@@ -213,7 +204,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 </ul>
 </address>
 </div></section>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<section><div class="span-2"><h4 class="wet-col-head"><a href="#">Stay connected</a></h4>
 <ul>
 <li><a rel="external" href="#">YouTube</a></li>
 <li><a rel="external" href="#">Twitter</a></li>
@@ -222,16 +213,9 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 </div></section>
 </div></div></nav>
 
-<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
-<ul>
-<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
-<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
-<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
-<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
-<li><a rel="external" href="http://actionplan.gc.ca/en"><span>Economy</span><br />actionplan.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
-</ul>
-</div></div></div></nav>
+<section><div id="wet-fullft"><h3>Full-width footer area</h3>
+<div id="wet-fullft-in"></div>
+</div></section>
 <!-- FooterEnd -->
 </footer>
 </div></div></div>
@@ -239,18 +223,19 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <!-- ScriptsStart -->
 <script src="../../dist/js/settings.js"></script>
 <!--[if lte IE 8]>
-<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
 <script src="../../dist/js/pe-ap-ie-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
 <![endif]-->
 <!--[if gt IE 8]><!-->
-<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
 <!--<![endif]-->
 <!-- ScriptsEnd -->
 
 <!-- CustomScriptsStart -->
+
 <!-- CustomScriptsEnd -->
 </body>
 </html>
