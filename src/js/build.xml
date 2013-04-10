@@ -48,7 +48,7 @@
 			</filterchain>
 		</concat>
 		<!-- Temporary fix - to be replaced by modern and old IE targeted output -->
-		<copy file="${dist.dir}/pe-ap.js" tofile="${dist.dir}/pe-ap-ie.js"/>
+		<copy file="${dist.dir}/pe-ap.js" tofile="${dist.dir}/pe-ap-ie.js" encoding="UTF-8"/>
 	</target>
 	
 	<target name="-build-flot" description="Concat flot and any plugins into single file. Done for gh-1276">
