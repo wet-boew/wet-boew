@@ -107,8 +107,11 @@
 							// this is a spanning event
 							strDate1 = ($(tCollection[0]).get(0).nodeName.toLowerCase() === 'time') ? $(tCollection[0]).attr('datetime').substr(0, 10).split('-') :  $(tCollection[0]).attr('class').match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[1].substr(0, 10).split('-');
 							strDate2 = ($(tCollection[1]).get(0).nodeName.toLowerCase() === 'time') ? $(tCollection[1]).attr('datetime').substr(0, 10).split('-') :  $(tCollection[1]).attr('class').match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[1].substr(0, 10).split('-');
+							// convert to zero-base month
+							strDate1[1] = strDate1[1] - 1;
+							strDate2[1] = strDate2[1] - 1;
 
-							date.setFullYear(strDate1[0], strDate1[1] - 1, strDate1[2]);
+							date.setFullYear(strDate1[0], strDate1[1], strDate1[2]);
 
 							// now loop in events to load up all the days that it would be on tomorrow.setDate(tomorrow.getDate() + 1);
 							for (z = 0, _zlen = _pe.date.daysBetween(strDate1, strDate2) + 1; z <= _zlen; z += 1) {
