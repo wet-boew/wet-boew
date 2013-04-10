@@ -243,7 +243,7 @@
 	</target>
 	
 	<target name="-rename-to-min">
-		<move todir="${dist.dir}">
+		<move todir="${dist.dir}" encoding="UTF-8">
 			<fileset dir="${dist.dir}">
 				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
@@ -253,7 +253,7 @@
 			</fileset>
 			<globmapper from="*.js" to="*-min.js"/>
 		</move>	
-		<move todir="${dist.dir}">
+		<move todir="${dist.dir}" encoding="UTF-8">
 			<fileset dir="${dist.dir}">
 				<include name="**/*.css" />
 				<exclude name="**/*-min.css" />
@@ -289,7 +289,7 @@
 	</target>
 	
 	<target name="-update-headers" extensionOf="finalize">
-		<replace dir="${dist.dir}">
+		<replace dir="${dist.dir}" encoding="UTF-8">
 			<include name="**/*.js"/>
 			<include name="**/*.css"/>
 			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version} Build: ${wet-boew-build.starttime}"/>
