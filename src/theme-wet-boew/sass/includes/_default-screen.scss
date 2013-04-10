@@ -94,10 +94,8 @@ input {
 		li {
 			float: left;
 			padding: 13px 0;
-			&#wet-fullhd-lang {
-				a {
-					text-transform: capitalize;
-				}
+			&[id|=wet-fullhd-lang] {
+				text-transform: capitalize;
 			}
 		}
 	}
