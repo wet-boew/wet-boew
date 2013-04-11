@@ -82,6 +82,8 @@
 
 ## Version history
 
+* **WET v3.1.0 was released on April 11, 2013** ([v3.1.0 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-release-notes))
+* **WET v3.0.6 was released on April 11, 2013** ([v3.0.6 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.6-release-notes))
 * **WET v3.1.0 Release Candidate 1 was released on April 3, 2013** ([v3.1.0 Release Candidate 1 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Release-Candidate-1-release-notes))
 * **WET v3.1.0 Beta 2 was released on February 15, 2013** ([v3.1.0 Beta 2 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-2-release-notes))
 * **WET v3.0.5 was released on February 15, 2013** ([v3.0.5 release notes](https://github.com/wet-boew/wet-boew/wiki/v3.0.5-release-notes))
@@ -176,7 +178,9 @@
 
 ## Historique des versions
 
-* **La version 3.1.0 Candidate 1 de la BOEW a été lancée le 3 avril 2013** ([v3.1.0 Version candidate 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Release-Candidate-1-release-notes))
+* **La version 3.1.0 de la BOEW a été lancée le 11 avril 2013** ([v3.1.0 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-release-notes))
+* **La version 3.0.6 de la BOEW a été lancée le 11 avril 2013** ([v3.0.6 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.6-release-notes))
+* **La version 3.1.0 Candidate 1 de la BOEW a été lancée le 3 avril 2013** ([v3.1.0 Candidate 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Release-Candidate-1-release-notes))
 * **La version 3.1.0 Bêta 2 de la BOEW a été lancée le 15 février 2013** ([v3.1.0 Bêta 2 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.1.0-Beta-2-release-notes))
 * **La version 3.0.5 de la BOEW a été lancée le 15 février 2013** ([v3.0.5 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.5-release-notes))
 * **La version 3.0.4 de la BOEW a été lancée le 24 janvier 2013** ([v3.0.4 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v3.0.4-release-notes))
