@@ -52,8 +52,40 @@
 
 ### Multilingual
 
-* Currently supports 3 languages (English, French and Spanish)
-* Partial support for 29 languages (including right-to-left languages)
+* Currently supports 33 languages (including right-to-left languages)
+ * English
+ * French
+ * Afrikaans
+ * Albanian
+ * Arabic
+ * Armenian
+ * Bulgarian
+ * Chinese
+ * Chinese (Simplified)
+ * Czech
+ * Dutch
+ * Estonian
+ * German
+ * Greek
+ * Hindi
+ * Hungarian
+ * Icelandic
+ * Indonesian
+ * Italian
+ * Japanese
+ * Korean
+ * Latvian
+ * Lithuanian
+ * Polish
+ * Portuguese
+ * Portuguese (Brazilian)
+ * Russian
+ * Slovak
+ * Spanish
+ * Thai
+ * Turkish
+ * Ukranian
+ * Vietnamese
 
 ### Themeable and reusable
 
@@ -146,8 +178,40 @@
 
 ### Multilingue
 
-* Soutien actuellement 3 langues (anglais, français et espagnol)
-* Soutien partiel pour 29 langues (y compris les langues droite-à-gauche)
+* Soutien actuellement 33 langues (y compris les langues droite-à-gauche)
+ * Anglais
+ * Français
+ * Afrikaans
+ * Albanais
+ * Allemand
+ * Arabe
+ * Arménien
+ * Bulgare
+ * Chinois
+ * Chinois (simplifiée)
+ * Coréen
+ * Espagnol
+ * Estonien
+ * Grec
+ * Hindi
+ * Hongrois
+ * Indonésien
+ * Islandais
+ * Italien
+ * Japonais
+ * Letton
+ * Lituanien
+ * Néerlandais
+ * Polonais
+ * Portugais
+ * Portugais (brésilien)
+ * Russe
+ * Slovaque
+ * Tchèque
+ * Thaï
+ * Turc
+ * Ukrainien
+ * Vietnamien
 
 ### Personnalisable et réutilisable
 
