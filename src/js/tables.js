@@ -18,6 +18,8 @@
 		dependscss : ['datatables'],
 		_exec : function(elm) {
 			var opts, overrides;
+			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
+			overrides = {};
 			//Defaults
 			opts = {
 				aaSorting:[[1, 'asc']],
@@ -31,8 +33,6 @@
 				bZebra : false,
 				iDisplayLength: 10
 			};
-			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
-			overrides = {};
 			// Extend the defaults with settings passed through settings.js (wet_boew_tables), class-based overrides and the data attribute
 			$.metadata.setType('attr', 'data-wet-boew');
 			if ( typeof wet_boew_tables !== 'undefined' && wet_boew_tables !== null) {
