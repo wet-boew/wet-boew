@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+<!-- DataAjaxFragmentStart -->
+<li lang="en"><section><h3><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET verkefni</a></h3><div class="mb-sm">
+<div class="span-2">
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/">Helstu verkefni síðu</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/demos/index-eng.html">Vinnu dæmi</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Skjölun</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/downloads">Niðurhöl</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/License-eng.txt">Skilmálar og skilyrði</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET verkefni - Aðalsíða</a></div>
+</div></section></li>
+<li><section><h3><a href="section2/index-eng.html">Kafli 2</a></h3><div class="mb-sm">
+<div class="span-2">
+<ul>
+<li class="top-level"><a href="#">Atriði 2a</a></li>
+<li class="top-level"><a href="#">Atriði 2b</a></li>
+<li class="top-level"><a href="#">Atriði 2c</a></li>
+</ul>
+<section><h4><a href="#">Kafli 2.1</a></h4>
+<ul>
+<li><a href="#">Atriði 2.1.1</a></li>
+<li><a href="#">Atriði 2.1.2</a></li>
+<li><a href="#">Atriði 2.1.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="section2/section22/index-eng.html">Kafli 2.2</a></h4>
+<ul>
+<li><a href="#">Atriði 2.2.1</a></li>
+<li><a href="#">Atriði 2.2.2</a>
+	<ul>
+	<li><a href="#">Atriði 2.2.2.1</a></li>
+	<li><a href="#">Atriði 2.2.2.2</a></li>
+	<li><a href="#">Atriði 2.2.2.3</a></li>
+	</ul>
+</li>
+<li><a href="#">Atriði 2.2.3</a></li>
+<li><a href="#">Atriði 2.2.4</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><section><h3><a href="#">Kafli 3</a></h3><div class="mb-sm">
+<div class="mb-highlight">
+<section><h4><a href="#">Einbeittu</a></h4>
+<ul>
+<li><a href="#">Link 1</a></li>
+<li><a href="#">Link 2</a></li>
+<li><a href="#">Link 3</a></li>
+<li><a href="#">Link 4</a></li>
+</ul>
+<div class="clear"></div>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Kafli 3.1</a></h4>
+<ul>
+<li><a href="#">Atriði 3.1.1</a></li>
+<li><a href="#">Atriði 3.1.2</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Kafli 3.2</a></h4>
+<ul>
+<li><a href="#">Atriði 3.2.1</a></li>
+<li><a href="#">Atriði 3.2.2</a></li>
+<li><a href="#">Atriði 3.2.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Kafli 3.3</a></h4>
+<ul>
+<li><a href="#">Atriði 3.3.1</a></li>
+<li><a href="#">Atriði 3.3.2</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+<div class="mb-main-link"><a href="#">Kafli 3 - Aðalsíða</a></div>
+</div></section></li>
+<li><section><h3><a href="section4/index-eng.html">Kafli 4</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Kafli 4.1</a></h4>
+<ul>
+<li><a href="#">Atriði 4.1.1</a></li>
+<li><a href="#">Atriði 4.1.2</a></li>
+</ul>
+</section>
+<section><h4><a href="#">Kafli 4.2</a></h4>
+<ul>
+<li><a href="#">Atriði 4.2.1</a></li>
+<li><a href="#">Atriði 4.2.2</a></li>
+<li><a href="#">Atriði 4.2.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="section4/section43/index-eng.html">Kafli 4.3</a></h4>
+<ul>
+<li><a href="#">Atriði 4.3.1</a></li>
+<li><a href="#">Atriði 4.3.2</a></li>
+<li><a href="#">Atriði 4.3.3</a></li>
+</ul>
+</section>
+<section><h4><a href="#">Kafli 4.4</a></h4>
+<ul>
+<li><a href="#">Atriði 4.4.1</a></li>
+<li><a href="#">Atriði 4.4.2</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><div><a href="#">Kafli 5</a></div></li>
+<li><section><h3><a href="#">Kafli 6</a></h3><div class="mb-sm">
+<div class="mb-highlight">
+<section><h4><a href="#">Einbeittu</a></h4>
+<ul>
+<li><a href="#">Link 1</a></li>
+<li><a href="#">Link 2</a></li>
+<li><a href="#">Link 3</a></li>
+<li><a href="#">Link 4</a></li>
+</ul>
+<div class="clear"></div>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Kafli 6.1</a></h4>
+<ul>
+<li><a href="#">Atriði 6.1.1</a></li>
+<li><a href="#">Atriði 6.1.2</a></li>
+<li><a href="#">Atriði 6.1.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Kafli 6.2</a></h4>
+<ul>
+<li><a href="#">Atriði 6.2.1</a></li>
+<li><a href="#">Atriði 6.2.2</a></li>
+<li><a href="#">Atriði 6.2.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Kafli 6.3</a></h4>
+<ul>
+<li><a href="#">Atriði 6.3.1</a></li>
+<li><a href="#">Atriði 6.3.2</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Kafli 6.4</a></h4>
+<ul>
+<li><a href="#">Atriði 6.4.1</a></li>
+<li><a href="#">Atriði 6.4.2</a></li>
+<li><a href="#">Atriði 6.4.3</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+<div class="mb-main-link"><a href="#">Kafli 6 - Aðalsíða</a></div>
+</div></section></li>
+<li><section><h3><a href="#">Kafli 7</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">Kafli 7.1</a></h4>
+<ul>
+<li><a href="#">Atriði 7.1.1</a></li>
+<li><a href="#">Atriði 7.1.2</a></li>
+<li><a href="#">Atriði 7.1.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Kafli 7.2</a></h4>
+<ul>
+<li><a href="#">Atriði 7.2.1</a></li>
+<li><a href="#">Atriði 7.2.2</a></li>
+<li><a href="#">Atriði 7.2.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">Kafli 7.3</a></h4>
+<ul>
+<li><a href="#">Atriði 7.3.1</a></li>
+<li><a href="#">Atriði 7.3.2</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<!-- DataAjaxFragmentEnd -->
+</html>
