@@ -20,7 +20,7 @@ cd %wet.maven.folder%
 
 rem Tell Nexus to release the staged artifacts
 echo Releasing staged artifacts...
-rem call mvn org.sonatype.plugins:nexus-staging-maven-plugin:release
+call mvn org.sonatype.plugins:nexus-staging-maven-plugin:release
 IF %ERROR_CODE% EQU 0 (echo Command result: SUCCESS) ELSE (echo Something went wrong while trying to release the artifacts!  Aborting.
 															GOTO :error)
 
