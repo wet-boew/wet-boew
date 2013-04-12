@@ -154,7 +154,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <div class="clear"></div>
 
 <h3>No left menu </h3>
-<p>If a pages has no left menu, there are two grid systems that can be used within the page.  An 8 column is the default and an optional 12 column can be called in at any location on the page by opening a <code>&lt;div class=&quot;grid-12&quot;&gt;</code>.
+<p>If a pages has no left menu, there are two grid systems that can be used within the page.  An 8 column is the default and an optional 12 column can be called in at any location on the page by opening a <code>&lt;div class=&quot;grid-12&quot;&gt;</code>.</p>
 <div class="span-3"> <img src="images/grids-8-12.gif" alt="Comparison of grid 8 and grid 12" width="340" height="180" /> </div>
 <div class="span-3"><p>Example page: <a class="button button-accent" href="grid-base-full-eng.html">No left menu grid options</a></p></div>
 <div class="clear"></div>
@@ -164,16 +164,16 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <p>Most complex sites have a left menu. The left menu takes up a certain number of grid cells, leaving the remaining space for the content area. The default design of this grid system allows for the left menu to be two columns wide while the content area is six. </p>
 <p>The content area, with it's six columns, nicely divides into two and three equal columns. As demonstrated below, a 12 column grid system that has a left menu, cannot divide the content as nicely, as the remaing cells cannot be divided by two, which is a basic design requirement. A 16-column grid system also has problems, as the remaining space cannot be divided into equal thirds. In fact, the only grid system that solved all design requirements was a 24-column grid system, but that seems  overcomplicated. Furthermore, text should not be put in the tinest grid cells, like a <code>span-1</code>,  and should only be used for indenting purposes or to hold an image so having 24 tiny grid cells was potentially going against accessibility requirements. The <abbr title="Web Content Accessibility Guidelines" rel="external">WCAG</abbr> 2.0 requires text to increase up to 200% without breaking the layout and text inside a tiny box cannot effectively do this. Refer to: <a href="http://www.w3.org/WAI/WCAG20/quickref/#qr-visual-audio-contrast-scale" rel="external">WCAG 2.0: Success Criterion 1.4.4</a></p>
 
-<div class="span-2"><img src="images/tick.gif" alt="Correct" class="image-actual margin-bottom-none">
+<div class="span-2"><img src="images/tick.gif" alt="Correct" class="image-actual margin-bottom-none" />
               <p class="background-light"> Both can divide the content area into thirds.</p>
             <img src="images/grids-8-12-span2.gif" width="340" height="180" alt="Comparison of grid 8 and grid 12 with a left menu and the content area divided into thirds" /> </div>
             
-<div class="span-2"><img src="images/tick.gif" alt="Correct" class="image-actual margin-bottom-none">
+<div class="span-2"><img src="images/tick.gif" alt="Correct" class="image-actual margin-bottom-none" />
               <p class="background-light"> Both can create a right menu the same width as the left menu.</p>
               <img src="images/grids-8-12-span2-4.gif" width="340" height="180" alt="Comparison of grid 8 and grid 12 with equal width left and right menus" /> </div>
 
  
-<div class="span-2"><img src="images/x.gif" alt="Incorrect" class="image-actual margin-bottom-none">
+<div class="span-2"><img src="images/x.gif" alt="Incorrect" class="image-actual margin-bottom-none" />
               <p class="background-light"> Only one can divide the content area in half.</p>
               <img src="images/grids-8-12-span3.gif" width="340" height="180" alt="Comparison grid 8 and grid 12 with a left menu and dividing the content area in half (only possible in grid 8)" /> </div>
 <div class="clear"></div>
@@ -1084,7 +1084,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 	<h3>Recap: Grid structure and layout options </h3>
 	<ul>
 	<li>Grids are used to slice up the sections within the content area. They create boxes and/or columns. They are <strong>not needed for basic content</strong> that is intended to fill the <strong>full width</strong> of the content area.</li>
-	<li>When there is no left menu, the grid system offers a default of eight grid columnss &mdash; each row <strong>must</strong> total eight grids.</li>
+	<li>When there is no left menu, the grid system offers a default of eight grid columnss &#8212; each row <strong>must</strong> total eight grids.</li>
 	<li>An optional 12 column grid system can be inserted into the content area.</li>
 	<li>Grid cells float to the left, and you can combine them together in a variety of ways to form a row.</li>
 	<li>There are 32 base layout options in the default grid system. There are hundreds more when a grid 12 is added.</li>
@@ -1140,7 +1140,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 &lt;/div&gt;</pre>
 </details>
 <div class="clear"></div>
-<h4>If you forget to use the <code>row-start</code> and <code>row-end</code> class&hellip;</h4>
+<h4>If you forget to use the <code>row-start</code> and <code>row-end</code> class&#8230;</h4>
 <p>If you allow the first and last child per row to retain their margins, they can't fit into the available space. Therefore, the final cells gets bumped and floats to the next available space below.</p>
 <div class="span-4 align-center background-light">
 	<p class="font-large">Parent cell</p>
@@ -1171,7 +1171,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 &lt;/div&gt;</pre>
 </details>
 <div class="clear"></div>
-<h4>When the parent and the child are the same width&hellip;</h4>
+<h4>When the parent and the child are the same width&#8230;</h4>
 <p>You can have children with the <strong class="color-accent">same width</strong> as the parent cell. If a child cell is as wide as the parent cell, then you do <strong class="font-large">not</strong> need to apply the <code>row-start</code> and <code>row-end</code> classes, as the <abbr title="Cascading Style Sheet">CSS</abbr> automatically removes the margin left and right from the child.</p>
 <div class="span-4 align-center background-light">
 	<p class="font-large">Parent cell</p>
@@ -1211,7 +1211,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <p>By using <code>equalize</code> on the grid parent, its row of grid children automatically assume the height of the tallest child.</p>
 <div class="clear"></div>
 <div class="span-4">
-<h4 class="margin-top-none">Default &mdash; <span class="font-large color-attention">No</span> parent &#47; child relationship, and <span class="font-large color-attention">no</span> <code>equalize</code> <abbr title="Cascading Style Sheet">CSS</abbr></h4>
+<h4 class="margin-top-none">Default &#8212; <span class="font-large color-attention">No</span> parent &#47; child relationship, and <span class="font-large color-attention">no</span> <code>equalize</code> <abbr title="Cascading Style Sheet">CSS</abbr></h4>
 <div class="span-4 margin-bottom-none">
 <div class="span-1 background-light row-start"><p>This is placeholder text. This is placeholder text. </p></div>
 <div class="span-3 background-light row-end">
@@ -1241,7 +1241,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 &lt;/div&gt;
 &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;span-2 background-light&quot;&gt;
-	&lt;p&gt;This is placeholder text.&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;div class=&quot;span-2 background-light&quot;&gt;
+	&lt;p&gt;This is placeholder text.&lt;/p&gt;<br />&lt;/div&gt;<br />&lt;div class=&quot;span-2 background-light&quot;&gt;
     &lt;p&gt;This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</pre>
@@ -1249,7 +1249,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 </div>
 <div class="clear"></div>
 <div class="span-4">
-<h4 class="margin-top-none">Optional &mdash; Parent &#47; child relationship using <code>equalize</code></h4>
+<h4 class="margin-top-none">Optional &#8212; Parent &#47; child relationship using <code>equalize</code></h4>
 <div class="span-4 equalize">
 <div class="span-1 background-light row-start"><p>This is placeholder text. This is placeholder text. </p></div>
 <div class="span-3 background-light row-end">
