@@ -271,7 +271,7 @@
 					if (replace) {
 						$o.empty();
 					}
-					$o.append($(data));
+					$o.append(data);
 				}, 'html');
 			})).always(function () {
 				// Wait for localisation and ajax content to load plugins
