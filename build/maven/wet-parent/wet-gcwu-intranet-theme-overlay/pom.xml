@@ -29,10 +29,6 @@
 								<targetPath>grids</targetPath>
 							</resource>
 							<resource>
-								<directory>${project.parent.basedir}/${dist.theme.gcwu.folder}</directory>
-								<targetPath>theme-gcwu-fegc</targetPath>
-							</resource>
-							<resource>
 								<directory>${project.parent.basedir}/${dist.theme.gcwu.intranet.folder}</directory>
 								<targetPath>theme-gcwu-intranet</targetPath>
 							</resource>
