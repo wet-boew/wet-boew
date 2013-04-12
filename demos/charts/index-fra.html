@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
-<title>Contenu affichable/masquable - Exemples pratiques - Boîte à outils de l'expérience Web&#160;(BOEW)</title>
+<title>Graphiques - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -31,7 +31,6 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <!--<![endif]-->
 
 <!-- CustomCSSStart -->
-
 <!-- CustomCSSEnd -->
 </head>
 
@@ -49,7 +48,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <div id="wet-fullhd-in">
 <ul>
 <li id="wet-fullhd-lang-current">Français</li>
-<li id="wet-fullhd-lang-2"><a href="../details-eng.html" lang="en">English</a></li>
+<li id="wet-fullhd-lang-2"><a href="simple-eng.html" lang="en">English</a></li>
 </ul>
 </div>
 </div></section>
@@ -67,7 +66,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 
 <nav role="navigation">
 <div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/menu-fra.txt">
+<ul class="mb-menu" data-ajax-replace="includes/menu-fra.txt">
 <li><div><a href="http://wet-boew.github.io/wet-boew/index-fra.html" lang="fr">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -82,7 +81,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <ol>
 <li><a href="../../index-fra.html">Accueil</a></li>
 <li><a href="../index-fra.html">Exemples pratiques</a></li>
-<li>Contenu affichable/masquable</li>
+<li>Graphiques</li>
 </ol>
 </div></div>
 </nav>
@@ -92,109 +91,20 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Contenu affichable/masquable</h1>
+<h1 id="wb-cont">Graphiques</h1>
 
 <ul class="button-group">
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Contenu-affichable-masquable" class="button button-info">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Graphiques" class="button button-info">Documentation</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
 </ul>
 
-<p>Les éléments HTML5 «&#160;<code lang="en">details</code>&#160;» et «&#160;<code lang="en">summary</code>&#160;» sont utilisés pour fournir le contenu en arborescence affichable/masquable. Ce composant ajoute le soutien pour ces éléments dans les navigateurs qui n'ont pas déjà la prise en charge native.</p>
-
-<section><h2>Exemples</h2>
-
-<details class="span-8">
-	<summary>Exemple 1 (par défaut)</summary>
-	<p>Le contenu d'exemple qui fournit plus de détails.</p>
-	<table>
-		<caption>Tasses de café bues par chaque député</caption>
-		<thead>
-		<tr>
-			<th scope="col">Nom</th>
-			<th scope="col">Tasses</th>
-			<th scope="col">Type de café</th>
-			<th scope="col">Sucre?</th>
-		</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>T. Sexton</td>
-				<td>10</td>
-				<td>Expresso</td>
-				<td>Non</td>
-			</tr>
-			<tr>
-				<td>J. Dinnen</td>
-				<td>5</td>
-				<td>Déca</td>
-				<td>Oui</td>
-			</tr>
-		</tbody>
-	</table>
-</details>
-<div class="clear"></div>
-<details class="span-4 example2">
-	<summary>Exemple 2</summary>
-	<div>
-		<p>Le contenu d'exemple qui fournit plus de détails.</p>
-		<table>
-			<caption>Tasses de café bues par chaque député</caption>
-			<thead>
-			<tr>
-				<th scope="col">Nom</th>
-				<th scope="col">Tasses</th>
-				<th scope="col">Type de café</th>
-				<th scope="col">Sucre?</th>
-			</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>T. Sexton</td>
-					<td>10</td>
-					<td>Expresso</td>
-					<td>Non</td>
-				</tr>
-				<tr>
-					<td>J. Dinnen</td>
-					<td>5</td>
-					<td>Déca</td>
-					<td>Oui</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</details>
-<details class="span-4 example3">
-	<summary class="background-accent">Exemple 3</summary>
-	<p>Le contenu d'exemple qui fournit plus de détails.</p>
-	<table>
-		<caption>Tasses de café bues par chaque député</caption>
-		<thead>
-		<tr>
-			<th scope="col">Nom</th>
-			<th scope="col">Tasses</th>
-			<th scope="col">Type de café</th>
-			<th scope="col">Sucre?</th>
-		</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>T. Sexton</td>
-				<td>10</td>
-				<td>Expresso</td>
-				<td>Non</td>
-			</tr>
-			<tr>
-				<td>J. Dinnen</td>
-				<td>5</td>
-				<td>Déca</td>
-				<td>Oui</td>
-			</tr>
-		</tbody>
-	</table>
-</details>
-<div class="clear"></div>
-</section>
+<ul>
+<li><a href="simple-fra.html">Exemples simples</a></li>
+<li><a href="complex-fra.html">Exemples complexes</a></li>
+<li><a href="simpleCustomized-fra.html">Exemples personnalisés</a></li>
+<li><a href="pie-fra.html">Diagramme circulaire</a></li>
+<li><a href="labels-fra.html">Étiquettes</a></li>
+</ul>
 
 <dl id="wet-date-mod" role="contentinfo">
 <dt>Date de modification&#160;:</dt><dd><span><time>2013-04-11</time></span></dd>
