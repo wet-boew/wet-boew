@@ -8,7 +8,7 @@
  * @author: Pierre Dubois
  *
  */
-/*global jQuery: false, alert: false*/
+/*global jQuery: false, alert: false, prettyPrint: false*/
 (function ($) {
 	"use strict";
 	$(document).ready(function() {
@@ -107,8 +107,7 @@
 				"HTML5 Specification"], // 13;
 			tableOpenTag = '&lt;table&gt;',
 			tableOpenTagNoEncode = '<table>',
-			tableOpenTagZebra = '&lt;table class=&quot;wet-boew-zebra&quot;&gt;';
-			tableOpenTagZebraNoEncode = '<table class="wet-boew-zebra">',
+			tableOpenTagZebra = '&lt;table class=&quot;wet-boew-zebra&quot;&gt;',
 			errorHandlerAttached = false,
 			fnParserLoaded = function () {
 				_pe.fn.parsertable.onParserError = function(numerr, obj){
@@ -360,7 +359,8 @@
 				//var noErrorList = '<li>No Error Found</li>',
 				var m,
 					colgroupelem,
-					displayTableResult;
+					displayTableResult,
+					currCellId;
 				/*
 				nbErrorFound = 0;
 				
@@ -426,7 +426,7 @@
 								
 								
 								// If there no id, add an uid
-								var currCellId = $(currCell.elem).attr('id');
+								currCellId = $(currCell.elem).attr('id');
 								if (currCellId === undefined || currCellId === '' || resetIds) {
 									// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
 									currCellId = idPrefix + currCell.uid; // Generate a new ID
@@ -470,7 +470,7 @@
 						rowheaders,
 						currrowheader,
 						ongoingRowHeader,
-						currCellId;
+						coldataheader;
 					// Set Id/headers for header cell and data cell in the table.
 					for (i = 0; i < tblparser.row.length; i += 1) {
 						currRow = tblparser.row[i];
@@ -495,21 +495,21 @@
 						
 						if (currRow.header) { 
 							for (j = 0; j < currRow.header.length; j += 1) {
-								var currCellId2 = $(currRow.header[j].elem).attr('id');
-								if (currCellId2 === undefined || currCellId2 === '' || resetIds) {
+								currCellId = $(currRow.header[j].elem).attr('id');
+								if (currCellId === undefined || currCellId === '' || resetIds) {
 									// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
-									currCellId2 = idPrefix + currRow.header[j].uid; // Generate a new ID
-									$(currRow.header[j].elem).attr('id', currCellId2);
+									currCellId = idPrefix + currRow.header[j].uid; // Generate a new ID
+									$(currRow.header[j].elem).attr('id', currCellId);
 								}
-								rowheaders = (rowheaders ? rowheaders + ' ' + currCellId2 : currCellId2);
+								rowheaders = (rowheaders ? rowheaders + ' ' + currCellId : currCellId);
 							}
 						}
 						rowheaders = (currRow.idsheaderset ? currRow.idsheaderset + ' ' + rowheaders : rowheaders);
 						for (j = 0; j < currRow.cell.length; j += 1) {
 							
 							if ((j === 0) || (j > 0 && currRow.cell[j].uid !== currRow.cell[(j - 1)].uid)){
-								var currCell = currRow.cell[j],
-									coldataheader = "";
+								currCell = currRow.cell[j];
+								coldataheader = "";
 								
 								if (currCell.col && !currCell.col.dataheader) {
 									var currCol = currCell.col;
@@ -517,7 +517,7 @@
 										colheadersgroup = "";
 									if (currCol.headerLevel) { 
 										for (m = 0; m < currCol.headerLevel.length; m += 1) {
-											var currCellId = $(currCol.headerLevel[m].elem).attr('id');
+											currCellId = $(currCol.headerLevel[m].elem).attr('id');
 											if (currCellId === undefined || currCellId === '' || resetIds) {
 												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
 												currCellId = idPrefix + currCol.headerLevel[m].uid; // Generate a new ID
@@ -528,7 +528,7 @@
 									}
 									if (currCol.header) { 
 										for (m = 0; m < currCol.header.length; m += 1) {
-											var currCellId = $(currCol.header[m].elem).attr('id');
+											currCellId = $(currCol.header[m].elem).attr('id');
 											if (currCellId === undefined || currCellId === '' || resetIds) {
 												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
 												currCellId = idPrefix + currCol.header[m].uid; // Generate a new ID
@@ -576,7 +576,7 @@
 									
 									if (currCell.addcolheaders) {
 										for (m = 0; m < currCell.addcolheaders.length; m += 1) {
-											var currCellId = $(currCell.addcolheaders[m].elem).attr('id');
+											currCellId = $(currCell.addcolheaders[m].elem).attr('id');
 											if (currCellId === undefined || currCellId === '' || resetIds) {
 												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
 												currCellId = idPrefix + currCell.addcolheaders[m].uid; // Generate a new ID
@@ -588,7 +588,7 @@
 									
 									if (currCell.addrowheaders) {
 										for (m = 0; m < currCell.addrowheaders.length; m += 1) {
-											var currCellId = $(currCell.addrowheaders[m].elem).attr('id');
+											currCellId = $(currCell.addrowheaders[m].elem).attr('id');
 											if (currCellId === undefined || currCellId === '' || resetIds) {
 												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
 												currCellId = idPrefix + currCell.addrowheaders[m].uid; // Generate a new ID
@@ -609,7 +609,7 @@
 									
 									if (currCell.describe) {
 										for (m = 0; m < currCell.describe.length; m += 1) {
-											var currCellId = $(currCell.describe[m].elem).attr('id');
+											currCellId = $(currCell.describe[m].elem).attr('id');
 											if (currCellId === undefined || currCellId === '' || resetIds) {
 												// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
 												currCellId = idPrefix + currCell.describe[m].uid; // Generate a new ID
@@ -617,7 +617,7 @@
 											}
 											descHeaders = (descHeaders ? descHeaders + ' ' + currCellId : currCellId);
 											if (currCell.type === 5 && !$(currCell.describe[m].elem).attr('aria-describedby')) {
-												var currCellId = $(currCell.elem).attr('id');
+												currCellId = $(currCell.elem).attr('id');
 												if (currCellId === undefined || currCellId === '' || resetIds) {
 													// currCellId = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
 													currCellId = idPrefix + currCell.uid; // Generate a new ID
@@ -683,7 +683,8 @@
 					// tfoot question: do I force it as exclusive column summaries as the HTML5 spec define it if it used as table footnote ??
 					
 					// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
-					var previousColgroup = false;
+					var previousColgroup = false,
+						column;
 					for (i = 0; i < tblparser.colgroup.length; i += 1) {
 					if (tblparser.colgroup[i].elem === undefined) {
 						// Create a colgroup element
@@ -691,7 +692,7 @@
 						
 						// Create the column
 						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
-							var column = $('<col />');
+							column = $('<col />');
 							$(colgroupelem).append(column);
 							tblparser.colgroup[i].col[j].elem = $(column).get(0);
 							$(column).data().tblparser = tblparser.colgroup[i].col[j];
@@ -719,7 +720,7 @@
 						// Create the column
 						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
 							if (tblparser.colgroup[i].col[j].elem === undefined) {
-								var column = $('<col />');
+								column = $('<col />');
 								$(colgroupelem).append(column);
 								tblparser.colgroup[i].col[j].elem = $(column).get(0);
 								$(column).data().tblparser = tblparser.colgroup[i].col[j];
@@ -752,9 +753,7 @@
 			var genericMessage = '<li>Use the above text field to analyse your HTML Complex Table Source Code</li>',
 				parsingInProgress = '<li>Please wait, you will see the result in a moment.</li>',
 				tpAccessibility, // value: ["auto", "scope", "headers"]
-				elemTableExist,
-				optimizeAccessibilitySet,
-				tableOpenTagZebraNoEncode;
+				elemTableExist;
 			
 			nbErrorFound = 0;
 			
