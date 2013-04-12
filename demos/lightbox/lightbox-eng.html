@@ -140,6 +140,31 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <div class="wet-boew-prettify all-pre">
 <section>
 	<h2 id="examples">Examples</h2>
+
+	<div class="lb-inline">
+		<div id="inline_content">
+			<ol>
+			<li>ordered list (<code>ol</code>) first level default appearance</li>
+			<li>ordered list (<code>ol</code>) first level default appearance
+				<ol>
+				<li>ordered list (<code>ol</code>) second level default appearance</li>
+				<li>ordered list (<code>ol</code>) second level default appearance
+					<ol>
+					<li>ordered list (<code>ol</code>) third level default appearance</li>
+					<li>ordered list (<code>ol</code>) third level default appearance</li>
+					</ol>
+				</li>
+				</ol>
+			</li>
+			</ol>
+			<p><a href="#">Link default appearance</a></p>
+		</div>
+	</div>
+	<details>
+		<summary>Long description of image 2</summary>
+		<p id="image2-desc">Example long description of image 2 (referenced by <code>aria-describedby</code>).</p>
+	</details>
+
 	<section>
 		<h3 id="examples1">Single items</h3>
 		<div class="span-4">
@@ -149,38 +174,19 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 					<ul>
 						<li>
 							<a class="lb-item" href="images/1_b.jpg" title="Image 1">
-								<img src="images/1_s.jpg" alt="Image 1" class="image-actual">
+								<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
 							</a>
 						</li>
 						<li>
 							<a class="lb-item" href="images/2_b.jpg" title="Image 2">
-								<img src="images/2_s.jpg" alt="Image 2" class="image-actual">
+								<img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" />
 							</a>
 						</li>
 						<li class="box">
 							<a class="lb-item" title="Example of AJAX content" href="ajax/ajax-eng.html">AJAX content</a>
 						</li>
 						<li class="box">
-							<a class="lb-item" title="Example of inline content" href="#inline_content1">Inline content</a>
-							<div class="lb-inline">
-								<div id="inline_content1">
-									<ol>
-									<li>ordered list (<code>ol</code>) first level default appearance</li>
-									<li>ordered list (<code>ol</code>) first level default appearance
-										<ol>
-										<li>ordered list (<code>ol</code>) second level default appearance</li>
-										<li>ordered list (<code>ol</code>) second level default appearance
-											<ol>
-											<li>ordered list (<code>ol</code>) third level default appearance</li>
-											<li>ordered list (<code>ol</code>) third level default appearance</li>
-											</ol>
-										</li>
-										</ol>
-									</li>
-									</ol>
-									<p><a href="#">Link default appearance</a></p>
-								</div>
-							</div>
+							<a class="lb-item" title="Example of inline content" href="#inline_content">Inline content</a>
 						</li>
 					</ul>
 				</div>
@@ -193,16 +199,20 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul&gt;
     &lt;li&gt;
-      &lt;a class="lb-item" href="images/image_source.jpg" title="Alt text for the image"&gt;
-        &lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
+      &lt;a class="lb-item" href="images/1_b.jpg" title="Image 1"&gt;
+        &lt;img src="images/1_s.jpg" alt="Image 1" class="image-actual" /&gt;
       &lt;/a&gt;
     &lt;/li&gt;
-    ...
+    &lt;li&gt;
+      &lt;a class="lb-item" href="images/2_b.jpg" title="Image 2"&gt;
+        &lt;img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
     &lt;li&gt;
       &lt;a class="lb-item" title="Example of AJAX content" href="ajax/ajax-eng.html"&gt;AJAX content&lt;/a&gt;
     &lt;/li&gt;
     &lt;li&gt;
-      &lt;a class="lb-item" title="Example of inline content" href="#inline_content1"&gt;Inline content&lt;/a&gt;
+      &lt;a class="lb-item" title="Example of inline content" href="#inline_content"&gt;Inline content&lt;/a&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
@@ -220,38 +230,19 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 					<ul class="lb-gallery">
 						<li>
 							<a class="lb-item-gal" href="images/1_b.jpg" title="Image 1">
-								<img src="images/1_s.jpg" alt="Image 1" class="image-actual">
+								<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
 							</a>
 						</li>
 						<li>
 							<a class="lb-item-gal" href="images/2_b.jpg" title="Image 2">
-								<img src="images/2_s.jpg" alt="Image 2" class="image-actual">
+								<img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" />
 							</a>
 						</li>
 						<li class="box">
 							<a class="lb-item-gal" title="Example of AJAX content" href="ajax/ajax-eng.html">AJAX content</a>
 						</li>
 						<li class="box">
-							<a class="lb-item-gal" title="Example of inline content" href="#inline_content2">Inline content</a>
-							<div class="lb-inline">
-								<div id="inline_content2">
-									<ol>
-									<li>ordered list (<code>ol</code>) first level default appearance</li>
-									<li>ordered list (<code>ol</code>) first level default appearance
-										<ol>
-										<li>ordered list (<code>ol</code>) second level default appearance</li>
-										<li>ordered list (<code>ol</code>) second level default appearance
-											<ol>
-											<li>ordered list (<code>ol</code>) third level default appearance</li>
-											<li>ordered list (<code>ol</code>) third level default appearance</li>
-											</ol>
-										</li>
-										</ol>
-									</li>
-									</ol>
-									<p><a href="#">Link default appearance</a></p>
-								</div>
-							</div>
+							<a class="lb-item-gal" title="Example of inline content" href="#inline_content">Inline content</a>
 						</li>
 					</ul>
 					<div class="clear"></div>
@@ -264,18 +255,22 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul class="lb-gallery"&gt;
     &lt;li&gt;
-	  &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image"&gt;
-		&lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
+	  &lt;a class="lb-item-gal" href="images/1_b.jpg" title="Image 1"&gt;
+		&lt;img src="images/1_s.jpg" alt="Image 1" class="image-actual" /&gt;
 	  &lt;/a&gt;
     &lt;/li&gt;
-    ...
+    &lt;li&gt;
+	  &lt;a class="lb-item-gal" href="images/2_b.jpg" title="Image 2"&gt;
+		&lt;img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
     &lt;li&gt;
 	  &lt;a class="lb-item-gal" title="Example of AJAX content" href="ajax/ajax-eng.html"&gt;AJAX content&lt;/a&gt;
     &lt;/li&gt;
     &lt;li&gt;
-	  &lt;a class="lb-item-gal" title="Example of inline content" href="#inline_content2"&gt;Inline content&lt;/a&gt;
+	  &lt;a class="lb-item-gal" title="Example of inline content" href="#inline_content"&gt;Inline content&lt;/a&gt;
     &lt;/li&gt;
-  &lt;/ul&gt;
+  &lt;/ul&gt;	
 &lt;/div&gt;</code></pre>
 			</section>
 		</div>
@@ -291,38 +286,19 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 					<ul class="lb-hidden-gallery">
 						<li>
 							<a class="lb-item-gal" href="images/1_b.jpg" title="Image 1">
-								<img src="images/1_s.jpg" alt="Image 1" class="image-actual">
+								<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
 							</a>
 						</li>
 						<li>
 							<a class="lb-item-gal" href="images/2_b.jpg" title="Image 2">
-								<img src="images/2_s.jpg" alt="Image 2" class="image-actual">
+								<img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" />
 							</a>
 						</li>
 						<li class="box">
 							<a class="lb-item-gal" title="Example of AJAX content" href="ajax/ajax-eng.html">AJAX content</a>
 						</li>
 						<li class="box">
-							<a class="lb-item-gal" title="Example of inline content" href="#inline_content3">Inline content</a>
-							<div class="lb-inline">
-								<div id="inline_content3">
-									<ol>
-									<li>ordered list (<code>ol</code>) first level default appearance</li>
-									<li>ordered list (<code>ol</code>) first level default appearance
-										<ol>
-										<li>ordered list (<code>ol</code>) second level default appearance</li>
-										<li>ordered list (<code>ol</code>) second level default appearance
-											<ol>
-											<li>ordered list (<code>ol</code>) third level default appearance</li>
-											<li>ordered list (<code>ol</code>) third level default appearance</li>
-											</ol>
-										</li>
-										</ol>
-									</li>
-									</ol>
-									<p><a href="#">Link default appearance</a></p>
-								</div>
-							</div>
+							<a class="lb-item-gal" title="Example of inline content" href="#inline_content">Inline content</a>
 						</li>
 					</ul>
 				</div>
@@ -335,24 +311,28 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul class="lb-hidden-gallery"&gt;
     &lt;li&gt;
-      &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image"&gt;
-        &lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
+      &lt;a class="lb-item-gal" href="images/1_b.jpg" title="Image 1"&gt;
+        &lt;img src="images/1_s.jpg" alt="Image 1" class="image-actual" /&gt;
       &lt;/a&gt;
     &lt;/li&gt;
-    ...
+    &lt;li&gt;
+      &lt;a class="lb-item-gal" href="images/2_b.jpg" title="Image 1"&gt;
+        &lt;img src="images/2_s.jpg" alt="Image 1" aria-describedby="image2-desc" class="image-actual" /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
     &lt;li&gt;
       &lt;a class="lb-item-gal" title="Example of AJAX content" href="ajax/ajax-eng.html"&gt;AJAX content&lt;/a&gt;
     &lt;/li&gt;
     &lt;li&gt;
-      &lt;a class="lb-item-gal" title="Example of inline content" href="#inline_content2"&gt;Inline content&lt;/a&gt;
+      &lt;a class="lb-item-gal" title="Example of inline content" href="#inline_content"&gt;Inline content&lt;/a&gt;
     &lt;/li&gt;
-  &lt;/ul&gt;
+  &lt;/ul&gt;	
 &lt;/div&gt;</code></pre>
 			</section>
 		</div>
 	</section>
 	<div class="clear"></div>
-
+	
 	<section>
 		<h3 id="examples4">Alternative image title (v3.1 Beta)</h3>
 		<div class="span-4">
@@ -362,21 +342,21 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 					<ul class="lb-gallery">
 						<li>
 							<a class="lb-item-gal" href="images/1_b.jpg" title="Image 1" data-title="image_1_b">
-								<img src="images/1_s.jpg" alt="Image 1" class="image-actual">
+								<img src="images/1_s.jpg" alt="Image 1" class="image-actual" />
 							</a>
 						</li>
 						<li>
 							<a class="lb-item-gal" href="images/2_b.jpg" title="Image 2" data-title="image_2_b">
-								<img src="images/2_s.jpg" alt="Image 2" class="image-actual">
+								<img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" />
 							</a>
 						</li>
 					</ul>
 					<div class="clear"></div>
 				</div>
-
+				
 				<p id="image_1_b"><strong>Image 1:</strong> Lorem ipsum consectetur <em>adipiscing elit</em>.</p>
 				<p id="image_2_b"><strong>Image 2:</strong> Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis. </p>
-
+				
 			</section>
 		</div>
 		<div class="span-4">
@@ -385,24 +365,28 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul class="lb-gallery"&gt;
     &lt;li&gt;
-	  &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image" data-title="element_id"&gt;
-		&lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
+	  &lt;a class="lb-item-gal" href="images/1_b.jpg" title="Image 1" data-title="image_1_b"&gt;
+		&lt;img src="images/1_s.jpg" alt="Image 1" class="image-actual" /&gt;
 	  &lt;/a&gt;
     &lt;/li&gt;
-    ...
-  &lt;/ul&gt;
+    &lt;li&gt;
+	  &lt;a class="lb-item-gal" href="images/2_b.jpg" title="Image 2" data-title="image_2_b"&gt;
+		&lt;img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;	
 &lt;/div&gt;
 &lt;p id="element_id"&gt;Title of the image&lt;/p&gt;</code></pre>
 			</section>
 		</div>
 	</section>
-	<div class="clear"></div>
-
+	<div class="clear"></div>		
+	
 </section>
 </div>
 
 <dl id="wet-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2013-04-10</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
