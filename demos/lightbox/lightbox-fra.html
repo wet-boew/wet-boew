@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
 <title>Lightbox - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
@@ -83,7 +83,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <nav role="navigation">
 <div id="gcwu-psnb"><h2>Menu<span> du site</span></h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-fra.txt">
-<li><div><a href="http://wet-boew.github.com/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
 <li><div><a href="#">Section 4</a></div></li>
@@ -145,6 +145,30 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div class="wet-boew-prettify all-pre">
 <section>
 	<h2 id="examples">Exemples</h2>
+	<div class="lb-inline">
+		<div id="inline_content">
+			<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+				<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+				<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+					<ol>
+					<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+					</ol>
+				</li>
+				</ol>
+			</li>
+			</ol>
+			<p><a href="#">Link default appearance</a></p>
+		</div>
+	</div>
+	<details>
+		<summary>Description longue d'image 2</summary>
+		<p id="image2-desc">Exemple d'une description longue d'image 2 (référencé par <code lang="en">aria-describedby</code>).</p>
+	</details>
+
 	<section>
 		<h3 id="examples1">Images seules</h3>
 		<div class="span-4">
@@ -159,33 +183,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 						</li>
 						<li>
 							<a class="lb-item" href="images/2_b.jpg" title="Image 2">
-								<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
+								<img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" />
 							</a>
 						</li>
 						<li class="box">
 							<a class="lb-item" title="Exemple de contenu AJAX" href="ajax/ajax-fra.html">Contenu AJAX</a>
 						</li>
 						<li class="box">
-							<a class="lb-item" title="Exemple de contenu incorporé" href="#inline_content1">Contenu incorporé</a>
-							<div class="lb-inline">
-								<div id="inline_content1">
-									<ol>
-									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
-									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
-										<ol>
-										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
-										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
-											<ol>
-											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-											</ol>
-										</li>
-										</ol>
-									</li>
-									</ol>
-									<p><a href="#">Lien - apparence par défaut</a></p>
-								</div>
-							</div>
+							<a class="lb-item" title="Exemple de contenu incorporé" href="#inline_content">Contenu incorporé</a>
 						</li>
 					</ul>
 				</div>
@@ -198,16 +203,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul&gt;
     &lt;li&gt;
-      &lt;a class="lb-item" href="images/image_source.jpg" title="Texte alternatif pour l'image"&gt;
-        &lt;img src="images/image_source.jpg" alt="Texte alternatif pour l'image" class="image-actual" /&gt;
+      &lt;a class="lb-item" href="images/1_b.jpg" title="Image 1"&gt;
+        &lt;img src="images/1_s.jpg" alt="Image 1" class="image-actual" /&gt;
       &lt;/a&gt;
     &lt;/li&gt;
-    ...	
+    &lt;li&gt;
+      &lt;a class="lb-item" href="images/2_b.jpg" title="Image 2"&gt;
+        &lt;img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
     &lt;li&gt;
       &lt;a class="lb-itemquot; title="Exemple de contenu AJAX" href="ajax/ajax-fra.html"&gt;Contenu AJAX&lt;/a&gt;
     &lt;/li&gt;
     &lt;li&gt;
-      &lt;a class="lb-item" title="Exemple de contenu incorporé" href="#inline_content1"&gt;Contenu incorporé&lt;/a&gt;
+      &lt;a class="lb-item" title="Exemple de contenu incorporé" href="#inline_content"&gt;Contenu incorporé&lt;/a&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
@@ -230,33 +239,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 						</li>
 						<li>
 							<a class="lb-item-gal" href="images/2_b.jpg" title="Image 2">
-								<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
+								<img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" />
 							</a>
 						</li>
 						<li class="box">
 							<a class="lb-item-gal" title="Exemple de contenu AJAX" href="ajax/ajax-fra.html">Contenu AJAX</a>
 						</li>
 						<li class="box">
-							<a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content2">Contenu incorporé</a>
-							<div class="lb-inline">
-								<div id="inline_content2">
-									<ol>
-									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
-									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
-										<ol>
-										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
-										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
-											<ol>
-											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-											</ol>
-										</li>
-										</ol>
-									</li>
-									</ol>
-									<p><a href="#">Lien - apparence par défaut</a></p>
-								</div>
-							</div>
+							<a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content">Contenu incorporé</a>
 						</li>
 					</ul>
 				</div>
@@ -269,16 +259,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul class="lb-gallery"&gt;
 	&lt;li&gt;
-	  &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Texte alternatif pour l'image"&gt;
-		&lt;img src="images/image_source.jpg" alt="Texte alternatif pour l'image" class="image-actual" /&gt;
+	  &lt;a class="lb-item-gal" href="images/1_b.jpg" title="Image 1"&gt;
+		&lt;img src="images/1_s.jpg" alt="Image 1" class="image-actual" /&gt;
 	  &lt;/a&gt;
 	&lt;/li&gt;
-	...
+	&lt;li&gt;
+	  &lt;a class="lb-item-gal" href="images/2_b.jpg" title="Image 2"&gt;
+		&lt;img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" /&gt;
+	  &lt;/a&gt;
+	&lt;/li&gt;
 	&lt;li&gt;
 	  &lt;a class="lb-item-gal" title="Exemple de contenu AJAX" href="ajax/ajax-fra.html"&gt;Contenu AJAX&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-	  &lt;a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content2"&gt;Contenu incorporé&lt;/a&gt;
+	  &lt;a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content"&gt;Contenu incorporé&lt;/a&gt;
 	&lt;/li&gt;
   &lt;/ul&gt;	
 &lt;/div&gt;</code></pre>
@@ -301,33 +295,14 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 						</li>
 						<li>
 							<a class="lb-item-gal" href="images/2_b.jpg" title="Image 2">
-								<img src="images/2_s.jpg" alt="Image 2" class="image-actual" />
+								<img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" />
 							</a>
 						</li>
 						<li class="box">
 							<a class="lb-item-gal" title="Exemple de contenu AJAX" href="ajax/ajax-fra.html">Contenu AJAX</a>
 						</li>
 						<li class="box">
-							<a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content3">Contenu incorporé</a>
-							<div class="lb-inline">
-								<div id="inline_content3">
-									<ol>
-									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
-									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
-										<ol>
-										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
-										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
-											<ol>
-											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-											<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-											</ol>
-										</li>
-										</ol>
-									</li>
-									</ol>
-									<p><a href="#">Lien - apparence par défaut</a></p>
-								</div>
-							</div>
+							<a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content">Contenu incorporé</a>
 						</li>
 					</ul>
 				</div>
@@ -340,16 +315,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 				<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul class="lb-hidden-gallery"&gt;
 	&lt;li&gt;
-	  &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Texte alternatif pour l'image"&gt;
-		&lt;img src="images/image_source.jpg" alt="Texte alternatif pour l'image" class="image-actual" /&gt;
+	  &lt;a class="lb-item-gal" href="images/1_b.jpg" title="Image 1"&gt;
+		&lt;img src="images/1_s.jpg" alt="Image 1" class="image-actual" /&gt;
 	  &lt;/a&gt;
 	&lt;/li&gt;
-	...
+	&lt;li&gt;
+	  &lt;a class="lb-item-gal" href="images/2_b.jpg" title="Image 2"&gt;
+		&lt;img src="images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" class="image-actual" /&gt;
+	  &lt;/a&gt;
+	&lt;/li&gt;
 	&lt;li&gt;
 	  &lt;a class="lb-item-gal" title="Exemple de contenu AJAX" href="ajax/ajax-fra.html"&gt;Contenu AJAX&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-	  &lt;a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content3"&gt;Contenu incorporé&lt;/a&gt;
+	  &lt;a class="lb-item-gal" title="Exemple de contenu incorporé" href="#inline_content"&gt;Contenu incorporé&lt;/a&gt;
 	&lt;/li&gt;
   &lt;/ul&gt;	
 &lt;/div&gt;</code></pre>
@@ -361,7 +340,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date de modification&#160;:</dt><dd><span><time>2012-09-17</time></span></dd>
+<dt>Date de modification&#160;:</dt><dd><span><time>2013-03-31</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

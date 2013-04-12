@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /*
 * Multimedia player
@@ -116,7 +116,7 @@
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
 				if (media_type === 'video') {
-					media.before($('<button class="wb-mm-overlay" type="button"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
+					media.before($('<button class="wb-mm-overlay" type="button" data-role="none"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
 				}
 				media.after(_pe.fn.multimedia._get_ui(media_id, media_type === 'video' ? true : false));
 				if (_pe.html.hasClass('polyfill-progress')) {
@@ -222,7 +222,7 @@
 						o = $w.find('.wb-mm-overlay');
 						o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
 						o.show();
-						
+
 						// Prevent loading from appearing
 						clearTimeout(this.loading);
 						this.loading = false;
@@ -267,7 +267,7 @@
 					case 'captionsloadfailed':
 						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%closed-caption-error') + '</p>');
 						break;
-					// Determine when the loading icon should be shown. 
+					// Determine when the loading icon should be shown.
 					case 'waiting':
 						//Prevents the loading icon to show up when waiting for less than half a second
 						if (this.getPaused() === false && !this.loading) {
@@ -286,17 +286,17 @@
 							o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
 							o.hide();
 						}
-						break;		
+						break;
 					// Fallback for browsers that don't implement the waiting/canplay events
 					case 'progress':
 						// Waiting detected, display the loading icon
 						if (this.getWaiting() === true) {
 							if (this.getBuffering() === false) {
 								this.setBuffering(true);
-								evtmgr.trigger('waiting');								
-							}								
+								evtmgr.trigger('waiting');
+							}
 						// Waiting has ended, but icon is still visible - remove it.
-						} else if (this.getBuffering() === true) {							
+						} else if (this.getBuffering() === true) {
 							this.setBuffering(false);
 							evtmgr.trigger('canplay');
 						}
@@ -342,7 +342,8 @@
 					type: 'button',
 					'class': 'rewind',
 					'aria-controls': id,
-					'title': _pe.dic.get('%rewind')
+					'title': _pe.dic.get('%rewind'),
+					'data-role': 'none'
 				}).append(_pe.fn.multimedia.get_image('rewind', _pe.dic.get('%rewind')))
 			);
 
@@ -351,7 +352,8 @@
 					type: 'button',
 					'class': 'playpause',
 					'aria-controls': id,
-					'title': _pe.dic.get('%play')
+					'title': _pe.dic.get('%play'),
+					'data-role': 'none'
 				}).append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')))
 			);
 
@@ -360,7 +362,8 @@
 					type: 'button',
 					'class': 'fastforward',
 					'aria-controls': id,
-					'title': _pe.dic.get('%fast-forward')
+					'title': _pe.dic.get('%fast-forward'),
+					'data-role': 'none'
 				}).append(_pe.fn.multimedia.get_image('ff', _pe.dic.get('%fast-forward')))
 			);
 
@@ -370,7 +373,8 @@
 						type: 'button',
 						'class': 'cc',
 						'aria-controls': id,
-						'title': _pe.dic.get('%closed-caption', 'enable')
+						'title': _pe.dic.get('%closed-caption', 'enable'),
+						'data-role': 'none'
 					}).append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')))
 				);
 			} else {
@@ -382,7 +386,8 @@
 					type: 'button',
 					'class': 'mute',
 					'aria-controls': id,
-					'title': _pe.dic.get('%mute', 'enable')
+					'title': _pe.dic.get('%mute', 'enable'),
+					'data-role': 'none'
 				}).append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')))
 			);
 
@@ -448,8 +453,8 @@
 
 			setPreviousTime: function (t) {
 				this.object.previousTime = t;
-			},			
-			
+			},
+
 			getCaptionsVisible: function () {
 				return $(this).find('.wb-mm-captionsarea').is(':visible');
 			},
@@ -478,18 +483,18 @@
 			setVolume : function (v) {
 				if (typeof this.object.volume !== 'function') {this.object.volume = v; } else {this.object.setVolume(v); }
 			},
-			
+
 			getWaiting : function () {
 				return this.getPaused() === false && this.getCurrentTime() === this.getPreviousTime();
 			},
-			
+
 			getBuffering : function () {
 				return (typeof this.object.buffering !== 'undefined' ? this.object.buffering : false);
 			},
 
 			setBuffering : function (b) {
 				this.object.buffering = b;
-			}			
+			}
 		},
 
 		_format_time : function (current) {

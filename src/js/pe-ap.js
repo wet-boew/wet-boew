@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -53,6 +53,7 @@
 		mobiletest: '',
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
+		scrollTopInit: 0,
 
 		/**
 		* @namespace pe.dic
@@ -118,7 +119,15 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = pe.html, hlinks, hlinks_same, $this, target, test, test_elms, init_on_mobileinit = false;
+			var $html = pe.html,
+				hlinks,
+				hlinks_same,
+				$this,
+				target,
+				validTarget = false,
+				test,
+				test_elms,
+				init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
@@ -176,6 +185,30 @@
 					$html.addClass('bb-pre7');
 				}
 
+				// If the page URL includes a hash upon page load, then focus on and scroll to the target
+				// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
+				// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point				
+				setTimeout(function pollScrollTop() {
+					// Poll for a change in scrollTop (polling done to handle quirks in Chrome)
+					var scrollTop = pe.window.scrollTop();
+					if (scrollTop !== 0 || pe.scrollTopInit === -1) {
+						pe.scrollTopInit = scrollTop;
+					} else {
+						setTimeout(pollScrollTop, 10);
+					}
+				}, 7);
+				if (pe.urlhash.length !== 0) {
+					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
+				}
+				pe.document.one('silentscroll', function() {
+					if (validTarget || pe.scrollTopInit !== 0) {
+						$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
+					}
+					pe.scrollTopInit = -1;
+				});
+
 				pe.document.on('mobileinit', function () {
 					$.extend($.mobile, {
 						ajaxEnabled: false,
@@ -188,25 +221,18 @@
 				});
 
 				pe.document.on('pageinit', function () {
+					// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
+					// TODO: Find a more elegant way to address this in jQuery Mobile
+					pe.bodydiv.removeAttr('tabindex');
+					
 					// On click, puts focus on and scrolls to the target of same page links
 					hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
 						$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
 						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if ($this.length > 0) {
+						if ($this.length !== 0) {
 							$.mobile.silentScroll(pe.focus($this).offset().top);
 						}
 					});
-
-					// If the page URL includes a hash upon page load, then focus on and scroll to the target
-					if (pe.urlhash.length !== 0) {
-						target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-						target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if (target.length > 0 && target.attr('data-role') !== 'page') {
-							setTimeout(function () {
-								$.mobile.silentScroll(pe.focus(target).offset().top);
-							}, 200);
-						}
-					}
 				});
 				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
 				pe.add._load([pe.add.liblocation + 'jquerymobile/jquery.mobile.min.js']);
@@ -245,7 +271,7 @@
 					if (replace) {
 						$o.empty();
 					}
-					$o.append($(data));
+					$o.append(data);
 				}, 'html');
 			})).always(function () {
 				// Wait for localisation and ajax content to load plugins
@@ -964,7 +990,10 @@
 				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
 					link = menulinks[menulinkslen];
-					linkhref = !hrefBug ? link.getAttribute('href') : $(link).attr('href');
+					linkhref = link.getAttribute('href');
+					if (hrefBug && linkhref !== window.location.href) {
+						linkhref = linkhref.replace(window.location.href, '');
+					}
 					if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
 						linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
 						linkquery = link.search;
@@ -989,7 +1018,9 @@
 					for (bcindex = 0; bcindex !== bclinkslen; bcindex += 1) {
 						link = bclinks[bcindex];
 						linkhref = link.getAttribute('href');
-						linkhref = !hrefBug ? link.getAttribute('href') : $(link).attr('href');
+						if (hrefBug && linkhref !== window.location.href) {
+							linkhref = linkhref.replace(window.location.href, '');
+						}
 						if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
 							bclink.push(link);
 							bclinkurl.push(link.hostname + link.pathname.replace(/^([^\/])/, '/$1'));

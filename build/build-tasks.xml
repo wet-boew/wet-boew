@@ -4,7 +4,7 @@
 	<property file="${tasks.basedir}/build-tasks.properties"/>
 	
 	<!-- Version and build time-->
-	<property name="wet-boew-build.version" value="v3.0.6-development"/>
+	<property name="wet-boew-build.version" value="v3.0.7-development"/>
 	<tstamp>
 		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
 	</tstamp>
@@ -112,7 +112,7 @@
 	</target>
 	
 	<target name="-jshint">
-		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false" jshintSrc="${lib.dir}/jshint.js">
+		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
 			<report type="xml" destfile="${src.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
@@ -254,7 +254,7 @@
 	</target>
 	
 	<target name="-rename-to-min">
-		<move todir="${dist.dir}">
+		<move todir="${dist.dir}" encoding="UTF-8">
 			<fileset dir="${dist.dir}">
 				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
@@ -263,7 +263,7 @@
 			</fileset>
 			<globmapper from="*.js" to="*-min.js"/>
 		</move>	
-		<move todir="${dist.dir}">
+		<move todir="${dist.dir}" encoding="UTF-8">
 			<fileset dir="${dist.dir}">
 				<include name="**/*.css" />
 				<exclude name="**/*-min.css" />
@@ -298,7 +298,7 @@
 	</target>
 	
 	<target name="-update-headers" extensionOf="finalize">
-		<replace dir="${dist.dir}">
+		<replace dir="${dist.dir}" encoding="UTF-8">
 			<include name="**/*.js"/>
 			<include name="**/*.css"/>
 			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version} Build: ${wet-boew-build.starttime}"/>

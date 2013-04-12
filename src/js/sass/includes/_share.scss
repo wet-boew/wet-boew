@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 .ui-mobile {
 	div {
@@ -93,17 +93,14 @@ div {
 			padding: 0 0 5px;
 		}
 		a {
+			background: none !important;
 			width: 100%;
 			text-decoration: none;
 			cursor: pointer;
 			font-size: 1em;
 			color: #036;
 			margin: 0;
-			padding: 0;
-			&[href^="mailto: "] {
-				background: 0 !important;
-				padding-left: 0 !important;
-			}
+			padding: 0 !important;
 		}
 		span {
 			@include inline-block;
