@@ -184,8 +184,10 @@ input {
 		a {
 			&, &.ui-link {
 				display: block;
-				@extend %wet-default-screen-color-333;
 				text-decoration: none;
+				&:link, &:visited {
+					@extend %wet-default-screen-color-333;
+				}
 				@include pseudo-focus {
 					@extend %wet-default-screen-color-333;
 					text-decoration: underline;
