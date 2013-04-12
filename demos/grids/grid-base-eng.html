@@ -154,32 +154,32 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <div class="clear"></div>
 
 <h3>No left menu </h3>
-<p>If a pages has no left menu, there are two grid systems that can be used within the page.  An 8 column is the default and an optional 12 column can be called in at any location on the page by opening a <code>&lt;div class="grid-12"&gt;</code>.</p>
-<div class="span-3"> <img src="images/grids-8-12.gif" alt="Comparison of grid 8 and grid 12" width="340" height="180"> </div>
+<p>If a pages has no left menu, there are two grid systems that can be used within the page.  An 8 column is the default and an optional 12 column can be called in at any location on the page by opening a <code>&lt;div class=&quot;grid-12&quot;&gt;</code>.
+<div class="span-3"> <img src="images/grids-8-12.gif" alt="Comparison of grid 8 and grid 12" width="340" height="180" /> </div>
 <div class="span-3"><p>Example page: <a class="button button-accent" href="grid-base-full-eng.html">No left menu grid options</a></p></div>
 <div class="clear"></div>
 <h3>With a left menu</h3>
-<p> There are two grid systems that can be used within a page that has a left menu.  An <strong>8-column system is the default</strong>, however because the left menu occupies the first 2 columns, the content area can occupy only the remaining six columns. An optional 12-column is available at any point on the page by simply opening a <code>&lt;div class="grid-12"&gt;</code> within the content area.</p>
+<p> There are two grid systems that can be used within a page that has a left menu.  An <strong>8-column system is the default</strong>, however because the left menu occupies the first 2 columns, the content area can occupy only the remaining six columns. An optional 12-column is available at any point on the page by simply opening a <code>&lt;div class=&quot;grid-12&quot;&gt;</code> within the content area.</p>
 <h3><strong>Why is 8 columns the default?</strong></h3>
 <p>Most complex sites have a left menu. The left menu takes up a certain number of grid cells, leaving the remaining space for the content area. The default design of this grid system allows for the left menu to be two columns wide while the content area is six. </p>
 <p>The content area, with it's six columns, nicely divides into two and three equal columns. As demonstrated below, a 12 column grid system that has a left menu, cannot divide the content as nicely, as the remaing cells cannot be divided by two, which is a basic design requirement. A 16-column grid system also has problems, as the remaining space cannot be divided into equal thirds. In fact, the only grid system that solved all design requirements was a 24-column grid system, but that seems  overcomplicated. Furthermore, text should not be put in the tinest grid cells, like a <code>span-1</code>,  and should only be used for indenting purposes or to hold an image so having 24 tiny grid cells was potentially going against accessibility requirements. The <abbr title="Web Content Accessibility Guidelines" rel="external">WCAG</abbr> 2.0 requires text to increase up to 200% without breaking the layout and text inside a tiny box cannot effectively do this. Refer to: <a href="http://www.w3.org/WAI/WCAG20/quickref/#qr-visual-audio-contrast-scale" rel="external">WCAG 2.0: Success Criterion 1.4.4</a></p>
 
 <div class="span-2"><img src="images/tick.gif" alt="Correct" class="image-actual margin-bottom-none">
               <p class="background-light"> Both can divide the content area into thirds.</p>
-            <img src="images/grids-8-12-span2.gif" width="340" height="180" alt="Comparison of grid 8 and grid 12 with a left menu and the content area divided into thirds"> </div>
-
+            <img src="images/grids-8-12-span2.gif" width="340" height="180" alt="Comparison of grid 8 and grid 12 with a left menu and the content area divided into thirds" /> </div>
+            
 <div class="span-2"><img src="images/tick.gif" alt="Correct" class="image-actual margin-bottom-none">
               <p class="background-light"> Both can create a right menu the same width as the left menu.</p>
-              <img src="images/grids-8-12-span2-4.gif" width="340" height="180" alt="Comparison of grid 8 and grid 12 with equal width left and right menus"> </div>
+              <img src="images/grids-8-12-span2-4.gif" width="340" height="180" alt="Comparison of grid 8 and grid 12 with equal width left and right menus" /> </div>
 
-
+ 
 <div class="span-2"><img src="images/x.gif" alt="Incorrect" class="image-actual margin-bottom-none">
               <p class="background-light"> Only one can divide the content area in half.</p>
-              <img src="images/grids-8-12-span3.gif" width="340" height="180" alt="Comparison grid 8 and grid 12 with a left menu and dividing the content area in half (only possible in grid 8)"> </div>
+              <img src="images/grids-8-12-span3.gif" width="340" height="180" alt="Comparison grid 8 and grid 12 with a left menu and dividing the content area in half (only possible in grid 8)" /> </div>
 <div class="clear"></div>
 <h3>12 column option </h3><div class="span-2 float-right">
               <p class="background-light">A grid-12 living inside of the the default 8 column grid design.</p>
-              <img src="images/grids-8-12-grid12.gif" width="340" height="180" alt="Comparison of grid 8 and grid 12 nested in a grid 8"> </div>
+              <img src="images/grids-8-12-grid12.gif" width="340" height="180" alt="Comparison of grid 8 and grid 12 nested in a grid 8" /> </div>
 <p>For complex or alternate layouts, you can call in a <code>grid-12</code> <strong class="color-attention">within the content area</strong>. Although the default grid system will likely meet the majority of all needs, this alternate grid version is available and can be easily activated.</p>
 
 <div class="clear"></div>
@@ -250,18 +250,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <div class="clear"></div>
 
 <h4 id="six">Six grid columns</h4>
-<div class="span-2 module float-right">
-	<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
-	<ul>
-	<li><code>span-1</code></li>
-	<li><code>span-2</code></li>
-	<li><code>span-3</code></li>
-	<li><code>span-4</code></li>
-	<li><code>span-5</code></li>
-	<li><code>span-6</code></li>
-	</ul>
-</div>
-<div class="span-4 margin-bottom-none">
+<div class="span-6 margin-bottom-none">
 	<div class="span-1 row-start background-medium"><p><code>span-1</code></p></div>
 	<div class="clear"></div>
 	<div class="span-2 row-start background-medium"><p><code>span-2</code></p></div>
@@ -270,85 +259,39 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 	<div class="clear"></div>
 	<div class="span-4 row-start background-medium"><p><code>span-4</code></p></div>
 	<div class="clear"> </div>
-    </div>
-	<div class="span-5 background-medium"><p><code>span-5</code></p></div>
+	<div class="span-5 row-start background-medium"><p><code>span-5</code></p></div>
 	<div class="clear"></div>
-	<div class="span-6  background-medium"><p><code>span-6</code></p></div>
+	<div class="span-6 row-start background-medium"><p><code>span-6</code></p></div>
 	<div class="clear"></div>
-
+</div>
 
 
 
 <h4 id="twelve">Twelve grid columns</h4>
 <div class="grid-12">
-
-		<div class="span-1 background-light"> <p class="indent-none margin-right-none"><code>span-1</code></p>
-
-		</div>
-		<div class="clear"></div>
-		<div class="span-2 background-light"><p><code>span-2</code></p>
-
-		</div>
-		<div class="clear"></div>
-		<div class="span-3 background-light"><p><code>span-3</code></p>
-
-		</div>
-		<div class="clear"></div>
-        <div class="span-3 module float-right">
-
-		<p><strong>Introducing <abbr title="Cascading Style Sheet">CSS</abbr> classes:</strong></p>
-		<ul>
-        	<li><code>grid-12</code></li>
-            <li><code>span-7</code></li>
-            <li><code>span-8</code></li>
-			<li><code>span-9</code></li>
-			<li><code>span-10</code></li>
-			<li><code>span-11</code></li>
-			<li><code>span-12</code></li>
-		</ul>
-	</div>
-        <div class="span-9 margin-bottom-none">
-		<div class="span-4 background-light row-start"><p><code>span-4</code></p>
-
-		</div>
-		<div class="clear"></div>
-		<div class="span-5 background-light row-start"><p><code>span-5</code></p>
-
-		</div>
-		<div class="clear"></div>
-		<div class="span-6 background-light row-start"><p><code>span-6</code></p>
-
-		</div>
-		<div class="clear"></div>
-
-
-
-
-
-
-
-    <div class="span-7 background-medium row-start"><p><code>span-7</code></p>
-<div class="clear"></div>
-	</div><div class="span-8  background-medium row-start"><p><code>span-8</code></p>
-
-		</div></div>
-		<div class="clear"></div>
-		<div class="span-9  background-medium"><p><code>span-9</code></p>
-
-		</div>
-
-		<div class="clear"></div>
-		<div class="span-10 background-medium"><p><code>span-10</code></p>
-
-	</div>
+	<div class="span-1 background-light"> <p class="indent-none margin-right-none"><code>span-1</code></p></div>
 	<div class="clear"></div>
-	<div class="span-11 background-medium"><p><code>span-11</code></p>
-
-	</div>
+	<div class="span-2 background-light"><p><code>span-2</code></p>	</div>
 	<div class="clear"></div>
-	<div class="span-12 background-medium"><p><code>span-12</code></p>
-
-	</div>
+	<div class="span-3 background-light"><p><code>span-3</code></p></div>
+	<div class="clear"></div>
+	<div class="span-4 background-light"><p><code>span-4</code></p></div>	
+	<div class="clear"></div>
+	<div class="span-5 background-light"><p><code>span-5</code></p></div>
+	<div class="clear"></div>
+	<div class="span-6 background-light"><p><code>span-6</code></p></div>
+	<div class="clear"></div>
+	<div class="span-7 background-medium"><p><code>span-7</code></p></div>
+	<div class="clear"></div>
+	<div class="span-8 background-medium"><p><code>span-8</code></p></div>
+	<div class="clear"></div>
+	<div class="span-9 background-medium"><p><code>span-9</code></p></div>
+	<div class="clear"></div>
+	<div class="span-10 background-medium"><p><code>span-10</code></p></div>
+	<div class="clear"></div>
+	<div class="span-11 background-medium"><p><code>span-11</code></p></div>
+	<div class="clear"></div>
+	<div class="span-12 background-medium"><p><code>span-12</code></p></div>
 </div>
 <div class="clear"></div>
 
@@ -356,7 +299,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 
 
 <h3 id="rows">Grid rows</h3>
-<p>To maintain the integrity of each row, you must place a <code>&lt;div class="clear"&gt;&lt;/div&gt;</code> at the end of each row. This is because grid cells have a <code>float:left</code> property. The <code>clear</code> prevents the next row of grid cells from trying to float up and fill any gaps in the previous row.</p>
+<p>To maintain the integrity of each row, you must place a <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code> at the end of each row. This is because grid cells have a <code>float:left</code> property. The <code>clear</code> prevents the next row of grid cells from trying to float up and fill any gaps in the previous row.</p>
 <div class="span-4">
 	<div class="background-light">
 		<div class="span-2 background-medium align-center row-start">
@@ -374,25 +317,25 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 		</div>
 		<div class="clear"></div>
 	</div>
-
+  
 </div>
 <details class="span-2">
 	<summary>View code</summary>
 	<pre>
-&lt;div class="span-2"&gt;
+&lt;div class=&quot;span-2&quot;&gt;
     &lt;p&gt;A&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="span-2"&gt;
+&lt;div class=&quot;span-2&quot;&gt;
     &lt;p&gt;B&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="clear"&gt;&lt;/div&gt;
-&lt;div class="span-2"&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-2&quot;&gt;
     &lt;p&gt;C&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="span-2"&gt;
+&lt;div class=&quot;span-2&quot;&gt;
     &lt;p&gt;D&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="clear"&gt;&lt;/div&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;	
 </pre>
 </details>
 <div class="clear"></div>
@@ -420,22 +363,22 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <details class="span-2  margin-top-medium">
 <summary>View code</summary>
 	<pre>
-&lt;div class="span-2"&gt;
+&lt;div class=&quot;span-2&quot;&gt;
     &lt;p&gt;A&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="clear"&gt;&lt;/div&gt;
-&lt;div class="span-2"&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-2&quot;&gt;
     &lt;p&gt;B&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="clear"&gt;&lt;/div&gt;
-&lt;div class="span-2"&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-2&quot;&gt;
     &lt;p&gt;C&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="clear"&gt;&lt;/div&gt;
-&lt;div class="span-2"&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-2&quot;&gt;
     &lt;p&gt;D&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;	
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
 	</pre>
 </details>
 <div class="clear"></div>
@@ -452,17 +395,17 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 	<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/1200_8_10_10.html" rel="external">Default grid system dimensions: <strong>1280x720+</strong> (external link)</a></li>
 	</ul>
 	</div>
-
+	
 <div class="border-left">
 	<div class="span-3">
 	<h4 class="background-light">12 column grid system</h4>
-	<p>When the columns are the full width of the wireframe: <img src="images/grid12-full.gif" width="340" height="28" alt="Grid 12"></p>
+	<p>When the columns are the full width of the wireframe: <img src="images/grid12-full.gif" width="340" height="28" alt="Grid 12" /></p>
 	<ul>
 		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/768_12_10_10.html" rel="external">Optional grid-12 dimension in a one column layout: <strong>800x600</strong> (external link)</a></li>
 		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/960_12_10_10.html" rel="external">Optional grid-12 dimensions in a one column layout: <strong>1024x768</strong> (external link)</a></li>
 		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/1200_12_10_10.html" rel="external">Optional grid-12 dimensions in a one column layout: <strong>1280x720+</strong> (external link)</a></li>
 		</ul>
-	<p>When the columns are sharing the same horizontal space as a left menu and are only inside the content are of a two column template: <img src="images/grid12-leftmenu.gif" width="340" height="57" alt="Grid 12 next to a left menu"></p>
+	<p>When the columns are sharing the same horizontal space as a left menu and are only inside the content are of a two column template: <img src="images/grid12-leftmenu.gif" width="340" height="57" alt="Grid 12 next to a left menu" /></p>
 	<ul>
 		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/576_12_10_10.html" rel="external">Optional grid-12 dimension in a two column layout: <strong>800x600</strong> (external link)</a></li>
 		<li><a href="http://www.gridsystemgenerator.com/download/gs01/uncompressed/720_12_10_10.html" rel="external">Optional grid-12 dimension in a two column layout: <strong>1024x768</strong> (external link)</a></li>
@@ -478,7 +421,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <h3 id="layout" class="margin-bottom-medium">Grid layout</h3>
 <p>There are 32 base layout options, ranging from a single full width (<code>span-6</code>) to a six column layout (six <code>span-1</code>'s).  Below are the layout options: </p>
 
-
+       
 
           <div class="span-6 margin-top-large margin-bottom-small">
 
@@ -503,13 +446,12 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 
             <div class="clear"></div>
 
-
+         
 
           <div class="span-6 margin-bottom-small">
-
            <h3 id="twoc" class="margin-top-large">Two columns</h3>
-
           </div>
+		  <div class="clear"></div>
 
           <div class="span-5 background-light  align-center">
 
@@ -521,11 +463,11 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 
           <div class="clear"></div>
 
+ 
 
+          
 
-
-
-
+               
 
             <details class="span-4">
 <summary>View code</summary>
@@ -536,7 +478,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
   &lt;p&gt;Text here&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="clear"&gt;&lt;/div&gt;</pre></details>
-
+        
 
           <div class="clear"></div> <div class="span-4 background-light align-center">
 
@@ -1069,33 +1011,35 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
           <div class="clear"></div>
 
 <h3 id="sevenc">Seven to twelve columns</h3>
-<p>For complex or alternate layouts, you can call in a grid 12 within the content area. Although the default grid system will likely meet the majority of your needs, this alternate grid version is available and can be easily activated. The grid 12 can be called in anywhere on the page by opening a <code>&lt;div&#160;class="grid-12"&gt;</code> container:</p>
+<p>For complex or alternate layouts, you can call in a grid 12 within the content area. Although the default grid system will likely meet the majority of your needs, this alternate grid version is available and can be easily activated. The grid 12 can be called in anywhere on the page by opening a <code>&lt;div&#160;class=&quot;grid-12&quot;&gt;</code> container:</p>
 
-<div class="span-12 grid-12 background-light">
-	<div class="span-6 background-medium align-center row-start">
-		<p><code>span-6</code></p>
-	</div>
-	<div class="span-6 background-medium align-center row-end">
-		<p><code>span-6</code></p>
-	</div>
-	<div class="clear"></div>
+<div class="grid-12">
+<div class="span-12 background-light">
+    <div class="span-6 background-medium align-center row-start">
+        <p><code>span-6</code></p>
+    </div>
+    <div class="span-6 background-medium align-center row-end">
+        <p><code>span-6</code></p>
+    </div>
+    <div class="clear"></div>
 </div>
-
+</div>
+	
 <details class="span-6">
 	<summary>View code</summary>
-<pre>&lt;div class="grid-12"&gt;
-   &lt;div class="span-6"&gt;
+<pre>&lt;div class=&quot;grid-12&quot;&gt;	 
+   &lt;div class=&quot;span-6&quot;&gt;
       &lt;p&gt;Text here&lt;/p&gt;
    &lt;/div&gt;
-   &lt;div class="span-6"&gt;
+   &lt;div class=&quot;span-6&quot;&gt;
       &lt;p&gt;Text here&lt;/p&gt;
    &lt;/div&gt;
-   &lt;div class="clear"&gt;&lt;/div&gt;
+   &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;</pre>
 </details>
 <div class="clear"></div>
 
-<p>The width of the grid cells are smaller within the <code>&lt;div&#160;class="grid-12"&gt;</code> container. A <code>&lt;div&#160;class="span-1"&gt;</code> in the grid 12 is much smaller than in the default grid system. This resizing happens automatically when cells are inside the <code>&lt;div&#160;class="grid-12"&gt;</code> container.</p>
+<p>The width of the grid cells are smaller within the <code>&lt;div&#160;class=&quot;grid-12&quot;&gt;</code> container. A <code>&lt;div&#160;class=&quot;span-1&quot;&gt;</code> in the grid 12 is much smaller than in the default grid system. This resizing happens automatically when cells are inside the <code>&lt;div&#160;class=&quot;grid-12&quot;&gt;</code> container.</p>
 <div class="grid-12">
 	<div class="span-12 background-light align-center"><p><code>span-12</code></p></div>
 	<div class="clear"></div>
@@ -1140,13 +1084,13 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 	<h3>Recap: Grid structure and layout options </h3>
 	<ul>
 	<li>Grids are used to slice up the sections within the content area. They create boxes and/or columns. They are <strong>not needed for basic content</strong> that is intended to fill the <strong>full width</strong> of the content area.</li>
-	<li>When there is no left menu, the grid system offers a default of eight grid columnss — each row <strong>must</strong> total eight grids.</li>
+	<li>When there is no left menu, the grid system offers a default of eight grid columnss &mdash; each row <strong>must</strong> total eight grids.</li>
 	<li>An optional 12 column grid system can be inserted into the content area.</li>
 	<li>Grid cells float to the left, and you can combine them together in a variety of ways to form a row.</li>
 	<li>There are 32 base layout options in the default grid system. There are hundreds more when a grid 12 is added.</li>
 	<li>A single grid cell has a <code>margin-left</code> and <code>margin-right</code> of 10px. This is known as the gutter.</li>
 	<li>A single grid cell has a <code>margin-top</code> of 0px and a <code>margin-bottom</code> of 20px. This can be increased or decreased by adding the <a href="grid-proximity-eng.html">margin proximity <abbr title="Cascading Style Sheet">CSS</abbr></a>.</li>
-	<li>You need to add <code>&lt;div class="clear"&gt;&lt;/div&gt;</code> at the end of each row to ensure new rows appear properly.</li>
+	<li>You need to add <code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code> at the end of each row to ensure new rows appear properly.</li>
 	</ul>
 </div>
 <div class="clear"></div>
@@ -1182,21 +1126,21 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <details class="span-2">
 <summary>View code</summary>
 <pre>
-&lt;div class="span-4 align-center background-light"&gt;
-	&lt;p class="font-large"&gt;Parent cell&lt;/p&gt;
-    &lt;div class="span-1 row-start background-dark"&gt;
+&lt;div class=&quot;span-4 align-center background-light&quot;&gt;
+	&lt;p class=&quot;font-large&quot;&gt;Parent cell&lt;/p&gt;
+    &lt;div class=&quot;span-1 row-start background-dark&quot;&gt;
     	&lt;p&gt;row-start child&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class="span-2 background-accent"&gt;
+    &lt;div class=&quot;span-2 background-accent&quot;&gt;
     	&lt;p&gt;child&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class="span-1 row-end background-dark"&gt;
+    &lt;div class=&quot;span-1 row-end background-dark&quot;&gt;
     	&lt;p&gt;row-end child&lt;/p&gt;
     &lt;/div&gt;
 &lt;/div&gt;</pre>
 </details>
 <div class="clear"></div>
-<h4>If you forget to use the <code>row-start</code> and <code>row-end</code> class…</h4>
+<h4>If you forget to use the <code>row-start</code> and <code>row-end</code> class&hellip;</h4>
 <p>If you allow the first and last child per row to retain their margins, they can't fit into the available space. Therefore, the final cells gets bumped and floats to the next available space below.</p>
 <div class="span-4 align-center background-light">
 	<p class="font-large">Parent cell</p>
@@ -1213,21 +1157,21 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <details class="span-2">
 <summary>View code</summary>
 <pre>
-&lt;div class="span-4 align-center background-light"&gt;
-	&lt;p class="font-large"&gt;Parent cell&lt;/p&gt;
-    &lt;div class="span-1 background-dark"&gt;
+&lt;div class=&quot;span-4 align-center background-light&quot;&gt;
+	&lt;p class=&quot;font-large&quot;&gt;Parent cell&lt;/p&gt;
+    &lt;div class=&quot;span-1 background-dark&quot;&gt;
     	&lt;p&gt;child&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class="span-2 background-accent"&gt;
+    &lt;div class=&quot;span-2 background-accent&quot;&gt;
     	&lt;p&gt;child&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class="span-1 background-dark"&gt;
+    &lt;div class=&quot;span-1 background-dark&quot;&gt;
     	&lt;p&gt;child&lt;/p&gt;
     &lt;/div&gt;
 &lt;/div&gt;</pre>
 </details>
 <div class="clear"></div>
-<h4>When the parent and the child are the same width…</h4>
+<h4>When the parent and the child are the same width&hellip;</h4>
 <p>You can have children with the <strong class="color-accent">same width</strong> as the parent cell. If a child cell is as wide as the parent cell, then you do <strong class="font-large">not</strong> need to apply the <code>row-start</code> and <code>row-end</code> classes, as the <abbr title="Cascading Style Sheet">CSS</abbr> automatically removes the margin left and right from the child.</p>
 <div class="span-4 align-center background-light">
 	<p class="font-large">Parent cell</p>
@@ -1244,15 +1188,15 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <details class="span-2">
 <summary>View code</summary>
 <pre>
-&lt;div class="span-4 align-center background-light"&gt;
-	&lt;p class="font-large"&gt;Parent cell&lt;/p&gt;
-    &lt;div class="span-4 background-dark"&gt;
+&lt;div class=&quot;span-4 align-center background-light&quot;&gt;
+	&lt;p class=&quot;font-large&quot;&gt;Parent cell&lt;/p&gt;
+    &lt;div class=&quot;span-4 background-dark&quot;&gt;
     	&lt;p&gt;child&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class="span-4 background-accent"&gt;
+    &lt;div class=&quot;span-4 background-accent&quot;&gt;
     	&lt;p&gt;child&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class="span-4 background-dark"&gt;
+    &lt;div class=&quot;span-4 background-dark&quot;&gt;
     	&lt;p&gt;child&lt;/p&gt;
     &lt;/div&gt;
 &lt;/div&gt;</pre>
@@ -1262,12 +1206,12 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 
 
 <h3 id="equal">Equal height columns</h3>
-<p>Historically, you used tables for layout, and it was easy to create columns of equal height. In every row, the table data cells always assumed the height of the tallest cell in that row. <abbr title="Cascading Style Sheet">CSS</abbr> grid cells create similar rows of content, but because they are not associated with each other, they do not apply borders and background colour fills in the same way. Without JavaScript, there is no way for the browser to know what the tallest grid cell per row cell is. Therefore, a <abbr title="Cascading Style Sheet">CSS</abbr> / JavaScript solution is necessary to achieve this same effect.</p>
-<div class="span-2 float-right margin-bottom-medium"><img src="images/equalHeights.gif" alt="Equal height diagram" width="224" height="62"></div>
+<p>Historically, you used tables for layout, and it was easy to create columns of equal height. In every row, the table data cells always assumed the height of the tallest cell in that row. <abbr title="Cascading Style Sheet">CSS</abbr> grid cells create similar rows of content, but because they are not associated with each other, they do not apply borders and background colour fills in the same way. Without JavaScript, there is no way for the browser to know what the tallest grid cell per row cell is. Therefore, a <abbr title="Cascading Style Sheet">CSS</abbr> &#47; JavaScript solution is necessary to achieve this same effect.</p>
+<div class="span-2 float-right margin-bottom-medium"><img src="images/equalHeights.gif" alt="Equal height diagram" width="224" height="62" /></div>
 <p>By using <code>equalize</code> on the grid parent, its row of grid children automatically assume the height of the tallest child.</p>
 <div class="clear"></div>
 <div class="span-4">
-<h4 class="margin-top-none">Default — <span class="font-large color-attention">No</span> parent / child relationship, and <span class="font-large color-attention">no</span> <code>equalize</code> <abbr title="Cascading Style Sheet">CSS</abbr></h4>
+<h4 class="margin-top-none">Default &mdash; <span class="font-large color-attention">No</span> parent &#47; child relationship, and <span class="font-large color-attention">no</span> <code>equalize</code> <abbr title="Cascading Style Sheet">CSS</abbr></h4>
 <div class="span-4 margin-bottom-none">
 <div class="span-1 background-light row-start"><p>This is placeholder text. This is placeholder text. </p></div>
 <div class="span-3 background-light row-end">
@@ -1289,23 +1233,23 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <details>
 <summary>View code</summary>
 <pre>
-&lt;div class="span-1 background-light"&gt;
+&lt;div class=&quot;span-1 background-light&quot;&gt;
 	&lt;p&gt;This is placeholder text. This is placeholder text. &lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="span-3 background-light"&gt;
+&lt;div class=&quot;span-3 background-light&quot;&gt;
 	&lt;p&gt;This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="clear"&gt;&lt;/div&gt;
-&lt;div class="span-2 background-light"&gt;
-	&lt;p&gt;This is placeholder text.&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;div class="span-2 background-light"&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-2 background-light&quot;&gt;
+	&lt;p&gt;This is placeholder text.&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;div class=&quot;span-2 background-light&quot;&gt;
     &lt;p&gt;This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="clear"&gt;&lt;/div&gt;</pre>
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</pre>
 </details>
 </div>
 <div class="clear"></div>
 <div class="span-4">
-<h4 class="margin-top-none">Optional — Parent / child relationship using <code>equalize</code></h4>
+<h4 class="margin-top-none">Optional &mdash; Parent &#47; child relationship using <code>equalize</code></h4>
 <div class="span-4 equalize">
 <div class="span-1 background-light row-start"><p>This is placeholder text. This is placeholder text. </p></div>
 <div class="span-3 background-light row-end">
@@ -1328,24 +1272,24 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <details>
 <summary>View code</summary>
 <pre>
-&lt;div class="span-4 equalize"&gt;
-    &lt;div class="span-1 background-light row-start"&gt;
+&lt;div class=&quot;span-4 equalize&quot;&gt;
+    &lt;div class=&quot;span-1 background-light row-start&quot;&gt;
         &lt;p&gt;This is placeholder text. This is placeholder text. &lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class="span-3 background-light row-end"&gt;
+    &lt;div class=&quot;span-3 background-light row-end&quot;&gt;
         &lt;p&gt;This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.&lt;/p&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="clear"&gt;&lt;/div&gt;
-&lt;div class="span-4 equalize"&gt;
-    &lt;div class="span-2 background-light row-start"&gt;
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;span-4 equalize&quot;&gt;
+    &lt;div class=&quot;span-2 background-light row-start&quot;&gt;
         &lt;p&gt;This is placeholder text.&lt;/p&gt;
     &lt;/div&gt;
-    &lt;div class="span-2 background-light row-end"&gt;
+    &lt;div class=&quot;span-2 background-light row-end&quot;&gt;
         &lt;p&gt;This is placeholder text. This is placeholder text. This is placeholder text. This is placeholder text.&lt;/p&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="clear"&gt;&lt;/div&gt;</pre>
+&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</pre>
 </details>
 </div>
 <div class="clear"></div>

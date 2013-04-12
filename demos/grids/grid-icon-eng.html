@@ -107,10 +107,10 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <h2 id="overview">Overview</h2>
 <p>The Fugue icon set was created by <a href="http://p.yusukekamiyamane.com/" rel="external">Yusuke Kamiyamane</a>.  Fugue has over 3,400 icons, however only commonly used icons have  been incorporated into WET.</p>
 <p>An icon is attached to an empty <code>span</code>: </p>
-<pre>&lt;span class="wb-icon-alarm"&gt;&lt;/span&gt;</pre>
+<pre>&lt;span class=&quot;wb-icon-alarm&quot;&gt;&lt;/span&gt;</pre>
 
 <p>Since the  icons are CSS background images, they cannot have an <code>alt</code> attribute. Therefore, the icon must be accompanied by actual text to ensure that there is no loss of information for the visually impaired user. For example: </p>
-<pre>&lt;p&gt;&lt;span class="wb-icon-calendar"&gt;&lt;/span&gt;&lt;a href="#"&gt;View the events calendar&lt;/a&gt;&lt;/p&gt;</pre>
+<pre>&lt;p&gt;&lt;span class=&quot;wb-icon-calendar&quot;&gt;&lt;/span&gt;&lt;a href=&quot;#&quot;&gt;View the events calendar&lt;/a&gt;&lt;/p&gt;</pre>
 <h2 id="icons">Icon options</h2>
 <h3>Removing icons</h3>
 
@@ -140,6 +140,12 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 		 <td><a href="mailto:" class="wb-icon-none">mailto: link</a></td>
 		 <td><a href="mailto:" class="button">mailto: link</a></td>
 		 <td><a href="mailto:" class="button"><span class="wb-icon-mail"></span>mailto: link</a></td>
+      </tr>
+	  <tr>
+         <td><a href="#" rel="external">rel="external" link</a></td>
+		 <td><a href="#" rel="external" class="wb-icon-none">rel="external" link</a></td>
+		 <td><a href="#" rel="external" class="button">rel="external" link</a></td>
+		 <td><a href="#" rel="external" class="button">rel="external" link <span class="wb-icon-external"></span></a></td>
       </tr>
 	</tbody>
 </table>
