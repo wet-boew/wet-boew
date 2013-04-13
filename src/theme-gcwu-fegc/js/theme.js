@@ -144,6 +144,8 @@
 				header,
 				wmms,
 				sessionSettings,
+				sessionSetting,
+				signInOut,
 				session;
 
 			// Content pages only
@@ -224,9 +226,11 @@
 				if (session !== null) {
 					sessionSettings = session.getElementsByClassName('settings');
 					for (i = 0, len = sessionSettings.length; i !== len; i += 1) {
-						settings_popup += '<li>' + sessionSettings[i].innerHTML + '</li>';
+						sessionSetting = sessionSettings[i].getElementsByTagName('a')[0];
+						settings_popup += '<li><a href="' + sessionSetting.getAttribute('href') + '">' + sessionSetting.innerHTML + '</a></li>';
 					}
-					settings_popup += '<li>' + session.getElementsByClassName('session')[0].innerHTML + '</li>';
+					signInOut = session.getElementsByClassName('session')[0].getElementsByTagName('a')[0];
+					settings_popup += '<li><a href="' + signInOut.getAttribute('href') + '">' + signInOut.innerHTML + '</a></li>';
 				}
 				if (lang_links.length !== 0) {
 					settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
