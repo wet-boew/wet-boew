@@ -99,40 +99,43 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
 </ul>
 
-<section>
+<p>For video, the multimedia player leverages the native HTML5 video tag and relies on Flash as a fallback mechanism when the HTML5 video tag is not implemented. The MPEG 4 format (H264 codec) is the minimum requirement for video because the Flash fallback relies on it and H264 is the standard video format on many mobile devices. An optional but highly recommended Webm (VP8 codec) should be added as well to allow some browsers such as Firefox that do not include native support for H264 to leverage the native HTML5 performance gains.</p>
+<p>For <a href="#audio-only">audio only</a>, the multimedia player leverages the native HTML5 audio tag and relies on Flash as a fallback mechanism when the HTML5 audio tag is not implemented.</p>
+<p>For both video and audio-only, the multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
 
-	<p>The new version of the multimedia player leverages native HTML5 video and relies on Flash as a fallback mechanism when the HTML5 video tag is not implemented. The MPEG 4 format (H264 codec) is the minimum requirement for the player because the Flash fallback relies on it and H264 is the standard video format on many mobile devices. An optional but highly recommended Webm (VP8 codec) should be added as well to allow some browsers such as Firefox that do not include native support for H264 to leverage the HTML5 native performance gains. The multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
-	<p>The first two following examples use native HTML5 video on most modern browser such as Firefox 6+, Google Chrome 3+ and IE9. The last example works natively in some browsers but relies on the Flash fallback for Firefox. The Flash fallback is use for IE 7 and 8 as well as older versions of Firefox.</p>
-
-    <div class="wet-boew-multimedia span-4">
-	<h2>MPEG4 (H264 + AAC) and WebM(VP8) source and HTML captions</h2>
+<section>		
+	<h2>Examples</h2>
+	<p>The first two video examples and the audio only example use native HTML5 video or audio on most modern browsers including Firefox 6+, Google Chrome 3+ and IE9. The third video example works natively in some browsers but relies on the Flash fallback for Firefox. For all examples, the Flash fallback is used for IE 7 and 8 as well as older versions of Firefox.</p>
+    <section><div class="wet-boew-multimedia span-4">
+	<h3>MPEG4 (H264 + AAC) and WebM(VP8) source and HTML captions</h3>
 	<video width="480" height="270" poster="http://31591.vws.magma.ca/sct-tbs/wet-boew/thumbnail.png" title="Video Example">
-	    <source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-eng.webm" type="video/webm"></source>
-	    <source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-eng.mp4" type="video/mp4"></source>
-	    <track kind="captions" data-type="text/html" src="mediaplayer-transcript_captions-eng.html"></track>
+		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-eng.webm" type="video/webm" />
+		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-eng.mp4" type="video/mp4" />
+		<track kind="captions" data-type="text/html" src="mediaplayer-transcript_captions-eng.html" />
 	</video>
 	<p><a href="mediaplayer-transcript_captions-eng.html">Transcript</a></p>
-    </div>
+    </div></section>
 
-    <div class="wet-boew-multimedia span-4">
-	<h2>MPEG4 (H264 + AAC) and WebM(VP8) sources with TTML captions</h2>
+    <section><div class="wet-boew-multimedia span-4">
+	<h3>MPEG4 (H264 + AAC) and WebM(VP8) sources with TTML captions</h3>
 	<video width="480" height="270" poster="http://31591.vws.magma.ca/sct-tbs/wet-boew/thumbnail.png" title="Video Example">
-		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-2-eng.webm" type="video/webm"></source>
-		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-2-eng.mp4" type="video/mp4"></source>
-	    <track kind="captions" data-type="application/ttml+xml" src="captions-eng.xml"></track>
+		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-2-eng.webm" type="video/webm" />
+		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-2-eng.mp4" type="video/mp4" />
+		<track kind="captions" data-type="application/ttml+xml" src="captions-eng.xml" />
 	</video>
 	<p><a href="mediaplayer-transcript_captions-eng.html">Transcript</a></p>
-    </div><div class="clear"></div>
+    </div></section>
+	<div class="clear"></div>
 
-    <div class="wet-boew-multimedia span-4">
-	<h2>MPEG4 (H264 + AAC) source with inline HTML captions</h2>
+    <section><div class="wet-boew-multimedia span-4">
+	<h3>MPEG4 (H264 + AAC) source with inline HTML captions</h3>
 	<p>This example illustrates the use of an inline transcript to provide captions. This example can also demonstrate the fallback mechanism in Web browsers that don't support HTML5 videos.</p>
 	<video width="480" height="270" poster="http://31591.vws.magma.ca/sct-tbs/wet-boew/thumbnail.png" title="Video Example">
-	    <source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-3-eng.mp4" type="video/mp4"></source>
-	   <track kind="captions" data-type="text/html" src="#inline-captions"></track>
+		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-3-eng.mp4" type="video/mp4" />
+		<track kind="captions" data-type="text/html" src="#inline-captions" />
 	</video>
-	<div id="inline-captions">
-		<h2>Small Aircraft Passenger Guidelines - HTML5 Transcript/Captions</h2>
+	<details id="inline-captions">
+		<summary>Small Aircraft Passenger Guidelines - HTML5 Transcript/Captions</summary>
 
 		<p class="wet-boew-vd"><em>(Our FIELD REPORTER is standing in the foreground, there is a small plane behind him. Throughout the entire video, he addresses the camera directly.)</em></p>
 			  
@@ -356,8 +359,20 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 
 		<p class="wet-boew-vd"><a href="http://www.tc.gc.ca/eng/menu.htm" rel="external">www.tc.gc.ca</a></p>
 		<p class="wet-boew-vd">(<em>Canada Wordmark</em>)</p>
-	</div>
-    </div>
+	</details>
+    </div></section>
+
+	<section>
+		<h3 id="audio-only">Audio only</h3>
+		<p>The MP3 format (H264 codec) is the minimum requirement for the player because the Flash fallback relies on it and MP3 is a widely supported format on many mobile devices. An optional but highly recommended format, OGG Vorbis, should be added as well to allow some browsers such as Firefox that do not include native support for MP3 to leverage the HTML5 native performance gains.</p>
+		<section><div class="wet-boew-multimedia span-4">
+		<h4>Example (Ride of the Valkyries)</h4>
+		<audio title="Audio Example (Ride of the Valkyries)">
+			<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" />
+			<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" />
+		</audio>
+		</div></section>
+	</section>
 </section>
 <dl id="wet-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
