@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
-<title>Charts and graphs - Working examples - Web Experience Toolkit&#160;(WET)</title>
+<title>Multimedia player - Audio - Working examples - Web Experience Toolkit&#160;(WET)</title>
 
 <link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -48,7 +48,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <section><div id="wet-fullhd"><h2>Full-width header area</h2>
 <div id="wet-fullhd-in">
 <ul>
-<li id="wet-fullhd-lang-2"><a href="simple-fra.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-2"><a href="multimedia-audio-fra.html" lang="fr">Français</a></li>
 <li id="wet-fullhd-lang-current">English</li>
 </ul>
 </div>
@@ -82,7 +82,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <ol>
 <li><a href="../../index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li>Charts and graphs</li>
+<li>Multimedia player - Audio</li>
 </ol>
 </div></div>
 </nav>
@@ -92,21 +92,24 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Charts and graphs - Web Experience Toolkit (WET)</h1>
+<h1 id="wb-cont">Multimedia player - Audio</h1>
 
 <ul class="button-group">
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Charts-and-graphs" class="button button-info">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Multimedia-player" class="button button-info">Documentation</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
 </ul>
 
-<ul>
-<li><a href="simple-eng.html">Simple examples</a></li>
-<li><a href="complex-eng.html">Complex examples</a></li>
-<li><a href="simpleCustomized-eng.html">Customized examples</a></li>
-<li><a href="pie-eng.html">Pie charts</a></li>
-<li><a href="labels-eng.html">Labels</a></li>
-</ul>
+<section>
+	<p>The new version of the multimedia player leverages native HTML5 audio tag and relies on Flash as a fallback mechanism when the HTML5 audio tag is not implemented. The MP3 format (H264 codec) is the minimum requirement for the player because the Flash fallback relies on it and MP3 is a widely supported format on many mobile devices. An optional but highly recommended format, OGG Vorbis, should be added as well to allow some browsers such as Firefox that do not include native support for MP3 to leverage the HTML5 native performance gains. The multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
 
+    <div class="wet-boew-multimedia span-4">
+	<h2>Audio Example (Ride of the Valkyries)</h2>
+	<audio title="Audio Example (Ride of the Valkyries)">
+		<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3"></source>
+		<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg"></source>
+	</audio>
+    </div>
+</section>
 <dl id="wet-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
 </dl>
