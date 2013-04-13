@@ -103,38 +103,43 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
 </ul>
 
-<section>
-<div>
+<p lang="en">For video, the multimedia player leverages the native HTML5 video tag and relies on Flash as a fallback mechanism when the HTML5 video tag is not implemented. The MPEG 4 format (H264 codec) is the minimum requirement for video because the Flash fallback relies on it and H264 is the standard video format on many mobile devices. An optional but highly recommended Webm (VP8 codec) should be added as well to allow some browsers such as Firefox that do not include native support for H264 to leverage the native HTML5 performance gains.</p>
+<p lang="en">For <a href="#audio-only">audio only</a>, the multimedia player leverages the native HTML5 audio tag and relies on Flash as a fallback mechanism when the HTML5 audio tag is not implemented.</p>
+<p lang="en">For both video and audio-only, the multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
 
-    <div class="wet-boew-multimedia span-4">
-	<h2>MPEG4 (H264 + AAC) and WebM(VP8) source and HTML captions</h2>
+<section>
+	<h2>Exemples</h2>
+	<p lang="en">The first two video examples and the audio only example use native HTML5 video or audio on most modern browsers including Firefox 6+, Google Chrome 3+ and IE9. The third video example works natively in some browsers but relies on the Flash fallback for Firefox. For all examples, the Flash fallback is used for IE 7 and 8 as well as older versions of Firefox.</p>
+    <section><div class="wet-boew-multimedia span-4">
+	<h3>Sources MPEG4 (H264 + AAC) et WebM(VP8) avec les sous-titres en HTML</h3>
 	<video width="480" height="270" poster="http://31591.vws.magma.ca/sct-tbs/wet-boew/thumbnail.png" title="Video Example">
 	    <source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-fra.webm" type="video/webm" />
 	    <source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-fra.mp4" type="video/mp4" />
-	    <track kind="captions" data-type="text/html" src="mediaplayer-transcript_captions-fra.html"/>
+	    <track kind="captions" data-type="text/html" src="mediaplayer-transcript_captions-fra.html" />
 	</video>
-	<p><a href="mediaplayer-transcript_captions-fra.html">Transcript</a></p>
-    </div>
+	<p><a href="mediaplayer-transcript_captions-fra.html">Transcription</a></p>
+    </div></section>
 
-    <div class="wet-boew-multimedia span-4">
-	<h2>MPEG4 (H264 + AAC) and WebM(VP8) sources with TTML captions</h2>
+    <section><div class="wet-boew-multimedia span-4">
+	<h3>Sources MPEG4 (H264 + AAC) et WebM(VP8) avec les sous-titres TTML</h3>
 	<video width="480" height="270" poster="http://31591.vws.magma.ca/sct-tbs/wet-boew/thumbnail.png" title="Video Example">
 		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-2-fra.webm" type="video/webm" />
 		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-2-fra.mp4" type="video/mp4" />
-	    <track kind="captions" data-type="application/ttml+xml" src="captions-fra.xml"/>
+	    <track kind="captions" data-type="application/ttml+xml" src="captions-fra.xml" />
 	</video>
-	<p><a href="mediaplayer-transcript_captions-fra.html">Transcript</a></p>
-    </div><div class="clear"></div>
+	<p><a href="mediaplayer-transcript_captions-fra.html">Transcription</a></p>
+    </div></section>
+	<div class="clear"></div>
 
-    <div class="wet-boew-multimedia span-4">
-	<h2>MPEG4 H264 + AAC) and WebM(VP8) sources with inline HTML captions</h2>
-	<p>This example illustrates the use of an inline transcript to provide captions. This example can also demonstrate the fallback mechanism in Web browsers that don't support HTML5 videos.</p>
+    <section><div class="wet-boew-multimedia span-4">
+	<h3>MPEG4 H264 + AAC) et WebM(VP8) sources avec sous-tires en ligne en HTML</h3>
+	<p lang="en">This example illustrates the use of an inline transcript to provide captions. This example can also demonstrate the fallback mechanism in Web browsers that don't support HTML5 videos.</p>
 	<video width="480" height="270" poster="http://31591.vws.magma.ca/sct-tbs/wet-boew/thumbnail.png" title="Video Example">
 	    <source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-3-fra.mp4" type="video/mp4" />
-	   <track kind="captions" data-type="text/html" src="#inline-captions"/>
+	   <track kind="captions" data-type="text/html" src="#inline-captions" />
 	</video>
-	<div id="inline-captions">
-		<h2>Lignes directrices pour les passagers de petits avions - Transcription et Sous-Titres HTML5</h2>
+	<details id="inline-captions">
+		<summary>Lignes directrices pour les passagers de petits avions - Transcription et Sous-Titres HTML5</summary>
 
 		<p class="wet-boew-vd">(<em>Notre ANIMATEUR est debout au premier plan, et il y a un petit avion derrière lui. Pendant toute la durée de la vidéo, il s’adresse directement à la caméra</em>.)</p>
 
@@ -391,9 +396,20 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 		<p class="wet-boew-vd"><em><strong>Texte à l’écran</strong></em> <strong>:</strong></p>
 		<p class="wet-boew-vd"><a href="http://www.tc.gc.ca/fra/menu.htm" rel="external">www.tc.gc.ca</a></p>
 		<p class="wet-boew-vd">(<em>Mot-symbole Canada</em>)</p>
-	</div>
-    </div>
-</div>
+	</details>
+    </div></section>
+
+	<section>
+		<h3 id="audio-only">Audio seulement</h3>
+		<p lang="en">The MP3 format (H264 codec) is the minimum requirement for the player because the Flash fallback relies on it and MP3 is a widely supported format on many mobile devices. An optional but highly recommended format, OGG Vorbis, should be added as well to allow some browsers such as Firefox that do not include native support for MP3 to leverage the HTML5 native performance gains.</p>
+		<section><div class="wet-boew-multimedia span-4">
+		<h4>Exemple (Chevauchée des Walkyries)</h4>
+		<audio title="Exemple audio (Chevauchée des Walkyries)">
+			<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" />
+			<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" />
+		</audio>
+		</div></section>
+	</section>
 </section>
 
 <dl id="gcwu-date-mod" role="contentinfo">
