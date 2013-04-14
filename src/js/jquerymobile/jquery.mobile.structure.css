@@ -1,8 +1,8 @@
 /*
-* jQuery Mobile Framework Git Build: SHA1: b49cc06499abf8f987cf90f35349cfac0918c939 <> Date: Tue Oct 2 11:22:34 2012 -0700
+* jQuery Mobile Framework Git Build: SHA1: 27e3c18acfebab2d47ee7ed37bd50fc4942c8838 <> Date: Fri Mar 22 08:50:04 2013 -0600
 * http://jquerymobile.com
 *
-* Copyright 2012 jQuery Foundation and other contributors
+* Copyright 2010, 2013 jQuery Foundation, Inc. and other contributors
 * Released under the MIT license.
 * http://jquery.org/license
 *
@@ -40,7 +40,8 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 .ui-bar, .ui-body { position: relative; padding: .4em 15px; overflow: hidden; display: block; clear:both; }
 .ui-bar { font-size: 16px; margin: 0; }
 .ui-bar h1, .ui-bar h2, .ui-bar h3, .ui-bar h4, .ui-bar h5, .ui-bar h6 { margin: 0; padding: 0; font-size: 16px; display: inline-block; }
-.ui-header, .ui-footer { position: relative; border-left-width: 0; border-right-width: 0; zoom: 1; }
+.ui-header, .ui-footer { position: relative; zoom: 1; }
+.ui-mobile .ui-header, .ui-mobile .ui-footer { border-left-width: 0; border-right-width: 0; }
 .ui-header .ui-btn-left,
 .ui-header .ui-btn-right,
 .ui-footer .ui-btn-left,
@@ -692,6 +693,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 .ui-btn-icon-notext .ui-btn-inner { padding: 0; height: 100%; }
 .ui-btn-icon-notext .ui-btn-inner .ui-icon { margin: 2px 1px 2px 3px; float: left; }
 .ui-btn-text { position: relative; z-index: 1; width: 100%; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
+div.ui-btn-text { width: auto; }
 .ui-btn-icon-notext .ui-btn-text { position: absolute; left: -9999px; }
 .ui-btn-icon-left .ui-btn-inner { padding-left: 40px; }
 .ui-btn-icon-right .ui-btn-inner { padding-right: 40px; }
@@ -1001,6 +1003,7 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 	-webkit-border-radius: inherit;
 	border-radius:         inherit;
 }
+.ui-popup-hidden { top: -99999px; left: -9999px; }
 .ui-checkbox, .ui-radio { position: relative; clear: both; margin: 0; z-index: 1; }
 .ui-checkbox .ui-btn, .ui-radio .ui-btn { margin-top: .5em; margin-bottom: .5em; text-align: left; z-index: 2; }
 .ui-checkbox .ui-btn.ui-mini, .ui-radio .ui-btn.ui-mini { margin: .25em 0; }
@@ -1054,11 +1057,11 @@ label.ui-select { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 .ui-selectmenu { padding: 6px; min-width: 160px; }
 .ui-selectmenu .ui-listview { margin: 0; }
 .ui-selectmenu .ui-btn.ui-li-divider { cursor: default; }
-.ui-selectmenu-hidden { top: -99999px; left: -9999px; }
 .ui-screen-hidden, .ui-selectmenu-list .ui-li .ui-icon { display: none; }
 .ui-selectmenu-list .ui-li .ui-icon { display: block; }
 .ui-li.ui-selectmenu-placeholder { display: none; }
 .ui-selectmenu .ui-header { margin: 0; padding: 0; }
+.ui-selectmenu.ui-popup .ui-header { -webkit-border-top-left-radius: 0; border-top-left-radius: 0; -webkit-border-top-right-radius: 0; border-top-right-radius: 0; }
 .ui-selectmenu .ui-header .ui-title { margin: 0.6em 46px 0.8em; }
 @media all and (min-width: 450px){
 	.ui-field-contain label.ui-select { vertical-align: top; display: inline-block; width: 20%; margin: 0 2% 0 0; }
@@ -1083,6 +1086,8 @@ textarea.ui-input-text { height: 50px; -webkit-transition: height 200ms linear; 
 .ui-input-search .ui-input-clear-hidden { display: none; }
 input.ui-mini, .ui-mini input, textarea.ui-mini { font-size: 14px; }
 textarea.ui-mini { height: 45px; }
+input:-moz-placeholder { color: #aaa; }
+input[type=number]::-webkit-outer-spin-button { margin: 0; }
 @media all and (min-width: 450px){
 	.ui-field-contain label.ui-input-text  { vertical-align: top; display: inline-block; width: 20%; margin: 0 2% 0 0 }
 	.ui-field-contain input.ui-input-text, 
@@ -1175,13 +1180,13 @@ div.ui-slider-mini a.ui-slider-handle .ui-btn-inner { height: 30px; width: 30px;
 }	
 div.ui-slider-switch { height: 32px; margin-left: 0; width: 5.8em; }
 a.ui-slider-handle-snapping { -webkit-transition: left 70ms linear; -moz-transition: left 70ms linear; }
-div.ui-slider-switch .ui-slider-handle { margin: 1px 0 0 -15px; }
+div.ui-slider-switch a.ui-btn.ui-slider-handle { margin: 1px 0 0 -15px; top: 0; }
 .ui-slider-inneroffset { margin: 0 16px; position: relative; z-index: 1; }
 div.ui-slider-switch.ui-slider-mini { width: 5em; height: 29px; }
 div.ui-slider-switch.ui-slider-mini .ui-slider-inneroffset { margin: 0 15px 0 14px; }
 div.ui-slider-switch.ui-slider-mini .ui-slider-handle { width: 25px; height: 25px; margin: 1px 0 0 -13px; }
 div.ui-slider-switch.ui-slider-mini a.ui-slider-handle .ui-btn-inner { height: 30px; width: 30px; padding: 0; margin: 0; }
-span.ui-slider-label { position: absolute; text-align: center; width: 100%; overflow: hidden; font-size: 16px; top: 0; line-height: 2; min-height: 100%; border-width: 0; white-space: nowrap; }
+span.ui-slider-label { position: absolute; text-align: center; width: 100%; overflow: hidden; font-size: 16px; top: 0; line-height: 2; min-height: 100%; border-width: 0; white-space: nowrap; cursor:pointer; }
 .ui-slider-mini span.ui-slider-label { font-size: 14px; }
 span.ui-slider-label-a { z-index: 1; left: 0; text-indent: -1.5em; }
 span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}

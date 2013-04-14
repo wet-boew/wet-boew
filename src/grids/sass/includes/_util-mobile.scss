@@ -24,7 +24,7 @@ form {
 	[class*=width-] {
 		width: 100% !important;
 	}
-	[class*=margin-], [class*=span-] {
+	[class*=margin-left], [class*=margin-right], [class*=span-] {
 		margin: 0 !important;
 	}
 	&.background-light {
