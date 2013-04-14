@@ -317,7 +317,7 @@
 								node = nodes[len];
 								// Fix the top corners
 								node2 = node.getElementsByTagName('li')[0];
-								if (node2.parentNode.parentNode.className.indexOf('ui-collapsible') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
+								if (node2.parentNode.parentNode.parentNode.className.indexOf('ui-collapsible') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
 									node2.className += ' ui-corner-top';
 								}
 
