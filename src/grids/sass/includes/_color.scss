@@ -61,10 +61,10 @@
 	}
 
 	.background-highlight {
-		@include colorize-base($highlight, true);
+		@include colorize-base($highlight, $important: true);
 	}
 	.background-accent {
-		@include colorize-base($accent, true);
+		@include colorize-base($accent, $important: true);
 	}
 	.background-white {
 		background-color: $white !important;
@@ -73,10 +73,10 @@
 		background-color: $light !important;
 	}
 	.background-medium {
-		@include colorize-base($medium, true);
+		@include colorize-base($medium, $important: true);
 	}
 	.background-dark {
-		@include colorize-base($dark, true);
+		@include colorize-base($dark, $important: true);
 	}
 }
 
