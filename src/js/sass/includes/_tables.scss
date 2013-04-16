@@ -20,8 +20,7 @@
 	float: right;
 	text-align: right;
 }
-%tables-padding-3-18-3-10-border-bottom-1px-solid-black-font-weight-700 {
-	padding: 3px 18px 3px 10px;
+%border-bottom-1px-solid-black-font-weight-700 {
 	border-bottom: 1px solid black;
 	font-weight: 700;
 }
@@ -37,7 +36,7 @@ table {
 		width: 100%;
 		thead {
 			th {
-				@extend %tables-padding-3-18-3-10-border-bottom-1px-solid-black-font-weight-700;
+				@extend %border-bottom-1px-solid-black-font-weight-700;
 				@extend %tables-cursor-pointer;
 				&:active {
 					@extend %tables-outline-none;
@@ -51,7 +50,7 @@ table {
 		}
 		tfoot {
 			th {
-				@extend %tables-padding-3-18-3-10-border-bottom-1px-solid-black-font-weight-700;
+				@extend %border-bottom-1px-solid-black-font-weight-700;
 			}
 		}
 		td {
