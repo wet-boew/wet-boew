@@ -131,10 +131,12 @@ input {
 		a {
 			&, &.ui-link {
 				background: #0B3048;
-				@extend %wet-default-screen-color-fff;
 				padding-top: 8px;
 				padding-bottom: 8px;
 				font-size: 1.1em;
+				&:link, &:visited {
+					@extend %wet-default-screen-color-fff;
+				}
 				@include pseudo-focus {
 					@extend %wet-default-screen-color-fff;
 					text-decoration: underline;
