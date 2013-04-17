@@ -54,6 +54,13 @@ var wet_boew_geomap = {
 			visible: true,
 			datatable: true,
 			tab: true,
+			popupInfo: {
+				height: 50,
+				width: 250,
+				close: false,
+				opacity: 0.65,
+				content: "<div>KML</div>"
+			},
 			attributes: {
 				name: 'Titre du produit',
 				description: 'Description'
