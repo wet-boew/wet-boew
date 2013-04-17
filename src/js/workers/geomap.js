@@ -199,6 +199,7 @@
 		 */
 		onFeatureSelect: function(feature) {					
 			$('tr#' + feature.id.replace(/\W/g, '_')).addClass('background-highlight');
+			$('input#' + 'cb_' + feature.id.replace(/\W/g, '_')).prop('checked', true);
 		},
 
 		/*
@@ -206,8 +207,21 @@
 		 */
 		onFeatureUnselect: function(feature) {
 			$('tr#' + feature.id.replace(/\W/g, '_')).removeClass('background-highlight');
+			$('input#' + 'cb_' + feature.id.replace(/\W/g, '_')).prop('checked', false);
 		},
 
+		/*
+		 *	Select and unselect map feature on click
+		 */
+		onFeatureClick: function (feature) {
+			
+			if (typeof feature._lastHighlighter != 'undefined') {
+				selectControl.unselect(feature);
+			} else {
+				selectControl.select(feature);
+			}
+		},
+		
 		/*
 		 * Get the OpenLayers map object
 		 */
@@ -1213,7 +1227,8 @@
 				queryLayers,
 				{
 					onSelect: this.onFeatureSelect,
-					onUnselect: this.onFeatureUnselect
+					onUnselect: this.onFeatureUnselect,
+					clickFeature: this.onFeatureClick
 				}
 			);	
 			
