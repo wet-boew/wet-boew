@@ -1343,7 +1343,7 @@
 					tblSrcContainerSummary = $('<summary />');
 					$(tblSrcContainer).appendTo(mainFigureElem);
 					// set the title for the ability to show or hide the table as a data source
-					$(tblSrcContainerSummary).text(tblCaptionHTML + _pe.dic.get('%table-mention'))
+					$(tblSrcContainerSummary).text(tblCaptionHTML + ' ' + _pe.dic.get('%table-mention'))
 						.appendTo(tblSrcContainer)
 						.after(srcTbl);
 
@@ -1509,7 +1509,7 @@
 				tblSrcContainerSummary = $('<summary />');
 				$(tblSrcContainer).appendTo(figureElem);
 				// set the title for the ability to show or hide the table as a data source
-				$(tblSrcContainerSummary).text(tblCaptionHTML + _pe.dic.get('%table-mention'))
+				$(tblSrcContainerSummary).text(tblCaptionHTML + ' ' + _pe.dic.get('%table-mention'))
 					.appendTo(tblSrcContainer)
 					.after(srcTbl);
 
