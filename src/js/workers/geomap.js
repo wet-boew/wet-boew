@@ -1343,6 +1343,8 @@
 				// Enhance the checkboxes with jQuery Mobile
 				_pe.main.find('.wet-boew-geomap-legend').trigger('create');
 			}
+			
+			_pe.document.trigger('geomap-ready');
 		}
 	};
 	window.pe = _pe;
