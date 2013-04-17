@@ -214,6 +214,11 @@
 	margin: 0;
 	left: 5px;
 	width: 70%;
+	a {
+		&, &.ui-link {
+			@extend %wb-lightbox-color-ccc-text-shadow-none;
+		}
+	}
 }
 
 #cboxCurrent {
