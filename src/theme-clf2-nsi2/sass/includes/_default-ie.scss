@@ -26,12 +26,12 @@
 }
 
 %clf2-equalize-fix {
-  .equalize {
-    > {
-      #wb-main {
-        border-left: 0;
-        border-right: 0;
-      }
-    }
-  }
+	.equalize {
+		> {
+			#wb-main {
+				border-left: 0;
+				border-right: 0;
+			}
+		}
+	}
 }
