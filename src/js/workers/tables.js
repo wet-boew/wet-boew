@@ -47,7 +47,7 @@
 				}],
 				'asStripeClasses' : ((opts.bZebra === true) ? ['odd', 'even'] : []),
 				'bFilter' : (opts.bSearch === true),
-				'bInfo' : ((opts.bInfo === true) ? ((opts.bSearch === true || opts.bPaginate === true)? true : false) : false),
+				'bInfo' : ((opts.bInfo === true) ? ((opts.bSearch === true || opts.bPaginate === true) ? true : false) : false),
 				'bPaginate' : (opts.bPaginate === true),
 				'iDisplayLength' : opts.iDisplayLength,
 				'aLengthMenu' : opts.aLengthMenu,
