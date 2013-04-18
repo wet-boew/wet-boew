@@ -14,6 +14,7 @@
 
 	var map,
 		selectControl,
+		selectedFeature,
 		queryLayers = [],
 		overlays = 0,
 		overlaysLoaded = 0,
@@ -199,6 +200,7 @@
 		 */
 		onFeatureSelect: function(feature) {					
 			$('tr#' + feature.id.replace(/\W/g, '_')).addClass('background-highlight');
+			$('input#' + 'cb_' + feature.id.replace(/\W/g, '_')).prop('checked', true);
 		},
 
 		/*
@@ -206,6 +208,86 @@
 		 */
 		onFeatureUnselect: function(feature) {
 			$('tr#' + feature.id.replace(/\W/g, '_')).removeClass('background-highlight');
+			$('input#' + 'cb_' + feature.id.replace(/\W/g, '_')).prop('checked', false);
+			
+			if (feature.popup !== null) {
+				if (feature.popup.visible()) {
+					feature.popup.hide();
+				}
+			}
+		},
+
+		/*
+		 *	Select and unselect map feature on click
+		 */
+		onFeatureClick: function(feature) {
+			
+			if (typeof feature._lastHighlighter !== 'undefined') {
+				selectControl.unselect(feature);
+			} else {
+				selectControl.select(feature);
+				
+				if (feature.layer.popupInfo !== undefined) {
+					if (selectedFeature !== undefined) {
+						if (selectedFeature.popup !== null) {
+							if (selectedFeature.popup.visible()) {
+								selectedFeature.popup.hide();
+							}
+						}
+					}
+				
+					selectedFeature = feature;
+					if (feature.popup === null) {
+						_pe.fn.geomap.createPopup(feature);
+					} else {
+						feature.popup.toggle();
+					}
+				}	
+			}
+		},
+		
+		/*
+		 *  Create popup
+		 */
+		createPopup: function(feature) {
+			var popupInfo = feature.layer.popupInfo,
+				height = (popupInfo.height !== undefined) ? popupInfo.height : undefined,
+				width = (popupInfo.width !== undefined) ? popupInfo.width : undefined,
+				close = (popupInfo.width !== undefined) ? popupInfo.close : false,
+				opacity = (popupInfo.width !== undefined) ? popupInfo.opacity : 1.0,
+				$content = popupInfo.content,
+			    popup;
+			    
+			    // Update content from feature
+			    for (name in feature.attributes) {
+					if (feature.attributes.hasOwnProperty(name)) {
+						if (name.length != 0) {
+							$content = $('#_' + name.replace(/\W/g, '_'));
+							$content.text(feature.attributes[name]);
+						}
+					}
+				}
+			
+			    // Create the popup
+			    popup = new OpenLayers.Popup.Anchored('pu_' + feature.layer.name, 
+													 feature.geometry.getBounds().getCenterLonLat(),
+													 new OpenLayers.Size(width,height),
+													 content,
+													 null, 
+													 close, 
+													 _pe.fn.geomap.onPopupClose);
+				popup.opacity = opacity;
+				popup.panMapIfOutOfView = true;
+				popup.autosize = true;
+				feature.popup = popup;
+				map.addPopup(popup);
+		},
+		
+		/*
+		 *  Popup close callback function
+		 */
+		onPopupClose: function(evt) {
+			selectControl.unselect(selectedFeature);
 		},
 
 		/*
@@ -841,6 +923,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
+						olLayer.popupInfo = layer.popupInfo;
 						olLayer.visibility = true; // to force featuresadded listener
 						map.addLayer(olLayer);
 						queryLayers.push(olLayer);
@@ -902,6 +985,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
+						olLayer.popupInfo = layer.popupInfo;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);									
@@ -967,6 +1051,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
+						olLayer.popupInfo = layer.popupInfo;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);											
@@ -1031,7 +1116,8 @@
 							}
 						);	
 						olLayer.name = 'overlay_' + index;
-						olLayer.datatable = layer.datatable;					
+						olLayer.datatable = layer.datatable;
+						olLayer.popupInfo = layer.popupInfo;					
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);											
@@ -1097,6 +1183,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
+						olLayer.popupInfo = layer.popupInfo;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);										
@@ -1185,6 +1272,7 @@
 
 				tableLayer.id = 'table#' + table.id;
 				tableLayer.datatable = opts.tables[index].datatable;
+				tableLayer.popupInfo = opts.tables[index].popupInfo;
 				tableLayer.name = table.id;
 				map.addLayer(tableLayer);
 				queryLayers.push(tableLayer);
@@ -1213,7 +1301,8 @@
 				queryLayers,
 				{
 					onSelect: this.onFeatureSelect,
-					onUnselect: this.onFeatureUnselect
+					onUnselect: this.onFeatureUnselect,
+					clickFeature: this.onFeatureClick
 				}
 			);	
 			
