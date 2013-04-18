@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import 'compass/css3/opacity';
 @import '../../grids/sass/includes/mixins';
@@ -158,7 +158,7 @@ h6 {
 	}
 }
 
-#mobiletest {
+#viewtest {
 	@extend %wb-clip;
 }
 
@@ -166,11 +166,12 @@ h6 {
 	@extend %wb-clip;
 }
 
+/* Start of RTL fixes for jQuery Mobile's way of hiding stuff
+ * TODO: Fix in jQuery Mobile rather than here
+ */
 [dir="rtl"] {
-	/* Start of RTL fixes for jQuery Mobile's way of hiding stuff
-	 * TODO: Fix in jQuery Mobile rather than here
-	 */
-	/* Fixes left: -9999px */
+
+	// Fixes left: -9999px
 	.ui-nojs {
 		@extend %wb-default-left-auto-right--9999;
 	}
@@ -229,7 +230,7 @@ h6 {
 			@extend %wb-default-left-auto-right--9999;
 		}
 	}
-	/* Fixes text-indent: -9999px */
+	// Fixes text-indent: -9999px
 	.ui-btn-hidden {
 		@extend %wb-default-text-indent-9999;
 	}
@@ -242,5 +243,5 @@ h6 {
 			}
 		}
 	}
-	/* End of RTL fixes for jQuery Mobile's way of hiding stuff */
 }
+/* End of RTL fixes for jQuery Mobile's way of hiding stuff */

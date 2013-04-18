@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/box-sizing";
 
@@ -36,6 +36,10 @@
 
 %wb-lightbox-display-block {
 	display: block;
+}
+
+%wb-lightbox-visibility-hidden {
+	visibility: hidden;
 }
 
 %wb-lightbox-visibility-visible {
@@ -210,6 +214,11 @@
 	margin: 0;
 	left: 5px;
 	width: 70%;
+	a {
+		&, &.ui-link {
+			@extend %wb-lightbox-color-ccc-text-shadow-none;
+		}
+	}
 }
 
 #cboxCurrent {
@@ -279,13 +288,13 @@
 
 .lb-inline {
 	@extend %wb-lightbox-display-none;
-	@extend %wb-lightbox-visibility-visible;
+	@extend %wb-lightbox-visibility-hidden;
 }
 
 .lb-hidden-gallery {
 	a {
 		@extend %wb-lightbox-display-none;
-		@extend %wb-lightbox-visibility-visible;
+		@extend %wb-lightbox-visibility-hidden;
 	}
 	li {
 		&:first-child {

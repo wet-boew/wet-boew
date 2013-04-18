@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+<title>Implementation guide - GC Web Usability Intranet theme - Working examples - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-gcwu-intranet/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-intranet/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-intranet/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-intranet/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-intranet/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Intranet navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-intranetnb"><div id="gcwu-intranetnb-in">
+<ul>
+<li id="gcwu-gcnb1"><a href="#">Custom link</a></li>
+<li id="gcwu-gcnb2"><a href="#">Custom link</a></li>
+<li id="gcwu-gcnb3"><a href="#">Custom link</a></li>
+<li id="gcwu-gcnb-lang"><a href="index-fra.html" lang="fr">Français</a></li>
+</ul>
+</div></div>
+<div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-intranet/images/sig-blk-eng.svg" role="img" tabindex="-1" aria-label="Government of Canada" type="image/svg+xml"><img src="../../dist/theme-gcwu-intranet/images/sig-eng.png" alt="Government of Canada" /></object></div></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-intranet/images/wmms-intra.svg" role="img" tabindex="-1" aria-label="Symbol of the Government of Canada" type="image/svg+xml"><img src="../../dist/theme-gcwu-intranet/images/wmms.png" alt="Symbol of the Government of Canada" /></object></div></div>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2>Site menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="section2/index-eng.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li><a href="index-eng.html">GC Web Usability Intranet theme</a></li>
+<li>Implementation guide</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Implementation guide - GC Web Usability Intranet theme</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/GC-Web-Usability-Intranet-theme" class="button button-info">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<div class="span-6 module-table-contents">
+              <h2>Table of contents</h2>
+            <ul class="column-three">
+              <li><a href="#cdng">Coding differences: Internet versus intranet</a></li> 
+              <li><a href="#lyt">Page layout types</a>              
+              <li><a href="#hdr">Customize the header</a>              
+                <ul>
+                  <li><a href="#ntrnt">Intranet menu bar</a>
+                 </li>
+                  <li><a href="#sgntr">Department signature</a>
+                 </li>
+                  <li><a href="#mg">Banner image</a></li>
+                  <li><a href="#sbst">Adding sub-sites</a></li>
+                  <li><a href="#nvgtn">Site navigation bar</a></li>
+                  <li><a href="#bc">Breadcrumbs</a></li>
+                </ul>
+              <li><a href="#ftr">Customize the footer</a>
+                <ul>
+                   <li><a href="#lnk">Footer links</a></li>
+              <li><a href="#mg">Branding image</a></li>
+              </ul>
+             </li>
+              <li><a href="#height">Height dimensions</a></li>
+              <li><a href="#gldn">
+              Phi (&Phi;) and the golden ratio</a></li>
+              </ul>
+          </div>
+			<div class="span-2 module-info">
+           <p>The intranet theme is customizable in order for a Department to subtly brand their intranet. Details are outlined below.</p>
+            </div>
+<div class="clear"></div>
+<h2 id="cdng">Coding differences: Internet versus intranet</h2>
+<p>The intranet templates share the same coding foundation as the internet templates. However, there are a few minor coding adjustments that help to create a more intranet-focused product.  The intranet templates can:</p>
+<ul>
+              <li>Feature the department signature.</li>
+              <li>Have some department branding elements applied.</li>
+              <li> Have customize links in the header and footer.</li>
+          </ul>
+<h3 id="hdrchgs">Changes to the header</h3>
+<h4><span class="badge-intro">Difference 1</span> Rework the top bar and <abbr title="Federal Indentification Program">FIP</abbr> elements</h4>
+
+<ul>
+            <li>Remove Government of Canada bar</li>
+              <li>Rename heading: <em>Government of Canada navigation bar</em> to <em>Intranet navigation bar</em></li>
+              <li>Add an intranet local bar</li>
+              <li>Group <abbr title="Federal Identification Program">FIP</abbr> elements together</li>
+              <li>The generic Government of Canada signature should be <a href="#sgntr">replaced with the Department's actual signature image</a>. </li>
+          </ul>
+
+<h3><span class="badge-intro">Difference 2</span> Optional sub-site bar</h3>
+<p>A sub-site bar can be added just before the banner ends. Refer to: <a href="#sbst">Adding sub-sites </a></p>
+<h2 id="ftrchgs">Changes to the footer</h2>
+<h3><span class="badge-intro">Difference 3 </span> Footer notices have moved</h3>
+<p>The <strong>Terms and conditions</strong> | <strong>Transparency</strong> links have been moved below the department's footer links.</p>
+<h3><span class="badge-intro">Difference 4 </span> Footer links can be customized</h3>
+<p>Although you should adheres as closely as possible to the internet footer, there is likely a need for local customization.  Refer to: <a href="#lnk">Footer links</a></p>
+<h3><span class="badge-intro">Difference 5 </span> <abbr title="Government of Canada">GC</abbr> footer removed and branding image allowed.</h3>
+<p>The <abbr title="Government of Canada">GC</abbr> footer has been replaced with a departmental branding opportunity.  Refer to: <a href="#brndgmg">Branding image</a></p>
+
+<section><h2 id="lyt">Page layout types</h2>
+<section><div class="span-3"><h3 id="en">English examples</h3>
+<ul>
+<li><a href="cont-eng.html"><span class="wb-invisible">English examples - </span>Content page</a></li>
+<li><a href="cont-secnav1-eng.html"><span class="wb-invisible">English examples - </span>Content page - Secondary menu 1</a></li>
+<li><a href="cont-secnav2-eng.html"><span class="wb-invisible">English examples - </span>Content page - Secondary menu 2</a></li>
+<li><a href="cont-subsite-eng.html"><span class="wb-invisible">English examples - </span>Content page - Sub-site</a></li>
+<li><a href="cont-signin-eng.html"><span class="wb-invisible">English examples - </span>Content page - Sign In</a></li>
+<li><a href="cont-signin-fra.html"><span class="wb-invisible">English examples - </span>Content page - Sign Out</a></li>
+<li><a href="cont-nosearchlang-eng.html"><span class="wb-invisible">English examples - </span>Content page - No search or language selection link</a></li>
+<li><a href="cont-nositemenubc-eng.html"><span class="wb-invisible">English examples - </span>Content page - No site menu or breadcrumb trail</a></li>
+<li><a href="cont-nosearchlangsitemenubc-eng.html"><span class="wb-invisible">English examples - </span>Content page - No search, language selection link, site menu or breadcrumb trail</a></li>
+<li><a href="sp-pe-eng-fra.html"><span class="wb-invisible">English examples - </span>Splash page - English/French</a></li>
+<li><a href="serv-eng.html"><span class="wb-invisible">English examples - </span>Server message page - English</a></li>
+<li><a href="serv-eng-fra.html"><span class="wb-invisible">English examples - </span>Server message page - English/French</a></li>
+</ul>
+</div></section>
+<section><div class="span-3"><h3 id="fr">French examples</h3>
+<ul>
+<li><a href="cont-fra.html"><span class="wb-invisible">French examples - </span>Content page</a></li>
+<li><a href="cont-secnav1-fra.html"><span class="wb-invisible">French examples - </span>Content page - Secondary menu 1</a></li>
+<li><a href="cont-secnav2-fra.html"><span class="wb-invisible">French examples - </span>Content page - Secondary menu 2</a></li>
+<li><a href="cont-subsite-fra.html"><span class="wb-invisible">French examples - </span>Content page - Sub-site</a></li>
+<li><a href="cont-signin-fra.html"><span class="wb-invisible">French examples - </span>Content page - Sign In</a></li>
+<li><a href="cont-signout-fra.html"><span class="wb-invisible">French examples - </span>Content page - Sign Out</a></li>
+<li><a href="cont-nosearchlang-fra.html"><span class="wb-invisible">French examples - </span>Content page - No search or language selection link</a></li>
+<li><a href="cont-nositemenubc-fra.html"><span class="wb-invisible">French examples - </span>Content page - No site menu or breadcrumb trail</a></li>
+<li><a href="cont-nosearchlangsitemenubc-fra.html"><span class="wb-invisible">French examples - </span>Content page - No search, language selection link, site menu or breadcrumb trail</a></li>
+<li><a href="sp-pe-fra-eng.html"><span class="wb-invisible">French examples - </span>Splash page - French/English</a></li>
+<li><a href="serv-fra.html"><span class="wb-invisible">French examples - </span>Server message page - French</a></li>
+<li><a href="serv-fra-eng.html"><span class="wb-invisible">French examples - </span>Server message page - French/English</a></li>
+</ul>
+</div></section>
+
+<div class="span-2 module-tool margin-top-large">
+<h2>Now you can:</h2>
+<ul class="list-bullet-none indent-none">
+<li class="indent-large margin-top-medium"><a href="#hdr" class="button button-accent">Customize the header</a></li>
+<li class="indent-large margin-top-medium"><a href="#ftr" class="button button-accent">Customize the footer</a></li>
+</ul>
+</div>
+</section>
+
+<div class="clear"></div>
+<h2 id="hdr">Customize the header</h2>
+<h3 id="ntrnt">Intranet menu bar</h3>
+<p>A persistant menu bar is located at the top of the page.  It contains the <span lang="fr">Fran&ccedil;ais</span> link as well as any common and global intranet links that are feature worthy.</p>
+<p>Design features:</p>
+<ul>
+              <li>The specific links should be global and uniform across the entire intranet.</li>
+              <li>The only required link is <span lang="fr">Fran&ccedil;ais</span>. All other links are intranet-specific.</li>
+              <li>The links can be internal or external, however all employees must be able to access the content of these links.</li>
+              <li>The design treatment should not be altered.</li>
+          </ul>
+<h3 id="sgntr">Department signature</h3>
+<p>Do <strong>not</strong> use the generic Government of Canada signature, as the template will accomodate your local department signature. The default code accounts for a standard height of <strong>20 pixels</strong>.  If a different height value is needed, it must be reflected in the CSS file.  Manually overwrite the default code with <strong>your new</strong> height value:</p>
+<p><code>#gcwu-sig, #gcwu-sig-in, #gcwu-sig img{height:20px !important;overflow:visible !important;}</code></p>
+<p>For example:</p>
+<table>
+  <tr>
+    <th scope="col">Department signature</th>
+    <th scope="col"><abbr title="Cascading Style Sheet">CSS</abbr></th>
+    </tr>
+  <tr>
+    <td><img src="images/sig-cra.gif" alt="Canada Revenue Agency signature" width="223" height="20"></td>
+    <td>Leave <abbr title="Cascading Style Sheet">CSS</abbr> as the default. </td>
+    </tr>
+  <tr>
+    <td><img src="images/sig-pwgsc.gif" alt="Public Works and Government Services Canada signature" width="331" height="33"></td>
+    <td>Change <abbr title="Cascading Style Sheet">CSS</abbr> to: <code>#gcwu-sig, #gcwu-sig-in, #gcwu-sig img{height:<strong class="color-attention font-xlarge"><span class="font-large">33</span></strong>px !important;overflow:visible !important;}</code></td>
+  </tr>
+  <tr>
+    <td><img src="images/sig-rcmp.gif" alt="Royal Canadian Mounted Police signature" width="249" height="42"></td>
+    <td>Change <abbr title="Cascading Style Sheet">CSS</abbr> to: <code>#gcwu-sig, #gcwu-sig-in, #gcwu-sig img{height:<strong class="color-attention font-xlarge"><span class="font-large">42</span></strong>px !important;overflow:visible !important;}</code></td>
+    </tr>
+</table>
+
+<h3  id="mg">Banner image</h3>
+<div class="span-2 module-tool float-right">
+			<h4>Banner image source file</h4>
+          
+			<p>Download the <a href="../../dist/theme-gcwu-intranet/images/banner-source.png">banner image source file (58<abbr title="kilobytes">KB</abbr>, Fireworks PNG)</a>.</p>
+            
+		  </div>
+<p>The banner is 52 pixels high. The banner stripe is a solid background colour, however the space within the wireframe includes an image that is customizable to meet your intranet branding requirements. The image must seamlessly merge with the chosen background colour.</p>
+<div class="clear"></div>
+<div class="span-4">
+              <h2 class="background-accent">Outer background</h2>
+              <p><img src="../../dist/theme-gcwu-intranet/images/gcwu-bnr.png" alt="banner background colour" width="1" height="52" class="image-actual align-middle"> Background image</p>
+              <p><img src="images/colour28507a.png" alt="banner background colour" width="76" height="76" class="image-actual align-middle"> Background colour</p>
+              <p>Design features:</p>
+              <ul>
+              <li>Image repeats across the width of the screen.</li>
+              <li>Colour appears if images are turned off and ensures colour contrast is still met against white text.</li>
+            </ul>
+          </div>
+<div class="span-4">
+              <h2 class="background-accent">Inner background</h2>
+              <p><img src="../../dist/theme-gcwu-intranet/images/gcwu-bnr-in.png" alt="banner background image" width="961" height="52"></p>
+              <p>Design features:</p>
+              <ul>
+              <li><em>INTRANET</em> text appears in a radial glow.  This text is bilingual.</li>
+              <li>Image color change be changed to reflect the Department's unique branding colour(s).  Download the <a href="../../dist/theme-gcwu-intranet/images/banner-source.png">banner image source file (58<abbr title="kilobytes">KB</abbr>, Fireworks PNG)</a>.</li>
+              <li>The white text on the background image must pass colour contrast requirements against the branded background colour.</li>
+            </ul>
+          </div>
+<div class="clear"></div>
+<p>All other requirements are addressed in the following documents:</p>
+<ul>
+              <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?section=text&amp;id=24227#appE" rel="external">Standard on Web Usability Appendix E: Layout and Design</a></li>
+              <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24370&amp;section=text#sec3.3" rel="external">Guidance on Implementing the Standard on Web Usability: Web Page Layout and Design Elements</a></li>
+          </ul>
+<h3 id="sbst">Adding sub-sites</h3>
+<p>Most intranets have sites that operate independently of the the parent site.  For example:</p>
+<ul>
+              <li>Human Resources Branch is likely a sub-site of the parent intranet site.</li>
+              <li>Pacific Region is likely a sub-site of the parent intranet site.</li>
+          </ul>
+<p><a href="cont-subsite-eng.html"><span class="badge-intro">Live demo</span>Sub-site</a></p>
+<div class="clear"></div><p>Design features:</p>
+<ul>
+              <li>A sub-site bar is added and appears below the standard banner elements.</li>
+              <li>The sub-site text links to the the sub-site's homepage.</li>
+              <li>The background is controlled by a customizable <abbr title="Cascading Style Sheet">CSS</abbr> class.  The default appearance is attached to the class <code>gcwu-subsite-1</code>.  The code is: <pre class="margin-top-none"><code>&lt;div class=&quot;<span class="color-attention">gcwu-subsite-1</span>&quot; id=&quot;gcwu-subsite&quot;&gt;
+	&lt;p&gt;&lt;a href=&quot;/hr/index-e.html&quot;&gt;Human Resources Branch&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+Also, when adding a sub-site, you must modify the banner code to include the <abbr title="Accessible Rich Internet Applications">ARIA</abbr> code.  The banner must reference the ID<code>gcwu-bnr</code>:
+<pre class="margin-top-none"><code>&lt;div <span class="color-attention">aria-owns=&quot;gcwu-subsite&quot;</span> role=&quot;banner&quot; id=&quot;gcwu-bnr&quot;&gt;</code></pre>
+           </li>
+              <li>When additional colour themes are needed, you must create and maintain custom <abbr title="Cascading Style Sheet">CSS file</abbr>.  The template comes with <code>gcwu-subsite-1</code> so you must add as many additional classes are your site needs.  For example <code>gcwu-subsite-2</code> could be red, <code>gcwu-subsite-3</code> could be orange, <code>gcwu-subsite-4</code> could be purple etc. The number of extra sub-site classes depends on the architecture of your site.</li>
+          </ul>
+<h3 id="nvgtn">Site navigation  bar</h3>
+<div class="span-2 float-right module-attention">
+            <p>Unlike the internet design, the site navigation bar is <strong class="color-attention">optional</strong> for intranets.</p>
+          </div>
+<p>Design features:</p>
+<ul>
+              <li>Height is 32 pixels.</li>
+              <li>Colour appearance can be modified to meet the intranet branding needs.</li>
+              <li>Link text is standard weight (not bold).</li>
+              <li>Down arrows appear when a mega-menu is avaiable.</li>
+              <li>Sufficient padding in between the menu items  ensures there is no visual congestion.</li>
+              <li>Unlike the internet version, there is no border bottom.</li>
+          </ul>
+<p>All other requirements are addressed in the following documents:</p>
+<ul>
+              <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?section=text&amp;id=24227#appE" rel="external">Standard on Web Usability Appendix E: Layout and Design</a></li>
+              <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24370&amp;section=text#sec3.3" rel="external">Guidance on Implementing the Standard on Web Usability: Web Page Layout and Design Elements</a></li>
+          </ul>
+          <div class="span-8 module-info">
+<h3>Tip: Customize the left and right borders</h3>
+<p>You are expected to change the site navigation bar to match your Department's branding colours.  This means that you will have a new background image and will therefore need new border colours.  Here's the technique to choose your border colours:</p>
+<div class="indent-xlarge">
+              <p><span class="badge-intro">Step 1</span> Create a 32 pixel high and 1 pixel wide gradient image <img src="../../dist/theme-gcwu-intranet/images/gcwu-psnb.gif" width="1" height="32" class="align-bottom image-actual" alt="32 pixel high and 1 pixel wide gradient image">.  The gradient should be darker on the bottom and lighter on the top.  A subtle change in colour is preferred.</p>
+              <p><span class="badge-intro">Step 2</span> Determine the colour at the very top of the image <img src="images/border-1.gif" width="32" height="41" class="align-bottom image-actual" alt="Choose the colour at the top">.  This will be the right border colour.</p>
+              <p><span class="badge-intro">Step 3</span> Determine the colour at the very bottom of the image <img src="images/border-2.gif" width="32" height="41" class="align-bottom image-actual" alt="Choose the colour at the bottom">.  This will be the left border colour.</p>
+              <p><span class="badge-intro">Step 4</span> Update the  stylesheet</p>
+          </div><div class="clear"></div>
+          </div>
+          <div class="clear"></div>
+          <h3 id="bc">Breadcrumbs</h3>
+<p>All requirements are addressed in the following documents:</p>
+<ul>
+              <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?section=text&amp;id=24227#appE" rel="external">Standard on Web Usability Appendix E: Layout and Design</a></li>
+              <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24370&amp;section=text#sec3.3" rel="external">Guidance on Implementing the Standard on Web Usability: Web Page Layout and Design Elements</a></li>
+          </ul>
+       <h2 id="ftr">Customize the footer</h2>     
+<h3 id="lnk">Footer links</h3>
+<p>The links in the footer should  suit the needs of that intranet. However, the footer for intranets should match the <abbr title="Treasury Board of Canada Secretariat">TBS</abbr> approved footer for internets, except where there is a strategic decision to deviate. Refer to these:
+          <ul>
+              <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?section=text&amp;id=24227#appE" rel="external">Standard on Web Usability Appendix E: Layout and Design</a></li>
+              <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24370&amp;section=text#sec3.3" rel="external">Guidance on Implementing the Standard on Web Usability: Web Page Layout and Design Elements</a></li>
+              <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24370&amp;section=text#appC" rel="external">Guidance on Implementing the Standard on Web Usability: Appendix C: Standardized terms</a></li>
+          </ul>
+			<p>The number of columns can be easy changed to suit a Department's needs.  The maxiumum number allowed is six columns, and uses a <a href="../grids/grid-base-full-eng.html">grid-12</a>. More than six columns would require text to be inside of a <code>span-1</code> grid cell, which is not allowed.  The <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.0 requires text to increase up to 200% without breaking the layout and text inside a tiny box cannot effectively do this. Refer to: <a href="http://www.w3.org/WAI/WCAG20/quickref/#qr-visual-audio-contrast-scale" rel="external">Success Criterion 1.4.4</a></p> 
+<h3 id="brndgmg">Branding image</h3>
+<p>Below the footer is a <strong>52 pixel</strong> high branding image placeholder.  The height is equal to the banner and creates a bookend effect for the content.</p>
+<p>Up to two images can be inserted.</p>
+<div class="span-4">
+              <h4 class="background-accent">Image 1 </h4>
+              <p><img src="../../dist/theme-gcwu-intranet/images/gcwu-sft.png" alt="footer background image" class="image-actual align-middle"></p>
+              <p>Design features:</p>
+              <ul>
+              <li>Repeats across the width of the screen.</li>
+              <li>Can be any width, as long as the repeat matches up.</li>
+              <li>Includes a corresponding background colour that appears if images are turned off.</li>
+            </ul>
+          </div>
+<div class="span-4">
+              <h4 class="background-accent">Image 2 </h4>
+              <p><img src="../../dist/theme-gcwu-intranet/images/gcwu-sft-in.png" alt="footer background image" class="align-middle"> This example is 211px by 52px</p>
+              <p>Design features:</p>
+              <ul>
+              <li>A secondary image is optional.</li>
+              <li>Defaults to appear right aligned within the wireframe.  Placement can be modified as needed.</li>
+              <li>Although the height is preset, the width is flexible in order to accomodate each intranet's branding requirments.</li>
+            </ul>
+          </div>
+<div class="clear"></div>
+<h2 id="height">Height dimensions</h2>
+<p>Unlike the width dimensions, the values used for the height have no limitations or restrictions.  The height of the banner or the mega menu is often decided by the original designer in a Photoshop environment and then everyone has an opinion:</p>
+<ul>
+              <li> <cite>&quot;I think the banner takes up too much space!&quot;</cite>, or the opposite</li>
+              <li> <cite>&quot;I think it's too thin and we don't have enough space to apply our branding.&quot;</cite></li>
+          </ul>
+<p>Therefore, <a href="#gldn">Phi (&Phi;) and the golden ratio</a> was chosen as the height benchmark. This mathematical ratio has proven to be aesthetically pleasing while also offering us a rigourous baseline for the  height values.</p>
+<p>By taking a typical <strong>20 pixel</strong> high institutional signature and applying &Phi;, you get the following sequence:</p>
+<ul>
+              <li>20 / 1.618 = <strong>12px</strong></li>
+              <li> 20 x 1.618 = <strong>32px</strong></li>
+              <li> 32 x 1.618 = <strong>52px</strong></li>
+              <li> 52 x 1.618 = <strong>84px</strong></li>
+              <li> 84 x 1.618 = <strong>136px</strong></li>
+          </ul>
+<div class="span-2 module-question">
+              <h3>How many values of &Phi; and the golden ratio can you find?</h3>
+              <p>Where <strong>20px = &Phi;</strong>, there are several occurrences where the golden ratio is <strong>12px : 20px</strong></p>
+              <p>Where <strong>32px = &Phi;</strong>, there are several occurrences where the golden ratio is <strong>20px : 32px</strong></p>
+              <p>Where <strong>52px = &Phi;</strong>, there are several occurrences where the golden ratio is <strong>32px : 52px</strong></p>
+              <p>Where <strong>84px = &Phi;</strong>, there are several occurrences where the golden ratio is <strong>52px : 84px</strong></p>
+              <p>Where <strong>136px = &Phi;</strong>, there are several occurrences where the golden ratio is <strong>84px : 136px</strong></p>
+          </div>
+
+<div class="span-6"><img src="images/dimensions.gif" width="975" height="904" alt="Screenshot showing dimensions of header and footer" /></div>
+
+<div class="clear"></div>
+          <h2 id="gldn">Phi (&Phi;) and the golden ratio?</h2>
+            <p>The pyramids, the Mona Lisa, your teeth and the parthenon have something in common. They all share the same height to width ratio, known as <strong>the golden ratio</strong>. This ratio is simply 1 to 1.618, which is the same thing as 1 to Phi. The Greek symbol &Phi; represents Phi, and has a numerical value of 1.6180339887&hellip;.  Whether it's man-made or existing in nature, Phi is all around you. It is consistently known to exist in beautiful things, including Web pages.</p>
+<p>Just as Pi (&pi;= 3.14) is a by-product of a circle, Phi (&Phi;) is a by-product of a segmented line. This line can morph into a triangle, rectangle, pyramid, swirl, star, pentagon, decagon and more.  So how does this apply to the Web? Historically, the size of an image, the padding around a box, or the width of a table was an arbitrary size, chosen to suit a particular need. By applying the <strong>golden ratio</strong>, which is the relationship between Phi and the number 1, <strong>you consistently know exactly what size to make something</strong>. This results in consistent visually pleasing layouts that appeal to a broad audience.</p>
+<h3 id="wh">Why was Phi chosen as a benchmark?</h3>
+<p> It's not that Phi is the only way to establish a baseline measurement (we could easily say everything must  divide by 10px or have a ratio of 1 : 1.5), but Phi already exists in nature and in man-made objects. Plus it is mathematically flexible (you can have a line, a box, a star and a swirl).</p>
+<h3 id="hw">How was Phi discovered?</h3>
+<h4>As a math equation</h4>
+<p>Phi = 1 + the square root of 5, then divide by 2.</p>
+<img src="images/phiequation.gif" alt="math calculation of Phi = 1 + the square root of 5, then divide by 2" width="224" height="44"  class="image-actual indent-medium" />
+<h4>As a square</h4>
+<ol>
+	<li>Draw a square</li>
+	<li>Locate the midpoint in the bottom line</li>
+	<li>Connect the midpoint to the top right inside corner</li>
+	<li>Pivoting from the midpoint, let the line fall to the right</li>
+	<li>The line segment outside the square is phi (&phi; = 0.618) times longer than the line segment inside the square and the total bottom line is now Phi (&Phi; = 1.618) times longer than the original sides of the square.</li>
+</ol>
+<p> When you use Phi in a ratio, it's known as the <strong>golden ratio</strong>.  You can present the ratio two ways (mathematically, these are the same thing):</p>
+<ol>
+	<li>Phi &Phi; golden ratio = <strong> 1 : 1.168 </strong></li>
+	<li>phi &phi;  golden ratio =<strong> 0.618 : 1</strong></li>
+</ol>
+<img src="images/phiSteps2.gif" alt="How to calculate Phi" width="468" height="62" class="image-actual indent-medium"/>
+<div class="clear"></div>
+<h4>As a  13<sup>th</sup> century math experiment</h4>
+<div class="span-1 background-dark align-center  float-right"> <img src="images/fibonacci.jpg" alt="Statue of Fibonacci" width="102" height="124" />
+              <p>Statue of Fibonacci Camposanto, Pisa, Italy</p>
+          </div>
+<p>In the 13<sup>th</sup> century, the same Italian mathematician who introduced the  base-10 counting system to Europe, asked himself a math question about rabbits.  His name was Leonardo of Pisa (known as Fibonacci) and he wondered: How many pairs of rabbits produce within a year, beginning with a single pair, if every month each pair bears a new pair that becomes productive from the second month on?</p>
+<p>While this is an idealized (biologically unrealistic) rabbit population, the total number of pairs, month by month, forms the sequence 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, and so on. Each new term is the sum of the previous two terms (1+1=2, 1+2=3, 2+3=5, 3+5=8, and so on). This set of numbers known as the <strong>Fibonacci sequence</strong>.</p>
+<div class="indent-xlarge">
+              <p><strong>How do does this sequence relate to Phi?</strong></p>
+              <p><strong>1. </strong> If you take any number in the Fibonacci sequence and divide it by the preceding number, you get closer and closer to Phi:</p>
+              <ul>
+              <li><strong>1</strong> ÷ 0 = not possible</li>
+              <li><strong>1</strong> ÷ 1 = 1</li>
+              <li><strong>2</strong> ÷ 1 = 2</li>
+              <li><strong>3</strong> ÷ 2 = 1.5</li>
+              <li><strong>5</strong> ÷ 3 = 1.667</li>
+              <li><strong>8</strong> ÷ 5 = 1.600</li>
+              <li><strong>13</strong> ÷ 8 = 1.625</li>
+              <li><strong>21</strong> ÷ 13 = 1.615</li>
+              <li><strong>34</strong> ÷ 21 = 1.619</li>
+              <li><strong>55</strong> ÷ 34 = <strong>1.618</strong></li>
+              <li><strong>89</strong> ÷ 55 = <strong>1.618</strong></li>
+              <li><strong>144</strong> ÷ 89 = <strong>1.618</strong></li>
+              <li>&hellip;and so on</li>
+            </ul>
+              <img src="images/fibanoccisequence.gif" alt="Animated Phi" width="224" height="139" class="image-actual indent-large float-right"/>
+              <p><strong>2. </strong>If you start with a square that is 1x1, and place another square along its longest wall, you get two 1x1 squares.  Placing another square along the combined longest wall yields a 2x2 square.  Repeating again gives you a 3x3 square, followed by a 5x5 square. If you continue, you end up with the Fibonacci sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89&hellip;.  The result of the square creates an overall rectangular shape that has the golden ratio of 1 : 1.618.  As well, if you start in the 1x1 square and spiral around, touching where each box connects with its neighbour, you get the golden spiral.</p>
+          </div>
+<h3 id="whr">Where does Phi exist?</h3>
+<div class="span-6 border-all background-light">
+              <p><strong>Basic Phi line</strong></p>
+              <p>A few of the examples of a basic Phi line are:</p>
+              <ul>
+              <li>In a perfect smile, the front two middle teeth are 1.618 times wider than their height. When viewed straight on, the ratio of the width of the front tooth to the one beside it is Phi.  For related information, refer to the <a href="http://www.guardian.co.uk/education/2009/feb/03/improbable-research" rel="external">article in the <abbr title="United Kingdom">UK</abbr>'s Guardian newspaper: The perfect smile (external link)</a>.</li>
+              <li>Your forearm is ideally 1.618 times longer than your hand.</li>
+              <li>The bottom of your feet to your belly button is ideally  1.618 times the distance from your torso to the top of your head.</li>
+              <li>Each section of any of your fingers, from the tip to the base of the wrist, is ideally larger than the preceding one by a ratio of 1 : 1.618.</li>
+              <li>You can break Notre Dame down in the many Phi segments.</li>
+            </ul>
+          </div>
+<div class="span-2"> <img src="images/philine.gif" alt="Phi line" width="224" height="100" />
+              <div class="span-1 row-start"> <img src="images/teeth.gif" alt="Teeth and Phi segments" width="102" height="52" /></div>
+              <div class="span-1 row-end"> <img src="images/arm.gif" alt="An arm and Phi segments" width="102" height="52" /></div>
+              <div class="clear"></div>
+              <div class="span-1  row-start"> <img src="images/davinci.gif" alt="DaVinci and Phi segments" width="102" height="99" /> <img src="images/hand.gif" alt="Hand and Phi segments" width="102" height="74" class="margin-top-large" /> </div>
+              <div class="span-1 row-end"> <img src="images/notredame.gif" alt="Notre Dame Cathedral and Phi segments" width="168" height="226" /></div>
+          </div>
+<div class="clear"></div>
+<div class="span-6 border-all background-light">
+              <p><strong>Golden Rectangle</strong></p>
+              <p>A few of the examples of a golden rectangle are:</p>
+              <ul>
+              <li>You can break the Mona Lisa down into several golden rectangles.</li>
+              <li>The parthenon's architecture is Phi.</li>
+            </ul>
+          </div>
+<div class="span-2"> <img src="images/goldenrectangle.gif" alt="Golden rectangle" width="224" height="147" />
+              <div class="span-1 row-start"> <img src="images/monalisa.gif" alt="Mona Lisa and golden rectangle" width="102" height="109" /></div>
+              <div class="span-1 row-end"> <img src="images/parthenon.gif" alt="Parthenon and golden rectangle" width="102" height="53" /></div>
+          </div>
+<div class="clear"></div>
+<div class="span-6 border-all background-light">
+              <p><strong>Golden Pentagram &#47; Pentagon</strong></p>
+              <p>A few of the examples of a golden pentagram &#47; pentagon are:</p>
+              <ul>
+              <li>the five-pointed star that is in the <abbr title="United States">US</abbr> flag and European Union flag, and</li>
+              <li>the United States Pentagon</li>
+            </ul>
+          </div>
+<div class="span-2"> <img src="images/goldenpentagon.gif" alt="Golden pentagon" width="224" height="213" />
+              <div class="span-1 row-start"> <img src="images/flagus.gif" alt="Flag and golden pentagon" width="102" height="68" /></div>
+              <div class="span-1 row-end"> <img src="images/pentagon.gif" alt="Golden pentagon building" width="102" height="68" /></div>
+          </div>
+<div class="clear"></div>
+<div class="span-6 border-all background-light">
+              <p><strong>Golden Spiral</strong></p>
+              <p>A few of the examples of a golden spiral are:</p>
+              <ul>
+              <li>Sunflower seed spirals typically number 21 or 34 running clockwise, and 34 or 55 counterclockwise.  These are numbers in the Fibonacci sequence and divide out to Phi.</li>
+              <li>Unlike the bones in your hand, the ear isn't formally connected to Phi, but it appears to  match  the golden swirl.</li>
+            </ul>
+          </div>
+<div class="span-2"> <img src="images/fibanoccisequence_still.gif" alt="Fibanocci sequence" width="224" height="139" />
+              <div class="span-1 row-start"> <img src="images/ear.gif" alt="An ear and golden spiral" width="102" height="113" /></div>
+              <div class="clear"></div>
+          </div>
+<div class="clear"></div>
+<div class="span-6 border-all background-light">
+              <p><strong>Golden Pyramid</strong></p>
+              <p>An example of a golden pyramid is the pyramids of Giza</p>
+          </div>
+<div class="span-2"> <img src="images/goldenpyramid.gif" alt="Golden pyramid" width="224" height="170" />
+              <div class="span-2"> <img src="images/pyramid.gif" alt="Golden pyramid" width="224" height="170" /></div>
+          </div>
+<div class="clear"></div>
+	
+
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-03-10</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Link</a></h4>
+<ul>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Link</a></h4>
+<ul>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Link</a></h4>
+<address>
+<ul>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Link</a></h4>
+<ul>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+<li><a href="#">Link</a></li>
+</ul>
+</div></section>
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
+</ul>
+</div>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-gcwu-intranet/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-gcwu-intranet/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<!-- CustomScriptsEnd -->
+</body>
+</html>

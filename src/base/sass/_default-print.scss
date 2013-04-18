@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 %wb-default-print-times-new-roman-font {
 	font-family: Times New Roman, serif;
@@ -9,6 +9,10 @@
 body {
 	@extend %wb-default-print-times-new-roman-font;
 	background: #FFF;
+}
+
+.ui-body-c, .ui-overlay-c {
+	background: transparent !important;
 }
 
 textarea {

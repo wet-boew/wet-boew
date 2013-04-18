@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/border-radius";
 
@@ -94,10 +94,8 @@ input {
 		li {
 			float: left;
 			padding: 13px 0;
-			&#wet-fullhd-lang {
-				a {
-					text-transform: capitalize;
-				}
+			&[id|=wet-fullhd-lang] {
+				text-transform: capitalize;
 			}
 		}
 	}
@@ -133,10 +131,12 @@ input {
 		a {
 			&, &.ui-link {
 				background: #0B3048;
-				@extend %wet-default-screen-color-fff;
 				padding-top: 8px;
 				padding-bottom: 8px;
 				font-size: 1.1em;
+				&:link, &:visited {
+					@extend %wet-default-screen-color-fff;
+				}
 				@include pseudo-focus {
 					@extend %wet-default-screen-color-fff;
 					text-decoration: underline;
@@ -186,8 +186,10 @@ input {
 		a {
 			&, &.ui-link {
 				display: block;
-				@extend %wet-default-screen-color-333;
 				text-decoration: none;
+				&:link, &:visited {
+					@extend %wet-default-screen-color-333;
+				}
 				@include pseudo-focus {
 					@extend %wet-default-screen-color-333;
 					text-decoration: underline;
@@ -286,15 +288,6 @@ input {
 	}
 }
 
-#wet-fullft {
-	background: #333;
-	@extend %wet-default-screen-color-fff;
-}
-
-#wet-fullft-in {
-	background: #666;
-}
-
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	.wb-sec-def {
@@ -314,6 +307,12 @@ input {
 				margin-left: auto;
 				margin-right: 0;
 			}
+		}
+	}
+
+	#wet-fullhd {
+		ul {
+			margin: 0 10px 0 0;
 		}
 	}
 }

@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -30,6 +30,11 @@
 		fullft: null,
 		gridsmenu: null,
 		menu: null,
+		favicon: {
+			href: 'images/favicon-mobile.png',
+			rel: 'apple-touch-icon',
+			sizes: '57x57 72x72 114x114 144x144 150x150'
+		},
 		init: function () {
 			wet_boew_theme.fullhd = pe.header.find('#wet-fullhd');
 			wet_boew_theme.psnb = pe.header.find('#wet-psnb');
@@ -80,7 +85,7 @@
 			if (pe.secnav.length !== 0) {
 				current = pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
 				submenu = current.parents('ul');
-				submenu.prev().children('a').addClass('nav-current');
+				submenu.prev().children('a').addClass('nav-current-nocss');
 			}
 			if (wet_boew_theme.gridsmenu.length !== 0) {
 				current = pe.menu.navcurrent(wet_boew_theme.gridsmenu, wet_boew_theme.bcrumb);
@@ -135,6 +140,8 @@
 				home_href,
 				header,
 				sessionSettings,
+				sessionSetting,
+				signInOut,
 				session;
 
 			// Content pages only
@@ -217,9 +224,11 @@
 				if (session !== null) {
 					sessionSettings = session.getElementsByClassName('settings');
 					for (i = 0, len = sessionSettings.length; i !== len; i += 1) {
-						settings_popup += '<li>' + sessionSettings[i].innerHTML + '</li>';
+						sessionSetting = sessionSettings[i].getElementsByTagName('a')[0];
+						settings_popup += '<li><a href="' + sessionSetting.getAttribute('href') + '">' + sessionSetting.innerHTML + '</a></li>';
 					}
-					settings_popup += '<li>' + session.getElementsByClassName('session')[0].innerHTML + '</li>';
+					signInOut = session.getElementsByClassName('session')[0].getElementsByTagName('a')[0];
+					settings_popup += '<li><a href="' + signInOut.getAttribute('href') + '">' + signInOut.innerHTML + '</a></li>';
 				}
 				if (lang_links.length !== 0) {
 					settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
@@ -240,7 +249,7 @@
 					i = len;
 					while (i--) {
 						node = nodes[i];
-						link = node.childNodes[0];
+						link = node.getElementsByTagName('a')[0];
 						settings_popup += '<li' + (i === 0 ? ' class="ui-corner-bottom"' : '');
 						if (node.id.indexOf('-lang-current') !== -1) {
 							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
@@ -288,6 +297,10 @@
 					nodes2,
 					node2;
 				if (navbar.length !== 0) {
+					// Manually initializes the navbar controlgroup if it doesn't initialize normally (can happen in IE)
+					if (!navbar.hasClass('ui-controlgroup')) {
+						navbar.controlgroup();
+					}
 					navbar.removeClass('wb-hide');
 
 					// Defer appending of menu until after page is enhanced by jQuery Mobile, and
@@ -304,14 +317,14 @@
 								node = nodes[len];
 								// Fix the top corners
 								node2 = node.getElementsByTagName('li')[0];
-								if (node2.parentNode.parentNode.className.indexOf('ui-collapsible') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
+								if (node2.parentNode.parentNode.parentNode.className.indexOf('ui-collapsible') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
 									node2.className += ' ui-corner-top';
 								}
 
 								// Fix the bottom corners
 								nodes2 = menus.eq(len).find('.ui-btn').get();
 								node = nodes2[nodes2.length - 1];
-								if (node.className.indexOf('ui-corner-bottom') === -1) {
+								if (typeof node !== 'undefined' && node.className.indexOf('ui-corner-bottom') === -1) {
 									node.className += ' ui-corner-bottom';
 								}
 							}

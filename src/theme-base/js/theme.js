@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -30,6 +30,11 @@
 		fullft: null,
 		gridsmenu: null,
 		menu: null,
+		favicon: {
+			href: 'images/favicon-mobile.png',
+			rel: 'apple-touch-icon',
+			sizes: '57x57 72x72 114x114 144x144 150x150'
+		},
 		init: function () {
 			wet_boew_theme.fullhd = pe.header.find('#base-fullhd');
 			wet_boew_theme.psnb = pe.header.find('#base-psnb');
@@ -51,7 +56,7 @@
 			if (pe.secnav.length !== 0) {
 				current = pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
 				submenu = current.parents('ul');
-				submenu.prev().children('a').addClass('nav-current');
+				submenu.prev().children('a').addClass('nav-current-nocss');
 			}
 			if (wet_boew_theme.gridsmenu.length !== 0) {
 				current = pe.menu.navcurrent(wet_boew_theme.gridsmenu, wet_boew_theme.bcrumb);
@@ -106,6 +111,8 @@
 				home_href,
 				header,
 				sessionSettings,
+				sessionSetting,
+				signInOut,
 				session;
 
 			// Content pages only
@@ -133,14 +140,14 @@
 					if (wet_boew_theme.menubar.length !== 0) {
 						mb_menu += '<section><div><h2>' + wet_boew_theme.psnb.children(':header')[0].innerHTML + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
 					}
-					
+
 					// Append the popup/dialog container and store the menu for appending later
 					mb_popup += '<div id="jqm-mb-menu"></div></nav></div></div></div>';
 					bodyAppend += mb_popup;
 					wet_boew_theme.menu = mb_menu;
 					_list += popup_button + ' data-icon="bars" href="#jqm-wb-mb">' + mb_btn_txt + '</a>';
 				}
-			
+
 				// Build the search popup (content pages only)
 				if (wet_boew_theme.search.length !== 0) {
 					// :: Search box transform lets transform the search box to a popup
@@ -156,7 +163,7 @@
 					bodyAppend += s_popup;
 					_list += popup_button + ' data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a>';
 				}
-			
+
 				// Build the header bar
 				header = '<div data-role="header"><div class="ui-title"></div>';
 				header += '<map id="base-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
@@ -177,7 +184,7 @@
 				wet_boew_theme.fullhd.children('#base-fullhd-in').before(header);
 				// Apply a theme to the site title
 				wet_boew_theme.title[0].className += ' ui-bar-b';
-			
+
 				// Build the settings popup
 				session = document.getElementById('wb-session');
 				lang_links = wet_boew_theme.fullhd.find('li[id*="-lang"]');
@@ -187,9 +194,11 @@
 				if (session !== null) {
 					sessionSettings = session.getElementsByClassName('settings');
 					for (i = 0, len = sessionSettings.length; i !== len; i += 1) {
-						settings_popup += '<li>' + sessionSettings[i].innerHTML + '</li>';
+						sessionSetting = sessionSettings[i].getElementsByTagName('a')[0];
+						settings_popup += '<li><a href="' + sessionSetting.getAttribute('href') + '">' + sessionSetting.innerHTML + '</a></li>';
 					}
-					settings_popup += '<li>' + session.getElementsByClassName('session')[0].innerHTML + '</li>';
+					signInOut = session.getElementsByClassName('session')[0].getElementsByTagName('a')[0];
+					settings_popup += '<li><a href="' + signInOut.getAttribute('href') + '">' + signInOut.innerHTML + '</a></li>';
 				}
 				if (lang_links.length !== 0) {
 					settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
@@ -210,7 +219,7 @@
 					i = len;
 					while (i--) {
 						node = nodes[i];
-						link = node.childNodes[0];
+						link = node.getElementsByTagName('a')[0];
 						settings_popup += '<li' + (i === 0 ? ' class="ui-corner-bottom"' : '');
 						if (node.id.indexOf('-lang-current') !== -1) {
 							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
@@ -221,9 +230,9 @@
 					settings_popup += '</ul>' + popup_close;
 				}
 
-				// Build the about sub-popup	
+				// Build the about sub-popup
 				settings_popup += popup + ' id="popupAbout"' + popup_settings;
-				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';			
+				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open;
 				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
 				// Add the version
@@ -241,7 +250,7 @@
 					link = links[i];
 					node = link.innerHTML;
 					target = node.toLowerCase();
-					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';	
+					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';
 				}
 				settings_popup += '</ul>' + popup_close;
 
@@ -258,6 +267,10 @@
 					nodes2,
 					node2;
 				if (navbar.length !== 0) {
+					// Manually initializes the navbar controlgroup if it doesn't initialize normally (can happen in IE)
+					if (!navbar.hasClass('ui-controlgroup')) {
+						navbar.controlgroup();
+					}
 					navbar.removeClass('wb-hide');
 
 					// Defer appending of menu until after page is enhanced by jQuery Mobile, and
@@ -274,14 +287,14 @@
 								node = nodes[len];
 								// Fix the top corners
 								node2 = node.getElementsByTagName('li')[0];
-								if (node2.parentNode.parentNode.className.indexOf('ui-collapsible') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
+								if (node2.parentNode.parentNode.parentNode.className.indexOf('ui-collapsible') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
 									node2.className += ' ui-corner-top';
 								}
 
 								// Fix the bottom corners
 								nodes2 = menus.eq(len).find('.ui-btn').get();
 								node = nodes2[nodes2.length - 1];
-								if (node.className.indexOf('ui-corner-bottom') === -1) {
+								if (typeof node !== 'undefined' && node.className.indexOf('ui-corner-bottom') === -1) {
 									node.className += ' ui-corner-bottom';
 								}
 							}

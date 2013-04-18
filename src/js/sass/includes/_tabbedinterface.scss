@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 
 
@@ -26,6 +26,15 @@
 
 %tabbedinterface-text-decoration-underline {
 	text-decoration: underline;
+}
+
+%tabbedinterface-rel-external {
+	a {
+		&[rel="external"] {
+			padding: 0 !important;
+			background: 0 !important;
+		}
+	}
 }
 
 .wet-boew-tabbedinterface {
@@ -125,7 +134,7 @@
 		}
 	}
 	.viewport {
-		position: absolute;		
+		position: absolute;
 		left: 0;
 		top: 0;
 		display: block;
@@ -146,6 +155,9 @@
 			}
 		}
 	}
+  .panel-end {
+    margin: 0 10px;
+  }
 }
 
 .slide-horz, .slide-vert {
@@ -185,6 +197,9 @@
 	}
 	.tabs {
 		margin: 0 10px 10px;
+	}
+	.panel-end {
+	  margin: 0;
 	}
 }
 
@@ -499,6 +514,7 @@
 			display: block;
 			margin-bottom: 0;
 		}
+		@extend %tabbedinterface-rel-external;
 	}
 }
 
@@ -565,6 +581,7 @@
 			display: block;
 			margin-bottom: 0;
 		}
+		@extend %tabbedinterface-rel-external;
 	}
 }
 
@@ -643,7 +660,7 @@
 					@include pseudo-focus {
 						@extend %tabbedinterface-tab-style-6-opacity-1-color-000-important;
 					}
-				}				
+				}
 			}
 			&.tabs-toggle {
 				a {

@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -54,6 +54,7 @@
 		viewtest: '',
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
+		scrollTopInit: 0,
 
 		/**
 		* @namespace pe.dic
@@ -119,7 +120,18 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = pe.html, hlinks, hlinks_same, $this, target, classes, test, test_elms, init_on_mobileinit = false;
+			var $html = pe.html,
+				hlinks,
+				hlinks_same,
+				$this,
+				target,
+				validTarget = false,
+				classes = '',
+				test,
+				test_elms,
+				silentscroll_fired = false,
+				pageinit_fired = false,
+				init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
@@ -130,15 +142,15 @@
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
-	
-			// Mobile test: Used to detect CSS media query result regarding mobile/desktop view
+
+			// View test: Used to detect CSS media query result regarding screen size and mobile/desktop view
 			pe.viewtest = document.createElement('div');
-			pe.viewtest.setAttribute('id', 'viewtest'); // Used to detect CSS media queries result regarding mobile/desktop view
-			
+			pe.viewtest.setAttribute('id', 'viewtest');
+
 			// Resize test element: Used to detect changes in text size and window size
 			pe.resizetest = document.createElement('span');
 			pe.resizetest.innerHTML = '&#160;';
-			pe.resizetest.setAttribute('id', 'resizetest'); // Used to detect CSS media queries result regarding mobile/desktop view
+			pe.resizetest.setAttribute('id', 'resizetest');
 
 			// Append the various tests to the body
 			test_elms = document.createElement('div');
@@ -154,16 +166,23 @@
 			pe.urlhash = pe.urlpage.hash;
 			pe.urlquery = pe.urlpage.params;
 
-			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
+			// Identify whether or not the device supports JavaScript, the current theme, the current view and screen size, and if the device has a touchscreen
 			pe.mobile = pe.mobilecheck();
-			pe.tablet = pe.tabletcheck();
+			pe.medium = pe.mediumcheck();
 			pe.print = (pe.mobile ? false : pe.printcheck());
-			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : ' smartphone-view')) : (pe.print ? ' print-view' : ' desktop-view'))) : '';
+
+			// Add theme specific CSS classes and favicon
+			if (wet_boew_theme !== null) {
+				classes += wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.medium ? ' medium-screen' : ' small-screen')) : (pe.print ? ' print-view' : ' desktop-view large-screen'));
+				if (typeof wet_boew_theme.favicon !== 'undefined') {
+					pe.add.favicon(pe.add.themecsslocation.replace(/css\/$/, wet_boew_theme.favicon.href), wet_boew_theme.favicon.rel, wet_boew_theme.favicon.sizes);
+				}
+			}
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			classes += (pe.svg ? ' svg' : ' no-svg');
 			classes += (pe.ie > 8 ? ' ie' + parseInt(pe.ie, 10) : (pe.ie < 1 ? ' no-ie' : ''));
 
-			// Check for browsers that needs SVG loaded through an object element removed		
+			// Check for browsers that needs SVG loaded through an object element removed
 			test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
 			pe.svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46)));
 
@@ -187,8 +206,34 @@
 			hlinks_same = hlinks.filter(function () {
 				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
 			});
-			
+
 			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
+
+			// If the page URL includes a hash upon page load, then focus on and scroll to the target
+			// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
+			// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
+			pe.scrollTopInit = pe.window.scrollTop();
+			if (pe.scrollTopInit === 0) {
+				window.onload = function() {
+					setTimeout(function() {
+						pe.scrollTopInit = pe.window.scrollTop();
+					}, 1);
+				};
+			}
+			if (pe.urlhash.length !== 0) {
+				target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+				target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+				validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
+			}
+			pe.document.on('silentscroll.wbinit', function() {
+				silentscroll_fired = true;
+				if (pageinit_fired) {
+					pe.document.off('silentscroll.wbinit');
+				}
+				if (validTarget || pe.scrollTopInit > 1) {
+					$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
+				}
+			});
 
 			pe.document.on('mobileinit', function () {
 				$.extend($.mobile, {
@@ -202,6 +247,16 @@
 			});
 
 			pe.document.on('pageinit', function () {
+				pageinit_fired = true;
+				// Remove the silentscroll handling for determining scrollTop if the silentscroll event has already fired
+				if (silentscroll_fired) {
+					pe.document.off('silentscroll.wbinit');
+				}
+
+				// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
+				// TODO: Find a more elegant way to address this in jQuery Mobile
+				pe.bodydiv.removeAttr('tabindex');
+
 				// On click, puts focus on and scrolls to the target of same page links
 				hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
 					var hash = $(this).attr('href'),
@@ -216,16 +271,6 @@
 						}
 					}
 				});
-				// If the page URL includes a hash upon page load, then focus on and scroll to the target
-				if (pe.urlhash.length !== 0) {
-					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if (target.length > 0 && target.attr('data-role') !== 'page' && (pe.ie === '0' || pe.ie > 7)) {
-						setTimeout(function () {
-							$.mobile.silentScroll(pe.focus(target).offset().top);
-						}, 200);
-					}
-				}
 			});
 
 			// Load ajax content
@@ -243,7 +288,7 @@
 					if (replace) {
 						$o.empty();
 					}
-					$o.append($(data));
+					$o.append($.trim(data));
 				}, 'html');
 			})).always(function () {
 				// Wait for localisation and ajax content to load plugins
@@ -291,15 +336,15 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return pe.viewtest.offsetWidth > 1; // CSS (through media queries) sets to offsetWidth = 0 in print view, offsetWidth = 1 in desktop view, offsetWidth = 2 in mobile view and offsetWidth = 3 in tablet view
+			return pe.viewtest.offsetWidth > 1; // CSS (through media queries) sets to offsetWidth = 0 in print view, offsetWidth = 1 desktop view (large screen), offsetWidth = 2 or 3 mobile view (2 = small screen, 3 = medium screen)
 		},
 		print: false,
 		printcheck: function () {
 			return pe.viewtest.offsetWidth === 0; // CSS (through media queries) sets to offsetWidth = 0 in print view
 		},
-		tablet: false,
-		tabletcheck: function () {
-			return pe.viewtest.offsetWidth === 3; // CSS (through media queries) sets to offsetWidth = 3 in tablet view
+		medium: false,
+		mediumcheck: function () {
+			return pe.viewtest.offsetWidth === 3; // CSS (through media queries) sets to offsetWidth = 3 for medium screen
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -321,7 +366,7 @@
 		pagecontainer: function () {
 			return $('#wb-body-sec-sup, #wb-body-sec, #wb-body-secr, #wb-body').add('body').eq(0);
 		},
-		
+
 		/**
 		* Manages custom events for text and window resizing
 		* Based on http://alistapart.com/article/fontresizing
@@ -974,7 +1019,10 @@
 				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
 					link = menulinks[menulinkslen];
-					linkhref = !hrefBug ? link.getAttribute('href') : $(link).attr('href');
+					linkhref = link.getAttribute('href');
+					if (hrefBug && linkhref !== window.location.href) {
+						linkhref = linkhref.replace(window.location.href, '');
+					}
 					if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
 						linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
 						linkquery = link.search;
@@ -999,7 +1047,9 @@
 					for (bcindex = 0; bcindex !== bclinkslen; bcindex += 1) {
 						link = bclinks[bcindex];
 						linkhref = link.getAttribute('href');
-						linkhref = !hrefBug ? link.getAttribute('href') : $(link).attr('href');
+						if (hrefBug && linkhref !== window.location.href) {
+							linkhref = linkhref.replace(window.location.href, '');
+						}
 						if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
 							bclink.push(link);
 							bclinkurl.push(link.hostname + link.pathname.replace(/^([^\/])/, '/$1'));
@@ -1012,7 +1062,7 @@
 						linkurl = menulinkurl[linkindex];
 						linkurllen = linkurl.length;
 						linkquery = link.search;
-						linkquerylen = linkquery.length;						
+						linkquerylen = linkquery.length;
 						bcindex = bclinkslen;
 						while (bcindex--) {
 							if (bclinkurl[bcindex].slice(-linkurllen) === linkurl && (linkquerylen === 0 || bclink[bcindex].search.slice(-linkquerylen) === linkquery)) {
@@ -1060,6 +1110,7 @@
 					hlink,
 					hlinkDOM,
 					navCurrent,
+					navCurrentNoCSS,
 					nested,
 					nested_i,
 					nested_len,
@@ -1119,10 +1170,11 @@
 								hlink = mItem.children('a');
 								hlinkDOM = hlink[0];
 								navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
+								navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
 								if (toplevel) {
 									secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1);
 								}
-								menu += (navCurrent ? ' nav-current' : '');
+								menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
 								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
 								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
@@ -1131,41 +1183,45 @@
 								}
 								next = mItem.next();
 								nextDOM = next[0];
-								if (nextDOM.tagName.toLowerCase() === 'ul') {
-									menu += listView;
-									nested = nextDOM.querySelector('li ul');
-									if (nested !== null && nested.length !== 0) { // Special handling for a nested list
-										hnestTag = 'h' + (hlevel + 1);
-										listItems = nextDOM.children;
-										for (i = 0, len = listItems.length; i !== len; i += 1) {
-											listItem = listItems[i];
-											hnestDOM = listItem.getElementsByTagName('li');
-											menu += '<li>';
-											if (hnestDOM.length !== 0) {
-												hnestLinkDOM = listItem.children[0];
-												menu += sectionOpen2 + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLinkOpen2 + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
-												for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
-													listItem2 = hnestDOM[nested_i];
-													hnestLinkDOM2 = listItem2.querySelector('a');
-													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hnestLinkDOM2.href + '">' + hnestLinkDOM2.innerHTML + '</a></li>';
+								//Don't try to build mobile menu for headings with no sub-items
+								if (typeof nextDOM !== 'undefined'){
+									if (nextDOM.tagName.toLowerCase() === 'ul') {
+										menu += listView;
+										nested = nextDOM.querySelector('li ul');
+										if (nested !== null && nested.length !== 0) { // Special handling for a nested list
+											hnestTag = 'h' + (hlevel + 1);
+											listItems = nextDOM.children;
+											for (i = 0, len = listItems.length; i !== len; i += 1) {
+												listItem = listItems[i];
+												hnestDOM = listItem.getElementsByTagName('li');
+												menu += '<li>';
+												if (hnestDOM.length !== 0) {
+													hnestLinkDOM = listItem.children[0];
+													menu += sectionOpen2 + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLinkOpen2 + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+													for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
+														listItem2 = hnestDOM[nested_i];
+														hnestLinkDOM2 = listItem2.querySelector('a');
+														menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hnestLinkDOM2.href + '">' + hnestLinkDOM2.innerHTML + '</a></li>';
+													}
+													menu += '</ul></div>';
+												} else {
+													menu += listItem.innerHTML;
 												}
-												menu += '</ul></div>';
-											} else {
-												menu += listItem.innerHTML;
+												menu += '</li>';
 											}
-											menu += '</li>';
+										} else {
+											menu += nextDOM.innerHTML;
 										}
-									} else {
-										menu += nextDOM.innerHTML;
-									}
-									menu += '</ul>';
-								} else { // If the section contains sub-sections
-									if (menubar) {
-										menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
-									} else {
-										menu += pe.menu.buildmobile(mItem.parent(), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
+										menu += '</ul>';
+									} else { // If the section contains sub-sections
+										if (menubar) {
+											menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
+										} else {
+											menu += pe.menu.buildmobile(mItem.parent(), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
+										}
 									}
 								}
+
 								// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
 								if (!menubar && hlink.length > 0 && (toplevel || collapsible || !collapseTopOnly)) {
 									menu += link + hlinkDOM.href + '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
@@ -1672,7 +1728,7 @@
 				* @return {string[]} NOTE: If d is a string, this returns a string array with 8 copies of the transformed string. If d is a string array, this returns a string array with just one entry; the transformed string.
 				*/
 				depends: function (d, css) {
-					var iscss = typeof css !== 'undefined' ? css : false, 
+					var iscss = typeof css !== 'undefined' ? css : false,
 						extension = pe.suffix + (iscss ? '.css' : '.js'),
 						dir = pe.add.liblocation + 'dependencies/' + (iscss ? 'css/' : ''),
 						c_d = $.map(d, function (a) {
@@ -1707,6 +1763,21 @@
 					pe.add.set(styleElement, 'name', name).set(styleElement, 'content', content);
 					pe.add.head.appendChild(styleElement);
 					return this;
+				},
+				/**
+				* Adds a mobile favicon to the head of the document.
+				* @memberof pe.add
+				* @function
+				* @param {string} href Path of the favicon to add
+				* @param {string} rel Value of the favicon's rel attribute
+				* @param {string} sizes Value of the favicon's sizes attribute
+				* @return {object} A reference to pe.add
+				*/
+				favicon: function(href, rel, sizes) {
+					var favicon = document.createElement('link');
+					pe.add.set(favicon, 'href', href).set(favicon, 'rel', rel).set(favicon, 'sizes', sizes);
+					pe.add.head.appendChild(favicon);
+					return this;
 				}
 			};
 		}
@@ -1714,7 +1785,7 @@
 		/**
 		* Handles loading of the plugins, dependencies and polyfills
 		* @function
-		* @param {object} options Object containing the loader options. The following optional properties are supported: 
+		* @param {object} options Object containing the loader options. The following optional properties are supported:
 		* 'plugins': {'plugin_name1': elms1, 'plugin_name2': elms2, ...} - Names of plugins to load and the elements to load them on
 		* 'global': [plugin_name1, plugin_name2, ...] - Names of global plugins to load
 		* 'deps': [dependency_name1, dependency_name2, ...] - Names of dependences to load
@@ -1886,16 +1957,16 @@
 				if (!(pe.ie > 0 && pe.ie < 9)) {
 					pe.resize(function () {
 						var mobilecheck = pe.mobilecheck(),
-							tabletcheck;
+							mediumcheck;
 						if (pe.mobile !== mobilecheck) {
 							pe.mobile = mobilecheck;
 							window.location.href = decodeURI(pe.url(window.location.href).removehash());
 						} else {
-							tabletcheck = pe.tabletcheck();
-							if (pe.tablet !== tabletcheck) {
-								pe.html.toggleClass('tablet-view smartphone-view');
+							mediumcheck = pe.mediumcheck();
+							if (pe.medium !== mediumcheck) {
+								pe.html.toggleClass('medium-screen small-screen');
 							}
-							pe.tablet = tabletcheck;
+							pe.medium = mediumcheck;
 						}
 					});
 				}

@@ -2,7 +2,7 @@
 /*!!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -15,75 +15,82 @@
 
 @import '../../base/sass/modern-vendor-prefix';
 
-/* ----- All media types - Start of build includes ----- */
+/* ----- All screens - All media types - Start of build includes ----- */
 @import '../../base/sass/default';
 @import '../../theme-gcwu-fegc/sass/includes/default';
 @import 'includes/default';
-/* ----- All media types - End of build includes ----- */
+/* ----- All screens - All media types - End of build includes ----- */
 
 @media screen {
-/* ----- Screen media type only - Start of build includes ----- */
+/* ----- All screens - Screen media type - Start of build includes ----- */
 @import '../../base/sass/default-screen';
 @import '../../theme-gcwu-fegc/sass/includes/default-screen';
-/* ----- Screen media type only - End of build includes ----- */
+/* ----- All screens - Screen media type - End of build includes ----- */
 }
 
 @media (min-width: 960px) and (min-device-width: 1024px) {
-/* ----- Desktop view - All media types - Start of build includes ----- */
-@import '../../base/sass/default-desktop';
-@import '../../theme-gcwu-fegc/sass/includes/default-desktop';
-@import '../../theme-gcwu-fegc/sass/includes/default-desktop-images';
-/* ----- Desktop view - All media types - End of build includes ----- */
+/* ----- Large screens - All media types - Start of build includes ----- */
+@import '../../base/sass/default-large-screen';
+@import '../../theme-gcwu-fegc/sass/includes/default-large';
+@import '../../theme-gcwu-fegc/sass/includes/default-large-images';
+/* ----- Large screens - All media types - End of build includes ----- */
 }
 
 @media screen and (min-width: 768px) and (min-device-width: 768px) {
-/* ----- Desktop view (including Mobile view (Tablet)) - Screen media type only - Start of build includes ----- */
-@import '../../grids/sass/responsive';
-/* ----- Desktop view (including Mobile view (Tablet)) - Screen media type only - End of build includes ----- */
+/* ----- Medium and large screens - Screen media type - Start of build includes ----- */
+@import '../../grids/sass/responsive-medium-large-screen';
+/* ----- Medium and large screens - Screen media type - End of build includes ----- */
 }
 
 @media screen and (min-width: 960px) and (min-device-width: 1024px) {
-/* ----- Desktop view - Screen media type only - Start of build includes ----- */
-@import '../../theme-gcwu-fegc/sass/includes/default-responsive';
-@import 'includes/default-responsive';
-@import '../../base/sass/default-desktop-screen';
-@import '../../theme-gcwu-fegc/sass/includes/default-desktop-screen';
-@import 'includes/default-desktop-screen';
-@import 'includes/default-desktop-screen-images';
-/* ----- Desktop view - Screen media type only - End of build includes ----- */
+/* ----- Large screens - Screen media type - Start of build includes ----- */
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive-large-screen';
+@import 'includes/default-responsive-large-screen';
+@import '../../base/sass/default-large-screen';
+@import '../../theme-gcwu-fegc/sass/includes/default-large-screen';
+@import 'includes/default-large-screen';
+@import 'includes/default-large-images-screen';
+/* ----- Large screens - Screen media type - End of build includes ----- */
 }
 
 @media screen and (min-width: 1200px) and (min-device-width: 1024px) {
-/* ----- Desktop view (1200+ pixel width) - Screen media type only - Start of build includes ----- */
-@import '../../grids/sass/responsive-1200';
-@import '../../theme-gcwu-fegc/sass/includes/default-responsive-1200';
-@import 'includes/default-responsive-1200';
-/* ----- Desktop view (1200+ pixel width) - Screen media type only - End of build includes ----- */
+/* ----- Large screens (1200+ pixel width) - Screen media type - Start of build includes ----- */
+@import '../../grids/sass/responsive-large-1200-screen';
+@import '../../theme-gcwu-fegc/sass/includes/default-responsive-large-1200-screen';
+@import 'includes/default-responsive-large-1200-screen';
+/* ----- Large screens (1200+ pixel width) - Screen media type - End of build includes ----- */
 }
 
 @media screen and (max-width: 959px), screen and (max-device-width: 1023px) {
-/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - Start of build includes ----- */
-@import '../../base/sass/default-mobile';
-@import '../../theme-gcwu-fegc/sass/includes/default-mobile';
-@import '../../theme-gcwu-fegc/sass/includes/default-mobile-images';
-@import 'includes/default-mobile';
-/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - End of build includes ----- */
+/* ----- Small and medium screens - Screen media type - Start of build includes ----- */
+@import '../../base/sass/default-small-medium-screen';
+@import '../../theme-gcwu-fegc/sass/includes/default-small-medium-screen';
+@import '../../theme-gcwu-fegc/sass/includes/default-small-medium-images-screen';
+@import 'includes/default-small-medium-screen';
+/* ----- Small and medium screens - Screen media type - End of build includes ----- */
 }
 
 @media screen and (max-width: 767px), screen and (max-device-width: 767px) {
-/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - Start of build includes ----- */
-@import '../../base/sass/default-mobile-smartphone';
-@import '../../theme-gcwu-fegc/sass/includes/default-mobile-smartphone';
-/* ----- Mobile view (Smartphone and Tablet) - Screen media type only - End of build includes ----- */
+/* ----- Small screens - Screen media type - Start of build includes ----- */
+@import '../../base/sass/default-small-screen';
+@import '../../theme-gcwu-fegc/sass/includes/default-small-screen';
+@import 'includes/default-small-screen';
+/* ----- Small screens - Screen media type - End of build includes ----- */
+}
+
+@media screen and (max-width: 290px), screen and (max-device-width: 290px) {
+/* ----- Small screens (290 pixel width and under) - Screen media type - Start of build includes ----- */
+@import '../../theme-gcwu-fegc/sass/includes/default-small-290-screen';
+/* ----- Small screens (290 pixel width and under) - Screen media type - End of build includes ----- */
 }
 
 @media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
-/* ----- Mobile view (Tablet) - Screen media type only - Start of build includes ----- */
-@import '../../grids/sass/responsive-768';
-@import '../../base/sass/default-mobile-tablet';
-@import '../../theme-gcwu-fegc/sass/includes/default-mobile-tablet';
-@import 'includes/default-mobile-tablet';
-/* ----- Mobile view (Tablet) - Screen media type only - End of build includes ----- */
+/* ----- Medium screens - Screen media type - Start of build includes ----- */
+@import '../../grids/sass/responsive-medium-screen';
+@import '../../base/sass/default-medium-screen';
+@import '../../theme-gcwu-fegc/sass/includes/default-medium-screen';
+@import 'includes/default-medium-screen';
+/* ----- Medium screens - Screen media type - End of build includes ----- */
 }
 
 @media print {

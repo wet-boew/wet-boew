@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
  .ie7 {
 	%clf2-default-ie7-bc-all {
@@ -26,12 +26,12 @@
 }
 
 %clf2-equalize-fix {
-  .equalize {
-    > {
-      #wb-main {
-        border-left: 0;
-        border-right: 0;
-      }
-    }
-  }
+	.equalize {
+		> {
+			#wb-main {
+				border-left: 0;
+				border-right: 0;
+			}
+		}
+	}
 }

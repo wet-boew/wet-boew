@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+<!-- DataAjaxFragmentStart -->
+<li lang="en"><section><h3><a href="http://wet-boew.github.io/wet-boew/index-eng.html">परियोजना WET</a></h3><div class="mb-sm">
+<div class="span-2">
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/">मुख्य परियोजना पृष्ठ</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/demos/index-eng.html">काम उदाहरण</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">प्रलेखन</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/downloads">डाउनलोड</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/License-eng.txt">निबंधन और शर्तें</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-eng.html">परियोजना WET - फोकस</a></div>
+</div></section></li>
+<li><section><h3><a href="section2/index-eng.html">अनुभाग 2</a></h3><div class="mb-sm">
+<div class="span-2">
+<ul>
+<li class="top-level"><a href="#">मद 2a</a></li>
+<li class="top-level"><a href="#">मद 2b</a></li>
+<li class="top-level"><a href="#">मद 2c</a></li>
+</ul>
+<section><h4><a href="#">अनुभाग 2.1</a></h4>
+<ul>
+<li><a href="#">मद 2.1.1</a></li>
+<li><a href="#">मद 2.1.2</a></li>
+<li><a href="#">मद 2.1.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="section2/section22/index-eng.html">अनुभाग 2.2</a></h4>
+<ul>
+<li><a href="#">मद 2.2.1</a></li>
+<li><a href="#">मद 2.2.2</a>
+	<ul>
+	<li><a href="#">मद 2.2.2.1</a></li>
+	<li><a href="#">मद 2.2.2.2</a></li>
+	<li><a href="#">मद 2.2.2.3</a></li>
+	</ul>
+</li>
+<li><a href="#">मद 2.2.3</a></li>
+<li><a href="#">मद 2.2.4</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><section><h3><a href="#">अनुभाग 3</a></h3><div class="mb-sm">
+<div class="mb-highlight">
+<section><h4><a href="#">फोकस</a></h4>
+<ul>
+<li><a href="#">Link 1</a></li>
+<li><a href="#">Link 2</a></li>
+<li><a href="#">Link 3</a></li>
+<li><a href="#">Link 4</a></li>
+</ul>
+<div class="clear"></div>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">अनुभाग 3.1</a></h4>
+<ul>
+<li><a href="#">मद 3.1.1</a></li>
+<li><a href="#">मद 3.1.2</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">अनुभाग 3.2</a></h4>
+<ul>
+<li><a href="#">मद 3.2.1</a></li>
+<li><a href="#">मद 3.2.2</a></li>
+<li><a href="#">मद 3.2.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">अनुभाग 3.3</a></h4>
+<ul>
+<li><a href="#">मद 3.3.1</a></li>
+<li><a href="#">मद 3.3.2</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+<div class="mb-main-link"><a href="#">अनुभाग 3 - फोकस</a></div>
+</div></section></li>
+<li><section><h3><a href="section4/index-eng.html">अनुभाग 4</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">अनुभाग 4.1</a></h4>
+<ul>
+<li><a href="#">मद 4.1.1</a></li>
+<li><a href="#">मद 4.1.2</a></li>
+</ul>
+</section>
+<section><h4><a href="#">अनुभाग 4.2</a></h4>
+<ul>
+<li><a href="#">मद 4.2.1</a></li>
+<li><a href="#">मद 4.2.2</a></li>
+<li><a href="#">मद 4.2.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="section4/section43/index-eng.html">अनुभाग 4.3</a></h4>
+<ul>
+<li><a href="#">मद 4.3.1</a></li>
+<li><a href="#">मद 4.3.2</a></li>
+<li><a href="#">मद 4.3.3</a></li>
+</ul>
+</section>
+<section><h4><a href="#">अनुभाग 4.4</a></h4>
+<ul>
+<li><a href="#">मद 4.4.1</a></li>
+<li><a href="#">मद 4.4.2</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<li><div><a href="#">अनुभाग 5</a></div></li>
+<li><section><h3><a href="#">अनुभाग 6</a></h3><div class="mb-sm">
+<div class="mb-highlight">
+<section><h4><a href="#">फोकस</a></h4>
+<ul>
+<li><a href="#">Link 1</a></li>
+<li><a href="#">Link 2</a></li>
+<li><a href="#">Link 3</a></li>
+<li><a href="#">Link 4</a></li>
+</ul>
+<div class="clear"></div>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">अनुभाग 6.1</a></h4>
+<ul>
+<li><a href="#">मद 6.1.1</a></li>
+<li><a href="#">मद 6.1.2</a></li>
+<li><a href="#">मद 6.1.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">अनुभाग 6.2</a></h4>
+<ul>
+<li><a href="#">मद 6.2.1</a></li>
+<li><a href="#">मद 6.2.2</a></li>
+<li><a href="#">मद 6.2.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">अनुभाग 6.3</a></h4>
+<ul>
+<li><a href="#">मद 6.3.1</a></li>
+<li><a href="#">मद 6.3.2</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">अनुभाग 6.4</a></h4>
+<ul>
+<li><a href="#">मद 6.4.1</a></li>
+<li><a href="#">मद 6.4.2</a></li>
+<li><a href="#">मद 6.4.3</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+<div class="mb-main-link"><a href="#">अनुभाग 6 - फोकस</a></div>
+</div></section></li>
+<li><section><h3><a href="#">अनुभाग 7</a></h3><div class="mb-sm">
+<div class="span-2">
+<section><h4><a href="#">अनुभाग 7.1</a></h4>
+<ul>
+<li><a href="#">मद 7.1.1</a></li>
+<li><a href="#">मद 7.1.2</a></li>
+<li><a href="#">मद 7.1.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">अनुभाग 7.2</a></h4>
+<ul>
+<li><a href="#">मद 7.2.1</a></li>
+<li><a href="#">मद 7.2.2</a></li>
+<li><a href="#">मद 7.2.3</a></li>
+</ul>
+</section>
+</div>
+<div class="span-2">
+<section><h4><a href="#">अनुभाग 7.3</a></h4>
+<ul>
+<li><a href="#">मद 7.3.1</a></li>
+<li><a href="#">मद 7.3.2</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+</div></section></li>
+<!-- DataAjaxFragmentEnd -->
+</html>

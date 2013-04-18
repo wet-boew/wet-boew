@@ -1,0 +1,72 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import "compass/css3/images";
+
+#gcwu-srch-submit {
+	background-color: #ccc;
+	@include pseudo-focus {
+		background-color: #ddd;
+	}
+}
+
+%gcwu-intranet-default-large-screen-images-background-deco {
+	background: {
+		image: url(../images/content-deco-side.gif), url(../images/content-deco-side.gif);
+		position: left top, right top;
+		repeat: repeat-y; //TODO: second repeat value since it is using multiple backgrounds
+		color: #fff;
+	}
+}
+
+#wb-core-in {
+	@extend %gcwu-intranet-default-large-screen-images-background-deco;
+}
+
+#gcwu-bc-in {
+	@extend %gcwu-intranet-default-large-screen-images-background-deco;
+}
+
+#gcwu-bnr-in {
+	background: transparent url(../images/gcwu-bnr-in.png) no-repeat center 0;
+}
+
+#gcwu-bnr {
+	background: #29527D url(../images/gcwu-bnr.png) repeat-x 0 0;
+}
+
+#gcwu-psnb {
+	.mb-menu {
+		.nav-current {
+			background-color: #0f315b;
+		}
+		.mb-sm-open {
+			border-bottom: 4px solid #0F315B;
+			@include background-image(linear-gradient(bottom, #EEE, #CCC));
+			li {
+				background: transparent;
+				min-height: 0;
+				border: none;
+			}
+			.nav-current {
+				background: none;
+			}
+		}
+	}
+	.mb-active {
+		a {
+			&:hover, &:link, &:visited {
+				&.mb-has-sm {
+					background-color: #CCC;
+					color: #000;
+				}
+			}
+		}
+	}
+	.mb-sm-open {
+		li {
+			background: transparent;
+		}
+	}
+}

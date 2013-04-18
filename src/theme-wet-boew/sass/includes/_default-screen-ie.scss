@@ -1,15 +1,12 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 %wet-default-screen-ie-float-left {
 	float: left;
 }
 %wet-default-screen-ie-position-relative {
 	position: relative;
-}
-%wet-default-screen-ie-top-1px {
-	top: 1px;
 }
 %wet-default-screen-ie-float-right {
 	float: right;
@@ -47,8 +44,9 @@
 	}
 	#wet-srch-submit {
 		padding: 2px 0;
+		margin-right: 1px;
+		top: -1px;
 		@extend %wet-default-screen-ie-position-relative;
-		@extend %wet-default-screen-ie-top-1px;
 	}
 	#wet-title {
 		zoom: 1;
@@ -80,11 +78,6 @@
 			}
 		}
 	}
-	#wet-fullft {
-		li {
-			margin: 13px 35px 14px 9px;
-		}
-	}
 	#wet-bnr {
 		@extend %wet-default-screen-ie-float-left;
 	}
@@ -92,6 +85,9 @@
 		li {
 			@extend %wet-default-screen-ie-float-left;
 		}
+	}
+	#wet-fullft {
+		display: none;
 	}
 
 	// Right to left (RTL) CSS
@@ -125,6 +121,11 @@
 			}
 		}
 
+		#wet-srch-submit {
+			margin-right: 3px;
+			top: 1px;
+		}
+
 		#wet-date-mod {
 			@extend %wet-default-screen-ie-float-left;
 			dt {
@@ -144,12 +145,6 @@
 			}
 		}
 
-		#wet-fullft {
-			li {
-				margin: 13px 9px 14px 35px;
-			}
-		}
-
 		#wet-bnr {
 			@extend %wet-default-screen-ie-float-right;
 		}
@@ -166,7 +161,7 @@
 	#wet-srch-submit {
 		padding: 2px 5px;
 		@extend %wet-default-screen-ie-position-relative;
-		@extend %wet-default-screen-ie-top-1px;
+		top: 1px;
 	}
 	#wet-psnb {
 		padding-bottom: 1px;

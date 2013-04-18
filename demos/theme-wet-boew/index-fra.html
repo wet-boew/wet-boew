@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
 <title>Thème de la BOEW - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
@@ -31,6 +31,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!--<![endif]-->
 
 <!-- CustomCSSStart -->
+<style>
+.languages-examples li {
+	float: left;
+	width: 50%;
+}
+</style>
 <!-- CustomCSSEnd -->
 </head>
 
@@ -54,12 +60,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></section>
 
 <div id="wet-bnr" role="banner"><div id="wet-bnr-in">
-<div id="wet-title"><p id="wet-title-in"><a href="../../index-fra.html"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET)</span></a></p></div>
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-fra.html"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW)</span></a></p></div>
 
 <section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="wet-srchbx-in">
 <label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
-<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Recherche" data-icon="search"  class="button button-accent"/>
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
 </div></form>
 </div></section>
 </div></div>
@@ -67,7 +73,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <nav role="navigation">
 <div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-fra.txt">
-<li><div><a href="http://wet-boew.github.com/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
 <li><div><a href="section2/index-fra.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
 <li><div><a href="#">Section 4</a></div></li>
@@ -93,64 +99,513 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!-- MainContentStart -->
 <h1 id="wb-cont">Thème de la BOEW</h1>
 
-<ul>
-<li><a href="#en">Exemples en anglais</a></li>
-<li><a href="#fr">Exemples en français</a></li>
-<li><a href="#es">Exemples en espagnol</a></li>
-<li><a href="#ar">Exemples en arabe</a></li>
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Th%C3%A8me-de-la-BOEW" class="button button-info">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
 </ul>
 
-<div class="span-4">
-<section><h2 id="en">Exemples en anglais</h2>
+<div class="span-4 module-table-contents">
+<h2>Table des matières</h2>
 <ul>
-<li><a href="cont-eng.html"><span class="wb-invisible">Exemples en anglais - </span>Page de contenu</a></li>
-<li><a href="cont-secnav1-eng.html"><span class="wb-invisible">Exemples en anglais - </span>Page de contenu - Menu secondaire 1</a></li>
-<li><a href="cont-secnav2-eng.html"><span class="wb-invisible">Exemples en anglais - </span>Page de contenu - Menu secondaire 2</a></li>
-<li><a href="cont-subsite-eng.html"><span class="wb-invisible">Exemples en anglais - </span>Page de contenu - Sous-site</a></li>
-<li><a href="cont-nosearchlang-eng.html"><span class="wb-invisible">Exemples en anglais - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
-<li><a href="cont-nositemenubc-eng.html"><span class="wb-invisible">Exemples en anglais - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
-<li><a href="cont-nosearchlangsitemenubc-eng.html"><span class="wb-invisible">Exemples en anglais - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+<li><a href="#en">Anglais</a></li>
+<li><a href="#fr">Français</a></li>
+<li><a href="#af">Afrikaans</a></li>
+<li><a href="#sq">Albanais</a></li>
+<li><a href="#de">Allemand</a></li>
+<li><a href="#ar">Arabe</a></li>
+<li><a href="#hy">Arménien</a></li>
+<li><a href="#bg">Bulgare</a></li>
+<li><a href="#zh">Chinois</a></li>
+<li><a href="#zh-Hans">Chinois (simplifiée)</a></li>
+<li><a href="#ko">Coréen</a></li>
+<li><a href="#es">Espagnol</a></li>
+<li><a href="#et">Estonien</a></li>
+<li><a href="#el">Grec</a></li>
+<li><a href="#hi">Hindi</a></li>
+<li><a href="#hu">Hongrois</a></li>
+<li><a href="#id">Indonésien</a></li>
+<li><a href="#is">Islandais</a></li>
+<li><a href="#it">Italien</a></li>
+<li><a href="#ja">Japonais</a></li>
+<li><a href="#lv">Letton</a></li>
+<li><a href="#lt">Lituanien</a></li>
+<li><a href="#nl">Néerlandais</a></li>
+<li><a href="#pl">Polonais</a></li>
+<li><a href="#pt">Portugais</a></li>
+<li><a href="#pt-BR">Portugais (brésilien)</a></li>
+<li><a href="#ru">Russe</a></li>
+<li><a href="#sk">Slovaque</a></li>
+<li><a href="#cs">Tchèque</a></li>
+<li><a href="#th">Thaï</a></li>
+<li><a href="#tr">Turc</a></li>
+<li><a href="#uk">Ukrainien</a></li>
+<li><a href="#vi">Vietnamien</a></li>
 </ul>
-</section>
-
-<section><h2 id="fr">Exemples en français</h2>
-<ul>
-<li><a href="cont-fra.html"><span class="wb-invisible">Exemples en français - </span>Page de contenu</a></li>
-<li><a href="cont-secnav1-fra.html"><span class="wb-invisible">Exemples en français - </span>Page de contenu - Menu secondaire 1</a></li>
-<li><a href="cont-secnav2-fra.html"><span class="wb-invisible">Exemples en français - </span>Page de contenu - Menu secondaire 2</a></li>
-<li><a href="cont-subsite-fra.html"><span class="wb-invisible">Exemples en français - </span>Page de contenu - Sous-site</a></li>
-<li><a href="cont-nosearchlang-fra.html"><span class="wb-invisible">Exemples en français - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
-<li><a href="cont-nositemenubc-fra.html"><span class="wb-invisible">Exemples en français - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
-<li><a href="cont-nosearchlangsitemenubc-fra.html"><span class="wb-invisible">Exemples en français - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
-</ul>
-</section>
 </div>
 
-<div class="span-4">
-<section><h2 id="es">Exemples en espagnol</h2>
+<div class="clear"></div>
+
+<section><h2 id="en">Anglais</h2>
 <ul>
-<li><a href="es/cont-es.html"><span class="wb-invisible">Exemples en espagnol - </span>Page de contenu</a></li>
-<li><a href="es/cont-secnav1-es.html"><span class="wb-invisible">Exemples en espagnol - </span>Page de contenu - Menu secondaire 1</a></li>
-<li><a href="es/cont-secnav2-es.html"><span class="wb-invisible">Exemples en espagnol - </span>Page de contenu - Menu secondaire 2</a></li>
-<li><a href="es/cont-subsite-es.html"><span class="wb-invisible">Exemples en espagnol - </span>Page de contenu - Sous-site</a></li>
-<li><a href="es/cont-nosearchlang-es.html"><span class="wb-invisible">Exemples en espagnol - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
-<li><a href="es/cont-nositemenubc-es.html"><span class="wb-invisible">Exemples en espagnol - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
-<li><a href="es/cont-nosearchlangsitemenubc-es.html"><span class="wb-invisible">Exemples en espagnol - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+<li><a href="cont-eng.html"><span class="wb-invisible">Anglais -</span>Page de contenu</a></li>
+<li><a href="cont-secnav1-eng.html"><span class="wb-invisible">Anglais - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="cont-secnav2-eng.html"><span class="wb-invisible">Anglais - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="cont-subsite-eng.html"><span class="wb-invisible">Anglais - </span>Page de contenu - Sous-site</a></li>
+<li><a href="cont-signin-eng.html"><span class="wb-invisible">Anglais - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="cont-signout-eng.html"><span class="wb-invisible">Anglais - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="cont-nosearchlang-eng.html"><span class="wb-invisible">Anglais - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="cont-nositemenubc-eng.html"><span class="wb-invisible">Anglais - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="cont-nosearchlangsitemenubc-eng.html"><span class="wb-invisible">Anglais - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
 </ul>
 </section>
 
-<section><h2 id="ar">Exemples en arabe</h2>
+<section><h2 id="fr">Français</h2>
 <ul>
-<li><a href="ar/cont-ar.html"><span class="wb-invisible">Exemples en arabe - </span>Page de contenu</a></li>
-<li><a href="ar/cont-secnav1-ar.html"><span class="wb-invisible">Exemples en arabe - </span>Page de contenu - Menu secondaire 1</a></li>
-<li><a href="ar/cont-secnav2-ar.html"><span class="wb-invisible">Exemples en arabe - </span>Page de contenu - Menu secondaire 2</a></li>
-<li><a href="ar/cont-subsite-ar.html"><span class="wb-invisible">Exemples en arabe - </span>Page de contenu - Sous-site</a></li>
-<li><a href="ar/cont-nosearchlang-ar.html"><span class="wb-invisible">Exemples en arabe - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
-<li><a href="ar/cont-nositemenubc-ar.html"><span class="wb-invisible">Exemples en arabe - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
-<li><a href="ar/cont-nosearchlangsitemenubc-ar.html"><span class="wb-invisible">Exemples en arabe - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+<li><a href="cont-fra.html"><span class="wb-invisible">Français -</span>Page de contenu</a></li>
+<li><a href="cont-secnav1-fra.html"><span class="wb-invisible">Français - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="cont-secnav2-fra.html"><span class="wb-invisible">Français - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="cont-subsite-fra.html"><span class="wb-invisible">Français - </span>Page de contenu - Sous-site</a></li>
+<li><a href="cont-signin-fra.html"><span class="wb-invisible">Français - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="cont-signout-fra.html"><span class="wb-invisible">Français - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="cont-nosearchlang-fra.html"><span class="wb-invisible">Français - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="cont-nositemenubc-fra.html"><span class="wb-invisible">Français - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="cont-nosearchlangsitemenubc-fra.html"><span class="wb-invisible">Français - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
 </ul>
 </section>
-</div>
+
+<section><h2 id="af">Afrikaans</h2>
+<ul>
+<li><a href="af/cont-af.html"><span class="wb-invisible">Afrikaans -</span>Page de contenu</a></li>
+<li><a href="af/cont-secnav1-af.html"><span class="wb-invisible">Afrikaans - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="af/cont-secnav2-af.html"><span class="wb-invisible">Afrikaans - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="af/cont-subsite-af.html"><span class="wb-invisible">Afrikaans - </span>Page de contenu - Sous-site</a></li>
+<li><a href="af/cont-signin-af.html"><span class="wb-invisible">Afrikaans - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="af/cont-signout-af.html"><span class="wb-invisible">Afrikaans - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="af/cont-nosearchlang-af.html"><span class="wb-invisible">Afrikaans - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="af/cont-nositemenubc-af.html"><span class="wb-invisible">Afrikaans - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="af/cont-nosearchlangsitemenubc-af.html"><span class="wb-invisible">Afrikaans - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="sq">Albanais</h2>
+<ul>
+<li><a href="sq/cont-sq.html"><span class="wb-invisible">Albanais -</span>Page de contenu</a></li>
+<li><a href="sq/cont-secnav1-sq.html"><span class="wb-invisible">Albanais - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="sq/cont-secnav2-sq.html"><span class="wb-invisible">Albanais - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="sq/cont-subsite-sq.html"><span class="wb-invisible">Albanais - </span>Page de contenu - Sous-site</a></li>
+<li><a href="sq/cont-signin-sq.html"><span class="wb-invisible">Albanais - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="sq/cont-signout-sq.html"><span class="wb-invisible">Albanais - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="sq/cont-nosearchlang-sq.html"><span class="wb-invisible">Albanais - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="sq/cont-nositemenubc-sq.html"><span class="wb-invisible">Albanais - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="sq/cont-nosearchlangsitemenubc-sq.html"><span class="wb-invisible">Albanais - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="de">Allemand</h2>
+<ul>
+<li><a href="de/cont-de.html"><span class="wb-invisible">Allemand -</span>Page de contenu</a></li>
+<li><a href="de/cont-secnav1-de.html"><span class="wb-invisible">Allemand - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="de/cont-secnav2-de.html"><span class="wb-invisible">Allemand - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="de/cont-subsite-de.html"><span class="wb-invisible">Allemand - </span>Page de contenu - Sous-site</a></li>
+<li><a href="de/cont-signin-de.html"><span class="wb-invisible">Allemand - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="de/cont-signout-de.html"><span class="wb-invisible">Allemand - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="de/cont-nosearchlang-de.html"><span class="wb-invisible">Allemand - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="de/cont-nositemenubc-de.html"><span class="wb-invisible">Allemand - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="de/cont-nosearchlangsitemenubc-de.html"><span class="wb-invisible">Allemand - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="ar">Arabe</h2>
+<ul>
+<li><a href="ar/cont-ar.html"><span class="wb-invisible">Arabe -</span>Page de contenu</a></li>
+<li><a href="ar/cont-secnav1-ar.html"><span class="wb-invisible">Arabe - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="ar/cont-secnav2-ar.html"><span class="wb-invisible">Arabe - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="ar/cont-subsite-ar.html"><span class="wb-invisible">Arabe - </span>Page de contenu - Sous-site</a></li>
+<li><a href="ar/cont-signin-ar.html"><span class="wb-invisible">Arabe - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="ar/cont-signout-ar.html"><span class="wb-invisible">Arabe - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="ar/cont-nosearchlang-ar.html"><span class="wb-invisible">Arabe - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="ar/cont-nositemenubc-ar.html"><span class="wb-invisible">Arabe - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="ar/cont-nosearchlangsitemenubc-ar.html"><span class="wb-invisible">Arabe - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="hy">Arménien</h2>
+<ul>
+<li><a href="hy/cont-hy.html"><span class="wb-invisible">Arménien -</span>Page de contenu</a></li>
+<li><a href="hy/cont-secnav1-hy.html"><span class="wb-invisible">Arménien - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="hy/cont-secnav2-hy.html"><span class="wb-invisible">Arménien - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="hy/cont-subsite-hy.html"><span class="wb-invisible">Arménien - </span>Page de contenu - Sous-site</a></li>
+<li><a href="hy/cont-signin-hy.html"><span class="wb-invisible">Arménien - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="hy/cont-signout-hy.html"><span class="wb-invisible">Arménien - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="hy/cont-nosearchlang-hy.html"><span class="wb-invisible">Arménien - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="hy/cont-nositemenubc-hy.html"><span class="wb-invisible">Arménien - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="hy/cont-nosearchlangsitemenubc-hy.html"><span class="wb-invisible">Arménien - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="bg">Bulgare</h2>
+<ul>
+<li><a href="bg/cont-bg.html"><span class="wb-invisible">Bulgare -</span>Page de contenu</a></li>
+<li><a href="bg/cont-secnav1-bg.html"><span class="wb-invisible">Bulgare - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="bg/cont-secnav2-bg.html"><span class="wb-invisible">Bulgare - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="bg/cont-subsite-bg.html"><span class="wb-invisible">Bulgare - </span>Page de contenu - Sous-site</a></li>
+<li><a href="bg/cont-signin-bg.html"><span class="wb-invisible">Bulgare - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="bg/cont-signout-bg.html"><span class="wb-invisible">Bulgare - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="bg/cont-nosearchlang-bg.html"><span class="wb-invisible">Bulgare - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="bg/cont-nositemenubc-bg.html"><span class="wb-invisible">Bulgare - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="bg/cont-nosearchlangsitemenubc-bg.html"><span class="wb-invisible">Bulgare - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="zh">Chinois</h2>
+<ul>
+<li><a href="zh/cont-zh.html"><span class="wb-invisible">Chinois -</span>Page de contenu</a></li>
+<li><a href="zh/cont-secnav1-zh.html"><span class="wb-invisible">Chinois - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="zh/cont-secnav2-zh.html"><span class="wb-invisible">Chinois - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="zh/cont-subsite-zh.html"><span class="wb-invisible">Chinois - </span>Page de contenu - Sous-site</a></li>
+<li><a href="zh/cont-signin-zh.html"><span class="wb-invisible">Chinois - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="zh/cont-signout-zh.html"><span class="wb-invisible">Chinois - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="zh/cont-nosearchlang-zh.html"><span class="wb-invisible">Chinois - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="zh/cont-nositemenubc-zh.html"><span class="wb-invisible">Chinois - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="zh/cont-nosearchlangsitemenubc-zh.html"><span class="wb-invisible">Chinois - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="zh-Hans">Chinois (simplifiée)</h2>
+<ul>
+<li><a href="zh-Hans/cont-zh-Hans.html"><span class="wb-invisible">Chinois (simplifiée) -</span>Page de contenu</a></li>
+<li><a href="zh-Hans/cont-secnav1-zh-Hans.html"><span class="wb-invisible">Chinois (simplifiée) - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="zh-Hans/cont-secnav2-zh-Hans.html"><span class="wb-invisible">Chinois (simplifiée) - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="zh-Hans/cont-subsite-zh-Hans.html"><span class="wb-invisible">Chinois (simplifiée) - </span>Page de contenu - Sous-site</a></li>
+<li><a href="zh-Hans/cont-signin-zh-Hans.html"><span class="wb-invisible">Chinois (simplifiée) - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="zh-Hans/cont-signout-zh-Hans.html"><span class="wb-invisible">Chinois (simplifiée) - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="zh-Hans/cont-nosearchlang-zh-Hans.html"><span class="wb-invisible">Chinois (simplifiée) - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="zh-Hans/cont-nositemenubc-zh-Hans.html"><span class="wb-invisible">Chinois (simplifiée) - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="zh-Hans/cont-nosearchlangsitemenubc-zh-Hans.html"><span class="wb-invisible">Chinois (simplifiée) - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="ko">Coréen</h2>
+<ul>
+<li><a href="ko/cont-ko.html"><span class="wb-invisible">Coréen -</span>Page de contenu</a></li>
+<li><a href="ko/cont-secnav1-ko.html"><span class="wb-invisible">Coréen - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="ko/cont-secnav2-ko.html"><span class="wb-invisible">Coréen - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="ko/cont-subsite-ko.html"><span class="wb-invisible">Coréen - </span>Page de contenu - Sous-site</a></li>
+<li><a href="ko/cont-signin-ko.html"><span class="wb-invisible">Coréen - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="ko/cont-signout-ko.html"><span class="wb-invisible">Coréen - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="ko/cont-nosearchlang-ko.html"><span class="wb-invisible">Coréen - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="ko/cont-nositemenubc-ko.html"><span class="wb-invisible">Coréen - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="ko/cont-nosearchlangsitemenubc-ko.html"><span class="wb-invisible">Coréen - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="es">Espagnol</h2>
+<ul>
+<li><a href="es/cont-es.html"><span class="wb-invisible">Espagnol -</span>Page de contenu</a></li>
+<li><a href="es/cont-secnav1-es.html"><span class="wb-invisible">Espagnol - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="es/cont-secnav2-es.html"><span class="wb-invisible">Espagnol - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="es/cont-subsite-es.html"><span class="wb-invisible">Espagnol - </span>Page de contenu - Sous-site</a></li>
+<li><a href="es/cont-signin-es.html"><span class="wb-invisible">Espagnol - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="es/cont-signout-es.html"><span class="wb-invisible">Espagnol - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="es/cont-nosearchlang-es.html"><span class="wb-invisible">Espagnol - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="es/cont-nositemenubc-es.html"><span class="wb-invisible">Espagnol - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="es/cont-nosearchlangsitemenubc-es.html"><span class="wb-invisible">Espagnol - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="et">Estonien</h2>
+<ul>
+<li><a href="et/cont-et.html"><span class="wb-invisible">Estonien -</span>Page de contenu</a></li>
+<li><a href="et/cont-secnav1-et.html"><span class="wb-invisible">Estonien - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="et/cont-secnav2-et.html"><span class="wb-invisible">Estonien - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="et/cont-subsite-et.html"><span class="wb-invisible">Estonien - </span>Page de contenu - Sous-site</a></li>
+<li><a href="et/cont-signin-et.html"><span class="wb-invisible">Estonien - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="et/cont-signout-et.html"><span class="wb-invisible">Estonien - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="et/cont-nosearchlang-et.html"><span class="wb-invisible">Estonien - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="et/cont-nositemenubc-et.html"><span class="wb-invisible">Estonien - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="et/cont-nosearchlangsitemenubc-et.html"><span class="wb-invisible">Estonien - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="el">Grec</h2>
+<ul>
+<li><a href="el/cont-el.html"><span class="wb-invisible">Grec -</span>Page de contenu</a></li>
+<li><a href="el/cont-secnav1-el.html"><span class="wb-invisible">Grec - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="el/cont-secnav2-el.html"><span class="wb-invisible">Grec - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="el/cont-subsite-el.html"><span class="wb-invisible">Grec - </span>Page de contenu - Sous-site</a></li>
+<li><a href="el/cont-signin-el.html"><span class="wb-invisible">Grec - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="el/cont-signout-el.html"><span class="wb-invisible">Grec - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="el/cont-nosearchlang-el.html"><span class="wb-invisible">Grec - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="el/cont-nositemenubc-el.html"><span class="wb-invisible">Grec - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="el/cont-nosearchlangsitemenubc-el.html"><span class="wb-invisible">Grec - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="hi">Hindi</h2>
+<ul>
+<li><a href="hi/cont-hi.html"><span class="wb-invisible">Hindi -</span>Page de contenu</a></li>
+<li><a href="hi/cont-secnav1-hi.html"><span class="wb-invisible">Hindi - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="hi/cont-secnav2-hi.html"><span class="wb-invisible">Hindi - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="hi/cont-subsite-hi.html"><span class="wb-invisible">Hindi - </span>Page de contenu - Sous-site</a></li>
+<li><a href="hi/cont-signin-hi.html"><span class="wb-invisible">Hindi - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="hi/cont-signout-hi.html"><span class="wb-invisible">Hindi - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="hi/cont-nosearchlang-hi.html"><span class="wb-invisible">Hindi - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="hi/cont-nositemenubc-hi.html"><span class="wb-invisible">Hindi - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="hi/cont-nosearchlangsitemenubc-hi.html"><span class="wb-invisible">Hindi - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="hu">Hongrois</h2>
+<ul>
+<li><a href="hu/cont-hu.html"><span class="wb-invisible">Hongrois -</span>Page de contenu</a></li>
+<li><a href="hu/cont-secnav1-hu.html"><span class="wb-invisible">Hongrois - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="hu/cont-secnav2-hu.html"><span class="wb-invisible">Hongrois - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="hu/cont-subsite-hu.html"><span class="wb-invisible">Hongrois - </span>Page de contenu - Sous-site</a></li>
+<li><a href="hu/cont-signin-hu.html"><span class="wb-invisible">Hongrois - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="hu/cont-signout-hu.html"><span class="wb-invisible">Hongrois - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="hu/cont-nosearchlang-hu.html"><span class="wb-invisible">Hongrois - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="hu/cont-nositemenubc-hu.html"><span class="wb-invisible">Hongrois - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="hu/cont-nosearchlangsitemenubc-hu.html"><span class="wb-invisible">Hongrois - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="id">Indonésien</h2>
+<ul>
+<li><a href="id/cont-id.html"><span class="wb-invisible">Indonésien -</span>Page de contenu</a></li>
+<li><a href="id/cont-secnav1-id.html"><span class="wb-invisible">Indonésien - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="id/cont-secnav2-id.html"><span class="wb-invisible">Indonésien - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="id/cont-subsite-id.html"><span class="wb-invisible">Indonésien - </span>Page de contenu - Sous-site</a></li>
+<li><a href="id/cont-signin-id.html"><span class="wb-invisible">Indonésien - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="id/cont-signout-id.html"><span class="wb-invisible">Indonésien - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="id/cont-nosearchlang-id.html"><span class="wb-invisible">Indonésien - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="id/cont-nositemenubc-id.html"><span class="wb-invisible">Indonésien - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="id/cont-nosearchlangsitemenubc-id.html"><span class="wb-invisible">Indonésien - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="is">Islandais</h2>
+<ul>
+<li><a href="is/cont-is.html"><span class="wb-invisible">Islandais -</span>Page de contenu</a></li>
+<li><a href="is/cont-secnav1-is.html"><span class="wb-invisible">Islandais - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="is/cont-secnav2-is.html"><span class="wb-invisible">Islandais - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="is/cont-subsite-is.html"><span class="wb-invisible">Islandais - </span>Page de contenu - Sous-site</a></li>
+<li><a href="is/cont-signin-is.html"><span class="wb-invisible">Islandais - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="is/cont-signout-is.html"><span class="wb-invisible">Islandais - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="is/cont-nosearchlang-is.html"><span class="wb-invisible">Islandais - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="is/cont-nositemenubc-is.html"><span class="wb-invisible">Islandais - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="is/cont-nosearchlangsitemenubc-is.html"><span class="wb-invisible">Islandais - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="it">Italien</h2>
+<ul>
+<li><a href="it/cont-it.html"><span class="wb-invisible">Italien -</span>Page de contenu</a></li>
+<li><a href="it/cont-secnav1-it.html"><span class="wb-invisible">Italien - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="it/cont-secnav2-it.html"><span class="wb-invisible">Italien - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="it/cont-subsite-it.html"><span class="wb-invisible">Italien - </span>Page de contenu - Sous-site</a></li>
+<li><a href="it/cont-signin-it.html"><span class="wb-invisible">Italien - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="it/cont-signout-it.html"><span class="wb-invisible">Italien - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="it/cont-nosearchlang-it.html"><span class="wb-invisible">Italien - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="it/cont-nositemenubc-it.html"><span class="wb-invisible">Italien - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="it/cont-nosearchlangsitemenubc-it.html"><span class="wb-invisible">Italien - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="ja">Japonais</h2>
+<ul>
+<li><a href="ja/cont-ja.html"><span class="wb-invisible">Japonais -</span>Page de contenu</a></li>
+<li><a href="ja/cont-secnav1-ja.html"><span class="wb-invisible">Japonais - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="ja/cont-secnav2-ja.html"><span class="wb-invisible">Japonais - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="ja/cont-subsite-ja.html"><span class="wb-invisible">Japonais - </span>Page de contenu - Sous-site</a></li>
+<li><a href="ja/cont-signin-ja.html"><span class="wb-invisible">Japonais - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="ja/cont-signout-ja.html"><span class="wb-invisible">Japonais - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="ja/cont-nosearchlang-ja.html"><span class="wb-invisible">Japonais - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="ja/cont-nositemenubc-ja.html"><span class="wb-invisible">Japonais - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="ja/cont-nosearchlangsitemenubc-ja.html"><span class="wb-invisible">Japonais - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="lv">Letton</h2>
+<ul>
+<li><a href="lv/cont-lv.html"><span class="wb-invisible">Letton -</span>Page de contenu</a></li>
+<li><a href="lv/cont-secnav1-lv.html"><span class="wb-invisible">Letton - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="lv/cont-secnav2-lv.html"><span class="wb-invisible">Letton - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="lv/cont-subsite-lv.html"><span class="wb-invisible">Letton - </span>Page de contenu - Sous-site</a></li>
+<li><a href="lv/cont-signin-lv.html"><span class="wb-invisible">Letton - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="lv/cont-signout-lv.html"><span class="wb-invisible">Letton - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="lv/cont-nosearchlang-lv.html"><span class="wb-invisible">Letton - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="lv/cont-nositemenubc-lv.html"><span class="wb-invisible">Letton - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="lv/cont-nosearchlangsitemenubc-lv.html"><span class="wb-invisible">Letton - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="lt">Lituanien</h2>
+<ul>
+<li><a href="lt/cont-lt.html"><span class="wb-invisible">Lituanien -</span>Page de contenu</a></li>
+<li><a href="lt/cont-secnav1-lt.html"><span class="wb-invisible">Lituanien - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="lt/cont-secnav2-lt.html"><span class="wb-invisible">Lituanien - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="lt/cont-subsite-lt.html"><span class="wb-invisible">Lituanien - </span>Page de contenu - Sous-site</a></li>
+<li><a href="lt/cont-signin-lt.html"><span class="wb-invisible">Lituanien - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="lt/cont-signout-lt.html"><span class="wb-invisible">Lituanien - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="lt/cont-nosearchlang-lt.html"><span class="wb-invisible">Lituanien - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="lt/cont-nositemenubc-lt.html"><span class="wb-invisible">Lituanien - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="lt/cont-nosearchlangsitemenubc-lt.html"><span class="wb-invisible">Lituanien - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="nl">Néerlandais</h2>
+<ul>
+<li><a href="nl/cont-nl.html"><span class="wb-invisible">Néerlandais -</span>Page de contenu</a></li>
+<li><a href="nl/cont-secnav1-nl.html"><span class="wb-invisible">Néerlandais - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="nl/cont-secnav2-nl.html"><span class="wb-invisible">Néerlandais - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="nl/cont-subsite-nl.html"><span class="wb-invisible">Néerlandais - </span>Page de contenu - Sous-site</a></li>
+<li><a href="nl/cont-signin-nl.html"><span class="wb-invisible">Néerlandais - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="nl/cont-signout-nl.html"><span class="wb-invisible">Néerlandais - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="nl/cont-nosearchlang-nl.html"><span class="wb-invisible">Néerlandais - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="nl/cont-nositemenubc-nl.html"><span class="wb-invisible">Néerlandais - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="nl/cont-nosearchlangsitemenubc-nl.html"><span class="wb-invisible">Néerlandais - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="pl">Polonais</h2>
+<ul>
+<li><a href="pl/cont-pl.html"><span class="wb-invisible">Polonais -</span>Page de contenu</a></li>
+<li><a href="pl/cont-secnav1-pl.html"><span class="wb-invisible">Polonais - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="pl/cont-secnav2-pl.html"><span class="wb-invisible">Polonais - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="pl/cont-subsite-pl.html"><span class="wb-invisible">Polonais - </span>Page de contenu - Sous-site</a></li>
+<li><a href="pl/cont-signin-pl.html"><span class="wb-invisible">Polonais - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="pl/cont-signout-pl.html"><span class="wb-invisible">Polonais - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="pl/cont-nosearchlang-pl.html"><span class="wb-invisible">Polonais - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="pl/cont-nositemenubc-pl.html"><span class="wb-invisible">Polonais - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="pl/cont-nosearchlangsitemenubc-pl.html"><span class="wb-invisible">Polonais - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="pt">Portugais</h2>
+<ul>
+<li><a href="pt/cont-pt.html"><span class="wb-invisible">Portugais -</span>Page de contenu</a></li>
+<li><a href="pt/cont-secnav1-pt.html"><span class="wb-invisible">Portugais - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="pt/cont-secnav2-pt.html"><span class="wb-invisible">Portugais - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="pt/cont-subsite-pt.html"><span class="wb-invisible">Portugais - </span>Page de contenu - Sous-site</a></li>
+<li><a href="pt/cont-signin-pt.html"><span class="wb-invisible">Portugais - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="pt/cont-signout-pt.html"><span class="wb-invisible">Portugais - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="pt/cont-nosearchlang-pt.html"><span class="wb-invisible">Portugais - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="pt/cont-nositemenubc-pt.html"><span class="wb-invisible">Portugais - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="pt/cont-nosearchlangsitemenubc-pt.html"><span class="wb-invisible">Portugais - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="pt-BR">Portugais (brésilien)</h2>
+<ul>
+<li><a href="pt-BR/cont-pt-BR.html"><span class="wb-invisible">Portugais (brésilien) -</span>Page de contenu</a></li>
+<li><a href="pt-BR/cont-secnav1-pt-BR.html"><span class="wb-invisible">Portugais (brésilien) - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="pt-BR/cont-secnav2-pt-BR.html"><span class="wb-invisible">Portugais (brésilien) - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="pt-BR/cont-subsite-pt-BR.html"><span class="wb-invisible">Portugais (brésilien) - </span>Page de contenu - Sous-site</a></li>
+<li><a href="pt-BR/cont-signin-pt-BR.html"><span class="wb-invisible">Portugais (brésilien) - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="pt-BR/cont-signout-pt-BR.html"><span class="wb-invisible">Portugais (brésilien) - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="pt-BR/cont-nosearchlang-pt-BR.html"><span class="wb-invisible">Portugais (brésilien) - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="pt-BR/cont-nositemenubc-pt-BR.html"><span class="wb-invisible">Portugais (brésilien) - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="pt-BR/cont-nosearchlangsitemenubc-pt-BR.html"><span class="wb-invisible">Portugais (brésilien) - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="ru">Russe</h2>
+<ul>
+<li><a href="ru/cont-ru.html"><span class="wb-invisible">Russe -</span>Page de contenu</a></li>
+<li><a href="ru/cont-secnav1-ru.html"><span class="wb-invisible">Russe - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="ru/cont-secnav2-ru.html"><span class="wb-invisible">Russe - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="ru/cont-subsite-ru.html"><span class="wb-invisible">Russe - </span>Page de contenu - Sous-site</a></li>
+<li><a href="ru/cont-signin-ru.html"><span class="wb-invisible">Russe - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="ru/cont-signout-ru.html"><span class="wb-invisible">Russe - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="ru/cont-nosearchlang-ru.html"><span class="wb-invisible">Russe - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="ru/cont-nositemenubc-ru.html"><span class="wb-invisible">Russe - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="ru/cont-nosearchlangsitemenubc-ru.html"><span class="wb-invisible">Russe - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="sk">Slovaque</h2>
+<ul>
+<li><a href="sk/cont-sk.html"><span class="wb-invisible">Slovaque -</span>Page de contenu</a></li>
+<li><a href="sk/cont-secnav1-sk.html"><span class="wb-invisible">Slovaque - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="sk/cont-secnav2-sk.html"><span class="wb-invisible">Slovaque - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="sk/cont-subsite-sk.html"><span class="wb-invisible">Slovaque - </span>Page de contenu - Sous-site</a></li>
+<li><a href="sk/cont-signin-sk.html"><span class="wb-invisible">Slovaque - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="sk/cont-signout-sk.html"><span class="wb-invisible">Slovaque - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="sk/cont-nosearchlang-sk.html"><span class="wb-invisible">Slovaque - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="sk/cont-nositemenubc-sk.html"><span class="wb-invisible">Slovaque - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="sk/cont-nosearchlangsitemenubc-sk.html"><span class="wb-invisible">Slovaque - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="cs">Tchèque</h2>
+<ul>
+<li><a href="cs/cont-cs.html"><span class="wb-invisible">Tchèque -</span>Page de contenu</a></li>
+<li><a href="cs/cont-secnav1-cs.html"><span class="wb-invisible">Tchèque - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="cs/cont-secnav2-cs.html"><span class="wb-invisible">Tchèque - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="cs/cont-subsite-cs.html"><span class="wb-invisible">Tchèque - </span>Page de contenu - Sous-site</a></li>
+<li><a href="cs/cont-signin-cs.html"><span class="wb-invisible">Tchèque - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="cs/cont-signout-cs.html"><span class="wb-invisible">Tchèque - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="cs/cont-nosearchlang-cs.html"><span class="wb-invisible">Tchèque - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="cs/cont-nositemenubc-cs.html"><span class="wb-invisible">Tchèque - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="cs/cont-nosearchlangsitemenubc-cs.html"><span class="wb-invisible">Tchèque - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="th">Thaï</h2>
+<ul>
+<li><a href="th/cont-th.html"><span class="wb-invisible">Thaï -</span>Page de contenu</a></li>
+<li><a href="th/cont-secnav1-th.html"><span class="wb-invisible">Thaï - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="th/cont-secnav2-th.html"><span class="wb-invisible">Thaï - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="th/cont-subsite-th.html"><span class="wb-invisible">Thaï - </span>Page de contenu - Sous-site</a></li>
+<li><a href="th/cont-signin-th.html"><span class="wb-invisible">Thaï - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="th/cont-signout-th.html"><span class="wb-invisible">Thaï - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="th/cont-nosearchlang-th.html"><span class="wb-invisible">Thaï - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="th/cont-nositemenubc-th.html"><span class="wb-invisible">Thaï - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="th/cont-nosearchlangsitemenubc-th.html"><span class="wb-invisible">Thaï - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="tr">Turc</h2>
+<ul>
+<li><a href="tr/cont-tr.html"><span class="wb-invisible">Turc -</span>Page de contenu</a></li>
+<li><a href="tr/cont-secnav1-tr.html"><span class="wb-invisible">Turc - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="tr/cont-secnav2-tr.html"><span class="wb-invisible">Turc - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="tr/cont-subsite-tr.html"><span class="wb-invisible">Turc - </span>Page de contenu - Sous-site</a></li>
+<li><a href="tr/cont-signin-tr.html"><span class="wb-invisible">Turc - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="tr/cont-signout-tr.html"><span class="wb-invisible">Turc - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="tr/cont-nosearchlang-tr.html"><span class="wb-invisible">Turc - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="tr/cont-nositemenubc-tr.html"><span class="wb-invisible">Turc - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="tr/cont-nosearchlangsitemenubc-tr.html"><span class="wb-invisible">Turc - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="uk">Ukrainien</h2>
+<ul>
+<li><a href="uk/cont-uk.html"><span class="wb-invisible">Ukrainien -</span>Page de contenu</a></li>
+<li><a href="uk/cont-secnav1-uk.html"><span class="wb-invisible">Ukrainien - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="uk/cont-secnav2-uk.html"><span class="wb-invisible">Ukrainien - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="uk/cont-subsite-uk.html"><span class="wb-invisible">Ukrainien - </span>Page de contenu - Sous-site</a></li>
+<li><a href="uk/cont-signin-uk.html"><span class="wb-invisible">Ukrainien - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="uk/cont-signout-uk.html"><span class="wb-invisible">Ukrainien - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="uk/cont-nosearchlang-uk.html"><span class="wb-invisible">Ukrainien - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="uk/cont-nositemenubc-uk.html"><span class="wb-invisible">Ukrainien - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="uk/cont-nosearchlangsitemenubc-uk.html"><span class="wb-invisible">Ukrainien - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
+
+<section><h2 id="vi">Vietnamien</h2>
+<ul>
+<li><a href="vi/cont-vi.html"><span class="wb-invisible">Vietnamien -</span>Page de contenu</a></li>
+<li><a href="vi/cont-secnav1-vi.html"><span class="wb-invisible">Vietnamien - </span>Page de contenu - Menu secondaire 1</a></li>
+<li><a href="vi/cont-secnav2-vi.html"><span class="wb-invisible">Vietnamien - </span>Page de contenu - Menu secondaire 2</a></li>
+<li><a href="vi/cont-subsite-vi.html"><span class="wb-invisible">Vietnamien - </span>Page de contenu - Sous-site</a></li>
+<li><a href="vi/cont-signin-vi.html"><span class="wb-invisible">Vietnamien - </span>Page de contenu - Ouvrir une session</a></li>
+<li><a href="vi/cont-signout-vi.html"><span class="wb-invisible">Vietnamien - </span>Page de contenu - Fermer la session</a></li>
+<li><a href="vi/cont-nosearchlang-vi.html"><span class="wb-invisible">Vietnamien - </span>Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+<li><a href="vi/cont-nositemenubc-vi.html"><span class="wb-invisible">Vietnamien - </span>Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+<li><a href="vi/cont-nosearchlangsitemenubc-vi.html"><span class="wb-invisible">Vietnamien - </span>Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+</ul>
+</section>
 
 <dl id="wet-date-mod" role="contentinfo">
 <dt>Date de modification&#160;:</dt><dd><span><time>2013-03-02</time></span></dd>
@@ -194,7 +649,6 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </div></div></nav>
 
 <section><div id="wet-fullft"><h3>Secteur de pied de page de plein-largeur</h3>
-
 <div id="wet-fullft-in"></div>
 </div></section>
 <!-- FooterEnd -->

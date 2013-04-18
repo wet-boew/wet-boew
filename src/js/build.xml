@@ -16,7 +16,7 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"/>
 
-	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-copy-depends,-build-flot,-build-pe,-copy-binaries"/>
+	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,-copy-js,-build-flot,-build-pe,-copy-binaries"/>
 	
 	<target name="-copy-binaries">
 		<copy todir="${dist.dir}">  
@@ -48,7 +48,7 @@
 			</filterchain>
 		</concat>
 		<!-- Temporary fix - to be replaced by modern and old IE targeted output -->
-		<copy file="${dist.dir}/pe-ap.js" tofile="${dist.dir}/pe-ap-ie.js"/>
+		<copy file="${dist.dir}/pe-ap.js" tofile="${dist.dir}/pe-ap-ie.js" encoding="UTF-8"/>
 	</target>
 	
 	<target name="-build-flot" description="Concat flot and any plugins into single file. Done for gh-1276">

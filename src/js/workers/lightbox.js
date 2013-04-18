@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /*
  * Lightbox plugin
@@ -47,14 +47,33 @@
 				slideshowAuto : false,
 				onComplete : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
-						$lbCurrent = $lbTitle.next();
-
+						$lbCurrent = $lbContent.find('#cboxCurrent'),
+						currentText = $lbCurrent.text(),
+						$origImg,
+						$currImg,
+						describedBy,
+						longdesc,
+						alt_text = $lbTitle.text() + (currentText.length !== 0 ? ' - ' + currentText : '');
+					
 					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr('tabindex', '0');
-					$lbLoadedContent.attr('aria-label', $lbTitle.text() + ' ' + $lbCurrent.text());
-					if ($lbLoadedContent.children('.cboxPhoto').length === 0) {
+					$currImg = $lbLoadedContent.children('.cboxPhoto');
+					$lbLoadedContent.attr('aria-label', alt_text);
+					if ($currImg.length === 0) {
 						$lbLoadedContent.attr('role', 'document');
 					} else {
-						$lbLoadedContent.children().attr('alt', $lbTitle.text());
+						$currImg.attr('alt', alt_text);
+						$origImg = $.colorbox.element().find('img');
+
+						// Bring over some of the original image attributes
+						describedBy = $origImg.attr('aria-describedby');
+						longdesc = $origImg.attr('longdesc');
+						if (typeof describedBy !== 'undefined') {
+							$lbLoadedContent.attr('aria-describedby', describedBy);
+							$currImg.attr('aria-describedby', describedBy);
+						}
+						if (typeof longdesc !== 'undefined') {
+							$currImg.attr('longdesc', longdesc);
+						}
 					}
 					_pe.focus($lbLoadedContent);
 					open = true;

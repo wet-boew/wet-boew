@@ -1,0 +1,60 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import 'compass/css3/transform';
+
+#gcwu-bc {
+	li {
+		background: url(../images/bcrumb.gif) right center no-repeat;
+	}
+}
+
+%gcwu-default-large-images-scaleX--1 {
+	@include scaleX(-1);
+}
+[dir="rtl"] {
+	#gcwu-bc {
+		a {
+			display: inline-block;
+			@extend %gcwu-default-large-images-scaleX--1;
+		}
+		li {
+			&:last-child {
+				@extend %gcwu-default-large-images-scaleX--1;
+			}
+		}
+	}
+
+	[id|="wb-body"] {
+		@extend %gcwu-default-large-images-scaleX--1;
+	}
+	#wb-skip {
+		@extend %gcwu-default-large-images-scaleX--1;
+	}
+	#gcwu-gcnb {
+		@extend %gcwu-default-large-images-scaleX--1;
+	}
+	#gcwu-bnr {
+		@extend %gcwu-default-large-images-scaleX--1;
+	}
+	#gcwu-psnb {
+		.mb-menu {
+			@extend %gcwu-default-large-images-scaleX--1;
+		}
+	}
+	#wb-core {
+		@extend %gcwu-default-large-images-scaleX--1;
+	}
+	#wb-foot {
+		@extend %gcwu-default-large-images-scaleX--1;
+	}
+	#gcwu-gcft {
+		@extend %gcwu-default-large-images-scaleX--1;
+		#gcwu-gcft-fip {
+			li {
+				@extend %gcwu-default-large-images-scaleX--1;
+			}
+		}
+	}
+}

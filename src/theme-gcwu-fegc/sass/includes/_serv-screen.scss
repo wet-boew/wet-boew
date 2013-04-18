@@ -1,7 +1,37 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
+%gcwu-serv-screen-display-none {
+	display: none;
+}
+%gcwu-serv-screen-display-block {
+	display: block;
+}
+%gcwu-serv-screen-wmms-sig-display-none {
+	#gcwu-wmms-in {
+		@extend %gcwu-serv-screen-display-none;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-serv-screen-display-none;
+	}
+}
+%gcwu-serv-screen-wmms-sig-display-block {
+	#gcwu-wmms-in {
+		@extend %gcwu-serv-screen-display-block;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-serv-screen-display-block;
+	}
+}
+%gcwu-serv-screen-ui-mobile-rendering-wmms-sig-display-block-none {
+	&.ui-mobile {
+		@extend %gcwu-serv-screen-wmms-sig-display-block;
+		&.ui-mobile-rendering {
+			@extend %gcwu-serv-screen-wmms-sig-display-none;
+		}
+	}
+}
 
 html {
 	overflow-y: scroll;
@@ -92,9 +122,26 @@ h1 {
 	width: 100%;
 }
 
+#gcwu-wmms-in {
+	@extend %gcwu-serv-screen-display-none;
+}
 #gcwu-sig-in {
-	width: 214px;
-	height: 20px;
+	@extend %gcwu-serv-screen-display-none;
+}
+.svg {
+	@extend %gcwu-serv-screen-wmms-sig-display-block;
+}
+.pe-disable {
+	@extend %gcwu-serv-screen-wmms-sig-display-block;
+}
+.no-svg {
+	@extend %gcwu-serv-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie9 {
+	@extend %gcwu-serv-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie10 {
+	@extend %gcwu-serv-screen-ui-mobile-rendering-wmms-sig-display-block-none;
 }
 
 %gcwu-serv-screen-text-align-right {

@@ -2,32 +2,32 @@
 /*!!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
  */
 @import '../../base/sass/oldie-vendor-prefix';
 
-/* ----- All media types - Start of build includes ----- */
+/* ----- All screens - All media types - Start of build includes ----- */
 @import '../../base/sass/default';
-@import '../../base/sass/default-desktop';
+@import '../../base/sass/default-large';
 @import '../../base/sass/default-ie';
 @import 'includes/serv';
-@import 'includes/serv-desktop';
+@import 'includes/serv-large';
 @import 'includes/serv-ie';
-/* ----- All media types - End of build includes ----- */
+/* ----- All screens - All media types - End of build includes ----- */
 
 @media screen {
-/* ----- Screen media type only - Start of build includes ----- */
+/* ----- All screens - Screen media type - Start of build includes ----- */
 @import '../../base/sass/default-screen';
-@import '../../base/sass/default-desktop-screen';
+@import '../../base/sass/default-large-screen';
 @import '../../base/sass/default-screen-ie';
 @import 'includes/serv-screen';
-@import 'includes/serv-desktop-screen';
+@import 'includes/serv-large-screen';
 @import 'includes/serv-screen-ie';
 @import 'includes/serv-responsive';
-/* ----- Screen media type only - End of build includes ----- */
+/* ----- All screens - Screen media type - End of build includes ----- */
 }
 
 @media print {

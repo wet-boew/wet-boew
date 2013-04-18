@@ -2,7 +2,7 @@
 /*!!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -15,32 +15,31 @@
 
 @import '../../base/sass/oldie-vendor-prefix';
 
-/* ----- All media types - Start of build includes ----- */
+/* ----- All screens - All media types - Start of build includes ----- */
 @import '../../base/sass/default';
-@import '../../base/sass/default-desktop';
+@import '../../base/sass/default-large';
 @import '../../base/sass/default-ie';
 @import 'includes/default';
-@import 'includes/default-desktop';
-@import 'includes/default-desktop-images-ie';
+@import 'includes/default-large';
+@import 'includes/default-images-ie';
 @import 'includes/default-ie';
-@import 'includes/default-desktop-ie';
-/* ----- All media types - End of build includes ----- */
+/* ----- All screens - All media types - End of build includes ----- */
 
 @media screen {
-/* ----- Screen media type only - Start of build includes ----- */
+/* ----- All screens - Screen media type - Start of build includes ----- */
 @import '../../base/sass/default-screen';
-@import '../../base/sass/default-desktop-screen';
+@import '../../base/sass/default-large-screen';
 @import '../../base/sass/default-screen-ie';
-@import '../../grids/sass/responsive';
-@import '../../grids/sass/responsive-ie';
-@import 'includes/default-responsive';
+@import '../../grids/sass/responsive-medium-large-screen';
+@import '../../grids/sass/responsive-screen-ie';
+@import 'includes/default-responsive-large-screen';
 @import 'includes/default-screen';
-@import 'includes/default-screen-images';
-@import 'includes/default-desktop-screen';
-@import 'includes/default-desktop-screen-images';
+@import 'includes/default-images-screen';
+@import 'includes/default-large-screen';
+@import 'includes/default-large-images-screen';
 @import 'includes/default-screen-ie';
-@import 'includes/default-screen-images-ie';
-/* ----- Screen media type only - End of build includes ----- */
+@import 'includes/default-images-screen-ie';
+/* ----- All screens - Screen media type - End of build includes ----- */
 }
 
 @media print {

@@ -1,7 +1,7 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
-*/
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/images";
@@ -290,7 +290,7 @@
 	cursor: pointer;
 	font-family: $sans-serif;
 	line-height: 16px;
-	padding: 4px 10px;
+	padding: 4px 10px !important;
 	text-align: center;
 	text-decoration: none;
 	@include border-radius;
@@ -325,7 +325,7 @@
 @mixin button-size($padding, $size, $height) {
 	font-size: $size;
 	line-height: $height;
-	padding: $padding;
+	padding: $padding !important;
 }
 
 @mixin button-disabled() {

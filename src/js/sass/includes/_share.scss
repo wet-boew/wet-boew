@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 %share-width-100 {
 	width: 100%;
@@ -130,16 +130,13 @@ div {
 		}
 		a {
 			@extend %share-width-100;
+			background: none !important;
 			text-decoration: none;
 			@extend %share-cursor-pointer;
 			@extend %share-font-size-1em;
 			color: #036;
 			@extend %share-margin-0;
-			padding: 0;
-			&[href^="mailto: "] {
-				background: none !important;
-				padding-left: 0 !important;
-			}
+			padding: 0 !important;
 			img {
 				width: auto;
 				margin-bottom: 0;

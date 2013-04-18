@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
 */
 @import "compass/css3/opacity";
 @import "compass/css3/transition";
@@ -142,16 +142,6 @@ div {
 			}
 		}
 	}
-	&.olControlSaveFeaturesItemActive {
-		background-image:url(../images/geomap/save_features_on.png);
-		background-repeat: no-repeat;
-		background-position: 0 1px;
-	}
-	&.olControlSaveFeaturesItemInactive {
-		background-image:url(../images/geomap/save_features_off.png);
-		background-repeat: no-repeat;
-		background-position: 0 1px;
-	}
 }
 
 .olControlScale {
@@ -199,7 +189,6 @@ div {
 }
 
 .olPopupCloseBox {
-	background:url(../images/geomap/close.gif) no-repeat;
 	cursor: pointer;
 }
 
@@ -254,7 +243,7 @@ div {
 	}
 }
 
-.tablet-view {
+.medium-screen {
   .wet-boew-geomap-legend {
     width: 100% !important;
   }
@@ -273,4 +262,9 @@ div {
 	&.active {
 		border-color: #07F;
 	}
+}
+
+.wet-boew-geomap-detail {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
