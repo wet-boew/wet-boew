@@ -30,7 +30,8 @@
 				bSort : true,
 				bVisible : true,
 				bZebra : false,
-				iDisplayLength: 10
+				iDisplayLength: 10,
+				sPaginationType: 'two_button'
 			};
 			
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
@@ -52,6 +53,7 @@
 				'iDisplayLength' : opts.iDisplayLength,
 				'aLengthMenu' : opts.aLengthMenu,
 				'bSort' : (opts.bSort === true),
+				'sPaginationType' : ((opts.sPaginationType === 'two_button') ? opts.sPaginationType : 'full_numbers'),
 				'oLanguage' : {
 					'oAria' : {
 						'sSortAscending' : _pe.dic.get('%sSortAscending'),
