@@ -23,10 +23,12 @@
 				});
 			}
 
-			var $tabs = elm.children('.tabs').children('li'),
+			var $accordion,
+				$panelElms,
 				$panels = elm.children('.tabs-panel').children('div'),
-				defaultTab = 0,
+				$tabs = elm.children('.tabs').children('li'),
 				accordion = '<div data-role="collapsible-set" data-mini="true" data-content-theme="b" data-theme="b">',
+				defaultTab = 0,
 				hlevel,
 				hopen,
 				hclose,
@@ -48,12 +50,18 @@
 			hopen = '<h' + hlevel + '>';
 			hclose = '</h' + hlevel + '>';
 
-			$panels.each(function (index) {
-				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + '>' + hopen + $tabs.eq(index).children('a').text() + hclose + this.innerHTML + '</div>';
-			});
-			accordion += '</div>';
-			elm.html(accordion);
+			// Create the accordion panels
+			for (index = 0, len = $panels.length; index < len; index += 1) {
+				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + '>' + hopen + $tabs.eq(index).children('a').text() + hclose + '</div>';
+			}
+			$accordion = $(accordion);
 
+			// Append tab panel content to its accordion panel
+			$panelElms = $accordion.find('div');
+			while (len--) {
+				$panelElms.eq(len).append($panels.eq(len));
+			}
+			elm.empty().append($accordion);
 			return elm;
 		},
 		_exec : function (elm) {
