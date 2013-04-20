@@ -156,7 +156,10 @@
 
 					if (wet_boew_theme.bcrumb.length !== 0) {
 						node = wet_boew_theme.bcrumb[0];
-						home_href = node.getElementsByTagName('a')[0].href;
+						links = node.getElementsByTagName('a');
+						if (links.length !== 0) {
+							home_href = links[0].href;
+						}
 						mb_popup += '<section><div id="jqm-mb-location-text">' + node.innerHTML + '</div></section>';
 					} else {
 						mb_popup += '<div id="jqm-mb-location-text"></div>';
