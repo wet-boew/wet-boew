@@ -477,6 +477,12 @@ select {
 
 .ui-popup {
 	@extend %gcwu-default-small-medium-h1-border-bottom-none;
+	.ui-title {
+		small {
+			display: block;
+			font-size: 0.75em;
+		}
+	}
 }
 
 #jqm-wb-search {

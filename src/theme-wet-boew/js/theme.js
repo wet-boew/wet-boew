@@ -267,7 +267,7 @@
 				settings_popup += popup + ' id="popupAbout"' + popup_settings;
 				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open;
-				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
+				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title[0].getElementsByTagName('span')[0].innerHTML + '</div></div>';
 				// Add the version
 				node = pe.main.find('#wet-date-mod').children();
 				if (node.length !== 0) {
