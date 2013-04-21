@@ -18,16 +18,16 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 </li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Accolades">Accolades for WET</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Accolades#wiki-Known_implementations">Known implementations</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#upcoming-events" class="top-level">Events</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki#upcoming-events">Events</a></li>
 </ul>
 </section>
 </div>
-<div class="span-2">
+<div class="span-3">
 <ul>
-<li><a href="http://wet-boew.github.io/wet-boew/License-eng.txt" class="top-level">Terms and conditions of use</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Roadmap" class="top-level">Roadmap of past and future releases</a>
-<li><a href="http://wet-boew.github.io/wet-boew/index-eng.html#version-history" class="top-level">Version history</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/External-Projects-used-in-WET" class="top-level">External projects used in WET</a></li>
+<li class="top-level"><a href="http://wet-boew.github.io/wet-boew/License-eng.txt">Terms and conditions of use</a></li>
+<li class="top-level"><a href="https://github.com/wet-boew/wet-boew/wiki/Roadmap">Roadmap of past and future releases</a>
+<li class="top-level"><a href="http://wet-boew.github.io/wet-boew/index-eng.html#version-history">Version history</a></li>
+<li class="top-level"><a href="https://github.com/wet-boew/wet-boew/wiki/External-Projects-used-in-WET">External projects used in WET</a></li>
 </ul>
 <section><h4><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></h4>
 <ul>
@@ -42,9 +42,9 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li><section><h3><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Getting-Started-with-WET" class="top-level">Getting Started with WET</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Using-Github-for-WET" class="top-level">Using Github for WET</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Downloads" class="top-level">Download WET</a></li>
+<li class="top-level"><a href="https://github.com/wet-boew/wet-boew/wiki/Getting-Started-with-WET">Getting Started with WET</a></li>
+<li class="top-level"><a href="https://github.com/wet-boew/wet-boew/wiki/Using-Github-for-WET">Using Github for WET</a></li>
+<li class="top-level"><a href="https://github.com/wet-boew/wet-boew/wiki/Downloads">Download WET</a></li>
 </ul>
 <section><h4><a href="http://wet-boew.github.io/wet-boew/demos/guide-design/guide-eng.html">Designing sites and page layouts</a></h4>
 <ul>
@@ -96,10 +96,10 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 </ul>
 </section>
 <ul>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET" class="top-level">Develop for WET</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Creating-Documentation" class="top-level">Creating documentation</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#ongoing-projects" class="top-level">Participate in a project</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Testing" class="top-level">Test a component</a></li>
+<li class="top-level"><a href="https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET">Develop for WET</a></li>
+<li class="top-level"><a href="https://github.com/wet-boew/wet-boew/wiki/Creating-Documentation">Creating documentation</a></li>
+<li class="top-level"><a href="https://github.com/wet-boew/wet-boew/wiki#ongoing-projects">Participate in a project</a></li>
+<li class="top-level"><a href="https://github.com/wet-boew/wet-boew/wiki/Testing">Test a component</a></li>
 </ul>
 </div>
 <div class="clear"></div>
