@@ -1228,13 +1228,16 @@
 								}
 								menu += '</div>';
 							} else if (mItemTag === 'div') { // If the menu item is a div
-								next = mItem.children('a, ul');
+								next = mItem.children('a, ul, div');
 								if (next.length > 0) {
 									nextDOM = next[0];
-									if (nextDOM.tagName.toLowerCase() === 'a') {
+									mItemTag = nextDOM.tagName.toLowerCase();
+									if (mItemTag === 'a') {
 										menu += link + nextDOM.href + '" data-theme="' + (toplevel ? theme1 : theme2) + '">' + nextDOM.innerHTML + '</a>';
-									} else {
+									} else if (mItemTag === 'ul') {
 										menu += listView + nextDOM.innerHTML + '</ul>';
+									} else {
+										menu += pe.menu.buildmobile(nextDOM, hlevel, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
 									}
 								}
 							}
