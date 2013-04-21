@@ -17,17 +17,18 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 	</ul>
 </li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Accolades">Accolades for WET</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/License-eng.txt">Terms and conditions of use</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Roadmap">Roadmap of past and future releases</a>
-	<ul>
-	<li><a href="http://wet-boew.github.io/wet-boew/index-eng.html#version-history">Version history</a></li>
-	</ul>
-</li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Accolades#wiki-Known_implementations">Known implementations</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/External-Projects-used-in-WET">External projects used in WET</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#upcoming-events">Events</a></li>
 </ul>
 </section>
+</div>
+<div class="span-2">
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/License-eng.txt" class="top-level">Terms and conditions of use</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Roadmap" class="top-level">Roadmap of past and future releases</a>
+<li><a href="http://wet-boew.github.io/wet-boew/index-eng.html#version-history" class="top-level">Version history</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/External-Projects-used-in-WET" class="top-level">External projects used in WET</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki#upcoming-events" class="top-level">Events</a></li>
+</ul>
 <section><h4><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></h4>
 <ul>
 <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=23601">Standard on Web Accessibility</a></li>
