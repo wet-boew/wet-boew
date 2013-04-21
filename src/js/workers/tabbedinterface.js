@@ -23,12 +23,15 @@
 				});
 			}
 
-			var $tabs = elm.children('.tabs').children('li'),
+			var $accordion,
+				$panelElms,
 				$panels = elm.children('.tabs-panel').children('div'),
+				$tabs = elm.children('.tabs').children('li'),
 				$activeTab,
 				tabListIdx = $('.wet-boew-tabbedinterface').index(elm),
-				defaultTab = 0,
 				accordion = '<div data-role="collapsible-set" data-mini="true" data-content-theme="b" data-theme="b">',
+				defaultTab = 0,
+				$link,
 				hlevel,
 				hopen,
 				hclose,
@@ -57,22 +60,24 @@
 			hopen = '<h' + hlevel + '>';
 			hclose = '</h' + hlevel + '>';
 
-			$panels.each(function (index) {
-				var $link = $tabs.eq(index).children('a'),
-					text = $link.text();
-				if (text === ''){
-					text = $tabs.eq(index).find('span').text();
-				}
-				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + _pe.fn.tabbedinterface._get_hash($link.attr('href')) + '">' + hopen + text + hclose + this.innerHTML + '</div>';
-			});
-			accordion += '</div>';
-			elm.html(accordion);
+			// Create the accordion panels
+			for (index = 0, len = $panels.length; index < len; index += 1) {
+				$link = $tabs.eq(index).children('a');
+				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + _pe.fn.tabbedinterface._get_hash($link.attr('href')) + '">' + hopen + $link.text() + hclose + '</div>';
+			}
+			$accordion = $(accordion);
+
+			// Append tab panel content to its accordion panel
+			$panelElms = $accordion.find('div');
+			while (len--) {
+				$panelElms.eq(len).append($panels.eq(len));
+			}
+			elm.empty().append($accordion);
 
 			// Track the active panel during the user's session
 			elm.find('[data-role="collapsible"]').on('expand', function () {
 				_pe.fn.tabbedinterface._set_active_panel($(this).data('tab'), tabListIdx);
 			});
-
 			return elm;
 		},
 		_exec : function (elm) {
