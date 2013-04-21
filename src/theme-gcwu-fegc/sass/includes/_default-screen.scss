@@ -112,6 +112,13 @@ body {
 	}
 }
 
+#gcwu-title {
+	small {
+		font-size: 0.45em;
+		display: block;
+	}		
+}
+
 #gcwu-wmms-in {
 	@extend %gcwu-default-screen-display-none;
 }

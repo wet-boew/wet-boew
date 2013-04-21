@@ -109,14 +109,10 @@ input {
 	object {
 		@extend %wet-default-screen-display-none;
 	}
-	span {
-		span {
-			font-size: 0.45em;
-			display: block;
-			padding-left: 0;
-			height: auto;
-		}		
-	}
+	small {
+		font-size: 0.45em;
+		display: block;
+	}		
 }
 .svg {
 	@extend %wet-default-screen-wet-title-object-display-block;
