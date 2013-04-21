@@ -4,7 +4,8 @@
 
 ## What is the Web Experience Toolkit?
 
-* Code library for building innovative websites that are:
+* Collaborative open source project led by the Government of Canada
+* [Award-winning](https://github.com/wet-boew/wet-boew/wiki/Accolades#wiki-Awards) code library for building innovative websites that are:
  * [Accessible](#accessibility), [usable](#usability) and [interoperable](#interoperability)
  * [Mobile friendly](#mobile-friendly-responsive-design)
  * [Multilingual](#multilingual)
@@ -100,7 +101,8 @@
 
 ## Qu’est-ce que la Boîte à outils de l’expérience Web?
 
-* Une bibliothèque de code pour construire des sites Web innovants&#160;:
+* Un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada
+* Une bibliothèque de code [primée](https://github.com/wet-boew/wet-boew/wiki/Distinctions#wiki-Primes) pour construire des sites Web innovants&#160;:
  * [Accessibles](#accessibilit), [faciles d'emploi](#facilit-demploi) et [interopérables](#interoprabilit)
  * [Optimisés pour les appareils mobiles](#conception-optimise-pour-les-appareils-mobiles-et-ractive)
  * [Multilingues](#multilingue)
