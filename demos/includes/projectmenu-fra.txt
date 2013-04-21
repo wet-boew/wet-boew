@@ -17,17 +17,18 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 	</ul>
 </li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Distinctions">Distinctions pour la BOEW</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/Licence-fra.txt">Conditions régissant l'utilisation</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Roadmap">Feuille de route pour les versions passées et futures</a>
-	<ul>
-	<li><a href="http://wet-boew.github.io/wet-boew/demos/index-eng.html#historique-des-versions">Historique des versions</a></li>
-	</ul>
-</li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Distinctions#wiki-Implmentations_connues">Implémentations connues</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Projets-externes-utilis%C3%A9s-par-la-BOEW">Projets externes utilisés par la BOEW</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-vnements__venir">Événements à venir</a></li>
 </ul>
 </section>
+</div>
+<div class="span-2">
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/Licence-fra.txt" class="top-level">Conditions régissant l'utilisation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Roadmap" class="top-level">Feuille de route pour les versions passées et futures</a>
+<li><a href="http://wet-boew.github.io/wet-boew/demos/index-eng.html#historique-des-versions" class="top-level">Historique des versions</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Projets-externes-utilis%C3%A9s-par-la-BOEW" class="top-level">Projets externes utilisés par la BOEW</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-vnements__venir" class="top-level">Événements à venir</a></li>
+</ul>
 <section><h4><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></h4>
 <ul>
 <li><a href="http://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=23601">Norme sur l'accessibilité des sites Web</a></li>
