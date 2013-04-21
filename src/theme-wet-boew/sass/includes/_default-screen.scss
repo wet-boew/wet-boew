@@ -24,6 +24,7 @@
 	#wet-title {
 		object {
 			@extend %wet-default-screen-display-block;
+			z-index: -1;
 		}
 	}
 }
