@@ -286,14 +286,28 @@
 					settings_popup += '<li><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
 				}
 				// Add the footer links
-				links = wet_boew_theme.sft.find('.gcwu-col-head a').get();
-				for (i = 0, len = links.length; i !== len; i += 1) {
-					link = links[i];
-					node = link.innerHTML;
-					target = node.toLowerCase();
-					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';
+				nodes = wet_boew_theme.sft.find('.wet-col-head');
+				for (i = 0, len = nodes.length; i !== len; i += 1) {
+					node = nodes.eq(i);
+					link = node.children('a');
+					next = node.find('+ ul, + address ul');
+					target = link.length !== 0 ? link[0].innerHTML : node[0].innerHTML;
+					if (next.length !== 0) {
+						settings_popup += '<li data-role="collapsible" data-inset="false"><h2>' + target + '</h2><ul data-role="listview">';
+						links = next[0].getElementsByTagName('a');
+						for (j = 0, len2 = links.length; j !== len2; j += 1) {
+							node = links[j];
+							settings_popup += '<li><a href="' + node.href + '">' + node.innerHTML + '</a></li>';
+						}
+						if (link.length !== 0) {
+							settings_popup += '<li><a href="' + link.attr('href') + '">' + link.html() + mainpage_txt + '</a></li>';
+						}
+						settings_popup += '</ul></li>';
+					} else if (link.length !== 0) {
+						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + link.html() + '</a></li>';
+					}
 				}
-				settings_popup += '</ul>' + popup_close;
+				settings_popup += '</ul></div>' + popup_close;
 
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);
