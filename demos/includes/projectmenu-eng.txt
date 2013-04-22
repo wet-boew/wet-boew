@@ -71,16 +71,16 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines#wiki-Filing_a_bug_or_an_Issue">Filing a bug or an issue</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines#wiki-Creating_a_Pull_Request">Creating a pull request</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines#testing-you-pr-before-submitting">Test your code</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines#testing-you-pr-before-submitting">Testing your code</a></li>
 </ul>
 </section>
 </div>
 <div class="span-2">
-<section><h4><a href="https://github.com/wet-boew/wet-boew/wiki#ongoing-projects">Participate in a project</a></h4>
+<section><h4><a href="https://github.com/wet-boew/wet-boew/wiki#ongoing-projects">Participating in a project</a></h4>
 <ul>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET">Develop for WET</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET">Developing for WET</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Creating-Documentation">Creating documentation</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Testing">Test a component</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Testing">Testing a component</a></li>
 </ul>
 </section>
 </div>
