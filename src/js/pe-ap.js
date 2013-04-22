@@ -122,8 +122,7 @@
 		_init: function () {
 			var $html = pe.html,
 				hlinks,
-				hlinks_same,
-				$this,
+				hlinks_same = [],
 				target,
 				validTarget = false,
 				classes = '',
@@ -200,13 +199,6 @@
 			// Remove the "no-js" class and add the identification classes to the HTML element.
 			$html.removeClass('no-js').addClass(classes);
 
-			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
-				return this.href.indexOf('#') !== -1;
-			});
-			hlinks_same = hlinks.filter(function () {
-				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
-			});
-
 			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 
 			// If the page URL includes a hash upon page load, then focus on and scroll to the target
@@ -256,16 +248,24 @@
 				// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
 				// TODO: Find a more elegant way to address this in jQuery Mobile
 				pe.bodydiv.removeAttr('tabindex');
-
+			
 				// On click, puts focus on and scrolls to the target of same page links
-				hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
-					var hash = $(this).attr('href'),
+				$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function () {
+					var hash = this.hash,
+						node = document.getElementById(pe.string.jqescape(hash.substring(1))),
+						$node,
+						nodeName,
 						role;
-					$this = $('#' + pe.string.jqescape(hash.substring(1)));
-					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if ($this.length > 0) {
-						pe.focus($this);
-						role = $this.jqmData('role');
+
+					if (node !== null) {
+						$node = $(node);
+						nodeName = node.nodeName.toLowerCase();
+						if (nodeName !== 'a' && nodeName !== 'button' && nodeName !== 'input' && nodeName !== 'textarea' && nodeName !== 'select') {
+							node.setAttribute('tabindex', '-1');
+						}
+
+						pe.focus($node);
+						role = $node.jqmData('role');
 						if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
 							window.location.hash = hash;
 						}
@@ -291,6 +291,17 @@
 					$o.append($.trim(data));
 				}, 'html');
 			})).always(function () {
+				var hlinks = document.getElementsByTagName('a'),
+					len = hlinks.length,
+					href;
+				while (len--) {
+					hlink = hlinks[len];
+					href = hlink.getAttribute('href');
+					if (href !== null && href.length !== 1 && href.indexOf('#') !== -1 && hlink.getAttribute('data-rel') === null && hlink.pathname === window.location.pathname && hlink.search === window.location.search) {
+						hlinks_same.push(hlink);
+					}
+				}
+			
 				// Wait for localisation and ajax content to load plugins
 				pe.document.one('languageloaded', function () {
 					// Check to see if PE enhancements should be disabled
@@ -1020,19 +1031,21 @@
 				while (menulinkslen--) {
 					link = menulinks[menulinkslen];
 					linkhref = link.getAttribute('href');
-					if (hrefBug && linkhref !== window.location.href) {
-						linkhref = linkhref.replace(window.location.href, '');
-					}
-					if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
-						linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
-						linkquery = link.search;
-						linkquerylen = linkquery.length;
-						if (pageurl.slice(-linkurl.length) === linkurl && (linkquerylen === 0 || pageurlquery.slice(-linkquerylen) === linkquery)) {
-							match = true;
-							break;
+					if (linkhref !== null) {
+						if (hrefBug && linkhref !== window.location.href) {
+							linkhref = linkhref.replace(window.location.href, '');
 						}
-						menulink.push(link);
-						menulinkurl.push(linkurl);
+						if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
+							linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
+							linkquery = link.search;
+							linkquerylen = linkquery.length;
+							if (pageurl.slice(-linkurl.length) === linkurl && (linkquerylen === 0 || pageurlquery.slice(-linkquerylen) === linkquery)) {
+								match = true;
+								break;
+							}
+							menulink.push(link);
+							menulinkurl.push(linkurl);
+						}
 					}
 				}
 
