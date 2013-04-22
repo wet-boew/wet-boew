@@ -121,7 +121,6 @@
 		*/
 		_init: function () {
 			var $html = pe.html,
-				hlinks,
 				hlinks_same = [],
 				target,
 				validTarget = false,
@@ -292,6 +291,7 @@
 				}, 'html');
 			})).always(function () {
 				var hlinks = document.getElementsByTagName('a'),
+					hlink,
 					len = hlinks.length,
 					href;
 				while (len--) {
