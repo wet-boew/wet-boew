@@ -276,7 +276,9 @@
 					pathname = window.location.pathname,
 					search = window.location.search,
 					len = hlinks.length,
-					href;
+					href,
+					node,
+					nodeName;
 				while (len--) {
 					hlink = hlinks[len];
 					href = hlink.getAttribute('href');
