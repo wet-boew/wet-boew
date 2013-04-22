@@ -5,7 +5,7 @@
 /*
  * Menu bar plugin
  */
-/*global jQuery: false, pe:false */
+/*global jQuery: false */
 /*jshint bitwise: false */
 (function ($) {
 	"use strict";
@@ -26,7 +26,7 @@
 			- open : this will open the child menu item
 			*/
 			/* bind plugin scope element */
-			if (pe.mobile) {
+			if (_pe.mobile) {
 				return;
 			}
 			var $menu,
@@ -38,7 +38,7 @@
 				hideallsubmenus,
 				hidesubmenu,
 				showsubmenu,
-				submenuHelp = pe.dic.get('%sub-menu-help'),
+				submenuHelp = _pe.dic.get('%sub-menu-help'),
 				menuelms,
 				menuelm,
 				menulen;
@@ -60,7 +60,7 @@
 			gotosubmenu = function (toplink) {
 				var _node = $(toplink),
 					_sm = _node.closest('li').find('.mb-sm-open');
-				if (pe.cssenabled) {
+				if (_pe.cssenabled) {
 					_sm.find('a').attr('tabindex', '0');
 				}
 				_node.trigger('item-next');
@@ -71,7 +71,7 @@
 				var _node = $(toplink).closest('li'),
 					_sm = _node.find('.mb-sm-open');
 				_sm.attr({'aria-expanded':'false', 'aria-hidden':'true'}).toggleClass('mb-sm mb-sm-open').css('right', '');
-				if (pe.cssenabled) {
+				if (_pe.cssenabled) {
 					_sm.find('a').attr('tabindex', '-1');
 				}
 				_node.removeClass('mb-active');
@@ -114,12 +114,21 @@
 					menuelm.setAttribute('role', 'presentation');
 				}
 			}
-			pe.resize(correctheight);
+			_pe.resize(correctheight);
 
 			/* [Main] parse mega menu and establish all ARIA and Navigation classes */
 			$scope.find('ul.mb-menu > li').find('a:eq(0)').each(function (index, value) {
 				var $elm = $(value).addClass('knav-' + index + '-0-0'),
-					$childmenu = $elm.closest('li').find('.mb-sm');
+					$childmenu = $elm.closest('li').find('.mb-sm'),
+					$nodes,
+					$node,
+					nodeName,
+					$link,
+					links,
+					i,
+					j,
+					len,
+					len2;
 				if ($childmenu.length > 0) {
 					$elm.attr('aria-haspopup', 'true').addClass('mb-has-sm').attr('href', '#').wrapInner('<span class="expandicon"><span class="sublink"></span></span>');
 					$childmenu.attr({'role': 'menu', 'aria-expanded': 'false', 'aria-hidden': 'true'}).find(':has(:header) ul').attr('role', 'menu');
@@ -134,25 +143,32 @@
 						timeout: 500
 					});
 					/* now recurse all focusable to be able to navigate */
-					$childmenu.find('h3 a, h4 a, div.top-level > a, li.top-level a, div.mb-main-link > a').each(function (i) {
-						var $this = $(this),
-							$parent = $this.parent();
-						this.className += ' knav-' + index + '-' + (i + 1) + '-0';
-						if ($parent.is('h3, h4')) {
-							$this.parent().next('ul').find('a').each(function (j) {
-								this.className += ' knav-' + index + '-' + (i + 1) + '-' + (j + 1);
-							});
+					$nodes = $childmenu.find('h3, h4, div.top-level, li.top-level, div.mb-main-link');
+					for (i = 0, len = $nodes.length; i !== len; i += 1) {
+						$node = $nodes.eq(i);
+						nodeName = $node[0].nodeName.toLowerCase();
+						$link = $node.children('a');
+						if ($link.length !== 0) {
+							$link.addClass('knav-' + index + '-' + (i + 1) + '-0');
+						} else {
+							$node.addClass('no-link');
 						}
-						return;
-					});
-					$childmenu.find('> ul li, > div > ul li').filter(':not(.top-level)').children('a').each(function (i) {
-						this.className += ' knav-' + index + '-0-' + (i + 1);
-					});
+						if (nodeName === 'h3' || nodeName === 'h4') {
+							links = $node.next('ul').find('a').get();
+							for (j = 0, len2 = links.length; j !== len2; j += 1) {
+								links[j].className += ' knav-' + index + '-' + (i + 1) + '-' + (j + 1);
+							}
+						}
+					}
+					links = $childmenu.find('> ul li, > div > ul li').filter(':not(.top-level)').children('a').get();
+					for (i = 0, len = links.length; i !== len; i += 1) {
+						links[i].className += ' knav-' + index + '-0-' + (i + 1);
+					}
 				}
 			});
 
 			/* if CSS is enabled we want to ensure a correct tabbing response */
-			if (pe.cssenabled) {
+			if (_pe.cssenabled) {
 				$scope.find('.mb-sm a').attr('tabindex', '-1');
 			}
 
@@ -264,11 +280,11 @@
 											}
 										}
 										if (match < (matches.length - 1)) {
-											pe.focus(matches.eq(match + 1));
+											_pe.focus(matches.eq(match + 1));
 											return false;
 										}
 									}
-									pe.focus(matches.eq(0));
+									_pe.focus(matches.eq(0));
 								}
 								return false;
 							}
@@ -276,9 +292,9 @@
 					}
 				} else if (type === 'close') {
 					if ((!!_id[2] << 1 | !!_id[3]) === 0) { // top-level menu link has focus so close menus and put focus after menu bar
-						pe.focus(pe.main.find('#wb-cont').attr('tabindex', '-1'));
+						_pe.focus(_pe.main.find('#wb-cont').attr('tabindex', '-1'));
 					} else { // submenu link has focus so close menu and put focus on the parent menu bar link
-						pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-0'));
+						_pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-0'));
 					}
 					setTimeout(function () {
 						return hideallsubmenus();
@@ -290,22 +306,22 @@
 					case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
 						prev = $scope.find('.knav-' + (_id[1] - 1) + '-0-0');
 						if (prev.length > 0) {
-							pe.focus(prev);
+							_pe.focus(prev);
 						} else {
-							pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
+							_pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
 						}
 						break;
 					case 2: // sub-section link has focus
 					case 3: // 3rd level link (child of a sub-section) has focus
-						prev = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] - 1) + '-0');
+						prev = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] - 1) + '-0, .knav-' + (_id[1]) + '-' + (_id[2] - 1) + '-1').first();
 						if (prev.length > 0 && _id[2] > 1) {
-							pe.focus(prev);
+							_pe.focus(prev);
 						} else {
 							prev = $scope.find('.knav-' + (_id[1] - 1) + '-0-0'); // wrap around at the sub-section level
 							if (prev.length > 0) {
-								pe.focus(prev);
+								_pe.focus(prev);
 							} else {
-								pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
+								_pe.focus($scope.find('ul.mb-menu > li:last').find('a:eq(0)')); // wrap around at the top level
 							}
 						}
 						break;
@@ -318,22 +334,22 @@
 					case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
 						next = $scope.find('.knav-' + (_id[1] + 1) + '-0-0');
 						if (next.length > 0) {
-							pe.focus(next);
+							_pe.focus(next);
 						} else {
-							pe.focus($scope.find('.knav-0-0-0')); // wrap around at the top level
+							_pe.focus($scope.find('.knav-0-0-0')); // wrap around at the top level
 						}
 						break;
 					case 2: // sub-section link has focus
 					case 3: // 3rd level link (child of a sub-section) has focus
-						next = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] + 1) + '-0');
+						next = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] + 1) + '-0, .knav-' + (_id[1]) + '-' + (_id[2] + 1) + '-1').first();
 						if (next.length > 0) {
-							pe.focus(next);
+							_pe.focus(next);
 						} else {
 							next = $scope.find('.knav-' + (_id[1] + 1) + '-0-0'); // wrap around at the sub-section level
 							if (next.length > 0) {
-								pe.focus(next);
+								_pe.focus(next);
 							} else {
-								pe.focus($scope.find('.knav-0-0-0')); // wrap around at the top level
+								_pe.focus($scope.find('.knav-0-0-0')); // wrap around at the top level
 							}
 						}
 						break;
@@ -342,12 +358,12 @@
 				} else if (type === 'item-next') {
 					next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2]) + '-' + (_id[3] + 1)); // move to next item
 					if (next.length === 0) {
-						next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2] + 1) + '-0'); // move to next section
+						next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2] + 1) + '-0, .knav-' + _id[1] + '-' + (_id[2] + 1) + '-1').first(); // move to next section
 					}
 					if (next.length !== 0) {
-						pe.focus(next);
+						_pe.focus(next);
 					} else {
-						pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-1, .knav-' + _id[1] + '-1-0').first()); // move to first item in the submenu
+						_pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-1, .knav-' + _id[1] + '-1-0, .knav-' + _id[1] + '-1-1').first()); // move to first item in the submenu
 					}
 					return false;
 				} else if (type === 'item-previous') {
@@ -356,9 +372,9 @@
 						prev = (_id[2] !== 0 ? _activemenu.find('a').filter('[class*="knav-' + _id[1] + '-' + (_id[2] - 1) + '-"]:not(.knav-' + _id[1] + '-0-0)').last() : ''); // move to last item of the previous section
 					}
 					if (prev.length !== 0) {
-						pe.focus(prev);
+						_pe.focus(prev);
 					} else {
-						pe.focus(_activemenu.find('[class*="knav-"]').last()); // move to last item in the submenu
+						_pe.focus(_activemenu.find('[class*="knav-"]').last()); // move to last item in the submenu
 					}
 					return false;
 				} else if (type === 'focusin' && _id[2] === 0 && _id[3] === 0) {
