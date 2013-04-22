@@ -37,7 +37,7 @@
 		rtl: false,
 		touchscreen: 'ontouchstart' in document.documentElement,
 		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
-		suffix: $('body script[src*="/pe-ap-"]').attr('src').indexOf('-min') !== -1 ? '-min' : '', // determine if pe is minified
+		suffix: $('body script[src*="/pe-ap"]').attr('src').indexOf('-min') !== -1 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
 		bodydiv: $('body > div'),
 		main: $('#wb-main'),
@@ -125,6 +125,8 @@
 				validTarget = false,
 				test,
 				test_elms,
+				silentscroll_fired = false,
+				pageinit_fired = false,
 				init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
@@ -175,29 +177,32 @@
 				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
 					$html.addClass('bb-pre7');
 				}
-
+				pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
+				
 				// If the page URL includes a hash upon page load, then focus on and scroll to the target
 				// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
-				// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point				
-				setTimeout(function pollScrollTop() {
-					// Poll for a change in scrollTop (polling done to handle quirks in Chrome)
-					var scrollTop = pe.window.scrollTop();
-					if (scrollTop !== 0 || pe.scrollTopInit === -1) {
-						pe.scrollTopInit = scrollTop;
-					} else {
-						setTimeout(pollScrollTop, 10);
-					}
-				}, 7);
+				// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
+				pe.scrollTopInit = pe.window.scrollTop();
+				if (pe.scrollTopInit === 0) {
+					window.onload = function() {
+						setTimeout(function() {
+							pe.scrollTopInit = pe.window.scrollTop();
+						}, 1);
+					};
+				}
 				if (pe.urlhash.length !== 0) {
 					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
 					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 					validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
 				}
-				pe.document.one('silentscroll', function() {
-					if (validTarget || pe.scrollTopInit !== 0) {
+				pe.document.on('silentscroll.wbinit', function() {
+					silentscroll_fired = true;
+					if (pageinit_fired) {
+						pe.document.off('silentscroll.wbinit');
+					}
+					if (validTarget || pe.scrollTopInit > 1) {
 						$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
 					}
-					pe.scrollTopInit = -1;
 				});
 
 				pe.document.on('mobileinit', function () {
@@ -212,6 +217,11 @@
 				});
 
 				pe.document.on('pageinit', function () {
+				pageinit_fired = true;
+				// Remove the silentscroll handling for determining scrollTop if the silentscroll event has already fired
+				if (silentscroll_fired) {
+					pe.document.off('silentscroll.wbinit');
+				}
 					// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
 					// TODO: Find a more elegant way to address this in jQuery Mobile
 					pe.bodydiv.removeAttr('tabindex');
@@ -263,14 +273,14 @@
 			})).always(function () {
 				var hlinks = document.getElementsByTagName('a'),
 					hlink,
+					pathname = window.location.pathname,
+					search = window.location.search,
 					len = hlinks.length,
-					href,
-					node,
-					nodeName;
+					href;
 				while (len--) {
 					hlink = hlinks[len];
 					href = hlink.getAttribute('href');
-					if (href !== null && href.length !== 1 && href.indexOf('#') !== -1 && hlink.getAttribute('data-rel') === null && hlink.pathname === window.location.pathname && hlink.search === window.location.search) {
+					if (href !== null && href.length !== 1 && href.indexOf('#') !== -1 && hlink.getAttribute('data-rel') === null && (pathname.indexOf(hlink.pathname) !== -1) && hlink.search === search) {
 						hlinks_same.push(hlink);
 					}
 				}
