@@ -1139,7 +1139,9 @@
 					sectionLinkOpen2 = sectionLinkStart + theme2 + sectionLinkEnd,
 					sectionLinkClose = '</a>' + headingClose,
 					link = '<a data-role="button" data-icon="arrow-r" data-iconpos="right" data-corners="false" href="',
+					disableLink = 'javascript:;" class="ui-disabled',
 					menu,
+					url,
 					i,
 					len;
 				collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true);
@@ -1168,22 +1170,32 @@
 							if (mItemTag === heading) {
 								menu += sectionOpen1;
 								hlink = mItem.children('a');
-								hlinkDOM = hlink[0];
-								navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
-								navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
+								if (hlink.length !== 0) {
+									hlinkDOM = hlink[0];
+									url = hlinkDOM.getAttribute('href');
+									if (url === '#' || url === 'javascript:;') {
+										url = disableLink;
+									}
+									navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
+									navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
+									menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
+								} else {
+									navCurrent = false;
+									url = disableLink;
+								}
 								if (toplevel) {
 									secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1);
 								}
-								menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
+
 								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
 								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
 								} else {
-									menu += sectionLinkOpen1 + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
+									menu += sectionLinkOpen1 + url + '">' + mItem.text() + sectionLinkClose;
 								}
 								next = mItem.next();
 								nextDOM = next[0];
-								//Don't try to build mobile menu for headings with no sub-items
+								// Don't try to build mobile menu for headings with no sub-items
 								if (typeof nextDOM !== 'undefined'){
 									if (nextDOM.tagName.toLowerCase() === 'ul') {
 										menu += listView;
