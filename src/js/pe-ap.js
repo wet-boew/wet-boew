@@ -120,9 +120,7 @@
 		*/
 		_init: function () {
 			var $html = pe.html,
-				hlinks,
-				hlinks_same,
-				$this,
+				hlinks_same = [],
 				target,
 				validTarget = false,
 				test,
@@ -164,13 +162,6 @@
 
 			// Identify whether or not the device supports JavaScript, has a touchscreen and is a modern version of IE
 			$html.removeClass('no-js').addClass(wet_boew_theme !== null ? wet_boew_theme.theme : '').addClass(pe.touchscreen ? 'touchscreen' : '').addClass(pe.ie > 8 ? 'ie' + parseInt(pe.ie, 10) : '');
-
-			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
-				return this.href.indexOf('#') !== -1;
-			});
-			hlinks_same = hlinks.filter(function () {
-				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
-			});
 
 			// Is this a mobile device?
 			if (pe.mobilecheck()) {
@@ -226,34 +217,30 @@
 					pe.bodydiv.removeAttr('tabindex');
 					
 					// On click, puts focus on and scrolls to the target of same page links
-					hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
-						$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
-						$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-						if ($this.length !== 0) {
-							$.mobile.silentScroll(pe.focus($this).offset().top);
+					$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function () {
+						var hash = this.hash,
+							node = document.getElementById(pe.string.jqescape(hash.substring(1))),
+							$node,
+							nodeName,
+							role;
+
+						if (node !== null) {
+							$node = $(node);
+							nodeName = node.nodeName.toLowerCase();
+							if (nodeName !== 'a' && nodeName !== 'button' && nodeName !== 'input' && nodeName !== 'textarea' && nodeName !== 'select') {
+								node.setAttribute('tabindex', '-1');
+							}
+
+							pe.focus($node);
+							role = $node.jqmData('role');
+							if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
+								window.location.hash = hash;
+							}
 						}
 					});
 				});
 				pe.add.css([pe.add.themecsslocation + 'jquery.mobile' + pe.suffix + '.css']);
 				pe.add._load([pe.add.liblocation + 'jquerymobile/jquery.mobile.min.js']);
-			} else {
-				// On click, puts focus on the target of same page links (fix for browsers that don't do this automatically)
-				hlinks_same.on('click vclick', function () {
-					$this = $('#' + pe.string.jqescape($(this).attr('href').substring(1)));
-					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if ($this.length > 0) {
-						pe.focus($this);
-					}
-				});
-
-				// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
-				if (pe.urlhash.length > 0) {
-					$this = $('#' + pe.string.jqescape(pe.urlhash));
-					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if ($this.length > 0) {
-						pe.focus($this);
-					}
-				}
 			}
 
 			// Load ajax content
@@ -274,6 +261,51 @@
 					$o.append($.trim(data));
 				}, 'html');
 			})).always(function () {
+				var hlinks = document.getElementsByTagName('a'),
+					hlink,
+					len = hlinks.length,
+					href,
+					node,
+					nodeName;
+				while (len--) {
+					hlink = hlinks[len];
+					href = hlink.getAttribute('href');
+					if (href !== null && href.length !== 1 && href.indexOf('#') !== -1 && hlink.getAttribute('data-rel') === null && hlink.pathname === window.location.pathname && hlink.search === window.location.search) {
+						hlinks_same.push(hlink);
+					}
+				}
+
+				if (!pe.mobile) {
+					// On click, puts focus on and scrolls to the target of same page links
+					$(hlinks_same).on('click.hlinks', function () {
+						var hash = this.hash,
+							node = document.getElementById(pe.string.jqescape(hash.substring(1))),
+							$node,
+							nodeName;
+
+						if (node !== null) {
+							$node = $(node);
+							nodeName = node.nodeName.toLowerCase();
+							if (nodeName !== 'a' && nodeName !== 'button' && nodeName !== 'input' && nodeName !== 'textarea' && nodeName !== 'select') {
+								node.setAttribute('tabindex', '-1');
+							}
+							pe.focus($node);
+						}
+					});
+
+					// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
+					if (pe.urlhash.length > 0) {
+						node = document.getElementById(pe.string.jqescape(pe.urlhash));
+						if (node !== null) {
+							nodeName = node.nodeName.toLowerCase();
+							if (nodeName !== 'a' && nodeName !== 'button' && nodeName !== 'input' && nodeName !== 'textarea' && nodeName !== 'select') {
+								node.setAttribute('tabindex', '-1');
+							}
+							pe.focus(node);
+						}
+					}
+				}
+
 				// Wait for localisation and ajax content to load plugins
 				pe.document.one('languageloaded', function () {
 					// Check to see if PE enhancements should be disabled
@@ -991,19 +1023,21 @@
 				while (menulinkslen--) {
 					link = menulinks[menulinkslen];
 					linkhref = link.getAttribute('href');
-					if (hrefBug && linkhref !== window.location.href) {
-						linkhref = linkhref.replace(window.location.href, '');
-					}
-					if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
-						linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
-						linkquery = link.search;
-						linkquerylen = linkquery.length;
-						if (pageurl.slice(-linkurl.length) === linkurl && (linkquerylen === 0 || pageurlquery.slice(-linkquerylen) === linkquery)) {
-							match = true;
-							break;
+					if (linkhref !== null) {
+						if (hrefBug && linkhref !== window.location.href) {
+							linkhref = linkhref.replace(window.location.href, '');
 						}
-						menulink.push(link);
-						menulinkurl.push(linkurl);
+						if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
+							linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
+							linkquery = link.search;
+							linkquerylen = linkquery.length;
+							if (pageurl.slice(-linkurl.length) === linkurl && (linkquerylen === 0 || pageurlquery.slice(-linkquerylen) === linkquery)) {
+								match = true;
+								break;
+							}
+							menulink.push(link);
+							menulinkurl.push(linkurl);
+						}
 					}
 				}
 
