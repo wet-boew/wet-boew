@@ -15,7 +15,7 @@
  * pe, a progressive javascript library agnostic framework
  */
 /*global jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
-/*jshint bitwise: false, evil: true */
+/*jshint bitwise: false, evil: true, scripturl: true */
 (function ($) {
 	"use strict";
 	var pe, _pe;
