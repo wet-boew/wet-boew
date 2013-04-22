@@ -15,7 +15,7 @@
  * pe, a progressive javascript library agnostic framework
  */
 /*global jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false*/
-/*jshint bitwise: false, evil: true */
+/*jshint bitwise: false, evil: true, scripturl: true */
 (function ($) {
 	"use strict";
 	var pe, _pe;
@@ -1110,7 +1110,9 @@
 					sectionLinkOpen2 = sectionLinkStart + theme2 + sectionLinkEnd,
 					sectionLinkClose = '</a>' + headingClose,
 					link = '<a data-role="button" data-icon="arrow-r" data-iconpos="right" data-corners="false" href="',
+					disableLink = 'javascript:;" class="ui-disabled',
 					menu,
+					url,
 					i,
 					len;
 				collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true);
@@ -1139,56 +1141,70 @@
 							if (mItemTag === heading) {
 								menu += sectionOpen1;
 								hlink = mItem.children('a');
-								hlinkDOM = hlink[0];
-								navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
-								navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
+								if (hlink.length !== 0) {
+									hlinkDOM = hlink[0];
+									url = hlinkDOM.getAttribute('href');
+									if (url === '#' || url === 'javascript:;') {
+										url = disableLink;
+									}
+									navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
+									navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
+									menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
+								} else {
+									navCurrent = false;
+									url = disableLink;
+								}
 								if (toplevel) {
 									secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1);
 								}
-								menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
+
 								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
 								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
 								} else {
-									menu += sectionLinkOpen1 + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
+									menu += sectionLinkOpen1 + url + '">' + mItem.text() + sectionLinkClose;
 								}
 								next = mItem.next();
 								nextDOM = next[0];
-								if (nextDOM.tagName.toLowerCase() === 'ul') {
-									menu += listView;
-									nested = nextDOM.querySelector('li ul');
-									if (nested !== null && nested.length !== 0) { // Special handling for a nested list
-										hnestTag = 'h' + (hlevel + 1);
-										listItems = nextDOM.children;
-										for (i = 0, len = listItems.length; i !== len; i += 1) {
-											listItem = listItems[i];
-											hnestDOM = listItem.getElementsByTagName('li');
-											menu += '<li>';
-											if (hnestDOM.length !== 0) {
-												hnestLinkDOM = listItem.children[0];
-												menu += sectionOpen2 + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLinkOpen2 + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
-												for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
-													listItem2 = hnestDOM[nested_i];
-													hnestLinkDOM2 = listItem2.querySelector('a');
-													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hnestLinkDOM2.href + '">' + hnestLinkDOM2.innerHTML + '</a></li>';
+								// Don't try to build mobile menu for headings with no sub-items
+								if (typeof nextDOM !== 'undefined'){
+									if (nextDOM.tagName.toLowerCase() === 'ul') {
+										menu += listView;
+										nested = nextDOM.querySelector('li ul');
+										if (nested !== null && nested.length !== 0) { // Special handling for a nested list
+											hnestTag = 'h' + (hlevel + 1);
+											listItems = nextDOM.children;
+											for (i = 0, len = listItems.length; i !== len; i += 1) {
+												listItem = listItems[i];
+												hnestDOM = listItem.getElementsByTagName('li');
+												menu += '<li>';
+												if (hnestDOM.length !== 0) {
+													hnestLinkDOM = listItem.children[0];
+													menu += sectionOpen2 + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLinkOpen2 + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+													for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
+														listItem2 = hnestDOM[nested_i];
+														hnestLinkDOM2 = listItem2.querySelector('a');
+														menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hnestLinkDOM2.href + '">' + hnestLinkDOM2.innerHTML + '</a></li>';
+													}
+													menu += '</ul></div>';
+												} else {
+													menu += listItem.innerHTML;
 												}
-												menu += '</ul></div>';
-											} else {
-												menu += listItem.innerHTML;
+												menu += '</li>';
 											}
-											menu += '</li>';
+										} else {
+											menu += nextDOM.innerHTML;
 										}
-									} else {
-										menu += nextDOM.innerHTML;
-									}
-									menu += '</ul>';
-								} else { // If the section contains sub-sections
-									if (menubar) {
-										menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
-									} else {
-										menu += pe.menu.buildmobile(mItem.parent(), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
+										menu += '</ul>';
+									} else { // If the section contains sub-sections
+										if (menubar) {
+											menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
+										} else {
+											menu += pe.menu.buildmobile(mItem.parent(), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
+										}
 									}
 								}
+
 								// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
 								if (!menubar && hlink.length > 0 && (toplevel || collapsible || !collapseTopOnly)) {
 									menu += link + hlinkDOM.href + '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
