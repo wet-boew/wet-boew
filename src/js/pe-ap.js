@@ -32,7 +32,6 @@
 		* @memberof pe
 		* @type {string} Page language, defaults to 'en' if not available
 		*/
-		time: (new Date()).getTime(),
 		language: 'en',
 		languages: ['@wet-boew-build.languagelist@'],
 		rtl: false,
@@ -2007,7 +2006,6 @@
 						}
 					});
 				}
-				console.log((new Date()).getTime() - pe.time);
 			});
 
 			// Figure out if we need to load plugins for IE
