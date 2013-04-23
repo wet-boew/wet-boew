@@ -1832,12 +1832,15 @@
 			if (typeof finished_event === 'undefined') {
 				finished_event = 'wb-loaded';
 			}
-			var i, _len,
+			var i, _len, j, _len2,
 				settings = pe.settings,
 				plugins = typeof options.plugins !== 'undefined' ? options.plugins : {},
 				plug,
+				_pcalls,
 				pcalls = typeof options.global !== 'undefined' ? options.global : [],
 				pcall,
+				node,
+				classes,
 				dep = typeof options.dep !== 'undefined' ? options.dep : [],
 				depcss = typeof options.depcss !== 'undefined' ? options.depcss : [],
 				poly = typeof options.poly !== 'undefined' ? options.poly : [],
@@ -1857,18 +1860,18 @@
 			}
 
 			// Push each of the 'wet-boew-*' plugin calls into the pcalls array
-			wetboew.each(function () {
-				var _node = $(this),
-					classes = _node.attr('class').split(' '),
-					_pcalls = [];
+			for (j = 0, _len2 = wetboew.length; j !== _len2; j += 1) {
+				node = wetboew[j];
+				classes = node.className.split(' ');
+				_pcalls = [];
 				for (i = 0, _len = classes.length; i !== _len; i += 1) {
 					if (classes[i].indexOf('wet-boew-') === 0) {
 						_pcalls.push(classes[i].substr(9).toLowerCase()); // Push the plugin call into the local array
 					}
 				}
-				_node.attr('data-load', _pcalls.join(',')); // Add the plugins to load to data-load for loading later
+				node.setAttribute('data-load', _pcalls.join(',')); // Add the plugins to load to data-load for loading later
 				pcalls.push.apply(pcalls, _pcalls); // Push the plugin calls into the pcall array
-			});
+			}
 
 			// Push each of the global plugin calls into the pcall array
 			if (settings) {
