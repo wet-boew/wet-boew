@@ -32,6 +32,7 @@
 		* @memberof pe
 		* @type {string} Page language, defaults to 'en' if not available
 		*/
+		time: (new Date()).getTime(),
 		language: 'en',
 		languages: ['@wet-boew-build.languagelist@'],
 		rtl: false,
@@ -1832,7 +1833,10 @@
 			if (typeof finished_event === 'undefined') {
 				finished_event = 'wb-loaded';
 			}
-			var i, _len, j, _len2,
+			var i,
+				j,
+				_len,
+				_len2,
 				settings = pe.settings,
 				plugins = typeof options.plugins !== 'undefined' ? options.plugins : {},
 				plug,
@@ -2003,6 +2007,7 @@
 						}
 					});
 				}
+				console.log((new Date()).getTime() - pe.time);
 			});
 
 			// Figure out if we need to load plugins for IE
