@@ -21,4 +21,4 @@ Global overrides for individual components
 // Share widget
 var wet_boew_share = {
 	sites : ['del.icio.us', 'digg', 'facebook', 'google', 'linkedin', 'reddit', 'stumbleupon', 'twitter', 'yahoobuzz']
-}
+};
