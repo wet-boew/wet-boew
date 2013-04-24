@@ -9,7 +9,7 @@
 /*
  * WET theme scripting
  */
-/*global jQuery: false, pe: false, window: false, document: false*/
+/*global jQuery: false, pe: false, window: false, document: false, wet_boew_mobile_view: false*/
 (function ($) {
 	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
@@ -146,7 +146,8 @@
 				sessionSettings,
 				sessionSetting,
 				signInOut,
-				session;
+				session,
+				header_fixed = typeof wet_boew_mobile_view !== 'undefined' && wet_boew_mobile_view.header_fixed;
 
 			// Content pages only
 			if (wet_boew_theme.sft.length !== 0) {
@@ -202,8 +203,7 @@
 
 				// Build the header bar
 				node = wet_boew_theme.title[0];
-				header = '<div data-role="header"><div class="ui-title"><div></div></div>';
-				header += '<map id="wet-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
+				header = '<div data-role="header"' + (header_fixed ? ' data-position="fixed"' : '') + '><div class="ui-title"><div></div></div><map id="wet-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 				// Handling for the home/back button if it exists
 				if (typeof home_href !== 'undefined') { // Home button needed
 					header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';
@@ -218,7 +218,7 @@
 				// Append the Settings button
 				header += popup_button + ' href="#popupSettings" data-icon="gear">' + settings_txt + '</a></map></div>';
 				// Append the header
-				wet_boew_theme.fullhd.children('#wet-fullhd-in').before(header);
+				wet_boew_theme.fullhd.children('#wet-fullhd-in').before((header_fixed ? $(header).append(wet_boew_theme.title.find('object, img').eq(0)) : header));
 				// Apply a theme to the site title
 				node.className += ' ui-bar-b';
 
