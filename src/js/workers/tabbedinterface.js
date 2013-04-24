@@ -297,7 +297,7 @@
 				$panels.stop(true, true);
 				if (opts.animate) {
 					activePanel = $panels.filter('.' + opts.panelActiveClass).removeClass(opts.panelActiveClass);
-					if (isSlider()){
+					if (isSlider()) {
 						$panels.show();
 						$viewport.stop().animate(getSlideTo(nextPanel), opts.animationSpeed, function () {
 							nextPanel.addClass(opts.panelActiveClass);
@@ -347,7 +347,7 @@
 			};
 			getSlideTo = function (panel) {
 				var slideTo = {left: 0, top: 0}, pos;
-				if(panel && typeof panel.jquery !== 'undefined'){
+				if (panel && typeof panel.jquery !== 'undefined') {
 					pos = panel.parent().position();
 					slideTo = {left: pos.left * -1, top: pos.top * -1};
 				}
@@ -369,8 +369,12 @@
 
 				panelSize = getMaxPanelSize();
 				while (len--) {
-					$panels.eq(len).parent().css($.extend({position: 'absolute', top: viewportSize.height, left: viewportSize.width}, panelSize));
-					if (isSlideHorz){
+					$panels.eq(len).parent().css($.extend({
+						position: 'absolute',
+						top: viewportSize.height,
+						left: viewportSize.width
+						}, panelSize));
+					if (isSlideHorz) {
 						viewportSize.width += panelSize.width;
 					} else {
 						viewportSize.height += panelSize.height;
@@ -379,9 +383,15 @@
 
 				$tabsPanel.css(panelSize);
 				if (isSlideHorz) {
-					$viewport.css($.extend({width: viewportSize.width, height: panelSize.height}, getSlideTo($panels.filter('.' + opts.panelActiveClass))));
+					$viewport.css($.extend({
+						width: viewportSize.width,
+						height: panelSize.height
+					}, getSlideTo($panels.filter('.' + opts.panelActiveClass))));
 				} else {
-					$viewport.css($.extend({width: panelSize.width, height: viewportSize.height}, getSlideTo($panels.filter('.' + opts.panelActiveClass))));
+					$viewport.css($.extend({
+						width: panelSize.width,
+						height: viewportSize.height
+					}, getSlideTo($panels.filter('.' + opts.panelActiveClass))));
 				}
 			};
 			if (isSlider() || (opts.autoHeight && !elm.hasClass('tabs-style-4') && !elm.hasClass('tabs-style-5'))) {
@@ -585,7 +595,6 @@
 		_get_hash : function(href) {
 			return href !== null ? href.substring(href.indexOf('#')) : '';
 		}
-
 	};
 	window.pe = _pe;
 	return _pe;
