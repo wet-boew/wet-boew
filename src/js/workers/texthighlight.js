@@ -14,6 +14,7 @@
 	_pe.fn.texthighlight = {
 		type: 'plugin',
 		_exec: function (elm) {
+		var time = new Date().getTime();
 			/*
 			* addHighlight
 			*
@@ -54,6 +55,7 @@
 			if (_pe.urlquery.texthighlight !== undefined) {
 				addHighlight(_pe.urlquery.texthighlight, elm);
 			}
+			console.log((new Date().getTime()) - time);
 			return this;
 		} // end of exec
 	};
