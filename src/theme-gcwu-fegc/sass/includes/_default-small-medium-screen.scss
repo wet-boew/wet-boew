@@ -314,6 +314,16 @@ table {
 	li {
 		@extend %gcwu-default-small-medium-screen-display-none;
 	}
+	.ui-fixed-hidden {
+		#gcwu-wmms {
+			top: 8px;
+		}
+	}
+}
+.ui-page-header-fixed {
+	#gcwu-gcnb {
+		min-height: 0;
+	}
 }
 
 #gcwu-mnavbar {

@@ -290,6 +290,11 @@ table {
 		@extend %base-default-small-medium-screen-display-none;
 	}
 }
+.ui-page-header-fixed {
+	#base-fullhd {
+		min-height: 0;
+	}
+}
 
 #base-mnavbar {
 	right: 5px;

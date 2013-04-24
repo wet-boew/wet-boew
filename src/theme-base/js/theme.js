@@ -117,7 +117,8 @@
 				sessionSettings,
 				sessionSetting,
 				signInOut,
-				session;
+				session,
+				header_fixed = typeof wet_boew_mobile_view !== 'undefined' && wet_boew_mobile_view.header_fixed;
 
 			// Content pages only
 			if (wet_boew_theme.sft.length !== 0) {
@@ -172,8 +173,7 @@
 				}
 
 				// Build the header bar
-				header = '<div data-role="header"><div class="ui-title"></div>';
-				header += '<map id="base-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
+				header = '<div data-role="header"' + (header_fixed ? ' data-position="fixed"' : '') + '><div class="ui-title"><div></div></div><map id="base-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 				// Handling for the home/back button if it exists
 				if (typeof home_href !== 'undefined') { // Home button needed
 					header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';

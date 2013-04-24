@@ -283,6 +283,22 @@ table {
 	li {
 		@extend %wet-default-small-medium-screen-display-none;
 	}
+	object {
+		@extend %wet-default-small-medium-screen-width-69-height-32-position-absolute-left-5-top-5;
+	}
+	img {
+		@extend %wet-default-small-medium-screen-width-69-height-32-position-absolute-left-5-top-5;
+	}
+	.ui-fixed-hidden {
+		object, img {
+			top: 4px;
+		}
+	}
+}
+.ui-page-header-fixed {
+	#wet-fullhd {
+		min-height: 0;
+	}
 }
 
 #wet-mnavbar {
