@@ -122,30 +122,39 @@
 			$lbPrev = $lbContent.find('#cboxPrevious');
 			$lbClose = $lbContent.find('#cboxClose');
 
-			// Add extra keyboard support (handling for tab, enter and space)
-			$lbContent.on('keydown', function (e) {
-				var target_id = e.target.id;
-				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-					if (e.keyCode === 9) {
-						if (e.shiftKey && target_id === 'cboxLoadedContent') {
-							_pe.focus($lbClose);
-							e.preventDefault();
-						} else if (!e.shiftKey && target_id === 'cboxClose') {
-							_pe.focus($lbContent.find('#cboxLoadedContent'));
-							e.preventDefault();
-						}
-					} else if (e.keyCode === 13 || e.keyCode === 32) {
-						if (target_id === 'cboxLoadedContent' || target_id === 'cboxNext') {
-							$.colorbox.next();
-							e.preventDefault();
-						} else if (target_id === 'cboxPrevious') {
-							$.colorbox.prev();
-							e.preventDefault();
-						} else if (target_id === 'cboxClose') {
-							$.colorbox.close();
-							e.preventDefault();
+			// Add swipe and extra keyboard support (handling for tab, enter and space)
+			$lbContent.on('keydown swipeleft swiperight', function (e) {
+				var target_id = e.target.id,
+					type = e.type;
+				if (type === 'keydown') {
+					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
+						if (e.keyCode === 9) {
+							if (e.shiftKey && target_id === 'cboxLoadedContent') {
+								_pe.focus($lbClose);
+								e.preventDefault();
+							} else if (!e.shiftKey && target_id === 'cboxClose') {
+								_pe.focus($lbContent.find('#cboxLoadedContent'));
+								e.preventDefault();
+							}
+						} else if (e.keyCode === 13 || e.keyCode === 32) {
+							if (target_id === 'cboxLoadedContent' || target_id === 'cboxNext') {
+								$.colorbox.next();
+								e.preventDefault();
+							} else if (target_id === 'cboxPrevious') {
+								$.colorbox.prev();
+								e.preventDefault();
+							} else if (target_id === 'cboxClose') {
+								$.colorbox.close();
+								e.preventDefault();
+							}
 						}
 					}
+				} else if (type === 'swipeleft') {
+					$.colorbox.next();
+					e.preventDefault();
+				} else {
+					$.colorbox.prev();
+					e.preventDefault();
 				}
 			});
 		}, // end of exec
