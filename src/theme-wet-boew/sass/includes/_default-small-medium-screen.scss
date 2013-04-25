@@ -220,10 +220,10 @@ table {
 		text-decoration: none;
 	}
 	object {
-		@extend %wet-default-small-medium-screen-width-69-height-32-position-absolute-left-5-top-5;
+		@extend %wet-default-small-medium-screen-display-none-important;
 	}
 	img {
-		@extend %wet-default-small-medium-screen-width-69-height-32-position-absolute-left-5-top-5;
+		@extend %wet-default-small-medium-screen-display-none-important;
 	}
 }
 

@@ -369,6 +369,9 @@ table {
 
 #gcwu-bnr {
 	background: #225C96;
+	#gcwu-wmms {
+		@extend %gcwu-default-small-medium-screen-display-none-important;
+	}
 }
 
 #gcwu-bnr-in {
