@@ -29,7 +29,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		git checkout -B gh-pages
 		git add -f dist/.
 		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
-		git push -fq upstream gh-pages 2> /dev/null || echo -e "\e[1;31mError updating working examples\e[0m"; exit 1;
+		git push -fq upstream gh-pages 2> /dev/null || echo -e "\033[1;31mError updating working examples\033[0m"; exit 1;
 
 		echo -e "Finished updating the working examples\n"
 	fi
@@ -41,7 +41,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		git checkout -B gh-pages
 		git add -f dist/.
 		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
-		git push -fq experimental gh-pages 2> /dev/null || echo -e "\e[1;31mError updating experimental working examples\e[0m"; exit 1;
+		git push -fq experimental gh-pages 2> /dev/null || echo -e "\033[1;31mError updating experimental working examples\033[0m"; exit 1;
 
 		echo -e "Finished updating the experimental working examples\n"
 	fi
@@ -53,7 +53,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		build_branch="$TRAVIS_BRANCH-dist"
 
 		cd ..
-		git clone -q -b $build_branch https://${GH_TOKEN}@github.com/wet-boew/wet-boew-dist.git 2> /dev/null  || echo -e "\e[1;31mError cloning the artifact repository\e[0m"; exit 1;
+		git clone -q -b $build_branch https://${GH_TOKEN}@github.com/wet-boew/wet-boew-dist.git 2> /dev/null  || echo -e "\033[1;31mError cloning the artifact repository\033[0m"; exit 1;
 		cd wet-boew-dist
 
 		#Replace the new dist and demo folders and root files with the new ones
@@ -68,7 +68,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		git add -f test
 		git add -f *.*
 		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
-		git push -fq origin $build_branch 2> /dev/null || echo -e "\e[1;31mError uploading the build artifacts\e[0m"; exit 1;
+		git push -fq origin $build_branch 2> /dev/null || echo -e "\033[1;31mError uploading the build artifacts\033[0m"; exit 1;
 
 		#Create the dist without the GC themes
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
@@ -81,7 +81,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 			cp -Rf $HOME/temp_wet-boew/demos/theme-wet-boew ./demos/theme-wet-boew
 			git add -f .
 			git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
-			git push -fq origin master-base-dist 2> /dev/null || echo -e "\e[1;31mError uploading the base build artifacts\e[0m"; exit 1;
+			git push -fq origin master-base-dist 2> /dev/null || echo -e "\033[1;31mError uploading the base build artifacts\033[0m"; exit 1;
 		fi
 
 		echo -e "Done uploading the build artifact for branch $TRAVIS_BRANCH\n"
