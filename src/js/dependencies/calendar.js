@@ -131,8 +131,7 @@
 				btnCtn = null;
 				btn = null;
 				//Set context for each button
-				switch (i) {
-				case 0:
+				if (i === 0) {
 					suffix = 'prevmonth';
 					titleSuffix = _pe.dic.get('%calendar-previousMonth');
 					if (month > 0) {
@@ -146,8 +145,7 @@
 					if ((newMonth < minDate.getMonth() && newYear <= minDate.getFullYear()) || newYear < minDate.getFullYear()) {
 						showButton = false;
 					}
-					break;
-				case 1:
+				} else {
 					if ($('#' + calendarid).children('#cal-' + calendarid + '-cnt').children('.cal-header').find('.cal-goto').length < 1) {
 						//Create the go to form
 						monthNav.append(_pe.fn.calendar.createGoToForm(calendarid, year, month, minDate, maxDate));
@@ -165,7 +163,6 @@
 					if ((newMonth > maxDate.getMonth() && newYear >= maxDate.getFullYear()) || newYear > maxDate.getFullYear()) {
 						showButton = false;
 					}
-					break;
 				}
 
 				if (monthNav.children('.cal-' + suffix).length > 0) {
