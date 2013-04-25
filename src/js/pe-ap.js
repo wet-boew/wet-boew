@@ -138,11 +138,11 @@
 			if (typeof test !== 'undefined' && test.length > 0) {
 				pe.rtl = (test === 'rtl');
 			}
-	
+
 			// Mobile test: Used to detect CSS media query result regarding mobile/desktop view
 			pe.mobiletest = document.createElement('div');
 			pe.mobiletest.setAttribute('id', 'mobiletest'); // Used to detect CSS media queries result regarding mobile/desktop view
-			
+
 			// Resize test element: Used to detect changes in text size and window size
 			pe.resizetest = document.createElement('span');
 			pe.resizetest.innerHTML = '&#160;';
@@ -178,7 +178,7 @@
 					$html.addClass('bb-pre7');
 				}
 				pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
-				
+
 				// If the page URL includes a hash upon page load, then focus on and scroll to the target
 				// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
 				// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
@@ -225,7 +225,7 @@
 					// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
 					// TODO: Find a more elegant way to address this in jQuery Mobile
 					pe.bodydiv.removeAttr('tabindex');
-					
+
 					// On click, puts focus on and scrolls to the target of same page links
 					$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function () {
 						var hash = this.hash,
@@ -301,6 +301,7 @@
 							if (nodeName !== 'a' && nodeName !== 'button' && nodeName !== 'input' && nodeName !== 'textarea' && nodeName !== 'select') {
 								node.setAttribute('tabindex', '-1');
 							}
+							window.location.hash = hash;
 							pe.focus($node);
 						}
 					});
@@ -381,7 +382,7 @@
 		pagecontainer: function () {
 			return $('#wb-body-sec-sup, #wb-body-sec, #wb-body-secr, #wb-body').add('body').eq(0);
 		},
-		
+
 		/**
 		* Manages custom events for text and window resizing
 		* Based on http://alistapart.com/article/fontresizing
@@ -1079,7 +1080,7 @@
 						linkurl = menulinkurl[linkindex];
 						linkurllen = linkurl.length;
 						linkquery = link.search;
-						linkquerylen = linkquery.length;						
+						linkquerylen = linkquery.length;
 						bcindex = bclinkslen;
 						while (bcindex--) {
 							if (bclinkurl[bcindex].slice(-linkurllen) === linkurl && (linkquerylen === 0 || bclink[bcindex].search.slice(-linkquerylen) === linkquery)) {
@@ -1793,7 +1794,7 @@
 		/**
 		* Handles loading of the plugins, dependencies and polyfills
 		* @function
-		* @param {object} options Object containing the loader options. The following optional properties are supported: 
+		* @param {object} options Object containing the loader options. The following optional properties are supported:
 		* "plugins": {"plugin_name1": elms1, "plugin_name2": elms2, ...} - Names of plugins to load and the elements to load them on
 		* "global": [plugin_name1, plugin_name2, ...] - Names of global plugins to load
 		* "deps": [dependency_name1, dependenccy_name2, ...] - Names of dependences to load
