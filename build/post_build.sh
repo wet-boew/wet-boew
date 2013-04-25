@@ -2,6 +2,12 @@
 start=$(date +%s)
 echo -e "Current repo: $TRAVIS_REPO_SLUG\n"
 
+function error_exit
+{
+	echo -e "\e[01;31m$1\e[00m\n" 1>&2
+	exit 1
+}
+
 if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ]; then
 	declare -a supported_branches=('master' 'v3.0') # List of branches to store build output for
 
@@ -29,7 +35,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		git checkout -B gh-pages
 		git add -f dist/.
 		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
-		git push -fq upstream gh-pages 2> /dev/null || echo -e "Error updating working examples"; exit 1;
+		git push -fq upstream gh-pages 2> /dev/null || error_exit "Error updating working examples"
 
 		echo -e "Finished updating the working examples\n"
 	fi
@@ -41,7 +47,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		git checkout -B gh-pages
 		git add -f dist/.
 		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
-		git push -fq experimental gh-pages 2> /dev/null || echo -e "Error updating experimental working examples"; exit 1;
+		git push -fq experimental gh-pages 2> /dev/null || error_exit "Error updating experimental working examples"
 
 		echo -e "Finished updating the experimental working examples\n"
 	fi
@@ -53,7 +59,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		build_branch="$TRAVIS_BRANCH-dist"
 
 		cd ..
-		git clone -q -b $build_branch https://${GH_TOKEN}@github.com/wet-boew/wet-boew-dist.git 2> /dev/null  || echo -e "Error cloning the artifact repository"; exit 1;
+		git clone -q -b $build_branch https://${GH_TOKEN}@github.com/wet-boew/wet-boew-dist.git 2> /dev/null  || error_exit "Error cloning the artifact repository";
 		cd wet-boew-dist
 
 		#Replace the new dist and demo folders and root files with the new ones
@@ -68,7 +74,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		git add -f test
 		git add -f *.*
 		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
-		git push -fq origin $build_branch 2> /dev/null || echo -e "Error uploading the build artifacts"; exit 1;
+		git push -fq origin $build_branch 2> /dev/null || error_exit "Error uploading the build artifacts"
 
 		#Create the dist without the GC themes
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
@@ -81,7 +87,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 			cp -Rf $HOME/temp_wet-boew/demos/theme-wet-boew ./demos/theme-wet-boew
 			git add -f .
 			git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
-			git push -fq origin master-base-dist 2> /dev/null || echo -e "Error uploading the base build artifacts"; exit 1;
+			git push -fq origin master-base-dist 2> /dev/null || error_exit "Error uploading the base build artifacts"
 		fi
 
 		echo -e "Done uploading the build artifact for branch $TRAVIS_BRANCH\n"
