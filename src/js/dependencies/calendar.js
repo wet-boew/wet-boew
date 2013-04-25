@@ -106,22 +106,32 @@
 		},
 
 		createMonthNav : function (calendarid, year, month, minDate, maxDate) {
-			var monthNav = $('#cal-' + calendarid + '-monthnav'),
-				suffix, titleSuffix, newMonth, newYear, showButton, btnCtn, btn, n, alt,
-				monthNames = _pe.dic.get('%calendar-monthNames');
+			var alt,
+				btnCtn,
+				btn,
+				container = $('#' + calendarid),
+				i,
+				monthNames = _pe.dic.get('%calendar-monthNames'),
+				monthNav = $('#cal-' + calendarid + '-monthnav'),
+				newMonth,
+				newYear,
+				showButton,
+				suffix,
+				titleSuffix;
 
 			if (monthNav.length === 0) {
 				monthNav = $('<div id="cal-' + calendarid +  '-monthnav"></div>');
+			} else {
+				container.off('swiperight swipeleft');
 			}
 
 			//Create month navigation links | Cree les liens de navigations
-			for (n = 0; n < 2; n += 1) {
+			for (i = 0; i < 2; i += 1) {
 				showButton = true;
 				btnCtn = null;
 				btn = null;
 				//Set context for each button
-				switch (n) {
-				case 0:
+				if (i === 0) {
 					suffix = 'prevmonth';
 					titleSuffix = _pe.dic.get('%calendar-previousMonth');
 					if (month > 0) {
@@ -135,8 +145,7 @@
 					if ((newMonth < minDate.getMonth() && newYear <= minDate.getFullYear()) || newYear < minDate.getFullYear()) {
 						showButton = false;
 					}
-					break;
-				case 1:
+				} else {
 					if ($('#' + calendarid).children('#cal-' + calendarid + '-cnt').children('.cal-header').find('.cal-goto').length < 1) {
 						//Create the go to form
 						monthNav.append(_pe.fn.calendar.createGoToForm(calendarid, year, month, minDate, maxDate));
@@ -154,7 +163,6 @@
 					if ((newMonth > maxDate.getMonth() && newYear >= maxDate.getFullYear()) || newYear > maxDate.getFullYear()) {
 						showButton = false;
 					}
-					break;
 				}
 
 				if (monthNav.children('.cal-' + suffix).length > 0) {
@@ -165,20 +173,52 @@
 					alt = titleSuffix + monthNames[newMonth] + ' ' + newYear;
 
 					if (btnCtn) {
-						btn = btnCtn.children('a').unbind();
+						btn = btnCtn.children('a').off();
 						btn.children('img').attr('alt', alt);
 					} else {
 						btnCtn = $('<div class="cal-' + suffix + '"></div>');
 						btn = $('<a href="javascript:;" role="button"><img class="image-actual" src="' + pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.png" alt="' + alt + '" /></a>');
 
 						btnCtn.append(btn);
-						if (n === 0) {
+						if (i === 0) {
 							monthNav.prepend(btnCtn);
 						} else {
 							monthNav.append(btnCtn);
 						}
 					}
-					btn.bind('click', {calID: calendarid, year: newYear, month : newMonth, mindate: minDate, maxdate: maxDate}, _pe.fn.calendar.buttonClick);
+					if (i === 0) {
+						container.on('swiperight', {
+							calID: calendarid,
+							year: newYear,
+							month: newMonth,
+							mindate: minDate,
+							maxdate: maxDate
+						}, _pe.fn.calendar.prevMonth);
+
+						btn.on('click', {
+							calID: calendarid,
+							year: newYear,
+							month : newMonth,
+							mindate: minDate,
+							maxdate: maxDate
+						}, _pe.fn.calendar.prevMonth);
+					} else {
+						container.on('swipeleft', {
+							calID: calendarid,
+							year: newYear,
+							month: newMonth,
+							mindate: minDate,
+							maxdate: maxDate
+						}, _pe.fn.calendar.nextMonth);
+
+						btn.on('click', {
+							calID: calendarid,
+							year: newYear,
+							month: newMonth,
+							mindate: minDate,
+							maxdate: maxDate
+						}, _pe.fn.calendar.nextMonth);
+					}
 				} else {
 					if (btnCtn) {
 						btnCtn.remove();
@@ -187,9 +227,21 @@
 			}
 			return monthNav;
 		},
-		buttonClick : function (event) {
-			var ctn = $(this).parent().parent(),
-				btnClass = $(this).parent().attr('class');
+		prevMonth : function (event) {
+			var ctn = $(this).closest('.cal-container'),
+				btnClass = 'cal-prevmonth';
+
+			_pe.fn.calendar.create(event.data.calID, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
+
+			if (ctn.find('.' + btnClass).length < 1) {
+				_pe.focus(ctn.find('.cal-goto-link a'));
+			} else {
+				_pe.focus(ctn.find('.' + btnClass + ' a'));
+			}
+		},
+		nextMonth : function (event) {
+			var ctn = $(this).closest('.cal-container'),
+				btnClass = 'cal-nextmonth';
 
 			_pe.fn.calendar.create(event.data.calID, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
 
@@ -365,7 +417,7 @@
 						if (daycount > lastday) {
 							breakAtEnd = true;
 						}
-						element = $('<li><div><span class="wb-invisible">' + textWeekDayNames[day] + (frenchLang ? (' </span>' + daycount + '<span class="wb-invisible"> ' +textMonthNames[month].toLowerCase() + ' ') : (' ' + textMonthNames[month] + ' </span>' + daycount + '<span class="wb-invisible"> ')) + year + (isCurrentDate ? textCurrentDay : '') + '</span></div></li>');
+						element = $('<li><div><span class="wb-invisible">' + textWeekDayNames[day] + (frenchLang ? (' </span>' + daycount + '<span class="wb-invisible"> ' + textMonthNames[month].toLowerCase() + ' ') : (' ' + textMonthNames[month] + ' </span>' + daycount + '<span class="wb-invisible"> ')) + year + (isCurrentDate ? textCurrentDay : '') + '</span></div></li>');
 						elementParent = days;
 					}
 					element.attr('id', 'cal-' + calendarid + '-w' + week + 'd' + (day + 1)).addClass('cal-w' + week + 'd' + (day + 1) + ' cal-index-' + daycount);
