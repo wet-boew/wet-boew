@@ -106,10 +106,18 @@
 		},
 
 		createMonthNav : function (calendarid, year, month, minDate, maxDate) {
-			var monthNav = $('#cal-' + calendarid + '-monthnav'),
-				suffix, titleSuffix, newMonth, newYear, showButton, btnCtn, btn, n, alt,
+			var alt,
+				btnCtn,
+				btn,
+				container = $('#' + calendarid),
+				i,
 				monthNames = _pe.dic.get('%calendar-monthNames'),
-				container = $('#' + calendarid);
+				monthNav = $('#cal-' + calendarid + '-monthnav'),
+				newMonth,
+				newYear,
+				showButton,
+				suffix,
+				titleSuffix;
 
 			if (monthNav.length === 0) {
 				monthNav = $('<div id="cal-' + calendarid +  '-monthnav"></div>');
@@ -118,12 +126,12 @@
 			}
 
 			//Create month navigation links | Cree les liens de navigations
-			for (n = 0; n < 2; n += 1) {
+			for (i = 0; i < 2; i += 1) {
 				showButton = true;
 				btnCtn = null;
 				btn = null;
 				//Set context for each button
-				switch (n) {
+				switch (i) {
 				case 0:
 					suffix = 'prevmonth';
 					titleSuffix = _pe.dic.get('%calendar-previousMonth');
@@ -175,18 +183,44 @@
 						btn = $('<a href="javascript:;" role="button"><img class="image-actual" src="' + pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.png" alt="' + alt + '" /></a>');
 
 						btnCtn.append(btn);
-						if (n === 0) {
+						if (i === 0) {
 							monthNav.prepend(btnCtn);
 						} else {
 							monthNav.append(btnCtn);
 						}
 					}
-					if (n === 0) {
-						container.on('swiperight', {calID: calendarid, year: newYear, month : newMonth, mindate: minDate, maxdate: maxDate}, _pe.fn.calendar.prevMonth);
-						btn.on('click', {calID: calendarid, year: newYear, month : newMonth, mindate: minDate, maxdate: maxDate}, _pe.fn.calendar.prevMonth);
+					if (i === 0) {
+						container.on('swiperight', {
+							calID: calendarid,
+							year: newYear,
+							month: newMonth,
+							mindate: minDate,
+							maxdate: maxDate
+						}, _pe.fn.calendar.prevMonth);
+
+						btn.on('click', {
+							calID: calendarid,
+							year: newYear,
+							month : newMonth,
+							mindate: minDate,
+							maxdate: maxDate
+						}, _pe.fn.calendar.prevMonth);
 					} else {
-						container.on('swipeleft', {calID: calendarid, year: newYear, month : newMonth, mindate: minDate, maxdate: maxDate}, _pe.fn.calendar.nextMonth);
-						btn.on('click', {calID: calendarid, year: newYear, month : newMonth, mindate: minDate, maxdate: maxDate}, _pe.fn.calendar.nextMonth);
+						container.on('swipeleft', {
+							calID: calendarid,
+							year: newYear,
+							month: newMonth,
+							mindate: minDate,
+							maxdate: maxDate
+						}, _pe.fn.calendar.nextMonth);
+
+						btn.on('click', {
+							calID: calendarid,
+							year: newYear,
+							month: newMonth,
+							mindate: minDate,
+							maxdate: maxDate
+						}, _pe.fn.calendar.nextMonth);
 					}
 				} else {
 					if (btnCtn) {
@@ -386,7 +420,7 @@
 						if (daycount > lastday) {
 							breakAtEnd = true;
 						}
-						element = $('<li><div><span class="wb-invisible">' + textWeekDayNames[day] + (frenchLang ? (' </span>' + daycount + '<span class="wb-invisible"> ' +textMonthNames[month].toLowerCase() + ' ') : (' ' + textMonthNames[month] + ' </span>' + daycount + '<span class="wb-invisible"> ')) + year + (isCurrentDate ? textCurrentDay : '') + '</span></div></li>');
+						element = $('<li><div><span class="wb-invisible">' + textWeekDayNames[day] + (frenchLang ? (' </span>' + daycount + '<span class="wb-invisible"> ' + textMonthNames[month].toLowerCase() + ' ') : (' ' + textMonthNames[month] + ' </span>' + daycount + '<span class="wb-invisible"> ')) + year + (isCurrentDate ? textCurrentDay : '') + '</span></div></li>');
 						elementParent = days;
 					}
 					element.attr('id', 'cal-' + calendarid + '-w' + week + 'd' + (day + 1)).addClass('cal-w' + week + 'd' + (day + 1) + ' cal-index-' + daycount);
