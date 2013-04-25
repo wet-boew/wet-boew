@@ -218,7 +218,8 @@
 				// Append the Settings button
 				header += popup_button + ' href="#popupSettings" data-icon="gear">' + settings_txt + '</a></map></div>';
 				// Append the header
-				wet_boew_theme.fullhd.children('#wet-fullhd-in').before((header_fixed ? $(header).append(wet_boew_theme.title.find('object, img').eq(0)) : header));
+				wet_boew_theme.fullhd.children('#wet-fullhd-in').before(header);
+				wet_boew_theme.fullhd.find('.ui-title').append(wet_boew_theme.title.find(!pe.svg || pe.svgfix ? 'img' : 'object').attr((!pe.svg || pe.svgfix ? 'alt' : 'aria-label'), wet_boew_theme.title.find('span').text()));
 				// Apply a theme to the site title
 				node.className += ' ui-bar-b';
 

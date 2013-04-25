@@ -213,7 +213,8 @@
 				// Append the Settings button
 				header += popup_button + ' href="#popupSettings" data-icon="gear">' + settings_txt + '</a></map></div>';
 				// Append the header
-				wet_boew_theme.gcnb.children('#gcwu-gcnb-in').before((header_fixed ? $(header).append($('#gcwu-wmms')) : header));
+				wet_boew_theme.gcnb.children('#gcwu-gcnb-in').before(header);
+				wet_boew_theme.gcnb.find('.ui-title').append(document.getElementById('gcwu-wmms'));
 				// Apply a theme to the site title
 				wet_boew_theme.title[0].className += ' ui-bar-b';
 
