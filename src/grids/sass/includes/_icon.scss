@@ -39,11 +39,18 @@
 // Adds icon to all external links that are outside the header or footer
 [rel="external"] {
 	background: url(../images/external.png) 100% 0 no-repeat;
-	padding-right: 20px;
 
 	//gh-2104 fixes overriding background because of increased specificity when wb-main was used	
 	#wb-head &, #wb-foot & {
 		background: inherit;
+	}
+	
+	#wb-main & {
+		padding-right: 20px;
+		
+		&.wb-icon-none {
+			padding-right: 0;
+		}
 	}
 }
 	
