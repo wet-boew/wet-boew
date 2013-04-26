@@ -9,7 +9,7 @@
 /*
  * Base theme scripting
  */
-/*global jQuery: false, pe: false, window: false, document: false*/
+/*global jQuery: false, pe: false, window: false, document: false, wet_boew_mobile_view: false*/
 (function ($) {
 	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
@@ -77,6 +77,7 @@
 				mb_btn_txt,
 				srch_btn_txt,
 				settings_txt = pe.dic.get('%settings'),
+				mainpage_txt = pe.dic.get('%hyphen') + pe.dic.get('%main-page'),
 				settings_popup,
 				secnav_h2,
 				s_form,
@@ -104,16 +105,20 @@
 				mb_li,
 				target,
 				i,
+				j,
 				len,
+				len2,
 				nodes,
 				node,
+				next,
 				$document = $(document),
 				home_href,
 				header,
 				sessionSettings,
 				sessionSetting,
 				signInOut,
-				session;
+				session,
+				header_fixed = typeof wet_boew_mobile_view !== 'undefined' && wet_boew_mobile_view.header_fixed;
 
 			// Content pages only
 			if (wet_boew_theme.sft.length !== 0) {
@@ -127,7 +132,10 @@
 
 					if (wet_boew_theme.bcrumb.length !== 0) {
 						node = wet_boew_theme.bcrumb[0];
-						home_href = node.getElementsByTagName('a')[0].href;
+						links = node.getElementsByTagName('a');
+						if (links.length !== 0) {
+							home_href = links[0].href;
+						}
 						mb_popup += '<section><div id="jqm-mb-location-text">' + node.innerHTML + '</div></section>';
 					} else {
 						mb_popup += '<div id="jqm-mb-location-text"></div>';
@@ -165,8 +173,7 @@
 				}
 
 				// Build the header bar
-				header = '<div data-role="header"><div class="ui-title"></div>';
-				header += '<map id="base-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
+				header = '<div data-role="header"' + (header_fixed ? ' data-position="fixed"' : '') + '><div class="ui-title"><div></div></div><map id="base-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 				// Handling for the home/back button if it exists
 				if (typeof home_href !== 'undefined') { // Home button needed
 					header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';
@@ -234,7 +241,7 @@
 				settings_popup += popup + ' id="popupAbout"' + popup_settings;
 				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open;
-				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
+				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title[0].getElementsByTagName('a')[0].innerHTML + '</div></div>';
 				// Add the version
 				node = pe.main.find('#base-date-mod').children();
 				if (node.length !== 0) {
@@ -245,14 +252,28 @@
 				}
 				settings_popup += listView + ' data-inset="true">';
 				// Add the footer links
-				links = wet_boew_theme.sft.find('.base-col-head a').get();
-				for (i = 0, len = links.length; i !== len; i += 1) {
-					link = links[i];
-					node = link.innerHTML;
-					target = node.toLowerCase();
-					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';
+				nodes = wet_boew_theme.sft.find('.wet-col-head');
+				for (i = 0, len = nodes.length; i !== len; i += 1) {
+					node = nodes.eq(i);
+					link = node.children('a');
+					next = node.find('+ ul, + address ul');
+					target = link.length !== 0 ? link[0].innerHTML : node[0].innerHTML;
+					if (next.length !== 0) {
+						settings_popup += '<li data-role="collapsible" data-inset="false"><h2>' + target + '</h2><ul data-role="listview">';
+						links = next[0].getElementsByTagName('a');
+						for (j = 0, len2 = links.length; j !== len2; j += 1) {
+							node = links[j];
+							settings_popup += '<li><a href="' + node.href + '">' + node.innerHTML + '</a></li>';
+						}
+						if (link.length !== 0) {
+							settings_popup += '<li><a href="' + link.attr('href') + '">' + link.html() + mainpage_txt + '</a></li>';
+						}
+						settings_popup += '</ul></li>';
+					} else if (link.length !== 0) {
+						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + link.html() + '</a></li>';
+					}
 				}
-				settings_popup += '</ul>' + popup_close;
+				settings_popup += '</ul></div>' + popup_close;
 
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);

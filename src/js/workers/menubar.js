@@ -126,7 +126,16 @@
 			/* [Main] parse mega menu and establish all ARIA and Navigation classes */
 			$scope.find('ul.mb-menu > li').find('a:eq(0)').each(function (index, value) {
 				var $elm = $(value).addClass('knav-' + index + '-0-0'),
-					$childmenu = $elm.closest('li').find('.mb-sm');
+					$childmenu = $elm.closest('li').find('.mb-sm'),
+					$nodes,
+					$node,
+					nodeName,
+					$link,
+					links,
+					i,
+					j,
+					len,
+					len2;
 				if ($childmenu.length > 0) {
 					$elm.attr('aria-haspopup', 'true').addClass('mb-has-sm').attr('href', '#').wrapInner('<span class="expandicon"><span class="sublink"></span></span>');
 					$childmenu.attr({'role': 'menu', 'aria-expanded': 'false', 'aria-hidden': 'true'}).find(':has(:header) ul').attr('role', 'menu');
@@ -141,20 +150,27 @@
 						timeout: 500
 					});
 					/* now recurse all focusable to be able to navigate */
-					$childmenu.find('h3 a, h4 a, div.top-level > a, li.top-level a, div.mb-main-link > a').each(function (i) {
-						var $this = $(this),
-							$parent = $this.parent();
-						this.className += ' knav-' + index + '-' + (i + 1) + '-0';
-						if ($parent.is('h3, h4')) {
-							$this.parent().next('ul').find('a').each(function (j) {
-								this.className += ' knav-' + index + '-' + (i + 1) + '-' + (j + 1);
-							});
+					$nodes = $childmenu.find('h3, h4, div.top-level, li.top-level, div.mb-main-link');
+					for (i = 0, len = $nodes.length; i !== len; i += 1) {
+						$node = $nodes.eq(i);
+						nodeName = $node[0].nodeName.toLowerCase();
+						$link = $node.children('a');
+						if ($link.length !== 0) {
+							$link.addClass('knav-' + index + '-' + (i + 1) + '-0');
+						} else {
+							$node.addClass('no-link');
 						}
-						return;
-					});
-					$childmenu.find('> ul li, > div > ul li').filter(':not(.top-level)').children('a').each(function (i) {
-						this.className += ' knav-' + index + '-0-' + (i + 1);
-					});
+						if (nodeName === 'h3' || nodeName === 'h4') {
+							links = $node.next('ul').find('a').get();
+							for (j = 0, len2 = links.length; j !== len2; j += 1) {
+								links[j].className += ' knav-' + index + '-' + (i + 1) + '-' + (j + 1);
+							}
+						}
+					}
+					links = $childmenu.find('> ul li, > div > ul li').filter(':not(.top-level)').children('a').get();
+					for (i = 0, len = links.length; i !== len; i += 1) {
+						links[i].className += ' knav-' + index + '-0-' + (i + 1);
+					}
 				}
 			});
 
@@ -304,7 +320,7 @@
 						break;
 					case 2: // sub-section link has focus
 					case 3: // 3rd level link (child of a sub-section) has focus
-						prev = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] - 1) + '-0');
+						prev = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] - 1) + '-0, .knav-' + (_id[1]) + '-' + (_id[2] - 1) + '-1').first();
 						if (prev.length > 0 && _id[2] > 1) {
 							_pe.focus(prev);
 						} else {
@@ -332,7 +348,7 @@
 						break;
 					case 2: // sub-section link has focus
 					case 3: // 3rd level link (child of a sub-section) has focus
-						next = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] + 1) + '-0');
+						next = _activemenu.find('.knav-' + (_id[1]) + '-' + (_id[2] + 1) + '-0, .knav-' + (_id[1]) + '-' + (_id[2] + 1) + '-1').first();
 						if (next.length > 0) {
 							_pe.focus(next);
 						} else {
@@ -349,12 +365,12 @@
 				} else if (type === 'item-next') {
 					next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2]) + '-' + (_id[3] + 1)); // move to next item
 					if (next.length === 0) {
-						next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2] + 1) + '-0'); // move to next section
+						next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2] + 1) + '-0, .knav-' + _id[1] + '-' + (_id[2] + 1) + '-1').first(); // move to next section
 					}
 					if (next.length !== 0) {
 						_pe.focus(next);
 					} else {
-						_pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-1, .knav-' + _id[1] + '-1-0').first()); // move to first item in the submenu
+						_pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-1, .knav-' + _id[1] + '-1-0, .knav-' + _id[1] + '-1-1').first()); // move to first item in the submenu
 					}
 					return false;
 				} else if (type === 'item-previous') {
