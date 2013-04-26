@@ -3,6 +3,7 @@
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/appearance";
+@import "compass/css3/box-sizing";
 
 @mixin forms {
 
@@ -62,9 +63,7 @@
 				padding-left: 10px;
 				padding-right: 10px;
 				margin: 0;
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;
+				@include box-sizing(border-box);
 			}
 
 			#{headings(2, 6)} {
