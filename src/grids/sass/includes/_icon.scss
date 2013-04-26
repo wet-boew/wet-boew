@@ -36,22 +36,16 @@
 	}
 }
 
+[rel="external"] {
+	background: url(../images/external.png) 100% 0 no-repeat;
+	padding-right: 20px;
 
-#wb-main {
-	[rel="external"] {
-		background-image: url(../images/external.png);
-		background-position: right 0;
-		background-repeat: no-repeat;
-		padding-right: 20px;
-		&.wb-icon-none {
-			background-image: none;
-			padding-right: 0;
-		}
-		&.button {
-			background-image: none;
-		}
+	//gh-2104 fixes overriding background because of increased specificity when wb-main was used	
+	#wb-head &, #wb-foot & {
+		background: inherit;
 	}
 }
+	
 
 .wb-icon-none {
 	background-image: none;
