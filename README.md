@@ -19,9 +19,10 @@
 * [Benefits](#benefits)
 * [Working examples](http://wet-boew.github.io/wet-boew/demos/index-eng.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
-* [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines)
 * [Downloads](https://github.com/wet-boew/wet-boew/wiki/Downloads)
+* [Main project](https://github.com/wet-boew/wet-boew/)
 * [Terms and conditions](http://wet-boew.github.io/wet-boew/License-eng.txt)
+* [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines)
 * [Version history](#version-history)
 * [Roadmap](https://github.com/wet-boew/wet-boew/wiki/Roadmap)
 
@@ -116,9 +117,10 @@
 * [Avantages](#avantages)
 * [Exemples pratiques](http://wet-boew.github.io/wet-boew/demos/index-fra.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
-* [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs)
 * [Téléchargements](https://github.com/wet-boew/wet-boew/wiki/T%C3%A9l%C3%A9chargements)
+* [Projet principal](https://github.com/wet-boew/wet-boew/)
 * [Conditions régissant l'utilisation](http://wet-boew.github.io/wet-boew/Licence-fra.txt)
+* [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs)
 * [Historique des versions](#historique-des-versions)
 * [Feuille de route](https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route)
 
