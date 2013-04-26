@@ -51,4 +51,10 @@
 	.dataTables_scrollBody {
 		margin-top: -1px;
 	}
+
+	.dataTables_length {
+		label {
+			min-width: 0;
+		}
+	}
 }
