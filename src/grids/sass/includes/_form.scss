@@ -61,6 +61,10 @@
 			legend {
 				padding-left: 10px;
 				padding-right: 10px;
+				margin: 0;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
 			}
 
 			#{headings(2, 6)} {
