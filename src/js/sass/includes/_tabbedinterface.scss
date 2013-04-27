@@ -155,9 +155,9 @@
 			}
 		}
 	}
-  .panel-end {
-    margin: 0 10px;
-  }
+	.panel-end {
+		margin: 0 10px;
+	}
 }
 
 .slide-horz, .slide-vert {
@@ -587,12 +587,12 @@
 
 .wb-sup-def {
 	.tabs-style-5 {
-		padding:0;
+		padding: 0;
 		.tabs {
-			margin-bottom:1px;
+			margin-bottom: 1px;
 		}
 		.tabs-toggle {
-			margin-left:9px!important;
+			margin-left: 9px !important;
 		}
 	}
 }
@@ -711,6 +711,175 @@
 			li {
 				&:not(.tabs-toggle) {
 					display: inline;
+				}
+			}
+		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+%tabbedinterface-background-position-right-0-important {
+	background-position: right 0 !important;
+}
+[dir="rtl"] {
+	.tabs {
+		margin: 0 !important;
+		li {
+			@include border-radius(2px 2px 0 0);
+			&.tabs-toggle {
+				a {
+					margin-left: 2px;
+					margin-right: auto;
+					&.tabs-start, &.tabs-stop {
+						padding: 2px 24px 2px 5px !important;
+					}
+					&.tabs-stop {
+						@extend %tabbedinterface-background-position-right-0-important;
+					}
+					&.tabs-start {
+						@extend %tabbedinterface-background-position-right-0-important;
+					}
+				}
+			}
+		}
+	}
+
+	.tabs-panel {
+		.viewport {
+			left: auto;
+			right: 0;
+		}
+		.float-right {
+			margin-left: auto;
+			margin-right: 10px;
+		}
+		.float-left {
+			margin-left: 10px;
+			margin-right: auto;
+		}
+	}
+
+	.tabs-roller {
+		left: auto;
+		right: 0;
+		cursor:pointer;
+	}
+
+	.tabs-style-1 {
+		.tabs {
+			li {
+				&.tabs-toggle {
+					a {
+						@extend %tabbedinterface-background-position-right-0-important;
+						@include pseudo-focus {
+							@extend %tabbedinterface-background-position-right-0-important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.tabs-style-2 {
+		.tabs {
+			left: auto;
+			right: 0;
+			li {
+				margin-left: -3px;
+				margin-right: auto;
+				&.tabs-toggle {
+					margin-left: -6px;
+					margin-right: 6px;
+				}
+			}
+		}
+	}
+
+	%tabbedinterface-padding-5-25-5-5-border-radius-0-3-3-0 {
+		padding: 5px 25px 5px 5px;
+		@include border-radius(0 3px 3px 0);
+	}
+	.tabs-style-3 {
+		.tabs {
+			left: 0;
+			right: auto;
+			li {
+				a {
+					padding: 5px 25px 5px 5px;
+					&.active {
+						@extend %tabbedinterface-padding-5-25-5-5-border-radius-0-3-3-0;
+					}
+					@include pseudo-focus {
+						@extend %tabbedinterface-padding-5-25-5-5-border-radius-0-3-3-0;
+					}
+				}
+				&.tabs-toggle {
+					a {
+						float: left;
+						@include pseudo-focus {
+							margin-left: 2px;
+							margin-right: auto;
+						}
+					}
+				}
+			}
+		}
+		.tabs-prev {
+			margin-right: 15px !important;
+		}
+	}
+
+	.tabs-style-4 {
+		padding: 0;
+		.tabs {
+			li {
+				&.tabs-toggle {
+					a {
+						margin-left: 2px;
+						margin-right: auto;
+					}
+				}
+			}
+		}
+	}
+
+	.wb-sup-def {
+		.tabs-style-5 {
+			.tabs-toggle {
+				margin-left: auto !important;
+				margin-right: 9px !important;
+			}
+		}
+		.tabs {
+			margin-left: auto;
+			margin-right: -1px;
+			li {
+				padding-right: 0;
+				margin-right: 0;
+			}
+		}
+		.tabs-toggle {
+			margin-left: auto !important;
+			margin-right: 2px !important;
+		}
+	}
+
+	.wb-sup-def {
+		.tabs-style-5 {
+			.tabs-toggle {
+				margin-left: auto !important;
+				margin-right: 9px !important;
+			}
+		}
+	}
+
+	.tabs-style-6 {
+		.tabs {
+			margin: 15px 0 !important;
+			li {
+				&.img {
+					margin-left: 10px;
+					margin-right: auto;
 				}
 			}
 		}
