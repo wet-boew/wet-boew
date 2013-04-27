@@ -21,16 +21,17 @@
 }
 
 .slideoutWrapper { /* Follows on scrolling */
+	margin-top: 60px;
 	position: fixed;
-    z-index: 1;
+	z-index: 1;
 }
 
 .slideoutWrapperRel { /* Does not follow on scrolling */
-    float: right;
-    right: 0;
-    position: absolute;
-    top: 0;
-    z-index: 1;
+	float: right;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
 }
 
 .slideoutToggle {
