@@ -43,6 +43,12 @@
 	}
 }
 
+%tabbedinterface-padding-2-5-important {
+	padding: 2px 5px !important;
+}
+%tabbedinterface-padding-2-5-2-24-important {
+	padding: 2px 5px 2px 24px !important;
+}
 .tabs {
     border-bottom: solid 1px #ccc;
     margin: 0;
@@ -84,23 +90,21 @@
 					@extend %tabbedinterface-text-decoration-underline;
 					@extend %tabbedinterface-color-000-important;
 				}
-				&.tabs-next, &.tabs-prev {
-					padding: 2px 5px !important;
-				}
-				&.tabs-start, &.tabs-stop {
-					padding: 2px 5px 2px 24px !important;
-				}
 				&.tabs-prev {
 					background: url(../images/tabs/prev.gif) no-repeat center 5px #fff !important;
+					@extend %tabbedinterface-padding-2-5-important;
 				}
 				&.tabs-next {
 					background: url(../images/tabs/next.gif) no-repeat center 5px #fff !important;
+					@extend %tabbedinterface-padding-2-5-important;
 				}
 				&.tabs-stop {
 					background: url(../images/tabs/pause.png) no-repeat -1px 0 #fff !important;
+					@extend %tabbedinterface-padding-2-5-2-24-important;
 				}
 				&.tabs-start {
 					background: url(../images/tabs/play.png) no-repeat -1px 0 #fff !important;
+					@extend %tabbedinterface-padding-2-5-2-24-important;
 				}
 			}
 		}
@@ -585,18 +589,6 @@
 	}
 }
 
-.wb-sup-def {
-	.tabs-style-5 {
-		padding: 0;
-		.tabs {
-			margin-bottom: 1px;
-		}
-		.tabs-toggle {
-			margin-left: 9px !important;
-		}
-	}
-}
-
 /* style 6 */
 %tabbedinterface-tab-style-6-link {
 	padding: 2px 4px;
@@ -721,6 +713,9 @@
 %tabbedinterface-background-position-right-0-important {
 	background-position: right 0 !important;
 }
+%tabbedinterface-padding-2-24-2-5-important {
+	padding: 2px 24px 2px 5px !important;
+}
 [dir="rtl"] {
 	.tabs {
 		margin: 0 !important;
@@ -730,14 +725,13 @@
 				a {
 					margin-left: 2px;
 					margin-right: auto;
-					&.tabs-start, &.tabs-stop {
-						padding: 2px 24px 2px 5px !important;
-					}
 					&.tabs-stop {
 						@extend %tabbedinterface-background-position-right-0-important;
+						@extend %tabbedinterface-padding-2-24-2-5-important;
 					}
 					&.tabs-start {
 						@extend %tabbedinterface-background-position-right-0-important;
+						@extend %tabbedinterface-padding-2-24-2-5-important;
 					}
 				}
 			}
@@ -799,6 +793,10 @@
 		padding: 5px 25px 5px 5px;
 		@include border-radius(0 3px 3px 0);
 	}
+	%tabbedinterface-margin-left-2px-margin-right-auto {
+		margin-left: 2px;
+		margin-right: auto;
+	}
 	.tabs-style-3 {
 		.tabs {
 			left: 0;
@@ -817,8 +815,7 @@
 					a {
 						float: left;
 						@include pseudo-focus {
-							margin-left: 2px;
-							margin-right: auto;
+							@extend %tabbedinterface-margin-left-2px-margin-right-auto;
 						}
 					}
 				}
@@ -835,8 +832,7 @@
 			li {
 				&.tabs-toggle {
 					a {
-						margin-left: 2px;
-						margin-right: auto;
+						@extend %tabbedinterface-margin-left-2px-margin-right-auto;
 					}
 				}
 			}
@@ -861,15 +857,6 @@
 		.tabs-toggle {
 			margin-left: auto !important;
 			margin-right: 2px !important;
-		}
-	}
-
-	.wb-sup-def {
-		.tabs-style-5 {
-			.tabs-toggle {
-				margin-left: auto !important;
-				margin-right: 9px !important;
-			}
 		}
 	}
 
