@@ -112,12 +112,16 @@ $second-row-sprite-y: 0;
 		margin-right: auto;
 		margin-left: 0;
 	}
-
+	// Adds icon to all external links that are outside the header or footer
+	[rel="external"] {
+		background-position: 0 0;
+	}
+	
 	#wb-main {
 		[rel="external"] {
-			background-position: left 0;
 			padding-left: 20px;
 			padding-right: 0;
+			
 			&.wb-icon-none {
 				padding-left: 0;
 			}
