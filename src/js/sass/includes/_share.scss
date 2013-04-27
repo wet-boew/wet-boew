@@ -180,3 +180,15 @@ html {
 		}
 	}
 }
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.wet-boew-share {
+		float: left !important;
+		text-align: left;
+		.bookmark_popup_text {
+			background-position: right 3px;
+			padding: 0 18px 2px 0;
+		}
+	}
+}
