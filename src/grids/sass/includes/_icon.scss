@@ -114,7 +114,7 @@ $second-row-sprite-y: 0;
 	}
 	// Adds icon to all external links that are outside the header or footer
 	[rel="external"] {
-		background-position: 0 0;
+		background: url(../images/external-rtl.png) no-repeat;
 	}
 	
 	#wb-main {
