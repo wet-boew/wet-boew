@@ -3,7 +3,6 @@
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 
-
 /* Gradient (avoid encoding duplication) */
 %tabbedinterface-gradient-background {
 	background: url(../images/tabs/gradient.png) repeat-x 0 0 #eee;
@@ -27,6 +26,14 @@
       background: 0 !important;
     }
   }
+}
+
+.wet-boew-tabbedinterface {
+	.ui-collapsible-content {
+		position: relative;
+		padding-top: 1px;
+		padding-bottom: 1px;
+	}
 }
 
 .tabs {
@@ -455,7 +462,7 @@
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		margin: 0;
 		padding: 0;
@@ -521,7 +528,7 @@
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		margin: 0;
 		padding: 0;
