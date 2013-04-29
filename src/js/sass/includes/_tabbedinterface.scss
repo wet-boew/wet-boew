@@ -617,11 +617,21 @@
 	@include opacity(1);
 	@extend %tabbedinterface-color-000-important;
 }
+%tabbedinterface-tab-style-6-padding-0-background-eee {
+	padding: 0;
+	background: #eee;
+}
 .tabs-style-6 {
+	.ui-collapsible-content {
+		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
+		.span-1 {
+			width: inherit !important;
+			float: left;
+		}
+	}
 	.tabs-panel {
-		padding: 0;
+		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
 		display: inline-block;
-		background: #eee;
 		@include box-shadow(0 15px 15px -10px #999, 0 1px 1px #aaa);
 	}
 	&.slide-vert, &.slide-horz {
