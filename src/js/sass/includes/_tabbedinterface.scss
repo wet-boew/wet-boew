@@ -3,7 +3,6 @@
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 
-
 /* Gradient (avoid encoding duplication) */
 %tabbedinterface-gradient-background {
 	background: url(../images/tabs/gradient.png) repeat-x 0 0 #eee;
@@ -21,12 +20,29 @@
 }
 
 %tabbedinterface-rel-external {
-  a {
-    &[rel="external"] {
-      padding: 0 !important;
-      background: 0 !important;
-    }
-  }
+	a {
+		&[rel="external"] {
+			padding: 0 !important;
+			background: 0 !important;
+		}
+	}
+}
+
+.wet-boew-tabbedinterface {
+	.ui-collapsible-content {
+		position: relative;
+		padding-top: 1px;
+		padding-bottom: 1px;
+	}
+	&.embedded-grid {
+		.ui-collapsible-content {
+			> {
+				[class*="span-"] {
+					float: none;
+				}
+			}
+		}
+	}
 }
 
 .tabs {
@@ -302,7 +318,7 @@
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		min-height: 220px;
 		background: url(../images/tabs/gradient3.png) repeat-x 0 bottom #555;
@@ -330,6 +346,14 @@
 	padding: 5px 5px 5px 25px;
 	@include opacity(0.75);
 	@include border-radius(3px 0 0 3px);
+}
+%tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent {
+	@extend %tabbedinterface-gradient-background;
+	background-position: 0 bottom;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	min-height: 220px;
 }
 
 /* style 3 */
@@ -384,16 +408,12 @@
 			}
 		}
 	}
+	.ui-collapsible-content {
+		@extend %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent;
+	}
 	.tabs-panel {
-		@extend %tabbedinterface-gradient-background;
+		@extend %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent;
 		width: 66%;
-		z-index: 1;
-		border: none;
-		background-position: 0 bottom;
-		color: #333;
-		margin: 0;
-		padding: 0;
-		min-height: 220px;
 		z-index: 2;
 		border: 1px solid #ccc;
 	}
@@ -455,7 +475,7 @@
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		margin: 0;
 		padding: 0;
@@ -521,7 +541,7 @@
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		margin: 0;
 		padding: 0;
