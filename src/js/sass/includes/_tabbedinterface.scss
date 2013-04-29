@@ -42,6 +42,15 @@
 		padding-top: 1px;
 		padding-bottom: 1px;
 	}
+	&.embedded-grid {
+		.ui-collapsible-content {
+			> {
+				[class*="span-"] {
+					float: none;
+				}
+			}
+		}
+	}
 }
 
 %tabbedinterface-padding-2-5-important {
@@ -355,7 +364,7 @@
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		min-height: 220px;
 		background: url(../images/tabs/gradient3.png) repeat-x 0 bottom #555;
@@ -437,16 +446,16 @@
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		@extend %tabbedinterface-gradient-background;
-		width: 66%;
-		z-index: 1;
-		border: none;
 		background-position: 0 bottom;
 		color: #333;
 		margin: 0;
 		padding: 0;
 		min-height: 220px;
+	}
+	.tabs-panel {
+		width: 66%;
 		z-index: 2;
 		border: 1px solid #ccc;
 	}
