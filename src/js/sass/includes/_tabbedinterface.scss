@@ -347,6 +347,14 @@
 	@include opacity(0.75);
 	@include border-radius(3px 0 0 3px);
 }
+%tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent {
+	@extend %tabbedinterface-gradient-background;
+	background-position: 0 bottom;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	min-height: 220px;
+}
 
 /* style 3 */
 .tabs-style-3 {
@@ -400,15 +408,11 @@
 			}
 		}
 	}
-	.tabs-panel, .ui-collapsible-content {
-		@extend %tabbedinterface-gradient-background;
-		background-position: 0 bottom;
-		color: #333;
-		margin: 0;
-		padding: 0;
-		min-height: 220px;
+	.ui-collapsible-content {
+		@extend %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent;
 	}
 	.tabs-panel {
+		@extend %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent;
 		width: 66%;
 		z-index: 2;
 		border: 1px solid #ccc;
