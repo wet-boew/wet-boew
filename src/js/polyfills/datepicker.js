@@ -169,7 +169,7 @@
 					calendar.create(calendarid, targetDate.getFullYear(), targetDate.getMonth(), true, minDate, maxDate);
 				}
 
-				pe.focus($('#' + calendarid).find('.cal-day-list').children('li:eq(' + (targetDate.getDate() - 1) + ')').children('a'));
+				pe.focus(container.find('.cal-day-list').children('li:eq(' + (targetDate.getDate() - 1) + ')').children('a'));
 			};
 
 			setSelectedDate = function (fieldid, year, month, days, format) {
@@ -211,7 +211,8 @@
 			toggle = function (fieldid) {
 				var field = $('#' + fieldid),
 					wrapper = field.parent(),
-					toggle = wrapper.find('#' + fieldid + '-picker-toggle');
+					toggle = wrapper.find('#' + fieldid + '-picker-toggle'),
+					targetDate = pe.date.from_iso_format(field.val());
 
 				toggle.toggleClass('picker-toggle-hidden picker-toggle-visible');
 
@@ -249,17 +250,23 @@
 					container.attr('aria-hidden', 'false');
 					toggle.children('a').children('span').text(pe.dic.get('%datepicker-hide'));
 
-					if (container.find('.cal-prevmonth a').length !== 0) {
-						pe.focus(container.find('.cal-prevmonth a'));
+					if (targetDate !== null) {
+						targetDate.setDate(targetDate.getDate() + 1);
+						setFocus('wb-picker', year, month, pe.date.from_iso_format(minDate), pe.date.from_iso_format(maxDate), targetDate);
 					} else {
-						if (container.find('.cal-nextmonth a').length !== 0) {
-							pe.focus(container.find('.cal-nextmonth a'));
+						if (container.find('.cal-prevmonth a').length !== 0) {
+							pe.focus(container.find('.cal-prevmonth a'));
 						} else {
-							pe.focus(container.find('.cal-goto a'));
+							if (container.find('.cal-nextmonth a').length !== 0) {
+								pe.focus(container.find('.cal-nextmonth a'));
+							} else {
+								pe.focus(container.find('.cal-goto a'));
+							}
 						}
 					}
 				} else {
 					hide($('#' + fieldid));
+
 					pe.focus(wrapper.find('#' + fieldid));
 				}
 			};
