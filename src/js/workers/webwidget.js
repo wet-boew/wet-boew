@@ -68,7 +68,7 @@
 			},
 			_json_request: function (url, limit) {
 				var rl;
-				url = url.replace(/^.*?\.gc\.ca\/([a-z]+).+\/(.*?)_[a-z]+_([ef])\.html/i, 'http://www.weatheroffice.gc.ca/rss/$1/$2_$3.xml');
+				url = url.replace(/^.*?\.gc\.ca\/([a-z]+).+\/(.*?)_[a-z]+_([ef])\.html/i, 'http://weather.gc.ca/rss/$1/$2_$3.xml');
 				rl = 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=' + encodeURI(decodeURI(url));
 				if (limit > 0) {
 					rl += "&num=" + limit;
