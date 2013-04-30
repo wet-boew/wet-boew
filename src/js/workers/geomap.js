@@ -210,6 +210,7 @@
 			$('tr#' + feature.id.replace(/\W/g, '_')).removeClass('background-highlight');
 			$('input#' + 'cb_' + feature.id.replace(/\W/g, '_')).prop('checked', false);
 			
+			// If there is a popup attached, hide it.
 			if (feature.popup !== null) {
 				if (feature.popup.visible()) {
 					feature.popup.hide();
@@ -228,6 +229,8 @@
 				selectControl.select(feature);
 				
 				if (feature.layer.popupInfo !== undefined) {
+					
+					// If a popup is already shown, hide it
 					if (selectedFeature !== undefined) {
 						if (selectedFeature.popup !== null) {
 							if (selectedFeature.popup.visible()) {
@@ -236,6 +239,7 @@
 						}
 					}
 				
+					// If no popup, create it, otherwise show it.
 					selectedFeature = feature;
 					if (feature.popup === null) {
 						_pe.fn.geomap.createPopup(feature);
@@ -247,35 +251,36 @@
 		},
 		
 		/*
-		 *  Create popup
+		 *	Create popup
 		 */
 		createPopup: function(feature) {
 			var popupInfo = feature.layer.popupInfo,
-				height = (popupInfo.height !== undefined) ? popupInfo.height : undefined,
-				width = (popupInfo.width !== undefined) ? popupInfo.width : undefined,
+				id = (popupInfo.height !== undefined) ? popupInfo.id : null,
+				height = (popupInfo.height !== undefined) ? popupInfo.height : null,
+				width = (popupInfo.width !== undefined) ? popupInfo.width : null,
 				close = (popupInfo.width !== undefined) ? popupInfo.close : false,
 				opacity = (popupInfo.width !== undefined) ? popupInfo.opacity : 1.0,
-				$content = popupInfo.content,
-			    popup;
-			    
-			    // Update content from feature
-			    for (name in feature.attributes) {
+				content = popupInfo.content,
+				name,
+				popup;
+				
+				// Update content from feature
+				for (name in feature.attributes) {
 					if (feature.attributes.hasOwnProperty(name)) {
-						if (name.length != 0) {
-							$content = $('#_' + name.replace(/\W/g, '_'));
-							$content.text(feature.attributes[name]);
+						if (name.length !== 0) {
+							content = content.replace('_' + name, feature.attributes[name]);
 						}
 					}
 				}
 			
-			    // Create the popup
-			    popup = new OpenLayers.Popup.Anchored('pu_' + feature.layer.name, 
-													 feature.geometry.getBounds().getCenterLonLat(),
-													 new OpenLayers.Size(width,height),
-													 content,
-													 null, 
-													 close, 
-													 _pe.fn.geomap.onPopupClose);
+				// Create the popup
+				popup = new OpenLayers.Popup.Anchored(id,
+														feature.geometry.getBounds().getCenterLonLat(),
+														new OpenLayers.Size(width,height),
+														content,
+														null,
+														close,
+														_pe.fn.geomap.onPopupClose);
 				popup.opacity = opacity;
 				popup.panMapIfOutOfView = true;
 				popup.autosize = true;
@@ -284,9 +289,9 @@
 		},
 		
 		/*
-		 *  Popup close callback function
+		 *	Popup close callback function
 		 */
-		onPopupClose: function(evt) {
+		onPopupClose: function() {
 			selectControl.unselect(selectedFeature);
 		},
 
