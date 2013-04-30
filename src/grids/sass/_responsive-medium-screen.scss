@@ -23,8 +23,14 @@
 %grids-responsive-medium-width-22-874985306218perc {
 	width: 22.874985306218%;
 }
+%grids-responsive-medium-width-22-874985306218perc-important {
+	width: 22.874985306218% !important;
+}
 %grids-responsive-medium-width-31-438521217821perc {
 	width: 31.438521217821%;
+}
+%grids-responsive-medium-width-31-438521217821perc-important {
+	width: 31.438521217821% !important;
 }
 %grids-responsive-medium-width-40-002057129423perc {
 	width: 40.002057129423%;
@@ -215,6 +221,9 @@ details {
 	.span-3 {
 		@extend %grids-responsive-medium-width-99-946808510638perc-important;
 	}
+	.span-1 {
+		@extend %grids-responsive-medium-width-31-438521217821perc-important;
+	}
 }
 .span-4 {
 	@extend %grids-responsive-medium-width-65-692664864229perc;
@@ -223,6 +232,9 @@ details {
 	}
 	.span-2 {
 		@extend %grids-responsive-medium-width-48-565593041025perc-important;
+	}
+	.span-1 {
+		@extend %grids-responsive-medium-width-22-874985306218perc-important;
 	}
 }
 .span-5 {
@@ -239,6 +251,9 @@ details {
 	.span-3 {
 		@extend %grids-responsive-medium-width-48-565593041025perc-important;
 	}
+	.span-2 {
+		@extend %grids-responsive-medium-width-31-438521217821perc-important;
+	}
 }
 .span-7 {
 	.span-7 {
@@ -251,6 +266,9 @@ details {
 	}
 	.span-4 {
 		@extend %grids-responsive-medium-width-48-565593041025perc-important;
+	}
+	.span-2 {
+		@extend %grids-responsive-medium-width-22-874985306218perc-important;
 	}
 }
 .span-9 {

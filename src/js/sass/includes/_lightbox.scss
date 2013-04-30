@@ -8,8 +8,10 @@
 %wb-lightbox-position-absolute {
 	position: absolute;
 }
-%wb-lightbox-text-indent-9999 {
+%wb-lightbox-text-indent-9999-font-size-1-color-fff {
 	text-indent: 9999px;
+	font-size: 1px;
+	color: #fff;
 }
 
 %wb-lightbox-top-0 {
@@ -20,8 +22,14 @@
 	left: 0;
 }
 
-%wb-lightbox-right-5 {
+%wb-lightbox-left-5-right-auto {
+	left: 5px;
+	right: auto;
+}
+
+%wb-lightbox-right-5-left-auto {
 	right: 5px;
+	left: auto;
 }
 
 %wb-lightbox-width-100-height-100 {
@@ -212,14 +220,19 @@
 	@extend %wb-lightbox-color-ccc-text-shadow-none;
 	@extend %wb-lightbox-display-none;
 	margin: 0;
-	left: 5px;
+	@extend %wb-lightbox-left-5-right-auto;
 	width: 70%;
+	a {
+		&, &.ui-link {
+			@extend %wb-lightbox-color-ccc-text-shadow-none;
+		}
+	}
 }
 
 #cboxCurrent {
 	@extend %wb-lightbox-position-absolute;
 	@extend %wb-lightbox-padding-top-3;
-	@extend %wb-lightbox-right-5;
+	@extend %wb-lightbox-right-5-left-auto;
 	@extend %wb-lightbox-color-ccc-text-shadow-none;
 	@extend %wb-lightbox-display-none;
 	width: 26%;
@@ -268,7 +281,7 @@
 	@extend %wb-lightbox-curson-pointer;
 	@extend %wb-lightbox-position-absolute;
 	@extend %wb-lightbox-controls;
-	@extend %wb-lightbox-right-5;
+	@extend %wb-lightbox-right-5-left-auto;
 	@extend %wb-lightbox-display-block;
 	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
 	@extend %wb-lightbox-background-color-transparent-border-none;
@@ -326,14 +339,23 @@
 	}
 }
 
+/* Right to left (RTL) CSS */
 [dir="rtl"] {
 	#cboxPrevious {
-		@extend %wb-lightbox-text-indent-9999;
+		@extend %wb-lightbox-text-indent-9999-font-size-1-color-fff;
 	}
 	#cboxNext {
-		@extend %wb-lightbox-text-indent-9999;
+		@extend %wb-lightbox-text-indent-9999-font-size-1-color-fff;
 	}
 	#cboxClose {
-		@extend %wb-lightbox-text-indent-9999;
+		@extend %wb-lightbox-text-indent-9999-font-size-1-color-fff;
+		@extend %wb-lightbox-left-5-right-auto;
+	}
+	#cboxTitle {
+		@extend %wb-lightbox-right-5-left-auto;
+	}
+	#cboxCurrent {
+		@extend %wb-lightbox-left-5-right-auto;
+		text-align: left;
 	}
 }

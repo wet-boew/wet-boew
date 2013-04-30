@@ -4,7 +4,8 @@
 
 ## What is the Web Experience Toolkit?
 
-* Code library for building innovative websites that are:
+* Collaborative open source project led by the Government of Canada
+* [Award-winning](https://github.com/wet-boew/wet-boew/wiki/Accolades#wiki-Awards) code library for building innovative websites that are:
  * [Accessible](#accessibility), [usable](#usability) and [interoperable](#interoperability)
  * [Mobile friendly](#mobile-friendly-responsive-design)
  * [Multilingual](#multilingual)
@@ -18,9 +19,10 @@
 * [Benefits](#benefits)
 * [Working examples](http://wet-boew.github.io/wet-boew/demos/index-eng.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
-* [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET#wiki-Contributor_guidelines)
 * [Downloads](https://github.com/wet-boew/wet-boew/wiki/Downloads)
+* [Main project](https://github.com/wet-boew/wet-boew/)
 * [Terms and conditions](http://wet-boew.github.io/wet-boew/License-eng.txt)
+* [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines)
 * [Version history](#version-history)
 * [Roadmap](https://github.com/wet-boew/wet-boew/wiki/Roadmap)
 
@@ -132,7 +134,8 @@
 
 ## Qu’est-ce que la Boîte à outils de l’expérience Web?
 
-* Une bibliothèque de code pour construire des sites Web innovants&#160;:
+* Un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada
+* Une bibliothèque de code [primée](https://github.com/wet-boew/wet-boew/wiki/Distinctions#wiki-Primes) pour construire des sites Web innovants&#160;:
  * [Accessibles](#accessibilit), [faciles d'emploi](#facilit-demploi) et [interopérables](#interoprabilit)
  * [Optimisés pour les appareils mobiles](#conception-optimise-pour-les-appareils-mobiles-et-ractive)
  * [Multilingues](#multilingue)
@@ -146,9 +149,10 @@
 * [Avantages](#avantages)
 * [Exemples pratiques](http://wet-boew.github.io/wet-boew/demos/index-fra.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
-* [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Développer-pour-la-boew#wiki-Lignes_directrices_pour_les_contributeurs)
 * [Téléchargements](https://github.com/wet-boew/wet-boew/wiki/T%C3%A9l%C3%A9chargements)
+* [Projet principal](https://github.com/wet-boew/wet-boew/)
 * [Conditions régissant l'utilisation](http://wet-boew.github.io/wet-boew/Licence-fra.txt)
+* [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs)
 * [Historique des versions](#historique-des-versions)
 * [Feuille de route](https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route)
 

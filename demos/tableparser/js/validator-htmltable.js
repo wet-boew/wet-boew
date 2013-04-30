@@ -359,7 +359,6 @@
 				//var noErrorList = '<li>No Error Found</li>',
 				var m,
 					colgroupelem,
-					displayTableResult,
 					currCellId;
 				/*
 				nbErrorFound = 0;

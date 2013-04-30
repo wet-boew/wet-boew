@@ -24,12 +24,14 @@
 				aColumns : [],		
 				aLengthMenu : [10, 25, 50, 100],
 				aMobileColumns : false,
+				bInfo: true,
 				bPaginate : true,
 				bSearch : true,
 				bSort : true,
 				bVisible : true,
 				bZebra : false,
-				iDisplayLength: 10
+				iDisplayLength: 10,
+				sPaginationType: 'two_button'
 			};
 			
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
@@ -46,10 +48,12 @@
 				}],
 				'asStripeClasses' : ((opts.bZebra === true) ? ['odd', 'even'] : []),
 				'bFilter' : (opts.bSearch === true),
+				'bInfo' : ((opts.bInfo === true) ? ((opts.bSearch === true || opts.bPaginate === true) ? true : false) : false),
 				'bPaginate' : (opts.bPaginate === true),
 				'iDisplayLength' : opts.iDisplayLength,
 				'aLengthMenu' : opts.aLengthMenu,
 				'bSort' : (opts.bSort === true),
+				'sPaginationType' : ((opts.sPaginationType === 'two_button') ? opts.sPaginationType : 'full_numbers'),
 				'oLanguage' : {
 					'oAria' : {
 						'sSortAscending' : _pe.dic.get('%sSortAscending'),
