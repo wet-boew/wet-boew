@@ -23,12 +23,15 @@
 				});
 			}
 
-			var $tabs = elm.children('.tabs').children('li'),
+			var $accordion,
+				$panelElms,
 				$panels = elm.children('.tabs-panel').children('div'),
+				$tabs = elm.children('.tabs').children('li'),
 				$activeTab,
 				tabListIdx = $('.wet-boew-tabbedinterface').index(elm),
-				defaultTab = 0,
 				accordion = '<div data-role="collapsible-set" data-mini="true" data-content-theme="b" data-theme="b">',
+				defaultTab = 0,
+				$link,
 				hlevel,
 				hopen,
 				hclose,
@@ -57,22 +60,27 @@
 			hopen = '<h' + hlevel + '>';
 			hclose = '</h' + hlevel + '>';
 
-			$panels.each(function (index) {
-				var $link = $tabs.eq(index).children('a'),
-					text = $link.text();
-				if (text === ''){
-					text = $tabs.eq(index).find('span').text();
-				}
-				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + _pe.fn.tabbedinterface._get_hash($link.attr('href')) + '">' + hopen + text + hclose + this.innerHTML + '</div>';
-			});
-			accordion += '</div>';
-			elm.html(accordion);
+			// Create the accordion panels
+			for (index = 0, len = $panels.length; index < len; index += 1) {
+				$link = $tabs.eq(index).children('a');
+				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + _pe.fn.tabbedinterface._get_hash($link.attr('href')) + '">' + hopen + $link.text() + hclose + '</div>';
+			}
+			$accordion = $(accordion);
+
+			// Append tab panel content to its accordion panel
+			$panelElms = $accordion.find('div');
+			while (len--) {
+				$panelElms.eq(len).append($panels.eq(len));
+			}
+			elm.empty().append($accordion);
 
 			// Track the active panel during the user's session
 			elm.find('[data-role="collapsible"]').on('expand', function () {
 				_pe.fn.tabbedinterface._set_active_panel($(this).data('tab'), tabListIdx);
+				setTimeout(function() {
+					_pe.window.trigger('resize');
+				}, 1);
 			});
-
 			return elm;
 		},
 		_exec : function (elm) {
@@ -267,7 +275,14 @@
 				}
 			});
 
-
+			$panels.on('swipeleft swiperight', function (e) {
+				e.preventDefault();
+				if (e.type === 'swipeleft') {
+					selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
+				} else {
+					selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
+				}
+			});
 
 			getNextTab = function ($tabs) {
 				var $next = $tabs.filter('.' + opts.tabActiveClass).parent().next(':not(.tabs-toggle)');
@@ -285,7 +300,7 @@
 				$panels.stop(true, true);
 				if (opts.animate) {
 					activePanel = $panels.filter('.' + opts.panelActiveClass).removeClass(opts.panelActiveClass);
-					if (isSlider()){
+					if (isSlider()) {
 						$panels.show();
 						$viewport.stop().animate(getSlideTo(nextPanel), opts.animationSpeed, function () {
 							nextPanel.addClass(opts.panelActiveClass);
@@ -335,7 +350,7 @@
 			};
 			getSlideTo = function (panel) {
 				var slideTo = {left: 0, top: 0}, pos;
-				if(panel && typeof panel.jquery !== 'undefined'){
+				if (panel && typeof panel.jquery !== 'undefined') {
 					pos = panel.parent().position();
 					slideTo = {left: pos.left * -1, top: pos.top * -1};
 				}
@@ -347,28 +362,39 @@
 			positionPanels = function() {
 				var isSlideHorz = opts.transition === 'slide-horz',
 					viewportSize = {width: 0, height: 0},
-					panelSize;
+					panelSize,
+					len = $panels.length;
 
-				if($viewport === undefined) {
+				if ($viewport === undefined) {
 					$panels.wrapAll('<div class="viewport">').wrap('<div class="panel">');
 					$viewport = $('.viewport', $tabsPanel);
 				}
 
 				panelSize = getMaxPanelSize();
-				$panels.each(function() {
-					$(this).parent().css($.extend({position: 'absolute', top: viewportSize.height, left: viewportSize.width}, panelSize));
-					if(isSlideHorz){
+				while (len--) {
+					$panels.eq(len).parent().css($.extend({
+						position: 'absolute',
+						top: viewportSize.height,
+						left: viewportSize.width
+						}, panelSize));
+					if (isSlideHorz) {
 						viewportSize.width += panelSize.width;
 					} else {
 						viewportSize.height += panelSize.height;
 					}
-				});
+				}
 
 				$tabsPanel.css(panelSize);
-				if(isSlideHorz) {
-					$viewport.css($.extend({width: viewportSize.width, height: panelSize.height}, getSlideTo($panels.filter('.' + opts.panelActiveClass))));
+				if (isSlideHorz) {
+					$viewport.css($.extend({
+						width: viewportSize.width,
+						height: panelSize.height
+					}, getSlideTo($panels.filter('.' + opts.panelActiveClass))));
 				} else {
-					$viewport.css($.extend({width: panelSize.width, height: viewportSize.height}, getSlideTo($panels.filter('.' + opts.panelActiveClass))));
+					$viewport.css($.extend({
+						width: panelSize.width,
+						height: viewportSize.height
+					}, getSlideTo($panels.filter('.' + opts.panelActiveClass))));
 				}
 			};
 			if (isSlider() || (opts.autoHeight && !elm.hasClass('tabs-style-4') && !elm.hasClass('tabs-style-5'))) {
@@ -572,7 +598,6 @@
 		_get_hash : function(href) {
 			return href !== null ? href.substring(href.indexOf('#')) : '';
 		}
-
 	};
 	window.pe = _pe;
 	return _pe;

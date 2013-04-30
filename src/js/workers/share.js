@@ -28,7 +28,9 @@
 				popupLink,
 				popupLinksLen,
 				popupLinkSpan,
-				match;
+				match,
+				lang = _pe.language,
+				hintReverse = (lang === 'zh' || lang === 'zh-Hans' || lang === 'hi' || lang === 'ja' || lang === 'ko');
 
 			// Defaults
 			opts = {
@@ -39,7 +41,7 @@
 				sites: [], // List of site IDs or language selectors (lang:xx) or
 					// category selectors (category:xx) to use, empty for all
 				compact: false, // True if a compact presentation should be used, false for full
-				hint: _pe.dic.get('%share-text') + _pe.dic.get('%share-hint') + _pe.dic.get('%new-window'), // Popup hint for links, {s} is replaced by display name
+				hint: (hintReverse ? _pe.dic.get('%share-hint') + _pe.dic.get('%share-text') + ' ' : _pe.dic.get('%share-text') + _pe.dic.get('%share-hint')) + _pe.dic.get('%new-window'), // Popup hint for links, {s} is replaced by display name
 				popup: true, // True to have it popup on demand, false to show always
 				popupTag: 'h2', // Parent tag for the popup link (should be either h2 or h3)
 				popupText: _pe.dic.get('%share-text'), // Text for the popup trigger

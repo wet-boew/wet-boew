@@ -60,6 +60,9 @@
 			@extend %wet-default-screen-ie-position-relative;
 			top: 0.8em;
 		}
+		small {
+			padding-left: 155px;
+		}
 	}
 	#wet-date-mod {
 		@extend %wet-default-screen-ie-position-relative;

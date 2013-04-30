@@ -129,7 +129,9 @@
 					e.data.media.height(h);
 					media.parent().find('.wb-mm-overlay').height(h);
 				});
-				_pe.window.trigger('resize');
+				setTimeout(function() {
+					_pe.window.trigger('resize');
+				}, 1);
 
 				//Map UI mouse events
 				elm.on('click', function (e) {

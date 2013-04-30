@@ -22,7 +22,7 @@
 %slider-padding-0 {
 	padding: 0;
 }
-%slider-padding-0 {
+%slider-display-none {
 	display: none;
 }
 %slider-width-2 {
@@ -90,7 +90,7 @@
 }
 
 .fd-form-element-hidden {
-	@extend %slider-padding-0;
+	@extend %slider-display-none;
 }
 .fd-slider {
 	@extend %slider-width-100perc;
@@ -151,7 +151,7 @@
 	@extend %slider-height-100perc;
 }
 .fd-slider-inner {
-	@extend %slider-padding-0;
+	@extend %slider-display-none;
 }
 .fd-slider-bar {
 	@extend %slider-display-block;

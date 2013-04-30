@@ -19,4 +19,16 @@
 			display: none;
 		}
 	}
+
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		details {
+			summary {
+				*zoom: expression(
+					this.runtimeStyle.zoom="1",
+					this.innerHTML = '<span class="details-closed">\25C0\a0</span><span class="details-open">\25BC\a0</span>'+this.innerHTML
+				);
+			}
+		}
+	}
 }

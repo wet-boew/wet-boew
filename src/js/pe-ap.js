@@ -15,7 +15,7 @@
  * pe, a progressive javascript library agnostic framework
  */
 /*global jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
-/*jshint bitwise: false, evil: true */
+/*jshint bitwise: false, evil: true, scripturl: true */
 (function ($) {
 	"use strict";
 	var pe, _pe;
@@ -37,7 +37,7 @@
 		rtl: false,
 		touchscreen: 'ontouchstart' in document.documentElement,
 		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
-		suffix: $('body script[src*="/pe-ap-"]').attr('src').indexOf('-min') !== -1 ? '-min' : '', // determine if pe is minified
+		suffix: $('body script[src*="/pe-ap"]').attr('src').indexOf('-min') !== -1 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
 		bodydiv: $('body > div'),
 		main: $('#wb-main'),
@@ -121,9 +121,7 @@
 		*/
 		_init: function () {
 			var $html = pe.html,
-				hlinks,
-				hlinks_same,
-				$this,
+				hlinks_same = [],
 				target,
 				validTarget = false,
 				classes = '',
@@ -200,13 +198,6 @@
 			// Remove the "no-js" class and add the identification classes to the HTML element.
 			$html.removeClass('no-js').addClass(classes);
 
-			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
-				return this.href.indexOf('#') !== -1;
-			});
-			hlinks_same = hlinks.filter(function () {
-				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
-			});
-
 			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 
 			// If the page URL includes a hash upon page load, then focus on and scroll to the target
@@ -256,16 +247,24 @@
 				// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
 				// TODO: Find a more elegant way to address this in jQuery Mobile
 				pe.bodydiv.removeAttr('tabindex');
-
+			
 				// On click, puts focus on and scrolls to the target of same page links
-				hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
-					var hash = $(this).attr('href'),
+				$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function () {
+					var hash = this.hash,
+						node = document.getElementById(pe.string.jqescape(hash.substring(1))),
+						$node,
+						nodeName,
 						role;
-					$this = $('#' + pe.string.jqescape(hash.substring(1)));
-					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if ($this.length > 0) {
-						pe.focus($this);
-						role = $this.jqmData('role');
+
+					if (node !== null) {
+						$node = $(node);
+						nodeName = node.nodeName.toLowerCase();
+						if (nodeName !== 'a' && nodeName !== 'button' && nodeName !== 'input' && nodeName !== 'textarea' && nodeName !== 'select') {
+							node.setAttribute('tabindex', '-1');
+						}
+
+						pe.focus($node);
+						role = $node.jqmData('role');
 						if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
 							window.location.hash = hash;
 						}
@@ -291,6 +290,20 @@
 					$o.append($.trim(data));
 				}, 'html');
 			})).always(function () {
+				var hlinks = document.getElementsByTagName('a'),
+					hlink,
+					pathname = window.location.pathname,
+					search = window.location.search,
+					len = hlinks.length,
+					href;
+				while (len--) {
+					hlink = hlinks[len];
+					href = hlink.getAttribute('href');
+					if (href !== null && href.length !== 1 && href.indexOf('#') !== -1 && hlink.getAttribute('data-rel') === null && (pathname.indexOf(hlink.pathname) !== -1) && hlink.search === search) {
+						hlinks_same.push(hlink);
+					}
+				}
+			
 				// Wait for localisation and ajax content to load plugins
 				pe.document.one('languageloaded', function () {
 					// Check to see if PE enhancements should be disabled
@@ -1020,19 +1033,21 @@
 				while (menulinkslen--) {
 					link = menulinks[menulinkslen];
 					linkhref = link.getAttribute('href');
-					if (hrefBug && linkhref !== window.location.href) {
-						linkhref = linkhref.replace(window.location.href, '');
-					}
-					if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
-						linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
-						linkquery = link.search;
-						linkquerylen = linkquery.length;
-						if (pageurl.slice(-linkurl.length) === linkurl && (linkquerylen === 0 || pageurlquery.slice(-linkquerylen) === linkquery)) {
-							match = true;
-							break;
+					if (linkhref !== null) {
+						if (hrefBug && linkhref !== window.location.href) {
+							linkhref = linkhref.replace(window.location.href, '');
 						}
-						menulink.push(link);
-						menulinkurl.push(linkurl);
+						if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
+							linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
+							linkquery = link.search;
+							linkquerylen = linkquery.length;
+							if (pageurl.slice(-linkurl.length) === linkurl && (linkquerylen === 0 || pageurlquery.slice(-linkquerylen) === linkquery)) {
+								match = true;
+								break;
+							}
+							menulink.push(link);
+							menulinkurl.push(linkurl);
+						}
 					}
 				}
 
@@ -1055,6 +1070,7 @@
 							bclinkurl.push(link.hostname + link.pathname.replace(/^([^\/])/, '/$1'));
 						}
 					}
+					bclinkslen = bclinkurl.length;
 
 					// Try to match each breadcrumb link
 					for (linkindex = 0, menulinkslen = menulink.length; linkindex !== menulinkslen; linkindex += 1) {
@@ -1139,7 +1155,9 @@
 					sectionLinkOpen2 = sectionLinkStart + theme2 + sectionLinkEnd,
 					sectionLinkClose = '</a>' + headingClose,
 					link = '<a data-role="button" data-icon="arrow-r" data-iconpos="right" data-corners="false" href="',
+					disableLink = 'javascript:;" class="ui-disabled',
 					menu,
+					url,
 					i,
 					len;
 				collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true);
@@ -1168,22 +1186,32 @@
 							if (mItemTag === heading) {
 								menu += sectionOpen1;
 								hlink = mItem.children('a');
-								hlinkDOM = hlink[0];
-								navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
-								navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
+								if (hlink.length !== 0) {
+									hlinkDOM = hlink[0];
+									url = hlinkDOM.getAttribute('href');
+									if (url === '#' || url === 'javascript:;') {
+										url = disableLink;
+									}
+									navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
+									navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
+									menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
+								} else {
+									navCurrent = false;
+									url = disableLink;
+								}
 								if (toplevel) {
 									secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1);
 								}
-								menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
+
 								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
 								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
 								} else {
-									menu += sectionLinkOpen1 + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
+									menu += sectionLinkOpen1 + url + '">' + mItem.text() + sectionLinkClose;
 								}
 								next = mItem.next();
 								nextDOM = next[0];
-								//Don't try to build mobile menu for headings with no sub-items
+								// Don't try to build mobile menu for headings with no sub-items
 								if (typeof nextDOM !== 'undefined'){
 									if (nextDOM.tagName.toLowerCase() === 'ul') {
 										menu += listView;
@@ -1228,13 +1256,16 @@
 								}
 								menu += '</div>';
 							} else if (mItemTag === 'div') { // If the menu item is a div
-								next = mItem.children('a, ul');
+								next = mItem.children('a, ul, div');
 								if (next.length > 0) {
 									nextDOM = next[0];
-									if (nextDOM.tagName.toLowerCase() === 'a') {
+									mItemTag = nextDOM.tagName.toLowerCase();
+									if (mItemTag === 'a') {
 										menu += link + nextDOM.href + '" data-theme="' + (toplevel ? theme1 : theme2) + '">' + nextDOM.innerHTML + '</a>';
-									} else {
+									} else if (mItemTag === 'ul') {
 										menu += listView + nextDOM.innerHTML + '</ul>';
+									} else {
+										menu += pe.menu.buildmobile(nextDOM, hlevel, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
 									}
 								}
 							}
@@ -1802,12 +1833,18 @@
 			if (typeof finished_event === 'undefined') {
 				finished_event = 'wb-loaded';
 			}
-			var i, _len,
+			var i,
+				j,
+				_len,
+				_len2,
 				settings = pe.settings,
 				plugins = typeof options.plugins !== 'undefined' ? options.plugins : {},
 				plug,
+				_pcalls,
 				pcalls = typeof options.global !== 'undefined' ? options.global : [],
 				pcall,
+				node,
+				classes,
 				dep = typeof options.dep !== 'undefined' ? options.dep : [],
 				depcss = typeof options.depcss !== 'undefined' ? options.depcss : [],
 				poly = typeof options.poly !== 'undefined' ? options.poly : [],
@@ -1827,18 +1864,18 @@
 			}
 
 			// Push each of the 'wet-boew-*' plugin calls into the pcalls array
-			wetboew.each(function () {
-				var _node = $(this),
-					classes = _node.attr('class').split(' '),
-					_pcalls = [];
+			for (j = 0, _len2 = wetboew.length; j !== _len2; j += 1) {
+				node = wetboew[j];
+				classes = node.className.split(' ');
+				_pcalls = [];
 				for (i = 0, _len = classes.length; i !== _len; i += 1) {
 					if (classes[i].indexOf('wet-boew-') === 0) {
 						_pcalls.push(classes[i].substr(9).toLowerCase()); // Push the plugin call into the local array
 					}
 				}
-				_node.attr('data-load', _pcalls.join(',')); // Add the plugins to load to data-load for loading later
+				node.setAttribute('data-load', _pcalls.join(',')); // Add the plugins to load to data-load for loading later
 				pcalls.push.apply(pcalls, _pcalls); // Push the plugin calls into the pcall array
-			});
+			}
 
 			// Push each of the global plugin calls into the pcall array
 			if (settings) {

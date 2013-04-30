@@ -109,6 +109,14 @@ input {
 	object {
 		@extend %wet-default-screen-display-none;
 	}
+	span {
+		position: relative;
+		z-index: 1;
+	}
+	small {
+		font-size: 0.45em;
+		display: block;
+	}		
 }
 .svg {
 	@extend %wet-default-screen-wet-title-object-display-block;
@@ -143,8 +151,8 @@ input {
 				}
 				&.nav-current {
 					@extend %wet-default-screen-color-fff;
-					padding-top: 4px;
-					padding-bottom: 4px;
+					padding-top: 7px;
+					padding-bottom: 7px;
 					background: #0F315B;
 				}
 			}
