@@ -646,10 +646,6 @@
 .tabs-style-6 {
 	.ui-collapsible-content {
 		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
-		.span-1 {
-			width: inherit !important;
-			float: left;
-		}
 	}
 	.tabs-panel {
 		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
