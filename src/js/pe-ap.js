@@ -270,6 +270,14 @@
 						}
 					}
 				});
+
+				// Workaround to ensure that the expanded area of a jQuery Mobile accordion doesn't disappear off the top of the viewport
+				pe.document.on('expand', function(e) {
+					var yPos = $(e.target).offset().top;
+					if (yPos < _pe.window.scrollTop()) {
+						$.mobile.silentScroll(yPos);
+					}
+				});
 			});
 
 			// Load ajax content
