@@ -384,7 +384,7 @@
 					}
 				}
 			});
-			_pe.document.on('click vclick touchstart focusin', function () {
+			_pe.document.on('touchstart focusin', function () {
 				return hideallsubmenus();
 			});
 
