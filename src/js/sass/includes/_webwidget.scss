@@ -5,13 +5,37 @@
 
 @import "compass/css3/border-radius";
 
+%webwidget-fontsize-90 {
+	font-size: 90%;
+}
+%webwidget-twitter-timeline-ul {
+	@extend %webwidget-fontsize-90;
+	min-height: 50px;
+	overflow: auto;
+	background: #fff;
+	border: 1px solid #ccc;
+	margin: 0 !important;
+	padding: 5px !important;
+}
+%webwidget-color-707070 {
+	color: #707070;
+}
+
 .no-js {
 	.wet-boew-webwidget {
 		li {
-				display: block;
+			display: block;
 		}
 	}
 }
+.pe-disable {
+	.wet-boew-webwidget {
+		.twitter-timeline {
+			text-indent: 0 !important;
+		}
+	}
+}
+
 .wet-boew-webwidget {
 	background: {
 		repeat: repeat-x;
@@ -19,7 +43,17 @@
 		color: #e0e2e4 !important;
 		image: url(../images/webfeeds/gradient.png) !important;
 	}
-	color: #555;
+	@extend %webwidget-color-707070;
+	.twitter-timeline {
+		a {
+			&:link, &:visited {
+				@extend %webwidget-color-707070;
+			}
+		}
+		.stats span, .byline, .retweet-credit, .no-more-pane, .no-tweets-pane p, .p-geo, .cards-base .byline-user, tweet-box-button {
+			@extend %webwidget-color-707070;
+		}
+	}
 	li {
 		display: none;
 		margin: 0 !important;
@@ -30,18 +64,19 @@
 				margin-right: 5px;
 			}
 		}
-		&.widget-state-loading {
-			display: block !important;
+	}
+	.widget-state-loading {
+		display: block !important;
+		margin: auto;
+		width: 100%;
+		line-height: 60px;
+		text-align: center;
+		text-indent: 0;
+		img {
 			margin: auto;
-			width: 100%;
-			line-height: 60px;
-			text-align: center;
-			img {
-				margin: auto;
-				height: auto !important;
-				width: auto !important;
-				vertical-align: middle;
-			}
+			height: auto !important;
+			width: auto !important;
+			vertical-align: middle;
 		}
 	}
 	a {
@@ -49,9 +84,14 @@
 		font-weight: 700;
 		background-image: none !important;
 		margin-right: auto !important;
-		@include inline-block;
 		&.widget-notice {
 			text-decoration: underline;
+		}
+		&.twitter-timeline {
+			width: 100%;
+			display: block;
+			text-indent: -9999px;
+			@extend %webwidget-twitter-timeline-ul;
 		}
 	}
 	.widget-container {
@@ -67,13 +107,10 @@
 	}
 	ul {
 		list-style-type: none !important;
-		font-size: 90%;
-		min-height: 50px;
-		overflow: auto;
-		background: #fff;
-		border: 1px solid #ccc;
-		margin: 0 !important;
-		padding: 5px 2px 2px 5px !important;
+		@extend %webwidget-twitter-timeline-ul;
+		&.tweet-actions {
+			visibility: visible !important;
+		}
 	}
 	p {
 		&.widget-lang {
@@ -127,10 +164,10 @@
 		vertical-align: middle;
 	}
 	.widget-datestamp {
-		font-size: 90%;
+		@extend %webwidget-fontsize-90;
 	}
 	.widget-datestamp-accent {
-		font-size: 90%;
+		@extend %webwidget-fontsize-90;
 		color: #781a21 !important;
 		white-space: nowrap;
 	}
