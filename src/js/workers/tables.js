@@ -28,6 +28,7 @@
 				bPaginate : true,
 				bSearch : true,
 				bSort : true,
+				bStateSave: false,
 				bVisible : true,
 				bZebra : false,
 				iDisplayLength: 10,
@@ -53,6 +54,7 @@
 				'iDisplayLength' : opts.iDisplayLength,
 				'aLengthMenu' : opts.aLengthMenu,
 				'bSort' : (opts.bSort === true),
+				'bStateSave' : (opts.bStateSave === true),
 				'sPaginationType' : ((opts.sPaginationType === 'two_button') ? opts.sPaginationType : 'full_numbers'),
 				'oLanguage' : {
 					'oAria' : {
