@@ -217,11 +217,12 @@
 				});
 
 				pe.document.on('pageinit', function () {
-				pageinit_fired = true;
-				// Remove the silentscroll handling for determining scrollTop if the silentscroll event has already fired
-				if (silentscroll_fired) {
-					pe.document.off('silentscroll.wbinit');
-				}
+					pageinit_fired = true;
+					// Remove the silentscroll handling for determining scrollTop if the silentscroll event has already fired
+					if (silentscroll_fired) {
+						pe.document.off('silentscroll.wbinit');
+					}
+
 					// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
 					// TODO: Find a more elegant way to address this in jQuery Mobile
 					pe.bodydiv.removeAttr('tabindex');
@@ -246,6 +247,14 @@
 							if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
 								window.location.hash = hash;
 							}
+						}
+					});
+					
+					// Workaround to ensure that the expanded area of a jQuery Mobile accordion doesn't disappear off the top of the viewport
+					pe.document.on('expand', function(e) {
+						var yPos = $(e.target).offset().top;
+						if (yPos < _pe.window.scrollTop()) {
+							$.mobile.silentScroll(yPos);
 						}
 					});
 				});
