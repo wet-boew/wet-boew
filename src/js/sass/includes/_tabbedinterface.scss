@@ -391,8 +391,8 @@
 	margin-right: 0;
 	padding: 5px 5px 5px 25px;
 	@include opacity(0.75);
-	@include border-radius(3px 0 0 3px);
 }
+
 %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent {
 	@extend %tabbedinterface-gradient-background;
 	background-position: 0 bottom;
@@ -438,6 +438,22 @@
 			&.active {
 				border: none;
 				color: #fff !important;
+				a {
+					&:before {
+					    border: {
+							color: transparent black transparent transparent;
+							style: solid;
+							width: 13px;
+						}
+						content: "";
+						display: block;
+						height: 0;
+						left: -20px;
+						position: absolute;
+						top: 0;
+						width: 0;
+					}
+				}
 			}
 			&.tabs-toggle {
 				width: auto;
@@ -459,9 +475,11 @@
 	}
 	.tabs-panel {
 		@extend %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent;
+		background-color: #eee;
+		border: 1px solid #ccc;
+		box-shadow: 0 0 7px #999999 inset;
 		width: 66%;
 		z-index: 2;
-		border: 1px solid #ccc;
 	}
 	.tabs-prev {
 		margin-left: 15px;
@@ -636,6 +654,7 @@
 	.tabs-panel {
 		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
 		display: inline-block;
+		background: #eee;
 		@include box-shadow(0 15px 15px -10px #999, 0 1px 1px #aaa);
 	}
 	&.slide-vert, &.slide-horz {
@@ -814,9 +833,8 @@
 		}
 	}
 
-	%tabbedinterface-padding-5-25-5-5-border-radius-0-3-3-0 {
+	%tabbedinterface-padding-5-25-5-5 {
 		padding: 5px 25px 5px 5px;
-		@include border-radius(0 3px 3px 0);
 	}
 	%tabbedinterface-margin-left-2px-margin-right-auto {
 		margin-left: 2px;
@@ -828,12 +846,33 @@
 			right: auto;
 			li {
 				a {
-					padding: 5px 25px 5px 5px;
+					@extend %tabbedinterface-padding-5-25-5-5;
 					&.active {
-						@extend %tabbedinterface-padding-5-25-5-5-border-radius-0-3-3-0;
+						@extend %tabbedinterface-padding-5-25-5-5;
 					}
 					@include pseudo-focus {
-						@extend %tabbedinterface-padding-5-25-5-5-border-radius-0-3-3-0;
+						@extend %tabbedinterface-padding-5-25-5-5;
+					}
+				}
+				&.active {
+					a {
+						&:after {
+							border: {
+								color: transparent transparent transparent black;
+								style: solid;
+								width: 13px;
+							}
+							content: "";
+							display: block;
+							height: 0;
+							right: -20px;
+							position: absolute;
+							top: 0;
+							width: 0;
+						}
+						&:before {
+							border: none;
+						}
 					}
 				}
 				&.tabs-toggle {
