@@ -5,7 +5,7 @@
 /*
  * Tabbed interface plugin
  */
-/*global jQuery: false, pe: false, wet_boew_tabbedinterface: false*/
+/*global jQuery: false, wet_boew_tabbedinterface: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -14,7 +14,7 @@
 	/* local reference */
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
-		depends : (pe.mobile ? [] : ['easytabs', 'equalheights']),
+		depends : (_pe.mobile ? [] : ['easytabs']),
 		mobile : function (elm, nested) {
 			// Process any nested tabs
 			if (typeof nested === 'undefined' || !nested) {
@@ -27,13 +27,23 @@
 				$panelElms,
 				$panels = elm.children('.tabs-panel').children('div'),
 				$tabs = elm.children('.tabs').children('li'),
+				$activeTab,
+				tabListIdx = $('.wet-boew-tabbedinterface').index(elm),
 				accordion = '<div data-role="collapsible-set" data-mini="true" data-content-theme="b" data-theme="b">',
 				defaultTab = 0,
+				$link,
 				hlevel,
 				hopen,
 				hclose,
 				index,
 				len;
+
+			// Check if there's an active tab from the user's session
+			$activeTab = $tabs.find('a[href="' + this._get_active_panel(tabListIdx) + '"]');
+			if ($activeTab.length) {
+				$tabs.removeClass('default');
+				$activeTab.parent('li').addClass('default');
+			}
 
 			// Find the default tab
 			for (index = 0, len = $tabs.length; index < len; index += 1) {
@@ -52,7 +62,8 @@
 
 			// Create the accordion panels
 			for (index = 0, len = $panels.length; index < len; index += 1) {
-				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + '>' + hopen + $tabs.eq(index).children('a').text() + hclose + '</div>';
+				$link = $tabs.eq(index).children('a');
+				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + _pe.fn.tabbedinterface._get_hash($link.attr('href')) + '">' + hopen + $link.text() + hclose + '</div>';
 			}
 			$accordion = $(accordion);
 
@@ -62,10 +73,18 @@
 				$panelElms.eq(len).append($panels.eq(len));
 			}
 			elm.empty().append($accordion);
+
+			// Track the active panel during the user's session
+			elm.find('[data-role="collapsible"]').on('expand', function () {
+				_pe.fn.tabbedinterface._set_active_panel($(this).data('tab'), tabListIdx);
+				setTimeout(function() {
+					_pe.window.trigger('resize');
+				}, 1);
+			});
 			return elm;
 		},
 		_exec : function (elm) {
-			if (pe.mobile) {
+			if (_pe.mobile) {
 				return _pe.fn.tabbedinterface.mobile(elm).trigger('create');
 			}
 			var $default_tab,
@@ -83,10 +102,10 @@
 				getNextTab,
 				getPrevTab,
 				selectTab,
-				stopText = pe.dic.get('%pause'),
-				stopHiddenText = pe.dic.get('%tab-rotation', 'disable'),
-				startText = pe.dic.get('%play'),
-				startHiddenText = pe.dic.get('%tab-rotation', 'enable'),
+				stopText = _pe.dic.get('%pause'),
+				stopHiddenText = _pe.dic.get('%tab-rotation', 'disable'),
+				startText = _pe.dic.get('%play'),
+				startHiddenText = _pe.dic.get('%tab-rotation', 'enable'),
 				stopCycle,
 				toggleCycle,
 				tabListCount = $tabbedInterfaces.length > 1 ? ' ' + ($tabbedInterfaces.index(elm) + 1) : '',
@@ -123,7 +142,7 @@
 			$.extend(opts, (typeof wet_boew_tabbedinterface !== 'undefined' ? wet_boew_tabbedinterface : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
 			// Add hidden tab list heading
-			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(pe.dic.get('%tab-list') + tabListCount);
+			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(_pe.dic.get('%tab-list') + tabListCount);
 			if (_pe.ie > 0 && _pe.ie < 9) {
 				$tabListHeading.wrap('<div>'); // Stop empty text nodes from moving the tabs around
 			}
@@ -133,7 +152,7 @@
 			$tabs.attr({'role': 'tab', 'aria-selected': 'false'});
 			$tabsPanel.attr('id', $panels.eq(0).attr('id') + '-parent');
 			$panels.attr({'tabindex': '-1', 'role': 'tabpanel', 'aria-hidden': 'true'}).each(function () {
-				if (pe.ie !== 0) {
+				if (_pe.ie !== 0) {
 					this.setAttribute('aria-labelledby', this.id + tabSuffix);
 				}
 			});
@@ -165,7 +184,7 @@
 						} else {
 							href = $target.attr('href'),
 							hash = href.substring(href.indexOf('#'));
-							pe.focus($panels.filter(hash));
+							_pe.focus($panels.filter(hash));
 						}
 					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
 						selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
@@ -178,7 +197,7 @@
 					href = $target.attr('href'),
 					hash = href.substring(href.indexOf('#'));
 					if ($target.is($tabs.filter('.' + opts.tabActiveClass))) {
-						pe.focus($panels.filter(hash));
+						_pe.focus($panels.filter(hash));
 					}
 					// Workaround for broken EasyTabs getHeightForHidden function where it misreports the panel height when the panel is first shown
 					// TODO: Issue should be fixed in EasyTabs
@@ -220,7 +239,7 @@
 				$selection.addClass(opts.tabActiveClass).attr('aria-selected', 'true').parent().addClass(opts.tabActiveClass);
 				cycleButton = $selection.parent().siblings('.tabs-toggle');
 				if (!keepFocus && (cycleButton.length === 0 || cycleButton.data('state') === 'stopped')) {
-					return pe.focus($selection);
+					return _pe.focus($selection);
 				}
 			};
 			toggleCycle = function () {
@@ -269,7 +288,7 @@
 				//
 				// creates a play/pause, prev/next buttons, and lets the user toggle the stateact as PREV button MB
 				tabsPanelId = $tabsPanel.attr('id');
-				$nav.append('<li class="tabs-toggle"><a class="tabs-prev" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + pe.dic.get('%previous') + '</span></a></li>');
+				$nav.append('<li class="tabs-toggle"><a class="tabs-prev" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + _pe.dic.get('%previous') + '</span></a></li>');
 				// lets the user jump to the previous tab by clicking on the PREV button
 				$nav.find('.tabs-prev').on('click', function () {
 					selectTab(getPrevTab($tabs), $tabs, $panels, opts, true);
@@ -278,7 +297,7 @@
 				//End PREV button
 				//Create duplicate of Play/pause button to act as NEXT button MB
 				//
-				$nav.append('<li class="tabs-toggle"><a class="tabs-next" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + pe.dic.get('%next') + '</span></a></li>');
+				$nav.append('<li class="tabs-toggle"><a class="tabs-next" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + _pe.dic.get('%next') + '</span></a></li>');
 				// lets the user jump to the next tab by clicking on the NEXT button
 				$nav.find('.tabs-next').on('click', function () {
 					selectTab(getNextTab($tabs), $tabs, $panels, opts, true);
@@ -304,7 +323,7 @@
 					$pbar = $('<div class="tabs-roller">').hide().on('click', function () {
 						return $(this).siblings('a').trigger('click');
 					});
-					if (pe.ie > 0 && pe.ie < 8) {
+					if (_pe.ie > 0 && _pe.ie < 8) {
 						$('.tabs-style-2 .tabs, .tabs-style-2 .tabs li').css('filter', '');
 					}
 					return $(this).parent().append($pbar);
