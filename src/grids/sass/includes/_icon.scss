@@ -30,7 +30,7 @@
 	}
 	padding-left: 19px;
 }
-@each $downloadable-file-type in psd, zip, egret, doc, pdf, xls, rtf, pot, ppt, pps, pptm, docx, xlsx, pptx {
+@each $downloadable-file-type in psd, zip, egret, doc, pdf, xls, rtf, pot, ppt, pps, pptm, docx, xlsx, pptx, pub {
 	[href$='.#{$downloadable-file-type}'] {
 		@extend %grids-icon-download-icon;
 	}
