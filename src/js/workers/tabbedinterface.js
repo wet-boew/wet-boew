@@ -77,6 +77,9 @@
 			// Track the active panel during the user's session
 			elm.find('[data-role="collapsible"]').on('expand', function () {
 				_pe.fn.tabbedinterface._set_active_panel($(this).data('tab'), tabListIdx);
+				setTimeout(function() {
+					_pe.window.trigger('resize');
+				}, 1);
 			});
 			return elm;
 		},
@@ -176,6 +179,7 @@
 				}
 			});
 			$tabsPanel.attr('id', $panels.eq(0).attr('id') + '-parent');
+<<<<<<< HEAD
 			$panels.attr({'tabindex': '-1', 'role': 'tabpanel', 'aria-hidden': 'true', 'aria-expanded': 'false'}).each(function () {
 				this.setAttribute('aria-labelledby', this.id + tabSuffix);
 			});
@@ -190,6 +194,11 @@
 				// Focus active tab if tabs have been initialized and cycle isn't active
 				if (elm.data('easytabs') !== undefined && !$nav.hasClass('started')) {
 					_pe.focus($tab);
+=======
+			$panels.attr({'tabindex': '-1', 'role': 'tabpanel', 'aria-hidden': 'true'}).each(function () {
+				if (_pe.ie !== 0) {
+					this.setAttribute('aria-labelledby', this.id + tabSuffix);
+>>>>>>> v3.0
 				}
 			});
 
@@ -236,7 +245,12 @@
 						if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
 							selectTab($target, $tabs, $panels, opts, false);
 						} else {
+<<<<<<< HEAD
 							hash = _pe.fn.tabbedinterface._get_hash($target.attr('href'));
+=======
+							href = $target.attr('href'),
+							hash = href.substring(href.indexOf('#'));
+>>>>>>> v3.0
 							_pe.focus($panels.filter(hash));
 						}
 					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
@@ -247,6 +261,7 @@
 						e.preventDefault();
 					}
 				} else {
+<<<<<<< HEAD
 					// Make sure working with a link since it's possible for an image to be the target of a mouse click
 					$link = (e.target.tagName.toLowerCase() !== 'a') ? $target.closest('a') : $target;
 					hash = _pe.fn.tabbedinterface._get_hash($link.attr('href'));
@@ -254,6 +269,12 @@
 					// Shift focus to the panel if the tab is already active
 					if ($link.is($tabs.filter('.' + opts.tabActiveClass))) {
 						_pe.focus($panels.filter($link.attr('href')));
+=======
+					href = $target.attr('href'),
+					hash = href.substring(href.indexOf('#'));
+					if ($target.is($tabs.filter('.' + opts.tabActiveClass))) {
+						_pe.focus($panels.filter(hash));
+>>>>>>> v3.0
 					}
 
 					// Workaround for broken EasyTabs getHeightForHidden function where it misreports the panel height when the panel is first shown
