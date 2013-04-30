@@ -3,7 +3,6 @@
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 
-
 /* Gradient (avoid encoding duplication) */
 %tabbedinterface-gradient-background {
 	background: url(../images/tabs/gradient.png) repeat-x 0 0 #eee;
@@ -40,7 +39,25 @@
 .wet-boew-tabbedinterface {
 	.ui-collapsible-content {
 		position: relative;
+		padding-top: 1px;
+		padding-bottom: 1px;
 	}
+	&.embedded-grid {
+		.ui-collapsible-content {
+			> {
+				[class*="span-"] {
+					float: none;
+				}
+			}
+		}
+	}
+}
+
+%tabbedinterface-padding-2-5-important {
+	padding: 2px 5px !important;
+}
+%tabbedinterface-padding-2-5-2-24-important {
+	padding: 2px 5px 2px 24px !important;
 }
 
 .tabs {
@@ -84,23 +101,21 @@
 					@extend %tabbedinterface-text-decoration-underline;
 					@extend %tabbedinterface-color-000-important;
 				}
-				&.tabs-next, &.tabs-prev {
-					padding: 2px 5px !important;
-				}
-				&.tabs-start, &.tabs-stop {
-					padding: 2px 5px 2px 24px !important;
-				}
 				&.tabs-prev {
 					background: url(../images/tabs/prev.gif) no-repeat center 5px #fff !important;
+					@extend %tabbedinterface-padding-2-5-important;
 				}
 				&.tabs-next {
 					background: url(../images/tabs/next.gif) no-repeat center 5px #fff !important;
+					@extend %tabbedinterface-padding-2-5-important;
 				}
 				&.tabs-stop {
 					background: url(../images/tabs/pause.png) no-repeat -1px 0 #fff !important;
+					@extend %tabbedinterface-padding-2-5-2-24-important;
 				}
 				&.tabs-start {
 					background: url(../images/tabs/play.png) no-repeat -1px 0 #fff !important;
+					@extend %tabbedinterface-padding-2-5-2-24-important;
 				}
 			}
 		}
@@ -155,9 +170,9 @@
 			}
 		}
 	}
-  .panel-end {
-    margin: 0 10px;
-  }
+	.panel-end {
+		margin: 0 10px;
+	}
 }
 
 .slide-horz, .slide-vert {
@@ -349,7 +364,7 @@
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		min-height: 220px;
 		background: url(../images/tabs/gradient3.png) repeat-x 0 bottom #555;
@@ -376,7 +391,15 @@
 	margin-right: 0;
 	padding: 5px 5px 5px 25px;
 	@include opacity(0.75);
-	@include border-radius(3px 0 0 3px);
+}
+
+%tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent {
+	@extend %tabbedinterface-gradient-background;
+	background-position: 0 bottom;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	min-height: 220px;
 }
 
 /* style 3 */
@@ -415,6 +438,22 @@
 			&.active {
 				border: none;
 				color: #fff !important;
+				a {
+					&:before {
+					    border: {
+							color: transparent black transparent transparent;
+							style: solid;
+							width: 13px;
+						}
+						content: "";
+						display: block;
+						height: 0;
+						left: -20px;
+						position: absolute;
+						top: 0;
+						width: 0;
+					}
+				}
 			}
 			&.tabs-toggle {
 				width: auto;
@@ -431,18 +470,16 @@
 			}
 		}
 	}
+	.ui-collapsible-content {
+		@extend %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent;
+	}
 	.tabs-panel {
-		@extend %tabbedinterface-gradient-background;
-		width: 66%;
-		z-index: 1;
-		border: none;
-		background-position: 0 bottom;
-		color: #333;
-		margin: 0;
-		padding: 0;
-		min-height: 220px;
-		z-index: 2;
+		@extend %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent;
+		background-color: #eee;
 		border: 1px solid #ccc;
+		box-shadow: 0 0 7px #999999 inset;
+		width: 66%;
+		z-index: 2;
 	}
 	.tabs-prev {
 		margin-left: 15px;
@@ -506,7 +543,7 @@
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		margin: 0;
 		padding: 0;
@@ -573,7 +610,7 @@
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		margin: 0;
 		padding: 0;
@@ -582,18 +619,6 @@
 			margin-bottom: 0;
 		}
 		@extend %tabbedinterface-rel-external;
-	}
-}
-
-.wb-sup-def {
-	.tabs-style-5 {
-		padding:0;
-		.tabs {
-			margin-bottom:1px;
-		}
-		.tabs-toggle {
-			margin-left:9px!important;
-		}
 	}
 }
 
@@ -614,9 +639,16 @@
 	@include opacity(1);
 	@extend %tabbedinterface-color-000-important;
 }
+%tabbedinterface-tab-style-6-padding-0-background-eee {
+	padding: 0;
+	background: #eee;
+}
 .tabs-style-6 {
+	.ui-collapsible-content {
+		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
+	}
 	.tabs-panel {
-		padding: 0;
+		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
 		display: inline-block;
 		background: #eee;
 		@include box-shadow(0 15px 15px -10px #999, 0 1px 1px #aaa);
@@ -711,6 +743,190 @@
 			li {
 				&:not(.tabs-toggle) {
 					display: inline;
+				}
+			}
+		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+%tabbedinterface-background-position-right-0-important {
+	background-position: right 0 !important;
+}
+%tabbedinterface-padding-2-24-2-5-important {
+	padding: 2px 24px 2px 5px !important;
+}
+[dir="rtl"] {
+	.tabs {
+		margin: 0 !important;
+		li {
+			@include border-radius(2px 2px 0 0);
+			&.tabs-toggle {
+				a {
+					margin-left: 2px;
+					margin-right: auto;
+					&.tabs-stop {
+						@extend %tabbedinterface-background-position-right-0-important;
+						@extend %tabbedinterface-padding-2-24-2-5-important;
+					}
+					&.tabs-start {
+						@extend %tabbedinterface-background-position-right-0-important;
+						@extend %tabbedinterface-padding-2-24-2-5-important;
+					}
+				}
+			}
+		}
+	}
+
+	.tabs-panel {
+		.viewport {
+			left: auto;
+			right: 0;
+		}
+		.float-right {
+			margin-left: auto;
+			margin-right: 10px;
+		}
+		.float-left {
+			margin-left: 10px;
+			margin-right: auto;
+		}
+	}
+
+	.tabs-roller {
+		left: auto;
+		right: 0;
+		cursor:pointer;
+	}
+
+	.tabs-style-1 {
+		.tabs {
+			li {
+				&.tabs-toggle {
+					a {
+						@extend %tabbedinterface-background-position-right-0-important;
+						@include pseudo-focus {
+							@extend %tabbedinterface-background-position-right-0-important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.tabs-style-2 {
+		.tabs {
+			left: auto;
+			right: 0;
+			li {
+				margin-left: -3px;
+				margin-right: auto;
+				&.tabs-toggle {
+					margin-left: -6px;
+					margin-right: 6px;
+				}
+			}
+		}
+	}
+
+	%tabbedinterface-padding-5-25-5-5 {
+		padding: 5px 25px 5px 5px;
+	}
+	%tabbedinterface-margin-left-2px-margin-right-auto {
+		margin-left: 2px;
+		margin-right: auto;
+	}
+	.tabs-style-3 {
+		.tabs {
+			left: 0;
+			right: auto;
+			li {
+				a {
+					@extend %tabbedinterface-padding-5-25-5-5;
+					&.active {
+						@extend %tabbedinterface-padding-5-25-5-5;
+					}
+					@include pseudo-focus {
+						@extend %tabbedinterface-padding-5-25-5-5;
+					}
+				}
+				&.active {
+					a {
+						&:after {
+							border: {
+								color: transparent transparent transparent black;
+								style: solid;
+								width: 13px;
+							}
+							content: "";
+							display: block;
+							height: 0;
+							right: -20px;
+							position: absolute;
+							top: 0;
+							width: 0;
+						}
+						&:before {
+							border: none;
+						}
+					}
+				}
+				&.tabs-toggle {
+					a {
+						float: left;
+						@include pseudo-focus {
+							@extend %tabbedinterface-margin-left-2px-margin-right-auto;
+						}
+					}
+				}
+			}
+		}
+		.tabs-prev {
+			margin-right: 15px !important;
+		}
+	}
+
+	.tabs-style-4 {
+		padding: 0;
+		.tabs {
+			li {
+				&.tabs-toggle {
+					a {
+						@extend %tabbedinterface-margin-left-2px-margin-right-auto;
+					}
+				}
+			}
+		}
+	}
+
+	.wb-sup-def {
+		.tabs-style-5 {
+			.tabs-toggle {
+				margin-left: auto !important;
+				margin-right: 9px !important;
+			}
+		}
+		.tabs {
+			margin-left: auto;
+			margin-right: -1px;
+			li {
+				padding-right: 0;
+				margin-right: 0;
+			}
+		}
+		.tabs-toggle {
+			margin-left: auto !important;
+			margin-right: 2px !important;
+		}
+	}
+
+	.tabs-style-6 {
+		.tabs {
+			margin: 15px 0 !important;
+			li {
+				&.img {
+					margin-left: 10px;
+					margin-right: auto;
 				}
 			}
 		}

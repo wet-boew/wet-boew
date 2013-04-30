@@ -97,11 +97,6 @@
 			// Find the lightbox links and galleries
 			$lb = elm.find('.lb-item, .lb-item-gal, .lb-gallery, .lb-hidden-gallery');
 
-			// Add touchscreen support for launching the lightbox
-			$lb.filter('.lb-item, .lb-item-gal').on('vclick touchstart', function () {
-				$.fn.colorbox.load();
-			});
-
 			// Build single images, inline content and AJAXed content
 			$lb.filter('.lb-item').attr('aria-haspopup', 'true').each(function () {
 				_pe.fn.lightbox._init_colorbox(this, opts);

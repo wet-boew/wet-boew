@@ -77,6 +77,9 @@
 			// Track the active panel during the user's session
 			elm.find('[data-role="collapsible"]').on('expand', function () {
 				_pe.fn.tabbedinterface._set_active_panel($(this).data('tab'), tabListIdx);
+				setTimeout(function() {
+					_pe.window.trigger('resize');
+				}, 1);
 			});
 			return elm;
 		},

@@ -33,7 +33,7 @@ details {
 			> {
 				summary {
 					&:before { /* Add the open pointer */
-						content: "\25BC\a0";
+						content: "\25BC\a0" !important;
 					}
 				}
 			}
@@ -72,6 +72,21 @@ details {
 		cursor: auto;
 		@include pseudo-focus {
 			background: none;
+		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	details {
+		&.polyfill {
+			> {
+				summary {
+					&:before { /* Add the close pointer */
+						content: "\25C0\a0";
+					}
+				}
+			}
 		}
 	}
 }

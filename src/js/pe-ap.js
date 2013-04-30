@@ -1070,6 +1070,7 @@
 							bclinkurl.push(link.hostname + link.pathname.replace(/^([^\/])/, '/$1'));
 						}
 					}
+					bclinkslen = bclinkurl.length;
 
 					// Try to match each breadcrumb link
 					for (linkindex = 0, menulinkslen = menulink.length; linkindex !== menulinkslen; linkindex += 1) {
