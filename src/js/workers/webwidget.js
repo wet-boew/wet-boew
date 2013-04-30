@@ -60,7 +60,7 @@
 			}
 		},
 		_exec: function (elm, type) {
-			var $loading, $content, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results, finalize, defered, protocol;
+			var $loading, $content, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results, finalize, defered, protocol, loadingTag;
 			limit = _pe.limit(elm);
 			feeds = elm.find('a').map(function () {
 				var a = this.href;
