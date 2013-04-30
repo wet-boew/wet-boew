@@ -60,7 +60,21 @@
 			}
 		},
 		_exec: function (elm, type) {
-			var $loading, $content, feeds, limit, typeObj, entries, i, last, process_entries, parse_entries, _results, finalize, defered, protocol, loadingTag;
+			var $loading,
+				$content,
+				feeds,
+				limit,
+				typeObj,
+				entries,
+				i,
+				last,
+				process_entries,
+				parse_entries,
+				_results,
+				finalize,
+				defered,
+				protocol,
+				loadingTag;
 			limit = _pe.limit(elm);
 			feeds = elm.find('a').map(function () {
 				var a = this.href;
@@ -87,13 +101,12 @@
 				last = feeds.length - 1;
 				entries = [];
 				parse_entries = typeObj._parse_entries;
-				i = feeds.length - 1;
+				i = last;
 				_results = [];
 
 				process_entries = function (data) {
-					var k, len;
 					data = typeObj._map_entries(data);
-					for (k = 0, len = data.length; k < len; k += 1) {
+					for (var k = 0, len = data.length; k < len; k += 1) {
 						entries.push(data[k]);
 					}
 					if (!last) {
