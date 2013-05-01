@@ -83,8 +83,12 @@ h6 {
 	font-size: 110%;
 }
 
-.wb-hide {
+%wb-display-none {
 	display: none;
+}
+
+.wb-hide {
+	@extend %wb-display-none;
 }
 
 %wb-clip {
@@ -138,6 +142,12 @@ h6 {
 	@include transparent;
 	@include pseudo-focus {
 		@include opaque;
+	}
+}
+
+.ui-mobile {
+	.ui-popup-hidden {
+		@extend %wb-display-none;
 	}
 }
 
