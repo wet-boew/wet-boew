@@ -83,8 +83,12 @@ h6 {
 	font-size: 110%;
 }
 
-.wb-hide {
+%wb-display-none {
 	display: none;
+}
+
+.wb-hide {
+	@extend %wb-display-none;
 }
 
 %wb-clip {
@@ -143,7 +147,7 @@ h6 {
 
 .ui-mobile {
 	.ui-popup-hidden {
-		display: none;
+		@extend %wb-display-none;
 	}
 }
 
