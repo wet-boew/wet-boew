@@ -54,11 +54,12 @@ var wet_boew_geomap = {
 			visible: true,
 			datatable: true,
 			tab: true,
-			popupInfo: {
-				height: 150,
-				width: 300,
-				content: "<div><h3>KML</h3><div class=span-1><label class=wb-invisible for=inputchk>Sélectionnez l'élément</label><input type=checkbox id=inputchk></input></div><div class=span-2><h5>Le produit</h5></div><div class=clear></div><p>_Titre du produit</p><p>_Description</p></div>"
-			},
+			popups: true,
+//			popupInfo: {
+//				height: 150,
+//				width: 300,
+//				content: "<div><h3>KML</h3><div class=span-1><label class=wb-invisible for=inputchk>Sélectionnez l'élément</label><input type=checkbox id=inputchk></input></div><div class=span-2><h5>Le produit</h5></div><div class=clear></div><p>_Titre du produit</p><p>_Description</p></div>"
+//			},
 			attributes: {
 				name: 'Titre du produit',
 				description: 'Description'
