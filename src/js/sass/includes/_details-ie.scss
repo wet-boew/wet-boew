@@ -4,6 +4,21 @@
  */
 
 /* Add the pointers */
+.ie7, .ie8 {
+	details {
+		> {
+			* {
+				display: none;
+			}
+		}
+		&[open] {
+			* {
+				display: block;
+			}
+		}
+	}
+}
+
 .ie7 {
 	details {
 		summary {
@@ -17,6 +32,27 @@
 		}
 		&.open > summary .details-closed, > summary .details-open {
 			display: none;
+		}
+	}
+}
+
+.ie8 {
+	details {
+		> {
+			summary {
+				&:before { /* Add the closed pointer */
+					content: "\25BA\a0";
+				}
+			}
+		}
+		&.open {
+			> {
+				summary {
+					&:before { /* Add the opened pointer */
+						content: "\25BC\a0" !important;
+					}
+				}
+			}
 		}
 	}
 }
