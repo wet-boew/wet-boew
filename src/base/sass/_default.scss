@@ -141,6 +141,12 @@ h6 {
 	}
 }
 
+.ui-mobile {
+	.ui-popup-hidden {
+		display: none;
+	}
+}
+
 #mobiletest {
 	@extend %wb-clip;
 }
