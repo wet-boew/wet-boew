@@ -1,115 +1,292 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gml="http://www.opengis.net/gml"
-     xmlns:georss="http://www.georss.org/georss">
-   <Document>
-      <name>GeoGratis</name>
-      <open>1</open>
-      <description>Product Selection</description>
-      <Style id="poly">
-         <LineStyle>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+    <name>GeoGratis</name>
+    <open>1</open>
+    <description>Product Selection</description>
+    <Style id="poly2">
+        <LineStyle>
             <color>ffff0000</color>
             <width>1.5</width>
-         </LineStyle>
-         <PolyStyle>
+        </LineStyle>
+        <PolyStyle>
             <color>80ff0000</color>
-         </PolyStyle>
-      </Style>
-      <StyleMap id="poly0">
-         <Pair>
-            <key>normal</key>
-            <styleUrl>#poly1</styleUrl>
-         </Pair>
-         <Pair>
-            <key>highlight</key>
-            <styleUrl>#poly</styleUrl>
-         </Pair>
-      </StyleMap>
-      <Style id="poly1">
-         <LineStyle>
+        </PolyStyle>
+    </Style>
+    <Style id="poly1">
+        <LineStyle>
             <color>ff0080ff</color>
             <width>1.5</width>
-         </LineStyle>
-         <PolyStyle>
+        </LineStyle>
+        <PolyStyle>
             <color>800080ff</color>
-         </PolyStyle>
-      </Style>      
-      <Placemark>
-         <name>U-Pb ages of Archean basement and Paleoproterozoic plutonic rocks, southern Cumberland Peninsula, eastern Baffin Island, Nunavut</name>
-         <description><![CDATA[<ul class="list-bullet-none margin-left-none margin-bottom-none">
-		 <li><strong>Date Added:</strong> August 30, 2012</li>
-		 <li><strong>Author:</strong> Rayner, N M; Sanborn-Barrie, M; Young, M D; Whalen, J B</li>
-		 <li class="margin-top-large"><strong><a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.html">More Information</a></strong></li>
-         <li class="margin-top-large"><img src="http://www.nrcan.gc.ca/sites/all/themes/clf2/images/sig-eng.gif" alt="Natural Resources Canada" class="image-actual" /></li>
-		 </ul>]]></description>
-         <styleUrl>#poly0</styleUrl>
-         <Polygon>
+        </PolyStyle>
+    </Style>
+    <StyleMap id="poly0">
+        <Pair>
+            <key>normal</key>
+            <styleUrl>#poly1</styleUrl>
+        </Pair>
+        <Pair>
+            <key>highlight</key>
+            <styleUrl>#poly2</styleUrl>
+        </Pair>
+    </StyleMap>    
+    <Placemark id="7bd57f40-95ae-536b-a224-191d882a4b98">
+        <name>Geoscape Ottawa - Gatineau</name>
+        <description><![CDATA[<b>Date Added: </b>January 1, 2004<br/>
+            <b>Author: </b>Aylsworth, J M<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/7bd57f40-95ae-536b-a224-191d882a4b98.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
             <outerBoundaryIs>
-               <LinearRing>
-                  <coordinates>-66.5,64.75 -66.5,67.5 -60.5,67.5 -60.5,64.75 -66.5,64.75</coordinates>
-               </LinearRing>
+                <LinearRing>
+                    <coordinates>
+                        -76.5,45.25,0 -76.5,45.75,0 -74.5,45.75,0 -74.5,45.25,0 -76.5,45.25,0 
+                    </coordinates>
+                </LinearRing>
             </outerBoundaryIs>
-         </Polygon>
-      </Placemark>
-      <Placemark>
-         <name>Geophysical Series, detailed geophysical compilation project, Yukon Plateau, Yukon, NTS 115-I, J, K, N, O, P and 116A and B</name>
-         <description><![CDATA[<ul class="list-bullet-none margin-left-none margin-bottom-none">
-		 <li><strong>Date Added:</strong> November 21, 2012</li>
-		 <li><strong>Author:</strong> Hayward, N; Miles, W; Oneschuk, D</li>
-		 <li class="margin-top-large"><strong><a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.html">More Information</a></strong></li>
-         <li class="margin-top-large"><img src="http://www.nrcan.gc.ca/sites/all/themes/clf2/images/sig-eng.gif" alt="Natural Resources Canada" class="image-actual" /></li>
-		 </ul>]]></description>
-         <styleUrl>#poly0</styleUrl>
-         <Polygon>
+        </Polygon>
+    </Placemark>
+    <Placemark id="06dcc7d8-617b-5c7e-9a14-12ee81e1db65">
+        <name>Geoscape Whitehorse - geoscience for a Yukon community</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<b>Date Added: </b>January 1, 2003<br/>
+            <b>Author: </b>Turner, R J W; Mougeot, C M; Roots, C F; Clague, J J; Franklin, R<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/06dcc7d8-617b-5c7e-9a14-12ee81e1db65.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
             <outerBoundaryIs>
-               <LinearRing>
-                  <coordinates>-141.0,60.75 -141.0,64.25 -136.5,64.25 -136.5,60.75 -141.0,60.75</coordinates>
-               </LinearRing>
+                <LinearRing>
+                    <coordinates>
+                        -136,60.24999999999999,0 -136,61,0 -134.5,61,0 -134.5,60.24999999999999,0 -136,60.24999999999999,0 
+                    </coordinates>
+                </LinearRing>
             </outerBoundaryIs>
-         </Polygon>
-      </Placemark>
-      <Placemark>
-         <name>Configuration of Mike21 for the simulation of nearshore storm waves, currents and sediment transport: Brackley Bight, Prince Edward Island</name>
-         <description><![CDATA[<ul class="list-bullet-none margin-left-none margin-bottom-none">
-		 <li><strong>Date Added:</strong> November 22, 2012</li>
-		 <li><strong>Author:</strong> Manson, G K</li>
-		 <li class="margin-top-large"><strong><a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.html">More Information</a></strong></li>
-         <li class="margin-top-large"><img src="http://www.nrcan.gc.ca/sites/all/themes/clf2/images/sig-eng.gif" alt="Natural Resources Canada" class="image-actual" /></li>
-		 </ul>]]></description>
-         <styleUrl>#poly0</styleUrl>
-         <Polygon>
+        </Polygon>
+    </Placemark>
+    <Placemark id="76757193-2973-5591-b683-422554916de3">
+        <name>Geoscape Québec: an extraordinary geological heritage</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<b>Date Added: </b>January 1, 2001<br/>
+            <b>Author: </b>Côté, P; Achab, A; Michaud, Y<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/76757193-2973-5591-b683-422554916de3.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
             <outerBoundaryIs>
-               <LinearRing>
-                  <coordinates>-63.5,47.3333 -63.5,47.5833 -62.6667,47.5833 -62.6667,47.3333 -63.5,47.3333</coordinates>
-               </LinearRing>
+                <LinearRing>
+                    <coordinates>
+                        -71.5,46.75000000000001,0 -71.5,47,0 -71,47,0 -71,46.75000000000001,0 -71.5,46.75000000000001,0 
+                    </coordinates>
+                </LinearRing>
             </outerBoundaryIs>
-         </Polygon>
-      </Placemark>
-      <Placemark>
-         <name>First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-P/12 and part of 115-P/11, Yukon</name>
-         <description><![CDATA[<ul class="list-bullet-none margin-left-none margin-bottom-none">
-		 <li><strong>Date Added:</strong> November 20, 2012</li>
-		 <li><strong>Author:</strong> Kiss, F</li>
-		 <li class="margin-top-large"><strong><a href="http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.html">More Information</a></strong></li>
-         <li class="margin-top-large"><img src="http://www.nrcan.gc.ca/sites/all/themes/clf2/images/sig-eng.gif" alt="Natural Resources Canada" class="image-actual" /></li>
-		 </ul>]]></description>
-         <styleUrl>#poly0</styleUrl>
-         <Polygon>
+        </Polygon>
+    </Placemark>    
+    <Placemark id="26d3551a-83e8-5908-bc24-457a74e72b27">
+        <name>Geoscape Nanaimo</name>
+        <description><![CDATA[<b>Date Added: </b>January 1, 2005<br/>
+            <b>Author: </b>McColl, K M; Turner, R J W; Franklin, R G; Earle, S; Stokes, T; Pawliuk, D; Houle, J; Guthrie, R; Fox, J; Clague, J J<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/26d3551a-83e8-5908-bc24-457a74e72b27.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
             <outerBoundaryIs>
-               <LinearRing>
-                  <coordinates>-138.0,63.5 -138.0,63.75 -137.4167,63.75 -137.4167,63.5 -138.0,63.5</coordinates>
-               </LinearRing>
+                <LinearRing>
+                    <coordinates>
+                        -127,48.75,0 -127,50.25,0 -123.5,50.25,0 -123.5,48.75,0 -127,48.75,0 
+                    </coordinates>
+                </LinearRing>
             </outerBoundaryIs>
-         </Polygon>
-      </Placemark>     
-      <NetworkLink>
-         <name>Next</name>
-         <visibility>0</visibility>
-         <open>0</open>
-         <description>View More Results</description>
-         <Link>
-            <href>http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?start-index=944099&amp;alt=kml</href>
-            <viewRefreshMode>onRequest</viewRefreshMode>
-         </Link>
-      </NetworkLink>
-   </Document>
+        </Polygon>
+    </Placemark>
+    <Placemark id="cff50cb3-d556-5cb1-ab69-92952d5bb188">
+        <name>Geoscape southern Saskatchewan</name>
+        <description><![CDATA[<b>Date Added: </b>January 1, 2004<br/>
+            <b>Author: </b>Turner, R J W; Franklin, R G; Haidl, F M; Gilboy, C F; Clague, J J<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/cff50cb3-d556-5cb1-ab69-92952d5bb188.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -110,48.99999999999999,0 -110,56,0 -101.5,56,0 -101.5,48.99999999999999,0 -110,48.99999999999999,0 
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>    
+    <Placemark id="eaa27eda-17f5-5803-bad1-496a0a077110">
+        <name>Geoscape Vancouver, overhead transparency set</name>
+        <description><![CDATA[<b>Date Added: </b>January 1, 1996<br/>
+            <b>Author: </b>Turner, R J W; Clague, J J; Groulx, B J<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/eaa27eda-17f5-5803-bad1-496a0a077110.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -124,48.99999999999999,0 -124,51,0 -121,51,0 -121,48.99999999999999,0 -124,48.99999999999999,0 
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>   
+    <Placemark id="f53ab165-921d-5b21-a5b9-15b1b62615a1">
+        <name>Geoscape Montréal</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<b>Date Added: </b>January 1, 2002<br/>
+            <b>Author: </b>Prichonet, G; Côté, P; Bédard, P; Larocque, M; Achab, A<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/f53ab165-921d-5b21-a5b9-15b1b62615a1.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -77,45.5,0 -77,45.75,0 -76.5,45.75,0 -76.5,45.5,0 -77,45.5,0 
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>    
+    <Placemark id="36e8f009-1907-5e48-8fd4-2a6380aec2d3">
+        <name>Geoscape Fort Fraser, British Columbia</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<b>Date Added: </b>January 1, 1999<br/>
+            <b>Author: </b>Hastings, N; Plouffe, A; Struik, L C; Turner, R J W; Anderson, R G; Clague, J J; Williams, S P; Kung, R; Taccogna, G<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/36e8f009-1907-5e48-8fd4-2a6380aec2d3.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -126,54,0 -126,55.00000000000001,0 -124,55.00000000000001,0 -124,54,0 -126,54,0 
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+    <Placemark id="2ea9c716-e792-52f1-bafa-0b4b3405efc2">
+        <name>Geoscape northern Saskatchewan</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<b>Date Added: </b>January 1, 2006<br/>
+            <b>Author: </b>Douma, S; Corrigan, D; Delaney, G; Yeo, G; Maxeiner, R; Dale, J; Campbell, J; Viner, D; Rogers, M; Card, C; Harper, C; Slimmon, B; MacDougall, D; Ashton, K<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/2ea9c716-e792-52f1-bafa-0b4b3405efc2.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -110,53,0 -110,60,0 -101.5,60,0 -101.5,53,0 -110,53,0 
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>    
+    <Placemark id="ef0748e0-59c9-52f9-a148-5fe5edbae295">
+        <name>Geoscape Toronto</name>
+        <description><![CDATA[<b>Date Added: </b>January 1, 2003<br/>
+            <b>Author: </b>Doyle, V M; Steele, K G<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/ef0748e0-59c9-52f9-a148-5fe5edbae295.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -80.5,43.5,0 -80.5,44.25,0 -78,44.25,0 -78,43.5,0 -80.5,43.5,0 
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+    <Placemark id="3e806a5a-d124-5ace-8bf7-c3e0a1e59859">
+        <name>Geoscape Victoria</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<b>Date Added: </b>January 1, 2001<br/>
+            <b>Author: </b>Yorath, C; Kung, R; Franklin, R<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/3e806a5a-d124-5ace-8bf7-c3e0a1e59859.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -126,48.25,0 -126,49.25000000000001,0 -122.5,49.25000000000001,0 -122.5,48.25,0 -126,48.25,0 
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+    <Placemark id="c384829c-6bbc-5d08-9eb4-764237a457c7">
+        <name>Geoscape Vancouver</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<b>Date Added: </b>January 1, 1996<br/>
+            <b>Author: </b>Turner, R J W; Clague, J J; Groulx, B J<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/c384829c-6bbc-5d08-9eb4-764237a457c7.html">More Information</a>
+            </b>]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -124,48.99999999999999,0 -124,51,0 -121,51,0 -121,48.99999999999999,0 -124,48.99999999999999,0 
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+    <Placemark id="f3b7c83d-dbe9-56ab-b4aa-eedc8e4245f6">
+        <name>Geoscape Vancouver, living with our geological landscape</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<b>Date Added: </b>January 1, 1996<br/>
+            <b>Author: </b>Turner, R J W; Clague, J J; Groulx, B J<br/>
+            <br/>
+            <b>
+               <a href="http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/f3b7c83d-dbe9-56ab-b4aa-eedc8e4245f6.html">More Information</a>
+            </b>
+           ]]></description>
+        <styleUrl>#poly0</styleUrl>
+        <Polygon>
+            <outerBoundaryIs>
+                <LinearRing>
+                    <coordinates>
+                        -124,48.99999999999999,0 -124,51,0 -121,51,0 -121,48.99999999999999,0 -124,48.99999999999999,0 
+                    </coordinates>
+                </LinearRing>
+            </outerBoundaryIs>
+        </Polygon>
+    </Placemark>
+</Document>
 </kml>
