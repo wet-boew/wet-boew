@@ -4,6 +4,21 @@
  */
 
 /* Add the pointers */
+.ie7, .ie8 {
+	details {
+		> {
+			* {
+				display: none;
+			}
+		}
+		&[open] {
+			* {
+				display: block;
+			}
+		}
+	}
+}
+
 .ie7 {
 	details {
 		summary {
@@ -28,6 +43,40 @@
 					this.runtimeStyle.zoom="1",
 					this.innerHTML = '<span class="details-closed">\25C0\a0</span><span class="details-open">\25BC\a0</span>'+this.innerHTML
 				);
+			}
+		}
+	}
+}
+
+.ie8 {
+	details {
+		> {
+			summary {
+				&:before { /* Add the closed pointer */
+					content: "\25BA\a0";
+				}
+			}
+		}
+		&.open {
+			> {
+				summary {
+					&:before { /* Add the opened pointer */
+						content: "\25BC\a0" !important;
+					}
+				}
+			}
+		}
+	}
+
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		details {
+			> {
+				summary {
+					&:before { /* Add the close pointer */
+						content: "\25C0\a0";
+					}
+				}
 			}
 		}
 	}
