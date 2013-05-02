@@ -64,7 +64,7 @@
 			}
 
 			// Add the wrappers
-			innerWrapper = elm.wrap('<div><div id="slideoutWrapper" role="application"><div id="slideoutInnerWrapper"></div></div></div>').parent(); // This is used for overflow: hidden and animate.
+			innerWrapper = elm.wrap('<div><div id="slideoutWrapper" role="application" aria-labelledby="toggleLink"><div id="slideoutInnerWrapper"></div></div></div>').parent(); // This is used for overflow: hidden and animate.
 			wrapper = innerWrapper.parent();
 			container = wrapper.parent();
 
