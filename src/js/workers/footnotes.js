@@ -5,7 +5,7 @@
 /*
  * Footnotes
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
