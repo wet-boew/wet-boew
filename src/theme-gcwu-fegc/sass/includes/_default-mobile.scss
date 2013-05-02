@@ -400,6 +400,17 @@ table {
 	}
 }
 
+%gcwu-default-mobile-background-image-none-important {
+	background-image: none !important;
+}
+.gcwu-minister-in {
+	@extend %gcwu-default-mobile-background-image-none-important;
+}
+.gcwu-minister {
+	p {
+		@extend %gcwu-default-mobile-background-image-none-important;
+}
+
 .wet-boew-menubar {
 	a {
 		background: #eee;
