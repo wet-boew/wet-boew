@@ -23,7 +23,7 @@
 				}
 				[class*="span-"] {
 					border: 0 solid transparent;
-					border-width: 0 10px 20px 10px; 
+					border-width: 0 10px 20px 10px;
 					@include background-clip(padding-box);
 					@include background-origin(padding-box);
 					@include box-sizing(content-box);
