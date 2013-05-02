@@ -2,3 +2,14 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
+%gcwu-default-small-screen-background-image-none-important {
+	background-image: none !important;
+}
+.gcwu-minister-in {
+	@extend %gcwu-default-small-screen-background-image-none-important;
+}
+.gcwu-minister {
+	p {
+		@extend %gcwu-default-small-screen-background-image-none-important;
+	}
+}
