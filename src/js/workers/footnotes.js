@@ -15,7 +15,7 @@
 	_pe.fn.footnotes = {
 		type: 'plugin',
 		_exec: function (elm) {
-			var _ctn = $('#wb-main-in').not('.wet-boew-footnotes'), //reference to the content area (which needs to be scanned for footnote references)
+			var _ctn = _pe.main.not('.wet-boew-footnotes'), //reference to the content area (which needs to be scanned for footnote references)
 				footnote_dd = elm.find('dd').attr('tabindex', '-1');
 
 			// Apply aria-labelledby and set initial event handlers for return to referrer links
