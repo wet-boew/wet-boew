@@ -27,7 +27,8 @@
 				popupLink,
 				popupLinksLen,
 				popupLinkSpan,
-				match;
+				match,
+				uniqueid = 'wb-share-' + (new Date()).getTime();
 
 			// Defaults
 			opts = {
@@ -79,7 +80,7 @@
 
 			elm.bookmark(opts);
 			if (opts.popup && pe.cssenabled) {
-				elm.attr('role', 'application');
+				elm.attr({'role': 'application', 'aria-labelledby': uniqueid});
 				if (opts.popupTag.substring(0, 1) === 'h') { // If a heading element is used for the popup tag, then wrap the contents in a section element
 					elm.wrapInner('<section />');
 				}
@@ -131,7 +132,7 @@
 					return false;
 				});
 
-				$popupText = elm.find('.bookmark_popup_text').off('click vclick touchstart keydown').wrap('<' + opts.popupTag + ' />');
+				$popupText = elm.find('.bookmark_popup_text').attr('id', uniqueid).off('click vclick touchstart keydown').wrap('<' + opts.popupTag + ' />');
 				$popupText.attr({'role': 'button', 'aria-controls': 'bookmark_popup'}).on('click vclick touchstart keydown', function (e) {
 					if (e.type === "keydown") {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
