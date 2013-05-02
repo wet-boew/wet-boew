@@ -22,8 +22,8 @@
 					vertical-align: top !important;
 				}
 				[class*="span-"] {
-					border: 10px solid transparent;
-					outline-offset: -10px;
+					border: 0 solid transparent;
+					border-width: 0 10px 20px 10px; 
 					@include background-clip(padding-box);
 					@include background-origin(padding-box);
 					@include box-sizing(content-box);
@@ -33,6 +33,11 @@
 					&.row-end {
 						border-right: 0;
 					}
+				}
+				.module, [class*="module-"], [class*="border-"] {
+					border: 10px solid transparent;
+					outline-offset: -10px;
+					@include box-sizing(content-box);
 				}
 			}
 			&.module-gutter-bottom {
@@ -102,7 +107,7 @@
 		%grids-equalize-all-modern-ie {
 		    .equalize {
 		        > {
-		            [class*="span-"] {
+		            .module, [class*="module-"], [class*="border-"] {
 		                border: 0;
 		                float: left !important;
 		                display: block !important;
@@ -117,7 +122,7 @@
 		%grids-equalize-all-modern-ie-rtl {
 			.equalize {
 				> {
-					[class*="span-"] {
+					.module, [class*="module-"], [class*="border-"] {
 						float: right !important;
 					}
 				}
