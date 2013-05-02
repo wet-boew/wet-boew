@@ -28,6 +28,11 @@
 			text-shadow: none;
 		}
 	}
+	summary {
+		&.button {
+			display: inline-block !important;
+		}
+	}
 
 	%grid-button-color-button-accent {
 		@include color-button($accent);
