@@ -195,6 +195,7 @@
 		'%geo-hiddenlayer': '@%geo-hiddenlayer@',
 		'%geo-basemapurl': '@%geo-basemapurl@',
 		'%geo-basemaptitle': '@%geo-basemaptitle@',
+		'%geo-scriptpopup': '@%geo-scriptpopup@',
 		'%geo-select': '@%geo-select@',
 		'%geo-labelselect': '@%geo-labelselect@',
 		/* Disable/enable PE */

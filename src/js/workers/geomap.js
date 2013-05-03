@@ -255,30 +255,29 @@
 		 */
 		createPopup: function(feature) {
 			
-			var popupInfo = feature.layer.popupInfo,
+			var popupsInfo = feature.layer.popupsInfo,
 				id = "popup_" + feature.id, 
 				height, width, close, opacity, content, name, popup;
 			
-			if(popupInfo) {
-				height = (popupInfo.height !== undefined) ? popupInfo.height : 200;
-				width = (popupInfo.width !== undefined) ? popupInfo.width : 200;
-				close = (popupInfo.width !== undefined) ? popupInfo.close : true;
-				opacity = (popupInfo.width !== undefined) ? popupInfo.opacity : 1.0;
-				content = '<div class="olPopupLayerTitle">' + $('table#' +feature.layer.name).attr('aria-label') + '</div>' + popupInfo.content;
+			if (popupsInfo) {
+				height = (popupsInfo.height !== undefined) ? popupsInfo.height : map.size.h / 2;
+				width = (popupsInfo.width !== undefined) ? popupsInfo.width : map.size.w / 2;
+				close = (popupsInfo.width !== undefined) ? popupsInfo.close : true;
+				content = '<div class="olPopupLayerTitle">' + $('table#' +feature.layer.name).attr('aria-label') + '</div>' + popupsInfo.content;
 			} else {
-				height = 200;
-				width = 200;
+				height = map.size.h / 2;
+				width = map.size.w / 2;
 				close = true; 
-				opacity = 1.0;
 				content = '<div class="olPopupLayerTitle">' + $('table#' +feature.layer.name).attr('aria-label') + '</div>';	
 			}			
 					
-			if(popupInfo) {
+			if (popupsInfo) {
 				// Update content from feature
 				for (name in feature.attributes) {
 					if (feature.attributes.hasOwnProperty(name)) {
 						if (name.length !== 0) {
-							content = content.replace('_' + name, feature.attributes[name]);
+							var regex = new RegExp('_'+ name, 'igm');
+							content = content.replace(regex, feature.attributes[name]);
 						}
 					}
 				}
@@ -292,6 +291,23 @@
 				}
 			}
 			
+			//	Do naive protection against avascript.
+			if (content.search('<script') !== -1) {
+				
+				var div = document.createElement('div'),
+					textnode =document.createTextNode(_pe.dic.get('%geo-scriptpopup')),
+					scripts, i;
+				
+				div.innerHTML = content;
+				scripts = div.getElementsByTagName('script'),
+				i = scripts.length;
+					
+				while (i--) {
+				  scripts[i].parentNode.replaceChild(textnode, scripts[i]);
+				}
+				content = div.innerHTML;
+			}
+									   
 			// Create the popup
 			popup = new OpenLayers.Popup.FramedCloud(
 				id,
@@ -302,9 +318,7 @@
 				close,
 				_pe.fn.geomap.onPopupClose);
 													
-			popup.opacity = opacity;
-			popup.panMapIfOutOfView = false;
-			popup.keepInMap = true;
+			popup.maxSize = new OpenLayers.Size(width,height);
 			feature.popup = popup;
 			map.addPopup(popup);
 		},
@@ -949,7 +963,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
-						olLayer.popupInfo = layer.popupInfo;
+						olLayer.popupsInfo = layer.popupInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true; // to force featuresadded listener
 						map.addLayer(olLayer);
@@ -1012,7 +1026,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
-						olLayer.popupInfo = layer.popupInfo;
+						olLayer.popupsInfo = layer.popupInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
@@ -1079,7 +1093,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
-						olLayer.popupInfo = layer.popupInfo;
+						olLayer.popupsInfo = layer.popupInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
@@ -1146,7 +1160,7 @@
 						);	
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
-						olLayer.popupInfo = layer.popupInfo;
+						olLayer.popupsInfo = layer.popupInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
@@ -1213,7 +1227,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
-						olLayer.popupInfo = layer.popupInfo;
+						olLayer.popupsInfo = layer.popupInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
@@ -1303,7 +1317,7 @@
 
 				tableLayer.id = 'table#' + table.id;
 				tableLayer.datatable = opts.tables[index].datatable;
-				tableLayer.popupInfo = opts.tables[index].popupInfo;
+				tableLayer.popupsInfo = opts.tables[index].popupInfo;
 				tableLayer.popups = opts.tables[index].popups;
 				tableLayer.name = table.id;
 				map.addLayer(tableLayer);

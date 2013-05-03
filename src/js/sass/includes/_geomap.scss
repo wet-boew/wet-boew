@@ -188,28 +188,16 @@ div.olPopupLayerTitle {
     margin-top: 0;
     font-size: 1.25em;
     padding-bottom: 5px;
-} 
-
-div.olPopupCloseBox {
-    border-bottom: solid 1px #eee;  
-    padding-bottom: 12px;  
-}
-
-.olPopupContent {
-  padding: 5px;
-  overflow: auto;
 }
 
 .olPopupCloseBox {
-  /*background-image: url("../images/geomap/close-popup.png") !important;*/
 	cursor: pointer;	
 	background-image: url("../../grids/images/icons.png")!important;
   background-origin: padding-box;
-  background-position: -18px -486px;
+  background-position: -17px -486px;
   background-repeat: no-repeat;
   background-size: auto;
   -webkit-filter: grayscale(1);
-  filter: gray;
 }
 
 .olFramedCloudPopupContent {
@@ -217,7 +205,7 @@ div.olPopupCloseBox {
 	overflow: auto;
 }
 
-.olPopup h1, .olPopup h2, .olPopup h3, .olPopup h4, .olPopup h5, .olPopup h6, .olPopup p, .olPopup div, .olPopup ol, .olPopup ul {
+.olPopup h1, .olPopup h2, .olPopup h3, .olPopup h4, .olPopup h5, .olPopup h6, .olPopup p, .olPopup ol, .olPopup ul {
   margin: 5px;
 }
 

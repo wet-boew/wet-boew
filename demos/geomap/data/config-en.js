@@ -56,11 +56,6 @@ var wet_boew_geomap = {
 			datatable: true,
 			tab: true,
 			popups: true,
-//			popupInfo: {
-//				height: 150,
-//				width: 300,
-//				content: "<div><h3>KML</h3><div class=span-1><label class=wb-invisible for=inputchk>Select the element</label><input type=checkbox id=inputchk></input></div><div class=span-2><h5>The product</h5></div><div class=clear></div><p>_Product Title</p><p>_Description</p></div>"
-//			},
 			attributes: {
 				name: 'Product Title',
 				description: 'Description'
@@ -102,7 +97,8 @@ var wet_boew_geomap = {
 				'q': 'alluvial'
 			},
 			visible: false,
-			root: 'products',	
+			root: 'products',
+			popups: true,	
 			tab: true,
 			attributes: {
 				title: 'Title',
