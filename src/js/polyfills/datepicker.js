@@ -55,7 +55,7 @@
 			};
 
 			addLinksToCalendar = function (fieldid, year, month, days, minDate, maxDate, format) {
-				var field = container.parent().find('#' + fieldid),
+				var field = $('#' + fieldid),
 					lLimit,
 					hLimit;
 
