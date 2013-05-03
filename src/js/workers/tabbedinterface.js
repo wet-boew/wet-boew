@@ -362,8 +362,7 @@
 			positionPanels = function() {
 				var isSlideHorz = opts.transition === 'slide-horz',
 					viewportSize = {width: 0, height: 0},
-					panelSize,
-					len = $panels.length;
+					panelSize;
 
 				if ($viewport === undefined) {
 					$panels.wrapAll('<div class="viewport">').wrap('<div class="panel">');
@@ -371,8 +370,8 @@
 				}
 
 				panelSize = getMaxPanelSize();
-				while (len--) {
-					$panels.eq(len).parent().css($.extend({
+				for(var i = 0, len = $panels.length; i < len; i++) {
+					$panels.eq(i).parent().css($.extend({
 						position: 'absolute',
 						top: viewportSize.height,
 						left: viewportSize.width
