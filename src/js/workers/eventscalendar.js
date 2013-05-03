@@ -387,7 +387,7 @@
 			});
 			calendar.create(containerid, year, month, true, events.minDate, events.maxDate);
 
-			$containerid.attr('role', 'application');
+			$containerid.attr({'role': 'application', 'aria-label': _pe.dic.get('%calendar')});
 		} // end of exec
 	};
 	window.pe = _pe;
