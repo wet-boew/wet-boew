@@ -33,7 +33,7 @@
 						border-right: 0;
 					}
 				}
-				.module, [class*="module-"] {
+				.module, [class*="module-"], [class*="border-"] {
 					border: 10px solid transparent;
 					outline-offset: -10px;
 					@include box-sizing(content-box);
@@ -106,7 +106,7 @@
 		%grids-equalize-all-modern-ie {
 		    .equalize {
 		        > {
-		            .module, [class*="module-"] {
+		            .module, [class*="module-"], [class*="border-"] {
 		                border: 0;
 		                float: left !important;
 		                display: block !important;
@@ -121,7 +121,7 @@
 		%grids-equalize-all-modern-ie-rtl {
 			.equalize {
 				> {
-					.module, [class*="module-"] {
+					.module, [class*="module-"], [class*="border-"] {
 						float: right !important;
 					}
 				}
