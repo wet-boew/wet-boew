@@ -14,13 +14,13 @@
 	$(document).ready(function() {
 		$('#resultTableIdHeaders').empty();
 		$('#resultTableIdHeaders').append('<pre>Nothing to being displayed</pre>');
-		
+
 		$('form').submit(function() {
 			$('#inputHTMLtable').focus();
 			return false;
 		});
-		
-		
+
+
 		var _pe = window.pe || {
 			fn : {}
 		},
@@ -56,7 +56,7 @@
 				"%tblparser18Tech": 7,
 				"%tblparser21":  'Move the row used as the column cell heading in the thead row group',
 				"%tblparser21Tech": 7,
-				"%tblparser23":  'Avoid the use of have paralel row headers, it\'s recommended do a cell merge to fix it', 
+				"%tblparser23":  'Avoid the use of have paralel row headers, it\'s recommended do a cell merge to fix it',
 				"%tblparser23Tech": 3,
 				"%tblparser24":  'For a data row, the heading hiearchy need to be the Generic to the specific',
 				"%tblparser24Tech": 3,
@@ -90,7 +90,7 @@
 				"colgroupsummary-techniques.html", // 10
 				"colheader-description-techniques.html", // 11
 				"layoutcell-techniques.html", // 12
-				"http://www.w3.org/TR/html5/spec.html"], // 13 
+				"http://www.w3.org/TR/html5/spec.html"], // 13
 			techniqueName = [
 				"Defining a Key Cell", // 1
 				"Defining a Data Row Group in a Data Table", // 2
@@ -108,30 +108,31 @@
 			tableOpenTag = '&lt;table&gt;',
 			tableOpenTagNoEncode = '<table>',
 			tableOpenTagZebra = '&lt;table class=&quot;wet-boew-zebra&quot;&gt;',
+			tableOpenTagZebraNoEncode = '<table class="wet-boew-zebra">',
 			errorHandlerAttached = false,
 			fnParserLoaded = function () {
 				_pe.fn.parsertable.onParserError = function(numerr, obj){
 					var msgListItem = '<li><span class="wb-invisible">' + numerr + '</span> ',
 						err;
-					
+
 					// Retreive the Error message
 					if (ErrorMessage['%tblparser' + numerr]) {
 						err = ErrorMessage['%tblparser' + numerr];
-						
+
 						// Check if a technique exist related to the error
 						if (ErrorMessage['%tblparser' + numerr + 'Tech'] !== undefined) {
 							var techNum = ErrorMessage['%tblparser' + numerr + 'Tech'];
 							err = '<a href="' + techniqueURL[techNum] + '" title="' + techniqueName[techNum] + '">' + err + '</a>';
 						}
-						
+
 					} else {
 						err = 'Error found, but not documented. Error Number:' + numerr;
 					}
-					
-					
+
+
 					if(numerr === 23 || numerr === 18) {
 						msgListItem += 'Warning: ';
-						
+
 					} else {
 						msgListItem += 'Error: ';
 						nbErrorFound += 1;
@@ -146,17 +147,17 @@
 			displayTableResult = function (){
 				// Missing colgroup and col if any
 				var tblelement = $('#directOutput table:eq(0)');
-				
+
 				// Show the result
 				$('#resultTableIdHeaders').show();
-				
+
 				$('#resultTableIdHeaders').empty();
 				$('#resultTableIdHeaders').html('<pre class="prettyprint"><code>' + ('<table>' + $(tblelement).html() + '</table>').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '</code></pre>');
-				
 
-				
+
+
 				prettyPrint();
-				
+
 				if($('#addzebra').is(':checked')){
 					_pe.fn.zebra._exec(tblelement);
 				}
@@ -173,26 +174,26 @@
 					ScopeColgroupEligible = true,
 					i,
 					j;
-				
+
 				nbErrorFound = 0;
-				
-				
-				
-				
+
+
+
+
 				if (!errorHandlerAttached){
 					fnParserLoaded();
 				}
-				
+
 				_pe.fn.parsertable.parse($('#directOutput table:eq(0)'));
-				
+
 				if ($('#byPassOnErrorStop').is(':checked')) {
 					bypassOnError = true;
 				}
-				
+
 				if (nbErrorFound === 0 || bypassOnError) {
-					
+
 					var tblparser = $('#directOutput table:eq(0)').data().tblparser;
-					
+
 					if (!tblparser.row) {
 						alert('Your table must have at least one row');
 						$('#directOutput').empty();
@@ -200,7 +201,7 @@
 						$('#errorList').append($(emptyTable));
 						return;
 					}
-					
+
 					$('#errorList').empty();
 					if(nbErrorFound === 0){
 						$('#errorList').append($(noErrorList));
@@ -216,28 +217,28 @@
 						$('#directOutput table:eq(0) [aria-describedby]').each(function () {
 							$(this).removeAttr('aria-describedby');
 						});
-						
+
 						$('#directOutput table:eq(0) [id]').each(function () {
 							$(this).removeAttr('id');
 						});
-					
+
 						$('#directOutput table:eq(0) [scope]').each(function () {
 							$(this).removeAttr('scope');
 						});
-						
+
 						$('#directOutput table:eq(0) [class]').each(function () {
 							$(this).removeAttr('class');
 						});
 					}
-					
+
 					// Auto-Detect the best way to make the table accessible WCAG 2.0
-					
+
 					// Si le tableau a 2 row pour les colones
 					//		* Toute les cells des 2 ligne doit avoir une hauteur de 1, (Sans tenir compte du column header group)
 					//		* Toute les cell de la 1er ligne doit avoir une largeur egale ou plus grande que 2.
 					//
 					//		* Les cells de la première ligne doit exatement correspondre au colgroup definie
-					//		* 
+					//		*
 					if (tblparser.theadRowStack.length !== 2) {
 						ScopeColgroupEligible = false;
 					} else {
@@ -253,11 +254,11 @@
 						// Test the first row
 						if (ScopeColgroupEligible) {
 							for (i; i < tblparser.theadRowStack[0].cell.length; i += 1) {
-								if (tblparser.theadRowStack[0].cell[i].colgroup && 
+								if (tblparser.theadRowStack[0].cell[i].colgroup &&
 									(tblparser.theadRowStack[0].cell[i].colgroup.start === tblparser.theadRowStack[0].cell[i].colgroup.end ||
-									tblparser.theadRowStack[0].cell[i].colgroup.start !== tblparser.theadRowStack[0].cell[i].colpos || 
-									tblparser.theadRowStack[0].cell[i].colgroup.end !== 
-									(tblparser.theadRowStack[0].cell[i].colpos + tblparser.theadRowStack[0].cell[i].width - 1) || 
+									tblparser.theadRowStack[0].cell[i].colgroup.start !== tblparser.theadRowStack[0].cell[i].colpos ||
+									tblparser.theadRowStack[0].cell[i].colgroup.end !==
+									(tblparser.theadRowStack[0].cell[i].colpos + tblparser.theadRowStack[0].cell[i].width - 1) ||
 									tblparser.theadRowStack[0].cell[i].colgroup.type !== 2)) {
 
 									// This cell DO NOT fit in the colgroup patern
@@ -274,32 +275,32 @@
 								i = 0;
 							}
 							for (i; i < tblparser.theadRowStack[1].cell.length; i += 1) {
-								
+
 							}
 						}*/
-						
+
 					}
-					
-					
-					
+
+
+
 					// Is Simple Table ?
 					if ((tblparser.theadRowStack.length <= 1 || ScopeColgroupEligible) && // One Row for column headers
 						!tblparser.desccell && // No Description Cell
 						!tblparser.keycell // && // No Key Cell
 						/*((tblparser.colgroup.length === 2 && tblparser.colgroup[0].type === 1 && tblparser.colgroup[0].col.length === 1) || // an header column group build with one column followed by a data column group
 						tblparser.colgroup.length === 1)*/){ // One data colum group
-						
+
 						// Without grouping
 						if (tpAccessibility === "auto" && (tblparser.theadRowStack.length <= 1 && (tblparser.lstrowgroup.length === 1 || (tblparser.lstrowgroup[0].type === 2 && tblparser.lstrowgroup[1].type === 3 && tblparser.lstrowgroup[1].level === 0)))) { // Only one row group or one data group with a summary group at level 0 (tfoot)
-						
+
 							// This table is qualified to be an simple table
 							$('#errorList').append($(qualifiedSimple));
-							
+
 							displayTableResult();
 							return;
 						}
-						
-						
+
+
 						var qualifySimpleGrouping = true;
 						// Simple Row grouping (Need to be at only at level 0, 1 or 2 and no summary)
 						for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
@@ -309,11 +310,11 @@
 								break;
 							}
 						}
-						
+
 						if (qualifySimpleGrouping && (tpAccessibility === "auto" || tpAccessibility === "scope")) {
 							// Do the simple row grouping
 							$('#errorList').append($(qualifiedSimpleGrouping));
-							
+
 							for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
 								if (tblparser.lstrowgroup[i].headerlevel && tblparser.lstrowgroup[i].headerlevel[0]) {
 									$(tblparser.lstrowgroup[i].headerlevel[0].elem).attr('scope', 'rowgroup');
@@ -346,13 +347,13 @@
 							displayTableResult();
 							return;
 						}
-						
+
 					}
-					
+
 					// All Others Cases
 					$('#errorList').append($(qualifiedComplex));
 					generateIdHeaders();
-					
+
 				}
 			},
 			generateIdHeaders = function(){
@@ -362,22 +363,22 @@
 					currCellId;
 				/*
 				nbErrorFound = 0;
-				
-				
+
+
 				if (!errorHandlerAttached){
 					fnParserLoaded();
 				}
-				
+
 				_pe.fn.parsertable.parse($('#directOutput table:eq(0)'));
-				
+
 				if ($('#byPassOnErrorStop').is(':checked')) {
 					bypassOnError = true;
 				}
 				*/
 				// if(nbErrorFound === 0 || bypassOnError){
-					
+
 					// Add id, headers attribute to each cell
-					
+
 					var tblparser = $('#directOutput table:eq(0)').data().tblparser,
 						tblelement = $('#directOutput table:eq(0)'),
 						i,
@@ -386,44 +387,44 @@
 						currCell,
 						idPrefix = $('#idprefix').val() || 'usabletblparsed',
 						resetIds = false;
-						
+
 					/*
-					
+
 					// Remove any headers and aria-describedby attribute
-					
+
 					$('#directOutput table:eq(0) [headers]').each(function () {
 						$(this).removeAttr('headers');
 					});
 					$('#directOutput table:eq(0) [aria-describedby]').each(function () {
 						$(this).removeAttr('aria-describedby');
 					});
-					
+
 					if ($('#idreset:checked').length > 0) {
 						$('#directOutput table:eq(0) [id]').each(function () {
 							$(this).removeAttr('id');
 						});
 					}
-					
+
 					if($('#removeScope:checked').length > 0) {
 						$('#directOutput table:eq(0) [scope]').each(function () {
 							$(this).removeAttr('scope');
 						});
 					}
 					*/
-					
+
 					// Set ID and Header for the table head
 					for (i = 0; i < tblparser.theadRowStack.length; i += 1) {
 						currRow = tblparser.theadRowStack[i];
-						
+
 						for (j = 0; j < currRow.cell.length; j += 1) {
 							currCell = currRow.cell[j];
-							
+
 							if ((currCell.type === 1 || currCell.type === 7) && (
 									!(j > 0 && currCell.uid === currRow.cell[j - 1].uid) &&
 									!(i > 0 && currCell.uid === tblparser.theadRowStack[i - 1].cell[j].uid)
 								) ) {
-								
-								
+
+
 								// If there no id, add an uid
 								currCellId = $(currCell.elem).attr('id');
 								if (currCellId === undefined || currCellId === '' || resetIds) {
@@ -431,11 +432,11 @@
 									currCellId = idPrefix + currCell.uid; // Generate a new ID
 									$(currCell.elem).attr('id', currCellId);
 								}
-								
+
 								// Set the header of the current cell if required
 								if (i > 0) {
 									var headersCurrCell = $(tblparser.theadRowStack[i - 1].cell[j].elem).attr('id');
-									
+
 									if ($(tblparser.theadRowStack[i-1].cell[j].elem).attr('headers') !== undefined) {
 										headersCurrCell = $(tblparser.theadRowStack[i - 1].cell[j].elem).attr('headers') + ' ' + headersCurrCell;
 									}
@@ -444,8 +445,8 @@
 										$(currCell.elem).removeAttr('headers');
 									}
 								}
-								
-								
+
+
 								// Set the header on his descriptive cell is any (May be better aria-describedby
 								if (currCell.descCell) {
 									$(currCell.descCell.elem).attr('headers', currCellId);
@@ -460,11 +461,11 @@
 									$(currCell.elem).attr('aria-describedby', currCellDescId);
 								}
 							}
-							
+
 						}
-						
+
 					}
-					
+
 					var rowheadersgroup,
 						rowheaders,
 						currrowheader,
@@ -477,9 +478,9 @@
 						rowheaders = "";
 						currrowheader = "";
 						ongoingRowHeader = "";
-						
+
 						// Get or Generate a unique ID for each header in this row
-						if (currRow.headerset && !currRow.idsheaderset) { 
+						if (currRow.headerset && !currRow.idsheaderset) {
 							for (j = 0; j < currRow.headerset.length; j += 1) {
 								currCellId = $(currRow.headerset[j].elem).attr('id');
 								if (currCellId === undefined || currCellId === '' || resetIds) {
@@ -491,8 +492,8 @@
 							}
 							currRow.idsheaderset = rowheadersgroup;
 						}
-						
-						if (currRow.header) { 
+
+						if (currRow.header) {
 							for (j = 0; j < currRow.header.length; j += 1) {
 								currCellId = $(currRow.header[j].elem).attr('id');
 								if (currCellId === undefined || currCellId === '' || resetIds) {
@@ -505,16 +506,16 @@
 						}
 						rowheaders = (currRow.idsheaderset ? currRow.idsheaderset + ' ' + rowheaders : rowheaders);
 						for (j = 0; j < currRow.cell.length; j += 1) {
-							
+
 							if ((j === 0) || (j > 0 && currRow.cell[j].uid !== currRow.cell[(j - 1)].uid)){
 								currCell = currRow.cell[j];
 								coldataheader = "";
-								
+
 								if (currCell.col && !currCell.col.dataheader) {
 									var currCol = currCell.col;
 									var colheaders = "",
 										colheadersgroup = "";
-									if (currCol.headerLevel) { 
+									if (currCol.headerLevel) {
 										for (m = 0; m < currCol.headerLevel.length; m += 1) {
 											currCellId = $(currCol.headerLevel[m].elem).attr('id');
 											if (currCellId === undefined || currCellId === '' || resetIds) {
@@ -525,7 +526,7 @@
 											colheadersgroup = (colheadersgroup ? colheadersgroup + ' ' + currCellId : currCellId);
 										}
 									}
-									if (currCol.header) { 
+									if (currCol.header) {
 										for (m = 0; m < currCol.header.length; m += 1) {
 											currCellId = $(currCol.header[m].elem).attr('id');
 											if (currCellId === undefined || currCellId === '' || resetIds) {
@@ -538,41 +539,41 @@
 									}
 									currCol.dataheader = (colheadersgroup ? colheadersgroup + ' ' + colheaders : colheaders);
 								}
-								
+
 								if (currCell.col && currCell.col.dataheader) {
 									coldataheader = currCell.col.dataheader;
 								}
-								
-								
-								
+
+
+
 								if (currCell.type === 1) {
-									
-									$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + 
+
+									$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') +
 														(currRow.idsheaderset && coldataheader ? ' ' : '') +
 														(currRow.idsheaderset ? currRow.idsheaderset : '') +
 														((currRow.idsheaderset && ongoingRowHeader) || (coldataheader && ongoingRowHeader && !currRow.idsheaderset) ? ' ' : '') +
 														(ongoingRowHeader ? ongoingRowHeader : ''));
-									
+
 									if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
 										$(currCell.elem).removeAttr('headers');
 									}
-									
+
 									var currCellId5 = $(currCell.elem).attr('id');
 									if (currCellId5 === undefined || currCellId5 === '' || resetIds) {
 										// currCellId5 = idPrefix + new Date().getTime() + currCell.uid; // Generate a new ID
 										currCellId5 = idPrefix + currCell.uid; // Generate a new ID
 										$(currCell.elem).attr('id', currCellId5);
 									}
-									
+
 									ongoingRowHeader = (ongoingRowHeader !== '' ? ongoingRowHeader + ' ' : '') + currCellId5;
 								}
-								
-								
+
+
 								if (currCell.type === 2 || currCell.type === 3) {
-									
+
 									// Get Current Column Headers
 									currrowheader = rowheaders;
-									
+
 									if (currCell.addcolheaders) {
 										for (m = 0; m < currCell.addcolheaders.length; m += 1) {
 											currCellId = $(currCell.addcolheaders[m].elem).attr('id');
@@ -584,7 +585,7 @@
 											coldataheader = (coldataheader ? coldataheader + ' ' + currCellId : currCellId);
 										}
 									}
-									
+
 									if (currCell.addrowheaders) {
 										for (m = 0; m < currCell.addrowheaders.length; m += 1) {
 											currCellId = $(currCell.addrowheaders[m].elem).attr('id');
@@ -596,16 +597,16 @@
 											currrowheader = (currrowheader ? currrowheader + ' ' + currCellId : currCellId);
 										}
 									}
-									
+
 									$(currCell.elem).attr('headers', (coldataheader ? coldataheader : '') + (currrowheader && coldataheader ? ' ' : '') + (currrowheader ? currrowheader : ''));
 									if ($(currCell.elem).attr('headers') === undefined || $(currCell.elem).attr('headers') === '') {
 										$(currCell.elem).removeAttr('headers');
 									}
 								}
-								
+
 								if (currCell.type === 4 || currCell.type === 5) {
 									var descHeaders = "";
-									
+
 									if (currCell.describe) {
 										for (m = 0; m < currCell.describe.length; m += 1) {
 											currCellId = $(currCell.describe[m].elem).attr('id');
@@ -638,18 +639,18 @@
 											$(currCell.elem).removeAttr('headers');
 										}
 									}
-								}						
+								}
 							}
 						}
 					}
-					
+
 					// Check for any description that are related to the an group header cell
-					
+
 					for (i = 0; i < tblparser.lstrowgroup.length; i += 1) {
-						
+
 						if (tblparser.lstrowgroup[i].headerlevel.length > 0) {
 							for (j = 0; j < tblparser.lstrowgroup[i].headerlevel.length; j += 1){
-								
+
 								if (tblparser.lstrowgroup[i].headerlevel[j].descCell) {
 									// Set the aria-describedby
 									var currDescCellId = $(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('id');
@@ -659,7 +660,7 @@
 										$(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('id', currDescCellId);
 									}
 									$(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('aria-describedby', currDescCellId);
-									
+
 									// Set the headers
 									currCellId = $(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('id');
 									if (currCellId === undefined || currCellId === '' || resetIds) {
@@ -668,19 +669,19 @@
 										$(tblparser.lstrowgroup[i].headerlevel[j].elem).attr('id', currCellId);
 									}
 									$(tblparser.lstrowgroup[i].headerlevel[j].descCell.elem).attr('headers', currCellId);
-								}	
-								
+								}
+
 							}
 						}
 					}
-					
-					
+
+
 					// Horay, now all the table cell have theirs id/headers set as the table was parsed,
-					
+
 					// Suggestion: Add some aria-label to annonce the data summary, I will ask the WAI Interrest Mailing List to get some liable solution
-					
+
 					// tfoot question: do I force it as exclusive column summaries as the HTML5 spec define it if it used as table footnote ??
-					
+
 					// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
 					var previousColgroup = false,
 						column;
@@ -688,7 +689,7 @@
 					if (tblparser.colgroup[i].elem === undefined) {
 						// Create a colgroup element
 						colgroupelem = $('<colgroup></colgroup>');
-						
+
 						// Create the column
 						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
 							column = $('<col />');
@@ -696,7 +697,7 @@
 							tblparser.colgroup[i].col[j].elem = $(column).get(0);
 							$(column).data().tblparser = tblparser.colgroup[i].col[j];
 						}
-						
+
 						if (previousColgroup) {
 							$(previousColgroup).after(colgroupelem);
 						} else {
@@ -707,7 +708,7 @@
 							}
 						}
 						previousColgroup = colgroupelem;
-						
+
 						tblparser.colgroup[i].elem = $(colgroupelem).get(0);
 						$(colgroupelem).data().tblparser = tblparser.colgroup[i];
 					} else {
@@ -715,7 +716,7 @@
 						colgroupelem = tblparser.colgroup[i].elem;
 
 						$(colgroupelem).removeAttr('span');
-						
+
 						// Create the column
 						for (j = 0; j < tblparser.colgroup[i].col.length; j += 1) {
 							if (tblparser.colgroup[i].col[j].elem === undefined) {
@@ -725,24 +726,24 @@
 								$(column).data().tblparser = tblparser.colgroup[i].col[j];
 							}
 						}
-						
+
 					}
 				}
-				
+
 				// TODO: Rebuild the thead, tbody section
-				
+
 				displayTableResult();
 				// }
-			
-				
-				
-			
+
+
+
+
 			};
-			
 
-		
 
-		
+
+
+
 		// setTimeout(function(){
 		//	_pe.wb_load({'dep': ['parserTable']}, "depsTableParserLoaded")
 		//	}, 2000);
@@ -753,22 +754,22 @@
 				parsingInProgress = '<li>Please wait, you will see the result in a moment.</li>',
 				tpAccessibility, // value: ["auto", "scope", "headers"]
 				elemTableExist;
-			
+
 			nbErrorFound = 0;
-			
+
 			$('#resultTableIdHeaders').val('');
 			$('#resultTableIdHeaders').empty();
 			$('#resultTableIdHeaders').append('<pre>Nothing to being displayed</pre>');
-			
 
-			$('#errorList').empty();			
+
+			$('#errorList').empty();
 			$('#directOutput').empty();
-			
-			
+
+
 			$('#directOutput').after('<div id="tmpWorker"></div>');
 			$('#tmpWorker').css('display', 'none');
 			$('#tmpWorker').append($('#inputHTMLtable').val());
-			
+
 			if ($('#tmpWorker table:eq(0)').length !== 0) {
 				elemTableExist = true;
 			}
@@ -780,7 +781,7 @@
 				$('#directOutput').append(tableOpenTagNoEncode + '</table>');
 			}
 
-			
+
 			if (elemTableExist) {
 				$('#directOutput table:eq(0)').append($('#tmpWorker table:eq(0) > *'));
 			} else {
@@ -788,26 +789,26 @@
 
 			}
 			$('#tmpWorker').remove();
-			
+
 			/*
 			if($('#addzebra').is(':checked')){
 				$('#directOutput').append(tableOpenTagZebraNoEncode + $('#inputHTMLtable').val() + '</table>');
 			} else {
 				$('#directOutput').append(tableOpenTagNoEncode + $('#inputHTMLtable').val() + '</table>');
 			}*/
-			
+
 			if ($('#directOutput table:eq(0)').length === 0) {
 				alert('Please add HTML Table code');
 				// $('#directOutput').empty();
 				$('#errorList').append($(genericMessage));
 				return;
 			}
-			
-			
+
+
 			if($('#chkHassum').is(':checked')){
 				$('#directOutput table:eq(0)').addClass('hassum');
 			}
-			
+
 			// Accessibility Options
 			if($('#access-1').is(':checked')) {
 				// Auto (default)
@@ -819,16 +820,16 @@
 				// Ids/Headers
 				tpAccessibility = 'headers';
 			}
-			
+
 			// Generate Unique Ids prefix
 			if($('#uniqueprefix').is(':checked')) {
 				$('#idprefix').val('tbl' + new Date().getTime() + '-');
 			}
-			
-			
-			
+
+
+
 			$('#errorList').append($(parsingInProgress));
-			
+
 			if (_pe.fn.parsertable) {
 				optimizeAccessibilitySet(tpAccessibility);
 			} else {
@@ -838,7 +839,7 @@
 				_pe.wb_load({'dep': ['parserTable']}, "depsTableParserLoaded");
 			}
 		});
-		
+
 		$('#addzebra').click(function () {
 			if($('#addzebra').is(':checked')) {
 				$('#tableopentag').html(tableOpenTagZebra);
@@ -852,7 +853,7 @@
 		} else {
 			$('#tableopentag').html(tableOpenTag);
 		}
-		
+
 		$('#chkHassum').click(function () {
 			if($('#chkHassum').is(':checked')){
 				$('#hassumoption').show();
@@ -866,7 +867,7 @@
 		} else {
 			$('#hassumoption').hide();
 		}
-		
+
 	});
 
 }(jQuery));
