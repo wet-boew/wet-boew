@@ -113,6 +113,7 @@
 		/* Calendar */
 		'%calendar-weekDayNames': ['@%calendar-weekDayNames-1@', '@%calendar-weekDayNames-2@', '@%calendar-weekDayNames-3@', '@%calendar-weekDayNames-4@', '@%calendar-weekDayNames-5@', '@%calendar-weekDayNames-6@', '@%calendar-weekDayNames-7@'],
 		'%calendar-monthNames': ['@%calendar-monthNames-1@', '@%calendar-monthNames-2@', '@%calendar-monthNames-3@', '@%calendar-monthNames-4@', '@%calendar-monthNames-5@', '@%calendar-monthNames-6@', '@%calendar-monthNames-7@', '@%calendar-monthNames-8@', '@%calendar-monthNames-9@', '@%calendar-monthNames-10@', '@%calendar-monthNames-11@', '@%calendar-monthNames-12@'],
+		'%calendar': '@%calendar@',
 		'%calendar-currentDay': '@%calendar-currentDay@',
 		'%calendar-goToLink': '@%calendar-goToLink@',
 		'%calendar-goToTitle': '@%calendar-goToTitle@',

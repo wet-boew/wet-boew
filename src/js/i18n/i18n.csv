@@ -93,6 +93,7 @@ Calendar,%calendar-weekDayNames-1,Sunday,Dimanche,Domingo
 ,%calendar-monthNames-10,October,Octobre,Octubre
 ,%calendar-monthNames-11,November,Novembre,Noviembre
 ,%calendar-monthNames-12,December,Décembre,Diciembre
+,%calendar,Calendar,Calendrier,Calendario
 ,%calendar-currentDay, (Current day), (Jour courrant), (Hoy)
 ,%calendar-goToLink,"Go to<span class=""wb-invisible""> month of year</span>","Aller au <span class=""wb-invisible""> mois de l\'année</span>","Ir a<span class=""wb-invisible""> mes del año</span>"
 ,%calendar-goToTitle,Go to month of year,Aller au mois de l\'année,Ir al mes del año
