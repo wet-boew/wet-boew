@@ -159,34 +159,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <!-- ScriptsEnd -->
 
 <!-- CustomScriptsStart -->
-<script>
-/*  */
-(function ($) {
-	var $status = $('#process-status'),
-		$document = $(document);
-	$document.on('localstorage-loaded status-change', function() {
-		var processStatus = localStorage.getItem('processStatus');
-		if (processStatus && processStatus === 'deactivated') {
-			$status.html('<div class="module-attention span-4"><section><h2>Attention</h2><p>Process deactivated <a class="button button-confirm">Activate process</a></p></section></div><div class="clear"></div>');
-		} else {
-			$status.html('<div class="module-note span-4"><section><h2>Note</h2><p>Process activated <a class="button button-attention">Deactivate process</a></p></section></div><div class="clear"></div>');
-		}
-		$status.find('a').one('click vclick', function() {
-			var processStatus = localStorage.getItem('processStatus');
-			if (processStatus && processStatus === 'deactivated') {
-				localStorage.setItem('processStatus', 'activated');
-			} else {
-				localStorage.setItem('processStatus', 'deactivated');
-			}
-			$document.trigger('status-change');
-		});
-	});
-	if (window.localStorage) {
-		$document.trigger('localstorage-loaded');
-	}
-}(jQuery));
-/*  */
-</script>
+<script src="js/localstorage.js"></script>
 <!-- CustomScriptsEnd -->
 </body>
 </html>
