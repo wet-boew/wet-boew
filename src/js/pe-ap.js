@@ -695,7 +695,7 @@
 			*		returns 'alpha\.beta\:delta_gamma-omega\=sigma')
 			*/
 			jqescape: function (str) {
-				return str.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '\\\$1');
+				return str.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '\\$1');
 			}
 		},
 		/**
