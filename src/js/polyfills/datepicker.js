@@ -42,7 +42,7 @@
 			elm.addClass('picker-field');
 
 			createToggleIcon = function (fieldid) {
-				var fieldLabel = wrapper.find('label[for="' + fieldid + '"]').text(),
+				var fieldLabel = $('label[for="' + fieldid + '"]').text(),
 					objToggle = $('<a id="' + fieldid + '-picker-toggle" class="picker-toggle-hidden" href="javascript:;"><img class="image-actual" src="' + pe.add.liblocation + 'images/datepicker/calendar-month.png" alt="' + pe.dic.get('%datepicker-show') + fieldLabel + '"/></a>');
 
 				objToggle.on('click vclick touchstart', function () {
