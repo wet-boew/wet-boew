@@ -230,7 +230,7 @@
 					// On click, puts focus on and scrolls to the target of same page links
 					$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function () {
 						var hash = this.hash,
-							node = document.getElementById(pe.string.jqescape(hash.substring(1))),
+							node = document.getElementById(hash.substring(1)),
 							$node,
 							nodeName,
 							role;
@@ -300,7 +300,7 @@
 					// On click, puts focus on and scrolls to the target of same page links
 					$(hlinks_same).on('click.hlinks', function () {
 						var hash = this.hash,
-							node = document.getElementById(pe.string.jqescape(hash.substring(1))),
+							node = document.getElementById(hash.substring(1)),
 							$node,
 							nodeName;
 
@@ -317,7 +317,7 @@
 
 					// Puts focus on the target of a different page link with a hash (fix for browsers that don't do this automatically)
 					if (pe.urlhash.length > 0) {
-						node = document.getElementById(pe.string.jqescape(pe.urlhash));
+						node = document.getElementById(pe.urlhash);
 						if (node !== null) {
 							nodeName = node.nodeName.toLowerCase();
 							if (nodeName !== 'a' && nodeName !== 'button' && nodeName !== 'input' && nodeName !== 'textarea' && nodeName !== 'select') {
@@ -695,7 +695,7 @@
 			*		returns 'alpha\.beta\:delta_gamma-omega\=sigma')
 			*/
 			jqescape: function (str) {
-				return str.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '\\$1');
+				return str.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '\\\$1');
 			}
 		},
 		/**
