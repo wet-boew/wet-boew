@@ -251,7 +251,7 @@
 				// On click, puts focus on and scrolls to the target of same page links
 				$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function () {
 					var hash = this.hash,
-						node = document.getElementById(pe.string.jqescape(hash.substring(1))),
+						node = document.getElementById(hash.substring(1)),
 						$node,
 						nodeName,
 						role;
@@ -311,7 +311,7 @@
 						hlinks_same.push(hlink);
 					}
 				}
-			
+
 				// Wait for localisation and ajax content to load plugins
 				pe.document.one('languageloaded', function () {
 					// Check to see if PE enhancements should be disabled
@@ -691,7 +691,7 @@
 			*		returns 'alpha\.beta\:delta_gamma-omega\=sigma')
 			*/
 			jqescape: function (str) {
-				return str.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '\\$1');
+				return str.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '\\\$1');
 			}
 		},
 		/**
