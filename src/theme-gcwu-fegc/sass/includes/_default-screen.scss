@@ -17,11 +17,12 @@ body {
 		@extend %gcwu-default-screen-complex-border;
 		@extend %gcwu-default-screen-a-psuedo-underline;
 		&.top-section {
+			color: #222;
+			font-size: 1.1em;
 			a {
 				color: #FFF;
 				padding-top: 5px;
 				padding-bottom: 5px;
-				font-size: 1.1em;
 				@include pseudo-focus {
 					color: #FFF;
 					text-decoration: underline;
