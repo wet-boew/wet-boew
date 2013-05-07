@@ -13,28 +13,20 @@
 
 	ol {
 		ol {
-			li {
-				list-style-type: lower-alpha;
-			}
+			list-style-type: lower-alpha;
 			ol {
-				li {
-					list-style-type: lower-roman;
-				}
+				list-style-type: lower-roman;
 			}
 		}
 		&.list-numeric {
-			li {
-				list-style-type: decimal !important;
-			}
+			list-style-type: decimal !important;
 		}
 		ul {
-			li {
-				list-style-type: disc !important;
-				li {
-					list-style-type: circle !important;
-					li {
-						list-style-type: square !important;
-					}
+			list-style-type: disc !important;
+			ul {
+				list-style-type: circle !important;
+				ul {
+					list-style-type: square !important;
 				}
 			}
 		}

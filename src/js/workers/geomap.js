@@ -1470,7 +1470,7 @@
 			_pe.wb_load({
 				'plugins': {
 					'tables': _pe.main.find('.createDatatable'),
-					'tabbedinterface': _pe.main.find('.wet-boew-tabbedinterface')
+					'tabbedinterface': _pe.main.find('.wet-boew-geomap-tabs')
 				}
 			});
 

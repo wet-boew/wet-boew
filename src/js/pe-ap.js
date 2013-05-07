@@ -251,7 +251,7 @@
 				// On click, puts focus on and scrolls to the target of same page links
 				$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function () {
 					var hash = this.hash,
-						node = document.getElementById(pe.string.jqescape(hash.substring(1))),
+						node = document.getElementById(hash.substring(1)),
 						$node,
 						nodeName,
 						role;
@@ -268,6 +268,14 @@
 						if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
 							window.location.hash = hash;
 						}
+					}
+				});
+
+				// Workaround to ensure that the expanded area of a jQuery Mobile accordion doesn't disappear off the top of the viewport
+				pe.document.on('expand', function(e) {
+					var yPos = $(e.target).offset().top;
+					if (yPos < _pe.window.scrollTop()) {
+						$.mobile.silentScroll(yPos);
 					}
 				});
 			});
@@ -303,7 +311,7 @@
 						hlinks_same.push(hlink);
 					}
 				}
-			
+
 				// Wait for localisation and ajax content to load plugins
 				pe.document.one('languageloaded', function () {
 					// Check to see if PE enhancements should be disabled

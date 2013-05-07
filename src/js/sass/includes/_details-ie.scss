@@ -2,8 +2,25 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
+%details-ie-display-none {
+	display: none;
+}
+ 
+.ie7, .ie8 {
+	details {
+		> {
+			* {
+				@extend %details-ie-display-none;
+			}
+		}
+		&[open] {
+			* {
+				display: block;
+			}
+		}
+	}
+}
 
-/* Add the pointers */
 .ie7 {
 	details {
 		summary {
@@ -16,7 +33,7 @@
 			display: inline;
 		}
 		&.open > summary .details-closed, > summary .details-open {
-			display: none;
+			@extend %details-ie-display-none;
 		}
 	}
 
@@ -28,6 +45,40 @@
 					this.runtimeStyle.zoom="1",
 					this.innerHTML = '<span class="details-closed">\25C0\a0</span><span class="details-open">\25BC\a0</span>'+this.innerHTML
 				);
+			}
+		}
+	}
+}
+
+.ie8 {
+	details {
+		> {
+			summary {
+				&:before { /* Add the closed pointer */
+					content: "\25BA\a0";
+				}
+			}
+		}
+		&.open {
+			> {
+				summary {
+					&:before { /* Add the opened pointer */
+						content: "\25BC\a0" !important;
+					}
+				}
+			}
+		}
+	}
+
+	/* Right to left (RTL) CSS */
+	[dir="rtl"] {
+		details {
+			> {
+				summary {
+					&:before { /* Add the close pointer */
+						content: "\25C0\a0";
+					}
+				}
 			}
 		}
 	}

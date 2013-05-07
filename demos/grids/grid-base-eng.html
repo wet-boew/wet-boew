@@ -119,6 +119,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 			<li><a href="#fivec">Five colums</a></li>
 			<li><a href="#sixc">Six colums</a></li>
 			<li><a href="#sevenc">Seven to twelve columns</a></li>
+			<li><a href="#offset">Offset grid cells</a></li>
 		</ul>
 	</li>
 	<li><a href="#parents">Grid parents and children</a>
@@ -1075,6 +1076,68 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 	<div class="span-12 background-light align-center"><p><code>span-12</code></p></div>
 	<div class="clear"></div>
 </div>
+
+<h3 id="offset">Offset grids cells (version 3.1+)</h3>
+<p>Grid cells can be offset using <code>offset-1</code> to <code>offset-5</code>:</p>
+
+
+
+    <div class="span-2 background-medium align-center">
+        <p><code>span-2</code></p>
+    </div>
+	<div class="clear"></div>
+    <div class="span-2 background-medium align-center offset-1">
+        <p><code>span-2 offset-1</code></p>
+    </div>
+    <div class="clear"></div>
+	<div class="span-2 background-medium align-center offset-2">
+        <p><code>span-2 offset-2</code></p>
+    </div>
+    <div class="clear"></div>
+	<div class="span-2 background-medium align-center offset-3">
+        <p><code>span-2 offset-3</code></p>
+    </div>
+    <div class="clear"></div>
+	<div class="span-2 background-medium align-center offset-4">
+        <p><code>span-2 offset-4</code></p>
+    </div>
+    <div class="clear"></div>
+	<p>Grid cells inside a <code>grid-12</code> can also be offset using <code>offset-1</code> to <code>offset-11</code>:</p>
+	<div class="grid-12">
+	<div class="span-2 background-medium align-center">
+        <p><code>span-2</code></p>
+    </div>
+	<div class="clear"></div>
+    <div class="span-2 background-medium align-center offset-2">
+        <p><code>span-2 offset-2</code></p>
+    </div>
+    <div class="clear"></div>
+	<div class="span-2 background-medium align-center offset-4">
+        <p><code>span-2 offset-4</code></p>
+    </div>
+    <div class="clear"></div>
+	<div class="span-2 background-medium align-center offset-6">
+        <p><code>span-2 offset-6</code></p>
+    </div>
+    <div class="clear"></div>
+	<div class="span-2 background-medium align-center offset-8">
+        <p><code>span-2 offset-8</code></p>
+    </div>
+    <div class="clear"></div>
+	<div class="span-2 background-medium align-center offset-10">
+        <p><code>span-2 offset-10</code></p>
+    </div>
+    <div class="clear"></div>
+	</div>
+
+	
+<details class="span-6">
+	<summary>View code</summary>
+<pre>&lt;div class=&quot;span-2 offset-2&quot;&gt;
+  &lt;p&gt;Text here&lt;/p&gt;
+&lt;/div&gt;</pre>
+</details>
+<div class="clear"></div>
 
 <div class="span-6 module-summary margin-top-large">
 	<h3>Recap: Grid structure and layout options </h3>
