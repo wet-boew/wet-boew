@@ -257,7 +257,7 @@
 			
 			var popupsInfo = feature.layer.popupsInfo,
 				id = "popup_" + feature.id, 
-				height, width, close, opacity, content, name, popup;
+				height, width, close, content, name, popup;
 			
 			if (popupsInfo) {
 				height = (popupsInfo.height !== undefined) ? popupsInfo.height : map.size.h / 2;
@@ -303,11 +303,11 @@
 				i = scripts.length;
 					
 				while (i--) {
-				  scripts[i].parentNode.replaceChild(textnode, scripts[i]);
+					scripts[i].parentNode.replaceChild(textnode, scripts[i]);
 				}
 				content = div.innerHTML;
 			}
-									   
+
 			// Create the popup
 			popup = new OpenLayers.Popup.FramedCloud(
 				id,
@@ -963,7 +963,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
-						olLayer.popupsInfo = layer.popupInfo;
+						olLayer.popupsInfo = layer.popupsInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true; // to force featuresadded listener
 						map.addLayer(olLayer);
@@ -1026,7 +1026,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
-						olLayer.popupsInfo = layer.popupInfo;
+						olLayer.popupsInfo = layer.popupsInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
@@ -1093,7 +1093,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
-						olLayer.popupsInfo = layer.popupInfo;
+						olLayer.popupsInfo = layer.popupsInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
@@ -1160,7 +1160,7 @@
 						);	
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
-						olLayer.popupsInfo = layer.popupInfo;
+						olLayer.popupsInfo = layer.popupsInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
@@ -1227,7 +1227,7 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
-						olLayer.popupsInfo = layer.popupInfo;
+						olLayer.popupsInfo = layer.popupsInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
@@ -1317,7 +1317,7 @@
 
 				tableLayer.id = 'table#' + table.id;
 				tableLayer.datatable = opts.tables[index].datatable;
-				tableLayer.popupsInfo = opts.tables[index].popupInfo;
+				tableLayer.popupsInfo = opts.tables[index].popupsInfo;
 				tableLayer.popups = opts.tables[index].popups;
 				tableLayer.name = table.id;
 				map.addLayer(tableLayer);

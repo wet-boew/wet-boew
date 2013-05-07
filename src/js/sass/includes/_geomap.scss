@@ -190,6 +190,11 @@ div.olPopupLayerTitle {
     padding-bottom: 5px;
 }
 
+div.olPopupCloseBox {
+  border-bottom: solid 1px #eee;  
+  padding-bottom: 7px;  
+}
+
 .olPopupCloseBox {
 	cursor: pointer;	
 	background-image: url("../../grids/images/icons.png")!important;
