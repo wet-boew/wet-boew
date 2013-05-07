@@ -146,12 +146,13 @@ body {
 		@extend %gcwu-default-screen-complex-border;
 		@extend %gcwu-default-screen-a-pseudo-underline;
 		&.top-section {
+			color: #222;
+			font-size: 1.1em;
 			a {
 				&, &.ui-link {
 					color: #fff;
 					padding-top: 5px;
 					padding-bottom: 5px;
-					font-size: 1.1em;
 					&:visited {
 						color: #fff;
 					}
