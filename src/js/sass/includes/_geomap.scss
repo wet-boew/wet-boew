@@ -197,12 +197,11 @@ div.olPopupCloseBox {
 
 .olPopupCloseBox {
 	cursor: pointer;	
-	background-image: url("../../grids/images/icons.png")!important;
+	background-image: url("../../grids/images/icons.png") !important;
   background-origin: padding-box;
   background-position: -17px -486px;
   background-repeat: no-repeat;
   background-size: auto;
-  -webkit-filter: grayscale(1);
 }
 
 .olFramedCloudPopupContent {
@@ -210,8 +209,38 @@ div.olPopupCloseBox {
 	overflow: auto;
 }
 
-.olPopup h1, .olPopup h2, .olPopup h3, .olPopup h4, .olPopup h5, .olPopup h6, .olPopup p, .olPopup ol, .olPopup ul {
+%olPopupMargin {
   margin: 5px;
+}
+
+.olPopup {
+  h1 {
+    @extend %olPopupMargin;
+  }
+  h2 {
+    @extend %olPopupMargin;
+  }
+  h3 {
+    @extend %olPopupMargin;
+  }
+  h4 {
+    @extend %olPopupMargin;
+  }
+  h5 {
+    @extend %olPopupMargin;
+  }
+  h6 {
+    @extend %olPopupMargin;
+  }
+  p {
+    @extend %olPopupMargin;
+  }
+  ol {
+    @extend %olPopupMargin;
+  }
+  ul {
+    @extend %olPopupMargin;
+  }
 }
 
 .olControlNoSelect {

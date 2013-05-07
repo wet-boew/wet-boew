@@ -200,7 +200,7 @@
 		 */
 		onFeatureSelect: function(feature) {					
 			$('tr#' + feature.id.replace(/\W/g, '_')).addClass('background-highlight');
-			$('input#' + 'cb_' + feature.id.replace(/\W/g, '_')).prop('checked', true);
+			$('input#cb_' + feature.id.replace(/\W/g, '_')).prop('checked', true);
 		},
 
 		/*
@@ -208,7 +208,7 @@
 		 */
 		onFeatureUnselect: function(feature) {
 			$('tr#' + feature.id.replace(/\W/g, '_')).removeClass('background-highlight');
-			$('input#' + 'cb_' + feature.id.replace(/\W/g, '_')).prop('checked', false);
+			$('input#cb_' + feature.id.replace(/\W/g, '_')).prop('checked', false);
 			
 			// If there is a popup attached, hide it.
 			if (feature.popup !== null) {
@@ -256,22 +256,15 @@
 		createPopup: function(feature) {
 			
 			var popupsInfo = feature.layer.popupsInfo,
-				id = "popup_" + feature.id, 
-				height, width, close, content, name, popup;
+				id, height, width, close, content, name, popup;
 			
 			if (popupsInfo) {
+				id = (popupsInfo.id !== undefined) ? popupsInfo.id + '_' +	feature.id : 'popup_' + feature.id;
 				height = (popupsInfo.height !== undefined) ? popupsInfo.height : map.size.h / 2;
 				width = (popupsInfo.width !== undefined) ? popupsInfo.width : map.size.w / 2;
 				close = (popupsInfo.width !== undefined) ? popupsInfo.close : true;
-				content = '<div class="olPopupLayerTitle">' + $('table#' +feature.layer.name).attr('aria-label') + '</div>' + popupsInfo.content;
-			} else {
-				height = map.size.h / 2;
-				width = map.size.w / 2;
-				close = true; 
-				content = '<div class="olPopupLayerTitle">' + $('table#' +feature.layer.name).attr('aria-label') + '</div>';	
-			}			
-					
-			if (popupsInfo) {
+				content = '<div class="olPopupLayerTitle">' + $('#' + feature.layer.name).attr('aria-label') + '</div>' + popupsInfo.content;
+				
 				// Update content from feature
 				for (name in feature.attributes) {
 					if (feature.attributes.hasOwnProperty(name)) {
@@ -282,16 +275,23 @@
 					}
 				}
 			} else {
+				id = 'popup_' + feature.id;
+				height = map.size.h / 2;
+				width = map.size.w / 2;
+				close = true; 
+				content = '<div class="olPopupLayerTitle">' + $('table#' +feature.layer.name).attr('aria-label') + '</div>';
+				
+				// Update content from feature
 				for (name in feature.attributes) {					
 					if (feature.attributes.hasOwnProperty(name)) {
 						if (name.length !== 0) {							
 							content = content + "<p><strong>" + name + ":</strong><br />" + feature.attributes[name] + "</p>";
 						}
 					}
-				}
+				}	
 			}
 			
-			//	Do naive protection against avascript.
+			//	Do naive protection against JavaScript.
 			if (content.search('<script') !== -1) {
 				
 				var div = document.createElement('div'),
