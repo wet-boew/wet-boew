@@ -114,7 +114,6 @@
 			$scope.detach();
 			
 			/* ARIA additions */
-			$scope.attr('role', 'application');
 			if (menutitle.length !== 0) {
 				menutitle.attr('id', uniqueid);
 				$scope.attr('aria-labelledby', uniqueid);
