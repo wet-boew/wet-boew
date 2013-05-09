@@ -18,9 +18,9 @@
 		_togglers : [],			// Reference to all toggle controls
 		_aria_controls : null,	// Space separated ID list of <details> elements for toggle control aria-controls attribute
 		_exec : function (elm) {
-			var opts,
-				overrides,
-				$window;
+			var mediaQuery,
+				opts,
+				overrides;
 
 			// Default options
 			opts = {
@@ -59,21 +59,23 @@
 
 			// Open details on print
 			if(opts.printOpen) {
-				$window = _pe.window;
 
 				// Native event support
-				$window.on('beforeprint', $.proxy(function() {
+				_pe.window.on('beforeprint', $.proxy(function() {
 					this.setOpen(false);
 					this.toggle();
 				}, this));
 
 				// Fallback for browsers that don't support print event
-				if (window.matchMedia && window.matchMedia.addListener) {
-					window.matchMedia('print').addListener(function(query) {
-						if (query.matches) {
-							$window.trigger('beforeprint');
-						}
-					});
+				if (typeof window.matchMedia !== 'undefined') {
+					mediaQuery = window.matchMedia('print');
+					if (typeof mediaQuery.addListener !== 'undefined') {
+						mediaQuery.addListener(function(query) {
+							if (query.matches) {
+								_pe.window.trigger('beforeprint');
+							}
+						});
+					}
 				}
 
 				// Polyfill open using CSS
