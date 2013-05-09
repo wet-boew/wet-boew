@@ -30,8 +30,7 @@
 				popupLinkSpan,
 				match,
 				lang = _pe.language,
-				hintReverse = (lang === 'zh' || lang === 'zh-Hans' || lang === 'hi' || lang === 'ja' || lang === 'ko'),
-				uniqueid = 'wb-share-' + (new Date()).getTime();
+				hintReverse = (lang === 'zh' || lang === 'zh-Hans' || lang === 'hi' || lang === 'ja' || lang === 'ko');
 
 			// Defaults
 			opts = {
@@ -83,7 +82,6 @@
 
 			elm.bookmark(opts);
 			if (opts.popup && _pe.cssenabled) {
-				elm.attr({'role': 'application', 'aria-labelledby': uniqueid});
 				if (opts.popupTag.substring(0, 1) === 'h') { // If a heading element is used for the popup tag, then wrap the contents in a section element
 					elm.wrapInner('<section />');
 				}
@@ -123,7 +121,7 @@
 				}
 				elm.append($popup);
 
-				$popupText = elm.find('.bookmark_popup_text').attr('id', uniqueid).off('click vclick touchstart keydown').wrap('<' + opts.popupTag + ' />');
+				$popupText = elm.find('.bookmark_popup_text').off('click vclick touchstart keydown').wrap('<' + opts.popupTag + ' />');
 				$popupText.attr({'role': 'button', 'aria-controls': 'bookmark_popup'}).on('click vclick touchstart keydown', function (e) {
 					var keyCode = e.keyCode;
 					if (e.type === 'keydown') {
