@@ -17,8 +17,6 @@
 		type : 'plugin',
 		depends : (_pe.mobile ? [] : ['hoverintent']),
 		ignoreMenuBarClicks : false,
-		menutitle : _pe.header.find('.wet-boew-menubar').parents().find('> :header').first(),
-		uniqueid : 'wb-menubar-' + (new Date()).getTime(),
 		_exec : function (elm) {
 			/*
 			@notes: the mega menu will use custom events to better manage its events.
@@ -43,9 +41,7 @@
 				submenuHelp = _pe.dic.get('%sub-menu-help'),
 				menuelms,
 				menuelm,
-				menulen,
-				menutitle = _pe.fn.menubar.menutitle,
-				uniqueid = _pe.fn.menubar.uniqueid;
+				menulen;
 
 			/* functions that would be necessary for helpers */
 			showsubmenu = function (toplink) {
@@ -114,10 +110,6 @@
 			$scope.detach();
 			
 			/* ARIA additions */
-			if (menutitle.length !== 0) {
-				menutitle.attr('id', uniqueid);
-				$scope.attr('aria-labelledby', uniqueid);
-			}
 			menuelms = $scope.find('> div > ul').attr('role', 'menubar').get(0).getElementsByTagName('*');
 			menulen = menuelms.length;
 			while (menulen--) {
