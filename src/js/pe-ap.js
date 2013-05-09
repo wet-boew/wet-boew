@@ -314,14 +314,17 @@
 
 				// Wait for localisation and ajax content to load plugins
 				pe.document.one('languageloaded', function () {
+					if (wet_boew_theme !== null) {
+						// Initialize the theme
+						wet_boew_theme.init();
+					}
+
 					// Check to see if PE enhancements should be disabled
 					if (pe.pedisable() === true) {
 						return false; // Disable PE enhancements
 					}
-					if (wet_boew_theme !== null) {
-						// Initialize the theme
-						wet_boew_theme.init();
 
+					if (wet_boew_theme !== null) {
 						pe.document.one('themeviewloaded', function () {
 							if (typeof $.mobile !== 'undefined') {
 								pe.mobilelang();
