@@ -1275,7 +1275,7 @@
 				// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
 				if (!_pe.mobile) {
 					$mapDiv.before('<details class="wet-boew-geomap-detail"><summary>' + _pe.dic.get('%geo-accessibilizetitle') + '</summary><p>' + _pe.dic.get('%geo-accessibilize') + '</p></details>');
-					_pe.polyfills.enhance('detailssummary', document.getElementsByTagName('details'));
+					_pe.polyfills.enhance('detailssummary', $('.wet-boew-geomap-detail'));
 				}
 			}
 
