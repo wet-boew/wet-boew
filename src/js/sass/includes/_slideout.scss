@@ -35,19 +35,21 @@
 }
 
 .slideoutToggle {
+	background-color: #369;
+	border: 1px solid #000;
+	border-right: 0;
 	float: left;
+	padding: 2px;
 	position: relative; /* Needed for animation */
 }
 
 #toggleLink {
 	background-color: #369;
-	border: 1px solid #000;
-	border-bottom: 0;
 	color: #FFF !important;
 	cursor: pointer;
 	display: block;
 	margin: 0;
-	padding: 5px;
+	padding: 3px;
 	position: absolute;
 	text-decoration: none;
 	@include transform-origin(0, 0);

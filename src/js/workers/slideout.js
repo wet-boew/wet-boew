@@ -338,8 +338,8 @@
 
 			if (_pe.ie > 7 && _pe.ie < 9) {  // IE 8
 				$('#slideoutToggle').css({
-					'left': -($('#slideoutToggle').width()) + 'px',
-					'top': $('#slideoutToggle').width() + 'px'
+					'left': -($('#slideoutToggle').outerWidth()) + 'px',
+					'top': $('#slideoutToggle').outerWidth() + 'px'
 				});
 				wrapper.width(focusOutlineAllowance);
 			} else {
