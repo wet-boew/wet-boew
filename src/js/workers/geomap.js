@@ -18,8 +18,9 @@
 		overlays = 0,
 		overlaysLoaded = 0,
 		overlaysLoading = {}, // Status of overlayLoading (true = still loading)
-		overlayTimeout = 2000; // Timeout for overlay loading in milliseconds
-
+		overlayTimeout = 2000, // Timeout for overlay loading in milliseconds
+		showAttribNRCan;
+		
 	/* local reference */
 	_pe.fn.geomap = {
 		type: 'plugin',				
@@ -751,6 +752,7 @@
 				}
 			} else {
 				_pe.fn.geomap.setDefaultBaseMap(opts);
+				showAttribNRCan = true;
 			}
 			
 			// Set aspect ratio
@@ -1206,7 +1208,9 @@
 		 */
 		loadControls: function(opts){
 			var $geomap = _pe.main.find('.wet-boew-geomap'),
-				$mapDiv = $('#' + map.div.id);
+				$mapDiv = $('#' + map.div.id),
+				attrib,
+				attribImg;
 
 			// TODO: ensure WCAG compliance before enabling			
 			selectControl = new OpenLayers.Control.SelectFeature(
@@ -1240,11 +1244,29 @@
 					
 				if (opts.useMousePosition) {
 					map.addControl(new OpenLayers.Control.MousePosition());
+					map.getControlsByClass('OpenLayers.Control.MousePosition')[0].div.setAttribute('aria-label',_pe.dic.get('%geo-mouseposition'));
+					map.getControlsByClass('OpenLayers.Control.MousePosition')[0].div.setAttribute('title',_pe.dic.get('%geo-mouseposition'));
 				}
 				if (opts.useScaleLine) {
 					map.addControl(new OpenLayers.Control.ScaleLine());
+					map.getControlsByClass('OpenLayers.Control.ScaleLine')[0].div.setAttribute('aria-label',_pe.dic.get('%geo-scaleline'));
+					map.getControlsByClass('OpenLayers.Control.ScaleLine')[0].div.setAttribute('title',_pe.dic.get('%geo-scaleline'));
 				}
 	
+				// add attribution
+				if (showAttribNRCan) {
+					map.addControl(new OpenLayers.Control.Attribution());
+					attrib = document.createElement('a');
+					attrib.setAttribute('href', _pe.dic.get('%geo-attributionlink'));
+					attribImg = document.createElement('img');
+					attribImg.setAttribute('src', OpenLayers.ImgPath + 'attrib-' + _pe.language + '.png');
+					attribImg.setAttribute('aria-label', _pe.dic.get('%geo-attributiontitle'));
+					attribImg.setAttribute('title', _pe.dic.get('%geo-attributiontitle'));
+					attribImg.setAttribute('class', 'olImgAttribution');	  
+					attrib.appendChild(attribImg);
+					map.getControlsByClass('OpenLayers.Control.Attribution')[0].div.appendChild(attrib);
+				}
+	  
 				map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
 				map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 				map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
