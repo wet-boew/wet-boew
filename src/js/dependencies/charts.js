@@ -1331,6 +1331,9 @@
 						$placeHolder.css('height', 'auto');
 					}
 					
+					// Remove any "pieLabel" ids set by the flotPie.js plugin at line #457
+					$('.pieLabel').removeAttr('id');
+					
 					allSeries = [];
 
 				}
