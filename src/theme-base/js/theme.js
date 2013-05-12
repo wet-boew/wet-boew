@@ -283,10 +283,12 @@
 			$document.on('pagecreate', function () {
 				var navbar = wet_boew_theme.fullhd.find('#base-mnavbar'),
 					menu = pe.bodydiv.find('#jqm-mb-menu'),
-					menus,
 					nodes,
 					nodes2,
-					node2;
+					node2,
+					len,
+					len2,
+					elmClasses;
 				if (navbar.length !== 0) {
 					// Manually initializes the navbar controlgroup if it doesn't initialize normally (can happen in IE)
 					if (!navbar.hasClass('ui-controlgroup')) {
@@ -301,8 +303,7 @@
 						navbar.find('a[href="#jqm-wb-mb"]').one('click vclick', function () {
 							// Enhance the menu
 							menu.trigger('create');
-							menus = menu.find('.ui-controlgroup');
-							nodes = menus.get();
+							nodes = menu[0].getElementsByClassName('ui-controlgroup');
 							len = nodes.length;
 							while (len--) {
 								node = nodes[len];
@@ -313,10 +314,14 @@
 								}
 
 								// Fix the bottom corners
-								nodes2 = menus.eq(len).find('.ui-btn').get();
-								node = nodes2[nodes2.length - 1];
-								if (typeof node !== 'undefined' && node.className.indexOf('ui-corner-bottom') === -1) {
-									node.className += ' ui-corner-bottom';
+								elmClasses = ['ui-btn', 'ui-collapsible-heading-toggle'];
+								len2 = elmClasses.length;
+								while (len2--) {
+									nodes2 = node.getElementsByClassName(elmClasses[len2]);
+									node2 = nodes2[nodes2.length - 1];
+									if (typeof node2 !== 'undefined' && node2.className.indexOf('ui-corner-bottom') === -1) {
+										node2.className += ' ui-corner-bottom';
+									}
 								}
 							}
 						});
