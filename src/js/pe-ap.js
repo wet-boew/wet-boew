@@ -1205,9 +1205,6 @@
 									if (hlink.length !== 0) {
 										hlinkDOM = hlink[0];
 										url = hlinkDOM.getAttribute('href');
-										if (url === '#' || url === 'javascript:;') {
-											url = disableLink;
-										}
 										navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
 										navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
 										menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
