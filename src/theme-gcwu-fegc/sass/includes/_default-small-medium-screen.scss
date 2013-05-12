@@ -35,6 +35,9 @@
 %gcwu-default-small-medium-screen-border-none {
 	border: none;
 }
+%gcwu-default-small-medium-screen-border-bottom-width-1 {
+	border-bottom-width: 1px;
+}
 %gcwu-default-small-medium-screen-text-shadow-none {
 	text-shadow: none;
 }
@@ -290,7 +293,7 @@ table {
 			@extend %gcwu-default-small-medium-screen-top-rounded-corners;
 		}
 		&.ui-corner-bottom {
-			border-bottom-width: 1px;
+			@extend %gcwu-default-small-medium-screen-border-bottom-width-1;
 			@extend %gcwu-default-small-medium-screen-bottom-rounded-corners;
 		}
 	}
@@ -632,6 +635,9 @@ select {
 		&:not(.ui-collapsible-heading-collapsed) {
 			a {
 				@extend %gcwu-default-small-medium-screen-no-bottom-rounded-corners;
+				&.ui-corner-bottom {
+					border-bottom-width: 0;
+				}
 			}
 		}
 	}
@@ -697,7 +703,7 @@ select {
 			}
 		}
 		&.ui-corner-bottom {
-			border-bottom-width: 1px;
+			@extend %gcwu-default-small-medium-screen-border-bottom-width-1;
 		}
 	}
 	.top-section {
