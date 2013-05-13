@@ -399,6 +399,29 @@
 				hlevel = parseInt(heading.prop('tagName').substr(1), 10) + 1;
 			}
 			return hlevel;
+		},
+
+		/**
+		 * Track the currently active tab for the user's session
+		 */
+		_set_active_panel : function(id, tabListIdx) {
+			if (typeof window.sessionStorage !== 'undefined') {
+				window.sessionStorage.setItem('activePanel-' + tabListIdx, id);
+			}
+		},
+
+		_get_active_panel : function(tabListIdx) {
+			if (typeof window.sessionStorage !== 'undefined') {
+				return window.sessionStorage.getItem('activePanel-' + tabListIdx);
+			}
+			return null;
+		},
+
+		/**
+		 * Returns the URL hash given a link's href attribute
+		 */
+		_get_hash : function(href) {
+			return href !== null ? href.substring(href.indexOf('#')) : '';
 		}
 	};
 	window.pe = _pe;
