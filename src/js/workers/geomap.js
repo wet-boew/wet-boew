@@ -18,8 +18,9 @@
 		overlays = 0,
 		overlaysLoaded = 0,
 		overlaysLoading = {}, // Status of overlayLoading (true = still loading)
-		overlayTimeout = 2000; // Timeout for overlay loading in milliseconds
-
+		overlayTimeout = 2000, // Timeout for overlay loading in milliseconds
+		showAttribNRCan;
+		
 	/* local reference */
 	_pe.fn.geomap = {
 		type: 'plugin',				
@@ -751,6 +752,7 @@
 				}
 			} else {
 				_pe.fn.geomap.setDefaultBaseMap(opts);
+				showAttribNRCan = true;
 			}
 			
 			// Set aspect ratio
@@ -1206,7 +1208,9 @@
 		 */
 		loadControls: function(opts){
 			var $geomap = _pe.main.find('.wet-boew-geomap'),
-				$mapDiv = $('#' + map.div.id);
+				$mapDiv = $('#' + map.div.id),
+				attrib,
+				attribImg;
 
 			// TODO: ensure WCAG compliance before enabling			
 			selectControl = new OpenLayers.Control.SelectFeature(
@@ -1248,7 +1252,7 @@
 				map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
 				map.addControl(new OpenLayers.Control.KeyboardDefaults());			
 				map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
-	
+
 				// enable the keyboard navigation when map div has focus. Disable when blur
 				// Enable the wheel zoom only on hover
 				$geomap.attr('tabindex', '0').on('mouseenter mouseleave focusin focusout', function(e) {
@@ -1272,6 +1276,20 @@
 				// add pan zoom bar
 				_pe.fn.geomap.addPanZoomBar();					
 	
+				// add attribution
+				if (showAttribNRCan) {
+					map.addControl(new OpenLayers.Control.Attribution());
+					attrib = document.createElement('a');
+					attrib.setAttribute('href', _pe.dic.get('%geo-attributionlink'));
+					attribImg = document.createElement('img');
+					attribImg.setAttribute('src', OpenLayers.ImgPath + 'attrib-' + _pe.language + '.png');
+					attribImg.setAttribute('aria-label', _pe.dic.get('%geo-attributiontitle'));
+					attribImg.setAttribute('title', _pe.dic.get('%geo-attributiontitle'));
+					attribImg.setAttribute('class', 'olImgAttribution');	
+					attrib.appendChild(attribImg);
+					map.getControlsByClass('OpenLayers.Control.Attribution')[0].div.appendChild(attrib);
+				}
+
 				// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
 				if (!_pe.mobile) {
 					$mapDiv.before('<details class="wet-boew-geomap-detail"><summary>' + _pe.dic.get('%geo-accessibilizetitle') + '</summary><p>' + _pe.dic.get('%geo-accessibilize') + '</p></details>');
