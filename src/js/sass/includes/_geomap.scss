@@ -183,25 +183,20 @@ div {
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
 }
 
-div.olPopupLayerTitle {
+.olPopupLayerTitle {
     border-bottom: solid 1px #eee;
     margin-top: 0;
     font-size: 1.25em;
     padding-bottom: 5px;
 }
 
-div.olPopupCloseBox {
+.olPopupCloseBox {
   border-bottom: solid 1px #eee;  
   padding-bottom: 7px;  
 }
 
 .olPopupCloseBox {
-	cursor: pointer;	
-	background-image: url("../../grids/images/icons.png") !important;
-  background-origin: padding-box;
-  background-position: -17px -486px;
-  background-repeat: no-repeat;
-  background-size: auto;
+	cursor: pointer;
 }
 
 .olFramedCloudPopupContent {

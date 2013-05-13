@@ -200,7 +200,7 @@
 		 */
 		onFeatureSelect: function(feature) {					
 			$('tr#' + feature.id.replace(/\W/g, '_')).addClass('background-highlight');
-			$('input#cb_' + feature.id.replace(/\W/g, '_')).prop('checked', true);
+			$('#cb_' + feature.id.replace(/\W/g, '_')).prop('checked', true);
 		},
 
 		/*
@@ -208,13 +208,11 @@
 		 */
 		onFeatureUnselect: function(feature) {
 			$('tr#' + feature.id.replace(/\W/g, '_')).removeClass('background-highlight');
-			$('input#cb_' + feature.id.replace(/\W/g, '_')).prop('checked', false);
+			$('#cb_' + feature.id.replace(/\W/g, '_')).prop('checked', false);
 			
 			// If there is a popup attached, hide it.
-			if (feature.popup !== null) {
-				if (feature.popup.visible()) {
-					feature.popup.hide();
-				}
+			if (feature.popup !== null && feature.popup.visible()) {
+				feature.popup.hide();
 			}
 		},
 
@@ -231,12 +229,8 @@
 				if (feature.layer.popups !== undefined) {
 					
 					// If a popup is already shown, hide it
-					if (selectedFeature !== undefined) {
-						if (selectedFeature.popup !== null) {
-							if (selectedFeature.popup.visible()) {
-								selectedFeature.popup.hide();
-							}
-						}
+					if (selectedFeature !== undefined && selectedFeature.popup !== null && selectedFeature.popup.visible()) {
+						selectedFeature.popup.hide();
 					}
 				
 					// If no popup, create it, otherwise show it.
@@ -256,13 +250,20 @@
 		createPopup: function(feature) {
 			
 			var popupsInfo = feature.layer.popupsInfo,
-				id, height, width, close, content, name, popup;
+				id,
+				height,
+				width,
+				close,
+				content,
+				name,
+				popup,
+				icon;
 			
 			if (popupsInfo) {
-				id = (popupsInfo.id !== undefined) ? popupsInfo.id + '_' +	feature.id : 'popup_' + feature.id;
-				height = (popupsInfo.height !== undefined) ? popupsInfo.height : map.size.h / 2;
-				width = (popupsInfo.width !== undefined) ? popupsInfo.width : map.size.w / 2;
-				close = (popupsInfo.width !== undefined) ? popupsInfo.close : true;
+				id = (typeof popupsInfo.id !== 'undefined') ? popupsInfo.id + '_' +	feature.id : 'popup_' + feature.id;
+				height = (typeof popupsInfo.height !== 'undefined') ? popupsInfo.height : map.size.h / 2;
+				width = (typeof popupsInfo.width !== 'undefined') ? popupsInfo.width : map.size.w / 2;
+				close = (typeof popupsInfo.width !== 'undefined') ? popupsInfo.close : true;
 				content = '<div class="olPopupLayerTitle">' + $('#' + feature.layer.name).attr('aria-label') + '</div>' + popupsInfo.content;
 				
 				// Update content from feature
@@ -285,42 +286,30 @@
 				for (name in feature.attributes) {					
 					if (feature.attributes.hasOwnProperty(name)) {
 						if (name.length !== 0) {							
-							content = content + "<p><strong>" + name + ":</strong><br />" + feature.attributes[name] + "</p>";
+							content = content + "<p><strong>" + name + _pe.dic.get('%colon') + "</strong><br />" + feature.attributes[name] + "</p>";
 						}
 					}
 				}	
-			}
-			
-			//	Do naive protection against JavaScript.
-			if (content.search('<script') !== -1) {
-				
-				var div = document.createElement('div'),
-					textnode =document.createTextNode(_pe.dic.get('%geo-scriptpopup')),
-					scripts, i;
-				
-				div.innerHTML = content;
-				scripts = div.getElementsByTagName('script'),
-				i = scripts.length;
-					
-				while (i--) {
-					scripts[i].parentNode.replaceChild(textnode, scripts[i]);
-				}
-				content = div.innerHTML;
 			}
 
 			// Create the popup
 			popup = new OpenLayers.Popup.FramedCloud(
 				id,
 				feature.geometry.getBounds().getCenterLonLat(),
-				new OpenLayers.Size(width,height),
+				new OpenLayers.Size(width, height),
 				content,
 				null,
 				close,
 				_pe.fn.geomap.onPopupClose);
 													
-			popup.maxSize = new OpenLayers.Size(width,height);
+			popup.maxSize = new OpenLayers.Size(width, height);
 			feature.popup = popup;
 			map.addPopup(popup);
+
+			// add wb-icon class
+			icon = document.createElement('span');
+			icon.setAttribute('class', 'wb-icon-x-alt2');
+			feature.popup.closeDiv.appendChild(icon);
 		},
 		
 		/*
