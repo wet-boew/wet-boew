@@ -1277,8 +1277,8 @@
 				_pe.fn.geomap.addPanZoomBar();					
 	
 				// add attribution
+				map.addControl(new OpenLayers.Control.Attribution());
 				if (showAttribNRCan) {
-					map.addControl(new OpenLayers.Control.Attribution());
 					attrib = document.createElement('a');
 					attrib.setAttribute('href', _pe.dic.get('%geo-attributionlink'));
 					attribImg = document.createElement('img');
