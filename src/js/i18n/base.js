@@ -189,6 +189,8 @@
 		'%geo-zoomworld': '@%geo-zoomworld@',
 		'%geo-zoomslider': '@%geo-zoomslider@',
 		'%geo-zoomfeature': '@%geo-zoomfeature@',
+		'%geo-scaleline': '@%geo-scaleline@',
+		'%geo-mouseposition': '@%geo-mouseposition@',
 		'%geo-ariamap': '@%geo-ariamap@',
 		'%geo-accessibilize': '@%geo-accessibilize@',
 		'%geo-accessibilizetitle': '@%geo-accessibilizetitle@',
@@ -196,6 +198,8 @@
 		'%geo-hiddenlayer': '@%geo-hiddenlayer@',
 		'%geo-basemapurl': '@%geo-basemapurl@',
 		'%geo-basemaptitle': '@%geo-basemaptitle@',
+		'%geo-attributionlink': '@%geo-attributionlink@',
+		'%geo-attributiontitle': '@%geo-attributiontitle@',
 		'%geo-select': '@%geo-select@',
 		'%geo-labelselect': '@%geo-labelselect@',
 		/* Disable/enable PE */
