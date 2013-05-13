@@ -189,6 +189,8 @@
 		'%geo-zoomworld': '@%geo-zoomworld@',
 		'%geo-zoomslider': '@%geo-zoomslider@',
 		'%geo-zoomfeature': '@%geo-zoomfeature@',
+		'%geo-scaleline': '@%geo-scaleline@',
+		'%geo-mouseposition': '@%geo-mouseposition@',
 		'%geo-ariamap': '@%geo-ariamap@',
 		'%geo-accessibilize': '@%geo-accessibilize@',
 		'%geo-accessibilizetitle': '@%geo-accessibilizetitle@',
