@@ -87,7 +87,8 @@
 				transition : (elm.hasClass('transition-fade') ? 'fade' : (elm.hasClass('transition-none') ? 'none' : undefined)),
 				loop : elm.hasClass('loop-none') ? false : undefined,
 				slideshow : elm.hasClass('slideshow') ? true : undefined,
-				slideshowAuto : elm.hasClass('slideshow-auto') ? true : undefined
+				slideshowAuto : elm.hasClass('slideshow-auto') ? true : undefined,
+				photo : elm.hasClass('force-photo') ? true : false
 			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data-wet-boew attribute
