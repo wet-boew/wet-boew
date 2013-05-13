@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2"
    xmlns:gml="http://www.opengis.net/gml"
    xmlns:georss="http://www.georss.org/georss">
@@ -45,12 +45,12 @@
       </Style>
       <Placemark id="c18d3c36-3947-5595-b8ff-b5a2da67841c">
          <name>The buried Laurentian Valley, southern Ontario: character, sedimentary fill, and hydrogeological setting in the Nobleton-King City area</name>
-         <description><![CDATA[<b>Date d'ajout: </b>Janvier 1, 2005<br/>
-            <b>Auteur: </b>Sharpe, D R; Russell, H A J; Pullan, S E; Hunter, J A<br/>
+         <description><![CDATA[<strong>Date d'ajout: </strong>Janvier 1, 2005<br/>
+            <strong>Auteur: </strong>Sharpe, D R; Russell, H A J; Pullan, S E; Hunter, J A<br/>
             <br/>
-            <b>
+            <strong>
                <a href="http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/c18d3c36-3947-5595-b8ff-b5a2da67841c.html">Plus d'informations</a>
-            </b>]]></description>
+            </strong>]]></description>
          <styleUrl>#poly0</styleUrl>
          <Polygon>
             <outerBoundaryIs>
@@ -62,12 +62,12 @@
       </Placemark>
       <Placemark id="c933fa0d-e111-535a-bc78-ff70b8e68694">
          <name>Structural model of the Greater Toronto and Oak Ridges Moraine areas, southern Ontario: Lower sediment</name>
-         <description><![CDATA[<b>Date d'ajout: </b>Janvier 1, 2005<br/>
-            <b>Auteur: </b>Sharpe, D R; Russell, H A J; Logan, C<br/>
+         <description><![CDATA[<strong>Date d'ajout: </strong>Janvier 1, 2005<br/>
+            <strong>Auteur: </strong>Sharpe, D R; Russell, H A J; Logan, C<br/>
             <br/>
-            <b>
+            <strong>
                <a href="http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/c933fa0d-e111-535a-bc78-ff70b8e68694.html">Plus d'informations</a>
-            </b>]]></description>
+            </strong>]]></description>
          <styleUrl>#poly0</styleUrl>
          <Polygon>
             <outerBoundaryIs>
@@ -79,12 +79,12 @@
       </Placemark>
       <Placemark id="95dc7c62-fc39-541a-8087-dbbd62666ce8">
          <name>Borehole geophysical logs, Manitoba (1992): contents include logs from Grand Rapids and Winnipeg</name>
-         <description><![CDATA[<b>Date d'ajout: </b>Janvier 1, 1995<br/>
-            <b>Auteur: </b>Mwenifumbo, C J; Bezys, R; Betcher, R; Killeen, P G<br/>
+         <description><![CDATA[<strong>Date d'ajout: </strong>Janvier 1, 1995<br/>
+            <strong>Auteur: </strong>Mwenifumbo, C J; Bezys, R; Betcher, R; Killeen, P G<br/>
             <br/>
-            <b>
+            <strong>
                <a href="http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/95dc7c62-fc39-541a-8087-dbbd62666ce8.html">Plus d'informations</a>
-            </b>]]></description>
+            </strong>]]></description>
          <styleUrl>#poly0</styleUrl>
          <Polygon>
             <outerBoundaryIs>

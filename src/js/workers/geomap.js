@@ -199,7 +199,7 @@
 		 * Map feature select
 		 */
 		onFeatureSelect: function(feature) {					
-			$('tr#' + feature.id.replace(/\W/g, '_')).addClass('background-highlight');
+			$('#' + feature.id.replace(/\W/g, '_')).addClass('background-highlight');
 			$('#cb_' + feature.id.replace(/\W/g, '_')).prop('checked', true);
 		},
 
@@ -207,7 +207,7 @@
 		 *	Map feature unselect
 		 */
 		onFeatureUnselect: function(feature) {
-			$('tr#' + feature.id.replace(/\W/g, '_')).removeClass('background-highlight');
+			$('#' + feature.id.replace(/\W/g, '_')).removeClass('background-highlight');
 			$('#cb_' + feature.id.replace(/\W/g, '_')).prop('checked', false);
 			
 			// If there is a popup attached, hide it.
@@ -260,19 +260,17 @@
 				icon;
 			
 			if (popupsInfo) {
-				id = (typeof popupsInfo.id !== 'undefined') ? popupsInfo.id + '_' +	feature.id : 'popup_' + feature.id;
-				height = (typeof popupsInfo.height !== 'undefined') ? popupsInfo.height : map.size.h / 2;
-				width = (typeof popupsInfo.width !== 'undefined') ? popupsInfo.width : map.size.w / 2;
-				close = (typeof popupsInfo.width !== 'undefined') ? popupsInfo.close : true;
+				id = (typeof popupsInfo.id !== 'undefined' ? popupsInfo.id : 'popup_') + '_' +	feature.id;
+				height = typeof popupsInfo.height !== 'undefined' ? popupsInfo.height : map.size.h / 2;
+				width = typeof popupsInfo.width !== 'undefined' ? popupsInfo.width : map.size.w / 2;
+				close = typeof popupsInfo.width !== 'undefined' ? popupsInfo.close : true;
 				content = '<div class="olPopupLayerTitle">' + $('#' + feature.layer.name).attr('aria-label') + '</div>' + popupsInfo.content;
 				
 				// Update content from feature
 				for (name in feature.attributes) {
-					if (feature.attributes.hasOwnProperty(name)) {
-						if (name.length !== 0) {
-							var regex = new RegExp('_'+ name, 'igm');
-							content = content.replace(regex, feature.attributes[name]);
-						}
+					if (feature.attributes.hasOwnProperty(name) && name.length !== 0) {
+						var regex = new RegExp('_'+ name, 'igm');
+						content = content.replace(regex, feature.attributes[name]);
 					}
 				}
 			} else {
@@ -280,14 +278,12 @@
 				height = map.size.h / 2;
 				width = map.size.w / 2;
 				close = true; 
-				content = '<div class="olPopupLayerTitle">' + $('table#' +feature.layer.name).attr('aria-label') + '</div>';
+				content = '<div class="olPopupLayerTitle">' + $('#' +feature.layer.name).attr('aria-label') + '</div>';
 				
 				// Update content from feature
 				for (name in feature.attributes) {					
-					if (feature.attributes.hasOwnProperty(name)) {
-						if (name.length !== 0) {							
-							content = content + "<p><strong>" + name + _pe.dic.get('%colon') + "</strong><br />" + feature.attributes[name] + "</p>";
-						}
+					if (feature.attributes.hasOwnProperty(name) && name.length !== 0) {						
+						content += "<p><strong>" + name + _pe.dic.get('%colon') + "</strong><br />" + feature.attributes[name] + "</p>";
 					}
 				}	
 			}
