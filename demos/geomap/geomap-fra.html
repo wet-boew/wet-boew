@@ -30,6 +30,17 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
 <!--<![endif]-->
 
+<script>
+	function showPhoto() {
+		var $img = $('.imgPopup');
+		if ($img.hasClass('wb-invisible')) {
+			$img.removeClass('wb-invisible');
+		} else {
+			$img.addClass('wb-invisible');
+		}
+	}
+</script>
+
 <!-- CustomCSSStart -->
 
 <!-- CustomCSSEnd -->
@@ -105,6 +116,14 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 				"zoom": true,
 				"tab": false,
 				"datatable": true,
+				"popups": true,
+				"popupsInfo": {
+					"id": "citiesPopup",
+					"height": 200,
+					"width": 300,
+					"close": true,
+					"content": "<div style=\"white-space:nowrap;\"><p><strong>Subdivision de recensement: </strong><a href=\"http://www.wikipedia.org/wiki/_Subdivision de recensement\" title=\"_Subdivision de recensement\">_Subdivision de recensement</a><div><ul class=\"list-bullet-none margin-left-none\"><li><input type=\"checkbox\" id=\"inputchk\" onchange=\"showPhoto()\"><label class=\"form-checkbox\" for=\"inputchk\">Cochez pour voir la photo</label></li></ul></div><div><img class=\"wb-invisible imgPopup\" src=\"http://www.fastcoexist.com/multisite_files/coexist/imagecache/960/article_feature/1280-smart-city-lean-startup.jpg\" style=\"width:470px; height:265px;\"></div></div>"
+                },
 				"style": { 
 					"type": "rule", 
 					"rule": [
@@ -148,7 +167,8 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 			},
 			{
 				"id": "bbox", 
-				"tab": true
+				"tab": true,
+				"popups": true
 			}] 
 		}'>
 	</div> 
