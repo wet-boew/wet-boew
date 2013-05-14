@@ -594,8 +594,8 @@ select {
 	.ui-body-a {
 		background: #FFF;
 	}
-	.ui-collapsible-set {
-		@extend %base-default-small-medium-screen-margin-0;
+		.ui-collapsible-set {
+		margin: 0;
 		a {
 			@extend %base-default-small-medium-screen-white-space-normal;
 		}
@@ -603,7 +603,23 @@ select {
 			&:not(:first-child) {
 				@extend %base-default-small-medium-screen-no-top-rounded-corners;
 			}
+			&:not(:last-child) {
+				@extend %base-default-small-medium-screen-no-bottom-rounded-corners;
+			}
 			&:last-child {
+				> {
+					.ui-collapsible-heading {
+						a {
+							@extend %base-default-small-medium-screen-no-bottom-rounded-corners;
+						}
+					}
+					.ui-collapsible-heading-collapsed {
+						a {
+							@extend %base-default-small-medium-screen-bottom-rounded-corners;
+							@extend %base-default-small-medium-screen-border-bottom-width-1;
+						}
+					}
+				}
 				.ui-collapsible-content {
 					> {
 						:not(:last-child) {
@@ -618,14 +634,6 @@ select {
 		.ui-btn {
 			border-left-width: 1px;
 			border-right-width: 1px;
-		}
-		&:not(.ui-collapsible-heading-collapsed) {
-			a {
-				@extend %base-default-small-medium-screen-no-bottom-rounded-corners;
-				&.ui-corner-bottom {
-					border-bottom-width: 0;
-				}
-			}
 		}
 	}
 	.wb-nested-menu {
