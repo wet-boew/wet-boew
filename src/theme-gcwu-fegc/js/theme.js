@@ -370,9 +370,7 @@
 					nodes,
 					nodes2,
 					node2,
-					len,
-					len2,
-					elmClasses;
+					len;
 				if (navbar.length !== 0) {
 					// Manually initializes the navbar controlgroup if it doesn't initialize normally (can happen in IE)
 					if (!navbar.hasClass('ui-controlgroup')) {
@@ -391,6 +389,7 @@
 							len = nodes.length;
 							while (len--) {
 								node = nodes[len];
+
 								// Fix the top corners
 								node2 = node.getElementsByTagName('li')[0];
 								if (node2.parentNode.parentNode.parentNode.className.indexOf('ui-collapsible') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
@@ -398,14 +397,10 @@
 								}
 
 								// Fix the bottom corners
-								elmClasses = ['ui-btn', 'ui-collapsible-heading-toggle'];
-								len2 = elmClasses.length;
-								while (len2--) {
-									nodes2 = node.getElementsByClassName(elmClasses[len2]);
-									node2 = nodes2[nodes2.length - 1];
-									if (typeof node2 !== 'undefined' && node2.className.indexOf('ui-corner-bottom') === -1) {
-										node2.className += ' ui-corner-bottom';
-									}
+								nodes2 = node.getElementsByClassName('ui-btn');
+								node2 = nodes2[nodes2.length - 1];
+								if (typeof node2 !== 'undefined' && node2.className.indexOf('ui-corner-bottom') === -1) {
+									node2.className += ' ui-corner-bottom';
 								}
 							}
 						});
