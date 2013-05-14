@@ -609,7 +609,23 @@ select {
 			&:not(:first-child) {
 				@extend %wet-default-small-medium-screen-no-top-rounded-corners;
 			}
+			&:not(:last-child) {
+				@extend %wet-default-small-medium-screen-no-bottom-rounded-corners;
+			}
 			&:last-child {
+				> {
+					.ui-collapsible-heading {
+						a {
+							@extend %wet-default-small-medium-screen-no-bottom-rounded-corners;
+						}
+					}
+					.ui-collapsible-heading-collapsed {
+						a {
+							@extend %wet-default-small-medium-screen-bottom-rounded-corners;
+							@extend %wet-default-small-medium-screen-border-bottom-width-1;
+						}
+					}
+				}
 				.ui-collapsible-content {
 					> {
 						:not(:last-child) {
@@ -624,14 +640,6 @@ select {
 		.ui-btn {
 			border-left-width: 1px;
 			border-right-width: 1px;
-		}
-		&:not(.ui-collapsible-heading-collapsed) {
-			a {
-				@extend %wet-default-small-medium-screen-no-bottom-rounded-corners;
-				&.ui-corner-bottom {
-					border-bottom-width: 0;
-				}
-			}
 		}
 	}
 	.wb-nested-menu {
