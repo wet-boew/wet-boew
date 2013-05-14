@@ -14,6 +14,7 @@
 
 	var map,
 		selectControl,
+		selectedFeature,
 		queryLayers = [],
 		overlays = 0,
 		overlaysLoaded = 0,
@@ -198,14 +199,120 @@
 		 * Map feature select
 		 */
 		onFeatureSelect: function(feature) {					
-			$('tr#' + feature.id.replace(/\W/g, '_')).addClass('background-highlight');
+			$('#' + feature.id.replace(/\W/g, '_')).addClass('background-highlight');
+			$('#cb_' + feature.id.replace(/\W/g, '_')).prop('checked', true);
 		},
 
 		/*
 		 *	Map feature unselect
 		 */
 		onFeatureUnselect: function(feature) {
-			$('tr#' + feature.id.replace(/\W/g, '_')).removeClass('background-highlight');
+			$('#' + feature.id.replace(/\W/g, '_')).removeClass('background-highlight');
+			$('#cb_' + feature.id.replace(/\W/g, '_')).prop('checked', false);
+			
+			// If there is a popup attached, hide it.
+			if (feature.popup !== null && feature.popup.visible()) {
+				feature.popup.hide();
+			}
+		},
+
+		/*
+		 *	Select and unselect map feature on click
+		 */
+		onFeatureClick: function(feature) {
+			
+			if (typeof feature._lastHighlighter !== 'undefined') {
+				selectControl.unselect(feature);
+			} else {
+				selectControl.select(feature);				
+				
+				if (feature.layer.popups !== undefined) {
+					
+					// If a popup is already shown, hide it
+					if (selectedFeature !== undefined && selectedFeature.popup !== null && selectedFeature.popup.visible()) {
+						selectedFeature.popup.hide();
+					}
+				
+					// If no popup, create it, otherwise show it.
+					selectedFeature = feature;
+					if (feature.popup === null) {
+						_pe.fn.geomap.createPopup(feature);
+					} else {
+						feature.popup.toggle();
+					}
+				}	
+			}
+		},
+		
+		/*
+		 *	Create popup
+		 */
+		createPopup: function(feature) {
+			
+			var popupsInfo = feature.layer.popupsInfo,
+				id,
+				height,
+				width,
+				close,
+				content,
+				name,
+				popup,
+				icon;
+			
+			if (popupsInfo) {
+				id = (typeof popupsInfo.id !== 'undefined' ? popupsInfo.id : 'popup_') + '_' +	feature.id;
+				height = typeof popupsInfo.height !== 'undefined' ? popupsInfo.height : map.size.h / 2;
+				width = typeof popupsInfo.width !== 'undefined' ? popupsInfo.width : map.size.w / 2;
+				close = typeof popupsInfo.width !== 'undefined' ? popupsInfo.close : true;
+				content = '<div class="olPopupLayerTitle">' + $('#' + feature.layer.name).attr('aria-label') + '</div>' + popupsInfo.content;
+				
+				// Update content from feature
+				for (name in feature.attributes) {
+					if (feature.attributes.hasOwnProperty(name) && name.length !== 0) {
+						var regex = new RegExp('_'+ name, 'igm');
+						content = content.replace(regex, feature.attributes[name]);
+					}
+				}
+			} else {
+				id = 'popup_' + feature.id;
+				height = map.size.h / 2;
+				width = map.size.w / 2;
+				close = true; 
+				content = '<div class="olPopupLayerTitle">' + $('#' +feature.layer.name).attr('aria-label') + '</div>';
+				
+				// Update content from feature
+				for (name in feature.attributes) {					
+					if (feature.attributes.hasOwnProperty(name) && name.length !== 0) {						
+						content += "<p><strong>" + name + _pe.dic.get('%colon') + "</strong><br />" + feature.attributes[name] + "</p>";
+					}
+				}	
+			}
+
+			// Create the popup
+			popup = new OpenLayers.Popup.FramedCloud(
+				id,
+				feature.geometry.getBounds().getCenterLonLat(),
+				new OpenLayers.Size(width, height),
+				content,
+				null,
+				close,
+				_pe.fn.geomap.onPopupClose);
+													
+			popup.maxSize = new OpenLayers.Size(width, height);
+			feature.popup = popup;
+			map.addPopup(popup);
+
+			// add wb-icon class
+			icon = document.createElement('span');
+			icon.setAttribute('class', 'wb-icon-x-alt2');
+			feature.popup.closeDiv.appendChild(icon);
+		},
+		
+		/*
+		 *	Popup close callback function
+		 */
+		onPopupClose: function() {
+			selectControl.unselect(selectedFeature);
 		},
 
 		/*
@@ -841,6 +948,8 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
+						olLayer.popupsInfo = layer.popupsInfo;
+						olLayer.popups = layer.popups;
 						olLayer.visibility = true; // to force featuresadded listener
 						map.addLayer(olLayer);
 						queryLayers.push(olLayer);
@@ -902,6 +1011,8 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
+						olLayer.popupsInfo = layer.popupsInfo;
+						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);									
@@ -967,6 +1078,8 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
+						olLayer.popupsInfo = layer.popupsInfo;
+						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);											
@@ -1031,7 +1144,9 @@
 							}
 						);	
 						olLayer.name = 'overlay_' + index;
-						olLayer.datatable = layer.datatable;					
+						olLayer.datatable = layer.datatable;
+						olLayer.popupsInfo = layer.popupsInfo;
+						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);											
@@ -1097,6 +1212,8 @@
 						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
+						olLayer.popupsInfo = layer.popupsInfo;
+						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
 						queryLayers.push(olLayer);
 						map.addLayer(olLayer);										
@@ -1185,6 +1302,8 @@
 
 				tableLayer.id = 'table#' + table.id;
 				tableLayer.datatable = opts.tables[index].datatable;
+				tableLayer.popupsInfo = opts.tables[index].popupsInfo;
+				tableLayer.popups = opts.tables[index].popups;
 				tableLayer.name = table.id;
 				map.addLayer(tableLayer);
 				queryLayers.push(tableLayer);
@@ -1213,7 +1332,8 @@
 				queryLayers,
 				{
 					onSelect: this.onFeatureSelect,
-					onUnselect: this.onFeatureUnselect
+					onUnselect: this.onFeatureUnselect,
+					clickFeature: this.onFeatureClick
 				}
 			);	
 			
