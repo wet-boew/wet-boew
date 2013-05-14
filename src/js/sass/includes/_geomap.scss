@@ -183,9 +183,16 @@ div {
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
 }
 
-.olPopupContent {
-  padding: 5px;
-  overflow: auto;
+.olPopupLayerTitle {
+	border-bottom: solid 1px #eee;
+	margin-top: 0;
+	font-size: 1.25em;
+	padding-bottom: 5px;
+}
+
+.olPopupCloseBox {
+	border-bottom: solid 1px #eee;  
+	padding-bottom: 7px;  
 }
 
 .olPopupCloseBox {
@@ -196,6 +203,41 @@ div {
 	padding: 5px;
 	overflow: auto;
 }
+
+%olPopupMargin {
+	margin: 5px;
+}
+
+.olPopup {
+	h1 {
+		@extend %olPopupMargin;
+	}
+	h2 {
+		@extend %olPopupMargin;
+	}
+	h3 {
+		@extend %olPopupMargin;
+	}
+	h4 {
+		@extend %olPopupMargin;
+	}
+	h5 {
+		@extend %olPopupMargin;
+	}
+	h6 {
+		@extend %olPopupMargin;
+	}
+	p {
+		@extend %olPopupMargin;
+	}
+	ol {
+		@extend %olPopupMargin;
+	}
+	ul {
+		@extend %olPopupMargin;
+	}
+}
+
 
 .olControlNoSelect {
 	-moz-user-select: none;
