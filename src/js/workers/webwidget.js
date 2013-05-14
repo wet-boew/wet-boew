@@ -125,7 +125,7 @@
 				defered = [];
 				while (i >= 0) {
 					defered[i] = $.ajax({
-						url: typeObj._json_request(feeds[i]),
+						url: typeObj._json_request(feeds[i], limit),
 						dataType: 'json',
 						timeout: 1000
 					}).done(process_entries);
