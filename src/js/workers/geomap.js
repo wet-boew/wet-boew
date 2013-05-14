@@ -128,7 +128,7 @@
 		
 		addPanZoomBar: function() {
 			
-			var panZoomBar = new OpenLayers.Control.PanZoomBar();
+			var panZoomBar = new OpenLayers.Control.PanZoomBar({zoomStopHeight: 6});
 			OpenLayers.Util.extend(panZoomBar, {
 				draw: function() {
 					// initialize our internal div
@@ -748,27 +748,68 @@
 		/*
 		 *	Set the default basemap
 		 */
-		setDefaultBaseMap: function(opts) {			
+		setDefaultBaseMap: function(opts) {
+			var _zoomOffset = 0,
+				_resolutions = [38364.660062653464,
+								22489.62831258996,
+								13229.193125052918,
+								7937.5158750317505,
+								4630.2175937685215,
+								2645.8386250105837,
+								1587.5031750063501,
+								926.0435187537042,
+								529.1677250021168,
+								317.50063500127004,
+								185.20870375074085,
+								111.12522225044451,
+								66.1459656252646,
+								38.36466006265346,
+								22.48962831258996,
+								13.229193125052918,
+								7.9375158750317505,
+								4.6302175937685215],
+				mapWidth = $('#geomap').width(),
+				offset;
+						
 			if (opts.debug) {
 				_pe.document.trigger('geomap-basemapDefault');
 			}
 
+			// In function of map width size, set the proper resolution and zoom offset
+			if (mapWidth > 260 && mapWidth <= 500) {
+				_zoomOffset = 1;
+			} else if (mapWidth > 500 && mapWidth <= 725) {
+				_zoomOffset = 2;
+			} else if (mapWidth > 725 && mapWidth <= 1175) {
+				_zoomOffset = 3;
+			} else if (mapWidth > 1175 && mapWidth <= 2300) {
+				_zoomOffset = 4;
+			} else {
+				_zoomOffset = 5;
+			}
+ 
+			offset = _zoomOffset;
+			while (offset--) {
+				_resolutions.shift();
+			}
+
 			// Add the Canada Transportation Base Map (CBMT)			
-			map.addLayer(new OpenLayers.Layer.WMS(
-				_pe.dic.get('%geo-basemaptitle'),
-				_pe.dic.get('%geo-basemapurl'),
-				{
-					layers: _pe.dic.get('%geo-basemaptitle'),
-					version: '1.1.1',
-					format: 'image/png'
-				},
-				{
-					isBaseLayer: true,
-					singleTile: true,
-					ratio: 1.0,
-					projection: 'EPSG:3978'
-				}
-			));		
+			// Matrix identifiers are integers corresponding to the map zoom level. Do not have to define. We set zoomOffset to 3 to start at this scale.
+			map.addLayer(new OpenLayers.Layer.WMTS({
+				name: _pe.dic.get('%geo-basemaptitle'),
+				url: _pe.dic.get('%geo-basemapurl'),
+				layer: _pe.dic.get('%geo-basemaptitle'),
+				matrixSet: 'nativeTileMatrixSet',
+				tileSize: new OpenLayers.Size(256, 256),
+				format: 'image/jpg',
+				style: 'default',
+				requestEncoding: 'REST',
+				isBaseLayer: true,
+				isSingleTile: false,
+				tileOrigin: new OpenLayers.LonLat(-3.46558E7,  3.931E7),
+				zoomOffset: _zoomOffset,
+				resolutions: _resolutions
+			}));		
 		},
 
 		/*
@@ -777,14 +818,14 @@
 		setDefaultMapOptions: function() {
 			// use map options for the Canada Transportation Base Map (CBMT)
 			var mapOptions = {
-				maxExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),			
+				maxExtent: new OpenLayers.Bounds(-2750000.0, -900000.0, 3600000.0, 4630000.0),
+				restrictedExtent: new OpenLayers.Bounds(-2850000.0, -1000000.0, 3700000.0, 4730000.0),			
 				maxResolution: 'auto',
 				projection: 'EPSG:3978',
-				restrictedExtent: new OpenLayers.Bounds(-3000000.0, -800000.0, 4000000.0, 3900000.0),
 				units: 'm',
 				displayProjection: new OpenLayers.Projection('EPSG:4269') /* only used by specific controls (i.e. MousePosition) */ ,
-				numZoomLevels: 12,
-				aspectRatio: 0.8
+				aspectRatio: 0.8,
+				fractionalZoom: false
 			};
 
 			return mapOptions;
