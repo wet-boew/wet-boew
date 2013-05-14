@@ -32,8 +32,7 @@
 				setSelectedDate,
 				toggle,
 				year = date.getFullYear(),
-				elm = $(this),
-				wrapper = elm.parent();
+				elm = $(this);
 
 			if (elm.hasClass('picker-field')) {
 				return;
