@@ -1240,9 +1240,13 @@
 					
 				if (opts.useMousePosition) {
 					map.addControl(new OpenLayers.Control.MousePosition());
+					map.getControlsByClass('OpenLayers.Control.MousePosition')[0].div.setAttribute('aria-label', _pe.dic.get('%geo-mouseposition'));
+					map.getControlsByClass('OpenLayers.Control.MousePosition')[0].div.setAttribute('title', _pe.dic.get('%geo-mouseposition'));
 				}
 				if (opts.useScaleLine) {
 					map.addControl(new OpenLayers.Control.ScaleLine());
+					map.getControlsByClass('OpenLayers.Control.ScaleLine')[0].div.setAttribute('aria-label', _pe.dic.get('%geo-scaleline'));
+					map.getControlsByClass('OpenLayers.Control.ScaleLine')[0].div.setAttribute('title', _pe.dic.get('%geo-scaleline'));
 				}
 	
 				map.addControl(new OpenLayers.Control.Navigation({ zoomWheelEnabled: true }));
