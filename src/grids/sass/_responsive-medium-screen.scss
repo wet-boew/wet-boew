@@ -47,6 +47,9 @@
 %grids-responsive-medium-width-65-692664864229perc {
 	width: 65.692664864229%;
 }
+%grids-responsive-medium-width-65-692664864229perc-important {
+	width: 65.692664864229% !important;
+}
 %grids-responsive-medium-width-74-256200775832perc {
 	width: 74.256200775832%;
 }
@@ -247,6 +250,9 @@ details {
 	@extend %grids-responsive-medium-width-99-930167597765perc;
 	.span-6 {
 		@extend %grids-responsive-medium-width-99-946808510638perc-important;
+	}
+	.span-4 {
+		@extend %grids-responsive-medium-width-65-692664864229perc-important;
 	}
 	.span-3 {
 		@extend %grids-responsive-medium-width-48-565593041025perc-important;
