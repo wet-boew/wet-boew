@@ -1328,8 +1328,9 @@
 		loadControls: function(opts){
 			var $geomap = _pe.main.find('.wet-boew-geomap'),
 				$mapDiv = $('#' + map.div.id),
-				attrib,
-				attribImg;
+				attribHRef,
+				attribImg,
+				attribDiv;
 
 			// TODO: ensure WCAG compliance before enabling			
 			selectControl = new OpenLayers.Control.SelectFeature(
@@ -1399,26 +1400,29 @@
 	
 				// add pan zoom bar
 				_pe.fn.geomap.addPanZoomBar();					
-	
-				// add attribution
-				map.addControl(new OpenLayers.Control.Attribution());
-				if (showAttribNRCan) {
-					attrib = document.createElement('a');
-					attrib.setAttribute('href', _pe.dic.get('%geo-attributionlink'));
-					attribImg = document.createElement('img');
-					attribImg.setAttribute('src', OpenLayers.ImgPath + 'attrib-' + _pe.language + '.png');
-					attribImg.setAttribute('aria-label', _pe.dic.get('%geo-attributiontitle'));
-					attribImg.setAttribute('title', _pe.dic.get('%geo-attributiontitle'));
-					attribImg.setAttribute('class', 'olImgAttribution');	
-					attrib.appendChild(attribImg);
-					map.getControlsByClass('OpenLayers.Control.Attribution')[0].div.appendChild(attrib);
-				}
 
 				// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
 				if (!_pe.mobile) {
 					$mapDiv.before('<details class="wet-boew-geomap-detail"><summary>' + _pe.dic.get('%geo-accessibilizetitle') + '</summary><p>' + _pe.dic.get('%geo-accessibilize') + '</p></details>');
 					_pe.polyfills.enhance('detailssummary', document.getElementsByTagName('details'));
 				}
+			}
+			
+			// add attribution
+			map.addControl(new OpenLayers.Control.Attribution());
+			if (showAttribNRCan) {
+				attribHRef = document.createElement('a');
+				attribHRef.setAttribute('href', _pe.dic.get('%geo-attributionlink'));
+				attribHRef.appendChild(document.createTextNode(_pe.dic.get('%geo-attributiontitle')));
+				attribDiv = document.createElement('div');
+				attribDiv.setAttribute('class', 'olImgAttribution');	
+				attribImg = document.createElement('img');
+				attribImg.setAttribute('src', OpenLayers.ImgPath + 'attrib-' + _pe.language + '.png');
+				attribImg.setAttribute('alt', _pe.dic.get('%geo-NRCan'));
+				attribImg.setAttribute('title', _pe.dic.get('%geo-attributiontitle'));
+				attribDiv.appendChild(attribImg);
+				map.getControlsByClass('OpenLayers.Control.Attribution')[0].div.appendChild(attribDiv);
+				map.getControlsByClass('OpenLayers.Control.Attribution')[0].div.appendChild(attribHRef);
 			}
 
 			// zoom to the maximum extent specified

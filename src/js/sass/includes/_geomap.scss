@@ -178,6 +178,10 @@ div {
   right: 5px;
 }
 
+.olImgAttribution {
+	height: 15px;
+}
+
 .olHandlerBoxZoomBox {
 	border: 2px solid red;
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
