@@ -186,18 +186,6 @@ div {
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
 }
 
-.olPopupLayerTitle {
-	border-bottom: solid 1px #eee;
-	margin-top: 0;
-	font-size: 1.25em;
-	padding-bottom: 5px;
-}
-
-.olPopupCloseBox {
-	border-bottom: solid 1px #eee;  
-	padding-bottom: 7px;  
-}
-
 .olPopupCloseBox {
 	cursor: pointer;
 }
