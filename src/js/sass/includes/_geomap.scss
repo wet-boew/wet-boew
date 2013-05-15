@@ -24,6 +24,8 @@
 	img {
 		left: 0;
 		top: 0;
+		height: 18px;
+		width: 18px; 
 		float: left;
 		margin: 0;
 	}
@@ -56,12 +58,12 @@
 
 .olControlzoomout {
 	left: 15px;
-	top: 213px;
+	top: 172px;
 }
 
 .olControlzoomworld {
 	left: 15px;
-	top: 234px;
+	top: 193px;
 }
 
 .olControlSlider {
@@ -70,6 +72,7 @@
 	img {
 		height: 9px;
 		width: 18px;
+		margin-left: 0px;
 	}
 }
 
