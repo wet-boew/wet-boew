@@ -46,9 +46,6 @@
 
 		.ie9 {
 		    @extend %grids-equalize-all-modern-ie;
-			.equalize {
-				display: block !important;
-			}
 		}
 
 		.ie10 {
