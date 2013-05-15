@@ -257,14 +257,16 @@
 				content,
 				name,
 				popup,
-				icon;
+				icon,
+				featureid = feature.id.replace(/\W/g, '_'),
+				buttonText = _pe.dic.get('%close');
 			
 			if (popupsInfo) {
-				id = (typeof popupsInfo.id !== 'undefined' ? popupsInfo.id : 'popup_') + '_' +	feature.id;
+				id = (typeof popupsInfo.id !== 'undefined' ? popupsInfo.id : 'popup_') + '_' +	featureid;
 				height = typeof popupsInfo.height !== 'undefined' ? popupsInfo.height : map.size.h / 2;
 				width = typeof popupsInfo.width !== 'undefined' ? popupsInfo.width : map.size.w / 2;
 				close = typeof popupsInfo.width !== 'undefined' ? popupsInfo.close : true;
-				content = '<div class="olPopupLayerTitle">' + $('#' + feature.layer.name).attr('aria-label') + '</div>' + popupsInfo.content;
+				content = '<h3>' + $('#' + feature.layer.name).attr('aria-label') + '</h3>' + popupsInfo.content;
 				
 				// Update content from feature
 				for (name in feature.attributes) {
@@ -274,11 +276,11 @@
 					}
 				}
 			} else {
-				id = 'popup_' + feature.id;
+				id = 'popup_' + featureid;
 				height = map.size.h / 2;
 				width = map.size.w / 2;
 				close = true; 
-				content = '<div class="olPopupLayerTitle">' + $('#' +feature.layer.name).attr('aria-label') + '</div>';
+				content = '<h3>' + $('#' +feature.layer.name).attr('aria-label') + '</h3>';
 				
 				// Update content from feature
 				for (name in feature.attributes) {					
@@ -304,8 +306,17 @@
 
 			// add wb-icon class
 			icon = document.createElement('span');
-			icon.setAttribute('class', 'wb-icon-x-alt2');
+			icon.setAttribute('class', 'wb-icon-x-alt2 close_' + featureid);
+			icon.setAttribute('aria-label', buttonText);
+			icon.setAttribute('title', buttonText);
+			icon.setAttribute('role', 'button');
+			icon.setAttribute('tabindex', '0');
 			feature.popup.closeDiv.appendChild(icon);
+			$('.close_' + featureid).on('keypress', function(e) {
+				if (e.keyCode === 13) {
+					feature.popup.hide();
+				}
+			});
 		},
 		
 		/*
