@@ -17,17 +17,19 @@
 	}; /* local reference */
 	_pe.fn.chartsGraph = {
 		generate: function (elm) {
-			var options = {},
-				o,
+			var o = {},
 				self = $(elm),
 				srcTbl = self,
 				smallestHorizontalFlotDelta,
 				smallestVerticalFlotDelta; 
-			if (typeof wet_boew_charts !== 'undefined' && wet_boew_charts !== null) {
-				options = wet_boew_charts;
-			}
+
+			// Setting Priority
+			// 1. Default hard coded in this file
+			// 2. PE Setting object : wet_boew_charts
+			// 3. CSS options used on table element
+
 			//configuration
-			o = $.extend(true, {
+			o = {
 				'default-namespace': ['wb-charts', 'wb-chart', 'wb-graph'],
 				'graphclass-autocreate': true, // This add the ability to set custom css class to the figure container.
 				'graphclass-overwrite-array-mode': true,
@@ -103,9 +105,34 @@
 				//
 				parsedirection: 'x', // which direction to parse the table data
 				'parsedirection-typeof': 'string',
-				'parsedirection-autocreate': true
-			}, options);
+				'parsedirection-autocreate': true,
+				
+				getCellValue: function(elem) {
+					// Parameter: elem = HTML DOM node (td element)
+					//
+					// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
+					// Example 
+					// return 25.14
+					// return 44
+					// return [44, "%"]
+					// return [5.1, "g"]
+					
+					// Default Cell value extraction
+					var cellRawValue = $(elem).text();
+					
+					//trim spaces in the string;
+					cellRawValue = cellRawValue.replace(/\s\s+/g, ' ');
+					cellRawValue = cellRawValue.replace(/^\s+|\s+$/g, '');
+					
+					return [parseFloat(cellRawValue.match(/[\+\-0-9]+[0-9,\. ]*/)), cellRawValue.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
+				}
+			};
 			
+			// Default Generic setting 
+			if (typeof wet_boew_charts !== 'undefined' && wet_boew_charts !== null) {
+				$.extend(true, o, wet_boew_charts);
+			}
+
 			function colourNameToHex(colour) {
 				// colorsAccent = ['#8d201c', '#EE8310', '#2a7da6', '#5a306b', '#285228', '#154055', '#555555', '#f6d200', '#d73d38', '#418541', '#87aec9', '#23447e', '#999999'];
 				var colours = {
@@ -661,19 +688,6 @@
 
 		}
 			
-			// Helper Function to get data cell units and value
-			function getCellValue(cellRawValue) {
-				//trim spaces in the string;
-				cellRawValue = cellRawValue.replace(/\s\s+/g, ' ');
-				cellRawValue = cellRawValue.replace(/^\s+|\s+$/g, '');
-				// Return the result
-				var result = {
-				cellUnit: cellRawValue.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/), // Type: Float - Hint: You can use the JS function 'parseFloat(string)'
-				cellValue: parseFloat(cellRawValue.match(/[\+\-0-9]+[0-9,\. ]*/)) // Type: String
-				};
-				return result;
-			}
-			
 			var tblMultiplier = [],
 				calcTick = [],
 				UseHeadRow,
@@ -1147,7 +1161,8 @@
 				tblCaptionHTML,
 				$placeHolder,
 				tblSrcContainer,
-				tblSrcContainerSummary;
+				tblSrcContainerSummary,
+				cellValue;
 			
 
 			
@@ -1213,11 +1228,12 @@
 							// Get's the value
 							header = dataGroup.col[i].cell[j].row.header;
 							
+							cellValue = o.getCellValue(dataGroup.col[i].cell[rIndex].elem);
 							
 							dataSeries.push(
 								[
 									valueCumul, 
-									getCellValue($(dataGroup.col[i].cell[rIndex].elem).text()).cellValue
+									(typeof cellValue === "object" ? cellValue[0]: cellValue)
 								]);
 							
 							valueCumul += header[header.length - 1].flotDelta;
@@ -1420,11 +1436,14 @@
 							}
 							
 						}
+						
+						cellValue = o.getCellValue(parsedData.lstrowgroup[0].row[i].cell[j].elem);
+							
 						// Add the data point
 						dataSeries.push(
 							[
 								valuePoint, 
-								getCellValue($(parsedData.lstrowgroup[0].row[i].cell[j].elem).text()).cellValue
+								(typeof cellValue === "object" ? cellValue[0]: cellValue)
 							]);
 						valueCumul += header[header.length - 1].flotDelta;
 						datacolgroupfound++;
