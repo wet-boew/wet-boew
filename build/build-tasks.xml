@@ -4,7 +4,7 @@
 	<property file="${tasks.basedir}/build-tasks.properties"/>
 	
 	<!-- Version and build time-->
-	<property name="wet-boew-build.version" value="v3.0.7-release"/>
+	<property name="wet-boew-build.version" value="v3.0.8-development"/>
 	<tstamp>
 		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa" locale="en,CA"/>
 	</tstamp>
@@ -117,16 +117,17 @@
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
 			<exclude name="jquerymobile/jquery.mobile.js"/>
+			<exclude name="jquerymobile/jquery.mobile-ie.js"/>
 			<exclude name="polyfills/datalist.js"/>
 			<exclude name="polyfills/detailssummary.js"/>
 			<exclude name="polyfills/html5shiv.js"/>
 			<exclude name="polyfills/localstorage.js"/>
+			<exclude name="polyfills/sessionstorage.js"/>
 			<exclude name="polyfills/slider.js"/>
-			<exclude name="dependencies/bookmark.js"/>
 			<exclude name="dependencies/browsertweaks.js"/>
 			<exclude name="dependencies/colorbox.js"/>
+			<exclude name="dependencies/datatables.js"/>
 			<exclude name="dependencies/easytabs.js"/>
-			<exclude name="dependencies/hashchange.js"/>
 			<exclude name="dependencies/hoverintent.js"/>
 			<exclude name="dependencies/json.js"/>
 			<exclude name="dependencies/matchMedia.js"/>
@@ -135,22 +136,27 @@
 			<exclude name="dependencies/pie.js"/>
 			<exclude name="dependencies/prettify.js"/>
 			<exclude name="dependencies/prettify/**/*.js"/>
-			<exclude name="dependencies/raphael.js"/>
+			<exclude name="dependencies/excanvas.js"/>
+			<exclude name="dependencies/flot.js"/>
+			<exclude name="dependencies/flotPie.js"/>
 			<exclude name="dependencies/resize.js"/>
 			<exclude name="dependencies/validate.js"/>
 			<exclude name="dependencies/validateAdditional.js"/>
 			<exclude name="dependencies/xregexp.js"/>
+			<exclude name="dependencies/openlayers.js"/>
+			<exclude name="dependencies/proj4js.js"/>
 		</jshint>
 	</target>
 
-	<property name="csslint.ignores" value="ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,floats,overqualified-elements,font-sizes,regex-selectors,duplicate-properties,box-sizing"/>
+	<!-- Zero units can be removed after JQM 1.3.1 as PR fixed these -->
+	<property name="csslint.ignores.jquery.mobile" value="import,compatible-vendor-prefixes,vendor-prefix,adjoining-classes,unique-headings,qualified-headings,duplicate-properties,box-sizing,zero-units,outline-none,known-properties,box-model,text-indent,unqualified-attributes,universal-selector,display-property-grouping,overqualified-elements"/>
+	<property name="csslint.ignores" value="ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,floats,overqualified-elements,font-sizes,regex-selectors,duplicate-properties,box-sizing,duplicate-background-images,fallback-colors"/>
 	<property name="csslint.errors" value="outline-none"/>
 
 	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="usedebugging, prepare-files">
 		<apply executable="java" failonerror="false" parallel="false">
 			<fileset dir="${dist.dir}/css">
 				<include name="*.css"/>
-				<exclude name="jquery.mobile.css"/>
 				<exclude name="*.min.css"/>
 				<exclude name="*-min.css"/>
 			</fileset>
@@ -160,32 +166,12 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=compact"/>
-			<arg value="--ignore=${csslint.ignores}"/>
+			<arg value="--ignore=${csslint.ignores},${csslint.ignores.jquery.mobile}"/>
 			<arg value="--error=${csslint.errors}"/>
 			<srcfile/>
 		</apply>
 	</target>
-	
-	<target name="csslint-report" description="Produceds CSSLint XML report in the build directory for selected project" depends="prepare-files">
-		<apply executable="java" failonerror="false" parallel="true" output="${src.dir}/csslint.out.xml">
-			<fileset dir="${dist.dir}/css">
-				<include name="*.css"/>
-				<exclude name="jquery.mobile.css"/>
-				<exclude name="*.min.css"/>
-				<exclude name="*-min.css"/>
-			</fileset>
-			<arg value="-jar"/>
-			<arg path="${lib.dir}/js.jar"/>
-			<arg path="${lib.dir}/csslint-rhino.js" />      
-
-			<!-- your customized arguments go here -->
-			<arg value="--format=lint-xml"/>
-			<arg value="--ignore=${csslint.ignores}"/>
-			<arg value="--error=${csslint.errors}"/>
-			<srcfile/>
-		</apply>
-	</target>
-  
+	  
 	<target name="clean">
 		<delete dir="${dist.dir}" />
 	</target>
@@ -221,23 +207,25 @@
 				<exclude name="util.css"/>
 			</fileset>
 		</cssurlembed>
-	</target>
-	
-	<target name="-base64-encode-jquery">
+		
 		<property name="jquerymobile.dir" location="${src.dir}/jquerymobile"/>
-		<cssurlembed skipMissing="false" root="${jquerymobile.dir}">
+		<cssurlembed skipMissing="true" root="${jquerymobile.dir}">
 			<fileset dir="${dist.dir}/css">
-				<include name="jquery.mobile.css"/>
+				<include name="*.css"/>
+				<exclude name="*ie.css"/>
+				<!-- Because of themometer images -->
+				<exclude name="util.css"/>
 			</fileset>
 		</cssurlembed>
 	</target>
-	
+		
 	<target name="-minify">
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${dist.dir}" toDir="${dist.dir}" charset="utf-8">
 			<include name="**/*.css" />
 			<include name="**/*.js" />
 			<exclude name="**/*-min.css" />
 			<exclude name="**/settings.js" />
+			<exclude name="**/settings-ie.js" />
 			<exclude name="**/*-min.js" />
 			<exclude name="**/*.min.js" />
 		</yui-compressor>
@@ -246,6 +234,7 @@
 				<include name="**/*.css" />
 				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
+				<exclude name="**/settings-ie.js" />
 				<exclude name="**/*-min.css" />
 				<exclude name="**/*-min.js" />
 				<exclude name="**/*.min.js" />
@@ -258,6 +247,7 @@
 			<fileset dir="${dist.dir}">
 				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
+				<exclude name="**/settings-ie.js" />
 				<exclude name="**/*-min.js" />
 				<exclude name="**/*.min.js" />
 			</fileset>
@@ -273,14 +263,13 @@
 	</target>
 	
 	<target name="-copy-css" depends="compile.sass"/>
-	
-	<target name="-copy-jquery-css">
-		<concat dest="${dist.dir}/css/jquery.mobile.css">
-			<fileset file="${src.dir}/jquerymobile/jquery.mobile.theme.css"/>
-			<fileset file="${src.dir}/../js/jquerymobile/jquery.mobile.structure.css"/>
-		</concat>
+
+	<target name="-copy-jquery-mobile">
+		<copy todir="${dist.dir}/css/images">
+			<fileset dir="${src.dir}/jquerymobile/images-ie"/>
+		</copy>
 	</target>
-	
+
 	<fileset id="jsfiles" dir="${src.dir}">
 		<include name="**/*.js"/>
 	</fileset>
@@ -289,6 +278,8 @@
 		<copy todir="${dist.dir}" encoding="UTF-8">
 			<fileset refid="jsfiles" />
 		</copy>
+		<!-- Temporary fix - to be replaced by modern and old IE targeted output -->
+		<copy file="${dist.dir}/js/theme.js" tofile="${dist.dir}/js/theme-ie.js" failonerror="false"/>
 	</target>
 	
 	<target name="-copy-images">
