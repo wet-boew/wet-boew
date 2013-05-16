@@ -129,24 +129,26 @@
 			<exclude name="dependencies/colorbox.js"/>
 			<exclude name="dependencies/datatables.js"/>
 			<exclude name="dependencies/easytabs.js"/>
+			<exclude name="dependencies/equalheights.js"/>
+			<exclude name="dependencies/excanvas.js"/>
+			<exclude name="dependencies/flot.js"/>
+			<exclude name="dependencies/flotPie.js"/>
 			<exclude name="dependencies/hashchange.js"/>
 			<exclude name="dependencies/hoverintent.js"/>
 			<exclude name="dependencies/json.js"/>
 			<exclude name="dependencies/matchMedia.js"/>
 			<exclude name="dependencies/metadata.js"/>
+			<exclude name="dependencies/openlayers.js"/>
 			<exclude name="dependencies/outside.js"/>
 			<exclude name="dependencies/pie.js"/>
 			<exclude name="dependencies/prettify.js"/>
 			<exclude name="dependencies/prettify/**/*.js"/>
-			<exclude name="dependencies/excanvas.js"/>
-			<exclude name="dependencies/flot.js"/>
-			<exclude name="dependencies/flotPie.js"/>
+			<exclude name="dependencies/proj4js.js"/>
+			<exclude name="dependencies/raphael.js"/>
 			<exclude name="dependencies/resize.js"/>
 			<exclude name="dependencies/validate.js"/>
 			<exclude name="dependencies/validateAdditional.js"/>
 			<exclude name="dependencies/xregexp.js"/>
-			<exclude name="dependencies/openlayers.js"/>
-			<exclude name="dependencies/proj4js.js"/>
 		</jshint>
 	</target>
 
