@@ -124,6 +124,7 @@
 			<exclude name="polyfills/localstorage.js"/>
 			<exclude name="polyfills/sessionstorage.js"/>
 			<exclude name="polyfills/slider.js"/>
+			<exclude name="dependencies/bookmark.js"/>
 			<exclude name="dependencies/browsertweaks.js"/>
 			<exclude name="dependencies/colorbox.js"/>
 			<exclude name="dependencies/datatables.js"/>
