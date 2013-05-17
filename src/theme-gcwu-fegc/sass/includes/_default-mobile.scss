@@ -24,25 +24,25 @@ a {
 }
 
 blockquote {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-margin-no-shadow;
 }
 
-%no-margin-no-shadow {
+%gcwu-default-mobile-no-margin-no-shadow {
 	margin-left: 0;
 	margin-right: 0;
 	text-shadow: none;
 }
 
 form {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-margin-no-shadow;
 }
 
 #{headings(2,6)} {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-margin-no-shadow;
 }
 
 img {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-margin-no-shadow;
 	max-width: 100%;
 	height: auto;
 	display: block;
@@ -60,15 +60,15 @@ li {
 }
 
 p {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-margin-no-shadow;
 }
 
 pre {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-margin-no-shadow;
 }
 
 table {
-	@extend %no-margin-no-shadow;
+	@extend %gcwu-default-mobile-no-margin-no-shadow;
 }
 
 #wb-skip {
@@ -199,12 +199,12 @@ table {
 	padding: 5px;
 }
 
-%background-efefef {
+%gcwu-default-mobile-background-efefef {
 	background: #efefef;
 }
 
 #gcwu-sft {
-	@extend %background-efefef;
+	@extend %gcwu-default-mobile-background-efefef;
 	padding-bottom: 5px;
 	margin-top: 5px;
 	.ui-footer {
@@ -240,7 +240,7 @@ table {
 
 #gcwu-sft-in {
 	@extend %period-after-pseudo;
-	@extend %background-efefef;
+	@extend %gcwu-default-mobile-background-efefef;
 	border-top: 1px solid #CCCCCC;
 	padding: 5px;
 	div {
@@ -356,7 +356,7 @@ table {
 }
 
 #gcwu-bnr {
-	@extend %clear-both;
+	@extend %gcwu-default-mobile-clear-both;
 	background: #4E7EB7;
 	.ui-navbar {
 		a {
@@ -378,14 +378,14 @@ table {
 		}
 	}
 	#gcwu-psnb-in {
-		@extend %display-none;
+		@extend %gcwu-default-mobile-display-none;
 	}
 }
 
 #gcwu-srchbx {
 	@extend %gcwu-default-mobile-monster;
 	form {
-		@extend %display-none;
+		@extend %gcwu-default-mobile-display-none;
 	}
 	h2 {
 		padding-right: 20px;
@@ -397,18 +397,6 @@ table {
 		.ui-btn-inner {
 			font-size: 1em;
 		}
-	}
-}
-
-%gcwu-default-mobile-background-image-none-important {
-	background-image: none !important;
-}
-.gcwu-minister-in {
-	@extend %gcwu-default-mobile-background-image-none-important;
-}
-.gcwu-minister {
-	p {
-		@extend %gcwu-default-mobile-background-image-none-important;
 	}
 }
 
@@ -451,20 +439,20 @@ table {
 			padding: 0;
 		}
 		.mb-sm {
-			@extend %display-none;
+			@extend %gcwu-default-mobile-display-none;
 			* {
-				@extend %display-none;
+				@extend %gcwu-default-mobile-display-none;
 			}
 		}
 	}
 }
 
-%clear-both {
+%gcwu-default-mobile-clear-both {
 	clear: both;
 }
 
 #wb-core {
-	@extend %clear-both;
+	@extend %gcwu-default-mobile-clear-both;
 }
 
 %period-after-pseudo {
@@ -477,12 +465,12 @@ table {
 	}
 }
 
-%display-none {
+%gcwu-default-mobile-display-none {
 	display: none;
 }
 
 #gcwu-bc {
-	@extend %display-none;
+	@extend %gcwu-default-mobile-display-none;
 }
 
 .ui-content {
@@ -491,29 +479,29 @@ table {
 	}
 }
 
-%font-1em-marning-0 {
+%gcwu-default-mobile-font-1em-margin-0 {
 	font-size: 1em;
 	margin: 0;
 }
 .ui-collapsible-heading {
-	@extend %font-1em-marning-0;
+	@extend %gcwu-default-mobile-font-1em-margin-0;
 }
 
 .ui-li-static {
-	@extend %font-1em-marning-0;
+	@extend %gcwu-default-mobile-font-1em-margin-0;
 }
 
-%h1-border-bottom-none {
+%gcwu-default-mobile-h1-border-bottom-none {
 	h1 {
 		border-bottom: none;
 	}
 }
 .ui-dialog {
-	@extend %h1-border-bottom-none;
+	@extend %gcwu-default-mobile-h1-border-bottom-none;
 }
 
 .ui-popup {
-	@extend %h1-border-bottom-none;
+	@extend %gcwu-default-mobile-h1-border-bottom-none;
 }
 
 %gcwu-default-mobile-ui-bar-a-h1-white {

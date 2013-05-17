@@ -87,35 +87,10 @@ li {
 	#wb-main {
 		@extend %gcwu-default-responsive-1200-width-1200px;
 	}
-	#gcwu-content {
-		@extend %gcwu-default-responsive-1200-width-900px;
-	}
-}
-
-%gcwu-default-responsive-1200-width-900px {
-	width: 900px;
 }
 
 [id|="wb-body-sec"] {
 	[id|="wb-main"] {
-		@extend %gcwu-default-responsive-1200-width-900px;
+		width: 900px;
 	}
-}
-
-#wb-body-sec {
-	#gcwu-content {
-		width: 580px;
-	}
-}
-
-%gcwu-default-responsive-1200-width-280px {
-	width: 280px;
-}
-
-#gcwu-aside {
-	@extend %gcwu-default-responsive-1200-width-280px;
-}
-
-#gcwu-priorities {
-	@extend %gcwu-default-responsive-1200-width-280px;
 }
