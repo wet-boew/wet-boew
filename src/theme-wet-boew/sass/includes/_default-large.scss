@@ -83,7 +83,6 @@
 	}
 }
 
-<<<<<<< HEAD:src/theme-wet-boew/sass/includes/_default-large.scss
 #wet-bc-in {
 	background: #FFF;
 }
@@ -94,30 +93,4 @@
 
 #wet-bnr .ui-navbar, #jqm-wb-mb, #jqm-wb-search, .ui-loader {
 	display: none !important;
-=======
-#gcwu-date-mod {
-	margin: 0;
-}
-
-%gcwu-default-desktop-display-none-important {
-	display: none !important;
-}
-
-#gcwu-bnr {
-	.ui-navbar {
-		@extend %gcwu-default-desktop-display-none-important;
-	}
-}
-
-#jqm-wb-mb {
-	@extend %gcwu-default-desktop-display-none-important;
-}
-
-#jqm-wb-search {
-	@extend %gcwu-default-desktop-display-none-important;
-}
-
-.ui-loader {
-	@extend %gcwu-default-desktop-display-none-important;
->>>>>>> stripdowngcwuhomepage:src/theme-gcwu-fegc/sass/includes/_default-desktop.scss
 }
