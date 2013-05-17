@@ -22,11 +22,6 @@
 	margin-bottom: 5px;
 	font-size: 1.6em;
 }
-%gcwu-default-a-font-100pct {
-	a {
-		font-size: 100%;
-	}
-}
 %gcwu-default-no-margin {
 	margin-left: 0;
 	margin-right: 0;
@@ -100,66 +95,18 @@
 	}
 }
 
-#gcwu-aside {
-	h2 {
-		@extend %gcwu-default-hidden;
-	}
-	img {
-		@extend %gcwu-default-no-margin;
-	}
-	div {
-		&#gcwu-priorities { //TODO: Overspecific for an ID rule?
-			ul {
-				list-style: none;
-				margin: 0;
-				padding: 0;
-				li {
-					margin: 0;
-					padding: 0;
-				}
-			}
-		}
-	}
-}
-
-.gcwu-minister {
-	margin-top: 10px;
-	h2, h3 {
-		@extend %gcwu-default-no-margin;
-		@extend %gcwu-default-hidden;
-	}
-	img {
-		padding-right: 5px;
-		float: left;
-		margin: 0;
-	}
-	p {
-		margin: 0;
-		padding: 10px 5px 10px 0;
-		strong {
-			font-weight: 700;
-			color: #001D45;
-		}
-	}
+#gcwu-priorities {
 	ul {
-		list-style-type: none;
-		padding-top: 17px;
+		list-style: none;
 		margin: 0;
-		&:after {
-			content: ".";
-			display: block;
-			height: 0;
-			clear: both;
-			visibility: hidden;
+		padding: 0;
+		li {
+			margin: 0;
+			padding: 0;
 		}
 	}
-	li {
-		padding-bottom: 8px;
-		a {
-			@include pseudo-focus {
-				text-decoration: none;
-			}
-		}
+	img {
+		margin-bottom: 0;
 	}
 }
 
@@ -191,83 +138,6 @@
 	}
 }
 
-#gcwu-content {
-	h2 {
-		@extend %gcwu-default-gray-no-border;
-	}
-}
-
-#gcwu-priorities {
-	padding-bottom: 10px;
-	border-bottom: 1px solid #000;
-	h3 {
-		@extend %gcwu-default-gray-no-border;
-	}
-	h2, h3 {
-		@extend %gcwu-default-no-margin;
-	}
-	img {
-		margin-bottom: 0;
-	}
-}
-
-div {
-	&#gcwu-headlines { //TODO: Overspecific for an ID rule?
-		ul {
-			&, li {
-				list-style: none !important;
-				margin: 0 !important;
-				padding: 0 !important;
-			}
-		}
-	}
-}
-
-#gcwu-video {
-	@extend %gcwu-default-a-font-100pct;
-}
-
-#gcwu-headlines {
-	ul {
-		li {
-			@extend %gcwu-default-a-font-100pct;
-			h3, p {
-				margin: 0;
-				padding: 5px;
-			}
-			h3 {
-				font-size: 1em;
-				font-weight: 700;
-			}
-		}
-	}
-}
-
-#gcwu-connect {
-	h2 {
-		border: none;
-		margin-bottom: 5px;
-		color: #333;
-		float: left;
-		margin-top: 2px;
-		margin-right: 10px;
-	}
-	ul {
-		list-style-type: none;
-	}
-	li {
-		@include inline-block;
-	}
-	a {
-		background: none;
-		padding-right: 0;
-		text-decoration: none;
-	}
-}
-
-.gcwu-minister-in {
-	min-height: 149px;
-}
 
 #gcwu-title {
 	a {
@@ -285,17 +155,5 @@ div {
 		dd {
 			margin: 0 0.39em 0 0;
 		}
-	}
-
-	#gcwu-connect {
-		h2 {
-			float: right;
-			margin-left: 10px;
-			margin-right: 0;
-		}
-	}
-
-	.gcwu-minister-ul {
-		padding-right: 5px;
 	}
 }
