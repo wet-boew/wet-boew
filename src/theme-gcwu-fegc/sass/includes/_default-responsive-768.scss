@@ -29,12 +29,6 @@ body, #wb-head, #wb-core, #wb-foot, #wb-head-in, #gcwu-gcnb, #gcwu-bnr, #gcwu-ps
 	left: 384px;
 }
 
-#wb-body-sec {
-	#gcwu-content {
-		width: 480px;
-	}
-}
-
 #gcwu-gcft {
 	li {
 		margin: 12px 0 13px 20px;
@@ -102,29 +96,10 @@ li {
 	#wb-main {
 		@extend %gcwu-default-responsive-768-width-768px;
 	}
-	#gcwu-content {
-		@extend %gcwu-default-responsive-768-width-576px;
-	}
-}
-
-%gcwu-default-responsive-768-width-576px {
-	width: 576px;
 }
 
 [id|="wb-body-sec"] {
 	[id|="wb-main"] {
-		@extend %gcwu-default-responsive-768-width-576px;
+		width: 576px;
 	}
-}
-
-%gcwu-default-responsive-768-width-172px {
-	width: 172px;
-}
-
-#gcwu-aside {
-	@extend %gcwu-default-responsive-768-width-172px;
-}
-
-#gcwu-priorities {
-	@extend %gcwu-default-responsive-768-width-172px;
 }

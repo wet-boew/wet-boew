@@ -77,7 +77,6 @@ body {
 			@include border-radius(2px);
 		}
 	}
-	//TODO: Similar to rule on line 33 except for the li element. Could these be merged further.
 	%gcwu-default-screen-a-psuedo-underline {
 		a {
 			display: block;
