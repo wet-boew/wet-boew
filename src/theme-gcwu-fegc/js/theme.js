@@ -292,7 +292,7 @@
 					settings_popup += '<li><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
 				}
 				// Add the footer links
-				nodes = wet_boew_theme.sft.find('.wet-col-head');
+				nodes = wet_boew_theme.sft.find('.gcwu-col-head');
 				for (i = 0, len = nodes.length; i !== len; i += 1) {
 					node = nodes.eq(i);
 					link = node.children('a');
