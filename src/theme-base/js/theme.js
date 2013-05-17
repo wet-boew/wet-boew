@@ -252,7 +252,7 @@
 				}
 				settings_popup += listView + ' data-inset="true">';
 				// Add the footer links
-				nodes = wet_boew_theme.sft.find('.wet-col-head');
+				nodes = wet_boew_theme.sft.find('.base-col-head');
 				for (i = 0, len = nodes.length; i !== len; i += 1) {
 					node = nodes.eq(i);
 					link = node.children('a');
