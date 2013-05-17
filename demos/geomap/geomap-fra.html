@@ -30,17 +30,6 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
 <!--<![endif]-->
 
-<script>
-	function showPhoto() {
-		var $img = $('.imgPopup');
-		if ($img.hasClass('wb-invisible')) {
-			$img.removeClass('wb-invisible');
-		} else {
-			$img.addClass('wb-invisible');
-		}
-	}
-</script>
-
 <!-- CustomCSSStart -->
 
 <!-- CustomCSSEnd -->
@@ -122,7 +111,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 					"height": 200,
 					"width": 300,
 					"close": true,
-					"content": "<div style=\"white-space:nowrap;\"><p><strong>Subdivision de recensement: </strong><a href=\"http://www.wikipedia.org/wiki/_Subdivision de recensement\" title=\"_Subdivision de recensement\">_Subdivision de recensement</a><div><ul class=\"list-bullet-none margin-left-none\"><li><input type=\"checkbox\" id=\"inputchk\" onchange=\"showPhoto()\"><label class=\"form-checkbox\" for=\"inputchk\">Cochez pour voir la photo</label></li></ul></div><div><img class=\"wb-invisible imgPopup\" src=\"http://www.fastcoexist.com/multisite_files/coexist/imagecache/960/article_feature/1280-smart-city-lean-startup.jpg\" style=\"width:470px; height:265px;\"></div></div>"
+					"content": "<div style=\"white-space:nowrap;\"><p><strong>Subdivision de recensement: </strong><a href=\"http://www.wikipedia.org/wiki/_Subdivision de recensement\" title=\"_Subdivision de recensement\">_Subdivision de recensement</a><div><a href=\"javascript:;\" class=\"button\" role=\"button\" title=\"Zoom à la ville\" aria-label=\"Zoom à la ville\" onclick=\"zoomFeature()\">Zoom à la ville</a></div></div>"
                 },
 				"style": { 
 					"type": "rule", 
@@ -221,7 +210,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 					<td><a href="http://www.wikipedia.org/wiki/Edmonton" title="Edmonton">Edmonton</a></td>
 					<td>812201</td>
 				</tr>
-				<tr data-geometry="POINT (-85.68937, 45.41072)" data-type="wkt">
+				<tr data-geometry="POINT (-79.65, 43.60)" data-type="wkt">
 					<td>6</td>
 					<td><a href="http://www.wikipedia.org/wiki/Mississauga" title="Mississauga">Mississauga</a></td>
 					<td>713443</td>
@@ -352,7 +341,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <!-- ScriptsEnd -->
 
 <!-- CustomScriptsStart -->
-
+<script src="../../demos/geomap/script/popup_function.js"></script>
 <!-- CustomScriptsEnd -->
 </body>
 </html>
