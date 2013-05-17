@@ -71,7 +71,7 @@ a {
 
 #wb-foot {
 	@extend %gcwu-default-desktop-screen-overflow-hidden;
-	@extend %text-decoration-underline-a-psuedos;
+	@extend %gcwu-default-desktop-screen-text-decoration-underline-a-pseudos;
 	#gcwu-wmms {
 		display: none;
 	}
@@ -154,14 +154,8 @@ a {
 		position: relative;
 	}
 	#wb-main {
-		@extend %float-left;
+		@extend %gcwu-default-desktop-screen-float-left;
 	}
-}
-
-#gcwu-aside {
-	float: right;
-	margin-left: 10px;
-	margin-right: 10px;
 }
 
 #gcwu-date-mod {
@@ -170,19 +164,19 @@ a {
 	right: 10px;
 }
 
-%float-left {
+%gcwu-default-desktop-screen-float-left {
 	float: left;
 }
 
 #wb-body-sec-sup {
 	#wb-main {
-		@extend %float-left;
+		@extend %gcwu-default-desktop-screen-float-left;
 		@extend %gcwu-default-desktop-screen-float-right-relative;
 	}
 }
 
 #wb-sec {
-	@extend %float-left;
+	@extend %gcwu-default-desktop-screen-float-left;
 	@extend %gcwu-default-desktop-screen-inline-z1;
 }
 
@@ -205,7 +199,7 @@ a {
 
 #gcwu-gcnb {
 	@extend %gcwu-default-desktop-screen-overflow-hidden;
-	@extend %text-decoration-underline-a-psuedos;
+	@extend %gcwu-default-desktop-screen-text-decoration-underline-a-pseudos;
 	background: #000;
 	font-size: 0.9em;
 	min-height: 3.6em;
@@ -275,7 +269,7 @@ a {
 }
 
 #gcwu-srchbx {
-	@extend %text-decoration-underline-a-psuedos;
+	@extend %gcwu-default-desktop-screen-text-decoration-underline-a-pseudos;
 	position: absolute;
 	background: #146094;
 	border-top: 1px solid #87aec9;
@@ -405,7 +399,7 @@ a {
 	}
 }
 
-%text-decoration-underline-a-psuedos {
+%gcwu-default-desktop-screen-text-decoration-underline-a-pseudos {
 	a {
 		@include pseudo-focus {
 			text-decoration: underline;

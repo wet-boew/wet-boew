@@ -55,24 +55,24 @@
 	margin: 0;
 }
 
-%display-none-important {
+%gcwu-default-desktop-display-none-important {
 	display: none !important;
 }
 
 #gcwu-bnr {
 	.ui-navbar {
-		@extend %display-none-important;
+		@extend %gcwu-default-desktop-display-none-important;
 	}
 }
-//TODO: Is there a reason to have jQuery Mobile (jqm) classes in the desktop?
+
 #jqm-wb-mb {
-	@extend %display-none-important;
+	@extend %gcwu-default-desktop-display-none-important;
 }
 
 #jqm-wb-search {
-	@extend %display-none-important;
+	@extend %gcwu-default-desktop-display-none-important;
 }
 
 .ui-loader {
-	@extend %display-none-important;
+	@extend %gcwu-default-desktop-display-none-important;
 }
