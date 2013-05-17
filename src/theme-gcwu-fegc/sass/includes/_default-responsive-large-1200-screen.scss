@@ -135,37 +135,12 @@ li {
 	#wb-main {
 		@extend %gcwu-default-responsive-large-1200-width-1200;
 	}
-	#gcwu-content {
-		@extend %gcwu-default-responsive-large-1200-width-900;
-	}
-}
-
-%gcwu-default-responsive-large-1200-width-900 {
-	width: 900px;
 }
 
 [id|="wb-body-sec"] {
 	[id|="wb-main"] {
 		@extend %gcwu-default-responsive-large-1200-width-900;
 	}
-}
-
-#wb-body-sec {
-	#gcwu-content {
-		width: 580px;
-	}
-}
-
-%gcwu-default-responsive-large-1200-width-280 {
-	width: 280px;
-}
-
-#gcwu-aside {
-	@extend %gcwu-default-responsive-large-1200-width-280;
-}
-
-#gcwu-priorities {
-	@extend %gcwu-default-responsive-large-1200-width-280;
 }
 
 /* Right to left (RTL) CSS */

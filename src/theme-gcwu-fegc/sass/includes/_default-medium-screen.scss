@@ -11,30 +11,3 @@
 		display: none;
 	}
 }
-
-%gcwu-default-medium-screen-width-half {
-	width: 48.5335%;
-}
-
-#gcwu-content {
-	width: 74.2318%;
-	float: left;
-	.span-3 {
-		@extend %gcwu-default-medium-screen-width-half;
-	}
-}
-
-#gcwu-aside {
-	width: 24%;
-	float: right;
-}
-
-#wb-body-sec {
-	#gcwu-content {
-		@extend %gcwu-default-medium-screen-width-half;
-	}
-	#gcwu-aside {
-		@extend %gcwu-default-medium-screen-width-half;
-	}
-}
-

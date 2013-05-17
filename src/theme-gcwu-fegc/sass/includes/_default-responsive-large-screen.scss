@@ -9,17 +9,11 @@
 %gcwu-default-responsive-large-width-960 {
 	width: 960px;
 }
-%gcwu-default-responsive-large-width-720 {
-	width: 720px;
-}
 %gcwu-default-responsive-large-width-480 {
 	width: 480px;
 }
 %gcwu-default-responsive-large-width-240 {
 	width: 240px;
-}
-%gcwu-default-responsive-large-width-220 {
-	width: 220px;
 }
 %gcwu-default-responsive-large-margin-auto {
 	margin: auto;
@@ -143,13 +137,13 @@ li {
 }
 
 #gcwu-bnr-in {
-  @extend %gcwu-default-responsive-large-margin-auto;
+	@extend %gcwu-default-responsive-large-margin-auto;
 	@extend %gcwu-default-responsive-large-width-960;
 }
 
 [id|="wb-body-sec"] {
 	[id|="wb-main"] {
-		@extend %gcwu-default-responsive-large-width-720;
+		width: 720px;
 	}
 }
 
@@ -157,27 +151,12 @@ li {
 	#wb-main {
 		@extend %gcwu-default-responsive-large-width-960;
 	}
-	#gcwu-content {
-		@extend %gcwu-default-responsive-large-width-720;
-	}
 }
 
 #wb-body-sec-sup {
 	#wb-main-in {
 		@extend %gcwu-default-responsive-large-width-480;
 	}
-}
-#wb-body-sec {
-	#gcwu-content {
-		@extend %gcwu-default-responsive-large-width-480;
-	}
-}
-
-#gcwu-aside {
-	@extend %gcwu-default-responsive-large-width-220;
-}
-#gcwu-priorities {
-	@extend %gcwu-default-responsive-large-width-220;
 }
 
 /* Right to left (RTL) CSS */
