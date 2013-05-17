@@ -10,6 +10,7 @@
 
 	#gcwu-aside, #gcwu-priorities {
 		width: 220px;
+	}
 }
 
 @media screen and (min-width: 768px) and (max-width: 959px) and (min-device-width: 768px) {
