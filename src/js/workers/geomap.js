@@ -12,15 +12,11 @@
 		fn: {}
 	};
 
-	var map,
-		selectControl,
-		selectedFeature,
-		queryLayers = [],
-		overlays = 0,
-		overlaysLoaded = 0,
-		overlaysLoading = {}, // Status of overlayLoading (true = still loading)
-		overlayTimeout = 2000; // Timeout for overlay loading in milliseconds
-
+	var overlayTimeout = 2000, // timeout for overlay loading in milliseconds
+		uniqueid = 0,
+		mapArray= [],
+		selectedFeature;
+		
 	/* local reference */
 	_pe.fn.geomap = {
 		type: 'plugin',				
@@ -29,10 +25,11 @@
 		debug: false,
 		_exec: function(elm) {	
 			var opts,
+				geomap,
 				overrides,
 				lib = _pe.add.liblocation;	
 
-			// Defaults
+			// defaults
 			opts = {
 				config: {
 					controls: [],					
@@ -51,7 +48,7 @@
 				useMapControls: true
 			};
 
-			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
+			// class-based overrides - use undefined where no override of defaults or settings.js should occur
 			overrides = {				
 				useScaleLine: elm.hasClass('scaleline') ? true : undefined,
 				useMousePosition: elm.hasClass('position') ? true : undefined,
@@ -61,38 +58,39 @@
 				useMapControls: elm.hasClass('static') ? false : true
 			};			
 
-			// Extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
+			// extend the defaults with settings passed through settings.js (wet_boew_geomap), class-based overrides and the data-wet-boew attribute
 			$.extend(opts, (typeof wet_boew_geomap !== 'undefined' ? wet_boew_geomap : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
-			// Set the language for OpenLayers
+			// set the language for OpenLayers
 			OpenLayers.Lang.setCode(_pe.language);
 
-			// Set the image path for OpenLayers
+			// set the image path for OpenLayers
 			OpenLayers.ImgPath = lib + 'images/geomap/';
 
-			// Add projection for default base map
+			// add projection for default base map
 			Proj4js.defs['EPSG:3978'] = '+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs';
-
-			// Initiate the map. Height set by default. Will be reinitialize by value from user if provided.
-			elm.attr('id', 'geomap').height(elm.width() * 0.8);
 
 			_pe.document.on('wb-init-loaded', function() {
 				_pe.document.one('geomap-init', function () {
 					if (opts.debug) {
 						_pe.fn.geomap_debug.init();
 					}
+					
+					// set the geomap object
+					uniqueid += 1;
+					geomap = _pe.fn.geomap.setGeomapObject(elm);
 
-					// Load configuration file
+					// load configuration file
 					if (typeof opts.layersFile !== 'undefined') {
 						$.ajax({
 							url: opts.layersFile,
 							dataType: 'script',
 							async: false,					
 							success: function() {
-								// Extend opts with data loaded from the configuration file (through wet_boew_geomap)
+								// extend opts with data loaded from the configuration file (through wet_boew_geomap)
 								$.extend(opts, wet_boew_geomap);
 
-								_pe.fn.geomap.createMap(opts);
+								_pe.fn.geomap.createMap(geomap, opts);
 								if (opts.debug) {
 									_pe.document.trigger('geomap-overlayLoad');
 								}
@@ -104,15 +102,15 @@
 							}
 						}); // end ajax
 					} else {
-						_pe.fn.geomap.createMap(opts);
+						_pe.fn.geomap.createMap(geomap, opts);
 						if (opts.debug) {
 							_pe.document.trigger('geomap-overlayNotSpecify');
 						}
 					} // end load configuration file
 
-					// If there are overlays, wait before calling the plugins
-					if (!overlays) {
-						_pe.fn.geomap.refreshPlugins();
+					// if there are overlays, wait before calling the plugins
+					if (!geomap.overlays) {
+						_pe.fn.geomap.refreshPlugins(geomap);
 					}
 				});
 				if (opts.debug) {
@@ -126,7 +124,37 @@
 			return elm;
 		}, // end of exec
 		
-		addPanZoomBar: function() {
+		/*
+		 * Set the geomap array that will be use to generate Geomap
+		 */
+		setGeomapObject: function(elm){
+			var geomap= {
+					uniqueid: uniqueid,
+					map: null,
+					selectControl: null,
+					queryLayers: [],
+					overlays: 0,
+					overlaysLoaded: 0,
+					overlaysLoading: {} // status of overlayLoading (true = still loading)
+				},
+				elmMap = elm.find('.wet-boew-geomap-map');
+			
+			// test to see if wet-boew-geomap-map class exist. If not, we need to set the object differently.
+			// this other method has been deprecated in version v3.1.2
+			if (elmMap.length !== 0) {
+				geomap.gmap = elmMap.attr('id', 'geomap-map-' + uniqueid).height(elmMap.width() * 0.8);
+				geomap.glegend = elm.find('.wet-boew-geomap-legend').attr('id', 'geomap-legend-' + uniqueid);
+				geomap.glayers = elm.find('.wet-boew-geomap-layers').attr('id', 'geomap-layers-' + uniqueid);
+			} else {
+				geomap.gmap = elm.attr('id', 'geomap-map-' + uniqueid).height(elm.width() * 0.8).addClass('wet-boew-geomap-map');
+				geomap.glegend = _pe.main.find('.wet-boew-geomap-legend').attr('id', 'geomap-legend-' + uniqueid);
+				geomap.glayers = _pe.main.find('.wet-boew-geomap-layers').attr('id', 'geomap-layers-' + uniqueid);
+			}
+			
+			return geomap;
+		},
+		
+		addPanZoomBar: function(geomap) {
 			
 			var panZoomBar = new OpenLayers.Control.PanZoomBar({zoomStopHeight: 6});
 			OpenLayers.Util.extend(panZoomBar, {
@@ -154,13 +182,13 @@
 				}
 			});
 			
-			map.addControl(panZoomBar);
+			geomap.map.addControl(panZoomBar);
 			
 			/*
 			 * Add alt text to map controls and make tab-able
 			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
 			 */
-			var controlBar = _pe.main.find('.olControlPanZoomBar')[0],
+			var controlBar = geomap.gmap.find('.olControlPanZoomBar')[0],
 				controls = controlBar.getElementsByTagName('div'),
 				len = controls.length,
 				control,
@@ -184,7 +212,7 @@
 						control.className += ' olControl' + actn;
 						control.tabIndex = 0;
 					} else {
-						// Special handling for the zoom slider
+						// special handling for the zoom slider
 						altTxt = _pe.dic.get('%geo-zoomslider');
 						control.setAttribute('aria-label', altTxt);
 						control.setAttribute('title', altTxt);
@@ -210,7 +238,7 @@
 			$('#' + feature.id.replace(/\W/g, '_')).removeClass('background-highlight');
 			$('#cb_' + feature.id.replace(/\W/g, '_')).prop('checked', false);
 			
-			// If there is a popup attached, hide it.
+			// if there is a popup attached, hide it.
 			if (feature.popup !== null && feature.popup.visible()) {
 				feature.popup.hide();
 			}
@@ -220,7 +248,7 @@
 		 *	Select and unselect map feature on click
 		 */
 		onFeatureClick: function(feature) {
-			
+			var selectControl = feature.layer.map.getControlsByClass('OpenLayers.Control.SelectFeature')[0];
 			if (typeof feature._lastHighlighter !== 'undefined') {
 				selectControl.unselect(feature);
 			} else {
@@ -228,12 +256,12 @@
 				
 				if (feature.layer.popups !== undefined) {
 					
-					// If a popup is already shown, hide it
+					// if a popup is already shown, hide it
 					if (selectedFeature !== undefined && selectedFeature.popup !== null && selectedFeature.popup.visible()) {
 						selectedFeature.popup.hide();
 					}
 				
-					// If no popup, create it, otherwise show it.
+					// if no popup, create it, otherwise show it.
 					selectedFeature = feature;
 					if (feature.popup === null) {
 						_pe.fn.geomap.createPopup(feature);
@@ -259,16 +287,17 @@
 				popup,
 				icon,
 				featureid = feature.id.replace(/\W/g, '_'),
-				buttonText = _pe.dic.get('%close');
+				buttonText = _pe.dic.get('%close'),
+				mapSize = feature.layer.map.size;
 			
 			if (popupsInfo) {
 				id = (typeof popupsInfo.id !== 'undefined' ? popupsInfo.id : 'popup_') + '_' +	featureid;
-				height = typeof popupsInfo.height !== 'undefined' ? popupsInfo.height : map.size.h / 2;
-				width = typeof popupsInfo.width !== 'undefined' ? popupsInfo.width : map.size.w / 2;
+				height = typeof popupsInfo.height !== 'undefined' ? popupsInfo.height : mapSize.size.h / 2;
+				width = typeof popupsInfo.width !== 'undefined' ? popupsInfo.width : mapSize.size.w / 2;
 				close = typeof popupsInfo.width !== 'undefined' ? popupsInfo.close : true;
 				content = '<h3>' + $('#' + feature.layer.name).attr('aria-label') + '</h3>' + popupsInfo.content;
 				
-				// Update content from feature
+				// update content from feature
 				for (name in feature.attributes) {
 					if (feature.attributes.hasOwnProperty(name) && name.length !== 0) {
 						var regex = new RegExp('_'+ name, 'igm');
@@ -277,8 +306,8 @@
 				}
 			} else {
 				id = 'popup_' + featureid;
-				height = map.size.h / 2;
-				width = map.size.w / 2;
+				height = mapSize.h / 2;
+				width = mapSize.w / 2;
 				close = true; 
 				content = '<h3>' + $('#' +feature.layer.name).attr('aria-label') + '</h3>';
 				
@@ -290,7 +319,7 @@
 				}	
 			}
 
-			// Create the popup
+			// create the popup
 			popup = new OpenLayers.Popup.FramedCloud(
 				id,
 				feature.geometry.getBounds().getCenterLonLat(),
@@ -298,11 +327,11 @@
 				content,
 				null,
 				close,
-				_pe.fn.geomap.onPopupClose);
+				null);
 													
 			popup.maxSize = new OpenLayers.Size(width, height);
 			feature.popup = popup;
-			map.addPopup(popup);
+			feature.layer.map.addPopup(popup);
 
 			// add wb-icon class
 			icon = document.createElement('span');
@@ -312,32 +341,28 @@
 			icon.setAttribute('role', 'button');
 			icon.setAttribute('tabindex', '0');
 			feature.popup.closeDiv.appendChild(icon);
-			$('.close_' + featureid).on('keypress', function(e) {
+			$('.close_' + featureid).on('keypress click', function(e) {
 				if (e.keyCode === 13) {
 					feature.popup.hide();
 				}
+				if (e.type === 'click') {
+					feature.layer.map.getControlsByClass('OpenLayers.Control.SelectFeature')[0].unselect(selectedFeature);
+				}
 			});
-		},
-		
-		/*
-		 *	Popup close callback function
-		 */
-		onPopupClose: function() {
-			selectControl.unselect(selectedFeature);
 		},
 
 		/*
 		 * Get the OpenLayers map object
 		 */
-		getMap: function() {			
-			return map;
+		getMap: function(index) {			
+			return mapArray[index];
 		},
 
 		/*
 		 *	Create legend
 		 */
 		createLegend: function() {
-			// Create legend div if not there
+			// create legend div if not there
 			if (_pe.fn.geomap.debug && !($('.wet-boew-geomap-legend').length)) {	
 				_pe.document.trigger('geomap-warningLegend');		
 			}		
@@ -346,16 +371,19 @@
 		/*
 		 *	Create layer holder to add all tabs data (HTML and overlay) and overlay data.
 		 */
-		createLayerHolder: function(tab) {
+		createLayerHolder: function(geomap, tab) {
 			// user wants tabs
 			if (tab) {
 				// user has specified where they want to put the tabs
-				var $tabs = $('.wet-boew-geomap-tabs');
+				var $tabs = geomap.glayers.find('.wet-boew-geomap-tabs');
 				if ($tabs.length !== 0) {
-					$tabs.addClass('wet-boew-tabbedinterface auto-height-none').append('<ul class="tabs"></ul><div class="tabs-panel"></div>');
+					$tabs.attr({
+						'class': 'wet-boew-tabbedinterface auto-height-none',
+						'id': 'geomap-tabs-' + uniqueid
+					}).append('<ul class="tabs"></ul><div class="tabs-panel"></div>');
 				// user hasn't specified where they want the tabs
 				} else {
-					$('.wet-boew-geomap-layers').append('<div class="clear"></div><div class="wet-boew-geomap-tabs wet-boew-tabbedinterface auto-height-none span-8"><ul class="tabs"></ul><div class="tabs-panel"></div></div><div class="clear"></div>');
+					geomap.glayers.attr('id', 'geomap-tabs-' + uniqueid).append('<div class="clear"></div><div class="wet-boew-geomap-tabs wet-boew-tabbedinterface auto-height-none" style="width: ' + geomap.glayers.width() + 'px;"><ul class="tabs"></ul><div class="tabs-panel"></div></div><div class="clear"></div>');
 				}
 			}
 		},
@@ -383,30 +411,30 @@
 		/*
 		 * Add layer data
 		 */		
-		addLayerData: function(featureTable, enabled, olLayerId, tab) {						
+		addLayerData: function(geomap, featureTable, enabled, olLayerId, tab) {						
 			// add layer to legend
-			if ($('.wet-boew-geomap-legend').length !== 0) {
-				_pe.fn.geomap.addToLegend(featureTable, enabled, olLayerId);
+			if (geomap.glegend.length !== 0) {
+				_pe.fn.geomap.addToLegend(geomap, featureTable, enabled, olLayerId);
 			}
 
-			var $div = $('.wet-boew-geomap-layers'),
+			var $divLayer = geomap.glayers,
 				featureTableId = $(featureTable).attr('id'),
 				$layerTab = $('<div id="tabs_' + featureTableId + '">'),
 				title = featureTable[0].attributes['aria-label'].value,
-				$layerTitle = $('<h3 id="' + featureTableId + '" class="background-light">' + title + '</h3>'),
+				$layerTitle = $('<h3 class="background-light">' + title + '</h3>'),
 				$alert = $('<div id="msg_' + featureTableId + '" class="module-attention module-simplify margin-top-medium margin-bottom-medium"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');
 
-			if (_pe.fn.geomap.debug && ($div.length === 0)) {
+			if (_pe.fn.geomap.debug && ($divLayer.length === 0)) {
 				_pe.document.trigger('geomap-layersNotSpecify');
 			}
 			
 			// if tabs are specified
 			if (tab && $('.wet-boew-geomap-tabs').length !== 0) {
-				_pe.fn.geomap.addToTabs(featureTable, enabled, olLayerId);
+				_pe.fn.geomap.addToTabs(geomap, featureTable, enabled, olLayerId);
 			// tabs are not specified
 			} else {
 				$layerTab.append($layerTitle, featureTable);
-				$div.append($layerTab, '<div class="clear"></div>');	
+				$divLayer.append($layerTab, '<div class="clear"></div>');	
 
 				// if layer visibility is false, add the hidden layer message and hide the table data
 				if (!enabled) {				
@@ -423,9 +451,8 @@
 		/*
 		 * Create Legend
 		 */		
-		addToLegend: function(featureTable, enabled, olLayerId) {
-			var $div = $('.wet-boew-geomap-legend'),
-				$featureTable = $(featureTable),
+		addToLegend: function(geomap, featureTable, enabled, olLayerId) {
+			var $featureTable = $(featureTable),
 				featureTableId = $featureTable.attr('id'),
 				$fieldset,
 				$ul,
@@ -433,16 +460,16 @@
 				$chkBox,
 				$label;	
 
-			if ($div.length !== 0) {			
+			if (typeof geomap.glegend !== 'undefined') {			
 				// if no legend or fieldset add them
-				$fieldset = $div.find('fieldset');
+				$fieldset = geomap.glegend.find('fieldset');
 				if ($fieldset.length === 0) {
-					$fieldset = $('<fieldset name="legend" data-role="controlgroup"><legend class="wb-invisible">' + _pe.dic.get('%geo-togglelayer') + '</legend></fieldset>').appendTo($div);
+					$fieldset = $('<fieldset name="legend" data-role="controlgroup"><legend class="wb-invisible">' + _pe.dic.get('%geo-togglelayer') + '</legend></fieldset>').appendTo(geomap.glegend);
 				}
 
 				$checked = enabled ? 'checked="checked"' : '';
 
-				$ul = $div.find('ul');
+				$ul = geomap.glegend.find('ul');
 				if ($ul.length === 0) {
 					$ul = $('<ul class="list-bullet-none margin-left-none"></ul>').appendTo($fieldset);
 				}
@@ -450,10 +477,9 @@
 				$chkBox = $('<input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' />');
 
 				$chkBox.on('change', function() {				
-					map = _pe.fn.geomap.getMap();
-					var layer = map.getLayer(olLayerId),				
-						visibility = $('#cb_' + featureTableId).prop('checked') ? true : false,
-						$table = $('table#' + featureTableId),
+					var layer = geomap.map.getLayer(olLayerId),				
+						visibility = geomap.glegend.find('#cb_' + featureTableId).prop('checked') ? true : false,
+						$table = geomap.glayers.find('#' + featureTableId),
 						$parent = $table.parent(),
 						$alert;
 					layer.setVisibility(visibility);	
@@ -462,7 +488,7 @@
 						$parent = $table;
 					}
 
-					$alert = $('div#msg_' + featureTableId);
+					$alert = $('#msg_' + featureTableId);
 
 					if ($alert.length !== 0) {
 						$alert.fadeToggle();					
@@ -485,8 +511,8 @@
 		/*
 		 * Create tabs - one for each layer added
 		 */
-		addToTabs: function(featureTable, enabled) {	
-			var $div = $('.wet-boew-geomap-tabs'),
+		addToTabs: function(geomap, featureTable, enabled) {	
+			var $div = geomap.glayers.find('.wet-boew-geomap-tabs'),
 				$tabs = $div.find('ul.tabs'),
 				$tabsPanel = $div.find('div.tabs-panel'),
 				$featureTable = $(featureTable),
@@ -525,7 +551,7 @@
 
 			// if style is supplied, create it. If not, create the default one.
 			if (typeof elm.style !== 'undefined') {
-				// Check the style type (by default, no type are supplied).
+				// check the style type (by default, no type are supplied).
 				if (elm.style.type === 'unique') {
 					// set the select style then the unique value.
 					select = typeof elm.style.select !== 'undefined' ? elm.style.select : selectStyle;
@@ -613,7 +639,7 @@
 		 *
 		 * TODO: provide for an array of configured table columns.
 		 */
-		createRow: function(context, zoomTo) {
+		createRow: function(geomap, context, zoomTo) {
 			// add a row for each feature
 			var $row = $('<tr>'),
 				cols = [],
@@ -640,15 +666,15 @@
 			});		
 
 			if (zoomTo) {
-				cols.push(_pe.fn.geomap.addZoomTo($row, context.feature));
+				cols.push(_pe.fn.geomap.addZoomTo(geomap, $row, context.feature));
 			}
 
 			if (context.type !== 'head') {
 				$chkBox.on('change', function() {
 					if (!$('#cb_' + featureId).prop('checked')) {
-						selectControl.unselect(context.feature);
+						geomap.selectControl.unselect(context.feature);
 					} else {
-						selectControl.select(context.feature);
+						geomap.selectControl.select(context.feature);
 					}
 				});
 			}
@@ -661,9 +687,9 @@
 		 * Handle features once they have been added to the map
 		 *
 		 */
-		onFeaturesAdded: function($table, evt, zoomTo, datatable) {
-			var $head = _pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] }),
-				$foot = _pe.fn.geomap.createRow({ 'type':'head', 'feature': evt.features[0] }),
+		onFeaturesAdded: function(geomap, $table, evt, zoomTo, datatable) {
+			var $head = _pe.fn.geomap.createRow(geomap, { 'type':'head', 'feature': evt.features[0] }),
+				$foot = _pe.fn.geomap.createRow(geomap, { 'type':'head', 'feature': evt.features[0] }),
 				thZoom,
 				thSelect = ('<th>' + _pe.dic.get('%geo-select') + '</th>'),
 				$targetTable = $('table#' + $table.attr('id')),
@@ -684,9 +710,9 @@
 					'type': 'body',
 					'id': feature.id.replace(/\W/g, '_'),
 					'feature': feature,
-					'selectControl': selectControl
+					'selectControl': geomap.selectControl
 				};									
-				$targetTableBody.append(_pe.fn.geomap.createRow(context, zoomTo));
+				$targetTableBody.append(_pe.fn.geomap.createRow(geomap, context, zoomTo));
 			});
 
 			if (datatable) {	
@@ -698,17 +724,17 @@
 		 * Handle overlays once loading has ended
 		 *
 		 */
-		onLoadEnd: function() {
-			// TODO: Fix no alt attribute on tile image in OpenLayers rather than use this override
-			_pe.main.find('.olTileImage').attr('alt', '');
+		onLoadEnd: function(geomap) {
+			// TODO: fix no alt attribute on tile image in OpenLayers rather than use this override
+			geomap.gmap.find('.olTileImage').attr('alt', '');
 
 			// we need to call it here as well because if we use a config outside the domain it is called
 			// before the table is created. We need to call it only once loading for all overlays has ended
-			overlaysLoaded += 1;
-			if (overlays === overlaysLoaded) {
-				_pe.fn.geomap.refreshPlugins();
-				overlays = 0;
-				overlaysLoaded = 0;
+			geomap.overlaysLoaded += 1;
+			if (geomap.overlays === geomap.overlaysLoaded) {
+				_pe.fn.geomap.refreshPlugins(geomap);
+				geomap.overlays = 0;
+				geomap.overlaysLoaded = 0;
 			}
 		},
 
@@ -716,26 +742,26 @@
 		 * Handle features once they have been added to the map for tabular data
 		 *
 		 */
-		onTabularFeaturesAdded: function(feature, zoomColumn) {
-			// Find the row
+		onTabularFeaturesAdded: function(geomap, feature, zoomColumn) {
+			// find the row
 			var featureId = feature.id.replace(/\W/g, '_'),
-				$tr = $('tr#' + featureId),
+				$tr = geomap.glayers.find('tr#' + featureId),
 				$chkBox;
 
-			// Add select checkbox
+			// add select checkbox
 			$chkBox = $('<td><label class="wb-invisible" for="cb_' + featureId + '">' + _pe.dic.get('%geo-labelselect') + '</label><input type="checkbox" id="cb_' + featureId + '"/></td>');
 			$tr.prepend($chkBox);
 			
-			// Add zoom column
+			// add zoom column
 			if (zoomColumn) {
-				$tr.append(_pe.fn.geomap.addZoomTo($tr, feature));
+				$tr.append(_pe.fn.geomap.addZoomTo(geomap, $tr, feature));
 			}
 			
 			$chkBox.on('change', function() {
 				if (!$('#cb_' + featureId).prop('checked')) {
-					selectControl.unselect(feature);
+					geomap.selectControl.unselect(feature);
 				} else {
-					selectControl.select(feature);
+					geomap.selectControl.select(feature);
 				}
 			});
 		},
@@ -744,13 +770,13 @@
 		 *	Add the zoom to column
 		 *
 		 */
-		addZoomTo: function(row, feature){
+		addZoomTo: function(geomap, row, feature){
 			var $ref = $('<td><a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a></td>').on('click', 'a', function(e) {
 				var type = e.type;
 				if (type === 'click') {
 					e.preventDefault();			
-					map.zoomToExtent(feature.geometry.bounds);	
-					$.mobile.silentScroll(_pe.focus(_pe.main.find('#geomap')).offset().top);
+					geomap.map.zoomToExtent(feature.geometry.bounds);	
+					$.mobile.silentScroll(_pe.focus(geomap.gmap).offset().top);
 				}
 			});
 			return $ref;
@@ -759,7 +785,7 @@
 		/*
 		 *	Set the default basemap
 		 */
-		setDefaultBaseMap: function(opts) {
+		setDefaultBaseMap: function(geomap, opts) {
 			var _zoomOffset = 0,
 				_resolutions = [38364.660062653464,
 								22489.62831258996,
@@ -779,14 +805,14 @@
 								13.229193125052918,
 								7.9375158750317505,
 								4.6302175937685215],
-				mapWidth = $('#geomap').width(),
+				mapWidth = geomap.gmap.width(),
 				offset;
 						
 			if (opts.debug) {
 				_pe.document.trigger('geomap-basemapDefault');
 			}
 
-			// In function of map width size, set the proper resolution and zoom offset
+			// in function of map width size, set the proper resolution and zoom offset
 			if (mapWidth > 260 && mapWidth <= 500) {
 				_zoomOffset = 1;
 			} else if (mapWidth > 500 && mapWidth <= 725) {
@@ -804,9 +830,9 @@
 				_resolutions.shift();
 			}
 
-			// Add the Canada Transportation Base Map (CBMT)			
-			// Matrix identifiers are integers corresponding to the map zoom level. Do not have to define. We set zoomOffset to 3 to start at this scale.
-			map.addLayer(new OpenLayers.Layer.WMTS({
+			// add the Canada Transportation Base Map (CBMT)			
+			// matrix identifiers are integers corresponding to the map zoom level. Do not have to define. We set zoomOffset to 3 to start at this scale.
+			geomap.map.addLayer(new OpenLayers.Layer.WMTS({
 				name: _pe.dic.get('%geo-basemaptitle'),
 				url: _pe.dic.get('%geo-basemapurl'),
 				layer: _pe.dic.get('%geo-basemaptitle'),
@@ -845,13 +871,15 @@
 		/*
 		 *	Add baseMap data
 		 */		
-		addBasemapData: function(opts) {			
+		addBasemapData: function(geomap, opts) {			
 			var mapOptions = {},
 				mapOpts,
 				hasBasemap = (typeof opts.basemap !== 'undefined' && opts.basemap.length !== 0),
-				basemap,
-				$div = $('#geomap');
+				basemap;
 
+			// set aspect ratio
+			geomap.gmap.height(geomap.gmap.width() * mapOptions.aspectRatio);
+			
 			if (hasBasemap) {
 				basemap = opts.basemap;
 				if (basemap.mapOptions) {				
@@ -876,9 +904,9 @@
 				mapOptions = _pe.fn.geomap.setDefaultMapOptions();
 			}
 
-			map = new OpenLayers.Map('geomap', $.extend(opts.config, mapOptions));		
+			geomap.map = new OpenLayers.Map(geomap.gmap.attr('id'), $.extend(opts.config, mapOptions));		
 
-			// Check to see if a base map has been configured. If not add the
+			// check to see if a base map has been configured. If not add the
 			// default base map (the Canada Transportation Base Map (CBMT))
 			if (hasBasemap) {
 				if (!basemap.options) {
@@ -888,7 +916,7 @@
 				basemap.options.isBaseLayer = true;					
 
 				if (basemap.type === 'wms') {
-					map.addLayer(
+					geomap.map.addLayer(
 						new OpenLayers.Layer.WMS(
 							basemap.title,
 							basemap.url,
@@ -901,7 +929,7 @@
 						)
 					);
 				} else if (basemap.type ==='esri') {						
-					map.addLayer(
+					geomap.map.addLayer(
 						new OpenLayers.Layer.ArcGIS93Rest(
 							basemap.title,
 							basemap.url
@@ -909,21 +937,18 @@
 					);									
 				}
 			} else {
-				_pe.fn.geomap.setDefaultBaseMap(opts);
+				_pe.fn.geomap.setDefaultBaseMap(geomap, opts);
 			}
-			
-			// Set aspect ratio
-			$div.height($div.width() * mapOptions.aspectRatio);
 		},
 
 		/*
 		 *	Add overlay data
 		 */
-		addOverlayData: function(opts) {
+		addOverlayData: function(geomap, opts) {
 			var overlayData = opts.overlays,
 				olLayer;
 			if (overlayData.length !== 0) {
-				overlays = overlayData.length;
+				geomap.overlays = overlayData.length;
 				$.each(overlayData, function(index, layer) {	
 					var $table = _pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
 
@@ -936,7 +961,7 @@
 									format: new OpenLayers.Format.KML({
 										extractStyles: !layer.style,
 										extractAttributes: true,
-										internalProjection: map.getProjectionObject(),
+										internalProjection: geomap.map.getProjectionObject(),
 										externalProjection: new OpenLayers.Projection('EPSG:4269'),
 										read: function(data) {
 											
@@ -944,9 +969,9 @@
 												layerAttributes = layer.attributes,
 												name;
 
-											// When read from server, data is string instead of #document
+											// when read from server, data is string instead of #document
 											if (typeof data === 'string') {
-												// With IE we cant use DOMParser
+												// with IE we cant use DOMParser
 												if (_pe.ie > 0) {
 													var xmlDocument = new ActiveXObject('Microsoft.XMLDOM');
 													xmlDocument.async = false;
@@ -981,16 +1006,16 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
-										if (overlaysLoading[layer.title]) {
-											_pe.fn.geomap.onLoadEnd();
+										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										if (geomap.overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd(geomap);
 										}
 									},
 									'loadstart': function() {
-										overlaysLoading[layer.title] = true;
+										geomap.overlaysLoading[layer.title] = true;
 										setTimeout(function () {
-											if (overlaysLoading[layer.title]) {
-												_pe.fn.geomap.onLoadEnd();
+											if (geomap.overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd(geomap);
 											}
 										}, overlayTimeout);
 									}
@@ -1003,14 +1028,14 @@
 						olLayer.popupsInfo = layer.popupsInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true; // to force featuresadded listener
-						map.addLayer(olLayer);
-						queryLayers.push(olLayer);
-						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						geomap.queryLayers.push(olLayer);
+						geomap.map.addLayer(olLayer);
+						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;
 					} else if (layer.type === 'atom') {
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
-								projection: map.displayProjection,
+								projection: geomap.map.displayProjection,
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
@@ -1044,16 +1069,16 @@
 								}),						
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
-										if (overlaysLoading[layer.title]) {
-											_pe.fn.geomap.onLoadEnd();
+										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										if (geomap.overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd(geomap);
 										}
 									},
 									'loadstart': function() {
-										overlaysLoading[layer.title] = true;
+										geomap.overlaysLoading[layer.title] = true;
 										setTimeout(function () {
-											if (overlaysLoading[layer.title]) {
-												_pe.fn.geomap.onLoadEnd();
+											if (geomap.overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd(geomap);
 											}
 										}, overlayTimeout);
 									}								
@@ -1066,14 +1091,14 @@
 						olLayer.popupsInfo = layer.popupsInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
-						queryLayers.push(olLayer);
-						map.addLayer(olLayer);									
-						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						geomap.queryLayers.push(olLayer);
+						geomap.map.addLayer(olLayer);									
+						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;					
 					} else if (layer.type === 'georss') {
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
-								projection: map.displayProjection,
+								projection: geomap.map.displayProjection,
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
@@ -1111,16 +1136,16 @@
 								}),								
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
-										if (overlaysLoading[layer.title]) {
-											_pe.fn.geomap.onLoadEnd();
+										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										if (geomap.overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd(geomap);
 										}
 									},
 									'loadstart': function() {
-										overlaysLoading[layer.title] = true;
+										geomap.overlaysLoading[layer.title] = true;
 										setTimeout(function () {
-											if (overlaysLoading[layer.title]) {
-												_pe.fn.geomap.onLoadEnd();
+											if (geomap.overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd(geomap);
 											}
 										}, overlayTimeout);
 									}							
@@ -1133,14 +1158,14 @@
 						olLayer.popupsInfo = layer.popupsInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
-						queryLayers.push(olLayer);
-						map.addLayer(olLayer);											
-						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						geomap.queryLayers.push(olLayer);
+						geomap.map.addLayer(olLayer);											
+						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;
 					} else if (layer.type === 'json') {
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
-								projection: map.displayProjection,
+								projection: geomap.map.displayProjection,
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.Script({
 									url: layer.url,
@@ -1178,16 +1203,16 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
-										if (overlaysLoading[layer.title]) {
-											_pe.fn.geomap.onLoadEnd();
+										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										if (geomap.overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd(geomap);
 										}
 									},
 									'loadstart': function() {
-										overlaysLoading[layer.title] = true;
+										geomap.overlaysLoading[layer.title] = true;
 										setTimeout(function () {
-											if (overlaysLoading[layer.title]) {
-												_pe.fn.geomap.onLoadEnd();
+											if (geomap.overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd(geomap);
 											}
 										}, overlayTimeout);
 									}
@@ -1200,14 +1225,14 @@
 						olLayer.popupsInfo = layer.popupsInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
-						queryLayers.push(olLayer);
-						map.addLayer(olLayer);											
-						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						geomap.queryLayers.push(olLayer);
+						geomap.map.addLayer(olLayer);											
+						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;			
 					} else if (layer.type ==='geojson') {						
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
-								projection: map.displayProjection,
+								projection: geomap.map.displayProjection,
 								strategies: [new OpenLayers.Strategy.Fixed()],
 								protocol: new OpenLayers.Protocol.Script({
 									url: layer.url,
@@ -1245,16 +1270,16 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded($table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
-										if (overlaysLoading[layer.title]) {
-											_pe.fn.geomap.onLoadEnd();
+										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										if (geomap.overlaysLoading[layer.title]) {
+											_pe.fn.geomap.onLoadEnd(geomap);
 										}
 									},
 									'loadstart': function() {
-										overlaysLoading[layer.title] = true;
+										geomap.overlaysLoading[layer.title] = true;
 										setTimeout(function () {
-											if (overlaysLoading[layer.title]) {
-												_pe.fn.geomap.onLoadEnd();
+											if (geomap.overlaysLoading[layer.title]) {
+												_pe.fn.geomap.onLoadEnd(geomap);
 											}
 										}, overlayTimeout);
 									}
@@ -1267,9 +1292,9 @@
 						olLayer.popupsInfo = layer.popupsInfo;
 						olLayer.popups = layer.popups;
 						olLayer.visibility = true;	// to force featuresadded listener		
-						queryLayers.push(olLayer);
-						map.addLayer(olLayer);										
-						_pe.fn.geomap.addLayerData($table, layer.visible, olLayer.id, layer.tab);
+						geomap.queryLayers.push(olLayer);
+						geomap.map.addLayer(olLayer);										
+						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;
 					}					
 				});
@@ -1285,7 +1310,7 @@
 		*		{ id: 'cityE', strokeColor: '#F00', fillcolor: '#F00' }
 		*	]
 		*/	
-		addTabularData: function(opts, projLatLon, projMap) {
+		addTabularData: function(geomap, opts, projLatLon, projMap) {
 			var thZoom = '<th>' + _pe.dic.get('%geo-zoomfeature') + '</th>',
 				thSelect = ('<th>' + _pe.dic.get('%geo-select') + '</th>'),
 				wktFeature,
@@ -1294,37 +1319,37 @@
 					'externalProjection': projLatLon
 				});
 			$.each(opts.tables, function(index, table) {
-				var $table = $('table#' + table.id),
+				var $table = $('#' + table.id),
 					attr = [],
 					tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), {
 						styleMap: _pe.fn.geomap.getStyleMap(opts.tables[index])
 					});
 
-				// Get the attributes from table header
+				// get the attributes from table header
 				$table.find('th').each(function(index, attribute) {
 					attr[index] = attribute.textContent;
 				});				
 
-				// If zoomTo add the header and footer column headers
+				// if zoomTo add the header and footer column headers
 				if (opts.tables[index].zoom && opts.useMapControls) {
 					$table.find('thead').find('tr').append(thZoom);
 					$table.find('tfoot').find('tr').append(thZoom);					
 				}
 
-				// Add select checkbox
+				// add select checkbox
 				$table.find('thead').find('tr').prepend(thSelect);
 				$table.find('tfoot').find('tr').prepend(thSelect);	
 					
-				// Loop through each row
+				// loop through each row
 				$table.find('tr').each(function(index, row) {
 
-					// Create an array of attributes: value
+					// create an array of attributes: value
 					var attrMap = {},
 						$row = $(row),
 						geomType = $row.attr('data-type'), // get the geometry type
 						vectorFeatures;
 					$row.find('td').each(function(index, feature) {	
-						attrMap[attr[index]] = feature.lastChild.textContent;
+						attrMap[attr[index]] = feature.innerText;
 					});
 
 					if (typeof geomType !== 'undefined') {
@@ -1343,27 +1368,27 @@
 
 						vectorFeatures = wktParser.read(wktFeature);
 
-						// Set the table row id
+						// set the table row id
 						$row.attr('id', vectorFeatures.id.replace(/\W/g, '_'));
 
-						// Add the attributes to the feature then add it to the map
+						// add the attributes to the feature then add it to the map
 						vectorFeatures.attributes = attrMap;										
 						tableLayer.addFeatures([vectorFeatures]);
 					}
 				});
 
-				tableLayer.id = 'table#' + table.id;
+				tableLayer.id = '#' + table.id;
 				tableLayer.datatable = opts.tables[index].datatable;
 				tableLayer.popupsInfo = opts.tables[index].popupsInfo;
 				tableLayer.popups = opts.tables[index].popups;
 				tableLayer.name = table.id;
-				map.addLayer(tableLayer);
-				queryLayers.push(tableLayer);
+				geomap.map.addLayer(tableLayer);
+				geomap.queryLayers.push(tableLayer);
 
 				if (opts.tables[index].tab) {
-					_pe.fn.geomap.addLayerData($table, true, tableLayer.id, opts.tables[index].tab);
-				} else if ($('.wet-boew-geomap-legend')) {
-					_pe.fn.geomap.addToLegend($table, true, tableLayer.id);
+					_pe.fn.geomap.addLayerData(geomap, $table, true, tableLayer.id, opts.tables[index].tab);
+				} else if (geomap.glegend) {
+					_pe.fn.geomap.addToLegend(geomap, $table, true, tableLayer.id);
 				}
 				
 				if (opts.tables[index].datatable) {
@@ -1375,13 +1400,13 @@
 		/*
 		 *	Load controls
 		 */
-		loadControls: function(opts){
-			var $geomap = _pe.main.find('.wet-boew-geomap'),
-				$mapDiv = $('#' + map.div.id);
+		loadControls: function(geomap, opts){
+			var $mapDiv = geomap.gmap,
+				map = geomap.map;
 
 			// TODO: ensure WCAG compliance before enabling			
-			selectControl = new OpenLayers.Control.SelectFeature(
-				queryLayers,
+			geomap.selectControl = new OpenLayers.Control.SelectFeature(
+				geomap.queryLayers,
 				{
 					onSelect: this.onFeatureSelect,
 					onUnselect: this.onFeatureUnselect,
@@ -1389,13 +1414,13 @@
 				}
 			);	
 			
-			// Add the select control to every tabular feature. We need to this now because the select control needs to be set.
+			// add the select control to every tabular feature. We need to this now because the select control needs to be set.
 			$.each(opts.tables, function(indexT, table) {
-					var tableId = 'table#' + table.id;
-				$.each(queryLayers, function(index, layer) {
+					var tableId = '#' + table.id;
+				$.each(geomap.queryLayers, function(index, layer) {
 					if (layer.id === tableId){
 						$.each(layer.features, function(index, feature) {
-							_pe.fn.geomap.onTabularFeaturesAdded(feature, (opts.tables[indexT].zoom && opts.useMapControls));
+							_pe.fn.geomap.onTabularFeaturesAdded(geomap, feature, (opts.tables[indexT].zoom && opts.useMapControls));
 						});
 					}
 				});
@@ -1407,8 +1432,8 @@
 				
 			if(opts.useMapControls) {
 
-				map.addControl(selectControl);			
-				selectControl.activate();			
+				map.addControl(geomap.selectControl);			
+				geomap.selectControl.activate();			
 					
 				if (opts.useMousePosition) {
 					map.addControl(new OpenLayers.Control.MousePosition());
@@ -1426,8 +1451,8 @@
 				map.getControlsByClass('OpenLayers.Control.KeyboardDefaults')[0].deactivate();
 	
 				// enable the keyboard navigation when map div has focus. Disable when blur
-				// Enable the wheel zoom only on hover
-				$geomap.attr('tabindex', '0').on('mouseenter mouseleave focusin focusout', function(e) {
+				// enable the wheel zoom only on hover
+				$mapDiv.attr('tabindex', '0').on('mouseenter mouseleave focusin focusout', function(e) {
 					var type = e.type,
 						$this = $(this);
 					if (type === 'mouseenter' || type === 'focusin') {
@@ -1446,12 +1471,12 @@
 				});
 	
 				// add pan zoom bar
-				_pe.fn.geomap.addPanZoomBar();					
+				_pe.fn.geomap.addPanZoomBar(geomap);					
 	
 				// fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
 				if (!_pe.mobile) {
-					$mapDiv.before('<details class="wet-boew-geomap-detail"><summary>' + _pe.dic.get('%geo-accessibilizetitle') + '</summary><p>' + _pe.dic.get('%geo-accessibilize') + '</p></details>');
-					_pe.polyfills.enhance('detailssummary', $('.wet-boew-geomap-detail'));
+					$mapDiv.before('<details id="geomap-details-' + geomap.uniqueid + '" class="wet-boew-geomap-detail" style="width:' + ($mapDiv.width() - 10) + 'px;"><summary>' + _pe.dic.get('%geo-accessibilizetitle') + '</summary><p>' + _pe.dic.get('%geo-accessibilize') + '</p></details>');
+					_pe.polyfills.enhance('detailssummary', _pe.main.find('#geomap-details-' + geomap.uniqueid));
 				}
 			}
 
@@ -1469,57 +1494,59 @@
 		/*
 		 *	Create the map after we load the config file.
 		 */
-		createMap: function(opts) {
-			// Add basemap data
-			_pe.fn.geomap.addBasemapData(opts);
+		createMap: function(geomap, opts) {
+			// add basemap data
+			_pe.fn.geomap.addBasemapData(geomap, opts);
 
-			// Create projection objects
+			// create projection objects
 			var projLatLon = new OpenLayers.Projection('EPSG:4326'),
-				projMap = map.getProjectionObject(),
-				$geomap = _pe.main.find('.wet-boew-geomap');						
+				projMap = geomap.map.getProjectionObject();						
 
 			if (opts.debug) {
 				_pe.document.trigger('geomap-projection', projMap.getCode());
 			}		
 
-			// Global variable
-			selectControl = new OpenLayers.Control.SelectFeature();
+			// global variable
+			geomap.selectControl = new OpenLayers.Control.SelectFeature();
 
-			// Create legend and tab
+			// create legend and tab
 			if (opts.useLegend) {
 				_pe.fn.geomap.createLegend();
 			}
-			_pe.fn.geomap.createLayerHolder(opts.useTab);
+			
+			// add layer holder
+			_pe.fn.geomap.createLayerHolder(geomap, opts.useTab);
 
-			// Add tabular data
-			_pe.fn.geomap.addTabularData(opts, projLatLon, projMap);
+			// add tabular data
+			_pe.fn.geomap.addTabularData(geomap, opts, projLatLon, projMap);
 
-			// Add overlay data
-			_pe.fn.geomap.addOverlayData(opts);
+			// add overlay data
+			_pe.fn.geomap.addOverlayData(geomap, opts);
 
-			// Load Controls
-			_pe.fn.geomap.loadControls(opts);
+			// load Controls
+			_pe.fn.geomap.loadControls(geomap, opts);
 
-			// Add WCAG element for the map div
-			$geomap.attr({
+			// add WCAG element for the map div
+			geomap.gmap.attr({
 				'role': 'img',
 				'aria-label': _pe.dic.get('%geo-ariamap')
 			});
 		},
 
-		refreshPlugins: function() {
+		refreshPlugins: function(geomap) {
 			_pe.wb_load({
 				'plugins': {
-					'tables': _pe.main.find('.createDatatable'),
-					'tabbedinterface': _pe.main.find('.wet-boew-geomap-tabs')
+					'tabbedinterface': geomap.glayers.find('.wet-boew-geomap-tabs'),
+					'tables': geomap.glayers.find('.createDatatable')
 				}
 			});
-
+			
 			if (_pe.mobile) {
-				// Enhance the checkboxes with jQuery Mobile
-				_pe.main.find('.wet-boew-geomap-legend').trigger('create');
+				// enhance the checkboxes with jQuery Mobile
+				geomap.glegend.trigger('create');
 			}
 			
+			mapArray[uniqueid] = geomap.map;
 			_pe.document.trigger('geomap-ready');
 		}
 	};
