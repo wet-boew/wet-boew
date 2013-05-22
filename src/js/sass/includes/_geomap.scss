@@ -301,3 +301,21 @@ div {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+
+
+@media print {
+	%geomap-print-visibility-hidden {
+		visibility: hidden;
+	}
+
+	.wet-boew-geomap-detail {
+		@extend %geomap-print-visibility-hidden;
+	}
+	.olControlMousePosition {
+		@extend %geomap-print-visibility-hidden;
+	}
+	.olControlPanZoomBar {
+		@extend %geomap-print-visibility-hidden;
+	}
+}
