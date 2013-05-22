@@ -17,6 +17,14 @@ a {
 	}
 }
 
+strong {
+	a {
+		&, &.ui-link {
+			font-weight: 700 !important;
+		}
+	}
+}
+
 img, a img {
 	border: none;
 }
