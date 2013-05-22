@@ -14,7 +14,7 @@
 
 	var overlayTimeout = 2000, // timeout for overlay loading in milliseconds
 		uniqueid = 0,
-		mapArray= [],
+		mapArray = [],
 		selectedFeature;
 		
 	/* local reference */
@@ -354,7 +354,12 @@
 		/*
 		 * Get the OpenLayers map object
 		 */
-		getMap: function(index) {			
+		getMap: function(index) {
+			
+			var index
+			if (typeof index === 'undefined') {
+				index = 0;
+			}			
 			return mapArray[index];
 		},
 
@@ -1546,8 +1551,11 @@
 				geomap.glegend.trigger('create');
 			}
 			
-			mapArray[uniqueid] = geomap.map;
-			_pe.document.trigger('geomap-ready');
+			mapArray.push(geomap.map);
+			
+			if (mapArray.length === uniqueid) {
+				_pe.document.trigger('geomap-ready');
+			}
 		}
 	};
 	window.pe = _pe;
