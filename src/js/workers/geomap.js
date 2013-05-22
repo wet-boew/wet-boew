@@ -1332,44 +1332,61 @@
 				wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap,
 					'externalProjection': projLatLon
-				});
-			$.each(opts.tables, function(index, table) {
-				var $table = $('#' + table.id),
+				}),
+				lenTable = opts.tables.length;
+			
+			while (lenTable--) {
+				var $table = $('#' + opts.tables[lenTable].id),
+					table = opts.tables[lenTable],
 					attr = [],
+					thead_tfoot_tr,
 					tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), {
-						styleMap: _pe.fn.geomap.getStyleMap(opts.tables[index])
-					});
+						styleMap: _pe.fn.geomap.getStyleMap(table)
+					}),
+					thElms = $table[0].getElementsByTagName('th'),
+					thlen = thElms.length,
+					trElms = $table[0].getElementsByTagName('tr'),
+					trlen = trElms.length,
+					useMapControls = opts.useMapControls;
 
 				// get the attributes from table header
-				$table.find('th').each(function(index, attribute) {
-					attr[index] = attribute.textContent;
-				});				
+				while (thlen--) {
+					attr[thlen] = thElms[thlen].innerHTML.replace(/<\/?[^>]+>/gi, '');
+				}			
 
 				// if zoomTo add the header and footer column headers
-				if (opts.tables[index].zoom && opts.useMapControls) {
-					$table.find('thead').find('tr').append(thZoom);
-					$table.find('tfoot').find('tr').append(thZoom);					
+				thead_tfoot_tr = $table.find('thead tr, tfoot tr');
+				if (table.zoom && useMapControls) {
+					thead_tfoot_tr.append(thZoom);
 				}
 
 				// add select checkbox
-				$table.find('thead').find('tr').prepend(thSelect);
-				$table.find('tfoot').find('tr').prepend(thSelect);	
+				thead_tfoot_tr.prepend(thSelect);
 					
 				// loop through each row
-				$table.find('tr').each(function(index, row) {
+				while (trlen--) {
 
 					// create an array of attributes: value
 					var attrMap = {},
-						$row = $(row),
-						geomType = $row.attr('data-type'), // get the geometry type
-						vectorFeatures;
-					$row.find('td').each(function(index, feature) {	
-						attrMap[attr[index]] = feature.innerText;
-					});
+						trElmsInd = trElms[trlen],
+						geomType = trElmsInd.getAttribute('data-type'), // get the geometry type
+						vectorFeatures,
+						featAtt,
+						features = trElmsInd.getElementsByTagName('td'),
+						len = features.length;
+						
+					while (len--) {
+						// use innerHTML instead of innerText or textContent because they react differently in different browser
+						// change <br> before we remove tag then put back <br>
+						featAtt = features[len].innerHTML.replace(/(<br\ ?\/?>)+/g, '\n');
+						featAtt = featAtt.replace(/<\/?[^>]+>/gi, '');
+						featAtt = featAtt.replace(/\n/g, '<br />');
+						attrMap[attr[len]] = featAtt;
+					}
 
-					if (typeof geomType !== 'undefined') {
+					if (geomType !== null) {
 						if (geomType === 'bbox') {
-							var bbox = $row.attr('data-geometry').split(',');
+							var bbox = trElmsInd.getAttribute('data-geometry').split(',');
 							wktFeature = 'POLYGON((' +
 								bbox[0] + ' ' + bbox[1] + ', ' +
 								bbox[0] + ' ' + bbox[3] + ', ' +
@@ -1378,38 +1395,38 @@
 								bbox[0] + ' ' + bbox[1] +
 							'))';
 						} else if (geomType === 'wkt') {
-							wktFeature = $(row).attr('data-geometry');
+							wktFeature = trElmsInd.getAttribute('data-geometry');
 						}
 
 						vectorFeatures = wktParser.read(wktFeature);
 
 						// set the table row id
-						$row.attr('id', vectorFeatures.id.replace(/\W/g, '_'));
+						trElmsInd.setAttribute('id', vectorFeatures.id.replace(/\W/g, '_'));
 
 						// add the attributes to the feature then add it to the map
 						vectorFeatures.attributes = attrMap;										
 						tableLayer.addFeatures([vectorFeatures]);
 					}
-				});
+				}
 
 				tableLayer.id = '#' + table.id;
-				tableLayer.datatable = opts.tables[index].datatable;
-				tableLayer.popupsInfo = opts.tables[index].popupsInfo;
-				tableLayer.popups = opts.tables[index].popups;
+				tableLayer.datatable = table.datatable;
+				tableLayer.popupsInfo = table.popupsInfo;
+				tableLayer.popups = table.popups;
 				tableLayer.name = table.id;
 				geomap.map.addLayer(tableLayer);
 				geomap.queryLayers.push(tableLayer);
 
-				if (opts.tables[index].tab) {
-					_pe.fn.geomap.addLayerData(geomap, $table, true, tableLayer.id, opts.tables[index].tab);
+				if (table.tab) {
+					_pe.fn.geomap.addLayerData(geomap, $table, true, tableLayer.id, table.tab);
 				} else if (geomap.glegend) {
 					_pe.fn.geomap.addToLegend(geomap, $table, true, tableLayer.id);
 				}
 				
-				if (opts.tables[index].datatable) {
+				if (table.datatable) {
 					$table.addClass('wet-boew-tables');
 				}
-			});		
+			}		
 		},
 
 		/*
