@@ -14,7 +14,7 @@
 
 	var overlayTimeout = 2000, // timeout for overlay loading in milliseconds
 		uniqueid = 0,
-		mapArray= [],
+		mapArray = [],
 		selectedFeature;
 		
 	/* local reference */
@@ -130,6 +130,7 @@
 		setGeomapObject: function(elm){
 			var geomap= {
 					uniqueid: uniqueid,
+					mapid: elm.attr('id'),
 					map: null,
 					selectControl: null,
 					queryLayers: [],
@@ -354,8 +355,22 @@
 		/*
 		 * Get the OpenLayers map object
 		 */
-		getMap: function(index) {			
-			return mapArray[index];
+		getMap: function(id) {
+			var map,
+				len = mapArray.length;
+			
+			// Deprecated in version 3.1.2 (since 3.1.2 id must be provided)
+			if (typeof id !== 'undefined') {
+				while (len--) {
+					if (mapArray[len].id === id) {
+						map = mapArray[len];
+					}
+				}		
+			} else {
+				map = mapArray[0];
+			}
+
+			return map;
 		},
 
 		/*
@@ -1546,8 +1561,20 @@
 				geomap.glegend.trigger('create');
 			}
 			
-			mapArray[uniqueid] = geomap.map;
-			_pe.document.trigger('geomap-ready');
+			// set map id to be able to access by getMap.
+			// if no id provided, set random id. This is needed because id was not mandatatory before version 3.1.2
+			// The old way is now deprecated since v3.1.2
+			if (typeof geomap.mapid !== 'undefined') {
+				geomap.map.id = geomap.mapid;
+			} else {
+				geomap.map.id = 'map_' + uniqueid;
+			}
+			mapArray.push(geomap.map);
+			
+			// if all geomap instance are loaded, trigger geomap-ready
+			if (mapArray.length === _pe.document.find('.wet-boew-geomap').length) {
+				_pe.document.trigger('geomap-ready');
+			}
 		}
 	};
 	window.pe = _pe;
