@@ -102,6 +102,13 @@ ul {
 	max-width: 280px;
 }
 
+.module-news-article {
+	img {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+}
+
 .module-poster {
 	@include inline-block;
 }
