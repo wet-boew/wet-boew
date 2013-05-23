@@ -65,7 +65,7 @@
 					// use '{s}' for the site code, '{n}' for the site name,
 					// '{u}' for the current full URL, '{r}' for the current relative URL,
 					// or '{t}' for the current title
-				addSites: {} // Object containing sites to add to the list in the following format 'id': {display, icon, lang, category, url} (e.g., {'pinterest': {'display': 'Pinterest', 'icon': '/img/pinterest.jpg', 'lang': 'en', 'category': 'other', 'url': 'http://pinterest.com/pin/create/button/url={u}&title={t}'}})
+				addSites: {} // Object containing sites to add to the list in the following format "id": {display, icon, lang, category, url} (e.g., {"pinterest": {"display": "Pinterest", "icon": "/img/pinterest.jpg", "lang": "en", "category": "other", "url": "http://pinterest.com/pin/create/button/url={u}&title={t}"}})
 			};
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
