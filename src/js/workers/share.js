@@ -30,7 +30,7 @@
 				popupLinkSpan,
 				match,
 				lang = _pe.language,
-				hintReverse = (lang === 'zh' || lang === 'zh-Hans' || lang === 'hi' || lang === 'ja' || lang === 'ko');
+				hintReverse = (lang === 'zh' || lang === 'zh-Hans' || lang === 'hi' || lang === 'ja' || lang === 'ko'),
 				addSites,
 				site,
 				siteProps;
