@@ -27,7 +27,10 @@
 				popupLink,
 				popupLinksLen,
 				popupLinkSpan,
-				match;
+				match,
+				addSites,
+				site,
+				siteProps;
 
 			// Defaults
 			opts = {
@@ -58,10 +61,11 @@
 				showAllText: pe.dic.get('%share-showall'), // Display name for show all link, use '{n}' for the number of sites
 				showAllTitle: pe.dic.get('%share-showall-title'), // Title for show all popup
 				addAnalytics: false, // True to include Google Analytics for links
-				analyticsName: '/share/{r}/{s}' // The "URL" that is passed to the Google Analytics,
+				analyticsName: '/share/{r}/{s}', // The "URL" that is passed to the Google Analytics,
 					// use '{s}' for the site code, '{n}' for the site name,
 					// '{u}' for the current full URL, '{r}' for the current relative URL,
 					// or '{t}' for the current title
+				addSites: {} // Object containing sites to add to the list in the following format 'id': {display, icon, lang, category, url} (e.g., {'pinterest': {'display': 'Pinterest', 'icon': '/img/pinterest.jpg', 'lang': 'en', 'category': 'other', 'url': 'http://pinterest.com/pin/create/button/url={u}&title={t}'}})
 			};
 
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
@@ -77,7 +81,20 @@
 			// Extend the defaults with settings passed through settings.js (wet_boew_share), class-based overrides and the data-wet-boew attribute
 			$.extend(opts, (typeof wet_boew_share !== 'undefined' ? wet_boew_share : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
+			// Add sites
+			addSites = opts.addSites;
+			if (addSites.length !== 0) {
+				for (site in addSites) {
+					if (addSites.hasOwnProperty(site)) {
+						siteProps = addSites[site];
+						$.bookmark.addSite(site, siteProps.display, siteProps.icon, siteProps.lang, siteProps.category, siteProps.url);
+					}
+				}
+			}
+
+			// Initialize the widget
 			elm.bookmark(opts);
+
 			if (opts.popup && pe.cssenabled) {
 				if (opts.popupTag.substring(0, 1) === 'h') { // If a heading element is used for the popup tag, then wrap the contents in a section element
 					elm.wrapInner('<section />');
