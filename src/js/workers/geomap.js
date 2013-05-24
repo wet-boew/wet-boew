@@ -157,14 +157,14 @@
 		
 		addPanZoomBar: function(geomap) {
 			
-			var panZoomBar = new OpenLayers.Control.PanZoomBar({zoomStopHeight: 6});
+			var panZoomBar = new OpenLayers.Control.PanZoomBar();
 			OpenLayers.Util.extend(panZoomBar, {
 				draw: function() {
 					// initialize our internal div
 					var oButtons = this,
 						centered = new OpenLayers.Pixel(7.5, 81),
-						buttonArray = ['zoomworld', 'zoomout', 'zoomin', 'pandown', 'panright', 'panup', 'panleft'],
-						buttonImg = ['zoom-world-mini', 'zoom-minus-mini', 'zoom-plus-mini', 'south-mini', 'east-mini', 'north-mini', 'west-mini'],
+						buttonArray = ['zoomworld', 'zoomout', 'zoomin'],
+						buttonImg = ['zoom-world-mini', 'zoom-minus-mini', 'zoom-plus-mini'],
 						len = buttonArray.length;
 					OpenLayers.Control.prototype.draw.apply(oButtons, arguments);
 			
@@ -174,11 +174,7 @@
 					while (len--) {
 						oButtons._addButton(buttonArray[len], buttonImg[len] + '.png');
 					}
-					oButtons._addZoomBar(centered.add(7.5,0));
-			
-					// add custom CSS styles
-					$(oButtons.slider).attr('class', 'olControlSlider').find('img').attr('class', 'olControlSlider');
-					$(oButtons.zoombarDiv).attr('class', 'olControlBar');
+
 					return oButtons.div;
 				}
 			});
@@ -204,20 +200,13 @@
 
 				if (typeof img !== 'undefined') {
 					actn = control.action;
-					if (actn !== undefined) {
-						// add alt text
-						altTxt = _pe.dic.get('%geo-' + actn);
-						control.setAttribute('aria-label', altTxt);
-						control.setAttribute('title', altTxt);
-						control.setAttribute('role', 'button');
-						control.className += ' olControl' + actn;
-						control.tabIndex = 0;
-					} else {
-						// special handling for the zoom slider
-						altTxt = _pe.dic.get('%geo-zoomslider');
-						control.setAttribute('aria-label', altTxt);
-						control.setAttribute('title', altTxt);
-					}
+					// add alt text
+					altTxt = _pe.dic.get('%geo-' + actn);
+					control.setAttribute('aria-label', altTxt);
+					control.setAttribute('title', altTxt);
+					control.setAttribute('role', 'button');
+					control.className += ' olControl' + actn;
+					control.tabIndex = 0;
 					img.setAttribute('alt', altTxt);
 					img.className +=  ' olControl' + actn;
 				}
