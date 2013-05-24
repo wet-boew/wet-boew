@@ -25,7 +25,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=27088">Standard on Optimizing Websites and Applications for Mobile Devices</a></li>
 <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=23601">Standard on Web Accessibility</a></li>
 <li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24227">Standard on Web Usability</a></li>
-<li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=23601">Standard on Web Interoperability</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=25875">Standard on Web Interoperability</a></li>
 </ul>
 </section>
 </div>
