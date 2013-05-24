@@ -25,7 +25,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li><a href="http://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=27088">Norme sur l'optimisation des sites Web et des applications pour appareils mobiles</a></li>
 <li><a href="http://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=23601">Norme sur l'accessibilité des sites Web</a></li>
 <li><a href="http://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=24227">Norme sur la facilité d'emploi des sites Web</a></li>
-<li><a href="http://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=23601">Norme sur l'interopérabilité du Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=25875">Norme sur l'interopérabilité du Web</a></li>
 </ul>
 </section>
 </div>
