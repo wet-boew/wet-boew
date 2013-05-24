@@ -10,10 +10,6 @@
     display: block;
 }
 
-%pe-details-display-block {
-    display: block;
-}
-
 %pe-details-opened {
 	&:before { /* Add the opened pointer */
 		content: "\25BC\a0";
