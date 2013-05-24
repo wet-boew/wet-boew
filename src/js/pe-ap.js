@@ -2007,7 +2007,7 @@
 							mediumcheck;
 						if (pe.mobile !== mobilecheck) {
 							pe.mobile = mobilecheck;
-							window.location.href = decodeURI(pe.url(window.location.href).removehash());
+							window.location.reload();
 						} else {
 							mediumcheck = pe.mediumcheck();
 							if (pe.medium !== mediumcheck) {
