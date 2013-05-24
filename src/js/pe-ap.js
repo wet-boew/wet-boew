@@ -1125,15 +1125,15 @@
 					headingClose = '</' + heading + '>',
 					m = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
 					mDOM = m[0].parentNode,
-					mItems = m.find('> div, > ul, ' + heading),
+					mItems = m.find('> div, > ul, > ' + heading + ', > section > ' + heading),
 					mItemsDOM = mItems.get(),
 					mItems_i,
 					mItems_len,
 					mItem,
 					mItemDOM,
 					mItemTag,
-					next,
 					nextDOM,
+					prevDOM,
 					hlink,
 					hlinkDOM,
 					navCurrent,
@@ -1145,7 +1145,6 @@
 					hnestTag,
 					hnestLinkDOM,
 					hnestLinkDOM2,
-					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
 					mainText = pe.dic.get('%main-page'),
 					toplevel = (top !== undefined ? top : true),
@@ -1175,114 +1174,111 @@
 				collapsible = (collapsible !== undefined ? collapsible : false);
 				returnString = (returnString !== undefined ? returnString : false);
 				if (mItemsDOM.length !== 0) {
-					if (mItemsDOM[0].tagName.toLowerCase() === 'ul') {
-						menu = listView + mItems[0].innerHTML + '</ul>';
+					if (menubar && mDOM.getElementsByTagName(heading).length === 0) { // Menu bar without a mega menu
+						menu = sectionOpen1 + '"><ul data-role="listview" data-theme="' + theme1 + '">';
+						mItemsDOM = mDOM.getElementsByTagName('a');
+						for (mItems_i = 0, mItems_len = mItemsDOM.length; mItems_i < mItems_len; mItems_i += 1) {
+							mItemDOM = mItemsDOM[mItems_i];
+							menu += '<li><a href="' + mItemDOM.href + '">' + mItemDOM.innerHTML + '</a></li>';
+						}
+						menu += '</ul></div>';
 					} else {
-						hasHeading = mDOM.getElementsByTagName(heading).length !== 0;
-						if (menubar && !hasHeading) { // Menu bar without a mega menu
-							menu = sectionOpen1 + '"><ul data-role="listview" data-theme="' + theme1 + '">';
-							mItemsDOM = mDOM.getElementsByTagName('a');
-							for (mItems_i = 0, mItems_len = mItemsDOM.length; mItems_i < mItems_len; mItems_i += 1) {
-								mItemDOM = mItemsDOM[mItems_i];
-								menu += '<li><a href="' + mItemDOM.href + '">' + mItemDOM.innerHTML + '</a></li>';
-							}
-							menu += '</ul></div>';
-						} else {
-							menu = '';
-							for (mItems_i = 0, mItems_len = mItemsDOM.length; mItems_i < mItems_len; mItems_i += 1) {
-								mItemDOM = mItemsDOM[mItems_i];
-								mItem = $(mItemDOM);
-								mItemTag = mItemDOM.tagName.toLowerCase();
+						menu = '';
+						for (mItems_i = 0, mItems_len = mItemsDOM.length; mItems_i < mItems_len; mItems_i += 1) {
+							mItemDOM = mItemsDOM[mItems_i];
+							mItem = $(mItemDOM);
+							mItemTag = mItemDOM.tagName.toLowerCase();
 
-								// If the menu item is a heading
-								if (mItemTag === heading) {
-									menu += sectionOpen1;
-									hlink = mItem.children('a');
-									if (hlink.length !== 0) {
-										hlinkDOM = hlink[0];
-										url = hlinkDOM.getAttribute('href');
-										navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
-										navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
-										menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
-									} else {
-										navCurrent = false;
-										url = disableLink;
-									}
-									if (toplevel) {
-										secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1);
-									}
+							// If the menu item is a heading
+							if (mItemTag === heading) {
+								menu += sectionOpen1;
+								hlink = mItem.children('a');
+								if (hlink.length !== 0) {
+									hlinkDOM = hlink[0];
+									url = hlinkDOM.getAttribute('href');
+									navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
+									navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
+									menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
+								} else {
+									navCurrent = false;
+									url = disableLink;
+								}
+								if (toplevel) {
+									secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1);
+								}
 
-									// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
-									if (toplevel || collapsible || !collapseTopOnly) {
-										menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
-									} else {
-										menu += sectionLinkOpen1 + url + '">' + mItem.text() + sectionLinkClose;
-									}
-									next = mItem.next();
-									nextDOM = next[0];
-									// Don't try to build mobile menu for headings with no sub-items
-									if (typeof nextDOM !== 'undefined'){
-										if (nextDOM.tagName.toLowerCase() === 'ul') {
-											menu += listView;
-											nested = nextDOM.querySelector('li ul');
-											if (nested !== null && nested.length !== 0) { // Special handling for a nested list
-												hnestTag = 'h' + (hlevel + 1);
-												listItems = nextDOM.children;
-												for (i = 0, len = listItems.length; i !== len; i += 1) {
-													listItem = listItems[i];
-													hnestDOM = listItem.getElementsByTagName('li');
-													menu += '<li>';
-													if (hnestDOM.length !== 0) {
-														hnestLinkDOM = listItem.children[0];
-														menu += sectionOpen2 + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLinkOpen2 + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
-														for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
-															listItem2 = hnestDOM[nested_i];
-															hnestLinkDOM2 = listItem2.querySelector('a');
-															menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hnestLinkDOM2.href + '">' + hnestLinkDOM2.innerHTML + '</a></li>';
-														}
-														menu += '</ul></div>';
-													} else {
-														menu += listItem.innerHTML;
+								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
+								if (toplevel || collapsible || !collapseTopOnly) {
+									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
+								} else {
+									menu += sectionLinkOpen1 + url + '">' + mItem.text() + sectionLinkClose;
+								}
+								nextDOM = mItem.next()[0];
+								// Don't try to build mobile menu for headings with no sub-items
+								if (typeof nextDOM !== 'undefined') {
+									if (nextDOM.tagName.toLowerCase() === 'ul') {
+										menu += listView;
+										nested = nextDOM.querySelector('li ul');
+										if (nested !== null && nested.length !== 0) { // Special handling for a nested list
+											hnestTag = 'h' + (hlevel + 1);
+											listItems = nextDOM.children;
+											for (i = 0, len = listItems.length; i !== len; i += 1) {
+												listItem = listItems[i];
+												hnestDOM = listItem.getElementsByTagName('li');
+												menu += '<li>';
+												if (hnestDOM.length !== 0) {
+													hnestLinkDOM = listItem.children[0];
+													menu += sectionOpen2 + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLinkOpen2 + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+													for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
+														listItem2 = hnestDOM[nested_i];
+														hnestLinkDOM2 = listItem2.querySelector('a');
+														menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hnestLinkDOM2.href + '">' + hnestLinkDOM2.innerHTML + '</a></li>';
 													}
-													menu += '</li>';
+													menu += '</ul></div>';
+												} else {
+													menu += listItem.innerHTML;
 												}
-											} else {
-												menu += nextDOM.innerHTML;
+												menu += '</li>';
 											}
-											menu += '</ul>';
-										} else { // If the section contains sub-sections
-											if (menubar) {
-												menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
-											} else {
-												menu += pe.menu.buildmobile(mItem.parent(), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
-											}
-										}
-									}
-
-									// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
-									if (!menubar && hlink.length > 0 && (toplevel || collapsible || !collapseTopOnly)) {
-										menu += link + hlinkDOM.href + '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
-									}
-									menu += '</div>';
-								} else if (mItemTag === 'div') { // If the menu item is a div
-									next = mItem.children('a, ul, div');
-									if (next.length > 0) {
-										nextDOM = next[0];
-										mItemTag = nextDOM.tagName.toLowerCase();
-										if (mItemTag === 'a') {
-											menu += link + nextDOM.href + '" data-theme="' + (toplevel ? theme1 : theme2) + '">' + nextDOM.innerHTML + '</a>';
-										} else if (mItemTag === 'ul') {
-											menu += listView + nextDOM.innerHTML + '</ul>';
 										} else {
-											menu += pe.menu.buildmobile(nextDOM, hlevel, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
+											menu += nextDOM.innerHTML;
+										}
+										menu += '</ul>';
+									} else { // If the section contains sub-sections
+										if (menubar) {
+											menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
+										} else {
+											menu += pe.menu.buildmobile(mItem.parent(), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
 										}
 									}
 								}
+
+								// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
+								if (!menubar && hlink.length > 0 && (toplevel || collapsible || !collapseTopOnly)) {
+									menu += link + hlinkDOM.href + '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
+								}
+								menu += '</div>';
+							} else if (mItemTag === 'ul') { // If the menu item is a ul
+								// Don't try to build mobile menu for ul with a preceding heading or that is directly nested within an li
+								prevDOM = mItem.prev()[0];
+								if ((typeof prevDOM === 'undefined' || prevDOM.tagName.toLowerCase() !== heading) && mItemDOM.parentNode.tagName.toLowerCase() !== 'li') {
+									menu += listView + mItemDOM.innerHTML + '</ul>';
+								}
+							} else if (mItemTag === 'div') { // If the menu item is a div
+								hnestDOM = mItem.children('a').get();
+								if (hnestDOM.length !== 0) {
+									for (i = 0, len = hnestDOM.length; i !== len; i += 1) {
+										hnestLinkDOM = hnestDOM[i];
+										menu += link + hnestLinkDOM.href + '" data-theme="' + (toplevel ? theme1 : theme2) + '">' + hnestLinkDOM.innerHTML + '</a>';
+									}
+								} else if (mItemDOM.children.length !== 0) {
+									menu += pe.menu.buildmobile(mItemDOM, hlevel, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
+								}
 							}
-							// Is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
-							if (toplevel || collapsible || !collapseTopOnly) {
-								menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"' + (toplevel ? ' class="ui-corner-all"' : '') + '>' + menu + '</div>';
-							}
+						}
+						// Is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
+						if (toplevel || collapsible || !collapseTopOnly) {
+							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"' + (toplevel ? ' class="ui-corner-all"' : '') + '>' + menu + '</div>';
 						}
 					}
 					if (toplevel) {
