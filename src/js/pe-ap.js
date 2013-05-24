@@ -1964,7 +1964,7 @@
 						var mobilecheck = pe.mobilecheck();
 						if (pe.mobile !== mobilecheck) {
 							pe.mobile = mobilecheck;
-							window.location.href = decodeURI(pe.url(window.location.href).removehash());
+							window.location.reload();
 						}
 					});
 				}
