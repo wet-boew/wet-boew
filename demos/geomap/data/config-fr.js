@@ -123,7 +123,7 @@ var wet_boew_geomap = {
 				updated_at: 'Dernière mise à jour'
 			},
 			visible: true,	
-			zoom:  true,
+			zoom:  [true, {type: 'text'}],
 			datatable: true,
 			tab: true,		
 			// default style			

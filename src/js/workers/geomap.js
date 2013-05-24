@@ -654,7 +654,7 @@
 		 *
 		 * TODO: provide for an array of configured table columns.
 		 */
-		createRow: function(geomap, context, zoomTo) {
+		createRow: function(geomap, context, zoom) {
 			// add a row for each feature
 			var $row = $('<tr>'),
 				cols = [],
@@ -680,8 +680,8 @@
 				cols.push($col);
 			});		
 
-			if (zoomTo) {
-				cols.push(_pe.fn.geomap.addZoomTo(geomap, $row, context.feature));
+			if (zoom) {
+				cols.push(_pe.fn.geomap.addZoomTo(geomap, $row, context.feature, zoom));
 			}
 
 			if (context.type !== 'head') {
@@ -702,14 +702,14 @@
 		 * Handle features once they have been added to the map
 		 *
 		 */
-		onFeaturesAdded: function(geomap, $table, evt, zoomTo, datatable) {
+		onFeaturesAdded: function(geomap, $table, evt, zoom, datatable, mapControl) {
 			var $head = _pe.fn.geomap.createRow(geomap, { 'type':'head', 'feature': evt.features[0] }),
 				$foot = _pe.fn.geomap.createRow(geomap, { 'type':'head', 'feature': evt.features[0] }),
 				thZoom,
 				thSelect = ('<th>' + _pe.dic.get('%geo-select') + '</th>'),
 				$targetTable = $('table#' + $table.attr('id')),
 				$targetTableBody = $targetTable.find('tbody');
-			if (zoomTo) {
+			if (mapControl && zoom) {
 				thZoom = '<th>' + _pe.dic.get('%geo-zoomfeature') + '</th>';
 				$head.append(thZoom);
 				$foot.append(thZoom);
@@ -727,7 +727,7 @@
 					'feature': feature,
 					'selectControl': geomap.selectControl
 				};									
-				$targetTableBody.append(_pe.fn.geomap.createRow(geomap, context, zoomTo));
+				$targetTableBody.append(_pe.fn.geomap.createRow(geomap, context, zoom));
 			});
 
 			if (datatable) {	
@@ -757,7 +757,7 @@
 		 * Handle features once they have been added to the map for tabular data
 		 *
 		 */
-		onTabularFeaturesAdded: function(geomap, feature, zoomColumn) {
+		onTabularFeaturesAdded: function(geomap, feature, zoom, mapControl) {
 			// find the row
 			var featureId = feature.id.replace(/\W/g, '_'),
 				$tr = geomap.glayers.find('tr#' + featureId),
@@ -768,8 +768,8 @@
 			$tr.prepend($chkBox);
 			
 			// add zoom column
-			if (zoomColumn) {
-				$tr.append(_pe.fn.geomap.addZoomTo(geomap, $tr, feature));
+			if (mapControl && zoom) {
+				$tr.append(_pe.fn.geomap.addZoomTo(geomap, $tr, feature, zoom));
 			}
 			
 			$chkBox.on('change', function() {
@@ -785,8 +785,21 @@
 		 *	Add the zoom to column
 		 *
 		 */
-		addZoomTo: function(geomap, row, feature){
-			var $ref = $('<td><a href="javascript:;" class="button"><span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a></td>').on('click', 'a', function(e) {
+		addZoomTo: function(geomap, row, feature, zoom) {
+			var val = '<td><a href="javascript:;" class="button" title="' +  _pe.dic.get('%geo-zoomfeature') + '">',
+				$ref;
+			
+			// the zoom length is because before version 3.1.2 it was not an array. To keep the functionality we
+			// check if it is an array. If not, we apply the default. Deprecated in version 3.1.2	
+			if (typeof zoom.length !== 'undefined' && zoom[1].type === 'text') {
+				$ref = $(val + _pe.dic.get('%geo-zoomfeature') + '</a></td>');
+			} else if (typeof zoom.length !== 'undefined' && zoom[1].type === 'image') {
+				$ref = $(val + '<span class="wb-icon-target"></span></a></td>');
+			} else {
+				$ref = $(val + '<span class="wb-icon-target"></span>' + _pe.dic.get('%geo-zoomfeature') + '</a></td>');
+			}		 
+			
+			$ref.on('click', 'a', function(e) {
 				var type = e.type;
 				if (type === 'click') {
 					e.preventDefault();			
@@ -1021,7 +1034,7 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, layer.zoom, layer.datatable, opts.useMapControls);
 										if (geomap.overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd(geomap);
 										}
@@ -1084,7 +1097,7 @@
 								}),						
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, layer.zoom, layer.datatable, opts.useMapControls);
 										if (geomap.overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd(geomap);
 										}
@@ -1151,7 +1164,7 @@
 								}),								
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, layer.zoom, layer.datatable, opts.useMapControls);
 										if (geomap.overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd(geomap);
 										}
@@ -1218,7 +1231,7 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, layer.zoom, layer.datatable, opts.useMapControls);
 										if (geomap.overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd(geomap);
 										}
@@ -1285,7 +1298,7 @@
 								}),
 								eventListeners: {
 									'featuresadded': function(evt) {
-										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, (layer.zoom && opts.useMapControls), layer.datatable);
+										_pe.fn.geomap.onFeaturesAdded(geomap, $table, evt, layer.zoom, layer.datatable, opts.useMapControls);
 										if (geomap.overlaysLoading[layer.title]) {
 											_pe.fn.geomap.onLoadEnd(geomap);
 										}
@@ -1435,7 +1448,7 @@
 				$.each(geomap.queryLayers, function(index, layer) {
 					if (layer.id === tableId){
 						$.each(layer.features, function(index, feature) {
-							_pe.fn.geomap.onTabularFeaturesAdded(geomap, feature, (opts.tables[indexT].zoom && opts.useMapControls));
+							_pe.fn.geomap.onTabularFeaturesAdded(geomap, feature, opts.tables[indexT].zoom, opts.useMapControls);
 						});
 					}
 				});
