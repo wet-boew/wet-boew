@@ -57,7 +57,7 @@
 				if (opts.refreshCallbackUrl.length > 2) {
 					$.post(opts.refreshCallbackUrl,	function (responseData) {
 						// if the response data returns anything but "true", we should display that the session has timed out.
-						if (responseData && responseData.replace(/\s/g, '') == 'true') {
+						if (responseData && responseData.replace(/\s/g, '') === 'true') {
 							sessionTimeout = setTimeout(keep_session, timeParse(opts.sessionalive));
 						} else {
 							alert(alreadyTimeoutMsg);
