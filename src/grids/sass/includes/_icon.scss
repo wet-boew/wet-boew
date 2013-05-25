@@ -3,12 +3,16 @@
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/inline-block";
+@import "compass/utilities/sprites";
 
-%grids-icon-wb-icon {
-	background: {
-		image: url(../images/icons.png);
-		repeat: no-repeat;
-	}
+//Inline the sprite if not outputing for IE8
+$wb-icon-inline: not $legacy-support-for-ie8; 
+
+@import "wb-icon/*.png";
+
+@include all-wb-icon-sprites;
+
+[class*="wb-icon-"] {
 	width: 16px;
 	height: 16px;
 	margin-right: 4px;
@@ -17,7 +21,7 @@
 
 [href^='mailto:'] {
 	background: {
-		image: url(../images/mail.png);
+		image: url(../images/wb-icon/mail.png);
 		repeat: no-repeat;
 	}
 	padding-left: 19px;
@@ -25,7 +29,7 @@
 
 %grids-icon-download-icon {
 	background: {
-		image: url(../images/download.png);
+		image: url(../images/wb-icon/drive-download.png);
 		repeat: no-repeat;
 	}
 	padding-left: 19px;
@@ -38,7 +42,7 @@
 
 // Adds icon to all external links that are outside the header or footer
 [rel="external"] {
-	background: url(../images/external.png) 100% 0 no-repeat;
+	background: url(../images/wb-icon/external.png) 100% 0 no-repeat;
 
 	//gh-2104 fixes overriding background because of increased specificity when wb-main was used	
 	#wb-head &, #wb-foot & {
@@ -54,7 +58,6 @@
 	}
 }
 	
-
 .wb-icon-none {
 	background-image: none;
 	padding-left: 0;
@@ -62,31 +65,9 @@
 	margin-right: 0;
 }
 
-/* Start the sprite positioning */
-.wb-icon-alarm {
-	@extend %grids-icon-wb-icon;
-}
-$first-row-sprite-x: -18px; // Because the alarm icon is the first in the series, but is omitted
-@each $first-row-sprite in bank, book-address, book-alt, book-open, book, box, briefcase, bulb-off, bulb, calculator-arrow, calculator-exclamation, calculator-minus, calculator-plus, calculator, calendar-day, calendar-list, calendar-month, calendar, car, chart-down, chart-pie, chart-up, chart, clip, clipboard-exclamation, clipboard, clock, comment, compass, cone, construction, currency, desktop, direction, disk, document-zip, document, documents, door-open, door, drive-arrow, drive-download, drive-network, drive-upload, envelope-arrow, envelope-share, envelope, eraser, exclamation-alt, exclamation-alt2, exclamation, external, film, folder-alt, folder-open, folder, gavel, gear, globe, home, hourglass, image, info-alt, info, key, light-exclamation, light-green, light-red, light-yellow, light, lock-unlock, lock, luggage, magnet, magnifier, mail-open, mail, marker, megaphone, microphone, monitor, nav-090-alt, nav-090, nav-180-alt, nav-180, nav-270-alt, nav-270, nav-alt, nav, newspaper, note-pencil, note, paper-pencil, paper-share, paper, pencil, picture, printer, prohibit, question-alt, question, report-pencil, report, reports, rss, safe, scale, server-network, server, service-bell {
-	.wb-icon-#{$first-row-sprite} {
-		background-position: 0 $first-row-sprite-x;
-		@extend %grids-icon-wb-icon;
-	}
-	$first-row-sprite-x: $first-row-sprite-x - 18px;
-}
-//TODO: Make sprite single column and add the rest of the iterator values to the first array at the end.
-$second-row-sprite-y: 0;
-@each $second-row-sprite in sitemap, table, target, fax, telephone, thermometer-high, thermometer-low, thermometer, tick-alt, tick-alt2, tick, tool, toolbox, tshirt, usb-arrow, usb-logo, usb, user, users, weather-cloud, weather-lightning, weather-rain, weather-snow, weather-sun-cloud, weather-sun, x-alt, x-alt2, x {
-	.wb-icon-#{$second-row-sprite} {
-		background-position: -18px $second-row-sprite-y;
-		@extend %grids-icon-wb-icon;
-	}
-	$second-row-sprite-y: $second-row-sprite-y - 18px;
-}
-
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
-	.wb-icon {
+	[class*="wb-icon-"] {
 		background-position: top right;
 	}
 
