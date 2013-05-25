@@ -42,7 +42,7 @@
 
 			createToggleIcon = function (fieldid) {
 				var fieldLabel = $('label[for="' + fieldid + '"]').text(),
-					objToggle = $('<a id="' + fieldid + '-picker-toggle" class="picker-toggle-hidden" href="javascript:;"><img class="image-actual" src="' + pe.add.liblocation + 'images/datepicker/calendar-month.png" alt="' + pe.dic.get('%datepicker-show') + fieldLabel + '"/></a>');
+					objToggle = $('<a id="' + fieldid + '-picker-toggle" class="picker-toggle-hidden wb-invisible" href="javascript:;"><img class="image-actual" src="' + pe.add.liblocation + 'images/datepicker/calendar-month.png" alt="' + pe.dic.get('%datepicker-show') + ' ' + fieldLabel + '"/></a>');
 
 				objToggle.on('click vclick touchstart', function () {
 					toggle(fieldid);
@@ -51,6 +51,11 @@
 
 				elm.after(objToggle);
 				container.slideUp(0);
+
+				// Delay revealing of the toggle button to give time for the image to load
+				setTimeout(function() {
+					objToggle.removeClass('wb-invisible');
+				}, 10);
 			};
 
 			addLinksToCalendar = function (fieldid, year, month, days, minDate, maxDate, format) {
@@ -296,7 +301,7 @@
 				container.slideUp('fast', function () { ieFix($(this)); });
 				container.attr('aria-hidden', 'true');
 				calendar.hideGoToForm('wb-picker');
-				toggle.children('a').children('span').text(pe.dic.get('%datepicker-show') + fieldLabel);
+				toggle.children('a').children('span').text(pe.dic.get('%datepicker-show') + ' ' + fieldLabel);
 				toggle.removeClass('picker-toggle-visible');
 				toggle.addClass('picker-toggle-hidden');
 			};
