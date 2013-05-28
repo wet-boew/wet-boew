@@ -38,9 +38,12 @@
 				index,
 				len;
 
-			// Check if there's an active tab from the user's session
-			$activeTab = $tabs.find('a[href="' + this._get_active_panel(tabListIdx) + '"]');
-			if ($activeTab.length) {
+			// Check for an active tab specified by the URL hash or sessionStorage
+			$activeTab = $tabs.find('[href="#' + _pe.urlhash + '"]');
+			if ($activeTab.length === 0) {
+				$activeTab = $tabs.find('[href="' + this._get_active_panel(tabListIdx) + '"]');
+			}
+			if ($activeTab.length > 0) {
 				$tabs.removeClass('default');
 				$activeTab.parent('li').addClass('default');
 			}
@@ -196,15 +199,15 @@
 				}
 			});
 
-			// Find the default tab: precendence given to the active tab from sessionStorage
-			$default_tab = $tabs.filter('[href="' + this._get_active_panel(tabListIdx) + '"]');
-			if ($default_tab.length > 0) {
-				opts.defaultTab = '.default';
-				$nav.find('li').removeClass('default');
-				$default_tab.parent('li').addClass('default');
-			} else {
-				$default_tab = $tabs.filter('[href="*#' + _pe.urlhash + '"]');
-				if ($default_tab.length === 0) {
+			// Find the default tab: precendence given to the URL hash
+			$default_tab = $tabs.filter('[href="#' + _pe.urlhash + '"]');
+			if ($default_tab.length === 0) {
+				$default_tab = $tabs.filter('[href="' + this._get_active_panel(tabListIdx) + '"]');
+				if ($default_tab.length > 0) {
+					opts.defaultTab = '.default';
+					$nav.find('li').removeClass('default');
+					$default_tab.parent('li').addClass('default');
+				} else {
 					$default_tab = $nav.find('.default a');
 					if ($default_tab.length === 0) {
 						$default_tab = $nav.find('li:first-child a');
