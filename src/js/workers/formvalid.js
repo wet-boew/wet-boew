@@ -40,7 +40,7 @@
 				mthdlang = _pe.get_language(vlang, _pe.fn.formvalid.methods, '_'),
 				liblocation = _pe.add.liblocation,
 				suffixExt = _pe.suffix + '.js',
-				ariaLive = $('<div class="arialive" aria-live="polite" aria-relevant="all"></div>');
+				ariaLive = $('<div class="arialive wb-invisible" aria-live="polite" aria-relevant="all"></div>');
 
 			// Append the aria-live region (for provide message updates to screen readers)
 			elm.append(ariaLive);
