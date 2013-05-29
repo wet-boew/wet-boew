@@ -106,6 +106,7 @@
 				getPrevTab,
 				getSlideTo,
 				isSlider,
+				mouse = {pressed: false, timeout: null},
 				positionPanels,
 				selectTab,
 				stopText = _pe.dic.get('%pause'),
@@ -275,12 +276,21 @@
 				}
 			});
 
+			// Change panel on user swipe (disabled for mouse users)
 			$panels.on('swipeleft swiperight', function (e) {
-				e.preventDefault();
-				if (e.type === 'swipeleft') {
-					selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
+				if (!mouse.pressed) {
+					e.preventDefault();
+					selectTab(e.type === 'swipeleft' ? getNextTab($tabs) : getPrevTab($tabs), $tabs, $panels, opts, false);
+				}
+			}).on('mousedown mouseup', function (e) {
+				if (e.type === 'mousedown') {
+					clearTimeout(mouse.timeout);
+					mouse.pressed = true;
 				} else {
-					selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
+					// Prevent the mouse press from being marked as finished before the swipe event fires
+					mouse.timeout = setTimeout(function () {
+						mouse.pressed = false;
+					}, $.event.special.swipe.durationThreshold);
 				}
 			});
 
