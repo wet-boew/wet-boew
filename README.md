@@ -23,6 +23,7 @@
 * [Main project](https://github.com/wet-boew/wet-boew/)
 * [Terms and conditions](http://wet-boew.github.io/wet-boew/License-eng.txt)
 * [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines)
+* [Versioning](https://github.com/wet-boew/wet-boew/wiki/Versioning)
 * [Version history](#version-history)
 * [Roadmap](https://github.com/wet-boew/wet-boew/wiki/Roadmap)
 
@@ -123,6 +124,7 @@
 * [Projet principal](https://github.com/wet-boew/wet-boew/)
 * [Conditions régissant l'utilisation](http://wet-boew.github.io/wet-boew/Licence-fra.txt)
 * [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs)
+* [Contrôle des versions](https://github.com/wet-boew/wet-boew/wiki/Contr%C3%B4le-des-versions)
 * [Historique des versions](#historique-des-versions)
 * [Feuille de route](https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route)
 
