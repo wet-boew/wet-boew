@@ -80,6 +80,7 @@ form {
 		margin: 0 !important;
 	}
 	&.background-light {
+		outline: none;
 		> {
 			* {
 				@extend %grids-util-small-outline-none;
