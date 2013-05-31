@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
 <!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
 <!--[if gt IE 8]><!-->
@@ -7,17 +7,11 @@
 <head>
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>Defining a Data Row Group in a Data Table - Techniques about HTML Tables - Web Experience Toolkit (WET)</title>
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+<title>Defining a Data Row Group in a Data Table - Working examples - Web Experience Toolkit&#160;(WET)</title>
 
-<link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
-<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
-<meta name="dcterms.title" content="English title / Titre en anglais" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
-<meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!--[if lte IE 8]>
@@ -25,19 +19,20 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
-<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
-<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
 <script src="../../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
-<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
-<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
 <!--<![endif]-->
 
-<!-- CustomScriptsCSSStart -->
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -50,50 +45,40 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
-<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-eng-r.svg" role="img" aria-label="Government of Canada" type="image/svg+xml" width="237" height="24">
-	<div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-eng.gif" width="214" height="20" alt="Government of Canada" /></div>
-</object></div></div>
+<section><div id="wet-fullhd"><h2>Full-width header area</h2>
+<div id="wet-fullhd-in">
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></li>
-<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/depts/major/depind-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="#" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-2"><a href="#" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
 </ul>
-</div></div></div></nav>
+</div>
+</div></section>
 
-<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms-r.svg" role="img" aria-label="Symbol of the Government of Canada" type="image/svg+xml" width="144" height="34">
-	<div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div>
-</object></div></div>
-<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-eng.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-eng.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
 
-<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
-<form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="text" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" />
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/menu-eng.txt">
-<li><div><a href="http://wet-boew.github.com/wet-boew/index-eng.html">WET project</a></div></li>
-<li><div><a href="section2/index-eng.html">Section 2</a></div></li>
-<li><div><a href="#">Section 3</a></div></li>
-<li><div><a href="#">Section 4</a></div></li>
-<li><div><a href="#">Section 5</a></div></li>
-<li><div><a href="#">Section 6</a></div></li>
-<li><div><a href="#">Section 7</a></div></li>
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-eng.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
 </ul>
 </div></div></div></div>
 
-<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
 <ol>
 <li><a href="../../index-eng.html">Home</a></li>
 <li><a href="../index-eng.html">Working examples</a></li>
-<li>Table Usability - Web Experience Toolkit (WET)</li>
+<li>Defining a Data Row Group in a Data Table</li>
 </ol>
 </div></div>
 </nav>
@@ -103,8 +88,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
+<h1 id="wb-cont">Defining a Data Row Group in a Data Table</h1>
 
-<h1 id="wb-cont">Defining a Data Row Group in a Data Table - Web Experience Toolkit (WET)</h1>
 
 <div class="module-attention span-6">
 	<h2><span class="color-dark">Attention:</span> Since WET 3.0.2</h2>
@@ -136,13 +121,13 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <p>Success Criterion 1.3.1 (Info and Relationships)</p>
 
 <h3>Technique Title</h3>
-<p>Defining a Data Row Group in a Data Table<p>
+<p>Defining a Data Row Group in a Data Table</p>
 
 <h3>Applicability</h3>
-<p>Use for data tables where it include more than one data group.<p>
+<p>Use for data tables where it include more than one data group.</p>
 
 <h3>User Agent Issues</h3>
-<p>Not Available<p>
+<p>Not Available</p>
 
 <h3>Description of Technique</h3>
 
@@ -150,7 +135,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <p>This technique introduce a "Data Level" concept. This represent the relationship between each data group versus an heading. With this technique, the "caption" table element is considerated as a cell header.</p>
 
-<p>The default data level is 1. The data level increase depending of the number of the consecutive row group header cell found. <ins>By Default if a subsequent data row group do not have a row group header cell, it is considerated as the same data level of the preceding row group. When the table is on the <strong>&quot;hassum&quot;</strong> mode, the</ins> <del>A</del> data level can be decreased when two or more consecutive summary group is found.</p>
+<p>The default data level is 1. The data level increase depending of the number of the consecutive row group header cell found. <ins>By Default if a subsequent data row group do not have a row group header cell, it is considerated as the same data level of the preceding row group. When the table is on the <strong>"hassum"</strong> mode, the</ins> <del>A</del> data level can be decreased when two or more consecutive summary group is found.</p>
 
 <p>The data level stay constant between 2 consecutive data group. Like if the first data group, with two row group header cell, is considerated at the level 3. If the second data group only have one row group header cell, that group is also considerated at the level 3 and have a relationship with the first row group header cell defined in the first data group.</p>
 
@@ -161,16 +146,16 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <table class="wet-boew-zebra">
 	<caption>Table 1 - Two Data Row Group</caption>
 	<colgroup>
-		<col />
+		<col>
 	</colgroup>
 	<colgroup>
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
 	</colgroup>
 	<thead>
 		<tr>
@@ -184,7 +169,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<th id="tbl12">Col Heading</th>
 		</tr>
 	</thead>
-	
+
 	<tbody>
 		<tr>
 			<th colspan="8" id="tbl16">Group A</th>
@@ -285,7 +270,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <details>
 	<summary>Table Source Code</summary>
 <pre><code>
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class="wet-boew-zebra"&gt;
 	&lt;caption&gt;Table 1 - Two Data Row Group&lt;/caption&gt;
 	&lt;thead&gt;
 		&lt;tr&gt;
@@ -299,10 +284,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			&lt;th&gt;Col Heading&lt;/th&gt;
 		&lt;/tr&gt;
 	&lt;/thead&gt;
-	
+
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group A&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group A&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
@@ -347,7 +332,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	&lt;/tbody&gt;
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group B&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group B&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
@@ -401,16 +386,16 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <table class="wet-boew-zebra">
 	<caption>Table 2 - Two Data Row Group</caption>
 	<colgroup>
-		<col />
+		<col>
 	</colgroup>
 	<colgroup>
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
 	</colgroup>
 	<thead>
 		<tr>
@@ -424,7 +409,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<th id="tbla12">Col Heading</th>
 		</tr>
 	</thead>
-	
+
 	<tbody>
 		<tr>
 			<th id="tbla16">Row Heading</th>
@@ -523,7 +508,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<summary>Table Source Code</summary>
 <pre><code>
 
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class="wet-boew-zebra"&gt;
 	&lt;caption&gt;Table 2 - Two Data Row Group&lt;/caption&gt;
 	&lt;thead&gt;
 		&lt;tr&gt;
@@ -537,7 +522,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			&lt;th&gt;Col Heading&lt;/th&gt;
 		&lt;/tr&gt;
 	&lt;/thead&gt;
-	
+
 	&lt;tbody&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
@@ -582,7 +567,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	&lt;/tbody&gt;
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group A&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group A&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
@@ -635,16 +620,16 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <table class="wet-boew-zebra">
 	<caption>Table 3 - Two Data Row Group</caption>
 	<colgroup>
-		<col />
+		<col>
 	</colgroup>
 	<colgroup>
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
 	</colgroup>
 	<thead>
 		<tr>
@@ -658,7 +643,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<th id="tblb12">Col Heading</th>
 		</tr>
 	</thead>
-	
+
 	<tbody>
 		<tr>
 			<th colspan="8" id="tblb16">Group A</th>
@@ -762,7 +747,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<summary>Table Source Code</summary>
 <pre><code>
 
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class="wet-boew-zebra"&gt;
 	&lt;caption&gt;Table 3 - Two Data Row Group&lt;/caption&gt;
 	&lt;thead&gt;
 		&lt;tr&gt;
@@ -776,13 +761,13 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			&lt;th&gt;Col Heading&lt;/th&gt;
 		&lt;/tr&gt;
 	&lt;/thead&gt;
-	
+
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group A&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group A&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group B&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group B&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
@@ -827,7 +812,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	&lt;/tbody&gt;
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group C&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group C&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
@@ -879,16 +864,16 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <table class="wet-boew-zebra">
 	<caption>Table 4 - Two Data Row Group</caption>
 	<colgroup>
-		<col />
+		<col>
 	</colgroup>
 	<colgroup>
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
-		<col />
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
 	</colgroup>
 	<thead>
 		<tr>
@@ -902,7 +887,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<th id="tblz22">Col Heading</th>
 		</tr>
 	</thead>
-	
+
 	<tbody>
 		<tr>
 			<th id="tblz26" colspan="8">Group A</th>
@@ -1055,7 +1040,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<summary>Table Source Code</summary>
 <pre><code>
 
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class="wet-boew-zebra"&gt;
 	&lt;caption&gt;Table 4 - Two Data Row Group&lt;/caption&gt;
 	&lt;thead&gt;
 		&lt;tr&gt;
@@ -1069,10 +1054,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			&lt;th&gt;Col Heading&lt;/th&gt;
 		&lt;/tr&gt;
 	&lt;/thead&gt;
-	
+
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group A&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group A&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
@@ -1117,10 +1102,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	&lt;/tbody&gt;
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group B&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group B&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group C&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group C&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
@@ -1165,7 +1150,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	&lt;/tbody&gt;
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group D&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group D&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
@@ -1231,7 +1216,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <ul>
 	<li><a href="validator-htmltable.html">HTML Table Validator</a> <em>(With ids/headers/aria-describedby auto assignation)</em></li>
 	<li><a href="About-the-Table-Usability-Concept.html">About the Table Usability Concept</a></li>
-	<li><a href="ExtendedDefinition.html">Extended definition of HTLM5 table elements</a></li>
+	<li><a href="ExtendedDefinition.html">Extended definition of HTML5 table elements</a></li>
 	<li><a href="index-eng.html">All the resources</a></li>
 </ul>
 
@@ -1261,13 +1246,13 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<li>Check if the data table have more than one data row group.</li>
 	<li>Validate the relationship between the data group with the data meaning.</li>
 </ol>
-	
+
 <h3>Expected Result</h3>
 
 <ul>
 	<li>#1, #2 and #3 are true.</li>
 </ul>
-	
+
 
 <h3>Test File 1</h3>
 <p>This Test File 1 <strong>Pass</strong> this technique</p>
@@ -1387,12 +1372,12 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <details>
 	<summary>Table Source Code</summary>
 <pre><code>
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class="wet-boew-zebra"&gt;
 	&lt;caption&gt;Table 5 - Two Data Row Group without any column&lt;/caption&gt;
 
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group A&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group A&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
@@ -1437,7 +1422,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	&lt;/tbody&gt;
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;8&quot;&gt;Group B&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group B&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
@@ -1693,7 +1678,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	<summary>Table Source Code</summary>
 <pre><code>
 
-&lt;table class=&quot;wet-boew-zebra&quot;&gt;
+&lt;table class="wet-boew-zebra"&gt;
 	&lt;colgroup&gt;
 		&lt;col&gt;
 		&lt;col&gt;
@@ -1709,7 +1694,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	&lt;/colgroup&gt;
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th rowspan=&quot;4&quot;&gt;Group A&lt;/th&gt;
+			&lt;th rowspan="4"&gt;Group A&lt;/th&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
 			&lt;td&gt;Data&lt;/td&gt;
 			&lt;td&gt;Data&lt;/td&gt;
@@ -1752,7 +1737,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	&lt;/tbody&gt;
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th rowspan=&quot;4&quot;&gt;Group B&lt;/th&gt;
+			&lt;th rowspan="4"&gt;Group B&lt;/th&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
 			&lt;td&gt;Data&lt;/td&gt;
 			&lt;td&gt;Data&lt;/td&gt;
@@ -1795,10 +1780,10 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	&lt;/tbody&gt;
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th colspan=&quot;9&quot;&gt;Group C&lt;/th&gt;
+			&lt;th colspan="9"&gt;Group C&lt;/th&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
-			&lt;th rowspan=&quot;4&quot;&gt;Group D&lt;/th&gt;
+			&lt;th rowspan="4"&gt;Group D&lt;/th&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
 			&lt;td&gt;Data&lt;/td&gt;
 			&lt;td&gt;Data&lt;/td&gt;
@@ -1841,7 +1826,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 	&lt;/tbody&gt;
 	&lt;tbody&gt;
 		&lt;tr&gt;
-			&lt;th rowspan=&quot;4&quot;&gt;Group E&lt;/th&gt;
+			&lt;th rowspan="4"&gt;Group E&lt;/th&gt;
 			&lt;th&gt;Row Heading&lt;/th&gt;
 			&lt;td&gt;Data&lt;/td&gt;
 			&lt;td&gt;Data&lt;/td&gt;
@@ -1886,8 +1871,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 </code></pre>
 </details>
 
-<dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2012-10-17</time></span></dd>
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
@@ -1896,54 +1881,34 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
 <!-- FooterStart -->
-<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
-<div id="gcwu-tctr">
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
 <ul>
-<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
-<li class="gcwu-tr"><a href="#">Transparency</a></li>
-</ul>
-</div>
-<div class="clear"></div>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
-<ul>
-<li><a href="#">Our Mandate</a></li>
-<li><a href="#">Our Minister</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/index-eng.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
 </ul>
 </div></section>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
 <ul>
-<li><a href="#">News releases</a></li>
-<li><a href="#">Media advisories</a></li>
-<li><a href="#">Multimedia</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
 </ul>
 </div></section>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
-<address>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
 <ul>
-<li><a href="#">Phone numbers</a></li>
-<li><a href="#">Office locations</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
 </ul>
-</address>
 </div></section>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
 <ul>
-<li><a rel="external" href="#">YouTube</a></li>
-<li><a rel="external" href="#">Twitter</a></li>
-<li><a href="#">Feeds</a></li>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
 </ul>
 </div></section>
 </div></div></nav>
 
-<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
-<ul>
-<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
-<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
-<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
-<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
-<li><a rel="external" href="http://actionplan.gc.ca/en"><span>Economy</span><br />actionplan.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/home.html">Canada.gc.ca</a></div></li>
-</ul>
-</div></div></div></nav>
+<section><div id="wet-fullft"><h3>Full-width footer area</h3>
+<div id="wet-fullft-in"></div>
+</div></section>
 <!-- FooterEnd -->
 </footer>
 </div></div></div>
@@ -1951,15 +1916,19 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!-- ScriptsStart -->
 <script src="../../dist/js/settings.js"></script>
 <!--[if lte IE 8]>
-<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
 <script src="../../dist/js/pe-ap-ie-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
 <![endif]-->
 <!--[if gt IE 8]><!-->
-<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
 <!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
 </body>
 </html>

@@ -1,8 +1,9 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/appearance";
+@import "compass/css3/box-sizing";
 
 @mixin forms {
 
@@ -61,6 +62,8 @@
 			legend {
 				padding-left: 10px;
 				padding-right: 10px;
+				margin: 0;
+				@include box-sizing(border-box);
 			}
 
 			#{headings(2, 6)} {
@@ -171,7 +174,6 @@
 		padding-top: $margin-small;
 		text-align: left !important;
 		zoom: 1;
-		overflow: hidden;
 
 		input {
 			&[type="radio"], &[type="checkbox"] {
@@ -208,7 +210,7 @@
 			position: relative;
 			vertical-align: middle;
 
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				z-index: 2;
 			}
 		}
@@ -323,6 +325,7 @@
 			border-top: 1px solid $silver;
 			content: "";
 			display: block;
+			width: 100%;
 			height: $margin-medium;
 			clear: both;
 		}
@@ -332,7 +335,7 @@
 		border-color: darken($light, 15%);
 		@include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.05));
 
-		&:focus, &:active {
+		@include pseudo-focus(false) {
 			border-color: $accent;
 
 			@include transition(border 0.2s linear 0s, box-shadow 0.2s linear 0s);
@@ -345,7 +348,7 @@
 			color: $medium;
 			cursor: not-allowed;
 
-			&:focus, &:active {
+			@include pseudo-focus(false) {
 				@include box-shadow(none);
 			}
 		}
@@ -357,19 +360,19 @@
 		// apply color to the form element
 		.form-confirm & {
 			border-color: $summary;
-			&:focus, &:active {
+			@include pseudo-focus(false) {
 				@include single-box-shadow($summary);
 			}
 		}
 		.form-attention & {
 			border-color: $red;
-			&:focus, &:active {
+			@include pseudo-focus(false) {
 				@include single-box-shadow($red);
 			}
 		}
 		.form-alert & {
 			border-color: darken($alert, 37%);
-			&:focus, &:active {
+			@include pseudo-focus(false) {
 				@include single-box-shadow(darken($alert, 37%));
 			}
 		}

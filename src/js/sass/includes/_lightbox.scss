@@ -1,12 +1,17 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/box-sizing";
 
 //WET: This CSS is based off https://github.com/jackmoore/colorbox/blob/master/example3/colorbox.css
 %wb-lightbox-position-absolute {
 	position: absolute;
+}
+%wb-lightbox-text-indent-9999-font-size-1-color-fff {
+	text-indent: 9999px;
+	font-size: 1px;
+	color: #fff;
 }
 
 %wb-lightbox-top-0 {
@@ -17,8 +22,14 @@
 	left: 0;
 }
 
-%wb-lightbox-right-5 {
+%wb-lightbox-left-5-right-auto {
+	left: 5px;
+	right: auto;
+}
+
+%wb-lightbox-right-5-left-auto {
 	right: 5px;
+	left: auto;
 }
 
 %wb-lightbox-width-100-height-100 {
@@ -35,6 +46,10 @@
 	display: block;
 }
 
+%wb-lightbox-visibility-hidden {
+	visibility: hidden;
+}
+
 %wb-lightbox-visibility-visible {
 	visibility: visible;
 }
@@ -47,8 +62,13 @@
 	clear: left;
 }
 
-%wb-lightbox-border-0 {
-	border: 0;
+%wb-lightbox-border-none {
+	border: none;
+}
+
+%wb-lightbox-background-color-transparent-border-none {
+	background-color: transparent;
+	@extend %wb-lightbox-border-none;
 }
 
 %wb-lightbox-box-sizing-content-box {
@@ -85,7 +105,7 @@
 }
 
 %wb-lightbox-focus-active-outline-0-border-1-dotted-000 {
-	&:focus, &:active {
+	@include pseudo-focus(false) {
 		outline: 0;
 		border: 1px dotted #000;
 	}
@@ -175,7 +195,7 @@
 }
 
 .cboxPhoto {
-	@extend %wb-lightbox-border-0;
+	@extend %wb-lightbox-border-none;
 	@extend %wb-lightbox-display-block;
 	float: left;
 	margin: auto;
@@ -185,7 +205,7 @@
 .cboxIframe {
 	@extend %wb-lightbox-width-100-height-100;
 	@extend %wb-lightbox-display-block;
-	@extend %wb-lightbox-border-0;
+	@extend %wb-lightbox-border-none;
 	background: #fff;
 }
 
@@ -200,14 +220,19 @@
 	@extend %wb-lightbox-color-ccc-text-shadow-none;
 	@extend %wb-lightbox-display-none;
 	margin: 0;
-	left: 5px;
+	@extend %wb-lightbox-left-5-right-auto;
 	width: 70%;
+	a {
+		&, &.ui-link {
+			@extend %wb-lightbox-color-ccc-text-shadow-none;
+		}
+	}
 }
 
 #cboxCurrent {
 	@extend %wb-lightbox-position-absolute;
 	@extend %wb-lightbox-padding-top-3;
-	@extend %wb-lightbox-right-5;
+	@extend %wb-lightbox-right-5-left-auto;
 	@extend %wb-lightbox-color-ccc-text-shadow-none;
 	@extend %wb-lightbox-display-none;
 	width: 26%;
@@ -229,9 +254,10 @@
 	@extend %wb-lightbox-top-50-width-28-height-65;
 	@extend %wb-lightbox-margin-top--32;
 	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
+	@extend %wb-lightbox-background-color-transparent-border-none;
 	left: -28px;
 	background-position: 100% 0;
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		background-position: 100% 100%; //bottom right
 	}
 }
@@ -243,9 +269,10 @@
 	@extend %wb-lightbox-top-50-width-28-height-65;
 	@extend %wb-lightbox-margin-top--32;
 	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
+	@extend %wb-lightbox-background-color-transparent-border-none;
 	right: -28px;
 	background-position: 0 0;
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		background-position: 0 100%;
 	}
 }
@@ -254,27 +281,28 @@
 	@extend %wb-lightbox-curson-pointer;
 	@extend %wb-lightbox-position-absolute;
 	@extend %wb-lightbox-controls;
-	@extend %wb-lightbox-right-5;
+	@extend %wb-lightbox-right-5-left-auto;
 	@extend %wb-lightbox-display-block;
 	@extend %wb-lightbox-focus-active-outline-0-border-1-dotted-000;
+	@extend %wb-lightbox-background-color-transparent-border-none;
 	top: -19px;
 	background-position: 50% 0;
 	width: 38px;
 	height: 19px;
-	&:hover, &:focus, &:active {
+	@include pseudo-focus {
 		background-position: 50% 100%;
 	}
 }
 
 .lb-inline {
 	@extend %wb-lightbox-display-none;
-	@extend %wb-lightbox-visibility-visible;
+	@extend %wb-lightbox-visibility-hidden;
 }
 
 .lb-hidden-gallery {
 	a {
 		@extend %wb-lightbox-display-none;
-		@extend %wb-lightbox-visibility-visible;
+		@extend %wb-lightbox-visibility-hidden;
 	}
 	li {
 		&:first-child {
@@ -308,5 +336,26 @@
 			@extend %wb-lightbox-display-block;
 			@extend %wb-lightbox-visibility-visible;
 		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#cboxPrevious {
+		@extend %wb-lightbox-text-indent-9999-font-size-1-color-fff;
+	}
+	#cboxNext {
+		@extend %wb-lightbox-text-indent-9999-font-size-1-color-fff;
+	}
+	#cboxClose {
+		@extend %wb-lightbox-text-indent-9999-font-size-1-color-fff;
+		@extend %wb-lightbox-left-5-right-auto;
+	}
+	#cboxTitle {
+		@extend %wb-lightbox-right-5-left-auto;
+	}
+	#cboxCurrent {
+		@extend %wb-lightbox-left-5-right-auto;
+		text-align: left;
 	}
 }

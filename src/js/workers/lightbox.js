@@ -1,11 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /*
  * Lightbox plugin
  */
-/*global jQuery: false, pe: false, wet_boew_lightbox: false*/
+/*global jQuery: false, wet_boew_lightbox: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -14,7 +14,7 @@
 	/* local reference */
 	_pe.fn.lightbox = {
 		type : 'plugin',
-		depends : ['colorbox', 'metadata'],
+		depends : ['colorbox'],
 		groupindex : 0,
 		_exec : function (elm) {
 			// Variables
@@ -26,40 +26,56 @@
 				$lbNext,
 				$lbPrev,
 				$lbClose,
-				open = false;
+				open = false,
+				slideshowText = ' ' + _pe.dic.get('%lb-slideshow');
 
 			// Defaults
 			opts = {
 				transition : 'elastic',
 				loop : true,
-				current : pe.dic.get('%lb-current'),
-				previous : pe.dic.get('%lb-prev'),
-				next : pe.dic.get('%lb-next'),
-				close : pe.dic.get('%close'),
-				xhrError : pe.dic.get('%lb-xhr-error'),
-				imgError : pe.dic.get('%lb-img-error'),
+				current : _pe.dic.get('%lb-current'),
+				previous : _pe.dic.get('%lb-prev'),
+				next : _pe.dic.get('%lb-next'),
+				close : _pe.dic.get('%close'),
+				xhrError : _pe.dic.get('%lb-xhr-error'),
+				imgError : _pe.dic.get('%lb-img-error'),
 				maxWidth : '100%',
 				maxHeight : '100%',
-				slideshowStart : pe.dic.get('%start') + ' ' + pe.dic.get('%lb-slideshow'),
-				slideshowStop : pe.dic.get('%stop') + ' ' + pe.dic.get('%lb-slideshow'),
+				slideshowStart : _pe.dic.get('%start') + slideshowText,
+				slideshowStop : _pe.dic.get('%stop') + slideshowText,
 				slideshow : false,
 				slideshowAuto : false,
-				onLoad : function () {
-					var $lbTitle = $lbContent.find('#cboxTitle'),
-						$lbCurrent = $lbTitle.next();
-				},
 				onComplete : function () {
 					var $lbTitle = $lbContent.find('#cboxTitle'),
-						$lbCurrent = $lbTitle.next();
-
+						$lbCurrent = $lbContent.find('#cboxCurrent'),
+						currentText = $lbCurrent.text(),
+						$origImg,
+						$currImg,
+						describedBy,
+						longdesc,
+						alt_text = $lbTitle.text() + (currentText.length !== 0 ? ' - ' + currentText : '');
+					
 					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr('tabindex', '0');
-					$lbLoadedContent.attr('aria-label', $lbTitle.text() + ' ' + $lbCurrent.text());
-					if ($lbLoadedContent.children('.cboxPhoto').length === 0) {
+					$currImg = $lbLoadedContent.children('.cboxPhoto');
+					$lbLoadedContent.attr('aria-label', alt_text);
+					if ($currImg.length === 0) {
 						$lbLoadedContent.attr('role', 'document');
 					} else {
-						$lbLoadedContent.children().attr('alt', $lbTitle.text());
+						$currImg.attr('alt', alt_text);
+						$origImg = $.colorbox.element().find('img');
+
+						// Bring over some of the original image attributes
+						describedBy = $origImg.attr('aria-describedby');
+						longdesc = $origImg.attr('longdesc');
+						if (typeof describedBy !== 'undefined') {
+							$lbLoadedContent.attr('aria-describedby', describedBy);
+							$currImg.attr('aria-describedby', describedBy);
+						}
+						if (typeof longdesc !== 'undefined') {
+							$currImg.attr('longdesc', longdesc);
+						}
 					}
-					pe.focus($lbLoadedContent);
+					_pe.focus($lbLoadedContent);
 					open = true;
 				},
 				onClosed : function () {
@@ -72,32 +88,26 @@
 				transition : (elm.hasClass('transition-fade') ? 'fade' : (elm.hasClass('transition-none') ? 'none' : undefined)),
 				loop : elm.hasClass('loop-none') ? false : undefined,
 				slideshow : elm.hasClass('slideshow') ? true : undefined,
-				slideshowAuto : elm.hasClass('slideshow-auto') ? true : undefined
+				slideshowAuto : elm.hasClass('slideshow-auto') ? true : undefined,
+				photo : elm.hasClass('force-photo') ? true : false
 			};
 
-			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data attribute
-			$.metadata.setType('attr', 'data-wet-boew');
-			if (typeof wet_boew_lightbox !== 'undefined' && wet_boew_lightbox !== null) {
-				$.extend(opts, wet_boew_lightbox, overrides, elm.metadata());
-			} else {
-				$.extend(opts, overrides, elm.metadata());
-			}
+			// Extend the defaults with settings passed through settings.js (wet_boew_lightbox), class-based overrides and the data-wet-boew attribute
+			$.extend(opts, (typeof wet_boew_lightbox !== 'undefined' ? wet_boew_lightbox : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
-			// Add touchscreen support for launching the lightbox
-			$lb = elm.find('.lb-item, .lb-gallery, .lb-hidden-gallery').on('vclick', function () {
-				$.colorbox.launch(this);
-			});
+			// Find the lightbox links and galleries
+			$lb = elm.find('.lb-item, .lb-item-gal, .lb-gallery, .lb-hidden-gallery');
 
 			// Build single images, inline content and AJAXed content
 			$lb.filter('.lb-item').attr('aria-haspopup', 'true').each(function () {
-				pe.fn.lightbox._init_colorbox(this, opts);
+				_pe.fn.lightbox._init_colorbox(this, opts);
 			});
 
 			// Build galleries
 			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () {
-				var group = 'group' + (pe.fn.lightbox.groupindex += 1);
+				var group = 'group' + (_pe.fn.lightbox.groupindex += 1);
 				$(this).find('.lb-item-gal').attr('aria-haspopup', 'true').each(function () {
-					pe.fn.lightbox._init_colorbox(this, opts, group);
+					_pe.fn.lightbox._init_colorbox(this, opts, group);
 				});
 			});
 
@@ -108,30 +118,39 @@
 			$lbPrev = $lbContent.find('#cboxPrevious');
 			$lbClose = $lbContent.find('#cboxClose');
 
-			// Add extra keyboard support (handling for tab, enter and space)
-			$lbContent.on('keydown', function (e) {
-				var target_id = e.target.id;
-				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-					if (e.keyCode === 9) {
-						if (e.shiftKey && target_id === 'cboxLoadedContent') {
-							pe.focus($lbClose);
-							e.preventDefault();
-						} else if (!e.shiftKey && target_id === 'cboxClose') {
-							pe.focus($lbContent.find('#cboxLoadedContent'));
-							e.preventDefault();
-						}
-					} else if (e.keyCode === 13 || e.keyCode === 32) {
-						if (target_id === 'cboxLoadedContent' || target_id === 'cboxNext') {
-							$.colorbox.next();
-							e.preventDefault();
-						} else if (target_id === 'cboxPrevious') {
-							$.colorbox.prev();
-							e.preventDefault();
-						} else if (target_id === 'cboxClose') {
-							$.colorbox.close();
-							e.preventDefault();
+			// Add swipe and extra keyboard support (handling for tab, enter and space)
+			$lbContent.on('keydown swipeleft swiperight', function (e) {
+				var target_id = e.target.id,
+					type = e.type;
+				if (type === 'keydown') {
+					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
+						if (e.keyCode === 9) {
+							if (e.shiftKey && target_id === 'cboxLoadedContent') {
+								_pe.focus($lbClose);
+								e.preventDefault();
+							} else if (!e.shiftKey && target_id === 'cboxClose') {
+								_pe.focus($lbContent.find('#cboxLoadedContent'));
+								e.preventDefault();
+							}
+						} else if (e.keyCode === 13 || e.keyCode === 32) {
+							if (target_id === 'cboxLoadedContent' || target_id === 'cboxNext') {
+								$.colorbox.next();
+								e.preventDefault();
+							} else if (target_id === 'cboxPrevious') {
+								$.colorbox.prev();
+								e.preventDefault();
+							} else if (target_id === 'cboxClose') {
+								$.colorbox.close();
+								e.preventDefault();
+							}
 						}
 					}
+				} else if (type === 'swipeleft') {
+					$.colorbox.next();
+					e.preventDefault();
+				} else {
+					$.colorbox.prev();
+					e.preventDefault();
 				}
 			});
 		}, // end of exec

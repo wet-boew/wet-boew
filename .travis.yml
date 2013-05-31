@@ -2,12 +2,13 @@ language: java
 
 env:
   global:
-    - secure: "lyMMmGvleOhoAD+T/UQqFfjjiAW+WWU+9YqZjLEfVQxgOQKxB1/GXs45WXko\nB6sQ/U6+b5V202h3RwKuxUUgWZ1TMSrfWjy5NTX+tM8y5IJaVGh4Dl+9p51o\nekfMtEQ6TUHTFpLFwouaGpf4DUCpJHUtoh8HoI/kuAdnIpVmpMY="
+    - secure: "gwTdJcQxqg2Bxai+N9+T8tPJFnOexZRI1j2tVOHobvnMOaRVg9IU6Or+Q7Qz\nxIPtw7NlPFXhadwgRpEL0Y/I38mJlpXIAKmKAsUnEwyD4gdplbxlVXQZN54r\nGX7dzXpw94LYtRjquCeV5HpX8iMNnF4jgMbj94P1q8teWkyB7wM="
 
 branches:
   except:
-    - v3.0-dist
-    - master-dist
+    - /^.*-dist$/
+    - gh-pages
+
 
 script:
   - ant test -Djshint.failbuild=true

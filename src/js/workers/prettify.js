@@ -1,11 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /*
  * Text highlighting functionality 
  */
-/*global jQuery: false, pe: false, wet_boew_prettify: false, prettyPrint: false*/
+/*global jQuery: false, wet_boew_prettify: false, prettyPrint: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -17,7 +17,7 @@
 		executed : false,
 		_exec: function (elm) {
 			// Make sure only executes once
-			if (!pe.fn.prettify.executed) {
+			if (!_pe.fn.prettify.executed) {
 				var opts,
 					overrides,
 					pre = $('body').find('pre'),
@@ -25,13 +25,14 @@
 					i,
 					_ilen,
 					currClass,
-					lib = pe.add.liblocation;
+					lib = _pe.add.liblocation + 'dependencies/prettify/',
+					suffixExt = _pe.suffix + '.js';
 
 				// Load language extensions as needed (called by adding lang-* in class, e.g., lang-css)
 				for (i = 0, _ilen = classes.length; i < _ilen; i += 1) {
 					currClass = classes[i];
 					if (currClass.length < 12 && currClass.indexOf('lang-') === 0) {
-						pe.add._load([lib + 'dependencies/prettify/' + currClass + pe.suffix + '.js']);
+						_pe.add._load([lib + currClass + suffixExt]);
 					}
 				}
 
@@ -62,7 +63,7 @@
 				}
 
 				prettyPrint();
-				pe.fn.prettify.executed = true;
+				_pe.fn.prettify.executed = true;
 			}
 		} // end of exec
 	};

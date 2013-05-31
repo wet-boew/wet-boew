@@ -112,7 +112,7 @@
 	</target>
 	
 	<target name="-jshint">
-		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false" jshintSrc="${lib.dir}/jshint.js">
+		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
 			<report type="xml" destfile="${src.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
@@ -143,10 +143,14 @@
 			<exclude name="dependencies/validate.js"/>
 			<exclude name="dependencies/validateAdditional.js"/>
 			<exclude name="dependencies/xregexp.js"/>
+			<exclude name="dependencies/openlayers.js"/>
+			<exclude name="dependencies/proj4js.js"/>
 		</jshint>
 	</target>
 
-	<property name="csslint.ignores" value="ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,floats,overqualified-elements,font-sizes,regex-selectors,duplicate-properties,box-sizing"/>
+	<!-- Zero units can be removed after JQM 1.3.1 as PR fixed these -->
+	<property name="csslint.ignores.jquery.mobile" value="import,compatible-vendor-prefixes,vendor-prefix,adjoining-classes,unique-headings,qualified-headings,duplicate-properties,box-sizing,zero-units,outline-none,known-properties,box-model,text-indent,unqualified-attributes,universal-selector,display-property-grouping,overqualified-elements"/>
+	<property name="csslint.ignores" value="ids,important,qualified-headings,universal-selector,unqualified-attributes,star-property-hack,unique-headings,adjoining-classes,floats,overqualified-elements,font-sizes,regex-selectors,duplicate-properties,box-sizing,duplicate-background-images,fallback-colors"/>
 	<property name="csslint.errors" value="outline-none"/>
 
 	<target name="csslint" description="Runs CSSLint on CSS produced by the project's Sass files and outputs results to the console" depends="usedebugging, prepare-files">
@@ -162,7 +166,7 @@
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=compact"/>
-			<arg value="--ignore=${csslint.ignores}"/>
+			<arg value="--ignore=${csslint.ignores},${csslint.ignores.jquery.mobile}"/>
 			<arg value="--error=${csslint.errors}"/>
 			<srcfile/>
 		</apply>
@@ -239,7 +243,7 @@
 	</target>
 	
 	<target name="-rename-to-min">
-		<move todir="${dist.dir}">
+		<move todir="${dist.dir}" encoding="UTF-8">
 			<fileset dir="${dist.dir}">
 				<include name="**/*.js" />
 				<exclude name="**/settings.js" />
@@ -249,7 +253,7 @@
 			</fileset>
 			<globmapper from="*.js" to="*-min.js"/>
 		</move>	
-		<move todir="${dist.dir}">
+		<move todir="${dist.dir}" encoding="UTF-8">
 			<fileset dir="${dist.dir}">
 				<include name="**/*.css" />
 				<exclude name="**/*-min.css" />
@@ -263,15 +267,6 @@
 	<target name="-copy-jquery-mobile">
 		<copy todir="${dist.dir}/css/images">
 			<fileset dir="${src.dir}/jquerymobile/images-ie"/>
-		</copy>
-	</target>
-
-	<target name="-copy-depends">
-		<copy todir="${dist.dir}/dependencies/css">
-			<fileset dir="${src.dir}/dependencies/css"/>
-		</copy>
-		<copy todir="${dist.dir}/dependencies/images">
-			<fileset dir="${src.dir}/dependencies/images"/>
 		</copy>
 	</target>
 
@@ -294,7 +289,7 @@
 	</target>
 	
 	<target name="-update-headers" extensionOf="finalize">
-		<replace dir="${dist.dir}">
+		<replace dir="${dist.dir}" encoding="UTF-8">
 			<include name="**/*.js"/>
 			<include name="**/*.css"/>
 			<replacefilter token="@wet-boew-build.version@" value="${wet-boew-build.version} Build: ${wet-boew-build.starttime}"/>

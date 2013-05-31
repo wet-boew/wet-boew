@@ -1,11 +1,63 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/border-radius";
 
 %wet-default-font-body {
 	font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+%wet-default-screen-display-none {
+	display: none;
+}
+%wet-default-screen-display-block {
+	display: block;
+}
+%wet-default-screen-wet-title-object-display-none {
+	#wet-title {
+		object {
+			@extend %wet-default-screen-display-none;
+		}
+	}
+}
+%wet-default-screen-wet-title-object-display-block {
+	#wet-title {
+		object {
+			@extend %wet-default-screen-display-block;
+		}
+	}
+}
+%wet-default-screen-ui-mobile-rendering-wet-title-object-display-block-none {
+	&.ui-mobile {
+		@extend %wet-default-screen-wet-title-object-display-block;
+		&.ui-mobile-rendering {
+			@extend %wet-default-screen-wet-title-object-display-none;
+		}
+	}
+}
+%wet-default-screen-list-style-type-none {
+	list-style-type: none;
+}
+%wet-default-screen-padding-0 {
+	padding: 0;
+}
+%wet-default-screen-color-fff {
+	color: #fff;
+}
+%wet-default-screen-color-333 {
+	color: #333;
+}
+%wet-default-screen-font-weight-700 {
+	font-weight: 700;
+}
+%wet-default-screen-margin-top-0 {
+	margin-top: 0;
+}
+%wet-default-screen-color-222 {
+	color: #222;
+}
+%wet-default-screen-line-height-175 {
+	line-height: 1.75em;
 }
 
 body {
@@ -25,63 +77,82 @@ input {
 	@extend %wet-default-font-body;
 }
 
+#wb-skip {
+	li {
+		top: 7px;
+	}
+}
+
 #wet-fullhd {
 	background: #474747;
-	@extend %default-screen-color-fff;
+	@extend %wet-default-screen-color-fff;
 	ul {
-		@extend %default-screen-list-style-type-none;
+		@extend %wet-default-screen-list-style-type-none;
 		float: right;
 		margin: 0 0 0 10px;
-		@extend %default-screen-padding-0;
+		@extend %wet-default-screen-padding-0;
 		li {
 			float: left;
 			padding: 13px 0;
-			&#wet-fullhd-lang {
-				a {
-					@extend %default-screen-padding-0;
-					text-transform: capitalize;
-				}
+			&[id|=wet-fullhd-lang] {
+				text-transform: capitalize;
 			}
 		}
 	}
 	a {
-		@extend %default-screen-color-fff;
+		@extend %wet-default-screen-color-fff;
 		text-decoration: none;
 	}
 }
 
-%default-screen-list-style-type-none {
-	list-style-type: none;
+#wet-title {
+	object {
+		@extend %wet-default-screen-display-none;
+	}
+	span {
+		position: relative;
+		z-index: 1;
+	}
+	small {
+		font-size: 0.45em;
+		display: block;
+	}		
 }
-%default-screen-padding-0 {
-	padding: 0;
+.svg {
+	@extend %wet-default-screen-wet-title-object-display-block;
 }
-%default-screen-color-fff {
-	color: #fff;
+.pe-disable {
+	@extend %wet-default-screen-wet-title-object-display-block;
 }
-%default-screen-color-333 {
-	color: #333;
+.no-svg {
+	@extend %wet-default-screen-ui-mobile-rendering-wet-title-object-display-block-none;
 }
-%default-screen-font-weight-700 {
-	font-weight: 700;
+.ie9 {
+	@extend %wet-default-screen-ui-mobile-rendering-wet-title-object-display-block-none;
 }
+.ie10 {
+	@extend %wet-default-screen-ui-mobile-rendering-wet-title-object-display-block-none;
+}
+
 .wb-sec-def {
 	h3.top-section {
 		a {
 			&, &.ui-link {
 				background: #0B3048;
-				@extend %default-screen-color-fff;
 				padding-top: 8px;
 				padding-bottom: 8px;
 				font-size: 1.1em;
-				&:hover, &:focus, &:active {
-					@extend %default-screen-color-fff;
+				&:link, &:visited {
+					@extend %wet-default-screen-color-fff;
+				}
+				@include pseudo-focus {
+					@extend %wet-default-screen-color-fff;
 					text-decoration: underline;
 				}
 				&.nav-current {
-					@extend %default-screen-color-fff;
-					padding-top: 4px;
-					padding-bottom: 4px;
+					@extend %wet-default-screen-color-fff;
+					padding-top: 7px;
+					padding-bottom: 7px;
 					background: #0F315B;
 				}
 			}
@@ -94,7 +165,7 @@ input {
 		margin: 0 0 3px;
 		a {
 			&, &.ui-link {
-				@extend %default-screen-font-weight-700;
+				@extend %wet-default-screen-font-weight-700;
 				background: #DDD;
 				padding: 2px 4px;
 				&.nav-current {
@@ -123,21 +194,23 @@ input {
 		a {
 			&, &.ui-link {
 				display: block;
-				@extend %default-screen-color-333;
 				text-decoration: none;
-				&:hover, &:focus, &:active {
-					@extend %default-screen-color-333;
+				&:link, &:visited {
+					@extend %wet-default-screen-color-333;
+				}
+				@include pseudo-focus {
+					@extend %wet-default-screen-color-333;
 					text-decoration: underline;
 				}
 			}
 		}
 	}
 	ul {
-		@extend %default-screen-list-style-type-none;
+		@extend %wet-default-screen-list-style-type-none;
 		margin:0 0 3px;
-		@extend %default-screen-padding-0;
+		@extend %wet-default-screen-padding-0;
 		ul {
-			@extend %default-screen-list-style-type-none;
+			@extend %wet-default-screen-list-style-type-none;
 			margin-left: 10px;
 			padding-left: 5px;
 			border-left: 1px solid #CCC;
@@ -147,8 +220,8 @@ input {
 		li{
 			margin-left: 0;
 			border: none;
-			@extend %default-screen-list-style-type-none;
-			@extend %default-screen-padding-0;
+			@extend %wet-default-screen-list-style-type-none;
+			@extend %wet-default-screen-padding-0;
 		}
 	}
 }
@@ -157,13 +230,13 @@ input {
 	h4, .wet-col-head {
 		font-size: 110%;
 		border: none;
-		@extend %default-screen-font-weight-700;
+		@extend %wet-default-screen-font-weight-700;
 		margin: 20px 0 5px;
 	}
 	ul {
-		@extend %default-screen-list-style-type-none;
+		@extend %wet-default-screen-list-style-type-none;
 		margin: 0;
-		@extend %default-screen-padding-0;
+		@extend %wet-default-screen-padding-0;
 	}
 	li {
 		a {
@@ -178,20 +251,11 @@ input {
 	}
 	.wet-col-head {
 		.ui-link {
-			@extend %default-screen-font-weight-700;
+			@extend %wet-default-screen-font-weight-700;
 		}
 	}
 }
 
-%wet-default-screen-margin-top-0 {
-	margin-top: 0;
-}
-%wet-default-screen-color-222 {
-	color: #222;
-}
-%wet-default-screen-line-height-175 {
-	line-height: 1.75em;
-}
 #wet-sft {
 	background: #CCC;
 	border-top: #BBB 1px solid;
@@ -232,15 +296,6 @@ input {
 	}
 }
 
-#wet-fullft {
-	background: #333;
-	@extend %default-screen-color-fff;
-}
-
-#wet-fullft-in {
-	background: #666;
-}
-
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	.wb-sec-def {
@@ -260,6 +315,12 @@ input {
 				margin-left: auto;
 				margin-right: 0;
 			}
+		}
+	}
+
+	#wet-fullhd {
+		ul {
+			margin: 0 10px 0 0;
 		}
 	}
 }

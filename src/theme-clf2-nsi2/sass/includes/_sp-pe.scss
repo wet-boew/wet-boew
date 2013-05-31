@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 
 html {
@@ -74,7 +74,7 @@ body {
 
 %clf2-sp-pe-clip {
 	position: absolute;
-	clip: rect(1px, 1px, 1px, 1px);
+	@include clip-rect;
 	height: 1px !important;
 	width: 1px !important;
 	overflow: hidden !important;
@@ -147,10 +147,8 @@ body {
 	clear: left;
 	li {
 		float: left;
-		font: {
-			size: 125%;
-			weight: bold;
-		}
+		font-size: 125%;
+		font-weight: 700;
 		width: 7.5em;
 		height: 1.65em;
 		text-align: center;
@@ -187,7 +185,7 @@ body {
 				color: #000;
 				background-color: #FFF;
 			}
-			&:active, &:focus, &:hover {
+			@include pseudo-focus {
 				color: #FFF;
 				background-color: #000;
 			}
@@ -204,7 +202,7 @@ body {
 				color: #FFF;
 				background-color: #000;
 			}
-			&:active, &:focus, &:hover {
+			@include pseudo-focus {
 				color: #000;
 				background-color: #FFF;
 			}

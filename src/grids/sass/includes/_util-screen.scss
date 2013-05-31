@@ -1,11 +1,10 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
-
 @import "compass/css3/opacity";
-
 @import "mixins";
+
 /*   base appearance   */
 body {
 	line-height: 1.5em;
@@ -94,7 +93,7 @@ blockquote, form, img, pre {
 
 // fixes
 
-%font-weight-700 {
+%util-screen-font-weight-700 {
 	font-weight: 700;
 }
 
@@ -136,14 +135,14 @@ h4 {
 h5 {
 	&:not(.ui-title) {
 		color: lighten($dark, 20%);
-		@extend %font-weight-700;
+		@extend %util-screen-font-weight-700;
 	}
 }
 
 h6 {
 	&:not(.ui-title) {
 		color: $medium;
-		@extend %font-weight-700;
+		@extend %util-screen-font-weight-700;
 	}
 }
 
@@ -218,7 +217,6 @@ blockquote {
 	&.float-right, &.float-left {
 		font: {
 			family: $serif;
-			style: normal;
 		}
 		border: {
 			left: none;
@@ -395,67 +393,17 @@ img {
 } /* If a grid cell is floated right and there happens to be a heading with a border-bottom or background colour to the left, some browsers	render the decoration across the entire space which slices through the float right element. The white background masks this. */
 
 /*	 width	 */
-.width-100 {
-	width: 100% !important;
-}
-.width-90 {
-	width: 90% !important;
-}
-.width-80 {
-	width: 80% !important;
-}
-.width-70 {
-	width: 70% !important;
-}
-.width-60 {
-	width: 60% !important;
-}
-.width-50 {
-	width: 50% !important;
-}
-.width-40 {
-	width: 40% !important;
-}
-.width-30 {
-	width: 30% !important;
-}
-.width-20 {
-	width: 20% !important;
-}
-.width-10 {
-	width: 10% !important;
+$i: 100;
+@while $i > 0 {
+  .width-#{$i} { width: #{$i}% !important; }
+  $i: $i - 10;
 }
 
 /*	 opacity	 */
-.opacity-100 {
-	@include opacity(1.0);
-}
-.opacity-90 {
-	@include opacity(0.9);
-}
-.opacity-80 {
-	@include opacity(0.8);
-}
-.opacity-70 {
-	@include opacity(0.7);
-}
-.opacity-60 {
-	@include opacity(0.6);
-}
-.opacity-50 {
-	@include opacity(0.5);
-}
-.opacity-40 {
-	@include opacity(0.4);
-}
-.opacity-30 {
-	@include opacity(0.3);
-}
-.opacity-20 {
-	@include opacity(0.2);
-}
-.opacity-10 {
-	@include opacity(0.1);
+$i: 100;
+@while $i > 0 {
+  .opacity-#{$i} { @include opacity($i / 100); }
+  $i: $i - 10;
 }
 
 .border-top, .border-right, .border-bottom, .border-left, .border-all {
@@ -559,6 +507,9 @@ table {
 		margin: 0 8px;
 		padding: 0 0 1px 0;
 	}
+  a {
+    color: #fff !important;
+  }
 	abbr, acronym {
 		border: none;
 	}
@@ -568,7 +519,7 @@ table {
 	border: 1px solid $silver;
 	height: 55px;
 	width: 100%;
-	@include background(top, rgba(255, 255, 255, 1) 0, rgba(247, 247, 247, 1) 100%);
+	@include background-image(linear-gradient(rgba(255, 255, 255, 1), rgba(247, 247, 247, 1)));
 	@include border-bottom-radius($default-border-radius);
 	@include box-shadow(0 1px 0 0 $light, 0 2px 0 0 $silver, 0 3px 0 0 $light, 0 4px 0 0 $silver);
 	p {

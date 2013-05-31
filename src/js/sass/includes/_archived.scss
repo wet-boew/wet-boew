@@ -1,14 +1,19 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
+@import '../../../grids/sass/includes/mixins';
+
+%archived-color-FFF {
+	color: #FFF;
+}
 
 #archived {
-	background-color: #FFFFCC;
+	background-color: #FFC;
 	border: 1px solid #C00;
 	h2 {
-		background-color: #CC0000;
-		color: #FFFFFF;
+		background-color: #C00;
+		color: #FFF;
 		margin: 0;
 		padding: 2px 0 2px 10px;
 	}
@@ -31,22 +36,25 @@
 	z-index: 99999;
 	line-height: normal;
 	a {
-		color: #333333;
+		color: #333;
 		padding: 0 0 2px 0;
 		position: relative;
 		text-shadow: none;
 		&[href] {
-			&:link, &:hover, &:focus, &:active {
-				color: #FFFFFF;
+			&:link {
+				@extend %archived-color-FFF;
+			}
+			@include pseudo-focus {
+				@extend %archived-color-FFF;
 			}
 		}
 	}
 	.archived-top-page {
 		background-color: transparent;
-		color: #FFFFFF;
+		color: #FFF;
 		display: block;
 		font-size: 1.4em;
-		font-weight: bold;
+		font-weight: 700;
 		text-align: center;
 	}
 }

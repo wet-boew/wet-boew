@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /*
  * Date Modified Plug-in
@@ -29,7 +29,7 @@
 				modifiedId: 'gcwu-date-mod' //What is the container ID of the data modified section
 			};
 			
-			if (typeof wet_boew_datemodified !== 'undefined' && wet_boew_datemodified !== null) {
+			if (typeof wet_boew_datemodified !== 'undefined') {
 				$.extend(opts, wet_boew_datemodified);
 			}
 			

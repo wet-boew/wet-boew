@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 #wb-skip {
 	.ui-link {
@@ -12,7 +12,7 @@
 }
  
 %wet-default-hidden-clip {
-	clip: rect(1px, 1px, 1px, 1px);//TODO: Should have old IE class withouth commas
+	@include clip-rect;
 	height: 0 !important;
 	overflow: hidden !important;
 	position: absolute;
@@ -78,7 +78,7 @@
 	a {
 		color: #295376;
 		text-decoration: none;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			color: #295376;
 			text-decoration: underline;
 		}

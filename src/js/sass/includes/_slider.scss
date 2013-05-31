@@ -1,55 +1,133 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/user-interface";
 @import "compass/css3/images";
 @import "compass/css3/background-clip";
 @import "compass/css3/appearance";
 
-.fd-form-element-hidden {
-	display: none
-}
-.fd-slider {
-	width: 100%;
-	height: 20px;
-	margin: 0 0 10px 0
-}
-
 %slider-gradient-left-89A5BD-165C91 {
 	@include background-image(linear-gradient(left, #89A5BD, #165c91));
 }
+%slider-display-block {
+	display: block;
+}
+%slider-position-absolute {
+	position: absolute;
+}
+%slider-margin-0 {
+	margin: 0;
+}
+%slider-padding-0 {
+	padding: 0;
+}
+%slider-display-none {
+	display: none;
+}
+%slider-width-2 {
+	width: 2px;
+}
+%slider-width-20 {
+	width: 20px;
+}
+%slider-width-100perc {
+	width: 100%;
+}
+%slider-height-2 {
+	height: 2px;
+}
+%slider-height-20 {
+	height: 20px;
+}
+%slider-height-100perc {
+	height: 100%;
+}
+%slider-height-auto {
+	height: auto;
+}
+%slider-z-index-3 {
+	z-index: 3;
+}
+%slider-right-auto {
+	right: auto;
+}
+%slider-border-none {
+	border: none;
+}
+%slider-background-color-165c91 {
+	background-color: #165c91;
+}
+%slider-top-0 {
+	top: 0;
+}
+%slider-left-0 {
+	left: 0;
+}
+%slider-overflow-hidden {
+	overflow: hidden;
+}
+%slider-background-color-ddd {
+	background-color: #ddd;
+}
+%slider-border-radius-2 {
+	@include border-radius(2px);
+}
+%slider-background-clip-padding-box {
+	@include background-clip(padding-box);
+}
+%slider-outline-0 {
+	outline: 0;
+}
+%slider-height-300 {
+	height: 300px;
+}
+%slider-height-160 {
+	height: 160px;
+}
+%slider-appearance-slider-vertical {
+	@include appearance(slider-vertical);
+}
+
+.fd-form-element-hidden {
+	@extend %slider-display-none;
+}
+.fd-slider {
+	@extend %slider-width-100perc;
+	@extend %slider-height-20;
+	margin: 0 0 10px 0
+}
 
 .fd-slider-vertical {
-	width: 20px;
-	height: 100%;
+	@extend %slider-width-20;
+	@extend %slider-height-100perc;
 	margin: 0 10px 10px 0;
 	.fd-slider-bar {
-		width: 2px;
+		@extend %slider-width-2;
 		top: 10px;
-		right: auto;
+		@extend %slider-right-auto;
 		bottom: 10px;
 		left: 8px;
-		height: auto;
-		background-color: #ddd;
+		@extend %slider-height-auto;
+		@extend %slider-background-color-ddd;
 		@include background-image(linear-gradient(left, #ececec, #ccc));
 	}
 	.fd-slider-range {
-		height: auto;
-		width: 2px;
+		@extend %slider-height-auto;
+		@extend %slider-width-2;
 		top: auto;
-		right: auto;
+		@extend %slider-right-auto;
 		bottom: 11px;
 		left: 9px;
-		background-color: #165c91;
+		@extend %slider-background-color-165c91;
 		@extend %slider-gradient-left-89A5BD-165C91;
 	}
 	.fd-slider-disabled {
 		.fd-slider-bar {
-			@include background-image(linear-gradient(top, #333, #666));
+			@include background-image(linear-gradient(#333, #666));
 		}
 		.fd-slider-range {
-			@include background-image(linear-gradient(top, #000, #222));
+			@include background-image(linear-gradient(#000, #222));
 		}
 	}
 	.fd-slider-handle {
@@ -58,34 +136,34 @@
 }
 .fd-slider, .fd-slider-vertical {
 	text-align: center;
-	display: block;
+	@extend %slider-display-block;
 	position: relative;
 	cursor: pointer;
 	text-decoration: none;
-	border: 0 none;
+	@extend %slider-border-none;
 	@include user-select(none);
 }
 .fd-slider-wrapper {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%
+	@extend %slider-position-absolute;
+	@extend %slider-top-0;
+	@extend %slider-left-0;
+	@extend %slider-width-100perc;
+	@extend %slider-height-100perc;
 }
 .fd-slider-inner {
-	display: none
+	@extend %slider-display-none;
 }
 .fd-slider-bar {
-	display: block;
-	position: absolute;
+	@extend %slider-display-block;
+	@extend %slider-position-absolute;
 	top: 8px;
 	right: 10px;
 	left: 10px;
 	z-index: 2;
-	height: 2px;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
+	@extend %slider-height-2;
+	@extend %slider-margin-0;
+	@extend %slider-padding-0;
+	@extend %slider-overflow-hidden;
 	border: 1px solid #606060;
 	border-bottom: 1px solid #aaa;
 	border-right: 1px solid #aaa;
@@ -93,10 +171,10 @@
 	border-bottom: 1px solid rgba(170, 170, 170, .8);
 	border-right: 1px solid rgba(170, 170, 170, .8);
 	line-height: 4px;
-	background-color: #ddd;
-	@include background-image(linear-gradient(top, #ececec, #ccc));
-	@include border-radius(2px);
-	@include background-clip(padding-box);
+	@extend %slider-background-color-ddd;
+	@include background-image(linear-gradient(#ececec, #ccc));
+	@extend %slider-border-radius-2;
+	@extend %slider-background-clip-padding-box;
 }
 .fd-slider-focused {
 	.fd-slider-bar {
@@ -105,33 +183,33 @@
 	}
 }
 .fd-slider-range {
-	display: block;
-	position: absolute;
+	@extend %slider-display-block;
+	@extend %slider-position-absolute;
 	top: 9px;
 	left: 11px;
-	z-index: 3;
-	height: 2px;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
+	@extend %slider-z-index-3;
+	@extend %slider-height-2;
+	@extend %slider-margin-0;
+	@extend %slider-padding-0;
+	@extend %slider-overflow-hidden;
 	line-height: 2px;
-	background-color: #165c91;
+	@extend %slider-background-color-165c91;
 	@extend %slider-gradient-left-89A5BD-165C91;
-	@include border-radius(2px);
-	@include background-clip(padding-box);
+	@extend %slider-border-radius-2;
+	@extend %slider-background-clip-padding-box;
 }
 .fd-slider-handle {
-	position: absolute;
-	display: block;
-	padding: 0;
-	border: 0 none;
-	margin: 0;
-	z-index: 3;
-	top: 0;
-	left: 0;
-	width: 20px;
-	height: 20px;
-	outline: 0 none;
+	@extend %slider-position-absolute;
+	@extend %slider-display-block;
+	@extend %slider-padding-0;
+	@extend %slider-border-none;
+	@extend %slider-margin-0;
+	@extend %slider-z-index-3;
+	@extend %slider-top-0;
+	@extend %slider-left-0;
+	@extend %slider-width-20;
+	@extend %slider-height-20;
+	@extend %slider-outline-0;
 	background: {
 		color: transparent;
 		image: url(../images/slider/fd-slider-sprite.png);
@@ -144,8 +222,8 @@
 	@if $experimental-support-for-webkit {-webkit-touch-callout: none;}
 	@include user-select(none);
 	&:focus {
-		outline: 0 none;
-		border: 0 none;
+		@extend %slider-outline-0;
+		@extend %slider-border-none;
 		@if $experimental-support-for-mozilla {-moz-user-focus: normal;}
 	}
 }
@@ -229,38 +307,42 @@ body {
 	background: #fff;
 	@include border-radius(8px);
 }
-input[type="range"] {
-	width: 100%;
+input {
+	&[type="range"] {
+		@extend %slider-width-100perc;
+	}
 }
 html {
 	&:not(.ui-mobile) {
-		input[data-fd-slider-vertical="v-s"] {
-			@include appearance(slider-vertical);
-			width: 20px;
-			height: 300px;
-		}
-		input[data-fd-slider-vertical="v-s2"] {
-			@include appearance(slider-vertical);
-			width: 20px;
-			height: 160px;
+		input {
+			&[data-fd-slider-vertical="v-s"] {
+				@extend %slider-appearance-slider-vertical;
+				@extend %slider-width-20;
+				@extend %slider-height-300;
+			}
+			&[data-fd-slider-vertical="v-s2"] {
+				@extend %slider-appearance-slider-vertical;
+				@extend %slider-width-20;
+				@extend %slider-height-160;
+			}
 		}
 	}
 }
 #html5shim-2-out {
-	font-weight: normal;
+	font-weight: 400;
 	font-style: italic;
 }
 /* The following classes are given to the vertical sliders to set their height */
 span {
 	&.v-s {
-		height: 300px;
+		@extend %slider-height-300;
 	}
 	&.v-s2 {
-		height: 160px;
+		@extend %slider-height-160;
 	}
 }
 #html5shim-4 {
-	width: 20px;
+	@extend %slider-width-20;
 	height: 400px;
 }
 .visu {

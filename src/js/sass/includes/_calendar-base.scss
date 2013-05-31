@@ -1,11 +1,12 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 .cal-container {
 	height: 22em;
 	width: 18em;
 	margin-top: 0.5em;
+	text-shadow: none;
 }
 
 .cal-container-extended {
@@ -18,6 +19,7 @@
 		font-size: 100%;
 	}
 	.cal-header {
+		float: left;
 		overflow: hidden;
 		padding: 0.5em 4px;
 		text-align: center;
@@ -32,9 +34,17 @@
 			float: left;
 			width: 13.5em;
 		}
+		fieldset {
+			> {
+				* {
+					margin: 0;
+				}
+			}
+		}
 	}
 	.cal-goto-link {
 		margin: 0 0 0.5em 0;
+		padding: 0 !important;
 	}
 	.cal-goto legend, .cal-goto-month, .cal-goto-year, .cal-goto-button {
 		position: relative;

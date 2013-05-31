@@ -1,5 +1,6 @@
 /*!
-* jQuery Mobile Git Build: SHA1: 56a6976b89feddf34e163c3fcc7196ae0a44c1a0 <> Date: Mon Feb 4 08:28:28 2013 -0800
+* jQuery Mobile 1.3.1
+* Git HEAD hash: 74b4bec049fd93e4fe40205e6157de16eb64eb46 <> Date: Wed Apr 10 2013 21:57:23 UTC
 * http://jquerymobile.com
 *
 * Copyright 2010, 2013 jQuery Foundation, Inc. and other contributors
@@ -9,22 +10,28 @@
 */
 
 
-
+/* some unsets - more probably needed */
 .ui-mobile, .ui-mobile body { height: 99.9%; }
 .ui-mobile fieldset, .ui-page { padding: 0; margin: 0; }
 .ui-mobile a img, .ui-mobile fieldset { border-width: 0; }
+/* responsive page widths */
 .ui-mobile-viewport { margin: 0; overflow-x: visible; -webkit-text-size-adjust: 100%; -ms-text-size-adjust:none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+/* Issue #2066 */
 body.ui-mobile-viewport,
 div.ui-mobile-viewport { overflow-x: hidden; }
+/* "page" containers - full-screen views, one should always be in view post-pageload */
 .ui-mobile [data-role=page], .ui-mobile [data-role=dialog], .ui-page { top: 0; left: 0; width: 100%; min-height: 100%; position: absolute; display: none; border: 0; }
 .ui-mobile .ui-page-active { display: block; overflow: visible; }
+/* on ios4, setting focus on the page element causes flashing during transitions when there is an outline, so we turn off outlines */
 .ui-page { outline: none; }
+/*orientations from js are available */
 @media screen and (orientation: portrait){
-.ui-mobile, .ui-mobile .ui-page { min-height: 420px; }
+.ui-mobile .ui-page { min-height: 420px; }
 }
 @media screen and (orientation: landscape){
-.ui-mobile, .ui-mobile .ui-page { min-height: 300px; }
+.ui-mobile .ui-page { min-height: 300px; }
 }
+/* loading screen */
 .ui-loading .ui-loader { display: block; }
 .ui-loader { display: none; z-index: 9999999; position: fixed; top: 50%; left: 50%; border:0; }
 .ui-loader-default { background: none; filter: Alpha(Opacity=18); opacity: .18; width: 46px; height: 46px; margin-left: -23px; margin-top: -23px; }
@@ -36,7 +43,9 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 .ui-loader-textonly { padding: 15px; margin-left: -115px; }
 .ui-loader-textonly .ui-icon { display: none; }
 .ui-loader-fakefix { position: absolute; }
+/*fouc*/
 .ui-mobile-rendering > * { visibility: hidden; }
+/*headers, content panels*/
 .ui-bar, .ui-body { position: relative; padding: .4em 15px; overflow: hidden; display: block; clear:both; }
 .ui-bar { font-size: 16px; margin: 0; }
 .ui-bar h1, .ui-bar h2, .ui-bar h3, .ui-bar h4, .ui-bar h5, .ui-bar h6 { margin: 0; padding: 0; font-size: 16px; display: inline-block; }
@@ -60,7 +69,9 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 .ui-header-fixed > .ui-btn-icon-notext { top: 7px;}
 .ui-header .ui-title, .ui-footer .ui-title { min-height: 1.1em; text-align: center; font-size: 16px; display: block; margin: .6em 30% .8em; padding: 0; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; outline: 0 !important; }
 .ui-footer .ui-title { margin: .6em 15px .8em; }
+/* content area*/
 .ui-content { border-width: 0; overflow: visible; overflow-x: hidden; padding: 15px; }
+/* corner styling for dialogs and popups */
 .ui-corner-all > .ui-header:first-child,
 .ui-corner-all > .ui-content:first-child,
 .ui-corner-all > .ui-footer:first-child {
@@ -77,10 +88,14 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	-webkit-border-bottom-right-radius: inherit;
 	border-bottom-right-radius: inherit;
 }
+/* icons sizing */
 .ui-icon { width: 18px; height: 18px; }
+/* non-js content hiding */
 .ui-nojs { position: absolute; left: -9999px; }
+/* accessible content hiding */
 .ui-hide-label label.ui-input-text, .ui-hide-label label.ui-select, .ui-hide-label label.ui-slider, .ui-hide-label label.ui-submit, .ui-hide-label .ui-controlgroup-label,
 .ui-hidden-accessible { position: absolute !important; left: -9999px; clip: rect(1px 1px 1px 1px); clip: rect(1px,1px,1px,1px); }
+/* Transitions originally inspired by those from jQtouch, nice work, folks */
 .ui-mobile-viewport-transitioning,
 .ui-mobile-viewport-transitioning .ui-page {
 	width: 100%;
@@ -94,24 +109,18 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	opacity: 0;
 }
 .in {
-	-webkit-animation-fill-mode: both;
 	-webkit-animation-timing-function: ease-out;
 	-webkit-animation-duration: 350ms;
-	-moz-animation-fill-mode: both;
 	-moz-animation-timing-function: ease-out;
 	-moz-animation-duration: 350ms;
-	animation-fill-mode: both;
 	animation-timing-function: ease-out;
 	animation-duration: 350ms;
 }
 .out {
-	-webkit-animation-fill-mode: both;
 	-webkit-animation-timing-function: ease-in;
 	-webkit-animation-duration: 225ms;
-	-moz-animation-fill-mode: both;
 	-moz-animation-timing-function: ease-in;
 	-moz-animation-duration: 225ms;
-	animation-fill-mode: both;
 	animation-timing-function: ease-in;
 	animation-duration: 225ms;
 }
@@ -256,9 +265,10 @@ div.ui-mobile-viewport { overflow-x: hidden; }
         opacity: 0;
     }
 }
+/* keyframes for slidein from sides */
 @-webkit-keyframes slideinfromright {
-    from { -webkit-transform: translateX(100%); }
-    to { -webkit-transform: translateX(0); }
+    from { -webkit-transform: translate3d(100%,0,0); }
+    to { -webkit-transform: translate3d(0,0,0); }
 }
 @-moz-keyframes slideinfromright {
     from { -moz-transform: translateX(100%); }
@@ -269,8 +279,8 @@ div.ui-mobile-viewport { overflow-x: hidden; }
     to { transform: translateX(0); }
 }
 @-webkit-keyframes slideinfromleft {
-    from { -webkit-transform: translateX(-100%); }
-    to { -webkit-transform: translateX(0); }
+    from { -webkit-transform: translate3d(-100%,0,0); }
+    to { -webkit-transform: translate3d(0,0,0); }
 }
 @-moz-keyframes slideinfromleft {
     from { -moz-transform: translateX(-100%); }
@@ -280,9 +290,10 @@ div.ui-mobile-viewport { overflow-x: hidden; }
     from { transform: translateX(-100%); }
     to { transform: translateX(0); }
 }
+/* keyframes for slideout to sides */
 @-webkit-keyframes slideouttoleft {
-    from { -webkit-transform: translateX(0); }
-    to { -webkit-transform: translateX(-100%); }
+    from { -webkit-transform: translate3d(0,0,0); }
+    to { -webkit-transform: translate3d(-100%,0,0); }
 }
 @-moz-keyframes slideouttoleft {
     from { -moz-transform: translateX(0); }
@@ -293,8 +304,8 @@ div.ui-mobile-viewport { overflow-x: hidden; }
     to { transform: translateX(-100%); }
 }
 @-webkit-keyframes slideouttoright {
-    from { -webkit-transform: translateX(0); }
-    to { -webkit-transform: translateX(100%); }
+    from { -webkit-transform: translate3d(0,0,0); }
+    to { -webkit-transform: translate3d(100%,0,0); }
 }
 @-moz-keyframes slideouttoright {
     from { -moz-transform: translateX(0); }
@@ -313,7 +324,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	animation-duration: 350ms;
 }
 .slide.out {
-	-webkit-transform: translateX(-100%);
+	-webkit-transform: translate3d(-100%,0,0);
 	-webkit-animation-name: slideouttoleft;
 	-moz-transform: translateX(-100%);
 	-moz-animation-name: slideouttoleft;
@@ -321,7 +332,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	animation-name: slideouttoleft;
 }
 .slide.in {
-	-webkit-transform: translateX(0);
+	-webkit-transform: translate3d(0,0,0);
 	-webkit-animation-name: slideinfromright;
 	-moz-transform: translateX(0);
 	-moz-animation-name: slideinfromright;
@@ -329,7 +340,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	animation-name: slideinfromright;
 }
 .slide.out.reverse {
-	-webkit-transform: translateX(100%);
+	-webkit-transform: translate3d(100%,0,0);
 	-webkit-animation-name: slideouttoright;
 	-moz-transform: translateX(100%);
 	-moz-animation-name: slideouttoright;
@@ -337,7 +348,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	animation-name: slideouttoright;
 }
 .slide.in.reverse {
-	-webkit-transform: translateX(0);
+	-webkit-transform: translate3d(0,0,0);
 	-webkit-animation-name: slideinfromleft;
 	-moz-transform: translateX(0);
 	-moz-animation-name: slideinfromleft;
@@ -388,6 +399,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	animation-name: fadein;
 	animation-duration: 200ms;
 }
+/* slide down */
 .slidedown.out {
 	-webkit-animation-name: fadeout;
 	-webkit-animation-duration: 100ms;
@@ -450,6 +462,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
     from { transform: translateY(0); }
     to { transform: translateY(-100%); }
 }
+/* slide up */
 .slideup.out {
 	-webkit-animation-name: fadeout;
 	-webkit-animation-duration: 100ms;
@@ -512,6 +525,12 @@ div.ui-mobile-viewport { overflow-x: hidden; }
     from { transform: translateY(0); }
     to { transform: translateY(100%); }
 }
+/* The properties in this rule are only necessary for the 'flip' transition.
+ * We need specify the perspective to create a projection matrix. This will add
+ * some depth as the element flips. The depth number represents the distance of
+ * the viewer from the z-plane. According to the CSS3 spec, 1000 is a moderate
+ * value.
+ */
 .viewport-flip {
 	-webkit-perspective: 1000;
 	-moz-perspective: 1000;
@@ -520,7 +539,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 }
 .flip {
 	-webkit-backface-visibility: hidden;
-	-webkit-transform: translateX(0); 
+	-webkit-transform: translateX(0); /* Needed to work around an iOS 3.1 bug that causes listview thumbs to disappear when -webkit-visibility:hidden is used. */
 	-moz-backface-visibility: hidden;
 	-moz-transform: translateX(0);
 	backface-visibility: hidden;
@@ -606,6 +625,12 @@ div.ui-mobile-viewport { overflow-x: hidden; }
     from { transform: rotateY(90deg) scale(.9); }
     to { transform: rotateY(0); }
 }
+/* The properties in this rule are only necessary for the 'flip' transition.
+ * We need specify the perspective to create a projection matrix. This will add
+ * some depth as the element flips. The depth number represents the distance of
+ * the viewer from the z-plane. According to the CSS3 spec, 1000 is a moderate
+ * value.
+ */
 .viewport-turn {
 	-webkit-perspective: 200px;
 	-moz-perspective: 200px;
@@ -615,7 +640,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 }
 .turn {
 	-webkit-backface-visibility: hidden;
-	-webkit-transform: translateX(0); 
+	-webkit-transform: translateX(0); /* Needed to work around an iOS 3.1 bug that causes listview thumbs to disappear when -webkit-visibility:hidden is used. */
 	-webkit-transform-origin: 0;
 	
 	-moz-backface-visibility: hidden;
@@ -707,6 +732,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
     from { transform: rotateY(90deg) scale(.9); }
     to { transform: rotateY(0); }
 }
+/* flow transition */
 .flow {
 	-webkit-transform-origin: 50% 30%;
 	-webkit-box-shadow: 0 0 20px rgba(0,0,0,.4);
@@ -824,21 +850,29 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 	30%, 40% { transform: translateX(0) scale(.7); }
     100% { transform: translateX(0) scale(1); }
 }
+/* content configurations. */
 .ui-grid-a, .ui-grid-b, .ui-grid-c, .ui-grid-d { overflow: hidden; }
 .ui-block-a, .ui-block-b, .ui-block-c, .ui-block-d, .ui-block-e { margin: 0; padding: 0; border: 0; float: left; min-height: 1px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
+/* grid solo: 100 - single item fallback */
 .ui-grid-solo .ui-block-a { display: block; float: none; }
+/* Lower percentages for older browsers (i.e. IE7) to prevent wrapping. -.5px to fix BB5 wrap issue. */
+/* grid a: 50/50 */
 .ui-grid-a .ui-block-a, .ui-grid-a .ui-block-b { width: 49.95%; }
 .ui-grid-a > :nth-child(n) { width: 50%; margin-right: -.5px; }
 .ui-grid-a .ui-block-a { clear: left; }
+/* grid b: 33/33/33 */
 .ui-grid-b .ui-block-a, .ui-grid-b .ui-block-b, .ui-grid-b .ui-block-c { width: 33.25%; }
 .ui-grid-b > :nth-child(n) { width: 33.333%; margin-right: -.5px; }
 .ui-grid-b .ui-block-a { clear: left; }
+/* grid c: 25/25/25/25 */
 .ui-grid-c .ui-block-a, .ui-grid-c .ui-block-b, .ui-grid-c .ui-block-c, .ui-grid-c .ui-block-d { width: 24.925%; }
 .ui-grid-c > :nth-child(n) { width: 25%; margin-right: -.5px; }
 .ui-grid-c .ui-block-a { clear: left; }
+/* grid d: 20/20/20/20/20 */
 .ui-grid-d .ui-block-a, .ui-grid-d .ui-block-b, .ui-grid-d .ui-block-c, .ui-grid-d .ui-block-d, .ui-grid-d .ui-block-e { width: 19.925%; }
 .ui-grid-d > :nth-child(n) { width: 20%; }
 .ui-grid-d .ui-block-a { clear: left; }
+/* preset breakpoint to switch to stacked grid styles below 35em (560px) */
 @media all and (max-width: 35em) {
 	.ui-responsive .ui-block-a, 
 	.ui-responsive .ui-block-b, 
@@ -849,6 +883,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 		float:none; 
 	}
 }
+/* fixed page header & footer configuration */
 .ui-header-fixed,
 .ui-footer-fixed {
 	left: 0;
@@ -899,6 +934,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 .ui-footer-fixed .ui-btn { 
 	z-index: 10;
 }
+/* workarounds for other widgets */
 .ui-android-2x-fixed .ui-li-has-thumb {
 	-webkit-transform: translate3d(0,0,0);
 }
@@ -909,6 +945,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 .ui-navbar ul { list-style:none; margin: 0; padding: 0; position: relative; display: block; border: 0; max-width: 100%; overflow: visible; zoom: 1; }
 .ui-navbar li .ui-btn { display: block; text-align: center; margin: 0 -1px 0 0; border-right-width: 0; }
 .ui-navbar li .ui-btn-icon-right .ui-icon { right: 6px; }
+/* add border if not in header/footer (full width) */
 .ui-navbar li:last-child .ui-btn,
 .ui-navbar .ui-grid-duo .ui-block-b .ui-btn { margin-right: 0; border-right-width: 1px; }
 .ui-header .ui-navbar li:last-child .ui-btn,
@@ -918,6 +955,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 .ui-navbar .ui-grid-duo li.ui-block-a:last-child .ui-btn { margin-right: -1px; border-right-width: 1px; }
 .ui-header .ui-navbar li .ui-btn,
 .ui-footer .ui-navbar li .ui-btn { border-top-width: 0; border-bottom-width: 0; }
+/* fixing gaps caused by subpixel problem */
 .ui-header .ui-navbar .ui-grid-b li.ui-block-c .ui-btn,
 .ui-footer .ui-navbar .ui-grid-b li.ui-block-c .ui-btn { margin-right: -5px; }
 .ui-header .ui-navbar .ui-grid-c li.ui-block-d .ui-btn,
@@ -940,7 +978,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 .ui-btn-inner { font-size: 16px; padding: .6em 20px; min-width: .75em; display: block; position: relative; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; zoom: 1; }
 .ui-btn input, .ui-btn button { z-index: 2; }
 .ui-btn-left, .ui-btn-right, .ui-btn-inline { display: inline-block; vertical-align: middle; }
-.ui-mobile .ui-btn-left, .ui-mobile .ui-btn-right, .ui-btn-left > .ui-btn, .ui-btn-right > .ui-btn { margin: 0; } 
+.ui-mobile .ui-btn-left, .ui-mobile .ui-btn-right, .ui-btn-left > .ui-btn, .ui-btn-right > .ui-btn { margin: 0; } /* .ui-mobile to increase specificity level */
 .ui-btn-block { display: block; }
 .ui-header > .ui-btn,
 .ui-footer > .ui-btn { display: inline-block; margin: 0; }
@@ -977,11 +1015,12 @@ div.ui-btn-text { width: auto; }
 .ui-footer .ui-btn-icon-bottom .ui-btn-inner { padding: .55em 3px 30px 3px; }
 .ui-mini.ui-btn-icon-bottom .ui-btn-inner,
 .ui-mini .ui-btn-icon-bottom .ui-btn-inner { padding-bottom: 30px; }
-.ui-btn-inner,
-.ui-btn-text {
+/* Corner styling inheritance */
+.ui-btn-inner {
 	-webkit-border-radius: inherit;	
 	border-radius: inherit;
 }
+/*btn icon positioning*/
 .ui-btn-icon-notext .ui-icon { display: block; z-index: 0;}
 .ui-btn-icon-left > .ui-btn-inner > .ui-icon, .ui-btn-icon-right > .ui-btn-inner > .ui-icon { position: absolute; top: 50%; margin-top: -9px; }
 .ui-btn-icon-top .ui-btn-inner .ui-icon, .ui-btn-icon-bottom .ui-btn-inner .ui-icon { position: absolute; left: 50%; margin-left: -9px; }
@@ -1005,7 +1044,9 @@ div.ui-btn-text { width: auto; }
 .ui-footer .ui-btn-icon-bottom .ui-icon,
 .ui-mini.ui-btn-icon-bottom .ui-icon,
 .ui-mini .ui-btn-icon-bottom .ui-icon { bottom: 5px; }
+/*hiding native button,inputs */
 .ui-btn-hidden { position: absolute; top: 0; left: 0; width: 100%; height: 100%; -webkit-appearance: none; cursor: pointer; background: #fff; background: rgba(255,255,255,0); filter: Alpha(Opacity=0); opacity: .1; font-size: 1px; border: none; text-indent: -9999px; }
+/* Fixes IE/WP filter alpha opacity bugs */
 .ui-disabled .ui-btn-hidden { display: none; }
 .ui-disabled { z-index: 1; }
 .ui-field-contain .ui-btn.ui-submit { margin: 0; }
@@ -1029,18 +1070,18 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 .ui-collapsible-heading .ui-btn-icon-bottom .ui-btn-inner { text-align: center; }
 .ui-collapsible-heading .ui-btn-icon-left.ui-mini .ui-btn-inner { padding-left: 30px; }
 .ui-collapsible-heading .ui-btn-icon-right.ui-mini .ui-btn-inner { padding-right: 30px; }
-.ui-collapsible-heading .ui-btn span.ui-btn { position: absolute; left: 6px; top: 50%; margin: -12px 0 0 0; width: 20px; height: 20px; padding: 1px 0px 1px 2px; text-indent: -9999px; }
+.ui-collapsible-heading .ui-btn span.ui-btn { position: absolute; left: 6px; top: 50%; margin: -12px 0 0 0; width: 20px; height: 20px; padding: 1px 0 1px 2px; text-indent: -9999px; }
 .ui-collapsible-heading .ui-btn span.ui-btn .ui-btn-inner { padding: 10px 0; }
 .ui-collapsible-heading .ui-btn span.ui-btn .ui-icon { left: 0; margin-top: -10px; }
-.ui-collapsible-heading-status { position: absolute; top: -9999px; left:0px; }
+.ui-collapsible-heading-status { position: absolute; top: -9999px; left: 0; }
 .ui-collapsible-content {
 	display: block;
 	margin: 0 -15px;	
 	padding: 10px 15px;
 	border-left-width: 0;
 	border-right-width: 0;
-	border-top: none;      
-	background-image: none; 
+	border-top: none;      /* Overrides ui-body-* */
+	background-image: none; /* Overrides ui-body-* */
 }
 .ui-collapsible-inset .ui-collapsible-content { margin: 0; border-right-width: 1px; border-left-width: 1px; }
 .ui-collapsible-content-collapsed { display: none; }
@@ -1101,6 +1142,7 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 .ui-controlgroup-horizontal .ui-controlgroup-controls > .ui-btn, .ui-controlgroup-horizontal .ui-controlgroup-controls li > .ui-btn,
 .ui-controlgroup-horizontal .ui-checkbox, .ui-controlgroup-horizontal .ui-radio,
 .ui-controlgroup-horizontal .ui-select { float: left; clear: none; margin: 0; }
+/* On IE7 the floating selects will be displayed as block if .ui-btn-text has width 100% */
 .ui-controlgroup-horizontal .ui-select .ui-btn-text { width: auto; }
 .ui-controlgroup-vertical .ui-btn {	border-bottom-width: 0; }
 .ui-controlgroup-vertical .ui-btn.ui-last-child { border-bottom-width: 1px; }
@@ -1155,7 +1197,7 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 	.ui-hide-label .ui-controlgroup-controls { width: 100%; }
 }	
 .ui-dialog {
-	 background: none !important; 
+	 background: none !important; /* this is to ensure that dialog theming does not apply (by default at least) on the page div */
 }
 .ui-dialog-contain {
 	width: 92.5%;
@@ -1188,13 +1230,13 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 }
 .ui-popup-open .ui-header-fixed,
 .ui-popup-open .ui-footer-fixed {
-	position: absolute !important; 	
+	position: absolute !important; 	/* See line #553 of popup.js */
 }
 .ui-popup-screen {
-	background-image: url(data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==); 
-	top: 0px;
-	left: 0px;
-	right: 0px;
+	background-image: url(data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==); /* Necessary to set some form of background to ensure element is clickable in IE6/7. While legacy IE won't understand the data-URI'd image, it ensures no additional requests occur in all other browsers with little overhead. */
+	top: 0;
+	left: 0;
+	right: 0;
 	bottom: 1px;
 	position: absolute;
 	filter: Alpha(Opacity=0);
@@ -1339,10 +1381,11 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 .ui-controlgroup-horizontal .ui-radio .ui-btn-inner { padding: .6em 20px; }
 .ui-controlgroup-horizontal .ui-checkbox .ui-mini .ui-btn-inner,
 .ui-controlgroup-horizontal .ui-radio .ui-mini .ui-btn-inner { padding: .55em 11px .5em; }
+/* input, label positioning */
 .ui-checkbox input,.ui-radio input { position:absolute; left:20px; top:50%; width: 10px; height: 10px; margin:-5px 0 0 0; outline: 0 !important; z-index: 1; }
 .ui-field-contain, fieldset.ui-field-contain { padding: .8em 0; margin: 0; border-width: 0 0 1px 0; overflow: visible; }
 .ui-field-contain:last-child { border-bottom-width: 0; }
-.ui-field-contain { max-width: 100%; } 
+.ui-field-contain { max-width: 100%; } /* This prevents horizontal scrollbar in IE7 */
 @media all and (min-width: 28em){
 	.ui-field-contain, .ui-mobile fieldset.ui-field-contain { border-width: 0; padding: 0; margin: 1em 0; }
 }
@@ -1350,8 +1393,10 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 .ui-select select { position: absolute; left: -9999px; top: -9999px; }
 .ui-select .ui-btn { opacity: 1; }
 .ui-field-contain .ui-select .ui-btn { margin: 0; }
+/* Fixes #2588: When Windows Phone 7.5 (Mango) tries to calculate a numeric opacity for a select (including "inherit") without explicitly specifying an opacity on the parent to give it context, a bug appears where clicking elsewhere on the page after opening the select will open the select again. */
 .ui-select .ui-btn select { cursor: pointer; -webkit-appearance: none; left: 0; top:0; width: 100%; min-height: 1.5em; min-height: 100%; height: 3em; max-height: 100%; filter: Alpha(Opacity=0); opacity: 0; z-index: 2; }
 .ui-select .ui-disabled { opacity: .3; }
+/* Display none because of issues with IE/WP's filter alpha opacity */
 .ui-select .ui-disabled select { display: none; }
 @-moz-document url-prefix() { .ui-select .ui-btn select { opacity: 0.0001; }}
 .ui-select .ui-btn.ui-select-nativeonly { border-radius: 0; border: 0; }
@@ -1365,9 +1410,11 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 .ui-select .ui-mini.ui-btn-icon-right .ui-icon { right: 7px; }
 .ui-select .ui-btn-icon-right.ui-li-has-count .ui-li-count { right: 45px; }
 .ui-select .ui-mini.ui-btn-icon-right.ui-li-has-count .ui-li-count { right: 32px; }
+/* labels */
 label.ui-select { font-size: 16px; line-height: 1.4; font-weight: normal; margin: 0 0 .3em; display: block; }
+/*listbox*/
 .ui-select .ui-btn-text, .ui-selectmenu .ui-btn-text { display: block; min-height: 1em; overflow: hidden !important;
- }
+/* This !important is required for iPad Safari specifically. See https://github.com/jquery/jquery-mobile/issues/2647 */ }
 .ui-select .ui-btn-text { text-overflow: ellipsis; }
 .ui-selectmenu { padding: 6px; min-width: 160px; }
 .ui-selectmenu .ui-listview { margin: 0; }
@@ -1383,6 +1430,7 @@ label.ui-select { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 	.ui-field-contain .ui-select { width: 78%; display: inline-block; }
 	.ui-hide-label .ui-select { width: 100%; } 
 }
+/* when no placeholder is defined in a multiple select, the header height doesn't even extend past the close button.  this shim's content in there */
 .ui-selectmenu .ui-header h1:after { content: '.'; visibility: hidden; }
 label.ui-input-text { font-size: 16px; line-height: 1.4; display: block; font-weight: normal; margin: 0 0 .3em; }
 input.ui-input-text, textarea.ui-input-text { background-image: none; padding: .4em; margin: .5em 0; min-height: 1.4em; line-height: 1.4em; font-size: 16px; display: block; width: 100%; outline: 0; }
@@ -1403,9 +1451,11 @@ textarea.ui-input-text { height: 50px; -webkit-transition: height 200ms linear; 
 textarea.ui-mini { height: 45px; }
 .ui-icon-searchfield:after { position: absolute; left: 7px; top: 50%; margin-top: -9px; content: ""; width: 18px; height: 18px; opacity: .5; }
 .ui-input-search .ui-input-clear, .ui-input-text .ui-input-clear { position: absolute; right: 0; top: 50%; margin-top: -13px; }
-.ui-mini .ui-input-clear { margin-top: -14px; right: -3px; }
+.ui-mini .ui-input-clear { right: -3px; }
 .ui-input-search .ui-input-clear-hidden, .ui-input-text .ui-input-clear-hidden { display: none; }
+/* Resolves issue #5166: Added to support issue introduced in Firefox 15. We can likely remove this in the future. */
 input::-moz-placeholder, textarea::-moz-placeholder { color: #aaa; }
+/* Resolves issue #5131: Width of textinput depends on its type, for Android 4.1 */
 input[type=number]::-webkit-outer-spin-button { margin: 0; }
 @media all and (min-width: 28em){
 	.ui-field-contain label.ui-input-text { vertical-align: top; display: inline-block; width: 20%; margin: 0 2% 0 0 }
@@ -1434,6 +1484,7 @@ input[type=number]::-webkit-outer-spin-button { margin: 0; }
 .ui-rangeslider:after {
 	clear: both;
 }
+/* Margin-top/bottom: .5em * 16px/14px to make it equal to ui-rangeslider-sliders margin (input font-size is 14px) */
 .ui-rangeslider input.ui-input-text.ui-slider-input {
 	margin: .57143em 0;
 }
@@ -1478,11 +1529,12 @@ input[type=number]::-webkit-outer-spin-button { margin: 0; }
 	border-width: 0;
 	height: 0;
 }
-html >body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child {
+/* this makes ie6 and ie7 set height to 0 to fix z-index problem */
+html >/**/body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child {
 	height: 15px;
 	border-width: 1px;
 }
-html >body .ui-rangeslider.ui-mini .ui-rangeslider-sliders .ui-slider-track:first-child {
+html >/**/body .ui-rangeslider.ui-mini .ui-rangeslider-sliders .ui-slider-track:first-child {
 	height: 12px;
 }
 @media all and (min-width: 28em){
@@ -1540,7 +1592,11 @@ ol.ui-listview, ol.ui-listview .ui-li-divider { counter-reset: listnumbering; }
 .ui-li-static { background-image: none; }
 .ui-li-divider { padding: .5em 15px; font-size: 14px; font-weight: bold; }
 ol.ui-listview .ui-link-inherit:before, ol.ui-listview .ui-li-static:before, .ui-li-dec { font-size: .8em; display: inline-block; padding-right: .3em; font-weight: normal; counter-increment: listnumbering; content: counter(listnumbering) ". "; }
-ol.ui-listview .ui-li-jsnumbering:before { content: "" !important; } 
+ol.ui-listview .ui-li-jsnumbering:before { content: "" !important; } /* to avoid chance of duplication */
+.ui-listview .ui-li > .ui-btn-text {
+	-webkit-border-radius: inherit;	
+	border-radius: inherit;
+}
 .ui-listview > .ui-li.ui-first-child,
 .ui-listview .ui-btn.ui-first-child > .ui-li > .ui-btn-text > .ui-link-inherit {
 	-webkit-border-top-right-radius: inherit;	
@@ -1582,6 +1638,8 @@ ol.ui-listview .ui-li-jsnumbering:before { content: "" !important; }
 .ui-li-has-arrow.ui-li-has-count .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-arrow.ui-li-has-count { padding-right: 75px; }
 .ui-li-heading { font-size: 16px; font-weight: bold; display: block; margin: .6em 0; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
 .ui-li-desc { font-size: 12px; font-weight: normal; display: block; margin: -.5em 0 .6em; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+ol.ui-listview > .ui-li .ui-li-heading { display: inline-block; width: 100%; margin-left: -1.3em; text-indent: 1.3em; vertical-align: middle; }
+ol.ui-listview > .ui-li .ui-li-desc:not(.ui-li-aside) { text-indent: 1.55em; }
 .ui-li-thumb, .ui-listview .ui-li-icon { position: absolute; left: 1px; top: 0; max-height: 80px; max-width: 80px; }
 .ui-listview .ui-li-icon { max-height: 16px; max-width: 16px; left: 10px; top: .9em; }
 .ui-li-thumb, .ui-listview .ui-li-icon, .ui-li-content { float: left; margin-right: 10px; }
@@ -1601,13 +1659,14 @@ ol.ui-listview .ui-li-jsnumbering:before { content: "" !important; }
 .ui-li-link-alt .ui-btn-inner { padding: 0; height: 100%; position: absolute; width: 100%; top: 0; left: 0;}
 .ui-li-link-alt .ui-btn .ui-icon { right: 50%; margin-right: -9px; }
 .ui-li-link-alt .ui-btn-icon-notext .ui-btn-inner .ui-icon { position: absolute; top: 50%; margin-top: -9px; }
-.ui-listview * .ui-btn-inner > .ui-btn > .ui-btn-inner { border-top: 0px; }
+.ui-listview * .ui-btn-inner > .ui-btn > .ui-btn-inner { border-top: 0; }
 .ui-listview-filter { border-width: 0; overflow: hidden; margin: -15px -15px 15px -15px; }
 .ui-collapsible-content .ui-listview-filter { margin: -10px -15px 10px -15px; border-bottom: inherit; }
 .ui-listview-filter-inset { margin: -15px -5px; background: transparent; }
 .ui-collapsible-content .ui-listview-filter-inset { margin: -5px; border-bottom-width: 0; }
 .ui-listview-filter .ui-input-search { margin: 5px; width: auto; display: block; }
 .ui-li.ui-screen-hidden{ display:none; }
+/* Odd iPad positioning issue. */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     .ui-li .ui-btn-text { overflow:  visible; }
 }
@@ -1640,6 +1699,7 @@ div.ui-slider:before, div.ui-slider:after {
 div.ui-slider:after {
 	clear: both;
 }
+/* High level of specificity to override Textinput CSS. */
 input.ui-input-text.ui-slider-input {
 	display: block;
 	float: left;
@@ -1649,7 +1709,7 @@ input.ui-input-text.ui-slider-input {
 	height: 22px;
 	line-height: 22px;
 	font-size: 14px;
-	border: none;
+	border-width: 0;
 	background-image: none;
 	font-weight: bold;
 	text-align: center;
@@ -1681,6 +1741,7 @@ input.ui-input-text.ui-slider-input {
 	border: none;
 	height: 100%;
 }
+/* High level of specificity to override button margins in grids */
 .ui-slider-track .ui-btn.ui-slider-handle,
 .ui-slider-switch .ui-btn.ui-slider-handle {
 	position: absolute;
@@ -1716,6 +1777,11 @@ div.ui-slider-switch {
 	width: 5.8em;
 	margin: .5em 0;
 	top: 0;
+}
+/* reset the clearfix */
+div.ui-slider-switch:before, div.ui-slider-switch:after {
+	display: none;
+	clear: none;
 }
 div.ui-slider-switch.ui-mini {
 	width: 5em;
@@ -1830,32 +1896,40 @@ div.ui-slider-switch.ui-mini {
   margin-bottom:1.4em;
   opacity: .5;
 }
+/* Add strokes between each row */
 .table-stroke thead th {
-  border-bottom: 1px solid #d6d6d6; 
+  border-bottom: 1px solid #d6d6d6; /* non-RGBA fallback */
   border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 .table-stroke tbody th,
 .table-stroke tbody td {
-  border-bottom: 1px solid #e6e6e6; 
+  border-bottom: 1px solid #e6e6e6; /* non-RGBA fallback  */
   border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
+/* Add alternating row stripes */
 .table-stripe tbody tr:nth-child(odd) td,
 .table-stripe tbody tr:nth-child(odd) th {
-  background-color: #eeeeee; 
+  background-color: #eeeeee; /* non-RGBA fallback  */
   background-color: rgba(0,0,0,0.04);
 }
+/* Add stroke to the header and last item */
 .table-stripe thead th,
 .table-stripe tbody tr:last-child {
-  border-bottom: 1px solid #d6d6d6; 
+  border-bottom: 1px solid #d6d6d6; /* non-RGBA fallback  */
   border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
+/*
+ Styles for the table columntoggle mode
+*/
 .ui-table-columntoggle-btn {
 	float: right;
 	margin-bottom:.8em;
 }
+/* Remove top/bottom margins around the fieldcontain on check list */
 .ui-table-columntoggle-popup fieldset {
 	margin:0;
 }
+/* Hide all prioritized columns by default */
 @media only all {
 	th.ui-table-priority-6,
 	td.ui-table-priority-6,
@@ -1872,76 +1946,88 @@ div.ui-slider-switch.ui-mini {
 		display: none;
 	}
 }
+/* Preset breakpoints if ".ui-responsive" class added to table */
+/* Show priority 1 at 320px (20em x 16px) */
 @media screen and (min-width: 20em) {
 	.ui-table-columntoggle.ui-responsive th.ui-table-priority-1,
 	.ui-table-columntoggle.ui-responsive td.ui-table-priority-1 {
 		display: table-cell;
 	}
 }
+/* Show priority 2 at 480px (30em x 16px) */
 @media screen and (min-width: 30em) {
 	.ui-table-columntoggle.ui-responsive th.ui-table-priority-2,
 	.ui-table-columntoggle.ui-responsive td.ui-table-priority-2 {
 		display: table-cell;
 	}
 }
+/* Show priority 3 at 640px (40em x 16px) */
 @media screen and (min-width: 40em) {
 	.ui-table-columntoggle.ui-responsive th.ui-table-priority-3,
 	.ui-table-columntoggle.ui-responsive td.ui-table-priority-3 {
 		display: table-cell;
 	}
 }
+/* Show priority 4 at 800px (50em x 16px) */
 @media screen and (min-width: 50em) {
 	.ui-table-columntoggle.ui-responsive th.ui-table-priority-4,
 	.ui-table-columntoggle.ui-responsive td.ui-table-priority-4 {
 		display: table-cell;
 	}
 }
+/* Show priority 5 at 960px (60em x 16px) */
 @media screen and (min-width: 60em) {
 	.ui-table-columntoggle.ui-responsive th.ui-table-priority-5,
 	.ui-table-columntoggle.ui-responsive td.ui-table-priority-5 {
 		display: table-cell;
 	}
 }
+/* Show priority 6 at 1,120px (70em x 16px) */
 @media screen and (min-width: 70em) {
 	.ui-table-columntoggle.ui-responsive th.ui-table-priority-6,
 	.ui-table-columntoggle.ui-responsive td.ui-table-priority-6 {
 		display: table-cell;
 	}
 }
+/* Unchecked manually: Always hide */
 .ui-table-columntoggle th.ui-table-cell-hidden,
 .ui-table-columntoggle td.ui-table-cell-hidden,
 .ui-table-columntoggle.ui-responsive th.ui-table-cell-hidden,
 .ui-table-columntoggle.ui-responsive td.ui-table-cell-hidden {
 	display: none;
 }
+/* Checked manually: Always show */
 .ui-table-columntoggle th.ui-table-cell-visible,
 .ui-table-columntoggle td.ui-table-cell-visible,
 .ui-table-columntoggle.ui-responsive th.ui-table-cell-visible,
 .ui-table-columntoggle.ui-responsive td.ui-table-cell-visible {
 	display: table-cell;
 }
+/*
+ Styles for the table columntoggle mode
+*/
 .ui-table-reflow td .ui-table-cell-label,
 .ui-table-reflow th .ui-table-cell-label { 
 	display: none;
 }
- 
+/* Mobile first styles: Begin with the stacked presentation at narrow widths */ 
 @media only all {
-	 
+	/* Hide the table headers */ 
 	.ui-table-reflow thead td, 
 	.ui-table-reflow thead th {
 		display: none;
 	}
-	 
+	/* Show the table cells as a block level element */ 
 	.ui-table-reflow td,
 	.ui-table-reflow th { 
 		text-align: left;
 		display: block;
 	}
-	  
+	/* Add a fair amount of top margin to visually separate each row when stacked */  
 	.ui-table-reflow tbody th {
 		margin-top: 3em;
 	}
-	 
+	/* Make the label elements a percentage width */ 
 	.ui-table-reflow td .ui-table-cell-label,
 	.ui-table-reflow th .ui-table-cell-label { 
 		display: block;
@@ -1950,7 +2036,7 @@ div.ui-slider-switch.ui-mini {
 		display: inline-block;
 		margin: -.4em 1em -.4em -.4em;
 	}
-	 
+	/* For grouped headers, have a different style to visually separate the levels by classing the first label in each col group */ 
 	.ui-table-reflow th .ui-table-cell-label-top,
 	.ui-table-reflow td .ui-table-cell-label-top {
 		display: block;
@@ -1961,13 +2047,13 @@ div.ui-slider-switch.ui-mini {
 		font-weight: normal;
 	}
 }
- 
+/* Breakpoint to show as a standard table at 560px (35em x 16px) or wider */ 
 @media ( min-width: 35em ) {
-	
+	/* Fixes table rendering when switching between breakpoints in Safari <= 5. See https://github.com/jquery/jquery-mobile/issues/5380 */
 	.ui-table-reflow.ui-responsive {
 		display: table-row-group;
 	}
-	 
+	/* Show the table header rows */ 
 	.ui-table-reflow.ui-responsive td,
 	.ui-table-reflow.ui-responsive th,
 	.ui-table-reflow.ui-responsive tbody th,
@@ -1977,14 +2063,14 @@ div.ui-slider-switch.ui-mini {
 		display: table-cell;
 		margin: 0;
 	}
-	 
+	/* Hide the labels in each cell */ 
 	.ui-table-reflow.ui-responsive td .ui-table-cell-label,
 	.ui-table-reflow.ui-responsive th .ui-table-cell-label { 
 		display: none;
 	}
 }
- 
- 
+/* Hack to make IE9 and WP7.5 treat cells like block level elements, scoped to ui-responsive class */ 
+/* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this*/ 
 @media ( max-width: 35em ) {
 	.ui-table-reflow.ui-responsive td,
 	.ui-table-reflow.ui-responsive th {
@@ -1996,9 +2082,11 @@ div.ui-slider-switch.ui-mini {
 		clear: left;
 	}
 }
+/* panel */
 .ui-panel {
 	width: 17em;
 	min-height: 100%;
+	max-height: none;
 	border-width: 0;
 	position: absolute;
 	top: 0;
@@ -2006,15 +2094,17 @@ div.ui-slider-switch.ui-mini {
 }
 .ui-panel-closed {
 	width: 0;
+	max-height: 100%;
 	overflow: hidden;
+	visibility: hidden;
 }
 .ui-panel-fixed {
 	position: fixed;
-	bottom: -1px; 
+	bottom: -1px; /* fixes gap on Chrome for Android */
 	padding-bottom: 1px;
 }
 .ui-panel-display-overlay {
-	z-index: 1001; 
+	z-index: 1001; /* fixed toolbars have z-index 1000 */
 }
 .ui-panel-display-reveal {
 	z-index: 0;
@@ -2025,6 +2115,7 @@ div.ui-slider-switch.ui-mini {
 .ui-panel-inner {
 	padding: 15px;
 }
+/* content-wrap */
 .ui-panel-content-wrap {
 	position: relative;
 	left: 0;
@@ -2033,10 +2124,11 @@ div.ui-slider-switch.ui-mini {
 	z-index: 999;
 }
 .ui-panel-content-wrap-display-overlay,
-.ui-panel-animate.ui-panel-content-wrap > .ui-header, 
+.ui-panel-animate.ui-panel-content-wrap > .ui-header, /* ios4 fix */
 .ui-panel-content-wrap-closed {
 	position: static;
 }
+/* dismiss */
 .ui-panel-dismiss {
 	position: absolute;
 	top: 0;
@@ -2049,21 +2141,27 @@ div.ui-slider-switch.ui-mini {
 .ui-panel-dismiss-open {
 	display: block;
 }
+/* animate class is added to panel, wrapper and fixed toolbars */
 .ui-panel-animate {
 	-webkit-transition: -webkit-transform 350ms ease;
 	-moz-transition: -moz-transform 350ms ease;
 	transition: transform 350ms ease;
 }
+/* hardware acceleration for smoother transitions on WebKit browsers */
 .ui-panel-animate.ui-panel:not(.ui-panel-display-reveal),
 .ui-panel-animate.ui-panel:not(.ui-panel-display-reveal) > div,
+.ui-panel-animate.ui-panel-closed.ui-panel-display-reveal > div,
 .ui-panel-animate.ui-panel-content-wrap,
 .ui-panel-animate.ui-panel-content-fixed-toolbar {
 	-webkit-backface-visibility: hidden;
 	-webkit-transform: translate3d(0,0,0);
 }
+/* positioning: panel */
+/* panel left  */
 .ui-panel-position-left {
 	left: -17em;
 }
+/* animated: panel left (for overlay and push) */
 .ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay,
 .ui-panel-animate.ui-panel-position-left.ui-panel-display-push {
 	left: 0;
@@ -2071,19 +2169,23 @@ div.ui-slider-switch.ui-mini {
 	-moz-transform: translate3d(-17em,0,0);
 	transform: translate3d(-17em,0,0);
 }
-.ui-panel-position-left.ui-panel-display-reveal, 
+/* panel left open */
+.ui-panel-position-left.ui-panel-display-reveal, /* negate "panel left" for reveal */
 .ui-panel-position-left.ui-panel-open {
 	left: 0;
 }
+/* animated: panel left open (for overlay and push) */
 .ui-panel-animate.ui-panel-position-left.ui-panel-open.ui-panel-display-overlay,
 .ui-panel-animate.ui-panel-position-left.ui-panel-open.ui-panel-display-push {
 	-webkit-transform: translate3d(0,0,0);
-	-moz-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
+	-moz-transform: none;
 }
+/* panel right */
 .ui-panel-position-right {
 	right: -17em;
 }
+/* animated: panel right (for overlay and push) */
 .ui-panel-animate.ui-panel-position-right.ui-panel-display-overlay,
 .ui-panel-animate.ui-panel-position-right.ui-panel-display-push {
 	right: 0;
@@ -2091,22 +2193,27 @@ div.ui-slider-switch.ui-mini {
 	-moz-transform: translate3d(17em,0,0);
 	transform: translate3d(17em,0,0);
 }
-.ui-panel-position-right.ui-panel-display-reveal,  
+/* panel right open */
+.ui-panel-position-right.ui-panel-display-reveal,  /* negate "panel right" for reveal */
 .ui-panel-position-right.ui-panel-open {
 	right: 0;
 }
+/* animated: panel right open (for overlay and push) */
 .ui-panel-animate.ui-panel-position-right.ui-panel-open.ui-panel-display-overlay,
 .ui-panel-animate.ui-panel-position-right.ui-panel-open.ui-panel-display-push {
 	-webkit-transform: translate3d(0,0,0);
-	-moz-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
+	-moz-transform: none;
 }
+/* positioning: content wrap, fixed toolbars and dismiss */
+/* panel left open */
 .ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open,
 .ui-panel-content-wrap-position-left.ui-panel-content-wrap-open,
 .ui-panel-dismiss-position-left.ui-panel-dismiss-open {
 	left: 17em;
 	right: -17em;
 }
+/* animated: panel left open (for reveal and push) */
 .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal,
 .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push,
 .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal,
@@ -2117,12 +2224,14 @@ div.ui-slider-switch.ui-mini {
 	-moz-transform: translate3d(17em,0,0);
 	transform: translate3d(17em,0,0);
 }
+/* panel right open */
 .ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open,
 .ui-panel-content-wrap-position-right.ui-panel-content-wrap-open,
 .ui-panel-dismiss-position-right.ui-panel-dismiss-open {
 	left: -17em;
 	right: 17em;
 }
+/* animated: panel right open (for reveal and push) */
 .ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal, 
 .ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push,
 .ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, 
@@ -2133,13 +2242,16 @@ div.ui-slider-switch.ui-mini {
 	-moz-transform: translate3d(-17em,0,0);
 	transform: translate3d(-17em,0,0);
 }
+/* negate "panel left/right open" for overlay */
 .ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-overlay,
 .ui-panel-content-wrap-open.ui-panel-content-wrap-display-overlay {
 	left: 0;
 }
+/* always disable overflow-x to prevent zoom issue on Android */
 .ui-page-active.ui-page-panel {
 	overflow-x: hidden;
 }
+/* shadows and borders */
 .ui-panel-display-reveal {
 	-webkit-box-shadow: inset -5px 0 5px rgba(0,0,0,.15);
 	-moz-box-shadow: inset -5px 0 5px rgba(0,0,0,.15);
@@ -2150,15 +2262,15 @@ div.ui-slider-switch.ui-mini {
 	-moz-box-shadow: inset 5px 0 5px rgba(0,0,0,.15);
 	box-shadow: inset 5px 0 5px rgba(0,0,0,.15);
 }
-.ui-panel-position-right.ui-panel-display-overlay {
-	-webkit-box-shadow: -5px 0px 5px rgba(0,0,0,.15);
-	-moz-box-shadow: -5px 0px 5px rgba(0,0,0,.15);
-	box-shadow: -5px 0px 5px rgba(0,0,0,.15);
+.ui-panel-display-overlay {
+	-webkit-box-shadow: 5px 0 5px rgba(0,0,0,.15);
+	-moz-box-shadow: 5px 0 5px rgba(0,0,0,.15);
+	box-shadow: 5px 0 5px rgba(0,0,0,.15);
 }
-.ui-panel-position-left.ui-panel-display-overlay {
-	-webkit-box-shadow: 5px 0px 5px rgba(0,0,0,.15);
-	-moz-box-shadow: 5px 0px 5px rgba(0,0,0,.15);
-	box-shadow: 5px 0px 5px rgba(0,0,0,.15);
+.ui-panel-position-right.ui-panel-display-overlay {
+	-webkit-box-shadow: -5px 0 5px rgba(0,0,0,.15);
+	-moz-box-shadow: -5px 0 5px rgba(0,0,0,.15);
+	box-shadow: -5px 0 5px rgba(0,0,0,.15);
 }
 .ui-panel-display-push.ui-panel-open.ui-panel-position-left {
 	border-right-width: 1px;
@@ -2174,6 +2286,7 @@ div.ui-slider-switch.ui-mini {
 .ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push {
 	margin-right: 1px;
 }
+/* wrap on wide viewports once open */
 @media (min-width:55em){
 	.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-left,
 	.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-left,

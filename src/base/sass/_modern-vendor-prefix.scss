@@ -1,9 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /* turn off fixes for old IE */
 $legacy-support-for-ie: false;
+$legacy-support-for-ie7: false;
+$legacy-support-for-ie8: false;
 $experimental-support-for-mozilla:true;
 $experimental-support-for-webkit: true;
 $support-for-original-webkit-gradients: true;

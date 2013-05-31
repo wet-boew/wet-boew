@@ -1,11 +1,46 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
+%share-width-100 {
+	width: 100%;
+}
+%share-font-size-1em {
+	font-size: 1em;
+}
+%share-font-size-085em {
+	font-size: .85em;
+}
+%share-margin-0 {
+	margin: 0;
+}
+%share-text-align-left {
+	text-align: left;
+}
+%share-cursor-pointer {
+	cursor: pointer;
+}
+%share-inline-block {
+	@include inline-block;
+}
+%share-border-none {
+	border: none;
+}
+%share-display-none {
+	display: none;
+}
+%share-padding-5 {
+	padding: 5px;
+}
+%share-width-16-height-16 {
+	width: 16px;
+	height: 16px;
+}
+
 .ui-mobile {
 	div {
 		&.wet-boew-share {
-			width: 100%;
+			@extend %share-width-100;
 			max-width: 39em;
 		}
 	}
@@ -20,9 +55,9 @@ div {
 #wb-main {
 	.wet-boew-share {
 		#{headings(2,3)} {
-			font-size: 1em;
-			margin: 0;
-			font-weight: normal;
+			@extend %share-font-size-1em;
+			@extend %share-margin-0;
+			font-weight: 400;
 		}
 	}
 }
@@ -32,75 +67,76 @@ div {
 	.bookmark_popup_text {
 		background: url(../images/share/icons-share.gif) left 3px no-repeat;
 		color: #3c6783;
-		cursor: pointer;
+		@extend %share-cursor-pointer;
 		font-family: Tahoma, Verdana, Helvetica, sans-serif;
 		letter-spacing: -.0004em;
-		@include inline-block;
+		@extend %share-inline-block;
 		padding: 0 0 2px 18px;
 		&.alt {
 			margin: 5px;
 		}
 		img {
-			border: 0;
+			@extend %share-border-none;
 			vertical-align: bottom;
 		}
 	}
 	.bookmark_popup {
-		display: none;
+		@extend %share-display-none;
+		&.show {
+			display: block !important;
+		}
 		position: absolute;
 		z-index: 99;
 		background: #fff;
 		border: 1px solid #000;
 		p {
-			font-size: .85em;
+			@extend %share-font-size-085em;
 			margin: 10px 0;
 		}
-		.popup_title, .popup_disclaimer {
-			margin: 0;
-			padding: 5px;
-			text-align: left;
-		}
 		.popup_title {
+			@extend %share-margin-0;
+			@extend %share-text-align-left;
+			@extend %share-padding-5;
 			font-size: .95em;
 			font-weight: 700;
 			background: #23447E;
 			color: #FFF;
 		}
 		.popup_disclaimer {
-			font-size: .85em;
+			@extend %share-font-size-085em;
+			@extend %share-margin-0;
+			@extend %share-text-align-left;
+			@extend %share-padding-5;
 			background: #efefef;
 			color: #555;
 		}
 		.bookmark_compact {
-			border: 0;
+			@extend %share-border-none;
 			margin-bottom: -3px;
 		}
 	}
 	.bookmark_list {
-		@include inline-block;
+		@extend %share-inline-block;
 		list-style-type: none;
-		margin: 0;
+		@extend %share-margin-0;
 		padding: 5px 5px 0;
-		text-align: left;
+		@extend %share-text-align-left;
 		li {
 			float: left;
 			width: 12em;
-			font-size: .85em;
-			margin: 0;
+			@extend %share-font-size-085em;
+			@extend %share-margin-0;
 			padding: 0 0 5px;
 		}
 		a {
-			width: 100%;
+			@extend %share-width-100;
+			background: none !important;
 			text-decoration: none;
-			cursor: pointer;
-			font-size: 1em;
+			@extend %share-cursor-pointer;
+			@extend %share-font-size-1em;
 			color: #036;
-			margin: 0;
-			padding: 0;
-			&[href^="mailto: "] {
-				background: 0 !important;
-				padding-left: 0 !important;
-			}
+			@extend %share-margin-0;
+			padding: 0 !important;
 			img {
 				width: auto;
 				margin-bottom: 0;
@@ -108,9 +144,8 @@ div {
 			}
 		}
 		span {
-			@include inline-block;
-			width: 16px;
-			height: 16px;
+			@extend %share-inline-block;
+			@extend %share-width-16-height-16;
 			&.bookmark_icons {
 				background: url(../images/share/bookmarks.png) no-repeat center;
 			}
@@ -120,7 +155,7 @@ div {
 		.bookmark_list {
 			span {
 				&.bookmark_icons {
-					display: none;
+					@extend %share-display-none;
 				}
 			}
 		}
@@ -129,11 +164,10 @@ div {
 		background-color: #efefef;
 		border: 1px outset;
 		li {
-			width: 16px;
-			height: 16px;
+			@extend %share-width-16-height-16;
 			background-color: transparent;
-			border: 0;
-			margin: 0;
+			@extend %share-border-none;
+			@extend %share-margin-0;
 			padding: 2px;
 		}
 	}
@@ -143,6 +177,18 @@ html {
 	&:first-child {
 		.bookmark_list {
 			font-size: 80%;
+		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.wet-boew-share {
+		float: left !important;
+		text-align: left;
+		.bookmark_popup_text {
+			background-position: right 3px;
+			padding: 0 18px 2px 0;
 		}
 	}
 }

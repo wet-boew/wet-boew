@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/box-sizing";
 @import "compass/typography/lists/bullets";
@@ -25,7 +25,7 @@
 		}
 		a {
 			text-decoration: none;
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				text-decoration: underline;
 			}
 		}
@@ -72,13 +72,13 @@
 						min-height: 32px;
 						padding: $spacing-medium;
 						text-decoration: none;
-						background-repeat: no-repeat;
+						background-repeat: repeat-x;
 						background-position: 100% 0; //top right;
 						text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #555, 1px 1px 0 #000;
 						font-weight: 700;
 						@include colorize-base($accent);
 					}
-					&:hover, &:focus, &:active {
+					@include pseudo-focus {
 						text-decoration: underline;
 					}
 				}
@@ -110,7 +110,7 @@
 				a {
 					display: block;
 					text-decoration: none;
-					&:hover, &:focus, &:active {
+					@include pseudo-focus {
 						background-color: darken($light, 3%);
 						text-decoration: underline;
 					}
@@ -252,18 +252,20 @@
 			@include no-bullet;
 			li {
 				clear: left;
-				margin-bottom: 10px;
+				margin-bottom: 10px !important;
 				overflow: hidden;
 				span { display: block; }
 			}
 			img {
 				float: left;
-				margin-right: 10px;
+				margin: 0 10px;
+			}
+			p {
+				padding-left: 10px;
 			}
 		}
 		img {
 			width: 100px !important;
-			height: 62px !important;
 			float: left;
 			margin-left: 10px;
 		}
@@ -454,7 +456,7 @@
 }
 
 // used in: @module-colorize
-$default-module-color: #cccccc;
+$default-module-color: #ccc;
 $default-module-border: false;
 $default-module-shadow: false;
 
@@ -469,4 +471,13 @@ $default-module-shadow: false;
 	@if $shadow == true {
 		@include box-shadow(0 2px 2px rgba($color, 0.15));
 	}
+}
+
+$fugue-width: 16px;
+$fugue-height: 16px;
+$fugue-line-height: 18px;
+$fugue-padding: 30px;
+
+@mixin fugue-icon($bullet-icon, $width: $fugue-width, $height: $fugue-height, $line-height: $fugue-line-height, $padding: $fugue-padding) {
+	background: url("../images/" + $bullet-icon) no-repeat ($padding - $width) / 2 ($line-height - $height) / 2;
 }

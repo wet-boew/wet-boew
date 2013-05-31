@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 .ie7 {
 	#wb-skip {
@@ -13,8 +13,14 @@
 			margin: auto;
 			zoom: 1;
 			position: relative;
+			left: 44%;
 		}
 	}
+
+	#wb-session {
+		zoom: 1;
+	}
+
 	a {
 		&.wb-linkdesc {
 			span {
@@ -22,7 +28,7 @@
 					top: -9000em;
 				}
 			}
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				height: 1%;
 			}
 		}
@@ -43,7 +49,7 @@
 .ie8 {
 	.wb-show-onhover {
 		@include transparent;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			@include opaque;
 		}
 	}

@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @mixin colors {
 
@@ -37,24 +37,34 @@
 		}
 	}
 
-	p[class*="background-"] {
-		padding: 3px 8px;
+	p {
+		&[class*="background-"] {
+			padding: 3px 8px;
+		}
 	}
-	span[class*="background-"] {
-		padding: 1px 4px;
+	
+	span {
+		&[class*="background-"] {
+			padding: 1px 4px;
+		}
 	}
 
 	[class*="background-"] {
-		#{headings(2, 6)}, p {
+		#{headings(2, 6)}, p, table {
 			padding: 5px 10px !important;
+		}
+	}
+	summary {
+		&[class*="background-"] {
+			padding: 5px;
 		}
 	}
 
 	.background-highlight {
-		@include colorize-base($highlight, true);
+		@include colorize-base($highlight, $important: true);
 	}
 	.background-accent {
-		@include colorize-base($accent, true);
+		@include colorize-base($accent, $important: true);
 	}
 	.background-white {
 		background-color: $white !important;
@@ -63,10 +73,10 @@
 		background-color: $light !important;
 	}
 	.background-medium {
-		@include colorize-base($medium, true);
+		@include colorize-base($medium, $important: true);
 	}
 	.background-dark {
-		@include colorize-base($dark, true);
+		@include colorize-base($dark, $important: true);
 	}
 }
 

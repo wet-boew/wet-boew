@@ -1,11 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /*
  * Equalize plugin
  */
-/*global jQuery: false, pe:false*/
+/*global jQuery: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -14,14 +14,14 @@
 	/* local reference */
 	_pe.fn.equalize = {
 		type : 'plugin',
-		depends : (pe.mobile ? [] : ['equalheights', 'resize']),
+		depends : (_pe.mobile ? [] : ['equalheights']),
 		_exec : function (elm) {
-			if (pe.mobile) {
+			if (_pe.mobile) {
 				return;
 			}
 
 			$('.equalize').children().css('min-height', '').parent().equalHeights(true);
-			pe.resize(function () {
+			_pe.resize(function () {
 				$('.equalize').children().css('min-height', '').parent().equalHeights(true);
 			});
 

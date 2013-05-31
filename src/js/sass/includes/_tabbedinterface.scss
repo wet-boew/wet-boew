@@ -1,18 +1,63 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 
-//TODO: Use extend for the gradient
 /* Gradient (avoid encoding duplication) */
-.tabs li a, .tabs-style-1 .tabs, .tabs-style-1 .tabs li a:hover, .tabs-style-1 .tabs li a:focus, .tabs-style-1 .tabs li a:active, .tabs-style-2 .tabs li.tabs-toggle, .tabs-style-3 .tabs-panel, .tabs-style-4 .tabs li a:hover,  .tabs-style-4 .tabs li a:focus,  .tabs-style-4 .tabs li a:active {
+%tabbedinterface-gradient-background {
 	background: url(../images/tabs/gradient.png) repeat-x 0 0 #eee;
 }
 
-.tabs.started a.active {
-	&,&:hover,&:focus,&:active {
-		cursor: pointer;
+%tabbedinterface-cursor-pointer {
+	cursor: pointer;
+}
+
+%tabbedinterface-tabs-active {
+	color: #333 !important;
+	padding-top: 5px;
+	background: #fff;
+	cursor: text;
+}
+
+%tabbedinterface-color-000-important {
+	color: #000 !important;
+}
+
+%tabbedinterface-text-decoration-underline {
+	text-decoration: underline;
+}
+
+%tabbedinterface-rel-external {
+	a {
+		&[rel="external"] {
+			padding: 0 !important;
+			background: 0 !important;
+		}
 	}
+}
+
+.wet-boew-tabbedinterface {
+	.ui-collapsible-content {
+		position: relative;
+		padding-top: 1px;
+		padding-bottom: 1px;
+	}
+	&.embedded-grid {
+		.ui-collapsible-content {
+			> {
+				[class*="span-"] {
+					float: none;
+				}
+			}
+		}
+	}
+}
+
+%tabbedinterface-padding-2-5-important {
+	padding: 2px 5px !important;
+}
+%tabbedinterface-padding-2-5-2-24-important {
+	padding: 2px 5px 2px 24px !important;
 }
 
 .tabs {
@@ -26,6 +71,7 @@
 		border-bottom: none;
 		@include border-radius(2px 2px 0 0);
 		a {
+			@extend %tabbedinterface-gradient-background;
 			display: block;
 			text-decoration: none;
 			color: #333 !important;
@@ -35,11 +81,9 @@
 			top: 1px;
 			margin-top: -1px;
 			&.active {
-				&, &:hover, &:focus, &:active {
-					color: #333 !important;
-					padding-top: 5px;
-					background: #fff;
-					cursor: text;
+				@extend %tabbedinterface-tabs-active;
+				@include pseudo-focus {
+					@extend %tabbedinterface-tabs-active;
 				}
 			}
 		}
@@ -53,27 +97,25 @@
 				@include border-radius(2px);
 				border: 1px solid #999;
 				margin-right: 2px;
-				&:hover, &:focus, &:active {
-					text-decoration: underline;
-					color: #000 !important;
-				}
-				&.tabs-next, &.tabs-prev {
-					padding: 2px 5px !important;
-				}
-				&.tabs-start, &.tabs-stop {
-					padding: 2px 5px 2px 24px !important;
+				@include pseudo-focus {
+					@extend %tabbedinterface-text-decoration-underline;
+					@extend %tabbedinterface-color-000-important;
 				}
 				&.tabs-prev {
 					background: url(../images/tabs/prev.gif) no-repeat center 5px #fff !important;
+					@extend %tabbedinterface-padding-2-5-important;
 				}
 				&.tabs-next {
 					background: url(../images/tabs/next.gif) no-repeat center 5px #fff !important;
+					@extend %tabbedinterface-padding-2-5-important;
 				}
 				&.tabs-stop {
 					background: url(../images/tabs/pause.png) no-repeat -1px 0 #fff !important;
+					@extend %tabbedinterface-padding-2-5-2-24-important;
 				}
 				&.tabs-start {
 					background: url(../images/tabs/play.png) no-repeat -1px 0 #fff !important;
+					@extend %tabbedinterface-padding-2-5-2-24-important;
 				}
 			}
 		}
@@ -85,19 +127,29 @@
 		border: none;
 		background: none;
 	}
+	&.started {
+		a {
+			&.active {
+				@extend %tabbedinterface-cursor-pointer;
+				@include pseudo-focus {
+					@extend %tabbedinterface-cursor-pointer;
+				}
+			}
+		}
+	}
 }
 
 .tabs-panel {
     border: solid 1px #ccc;
     border-top: none;
-    padding: 10px;
+    padding: 1px 10px;
 	> {
 		div {
 			display: none;
 		}
 	}
 	.viewport {
-		position: absolute;		
+		position: absolute;
 		left: 0;
 		top: 0;
 		display: block;
@@ -117,6 +169,9 @@
 				display: block;
 			}
 		}
+	}
+	.panel-end {
+		margin: 0 10px;
 	}
 }
 
@@ -158,6 +213,9 @@
 	.tabs {
 		margin: 0 10px 10px;
 	}
+	.panel-end {
+	  margin: 0;
+	}
 }
 
 .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
@@ -166,14 +224,28 @@
 	}
 }
 
-.tabs-style-default,
-.tabs-style-1 {
-	.panel{
-		margin:10px;
-		> div{
-			padding: 10px;
+.tabs-style-default, .tabs-style-1 {
+	.panel {
+		margin: 10px;
+		> {
+			div {
+				padding: 10px;
+			}
 		}
 	}
+}
+
+%tabbedinterface-tab-style-1-active {
+	@extend %tabbedinterface-color-000-important;
+	background: #fff;
+	border-top: none;
+	padding: 4px;
+}
+
+%tabbedinterface-no-repeat-border999 {
+	background-repeat: no-repeat;
+	background-position: -1px 0;
+	border: 1px solid #999;
 }
 
 /* style 1 */
@@ -181,6 +253,7 @@
     border: solid 1px #ccc;
     padding: 2px;
 	.tabs {
+		@extend %tabbedinterface-gradient-background;
 		border: 1px solid silver;
 		color: #222;
 		font-weight: 700;
@@ -191,34 +264,33 @@
 				border-top: none;
 				color: #fff !important;
 				padding: 3px 4px 4px;
-				&:hover, &:focus, &:active {
-					color: #000 !important;
+				@include pseudo-focus {
+					@extend %tabbedinterface-gradient-background;
+					@extend %tabbedinterface-color-000-important;
 					border-top: 1px solid #fff;
 					padding-top: 1px;
 				}
 				&.active {
-					&, &:hover, &:focus, &:active {
-						color: #000 !important;
-						background: #fff;
-						border-top: none;
-						padding: 4px;
+					@extend %tabbedinterface-tab-style-1-active;
+					@include pseudo-focus {
+						@extend %tabbedinterface-tab-style-1-active;
 					}
 				}
-				&.tabs-start, &.tabs-stop {
-					color: #000 !important;
+				&.tabs-start {
+					@extend %tabbedinterface-color-000-important;
+				}
+				&.tabs-stop {
+					@extend %tabbedinterface-color-000-important;
 				}
 			}
 		}
 		li {
 			&.tabs-toggle {
 				a {
-					color: #000 !important;
-					&, &:active, &:hover, &:active {
-						background-repeat: no-repeat;
-						background-position: -1px 0;
-						border: 1px solid #999;
-					}
-					&:active, &:hover, &:active {
+					@extend %tabbedinterface-color-000-important;
+					@extend %tabbedinterface-no-repeat-border999;
+					@include pseudo-focus {
+						@extend %tabbedinterface-no-repeat-border999;
 						color: #c00 !important;
 					}
 					&.tabs-prev, &.tabs-next {
@@ -233,6 +305,12 @@
 	}
 }
 
+%tabbedinterface-tab-style-2-active {
+	background: #333;
+	color: #fff !important;
+	outline-color: #000;
+	padding-top: 2px;
+}
 
 /* style 2 */
 .tabs-style-2 {
@@ -261,11 +339,11 @@
 				border: 1px solid #999;
 				padding: 2px 5px;
 				@include border-radius(2px);
-				&.active, &:hover, &:focus, &:active {
-					background: #333;
-					color: #fff !important;
-					outline-color: #000;
-					padding-top: 2px;
+				&.active {
+					@extend %tabbedinterface-tab-style-2-active;
+				}
+				@include pseudo-focus {
+					@extend %tabbedinterface-tab-style-2-active;
 				}
 			}
 			&.active {
@@ -274,18 +352,19 @@
 				color: #fff !important;
 			}
 			&.tabs-toggle {
+				@extend %tabbedinterface-gradient-background;
 				margin-left: 6px;
 				margin-right: -6px;
 				a {
 					background-color: transparent !important;
-					&:hover, &:focus, &:active {
-						color: #000 !important;
+					@include pseudo-focus {
+						@extend %tabbedinterface-color-000-important;
 					}
 				}
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		min-height: 220px;
 		background: url(../images/tabs/gradient3.png) repeat-x 0 bottom #555;
@@ -305,6 +384,23 @@
 	}
 }
 
+%tabbedinterface-tab-style-3-active {
+	background: #000;
+	color: #fff !important;
+	outline-color: #000;
+	margin-right: 0;
+	padding: 5px 5px 5px 25px;
+	@include opacity(0.75);
+}
+
+%tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent {
+	@extend %tabbedinterface-gradient-background;
+	background-position: 0 bottom;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	min-height: 220px;
+}
 
 /* style 3 */
 .tabs-style-3 {
@@ -332,19 +428,32 @@
 				text-decoration: none;
 				background: transparent;
 				padding: 5px 5px 5px 25px;
-				&.active, &:hover, &:focus, &:active {
-					background: #000;
-					color: #fff !important;
-					outline-color: #000;
-					margin-right: 0;
-					padding: 5px 5px 5px 25px;
-					@include opacity(0.75);
-					@include border-radius(3px 0 0 3px);
+				&.active {
+					@extend %tabbedinterface-tab-style-3-active;
+				}
+				@include pseudo-focus {
+					@extend %tabbedinterface-tab-style-3-active;
 				}
 			}
 			&.active {
 				border: none;
 				color: #fff !important;
+				a {
+					&:before {
+					    border: {
+							color: transparent black transparent transparent;
+							style: solid;
+							width: 13px;
+						}
+						content: "";
+						display: block;
+						height: 0;
+						left: -20px;
+						position: absolute;
+						top: 0;
+						width: 0;
+					}
+				}
 			}
 			&.tabs-toggle {
 				width: auto;
@@ -352,26 +461,25 @@
 					float: right;
 					margin-top: 10px;
 					border: 1px solid #ccc;
-					&:hover, &:focus, &:active {
+					@include pseudo-focus {
 						@include opaque;
-						color: #000 !important;
+						@extend %tabbedinterface-color-000-important;
 						margin-right: 2px;
 					}
 				}
 			}
 		}
 	}
+	.ui-collapsible-content {
+		@extend %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent;
+	}
 	.tabs-panel {
-		width: 66%;
-		z-index: 1;
-		border: none;
-		background-position: 0 bottom;
-		color: #333;
-		margin: 0;
-		padding: 0;
-		min-height: 220px;
-		z-index: 2;
+		@extend %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent;
+		background-color: #eee;
 		border: 1px solid #ccc;
+		box-shadow: 0 0 7px #999999 inset;
+		width: 66%;
+		z-index: 2;
 	}
 	.tabs-prev {
 		margin-left: 15px;
@@ -380,7 +488,7 @@
 		padding: 10px;
 	}
 	.tabs-roller {
-		background-color: white;
+		background-color: #fff;
 		@include opacity(0.2);
 		@include border-radius(3px 0 0 3px);
 	}
@@ -388,6 +496,12 @@
 
 
 /* style 4 */
+%tabbedinterface-tab-style-4-active-hover {
+	background: none repeat scroll 0 0 #FFF;
+	border: none;
+	@extend %tabbedinterface-color-000-important;
+	padding-top: 2px;
+}
 .tabs-style-4 {
     padding: 0;
 	.tabs {
@@ -400,20 +514,19 @@
 			display: block;
 			a {
 				background: url(../images/tabs/gradient2-style4.png) repeat-x scroll 50% 50% #000;
-				border-top: 1px solid #000000;
+				border-top: 1px solid #000;
 				color: #FFF !important;
 				font-size: 80%;
 				margin: 0;
 				padding: 2px;
-				&:hover, &:focus, &:active {
-					color: #000 !important;
+				@include pseudo-focus {
+					@extend %tabbedinterface-gradient-background;
+					@extend %tabbedinterface-color-000-important;
 				}
 				&.active {
-					&, &:hover {
-						background: none repeat scroll 0 0 #FFF;
-						border: none;
-						color: #000 !important;
-						padding-top: 2px;
+					@extend %tabbedinterface-tab-style-4-active-hover;
+					&:hover {
+						@extend %tabbedinterface-tab-style-4-active-hover;
 					}
 				}
 			}
@@ -423,14 +536,14 @@
 				a {
 					font-size: 100%;
 					width: auto !important;
-					color: #000 !important;
+					@extend %tabbedinterface-color-000-important;
 					border-top: 1px solid #999 !important;
 					margin-right: 2px;
 				}
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		margin: 0;
 		padding: 0;
@@ -438,6 +551,7 @@
 			display: block;
 			margin-bottom: 0;
 		}
+		@extend %tabbedinterface-rel-external;
 	}
 }
 
@@ -466,8 +580,9 @@
 		}
 		a {
 			&.active {
-				&, &:hover {
-					color: #000 !important;
+				@extend %tabbedinterface-color-000-important;
+				&:hover {
+					@extend %tabbedinterface-color-000-important;
 				}
 			}
 		}
@@ -495,7 +610,7 @@
 			}
 		}
 	}
-	.tabs-panel {
+	.tabs-panel, .ui-collapsible-content {
 		border: none;
 		margin: 0;
 		padding: 0;
@@ -503,14 +618,37 @@
 			display: block;
 			margin-bottom: 0;
 		}
+		@extend %tabbedinterface-rel-external;
 	}
 }
 
-
 /* style 6 */
+%tabbedinterface-tab-style-6-link {
+	padding: 2px 4px;
+	background: 0;
+	border: 1px solid #999;
+	@include border-radius(2px);
+}
+%tabbedinterface-tab-style-6-active {
+	text-decoration: none;
+	color: #fff !important;
+	background: #333;
+	border-color: #000;
+}
+%tabbedinterface-tab-style-6-opacity-1-color-000-important {
+	@include opacity(1);
+	@extend %tabbedinterface-color-000-important;
+}
+%tabbedinterface-tab-style-6-padding-0-background-eee {
+	padding: 0;
+	background: #eee;
+}
 .tabs-style-6 {
+	.ui-collapsible-content {
+		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
+	}
 	.tabs-panel {
-		padding: 0;
+		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
 		display: inline-block;
 		background: #eee;
 		@include box-shadow(0 15px 15px -10px #999, 0 1px 1px #aaa);
@@ -531,39 +669,39 @@
 			background: 0;
 			border: 0;
 			a {
-				&, &.active {
-					padding: 2px 4px;
-					background: 0;
-					border: 1px solid #999;
-					@include border-radius(2px);
+				@extend %tabbedinterface-tab-style-6-link;
+				&.active {
+					@extend %tabbedinterface-tab-style-6-link;
+					@extend %tabbedinterface-tab-style-6-active;
 				}
-				&:hover, &:focus, &:active, &.active {
-					text-decoration: none;
-					color: #fff !important;
-					background: #333;
-					border-color: #000;
+				@include pseudo-focus {
+					@extend %tabbedinterface-tab-style-6-active;
 				}
 			}
 			&.img {
 				margin-right: 10px;
 				a {
-					opacity: 0.5;
+					@include opacity(0.5);
 					margin: -1px 0 0 0;
 					padding: 0;
 					border: 0;
 					@include border-radius(0);
-					&:hover, &:focus, &:active, &.active {
-						opacity: 1;
-						color: #000 !important;
+					&.active {
+						@extend %tabbedinterface-tab-style-6-opacity-1-color-000-important;
 					}
-				}				
+					@include pseudo-focus {
+						@extend %tabbedinterface-tab-style-6-opacity-1-color-000-important;
+					}
+				}
 			}
 			&.tabs-toggle {
-				a:hover, a:focus, a:active {
-					text-decoration: underline;
-					color: #000 !important;
-					background: 0;
-					border-color: #999;
+				a {
+					@include pseudo-focus {
+						@extend %tabbedinterface-text-decoration-underline;
+						@extend %tabbedinterface-color-000-important;
+						background: 0;
+						border-color: #999;
+					}
 				}
 			}
 		}
@@ -573,19 +711,7 @@
 		}
 	}
 	.tabs-roller {
-		opacity: 0.5;
-	}
-}
-
-.wb-sup-def {
-	.tabs-style-5 {
-		padding:0;
-		.tabs {
-			margin-bottom:1px;
-		}
-		.tabs-toggle {
-			margin-left:9px!important;
-		}
+		@include opacity(0.5);
 	}
 }
 
@@ -599,5 +725,210 @@
 .pe-disable {
 	.tabs-panel > div {
 		display: block;
+	}
+}
+
+.ie9 {
+	.tabs-style-2 {
+		.tabs {
+			li {
+				a {
+					display: inline;
+				}
+			}
+		}
+	}
+	.tabs-style-3 {
+		.tabs {
+			li {
+				&:not(.tabs-toggle) {
+					display: inline;
+				}
+			}
+		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+%tabbedinterface-background-position-right-0-important {
+	background-position: right 0 !important;
+}
+%tabbedinterface-padding-2-24-2-5-important {
+	padding: 2px 24px 2px 5px !important;
+}
+[dir="rtl"] {
+	.tabs {
+		margin: 0 !important;
+		li {
+			@include border-radius(2px 2px 0 0);
+			&.tabs-toggle {
+				a {
+					margin-left: 2px;
+					margin-right: auto;
+					&.tabs-stop {
+						@extend %tabbedinterface-background-position-right-0-important;
+						@extend %tabbedinterface-padding-2-24-2-5-important;
+					}
+					&.tabs-start {
+						@extend %tabbedinterface-background-position-right-0-important;
+						@extend %tabbedinterface-padding-2-24-2-5-important;
+					}
+				}
+			}
+		}
+	}
+
+	.tabs-panel {
+		.viewport {
+			left: auto;
+			right: 0;
+		}
+		.float-right {
+			margin-left: auto;
+			margin-right: 10px;
+		}
+		.float-left {
+			margin-left: 10px;
+			margin-right: auto;
+		}
+	}
+
+	.tabs-roller {
+		left: auto;
+		right: 0;
+		cursor:pointer;
+	}
+
+	.tabs-style-1 {
+		.tabs {
+			li {
+				&.tabs-toggle {
+					a {
+						@extend %tabbedinterface-background-position-right-0-important;
+						@include pseudo-focus {
+							@extend %tabbedinterface-background-position-right-0-important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.tabs-style-2 {
+		.tabs {
+			left: auto;
+			right: 0;
+			li {
+				margin-left: -3px;
+				margin-right: auto;
+				&.tabs-toggle {
+					margin-left: -6px;
+					margin-right: 6px;
+				}
+			}
+		}
+	}
+
+	%tabbedinterface-padding-5-25-5-5 {
+		padding: 5px 25px 5px 5px;
+	}
+	%tabbedinterface-margin-left-2px-margin-right-auto {
+		margin-left: 2px;
+		margin-right: auto;
+	}
+	.tabs-style-3 {
+		.tabs {
+			left: 0;
+			right: auto;
+			li {
+				a {
+					@extend %tabbedinterface-padding-5-25-5-5;
+					&.active {
+						@extend %tabbedinterface-padding-5-25-5-5;
+					}
+					@include pseudo-focus {
+						@extend %tabbedinterface-padding-5-25-5-5;
+					}
+				}
+				&.active {
+					a {
+						&:after {
+							border: {
+								color: transparent transparent transparent black;
+								style: solid;
+								width: 13px;
+							}
+							content: "";
+							display: block;
+							height: 0;
+							right: -20px;
+							position: absolute;
+							top: 0;
+							width: 0;
+						}
+						&:before {
+							border: none;
+						}
+					}
+				}
+				&.tabs-toggle {
+					a {
+						float: left;
+						@include pseudo-focus {
+							@extend %tabbedinterface-margin-left-2px-margin-right-auto;
+						}
+					}
+				}
+			}
+		}
+		.tabs-prev {
+			margin-right: 15px !important;
+		}
+	}
+
+	.tabs-style-4 {
+		padding: 0;
+		.tabs {
+			li {
+				&.tabs-toggle {
+					a {
+						@extend %tabbedinterface-margin-left-2px-margin-right-auto;
+					}
+				}
+			}
+		}
+	}
+
+	.wb-sup-def {
+		.tabs-style-5 {
+			.tabs-toggle {
+				margin-left: auto !important;
+				margin-right: 9px !important;
+			}
+		}
+		.tabs {
+			margin-left: auto;
+			margin-right: -1px;
+			li {
+				padding-right: 0;
+				margin-right: 0;
+			}
+		}
+		.tabs-toggle {
+			margin-left: auto !important;
+			margin-right: 2px !important;
+		}
+	}
+
+	.tabs-style-6 {
+		.tabs {
+			margin: 15px 0 !important;
+			li {
+				&.img {
+					margin-left: 10px;
+					margin-right: auto;
+				}
+			}
+		}
 	}
 }

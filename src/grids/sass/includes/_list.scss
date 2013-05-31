@@ -1,8 +1,9 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/typography/lists/horizontal-list";
+@import "mixins";
 
 @mixin lists {
 	ul, dl, ol {
@@ -12,28 +13,20 @@
 
 	ol {
 		ol {
-			li {
-				list-style-type: lower-alpha;
-			}
+			list-style-type: lower-alpha;
 			ol {
-				li {
-					list-style-type: lower-roman;
-				}
+				list-style-type: lower-roman;
 			}
 		}
 		&.list-numeric {
-			li {
-				list-style-type: decimal !important;
-			}
+			list-style-type: decimal !important;
 		}
 		ul {
-			li {
-				list-style-type: disc !important;
-				li {
-					list-style-type: circle !important;
-					li {
-						list-style-type: square !important;
-					}
+			list-style-type: disc !important;
+			ul {
+				list-style-type: circle !important;
+				ul {
+					list-style-type: square !important;
 				}
 			}
 		}
@@ -98,14 +91,4 @@
 			}
 		}
 	}
-}
-
-
-$fugue-width: 16px;
-$fugue-height: 16px;
-$fugue-line-height: 18px;
-$fugue-padding: 30px;
-
-@mixin fugue-icon($bullet-icon, $width: $fugue-width, $height: $fugue-height, $line-height: $fugue-line-height, $padding: $fugue-padding) {
-	background: url("../images/" + $bullet-icon) no-repeat ($padding - $width) / 2 ($line-height - $height) / 2;
 }

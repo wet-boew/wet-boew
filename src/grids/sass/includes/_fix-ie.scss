@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /* ---- IE7 fixes ---- */
 .ie7 {
@@ -26,6 +26,28 @@
 }
 //Common fixes for IE7 and IE8
 %grid-fix-ie-all-versions {
+	h1 {
+		color: $dark;
+		border-bottom: 1px dotted $silver;
+		padding: 0;
+	}
+	h2 {
+		color: lighten($dark, 20%);
+	}
+	h3 {
+		color: $medium;
+	}
+	h4 {
+		color: $dark;
+	}
+	h5 {
+		color: lighten($dark, 20%);
+		@extend %util-screen-font-weight-700;
+	}
+	h6 {
+		color: $medium;
+		@extend %util-screen-font-weight-700;
+	}
 	.module-billboard {
 		a {
 			background-image: none !important;

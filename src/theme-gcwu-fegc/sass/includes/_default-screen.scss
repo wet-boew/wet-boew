@@ -1,8 +1,85 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/border-radius";
+
+%gcwu-default-screen-text-decoration-underline {
+	text-decoration: underline;
+}
+%gcwu-default-screen-text-decoration-none {
+	text-decoration: none;
+}
+%gcwu-default-screen-display-none {
+	display: none;
+}
+%gcwu-default-screen-display-block {
+	display: block;
+}
+%gcwu-default-screen-wmms-sig-display-none {
+	#gcwu-wmms-in {
+		@extend %gcwu-default-screen-display-none;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-default-screen-display-none;
+	}
+}
+%gcwu-default-screen-wmms-sig-display-block {
+	#gcwu-wmms-in {
+		@extend %gcwu-default-screen-display-block;
+	}
+	#gcwu-sig-in {
+		@extend %gcwu-default-screen-display-block;
+	}
+}
+%gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none {
+	&.ui-mobile {
+		@extend %gcwu-default-screen-wmms-sig-display-block;
+		&.ui-mobile-rendering {
+			@extend %gcwu-default-screen-wmms-sig-display-none;
+		}
+	}
+}
+%gcwu-default-screen-font-arial {
+	font-family: Arial, Helvetica, sans-serif;
+}
+%gcwu-default-screen-complex-border {
+	font-size: 100%;
+	border-bottom: none;
+	@include border-radius(2px);
+	margin: 0 0 3px;
+	a {
+		&, &.ui-link {
+			font-weight: 700;
+			background: #DDD;
+			padding: 2px 4px;
+			&.nav-current {
+				color: #0F315B;
+				padding: 1px 3px;
+			}
+		}
+	}
+}
+//TODO: Similar to rule on line ?? except for the li element. Could these be merged further.
+%gcwu-default-screen-a-pseudo-underline {
+	a {
+		&, &.ui-link {
+			@extend %gcwu-default-screen-display-block;
+			color: #333;
+			@extend %gcwu-default-screen-text-decoration-none;
+			&:visited {
+				color: #333;
+			}
+			@include pseudo-focus {
+				color: #333;
+				@extend %gcwu-default-screen-text-decoration-underline;
+			}
+			&.nav-current {
+				color: #0F315B;
+			}
+		}
+	}
+}
 
 body {
 	margin: 0;
@@ -31,29 +108,60 @@ body {
 	}
 	a {
 		color: #fff;
-		text-decoration: none;
+		@extend %gcwu-default-screen-text-decoration-none;
 	}
+}
+
+#gcwu-title {
+	small {
+		font-size: 0.45em;
+		display: block;
+	}		
+}
+
+#gcwu-wmms-in {
+	@extend %gcwu-default-screen-display-none;
+}
+#gcwu-sig-in {
+	@extend %gcwu-default-screen-display-none;
+}
+.svg {
+	@extend %gcwu-default-screen-wmms-sig-display-block;
+}
+.pe-disable {
+	@extend %gcwu-default-screen-wmms-sig-display-block;
+}
+.no-svg {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie9 {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie10 {
+	@extend %gcwu-default-screen-ui-mobile-rendering-wmms-sig-display-block-none;
 }
 
 .wb-sec-def {
 	h3 {
 		@extend %gcwu-default-screen-complex-border;
-		@extend %gcwu-default-screen-a-psuedo-underline;
+		@extend %gcwu-default-screen-a-pseudo-underline;
 		&.top-section {
+			color: #222;
+			font-size: 1.1em;
 			a {
 				&, &.ui-link {
-					color: #FFF;
+					color: #fff;
 					padding-top: 5px;
 					padding-bottom: 5px;
-					font-size: 1.1em;
-					&:visited, &:hover, &:focus, &:active {
-						color: #FFF;
+					&:visited {
+						color: #fff;
 					}
-					&:hover, &:focus, &:active {
-						text-decoration: underline;
+					@include pseudo-focus {
+						color: #fff;
+						@extend %gcwu-default-screen-text-decoration-underline;
 					}
 					&.nav-current {
-						color: #FFF;
+						color: #fff;
 						padding-top: 4px;
 						padding-bottom: 4px;
 						background: #0f315b;
@@ -62,29 +170,12 @@ body {
 			}
 		}
 	}
-	%gcwu-default-screen-complex-border {
-		font-size: 100%;
-		border-bottom: none;
-		@include border-radius(2px);
-		margin: 0 0 3px;
-		a {
-			&, &.ui-link {
-				font-weight: 700;
-				background: #DDD;
-				padding: 2px 4px;
-				&.nav-current {
-					color: #0F315B;
-					padding: 1px 3px;
-				}
-			}
-		}
-	}
 	h4 {
 		@extend %gcwu-default-screen-complex-border;
-		@extend %gcwu-default-screen-a-psuedo-underline;
+		@extend %gcwu-default-screen-a-pseudo-underline;
 	}
 	li {
-		@extend %gcwu-default-screen-a-psuedo-underline;
+		@extend %gcwu-default-screen-a-pseudo-underline;
 		a {
 			padding: 4px 5px;
 			&.nav-current {
@@ -104,25 +195,6 @@ body {
 			@include border-radius(2px);
 		}
 	}
-	//TODO: Similar to rule on line 33 except for the li element. Could these be merged further.
-	%gcwu-default-screen-a-psuedo-underline {
-		a {
-			&, &.ui-link {
-				display: block;
-				color: #333;
-				text-decoration: none;
-				&:visited, &:hover, &:focus, &:active {
-					color: #333;
-				}
-				&:hover, &:focus, &:active {
-					text-decoration: underline;
-				}
-				&.nav-current {
-					color: #0F315B;
-				}
-			}
-		}
-	}
 	ul {
 		list-style-type: none;
 		margin: 0 0 3px;
@@ -136,7 +208,7 @@ body {
 	}
 	.top-level {
 		@extend %gcwu-default-screen-complex-border;
-		@extend %gcwu-default-screen-a-psuedo-underline;
+		@extend %gcwu-default-screen-a-pseudo-underline;
 	}
 }
 
@@ -163,7 +235,7 @@ body {
 		}
 	}
 	a {
-		text-decoration: none;
+		@extend %gcwu-default-screen-text-decoration-none;
 	}
 	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
 		margin-bottom: 0;
@@ -178,7 +250,7 @@ body {
 
 #gcwu-sft {
 	padding-bottom: 20px;
-	font-family: Arial, Helvetica, sans-serif;
+	@extend %gcwu-default-screen-font-arial;
 	%gcwu-default-screen-color-222 {
 		color: #222;
 	}
@@ -241,7 +313,7 @@ body {
 
 #gcwu-gcft {
 	background: #040707;
-	font-family: Arial, Helvetica, sans-serif;
+	@extend %gcwu-default-screen-font-arial;
 	ul {
 		list-style-type: none;
 		margin: 0;
@@ -266,14 +338,14 @@ body {
 		}
 	}
 	a {
-		text-decoration: none;
+		@extend %gcwu-default-screen-text-decoration-none;
 		color: #fff;
 		font-size: 90%;
 	}
 }
 
 #gcwu-gcft-ca {
-	font-family: Arial, Helvetica, sans-serif;
+	@extend %gcwu-default-screen-font-arial;
 	float: right !important;
 	padding-left: 0;
 	margin-right: 0;
@@ -286,7 +358,7 @@ body {
 	a {
 		@include inline-block;
 		color: #fff;
-		text-decoration: none;
+		@extend %gcwu-default-screen-text-decoration-none;
 		border-left: 1px solid #666;
 		line-height: 1.45em;
 		padding-right: 10px;

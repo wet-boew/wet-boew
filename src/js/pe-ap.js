@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -14,8 +14,8 @@
 /*
  * pe, a progressive javascript library agnostic framework
  */
-/*global ResizeEvents: false, jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
-/*jshint bitwise: false */
+/*global jQuery: false, wet_boew_properties: false, wet_boew_theme: false, fdSlider: false, document: false, window: false, setTimeout: false, navigator: false, localStorage: false, makeMeter: false*/
+/*jshint bitwise: false, evil: true, scripturl: true */
 (function ($) {
 	"use strict";
 	var pe, _pe;
@@ -37,19 +37,24 @@
 		rtl: false,
 		touchscreen: 'ontouchstart' in document.documentElement,
 		mobileview: (wet_boew_theme !== null && typeof wet_boew_theme.mobileview === 'function'),
-		suffix: $('body script[src*="/pe-ap-"]').attr('src').indexOf('-min') !== -1 ? '-min' : '', // determine if pe is minified
+		suffix: $('body script[src*="/pe-ap"]').attr('src').indexOf('-min') !== -1 ? '-min' : '', // determine if pe is minified
 		header: $('#wb-head'),
 		bodydiv: $('body > div'),
 		main: $('#wb-main'),
 		secnav: $('#wb-sec'),
 		footer: $('#wb-foot'),
+		html: $('html'),
+		document: $(document),
+		window: $(window),
 		urlpage: '',
 		urlhash: '',
 		urlquery: '',
 		svg: ($('<svg xmlns="http://www.w3.org/2000/svg" />').get(0).ownerSVGElement !== undefined),
-		document: $(document),
-		mobiletest: '',
+		svgfix: false,
+		viewtest: '',
+		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
+		scrollTopInit: 0,
 
 		/**
 		* @namespace pe.dic
@@ -115,7 +120,16 @@
 		* @returns {void}
 		*/
 		_init: function () {
-			var $html = $('html'), hlinks, hlinks_same, $this, target, classes, test, init_on_mobileinit = false;
+			var $html = pe.html,
+				hlinks_same = [],
+				target,
+				validTarget = false,
+				classes = '',
+				test,
+				test_elms,
+				silentscroll_fired = false,
+				pageinit_fired = false,
+				init_on_mobileinit = false;
 
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
@@ -127,10 +141,20 @@
 				pe.rtl = (test === 'rtl');
 			}
 
-			// Append the mobile test to the body
-			pe.mobiletest = document.createElement('div');
-			pe.mobiletest.setAttribute('id', 'mobiletest'); // Used to detect CSS media queries result regarding mobile/desktop view
-			document.body.appendChild(pe.mobiletest);
+			// View test: Used to detect CSS media query result regarding screen size and mobile/desktop view
+			pe.viewtest = document.createElement('div');
+			pe.viewtest.setAttribute('id', 'viewtest');
+
+			// Resize test element: Used to detect changes in text size and window size
+			pe.resizetest = document.createElement('span');
+			pe.resizetest.innerHTML = '&#160;';
+			pe.resizetest.setAttribute('id', 'resizetest');
+
+			// Append the various tests to the body
+			test_elms = document.createElement('div');
+			test_elms.appendChild(pe.viewtest);
+			test_elms.appendChild(pe.resizetest);
+			document.body.appendChild(test_elms);
 
 			// Load polyfills that need to be loaded before anything else
 			pe.polyfills.init();
@@ -140,37 +164,67 @@
 			pe.urlhash = pe.urlpage.hash;
 			pe.urlquery = pe.urlpage.params;
 
-			// Identify whether or not the device supports JavaScript, the current theme, the current view, and if the device has a touchscreen
+			// Identify whether or not the device supports JavaScript, the current theme, the current view and screen size, and if the device has a touchscreen
 			pe.mobile = pe.mobilecheck();
-			pe.tablet = pe.tabletcheck();
-			classes = wet_boew_theme !== null ? (wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.tablet ? ' tablet-view' : '')) : ' desktop-view')) : '';
-			classes += (pe.touchscreen ? ' touchscreen' : '');
-			$html.removeClass('no-js').addClass(classes);
+			pe.medium = pe.mediumcheck();
+			pe.print = (pe.mobile ? false : pe.printcheck());
 
-			// Identify IE9+ browser
-			if (pe.ie > 8) {
-				$html.addClass('ie' + parseInt(pe.ie, 10));
+			// Add theme specific CSS classes and favicon
+			if (wet_boew_theme !== null) {
+				classes += wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.medium ? ' medium-screen' : ' small-screen')) : (pe.print ? ' print-view' : ' desktop-view large-screen'));
+				if (typeof wet_boew_theme.favicon !== 'undefined') {
+					pe.add.favicon(pe.add.themecsslocation.replace(/css\/$/, wet_boew_theme.favicon.href), wet_boew_theme.favicon.rel, wet_boew_theme.favicon.sizes);
+				}
 			}
+			classes += (pe.touchscreen ? ' touchscreen' : '');
+			classes += (pe.svg ? ' svg' : ' no-svg');
+			classes += (pe.ie > 8 ? ' ie' + parseInt(pe.ie, 10) : (pe.ie < 1 ? ' no-ie' : ''));
 
-			hlinks = pe.bodydiv.find('#wb-main a, #wb-skip a').filter(function () {
-				return this.href.indexOf('#') !== -1;
-			});
-			hlinks_same = hlinks.filter(function () {
-				return $(this).attr('href').indexOf('#') === 0; // Same page links with hashes
-			});
+			// Check for browsers that needs SVG loaded through an object element removed
+			test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
+			pe.svgfix = (!(test === null || parseInt(test[1], 10) > 4 || (parseInt(test[1], 10) === 4 && parseInt(test[2], 10) >= 46)));
 
 			// Is this a mobile device?
 			if (pe.mobile) {
 				// Detect if pre-OS7 BlackBerry device is being used
 				test = navigator.userAgent.indexOf('BlackBerry');
 				if (test === 0) {
-					$html.addClass('bb-pre6 bb-pre7');
+					classes += ' bb-pre6 bb-pre7';
 				} else if (test !== -1 && navigator.userAgent.indexOf('Version/6') !== -1) {
-					$html.addClass('bb-pre7');
+					classes += ' bb-pre7';
 				}
 			}
-			
+
+			// Remove the "no-js" class and add the identification classes to the HTML element.
+			$html.removeClass('no-js').addClass(classes);
+
 			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
+
+			// If the page URL includes a hash upon page load, then focus on and scroll to the target
+			// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
+			// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
+			pe.scrollTopInit = pe.window.scrollTop();
+			if (pe.scrollTopInit === 0) {
+				window.onload = function() {
+					setTimeout(function() {
+						pe.scrollTopInit = pe.window.scrollTop();
+					}, 1);
+				};
+			}
+			if (pe.urlhash.length !== 0) {
+				target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+				target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+				validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
+			}
+			pe.document.on('silentscroll.wbinit', function() {
+				silentscroll_fired = true;
+				if (pageinit_fired) {
+					pe.document.off('silentscroll.wbinit');
+				}
+				if (validTarget || pe.scrollTopInit > 1) {
+					$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
+				}
+			});
 
 			pe.document.on('mobileinit', function () {
 				$.extend($.mobile, {
@@ -184,38 +238,46 @@
 			});
 
 			pe.document.on('pageinit', function () {
+				pageinit_fired = true;
+				// Remove the silentscroll handling for determining scrollTop if the silentscroll event has already fired
+				if (silentscroll_fired) {
+					pe.document.off('silentscroll.wbinit');
+				}
+
+				// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
+				// TODO: Find a more elegant way to address this in jQuery Mobile
+				pe.bodydiv.removeAttr('tabindex');
+			
 				// On click, puts focus on and scrolls to the target of same page links
-				hlinks_same.off('click vclick').on('click.hlinks vclick.hlinks', function () {
-					var hash = $(this).attr('href'),
+				$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function () {
+					var hash = this.hash,
+						node = document.getElementById(hash.substring(1)),
+						$node,
+						nodeName,
 						role;
-					$this = $('#' + pe.string.jqescape(hash.substring(1)));
-					$this.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if ($this.length > 0) {
-						pe.focus($this);
-						role = $this.jqmData('role');
+
+					if (node !== null) {
+						$node = $(node);
+						nodeName = node.nodeName.toLowerCase();
+						if (nodeName !== 'a' && nodeName !== 'button' && nodeName !== 'input' && nodeName !== 'textarea' && nodeName !== 'select') {
+							node.setAttribute('tabindex', '-1');
+						}
+
+						pe.focus($node);
+						role = $node.jqmData('role');
 						if (role === undefined || (role !== 'page' && role !== 'dialog' && role !== 'popup')) {
 							window.location.hash = hash;
 						}
 					}
 				});
-				// If the page URL includes a hash upon page load, then focus on and scroll to the target
-				if (pe.urlhash.length !== 0) {
-					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					if (target.length > 0 && target.attr('data-role') !== 'page' && (pe.ie === '0' || pe.ie > 7)) {
-						setTimeout(function () {
-							$.mobile.silentScroll(pe.focus(target).offset().top);
-						}, 200);
-					}
-				}
 
-				if (pe.ie > 0) {
-					if (pe.ie < 9) {
-						pe.wb_load({'plugins': {'css3ie': pe.main}}, 'css3ie-loaded');
-					} else {
-						pe.wb_load({'plugins': {'equalize': pe.main}}, 'equalize-loaded');
+				// Workaround to ensure that the expanded area of a jQuery Mobile accordion doesn't disappear off the top of the viewport
+				pe.document.on('expand', function(e) {
+					var yPos = $(e.target).offset().top;
+					if (yPos < _pe.window.scrollTop()) {
+						$.mobile.silentScroll(yPos);
 					}
-				}
+				});
 			});
 
 			// Load ajax content
@@ -233,19 +295,36 @@
 					if (replace) {
 						$o.empty();
 					}
-					$o.append($(data));
+					$o.append($.trim(data));
 				}, 'html');
 			})).always(function () {
+				var hlinks = document.getElementsByTagName('a'),
+					hlink,
+					pathname = window.location.pathname,
+					search = window.location.search,
+					len = hlinks.length,
+					href;
+				while (len--) {
+					hlink = hlinks[len];
+					href = hlink.getAttribute('href');
+					if (href !== null && href.length !== 1 && href.indexOf('#') !== -1 && hlink.getAttribute('data-rel') === null && (pathname.indexOf(hlink.pathname) !== -1) && hlink.search === search) {
+						hlinks_same.push(hlink);
+					}
+				}
+
 				// Wait for localisation and ajax content to load plugins
 				pe.document.one('languageloaded', function () {
+					if (wet_boew_theme !== null) {
+						// Initialize the theme
+						wet_boew_theme.init();
+					}
+
 					// Check to see if PE enhancements should be disabled
 					if (pe.pedisable() === true) {
 						return false; // Disable PE enhancements
 					}
-					if (wet_boew_theme !== null) {
-						// Initialize the theme
-						wet_boew_theme.init();
 
+					if (wet_boew_theme !== null) {
 						pe.document.one('themeviewloaded', function () {
 							if (typeof $.mobile !== 'undefined') {
 								pe.mobilelang();
@@ -281,11 +360,15 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return pe.mobiletest.offsetWidth !== 0; // CSS (through media queries) sets to offsetWidth = 0 in desktop view, offsetWidth = 1 in mobile view and offsetWidth = 2 in tablet view
+			return pe.viewtest.offsetWidth > 1; // CSS (through media queries) sets to offsetWidth = 0 in print view, offsetWidth = 1 desktop view (large screen), offsetWidth = 2 or 3 mobile view (2 = small screen, 3 = medium screen)
 		},
-		tablet: false,
-		tabletcheck: function () {
-			return pe.mobiletest.offsetWidth === 2; // CSS (through media queries) sets to offsetWidth = 2 in tablet view
+		print: false,
+		printcheck: function () {
+			return pe.viewtest.offsetWidth === 0; // CSS (through media queries) sets to offsetWidth = 0 in print view
+		},
+		medium: false,
+		mediumcheck: function () {
+			return pe.viewtest.offsetWidth === 3; // CSS (through media queries) sets to offsetWidth = 3 for medium screen
 		},
 		mobilelang: function () {
 			// Apply internationalization to jQuery Mobile
@@ -296,6 +379,7 @@
 			$.mobile.textinput.prototype.options.clearSearchButtonText = pe.dic.get('%jqm-clear-search');
 			$.mobile.selectmenu.prototype.options.closeText = pe.dic.get('%close');
 			$.mobile.listview.prototype.options.filterPlaceholder = pe.dic.get('%jqm-filter');
+			$.mobile.table.prototype.options.columnBtnText = pe.dic.get('%jqm-tbl-col-toggle');
 		},
 		/**
 		* The pe aware page query to append items to
@@ -306,17 +390,60 @@
 		pagecontainer: function () {
 			return $('#wb-body-sec-sup, #wb-body-sec, #wb-body-secr, #wb-body').add('body').eq(0);
 		},
+
 		/**
-		* Initializes the Resize dependency, and attaches a given function to various resize events.
+		* Manages custom events for text and window resizing
+		* Based on http://alistapart.com/article/fontresizing
+		* @namespace pe.resizeutil
+		*/
+		resizeutil: {
+			sizes: [],
+			events: ['wb-text-resize', 'wb-window-resize-width', 'wb-window-resize-height'],
+			events_all: '',
+			initialized: false,
+			/**
+			* Sets up the testing interval
+			* @memberof pe.resizeutil
+			* @function
+			*/
+			init: function () {
+				var ru = pe.resizeutil;
+				if (!ru.initialized) {
+					ru.sizes = [pe.resizetest.offsetHeight, pe.window.width(), pe.window.height()];
+					ru.events_all = ru.events.join(' ');
+					window.setInterval(function () {
+						pe.resizeutil.test();
+					}, 500);
+					ru.initialized = true;
+				}
+			},
+			/**
+			* Tests for text size, window width and window height changes and triggers an event when a change is found
+			* @memberof pe.resizeutil
+			* @function
+			*/
+			test: function () {
+				var curr_sizes = [pe.resizetest.offsetHeight, pe.window.width(), pe.window.height()],
+					i, len,
+					ru = pe.resizeutil;
+				for (i = 0, len = curr_sizes.length; i !== len; i += 1) {
+					if (curr_sizes[i] !== ru.sizes[i]) {
+						pe.document.trigger(ru.events[i], curr_sizes);
+					}
+				}
+				ru.sizes = curr_sizes;
+				return;
+			}
+		},
+		/**
+		* Registers callbacks for the custom resize events managed in pe.resizeutil
 		* @memberof pe
 		* @function
-		* @param {function} fn The function to run when a resize event fires.
-		* @return {void}
+		* @param (string) callback Function that will be bound to the custom resize events.
 		*/
-		resize: function (fn) {
-			ResizeEvents.initialise(); // ensure resize function initialized
-			ResizeEvents.eventElement.bind('x-text-resize x-zoom-resize x-window-resize', function () {
-				fn();
+		resize: function (callback) {
+			pe.document.on(pe.resizeutil.events_all, function (e, sizes) {
+				callback(e, sizes);
 			});
 			return;
 		},
@@ -466,7 +593,7 @@
 		* @return {boolean}
 		*/
 		cssenabled: function () {
-			return pe.mobiletest.offsetWidth < 2; // pe.mobiletest will be either 0 or 1 if CSS is enabled
+			return pe.viewtest.offsetWidth < 2; // pe.viewtest will be either 0 or 1 if CSS is enabled
 		},
 		/**
 		* Returns a class-based set limit on plugin instances
@@ -576,7 +703,7 @@
 		array: {
 			/**
 			* Eliminates duplicate strings in an array
-			* @memberof pe.sarray
+			* @memberof pe.array
 			* @function
 			* @param {array} arr Array of strings or primitives
 			* @return {array} Array with duplicate strings or primitives removed
@@ -779,6 +906,49 @@
 			}
 		},
 		/**
+		* @namespace pe.data
+		*/
+		data: {
+			/**
+			* Retrieves data from a 'data-' attribute
+			* @memberof pe.data
+			* @function
+			* @param {jQuery object | DOM object} elm Object with the 'data-' attribute
+			* @param {string} data_name Name after 'data-' in the 'data-' attribute (e.g., 'wet-boew')
+			* @return {data} Object containing the retrieved data
+			*/
+			getData: function (elm, data_name) {
+				var $elm = typeof elm.jquery !== 'undefined' ? elm : $(elm),
+					dataAttr = $elm.attr('data-' + data_name),
+					dataObj = null;
+				if (dataAttr) {
+					dataObj = this.toObject(dataAttr);
+				}
+				$.data(elm, data_name, dataObj);
+				return dataObj;
+			},
+			/**
+			* Converts a string to an object
+			* @memberof pe.data
+			* @function
+			* @param {string} data_string String to convert to an object (recommend JSON)
+			* @return {data} Object created by converting the string
+			*/
+			toObject: function (data_string) {
+				var obj = null;
+				try {
+					obj = $.parseJSON(data_string);
+				} catch (e) {
+					// Fallback if data_string is a malformed JSON string (less secure than with a JSON string)
+					if (data_string.indexOf('{') === -1) {
+						data_string = '{' + data_string + '}';
+					}
+					obj = eval('(' + data_string + ')');
+				}
+				return obj;
+			}
+		},
+		/**
 		* A generic function for enabling/disabling PE enhancements
 		* @memberof pe
 		* @function
@@ -795,7 +965,7 @@
 				qparam,
 				newquery = '?',
 				settings = pe.settings,
-				$html = $('html'),
+				$html = pe.html,
 				pedisable_link = (settings && typeof settings.pedisable_link === 'boolean' ? settings.pedisable_link : true);
 
 			if (tphp !== null) {
@@ -845,38 +1015,49 @@
 			* @return {jQuery object} Link where match found
 			*/
 			navcurrent: function (menusrc, bcsrc, navclass) {
-				var pageurl = window.location.hostname + window.location.pathname,
+				var pageurl = window.location.hostname + window.location.pathname.replace(/^([^\/])/, '/$1'),
 					pageurlquery = window.location.search,
+					link,
+					linkhref,
+					linkurl,
+					linkurllen,
+					linkquery,
+					linkquerylen,
+					linkindex,
 					menulinks,
-					menulink,
-					menulinkurl,
-					menulinkurllen,
-					menulinkquery,
-					menulinkquerylen,
+					menulink = [],
+					menulinkurl = [],
 					menulinkslen,
 					bclinks,
-					bclink,
 					bclinkslen,
 					bcindex,
+					bclink,
+					bclinkurl,
 					match = false,
-					hrefBug = pe.ie !== 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
+					hrefBug = pe.ie > 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
 				menulinks = menusrc.find('a').get();
 				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;
 
-				// Try to find a match with the page URL
+				// Try to find a match with the page URL and cache link + URL for later if no match found
 				menulinkslen = menulinks.length;
 				while (menulinkslen--) {
-					menulink = menulinks[menulinkslen];
-					menulink.href = menulink.getAttribute('href') !== '' ? menulink.getAttribute('href') : '#'; //Fix for empty A tags
-					if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
-						menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
-						menulinkurllen = menulinkurl.length;
-						menulinkquery = menulink.search;
-						menulinkquerylen = menulinkquery.length;
-						if ((pageurl.slice(-menulinkurllen) === menulinkurl && (menulinkquerylen === 0 || pageurlquery.slice(-menulinkquerylen) === menulinkquery))) {
-							match = true;
-							break;
+					link = menulinks[menulinkslen];
+					linkhref = link.getAttribute('href');
+					if (linkhref !== null) {
+						if (hrefBug && linkhref !== window.location.href) {
+							linkhref = linkhref.replace(window.location.href, '');
+						}
+						if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
+							linkurl = link.hostname + link.pathname.replace(/^([^\/])/, '/$1');
+							linkquery = link.search;
+							linkquerylen = linkquery.length;
+							if (pageurl.slice(-linkurl.length) === linkurl && (linkquerylen === 0 || pageurlquery.slice(-linkquerylen) === linkquery)) {
+								match = true;
+								break;
+							}
+							menulink.push(link);
+							menulinkurl.push(linkurl);
 						}
 					}
 				}
@@ -884,36 +1065,44 @@
 				// No page URL match found, try a breadcrumb link match instead
 				if (!match) {
 					// Pre-process the breadcrumb links
+					bclink = [];
+					bclinkurl = [];
 					bcsrc = typeof bcsrc.jquery !== 'undefined' ? bcsrc : $(bcsrc);
 					bclinks = bcsrc.find('a').get();
 					bclinkslen = bclinks.length;
-					bcindex = bclinkslen;
-					while (bcindex--) {
-						bclink = bclinks[bcindex];
-						bclinks[bcindex] = bclink.hostname + bclink.pathname.replace(/^([^\/])/, '/$1');
+					for (bcindex = 0; bcindex !== bclinkslen; bcindex += 1) {
+						link = bclinks[bcindex];
+						linkhref = link.getAttribute('href');
+						if (hrefBug && linkhref !== window.location.href) {
+							linkhref = linkhref.replace(window.location.href, '');
+						}
+						if (linkhref.length !== 0 && linkhref.slice(0, 1) !== '#') {
+							bclink.push(link);
+							bclinkurl.push(link.hostname + link.pathname.replace(/^([^\/])/, '/$1'));
+						}
 					}
+					bclinkslen = bclinkurl.length;
 
 					// Try to match each breadcrumb link
-					menulinkslen = menulinks.length;
-					while (menulinkslen--) {
-						menulink = menulinks[menulinkslen];
-						if ((!hrefBug && menulink.getAttribute('href').slice(0, 1) !== '#') || (hrefBug && (menulink.href.indexOf('#') === -1 || pageurl !== menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1')))) {
-							menulinkurl = menulink.hostname + menulink.pathname.replace(/^([^\/])/, '/$1');
-							menulinkurllen = menulinkurl.length;
-							bcindex = bclinkslen;
-							while (bcindex--) {
-								if (bclinks[bcindex].slice(-menulinkurllen) === menulinkurl) {
-									match = true;
-									break;
-								}
-							}
-							if (match) {
+					for (linkindex = 0, menulinkslen = menulink.length; linkindex !== menulinkslen; linkindex += 1) {
+						link = menulink[linkindex];
+						linkurl = menulinkurl[linkindex];
+						linkurllen = linkurl.length;
+						linkquery = link.search;
+						linkquerylen = linkquery.length;
+						bcindex = bclinkslen;
+						while (bcindex--) {
+							if (bclinkurl[bcindex].slice(-linkurllen) === linkurl && (linkquerylen === 0 || bclink[bcindex].search.slice(-linkquerylen) === linkquery)) {
+								match = true;
 								break;
 							}
 						}
+						if (match) {
+							break;
+						}
 					}
 				}
-				return (match ? $(menulink).addClass(navclass) : $());
+				return (match ? $(link).addClass(navclass) : $());
 			},
 			/**
 			* Builds jQuery Mobile nested accordion menus from an existing menu
@@ -936,25 +1125,26 @@
 					headingClose = '</' + heading + '>',
 					m = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
 					mDOM = m[0].parentNode,
-					mItems = m.find('> div, > ul, ' + heading),
+					mItems = m.find('> div, > ul, > ' + heading + ', > section > ' + heading),
 					mItemsDOM = mItems.get(),
 					mItems_i,
 					mItems_len,
 					mItem,
 					mItemDOM,
 					mItemTag,
-					next,
 					nextDOM,
+					prevDOM,
 					hlink,
 					hlinkDOM,
 					navCurrent,
+					navCurrentNoCSS,
 					nested,
 					nested_i,
 					nested_len,
 					hnestDOM,
 					hnestTag,
 					hnestLinkDOM,
-					hasHeading,
+					hnestLinkDOM2,
 					menubar = (mbar !== undefined ? mbar : false),
 					mainText = pe.dic.get('%main-page'),
 					toplevel = (top !== undefined ? top : true),
@@ -965,23 +1155,27 @@
 					listItems,
 					listItem,
 					listItem2,
-					sectionOpen = '<div data-theme="' + theme1 + '"' + ' class="wb-nested-menu',
-					sectionLink = '<a data-role="button" data-theme="' + theme1 + '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
-					sectionLinkOpen = '">' + headingOpen + sectionLink,
+					sectionOpenStart = '<div data-theme="',
+					sectionOpenEnd = '" class="wb-nested-menu',
+					sectionOpen1 = sectionOpenStart + theme1 + sectionOpenEnd,
+					sectionOpen2 = sectionOpenStart + theme2 + sectionOpenEnd,
+					sectionLinkStart = '<a data-role="button" data-theme="',
+					sectionLinkEnd = '" data-icon="arrow-d" data-iconpos="left" data-corners="false" href="',
+					sectionLinkOpen1 = '">' + headingOpen + sectionLinkStart + theme1 + sectionLinkEnd,
+					sectionLinkOpen2 = sectionLinkStart + theme2 + sectionLinkEnd,
 					sectionLinkClose = '</a>' + headingClose,
 					link = '<a data-role="button" data-icon="arrow-r" data-iconpos="right" data-corners="false" href="',
+					disableLink = 'javascript:;" class="ui-disabled',
 					menu,
+					url,
 					i,
 					len;
 				collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true);
 				collapsible = (collapsible !== undefined ? collapsible : false);
 				returnString = (returnString !== undefined ? returnString : false);
-				if (mItemsDOM[0].tagName.toLowerCase() === 'ul') {
-					menu = listView + mItems[0].innerHTML + '</ul>';
-				} else {
-					hasHeading = mDOM.getElementsByTagName(heading).length !== 0;
-					if (menubar && !hasHeading) { // Menu bar without a mega menu
-						menu = sectionOpen + '"><ul data-role="listview" data-theme="' + theme1 + '">';
+				if (mItemsDOM.length !== 0) {
+					if (menubar && mDOM.getElementsByTagName(heading).length === 0) { // Menu bar without a mega menu
+						menu = sectionOpen1 + '"><ul data-role="listview" data-theme="' + theme1 + '">';
 						mItemsDOM = mDOM.getElementsByTagName('a');
 						for (mItems_i = 0, mItems_len = mItemsDOM.length; mItems_i < mItems_len; mItems_i += 1) {
 							mItemDOM = mItemsDOM[mItems_i];
@@ -997,71 +1191,88 @@
 
 							// If the menu item is a heading
 							if (mItemTag === heading) {
-								menu += sectionOpen;
+								menu += sectionOpen1;
 								hlink = mItem.children('a');
-								hlinkDOM = hlink[0];
-								navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
+								if (hlink.length !== 0) {
+									hlinkDOM = hlink[0];
+									url = hlinkDOM.getAttribute('href');
+									navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
+									navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
+									menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
+								} else {
+									navCurrent = false;
+									url = disableLink;
+								}
 								if (toplevel) {
 									secnav2Top = (mItemDOM.className.indexOf('top-section') !== -1);
 								}
-								menu += (navCurrent ? ' nav-current' : '');
+
 								// Use collapsible content for a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true); otherwise use a button
 								if (toplevel || collapsible || !collapseTopOnly) {
 									menu += '" data-role="collapsible"' + (secnav2Top || navCurrent ? ' data-collapsed="false">' : '>') + headingOpen + mItem.text() + headingClose;
 								} else {
-									menu += sectionLinkOpen + hlinkDOM.href + '">' + mItem.text() + sectionLinkClose;
+									menu += sectionLinkOpen1 + url + '">' + mItem.text() + sectionLinkClose;
 								}
-								next = mItem.next();
-								nextDOM = next[0];
-								if (nextDOM.tagName.toLowerCase() === 'ul') {
-									menu += listView;
-									nested = nextDOM.querySelector('li ul');
-									if (nested !== null && nested.length !== 0) { // Special handling for a nested list
-										hnestTag = 'h' + (hlevel + 1);
-										listItems = nextDOM.children;
-										for (i = 0, len = listItems.length; i !== len; i += 1) {
-											listItem = listItems[i];
-											hnestDOM = listItem.getElementsByTagName('li');
-											menu += '<li>';
-											if (hnestDOM.length !== 0) {
-												hnestLinkDOM = listItem.children[0];
-												menu += sectionOpen + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLink + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
-												for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
-													listItem2 = hnestDOM[nested_i];
-													hlinkDOM = listItem2.querySelector('a');
-													menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hlinkDOM.href + '">' + hlinkDOM.innerHTML + '</a></li>';
+								nextDOM = mItem.next()[0];
+								// Don't try to build mobile menu for headings with no sub-items
+								if (typeof nextDOM !== 'undefined') {
+									if (nextDOM.tagName.toLowerCase() === 'ul') {
+										menu += listView;
+										nested = nextDOM.querySelector('li ul');
+										if (nested !== null && nested.length !== 0) { // Special handling for a nested list
+											hnestTag = 'h' + (hlevel + 1);
+											listItems = nextDOM.children;
+											for (i = 0, len = listItems.length; i !== len; i += 1) {
+												listItem = listItems[i];
+												hnestDOM = listItem.getElementsByTagName('li');
+												menu += '<li>';
+												if (hnestDOM.length !== 0) {
+													hnestLinkDOM = listItem.children[0];
+													menu += sectionOpen2 + '"><' + hnestTag + ' class="wb-nested-li-heading">' + sectionLinkOpen2 + hnestLinkDOM.href + '">' + hnestLinkDOM.innerHTML + '</a></' + hnestTag + '>' + listView;
+													for (nested_i = 0, nested_len = hnestDOM.length; nested_i !== nested_len; nested_i += 1) {
+														listItem2 = hnestDOM[nested_i];
+														hnestLinkDOM2 = listItem2.querySelector('a');
+														menu += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-icon="arrow-r" data-iconpos="right"><a href="' + hnestLinkDOM2.href + '">' + hnestLinkDOM2.innerHTML + '</a></li>';
+													}
+													menu += '</ul></div>';
+												} else {
+													menu += listItem.innerHTML;
 												}
-												menu += '</ul></div>';
-											} else {
-												menu += listItem.innerHTML;
+												menu += '</li>';
 											}
-											menu += '</li>';
+										} else {
+											menu += nextDOM.innerHTML;
 										}
-									} else {
-										menu += nextDOM.innerHTML;
-									}
-									menu += '</ul>';
-								} else { // If the section contains sub-sections
-									if (menubar) {
-										menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
-									} else {
-										menu += pe.menu.buildmobile(mItem.parent(), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
+										menu += '</ul>';
+									} else { // If the section contains sub-sections
+										if (menubar) {
+											menu += pe.menu.buildmobile(mItem.parent().find('.mb-sm'), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true);
+										} else {
+											menu += pe.menu.buildmobile(mItem.parent(), hlevel + 1, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
+										}
 									}
 								}
+
 								// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
 								if (!menubar && hlink.length > 0 && (toplevel || collapsible || !collapseTopOnly)) {
 									menu += link + hlinkDOM.href + '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
 								}
 								menu += '</div>';
+							} else if (mItemTag === 'ul') { // If the menu item is a ul
+								// Don't try to build mobile menu for ul with a preceding heading or that is directly nested within an li
+								prevDOM = mItem.prev()[0];
+								if ((typeof prevDOM === 'undefined' || prevDOM.tagName.toLowerCase() !== heading) && mItemDOM.parentNode.tagName.toLowerCase() !== 'li') {
+									menu += listView + mItemDOM.innerHTML + '</ul>';
+								}
 							} else if (mItemTag === 'div') { // If the menu item is a div
-								next = mItem.children('a, ul');
-								if (next.length > 0) {
-									nextDOM = next[0];
-									if (nextDOM.tagName.toLowerCase() === 'a') {
-										menu += link + nextDOM.href + '" data-theme="' + (toplevel ? theme1 : theme2) + '">' + nextDOM.innerHTML + '</a>';
-									} else {
-										menu += listView + nextDOM.innerHTML + '</ul>';
+								hnestDOM = mItem.children('a').get();
+								if (hnestDOM.length !== 0) {
+									for (i = 0, len = hnestDOM.length; i !== len; i += 1) {
+										hnestLinkDOM = hnestDOM[i];
+										menu += link + hnestLinkDOM.href + '" data-theme="' + (toplevel ? theme1 : theme2) + '">' + hnestLinkDOM.innerHTML + '</a>';
 									}
+								} else if (mItemDOM.children.length !== 0) {
+									menu += pe.menu.buildmobile(mItemDOM, hlevel, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
 								}
 							}
 						}
@@ -1070,9 +1281,9 @@
 							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"' + (toplevel ? ' class="ui-corner-all"' : '') + '>' + menu + '</div>';
 						}
 					}
-				}
-				if (toplevel) {
-					menu = '<div data-role="controlgroup" data-theme="' + theme1 + '">' + menu + '</div>';
+					if (toplevel) {
+						menu = '<div data-role="controlgroup" data-theme="' + theme1 + '">' + menu + '</div>';
+					}
 				}
 				return returnString ? menu : $(menu);
 			}
@@ -1091,7 +1302,7 @@
 			init: function () {
 				// localStorage
 				var lib = pe.add.liblocation,
-					$html = $('html');
+					$html = pe.html;
 				if (!window.localStorage) {
 					pe.add._load(lib + 'polyfills/localstorage' + pe.suffix + '.js', 'localstorage-loaded');
 					$html.addClass('polyfill-localstorage');
@@ -1131,7 +1342,7 @@
 					js = [],
 					i,
 					_len,
-					$html = $('html');
+					$html = pe.html;
 
 				// Process each polyfill
 				for (polyname in polyfills) {
@@ -1178,11 +1389,13 @@
 					}
 				}
 
-				for (i = 0, _len = loadnow.length; i !== _len; i += 1) {
-					polyprefs = polyfills[loadnow[i]];
-					js[js.length] = (typeof polyprefs.load !== 'undefined' ? polyprefs.load : lib + 'polyfills/' + loadnow[i] + pe.suffix + '.js');
+				// Load polyfills in reverse order to better deal with nested polyfill calls
+				_len = loadnow.length;
+				while (_len--) {
+					polyprefs = polyfills[loadnow[_len]];
+					js[js.length] = (typeof polyprefs.load !== 'undefined' ? polyprefs.load : lib + 'polyfills/' + loadnow[_len] + pe.suffix + '.js');
 					if (typeof polyprefs.init !== 'undefined') {
-						needsinit.push(loadnow[i]);
+						needsinit.push(loadnow[_len]);
 					}
 					polyprefs.loaded = true;
 				}
@@ -1202,7 +1415,7 @@
 			* @function
 			*/
 			enhance: function (poly_name, objs) {
-				if ($('html').hasClass('polyfill-' + poly_name)) {
+				if (pe.html.hasClass('polyfill-' + poly_name)) {
 					objs = (typeof objs.jquery !== 'undefined' ? objs.get() : objs);
 					var polyobj = this.polyfill[poly_name],
 						objs_len = objs.length;
@@ -1221,7 +1434,6 @@
 			polyfill: {
 				'datalist': {
 					selector: 'input[list]',
-					depends: ['resize', 'outside'],
 					update: function (elms) {
 						elms.datalist();
 					},
@@ -1230,7 +1442,7 @@
 				},
 				'datepicker': {
 					selector: 'input[type="date"]',
-					depends: ['calendar', 'xregexp', 'outside'],
+					depends: ['calendar', 'xregexp'],
 					update: function (elms) {
 						elms.datepicker();
 					},
@@ -1352,7 +1564,6 @@
 				},
 				'slider': {
 					selector: 'input[type="range"]',
-					depends: ['metadata'],
 					init: function () { // Needs to be initialized manually
 						fdSlider.onDomReady();
 					},
@@ -1554,7 +1765,7 @@
 				* @return {string[]} NOTE: If d is a string, this returns a string array with 8 copies of the transformed string. If d is a string array, this returns a string array with just one entry; the transformed string.
 				*/
 				depends: function (d, css) {
-					var iscss = typeof css !== 'undefined' ? css : false, 
+					var iscss = typeof css !== 'undefined' ? css : false,
 						extension = pe.suffix + (iscss ? '.css' : '.js'),
 						dir = pe.add.liblocation + 'dependencies/' + (iscss ? 'css/' : ''),
 						c_d = $.map(d, function (a) {
@@ -1589,6 +1800,21 @@
 					pe.add.set(styleElement, 'name', name).set(styleElement, 'content', content);
 					pe.add.head.appendChild(styleElement);
 					return this;
+				},
+				/**
+				* Adds a mobile favicon to the head of the document.
+				* @memberof pe.add
+				* @function
+				* @param {string} href Path of the favicon to add
+				* @param {string} rel Value of the favicon's rel attribute
+				* @param {string} sizes Value of the favicon's sizes attribute
+				* @return {object} A reference to pe.add
+				*/
+				favicon: function(href, rel, sizes) {
+					var favicon = document.createElement('link');
+					pe.add.set(favicon, 'href', href).set(favicon, 'rel', rel).set(favicon, 'sizes', sizes);
+					pe.add.head.appendChild(favicon);
+					return this;
 				}
 			};
 		}
@@ -1596,14 +1822,14 @@
 		/**
 		* Handles loading of the plugins, dependencies and polyfills
 		* @function
-		* @param {object} options Object containing the loader options. The following optional properties are supported: 
-		* "plugins": {"plugin_name1": elms1, "plugin_name2": elms2, ...} - Names of plugins to load and the elements to load them on
-		* "global": [plugin_name1, plugin_name2, ...] - Names of global plugins to load
-		* "deps": [dependency_name1, dependenccy_name2, ...] - Names of dependences to load
-		* "poly": [polyfill_name1, polyfill_name2, ...] - Names of polyfills to load
-		* "checkdom": true/false - Enable/disable checking the DOM for "wet-boew-*" triggers
-		* "polycheckdom": true/false - Enable/disable checking the DOM for elements to polyfill
-		* @param {string} finished_event Name of the event to trigger when loading is complete (defai;t is "wb-loaded")
+		* @param {object} options Object containing the loader options. The following optional properties are supported:
+		* 'plugins': {'plugin_name1': elms1, 'plugin_name2': elms2, ...} - Names of plugins to load and the elements to load them on
+		* 'global': [plugin_name1, plugin_name2, ...] - Names of global plugins to load
+		* 'deps': [dependency_name1, dependency_name2, ...] - Names of dependences to load
+		* 'poly': [polyfill_name1, polyfill_name2, ...] - Names of polyfills to load
+		* 'checkdom': true/false - Enable/disable checking the DOM for 'wet-boew-*' triggers
+		* 'polycheckdom': true/false - Enable/disable checking the DOM for elements to polyfill
+		* @param {string} finished_event Name of the event to trigger when loading is complete (default is 'wb-loaded')
 		* @return {void}
 		*/
 		wb_load: function (options, finished_event) {
@@ -1613,12 +1839,18 @@
 			if (typeof finished_event === 'undefined') {
 				finished_event = 'wb-loaded';
 			}
-			var i, _len,
+			var i,
+				j,
+				_len,
+				_len2,
 				settings = pe.settings,
 				plugins = typeof options.plugins !== 'undefined' ? options.plugins : {},
 				plug,
+				_pcalls,
 				pcalls = typeof options.global !== 'undefined' ? options.global : [],
 				pcall,
+				node,
+				classes,
 				dep = typeof options.dep !== 'undefined' ? options.dep : [],
 				depcss = typeof options.depcss !== 'undefined' ? options.depcss : [],
 				poly = typeof options.poly !== 'undefined' ? options.poly : [],
@@ -1638,18 +1870,18 @@
 			}
 
 			// Push each of the 'wet-boew-*' plugin calls into the pcalls array
-			wetboew.each(function () {
-				var _node = $(this),
-					classes = _node.attr('class').split(' '),
-					_pcalls = [];
+			for (j = 0, _len2 = wetboew.length; j !== _len2; j += 1) {
+				node = wetboew[j];
+				classes = node.className.split(' ');
+				_pcalls = [];
 				for (i = 0, _len = classes.length; i !== _len; i += 1) {
 					if (classes[i].indexOf('wet-boew-') === 0) {
 						_pcalls.push(classes[i].substr(9).toLowerCase()); // Push the plugin call into the local array
 					}
 				}
-				_node.attr('data-load', _pcalls.join(',')); // Add the plugins to load to data-load for loading later
+				node.setAttribute('data-load', _pcalls.join(',')); // Add the plugins to load to data-load for loading later
 				pcalls.push.apply(pcalls, _pcalls); // Push the plugin calls into the pcall array
-			});
+			}
 
 			// Push each of the global plugin calls into the pcall array
 			if (settings) {
@@ -1703,16 +1935,19 @@
 							polyfills[polyinit[i]].init();
 						}
 
-						// Execute each of the node specific plugin calls
-						wetboew.each(function () {
-							var _node = $(this),
-								_fcall = _node.attr('data-load').split(',');
+						// Execute each of the node specific plugin calls in reverse order (to execute nested plugin calls first)
+						var _len2 = wetboew.length,
+							_node,
+							_fcall;
+						while (_len2--) {
+							_node = wetboew.eq(_len2);
+							_fcall = _node.attr('data-load').split(',');
 							for (i = 0, _len = _fcall.length; i !== _len; i += 1) {
 								if (typeof pe.fn[_fcall[i]] !== 'undefined') { // lets safeguard the execution to only functions we have
 									pe.fn[_fcall[i]]._exec(_node);
 								}
 							}
-						});
+						}
 
 						// Execute each of the global plugin calls
 						if (settings) {
@@ -1743,6 +1978,8 @@
 						}
 					}
 					pe.add._load_arr(pe.add.depends(pe.array.noduplicates(dep)), event_pcalldeps);
+				} else {
+					pe.document.trigger(event_pcalldeps);
 				}
 			});
 
@@ -1757,28 +1994,36 @@
 		* @todo pass an element as the context for the recursion.
 		*/
 		dance: function () {
-			var loading_finished = 'wb-init-loaded';
+			var loading_finished = 'wb-init-loaded',
+				plugins = {};
 			pe.document.one(loading_finished, function () {
 				if (!(pe.ie > 0 && pe.ie < 9)) {
 					pe.resize(function () {
 						var mobilecheck = pe.mobilecheck(),
-							tabletcheck;
+							mediumcheck;
 						if (pe.mobile !== mobilecheck) {
 							pe.mobile = mobilecheck;
-							window.location.href = decodeURI(pe.url(window.location.href).removehash());
+							window.location.reload();
 						} else {
-							tabletcheck = pe.tabletcheck();
-							if (pe.tablet && !tabletcheck) {
-								$('html').removeClass('tablet-view');
-							} else if (!pe.tablet && tabletcheck) {
-								$('html').addClass('tablet-view');
+							mediumcheck = pe.mediumcheck();
+							if (pe.medium !== mediumcheck) {
+								pe.html.toggleClass('medium-screen small-screen');
 							}
-							pe.tablet = tabletcheck;
+							pe.medium = mediumcheck;
 						}
 					});
 				}
 			});
-			pe.wb_load({'dep': ['resize', 'equalheights'], 'checkdom': true, 'polycheckdom': true}, loading_finished);
+
+			// Figure out if we need to load plugins for IE
+			if (pe.ie > 0) {
+				plugins.equalize = pe.main;
+				if (pe.ie < 9) {
+					plugins.css3ie = pe.main;
+				}
+			}
+			pe.resizeutil.init();
+			pe.wb_load({'plugins': plugins, 'checkdom': true, 'polycheckdom': true}, loading_finished);
 		}
 	};
 	/* window binding */

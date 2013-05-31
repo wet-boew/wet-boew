@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+<title>Étiquettes - Graphiques - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="French description / Description en français" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Secteur d'en-tête de plein-largeur</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="labels-eng.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-fra.html" lang="fr"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-fra.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Mise-en-%C5%93uvre-de-la-BOEW">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-fra.html">Accueil</a></li>
+<li><a href="../index-fra.html">Exemples pratiques</a></li>
+<li><a href="index-fra.html">Graphiques</a></li>
+<li>Étiquettes</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Étiquettes</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Graphiques" class="button"><span class="wb-icon-report"></span>Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button"><span class="wb-icon-question"></span>Questions ou commentaires?</a></li>
+</ul>
+
+<div class="module-info span-2 float-right">
+<h3>Pré requis</h3>
+<p>Version 3.1 de la BOEW ou plus récente</p>
+</div>
+
+
+<h2>Positionnement</h2>
+<p>Il est possible de spécifier la rangée ou la colonne qui sera utilisée pour étiqueter le graphiques. Seulement lorsque le tableau est inversé que le positionnement de l'étiquette est représenté par la colonne.</p>
+
+<p><code>wb-charts-labelposition-<strong>x</strong></code> où <strong>x</strong> représente un nombre positif associé à la rangée ou la colonne dans le tableau. La première rangée ou la première colonne est représenté par le chiffre 1. La valeur par défaut est la rangée ou la colonne qui représente les données de façons la plus précise.</p>
+
+
+
+
+<h3>Examples</h3>
+
+<table class="wet-boew-charts wb-charts-line wb-chart-labelposition-1 wb-charts-noencapsulation-true">
+	<caption>Première rangée utilisée pour étiqueter le graphique - <code>wb-charts-labelposition-1</code> </caption>
+	<thead>
+		<tr>
+			<th rowspan="2"></th>
+			<th id="tbl1363314652944-6" colspan="3">Groupe 1</th>
+			<th id="tbl1363314652944-7" colspan="2">Groupe 2</th>
+			<th id="tbl1363314652944-8" rowspan="2">bain</th>
+		</tr>
+		<tr>
+			<th headers="tbl1363314652944-6" id="tbl1363314652944-11">nourriture</th>
+			<th headers="tbl1363314652944-6" id="tbl1363314652944-12">auto</th>
+			<th headers="tbl1363314652944-6" id="tbl1363314652944-13">domestique</th>
+			<th headers="tbl1363314652944-7" id="tbl1363314652944-14">meuble</th>
+			<th headers="tbl1363314652944-7" id="tbl1363314652944-15">cuisine</th>
+		</tr>
+	</thead><tbody>
+		<tr>
+			<th id="tbl1363314652944-19">Mary</th>
+			<td headers="tbl1363314652944-6 tbl1363314652944-11 tbl1363314652944-19">300</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-12 tbl1363314652944-19">160</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-13 tbl1363314652944-19">40</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-14 tbl1363314652944-19">120</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-15 tbl1363314652944-19">100</td>
+			<td headers="tbl1363314652944-8 tbl1363314652944-19">70</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314652944-38">Tom</th>
+			<td headers="tbl1363314652944-6 tbl1363314652944-11 tbl1363314652944-38">3</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-12 tbl1363314652944-38">40</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-13 tbl1363314652944-38">30</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-14 tbl1363314652944-38">45</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-15 tbl1363314652944-38">35</td>
+			<td headers="tbl1363314652944-8 tbl1363314652944-38">49</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314652944-48">Brad</th>
+			<td headers="tbl1363314652944-6 tbl1363314652944-11 tbl1363314652944-48">10</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-12 tbl1363314652944-48">180</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-13 tbl1363314652944-48">10</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-14 tbl1363314652944-48">85</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-15 tbl1363314652944-48">70</td>
+			<td headers="tbl1363314652944-8 tbl1363314652944-48">79</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314652944-58">Kate</th>
+			<td headers="tbl1363314652944-6 tbl1363314652944-11 tbl1363314652944-58">40</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-12 tbl1363314652944-58">80</td>
+			<td headers="tbl1363314652944-6 tbl1363314652944-13 tbl1363314652944-58">90</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-14 tbl1363314652944-58">25</td>
+			<td headers="tbl1363314652944-7 tbl1363314652944-15 tbl1363314652944-58">15</td>
+			<td headers="tbl1363314652944-8 tbl1363314652944-58">119</td>
+		</tr>
+	</tbody></table>
+
+<hr />
+
+<table class="wet-boew-charts wb-charts-line wb-charts-labelposition-2 wb-charts-noencapsulation-true">
+	<caption>Deuxième rangée utilisée pour étiqueter le graphique - <code>wb-charts-labelposition-2</code></caption>
+	<thead>
+		<tr>
+			<th rowspan="2"></th>
+			<th id="tbl1363314702030-6" colspan="3">Groupe 1</th>
+			<th id="tbl1363314702030-7" colspan="2">Groupe 2</th>
+			<th id="tbl1363314702030-8" rowspan="2">bain</th>
+		</tr>
+		<tr>
+			<th headers="tbl1363314702030-6" id="tbl1363314702030-11">nourriture</th>
+			<th headers="tbl1363314702030-6" id="tbl1363314702030-12">auto</th>
+			<th headers="tbl1363314702030-6" id="tbl1363314702030-13">domestique</th>
+			<th headers="tbl1363314702030-7" id="tbl1363314702030-14">meuble</th>
+			<th headers="tbl1363314702030-7" id="tbl1363314702030-15">cuisine</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th id="tbl1363314702030-19">Mary</th>
+			<td headers="tbl1363314702030-6 tbl1363314702030-11 tbl1363314702030-19">300</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-12 tbl1363314702030-19">160</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-13 tbl1363314702030-19">40</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-14 tbl1363314702030-19">120</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-15 tbl1363314702030-19">100</td>
+			<td headers="tbl1363314702030-8 tbl1363314702030-19">70</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314702030-38">Tom</th>
+			<td headers="tbl1363314702030-6 tbl1363314702030-11 tbl1363314702030-38">3</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-12 tbl1363314702030-38">40</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-13 tbl1363314702030-38">30</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-14 tbl1363314702030-38">45</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-15 tbl1363314702030-38">35</td>
+			<td headers="tbl1363314702030-8 tbl1363314702030-38">49</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314702030-48">Brad</th>
+			<td headers="tbl1363314702030-6 tbl1363314702030-11 tbl1363314702030-48">10</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-12 tbl1363314702030-48">180</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-13 tbl1363314702030-48">10</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-14 tbl1363314702030-48">85</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-15 tbl1363314702030-48">70</td>
+			<td headers="tbl1363314702030-8 tbl1363314702030-48">79</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314702030-58">Kate</th>
+			<td headers="tbl1363314702030-6 tbl1363314702030-11 tbl1363314702030-58">40</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-12 tbl1363314702030-58">80</td>
+			<td headers="tbl1363314702030-6 tbl1363314702030-13 tbl1363314702030-58">90</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-14 tbl1363314702030-58">25</td>
+			<td headers="tbl1363314702030-7 tbl1363314702030-15 tbl1363314702030-58">15</td>
+			<td headers="tbl1363314702030-8 tbl1363314702030-58">119</td>
+		</tr>
+	</tbody>
+</table>
+
+<hr />
+
+<table class="wet-boew-charts wb-charts-line wb-charts-labelposition-1 wb-charts-noencapsulation-true wb-charts-parsedirection-y">
+	<caption>Première colonne utilisée pour étiqueter le graphique - <code>wb-charts-labelposition-1</code> </caption>
+	<thead>
+		<tr>
+			<th colspan="2"></th>
+			<th id="tbl1363314739889-6">nourriture</th>
+			<th id="tbl1363314739889-7">auto</th>
+			<th id="tbl1363314739889-8">domestique</th>
+			<th id="tbl1363314739889-9">meuble</th>
+			<th id="tbl1363314739889-10">cuisine</th>
+			<th id="tbl1363314739889-11">bain</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th id="tbl1363314739889-15" colspan="2">Mary</th>
+			<td headers="tbl1363314739889-6 tbl1363314739889-15">300</td>
+			<td headers="tbl1363314739889-7 tbl1363314739889-15">160</td>
+			<td headers="tbl1363314739889-8 tbl1363314739889-15">40</td>
+			<td headers="tbl1363314739889-9 tbl1363314739889-15">120</td>
+			<td headers="tbl1363314739889-10 tbl1363314739889-15">100</td>
+			<td headers="tbl1363314739889-11 tbl1363314739889-15">70</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314739889-35" rowspan="2">Groupe</th>
+			<th headers="tbl1363314739889-35" id="tbl1363314739889-36">Tom</th>
+			<td headers="tbl1363314739889-6 tbl1363314739889-35 tbl1363314739889-36">3</td>
+			<td headers="tbl1363314739889-7 tbl1363314739889-35 tbl1363314739889-36">40</td>
+			<td headers="tbl1363314739889-8 tbl1363314739889-35 tbl1363314739889-36">30</td>
+			<td headers="tbl1363314739889-9 tbl1363314739889-35 tbl1363314739889-36">45</td>
+			<td headers="tbl1363314739889-10 tbl1363314739889-35 tbl1363314739889-36">35</td>
+			<td headers="tbl1363314739889-11 tbl1363314739889-35 tbl1363314739889-36">49</td>
+		</tr>
+		<tr>
+			<th headers="tbl1363314739889-35" id="tbl1363314739889-46">Brad</th>
+			<td headers="tbl1363314739889-6 tbl1363314739889-35 tbl1363314739889-46">10</td>
+			<td headers="tbl1363314739889-7 tbl1363314739889-35 tbl1363314739889-46">180</td>
+			<td headers="tbl1363314739889-8 tbl1363314739889-35 tbl1363314739889-46">10</td>
+			<td headers="tbl1363314739889-9 tbl1363314739889-35 tbl1363314739889-46">85</td>
+			<td headers="tbl1363314739889-10 tbl1363314739889-35 tbl1363314739889-46">70</td>
+			<td headers="tbl1363314739889-11 tbl1363314739889-35 tbl1363314739889-46">79</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314739889-56" colspan="2">Kate</th>
+			<td headers="tbl1363314739889-6 tbl1363314739889-56">40</td>
+			<td headers="tbl1363314739889-7 tbl1363314739889-56">80</td>
+			<td headers="tbl1363314739889-8 tbl1363314739889-56">90</td>
+			<td headers="tbl1363314739889-9 tbl1363314739889-56">25</td>
+			<td headers="tbl1363314739889-10 tbl1363314739889-56">15</td>
+			<td headers="tbl1363314739889-11 tbl1363314739889-56">119</td>
+		</tr>
+	</tbody>
+</table>
+
+<hr />
+
+<table class="wet-boew-charts wb-charts-line wb-charts-labelposition-2 wb-charts-noencapsulation-true wb-charts-parsedirection-y">
+	<caption>Deuxième rangée utilisée pour étiqueter le graphique - <code>wb-charts-labelposition-2</code> </caption>
+	<thead>
+		<tr>
+			<th colspan="2"></th>
+			<th id="tbl1363314789868-6">nourriture</th>
+			<th id="tbl1363314789868-7">auto</th>
+			<th id="tbl1363314789868-8">domestique</th>
+			<th id="tbl1363314789868-9">meuble</th>
+			<th id="tbl1363314789868-10">cuisine</th>
+			<th id="tbl1363314789868-11">bain</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th id="tbl1363314789868-15" colspan="2">Mary</th>
+			<td headers="tbl1363314789868-6 tbl1363314789868-15">300</td>
+			<td headers="tbl1363314789868-7 tbl1363314789868-15">160</td>
+			<td headers="tbl1363314789868-8 tbl1363314789868-15">40</td>
+			<td headers="tbl1363314789868-9 tbl1363314789868-15">120</td>
+			<td headers="tbl1363314789868-10 tbl1363314789868-15">100</td>
+			<td headers="tbl1363314789868-11 tbl1363314789868-15">70</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314789868-35" rowspan="2">Groupe</th>
+			<th headers="tbl1363314789868-35" id="tbl1363314789868-36">Tom</th>
+			<td headers="tbl1363314789868-6 tbl1363314789868-35 tbl1363314789868-36">3</td>
+			<td headers="tbl1363314789868-7 tbl1363314789868-35 tbl1363314789868-36">40</td>
+			<td headers="tbl1363314789868-8 tbl1363314789868-35 tbl1363314789868-36">30</td>
+			<td headers="tbl1363314789868-9 tbl1363314789868-35 tbl1363314789868-36">45</td>
+			<td headers="tbl1363314789868-10 tbl1363314789868-35 tbl1363314789868-36">35</td>
+			<td headers="tbl1363314789868-11 tbl1363314789868-35 tbl1363314789868-36">49</td>
+		</tr>
+		<tr>
+			<th headers="tbl1363314789868-35" id="tbl1363314789868-46">Brad</th>
+			<td headers="tbl1363314789868-6 tbl1363314789868-35 tbl1363314789868-46">10</td>
+			<td headers="tbl1363314789868-7 tbl1363314789868-35 tbl1363314789868-46">180</td>
+			<td headers="tbl1363314789868-8 tbl1363314789868-35 tbl1363314789868-46">10</td>
+			<td headers="tbl1363314789868-9 tbl1363314789868-35 tbl1363314789868-46">85</td>
+			<td headers="tbl1363314789868-10 tbl1363314789868-35 tbl1363314789868-46">70</td>
+			<td headers="tbl1363314789868-11 tbl1363314789868-35 tbl1363314789868-46">79</td>
+		</tr>
+		<tr>
+			<th id="tbl1363314789868-56" colspan="2">Kate</th>
+			<td headers="tbl1363314789868-6 tbl1363314789868-56">40</td>
+			<td headers="tbl1363314789868-7 tbl1363314789868-56">80</td>
+			<td headers="tbl1363314789868-8 tbl1363314789868-56">90</td>
+			<td headers="tbl1363314789868-9 tbl1363314789868-56">25</td>
+			<td headers="tbl1363314789868-10 tbl1363314789868-56">15</td>
+			<td headers="tbl1363314789868-11 tbl1363314789868-56">119</td>
+		</tr>
+	</tbody>
+</table>
+
+<hr />
+
+<h2>Positionnement par intervale uniformes</h2>
+
+<p>Par défaut, le positionnement des données du graphique est par intervale uniforme qui veux dire que chaque colonne du tableau occupe un espace equivalente dans le graphique. Lorsque le positionnement par intervale est désactivé, <code>wb-charts-uniformtick-false</code>, l'imbrication de la colonne à l'intérieur de d'autre groupe va influencer le positionnement des étiquettes, avec leurs données, par rapport à l'axe des x (horizontal).</p>
+
+<h3>Exemples</h3>
+
+<table class="wet-boew-charts wb-charts-uniformtick-false wb-charts-noencapsulation-true">
+<caption>Intervale uniformes désactivé <code>wb-charts-uniformtick-false</code></caption>
+<thead>
+<tr>
+<th rowspan="3" colspan="2"></th>
+<th id="tbl1363314833611-6" colspan="6">Année précédente</th>
+<th id="tbl1363314833611-7" rowspan="3">2008 - T1</th>
+<th id="tbl1363314833611-8" rowspan="3">2008 - T1</th>
+</tr>
+<tr>
+<th headers="tbl1363314833611-6" id="tbl1363314833611-11" colspan="2">2006</th>
+<th headers="tbl1363314833611-6" id="tbl1363314833611-12" colspan="4">2007</th>
+</tr>
+<tr>
+<th headers="tbl1363314833611-6 tbl1363314833611-11" id="tbl1363314833611-15">T3</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-11" id="tbl1363314833611-16">T4</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-17">T1</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-18">T2</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-19">T3</th>
+<th headers="tbl1363314833611-6 tbl1363314833611-12" id="tbl1363314833611-20">T4</th>
+</tr>
+</thead><tbody>
+<tr>
+<th id="tbl1363314833611-24" colspan="2" class="wb-charts-stacked">Biens</th>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-15 tbl1363314833611-24">11,406</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-16 tbl1363314833611-24">12,139</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-17 tbl1363314833611-24">13,563</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-18 tbl1363314833611-24">$15,134</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-19 tbl1363314833611-24">9,510 $</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-20 tbl1363314833611-24">9,230</td>
+<td headers="tbl1363314833611-7 tbl1363314833611-24">12,551</td>
+<td headers="tbl1363314833611-8 tbl1363314833611-24">12,551</td>
+</tr>
+<tr>
+<th id="tbl1363314833611-48" rowspan="2" class="wb-charts-line">Groupe de test</th>
+<th headers="tbl1363314833611-48" id="tbl1363314833611-49" class="wb-charts-stacked">Autre compte courant</th>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-15 tbl1363314833611-48 tbl1363314833611-49">-7,010</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-16 tbl1363314833611-48 tbl1363314833611-49">-7,437</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-17 tbl1363314833611-18 tbl1363314833611-19 tbl1363314833611-48 tbl1363314833611-59 tbl1363314833611-59" rowspan="2" colspan="3">-10,231</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-20 tbl1363314833611-48 tbl1363314833611-49">-7,009</td>
+<td headers="tbl1363314833611-7 tbl1363314833611-48 tbl1363314833611-49">-6,387</td>
+<td headers="tbl1363314833611-8 tbl1363314833611-48 tbl1363314833611-49">-6,387</td>
+</tr>
+<tr>
+<th headers="tbl1363314833611-48" id="tbl1363314833611-59" class="wb-charts-area">Total</th>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-15 tbl1363314833611-48 tbl1363314833611-59">4,396</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-11 tbl1363314833611-16 tbl1363314833611-48 tbl1363314833611-59">4,702</td>
+<td headers="tbl1363314833611-6 tbl1363314833611-12 tbl1363314833611-20 tbl1363314833611-48 tbl1363314833611-59">2,221</td>
+<td headers="tbl1363314833611-7 tbl1363314833611-48 tbl1363314833611-59">-6,164</td>
+<td headers="tbl1363314833611-8 tbl1363314833611-48 tbl1363314833611-59">6,164</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<table class="wet-boew-charts  wb-charts-noencapsulation-true wb-charts-uniformtick-true">
+<caption>Intervale uniformes activé (par défaut ou avec <code>wb-charts-uniformtick-true</code>)</caption>
+<thead>
+<tr>
+<th rowspan="3" colspan="2"></th>
+<th id="tbl1363314869184-6" colspan="6">Année précédente</th>
+<th id="tbl1363314869184-7" rowspan="3">2008 - T1</th>
+<th id="tbl1363314869184-8" rowspan="3">2008 - T1</th>
+</tr>
+<tr>
+<th headers="tbl1363314869184-6" id="tbl1363314869184-11" colspan="2">2006</th>
+<th headers="tbl1363314869184-6" id="tbl1363314869184-12" colspan="4">2007</th>
+</tr>
+<tr>
+<th headers="tbl1363314869184-6 tbl1363314869184-11" id="tbl1363314869184-15">T3</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-11" id="tbl1363314869184-16">T4</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-17">T1</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-18">T2</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-19">T3</th>
+<th headers="tbl1363314869184-6 tbl1363314869184-12" id="tbl1363314869184-20">T4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th id="tbl1363314869184-24" colspan="2" class="wb-charts-stacked">Biens</th>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-15 tbl1363314869184-24">11,406</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-16 tbl1363314869184-24">12,139</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-17 tbl1363314869184-24">13,563</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-18 tbl1363314869184-24">$15,134</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-19 tbl1363314869184-24">9,510 $</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-20 tbl1363314869184-24">9,230</td>
+<td headers="tbl1363314869184-7 tbl1363314869184-24">12,551</td>
+<td headers="tbl1363314869184-8 tbl1363314869184-24">12,551</td>
+</tr>
+<tr>
+<th id="tbl1363314869184-48" rowspan="2" class="wb-charts-line">Groupe de test</th>
+<th headers="tbl1363314869184-48" id="tbl1363314869184-49" class="wb-charts-stacked">Autre compte courant</th>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-15 tbl1363314869184-48 tbl1363314869184-49">-7,010</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-16 tbl1363314869184-48 tbl1363314869184-49">-7,437</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-17 tbl1363314869184-18 tbl1363314869184-19 tbl1363314869184-48 tbl1363314869184-59 tbl1363314869184-59" rowspan="2" colspan="3">-10,231</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-20 tbl1363314869184-48 tbl1363314869184-49">-7,009</td>
+<td headers="tbl1363314869184-7 tbl1363314869184-48 tbl1363314869184-49">-6,387</td>
+<td headers="tbl1363314869184-8 tbl1363314869184-48 tbl1363314869184-49">-6,387</td>
+</tr>
+<tr>
+<th headers="tbl1363314869184-48" id="tbl1363314869184-59" class="wb-charts-area">Total</th>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-15 tbl1363314869184-48 tbl1363314869184-59">4,396</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-11 tbl1363314869184-16 tbl1363314869184-48 tbl1363314869184-59">4,702</td>
+<td headers="tbl1363314869184-6 tbl1363314869184-12 tbl1363314869184-20 tbl1363314869184-48 tbl1363314869184-59">2,221</td>
+<td headers="tbl1363314869184-7 tbl1363314869184-48 tbl1363314869184-59">-6,164</td>
+<td headers="tbl1363314869184-8 tbl1363314869184-48 tbl1363314869184-59">6,164</td>
+</tr>
+</tbody>
+</table>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fra.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<section><div id="wet-fullft"><h3>Secteur de pied de page de plein-largeur</h3>
+<div id="wet-fullft-in"></div>
+</div></section>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

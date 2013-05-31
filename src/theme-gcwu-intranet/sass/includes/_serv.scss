@@ -1,22 +1,22 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 
 /** From branding.css **/
-%intranet-serv-height-20px {
+%gcwu-intranet-serv-height-20px {
 	height: 20px !important;
 }
 
 #gcwu-sig {
-	@extend %intranet-serv-height-20px;
+	@extend %gcwu-intranet-serv-height-20px;
 	img {
-		@extend %intranet-serv-height-20px;
+		@extend %gcwu-intranet-serv-height-20px;
 	}
 }
 
 #gcwu-sig-in {
-	@extend %intranet-serv-height-20px;
+	@extend %gcwu-intranet-serv-height-20px;
 }
 
 #wb-core-in {
@@ -27,16 +27,16 @@
 	}
 }
 
-%intranet-serv-a-color-28507a {
+%gcwu-intranet-serv-a-color-28507a {
 	a {
 		color: #28507a;
 	}
 }
 
 #gcwu-title-left {
-	@extend %intranet-serv-a-color-28507a;
+	@extend %gcwu-intranet-serv-a-color-28507a;
 }
 
 #gcwu-title-right {
-	@extend %intranet-serv-a-color-28507a;
+	@extend %gcwu-intranet-serv-a-color-28507a;
 }

@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 .ie7 {
 	#wb-head {
@@ -42,7 +42,7 @@
 		}
 		h3 {
 			a {
-				&:hover, &:focus, &:active {
+				@include pseudo-focus {
 					zoom: 1;
 				}
 			}

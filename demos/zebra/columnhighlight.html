@@ -1,0 +1,2777 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+<title>Column Highlight Table - Zebra striping - Working examples - Web Experience Toolkit&#160;(WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Full-width header area</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="#" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-eng.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-eng.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li><a href="zebra-eng.html">Zebra striping</a></li>
+<li>Column Highlight Table</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Column Highlight Table</h1>
+
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Zebra-striping" class="button"><span class="wb-icon-report"></span>Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button"><span class="wb-icon-question"></span>Questions or comments?</a></li>
+</ul>
+
+<div class="module-note span-6">
+	<p><strong>Note:</strong></p>
+	<p>Id/headers was omited in the source example.</p>
+</div>
+
+
+<table class="wet-boew-zebra columnhighlight hassum">
+	<caption>
+		<strong>Column Highlight with summary Table 1</strong>
+		<p>With a "<code>th</code>" layout cell at the top left corner and a "<code>td</code>" layout cell at the summary intersection. <code>hassumm</code> option is added.</p>
+	</caption>
+	<colgroup>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th rowspan="2"></th>
+			<th colspan="8" id="tbla19">Group Header</th>
+			<th rowspan="2" id="tbla20">Summary</th>
+		</tr>
+		<tr>
+			<th id="tbla23" headers="tbla19">Header</th>
+			<th id="tbla24" headers="tbla19">Header</th>
+			<th id="tbla25" headers="tbla19">Header</th>
+			<th id="tbla26" headers="tbla19">Header</th>
+			<th id="tbla27" headers="tbla19">Header</th>
+			<th id="tbla28" headers="tbla19">Header</th>
+			<th id="tbla29" headers="tbla19">Header</th>
+			<th id="tbla30" headers="tbla19">Header</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tbla34">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tbla37" headers="tbla34">Header</th>
+			<td headers="tbla19 tbla23 tbla34 tbla37">Data</td>
+			<td headers="tbla19 tbla24 tbla34 tbla37">Data</td>
+			<td headers="tbla19 tbla25 tbla34 tbla37">Data</td>
+			<td headers="tbla19 tbla26 tbla34 tbla37">Data</td>
+			<td headers="tbla19 tbla27 tbla34 tbla37">Data</td>
+			<td headers="tbla19 tbla28 tbla34 tbla37">Data</td>
+			<td headers="tbla19 tbla29 tbla34 tbla37">Data</td>
+			<td headers="tbla19 tbla30 tbla34 tbla37">Data</td>
+			<td headers="tbla20 tbla34 tbla37">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla50" headers="tbla34">Header</th>
+			<td headers="tbla19 tbla23 tbla34 tbla50">Data</td>
+			<td headers="tbla19 tbla24 tbla34 tbla50">Data</td>
+			<td headers="tbla19 tbla25 tbla34 tbla50">Data</td>
+			<td headers="tbla19 tbla26 tbla34 tbla50">Data</td>
+			<td headers="tbla19 tbla27 tbla34 tbla50">Data</td>
+			<td headers="tbla19 tbla28 tbla34 tbla50">Data</td>
+			<td headers="tbla19 tbla29 tbla34 tbla50">Data</td>
+			<td headers="tbla19 tbla30 tbla34 tbla50">Data</td>
+			<td headers="tbla20 tbla34 tbla50">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla63" headers="tbla34">Header</th>
+			<td headers="tbla19 tbla23 tbla34 tbla63">Data</td>
+			<td headers="tbla19 tbla24 tbla34 tbla63">Data</td>
+			<td headers="tbla19 tbla25 tbla34 tbla63">Data</td>
+			<td headers="tbla19 tbla26 tbla34 tbla63">Data</td>
+			<td headers="tbla19 tbla27 tbla34 tbla63">Data</td>
+			<td headers="tbla19 tbla28 tbla34 tbla63">Data</td>
+			<td headers="tbla19 tbla29 tbla34 tbla63">Data</td>
+			<td headers="tbla19 tbla30 tbla34 tbla63">Data</td>
+			<td headers="tbla20 tbla34 tbla63">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla76" headers="tbla34">Header</th>
+			<td headers="tbla19 tbla23 tbla34 tbla76">Data</td>
+			<td headers="tbla19 tbla24 tbla34 tbla76">Data</td>
+			<td headers="tbla19 tbla25 tbla34 tbla76">Data</td>
+			<td headers="tbla19 tbla26 tbla34 tbla76">Data</td>
+			<td headers="tbla19 tbla27 tbla34 tbla76">Data</td>
+			<td headers="tbla19 tbla28 tbla34 tbla76">Data</td>
+			<td headers="tbla19 tbla29 tbla34 tbla76">Data</td>
+			<td headers="tbla19 tbla30 tbla34 tbla76">Data</td>
+			<td headers="tbla20 tbla34 tbla76">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tbla90" headers="tbla34">Summary</th>
+			<td headers="tbla19 tbla23 tbla34 tbla90">Data</td>
+			<td headers="tbla19 tbla24 tbla34 tbla90">Data</td>
+			<td headers="tbla19 tbla25 tbla34 tbla90">Data</td>
+			<td headers="tbla19 tbla26 tbla34 tbla90">Data</td>
+			<td headers="tbla19 tbla27 tbla34 tbla90">Data</td>
+			<td headers="tbla19 tbla28 tbla34 tbla90">Data</td>
+			<td headers="tbla19 tbla29 tbla34 tbla90">Data</td>
+			<td headers="tbla19 tbla30 tbla34 tbla90">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tbla104">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tbla107" headers="tbla104">Header</th>
+			<td headers="tbla19 tbla23 tbla104 tbla107">Data</td>
+			<td headers="tbla19 tbla24 tbla104 tbla107">Data</td>
+			<td headers="tbla19 tbla25 tbla104 tbla107">Data</td>
+			<td headers="tbla19 tbla26 tbla104 tbla107">Data</td>
+			<td headers="tbla19 tbla27 tbla104 tbla107">Data</td>
+			<td headers="tbla19 tbla28 tbla104 tbla107">Data</td>
+			<td headers="tbla19 tbla29 tbla104 tbla107">Data</td>
+			<td headers="tbla19 tbla30 tbla104 tbla107">Data</td>
+			<td headers="tbla20 tbla104 tbla107">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla120" headers="tbla104">Header</th>
+			<td headers="tbla19 tbla23 tbla104 tbla120">Data</td>
+			<td headers="tbla19 tbla24 tbla104 tbla120">Data</td>
+			<td headers="tbla19 tbla25 tbla104 tbla120">Data</td>
+			<td headers="tbla19 tbla26 tbla104 tbla120">Data</td>
+			<td headers="tbla19 tbla27 tbla104 tbla120">Data</td>
+			<td headers="tbla19 tbla28 tbla104 tbla120">Data</td>
+			<td headers="tbla19 tbla29 tbla104 tbla120">Data</td>
+			<td headers="tbla19 tbla30 tbla104 tbla120">Data</td>
+			<td headers="tbla20 tbla104 tbla120">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla133" headers="tbla104">Header</th>
+			<td headers="tbla19 tbla23 tbla104 tbla133">Data</td>
+			<td headers="tbla19 tbla24 tbla104 tbla133">Data</td>
+			<td headers="tbla19 tbla25 tbla104 tbla133">Data</td>
+			<td headers="tbla19 tbla26 tbla104 tbla133">Data</td>
+			<td headers="tbla19 tbla27 tbla104 tbla133">Data</td>
+			<td headers="tbla19 tbla28 tbla104 tbla133">Data</td>
+			<td headers="tbla19 tbla29 tbla104 tbla133">Data</td>
+			<td headers="tbla19 tbla30 tbla104 tbla133">Data</td>
+			<td headers="tbla20 tbla104 tbla133">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla146" headers="tbla104">Header</th>
+			<td headers="tbla19 tbla23 tbla104 tbla146">Data</td>
+			<td headers="tbla19 tbla24 tbla104 tbla146">Data</td>
+			<td headers="tbla19 tbla25 tbla104 tbla146">Data</td>
+			<td headers="tbla19 tbla26 tbla104 tbla146">Data</td>
+			<td headers="tbla19 tbla27 tbla104 tbla146">Data</td>
+			<td headers="tbla19 tbla28 tbla104 tbla146">Data</td>
+			<td headers="tbla19 tbla29 tbla104 tbla146">Data</td>
+			<td headers="tbla19 tbla30 tbla104 tbla146">Data</td>
+			<td headers="tbla20 tbla104 tbla146">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tbla160" headers="tbla104">Summary</th>
+			<td headers="tbla19 tbla23 tbla104 tbla160">Data</td>
+			<td headers="tbla19 tbla24 tbla104 tbla160">Data</td>
+			<td headers="tbla19 tbla25 tbla104 tbla160">Data</td>
+			<td headers="tbla19 tbla26 tbla104 tbla160">Data</td>
+			<td headers="tbla19 tbla27 tbla104 tbla160">Data</td>
+			<td headers="tbla19 tbla28 tbla104 tbla160">Data</td>
+			<td headers="tbla19 tbla29 tbla104 tbla160">Data</td>
+			<td headers="tbla19 tbla30 tbla104 tbla160">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tbla174">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tbla177" headers="tbla174">Header</th>
+			<td headers="tbla19 tbla23 tbla174 tbla177">Data</td>
+			<td headers="tbla19 tbla24 tbla174 tbla177">Data</td>
+			<td headers="tbla19 tbla25 tbla174 tbla177">Data</td>
+			<td headers="tbla19 tbla26 tbla174 tbla177">Data</td>
+			<td headers="tbla19 tbla27 tbla174 tbla177">Data</td>
+			<td headers="tbla19 tbla28 tbla174 tbla177">Data</td>
+			<td headers="tbla19 tbla29 tbla174 tbla177">Data</td>
+			<td headers="tbla19 tbla30 tbla174 tbla177">Data</td>
+			<td headers="tbla20 tbla174 tbla177">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla190" headers="tbla174">Header</th>
+			<td headers="tbla19 tbla23 tbla174 tbla190">Data</td>
+			<td headers="tbla19 tbla24 tbla174 tbla190">Data</td>
+			<td headers="tbla19 tbla25 tbla174 tbla190">Data</td>
+			<td headers="tbla19 tbla26 tbla174 tbla190">Data</td>
+			<td headers="tbla19 tbla27 tbla174 tbla190">Data</td>
+			<td headers="tbla19 tbla28 tbla174 tbla190">Data</td>
+			<td headers="tbla19 tbla29 tbla174 tbla190">Data</td>
+			<td headers="tbla19 tbla30 tbla174 tbla190">Data</td>
+			<td headers="tbla20 tbla174 tbla190">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla203" headers="tbla174">Header</th>
+			<td headers="tbla19 tbla23 tbla174 tbla203">Data</td>
+			<td headers="tbla19 tbla24 tbla174 tbla203">Data</td>
+			<td headers="tbla19 tbla25 tbla174 tbla203">Data</td>
+			<td headers="tbla19 tbla26 tbla174 tbla203">Data</td>
+			<td headers="tbla19 tbla27 tbla174 tbla203">Data</td>
+			<td headers="tbla19 tbla28 tbla174 tbla203">Data</td>
+			<td headers="tbla19 tbla29 tbla174 tbla203">Data</td>
+			<td headers="tbla19 tbla30 tbla174 tbla203">Data</td>
+			<td headers="tbla20 tbla174 tbla203">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla216" headers="tbla174">Header</th>
+			<td headers="tbla19 tbla23 tbla174 tbla216">Data</td>
+			<td headers="tbla19 tbla24 tbla174 tbla216">Data</td>
+			<td headers="tbla19 tbla25 tbla174 tbla216">Data</td>
+			<td headers="tbla19 tbla26 tbla174 tbla216">Data</td>
+			<td headers="tbla19 tbla27 tbla174 tbla216">Data</td>
+			<td headers="tbla19 tbla28 tbla174 tbla216">Data</td>
+			<td headers="tbla19 tbla29 tbla174 tbla216">Data</td>
+			<td headers="tbla19 tbla30 tbla174 tbla216">Data</td>
+			<td headers="tbla20 tbla174 tbla216">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tbla230" headers="tbla174">Summary</th>
+			<td headers="tbla19 tbla23 tbla174 tbla230">Data</td>
+			<td headers="tbla19 tbla24 tbla174 tbla230">Data</td>
+			<td headers="tbla19 tbla25 tbla174 tbla230">Data</td>
+			<td headers="tbla19 tbla26 tbla174 tbla230">Data</td>
+			<td headers="tbla19 tbla27 tbla174 tbla230">Data</td>
+			<td headers="tbla19 tbla28 tbla174 tbla230">Data</td>
+			<td headers="tbla19 tbla29 tbla174 tbla230">Data</td>
+			<td headers="tbla19 tbla30 tbla174 tbla230">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tbla244">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tbla247" headers="tbla244">Header</th>
+			<td headers="tbla19 tbla23 tbla244 tbla247">Data</td>
+			<td headers="tbla19 tbla24 tbla244 tbla247">Data</td>
+			<td headers="tbla19 tbla25 tbla244 tbla247">Data</td>
+			<td headers="tbla19 tbla26 tbla244 tbla247">Data</td>
+			<td headers="tbla19 tbla27 tbla244 tbla247">Data</td>
+			<td headers="tbla19 tbla28 tbla244 tbla247">Data</td>
+			<td headers="tbla19 tbla29 tbla244 tbla247">Data</td>
+			<td headers="tbla19 tbla30 tbla244 tbla247">Data</td>
+			<td headers="tbla20 tbla244 tbla247">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla260" headers="tbla244">Header</th>
+			<td headers="tbla19 tbla23 tbla244 tbla260">Data</td>
+			<td headers="tbla19 tbla24 tbla244 tbla260">Data</td>
+			<td headers="tbla19 tbla25 tbla244 tbla260">Data</td>
+			<td headers="tbla19 tbla26 tbla244 tbla260">Data</td>
+			<td headers="tbla19 tbla27 tbla244 tbla260">Data</td>
+			<td headers="tbla19 tbla28 tbla244 tbla260">Data</td>
+			<td headers="tbla19 tbla29 tbla244 tbla260">Data</td>
+			<td headers="tbla19 tbla30 tbla244 tbla260">Data</td>
+			<td headers="tbla20 tbla244 tbla260">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla273" headers="tbla244">Header</th>
+			<td headers="tbla19 tbla23 tbla244 tbla273">Data</td>
+			<td headers="tbla19 tbla24 tbla244 tbla273">Data</td>
+			<td headers="tbla19 tbla25 tbla244 tbla273">Data</td>
+			<td headers="tbla19 tbla26 tbla244 tbla273">Data</td>
+			<td headers="tbla19 tbla27 tbla244 tbla273">Data</td>
+			<td headers="tbla19 tbla28 tbla244 tbla273">Data</td>
+			<td headers="tbla19 tbla29 tbla244 tbla273">Data</td>
+			<td headers="tbla19 tbla30 tbla244 tbla273">Data</td>
+			<td headers="tbla20 tbla244 tbla273">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla286" headers="tbla244">Header</th>
+			<td headers="tbla19 tbla23 tbla244 tbla286">Data</td>
+			<td headers="tbla19 tbla24 tbla244 tbla286">Data</td>
+			<td headers="tbla19 tbla25 tbla244 tbla286">Data</td>
+			<td headers="tbla19 tbla26 tbla244 tbla286">Data</td>
+			<td headers="tbla19 tbla27 tbla244 tbla286">Data</td>
+			<td headers="tbla19 tbla28 tbla244 tbla286">Data</td>
+			<td headers="tbla19 tbla29 tbla244 tbla286">Data</td>
+			<td headers="tbla19 tbla30 tbla244 tbla286">Data</td>
+			<td headers="tbla20 tbla244 tbla286">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tbla300" headers="tbla244">Summary</th>
+			<td headers="tbla19 tbla23 tbla244 tbla300">Data</td>
+			<td headers="tbla19 tbla24 tbla244 tbla300">Data</td>
+			<td headers="tbla19 tbla25 tbla244 tbla300">Data</td>
+			<td headers="tbla19 tbla26 tbla244 tbla300">Data</td>
+			<td headers="tbla19 tbla27 tbla244 tbla300">Data</td>
+			<td headers="tbla19 tbla28 tbla244 tbla300">Data</td>
+			<td headers="tbla19 tbla29 tbla244 tbla300">Data</td>
+			<td headers="tbla19 tbla30 tbla244 tbla300">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tbla314" headers="">Summary</th>
+			<td headers="tbla19 tbla23 tbla314">Data</td>
+			<td headers="tbla19 tbla24 tbla314">Data</td>
+			<td headers="tbla19 tbla25 tbla314">Data</td>
+			<td headers="tbla19 tbla26 tbla314">Data</td>
+			<td headers="tbla19 tbla27 tbla314">Data</td>
+			<td headers="tbla19 tbla28 tbla314">Data</td>
+			<td headers="tbla19 tbla29 tbla314">Data</td>
+			<td headers="tbla19 tbla30 tbla314">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Source Code of Column Highlight with Summary Table 1</summary>
+<pre><code>
+
+
+&lt;table class="wet-boew-zebra columnhighlight hassum"&gt;
+	&lt;caption&gt;
+		&lt;strong&gt;Column Highlight with summary Table 1&lt;/strong&gt;
+		&lt;p&gt;With a "&lt;code&gt;th&lt;/code&gt;" layout cell at the top left corner and a "&lt;code&gt;td&lt;/code&gt;" layout cell at the summary intersection. &lt;code&gt;hassumm&lt;/code&gt; option is added.&lt;/p&gt;
+	&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th rowspan="2"&gt;&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group Header&lt;/th&gt;
+			&lt;th rowspan="2"&gt;Summary&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+
+</details>
+
+
+
+
+<table class="wet-boew-zebra norowheaderhighlight columnhighlight hassum">
+	<caption>
+		<strong>Column Highlight with summary Table 2</strong>
+		<p>With a "<code>th</code>" layout cell at the top left corner, a "<code>td</code>" layout cell at the summary intersection and with the option "<code>norowheaderhighlight</code>" and "<code>hassum</code>" set.</p>
+	</caption>
+	<colgroup>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th rowspan="2"></th>
+			<th colspan="8" id="tblb19">Group Header</th>
+			<th rowspan="2" id="tblb20">Summary</th>
+		</tr>
+		<tr>
+			<th id="tblb23" headers="tblb19">Header</th>
+			<th id="tblb24" headers="tblb19">Header</th>
+			<th id="tblb25" headers="tblb19">Header</th>
+			<th id="tblb26" headers="tblb19">Header</th>
+			<th id="tblb27" headers="tblb19">Header</th>
+			<th id="tblb28" headers="tblb19">Header</th>
+			<th id="tblb29" headers="tblb19">Header</th>
+			<th id="tblb30" headers="tblb19">Header</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tblb34">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tblb37" headers="tblb34">Header</th>
+			<td headers="tblb19 tblb23 tblb34 tblb37">Data</td>
+			<td headers="tblb19 tblb24 tblb34 tblb37">Data</td>
+			<td headers="tblb19 tblb25 tblb34 tblb37">Data</td>
+			<td headers="tblb19 tblb26 tblb34 tblb37">Data</td>
+			<td headers="tblb19 tblb27 tblb34 tblb37">Data</td>
+			<td headers="tblb19 tblb28 tblb34 tblb37">Data</td>
+			<td headers="tblb19 tblb29 tblb34 tblb37">Data</td>
+			<td headers="tblb19 tblb30 tblb34 tblb37">Data</td>
+			<td headers="tblb20 tblb34 tblb37">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb50" headers="tblb34">Header</th>
+			<td headers="tblb19 tblb23 tblb34 tblb50">Data</td>
+			<td headers="tblb19 tblb24 tblb34 tblb50">Data</td>
+			<td headers="tblb19 tblb25 tblb34 tblb50">Data</td>
+			<td headers="tblb19 tblb26 tblb34 tblb50">Data</td>
+			<td headers="tblb19 tblb27 tblb34 tblb50">Data</td>
+			<td headers="tblb19 tblb28 tblb34 tblb50">Data</td>
+			<td headers="tblb19 tblb29 tblb34 tblb50">Data</td>
+			<td headers="tblb19 tblb30 tblb34 tblb50">Data</td>
+			<td headers="tblb20 tblb34 tblb50">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb63" headers="tblb34">Header</th>
+			<td headers="tblb19 tblb23 tblb34 tblb63">Data</td>
+			<td headers="tblb19 tblb24 tblb34 tblb63">Data</td>
+			<td headers="tblb19 tblb25 tblb34 tblb63">Data</td>
+			<td headers="tblb19 tblb26 tblb34 tblb63">Data</td>
+			<td headers="tblb19 tblb27 tblb34 tblb63">Data</td>
+			<td headers="tblb19 tblb28 tblb34 tblb63">Data</td>
+			<td headers="tblb19 tblb29 tblb34 tblb63">Data</td>
+			<td headers="tblb19 tblb30 tblb34 tblb63">Data</td>
+			<td headers="tblb20 tblb34 tblb63">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb76" headers="tblb34">Header</th>
+			<td headers="tblb19 tblb23 tblb34 tblb76">Data</td>
+			<td headers="tblb19 tblb24 tblb34 tblb76">Data</td>
+			<td headers="tblb19 tblb25 tblb34 tblb76">Data</td>
+			<td headers="tblb19 tblb26 tblb34 tblb76">Data</td>
+			<td headers="tblb19 tblb27 tblb34 tblb76">Data</td>
+			<td headers="tblb19 tblb28 tblb34 tblb76">Data</td>
+			<td headers="tblb19 tblb29 tblb34 tblb76">Data</td>
+			<td headers="tblb19 tblb30 tblb34 tblb76">Data</td>
+			<td headers="tblb20 tblb34 tblb76">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tblb90" headers="tblb34">Summary</th>
+			<td headers="tblb19 tblb23 tblb34 tblb90">Data</td>
+			<td headers="tblb19 tblb24 tblb34 tblb90">Data</td>
+			<td headers="tblb19 tblb25 tblb34 tblb90">Data</td>
+			<td headers="tblb19 tblb26 tblb34 tblb90">Data</td>
+			<td headers="tblb19 tblb27 tblb34 tblb90">Data</td>
+			<td headers="tblb19 tblb28 tblb34 tblb90">Data</td>
+			<td headers="tblb19 tblb29 tblb34 tblb90">Data</td>
+			<td headers="tblb19 tblb30 tblb34 tblb90">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tblb104">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tblb107" headers="tblb104">Header</th>
+			<td headers="tblb19 tblb23 tblb104 tblb107">Data</td>
+			<td headers="tblb19 tblb24 tblb104 tblb107">Data</td>
+			<td headers="tblb19 tblb25 tblb104 tblb107">Data</td>
+			<td headers="tblb19 tblb26 tblb104 tblb107">Data</td>
+			<td headers="tblb19 tblb27 tblb104 tblb107">Data</td>
+			<td headers="tblb19 tblb28 tblb104 tblb107">Data</td>
+			<td headers="tblb19 tblb29 tblb104 tblb107">Data</td>
+			<td headers="tblb19 tblb30 tblb104 tblb107">Data</td>
+			<td headers="tblb20 tblb104 tblb107">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb120" headers="tblb104">Header</th>
+			<td headers="tblb19 tblb23 tblb104 tblb120">Data</td>
+			<td headers="tblb19 tblb24 tblb104 tblb120">Data</td>
+			<td headers="tblb19 tblb25 tblb104 tblb120">Data</td>
+			<td headers="tblb19 tblb26 tblb104 tblb120">Data</td>
+			<td headers="tblb19 tblb27 tblb104 tblb120">Data</td>
+			<td headers="tblb19 tblb28 tblb104 tblb120">Data</td>
+			<td headers="tblb19 tblb29 tblb104 tblb120">Data</td>
+			<td headers="tblb19 tblb30 tblb104 tblb120">Data</td>
+			<td headers="tblb20 tblb104 tblb120">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb133" headers="tblb104">Header</th>
+			<td headers="tblb19 tblb23 tblb104 tblb133">Data</td>
+			<td headers="tblb19 tblb24 tblb104 tblb133">Data</td>
+			<td headers="tblb19 tblb25 tblb104 tblb133">Data</td>
+			<td headers="tblb19 tblb26 tblb104 tblb133">Data</td>
+			<td headers="tblb19 tblb27 tblb104 tblb133">Data</td>
+			<td headers="tblb19 tblb28 tblb104 tblb133">Data</td>
+			<td headers="tblb19 tblb29 tblb104 tblb133">Data</td>
+			<td headers="tblb19 tblb30 tblb104 tblb133">Data</td>
+			<td headers="tblb20 tblb104 tblb133">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb146" headers="tblb104">Header</th>
+			<td headers="tblb19 tblb23 tblb104 tblb146">Data</td>
+			<td headers="tblb19 tblb24 tblb104 tblb146">Data</td>
+			<td headers="tblb19 tblb25 tblb104 tblb146">Data</td>
+			<td headers="tblb19 tblb26 tblb104 tblb146">Data</td>
+			<td headers="tblb19 tblb27 tblb104 tblb146">Data</td>
+			<td headers="tblb19 tblb28 tblb104 tblb146">Data</td>
+			<td headers="tblb19 tblb29 tblb104 tblb146">Data</td>
+			<td headers="tblb19 tblb30 tblb104 tblb146">Data</td>
+			<td headers="tblb20 tblb104 tblb146">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tblb160" headers="tblb104">Summary</th>
+			<td headers="tblb19 tblb23 tblb104 tblb160">Data</td>
+			<td headers="tblb19 tblb24 tblb104 tblb160">Data</td>
+			<td headers="tblb19 tblb25 tblb104 tblb160">Data</td>
+			<td headers="tblb19 tblb26 tblb104 tblb160">Data</td>
+			<td headers="tblb19 tblb27 tblb104 tblb160">Data</td>
+			<td headers="tblb19 tblb28 tblb104 tblb160">Data</td>
+			<td headers="tblb19 tblb29 tblb104 tblb160">Data</td>
+			<td headers="tblb19 tblb30 tblb104 tblb160">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tblb174">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tblb177" headers="tblb174">Header</th>
+			<td headers="tblb19 tblb23 tblb174 tblb177">Data</td>
+			<td headers="tblb19 tblb24 tblb174 tblb177">Data</td>
+			<td headers="tblb19 tblb25 tblb174 tblb177">Data</td>
+			<td headers="tblb19 tblb26 tblb174 tblb177">Data</td>
+			<td headers="tblb19 tblb27 tblb174 tblb177">Data</td>
+			<td headers="tblb19 tblb28 tblb174 tblb177">Data</td>
+			<td headers="tblb19 tblb29 tblb174 tblb177">Data</td>
+			<td headers="tblb19 tblb30 tblb174 tblb177">Data</td>
+			<td headers="tblb20 tblb174 tblb177">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb190" headers="tblb174">Header</th>
+			<td headers="tblb19 tblb23 tblb174 tblb190">Data</td>
+			<td headers="tblb19 tblb24 tblb174 tblb190">Data</td>
+			<td headers="tblb19 tblb25 tblb174 tblb190">Data</td>
+			<td headers="tblb19 tblb26 tblb174 tblb190">Data</td>
+			<td headers="tblb19 tblb27 tblb174 tblb190">Data</td>
+			<td headers="tblb19 tblb28 tblb174 tblb190">Data</td>
+			<td headers="tblb19 tblb29 tblb174 tblb190">Data</td>
+			<td headers="tblb19 tblb30 tblb174 tblb190">Data</td>
+			<td headers="tblb20 tblb174 tblb190">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb203" headers="tblb174">Header</th>
+			<td headers="tblb19 tblb23 tblb174 tblb203">Data</td>
+			<td headers="tblb19 tblb24 tblb174 tblb203">Data</td>
+			<td headers="tblb19 tblb25 tblb174 tblb203">Data</td>
+			<td headers="tblb19 tblb26 tblb174 tblb203">Data</td>
+			<td headers="tblb19 tblb27 tblb174 tblb203">Data</td>
+			<td headers="tblb19 tblb28 tblb174 tblb203">Data</td>
+			<td headers="tblb19 tblb29 tblb174 tblb203">Data</td>
+			<td headers="tblb19 tblb30 tblb174 tblb203">Data</td>
+			<td headers="tblb20 tblb174 tblb203">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb216" headers="tblb174">Header</th>
+			<td headers="tblb19 tblb23 tblb174 tblb216">Data</td>
+			<td headers="tblb19 tblb24 tblb174 tblb216">Data</td>
+			<td headers="tblb19 tblb25 tblb174 tblb216">Data</td>
+			<td headers="tblb19 tblb26 tblb174 tblb216">Data</td>
+			<td headers="tblb19 tblb27 tblb174 tblb216">Data</td>
+			<td headers="tblb19 tblb28 tblb174 tblb216">Data</td>
+			<td headers="tblb19 tblb29 tblb174 tblb216">Data</td>
+			<td headers="tblb19 tblb30 tblb174 tblb216">Data</td>
+			<td headers="tblb20 tblb174 tblb216">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tblb230" headers="tblb174">Summary</th>
+			<td headers="tblb19 tblb23 tblb174 tblb230">Data</td>
+			<td headers="tblb19 tblb24 tblb174 tblb230">Data</td>
+			<td headers="tblb19 tblb25 tblb174 tblb230">Data</td>
+			<td headers="tblb19 tblb26 tblb174 tblb230">Data</td>
+			<td headers="tblb19 tblb27 tblb174 tblb230">Data</td>
+			<td headers="tblb19 tblb28 tblb174 tblb230">Data</td>
+			<td headers="tblb19 tblb29 tblb174 tblb230">Data</td>
+			<td headers="tblb19 tblb30 tblb174 tblb230">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tblb244">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tblb247" headers="tblb244">Header</th>
+			<td headers="tblb19 tblb23 tblb244 tblb247">Data</td>
+			<td headers="tblb19 tblb24 tblb244 tblb247">Data</td>
+			<td headers="tblb19 tblb25 tblb244 tblb247">Data</td>
+			<td headers="tblb19 tblb26 tblb244 tblb247">Data</td>
+			<td headers="tblb19 tblb27 tblb244 tblb247">Data</td>
+			<td headers="tblb19 tblb28 tblb244 tblb247">Data</td>
+			<td headers="tblb19 tblb29 tblb244 tblb247">Data</td>
+			<td headers="tblb19 tblb30 tblb244 tblb247">Data</td>
+			<td headers="tblb20 tblb244 tblb247">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb260" headers="tblb244">Header</th>
+			<td headers="tblb19 tblb23 tblb244 tblb260">Data</td>
+			<td headers="tblb19 tblb24 tblb244 tblb260">Data</td>
+			<td headers="tblb19 tblb25 tblb244 tblb260">Data</td>
+			<td headers="tblb19 tblb26 tblb244 tblb260">Data</td>
+			<td headers="tblb19 tblb27 tblb244 tblb260">Data</td>
+			<td headers="tblb19 tblb28 tblb244 tblb260">Data</td>
+			<td headers="tblb19 tblb29 tblb244 tblb260">Data</td>
+			<td headers="tblb19 tblb30 tblb244 tblb260">Data</td>
+			<td headers="tblb20 tblb244 tblb260">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb273" headers="tblb244">Header</th>
+			<td headers="tblb19 tblb23 tblb244 tblb273">Data</td>
+			<td headers="tblb19 tblb24 tblb244 tblb273">Data</td>
+			<td headers="tblb19 tblb25 tblb244 tblb273">Data</td>
+			<td headers="tblb19 tblb26 tblb244 tblb273">Data</td>
+			<td headers="tblb19 tblb27 tblb244 tblb273">Data</td>
+			<td headers="tblb19 tblb28 tblb244 tblb273">Data</td>
+			<td headers="tblb19 tblb29 tblb244 tblb273">Data</td>
+			<td headers="tblb19 tblb30 tblb244 tblb273">Data</td>
+			<td headers="tblb20 tblb244 tblb273">Data</td>
+		</tr>
+		<tr>
+			<th id="tblb286" headers="tblb244">Header</th>
+			<td headers="tblb19 tblb23 tblb244 tblb286">Data</td>
+			<td headers="tblb19 tblb24 tblb244 tblb286">Data</td>
+			<td headers="tblb19 tblb25 tblb244 tblb286">Data</td>
+			<td headers="tblb19 tblb26 tblb244 tblb286">Data</td>
+			<td headers="tblb19 tblb27 tblb244 tblb286">Data</td>
+			<td headers="tblb19 tblb28 tblb244 tblb286">Data</td>
+			<td headers="tblb19 tblb29 tblb244 tblb286">Data</td>
+			<td headers="tblb19 tblb30 tblb244 tblb286">Data</td>
+			<td headers="tblb20 tblb244 tblb286">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tblb300" headers="tblb244">Summary</th>
+			<td headers="tblb19 tblb23 tblb244 tblb300">Data</td>
+			<td headers="tblb19 tblb24 tblb244 tblb300">Data</td>
+			<td headers="tblb19 tblb25 tblb244 tblb300">Data</td>
+			<td headers="tblb19 tblb26 tblb244 tblb300">Data</td>
+			<td headers="tblb19 tblb27 tblb244 tblb300">Data</td>
+			<td headers="tblb19 tblb28 tblb244 tblb300">Data</td>
+			<td headers="tblb19 tblb29 tblb244 tblb300">Data</td>
+			<td headers="tblb19 tblb30 tblb244 tblb300">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tblb314" headers="">Summary</th>
+			<td headers="tblb19 tblb23 tblb314">Data</td>
+			<td headers="tblb19 tblb24 tblb314">Data</td>
+			<td headers="tblb19 tblb25 tblb314">Data</td>
+			<td headers="tblb19 tblb26 tblb314">Data</td>
+			<td headers="tblb19 tblb27 tblb314">Data</td>
+			<td headers="tblb19 tblb28 tblb314">Data</td>
+			<td headers="tblb19 tblb29 tblb314">Data</td>
+			<td headers="tblb19 tblb30 tblb314">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+
+<details>
+	<summary>Source Code of Column Highlight with Summary Table 2</summary>
+<pre><code>
+
+&lt;table class="wet-boew-zebra norowheaderhighlight columnhighlight hassum"&gt;
+	&lt;caption&gt;
+		&lt;strong&gt;Column Highlight with summary Table 2&lt;/strong&gt;
+		&lt;p&gt;With a "&lt;code&gt;th&lt;/code&gt;" layout cell at the top left corner, a "&lt;code&gt;td&lt;c/ode&gt;" layout cell at the summary intersection and with the option "&lt;code&gt;norowheaderhighlight&lt;/code&gt;" and "&lt;code&gt;hassumm&lt;/code&gt;" set.&lt;/p&gt;
+	&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th rowspan="2"&gt;&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group Header&lt;/th&gt;
+			&lt;th rowspan="2"&gt;Summary&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+</details>
+
+
+
+<table class="wet-boew-zebra nocolheaderhighlight columnhighlight hassum">
+	<caption>
+		<strong>Column Highlight with summary Table 3</strong>
+		<p>With a "<code>th</code>" layout cell at the top left corner, a "<code>td</code>" layout cell at the summary intersection and with the option "<code>nocolheaderhighlight</code>" and "<code>hassum</code>" set.</p>
+	</caption>
+	<colgroup>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th rowspan="2"></th>
+			<th colspan="8" id="tblc19">Group Header</th>
+			<th rowspan="2" id="tblc20">Summary</th>
+		</tr>
+		<tr>
+			<th id="tblc23" headers="tblc19">Header</th>
+			<th id="tblc24" headers="tblc19">Header</th>
+			<th id="tblc25" headers="tblc19">Header</th>
+			<th id="tblc26" headers="tblc19">Header</th>
+			<th id="tblc27" headers="tblc19">Header</th>
+			<th id="tblc28" headers="tblc19">Header</th>
+			<th id="tblc29" headers="tblc19">Header</th>
+			<th id="tblc30" headers="tblc19">Header</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tblc34">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tblc37" headers="tblc34">Header</th>
+			<td headers="tblc19 tblc23 tblc34 tblc37">Data</td>
+			<td headers="tblc19 tblc24 tblc34 tblc37">Data</td>
+			<td headers="tblc19 tblc25 tblc34 tblc37">Data</td>
+			<td headers="tblc19 tblc26 tblc34 tblc37">Data</td>
+			<td headers="tblc19 tblc27 tblc34 tblc37">Data</td>
+			<td headers="tblc19 tblc28 tblc34 tblc37">Data</td>
+			<td headers="tblc19 tblc29 tblc34 tblc37">Data</td>
+			<td headers="tblc19 tblc30 tblc34 tblc37">Data</td>
+			<td headers="tblc20 tblc34 tblc37">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc50" headers="tblc34">Header</th>
+			<td headers="tblc19 tblc23 tblc34 tblc50">Data</td>
+			<td headers="tblc19 tblc24 tblc34 tblc50">Data</td>
+			<td headers="tblc19 tblc25 tblc34 tblc50">Data</td>
+			<td headers="tblc19 tblc26 tblc34 tblc50">Data</td>
+			<td headers="tblc19 tblc27 tblc34 tblc50">Data</td>
+			<td headers="tblc19 tblc28 tblc34 tblc50">Data</td>
+			<td headers="tblc19 tblc29 tblc34 tblc50">Data</td>
+			<td headers="tblc19 tblc30 tblc34 tblc50">Data</td>
+			<td headers="tblc20 tblc34 tblc50">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc63" headers="tblc34">Header</th>
+			<td headers="tblc19 tblc23 tblc34 tblc63">Data</td>
+			<td headers="tblc19 tblc24 tblc34 tblc63">Data</td>
+			<td headers="tblc19 tblc25 tblc34 tblc63">Data</td>
+			<td headers="tblc19 tblc26 tblc34 tblc63">Data</td>
+			<td headers="tblc19 tblc27 tblc34 tblc63">Data</td>
+			<td headers="tblc19 tblc28 tblc34 tblc63">Data</td>
+			<td headers="tblc19 tblc29 tblc34 tblc63">Data</td>
+			<td headers="tblc19 tblc30 tblc34 tblc63">Data</td>
+			<td headers="tblc20 tblc34 tblc63">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc76" headers="tblc34">Header</th>
+			<td headers="tblc19 tblc23 tblc34 tblc76">Data</td>
+			<td headers="tblc19 tblc24 tblc34 tblc76">Data</td>
+			<td headers="tblc19 tblc25 tblc34 tblc76">Data</td>
+			<td headers="tblc19 tblc26 tblc34 tblc76">Data</td>
+			<td headers="tblc19 tblc27 tblc34 tblc76">Data</td>
+			<td headers="tblc19 tblc28 tblc34 tblc76">Data</td>
+			<td headers="tblc19 tblc29 tblc34 tblc76">Data</td>
+			<td headers="tblc19 tblc30 tblc34 tblc76">Data</td>
+			<td headers="tblc20 tblc34 tblc76">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tblc90" headers="tblc34">Summary</th>
+			<td headers="tblc19 tblc23 tblc34 tblc90">Data</td>
+			<td headers="tblc19 tblc24 tblc34 tblc90">Data</td>
+			<td headers="tblc19 tblc25 tblc34 tblc90">Data</td>
+			<td headers="tblc19 tblc26 tblc34 tblc90">Data</td>
+			<td headers="tblc19 tblc27 tblc34 tblc90">Data</td>
+			<td headers="tblc19 tblc28 tblc34 tblc90">Data</td>
+			<td headers="tblc19 tblc29 tblc34 tblc90">Data</td>
+			<td headers="tblc19 tblc30 tblc34 tblc90">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tblc104">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tblc107" headers="tblc104">Header</th>
+			<td headers="tblc19 tblc23 tblc104 tblc107">Data</td>
+			<td headers="tblc19 tblc24 tblc104 tblc107">Data</td>
+			<td headers="tblc19 tblc25 tblc104 tblc107">Data</td>
+			<td headers="tblc19 tblc26 tblc104 tblc107">Data</td>
+			<td headers="tblc19 tblc27 tblc104 tblc107">Data</td>
+			<td headers="tblc19 tblc28 tblc104 tblc107">Data</td>
+			<td headers="tblc19 tblc29 tblc104 tblc107">Data</td>
+			<td headers="tblc19 tblc30 tblc104 tblc107">Data</td>
+			<td headers="tblc20 tblc104 tblc107">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc120" headers="tblc104">Header</th>
+			<td headers="tblc19 tblc23 tblc104 tblc120">Data</td>
+			<td headers="tblc19 tblc24 tblc104 tblc120">Data</td>
+			<td headers="tblc19 tblc25 tblc104 tblc120">Data</td>
+			<td headers="tblc19 tblc26 tblc104 tblc120">Data</td>
+			<td headers="tblc19 tblc27 tblc104 tblc120">Data</td>
+			<td headers="tblc19 tblc28 tblc104 tblc120">Data</td>
+			<td headers="tblc19 tblc29 tblc104 tblc120">Data</td>
+			<td headers="tblc19 tblc30 tblc104 tblc120">Data</td>
+			<td headers="tblc20 tblc104 tblc120">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc133" headers="tblc104">Header</th>
+			<td headers="tblc19 tblc23 tblc104 tblc133">Data</td>
+			<td headers="tblc19 tblc24 tblc104 tblc133">Data</td>
+			<td headers="tblc19 tblc25 tblc104 tblc133">Data</td>
+			<td headers="tblc19 tblc26 tblc104 tblc133">Data</td>
+			<td headers="tblc19 tblc27 tblc104 tblc133">Data</td>
+			<td headers="tblc19 tblc28 tblc104 tblc133">Data</td>
+			<td headers="tblc19 tblc29 tblc104 tblc133">Data</td>
+			<td headers="tblc19 tblc30 tblc104 tblc133">Data</td>
+			<td headers="tblc20 tblc104 tblc133">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc146" headers="tblc104">Header</th>
+			<td headers="tblc19 tblc23 tblc104 tblc146">Data</td>
+			<td headers="tblc19 tblc24 tblc104 tblc146">Data</td>
+			<td headers="tblc19 tblc25 tblc104 tblc146">Data</td>
+			<td headers="tblc19 tblc26 tblc104 tblc146">Data</td>
+			<td headers="tblc19 tblc27 tblc104 tblc146">Data</td>
+			<td headers="tblc19 tblc28 tblc104 tblc146">Data</td>
+			<td headers="tblc19 tblc29 tblc104 tblc146">Data</td>
+			<td headers="tblc19 tblc30 tblc104 tblc146">Data</td>
+			<td headers="tblc20 tblc104 tblc146">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tblc160" headers="tblc104">Summary</th>
+			<td headers="tblc19 tblc23 tblc104 tblc160">Data</td>
+			<td headers="tblc19 tblc24 tblc104 tblc160">Data</td>
+			<td headers="tblc19 tblc25 tblc104 tblc160">Data</td>
+			<td headers="tblc19 tblc26 tblc104 tblc160">Data</td>
+			<td headers="tblc19 tblc27 tblc104 tblc160">Data</td>
+			<td headers="tblc19 tblc28 tblc104 tblc160">Data</td>
+			<td headers="tblc19 tblc29 tblc104 tblc160">Data</td>
+			<td headers="tblc19 tblc30 tblc104 tblc160">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tblc174">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tblc177" headers="tblc174">Header</th>
+			<td headers="tblc19 tblc23 tblc174 tblc177">Data</td>
+			<td headers="tblc19 tblc24 tblc174 tblc177">Data</td>
+			<td headers="tblc19 tblc25 tblc174 tblc177">Data</td>
+			<td headers="tblc19 tblc26 tblc174 tblc177">Data</td>
+			<td headers="tblc19 tblc27 tblc174 tblc177">Data</td>
+			<td headers="tblc19 tblc28 tblc174 tblc177">Data</td>
+			<td headers="tblc19 tblc29 tblc174 tblc177">Data</td>
+			<td headers="tblc19 tblc30 tblc174 tblc177">Data</td>
+			<td headers="tblc20 tblc174 tblc177">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc190" headers="tblc174">Header</th>
+			<td headers="tblc19 tblc23 tblc174 tblc190">Data</td>
+			<td headers="tblc19 tblc24 tblc174 tblc190">Data</td>
+			<td headers="tblc19 tblc25 tblc174 tblc190">Data</td>
+			<td headers="tblc19 tblc26 tblc174 tblc190">Data</td>
+			<td headers="tblc19 tblc27 tblc174 tblc190">Data</td>
+			<td headers="tblc19 tblc28 tblc174 tblc190">Data</td>
+			<td headers="tblc19 tblc29 tblc174 tblc190">Data</td>
+			<td headers="tblc19 tblc30 tblc174 tblc190">Data</td>
+			<td headers="tblc20 tblc174 tblc190">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc203" headers="tblc174">Header</th>
+			<td headers="tblc19 tblc23 tblc174 tblc203">Data</td>
+			<td headers="tblc19 tblc24 tblc174 tblc203">Data</td>
+			<td headers="tblc19 tblc25 tblc174 tblc203">Data</td>
+			<td headers="tblc19 tblc26 tblc174 tblc203">Data</td>
+			<td headers="tblc19 tblc27 tblc174 tblc203">Data</td>
+			<td headers="tblc19 tblc28 tblc174 tblc203">Data</td>
+			<td headers="tblc19 tblc29 tblc174 tblc203">Data</td>
+			<td headers="tblc19 tblc30 tblc174 tblc203">Data</td>
+			<td headers="tblc20 tblc174 tblc203">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc216" headers="tblc174">Header</th>
+			<td headers="tblc19 tblc23 tblc174 tblc216">Data</td>
+			<td headers="tblc19 tblc24 tblc174 tblc216">Data</td>
+			<td headers="tblc19 tblc25 tblc174 tblc216">Data</td>
+			<td headers="tblc19 tblc26 tblc174 tblc216">Data</td>
+			<td headers="tblc19 tblc27 tblc174 tblc216">Data</td>
+			<td headers="tblc19 tblc28 tblc174 tblc216">Data</td>
+			<td headers="tblc19 tblc29 tblc174 tblc216">Data</td>
+			<td headers="tblc19 tblc30 tblc174 tblc216">Data</td>
+			<td headers="tblc20 tblc174 tblc216">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tblc230" headers="tblc174">Summary</th>
+			<td headers="tblc19 tblc23 tblc174 tblc230">Data</td>
+			<td headers="tblc19 tblc24 tblc174 tblc230">Data</td>
+			<td headers="tblc19 tblc25 tblc174 tblc230">Data</td>
+			<td headers="tblc19 tblc26 tblc174 tblc230">Data</td>
+			<td headers="tblc19 tblc27 tblc174 tblc230">Data</td>
+			<td headers="tblc19 tblc28 tblc174 tblc230">Data</td>
+			<td headers="tblc19 tblc29 tblc174 tblc230">Data</td>
+			<td headers="tblc19 tblc30 tblc174 tblc230">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tblc244">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tblc247" headers="tblc244">Header</th>
+			<td headers="tblc19 tblc23 tblc244 tblc247">Data</td>
+			<td headers="tblc19 tblc24 tblc244 tblc247">Data</td>
+			<td headers="tblc19 tblc25 tblc244 tblc247">Data</td>
+			<td headers="tblc19 tblc26 tblc244 tblc247">Data</td>
+			<td headers="tblc19 tblc27 tblc244 tblc247">Data</td>
+			<td headers="tblc19 tblc28 tblc244 tblc247">Data</td>
+			<td headers="tblc19 tblc29 tblc244 tblc247">Data</td>
+			<td headers="tblc19 tblc30 tblc244 tblc247">Data</td>
+			<td headers="tblc20 tblc244 tblc247">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc260" headers="tblc244">Header</th>
+			<td headers="tblc19 tblc23 tblc244 tblc260">Data</td>
+			<td headers="tblc19 tblc24 tblc244 tblc260">Data</td>
+			<td headers="tblc19 tblc25 tblc244 tblc260">Data</td>
+			<td headers="tblc19 tblc26 tblc244 tblc260">Data</td>
+			<td headers="tblc19 tblc27 tblc244 tblc260">Data</td>
+			<td headers="tblc19 tblc28 tblc244 tblc260">Data</td>
+			<td headers="tblc19 tblc29 tblc244 tblc260">Data</td>
+			<td headers="tblc19 tblc30 tblc244 tblc260">Data</td>
+			<td headers="tblc20 tblc244 tblc260">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc273" headers="tblc244">Header</th>
+			<td headers="tblc19 tblc23 tblc244 tblc273">Data</td>
+			<td headers="tblc19 tblc24 tblc244 tblc273">Data</td>
+			<td headers="tblc19 tblc25 tblc244 tblc273">Data</td>
+			<td headers="tblc19 tblc26 tblc244 tblc273">Data</td>
+			<td headers="tblc19 tblc27 tblc244 tblc273">Data</td>
+			<td headers="tblc19 tblc28 tblc244 tblc273">Data</td>
+			<td headers="tblc19 tblc29 tblc244 tblc273">Data</td>
+			<td headers="tblc19 tblc30 tblc244 tblc273">Data</td>
+			<td headers="tblc20 tblc244 tblc273">Data</td>
+		</tr>
+		<tr>
+			<th id="tblc286" headers="tblc244">Header</th>
+			<td headers="tblc19 tblc23 tblc244 tblc286">Data</td>
+			<td headers="tblc19 tblc24 tblc244 tblc286">Data</td>
+			<td headers="tblc19 tblc25 tblc244 tblc286">Data</td>
+			<td headers="tblc19 tblc26 tblc244 tblc286">Data</td>
+			<td headers="tblc19 tblc27 tblc244 tblc286">Data</td>
+			<td headers="tblc19 tblc28 tblc244 tblc286">Data</td>
+			<td headers="tblc19 tblc29 tblc244 tblc286">Data</td>
+			<td headers="tblc19 tblc30 tblc244 tblc286">Data</td>
+			<td headers="tblc20 tblc244 tblc286">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tblc300" headers="tblc244">Summary</th>
+			<td headers="tblc19 tblc23 tblc244 tblc300">Data</td>
+			<td headers="tblc19 tblc24 tblc244 tblc300">Data</td>
+			<td headers="tblc19 tblc25 tblc244 tblc300">Data</td>
+			<td headers="tblc19 tblc26 tblc244 tblc300">Data</td>
+			<td headers="tblc19 tblc27 tblc244 tblc300">Data</td>
+			<td headers="tblc19 tblc28 tblc244 tblc300">Data</td>
+			<td headers="tblc19 tblc29 tblc244 tblc300">Data</td>
+			<td headers="tblc19 tblc30 tblc244 tblc300">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tblc314" headers="">Summary</th>
+			<td headers="tblc19 tblc23 tblc314">Data</td>
+			<td headers="tblc19 tblc24 tblc314">Data</td>
+			<td headers="tblc19 tblc25 tblc314">Data</td>
+			<td headers="tblc19 tblc26 tblc314">Data</td>
+			<td headers="tblc19 tblc27 tblc314">Data</td>
+			<td headers="tblc19 tblc28 tblc314">Data</td>
+			<td headers="tblc19 tblc29 tblc314">Data</td>
+			<td headers="tblc19 tblc30 tblc314">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Table Source Code of Column Highlight with summary Table 3</summary>
+<pre><code>
+
+&lt;table class="wet-boew-zebra nocolheaderhighlight columnhighlight hassum"&gt;
+	&lt;caption&gt;
+		&lt;strong&gt;Column Highlight with summary Table 3&lt;/strong&gt;
+		&lt;p&gt;With a "&lt;code&gt;th&lt;/code&gt;" layout cell at the top left corner, a "&lt;code&gt;td&lt;/code&gt;" layout cell at the summary intersection and with the option "&lt;code&gt;nocolheaderhighlight&lt;/code&gt;" and "&lt;code&gt;hassum&lt;/code&gt;" set.&lt;/p&gt;
+	&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th rowspan="2"&gt;&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group Header&lt;/th&gt;
+			&lt;th rowspan="2"&gt;Summary&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+
+<table class="wet-boew-zebra noheaderhighlight columnhighlight hassum">
+	<caption>
+		<strong>Column Highlight with summary Table 4</strong>
+		<p>With a "<code>th</code>" layout cell at the top left corner, a "<code>td</code>" layout cell at the summary intersection and with the option "<code>noheaderhighlight</code>" and "<code>hassumm</code>" set.</p>
+	</caption>
+	<colgroup>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th rowspan="2"></th>
+			<th colspan="8" id="tbld19">Group Header</th>
+			<th rowspan="2" id="tbld20">Summary</th>
+		</tr>
+		<tr>
+			<th id="tbld23" headers="tbld19">Header</th>
+			<th id="tbld24" headers="tbld19">Header</th>
+			<th id="tbld25" headers="tbld19">Header</th>
+			<th id="tbld26" headers="tbld19">Header</th>
+			<th id="tbld27" headers="tbld19">Header</th>
+			<th id="tbld28" headers="tbld19">Header</th>
+			<th id="tbld29" headers="tbld19">Header</th>
+			<th id="tbld30" headers="tbld19">Header</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tbld34">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tbld37" headers="tbld34">Header</th>
+			<td headers="tbld19 tbld23 tbld34 tbld37">Data</td>
+			<td headers="tbld19 tbld24 tbld34 tbld37">Data</td>
+			<td headers="tbld19 tbld25 tbld34 tbld37">Data</td>
+			<td headers="tbld19 tbld26 tbld34 tbld37">Data</td>
+			<td headers="tbld19 tbld27 tbld34 tbld37">Data</td>
+			<td headers="tbld19 tbld28 tbld34 tbld37">Data</td>
+			<td headers="tbld19 tbld29 tbld34 tbld37">Data</td>
+			<td headers="tbld19 tbld30 tbld34 tbld37">Data</td>
+			<td headers="tbld20 tbld34 tbld37">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld50" headers="tbld34">Header</th>
+			<td headers="tbld19 tbld23 tbld34 tbld50">Data</td>
+			<td headers="tbld19 tbld24 tbld34 tbld50">Data</td>
+			<td headers="tbld19 tbld25 tbld34 tbld50">Data</td>
+			<td headers="tbld19 tbld26 tbld34 tbld50">Data</td>
+			<td headers="tbld19 tbld27 tbld34 tbld50">Data</td>
+			<td headers="tbld19 tbld28 tbld34 tbld50">Data</td>
+			<td headers="tbld19 tbld29 tbld34 tbld50">Data</td>
+			<td headers="tbld19 tbld30 tbld34 tbld50">Data</td>
+			<td headers="tbld20 tbld34 tbld50">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld63" headers="tbld34">Header</th>
+			<td headers="tbld19 tbld23 tbld34 tbld63">Data</td>
+			<td headers="tbld19 tbld24 tbld34 tbld63">Data</td>
+			<td headers="tbld19 tbld25 tbld34 tbld63">Data</td>
+			<td headers="tbld19 tbld26 tbld34 tbld63">Data</td>
+			<td headers="tbld19 tbld27 tbld34 tbld63">Data</td>
+			<td headers="tbld19 tbld28 tbld34 tbld63">Data</td>
+			<td headers="tbld19 tbld29 tbld34 tbld63">Data</td>
+			<td headers="tbld19 tbld30 tbld34 tbld63">Data</td>
+			<td headers="tbld20 tbld34 tbld63">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld76" headers="tbld34">Header</th>
+			<td headers="tbld19 tbld23 tbld34 tbld76">Data</td>
+			<td headers="tbld19 tbld24 tbld34 tbld76">Data</td>
+			<td headers="tbld19 tbld25 tbld34 tbld76">Data</td>
+			<td headers="tbld19 tbld26 tbld34 tbld76">Data</td>
+			<td headers="tbld19 tbld27 tbld34 tbld76">Data</td>
+			<td headers="tbld19 tbld28 tbld34 tbld76">Data</td>
+			<td headers="tbld19 tbld29 tbld34 tbld76">Data</td>
+			<td headers="tbld19 tbld30 tbld34 tbld76">Data</td>
+			<td headers="tbld20 tbld34 tbld76">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tbld90" headers="tbld34">Summary</th>
+			<td headers="tbld19 tbld23 tbld34 tbld90">Data</td>
+			<td headers="tbld19 tbld24 tbld34 tbld90">Data</td>
+			<td headers="tbld19 tbld25 tbld34 tbld90">Data</td>
+			<td headers="tbld19 tbld26 tbld34 tbld90">Data</td>
+			<td headers="tbld19 tbld27 tbld34 tbld90">Data</td>
+			<td headers="tbld19 tbld28 tbld34 tbld90">Data</td>
+			<td headers="tbld19 tbld29 tbld34 tbld90">Data</td>
+			<td headers="tbld19 tbld30 tbld34 tbld90">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tbld104">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tbld107" headers="tbld104">Header</th>
+			<td headers="tbld19 tbld23 tbld104 tbld107">Data</td>
+			<td headers="tbld19 tbld24 tbld104 tbld107">Data</td>
+			<td headers="tbld19 tbld25 tbld104 tbld107">Data</td>
+			<td headers="tbld19 tbld26 tbld104 tbld107">Data</td>
+			<td headers="tbld19 tbld27 tbld104 tbld107">Data</td>
+			<td headers="tbld19 tbld28 tbld104 tbld107">Data</td>
+			<td headers="tbld19 tbld29 tbld104 tbld107">Data</td>
+			<td headers="tbld19 tbld30 tbld104 tbld107">Data</td>
+			<td headers="tbld20 tbld104 tbld107">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld120" headers="tbld104">Header</th>
+			<td headers="tbld19 tbld23 tbld104 tbld120">Data</td>
+			<td headers="tbld19 tbld24 tbld104 tbld120">Data</td>
+			<td headers="tbld19 tbld25 tbld104 tbld120">Data</td>
+			<td headers="tbld19 tbld26 tbld104 tbld120">Data</td>
+			<td headers="tbld19 tbld27 tbld104 tbld120">Data</td>
+			<td headers="tbld19 tbld28 tbld104 tbld120">Data</td>
+			<td headers="tbld19 tbld29 tbld104 tbld120">Data</td>
+			<td headers="tbld19 tbld30 tbld104 tbld120">Data</td>
+			<td headers="tbld20 tbld104 tbld120">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld133" headers="tbld104">Header</th>
+			<td headers="tbld19 tbld23 tbld104 tbld133">Data</td>
+			<td headers="tbld19 tbld24 tbld104 tbld133">Data</td>
+			<td headers="tbld19 tbld25 tbld104 tbld133">Data</td>
+			<td headers="tbld19 tbld26 tbld104 tbld133">Data</td>
+			<td headers="tbld19 tbld27 tbld104 tbld133">Data</td>
+			<td headers="tbld19 tbld28 tbld104 tbld133">Data</td>
+			<td headers="tbld19 tbld29 tbld104 tbld133">Data</td>
+			<td headers="tbld19 tbld30 tbld104 tbld133">Data</td>
+			<td headers="tbld20 tbld104 tbld133">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld146" headers="tbld104">Header</th>
+			<td headers="tbld19 tbld23 tbld104 tbld146">Data</td>
+			<td headers="tbld19 tbld24 tbld104 tbld146">Data</td>
+			<td headers="tbld19 tbld25 tbld104 tbld146">Data</td>
+			<td headers="tbld19 tbld26 tbld104 tbld146">Data</td>
+			<td headers="tbld19 tbld27 tbld104 tbld146">Data</td>
+			<td headers="tbld19 tbld28 tbld104 tbld146">Data</td>
+			<td headers="tbld19 tbld29 tbld104 tbld146">Data</td>
+			<td headers="tbld19 tbld30 tbld104 tbld146">Data</td>
+			<td headers="tbld20 tbld104 tbld146">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tbld160" headers="tbld104">Summary</th>
+			<td headers="tbld19 tbld23 tbld104 tbld160">Data</td>
+			<td headers="tbld19 tbld24 tbld104 tbld160">Data</td>
+			<td headers="tbld19 tbld25 tbld104 tbld160">Data</td>
+			<td headers="tbld19 tbld26 tbld104 tbld160">Data</td>
+			<td headers="tbld19 tbld27 tbld104 tbld160">Data</td>
+			<td headers="tbld19 tbld28 tbld104 tbld160">Data</td>
+			<td headers="tbld19 tbld29 tbld104 tbld160">Data</td>
+			<td headers="tbld19 tbld30 tbld104 tbld160">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tbld174">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tbld177" headers="tbld174">Header</th>
+			<td headers="tbld19 tbld23 tbld174 tbld177">Data</td>
+			<td headers="tbld19 tbld24 tbld174 tbld177">Data</td>
+			<td headers="tbld19 tbld25 tbld174 tbld177">Data</td>
+			<td headers="tbld19 tbld26 tbld174 tbld177">Data</td>
+			<td headers="tbld19 tbld27 tbld174 tbld177">Data</td>
+			<td headers="tbld19 tbld28 tbld174 tbld177">Data</td>
+			<td headers="tbld19 tbld29 tbld174 tbld177">Data</td>
+			<td headers="tbld19 tbld30 tbld174 tbld177">Data</td>
+			<td headers="tbld20 tbld174 tbld177">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld190" headers="tbld174">Header</th>
+			<td headers="tbld19 tbld23 tbld174 tbld190">Data</td>
+			<td headers="tbld19 tbld24 tbld174 tbld190">Data</td>
+			<td headers="tbld19 tbld25 tbld174 tbld190">Data</td>
+			<td headers="tbld19 tbld26 tbld174 tbld190">Data</td>
+			<td headers="tbld19 tbld27 tbld174 tbld190">Data</td>
+			<td headers="tbld19 tbld28 tbld174 tbld190">Data</td>
+			<td headers="tbld19 tbld29 tbld174 tbld190">Data</td>
+			<td headers="tbld19 tbld30 tbld174 tbld190">Data</td>
+			<td headers="tbld20 tbld174 tbld190">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld203" headers="tbld174">Header</th>
+			<td headers="tbld19 tbld23 tbld174 tbld203">Data</td>
+			<td headers="tbld19 tbld24 tbld174 tbld203">Data</td>
+			<td headers="tbld19 tbld25 tbld174 tbld203">Data</td>
+			<td headers="tbld19 tbld26 tbld174 tbld203">Data</td>
+			<td headers="tbld19 tbld27 tbld174 tbld203">Data</td>
+			<td headers="tbld19 tbld28 tbld174 tbld203">Data</td>
+			<td headers="tbld19 tbld29 tbld174 tbld203">Data</td>
+			<td headers="tbld19 tbld30 tbld174 tbld203">Data</td>
+			<td headers="tbld20 tbld174 tbld203">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld216" headers="tbld174">Header</th>
+			<td headers="tbld19 tbld23 tbld174 tbld216">Data</td>
+			<td headers="tbld19 tbld24 tbld174 tbld216">Data</td>
+			<td headers="tbld19 tbld25 tbld174 tbld216">Data</td>
+			<td headers="tbld19 tbld26 tbld174 tbld216">Data</td>
+			<td headers="tbld19 tbld27 tbld174 tbld216">Data</td>
+			<td headers="tbld19 tbld28 tbld174 tbld216">Data</td>
+			<td headers="tbld19 tbld29 tbld174 tbld216">Data</td>
+			<td headers="tbld19 tbld30 tbld174 tbld216">Data</td>
+			<td headers="tbld20 tbld174 tbld216">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tbld230" headers="tbld174">Summary</th>
+			<td headers="tbld19 tbld23 tbld174 tbld230">Data</td>
+			<td headers="tbld19 tbld24 tbld174 tbld230">Data</td>
+			<td headers="tbld19 tbld25 tbld174 tbld230">Data</td>
+			<td headers="tbld19 tbld26 tbld174 tbld230">Data</td>
+			<td headers="tbld19 tbld27 tbld174 tbld230">Data</td>
+			<td headers="tbld19 tbld28 tbld174 tbld230">Data</td>
+			<td headers="tbld19 tbld29 tbld174 tbld230">Data</td>
+			<td headers="tbld19 tbld30 tbld174 tbld230">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tbld244">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tbld247" headers="tbld244">Header</th>
+			<td headers="tbld19 tbld23 tbld244 tbld247">Data</td>
+			<td headers="tbld19 tbld24 tbld244 tbld247">Data</td>
+			<td headers="tbld19 tbld25 tbld244 tbld247">Data</td>
+			<td headers="tbld19 tbld26 tbld244 tbld247">Data</td>
+			<td headers="tbld19 tbld27 tbld244 tbld247">Data</td>
+			<td headers="tbld19 tbld28 tbld244 tbld247">Data</td>
+			<td headers="tbld19 tbld29 tbld244 tbld247">Data</td>
+			<td headers="tbld19 tbld30 tbld244 tbld247">Data</td>
+			<td headers="tbld20 tbld244 tbld247">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld260" headers="tbld244">Header</th>
+			<td headers="tbld19 tbld23 tbld244 tbld260">Data</td>
+			<td headers="tbld19 tbld24 tbld244 tbld260">Data</td>
+			<td headers="tbld19 tbld25 tbld244 tbld260">Data</td>
+			<td headers="tbld19 tbld26 tbld244 tbld260">Data</td>
+			<td headers="tbld19 tbld27 tbld244 tbld260">Data</td>
+			<td headers="tbld19 tbld28 tbld244 tbld260">Data</td>
+			<td headers="tbld19 tbld29 tbld244 tbld260">Data</td>
+			<td headers="tbld19 tbld30 tbld244 tbld260">Data</td>
+			<td headers="tbld20 tbld244 tbld260">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld273" headers="tbld244">Header</th>
+			<td headers="tbld19 tbld23 tbld244 tbld273">Data</td>
+			<td headers="tbld19 tbld24 tbld244 tbld273">Data</td>
+			<td headers="tbld19 tbld25 tbld244 tbld273">Data</td>
+			<td headers="tbld19 tbld26 tbld244 tbld273">Data</td>
+			<td headers="tbld19 tbld27 tbld244 tbld273">Data</td>
+			<td headers="tbld19 tbld28 tbld244 tbld273">Data</td>
+			<td headers="tbld19 tbld29 tbld244 tbld273">Data</td>
+			<td headers="tbld19 tbld30 tbld244 tbld273">Data</td>
+			<td headers="tbld20 tbld244 tbld273">Data</td>
+		</tr>
+		<tr>
+			<th id="tbld286" headers="tbld244">Header</th>
+			<td headers="tbld19 tbld23 tbld244 tbld286">Data</td>
+			<td headers="tbld19 tbld24 tbld244 tbld286">Data</td>
+			<td headers="tbld19 tbld25 tbld244 tbld286">Data</td>
+			<td headers="tbld19 tbld26 tbld244 tbld286">Data</td>
+			<td headers="tbld19 tbld27 tbld244 tbld286">Data</td>
+			<td headers="tbld19 tbld28 tbld244 tbld286">Data</td>
+			<td headers="tbld19 tbld29 tbld244 tbld286">Data</td>
+			<td headers="tbld19 tbld30 tbld244 tbld286">Data</td>
+			<td headers="tbld20 tbld244 tbld286">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tbld300" headers="tbld244">Summary</th>
+			<td headers="tbld19 tbld23 tbld244 tbld300">Data</td>
+			<td headers="tbld19 tbld24 tbld244 tbld300">Data</td>
+			<td headers="tbld19 tbld25 tbld244 tbld300">Data</td>
+			<td headers="tbld19 tbld26 tbld244 tbld300">Data</td>
+			<td headers="tbld19 tbld27 tbld244 tbld300">Data</td>
+			<td headers="tbld19 tbld28 tbld244 tbld300">Data</td>
+			<td headers="tbld19 tbld29 tbld244 tbld300">Data</td>
+			<td headers="tbld19 tbld30 tbld244 tbld300">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tbld314" headers="">Summary</th>
+			<td headers="tbld19 tbld23 tbld314">Data</td>
+			<td headers="tbld19 tbld24 tbld314">Data</td>
+			<td headers="tbld19 tbld25 tbld314">Data</td>
+			<td headers="tbld19 tbld26 tbld314">Data</td>
+			<td headers="tbld19 tbld27 tbld314">Data</td>
+			<td headers="tbld19 tbld28 tbld314">Data</td>
+			<td headers="tbld19 tbld29 tbld314">Data</td>
+			<td headers="tbld19 tbld30 tbld314">Data</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Table Source Code of Column Highlight with summary Table 4</summary>
+<pre><code>
+
+&lt;table class="wet-boew-zebra noheaderhighlight columnhighlight hassum"&gt;
+	&lt;caption&gt;
+		&lt;strong&gt;Column Highlight with summary Table 4&lt;/strong&gt;
+		&lt;p&gt;With a "&lt;code&gt;th&lt;/code&gt;" layout cell at the top left corner, a "&lt;code&gt;td&lt;/code&gt;" layout cell at the summary intersection and with the option "&lt;code&gt;noheaderhighlight&lt;/code&gt;" and "&lt;code&gt;hassumm&lt;/code&gt;" set.&lt;/p&gt;
+	&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th rowspan="2"&gt;&lt;/th&gt;
+			&lt;th colspan="8"&gt;Group Header&lt;/th&gt;
+			&lt;th rowspan="2"&gt;Summary&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+</code></pre>
+</details>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-eng.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<section><div id="wet-fullft"><h3>Full-width footer area</h3>
+<div id="wet-fullft-in"></div>
+</div></section>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

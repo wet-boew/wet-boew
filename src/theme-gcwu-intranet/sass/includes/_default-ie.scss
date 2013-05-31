@@ -1,9 +1,9 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 .ie7 {
-	@extend %intranet-default-ie-all-versions;
+	@extend %gcwu-intranet-default-ie-all-versions;
 	#gcwu-title-in {
 		position: static !important;
 		a {
@@ -33,18 +33,18 @@
 }
 
 .ie8 {
-	@extend %intranet-default-ie-all-versions;
+	@extend %gcwu-intranet-default-ie-all-versions;
 }
 
-%intranet-default-ie-all-versions {
-	%intranet-default-ie-all-versions-background-none {
+%gcwu-intranet-default-ie-all-versions {
+	%gcwu-intranet-default-ie-all-versions-background-none {
 		background: none;
 	}
 	[id|="wb-body"] {
-		@extend %intranet-default-ie-all-versions-background-none;
+		@extend %gcwu-intranet-default-ie-all-versions-background-none;
 	}
 	#wb-head-in {
-		@extend %intranet-default-ie-all-versions-background-none;
+		@extend %gcwu-intranet-default-ie-all-versions-background-none;
 	}
 	#gcwu-sft-in {
 		background: transparent url(../images/gcwu-sft-in.png) no-repeat right bottom;

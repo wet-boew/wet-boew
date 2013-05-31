@@ -1,60 +1,58 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 .ie7 {
-	%wb-ie7-clip-rect-1
-	{
-		clip: rect(1px 1px 1px 1px);
-	}
 	#wb-skip {
 		a {
-			@extend .wb-show-onfocus;
-			&:link, &:visited {
-				@extend %wb-ie7-clip-rect-1;
-			}
+			@extend %wb-default-ie7-relative-float-left;
+			@extend %wb-default-ie7-show-focus;
 		}
 	}
-	#wb-sec {
-		h2 {
-			@extend %wb-ie7-clip-rect-1;
-		}
-	}
-	#wb-sup {
-		h2 {
-			@extend %wb-ie7-clip-rect-1;
-		}
-	}
-	.wb-invisible {
+	%wb-default-ie7-relative-float-left {
 		position: relative;
 		float: left;
 		margin-bottom: -1px !important;
-		@extend %wb-ie7-clip-rect-1;
 	}
-	.wb-show-onfocus {
-		@extend .wb-invisible;
-		&:focus, &:active {
+	.wb-invisible {
+		@extend %wb-default-ie7-relative-float-left;
+	}
+	%wb-default-ie7-show-focus {
+		@include pseudo-focus(false) {
 			width: auto !important;
 			height: auto !important;
 			overflow: visible !important;
 			white-space: nowrap;
 		}
 	}
-
-	.wb-show-onhover {
+	.wb-show-onfocus {
+		@extend %wb-default-ie7-relative-float-left;
+		@extend %wb-default-ie7-show-focus;
+	}
+	%wb-default-ie7-transparent {
 		@include transparent;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			@include opaque;
 		}
+	}
+	.wb-show-onhover {
+		@extend %wb-default-ie7-transparent;
 	}
 
 	a {
 		&.wb-linkdesc {
 			span {
 				span {
-					@extend .wb-show-onhover;
+					@extend %wb-default-ie7-transparent;
 				}
 			}
+		}
+	}
+
+	legend {
+		margin-left: -7px;
+		* {
+			width: 100%;
 		}
 	}
 
@@ -63,6 +61,17 @@
 		.wb-invisible, .wb-show-onfocus, #wb-foot h2 {
 			float: right;
 		}
+
+		legend {
+			margin-left: auto;
+			margin-right: -7px;
+		}
+	}
+}
+
+.ie8 {
+	.wb-invisible {
+		border: none;
 	}
 }
 

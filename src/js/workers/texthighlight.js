@@ -1,11 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /*
  * Text highlighting functionality 
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -51,8 +51,8 @@
 				return null;
 			} // end of addHighlight
 
-			if (pe.urlquery.texthighlight !== undefined) {
-				addHighlight(pe.urlquery.texthighlight, elm);
+			if (_pe.urlquery.texthighlight !== undefined) {
+				addHighlight(_pe.urlquery.texthighlight, elm);
 			}
 			return this;
 		} // end of exec

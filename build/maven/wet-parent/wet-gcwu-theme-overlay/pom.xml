@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>wet-parent</artifactId>
+		<groupId>com.github.wet-boew</groupId>
+		<version>3.0.6-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>wet-gcwu-theme-overlay</artifactId>
+	<packaging>war</packaging>
+	
+	<build>
+		<!-- Configure specifics of this overlay -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<configuration>
+						<webResources>
+							<resource>
+								<directory>${project.parent.basedir}/${dist.js.folder}</directory>
+								<targetPath>js</targetPath>
+							</resource>
+							<resource>
+								<directory>${project.parent.basedir}/${dist.grids.folder}</directory>
+								<targetPath>grids</targetPath>
+							</resource>
+							<resource>
+								<directory>${project.parent.basedir}/${dist.theme.gcwu.folder}</directory>
+								<targetPath>theme-gcwu-fegc</targetPath>
+							</resource>
+							<!-- For now Maven doesn't seem to provide a nice way of inheriting these common resource from the parent, so they need to be added to each child pom -->
+							<resource>
+								<directory>${project.parent.basedir}/${license.location}</directory>
+								<includes>
+									<include>Licence-fra.txt</include>
+									<include>License-eng.txt</include>
+								</includes>
+							</resource>
+							<resource>
+								<directory>${project.parent.basedir}/</directory>
+								<includes>
+									<include>README.txt</include>
+								</includes>
+							</resource>
+						</webResources>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<!-- Tell Maven to call the maven-war-plugin -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<name>Web Experience Toolkit - GCWU theme overlay</name>
+	
+	<description>
+	Web Experience Toolkit (WET) includes ready-made tools and solutions for building and maintaining innovative websites that 
+	are accessible, usable, and interoperable. These tools and solutions are open source software and free for use by departments 
+	and external Web communities.
+	
+	This module is a WAR overlay providing the files needed to implement the WET GC Web Usability (GCWU) theme.  Please see the README.txt file inside the WAR file for details on usage.
+	</description>
+</project>

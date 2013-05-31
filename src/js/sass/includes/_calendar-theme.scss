@@ -1,21 +1,33 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
+%cal-color-fff {
+	color: #FFF;
+}
+%cal-color-fff-important {
+	color: #FFF !important;
+}
+%cal-background-333 {
+	background: #333;
+}
+%cal-background-color-333 {
+	background-color: #333;
+}
 
 .cal-cnt {
 	.cal-header {
-		background: #333;
-		color: #FFF;
-		font-weight: bold;
+		@extend %cal-background-333;
+		@extend %cal-color-fff;
+		font-weight: 700;
 	}
 	.cal-nextmonth, .cal-prevmonth {
 		a {
 			&:link, &:visited {
 				border: 1px solid #333;
 			}
-			&:hover, &:focus, &:active {
-				color: #FFF;
+			@include pseudo-focus {
+				@extend %cal-color-fff;
 				border: 1px solid #FFF;
 			}
 		}
@@ -23,9 +35,9 @@
 	.cal-goto-link {
 		a {
 			&:link, &:visited {
-				color: #FFF !important;
+				@extend %cal-color-fff-important;
 			}
-			&:hover, &:focus, &:active {
+			@include pseudo-focus {
 				color: #36C !important;
 				background-color: #FFF;
 			}
@@ -33,7 +45,7 @@
 	}
 	.cal-goto {
 		legend {
-			color: #FFF;
+			@extend %cal-color-fff;
 		}
 	}
 }
@@ -47,17 +59,21 @@
 	span.cal-we, ol.cal-day-list li.cal-we {
 		background: #EEE;
 	}
-	.cal-day-list a {
-		color: #111;
-		&:hover, &:focus, &:active {
-			/* active is for IE, focus is for Firefox | active est pour IE, focus est pour Firefox */
-			background: #333;
-			color: #FFF;
+	.cal-day-list {
+		a {
+			color: #111;
+			@include pseudo-focus {
+				@extend %cal-background-333;
+				@extend %cal-color-fff-important;
+			}
 		}
 	}
 	.cal-currentday {
-		&, a {
-			color: #FFF;
+		@extend %cal-color-fff;
+		a {
+			&, &:link {
+				@extend %cal-color-fff-important;
+			}
 		}
 	}
 }
@@ -83,11 +99,27 @@ ol {
 			border-color: #333;
 			font-weight: bolder;
 			background: #555;
-			color: #FFF;
+			@extend %cal-color-fff;
 		}
 	}
 }
 
-div.cal-days ol.cal-day-list li.cal-currentday, .cal-currentday a {
-	background-color: #333;
+div {
+	&.cal-days {
+		ol {
+			&.cal-day-list {
+				li {
+					&.cal-currentday {
+						@extend %cal-background-color-333;
+					}
+				}
+			}
+		}
+	}
+}
+
+.cal-currentday {
+	a {
+		@extend %cal-background-color-333;
+	}
 }

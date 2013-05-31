@@ -1,0 +1,18 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+*/
+.ie7, .ie8 {
+	div {
+		&.olControlZoom {
+			a {
+				background: #130085; /* fallback for IE - IE6 requires background shorthand*/
+				filter: alpha(opacity=80);
+				@include pseudo-focus {
+					background: #130085; /* fallback for IE */
+					filter: alpha(opacity=100);
+				}
+			}
+		}
+	}
+}

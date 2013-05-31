@@ -1,11 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /*
  * Events Calendar
  */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -25,6 +25,7 @@
 				digit,
 				events,
 				containerid,
+				$containerid,
 				getEvents,
 				randomId,
 				addEvents,
@@ -36,7 +37,8 @@
 				focusDay,
 				blurDay,
 				blurEvent,
-				focusEvent;
+				focusEvent,
+				monthNames = _pe.dic.get('%calendar-monthNames');
 
 			getEvents = function (obj) {
 				// set some defaults due to classing over-rides
@@ -69,11 +71,13 @@
 							link_id,
 							date,
 							tCollection,
+							$tCollection,
 							strDate1,
 							strDate2,
 							strDate,
 							z,
-							_zlen;
+							_zlen,
+							className;
 
 						/** Modification direct-linking or page-linking
 						*	- added the ability  to have class set the behaviour of the links
@@ -85,7 +89,7 @@
 							event.attr('id', link_id);
 
 							//Fixes IE tabbing error (http://www.earthchronicle.com/ECv1point8/Accessibility01IEAnchoredKeyboardNavigation.aspx)
-							if (pe.ie > 0) {
+							if (_pe.ie > 0) {
 								event.attr('tabindex', '-1');
 							}
 							link = '#' + link_id;
@@ -103,11 +107,14 @@
 							// this is a spanning event
 							strDate1 = ($(tCollection[0]).get(0).nodeName.toLowerCase() === 'time') ? $(tCollection[0]).attr('datetime').substr(0, 10).split('-') :  $(tCollection[0]).attr('class').match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[1].substr(0, 10).split('-');
 							strDate2 = ($(tCollection[1]).get(0).nodeName.toLowerCase() === 'time') ? $(tCollection[1]).attr('datetime').substr(0, 10).split('-') :  $(tCollection[1]).attr('class').match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[1].substr(0, 10).split('-');
+							// convert to zero-base month
+							strDate1[1] = strDate1[1] - 1;
+							strDate2[1] = strDate2[1] - 1;
 
-							date.setFullYear(strDate1[0], strDate1[1] - 1, strDate1[2]);
+							date.setFullYear(strDate1[0], strDate1[1], strDate1[2]);
 
 							// now loop in events to load up all the days that it would be on tomorrow.setDate(tomorrow.getDate() + 1);
-							for (z = 0, _zlen = pe.date.daysBetween(strDate1, strDate2) + 1; z <= _zlen; z += 1) {
+							for (z = 0, _zlen = _pe.date.daysBetween(strDate1, strDate2) + 1; z <= _zlen; z += 1) {
 								if (events.minDate === null || date < events.minDate) {
 									events.minDate = date;
 								}
@@ -118,15 +125,17 @@
 								events.list[events.iCount] = { 'title': title, 'date': new Date(date.getTime()), 'href': link };
 								date = new Date(date.setDate(date.getDate() + 1));
 								// add a viewfilter
-								if (!_objTitle.hasClass('filter-' + (date.getFullYear()) + '-' + pe.string.pad(date.getMonth() + 1, 2))) {
-									_objTitle.addClass('filter-' + (date.getFullYear()) + '-' + pe.string.pad(date.getMonth() + 1, 2));
+								className = 'filter-' + (date.getFullYear()) + '-' + _pe.string.pad(date.getMonth() + 1, 2);
+								if (!_objTitle.hasClass(className)) {
+									_objTitle.addClass(className);
 								}
 								events.iCount += 1;
 							}
 
 						} else if (tCollection.length === 1) {
 							// this is a single day event
-							strDate = ($(tCollection[0]).get(0).nodeName.toLowerCase() === 'time') ? $(tCollection[0]).attr('datetime').substr(0, 10).split('-') : $(tCollection[0]).attr('class').match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[1].substr(0, 10).split('-');
+							$tCollection = $(tCollection[0]);
+							strDate = ($tCollection.get(0).nodeName.toLowerCase() === 'time') ? $tCollection.attr('datetime').substr(0, 10).split('-') : $tCollection.attr('class').match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[1].substr(0, 10).split('-');
 
 							date.setFullYear(strDate[0], strDate[1] - 1, strDate[2]);
 
@@ -138,8 +147,9 @@
 							}
 							events.list[events.iCount] = {'title' : title, 'date' : date, 'href' : link};
 							// add a viewfilter
-							if (!_objTitle.hasClass('filter-' + (date.getFullYear()) + '-' + pe.string.pad(date.getMonth() + 1, 2))) {
-								_objTitle.addClass('filter-' + (date.getFullYear()) + '-' + pe.string.pad(date.getMonth() + 1, 2));
+							className = 'filter-' + (date.getFullYear()) + '-' + _pe.string.pad(date.getMonth() + 1, 2);
+							if (!_objTitle.hasClass(className)) {
+								_objTitle.addClass(className);
 							}
 							events.iCount += 1;
 						}
@@ -172,23 +182,27 @@
 			};
 
 			keyboardNavCalendar = function (event) {
-				var i, evt;
+				var i,
+					evt,
+					$this;
 				switch (event.keyCode) {
 				case 13: // enter key
 				case 32: // spacebar
 				case 38: // up arrow
 				case 40: // down arrow
-					pe.focus(event.data.details.find('a').first());
+					_pe.focus(event.data.details.find('a').first());
 					return false;
 				case 37: // left arrow
-					i = $(this).closest('li').index();
-					evt = $(this).closest('ol').children('li:lt(' + i + ')').children('a').last();
-					pe.focus(evt);
+					$this = $(this);
+					i = $this.closest('li').index();
+					evt = $this.closest('ol').children('li:lt(' + i + ')').children('a').last();
+					_pe.focus(evt);
 					return false;
 				case 39: // right arrow
-					i = $(this).closest('li').index();
-					evt = $(this).closest('ol').children('li:gt(' + i + ')').children('a').first();
-					pe.focus(evt);
+					$this = $(this);
+					i = $this.closest('li').index();
+					evt = $this.closest('ol').children('li:gt(' + i + ')').children('a').first();
+					_pe.focus(evt);
 					return false;
 				case 27: // escape
 					$(this).siblings('.ev-details').removeClass('ev-details').addClass('wb-invisible');
@@ -197,31 +211,37 @@
 			};
 
 			keyboardNavEvents = function (event) {
-				var i, evt, length;
+				var i,
+					evt,
+					length,
+					$this = $(this),
+					$children;
 				switch (event.keyCode) {
 				case 38: // up arrow
-					i = $(this).closest('li').index();
-					length = $(this).closest('ul').children('li').length;
-					pe.focus($(this).closest('ul').children('li').eq((i - 1) % length).children('a'));
+					i = $this.closest('li').index();
+					$children = $this.closest('ul').children('li');
+					length = $children.length;
+					_pe.focus($children.eq((i - 1) % length).children('a'));
 					// $(this).trigger('focus');
 					return false;
 				case 40: // down arrow
-					i = $(this).closest('li').index();
-					length = $(this).closest('ul').children('li').length;
-					pe.focus($(this).closest('ul').children('li').eq((i + 1) % length).children('a'));
+					i = $this.closest('li').index();
+					$children = $this.closest('ul').children('li');
+					length = $children.length;
+					_pe.focus($children.eq((i + 1) % length).children('a'));
 					return false;
 				case 37: // left arrow
-					i = $(this).closest('li[id^=cal-]').index();
-					evt = $(this).closest('ol').children('li:lt(' + i + ')').children('a').last();
-					pe.focus(evt);
+					i = $this.closest('li[id^=cal-]').index();
+					evt = $this.closest('ol').children('li:lt(' + i + ')').children('a').last();
+					_pe.focus(evt);
 					return false;
 				case 39: // right arrow
-					i = $(this).closest('li[id^=cal-]').index();
-					evt = $(this).closest('ol').children('li:gt(' + i + ')').children('a').first();
-					pe.focus(evt);
+					i = $this.closest('li[id^=cal-]').index();
+					evt = $this.closest('ol').children('li:gt(' + i + ')').children('a').first();
+					_pe.focus(evt);
 					return false;
 				case 27: // escape
-					pe.focus($(this).closest('li[id^=cal-]').children('.cal-event'));
+					_pe.focus($this.closest('li[id^=cal-]').children('.cal-event'));
 					return false;
 				}
 			};
@@ -321,7 +341,7 @@
 
 						eventDetails = $('<li><a href="' + eventslist[e].href +  '">' + eventslist[e].title + '</a></li>');
 
-						if (pe.cssenabled) {
+						if (_pe.cssenabled) {
 							eventDetails.children('a').attr('tabindex', '-1');
 						}
 
@@ -340,14 +360,13 @@
 				} // end of event list loop
 			};
 			showOnlyEventsFor = function (year, month, calendarid) {
-				$('.' + calendarid + ' li.calendar-display-onshow').addClass('wb-invisible');
-				$('.' + calendarid + ' li.calendar-display-onshow').has(':header[class*=filter-' + year + '-' + pe.string.pad(parseInt(month, 10) + 1, 2) + ']').removeClass('wb-invisible');
+				$('.' + calendarid + ' li.calendar-display-onshow').addClass('wb-invisible').has(':header[class*=filter-' + year + '-' + _pe.string.pad(parseInt(month, 10) + 1, 2) + ']').removeClass('wb-invisible');
 			};
 
 			if (elm_year.length > 0 && elm_month.length > 0) {
 				year = elm_year.text(); // we are going to assume this is always a number
 				if (elm_month.hasClass('textformat')) {
-					digit = $.inArray(elm_month.text(), pe.dic.get('%calendar-monthNames'));
+					digit = $.inArray(elm_month.text(), monthNames);
 					month = digit;
 				} else {
 					month = elm_month.text() - 1;
@@ -355,19 +374,20 @@
 			}
 
 			events = getEvents(elm);
-			containerid = $(elm).attr('class').split(' ').slice(-1);
+			containerid = elm.attr('class').split(' ').slice(-1);
+			$containerid = $('#' + containerid);
 
 			if ($('#wb-main-in').css('padding-left') === '0px') { //jQuery returns 0px even if no units specified in CSS "padding-left: 0;"
-				$('#' + containerid).css('margin-left', '10px');
+				$containerid.css('margin-left', '10px');
 			}
 
-			$('#' + containerid).on('calendarDisplayed', function (e, year, month, days) {
+			$containerid.on('calendarDisplayed', function (e, year, month, days) {
 				addEvents(year, month, days, containerid, events.list);
 				showOnlyEventsFor(year, month, containerid);
 			});
 			calendar.create(containerid, year, month, true, events.minDate, events.maxDate);
 
-			$('#' + containerid).attr('role', 'application');
+			$containerid.attr({'role': 'application', 'aria-label': _pe.dic.get('%calendar')});
 		} // end of exec
 	};
 	window.pe = _pe;

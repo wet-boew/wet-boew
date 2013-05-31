@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 %wet-default-screen-ie-float-left {
 	float: left;
@@ -8,16 +8,29 @@
 %wet-default-screen-ie-position-relative {
 	position: relative;
 }
-%wet-default-screen-ie-top-1px {
-	top: 1px;
-}
 %wet-default-screen-ie-float-right {
 	float: right;
 }
-%wet-default-screen-ie-background-image-logo {
-	background-image: url(../images/logo.png);
+%wet-default-screen-ie-font-size-0 {
+	font-size: 0;
 }
 .ie7 {
+	#wb-skip {
+		li {
+			top: 1px;
+		}
+		a {
+			&:link {
+				@extend %wet-default-screen-ie-font-size-0;
+			}
+			&:visited {
+				@extend %wet-default-screen-ie-font-size-0;
+			}
+			&:active {
+				font-size: 100%;
+			}
+		}
+	}
 	#wb-core {
 		margin-bottom: -20px;
 	}
@@ -31,15 +44,25 @@
 	}
 	#wet-srch-submit {
 		padding: 2px 0;
+		margin-right: 1px;
+		top: -1px;
 		@extend %wet-default-screen-ie-position-relative;
-		@extend %wet-default-screen-ie-top-1px;
 	}
 	#wet-title {
 		zoom: 1;
 		@extend %wet-default-screen-ie-position-relative;
-	}
-	#wet-title-in {
-		@extend %wet-default-screen-ie-background-image-logo;
+		a {
+			height: 2.9em;
+			display: block;
+		}
+		span {
+			height: auto;
+			@extend %wet-default-screen-ie-position-relative;
+			top: 0.8em;
+		}
+		small {
+			padding-left: 155px;
+		}
 	}
 	#wet-date-mod {
 		@extend %wet-default-screen-ie-position-relative;
@@ -49,16 +72,13 @@
 	}
 	#wet-tctr {
 		padding: 7px 0 6px;
-		li.wet-tc {
-			padding: 0 10px;
-		}
-		li.wet-tr {
-			padding-left: 10px;
-		}
-	}
-	#wet-fullft {
 		li {
-			margin: 13px 35px 14px 9px;
+			&.wet-tc {
+				padding: 0 10px;
+			}
+			&.wet-tr {
+				padding-left: 10px;
+			}
 		}
 	}
 	#wet-bnr {
@@ -68,6 +88,9 @@
 		li {
 			@extend %wet-default-screen-ie-float-left;
 		}
+	}
+	#wet-fullft {
+		display: none;
 	}
 
 	// Right to left (RTL) CSS
@@ -101,9 +124,17 @@
 			}
 		}
 
+		#wet-srch-submit {
+			margin-right: 3px;
+			top: 1px;
+		}
+
 		#wet-date-mod {
 			@extend %wet-default-screen-ie-float-left;
-			dt, dd {
+			dt {
+				@extend %wet-default-screen-ie7-rtl-float-fix;
+			}
+			dd {
 				@extend %wet-default-screen-ie7-rtl-float-fix;
 			}
 		}
@@ -117,15 +148,10 @@
 			}
 		}
 
-		#wet-fullft {
-			li {
-				margin: 13px 9px 14px 35px;
-			}
-		}
-
 		#wet-bnr {
 			@extend %wet-default-screen-ie-float-right;
 		}
+
 		#wet-tctr {
 			li {
 				@extend %wet-default-screen-ie-float-right;
@@ -135,12 +161,12 @@
 }
 
 .ie8 {
-	#wet-title-in {
-		@extend %wet-default-screen-ie-background-image-logo;
-	}
 	#wet-srch-submit {
 		padding: 2px 5px;
 		@extend %wet-default-screen-ie-position-relative;
-		@extend %wet-default-screen-ie-top-1px;
+		top: 1px;
+	}
+	#wet-psnb {
+		padding-bottom: 1px;
 	}
 }

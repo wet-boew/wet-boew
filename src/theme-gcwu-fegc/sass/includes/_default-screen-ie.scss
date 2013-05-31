@@ -1,15 +1,33 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
+%gcwu-default-screen-ie-display-none {
+	display: none;
+}
+.ie7, .ie8 {
+	.ui-mobile-rendering {
+		#gcwu-wmms-in {
+			@extend %gcwu-default-screen-ie-display-none;
+		}
+		#gcwu-sig-in {
+			@extend %gcwu-default-screen-ie-display-none;
+		}
+	}
+}
+
 .ie7 {
+	%gcwu-default-screen-ie7-overflow-visible {
+		overflow: visible;
+	}
+	%gcwu-default-screen-ie7-float-left {
+		float: left;
+	}
+	%gcwu-default-screen-ie7-float-right {
+		float: right;
+	}
 	#wb-core {
 		margin-bottom: -20px;
-	}
-	.gcwu-minister {
-		ul {
-			padding-bottom: 17px;
-		}
 	}
 	#gcwu-srchbx {
 		padding-bottom: 0;
@@ -19,9 +37,6 @@
 		padding: 2px 0;
 		position: relative;
 		top: 1px;
-	}
-	%gcwu-default-screen-ie7-overflow-visible {
-		overflow: visible;
 	}
 	#gcwu-bnr {
 		@extend %gcwu-default-screen-ie7-float-left;
@@ -64,12 +79,6 @@
 		li {
 			margin: 13px 35px 14px 9px;
 		}
-	}
-	%gcwu-default-screen-ie7-float-left {
-		float: left;
-	}
-	%gcwu-default-screen-ie7-float-right {
-		float: right;
 	}
 
 	// Right to left (RTL) CSS

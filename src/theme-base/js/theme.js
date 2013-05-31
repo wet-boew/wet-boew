@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -9,7 +9,7 @@
 /*
  * Base theme scripting
  */
-/*global jQuery: false, pe: false, window: false, document: false*/
+/*global jQuery: false, pe: false, window: false, document: false, wet_boew_mobile_view: false*/
 (function ($) {
 	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
@@ -28,7 +28,13 @@
 		title: null,
 		sft: null,
 		fullft: null,
+		gridsmenu: null,
 		menu: null,
+		favicon: {
+			href: 'images/favicon-mobile.png',
+			rel: 'apple-touch-icon',
+			sizes: '57x57 72x72 114x114 144x144 150x150'
+		},
 		init: function () {
 			wet_boew_theme.fullhd = pe.header.find('#base-fullhd');
 			wet_boew_theme.psnb = pe.header.find('#base-psnb');
@@ -38,6 +44,7 @@
 			wet_boew_theme.title = pe.header.find('#base-title');
 			wet_boew_theme.sft = pe.footer.find('#base-sft');
 			wet_boew_theme.fullft = pe.footer.find('#base-fullft');
+			wet_boew_theme.gridsmenu = pe.main.find('.module-menu-section');
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm');
@@ -49,7 +56,10 @@
 			if (pe.secnav.length !== 0) {
 				current = pe.menu.navcurrent(pe.secnav, wet_boew_theme.bcrumb);
 				submenu = current.parents('ul');
-				submenu.prev().children('a').addClass('nav-current');
+				submenu.prev().children('a').addClass('nav-current-nocss');
+			}
+			if (wet_boew_theme.gridsmenu.length !== 0) {
+				current = pe.menu.navcurrent(wet_boew_theme.gridsmenu, wet_boew_theme.bcrumb);
 			}
 
 			// If no search is provided, then make the site menu link 100% wide
@@ -63,11 +73,11 @@
 		/* Special handling for the mobile view */
 		mobileview: function () {
 			var mb_popup,
-				mb_header_html,
 				mb_menu = '',
 				mb_btn_txt,
 				srch_btn_txt,
 				settings_txt = pe.dic.get('%settings'),
+				mainpage_txt = pe.dic.get('%hyphen') + pe.dic.get('%main-page'),
 				settings_popup,
 				secnav_h2,
 				s_form,
@@ -95,26 +105,37 @@
 				mb_li,
 				target,
 				i,
+				j,
 				len,
+				len2,
 				nodes,
 				node,
+				next,
+				$document = $(document),
 				home_href,
-				header;
+				header,
+				sessionSettings,
+				sessionSetting,
+				signInOut,
+				session,
+				header_fixed = typeof wet_boew_mobile_view !== 'undefined' && wet_boew_mobile_view.header_fixed;
 
 			// Content pages only
 			if (wet_boew_theme.sft.length !== 0) {
 				// Build the menu popup
-				if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.search.length !== 0) {
+				if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.bcrumb.length !== 0) {
 					// Transform the menu to a popup
 					mb_btn_txt = pe.dic.get('%menu');
 					mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
 					secnav_h2 = (pe.secnav.length !== 0 ? pe.secnav[0].getElementsByTagName('h2')[0] : '');
-					mb_header_html = (wet_boew_theme.menubar.length !== 0 ? wet_boew_theme.psnb.children(':header')[0] : (pe.secnav.length !== 0 ? secnav_h2 : wet_boew_theme.bcrumb.children(':header')[0])).innerHTML;
 					mb_popup = popup + ' id="jqm-wb-mb">' + popup_default_header_open + mb_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
 
 					if (wet_boew_theme.bcrumb.length !== 0) {
 						node = wet_boew_theme.bcrumb[0];
-						home_href = node.getElementsByTagName('a')[0].href;
+						links = node.getElementsByTagName('a');
+						if (links.length !== 0) {
+							home_href = links[0].href;
+						}
 						mb_popup += '<section><div id="jqm-mb-location-text">' + node.innerHTML + '</div></section>';
 					} else {
 						mb_popup += '<div id="jqm-mb-location-text"></div>';
@@ -123,19 +144,18 @@
 					// Build the menu
 					if (pe.secnav.length !== 0) {
 						mb_menu += '<section><div><h2>' + secnav_h2.innerHTML + '</h2>' + pe.menu.buildmobile(pe.secnav.find('.wb-sec-def'), 3, 'b', false, true, 'c', true, true) + '</div></section>';
-						node = pe.secnav[0];
 					}
 					if (wet_boew_theme.menubar.length !== 0) {
-						mb_menu += '<section><div><h2>' + mb_header_html + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
+						mb_menu += '<section><div><h2>' + wet_boew_theme.psnb.children(':header')[0].innerHTML + '</h2>' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></section>';
 					}
-					
+
 					// Append the popup/dialog container and store the menu for appending later
 					mb_popup += '<div id="jqm-mb-menu"></div></nav></div></div></div>';
 					bodyAppend += mb_popup;
 					wet_boew_theme.menu = mb_menu;
 					_list += popup_button + ' data-icon="bars" href="#jqm-wb-mb">' + mb_btn_txt + '</a>';
 				}
-			
+
 				// Build the search popup (content pages only)
 				if (wet_boew_theme.search.length !== 0) {
 					// :: Search box transform lets transform the search box to a popup
@@ -151,10 +171,9 @@
 					bodyAppend += s_popup;
 					_list += popup_button + ' data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a>';
 				}
-			
+
 				// Build the header bar
-				header = '<div data-role="header"><div class="ui-title"></div>';
-				header += '<map id="base-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
+				header = '<div data-role="header"' + (header_fixed ? ' data-position="fixed"' : '') + '><div class="ui-title"><div></div></div><map id="base-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 				// Handling for the home/back button if it exists
 				if (typeof home_href !== 'undefined') { // Home button needed
 					header += button + ' href="' + home_href + '" data-icon="home">' + pe.dic.get('%home') + '</a>';
@@ -172,33 +191,45 @@
 				wet_boew_theme.fullhd.children('#base-fullhd-in').before(header);
 				// Apply a theme to the site title
 				wet_boew_theme.title[0].className += ' ui-bar-b';
-			
+
 				// Build the settings popup
+				session = document.getElementById('wb-session');
 				lang_links = wet_boew_theme.fullhd.find('li[id*="-lang"]');
 				settings_popup = popup + ' id="popupSettings"' + popup_settings;
 				settings_popup += popup_settings_header_open + settings_txt + '</h1>' + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open + listView + '>';
-				if (lang_links.length > 0) {
+				if (session !== null) {
+					sessionSettings = session.getElementsByClassName('settings');
+					for (i = 0, len = sessionSettings.length; i !== len; i += 1) {
+						sessionSetting = sessionSettings[i].getElementsByTagName('a')[0];
+						settings_popup += '<li><a href="' + sessionSetting.getAttribute('href') + '">' + sessionSetting.innerHTML + '</a></li>';
+					}
+					signInOut = session.getElementsByClassName('session')[0].getElementsByTagName('a')[0];
+					settings_popup += '<li><a href="' + signInOut.getAttribute('href') + '">' + signInOut.innerHTML + '</a></li>';
+				}
+				if (lang_links.length !== 0) {
 					settings_popup += '<li><a href="#popupLanguages"' + popup_link + '>' + pe.dic.get('%languages') + '</a></li>';
 				}
 				settings_popup += '<li class="ui-corner-bottom"><a href="#popupAbout"' + popup_link + '>' + pe.dic.get('%about') + '</a></li>';
 				settings_popup += '</ul>' + popup_close;
 
 				// Build the languages sub-popup
-				if (lang_links.length > 0) {
+				if (lang_links.length !== 0) {
 					settings_popup += popup + ' id="popupLanguages"' + popup_settings;
 					settings_popup += popup_settings_header_open + pe.dic.get('%languages') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
 					settings_popup += popup_settings_content_open + listView + '>';
 					if (lang_links.filter('[id*="-lang-current"]').length === 0) {
-						settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + pe.dic.get('%current') + '</a></li>';
+						settings_popup += '<li><a href="javascript:;" class="ui-disabled">' + pe.dic.get('%lang-native') + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
 					}
 					nodes = lang_links.get();
-					for (i = 0, len = nodes.length; i !== len; i += 1) {
+					len = nodes.length;
+					i = len;
+					while (i--) {
 						node = nodes[i];
-						link = node.childNodes[0];
-						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '');
+						link = node.getElementsByTagName('a')[0];
+						settings_popup += '<li' + (i === 0 ? ' class="ui-corner-bottom"' : '');
 						if (node.id.indexOf('-lang-current') !== -1) {
-							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + pe.dic.get('%current') + '</a></li>';
+							settings_popup += '><a href="javascript:;" class="ui-disabled">' + node.innerHTML + ' <span class="current">' + pe.dic.get('%current') + '</span></a></li>';
 						} else {
 							settings_popup += '><a href="' + link.href + '" lang="' + link.getAttribute('lang') + '">' + link.innerHTML + '</a></li>';
 						}
@@ -206,11 +237,11 @@
 					settings_popup += '</ul>' + popup_close;
 				}
 
-				// Build the about sub-popup	
+				// Build the about sub-popup
 				settings_popup += popup + ' id="popupAbout"' + popup_settings;
-				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';			
+				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open;
-				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title.text() + '</div></div>';
+				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title[0].getElementsByTagName('a')[0].innerHTML + '</div></div>';
 				// Add the version
 				node = pe.main.find('#base-date-mod').children();
 				if (node.length !== 0) {
@@ -221,30 +252,46 @@
 				}
 				settings_popup += listView + ' data-inset="true">';
 				// Add the footer links
-				links = wet_boew_theme.sft.find('.base-col-head a').get();
-				for (i = 0, len = links.length; i !== len; i += 1) {
-					link = links[i];
-					node = link.innerHTML;
-					target = node.toLowerCase();
-					settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + node + '</a></li>';	
+				nodes = wet_boew_theme.sft.find('.base-col-head');
+				for (i = 0, len = nodes.length; i !== len; i += 1) {
+					node = nodes.eq(i);
+					link = node.children('a');
+					next = node.find('+ ul, + address ul');
+					target = link.length !== 0 ? link[0].innerHTML : node[0].innerHTML;
+					if (next.length !== 0) {
+						settings_popup += '<li data-role="collapsible" data-inset="false"><h2>' + target + '</h2><ul data-role="listview">';
+						links = next[0].getElementsByTagName('a');
+						for (j = 0, len2 = links.length; j !== len2; j += 1) {
+							node = links[j];
+							settings_popup += '<li><a href="' + node.href + '">' + node.innerHTML + '</a></li>';
+						}
+						if (link.length !== 0) {
+							settings_popup += '<li><a href="' + link.attr('href') + '">' + link.html() + mainpage_txt + '</a></li>';
+						}
+						settings_popup += '</ul></li>';
+					} else if (link.length !== 0) {
+						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + link.html() + '</a></li>';
+					}
 				}
-
-				// Close the settings popup
-				settings_popup += '</ul>' + popup_close;
+				settings_popup += '</ul></div>' + popup_close;
 
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);
 			}
 
 			// jQuery mobile has loaded
-			$(document).on('pagecreate', function () {
-				if (_list.length !== 0) {
-					var navbar = wet_boew_theme.fullhd.find('#base-mnavbar'),
-						menu = pe.bodydiv.find('#jqm-mb-menu'),
-						menus,
-						nodes,
-						nodes2,
-						node2;
+			$document.on('pagecreate', function () {
+				var navbar = wet_boew_theme.fullhd.find('#base-mnavbar'),
+					menu = pe.bodydiv.find('#jqm-mb-menu'),
+					nodes,
+					nodes2,
+					node2,
+					len;
+				if (navbar.length !== 0) {
+					// Manually initializes the navbar controlgroup if it doesn't initialize normally (can happen in IE)
+					if (!navbar.hasClass('ui-controlgroup')) {
+						navbar.controlgroup();
+					}
 					navbar.removeClass('wb-hide');
 
 					// Defer appending of menu until after page is enhanced by jQuery Mobile, and
@@ -254,22 +301,22 @@
 						navbar.find('a[href="#jqm-wb-mb"]').one('click vclick', function () {
 							// Enhance the menu
 							menu.trigger('create');
-							menus = menu.find('.ui-controlgroup');
-							nodes = menus.get();
+							nodes = menu[0].getElementsByClassName('ui-controlgroup');
 							len = nodes.length;
 							while (len--) {
 								node = nodes[len];
+
 								// Fix the top corners
 								node2 = node.getElementsByTagName('li')[0];
-								if (node2.parentNode.parentNode.className.indexOf('ui-collapsible') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
+								if (node2.parentNode.parentNode.parentNode.className.indexOf('ui-collapsible') === -1 && node2.className.indexOf('ui-corner-top') === -1) {
 									node2.className += ' ui-corner-top';
 								}
 
 								// Fix the bottom corners
-								nodes2 = menus.eq(len).find('.ui-btn').get();
-								node = nodes2[nodes2.length - 1];
-								if (node.className.indexOf('ui-corner-bottom') === -1) {
-									node.className += ' ui-corner-bottom';
+								nodes2 = node.getElementsByClassName('ui-btn');
+								node2 = nodes2[nodes2.length - 1];
+								if (typeof node2 !== 'undefined' && node2.className.indexOf('ui-corner-bottom') === -1) {
+									node2.className += ' ui-corner-bottom';
 								}
 							}
 						});
@@ -288,7 +335,7 @@
 				$.mobile.transitionHandlers.loadingTransition = loadingTransition;
 				$.mobile.defaultDialogTransition = 'loadingTransition';
 			});
-			$(document).trigger('themeviewloaded');
+			$document.trigger('themeviewloaded');
 			return;
 		},
 

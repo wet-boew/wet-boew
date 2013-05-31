@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -16,6 +16,9 @@
 	$.fn.datalist = function () {
 		return $(this).each(function (index) {
 			var elm = $(this),
+				elmid = this.id,
+				uniqueid = elmid + '-label',
+				label = pe.main.find('label').filter('[for=' + elmid + ']'),
 				$datalist = $('#' + elm.attr('list')),
 				autolist,
 				options,
@@ -24,7 +27,12 @@
 				closeOptions,
 				correctWidth,
 				container;
-			
+
+			// Add uniqueid to the label if it exists
+			if (label.length !== 0) {
+				label.attr('id', uniqueid);
+			}
+
 			showOptions = function (string) {
 				var comparator, visibleOptions;
 
@@ -78,7 +86,7 @@
 				datalist_items.push('<li class="al-option" id="al-option-' + index + '-' + index2 + '"><a href="javascript:;"><span class="al-value">' + (value !== 'undefined' ? value : "") + '</span><span class="al-label">' + (label !== 'undefined' ? label : "") + '</span></a></li>');
 			});
 
-			elm.attr({'autocomplete': 'off', 'role': 'textbox', 'aria-haspopup': 'true', 'aria-autocomplete': 'list', 'aria-owns': 'wb-autolist-' + index, 'aria-activedescendent': ''}).wrap('<div class="wb-al-container" role="application"/>');
+			elm.attr({'autocomplete': 'off', 'role': 'textbox', 'aria-haspopup': 'true', 'aria-autocomplete': 'list', 'aria-owns': 'wb-autolist-' + index, 'aria-activedescendent': ''}).wrap('<div class="wb-al-container" role="application" aria-' + (label.length !== 0 ? 'labelledby="' + uniqueid : '-label="' + elm.attr('title')) + '"/>');
 			container = elm.parent();
 			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide" aria-hidden="true" aria-live="polite"></ul>');
 			options = $(datalist_items.join(''));
@@ -194,7 +202,7 @@
 				}
 			});
 
-			$(document).on("click vclick touchstart", function (e) {
+			pe.document.on('click vclick touchstart', function (e) {
 				if (!autolist.hasClass('al-hide') && !$(e.target).is(elm)) {
 					closeOptions();
 				}

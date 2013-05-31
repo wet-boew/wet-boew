@@ -1,11 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 /*
 * Multimedia player
 */
-/*global jQuery: false, pe: false*/
+/*global jQuery: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -25,7 +25,7 @@
 			height = height !== undefined ? height : 20;
 			width = width !== undefined ? width : 20;
 
-			if (pe.svg) {
+			if (_pe.svg) {
 				icon = _pe.fn.multimedia.icons.clone();
 				icon.attr({'height': height, 'width': width});
 				icon.prepend('<title>' + alt + '</title>');
@@ -116,99 +116,90 @@
 				//Add the interface
 				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
 				if (media_type === 'video') {
-					media.before($('<button class="wb-mm-overlay" type="button"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
+					media.before($('<button class="wb-mm-overlay" type="button" data-role="none"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
 				}
 				media.after(_pe.fn.multimedia._get_ui(media_id, media_type === 'video' ? true : false));
-				if ($('html').hasClass('polyfill-progress')) {
+				if (_pe.html.hasClass('polyfill-progress')) {
 					elm.find('progress').progress();
 				}
 
 				//Scale the UI when the video scales
-				$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
+				_pe.window.on('resize', {'media' : media, ratio : height / width}, function (e) {
 					var h = e.data.media.parent().width() * e.data.ratio;
 					e.data.media.height(h);
 					media.parent().find('.wb-mm-overlay').height(h);
 				});
-				$(window).trigger('resize');
+				setTimeout(function() {
+					_pe.window.trigger('resize');
+				}, 1);
 
 				//Map UI mouse events
-				elm.on('click', function () {
-					//Scale the UI when the video scales
-					$(window).on('resize', {'media' : media, ratio : height / width}, function (e) {
-						var h = e.data.media.parent().width() * e.data.ratio;
-						e.data.media.height(h);
-						media.parent().find('.wb-mm-overlay').height(h);
-					});
-					$(window).trigger('resize');
+				elm.on('click', function (e) {
+					var $target = $(e.target),
+						p,
+						s;
 
-					//Map UI mouse events
-					elm.on('click', function (e) {
-						var $target = $(e.target),
-							p,
-							s;
+					if ($target.hasClass('playpause') || e.target === this.object || $target.hasClass('wb-mm-overlay')) {
+						if (this.getPaused() === true) {
+							this.play();
+						} else {
+							this.pause();
+						}
+					}
 
-						if ($target.hasClass('playpause') || e.target === this.object || $target.hasClass('wb-mm-overlay')) {
-							if (this.getPaused() === true) {
-								this.play();
-							} else {
-								this.pause();
-							}
-						}
+					if ($target.hasClass('cc')) {
+						this.setCaptionsVisible(!this.getCaptionsVisible());
+					}
 
-						if ($target.hasClass('cc')) {
-							this.setCaptionsVisible(!this.getCaptionsVisible());
-						}
+					if ($target.hasClass('mute')) {
+						this.setMuted(!this.getMuted());
+					}
 
-						if ($target.hasClass('mute')) {
-							this.setMuted(!this.getMuted());
-						}
+					if ($target.is('progress') || $target.hasClass('wb-progress-inner') || $target.hasClass('wb-progress-outer')) {
+						p = (e.pageX - $target.offset().left) / $target.width();
+						this.setCurrentTime(this.getDuration() * p);
+					}
 
-						if ($target.is('progress') || $target.hasClass('wb-progress-inner') || $target.hasClass('wb-progress-outer')) {
-							p = (e.pageX - $target.offset().left) / $target.width();
-							this.setCurrentTime(this.getDuration() * p);
+					if ($target.hasClass('rewind') || $target.hasClass('fastforward')) {
+						s = this.getDuration() * 0.05;
+						if ($target.hasClass('rewind')) {
+							s *= -1;
 						}
+						this.setCurrentTime(this.getCurrentTime() + s);
+					}
+				});
 
-						if ($target.hasClass('rewind') || $target.hasClass('fastforward')) {
-							s = this.getDuration() * 0.05;
-							if ($target.hasClass('rewind')) {
-								s *= -1;
-							}
-							this.setCurrentTime(this.getCurrentTime() + s);
-						}
-					});
+				//Map UI keyboard events
+				elm.on('keydown', function (e) {
+					var $w = $(this),
+						v = 0;
 
-					//Map UI keyboard events
-					elm.on('keydown', function (e) {
-						var $w = $(this),
-							v = 0;
+					if ((e.which === 32 || e.which === 13) && e.target === this.object) {
+						$w.find('.wb-mm-controls .playpause').click();
+						return false;
+					}
+					if (e.keyCode === 37) {
+						$w.find('.wb-mm-controls .rewind').click();
+						return false;
+					}
+					if (e.keyCode === 39) {
+						$w.find('.wb-mm-controls .fastforward').click();
+						return false;
+					}
+					if (e.keyCode === 38) {
+						v = Math.round(this.getVolume() * 10) / 10 + 0.1;
+						v = v < 1 ? v : 1;
+						this.setVolume(v);
+						return false;
+					}
+					if (e.keyCode === 40) {
+						v = Math.round(this.getVolume() * 10) / 10 - 0.1;
+						v = v > 0 ? v : 0;
+						this.setVolume(v);
+						return false;
+					}
 
-						if ((e.which === 32 || e.which === 13) && e.target === this.object) {
-							$w.find('.wb-mm-controls .playpause').click();
-							return false;
-						}
-						if (e.keyCode === 37) {
-							$w.find('.wb-mm-controls .rewind').click();
-							return false;
-						}
-						if (e.keyCode === 39) {
-							$w.find('.wb-mm-controls .fastforward').click();
-							return false;
-						}
-						if (e.keyCode === 38) {
-							v = Math.round(this.getVolume() * 10) / 10 + 0.1;
-							v = v < 1 ? v : 1;
-							this.setVolume(v);
-							return false;
-						}
-						if (e.keyCode === 40) {
-							v = Math.round(this.getVolume() * 10) / 10 - 0.1;
-							v = v > 0 ? v : 0;
-							this.setVolume(v);
-							return false;
-						}
-
-						return true;
-					});
+					return true;
 				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
@@ -233,7 +224,7 @@
 						o = $w.find('.wb-mm-overlay');
 						o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
 						o.show();
-						
+
 						// Prevent loading from appearing
 						clearTimeout(this.loading);
 						this.loading = false;
@@ -278,7 +269,7 @@
 					case 'captionsloadfailed':
 						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%closed-caption-error') + '</p>');
 						break;
-					// Determine when the loading icon should be shown. 
+					// Determine when the loading icon should be shown.
 					case 'waiting':
 						//Prevents the loading icon to show up when waiting for less than half a second
 						if (this.getPaused() === false && !this.loading) {
@@ -297,17 +288,17 @@
 							o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
 							o.hide();
 						}
-						break;		
+						break;
 					// Fallback for browsers that don't implement the waiting/canplay events
 					case 'progress':
 						// Waiting detected, display the loading icon
 						if (this.getWaiting() === true) {
 							if (this.getBuffering() === false) {
 								this.setBuffering(true);
-								evtmgr.trigger('waiting');								
-							}				
+								evtmgr.trigger('waiting');
+							}
 						// Waiting has ended, but icon is still visible - remove it.
-						} else if (this.getBuffering() === true) {							
+						} else if (this.getBuffering() === true) {
 							this.setBuffering(false);
 							evtmgr.trigger('canplay');
 						}
@@ -353,7 +344,8 @@
 					type: 'button',
 					'class': 'rewind',
 					'aria-controls': id,
-					'title': _pe.dic.get('%rewind')
+					'title': _pe.dic.get('%rewind'),
+					'data-role': 'none'
 				}).append(_pe.fn.multimedia.get_image('rewind', _pe.dic.get('%rewind')))
 			);
 
@@ -362,7 +354,8 @@
 					type: 'button',
 					'class': 'playpause',
 					'aria-controls': id,
-					'title': _pe.dic.get('%play')
+					'title': _pe.dic.get('%play'),
+					'data-role': 'none'
 				}).append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')))
 			);
 
@@ -371,7 +364,8 @@
 					type: 'button',
 					'class': 'fastforward',
 					'aria-controls': id,
-					'title': _pe.dic.get('%fast-forward')
+					'title': _pe.dic.get('%fast-forward'),
+					'data-role': 'none'
 				}).append(_pe.fn.multimedia.get_image('ff', _pe.dic.get('%fast-forward')))
 			);
 
@@ -381,7 +375,8 @@
 						type: 'button',
 						'class': 'cc',
 						'aria-controls': id,
-						'title': _pe.dic.get('%closed-caption', 'enable')
+						'title': _pe.dic.get('%closed-caption', 'enable'),
+						'data-role': 'none'
 					}).append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')))
 				);
 			} else {
@@ -393,7 +388,8 @@
 					type: 'button',
 					'class': 'mute',
 					'aria-controls': id,
-					'title': _pe.dic.get('%mute', 'enable')
+					'title': _pe.dic.get('%mute', 'enable'),
+					'data-role': 'none'
 				}).append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')))
 			);
 
@@ -459,8 +455,8 @@
 
 			setPreviousTime: function (t) {
 				this.object.previousTime = t;
-			},			
-			
+			},
+
 			getCaptionsVisible: function () {
 				return $(this).find('.wb-mm-captionsarea').is(':visible');
 			},
@@ -489,18 +485,18 @@
 			setVolume : function (v) {
 				if (typeof this.object.volume !== 'function') {this.object.volume = v; } else {this.object.setVolume(v); }
 			},
-			
+
 			getWaiting : function () {
 				return this.getPaused() === false && this.getCurrentTime() === this.getPreviousTime();
 			},
-			
+
 			getBuffering : function () {
 				return (typeof this.object.buffering !== 'undefined' ? this.object.buffering : false);
 			},
 
 			setBuffering : function (b) {
 				this.object.buffering = b;
-			}			
+			}
 		},
 
 		_format_time : function (current) {

@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
 */
 video, object.video {
 	width: 100%;
@@ -52,6 +52,12 @@ video, object.video {
 }
 
 $progress-color: #000;
+
+.ie9 {
+	.wb-mm-controls {
+		margin-top: -1px;
+	}
+}
 
 .wb-mm-controls {
 	button {

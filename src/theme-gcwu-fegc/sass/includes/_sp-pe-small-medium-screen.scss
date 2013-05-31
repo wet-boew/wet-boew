@@ -1,0 +1,247 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import "compass/css3/images";
+@import "compass/css3/border-radius";
+
+%gcwu-sp-pe-small-medium-width-90-height-22 {
+	width: 90px;
+	height: 22px;
+}
+%gcwu-sp-pe-small-medium-padding-sides-5px {
+    padding: {
+		left: 5px;
+		right: 5px;
+	}
+}
+%gcwu-sp-pe-small-medium-titles-all {
+	width: 50%;
+	float: left;
+}
+%gcwu-sp-pe-small-medium-left-titles {
+	clear: left;
+}
+%gcwu-sp-pe-small-medium-margin-right-0 {
+	margin-right: 0;
+}
+%gcwu-sp-pe-small-medium-margin-right-0-width-50 {
+	@extend %gcwu-sp-pe-small-medium-margin-right-0;
+	width: 50%;
+}
+%gcwu-sp-pe-small-medium-width-100 {
+	width: 100%;
+}
+%gcwu-sp-pe-small-medium-text-shadow-none-font-size-100-border-top-0-padding-9 {
+	text-shadow: none;
+	font-size: 100%;
+	border-top-width: 0;
+	padding: 9px 0;
+}
+%gcwu-sp-pe-small-medium-first-child-border-right-0 {
+	&:first-child {
+		a {
+			border-right-width: 0;
+		}
+	}
+}
+%gcwu-sp-pe-small-medium-langs {
+	@extend %gcwu-sp-pe-small-medium-width-100;
+	li {
+		@extend %gcwu-sp-pe-small-medium-margin-right-0-width-50;
+		a {
+			@include background-image(linear-gradient(#444, #2D2D2D));
+			color: #fff;
+			@include border-radius(0);
+			@extend %gcwu-sp-pe-small-medium-display-block;
+			@extend %gcwu-sp-pe-small-medium-text-shadow-none-font-size-100-border-top-0-padding-9;
+			border: 1px solid #111;
+		}
+		@extend %gcwu-sp-pe-small-medium-first-child-border-right-0;
+	}
+}
+%gcwu-sp-pe-small-medium-margin-0 {
+	margin: 0;
+}
+%gcwu-sp-pe-small-medium-lang-foot {
+	a {
+		@extend %gcwu-sp-pe-small-medium-margin-0;
+	}
+	li {
+		a {
+			&.ui-btn {
+				border-top-width: 0;
+			}
+		}
+		&:nth-child(-n+2) {
+			a {
+				&.ui-btn {
+					border-top-width: 1px;
+				}
+			}
+		}
+		&:not(:last-child) {
+			&.ui-block-a {
+				a {
+					&.ui-btn {
+						border-right-width: 0;
+					}
+				}
+			}
+		}
+	}
+	ul {
+		@extend %gcwu-sp-pe-small-medium-margin-0;
+	}
+}
+%gcwu-sp-pe-small-medium-display-block {
+	display: block;
+}
+
+h1 {
+	@extend %gcwu-sp-pe-small-medium-padding-sides-5px;
+}
+
+#wb-main {
+	#gcwu-wmms {
+		position: absolute;
+		bottom: -77px;
+		left: 0;
+	}
+}
+
+#gcwu-wmms {
+	margin-top: 10px;
+	@extend %gcwu-sp-pe-small-medium-width-100;
+	img {
+		@extend %gcwu-sp-pe-small-medium-width-90-height-22;
+	}
+	object {
+		@extend %gcwu-sp-pe-small-medium-width-90-height-22;
+	}
+}
+	
+#gcwu-wmms-in {
+	margin: auto;
+	position: static;
+	@extend %gcwu-sp-pe-small-medium-width-90-height-22;
+}
+
+#wb-foot {
+	@extend %gcwu-sp-pe-small-medium-lang-foot;
+	background: #FFF;
+	padding: 0;
+	.ui-footer {
+		border: 0;
+		background: none;
+	}
+}
+
+#gcwu-sig {
+	float: left;
+	margin: 10px 0 10px 5px;
+	img {
+		margin-bottom: 0;
+	}
+}
+
+#gcwu-bnr {
+	@extend %gcwu-sp-pe-small-medium-width-100;
+}
+
+#gcwu-title {
+	@extend %gcwu-sp-pe-small-medium-padding-sides-5px;
+}
+
+#gcwu-title-left {
+	@extend %gcwu-sp-pe-small-medium-titles-all;
+	@extend %gcwu-sp-pe-small-medium-left-titles;
+}
+
+#gcwu-title-right {
+	@extend %gcwu-sp-pe-small-medium-titles-all;
+}
+
+.gcwu-alt-title-left {
+	@extend %gcwu-sp-pe-small-medium-titles-all;
+	@extend %gcwu-sp-pe-small-medium-left-titles;
+}
+
+.gcwu-alt-title-right {
+	@extend %gcwu-sp-pe-small-medium-titles-all;
+}
+
+#wb-main-in {
+	background: none;
+	padding: 0;
+}
+
+#gcwu-lang {
+	@extend %gcwu-sp-pe-small-medium-lang-foot;
+	margin-left: -15px;
+	margin-right: -15px;
+	a[href]{
+		@include pseudo-focus {
+			color: #FFF;
+		}
+	}
+}
+
+#gcwu-lang {
+	.span-6 {
+		@extend %gcwu-sp-pe-small-medium-width-100;
+	}
+	li {
+		@extend %gcwu-sp-pe-small-medium-margin-right-0;
+	}
+}
+
+#gcwu-ef-lang {
+	@extend %gcwu-sp-pe-small-medium-langs;
+}
+#gcwu-other-lang {
+	@extend %gcwu-sp-pe-small-medium-langs;
+}
+
+#gcwu-tc {
+	.span-6 {
+		@extend %gcwu-sp-pe-small-medium-width-100;
+	}
+	ul {
+		@extend %gcwu-sp-pe-small-medium-width-100;
+		padding-top: 0;
+	}
+	li {
+		@extend %gcwu-sp-pe-small-medium-margin-right-0-width-50;
+		a {
+			@include background-image(linear-gradient(#F5F5F5, #D5D5D5));
+			color: #2F3E46;
+			font-weight: 700;
+			text-align: center;
+			@extend %gcwu-sp-pe-small-medium-display-block;
+			@extend %gcwu-sp-pe-small-medium-text-shadow-none-font-size-100-border-top-0-padding-9;
+			border: 1px solid #999;
+		}
+		@extend %gcwu-sp-pe-small-medium-first-child-border-right-0;
+	}
+}
+
+.ui-mobile {
+	#gcwu-lang {
+		@extend %gcwu-sp-pe-small-medium-display-block;
+	}
+	#wb-foot {
+		@extend %gcwu-sp-pe-small-medium-display-block;
+	}
+}
+
+.no-js {
+	#gcwu-lang {
+		a {
+			@include pseudo-focus {
+				color: #000;
+				text-decoration: underline;
+			}
+		}
+	}
+}

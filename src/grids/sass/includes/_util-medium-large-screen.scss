@@ -1,0 +1,109 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import "compass/css3/columns";
+@import "equalize";
+@include equalize;
+
+/*	 columns	 */
+.column-2 {
+	@include column-count(2);
+}
+.column-3 {
+	@include column-count(3);
+}
+.column-4 {
+	@include column-count(4);
+}
+
+/* --- positioning --- */
+%util-medium-large-screen-position {
+	position: absolute !important;
+	margin: 0 !important;
+}
+
+@mixin pos($pos, $amt){
+	#{$pos}: $amt !important;
+	@extend %util-medium-large-screen-position;
+}
+
+.position-left {
+	@include pos(left, 0);
+}
+
+.position-left-small {
+	@include pos(left, 10px);
+}
+
+.position-left-medium {
+	@include pos(left, 20px);
+}
+
+.position-left-large {
+	@include pos(left, 50px);
+}
+
+.position-left-xlarge {
+	@include pos(left, 100px);
+}
+
+.position-right {
+	@include pos(right, 0);
+}
+
+.position-right-small {
+	@include pos(right, 10px);
+}
+
+.position-right-medium {
+	@include pos(right, 20px);
+}
+
+.position-right-large {
+	@include pos(right, 50px);
+}
+
+.position-right-xlarge {
+	@include pos(right, 100px);
+}
+
+.position-top {
+	@include pos(top, 0);
+}
+
+.position-top-small {
+	@include pos(top, 10px);
+}
+
+.position-top-medium {
+	@include pos(top, 20px);
+}
+
+.position-top-large {
+	@include pos(top, 50px);
+}
+
+.position-top-xlarge {
+	@include pos(top, 100px);
+}
+
+.position-bottom {
+	@include pos(bottom, 0);
+}
+
+.position-bottom-small {
+	@include pos(bottom, 10px);
+}
+
+.position-bottom-medium {
+	@include pos(bottom, 20px);
+}
+
+.position-bottom-large {
+	@include pos(bottom, 50px);
+}
+
+.position-bottom-xlarge {
+	@include pos(bottom, 100px);
+}

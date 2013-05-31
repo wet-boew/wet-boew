@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -42,6 +42,7 @@
 		'%hide': '@%hide@',
 		'%error': '@%error@',
 		'%colon': '@%colon@',
+		'%hyphen': '@%hyphen@',
 		'%start': '@%start@',
 		'%stop': '@%stop@',
 		'%back': '@%back@',
@@ -59,12 +60,12 @@
 			'mixin': '@%days-ago@'
 		},
 		'%yesterday': '@%yesterday@',
-		
+
 		'%next': '@%next@',
 		'%previous': '@%previous@',
 		'%first': '@%first@',
 		'%last': '@%last@',
-		
+
 		/* Archived Web page template */
 		'%archived-page': '@%archived-page@',
 		/* Menu bar */
@@ -75,6 +76,9 @@
 			'enable': '@%tab-rotation-enable@'
 		},
 		'%tab-list': '@%tab-list@',
+		'%tab-panel-end-1': '@%tab-panel-end-1@',
+		'%tab-panel-end-2': '@%tab-panel-end-2@',
+		'%tab-panel-end-3': '@%tab-panel-end-3@',
 		/* Multimedia player */
 		'%play': '@%play@',
 		'%pause': '@%pause@',
@@ -124,6 +128,7 @@
 		/* Calendar */
 		'%calendar-weekDayNames': ['@%calendar-weekDayNames-1@', '@%calendar-weekDayNames-2@', '@%calendar-weekDayNames-3@', '@%calendar-weekDayNames-4@', '@%calendar-weekDayNames-5@', '@%calendar-weekDayNames-6@', '@%calendar-weekDayNames-7@'],
 		'%calendar-monthNames': ['@%calendar-monthNames-1@', '@%calendar-monthNames-2@', '@%calendar-monthNames-3@', '@%calendar-monthNames-4@', '@%calendar-monthNames-5@', '@%calendar-monthNames-6@', '@%calendar-monthNames-7@', '@%calendar-monthNames-8@', '@%calendar-monthNames-9@', '@%calendar-monthNames-10@', '@%calendar-monthNames-11@', '@%calendar-monthNames-12@'],
+		'%calendar': '@%calendar@',
 		'%calendar-currentDay': '@%calendar-currentDay@',
 		'%calendar-goToLink': '@%calendar-goToLink@',
 		'%calendar-goToTitle': '@%calendar-goToTitle@',
@@ -135,8 +140,6 @@
 		'%calendar-nextMonth': '@%calendar-nextMonth@',
 		/* Slideout */
 		'%show-toc': '@%show-toc@',
-		'%show-image': '@%show-image@',
-		'%hide-image': '@%hide-image@',
 		'%show-text': '@%show-text@',
 		'%hide-text': '@%hide-text@',
 		'%table-contents': '@%table-contents@',
@@ -152,6 +155,7 @@
 		'%jqm-collapse': '@%jqm-collapse@',
 		'%jqm-clear-search': '@%jqm-clear-search@',
 		'%jqm-filter': '@%jqm-filter@',
+		'%jqm-tbl-col-toggle': '@%jqm-tbl-col-toggle@',
 		/* Charts widget */
 		'%table-mention': '@%table-mention@',
 		'%table-following': '@%table-following@',
@@ -174,11 +178,33 @@
 		'%sInfoFiltered': '@%sInfoFiltered@',
 		'%sInfoThousands': '@%sInfoThousands@',
 		'%sLengthMenu': '@%sLengthMenu@',
+		/* Geomap */
+		'%geo-mapcontrol': '@%geo-mapcontrol@',
+		'%geo-panup': '@%geo-panup@',
+		'%geo-pandown': '@%geo-pandown@',
+		'%geo-panleft': '@%geo-panleft@',
+		'%geo-panright': '@%geo-panright@',
+		'%geo-zoomin': '@%geo-zoomin@',
+		'%geo-zoomout': '@%geo-zoomout@',
+		'%geo-zoomworld': '@%geo-zoomworld@',
+		'%geo-zoomslider': '@%geo-zoomslider@',
+		'%geo-zoomfeature': '@%geo-zoomfeature@',
+		'%geo-scaleline': '@%geo-scaleline@',
+		'%geo-mouseposition': '@%geo-mouseposition@',
+		'%geo-ariamap': '@%geo-ariamap@',
+		'%geo-accessibilize': '@%geo-accessibilize@',
+		'%geo-accessibilizetitle': '@%geo-accessibilizetitle@',
+		'%geo-togglelayer': '@%geo-togglelayer@',
+		'%geo-hiddenlayer': '@%geo-hiddenlayer@',
+		'%geo-basemapurl': '@%geo-basemapurl@',
+		'%geo-basemaptitle': '@%geo-basemaptitle@',
+		'%geo-select': '@%geo-select@',
+		'%geo-labelselect': '@%geo-labelselect@',
 		/* Disable/enable PE */
 		'%pe-disable': '@%pe-disable@',
 		'%pe-enable': '@%pe-enable@'
 	};
-	$(document).trigger('languageloaded');
+	_pe.document.trigger('languageloaded');
 	window.pe = _pe;
 	return _pe;
 }(jQuery));

@@ -2,30 +2,16 @@
 /*!!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
  */
+@import '../../base/sass/oldie-vendor-prefix';
 
-/* -----Include jQuery Mobile CSS Start----- */
-@import '../jquerymobile/jquery.mobile.theme-ie';
-@import '../../js/jquerymobile/jquery.mobile.structure-ie';
-/* -----Include jQuery Mobile CSS End----- */
-
-@import '../../base/sass/modern-vendor-prefix';
-
-/* -----Build Include Section Start----- */
+/* ----- All screens - All media types - Start of build includes ----- */
 @import '../../base/sass/default-ns';
-@import '../../grids/sass/responsive-ns';
 @import '../../grids/sass/util-ns';
 @import '../../js/sass/pe-ap-ns';
 @import 'includes/default-ns';
-/* -----Build Include Section End----- */
-
-/* Mobile view */
-@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
-/* -----Build Include Section Start----- */
-@import 'includes/default-mobile-ns';
-/* -----Build Include Section End----- */
-}
+/* ----- All screens - All media types - End of build includes ----- */

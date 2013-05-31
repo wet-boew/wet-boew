@@ -7,17 +7,11 @@
 <head>
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt -->
-<title>Répartition des responsabilités d'accessibilité (WCAG 2.0) - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+<title>Répartition des responsabilités d'accessibilité (WCAG 2.0) - Exemples pratiques - Boîte à outils de l'expérience Web&#160;(BOEW)</title>
 
-<link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
-<meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
-<meta name="dcterms.title" content="French title / Titre en français" />
-<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
-<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
-<meta name="dcterms.subject" title="scheme" content="French subject terms / Termes de sujet en français" />
-<meta name="dcterms.language" title="ISO639-2" content="fra" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!--[if lte IE 8]>
@@ -25,19 +19,83 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <script src="../../dist/js/polyfills/html5shiv-min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
-<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
-<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-ie-min.css" /></noscript>
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
 <![endif]-->
 <!--[if gt IE 8]><!-->
 <script src="../../dist/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
 <link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
-<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
-<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
 <!--<![endif]-->
 
-<!-- CustomScriptsCSSStart --> 
-<!-- CustomScriptsCSSEnd -->
+<!-- CustomCSSStart -->
+<style>
+#tsrw td {
+	text-align: center;
+}
+#tsrw td.wcagsc {
+	text-align: left;
+}
+
+@media screen and (min-width: 260px) {
+	#tsrw th.ui-table-priority-arb, #tsrw td.ui-table-priority-arb {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 370px) {
+	#tsrw th.ui-table-priority-arb2, #tsrw td.ui-table-priority-arb2 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 400px) {
+	.ui-table-columntoggle-btn {
+		position: absolute;
+	}
+}
+@media screen and (min-width: 480px) {
+	#tsrw th.ui-table-priority-arb3, #tsrw td.ui-table-priority-arb3 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 580px) {
+	#tsrw th.ui-table-priority-arb4, #tsrw td.ui-table-priority-arb4 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 690px) {
+	#tsrw th.ui-table-priority-arb5, #tsrw td.ui-table-priority-arb5 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 800px) {
+	#tsrw th.ui-table-priority-arb6, #tsrw td.ui-table-priority-arb6 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 920px) {
+	#tsrw th.ui-table-priority-arb7, #tsrw td.ui-table-priority-arb7 {
+		display: table-cell;
+	}
+}
+@media screen and (min-width: 1020px) {
+	#tsrw th.ui-table-priority-arb8, #tsrw td.ui-table-priority-arb8 {
+		display: table-cell;
+	}
+}
+
+#tsrw [class*="ui-table-priority"], #tsrw th.ui-table-cell-hidden, #tsrw td.ui-table-cell-hidden {
+	display: none;
+}
+#tsrw .ui-table-priority-arb1, #tsrw th.ui-table-cell-visible, #tsrw td.ui-table-cell-visible {
+	display: table-cell;
+}
+#tsrw-overflow {
+	overflow: auto;
+}
+</style>
+<!-- CustomCSSEnd -->
 </head>
 
 <body><div id="wb-body">
@@ -50,51 +108,42 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
-<nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation du gouvernement du Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><object data="../../dist/theme-gcwu-fegc/images/sig-fra-r.svg" role="img" aria-label="Gouvernement du Canada" type="image/svg+xml" width="237" height="24">
-	<div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../dist/theme-gcwu-fegc/images/sig-fra.gif" width="214" height="20" alt="Gouvernement du Canada" /></div>
-</object></div></div>
+<section><div id="wet-fullhd"><h2>Secteur d'en-tête de plein-largeur</h2>
+<div id="wet-fullhd-in">
 <ul>
-<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
-<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
-<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
-<li id="gcwu-gcnb-lang"><a href="arb-rra-eng.html" lang="en">English</a></li>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="arb-rra-eng.html" lang="en">English</a></li>
 </ul>
-</div></div></div></nav>
+</div>
+</div></section>
 
-<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><object data="../../dist/theme-gcwu-fegc/images/wmms-r.svg" role="img" aria-label="Symbole du gouvernement du Canada" type="image/svg+xml" width="144" height="34">
-	<div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div>
-</object></div></div>
-<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-fra.html">Boîte à outils de l'expérience Web&#160;(BOEW)</a></p></div>
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-fra.html" lang="fr"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
 
-<section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
-<form action="#" method="post"><div id="gcwu-srchbx-in">
-<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
-<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" />
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
 </div></form>
 </div></section>
 </div></div>
 
 <nav role="navigation">
-<div id="gcwu-psnb"><h2>Menu<span> du site</span></h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/menu-fra.txt">
-<li><div><a href="http://wet-boew.github.com/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
-<li><div><a href="section2/index-fra.html">Section 2</a></div></li>
-<li><div><a href="#">Section 3</a></div></li>
-<li><div><a href="#">Section 4</a></div></li>
-<li><div><a href="#">Section 5</a></div></li>
-<li><div><a href="#">Section 6</a></div></li>
-<li><div><a href="#">Section 7</a></div></li>
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-fra.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Mise-en-%C5%93uvre-de-la-BOEW">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs">Contribuer à la BOEW</a></div></li>
 </ul>
 </div></div></div></div>
 
-<div id="gcwu-bc"><h2>Fil d'Ariane</h2><div id="gcwu-bc-in">
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
 <ol>
 <li><a href="../../index-fra.html">Accueil</a></li>
 <li><a href="../index-fra.html">Exemples pratiques</a></li>
 <li>Répartition des responsabilités d'accessibilité (WCAG 2.0)</li>
-</ol></div></div>
+</ol>
+</div></div>
 </nav>
 <!-- HeaderEnd -->
 </header></div></div>
@@ -105,8 +154,8 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <h1 id="wb-cont">Répartition des responsabilités d'accessibilité (WCAG 2.0)</h1>
 
 <ul class="button-group">
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/R%C3%A9partition-des-responsabilit%C3%A9s-d%27accessibilit%C3%A9" class="button button-info">Documentation</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/R%C3%A9partition-des-responsabilit%C3%A9s-d%27accessibilit%C3%A9" class="button"><span class="wb-icon-report"></span>Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button"><span class="wb-icon-question"></span>Questions ou commentaires?</a></li>
 </ul>
 
 <div class="span-8">
@@ -143,7 +192,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 							<li>Évaluer l’impact des plateformes technologiques</li>
 						</ul>
 						<p>Pour plus de détails sur les facteurs à considérer pour atteindre les objectifs d’accessibilité du point de vue d’un chargé de projets, consulter l’article «&#160;<a href="arb-rra-planAccess-fra.html">Planifier&#160;l’accessibilité</a>&#160;».</p>
-					</section>			
+					</section>
 				</div>
 			</div>
 			<div id="a1b">
@@ -420,32 +469,29 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			</div>
 		</div>
 	</div>
-</section>		
+</section>
 
-<section>
+<section><div class="tsrw-overflow">
 	<h2 id="a2">Tableau synthèse de la répartition WCAG 2.0</h2>
-	
-	<table id="tsrw" class="wet-boew-zebra">
+
+	<table id="tsrw" class="wet-boew-tables" data-wet-boew='{"bZebra": true, "bPaginate": false}' data-role="table" data-mode="columntoggle">
 	<thead>
-		<tr>
-			<th scope="col" rowspan="2">Critère de succès</th>
-			<th scope="col" rowspan="2">Niveau</th>
-			<th scope="col" colspan="8">Étape de la chaîne de production</th>
-		</tr>
-		<tr>
-			<th scope="col">Analyse</th>
-			<th scope="col">Architecture</th>
-			<th scope="col">Conception d'interaction</th>
-			<th scope="col">Graphisme</th>
-			<th scope="col">Prototypage</th>
-			<th scope="col">Rédaction</th>
-			<th scope="col">Développement</th>
-			<th scope="col">Contrôle Qualité</th>
+		<tr class="font-small">
+			<th scope="col">Critère de succès</th>
+			<th scope="col" data-priority="arb">Niveau</th>
+			<th scope="col" data-priority="arb1">Analyse</th>
+			<th scope="col" data-priority="arb2">Architecture</th>
+			<th scope="col" data-priority="arb3">Conception d'interaction</th>
+			<th scope="col" data-priority="arb4">Graphisme</th>
+			<th scope="col" data-priority="arb5">Prototypage</th>
+			<th scope="col" data-priority="arb6">Rédaction</th>
+			<th scope="col" data-priority="arb7">Développement</th>
+			<th scope="col" data-priority="arb8">Contrôle Qualité</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr id="a-wcag2-111">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#text-equiv-all" rel="external"><span class="wb-invisible">Critère de succès </span>1.1.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#text-equiv-all" rel="external"><span class="wb-invisible">Critère de succès </span>1.1.1</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -457,7 +503,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-121">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-av-only-alt" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-av-only-alt" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.1</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -469,7 +515,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-122">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-captions" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.2</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-captions" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.2</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -481,7 +527,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-123">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-audio-desc" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.3</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-audio-desc" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.3</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -493,7 +539,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-124">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-real-time-captions" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.4</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-real-time-captions" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.4</a></td>
 			<td>AA</td>
 			<td></td>
 			<td></td>
@@ -505,7 +551,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-125">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-audio-desc-only" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.5</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-audio-desc-only" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.5</a></td>
 			<td>AA</td>
 			<td></td>
 			<td></td>
@@ -517,7 +563,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-126">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-sign" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.6</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-sign" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.6</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -529,7 +575,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-127">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-extended-ad" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.7</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-extended-ad" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.7</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -541,7 +587,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-128">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-text-doc" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.8</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-text-doc" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.8</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -553,7 +599,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-129">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-live-audio-only" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.9</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#media-equiv-live-audio-only" rel="external"><span class="wb-invisible">Critère de succès </span>1.2.9</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -565,7 +611,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-131">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#content-structure-separation-programmatic" rel="external"><span class="wb-invisible">Critère de succès </span>1.3.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#content-structure-separation-programmatic" rel="external"><span class="wb-invisible">Critère de succès </span>1.3.1</a></td>
 			<td>A</td>
 			<td></td>
 			<td>X</td>
@@ -577,7 +623,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-132">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#content-structure-separation-sequence" rel="external"><span class="wb-invisible">Critère de succès </span>1.3.2</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#content-structure-separation-sequence" rel="external"><span class="wb-invisible">Critère de succès </span>1.3.2</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -589,7 +635,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-133">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#content-structure-separation-understanding" rel="external"><span class="wb-invisible">Critère de succès </span>1.3.3</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#content-structure-separation-understanding" rel="external"><span class="wb-invisible">Critère de succès </span>1.3.3</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -601,7 +647,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-141">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-without-color" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-without-color" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.1</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -613,7 +659,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-142">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-dis-audio" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.2</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-dis-audio" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.2</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -625,7 +671,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-143">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-contrast" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.3</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-contrast" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.3</a></td>
 			<td>AA</td>
 			<td></td>
 			<td></td>
@@ -637,7 +683,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-144">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-scale" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.4</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-scale" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.4</a></td>
 			<td>AA</td>
 			<td></td>
 			<td></td>
@@ -649,7 +695,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-145">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-text-presentation" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.5</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-text-presentation" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.5</a></td>
 			<td>AA</td>
 			<td></td>
 			<td></td>
@@ -661,7 +707,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-146">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast7" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.6</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast7" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.6</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -673,7 +719,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-147">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-noaudio" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.7</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-noaudio" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.7</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -685,7 +731,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-148">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-visual-presentation" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.8</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-visual-presentation" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.8</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -697,7 +743,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-149">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-text-images" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.9</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#visual-audio-contrast-text-images" rel="external"><span class="wb-invisible">Critère de succès </span>1.4.9</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -709,7 +755,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-211">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#keyboard-operation-keyboard-operable" rel="external"><span class="wb-invisible">Critère de succès </span>2.1.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#keyboard-operation-keyboard-operable" rel="external"><span class="wb-invisible">Critère de succès </span>2.1.1</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -721,7 +767,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-212">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#keyboard-operation-trapping" rel="external"><span class="wb-invisible">Critère de succès </span>2.1.2</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#keyboard-operation-trapping" rel="external"><span class="wb-invisible">Critère de succès </span>2.1.2</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -733,7 +779,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-213">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#keyboard-operation-all-funcs" rel="external"><span class="wb-invisible">Critère de succès </span>2.1.3</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#keyboard-operation-all-funcs" rel="external"><span class="wb-invisible">Critère de succès </span>2.1.3</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -745,7 +791,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-221">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#time-limits-required-behaviors" rel="external"><span class="wb-invisible">Critère de succès </span>2.2.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#time-limits-required-behaviors" rel="external"><span class="wb-invisible">Critère de succès </span>2.2.1</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -757,7 +803,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-222">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#time-limits-pause" rel="external"><span class="wb-invisible">Critère de succès </span>2.2.2</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#time-limits-pause" rel="external"><span class="wb-invisible">Critère de succès </span>2.2.2</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -769,7 +815,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-223">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#time-limits-no-exceptions" rel="external"><span class="wb-invisible">Critère de succès </span>2.2.3</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#time-limits-no-exceptions" rel="external"><span class="wb-invisible">Critère de succès </span>2.2.3</a></td>
 			<td>AAA</td>
 			<td>X</td>
 			<td></td>
@@ -781,7 +827,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-224">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#time-limits-postponed" rel="external"><span class="wb-invisible">Critère de succès </span>2.2.4</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#time-limits-postponed" rel="external"><span class="wb-invisible">Critère de succès </span>2.2.4</a></td>
 			<td>AAA</td>
 			<td>X</td>
 			<td></td>
@@ -793,7 +839,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-225">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#time-limits-server-timeout" rel="external"><span class="wb-invisible">Critère de succès </span>2.2.5</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#time-limits-server-timeout" rel="external"><span class="wb-invisible">Critère de succès </span>2.2.5</a></td>
 			<td>AAA</td>
 			<td>X</td>
 			<td></td>
@@ -805,7 +851,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-231">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#seizure-does-not-violate" rel="external"><span class="wb-invisible">Critère de succès </span>2.3.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#seizure-does-not-violate" rel="external"><span class="wb-invisible">Critère de succès </span>2.3.1</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -817,7 +863,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-232">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#seizure-three-times" rel="external"><span class="wb-invisible">Critère de succès </span>2.3.2</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#seizure-three-times" rel="external"><span class="wb-invisible">Critère de succès </span>2.3.2</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -829,7 +875,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-241">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-skip" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-skip" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.1</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -841,7 +887,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-242">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-title" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.2</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-title" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.2</a></td>
 			<td>A</td>
 			<td></td>
 			<td>X</td>
@@ -853,7 +899,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-243">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-focus-order" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.3</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-focus-order" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.3</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -865,7 +911,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-244">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-refs" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.4</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-refs" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.4</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -877,7 +923,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-245">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-mult-loc" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.5</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-mult-loc" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.5</a></td>
 			<td>AA</td>
 			<td></td>
 			<td>X</td>
@@ -889,7 +935,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-246">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-descriptive" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.6</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-descriptive" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.6</a></td>
 			<td>AA</td>
 			<td></td>
 			<td>X</td>
@@ -901,7 +947,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-247">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-focus-visible" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.7</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-focus-visible" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.7</a></td>
 			<td>AA</td>
 			<td></td>
 			<td></td>
@@ -913,7 +959,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-248">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-location" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.8</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-location" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.8</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td>X</td>
@@ -925,7 +971,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-249">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-link" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.9</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-link" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.9</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -937,7 +983,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-2410">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-headings" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.10</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#navigation-mechanisms-headings" rel="external"><span class="wb-invisible">Critère de succès </span>2.4.10</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td>X</td>
@@ -949,7 +995,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-311">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#meaning-doc-lang-id" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#meaning-doc-lang-id" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.1</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -961,7 +1007,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-312">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#meaning-other-lang-id" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.2</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#meaning-other-lang-id" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.2</a></td>
 			<td>AA</td>
 			<td></td>
 			<td>X</td>
@@ -973,7 +1019,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-313">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#meaning-idioms" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.3</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#meaning-idioms" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.3</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td>X</td>
@@ -985,7 +1031,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-314">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#meaning-located" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.4</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#meaning-located" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.4</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td>X</td>
@@ -997,7 +1043,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-315">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#meaning-supplements" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.5</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#meaning-supplements" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.5</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -1009,7 +1055,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-316">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#meaning-pronunciation" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.6</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#meaning-pronunciation" rel="external"><span class="wb-invisible">Critère de succès </span>3.1.6</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -1021,7 +1067,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-321">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#consistent-behavior-receive-focus" rel="external"><span class="wb-invisible">Critère de succès </span>3.2.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#consistent-behavior-receive-focus" rel="external"><span class="wb-invisible">Critère de succès </span>3.2.1</a></td>
 			<td>A</td>
 			<td>X</td>
 			<td></td>
@@ -1033,7 +1079,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-322">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#consistent-behavior-unpredictable-change" rel="external"><span class="wb-invisible">Critère de succès </span>3.2.2</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#consistent-behavior-unpredictable-change" rel="external"><span class="wb-invisible">Critère de succès </span>3.2.2</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -1045,7 +1091,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-323">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#consistent-behavior-consistent-locations" rel="external"><span class="wb-invisible">Critère de succès </span>3.2.3</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#consistent-behavior-consistent-locations" rel="external"><span class="wb-invisible">Critère de succès </span>3.2.3</a></td>
 			<td>AA</td>
 			<td></td>
 			<td></td>
@@ -1057,7 +1103,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-324">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#consistent-behavior-consistent-functionality" rel="external"><span class="wb-invisible">Critère de succès </span>3.2.4</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#consistent-behavior-consistent-functionality" rel="external"><span class="wb-invisible">Critère de succès </span>3.2.4</a></td>
 			<td>AA</td>
 			<td></td>
 			<td></td>
@@ -1069,7 +1115,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-325">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#consistent-behavior-no-extreme-changes-context" rel="external"><span class="wb-invisible">Critère de succès </span>3.2.5</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#consistent-behavior-no-extreme-changes-context" rel="external"><span class="wb-invisible">Critère de succès </span>3.2.5</a></td>
 			<td>AAA</td>
 			<td></td>
 			<td></td>
@@ -1081,7 +1127,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-331">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-identified" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-identified" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.1</a></td>
 			<td>A</td>
 			<td>X</td>
 			<td></td>
@@ -1093,7 +1139,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-332">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-cues" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.2</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-cues" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.2</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -1105,7 +1151,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-333">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-suggestions" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.3</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-suggestions" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.3</a></td>
 			<td>AA</td>
 			<td>X</td>
 			<td></td>
@@ -1117,7 +1163,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aa-wcag2-334">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-reversible" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.4</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-reversible" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.4</a></td>
 			<td>AA</td>
 			<td>X</td>
 			<td></td>
@@ -1129,7 +1175,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-335">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-context-help" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.5</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-context-help" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.5</a></td>
 			<td>AAA</td>
 			<td>X</td>
 			<td></td>
@@ -1141,7 +1187,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="aaa-wcag2-336">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-reversible-all" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.6</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#minimize-error-reversible-all" rel="external"><span class="wb-invisible">Critère de succès </span>3.3.6</a></td>
 			<td>AAA</td>
 			<td>X</td>
 			<td></td>
@@ -1153,7 +1199,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-411">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#ensure-compat-parses" rel="external"><span class="wb-invisible">Critère de succès </span>4.1.1</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#ensure-compat-parses" rel="external"><span class="wb-invisible">Critère de succès </span>4.1.1</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -1165,7 +1211,7 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 			<td>X</td>
 		</tr>
 		<tr id="a-wcag2-412">
-			<td><a href="http://www.w3.org/Translations/WCAG20-fr/#ensure-compat-rsv" rel="external"><span class="wb-invisible">Critère de succès </span>4.1.2</a></td>
+			<td><a class="wcagsc" href="http://www.w3.org/Translations/WCAG20-fr/#ensure-compat-rsv" rel="external"><span class="wb-invisible">Critère de succès </span>4.1.2</a></td>
 			<td>A</td>
 			<td></td>
 			<td></td>
@@ -1178,69 +1224,50 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 		</tr>
 	</tbody>
 	</table>
-</section>
+</div></section>
 <p><strong>Nota&#160;:</strong> Ce découpage présente une vision qui peut ne pas correspondre exactement à la réalité de votre chaîne de production. Il convient donc d’adapter ce modèle pour répondre à la réalité de propre chaîne de production.</p>
 <p>© Coopérative AccessibilitéWeb, 2011. <a href="https://github.com/wet-boew/wet-boew/wiki/R%C3%A9partition-des-responsabilit%C3%A9s-d%27accessibilit%C3%A9---Bo%C3%AEte-%C3%A0-outils-de-l%27exp%C3%A9rience-Web-%28BOEW%29---Conditions-r%C3%A9gissant-l%27utilisation" rel="external">Conditions régissant l'utilisation</a>.</p>
 </div><div class="clear"></div>
 
-<dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date de modification&#160;:</dt><dd><span><time>2012-09-17</time></span></dd>
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2013-04-11</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
 </div></div>
+
 </div></div>
 
 <div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
 <!-- FooterStart -->
-<nav role="navigation"><div id="gcwu-sft"><h3>Pied de page du site</h3><div id="gcwu-sft-in">
-<div id="gcwu-tctr">
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
 <ul>
-<li class="gcwu-tc"><a href="#" rel="license">Avis</a></li>
-<li class="gcwu-tr"><a href="#">Transparence</a></li>
-</ul>
-</div>
-<div class="clear"></div>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">À propos de nous</a></h4>
-<ul>
-<li><a href="#">Notre mandat</a></li>
-<li><a href="#">Le ministre</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fra.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
 </ul>
 </div></section>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Nouvelles</a></h4>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
 <ul>
-<li><a href="#">Communiqués</a></li>
-<li><a href="#">Avix aux médias</a></li>
-<li><a href="#">Multimédia</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
 </ul>
 </div></section>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contactez-nous</a></h4>
-<address>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
 <ul>
-<li><a href="#">Numéros de téléphone</a></li>
-<li><a href="#">Nos bureaux</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
 </ul>
-</address>
 </div></section>
-<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Restez branchés</a></h4>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
 <ul>
-<li><a rel="external" href="#">YouTube</a></li>
-<li><a rel="external" href="#">Twitter</a></li>
-<li><a href="#">Flux</a></li>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
 </ul>
 </div></section>
 </div></div></nav>
 
-<nav role="navigation"><div id="gcwu-gcft"><h3>Pied de page du gouvernement du Canada</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
-<ul>
-<li><a rel="external" href="http://canadiensensante.gc.ca/index-fra.php"><span>Santé</span><br />canadiensensante.gc.ca</a></li>
-<li><a rel="external" href="http://www.voyage.gc.ca/index-fra.asp"><span>Voyage</span><br />voyage.gc.ca</a></li>
-<li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
-<li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
-<li><a rel="external" href="http://plandaction.gc.ca/fr"><span>Économie</span><br />plandaction.gc.ca</a></li>
-<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></div></li>
-</ul>
-</div></div></div></nav>
+<section><div id="wet-fullft"><h3>Secteur de pied de page de plein-largeur</h3>
+<div id="wet-fullft-in"></div>
+</div></section>
 <!-- FooterEnd -->
 </footer>
 </div></div></div>
@@ -1248,15 +1275,19 @@ wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Lice
 <!-- ScriptsStart -->
 <script src="../../dist/js/settings.js"></script>
 <!--[if lte IE 8]>
-<script src="../../dist/theme-gcwu-fegc/js/theme-ie-min.js"></script>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
 <script src="../../dist/js/pe-ap-ie-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
 <![endif]-->
 <!--[if gt IE 8]><!-->
-<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
 <script src="../../dist/js/pe-ap-min.js"></script>
 <script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
 <!--<![endif]-->
 <!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
 </body>
 </html>

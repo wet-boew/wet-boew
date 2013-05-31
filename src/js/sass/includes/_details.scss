@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 
 /* details polyfill */
@@ -10,10 +10,16 @@
     display: block;
 }
 
+%pe-details-opened {
+	&:before { /* Add the opened pointer */
+		content: "\25BC\a0";
+	}
+}
+
 summary {
 	@extend %pe-details-display-block;
 	cursor: pointer; /* Apply a pointer cursor upon hover to indicate it’s a clickable element. These styles can be applied regardless of whether the fallback is needed */
-	&:hover, &:focus, &:active { /* Add focus styles (for keyboard accessibility) */
+	@include pseudo-focus { /* Add focus styles (for keyboard accessibility) */
 		background: #ddd;
 	}
 }
@@ -21,10 +27,14 @@ summary {
 /* Only get applied if JavaScript is enabled and <details> is not natively supported */
 details {
 	@extend %pe-details-display-block;
+	summary { /* Make sure summary remains visible */
+		display: block !important;
+		background: transparent
+	}
 	&.polyfill {
 		> {
 			summary {
-				&:before { /* Add the close pointer */
+				&:before { /* Add the closed pointer */
 					content: "\25BA\a0";
 				}
 			}
@@ -32,20 +42,27 @@ details {
 		&.open {
 			> {
 				summary {
-					&:before { /* Add the open pointer */
-						content: "\25BC\a0";
+					@extend %pe-details-opened;
+				}
+			}
+		}
+	}
+	&[open] {
+		&.polyfill {
+			> {
+				summary {
+					&:not([role=button]) {
+						@extend %pe-details-opened;
 					}
 				}
 			}
 		}
 	}
-	summary { /* Make sure summary remains visible */
-		display: block;
-		background: transparent
-	}
-	> {
-		* {
-			display: none;
+	&:not([open]) {
+		> {
+			* {
+				display: none;
+			}
 		}
 	}
 }
@@ -54,7 +71,7 @@ details {
 	details {
 		> {
 			* { /* Show the details content for browsers that natively support it. */
-				display: block;
+				@extend %pe-details-display-block;
 			}
 		}
 	}
@@ -64,14 +81,29 @@ details {
 	details {
 		> {
 			* {
-				display: block;
+				@extend %pe-details-display-block;
 			}
 		}
 	}
 	summary {
 		cursor: auto;
-		&:hover, &:focus, &:active {
+		@include pseudo-focus {
 			background: none;
+		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	details {
+		&.polyfill {
+			> {
+				summary {
+					&:before { /* Add the close pointer */
+						content: "\25C0\a0";
+					}
+				}
+			}
 		}
 	}
 }
