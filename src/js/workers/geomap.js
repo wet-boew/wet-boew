@@ -184,7 +184,10 @@
 			});
 			
 			geomap.map.addControl(panZoomBar);
-			
+			_pe.fn.geomap.setPanZoomBar(geomap);
+		},
+		
+		setPanZoomBar: function(geomap) {
 			/*
 			 * Add alt text to map controls and make tab-able
 			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
@@ -222,7 +225,7 @@
 					img.className +=  ' olControl' + actn;
 				}
 			}
-		}, // end addPanZoomBar function
+		},
 
 		/*
 		 * Map feature select
