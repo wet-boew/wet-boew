@@ -38,9 +38,12 @@
 				index,
 				len;
 
-			// Check if there's an active tab from the user's session
-			$activeTab = $tabs.find('a[href="' + this._get_active_panel(tabListIdx) + '"]');
-			if ($activeTab.length) {
+			// Check if there's a default tab specified by the URL hash or in the user's session
+			$activeTab = $tabs.find('a[href="#' + _pe.urlhash + '"]');
+			if ($activeTab.length === 0) {
+				$activeTab = $tabs.find('a[href="' + this._get_active_panel(tabListIdx) + '"]');
+			}
+			if ($activeTab.length > 0) {
 				$tabs.removeClass('default');
 				$activeTab.parent('li').addClass('default');
 			}
@@ -75,7 +78,7 @@
 			elm.empty().append($accordion);
 
 			// Track the active panel during the user's session
-			elm.find('[data-role="collapsible"]').on('expand', function () {
+			$panelElms.on('expand', function () {
 				_pe.fn.tabbedinterface._set_active_panel($(this).data('tab'), tabListIdx);
 				setTimeout(function() {
 					_pe.window.trigger('resize');
