@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -128,6 +128,7 @@
 		/* Calendar */
 		'%calendar-weekDayNames': ['@%calendar-weekDayNames-1@', '@%calendar-weekDayNames-2@', '@%calendar-weekDayNames-3@', '@%calendar-weekDayNames-4@', '@%calendar-weekDayNames-5@', '@%calendar-weekDayNames-6@', '@%calendar-weekDayNames-7@'],
 		'%calendar-monthNames': ['@%calendar-monthNames-1@', '@%calendar-monthNames-2@', '@%calendar-monthNames-3@', '@%calendar-monthNames-4@', '@%calendar-monthNames-5@', '@%calendar-monthNames-6@', '@%calendar-monthNames-7@', '@%calendar-monthNames-8@', '@%calendar-monthNames-9@', '@%calendar-monthNames-10@', '@%calendar-monthNames-11@', '@%calendar-monthNames-12@'],
+		'%calendar': '@%calendar@',
 		'%calendar-currentDay': '@%calendar-currentDay@',
 		'%calendar-goToLink': '@%calendar-goToLink@',
 		'%calendar-goToTitle': '@%calendar-goToTitle@',
@@ -188,6 +189,8 @@
 		'%geo-zoomworld': '@%geo-zoomworld@',
 		'%geo-zoomslider': '@%geo-zoomslider@',
 		'%geo-zoomfeature': '@%geo-zoomfeature@',
+		'%geo-scaleline': '@%geo-scaleline@',
+		'%geo-mouseposition': '@%geo-mouseposition@',
 		'%geo-ariamap': '@%geo-ariamap@',
 		'%geo-accessibilize': '@%geo-accessibilize@',
 		'%geo-accessibilizetitle': '@%geo-accessibilizetitle@',
