@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 
 @import "compass/css3/box-sizing";
@@ -33,7 +33,7 @@
 						border-right: 0;
 					}
 				}
-				[class*="module-"] {
+				.module, [class*="module-"], [class*="border-"] {
 					border: 10px solid transparent;
 					outline-offset: -10px;
 					@include box-sizing(content-box);
@@ -103,7 +103,7 @@
 		%grids-equalize-all-modern-ie {
 		    .equalize {
 		        > {
-		            [class*="module-"] {
+		            .module, [class*="module-"], [class*="border-"] {
 		                border: 0;
 		                float: left !important;
 		                display: block !important;
@@ -118,7 +118,7 @@
 		%grids-equalize-all-modern-ie-rtl {
 			.equalize {
 				> {
-					[class*="module-"] {
+					.module, [class*="module-"], [class*="border-"] {
 						float: right !important;
 					}
 				}

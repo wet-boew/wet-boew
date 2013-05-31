@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/utilities/color";
 
@@ -100,15 +100,26 @@ $default-box-shadow-v-offset: 0;
 	// apply link colors to base only
 	a {
 		&, &.ui-link {
-			&, &:link, &:visited {
-				color: $text;
+			&:link, &:visited {
+				@if $important {
+					color: $text !important;
+				} @else {
+					color: $text;
+				}
 			}
-
 			@include pseudo-focus {
 				@if $text == white {
-					color: darken($text, 10%);
+					@if $important {
+						color: darken($text, 10%) !important;
+					} @else {
+						color: darken($text, 10%);
+					}
 				} @else {
-					color: lighten($text, 20%);
+					@if $important {
+						color: lighten($text, 20%) !important;
+					} @else {
+						color: lighten($text, 20%);
+					}
 				}
 			}
 		}

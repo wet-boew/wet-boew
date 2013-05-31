@@ -1,11 +1,10 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
-
 @import "compass/css3/opacity";
-
 @import "mixins";
+
 /*   base appearance   */
 body {
 	line-height: 1.5em;
@@ -94,7 +93,7 @@ blockquote, form, img, pre {
 
 // fixes
 
-%font-weight-700 {
+%util-screen-font-weight-700 {
 	font-weight: 700;
 }
 
@@ -136,14 +135,14 @@ h4 {
 h5 {
 	&:not(.ui-title) {
 		color: lighten($dark, 20%);
-		@extend %font-weight-700;
+		@extend %util-screen-font-weight-700;
 	}
 }
 
 h6 {
 	&:not(.ui-title) {
 		color: $medium;
-		@extend %font-weight-700;
+		@extend %util-screen-font-weight-700;
 	}
 }
 
@@ -508,6 +507,9 @@ table {
 		margin: 0 8px;
 		padding: 0 0 1px 0;
 	}
+  a {
+    color: #fff !important;
+  }
 	abbr, acronym {
 		border: none;
 	}

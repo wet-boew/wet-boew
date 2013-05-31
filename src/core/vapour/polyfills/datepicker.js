@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  *
  * Version: @wet-boew-build.version@
  *
@@ -32,8 +32,11 @@
 				setSelectedDate,
 				toggle,
 				year = date.getFullYear(),
-				elm = $(this),
-				wrapper = elm.parent();
+				datepickerShow = pe.dic.get('%datepicker-show'),
+				datepickerHide = pe.dic.get('%datepicker-hide'),
+				interwordSpace = pe.dic.get('%interword-space'),
+				datepickerSelected = pe.dic.get('%datepicker-selected'),
+				elm = $(this);
 
 			if (elm.hasClass('picker-field')) {
 				return;
@@ -42,8 +45,8 @@
 			elm.addClass('picker-field');
 
 			createToggleIcon = function (fieldid) {
-				var fieldLabel = wrapper.find('label[for="' + fieldid + '"]').text(),
-					objToggle = $('<a id="' + fieldid + '-picker-toggle" class="picker-toggle-hidden" href="javascript:;"><img class="image-actual" src="' + pe.add.liblocation + 'images/datepicker/calendar-month.png" alt="' + pe.dic.get('%datepicker-show') + fieldLabel + '"/></a>');
+				var fieldLabel = $('label[for="' + fieldid + '"]').text(),
+					objToggle = $('<a id="' + fieldid + '-picker-toggle" class="picker-toggle-hidden wb-invisible" href="javascript:;"><img class="image-actual" src="' + pe.add.liblocation + 'images/datepicker/calendar-month.png" alt="' + datepickerShow + interwordSpace + fieldLabel + '"/></a>');
 
 				objToggle.on('click vclick touchstart', function () {
 					toggle(fieldid);
@@ -52,10 +55,15 @@
 
 				elm.after(objToggle);
 				container.slideUp(0);
+
+				// Delay revealing of the toggle button to give time for the image to load
+				setTimeout(function() {
+					objToggle.removeClass('wb-invisible');
+				}, 10);
 			};
 
 			addLinksToCalendar = function (fieldid, year, month, days, minDate, maxDate, format) {
-				var field = container.parent().find('#' + fieldid),
+				var field = $('#' + fieldid),
 					lLimit,
 					hLimit;
 
@@ -146,7 +154,13 @@
 						});
 
 						link.on('click vclick touchstart', {fieldid: fieldid, year: year, month : month, day: index + 1, days: days, format: format}, function (event) {
+							var $field = $('#' + event.data.fieldid),
+								prevDate = $field.val();
+
 							addSelectedDateToField(event.data.fieldid, event.data.year, event.data.month + 1, event.data.day, event.data.format);
+							if (prevDate !== $field.val()) {
+								$field.trigger('change');
+							}
 							setSelectedDate(event.data.fieldid, event.data.year, event.data.month, event.data.days, event.data.format);
 							//Hide the calendar on selection
 							toggle(event.data.fieldid);
@@ -169,7 +183,7 @@
 					calendar.create(calendarid, targetDate.getFullYear(), targetDate.getMonth(), true, minDate, maxDate);
 				}
 
-				pe.focus($('#' + calendarid).find('.cal-day-list').children('li:eq(' + (targetDate.getDate() - 1) + ')').children('a'));
+				pe.focus(container.find('.cal-day-list').children('li:eq(' + (targetDate.getDate() - 1) + ')').children('a'));
 			};
 
 			setSelectedDate = function (fieldid, year, month, days, format) {
@@ -196,7 +210,7 @@
 						cpntDate = $.parseJSON(date.replace(regex, '{"year":"$1", "month":"$2", "day":"$3"}'));
 						if (parseInt(cpntDate.year, 10) === year && parseInt(cpntDate.month, 10) === month + 1) {
 							$(days[cpntDate.day - 1]).addClass('datepicker-selected');
-							$(days[cpntDate.day - 1]).children('a').append('<span class="wb-invisible datepicker-selected-text"> [' + pe.dic.get('%datepicker-selected') + ']</span>');
+							$(days[cpntDate.day - 1]).children('a').append('<span class="wb-invisible datepicker-selected-text"> [' + datepickerSelected + ']</span>');
 						}
 					}
 				} catch (e) {
@@ -211,7 +225,8 @@
 			toggle = function (fieldid) {
 				var field = $('#' + fieldid),
 					wrapper = field.parent(),
-					toggle = wrapper.find('#' + fieldid + '-picker-toggle');
+					toggle = wrapper.find('#' + fieldid + '-picker-toggle'),
+					targetDate = pe.date.from_iso_format(field.val());
 
 				toggle.toggleClass('picker-toggle-hidden picker-toggle-visible');
 
@@ -247,19 +262,25 @@
 						ieFix($(this));
 					});
 					container.attr('aria-hidden', 'false');
-					toggle.children('a').children('span').text(pe.dic.get('%datepicker-hide'));
+					toggle.children('a').children('span').text(datepickerHide);
 
-					if (container.find('.cal-prevmonth a').length !== 0) {
-						pe.focus(container.find('.cal-prevmonth a'));
+					if (targetDate !== null) {
+						targetDate.setDate(targetDate.getDate() + 1);
+						setFocus('wb-picker', year, month, pe.date.from_iso_format(minDate), pe.date.from_iso_format(maxDate), targetDate);
 					} else {
-						if (container.find('.cal-nextmonth a').length !== 0) {
-							pe.focus(container.find('.cal-nextmonth a'));
+						if (container.find('.cal-prevmonth a').length !== 0) {
+							pe.focus(container.find('.cal-prevmonth a'));
 						} else {
-							pe.focus(container.find('.cal-goto a'));
+							if (container.find('.cal-nextmonth a').length !== 0) {
+								pe.focus(container.find('.cal-nextmonth a'));
+							} else {
+								pe.focus(container.find('.cal-goto a'));
+							}
 						}
 					}
 				} else {
 					hide($('#' + fieldid));
+
 					pe.focus(wrapper.find('#' + fieldid));
 				}
 			};
@@ -284,7 +305,7 @@
 				container.slideUp('fast', function () { ieFix($(this)); });
 				container.attr('aria-hidden', 'true');
 				calendar.hideGoToForm('wb-picker');
-				toggle.children('a').children('span').text(pe.dic.get('%datepicker-show') + fieldLabel);
+				toggle.children('a').children('span').text(datepickerShow + interwordSpace + fieldLabel);
 				toggle.removeClass('picker-toggle-visible');
 				toggle.addClass('picker-toggle-hidden');
 			};
@@ -357,7 +378,7 @@
 				});
 
 				// Close button
-				$('<a class="picker-close" role="button" href="javascript:;"><img src="' + pe.add.liblocation + 'images/datepicker/cross-button.png" alt="' + pe.dic.get('%datepicker-hide') + '" class="image-actual" /></a>').appendTo(container)
+				$('<a class="picker-close" role="button" href="javascript:;"><img src="' + pe.add.liblocation + 'images/datepicker/cross-button.png" alt="' + datepickerHide + '" class="image-actual" /></a>').appendTo(container)
 					.click(function () {
 						toggle(container.attr('aria-controls'));
 					});

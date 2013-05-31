@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/box-sizing";
 @import "compass/typography/lists/bullets";
@@ -72,7 +72,7 @@
 						min-height: 32px;
 						padding: $spacing-medium;
 						text-decoration: none;
-						background-repeat: no-repeat;
+						background-repeat: repeat-x;
 						background-position: 100% 0; //top right;
 						text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #555, 1px 1px 0 #000;
 						font-weight: 700;
@@ -252,18 +252,20 @@
 			@include no-bullet;
 			li {
 				clear: left;
-				margin-bottom: 10px;
+				margin-bottom: 10px !important;
 				overflow: hidden;
 				span { display: block; }
 			}
 			img {
 				float: left;
-				margin-right: 10px;
+				margin: 0 10px;
+			}
+			p {
+				padding-left: 10px;
 			}
 		}
 		img {
 			width: 100px !important;
-			height: 62px !important;
 			float: left;
 			margin-left: 10px;
 		}

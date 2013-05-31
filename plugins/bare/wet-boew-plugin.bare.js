@@ -3,6 +3,6 @@
 	_plugin : bare
 	_author : World Wide Web
 	_notes: A basic plugin for WET-BOEW
-	_licence: wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+	_licence: wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
 */
 
