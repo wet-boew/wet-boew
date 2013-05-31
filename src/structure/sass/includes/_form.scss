@@ -1,8 +1,9 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 @import "compass/css3/appearance";
+@import "compass/css3/box-sizing";
 
 @mixin forms {
 
@@ -61,6 +62,8 @@
 			legend {
 				padding-left: 10px;
 				padding-right: 10px;
+				margin: 0;
+				@include box-sizing(border-box);
 			}
 
 			#{headings(2, 6)} {
