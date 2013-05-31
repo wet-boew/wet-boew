@@ -1,0 +1,86 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+@mixin colors {
+
+	.color-dark {
+		color: $dark;
+	}
+	.color-medium {
+		color: $medium;
+	}
+	.color-accent {
+		color: darken($accent, 5%);
+	}
+	.color-attention {
+		color: darken($red, 5%);
+	}
+
+	#{headings(all)} {
+
+		&[class*="background-"] {
+			@include header;
+		}
+
+		&.background-accent {
+			@include colorize($accent, $important: true);
+		}
+		&.background-light {
+			@include colorize($light, $important: true);
+		}
+		&.background-medium {
+			@include colorize($medium, $important: true);
+		}
+		&.background-dark {
+			@include colorize($dark, $important: true);
+		}
+	}
+
+	p[class*="background-"] {
+		padding: 3px 8px;
+	}
+	span[class*="background-"] {
+		padding: 1px 4px;
+	}
+
+	[class*="background-"] {
+		#{headings(2, 6)}, p {
+			padding: 5px 10px !important;
+		}
+	}
+
+	.background-highlight {
+		@include colorize-base($highlight, true);
+	}
+	.background-accent {
+		@include colorize-base($accent, true);
+	}
+	.background-white {
+		background-color: $white !important;
+	}
+	.background-light {
+		background-color: $light !important;
+	}
+	.background-medium {
+		@include colorize-base($medium, true);
+	}
+	.background-dark {
+		@include colorize-base($dark, true);
+	}
+}
+
+@mixin header($radius: true) {
+	//TODO: Move as not related to colourization. Also appears referenced in _module.scss
+	font-family: $sans-serif;
+	font-size: 100%;
+	font-weight: $font-weight-bold;
+	line-height: 18px;
+	margin: 0 0 $spacing-xsmall !important;
+	padding: $spacing-small $spacing-medium;
+	width: auto;
+
+	@if $radius == true {
+		@include border-top-radius;
+	}
+}

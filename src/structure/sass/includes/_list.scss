@@ -1,0 +1,102 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.com/wet-boew/License-eng.txt / wet-boew.github.com/wet-boew/Licence-fra.txt
+ */
+@import "compass/typography/lists/horizontal-list";
+@import "mixins";
+
+@mixin lists {
+	ul, dl, ol {
+		margin: $margin-medium $margin-medium $margin-medium 40px;
+		padding: 0;
+	}
+
+	ol {
+		ol {
+			li {
+				list-style-type: lower-alpha;
+			}
+			ol {
+				li {
+					list-style-type: lower-roman;
+				}
+			}
+		}
+		&.list-numeric {
+			li {
+				list-style-type: decimal !important;
+			}
+		}
+		ul {
+			li {
+				list-style-type: disc !important;
+				li {
+					list-style-type: circle !important;
+					li {
+						list-style-type: square !important;
+					}
+				}
+			}
+		}
+	}
+
+	.list-lower-alpha {
+		list-style-type: lower-alpha !important;
+	}
+	.list-lower-roman {
+		list-style-type: lower-roman !important;
+	}
+	.list-bullet-none {
+		list-style-type: none !important;
+	}
+	.list-upper-alpha {
+		list-style-type: upper-alpha !important;
+	}
+	.list-upper-roman {
+		list-style-type: upper-roman !important;
+	}
+
+	ul {
+		&.menu-horizontal {
+			@include horizontal-list(2px);
+			margin: $margin-medium;
+
+			li {
+				margin-bottom: 5px;
+				padding-left: 0;
+				padding-right: 4px;
+			}
+		}
+		ul {
+			margin-top: 0 !important;
+		}
+	}
+
+	// Right to left (RTL) CSS
+	[dir="rtl"] {
+		ul, dl, ol {
+			margin: $margin-medium 40px $margin-medium $margin-medium;
+			padding: 0;
+		}
+
+		.ui-navbar {
+			ul, dl, ol {
+				margin: 0;
+			}
+		}
+
+		ul.menu-horizontal {
+			margin: 0 10px;
+			li {
+				padding-left: 4px;
+				padding-right: 0;
+				float: right;
+			}
+		}
+		.list-bullet-none {
+			abbr {
+				float: right;
+			}
+		}
+	}
+}

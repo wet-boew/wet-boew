@@ -1,0 +1,36 @@
+{
+  "name": "wet-boew",
+  "version": "0.4.0",
+  "description": "Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities. / La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/masterbee/wet-boew.git"
+  },
+  "keywords": [
+    "framework",
+    "web",
+    "html5",
+    "javascript",
+    "modernizr",
+    "polyfill",
+    "WCAG2.0",
+    "accessiblity"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-coffee": "~0.6.4",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-copy": "~0.4.1"
+  }
+}
