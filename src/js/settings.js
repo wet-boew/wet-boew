@@ -22,3 +22,32 @@ Global overrides for individual components
 var wet_boew_share = {
 	sites : ['del.icio.us', 'digg', 'facebook', 'google', 'linkedin', 'reddit', 'stumbleupon', 'twitter', 'yahoobuzz']
 };
+
+// Chart and graph
+var wet_boew_charts = {
+	preset: {
+		donnut: {
+			// Donnut setting
+			type: 'pie',
+			height: 250,
+			percentlegend: true,
+			pieinnerradius: 45,
+			pietilt: 50,
+			piehoverable: true,
+			decimal: 1,
+			piethreshold: 8,
+			legendinline: true,
+			piestartangle: 100
+		},
+		usnumber: {
+			getcellvalue: function(elem){
+				return $(elem).text().match(/^-?(?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/);
+			}
+		},
+		germannumber: {
+			getcellvalue: function(elem){
+				return $(elem).text().match(/^-?(?:\d+|\d{1,3}(?:\.\d{3})+)(?:,\d+)?$/);
+			}
+		}
+	}
+}

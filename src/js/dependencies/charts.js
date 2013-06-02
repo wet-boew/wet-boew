@@ -21,117 +21,9 @@
 				self = $(elm),
 				srcTbl = self,
 				smallestHorizontalFlotDelta,
-				smallestVerticalFlotDelta; 
+				smallestVerticalFlotDelta,
+				oPreset; 
 
-			// Setting Priority
-			// 1. Default hard coded in this file
-			// 2. PE Setting object : wet_boew_charts
-			// 3. CSS options used on table element
-
-			//configuration
-			o = {
-				'default-namespace': ['wb-charts', 'wb-chart', 'wb-graph'],
-				'graphclass-autocreate': true, // This add the ability to set custom css class to the figure container.
-				'graphclass-overwrite-array-mode': true,
-				'graphclass-typeof': 'string',
-				'noencapsulation-autocreate': true,
-				
-				// Force to have an uniform tick
-				uniformtick: true,
-				'uniformtick-typeof': 'boolean',
-				'uniformtick-autocreate': true,
-				
-				// Force to use which row in the thead for the label
-				'labelposition-typeof': 'number',
-				'labelposition-autocreate': true,
-				
-				// Legend Management
-				'legendinline-typeof': 'boolean',
-				'legendinline-autocreate': true,
-				'nolegend-typeof': 'boolean',
-				'nolegend-autocreate': true,
-				'percentlegend-typeof': 'boolean',
-				'percentlegend-autocreate': true,
-				
-				// Force the Top and Bottom Value for a graph
-				'topvalue-autocreate': true,
-				'topvalue-typeof': 'number',
-				'topvaluenegative-autocreate': true,
-				'topvaluenegative-typeof': 'boolean',
-				'bottomvalue-autocreate': true,
-				'bottomvalue-typeof': 'number',
-				'bottomvaluenegative-autocreate': true,
-				'bottomvaluenegative-typeof': 'boolean',
-				// Ticks => Number of ticks for the y-axis
-				'ticks-autocreate': true,
-				'ticks-typeof': 'number',
-				
-				
-				// Pie chart option
-				// set a decimal precision
-				'decimal-autocreate': true,
-				'decimal-typeof': 'number',
-				'pieradius': 100, // Pie radius
-				'pieradius-typeof': 'number',
-				'pielblradius': 100, // Pie label radius
-				'pielblradius-typeof': 'number',
-				'piethreshold-autocreate': true, // Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
-				'piethreshold-typeof': 'number',
-				'pietilt-autocreate': true, // Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
-				'pietilt-typeof': 'number',
-				'pieinnerradius-autocreate': true, // Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
-				'pieinnerradius-typeof': 'number',
-				'piestartangle-autocreate': true, // Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
-				'piestartangle-typeof': 'number',
-				'piehighlight-autocreate': true, //  Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
-				'piehighlight-typeof': 'number',
-				'piehoverable-autocreate': true, // Hoverable pie slice
-				'piehoverable-typeof': 'boolean',
-				
-				// General option
-				'default-option': 'type', // Default CSS Options
-				// Graph Type
-				type: 'bar', // this be one of or an array of: area, pie, line, bar, stacked
-				'type-autocreate': true,
-				//
-				// Graph Layout
-				//
-				width: $(elm).width(), // width of canvas - defaults to table height
-				'width-typeof': 'number',
-				height: $(elm).height(), // height of canvas - defaults to table height
-				'height-typeof': 'number',
-				//
-				// Data Table and Graph Orientation
-				//
-				parsedirection: 'x', // which direction to parse the table data
-				'parsedirection-typeof': 'string',
-				'parsedirection-autocreate': true,
-				
-				getCellValue: function(elem) {
-					// Parameter: elem = HTML DOM node (td element)
-					//
-					// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
-					// Example 
-					// return 25.14
-					// return 44
-					// return [44, "%"]
-					// return [5.1, "g"]
-					
-					// Default Cell value extraction
-					var cellRawValue = $(elem).text();
-					
-					//trim spaces in the string;
-					cellRawValue = cellRawValue.replace(/\s\s+/g, ' ');
-					cellRawValue = cellRawValue.replace(/^\s+|\s+$/g, '');
-					
-					return [parseFloat(cellRawValue.match(/[\+\-0-9]+[0-9,\. ]*/)), cellRawValue.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
-				}
-			};
-			
-			// Default Generic setting 
-			if (typeof wet_boew_charts !== 'undefined' && wet_boew_charts !== null) {
-				$.extend(true, o, wet_boew_charts);
-			}
 
 			function colourNameToHex(colour) {
 				// colorsAccent = ['#8d201c', '#EE8310', '#2a7da6', '#5a306b', '#285228', '#154055', '#555555', '#f6d200', '#d73d38', '#418541', '#87aec9', '#23447e', '#999999'];
@@ -301,6 +193,7 @@
 				return (colours[colour.toLowerCase()] !== 'undefined' ? colours[colour.toLowerCase()] : ($.isArray(o.colors) ? o.colors[0] : o.colors));
 			}
 			
+						
 			// Function to Convert Class instance to JSON
 			function setClassOptions (sourceOptions, strClass, namespace) {
 				var separatorNS = '',
@@ -372,7 +265,6 @@
 							if (namespace[i] === (this.length > namespace[i].length + separatorNS.length ? this.slice(0, namespace[i].length) : '')) {
 								arrNamespace = namespace[i].split(separatorNS);
 								arrParameter = this.split(separatorNS).slice(arrNamespace.length);
-								propName = arrNamespace[arrNamespace.length - 1];
 								break;
 							}
 						}
@@ -381,20 +273,30 @@
 						if (namespace === (this.length > namespace.length + separatorNS.length ? this.slice(0, namespace.length) : '')) {
 							arrNamespace = namespace.split(separatorNS);
 							arrParameter = this.split(separatorNS).slice(arrNamespace.length);
-							propName = arrNamespace[arrNamespace.length - 1];
 						}
 					}
-					
-					if (arrParameter && propName) {
+					if (arrParameter && arrNamespace[arrNamespace.length - 1]) {
 						// This is a valid parameter, start the convertion to a JSON object
 						// Get all defined parameter
-						
 						for (i = 0, _ilen = arrParameter.length; i < _ilen; i += 1) {
 							valIsNext = (i + 2 === _ilen ? true : false);
 							isVal = (i + 1 === _ilen ? true : false);
 							// Check if that is the default value and make a reset to the parameter name if applicable
-							if (isVal && _ilen === 1 && sourceOptions['default-option']) {
-								propName = sourceOptions['default-option'];
+							if (isVal && _ilen === 1) {
+								if (sourceOptions[arrParameter[i] + '-autocreate'] || (sourceOptions[arrParameter[i]] &&  sourceOptions[arrParameter[i] + '-typeof'] && sourceOptions[arrParameter[i] + '-typeof'] === "boolean")) {
+									// 1. If match an existing option and that option is boolean
+									arrParameter.push('true');
+									propName = arrParameter[i];
+									i = i + 1;
+									_ilen = arrParameter.length;
+								} else if (currObj.preset && currObj.preset[arrParameter[i]]) { 
+									// 2. It match a preset, overide the current setting
+									currObj = jQuery.extend(true, currObj, currObj.preset[arrParameter[i]]);
+									break;
+								} else { 
+									// 3. Use the Default set
+									propName = (sourceOptions['default-option']? sourceOptions['default-option']: undefined);
+								}
 							} else if (!isVal) {
 								propName = arrParameter[i];
 							}
@@ -407,7 +309,9 @@
 								for (j = (i + 1); j < _ilen; j += 1) {
 									arrValue.push(arrParameter[j]);
 								}
-								arrParameter[i] = arrValue.join(separatorNS);
+								if ((i + 1) < _ilen) {
+									arrParameter[i] = arrValue.join(separatorNS);
+								}
 								valIsNext = false;
 								isVal = true;
 								switch (currObj[propName + '-typeof']) {
@@ -493,9 +397,145 @@
 				return sourceOptions;
 			}
 			
-			// Set the new class options if defined
-			o = setClassOptions(o, ($(self).attr('class') !== undefined ? $(self).attr('class') : ''));
+			if (!_pe.fn.chartsGraph.O){
+				// 1. Charts Default Setting
+				o = {
+					'default-namespace': ['wb-charts', 'wb-chart', 'wb-graph'],
+					'graphclass-autocreate': true, // This add the ability to set custom css class to the figure container.
+					'graphclass-overwrite-array-mode': true,
+					'graphclass-typeof': 'string',
+					'noencapsulation-autocreate': true,
+					'noencapsulation-typeof': 'boolean',
+					
+					// Force to have an uniform tick
+					uniformtick: true,
+					'uniformtick-typeof': 'boolean',
+					'uniformtick-autocreate': true,
+					
+					// Force to use which row in the thead for the label
+					'labelposition-typeof': 'number',
+					'labelposition-autocreate': true,
+					
+					// Legend Management
+					'legendinline-typeof': 'boolean',
+					'legendinline-autocreate': true,
+					'nolegend-typeof': 'boolean',
+					'nolegend-autocreate': true,
+					'percentlegend-typeof': 'boolean',
+					'percentlegend-autocreate': true,
+					
+					// Force the Top and Bottom Value for a graph
+					'topvalue-autocreate': true,
+					'topvalue-typeof': 'number',
+					'topvaluenegative-autocreate': true,
+					'topvaluenegative-typeof': 'boolean',
+					'bottomvalue-autocreate': true,
+					'bottomvalue-typeof': 'number',
+					'bottomvaluenegative-autocreate': true,
+					'bottomvaluenegative-typeof': 'boolean',
+					// Ticks => Number of ticks for the y-axis
+					'ticks-autocreate': true,
+					'ticks-typeof': 'number',
+					
+					
+					// Pie chart option
+					// set a decimal precision
+					'decimal-autocreate': true,
+					'decimal-typeof': 'number',
+					'pieradius': 100, // Pie radius
+					'pieradius-typeof': 'number',
+					'pielblradius': 100, // Pie label radius
+					'pielblradius-typeof': 'number',
+					'piethreshold-autocreate': true, // Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
+					'piethreshold-typeof': 'number',
+					'pietilt-autocreate': true, // Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
+					'pietilt-typeof': 'number',
+					'pieinnerradius-autocreate': true, // Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
+					'pieinnerradius-typeof': 'number',
+					'piestartangle-autocreate': true, // Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
+					'piestartangle-typeof': 'number',
+					'piehighlight-autocreate': true, //  Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
+					'piehighlight-typeof': 'number',
+					'piehoverable-autocreate': true, // Hoverable pie slice
+					'piehoverable-typeof': 'boolean',
+					
+					// General option
+					'default-option': 'type', // Default CSS Options
+					// Graph Type
+					type: 'bar', // this be one of or an array of: area, pie, line, bar, stacked
+					'type-autocreate': true,
+					//
+					// Graph Layout
+					//
+					width: $(elm).width(), // width of canvas - defaults to table height
+					'width-typeof': 'number',
+					height: $(elm).height(), // height of canvas - defaults to table height
+					'height-typeof': 'number',
+					//
+					// Data Table and Graph Orientation
+					//
+					parsedirection: 'x', // which direction to parse the table data
+					'parsedirection-typeof': 'string',
+					'parsedirection-autocreate': true,
+					getcellvalue: function(elem) {
+						// Parameter: elem = HTML DOM node (td element)
+						//
+						// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
+						// Example 
+						// return 25.14
+						// return 44
+						// return [44, "%"]
+						// return [5.1, "g"]
+						
+						// Default Cell value extraction
+						var cellRawValue = $(elem).text();
+						
+						//trim spaces in the string;
+						cellRawValue = cellRawValue.replace(/\s\s+/g, ' ');
+						cellRawValue = cellRawValue.replace(/^\s+|\s+$/g, '');
+						
+						return [parseFloat(cellRawValue.match(/[\+\-0-9]+[0-9,\. ]*/)), cellRawValue.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
+					},
+					preset: {}
+				};
+				
+				// 2. Global "setting.js"
+				if (typeof wet_boew_charts !== 'undefined' && wet_boew_charts !== null) {
+					//	 a. if exisit copy and take care of preset separatly (Move away before extending)
+					if (wet_boew_charts.preset) {
+						_pe.fn.chartsGraph.O = jQuery.extend(true, {}, wet_boew_charts.preset);
+						delete wet_boew_charts.preset;
+					}
+					//	 b. Overwrite the chart default setting
+					$.extend(true, o, wet_boew_charts);
+					//	 c. Separatly extend the preset to at the current chart default seting
+					if (_pe.fn.chartsGraph.O) {
+						$.extend(true, o.preset, _pe.fn.chartsGraph.O);
+					}
+				}
+				_pe.fn.chartsGraph.O = o; // ---- Save the setting here in a case of a second graphic on the same page
+			}
+			o = _pe.fn.chartsGraph.O;
 			
+			// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
+			o = setClassOptions(o, (self.attr('class') !== undefined ? self.attr('class') : ''));
+			
+			
+			// 4. [Table element] HTML5 Data Overwrite property
+			$.each(self.data(), function(idx, val) {
+				var propname;
+				// Check if the prefix "wbcharts" is used
+				if (idx.slice(0, 8) === "wbcharts") {
+					propname = idx.slice(8);
+					o[propname] = val;
+				}
+			});
+
+			// 5. Load the requested preset
+			//	 a. If the preset are a string => Use that as an url where it could find the setting
+			//	 ---- Keep the url and his content for future reference for example second chart.
+			//	 b. If the preset are an object => Overwrite the default.
+
 			// Add headers information to the table parsed data structure
 			// Similar sample of code as the HTML Table validator
 			function addTblHeaders(tblparser) {
@@ -1228,7 +1268,7 @@
 							// Get's the value
 							header = dataGroup.col[i].cell[j].row.header;
 							
-							cellValue = o.getCellValue(dataGroup.col[i].cell[rIndex].elem);
+							cellValue = o.getcellvalue(dataGroup.col[i].cell[rIndex].elem);
 							
 							dataSeries.push(
 								[
@@ -1437,7 +1477,7 @@
 							
 						}
 						
-						cellValue = o.getCellValue(parsedData.lstrowgroup[0].row[i].cell[j].elem);
+						cellValue = o.getcellvalue(parsedData.lstrowgroup[0].row[i].cell[j].elem);
 							
 						// Add the data point
 						dataSeries.push(
