@@ -3,20 +3,37 @@
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
 // Standard gutter width
-$gutter: 10px;
+$gutterWidth: 10px;
+$columns : 12 !default;
+$width: 960px !default;
 
-//Functions and mixins for grids
-@function -wet-boew-calculate-width($width, $columns) {
-	@return ($width * $columns) + (($gutter * 2) * ($columns - 1));		
+$columnWidth: 100%/$columns;
+
+
+@mixin create_column($name, $num) {
+	.span-#{$name} { width: $columnWidth * $num; _width: $columnWidth * $num - 0.0694%; float: left; display: inline; position:relative; }	
 }
 
-@function -wet-boew-calculate-offset($width, $columns){
-	@return (($width + (2 * $gutter)) * $columns) + $gutter;
+@mixin create_offset($name, $num) {
+	.offset-#{$num} { margin-left: $columnWidth * $num; _margin-left: $columnWidth * $num - 0.0694%; }	
 }
 
-@mixin create_grid($width, $max){
+@mixin create_grid($max){
 	@for $i from 1 through $max {
-		.span-#{$i} { width: -wet-boew-calculate-width($width, $i); }	
-		.offset-#{$i} {	margin-left: -wet-boew-calculate-offset($width, $i); }
+		@include create_column($i, $i);
+		@include create_offset($i, $i);
 	}
+	
+}
+
+
+@mixin microfix(){
+	&:before, &:after {
+	 content: " "; /* 1 */
+     display: table; /* 2 */
+	}
+	&:after {  clear: both; }
+	zoom: 1;
+	_height: 1%;
+	overflow: hidden;
 }

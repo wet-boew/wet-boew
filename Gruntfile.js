@@ -20,6 +20,16 @@ module.exports = function(grunt) {
 			dest: 'dist/js/vapour.js'
 			}
 		},
+		sass: {
+			dist: {
+				/* options: {
+					outputStyle: 'expanded' ## Currently libsass has a bug with the property outputStyle [https://github.com/andrew/node-sass]
+				}, */
+				files: {
+					'dist/css/base.css': 'src/structure/base.scss'
+				}	
+			}
+		},
 		uglify: {
 			jquery : {
 				options: {
@@ -31,10 +41,10 @@ module.exports = function(grunt) {
 			},
 			jqm: {
 				options: {
-					banner : '/*! jQuery Mobile vGit Build: SHA1: caa77b258660731d663844fe7867aa2c3a107ab1 <> Date: Wed Feb 20 15:03:27 2013 -0500 jquerymobile.com | jquery.org/license */\n'
+					banner : '/*! jQuery Mobile Git HEAD hash: 74b4bec049fd93e4fe40205e6157de16eb64eb46 <> Date: Wed Apr 10 2013 21:57:23 UTC jquerymobile.com | jquery.org/license */\n'
 				},
 				files: {
-					'dist/js/vendor/jquery-mobile-1.3.0.min.js': ['lib/jquery.mobile/jquery.mobile-1.3.0.js']
+					'dist/js/vendor/jquery-mobile-1.3.1.min.js': ['lib/jquery.mobile/jquery.mobile-1.3.1.js']
 				}
 			},
 			polyfills: {
@@ -43,6 +53,8 @@ module.exports = function(grunt) {
 				},
 				files: {
 					'dist/js/polyfills/datalist.min.js': ['src/core/vapour/polyfills/datalist.js'],
+					'dist/js/polyfills/respond.min.js': ['src/core/vapour/polyfills/respond.js'],
+					'dist/js/polyfills/excanvas.min.js': ['src/core/vapour/polyfills/excanvas.js'],
 					'dist/js/polyfills/datepicker.min.js': ['src/core/vapour/polyfills/datepicker.js'],
 					'dist/js/polyfills/detailssummary.min.js': ['src/core/vapour/polyfills/detailssummary.js'],
 					'dist/js/polyfills/localstorage.min.js': ['src/core/vapour/polyfills/localstorage.js'],
@@ -59,15 +71,15 @@ module.exports = function(grunt) {
 				files: {
 					'dist/js/vapour.min.js': ['lib/modernizr/modernizr.js', 'src/core/vapour/vapour.js']
 				}
+			},
+			 wetboew: {
+				options: {
+						banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */'
+				},
+				files: {
+						'dist/js/wet-boew.min.js': ['src/plugins/zebra/wet-boew.zebra.js']
+			 	}
 			}
-			// wetboew: {
-			//		options: {
-			////		banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */'
-			//	},
-			//	files: {
-			//	 'dist/js/wet-boew.min.js': ['src/plugins/*.js']
-			 //	}
-			// }
 		},
 		coffee: {
 			compileBare: {
@@ -76,7 +88,8 @@ module.exports = function(grunt) {
                 },
                 files: [
                     { 'src/core/vapour/vapour.js': 'src/core/vapour/vapour.coffee' }, // 1:1 compile
-                    { 'plugins/bare/wet-boew-plugin.bare.js': 'plugins/bare/wet-boew-plugin.coffee' } 
+                   // { 'plugins/bare/wet-boew-plugin.bare.js': 'src/plugins/bare/wet-boew-plugin.coffee' }
+                    { 'src/plugins/zebra/wet-boew.zebra.js': 'src/plugins/zebra/wet-boew-plugin-zebra.coffee' } 
                 ]
 			}
 		},
@@ -115,10 +128,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-sass');
 
 	// Default task.
 	grunt.registerTask('build', ['coffee']);
-	grunt.registerTask('default', ['clean','coffee','concat','uglify']);
-	grunt.registerTask('generic', ['clean','coffee','concat','uglify']);
+	grunt.registerTask('default', ['clean','coffee','sass','concat','uglify']);
+	grunt.registerTask('generic', ['clean','coffee','sass','concat','uglify']);
 
 };
